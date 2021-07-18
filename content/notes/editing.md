@@ -7,11 +7,25 @@ Quartz runs on top of [Hugo](https://gohugo.io/) so all notes are written in [Ma
 
 **All content in your garden can found in the `/content` folder.** To make edits, you can open any of the files and make changes directly and save it. You can organize content into any folder you'd like.
 
+**To edit the main home page, open `/content/_index.md`.**
+
 To create a link, just create a normal link using Markdown pointing to the document in question. Please note that **all links should be relative to the root `/content` path**. 
 
 ```markdown
 For example, I want to link this current document to `config.md`.
 [A link to the config page](config.md)
+```
+
+### Front Matter
+Hugo is picky when it comes to metadata for files. Ensure that you have a title defined at the top of your file like so:
+
+```markdown
+---
+title: "Example Title"
+---
+
+## Headers should start at H2
+Rest of your content here...
 ```
 
 ### Obsidian

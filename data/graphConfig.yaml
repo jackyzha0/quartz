@@ -1,11 +1,5 @@
 enableLegend: false
 enableDrag: true
 enableZoom: true
-base:
-  node: "#284b63"
-  activeNode: "#f28482"
-  inactiveNode: "#a8b3bd"
-  link: "#babdbf"
-  activeLink: "#5a7282"
 paths:
   - /moc: "#4388cc"

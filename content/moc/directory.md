@@ -12,6 +12,8 @@ Let's get to business and get you started!
 - 🎨 [Customizing and Styling Quartz](notes/config.md)
 - 🌍 [Hosting Quartz online!](notes/hosting.md)
 
+Not convinced yet? Look at some [cool digital gardens](moc/showcase)
+
 ## Troubleshooting
 - 🚧 [Troubleshooting and FAQ](notes/troubleshooting.md)
 - 🐛 [Submit an Issue](https://github.com/jackyzha0/quartz/issues)
