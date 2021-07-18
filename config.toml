@@ -2,3 +2,21 @@ baseURL = "https://quartz.jzhao.xyz/"
 languageCode = "en-us"
 googleAnalytics = "UA-148413215-1"
 pygmentsUseClasses = true
+ignoreFiles = ["/content/templates/*"]
+
+[markup]
+    [markup.tableOfContents]
+        endLevel = 3
+        ordered = true
+        startLevel = 2
+    [markup.highlight]
+        anchorLineNos = false
+        codeFences = true
+        guessSyntax = true
+        hl_Lines = ""
+        lineAnchors = ""
+        lineNoStart = 1
+        lineNos = true
+        lineNumbersInTable = true
+        style = "dracula"
+        tabWidth = 4

@@ -23,7 +23,7 @@
   }
 
   const color = (d) => {
-    if (d.id === curPage) {
+    if (d.id === curPage || (d.id === "/" && curPage === "")) {
       return "var(--g-node-active)"
     }
 
@@ -64,7 +64,7 @@
       .on("end", enableDrag ? dragended : noop);
   }
 
-  const height = 400
+  const height = 250
   const width = document.getElementById("graph-container").offsetWidth
 
   const simulation = d3.forceSimulation(data.nodes)

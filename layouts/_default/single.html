@@ -8,6 +8,12 @@
     {{partial "darkmode.html" .}}
     <article>
         {{if .Title}}<h1>{{ .Title }}</h1>{{end}}
+        {{if $.Site.Data.config.enableToc}}
+        <aside class="mainTOC">
+            <h3>Table of Contents</h3>
+            {{ .TableOfContents }}
+        </aside>
+        {{end}}
         {{- .Content -}}
     </article>
     {{partial "footer.html" .}}

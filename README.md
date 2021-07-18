@@ -1,4 +1,4 @@
-# quartz
+# Quartz
 Simple second brain and digital garden.
 
 ```shell

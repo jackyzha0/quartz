@@ -1,0 +1,15 @@
+{{define "head"}}
+{{ partial "head.html" . }}
+{{end}}
+
+{{define "main"}}
+<!-- Main Page -->
+<div class="singlePage">
+    {{.Content}}
+
+    <!-- Contact Info -->
+    <div class="lt-centre">
+        {{partial "footer.html" .}}
+    </div>
+</div>
+{{end}}

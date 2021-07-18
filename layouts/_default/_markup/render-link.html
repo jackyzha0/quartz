@@ -1,0 +1,2 @@
+{{$trimmed := strings.TrimSuffix ".md" (.Destination | safeURL)}}
+<a href="{{ if (hasPrefix $trimmed "/") }}{{ $trimmed }}{{ else }}{{ print "/" $trimmed }}{{ end }}" rel="noopener">{{ .Text | safeHTML }}</a>
