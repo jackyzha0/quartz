@@ -1,0 +1,4 @@
+baseURL = "https://quartz.jzhao.xyz/"
+languageCode = "en-us"
+googleAnalytics = "UA-148413215-1"
+pygmentsUseClasses = true

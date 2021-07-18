@@ -1,0 +1,9 @@
+<ol class="backlinks">
+    {{$curPage := strings.TrimRight "/" .Page.RelPermalink }}
+    {{$inbound := index $.Site.Data.linkIndex.index.backlinks $curPage}}
+    {{- range $inbound -}}
+    <li>
+        <a href="{{index . "source"}}">{{index . "source"}}</a>
+    </li>
+    {{- end -}}
+</ol>

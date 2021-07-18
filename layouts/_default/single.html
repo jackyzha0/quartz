@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ partial "head.html" . }}
+
+<body>
+<div class="singlePage">
+    <!-- Begin actual content -->
+    {{partial "darkmode.html" .}}
+    <article>
+        {{if .Title}}<h1>{{ .Title }}</h1>{{end}}
+        {{- .Content -}}
+    </article>
+    {{partial "footer.html" .}}
+</div>
+
+{{- with resources.Get "darkmode.js" | minify -}}
+<script>
+  {{.Content | safeJS }}
+</script>
+{{- end -}}
+
+</body>
+
+</html>

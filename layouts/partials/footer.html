@@ -1,0 +1,21 @@
+<div>
+    <hr/>
+    {{partial "graph.html" .}}
+    <ul id="sub-nav">
+        <li><a href="/">↳ Take me home</a></li>
+    </ul>
+</div>
+
+<!-- Contact Info -->
+<div id="contact_buttons" class="lt-centre">
+    <footer>
+        <p>made by {{ $.Site.Data.config.name }}, © {{ dateFormat "2006" now }}</p>
+        <a href="https://github.com/jackyzha0/quartz">source</a>
+        {{ if not .IsHome }}
+        <a href="/">home</a>
+        {{end}}
+        {{- range $.Site.Data.links.footer -}}
+        <a href="{{.link}}">{{.link_name}}</a>
+        {{- end -}}
+    </footer>
+</div>

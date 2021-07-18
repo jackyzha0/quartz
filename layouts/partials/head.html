@@ -1,0 +1,24 @@
+<head>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link crossorigin rel="preconnect" href="https://www.google-analytics.com">
+    {{ template "_internal/google_analytics_async.html" . }}
+
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="description" content="{{$.Site.Data.config.description}}">
+    <title>{{$.Site.Data.config.page_title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="/icon.png" />
+
+    <!-- CSS Stylesheets and Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Sans+Pro:wght@400;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    {{ $css := slice "darkmode.scss" "syntax.scss"}}
+    {{range $css}}
+    {{$sass := resources.Get . | resources.ToCSS }}
+    {{with $sass | minify}}
+    <style>
+        {{.Content | safeCSS}}
+    </style>
+    {{end}}
+    {{end}}
+</head>

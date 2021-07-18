@@ -1,0 +1,67 @@
+
+.darkmode {
+  text-align: right;
+
+  & > .toggle {
+    display: none;
+    box-sizing: border-box;
+
+    &:checked + .toggle-button:after {
+      left: 50%;
+    }
+
+    & + .toggle-button {
+      box-sizing: border-box;
+      outline: 0;
+      display: inline-block;
+      width: 3em;
+      height: 1.5em;
+      position: relative;
+      cursor: pointer;
+      border: 2px solid var(--gray);
+      user-select: none;
+      padding: 2px;
+      transition: all 0.2s ease;
+      border-radius: 2em;
+
+      &:after, &:before {
+        position: relative;
+        display: block;
+        box-sizing: border-box;
+        content: "";
+        width: 50%;
+        height: 100%;
+      }
+
+      &:before {
+        display: none;
+      }
+
+      &:after {
+        left: 0;
+        transition: all 0.2s ease;
+        background: var(--gray);
+        content: "";
+        border-radius: 1em;
+      }
+    }
+  }
+
+  & #dayIcon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    top: -1.5px;
+    margin: 0 7px;
+    fill: var(--gray);
+  }
+
+  & #nightIcon {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    top: -2px;
+    margin: 0 7px;
+    fill: var(--gray);
+  }
+}
