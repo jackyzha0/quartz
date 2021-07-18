@@ -2,11 +2,11 @@
 <div id="graph-container"></div>
 <style>
     :root {
-        --g-node: {{.Site.Data.graphConfig.base.node}};
-        --g-node-active: {{.Site.Data.graphConfig.base.activeNode}};
-        --g-node-inactive: {{.Site.Data.graphConfig.base.inactiveNode}};
-        --g-link: {{.Site.Data.graphConfig.base.link}};
-        --g-link-active: {{.Site.Data.graphConfig.base.activeLink}};
+        --g-node: var(--secondary);
+        --g-node-active: var(--primary);
+        --g-node-inactive: var(--visited);
+        --g-link: var(--outlinegray);
+        --g-link-active: #5a7282;
     }
 </style>
 <script>

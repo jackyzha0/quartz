@@ -5,6 +5,7 @@
 {{define "main"}}
 <!-- Main Page -->
 <div class="singlePage">
+    {{partial "darkmode.html" .}}
     {{.Content}}
 
     <!-- Contact Info -->
@@ -12,4 +13,10 @@
         {{partial "footer.html" .}}
     </div>
 </div>
+
+{{- with resources.Get "darkmode.js" | minify -}}
+<script>
+  {{.Content | safeJS }}
+</script>
+{{- end -}}
 {{end}}

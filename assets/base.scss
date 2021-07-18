@@ -1,8 +1,8 @@
 :root {
   --lt-colours-light: var(--light) !important;
   --lt-colours-lightgray: var(--lightgray) !important;
-  --lt-colours-dark: var(--navy) !important;
-  --lt-colours-secondary: var(--olive) !important;
+  --lt-colours-dark: var(--secondary) !important;
+  --lt-colours-secondary: var(--tertiary) !important;
   --lt-colours-gray: var(--outlinegray) !important;
 }
 
@@ -23,10 +23,10 @@ a {
   font-size: 1em;
   text-decoration: none;
   transition: all 0.2s ease;
-  color: var(--navy);
+  color: var(--secondary);
 
   &:hover {
-    color: var(--olive) !important;
+    color: var(--tertiary) !important;
   }
 }
 
@@ -98,12 +98,12 @@ h3 {
 
 blockquote {
   margin-left: 0em;
-  border-left: 3px solid var(--navy);
+  border-left: 3px solid var(--secondary);
   padding-left: 1em;
   transition: border-color 0.2s ease;
 
   &:hover {
-    border-color: var(--olive);
+    border-color: var(--tertiary);
   }
 }
 
@@ -123,7 +123,7 @@ article a {
   font-family: Source Sans Pro;
   font-weight: 600;
   text-decoration: underline;
-  text-decoration-color: var(--olive);
+  text-decoration-color: var(--tertiary);
   text-decoration-thickness: .15em;
 }
 
@@ -169,7 +169,7 @@ footer {
 
   & > a {
     font-size: 1em;
-    color: var(--navy);
+    color: var(--secondary);
     padding: 0 0.5em 3em 0.5em;
   }
 }
