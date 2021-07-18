@@ -1,3 +1,3 @@
 ---
-title: "config"
+title: "Configuration"
 ---

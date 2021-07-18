@@ -1,11 +1,15 @@
-<div>
-    <hr/>
-    {{partial "backlinks.html" .}}
-    {{partial "graph.html" .}}
+<hr/>
+<div class="page-end">
+    <div class="backlinks-container">
+        {{partial "backlinks.html" .}}
+    </div>
+    <div>
+        {{partial "graph.html" .}}
+    </div>
 </div>
 
 <!-- Contact Info -->
-<div id="contact_buttons" class="lt-centre">
+<div id="contact_buttons">
     <footer>
         <p>Made by {{ $.Site.Data.config.name }} using <a href="https://github.com/jackyzha0/quartz">Quartz</a>, © {{ dateFormat "2006" now }}</p>
         {{ if not .IsHome }}

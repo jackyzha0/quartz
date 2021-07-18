@@ -1,12 +1,12 @@
 <head>
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link crossorigin rel="preconnect" href="https://www.google-analytics.com">
-    {{ template "_internal/google_analytics_async.html" . }}
+    {{ template "_internal/google_analytics.html" . }}
 
     <!-- Meta tags -->
     <meta charset="UTF-8">
     <meta name="description" content="{{$.Site.Data.config.description}}">
-    <title>{{$.Site.Data.config.page_title}}</title>
+    <title>{{ if .Title }}{{ .Title }}{{ else }}{{ $.Site.Data.config.page_title }}{{ end }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="/icon.png" />
 

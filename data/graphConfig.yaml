@@ -1,6 +1,6 @@
 enableLegend: false
 enableDrag: true
-enableZoom: false
+enableZoom: true
 base:
   node: "#284b63"
   activeNode: "#f28482"

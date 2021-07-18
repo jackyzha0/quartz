@@ -1,9 +1,16 @@
-<ol class="backlinks">
+<h3>Backlinks</h3>
+<ul class="backlinks">
     {{$curPage := strings.TrimRight "/" .Page.RelPermalink }}
     {{$inbound := index $.Site.Data.linkIndex.index.backlinks $curPage}}
+    {{if $inbound}}
     {{- range $inbound -}}
     <li>
         <a href="{{index . "source"}}">{{index . "source"}}</a>
     </li>
     {{- end -}}
-</ol>
+    {{else}}
+    <li>
+        No backlinks found
+    </li>
+    {{end}}
+</ul>
