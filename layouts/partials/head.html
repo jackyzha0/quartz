@@ -1,8 +1,4 @@
 <head>
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link crossorigin rel="preconnect" href="https://www.google-analytics.com">
-    {{ template "_internal/google_analytics.html" . }}
-
     <!-- Meta tags -->
     <meta charset="UTF-8">
     <meta name="description" content="{{$.Site.Data.config.description}}">
@@ -22,3 +18,4 @@
     {{end}}
     {{end}}
 </head>
+{{ template "_internal/google_analytics.html" . }}
