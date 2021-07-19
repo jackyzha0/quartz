@@ -11,7 +11,7 @@ I've personally found that
 
 > “He who works with the door open gets all kinds of interruptions, but he also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
 
-**The goal of Quartz is to make hosting your own public digital garden free and simple.**
+**The goal of Quartz is to make hosting your own public digital garden free and simple.** You don't even need your own website. Quartz does all of that for you and gives your own little corner of the internet.
 
 ## Get Started
 The entire Quartz documentation is fully hosted using Quartz! You can navigate it using the interactive Graph view below.

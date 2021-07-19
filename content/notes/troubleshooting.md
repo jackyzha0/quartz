@@ -3,6 +3,9 @@ title: "Troubleshooting and FAQ"
 ---
 
 ## Common Pitfalls
+### Do I need a website already?
+No! Setting up Quartz means you set up a site too :)
+
 ### How come my notes aren't being rendered?
 You probably forgot to include front matter in your Markdown files. You can either setup [Obsidian](notes/obsidian) to do this for you or you need to manually define it. More details in [the 'how to edit' guide](notes/editing.md).
 

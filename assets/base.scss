@@ -204,6 +204,10 @@ a[href^="/"] {
   display: flex;
   flex-direction: row;
 
+  @media all and (max-width: 780px) {
+    flex-direction: column;
+  }
+
   & > * {
     flex: 1 0 0;
   }

@@ -8,6 +8,9 @@ Quartz is designed to be effortless to deploy. If you forked and cloned Quartz d
 
 By default, Github Actions will run on forks of repos. You should not need to do any more config to see it up to date.
 
+### Pushing Changes
+[TODO]
+
 ### Custom subdomain
 Have a fancy custom domain or want to subdomain your Quartz? That's easy too.
 
