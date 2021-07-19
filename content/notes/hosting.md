@@ -9,7 +9,19 @@ Quartz is designed to be effortless to deploy. If you forked and cloned Quartz d
 By default, Github Actions will run on forks of repos. You should not need to do any more config to see it up to date.
 
 ### Pushing Changes
-[TODO]
+Quartz is essentially a `git` repository so updating it is the same workflow as you would follow as normal.
+
+```shell
+# Navigate to Quartz folder
+cd <path-to-quartz>
+
+# Commit all changes
+git add .
+git commit -m "message describing changes"
+
+# Push to GitHub to update site
+git push origin hugo
+```
 
 ### Custom subdomain
 Have a fancy custom domain or want to subdomain your Quartz? That's easy too.
