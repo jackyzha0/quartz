@@ -10,7 +10,12 @@ I *strongly* recommend using [Obsidian](http://obsidian.md/) as a way to edit an
 
 **🔗 [How to link your Obsidian Vault](notes/obsidian.md)**
 
-Of course, all the files are in Markdown so you could just use your favourite text editor of choice, I'm not going to stop you!
+Of course, all the files are in Markdown so you could just use your favourite text editor of choice.
+
+### Ignoring Files
+Only want to publish a subset of all of your notes? Don't worry, Quartz makes this a simple two-step process.
+
+❌ [Excluding pages from being published](notes/ignore-notes.md)
 
 ### Folder Structure
 Here's a rough overview of what's what.
@@ -38,36 +43,11 @@ Rest of your content here...
 ```
 
 ## Previewing Changes
-This step is purely optional and mostly for those who want to see the published version of their digital garden locally before opening it up to the internet. For those who like to live life more on the edge, viewing the garden through Obsidian gets you pretty close to the real thing.
+This step is purely optional and mostly for those who want to see the published version of their digital garden locally before opening it up to the internet. This is *highly recommended*.
 
-### Install `hugo-obsidian`
-This step will generate the list of backlinks for Hugo to parse. Ensure you have [Go](https://golang.org/doc/install) (>= 1.16) installed.
+👀 [Preview Quartz Changes](notes/preview-changes.md)
 
-```shell
-# Install and link `hugo-obsidian` locally
-$ go install github.com/jackyzha0/hugo-obsidian
-
-# Navigate to your local Quartz folder
-$ cd <location-of-your-local-quartz>
-
-# Scrape all links in your Quartz folder and generate info for Quartz
-$ hugo-obsidian -input=content -output=data
-```
-
-Afterwards, start the Hugo server as shown above and your local backlinks and interactive graph should be populated!
-
-###  Installing Hugo
-Hugo is the static site generator that powers Quartz. If you'd like to preview your site locally, [install Hugo](https://gohugo.io/getting-started/installing/).
-
-```
-# Navigate to your local Quartz folder
-$ cd <location-of-your-local-quartz>
-
-# Start local server
-$ hugo server
-
-# View your site in a browser at http://localhost:1313/
-```
+For those who like to live life more on the edge, viewing the garden through Obsidian gets you pretty close to the real thing.
 
 ## Publishing Changes
 Now that you know the basics of managing your digital garden using Quartz, you can publish it to the internet!

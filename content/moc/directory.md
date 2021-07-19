@@ -12,7 +12,7 @@ Let's get to business and get you started!
 - 🎨 [Customizing and Styling Quartz](notes/config.md)
 - 🌍 [Hosting Quartz online!](notes/hosting.md)
 
-Not convinced yet? Look at some [cool community digital gardens](moc/showcase)!
+Not convinced yet? Look at some [community digital gardens](moc/showcase) built with Quartz!
 
 ## Troubleshooting
 - 🚧 [Troubleshooting and FAQ](notes/troubleshooting.md)

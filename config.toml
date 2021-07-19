@@ -2,7 +2,10 @@ baseURL = "https://quartz.jzhao.xyz/"
 languageCode = "en-us"
 googleAnalytics = "G-XYFD95KB4J"
 pygmentsUseClasses = true
-ignoreFiles = ["/content/templates/*"]
+ignoreFiles = [
+    "/content/templates/*",
+    "/content/private/*",
+]
 
 [markup]
     [markup.tableOfContents]

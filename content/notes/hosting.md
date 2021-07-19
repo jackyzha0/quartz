@@ -1,7 +1,6 @@
 ---
-title: "Deploying to GitHub Pages"
+title: "Deploying Quartz to the Web"
 ---
-
 
 ## GitHub Pages
 Quartz is designed to be effortless to deploy. If you forked and cloned Quartz directly from the repository, everything should already be good to go! You can head to `<YOUR-GITHUB-USERNAME.github.io/quartz` to see it live.
@@ -74,6 +73,10 @@ GitHub has some [documentation on this](https://docs.github.com/en/pages/configu
 3. Wait 30 minutes to an hour for the network changes to kick in.
 4. Done!
 
+## External Hosting
+Don't want to use GitHub Pages? Hugo builds everything for you! Everything is a packaged set of static files ready to deploy in `/public`. You can then upload this folder to a cloud provider to deploy. Alternatively, most providers also give users the option to link a GitHub repository and a folder to deploy. When doing this, ensure you select `/public` folder under the `master` branch.
+
+---
 
 Now that your Quartz is live, let's figure out how to make Quartz really *yours*!
 
