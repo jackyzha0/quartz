@@ -1,5 +1,5 @@
 # 🌱 Quartz
-Simple second brain and digital garden.
+Simple second brain and [digital garden](https://jzhao.xyz/posts/digital-gardening).
 
 ## Why Quartz?
 Hosting a public digital garden isn't easy. There are an overwhelming number of tutorials, resources, and guides for tools like [Notion](https://www.notion.so/), [Roam](https://roamresearch.com/), and [Obsidian](https://obsidian.md/), yet none of them have super easy to use *free* tools to publish that garden to the world.
@@ -11,11 +11,11 @@ I've personally found that
 
 > “He who works with the door open gets all kinds of interruptions, but he also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
 
+I was really inspired by [Bianca](https://garden.bianca.digital/) and [Joel](https://joelhooks.com/digital-garden)'s digital gardens and wanted to try making my own.
+
 **The goal of Quartz is to make hosting your own public digital garden free and simple.** You don't even need your own website. Quartz does all of that for you and gives your own little corner of the internet.
 
 ## Get Started
-The entire Quartz documentation is fully hosted using Quartz! You can navigate it using the interactive Graph view below.
-
-If you'd prefer more traditional navigation, you can also find all relevant pages through the main directory.
+The entire Quartz documentation is fully hosted using Quartz! To get started, let's visit the main directory.
 
 👉  [Directory](moc/directory.md)

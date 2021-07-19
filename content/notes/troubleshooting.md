@@ -6,6 +6,18 @@ title: "Troubleshooting and FAQ"
 ### Do I need a website already?
 No! Setting up Quartz means you set up a site too :)
 
+### `command not found: hugo-obsidian`
+Make sure you set your `GOPATH` correctly! This will allow your terminal to correctly recognize `hugo-obsidian` as an executable.
+
+```
+# Add the following 2 lines to your ~/.bash_profile
+export GOPATH=/Users/$USER/go
+export PATH=$GOPATH/bin:$PATH
+
+# In your current terminal, to reload the session
+source ~/.bash_profile
+```
+
 ### How come my notes aren't being rendered?
 You probably forgot to include front matter in your Markdown files. You can either setup [Obsidian](notes/obsidian) to do this for you or you need to manually define it. More details in [the 'how to edit' guide](notes/editing.md).
 
@@ -36,6 +48,6 @@ By default, the `linkIndex.yaml` (which Quartz needs to generate the Interactive
 Not out of the box. You could probably make it work by editing `/layouts/_default/single.html` but that's not what Quartz is designed to work with. 99% of things you are trying to do with those frameworks you can accomplish perfectly fine using just vanilla HTML/CSS/JS.
 
 ## Still Stuck?
-Quartz isn't perfect! If you're still having troubles, file an issue in the GitHub repo with as much information as you can reasonably provide.
+Quartz isn't perfect! If you're still having troubles, file an issue in the GitHub repo with as much information as you can reasonably provide. Alternatively, you can message me on [Twitter](https://twitter.com/_jzhao) and I'll try to get back to you as soon as I can.
 
 🐛 [Submit an Issue](https://github.com/jackyzha0/quartz/issues)
