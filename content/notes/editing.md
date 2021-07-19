@@ -22,8 +22,8 @@ Here's a rough overview of what's what.
 To create a link between notes in your garden, just create a normal link using Markdown pointing to the document in question. Please note that **all links should be relative to the root `/content` path**. 
 
 ```markdown
-For example, I want to link this current document to `config.md`.
-[A link to the config page](config.md)
+For example, I want to link this current document to `notes/config.md`.
+[A link to the config page](notes/config.md)
 ```
 
 ### Front Matter
