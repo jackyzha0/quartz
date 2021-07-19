@@ -3,16 +3,20 @@
 {{ partial "head.html" . }}
 
 <body>
-<div>
+<div class="singlePage">
     {{partial "darkmode.html" .}}
-    <div>
+    <div class="centered">
         <h1>404.</h1>
         <h3>Hey! You look a little lost.</h3>
-        <ul id="sub-nav">
-            <li><a href="/">↳ Let's get you home.</a></li>
-        </ul>
+        <a href="/">↳ Let's get you home.</a>
     </div>
 </div>
+
+{{- with resources.Get "darkmode.js" | minify -}}
+<script>
+  {{.Content | safeJS }}
+</script>
+{{- end -}}
 </body>
 
 </html>
