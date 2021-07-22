@@ -126,7 +126,7 @@
     .attr("fill", color)
     .style("cursor", "pointer")
     .on("click", (_, d) => {
-      window.location.href = d.id;
+      window.location.href = {{.Site.BaseURL}} + d.id;
     })
     .on("mouseover", function (_, d) {
       d3.selectAll(".node")
