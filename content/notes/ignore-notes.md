@@ -10,7 +10,7 @@ Edit `ignoreFiles` in `config.toml` to include paths you'd like to exclude from 
 ignoreFiles = [  
     "/content/templates/*",  
     "/content/private/*", 
-	"<your path here>"
+    "<your path here>"
 ]
 ```
 
