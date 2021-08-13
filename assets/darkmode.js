@@ -1,14 +1,8 @@
-// Darkmode toggle
-const toggleSwitch = document.querySelector('#darkmode-toggle')
-
 const userPref = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
 const currentTheme = localStorage.getItem('theme') ?? userPref
 
 if (currentTheme) {
   document.documentElement.setAttribute('saved-theme', currentTheme);
-  if (currentTheme === 'dark') {
-    toggleSwitch.checked = true
-  }
 }
 
 const switchTheme = (e) => {
@@ -22,5 +16,14 @@ const switchTheme = (e) => {
   }
 }
 
-// listen for toggle
-toggleSwitch.addEventListener('change', switchTheme, false)
+window.addEventListener('DOMContentLoaded', () => {
+  // Darkmode toggle
+  const toggleSwitch = document.querySelector('#darkmode-toggle')
+
+  // listen for toggle
+  toggleSwitch.addEventListener('change', switchTheme, false)
+
+  if (currentTheme === 'dark') {
+    toggleSwitch.checked = true
+  }
+})

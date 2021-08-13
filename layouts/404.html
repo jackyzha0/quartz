@@ -11,12 +11,6 @@
         <a href="/">↳ Let's get you home.</a>
     </div>
 </div>
-
-{{- with resources.Get "darkmode.js" | minify -}}
-<script>
-  {{.Content | safeJS }}
-</script>
-{{- end -}}
 </body>
 
 </html>

@@ -18,13 +18,6 @@
     </article>
     {{partial "footer.html" .}}
 </div>
-
-{{- with resources.Get "darkmode.js" | minify -}}
-<script>
-  {{.Content | safeJS }}
-</script>
-{{- end -}}
-
 </body>
 
 </html>
