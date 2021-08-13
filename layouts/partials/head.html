@@ -17,5 +17,11 @@
     </style>
     {{end}}
     {{end}}
+
+    {{- with resources.Get "darkmode.js" | minify -}}
+    <script>
+      {{.Content | safeJS }}
+    </script>
+    {{- end -}}
 </head>
 {{ template "_internal/google_analytics.html" . }}
