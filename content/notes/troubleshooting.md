@@ -15,7 +15,7 @@ No! Setting up Quartz means you set up a site too :)
 ### `command not found: hugo-obsidian`
 Make sure you set your `GOPATH` correctly! This will allow your terminal to correctly recognize `hugo-obsidian` as an executable.
 
-```
+```shell
 # Add the following 2 lines to your ~/.bash_profile
 export GOPATH=/Users/$USER/go
 export PATH=$GOPATH/bin:$PATH
