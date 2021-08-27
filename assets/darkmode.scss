@@ -1,67 +1,44 @@
-
 .darkmode {
-  text-align: right;
+  float: right;
+  padding: 1em;
+  min-width: 30px;
+  position: relative;
+
+  @media all and (max-width: 450px) {
+    padding: 1em;
+  }
 
   & > .toggle {
     display: none;
     box-sizing: border-box;
-
-    &:checked + .toggle-button:after {
-      left: 50%;
-    }
-
-    & + .toggle-button {
-      box-sizing: border-box;
-      outline: 0;
-      display: inline-block;
-      width: 3em;
-      height: 1.5em;
-      position: relative;
-      cursor: pointer;
-      border: 2px solid var(--gray);
-      user-select: none;
-      padding: 2px;
-      transition: all 0.2s ease;
-      border-radius: 2em;
-
-      &:after, &:before {
-        position: relative;
-        display: block;
-        box-sizing: border-box;
-        content: "";
-        width: 50%;
-        height: 100%;
-      }
-
-      &:before {
-        display: none;
-      }
-
-      &:after {
-        left: 0;
-        transition: all 0.2s ease;
-        background: var(--gray);
-        content: "";
-        border-radius: 1em;
-      }
-    }
   }
 
-  & #dayIcon {
-    position: relative;
+  & svg {
+    opacity: 0;
+    position: absolute;
     width: 20px;
     height: 20px;
-    top: -1.5px;
+    top: calc(50% - 10px);
     margin: 0 7px;
     fill: var(--gray);
+    transition: opacity 0.1s ease;
   }
+}
 
-  & #nightIcon {
-    position: relative;
-    width: 18px;
-    height: 18px;
-    top: -2px;
-    margin: 0 7px;
-    fill: var(--gray);
+.toggle:checked ~ label {
+  & > #dayIcon {
+    opacity: 0;
+  }
+  & > #nightIcon {
+    opacity: 1;
+  }
+}
+
+.toggle:not(:checked) ~ label {
+  & > #dayIcon {
+    opacity: 1;
+  }
+  & > #nightIcon {
+    opacity: 0;
   }
 }

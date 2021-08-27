@@ -15,7 +15,7 @@ $ go install github.com/jackyzha0/hugo-obsidian
 $ cd <location-of-your-local-quartz>
 
 # Scrape all links in your Quartz folder and generate info for Quartz
-$ hugo-obsidian -input=content -output=data
+$ hugo-obsidian -input=content -output=data -index=true
 ```
 
 Afterwards, start the Hugo server as shown above and your local backlinks and interactive graph should be populated!
