@@ -1,3 +1,6 @@
+<!-- {{replaceRE `(http.+) (\w+)` "$1-$2" .Content}} -->
+{{$content := replaceRE `a href="\.\.\/(.+%20.+)+"` `$1` .Content}}
+{{$content = replace $content "%20" "-"}}
 <!DOCTYPE html>
 <html lang="en">
 {{ partial "head.html" . }}
@@ -13,13 +16,7 @@
         {{partial "darkmode.html" .}}
     </header>
     <article>
-        {{if $.Site.Data.config.enableToc}}
-        <aside class="mainTOC">
-            <h3>Table of Contents</h3>
-            {{ .TableOfContents }}
-        </aside>
-        {{end}}
-        {{- .Content -}}
+        {{ $content | safeHTML }}
     </article>
     {{partial "footer.html" .}}
 </div>
