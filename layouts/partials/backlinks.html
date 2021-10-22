@@ -6,9 +6,13 @@
     {{$inbound := index $.Site.Data.linkIndex.index.backlinks $curPage}}
     {{if $inbound}}
     {{- range $inbound -}}
-    <li>
-        <a href="{{index . "source"}}">{{index . "source"}}</a>
-    </li>
+        {{$src := index . "source"}}
+        {{$src = replace $src " " "-"}}
+        {{$src = replace $src `\` ""}}
+
+        <li>
+            <a href="../{{$src | safeHTML}}">{{index . "source"}}</a>
+        </li>
     {{- end -}}
     {{else}}
     <li>
