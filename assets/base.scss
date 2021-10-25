@@ -280,7 +280,8 @@ header {
   left: 0;
   top: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  overflow: scroll;
   display: none;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -324,7 +325,18 @@ header {
         border: 1px solid var(--outlinegray);
         border-bottom: none;
 
-        &:hover {
+        // normalize button props
+        font-family: inherit;
+        font-size: 100%;
+        line-height: 1.15;
+        margin: 0;
+        overflow: visible;
+        text-transform: none;
+        text-align: left;
+        background: var(--light);
+        outline: none;
+
+        &:hover, &:focus {
           background: rgba(180, 180, 180, 0.15);
         }
 
