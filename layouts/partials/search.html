@@ -126,13 +126,17 @@
     </button>`
     }
 
+    const redir = (id, term) => {
+        window.location.href = {{.Site.BaseURL}} + `${id}#:~:text=${encodeURIComponent(term)}`
+    }
+
     const source = document.getElementById('search-bar')
     const results = document.getElementById("results-container")
     let term
     source.addEventListener("keyup", (e) => {
         if (e.key === "Enter") {
             const anchor = document.getElementsByClassName("result-card")[0]
-            window.location.href = `${anchor.id}#:~:text=${encodeURIComponent(term)}`
+            redir(anchor.id, term)
         }
     })
     source.addEventListener('input', (e) => {
@@ -163,9 +167,7 @@
                     .join("\n")
                 const anchors = document.getElementsByClassName("result-card");
                 [...anchors].forEach(anchor => {
-                    anchor.onclick = () => {
-                        window.location.href = `${anchor.id}#:~:text=${encodeURIComponent(term)}`
-                    }
+                    anchor.onclick = () => redir(anchor.id, term)
                 })
             }
         })
