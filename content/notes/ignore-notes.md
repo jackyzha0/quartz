@@ -15,6 +15,15 @@ ignoreFiles = [
 ```
 
 `ignoreFiles` supports the use of Regular Expressions (RegEx) so you can ignore patterns as well (e.g. ignoring all `.png`s by doing `\\.png$`).
+To ignore a specific file, you can also add the tag `draft: true` to the frontmatter of a note.
+
+```markdown
+---
+title: Some Private Note
+draft: true
+---
+...
+```
 
 More details in [Hugo's documentation](https://gohugo.io/getting-started/configuration/#ignore-content-and-data-files-when-rendering).
 
