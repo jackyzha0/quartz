@@ -18,6 +18,14 @@ I was really inspired by [Bianca](https://garden.bianca.digital/) and [Joel](htt
 **The goal of Quartz is to make hosting your own public digital garden free and simple.** You don't even need your own website. Quartz does all of that for you and gives your own little corner of the internet.
 
 ## Get Started
-The entire Quartz documentation is fully hosted using Quartz! To get started, let's visit the main directory.
+The entire Quartz documentation is fully hosted using Quartz! Whether you're setting up a website and project for the first time or a seasoned digital gardener, I hope that you'll find something useful about this project.
 
-👉  [Directory](moc/directory.md)
+Let's get to business and get you started!
+
+> 📚 [Setup your own digital garden using Quartz](notes/setup.md)
+
+Not convinced yet? Look at some [community digital gardens](moc/showcase) built with Quartz!
+
+## Troubleshooting
+- 🚧 [Troubleshooting and FAQ](notes/troubleshooting.md)
+- 🐛 [Submit an Issue](https://github.com/jackyzha0/quartz/issues)
