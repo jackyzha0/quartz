@@ -127,7 +127,7 @@
     }
 
     const redir = (id, term) => {
-        window.location.href = {{.Site.BaseURL}} + `${id}#:~:text=${encodeURIComponent(term)}`
+        window.location.href = "{{.Site.BaseURL}}" + `${id}#:~:text=${encodeURIComponent(term)}`
     }
 
     const source = document.getElementById('search-bar')
