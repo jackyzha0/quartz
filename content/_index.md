@@ -20,4 +20,4 @@ I was really inspired by [Bianca](https://garden.bianca.digital/) and [Joel](htt
 ## Get Started
 The entire Quartz documentation is fully hosted using Quartz! To get started, let's visit the main directory.
 
-👉  [Directory](moc/direc%20tory.md)
+👉  [Directory](moc/directory.md)
