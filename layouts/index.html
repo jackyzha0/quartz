@@ -3,10 +3,13 @@
 {{end}}
 
 {{define "main"}}
+{{$content := replaceRE `a href="\.\.\/(.+%20.+)+"` `$1` .Content}}
+{{$content = replace $content "%20" "-"}}
+{{$content = $content | safeHTML}}
 <!-- Main Page -->
 <div class="singlePage">
     {{partial "darkmode.html" .}}
-    {{.Content}}
+    {{$content}}
 
     <!-- Contact Info -->
     <div>
