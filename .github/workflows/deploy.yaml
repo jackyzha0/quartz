@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build Link Index
-        uses: jackyzha0/hugo-obsidian@v2.3
+        uses: jackyzha0/hugo-obsidian@v2.4
         with:
           index: true
           input: content
