@@ -1,6 +1,3 @@
-{{$content := replaceRE `a href="\.\.\/(.+%20.+)+"` `$1` .Content}}
-{{$content = replace $content "%20" "-"}}
-{{$content = $content | safeHTML}}
 <!DOCTYPE html>
 <html lang="en">
 {{ partial "head.html" . }}
@@ -22,7 +19,7 @@
             {{ .TableOfContents }}
         </aside>
         {{end}}
-        {{- $content -}}
+        {{.Content}}
     </article>
     {{partial "footer.html" .}}
 </div>
