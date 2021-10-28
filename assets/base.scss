@@ -8,13 +8,19 @@
 
 h1, h2, h3, h4, ol, ul, thead {
   font-family: Inter;
-  color: var(--dark)
+  color: var(--dark);
+  font-weight: revert;
+  margin: revert;
+  padding: revert;
 }
 
 p, ul, text {
   font-family: 'Source Sans Pro', sans-serif;
   color: var(--gray);
   fill: var(--gray);
+  font-weight: revert;
+  margin: revert;
+  padding: revert;
 }
 
 a {
@@ -242,13 +248,13 @@ header {
   flex-direction: row;
   align-items: center;
 
+  & > h1 {
+    font-size: 2em;
+  }
+
   & > nav {
     @media all and (max-width: 600px) {
       display: none;
-    }
-
-    & > a {
-      margin-left: 2em;
     }
   }
 
