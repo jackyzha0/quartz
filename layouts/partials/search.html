@@ -177,10 +177,16 @@
                 limit: 5,
             }
         ]).then(searchResults => {
-        const titleIds = [...searchResults.filter(x => x.field === 'title')?.[0].result] ?? []
-        const contentIds = [...searchResults.filter(x => x.field === 'content')?.[0].result] ?? []
-        const allIds = [...titleIds, ...contentIds]
-        const finalResults = allIds.map(fetch)
+            const getByField = field => {
+                const results = searchResults.filter(x => x.field === field)
+                if (results.length === 0) {
+                    return []
+                } else {
+                    return [...results[0].result]
+                }
+            }
+            const allIds = [...getByField('title'), ...getByField('content')]
+            const finalResults = allIds.map(fetch)
 
             // display
             if (finalResults.length === 0) {
