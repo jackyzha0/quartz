@@ -67,16 +67,35 @@
     };
 </script>
 <script>
-    const contentIndex = new FlexSearch.Worker({
-        tokenize: "reverse",
+    const contentIndex = new FlexSearch.Document({
+        cache: true,
         charset: "latin:extra",
-        suggest: true,
-        cache: 10,
+        optimize: true,
+        worker: true,
+        document: {
+            index: [{
+                field: "content",
+                tokenize: "strict",
+                context: {
+                    resolution: 5,
+                    depth: 3,
+                    bidirectional: true
+                },
+                suggest: true,
+            }, {
+                field: "title",
+                tokenize: "forward",
+            }]
+        }
     })
 
     const scrapedContent = {{$.Site.Data.contentIndex}}
     for (const [key, value] of Object.entries(scrapedContent)) {
-        contentIndex.add(key, value.content)
+        contentIndex.add({
+            id: key,
+            title: value.title,
+            content: removeMarkdown(value.content),
+        })
     }
 
     const highlight = (content, term) => {
@@ -129,6 +148,13 @@
         window.location.href = "{{.Site.BaseURL}}" + `${id}#:~:text=${encodeURIComponent(term)}`
     }
 
+    const fetch = id => ({
+        id,
+        url: id,
+        title: scrapedContent[id].title,
+        content: scrapedContent[id].content
+    })
+
     const source = document.getElementById('search-bar')
     const results = document.getElementById("results-container")
     let term
@@ -140,22 +166,27 @@
     })
     source.addEventListener('input', (e) => {
         term = e.target.value
-        contentIndex.search(term, {
-            limit: 15,
-            suggest: true,
-        }).then(searchResults => {
-            const resultIds = [...new Set(searchResults)]
-            const finalResults = resultIds.map(id => ({
-                url: id,
-                title: scrapedContent[id].title,
-                content: scrapedContent[id].content
-            }))
+        contentIndex.search(term, [
+            {
+                field: "content",
+                limit: 10,
+                suggest: true,
+            },
+            {
+                field: "title",
+                limit: 5,
+            }
+        ]).then(searchResults => {
+        const titleIds = [...searchResults.filter(x => x.field === 'title')?.[0].result] ?? []
+        const contentIds = [...searchResults.filter(x => x.field === 'content')?.[0].result] ?? []
+        const allIds = [...titleIds, ...contentIds]
+        const finalResults = allIds.map(fetch)
 
             // display
             if (finalResults.length === 0) {
                 results.innerHTML = `<div class="result-card">
-            <p>No results.</p>
-        </div>`
+                    <p>No results.</p>
+                </div>`
             } else {
                 results.innerHTML = finalResults
                     .map(result => resultToHTML({
