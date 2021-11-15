@@ -330,6 +330,7 @@ header {
         transition: background 0.2s ease;
         border: 1px solid var(--outlinegray);
         border-bottom: none;
+        width: 100%;
 
         // normalize button props
         font-family: inherit;
