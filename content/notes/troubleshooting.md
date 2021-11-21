@@ -4,7 +4,7 @@ title: "Troubleshooting and FAQ"
 
 ## Common Pitfalls
 ### Can I publish only a subset of my pages?
-Yes! Quartz makes selective publishing really easy. Heres a guide on [excluding pages from being published](notes/ignore-notes.md).
+Yes! Quartz makes selective publishing really easy. Heres a guide on [excluding pages from being published](notes/ignore%20notes.md).
 
 ### Can I host this myself and not on GitHub Pages?
 Yes! All built files can be found under `/public` in the `master` branch. More details under [hosting](notes/hosting.md).

@@ -15,7 +15,7 @@ Of course, all the files are in Markdown so you could just use your favourite te
 ### Ignoring Files
 Only want to publish a subset of all of your notes? Don't worry, Quartz makes this a simple two-step process.
 
-❌ [Excluding pages from being published](notes/ignore-notes.md)
+❌ [Excluding pages from being published](notes/ignore%20notes.md)
 
 ### Folder Structure
 Here's a rough overview of what's what.
@@ -32,7 +32,7 @@ For example, I want to link this current document to `notes/config.md`.
 ```
 
 ### Front Matter
-Hugo is picky when it comes to metadata for files. Ensure that you have a title defined at the top of your file like so:
+Hugo is picky when it comes to metadata for files. Make sure that your title is double-quoted and that you have a title defined at the top of your file like so:
 
 ```markdown
 ---
@@ -45,7 +45,7 @@ Rest of your content here...
 ## Previewing Changes
 This step is purely optional and mostly for those who want to see the published version of their digital garden locally before opening it up to the internet. This is *highly recommended*.
 
-👀 [Preview Quartz Changes](notes/preview-changes.md)
+👀 [Preview Quartz Changes](notes/preview%20changes.md)
 
 For those who like to live life more on the edge, viewing the garden through Obsidian gets you pretty close to the real thing.
 

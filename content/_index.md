@@ -11,7 +11,7 @@ Host your second brain and [digital garden](https://jzhao.xyz/posts/digital-gard
 ## Get Started
 > 📚 [Setup your own digital garden using Quartz](notes/setup.md)
 
-Not convinced yet? Look at some [community digital gardens](moc/showcase) built with Quartz, or read about [why I made Quartz](notes/philosophy.md) to begin with!
+Not convinced yet? Look at some [community digital gardens](moc/showcase) built with Quartz, or read about [[notes/philosophy | why I made Quartz]] to begin with!
 
 ## Troubleshooting
 - 🚧 [Troubleshooting and FAQ](notes/troubleshooting.md)
