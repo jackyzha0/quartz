@@ -185,8 +185,8 @@
                     return [...results[0].result]
                 }
             }
-            const allIds = [...getByField('title'), ...getByField('content')]
-            const finalResults = allIds.map(fetch)
+            const allIds = new Set([...getByField('title'), ...getByField('content')])
+            const finalResults = [...allIds].map(fetch)
 
             // display
             if (finalResults.length === 0) {
