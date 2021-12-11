@@ -1,6 +1,3 @@
-# Quartz
-Host your own second brain and digital garden for free.
+# Signal-K Digital Garden
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
-
-🔗 Get Started: https://quartz.jzhao.xyz/
+🔗 Log onto our [notion](https://www.notion.so/skinetics/Signal-Kinetics-4c3a0eaa11914a5f84a59c01de860c57) or the [portal](https://docs.skinetics.tech) to view documentation & tasks
