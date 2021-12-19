@@ -2,10 +2,11 @@
 title: "Configuration"
 ---
 
-## Configuration
-Quartz is designed to be extremely configurable. You can find the bulk of the configuration scattered throughout the repository depending on how in-depth you'd like to get.
+<!--Add search engine to Quartz like Notion>Super -->
 
-The majority of configuration can be be found under `data/config.yaml`. An annotated example configuration is shown below.
+# Star Sailors
+## Media inspiration
+* [Earth to Echo](https://en.m.wikipedia.org/wiki/Earth_to_Echo) 
 
 ```yaml
 name: Your name here! # Shows in the footer
