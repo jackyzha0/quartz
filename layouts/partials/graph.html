@@ -13,6 +13,7 @@
 <script>
   const index = {{$.Site.Data.linkIndex.index}}
   const links = {{$.Site.Data.linkIndex.links}}
+  const content = {{$.Site.Data.contentIndex}}
   const curPage = {{ strings.TrimRight "/" .Page.RelPermalink }}
   const pathColors = {{$.Site.Data.graphConfig.paths}}
 
@@ -137,7 +138,7 @@
       const neighbours = parseIdsFromLinks([...(index.links[d.id] || []), ...(index.backlinks[d.id] || [])])
       const neighbourNodes = d3.selectAll(".node").filter(d => neighbours.includes(d.id))
       const currentId = d.id
-      const links = d3.selectAll(".link").filter(d => d.source.id === currentId || d.target.id === currentId)
+      const linkNodes = d3.selectAll(".link").filter(d => d.source.id === currentId || d.target.id === currentId)
 
       // highlight neighbour nodes
       neighbourNodes
@@ -146,7 +147,7 @@
         .attr("fill", color)
 
       // highlight links
-      links
+      linkNodes
         .transition()
         .duration(200)
         .attr("stroke", "var(--g-link-active)")
@@ -165,9 +166,9 @@
         .attr("fill", color)
 
       const currentId = d.id
-      const links = d3.selectAll(".link").filter(d => d.source.id === currentId || d.target.id === currentId)
+      const linkNodes = d3.selectAll(".link").filter(d => d.source.id === currentId || d.target.id === currentId)
 
-      links
+      linkNodes
         .transition()
         .duration(200)
         .attr("stroke", "var(--g-link)")
@@ -184,7 +185,7 @@
   const labels = graphNode.append("text")
     .attr("dx", 12)
     .attr("dy", ".35em")
-    .text((d) => d.id.replace("%20", "-"))
+    .text((d) => content[d.id.replace("%20", "-")].title)
     .style("opacity", 0)
     .style("pointer-events", "none")
     .call(drag(simulation));
