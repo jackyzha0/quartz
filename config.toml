@@ -8,7 +8,6 @@ ignoreFiles = [
     "/content/templates/*",
     "/content/private/*",
 ]
-title = "🪴 Quartz v3"
 
 [markup]
     [markup.tableOfContents]
