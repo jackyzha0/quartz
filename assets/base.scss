@@ -128,9 +128,6 @@ td, th {
 article a {
   font-family: Source Sans Pro;
   font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: var(--tertiary);
-  text-decoration-thickness: .15em;
 }
 
 sup > a {
@@ -191,10 +188,11 @@ hr {
 }
 
 // internal link
-a[href^="/"] {
+a[href^="./"] {
   text-decoration: none;
-  background-color: #afbfc922;
+  background-color: #afbfc933;
   padding: 0 0.2em;
+  font-weight: 600;
   border-radius: 3px;
 }
 
