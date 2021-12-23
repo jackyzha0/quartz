@@ -241,6 +241,10 @@ a[href^="./"] {
   margin-top: 30vh;
 }
 
+article > h1 {
+  font-size: 2em;
+}
+
 header {
   display: flex;
   flex-direction: row;
