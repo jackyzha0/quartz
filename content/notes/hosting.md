@@ -39,15 +39,21 @@ Now let's get this site up and running. Never hosted a site before? No problem. 
 
 Here, we take advantage of GitHub's free page hosting to deploy our site. Change `baseURL` in `/config.toml`. If you don't have a custom domain to use, you can use `<YOUR-USERNAME>.github.io` (which GitHub gives to you for free!) as your domain.
 
-[Reference.](https://github.com/jackyzha0/quartz/blob/hugo/config.toml)
+[Reference `config.toml` here](https://github.com/jackyzha0/quartz/blob/hugo/config.toml)
 
 ```toml
 baseURL = "https://<YOUR-DOMAIN>/"
 ```
 
+If you are using this under a subdomain (e.g. `<YOUR-GITHUB-USERNAME>.github.io/quartz`), include the trailing path.
+
+```toml
+baseURL = "https://<YOUR-GITHUB-USERNAME>.github.io/quartz/"
+```
+
 Change `cname` in `/.github/workflows/deploy.yaml`. Again, if you don't have a custom domain to use, you can use `<YOUR-USERNAME>.github.io`.
 
-[Reference.](https://github.com/jackyzha0/quartz/blob/hugo/.github/workflows/deploy.yaml)
+[Reference `deploy.yaml` here](https://github.com/jackyzha0/quartz/blob/hugo/.github/workflows/deploy.yaml)
 
 ```yaml
 - name: Deploy  
