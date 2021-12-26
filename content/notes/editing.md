@@ -8,7 +8,7 @@ Quartz runs on top of [Hugo](https://gohugo.io/) so all notes are written in [Ma
 ### Obsidian
 I *strongly* recommend using [Obsidian](http://obsidian.md/) as a way to edit and grow your digital garden. It comes with a really nice editor and graphical interface to preview all of my local files.
 
-**🔗 [How to link your Obsidian Vault](notes/obsidian.md)**
+🔗 How to link your Obsidian Vault](notes/Obsidian.md)
 
 Of course, all the files are in Markdown so you could just use your favourite text editor of choice.
 

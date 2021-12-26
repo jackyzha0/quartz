@@ -1,5 +1,5 @@
 ---
-title: 🪴 Quartz v2.1
+title: 🪴 Quartz 3
 ---
 Host your second brain and [digital garden](https://jzhao.xyz/posts/digital-gardening) for free. Quartz features
 1. Extremely fast full-text search by pressing `/`
