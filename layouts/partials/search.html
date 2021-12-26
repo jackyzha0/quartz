@@ -145,7 +145,7 @@
     }
 
     const redir = (id, term) => {
-        window.location.href = "{{.Site.BaseURL}}" + `${id.toLowerCase()}#:~:text=${encodeURIComponent(term)}`
+        window.location.href = "{{.Site.BaseURL}}" + `${id}#:~:text=${encodeURIComponent(term)}`
     }
 
     const fetch = id => ({

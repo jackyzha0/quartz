@@ -23,19 +23,6 @@ p, ul, text {
   padding: revert;
 }
 
-a {
-  font-family: Inter;
-  font-weight: 700;
-  font-size: 1em;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  color: var(--secondary);
-
-  &:hover {
-    color: var(--tertiary) !important;
-  }
-}
-
 #TableOfContents > ol {
   counter-reset: section;
   margin-left: 0em;
@@ -128,11 +115,34 @@ td, th {
 article a {
   font-family: Source Sans Pro;
   font-weight: 600;
+
+  // internal link
+  &[href^="./"], &[href^="/"] {
+    text-decoration: none;
+    background-color: #afbfc933;
+    padding: 0 0.2em;
+    margin-right: -0.2em;
+    font-weight: 600;
+    border-radius: 3px;
+  }
 }
 
 sup > a {
   text-decoration: none;
   padding: 0 0.1em 0 0.2em;
+}
+
+a {
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  color: var(--secondary);
+
+  &:hover {
+    color: var(--tertiary) !important;
+  }
 }
 
 pre {
@@ -185,15 +195,6 @@ hr {
   border-width: 0;
   color: var(--dark);
   background-color: var(--dark);
-}
-
-// internal link
-a[href^="./"] {
-  text-decoration: none;
-  background-color: #afbfc933;
-  padding: 0 0.2em;
-  font-weight: 600;
-  border-radius: 3px;
 }
 
 .singlePage {
