@@ -119,12 +119,16 @@ article a {
   // internal link
   &[href^="./"], &[href^="/"] {
     text-decoration: none;
-    background-color: #afbfc933;
-    padding: 0 0.2em;
-    margin-right: -0.2em;
-    font-weight: 600;
+    background-color: transparentize(#8f9fa9, 0.85);
+    padding: 0 0.1em;
+    margin: auto -0.1em;
     border-radius: 3px;
   }
+}
+
+.backlinks a {
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 sup > a {
@@ -134,8 +138,8 @@ sup > a {
 
 a {
   font-family: Inter, sans-serif;
-  font-weight: 700;
   font-size: 1em;
+  font-weight: 700;
   text-decoration: none;
   transition: all 0.2s ease;
   color: var(--secondary);
