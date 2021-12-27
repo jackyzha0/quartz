@@ -8,6 +8,7 @@ ignoreFiles = [
     "/content/templates/*",
     "/content/private/*",
 ]
+summaryLength = 35
 
 [markup]
     [markup.tableOfContents]
