@@ -1,5 +1,7 @@
 ---
 title: "Editing Content in Quartz"
+tags:
+- setup
 ---
 
 ## Editing 

@@ -1,5 +1,7 @@
 ---
 title: "Obsidian Vault Integration"
+tags:
+- setup
 ---
 
 ## Setup

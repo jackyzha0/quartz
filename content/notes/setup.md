@@ -1,5 +1,7 @@
 ---
 title: "Setup"
+tags:
+- setup
 ---
 
 ## Making your own Quartz
