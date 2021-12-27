@@ -14,6 +14,9 @@
   </header>
   <article>
       {{if .Title}}<h1>{{ .Title }}</h1>{{end}}
+      <p class="meta">
+          Last updated {{ .Lastmod.Format "January 2, 2006" }}
+      </p>
       {{if $.Site.Data.config.enableToc}}
       <aside class="mainTOC">
           <h3>Table of Contents</h3>
@@ -21,6 +24,7 @@
       </aside>
       {{end}}
       {{.Content}}
+
     </article>
     {{partial "footer.html" .}}
 </div>

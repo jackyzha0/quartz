@@ -9,6 +9,7 @@ ignoreFiles = [
     "/content/private/*",
 ]
 summaryLength = 35
+enableGitInfo = true
 
 [markup]
     [markup.tableOfContents]
