@@ -1,5 +1,7 @@
 ---
 title: "Configuration"
+tags:
+- setup
 ---
 
 ## Configuration
