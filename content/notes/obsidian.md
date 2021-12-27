@@ -21,7 +21,7 @@ Under Options > Files and Links, set the New link format to always be Absolute P
 ![Obsidian Settings](/notes/images/obsidian-settings.png)*Obsidian Settings*
 
 ## Templates
-Inserting front matter everytime you want to create a new Note gets really annoying really quickly. Luckily, Obsidian supports templates which makes inserting new content really easily.
+Inserting front matter everytime you want to create a new Note gets annoying really quickly. Luckily, Obsidian supports templates which makes inserting new content really easily.
 
 **If you decide to overwrite the `/content` folder completely, don't remove the `/content/templates` folder!**
 

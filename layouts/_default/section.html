@@ -15,7 +15,7 @@
     <article>
         <h1>All {{.Title}}</h1>
         <ul class="section-ul">
-            {{- range .Pages -}}
+            {{- range .Pages.ByLastmod -}}
             <li class="section-li">
                 <div class="section">
                     <div class="desc">
@@ -23,7 +23,7 @@
                         <p>{{- .Summary -}}{{if .Truncated}}...{{end}}</p>
                     </div>
                     <p class="meta">
-                        {{ .ReadingTime }} minute read
+                        {{ .ReadingTime }} minute read, Last updated {{ .Lastmod.Format "January 2, 2006" }}
                     </p>
                 </div>
             </li>
