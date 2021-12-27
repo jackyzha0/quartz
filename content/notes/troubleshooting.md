@@ -3,6 +3,17 @@ title: "Troubleshooting and FAQ"
 ---
 
 ## Common Pitfalls
+### Some of my pages have 'January 1, 0001' as the last modified date
+This is a problem caused by `git` treating files as case-insensitive by default and some of your posts probably have capitalized file names. You can turn this off in your Quartz by running this command.
+
+```shell
+# in the root of your Quartz (same folder as config.toml)
+git config core.ignorecase true
+
+# or globally (not recommended)
+git config --global core.ignorecase true
+```
+
 ### Can I publish only a subset of my pages?
 Yes! Quartz makes selective publishing really easy. Heres a guide on [excluding pages from being published](notes/ignore%20notes.md).
 
