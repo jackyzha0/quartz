@@ -6,12 +6,10 @@
     {{$inbound := index $.Site.Data.linkIndex.index.backlinks $curPage}}
     {{$contentTable := $.Site.Data.contentIndex}}
     {{if $inbound}}
-    {{- range $inbound -}}
-        {{$src := index . "source"}}
-        {{$src = replace $src " " "-"}}
-
+    {{$cleanedInbound := apply (apply $inbound "index" "." "source") "replace" "." " " "-"}}
+    {{- range $cleanedInbound | uniq -}}
         <li>
-            <a href="{{$src}}">{{index (index $contentTable $src) "title"}}</a>
+            <a href="{{.}}">{{index (index $contentTable .) "title"}}</a>
         </li>
     {{- end -}}
     {{else}}

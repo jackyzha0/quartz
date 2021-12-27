@@ -29,6 +29,7 @@ To customize the Interactive Graph view, you can poke around `data/graphConfig.y
 enableLegend: false # automatically generate a legend
 enableDrag: true # allow dragging nodes in the graph
 enableZoom: true # allow zooming and panning the graph
+depth: -1 # how many neighbours of the current node to show (-1 is all nodes)
 paths: # colour specific nodes path off of their path
   - /moc: "#4388cc"
 ```
