@@ -81,12 +81,8 @@ p, tbody, li {
   line-height: 1.5em;
 }
 
-h2 {
-  opacity: 0.85;
-}
-
-h3 {
-  opacity: 0.75;
+h2, h3 {
+  opacity: 0.9;
 }
 
 blockquote {
@@ -375,6 +371,28 @@ header {
           border-radius: 3px;
         }
       }
+    }
+  }
+}
+
+.section-ul {
+  list-style: none;
+  padding-left: 0;
+
+  & > li {
+    border: 1px solid var(--outlinegray);
+    border-radius: 5px;
+    padding: 0 1em;
+    margin-bottom: 1em;
+
+    & h3 {
+      opacity: 1;
+      font-weight: 700;
+      margin-bottom: 0em;
+    }
+
+    & .meta {
+      opacity: 0.6;
     }
   }
 }
