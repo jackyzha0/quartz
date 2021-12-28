@@ -17,6 +17,11 @@
       <p class="meta">
           Last updated {{if ne .Date .Lastmod}}{{ .Lastmod.Format "January 2, 2006" }}{{else}}Unknown{{end}}
       </p>
+      <ul class="tags">
+          {{ range (.GetTerms "tags") }}
+          <li><a href="{{ .Permalink }}">{{ .LinkTitle | humanize }}</a></li>
+          {{ end }}
+      </ul>
       {{if $.Site.Data.config.enableToc}}
       <aside class="mainTOC">
           <h3>Table of Contents</h3>

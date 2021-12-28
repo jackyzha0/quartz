@@ -13,8 +13,9 @@
         {{partial "darkmode.html" .}}
     </header>
     <article>
-        <h1>All {{.Title}}</h1>
-        {{partial "page-list.html" .Pages.ByLastmod.Reverse }}
+        <h1>Category: {{.Title | humanize}}</h1>
+        {{partial "page-list.html" .Paginator.Pages}}
+        {{ template "_internal/pagination.html" . }}
     </article>
     {{partial "contact.html" .}}
 </div>
