@@ -26,7 +26,6 @@
     while (depth >= 0 && wl.length > 0) {
       // compute neighbours
       const cur = wl.shift()
-      console.log(depth, cur, wl)
       if (cur === "__SENTINEL") {
         depth--
         wl.push("__SENTINEL")
@@ -34,7 +33,6 @@
         neighbours.add(cur)
         const outgoing = index.links[cur] || []
         const incoming = index.backlinks[cur] || []
-        console.log(incoming)
         wl.push(...outgoing.map(l => l.target), ...incoming.map(l => l.source))
       }
     }
