@@ -1,8 +1,8 @@
 {{$trimmed := strings.TrimSuffix ".md" (.Destination | safeURL)}}
-{{$trimmed = replace $trimmed "%20" "-"}}
+{{$trimmed = replace $trimmed "%20" "-" }}
 {{$external := strings.HasPrefix $trimmed "http" }}
 {{ if $external }}
 <a href="{{ $trimmed }}" rel="noopener">{{ .Text | safeHTML }}</a>
 {{else}}
-<a href="{{ if (hasPrefix $trimmed "/") }}{{ $trimmed }}{{ else }}{{ print "/" $trimmed }}{{ end }}" rel="noopener">{{ .Text | safeHTML }}</a>
+<a href="{{ if (hasPrefix $trimmed "/") }}{{ $trimmed | urlize }}{{ else }}{{ print "/" $trimmed | urlize }}{{ end }}" rel="noopener">{{ .Text | safeHTML }}</a>
 {{end}}
