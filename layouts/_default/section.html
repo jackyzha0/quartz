@@ -14,7 +14,8 @@
     </header>
     <article>
         <h1>All {{.Title}}</h1>
-        {{partial "page-list.html" .Pages.ByLastmod.Reverse }}
+        {{partial "page-list.html" .Paginator.Pages.ByLastmod.Reverse }}
+        {{ template "_internal/pagination.html" .}}
     </article>
     {{partial "contact.html" .}}
 </div>
