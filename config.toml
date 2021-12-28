@@ -8,7 +8,8 @@ ignoreFiles = [
     "/content/templates/*",
     "/content/private/*",
 ]
-summaryLength = 35
+summaryLength = 20
+paginate = 10
 enableGitInfo = true
 
 [markup]
