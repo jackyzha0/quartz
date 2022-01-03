@@ -190,9 +190,10 @@
 
             // display
             if (finalResults.length === 0) {
-                results.innerHTML = `<div class="result-card">
-                    <p>No results.</p>
-                </div>`
+                results.innerHTML = `<button class="result-card">
+                    <h3>No results.</h3>
+                    <p>Try another search term?</p>
+                </button>`
             } else {
                 results.innerHTML = finalResults
                     .map(result => resultToHTML({
