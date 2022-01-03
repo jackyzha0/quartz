@@ -276,6 +276,7 @@ hr {
 .page-end {
   display: flex;
   flex-direction: row;
+  gap: 2em;
 
   @media all and (max-width: 780px) {
     flex-direction: column;
@@ -289,7 +290,6 @@ hr {
     & > ul {
       list-style: none;
       padding-left: 0;
-      margin-right: 2em;
 
       & > li {
         margin: 0.5em 0;
