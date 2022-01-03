@@ -1,5 +1,6 @@
 name: Jacky Zhao
 enableToc: true
+enableLinkPreview: true
 description:
   Here is the page description. This is an example Quartz site that details installation,
   setup, customization, and troubleshooting for Quartz itself.
