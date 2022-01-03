@@ -13,7 +13,7 @@
         {{partial "darkmode.html" .}}
     </header>
     <article>
-        <h1>Category: {{.Title | humanize}}</h1>
+        <h1>Tag: {{.Title | humanize}}</h1>
         {{partial "page-list.html" .Paginator.Pages}}
         {{ template "_internal/pagination.html" . }}
     </article>

@@ -1,7 +1,7 @@
 <head>
     <!-- Meta tags -->
     <meta charset="UTF-8">
-    <meta name="description" content="{{$.Site.Data.config.description}}">
+    <meta name="description" content="{{if .IsHome}}{{$.Site.Data.config.description}}{{else}}{{.Summary}}{{end}}">
     <title>{{ if .Title }}{{ .Title }}{{ else }}{{ $.Site.Data.config.page_title }}{{ end }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="/icon.png" />
@@ -23,5 +23,13 @@
       {{.Content | safeJS }}
     </script>
     {{- end -}}
+
+    <!--  Preload page vars  -->
+    <script>
+    const content = {{$.Site.Data.contentIndex}}
+    const index = {{$.Site.Data.linkIndex.index}}
+    const links = {{$.Site.Data.linkIndex.links}}
+    </script>
 </head>
 {{ template "_internal/google_analytics.html" . }}
+{{ partial "popover.html" .}}

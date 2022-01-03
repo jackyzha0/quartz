@@ -17,7 +17,7 @@
         <div class="tags">
             {{ range .Site.Taxonomies.tags.ByCount }}
             <div class="meta">
-                <h1><a href="{{ .Page.Permalink }}">{{ .Page.Title | humanize }}</a></h1>
+                <h1><a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a></h1>
                 <p><b>{{ .Count }}</b> notes with this tag {{if gt .Count 2}}(showing first 2 results){{end}}</p>
             </div>
             {{ with ($.Site.GetPage (printf "/tags/%s" .Page.Title)) }}

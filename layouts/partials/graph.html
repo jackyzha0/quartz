@@ -11,9 +11,6 @@
     }
 </style>
 <script>
-  const index = {{$.Site.Data.linkIndex.index}}
-  const links = {{$.Site.Data.linkIndex.links}}
-  const content = {{$.Site.Data.contentIndex}}
   const curPage = {{ strings.TrimRight "/" .Page.RelPermalink }}
   const pathColors = {{$.Site.Data.graphConfig.paths}}
   let depth = {{$.Site.Data.graphConfig.depth}}
