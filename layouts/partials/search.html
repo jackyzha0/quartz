@@ -89,8 +89,7 @@
         }
     })
 
-    const scrapedContent = {{$.Site.Data.contentIndex}}
-    for (const [key, value] of Object.entries(scrapedContent)) {
+    for (const [key, value] of Object.entries(content)) {
         contentIndex.add({
             id: key,
             title: value.title,
@@ -151,8 +150,8 @@
     const fetch = id => ({
         id,
         url: id,
-        title: scrapedContent[id].title,
-        content: scrapedContent[id].content
+        title: content[id].title,
+        content: content[id].content
     })
 
     const source = document.getElementById('search-bar')

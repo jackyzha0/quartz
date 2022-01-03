@@ -1,0 +1,29 @@
+<script>
+  function htmlToElement(html) {
+    const template = document.createElement('template')
+    html = html.trim()
+    template.innerHTML = html
+    return template.content.firstChild
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    [...document.getElementsByClassName("internal-link")]
+      .forEach(li => {
+        const linkDest = content[li.dataset.src]
+        if (linkDest) {
+          const popoverElement = `<div class="popover">
+    <h3>${linkDest.title}</h3>
+    <p>${removeMarkdown(linkDest.content).split(" ", 15).join(" ")}...</p>
+</div>`
+          const el = htmlToElement(popoverElement)
+          li.appendChild(el)
+          li.addEventListener("mouseover", () => {
+            el.classList.add("visible")
+          })
+          li.addEventListener("mouseout", () => {
+            el.classList.remove("visible")
+          })
+        }
+      })
+  })
+</script>
