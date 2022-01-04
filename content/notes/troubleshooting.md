@@ -2,7 +2,10 @@
 title: "Troubleshooting and FAQ"
 ---
 
-## Common Pitfalls
+Still having trouble? Here are a list of common questions and problems people encounter when installing Quartz.
+
+While you're here, join our [Discord](https://discord.gg/cRFFHYye7t) :)
+
 ### Some of my pages have 'January 1, 0001' as the last modified date
 This is a problem caused by `git` treating files as case-insensitive by default and some of your posts probably have capitalized file names. You can turn this off in your Quartz by running this command.
 
@@ -36,7 +39,7 @@ source ~/.bash_profile
 ```
 
 ### How come my notes aren't being rendered?
-You probably forgot to include front matter in your Markdown files. You can either setup [Obsidian](notes/Obsidian.md) to do this for you or you need to manually define it. More details in [the 'how to edit' guide](notes/editing.md).
+You probably forgot to include front matter in your Markdown files. You can either setup [obsidian](notes/obsidian.md) to do this for you or you need to manually define it. More details in [the 'how to edit' guide](notes/editing.md).
 
 ### My custom domain isn't working!
 Walk through the steps in [the hosting guide](notes/hosting.md) again. Make sure you wait 30 min to 1 hour for changes to take effect.

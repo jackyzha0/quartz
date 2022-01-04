@@ -8,11 +8,11 @@ tags:
 Quartz runs on top of [Hugo](https://gohugo.io/) so all notes are written in [Markdown](https://www.markdownguide.org/getting-started/).
 
 ### Obsidian
-I *strongly* recommend using [Obsidian](http://obsidian.md/) as a way to edit and grow your digital garden. It comes with a really nice editor and graphical interface to preview all of my local files.
+I recommend using [Obsidian](http://obsidian.md/) as a way to edit and grow your digital garden. It comes with a really nice editor and graphical interface to preview all of your local files.
 
-🔗 How to link your Obsidian Vault](notes/Obsidian.md)
+This step is **highly recommended**.
 
-Of course, all the files are in Markdown so you could just use your favourite text editor of choice.
+🔗 [How to setup your Obsidian Vault to work with Quartz](notes/obsidian.md)
 
 ### Ignoring Files
 Only want to publish a subset of all of your notes? Don't worry, Quartz makes this a simple two-step process.
@@ -33,19 +33,28 @@ For example, I want to link this current document to `notes/config.md`.
 [A link to the config page](notes/config.md)
 ```
 
+Similarly, you can put local images anywhere in the `/content` folder. The only caveat is that you should reference them in your Markdown by prefixing it with a `/`.
+
+```markdown
+Example image (source is in content/notes/images/example.png)
+![Example Image](/content/notes/images/example.png)
+```
+
 ### Front Matter
-Hugo is picky when it comes to metadata for files. Make sure that your title is double-quoted and that you have a title defined at the top of your file like so:
+Hugo is picky when it comes to metadata for files. Make sure that your title is double-quoted and that you have a title defined at the top of your file like so. You can also add tags here as well.
 
 ```markdown
 ---
 title: "Example Title"
+tags:
+- example-tag
 ---
 
 Rest of your content here...
 ```
 
 ## Previewing Changes
-This step is purely optional and mostly for those who want to see the published version of their digital garden locally before opening it up to the internet. This is *highly recommended*.
+This step is purely optional and mostly for those who want to see the published version of their digital garden locally before opening it up to the internet. This is *highly recommended* but not required.
 
 👀 [Preview Quartz Changes](notes/preview%20changes.md)
 
