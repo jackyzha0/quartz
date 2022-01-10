@@ -11,7 +11,7 @@
     }
 </style>
 <script>
-  const curPage = {{ strings.TrimRight "/" .Page.RelPermalink }}
+  const curPage = {{ strings.TrimRight "/" .Page.RelPermalink }}.replace({{strings.TrimRight "/" .Site.BaseURL }}, "")
   const pathColors = {{$.Site.Data.graphConfig.paths}}
   let depth = {{$.Site.Data.graphConfig.depth}}
 
