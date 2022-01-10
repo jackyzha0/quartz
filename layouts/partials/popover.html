@@ -7,10 +7,11 @@
     return template.content.firstChild
   }
 
+  const pathRegex = /\.\.(\/\.\.)*/
   document.addEventListener("DOMContentLoaded", () => {
     [...document.getElementsByClassName("internal-link")]
       .forEach(li => {
-        const linkDest = content[li.dataset.src]
+        const linkDest = content[li.dataset.src.replace(pathRegex, '')]
         if (linkDest) {
           const popoverElement = `<div class="popover">
     <h3>${linkDest.title}</h3>
