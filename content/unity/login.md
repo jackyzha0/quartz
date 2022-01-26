@@ -35,3 +35,16 @@ Note: I’ve removed the Moralis SDK for now as it was causing compile issues wi
 I’m setting up a scriptable objects db, using the current player controller (with camera attached) (I’ll create a new character later).
 
 I don’t know if the current one works for multiplayer, but either way let’s look into a [node & python api for this later integration](https://www.youtube.com/watch?v=zd0pBsmJI8s).
+
+<script src="https://giscus.app/client.js"
+        data-repo="signal-k/unity-demo"
+        data-repo-id="R_kgDOGGIbwA"
+        data-category-id="DIC_kwDOGGIbwM4CAz-P"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
