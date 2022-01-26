@@ -2,7 +2,18 @@
 
 🔗 Log onto our [notion](https://www.notion.so/skinetics/Signal-Kinetics-4c3a0eaa11914a5f84a59c01de860c57) or the [portal](https://docs.skinetics.tech) to view documentation & tasks
 
-Test
+<script src="https://giscus.app/client.js"
+        data-repo="signal-k/unity-demo"
+        data-repo-id="R_kgDOGGIbwA"
+        data-category-id="DIC_kwDOGGIbwM4CAz-P"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
 
 <!--Figure out how to link with notion, utterances, slack/kyber, discord/matrix/keybase, etc-->
 
