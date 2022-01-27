@@ -69,7 +69,7 @@ Change `cname` in `/.github/workflows/deploy.yaml`. Again, if you don't have a c
 	cname: <YOUR-DOMAIN>
 ```
 
-Have a custom domain? [Learn how to set it up with Quartz ](custom%20Domain.md).
+Have a custom domain? [Learn how to set it up with Quartz ](notes/custom%20Domain.md).
 
 ---
 
