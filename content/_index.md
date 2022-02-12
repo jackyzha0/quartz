@@ -1,26 +1,17 @@
 ---
-title: 🪴 Quartz 3
+title: "🌳 Welcome to my garden 💖"
 ---
-Host your second brain and [digital garden](https://jzhao.xyz/posts/digital-gardening) for free. Quartz features
-1. Extremely fast full-text search by pressing `/`
-2. Display for backlinks of each note
-3. Fully customizable local graph view
-4. Endlessly powerful page and theme customization using CSS
-5. Automatically generated tag and section lists of content
-6. Beautiful link previews
+# Hola Amigos 🤠
 
-## Get Started
-> 📚 [Setup your own digital garden using Quartz](notes/setup.md)
+👋 Hello there, welcome to my garden. You can access to my class notes in [📁 000 My Knowledge](content/notes/000%20My%20Knowledge/000%20Semester%20Notes.md)  Collaborate with me if you are interested to contribute in my knowledge garden.
 
-Not convinced yet? Look at some [community digital gardens](notes/showcase.md) built with Quartz, or read about [why I made Quartz](notes/philosophy.md) to begin with!
+If you have any feedback please open an issue in [glitchlover/quartz: 🌱 My Semester Knowledge Garden 🎋 (github.com)](https://github.com/glitchlover/quartz)
 
-## Content Lists
-If you prefer browsing the contents of this site through a list instead of a graph, you can find content lists here too:
 
-- [All Notes](/notes)
-- [Setup-related Notes](/tags/setup)
+# About this note📝
+This note is a review of what I have learned as a student of computer science. Here I write down my thought which I have processed from the original note to fulfill my understanding. 
 
-## Troubleshooting
-- 🚧 [Troubleshooting and FAQ](notes/troubleshooting.md)
-- 🐛 [Submit an Issue](https://github.com/jackyzha0/quartz/issues)
-- 👀 [Discord Community](https://discord.gg/cRFFHYye7t)
+You will get update every Friday!
+
+## About me 🙂
+I am a code and productive nerd.
