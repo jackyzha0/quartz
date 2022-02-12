@@ -1,0 +1,5 @@
+jupyter
+tensorflow
+gym
+keras-rl2
+gym[atari]
