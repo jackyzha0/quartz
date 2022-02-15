@@ -21,7 +21,7 @@ $ hugo-obsidian -input=content -output=data -index -root=.
 Afterwards, start the Hugo server as shown above and your local backlinks and interactive graph should be populated!
 
 ##  Installing Hugo
-Hugo is the static site generator that powers Quartz. [Install Hugo](https://gohugo.io/getting-started/installing/) first. Then,
+Hugo is the static site generator that powers Quartz. [Install Hugo with "extended" Sass/SCSS version](https://gohugo.io/getting-started/installing/) first. Then,
 
 ```
 # Navigate to your local Quartz folder
