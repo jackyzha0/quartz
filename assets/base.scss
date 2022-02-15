@@ -81,10 +81,6 @@ p, tbody, li {
   line-height: 1.5em;
 }
 
-h2, h3 {
-  opacity: 0.9;
-}
-
 blockquote {
   margin-left: 0em;
   border-left: 3px solid var(--secondary);
@@ -468,7 +464,8 @@ header {
   z-index: 999;
   position: absolute;
   width: 15em;
-  display: inline;
+  display: inline-block;
+  visibility: hidden;
   background-color: var(--light);
   padding: 1em;
   border: 1px solid var(--outlinegray);
@@ -482,6 +479,7 @@ header {
 
   &.visible {
     opacity: 1;
+    visibility: visible;
     transform: translate(-50%, 20%);
   }
 
