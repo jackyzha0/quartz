@@ -6,7 +6,7 @@
   --lt-colours-gray: var(--outlinegray) !important;
 }
 
-h1, h2, h3, h4, ol, ul, thead {
+h1, h2, h3, h4, h5, h6, ol, ul, thead {
   font-family: Inter;
   color: var(--dark);
   font-weight: revert;
@@ -225,6 +225,13 @@ code {
 
 html {
   scroll-behavior: smooth;
+
+  &:lang(ar) {
+    & p, & h1, & h2, & h3, article {
+      direction: rtl;
+      text-align: right;
+    }
+  }
 }
 
 body {
