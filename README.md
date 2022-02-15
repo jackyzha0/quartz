@@ -1,5 +1,8 @@
 # Signal-K Digital Garden
 
+## CLI branch
+We'll be creating a CLI for writing documentation and integrating it with your code editor and visual/GUI tools (e.g. Unity), on THIS branch.
+
 🔗 Log onto our [notion](https://www.notion.so/skinetics/Signal-Kinetics-4c3a0eaa11914a5f84a59c01de860c57) or the [portal](https://docs.skinetics.tech) to view documentation & tasks
 
 <script src="https://giscus.app/client.js"

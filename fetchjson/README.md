@@ -1,0 +1,1 @@
+Documentation related to typescript components of the Quartz repo, as well as examples for integration with LedgerStream-CLI (signal-k/cli) repo on Github.com
