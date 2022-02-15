@@ -1,0 +1,23 @@
+{
+  "name": "kinetika-hedera-sdk",
+  "version": "0.0.1",
+  "description": "Integration of Hedera (JS) sdk with the Quartz (by skinetics.tech) CLI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/signal-k/quartz.git#cli"
+  },
+  "author": "Signal Kinetics",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/signal-k/quartz/issues"
+  },
+  "homepage": "https://github.com/signal-k/quartz/tree/cli#readme",
+  "dependencies": {
+    "@hashgraph/sdk": "^2.9.1",
+    "dotenv": "^16.0.0"
+  }
+}
