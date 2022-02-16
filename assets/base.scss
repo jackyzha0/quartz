@@ -470,7 +470,7 @@ header {
 .popover {
   z-index: 999;
   position: absolute;
-  width: 15em;
+  width: 20em;
   display: inline-block;
   visibility: hidden;
   background-color: var(--light);
@@ -491,11 +491,18 @@ header {
   }
 
   & > h3 {
-    margin: 0.5em 0;
+    font-size: 1rem;
+    margin: 0.25em 0;
+  }
+
+  & > .meta {
+    margin-top: 0.25em;
+    opacity: 0.5;
   }
 
   & > p {
     margin: 0;
     font-weight: 400;
+    user-select: none;
   }
 }

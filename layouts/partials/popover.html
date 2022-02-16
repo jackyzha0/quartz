@@ -1,37 +1,38 @@
 {{if $.Site.Data.config.enableLinkPreview}}
 <script>
-async function run() {
-  const {content} = await fetchData()
   function htmlToElement(html) {
     const template = document.createElement('template')
     html = html.trim()
     template.innerHTML = html
     return template.content.firstChild
   }
-
-  const pathRegex = /\.\.?(\/\.\.)*/
+  const baseUrl = {{strings.TrimRight "/" .Site.BaseURL }}.replace(window.location.origin, "")
   document.addEventListener("DOMContentLoaded", () => {
-    [...document.getElementsByClassName("internal-link")]
-      .forEach(li => {
-        const linkDest = content[li.dataset.src.replace(pathRegex, '')]
-        if (linkDest) {
-          const popoverElement = `<div class="popover">
+    fetchData().then(({content}) => {
+      const links = [...document.getElementsByClassName("internal-link")]
+      links.forEach(li => {
+        console.log(li.dataset.src.replace(baseUrl, ""))
+        console.log(content[li.dataset.src.replace(baseUrl, "")])
+        console.log(content)
+        const linkDest = content[li.dataset.src.replace(baseUrl, "")]
+        // const linkDest = content[li.dataset.src]
+          if (linkDest) {
+            const popoverElement = `<div class="popover">
     <h3>${linkDest.title}</h3>
-    <p>${removeMarkdown(linkDest.content).split(" ", 15).join(" ")}...</p>
+    <p>${removeMarkdown(linkDest.content).split(" ", 20).join(" ")}...</p>
+    <p class="meta">${new Date(linkDest.lastmodified).toLocaleDateString()}</p>
 </div>`
-          const el = htmlToElement(popoverElement)
-          li.appendChild(el)
-          li.addEventListener("mouseover", () => {
-            el.classList.add("visible")
-          })
-          li.addEventListener("mouseout", () => {
-            el.classList.remove("visible")
-          })
-        }
-      })
+            const el = htmlToElement(popoverElement)
+            li.appendChild(el)
+            li.addEventListener("mouseover", () => {
+              el.classList.add("visible")
+            })
+            li.addEventListener("mouseout", () => {
+              el.classList.remove("visible")
+            })
+          }
+        })
+    })
   })
-}
-
-run()
 </script>
 {{end}}

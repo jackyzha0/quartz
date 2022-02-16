@@ -5,5 +5,6 @@
 <a href="{{ $trimmed }}" rel="noopener">{{ .Text | safeHTML }}</a>
 {{- else -}}
 {{$fixedUrl := (cond (hasPrefix $trimmed "/") $trimmed (print "/" $trimmed)) | urlize}}
-<a href="{{$fixedUrl}}" rel="noopener" class="internal-link" data-src="{{$fixedUrl}}">{{ .Text | safeHTML }}</a>
+{{$rooted := strings.TrimRight "/" (.Page.GetPage $fixedUrl).RelPermalink }}
+<a href="{{$rooted}}" rel="noopener" class="internal-link" data-src="{{$rooted}}">{{ .Text | safeHTML }}</a>
 {{- end -}}
