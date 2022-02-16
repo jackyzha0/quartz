@@ -1,5 +1,7 @@
 {{if $.Site.Data.config.enableLinkPreview}}
 <script>
+async function run() {
+  const {content} = await fetchData()
   function htmlToElement(html) {
     const template = document.createElement('template')
     html = html.trim()
@@ -11,7 +13,6 @@
   document.addEventListener("DOMContentLoaded", () => {
     [...document.getElementsByClassName("internal-link")]
       .forEach(li => {
-        console.log(li.dataset.src.replace(pathRegex, ''))
         const linkDest = content[li.dataset.src.replace(pathRegex, '')]
         if (linkDest) {
           const popoverElement = `<div class="popover">
@@ -29,5 +30,8 @@
         }
       })
   })
+}
+
+run()
 </script>
 {{end}}

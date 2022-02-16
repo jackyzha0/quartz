@@ -11,6 +11,8 @@
     }
 </style>
 <script>
+async function run() {
+  const { index, links, content } = await fetchData()
   const curPage = {{ strings.TrimRight "/" .Page.Permalink }}.replace({{strings.TrimRight "/" .Site.BaseURL }}, "")
   const pathColors = {{$.Site.Data.graphConfig.paths}}
   let depth = {{$.Site.Data.graphConfig.depth}}
@@ -225,12 +227,15 @@
       .attr("x1", d => d.source.x)
       .attr("y1", d => d.source.y)
       .attr("x2", d => d.target.x)
-      .attr("y2", d => d.target.y);
+      .attr("y2", d => d.target.y)
     node
       .attr("cx", d => d.x)
-      .attr("cy", d => d.y);
+      .attr("cy", d => d.y)
     labels
       .attr("x", d => d.x)
-      .attr("y", d => d.y);
+      .attr("y", d => d.y)
   });
+}
+
+run()
 </script>

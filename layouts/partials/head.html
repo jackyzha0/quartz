@@ -8,7 +8,7 @@
 
     <!-- CSS Stylesheets and Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
-    {{ $css := slice "base.scss" "darkmode.scss" "syntax.scss" "custom.scss"}}
+    {{$css := slice "base.scss" "darkmode.scss" "syntax.scss" "custom.scss"}}
     {{range $css}}
     {{$sass := resources.Get . | resources.ToCSS }}
     {{with $sass | minify}}
@@ -26,9 +26,24 @@
 
     <!--  Preload page vars  -->
     <script>
-    const content = {{$.Site.Data.contentIndex}}
-    const index = {{$.Site.Data.linkIndex.index}}
-    const links = {{$.Site.Data.linkIndex.links}}
+    const fetchData = async () => {
+      const promises = [
+        fetch("/linkIndex.json")
+          .then(data => data.json())
+          .then(data => ({
+            index: data.index,
+            links: data.links,
+          })),
+        fetch("/contentIndex.json")
+          .then(data => data.json()),
+      ]
+      const [{index, links}, content] = await Promise.all(promises)
+      return ({
+        index,
+        links,
+        content,
+      })
+    }
     </script>
 </head>
 {{ template "_internal/google_analytics.html" . }}
