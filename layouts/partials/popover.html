@@ -11,9 +11,6 @@
     fetchData().then(({content}) => {
       const links = [...document.getElementsByClassName("internal-link")]
       links.forEach(li => {
-        console.log(li.dataset.src.replace(baseUrl, ""))
-        console.log(content[li.dataset.src.replace(baseUrl, "")])
-        console.log(content)
         const linkDest = content[li.dataset.src.replace(baseUrl, "")]
         // const linkDest = content[li.dataset.src]
           if (linkDest) {

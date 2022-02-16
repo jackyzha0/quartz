@@ -10,7 +10,7 @@ Quartz is designed to be effortless to deploy. If you forked and cloned Quartz d
 ### Enable GitHub Actions
 By default, GitHub disables workflows from running automatically on Forked Repostories. Head to the 'Actions' tab of your forked repository and Enable Workflows to setup deploying your Quartz site!
 
-![Enable GitHub Actions](/notes/images/github-actions.png)*Enable GitHub Actions*
+![Enable GitHub Actions](notes/images/github-actions.png)*Enable GitHub Actions*
 
 ### Enable GitHub Pages
 
