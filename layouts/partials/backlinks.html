@@ -3,8 +3,9 @@
     {{$url := urls.Parse .Site.BaseURL }}
     {{$host := strings.TrimRight "/" $url.Path }}
     {{$curPage := strings.TrimPrefix $host (strings.TrimRight "/" .Page.RelPermalink) }}
-    {{$inbound := index $.Site.Data.linkIndex.index.backlinks $curPage}}
-    {{$contentTable := $.Site.Data.contentIndex}}
+    {{$linkIndex := getJSON "/static/linkIndex.json"}}
+    {{$inbound := index $linkIndex.index.backlinks $curPage}}
+    {{$contentTable := getJSON "/static/contentIndex.json"}}
     {{if $inbound}}
     {{$cleanedInbound := apply (apply $inbound "index" "." "source") "replace" "." " " "-"}}
     {{- range $cleanedInbound | uniq -}}
