@@ -26,24 +26,33 @@
 
     <!--  Preload page vars  -->
     <script>
-    const fetchData = async () => {
-      const promises = [
-        fetch("/linkIndex.json")
-          .then(data => data.json())
-          .then(data => ({
-            index: data.index,
-            links: data.links,
-          })),
-        fetch("/contentIndex.json")
-          .then(data => data.json()),
-      ]
-      const [{index, links}, content] = await Promise.all(promises)
-      return ({
-        index,
-        links,
-        content,
-      })
-    }
+      let saved = false
+      const fetchData = async () => {
+        if (saved) {
+          return saved
+        } else {
+          const promises = [
+            fetch("{{ .Site.BaseURL }}/linkIndex.json")
+              .then(data => data.json())
+              .then(data => ({
+                index: data.index,
+                links: data.links,
+              })),
+            fetch("{{ .Site.BaseURL }}/contentIndex.json")
+              .then(data => data.json()),
+          ]
+          const [{index, links}, content] = await Promise.all(promises)
+          const res = ({
+            index,
+            links,
+            content,
+          })
+          saved = res
+          return res
+        }
+
+      }
+      fetchData()
     </script>
 </head>
 {{ template "_internal/google_analytics.html" . }}
