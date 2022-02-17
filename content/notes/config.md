@@ -47,3 +47,19 @@ For example, the structure of the home page can be edited through `/layouts/inde
 More info about partials on [Hugo's website.](https://gohugo.io/templates/partials/)
 
 Still having problems? Checkout our [FAQ and Troubleshooting guide](notes/troubleshooting.md).
+
+## Multilingual
+Want to support languages that read from right-to-left (like Arabic)? Hugo (and by proxy, Quartz) supports this natively.
+
+Follow the steps [Hugo provides here](https://gohugo.io/content-management/multilingual/#configure-languages) and modify your `config.toml`
+
+For example:
+
+```toml
+defaultContentLanguage = 'ar'
+[languages]
+  [languages.ar]
+    languagedirection = 'rtl'
+    title = 'مدونتي'
+    weight = 1
+```
