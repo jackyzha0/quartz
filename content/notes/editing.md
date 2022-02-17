@@ -24,7 +24,7 @@ Here's a rough overview of what's what.
 
 **All content in your garden can found in the `/content` folder.** To make edits, you can open any of the files and make changes directly and save it. You can organize content into any folder you'd like.
 
-**To edit the main home page, open `/content/_index.md`.** This is the home page which is slightly special. You don't need front matter here!
+**To edit the main home page, open `/content/_index.md`.*
 
 To create a link between notes in your garden, just create a normal link using Markdown pointing to the document in question. Please note that **all links should be relative to the root `/content` path**. 
 
@@ -33,7 +33,7 @@ For example, I want to link this current document to `notes/config.md`.
 [A link to the config page](notes/config.md)
 ```
 
-Similarly, you can put local images anywhere in the `/content` folder. The only caveat is that you should reference them in your Markdown by prefixing it with a `/`.
+Similarly, you can put local images anywhere in the `/content` folder.
 
 ```markdown
 Example image (source is in content/notes/images/example.png)

@@ -16,13 +16,13 @@ By default, GitHub disables workflows from running automatically on Forked Repos
 
 Head to the 'Settings' tab of your forked repository and go to the 'Pages' tab.
 
-1. (IMPORTANT) Set the source to deploy from `master` using `/ (root)`
+1. (IMPORTANT) Set the source to deploy from `master` (and not `hugo`) using `/ (root)`
 2. Set a custom domain here if you have one!
 
 ![Enable GitHub Pages](/notes/images/github-pages.png)*Enable GitHub Pages*
 
 ### Pushing Changes
-To see your changes on the internet, we need to push it them to GitHub. Quartz is essentially a `git` repository so updating it is the same workflow as you would follow as normal.
+To see your changes on the internet, we need to push it them to GitHub. Quartz is a `git` repository so updating it is the same workflow as you would follow as if it were just a regular software project.
 
 ```shell
 # Navigate to Quartz folder
@@ -43,19 +43,23 @@ Now let's get this site up and running. Never hosted a site before? No problem. 
 
 Here, we take advantage of GitHub's free page hosting to deploy our site. Change `baseURL` in `/config.toml`.
 
+Make sure that your `baseURL` has a trailing `/`!
+
 [Reference `config.toml` here](https://github.com/jackyzha0/quartz/blob/hugo/config.toml)
 
 ```toml
 baseURL = "https://<YOUR-DOMAIN>/"
 ```
 
-If you are using this under a subdomain (e.g. `<YOUR-GITHUB-USERNAME>.github.io/quartz`), include the trailing path.
+If you are using this under a subdomain (e.g. `<YOUR-GITHUB-USERNAME>.github.io/quartz`), include the trailing `/`.
 
 ```toml
 baseURL = "https://<YOUR-GITHUB-USERNAME>.github.io/quartz/"
 ```
 
 Change `cname` in `/.github/workflows/deploy.yaml`. Again, if you don't have a custom domain to use, you can use `<YOUR-USERNAME>.github.io`.
+
+Please note that the `cname` field should *not* have any path `e.g. end with /quartz` or have a trailing `/`.
 
 [Reference `deploy.yaml` here](https://github.com/jackyzha0/quartz/blob/hugo/.github/workflows/deploy.yaml)
 
