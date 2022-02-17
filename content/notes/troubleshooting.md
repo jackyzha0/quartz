@@ -6,6 +6,9 @@ Still having trouble? Here are a list of common questions and problems people en
 
 While you're here, join our [Discord](https://discord.gg/cRFFHYye7t) :)
 
+### My GitHub pages is just showing the README and not Quartz
+Make sure you set the source to deploy from `master` (and not `hugo`) using `/ (root)`! See more in the [hosting](/notes/hosting) guide
+
 ### Some of my pages have 'January 1, 0001' as the last modified date
 This is a problem caused by `git` treating files as case-insensitive by default and some of your posts probably have capitalized file names. You can turn this off in your Quartz by running this command.
 
