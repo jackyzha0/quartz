@@ -123,6 +123,11 @@
       "/notes/troubleshooting": [
         {
           "source": "/notes/troubleshooting",
+          "target": "/notes/hosting",
+          "text": "hosting"
+        },
+        {
+          "source": "/notes/troubleshooting",
           "target": "/notes/ignore-notes",
           "text": "excluding pages from being published"
         },
@@ -219,6 +224,11 @@
           "source": "/notes/editing",
           "target": "/notes/hosting",
           "text": "Hosting Quartz online!"
+        },
+        {
+          "source": "/notes/troubleshooting",
+          "target": "/notes/hosting",
+          "text": "hosting"
         },
         {
           "source": "/notes/troubleshooting",
@@ -434,6 +444,11 @@
       "source": "/notes/setup",
       "target": "/notes/troubleshooting",
       "text": "FAQ and Troubleshooting guide"
+    },
+    {
+      "source": "/notes/troubleshooting",
+      "target": "/notes/hosting",
+      "text": "hosting"
     },
     {
       "source": "/notes/troubleshooting",
