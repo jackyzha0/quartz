@@ -1,10 +1,10 @@
 import ReactDOM from 'react-dom';
-import List from './state/List';
+import UserSearch from './state/UserSearch'
 
 const App = () => {
   return (
     <div>
-      <List />
+      <UserSearch />
     </div>
   );
 };
