@@ -1,10 +1,11 @@
 {{$trimmed := strings.TrimSuffix ".md" (.Destination | safeURL)}}
-{{$trimmed = replace $trimmed "%20" "-" }}
-{{$external := strings.HasPrefix $trimmed "http" }}
+{{$dashedurl := replace $trimmed "%20" "-" }}
+{{$external := strings.HasPrefix $dashedurl "http" }}
 {{- if $external -}}
-<a href="{{ $trimmed }}" rel="noopener">{{ .Text | safeHTML }}</a>
+<a href="{{ $dashedurl }}" rel="noopener">{{ .Text | safeHTML }}</a>
 {{- else -}}
-{{$fixedUrl := (cond (hasPrefix $trimmed "/") $trimmed (print "/" $trimmed)) | urlize}}
-{{$rooted := strings.TrimRight "/" (.Page.GetPage $fixedUrl).RelPermalink }}
+{{$spacedurl := replace $trimmed "%20" " " }}
+{{$fixedUrl := (cond (hasPrefix $spacedurl "/") $spacedurl (print "/" $spacedurl)) | urlize}}
+{{$rooted := default $spacedurl (strings.TrimRight "/" (.Page.GetPage $spacedurl).RelPermalink) }}
 <a href="{{$rooted}}" rel="noopener" class="internal-link" data-src="{{$rooted}}">{{ .Text | safeHTML }}</a>
 {{- end -}}
