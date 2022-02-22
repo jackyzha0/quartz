@@ -239,20 +239,18 @@ async function run() {
     }
   })
 
-  window.addEventListener('DOMContentLoaded', () => {
-    const searchButton = document.getElementById("search-icon")
-    searchButton.addEventListener('click', (evt) => {
-      openSearch()
-    })
-    searchButton.addEventListener('keydown', (evt) => {
-      openSearch()
-    })
-    searchContainer.addEventListener('click', (evt) => {
-      closeSearch()
-    })
-    document.getElementById("search-space").addEventListener('click', (evt) => {
-      evt.stopPropagation()
-    })
+  const searchButton = document.getElementById("search-icon")
+  searchButton.addEventListener('click', (evt) => {
+    openSearch()
+  })
+  searchButton.addEventListener('keydown', (evt) => {
+    openSearch()
+  })
+  searchContainer.addEventListener('click', (evt) => {
+    closeSearch()
+  })
+  document.getElementById("search-space").addEventListener('click', (evt) => {
+    evt.stopPropagation()
   })
 }
 
