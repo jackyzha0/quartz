@@ -17,6 +17,7 @@ jobs:
           index: true
           input: content
           output: static
+          root: .
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
