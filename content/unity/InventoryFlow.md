@@ -30,4 +30,15 @@ We’re going to organise the items based on utility: they can be attached to th
 
 The main inventory view will show the items & consumables the player currently has available to them, as well as a window into their “wallet”, showing their currencies (users will be able to create their own currencies when working in groups), connections, and current “missions” or “quests”.
 
+## Max Items
+Unlimited building materials
+Unlimited electronics
+Unlimited decoration
+1 vehicle per slot
+1 tool per slot (in multitool inventory)
+
+Inventory GUI will not be resizable depending on screen size
+
+Something similar to the Crashlands graphics would be ideal
+
 [Notion](https://skinetics.notion.site/Unity-Inventory-System-21648eeb129c43d5ab62528aa34f0854)
