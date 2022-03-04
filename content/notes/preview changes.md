@@ -17,7 +17,7 @@ $ go install github.com/jackyzha0/hugo-obsidian@latest
 $ cd <location-of-your-local-quartz>
 
 # Scrape all links in your Quartz folder and generate info for Quartz
-$ hugo-obsidian -input=content -output=static -index -root=.
+$ hugo-obsidian -input=content -output=assets/indices -index -root=.
 ```
 
 If you are running into an error saying that `command not found: hugo-obsidian`, make sure you set your `GOPATH` correctly! This will allow your terminal to correctly recognize hugo-obsidian as an executable.
