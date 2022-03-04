@@ -21,35 +21,25 @@
     <script src="{{$darkMode.Permalink}}"></script>
 
     <!--  Preload page vars  -->
+    {{$linkIndex := resources.Get "indices/linkIndex.json" | resources.Fingerprint "md5" | resources.Minify |  }}
+    {{$contentIndex := resources.Get "indices/contentIndex.json" | resources.Fingerprint "md5" | resources.Minify }}
     <script>
       const BASE_URL = {{.Site.BaseURL}}
-      let saved = false
-      const fetchData = async () => {
-        if (saved) {
-          return saved
-        } else {
-          const promises = [
-            fetch("{{ .Site.BaseURL }}/linkIndex.json")
+      const fetchData = Promise.all([
+            fetch("{{ $linkIndex.Permalink }}")
               .then(data => data.json())
               .then(data => ({
                 index: data.index,
                 links: data.links,
               })),
-            fetch("{{ .Site.BaseURL }}/contentIndex.json")
+            fetch("{{ $contentIndex.Permalink }}")
               .then(data => data.json()),
-          ]
-          const [{index, links}, content] = await Promise.all(promises)
-          const res = ({
+          ])
+          .then(([{index, links}, content]) => ({
             index,
             links,
             content,
-          })
-          saved = res
-          return res
-        }
-
-      }
-      fetchData()
+          }))
     </script>
 </head>
 {{ template "_internal/google_analytics.html" . }}

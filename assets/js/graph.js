@@ -1,5 +1,5 @@
 async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLegend, enableZoom) {
-    const { index, links, content } = await fetchData()
+    const { index, links, content } = await fetchData
     const curPage = url.replace(baseUrl, "")
   
     const parseIdsFromLinks = (links) => [...(new Set(links.flatMap(link => ([link.source, link.target]))))]

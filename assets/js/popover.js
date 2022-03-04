@@ -8,7 +8,7 @@ function htmlToElement(html) {
 function initPopover(base) {
     const baseUrl = base.replace(window.location.origin, "") // is this useless?
     document.addEventListener("DOMContentLoaded", () => {
-        fetchData().then(({content}) => {
+        fetchData.then(({content}) => {
         const links = [...document.getElementsByClassName("internal-link")]
         links.forEach(li => {
             const linkDest = content[li.dataset.src.replace(baseUrl, "")]

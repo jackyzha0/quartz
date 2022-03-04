@@ -81,7 +81,7 @@ const removeMarkdown = (
     }
     })
 
-    const { content } = await fetchData()
+    const { content } = await fetchData
     for (const [key, value] of Object.entries(content)) {
     contentIndex.add({
     id: key,
