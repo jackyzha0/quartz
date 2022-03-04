@@ -238,7 +238,9 @@ body {
   margin: 0;
   height: 100vh;
   width: 100vw;
-  overflow-x: hidden;
+  //overflow-x: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
   background-color: var(--light);
 }
 
@@ -268,10 +270,10 @@ hr {
 }
 
 .singlePage {
-  margin: 4em 30vw;
+  padding: 4em 30vw;
 
   @media all and (max-width: 1200px) {
-    margin: 25px 5vw;
+    padding: 25px 5vw;
   }
 }
 
