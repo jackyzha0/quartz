@@ -1,0 +1,39 @@
+{
+  "name": "url-set-query",
+  "version": "1.0.0",
+  "description": "small function to append a query string to a URL",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Matt DesLauriers",
+    "email": "dave.des@gmail.com",
+    "url": "https://github.com/mattdesl"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tape": "^4.0.1"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "query",
+    "string",
+    "url",
+    "hash",
+    "querystring",
+    "qs",
+    "browser",
+    "node",
+    "queries",
+    "uri"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mattdesl/url-set-query.git"
+  },
+  "homepage": "https://github.com/mattdesl/url-set-query",
+  "bugs": {
+    "url": "https://github.com/mattdesl/url-set-query/issues"
+  }
+}

@@ -1,0 +1,1 @@
+{"version":3,"file":"getGlobalScope.js","sourceRoot":"","sources":["../../../src/helper/getGlobalScope.ts"],"names":[],"mappings":"AAGA,MAAM,UAAU,cAAc;IAC5B,IAAI,OAAO,MAAM,KAAK,WAAW;QAAE,OAAO,MAAM,CAAC;IACjD,IAAI,OAAO,MAAM,KAAK,WAAW;QAAE,OAAO,MAAM,CAAC;IACjD,IAAI,OAAO,IAAI,KAAK,WAAW;QAAE,OAAO,IAAI,CAAC;IAC7C,OAAO;AACT,CAAC"}

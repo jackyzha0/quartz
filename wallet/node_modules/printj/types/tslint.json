@@ -1,0 +1,13 @@
+{
+	"extends": "dtslint/dtslint.json",
+	"rules": {
+		"no-implicit-dependencies": false,
+		"whitespace": false,
+		"no-sparse-arrays": false,
+		"only-arrow-functions": false,
+		"no-consecutive-blank-lines": false,
+		"prefer-conditional-expression": false,
+		"prefer-const": true,
+		"one-variable-per-declaration": false
+	}
+}

@@ -1,0 +1,34 @@
+* Updating process
+** be able to run tests locally
+*** Update dependencies
+** consistent style
+* Throw event in separate loop should keep stack trace
+* Clean up test commands
+** Pull tests out to node
+- Right now the node tests run very few tests (just ~specs/oboe.*.spec.js~)
+- It would be good if most tests were run through node (much faster) unless they
+  specifically require to be tested by the browser
+- Karma could run as few tests as possible
+*** Tests that use window
+- /Users/JuanCaicedo/code/personal/oboe.js/test/specs/amd.integration.spec.js
+- /Users/JuanCaicedo/code/personal/oboe.js/test/specs/instanceApi.unit.spec.js
+  (This might be able to be abstracted)
+- /Users/JuanCaicedo/code/personal/oboe.js/test/specs/oboe.component.spec.js
+  (Has conditional logic)
+- /Users/JuanCaicedo/code/personal/oboe.js/test/specs/oboe.integration.spec.js
+  (Has conditional logic)
+- /Users/JuanCaicedo/code/personal/oboe.js/test/specs/oboe.performance.spec.js
+  (Has conditional logic)
+- /Users/JuanCaicedo/code/personal/oboe.js/test/specs/publicApi.unit.spec.js
+* How did I update oboe?
+** Get test suite passing and up to date
+- Jasmine 2, phantom reliable
+** Make code modular
+*** Browserify vs ES6
+- https://github.com/jimhigson/oboe.js/issues/129
+* TODO Publish 2.1.5
+** Safari disconnected error
+#+BEGIN_SRC
+Safari 11.1.0 (Mac OS X 10.13.4) ERROR
+  Disconnected, because no message in 10000 ms.
+#+END_SRC

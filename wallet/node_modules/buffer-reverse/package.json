@@ -1,0 +1,41 @@
+{
+  "name": "buffer-reverse",
+  "version": "1.0.1",
+  "description": "A lite module for reverse-operations on buffers",
+  "files": [
+    "index.js",
+    "inplace.js"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "standard": "standard",
+    "test": "npm run-script standard && npm run-script unit",
+    "unit": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crypto-browserify/buffer-reverse.git"
+  },
+  "bugs": {
+    "url": "https://github.com/crypto-browserify/buffer-reverse/issues"
+  },
+  "homepage": "https://github.com/crypto-browserify/buffer-reverse",
+  "keywords": [
+    "bits",
+    "reverse",
+    "buffer",
+    "buffer-reverse",
+    "crypto",
+    "inline",
+    "math",
+    "memory",
+    "performance",
+    "reverse"
+  ],
+  "author": "Daniel Cousens",
+  "license": "MIT",
+  "devDependencies": {
+    "standard": "*",
+    "tape": "*"
+  }
+}

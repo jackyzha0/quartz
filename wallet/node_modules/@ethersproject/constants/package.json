@@ -1,0 +1,42 @@
+{
+  "author": "Richard Moore <me@ricmoo.com>",
+  "dependencies": {
+    "@ethersproject/bignumber": "^5.5.0"
+  },
+  "description": "Common Ethereum constants used for ethers.",
+  "ethereum": "donations.ethers.eth",
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+    },
+    {
+      "type": "individual",
+      "url": "https://www.buymeacoffee.com/ricmoo"
+    }
+  ],
+  "gitHead": "73a46efea32c3f9a4833ed77896a216e3d3752a0",
+  "keywords": [
+    "Ethereum",
+    "ethers"
+  ],
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "module": "./lib.esm/index.js",
+  "name": "@ethersproject/constants",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "packages/constants",
+    "type": "git",
+    "url": "git://github.com/ethers-io/ethers.js.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "sideEffects": false,
+  "tarballHash": "0xd76d5e19c938fe7efb26a4d99a62beb100369872e99cf82cc7dbce414097f58d",
+  "types": "./lib/index.d.ts",
+  "version": "5.5.0"
+}

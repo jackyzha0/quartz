@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "lib": [ "es5", "dom" ],
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "baseUrl": ".",
+        "paths": { "printj": ["."] },
+        "types": [],
+        "noEmit": true,
+        "strictFunctionTypes": true,
+        "forceConsistentCasingInFileNames": true
+    }
+}

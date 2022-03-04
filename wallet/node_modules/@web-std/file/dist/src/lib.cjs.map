@@ -1,0 +1,1 @@
+{"version":3,"file":"lib.cjs","sources":["../../src/lib.js"],"sourcesContent":["export const File = globalThis.File\nexport const Blob = globalThis.Blob\n"],"names":[],"mappings":";;;;AAAY,MAAC,IAAI,GAAG,UAAU,CAAC,KAAI;AACvB,MAAC,IAAI,GAAG,UAAU,CAAC;;;;;"}

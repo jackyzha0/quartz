@@ -1,0 +1,13 @@
+{
+  "name": "esm-use",
+  "private": true,
+  "dependencies": {
+    "web-encoding": "file:../.."
+  },
+  "scripts": {
+    "test": "npm install && tsc --noEmit --allowJs --checkJs src/main.js"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
+}

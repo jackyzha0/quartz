@@ -1,0 +1,13 @@
+{
+  "name": "ts-use",
+  "private": true,
+  "dependencies": {
+    "web-encoding": "file:../.."
+  },
+  "scripts": {
+    "test": "npm install && tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
+}

@@ -1,0 +1,27 @@
+{
+    "name": "@types/secp256k1",
+    "version": "4.0.3",
+    "description": "TypeScript definitions for secp256k1",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/secp256k1",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Anler",
+            "url": "https://github.com/anler",
+            "githubUsername": "anler"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/secp256k1"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/node": "*"
+    },
+    "typesPublisherContentHash": "14baa00e13004fc288810f488ac9df7b27bb8331df440b054268eaa22a038529",
+    "typeScriptVersion": "3.6"
+}

@@ -1,0 +1,44 @@
+{
+  "author": "Richard Moore <me@ricmoo.com>",
+  "dependencies": {
+    "@ethersproject/logger": "^5.5.0"
+  },
+  "description": "Bytes utility functions for ethers.",
+  "ethereum": "donations.ethers.eth",
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+    },
+    {
+      "type": "individual",
+      "url": "https://www.buymeacoffee.com/ricmoo"
+    }
+  ],
+  "gitHead": "5899c8aec0600dca42d7e24fc215037aa48917f2",
+  "keywords": [
+    "Ethereum",
+    "ethers"
+  ],
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "module": "./lib.esm/index.js",
+  "name": "@ethersproject/bytes",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "packages/bytes",
+    "type": "git",
+    "url": "git://github.com/ethers-io/ethers.js.git"
+  },
+  "scripts": {
+    "auto-build": "npm run build -- -w",
+    "build": "tsc -p ./tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "sideEffects": false,
+  "tarballHash": "0x1daef684cc067d9e39c56da0288767a1d0d210074513e60fac0b86d8243278fc",
+  "types": "./lib/index.d.ts",
+  "version": "5.5.0"
+}

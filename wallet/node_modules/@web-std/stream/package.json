@@ -1,0 +1,57 @@
+{
+  "name": "@web-std/stream",
+  "version": "1.0.0",
+  "description": "Web API compatible streams for node/web",
+  "keywords": [
+    "web-stream",
+    "whatwg-stream",
+    "stream",
+    "typescript"
+  ],
+  "type": "module",
+  "module": "./src/lib.js",
+  "main": "./src/stream.cjs",
+  "types": "./src/lib.d.ts",
+  "browser": {
+    "./src/lib.node.js": "./src/lib.js"
+  },
+  "exports": {
+    ".": {
+      "browser": "./src/lib.js",
+      "require": "./src/stream.cjs",
+      "import": "./src/lib.node.js",
+      "types": "./src/lib.d.ts"
+    }
+  },
+  "author": "Irakli Gozalishvili <dev@gozala.io> (https://gozala.io)",
+  "repository": "https://github.com/web-std/io",
+  "license": "MIT",
+  "dependencies": {
+    "web-streams-polyfill": "^3.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "15.0.2",
+    "git-validate": "2.2.4",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "playwright-test": "^7.2.0",
+    "prettier": "^2.3.0",
+    "rimraf": "3.0.2",
+    "typescript": "^4.4.4",
+    "uvu": "^0.5.2"
+  },
+  "scripts": {
+    "typecheck": "tsc --build",
+    "test:es": "uvu test all.spec.js",
+    "test:web": "playwright-test -r uvu test/web.spec.js",
+    "test:cjs": "node test/node.spec.cjs",
+    "test": "npm run test:es && npm run test:web && npm run test:cjs",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --no-semi --write",
+      "git add"
+    ]
+  }
+}

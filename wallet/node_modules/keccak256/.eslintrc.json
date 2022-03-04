@@ -1,0 +1,43 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "standard-with-typescript"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "unused-imports",
+    "sort-imports-es6-autofix"
+  ],
+  "rules": {
+    "no-unused-vars": 0,
+    "@typescript-eslint/no-unused-vars": 0,
+    "unused-imports/no-unused-imports": 1,
+    "new-cap": 0,
+    "prefer-const": 1,
+    "no-async-promise-executor": 0,
+    "node/no-callback-literal": 0,
+    "sort-imports-es6-autofix/sort-imports-es6": [1, {
+      "ignoreCase": false,
+      "ignoreMemberSort": false,
+      "memberSyntaxSortOrder": ["none", "single", "multiple", "all"]
+    }],
+    "@typescript-eslint/strict-boolean-expressions": 0,
+    "@typescript-eslint/restrict-template-expressions": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/no-floating-promises": 0,
+    "@typescript-eslint/no-misused-promises": 0,
+    "@typescript-eslint/no-dynamic-delete": 0,
+    "@typescript-eslint/return-await": 0,
+    "@typescript-eslint/consistent-type-definitions": 0,
+    "@typescript-eslint/method-signature-style": 0
+  }
+}

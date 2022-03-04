@@ -1,0 +1,22 @@
+{
+  "name": "buffer-to-arraybuffer",
+  "main": "buffer-to-arraybuffer.js",
+  "version": "0.0.4",
+  "homepage": "https://github.com/miguelmota/buffer-to-arraybuffer",
+  "authors": [
+    "Miguel Mota <miguelmota2@gmail.com>"
+  ],
+  "description": "Convert Buffer to ArrayBuffer",
+  "keywords": [
+    "buffer",
+    "array"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,50 @@
+{
+  "_ethers.alias": {
+    "random.js": "browser-random.js"
+  },
+  "author": "Richard Moore <me@ricmoo.com>",
+  "browser": {
+    "./lib/random": "./lib/browser-random.js"
+  },
+  "dependencies": {
+    "@ethersproject/bytes": "^5.5.0",
+    "@ethersproject/logger": "^5.5.0"
+  },
+  "description": "Random utility functions for ethers.",
+  "ethereum": "donations.ethers.eth",
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+    },
+    {
+      "type": "individual",
+      "url": "https://www.buymeacoffee.com/ricmoo"
+    }
+  ],
+  "gitHead": "28f383300c0d79b9de2dc0c52a7ef335f3e28d33",
+  "keywords": [
+    "Ethereum",
+    "ethers",
+    "random"
+  ],
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "module": "./lib.esm/index.js",
+  "name": "@ethersproject/random",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "packages/random",
+    "type": "git",
+    "url": "git://github.com/ethers-io/ethers.js.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "sideEffects": false,
+  "tarballHash": "0xd86bc70a8ab1aee5abed32106f2ee9a1e16f27a0a04264596ce69927a95a5681",
+  "types": "./lib/index.d.ts",
+  "version": "5.5.1"
+}

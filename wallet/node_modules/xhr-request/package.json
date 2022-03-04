@@ -1,0 +1,64 @@
+{
+  "name": "xhr-request",
+  "version": "1.1.0",
+  "description": "tiny http client for Node and the browser",
+  "main": "index.js",
+  "license": "MIT",
+  "browser": {
+    "./lib/request.js": "./lib/request-browser.js"
+  },
+  "author": {
+    "name": "Matt DesLauriers",
+    "email": "dave.des@gmail.com",
+    "url": "https://github.com/mattdesl"
+  },
+  "dependencies": {
+    "buffer-to-arraybuffer": "^0.0.5",
+    "object-assign": "^4.1.1",
+    "query-string": "^5.0.1",
+    "simple-get": "^2.7.0",
+    "timed-out": "^4.0.1",
+    "url-set-query": "^1.0.0",
+    "xhr": "^2.0.4"
+  },
+  "devDependencies": {
+    "budo": "^11.0.1",
+    "faucet": "0.0.1",
+    "standard": "^10.0.3",
+    "tape": "^4.0.1"
+  },
+  "scripts": {
+    "test": "standard && npm run test-node && npm run test-browser",
+    "test-node": "node test/index.js | faucet",
+    "test-browser": "budo test/test-browser.js -o"
+  },
+  "keywords": [
+    "node",
+    "browser",
+    "http",
+    "got",
+    "request",
+    "gots",
+    "nets",
+    "xhr",
+    "xmlhttprequest",
+    "xml",
+    "http",
+    "request",
+    "client",
+    "https",
+    "requests",
+    "xml",
+    "get",
+    "query",
+    "string"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Jam3/xhr-request.git"
+  },
+  "homepage": "https://github.com/Jam3/xhr-request",
+  "bugs": {
+    "url": "https://github.com/Jam3/xhr-request/issues"
+  }
+}

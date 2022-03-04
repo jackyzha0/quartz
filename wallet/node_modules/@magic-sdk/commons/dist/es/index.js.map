@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/index.ts"],
+  "sourcesContent": ["// Only re-export modules & types that are intended\n// for the public API from this file.\n\nexport {\n  Extension,\n  MagicSDKError as SDKError,\n  MagicExtensionError as ExtensionError,\n  MagicExtensionWarning as ExtensionWarning,\n  MagicRPCError as RPCError,\n  MagicSDKWarning as SDKWarning,\n  isPromiEvent,\n} from '@magic-sdk/provider';\n\nexport type { MagicSDKAdditionalConfiguration, MagicSDKExtensionsOption, PromiEvent } from '@magic-sdk/provider';\n\nexport * from '@magic-sdk/types';\n"],
+  "mappings": "AAGA,iLAYA",
+  "names": []
+}

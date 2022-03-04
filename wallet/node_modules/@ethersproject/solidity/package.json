@@ -1,0 +1,47 @@
+{
+  "author": "Richard Moore <me@ricmoo.com>",
+  "dependencies": {
+    "@ethersproject/bignumber": "^5.5.0",
+    "@ethersproject/bytes": "^5.5.0",
+    "@ethersproject/keccak256": "^5.5.0",
+    "@ethersproject/logger": "^5.5.0",
+    "@ethersproject/sha2": "^5.5.0",
+    "@ethersproject/strings": "^5.5.0"
+  },
+  "description": "Solidity coder for non-standard (tight) packing.",
+  "ethereum": "donations.ethers.eth",
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+    },
+    {
+      "type": "individual",
+      "url": "https://www.buymeacoffee.com/ricmoo"
+    }
+  ],
+  "gitHead": "73a46efea32c3f9a4833ed77896a216e3d3752a0",
+  "keywords": [
+    "Ethereum",
+    "ethers"
+  ],
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "module": "./lib.esm/index.js",
+  "name": "@ethersproject/solidity",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "packages/solidity",
+    "type": "git",
+    "url": "git://github.com/ethers-io/ethers.js.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "sideEffects": false,
+  "tarballHash": "0x72e3ad8bb65e4252fc2e9fa7061433c76e106b6bc33d5b67fdcce15dbc491df8",
+  "types": "./lib/index.d.ts",
+  "version": "5.5.0"
+}

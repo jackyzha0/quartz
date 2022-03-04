@@ -1,0 +1,56 @@
+{
+  "author": "Richard Moore <me@ricmoo.com>",
+  "dependencies": {
+    "@ethersproject/abstract-provider": "^5.5.0",
+    "@ethersproject/abstract-signer": "^5.5.0",
+    "@ethersproject/address": "^5.5.0",
+    "@ethersproject/bignumber": "^5.5.0",
+    "@ethersproject/bytes": "^5.5.0",
+    "@ethersproject/hash": "^5.5.0",
+    "@ethersproject/hdnode": "^5.5.0",
+    "@ethersproject/json-wallets": "^5.5.0",
+    "@ethersproject/keccak256": "^5.5.0",
+    "@ethersproject/logger": "^5.5.0",
+    "@ethersproject/properties": "^5.5.0",
+    "@ethersproject/random": "^5.5.0",
+    "@ethersproject/signing-key": "^5.5.0",
+    "@ethersproject/transactions": "^5.5.0",
+    "@ethersproject/wordlists": "^5.5.0"
+  },
+  "description": "Classes for managing, encrypting and decrypting Ethereum private keys as a Signer for ethers.",
+  "ethereum": "donations.ethers.eth",
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+    },
+    {
+      "type": "individual",
+      "url": "https://www.buymeacoffee.com/ricmoo"
+    }
+  ],
+  "gitHead": "73a46efea32c3f9a4833ed77896a216e3d3752a0",
+  "keywords": [
+    "Ethereum",
+    "ethers"
+  ],
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "module": "./lib.esm/index.js",
+  "name": "@ethersproject/wallet",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "packages/wallet",
+    "type": "git",
+    "url": "git://github.com/ethers-io/ethers.js.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "sideEffects": false,
+  "tarballHash": "0x769743426d97a1e3f789a1b72ec8ae71b8bb1b3bfefd9f4c75474573ded1f502",
+  "types": "./lib/index.d.ts",
+  "version": "5.5.0"
+}

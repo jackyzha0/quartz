@@ -1,0 +1,62 @@
+{
+  "name": "web-encoding",
+  "version": "1.1.5",
+  "description": "TextEncoder and TextDecoder APIs from Encoding Standard APIs in a universal package",
+  "keywords": [
+    "TextEncoder",
+    "TextDecoder"
+  ],
+  "react-native": "./src/lib.react-native.js",
+  "main": "./src/lib.js",
+  "module": "./src/lib.mjs",
+  "browser": "./src/lib.js",
+  "types": "./src/lib.d.ts",
+  "exports": {
+    ".": {
+      "import": "./src/lib.mjs",
+      "require": "./src/lib.js"
+    }
+  },
+  "scripts": {
+    "test:node": "mocha test/test-*.spec.js",
+    "test:browser": "playwright-test test/test-*.js",
+    "test:react-native": "jest test/test-lib.react-native.spec.js",
+    "test:es": "mocha test/test-lib.spec.mjs",
+    "test:cjs": "npm run test:node && npm run test:browser",
+    "test:types:ts": "npm test --prefix test/ts-use",
+    "test:types:esm": "npm test --prefix test/esm-use",
+    "test:types:cjs": "npm test --prefix test/cjs-use",
+    "test:types": "npm run test:types:ts && npm run test:types:esm && npm run test:types:cjs",
+    "test": "npm run test:es && npm run test:cjs && npm run test:react-native && npm run test:types"
+  },
+  "license": "MIT",
+  "author": "Irakli Gozalishvili <dev@gozala.io>",
+  "homepage": "https://github.com/gozala/web-encoding",
+  "dependencies": {
+    "util": "^0.12.3"
+  },
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "^0.64.0",
+    "mocha": "8.3.2",
+    "playwright-test": "2.1.0",
+    "react-native": "^0.63.4"
+  },
+  "optionalDependencies": {
+    "@zxing/text-encoding": "0.9.0"
+  },
+  "jest": {
+    "preset": "react-native",
+    "transform": {
+      "\\.js$": [
+        "babel-jest",
+        {
+          "presets": [
+            "module:metro-react-native-babel-preset"
+          ]
+        }
+      ]
+    }
+  }
+}

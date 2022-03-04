@@ -1,0 +1,28 @@
+import { BigNumberish, Signer } from "ethers";
+/**
+ * @internal
+ */
+export declare function signDAIPermit(signer: Signer, currencyAddress: string, owner: string, spender: string, allowed?: boolean, deadline?: BigNumberish, nonce?: BigNumberish): Promise<{
+    message: {
+        owner: string;
+        spender: string;
+        nonce: BigNumberish | undefined;
+        deadline: BigNumberish;
+        value: number;
+        allowed: boolean;
+    };
+    signature: string;
+}>;
+/**
+ * @internal
+ */
+export declare function signEIP2612Permit(signer: Signer, currencyAddress: string, owner: string, spender: string, value: BigNumberish, deadline?: BigNumberish, nonce?: BigNumberish): Promise<{
+    message: {
+        owner: string;
+        spender: string;
+        value: BigNumberish;
+        nonce: BigNumberish | undefined;
+        deadline: BigNumberish;
+    };
+    signature: string;
+}>;

@@ -1,0 +1,64 @@
+{
+  "name": "@zxing/text-encoding",
+  "author": "Joshua Bell <inexorabletash@gmail.com>",
+  "contributors": [
+    "Joshua Bell <inexorabletash@gmail.com>",
+    "Rick Eyre <rick.eyre@outlook.com>",
+    "Eugen Podaru <eugen.podaru@live.com>",
+    "Filip Dupanović <filip.dupanovic@gmail.com>",
+    "Anne van Kesteren <annevk@annevk.nl>",
+    "Author: Francis Avila <francisga@gmail.com>",
+    "Michael J. Ryan <tracker1@gmail.com>",
+    "Pierre Queinnec <pierre@queinnec.org>",
+    "Zack Weinberg <zackw@panix.com>"
+  ],
+  "version": "0.9.0",
+  "description": "Polyfill for the Encoding Living Standard's API.",
+  "private": false,
+  "main": "cjs/encoding.js",
+  "browser": "es2015/encoding.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zxing-js/text-encoding.git"
+  },
+  "keywords": [
+    "encoding",
+    "decoding",
+    "living standard",
+    "polyfill"
+  ],
+  "bugs": {
+    "url": "https://github.com/inexorabletash/text-encoding/issues"
+  },
+  "homepage": "https://github.com/inexorabletash/text-encoding",
+  "license": "(Unlicense OR Apache-2.0)",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^7.1.3",
+    "http-server": "^0.12.3",
+    "jest": "^26.0.1",
+    "puppeteer": "^3.0.4",
+    "rollup": "^2.8.2",
+    "typescript": "^3.8.3",
+    "uglify-js": "^3.9.2"
+  },
+  "scripts": {
+    "build": "yarn build:es2015 && yarn build:esm && yarn build:cjs && yarn build:umd && yarn build:umd:min",
+    "build:es2015": "tsc --module es2015 --target es2015 --outDir dist/es2015",
+    "build:esm": "tsc --module es2015 --target es5 --outDir dist/esm",
+    "build:cjs": "tsc --module commonjs --target es5 --outDir dist/cjs",
+    "build:umd": "yarn build:umd:encoding && yarn build:umd:indexes",
+    "build:umd:min": "yarn build:umd:encoding:min && yarn build:umd:indexes:min",
+    "build:umd:encoding": "rollup dist/esm/encoding.js -f umd --name TextEncoding -m -p @rollup/plugin-node-resolve -o dist/umd/encoding.js",
+    "build:umd:encoding:min": "cd dist/umd && uglifyjs --compress --mangle --screw-ie8 --comments -o encoding.min.js -- encoding.js && gzip encoding.min.js -c > encoding.min.js.gz",
+    "build:umd:indexes": "rollup dist/esm/encoding-indexes.js -f umd --name TextEncodingIndexes -p @rollup/plugin-node-resolve -o dist/umd/encoding-indexes.js",
+    "build:umd:indexes:min": "cd dist/umd && uglifyjs --compress --mangle --screw-ie8 --comments -o encoding-indexes.min.js -- encoding-indexes.js && gzip encoding-indexes.min.js -c > encoding-indexes.min.js.gz",
+    "serve": "yarn hs -p 8000 -c-1",
+    "test:serve": "yarn testharness:update && ./test-server.sh",
+    "test": "yarn test:serve && jest",
+    "test:only": "jest",
+    "testharness:update": "cd ./test && git submodule init && git submodule update --checkout"
+  },
+  "jest": {
+    "testEnvironment": "./__test-utils__/custom-jest-environment.js"
+  }
+}

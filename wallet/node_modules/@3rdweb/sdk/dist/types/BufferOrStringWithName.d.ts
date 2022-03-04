@@ -1,0 +1,5 @@
+/// <reference types="node" />
+export declare type BufferOrStringWithName = {
+    data: Buffer | string;
+    name?: string;
+};

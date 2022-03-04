@@ -1,0 +1,46 @@
+{
+  "author": "Richard Moore <me@ricmoo.com>",
+  "dependencies": {
+    "@ethersproject/bignumber": "^5.5.0",
+    "@ethersproject/constants": "^5.5.0",
+    "@ethersproject/logger": "^5.5.0"
+  },
+  "description": "Unit conversion functions for Ethereum.",
+  "ethereum": "donations.ethers.eth",
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+    },
+    {
+      "type": "individual",
+      "url": "https://www.buymeacoffee.com/ricmoo"
+    }
+  ],
+  "gitHead": "73a46efea32c3f9a4833ed77896a216e3d3752a0",
+  "keywords": [
+    "Ethereum",
+    "ethers",
+    "units",
+    "conversion"
+  ],
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "module": "./lib.esm/index.js",
+  "name": "@ethersproject/units",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "packages/units",
+    "type": "git",
+    "url": "git://github.com/ethers-io/ethers.js.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "sideEffects": false,
+  "tarballHash": "0x556c2f67aa5bfbf0cb1436f4d6d62fe25403fd58a958d7d8e0b06903091dedb5",
+  "types": "./lib/index.d.ts",
+  "version": "5.5.0"
+}

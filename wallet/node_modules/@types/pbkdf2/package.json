@@ -1,0 +1,26 @@
+{
+    "name": "@types/pbkdf2",
+    "version": "3.1.0",
+    "description": "TypeScript definitions for pbkdf2",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Timon Engelke",
+            "url": "https://github.com/timonegk",
+            "githubUsername": "timonegk"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/pbkdf2"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/node": "*"
+    },
+    "typesPublisherContentHash": "a40fa74f1ff0d2f082cc550aa5d1b8642eee12a12cb2edea546e25e466f4cf4e",
+    "typeScriptVersion": "3.0"
+}

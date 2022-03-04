@@ -1,0 +1,7 @@
+/**
+ * Extracts only keys of type T that are assignable to type `string`.
+ * This is necessary starting with TypeScript 2.9 because keyof T can now
+ * include `number` and `symbol` types.
+ */
+export declare type StringKeyOf<T> = Extract<keyof T, string>;
+//# sourceMappingURL=types.d.ts.map

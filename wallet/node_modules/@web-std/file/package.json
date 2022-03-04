@@ -1,0 +1,69 @@
+{
+  "name": "@web-std/file",
+  "version": "3.0.2",
+  "description": "Web API compatible File implementation for node",
+  "files": [
+    "src",
+    "dist/src",
+    "License.md",
+    "Readme.md"
+  ],
+  "keywords": [
+    "file",
+    "blob",
+    "typed",
+    "typescript"
+  ],
+  "type": "module",
+  "module": "./src/lib.js",
+  "main": "./dist/src/lib.node.cjs",
+  "browser": {
+    "./src/lib.node.js": "./src/lib.js"
+  },
+  "exports": {
+    ".": {
+      "browser": "./src/lib.js",
+      "require": "./dist/src/lib.node.cjs",
+      "node": "./src/lib.node.js"
+    }
+  },
+  "types": "./dist/src/lib.d.ts",
+  "dependencies": {
+    "@web-std/blob": "^3.0.3"
+  },
+  "author": "Irakli Gozalishvili <dev@gozala.io> (https://gozala.io)",
+  "repository": "https://github.com/web-std/io",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "15.0.2",
+    "@web-std/fetch": "^3.0.0",
+    "git-validate": "2.2.4",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "playwright-test": "^7.2.0",
+    "prettier": "^2.3.0",
+    "rimraf": "3.0.2",
+    "rollup": "2.47.0",
+    "rollup-plugin-multi-input": "1.2.0",
+    "typescript": "^4.4.4",
+    "uvu": "0.5.2"
+  },
+  "scripts": {
+    "check": "tsc --build",
+    "build": "npm run build:cjs && npm run build:types",
+    "build:cjs": "rollup --config rollup.config.js",
+    "build:types": "tsc --build",
+    "prepare": "npm run build",
+    "test:es": "uvu test all.spec.js",
+    "test:web": "playwright-test -r uvu test/web.spec.js",
+    "test:cjs": "rimraf dist && npm run build && node dist/test/all.spec.cjs",
+    "test": "npm run test:es && npm run test:web && npm run test:cjs",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --no-semi --write",
+      "git add"
+    ]
+  }
+}

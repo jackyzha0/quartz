@@ -1,0 +1,16 @@
+{
+  "name": "sk-magical-wallet",
+  "version": "1.0.0",
+  "description": "A magic.link wallet integration with the Signal Kinetics codebase",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@3rdweb/sdk": "^1.41.5",
+    "ethers": "^5.5.4",
+    "magic-sdk": "^8.0.1"
+  }
+}

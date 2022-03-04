@@ -1,0 +1,35 @@
+{
+  "name": "eth-lib",
+  "version": "0.2.8",
+  "description": "Lightweight Ethereum libraries",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src --out-dir=lib",
+    "test": "mocha test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maiavictor/eth-lib.git"
+  },
+  "keywords": [
+    "ethereum"
+  ],
+  "author": "Victor Maia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maiavictor/eth-lib/issues"
+  },
+  "homepage": "https://github.com/maiavictor/eth-lib#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "ethjs-account": "^0.1.1",
+    "ethjs-signer": "^0.1.1",
+    "rlp": "^2.0.0"
+  },
+  "dependencies": {
+    "bn.js": "^4.11.6",
+    "elliptic": "^6.4.0",
+    "xhr-request-promise": "^0.1.2"
+  }
+}

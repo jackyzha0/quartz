@@ -1,0 +1,97 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var encodings_1 = require("../../encoding/encodings");
+var finished_1 = require("../../encoding/finished");
+var indexes_1 = require("../../encoding/indexes");
+var terminology_1 = require("../../encoding/terminology");
+var utilities_1 = require("../../encoding/utilities");
+/**
+  * @constructor
+  * @implements {Decoder}
+  * @param {{fatal: boolean}} options
+  */
+var Big5Decoder = /** @class */ (function () {
+    function Big5Decoder(options) {
+        this.fatal = options.fatal;
+        // Big5's decoder has an associated Big5 lead (initially 0x00).
+        /** @type {number} */ this.Big5_lead = 0x00;
+    }
+    /**
+     * @param {Stream} stream The stream of bytes being decoded.
+     * @param {number} bite The next byte read from the stream.
+     * @return {?(number|!Array.<number>)} The next code point(s)
+     *     decoded, or null if not enough data exists in the input
+     *     stream to decode a complete code point.
+     */
+    Big5Decoder.prototype.handler = function (stream, bite) {
+        // 1. If byte is end-of-stream and Big5 lead is not 0x00, set
+        // Big5 lead to 0x00 and return error.
+        if (bite === terminology_1.end_of_stream && this.Big5_lead !== 0x00) {
+            this.Big5_lead = 0x00;
+            return encodings_1.decoderError(this.fatal);
+        }
+        // 2. If byte is end-of-stream and Big5 lead is 0x00, return
+        // finished.
+        if (bite === terminology_1.end_of_stream && this.Big5_lead === 0x00)
+            return finished_1.finished;
+        // 3. If Big5 lead is not 0x00, let lead be Big5 lead, let
+        // pointer be null, set Big5 lead to 0x00, and then run these
+        // substeps:
+        if (this.Big5_lead !== 0x00) {
+            var lead = this.Big5_lead;
+            var pointer = null;
+            this.Big5_lead = 0x00;
+            // 1. Let offset be 0x40 if byte is less than 0x7F and 0x62
+            // otherwise.
+            var offset = bite < 0x7F ? 0x40 : 0x62;
+            // 2. If byte is in the range 0x40 to 0x7E, inclusive, or 0xA1
+            // to 0xFE, inclusive, set pointer to (lead − 0x81) × 157 +
+            // (byte − offset).
+            if (utilities_1.inRange(bite, 0x40, 0x7E) || utilities_1.inRange(bite, 0xA1, 0xFE))
+                pointer = (lead - 0x81) * 157 + (bite - offset);
+            // 3. If there is a row in the table below whose first column
+            // is pointer, return the two code points listed in its second
+            // column
+            // Pointer | Code points
+            // --------+--------------
+            // 1133    | U+00CA U+0304
+            // 1135    | U+00CA U+030C
+            // 1164    | U+00EA U+0304
+            // 1166    | U+00EA U+030C
+            switch (pointer) {
+                case 1133: return [0x00CA, 0x0304];
+                case 1135: return [0x00CA, 0x030C];
+                case 1164: return [0x00EA, 0x0304];
+                case 1166: return [0x00EA, 0x030C];
+            }
+            // 4. Let code point be null if pointer is null and the index
+            // code point for pointer in index Big5 otherwise.
+            var code_point = (pointer === null) ? null :
+                indexes_1.indexCodePointFor(pointer, indexes_1.index('big5'));
+            // 5. If code point is null and byte is an ASCII byte, prepend
+            // byte to stream.
+            if (code_point === null && terminology_1.isASCIIByte(bite))
+                stream.prepend(bite);
+            // 6. If code point is null, return error.
+            if (code_point === null)
+                return encodings_1.decoderError(this.fatal);
+            // 7. Return a code point whose value is code point.
+            return code_point;
+        }
+        // 4. If byte is an ASCII byte, return a code point whose value
+        // is byte.
+        if (terminology_1.isASCIIByte(bite))
+            return bite;
+        // 5. If byte is in the range 0x81 to 0xFE, inclusive, set Big5
+        // lead to byte and return continue.
+        if (utilities_1.inRange(bite, 0x81, 0xFE)) {
+            this.Big5_lead = bite;
+            return null;
+        }
+        // 6. Return error.
+        return encodings_1.decoderError(this.fatal);
+    };
+    return Big5Decoder;
+}());
+exports.Big5Decoder = Big5Decoder;
+//# sourceMappingURL=Big5Decoder.js.map

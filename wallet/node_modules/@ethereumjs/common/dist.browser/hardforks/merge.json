@@ -1,0 +1,12 @@
+{
+    "name": "merge",
+    "comment": "Hardfork to upgrade the consensus mechanism to Proof-of-Stake",
+    "url": "https://github.com/ethereum/pm/issues/361",
+    "status": "pre-Draft",
+    "consensus": {
+        "type": "pos",
+        "algorithm": "casper",
+        "casper": {}
+    },
+    "eips": [3675]
+}

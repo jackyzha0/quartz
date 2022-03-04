@@ -1,0 +1,1 @@
+{"version":3,"file":"lib.cjs","sources":["../../src/lib.js"],"sourcesContent":["export { TextEncoder, TextDecoder, ReadableStream } from \"./package.js\"\n\n// On the web we just export native Blob implementation\nexport const { Blob } = globalThis\n"],"names":[],"mappings":";;;;;;;AAEA;AACY,MAAC,EAAE,IAAI,EAAE,GAAG;;;;;;;;;;;;;;;;;;;;;;"}
