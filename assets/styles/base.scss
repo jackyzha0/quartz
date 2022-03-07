@@ -486,6 +486,10 @@ header {
   transition-delay: 0.3s;
   user-select: none;
 
+  @media all and (max-width: 600px) {
+    display: none;
+  }
+
   &.visible {
     opacity: 1;
     visibility: visible;
