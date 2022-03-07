@@ -8,52 +8,38 @@
 
     <!-- CSS Stylesheets and Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
-    {{$css := slice "base.scss" "darkmode.scss" "syntax.scss" "custom.scss"}}
-    {{range $css}}
-    {{$sass := resources.Get . | resources.ToCSS }}
-    {{with $sass | minify}}
-    <style>
-        {{.Content | safeCSS}}
-    </style>
+    {{$sass := resources.Match "styles/[!_]*.scss" }}
+    {{$css := slice }}
+    {{range $sass}}
+    {{$scss := . | resources.ToCSS (dict "outputStyle" "compressed") }}
+    {{$css = $css | append $scss}}
     {{end}}
-    {{end}}
+    {{$finalCss := $css | resources.Concat "styles.css" | resources.Fingerprint "md5" | resources.Minify  }}
+    <link href="{{$finalCss.Permalink}}" rel="stylesheet">
 
-    {{- with resources.Get "darkmode.js" | minify -}}
-    <script>
-      {{.Content | safeJS }}
-    </script>
-    {{- end -}}
+    {{ $darkMode := resources.Get "js/darkmode.js" |  resources.Fingerprint "md5" | resources.Minify }}
+    <script src="{{$darkMode.Permalink}}"></script>
 
     <!--  Preload page vars  -->
+    {{$linkIndex := resources.Get "indices/linkIndex.json" | resources.Fingerprint "md5" | resources.Minify |  }}
+    {{$contentIndex := resources.Get "indices/contentIndex.json" | resources.Fingerprint "md5" | resources.Minify }}
     <script>
-      let saved = false
-      const fetchData = async () => {
-        if (saved) {
-          return saved
-        } else {
-          const promises = [
-            fetch("{{ .Site.BaseURL }}/linkIndex.json")
+      const BASE_URL = {{.Site.BaseURL}}
+      const fetchData = Promise.all([
+            fetch("{{ $linkIndex.Permalink }}")
               .then(data => data.json())
               .then(data => ({
                 index: data.index,
                 links: data.links,
               })),
-            fetch("{{ .Site.BaseURL }}/contentIndex.json")
+            fetch("{{ $contentIndex.Permalink }}")
               .then(data => data.json()),
-          ]
-          const [{index, links}, content] = await Promise.all(promises)
-          const res = ({
+          ])
+          .then(([{index, links}, content]) => ({
             index,
             links,
             content,
-          })
-          saved = res
-          return res
-        }
-
-      }
-      fetchData()
+          }))
     </script>
 </head>
 {{ template "_internal/google_analytics.html" . }}
-{{ partial "popover.html" .}}
