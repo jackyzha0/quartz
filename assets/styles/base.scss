@@ -183,6 +183,10 @@ article {
       border-radius: 3px;
     }
   }
+  
+  & p {
+    overflow-wrap: anywhere;
+  }
 }
 
 .backlinks a {
