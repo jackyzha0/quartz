@@ -129,7 +129,7 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
     .on("click", (_, d) => {
       window.location.href = baseUrl + '/' + decodeURI(d.id).replace(/\s+/g, '-')
     })
-    .on("mouseover", function (_, d) {
+    .on("mouseover", function(_, d) {
       d3.selectAll(".node")
         .transition()
         .duration(100)
@@ -159,7 +159,7 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
         .transition()
         .duration(200)
         .style("opacity", 1)
-    }).on("mouseleave", function (_, d) {
+    }).on("mouseleave", function(_, d) {
       d3.selectAll(".node")
         .transition()
         .duration(200)
@@ -185,7 +185,7 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
   const labels = graphNode.append("text")
     .attr("dx", 12)
     .attr("dy", ".35em")
-    .text((d) => content[decodeURI(d.id).replace(/\s+/g, '-')]?.title || "Untitled")
+    .text((d) => content[decodeURI(d.id).replace(/\s+/g, '-')]?.title || d.id.replace("-", " "))
     .style("opacity", 0)
     .style("pointer-events", "none")
     .call(drag(simulation));
