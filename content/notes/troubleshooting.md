@@ -1,6 +1,7 @@
 ---
 title: "Troubleshooting and FAQ"
 ---
+[[החיים קשים]]
 
 Still having trouble? Here are a list of common questions and problems people encounter when installing Quartz.
 
