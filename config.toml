@@ -1,5 +1,10 @@
 baseURL = "https://quartz.jzhao.xyz/"
-languageCode = "en-us"
+defaultContentLanguage = 'HE'
+[languages]
+  [languages.ar]
+    languagedirection = 'rtl'
+    title = 'המוח של יהודה'
+    weight = 1
 googleAnalytics = "G-XYFD95KB4J"
 pygmentsUseClasses = true
 relativeURLs = true
