@@ -1,6 +1,9 @@
 ---
 title: המוח של יהודה אדלר
 ---
+
+הנה מה שהייתי צריך לעשות מהיום הראשון
+
 Host your second brain and [digital garden](https://jzhao.xyz/posts/digital-gardening) for free. Quartz features
 1. Extremely fast full-text search by pressing `/`
 2. Display for backlinks of each note
