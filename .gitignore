@@ -3,5 +3,5 @@ public
 resources
 .idea
 content/.obsidian
-data/linkIndex.yaml
-data/contentIndex.yaml
+assets/indices/linkIndex.json
+assets/indices/contentIndex.json

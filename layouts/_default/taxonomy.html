@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ partial "head.html" . }}
+
+<body>
+{{partial "search.html" .}}
+<div class="singlePage">
+    <!-- Begin actual content -->
+    <header>
+        <h1 id="page-title"><a href="{{ .Site.BaseURL }}">{{ .Site.Data.config.page_title }}</a></h1>
+        <svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg>
+        <div class="spacer"></div>
+        {{partial "darkmode.html" .}}
+    </header>
+    <article>
+        <h1>All {{.Title}}</h1>
+        <div class="tags">
+            {{ range .Site.Taxonomies.tags.ByCount }}
+            <div class="meta">
+                <h1><a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a></h1>
+                <p><b>{{ .Count }}</b> notes with this tag {{if gt .Count 2}}(showing first 2 results){{end}}</p>
+            </div>
+            {{ with ($.Site.GetPage (printf "/tags/%s" .Page.Title)) }}
+            {{partial "page-list.html" (first 2 .Pages.ByLastmod.Reverse)}}
+            {{ end }}
+            {{ end }}
+        </div>
+    </article>
+    {{partial "contact.html" .}}
+</div>
+{{partial "popover.html" .}}
+</body>
+
+</html>

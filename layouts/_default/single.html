@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ .Lang }}">
 {{ partial "head.html" . }}
 
 <body>
@@ -7,21 +7,32 @@
 <div class="singlePage">
     <!-- Begin actual content -->
     <header>
-        {{if .Title}}<h1>{{ .Title }}</h1>{{end}}
-        <svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg>
-        <div class="spacer"></div>
-        {{partial "darkmode.html" .}}
-    </header>
-    <article>
-        {{if $.Site.Data.config.enableToc}}
-        <aside class="mainTOC">
-            <h3>Table of Contents</h3>
-            {{ .TableOfContents }}
-        </aside>
-        {{end}}
-        {{.Content}}
+        <h1 id="page-title"><a href="{{ .Site.BaseURL }}">{{ .Site.Data.config.page_title }}</a></h1>
+      <svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg>
+      <div class="spacer"></div>
+      {{partial "darkmode.html" .}}
+  </header>
+  <article>
+      {{if .Title}}<h1>{{ .Title }}</h1>{{end}}
+      <p class="meta">
+          Last updated {{if ne .Date .Lastmod}}{{ .Lastmod.Format "January 2, 2006" }}{{else}}Unknown{{end}}
+      </p>
+      <ul class="tags">
+          {{ range (.GetTerms "tags") }}
+          <li><a href="{{ .Permalink }}">{{ .LinkTitle | humanize }}</a></li>
+          {{ end }}
+      </ul>
+      {{ if (and $.Site.Data.config.enableToc (not (.Params.disableToc))) }}
+      <aside class="mainTOC">
+          <h3>Table of Contents</h3>
+          {{ .TableOfContents }}
+      </aside>
+      {{end}}
+      {{.Content}}
+
     </article>
     {{partial "footer.html" .}}
+    {{partial "popover.html" .}}
 </div>
 </body>
 

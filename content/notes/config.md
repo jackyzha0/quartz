@@ -1,5 +1,7 @@
 ---
 title: "Configuration"
+tags:
+- setup
 ---
 
 <!--Add search engine to Quartz like Notion>Super -->
@@ -11,6 +13,7 @@ title: "Configuration"
 ```yaml
 name: Your name here! # Shows in the footer
 enableToc: true # Whether to show a Table of Contents
+enableLinkPreview: true # whether to render card previews for links
 description: Page description to show to search engines
 page_title: Quartz Example Page # Default Page Title
 
@@ -28,6 +31,7 @@ To customize the Interactive Graph view, you can poke around `data/graphConfig.y
 enableLegend: false # automatically generate a legend
 enableDrag: true # allow dragging nodes in the graph
 enableZoom: true # allow zooming and panning the graph
+depth: -1 # how many neighbours of the current node to show (-1 is all nodes)
 paths: # colour specific nodes path off of their path
   - /moc: "#4388cc"
 ```
@@ -44,3 +48,19 @@ For example, the structure of the home page can be edited through `/layouts/inde
 More info about partials on [Hugo's website.](https://gohugo.io/templates/partials/)
 
 Still having problems? Checkout our [FAQ and Troubleshooting guide](notes/troubleshooting.md).
+
+## Multilingual
+Want to support languages that read from right-to-left (like Arabic)? Hugo (and by proxy, Quartz) supports this natively.
+
+Follow the steps [Hugo provides here](https://gohugo.io/content-management/multilingual/#configure-languages) and modify your `config.toml`
+
+For example:
+
+```toml
+defaultContentLanguage = 'ar'
+[languages]
+  [languages.ar]
+    languagedirection = 'rtl'
+    title = 'مدونتي'
+    weight = 1
+```
