@@ -112,6 +112,10 @@ td, th {
   gap: 1.5em;
   justify-content: center;
 
+  .disabled {
+    opacity: 0.2;
+  }
+
   & > li {
     text-align: center;
     display: inline-block;
