@@ -9,9 +9,12 @@
     {{if $inbound}}
     {{$cleanedInbound := apply (apply $inbound "index" "." "source") "replace" "." " " "-"}}
     {{- range $cleanedInbound | uniq -}}
-        <li>
-            <a href="{{$url}}{{.}}">{{index (index $contentTable .) "title"}}</a>
-        </li>
+      {{$l := .}}
+      {{with (index $contentTable .)}}
+      <li>
+          <a href="{{$l}}">{{index (index . "title")}}</a>
+      </li>
+      {{end}}
     {{- end -}}
     {{else}}
     <li>
