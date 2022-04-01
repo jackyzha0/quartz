@@ -37,7 +37,7 @@ paths: # colour specific nodes path off of their path
 
 
 ## Styling
-Want to go even more in-depth? You can add custom CSS styling and change existing colours through editing `assets/custom.scss`. If you'd like to target specific parts of the site, you can add ids and classes to the HTML partials in `/layouts/partials`. 
+Want to go even more in-depth? You can add custom CSS styling and change existing colours through editing `assets/styles/custom.scss`. If you'd like to target specific parts of the site, you can add ids and classes to the HTML partials in `/layouts/partials`. 
 
 ### Partials
 Partials are what dictate what actually gets rendered to the page. Want to change how pages are styled and structured? You can edit the appropriate layout in `/layouts`.
