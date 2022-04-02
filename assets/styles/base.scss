@@ -185,6 +185,11 @@ article {
       padding: 0 0.1em;
       margin: auto -0.1em;
       border-radius: 3px;
+
+      &.broken {
+        opacity: 0.5;
+        background-color: transparent; 
+      }
     }
   }
   
