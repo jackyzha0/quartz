@@ -520,3 +520,15 @@ header {
     user-select: none;
   }
 }
+
+#contact_buttons ul {
+  list-style-type: none;
+
+  li {
+    display: inline-block;
+  }
+
+  li a {
+    padding: 5px 20px;
+  }
+}
