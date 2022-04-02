@@ -2,11 +2,13 @@
 <div id="contact_buttons">
     <footer>
         <p>Made by {{ $.Site.Data.config.name }} using <a href="https://github.com/jackyzha0/quartz">Quartz</a>, © {{ dateFormat "2006" now }}</p>
-        {{ if not .IsHome }}
-        <a href="/">Home</a>
-        {{end}}
-        {{- range $.Site.Data.config.links -}}
-        <a href="{{.link}}">{{.link_name}}</a>
-        {{- end -}}
+        <ul>
+            {{ if not .IsHome }}
+            <li><a href="/">Home</a></li>
+            {{end}}
+            {{- range $.Site.Data.config.links -}}
+            <li><a href="{{.link}}">{{.link_name}}</a></li>
+            {{- end -}}
+        </ul>
     </footer>
 </div>
