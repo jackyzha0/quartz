@@ -6,6 +6,11 @@
 {{- else -}}
 {{$spacedurl := replace $trimmed "%20" " " }}
 {{$fixedUrl := (cond (hasPrefix $spacedurl "/") $spacedurl (print "/" $spacedurl)) | urlize}}
+{{$nonexistent := eq (.Page.GetPage $spacedurl).RelPermalink ""}}
 {{$rooted := default $spacedurl (strings.TrimRight "/" (.Page.GetPage $spacedurl).RelPermalink) }}
-<a href="{{$rooted}}" rel="noopener" class="internal-link" data-src="{{$rooted}}">{{ .Text | safeHTML }}</a>
+<a
+  {{if not $nonexistent}}href="{{$rooted}}"{{end}}
+  rel="noopener" class="internal-link{{if $nonexistent}} broken{{end}}"
+  data-src="{{$rooted}}">{{ .Text | safeHTML }}
+</a>
 {{- end -}}
