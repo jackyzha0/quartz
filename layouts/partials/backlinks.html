@@ -2,7 +2,7 @@
 <ul class="backlinks">
     {{$url := urls.Parse .Site.BaseURL }}
     {{$host := strings.TrimRight "/" $url.Path }}
-    {{$curPage := strings.TrimPrefix $host (strings.TrimRight "/" .Page.RelPermalink) }}
+    {{$curPage := strings.TrimPrefix $host (strings.TrimRight "/" .Page.RelPermalink)}}
     {{$linkIndex := getJSON "/assets/indices/linkIndex.json"}}
     {{$inbound := index $linkIndex.index.backlinks $curPage}}
     {{$contentTable := getJSON "/assets/indices/contentIndex.json"}}

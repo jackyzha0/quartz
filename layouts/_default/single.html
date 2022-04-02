@@ -28,8 +28,7 @@
           {{ .TableOfContents }}
       </aside>
       {{end}}
-      {{.Content}}
-
+      {{.Content | safeHTML}}
     </article>
     {{partial "footer.html" .}}
     {{partial "popover.html" .}}
