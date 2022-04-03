@@ -39,3 +39,9 @@ $$
 
 ## RTL
 More information on configuring RTL languages like Arabic in the [config](notes/config.md) page
+
+[[notes/troubleshooting]]
+
+[[notes/editing#Folder Structure|edit]]
+
+[[asdfasdf|todo]]

@@ -1,0 +1,31 @@
+{{ $content := .Content }}
+{{ $page := .Page }}
+
+{{/* Replace right arrow */}}
+{{ $content = replace $content "-&gt;" "→" }}
+
+{{/* Escape slashes for Latex to fix line breaks */}}
+{{ $content = replaceRE "\\\\ *\n" "\\\\" $content }}
+
+{{/* Wikilinks */}}
+{{$wikilinks := $content | findRE "\\[\\[[^\\[\\]\\|]*(?:\\|[^\\[\\]]*)?\\]\\]" }}
+{{range $wikilinks}}
+  {{$inner := . | strings.TrimPrefix "[[" | strings.TrimSuffix "]]" }}
+  {{$split := split $inner "|"}}
+  {{$path := index $split 0}}
+  {{$reference := split $path "#"}}
+  {{$title := index $reference 0}}
+  {{$block := default "" (index $reference 1)}}
+  {{$block = strings.TrimRight "/" (cond (eq $block "") $block (printf "#%s" $block))}}
+  {{$href := strings.TrimRight "/" ($page.GetPage $title).RelPermalink}}
+  {{$display := default $title (index $split 1)}}
+  {{if not $href}}
+    {{$link := printf "<a class=\"internal-link broken\">%s</a>" $display}}
+    {{ $content = replace $content . $link }}
+  {{else}}
+    {{$fullhref := printf "%s%s" $href $block }}
+    {{$link := printf "<a href=\"%s\" rel=\"noopener\" class=\"internal-link\" data-src=\"%s\">%s</a>" $fullhref $href $display}}
+    {{ $content = replace $content . $link }}
+  {{end}}
+{{end}}
+{{ $content | safeHTML }}
