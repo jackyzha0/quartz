@@ -5,7 +5,11 @@
 {{ $content = replace $content "-&gt;" "→" }}
 
 {{/* Escape slashes for Latex to fix line breaks */}}
-{{ $content = replaceRE "\\\\ *\n" "\\\\" $content }}
+{{$latex := findRE "\\$\\$([^\\$]+)\\$\\$" $content}}
+{{range $latex}}
+  {{$fixed := replaceRE "\\\\(?: +|\\n)" "\\\\" .}}
+  {{$content = replace $content . $fixed}}
+{{end}}
 
 {{/* Wikilinks */}}
 {{$wikilinks := $content | findRE "\\[\\[[^\\[\\]\\|]*(?:\\|[^\\[\\]]*)?\\]\\]" }}

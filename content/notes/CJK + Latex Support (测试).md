@@ -23,8 +23,7 @@ Aligned equations work quite well:
 
 $$
 \begin{aligned}
-a &= b + c \\
- &= e + f \\
+a &= b + c \\ &= e + f \\
 \end{aligned}
 $$
 
@@ -32,7 +31,7 @@ And matrices
 
 $$
 \begin{bmatrix}
-1 & 2 & 3\\
+1 & 2 & 3 \\
 a & b & c
 \end{bmatrix}
 $$
