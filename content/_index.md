@@ -1,12 +1,13 @@
 ---
 title: 🪴 Quartz 3.2
 ---
+
 Host your second brain and [digital garden](https://jzhao.xyz/posts/networked-thought) for free. Quartz features
 
 1. Extremely fast full-text search by pressing `ctrl` + `k`
 2. Wikilink support
 3. Display for backlinks of each note
-4. [CJK + Latex Support](notes/CJK%20+%20Latex%20Test%20(测试).md)
+4. Built-in [CJK + Latex Support (测试)](notes/CJK%20+%20Latex%20Support%20(测试).md)
 5. Fully customizable local graph view
 6. Endlessly powerful page and theme customization using CSS
 7. Automatically generated tag and section lists of content

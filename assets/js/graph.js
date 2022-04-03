@@ -185,7 +185,7 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
   const labels = graphNode.append("text")
     .attr("dx", 12)
     .attr("dy", ".35em")
-    .text((d) => content[decodeURI(d.id).replace(/\s+/g, '-')]?.title || d.id.replace("-", " "))
+    .text((d) => content[d.id]?.title || d.id.replace("-", " "))
     .style("opacity", 0)
     .style("pointer-events", "none")
     .call(drag(simulation));

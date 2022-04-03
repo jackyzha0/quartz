@@ -1,5 +1,5 @@
 ---
-title: "CJK + Latex Test (测试)"
+title: "CJK + Latex Support (测试)"
 ---
 
 ## Chinese, Japanese, Korean Support
@@ -36,3 +36,6 @@ $$
 a & b & c
 \end{bmatrix}
 $$
+
+## RTL
+More information on configuring RTL languages like Arabic in the [config](notes/config.md) page
