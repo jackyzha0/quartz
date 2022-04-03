@@ -1,11 +1,12 @@
 name: Jacky Zhao
 enableToc: true
 enableLinkPreview: true
+enableLatex: true
 description:
-  Here is the page description. This is an example Quartz site that details installation,
-  setup, customization, and troubleshooting for Quartz itself.
+  Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
+  Wikilink support, backlinks, local graph, tags, and link previews.
 page_title:
-  "🪴 Quartz 3.1"
+  "🪴 Quartz .2"
 links:
   - link_name: Twitter
     link: https://twitter.com/_jzhao
