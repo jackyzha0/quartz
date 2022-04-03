@@ -7,33 +7,7 @@ Still having trouble? Here are a list of common questions and problems people en
 While you're here, join our [Discord](https://discord.gg/cRFFHYye7t) :)
 
 ### Does Quartz have Latex support?
-Not by default! You can create a partial using something like Katex under `head/katex.html` and render the partial somewhere using  `{{ partial "head/katex.html" . }}` (most likely in `layouts/_default/single.html`).
-
-```html
-<link rel="stylesheet" href="[https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css](https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css)" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
-<script defer src="[https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js](https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js)" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
-<script defer src="[https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js](https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js)" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
-onload="renderMathInElement(document.body);"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-	renderMathInElement(document.body, {
-		delimiters: [
-			{left: '$$', right: '$$', display: true},
-			{left: '$', right: '$', display: false},
-			{left: '\\(', right: '\\)', display: false},
-			{left: '\\[', right: '\\]', display: true}
-		],
-		throwOnError : false
-	});
-});
-</script>
-```
-
-Example page: [jzhao.xyz/thoughts/object-classification](https://jzhao.xyz/thoughts/object-classification/)
-
-### My <\iframe\> is not rendering!
-
-Hugo's safeHTML enables this! This is disabled by default for security reasons but you can do this manually by changing `{{.Content}}` to `{{.Content | safeHTML}}` in `layouts/_default/single.html`.
+Yes! See [CJK + Latex Test (测试)](CJK%20+%20Latex%20Test%20(测试).md) for a brief demo.
 
 ### Can I use \<Obsidian Plugin\> in Quartz?
 Unless it produces direct Markdown output in the file, no. There currently is no way to bundle plugin code with Quartz.
