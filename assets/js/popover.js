@@ -11,6 +11,7 @@ function initPopover(baseURL) {
     fetchData.then(({ content }) => {
       const links = [...document.getElementsByClassName("internal-link")]
       links.forEach(li => {
+        console.log(li.dataset)
         const linkDest = content[li.dataset.src.replace(basePath, "")]
         if (linkDest) {
           const popoverElement = `<div class="popover">
