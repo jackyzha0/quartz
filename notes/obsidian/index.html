@@ -1,9 +1,8 @@
 <!doctype html><html lang=en>
 <head>
 <meta charset=utf-8>
-<meta name=description content="Want to see what Quartz can do? Here are some cool community gardens :)
-  Quartz Documentation (this site!)  Strengthening Online Social Bonds: Research Garden  Jacky Zhao&rsquo;s Garden  Anson Yu&rsquo;s Garden  Shihyu&rsquo;s PKM  Chloe&rsquo;s Garden  SlRvb&rsquo;s Site  Course notes for Information Technology Advanced Theory  Brandon Boswell&rsquo;s Garden  Siyang&rsquo;s Courtyard  If you want to see your own on here, submit a Pull Request adding yourself to this file!">
-<title>Showcase</title>
+<meta name=description content="Setup Obsidian is the preferred way to use Quartz. You can either create a new Obsidian Vault or link one that your already have.">
+<title>Obsidian Vault Integration</title>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <link rel="shortcut icon" type=image/png href=https://quartz.jzhao.xyz//icon.png>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel=stylesheet>
@@ -40,41 +39,49 @@
 </div>
 </header>
 <article>
-<h1>Showcase</h1>
+<h1>Obsidian Vault Integration</h1>
 <p class=meta>
 Last updated April 4, 2022
 </p>
 <ul class=tags>
+<li><a href=https://quartz.jzhao.xyz/tags/setup/>Setup</a></li>
 </ul>
 <aside class=mainTOC>
 <h3>Table of Contents</h3>
-<nav id=TableOfContents></nav>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#setup>Setup</a>
+<ol>
+<li><a href=#new-vault>New Vault</a></li>
+<li><a href=#linking-an-existing-vault>Linking an existing Vault</a></li>
+</ol>
+</li>
+<li><a href=#settings>Settings</a></li>
+<li><a href=#templates>Templates</a></li>
+</ol>
+</nav>
 </aside>
-<p>Want to see what Quartz can do? Here are some cool community gardens :)</p>
-<ul>
-<li>
-<a href=https://quartz.jzhao.xyz/ rel=noopener>Quartz Documentation (this site!)</a></li>
-<li>
-<a href=https://communities.digital/ rel=noopener>Strengthening Online Social Bonds: Research Garden</a></li>
-<li>
-<a href=https://garden.jzhao.xyz/ rel=noopener>Jacky Zhao&rsquo;s Garden</a></li>
-<li>
-<a href=http://garden.ansonyu.me/ rel=noopener>Anson Yu&rsquo;s Garden</a></li>
-<li>
-<a href=https://shihyuho.github.io/pkm/ rel=noopener>Shihyu&rsquo;s PKM</a></li>
-<li>
-<a href=https://garden.chloeabrasada.online/ rel=noopener>Chloe&rsquo;s Garden</a></li>
-<li>
-<a href=https://slrvb.github.io/Site/ rel=noopener>SlRvb&rsquo;s Site</a></li>
-<li>
-<a href=https://a2itnotes.github.io/quartz/ rel=noopener>Course notes for Information Technology Advanced Theory</a></li>
-<li>
-<a href=https://brandonkboswell.com rel=noopener>Brandon Boswell&rsquo;s Garden</a></li>
-<li>
-<a href=https://siyangsun.github.io/courtyard/ rel=noopener>Siyang&rsquo;s Courtyard</a></li>
-</ul>
-<p>If you want to see your own on here, submit a
-<a href=https://github.com/jackyzha0/quartz/blob/hugo/content/notes/showcase rel=noopener>Pull Request adding yourself to this file</a>!</p>
+<h2 id=setup>Setup</h2>
+<p>Obsidian is the preferred way to use Quartz. You can either create a new Obsidian Vault or link one that your already have.</p>
+<h3 id=new-vault>New Vault</h3>
+<p>If you don&rsquo;t have an existing Vault,
+<a href=https://obsidian.md/ rel=noopener>download Obsidian</a> and create a new Vault in the <code>/content</code> folder that you created and cloned during the
+<a href=/notes/setup rel=noopener class=internal-link data-src=/notes/setup>setup
+</a> step.</p>
+<h3 id=linking-an-existing-vault>Linking an existing Vault</h3>
+<p>The easiest way to use an existing Vault is to copy all of your files (directory and hierarchies intact) into the <code>/content</code> folder.</p>
+<h2 id=settings>Settings</h2>
+<p>Great, now that you have your Obsidian linked to your Quartz, let&rsquo;s fix some settings so that they play well.</p>
+<ol>
+<li>Under Options > Files and Links, set the New link format to always e Absolute Path in Vault.</li>
+<li>Go to Settings > Files & Links > Turn &ldquo;on&rdquo; automatically update internal links.</li>
+</ol>
+<p>
+<img src=/notes/images/obsidian-settings.png alt="Obsidian Settings"><em>Obsidian Settings</em></p>
+<h2 id=templates>Templates</h2>
+<p>Inserting front matter everytime you want to create a new Note gets annoying really quickly. Luckily, Obsidian supports templates which makes inserting new content really easily.</p>
+<p><strong>If you decide to overwrite the <code>/content</code> folder completely, don&rsquo;t remove the <code>/content/templates</code> folder!</strong></p>
+<p>Head over to Options > Core Plugins and enable the Templates plugin. Then go to Options > Hotkeys and set a hotkey for &lsquo;Insert Template&rsquo; (I recomment <code>[cmd]+T</code>). That way, when you create a new note, you can just press the hotkey for a new template and be ready to go!</p>
 </article>
 <hr>
 <div class=page-end>
@@ -82,7 +89,10 @@ Last updated April 4, 2022
 <h3>Backlinks</h3>
 <ul class=backlinks>
 <li>
-<a href=/>🪴 Quartz 3.2</a>
+<a href=/notes/editing>Editing Content in Quartz</a>
+</li>
+<li>
+<a href=/notes/troubleshooting>Troubleshooting and FAQ</a>
 </li>
 </ul>
 </div>
@@ -92,7 +102,7 @@ Last updated April 4, 2022
 <div id=graph-container></div>
 <style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style>
 <script src=https://quartz.jzhao.xyz/js/graph.27e8521c25c27c79dea35f434c486167.js></script>
-<script>drawGraph("https://quartz.jzhao.xyz/notes/showcase","https://quartz.jzhao.xyz",[{"/moc":"#4388cc"}],-1,!0,!1,!0)</script>
+<script>drawGraph("https://quartz.jzhao.xyz/notes/obsidian","https://quartz.jzhao.xyz",[{"/moc":"#4388cc"}],-1,!0,!1,!0)</script>
 </div>
 </div>
 <div id=contact_buttons>
