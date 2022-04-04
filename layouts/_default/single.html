@@ -24,8 +24,10 @@
       </ul>
       {{ if (and $.Site.Data.config.enableToc (ne .Params.enableToc false)) }}
       <aside class="mainTOC">
-          <h3>Table of Contents</h3>
-          {{ .TableOfContents }}
+          <details {{ if $.Site.Data.config.openToc }}open {{ end }}>
+            <summary>Table of Contents</summary>
+            {{ .TableOfContents }}
+          </details>
       </aside>
       {{end}}
       {{partial "textprocessing.html" . }}
