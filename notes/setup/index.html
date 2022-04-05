@@ -12,7 +12,7 @@
 <script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
 <script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
 <script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:!0},{left:'$',right:'$',display:!1}],throwOnError:!1})})</script>
-<script>const BASE_URL="https://quartz.jzhao.xyz/",fetchData=Promise.all([fetch("https://quartz.jzhao.xyz/indices/linkIndex.03d0265dd1ca84fe383a8ad442b7c660.min.json").then(a=>a.json()).then(a=>({index:a.index,links:a.links})),fetch("https://quartz.jzhao.xyz/indices/contentIndex.d30ebefd566a821a80aeb4bc979a7a30.min.json").then(a=>a.json())]).then(([{index:a,links:b},c])=>({index:a,links:b,content:c}))</script>
+<script>const BASE_URL="https://quartz.jzhao.xyz/",fetchData=Promise.all([fetch("https://quartz.jzhao.xyz/indices/linkIndex.03d0265dd1ca84fe383a8ad442b7c660.min.json").then(a=>a.json()).then(a=>({index:a.index,links:a.links})),fetch("https://quartz.jzhao.xyz/indices/contentIndex.926f3b91c39df457deabcec18d84e457.min.json").then(a=>a.json())]).then(([{index:a,links:b},c])=>({index:a,links:b,content:c}))</script>
 </head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-XYFD95KB4J',{anonymize_ip:!1})}</script>
@@ -41,7 +41,7 @@
 <article>
 <h1>Setup</h1>
 <p class=meta>
-Last updated April 4, 2022
+Last updated April 5, 2022
 </p>
 <ul class=tags>
 <li><a href=https://quartz.jzhao.xyz/tags/setup/>Setup</a></li>
@@ -95,10 +95,26 @@ Last updated April 4, 2022
 <a href=/notes/troubleshooting rel=noopener class=internal-link data-src=/notes/troubleshooting>FAQ and Troubleshooting guide
 </a>.</p>
 <h2 id=updating>Updating</h2>
-<p>Haven&rsquo;t updated Quartz in a while and want all the cool new optimizations?</p>
+<p>Haven&rsquo;t updated Quartz in a while and want all the cool new optimizations? On Unix/Mac systems you can run the following command for a one-line update! This command will show you a log summary of all commits since you last updated, press <code>q</code> to acknowledge this. Then, it will show you each change in turn and press <code>y</code> to accept the patch or <code>n</code> to reject it. Usually you should press <code>y</code> for most of these unless it conflicts with existing changes you&rsquo;ve made!</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>make update
+
+<span class=c1># or, if you don&#39;t want the interactive parts and just want the update</span>
+make update-force
+</code></pre></td></tr></table>
+</div>
+</div><p>Or, manually checkout the changes yourself.</p>
 <blockquote>
 <p>⚠️ <strong>WARNING</strong> ⚠️</p>
-<p>if you customized <code>assets/styles/custom.scss</code>, the files in <code>data/</code>, or anything inside <code>layouts/</code>, your customization may be overwritten!</p>
+<p>If you customized the files in <code>data/</code>, or anything inside <code>layouts/</code>, your customization may be overwritten!
+Make sure you have a copy of these changes if you don&rsquo;t want to lose them.</p>
 </blockquote>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -115,7 +131,7 @@ git remote add upstream git@github.com:jackyzha0/quartz.git
 
 <span class=c1># index and fetch changes</span>
 git fetch upstream
-git checkout upstream/hugo -- layouts .github Makefile assets config.toml data static
+git checkout -p upstream/hugo -- layouts .github Makefile assets/js assets/styles/base.scss assets/styles/darkmode.scss config.toml data 
 </code></pre></td></tr></table>
 </div>
 </div>
