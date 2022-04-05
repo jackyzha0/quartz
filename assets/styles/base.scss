@@ -67,12 +67,6 @@ p, ul, text {
   }
 }
 
-footer {
-  margin-top: 4em;
-  text-align: center;
-}
-
-
 table {
   width: 100%;
 }
@@ -281,12 +275,10 @@ body {
 
 footer {
   margin-top: 4em;
-
-  & > a {
-    font-size: 1em;
-    color: var(--secondary);
-    padding: 0 0.5em 3em 0.5em;
-  }
+  text-align: center;
+  & ul {
+    padding-left: 0;
+  } 
 }
 
 hr {
