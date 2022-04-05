@@ -13,14 +13,7 @@
         {{partial "darkmode.html" .}}
     </header>
     <article>
-        {{ if (and $.Site.Data.config.enableToc (ne .Params.enableToc false)) }}
-        <aside class="mainTOC">
-            <details {{ if $.Site.Data.config.openToc }}open {{ end }}>
-                <summary>Table of Contents</summary>
-                {{ .TableOfContents }}
-            </details>
-        </aside>
-        {{end}}
+        {{partial "toc.html" .}} 
         {{partial "textprocessing.html" . }}
     </article>
     {{partial "footer.html" .}}
