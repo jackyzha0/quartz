@@ -33,11 +33,16 @@ Having problems? Checkout our [FAQ and Troubleshooting guide](notes/troubleshoot
 ## Updating
 Haven't updated Quartz in a while and want all the cool new optimizations?
 
+> ⚠️ **WARNING** ⚠️
+>
+> if you customized `assets/styles/custom.scss`, the files in `data/`, or anything inside `layouts/`, your customization may be overwritten!
+
+
 ```shell
 # add Quartz as a remote host
 git remote add upstream git@github.com:jackyzha0/quartz.git
 
 # index and fetch changes
 git fetch upstream
-git checkout upstream/hugo -- layouts .github Makefile assets config.toml data layouts static
+git checkout upstream/hugo -- layouts .github Makefile assets config.toml data static
 ```
