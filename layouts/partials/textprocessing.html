@@ -26,7 +26,7 @@
     {{if (hasPrefix . "!")}}
       {{$inner := . | strings.TrimPrefix "![[" | strings.TrimSuffix "]]" }}
       {{$split := split $inner "|"}}
-      {{$path := index $split 0}}
+      {{$path := index $split 0 | relURL}}
       {{$reference := split $path "#"}}
       {{$title := index $reference 0}}
       {{$display := default $title (index $split 1)}}
