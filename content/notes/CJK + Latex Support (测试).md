@@ -38,9 +38,3 @@ $$
 
 ## RTL
 More information on configuring RTL languages like Arabic in the [config](notes/config.md) page.
-
-`![[Image.png|modifier+modifier|#]]`
-
-[[notes/troubleshooting]]
-
-`[[Image.png|modifier+modifier|#]]`
