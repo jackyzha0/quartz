@@ -2,8 +2,8 @@
 title: "cosc-202"
 year: 2022
 semester: 
+tags: course cosc202
 ---
-#course #cosc-202
 
 # cosc-202
 

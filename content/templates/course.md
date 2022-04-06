@@ -2,9 +2,8 @@
 title: "<% tp.file.title %>"
 year: <% tp.date.now("YYYY") %>
 semester: 
+tags: course
 ---
-
-#course
 
 # <% tp.file.title %>
 
