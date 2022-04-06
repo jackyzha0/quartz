@@ -1,3 +1,8 @@
+---
+title: "Jet Hughes"
+---
+
+# _index
 # My Notes
 
 ## 1 Papers

@@ -2,10 +2,4 @@
 title: "<% tp.file.title %>"
 ---
 
----
-
-<% tpfile.cursor %>
-
----
-
-# {{title}}
+# <% tp.file.title %>
