@@ -6,7 +6,6 @@ tags:
 ---
 
 - [[notes/aymptotic-notation]]
-- [[notes/big-theta-notation]]
 - [[notes/induction]]
 - [[notes/analysis-of-recursive-algorithms]]
 - [[notes/union-find]]
@@ -15,4 +14,3 @@ tags:
 - [[notes/heapsort]]
 - [[notes/mergesort]]
 - [[notes/quicksort]]
-

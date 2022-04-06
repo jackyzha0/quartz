@@ -10,9 +10,9 @@ tags:
 - [[notes/cosc-202-lectures]]
 - [[notes/cosc-202-outline]]
 
-## 2 Assignments
+## 1 Assignments
 
 - 
 
-## 3 Resources
+## 2 Resources
 

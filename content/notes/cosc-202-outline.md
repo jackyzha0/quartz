@@ -10,3 +10,10 @@ tags:
 - [[notes/ethics-in-cs]]
 - [[notes/integrated-development-environments]]
 - [[notes/branch]]
+- [[notes/testing]]
+- [[notes/test-driven-development]]
+- [[notes/unit-testing]]
+- [[notes/debugging]]
+- [[notes/documentation]]
+- [[notes/continuous-integration]]
+- 
