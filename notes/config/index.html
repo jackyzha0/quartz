@@ -1,77 +1,10 @@
-<!doctype html><html lang=en>
-<head>
-<meta charset=utf-8>
-<meta name=description content="Configuration Quartz is designed to be extremely configurable. You can find the bulk of the configuration scattered throughout the repository depending on how in-depth you&rsquo;d like to get.">
-<title>Configuration</title>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<link rel="shortcut icon" type=image/png href=https://quartz.jzhao.xyz//icon.png>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel=stylesheet>
-<link href=https://quartz.jzhao.xyz/styles.28256d07750dd0ab499239db662317e8.min.css rel=stylesheet>
-<script src=https://quartz.jzhao.xyz/js/darkmode.46b07878b7f5d9e26ad7a3c40f8a0605.min.js></script>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous>
-<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="Configuration Quartz is designed to be extremely configurable. You can find the bulk of the configuration scattered throughout the repository depending on how in-depth you&rsquo;d like to get."><title>Configuration</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://quartz.jzhao.xyz//icon.png><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel=stylesheet><link href=https://quartz.jzhao.xyz/styles.28256d07750dd0ab499239db662317e8.min.css rel=stylesheet><script src=https://quartz.jzhao.xyz/js/darkmode.46b07878b7f5d9e26ad7a3c40f8a0605.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
 <script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
-<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:!0},{left:'$',right:'$',display:!1}],throwOnError:!1})})</script>
-<script>const BASE_URL="https://quartz.jzhao.xyz/",fetchData=Promise.all([fetch("https://quartz.jzhao.xyz/indices/linkIndex.03d0265dd1ca84fe383a8ad442b7c660.min.json").then(a=>a.json()).then(a=>({index:a.index,links:a.links})),fetch("https://quartz.jzhao.xyz/indices/contentIndex.43ffc7c634131ced04be95e1e589da2b.min.json").then(a=>a.json())]).then(([{index:a,links:b},c])=>({index:a,links:b,content:c}))</script>
-</head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
-<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-XYFD95KB4J',{anonymize_ip:!1})}</script>
-<body>
-<div id=search-container>
-<div id=search-space>
-<input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something...">
-<div id=results-container>
-</div>
-</div>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
-<script defer src=https://quartz.jzhao.xyz/js/search.bc849b857f2c1b822264d40635bb67b6.min.js></script>
-<div class=singlePage>
-<header>
-<h1 id=page-title><a href=https://quartz.jzhao.xyz/>🪴 Quartz 3.2</a></h1><svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg>
-<div class=spacer></div>
-<div class=darkmode>
-<input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
-<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg>
-</label>
-<label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg>
-</label>
-</div>
-</header>
-<article>
-<h1>Configuration</h1>
-<p class=meta>
-Last updated April 5, 2022
-</p>
-<ul class=tags>
-<li><a href=https://quartz.jzhao.xyz/tags/setup/>Setup</a></li>
-</ul>
-<aside class=mainTOC>
-<details>
-<summary>Table of Contents</summary>
-<nav id=TableOfContents>
-<ol>
-<li><a href=#configuration>Configuration</a>
-<ol>
-<li><a href=#graph-view>Graph View</a></li>
-</ol>
-</li>
-<li><a href=#styling>Styling</a>
-<ol>
-<li><a href=#partials>Partials</a></li>
-</ol>
-</li>
-<li><a href=#multilingual>Multilingual</a></li>
-</ol>
-</nav>
-</details>
-</aside>
-<h2 id=configuration>Configuration</h2>
-<p>Quartz is designed to be extremely configurable. You can find the bulk of the configuration scattered throughout the repository depending on how in-depth you&rsquo;d like to get.</p>
-<p>The majority of configuration can be be found under <code>data/config.yaml</code>. An annotated example configuration is shown below.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})})</script><script>const BASE_URL="https://quartz.jzhao.xyz/",fetchData=Promise.all([fetch("https://quartz.jzhao.xyz/indices/linkIndex.03d0265dd1ca84fe383a8ad442b7c660.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://quartz.jzhao.xyz/indices/contentIndex.24487a624899444778bd6b11b5228c69.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n}))</script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://quartz.jzhao.xyz/js/search.bc849b857f2c1b822264d40635bb67b6.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://quartz.jzhao.xyz/>🪴 Quartz 3.2</a></h1><svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg><div class=spacer></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>Configuration</h1><p class=meta>Last updated April 5, 2022</p><ul class=tags><li><a href=https://quartz.jzhao.xyz/tags/setup/>Setup</a></li></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#configuration>Configuration</a><ol><li><a href=#graph-view>Graph View</a></li></ol></li><li><a href=#styling>Styling</a><ol><li><a href=#partials>Partials</a></li></ol></li><li><a href=#multilingual>Multilingual</a></li></ol></nav></details></aside><h2 id=configuration>Configuration</h2><p>Quartz is designed to be extremely configurable. You can find the bulk of the configuration scattered throughout the repository depending on how in-depth you&rsquo;d like to get.</p><p>The majority of configuration can be be found under <code>data/config.yaml</code>. An annotated example configuration is shown below.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -82,112 +15,44 @@ Last updated April 5, 2022
 </span><span class=lnt> 9
 </span><span class=lnt>10
 </span><span class=lnt>11
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Your name here!</span><span class=w> </span><span class=c># Shows in the footer</span><span class=w>
-</span><span class=w></span><span class=nt>enableToc</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w> </span><span class=c># Whether to show a Table of Contents</span><span class=w>
-</span><span class=w></span><span class=nt>enableLinkPreview</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w> </span><span class=c># whether to render card previews for links</span><span class=w>
-</span><span class=w></span><span class=nt>description</span><span class=p>:</span><span class=w> </span><span class=l>Page description to show to search engines</span><span class=w>
-</span><span class=w></span><span class=nt>page_title</span><span class=p>:</span><span class=w> </span><span class=l>Quartz Example Page</span><span class=w> </span><span class=c># Default Page Title</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=nt>links</span><span class=p>:</span><span class=w> </span><span class=c># Links to show in footer</span><span class=w>
-</span><span class=w>  </span>- <span class=nt>link_name</span><span class=p>:</span><span class=w> </span><span class=l>Twitter</span><span class=w>
-</span><span class=w>    </span><span class=nt>link</span><span class=p>:</span><span class=w> </span><span class=l>https://twitter.com/_jzhao</span><span class=w>
-</span><span class=w>  </span>- <span class=nt>link_name</span><span class=p>:</span><span class=w> </span><span class=l>Github</span><span class=w>
-</span><span class=w>    </span><span class=nt>link</span><span class=p>:</span><span class=w> </span><span class=l>https://github.com/jackyzha0</span><span class=w>
-</span></code></pre></td></tr></table>
-</div>
-</div><h3 id=graph-view>Graph View</h3>
-<p>To customize the Interactive Graph view, you can poke around <code>data/graphConfig.yaml</code>.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Your name here!</span><span class=w> </span><span class=c># Shows in the footer</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableToc</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w> </span><span class=c># Whether to show a Table of Contents</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableLinkPreview</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w> </span><span class=c># whether to render card previews for links</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>description</span><span class=p>:</span><span class=w> </span><span class=l>Page description to show to search engines</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>page_title</span><span class=p>:</span><span class=w> </span><span class=l>Quartz Example Page</span><span class=w> </span><span class=c># Default Page Title</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>links</span><span class=p>:</span><span class=w> </span><span class=c># Links to show in footer</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>link_name</span><span class=p>:</span><span class=w> </span><span class=l>Twitter</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>link</span><span class=p>:</span><span class=w> </span><span class=l>https://twitter.com/_jzhao</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>link_name</span><span class=p>:</span><span class=w> </span><span class=l>Github</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>link</span><span class=p>:</span><span class=w> </span><span class=l>https://github.com/jackyzha0</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=graph-view>Graph View</h3><p>To customize the Interactive Graph view, you can poke around <code>data/graphConfig.yaml</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=nt>enableLegend</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w> </span><span class=c># automatically generate a legend</span><span class=w>
-</span><span class=w></span><span class=nt>enableDrag</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w> </span><span class=c># allow dragging nodes in the graph</span><span class=w>
-</span><span class=w></span><span class=nt>enableZoom</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w> </span><span class=c># allow zooming and panning the graph</span><span class=w>
-</span><span class=w></span><span class=nt>depth</span><span class=p>:</span><span class=w> </span>-<span class=m>1</span><span class=w> </span><span class=c># how many neighbours of the current node to show (-1 is all nodes)</span><span class=w>
-</span><span class=w></span><span class=nt>paths</span><span class=p>:</span><span class=w> </span><span class=c># colour specific nodes path off of their path</span><span class=w>
-</span><span class=w>  </span>- <span class=nt>/moc</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;#4388cc&#34;</span><span class=w>
-</span></code></pre></td></tr></table>
-</div>
-</div><h2 id=styling>Styling</h2>
-<p>Want to go even more in-depth? You can add custom CSS styling and change existing colours through editing <code>assets/styles/custom.scss</code>. If you&rsquo;d like to target specific parts of the site, you can add ids and classes to the HTML partials in <code>/layouts/partials</code>.</p>
-<h3 id=partials>Partials</h3>
-<p>Partials are what dictate what actually gets rendered to the page. Want to change how pages are styled and structured? You can edit the appropriate layout in <code>/layouts</code>.</p>
-<p>For example, the structure of the home page can be edited through <code>/layouts/index.html</code>. To customize the footer, you can edit <code>/layouts/partials/footer.html</code></p>
-<p>More info about partials on
-<a href=https://gohugo.io/templates/partials/ rel=noopener>Hugo&rsquo;s website.</a></p>
-<p>Still having problems? Checkout our
-<a href=/notes/troubleshooting rel=noopener class=internal-link data-src=/notes/troubleshooting>FAQ and Troubleshooting guide</a>.</p>
-<h2 id=multilingual>Multilingual</h2>
-<p>
-<a href=/notes/CJK-+-Latex-Support-%E6%B5%8B%E8%AF%95 rel=noopener class=internal-link data-src=/notes/CJK-+-Latex-Support-%E6%B5%8B%E8%AF%95>CJK + Latex Support (测试)</a> comes out of the box with Quartz.</p>
-<p>Want to support languages that read from right-to-left (like Arabic)? Hugo (and by proxy, Quartz) supports this natively.</p>
-<p>Follow the steps
-<a href=https://gohugo.io/content-management/multilingual/#configure-languages rel=noopener>Hugo provides here</a> and modify your <code>config.toml</code></p>
-<p>For example:</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>enableLegend</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w> </span><span class=c># automatically generate a legend</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableDrag</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w> </span><span class=c># allow dragging nodes in the graph</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableZoom</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w> </span><span class=c># allow zooming and panning the graph</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>depth</span><span class=p>:</span><span class=w> </span>-<span class=m>1</span><span class=w> </span><span class=c># how many neighbours of the current node to show (-1 is all nodes)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>paths</span><span class=p>:</span><span class=w> </span><span class=c># colour specific nodes path off of their path</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>/moc</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;#4388cc&#34;</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h2 id=styling>Styling</h2><p>Want to go even more in-depth? You can add custom CSS styling and change existing colours through editing <code>assets/styles/custom.scss</code>. If you&rsquo;d like to target specific parts of the site, you can add ids and classes to the HTML partials in <code>/layouts/partials</code>.</p><h3 id=partials>Partials</h3><p>Partials are what dictate what actually gets rendered to the page. Want to change how pages are styled and structured? You can edit the appropriate layout in <code>/layouts</code>.</p><p>For example, the structure of the home page can be edited through <code>/layouts/index.html</code>. To customize the footer, you can edit <code>/layouts/partials/footer.html</code></p><p>More info about partials on
+<a href=https://gohugo.io/templates/partials/ rel=noopener>Hugo&rsquo;s website.</a></p><p>Still having problems? Checkout our
+<a href=/notes/troubleshooting rel=noopener class=internal-link data-src=/notes/troubleshooting>FAQ and Troubleshooting guide</a>.</p><h2 id=multilingual>Multilingual</h2><p><a href=/notes/CJK-+-Latex-Support-%E6%B5%8B%E8%AF%95 rel=noopener class=internal-link data-src=/notes/CJK-+-Latex-Support-%E6%B5%8B%E8%AF%95>CJK + Latex Support (测试)</a> comes out of the box with Quartz.</p><p>Want to support languages that read from right-to-left (like Arabic)? Hugo (and by proxy, Quartz) supports this natively.</p><p>Follow the steps
+<a href=https://gohugo.io/content-management/multilingual/#configure-languages rel=noopener>Hugo provides here</a> and modify your <code>config.toml</code></p><p>For example:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=nx>defaultContentLanguage</span> <span class=p>=</span> <span class=s1>&#39;ar&#39;</span>
-<span class=p>[</span><span class=nx>languages</span><span class=p>]</span>
-  <span class=p>[</span><span class=nx>languages</span><span class=p>.</span><span class=nx>ar</span><span class=p>]</span>
-    <span class=nx>languagedirection</span> <span class=p>=</span> <span class=s1>&#39;rtl&#39;</span>
-    <span class=nx>title</span> <span class=p>=</span> <span class=s1>&#39;مدونتي&#39;</span>
-    <span class=nx>weight</span> <span class=p>=</span> <span class=mi>1</span>
-</code></pre></td></tr></table>
-</div>
-</div>
-</article>
-<hr>
-<div class=page-end>
-<div class=backlinks-container>
-<h3>Backlinks</h3>
-<ul class=backlinks>
-<li>
-<a href=/notes/CJK-+-Latex-Support-%E6%B5%8B%E8%AF%95>CJK + Latex Support (测试)</a>
-</li>
-<li>
-<a href=/notes/hosting>Deploying Quartz to the Web</a>
-</li>
-<li>
-<a href=/notes/troubleshooting>Troubleshooting and FAQ</a>
-</li>
-</ul>
-</div>
-<div>
-<script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script>
-<h3>Interactive Graph</h3>
-<div id=graph-container></div>
-<style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style>
-<script src=https://quartz.jzhao.xyz/js/graph.27e8521c25c27c79dea35f434c486167.js></script>
-<script>drawGraph("https://quartz.jzhao.xyz/notes/config","https://quartz.jzhao.xyz",[{"/moc":"#4388cc"}],-1,!0,!1,!0)</script>
-</div>
-</div>
-<div id=contact_buttons>
-<footer>
-<p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul>
-</footer>
-</div>
-<script src=https://quartz.jzhao.xyz/js/popover.e57188d2e4c06b0654e020b3a734bb62.min.js></script>
-<script>initPopover("https://quartz.jzhao.xyz")</script>
-</div>
-</body>
-</html>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=nx>defaultContentLanguage</span> <span class=p>=</span> <span class=s1>&#39;ar&#39;</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>languages</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>[</span><span class=nx>languages</span><span class=p>.</span><span class=nx>ar</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=nx>languagedirection</span> <span class=p>=</span> <span class=s1>&#39;rtl&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>title</span> <span class=p>=</span> <span class=s1>&#39;مدونتي&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>weight</span> <span class=p>=</span> <span class=mi>1</span>
+</span></span></code></pre></td></tr></table></div></div></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li><a href=/notes/CJK-+-Latex-Support-%E6%B5%8B%E8%AF%95>CJK + Latex Support (测试)</a></li><li><a href=/notes/hosting>Deploying Quartz to the Web</a></li><li><a href=/notes/troubleshooting>Troubleshooting and FAQ</a></li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://quartz.jzhao.xyz/js/graph.27e8521c25c27c79dea35f434c486167.js></script>
+<script>drawGraph("https://quartz.jzhao.xyz/notes/config","https://quartz.jzhao.xyz",[{"/moc":"#4388cc"}],-1,!0,!1,!0)</script></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div><script src=https://quartz.jzhao.xyz/js/popover.e57188d2e4c06b0654e020b3a734bb62.min.js></script>
+<script>initPopover("https://quartz.jzhao.xyz")</script></div></body></html>
