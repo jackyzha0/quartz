@@ -1,6 +1,6 @@
 ---
 title: "09-stacks-and-queues"
-tags: 
+tags: cosc201 lecture
 ---
 
 # 09-stacks-and-queues

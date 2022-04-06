@@ -1,6 +1,6 @@
 ---
 title: "10-heaps-and-heapsort"
-tags: 
+tags: cosc201 leacture
 ---
 
 # 10-heaps-and-heapsort
