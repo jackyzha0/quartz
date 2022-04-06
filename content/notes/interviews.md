@@ -1,6 +1,4 @@
 ---
-title: Interviews
-draft: true
 sr-due: 2022-04-22
 sr-interval: 30
 sr-ease: 247
@@ -20,9 +18,9 @@ sr-ease: 247
 ---------------------------------
 # Interviews
 ## Use Cases
-- [Evaluating designs](out/notes/evaluating-designs.md)
-- [Requirements elicitation](out/notes/requirements-elicitation.md)
-- [Needfinding](out/notes/needfinding.md)
+- [[Evaluating designs]]
+- [[Requirements elicitation]]
+- [[Needfinding]]
 
 ## Overview
 - direct and stuctured

@@ -1,6 +1,4 @@
 ---
-title: Big-O
-draft: true
 sr-due: 2022-06-01
 sr-interval: 62
 sr-ease: 271

@@ -1,7 +1,3 @@
----
-title: UML
-draft: true
----
 # UML
 
 A standard set of model constructs and notation defined by the object management group
@@ -56,10 +52,10 @@ e.g.,
 
 ![](https://i.imgur.com/CWGGErM.png)
 
-![Pasted image 20220323114226.png](None#invert)
+![[Pasted image 20220323114226.png#invert]]
 
 ### 3.4 Activites and transitions
-![Pasted image 20220323114618.png](None#invert)
+![[Pasted image 20220323114618.png#invert]]
 - activities
 	- take place over some pariod of time
 	- linked by transitions (arrows)
@@ -73,14 +69,14 @@ e.g.,
 - two or more alternative transitions depending on condition
 - every transiiton exiting the decision point must have a guard condition
 
-![Pasted image 20220323114826.png](None#invert)
+![[Pasted image 20220323114826.png#invert]]
 
 ### 3.6 Synchonisation bars
 - represents two or more activites running in parallel
 - transitions can be split into mutiple paths and recombined later
 - if a workflow is split then it must be recombined on the same diagram
 
-![Pasted image 20220323115040.png](None#invert)
+![[Pasted image 20220323115040.png#invert]]
 
 ### 3.7 swim lanes
 - same as BPMN
@@ -91,21 +87,21 @@ e.g.,
 	- people (actors)
 - can simplify processes
 
-![Pasted image 20220323115203.png](None#invert#invert)
+![[Pasted image 20220323115203.png#invert#invert]]
 
 ### 3.8 relationships to use cases
 - use case diagrams show the high level interactions between actors and cases
 - high level activity diagrams show the sequence of use cases within a workflow
 
-![Pasted image 20220323115346.png](None#invert)
+![[Pasted image 20220323115346.png#invert]]
 
 #### 3.8.1 example
 
-![Pasted image 20220323115415.png](None#invert)
-![Pasted image 20220323115451.png](None#invert)
-![Pasted image 20220323115536.png](None#invert)
+![[Pasted image 20220323115415.png#invert]]
+![[Pasted image 20220323115451.png#invert]]
+![[Pasted image 20220323115536.png#invert]]
 
 ### 3.9 Example producing a book
 
-![Pasted image 20220323114440.png](None#invert)
-![Pasted image 20220323114555.png](None#invert)
+![[Pasted image 20220323114440.png#invert]]
+![[Pasted image 20220323114555.png#invert]]

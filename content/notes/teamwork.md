@@ -1,6 +1,4 @@
 ---
-title: Teamwork
-draft: true
 sr-due: 2022-04-24
 sr-interval: 31
 sr-ease: 270

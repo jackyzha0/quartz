@@ -1,6 +1,4 @@
 ---
-title: Stakeholders
-draft: true
 sr-due: 2022-04-09
 sr-interval: 18
 sr-ease: 272
@@ -19,7 +17,7 @@ three primary groups
 - clients -> pay for and own systems
 - technical staff -> ensure system operation
 
-Analyst should id every type of stakeholder during [Systems development lifecycle (SDLC)](out/notes/systems-development-lifecycle-sdlc.md#^2d7976)
+Analyst should id every type of stakeholder during [[Systems development lifecycle (SDLC)#^2d7976]]
 
 ### users as stakeholders
 horizontal user roles -> information flow across dept's

@@ -7,11 +7,8 @@
         "id": "a12701fbd6d13db8",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "content/_index.md",
-            "mode": "source"
-          }
+          "type": "empty",
+          "state": {}
         }
       }
     ],
@@ -68,7 +65,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/_index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,8 +84,13 @@
   },
   "active": "a12701fbd6d13db8",
   "lastOpenFiles": [
+    "content/notes/analysis-of-recursive-algorithms.md",
+    "content/notes/approches-to-systems-development.md",
     "content/_index.md",
-    "content/203-human-computer-interaction.md",
-    "content/notes/index.md"
+    "content/notes/troubleshooting.md",
+    "notes/hosting.md",
+    "out/notes/201-information-systems.md",
+    "content/notes/index.md",
+    "content/203-human-computer-interaction.md"
   ]
 }

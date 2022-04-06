@@ -1,10 +1,6 @@
----
-title: Finance
-draft: true
----
 # Finance
 ## Trading
-[Options](out/notes/options.md)
+[[Options]]
 
 ## Tech
-[Blockchain](None)
+[[Blockchain]]

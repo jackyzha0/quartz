@@ -1,6 +1,4 @@
 ---
-title: Prototyping
-draft: true
 sr-due: 2022-04-16
 sr-interval: 32
 sr-ease: 270
@@ -23,13 +21,13 @@ Quickly creating a minimal, functioning approximate version of an idea, which re
 
 > "Prototypes are questions. Ask lots of them"
 
-Rapid Prototyping as [Simulated Annealing](out/notes/simulated-annealing.md)
+Rapid Prototyping as [[Simulated Annealing]]
 
 ## Goals
 - minimise time spent
 - maximise information gained
 	- cost of change increases with time
-- help [stakeholders](out/notes/stakeholders.md) understand ideas
+- help [[stakeholders]] understand ideas
 
 ## Traits of a good prototype:
 - not fully complete
@@ -42,7 +40,7 @@ Rapid Prototyping as [Simulated Annealing](out/notes/simulated-annealing.md)
 - Role -> Overall Experience
 
 
-![Pasted image 20220308101601.png](None)
-![Pasted image 20220308101937.png](None)
-![Pasted image 20220308102125.png](None)
-![Pasted image 20220308101115.png](None)
+![[Pasted image 20220308101601.png]]
+![[Pasted image 20220308101937.png]]
+![[Pasted image 20220308102125.png]]
+![[Pasted image 20220308101115.png]]

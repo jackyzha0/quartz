@@ -1,7 +1,3 @@
----
-title: Debugging
-draft: true
----
 # Debugging
 removing technical faults
 isolaing and remove technical faults

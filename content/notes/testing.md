@@ -1,7 +1,3 @@
----
-title: Testing
-draft: true
----
 # Testing
 most software will contain bugs
 bug severity if not always equivalent to bug priority

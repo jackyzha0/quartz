@@ -1,7 +1,3 @@
----
-title: Documentation
-draft: true
----
 # Documentation
 ## 1 Who, what where
 - Audience

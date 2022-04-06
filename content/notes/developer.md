@@ -1,6 +1,4 @@
 ---
-title: Developer
-draft: true
 sr-due: 2022-05-13
 sr-interval: 46
 sr-ease: 290
@@ -9,7 +7,7 @@ tags: #review
 
 ---
 # Developer
-![Pasted image 20220301172040.png](None)
+![[Pasted image 20220301172040.png]]
 
 ## Role
 - translate technical specs into code

@@ -1,6 +1,4 @@
 ---
-title: Needfinding
-draft: true
 sr-due: 2022-04-09
 sr-interval: 18
 sr-ease: 270
@@ -29,7 +27,7 @@ needdfinding tries to identify issues, often through observational studies (qual
 > -malcolm gladwell
 
 ## Methods
-- Participant [Observation](out/notes/observation.md)
+- Participant [[Observation]]
 	- Apprenticeship
 		- set a partnership with the people to be observed
 		- be taught the steps in the process
@@ -46,7 +44,7 @@ needdfinding tries to identify issues, often through observational studies (qual
 			- similarities and differences across people
 			- other types of context that are relevant -> time of day, social context
 		
-- [Interviews](out/notes/interviews.md)
+- [[Interviews]]
 	- avoid leading questions
 	- choose sample representative of real users
 	- often impractical

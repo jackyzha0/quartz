@@ -1,9 +1,5 @@
----
-title: HCI
-draft: true
----
 #flashcards 
-![Pasted image 20220302102809.png](None)
+![[Pasted image 20220302102809.png]]
 # HCI
 
 HCI definition::The design and use of computer technology, focused on the interfaces between users and computers

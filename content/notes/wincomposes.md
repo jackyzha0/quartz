@@ -1,7 +1,3 @@
----
-title: WinComposeS
-draft: true
----
 ≥ alt >=
 
 ½ alt 1 2

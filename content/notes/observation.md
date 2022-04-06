@@ -1,6 +1,4 @@
 ---
-title: Observation
-draft: true
 sr-due: 2022-05-03
 sr-interval: 30
 sr-ease: 246
@@ -34,5 +32,5 @@ sr-ease: 246
 - automatic protocol analysis tools available (esp. in usability labs)
 
 ## 3 Use Cases
-[Needfinding](out/notes/needfinding.md)
-[Evaluating designs](out/notes/evaluating-designs.md)
+[[Needfinding]]
+[[Evaluating designs]]

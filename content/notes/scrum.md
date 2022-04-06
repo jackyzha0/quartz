@@ -1,6 +1,4 @@
 ---
-title: SCRUM
-draft: true
 sr-due: 2022-04-19
 sr-interval: 28
 sr-ease: 270
@@ -19,7 +17,7 @@ Product owner - cllient stakeholder who controls backlog
 Scrum master - project manager
 ##### Scrum sprint
 A time controlled mini-project to implement part of the system
-![Pasted image 20220308134247.png](None)
+![[Pasted image 20220308134247.png]]
 
 ##### Scrum  practices
 scope of sprint is frozen

@@ -1,6 +1,4 @@
 ---
-title: Git
-draft: true
 sr-due: 2022-04-12
 sr-interval: 29
 sr-ease: 270
@@ -38,7 +36,7 @@ but you dont want to manage user-level control
 unknown users can fork then add a feature/bug then do a merge request which can be reviewed
 
 ## git repos
-[Repositories](out/notes/git-cheat-sheet.md#^3b3a5d) maintain code history
+[[Git Cheat Sheet#^3b3a5d|Repositories]] maintain code history
 can be conceptualised as a graph
 ```mermaid
 	graph RL
@@ -68,12 +66,12 @@ can be conceptualised as a graph
 	commit
 ```
 
-![300](None)
+![[Pasted image 20220306103955.png|300]]
 - nodes are commits -> immutable snapshots of the tracked files
 - edges record how nodes emerged over time
 	- arrows can be read as "is derived from"
 
-git is a [Decentralised and Centralised VCS](out/notes/version-control-systems.md#^98d838)
+git is a [[Version Control Systems#^98d838|Decentralised and Centralised VCS]]
 - every team members has their own local copy of the repo
 - git repos are often syned with a server: github, gitlab,etc
 

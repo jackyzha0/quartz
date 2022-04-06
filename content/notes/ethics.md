@@ -1,16 +1,12 @@
----
-title: Ethics
-draft: true
----
 
 
 
 coded biases doco
 # Ethics
 ## 1 Case studies
-1. [facial recognition in US riots 2021-01-06](out/notes/facial-recognition-in-us-riots-2021-01-06.md)
-2. [Anti govt protest china](out/notes/anti-govt-protest-china.md)
-3. [How is safe enough for autonomous vehicles](out/notes/how-is-safe-enough-for-autonomous-vehicles.md)
+1. [[facial recognition in US riots 2021-01-06]]
+2. [[Anti govt protest china]]
+3. [[How is safe enough for autonomous vehicles]]
 
 ### 1.1 Differences 1 vs 2
 Govt vs vigilante

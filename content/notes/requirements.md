@@ -1,6 +1,4 @@
 ---
-title: Requirements
-draft: true
 sr-due: 2022-04-06
 sr-interval: 15
 sr-ease: 232
@@ -66,15 +64,15 @@ Key concepts
 - constraints of development process
 
 ## requirements in agile methodologies
-[UP](out/notes/agile-development.md#^e2bc0b)
+[[Agile Development#^e2bc0b|UP]]
 - Requirements (based on use cases) mostly elicited, modelled, and refined during inception, elaboration, and construction phases.
 - Functional requirements implemented before technical, performance, reliability requirements.
 
-[XP](out/notes/agile-development.md#^e9fd09)
+[[Agile Development#^e9fd09|XP]]
 - Based on user stories rather than explicit individual requirements.
 - Continuous involvement of users who can make business decisions about functionality and scope.
 
-[Scrum](out/notes/agile-development.md#^4ddbdc)
+[[Agile Development#^4ddbdc|Scrum]]
 - user stories (if mapped back to business process to create stucture to the product backlog)
 - requirements owned and prioritised by the product owner
 
@@ -137,7 +135,7 @@ furps + adds
 - physical
 
 **examples**
-![300](None)
+![[Pasted image 20220310162958.png|300]]
 
 ## Consequences of poor requirements
 - Delays and extra costs
@@ -148,6 +146,6 @@ furps + adds
 ## Causes of poor requirements
 - problem not well understood (domain comlpexity)
 - misunderstanding between parties
-- [stakeholders](out/notes/stakeholders.md) -> not trained, dont have authority, are not available/plentiful
+- [[stakeholders]] -> not trained, dont have authority, are not available/plentiful
 - continually evolving requirements
 - requirements are -> incomplete/abmiguous/inconsistent/overlapping/unimplementable

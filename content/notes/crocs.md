@@ -1,9 +1,5 @@
----
-title: CROCS
-draft: true
----
 # CROCS - Communist republic of computer science
-![Pasted image 20220311100212.png](None) ![Pasted image 20220311100213.png](None)
+![[Pasted image 20220311100212.png]] ![[Pasted image 20220311100213.png]]
 
 ## TODO
 - [ ] Setup gitlab

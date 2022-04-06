@@ -1,6 +1,4 @@
 ---
-title: Branch
-draft: true
 sr-due: 2022-04-10
 sr-interval: 13
 sr-ease: 210
