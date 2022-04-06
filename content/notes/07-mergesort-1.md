@@ -5,8 +5,6 @@ tags:
 - lecture
 ---
 
-# 07-mergesort-1
-
 # Divide and conquer
 
 1. pre ⇒ break apartinto two or more smaller problems whose size add up to at most n

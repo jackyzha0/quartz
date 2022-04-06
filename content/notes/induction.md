@@ -4,8 +4,6 @@ tags:
 - cosc201
 ---
 
-# induction
-
 # Induction
 ## 1 PECS
 Phases of argument by induction

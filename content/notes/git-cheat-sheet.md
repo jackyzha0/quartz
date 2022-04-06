@@ -4,8 +4,6 @@ tags:
 - cheatsheet
 ---
 
-# Git Cheat Sheet
-
 ## 1 Commands
 - Clone -> create local copy of remote repo
 - Commit -> save changes to local repo

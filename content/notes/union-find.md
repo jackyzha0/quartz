@@ -5,8 +5,6 @@ tags:
 - datastructure
 ---
 
-# union-find
-
 ## 1 Example
 - We have 12 'objects'
 - *Some* pairs have been connected

@@ -6,8 +6,6 @@ tags:
 - course
 ---
 
-# <% tp.file.title %>
-
 ## 1 Course Outlines
 
 - [[<% tp.file.title %>-outline]]

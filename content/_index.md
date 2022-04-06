@@ -2,8 +2,6 @@
 title: "Jet Hughes"
 ---
 
-# My Notes
-
 ## 1 Papers
 
 - [[notes/cosc-201]]
@@ -12,3 +10,5 @@ title: "Jet Hughes"
 - [[notes/info-203]]
 
 ## 2 Other
+
+- [[notes/templates]]

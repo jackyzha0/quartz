@@ -4,6 +4,4 @@ tags:
 - cosc202
 ---
 
-# 09-documentation
-
 [[documentation]]

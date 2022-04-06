@@ -4,8 +4,6 @@ tags:
 - cosc201
 ---
 
-# big-theta
-
 >Big theta means $f(n) = \Theta(g(n))$ if there are constants 0 < B < A such that for all sufficiently large n, ==$B × g(n) ≤ f(n) ≤ A × g(n)$==
 
 - Upper and lower bound

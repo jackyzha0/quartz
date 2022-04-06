@@ -7,8 +7,6 @@ tags:
 - cosc201
 ---
 
-# Cosc 201
-
 ## 1 Course Outlines
 
 - [[notes/cosc-201-outline]]

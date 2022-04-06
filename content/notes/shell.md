@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# shell
-
 - start and stop OS processes
 - used to control OS
 - connect output of one OS process to input of another process -> this is the idea of Unix pipes

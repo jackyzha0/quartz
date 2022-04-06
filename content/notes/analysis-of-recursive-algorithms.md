@@ -4,8 +4,6 @@ tags:
 - cosc201
 ---
 
-# analysis-of-recursive-algorithms
-
 - induction and recursion are linked
 - inductive approach is esential for understanding time-complexity of resursive algorithms
 

@@ -11,7 +11,7 @@ tags:
 5. Describe a way in which CI scrupts scan handle secrets
 6. OUtline uses of local git hook scripts
 
-# 11-continuous-integration-2
+
 
 CI runs pipellines defined in .gitlab-ci.yaml asynchronously
 

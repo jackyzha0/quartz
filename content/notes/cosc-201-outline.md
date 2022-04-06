@@ -5,8 +5,6 @@ tags:
 - outline
 ---
 
-# cosc-201-outline
-
 - [[notes/big-o]]
 - [[notes/big-theta]]
 - [[notes/induction]]

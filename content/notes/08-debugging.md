@@ -4,6 +4,4 @@ tags:
 - cosc202
 ---
 
-# 08-debugging
-
 [[notes/debugging]]

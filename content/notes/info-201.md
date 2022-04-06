@@ -7,12 +7,10 @@ tags:
 - info201
 ---
 
-# info-201
-
 ## 1 Course Outlines
 
-- [[info-201-outline]]
-- [[info-201-lectures]]
+- [[notes/info-201-outline]]
+- [[notes/info-201-lectures]]
 
 ## 2 Assignments
 

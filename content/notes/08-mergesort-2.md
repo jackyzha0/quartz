@@ -5,8 +5,6 @@ tags:
 - lecture
 ---
 
-# 08-mergesort-2
-
 recall definition of merge sort
 - pre ⇒ split
 - rec ⇒ sort pieces

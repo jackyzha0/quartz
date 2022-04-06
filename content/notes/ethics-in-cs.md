@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# ethics-in-cs
-
 ## 1 Case studies
 
 1. [[notes/facial-recognition-in-US-riots-2021-01-06]]

@@ -4,8 +4,6 @@ tags:
 - cosc201
 ---
 
-# stacks-and-queues
-
 Dynamic linear data types (interface)
 
 - an abstraction of a collection of data organised "in a line" which supprts addition of new elements and the removal of (some) old elements

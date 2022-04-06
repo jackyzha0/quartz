@@ -5,8 +5,6 @@ tags:
 - datastructure
 ---
 
-# heap
-
 A tree where:
 
 1. every elements should be greater than ites children

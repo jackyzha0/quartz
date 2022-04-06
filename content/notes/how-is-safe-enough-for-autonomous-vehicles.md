@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# how-is-safe-enough-for-autonomous-vehicles
-
 - How safe is safe enough?
 	- its impossible to be perfect
 	- discalimer about driving assistant in teslas

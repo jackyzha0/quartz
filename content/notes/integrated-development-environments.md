@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# integrated-development-environments
-
 ## 1 Source code editors
 - editor applications to help software development
 - provide features that help editing code

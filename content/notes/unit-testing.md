@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# unit-testing
-
 - divide code into units ⇒ test those units
 
 - consider appropriate scale

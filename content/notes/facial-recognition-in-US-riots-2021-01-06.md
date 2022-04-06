@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# facial-recognition-in-US-riots-2021-01-06
-
 capital riots occured on 2021-01-06
 
 there was video from the riots which contained faces

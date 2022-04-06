@@ -5,8 +5,6 @@ tags:
 - lecture
 ---
 
-# 10-heaps-and-heapsort
-
 ## 1 Overview
 [[notes/heap]]
 

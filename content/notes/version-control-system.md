@@ -4,8 +4,6 @@ tags:
 - info201
 ---
 
-# version-control-system
-
 VCSs (version control systems) Are systems to keep track of changes to a set of files
 E.g., [[git]]
 

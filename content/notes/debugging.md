@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# debugging
-
 removing technical faults
 isolaing and remove technical faults
 a human process

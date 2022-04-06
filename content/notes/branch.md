@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# branch
-
 Split current dev path into two to work on e.g., a bug or a feature
 
 ## 1 Overview

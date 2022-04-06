@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# documentation
-
 ## 1 Who, what where
 - Audience
 	- users

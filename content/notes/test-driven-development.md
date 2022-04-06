@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# test-driven-development
-
 tests are developed before the code
 
 are a spec of what the code should do

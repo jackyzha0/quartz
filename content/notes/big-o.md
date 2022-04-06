@@ -4,8 +4,6 @@ tags:
 - cosc201
 ---
 
-# big-o
-
 >Big O means $f(n) = O(g(n))$ if there is some constant $A > 0$ such that for all sufficiently large n, $f(n) ≤ A × g(n).$
 
 - Big O provides *upper bounds* only. (usually on worst case runtimes)

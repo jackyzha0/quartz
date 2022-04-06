@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# git
-
 - Git is a tool to track changes to sets of file
 - It is the most commonly used [[notes/version-control-system]]
 

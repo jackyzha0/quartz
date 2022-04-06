@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# continuous-integration
-
 ## 1 What is it
 continuous --> is always happening
 integration --> connecting software components

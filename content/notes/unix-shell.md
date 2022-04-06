@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# unix-shell
-
 - most common command shell (macOS, linux, android, ios)
 - bash is another common shell
 - windows shells:

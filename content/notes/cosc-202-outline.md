@@ -5,8 +5,6 @@ tags:
 - outline
 ---
 
-# cosc-202-outline
-
 - [[notes/consoles-terminals-shells]]
 - [[notes/git]]
 - [[notes/ethics-in-cs]]

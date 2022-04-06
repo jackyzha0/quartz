@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# 07-testing
-
 - [[notes/testing]]
 - [[notes/test-driven-development]]
 - [[notes/unit-testing]]

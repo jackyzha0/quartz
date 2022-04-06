@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# consoles-terminals-shells
-
 - console -> io device which is part of a computer (physical terminal)
 	- console is the device: -> terminal is program inside that device
 - terminal -> text input output environment (can be remote)

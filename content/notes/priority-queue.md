@@ -5,8 +5,6 @@ tags:
 - datastructure
 ---
 
-# priority-queue
-
 - A dynamic linear data type that supports addition and removal on entrie 
 - each entry hase a value and a priority (key)
 - removal returns the item with the greatest priority 

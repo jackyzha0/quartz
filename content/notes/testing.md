@@ -4,8 +4,6 @@ tags:
 - cosc202
 ---
 
-# testing
-
 - most software will contain bugs
 - bug severity if not always equivalent to bug priority
 - testing is seeking out bugs
