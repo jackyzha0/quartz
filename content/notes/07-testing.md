@@ -7,8 +7,8 @@ tags:
 # 07-testing
 
 - [[notes/testing]]
-- [[test-driven-development]]
-- [[unit-testing]]
+- [[notes/test-driven-development]]
+- [[notes/unit-testing]]
 
 - undnerstand that testing is useful for detecting bugs
 - contrast different types of testting

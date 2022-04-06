@@ -5,8 +5,8 @@ tags:
 - cosc202
 ---
 
-- [[07-testing]]
-- [[08-debugging]]
-- [[09-documentation]]
-- [[10-continuous-integration-1]]
-- [[11-continuous-integration-2]]
+- [[notes/07-testing]]
+- [[notes/08-debugging]]
+- [[notes/09-documentation]]
+- [[notes/10-continuous-integration-1]]
+- [[notes/11-continuous-integration-2]]
