@@ -491,30 +491,39 @@ header {
   }
 }
 
+@keyframes dropin {
+  0% {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+  1% {
+    display: inline-block;
+    opacity: 0;
+    transform: translate(-50%, 40%);
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 20%);
+  }
+}
+
 .popover {
   z-index: 999;
   position: absolute;
   width: 20em;
-  display: inline-block;
-  visibility: hidden;
+  display: none;
   background-color: var(--light);
   padding: 1em;
   border: 1px solid var(--outlinegray);
   border-radius: 5px;
   transform: translate(-50%, 40%);
-  opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
-  transition-delay: 0.1s;
   user-select: none;
-
-  & > * {
-    display: none;
-  }
-
-  &.visible > * {
-    display: inline-block;
-  }
+  overflow-wrap: anywhere;
+  box-shadow: 6px 6px 36px 0px rgba(0,0,0,0.25);
 
   @media all and (max-width: 600px) {
     display: none;
@@ -524,6 +533,8 @@ header {
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, 20%);
+    display: inline-block;
+    animation: dropin 0.2s ease;
   }
 
   & > h3 {
@@ -534,6 +545,8 @@ header {
   & > .meta {
     margin-top: 0.25em;
     opacity: 0.5;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.8rem;
   }
 
   & > p {
@@ -542,6 +555,8 @@ header {
     user-select: none;
   }
 }
+
+
 
 #contact_buttons ul {
   list-style-type: none;
