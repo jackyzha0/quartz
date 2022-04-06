@@ -1,7 +1,8 @@
 ---
 title: "10-continuous-integration-1"
 tags: 
-- cosc202
+- cosc202 
+- lecture
 ---
 
 [[continuous-integration]]

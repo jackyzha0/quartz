@@ -1,7 +1,8 @@
 ---
 title: "08-personas-and-scenarios"
 tags: 
-- info203
+- info203 
+- lecture
 ---
 
 

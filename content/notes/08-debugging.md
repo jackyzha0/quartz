@@ -1,7 +1,8 @@
 ---
 title: "08-debugging"
 tags: 
-- cosc202
+- cosc202 
+- lecture
 ---
 
 [[notes/debugging]]

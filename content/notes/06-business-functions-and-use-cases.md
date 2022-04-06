@@ -1,7 +1,8 @@
 ---
 title: "06-business-functions-and-use-cases"
 tags: 
-- info201
+- info201 
+- lecture
 ---
 
 [[notes/approaches-to-systems-development]]

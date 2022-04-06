@@ -1,7 +1,8 @@
 ---
 title: "11-continuous-integration-2"
 tags: 
-- cosc202
+- cosc202 
+- lecture
 ---
 
 1. apprecitae that gitlab is a xomplex software

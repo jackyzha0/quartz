@@ -39,7 +39,7 @@ unknown users can fork then add a feature/bug then do a merge request which can 
 
 ## 3 git repos
 
-[[notes/git-cheat-sheet|Repositories]] maintain code history
+[[cheatsheets/git-cheat-sheet|Repositories]] maintain code history
 can be conceptualised as a graph
 
 ```mermaid

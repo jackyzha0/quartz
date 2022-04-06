@@ -15,3 +15,8 @@ tags:
 - [[notes/approaches-to-systems-development]]
 - [[notes/business-functions]]
 - [[notes/use-case-diagrams]]
+- [[notes/business-process]]
+- [[notes/business-process-model]]
+- [[notes/business-process-model-and-notation]]
+- [[notes/UML]]
+- [[notes/entity-relationship-diagrams]]

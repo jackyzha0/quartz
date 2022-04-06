@@ -1,7 +1,8 @@
 ---
 title: "07-testing"
 tags: 
-- cosc202
+- cosc202 
+- lecture
 ---
 
 - [[notes/testing]]

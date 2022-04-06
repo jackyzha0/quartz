@@ -1,5 +1,8 @@
 ---
 title: "10-heaps-and-heapsort"
+sr-due: 2022-04-08
+sr-interval: 3
+sr-ease: 250
 tags: 
 - cosc201 
 - lecture

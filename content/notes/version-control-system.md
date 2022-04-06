@@ -16,7 +16,7 @@ E.g., [[git]]
 - not restrict workflow
 
 ## 2 Terms
-[[notes/git-cheat-sheet]]
+[[cheatsheets/git-cheat-sheet]]
 
 ## 3 Discipline
 - Pull/Push Regularly

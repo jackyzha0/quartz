@@ -1,7 +1,8 @@
 ---
 title: "07-business-process-modelling"
 tags: 
-- info201
+- info201 
+- lecture
 ---
 
 - understand core onepts realted to business process mondelling
