@@ -4,7 +4,7 @@ year: 2022
 semester: 1
 ---
 
-#course
+#course #cosc-201
 
 # Cosc 201
 
