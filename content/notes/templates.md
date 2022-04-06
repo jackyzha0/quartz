@@ -1,3 +1,0 @@
-[[Day]]
-[[DailyTemplate]]
-[[Front Matter]]

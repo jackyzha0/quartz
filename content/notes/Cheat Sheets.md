@@ -1,3 +1,0 @@
-
-[[Git Cheat Sheet]]
-[[WinComposeS]]
