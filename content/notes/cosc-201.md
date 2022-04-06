@@ -9,10 +9,10 @@ tags: course, cosc201
 
 ## 1 Course Outlines
 
-[[cosc-201-outline]]
-[[cosc-201-lectures]]
+- [[cosc-201-outline]]
+- [[cosc-201-lectures]]
 
 ## 2 Assignments
 
-[[assignment-01]]
-[[assignment-02]]
+- [[assignment-02]]
+- [[assignment-01]]
