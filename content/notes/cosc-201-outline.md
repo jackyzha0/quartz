@@ -4,6 +4,9 @@ tags:
 - cosc201 
 - outline
 ---
+links: [[notes/cosc-201]]
+
+---
 
 - [[notes/aymptotic-notation]]
 - [[notes/induction]]

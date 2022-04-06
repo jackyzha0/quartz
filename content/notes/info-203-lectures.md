@@ -3,6 +3,9 @@ title: "info-203-lectures"
 tags: 
 - info203
 ---
+link: [[notes/info-203]]
+
+---
 
 - [[notes/07-heuristic-evaluation-cont]]
 - [[notes/08-personas-and-scenarios]]

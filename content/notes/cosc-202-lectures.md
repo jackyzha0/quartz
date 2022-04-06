@@ -4,6 +4,9 @@ tags:
 - lectures
 - cosc202
 ---
+links: [[[notes/cosc-202]]]
+
+---
 
 - [[notes/07-testing]]
 - [[notes/08-debugging]]

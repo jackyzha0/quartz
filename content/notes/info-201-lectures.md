@@ -3,6 +3,9 @@ title: "info-201-lectures"
 tags: 
 - info201
 ---
+links: [[notes/info-201]]
+
+---
 
 - [[notes/06-business-functions-and-use-cases]]
 - [[notes/07-business-process-modelling]]

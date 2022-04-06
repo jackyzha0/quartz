@@ -4,6 +4,9 @@ tags:
 - cosc201
 - lectures
 ---
+links: [[notes/cosc-201]]
+
+---
 
 - [[notes/07-mergesort-1]]
 - [[notes/08-mergesort-2]]

@@ -3,6 +3,9 @@ title: "info-201-outline"
 tags: 
 - info201
 ---
+links: [[notes/info-201]]
+
+---
 
 - [[notes/version-control-system]]
 - [[notes/business-analyst]]

@@ -4,6 +4,9 @@ tags:
 - cosc202 
 - outline
 ---
+links: [[notes/cosc-202]]
+
+---
 
 - [[notes/consoles-terminals-shells]]
 - [[notes/git]]

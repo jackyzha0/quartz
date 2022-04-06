@@ -6,11 +6,15 @@ tags:
 - course
 - cosc201
 ---
+links: [[_index]]
+
+---
+
 
 - [[notes/cosc-201-outline]]
 - [[notes/cosc-201-lectures]]
 
-## 2 Assignments
+## 1 Assignments
 
 - [[notes/assignment-01]]
 - [[notes/assignment-02]]
