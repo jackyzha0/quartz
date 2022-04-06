@@ -7,8 +7,6 @@ tags:
 - info201
 ---
 
-## 1 Course Outlines
-
 - [[notes/info-201-outline]]
 - [[notes/info-201-lectures]]
 

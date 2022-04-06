@@ -7,8 +7,6 @@ tags:
 - cosc202
 ---
 
-## 1 Course Outlines
-
 - [[notes/cosc-202-lectures]]
 - [[notes/cosc-202-outline]]
 
