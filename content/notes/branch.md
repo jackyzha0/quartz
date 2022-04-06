@@ -57,7 +57,7 @@ Split current dev path into two to work on e.g., a bug or a feature
 
 ## 4 continuous integration
 
-	[[continuous-integration]]
+	[[notes/continuous-integration]]
 
 - [CI vs feature branch](https://www.youtube.com/watch?v=v4lijkq6Myfc)
 - [Cl vs feature branch](https://www.youtube.com/watch?v=IXQEi1O5!OI)

@@ -10,8 +10,8 @@ tags:
 	- console is the device: -> terminal is program inside that device
 - terminal -> text input output environment (can be remote)
 	- windows terminal
-- [[shell]] -> program which the terminal/console sends input to which sends command to the OS
-	- [[unix-shell]]
+- [[notes/shell]] -> program which the terminal/console sends input to which sends command to the OS
+	- [[notes/unix-shell]]
 	- powershell
 	- cmd
 	- bash, fish, zsh, ksh, sh, tsch

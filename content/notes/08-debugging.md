@@ -6,4 +6,4 @@ tags:
 
 # 08-debugging
 
-[[debugging]]
+[[notes/debugging]]

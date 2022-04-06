@@ -8,9 +8,9 @@ tags:
 
 ## 1 Case studies
 
-1. [[facial-recognition-in-US-riots-2021-01-06]]
-2. [[anti-govt-protest-china]]
-3. [[how-is-safe-enough-for-autonomous-vehicles]]
+1. [[notes/facial-recognition-in-US-riots-2021-01-06]]
+2. [[notes/anti-govt-protest-china]]
+3. [[notes/how-is-safe-enough-for-autonomous-vehicles]]
 
 ### 1.1 Differences 1 vs 2
 Govt vs vigilante

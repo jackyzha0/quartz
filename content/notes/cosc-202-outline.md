@@ -7,8 +7,8 @@ tags:
 
 # cosc-202-outline
 
-- [[consoles-terminals-shells]]
-- [[git]]
-- [[ethics-in-cs]]
-- [[integrated-development-environments]]
-- [[branch]]
+- [[notes/consoles-terminals-shells]]
+- [[notes/git]]
+- [[notes/ethics-in-cs]]
+- [[notes/integrated-development-environments]]
+- [[notes/branch]]

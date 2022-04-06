@@ -7,7 +7,7 @@ tags:
 # git
 
 - Git is a tool to track changes to sets of file
-- It is the most commonly used [[version-control-system]]
+- It is the most commonly used [[notes/version-control-system]]
 
 ## 1 Team git protocols
 
