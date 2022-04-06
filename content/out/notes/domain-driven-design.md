@@ -1,5 +1,6 @@
 ---
 title: Domain Driven Design
+draft: true
 aliases: DDD
 sr-due: 2022-04-12
 sr-interval: 19

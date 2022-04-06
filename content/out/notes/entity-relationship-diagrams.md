@@ -1,5 +1,6 @@
 ---
 title: Entity Relationship Diagrams
+draft: true
 aliases: ERD, ERDs
 ---
 # Entity Relationship Diagrams

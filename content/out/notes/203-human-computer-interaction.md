@@ -1,5 +1,6 @@
 ---
 title: 203 Human-Computer interaction
+draft: true
 ---
 # INFO203 - Human Computer Interaction
 ## 1 Notes 

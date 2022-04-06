@@ -1,5 +1,6 @@
 ---
 title: Lecture 8 Merge sort 2
+draft: true
 sr-due: 2022-04-06
 sr-interval: 8
 sr-ease: 270

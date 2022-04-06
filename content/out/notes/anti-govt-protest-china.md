@@ -1,5 +1,6 @@
 ---
 title: Anti govt protest china
+draft: true
 ---
 # Anti govt protest China
 China used facial recognition to identofy protesters

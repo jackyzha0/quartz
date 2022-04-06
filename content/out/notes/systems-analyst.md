@@ -1,5 +1,6 @@
 ---
 title: Systems analyst
+draft: true
 sr-due: 2022-05-18
 sr-interval: 50
 sr-ease: 310

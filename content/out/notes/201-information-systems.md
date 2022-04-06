@@ -1,5 +1,6 @@
 ---
 title: 201 Information Systems
+draft: true
 ---
 # INFO 201 - Information Systems
 ## 1 Lectures

@@ -1,5 +1,6 @@
 ---
 title: unix shell
+draft: true
 sr-due: 2022-04-14
 sr-interval: 27
 sr-ease: 270

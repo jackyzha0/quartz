@@ -1,5 +1,6 @@
 ---
 title: Lecture 11 Design Heuristics 2
+draft: true
 sr-due: 2022-04-08
 sr-interval: 3
 sr-ease: 250

@@ -1,5 +1,6 @@
 ---
 title: Lecture 7 Business process modelling(BPM)
+draft: true
 aliases: BPMN
 sr-due: 2022-04-25
 sr-interval: 24

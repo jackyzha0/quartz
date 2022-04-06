@@ -1,5 +1,6 @@
 ---
 title: How is safe enough for autonomous vehicles
+draft: true
 ---
 # Case study 3 Autonomous vehicles
 - How safe is safe enough?

@@ -1,5 +1,6 @@
 ---
 title: HCI
+draft: true
 ---
 #flashcards 
 ![Pasted image 20220302102809.png](None)

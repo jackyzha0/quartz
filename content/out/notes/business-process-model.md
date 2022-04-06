@@ -1,5 +1,6 @@
 ---
 title: Business process model
+draft: true
 ---
 # 3 Business process model
 - graphical depiction fo one ormore business proccesses

@@ -1,5 +1,6 @@
 ---
 title: Lecture 10 OOP Concepts and UML
+draft: true
 sr-due: 2022-04-10
 sr-interval: 7
 sr-ease: 250

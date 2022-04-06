@@ -1,5 +1,6 @@
 ---
 title: Lecture 7 Personas and Scenarios
+draft: true
 sr-due: 2022-04-21
 sr-interval: 20
 sr-ease: 250

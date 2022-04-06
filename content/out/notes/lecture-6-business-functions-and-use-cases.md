@@ -1,5 +1,6 @@
 ---
 title: Lecture 6 Business Functions and Use Cases
+draft: true
 sr-due: 2022-05-04
 sr-interval: 30
 sr-ease: 250

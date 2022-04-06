@@ -1,5 +1,6 @@
 ---
 title: analysis of recursive algorithms
+draft: true
 aliases: Proof by induction, induction
 sr-due: 2022-05-02
 sr-interval: 29

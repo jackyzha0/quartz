@@ -1,5 +1,6 @@
 ---
 title: 201 Algorithms and data structures
+draft: true
 ---
 # COSC201 - Algorithms and Data Structures
 ## 1 Lectures

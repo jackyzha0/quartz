@@ -1,5 +1,6 @@
 ---
 title: Consoles Terminals Shells
+draft: true
 sr-due: 2022-04-10
 sr-interval: 27
 sr-ease: 270

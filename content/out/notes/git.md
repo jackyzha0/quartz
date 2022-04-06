@@ -1,5 +1,6 @@
 ---
 title: Git
+draft: true
 sr-due: 2022-04-12
 sr-interval: 29
 sr-ease: 270

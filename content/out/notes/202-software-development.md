@@ -1,5 +1,6 @@
 ---
 title: 202 Software development
+draft: true
 ---
 # COSC 202 - Software development
 ## 1 Lectures

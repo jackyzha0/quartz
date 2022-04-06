@@ -1,5 +1,6 @@
 ---
 title: Interviews
+draft: true
 sr-due: 2022-04-22
 sr-interval: 30
 sr-ease: 247

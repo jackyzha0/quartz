@@ -1,5 +1,6 @@
 ---
 title: Lecture 08 Debugging
+draft: true
 sr-due: 2022-04-09
 sr-interval: 8
 sr-ease: 250

@@ -1,5 +1,6 @@
 ---
 title: Usability
+draft: true
 ---
 #flashcards
 The extent to which a product cn be used by specifies users to achieve specified goals with effectivenesss, efficiency, and satisfaction in a specified context of use.

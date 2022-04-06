@@ -1,5 +1,6 @@
 ---
 title: Objects
+draft: true
 ---
 # 1 Objects
 an abastraction of somethin gin a problem domain, reflecting the capabilities of the system to keep information about it interact with it or  both

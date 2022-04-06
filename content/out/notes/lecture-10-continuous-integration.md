@@ -1,5 +1,6 @@
 ---
 title: Lecture 10 Continuous integration
+draft: true
 sr-due: 2022-04-11
 sr-interval: 8
 sr-ease: 250

@@ -1,5 +1,6 @@
 ---
 title: SCRUM
+draft: true
 sr-due: 2022-04-19
 sr-interval: 28
 sr-ease: 270

@@ -1,5 +1,6 @@
 ---
 title: Priority queue
+draft: true
 ---
 # Priority queue
 - A dynamic linear data type that supports addition and removal on entrie 

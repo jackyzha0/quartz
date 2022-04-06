@@ -1,5 +1,6 @@
 ---
 title: Integrated Development Environments
+draft: true
 aliases: IDE, IDEs, Integrated Development Environment, Integrated Development Environments
 sr-due: 2022-04-28
 sr-interval: 36

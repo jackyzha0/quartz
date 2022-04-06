@@ -1,5 +1,6 @@
 ---
 title: Business functions
+draft: true
 ---
 # Business functions
 - what the business ought to be doing

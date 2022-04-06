@@ -1,5 +1,6 @@
 ---
 title: Assignment 3
+draft: true
 ---
 [203 Human-Computer interaction](out/notes/203-human-computer-interaction.md)
 

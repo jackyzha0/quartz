@@ -1,5 +1,6 @@
 ---
 title: Union Find-Disjoint set
+draft: true
 sr-due: 2022-04-17
 sr-interval: 30
 sr-ease: 270

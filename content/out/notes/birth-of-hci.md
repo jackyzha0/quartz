@@ -1,5 +1,6 @@
 ---
 title: Birth of HCI
+draft: true
 ---
 # Birth of HCI
 ENIAC (one of the first programmable, electronic computers) 1946, and the first six programmers: Kay McNulty, Betty Jennings, Betty Snyder, Marlyn Meltzer, Fran Bilas, and Ruth Lichterman

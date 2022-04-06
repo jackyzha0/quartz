@@ -1,5 +1,6 @@
 ---
 title: Day
+draft: true
 ---
 <%* 
 const d = new Date().getDay()

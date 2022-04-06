@@ -1,5 +1,6 @@
 ---
 title: DailyTemplate
+draft: true
 ---
 [Daily notes](out/notes/daily-notes.md)
 

@@ -1,5 +1,6 @@
 ---
 title: Developer
+draft: true
 sr-due: 2022-05-13
 sr-interval: 46
 sr-ease: 290

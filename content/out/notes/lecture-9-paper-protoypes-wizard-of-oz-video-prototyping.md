@@ -1,5 +1,6 @@
 ---
 title: Lecture 9 Paper Protoypes, Wizard of OZ, Video Prototyping
+draft: true
 sr-due: 2022-04-08
 sr-interval: 7
 sr-ease: 270

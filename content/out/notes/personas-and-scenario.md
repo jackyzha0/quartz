@@ -1,5 +1,6 @@
 ---
 title: Personas and Scenario
+draft: true
 ---
 # Personas
 THe goals of a personas is their expectation of an end condition

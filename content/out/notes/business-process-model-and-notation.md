@@ -1,5 +1,6 @@
 ---
 title: Business Process Model and Notation
+draft: true
 aliases: BPMN
 ---
 # BPMN - Business Process Model and Notation

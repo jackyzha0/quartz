@@ -1,5 +1,6 @@
 ---
 title: Jet - Ohyay
+draft: true
 ---
 # ohyay
 | Heuristic | Severity |  Location | Description | Recommendation |

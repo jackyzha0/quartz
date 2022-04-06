@@ -1,5 +1,6 @@
 ---
 title: Heuristic Evaluation
+draft: true
 ---
 # Heuristic evaluation
 >"Heuristics are strategies derived from previous experiences with similar problems"

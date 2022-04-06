@@ -1,5 +1,6 @@
 ---
 title: Big theta
+draft: true
 sr-due: 2022-04-27
 sr-interval: 41
 sr-ease: 290

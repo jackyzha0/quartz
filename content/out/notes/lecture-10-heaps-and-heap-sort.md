@@ -1,5 +1,6 @@
 ---
 title: Lecture 10 Heaps and heap sort
+draft: true
 sr-due: 2022-04-08
 sr-interval: 3
 sr-ease: 250

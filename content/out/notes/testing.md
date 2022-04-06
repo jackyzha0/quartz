@@ -1,5 +1,6 @@
 ---
 title: Testing
+draft: true
 ---
 # Testing
 most software will contain bugs

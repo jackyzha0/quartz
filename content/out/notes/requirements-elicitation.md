@@ -1,5 +1,6 @@
 ---
 title: Requirements elicitation
+draft: true
 sr-due: 2022-04-15
 sr-interval: 24
 sr-ease: 274

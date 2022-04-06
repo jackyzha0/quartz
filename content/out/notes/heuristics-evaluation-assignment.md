@@ -1,5 +1,6 @@
 ---
 title: Heuristics Evaluation Assignment
+draft: true
 ---
 [Jet - Ohyay](out/notes/jet-ohyay.md)
 [Jet -Discord](out/notes/jet-discord.md)

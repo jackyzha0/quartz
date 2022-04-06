@@ -1,5 +1,6 @@
 ---
 title: Requirements
+draft: true
 sr-due: 2022-04-06
 sr-interval: 15
 sr-ease: 232

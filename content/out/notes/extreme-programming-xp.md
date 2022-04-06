@@ -1,5 +1,6 @@
 ---
 title: Extreme programming (XP)
+draft: true
 sr-due: 2022-04-08
 sr-interval: 17
 sr-ease: 250

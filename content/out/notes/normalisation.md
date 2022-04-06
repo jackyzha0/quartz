@@ -1,5 +1,6 @@
 ---
 title: Normalisation
+draft: true
 ---
 # 3 Normalisation
 formal process of eliminanting unnecessary redundancy in relations by splitting relations into smaller chunks

@@ -1,5 +1,6 @@
 ---
 title: Storyboards mockups, paper prototypes
+draft: true
 ---
 # Storyboard mockups prototypes
 

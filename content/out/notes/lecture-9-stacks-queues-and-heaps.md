@@ -1,5 +1,6 @@
 ---
 title: Lecture 9 Stacks queues and heaps
+draft: true
 sr-due: 2022-04-14
 sr-interval: 11
 sr-ease: 250

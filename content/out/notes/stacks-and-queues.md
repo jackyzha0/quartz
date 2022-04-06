@@ -1,5 +1,6 @@
 ---
 title: Stacks and queues
+draft: true
 ---
 # Stacks and queues
 Dynamic linear data types (interface)

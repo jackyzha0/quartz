@@ -1,5 +1,6 @@
 ---
 title: All the light we cannot see
+draft: true
 ---
 # All the light we cannot see
 ## Quotes

@@ -1,5 +1,6 @@
 ---
 title: Approches to systems development
+draft: true
 ---
 # Approches to systems development
 ## 1 traditional

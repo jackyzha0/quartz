@@ -1,5 +1,6 @@
 ---
 title: Continuous Integration
+draft: true
 ---
 # Continuous Integration
 ## 1 What is it

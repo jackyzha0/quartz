@@ -1,5 +1,6 @@
 ---
 title: Predictive adaptive spectrum
+draft: true
 sr-due: 2022-04-18
 sr-interval: 27
 sr-ease: 252

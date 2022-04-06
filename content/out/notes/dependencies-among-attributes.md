@@ -1,5 +1,6 @@
 ---
 title: Dependencies among attributes
+draft: true
 ---
 # 2 Dependencies among attributes
 ### 0.1 Functional Depenencies (FDs)

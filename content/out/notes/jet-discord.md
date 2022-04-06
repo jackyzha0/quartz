@@ -1,5 +1,6 @@
 ---
 title: Jet -Discord
+draft: true
 ---
 # Discord
 | Heuristic | Severity |  Location | Description | Recommendation |

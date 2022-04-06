@@ -1,5 +1,6 @@
 ---
 title: Business process
+draft: true
 ---
 # Business process
 - A sequence of tasks or steps required to carry out a particular business function e.g.,:

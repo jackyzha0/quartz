@@ -1,5 +1,6 @@
 ---
 title: Prototyping
+draft: true
 sr-due: 2022-04-16
 sr-interval: 32
 sr-ease: 270

@@ -1,5 +1,6 @@
 ---
 title: assignment 1
+draft: true
 ---
 # COSC201 Assignment 1: Counting the seas
 

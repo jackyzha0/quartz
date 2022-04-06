@@ -1,5 +1,6 @@
 ---
 title: Merge sort - divide and conquer
+draft: true
 sr-due: 2022-04-26
 sr-interval: 23
 sr-ease: 250

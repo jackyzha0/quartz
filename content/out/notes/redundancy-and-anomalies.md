@@ -1,5 +1,6 @@
 ---
 title: Redundancy and Anomalies
+draft: true
 ---
 # 1 Redundancy and Anomalies
 ### 0.1 Redundancy

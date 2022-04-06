@@ -1,5 +1,6 @@
 ---
 title: Observation
+draft: true
 sr-due: 2022-05-03
 sr-interval: 30
 sr-ease: 246

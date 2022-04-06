@@ -1,5 +1,6 @@
 ---
 title: Business analyst
+draft: true
 sr-due: 2022-05-14
 sr-interval: 53
 sr-ease: 290

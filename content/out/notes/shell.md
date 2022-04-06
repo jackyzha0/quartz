@@ -1,5 +1,6 @@
 ---
 title: shell
+draft: true
 sr-due: 2022-05-22
 sr-interval: 53
 sr-ease: 310

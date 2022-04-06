@@ -1,5 +1,6 @@
 ---
 title: Use case diagrams
+draft: true
 ---
 # Use case diagrams
 - specifies the participants (actors) and the relationships between them
