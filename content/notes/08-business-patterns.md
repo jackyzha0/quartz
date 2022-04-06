@@ -4,4 +4,4 @@ tags:
 - info201
 ---
 
-
+[[notes/entity-relationship-diagrams]]

@@ -12,3 +12,6 @@ tags:
 - [[notes/agile-development]]
 - [[notes/predictive-adaptive-spectrum]]
 - [[notes/requirements-elicitation]]
+- [[notes/approaches-to-systems-development]]
+- [[notes/business-functions]]
+- [[notes/use-case-diagrams]]

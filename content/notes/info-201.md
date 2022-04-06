@@ -9,10 +9,3 @@ tags:
 
 - [[notes/info-201-outline]]
 - [[notes/info-201-lectures]]
-
-## 1 Assignments
-
-- 
-
-## 2 Resources
-
