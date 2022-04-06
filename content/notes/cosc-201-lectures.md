@@ -7,7 +7,7 @@ tags:
 
 # Cosc 201 Lectures
 
-- [[07-mergesort-1]]
-- [[08-mergesort-2]]
-- [[09-stacks-and-queues]]
-- [[10-heaps-and-heapsort]]
+- [[notes/07-mergesort-1]]
+- [[notes/08-mergesort-2]]
+- [[notes/09-stacks-and-queues]]
+- [[notes/10-heaps-and-heapsort]]

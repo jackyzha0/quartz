@@ -1,6 +1,7 @@
 ---
 title: "stacks-and-queues"
 tags: 
+- cosc201
 ---
 
 # stacks-and-queues

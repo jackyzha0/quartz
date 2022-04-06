@@ -11,8 +11,8 @@ tags:
 
 ## 1 Course Outlines
 
-- [[cosc-202-lectures]]
-- [[cosc-202-outline]]
+- [[notes/cosc-202-lectures]]
+- [[notes/cosc-202-outline]]
 
 ## 2 Assignments
 

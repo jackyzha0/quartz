@@ -1,6 +1,7 @@
 ---
 title: "06-analysing-recurive-algorithms"
-tags: 
+tags:
+- cosc201
 ---
 
 # 06-analysing-recurive-algorithms

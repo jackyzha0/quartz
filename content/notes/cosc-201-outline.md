@@ -7,14 +7,14 @@ tags:
 
 # cosc-201-outline
 
-- [[big-o]]
-- [[big-theta]]
-- [[induction]]
-- [[analysis-of-recursive-algorithms]]
-- [[union-find]]
-- [[heap]]
-- [[sorting]]
-- [[heapsort]]
-- [[mergesort]]
-- [[quicksort]]
+- [[notes/big-o]]
+- [[notes/big-theta]]
+- [[notes/induction]]
+- [[notes/analysis-of-recursive-algorithms]]
+- [[notes/union-find]]
+- [[notes/heap]]
+- [[notes/sorting]]
+- [[notes/heapsort]]
+- [[notes/mergesort]]
+- [[notes/quicksort]]
 

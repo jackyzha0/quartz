@@ -11,10 +11,10 @@ tags:
 
 ## 1 Course Outlines
 
-- [[cosc-201-outline]]
-- [[cosc-201-lectures]]
+- [[notes/cosc-201-outline]]
+- [[notes/cosc-201-lectures]]
 
 ## 2 Assignments
 
-- [[assignment-01]]
-- [[assignment-02]]
+- [[notes/assignment-01]]
+- [[notes/assignment-02]]
