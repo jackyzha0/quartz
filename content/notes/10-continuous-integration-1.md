@@ -1,0 +1,16 @@
+---
+title: "10-continuous-integration-1"
+tags: 
+---
+
+# 10-continuous-integration-1
+
+[[continuous-integration]]
+
+1. explain the term continuous integration
+2. describe different purposes for CI
+3. indicate how CI jobs are usually triggered
+4. understand implications of CI running asynchronously
+5. Exlplain how to manage output from CI jobs
+6. describe role of stages and jobs within gitlab pipelines
+7. indicate how CI specifications are stored
