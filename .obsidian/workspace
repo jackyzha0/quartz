@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "content/203-human-computer-interaction.md",
+            "file": "content/_index.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/203-human-computer-interaction.md",
+                "file": "content/_index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,6 +88,7 @@
   },
   "active": "a12701fbd6d13db8",
   "lastOpenFiles": [
+    "content/_index.md",
     "content/203-human-computer-interaction.md",
     "content/notes/index.md"
   ]
