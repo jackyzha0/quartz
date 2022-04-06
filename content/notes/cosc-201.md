@@ -16,5 +16,5 @@ tags:
 
 ## 2 Assignments
 
-- [[assignment-02]]
 - [[assignment-01]]
+- [[assignment-02]]
