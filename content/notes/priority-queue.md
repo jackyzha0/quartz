@@ -1,6 +1,8 @@
 ---
 title: "priority-queue"
-tags: cosc201 datastructure
+tags: 
+- cosc201
+- datastructure
 ---
 
 # priority-queue

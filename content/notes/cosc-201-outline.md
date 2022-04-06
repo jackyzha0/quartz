@@ -1,6 +1,8 @@
 ---
 title: "cosc-201-outline"
-tags: cosc201 outline
+tags: 
+- cosc201 
+- outline
 ---
 
 # cosc-201-outline

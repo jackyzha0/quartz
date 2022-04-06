@@ -1,7 +1,9 @@
 ---
 title: "cosc-201-lectures"
+tags:
+- cosc201
+- lectures
 ---
-#cos201 #lectures
 
 # Cosc 201 Lectures
 

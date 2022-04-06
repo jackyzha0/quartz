@@ -2,7 +2,9 @@
 title: "info-203"
 year: 2022
 semester: 
-tags: course info203
+tags: 
+- course
+- info203
 ---
 
 # info-203

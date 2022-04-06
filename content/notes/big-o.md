@@ -1,6 +1,7 @@
 ---
 title: "big-o"
-tags: cosc201
+tags: 
+- cosc201
 ---
 
 # big-o

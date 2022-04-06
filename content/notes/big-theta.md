@@ -1,6 +1,7 @@
 ---
 title: "big-theta"
-tags: cosc201
+tags: 
+- cosc201
 ---
 
 # big-theta

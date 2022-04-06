@@ -1,6 +1,7 @@
 ---
 title: "induction"
-tags: cosc201
+tags: 
+- cosc201
 ---
 
 # induction

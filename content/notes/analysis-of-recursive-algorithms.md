@@ -1,6 +1,7 @@
 ---
 title: "analysis-of-recursive-algorithms"
-tags: cosc201
+tags: 
+- cosc201
 ---
 
 # analysis-of-recursive-algorithms

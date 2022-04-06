@@ -1,6 +1,8 @@
 ---
 title: "union-find"
-tags: cosc201 datastructure
+tags: 
+- cosc201 
+- datastructure
 ---
 
 # union-find

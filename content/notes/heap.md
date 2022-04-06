@@ -1,6 +1,8 @@
 ---
 title: "heap"
-tags: cosc201 datastructure
+tags: 
+- cosc201 
+- datastructure
 ---
 
 # heap
