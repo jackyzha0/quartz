@@ -12,5 +12,3 @@ title: "Jet Hughes"
 - [[notes/info-203]]
 
 ## 2 Other
-
-- [daily notes](notes/daily-notes)
