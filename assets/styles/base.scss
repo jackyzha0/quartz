@@ -505,8 +505,16 @@ header {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
-  transition-delay: 0.3s;
+  transition-delay: 0.1s;
   user-select: none;
+
+  & > * {
+    display: none;
+  }
+
+  &.visible > * {
+    display: inline-block;
+  }
 
   @media all and (max-width: 600px) {
     display: none;
