@@ -2,7 +2,9 @@
 title: "cosc-201"
 year: 2022
 semester: 1
-tags: course, cosc201
+tags: 
+- course
+- cosc201
 ---
 
 # Cosc 201
