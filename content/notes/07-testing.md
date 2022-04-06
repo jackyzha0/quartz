@@ -6,7 +6,7 @@ tags:
 
 # 07-testing
 
-- [[testing]]
+- [[notes/testing]]
 - [[test-driven-development]]
 - [[unit-testing]]
 

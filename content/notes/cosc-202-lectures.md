@@ -5,8 +5,6 @@ tags:
 - cosc202
 ---
 
-# Cosc 202 Lectures
-
 - [[07-testing]]
 - [[08-debugging]]
 - [[09-documentation]]
