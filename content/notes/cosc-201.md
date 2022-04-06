@@ -15,5 +15,5 @@ semester: 1
 
 ## 2 Assignments
 
-
-
+[[assignment-01]]
+[[assignment-02]]
