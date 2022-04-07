@@ -1,7 +1,7 @@
 ---
 title: "08-personas-and-scenarios"
-sr-due: 2022-04-05
-sr-interval: 8
+sr-due: 2022-04-30
+sr-interval: 23
 sr-ease: 250
 tags: 
 - info203 

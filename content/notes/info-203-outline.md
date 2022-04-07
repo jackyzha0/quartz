@@ -13,7 +13,7 @@ links: [[notes/info-203]]
 - [participant-observation](notes/participant-observation.md)
 - [interviewing](notes/interviewing.md)
 - [user-experience](notes/user-experience.md)
-- [usbability](notes/usbability.md)]
+- [usbability](notes/usbability.md)
 - [hci](notes/hci.md)
 - [storyboards](notes/storyboards.md)
 - [personas-and-scenarios](notes/personas-and-scenarios.md)

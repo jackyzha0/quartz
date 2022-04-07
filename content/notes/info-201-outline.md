@@ -12,6 +12,7 @@ links: [[notes/info-201]]
 - [systems-development-life-cycle](notes/systems-development-life-cycle.md)
 - [agile-development](notes/agile-development.md)
 - [predictive-adaptive-spectrum](notes/predictive-adaptive-spectrum.md)
+- 
 - [requirements-elicitation](notes/requirements-elicitation.md)
 - [approaches-to-systems-development](notes/approaches-to-systems-development.md)
 - [business-functions](notes/business-functions.md)
