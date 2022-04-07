@@ -10,7 +10,7 @@ tags:
 #unfinished 
 
 Why to evaluate using 'outside' people:
-- how do we know if a [[Prototyping|prototype]] is good
+- how do we know if a [prototype](notes/prototyping.md)] is good
 - designer/developers are not 'fresh' -> they already have experience with the product
 - designer/developers don't know what real users will do
 
@@ -100,16 +100,17 @@ Why to evaluate using 'outside' people:
 + easy to compare different products
 - responder bias
 - Not accurate representation of real product
-* e.g., ![[Pasted image 20220316130318.png]]
+* e.g., [](https://i.imgur.com/midv8VU.png)
+
 * Focus groups
 	* gathering groups of people to discuss an interface
 	* group setting can help or hinder
 	
 ### 0.6.3 Feedback from experts
-- [[Peer critique]]
-- [[Dogfooding]]
+- Peer critique
+- Dogfooding
 	- Using tools yourself
-- [[Heuristic Evaluation]]
+- [heuristic-evaluation](notes/heuristic-evaluation.md)
 	- structured feedback
 
 ### 0.6.4 Comparative experiments
@@ -124,17 +125,17 @@ Why to evaluate using 'outside' people:
 - observe what people do in the actual evironment
 - usually more long term
 	- find things not present in short term studies
-- [[Observation]]
+- [observation](notes/participant-observation.md)
 
 ### 0.6.6 Simulation and formal models
 - more mathmatical quantitative 
 - useful if you have a theory to test
 - often used for input techniques
 - can test multiple alternatives quickly
-- typically simulation is used in conjugtion with [[monte carlo optimisation]]
+- typically simulation is used in conjugtion with monte carlo optimisation
 
 ## 0.7 Query techniques
-- [[Interviews]]
+- [Interviews](Interviews)
 - questionnaires
 	- less flexible
 	- larger samples possible
