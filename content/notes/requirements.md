@@ -4,29 +4,32 @@ tags:
 - info201
 ---
 
+# 1 What are they
+
 > “…descriptions of how the system should behave, application domain information, constraints on the system’s operation, or specifications of a system property or attribute.”  - Kotonya and Sommerville, 2001, p. 6
 
 > “…a statement of need, something that some class of user or other stakeholder wants.” - Alexander and Stevens, 2002, p. 8
 
 Requirements are something an information system should do, or some constraint it should adhere to
 
-# 1 Requirements engineering
-
-> “…to cover all of the activities involved in discovering, documenting, and maintaining a set of requirements for a computer-based system.” - Kotonya and Sommerville, 2001, p. 8
-
-Requirements engineering is a robust methodology for the development of requirements. It is made  up of three key concepts.
-
-## 1.1 Discovery
-
-This is where you identify all the requirments of the system. [requirements-elicitation](notes/requirements-elicitation.md) is done here. Many techniques such as [interviewing](notes/interviewing.md), [participant-observation](notes/participant-observation.md), [prototyping](notes/prototyping.md), and more are used here.
+There two types of requirements. Functional requirements specify what the system should do. And constraints, which limit the way in which the system should do those things.
 
 
-## 1.2 Documenting
+# 2 How are they created
 
-This is where the requirements are specified and refined, and models are created. All the requirements are compiled into a [requirements document](notes/requirements-document)
+Requirements should be developed using the [requirements-engineering](notes/requirements-engineering.md) process. This process defined a robust way to develop requirements. It has three main steps: discovery, documenting, and maintenance. 
 
+Requirements can be defined using the [FURPS](notes/furps) framework. However, this is usually overkill.
 
-## 1.3 Maintenance
+Requirements can be communicated through natural language, [models](notes/models.md), [prototyping](notes/prototyping.md), 
+or even formal mathematical notation
 
-This occurs throughout development and is primarly focuses on manageing changes in the environment of the system
+Good requirements should adhere to  [these](notes/requirements-guidelines.md) guidelines.
 
+Every development process has a different apporach to guidelines. ... #unfinished
+
+# 3 What causes bad requirements
+
+- domain and/or problem not well understood
+- misnderstandings
+- continually evolving or incomplete/abmiguous/inconsistent/overlapping/unimplementable requirements

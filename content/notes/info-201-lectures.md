@@ -5,6 +5,7 @@ tags:
 ---
 links: [[notes/info-201]]
 
+- [04-requirements](notes/04-requirements)
 - [06-business-functions-and-use-cases](notes/06-business-functions-and-use-cases.md)
 - [07-business-process-modelling](notes/07-business-process-modelling.md)
 - [08-business-patterns](notes/08-business-patterns.md)
