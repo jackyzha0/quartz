@@ -23,11 +23,11 @@ CI usually tets abd buiolds your prokects
 
 runs on a repo server. Usuially persistent, internet accessible
 
-## 0.1 Gitlab overall architecture
+# 1 Gitlab overall architecture
 ![](https://i.imgur.com/whU7QoF.png) : not in exam
 - many different services used
 
-## 0.2 Gitlab runners
+# 2 Gitlab runners
 run CI scripts
 
 - gitlab.com is a cloud computing service
@@ -39,7 +39,7 @@ run CI scripts
 	- e.g., to use a particular GPU, or other hardware you have
 	- GItlab runner itself is a small program written in Go
 
-### 0.2.1 Runner architecture
+## 2.1 Runner architecture
 
 - runs jobs
 	- on isolated infrastructure
@@ -54,7 +54,7 @@ RHS shows GitLab.com's CI hosting: uses google cloud
 
 ![](https://i.imgur.com/RaeYc1I.png) : not in exam
 
-## 0.3 How CI chagned website hosting
+# 3 How CI chagned website hosting
 
 - need to share stifacts produced by CI jobs
 	- using the web to share artefacts is ideal
@@ -67,7 +67,7 @@ RHS shows GitLab.com's CI hosting: uses google cloud
 
 e.g., https://cosc202.cspages.otago.ac.nz
 
-## 0.4 Debugging CI scripts
+# 4 Debugging CI scripts
 
 - first ensure config files YAML is valid
 	- vuilt in gitlab editor checks YAML as you type
@@ -79,7 +79,7 @@ e.g., https://cosc202.cspages.otago.ac.nz
 		- e.g., `if command supposed to fail; then true; else true; fi`
 	- Complex scripting? Beste to put script in a file and run it from CI
 
-## 0.5 Secrets used by CI scripts
+# 5 Secrets used by CI scripts
 
 ![](https://i.imgur.com/XtCap0P.png)
 ![](https://i.imgur.com/W2xBi4d.png)
