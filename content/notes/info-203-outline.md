@@ -5,8 +5,6 @@ tags:
 ---
 links: [[notes/info-203]]
 
----
-
 - [[notes/big-picture]]
 - [[notes/birth-of-hci]]
 - [[notes/prototyping]]

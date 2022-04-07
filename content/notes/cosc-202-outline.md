@@ -6,8 +6,6 @@ tags:
 ---
 links: [[notes/cosc-202]]
 
----
-
 - [[notes/consoles-terminals-shells]]
 - [[notes/git]]
 - [[notes/ethics-in-cs]]

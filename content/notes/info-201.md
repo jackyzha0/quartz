@@ -8,7 +8,5 @@ tags:
 ---
 links: [[_index]]
 
----
-
 - [[notes/info-201-outline]]
 - [[notes/info-201-lectures]]

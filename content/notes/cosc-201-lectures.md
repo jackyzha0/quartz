@@ -6,8 +6,6 @@ tags:
 ---
 links: [[notes/cosc-201]]
 
----
-
 - [[notes/07-mergesort-1]]
 - [[notes/08-mergesort-2]]
 - [[notes/09-stacks-and-queues]]

@@ -5,8 +5,6 @@ tags:
 ---
 links: [[notes/info-201]]
 
----
-
 - [[notes/version-control-system]]
 - [[notes/business-analyst]]
 - [[notes/developer]]

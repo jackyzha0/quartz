@@ -8,13 +8,11 @@ tags:
 ---
 links:[[_index]]
 
----
-
 - [[notes/info-203-outline]]
 - [[notes/info-203-lectures]]
 - [[notes/info-203-videos]]
 
-## 1 Assignments
+## 0.1 Assignments
 
 - [[notes/ass-01-what-is-usability]]
 - [[notes/ass-02-heuristic-evaluation]]

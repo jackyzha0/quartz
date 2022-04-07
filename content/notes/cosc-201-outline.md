@@ -6,8 +6,6 @@ tags:
 ---
 links: [[notes/cosc-201]]
 
----
-
 - [[notes/aymptotic-notation]]
 - [[notes/induction]]
 - [[notes/analysis-of-recursive-algorithms]]

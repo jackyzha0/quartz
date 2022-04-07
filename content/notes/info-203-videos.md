@@ -5,8 +5,6 @@ tags:
 ---
 links: [[notes/info-203]]
 
----
-
 - [[notes/heuristic-evaluation]]
 - [[notes/storyboards-mockups-paper-prototypes]]
 - [[notes/wizard-of-oz]]

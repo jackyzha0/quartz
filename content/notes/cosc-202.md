@@ -8,14 +8,12 @@ tags:
 ---
 links: [[_index]]
 
----
-
 - [[notes/cosc-202-lectures]]
 - [[notes/cosc-202-outline]]
 
-## 1 Assignments
+## 0.1 Assignments
 
 - 
 
-## 2 Resources
+## 0.2 Resources
 

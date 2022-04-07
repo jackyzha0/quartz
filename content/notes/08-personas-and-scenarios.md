@@ -8,5 +8,4 @@ tags:
 - lecture
 ---
 
-
 [personas-and-scenarios](notes/personas-and-scenarios.md)

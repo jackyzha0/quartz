@@ -5,8 +5,6 @@ tags:
 ---
 link: [[notes/info-203]]
 
----
-
 - [[notes/07-heuristic-evaluation-cont]]
 - [[notes/08-personas-and-scenarios]]
 - [[notes/09-paper-prototypes-wiz-of-oz-video-prototypes]]
