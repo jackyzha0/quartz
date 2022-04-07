@@ -8,9 +8,9 @@ tags:
 ---
 links:[_index](_index.md)
 
-- [[notes/info-203-outline]]
-- [[notes/info-203-lectures]]
-- [[notes/info-203-videos]]
+- [info-203-outline](notes/info-203-outline.md)
+- [info-203-lectures](notes/info-203-lectures.md)
+- [info-203-videos](notes/info-203-videos.md)
 
 ## 0.1 Assignments
 
