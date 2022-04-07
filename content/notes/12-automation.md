@@ -3,6 +3,9 @@ title: "12-automation"
 tags: 
 - cosc202
 - lecture
+sr-due: 2022-04-10
+sr-interval: 3
+sr-ease: 250
 ---
 links: [cosc-202-lectures](notes/cosc-202-lectures.md)
 
