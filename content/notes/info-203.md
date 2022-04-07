@@ -6,7 +6,7 @@ tags:
 - course
 - info203
 ---
-links:[[_index]]
+links:[_index](_index.md)
 
 - [[notes/info-203-outline]]
 - [[notes/info-203-lectures]]

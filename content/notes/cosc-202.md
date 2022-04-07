@@ -6,7 +6,7 @@ tags:
 - course 
 - cosc202
 ---
-links: [[_index]]
+links: [_index](_index.md)
 
 - [[notes/cosc-202-lectures]]
 - [[notes/cosc-202-outline]]
