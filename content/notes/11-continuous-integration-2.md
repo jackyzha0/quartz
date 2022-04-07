@@ -1,5 +1,5 @@
 ---
-title: "11-continuous-integration-2"]
+title: "11-continuous-integration-2"
 sr-due: 2022-04-07
 sr-interval: 3
 sr-ease: 250
