@@ -8,11 +8,11 @@ tags:
 - lecture
 ---
 
-## 1 Overview
+## 0.1 Overview
 [[notes/heap]]
 
-## 2 Operations
-### 2.1 Add element
+## 0.2 Operations
+### 0.2.1 Add element
 Assumptions
 - access first vacant position
 - set (or find) the value $H.q$ stored in any (occupied) position $q$
@@ -31,7 +31,7 @@ end while
 
 ```
 
-### 2.2 Remove the maximum
+### 0.2.2 Remove the maximum
 Outcome: Change H by removing its maximum (i.e., root) value wile maintaining the heap conditions
 
 ```
@@ -52,14 +52,14 @@ return v
 ```
 
 
-### 2.3 Complexity
+### 0.2.3 Complexity
 In addition, we move along a branch from an added element up to the root, fixing violations as we go
 
 In removal, we move from the root down through some branch until all violations are fixed (can only occur if node has children)
 
 So both loops do most Ο(lg n)
 
-### 2.4 Storage
+### 0.2.4 Storage
 ![](https://i.imgur.com/04qVrGQ.png#invert)
 
  - Array
@@ -72,18 +72,18 @@ So both loops do most Ο(lg n)
 - get children of q --> (2 * q) ± 2
 - identify if q is root --> q == 0
 
-### 2.5 Implementation
+### 0.2.5 Implementation
 
 Use java.util.PriorityQueue
 
-## 3 Heap Sort
+## 0.3 Heap Sort
 In place and ϴ(n lg n)
 
 - start with array
 - using itself as a heap, add the elements one at a time until all been added
 - Then remove them one at a time - the largest elements gets removed first and the place where is needs to be put gets freed from the map
 
-## 4 Heap vs Merge
+## 0.4 Heap vs Merge
 heap --> in place, ϴ(n lg n)
 merge --> not in place, Ο(n lg n)
 
