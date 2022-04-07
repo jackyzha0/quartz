@@ -57,7 +57,7 @@ Why they want to accomplish end goals /long term desires/self-image
 - negative
 	- person the product is not being made for
 
-## 1.2 Scenario
+# 2 Scenarios
 
 > concise, narrative description of one or more personas using a product to achieve one or more specific goals
 

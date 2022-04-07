@@ -2,13 +2,13 @@
 title: "Jet Hughes"
 ---
 
-## 0.1 Papers
+# 1 Papers
 
-- [[notes/cosc-201]]
-- [[notes/cosc-202]]
-- [[notes/info-201]]
-- [[notes/info-203]]
+- [cosc-202](notes/cosc-202.md)
+- [cosc-202](notes/cosc-202.md)
+- [info-201](notes/info-201.md)
+- [info-203](notes/info-203.md)
 
-## 0.2 Other
+# 2 Other
 
-- [[notes/templates]]
+- [templates](notes/templates.md)

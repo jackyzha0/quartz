@@ -8,8 +8,8 @@ tags:
 ---
 links: [_index](_index.md)
 
-- [[notes/cosc-201-outline]]
-- [[notes/cosc-201-lectures]]
+- [cosc-201-outline](notes/cosc-201-outline.md)
+- [cosc-201-lectures](notes/cosc-201-lectures.md)
 
 ## 0.1 Assignments
 

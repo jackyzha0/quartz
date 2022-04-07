@@ -8,6 +8,6 @@ tags:
 - lecture
 ---
 
-[personas-and-scenarios](notes/personas-and-scenarios.md)
-[storyboards](notes/storyboards.md)
+- [personas-and-scenarios](notes/personas-and-scenarios.md)
+- [storyboards](notes/storyboards.md)
 
