@@ -5,7 +5,7 @@ tags:
 - lecture
 ---
 
-[[continuous-integration]]
+[[notes/continuous-integration]]
 
 1. explain the term continuous integration
 2. describe different purposes for CI
