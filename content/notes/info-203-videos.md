@@ -5,7 +5,7 @@ tags:
 ---
 links: [[notes/info-203]]
 
-- [[notes/heuristic-evaluation]]
-- [[notes/storyboards-mockups-paper-prototypes]]
-- [[notes/wizard-of-oz]]
-- [[notes/video-prototyping]]
+- [heuristic-evaluation](notes/heuristic-evaluation.md)
+- [storyboards-mockups-paper-prototypes](notes/storyboards-mockups-paper-prototypes.md)
+- [wizard-of-oz](notes/wizard-of-oz.md)
+- [video-prototyping](notes/video-prototyping.md)

@@ -5,19 +5,19 @@ tags:
 ---
 links: [[notes/info-201]]
 
-- [[notes/version-control-system]]
-- [[notes/business-analyst]]
-- [[notes/developer]]
-- [[notes/models]]
-- [[notes/systems-development-life-cycle]]
-- [[notes/agile-development]]
-- [[notes/predictive-adaptive-spectrum]]
-- [[notes/requirements-elicitation]]
-- [[notes/approaches-to-systems-development]]
-- [[notes/business-functions]]
-- [[notes/use-case-diagrams]]
-- [[notes/business-process]]
-- [[notes/business-process-model]]
-- [[notes/business-process-model-and-notation]]
-- [[notes/UML]]
-- [[notes/entity-relationship-diagrams]]
+- [version-control-system](notes/version-control-system.md)
+- [business-analyst](notes/business-analyst.md)
+- [developer](notes/developer.md)
+- [models](notes/models.md)
+- [systems-development-life-cycle](notes/systems-development-life-cycle.md)
+- [agile-development](notes/agile-development.md)
+- [predictive-adaptive-spectrum](notes/predictive-adaptive-spectrum.md)
+- [requirements-elicitation](notes/requirements-elicitation.md)
+- [approaches-to-systems-development](notes/approaches-to-systems-development.md)
+- [business-functions](notes/business-functions.md)
+- [use-case-diagrams](notes/use-case-diagrams.md)
+- [business-process](notes/business-process.md)
+- [business-process-model](notes/business-process-model.md)
+- [business-process-model-and-notation](notes/business-process-model-and-notation.md)
+- [UML](notes/UML.md)
+- [entity-relationship-diagrams](notes/entity-relationship-diagrams.md)

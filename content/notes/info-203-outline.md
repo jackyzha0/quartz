@@ -5,13 +5,16 @@ tags:
 ---
 links: [[notes/info-203]]
 
-- [[notes/big-picture]]
-- [[notes/birth-of-hci]]
-- [[notes/prototyping]]
-- [[notes/evaluating-designs]]
-- [[notes/needfinding]]
-- [[notes/participant-observation]]
-- [[notes/interviewing]]
-- [[notes/user-experience]]
-- [[notes/usbability]]
-- [[notes/hci]]
+- [big-picture](notes/big-picture.md)
+- [birth-of-hci](notes/birth-of-hci.md)
+- [prototyping](notes/prototyping.md)
+- [evaluating-designs](notes/evaluating-designs.md)
+- [needfinding](notes/needfinding.md)
+- [participant-observation](notes/participant-observation.md)
+- [interviewing](notes/interviewing.md)
+- [user-experience](notes/user-experience.md)
+- [usbability](notes/usbability.md)]
+- [hci](notes/hci.md)
+- [storyboards](notes/storyboards.md)
+- [personas-and-scenarios](notes/personas-and-scenarios.md)
+- 
