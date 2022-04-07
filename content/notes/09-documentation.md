@@ -5,4 +5,4 @@ tags:
 - lecture
 ---
 
-- [[notes/documentation]]
+[[notes/documentation]]
