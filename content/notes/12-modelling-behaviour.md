@@ -3,6 +3,9 @@ title: "12-modelling-behaviour"
 tags: 
 - cosc201
 - lecture
+sr-due: 2022-04-10
+sr-interval: 3
+sr-ease: 250
 ---
 [slides](https://blackboard.otago.ac.nz/bbcswebdav/pid-2892846-dt-content-rid-18407618_1/courses/INFO201_S1DNIE_2022/2022/lectures/lecture_12_slides.pdf)
 
@@ -139,3 +142,50 @@ Anything coded to work with Collection will accept *any* Java collection type. (
 ![](https://i.imgur.com/TCNp6vY.png)
 
 
+## 3.2 Contrast with anaemic domain models
+
+- Objects have relatively little “native” behaviour: (if any) 
+	- mostly just state 
+	- don’t inherit from anything else (class or interface) 
+	- getters/setters don’t really encapsulate much 
+	- methods manipulate only internal state (no external communication) 
+	- generally referred to as JavaBeans in Java (also POJO) 
+- Require a lot of “plumbing” code to shift data into and out of objects so we can do something useful with it. 
+- De facto standard for most programmers/systems
+
+![](https://i.imgur.com/snGpG4m.png)
+
+
+## 3.3 Reducing the plumbing in anaemic models 
+
+- Frequently need to move data between domain objects and other (sub)systems, e.g.: 
+	- GUI components (see INFO 202) 
+	- data stores (also see Lecture 17) 
+	- barcode management subsystem 
+	- shipping (sub)system 
+	- inventory (sub)system 
+	- … 
+- “Processor objects” can encapsulate these interactions: 
+	- effectively “(sub)system APIs” that group related behaviour 
+	- either classes or (Java) interfaces, as appropriate 
+	- methods take relevant domain objects as arguments 
+- Third-party frameworks can reduce the amount of code you need to write even further. (see INFO 202)
+
+![](https://i.imgur.com/EoX8sTA.png)
+
+# 4 Lecture summary 
+
+- There are a variety of behavioural diagrams in UML. 
+- Behaviour can be inherited directly via specialisation, or indirectly by implementing an interface. 
+- interfaces decouple public API from private implementation 
+- programming to an interface 
+- Domain models can be “rich” or “anaemic”. 
+- anaemic more common 
+- use “processors” to encapsulate “plumbing” code
+
+# 5 Revision questions 
+
+1. Compare and contrast the two typical approaches to inheriting behaviour in OO systems. 
+2. What does it mean to “program to an interface” and why is this important?
+3. Compare and contrast “rich” versus “anaemic” domain models with regards to behaviour.
+4. Give an example of a “processor” in the context of OO system design and explain why these are useful.

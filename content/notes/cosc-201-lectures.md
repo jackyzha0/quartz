@@ -10,3 +10,5 @@ links: [[notes/cosc-201]]
 - [08-mergesort-2](notes/08-mergesort-2.md)
 - [09-stacks-and-queues](notes/09-stacks-and-queues.md)
 - [10-heaps-and-heapsort](notes/10-heaps-and-heapsort.md)
+- [11-sets-maps-trees](notes/11-sets-maps-trees.md)
+- [12-binary-search-tree-operations](notes/12-binary-search-tree-operations.md)

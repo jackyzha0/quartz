@@ -12,4 +12,4 @@ links: [[notes/info-201]]
 - [09-data-modelling-and-normalisation](notes/09-data-modelling-and-normalisation.md)
 - [10-oop-concepts-and-uml](notes/10-oop-concepts-and-uml.md)
 - [11-class-diagrams](notes/11-class-diagrams.md)
-- 
+- [12-modelling-behaviour](notes/12-modelling-behaviour.md)

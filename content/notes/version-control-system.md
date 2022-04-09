@@ -1,5 +1,6 @@
 ---
 title: "version-control-system"
+aliases: VCS, version control system
 tags: 
 - info201
 ---
@@ -7,7 +8,7 @@ tags:
 VCSs (version control systems) Are systems to keep track of changes to a set of files
 E.g., [[git]]
 
-## 1 Goals
+## 0.1 Goals
 - allow collaboration
 - track changes
 - restoring previous versions
@@ -15,16 +16,16 @@ E.g., [[git]]
 - backups
 - not restrict workflow
 
-## 2 Terms
+## 0.2 Terms
 [[cheatsheets/git-cheat-sheet]]
 
-## 3 Discipline
+## 0.3 Discipline
 - Pull/Push Regularly
 - Use topic/features branches to keep main clean
 - Dont use -f
 
-## 4 Types
-### 4.1 Centralised VCS
+## 0.4 Types
+### 0.4.1 Centralised VCS
 - Data is stored in one single central location
 - Access is remote
 - Checkout can block other devs
@@ -38,7 +39,7 @@ E.g., [[git]]
 	end
 ```
 
-### 4.2 Distributed VCS
+### 0.4.2 Distributed VCS
 
 ![](https://i.imgur.com/IVXAaFF.png)
 
@@ -49,18 +50,18 @@ E.g., [[git]]
 - Bad
 	- Hard to keep track of "main" files
 
-### 4.3 Distributed + Centralised
+### 0.4.3 Distributed + Centralised
 - Main files are stored on central repo
 - Each user also has their own copy locally
 
 ![](https://i.imgur.com/BxC8Tiq.png)
 
-## 5 Sensitive information
+## 0.5 Sensitive information
 - Passwords and other credentials among other things
 - Data should be stored as encrypted blobs
 	- [BlackBox](https://github.com/StackExchange/blackbox)
 
-## 6 Forking
+## 0.6 Forking
 - Cloning into a new remote repo in your account
 - Allows community to contribute to projects without giving them write access to the original repo
 - Process
@@ -69,7 +70,7 @@ E.g., [[git]]
 	- Pull request to merge fork back into project
 	- Admins of project can acccept modify or reject pull request
 	
-## 7 software dev needs file wrangling
+## 0.7 software dev needs file wrangling
 many copies of a project's source code files needed:
 
 - facilitating different developers private code experiments

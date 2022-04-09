@@ -11,9 +11,8 @@ links: [_index](_index.md)
 - [cosc-202-lectures](notes/cosc-202-lectures.md)
 - [cosc-202-outline](notes/cosc-202-outline.md)
 
-## 0.1 Assignments
+# 1 Assignments
 
 - 
-
-## 0.2 Resources
+# 2 Resources
 

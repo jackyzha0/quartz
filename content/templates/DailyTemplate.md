@@ -2,26 +2,13 @@
 
 ---
 
-# {{date}}
+# 1 {{date}}
 
 <% tp.user.getAOTD() %>
 
-| # | task | P | A | e time | r time |
-|---| ------------------------|---|---|--------| ------ |
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
-| 6 | | | | | |
-| 7 | | | | | |
-| 8 | | | | | |
+## 1.1 Todos
 
-> SCORE:
-
-## 1 Todos
-
-## 2 Lecture/Labs
+## 1.2 Lecture/Labs
 
 <%*
 const d = new Date().getDay()
@@ -46,24 +33,24 @@ break;
 }
 %>
 
-## 3 Assignments
+## 1.3 Assignments
 
-## 4 Projects
+## 1.4 Projects
 - python ai weekly review
 - CI notes site
 - my own password manager
 
-## 5 Timetable
+## 1.5 Timetable
 
 ![[Pasted image 20220311102444.png]]
 
-## 6 Links
+## 1.6 Links
 
-### 6.1 cosc 202
+### 1.6.1 cosc 202
 
 [lab book](https://cosc202.cspages.otago.ac.nz/lab-book/COSC202LabBook.pdf)
 
-### 6.2 info 201
+### 1.6.2 info 201
 
 [tiddlywiki](https://isgb.otago.ac.nz/infosci/INFO201/labs_release/raw/master/output/info201_labs.html#)
 
