@@ -3,9 +3,9 @@ title: "12-modelling-behaviour"
 tags: 
 - cosc201
 - lecture
-sr-due: 2022-04-10
-sr-interval: 3
-sr-ease: 250
+sr-due: 2022-04-13
+sr-interval: 2
+sr-ease: 230
 ---
 [slides](https://blackboard.otago.ac.nz/bbcswebdav/pid-2892846-dt-content-rid-18407618_1/courses/INFO201_S1DNIE_2022/2022/lectures/lecture_12_slides.pdf)
 

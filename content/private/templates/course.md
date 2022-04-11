@@ -1,5 +1,5 @@
 ---
-title: "post"
+title: ""
 year: 2022
 semester: 
 tags: 

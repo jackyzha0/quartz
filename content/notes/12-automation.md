@@ -3,13 +3,19 @@ title: "12-automation"
 tags: 
 - cosc202
 - lecture
-sr-due: 2022-04-10
-sr-interval: 3
+sr-due: 2022-04-20
+sr-interval: 9
 sr-ease: 250
 ---
-links: [cosc-202-lectures](notes/cosc-202-lectures.md)
+links: [cosc-202-lectures](notes/cosc-202-lectures.md), [slides](https://cosc202.cspages.otago.ac.nz/lectures/L12-automation.pdf)
 
 ---
+
+[automation](notes/automation.md)
+
+---
+
+# Garbage notes
 
 The use of automatic equipment in a production process. We desire to remove repetive work within software development
 

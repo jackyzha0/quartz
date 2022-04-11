@@ -2,13 +2,13 @@
 
 ---
 
-# 1 {{date}}
+# {{date}}
 
 <% tp.user.getAOTD() %>
 
-## 1.1 Todos
+## Todos
 
-## 1.2 Lecture/Labs
+## Lecture/Labs
 
 <%*
 const d = new Date().getDay()
@@ -33,25 +33,26 @@ break;
 }
 %>
 
-## 1.3 Assignments
+## Assignments
+- Mobile app
+	- Brainstorming
 
-## 1.4 Projects
+## Projects
 - python ai weekly review
 - CI notes site
 - my own password manager
 
-## 1.5 Timetable
+## Timetable
 
 ![[Pasted image 20220311102444.png]]
 
-## 1.6 Links
+## Links
 
-### 1.6.1 cosc 202
+### cosc 202
 
 [lab book](https://cosc202.cspages.otago.ac.nz/lab-book/COSC202LabBook.pdf)
 
-### 1.6.2 info 201
+### info 201
 
-[tiddlywiki](https://isgb.otago.ac.nz/infosci/INFO201/labs_release/raw/master/output/info201_labs.html#)
-
-[Assignments](https://isgb.otago.ac.nz/info201/shared/assignments_release/raw/master/output/INFO201_Assignments.html)
+- [cousework tiddlywiki](https://isgb.otago.ac.nz/infosci/INFO201/labs_release/raw/master/output/info201_labs.html#)
+- [Assignments tiddlywiki](https://isgb.otago.ac.nz/info201/shared/assignments_release/raw/master/output/INFO201_Assignments.html)

@@ -1,16 +1,20 @@
 ---
+number headings: auto, first-level 1, max 6, 1.1
 title: "integrated-development-environments"
+aliases: ide, IDE, ides, IDEs
 tags: 
 - cosc202
 ---
 
-## 1 Source code editors
+# 1 Types
+
+## 1.1 Source code editors
 - editor applications to help software development
 - provide features that help editing code
 	- auto indent, bracket matching, syntax hl, auto completion, rapid navigation
 	- run/test code
 
-## 2 Integrated dev env
+## 1.2 Integrated dev env
 - allow you to remain within one application when carrying out software development work
 	- can edit source files
 	- can compile source files
@@ -18,7 +22,22 @@ tags:
 	- integrates version management
 - some attach tools to running applications
 
-### 2.1 LSP - syntax highlighting
+# 2 Features
+
+## 2.1 Snippets
+These are are often included in laguage extensions. These snippets are templates for often repeated chunks of text.
+
+For example a snippet to create a latex slide
+
+```
+"dframe": {
+	"prefix": "BDF"
+	"body": "\\begin{dframe}{$1}\n \\1 $2\n\\end{dframe}
+	"description": "New dframe" },
+}
+```
+
+## 2.2 LSP - syntax highlighting
 - allows IDE's to communicate with a "language enging"
 - ides dont need 
 
@@ -33,7 +52,7 @@ tags:
 		- safe refactoring -> better than blind search and replace
 		- diagnosticso -> e.g., display results of unit tests within editor
 
-### 2.2 Navigation
+## 2.3 Navigation
 - within files
 	- bracket matching
 	- block folding
@@ -43,7 +62,7 @@ tags:
 	- search across all files
 - collaboration e.g., live sharing 
 
-### 2.3 Modern IDEs
+# 3 Modern IDEs
 - microsoft
 	- vscode -> free open source, highly popular
 	- visual studio -> integrates mobile and cloud development
@@ -54,7 +73,7 @@ tags:
 - google's android studio -> official android IDE
 - apple's Xcode -> free, macOS/iOS focus
 
-## 3 Early programming
+# 4 Early programming
 - dedicated machines
 	- punched card programmer: separate machine from computer than reads cards
 - punched cards recore code and or data in binary
@@ -63,11 +82,11 @@ tags:
 - analgogue electronic devices where you phsyicall wire things up
 	- gaining interest now for use in machine learning
 
-### 3.1 Bootstrapping
+## 4.1 Bootstrapping
 - already built tools can be used to builder better tools for building better tools etc.
 - e.g., first assembler was made in maching code. But after that they could use the assember to make a better assembler
 
-### 3.2 Early dev environments
+## 4.2 Early dev environments
 - command line based
 	- text based terminals
 	- command shell is the running application

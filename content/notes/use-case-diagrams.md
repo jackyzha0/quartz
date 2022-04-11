@@ -85,7 +85,7 @@ tags:
 ![](https://i.imgur.com/ZjAnIry.png)
 
 ## 3 development of use case diagrams
-organise related use case diagrms itno use case model
+organise related use case diagrams into use case model
 - have have multiple levels of detail
 - group related diagrams into packages
 

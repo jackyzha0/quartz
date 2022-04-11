@@ -17,4 +17,6 @@ links: [[notes/cosc-202]]
 - [[notes/debugging]]
 - [[notes/documentation]]
 - [[notes/continuous-integration]]
-- 
+- [automation](notes/automation.md)
+
+

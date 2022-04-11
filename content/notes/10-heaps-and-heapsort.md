@@ -1,12 +1,16 @@
 ---
 title: "10-heaps-and-heapsort"
-sr-due: 2022-04-08
-sr-interval: 3
+sr-due: 2022-04-18
+sr-interval: 9
 sr-ease: 250
 tags: 
 - cosc201 
 - lecture
 ---
+
+[heaps-and-heapsort](notes/heaps-and-heapsort.md)
+
+
 
 ## 0.1 Overview
 [[notes/heap]]
@@ -96,4 +100,3 @@ Merge is preferred because
 extra memory cost of merge sort is negligible
 
 ∴ Merge sort is faster
-

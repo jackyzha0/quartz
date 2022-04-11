@@ -12,3 +12,5 @@ links: [cosc-202](notes/cosc-202.md)
 - [10-continuous-integration-1](notes/10-continuous-integration-1.md)
 - [11-continuous-integration-2](notes/11-continuous-integration-2.md)
 - [12-automation](notes/12-automation)
+- [13-code-librarires](notes/13-code-librarires.md)
+

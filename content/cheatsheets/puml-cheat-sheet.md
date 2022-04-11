@@ -4,6 +4,5 @@ tags:
 - cheatsheet
 ---
 
-# 1 Activity Diagram
-[docs](https://plantuml.com/activity-diagram-beta)
-
+- [activity diagram docs](https://plantuml.com/activity-diagram-beta)
+- [use case diagram docs](https://plantuml.com/use-case-diagram)
