@@ -1,19 +1,25 @@
 # Main concept
 
-Snowboard trick generator
+Snowboard trick generator. 
 
-Core features
+This will be a mobile app that snowboarders can use to automatically generate random tricks. This app will be useful because snowboarders (riders) can get tunnel vision on a certain style of tricks or even a single trick. Using a algorithm to generate tricks provides a way for them to escape this focus. It can also be used when playing a game of SNOW, which is similar to a game of SKATE.
+
+The first core feature of the app is the customisable trick generator. It should be very easy and quick to use. This presents an interesting problem as while snowboarding, users are wearing large mittens, and the air can be very cold for hands. It would be ideal if it could be used while wearing mittens. 
+
+The second core feature of the app is the Daily Trick. However, the issue here is that most people don't snowboard everyday. To get around this, I could allows the users to schedule days on which to recieve a daily trick, or I could alert them whenever they are on a mountain by monitoring their altitude. Of course the second options has some privacy issues that will need to be considered.
+
+**Core features
 - customisable generator
 - daily trick
 	- tricks on a custom schedule
 
-Extra features
+**Extra features
 - track completed tricks
 	- list of tricks not to include
 - links with friends to do same tricks together
 - challenges, where you do a set of tricks over a period of time
 - gesture controls
-- link with coach/teammates]
+- link with coach/teammates
 	- goals
 - gps to detect when you are on a mountain and when to generate a trick
 
@@ -59,7 +65,8 @@ Skate dice was one of the most intresting of the apps I found. I had a very uniq
 
 ## Skate tricks
 
-This app is a much more fully featured solution. It is oriented towards learning skateboarding, and keeping track of you progress while doing it. It also has a built in trick generator, and game of skate. One of the most unique features it had that the other apps didn't was a trick of the day. This is one of the core features I want to include in my app. 
+This app is a much more fully featured solution. It is oriented towards learning skateboarding, and keeping track of you progress while doing it. It also has a built in trick generator, and game of skate. One of the most unique features it had that the other apps didn't was a trick of the day. This is one of the core features I want to include in my app. Another interesting feature it had was a page informing the user about injury prevention.
 
-#### How does this app inform mine
+#### How Could this app inform mine
+- The injury prevention page could be a very good thing to include
 - 
