@@ -96,3 +96,8 @@ public Arraylist<String> levelorder() {
 	return result;
 }
 ```
+
+
+if we use a stack then its the same as preorder.
+
+# Balance

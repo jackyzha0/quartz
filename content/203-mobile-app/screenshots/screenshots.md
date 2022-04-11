@@ -1,7 +1,0 @@
-- [freestyle-generator](203-mobile-app/screenshots/freestyle-generator.md)
-- [getatrick](203-mobile-app/screenshots/getatrick.md)
-- [scooter-trick-generator](203-mobile-app/screenshots/scooter-trick-generator.md)
-- [skateboard-tricks](203-mobile-app/screenshots/skateboard-tricks.md)
-- [skate-dice](203-mobile-app/screenshots/skate-dice.md)
-- [skategen](203-mobile-app/screenshots/skategen.md)
-- [skatetricks](203-mobile-app/screenshots/skatetricks.md)
