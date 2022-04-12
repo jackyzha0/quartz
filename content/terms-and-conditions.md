@@ -1,5 +1,4 @@
 ---
-layout: page
 title: Terms And Condition
 id: terms-and-conditions
 permalink: /terms-and-conditions

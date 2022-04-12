@@ -1,6 +1,6 @@
 <head>
     <!-- Meta tags -->
-    <title>{{ if .Title }}{{ .Title }} | {{ $.Site.Data.config.page_title }}{{ else }}{{ $.Site.Data.config.page_title }} | {{ $.Site.Data.config.tagline }}{{ end }}</title>
+    <title>{{ if and (.Title) (not .IsHome) }}{{ .Title }} | {{ $.Site.Data.config.page_title }}{{ else }}{{ $.Site.Data.config.page_title }} | {{ $.Site.Data.config.tagline }}{{ end }}</title>
     <meta charset="UTF-8">
     <meta property="og:title" content="{{ $.Site.Data.config.page_title }}">
     <meta name="author" content="Matthew Wong">

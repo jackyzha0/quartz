@@ -1,5 +1,6 @@
 ---
 id: home
+title: Home
 ---
 # Notes that extend your brain
 Fleeting Notes provides a quick platform to use a unique note organization method that functions in a similar vein to a brain—through the [[notes/connecting ideas is powerful|connection of ideas]]. This organization technique is [[notes/connecting ideas improves learning|proven to promote learning]] and isn’t restricted by any hierarchical structure. As a result, note discovery is as simple as “[[notes/following a train of thought|following a train of thought]]”. 

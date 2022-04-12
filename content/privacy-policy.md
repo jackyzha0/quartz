@@ -1,5 +1,4 @@
 ---
-layout: page
 title: Privacy Policy
 id: privacy-policy
 permalink: /privacy-policy
