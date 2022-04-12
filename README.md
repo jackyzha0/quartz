@@ -15,3 +15,8 @@ Host your second brain and [digital garden](https://jzhao.xyz/posts/digital-gard
 ![Quartz Example Screenshot](./screenshot.png)*Quartz Example Screenshot*
 
 [Join the Discord Community](https://discord.gg/cRFFHYye7t)
+
+## Install And Run Locally
+1. Install Go (https://jimkang.medium.com/install-go-on-mac-with-homebrew-5fa421fc55f5) + Setup Environment
+2. Install `hugo-obsidian` (https://github.com/jackyzha0/hugo-obsidian)
+3. Run `make serve`
