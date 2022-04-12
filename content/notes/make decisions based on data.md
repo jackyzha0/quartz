@@ -4,7 +4,7 @@ title: make decisions based on data
 notetype: feed
 date: 2022-04-02
 ---
-We want to make [[notes/data-driven decisions]] because otherwise we leave decisions based on luck  anecdotal evidence.
+We want to make [[notes/data-driven decisions|data-driven decisions]] because otherwise we leave decisions based on luck  anecdotal evidence.
 
 Related:
 [[notes/anectdotal evidence isn't reliable]]
