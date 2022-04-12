@@ -33,4 +33,5 @@ jobs:
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: 9e65bb31-a460-4a21-aeba-5e7f210eb925
+          NETLIFY_DEPLOY_TO_PROD: true
           build_directory: 'public'
