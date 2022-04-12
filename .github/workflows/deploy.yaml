@@ -28,10 +28,9 @@ jobs:
       - name: Build
         run: hugo --minify
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy to Netlify
+        uses: jsmrcaga/action-netlify-deploy@v1.1.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          publish_branch: master  # deploying branch
-          cname: quartz.jzhao.xyz
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: 9e65bb31-a460-4a21-aeba-5e7f210eb925
+          build_directory: 'public'
