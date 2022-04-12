@@ -1,5 +1,5 @@
 <ul class="section-ul">
-    {{- range . -}}
+    {{- range .Reverse -}}
     <li class="section-li">
         <div class="section">
             <div class="desc">
@@ -7,7 +7,7 @@
                 <p>{{- .Summary -}}{{if .Truncated}}...{{end}}</p>
             </div>
             <p class="meta">
-                {{ .ReadingTime }} minute read. Last updated {{if ne .Date .Lastmod}}{{ .Lastmod.Format "January 2, 2006" }}{{else}}Unknown{{end}}
+                {{ .ReadingTime }} minute read. Created on {{if ne .Date .Lastmod}}{{ .Date.Format "January 2, 2006" }}{{else}}Unknown{{end}}
             </p>
         </div>
     </li>
