@@ -1,4 +1,4 @@
-baseURL = "https://fleeting-notes-quartz.netlify.app/"
+baseURL = "https://fleetingnotes.app/"
 languageCode = "en-us"
 googleAnalytics = "G-C7BS7W5FJE"
 pygmentsUseClasses = true
