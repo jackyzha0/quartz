@@ -28,3 +28,6 @@ enableGitInfo = true
         lineNumbersInTable = true
         style = "dracula"
         tabWidth = 4
+    [markup.goldmark.renderer]
+        unsafe= true
+
