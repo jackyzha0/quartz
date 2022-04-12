@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc201
 - lecture
+sr-due: 2022-04-15
+sr-interval: 3
+sr-ease: 250
 ---
 
 # Traversals
@@ -100,4 +103,30 @@ public Arraylist<String> levelorder() {
 
 if we use a stack then its the same as preorder.
 
-# Balance
+# Balancing trees
+long branches are a problem
+the performance bounds for all BST operations are linear of the length of the longest branch of the tree
+
+ideal shape is a similar to a heap (wide and shallow).
+
+we want the longest branch to be $\theta(lg\ n)$ 
+
+
+one way is to do an iorder traversal and save to a sorted array. then construct a new tree by repeatedly bisecting the array. and recursively building the left and right subtrees
+
+need some local operation that helps to restore balance
+
+## Rotation operation
+
+suppose that in this bst there is a longer chain in e than else where
+
+![100](https://i.imgur.com/SmDsZd1.png)
+
+imagine twisting d to be the root
+
+![100](https://i.imgur.com/6MoYHX1.png)
+
+changes are
+- b's right child is now c
+- d's left child is not b
+- b parent now points to d

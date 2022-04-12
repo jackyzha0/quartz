@@ -10,7 +10,7 @@ tags:
 #unfinished 
 
 Why to evaluate using 'outside' people:
-- how do we know if a [prototype](notes/prototyping.md)] is good
+- how do we know if a [prototype](notes/prototyping.md) is good
 - designer/developers are not 'fresh' -> they already have experience with the product
 - designer/developers don't know what real users will do
 

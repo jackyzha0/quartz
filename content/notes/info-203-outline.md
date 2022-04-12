@@ -14,7 +14,6 @@ links: [[notes/info-203]]
 - [interviewing](notes/interviewing.md)
 - [user-experience](notes/user-experience.md)
 - [usbability](notes/usbability.md)
-- [hci](notes/hci.md)
 - [storyboards](notes/storyboards.md)
 - [personas-and-scenarios](notes/personas-and-scenarios.md)
 - 

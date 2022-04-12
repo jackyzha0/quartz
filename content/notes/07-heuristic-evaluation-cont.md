@@ -5,4 +5,4 @@ tags:
 - lecture
 ---
 
-
+[heuristic-evaluation](notes/heuristic-evaluation.md)
