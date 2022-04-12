@@ -1,6 +1,6 @@
 baseURL = "https://fleeting-notes-quartz.netlify.app/"
 languageCode = "en-us"
-googleAnalytics = "G-XYFD95KB4J"
+googleAnalytics = "G-C7BS7W5FJE"
 pygmentsUseClasses = true
 relativeURLs = false
 disablePathToLower = true
