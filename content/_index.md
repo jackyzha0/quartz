@@ -1,5 +1,4 @@
 ---
-title: Fleeting Notes
 id: home
 ---
 # Notes that extend your brain
