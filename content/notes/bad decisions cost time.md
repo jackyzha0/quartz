@@ -4,7 +4,7 @@ title: bad decisions cost time
 notetype: feed
 date: 2022-04-02
 ---
-When we make a decision we decide to go down a route. Taking a bad route wastes time and [[time is the most valuable resource]]
+When we make a decision we decide to go down a route. Taking a bad route wastes time and [[notes/time is the most valuable resource]]
 
 ---
 

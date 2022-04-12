@@ -3,7 +3,7 @@ title: the brain is a network of ideas
 date: 2022-04-05
 notetype: feed
 ---
-Our work through a network of neurons and these connections are strengthened based on the use which is why [[if you dont use it, you lose it]]. 
+Our work through a network of neurons and these connections are strengthened based on the use which is why [[notes/if you dont use it, you lose it]]. 
 
 ---
 ```

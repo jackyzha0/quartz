@@ -6,9 +6,9 @@ notetype: feed
 
 Ideas are essentially **units of thoughts** and connecting ideas is powerful because:
 
-- it allows you to [[interoperable components are efficient|reuse your ideas in a different context]]. 
-- it encourages you to revisit old ideas and [[connecting ideas improves learning|improves learning]]
+- it allows you to [[notes/interoperable components are efficient|reuse your ideas in a different context]]. 
+- it encourages you to revisit old ideas and [[notes/connecting ideas improves learning|improves learning]]
 - it helps you discover new ideas through connections
 
 Related:
-[[the brain is a network of ideas]]
+[[notes/the brain is a network of ideas]]
