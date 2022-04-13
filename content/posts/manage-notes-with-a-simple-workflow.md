@@ -15,9 +15,9 @@ My goal is to create a [[notes/simple solutions are often the best|simple]] work
 3. <strike>Organize the note we wrote</strike>
 
 ## Connect Ideas to Organize Notes
-Since [[notes/the brain is a network of ideas]], we can take advantage of that by similarly structuring our notes. Therefore, we create notes that extend our brain. Because notes are organized more intuitively, finding notes is as simple as [[notes/following a train of thought]].
+Since [[notes/the brain is a network of ideas|the brain is a network of ideas]], we can take advantage of that by similarly structuring our notes. Therefore, we create notes that extend our brain. Because notes are organized more intuitively, finding notes is as simple as [[notes/following a train of thought|following a train of thought]].
 
-One trap that people fall victim to is organizing notes with categories. We want to organize through ideas because they are [[notes/interoperable components are efficient|interoperable]]. Categories are too broad and aren't interoperable. Some good examples of notes are: [[notes/time is the most valuable resource]], [[notes/if you dont use it, you lose it]], and [[notes/how to delete tags in github]].
+One trap that people fall victim to is organizing notes with categories. We want to organize through ideas because they are [[notes/interoperable components are efficient|interoperable]]. Categories are too broad and aren't interoperable. Some good examples of notes are: [[notes/time is the most valuable resource|time is the most valuable resource]], [[notes/if you dont use it, you lose it|if you dont use it, you lose it]], and [[notes/how to delete tags in github|how to delete tags in github]].
 
 ### Workflow #1 (Internet Browsing)
 1. I find an interesting quote or read an article (e.g. an article about remembering more things)
