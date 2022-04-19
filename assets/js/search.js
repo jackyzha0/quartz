@@ -49,7 +49,10 @@ const removeMarkdown = (
       .replace(/([\*_]{1,3})(\S.*?\S{0,1})\1/g, "$2")
       .replace(/(`{3,})(.*?)\1/gm, "$2")
       .replace(/`(.+?)`/g, "$1")
-      .replace(/\n{2,}/g, "\n\n");
+      .replace(/\n{2,}/g, "\n\n")
+      // replace alias in links
+      .replace(/\[\[[^\[\]\#\*]+\|([^\[\]]+)\]\]/g, '$1')
+      .replace(/\[([^\[\]]+)\]\([^\(\)]+\)/g, '$1');
   } catch (e) {
     console.error(e);
     return markdown;
