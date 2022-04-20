@@ -16,7 +16,7 @@ The easiest way to use an existing Vault is to copy all of your files (directory
 ## Settings
 Great, now that you have your Obsidian linked to your Quartz, let's fix some settings so that they play well.
 
-1. Under Options > Files and Links, set the New link format to always e Absolute Path in Vault.
+1. Under Options > Files and Links, set the New link format to always use Absolute Path in Vault.
 2. Go to Settings > Files & Links > Turn "on" automatically update internal links.
 
 ![Obsidian Settings](/notes/images/obsidian-settings.png)*Obsidian Settings*
@@ -26,4 +26,4 @@ Inserting front matter everytime you want to create a new Note gets annoying rea
 
 **If you decide to overwrite the `/content` folder completely, don't remove the `/content/templates` folder!**
 
-Head over to Options > Core Plugins and enable the Templates plugin. Then go to Options > Hotkeys and set a hotkey for 'Insert Template' (I recomment `[cmd]+T`). That way, when you create a new note, you can just press the hotkey for a new template and be ready to go!
+Head over to Options > Core Plugins and enable the Templates plugin. Then go to Options > Hotkeys and set a hotkey for 'Insert Template' (I recommend `[cmd]+T`). That way, when you create a new note, you can just press the hotkey for a new template and be ready to go!
