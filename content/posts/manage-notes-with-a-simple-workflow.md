@@ -6,8 +6,6 @@ lastmod: 2022-04-05
 ---
 If you ever took notes on an article, video, or podcast and had no idea do with it, you're in the right place. Many existing solutions suggest adding tags, and creating many layers of nested folders. But oftentimes we find ourselves with [[notes/its not natural to organize things in groups|folders with too many files or tags with too few members]]. The fault isn't in the person but in the note-taking system itself.
 
-
-
 My goal is to create a [[notes/simple solutions are often the best|simple]] workflow where the content of the note organizes the note. This effectively eliminates the third step when taking notes: organize the note we wrote. 
 
 1. Pull out our note-taking tool of choice

@@ -1,5 +1,5 @@
 <ul class="section-ul">
-    {{- range .Reverse -}}
+    {{- range sort . ".Params.date" "desc" -}}
     <li class="section-li">
         <div class="section">
             <div class="desc">

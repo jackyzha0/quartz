@@ -1,5 +1,6 @@
 ---
 title: The Totally Unnecessary Way To Write Quick Notes in Obsidian
+description: Obsidian is great for many things, but it isn't great for writing quick notes.
 date: 2022-04-12
 lastmod: 2022-04-12
 ---
