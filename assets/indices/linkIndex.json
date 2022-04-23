@@ -1,0 +1,2205 @@
+{
+  "index": {
+    "links": {
+      "/": [
+        {
+          "source": "/",
+          "target": "/Product/Product",
+          "text": "Product"
+        },
+        {
+          "source": "/",
+          "target": "/Design/Design",
+          "text": "Design"
+        }
+      ],
+      "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7": [
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/Persona",
+          "text": "Persona"
+        },
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/Informational-Architecture",
+          "text": "Informational Architecture"
+        },
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/User-Story",
+          "text": "User Story"
+        },
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/Use-case",
+          "text": "Use case"
+        },
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/User-Story-Mapping",
+          "text": "User Story Mapping"
+        },
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/JTBD",
+          "text": "JTBD"
+        },
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/RICE-%D0%B8-ICE",
+          "text": "RICE и ICE"
+        },
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/KANO",
+          "text": "KANO"
+        },
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/Severity-analysis",
+          "text": "Severity analysis"
+        },
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/CJM",
+          "text": "CJM"
+        }
+      ],
+      "/Design/Analysis/Persona": [
+        {
+          "source": "/Design/Analysis/Persona",
+          "target": "/User-Story",
+          "text": "User Story"
+        },
+        {
+          "source": "/Design/Analysis/Persona",
+          "target": "/User-Story-Mapping",
+          "text": "User Story Mapping"
+        }
+      ],
+      "/Design/Analysis/Severity-analysis": [
+        {
+          "source": "/Design/Analysis/Severity-analysis",
+          "target": "/../Base/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-Usability",
+          "text": "Что такое Usability"
+        }
+      ],
+      "/Design/Analysis/User-Story": [
+        {
+          "source": "/Design/Analysis/User-Story",
+          "target": "/Use-case",
+          "text": "Use case"
+        },
+        {
+          "source": "/Design/Analysis/User-Story",
+          "target": "/User-Story-Mapping",
+          "text": "User Story Mapping"
+        }
+      ],
+      "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9": [
+        {
+          "source": "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-uxui-%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD",
+          "text": "Что такое uxui дизайн"
+        },
+        {
+          "source": "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-Usability",
+          "text": "Что такое Usability"
+        },
+        {
+          "source": "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B",
+          "text": "Дизайн-процессы"
+        },
+        {
+          "source": "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-MVP",
+          "text": "Что такое MVP"
+        },
+        {
+          "source": "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%9A%D0%B0%D0%BA-%D0%BF%D0%BE%D0%BD%D1%8F%D1%82%D1%8C-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D1%83",
+          "text": "Как понять задачу"
+        }
+      ],
+      "/Design/Base/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B": [
+        {
+          "source": "/Design/Base/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B",
+          "target": "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5",
+          "text": "Дизайн-мышление"
+        },
+        {
+          "source": "/Design/Base/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B",
+          "target": "/Lean",
+          "text": "Lean"
+        },
+        {
+          "source": "/Design/Base/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B",
+          "target": "/Double-diamond",
+          "text": "Double diamond"
+        },
+        {
+          "source": "/Design/Base/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B",
+          "target": "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82",
+          "text": "Дизайн-спринт"
+        }
+      ],
+      "/Design/Design": [
+        {
+          "source": "/Design/Design",
+          "target": "/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+          "text": "Исследования"
+        },
+        {
+          "source": "/Design/Design",
+          "target": "/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "text": "Анализ"
+        },
+        {
+          "source": "/Design/Design",
+          "target": "/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "text": "Дизайн"
+        },
+        {
+          "source": "/Design/Design",
+          "target": "/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "text": "Тестирование"
+        }
+      ],
+      "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5": [
+        {
+          "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/Userflow",
+          "text": "Userflow"
+        },
+        {
+          "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/%D0%9C%D0%B0%D0%BA%D0%B5%D1%82",
+          "text": "Макет"
+        },
+        {
+          "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/%D0%9F%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF",
+          "text": "Прототип"
+        },
+        {
+          "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/UI-Kit",
+          "text": "UI Kit"
+        },
+        {
+          "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0",
+          "text": "Дизайн-система"
+        },
+        {
+          "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/Accessibility",
+          "text": "Accessibility"
+        }
+      ],
+      "/Design/Design/Design-Token": [
+        {
+          "source": "/Design/Design/Design-Token",
+          "target": "/UI-Kit",
+          "text": "UI Kit"
+        },
+        {
+          "source": "/Design/Design/Design-Token",
+          "target": "/../../Development/camelCase",
+          "text": "camelCase"
+        },
+        {
+          "source": "/Design/Design/Design-Token",
+          "target": "/../../Development/kebab-case",
+          "text": "kebab-case"
+        },
+        {
+          "source": "/Design/Design/Design-Token",
+          "target": "/../../Development/PascalCase",
+          "text": "PascalCase"
+        }
+      ],
+      "/Design/Design/UI-Kit": [
+        {
+          "source": "/Design/Design/UI-Kit",
+          "target": "/Design-Token",
+          "text": "дизайн-токены"
+        },
+        {
+          "source": "/Design/Design/UI-Kit",
+          "target": "/../../Development/camelCase",
+          "text": "camelCase"
+        },
+        {
+          "source": "/Design/Design/UI-Kit",
+          "target": "/../../Development/kebab-case",
+          "text": "kebab-case"
+        },
+        {
+          "source": "/Design/Design/UI-Kit",
+          "target": "/../../Development/PascalCase",
+          "text": "PascalCase"
+        },
+        {
+          "source": "/Design/Design/UI-Kit",
+          "target": "/Accessibility",
+          "text": "Accessibility"
+        }
+      ],
+      "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F": [
+        {
+          "source": "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+          "target": "/Interview",
+          "text": "Interview"
+        },
+        {
+          "source": "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+          "target": "/Lean-canvas",
+          "text": "Lean canvas"
+        },
+        {
+          "source": "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+          "target": "/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+          "text": "Опросы"
+        },
+        {
+          "source": "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+          "target": "/Card-sorting",
+          "text": "Card sorting"
+        },
+        {
+          "source": "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+          "target": "/Competitive-analysis",
+          "text": "Competitive analysis"
+        }
+      ],
+      "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B": [
+        {
+          "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+          "target": "/NPS",
+          "text": "NPS"
+        },
+        {
+          "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+          "target": "/CSAT",
+          "text": "CSAT"
+        },
+        {
+          "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+          "target": "/CES",
+          "text": "CES"
+        },
+        {
+          "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+          "target": "/SEQ",
+          "text": "SEQ"
+        },
+        {
+          "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+          "target": "/UMUX",
+          "text": "UMUX"
+        },
+        {
+          "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+          "target": "/SUS",
+          "text": "SUS"
+        }
+      ],
+      "/Design/Research/Card-sorting": [
+        {
+          "source": "/Design/Research/Card-sorting",
+          "target": "/../Analysis/Informational-Architecture",
+          "text": "Informational Architecture"
+        }
+      ],
+      "/Design/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5": [
+        {
+          "source": "/Design/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/Task-flow-test",
+          "text": "Task flow test"
+        },
+        {
+          "source": "/Design/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/Usability-Test",
+          "text": "Usability Test"
+        },
+        {
+          "source": "/Design/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/Fake-door",
+          "text": "Fake door"
+        },
+        {
+          "source": "/Design/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/Prototyping",
+          "text": "Prototyping"
+        }
+      ],
+      "/Development/%D0%A0%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0": [
+        {
+          "source": "/Development/%D0%A0%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0",
+          "target": "/camelCase",
+          "text": "camelCase"
+        },
+        {
+          "source": "/Development/%D0%A0%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0",
+          "target": "/PascalCase",
+          "text": "PascalCase"
+        },
+        {
+          "source": "/Development/%D0%A0%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0",
+          "target": "/kebab-case",
+          "text": "kebab-case"
+        }
+      ],
+      "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Conversion",
+          "text": "конверсия"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/North-star-metric",
+          "text": "North star metric"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Profit",
+          "text": "Profit"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Gross-profit",
+          "text": "Gross profit"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Conversion",
+          "text": "Conversion"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/CAC",
+          "text": "CAC"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/LTV",
+          "text": "LTV"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/COGS",
+          "text": "COGS"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/MRR",
+          "text": "MRR"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/ARPU",
+          "text": "ARPU"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/ARPPU",
+          "text": "ARPPU"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Cumulative-ARPU",
+          "text": "Cumulative ARPU"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Retention",
+          "text": "Retention"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Churn-rate",
+          "text": "Churn rate"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/DAUWAUMAU",
+          "text": "DAU\u0026WAU\u0026MAU"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/ROMI",
+          "text": "ROMI"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Cart-abandonment-rate",
+          "text": "Cart abandonment rate"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/AOV",
+          "text": "AOV"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/CPI",
+          "text": "CPI"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/CTR",
+          "text": "CTR"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/CPA",
+          "text": "CPA"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/CPC",
+          "text": "CPC"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/RPR",
+          "text": "RPR"
+        }
+      ],
+      "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ARPPU": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ARPPU",
+          "target": "/ARPU",
+          "text": "ARPU"
+        }
+      ],
+      "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ARPU": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ARPU",
+          "target": "/LTV",
+          "text": "LTV"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ARPU",
+          "target": "/CPA",
+          "text": "CPA"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ARPU",
+          "target": "/ARPPU",
+          "text": "ARPPU"
+        }
+      ],
+      "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Cumulative-ARPU": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Cumulative-ARPU",
+          "target": "/CPI",
+          "text": "CPI"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Cumulative-ARPU",
+          "target": "/ARPU",
+          "text": "ARPU"
+        }
+      ],
+      "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/Lifetime",
+          "text": "Lifetime"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/ARPPU",
+          "text": "ARPPU"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/AOV",
+          "text": "AOV"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/RPR",
+          "text": "RPR"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/Lifetime",
+          "text": "Lifetime"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/CAC",
+          "text": "CAC"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/Churn-rate",
+          "text": "Churn rate"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/ARPPU",
+          "text": "ARPPU"
+        }
+      ],
+      "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Profit": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Profit",
+          "target": "/CPA",
+          "text": "CPA"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Profit",
+          "target": "/ARPPU",
+          "text": "ARPPU"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Profit",
+          "target": "/LTV",
+          "text": "LTV"
+        }
+      ],
+      "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ROMI": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ROMI",
+          "target": "/LTV",
+          "text": "LTV"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ROMI",
+          "target": "/CAC",
+          "text": "CAC"
+        }
+      ],
+      "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8": [
+        {
+          "source": "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+          "target": "/SaaS",
+          "text": "SaaS"
+        },
+        {
+          "source": "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+          "target": "/Shop",
+          "text": "Shop"
+        },
+        {
+          "source": "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+          "target": "/Social-media",
+          "text": "Social media"
+        },
+        {
+          "source": "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+          "target": "/Marketplace",
+          "text": "Marketplace"
+        },
+        {
+          "source": "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+          "target": "/Dropshipping",
+          "text": "Dropshipping"
+        }
+      ],
+      "/Product/Frameworks/%D0%A4%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA%D0%B8": [
+        {
+          "source": "/Product/Frameworks/%D0%A4%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA%D0%B8",
+          "target": "/AARRR",
+          "text": "AARRR"
+        },
+        {
+          "source": "/Product/Frameworks/%D0%A4%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA%D0%B8",
+          "target": "/HEART",
+          "text": "HEART"
+        },
+        {
+          "source": "/Product/Frameworks/%D0%A4%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA%D0%B8",
+          "target": "/%D0%9F%D0%B8%D1%80%D0%B0%D0%BC%D0%B8%D0%B4%D0%B0-%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D0%BA",
+          "text": "Пирамида метрик"
+        }
+      ],
+      "/Product/Product": [
+        {
+          "source": "/Product/Product",
+          "target": "/Frameworks/%D0%A4%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA%D0%B8",
+          "text": "Фреймворки"
+        },
+        {
+          "source": "/Product/Product",
+          "target": "/Terms/%D0%AE%D0%BD%D0%B8%D1%82-%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B0",
+          "text": "Юнит-экономика"
+        },
+        {
+          "source": "/Product/Product",
+          "target": "/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+          "text": "Бизнес-модели"
+        }
+      ],
+      "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9": [
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%A1%D1%80%D0%B5%D0%B4%D0%BD%D0%B5%D0%B5-%D0%B0%D1%80%D0%B8%D1%84%D0%BC%D0%B5%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5",
+          "text": "Среднее арифметическое"
+        },
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%9C%D0%B5%D0%B4%D0%B8%D0%B0%D0%BD%D0%BD%D0%B0",
+          "text": "Медианна"
+        },
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%9F%D1%80%D0%B8%D1%87%D0%B8%D0%BD%D0%BD%D0%BE-%D1%81%D0%BB%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F-%D1%81%D0%B2%D1%8F%D0%B7%D1%8C",
+          "text": "Причинно-следственная связь"
+        },
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%9A%D0%BE%D1%80%D1%80%D0%B5%D0%BB%D1%8F%D1%86%D0%B8%D1%8F",
+          "text": "Корреляция"
+        },
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/Soft-launch",
+          "text": "Soft launch"
+        },
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%9A%D0%BE%D0%B3%D0%BE%D1%80%D1%82%D0%BD%D1%8B%D0%B9-%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "text": "Когортный анализ"
+        },
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/PMF",
+          "text": "Product market fit"
+        },
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%92%D0%BE%D1%80%D0%BE%D0%BD%D0%BA%D0%B0",
+          "text": "Воронка"
+        },
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%AE%D0%BD%D0%B8%D1%82-%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B0",
+          "text": "Юнит-экономика"
+        },
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%9F%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B3%D0%B8%D0%BF%D0%BE%D1%82%D0%B5%D0%B7%D0%B0",
+          "text": "Продуктовая гипотеза"
+        }
+      ],
+      "/Product/Terms/%D0%9F%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B3%D0%B8%D0%BF%D0%BE%D1%82%D0%B5%D0%B7%D0%B0": [
+        {
+          "source": "/Product/Terms/%D0%9F%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B3%D0%B8%D0%BF%D0%BE%D1%82%D0%B5%D0%B7%D0%B0",
+          "target": "/../../Design/Base/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-MVP",
+          "text": "mvp"
+        }
+      ],
+      "/Product/Terms/%D0%AE%D0%BD%D0%B8%D1%82-%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B0": [
+        {
+          "source": "/Product/Terms/%D0%AE%D0%BD%D0%B8%D1%82-%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B0",
+          "target": "/../%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "text": "метрики"
+        }
+      ]
+    },
+    "backlinks": {
+      "/%D0%92%D0%BE%D1%80%D0%BE%D0%BD%D0%BA%D0%B0": [
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%92%D0%BE%D1%80%D0%BE%D0%BD%D0%BA%D0%B0",
+          "text": "Воронка"
+        }
+      ],
+      "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5": [
+        {
+          "source": "/Design/Base/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B",
+          "target": "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5",
+          "text": "Дизайн-мышление"
+        }
+      ],
+      "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B": [
+        {
+          "source": "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B",
+          "text": "Дизайн-процессы"
+        }
+      ],
+      "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0": [
+        {
+          "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0",
+          "text": "Дизайн-система"
+        }
+      ],
+      "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82": [
+        {
+          "source": "/Design/Base/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B",
+          "target": "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82",
+          "text": "Дизайн-спринт"
+        }
+      ],
+      "/%D0%9A%D0%B0%D0%BA-%D0%BF%D0%BE%D0%BD%D1%8F%D1%82%D1%8C-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D1%83": [
+        {
+          "source": "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%9A%D0%B0%D0%BA-%D0%BF%D0%BE%D0%BD%D1%8F%D1%82%D1%8C-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D1%83",
+          "text": "Как понять задачу"
+        }
+      ],
+      "/%D0%9A%D0%BE%D0%B3%D0%BE%D1%80%D1%82%D0%BD%D1%8B%D0%B9-%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7": [
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%9A%D0%BE%D0%B3%D0%BE%D1%80%D1%82%D0%BD%D1%8B%D0%B9-%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "text": "Когортный анализ"
+        }
+      ],
+      "/%D0%9A%D0%BE%D1%80%D1%80%D0%B5%D0%BB%D1%8F%D1%86%D0%B8%D1%8F": [
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%9A%D0%BE%D1%80%D1%80%D0%B5%D0%BB%D1%8F%D1%86%D0%B8%D1%8F",
+          "text": "Корреляция"
+        }
+      ],
+      "/%D0%9C%D0%B0%D0%BA%D0%B5%D1%82": [
+        {
+          "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/%D0%9C%D0%B0%D0%BA%D0%B5%D1%82",
+          "text": "Макет"
+        }
+      ],
+      "/%D0%9C%D0%B5%D0%B4%D0%B8%D0%B0%D0%BD%D0%BD%D0%B0": [
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%9C%D0%B5%D0%B4%D0%B8%D0%B0%D0%BD%D0%BD%D0%B0",
+          "text": "Медианна"
+        }
+      ],
+      "/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B": [
+        {
+          "source": "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+          "target": "/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+          "text": "Опросы"
+        }
+      ],
+      "/%D0%9F%D0%B8%D1%80%D0%B0%D0%BC%D0%B8%D0%B4%D0%B0-%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D0%BA": [
+        {
+          "source": "/Product/Frameworks/%D0%A4%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA%D0%B8",
+          "target": "/%D0%9F%D0%B8%D1%80%D0%B0%D0%BC%D0%B8%D0%B4%D0%B0-%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D0%BA",
+          "text": "Пирамида метрик"
+        }
+      ],
+      "/%D0%9F%D1%80%D0%B8%D1%87%D0%B8%D0%BD%D0%BD%D0%BE-%D1%81%D0%BB%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F-%D1%81%D0%B2%D1%8F%D0%B7%D1%8C": [
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%9F%D1%80%D0%B8%D1%87%D0%B8%D0%BD%D0%BD%D0%BE-%D1%81%D0%BB%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F-%D1%81%D0%B2%D1%8F%D0%B7%D1%8C",
+          "text": "Причинно-следственная связь"
+        }
+      ],
+      "/%D0%9F%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B3%D0%B8%D0%BF%D0%BE%D1%82%D0%B5%D0%B7%D0%B0": [
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%9F%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B3%D0%B8%D0%BF%D0%BE%D1%82%D0%B5%D0%B7%D0%B0",
+          "text": "Продуктовая гипотеза"
+        }
+      ],
+      "/%D0%9F%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF": [
+        {
+          "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/%D0%9F%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF",
+          "text": "Прототип"
+        }
+      ],
+      "/%D0%A1%D1%80%D0%B5%D0%B4%D0%BD%D0%B5%D0%B5-%D0%B0%D1%80%D0%B8%D1%84%D0%BC%D0%B5%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5": [
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%A1%D1%80%D0%B5%D0%B4%D0%BD%D0%B5%D0%B5-%D0%B0%D1%80%D0%B8%D1%84%D0%BC%D0%B5%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5",
+          "text": "Среднее арифметическое"
+        }
+      ],
+      "/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-MVP": [
+        {
+          "source": "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-MVP",
+          "text": "Что такое MVP"
+        }
+      ],
+      "/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-Usability": [
+        {
+          "source": "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-Usability",
+          "text": "Что такое Usability"
+        }
+      ],
+      "/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-uxui-%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD": [
+        {
+          "source": "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-uxui-%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD",
+          "text": "Что такое uxui дизайн"
+        }
+      ],
+      "/%D0%AE%D0%BD%D0%B8%D1%82-%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B0": [
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/%D0%AE%D0%BD%D0%B8%D1%82-%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B0",
+          "text": "Юнит-экономика"
+        }
+      ],
+      "/../%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8": [
+        {
+          "source": "/Product/Terms/%D0%AE%D0%BD%D0%B8%D1%82-%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B0",
+          "target": "/../%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "text": "метрики"
+        }
+      ],
+      "/../../Design/Base/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-MVP": [
+        {
+          "source": "/Product/Terms/%D0%9F%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B3%D0%B8%D0%BF%D0%BE%D1%82%D0%B5%D0%B7%D0%B0",
+          "target": "/../../Design/Base/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-MVP",
+          "text": "mvp"
+        }
+      ],
+      "/../../Development/PascalCase": [
+        {
+          "source": "/Design/Design/Design-Token",
+          "target": "/../../Development/PascalCase",
+          "text": "PascalCase"
+        },
+        {
+          "source": "/Design/Design/UI-Kit",
+          "target": "/../../Development/PascalCase",
+          "text": "PascalCase"
+        }
+      ],
+      "/../../Development/camelCase": [
+        {
+          "source": "/Design/Design/Design-Token",
+          "target": "/../../Development/camelCase",
+          "text": "camelCase"
+        },
+        {
+          "source": "/Design/Design/UI-Kit",
+          "target": "/../../Development/camelCase",
+          "text": "camelCase"
+        }
+      ],
+      "/../../Development/kebab-case": [
+        {
+          "source": "/Design/Design/Design-Token",
+          "target": "/../../Development/kebab-case",
+          "text": "kebab-case"
+        },
+        {
+          "source": "/Design/Design/UI-Kit",
+          "target": "/../../Development/kebab-case",
+          "text": "kebab-case"
+        }
+      ],
+      "/../Analysis/Informational-Architecture": [
+        {
+          "source": "/Design/Research/Card-sorting",
+          "target": "/../Analysis/Informational-Architecture",
+          "text": "Informational Architecture"
+        }
+      ],
+      "/../Base/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-Usability": [
+        {
+          "source": "/Design/Analysis/Severity-analysis",
+          "target": "/../Base/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-Usability",
+          "text": "Что такое Usability"
+        }
+      ],
+      "/AARRR": [
+        {
+          "source": "/Product/Frameworks/%D0%A4%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA%D0%B8",
+          "target": "/AARRR",
+          "text": "AARRR"
+        }
+      ],
+      "/AOV": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/AOV",
+          "text": "AOV"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/AOV",
+          "text": "AOV"
+        }
+      ],
+      "/ARPPU": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ARPU",
+          "target": "/ARPPU",
+          "text": "ARPPU"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/ARPPU",
+          "text": "ARPPU"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/ARPPU",
+          "text": "ARPPU"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Profit",
+          "target": "/ARPPU",
+          "text": "ARPPU"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/ARPPU",
+          "text": "ARPPU"
+        }
+      ],
+      "/ARPU": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ARPPU",
+          "target": "/ARPU",
+          "text": "ARPU"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Cumulative-ARPU",
+          "target": "/ARPU",
+          "text": "ARPU"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/ARPU",
+          "text": "ARPU"
+        }
+      ],
+      "/Accessibility": [
+        {
+          "source": "/Design/Design/UI-Kit",
+          "target": "/Accessibility",
+          "text": "Accessibility"
+        },
+        {
+          "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/Accessibility",
+          "text": "Accessibility"
+        }
+      ],
+      "/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7": [
+        {
+          "source": "/Design/Design",
+          "target": "/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "text": "Анализ"
+        }
+      ],
+      "/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8": [
+        {
+          "source": "/Product/Product",
+          "target": "/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+          "text": "Бизнес-модели"
+        }
+      ],
+      "/CAC": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/CAC",
+          "text": "CAC"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ROMI",
+          "target": "/CAC",
+          "text": "CAC"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/CAC",
+          "text": "CAC"
+        }
+      ],
+      "/CES": [
+        {
+          "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+          "target": "/CES",
+          "text": "CES"
+        }
+      ],
+      "/CJM": [
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/CJM",
+          "text": "CJM"
+        }
+      ],
+      "/COGS": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/COGS",
+          "text": "COGS"
+        }
+      ],
+      "/CPA": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ARPU",
+          "target": "/CPA",
+          "text": "CPA"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Profit",
+          "target": "/CPA",
+          "text": "CPA"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/CPA",
+          "text": "CPA"
+        }
+      ],
+      "/CPC": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/CPC",
+          "text": "CPC"
+        }
+      ],
+      "/CPI": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Cumulative-ARPU",
+          "target": "/CPI",
+          "text": "CPI"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/CPI",
+          "text": "CPI"
+        }
+      ],
+      "/CSAT": [
+        {
+          "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+          "target": "/CSAT",
+          "text": "CSAT"
+        }
+      ],
+      "/CTR": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/CTR",
+          "text": "CTR"
+        }
+      ],
+      "/Card-sorting": [
+        {
+          "source": "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+          "target": "/Card-sorting",
+          "text": "Card sorting"
+        }
+      ],
+      "/Cart-abandonment-rate": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Cart-abandonment-rate",
+          "text": "Cart abandonment rate"
+        }
+      ],
+      "/Churn-rate": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/Churn-rate",
+          "text": "Churn rate"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Churn-rate",
+          "text": "Churn rate"
+        }
+      ],
+      "/Competitive-analysis": [
+        {
+          "source": "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+          "target": "/Competitive-analysis",
+          "text": "Competitive analysis"
+        }
+      ],
+      "/Conversion": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Conversion",
+          "text": "конверсия"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Conversion",
+          "text": "Conversion"
+        }
+      ],
+      "/Cumulative-ARPU": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Cumulative-ARPU",
+          "text": "Cumulative ARPU"
+        }
+      ],
+      "/DAUWAUMAU": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/DAUWAUMAU",
+          "text": "DAU\u0026WAU\u0026MAU"
+        }
+      ],
+      "/Design-Token": [
+        {
+          "source": "/Design/Design/UI-Kit",
+          "target": "/Design-Token",
+          "text": "дизайн-токены"
+        }
+      ],
+      "/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5": [
+        {
+          "source": "/Design/Design",
+          "target": "/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "text": "Дизайн"
+        }
+      ],
+      "/Design/Design": [
+        {
+          "source": "/",
+          "target": "/Design/Design",
+          "text": "Design"
+        }
+      ],
+      "/Double-diamond": [
+        {
+          "source": "/Design/Base/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B",
+          "target": "/Double-diamond",
+          "text": "Double diamond"
+        }
+      ],
+      "/Dropshipping": [
+        {
+          "source": "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+          "target": "/Dropshipping",
+          "text": "Dropshipping"
+        }
+      ],
+      "/Fake-door": [
+        {
+          "source": "/Design/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/Fake-door",
+          "text": "Fake door"
+        }
+      ],
+      "/Frameworks/%D0%A4%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA%D0%B8": [
+        {
+          "source": "/Product/Product",
+          "target": "/Frameworks/%D0%A4%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA%D0%B8",
+          "text": "Фреймворки"
+        }
+      ],
+      "/Gross-profit": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Gross-profit",
+          "text": "Gross profit"
+        }
+      ],
+      "/HEART": [
+        {
+          "source": "/Product/Frameworks/%D0%A4%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA%D0%B8",
+          "target": "/HEART",
+          "text": "HEART"
+        }
+      ],
+      "/Informational-Architecture": [
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/Informational-Architecture",
+          "text": "Informational Architecture"
+        }
+      ],
+      "/Interview": [
+        {
+          "source": "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+          "target": "/Interview",
+          "text": "Interview"
+        }
+      ],
+      "/JTBD": [
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/JTBD",
+          "text": "JTBD"
+        }
+      ],
+      "/KANO": [
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/KANO",
+          "text": "KANO"
+        }
+      ],
+      "/LTV": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ARPU",
+          "target": "/LTV",
+          "text": "LTV"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Profit",
+          "target": "/LTV",
+          "text": "LTV"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ROMI",
+          "target": "/LTV",
+          "text": "LTV"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/LTV",
+          "text": "LTV"
+        }
+      ],
+      "/Lean": [
+        {
+          "source": "/Design/Base/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B",
+          "target": "/Lean",
+          "text": "Lean"
+        }
+      ],
+      "/Lean-canvas": [
+        {
+          "source": "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+          "target": "/Lean-canvas",
+          "text": "Lean canvas"
+        }
+      ],
+      "/Lifetime": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/Lifetime",
+          "text": "Lifetime"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/Lifetime",
+          "text": "Lifetime"
+        }
+      ],
+      "/MRR": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/MRR",
+          "text": "MRR"
+        }
+      ],
+      "/Marketplace": [
+        {
+          "source": "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+          "target": "/Marketplace",
+          "text": "Marketplace"
+        }
+      ],
+      "/NPS": [
+        {
+          "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+          "target": "/NPS",
+          "text": "NPS"
+        }
+      ],
+      "/North-star-metric": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/North-star-metric",
+          "text": "North star metric"
+        }
+      ],
+      "/PMF": [
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/PMF",
+          "text": "Product market fit"
+        }
+      ],
+      "/PascalCase": [
+        {
+          "source": "/Development/%D0%A0%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0",
+          "target": "/PascalCase",
+          "text": "PascalCase"
+        }
+      ],
+      "/Persona": [
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/Persona",
+          "text": "Persona"
+        }
+      ],
+      "/Product/Product": [
+        {
+          "source": "/",
+          "target": "/Product/Product",
+          "text": "Product"
+        }
+      ],
+      "/Profit": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Profit",
+          "text": "Profit"
+        }
+      ],
+      "/Prototyping": [
+        {
+          "source": "/Design/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/Prototyping",
+          "text": "Prototyping"
+        }
+      ],
+      "/RICE-%D0%B8-ICE": [
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/RICE-%D0%B8-ICE",
+          "text": "RICE и ICE"
+        }
+      ],
+      "/ROMI": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/ROMI",
+          "text": "ROMI"
+        }
+      ],
+      "/RPR": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+          "target": "/RPR",
+          "text": "RPR"
+        },
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/RPR",
+          "text": "RPR"
+        }
+      ],
+      "/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F": [
+        {
+          "source": "/Design/Design",
+          "target": "/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+          "text": "Исследования"
+        }
+      ],
+      "/Retention": [
+        {
+          "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+          "target": "/Retention",
+          "text": "Retention"
+        }
+      ],
+      "/SEQ": [
+        {
+          "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+          "target": "/SEQ",
+          "text": "SEQ"
+        }
+      ],
+      "/SUS": [
+        {
+          "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+          "target": "/SUS",
+          "text": "SUS"
+        }
+      ],
+      "/SaaS": [
+        {
+          "source": "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+          "target": "/SaaS",
+          "text": "SaaS"
+        }
+      ],
+      "/Severity-analysis": [
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/Severity-analysis",
+          "text": "Severity analysis"
+        }
+      ],
+      "/Shop": [
+        {
+          "source": "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+          "target": "/Shop",
+          "text": "Shop"
+        }
+      ],
+      "/Social-media": [
+        {
+          "source": "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+          "target": "/Social-media",
+          "text": "Social media"
+        }
+      ],
+      "/Soft-launch": [
+        {
+          "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+          "target": "/Soft-launch",
+          "text": "Soft launch"
+        }
+      ],
+      "/Task-flow-test": [
+        {
+          "source": "/Design/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/Task-flow-test",
+          "text": "Task flow test"
+        }
+      ],
+      "/Terms/%D0%AE%D0%BD%D0%B8%D1%82-%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B0": [
+        {
+          "source": "/Product/Product",
+          "target": "/Terms/%D0%AE%D0%BD%D0%B8%D1%82-%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B0",
+          "text": "Юнит-экономика"
+        }
+      ],
+      "/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5": [
+        {
+          "source": "/Design/Design",
+          "target": "/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "text": "Тестирование"
+        }
+      ],
+      "/UI-Kit": [
+        {
+          "source": "/Design/Design/Design-Token",
+          "target": "/UI-Kit",
+          "text": "UI Kit"
+        },
+        {
+          "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/UI-Kit",
+          "text": "UI Kit"
+        }
+      ],
+      "/UMUX": [
+        {
+          "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+          "target": "/UMUX",
+          "text": "UMUX"
+        }
+      ],
+      "/Usability-Test": [
+        {
+          "source": "/Design/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/Usability-Test",
+          "text": "Usability Test"
+        }
+      ],
+      "/Use-case": [
+        {
+          "source": "/Design/Analysis/User-Story",
+          "target": "/Use-case",
+          "text": "Use case"
+        },
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/Use-case",
+          "text": "Use case"
+        }
+      ],
+      "/User-Story": [
+        {
+          "source": "/Design/Analysis/Persona",
+          "target": "/User-Story",
+          "text": "User Story"
+        },
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/User-Story",
+          "text": "User Story"
+        }
+      ],
+      "/User-Story-Mapping": [
+        {
+          "source": "/Design/Analysis/Persona",
+          "target": "/User-Story-Mapping",
+          "text": "User Story Mapping"
+        },
+        {
+          "source": "/Design/Analysis/User-Story",
+          "target": "/User-Story-Mapping",
+          "text": "User Story Mapping"
+        },
+        {
+          "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+          "target": "/User-Story-Mapping",
+          "text": "User Story Mapping"
+        }
+      ],
+      "/Userflow": [
+        {
+          "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+          "target": "/Userflow",
+          "text": "Userflow"
+        }
+      ],
+      "/camelCase": [
+        {
+          "source": "/Development/%D0%A0%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0",
+          "target": "/camelCase",
+          "text": "camelCase"
+        }
+      ],
+      "/kebab-case": [
+        {
+          "source": "/Development/%D0%A0%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0",
+          "target": "/kebab-case",
+          "text": "kebab-case"
+        }
+      ]
+    }
+  },
+  "links": [
+    {
+      "source": "/Design/Analysis/Persona",
+      "target": "/User-Story",
+      "text": "User Story"
+    },
+    {
+      "source": "/Design/Analysis/Persona",
+      "target": "/User-Story-Mapping",
+      "text": "User Story Mapping"
+    },
+    {
+      "source": "/Design/Analysis/Severity-analysis",
+      "target": "/../Base/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-Usability",
+      "text": "Что такое Usability"
+    },
+    {
+      "source": "/Design/Analysis/User-Story",
+      "target": "/Use-case",
+      "text": "Use case"
+    },
+    {
+      "source": "/Design/Analysis/User-Story",
+      "target": "/User-Story-Mapping",
+      "text": "User Story Mapping"
+    },
+    {
+      "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+      "target": "/Persona",
+      "text": "Persona"
+    },
+    {
+      "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+      "target": "/Informational-Architecture",
+      "text": "Informational Architecture"
+    },
+    {
+      "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+      "target": "/User-Story",
+      "text": "User Story"
+    },
+    {
+      "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+      "target": "/Use-case",
+      "text": "Use case"
+    },
+    {
+      "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+      "target": "/User-Story-Mapping",
+      "text": "User Story Mapping"
+    },
+    {
+      "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+      "target": "/JTBD",
+      "text": "JTBD"
+    },
+    {
+      "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+      "target": "/RICE-%D0%B8-ICE",
+      "text": "RICE и ICE"
+    },
+    {
+      "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+      "target": "/KANO",
+      "text": "KANO"
+    },
+    {
+      "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+      "target": "/Severity-analysis",
+      "text": "Severity analysis"
+    },
+    {
+      "source": "/Design/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+      "target": "/CJM",
+      "text": "CJM"
+    },
+    {
+      "source": "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+      "target": "/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-uxui-%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD",
+      "text": "Что такое uxui дизайн"
+    },
+    {
+      "source": "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+      "target": "/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-Usability",
+      "text": "Что такое Usability"
+    },
+    {
+      "source": "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+      "target": "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B",
+      "text": "Дизайн-процессы"
+    },
+    {
+      "source": "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+      "target": "/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-MVP",
+      "text": "Что такое MVP"
+    },
+    {
+      "source": "/Design/Base/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+      "target": "/%D0%9A%D0%B0%D0%BA-%D0%BF%D0%BE%D0%BD%D1%8F%D1%82%D1%8C-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D1%83",
+      "text": "Как понять задачу"
+    },
+    {
+      "source": "/Design/Base/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B",
+      "target": "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5",
+      "text": "Дизайн-мышление"
+    },
+    {
+      "source": "/Design/Base/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B",
+      "target": "/Lean",
+      "text": "Lean"
+    },
+    {
+      "source": "/Design/Base/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B",
+      "target": "/Double-diamond",
+      "text": "Double diamond"
+    },
+    {
+      "source": "/Design/Base/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D1%8B",
+      "target": "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D1%81%D0%BF%D1%80%D0%B8%D0%BD%D1%82",
+      "text": "Дизайн-спринт"
+    },
+    {
+      "source": "/Design/Design/Design-Token",
+      "target": "/UI-Kit",
+      "text": "UI Kit"
+    },
+    {
+      "source": "/Design/Design/Design-Token",
+      "target": "/../../Development/camelCase",
+      "text": "camelCase"
+    },
+    {
+      "source": "/Design/Design/Design-Token",
+      "target": "/../../Development/kebab-case",
+      "text": "kebab-case"
+    },
+    {
+      "source": "/Design/Design/Design-Token",
+      "target": "/../../Development/PascalCase",
+      "text": "PascalCase"
+    },
+    {
+      "source": "/Design/Design/UI-Kit",
+      "target": "/Design-Token",
+      "text": "дизайн-токены"
+    },
+    {
+      "source": "/Design/Design/UI-Kit",
+      "target": "/../../Development/camelCase",
+      "text": "camelCase"
+    },
+    {
+      "source": "/Design/Design/UI-Kit",
+      "target": "/../../Development/kebab-case",
+      "text": "kebab-case"
+    },
+    {
+      "source": "/Design/Design/UI-Kit",
+      "target": "/../../Development/PascalCase",
+      "text": "PascalCase"
+    },
+    {
+      "source": "/Design/Design/UI-Kit",
+      "target": "/Accessibility",
+      "text": "Accessibility"
+    },
+    {
+      "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+      "target": "/Userflow",
+      "text": "Userflow"
+    },
+    {
+      "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+      "target": "/%D0%9C%D0%B0%D0%BA%D0%B5%D1%82",
+      "text": "Макет"
+    },
+    {
+      "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+      "target": "/%D0%9F%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF",
+      "text": "Прототип"
+    },
+    {
+      "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+      "target": "/UI-Kit",
+      "text": "UI Kit"
+    },
+    {
+      "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+      "target": "/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0",
+      "text": "Дизайн-система"
+    },
+    {
+      "source": "/Design/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+      "target": "/Accessibility",
+      "text": "Accessibility"
+    },
+    {
+      "source": "/Design/Design",
+      "target": "/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+      "text": "Исследования"
+    },
+    {
+      "source": "/Design/Design",
+      "target": "/Analysis/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+      "text": "Анализ"
+    },
+    {
+      "source": "/Design/Design",
+      "target": "/Design/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+      "text": "Дизайн"
+    },
+    {
+      "source": "/Design/Design",
+      "target": "/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+      "text": "Тестирование"
+    },
+    {
+      "source": "/Design/Research/Card-sorting",
+      "target": "/../Analysis/Informational-Architecture",
+      "text": "Informational Architecture"
+    },
+    {
+      "source": "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+      "target": "/Interview",
+      "text": "Interview"
+    },
+    {
+      "source": "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+      "target": "/Lean-canvas",
+      "text": "Lean canvas"
+    },
+    {
+      "source": "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+      "target": "/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+      "text": "Опросы"
+    },
+    {
+      "source": "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+      "target": "/Card-sorting",
+      "text": "Card sorting"
+    },
+    {
+      "source": "/Design/Research/%D0%98%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F",
+      "target": "/Competitive-analysis",
+      "text": "Competitive analysis"
+    },
+    {
+      "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+      "target": "/NPS",
+      "text": "NPS"
+    },
+    {
+      "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+      "target": "/CSAT",
+      "text": "CSAT"
+    },
+    {
+      "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+      "target": "/CES",
+      "text": "CES"
+    },
+    {
+      "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+      "target": "/SEQ",
+      "text": "SEQ"
+    },
+    {
+      "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+      "target": "/UMUX",
+      "text": "UMUX"
+    },
+    {
+      "source": "/Design/Research/%D0%9E%D0%BF%D1%80%D0%BE%D1%81%D1%8B",
+      "target": "/SUS",
+      "text": "SUS"
+    },
+    {
+      "source": "/Design/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+      "target": "/Task-flow-test",
+      "text": "Task flow test"
+    },
+    {
+      "source": "/Design/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+      "target": "/Usability-Test",
+      "text": "Usability Test"
+    },
+    {
+      "source": "/Design/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+      "target": "/Fake-door",
+      "text": "Fake door"
+    },
+    {
+      "source": "/Design/Test/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5",
+      "target": "/Prototyping",
+      "text": "Prototyping"
+    },
+    {
+      "source": "/Development/%D0%A0%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0",
+      "target": "/camelCase",
+      "text": "camelCase"
+    },
+    {
+      "source": "/Development/%D0%A0%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0",
+      "target": "/PascalCase",
+      "text": "PascalCase"
+    },
+    {
+      "source": "/Development/%D0%A0%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0",
+      "target": "/kebab-case",
+      "text": "kebab-case"
+    },
+    {
+      "source": "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+      "target": "/SaaS",
+      "text": "SaaS"
+    },
+    {
+      "source": "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+      "target": "/Shop",
+      "text": "Shop"
+    },
+    {
+      "source": "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+      "target": "/Social-media",
+      "text": "Social media"
+    },
+    {
+      "source": "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+      "target": "/Marketplace",
+      "text": "Marketplace"
+    },
+    {
+      "source": "/Product/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+      "target": "/Dropshipping",
+      "text": "Dropshipping"
+    },
+    {
+      "source": "/Product/Frameworks/%D0%A4%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA%D0%B8",
+      "target": "/AARRR",
+      "text": "AARRR"
+    },
+    {
+      "source": "/Product/Frameworks/%D0%A4%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA%D0%B8",
+      "target": "/HEART",
+      "text": "HEART"
+    },
+    {
+      "source": "/Product/Frameworks/%D0%A4%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA%D0%B8",
+      "target": "/%D0%9F%D0%B8%D1%80%D0%B0%D0%BC%D0%B8%D0%B4%D0%B0-%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D0%BA",
+      "text": "Пирамида метрик"
+    },
+    {
+      "source": "/Product/Product",
+      "target": "/Frameworks/%D0%A4%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA%D0%B8",
+      "text": "Фреймворки"
+    },
+    {
+      "source": "/Product/Product",
+      "target": "/Terms/%D0%AE%D0%BD%D0%B8%D1%82-%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B0",
+      "text": "Юнит-экономика"
+    },
+    {
+      "source": "/Product/Product",
+      "target": "/Business-Models/%D0%91%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8",
+      "text": "Бизнес-модели"
+    },
+    {
+      "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+      "target": "/%D0%A1%D1%80%D0%B5%D0%B4%D0%BD%D0%B5%D0%B5-%D0%B0%D1%80%D0%B8%D1%84%D0%BC%D0%B5%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5",
+      "text": "Среднее арифметическое"
+    },
+    {
+      "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+      "target": "/%D0%9C%D0%B5%D0%B4%D0%B8%D0%B0%D0%BD%D0%BD%D0%B0",
+      "text": "Медианна"
+    },
+    {
+      "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+      "target": "/%D0%9F%D1%80%D0%B8%D1%87%D0%B8%D0%BD%D0%BD%D0%BE-%D1%81%D0%BB%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F-%D1%81%D0%B2%D1%8F%D0%B7%D1%8C",
+      "text": "Причинно-следственная связь"
+    },
+    {
+      "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+      "target": "/%D0%9A%D0%BE%D1%80%D1%80%D0%B5%D0%BB%D1%8F%D1%86%D0%B8%D1%8F",
+      "text": "Корреляция"
+    },
+    {
+      "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+      "target": "/Soft-launch",
+      "text": "Soft launch"
+    },
+    {
+      "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+      "target": "/%D0%9A%D0%BE%D0%B3%D0%BE%D1%80%D1%82%D0%BD%D1%8B%D0%B9-%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7",
+      "text": "Когортный анализ"
+    },
+    {
+      "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+      "target": "/PMF",
+      "text": "Product market fit"
+    },
+    {
+      "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+      "target": "/%D0%92%D0%BE%D1%80%D0%BE%D0%BD%D0%BA%D0%B0",
+      "text": "Воронка"
+    },
+    {
+      "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+      "target": "/%D0%AE%D0%BD%D0%B8%D1%82-%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B0",
+      "text": "Юнит-экономика"
+    },
+    {
+      "source": "/Product/Terms/%D0%93%D0%BB%D0%BE%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%B9",
+      "target": "/%D0%9F%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B3%D0%B8%D0%BF%D0%BE%D1%82%D0%B5%D0%B7%D0%B0",
+      "text": "Продуктовая гипотеза"
+    },
+    {
+      "source": "/Product/Terms/%D0%9F%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B3%D0%B8%D0%BF%D0%BE%D1%82%D0%B5%D0%B7%D0%B0",
+      "target": "/../../Design/Base/%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-MVP",
+      "text": "mvp"
+    },
+    {
+      "source": "/Product/Terms/%D0%AE%D0%BD%D0%B8%D1%82-%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B0",
+      "target": "/../%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "text": "метрики"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ARPPU",
+      "target": "/ARPU",
+      "text": "ARPU"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ARPU",
+      "target": "/LTV",
+      "text": "LTV"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ARPU",
+      "target": "/CPA",
+      "text": "CPA"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ARPU",
+      "target": "/ARPPU",
+      "text": "ARPPU"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Cumulative-ARPU",
+      "target": "/CPI",
+      "text": "CPI"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Cumulative-ARPU",
+      "target": "/ARPU",
+      "text": "ARPU"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+      "target": "/Lifetime",
+      "text": "Lifetime"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+      "target": "/ARPPU",
+      "text": "ARPPU"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+      "target": "/AOV",
+      "text": "AOV"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+      "target": "/RPR",
+      "text": "RPR"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+      "target": "/Lifetime",
+      "text": "Lifetime"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+      "target": "/CAC",
+      "text": "CAC"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+      "target": "/Churn-rate",
+      "text": "Churn rate"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/LTV",
+      "target": "/ARPPU",
+      "text": "ARPPU"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Profit",
+      "target": "/CPA",
+      "text": "CPA"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Profit",
+      "target": "/ARPPU",
+      "text": "ARPPU"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/Profit",
+      "target": "/LTV",
+      "text": "LTV"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ROMI",
+      "target": "/LTV",
+      "text": "LTV"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/ROMI",
+      "target": "/CAC",
+      "text": "CAC"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/Conversion",
+      "text": "конверсия"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/North-star-metric",
+      "text": "North star metric"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/Profit",
+      "text": "Profit"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/Gross-profit",
+      "text": "Gross profit"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/Conversion",
+      "text": "Conversion"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/CAC",
+      "text": "CAC"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/LTV",
+      "text": "LTV"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/COGS",
+      "text": "COGS"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/MRR",
+      "text": "MRR"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/ARPU",
+      "text": "ARPU"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/ARPPU",
+      "text": "ARPPU"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/Cumulative-ARPU",
+      "text": "Cumulative ARPU"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/Retention",
+      "text": "Retention"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/Churn-rate",
+      "text": "Churn rate"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/DAUWAUMAU",
+      "text": "DAU\u0026WAU\u0026MAU"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/ROMI",
+      "text": "ROMI"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/Cart-abandonment-rate",
+      "text": "Cart abandonment rate"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/AOV",
+      "text": "AOV"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/CPI",
+      "text": "CPI"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/CTR",
+      "text": "CTR"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/CPA",
+      "text": "CPA"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/CPC",
+      "text": "CPC"
+    },
+    {
+      "source": "/Product/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8/%D0%9C%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8",
+      "target": "/RPR",
+      "text": "RPR"
+    },
+    {
+      "source": "/",
+      "target": "/Product/Product",
+      "text": "Product"
+    },
+    {
+      "source": "/",
+      "target": "/Design/Design",
+      "text": "Design"
+    }
+  ]
+}
