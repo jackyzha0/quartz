@@ -18,7 +18,7 @@ W tym miejscu dzielę się z Tobą wszystkim co wiem. Stworzyłem je przede wszy
 * Moje notatki na temat Programowania, Projektowania, Marketingu i szeroko pojętego Biznesu
 * [[Optymalizacja/Sprzęt/Sprzęt]] z jakiego korzystam
 * Opisy wykorzystywanych przeze mnie [[Optymalizacja/Automatyzacja/Automatyzacja]] i [[Optymalizacja/Automatyzacja/Narzędzia]]
-* Informacje na temat projektów w które jestem zaangażowany ([[Projekty/eduweb]], [[Projekty/zautomatyzowani]], [[Projekty/overment]], [[Projekty/EasyCart]], [[Projekty/EasyBanner]])
+* Informacje na temat projektów w które jestem zaangażowany ([[Projekty/eduweb]], [[Projekty/Ahoy!]], [[Projekty/zautomatyzowani]], [[Projekty/overment]], [[Projekty/EasyCart]], [[Projekty/EasyBanner]], [[Projekty/Design Maestro]])
 * Moje wszystkie bezpłatne i płatne publikacje
 
 ## Wyszukiwanie & Obsidian
