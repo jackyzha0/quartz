@@ -4,7 +4,9 @@ id: home
 title: Home
 ---
 # Never misplace a note again
-Organize notes like how thoughts are organized—through the [[notes/connecting ideas is powerful|connection of ideas]]. Fleeting Notes is the quickest way to [[posts/manage-notes-with-a-simple-workflow|get started]] with [[notes/Zettelkasten|Zettelkasten]].  
+Organize notes like how thoughts are organized—through the [[notes/connecting ideas is powerful|connection of ideas]]. Fleeting Notes is the quickest way to [[posts/manage-notes-with-a-simple-workflow|get started]] with [[notes/Zettelkasten|Zettelkasten]].
+
+Try the [web app](https://my.fleetingnotes.app) now.  
 
 <video src="/fleeting-notes-demo.mp4" type="video/mp4" width="100%" height="100%" display="flex" controls=""></video>
 
@@ -15,10 +17,12 @@ The combination of full-text search and linking makes it easy to find any note. 
 - History of traversed notes
 
 ### Quick capture. Anywhere.
-Capture notes anywhere with an array of supported platforms. 
+Capture notes anywhere with an array of supported platforms and built-in sync between all platforms.
 - Chrome & Firefox extension
 - Android & iOS app
-- Web / Desktop app (coming soon)
+- Web app
+- Desktop app (coming soon)
+- Safari extension (coming soon)
 
 ### Full control of your notes
 Keep a backup of your notes or sync with other note-taking applications
