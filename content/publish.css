@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Poppins:ital,wght@0,300;0,700;1,300;1,500;1,700&display=swap');
+
+:root {
+    --text-accent: rgb(238, 27, 231);
+	--background-primary-alt: #000;
+}
+.theme-dark {
+    --text-accent: rgb(238, 27, 231);
+    --background-primary-alt: #000;
+}
+
+html {
+    font-size:  16px;
+}
+
+body.theme-dark {
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: .75rem;
+    background: #000;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-weight:  500;
+    line-height: 1em;
+    font-smoothing: antialiased;
+    text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+body.theme-dark h1, 
+body.theme-dark h2, 
+body.theme-dark h3, 
+body.theme-dark h4, 
+body.theme-dark h5, 
+body.theme-dark h6, 
+body.theme-dark .page-header {
+    font-family:  'Playfair Display', serif;
+    margin-top: 45px;
+    margin-bottom: 25px;
+}
+
+.page-header {
+    font-size: 2.5rem;
+}
+
+.markdown-preview-view h1 {
+    font-size: 32px;
+    font-family: 'Playfair Display', sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.markdown-preview-view {
+    font-size: 16px;
+    line-height: 26px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.markdown-preview-view .internal-link.is-unresolved {
+    opacity: .75;
+}
+.published-container.is-readable-line-width .site-body {
+    justify-content: initial;
+}
+
+.site-body-left-column-site-name {
+    padding-left: 60px;
+    position: relative;
+}
+
+.site-body-left-column {
+    flex: 0 0 330px;
+}
+
+.published-container.is-readable-line-width .site-body-center-column {
+    flex: 0 1 940px;
+}
+
+.site-body-left-column-site-name:before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: url(https://overment.com/images/logo-icon.svg);
+    background-size: cover;
+    position: absolute;
+    left: 20px;
+    top: 11px;
+}
+
+.has-navigation .site-body-left-column {
+    background: #000;
+}
+
+img[alt="overment"] { width: 200px; margin: 0 auto; display: block; }
+
+
+
+@media (max-width: 1024px) {
+    .site-body-left-column-site-name:before {
+        top:  0;
+    }
+    body.theme-dark {
+        font-size: 1.2rem;
+    }
+
+    h1, h2, h3, h4, h5, h6,  {
+        margin-top: 25px;
+    }
+
+    .markdown-preview-view {
+        font-size: 1.3rem;
+        line-height: 1.7rem;
+    }
+}

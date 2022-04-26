@@ -1,0 +1,106 @@
+1
+//- - - - - - - - -//
+[[Simple]] link.
+//- - - - - - - - -//
+<p><a href="Simple.html">Simple</a> link.</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+2
+//- - - - - - - - -//
+Links [[with|label]].
+//- - - - - - - - -//
+<p>Links <a href="with.html">label</a>.</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+3
+//- - - - - - - - -//
+Links [[can have spaces]].
+//- - - - - - - - -//
+<p>Links <a href="can%20have%20spaces.html">can have spaces</a>.</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+4
+//- - - - - - - - -//
+Labels [[can have|spaces too]].
+//- - - - - - - - -//
+<p>Labels <a href="can%20have.html">spaces too</a>.</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+5
+//- - - - - - - - -//
+Links can not [[go across
+lines]]
+//- - - - - - - - -//
+<p>Links can not [[go across
+lines]]</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+6
+//- - - - - - - - -//
+Labels can not [[go across|
+lines]].
+//- - - - - - - - -//
+<p>Labels can not [[go across|
+lines]].</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+7
+//- - - - - - - - -//
+Formatting in [[links *is* _taken_ ~~verbatim~~]].
+//- - - - - - - - -//
+<p>Formatting in <a href="links%20*is*%20_taken_%20~~verbatim~~.html">links *is* _taken_ ~~verbatim~~</a>.</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+8
+//- - - - - - - - -//
+Empty links are not allowed [[]].
+//- - - - - - - - -//
+<p>Empty links are not allowed [[]].</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+9
+//- - - - - - - - -//
+Empty links are not allowed even with labels [[|Foo]].
+//- - - - - - - - -//
+<p>Empty links are not allowed even with labels [[|Foo]].</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+10
+//- - - - - - - - -//
+Empty labels are not allowed [[Foo|]].
+//- - - - - - - - -//
+<p>Empty labels are not allowed [[Foo|]].</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+11
+//- - - - - - - - -//
+Does not mess up [regular links](dest.html).
+//- - - - - - - - -//
+<p>Does not mess up <a href="dest.html">regular links</a>.</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+12
+//- - - - - - - - -//
+Supports [[Fragments#In Links]].
+//- - - - - - - - -//
+<p>Supports <a href="Fragments.html#In%20Links">Fragments#In Links</a>.</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+13
+//- - - - - - - - -//
+Links [[with fragments#can have|labels]].
+//- - - - - - - - -//
+<p>Links <a href="with%20fragments.html#can%20have">labels</a>.</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+14
+//- - - - - - - - -//
+[[#Relative]] links.
+//- - - - - - - - -//
+<p><a href="#Relative">#Relative</a> links.</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+15
+//- - - - - - - - -//
+Relative [[#Links|with labels]].
+//- - - - - - - - -//
+<p>Relative <a href="#Links">with labels</a>.</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+16
+//- - - - - - - - -//
+Page that [[Does Not Exist]].
+//- - - - - - - - -//
+<p>Page that Does Not Exist.</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+17
+//- - - - - - - - -//
+Page that [[Does Not Exist|has a label]].
+//- - - - - - - - -//
+<p>Page that has a label.</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//

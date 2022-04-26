@@ -1,0 +1,686 @@
+1
+//- - - - - - - - -//
+*	A
+    B
+//- - - - - - - - -//
+<ul>
+<li>A
+B</li>
+</ul>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+2
+//- - - - - - - - -//
+**test**\
+test**test**\
+**test**test\
+test**test**
+//- - - - - - - - -//
+<p><strong>test</strong><br />
+test<strong>test</strong><br />
+<strong>test</strong>test<br />
+test<strong>test</strong></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+3
+//- - - - - - - - -//
+>*	>
+> 	1
+>		2
+>3
+//- - - - - - - - -//
+<blockquote>
+<ul>
+<li>
+<blockquote>
+</blockquote>
+</li>
+</ul>
+<p>1
+2
+3</p>
+</blockquote>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+4
+//- - - - - - - - -//
+`test`a`test`
+//- - - - - - - - -//
+<p><code>test</code>a<code>test</code></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+5
+//- - - - - - - - -//
+_**TL/DR** - [Go see summary.](#my-summary-area)_
+//- - - - - - - - -//
+<p><em><strong>TL/DR</strong> - <a href="#my-summary-area">Go see summary.</a></em></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+6
+//- - - - - - - - -//
+[This link won't be rendered
+correctly](https://geeksocket.in/some-long-link-here "This is the
+place where everything breaks")
+//- - - - - - - - -//
+<p><a href="https://geeksocket.in/some-long-link-here" title="This is the
+place where everything breaks">This link won't be rendered
+correctly</a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+7
+//- - - - - - - - -//
+[](./target.md)
+//- - - - - - - - -//
+<p><a href="./target.md"></a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+8
+//- - - - - - - - -//
+[]()
+//- - - - - - - - -//
+<p><a href=""></a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+9
+//- - - - - - - - -//
+[daß] is the old german spelling of [dass]
+
+[daß]: www.das-dass.de
+//- - - - - - - - -//
+<p><a href="www.das-dass.de">daß</a> is the old german spelling of <a href="www.das-dass.de">dass</a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+10
+//- - - - - - - - -//
+1. First step.
+
+   ~~~
+   aaa
+   ---
+   bbb
+   ~~~
+
+2. few other steps.
+//- - - - - - - - -//
+<ol>
+<li>
+<p>First step.</p>
+<pre><code>aaa
+---
+bbb
+</code></pre>
+</li>
+<li>
+<p>few other steps.</p>
+</li>
+</ol>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+11: delimiters between ascii punctuations should be parsed
+//- - - - - - - - -//
+`{%`_name_`%}`
+//- - - - - - - - -//
+<p><code>{%</code><em>name</em><code>%}</code></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+12: the alt attribute of img should be escaped
+//- - - - - - - - -//
+!["](quot.jpg)
+!['](apos.jpg)
+![<](lt.jpg)
+![>](gt.jpg)
+![&](amp.jpg) 
+//- - - - - - - - -//
+<p><img src="quot.jpg" alt="&quot;" />
+<img src="apos.jpg" alt="'" />
+<img src="lt.jpg" alt="&lt;" />
+<img src="gt.jpg" alt="&gt;" />
+<img src="amp.jpg" alt="&amp;" /></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+13: fenced code block starting with tab inside list
+//- - - - - - - - -//
+* foo
+  ```Makefile
+  foo
+  	foo
+  ```
+//- - - - - - - - -//
+<ul>
+<li>foo
+<pre><code class="language-Makefile">foo
+	foo
+</code></pre>
+</li>
+</ul>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+14: fenced code block inside list, mismatched tab start
+//- - - - - - - - -//
+* foo
+  ```Makefile
+  foo
+ 	foo
+  ```
+//- - - - - - - - -//
+<ul>
+<li>foo
+<pre><code class="language-Makefile">foo
+  foo
+</code></pre>
+</li>
+</ul>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+15: fenced code block inside nested list
+//- - - - - - - - -//
+* foo
+  -  bar
+     ```Makefile
+     foo
+     	foo
+     ```
+//- - - - - - - - -//
+<ul>
+<li>foo
+<ul>
+<li>bar
+<pre><code class="language-Makefile">foo
+	foo
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+16: indented code block starting with a tab.
+//- - - - - - - - -//
+* foo
+   
+      foo
+      	foo
+
+//- - - - - - - - -//
+<ul>
+<li>
+<p>foo</p>
+<pre><code>foo
+	foo
+</code></pre>
+</li>
+</ul>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+17: fenced code block in list, empty line, spaces on start
+//- - - - - - - - -//
+* foo
+  ```Makefile
+  foo
+  
+  foo
+  ```
+//- - - - - - - - -//
+<ul>
+<li>foo
+<pre><code class="language-Makefile">foo
+
+foo
+</code></pre>
+</li>
+</ul>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+18: fenced code block in list, empty line, no spaces on start
+//- - - - - - - - -//
+* foo
+  ```Makefile
+  foo
+
+  foo
+  ```
+//- - - - - - - - -//
+<ul>
+<li>foo
+<pre><code class="language-Makefile">foo
+
+foo
+</code></pre>
+</li>
+</ul>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+19: fenced code block inside nested list, empty line, spaces on start
+//- - - - - - - - -//
+* foo
+  -  bar
+     ```Makefile
+     foo
+
+     foo
+     ```
+//- - - - - - - - -//
+<ul>
+<li>foo
+<ul>
+<li>bar
+<pre><code class="language-Makefile">foo
+
+foo
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+20: fenced code block inside nested list, empty line, no space on start
+//- - - - - - - - -//
+* foo
+  -  bar
+     ```Makefile
+     foo
+
+     foo
+     ```
+//- - - - - - - - -//
+<ul>
+<li>foo
+<ul>
+<li>bar
+<pre><code class="language-Makefile">foo
+
+foo
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+21: Fenced code block within list can start with tab
+//- - - - - - - - -//
+- List
+
+    ```
+    A
+    	B
+    C
+    ```
+//- - - - - - - - -//
+<ul>
+<li>
+<p>List</p>
+<pre><code>A
+	B
+C
+</code></pre>
+</li>
+</ul>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+22: Indented code block within list can start with tab
+//- - - - - - - - -//
+- List
+
+      A
+      	B
+      C
+
+a
+//- - - - - - - - -//
+<ul>
+<li>
+<p>List</p>
+<pre><code>A
+	B
+C
+</code></pre>
+</li>
+</ul>
+<p>a</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+23: Emphasis corner case(yuin/goldmark#245)
+//- - - - - - - - -//
+a* b c d *e*
+//- - - - - - - - -//
+<p>a* b c d <em>e</em></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+24: HTML block tags can contain trailing spaces
+//- - - - - - - - -//
+<aaa >
+//- - - - - - - - -//
+<aaa >
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+25: Indented code blocks can start with tab
+//- - - - - - - - -//
+		x
+//- - - - - - - - -//
+<pre><code>	x</code></pre>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+26: NUL bytes must be replaced with U+FFFD
+    OPTIONS: {"enableEscape": true}
+//- - - - - - - - -//
+hello\x00world
+
+<?\x00
+//- - - - - - - - -//
+<p>hello\ufffdworld</p>
+<?\uFFFD
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+27: Newlines in code spans must be preserved as a space
+    OPTIONS: {"enableEscape": true}
+//- - - - - - - - -//
+`\n`
+
+`x\n`
+
+`\nx`
+//- - - - - - - - -//
+<p><code> </code></p>
+<p><code>x </code></p>
+<p><code> x</code></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+28: Single # is a heading level 1
+//- - - - - - - - -//
+#
+//- - - - - - - - -//
+<h1></h1>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+29: An empty list item cannot interrupt a paragraph
+//- - - - - - - - -//
+x
+*
+//- - - - - - - - -//
+<p>x
+*</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+30: A link reference definition followed by a single quote without closer
+//- - - - - - - - -//
+[x]
+
+[x]: <>
+'
+//- - - - - - - - -//
+<p><a href="">x</a></p>
+<p>'</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+31: A link reference definition followed by a double quote without closer
+//- - - - - - - - -//
+[x]
+
+[x]: <>
+"
+//- - - - - - - - -//
+<p><a href="">x</a></p>
+<p>&quot;</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+32: Hex character entities must be limited to 6 characters
+//- - - - - - - - -//
+&#x0000041;
+//- - - - - - - - -//
+<p>&amp;#x0000041;</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+33: \x01 should be escaped all the time
+    OPTIONS: {"enableEscape": true}
+//- - - - - - - - -//
+[x](\x01)
+//- - - - - - - - -//
+<p><a href="%01">x</a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+34: A form feed should not be treated as a space
+    OPTIONS: {"enableEscape": true}
+//- - - - - - - - -//
+x \f
+//- - - - - - - - -//
+<p>x \f</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+35: A link reference definition can contain a new line
+//- - - - - - - - -//
+This is a [test][foo
+bar] 1...2..3...
+
+[foo bar]: /
+//- - - - - - - - -//
+<p>This is a <a href="/">test</a> 1...2..3...</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+36: Emphasis and links
+//- - - - - - - - -//
+_a[b_c_](d)
+//- - - - - - - - -//
+<p>_a<a href="d">b_c_</a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+37: Tabs and spaces
+    OPTIONS: {"enableEscape": true}
+//- - - - - - - - -//
+\t\t x\n
+//- - - - - - - - -//
+<pre><code>\t x\n</code></pre>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+38: Decimal HTML entity literals should allow 7 digits
+//- - - - - - - - -//
+&#7654321;
+//- - - - - - - - -//
+<p>\uFFFD</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+39: Decimal HTML entities should not be interpreted as octal when starting with a 0
+//- - - - - - - - -//
+&#0100;
+//- - - - - - - - -//
+<p>d</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+40: Invalid HTML tag names
+//- - - - - - - - -//
+<1>
+
+<a:>
+
+<a\f>
+
+< p>
+//- - - - - - - - -//
+<p>&lt;1&gt;</p>
+<p>&lt;a:&gt;</p>
+<p>&lt;a\f&gt;</p>
+<p>&lt; p&gt;</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+41: Link references can not contain spaces after link label
+//- - - - - - - - -//
+[x]
+:>
+
+[o] :x
+//- - - - - - - - -//
+<p>[x]
+:&gt;</p>
+<p>[o] :x</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+42: Unclosed link reference titles can interrupt link references
+//- - - - - - - - -//
+[r]:
+<>
+'
+
+[o]:
+x
+'
+//- - - - - - - - -//
+<p>'</p>
+<p>'</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+43: A link containing an image containing a link should disable the outer link
+//- - - - - - - - -//
+[ ![ [b](c) ](x) ](y)
+//- - - - - - - - -//
+<p>[ <img src="x" alt=" b " /> ](y)</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+44: An empty list item(with trailing spaces) cannot interrupt a paragraph
+//- - - - - - - - -//
+a
+*  
+//- - - - - - - - -//
+<p>a
+*</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+45: Multiple empty list items
+//- - - - - - - - -//
+-
+
+-
+//- - - - - - - - -//
+<ul>
+<li></li>
+<li></li>
+</ul>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+46: Vertical tab should not be treated as spaces
+    OPTIONS: {"enableEscape": true}
+//- - - - - - - - -//
+\v
+//- - - - - - - - -//
+<p>\v</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+47: Escape back slashes should not be treated as hard line breaks
+//- - - - - - - - -//
+\\\\
+a
+//- - - - - - - - -//
+<p>\
+a</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+48: Multiple paragraphs in tight list
+//- - - - - - - - -//
+- a
+  >
+  b
+//- - - - - - - - -//
+<ul>
+<li>a
+<blockquote>
+</blockquote>
+b</li>
+</ul>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+49: A list item that is indented up to 3 spaces after an empty list item
+//- - - - - - - - -//
+1.
+
+   1. b
+
+-
+
+  - b
+//- - - - - - - - -//
+<ol>
+<li></li>
+<li>
+<p>b</p>
+</li>
+</ol>
+<ul>
+<li></li>
+<li>
+<p>b</p>
+</li>
+</ul>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+50: Spaces before a visible hard linebreak should be preserved
+//- - - - - - - - -//
+a \
+b
+//- - - - - - - - -//
+<p>a <br />
+b</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+51: Empty line in a fenced code block under list items
+//- - - - - - - - -//
+* This is a list item
+    ```
+    This is a test
+
+    This line will be dropped.
+    This line will be displayed.
+    ```
+//- - - - - - - - -//
+<ul>
+<li>This is a list item
+<pre><code>This is a test
+
+This line will be dropped.
+This line will be displayed.
+</code></pre>
+</li>
+</ul>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+52: windows-style newline and HTMLs
+    OPTIONS: {"enableEscape": true}
+//- - - - - - - - -//
+<a \r\nhref='link'>link</a>
+
+<video autoplay muted loop>\r\n<source src=\"https://example.com/example.mp4\" type=\"video/mp4\">\r\nYour browser does not support the video tag.\r\n</video>
+//- - - - - - - - -//
+<p><a \r\nhref='link'>link</a></p>
+<video autoplay muted loop>\r\n<source src=\"https://example.com/example.mp4\" type=\"video/mp4\">\r\nYour browser does not support the video tag.\r\n</video>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+

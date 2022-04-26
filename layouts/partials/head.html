@@ -7,7 +7,7 @@
   <link rel="shortcut icon" type="image/png" href="{{$.Site.BaseURL}}/icon.png" />
 
     <!-- CSS Stylesheets and Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Poppins:ital,wght@0,300;0,700;1,300;1,500;1,700&display=swap" rel="stylesheet">
     {{$sass := resources.Match "styles/[!_]*.scss" }}
     {{$css := slice }}
     {{range $sass}}
@@ -24,6 +24,7 @@
     <!--  Preload page vars  -->
     {{$linkIndex := resources.Get "indices/linkIndex.json" | resources.Fingerprint "md5" | resources.Minify |  }}
     {{$contentIndex := resources.Get "indices/contentIndex.json" | resources.Fingerprint "md5" | resources.Minify }}
+
     <script>
       const BASE_URL = {{.Site.BaseURL}}
       const fetchData = Promise.all([
@@ -36,11 +37,13 @@
             fetch("{{ $contentIndex.Permalink }}")
               .then(data => data.json()),
           ])
-          .then(([{index, links}, content]) => ({
-            index,
-            links,
-            content,
-          }))
+          .then(([{index, links}, content]) => {
+            return {
+              index,
+              links,
+              content,
+            }
+          })
     </script>
 </head>
 {{ template "_internal/google_analytics.html" . }}

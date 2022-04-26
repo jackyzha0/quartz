@@ -1,0 +1,68 @@
+1
+//- - - - - - - - -//
+That's some text with a footnote.[^1]
+
+[^1]: And that's the footnote.
+
+    That's the second paragraph.
+//- - - - - - - - -//
+<p>That's some text with a footnote.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>And that's the footnote.</p>
+<p>That's the second paragraph.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+3
+//- - - - - - - - -//
+[^000]:0	[^]:
+//- - - - - - - - -//
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+4
+//- - - - - - - - -//
+This[^3] is[^1] text with footnotes[^2].
+
+[^1]: Footnote one
+[^2]: Footnote two
+[^3]: Footnote three
+//- - - - - - - - -//
+<p>This<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> is<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> text with footnotes<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Footnote three&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Footnote one&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>Footnote two&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+5
+//- - - - - - - - -//
+test![^1]
+
+[^1]: footnote
+//- - - - - - - - -//
+<p>test!<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>footnote&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+//= = = = = = = = = = = = = = = = = = = = = = = =//

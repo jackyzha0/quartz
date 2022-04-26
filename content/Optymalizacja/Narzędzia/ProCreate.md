@@ -1,0 +1,1 @@
+[[Optymalizacja/Sprzęt/iPad]] 

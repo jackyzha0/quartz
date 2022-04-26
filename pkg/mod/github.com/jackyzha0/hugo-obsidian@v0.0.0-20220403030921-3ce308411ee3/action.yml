@@ -1,0 +1,30 @@
+name: hugo-obsidian
+inputs:
+  input:
+    default: .
+    description: "Input Directory"
+    required: false
+  output:
+    default: .
+    description: "Output Directory"
+    required: false
+  index:
+    default: "false"
+    description: "Index content"
+    required: false
+  root:
+    default: "."
+    description: "Root of Repository"
+    required: false
+description: simple GitHub action to parse Markdown Links into a .yaml file for Hugo
+branding:
+  icon: anchor
+  color: purple
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+  - "-input=${{ inputs.input }}"
+  - "-output=${{ inputs.output }}"
+  - "-index=${{ inputs.index }}"
+  - "-root=${{ inputs.root }}"

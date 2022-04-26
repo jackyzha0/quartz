@@ -1,0 +1,1 @@
+# Czym jest BetterTouch Tool?

@@ -1,0 +1,1 @@
+ToKast to podcast w całości poświęcony książkom [[Wiedza/Ksiazki/The Beginning of Infinity]] oraz [[Wiedza/Ksiazki/The Fabric of Reality]]. Dość kiepski pod kątem technicznym ale wszystko wynagradza najwyżej klasy merytoryka.

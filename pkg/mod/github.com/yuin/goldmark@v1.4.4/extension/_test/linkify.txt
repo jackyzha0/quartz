@@ -1,0 +1,193 @@
+1
+//- - - - - - - - -//
+www.commonmark.org
+//- - - - - - - - -//
+<p><a href="http://www.commonmark.org">www.commonmark.org</a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+2
+//- - - - - - - - -//
+Visit www.commonmark.org/help for more information.
+//- - - - - - - - -//
+<p>Visit <a href="http://www.commonmark.org/help">www.commonmark.org/help</a> for more information.</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+3
+//- - - - - - - - -//
+www.google.com/search?q=Markup+(business)
+
+www.google.com/search?q=Markup+(business)))
+
+(www.google.com/search?q=Markup+(business))
+
+(www.google.com/search?q=Markup+(business)
+//- - - - - - - - -//
+<p><a href="http://www.google.com/search?q=Markup+(business)">www.google.com/search?q=Markup+(business)</a></p>
+<p><a href="http://www.google.com/search?q=Markup+(business)">www.google.com/search?q=Markup+(business)</a>))</p>
+<p>(<a href="http://www.google.com/search?q=Markup+(business)">www.google.com/search?q=Markup+(business)</a>)</p>
+<p>(<a href="http://www.google.com/search?q=Markup+(business)">www.google.com/search?q=Markup+(business)</a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+4
+//- - - - - - - - -//
+www.google.com/search?q=(business))+ok
+//- - - - - - - - -//
+<p><a href="http://www.google.com/search?q=(business))+ok">www.google.com/search?q=(business))+ok</a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+5
+//- - - - - - - - -//
+www.google.com/search?q=commonmark&hl=en
+
+www.google.com/search?q=commonmark&hl;
+//- - - - - - - - -//
+<p><a href="http://www.google.com/search?q=commonmark&amp;hl=en">www.google.com/search?q=commonmark&amp;hl=en</a></p>
+<p><a href="http://www.google.com/search?q=commonmark">www.google.com/search?q=commonmark</a>&amp;hl;</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+6
+//- - - - - - - - -//
+www.commonmark.org/he<lp
+//- - - - - - - - -//
+<p><a href="http://www.commonmark.org/he">www.commonmark.org/he</a>&lt;lp</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+7
+//- - - - - - - - -//
+http://commonmark.org
+
+(Visit https://encrypted.google.com/search?q=Markup+(business))
+
+Anonymous FTP is available at ftp://foo.bar.baz.
+//- - - - - - - - -//
+<p><a href="http://commonmark.org">http://commonmark.org</a></p>
+<p>(Visit <a href="https://encrypted.google.com/search?q=Markup+(business)">https://encrypted.google.com/search?q=Markup+(business)</a>)</p>
+<p>Anonymous FTP is available at <a href="ftp://foo.bar.baz">ftp://foo.bar.baz</a>.</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+8
+//- - - - - - - - -//
+foo@bar.baz
+//- - - - - - - - -//
+<p><a href="mailto:foo@bar.baz">foo@bar.baz</a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+9
+//- - - - - - - - -//
+hello@mail+xyz.example isn't valid, but hello+xyz@mail.example is.
+//- - - - - - - - -//
+<p>hello@mail+xyz.example isn't valid, but <a href="mailto:hello+xyz@mail.example">hello+xyz@mail.example</a> is.</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+10
+//- - - - - - - - -//
+a.b-c_d@a.b
+
+a.b-c_d@a.b.
+
+a.b-c_d@a.b-
+
+a.b-c_d@a.b_
+//- - - - - - - - -//
+<p><a href="mailto:a.b-c_d@a.b">a.b-c_d@a.b</a></p>
+<p><a href="mailto:a.b-c_d@a.b">a.b-c_d@a.b</a>.</p>
+<p>a.b-c_d@a.b-</p>
+<p>a.b-c_d@a.b_</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+11
+//- - - - - - - - -//
+https://github.com#sun,mon
+//- - - - - - - - -//
+<p><a href="https://github.com#sun,mon">https://github.com#sun,mon</a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+12
+//- - - - - - - - -//
+https://github.com/sunday's
+//- - - - - - - - -//
+<p><a href="https://github.com/sunday's">https://github.com/sunday's</a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+13
+//- - - - - - - - -//
+https://github.com?q=stars:>1
+//- - - - - - - - -//
+<p><a href="https://github.com?q=stars:%3E1">https://github.com?q=stars:&gt;1</a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+14
+//- - - - - - - - -//
+[https://google.com](https://google.com)
+//- - - - - - - - -//
+<p><a href="https://google.com">https://google.com</a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+15
+//- - - - - - - - -//
+This is a `git@github.com:vim/vim`
+//- - - - - - - - -//
+<p>This is a <code>git@github.com:vim/vim</code></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+16
+//- - - - - - - - -//
+https://nic.college
+//- - - - - - - - -//
+<p><a href="https://nic.college">https://nic.college</a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+17
+//- - - - - - - - -//
+http://server.intranet.acme.com:1313
+//- - - - - - - - -//
+<p><a href="http://server.intranet.acme.com:1313">http://server.intranet.acme.com:1313</a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+18
+//- - - - - - - - -//
+https://g.page/foo
+//- - - - - - - - -//
+<p><a href="https://g.page/foo">https://g.page/foo</a></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+19: Trailing punctuation (specifically, ?, !, ., ,, :, *, _, and ~) will not be considered part of the autolink
+//- - - - - - - - -//
+__http://test.com/~/a__
+__http://test.com/~/__
+__http://test.com/~__
+__http://test.com/a/~__
+//- - - - - - - - -//
+<p><strong><a href="http://test.com/~/a">http://test.com/~/a</a></strong>
+<strong><a href="http://test.com/~/">http://test.com/~/</a></strong>
+<strong><a href="http://test.com/">http://test.com/</a>~</strong>
+<strong><a href="http://test.com/a/">http://test.com/a/</a>~</strong></p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//

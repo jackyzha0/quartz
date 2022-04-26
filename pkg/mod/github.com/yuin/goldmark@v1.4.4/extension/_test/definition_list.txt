@@ -1,0 +1,156 @@
+1
+//- - - - - - - - -//
+Apple
+:   Pomaceous fruit of plants of the genus Malus in 
+the family Rosaceae.
+
+Orange
+:   The fruit of an evergreen tree of the genus Citrus.
+//- - - - - - - - -//
+<dl>
+<dt>Apple</dt>
+<dd>Pomaceous fruit of plants of the genus Malus in
+the family Rosaceae.</dd>
+<dt>Orange</dt>
+<dd>The fruit of an evergreen tree of the genus Citrus.</dd>
+</dl>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+2
+//- - - - - - - - -//
+Apple
+:   Pomaceous fruit of plants of the genus Malus in 
+    the family Rosaceae.
+:   An American computer company.
+
+Orange
+:   The fruit of an evergreen tree of the genus Citrus.
+//- - - - - - - - -//
+<dl>
+<dt>Apple</dt>
+<dd>Pomaceous fruit of plants of the genus Malus in
+the family Rosaceae.</dd>
+<dd>An American computer company.</dd>
+<dt>Orange</dt>
+<dd>The fruit of an evergreen tree of the genus Citrus.</dd>
+</dl>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+3
+//- - - - - - - - -//
+Term 1
+Term 2
+:   Definition a
+
+Term 3
+:   Definition b
+//- - - - - - - - -//
+<dl>
+<dt>Term 1</dt>
+<dt>Term 2</dt>
+<dd>Definition a</dd>
+<dt>Term 3</dt>
+<dd>Definition b</dd>
+</dl>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+4
+//- - - - - - - - -//
+Apple
+
+:   Pomaceous fruit of plants of the genus Malus in 
+    the family Rosaceae.
+
+Orange
+
+:    The fruit of an evergreen tree of the genus Citrus.
+//- - - - - - - - -//
+<dl>
+<dt>Apple</dt>
+<dd>
+<p>Pomaceous fruit of plants of the genus Malus in
+the family Rosaceae.</p>
+</dd>
+<dt>Orange</dt>
+<dd>
+<p>The fruit of an evergreen tree of the genus Citrus.</p>
+</dd>
+</dl>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+5
+//- - - - - - - - -//
+Term 1
+
+:   This is a definition with two paragraphs. Lorem ipsum 
+    dolor sit amet, consectetuer adipiscing elit. Aliquam 
+    hendrerit mi posuere lectus.
+
+    Vestibulum enim wisi, viverra nec, fringilla in, laoreet
+    vitae, risus.
+
+:   Second definition for term 1, also wrapped in a paragraph
+    because of the blank line preceding it.
+
+Term 2
+
+:   This definition has a code block, a blockquote and a list.
+
+        code block.
+
+    > block quote
+    > on two lines.
+
+    1.  first list item
+    2.  second list item
+//- - - - - - - - -//
+<dl>
+<dt>Term 1</dt>
+<dd>
+<p>This is a definition with two paragraphs. Lorem ipsum
+dolor sit amet, consectetuer adipiscing elit. Aliquam
+hendrerit mi posuere lectus.</p>
+<p>Vestibulum enim wisi, viverra nec, fringilla in, laoreet
+vitae, risus.</p>
+</dd>
+<dd>
+<p>Second definition for term 1, also wrapped in a paragraph
+because of the blank line preceding it.</p>
+</dd>
+<dt>Term 2</dt>
+<dd>
+<p>This definition has a code block, a blockquote and a list.</p>
+<pre><code>code block.
+</code></pre>
+<blockquote>
+<p>block quote
+on two lines.</p>
+</blockquote>
+<ol>
+<li>first list item</li>
+<li>second list item</li>
+</ol>
+</dd>
+</dl>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+6: Definition lists indented with tabs
+//- - - - - - - - -//
+0
+:	```
+		0
+//- - - - - - - - -//
+<dl>
+<dt>0</dt>
+<dd><pre><code>	0</code></pre>
+</dd>
+</dl>
+//= = = = = = = = = = = = = = = = = = = = = = = =//

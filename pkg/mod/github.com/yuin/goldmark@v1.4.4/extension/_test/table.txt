@@ -1,0 +1,255 @@
+1
+//- - - - - - - - -//
+| foo | bar |
+| --- | --- |
+| baz | bim |
+//- - - - - - - - -//
+<table>
+<thead>
+<tr>
+<th>foo</th>
+<th>bar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>baz</td>
+<td>bim</td>
+</tr>
+</tbody>
+</table>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+2
+//- - - - - - - - -//
+| abc | defghi |
+:-: | -----------:
+bar | baz
+//- - - - - - - - -//
+<table>
+<thead>
+<tr>
+<th align="center">abc</th>
+<th align="right">defghi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">bar</td>
+<td align="right">baz</td>
+</tr>
+</tbody>
+</table>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+3
+//- - - - - - - - -//
+| f\|oo  |
+| ------ |
+| b `\|` az |
+| b **\|** im |
+//- - - - - - - - -//
+<table>
+<thead>
+<tr>
+<th>f|oo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>b <code>|</code> az</td>
+</tr>
+<tr>
+<td>b <strong>|</strong> im</td>
+</tr>
+</tbody>
+</table>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+4
+//- - - - - - - - -//
+| abc | def |
+| --- | --- |
+| bar | baz |
+> bar
+//- - - - - - - - -//
+<table>
+<thead>
+<tr>
+<th>abc</th>
+<th>def</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bar</td>
+<td>baz</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>bar</p>
+</blockquote>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+5
+//- - - - - - - - -//
+| abc | def |
+| --- | --- |
+| bar | baz |
+bar
+
+bar
+//- - - - - - - - -//
+<table>
+<thead>
+<tr>
+<th>abc</th>
+<th>def</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bar</td>
+<td>baz</td>
+</tr>
+<tr>
+<td>bar</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>bar</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+6
+//- - - - - - - - -//
+| abc | def |
+| --- |
+| bar |
+//- - - - - - - - -//
+<p>| abc | def |
+| --- |
+| bar |</p>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+7
+//- - - - - - - - -//
+| abc | def |
+| --- | --- |
+| bar |
+| bar | baz | boo |
+//- - - - - - - - -//
+<table>
+<thead>
+<tr>
+<th>abc</th>
+<th>def</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bar</td>
+<td></td>
+</tr>
+<tr>
+<td>bar</td>
+<td>baz</td>
+</tr>
+</tbody>
+</table>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+8
+//- - - - - - - - -//
+| abc | def |
+| --- | --- |
+//- - - - - - - - -//
+<table>
+<thead>
+<tr>
+<th>abc</th>
+<th>def</th>
+</tr>
+</thead>
+</table>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+
+9
+//- - - - - - - - -//
+Foo|Bar
+---|---
+`Yoyo`|Dyne
+//- - - - - - - - -//
+<table>
+<thead>
+<tr>
+<th>Foo</th>
+<th>Bar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Yoyo</code></td>
+<td>Dyne</td>
+</tr>
+</tbody>
+</table>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+10
+//- - - - - - - - -//
+foo|bar
+---|---
+`\` | second column
+//- - - - - - - - -//
+<table>
+<thead>
+<tr>
+<th>foo</th>
+<th>bar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\</code></td>
+<td>second column</td>
+</tr>
+</tbody>
+</table>
+//= = = = = = = = = = = = = = = = = = = = = = = =//
+
+
+11: Tables can interrupt paragraph
+//- - - - - - - - -//
+**xxx**
+| hello |   hi  |
+| :----: | :----:|
+//- - - - - - - - -//
+<p><strong>xxx</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">hello</th>
+<th align="center">hi</th>
+</tr>
+</thead>
+</table>
+//= = = = = = = = = = = = = = = = = = = = = = = =//

@@ -8,4 +8,22 @@
     </div>
 </div>
 
-{{partial "contact.html" .}}
+
+
+    <script defer>
+        (() => {
+        const links = document.querySelectorAll('.singlePage article a');
+        links.forEach(link => {
+            const content = link.textContent;
+            const parts = content.split('/');
+            const newContent = parts[parts.length - 1];
+            if (newContent.indexOf(']]') > -1) {
+                link.textContent = newContent.slice(0, -2);
+            } else {
+                link.textContent = newContent;
+            }
+            
+        })
+        })()
+    </script>
+<!-- {{partial "contact.html" .}} -->
