@@ -4,7 +4,7 @@ title: Essentialism
 
  ## O co chodzi? 
  
- Esencjalizm to model mentalny omawiany w książce [[Wiedza/Ksiazki/Essentialism: The Disciplined Pursuit of Less]]. Polega na usprawnieniu procesu podejmowania decyzji poprzez [[Eliminacja]] zbędnych elementów oraz [[Upraszczanie]].
+ Esencjalizm to model mentalny omawiany w książce [[Wiedza/Książki/Essentialism: The Disciplined Pursuit of Less]]. Polega na usprawnieniu procesu podejmowania decyzji poprzez [[Eliminacja]] zbędnych elementów oraz [[Upraszczanie]].
  
 Koncepcja esencjalizmu stanowi jeden z elementów fundamentu mojego [[Fundamenty/Proces]] oraz wielokrotnie była przytaczana przez osoby takie jak [[Wiedza/Ludzie/Bruce Lee]] czy [[Wiedza/Ludzie/Dan Millman]].
 

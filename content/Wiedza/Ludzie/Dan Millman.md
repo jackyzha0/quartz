@@ -29,7 +29,7 @@ Wiedza to nie to samo co mądrość. Nieistotne jest to co wiesz, ważne jest to
 ### Szczęście
 Bądź szczęśliwy tu i teraz, bez powodu. Albo nigdy nie będziesz. 
 
-Coś podobnego powiedział [[Wiedza/Ludzie/Naval Ravikant]]. Przeczytanie tego w [[Wiedza/Ksiazki/Alamanck of Naval Ravikant]] było dla mnie przełomowym momentem ze względu na całkowitą zmianę nastawienia względem swojego życia i poczucia szczęścia. 
+Coś podobnego powiedział [[Wiedza/Ludzie/Naval Ravikant]]. Przeczytanie tego w [[Wiedza/Książki/Alamanck of Naval Ravikant]] było dla mnie przełomowym momentem ze względu na całkowitą zmianę nastawienia względem swojego życia i poczucia szczęścia. 
 
 ### Oczekiwania wobec celu
 Fragment filmu "Siła Spokoju" pokazujący nieoczekiwany efekt długiej podróży związany z [[Wiedza/Słownik/Cel]]em i [[Wiedza/Przemyślenia/Oczekiwania]]mi.
@@ -37,5 +37,5 @@ Fragment filmu "Siła Spokoju" pokazujący nieoczekiwany efekt długiej podróż
 <iframe width="560" height="315" src="https://www.youtube.com/embed/wdKzBrzl_i8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Źródła
-- [[Wiedza/Ksiazki/Way of The Peaceful Warrior]]
-- [[Wiedza/Ksiazki/Body Mind Mastery]]
+- [[Wiedza/Książki/Way of The Peaceful Warrior]]
+- [[Wiedza/Książki/Body Mind Mastery]]

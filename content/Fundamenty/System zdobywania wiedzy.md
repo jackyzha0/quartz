@@ -5,7 +5,7 @@ title: System zdobywania wiedzy
 Umiejętność **szybkiego zdobywania wiedzy** postrzegam jako jedną z najważniejszych, szczególnie w obliczu bardzo szybko zmieniającego się świata. W związku z tym, że jest to umiejętność, można ją po prostu rozwijać. 
 
 Przykładowo widzę po sobie, że moja pamięć stała się nieporównywalnie lepsza na przestrzeni ostatnich lat. Mogę się mylić ale zakładam, że mają na to wpływ:
-- czytanie [[Wiedza/Ksiazki/Ksiazki]]
+- czytanie [[Wiedza/Książki/Książki]]
 - wiedza z podcastu [[Wiedza/Podcasty/Huberman Lab]]
 - zadbanie o [[Fundamenty/Proces#Fundamenty]] (np. o sen i odpoczynek)
 

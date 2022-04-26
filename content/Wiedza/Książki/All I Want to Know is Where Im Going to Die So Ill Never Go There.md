@@ -8,4 +8,4 @@ Ten ostatni wchodząc do biblioteki spotyka pozostałych, którzy pomagają mu z
 
 To książka pełna praktycznego wykorzystania modeli mentalnych oraz zasad, którymi kierują się jej bohaterowie.
 
-Dodam tylko, że ten tytuł jest zdecydowanie mniej wymagający niż wcześniejsza książka autora - [[Wiedza/Ksiazki/Seeking Wisdom]], którą również bardzo polecam. 
+Dodam tylko, że ten tytuł jest zdecydowanie mniej wymagający niż wcześniejsza książka autora - [[Wiedza/Książki/Seeking Wisdom]], którą również bardzo polecam. 

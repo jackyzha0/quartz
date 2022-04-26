@@ -13,5 +13,5 @@ W tej książce miałem okazję zobaczyć w jaki sposób dochodzi do transformac
 - W tej grze kultura nie jest jednym z elementów, lecz samą grą.
 - Są sytuacje w których wizja nie jest niezbędna a nawet szkodzi.
 - Zasady są ważniejsze niż proces. Proces ważniejszy niż cel.
-- Nie ma złych zespołów. Są źli liderzy. (to akurat cytat z [[Wiedza/Ksiazki/Extreme Ownership]])
+- Nie ma złych zespołów. Są źli liderzy. (to akurat cytat z [[Wiedza/Książki/Extreme Ownership]])
 - Kultura tworzy zaangażowanie ludzi a ono stanowi dźwignię rozwoju firmy.

@@ -19,13 +19,13 @@ Od 2017 rozwijam overment a od 2020 eduweb i wszystkie pozostałe [[Projekty/Pro
 
 ## Książki
 
-- [[Wiedza/Ksiazki/Getting Real]]
-- [[Wiedza/Ksiazki/Alamanck of Naval Ravikant]]
-- [[Wiedza/Ksiazki/Anything You Want]]
-- [[Wiedza/Ksiazki/MAKE]]
-- [[Wiedza/Ksiazki/Hard Things About Hard Things]]
-- [[Wiedza/Ksiazki/Creativity Inc]]
-- [[Wiedza/Ksiazki/Shape Up]]
-- [[Wiedza/Ksiazki/Principles]]
-- [[Wiedza/Ksiazki/Good to Great]]
-- [[Wiedza/Ksiazki/The Infinite Game]]
+- [[Wiedza/Książki/Getting Real]]
+- [[Wiedza/Książki/Alamanck of Naval Ravikant]]
+- [[Wiedza/Książki/Anything You Want]]
+- [[Wiedza/Książki/MAKE]]
+- [[Wiedza/Książki/Hard Things About Hard Things]]
+- [[Wiedza/Książki/Creativity Inc]]
+- [[Wiedza/Książki/Shape Up]]
+- [[Wiedza/Książki/Principles]]
+- [[Wiedza/Książki/Good to Great]]
+- [[Wiedza/Książki/The Infinite Game]]

@@ -14,7 +14,7 @@ Powszechnie uważa się, że nasza zdolność do szybkiej i trwałej nauki zmnie
 Według Andrew Hubermana jest to tylko po części prawda.
 
 ### Kształtowanie nawyków
-[[Wiedza/Ksiazki/Atomic Habits]]
+[[Wiedza/Książki/Atomic Habits]]
 
 ### Cykl okołodobowy
 [[Fundamenty/Proces#Fundamenty]]

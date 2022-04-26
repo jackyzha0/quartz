@@ -28,9 +28,9 @@ Bardzo pomógł mi w tym program "[Panuj i Posiadaj](https://zenjaskiniowca.pl/p
 Nie będę tutaj opisywał całego procesu, ze względu na to, że jest on częscią Programu Rafała. Mogę tylko polecić jego zakup i dodać, że wykonałem wszystkie kroki, zgodnie z jego sugestiami.
 
 ## Czy wartości ulegają zmianie? 
-W moim przypadku stosunkowo niedawno pojawił się na liście "entuzjazm". Powodem był [[moment zrozumienia]], który miał miejsce gdy czytałem [[Wiedza/Ksiazki/Alamanck of Naval Ravikant]]. Jeden z cytatów [[Wiedza/Ludzie/Naval Ravikant]] mówił o tym, że poczucie szczęścia to kwestia naszej decyzji. 
+W moim przypadku stosunkowo niedawno pojawił się na liście "entuzjazm". Powodem był [[moment zrozumienia]], który miał miejsce gdy czytałem [[Wiedza/Książki/Alamanck of Naval Ravikant]]. Jeden z cytatów [[Wiedza/Ludzie/Naval Ravikant]] mówił o tym, że poczucie szczęścia to kwestia naszej decyzji. 
 
 Od tego momentu postanowiłem wziąć to na poważnie, wbrew temu co powiedział mi test [[Wiedza/Inne/The Big Five]], sugerujący że pod względem entuzjazmu jestem w 1 percentylu (najniższym). 
 
-Jednocześnie książki takie jak np. [[Wiedza/Ksiazki/The Happiness Advantage]], [[Wiedza/Ksiazki/Letting Go]] czy nawet [[Wiedza/Ksiazki/Think Like a Rocket Scientist]] sugerują jednoznacznie ogromną rolę entuzjazmu w osiąganiu czegokolwiek. 
+Jednocześnie książki takie jak np. [[Wiedza/Książki/The Happiness Advantage]], [[Wiedza/Książki/Letting Go]] czy nawet [[Wiedza/Książki/Think Like a Rocket Scientist]] sugerują jednoznacznie ogromną rolę entuzjazmu w osiąganiu czegokolwiek. 
 

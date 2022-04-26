@@ -2,4 +2,4 @@
 title: Intuicja
 ---
 
-[[Wiedza/Ksiazki/Blink]]
+[[Wiedza/Książki/Blink]]

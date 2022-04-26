@@ -6,7 +6,7 @@ title: Indie Hackers
 
 Znani Indie Hackerzy
 - [[Wiedza/Ludzie/Adam Wathan]] ([[Tailwind CSS]] & [[[Tailwind UI]]])
-- [[Pieter Levels]] ([[Wiedza/Ksiazki/MAKE]])
+- [[Pieter Levels]] ([[Wiedza/Książki/MAKE]])
 
 Polecane przeze mnie odcinki podcastu [[Wiedza/Słownik/Indie Hackers]]: 
 - [[Grzegorz Róg]] - [Generating Passive Income by Teaching What You Know with Greg Rog of LearnUX ](https://www.indiehackers.com/podcast/149-greg-rog-of-learnux)

@@ -8,7 +8,7 @@ Czy zdajesz sobie sprawę o istnieniu pewnej siły, która nieustannie powstrzym
 
 To ukryty pod jedną z wielu mask - strachu, lęku, zmęczenia, wymówek, braku weny czy ważniejszych spraw - [[Opór]], którego podstawowym celem jest destrukcja i całkowite powstrzymanie nas przed działaniem.
 
-[[Steven Pressfield]] w [[Wiedza/Ksiazki/The Art of War]] opisuje na czym polega opór, czym się objawia oraz podkreśla fakt, że czuje go każdy, niezależenie od miejsca i czasu. Zrozumienie tego faktu daje nam przewagę w postaci świadomości problemu.
+[[Steven Pressfield]] w [[Wiedza/Książki/The Art of War]] opisuje na czym polega opór, czym się objawia oraz podkreśla fakt, że czuje go każdy, niezależenie od miejsca i czasu. Zrozumienie tego faktu daje nam przewagę w postaci świadomości problemu.
 
 ## Lekcje
 1. Opór dotyczy każdego. Niezależnie od miejsca i czasu.

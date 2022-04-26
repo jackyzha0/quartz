@@ -12,12 +12,12 @@ W tym miejscu dzielę się z Tobą wszystkim co wiem. Stworzyłem je przede wszy
 
 * Mojego procesu ([[Fundamenty/Proces]]) który realizuję codziennie \(i który nieustannie się zmienia\). Dzięki niemu podążam w wyznaczonym przeze mnie [[Wiedza/Słownik/Kierunek]] w oparciu o nazwane [[Fundamenty/Wartości]].
 * [[Wiedza/Modele Mentalne/Modele mentalne]] z których świadomie korzystam
-* Notatki z przeczytanych przeze mnie [[Wiedza/Ksiazki/Ksiazki]]
+* Notatki z przeczytanych przeze mnie [[Wiedza/Książki/Książki]]
 * [[Wiedza/Ludzie/Ludzie]] jakich obserwuję w Internecie
 * Moje [[Wiedza/Przemyślenia/Przemyślenia]] i styl działania
 * Moje notatki na temat Programowania, Projektowania, Marketingu i szeroko pojętego Biznesu
 * [[Optymalizacja/Sprzęt/Sprzęt]] z jakiego korzystam
-* Opisy wykorzystywanych przeze mnie [[Optymalizacja/Automatyzacja/Automatyzacja]] i [[Optymalizacja/Automatyzacja/Narzędzia]]
+* Opisy wykorzystywanych przeze mnie [[Optymalizacja/Automatyzacja/Automatyzacja]] i [[Optymalizacja/Narzędzia/Narzędzia]]
 * Informacje na temat projektów w które jestem zaangażowany ([[Projekty/eduweb]], [[Projekty/Ahoy!]], [[Projekty/zautomatyzowani]], [[Projekty/overment]], [[Projekty/EasyCart]], [[Projekty/EasyBanner]], [[Projekty/Design Maestro]])
 * Moje wszystkie bezpłatne i płatne publikacje
 

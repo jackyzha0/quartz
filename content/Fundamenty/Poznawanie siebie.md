@@ -1,5 +1,5 @@
 ---
-title: Poznawanie
+title: Poznawanie siebie
 ---
 
 >  (ltn. Poznaj Samego Siebie)
@@ -10,23 +10,23 @@ title: Poznawanie
 > Wykonanie testu niewiele daje. Skuteczność osiągnąłem dopiero po eksploracji załączonych materiałów oraz czytaniu książek na ich temat. 
 
 ## MBTI
-[[Wiedza/Inne/MBTI]] lub inaczej test 16 osobowości (chociaż według niektórych źródeł MBTI to nie 16 osobowości). Polecany przez [[Wiedza/Ludzie/Ray Dalio]]. W [[Wiedza/Ksiazki/Principles]] napisał, że w oparciu o niego budował zespół rozwijając niemal od zera największy na świecie fundusz inwestycyjny. 
+[[Wiedza/Inne/MBTI]] lub inaczej test 16 osobowości (chociaż według niektórych źródeł MBTI to nie 16 osobowości). Polecany przez [[Wiedza/Ludzie/Ray Dalio]]. W [[Wiedza/Książki/Principles]] napisał, że w oparciu o niego budował zespół rozwijając niemal od zera największy na świecie fundusz inwestycyjny. 
 
 > ℹ️ Według niektórych źródeł, test 16 osobowości ma niewiele wspólnego z MBTI.
 
 Mój profil: **INFJ**
 
 W celu eksploracji profilu przeczytałem m.in.:
-- [[Wiedza/Ksiazki/Understanding the INFJ Personality Type]]
+- [[Wiedza/Książki/Understanding the INFJ Personality Type]]
 - oraz [ten dokument](https://idigitalcitizen.files.wordpress.com/2011/02/infj-profile-counselor-protector-pdf2.pdf)
 
 **Najważniejsze wnioski:**
 - INFJ to profil sprzeczności
-- Polegam niemal w całości na swojej intuicji ([[Wiedza/Ksiazki/Blink]])
+- Polegam niemal w całości na swojej intuicji ([[Wiedza/Książki/Blink]])
 - Mam raczej ambiwertyczną naturę
 - Sam profil jest bardzo rzadki (1-3% ludzkości w tym 50% to mężczyźni)
 - Potrafię z łatwością czytać nawet subtelne emocje i uczucia
-- Jestem wysoko wrażliwy ([[Wiedza/Ksiazki/Daring Greatly]] pomogła mi zrozumieć ten temat)
+- Jestem wysoko wrażliwy ([[Wiedza/Książki/Daring Greatly]] pomogła mi zrozumieć ten temat)
 
 ## StrenghtsFinder
 [[Wiedza/Inne/StrenghtsFinder]] inaczej test Gallupa. Jeden z najczęściej polecanych narzędzi do rozwoju. Opiera się o odkrywanie swoich naturalnych predyspozycji, które rozwijane mogą stać się mocnymi stronami. 

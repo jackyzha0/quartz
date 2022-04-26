@@ -5,7 +5,7 @@ title: Marketing
 ## E-mail marketing
 
 ## Książki
-- [[Wiedza/Ksiazki/The Brain Audit]]
-- [[Wiedza/Ksiazki/Simplify]]
-- [[Wiedza/Ksiazki/Insanely Simple]]
-- [[Wiedza/Ksiazki/Predictably Irrational]]
+- [[Wiedza/Książki/The Brain Audit]]
+- [[Wiedza/Książki/Simplify]]
+- [[Wiedza/Książki/Insanely Simple]]
+- [[Wiedza/Książki/Predictably Irrational]]

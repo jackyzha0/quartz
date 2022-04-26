@@ -8,7 +8,7 @@ Zachęcam do obejrzenia animacji / podsumowania książki:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/B9XGUpQZY38" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-[[Wiedza/Ludzie/Ray Dalio]] w książce [[Wiedza/Ksiazki/Principles]] opisuje zasady które kreował na przestrzeni swojego życia. Opierał na nich rozwój firmy Bridgewater Associates, która doprowadziła go do listy jednego z najbogatszych ludzi na ziemi. 
+[[Wiedza/Ludzie/Ray Dalio]] w książce [[Wiedza/Książki/Principles]] opisuje zasady które kreował na przestrzeni swojego życia. Opierał na nich rozwój firmy Bridgewater Associates, która doprowadziła go do listy jednego z najbogatszych ludzi na ziemi. 
 
 Fundamentem budowania tych zasad są:
 - trudna sztuka postrzegania [[Wiedza/Przemyślenia/Rzeczywistość]] taką jaką faktycznie jest a nie taką jak byśmy chcieli aby była.

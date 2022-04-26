@@ -13,7 +13,7 @@ Oprócz pisania również czytam swój dziennik, co daje mi świetną [[Wiedza/S
 ## Zasady
 - Piszę praktycznie codziennie
 - Nie mam ustalonej pory ani struktury
-- Jestem ze sobą szczery w myśl Radykalnej Transparentności z książki [[Wiedza/Ksiazki/Principles]] oraz [[Wiedza/Ksiazki/That Will Never Work]]
+- Jestem ze sobą szczery w myśl Radykalnej Transparentności z książki [[Wiedza/Książki/Principles]] oraz [[Wiedza/Książki/That Will Never Work]]
 - Nie mam wymagań dotyczących ilości 
 - Piszę to, co w danej chwili mam w głowie
 - Czasem piszę w "trzeciej" osobie w celu zyskania dystansu do pisanych słów
@@ -24,7 +24,7 @@ Według mnie jednym z największych istniejących mitów i jednocześnie przeszk
 
 Dopiero od momentu w którym zdefiniowałem wyżej wymienione zasady, byłem w stanie "dopasować" prowadzenie dziennika do swojego rytmu dnia oraz zmieniających się warunków i nieprzewidzianych sytuacji. 
 
-Takie "uwolnienie" ([[Wiedza/Ksiazki/Letting Go]]) się od sztucznych zasad, sprawiło że byłem w stanie wyrobić żelazny nawyk (więcej w [[Wiedza/Ksiazki/Atomic Habits]])
+Takie "uwolnienie" ([[Wiedza/Książki/Letting Go]]) się od sztucznych zasad, sprawiło że byłem w stanie wyrobić żelazny nawyk (więcej w [[Wiedza/Książki/Atomic Habits]])
 
 ## Powracanie
 Znam wiele osób, które prowadzą dziennik. Ale żadna z nich nigdy nie powiedziała mi, że nie tylko go pisze ale również wraca do notatek sprzed lat.

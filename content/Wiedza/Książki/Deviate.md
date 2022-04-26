@@ -8,4 +8,4 @@ Okazuje się jednak, że nadal nie jest to [[Wiedza/Przemyślenia/Rzeczywistoś�
 
 Więcej o tym mówi m.in. [[Wiedza/Ludzie/Andrew Huberman]].
 
-Deviate to książka wybitnego neurobiologa, który dzieli się wnioskami z wieloletnich badań. W mojej opinii nadal na to co wiemy o mózgu należy nakładać duży filtr i margines błędu, jednak perspektywa którą daje [[Wiedza/Ksiazki/Deviate]] jest warta uwagi. Tym bardziej że przedstawione wnioski w różnych formach istnieją w wielu różnych źródłach.
+Deviate to książka wybitnego neurobiologa, który dzieli się wnioskami z wieloletnich badań. W mojej opinii nadal na to co wiemy o mózgu należy nakładać duży filtr i margines błędu, jednak perspektywa którą daje [[Wiedza/Książki/Deviate]] jest warta uwagi. Tym bardziej że przedstawione wnioski w różnych formach istnieją w wielu różnych źródłach.

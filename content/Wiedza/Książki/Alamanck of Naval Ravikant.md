@@ -5,7 +5,7 @@ title: Alamanck of Naval Ravikant
 Autor: Eric Jorgenson
 
 ## Kontekst
-[[Wiedza/Ksiazki/Alamanck of Naval Ravikant]] to jedna z książek w przypadku której zaznaczanie wartościowych fragmentów, kończy się zamazaniem całej. Jest to zbiór i interpretacja wypowiedzi [[Navala Ravikant]]a - znanego inwestory z Doliny Krzemowej, który na wczesnym etapie zainwestował w firmy takie jak Notion, Twitter czy Uber. 
+[[Wiedza/Książki/Alamanck of Naval Ravikant]] to jedna z książek w przypadku której zaznaczanie wartościowych fragmentów, kończy się zamazaniem całej. Jest to zbiór i interpretacja wypowiedzi [[Navala Ravikant]]a - znanego inwestory z Doliny Krzemowej, który na wczesnym etapie zainwestował w firmy takie jak Notion, Twitter czy Uber. 
 
 Naval kładzie ogromny nacisk w tej książce na mechanizm dźwigni (eng. [[Wiedza/Modele Mentalne/Leverage]]) opartą o tworzenie produktów, których koszt replikacji jest marginalny. 
 

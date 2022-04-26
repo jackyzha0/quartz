@@ -9,8 +9,8 @@ Więcej o byciu liderem dla samego siebie napisałem w jednym z moich artykułó
 Leadershipu uczę się aktywnie każdego dnia. Dużą rolę w tym obszarze odegrały osoby takie jak [[Wiedza/Ludzie/Jocko Willink]] czy [[Simon Sinek]] a nawet filmy takie jak A Faster Horse czy Ocean Ognia.
 
 ## Książki
-- [[Wiedza/Ksiazki/Leaders Eat Last]]
-- [[Wiedza/Ksiazki/The Infinite Game]]
-- [[Wiedza/Ksiazki/Extreme Ownership]]
+- [[Wiedza/Książki/Leaders Eat Last]]
+- [[Wiedza/Książki/The Infinite Game]]
+- [[Wiedza/Książki/Extreme Ownership]]
 - [[Dichotomy of Leadership]]
-- [[Wiedza/Ksiazki/Creativity Inc]]
+- [[Wiedza/Książki/Creativity Inc]]
