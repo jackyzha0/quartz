@@ -1,3 +1,7 @@
+---
+title: Anki
+---
+
 # Czym jest Anki?
 
 [[Optymalizacja/Narzędzia/Anki]] to aplikacja ułatwiająca zapamiętywanie. Opiera się o tzw. [[Spaced Repetition]]
