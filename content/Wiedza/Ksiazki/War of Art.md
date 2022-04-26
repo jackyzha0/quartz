@@ -1,3 +1,7 @@
+---
+title: War of Art
+---
+
 Autor: Steven Pressfield
 
 Czy zdajesz sobie sprawę o istnieniu pewnej siły, która nieustannie powstrzymuje Cię przed działaniem?

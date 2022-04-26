@@ -1,3 +1,7 @@
+---
+title: iPhone
+--- 
+
 Od kilku lat moim głównym telefonem jest iPhone i trudno jest mi wyobrazić sobie powrót do Androida lub alternatyw. 
 
 ## Aplikacje

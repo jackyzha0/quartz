@@ -2,6 +2,10 @@
 title: Przemyślenia
 ---
 
+---
+title: Przemyślenia
+---
+
 - [[Wiedza/Przemyślenia/Rzeczywistość]]
 - [[Wiedza/Przemyślenia/Intuicja]]
 - [[Wiedza/Przemyślenia/Podejmowanie decyzji]]

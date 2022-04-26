@@ -1,3 +1,7 @@
+---
+title: Never Split the Difference
+---
+
 [[Wiedza/Przemyślenia/Negocjacje]] często kojarzą nam się tylko z wybranymi zawodami (np. rolą sprzedawcy) i są ludzie, którzy sądzą że dla nich nie wniosi to żadnej wartości. Jeżeli się chwilę zastanowimy, to zauważymy że negocjacje są nieodłącznym elementem interakcji międzyludzkich, niemal na każdej płaszczyźnie. 
 
 ## Lekcje

@@ -1,3 +1,7 @@
+---
+title: Raycast
+--- 
+
 Raycast to launcher, który niemal w całości zastąpiło mi [[Optymalizacja/Narzędzia/Alfred]] oraz w dużym stopniu zastępuje [[Optymalizacja/Narzędzia/Keyboard Maestro]].
 
 Jego największą zaletą dla mnie jest: 

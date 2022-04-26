@@ -14,7 +14,7 @@ Do tworzenia scenariuszy automatyzacji wykorzystuję wszystkie moje umiejętnoś
 **Najważniejszy stack [[Optymalizacja/Automatyzacja/Narzędzia]]:** 
 - [[Optymalizacja/Narzędzia/Airtable]] - bazy danych
 - [[Optymalizacja/Narzędzia/Notion]] - zarzadzanie zadaniami, notatki i panele aktywności
-- [[Optymalizacja/Narzędzia/Integromat]] i [[Optymalizacja/Narzędzia/Zapier]] - łączenie usług
+- [[Optymalizacja/Narzędzia/MakeHQ]] i [[Optymalizacja/Narzędzia/Zapier]] - łączenie usług
 - [[Optymalizacja/Narzędzia/Buffer]] - publikacja w mediach społecznościowych
 - [[Sendgrid]] - maile transakcyjne i newslettery
 - [[Optymalizacja/Narzędzia/Keyboard Maestro]], [[Better Touch Tool]] i [[Optymalizacja/Narzędzia/Hazel]] - automatyzacja w systemie

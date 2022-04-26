@@ -1,3 +1,7 @@
+---
+title: Appeal to Novelty
+---
+
 ## O co chodzi? 
 To przekonanie, że "nowe jest dobre lub lepsze".
 

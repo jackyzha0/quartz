@@ -1,3 +1,7 @@
+---
+title: Ray Dalio
+---
+
 ## Zasady
 Ray Dalio w swojej książce [[Wiedza/Ksiazki/Principles]] pomógł mi zrozumieć jak ważne jest posiadanie w swoim życiu zasad, którymi się kierujemy. 
 

@@ -1,3 +1,7 @@
+---
+title: Stream Deck
+--- 
+
 ## Czym jest StreamDeck?
 Elgato StreamDeck to rodzaj dodatkowej klawiatury, na której klawiszach można wyświetlać dowolne grafiki, również dynamiczne (automatyczna podmiana zdjęcia i opisu).
 

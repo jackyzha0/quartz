@@ -1,3 +1,7 @@
+---
+title: Design System
+---
+
 ## Design System 
 Aktualnie projektuję niemal wyłącznie w oparciu o tzw. Design Systemy, np. [[Tailwind UI]] czy [[Systemflow]]. Dzięki temu łatwo tworzę przejrzysty [[Wiedza/🎨 Projektowanie/UI]], zachowując spójność, co wpływa pozytywnie na ogólny [[Wiedza/🎨 Projektowanie/UX]] aplikacji. 
 

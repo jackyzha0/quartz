@@ -1,3 +1,7 @@
+---
+title: Simplify
+---
+
 > "Coś jest proste nie wtedy gdy ignorujesz niektóre elementy, ale wtedy gdy docierając do źródła, świadomie odrzucasz te niepotrzebne" ~ overment
 
 Richard Koch inwestuje w firmy według zasady "Star". Mówi ona o klasyfikacji firm według: market share oraz tempie wzrostu rynku na którym działają. Te które są najwyżej, określa się mianem "Gwiazd". 

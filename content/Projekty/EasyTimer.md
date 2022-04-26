@@ -1,3 +1,7 @@
+---
+title: EasyTimer
+--- 
+
 # Czym jest EasyTimer?
 
 To generator liczników, które można wykorzystać w kampaniach mailowych. Aplikacja generuje zegar odliczający czas do wskazanej daty.

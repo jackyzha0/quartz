@@ -2,7 +2,7 @@
 title: Mikroserwisy
 ---
 ## Generowanie grafik
-Początkowo na własne potrzeby zaprojektowałem mikroserwis, który generuje zoptymalizowane kreacje na podstawie specjalnego szablonu. Później projekt został rozszerzony o moduł w [[Optymalizacja/Narzędzia/Integromat]] oraz teraz jest dostępny dla innych pod nazwą [[Projekty/EasyBanner]].
+Początkowo na własne potrzeby zaprojektowałem mikroserwis, który generuje zoptymalizowane kreacje na podstawie specjalnego szablonu. Później projekt został rozszerzony o moduł w [[Optymalizacja/Narzędzia/MakeHQ]] oraz teraz jest dostępny dla innych pod nazwą [[Projekty/EasyBanner]].
 
 Z jego pomocą jestem w stanie tworzyć setki grafik w ciągu kilku minut, przesyłając np. dane z [[Optymalizacja/Narzędzia/Airtable]] lub nawet bezpośrednio z mojego komputera (z pomocą [[Optymalizacja/Narzędzia/Keyboard Maestro]]).
 

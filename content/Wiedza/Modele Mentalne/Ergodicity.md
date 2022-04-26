@@ -1,3 +1,7 @@
+---
+title: Ergodicity
+---
+
 ## O co chodzi? 
 Ergodyczność to cecha procesów w przypadku których wystarczy pojedyncza, losowa i wystarczająco duża próba, aby przewidzieć efekt końcowy całości. Jednocześnie **rezultat takiego procesu wykonywanego przez jednostkę jest taki sam jak w przypadku gdyby proces realizowany był przez grupę.**
 

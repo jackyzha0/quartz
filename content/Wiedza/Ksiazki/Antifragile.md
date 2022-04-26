@@ -1,3 +1,7 @@
+---
+title: Antifragile
+---
+
 Jeżeli pomyślimy o przeciwieństwie kruchości, do głowy przychodzi nam siła lub twardość. 
 
 W rzeczywistości jednak nawet, jeżeli wyobrazimy sobie super twardy materiał, jest duża sznasa na to, że będziemy w stanie znaleźć twardszy, wykorzystać słaby punkt lub dźwignię, do tego aby go zniszczyć lub trwale uszkodzić.  

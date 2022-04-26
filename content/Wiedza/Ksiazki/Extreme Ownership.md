@@ -1,3 +1,7 @@
+---
+title: Extreme Ownership
+---
+
 [[Wiedza/Ksiazki/Extreme Ownership]] to jedna z książek których nie polecam czytać. Zdecydowanie bardziej polecam przesłuchać oryginalny audiobook, czytany przez autorów!
 
 [[Wiedza/Ksiazki/Extreme Ownership]] to niezwykła lekcja biznesu ale i nie tylko, ponieważ jej przekaz można zastosować w każdym obszarze życia. Dodatkowo bardzo polecam od razu przeczytać drugą część [[Dichotomy of Leadership]], która podkreśla bardzo ważny element [[Wiedza/🎲 Biznes/Leadership]]u jakim jest jego dwuznaczność.

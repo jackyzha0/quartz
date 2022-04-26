@@ -1,3 +1,7 @@
+---
+title: Constructor Functions
+---
+
 ## Definicja
 
 [[Wiedza/Programowanie/JavaScript/Fundamenty/Constructor Functions]] to funkcja zwracająca nowy obiekt, wywołana z pomocą słowa kluczowego **new**. Jej nazwę zapisujemy z wielkiej litery. Rolą constructora jest utworzenie nowej instancji klasy, do której jest przypisany. 

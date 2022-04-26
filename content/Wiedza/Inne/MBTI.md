@@ -1,3 +1,7 @@
+---
+title: MBTI
+--- 
+
 # MBTI
 To popularny i bezpłatny test osobowości na którym opieram [[Fundamenty/💛 Poznawanie siebie]] oraz [[Fundamenty/Proces]]
 

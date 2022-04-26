@@ -1,3 +1,7 @@
+---
+title: Daring Greatly
+---
+
 Ta książka uczy czegoś ważnego: 
 **[[Wrażliwość]] jest największą Odwagą.**
 

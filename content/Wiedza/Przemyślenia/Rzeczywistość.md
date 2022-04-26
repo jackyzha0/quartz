@@ -1,3 +1,7 @@
+---
+title: Rzeczywistość
+---
+
 ## Kontekst
 Wiele źródeł (np. [[Wiedza/Ksiazki/Deviate]]) wskazuje na to, że nie mamy możliwości postrzegać rzeczywistość taką i każdy z nas widzi ją inaczej. 
 

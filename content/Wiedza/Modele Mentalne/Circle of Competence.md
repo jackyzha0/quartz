@@ -1,3 +1,7 @@
+---
+title: Circle of Competence
+---
+
 ## O co chodzi?
 Każdy z nas posiada pewien zestaw umiejętności oraz wiedzy. Wiedza o tym, gdzie ten "obszar komptencji" ma swoje granice, pozwala lepiej go wykorzystywać oraz sięgać po pomoc innych wtedy, gdy to potrzebne. 
 

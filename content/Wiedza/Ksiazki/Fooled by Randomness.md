@@ -1,3 +1,7 @@
+---
+title: Fooled by Randomness
+---
+
 Zwykle nawet nie zdajemy sobie sprawy jak ogromny wpływ ma losowość na nasze życie. I ważne jest tutaj słowo "ogromny" a nie całkowity". 
 
 Zatem w przypadku osób, które zrobiły coś niezwykłego, raczej jest to połączenie ciężkiej pracy, umiejętności oraz szczęścia niż wyłącznie szczęścia. 

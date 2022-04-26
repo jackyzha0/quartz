@@ -1,3 +1,7 @@
+---
+title: How to Fail at Almost Anything and Still Win Big
+---
+
 Jedną z ważniejszych zalet czytania książek jest możliwość wyciągania wniosków z doświadczeń innych, często wybitnych ludzi. 
 
 Scott Adams w swojej książce opowiadając historię swojego życia. Po jej przeczytaniu usunąłem ze swojego życia wszystkie cele, w pełni skupiając się na [[Wiedza/Słownik/Proces]], czyli małych krokach które realizuję codziennie. Każdy z nich wspiera dążenie w wyznaczonym przeze mnie [[Wiedza/Słownik/Kierunek]].

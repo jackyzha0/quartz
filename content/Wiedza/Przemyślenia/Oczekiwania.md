@@ -1,6 +1,10 @@
 ---
 title: Oczekiwania
 ---
+
+---
+title: Oczekiwania
+---
 ## Bez oczekiwań
 Żyję bez oczekiwań, będąc przygotowanym na wszystko. Realizuję mój [[Wiedza/Słownik/Proces]] najlpiej jak potrafię i dzięki temu mam przekonanie, że każdego dnia robię coś co mnie rozwija. 
 

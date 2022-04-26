@@ -1,3 +1,7 @@
+---
+title: Actor-observer bias
+---
+
  ## O co chodzi?
 O przypisywanie różnych powodów zachowań w zależności od tego czy utożsamiamy się z "aktorem" czy "obserwatorem".
 

@@ -1,3 +1,7 @@
+---
+title: Deep Work
+---
+
 [[Wiedza/Ksiazki/Deep Work]] to jedna z najczęściej polecanych przeze mnie książek. Uważam że praktycznie każdy powinien ją przeczytać. 
 
 Żyjemy w świecie pełnym rozproszeń - od powiadomień po złe nawyki sięgania po telefon co kilka minut. Umiejętność skupienia na jednej rzeczy przez dłuższy czas staje się rzadkością. Problem w tym że TYLKO "praca głęboka" pozwala nam działać na granicy naszych możliwości i generować zwykle nieosiągalne rezultaty. 

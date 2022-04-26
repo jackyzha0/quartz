@@ -1,3 +1,7 @@
+---
+title: Inversion
+---
+
 # [[Wiedza/Modele Mentalne/Inversion]]
 ## O co chodzi? 
 O myślenie odwrotne.

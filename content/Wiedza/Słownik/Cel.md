@@ -1,4 +1,8 @@
 ---
+title: Cel
+---
+
+---
 title: Dziennik
 date: "2022-04-01"
 lastmod: "2022-04-25"

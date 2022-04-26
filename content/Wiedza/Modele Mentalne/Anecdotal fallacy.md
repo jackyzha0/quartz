@@ -1,3 +1,7 @@
+---
+title: Anecdotal fallacy
+---
+
  ## O co chodzi? 
  Anecdotal Fallacy polega na przekonaniu, że jakieś zdarzenia mają większe prawdopodobieństwo wystąpienia, ponieważ nasze niedawne wspomnienia sugerują, że tak może być. 
 

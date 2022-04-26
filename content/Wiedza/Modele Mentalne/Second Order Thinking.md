@@ -1,0 +1,4 @@
+---
+title: Second Order Thinking
+---
+

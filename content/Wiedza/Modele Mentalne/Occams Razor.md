@@ -1,3 +1,7 @@
+---
+title: Occams Razor
+---
+
 ## O co chodzi? 
 [[Wiedza/Modele Mentalne/Occams Razor]] to model mentalny według którego najprostsze rozwiązania są najlepsze. Nie jest to jednak złota reguła, lecz bardziej "rule of thumb". 
 

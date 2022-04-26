@@ -1,3 +1,7 @@
+---
+title: Leaders Eat Last
+---
+
 [[Wiedza/Ksiazki/Leaders Eat Last]] to książka w której [[Simon Sinek]] przedstawia [[Wiedza/🎲 Biznes/Leadership]] w odsłonie z którą sam się utożsamiam. Jest on w dużym stopniu oparty o doświadczenia a z obszarów militarnych z uwzględnieniem jednostek specjalnych takich jak [[Navy Seal's]]. Więcej o tym można przeczytać w książkach [[Wiedza/Ludzie/Jocko Willink]] - [[Wiedza/Ksiazki/Extreme Ownership]] oraz [[Dichotomy of Leadership]].
 
 Cytatem, który pozostaje na długo w pamięci są słowa

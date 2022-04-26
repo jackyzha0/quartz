@@ -1,3 +1,7 @@
+---
+title: Naval Ravikant
+---
+
 ## Naval & Kapil Gupta
 > "Istnieje sposób na to aby rozwiązać wszystkie swoje problemy bez potrzeby ruszenia palcem. Chodzi o ekspozycję." \(30:50\)
 

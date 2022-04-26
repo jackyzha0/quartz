@@ -1,3 +1,7 @@
+---
+title: The Brain Audit
+---
+
 Autor: Sean D'Souza
 
 Jeżeli miałbym przeczytać tylko jedną książkę aby zrozumieć sprzedaż, to byłaby ta książka. 

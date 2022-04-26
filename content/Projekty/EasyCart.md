@@ -1,3 +1,7 @@
+---
+title: EasyCart
+--- 
+
 # Czym jest EasyCart?
 EasyCart to projekt ułatwiający sprzedaż w produktów cyfrowych. Jego największą przewaga konkurencyjną jest UX (np. płatność "one-click") oraz "efekt sieci" (zapamiętanie danych płatności przy zakupie u dowolnego sprzedawcy w sieci EasyCart).
 

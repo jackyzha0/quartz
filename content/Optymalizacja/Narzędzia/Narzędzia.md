@@ -3,7 +3,7 @@ title: Narzędzia
 ---
 
 - [[Optymalizacja/Narzędzia/Airtable]] - API first excel na sterydach
-- [[Optymalizacja/Narzędzia/Integromat]] - Najlepsze narzędzie do automatyzacji i szybkiego łączenia API
+- [[Optymalizacja/Narzędzia/MakeHQ]] - Najlepsze narzędzie do automatyzacji i szybkiego łączenia API
 - [[Optymalizacja/Narzędzia/Zapier]] - Automatyzacje i szybkie łączenie API
 - [[Optymalizacja/Narzędzia/Keyboard Maestro]] - Automatyzacje w OSX
 - [[Optymalizacja/Narzędzia/Romwod]] - Aplikacja z programem ćwiczeń rozciągających
@@ -13,7 +13,7 @@ title: Narzędzia
 - [[Optymalizacja/Narzędzia/Anki]] - Aplikacja do treningu pamięci opartego o [[Spacing Repetition]]
 - [[Optymalizacja/Narzędzia/Buffer]] - Narzędzie do publikowania treści w wielu kanałach Social Media
 - [[Optymalizacja/Narzędzia/ClickUp]] - Zaawansowana aplikacja do zarządzania zadaniami
-- [[Optymalizacja/Narzędzia/ProCreate]] - Najlepsza aplikacja na iPada do rysowania
+- [[Optymalizacja/Narzędzia/Procreate]] - Najlepsza aplikacja na iPada do rysowania
 - [[Optymalizacja/Narzędzia/Notability]] - Aplikacja do Notowania na iPadzie
 - [[Optymalizacja/Narzędzia/Dropshare]] - Szybkie udostępnianie plików (przez własny serwer FTP)
 - [[Optymalizacja/Narzędzia/Fantastical]] - Fajna aplikacja do kalendarza
@@ -38,7 +38,7 @@ title: Narzędzia
 - [[Optymalizacja/Narzędzia/Superhuman]] - klient pocztowy nastawiony na produktywność
 - [[Optymalizacja/Narzędzia/Headspace]] - aplikacja do medytacji
 - [[Optymalizacja/Narzędzia/AirBuddy]] - łatwe przełączanie AirPods pomiędzy urządzeniami
-- [[Optymalizacja/Narzędzia/TabNine]] - AI based Intellisense do popularnych IDE
+- [[Optymalizacja/Narzędzia/Tabnine]] - AI based Intellisense do popularnych IDE
 - [[Optymalizacja/Narzędzia/Hazel]] - automatyzacja zarządzania plikami i folderami
 - [[Optymalizacja/Narzędzia/Reveri]] - aplikacja do autohipnozy
 - [[Optymalizacja/Narzędzia/Yoink]] - aplikacja ułatwiająca przenoszenie plików i przechowywanie ich metodą drag&drop

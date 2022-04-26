@@ -1,3 +1,7 @@
+---
+title: Anthropomorphism
+---
+
  ## O co chodzi? 
  O przypisywanie intencjonalności i stanów mentalnych, charakterystycznych dla żywych stworzeń, stworzeniom które ożywione nie są. 
 

@@ -1,3 +1,7 @@
+---
+title: Letting Go
+---
+
 ## Odpuszczenie
 > Największą przeszkodą w odpuszczeniu jest przekonanie, że utrzymanie obecnego stanu rzeczy pozwoli nam otrzymać to, czego pragniemy. 
 

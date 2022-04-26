@@ -1,3 +1,7 @@
+---
+title: Balans
+---
+
 Według testu [[Wiedza/Inne/MBTI]] posiadam profil INFJ, znany również jako "profil skrajności" lub "profil paradoksu". Z tego powodu zrozumienie i wykorzystanie [[Wiedza/Słownik/Balans]]u jest dla mnie fundamentalnie ważne. 
 
 Dodatkowo o balansie mówili m.in. [[Wiedza/Ludzie/Jocko Willink]] w [[Dichotomy of Leadership]] oraz [[Wiedza/Ludzie/Jim Collins]] w [[Wiedza/Ksiazki/Great by Choice]] i koncepcji [[Wiedza/Modele Mentalne/Genius of The AND]].

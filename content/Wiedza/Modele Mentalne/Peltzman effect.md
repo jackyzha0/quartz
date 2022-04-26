@@ -1,1 +1,5 @@
+---
+title: Peltzman effect
+---
+
  

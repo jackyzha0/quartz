@@ -1,3 +1,7 @@
+---
+title: UI
+---
+
 ## Jak projektuję UI? 
 
 Do projektowania UI aktualnie wykorzystuję niemal wyłącznie [[Optymalizacja/Narzędzia/Figma]] w połączeniu z biblioteką komponentów [[Tailwind UI]]. 

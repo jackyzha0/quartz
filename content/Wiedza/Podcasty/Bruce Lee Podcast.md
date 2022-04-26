@@ -1,3 +1,7 @@
+---
+title: Bruce Lee Podcast
+---
+
 Podcast o filozofii [[Wiedza/Ludzie/Bruce Lee]] prowadzony przez jego córkę Shannon Lee. Często wracam do wybranych odcinków. To ponadczasowa wiedza, którą można cały czas na nowo odkrywać i wyciągać kolejne wnioski.
 
 ---

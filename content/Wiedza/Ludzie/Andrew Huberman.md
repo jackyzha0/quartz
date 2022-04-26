@@ -1,3 +1,7 @@
+---
+title: Andrew Huberman
+---
+
 Neurobiolog z Uniwersytetu Stanford. Prowadzi podcast [Huberman Lab](https://hubermanlab.com/) w którym w bardzo przystępny sposób mówi o najnowszych odkryciach nauki, przekładając je na sugestie, które łatwo można wykorzystać w praktyce.
 
 Ta wiedza przydaje się przede wszystkim do tego aby: 

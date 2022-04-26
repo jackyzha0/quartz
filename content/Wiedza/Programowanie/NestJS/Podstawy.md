@@ -1,3 +1,7 @@
+---
+title: Podstawy
+---
+
 ## Instalacja
 1. Zainstalowanie CLI: `npm i -g @nestjs/cli` 
 2. Utworzenie nowego projektu `nest new [nazwa]`

@@ -1,3 +1,7 @@
+---
+title: The Mom Test
+---
+
 Mówią że zapytanie własnej matki czy nasz pomysł na nowy biznes jest dobry, nie jest zbyt mądre. 
 
 [[Wiedza/Ksiazki/The Mom Test]] mówi o tym, że pytanie kogokolwiek o to czy nasz pomysł jest dobry, mija się z celem - nie usłyszymy prawdziwej odpowiedzi i ma na to wpływ wiele różnych czynników. 

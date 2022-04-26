@@ -1,1 +1,5 @@
+---
+title: Just-world hypothesis
+---
+
  

@@ -1,3 +1,7 @@
+---
+title: Dan Millman
+---
+
 # Kim jest?
 Dan Millman to Mistrz Świata w gimnastyce i autor książek w których mocno nawiązuje do filozofii buddyjskiej.
 

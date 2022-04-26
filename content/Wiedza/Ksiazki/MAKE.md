@@ -1,3 +1,7 @@
+---
+title: MAKE
+---
+
 # [[Wiedza/Ksiazki/MAKE]]
 
 **Autor:** Pieter Levels

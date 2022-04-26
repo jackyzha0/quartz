@@ -1,3 +1,7 @@
+---
+title: Automation bias
+---
+
 ## O co chodzi? 
 Automation bias dotyczy popełniania błędów w wysoce zautomatyzowanym środowisku, w przypadku którego ludzie bardziej ufają maszynom niż własnemu osądowi.
 

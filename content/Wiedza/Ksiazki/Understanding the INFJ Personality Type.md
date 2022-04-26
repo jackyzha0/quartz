@@ -1,3 +1,7 @@
+---
+title: Understanding the INFJ Personality Type
+---
+
 Kilka lat temu usłyszałem o teście osobowości MBTI, natomiast dopiero później po wykonaniu testu "Gallupa", zrozumiałem jak wiele wskazówek dają nam takie narzędzia. 
 
 W przypadku MBTI okazało się, że moim profilem jest najrzadziej występujący z wszystkich szesnastu (~1-3% ludzkości). 

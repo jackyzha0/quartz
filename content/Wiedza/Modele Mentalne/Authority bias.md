@@ -1,3 +1,7 @@
+---
+title: Authority bias
+---
+
 ## O co chodzi?
 Authority bias to tendencja do przyznawania wyższej skuteczności opiniom ludzi, posiadających autorytet.
 

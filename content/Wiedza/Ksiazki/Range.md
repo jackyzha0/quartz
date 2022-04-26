@@ -1,3 +1,7 @@
+---
+title: Range
+---
+
 Świat jest skomplikowany i trudno temu zaprzeczyć. W dodatku w ciągu ostatnich kilkudziesięciu lat, technologia przyspieszyła ogólny rozwój niemal każdego obszaru naszego życia, w mgnieniu oka wprowadzając znaczące zmiany. 
 
 W obliczu tego najlepszym rozwiązaniem wydaje się być zasada 10 000 godzin, która pozwala stać się ekspertem w dowolnej dziedzinie (swoją drogą o tym jak to wygląda w praktyce, polecam książkę [[The Outliers]]). 

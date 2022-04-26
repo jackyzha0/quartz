@@ -1,3 +1,7 @@
+---
+title: Factory Functions
+---
+
 ## Definicja
 
 [[Wiedza/Programowanie/JavaScript/Programowanie funkcyjne/Factory Functions]] to funkcja zwracająca (z założenia) nowy obiekt. Taka funkcja nie jest ani klasą ([[JavaScript Class]]) ani constructorem. 

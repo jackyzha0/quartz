@@ -1,3 +1,7 @@
+---
+title: Adam Wathan
+---
+
 [[Wiedza/Ludzie/Adam Wathan]] to twórca m.in. [[Tailwind CSS]], [[Tailwind UI]] oraz autor świetnego e-booka o zasadach projektowania UI - [[Wiedza/Ksiazki/Refactoring UI]]. 
 
 ### Źródła: 

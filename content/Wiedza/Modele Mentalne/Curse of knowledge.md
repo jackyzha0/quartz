@@ -1,1 +1,5 @@
+---
+title: Curse of knowledge
+---
+
  

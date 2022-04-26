@@ -1,3 +1,7 @@
+---
+title: The Dichotomy of Leadership
+---
+
 Pierwsza książka Jocko i Leifa - [[Wiedza/Ksiazki/Extreme Ownership]], przedstawia leadership przez pryzmat skrajności, tak [[Wiedza/Ksiazki/The Dichotomy of Leadership]] rozwija temat zwracając uwagę na kluczowy element całości: BALANS. 
 
 ## Lekcje

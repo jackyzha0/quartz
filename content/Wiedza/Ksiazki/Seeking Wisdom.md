@@ -1,3 +1,7 @@
+---
+title: Seeking Wisdom
+---
+
 Autor: Peter Bevelin
 
 [[Wiedza/Ksiazki/Seeking Wisdom]] absolutnie najlepsza książka jaką czytałem w temacie usprawnienie procesów myślenia i podejmowania decyzji ([[Modele mentalne]]).

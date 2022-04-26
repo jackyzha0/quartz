@@ -1,3 +1,7 @@
+---
+title: Via Negativa
+---
+
  ## O co chodzi?
  
 [[Wiedza/Modele Mentalne/Via Negativa]] to proces upraszczania poprzez usuwanie lub unikanie zbędnych elementów. 

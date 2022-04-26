@@ -4,7 +4,7 @@ title: Narzędzia
 
 # Narzędzia do automatyzacji
 
-## [[Optymalizacja/Narzędzia/Integromat]] 
+## [[Optymalizacja/Narzędzia/MakeHQ]] 
 
 ## [[Optymalizacja/Narzędzia/Zapier]]
 

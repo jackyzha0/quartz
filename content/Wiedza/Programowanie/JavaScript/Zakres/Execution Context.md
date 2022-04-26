@@ -1,3 +1,7 @@
+---
+title: Execution Context
+---
+
 To abstrakcyjny koncept środowiska w którym **interpretowany i wykonywany jest kod [[Wiedza/Programowanie/JavaScript/JavaScript]]**. Za każdym razem gdy uruchamiamy kod JS, dzieje się to w [[Wiedza/Programowanie/JavaScript/Zakres/Execution Context]]
 
 Wyróżniamy trzy rodzaje kontekstu wykonania: 

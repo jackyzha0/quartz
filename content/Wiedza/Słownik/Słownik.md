@@ -2,6 +2,10 @@
 title: Słownik
 ---
 
+---
+title: Słownik
+---
+
 - [[Wiedza/Słownik/Cel]]
 - [[Wiedza/Słownik/Kierunek]]
 - [[Wiedza/Słownik/Proces]]

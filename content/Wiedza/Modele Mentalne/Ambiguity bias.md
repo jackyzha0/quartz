@@ -1,3 +1,7 @@
+---
+title: Ambiguity bias
+---
+
  ## O co chodzi?
 To sytuacja w której na podjętą decyzję ma wpływ posiadanie niewystarczającej ilości informacji. Wtedy decyzja zwykle wskazuje na opcję w przypadku której prawdopodobieństwo wyniku jest znane. Jest to po prostu bezpieczniejsza opcja związana z [[Wiedza/Modele Mentalne/Loss aversion]] i z faktem, że to co nieznane wiązane jest domyślnie z czymś negatywnym.
 

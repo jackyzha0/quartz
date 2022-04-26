@@ -1,3 +1,7 @@
+---
+title: Leverage
+---
+
 ## O co chodzi? 
 Mechanizm dźwigni (eng. [[Wiedza/Modele Mentalne/Leverage]]) pozawala na wygenerowanie efektu nierproporcjonalnie dużego do włożonej siły. 
 

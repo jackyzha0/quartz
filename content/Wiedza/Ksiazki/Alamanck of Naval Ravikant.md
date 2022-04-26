@@ -1,3 +1,7 @@
+---
+title: Alamanck of Naval Ravikant
+---
+
 Autor: Eric Jorgenson
 
 ## Kontekst

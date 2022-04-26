@@ -1,3 +1,7 @@
+---
+title: Principles
+---
+
 Jakimi zasadami kierujecie się w życiu? Jak podejmujecie decyzje i w jaki sposób wyciągacie wnioski z popełnionych błędów? 
 
 Zachęcam do obejrzenia animacji / podsumowania książki: 

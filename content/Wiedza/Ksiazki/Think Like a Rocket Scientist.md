@@ -1,3 +1,7 @@
+---
+title: Think Like a Rocket Scientist
+---
+
 [[Wiedza/Ksiazki/Think Like a Rocket Scientist]]
 
 Potrafisz myśleć? To chyba potrafi każdy, nie? 

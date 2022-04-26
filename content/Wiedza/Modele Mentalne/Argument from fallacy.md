@@ -1,3 +1,7 @@
+---
+title: Argument from fallacy
+---
+
 ## O co chodzi? 
 O założenie, że argument zawierający błąd logiczny nie może mieć prawdziwego wniosku.
 

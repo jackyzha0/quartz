@@ -1,3 +1,7 @@
+---
+title: Design Maestro
+--- 
+
 # Czym jest Design Maestro? 
 To zestaw makr do aplikacji [[Optymalizacja/Narzędzia/Keyboard Maestro]], stworzony z myślą o designerach pracujących w [[Optymalizacja/Narzędzia/Figma]] i [[Optymalizacja/Narzędzia/Webflow]] oraz korzystających z możliwości systemu [[MacOS]]. 
 

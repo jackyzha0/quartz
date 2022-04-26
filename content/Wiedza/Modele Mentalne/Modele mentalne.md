@@ -1,3 +1,7 @@
+---
+title: Modele mentalne
+---
+
 [[Modele mentalne]] usprawniają mój proces myślowy, szczególnie w kontekście podejmowania decyzji oraz rozwiązywania problemów.
 
 

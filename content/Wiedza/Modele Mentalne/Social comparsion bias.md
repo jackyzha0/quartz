@@ -1,3 +1,7 @@
+---
+title: Social comparsion bias
+---
+
 ## O co chodzi?
 O odczuwanie negatywnych emocji w sytuacji gdy ktoś inny jest w jakiś sposób lepszy od nas. 
 

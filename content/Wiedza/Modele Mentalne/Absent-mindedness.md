@@ -1,3 +1,7 @@
+---
+title: Absent-mindedness
+---
+
  ## O co chodzi?
  To stan niskiego poziomu uwagi i częstych rozproszeń.
 

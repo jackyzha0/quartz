@@ -1,3 +1,7 @@
+---
+title: Indie Hackers
+---
+
 [[Wiedza/Słownik/Indie Hackers]] to społeczność zrzeszająca osoby prowadzące poboczne projekty lub rozwijające produkty w pojedynkę lub bardzo małych zespołach. Najczęściej wybierają drogę [[Bootstrappingu]] zamiast zewnętrznego finansowania.
 
 Znani Indie Hackerzy

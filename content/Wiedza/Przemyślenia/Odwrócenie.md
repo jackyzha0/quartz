@@ -1,3 +1,7 @@
+---
+title: Odwrócenie
+---
+
 Na każdym kroku zauważam jak dużą rolę odgrywa odwrócenie (eng. [[Wiedza/Modele Mentalne/Inversion]]) i im dłużej z niego korzystam, tym lepiej rozumiem dlaczego osoby takie jak [[Wiedza/Ludzie/Warren Buffet]] tak bardzo go cenią. 
 
 ## Świat stoi na głowie

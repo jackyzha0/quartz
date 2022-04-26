@@ -1,3 +1,7 @@
+---
+title: eduweb
+--- 
+
 [[Projekty/eduweb]] to projekt w który angażuję się od kwietnia 2020 roku. Ma on dla mnie szczególne znaczenie, ponieważ to właśnie na eduweb zaczynałem poważną naukę programowania.
 
 ## Kursy
@@ -33,7 +37,7 @@ Ten warsztat przeznaczony jest dla osób, które chcą zobaczyć jak korzystać 
 🔗 [Strona warsztatu](https://eduweb.pl/programowanie-i-www/html-css/tailwind-css-czy-zastapi-bootstrapa?ref=overment)
 
 ### Warsztat: Regex dla Web Developera
-W tym materiale znajdziesz minimum niezbędnej wiedzy na temat [[Regex]], która z pewnością przyda Ci się w codziennej pracy. Poza tym są to umiejętności przydatne w korzystaniu z aplikacji takich jak [[Optymalizacja/Narzędzia/Integromat]], [[Optymalizacja/Narzędzia/Zapier]], [[Optymalizacja/Narzędzia/Keyboard Maestro]] lub [[Optymalizacja/Narzędzia/Hazel]].
+W tym materiale znajdziesz minimum niezbędnej wiedzy na temat [[Regex]], która z pewnością przyda Ci się w codziennej pracy. Poza tym są to umiejętności przydatne w korzystaniu z aplikacji takich jak [[Optymalizacja/Narzędzia/MakeHQ]], [[Optymalizacja/Narzędzia/Zapier]], [[Optymalizacja/Narzędzia/Keyboard Maestro]] lub [[Optymalizacja/Narzędzia/Hazel]].
 
 🔗 [Strona warsztatu](https://eduweb.pl/programowanie-i-www/javascript/regex-dla-webdevelopera?ref=overment)
 
@@ -44,7 +48,7 @@ W tym materiale dzielę się swoimi sugestiami w kontekście [[Optymalizacja/Opt
 - jak pracować na wielu urządzeniach i przeglądarkach jednocześnie
 - jak skonfigurować środowisko lokalne
 - czy warto sięgać po [[Wiedza/Programowanie/No-Code]]
-- w jaki sposób AI pomaga nam kodować już dziś? ([[Optymalizacja/Narzędzia/TabNine]])
+- w jaki sposób AI pomaga nam kodować już dziś? ([[Optymalizacja/Narzędzia/Tabnine]])
 - dlaczego warto sięgać po debuggery, lintery i automatyzacje?
 - jak szybko i bezpłatnie hostować proste strony www
 - czy warto inwestować w sprzęt i jeżeli tak to jaki? 

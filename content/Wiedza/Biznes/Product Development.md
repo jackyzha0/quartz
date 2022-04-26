@@ -1,3 +1,7 @@
+---
+title: Product Development
+--- 
+
 ## Książki
 - [[Wiedza/Ksiazki/Inspired]]
 - [[Wiedza/Ksiazki/The Mom Test]]

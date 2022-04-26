@@ -1,3 +1,7 @@
+---
+title: Body Mind Mastery
+---
+
 Co ma wspólnego umysł i ciało? Wszystko. Mylnie traktujemy nasz umysł i ciało niezależnie, podczas gdy są jednością. Ciekawe jest to, że [[Wiedza/Ludzie/Dan Millman]] przedstawia to sięgając po elementy Buddyzmu, podczas gdy [[Wiedza/Ludzie/Andrew Huberman]] mówi dokładnie TO SAMO z naukowego punktu widzenia. 
 
 Czego o życiu może nauczyć poradnik dla gimnastyków? 

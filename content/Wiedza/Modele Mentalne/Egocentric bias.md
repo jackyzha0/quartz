@@ -1,1 +1,5 @@
+---
+title: Egocentric bias
+---
+
  

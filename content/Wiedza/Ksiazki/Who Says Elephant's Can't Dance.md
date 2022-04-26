@@ -1,3 +1,7 @@
+---
+title: Who Says Elephant's Can't Dance
+---
+
 [[Wiedza/🎲 Biznes/Leadership]] to temat o którym czytałem w wielu książkach. Przez prawie całą swoją dotychczasową karierę, miałem okazję obserwować wielu managerów i leaderów. Nawet ponad rok, sam miałem okazję w roli COO wspólnie z zespołem podejmować duże wyzwania związane z rozwojem produktu. 
 
 To wszystko nauczyło mnie wiele i pokazało że jeszcze wiele przede mną pracy, szczególnie że na koniec dnia, spotykały mnie sytuacje w których nawet "Plan B" zawodził razem z "Planem A". 

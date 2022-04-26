@@ -1,3 +1,7 @@
+---
+title: Way of The Peaceful Warrior
+---
+
 [[Wiedza/Ksiazki/Way of The Peaceful Warrior]] to dla mnie jedna z najważniejszych książek. Jej narracja bardzo ze mną rezonuje i od lat ma na mnie ogromny wpływ. To książka do której wracam kilka razy w roku. Stanowi dla mnie absolutny #1 w mojej kolekcji książek.
 
 Jest to autobiografia Dana Millmana - Mistrza Świata w gimnastyce i z pozoru jest to prosta historia człowieka, który pokonał przeciwności losu w drodze do realizacji swoich celów. 

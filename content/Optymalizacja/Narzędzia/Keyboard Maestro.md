@@ -1,3 +1,6 @@
+---
+title: Keyboard Maestro
+--- 
 [[Optymalizacja/Narzędzia/Keyboard Maestro]] to aplikacja którą wykorzystuę do automatyzacji wielu zadań w ramach systemu operacyjnego OSX. Wykorzystuję ją razem z [[Optymalizacja/Narzędzia/Alfred]] oraz [[Optymalizacja/Sprzęt/StreamDeck]].
 
 Regularnie zdarza mi się wykorzystywać skrypty [[Wiedza/Programowanie/JavaScript/JavaScript]] i [[Wiedza/Programowanie/Node.js]] do tworzenia pojedynczych akcji.
@@ -74,6 +77,6 @@ Regularnie zdarza mi się wykorzystywać skrypty [[Wiedza/Programowanie/JavaScri
 - 
 
 ## Automatyzacje zewnętrzne
-- Uruchamianie webhooków przejmowanych przez [[Optymalizacja/Narzędzia/Integromat]], [[Optymalizacja/Narzędzia/Zapier]] lub [[Optymalizacja/Automatyzacja/Mikroserwisy]]
-- Wysyłanie danych przez [[Optymalizacja/Narzędzia/Integromat]] do [[Optymalizacja/Narzędzia/Airtable]]
+- Uruchamianie webhooków przejmowanych przez [[Optymalizacja/Narzędzia/MakeHQ]], [[Optymalizacja/Narzędzia/Zapier]] lub [[Optymalizacja/Automatyzacja/Mikroserwisy]]
+- Wysyłanie danych przez [[Optymalizacja/Narzędzia/MakeHQ]] do [[Optymalizacja/Narzędzia/Airtable]]
 - Wysyłanie powiadomień na telefon

@@ -1,3 +1,7 @@
+---
+title: Skin in the Game
+---
+
 [[Wiedza/Ksiazki/Skin in the Game]] to określenie dla zaangażowania uwzględniającego ryzyko w dążeniu do realizacji ustalonego celu. 
 
 Sama książka fenomenalnie przedstawia to, że niczego nie możemy być na 100% pewni. Mówi również o symetrii i ... asymetrii w tematach takich jak uczciwość, sprawiedliwość czy odpowiedzialność, oraz o konsekwencji tej asymetrii. 

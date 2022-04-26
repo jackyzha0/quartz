@@ -1,3 +1,7 @@
+---
+title: Ludzie
+---
+
 Zależy mi na tym aby otaczali mnie ludzie, których obecność ma na mnie pozytywny wpływ. Poniżej znajduje się lista osób, które obserwuję w Internecie.
 
 - [[Wiedza/Ludzie/Naval Ravikant]]

@@ -1,3 +1,7 @@
+---
+title: Bullets and Cannonballs
+---
+
 [[Wiedza/Modele Mentalne/Bullets and Cannonballs]] to koncept z książki [[Wiedza/Ksiazki/Great by Choice]] ~ [[Wiedza/Ludzie/Jim Collins]]
 
 ## O co chodzi? 

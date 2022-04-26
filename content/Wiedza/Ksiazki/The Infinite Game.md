@@ -1,3 +1,7 @@
+---
+title: The Infinite Game
+---
+
 Istnieją dwa rodzaje gier: 
 - takie w które gramy po to aby wygrać 
 - oraz takie w których gramy aby pozostać w grze.

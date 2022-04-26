@@ -1,3 +1,7 @@
+---
+title: Humor effect
+---
+
 ## O co chodzi? 
 Lepiej zapamiętujemy rzeczy, które postrzegamy jako zabawne / absurdalne. 
 

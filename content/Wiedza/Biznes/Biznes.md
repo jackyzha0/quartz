@@ -1,3 +1,7 @@
+---
+title: Biznes
+--- 
+
 # Biznes
 Tworzenie firmy jest dla mnie sposobem na realizowanie wszystkich moich pomysłów oraz jest to droga do życia zgodnie z moimi [[Fundamenty/Wartości]]ami 
 

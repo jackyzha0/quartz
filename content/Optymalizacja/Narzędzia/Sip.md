@@ -1,1 +1,3 @@
-[[Optymalizacja/Narzędzia/Figma]]
+---
+title: Sip
+--- 

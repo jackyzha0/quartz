@@ -2,6 +2,10 @@
 title: Programowanie funkcyjne
 ---
 
+---
+title: Programowanie funkcyjne
+---
+
 - [[Wiedza/Programowanie/JavaScript/Programowanie funkcyjne/Higher-Order Function]]
 - [[Wiedza/Programowanie/JavaScript/Programowanie funkcyjne/Pure Functions]]
 - [[Wiedza/Programowanie/JavaScript/Programowanie funkcyjne/Function Composition]]

@@ -1,3 +1,7 @@
+---
+title: 20 mile march
+---
+
 ## O co chodzi?
 [[Wiedza/Modele Mentalne/20 mile march]] to koncept z książki [[Wiedza/Ksiazki/Great by Choice]] ~ [[Wiedza/Ludzie/Jim Collins]]
 

@@ -1,3 +1,7 @@
+---
+title: Appeal to probability fallacy
+---
+
  ## O co chodzi? 
 To tendencja do uznawania czegoś za pewne, tylko dlatego że jest prawdopodobne. Inaczej mówiąc: przeceniamy szansę wystąpienia jakiegoś zdarzenia, opierając się na pojedynczych sygnałach, które to potwierdzają.
 

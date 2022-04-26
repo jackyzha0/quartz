@@ -1,3 +1,7 @@
+---
+title: Dunning-Kurger effect
+---
+
 ## O co chodzi? 
 O iluzję kompetencji wynikają z niewystarczającej wiedzy oraz doświadczenia, w wybranym temacie. Inaczej mówiąc, osoby początkujące uważają się za bardziej kompetentne niż faktycznie są. 
 

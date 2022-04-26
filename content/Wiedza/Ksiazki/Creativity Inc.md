@@ -1,3 +1,7 @@
+---
+title: Creativity Inc
+---
+
 [[Creativity.inc]] to książka autorstwa założyciela Pixara. Firmy którą wszyscy doskonale znamy z animowanych hitów kinowych.
 
 Najważniejsza lekcja z książki: 

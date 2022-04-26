@@ -1,3 +1,7 @@
+---
+title: StrenghtsFinder
+--- 
+
 # StrengthsFinder
 To obok [[Wiedza/Inne/MBTI]], [[Wiedza/Inne/The Big Five]] i [[UnderstandMyself]] najważniejsze narzędzie, jakie wykorzystałem w procesie [[Fundamenty/💛 Poznawanie siebie]].
 

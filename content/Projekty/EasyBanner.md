@@ -1,8 +1,12 @@
+---
+title: EasyBanner
+--- 
+
 ## Czym jest EasyBanner?
 
 EasyBanner to mój mikroserwis, umożliwiający generowanie plików jpg / png / pdf na podstawie kodu HTML / CSS.
 
-Wykorzystuję go w połączeniu z [[Optymalizacja/Narzędzia/Integromat]] do tworzenia [[Optymalizacja/Automatyzacja/Automatyzacja]]. 
+Wykorzystuję go w połączeniu z [[Optymalizacja/Narzędzia/MakeHQ]] do tworzenia [[Optymalizacja/Automatyzacja/Automatyzacja]]. 
 
 Aktualnie większość grafik, które publikuję w mediach społecznościowych, tworzona jest na podstawie szablonów i generowana z pomocą [[Projekty/EasyBanner]].
 

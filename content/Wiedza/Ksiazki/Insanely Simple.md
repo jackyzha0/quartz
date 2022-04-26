@@ -1,1 +1,5 @@
+---
+title: Insanely Simple
+---
+
  

@@ -1,3 +1,7 @@
+---
+title: Rebel Ideas
+---
+
  Rozwiązanie wybitnie złożonego problemu ekstremalnie prostym rozwiązaniem, brzmi jak przejaw geniuszu lub szczęścia. 
 
 Jak jest w rzeczywistości? Nie wiem. Ale potrafię upraszczać nawet najbardziej skomplikowane zagadnienia i mówić o nich prosto.

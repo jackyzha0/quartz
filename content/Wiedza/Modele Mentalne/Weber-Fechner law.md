@@ -1,1 +1,5 @@
+---
+title: Weber-Fechner law
+---
+
  

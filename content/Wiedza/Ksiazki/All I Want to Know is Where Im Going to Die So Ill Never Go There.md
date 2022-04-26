@@ -1,3 +1,7 @@
+---
+title: All I Want to Know is Where Im Going to Die So Ill Never Go There
+---
+
 Jedna z ciekawszych formą książek jakie przeczytałem. Cała ma formę dialogu pomiędzy [[Wiedza/Ludzie/Warren Buffet]], [[Wiedza/Ludzie/Charlie Munger]], bibliotekarzem oraz Poszukiwaczem. 
 
 Ten ostatni wchodząc do biblioteki spotyka pozostałych, którzy pomagają mu znaleźć to czego szuka: Mądrość zdefiniowaną jako umiejętność podejmowania dobrych decyzji. 
