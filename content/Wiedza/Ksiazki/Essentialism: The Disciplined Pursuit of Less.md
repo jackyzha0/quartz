@@ -1,5 +1,5 @@
 ---
-title: Essentialism: The Disciplined Pursuit of Less
+title: Essentialism - The Disciplined Pursuit of Less
 ---
 
  
