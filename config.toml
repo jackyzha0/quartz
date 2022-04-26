@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://iceener.github.io/quartz/"
 languageCode = "en-us"
 googleAnalytics = ""
 pygmentsUseClasses = true
