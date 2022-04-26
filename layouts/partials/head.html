@@ -1,18 +1,22 @@
 <head>
     <!-- Meta tags -->
-    <title>{{ if and (.Title) (not .IsHome) }}{{ .Title }} | {{ $.Site.Data.config.page_title }}{{ else }}{{ $.Site.Data.config.page_title }} | {{ $.Site.Data.config.tagline }}{{ end }}</title>
     <meta charset="UTF-8">
-    <meta property="og:title" content="{{ $.Site.Data.config.page_title }}">
+    <title>{{ if and (.Title) (not .IsHome) }}{{ .Title }} | {{ $.Site.Data.config.page_title }}{{ else }}{{ $.Site.Data.config.page_title }} | {{ $.Site.Data.config.tagline }}{{ end }}</title>
     <meta name="author" content="Matthew Wong">
-    <meta property="og:locale" content="en_US">
     <meta name="description" content="{{if .IsHome}}{{$.Site.Data.config.description}}{{else}}{{if .Description}}{{.Description}}{{else}}{{.Summary}}{{end}}{{end}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="{{ $.Site.Data.config.page_title }}">
     <meta name="og:description" content="{{if .IsHome}}{{$.Site.Data.config.description}}{{else}}{{if .Description}}{{.Description}}{{else}}{{.Summary}}{{end}}{{end}}">
+    <meta property="og:image" content="{{$.Site.BaseURL}}icon.png">
+    <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="{{ $.Site.Data.config.page_title }}">
     <meta property="og:type" content="website">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:url" content="{{ .Site.Params.hostName }}{{ .Permalink | absURL }}">
     <meta name="twitter:card" content="summary">
     <meta property="twitter:title" content="{{if .Title}}{{.Title}}{{else}}{{ $.Site.Data.config.page_title }}{{end}}">
-    <link rel="shortcut icon" type="image/png" href="{{$.Site.BaseURL}}/icon.png" />
+    <meta name="twitter:description" content="{{if .IsHome}}{{$.Site.Data.config.description}}{{else}}{{if .Description}}{{.Description}}{{else}}{{.Summary}}{{end}}{{end}}">
+    <meta property="twitter:image" content="{{$.Site.BaseURL}}icon.png">
+    <link rel="shortcut icon" type="image/png" href="{{$.Site.BaseURL}}icon.png" />
 
     <!-- CSS Stylesheets and Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
