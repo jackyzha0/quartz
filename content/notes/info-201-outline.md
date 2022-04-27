@@ -6,11 +6,13 @@ tags:
 links: [[notes/info-201]]
 
 - [version-control-system](notes/version-control-system.md)
+- [stakeholders](notes/stakeholders.md)
 - [business-analyst](notes/business-analyst.md)
 - [developer](notes/developer.md)
 - [models](notes/models.md)
 - [systems-development-life-cycle](notes/systems-development-life-cycle.md)
 - [agile-development](notes/agile-development.md)
+- [scrum](notes/scrum.md)
 - [predictive-adaptive-spectrum](notes/predictive-adaptive-spectrum.md)
 - [requirements](notes/requirements.md)
 - [requirements-document](notes/requirements-document.md)
@@ -25,3 +27,8 @@ links: [[notes/info-201]]
 - [business-process-model-and-notation](notes/business-process-model-and-notation.md)
 - [UML](notes/UML.md)
 - [entity-relationship-diagrams](notes/entity-relationship-diagrams.md)
+- [modelling behaviour](notes/modelling-behaviour.md)
+- [conceptual-vs-ipmlementation-models](notes/conceptual-vs-ipmlementation-models.md)
+- [redundancy-and-anomalies](notes/redundancy-and-anomalies.md)
+- [dependencies](notes/dependencies.md)
+- [normalisation](notes/normalisation.md)

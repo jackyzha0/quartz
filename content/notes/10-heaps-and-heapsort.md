@@ -1,15 +1,14 @@
 ---
 title: "10-heaps-and-heapsort"
-sr-due: 2022-04-18
-sr-interval: 9
-sr-ease: 250
+sr-due: 2022-06-04
+sr-interval: 42
+sr-ease: 270
 tags: 
 - cosc201 
 - lecture
 ---
 
 [heaps-and-heapsort](notes/heaps-and-heapsort.md)
-
 
 
 ## 0.1 Overview
@@ -66,7 +65,7 @@ So both loops do most Ο(lg n)
 ### 0.2.4 Storage
 ![](https://i.imgur.com/04qVrGQ.png#invert)
 
- - Array
+- Array
 - root at position 0 and children at 1 and 2
 - children of 1 to in 3 and 4, children of 2 go in 5 and 6
 

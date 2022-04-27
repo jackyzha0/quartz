@@ -5,6 +5,7 @@ tags:
 ---
 links: [[notes/info-201]]
 
+- 
 - [04-requirements](notes/04-requirements)
 - [06-business-functions-and-use-cases](notes/06-business-functions-and-use-cases.md)
 - [07-business-process-modelling](notes/07-business-process-modelling.md)
@@ -13,3 +14,5 @@ links: [[notes/info-201]]
 - [10-oop-concepts-and-uml](notes/10-oop-concepts-and-uml.md)
 - [11-class-diagrams](notes/11-class-diagrams.md)
 - [12-modelling-behaviour](notes/12-modelling-behaviour.md)
+- [13-UML-sequence-diagrams](notes/13-UML-sequence-diagrams.md)
+- [14-direct-manipulation-and-mental-models](notes/14-direct-manipulation-and-mental-models.md)

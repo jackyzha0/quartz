@@ -1,5 +1,6 @@
 ---
 title: "asymptotic-notation"
+aliases: Big O, Big Theta, Algorithm Analysis
 tags: 
 - cosc201
 - analysis-of-algorithms
@@ -10,7 +11,7 @@ Asymptotic notations are used in computer science to classify algorithms based h
 
 # big O notation
 
-Big O defines a bound for the *upper*  bound of the running time (or space) of a algorithm. However, it is possible that the actual running time is much less as it does not take into account special cases
+Big O defines a bound for the *upper*  bound of the running time (or space) of a algorithm. However, it is possible that the actual running time is much less as it does not take into account special cases ^fb2c3f
 
 
 ## 1 Formal definition

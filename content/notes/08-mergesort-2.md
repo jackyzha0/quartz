@@ -8,4 +8,4 @@ tags:
 - lecture
 ---
 
-[mergeosrt](notes/mergeosrt.md)
+[mergesort](notes/mergesort.md)

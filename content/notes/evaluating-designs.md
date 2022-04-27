@@ -1,8 +1,5 @@
 ---
 title: "evaluating-designs"
-sr-due: 2022-04-07
-sr-interval: 10
-sr-ease: 210
 tags: 
 - info203
 ---

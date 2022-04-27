@@ -1,6 +1,6 @@
 ---
 title: "direct-manipulation-video"
-aliases: 
+aliases: Direct Manipulation
 tags: 
 - info203
 - video

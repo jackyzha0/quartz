@@ -3,9 +3,9 @@ title: "12-automation"
 tags: 
 - cosc202
 - lecture
-sr-due: 2022-04-20
-sr-interval: 9
-sr-ease: 250
+sr-due: 2022-05-30
+sr-interval: 37
+sr-ease: 270
 ---
 links: [cosc-202-lectures](notes/cosc-202-lectures.md), [slides](https://cosc202.cspages.otago.ac.nz/lectures/L12-automation.pdf)
 

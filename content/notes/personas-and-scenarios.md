@@ -34,7 +34,7 @@ Why they want to accomplish end goals /long term desires/self-image
 
 - activities ⇒ what the user does, frequency and volume
 - attitudes ⇒ how the uers thinks about the product domian and knowledge
-- aptitudes ⇒ what education and trainging the user has
+- aptitudes ⇒ what education and training the user has
 - motivations
 	- why the user is engaged in the product domain 
 - skills
@@ -66,3 +66,5 @@ Have a good story to tell
 ![](https://i.imgur.com/TQRKPdi.png)
 ![](https://i.imgur.com/YcxfAbX.png)
 ![](https://i.imgur.com/r3kTI8W.png)
+
+![](https://i.imgur.com/4EKI6Dm.png)

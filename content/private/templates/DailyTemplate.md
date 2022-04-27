@@ -1,8 +1,8 @@
-[[notes/daily-notes]]
+[<% tp.date.yesterday("YYYY-MM-DD") %>](daily_notes/<% tp.date.yesterday("YYYY-MM-DD") %>) << [daily-notes](notes/daily-notes.md) >> [<% tp.date.tomorrow("YYYY-MM-DD") %>](daily_notes/<% tp.date.tomorrow("YYYY-MM-DD") %>)
 
 ---
 
-# {{date}}
+# <% tp.date.now("DD-MM-YY") %>
 
 <% tp.user.getAOTD() %>
 
@@ -39,12 +39,6 @@ break;
 
 ## Projects
 - python ai weekly review
-- CI notes site
-- my own password manager
-
-## Timetable
-
-![[Pasted image 20220311102444.png]]
 
 ## Links
 

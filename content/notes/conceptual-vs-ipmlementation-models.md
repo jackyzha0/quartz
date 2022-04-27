@@ -6,12 +6,12 @@ tags:
 
 Models like ERDs are used to represent a high level conceptual overview of a system, or to as a lower level specification that can drive the implementation of the database.
 
-** Conceptual
+**Conceptual
 
 - Abstract/big-picture
 - Useful in inital design stages and for communication
 
-** Implementation
+**Implementation
 
 - Concrete/detailed
 - Useful in documenting and specifying structure (for devs etc)

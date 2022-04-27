@@ -15,6 +15,21 @@ short and concise
 low fidelity
 not about pretty picures. ⇒ about communicating ideas
 
+Shows:
+- setting
+	- people
+	- environment
+	- task being done
+- sequence
+	- what steps
+	- what leads someone to the app
+	- task task
+- satisfaction
+	- what is the users motivation
+	- what does it enable people to accomplish
+	- what need does the system fill
+
+
 ![](https://i.imgur.com/dyZIPH9.png)
 ![](https://i.imgur.com/YE27hWp.png)
 ![](https://i.imgur.com/uOqAl4o.png)
@@ -43,17 +58,3 @@ simplify and develop vocabulary/your own style
 
 using tracing and templates
 ![](https://i.imgur.com/wwf7ab3.png)
-
-
-- setting
-	- people
-	- environment
-	- task being done
-- sequence
-	- what steps
-	- what leads someone to the app
-	- task task
-- satisfaction
-	- what is the users motivation
-	- what does it enable people to accomplish
-	- what need does the system fill

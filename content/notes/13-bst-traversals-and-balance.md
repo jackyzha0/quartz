@@ -4,9 +4,9 @@ aliases:
 tags: 
 - cosc201
 - lecture
-sr-due: 2022-04-15
-sr-interval: 3
-sr-ease: 250
+sr-due: 2022-05-18
+sr-interval: 25
+sr-ease: 270
 ---
 
 # Traversals

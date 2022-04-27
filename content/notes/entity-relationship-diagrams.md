@@ -1,5 +1,6 @@
 ---
 title: "entity-relationship-diagrams"
+aliases: ERDs, ERD, entity relationship diagram, Entity Relationship Diagram
 tags: 
 - info201
 ---

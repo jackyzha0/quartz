@@ -15,3 +15,5 @@ links: [[notes/cosc-201]]
 - [[notes/heapsort]]
 - [[notes/mergesort]]
 - [[notes/quicksort]]
+- [divide-and-conquer](notes/divide-and-conquer.md)
+- [unite-and-conquer](notes/unite-and-conquer.md)

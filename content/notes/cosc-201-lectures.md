@@ -12,4 +12,5 @@ links: [[notes/cosc-201]]
 - [10-heaps-and-heapsort](notes/10-heaps-and-heapsort.md)
 - [11-sets-maps-trees](notes/11-sets-maps-trees.md)
 - [12-binary-search-tree-operations](notes/12-binary-search-tree-operations.md)
-- 
+- [13-bst-traversals-and-balance](notes/13-bst-traversals-and-balance.md)
+- [14-balancing-bsts](notes/14-balancing-bsts.md)

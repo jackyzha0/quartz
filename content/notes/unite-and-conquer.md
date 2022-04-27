@@ -1,10 +1,9 @@
 ---
 title: "unite-and-conquer"
+aliases: unite and conquer
 tags: 
 - cosc201
 ---
-
-unite and conquer
 
 5 | 8 | 2 | 3 | 4 | 1 | 7 | 6
 
@@ -13,6 +12,7 @@ unite and conquer
 2 3 5 8 | 1 4 6 7
 
 1 2 3 4 5 6 7 8
+
 
 ```java
 	public static void mergeSort(int[] a) {

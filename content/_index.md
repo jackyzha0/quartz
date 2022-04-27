@@ -12,3 +12,20 @@ title: "Jet Hughes"
 # 2 Other
 
 - [templates](notes/templates.md)
+
+# 3 Projects
+
+- [bug-tracker](notes/bug-tracker.md)
+- 
+
+# 5 Independent Learning
+
+- [networks](notes/networks.md)
+- random
+	- [propogation-of-ideas](notes/propogation-of-ideas.md)
+	- [model-view-controller-pattern](notes/model-view-controller-pattern.md)
+	- [dotnet](notes/dotnet.md)
+
+# 6 Books
+
+- The book of illusions

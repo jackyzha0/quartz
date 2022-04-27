@@ -26,7 +26,6 @@ e.g.,
 0 1 2 3 4  4 6 7 8 9
 
 # 1 Implementation
-
 ## 1.1 Merge
 
 Given: a and b are sorted arrays. m is an array whose size is the sum of their sizes
@@ -153,4 +152,4 @@ The bottom-up version does exactly the same thing as the top-down version, just 
 
 # 2 Variations of Mergesort
 
-[[unite and conquer]] #unfinished 
+[unite and conquer](notes/unite-and-conquer.md)

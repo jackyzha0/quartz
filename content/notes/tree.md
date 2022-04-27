@@ -2,7 +2,6 @@
 title: "tree"
 tags: 
 - cosc201
-- datastructure
 ---
 
 not so much a data type. More of a data concept of a way in which data can be organised
@@ -14,7 +13,7 @@ The type required for the ordered [set](notes/set.md) data type is the binary tr
 Trees in general:
 - Consists of *Nodes*
 - One node is distinguished and called the *root*
-- Each node, except the root, has a uniquw *parent*
+- Each node, except the root, has a unique *parent*
 - Any chain that moves from a mnode to its parent , its grandparent etc, eventually reaches the root.
 - The *children* of a nore arll the nodes of which it is the parent
 - Nodes may (and usually do) have additional data associated to them. (does not affect the structure)

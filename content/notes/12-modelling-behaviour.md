@@ -1,19 +1,36 @@
 ---
 title: "12-modelling-behaviour"
 tags: 
-- cosc201
+- info201
 - lecture
-sr-due: 2022-04-13
-sr-interval: 2
-sr-ease: 230
+sr-due: 2022-05-28
+sr-interval: 31
+sr-ease: 250
 ---
 [slides](https://blackboard.otago.ac.nz/bbcswebdav/pid-2892846-dt-content-rid-18407618_1/courses/INFO201_S1DNIE_2022/2022/lectures/lecture_12_slides.pdf)
+
+[modelling-behaviour](notes/modelling-behaviour.md)
 
 - method signatures
 - inheritance of behaviour
 - lower level sequencing and flow of control
 - compartmentalisation into "subsystems"
 
+1. Compare and contrast the two typical approaches to inheriting behaviour in OO systems. 
+2. What does it mean to “program to an interface” and why is this important?
+3. Compare and contrast “rich” versus “anaemic” domain models with regards to behaviour.
+4. Give an example of a “processor” in the context of OO system design and explain why these are useful.
+
+
+
+
+
+
+
+
+
+
+# Garbage Notes
 # 1 Example of Linked UML (not realistic)
 
 ![](https://i.imgur.com/SAp9l60.png)
@@ -182,10 +199,3 @@ Anything coded to work with Collection will accept *any* Java collection type. (
 - Domain models can be “rich” or “anaemic”. 
 - anaemic more common 
 - use “processors” to encapsulate “plumbing” code
-
-# 5 Revision questions 
-
-1. Compare and contrast the two typical approaches to inheriting behaviour in OO systems. 
-2. What does it mean to “program to an interface” and why is this important?
-3. Compare and contrast “rich” versus “anaemic” domain models with regards to behaviour.
-4. Give an example of a “processor” in the context of OO system design and explain why these are useful.
