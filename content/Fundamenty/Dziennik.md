@@ -2,10 +2,11 @@
 title: Dziennik
 ---
 
-Dziennik prowadzę na [[Optymalizacja/Sprzęt/iPad]] w aplikacji [[Optymalizacja/Narzędzia/Notability]]. Pierwsze notatki jeszcze zapisywałem w aplikacji [[Bear]] jeszcze w 2016 roku. 
+Dziennik prowadzę na [[Optymalizacja/Sprzęt/iPad]] w aplikacji [[Optymalizacja/Narzędzia/Notability]]. Pierwsze notatki jeszcze zapisywałem w aplikacji [[Bear]] jeszcze w 2016 roku.
 
 ## Dlaczego
 To dla mnie sposób na "wyrzucenie śmieci z głowy" (koncepcja od [[Wiedza/Ludzie/Dan Millman]]).
+
 Oprócz tego pisanie jest ekspresją myśli. Pisząc usprawniamy swój proces myślenia, na czym bardzo mi zależy. Podobną rolę pełnią [[Wiedza/Modele Mentalne/Modele mentalne]]
 
 Oprócz pisania również czytam swój dziennik, co daje mi świetną [[Wiedza/Słownik/Perspektywa]] (np. poprzez spojrzenie na siebie i swoje postawy sprzed lat).
