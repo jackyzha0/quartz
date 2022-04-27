@@ -65,10 +65,42 @@ body, body.theme-dark {
 article a {
   color: rgb(238, 27, 231); background: none;
 }
+a:hover {
+  color: #ee1be7 !important; text-decoration: underline !important;
+}
 article a.internal-link { background: none; }
 
 article h2 {
     margin-top: 2rem;
+}
+
+p, article, article p, article li, article a, .page-end>.backlinks-container>ul>li {
+  font-family: "Poppins", sans-serif;
+  line-height: 29px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#TableOfContents>ol>li::marker {
+  font-family: "Poppins", sans-serif;
+}
+
+header { justify-content: space-between; }
+header>.spacer { display: none; }
+
+.mainTOC {
+  margin: 1rem 0; cursor: pointer;
+}
+.mainTOC details summary, .mainTOC details[open] summary {
+  color: #888; cursor: pointer;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, ol a, ul a, thead a {
+  font-family: "Poppins", sans-serif;
+  font-weight: revert;
+  margin: revert;
+  padding: revert;
+  font-size: inherit;
 }
 
 body.theme-dark h1,

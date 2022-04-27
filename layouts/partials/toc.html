@@ -1,7 +1,7 @@
 {{ if (and $.Site.Data.config.enableToc (ne .Params.enableToc false)  (gt .WordCount 150)) }}
 <aside class="mainTOC">
-    <details open>
-        <summary>Spis treści</summary>
+    <details >
+        <summary> Zawartość tej strony</summary>
         {{ .TableOfContents }}
     </details>
 </aside>

@@ -70,11 +70,11 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
       .on("end", enableDrag ? dragended : noop);
   }
 
-  const height = 250
+  const height = 450
   const width = document.getElementById("graph-container").offsetWidth
 
   const simulation = d3.forceSimulation(data.nodes)
-    .force("charge", d3.forceManyBody().strength(-30))
+    .force("charge", d3.forceManyBody().strength(-2000))
     .force("link", d3.forceLink(data.links).id(d => d.id))
     .force("center", d3.forceCenter());
 
@@ -86,8 +86,8 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
 
   if (enableLegend) {
     const legend = [
-      { "Current": "var(--g-node-active)" },
-      { "Note": "var(--g-node)" },
+      { "Aktualna strona": "var(--g-node-active)" },
+      { "Notatka": "var(--g-node)" },
       ...pathColors
     ]
     legend.forEach((legendEntry, i) => {
@@ -186,7 +186,7 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
     .attr("dx", 12)
     .attr("dy", ".35em")
     .text((d) => content[d.id]?.title || d.id.replace("-", " "))
-    .style("opacity", 0)
+    .style("opacity", 1)
     .style("pointer-events", "none")
     .call(drag(simulation));
 
@@ -194,8 +194,7 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
 
   if (enableZoom) {
     svg.call(d3.zoom()
-      .extent([[0, 0], [width, height]])
-      .scaleExtent([0.25, 4])
+      .extent([[5, 5], [width, height]])
       .on("zoom", ({ transform }) => {
         link.attr("transform", transform);
         node.attr("transform", transform);
