@@ -23,12 +23,10 @@ W tym miejscu dzielę się z Tobą wszystkim co wiem. Stworzyłem je przede wszy
 
 ## Wyszukiwanie & Obsidian
 
-Wszystkie zawarte tutaj informacje możesz przeszukiwać na dwa sposoby:
-- z pomocą wyszukiwarki dostępnej na tej stronie
-- lub z pomocą aplikacji [Obsidian](https://obsidian.md/) do której możesz wgrać zawartość tego repozytorium: https://github.com/iceener/brain
+Wszystkie zawarte tutaj informacje możesz przeszukiwać z pomocą wyszukiwarki dostępnej na tej stronie, którą możesz włączyć skrótem **⌘ + /** lub **CTRL + /**
 
 ## Koncepcja
 
-Cały ten projekt oparty jest o koncepcję tzw. [digital garden](https://joelhooks.com/digital-garden). W moim przypadku testowałem połączenie Notion oraz Super.so oraz integrację Githuba z GitBookiem. Ostatecznie zdecydowałem się na Obisidan Publish z szablonem uwzględniającym moje własne style CSS. 
+Cały ten projekt oparty jest o koncepcję tzw. [digital garden](https://joelhooks.com/digital-garden). W moim przypadku testowałem połączenie Notion oraz Super.so oraz integrację Githuba z GitBookiem. Przez jakiś czas wykorzystywałem funkcję Obsidian Publish a aktualnie całość generuję w Hugo na podstawie projektu [Quartz](https://quartz.jzhao.xyz/) 
 
-> **Ważne!** Jeżeli w jakichś definicjach znajdziesz błąd lub chcesz zasugerować zmianę, będę Ci za to bardzo wdzięczny. Możesz to zrobić z pomocą Pull Request przesłanym do [tego repozytorium](https://github.com/iceener/brain), [zgłaszając Issue](https://github.com/iceener/brain/issues/new) lub po prostu pisząc do mnie na adam@overment.com
+> **Ważne!** Jeżeli w jakichś definicjach znajdziesz błąd lub chcesz zasugerować zmianę, będę Ci za to bardzo wdzięczny. Możesz to zrobić z pomocą Pull Request przesłanym do [tego repozytorium](https://github.com/iceener/brain), [zgłaszając Issue](https://github.com/iceener/brain/issues/new) lub po prostu pisząc do mnie na [e-mail](mailto:adam@overment.com).

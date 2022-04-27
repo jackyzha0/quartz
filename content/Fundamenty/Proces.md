@@ -90,8 +90,8 @@ Fundamentem jest dla mnie zdrowie (fizyczne i psychiczne) oraz sen.
 ### Poznawanie siebie
 Poznawanie siebie to najważniejszy po fundamentach element mojego procesu.
 
-- **Prowadzenie [[Fundamenty/📓 Dziennik]]a**
-- **Testy osobowości** - [[Fundamenty/💛 Poznawanie siebie#MBTI]], [[Fundamenty/💛 Poznawanie siebie#StrenghtsFinder]], [[Fundamenty/💛 Poznawanie siebie#Principles You]], [[Fundamenty/💛 Poznawanie siebie#The Big Five]]
+- **Prowadzenie [[Fundamenty/Dziennik]]a**
+- **Testy osobowości** - [[Fundamenty/Poznawanie siebie#MBTI]], [[Fundamenty/Poznawanie siebie#StrenghtsFinder]], [[Fundamenty/Poznawanie siebie#Principles You]], [[Fundamenty/Poznawanie siebie#The Big Five]]
 - **Spędzanie czasu sam ze sobą** - bez rozproszeń i Internetu
 - **Pozostawanie otwartym** - staram się pozostawać otwartym na popełnianie błędów ([[Wiedza/Książki/Think Like a Rocket Scientist]] & [[Wiedza/Książki/Black Box Thinking]]) oraz fakt, że mogę się mylić.
 
@@ -113,7 +113,7 @@ Uważam że niemożliwa jest fundamentalna zmiana, natomiast nasze przekonania i
 ### Rozwój
 Realizowanie i rozwijanie mojego [[Wiedza/Słownik/Proces]]u jest dla mnie priorytetem. Niemal w 100% opieram go o źródła anglojęzyczne.
 
-- [[Modele mentalne]] - wiedza na ich temat to supermoc, pomaga w myśleniu oraz podejmowaniu decyzji - a wierzę, że to o nich jest nasze życie. 
+- [[Wiedza/Modele Mentalne/Modele mentalne]] - wiedza na ich temat to supermoc, pomaga w myśleniu oraz podejmowaniu decyzji - a wierzę, że to o nich jest nasze życie. 
 - [[Wiedza/Książki/Książki]] - czytanie jest dla mnie jednym z głównych elementów procesu mojego rozwoju
 - [[Wiedza/Podcasty/Podcast]]
 - Specjalizacja i Generalizacja - nie posiadam żadnej specjalizacji. Uczę się wszystkiego o wszystkim ([[Wiedza/Książki/Range]] & [[T-Shape Leader]])
@@ -121,7 +121,7 @@ Realizowanie i rozwijanie mojego [[Wiedza/Słownik/Proces]]u jest dla mnie prior
 ### System zdobywania wiedzy
 Jest to mój sposób na to aby szybko zdobywać nowe umiejętności oraz pozostawać na bieżąco w moim kręgu umiejętności i wiedzy ([[Wiedza/Modele Mentalne/Circle of Competence]]).
 
-Zobacz więcej 👉 [[Fundamenty/📚 System zdobywania wiedzy]].
+Zobacz więcej 👉 [[Fundamenty/System zdobywania wiedzy]].
 
 
 ### Dźwignia [[Wiedza/Modele Mentalne/Leverage]]

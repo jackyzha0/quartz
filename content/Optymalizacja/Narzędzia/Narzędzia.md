@@ -33,6 +33,7 @@ title: Narzędzia
 - [[Optymalizacja/Narzędzia/Onyx]] - aplikacja optymalizująca / czyszcząca system
 - [[Optymalizacja/Narzędzia/Figma]] - webowa aplikacja do projektowania grafiki wektorowej
 - [[Optymalizacja/Narzędzia/Webflow]] - najlepszy no-code web builder
+- [[Optymalizacja/Narzędzia/Framer Sites]] - nowy no-code web builder
 - [[Optymalizacja/Narzędzia/PopClip]] - akcje na dowolnym zaznaczonym tekście
 - [[Optymalizacja/Narzędzia/Kindle]] - aplikacja do czytania książek
 - [[Optymalizacja/Narzędzia/Superhuman]] - klient pocztowy nastawiony na produktywność
@@ -47,3 +48,6 @@ title: Narzędzia
 - [[Optymalizacja/Narzędzia/BetterTouch Tool]] - aplikacja rozszerzająca możliwości trackpada
 - [[Optymalizacja/Narzędzia/Hyper.is]] - ~~alternatywa dla terminala napisana w HTML5 / CSS / JS~~
 - [[Warp.dev]] - alternatywa dla terminala
+- [[Optymalizacja/Narzędzia/Sendgrid]]
+- [[Optymalizacja/Narzędzia/Shortcuts]]
+- [[Optymalizacja/Narzędzia/Slack]]

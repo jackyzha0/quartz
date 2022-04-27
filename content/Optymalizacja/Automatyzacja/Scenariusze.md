@@ -6,7 +6,7 @@ title: Scenariusze
 Publikuję większość postów z pomocą [[Optymalizacja/Narzędzia/Buffer]] do którego dane trafiają automatycznie z [[Optymalizacja/Narzędzia/Airtable]] dzięki [[Optymalizacja/Narzędzia/MakeHQ]]. Posiadam również automatyzacje [[Optymalizacja/Narzędzia/Keyboard Maestro]], które pozwalają mi wysyłać dane do tych serwisów bezpośrednio z mojego komputera, bez konieczności otwierania przeglądarki. 
 
 ## Automatyzacja newslettera
-Do wysyłki newslettera w zależności od projektu wykorzystuję [[Sendgrid]], [[Mailchimp]] lub [[GetResponse]]. Proces złożenia szablonu i wysłania dzieje się w pełni automatycznie dzięki [[Optymalizacja/Narzędzia/MakeHQ]].
+Do wysyłki newslettera w zależności od projektu wykorzystuję [[Optymalizacja/Narzędzia/Sendgrid]], [[Mailchimp]] lub [[GetResponse]]. Proces złożenia szablonu i wysłania dzieje się w pełni automatycznie dzięki [[Optymalizacja/Narzędzia/MakeHQ]].
 
 Cały proces automatyzacji newlettera pokazuję w paczce Automatyzacji:  [[Projekty/zautomatyzowani#Newsletter na Autopilocie]]
 
@@ -22,6 +22,4 @@ Cały proces automatyzacji podcastu pokazuję w paczce Automatyzacji
 [[Projekty/zautomatyzowani#Podcast na Autopilocie]]
 
 ## Generowanie grafik
-Generuję grafiki na potrzeby mediów społecznościowych z pomocą [[htmlcsstoimage]] i [[BannerBear]] lub [[Placid]]. Najczęściej łączę je poprzez scenariusze w [[Optymalizacja/Narzędzia/MakeHQ]]
-
-Do generowania grafik najczęściej wykorzystuję włąsny mikroserwis ([[Optymalizacja/Automatyzacja/Mikroserwisy#Generowanie grafik]])
+Generuję grafiki na podstawie szablonów Webflow z pomocą własnego mikroserwisu [[Projekty/EasyBanner]]. Najczęściej łączę je poprzez scenariusze w [[Optymalizacja/Narzędzia/MakeHQ]].

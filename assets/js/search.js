@@ -212,7 +212,7 @@ const removeMarkdown = (
   }
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === "k" && (event.ctrlKey || event.metaKey)) {
+    if (event.key === "/" && (event.ctrlKey || event.metaKey)) {
       event.preventDefault()
       openSearch()
     }
