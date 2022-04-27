@@ -10,7 +10,7 @@ W tym miejscu dzielę się z Tobą wszystkim co wiem. Stworzyłem je przede wszy
 
 ## Znajdziesz tutaj
 
-* Mojego procesu ([[Fundamenty/Proces]]) który realizuję codziennie \(i który nieustannie się zmienia\). Dzięki niemu podążam w wyznaczonym przeze mnie [[Wiedza/Słownik/Kierunek]] w oparciu o nazwane [[Fundamenty/Wartości]].
+* Mojego procesu ([[Fundamenty/Proces]]) który realizuję codziennie \(i który nieustannie się zmienia\). Dzięki niemu podążam w wyznaczonym przeze mnie [[Fundamenty/Kierunek]] w oparciu o nazwane [[Fundamenty/Wartości]].
 * [[Wiedza/Modele Mentalne/Modele mentalne]] z których świadomie korzystam
 * Notatki z przeczytanych przeze mnie [[Wiedza/Książki/Książki]]
 * [[Wiedza/Ludzie/Ludzie]] jakich obserwuję w Internecie
