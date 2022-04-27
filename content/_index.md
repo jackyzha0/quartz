@@ -11,6 +11,7 @@ W tym miejscu dzielę się z Tobą wszystkim co wiem. Stworzyłem je przede wszy
 ## Znajdziesz tutaj
 
 * Mojego procesu ([[Fundamenty/Proces]]) który realizuję codziennie \(i który nieustannie się zmienia\). Dzięki niemu podążam w wyznaczonym przeze mnie [[Fundamenty/Kierunek]] w oparciu o nazwane [[Fundamenty/Wartości]].
+* Jak buduję swój [[Fundamenty/System zdobywania wiedzy]]
 * [[Wiedza/Modele Mentalne/Modele mentalne]] z których świadomie korzystam
 * Notatki z przeczytanych przeze mnie [[Wiedza/Książki/Książki]]
 * [[Wiedza/Ludzie/Ludzie]] jakich obserwuję w Internecie
@@ -19,6 +20,7 @@ W tym miejscu dzielę się z Tobą wszystkim co wiem. Stworzyłem je przede wszy
 * [[Optymalizacja/Sprzęt/Sprzęt]] z jakiego korzystam
 * Opisy wykorzystywanych przeze mnie [[Optymalizacja/Automatyzacja/Automatyzacja]] i [[Optymalizacja/Narzędzia/Narzędzia]]
 * Informacje na temat projektów w które jestem zaangażowany ([[Projekty/eduweb]], [[Projekty/Ahoy!]], [[Projekty/zautomatyzowani]], [[Projekty/overment]], [[Projekty/EasyCart]], [[Projekty/EasyBanner]], [[Projekty/Design Maestro]])
+* To co wiem o [[Wiedza/Programowanie/Programowanie]]
 * Moje wszystkie bezpłatne i płatne publikacje
 
 ## Wyszukiwanie & Obsidian
