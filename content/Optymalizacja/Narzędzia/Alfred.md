@@ -1,5 +1,7 @@
 ---
 title: Alfred 4
+date: "2022-04-27"  
+lastmod: "2022-04-27"
 ---
 
 ## Czym jest Alfred? 
@@ -9,6 +11,7 @@ title: Alfred 4
 Największą zaletą Alfreda jest szybkość działania oraz pluginy, które można rozwijać samodzielnie wykorzystując [[Wiedza/Programowanie/JavaScript/JavaScript]] oraz [[Wiedza/Programowanie/Node.js]]. 
 
 > ℹ️ Dla użytkowników Windowsa istnieje alternatywa w postaci Wox Launcher. Nie miałem jednak okazji z niej korzystać. 
+> ⚠️ Aktualnie Alfred wykorzystuję wyłącznie do szybkiego przenoszenia plików z pomocą akcji `Universal Actions`. Pozostałe funkcje w całości zastąpił mi [[Optymalizacja/Narzędzia/Raycast]]
 
 ## Jak wykorzystuję Alfred? 
 
@@ -23,6 +26,3 @@ Największą zaletą Alfreda jest szybkość działania oraz pluginy, które mo�
 - Password Generator - świetne rozwiązanie do szybkiego generowania haseł. Działa świetnie w połączeniu z [[Optymalizacja/Narzędzia/1Password]]
 - Tailwind CSS Doc - wyszukiwarka dokumentacji [[Tailwind CSS]]
 - Dash - dokumentacja dla ponad 200 technologii. Ja korzystam z około 10
-
-## Mój kurs online: Keyboard Maestro
-Wszystkie techniki pracy z [[Optymalizacja/Narzędzia/Keyboard Maestro]] oraz Alfredem omawiam w moim kursie: [[Projekty/eduweb#Kurs Keyboard Maestro]] dostępnym na [[Projekty/eduweb]].

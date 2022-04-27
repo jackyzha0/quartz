@@ -16,7 +16,7 @@ title: Narzędzia
 - [[Optymalizacja/Narzędzia/Procreate]] - Najlepsza aplikacja na iPada do rysowania
 - [[Optymalizacja/Narzędzia/Notability]] - Aplikacja do Notowania na iPadzie
 - [[Optymalizacja/Narzędzia/Dropshare]] - Szybkie udostępnianie plików (przez własny serwer FTP)
-- [[Optymalizacja/Narzędzia/Fantastical]] - Fajna aplikacja do kalendarza
+- [[Optymalizacja/Narzędzia/Cron]] - Fajna aplikacja do kalendarza
 - [[Optymalizacja/Narzędzia/Magnet]] - Aplikacja do zarządzania położeniem okien
 - [[Optymalizacja/Narzędzia/Paste]] - Manager schowka
 - [[Optymalizacja/Narzędzia/TextSnipper]] - OCR czytający zaznaczony fragment ekranu
@@ -44,10 +44,12 @@ title: Narzędzia
 - [[Optymalizacja/Narzędzia/Reveri]] - aplikacja do autohipnozy
 - [[Optymalizacja/Narzędzia/Yoink]] - aplikacja ułatwiająca przenoszenie plików i przechowywanie ich metodą drag&drop
 - [[Optymalizacja/Narzędzia/Notion]] - aplikacja do notatek z API 
-- [[Optymalizacja/Narzędzia/Fig]] - rozszerzenie do terminala podpowiadające składnię i katalogi
-- [[Optymalizacja/Narzędzia/BetterTouch Tool]] - aplikacja rozszerzająca możliwości trackpada
+- [[Optymalizacja/Narzędzia/Better Touch Tool]] - aplikacja rozszerzająca możliwości trackpada
 - [[Optymalizacja/Narzędzia/Hyper.is]] - ~~alternatywa dla terminala napisana w HTML5 / CSS / JS~~
 - [[Warp.dev]] - alternatywa dla terminala
 - [[Optymalizacja/Narzędzia/Sendgrid]]
 - [[Optymalizacja/Narzędzia/Shortcuts]]
 - [[Optymalizacja/Narzędzia/Slack]]
+- [[Optymalizacja/Narzędzia/Todoist]]
+- [[Optymalizacja/Narzędzia/Digital Ocean]]
+- [[Optymalizacja/Narzędzia/Session]]

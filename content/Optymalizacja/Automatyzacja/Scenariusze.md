@@ -21,5 +21,14 @@ Podcast [[Projekty/zautomatyzowani]] prowadzony jest niemal całkowicie "na Auto
 Cały proces automatyzacji podcastu pokazuję w paczce Automatyzacji
 [[Projekty/zautomatyzowani#Podcast na Autopilocie]]
 
+## Automatyzacja procesu sprzedaży
+Wszystkie produkty sprzedaję z pomocą [[Projekty/EasyCart]] a proces po zakupie w całości obsługiwany jest przez scenariusze [[Optymalizacja/Narzędzia/MakeHQ]].
+
 ## Generowanie grafik
 Generuję grafiki na podstawie szablonów Webflow z pomocą własnego mikroserwisu [[Projekty/EasyBanner]]. Najczęściej łączę je poprzez scenariusze w [[Optymalizacja/Narzędzia/MakeHQ]].
+
+## Automatyczna organizacja plików
+Łączę pliki lokalne z chmurą z pomocą aplikacji [[Optymalizacja/Narzędzia/Hazel]]. Zdefiniowane reguły pomagają mi utrzymać porządek oraz wykonywać akcje na lokalnych plikach, które również mogą być rejestrowane przez scenariusze w [[Optymalizacja/Narzędzia/MakeHQ]]
+
+## Text Expander
+Aktualnie jako Text Expander wykorzystuję [[Optymalizacja/Narzędzia/Raycast]] lub [[Optymalizacja/Narzędzia/Keyboard Maestro]] w zależności od rodzaju rozszerzenia. Tym bardziej że poza uzupełnionymi szablonami, wykorzystuję expander do uruchamiania np. stron www (ostatnio otwarty projekt w Figmie czy Webflow) lub wykonywania operacji na plikach (przenieś na pulpit).

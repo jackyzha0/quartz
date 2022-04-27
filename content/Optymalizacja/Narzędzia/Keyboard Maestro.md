@@ -1,6 +1,8 @@
 ---
 title: Keyboard Maestro
---- 
+---
+
+## Czym jest Keyboard Maestro?
 [[Optymalizacja/Narzędzia/Keyboard Maestro]] to aplikacja którą wykorzystuę do automatyzacji wielu zadań w ramach systemu operacyjnego OSX. Wykorzystuję ją razem z [[Optymalizacja/Narzędzia/Alfred]] oraz [[Optymalizacja/Sprzęt/StreamDeck]].
 
 Regularnie zdarza mi się wykorzystywać skrypty [[Wiedza/Programowanie/JavaScript/JavaScript]] i [[Wiedza/Programowanie/Node.js]] do tworzenia pojedynczych akcji.
@@ -80,3 +82,6 @@ Regularnie zdarza mi się wykorzystywać skrypty [[Wiedza/Programowanie/JavaScri
 - Uruchamianie webhooków przejmowanych przez [[Optymalizacja/Narzędzia/MakeHQ]], [[Optymalizacja/Narzędzia/Zapier]] lub [[Optymalizacja/Automatyzacja/Mikroserwisy]]
 - Wysyłanie danych przez [[Optymalizacja/Narzędzia/MakeHQ]] do [[Optymalizacja/Narzędzia/Airtable]]
 - Wysyłanie powiadomień na telefon
+
+## Mój kurs online: Keyboard Maestro
+Wszystkie techniki pracy z [[Optymalizacja/Narzędzia/Keyboard Maestro]] oraz Alfredem omawiam w moim kursie: [[Projekty/eduweb#Kurs Keyboard Maestro]] dostępnym na [[Projekty/eduweb]].
