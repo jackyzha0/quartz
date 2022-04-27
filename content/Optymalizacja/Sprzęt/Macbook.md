@@ -6,7 +6,7 @@ MacBook jest dla mnie najważniejszym narzędziem pracy. Przez lata pracowałem 
 
 Wykorzystuję go nie tylko do programowania ale też projektowania grafiki oraz nagrywania i montażu filmów.
 
-Na każdym kroku wykorzystuję maksimum potencjału (np. z pomocą [[Optymalizacja/Narzędzia/Keyboard Maestro]] czy [[Optymalizacja/Narzędzia/Alfred]]) oraz sięgam po najlepszy aktualnie dostępny dla mnie sprzęt.
+Na każdym kroku wykorzystuję maksimum potencjału (np. z pomocą [[Optymalizacja/Narzędzia/Keyboard Maestro]] czy [[Optymalizacja/Narzędzia/Raycast]]) oraz sięgam po najlepszy aktualnie dostępny dla mnie sprzęt.
 
 ## Specyfikacja
 
