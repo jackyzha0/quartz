@@ -1,7 +1,6 @@
 ---
 title: Proces
 name: Proces
-page_title: Proces omg
 ---
 
 Działam w oparciu o autorski [[Wiedza/Słownik/Proces]] zaprojektowany z myślą o mnie. Nieustannie go kwestionuję, modyfikuję oraz ulepszam. Prawdopodobnie **nie zadziała u Ciebie.** Z pewnością znajdziesz tutaj jednak wiele inspiracji oraz źródeł, które pomogą Ci zbudować swój własny. 
