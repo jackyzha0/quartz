@@ -1,15 +1,14 @@
-name: Jacky Zhao
+name: Adam Gospodarczyk
 enableToc: true
 openToc: false
 enableLinkPreview: true
-enableLatex: true
+enableLatex: false
 description:
-  Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
-  Wikilink support, backlinks, local graph, tags, and link previews.
+  W tym miejscu dzielę się z Tobą wszystkim co wiem. Stworzyłem je przede wszystkim dla siebie, aby móc łatwo wracać do wszystkich zamieszczonych tu materiałów. Jednocześnie pomyślałem że to wszystko może okazać się równie wartościowe dla Ciebie.
 page_title:
   "brain.overment.com"
 links:
   - link_name: Twitter
-    link: https://twitter.com/_jzhao
+    link: https://twitter.com/_overment
   - link_name: Github
-    link: https://github.com/jackyzha0
+    link: https://github.com/iceener
