@@ -13,6 +13,8 @@ paginate = 10
 enableGitInfo = true
 
 [markup]
+    [markup.goldmark.renderer]
+        unsafe= true
     [markup.tableOfContents]
         endLevel = 3
         ordered = true
