@@ -70,12 +70,12 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
       .on("end", enableDrag ? dragended : noop);
   }
 
-  const height = 250
+  const height = Math.max(document.getElementById("graph-container").offsetHeight, 250)
   const width = document.getElementById("graph-container").offsetWidth
 
   const simulation = d3.forceSimulation(data.nodes)
     .force("charge", d3.forceManyBody().strength(-30))
-    .force("link", d3.forceLink(data.links).id(d => d.id))
+    .force("link", d3.forceLink(data.links).id(d => d.id).distance(40))
     .force("center", d3.forceCenter());
 
   const svg = d3.select('#graph-container')
@@ -115,15 +115,18 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
     .data(data.nodes)
     .enter().append("g")
 
+  // calculate radius
+  const nodeRadius = (d) => {
+    const numOut = index.links[d.id]?.length || 0
+    const numIn = index.backlinks[d.id]?.length || 0
+    return 3 + (numOut + numIn) / 4
+  }
+
   // draw individual nodes
   const node = graphNode.append("circle")
     .attr("class", "node")
     .attr("id", (d) => d.id)
-    .attr("r", (d) => {
-      const numOut = index.links[d.id]?.length || 0
-      const numIn = index.backlinks[d.id]?.length || 0
-      return 3 + (numOut + numIn) / 4
-    })
+    .attr("r", nodeRadius)
     .attr("fill", color)
     .style("cursor", "pointer")
     .on("click", (_, d) => {
@@ -154,11 +157,12 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
 
       // show text for self
       d3.select(this.parentNode)
-        .select("text")
         .raise()
+        .select("text")
         .transition()
         .duration(200)
         .style("opacity", 1)
+        .raise()
     }).on("mouseleave", function(_, d) {
       d3.selectAll(".node")
         .transition()
@@ -183,11 +187,14 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
 
   // draw labels
   const labels = graphNode.append("text")
-    .attr("dx", 12)
-    .attr("dy", ".35em")
+    .attr("dx", 0)
+    .attr("dy", d => nodeRadius(d) + 8 + "px")
+    .attr("text-anchor", "middle")
     .text((d) => content[d.id]?.title || d.id.replace("-", " "))
     .style("opacity", 0)
     .style("pointer-events", "none")
+    .style("font-size", "0.4em")
+    .raise()
     .call(drag(simulation));
 
   // set panning
@@ -199,7 +206,11 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
       .on("zoom", ({ transform }) => {
         link.attr("transform", transform);
         node.attr("transform", transform);
-        labels.attr("transform", transform);
+        const scale = transform.k
+        const scaledOpacity = Math.max((scale - 1) / 3.75, 0)
+        labels
+          .attr("transform", transform)
+          .style("opacity", scaledOpacity)
       }));
   }
 

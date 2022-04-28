@@ -329,6 +329,12 @@ hr {
   & #graph-container {
     border: var(--outlinegray) 1px solid;
     border-radius: 5px;
+    box-sizing: border-box;
+
+    & > svg {
+      margin-bottom: -5px;
+
+    }
   }
 }
 
