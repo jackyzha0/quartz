@@ -127,7 +127,7 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
     .attr("fill", color)
     .style("cursor", "pointer")
     .on("click", (_, d) => {
-      window.location.href = baseUrl + '/' + decodeURI(d.id).replace(/\s+/g, '-')
+      window.location.href = `${baseUrl}/${decodeURI(d.id).replace(/\s+/g, '-')}/`
     })
     .on("mouseover", function(_, d) {
       d3.selectAll(".node")

@@ -131,7 +131,7 @@ const removeMarkdown = (
   }
 
   const redir = (id, term) => {
-    window.location.href = BASE_URL + `${id}#:~:text=${encodeURIComponent(term)}`
+    window.location.href = `${BASE_URL}${id}#:~:text=${encodeURIComponent(term)}/`
   }
 
   const formatForDisplay = id => ({
