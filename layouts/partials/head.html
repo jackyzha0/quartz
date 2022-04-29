@@ -61,7 +61,22 @@
       navigate,
     } from 'https://unpkg.com/million/dist/router.mjs';
     window.navigate = navigate;
-    router({}, '.singlePage');
+    router('.singlePage');
+    const callback = () => {
+      requestAnimationFrame(() => {
+        drawGraph(
+          {{strings.TrimRight "/" .Page.Permalink}},
+          {{strings.TrimRight "/" .Site.BaseURL}},
+          {{$.Site.Data.graphConfig.paths}},
+          {{$.Site.Data.graphConfig.depth}},
+          {{$.Site.Data.graphConfig.enableDrag}},
+          {{$.Site.Data.graphConfig.enableLegend}},
+          {{$.Site.Data.graphConfig.enableZoom}}
+        )
+      })
+    }
+    window.addEventListener('million:navigate', callback);
+    window.addEventListener('DOMContentLoaded', callback);
   </script>
 </head>
 {{ template "_internal/google_analytics.html" . }}

@@ -145,11 +145,13 @@ const removeMarkdown = (
   };
 
   const redir = (id, term) => {
-    navigate(
+    window.navigate(
       new URL(
         `${BASE_URL.slice(0, -1)}${id}#:~:text=${encodeURIComponent(term)}/`
-      )
+      ),
+      '.singlePage'
     );
+    closeSearch();
   };
 
   const formatForDisplay = (id) => ({

@@ -7,6 +7,9 @@ async function drawGraph(
   enableLegend,
   enableZoom
 ) {
+  if (!document.getElementById('graph-container')) return;
+  document.getElementById('graph-container').textContent = '';
+
   const { index, links, content } = await fetchData;
   const curPage = url.replace(baseUrl, '');
 
@@ -87,13 +90,23 @@ async function drawGraph(
       .on('end', enableDrag ? dragended : noop);
   };
 
-  const height = Math.max(document.getElementById("graph-container").offsetHeight, 250)
-  const width = document.getElementById("graph-container").offsetWidth
+  const height = Math.max(
+    document.getElementById('graph-container').offsetHeight,
+    250
+  );
+  const width = document.getElementById('graph-container').offsetWidth;
 
-  const simulation = d3.forceSimulation(data.nodes)
-    .force("charge", d3.forceManyBody().strength(-30))
-    .force("link", d3.forceLink(data.links).id(d => d.id).distance(40))
-    .force("center", d3.forceCenter());
+  const simulation = d3
+    .forceSimulation(data.nodes)
+    .force('charge', d3.forceManyBody().strength(-30))
+    .force(
+      'link',
+      d3
+        .forceLink(data.links)
+        .id((d) => d.id)
+        .distance(40)
+    )
+    .force('center', d3.forceCenter());
 
   const svg = d3
     .select('#graph-container')
@@ -149,20 +162,24 @@ async function drawGraph(
 
   // calculate radius
   const nodeRadius = (d) => {
-    const numOut = index.links[d.id]?.length || 0
-    const numIn = index.backlinks[d.id]?.length || 0
-    return 3 + (numOut + numIn) / 4
-  }
+    const numOut = index.links[d.id]?.length || 0;
+    const numIn = index.backlinks[d.id]?.length || 0;
+    return 3 + (numOut + numIn) / 4;
+  };
 
   // draw individual nodes
-  const node = graphNode.append("circle")
-    .attr("class", "node")
-    .attr("id", (d) => d.id)
-    .attr("r", nodeRadius)
-    .attr("fill", color)
-    .style("cursor", "pointer")
-    .on("click", (_, d) => {
-      window.location.href = `${baseUrl}/${decodeURI(d.id).replace(/\s+/g, '-')}/`
+  const node = graphNode
+    .append('circle')
+    .attr('class', 'node')
+    .attr('id', (d) => d.id)
+    .attr('r', nodeRadius)
+    .attr('fill', color)
+    .style('cursor', 'pointer')
+    .on('click', (_, d) => {
+      window.navigate(
+        new URL(`${baseUrl}${decodeURI(d.id).replace(/\s+/g, '-')}/`),
+        '.singlePage'
+      );
     })
     .on('mouseover', function (_, d) {
       d3.selectAll('.node')
@@ -194,16 +211,13 @@ async function drawGraph(
       // show text for self
       d3.select(this.parentNode)
         .raise()
-        .select("text")
+        .select('text')
         .transition()
         .duration(200)
-        .style("opacity", 1)
-        .raise()
-    }).on("mouseleave", function(_, d) {
-      d3.selectAll(".node")
-        .transition()
-        .duration(200)
-        .attr("fill", color)
+        .style('opacity', 1);
+    })
+    .on('mouseleave', function (_, d) {
+      d3.selectAll('.node').transition().duration(200).attr('fill', color);
 
       const currentId = d.id;
       const linkNodes = d3
@@ -221,32 +235,37 @@ async function drawGraph(
     .call(drag(simulation));
 
   // draw labels
-  const labels = graphNode.append("text")
-    .attr("dx", 0)
-    .attr("dy", d => nodeRadius(d) + 8 + "px")
-    .attr("text-anchor", "middle")
-    .text((d) => content[d.id]?.title || d.id.replace("-", " "))
-    .style("opacity", 0)
-    .style("pointer-events", "none")
-    .style("font-size", "0.4em")
+  const labels = graphNode
+    .append('text')
+    .attr('dx', 0)
+    .attr('dy', (d) => nodeRadius(d) + 8 + 'px')
+    .attr('text-anchor', 'middle')
+    .text((d) => content[d.id]?.title || d.id.replace('-', ' '))
+    .style('opacity', 0)
+    .style('pointer-events', 'none')
+    .style('font-size', '0.4em')
     .raise()
     .call(drag(simulation));
 
   // set panning
 
   if (enableZoom) {
-    svg.call(d3.zoom()
-      .extent([[0, 0], [width, height]])
-      .scaleExtent([0.25, 4])
-      .on("zoom", ({ transform }) => {
-        link.attr("transform", transform);
-        node.attr("transform", transform);
-        const scale = transform.k
-        const scaledOpacity = Math.max((scale - 1) / 3.75, 0)
-        labels
-          .attr("transform", transform)
-          .style("opacity", scaledOpacity)
-      }));
+    svg.call(
+      d3
+        .zoom()
+        .extent([
+          [0, 0],
+          [width, height],
+        ])
+        .scaleExtent([0.25, 4])
+        .on('zoom', ({ transform }) => {
+          link.attr('transform', transform);
+          node.attr('transform', transform);
+          const scale = transform.k;
+          const scaledOpacity = Math.max((scale - 1) / 3.75, 0);
+          labels.attr('transform', transform).style('opacity', scaledOpacity);
+        })
+    );
   }
 
   // progress the simulation
@@ -259,6 +278,4 @@ async function drawGraph(
     node.attr('cx', (d) => d.x).attr('cy', (d) => d.y);
     labels.attr('x', (d) => d.x).attr('y', (d) => d.y);
   });
-
-  console.log(parseIdsFromLinks(links));
 }

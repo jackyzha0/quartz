@@ -16,14 +16,3 @@
 </style>
 {{ $js := resources.Get "js/graph.js" | resources.Fingerprint "md5" }}
 <script src="{{ $js.Permalink }}"></script>
-<script>
-  drawGraph(
-    {{strings.TrimRight "/" .Page.Permalink}},
-    {{strings.TrimRight "/" .Site.BaseURL}},
-    {{$.Site.Data.graphConfig.paths}},
-    {{$.Site.Data.graphConfig.depth}},
-    {{$.Site.Data.graphConfig.enableDrag}},
-    {{$.Site.Data.graphConfig.enableLegend}},
-    {{$.Site.Data.graphConfig.enableZoom}}
-  )
-</script>
