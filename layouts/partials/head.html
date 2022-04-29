@@ -56,8 +56,12 @@
         }))
   </script>
   <script type="module">
-    import { router } from 'https://unpkg.com/million/dist/router.mjs';
-    router();
+    import {
+      router,
+      navigate,
+    } from 'https://unpkg.com/million/dist/router.mjs';
+    window.navigate = navigate;
+    router({}, '.singlePage');
   </script>
 </head>
 {{ template "_internal/google_analytics.html" . }}
