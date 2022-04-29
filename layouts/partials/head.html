@@ -5,38 +5,29 @@
     name="description"
     content="{{if .IsHome}}{{$.Site.Data.config.description}}{{else}}{{.Summary}}{{end}}"
   />
-  <title>
-    {{ if .Title }}{{ .Title }}{{ else }}{{ $.Site.Data.config.page_title }}{{
-    end }}
-  </title>
+  <title>{{ if .Title }}{{ .Title }}{{ else }}{{ $.Site.Data.config.page_title }}{{ end }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link
-    rel="shortcut icon"
-    type="image/png"
-    href="{{$.Site.BaseURL}}/icon.png"
-  />
+  <link rel="shortcut icon" type="image/png" href="{{$.Site.BaseURL}}/icon.png" />
 
   <!-- CSS Stylesheets and Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap"
     rel="stylesheet"
   />
-  {{$sass := resources.Match "styles/[!_]*.scss" }} {{$css := slice }} {{range
-  $sass}} {{$scss := . | resources.ToCSS (dict "outputStyle" "compressed") }}
-  {{$css = $css | append $scss}} {{end}} {{$finalCss := $css | resources.Concat
-  "styles.css" | resources.Fingerprint "md5" | resources.Minify }}
+  {{$sass := resources.Match "styles/[!_]*.scss" }} {{$css := slice }} {{range $sass}} {{$scss := .
+  | resources.ToCSS (dict "outputStyle" "compressed") }} {{$css = $css | append $scss}} {{end}}
+  {{$finalCss := $css | resources.Concat "styles.css" | resources.Fingerprint "md5" |
+  resources.Minify }}
   <link href="{{$finalCss.Permalink}}" rel="stylesheet" />
 
-  {{ $darkMode := resources.Get "js/darkmode.js" | resources.Fingerprint "md5" |
-  resources.Minify }}
+  {{ $darkMode := resources.Get "js/darkmode.js" | resources.Fingerprint "md5" | resources.Minify }}
   <script src="{{$darkMode.Permalink}}"></script>
   {{partial "katex.html" .}}
 
   <!--  Preload page vars  -->
-  {{$linkIndex := resources.Get "indices/linkIndex.json" | resources.Fingerprint
-  "md5" | resources.Minify | }} {{$contentIndex := resources.Get
-  "indices/contentIndex.json" | resources.Fingerprint "md5" | resources.Minify
-  }}
+  {{$linkIndex := resources.Get "indices/linkIndex.json" | resources.Fingerprint "md5" |
+  resources.Minify | }} {{$contentIndex := resources.Get "indices/contentIndex.json" |
+  resources.Fingerprint "md5" | resources.Minify }}
   <script>
     const BASE_URL = {{.Site.BaseURL}}
     const fetchData = Promise.all([
@@ -56,12 +47,9 @@
         }))
   </script>
   <script type="module">
-    import {
-      router,
-      navigate,
-    } from 'https://unpkg.com/million/dist/router.mjs';
+    import { router, navigate } from "https://unpkg.com/million/dist/router.mjs";
     window.navigate = navigate;
-    router('.singlePage');
+    router(".singlePage");
     const callback = () => {
       requestAnimationFrame(() => {
         drawGraph(
@@ -72,11 +60,11 @@
           {{$.Site.Data.graphConfig.enableDrag}},
           {{$.Site.Data.graphConfig.enableLegend}},
           {{$.Site.Data.graphConfig.enableZoom}}
-        )
-      })
-    }
-    window.addEventListener('million:navigate', callback);
-    window.addEventListener('DOMContentLoaded', callback);
+        )}
+      );
+    };
+    window.addEventListener("million:navigate", callback);
+    window.addEventListener("DOMContentLoaded", callback);
   </script>
 </head>
 {{ template "_internal/google_analytics.html" . }}
