@@ -1,8 +1,5 @@
 async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLegend, enableZoom) {
   const container = document.getElementById("graph-container");
-  // We should clear the graph in case there is anything within it
-  if (!container) return;
-  container.textContent = "";
 
   const { index, links, content } = await fetchData;
   const curPage = url.replace(baseUrl, "");

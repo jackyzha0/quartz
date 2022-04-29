@@ -51,8 +51,13 @@
     window.navigate = navigate;
     router(".singlePage");
     const callback = () => {
-      // RAF waits for Million to complete diffing, then draw
-      requestAnimationFrame(() => {
+      const draw = () => {
+        const container = document.getElementById("graph-container");
+        // retry if the graph is not ready
+        if (!container) return requestAnimationFrame(draw);
+        // clear the graph in case there is anything within it
+        container.textContent = "";
+
         drawGraph(
           {{strings.TrimRight "/" .Page.Permalink}},
           {{strings.TrimRight "/" .Site.BaseURL}},
@@ -61,8 +66,9 @@
           {{$.Site.Data.graphConfig.enableDrag}},
           {{$.Site.Data.graphConfig.enableLegend}},
           {{$.Site.Data.graphConfig.enableZoom}}
-        )}
-      );
+        );
+      };
+      requestAnimationFrame(draw);
     };
     // We need on initial load, then subsequent redirs
     window.addEventListener("million:navigate", callback);
