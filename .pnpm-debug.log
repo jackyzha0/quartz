@@ -1,0 +1,14 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_NO_SCRIPT",
+    "err": {
+      "name": "pnpm",
+      "message": "Missing script: dev",
+      "code": "ERR_PNPM_NO_SCRIPT",
+      "stack": "pnpm: Missing script: dev\n    at Object.handler (/opt/homebrew/Cellar/node/17.3.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.9/node_modules/pnpm/dist/pnpm.cjs:178363:15)\n    at async /opt/homebrew/Cellar/node/17.3.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.9/node_modules/pnpm/dist/pnpm.cjs:182614:21\n    at async run (/opt/homebrew/Cellar/node/17.3.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.9/node_modules/pnpm/dist/pnpm.cjs:182588:34)\n    at async runPnpm (/opt/homebrew/Cellar/node/17.3.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.9/node_modules/pnpm/dist/pnpm.cjs:182807:5)\n    at async /opt/homebrew/Cellar/node/17.3.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.9/node_modules/pnpm/dist/pnpm.cjs:182799:7"
+    }
+  }
+}
