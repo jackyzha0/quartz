@@ -51,6 +51,7 @@
     window.navigate = navigate;
     router(".singlePage");
     const callback = () => {
+      // RAF waits for Million to complete diffing, then draw
       requestAnimationFrame(() => {
         drawGraph(
           {{strings.TrimRight "/" .Page.Permalink}},
@@ -63,6 +64,7 @@
         )}
       );
     };
+    // We need on initial load, then subsequent redirs
     window.addEventListener("million:navigate", callback);
     window.addEventListener("DOMContentLoaded", callback);
   </script>
