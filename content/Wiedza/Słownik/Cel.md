@@ -2,12 +2,6 @@
 title: Cel
 ---
 
----
-title: Dziennik
-date: "2022-04-01"
-lastmod: "2022-04-25"
----
-
 # Cel
 Cele uznawane są jako niezbędne elementy osiągania wielkich rezultatów. 
 
