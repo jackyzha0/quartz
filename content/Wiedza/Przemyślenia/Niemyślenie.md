@@ -1,5 +1,7 @@
 ---
 title: Niemyślenie
+date: "2022-04-29"  
+lastmod: "2022-04-30"
 ---
 
 ## O co chodzi?
