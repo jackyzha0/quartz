@@ -12,6 +12,19 @@ h1, h2, h3, h4, h5, h6, ol, ul, thead {
   font-weight: revert;
   margin: revert;
   padding: revert;
+
+  &:hover > .hanchor {
+    opacity: 1;
+  }
+}
+
+.hanchor {
+  font-family: Inter;
+  margin-left: -1em;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+  color: var(--secondary);
+
 }
 
 p, ul, text {
