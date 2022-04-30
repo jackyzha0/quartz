@@ -1,8 +1,6 @@
 async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLegend, enableZoom) {
-  const container = document.getElementById("graph-container");
-  // We should clear the graph in case there is anything within it
-  if (!container) return;
-  container.textContent = "";
+  if (!document.getElementById("graph-container")) return;
+  document.getElementById("graph-container").textContent = "";
 
   const { index, links, content } = await fetchData;
   const curPage = url.replace(baseUrl, "");
@@ -10,10 +8,6 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
   const parseIdsFromLinks = (links) => [
     ...new Set(links.flatMap((link) => [link.source, link.target])),
   ];
-
-  // links is mutated by d3
-  // we want to use links later on, so we make a copy and pass
-  // that one to d3
   const copyLinks = JSON.parse(JSON.stringify(links));
 
   const neighbours = new Set();
@@ -83,8 +77,8 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
       .on("end", enableDrag ? dragended : noop);
   };
 
-  const height = Math.max(container.offsetHeight, 250);
-  const width = container.offsetWidth;
+  const height = Math.max(document.getElementById("graph-container").offsetHeight, 250);
+  const width = document.getElementById("graph-container").offsetWidth;
 
   const simulation = d3
     .forceSimulation(data.nodes)
@@ -94,7 +88,7 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
       d3
         .forceLink(data.links)
         .id((d) => d.id)
-        .distance(40),
+        .distance(40)
     )
     .force("center", d3.forceCenter());
 
@@ -230,7 +224,7 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
           const scale = transform.k;
           const scaledOpacity = Math.max((scale - 1) / 3.75, 0);
           labels.attr("transform", transform).style("opacity", scaledOpacity);
-        }),
+        })
     );
   }
 
