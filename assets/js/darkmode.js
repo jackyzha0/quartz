@@ -16,14 +16,17 @@ const switchTheme = (e) => {
   }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  // Darkmode toggle
-  const toggleSwitch = document.querySelector('#darkmode-toggle')
+if (window) {
+  window.addEventListener('DOMContentLoaded', () => {
+    // Darkmode toggle
+    const toggleSwitch = document.querySelector('#darkmode-toggle')
 
-  // listen for toggle
-  toggleSwitch.addEventListener('change', switchTheme, false)
+    // listen for toggle
+    toggleSwitch.addEventListener('change', switchTheme, false)
 
-  if (currentTheme === 'dark') {
-    toggleSwitch.checked = true
-  }
-})
+    if (currentTheme === 'dark') {
+      toggleSwitch.checked = true
+    }
+  })
+
+}
