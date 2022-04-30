@@ -23,6 +23,10 @@
     {{$finalCss := $css | resources.Concat "styles.css" | resources.Fingerprint "md5" | resources.Minify  }}
     <link href="{{$finalCss.Permalink}}" rel="stylesheet">
 
+<!--    {{ $darkMode := resources.Get "js/darkmode.js" |  resources.Fingerprint "md5" | resources.Minify }}-->
+<!--    <script src="{{$darkMode.Permalink}}"></script>-->
+    {{partial "katex.html" .}}
+
     <!--  Preload page vars  -->
     {{$linkIndex := resources.Get "indices/linkIndex.json" | resources.Fingerprint "md5" | resources.Minify |  }}
     {{$contentIndex := resources.Get "indices/contentIndex.json" | resources.Fingerprint "md5" | resources.Minify }}
