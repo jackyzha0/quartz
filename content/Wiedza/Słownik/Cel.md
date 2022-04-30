@@ -2,7 +2,6 @@
 title: Cel
 ---
 
-# Cel
 Cele uznawane są jako niezbędne elementy osiągania wielkich rezultatów. 
 
 Osobiście zrezygowałem z ich wyznaczania na początku 2019 roku, gdy robiąc podsumowanie poprzedniego roku, zadałem sobie pytanie "**Czy można inaczej?**"
