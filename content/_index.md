@@ -26,6 +26,7 @@ Capture notes anywhere with an array of supported platforms and built-in sync be
 
 ### Full control of your notes
 Keep a backup of your notes or sync with other note-taking applications
+- 100% of your notes are stored locally
 - Export all notes in Markdown or JSON
 - [[posts/sync-fleeting-notes-with-obsidian|Sync notes with Obsidian]]
 
