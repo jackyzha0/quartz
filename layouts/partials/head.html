@@ -65,7 +65,7 @@
     // We only mutate document.title and content within .singlePage element
     router(".singlePage");
     const callback = () => {
-      // requestAnimationFrame()
+      // requestAnimationFrame() delays graph draw until SPA routing is finished
       const draw = () => {
         const container = document.getElementById("graph-container");
         // retry if the graph is not ready
