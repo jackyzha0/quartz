@@ -343,6 +343,7 @@ hr {
     border: var(--outlinegray) 1px solid;
     border-radius: 5px;
     box-sizing: border-box;
+    min-height: 250px;
 
     & > svg {
       margin-bottom: -5px;

@@ -51,7 +51,7 @@ const removeMarkdown = (
     return markdown
   }
   return output
-}
+};
 // -----
 
 (async function() {
