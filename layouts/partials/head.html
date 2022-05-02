@@ -21,10 +21,13 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap"
     rel="stylesheet"
   />
-  {{$sass := resources.Match "styles/[!_]*.scss" }} {{$css := slice }} {{range
-  $sass}} {{$scss := . | resources.ToCSS (dict "outputStyle" "compressed") }}
-  {{$css = $css | append $scss}} {{end}} {{$finalCss := $css | resources.Concat
-  "styles.css" | resources.Fingerprint "md5" | resources.Minify }}
+  {{$sass := resources.Match "styles/[!_]*.scss" }}
+  {{$css := slice }}
+  {{range $sass}}
+  {{$scss := . | resources.ToCSS (dict "outputStyle" "compressed") }}
+  {{$css = $css | append $scss}}
+  {{end}}
+  {{$finalCss := $css | resources.Concat "styles.css" | resources.Fingerprint "md5" | resources.Minify  }}
   <link href="{{$finalCss.Permalink}}" rel="stylesheet" />
 
   {{ $darkMode := resources.Get "js/darkmode.js" | resources.Fingerprint "md5" |
