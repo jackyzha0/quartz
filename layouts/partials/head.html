@@ -57,9 +57,12 @@
   </script>
   <script type="module">
     import { router, navigate } from "https://unpkg.com/million/dist/router.mjs";
+    // SPA navigation for access later
     window.navigate = navigate;
+    // We only mutate document.title and content within .singlePage element
     router(".singlePage");
     const callback = () => {
+      // requestAnimationFrame()
       const draw = () => {
         const container = document.getElementById("graph-container");
         // retry if the graph is not ready

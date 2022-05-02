@@ -16,9 +16,8 @@ async function drawGraph(
     ...new Set(links.flatMap((link) => [link.source, link.target])),
   ];
 
-  // links is mutated by d3
-  // we want to use links later on, so we make a copy and pass
-  // that one to d3
+  // Links is mutated by d3. We want to use links later on, so we make a copy and pass that one to d3
+  // Note: shallow cloning does not work because it copies over references from the original array
   const copyLinks = JSON.parse(JSON.stringify(links));
 
   const neighbours = new Set();
@@ -176,6 +175,7 @@ async function drawGraph(
     .attr('fill', color)
     .style('cursor', 'pointer')
     .on('click', (_, d) => {
+      // SPA navigation
       window.navigate(
         new URL(`${baseUrl}${decodeURI(d.id).replace(/\s+/g, '-')}/`),
         '.singlePage'
