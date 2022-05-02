@@ -145,6 +145,7 @@ const removeMarkdown = (
   };
 
   const redir = (id, term) => {
+    // SPA navigation
     window.navigate(
       new URL(
         `${BASE_URL.slice(0, -1)}${id}#:~:text=${encodeURIComponent(term)}/`
