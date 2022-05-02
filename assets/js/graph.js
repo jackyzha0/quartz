@@ -47,27 +47,27 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
 
   const drag = simulation => {
     function dragstarted(event, d) {
-      if (!event.active) simulation.alphaTarget(1).restart();
-      d.fx = d.x;
-      d.fy = d.y;
+      if (!event.active) simulation.alphaTarget(1).restart()
+      d.fx = d.x
+      d.fy = d.y
     }
 
     function dragged(event, d) {
-      d.fx = event.x;
-      d.fy = event.y;
+      d.fx = event.x
+      d.fy = event.y
     }
 
     function dragended(event, d) {
-      if (!event.active) simulation.alphaTarget(0);
-      d.fx = null;
-      d.fy = null;
+      if (!event.active) simulation.alphaTarget(0)
+      d.fx = null
+      d.fy = null
     }
 
     const noop = () => { }
     return d3.drag()
       .on("start", enableDrag ? dragstarted : noop)
       .on("drag", enableDrag ? dragged : noop)
-      .on("end", enableDrag ? dragended : noop);
+      .on("end", enableDrag ? dragended : noop)
   }
 
   const height = Math.max(document.getElementById("graph-container").offsetHeight, 250)
@@ -76,13 +76,13 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
   const simulation = d3.forceSimulation(data.nodes)
     .force("charge", d3.forceManyBody().strength(-30))
     .force("link", d3.forceLink(data.links).id(d => d.id).distance(40))
-    .force("center", d3.forceCenter());
+    .force("center", d3.forceCenter())
 
   const svg = d3.select('#graph-container')
     .append('svg')
     .attr('width', width)
     .attr('height', height)
-    .attr("viewBox", [-width / 2, -height / 2, width, height]);
+    .attr("viewBox", [-width / 2, -height / 2, width, height])
 
   if (enableLegend) {
     const legend = [
@@ -183,7 +183,7 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
         .duration(200)
         .style("opacity", 0)
     })
-    .call(drag(simulation));
+    .call(drag(simulation))
 
   // draw labels
   const labels = graphNode.append("text")
@@ -195,7 +195,7 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
     .style("pointer-events", "none")
     .style("font-size", "0.4em")
     .raise()
-    .call(drag(simulation));
+    .call(drag(simulation))
 
   // set panning
 
@@ -204,14 +204,14 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
       .extent([[0, 0], [width, height]])
       .scaleExtent([0.25, 4])
       .on("zoom", ({ transform }) => {
-        link.attr("transform", transform);
-        node.attr("transform", transform);
+        link.attr("transform", transform)
+        node.attr("transform", transform)
         const scale = transform.k
         const scaledOpacity = Math.max((scale - 1) / 3.75, 0)
         labels
           .attr("transform", transform)
           .style("opacity", scaledOpacity)
-      }));
+      }))
   }
 
   // progress the simulation
@@ -227,5 +227,5 @@ async function drawGraph(url, baseUrl, pathColors, depth, enableDrag, enableLege
     labels
       .attr("x", d => d.x)
       .attr("y", d => d.y)
-  });
+  })
 }
