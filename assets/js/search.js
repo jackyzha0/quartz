@@ -9,8 +9,8 @@ const removeMarkdown = (
     preserveLinks: false,
   }
 ) => {
-  let output = markdown || "";
-  output = output.replace(/^(-\s*?|\*\s*?|_\s*?){3,}\s*$/gm, "");
+  let output = markdown || ""
+  output = output.replace(/^(-\s*?|\*\s*?|_\s*?){3,}\s*$/gm, "")
 
   try {
     if (options.stripListLeaders) {
@@ -18,15 +18,15 @@ const removeMarkdown = (
         output = output.replace(
           /^([\s\t]*)([\*\-\+]|\d+\.)\s+/gm,
           options.listUnicodeChar + " $1"
-        );
-      else output = output.replace(/^([\s\t]*)([\*\-\+]|\d+\.)\s+/gm, "$1");
+        )
+      else output = output.replace(/^([\s\t]*)([\*\-\+]|\d+\.)\s+/gm, "$1")
     }
     if (options.gfm) {
       output = output
         .replace(/\n={2,}/g, "\n")
         .replace(/~{3}.*\n/g, "")
         .replace(/~~/g, "")
-        .replace(/`{3}.*\n/g, "");
+        .replace(/`{3}.*\n/g, "")
     }
     if (options.preserveLinks) {
       output = output.replace(/\[(.*?)\][\[\(](.*?)[\]\)]/g, "$1 ($2)")
@@ -49,13 +49,13 @@ const removeMarkdown = (
       .replace(/([\*_]{1,3})(\S.*?\S{0,1})\1/g, "$2")
       .replace(/(`{3,})(.*?)\1/gm, "$2")
       .replace(/`(.+?)`/g, "$1")
-      .replace(/\n{2,}/g, "\n\n");
+      .replace(/\n{2,}/g, "\n\n")
   } catch (e) {
-    console.error(e);
-    return markdown;
+    console.error(e)
+    return markdown
   }
-  return output;
-};
+  return output
+}
 // -----
 
 (async function() {
@@ -186,8 +186,8 @@ const removeMarkdown = (
           term,
         }))
         .join("\n")
-      const anchors = document.getElementsByClassName("result-card");
-      [...anchors].forEach(anchor => {
+      const anchors = [...document.getElementsByClassName("result-card")]
+      anchors.forEach(anchor => {
         anchor.onclick = () => redir(anchor.id, term)
       })
     }
