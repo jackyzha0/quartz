@@ -30,6 +30,12 @@ Książki to kolejny element procesu zdobywania wiedzy. Kluczowe jest tylko to a
 ## Jak dużo się uczę?
 Nie mierzę tego w żaden sposób, ale uczenie się jest praktycznie nieodłącznym elementem mojego dnia. Oznacza to że praktycznie każdą wolną chwilę wykorzystuję na nauczenie się czegoś nowego. Jednocześnie mam też przestrzeń na totalne niemyślenie, odpoczynek i "ciszę", co również postrzegam jako bardzo ważny element procesu zdobywania wiedzy.
 
+## Szczegółowy proces
+Na [[Projekty/Ahoy!]] opisałem szczegółowy proces tego jak się uczę: 
+![](https://space.overment.com/Screen-Shot-2022-05-02-17-34-46-wwzjR/Screen-Shot-2022-05-02-17-34-46.png)
+
+Link: [](https://community.ahoy.so/c/podziel-sie-wiedza-a4965c/jak-sie-ucze)
+
 ### Źródła
 - https://changingminds.org
 - https://fs.blog
