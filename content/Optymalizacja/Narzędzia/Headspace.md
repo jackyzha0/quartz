@@ -2,7 +2,6 @@
 title: Headspace
 ---
 
-## Czym jest Headspace?
 To aplikacja do Mindfulness, ćwiczeń oddechowych i wyciszenia. Korzystam z niej praktycznie codziennie. Na szczególną uwagę zasługuje tutaj cytat [[Wiedza/Ludzie/Ray Dalio]], według którego transcendentalna medytacja to jeden z głównych powodów stojących za jego sukcesem.
 
 ## Jak wykorzystuję Headspace? 

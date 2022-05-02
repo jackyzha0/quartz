@@ -23,7 +23,7 @@ Na każdym kroku wykorzystuję maksimum potencjału (np. z pomocą [[Optymalizac
 Przez większość czasu pracuję w trybie stacjonarnym z podłączonym monitorem [Apple Pro Display XDR](https://www.apple.com/pl/pro-display-xdr/) oraz klawiaturą Keychron K3 v2 Slim i Trackpadem (Magic Trackpad).
 
 ## Sprzęt wideo i oświetlenie
-Nagrywam wideo z pomocą kamery Sony ZV-1 oraz mikrofonem Razer Seiren z uchwytem Rode PSA-1. Obraz przechwytuję z pomocą [[Optymalizacja/Narzędzia/Screenflow]] i edytuję w [[FinalCut Pro]]. Stosuję oświetlenie w postaci lamp [YN-900](https://yongnuo.com.pl/?p=463).
+Nagrywam wideo z pomocą kamery Sony ZV-1 (z [dummy battery](https://www.amazon.co.uk/gp/product/B07DMXX9W6/ref=ppx_od_dt_b_asin_title_s00?ie=UTF8&th=1)) oraz mikrofonem Razer Seiren z uchwytem Rode PSA-1. Obraz przechwytuję z pomocą [[Optymalizacja/Narzędzia/Screenflow]] i edytuję w [[FinalCut Pro]]. Stosuję oświetlenie w postaci lamp [YN-900](https://yongnuo.com.pl/?p=463).
 
 > Mikrofon Razer Seiren kupiłem zaraz na początku rozwoju kanału na YouTube. Zadbanie o wysokiej jakości audio jest kluczowe, aczkolwiek obecnie można dostać znacznie tańszy sprzęt, oferujący większe możliwości.
 

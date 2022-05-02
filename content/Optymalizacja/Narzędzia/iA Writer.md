@@ -2,7 +2,6 @@
 title: iA Writer
 ---
 
-## Czym jest iA Writer?
 To edytor markdown nastawiony na minimalistyczny interfejs i wysokie skupienie podczas pisania. 
 
 ## Jak wykorzystuję iA Writer?

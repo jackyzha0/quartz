@@ -2,7 +2,6 @@
 title: Figma
 ---
 
-## Czym jest Figma?
 To aktualnie jedna z lepszych aplikacji do projektowania interfejsów (o ile nie najlepsza).
 
 ## Jak wykorzystuję Figma? 

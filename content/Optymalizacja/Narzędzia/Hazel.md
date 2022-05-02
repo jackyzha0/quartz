@@ -2,7 +2,6 @@
 title: Hazel
 ---
 
-## Czym jest Hazel?
 [[Optymalizacja/Narzędzia/Hazel]] to aplikacja do automatycznej organizacji plików. Pozwala definiować zasady dla poszczególnych folderów. Zgodnie z tymi zasadami możliwa jest zmiana nazw według określonych schematów, przenoszenie pomiędzy folderami czy nawet uruchamianie dowolnych skryptów [[Wiedza/Programowanie/JavaScript/JavaScript]] (!)
 
 ## W praktyce

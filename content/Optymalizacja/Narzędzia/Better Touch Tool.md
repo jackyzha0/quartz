@@ -10,6 +10,7 @@ To aplikacja umożliwiająca skonfigurowanie zaawansowanych gestów na trackpadz
 - Do kontroli muzyki bez konieczności zmiany kontekstu
 - Do nawigowania pomiędzy zakładkami w [[Optymalizacja/Narzędzia/SigmaOS]]
 - Do blokowania komputera
+- Do kontroli głośności
 
 ## Źródła
 - https://folivora.ai/

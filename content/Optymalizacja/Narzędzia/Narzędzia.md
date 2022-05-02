@@ -34,7 +34,6 @@ title: Narzędzia
 - [[Optymalizacja/Narzędzia/Figma]] - webowa aplikacja do projektowania grafiki wektorowej
 - [[Optymalizacja/Narzędzia/Webflow]] - najlepszy no-code web builder
 - [[Optymalizacja/Narzędzia/Framer Sites]] - nowy no-code web builder
-- [[Optymalizacja/Narzędzia/PopClip]] - akcje na dowolnym zaznaczonym tekście
 - [[Optymalizacja/Narzędzia/Kindle]] - aplikacja do czytania książek
 - [[Optymalizacja/Narzędzia/Superhuman]] - klient pocztowy nastawiony na produktywność
 - [[Optymalizacja/Narzędzia/Headspace]] - aplikacja do medytacji
