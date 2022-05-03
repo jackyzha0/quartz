@@ -18,7 +18,6 @@
 <script src="{{ $js.Permalink }}"></script>
 <script>
 drawGraph(
-  {{strings.TrimRight "/" .Page.Permalink}},
   {{strings.TrimRight "/" .Site.BaseURL}},
   {{$.Site.Data.graphConfig.paths}},
   {{$.Site.Data.graphConfig.depth}},
