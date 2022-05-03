@@ -9,9 +9,8 @@ async function drawGraph(
   const container = document.getElementById('graph-container')
   const { index, links, content } = await fetchData
 
-  const rawUrl = new URL(window.location.href);
   // Use .pathname to remove hashes / searchParams / text fragments
-  const cleanUrl = rawUrl.origin + rawUrl.pathname
+  const cleanUrl = window.location.origin + window.location.pathname
 
   const curPage = cleanUrl.replace(/\/$/g, "").replace(baseUrl, "")
 
