@@ -1,5 +1,4 @@
 async function drawGraph(
-  url,
   baseUrl,
   pathColors,
   depth,
@@ -10,7 +9,7 @@ async function drawGraph(
   const container = document.getElementById('graph-container')
 
   const { index, links, content } = await fetchData
-  const curPage = url.replace(baseUrl, '')
+  const curPage = window.location.href.replace(baseUrl, "").replace(/\/$/g, "")
 
   const parseIdsFromLinks = (links) => [
     ...new Set(links.flatMap((link) => [link.source, link.target])),

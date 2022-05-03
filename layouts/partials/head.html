@@ -69,7 +69,6 @@
     import { init } from '{{$router.Permalink}}';
     init(() => {
       drawGraph(
-        {{strings.TrimRight "/" .Page.Permalink}},
         {{strings.TrimRight "/" .Site.BaseURL}},
         {{$.Site.Data.graphConfig.paths}},
         {{$.Site.Data.graphConfig.depth}},
@@ -77,7 +76,7 @@
         {{$.Site.Data.graphConfig.enableLegend}},
         {{$.Site.Data.graphConfig.enableZoom}}
       );
-
+    
       {{if $.Site.Data.config.enableLinkPreview}}
         initPopover({{strings.TrimRight "/" .Site.BaseURL }})
       {{end}}
