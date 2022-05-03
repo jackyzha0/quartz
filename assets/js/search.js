@@ -144,7 +144,7 @@ const removeMarkdown = (
     // SPA navigation
     window.navigate(
       new URL(
-        `${BASE_URL}${id}#:~:text=${encodeURIComponent(term)}/`
+        `${BASE_URL.replace(/\/$/g, "")}${id}#:~:text=${encodeURIComponent(term)}/`
       ),
       '.singlePage'
     )
