@@ -67,6 +67,7 @@
   resources.Minify }}
   <script type="module">
     import { init } from '{{$router.Permalink}}';
+    // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page.
     init(() => {
       drawGraph(
         {{strings.TrimRight "/" .Page.Permalink}},
