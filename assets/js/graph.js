@@ -7,10 +7,13 @@ async function drawGraph(
   enableZoom
 ) {
   const container = document.getElementById('graph-container')
-
   const { index, links, content } = await fetchData
+
+  const rawUrl = new URL(window.location.href);
   // Use .pathname to remove hashes / searchParams / text fragments
-  const curPage = window.location.pathname.replace(/\/$/g, "")
+  const cleanUrl = rawUrl.origin + rawUrl.pathname
+
+  const curPage = cleanUrl.replace(/\/$/g, "").replace(baseUrl, "")
 
   const parseIdsFromLinks = (links) => [
     ...new Set(links.flatMap((link) => [link.source, link.target])),
