@@ -1,4 +1,4 @@
-import { router, navigate } from "https://unpkg.com/million/dist/router.mjs"
+import { router, navigate } from "https://unpkg.com/million@1.8.9-0/dist/router.mjs"
 
 export const init = (loader) => {
   // SPA navigation for access later
