@@ -1,5 +1,4 @@
 async function drawGraph(
-  _url,
   baseUrl,
   pathColors,
   depth,
