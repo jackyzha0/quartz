@@ -28,3 +28,6 @@ enableGitInfo = true
         lineNumbersInTable = true
         style = "dracula"
         tabWidth = 4
+    [frontmatter]
+        lastmod = ["lastmod", ":git", "date", "publishDate"]
+        publishDate = ["publishDate", "date"]
