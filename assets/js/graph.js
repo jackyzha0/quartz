@@ -9,7 +9,8 @@ async function drawGraph(
   const container = document.getElementById('graph-container')
 
   const { index, links, content } = await fetchData
-  const curPage = window.location.href.replace(baseUrl, "").replace(/\/$/g, "")
+  // Use .pathname to remove hashes / searchParams / text fragments
+  const curPage = window.location.pathname.replace(/\/$/g, "")
 
   const parseIdsFromLinks = (links) => [
     ...new Set(links.flatMap((link) => [link.source, link.target])),
