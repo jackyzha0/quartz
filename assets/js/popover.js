@@ -13,7 +13,7 @@ function initPopover(baseURL) {
       links
         .filter(li => li.dataset.src)
         .forEach(li => {
-          const linkDest = content[li.dataset.src.replace(basePath, "")]
+          const linkDest = content[li.dataset.src.replace(/\/$/g, "").replace(basePath, "")]
           if (linkDest) {
             const popoverElement = `<div class="popover">
     <h3>${linkDest.title}</h3>
