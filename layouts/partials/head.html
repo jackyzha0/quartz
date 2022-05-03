@@ -58,6 +58,7 @@
           content,
         }))
   </script>
+  {{if $.Site.Data.config.enableSPA}}
   <script type="module">
     import { router, navigate } from "https://unpkg.com/million/dist/router.mjs";
     // SPA navigation for access later
@@ -89,5 +90,8 @@
     window.addEventListener("million:navigate", callback);
     window.addEventListener("DOMContentLoaded", callback);
   </script>
+  {{else}}
+  <script>window.navigate = (url) => window.location.href = url</script>
+  {{end}}
 </head>
 {{ template "_internal/google_analytics.html" . }}

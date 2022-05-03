@@ -3,6 +3,7 @@ enableToc: true
 openToc: false
 enableLinkPreview: true
 enableLatex: true
+enableSPA: false
 description:
   Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
   Wikilink support, backlinks, local graph, tags, and link previews.
