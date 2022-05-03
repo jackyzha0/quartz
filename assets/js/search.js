@@ -35,6 +35,7 @@ const removeMarkdown = (
       .replace(/<[^>]*>/g, '')
       .replace(/^[=\-]{2,}\s*$/g, '')
       .replace(/\[\^.+?\](\: .*?$)?/g, '')
+      .replace(/(#{1,6})\s+(.+)\1?/g, '<b>$2</b>')
       .replace(/\s{0,2}\[.*?\]: .*?$/g, '')
       .replace(/\!\[(.*?)\][\[\(].*?[\]\)]/g, options.useImgAltText ? '$1' : '')
       .replace(/\[(.*?)\][\[\(].*?[\]\)]/g, '$1')
@@ -143,7 +144,7 @@ const removeMarkdown = (
     // SPA navigation
     window.navigate(
       new URL(
-        `${BASE_URL.slice(0, -1)}${id}#:~:text=${encodeURIComponent(term)}/`
+        `${BASE_URL}${id}#:~:text=${encodeURIComponent(term)}/`
       ),
       '.singlePage'
     )
