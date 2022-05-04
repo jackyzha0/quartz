@@ -87,6 +87,15 @@
       {{if $.Site.Data.config.enableLinkPreview}}
         initPopover({{strings.TrimRight "/" .Site.BaseURL }})
       {{end}}
+      {{if $.Site.Data.config.enableLatex}}
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          throwOnError : false
+        });
+      {{end}}
     };
     attachSPARouting(draw);
   </script>
