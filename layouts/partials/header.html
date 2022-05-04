@@ -1,11 +1,17 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <header>
-    <h2 id="page-title" display="inline"><a href="/">Fleeting Notes</a></h2>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <h3 id="page-title" display="inline"><a href="/download" style="font-weight: normal;">Download</a></h3>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <h3 id="page-title" display="inline"><a href="/posts" style="font-weight: normal;">Blog</a></h3>
-    &nbsp;&nbsp;&nbsp;
-    <svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg>
-    <div class="spacer"></div>
-    {{partial "darkmode.html" .}}
+    <div class="header">
+        <a href="/" class="logo">Fleeting Notes</a>
+        <div class="header-right">
+        <a href="/download">Downloads</a>
+        <a href="/">Pricing</a>
+        <a href="/posts">Blog</a>
+        <a href="javascript:void(0);" id="search-icon">
+            <i class="fa fa-search"></i>
+        </a>
+        <a href="javascript:void(0);" id="darkmode-switch">
+            <input class='toggle' id='darkmode-toggle' type='checkbox' tabindex="-1" hidden>
+            <i class="fa fa-sun-o" id="darkmode-icon" for="darkmode-toggle" tabindex="-1"></i>
+        </a>
+    </div>
 </header>
