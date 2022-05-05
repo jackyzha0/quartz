@@ -1,5 +1,4 @@
 async function drawGraph(
-  url,
   baseUrl,
   pathColors,
   depth,
@@ -8,9 +7,12 @@ async function drawGraph(
   enableZoom
 ) {
   const container = document.getElementById('graph-container')
-
   const { index, links, content } = await fetchData
-  const curPage = url.replace(baseUrl, '')
+
+  // Use .pathname to remove hashes / searchParams / text fragments
+  const cleanUrl = window.location.origin + window.location.pathname
+
+  const curPage = cleanUrl.replace(/\/$/g, "").replace(baseUrl, "")
 
   const parseIdsFromLinks = (links) => [
     ...new Set(links.flatMap((link) => [link.source, link.target])),

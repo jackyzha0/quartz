@@ -22,11 +22,10 @@
           <li><a href="{{ .Permalink }}">{{ .LinkTitle | humanize }}</a></li>
           {{ end }}
       </ul>
-      {{partial "toc.html" .}} 
+      {{partial "toc.html" .}}
       {{partial "textprocessing.html" . }}
     </article>
     {{partial "footer.html" .}}
-    {{partial "popover.html" .}}
 </div>
 </body>
 
