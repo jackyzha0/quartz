@@ -1,8 +1,0 @@
-{{if $.Site.Data.config.enableLinkPreview}}
-{{ $js := resources.Get "js/popover.js" |  resources.Fingerprint "md5" | resources.Minify }}
-<script src="{{ $js.Permalink }}"></script>
-<script>
-  const useContextual = {{ $.Site.Data.config.enableContextualBacklinks }}
-  initPopover({{strings.TrimRight "/" .Site.BaseURL }}, useContextual)
-</script>
-{{end}}
