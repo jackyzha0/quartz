@@ -15,4 +15,7 @@ links: [[notes/info-201]]
 - [11-class-diagrams](notes/11-class-diagrams.md)
 - [12-modelling-behaviour](notes/12-modelling-behaviour.md)
 - [13-UML-sequence-diagrams](notes/13-UML-sequence-diagrams.md)
-- [14-direct-manipulation-and-mental-models](notes/14-direct-manipulation-and-mental-models.md)
+- 
+- [15-from-models-to-code-and-back](notes/15-from-models-to-code-and-back.md)
+- [16-reverse engineering](notes/16-reverse%20engineering.md)
+

@@ -16,3 +16,4 @@ link: [[notes/info-203]]
 - [14-direct-manipulation-and-mental-models](notes/14-direct-manipulation-and-mental-models.md)
 - [15-mental-models-representation-matters-distributing-cognition](notes/15-mental-models-representation-matters-distributing-cognition.md)
 - [16-distributing-cognition-and-visual-design-typography](notes/16-distributing-cognition-and-visual-design-typography.md)
+- [17-grids-grouping-alignment-reading-and-navigation](notes/17-grids-grouping-alignment-reading-and-navigation.md)

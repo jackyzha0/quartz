@@ -18,5 +18,6 @@ links: [[notes/cosc-202]]
 - [[notes/documentation]]
 - [[notes/continuous-integration]]
 - [automation](notes/automation.md)
+- [containers](notes/containers.md)
 
 

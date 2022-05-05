@@ -5,7 +5,7 @@ tags:
 ---
 
 # 1 Personas
-THe goals of a personas is their expectation of an end condition
+The goals of a personas is their expectation of an end condition
 - not features, functions, taskss, activities
 
 A tool to documnet who the users are.
@@ -14,8 +14,9 @@ A tool to documnet who the users are.
 ![](https://i.imgur.com/EOxfkSs.png)
 
 a methodology to identofy and think about our users and how they use the software.
-we want to avoid not thinking about the users
-make sure memebers of development dont have different ideas of the users
+we want to:
+- avoid not thinking about the users
+- make sure members of development dont have different ideas of the users
 
 ### 1.1.1 Goals
 1. Experience goals
@@ -24,7 +25,6 @@ e.g., ⇒ dell users want function but apple users want "that fancy apple produc
 
 2. End goals
 their motivaations for performing the task / intentded outcome
-
 
 3. Life goals
 Why they want to accomplish end goals /long term desires/self-image

@@ -36,7 +36,7 @@ Find which of ai or bi is lesser (break ties is favour of a), and copy that valu
 Once ai or bi is out of range, copy the rest of the other array into the remainder of m
 
 ```java
-public static int[] merge (int[] a int[] b){
+public static int[] merge (int[] a, int[] b){
 	int[] m = new int[a.length + b.length]
 	int ai = 0, bi = 0, mi = 0;
 

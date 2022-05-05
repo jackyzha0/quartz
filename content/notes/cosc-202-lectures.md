@@ -14,4 +14,6 @@ links: [cosc-202](notes/cosc-202.md)
 - [11-continuous-integration-2](notes/11-continuous-integration-2.md)
 - [12-automation](notes/12-automation)
 - [13-code-librarires](notes/13-code-librarires.md)
-
+* 
+- [15-containers](notes/15-containers.md)
+- [16-compilers](notes/16-compilers.md)

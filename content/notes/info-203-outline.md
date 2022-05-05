@@ -25,4 +25,7 @@ links: [[notes/info-203]]
 - [interviewing](notes/interviewing.md)
 - [storyboards](notes/storyboards.md)
 - [personas-and-scenarios](notes/personas-and-scenarios.md)
-- 
+- [mental-models](notes/mental-models.md)
+- [representation-and-distributing-cognition](notes/representation-and-distributing-cognition.md)
+- [visual-design](notes/visual-design.md)
+- [visual-design-typography](notes/visual-design-typography.md)

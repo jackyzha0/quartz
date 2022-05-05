@@ -32,3 +32,5 @@ links: [[notes/info-201]]
 - [redundancy-and-anomalies](notes/redundancy-and-anomalies.md)
 - [dependencies](notes/dependencies.md)
 - [normalisation](notes/normalisation.md)
+- [round-trip-engineering](notes/round-trip-engineering.md)
+- [uml-java-forward-engineering](notes/uml-java-forward-engineering.md)

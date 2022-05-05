@@ -33,7 +33,7 @@ This is the theoretical basis for normalisation, and uniqueness property of PK (
 - product ID + order no --> quantity ordered
 
 ## 1.3 Anti examples
-- student ID  + name --> birth date (ovekill, partial dependency)
+- student ID  + name --> birth date (overkill, partial dependency)
 - home address --> student name
 - name --> birth date
 
