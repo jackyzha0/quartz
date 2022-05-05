@@ -1,8 +1,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <header>
-    <div class="header">
+    <div id="myTopnav" class="header">
+        <a href="javascript:void(0);" class="menu" onclick="myFunction()"><i class="fa fa-bars"></i></a>
         <a href="/" class="logo">Fleeting Notes</a>
-        <div class="header-right">
+        <div id="headerRight" class="header-right">
         <a href="/download">Downloads</a>
         <a href="/pricing">Pricing</a>
         <a href="/posts">Blog</a>
@@ -15,3 +16,17 @@
         </a>
     </div>
 </header>
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    var y = document.getElementById("headerRight")
+    if (x.className === "header") {
+        x.className += " responsive";
+        y.className += " responsive"
+    } else {
+        x.className = "header";
+        y.className = "header-right";
+    }
+}
+</script>

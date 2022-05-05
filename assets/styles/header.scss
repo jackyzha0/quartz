@@ -22,7 +22,7 @@
     padding-right: 0px;
     // padding: 0px;
   }
-  
+
   /* Change the background color on mouse-over */
   .header a:hover {
     background-color: #ddd;
@@ -39,15 +39,36 @@
   .header-right {
     float: right;
   }
+
+  /* Hide the link that should open and close the topnav on small screens */
+.header .menu {
+  display: none;
+  font-size: 1.5em;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+  .header-right a {display: none;}
+  .header a.menu {
+    float: left;
+    display: block;
+  }
+}
   
   /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
   @media screen and (max-width: 600px) {
-    .header a {
+    .header.responsive {position: relative;}
+    .header.responsive a.menu {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .header.responsive a {
       float: none;
       display: block;
-      text-align: left;
+      text-align: center;
     }
-    .header-right {
+    .header-right.responsive {
       float: none;
     }
   }
