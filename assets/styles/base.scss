@@ -478,15 +478,15 @@ header {
         & > h3, & > p {
           margin: 0;
         }
-
-        & .search-highlight {
-          background-color: #afbfc966;
-          padding: 0.05em 0.2em;
-          border-radius: 3px;
-        }
       }
     }
   }
+}
+
+.search-highlight {
+  background-color: #afbfc966;
+  padding: 0.05em 0.2em;
+  border-radius: 3px;
 }
 
 .section-ul {

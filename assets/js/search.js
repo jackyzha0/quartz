@@ -52,8 +52,64 @@ const removeMarkdown = (
     return markdown
   }
   return output
-};
+}
 // -----
+
+const highlight = (content, term) => {
+  const highlightWindow = 20
+
+  // try to find direct match first
+  const directMatchIdx = content.indexOf(term)
+  if (directMatchIdx !== -1) {
+    const h = highlightWindow / 2
+    const before = content.substring(0, directMatchIdx).split(" ").slice(-h)
+    const after = content.substring(directMatchIdx + term.length, content.length - 1).split(" ").slice(0, h)
+    return (before.length == h ? `...${before.join(" ")}` : before.join(" ")) + `<span class="search-highlight">${term}</span>` + after.join(" ")
+  }
+
+  const tokenizedTerm = term.split(/\s+/).filter((t) => t !== '')
+  const splitText = content.split(/\s+/).filter((t) => t !== '')
+  const includesCheck = (token) =>
+    tokenizedTerm.some((term) =>
+      token.toLowerCase().startsWith(term.toLowerCase())
+    )
+
+  const occurrencesIndices = splitText.map(includesCheck)
+
+  // calculate best index
+  let bestSum = 0
+  let bestIndex = 0
+  for (
+    let i = 0;
+    i < Math.max(occurrencesIndices.length - highlightWindow, 0);
+    i++
+  ) {
+    const window = occurrencesIndices.slice(i, i + highlightWindow)
+    const windowSum = window.reduce((total, cur) => total + cur, 0)
+    if (windowSum >= bestSum) {
+      bestSum = windowSum
+      bestIndex = i
+    }
+  }
+
+  const startIndex = Math.max(bestIndex - highlightWindow, 0)
+  const endIndex = Math.min(
+    startIndex + 2 * highlightWindow,
+    splitText.length
+  )
+  const mappedText = splitText
+    .slice(startIndex, endIndex)
+    .map((token) => {
+      if (includesCheck(token)) {
+        return `<span class="search-highlight">${token}</span>`
+      }
+      return token
+    })
+    .join(' ')
+    .replaceAll('</span> <span class="search-highlight">', ' ')
+  return `${startIndex === 0 ? '' : '...'}${mappedText}${endIndex === splitText.length ? '' : '...'
+    }`
+};
 
 (async function() {
   const encoder = (str) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])+/)
@@ -82,52 +138,6 @@ const removeMarkdown = (
       title: value.title,
       content: removeMarkdown(value.content),
     })
-  }
-
-  const highlight = (content, term) => {
-    const highlightWindow = 20
-    const tokenizedTerm = term.split(/\s+/).filter((t) => t !== '')
-    const splitText = content.split(/\s+/).filter((t) => t !== '')
-    const includesCheck = (token) =>
-      tokenizedTerm.some((term) =>
-        token.toLowerCase().startsWith(term.toLowerCase())
-      )
-
-    const occurrencesIndices = splitText.map(includesCheck)
-
-    // calculate best index
-    let bestSum = 0
-    let bestIndex = 0
-    for (
-      let i = 0;
-      i < Math.max(occurrencesIndices.length - highlightWindow, 0);
-      i++
-    ) {
-      const window = occurrencesIndices.slice(i, i + highlightWindow)
-      const windowSum = window.reduce((total, cur) => total + cur, 0)
-      if (windowSum >= bestSum) {
-        bestSum = windowSum
-        bestIndex = i
-      }
-    }
-
-    const startIndex = Math.max(bestIndex - highlightWindow, 0)
-    const endIndex = Math.min(
-      startIndex + 2 * highlightWindow,
-      splitText.length
-    )
-    const mappedText = splitText
-      .slice(startIndex, endIndex)
-      .map((token) => {
-        if (includesCheck(token)) {
-          return `<span class="search-highlight">${token}</span>`
-        }
-        return token
-      })
-      .join(' ')
-      .replaceAll('</span> <span class="search-highlight">', ' ')
-    return `${startIndex === 0 ? '' : '...'}${mappedText}${endIndex === splitText.length ? '' : '...'
-      }`
   }
 
   const resultToHTML = ({ url, title, content, term }) => {
