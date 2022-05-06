@@ -3,8 +3,8 @@
 id: home
 title: Home
 ---
-# Never misplace a note again
-Organize notes like how thoughts are organized—through the [[notes/connecting ideas is powerful|connection of ideas]]. Fleeting Notes is the quickest way to [[posts/manage-notes-with-a-simple-workflow|get started]] with [[notes/Zettelkasten|Zettelkasten]].
+# Never forget what's important
+Organize notes like how thoughts are organized—through the [[notes/connecting ideas is powerful|connection of ideas]]. Fleeting Notes makes it easy to re-discover important ideas from the past. Click the links to see how you can [[posts/manage-notes-with-a-simple-workflow|get started]] with [[notes/Zettelkasten|Zettelkasten]].
 
 Try the [web app](https://my.fleetingnotes.app) now.  
 
