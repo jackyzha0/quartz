@@ -23,7 +23,6 @@ function initPopover(baseURL, useContextualBacklinks, renderLatex) {
           el = htmlToElement(popoverElement)
         } else {
           const linkDest = content[li.dataset.src.replace(/\/$/g, "").replace(basePath, "")]
-          console.log(linkDest.content)
           if (linkDest) {
             const popoverElement = `<div class="popover">
     <h3>${linkDest.title}</h3>
@@ -33,25 +32,27 @@ function initPopover(baseURL, useContextualBacklinks, renderLatex) {
             el = htmlToElement(popoverElement)
           }
         }
-        li.appendChild(el)
-        if (renderLatex) {
-          renderMathInElement(el, {
-            delimiters: [
-              { left: '$$', right: '$$', display: false },
-              { left: '$', right: '$', display: false },
-              { left: '\\(', right: '\\)', display: false },
-              { left: '\\[', right: '\\]', display: false }
-            ],
-            throwOnError: false
+
+        if (el) {
+          li.appendChild(el)
+          if (renderLatex) {
+            renderMathInElement(el, {
+              delimiters: [
+                { left: '$$', right: '$$', display: false },
+                { left: '$', right: '$', display: false },
+                { left: '\\(', right: '\\)', display: false },
+                { left: '\\[', right: '\\]', display: false }
+              ],
+              throwOnError: false
+            })
+          }
+          li.addEventListener("mouseover", () => {
+            el.classList.add("visible")
+          })
+          li.addEventListener("mouseout", () => {
+            el.classList.remove("visible")
           })
         }
-        li.addEventListener("mouseover", () => {
-          el.classList.add("visible")
-        })
-        li.addEventListener("mouseout", () => {
-          el.classList.remove("visible")
-        })
-
       })
   })
 }
