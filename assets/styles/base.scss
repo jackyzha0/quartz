@@ -441,7 +441,7 @@ header {
     }
 
     & > #results-container {
-      & > .result-card {
+      & .result-card {
         padding: 1em;
         cursor: pointer;
         transition: background 0.2s ease;
