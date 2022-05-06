@@ -39,6 +39,7 @@ const removeMarkdown = (
       .replace(/\s{0,2}\[.*?\]: .*?$/g, '')
       .replace(/\!\[(.*?)\][\[\(].*?[\]\)]/g, options.useImgAltText ? '$1' : '')
       .replace(/\[(.*?)\][\[\(].*?[\]\)]/g, '$1')
+      .replace(/!?\[\[\S[^\[\]\|]*(?:\|([^\[\]]*))?\S\]\]/g, '$1')
       .replace(/^\s{0,3}>\s?/g, '')
       .replace(/(^|\n)\s{0,3}>\s?/g, '\n\n')
       .replace(/^\s{1,2}\[(.*?)\]: (\S+)( ".*?")?\s*$/g, '')

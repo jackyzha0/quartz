@@ -85,7 +85,11 @@
       );
 
       {{if $.Site.Data.config.enableLinkPreview}}
-      initPopover({{strings.TrimRight "/" .Site.BaseURL }}, {{$.Site.Data.config.enableContextualBacklinks}})
+      initPopover(
+        {{strings.TrimRight "/" .Site.BaseURL }},
+        {{$.Site.Data.config.enableContextualBacklinks}},
+        {{$.Site.Data.config.enableLatex}}
+      )
       {{end}}
       {{if $.Site.Data.config.enableLatex}}
       renderMathInElement(document.body, {
