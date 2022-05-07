@@ -14,7 +14,6 @@ title: "Jet Hughes"
 - [templates](notes/templates.md)
 
 # 3 Projects
-
 - 
 
 # 5 Independent Learning
