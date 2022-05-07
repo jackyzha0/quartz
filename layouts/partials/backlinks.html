@@ -7,12 +7,18 @@
     {{$inbound := index $linkIndex.index.backlinks $curPage}}
     {{$contentTable := getJSON "/assets/indices/contentIndex.json"}}
     {{if $inbound}}
-    {{$cleanedInbound := apply (apply $inbound "index" "." "source") "replace" "." " " "-"}}
-    {{- range $cleanedInbound | uniq -}}
-      {{$l := printf "%s%s" $host .}}
-      {{with (index $contentTable .)}}
+    {{$backlinks := dict "SENTINEL" "SENTINEL"}}
+    {{range $k, $v := $inbound}}
+      {{$cleanedInbound := replace $v.source " " "-"}}
+      {{$ctx := $v.text}}
+      {{$backlinks = merge $backlinks (dict $cleanedInbound $ctx)}}
+    {{end}}
+    {{- range $lnk, $ctx := $backlinks -}}
+      {{$l := printf "%s%s/" $host $lnk}}
+      {{$l = cond (eq $l "//") "/" $l}}
+      {{with (index $contentTable $lnk)}}
       <li>
-          <a href="{{$l}}">{{index (index . "title")}}</a>
+        <a href="{{$l}}" data-ctx="{{$ctx}}" data-src="{{$lnk}}" class="internal-link">{{index (index . "title")}}</a>
       </li>
       {{end}}
     {{- end -}}

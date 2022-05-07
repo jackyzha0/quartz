@@ -12,6 +12,19 @@ h1, h2, h3, h4, h5, h6, ol, ul, thead {
   font-weight: revert;
   margin: revert;
   padding: revert;
+
+  &:hover > .hanchor {
+    opacity: 1;
+  }
+}
+
+.hanchor {
+  font-family: Inter;
+  margin-left: -1em;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+  color: var(--secondary);
+
 }
 
 p, ul, text {
@@ -329,6 +342,13 @@ hr {
   & #graph-container {
     border: var(--outlinegray) 1px solid;
     border-radius: 5px;
+    box-sizing: border-box;
+    min-height: 250px;
+
+    & > svg {
+      margin-bottom: -5px;
+
+    }
   }
 }
 
@@ -421,7 +441,7 @@ header {
     }
 
     & > #results-container {
-      & > .result-card {
+      & .result-card {
         padding: 1em;
         cursor: pointer;
         transition: background 0.2s ease;
@@ -458,15 +478,15 @@ header {
         & > h3, & > p {
           margin: 0;
         }
-
-        & .search-highlight {
-          background-color: #afbfc966;
-          padding: 0.05em 0.2em;
-          border-radius: 3px;
-        }
       }
     }
   }
+}
+
+.search-highlight {
+  background-color: #afbfc966;
+  padding: 0.05em 0.2em;
+  border-radius: 3px;
 }
 
 .section-ul {
@@ -526,7 +546,7 @@ header {
   box-shadow: 6px 6px 36px 0px rgba(0,0,0,0.25);
 
   @media all and (max-width: 600px) {
-    display: none;
+    display: none !important;
   }
 
   &.visible {
@@ -549,7 +569,7 @@ header {
     font-size: 0.8rem;
   }
 
-  & > p {
+  & > p, & > a {
     margin: 0;
     font-weight: 400;
     user-select: none;

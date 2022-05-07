@@ -7,7 +7,7 @@
 {{$spacedurl := replace $trimmed "%20" " " }}
 {{$fixedUrl := (cond (hasPrefix $spacedurl "/") $spacedurl (print "/" $spacedurl)) | urlize}}
 {{$nonexistent := eq (.Page.GetPage $spacedurl).RelPermalink ""}}
-{{$rooted := default $spacedurl (strings.TrimRight "/" (.Page.GetPage $spacedurl).RelPermalink) }}
+{{$rooted := default $spacedurl ((.Page.GetPage $spacedurl).RelPermalink) }}
 <a
   {{if not $nonexistent}}href="{{$rooted}}"{{end}}
   rel="noopener" class="internal-link{{if $nonexistent}} broken{{end}}"
