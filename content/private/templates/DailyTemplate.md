@@ -4,7 +4,7 @@
 
 # <% tp.date.now("DD-MM-YY") %>
 
-<% tp.user.getAOTD() %>
+<% tp.user.album() %>
 
 ## Todos
 

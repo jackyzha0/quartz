@@ -15,7 +15,6 @@ title: "Jet Hughes"
 
 # 3 Projects
 
-- [bug-tracker](notes/bug-tracker.md)
 - 
 
 # 5 Independent Learning

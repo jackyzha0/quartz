@@ -8,7 +8,7 @@ tags:
 - inductive approach is esential for understanding time-complexity of resursive algorithms
 
 ## 1 Proof by induction
-[[Induction]]
+[induction](notes/induction.md)
 Find a (positive integer) _parameter_ that gets smaller in all recursive calls
 Prove inductively that "for all values of the parameter, the result computed is correct"
 To do that:
@@ -17,7 +17,7 @@ To do that:
 
 ## 2 Examples
 ### 2.1 Quicksort
-[[divide and conquer]] algorithm
+[divide-and-conquer](notes/divide-and-conquer.md) algorithm
 sorts a range in an array (a group of elements between some lower index, $lo$ inclusive and some upper index $hi$ exclusive) as follows:
 - If length of range $(hi - lo)$ is at most 1 -> do nothing
 - otherwise, choose a pivot p (e.g., the element at $lo$) and:
@@ -107,7 +107,6 @@ $\ \ \ \ \ \ \ \ \ = C+D\times(n-2)+D$
 $\ \ \ \ \ \ \ \ \ = C+D\times(n-1)$
 
 $\therefore$ By induction it's true for all $n>=1$
-
 
 
 $P(n)$ is the time for evaluating $fibPair(n)$ using this algorithm. This analysis gives:

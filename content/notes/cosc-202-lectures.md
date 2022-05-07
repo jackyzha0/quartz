@@ -17,3 +17,4 @@ links: [cosc-202](notes/cosc-202.md)
 * 
 - [15-containers](notes/15-containers.md)
 - [16-compilers](notes/16-compilers.md)
+- [17-linkers-and-loaders](notes/17-linkers-and-loaders.md)

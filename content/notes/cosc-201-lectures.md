@@ -14,3 +14,4 @@ links: [[notes/cosc-201]]
 - [12-binary-search-tree-operations](notes/12-binary-search-tree-operations.md)
 - [13-bst-traversals-and-balance](notes/13-bst-traversals-and-balance.md)
 - [14-balancing-bsts](notes/14-balancing-bsts.md)
+- [15-dynamic-programming](notes/15-dynamic-programming.md)

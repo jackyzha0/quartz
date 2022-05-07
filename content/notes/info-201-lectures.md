@@ -18,4 +18,5 @@ links: [[notes/info-201]]
 - 
 - [15-from-models-to-code-and-back](notes/15-from-models-to-code-and-back.md)
 - [16-reverse engineering](notes/16-reverse%20engineering.md)
+- [17-data-access](notes/17-data-access.md) 
 
