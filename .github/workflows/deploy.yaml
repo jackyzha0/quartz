@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-18.04
+    permissions: write-all
     steps:
       - uses: actions/checkout@v2
         with:
