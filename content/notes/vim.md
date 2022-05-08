@@ -5,7 +5,6 @@ tags:
 ---
 
 # Exiting 👻
-
 |                 |                                       |
 | --------------- | ------------------------------------- |
 | :q              | to `quit` the file                    |
@@ -13,5 +12,8 @@ tags:
 | :q!             | to `trash` all changes and **quit**   |
 | :wq             | to `save` the changes and **quit**    |
 | ZZ (Shift + zz) | to `save` the changes and **quit**    |
+
+
+
 
 
