@@ -52,3 +52,4 @@ title: Narzędzia
 - [[Optymalizacja/Narzędzia/Todoist]]
 - [[Optymalizacja/Narzędzia/Digital Ocean]]
 - [[Optymalizacja/Narzędzia/Session]]
+- [[Optymalizacja/Narzędzia/Rize]]

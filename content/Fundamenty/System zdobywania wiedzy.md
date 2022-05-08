@@ -43,3 +43,4 @@ Link: [](https://community.ahoy.so/c/podziel-sie-wiedza-a4965c/jak-sie-ucze)
 - http://www.paulgraham.com
 - https://www.britannica.com/browse/Science
 - https://www.wealest.com
+- https://untools.co/

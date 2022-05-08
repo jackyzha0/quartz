@@ -10,8 +10,8 @@ Wykorzystuję go w połączeniu z [[Optymalizacja/Narzędzia/MakeHQ]] do tworzen
 
 Aktualnie większość grafik, które publikuję w mediach społecznościowych, tworzona jest na podstawie szablonów i generowana z pomocą [[Projekty/EasyBanner]].
 
-## Integromat
-EasyBanner posiada swój własny moduł w Integromacie, aktualnie dostępny wyłącznie dla osób posiadających wykupiony dostęp.
+## [[Optymalizacja/Narzędzia/MakeHQ]]
+EasyBanner posiada swój własny moduł w MakeHQ, aktualnie dostępny wyłącznie dla osób posiadających wykupiony dostęp.
 
 ![](https://space.overment.com/Shared-Image-2021-11-07-23-26-34/Shared-Image-2021-11-07-23-26-34.png)
 

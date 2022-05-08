@@ -8,6 +8,7 @@ EasyCart to projekt ułatwiający sprzedaż w produktów cyfrowych. Jego najwię
 Początkowo EasyCart powstał jako koszyk na potrzeby naszych projektów. Obecnie dzięki technologii Stripe możliwe było udostępnienie go innym.
 
 ## Aktualności 
+- Maj 2022 EasyCart przekracza 3 000 000 zł transakcji
 - Grudzień 2021 EasyCart przekracza 700 tys zł transakcji i 4000 klientów w sieci
 - Listopad 2021 EasyCart wkrótce zakończy publiczną betę
 - Sierpień 2021 Pierwszy klient po testach przełącza wszystkie swoje produkty na EC 🎉
