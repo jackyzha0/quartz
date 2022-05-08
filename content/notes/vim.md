@@ -1,11 +1,10 @@
 ---
-title: "Showcase"
+title: "Vim - The Personal Man"
 tags:
 - vim
 ---
 
-# Vim - The Personal Man
-
+# Exiting 👻
 
 |                 |                                       |
 | --------------- | ------------------------------------- |
