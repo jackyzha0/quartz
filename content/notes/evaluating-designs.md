@@ -7,7 +7,7 @@ tags:
 #unfinished 
 
 Why to evaluate using 'outside' people:
-- how do we know if a [prototype](notes/prototyping.md) is good
+- how do we know if a [prototye](notes/prototyping.md) is good
 - designer/developers are not 'fresh' -> they already have experience with the product
 - designer/developers don't know what real users will do
 
@@ -132,7 +132,7 @@ Why to evaluate using 'outside' people:
 - typically simulation is used in conjugtion with monte carlo optimisation
 
 ## 0.7 Query techniques
-- [Interviews](Interviews)
+- [interviewing](notes/interviewing.md)
 - questionnaires
 	- less flexible
 	- larger samples possible

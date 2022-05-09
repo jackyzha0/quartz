@@ -45,8 +45,6 @@ inside inner is call to merge which is ϴ(blocksize)
 - $n$ is the numbe of elemetns in a
 - outer loop is executed
 
-![[Pasted image 20220329114859.png#invert]]
-
 ### 0.1.2 improvments
 some arrays have sections that are already sorted
 

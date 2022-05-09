@@ -70,8 +70,6 @@ can be conceptualised as a graph
 	commit
 ```
 
-![[Pasted image 20220306103955.png|300]]
-
 - nodes are commits -> immutable snapshots of the tracked files
 - edges record how nodes emerged over time
 	- arrows can be read as "is derived from"
