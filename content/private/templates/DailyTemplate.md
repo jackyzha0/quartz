@@ -3,6 +3,8 @@
 ---
 # <% tp.date.now("DD-MM-YY") %>
 <% tp.user.album() %>
+<% tp.user.xkdc() %>
+
 
 ## Todos
 

@@ -7,3 +7,4 @@ content/.obsidian
 .obsidian
 assets/indices/linkIndex.json
 assets/indices/contentIndex.json
+*.ps1

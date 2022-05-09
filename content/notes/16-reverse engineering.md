@@ -4,11 +4,14 @@ aliases:
 tags: 
 - info201
 - lecture
+sr-due: 2022-05-11
+sr-interval: 3
+sr-ease: 270
 ---
 
 
 # Java -> UML reverse engineering
-reverse of foward engineering
+reverse of [uml-java-forward-engineering](notes/uml-java-forward-engineering.md)
 
 - parse java doe and egenerate corresponding uml diagrams
 - useful to generate models of existing systems

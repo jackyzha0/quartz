@@ -47,14 +47,14 @@ tags:
 # Example container interacting with files 
 - Let’s build the containers lab website
 - Input: Markdown files
-- Output: HTML website
-- Can use this container within CI
+- Output: HTML website 
+- Can use this container within [CI](notes/continuous-integration.md) pipelines
 - Active container can rebuild ‘live’:
 - source files are watched for changes
 - changes trigger rebuilding target files
 - can reload browser to see changes rapidly
 - Note: this example is an optional part of containers lab 
-	- docker run −−rm −−mount \ type=bind , source=$ {PWD} , ta rge t=/ s r v / j e k y l l \ j e k y l l / j e k y l l : pages j e k y l l bu i ld 
+	- `docker run −−rm −−mount \ type=bind, source=${PWD}, target=/srv/jekyll\jekyll/jekyll:pages jekyllbuild`
 
 # Example container interacting over network 
 - Lesson builder can host an internal web server
@@ -65,7 +65,7 @@ tags:
 - Connections routed through to container
 - Usually connections limited to interactions with the host OS
 - . . . but containers can support internet-facing servers 
-	- docker run −−rm − i t −−mount \ type=bind , source=$ {PWD} , ta rge t=/ s r v / j e k y l l \ −p 1 2 7. 0. 0. 1: 4 0 0 0: 4 0 0 0 \ j e k y l l / j e k y l l : 3 j e k y l l se rve 
+	- `docker run −−rm − i t −−mount \ type=bind , source=$ {PWD} , target=/srv/jekyll\ −p127.0.0.1:4000:4000\jekyll/jekyll:3jekyllserve`
 
 # Inter-container interactions 
  - Can build apps by composing multiple containers

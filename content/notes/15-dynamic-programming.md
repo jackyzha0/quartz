@@ -4,10 +4,22 @@ aliases:
 tags: 
 - lecture
 - cosc201
-sr-due: 2022-05-07
-sr-interval: 3
+sr-due: 2022-05-19
+sr-interval: 10
 sr-ease: 250
 ---
+
+- [dynamic-programming](notes/dynamic-programming.md)
+- [memoization](notes/memoization.md)
+
+
+
+
+
+
+
+
+
 
 What is dynamic programming? 
 
@@ -22,7 +34,7 @@ In more than three words: Trading space (remembering useful answers) for time (n
 
 $f_{0}= f_{1}= 1, f_{n}=f_{n-1}+ f_{n-2}\ for\  n > 1$
 
-the obvious recursive implementation require exponential time becuase the recursive sub-problems
+the obvious recursive implementation requires exponential time becuase the recursive sub-problems
 - compute $f_n-1$, and
 - compute $f_n-2$
 overlap (the first generates an instance of the second in the next recurive call)
@@ -62,7 +74,6 @@ public static long fibMEM(int n) {
 - supported automatically in some languages (e.g., Python's @functools.cache, and any symbolic programming language)
 
 # DP vs memoization
-
 bottom typically compute *all* simpler versions of the problem. When this is neccessary then DP will be faster. However it only a small proportion of the previous case are actually needed it may be better to use memoization. sometimes we can reduct the storage need for DP too. e.g., in the following fibonacci example
 
 better fibonacci
@@ -77,7 +88,6 @@ public long fibDP (int n) {
 	return c;
 }
 ```
-
 
 # DP vs Divide and conquer
 

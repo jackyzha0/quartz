@@ -12,6 +12,10 @@ title: "Jet Hughes"
 # 2 Other
 
 - [templates](notes/templates.md)
+- [bash-tricks](cheatsheets/bash-tricks.md)
+- [git-cheat-sheet](cheatsheets/git-cheat-sheet.md)
+- [latex-cheat-sheet](cheatsheets/latex-cheat-sheet.md)
+- [puml-cheat-sheet](cheatsheets/puml-cheat-sheet.md)
 
 # 3 Projects
 - 
@@ -25,5 +29,4 @@ title: "Jet Hughes"
 	- [dotnet](notes/dotnet.md)
 
 # 6 Books
-
 - The book of illusions

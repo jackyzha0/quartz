@@ -11,6 +11,6 @@ sr-ease: 250
 
 [balancing-binary-search-trees](notes/balancing-binary-search-trees.md)
 
-- [avl-trees](notes/avl-trees.md)
+- [avl-trees](notes/avl-trees.md) 
 - [red-black-trees](notes/red-black-trees.md)
 - [treaps](notes/treaps.md)
