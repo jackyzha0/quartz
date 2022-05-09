@@ -8,19 +8,6 @@ tags:
 ---
 links: [_index](_index.md)
 
-# Lectures
-- [07-testing](notes/07-testing.md)
-- [08-debugging](notes/08-debugging.md)
-- [09-documentation](notes/09-documentation.md)
-- [10-continuous-integration-1](notes/10-continuous-integration-1.md)
-- [11-continuous-integration-2](notes/11-continuous-integration-2.md)
-- [12-automation](notes/12-automation)
-- [13-code-librarires](notes/13-code-librarires.md)
-* 
-- [15-containers](notes/15-containers.md)
-- [16-compilers](notes/16-compilers.md)
-- [17-linkers-and-loaders](notes/17-linkers-and-loaders.md)
-
 # Outline
 - [consoles-terminals-shells](notes/consoles-terminals-shells.md)
 - [git](notes/git.md)
@@ -39,3 +26,15 @@ links: [_index](_index.md)
 - [loader](notes/loader.md)
 - [operating-system](notes/operating-system.md)
 
+# Lectures
+- [07-testing](notes/07-testing.md)
+- [08-debugging](notes/08-debugging.md)
+- [09-documentation](notes/09-documentation.md)
+- [10-continuous-integration-1](notes/10-continuous-integration-1.md)
+- [11-continuous-integration-2](notes/11-continuous-integration-2.md)
+- [12-automation](notes/12-automation)
+- [13-code-librarires](notes/13-code-librarires.md)
+* 
+- [15-containers](notes/15-containers.md)
+- [16-compilers](notes/16-compilers.md)
+- [17-linkers-and-loaders](notes/17-linkers-and-loaders.md)

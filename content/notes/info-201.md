@@ -12,22 +12,6 @@ links: [_index](_index.md)
 - [assignments tiddlywiki](https://isgb.otago.ac.nz/info201/shared/assignments_release/raw/master/output/info201_assignments.html)
 - [labs folder](file:///"C:/Users/Jet%20Hughes/Documents/Personal/courses/info-201/Labs")
 
-# Lectures
-- [04-requirements](notes/04-requirements)
-- [06-business-functions-and-use-cases](notes/06-business-functions-and-use-cases.md)
-- [07-business-process-modelling](notes/07-business-process-modelling.md)
-- [08-business-patterns](notes/08-business-patterns.md)
-- [09-data-modelling-and-normalisation](notes/09-data-modelling-and-normalisation.md)
-- [10-oop-concepts-and-uml](notes/10-oop-concepts-and-uml.md)
-- [11-class-diagrams](notes/11-class-diagrams.md)
-- [12-modelling-behaviour](notes/12-modelling-behaviour.md)
-- [13-UML-sequence-diagrams](notes/13-UML-sequence-diagrams.md)
-- 
-- [15-from-models-to-code-and-back](notes/15-from-models-to-code-and-back.md)
-- [16-reverse engineering](notes/16-reverse%20engineering.md)
-- [17-data-access](notes/17-data-access.md) 
-
-
 # Outline
 - [version-control-system](notes/version-control-system.md)
 - [stakeholders](notes/stakeholders.md)
@@ -67,3 +51,17 @@ links: [_index](_index.md)
 - [data-access-object](notes/data-access-object.md)
 - [java-database-connectibity](notes/java-database-connectibity.md)
 
+# Lectures
+- [04-requirements](notes/04-requirements)
+- [06-business-functions-and-use-cases](notes/06-business-functions-and-use-cases.md)
+- [07-business-process-modelling](notes/07-business-process-modelling.md)
+- [08-business-patterns](notes/08-business-patterns.md)
+- [09-data-modelling-and-normalisation](notes/09-data-modelling-and-normalisation.md)
+- [10-oop-concepts-and-uml](notes/10-oop-concepts-and-uml.md)
+- [11-class-diagrams](notes/11-class-diagrams.md)
+- [12-modelling-behaviour](notes/12-modelling-behaviour.md)
+- [13-UML-sequence-diagrams](notes/13-UML-sequence-diagrams.md)
+- 
+- [15-from-models-to-code-and-back](notes/15-from-models-to-code-and-back.md)
+- [16-reverse engineering](notes/16-reverse%20engineering.md)
+- [17-data-access](notes/17-data-access.md) 
