@@ -10,5 +10,5 @@ sr-ease: 250
 ---
 
 - [representation-and-distributing-cognition](notes/representation-and-distributing-cognition.md)
-- [visual-design-typography](notes/visual-design-typography.md)]
+- [typography](notes/typography.md)]
 - [visual-design](notes/visual-design.md)

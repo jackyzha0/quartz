@@ -1,8 +1,9 @@
 ---
-title: "visual-design-typography"
+title: "typography"
 aliases: Typography
 tags: 
 - info203
+- visual-design
 ---
 
 most common fonts

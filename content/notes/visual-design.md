@@ -3,6 +3,7 @@ title: "visual-design"
 aliases: Visual Design
 tags: 
 - info203
+- visual-design
 ---
 
 combine text and graphics. how to represent?
@@ -19,6 +20,6 @@ three goals
 - message
 
 Three tools
-- typography
-- layout
-- colour
+- [typography](notes/typography.md)
+- [layout](notes/layout.md)
+- [color](notes/color.md)
