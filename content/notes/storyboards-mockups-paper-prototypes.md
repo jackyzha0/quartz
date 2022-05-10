@@ -2,6 +2,7 @@
 title: "storyboards-mockups-paper-prototypes"
 tags: 
 - info203
+- scott-video
 ---
 
 Fidelity will increase over time.

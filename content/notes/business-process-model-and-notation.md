@@ -1,5 +1,6 @@
 ---
 title: "business-process-model-and-notation"
+aliases: BPMN
 tags: 
 - info201
 ---

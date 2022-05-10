@@ -9,7 +9,7 @@ sr-interval: 3
 sr-ease: 250
 ---
 
-aesthetic and minimalist
+# aesthetic and minimalist
 - signal to noise ratio
 - what are you core functionality
 - how can you best use your screen space
@@ -19,7 +19,7 @@ recognise diagnore recover from errors
 - e.g., username or password is wrong vs username is wrong
 - provide a solution and inform users (treat the users as adults
 
-help
+# help
 - guide the way and show steps
 - online help
 	- transition from built in help to links to online help
@@ -28,12 +28,12 @@ help
 - help clearly and transparently
 	- e.g., privacy and terms/conditions
 
-anti design heuristics
+# anti design heuristics
 [](https://i.imgur.com/BHJ5iQU.png)
 [](https://i.imgur.com/DrqSSK5.png)
 [](https://i.imgur.com/KPW6h19.png)
 
-dark patterns
+## dark patterns
 turniing patterns against the user. 
 all the dsign heuristics can be used against the user
 

@@ -147,10 +147,8 @@ for larger k -> the set must have been formed by the union of two sets of rank k
 
 --> min size of set of rank k is $2^k$
 
-#theorem
 >a set of rank k must contain at least $2^k$ elements
-
-$\therefore$ The maximum rank of an element is $\log_2(n)$  -> $lg(n)$
+> $\therefore$ The maximum rank of an element is $\log_2(n)$  -> $lg(n)$
 
 since the time for $Find$ is big-$\theta$ of the rank of the representative found we get $O(lg n)$ bounds for both find and union
 

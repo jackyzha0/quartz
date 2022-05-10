@@ -1,5 +1,5 @@
 ---
-title: "treaps"
+title: "treap"
 aliases: Treaps
 tags: 
 - cosc201

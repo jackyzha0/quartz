@@ -3,7 +3,7 @@ title: "quicksort"
 aliases: Quicksort
 tags: 
 - cosc201
-- algorithm
+- sorting-algorithm
 ---
 
 pre ⇒ select pivot and split the array

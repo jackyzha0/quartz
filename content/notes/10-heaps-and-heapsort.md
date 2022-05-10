@@ -8,7 +8,7 @@ tags:
 - lecture
 ---
 
-[heaps-and-heapsort](notes/heaps-and-heapsort.md)
+[heapsort](notes/heapsort.md)
 
 
 # 1 Overview

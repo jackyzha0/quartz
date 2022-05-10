@@ -13,16 +13,14 @@ a human process
 debuggers are tools to help debugging
 
 ## 1 common approaches
-temporarily add output of diagnostic info
-- "printf" debugging
-permanently include calls to logging system
-- route to terminal, log files etc
+- temporarily add output of diagnostic info -> "printf" debugging
+- permanently include calls to logging system -> route to terminal, log files etc
 
 ## 2 debugging machine code
 - cpu runs code instruction by instruction
 	- thus debugger can intervene between instructions
 	- most cpus help debugger interrupt and resume programs
-- cpu reached current code via a sequence on callers
+- cpu reached current code via a sequence of calls
 	- called **stack trace** , aka back frame, stack frame etc
 - may reach point where it cannot continue
 	- e.g., integer division by zero, program execution must stop
@@ -30,7 +28,7 @@ permanently include calls to logging system
 
 ## 3 Imperative languages
 These are language that are executed in a step-wise, sequentail manner.
-
+  
 - debug symbols
 	- e.g., method named, variable named
 - source code context
@@ -46,7 +44,6 @@ These are language that are executed in a step-wise, sequentail manner.
 - continue  --> go back to running code continuously
 
 ### 4.2 controlling debugger execution
-
 Can run normally --> debugger wil run when program crashes
 
 Set Breakpoint --> debugger will stop program when/if that line is reached
@@ -55,7 +52,6 @@ Set Breakpoint --> debugger will stop program when/if that line is reached
 Watch point --> program is suspended when some data changes (e.g., variables)
 
 ## 5 debugging non imperative languages
-
 e.g, spreadsheet (Dataflow programming)
 - no breakpoints
 - must step through _iterations of computations_

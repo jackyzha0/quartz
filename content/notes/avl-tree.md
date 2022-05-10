@@ -1,5 +1,5 @@
 ---
-title: "avl-trees"
+title: "avl-tree"
 aliases: AVL
 tags: 
 - cosc201

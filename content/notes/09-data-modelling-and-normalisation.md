@@ -11,5 +11,3 @@ sr-ease: 250
 - [redundancy-and-anomalies](notes/redundancy-and-anomalies.md)
 - [dependencies](notes/dependencies.md)
 - [normalisation](notes/normalisation.md)
-
-

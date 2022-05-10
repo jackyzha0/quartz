@@ -2,6 +2,7 @@
 title: "wizard-of-oz"
 tags: 
 - info203
+- scott-video
 ---
 
 

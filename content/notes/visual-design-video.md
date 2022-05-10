@@ -3,7 +3,7 @@ title: "visual-design-video"
 aliases: 
 tags: 
 - info203
-- video
+- scott-video
 ---
 
 whitespace conveys grouping

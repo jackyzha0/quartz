@@ -17,14 +17,14 @@ tags:
 	- can run tests if parallel
 	- may need to build environment in which tests run
 
-### 0.1 supports useful principles
+# 1 supports useful principles
 can support complementary work by team members
 early discovery of problems
 can help with documentation and specification
 - unit tests can be a form of executable specification
 - helps team members understand requirements
 
-### 0.2 Test environment
+# 2 Test environment
 consider code that interacts with a database
 - you cant let that code write to a real database
 - but you want to check that writes were performed
@@ -38,7 +38,7 @@ mock up the database with a pretend model that returns fixed results to query
 
 can be a pre-recorded interaction
 
-### 0.3 Test life cycle
+# 3 Test life cycle
 - set up test environment
 - run test code
 - check results
@@ -49,7 +49,7 @@ tests may chack that code fails appropriately
 - crash when expected
 - exceptions are generated
 
-### 0.4 Language support
+# 4 Language support
 language may have bilt in testing support
 - e.g., Go and Rust have command line tools to run tests
 
@@ -61,7 +61,7 @@ External tools can often work well too
 we want to distinguish between tests and normal code
 - also should support for sqapping in/out mocking code
 
-### 0.5 JUnit
+# 5 JUnit
 test classes have a particular filename pattern
 
 annotate test methods with @Test
@@ -73,8 +73,7 @@ other annotations
 
 JUnit 5 also supports dynamically generated tests
 
-### 0.6 TestNG
-
+# 6 TestNG
 based off JUnit and fixes some it it's problems
 
 - provides control over threading

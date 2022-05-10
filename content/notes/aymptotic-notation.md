@@ -3,7 +3,6 @@ title: "asymptotic-notation"
 aliases: Big O, Big Theta, Algorithm Analysis
 tags: 
 - cosc201
-- analysis-of-algorithms
 ---
 
 Asymptotic notations are used in computer science to classify algorithms based how its space and time requirements grow as the input grows. 

@@ -116,7 +116,6 @@ $P(n) = P(n-1) +D$
 
 where C and D are some positive constants
 
-#theorem 
 > ## $P(n) = C+D\times(n-1)$
 > in particular, $P(n) = \theta(n)$
 

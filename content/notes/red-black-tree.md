@@ -1,6 +1,6 @@
 ---
-title: "red-black-trees"
-aliases: Red Black Trees
+title: "red-black-tree"
+aliases: Red Black Tree
 tags: 
 - cosc201
 - datastructure

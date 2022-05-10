@@ -2,6 +2,7 @@
 title: "heuristic-evaluation"
 tags: 
 - info203
+- scott-video
 ---
 
 >"Heuristics are strategies derived from previous experiences with similar problems"

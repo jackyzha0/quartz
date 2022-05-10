@@ -34,19 +34,18 @@ Most CI frameworks use YAML for configuration. YAML  has a structured text based
 The CI config (in gitlab it is named `.gitlab-ci.yaml`) file goes in the top level of the repo, and is version-managed. This file specifies the stages and jobs of a pipeline, as well as indicating where the output should go.
 
 # 8 Debugging
+[debugging](notes/debugging.md) concepts should be applied
 
-1. check yaml file
+1st check yaml file
 
-commands run from shell generate an exit code. This is stored in a variable called *$?
+commands run from shell generate an exit code. This is stored in a variable called *$?*
 
 If $? is non-zero, then the previous command failed. Your shell script can choose to hide this is the command is expected to fail
 
 # 9 Secrets
-
 If you need the CI script to log in to something, your repo hosting service can store and pass *secrets* to scripts using shell environment variables. When doing this, you need to make sure the CI script is secure, other wise someone could simply change the scripts to `echo` these variables.
 
 # 10 Other tools can have CI-like functionality
-
 e.g.,
 - IDEs the compile code in background
 - latexmk to auto build latex files when they change
@@ -56,10 +55,5 @@ e.g.,
 	- pre-populate git messages
 	- carry out post-update cleanup tasks
 
-
-
-#unfinished 
-
 [10-continuous-integration-1](notes/10-continuous-integration-1.md)
-
 [11-continuous-integration-2](notes/11-continuous-integration-2.md)

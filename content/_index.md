@@ -3,14 +3,12 @@ title: "Jet Hughes"
 ---
 
 # 1 Papers
-
 - [cosc-201](notes/cosc-201.md)
 - [cosc-202](notes/cosc-202.md)
 - [info-201](notes/info-201.md)
 - [info-203](notes/info-203.md)
 
 # 2 Other
-
 - [templates](notes/templates.md)
 - [bash-tricks](cheatsheets/bash-tricks.md)
 - [git-cheat-sheet](cheatsheets/git-cheat-sheet.md)
@@ -21,7 +19,6 @@ title: "Jet Hughes"
 - 
 
 # 5 Independent Learning
-
 - [networks](notes/networks.md)
 - random
 	- [propogation-of-ideas](notes/propogation-of-ideas.md)
