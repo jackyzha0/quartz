@@ -10,7 +10,7 @@ Folders and tags are ineffective methods of organizing notes while browsing the 
 </div>
 
 
-<video src="/fleeting-notes-demo.mp4" type="video/mp4" width="100%" height="100%" display="flex" controls=""></video>
+<video src="/fleeting-notes-demo.mp4#t=1" type="video/mp4" width="100%" height="100%" display="flex" controls=""></video>
 ## Features:
 ### Quick capture. Anywhere.
 Capture notes anywhere with an array of supported platforms and built-in sync between all platforms.
