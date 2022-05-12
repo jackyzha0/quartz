@@ -2,8 +2,9 @@
 id: home
 title: Home
 ---
-# Never forget what's important
-Organize notes like how thoughts are organized—through the [[notes/connecting ideas is powerful|connection of ideas]]. Fleeting Notes makes it easy to re-discover important ideas from the past. Click the links to see how you can [[posts/manage-notes-with-a-simple-workflow|get started]] with [[notes/Zettelkasten|Zettelkasten]].
+
+# Organize the internet with [[ [[notes/connecting ideas is powerful|connections]] ]]
+Forget folders and tags, organize notes like how thoughts are organized—through the [[posts/how-to-create-useful-links-with-zettelkasten|connection of ideas]]. Fleeting Notes is a lightweight note-taking app that links ideas in your mind with content on the internet. Click the links to see how you can [[posts/manage-notes-with-a-simple-workflow|get started]] with [[notes/Zettelkasten|Zettelkasten]].
 <div style="display: flex; justify-content: center;">
     <a href="https://my.fleetingnotes.app" class="button">Try it free</a>
 </div>
