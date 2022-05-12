@@ -2,7 +2,7 @@
 {{$dashedurl := replace $trimmed "%20" "-" }}
 {{$external := strings.HasPrefix $dashedurl "http" }}
 {{- if $external -}}
-<a href="{{ $dashedurl }}" rel="noopener">{{ .Text | safeHTML }}</a>
+<a target="_blank" href="{{ $dashedurl }}" rel="noopener">{{ .Text | safeHTML }}</a>
 {{- else -}}
 {{$spacedurl := replace $trimmed "%20" " " }}
 {{$fixedUrl := (cond (hasPrefix $spacedurl "/") $spacedurl (print "/" $spacedurl)) | urlize}}
