@@ -100,6 +100,7 @@ More specifically, we may need to process your data or share your personal infor
 We only share and disclose your information with the following third parties. If we have processed your data based on your consent and you wish to revoke your consent, please contact us using the contact details provided. Links to the privacy policy of third-party service providers used by the app are below.
 - [Google Play Services](https://policies.google.com/terms)
 - [Google Analytics for Firebase](https://firebase.google.com/terms/analytics)
+- [Facebook Pixel](https://www.facebook.com/business/m/privacy-and-data)
 - [Firebase Crashlytics](https://firebase.google.com/terms/crashlytics)
 - [Stripe](https://stripe.com/en-ca/privacy)
 - [MongoDB Realm](https://www.mongodb.com/legal/privacy-policy-aug-27-2013)
