@@ -1,6 +1,6 @@
 ---
 title: zautomatyzowani
---- 
+---
 
 [[Projekty/zautomatyzowani]] to projekt, który powołałem wspólnie z [[Grzegorz Róg]] ([[Projekty/eduweb]]) aby pokazać nasze podejście do [[Optymalizacja/Automatyzacja/Automatyzacja]], wykorzystania narzędzi [[Wiedza/Programowanie/No-Code]] oraz szeroko pojętego prowadzenia biznesu w sieci. 
 

@@ -1,6 +1,6 @@
 ---
 title: EasyTimer
---- 
+---
 
 # Czym jest EasyTimer?
 

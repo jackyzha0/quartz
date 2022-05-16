@@ -1,6 +1,6 @@
 ---
 title: EasyBanner
---- 
+---
 
 ## Czym jest EasyBanner?
 

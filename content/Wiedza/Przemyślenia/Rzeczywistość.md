@@ -3,7 +3,7 @@ title: Rzeczywistość
 ---
 
 ## Kontekst
-Wiele źródeł (np. [[Wiedza/Książki/Deviate]]) wskazuje na to, że nie mamy możliwości postrzegać rzeczywistość taką i każdy z nas widzi ją inaczej. 
+Wiele źródeł (np. [[Wiedza/Książki/Deviate]]) wskazuje na to, że nie mamy możliwości postrzegać rzeczywistość taką jaka jest i każdy z nas widzi ją inaczej. Trudno powiedzieć czy tak jest faktycznie ale według mojego aktualnego rozumienia, może być to bliskie prawdy. 
 
 **Wynika to z prostego faktu:** 
 - wokół nas dzieje się bardzo dużo ale nasze zmysły, odbierają część informacji

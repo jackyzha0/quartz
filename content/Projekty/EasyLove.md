@@ -1,6 +1,6 @@
 ---
 title: EasyLove
---- 
+---
 
 # Czym jest EasyLove?
 To narzędzie ułatwiające proces gromadzenia oraz udostepniania opinii klientów.

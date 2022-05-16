@@ -1,6 +1,6 @@
 ---
 title: eduweb
---- 
+---
 
 [[Projekty/eduweb]] to projekt w który angażuję się od kwietnia 2020 roku. Ma on dla mnie szczególne znaczenie, ponieważ to właśnie na eduweb zaczynałem poważną naukę programowania.
 
