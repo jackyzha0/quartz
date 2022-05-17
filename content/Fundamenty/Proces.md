@@ -129,7 +129,7 @@ Zobacz więcej 👉 [[Fundamenty/System zdobywania wiedzy]].
 
 Koncepcja dźwigni ([[Wiedza/Modele Mentalne/Leverage]]) jest jedną z najważniejszych jakie znam. Dzięki niej raz wykonana praca daje mi efekty przez lata.
 
-- Mój czas nie jest na sprzedaż ([[Wiedza/Książki/Principles]]) - od Q2 2020 podjąłem decyzję o tym, że nie będę sprzedawał swojego czasu. 
+- Mój czas nie jest na sprzedaż ([[Wiedza/Książki/Principles]]) - od Q2 2020 podjąłem decyzję o tym, że nie będę sprzedawał swojego czasu. Przykładowo niemal całkowicie ograniczyłem konsultacje i zlecenia dla klientów na rzecz rozwijania własnych produktów. Robię to wyłącznie w sytuacjach w których albo sprawia mi to frajdę albo daje korzyści poza finansowe.  
 - Podejmuję działania wykorzystujące skalę oraz pomagające innym przez długi czas.
 - Podejmując działania zadaję sobie pytanie "jak z mojej jednej godziny zrobić 100?" [[Wiedza/Modele Mentalne/Leverage]]
 - [[Optymalizacja/Optymalizacja]] - zwracam uwagę na drobne szczegóły. Eliminuję je lub optymalizuję (np. przez upraszczanie) do granic możliwości (albo rozsądku).
