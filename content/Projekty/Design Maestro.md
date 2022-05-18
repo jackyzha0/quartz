@@ -31,10 +31,10 @@ Design Maestro oferuje między innymi:
 - Optymalizowania zaznaczonych zdjęć
 - Usuwania tła z zaznaczonych zdjęć
 
-![](https://space.overment.com/Screen-Shot-2022-05-16-17-48-51-GZEQZ/Screen-Shot-2022-05-16-17-48-51.png)
+![](https://space.overment.com/Shared-Image-2022-05-18-09-15-56-Z9bUO/Shared-Image-2022-05-18-09-15-56.png)
 
 
-README.md:
+README.md repozytorium https://github.com/iceener/designmaestro (aktualnie prywatne).
 # Introduction
 DesignMaestro is a set of macros of Keyboard Maestro which was build on top of [Custom HTML Prompt Action](https://wiki.keyboardmaestro.com/action/Custom_HTML_Prompt?s[]=prompt&s[]=html#Form_Validation). It was designed so creating a new macros are as easy as it possible by by using JSON objects.
 

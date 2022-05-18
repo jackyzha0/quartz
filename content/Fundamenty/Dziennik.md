@@ -14,7 +14,7 @@ Oprócz pisania również czytam swój dziennik, co daje mi świetną [[Wiedza/S
 ## Zasady
 - Piszę praktycznie codziennie
 - Nie mam ustalonej pory ani struktury
-- Jestem ze sobą szczery w myśl Radykalnej Transparentności z książki [[Wiedza/Książki/Principles]] oraz [[Wiedza/Książki/That Will Never Work]]
+- Jestem ze sobą szczery w myśl [[Wiedza/Przemyślenia/Radykalna Transparentność]] z książki [[Wiedza/Książki/Principles]] oraz [[Wiedza/Książki/That Will Never Work]]
 - Nie mam wymagań dotyczących ilości 
 - Piszę to, co w danej chwili mam w głowie
 - Czasem piszę w "trzeciej" osobie w celu zyskania dystansu do pisanych słów

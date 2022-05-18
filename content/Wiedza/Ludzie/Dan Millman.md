@@ -3,8 +3,7 @@ title: Dan Millman
 ---
 
 # Kim jest?
-Dan Millman to Mistrz Świata w gimnastyce i autor książek w których mocno nawiązuje do filozofii buddyjskiej.
-
+Dan Millman to Mistrz Świata w gimnastyce i autor książek w których mocno nawiązuje do filozofii buddyjskiej. Jego książka [[Wiedza/Książki/Way of The Peaceful Warrior]] jest dla mnie absolutnym numerem 1 spośród wszysktich przeczytanych przeze mnie [[Wiedza/Książki/Książki]].
 
 ## Czego nauczył mnie Dan? 
 
@@ -15,6 +14,25 @@ Zawsze coś się dzieje.
 Wojownik nie rezygnuje z tego co kocha. Odnajduje miłość w tym co robi.
 
 Takie nastawienie sprawia, że z miłością podchodzę do wszystkiego co robię, niezależnie od tego jak trudne to się wydaje. 
+
+### Poznawanie siebie
+*Każdy mówi Ci co jest dla Ciebie dobre. Nie chcą abyś znalazł własne odpowiedzi, tylko abyś uwierzył w ich.*
+
+> 
+**Socrates:**  
+Everyone tells you what to do and what's good for you. They don't want you to find your own answers. They want you to believe theirs.  
+`
+**Dan Millman:**  
+And let me guess. You want me to believe yours.  
+`
+**Socrates:**
+No. I want you to stop gathering information from outside yourself and start gathering it from the inside.
+`
+**Dan Millman:**  
+Â :[Dan laughs] What are you, part of some cult or something?`
+`
+**Socrates:**  
+People are afraid of what's inside and that's the only place they're ever gonna find what they need.
 
 ### Zasady życia
 Humor, Paradoks i Zmiana
@@ -28,6 +46,9 @@ Wiedza to nie to samo co mądrość. Nieistotne jest to co wiesz, ważne jest to
 
 ### Szczęście
 Bądź szczęśliwy tu i teraz, bez powodu. Albo nigdy nie będziesz. 
+
+(wideo dostępne na youtube):
+<iframe width="560" height="315" src="https://www.youtube.com/embed/anFzcVb7mR8?start=26" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Coś podobnego powiedział [[Wiedza/Ludzie/Naval Ravikant]]. Przeczytanie tego w [[Wiedza/Książki/Alamanck of Naval Ravikant]] było dla mnie przełomowym momentem ze względu na całkowitą zmianę nastawienia względem swojego życia i poczucia szczęścia. 
 
