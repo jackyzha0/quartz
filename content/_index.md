@@ -3,8 +3,8 @@ id: home
 title: Home
 ---
 
-# Note-taking for internet browsing
-Folders and tags are ineffective methods of organizing notes while browsing the web. Get more out of your notes by organizing them like how thoughts are organized—through the [[notes/connecting ideas is powerful|connection of ideas]].  Click the links to see how you can [[posts/manage-notes-with-a-simple-workflow|get started]] with [[notes/Zettelkasten|Zettelkasten]].
+# A simple way to use Zettelkasten
+Zettelkasten is [[notes/connecting ideas is powerful|powerful]] but unnecessarily [[posts/zettelkasten-shouldnt-be-complicated-but-it-is|complicated]]. Fleeting Notes make taking connected notes simple and fast. Click the links to see how you can [[posts/manage-notes-with-a-simple-workflow|get started]] with [[notes/Zettelkasten|Zettelkasten]].
 <div style="display: flex; justify-content: center;">
     <a href="/download" class="button">Try it free</a>
 </div>

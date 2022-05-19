@@ -3,8 +3,8 @@ enableToc: true
 openToc: false
 enableLinkPreview: true
 enableLatex: true
-tagline: Note-taking for internet browsing
-description: Fleeting Notes is a note-taking app for capturing learnings while browsing the web. Notes are organized and discovered through the connection of ideas.
+tagline: A scratchpad for linked notes
+description: Fleeting Notes is the entry point for your Zettelkasten system. Quickly capture notes and build a network of ideas.
 page_title:
   "Fleeting Notes"
 links:
