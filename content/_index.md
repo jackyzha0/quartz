@@ -4,7 +4,7 @@ title: Home
 ---
 
 # A simple way to use Zettelkasten
-Zettelkasten is [[notes/connecting ideas is powerful|powerful]] but unnecessarily [[posts/zettelkasten-shouldnt-be-complicated-but-it-is|complicated]]. Fleeting Notes make taking connected notes simple and fast. Click the links to see how you can [[posts/manage-notes-with-a-simple-workflow|get started]] with [[notes/Zettelkasten|Zettelkasten]].
+Zettelkasten is [[notes/connecting ideas is powerful|powerful]] but unnecessarily [[posts/zettelkasten-shouldnt-be-complicated-but-it-is|complicated]]. Fleeting Notes makes taking connected notes simple and fast. Click the links to see how you can [[posts/manage-notes-with-a-simple-workflow|get started]] with [[notes/Zettelkasten|Zettelkasten]].
 <div style="display: flex; justify-content: center;">
     <a href="/download" class="button">Try it free</a>
 </div>
