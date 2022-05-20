@@ -61,13 +61,7 @@
           links,
           content,
         }))
-  </script>
-  {{if $.Site.Data.config.enableSPA}}
-  {{ $router := resources.Get "js/router.js" | resources.Fingerprint "md5" |
-  resources.Minify }}
-  <script type="module">
-    import { attachSPARouting } from '{{$router.Permalink}}';
-    // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page.
+
     const draw = () => {
       const container = document.getElementById("graph-container")
       // retry if the graph is not ready
@@ -101,10 +95,21 @@
       });
       {{end}}
     };
+  </script>
+  {{if $.Site.Data.config.enableSPA}}
+  {{ $router := resources.Get "js/router.js" | resources.Fingerprint "md5" |
+  resources.Minify }}
+  <script type="module">
+    import { attachSPARouting } from '{{$router.Permalink}}';
+    // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page.
+
     attachSPARouting(draw);
   </script>
   {{else}}
-  <script>window.navigate = (url) => window.location.href = url</script>
+  <script>
+    window.navigate = (url) => window.location.href = url;
+    draw();
+  </script>
   {{end}}
 </head>
 {{ template "_internal/google_analytics.html" . }}
