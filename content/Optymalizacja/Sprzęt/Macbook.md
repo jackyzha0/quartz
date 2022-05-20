@@ -1,6 +1,6 @@
 ---
 title: Macbook
---- 
+---
 # Kontekst 
 MacBook jest dla mnie najważniejszym narzędziem pracy. Przez lata pracowałem na Windowsie ale odkąd kupiłem pierwszego MacBooka, nie wyobrażam sobie powrotu. 
 

@@ -7,7 +7,8 @@ title: Modele mentalne
 
 ## Źródła
 - https://untools.co/ishikawa-diagram
-- 
+- https://junto.investments/mental-models
+- https://fs.blog/mental-models
 
 ## Modele mentalne
 - [[Wiedza/Modele Mentalne/Inversion]]
