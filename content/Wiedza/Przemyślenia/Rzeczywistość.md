@@ -5,6 +5,10 @@ title: Rzeczywistość
 ## Kontekst
 Wiele źródeł (np. [[Wiedza/Książki/Deviate]]) wskazuje na to, że nie mamy możliwości postrzegać rzeczywistość taką jaka jest i każdy z nas widzi ją inaczej. Trudno powiedzieć czy tak jest faktycznie ale według mojego aktualnego rozumienia, może być to bliskie prawdy. 
 
+![](https://space.overment.com/Er8c8rqXUAAAs9B-vMzoN/Er8c8rqXUAAAs9B.png)
+Źródło: [visualize value](https://visualizevalue.com/)
+
+
 **Wynika to z prostego faktu:** 
 - wokół nas dzieje się bardzo dużo ale nasze zmysły, odbierają część informacji
 - odebrane przez zmysły informacje są filtrowane przez percepcję (to, na czym aktualnie skupiamy swoją uwagę)
