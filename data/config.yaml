@@ -1,15 +1,14 @@
 name: Anmol
 enableToc: true
-openToc: false
+openToc: true
 enableLinkPreview: true
 enableLatex: true
 enableSPA: true
 enableContextualBacklinks: true
 description:
-  Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
-  Wikilink support, backlinks, local graph, tags, and link previews.
+  Hosted digital brain
 page_title:
-  "🪴 Quartz 3.2"
+  "⛲️ Lawn"
 links:
   - link_name: Github
     link: https://github.com/anmolpandita1
