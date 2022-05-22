@@ -2,11 +2,10 @@
 title: "Vim - The Personal Man"
 tags:
 - vim
-enableToc: true
 ---
 
-# Navigation 👻
-## Exiting
+## Navigation 👻
+### Exiting
 |                 |                                       |
 | --------------- | ------------------------------------- |
 | :q              | to `quit` the file                    |
@@ -14,7 +13,7 @@ enableToc: true
 | :q!             | to `trash` all changes and **quit**   |
 | :wq             | to `save` the changes and **quit**    |
 | ZZ (Shift + zz) | to `save` the changes and **quit**    |
-## Movements
+### Movements
 |                                    |                                              |
 | ---------------------------------- | -------------------------------------------- |
 | h j k l                            |    ⃪ ↓ ↑ →                                      |
@@ -30,7 +29,7 @@ enableToc: true
 | %                                  | to **matching parenthesis {} () []**             |
 | zz                                 | re-center                                             |
 
-# Text manipulation
+## Text manipulation
 |                                      |                                                      |                          
 | ------------------------------------ | ---------------------------------------------------- |
 | x                                    | **delete** *`at`* the cursor (→ in normal mode still)        |                          
