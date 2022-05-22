@@ -4,9 +4,6 @@ tags:
 - vim
 ---
 
-<details open>
-this shoyld wodrlj
-</details>
 
 ## Navigation 👻
 ### Exiting
