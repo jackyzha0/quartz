@@ -4,6 +4,10 @@ tags:
 - vim
 ---
 
+<details open>
+this shoyld wodrlj
+</details>
+
 ## Navigation 👻
 ### Exiting
 |                 |                                       |
@@ -13,6 +17,7 @@ tags:
 | :q!             | to `trash` all changes and **quit**   |
 | :wq             | to `save` the changes and **quit**    |
 | ZZ (Shift + zz) | to `save` the changes and **quit**    |
+|                 |                                       |
 ### Movements
 |                                    |                                              |
 | ---------------------------------- | -------------------------------------------- |
