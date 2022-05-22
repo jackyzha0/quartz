@@ -4,7 +4,8 @@ tags:
 - vim
 ---
 
-## Exiting 👻
+## Navigation 
+### Exiting 👻
 |                 |                                       |
 | --------------- | ------------------------------------- |
 | :q              | to `quit` the file                    |
@@ -13,8 +14,7 @@ tags:
 | :wq             | to `save` the changes and **quit**    |
 | ZZ (Shift + zz) | to `save` the changes and **quit**    |
 
-
-## Navigation
+### Movements
 |                                    |                                              |
 | ---------------------------------- | -------------------------------------------- |
 | h j k l                            |    ⃪ ↓ ↑ →                                      |
