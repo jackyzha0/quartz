@@ -4,7 +4,7 @@ tags:
 - vim
 ---
 
-# Exiting 👻
+## Exiting 👻
 |                 |                                       |
 | --------------- | ------------------------------------- |
 | :q              | to `quit` the file                    |
@@ -14,7 +14,7 @@ tags:
 | ZZ (Shift + zz) | to `save` the changes and **quit**    |
 
 
-# Navigation
+## Navigation
 |                                    |                                              |
 | ---------------------------------- | -------------------------------------------- |
 | h j k l                            |    ⃪ ↓ ↑ →                                      |
@@ -31,7 +31,7 @@ tags:
 | zz                                 | re-center                                             |
 
 
-# Text manipulation
+## Text manipulation
 
 |     |                                               |
 | --- | --------------------------------------------- |
