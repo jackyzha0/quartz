@@ -34,7 +34,7 @@ tags:
 | ------------------------------------ | ---------------------------------------------------- |
 | x                                    | **delete** *`at`* the cursor (→ in normal mode still)        |                          
 | i                                    | **insert** *`before`* the cursor                             |                          
-| I                                    | **insert** `*beginning*` of the line                         |                          
+| I                                    | **insert** *`beginning`* of the line                         |                          
 | a                                    | **insert** *`after`* the cursor                              |                          
 | A                                    | **append** *`after`* the line                                |                          
 | o                                    | **open** line *`above`*                                      |                         
