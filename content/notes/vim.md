@@ -2,9 +2,11 @@
 title: "Vim - The Personal Man"
 tags:
 - vim
+enableToc: true
 ---
 
 # Navigation 👻
+## Exiting
 |                 |                                       |
 | --------------- | ------------------------------------- |
 | :q              | to `quit` the file                    |
