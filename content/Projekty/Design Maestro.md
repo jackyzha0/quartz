@@ -215,7 +215,7 @@ In order to generate a new prompt you need to:
 
 
 ## Known issues
-- Clicking on list item doesn't trigger an action
-- Select input default value does not work
-- There is no simple way to manage `DMSettings` (only for `Predefined Macros`)
+- ~~Clicking on list item doesn't trigger an action~~
+- ~~Select input default value does not work~~
+- ~~There is no simple way to manage `DMSettings` (only for `Predefined Macros`)~~
 
