@@ -1,5 +1,6 @@
 ---
 title: I believe Zettelkasten is the future of note organization
+description: The number one goal with note organization is to make it easy to find notes when we need them. That being said, we often don't know when or what note we need. It's the reason full-text search isn't the single solution to note organization.
 date: 2022-05-20
 lastmod: 2022-05-20
 ---
