@@ -16,7 +16,7 @@ On top of a complicated setup, this tri-system approach **adds limitations and f
 ![Zettelkasten Workflow](posts/img/zettelkasten-workflow.png)
 
 ## Finding a better solution
-At its core, Zettelkasten can be distilled into [two principles](https://zettelkasten.de/posts/overview/#principles): 
+At its core, Zettelkasten can be distilled into [[notes/two principles of zettelkasten|two principles]]
 - **Principle of Atomicity**: Limit notes to a single topic for [[notes/interoperable components are efficient|interoperability]] 
 - **Principle of Connectivity**: [[notes/connecting ideas is powerful|Connect information together]]
 
