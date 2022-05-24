@@ -171,35 +171,6 @@ article {
     opacity: 0.7;
   }
 
-  & > .tags {
-    list-style: none;
-    padding-left: 0;
-
-    & .meta {
-      & > h1 {
-        margin: 0;
-      }
-      & > p {
-        margin: 0;
-      }
-    }
-
-    & > li {
-      display: inline-block;
-      margin: 0.4em 0;
-    }
-    & > li > a {
-      border-radius: 8px;
-      border: var(--outlinegray) 1px solid;
-      padding: 0.2em 0.5em;
-      &::before {
-        content: "#";
-        margin-right: 0.3em;
-        color: var(--outlinegray);
-      }
-    }
-  }
-
   & a {
     font-family: Source Sans Pro;
     font-weight: 600;
@@ -220,6 +191,36 @@ article {
   
   & p {
     overflow-wrap: anywhere;
+  }
+}
+
+.tags {
+  list-style: none;
+  padding-left: 0;
+
+  & .meta {
+    & > h1 {
+      margin: 0;
+    }
+    & > p {
+      margin: 0;
+    }
+  }
+
+  & > li {
+    display: inline-block;
+    margin: 0.4em 0;
+  }
+
+  & > li > a {
+    border-radius: 8px;
+    border: var(--outlinegray) 1px solid;
+    padding: 0.2em 0.5em;
+    &::before {
+      content: "#";
+      margin-right: 0.3em;
+      color: var(--outlinegray);
+    }
   }
 }
 
@@ -590,3 +591,5 @@ header {
     padding: 0 1em;
   }
 }
+
+
