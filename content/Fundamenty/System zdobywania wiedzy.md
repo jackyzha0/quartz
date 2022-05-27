@@ -32,9 +32,22 @@ Nie mierzę tego w żaden sposób, ale uczenie się jest praktycznie nieodłącz
 
 ## Szczegółowy proces
 Na [[Projekty/Ahoy!]] opisałem szczegółowy proces tego jak się uczę: 
+
 ![](https://space.overment.com/Screen-Shot-2022-05-02-17-34-46-wwzjR/Screen-Shot-2022-05-02-17-34-46.png)
 
 Link: [](https://community.ahoy.so/c/podziel-sie-wiedza-a4965c/jak-sie-ucze)
+
+## Newslettery
+- https://trends.co
+- https://trends.vc/
+- https://visualizevalue.substack.com
+- https://newsletter.pragmaticengineer.com
+- https://jamesclear.com/newsletter
+- https://fs.blog/newsletter
+- https://every.to/superorganizers
+- https://tldrnewsletter.com
+- https://www.macstories.net
+- https://thebootstrappedfounder.com
 
 ### Źródła
 - https://changingminds.org
