@@ -1,4 +1,4 @@
-import { router, navigate, reload, prefetch } from "https://unpkg.com/million@1.9.5/dist/router.mjs"
+import { router, navigate, reload, prefetch } from "https://unpkg.com/million@1.9.6/dist/router.mjs"
 
 export const attachSPARouting = (draw) => {
   // Attach SPA functions to the global Million namespace
