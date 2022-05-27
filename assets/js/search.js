@@ -153,7 +153,7 @@ const highlight = (content, term) => {
 
   const redir = (id, term) => {
     // SPA navigation
-    window.navigate(
+    window.Million.navigate(
       new URL(
         `${BASE_URL.replace(/\/$/g, "")}${id}#:~:text=${encodeURIComponent(term)}/`
       ),
