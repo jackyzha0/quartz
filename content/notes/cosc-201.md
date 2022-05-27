@@ -6,7 +6,6 @@ tags:
 - course
 - cosc201
 ---
-links: [_index](_index.md)
 
 # Assignments
 - [[notes/assignment-01]]
@@ -21,25 +20,32 @@ links: [_index](_index.md)
 - [divide-and-conquer](notes/divide-and-conquer.md)
 	- [unite-and-conquer](notes/unite-and-conquer.md)
 - [dynamic-programming](notes/dynamic-programming.md)
-- [memoization](notes/memoization.md)
+	- [memoization](notes/memoization.md)
 
 # Data Structues
 - [union-find](notes/union-find.md)
 - [priority-queue](notes/priority-queue.md)
-- [stacks-and-queues](notes/stacks-and-queues.md)
+- [dynamic-linear-datatype](notes/dynamic-linear-datatype.md)
+	- [Stack](notes/dynamic-linear-datatype.md#Stack)
+	- [Queue](notes/dynamic-linear-datatype.md#Queue)
 - [heap](notes/heap.md)
 - [treap](notes/treap.md)
 - [hash-map](notes/hash-map.md)
+	- [linear-probing](notes/linear-probing.md)
 - [set](notes/set.md)
 - [tree](notes/tree.md)
-	- [avl-tree](notes/avl-tree.md)
+	- [binary-search-tree](notes/binary-search-tree.md)
+	- [balancing-binary-search-trees](notes/balancing-binary-search-trees.md)
 	- [red-black-tree](notes/red-black-tree.md)
+	- [avl-tree](notes/avl-tree.md)
+	- [bst-operations](notes/bst-operations.md)
+	- [tree-traversal](notes/tree-traversal.md)
+- [graphs](notes/graphs.md)
 
 # Algorithms
 - [mergesort](notes/mergesort.md)
 - [heapsort](notes/heapsort.md)
 - [[quicksort](notes/quicksort.md)]
-- [balancing-binary-search-trees](notes/balancing-binary-search-trees.md)
 
 # Lectures
 - [07-mergesort-1](notes/07-mergesort-1.md)
@@ -54,3 +60,5 @@ links: [_index](_index.md)
 - [16-hasing-maps-sets](notes/16-hasing-maps-sets.md)
 - [17-collision-resolution-probing](notes/17-collision-resolution-probing.md)
 - [18-hash-examples](notes/18-hash-examples.md)
+- [19-graphs](notes/19-graphs.md)
+- [20-graphs-2](notes/20-graphs-2.md)

@@ -3,8 +3,8 @@ title: "10-design-heuristics-1"
 tags: 
 - info203 
 - lecture
-sr-due: 2022-05-11
-sr-interval: 3
+sr-due: 2022-06-03
+sr-interval: 16
 sr-ease: 250
 ---
 
@@ -21,11 +21,10 @@ create multiple ideas in parallel rather than one after the other
 ![](https://i.imgur.com/zPrMKlz.png)
 
 ## Functional fixation
-
 This is when you get tunnel vision about some design. This causes you to not consider other possible alternatives.
 
 For example with nail problem, almost nobody consider using the nails it the way that is needed.
 ![](https://i.imgur.com/h1c095B.png)
 
 ## 4 Design heuristics
-
+[design-heuristics](notes/design-heuristics.md)

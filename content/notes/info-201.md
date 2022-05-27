@@ -12,8 +12,20 @@ links: [_index](_index.md)
 - [assignments tiddlywiki](https://isgb.otago.ac.nz/info201/shared/assignments_release/raw/master/output/info201_assignments.html)
 - [labs folder](file:///"C:/Users/Jet%20Hughes/Documents/Personal/courses/info-201/Labs")
 
+# Labs Checklist
+- [x] 2
+- [x] 3
+- [x] 4
+- [x] 5
+- [x] 6
+- [ ] 7
+- [x] 8
+- [x] 9
+- [x] 10
+- [x] 11
+
 # Outline
-- [version-control-system](notes/version-control-system.md)
+- [version control system](notes/version-control-systems.md)
 - [stakeholders](notes/stakeholders.md)
 - [business-analyst](notes/business-analyst.md)
 - [developer](notes/developer.md)
@@ -52,6 +64,7 @@ links: [_index](_index.md)
 - [java-database-connectibity](notes/java-database-connectibity.md)
 
 # Lectures
+- [02-version-control-system](notes/02-version-control-system.md)
 - [04-requirements](notes/04-requirements)
 - [06-business-functions-and-use-cases](notes/06-business-functions-and-use-cases.md)
 - [07-business-process-modelling](notes/07-business-process-modelling.md)
@@ -65,3 +78,7 @@ links: [_index](_index.md)
 - [15-from-models-to-code-and-back](notes/15-from-models-to-code-and-back.md)
 - [16-reverse engineering](notes/16-reverse%20engineering.md)
 - [17-data-access](notes/17-data-access.md) 
+- [18-advanced-sql-1](notes/18-advanced-sql-1.md)
+- [19-advanced-sql-2](notes/19-advanced-sql-2.md)
+- [20-database-3](notes/20-database-3.md)
+- [21-software-architecture-and-templates](notes/21-software-architecture-and-templates.md)

@@ -35,24 +35,24 @@ Sutherland, Ivan Edward (January 1963). "Sketchpad: A man-machine graphical comm
 
 ![](https://i.imgur.com/PkQWnPU.png)
 
-1968 - “The Sword of Damocles” Sutherland, Ivan Edward (1968), “A head-mounted three dimensional display”
+1968 - “The Sword of Damocles�? Sutherland, Ivan Edward (1968), “A head-mounted three dimensional display�?
 
 ![](https://i.imgur.com/XPPjzNS.png)
 
 
-1968 - “The Sword of Damocles” Sutherland, Ivan Edward (1968), “A head-mounted three dimensional display”
+1968 - “The Sword of Damocles�? Sutherland, Ivan Edward (1968), “A head-mounted three dimensional display�?
 
 ![](https://i.imgur.com/cvhyx7u.png)
 
-1968 - “The Sword of Damocles” Sutherland, Ivan Edward (1968), “A head-mounted three dimensional display”
+1968 - “The Sword of Damocles�? Sutherland, Ivan Edward (1968), “A head-mounted three dimensional display�?
 
 ![](https://i.imgur.com/yYAxe2d.png)
 
-“The Mother of All Demos”, presented by Douglas Engelbart (1968) at (ACM/IEEE) Computer Society's Fall Joint Computer Conference See full demo: https://www.youtube.com/watch?v=yJDv-zdhzMY
+“The Mother of All Demos�?, presented by Douglas Engelbart (1968) at (ACM/IEEE) Computer Society's Fall Joint Computer Conference See full demo: https://www.youtube.com/watch?v=yJDv-zdhzMY
 
 ![](https://i.imgur.com/u9McBxK.png)
 
-“Dynabook” Alan C. Kay. (1972), “Personal Computer for Children of All Ages”
+“Dynabook�? Alan C. Kay. (1972), “Personal Computer for Children of All Ages�?
 
 ![](https://i.imgur.com/8IlrB6e.png)
 
@@ -60,11 +60,11 @@ Apple Newton (1993) and Apple iPad (2010)
 
 ![](https://i.imgur.com/cpLSLUm.png)
 
-Graphical User Interface supporting “What You See Is What You Get” (WYSIWYG), the Desktop metaphor (files, folders, etc.), Xerox Parc/Xeroc Star
+Graphical User Interface supporting “What You See Is What You Get�? (WYSIWYG), the Desktop metaphor (files, folders, etc.), Xerox Parc/Xeroc Star
 
 ![](https://i.imgur.com/ccSlueJ.png)
 
-Graphical User Interface supporting “What You See Is What You Get” (WYSIWYG), the Desktop metaphor (files, folders, etc.), Xerox Parc/Xeroc Star
+Graphical User Interface supporting “What You See Is What You Get�? (WYSIWYG), the Desktop metaphor (files, folders, etc.), Xerox Parc/Xeroc Star
 
 ![](https://i.imgur.com/GY8teow.png)
 
@@ -76,7 +76,7 @@ Ramesh Raskar, Greg Welch, Matt Cutts, Adam Lake, Lev Stesin and Henry Fuchs (19
 
 ![](https://i.imgur.com/7HLtUzS.png)
 
-1981 - Steve Manns’s “Wearable Computing” Start of a series of prototypes for wearable computing, cyborgs, and mediated reality (-> Google Glass) www.wearcam.org, www.eyetap.org
+1981 - Steve Manns’s “Wearable Computing�? Start of a series of prototypes for wearable computing, cyborgs, and mediated reality (-> Google Glass) www.wearcam.org, www.eyetap.org
 
 ![](https://i.imgur.com/pJtEw93.png)
 

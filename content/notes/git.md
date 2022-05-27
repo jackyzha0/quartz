@@ -5,7 +5,7 @@ tags:
 ---
 
 - Git is a tool to track changes to sets of file
-- It is the most commonly used [[notes/version-control-system]]
+- It is the most commonly used [[notes/02-version-control-system]]
 
 ## 1 Team git protocols
 
@@ -74,7 +74,7 @@ can be conceptualised as a graph
 - edges record how nodes emerged over time
 	- arrows can be read as "is derived from"
 
-git is a [[notes/version-control-system#4 3 Distributed Centralised]]
+git is a [[notes/02-version-control-system#4 3 Distributed Centralised]]
 
 - every team members has their own local copy of the repo
 - git repos are often syned with a server: github, gitlab,etc

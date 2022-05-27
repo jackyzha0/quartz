@@ -5,10 +5,11 @@
 <% tp.user.album() %>
 <% tp.user.xkdc() %>
 
+<% tp.user.stocks({a:"AAPL"}) %> 
+<% tp.user.yahoo({a:"SP500"}) %> 
+<% tp.user.yahoo({a:"TSLA"}) %>
 
-## Todos
-
-## Lecture/Labs
+## Today
 <%*
 const d = new Date().getDay()
 switch(d){
@@ -32,6 +33,13 @@ switch(d){
 }
 %>
 
+# Review
+```dataview
+list from #lecture where sr-due = date(today)
+```
+
+## Backlog
+
 ## Projects
 - python ai weekly review
 - spotify clone
@@ -39,4 +47,4 @@ switch(d){
 ## Links
 - [202 lab book](C:\Users\Jet%20Hughes\Documents\Personal\COSC202LabBook-2.pdf)
 - [i201 cousework](https://isgb.otago.ac.nz/infosci/INFO201/labs_release/raw/master/output/info201_labs.html#)
-- [i201 Assignments](https://open.spotify.com/album/23DJ3KNE5JXi61G31T2Kni?si=-zZEHXIxT2qOEN6_Ns5C5Ql)
+- [i201 Assignments](https://isgb.otago.ac.nz/info201/shared/assignments_release/raw/master/output/info201_assignments.html)

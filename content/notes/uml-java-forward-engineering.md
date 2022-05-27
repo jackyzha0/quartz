@@ -30,11 +30,11 @@ custom methods cannot be generated automatically. things like getters and setter
 6. add public getter and setter methods (trivial, can be auto generated)
 7. add remaining public or private methods (includilng implemented interfaces)
 
-## aside on visibilty
-![](https://i.imgur.com/0xM09La.png)
+## Visibility of fields and methods
+![visibility of fields and methods](https://i.imgur.com/0xM09La.png)
 
 ## use case diagrams
-
+[use-case-diagrams](notes/use-case-diagrams.md)
 each use case represents a feature. often items in a menu. sub cases can be sub menu items (extnd, include, require) (sometimes).
 
 actors *can* correspond to domain classes.
@@ -42,7 +42,6 @@ actors *can* correspond to domain classes.
 one use case might require/use several classes. e.g., UI, processor, or data classes.
 
 ## other behavioural diagrams
-
 **sequence:
 - could be used for looping and branching
 **activity:
@@ -62,44 +61,40 @@ one use case might require/use several classes. e.g., UI, processor, or data cla
 - once this code is generated is hard to fix manually
 	- better to just change the diagam and regenerate the code
 
-
 ## subclasses
-[employe diagram example](https://i.imgur.com/EAiVEkt.png)
-[eployee code example](https://i.imgur.com/bighWWJ.png)
-[code continued](https://i.imgur.com/Hxcho66.png)
+![employe diagram example](https://i.imgur.com/EAiVEkt.png)
+![eployee code example](https://i.imgur.com/bighWWJ.png)
+![code continued](https://i.imgur.com/Hxcho66.png)
 
 - this example is contrived
-
-- salariedemployee and wagedemployee inherit all public and protected methods of employee (including getters and setters, not including constructors)
+- salariedemployee and waged employee inherit all public and protected methods of employee (including getters and setters, not including constructors)
 - salariedEmpoyee and waged employee each have thier own computePay method
 
 ## Interfaces
-[diagram](https://i.imgur.com/pN660p0.png)
-[code](https://i.imgur.com/iDyoeSE.png)
+![diagram](https://i.imgur.com/pN660p0.png)
+![code](https://i.imgur.com/iDyoeSE.png)
 
 - generally preffered to subclasses
 - both salaried and waged employees must implement the computePay method
 
 # Domain class model vs ERD structure
-
 - erd are about long term storage. data persistence
 - domain models are about application process, temporary storage. 
 - database and class structures dont need to be the same
 - but you do need to be able to map between them
 
-[domain class model vs erd structure](https://i.imgur.com/feN6a9W.png)
+![domain class model vs erd structure](https://i.imgur.com/feN6a9W.png)
 
 # Example: Library system
-
 e.g., 
-[library example uml diagram](https://i.imgur.com/u4CNXOb.png)
+![library example uml diagram](https://i.imgur.com/u4CNXOb.png)
 the five horizontal items could be meny items. there will be some kind of authorisation for senior librarians. we probably wouldn't make seniour and junior librarian as differnce classes. there is not really any benefit, doing this would be overkill. We should use a single librarian class with `type` field. this field can be used for authorisation. The apply fine use case is an optional sub task. It could be implemented in many ways: checkbox on return form, sub menu item, automatic. shelve item is a differnt, its more of a business process. only thing need in the code it the change the status of the item. 
 
 ![class diagram](https://i.imgur.com/VjyvYPe.png)
 
-[code part 1 Loan class](https://i.imgur.com/6VoV54C.png)
-[code part 2 Loan class 2](https://i.imgur.com/Q8yptdE.png)
-[code part 2 Loan class 3](https://i.imgur.com/4Xst3ys.png)
+![code part 1 Loan class](https://i.imgur.com/6VoV54C.png)
+![code part 2 Loan class 2](https://i.imgur.com/Q8yptdE.png)
+![code part 2 Loan class 3](https://i.imgur.com/4Xst3ys.png)
 
 
 ## Multiplicity
@@ -111,6 +106,6 @@ min multiplicity 1 ⇒ must provide associated Loan instand when creating a Loan
 1. create loan and loanItem then use LoanItem.setLoan()
 2. use a custom LoanItem constructor to pass Loan object
 
-[multiplicity code ](https://i.imgur.com/RKa9NBy.png)
+![multiplicity code ](https://i.imgur.com/RKa9NBy.png)
 
 unidirectional association are preffered as here we need to link things birdirectionally. this example is contrived, in real life it would not be done this way.

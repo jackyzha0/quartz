@@ -31,7 +31,6 @@ Why they want to accomplish end goals /long term desires/self-image
 
 
 ### 1.1.2 Behavioural variables
-
 - activities ⇒ what the user does, frequency and volume
 - attitudes ⇒ how the uers thinks about the product domian and knowledge
 - aptitudes ⇒ what education and training the user has

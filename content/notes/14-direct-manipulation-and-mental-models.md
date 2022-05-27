@@ -27,7 +27,9 @@ the designer needs to create mapping from the real world unicers ofb objects and
 time to point to something depends on its size and distance:
 $$
 MT = C1 + C2\ log_2(2A/W)
-$$ where C1 and C2 are contstants that depend on the device. A is the distance that users have to move and W is the target size.
+$$ 
+
+where C1 and C2 are contstants that depend on the device. A is the distance that users have to move and W is the target size.
 
 - buttons and othe controls should be of reasonable size
 	- things done more often should a assigned a larger button

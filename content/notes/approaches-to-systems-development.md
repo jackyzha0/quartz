@@ -4,15 +4,15 @@ tags:
 - info201
 ---
 
-## 1 traditional
-regardless of the approach, the conecpot of the model is import for analysis design and modelling parrasigms
+regardless of the approach, the concept of the model is import for analysis, design, and modelling paradigms
 
-### 1.1 system is a collection of process
+# 1 traditional
+*system is a collection of process*
 function programming
 processes interact with data
 processes accept inputs and produce ouputs
 
-### 1.2 object oriented
-system is a collection of objects
+# 1 object oriented
+*system is a collection of [objects](notes/object.md)*
 these objects interact with each other
 and send and respond to messages

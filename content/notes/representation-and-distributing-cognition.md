@@ -13,15 +13,13 @@ memory games make finding pairs hard by introducing rules. This often happens in
 
 depeding on how you represent a problem, you can make is easy or hard. 
 
-## Working memory
+# Working memory
 users have a working memory (2±2 limit). You shouldn't require users to remember anything that you could put on a screen. 
 
 If something takes a lot of time. You wil get distracted, and forget something.
 
-
-## Naturalness principle
+# Naturalness principle
 - experiemental cognition is raised when the properties of the representation match the properties of the thing being represented
-- 
 
 # Dist cognition
 when interfaces help people disribute cognition it can

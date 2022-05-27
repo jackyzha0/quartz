@@ -6,9 +6,9 @@ tags:
 
 # 1 What are they
 
-> “…descriptions of how the system should behave, application domain information, constraints on the system’s operation, or specifications of a system property or attribute.”  - Kotonya and Sommerville, 2001, p. 6
+> “…descriptions of how the system should behave, application domain information, constraints on the system’s operation, or specifications of a system property or attribute.�?  - Kotonya and Sommerville, 2001, p. 6
 
-> “…a statement of need, something that some class of user or other stakeholder wants.” - Alexander and Stevens, 2002, p. 8
+> “…a statement of need, something that some class of user or other stakeholder wants.�? - Alexander and Stevens, 2002, p. 8
 
 Requirements are something an information system should do, or some constraint it should adhere to
 

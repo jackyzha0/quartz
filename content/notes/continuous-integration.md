@@ -20,7 +20,7 @@ Pipelines can also be run locally, and can be triggered, as you, commit, save, t
 Pipeline can produce several forms of asynchonous output such as email notifications, web badges, webhooks, etc. In addition, most VCS hosting platforms capture the terminal logs from the CI scripts.
 
 # 5 Runners
-Runners are what run the CI jobs. They are hosted and run by your git [VCS](notes/version-control-system.md) hosting system. You can also elect to have your hosting system trigger run that run on your local machine if you want to test your software on certain harware. Runners run on isolated infrastructure that is set up as needed to handle load variation. 
+Runners are what run the CI jobs. They are hosted and run by your git [VCS](notes/02-version-control-system.md) hosting system. You can also elect to have your hosting system trigger run that run on your local machine if you want to test your software on certain harware. Runners run on isolated infrastructure that is set up as needed to handle load variation. 
 
 This is the basic gitlab infrastructure which uses google cloud
 ![300](https://i.imgur.com/HTWz2mQ.png) ![300](https://i.imgur.com/V87CeQY.png)

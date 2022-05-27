@@ -27,7 +27,7 @@ debuggers are tools to help debugging
 	- stack trace of stopped program can be analysed
 
 ## 3 Imperative languages
-These are language that are executed in a step-wise, sequentail manner.
+These are languages that are executed in a step-wise, sequentail manner using the [imperative programming](notes/imperative-programming-language.md) paradigm
   
 - debug symbols
 	- e.g., method named, variable named
@@ -44,9 +44,9 @@ These are language that are executed in a step-wise, sequentail manner.
 - continue  --> go back to running code continuously
 
 ### 4.2 controlling debugger execution
-Can run normally --> debugger wil run when program crashes
+Can run normally --> debugger will run when program crashes
 
-Set Breakpoint --> debugger will stop program when/if that line is reached
+Breakpoint --> debugger will stop program when/if that line is reached
 - conditional breakpoints only suspend if a condition is true
 
 Watch point --> program is suspended when some data changes (e.g., variables)

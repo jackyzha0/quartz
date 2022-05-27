@@ -4,7 +4,7 @@ tags:
 - info201
 ---
 
-> “…to cover all of the activities involved in discovering, documenting, and maintaining a set of requirements for a computer-based system.” - Kotonya and Sommerville, 2001, p. 8
+> “…to cover all of the activities involved in discovering, documenting, and maintaining a set of requirements for a computer-based system.�? - Kotonya and Sommerville, 2001, p. 8
 
 Requirements engineering is a robust methodology for the development of requirements. It is made  up of three main steps.
 

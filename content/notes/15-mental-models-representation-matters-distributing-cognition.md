@@ -4,11 +4,10 @@ aliases:
 tags: 
 - info203
 - lecture
-sr-due: 2022-05-12
-sr-interval: 10
+sr-due: 2022-06-20
+sr-interval: 33
 sr-ease: 250
 ---
-
 
 doors are simple. But they are still done wrong very often. Incorrect labelling can give the user a wrong mental model - widening the "gulf of execution". Signifiers like handles, can create a certain mental model making you pull it. These are easier to process than labels like push and pull. Our brains are lazy, we will choose the easiest option. 
 

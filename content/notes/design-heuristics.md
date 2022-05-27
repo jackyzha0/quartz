@@ -13,4 +13,8 @@ tags:
 - [recognition-over-recall](notes/recognition-over-recall.md)
 - [flexibility-and-efficiency](notes/flexibility-and-efficiency.md)
 - [aesthetic-and-minimalist-design](notes/aesthetic-and-minimalist-design.md)
-- 
+- [help-and-documentation](notes/help-and-documentation.md)
+- [recognise-and-recover-from-errors](notes/recognise-and-recover-from-errors.md)
+
+[anti-design-heristics](notes/anti-design-heristics.md)
+[dark-patterns](notes/dark-patterns.md)

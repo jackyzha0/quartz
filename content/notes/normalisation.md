@@ -13,7 +13,7 @@ bottom up approach
 - use normalisation to verify your logical design
 	- to ensure you haven't missed anything
 
-# 1 Pros ans cons
+# 1 Pros and cons
 
 + frees from anomalies
 + separates data the belong to different entities

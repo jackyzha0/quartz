@@ -6,7 +6,7 @@ tags:
 - visual-design
 ---
 
-Gestaltkriterien “Gestalt Principles” - Law of Proximity
+Gestaltkriterien “Gestalt Principles�? - Law of Proximity
 
 Our brain is trying to help us understand the world. For example we look for eye contact. Our brain is looking with our eyes for contrast, parrallel lines, etc. Criteria that help us understand the world. 
 

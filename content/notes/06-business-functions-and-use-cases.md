@@ -3,8 +3,8 @@ title: "06-business-functions-and-use-cases"
 tags: 
 - info201 
 - lecture
-sr-due: 2022-05-11
-sr-interval: 3
+sr-due: 2022-06-04
+sr-interval: 17
 sr-ease: 270
 ---
 
@@ -12,12 +12,20 @@ sr-ease: 270
 
 1. What are the two main approaches to systems development and how do they differ
 
+- object oriented - system is a collection of objects
+- tranditional - system is a collectin of processes
+
 [business-functions](notes/business-functions.md)
+
 2. What are business functions
 
+things that a business *ought* to be doing not who, how, structure, tech
+
 3. What is a use case
+an interaction between a role and a system to achieve a goal
 
 4. What is a use case diagram used for
+a high level descruption of how people interact with a system
 
 [use-case-diagrams](notes/use-case-diagrams.md)
 

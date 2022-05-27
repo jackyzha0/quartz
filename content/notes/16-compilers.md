@@ -4,8 +4,8 @@ aliases:
 tags: 
 - cosc202
 - lecture
-sr-due: 2022-05-22
-sr-interval: 13
+sr-due: 2022-06-24
+sr-interval: 33
 sr-ease: 250
 ---
 
@@ -21,7 +21,7 @@ sr-ease: 250
 - [interpreter](notes/interpreter.md)
 
 # What is a compiler?
-A [compiler](notes/compiler.md) is used to build stored programs. Things that are stored on the disk that  you can run. They use source code in a **high level** language, and output machine code in a binary file. This file can be loaded and run by hardware. Example langauges include C, C++, Java (sorf of)
+A [compiler](notes/compiler.md) is used to build stored programs. Things that are stored on the disk that  you can run. They use source code in a **high level** language, and output machine code in a binary file which is then linked with a [linker](notes/linker.md). This file can be loaded and run by hardware. Example langauges include C, C++, Java (sorf of)
 
 An [interpreter](notes/interpreter.md) is more of an interactive tool. The interpreter program (e.g., python) runs of the CPU and execute your program. Interpreted laguages include (python, ruby, shell, R, js, PHP).
 

@@ -21,7 +21,7 @@ Inheritance via specialisation is when something is subclass of something else. 
 ## 1.2 Via Interface
 An interface is a class that specifies a set of common behaviour. 
 - public methods and constant fields only (no variable fields)
-- effectively an “inheritable” public API (no implementation) ⇒ Catalogue must implement all Search methods
+- effectively an “inheritable�? public API (no implementation) ⇒ Catalogue must implement all Search methods
 - independent of inheritance via specialisation
 - a class can implement multiple interfaces
 
@@ -37,7 +37,7 @@ in Java:
 ## 1.3 Public vs Private
 - The public API defines what a class can do 
 	- e.g., read and write data, manage a list of items 
-	- effectively a “promise” or “contract” to other classes that use it 
+	- effectively a “promise�? or “contract�? to other classes that use it 
 	- should be as stable as possible 
 
 - The private implementation defines how a class behaves 
