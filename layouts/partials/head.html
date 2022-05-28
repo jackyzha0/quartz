@@ -30,8 +30,7 @@
   {{$finalCss := $css | resources.Concat "styles.css" | resources.Fingerprint "md5" | resources.Minify  }}
   <link href="{{$finalCss.Permalink}}" rel="stylesheet" />
 
-  {{ $darkMode := resources.Get "js/darkmode.js" | resources.Fingerprint "md5" |
-  resources.Minify }}
+  {{ $darkMode := resources.Get "js/darkmode.js" | resources.Fingerprint "md5" | resources.Minify }}
   <script src="{{$darkMode.Permalink}}"></script>
   {{partial "katex.html" .}}
 
@@ -63,6 +62,8 @@
         }))
 
     const draw = () => {
+      // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page.
+
       const container = document.getElementById("graph-container")
       // retry if the graph is not ready
       if (!container) return requestAnimationFrame(draw)
@@ -100,15 +101,16 @@
   {{ $router := resources.Get "js/router.js" | resources.Fingerprint "md5" |
   resources.Minify }}
   <script type="module">
-    import { attachSPARouting } from '{{$router.Permalink}}';
-    // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page.
-
-    attachSPARouting(draw);
+    import { attachSPARouting } from "{{$router.Permalink}}"
+    attachSPARouting(draw)
   </script>
   {{else}}
   <script>
-    window.Million.navigate = (url) => window.location.href = url;
-    draw();
+    window.Million = {
+      navigate: (url) => (window.location.href = url),
+      prefetch: () => {},
+    }
+    draw()
   </script>
   {{end}}
 </head>
