@@ -190,3 +190,22 @@ img[alt="avatar"] { width: 150px; display: block; }
         line-height: 1.7rem;
     }
 }
+
+.newsletter-btn {
+  background: #232323;
+  color: #ff40ff;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 115px;
+  height: 50px;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  border: 1px solid #ff40ff;
+  cursor: pointer;
+  transition: .2s all ease-in-out;
+}
+
+.newsletter-btn:hover {
+  transform: scale(1.1);
+}

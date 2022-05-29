@@ -15,3 +15,4 @@ title: Przemyślenia
 - [[Wiedza/Przemyślenia/Negocjacje]]
 - [[Wiedza/Przemyślenia/Nuda]]
 - [[Wiedza/Przemyślenia/Moment Zrozumienia]]
+- [[Wiedza/Przemyślenia/Posiadanie]]

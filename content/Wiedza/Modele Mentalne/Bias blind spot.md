@@ -1,5 +1,0 @@
----
-title: Bias blind spot
----
-
- 

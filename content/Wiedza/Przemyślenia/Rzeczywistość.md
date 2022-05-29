@@ -18,15 +18,15 @@ Wiele wskazuje na to, że jeżeli nasz mózg ma do dyspozycji różne dane, skup
 
 ## Akcja
 Przed dostrzeżeniem rzeczywistości według [[Wiedza/Ludzie/Ray Dalio]] chronią nas dwie rzeczy: 
-- nasze [[ego]], które zawsze chce mieć rację
-- [[Blind Spots]], czyli rzeczy o których nie wiemy oraz rzeczy o których nie wiemy, że nie wiemy ([[Blindspot Matrix]])
+-  nasze [[Wiedza/Słownik/Ego]], które zawsze chce mieć rację
+- [[Wiedza/Modele Mentalne/Blind Spot Bias]], czyli rzeczy o których nie wiemy oraz rzeczy o których nie wiemy, że nie wiemy ([[Wiedza/Modele Mentalne/Blindspot Matrix]])
 
 W odkrywaniu rzeczy o których nie wiemy, najbardziej mogą nam pomóc inni ludzie oraz postawa nastawiona na [[Wiedza/Przemyślenia/Radykalna Transparentność]]. W połączeniu obie te rzeczy dają nam zdolność do zobaczenia innej [[Wiedza/Słownik/Perspektywa]].
 
 O opisanej akcji dowiesz się więcej z książki [[Wiedza/Książki/Principles]]
 
 ## Modele rzeczywistości 
-Podobnie jak [[Wiedza/Modele Mentalne/Modele mentalne]], istnieją [[Wiedza/Modele Mentalne/Modele Rzeczywistości]] o których dowiedziałem się w [[The Code of Extraordinary Mind]]. 
+Podobnie jak [[Wiedza/Modele Mentalne/Modele mentalne]], istnieją [[Wiedza/Modele Mentalne/Modele Rzeczywistości]] o których dowiedziałem się w [[Wiedza/Książki/The Code of the Extraordinary Mind]]. 
 
 Zgodnie z opisem znajdującym się powyżej, nie możemy zobaczyć rzeczywistości taką jaka jest, ponieważ jej odbiór jest zniekształcany przez różne czynniki. Tworząc i modyfikując modele rzeczywistości, jesteśmy w stanie kształtować naszą interpretację i tym samym wpływać na to jak widzimy świat. 
 

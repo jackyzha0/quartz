@@ -20,7 +20,7 @@ Podejmując codzienne decyzję, wracam myślami do moich wartości pytając "Czy
 
 Jeżeli tak, to nie zastanawiam się dwa razy.
 
-Skraca to proces decyzyjny oraz daje niemal pewność, że podjęta decyzja jest właściwa. Należy jednak jeszcze brać pod uwagę nasze postrzeganie [[Wiedza/Przemyślenia/Rzeczywistość]] a w szczególności słowa [[Wiedza/Ludzie/Ray Dalio]], który powiedział, że przed zobaczeniem rzeczywistości chronią nas nasze [[Ego]] oraz [[Blind Spots]]
+Skraca to proces decyzyjny oraz daje niemal pewność, że podjęta decyzja jest właściwa. Należy jednak jeszcze brać pod uwagę nasze postrzeganie [[Wiedza/Przemyślenia/Rzeczywistość]] a w szczególności słowa [[Wiedza/Ludzie/Ray Dalio]], który powiedział, że przed zobaczeniem rzeczywistości chronią nas nasze [[Wiedza/Słownik/Ego]] oraz [[Blind Spots]]
 
 ## Jak określiłem swoje wartości? 
 Bardzo pomógł mi w tym program "[Panuj i Posiadaj](https://zenjaskiniowca.pl/programy/panuj-i-posiadaj/)" od Rafała Mazura. Przeprowadza przez proces określania swojej filozofii życiowej oraz misji ([[Wiedza/Słownik/Kierunek]]).

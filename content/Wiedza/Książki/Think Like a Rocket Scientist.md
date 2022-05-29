@@ -21,4 +21,4 @@ A jeżeli mamy się uczyć to od najlepszych - naukowców od rakiet.
 - ego i [[Blind Spots]] to największe bariery przed poznaniem prawdy (o tym mówi też [[Wiedza/Ludzie/Ray Dalio]] w [[Wiedza/Książki/Principles]])
 - chodź w nieznane ale pamiętaj o zarządzaniu ryzykiem
 - poznaj modele mentalne (np. [[Wiedza/Modele Mentalne/First Principles]], [[Wiedza/Modele Mentalne/Second Order Thinking]])
-- są rzeczy o których wiesz, o których nie wiesz że wiesz, o których wiesz że nie wiesz i takie o których nie wiesz że nie wiesz ([[Blindspot Matrix]])
+- są rzeczy o których wiesz, o których nie wiesz że wiesz, o których wiesz że nie wiesz i takie o których nie wiesz że nie wiesz ([[Wiedza/Modele Mentalne/Blindspot Matrix]])

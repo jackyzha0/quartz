@@ -156,7 +156,7 @@ title: Modele mentalne
 - [[Wiedza/Modele Mentalne/Confabulation]]
 - [[Wiedza/Modele Mentalne/Naive realism]]
 - [[Wiedza/Modele Mentalne/Naive cynicism]]
-- [[Wiedza/Modele Mentalne/Bias blind spot]]
+- [[Wiedza/Modele Mentalne/Blind Spot Bias]]
 - [[Wiedza/Modele Mentalne/Semmelweis reflex]]
 - [[Wiedza/Modele Mentalne/Continued inflence effect]]
 - [[Wiedza/Modele Mentalne/Subjective validation]]
@@ -216,3 +216,4 @@ title: Modele mentalne
 - [[Leveling and sharpening ]]
 - [[Wiedza/Modele Mentalne/Peak-en rule]]
 - [[Wiedza/Modele Mentalne/Imposter Syndrome]]
+- [[Wiedza/Modele Mentalne/Blindspot Matrix]]]]

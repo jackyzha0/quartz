@@ -83,3 +83,4 @@ title: Książki
 - [[Wiedza/Książki/Essentialism: The Disciplined Pursuit of Less]]
 - [[Wiedza/Książki/Gladiators, Pirates and Games of Trust]]
 - [[Wiedza/Książki/Lying]]
+- [[The Code of Extraordinary Mind]]
