@@ -10,3 +10,4 @@ Kupując sprzęt uwzględniam przede wszystkim to, jak bardzo wpłynie na moje d
 - [[Optymalizacja/Sprzęt/iPhone]]
 - [[Optymalizacja/Sprzęt/StreamDeck]]
 - [[Optymalizacja/Sprzęt/Apple Watch]]
+- [[Optymalizacja/Sprzęt/Słuchawki]]

@@ -32,3 +32,6 @@ Generuję grafiki na podstawie szablonów Webflow z pomocą własnego mikroserwi
 
 ## Text Expander
 Aktualnie jako Text Expander wykorzystuję [[Optymalizacja/Narzędzia/Raycast]] lub [[Optymalizacja/Narzędzia/Keyboard Maestro]] w zależności od rodzaju rozszerzenia. Tym bardziej że poza uzupełnionymi szablonami, wykorzystuję expander do uruchamiania np. stron www (ostatnio otwarty projekt w Figmie czy Webflow) lub wykonywania operacji na plikach (przenieś na pulpit).
+
+## Użyteczne powiadomienia
+🚧

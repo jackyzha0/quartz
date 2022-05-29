@@ -1,6 +1,7 @@
 ---
 title: iPad
---- 
+---
+
 iPad to moim zdaniem jeden z najlepszych kawałków elektroniki z jakim kiedykolwiek miałem do czynienia. 
 
 ## Aplikacje

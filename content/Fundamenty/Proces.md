@@ -100,9 +100,17 @@ Uważam że niemożliwa jest fundamentalna zmiana, natomiast nasze przekonania i
 * **Najbliższe [[Wiedza/Słownik/Otoczenie]]** - Zwracam uwagę na to z kim spędzam najwięcej czasu.
 * **Proaktywność** - Aktywnie utrzymuję kontakt z wybranymi osobami.
 * **Odkrywanie** - Intencjonalnie docieram do osób z którymi "czuję" że chcę mieć kontakt.
-* **Ograniczenie** - Eliminuję spotkania i przebywanie wśród osób, które zabierają mi energię (lub ja im).
+* **Ograniczenie** - Eliminuję spotkania i przebywanie wśród osób, które zabierają mi energię (lub ja im). Ograniczenia usprawniają też proces [[Wiedza/Przemyślenia/Podejmowanie decyzji]]
 
 > Otaczaj się ludźmi, którzy osiągnęli to, co Ty chcesz osiągnąć i masz z nimi coś wspólnego.
+
+### Styl pracy
+Często otrzymuję pytania "Jak Ty to wszystko ogarniasz?". Nie ma w tym żadnej tajemnicy i składają się na to trzy rzeczy: 
+- Pracuję całkiem sporo (~10-12 godzin dziennie 6 dni w tygodniu)
+- Utrzymuję możliwie maksymalne [[Wiedza/Przemyślenia/Skupienie]]
+- Usprawniam realizowane procesy przez wykorzystanie [[Optymalizacja/Automatyzacja/Automatyzacja]]
+
+Inaczej mówiąc, robię wszystko aby jak najlepiej wykorzystywać swój czas. Do tego niezbędne jest zbudowanie silnych [[Fundamenty/Proces#Fundamenty]] oraz przestrzeni do tego aby skutecznie odpoczywać. Jedna z ważniejszych sugestii jaką otrzymałem w tym temacie brzmiała: "Adam, jeżeli ciężko pracujesz, musisz też na maksa odpoczywać". Całkowicie się z tym zgadzam.
 
 #### 🔗 Źródła:
 - [[Wiedza/Ludzie/Naval Ravikant#Naval Kapil Gupta]]

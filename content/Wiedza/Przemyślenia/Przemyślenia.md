@@ -16,3 +16,7 @@ title: Przemyślenia
 - [[Wiedza/Przemyślenia/Nuda]]
 - [[Wiedza/Przemyślenia/Moment Zrozumienia]]
 - [[Wiedza/Przemyślenia/Posiadanie]]
+- [[Wiedza/Przemyślenia/Relaks]]
+- [[Wiedza/Przemyślenia/Skupienie]]
+- [[Wiedza/Przemyślenia/Szczęście]]
+- [[Wiedza/Przemyślenia/Energia]]
