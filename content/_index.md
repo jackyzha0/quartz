@@ -15,7 +15,7 @@ W tym miejscu dzielę się z Tobą wszystkim co wiem. Stworzyłem je przede wszy
 * [[Wiedza/Modele Mentalne/Modele mentalne]] z których świadomie korzystam
 * Notatki z przeczytanych przeze mnie [[Wiedza/Książki/Książki]]
 * [[Wiedza/Ludzie/Ludzie]] jakich obserwuję w Internecie
-* Moje [[Wiedza/Przemyślenia/Przemyślenia]] i styl działania
+* Moje [[Wiedza/Przemyślenia/Przemyślenia]] i styl działania (np. [[Wiedza/Przemyślenia/Skupienie]])
 * Moje notatki na temat Programowania, Projektowania, Marketingu i szeroko pojętego Biznesu
 * [[Optymalizacja/Sprzęt/Sprzęt]] z jakiego korzystam
 * Opisy wykorzystywanych przeze mnie [[Optymalizacja/Automatyzacja/Automatyzacja]] i [[Optymalizacja/Narzędzia/Narzędzia]]
