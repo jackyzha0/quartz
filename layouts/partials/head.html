@@ -63,7 +63,7 @@
 
     const draw = () => {
       // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page.
-
+      {{if $.Site.Data.config.enableFooter}}
       const container = document.getElementById("graph-container")
       // retry if the graph is not ready
       if (!container) return requestAnimationFrame(draw)
@@ -78,7 +78,7 @@
         {{$.Site.Data.graphConfig.enableLegend}},
         {{$.Site.Data.graphConfig.enableZoom}}
       );
-
+      {{end}}
       {{if $.Site.Data.config.enableLinkPreview}}
       initPopover(
         {{strings.TrimRight "/" .Site.BaseURL }},
