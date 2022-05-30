@@ -10,11 +10,7 @@
     end }}
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link
-    rel="shortcut icon"
-    type="image/png"
-    href="{{$.Site.BaseURL}}/icon.png"
-  />
+  <link rel="shortcut icon" type="image/png" href="{{$.Site.BaseURL}}/icon.png" />
 
   <!-- CSS Stylesheets and Fonts -->
   <link
@@ -61,12 +57,12 @@
           content,
         }))
 
-    const draw = () => {
-      // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page.
+    const render = () => {
+      // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page, adds event listeners, etc. If you are only dealing with basic DOM replacement, use the init function
       {{if $.Site.Data.config.enableFooter}}
       const container = document.getElementById("graph-container")
       // retry if the graph is not ready
-      if (!container) return requestAnimationFrame(draw)
+      if (!container) return requestAnimationFrame(render)
       // clear the graph in case there is anything within it
       container.textContent = ""
 
@@ -79,6 +75,7 @@
         {{$.Site.Data.graphConfig.enableZoom}}
       );
       {{end}}
+
       {{if $.Site.Data.config.enableLinkPreview}}
       initPopover(
         {{strings.TrimRight "/" .Site.BaseURL }},
@@ -86,8 +83,12 @@
         {{$.Site.Data.config.enableLatex}}
       )
       {{end}}
+    }
+
+    const init = (doc = document) => {
+      // NOTE: everything within this callback will be executed for initial page navigation. This is a good place to put JavaScript that only replaces DOM nodes.
       {{if $.Site.Data.config.enableLatex}}
-      renderMathInElement(document.body, {
+      renderMathInElement(doc.body, {
         delimiters: [
           {left: '$$', right: '$$', display: true},
           {left: '$', right: '$', display: false},
@@ -102,7 +103,7 @@
   resources.Minify }}
   <script type="module">
     import { attachSPARouting } from "{{$router.Permalink}}"
-    attachSPARouting(draw)
+    attachSPARouting(init, render)
   </script>
   {{else}}
   <script>
@@ -110,7 +111,8 @@
       navigate: (url) => (window.location.href = url),
       prefetch: () => {},
     }
-    draw()
+    init()
+    render()
   </script>
   {{end}}
 </head>
