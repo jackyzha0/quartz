@@ -1,4 +1,4 @@
-baseURL = "https://dhammacharts.org/quartz/"
+baseURL = "https://www.dhammacharts.org/quartz/"
 languageCode = "en-us"
 googleAnalytics = "G-XYFD95KB4J"
 pygmentsUseClasses = true
