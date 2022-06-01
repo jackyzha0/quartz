@@ -62,6 +62,12 @@
         }))
 
     const draw = () => {
+
+      const siteBaseURL = new URL({{$.Site.BaseURL}});
+      const pathBase = siteBaseURL.pathname;
+      const pathWindow = window.location.pathname;
+      const isHome = pathBase == pathWindow ? true : false;
+
       // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page.
       {{if $.Site.Data.config.enableFooter}}
       const container = document.getElementById("graph-container")
@@ -70,14 +76,36 @@
       // clear the graph in case there is anything within it
       container.textContent = ""
 
-      drawGraph(
-        {{strings.TrimRight "/" .Site.BaseURL}},
-        {{$.Site.Data.graphConfig.paths}},
-        {{$.Site.Data.graphConfig.depth}},
-        {{$.Site.Data.graphConfig.enableDrag}},
-        {{$.Site.Data.graphConfig.enableLegend}},
-        {{$.Site.Data.graphConfig.enableZoom}}
-      );
+      if (isHome && {{$.Site.Data.graphConfig.enableGlobalGraph}}) {
+        drawGraph(
+          {{strings.TrimRight "/" .Site.BaseURL}},
+          {{$.Site.Data.graphConfig.paths}},
+          {{$.Site.Data.graphConfig.depthGG}},
+          {{$.Site.Data.graphConfig.enableDragGG}},
+          {{$.Site.Data.graphConfig.enableLegendGG}},
+          {{$.Site.Data.graphConfig.enableZoomGG}},
+          true,
+          {{$.Site.Data.graphConfig.opacityScaleGG}},
+          {{$.Site.Data.graphConfig.scaleGG}},
+          {{$.Site.Data.graphConfig.repelForceGG}},
+          {{$.Site.Data.graphConfig.fontSizeGG}}
+        );
+      } else {
+        drawGraph(
+          {{strings.TrimRight "/" .Site.BaseURL}},
+          {{$.Site.Data.graphConfig.paths}},
+          {{$.Site.Data.graphConfig.depth}},
+          {{$.Site.Data.graphConfig.enableDrag}},
+          {{$.Site.Data.graphConfig.enableLegend}},
+          {{$.Site.Data.graphConfig.enableZoom}},
+          false,
+          {{$.Site.Data.graphConfig.opacityScale}},
+          {{$.Site.Data.graphConfig.scale}},
+          {{$.Site.Data.graphConfig.repelForce}},
+          {{$.Site.Data.graphConfig.fontSize}}
+        );
+      }
+
       {{end}}
       {{if $.Site.Data.config.enableLinkPreview}}
       initPopover(
