@@ -1,6 +1,6 @@
 ---
 title: Stream Deck
---- 
+---
 
 ## Czym jest StreamDeck?
 Elgato StreamDeck to rodzaj dodatkowej klawiatury, na której klawiszach można wyświetlać dowolne grafiki, również dynamiczne (automatyczna podmiana zdjęcia i opisu).
@@ -34,5 +34,13 @@ Podczas pracy najwięcej czasu i energii zabiera zmiana kontekstu. Skonfigurowa�
 - sygnalizowanie, że włączone jest nagrywanie
 
 ### Aktywności botów 
-Kategoryzuję moje [[Optymalizacja/Automatyzacja/Automatyzacja]] według avatarów botów, które realizują dla mnie określone zadania. Ich scenariusze zaprojektowane są w taki sposób aby dało się je ze sobą łączyć lub wywoływać oddzielnie. Każdy z tych scenariuszy oraz zestawów scenariuszy podłączony jest pod mój 
+Kategoryzuję moje [[Optymalizacja/Automatyzacja/Automatyzacja]] według avatarów botów, które realizują dla mnie określone zadania. Ich scenariusze zaprojektowane są w taki sposób aby dało się je ze sobą łączyć lub wywoływać oddzielnie.
 
+![](https://space.overment.com/Shared-Image-2022-06-01-14-14-06-gTWCY/Shared-Image-2022-06-01-14-14-06.png)
+
+### Dodatkowe spostrzeżenia  
+Stream Deck najlepiej sprawdza się w połączeniu z [[Optymalizacja/Narzędzia/Keyboard Maestro]], ponieważ dzięki temu jesteśmy w stanie przypisać dowolne makro do przycisku. 
+
+Jednocześnie sprawia to że skonfigurowanie Stream Decka staje się wymagające technicznie oraz koncepcyjnie, ponieważ przygotowanie faktycznie użytecznych makr nie jest oczywiste. 
+
+Najważniejszą korzyścią z SD jest to, że można z jego pomocą aktywować różne funkcje systemu "szybciej". Minusem jest fakt, że nie mając do niego dostępu (np. na wyjeździe z laptopem) zaburzamy swój cały workflow. W rezultacie coraz częściej korzystam z [[Optymalizacja/Narzędzia/Raycast]] czy [[Projekty/Design Maestro]] niż Stream Deck. 

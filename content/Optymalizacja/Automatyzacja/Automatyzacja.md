@@ -50,9 +50,9 @@ Nicky to designer tworzący niemal wszystkie grafiki które pojawiają się w mo
 ![avatar](https://space.overment.com/30DlrdWqwsrOkAr42ReG/Ellie-Researcher.png)
 Ellie pomaga mi w pozostawaniu na bieżąco z źródłami wiedzy z mojego [[Fundamenty/System zdobywania wiedzy]] Odwiedza blogi, newslettery i strony www, zbierając informacje które mogą być przydatne dla mnie lub na potrzeby tworzonych przeze mnie materiałów. Ellie dodaje też nowe wpisy do mojego projektu [brain.overment.com](https://brain.overment.com) oraz do zasobów [[Projekty/Ahoy!]]
 
-### Luke - Studio
+### Luke - Content
 ![avatar](https://space.overment.com/hs32tUAIugXVHnxgJjDM/Luke-Studio.png)
-Rolą Luke'a jest organizacja plików do nagrań, przesyłanie ich pomiędzy serwisami, tworzenie kopii zapasowych oraz przygotwywanie struktur materiałów. Np. po nagraniu materiału tworzy dla mnie wpis w Airtable, wgrywa pliki np. na YouTube, aktualizuje notatkę w [brain.overment.com](https://brain.overment.com) i z pomocą Claire dodaje mi zadania zwiazane z uzupełnieniem treści przed publikacją.
+Rolą Luke'a jest pomoc mi w przygotowaniu materiałów. Początkowo wyłącznie wideo a teraz również artykułów i plików audio. Zajmuje się przesyłaniem plików pomiędzy serwisami, tworzeniem kopii zapasowych oraz przygotowywaniem struktur materiałów. Np. po nagarniu materiału tworzy dla mnie wpis w Airtable z odpowiednio przygotowanymi linkami, aktualizuje notatki w brain.overment.com i z pomocą Claire dodaje mi zadania związane z uzupełnianiem treści przed ich publikacją.
 
 ### Rose - Newsletter
 ![avatar](https://space.overment.com/Bj4t3VyAuX4IZFC8aZ9f/Rose-Newsletter.png)
