@@ -9,7 +9,7 @@ enableLegend: false
 enableDrag: true
 enableZoom: true
 depth: 1 # set to -1 to show full graph
-scale: 1
+scale: 1.2
 repelForce: 2
 centerForce: 1
 linkDistance: 1
@@ -22,7 +22,7 @@ enableLegendGG: false
 enableDragGG: true
 enableZoomGG: true
 depthGG: -1 # set to -1 to show full graph
-scaleGG: 1.2
+scaleGG: 1.4
 repelForceGG: 1
 centerForceGG: 1
 linkDistanceGG: 1
