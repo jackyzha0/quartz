@@ -79,30 +79,16 @@
       if (isHome && {{$.Site.Data.graphConfig.enableGlobalGraph}}) {
         drawGraph(
           {{strings.TrimRight "/" .Site.BaseURL}},
-          {{$.Site.Data.graphConfig.paths}},
-          {{$.Site.Data.graphConfig.depthGG}},
-          {{$.Site.Data.graphConfig.enableDragGG}},
-          {{$.Site.Data.graphConfig.enableLegendGG}},
-          {{$.Site.Data.graphConfig.enableZoomGG}},
           true,
-          {{$.Site.Data.graphConfig.opacityScaleGG}},
-          {{$.Site.Data.graphConfig.scaleGG}},
-          {{$.Site.Data.graphConfig.repelForceGG}},
-          {{$.Site.Data.graphConfig.fontSizeGG}}
+          {{$.Site.Data.graphConfig.paths}},
+          {{$.Site.Data.graphConfig.globalGraph}}
         );
       } else {
         drawGraph(
           {{strings.TrimRight "/" .Site.BaseURL}},
-          {{$.Site.Data.graphConfig.paths}},
-          {{$.Site.Data.graphConfig.depth}},
-          {{$.Site.Data.graphConfig.enableDrag}},
-          {{$.Site.Data.graphConfig.enableLegend}},
-          {{$.Site.Data.graphConfig.enableZoom}},
           false,
-          {{$.Site.Data.graphConfig.opacityScale}},
-          {{$.Site.Data.graphConfig.scale}},
-          {{$.Site.Data.graphConfig.repelForce}},
-          {{$.Site.Data.graphConfig.fontSize}}
+          {{$.Site.Data.graphConfig.paths}},
+          {{$.Site.Data.graphConfig.localGraph}}
         );
       }
 
