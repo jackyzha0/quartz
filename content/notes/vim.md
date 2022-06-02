@@ -6,10 +6,10 @@ tags:
 
 
 ## Navigation 👻
-![[vim.exiting]]
+![[vim exiting]]
 
 
-![[vim.movements]]
+![[vim movements]]
 
 ## Text manipulation
 |                                      |                                                      |                          
