@@ -66,7 +66,7 @@
       const siteBaseURL = new URL({{$.Site.BaseURL}});
       const pathBase = siteBaseURL.pathname;
       const pathWindow = window.location.pathname;
-      const isHome = pathBase == pathWindow ? true : false;
+      const isHome = pathBase == pathWindow;
 
       // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page.
       {{if $.Site.Data.config.enableFooter}}
