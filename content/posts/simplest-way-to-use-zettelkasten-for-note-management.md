@@ -22,7 +22,7 @@ Now that we understand the basic concepts let's get into my workflow! So what I 
 2. If I feel it's important, add links to atomic notes
 3. If I have the time and energy, expand upon my atomic note.
 
-No regular review, no complicated setup procedure, and no need for categorization. This is a simple yet powerful way to take notes.
+No regular review, no complicated setup procedure, and no need for categorization. This is a simple yet powerful way to take notes. If you're interested to see an example, check out my [[posts/zettelkasten-example-1-go-the-collectors-fallacy|Zettelkasten examples]] blog post.
 
 ## What note-taking app?
 I love Obsidian and it's my note-taking application of choice, but it isn't [[posts/writing-quick-notes-in-obsidian|great for taking quick notes]]. This is why I created [Fleeting Notes](https://fleetingnotes.app/) a scratchpad for taking quick and connected notes. With this app, I can seamlessly create new notes and build/traverse connections.

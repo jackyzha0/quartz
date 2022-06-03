@@ -4,7 +4,7 @@ date: 2022-06-03
 lastmod: 2022-06-03
 ---
 ## Intro Blurb
-I've talked a lot about how [[posts/zettelkasten-shouldnt-be-complicated-but-it-is|Zettelkasten is complicated]] but I've never dove deeper into exactly how I use Zettelkasten to take notes. In order to [[notes/lead by example|lead by example]], every week, I will read an article and take connected notes [[posts/simplest-way-to-use-zettelkasten-for-note-management|my way]]. Hopefully, this process can give you ideas about how to improve your Zettelkasten workflow. Also, feel free to suggest articles you want me to read next week.
+I've talked a lot about how [[posts/zettelkasten-shouldnt-be-complicated-but-it-is|Zettelkasten is complicated]] but I've never dove deeper into exactly how I use Zettelkasten to take notes. In order to [[notes/lead by example|lead by example]], every week, I will read an article and [[posts/simplest-way-to-use-zettelkasten-for-note-management|take connected notes]]. Hopefully, this process can give you ideas about how to improve your Zettelkasten workflow. Also, feel free to suggest articles you want me to read next week.
 
 ## My Notes
 **Article Link:** https://zettelkasten.de/posts/collectors-fallacy/
