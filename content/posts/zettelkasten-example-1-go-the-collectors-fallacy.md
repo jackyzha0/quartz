@@ -18,6 +18,7 @@ I've talked a lot about how [[posts/zettelkasten-shouldnt-be-complicated-but-it-
 - [[notes/brain is better with small cycles of info|brain is better with small cycles of info]]
 
 ## A Video
+Here is a video of me taking the notes + my commentary.
 {{< youtube t7UlvWJ17U4 >}}
 
 
