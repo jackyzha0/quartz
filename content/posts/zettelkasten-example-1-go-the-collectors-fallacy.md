@@ -1,5 +1,5 @@
 ---
-title: "Zettelkasten Example #1: The Collector's Fallacy"
+title: "Learn Zettelkasten by Example #1: The Collector's Fallacy"
 date: 2022-06-03
 lastmod: 2022-06-03
 ---
