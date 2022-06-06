@@ -72,21 +72,13 @@
       // clear the graph in case there is anything within it
       container.textContent = ""
 
-      if (isHome && {{$.Site.Data.graphConfig.enableGlobalGraph}}) {
-        drawGraph(
+      const drawGlobal = isHome && {{$.Site.Data.graphConfig.enableGlobalGraph}};
+      drawGraph(
           {{strings.TrimRight "/" .Site.BaseURL}},
-          true,
+          drawGlobal,
           {{$.Site.Data.graphConfig.paths}},
-          {{$.Site.Data.graphConfig.globalGraph}}
+          drawGlobal ? {{$.Site.Data.graphConfig.globalGraph}} : {{$.Site.Data.graphConfig.localGraph}}
         );
-      } else {
-        drawGraph(
-          {{strings.TrimRight "/" .Site.BaseURL}},
-          false,
-          {{$.Site.Data.graphConfig.paths}},
-          {{$.Site.Data.graphConfig.localGraph}}
-        );
-      }
 
       {{end}}
 
