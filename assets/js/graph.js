@@ -1,4 +1,4 @@
-async function drawGraph(baseUrl,isHome,pathColors,graphConfig) {
+async function drawGraph(baseUrl, isHome, pathColors, graphConfig) {
 
   let {
   depth,
