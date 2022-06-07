@@ -1,3 +1,6 @@
+---
+title: "taylor"
+---
 #math/calculus 
 
 # formula

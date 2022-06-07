@@ -9,8 +9,9 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "econometrics/stats-econ-lecture-notes-plus.md",
-            "mode": "source"
+            "file": "taylor.md",
+            "mode": "source",
+            "source": false
           }
         },
         "group": "06317d38b659cb78"
@@ -21,8 +22,9 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "econometrics/stats-econ-lecture-notes-plus.md",
-            "mode": "preview"
+            "file": "taylor.md",
+            "mode": "preview",
+            "source": false
           }
         },
         "group": "06317d38b659cb78"
@@ -52,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "{{q}",
+                "query": "tag:#math/calculus",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -76,7 +78,8 @@
               "type": "markdown",
               "state": {
                 "file": "sequence.md",
-                "mode": "preview"
+                "mode": "preview",
+                "source": false
               }
             }
           }
@@ -101,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "econometrics/stats-econ-lecture-notes-plus.md",
+                "file": "taylor.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +121,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "econometrics/stats-econ-lecture-notes-plus.md",
+                "file": "taylor.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -130,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "econometrics/stats-econ-lecture-notes-plus.md"
+                "file": "taylor.md"
               }
             }
           },
@@ -154,6 +157,8 @@
   },
   "active": "e6ce38905c7e26b9",
   "lastOpenFiles": [
+    "taylor.md",
+    "binomial series.md",
     "econometrics/stats-econ-lecture-notes-plus.md",
     "recovered stats lecture notes.md",
     "econometrics/stats-econ-lecture-notes.md",
@@ -161,8 +166,6 @@
     "mean value theorem.md",
     "Integration by Parts.md",
     "systems of linear equations and matrices..md",
-    "ss12.md",
-    "ss15.md",
-    "ss16.md"
+    "ss12.md"
   ]
 }

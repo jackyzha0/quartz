@@ -1,3 +1,6 @@
+---
+title: binomial series
+---
 #math/calculus 
 
 $|x|<1$

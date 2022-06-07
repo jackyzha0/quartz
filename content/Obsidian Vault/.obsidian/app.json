@@ -3,6 +3,5 @@
   "vimMode": true,
   "useMarkdownLinks": false,
   "legacyEditor": false,
-  "livePreview": true,
-  "newLinkFormat": "absolute"
+  "livePreview": true
 }
