@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Eternalfamiliesall.md",
+            "file": "Goals.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Eternalfamiliesall.md",
+            "file": "Goals.md",
             "mode": "preview"
           }
         },
@@ -101,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Eternalfamiliesall.md",
+                "file": "Goals.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Eternalfamiliesall.md",
+                "file": "Goals.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -130,7 +130,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Eternalfamiliesall.md"
+                "file": "Goals.md"
               }
             }
           },
@@ -154,6 +154,7 @@
   },
   "active": "e6ce38905c7e26b9",
   "lastOpenFiles": [
+    "Goals.md",
     "Eternalfamiliesall.md",
     "binomial series.md",
     "taylor.md",
@@ -162,7 +163,6 @@
     "Series.md",
     "strategies for computing sum of series.md",
     "remnote backup/taxes.md",
-    "remnote backup/why square and then square root when getting standard deviation??.md",
-    "remnote backup/The Eternal Family Unit 6 .md"
+    "remnote backup/why square and then square root when getting standard deviation??.md"
   ]
 }
