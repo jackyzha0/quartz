@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "binomial series.md",
+            "file": "Eternalfamiliesall.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "binomial series.md",
+            "file": "Eternalfamiliesall.md",
             "mode": "preview"
           }
         },
@@ -52,7 +52,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#math/calculus",
+                "query": "eternalfamiliesall",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -101,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "binomial series.md",
+                "file": "Eternalfamiliesall.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "binomial series.md",
+                "file": "Eternalfamiliesall.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -130,7 +130,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "binomial series.md"
+                "file": "Eternalfamiliesall.md"
               }
             }
           },
@@ -152,8 +152,9 @@
     "direction": "horizontal",
     "width": 300
   },
-  "active": "cdd64046e6539952",
+  "active": "e6ce38905c7e26b9",
   "lastOpenFiles": [
+    "Eternalfamiliesall.md",
     "binomial series.md",
     "taylor.md",
     "power series.md",
@@ -162,7 +163,6 @@
     "strategies for computing sum of series.md",
     "remnote backup/taxes.md",
     "remnote backup/why square and then square root when getting standard deviation??.md",
-    "remnote backup/The Eternal Family Unit 6 .md",
-    "Pasted image 20220518001233.png"
+    "remnote backup/The Eternal Family Unit 6 .md"
   ]
 }
