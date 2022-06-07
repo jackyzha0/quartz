@@ -5,6 +5,6 @@ resources
 content/.obsidian
 assets/indices/linkIndex.json
 assets/indices/contentIndex.json
-content/Obsidian\ Vault/textbooks/
-content/Obsidian\ Vault/private/
-content/Obsidian\ Vault/pocket/
+content/vault/textbooks/
+content/vault/private/
+content/vault/pocket/
