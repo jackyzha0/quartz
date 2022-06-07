@@ -1,4 +1,4 @@
-not yaml
+#church 
 - Required Readings Study Guide
     - Reminder: In order to protect the integrity of our class quizzes and exams no questions from our study guides, quizzes, midterm, or final may be posted on-line in any public venue/format. This includes Google Docs as well as the various quizzing websites/apps like Quizlet, StudyBlue, etc. You are obviously free (and encouraged) to use any and all such sites, but if you include any questions from our class material, they must be made private so no one else can see them and they cannot be shared with others in or out of BYU. Besides the associated copyright laws (yep - weird but a teachers materials such as study guides et al. are actually copyright protected). this policy also pertains to BYU's Academic Honesty Policy and will be treated as such.
     - 

@@ -1,3 +1,4 @@
+#econ
 - [[firms in competitive markets]] vs monopolies
     - ![](media/20L42MhGaErfvUqPVKb-NAzBDASkvjVQlHtQ3FHHILYONZ6ko1XpBGtRXbQTqdUBvSX9XqB7_bTSEVQJM6L4QzCqAkWcatk16ETC.png)
     - ![](media/FWVU-gN-pLmrzKQA1Hdpn5I2clXhenMeu0UduDexwDIEOtdRXM9j-Yh4YOtj_72ydZatsdH9A9pROOmPULFOovG1F7z9XSrDo-r4.png)

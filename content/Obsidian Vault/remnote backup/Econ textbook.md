@@ -1,4 +1,5 @@
-- #econ
+
+#econ
 - 1
     - nutshell
         - The fundamental lessons about individual decision making are that people face trade-offs among alternative goals, that the cost of any action is measured in terms of forgone opportunities, that rational people make decisions by comparing marginal costs and marginal benefits, and that people change their behavior in response to the incentives they face.

@@ -1,3 +1,4 @@
+#econ
 - Why Does the Aggregate-Demand Curve Slope Downward?
 - 
     - The Wealth Effect↔A lower price level increases real wealth, stimulating spending on consumption.

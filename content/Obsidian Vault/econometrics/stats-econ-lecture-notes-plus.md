@@ -3579,7 +3579,7 @@ Sample Variance
 
     2.  Wages gap between men and women:
 
-> $n_{w} = 40$, ${{}_{w} = \$ 32,\ \sigma_{w} = \$ 13,\ \ n}_{m} = 45$,
+> $n_{w} = 40$, ${q}_{w}} = \$ 32,\ \sigma_{w} = \$ 13,\ \ n}_{m} = 45$,
 > ${}_{m} = \$ 35$, $\sigma_{m} = \$ 15$.
 
 1.  95% confidence intervals for men
@@ -3804,7 +3804,7 @@ $\sim \chi^{2}\left( n - 1 \right) + \chi^{2}\left( 1 \right) + 0$
     2.  Critical value $90.53$
 
     3.  Test statistic
-        > $\left( n - 1 \right)\frac{S^{2}}{\sigma^{2}} = 70\left( \frac{{5.3}^{2}}{4^{2}} \right) = 122.9$,
+        > $\left( n - 1 \right)\frac{S^{2}}{\sigma^{2}} = 70\left( \frac{5.3^{2}}{4^{2}} \right) = 122.9$,
         > reject $H_{0}$ (from Excel, p-value is $10^{- 5}$)
 
 # L22 Regression Estimation (WMS 11.1-3)
@@ -4050,7 +4050,7 @@ Intercept estimator
     > unbiased ☺!
 
 > It can be shown that
-> $V\left( {\widehat{\beta}}_{0} \right) = \sigma_{\varepsilon}^{2}\left( \frac{1}{n} + \frac{{}^{2}}{\left( n - 1 \right)s_{x}^{2}} \right) \rightarrow 0$;
+> $V\left( {\widehat{\beta}}_{0} \right) = \sigma_{\varepsilon}^{2}\left( \frac{1}{n} + \frac{q}^{2}}{\left( n - 1 \right)s_{x}^{2}} \right) \rightarrow 0$;
 > consistent ☺!
 
 1.  \[For those curious,
@@ -4063,7 +4063,7 @@ Intercept estimator
 >
 > $= V\left( \right) + {}^{2}V\left( {\widehat{\beta}}_{1} \right) - 2\text{Cov}\left( ,{\widehat{\beta}}_{1} \right)$
 >
-> $= \frac{\sigma_{\varepsilon}^{2}}{n} + {}^{2}\frac{\sigma_{\varepsilon}^{2}}{S_{\text{xx}}} - 0 = \sigma_{\varepsilon}^{2}\left( \frac{1}{n} + \frac{{}^{2}}{\left( n - 1 \right)s_{x}^{2}} \right) \rightarrow 0$
+> $= \frac{\sigma_{\varepsilon}^{2}}{n} + {}^{2}\frac{\sigma_{\varepsilon}^{2}}{S_{\text{xx}}} - 0 = \sigma_{\varepsilon}^{2}\left( \frac{1}{n} + \frac{q}^{2}}{\left( n - 1 \right)s_{x}^{2}} \right) \rightarrow 0$
 >
 > Note: $C\left( ,{\widehat{\beta}}_{1} \right) = 0$ because…
 >
@@ -4097,7 +4097,7 @@ Prediction estimator
 
 > \[$V\left( \widehat{\beta_{0} + \beta_{1}x_{i}} \right) = V\left( {\widehat{\beta}}_{0} \right) + x_{i}^{2}V\left( {\widehat{\beta}}_{1} \right) + 2Cov\left( {\widehat{\beta}}_{0},{\widehat{\beta}}_{1}x_{i} \right)$
 >
-> $= \sigma_{\varepsilon}^{2}\left( \frac{1}{n} + \frac{{}^{2}}{S_{\text{xx}}} \right) + {(x_{i})}^{2}\frac{\sigma_{\varepsilon}^{2}}{S_{\text{xx}}} - 2x_{i}\frac{\sigma_{\varepsilon}^{2}}{S_{\text{xx}}}$
+> $= \sigma_{\varepsilon}^{2}\left( \frac{1}{n} + \frac{q}^{2}}{S_{\text{xx}}} \right) + {(x_{i})}^{2}\frac{\sigma_{\varepsilon}^{2}}{S_{\text{xx}}} - 2x_{i}\frac{\sigma_{\varepsilon}^{2}}{S_{\text{xx}}}$
 > (since
 > $\text{Cov}\left( {\widehat{\beta}}_{0},{\widehat{\beta}}_{1} \right) = Cov\left( - {\widehat{\beta}}_{1},{\widehat{\beta}}_{1} \right) = 0 - \frac{\sigma_{\varepsilon}^{2}}{S_{\text{xx}}}$)
 > $= \sigma_{\varepsilon}^{2}\left( \frac{1}{n} + \frac{\left( x_{i} - \right)^{2}}{S_{\text{xx}}} \right) = \sigma_{\varepsilon}^{2}\left( \frac{1}{n} + \frac{\left( x_{i} - \right)^{2}}{S_{\text{xx}}} \right)$\]

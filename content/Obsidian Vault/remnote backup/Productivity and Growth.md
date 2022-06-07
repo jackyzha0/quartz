@@ -1,3 +1,4 @@
+#econ
 - Types of Capital
     - Human Capital per Worker↔Skills gained and expertise had within people ^693237
     - Natural Resources per Worker↔Ratio of natural resources to population. Brazil is big on this.

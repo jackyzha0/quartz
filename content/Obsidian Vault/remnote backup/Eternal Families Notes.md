@@ -1,3 +1,4 @@
+#church
 - [[https://www.churchofjesuschrist.org/study/general-conference/2015/04/why-marriage-why-family?lang=eng]]
     - According to Elder Christofferson, why is marriage more than the love couples feel for each other?↔It's a post/ office in the kingdom of God. Best setting for God's plan to thrive. 
     - Why can no person or government alter the divine order of matrimony?↔It is not a human invention. Such marriage is indeed “from above, from God” and is as much a part of the plan of happiness as the Fall and the Atonement.

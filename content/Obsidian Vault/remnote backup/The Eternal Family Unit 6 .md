@@ -1,3 +1,4 @@
+#econ
 - [Marriage in the Lord’s Way, Part Two ](https://www.churchofjesuschrist.org/study/ensign/1998/06/marriage-in-the-lords-way-part-one?lang=eng)
 - [Marriage in the Lord’s Way, Part One  ](https://www.churchofjesuschrist.org/study/ensign/1998/06/marriage-in-the-lords-way-part-one?lang=eng)
     - What did Elder Kofford say he believes sealing refers to?→the “sealing ordinance” or “being sealed” rather than just “being married in the temple.”

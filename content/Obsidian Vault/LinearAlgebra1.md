@@ -1,6 +1,6 @@
 ---
 cards-deck: default_obsidian
-date: [[2022-04-27]]
+day: [[2022-04-27]]
 tags: #linear_algebra
 ---
 

@@ -1,7 +1,5 @@
 ---
-title: |
-  Econ 378 Lecture Notes\
-  Joseph McMurray
+title: Econ 378 Lecture Notes \ Joseph McMurray
 ---
 
 # L0 Introduction
@@ -2109,7 +2107,7 @@ ii. Excel: use VAR.S or STDEV.S, not =VAR.P or =STDEV.P
     -  Relating quantitative and binary variables: conditional distributions, conditional means $E(X = 0)$, $E(X = 1)$
 
     -  Wages gap between men and women:
- $n_{w} = 40$, ${{}_{w} =\$ 32,\sigma_{w} =\$ 13,n}_{m} = 45$, ${}_{m} =\$ 35$, $\sigma_{m} =\$ 15$.
+ $n_{w} = 40$, ${q}_{w} =\$ 32,\sigma_{w} =\$ 13,n}_{m} = 45$, ${}_{m} =\$ 35$, $\sigma_{m} =\$ 15$.
 
 -  95% confidence intervals for men $\lbrack\$ 30.62,\$ 39.38\rbrack$ and women $\lbrack\$ 27.97,\$ 36.03\rbrack$ overlap, making it difficult to tell true size of wage gap (if any)
 
@@ -2226,7 +2224,7 @@ $\sim\chi^{2}(n - 1) +\chi^{2}(1) + 0$
 -  Hypothesis test
 	1.  $H_{a}:\sigma^{2} > 4^{2}$, $\alpha = .05$
 	2. Critical value $90.53$
-	3. Test statistic $(n - 1)\frac{S^{2}}{\sigma^{2}} = 70(\frac{{5.3}^{2}}{4^{2}}) = 122.9$, reject $H_{0}$ (from Excel, p-value is $10^{- 5}$)
+	3. Test statistic $(n - 1)\frac{S^{2}}{\sigma^{2}} = 70(\frac{5.3^{2}}{4^{2}}) = 122.9$, reject $H_{0}$ (from Excel, p-value is $10^{- 5}$)
 
 # L22 Regression Estimation (WMS 11.1-3)
 
@@ -2368,10 +2366,10 @@ Slope estimator
 Intercept estimator
 
 1.  It can be shown that $E({\widehat{\beta}}_{0}) =\ldots =\beta_{0}$; unbiased ☺!
- It can be shown that $V({\widehat{\beta}}_{0}) =\sigma_{\varepsilon}^{2}(\frac{1}{n} +\frac{{}^{2}}{(n - 1)s_{x}^{2}})arrow 0$; consistent ☺!
+ It can be shown that $V({\widehat{\beta}}_{0}) =\sigma_{\varepsilon}^{2}(\frac{1}{n} +\frac{q}^{2}}{(n - 1)s_{x}^{2}})arrow 0$; consistent ☺!
 
 -\[For those curious,
- $E({\widehat{\beta}}_{0}) = E(\frac{1}{n}Y_{i} - {\widehat{\beta}}_{1}) =\frac{1}{n}\lbrack\beta_{0} +\beta_{1}x_{i} + E(\varepsilon_{i})\rbrack - E({\widehat{\beta}}_{1})$ $=\frac{n\beta_{0}}{n} +\beta_{1}\frac{1}{n}x_{i} -\beta_{1} =\beta_{0}$ $V({\widehat{\beta}}_{0}) = V(- {\widehat{\beta}}_{1})$ $= V() + {}^{2}V({\widehat{\beta}}_{1}) - 2\text{Cov}(,{\widehat{\beta}}_{1})$ $=\frac{\sigma_{\varepsilon}^{2}}{n} + {}^{2}\frac{\sigma_{\varepsilon}^{2}}{S_{\text{xx}}} - 0 =\sigma_{\varepsilon}^{2}(\frac{1}{n} +\frac{{}^{2}}{(n - 1)s_{x}^{2}})arrow 0$ Note: $C(,{\widehat{\beta}}_{1}) = 0$ because... $C(\frac{1}{n}Y_{i},\frac{1}{S_{\text{xx}}}(x_{i} -)Y_{j}) =\frac{1}{nS_{\text{xx}}}C(Y_{i},(x_{i} -)Y_{j})$ $=\frac{1}{nS_{\text{xx}}}\lbrack(x_{i} -)C(Y_{i},Y_{i}) +(x_{i} -)C(Y_{i},Y_{j})\rbrack$ $=\frac{1}{nS_{\text{xx}}}\lbrack(x_{i} -)V(Y_{i}) +(x_{i} -)0\rbrack$ $=\frac{1}{nS_{\text{xx}}}\lbrack\sigma_{y}^{2}(x_{i} -)\rbrack$ $=\frac{\sigma_{y}^{2}}{nS_{\text{xx}}}\lbrack 0\rbrack$\]
+ $E({\widehat{\beta}}_{0}) = E(\frac{1}{n}Y_{i} - {\widehat{\beta}}_{1}) =\frac{1}{n}\lbrack\beta_{0} +\beta_{1}x_{i} + E(\varepsilon_{i})\rbrack - E({\widehat{\beta}}_{1})$ $=\frac{n\beta_{0}}{n} +\beta_{1}\frac{1}{n}x_{i} -\beta_{1} =\beta_{0}$ $V({\widehat{\beta}}_{0}) = V(- {\widehat{\beta}}_{1})$ $= V() + {}^{2}V({\widehat{\beta}}_{1}) - 2\text{Cov}(,{\widehat{\beta}}_{1})$ $=\frac{\sigma_{\varepsilon}^{2}}{n} + {}^{2}\frac{\sigma_{\varepsilon}^{2}}{S_{\text{xx}}} - 0 =\sigma_{\varepsilon}^{2}(\frac{1}{n} +\frac{q}^{2}}{(n - 1)s_{x}^{2}})arrow 0$ Note: $C(,{\widehat{\beta}}_{1}) = 0$ because... $C(\frac{1}{n}Y_{i},\frac{1}{S_{\text{xx}}}(x_{i} -)Y_{j}) =\frac{1}{nS_{\text{xx}}}C(Y_{i},(x_{i} -)Y_{j})$ $=\frac{1}{nS_{\text{xx}}}\lbrack(x_{i} -)C(Y_{i},Y_{i}) +(x_{i} -)C(Y_{i},Y_{j})\rbrack$ $=\frac{1}{nS_{\text{xx}}}\lbrack(x_{i} -)V(Y_{i}) +(x_{i} -)0\rbrack$ $=\frac{1}{nS_{\text{xx}}}\lbrack\sigma_{y}^{2}(x_{i} -)\rbrack$ $=\frac{\sigma_{y}^{2}}{nS_{\text{xx}}}\lbrack 0\rbrack$\]
 
 2.  Note two pieces: small error in identifying $(\mu_{x},\mu_{y})$ and larger error in identifying slope (which matters more when ${}^{2}$ high).
 
@@ -2384,7 +2382,7 @@ Prediction estimator
 2.  $E(\widehat{\beta_{0} +\beta_{1}x_{i}}) = E({\widehat{\beta}}_{0} + {\widehat{\beta}}_{1}x_{i}) =\beta_{0} +\beta_{1}x_{i}$; unbiased ☺!
 
 3.  $V(\widehat{\beta_{0} +\beta_{1}x_{i}}) =\ldots =\sigma_{\varepsilon}^{2}(\frac{1}{n} +\frac{(x_{i} -)^{2}}{S_{\text{xx}}})arrow 0$; consistent ☺!
-\[$V(\widehat{\beta_{0} +\beta_{1}x_{i}}) = V({\widehat{\beta}}_{0}) + x_{i}^{2}V({\widehat{\beta}}_{1}) + 2Cov({\widehat{\beta}}_{0},{\widehat{\beta}}_{1}x_{i})$ $=\sigma_{\varepsilon}^{2}(\frac{1}{n} +\frac{{}^{2}}{S_{\text{xx}}}) + {(x_{i})}^{2}\frac{\sigma_{\varepsilon}^{2}}{S_{\text{xx}}} - 2x_{i}\frac{\sigma_{\varepsilon}^{2}}{S_{\text{xx}}}$ (since $\text{Cov}({\widehat{\beta}}_{0},{\widehat{\beta}}_{1}) = Cov(- {\widehat{\beta}}_{1},{\widehat{\beta}}_{1}) = 0 -\frac{\sigma_{\varepsilon}^{2}}{S_{\text{xx}}}$) $=\sigma_{\varepsilon}^{2}(\frac{1}{n} +\frac{(x_{i} -)^{2}}{S_{\text{xx}}}) =\sigma_{\varepsilon}^{2}(\frac{1}{n} +\frac{(x_{i} -)^{2}}{S_{\text{xx}}})$\] Note: most precise close to $$; can still make predictions far away from $$, but more noisy
+\[$V(\widehat{\beta_{0} +\beta_{1}x_{i}}) = V({\widehat{\beta}}_{0}) + x_{i}^{2}V({\widehat{\beta}}_{1}) + 2Cov({\widehat{\beta}}_{0},{\widehat{\beta}}_{1}x_{i})$ $=\sigma_{\varepsilon}^{2}(\frac{1}{n} +\frac{q}^{2}}{S_{\text{xx}}}) + {(x_{i})}^{2}\frac{\sigma_{\varepsilon}^{2}}{S_{\text{xx}}} - 2x_{i}\frac{\sigma_{\varepsilon}^{2}}{S_{\text{xx}}}$ (since $\text{Cov}({\widehat{\beta}}_{0},{\widehat{\beta}}_{1}) = Cov(- {\widehat{\beta}}_{1},{\widehat{\beta}}_{1}) = 0 -\frac{\sigma_{\varepsilon}^{2}}{S_{\text{xx}}}$) $=\sigma_{\varepsilon}^{2}(\frac{1}{n} +\frac{(x_{i} -)^{2}}{S_{\text{xx}}}) =\sigma_{\varepsilon}^{2}(\frac{1}{n} +\frac{(x_{i} -)^{2}}{S_{\text{xx}}})$\] Note: most precise close to $$; can still make predictions far away from $$, but more noisy
 
 4.  $\frac{\widehat{(\beta_{0} +\beta_{1}x_{i})} -(\beta_{0} +\beta_{1}x_{i})}{}\sim N(0,1)$
  $\frac{\widehat{(\beta_{0} +\beta_{1}x_{i})} -(\beta_{0} +\beta_{1}x_{i})}{}\sim t(n - 2)$

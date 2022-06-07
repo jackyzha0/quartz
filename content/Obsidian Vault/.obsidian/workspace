@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Goals.md",
+            "file": "econometrics/stats-econ-lecture-notes-plus.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Goals.md",
+            "file": "econometrics/stats-econ-lecture-notes-plus.md",
             "mode": "preview"
           }
         },
@@ -52,7 +52,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "eternalfamiliesall",
+                "query": "{{q}",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -101,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Goals.md",
+                "file": "econometrics/stats-econ-lecture-notes-plus.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Goals.md",
+                "file": "econometrics/stats-econ-lecture-notes-plus.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -130,7 +130,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Goals.md"
+                "file": "econometrics/stats-econ-lecture-notes-plus.md"
               }
             }
           },
@@ -154,15 +154,15 @@
   },
   "active": "e6ce38905c7e26b9",
   "lastOpenFiles": [
-    "Goals.md",
-    "Eternalfamiliesall.md",
-    "binomial series.md",
-    "taylor.md",
-    "power series.md",
-    "orthogonal.md",
-    "Series.md",
-    "strategies for computing sum of series.md",
-    "remnote backup/taxes.md",
-    "remnote backup/why square and then square root when getting standard deviation??.md"
+    "econometrics/stats-econ-lecture-notes-plus.md",
+    "recovered stats lecture notes.md",
+    "econometrics/stats-econ-lecture-notes.md",
+    "LinearAlgebra1.md",
+    "mean value theorem.md",
+    "Integration by Parts.md",
+    "systems of linear equations and matrices..md",
+    "ss12.md",
+    "ss15.md",
+    "ss16.md"
   ]
 }

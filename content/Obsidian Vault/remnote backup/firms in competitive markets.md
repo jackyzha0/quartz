@@ -1,3 +1,4 @@
+#church
 - has→ 
 - market power→when it's not perfectly competitive, somebody has market power and can choose the quantity/price
 - total revenue→all revenue, price X quantitiy.

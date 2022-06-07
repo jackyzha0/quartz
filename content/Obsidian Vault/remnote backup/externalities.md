@@ -1,4 +1,4 @@
-- #econ
+#econ
 - non-excludable→people benefit but do not pay for it. Can't exclude people from using it. 
 - non-rival→no marginal cost of use. basically unlimited people can use it. 
 - Public Goods↔[[externalities/non-rival]] and [[externalities/non-excludable]] 

@@ -1,3 +1,4 @@
+#people
 - commands
     - tmux
         - ctrl-b, d

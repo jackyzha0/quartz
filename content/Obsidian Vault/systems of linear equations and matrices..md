@@ -1,5 +1,5 @@
 ---
-date: [[2022-05-02]]
+day: [[2022-05-02]]
 tags: #linear_algebra
 cards-deck: default_obsidian
 ---

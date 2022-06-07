@@ -1,4 +1,4 @@
-not yaml
+#todo 
 - meditation 3x/day
 - deep scripture study 1hr 1x/day
 - workout 2x/week

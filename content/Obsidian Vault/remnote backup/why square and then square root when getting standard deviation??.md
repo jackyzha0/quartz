@@ -1,3 +1,4 @@
+#math
 - the alternative is called mean absolute deviation - $\frac {\sum (x- \bar x)}{n}$
 - instead of  standard deviation  - $\sqrt \frac{\sum (x- \bar x)^2}{n-1}$
 - reasons:
