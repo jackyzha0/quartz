@@ -35,3 +35,6 @@ $arctan(x)$ ::: $\sum\limits \frac{(-1)^{n}x^{2n}}{2n!}$
 
 
 [[binomial series]]
+
+[[binomial series]]
+

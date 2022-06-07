@@ -4,5 +4,7 @@
   "useMarkdownLinks": false,
   "legacyEditor": false,
   "livePreview": true,
-  "newLinkFormat": "absolute"
+  "newLinkFormat": "absolute",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "unsorted"
 }
