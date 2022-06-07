@@ -1,0 +1,2 @@
+#ideas
+The FBI should work with big tech companies in creating a (very controlled) database of child pornography, and an advanced model that's free for all of their use on order to detect child pornography on their platforms. 

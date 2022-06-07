@@ -1,0 +1,66 @@
+.PocketItemTagList-styles-module_itemTagList__nVMsD {
+    list-style: none;
+    padding-inline-start: 0px;
+    margin-top: 4px;
+  }
+  .PocketItemTagList-styles-module_itemTagList__nVMsD > li {
+    display: inline;
+    color: var(--text-muted);
+    background-color: var(--background-secondary);
+    margin: 4px;
+    padding: 2px;
+    border-radius: 4px;
+  }
+.PocketItem-styles-module_item__3n5s8 {
+    color: var(--background-modifier-border);
+    border: 1px solid var(--background-modifier-border);
+    display: block;
+
+    padding: 4px 8px;
+  }
+
+  .PocketItem-styles-module_item__3n5s8 > span {
+    display: block;
+  }
+
+  .PocketItem-styles-module_header__nWH2B {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+
+    /* emulating the not-well-supported behavior of flexbox gap */
+    --gap: 8px;
+    margin: 0 calc(-1 * var(--gap)) 0 0;
+    width: calc(100% + var(--gap));
+  }
+
+  .PocketItem-styles-module_header__nWH2B > * {
+    margin: 0 var(--gap) 0 0;
+  }
+
+  .PocketItem-styles-module_itemTitle__2bkMG {
+    font-weight: 600;
+  }
+
+  .PocketItem-styles-module_itemExcerpt__3umt6 {
+    font-weight: 300;
+    line-height: 1.5;
+    flex-grow: 1;
+    width: 100%;
+    color: var(--text-normal);
+  }
+
+  .PocketItem-styles-module_externalLink__3clhz {
+    display: inline-block;
+  }
+.PocketItemList-styles-module_list__2zKhb {
+    list-style-type: none;
+  }
+
+  .PocketItemList-styles-module_item__3rjWY {
+    margin: 8px;
+  }
+.settings-styles-module_error__3S0_A {
+    border-color: var(--background-modifier-error-hover) !important;
+  }

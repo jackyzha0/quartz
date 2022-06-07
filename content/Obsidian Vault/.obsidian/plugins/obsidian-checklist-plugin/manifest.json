@@ -1,0 +1,10 @@
+{
+  "id": "obsidian-checklist-plugin",
+  "name": "Checklist",
+  "version": "2.0.2",
+  "minAppVersion": "0.9.12",
+  "description": "Combines checklists across pages into users sidebar",
+  "author": "delashum",
+  "authorUrl": "https://www.hivewire.co/jobs",
+  "isDesktopOnly": false
+}

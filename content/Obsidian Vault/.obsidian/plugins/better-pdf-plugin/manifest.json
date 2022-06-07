@@ -1,0 +1,10 @@
+{
+	"id": "better-pdf-plugin",
+	"name": "Better PDF Plugin",
+	"version": "1.2.0",
+	"minAppVersion": "0.10.12",
+	"description": "Goal of this Plugin in to implement a native PDF handling workflow",
+	"author": "MSzturc",
+	"authorUrl": "https://github.com/MSzturc",
+	"isDesktopOnly": false
+}

@@ -1,0 +1,270 @@
+.CodeMirror-linewidget img {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.theme-dark img[alt$='#invert'],
+.theme-dark div.oz-image-widget > img[alt$='#invert'],
+.theme-dark div.oz-image-widget-cm6 > img[alt$='#invert'] {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.oz-transclusion-widget,
+.oz-transclusion-widget-cm6 {
+    padding: 3px 3px 3px 19px;
+    border: 0.7px solid var(--text-muted);
+    max-height: 600px;
+    overflow: auto;
+    border-radius: 7px;
+    margin-top: 5px;
+}
+
+.oz-coffee-div {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Line Numbers In Editor CodeBlock Renders */
+pre[class*='language-'].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+pre[class*='language-'].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em; /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.line-numbers-rows > span {
+    display: block;
+    counter-increment: linenumber;
+}
+.line-numbers-rows > span:before {
+    content: counter(linenumber);
+    color: #999;
+    display: block;
+    padding-right: 0.8em;
+    text-align: right;
+}
+
+.mermaid-error-information {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.oz-modal-center {
+    text-align: center;
+    margin: 20px 10px 20px 10px;
+}
+
+.oz-modal-title {
+    text-align: center;
+}
+
+.inline-mathjax-block {
+    margin-left: 5px;
+}
+
+.oz-image-widget > img,
+.oz-image-widget-cm6 > img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+div.oz-transclusion-widget pre,
+div.oz-transclusion-widget-cm6 pre {
+    overflow-x: auto;
+}
+
+.oz-transclusion-widget > *,
+.oz-transclusion-widget-cm6 > * {
+    user-select: text !important;
+}
+
+/* Rich Link Cards */
+/* Credit: https://github.com/dhamaniasad/obsidian-rich-links */
+.oz-rich-link-card {
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 3px;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    background-color: var(--background-primary);
+}
+
+.oz-rich-link-card-container {
+    position: relative;
+}
+
+.oz-rich-link-image-container {
+    height: 100px;
+    width: 35%;
+    min-width: 120px;
+    overflow: hidden;
+    border-right: 1px solid var(--background-modifier-border);
+}
+
+.oz-rich-link-image {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-bottom: 100px;
+    background-color: var(--background-secondary);
+}
+
+.oz-rich-link-card-text {
+    padding: 4px;
+    width: 75%;
+}
+
+.oz-rich-link-card-title {
+    font-family: sans-serif;
+    font-size: 16px;
+    margin: 0 0 4px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--text-normal);
+}
+
+.oz-rich-link-card-description {
+    font-family: sans-serif;
+    font-size: 14px;
+    margin: 0;
+    color: var(--text-muted);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.oz-rich-link-href {
+    font-family: sans-serif;
+    font-size: 14px;
+    margin: 0;
+    color: var(--text-faint);
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.image-in-editor-settings-main-header {
+    text-align: center !important;
+    margin-bottom: 20px;
+}
+
+.image-in-editor-cm-header {
+    margin-top: 0px;
+}
+
+.image-in-editor-editor-header {
+    margin-bottom: 5px;
+}
+
+/* Sizing for CM5 and CM6 */
+
+div.oz-image-widget > img[alt$='#small'],
+div.oz-image-widget-cm6 > img[alt$='#small'] {
+    max-width: 75% !important;
+    min-width: 200pt !important;
+}
+
+div.oz-image-widget > img[alt$='#x-small'],
+div.oz-image-widget-cm6 > img[alt$='#x-small'] {
+    max-width: 50% !important;
+    min-width: 100pt !important;
+}
+
+div.oz-image-widget > img[alt$='#xx-small'],
+div.oz-image-widget-cm6 > img[alt$='#xx-small'] {
+    max-width: 25% !important;
+    min-width: 50pt !important;
+}
+
+/* Style For CM6 */
+
+div.oz-image-widget-cm6,
+div.oz-custom-html-widget-cm6,
+div.oz-pdf-widget-cm6 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+div.oz-image-widget-cm6 + br,
+div.oz-custom-html-widget-cm6 + br,
+div.oz-pdf-widget-cm6 + br {
+    display: none;
+}
+
+.cm-line div.oz-transclusion-widget-cm6 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.cm-line div.oz-transclusion-widget-cm6 * {
+    margin-block-start: 0px !important;
+    margin-block-end: 0px !important;
+}
+
+/* Legacy Admonition */
+
+.oz-admonition {
+    margin: 1.5em 0;
+    padding: 0;
+    overflow: hidden;
+    page-break-inside: avoid;
+    border-left: 0.3rem solid rgb(var(--oz-admonition-color));
+    border-radius: 0.1rem;
+    box-shadow: 0 0.2rem 0.5rem rgb(44, 43, 43);
+}
+
+.oz-admonition-title {
+    position: relative;
+    padding: 15px 5px 15px 15px;
+    font-weight: 700;
+    background-color: rgba(var(--oz-admonition-color), 0.1);
+}
+
+.oz-admonition-title-content {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.oz-admonition-content-holder {
+    position: relative;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.oz-admonition-content {
+    margin: 10px 15px;
+    position: relative;
+    overflow-x: auto;
+}
+
+.oz-admonition-title-markdown {
+    text-transform: capitalize;
+    display: block;
+}

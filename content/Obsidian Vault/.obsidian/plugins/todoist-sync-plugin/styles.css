@@ -1,0 +1,78 @@
+.todoist-query-title {
+  display: inline;
+  font-size: 1.25em;
+}
+
+.todoist-refresh-button {
+  display: inline;
+  margin-left: 8px;
+  margin-right: 8px;
+  float: right;
+}
+
+.todoist-refresh-spin {
+  animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.task-metadata {
+  margin-left: 30px;
+}
+
+.task-calendar-icon,
+.task-project-icon,
+.task-labels-icon {
+  vertical-align: middle;
+  height: 17px;
+  width: 17px;
+}
+
+.task-date.task-overdue {
+  color: var(--text-error);
+}
+
+.todoist-project {
+  white-space: normal;
+}
+
+.todoist-project .todoist-project {
+  margin-left: 20px;
+}
+
+.todoist-project .todoist-section {
+  margin-left: 20px;
+}
+
+.todoist-error {
+  background-color: rgb(var(--background-modifier-error-rgb), 0.5);
+  border: 1px solid var(--background-modifier-error);
+  padding: 0 10px 20px 10px;
+  margin-top: 20px;
+}
+
+.todoist-success {
+  border: 1px solid var(--background-modifier-border);
+  padding: 0 10px 20px 10px;
+  margin-top: 20px;
+}
+
+.todoist-task-content {
+  display: inline;
+}
+
+ul.todoist-task-list {
+  white-space: normal;
+}
+
+.markdown-reading-view .hide-in-reading-view {
+  display: none;
+}
+
+.is-live-preview .block-language-todoist {
+  padding-left: 15px;
+}

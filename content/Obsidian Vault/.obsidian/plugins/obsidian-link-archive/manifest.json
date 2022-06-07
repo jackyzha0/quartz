@@ -1,0 +1,10 @@
+{
+	"id": "obsidian-link-archive",
+	"name": "Link Archive",
+	"version": "0.2.0",
+	"minAppVersion": "0.9.12",
+	"description": "This plugin archives links in your note so they're available to you even if the original site goes down or gets removed.",
+	"author": "Tamás Deme - @tomzorz_",
+	"authorUrl": "https://tomzorz.me",
+	"isDesktopOnly": false
+}

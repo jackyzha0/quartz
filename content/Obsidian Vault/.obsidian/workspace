@@ -1,0 +1,168 @@
+{
+  "main": {
+    "id": "3dfe76e716fd37b6",
+    "type": "split",
+    "children": [
+      {
+        "id": "e6ce38905c7e26b9",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "binomial series.md",
+            "mode": "source"
+          }
+        },
+        "group": "06317d38b659cb78"
+      },
+      {
+        "id": "cdd64046e6539952",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "binomial series.md",
+            "mode": "preview"
+          }
+        },
+        "group": "06317d38b659cb78"
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ad5c4b55035e3117",
+    "type": "split",
+    "children": [
+      {
+        "id": "80e9ffa47fbb58b0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "940526f040b0068d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "dda4cedc3e1acfc9",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#math/calculus",
+                "matchingCase": true,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "byModifiedTime"
+              }
+            }
+          },
+          {
+            "id": "d782cc74532b942b",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "f83f90f0aa7ff5f0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "sequence.md",
+                "mode": "preview"
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "72769155e5467b05",
+    "type": "split",
+    "children": [
+      {
+        "id": "4e235122ff08a6b6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6fbae27c4e9558a3",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "binomial series.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "62f74522b44cd8cf",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "binomial series.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "d2a780e8f87d19f7",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "binomial series.md"
+              }
+            }
+          },
+          {
+            "id": "d955da1879dc9900",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "active": "cdd64046e6539952",
+  "lastOpenFiles": [
+    "binomial series.md",
+    "taylor.md",
+    "power series.md",
+    "orthogonal.md",
+    "Series.md",
+    "strategies for computing sum of series.md",
+    "remnote backup/taxes.md",
+    "remnote backup/why square and then square root when getting standard deviation??.md",
+    "remnote backup/The Eternal Family Unit 6 .md",
+    "Pasted image 20220518001233.png"
+  ]
+}

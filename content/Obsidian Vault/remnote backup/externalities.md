@@ -1,0 +1,13 @@
+- #econ
+- non-excludable→people benefit but do not pay for it. Can't exclude people from using it. 
+- non-rival→no marginal cost of use. basically unlimited people can use it. 
+- Public Goods↔[[externalities/non-rival]] and [[externalities/non-excludable]] 
+- Private Goods↔neither [[externalities/non-rival]] nor [[externalities/non-excludable]] 
+    - military, parks, roads, radio
+- Common Resources↔[[externalities/non-excludable]] but not [[externalities/non-rival]] 
+    - anybody can use it, but it limits other's use of it
+    - whales, ozone, clean water sources, public grasslands,
+- Club Goods↔[[externalities/non-rival]] but not [[externalities/non-excludable]] 
+    - people can be kept out (for profit reasons) but don't like, need to be. It's unlimited extra use.
+    - satellite radio, netflix, movies, music, drive-in theatre, etc.
+- 

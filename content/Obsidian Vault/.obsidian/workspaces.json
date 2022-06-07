@@ -1,0 +1,632 @@
+{
+  "workspaces": {
+    "lecture notes": {
+      "main": {
+        "id": "67981a8049665b34",
+        "type": "split",
+        "children": [
+          {
+            "id": "077d6f45882b83a8",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "econometrics/378 Lecture notes(1).pdf"
+              }
+            }
+          },
+          {
+            "id": "b8ad270fe663e65a",
+            "type": "split",
+            "children": [
+              {
+                "id": "d87ecb8f9804756b",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "econometrics/stats-econ-lecture-notes.md",
+                    "mode": "source"
+                  }
+                },
+                "group": "8d1dc6bb4c13b81b"
+              },
+              {
+                "id": "36497da6fa514d3e",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "econometrics/stats-econ-lecture-notes.md",
+                    "mode": "preview"
+                  }
+                },
+                "group": "8d1dc6bb4c13b81b"
+              }
+            ],
+            "direction": "horizontal"
+          }
+        ],
+        "direction": "vertical"
+      },
+      "left": {
+        "id": "0f07534aad04d662",
+        "type": "split",
+        "children": [
+          {
+            "id": "890d0e6748a944c5",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "2d6b999f0713592d",
+                "type": "leaf",
+                "state": {
+                  "type": "file-explorer",
+                  "state": {}
+                }
+              },
+              {
+                "id": "b101b92a733f1622",
+                "type": "leaf",
+                "state": {
+                  "type": "search",
+                  "state": {
+                    "query": "tag:#church",
+                    "matchingCase": false,
+                    "explainSearch": true,
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical"
+                  }
+                }
+              },
+              {
+                "id": "336800316d62f6c2",
+                "type": "leaf",
+                "state": {
+                  "type": "starred",
+                  "state": {}
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300,
+        "collapsed": true
+      },
+      "right": {
+        "id": "246755fc16d44f80",
+        "type": "split",
+        "children": [
+          {
+            "id": "1e8b8550ca314c1c",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "a69442234bdccff8",
+                "type": "leaf",
+                "state": {
+                  "type": "backlink",
+                  "state": {
+                    "file": "econometrics/stats-econ-lecture-notes.md",
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical",
+                    "showSearch": false,
+                    "searchQuery": "",
+                    "backlinkCollapsed": false,
+                    "unlinkedCollapsed": true
+                  }
+                }
+              },
+              {
+                "id": "dc2a8278a5403c1c",
+                "type": "leaf",
+                "state": {
+                  "type": "tag",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "useHierarchy": true
+                  }
+                }
+              },
+              {
+                "id": "0af34b5c22ee577a",
+                "type": "leaf",
+                "state": {
+                  "type": "outline",
+                  "state": {
+                    "file": "econometrics/stats-econ-lecture-notes.md"
+                  }
+                }
+              },
+              {
+                "id": "d3f5a063388285ed",
+                "type": "leaf",
+                "state": {
+                  "type": "outgoing-link",
+                  "state": {
+                    "file": "econometrics/stats-econ-lecture-notes.md",
+                    "linksCollapsed": false,
+                    "unlinkedCollapsed": true
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300,
+        "collapsed": true
+      },
+      "active": "d87ecb8f9804756b"
+    },
+    "bio": {
+      "main": {
+        "id": "3dfe76e716fd37b6",
+        "type": "split",
+        "children": [
+          {
+            "id": "aeffcd8c6ac3e690",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "dna replication, short tandem repeats.md",
+                "mode": "source"
+              }
+            }
+          },
+          {
+            "id": "04edebe9cbfda31d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "sequence dna.md",
+                "mode": "source"
+              }
+            }
+          }
+        ],
+        "direction": "vertical"
+      },
+      "left": {
+        "id": "ad5c4b55035e3117",
+        "type": "split",
+        "children": [
+          {
+            "id": "80e9ffa47fbb58b0",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "940526f040b0068d",
+                "type": "leaf",
+                "state": {
+                  "type": "file-explorer",
+                  "state": {}
+                }
+              },
+              {
+                "id": "dda4cedc3e1acfc9",
+                "type": "leaf",
+                "state": {
+                  "type": "search",
+                  "state": {
+                    "query": "sequence file:",
+                    "matchingCase": false,
+                    "explainSearch": false,
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical"
+                  }
+                }
+              },
+              {
+                "id": "d782cc74532b942b",
+                "type": "leaf",
+                "state": {
+                  "type": "starred",
+                  "state": {}
+                }
+              },
+              {
+                "id": "f83f90f0aa7ff5f0",
+                "type": "leaf",
+                "state": {
+                  "type": "empty",
+                  "state": {}
+                }
+              }
+            ],
+            "currentTab": 1
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300
+      },
+      "right": {
+        "id": "72769155e5467b05",
+        "type": "split",
+        "children": [
+          {
+            "id": "4e235122ff08a6b6",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "6fbae27c4e9558a3",
+                "type": "leaf",
+                "state": {
+                  "type": "backlink",
+                  "state": {
+                    "file": "sequence dna.md",
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical",
+                    "showSearch": false,
+                    "searchQuery": "",
+                    "backlinkCollapsed": false,
+                    "unlinkedCollapsed": true
+                  }
+                }
+              },
+              {
+                "id": "62f74522b44cd8cf",
+                "type": "leaf",
+                "state": {
+                  "type": "outgoing-link",
+                  "state": {
+                    "file": "sequence dna.md",
+                    "linksCollapsed": false,
+                    "unlinkedCollapsed": true
+                  }
+                }
+              },
+              {
+                "id": "d2a780e8f87d19f7",
+                "type": "leaf",
+                "state": {
+                  "type": "outline",
+                  "state": {
+                    "file": "sequence dna.md"
+                  }
+                }
+              },
+              {
+                "id": "d955da1879dc9900",
+                "type": "leaf",
+                "state": {
+                  "type": "tag",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "useHierarchy": true
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300
+      },
+      "active": "04edebe9cbfda31d"
+    },
+    "calc": {
+      "main": {
+        "id": "3dfe76e716fd37b6",
+        "type": "split",
+        "children": [
+          {
+            "id": "b17ae6b294e65d2e",
+            "type": "split",
+            "children": [
+              {
+                "id": "e6eedd85e96699a5",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "calc questions.md",
+                    "mode": "source"
+                  }
+                }
+              },
+              {
+                "id": "d8318de744e2cbb3",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Series.md",
+                    "mode": "preview"
+                  }
+                }
+              }
+            ],
+            "direction": "vertical"
+          }
+        ],
+        "direction": "vertical"
+      },
+      "left": {
+        "id": "ad5c4b55035e3117",
+        "type": "split",
+        "children": [
+          {
+            "id": "80e9ffa47fbb58b0",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "940526f040b0068d",
+                "type": "leaf",
+                "state": {
+                  "type": "file-explorer",
+                  "state": {}
+                }
+              },
+              {
+                "id": "dda4cedc3e1acfc9",
+                "type": "leaf",
+                "state": {
+                  "type": "search",
+                  "state": {
+                    "query": "tag:#math/calculus",
+                    "matchingCase": false,
+                    "explainSearch": false,
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical"
+                  }
+                }
+              },
+              {
+                "id": "d782cc74532b942b",
+                "type": "leaf",
+                "state": {
+                  "type": "starred",
+                  "state": {}
+                }
+              },
+              {
+                "id": "f83f90f0aa7ff5f0",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "sequence.md",
+                    "mode": "preview"
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300
+      },
+      "right": {
+        "id": "72769155e5467b05",
+        "type": "split",
+        "children": [
+          {
+            "id": "4e235122ff08a6b6",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "6fbae27c4e9558a3",
+                "type": "leaf",
+                "state": {
+                  "type": "backlink",
+                  "state": {
+                    "file": "calc questions.md",
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical",
+                    "showSearch": false,
+                    "searchQuery": "",
+                    "backlinkCollapsed": false,
+                    "unlinkedCollapsed": true
+                  }
+                }
+              },
+              {
+                "id": "62f74522b44cd8cf",
+                "type": "leaf",
+                "state": {
+                  "type": "outgoing-link",
+                  "state": {
+                    "file": "calc questions.md",
+                    "linksCollapsed": false,
+                    "unlinkedCollapsed": true
+                  }
+                }
+              },
+              {
+                "id": "d2a780e8f87d19f7",
+                "type": "leaf",
+                "state": {
+                  "type": "outline",
+                  "state": {
+                    "file": "calc questions.md"
+                  }
+                }
+              },
+              {
+                "id": "d955da1879dc9900",
+                "type": "leaf",
+                "state": {
+                  "type": "tag",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "useHierarchy": true
+                  }
+                }
+              }
+            ],
+            "currentTab": 3
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300,
+        "collapsed": true
+      },
+      "active": "e6eedd85e96699a5"
+    },
+    "linear algebra": {
+      "main": {
+        "id": "3dfe76e716fd37b6",
+        "type": "split",
+        "children": [
+          {
+            "id": "e6eedd85e96699a5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Subspaces.md",
+                "mode": "source"
+              }
+            }
+          },
+          {
+            "id": "3ad35ac6bfd9e982",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Subspaces.md",
+                "mode": "preview"
+              }
+            }
+          }
+        ],
+        "direction": "vertical"
+      },
+      "left": {
+        "id": "ad5c4b55035e3117",
+        "type": "split",
+        "children": [
+          {
+            "id": "80e9ffa47fbb58b0",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "940526f040b0068d",
+                "type": "leaf",
+                "state": {
+                  "type": "file-explorer",
+                  "state": {}
+                }
+              },
+              {
+                "id": "dda4cedc3e1acfc9",
+                "type": "leaf",
+                "state": {
+                  "type": "search",
+                  "state": {
+                    "query": "tag:#math/linear_algebra dep",
+                    "matchingCase": false,
+                    "explainSearch": false,
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical"
+                  }
+                }
+              },
+              {
+                "id": "d782cc74532b942b",
+                "type": "leaf",
+                "state": {
+                  "type": "starred",
+                  "state": {}
+                }
+              },
+              {
+                "id": "f83f90f0aa7ff5f0",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "sequences.md",
+                    "mode": "preview"
+                  }
+                }
+              }
+            ],
+            "currentTab": 1
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300
+      },
+      "right": {
+        "id": "72769155e5467b05",
+        "type": "split",
+        "children": [
+          {
+            "id": "4e235122ff08a6b6",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "6fbae27c4e9558a3",
+                "type": "leaf",
+                "state": {
+                  "type": "backlink",
+                  "state": {
+                    "file": "Subspaces.md",
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical",
+                    "showSearch": false,
+                    "searchQuery": "",
+                    "backlinkCollapsed": false,
+                    "unlinkedCollapsed": true
+                  }
+                }
+              },
+              {
+                "id": "62f74522b44cd8cf",
+                "type": "leaf",
+                "state": {
+                  "type": "outgoing-link",
+                  "state": {
+                    "file": "Subspaces.md",
+                    "linksCollapsed": false,
+                    "unlinkedCollapsed": true
+                  }
+                }
+              },
+              {
+                "id": "d2a780e8f87d19f7",
+                "type": "leaf",
+                "state": {
+                  "type": "outline",
+                  "state": {
+                    "file": "Subspaces.md"
+                  }
+                }
+              },
+              {
+                "id": "d955da1879dc9900",
+                "type": "leaf",
+                "state": {
+                  "type": "tag",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "useHierarchy": true
+                  }
+                }
+              }
+            ],
+            "currentTab": 3
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300
+      },
+      "active": "e6eedd85e96699a5"
+    }
+  },
+  "active": "calc"
+}

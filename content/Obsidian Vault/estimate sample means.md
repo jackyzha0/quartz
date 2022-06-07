@@ -1,0 +1,5 @@
+#stats 
+
+
+
+# normal distribution

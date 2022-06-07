@@ -1,0 +1,32 @@
+- has→ 
+- market power→when it's not perfectly competitive, somebody has market power and can choose the quantity/price
+- total revenue→all revenue, price X quantitiy.
+- Competitive market ↓ 
+    - each participant negligible→countless small buyers and sellers
+    - free entry→firms can enter and exit with ease.
+    - perfect information→all useful info, like prices, quality, are freely availa
+    - no externalities→(only buyer and seller affected)
+- Long Run↔longer timeframe, lets production inputs change
+- Short Run↔Too short a time frame to change many inputs.
+- Fixed Inputs↔Inputs that can only be changed in the [[firms in competitive markets/Long Run]] 
+    - costs↔paid, even if the output is zero; [[Total Cost]] at Q = 0
+- Variable Inputs↔those can be changed in the [[firms in competitive markets/Short Run]]  
+    - costs↔cost of Variable inputs; $VC = TC - FC$ 
+- Total Cost↔Total cost of production
+- Average Total Cost ↓ 
+    - cost per unit
+    - [[Total Cost]] at Quantity / Quantity
+    - U-shaped, since you start out spreading out fixed costs, then it rises again when production becomes overworked. (more workers/money doesn't always solve the problems caused by overcrowding, not enough machines, not enough space etc)
+    - Economies of Scale↔on the [[firms in competitive markets/Long Run]] ,[[firms in competitive markets/Average Total Cost]]  can go back up much later, due to advantages of scale on reducing [[firms in competitive markets/Marginal Cost]]  
+    - intersects→[[firms in competitive markets/Marginal Cost]] curve at the lowest point 
+- Average Fixed Cost ↓ 
+    - [[firms in competitive markets/Fixed Inputs/costs]]  at Quantity/ Quantity
+- Average Variable Cost ↓ 
+    - [[firms in competitive markets/Variable Inputs/costs]] at Quantity / Quantity
+- Marginal Cost ↓ 
+    - cost of one more unit, usually rises constantly
+    - [[Total Cost]] at Quantity - [[Total Cost]] at (Quantity-1)
+    - $MCQ = TCQ-TC(Q-1)$
+    - [[firms in competitive markets/Costs image https:--remnote-user-data.s3.amazonaws.com-EqOF_apOvptyPrmS58Hv5lbH6pEX2aIjrjKIXjh58yjXlw0vEhq_sKc2gLfyexiT4vuO3te-GH6whNaZ_6X83YMgmPIqHrM95Z-jd9hWVMCkfz-sHVkBEkzHTemnk08Q.png]]
+    - intersects→[[firms in competitive markets/Average Total Cost]]  at its lowest point, always.
+- Costs image ![[https://remnote-user-data.s3.amazonaws.com/EqOF_apOvptyPrmS58Hv5lbH6pEX2aIjrjKIXjh58yjXlw0vEhq_sKc2gLfyexiT4vuO3te-GH6whNaZ_6X83YMgmPIqHrM95Z-jd9hWVMCkfz-sHVkBEkzHTemnk08Q.png]]

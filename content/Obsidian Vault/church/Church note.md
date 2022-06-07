@@ -1,0 +1,1 @@
+I decided that i want my life to be more than what I alone could foresee it to be

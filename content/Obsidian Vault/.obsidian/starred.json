@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "type": "file",
+      "title": "Integration by Parts",
+      "path": "Integration by Parts.md"
+    },
+    {
+      "type": "file",
+      "title": "mean value theorem",
+      "path": "mean value theorem.md"
+    },
+    {
+      "type": "search",
+      "title": "tag:#linear_algebra",
+      "query": "tag:#linear_algebra"
+    }
+  ]
+}

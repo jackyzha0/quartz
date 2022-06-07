@@ -1,0 +1,311 @@
+- Required Readings Study Guide
+    - Reminder: In order to protect the integrity of our class quizzes and exams no questions from our study guides, quizzes, midterm, or final may be posted on-line in any public venue/format. This includes Google Docs as well as the various quizzing websites/apps like Quizlet, StudyBlue, etc. You are obviously free (and encouraged) to use any and all such sites, but if you include any questions from our class material, they must be made private so no one else can see them and they cannot be shared with others in or out of BYU. Besides the associated copyright laws (yep - weird but a teachers materials such as study guides et al. are actually copyright protected). this policy also pertains to BYU's Academic Honesty Policy and will be treated as such.
+- 0. Course Introduction
+    - The Plan and the Proclamation
+        -  What did President Oaks say converted Latter-day Saints believe about the Family Proclamation?
+        -  What process did the First Presidency and Quorum of Twelve use in the creation of the family
+        - proclamation?
+        -  Elder Oaks declared that the Family Proclamation is a statement of eternal truth and the will of God for His
+        - children who seek eternal life. T/F?
+        -  Why did Elder Oaks say some people "consider this family proclamation as just a statement of policy that
+        - should be changed?”
+- 
+- 1. The Eternal Family and the Nature of God
+    - Our Identity and Our Destiny
+        -  What doctrine defines our destiny? Why?
+        -  What are the five witnesses that speak of our potential?
+        -  What three things allow us to have “unlimited opportunities to progress toward [our] destiny of godhood”?
+        -  What logical reason do we have for believing in our divine destiny?
+        -  Rather than viewing the saving ordinances as a checklist of actions, how should we see them?
+    - ‘A Mother There’: A Survey of Historical Teachings about Mother in Heaven
+        -  What did President Hinckley teach about our ability to add to or diminish Heavenly Mother’s glory?
+        -  Besides statements speaking of Heavenly Mother’s procreative role, what other roles and/or responsibilities
+        - have Church leaders spoken about?
+        -  What did President Harold B. Lee teach about Heavenly Mother in comparison to our earthly mothers?
+        -  Do we have evidence of General Authorities advising us not to speak about Heavenly Mother? (note:
+        - Howard Brewster is not a general authority)
+    - Becoming like God
+        -  Why is it natural to assume that we can become like our Heavenly Parents?
+        -  When was the concept of deification first disputed by an early church father?
+        -  How did the teaching of creation ex nihilo impact how Christians saw men and women's relationship with God?
+        -  What two things are necessary for “receiving one’s full inheritance as a child of Heavenly Father”?
+        -  How do Latter-day Saints understand the magnitude of the atonement of Jesus Christ?
+    - The Eternal Family
+        -  What four things does Satan try to do because of the importance of family?
+- 
+- 2. The Plan of Salvation and the Eternal Family
+    - Why marriag, Why Family by D. Todd Christofferson
+        - According to Elder Christofferson, why is marriage more than the love couples feel for each other?↔It's a post/ office in the kingdom of God. Best setting for God's plan to thrive.
+        - Why can no person or government alter the divine order of matrimony?↔It is not a human invention. Such marriage is indeed “from above, from God” and is as much a part of the plan of happiness as the Fall and the Atonement.
+        - What four things did Elder Christofferson teach are "needed for the success of [God's] plan"?↔Creation of the Earth, condition of mortality, redemption from the fall, setting for our physical birth and subsequent spiritual rebirth into the kingdom of God.
+    - Teaching the Doctrine of the Family
+        - What did President Julie B. Beck teach that the theology of the family is based on?→the Creation, the Fall, and the Atonement.
+        - Rather than a consumer approach to dating, how did President Beck describe dating and courtship?→faith-based work.
+    - Marriage Is Essential to His Eternal Plan
+        - What were Elder Bednar’s two reasons for why eternal marriage is essential to our exaltation?→Reason 1: The natures of male and female spirits complete and perfect each other, and therefore men and women are intended to progress together toward exaltation. Reason 2: By divine design, both a man and a woman are needed to bring children into mortality and to provide the best setting for the rearing and nurturing of children.
+        - Which issues did Elder Bednar say constitute Satan’s most direct and diabolical attack on the family?→Satan works unremittingly to confuse understanding about gender, to promote the premature and unrighteous use of procreative power, and to hinder righteous marriage precisely because marriage is ordained of God and the family is central to the plan of happiness.
+        - According to Elder Bednar, where must we look in order to overcome Satan’s counterfeit messages regarding gender and marriage?→understanding the intent of an enemy is a key prerequisite to effective preparation.
+    - The Great Plan of Happiness
+        - What eight ways did President Oaks say that Satan would try to destroy the plan?→Satan seeks to discredit the Savior and divine authority, to nullify the effects of the Atonement, to counterfeit revelation, to lead people away from the truth, to contradict individual accountability, to confuse gender, to undermine marriage, and to discourage childbearing (especially by parents who will raise children in righteousness).
+        - What did Adam and Eve need to do to keep the first commandment?→They could not fulfill the Father’s first commandment without transgressing the barrier between the bliss of the Garden of Eden and the terrible trials and wonderful opportunities of mortal life.
+        - What did Eve transgress to initiate the conditions of mortality?→The boundaries of the garden of Eden
+        - What was the first commandment given to Adam and Eve?→the Lord said, “Be fruitful, and multiply”
+    - Choose Ye This Day
+        -  According to our readings, what is Heavenly Father's goal in parenting?
+        -  Why is opposition and a veil necessary for the use of agency?
+        -  What is the relationship between commandments and agency?
+        -  What is the relationship between commandments and God's goal for our destiny?
+- 3. Jesus Christ – The Sure Foundation of Eternal Family
+    - Justification and Sanctification
+        - “If justification removes the punishment for past sin, then sanctification ________.”→then sanctification removes the stain or effects of sin.
+        - Though we cannot earn the grace of Christ, what must we do to receive it?→Thus, it is not that we earn these gifts, but rather that we choose to seek and accept justification and sanctification.
+        - What is the medium through which Christ’s atoning grace is applied?→The Holy Spirit
+        - Is perfection dependent on justification and sanctification, or is justification and sanctification dependent on perfection?→the first one
+    - Hope in Christ
+        -  What is necessary in order to guarantee exaltation?
+        -  How did Elder Ballard define “waiting on the Lord?
+    - The Gift of Grace
+    - Sermon on the Mount Commentary
+        -  Prepare to share three lessons you learned from your study of the Sermon on the Mount Commentary
+    - Is Faith in the Atonement of Jesus Christ Written in Our Hearts?
+        -  According to Sister Burton, what are three principles that will increase our faith in Jesus Christ?
+- 4. The Role of Prophets, Seers, and Revelators in Teaching the Eternal Family
+    - What Is Truth?
+        -  Why is it helpful to realize that we may only have partial information when we are trying to interpret
+        - prophetic teachings?
+        -  What is "part of our problem in the question for truth"?
+        -  How does Satan attack those who already embrace the truth? What is one of his “primary strategies”?
+        -  What does the invitation to "trust the Lord" not remove from us?
+        -  What counsel was given for when we are confronted with information that conflicts with the revealed word of God?
+    - Faith Is Not Blind
+        -  What are the Hafens’ three levels of dealing with uncertainty and how can understanding them help us?
+        -  What were the Hafens’ four suggestions to work through our questions and exercise faith?
+    - Truth and the Plan
+        -  What sources did President Oaks say we should use in our search for truth about religion?
+        -  According to our readings, what does coming to know and act on the truth of who we are and the meaning of life lead to?
+        -  What is the mission of the restored church?
+        -  What leads the church to oppose social and legal pressure to alter God's definition of marriage?
+    - Doctrines, Principles, and Applications
+        -  How did Elder Bednar define a teaching as a “doctrine”?
+        -  What is necessary in order to understand some more sensitive or difficult doctrines?
+        -  How did Elder Bednar define a principle?
+    - Will You Engage in the Wrestle
+        -  Why are questions different than doubts and how can they lead to good?
+        -  Why can "not asking questions" be far more dangerous than asking questions?
+        -  Why are spiritual wrestlers also seekers?
+        -  Where do our challenges lie in what we don't know instead of what we think we know?
+        -  Why can’t we think our way to conversion?
+        -  What habits do seekers have?
+    - Truth and the Plan
+        -  What sources did President Oaks say we should use in our search for truth about religion?
+        -  What does coming to know and act on the truth of who we are and the meaning of life lead to?
+        -  What is the mission of the restored church?
+        -  What leads the church to oppose social and legal pressure to alter God's definition of marriage?
+- 5. Gender is an Essential Characteristic
+    - Spiritual Treasures
+        -  How are women given priesthood authority?
+        -  Do women actually preform priesthood ordinances in the temple?
+        -  How do we increase our power to draw upon priesthood power?
+    - Two Great Commandments
+        - According to President Oaks, how do we show God we love Him?→We show that love by “keep[ing] [His] commandments.”
+        - President Nelson identified two eternal laws that are most significant in relation to LGBTQ issues. One was God’s law of marriage. What was the other one?→its companion law of chastity.
+        - Why are God’s laws always a manifestation of God’s love?→“God’s laws are motivated entirely by His infinite love for us and His desire for us to become all we can become.”
+    - Same-Sex Attraction and Transgender from ChurchOfJesusChrist.org
+        -  Should a person feel guilty because the experience feelings of same sex attraction?
+        -  Can a person who experiences same sex attraction experience happiness in this life and a fulness in the life
+        - to come?
+        -  What should a person do who is experiencing depression, anxiety or suicidal thoughts do?
+        -  What is the intended meaning of gender in “The Family: A Proclamation to the World”?
+        -  Are all of God’s promised blessings available to those who experience transgenderism?
+    - The Divine Institution of Marriage
+        -  According to our readings, what reasons are there for the “special status granted marriage”?
+        -  What is the relationship of tolerance to diversity?
+        -  According to our readings, why will the Church “continue to defend the sanctity of marriage between a man and a women” in the public square?
+- 6. Eternal Covenants and Ordinances
+    - Why the Covenant Path?
+        -  How do we open the door to every spiritual blessing and privilege?
+        -  What did Elder Christofferson say was the happiest and most satisfying course in life?
+        -  What is the difference between walking the covenant path compared to walking a “covenant-consistent path”?
+    - Marriage in the Lord’s Way, Part One and Marriage in the Lord’s Way, Part Two
+        - What did Elder Kofford say he believes sealing refers to?→the “sealing ordinance” or “being sealed” rather than just “being married in the temple.”
+        - What do we know about the patriarchal order?→The gospel, which is called “the new and everlasting covenant,” includes many specific covenants, one being called “the new and everlasting covenant of marriage.” This title, or name, is simply another way of saying “patriarchal order.”
+        - Why did Elder Kofford say we need a temple recommend before entering the temple?→once you enter the temple, you are expected and required to live the covenants you will make there. 2nd [D&C 109:20]: “No unclean [unworthy] thing shall be permitted to come into thy house to pollute it.”
+        - If there is a difficulty in a marriage that is serious enough to threaten the marriage relationship, what counsel does Elder Kofford provide?→whenever there is a difficulty between a husband and wife in their marriage relationship that is serious enough to threaten that relationship, one or the other (or both) is not living the gospel of Jesus Christ. That means that one or both of the marriage partners are not keeping the covenants, commitments, and promises they made at the altar of the temple. If you love God enough and follow His teachings, everything else will work out just fine and you will be blessed to find solutions.
+    - The Hearts of the Children Shall Turn
+        -  What is the Spirit of Elijah?
+        -  What promises flow from responding to the Spirit of Elijah?
+        -  What did Joseph Smith say was the greatest responsibility in this world that God has laid upon us?
+        -  How did Russell M. Nelson define the Spirit of Elijah?
+    - Trust in the Lord
+        -  What did Elder Oaks promise would be the case regarding relationships in the spirit world or in the
+        - kingdoms of glory?
+        -  What two teachings from Joseph Smith regarding the spirit world have been repeatedly taught by other
+        - prophets and apostles?
+        -  What two principles do we need to know to have faith that all will be well in the spirit world and beyond?
+- 7. Single Life, Dating and Courtship
+    - To the Singles of the Church
+        -  What did Sister Oaks say are eternal “truths” for singles to understand?
+        -  What did Sister Oaks say would be the consequences if we cannot bear the difficulties and challenges while
+        - we are single?
+        -  What does "having faith" mean and not mean according to Sister Oaks?
+    - Finding Your Sweetheart
+        -  Why did Elder Robbins say that the attributes from 1 Corinthians 13 are different (and better) than those the
+        - world suggests are necessary? How are the two lists (between 1 Corinthians and the world) different?
+        -  What do we learn about the nature of love when we realize that it is a verb?
+        -  What does it mean to "fall out of love"?
+        -  Why would it be more appropriate to ask if this is "a one" instead of "the one"?
+    - True Love
+        - How does Elder Turley define true love?→A selfless attitude, selfless action.
+        - Why did Elder Turley share the reality that many of our hopes and dreams will likely not come true?→Not to discourage you—quite the contrary. What I want to do today is focus our thoughts on one simple concept that will lead to the kind of success that really matters in life—success that lasts beyond the grave. That simple concept is true love.
+        - What is the “antithesis of love”?→Gordon B. Hinckley: Selfishness is the antithesis of love
+    - As I Have Loved You: Agency-Based Love in Dating and Marriage
+        -  How is agency related to love?
+        -  How does the author differentiate feelings of love and happiness from the way they are often interpreted?
+        -  What do we learn from the fact that God commands us to love one another?
+        -  What principles help us “create” love?
+    - Choosing and Being the Right Spouse
+        - What should we consider about ourselves before seeking to know if we have found the person we want to marry?→Therefore, when we focus on finding the right person, we should also focus on becoming the right person for someone else. The strengths we bring to a marriage will undoubtedly contribute to the success of the marriage.
+        - What are some factors we should consider when seeking for a marriage partner?→First, we need to know a lot about the person we are thinking of marrying. values, self-respect, positive communication,
+        - When seeking to make the marriage decision, what five things should we keep in mind?→worthy to receive inspiration, understand the balance between agency and inspiration, seek several witnesess if needed, learn to discern btw inspiriation infatuation desperation, spiritual confirmation needs to come to both parties.
+- 8. The Law of Chastity
+    - We Believe in Being Chaste
+        -  What is necessary for us to understand the eternal importance of the law of chastity?
+        -  What is one of the great ironies of eternity related to the law of chastity?
+        -  What do our physical bodies amplify?
+    - For the Strength of Youth
+        -  What is “the Lord’s standard regarding sexual purity”?
+        -  What does the First Presidency counsel regarding passionately kissing before marriage?
+        -  What role does the Holy Spirit play in helping us stay morally pure?
+    - Of Souls, Symbols, and Sacraments
+        -  What is the relationship between the worth of souls, the role of sexuality in the plan of salvation, and the
+        - Atonement in explaining why sexual sin is so serious to our Heavenly Father?
+        -  What is one of the dangers of sexual fragmentation?
+        -  According to our readings, Elder Holland said we “will never be more like God at any other time in this life
+        - than when ________.”
+    - Recovering from the Trap of Pornography
+        -  Why is it important not to incorrectly classify pornography use as addiction?
+        -  What did Elder Oaks teach about the worthiness of a person who has fully repented of pornography use?
+        - 
+    - 
+- 
+- 
+- 
+- 
+- 
+- **the midterm**
+- 9. Marital Intimacy and the Sanctity of Life
+    - Preparing for Intimacy
+        -  What kind of activities help prepare a couple for marital intimacy?
+        -  According to the reading, what is the 48-hour rule and how might it help couples deal with past mistakes?
+    - The Spiritual Dimension: Sexual Decision Making
+        -  What is equally as important as what you decide when it comes to marital intimacy?
+        -  What did the authors say was preeminent in our sexual decision-making?
+        -  When deciding what will be part of your marital intimate behavior, what else should be part of the
+        - consideration?
+    - Birth Control, True to the Faith
+        -  In True to the Faith, the First Presidency asks us to consider two things when making decisions about how
+        - many children to have and when. What are they?
+    - Birth Control, General Handbook: Serving in the Church of Jesus Christ of Latter-day Saints
+        -  Who should be involved in the decision of how many children to have and when to have them?
+        - Children
+        -  How can we be in the world but not of the world in relation to these issues?
+        -  What question did President Kimball ask of Elder Mason regarding beginning his family and how does that
+        - apply to us?
+        -  Why did Elder Anderson bring up the examples of Adam and Eve, Lehi and Sarah, Moses’s parents, and
+        - Joseph and Mary?
+    - Abortion: An Assault on the Defenseless
+        -  What are the possible exceptions to the prohibition on abortion?
+        -  Is it possible to be forgiven for the sin of abortion?
+    - Suicide
+        -  What does the Church teach regarding God’s judgement of one who commits suicide?
+        -  What were the myths discussed in the readings regarding suicide?
+- 10. Principles of Happiness in Family Life
+    - The Tongue of Angels
+        -  What did James say should “not be” when it comes to our communications?
+        -  Joseph Smith taught that it is by what that men work when they work by faith?
+        -  What principles did Elder Holland teach about speaking with a child?
+    - Strengthening Families: Our Sacred Duty
+        -  “However worthy and appropriate other demands or activities may be,” what is the standard on whether we
+        - should do them?
+        -  What did Elder Robert D. Hales say was “the key to strengthening our families”?
+        -  Parents should stay informed about their children’s lives. What does this mean for their children’s internet
+        - (and social media) life?
+        -  According to our readings, what did Joseph Smith say was calculated to lead people to forsake sin?
+    - The Family
+        -  What should we expect when we read the family proclamation?
+        -  What “could make it more likely that people in the family would love and serve one another”?
+        -  How can we plan for success instead of failure in our future plans to take care of our families?
+    - More Diligent and Concerned at Home
+        -  According to our readings, what were Elder Bednar’s three suggestions for how we can be more diligent and
+        - concerned at home?
+- 11. By Divine Design - Partnership in Marriage
+    - Crossing Thresholds and Becoming Equal Partners
+        -  What did President Packer say regarding the virtues and attributes upon which exaltation depends?
+        -  What did Elder Maxwell teach husbands and wives that they must be?
+        - Adversity
+        -  According to President Eyring, what is part of the evidence of God’s infinite love for us?
+        -  How does God suit the relief he offers to his children in need?
+    - Good, Better, Best
+        -  Why is the fact that something is good not reason enough to prioritize or do that thing?
+        -  What do many “breadwinners” worry about?
+        -  Why did President Hinckley plead with us to “work at our responsibility as parents as if everything in life counted on it”?
+    - It Is Not Good for Man or Woman to Be Alone
+        -  What did Sister Dew state that we need to do as a result of men and women being different?
+- 12. Parenting Principles
+    - A ‘Mother Heart’
+        -  What must we must do now if we would treasure motherhood in the world to come?
+        -  What do we learn was “far more lasting, far more powerful, far more influential than any earthly position or
+        - institution”?
+    - Women of Dedication, Faith, Determination, and Action
+        -  Is it possible for God to inspire one woman to be a stay-at-home mom and another to work outside of the home?
+    - Fathers
+        -  What is a “pernicious philosophy” that undermine a woman’s moral influence?
+        -  What are “two of the best things a father can do for his children”?
+        -  What is the most essential work of a father?
+    - We’ll Ascend Together
+        -  According to Sister Burton, when is a husband most attractive to his wife?
+        -  What are two false messages being sent to men in our time?
+        -  What was Sister Burton speaking about when she asked “if any of these questions lead you to squirm or feel a tinge of guilt”?
+    - Bring Up A Child in the Way He Should Go
+        -  If we would help our children, when must we begin? What example did President Hinckley use to illustrate this point?
+        -  What did President Hinckley say is mandated of each father? What are these needs?
+        -  What did President Hinckley say was the greatest responsibility of mothers?
+        -  What will make a greater difference for our children than money or material blessings?
+    - Essential Conversations
+        -  What is the “uniquely special time” Sister Jones admonished parents to take advantage of?
+        -  How did Sister Jones’ summarize the definition of “essential conversations”?
+        -  Besides teaching children what they believe, what else do essential conversations help children to know?
+- 13. Providing for Temporal Needs
+    - Becoming Provident Providers Temporally and Spiritually
+        -  What are acceptable reasons for incurring reasonable debt?
+        -  What basic commandment must we keep as a provident provider?
+        -  What is a primary purpose of the law of tithing?
+    - All is Safely Gathered In: Family Finances
+        -  What headings are included in the First Presidency pamphlet All Is Safely Gathered In?
+    - Thru Cloud and Sunshine, Lord, Abide with Me
+        -  How did Sister Aburto differentiate normal sadness from possible depression or anxiety?
+        -  What benefit comes to others through us sharing our challenges?
+    - Seek Learning – You Have a Work to Do
+        -  What have prophets counseled women in relation to education?
+        -  What "has a profound influence on the educational choices" of children?
+    - Becoming Self-Reliant – Spiritually and Physically
+        -  Besides being better able to care for the needs of others, what is the other reason given by the Church
+    - Handbook for being self-reliant?
+        -  How do we become more self-reliant by becoming more reliant on God?
+- 14. Promoting and Defending the Family
+    - Defenders of the Family Proclamation
+        -  What does Sister Oscarson proclaim to be the greatest honor and most elevated title and important role we can seek for in life?
+    - Christian Courage: The Price of Discipleship
+        -  What lesson do we learn from how Christ responded to his detractors?
+        -  What is more regrettable than being accused of not being Christian?
+    - Truth and Tolerance
+        -  True or false: According to our readings, we may need to challenge laws that would impair our freedom to practice our faith.
+        -  True or false: According to our readings, many of our laws are based in “morality,” and arguing that you should not legislate morality would remove laws necessary for civilization.
+    - Disciples of Jesus Christ – Defenders of Marriage
+        -  According to our readings, President Nelson taught that men and women were created for ________.
+        -  According to our readings, what did President Hunter promise those whose lives and faith are centered upon Jesus Christ?
+        - True or false: According to our readings, pressures to change marriage laws are resulting in practices contrary to God’s will.
+    - To Heal the Shattering Consequences of Abuse
+        - Until we have sufficient time and strength to be healed of abuse, what does Christ invite us to do?
+        - What did Elder Scott ask us to realize if we feel that we are not loved by Heavenly Father?
+- 

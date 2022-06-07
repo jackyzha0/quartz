@@ -1,0 +1,10 @@
+{
+  "id": "obsidian-local-images",
+  "name": "Local images",
+  "version": "0.14.2",
+  "minAppVersion": "0.12.15",
+  "description": "Searches your notes for hotlinked images, downloads, saves them locally than fix tags in md-files.",
+  "author": "catalysm, aleksey-rezvov",
+  "authorUrl": "https://github.com/aleksey-rezvov/obsidian-local-images",
+  "isDesktopOnly": true
+}

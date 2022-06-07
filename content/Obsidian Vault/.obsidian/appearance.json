@@ -1,0 +1,9 @@
+{
+  "baseFontSize": 16,
+  "theme": "obsidian",
+  "translucency": false,
+  "cssTheme": "Everforest",
+  "enabledCssSnippets": [
+    "big-math"
+  ]
+}

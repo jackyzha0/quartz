@@ -1,0 +1,3 @@
+#work 
+
+I absolutely loved using the Flutter framework to build my last app. It's simple, extremely flexible, performant, and well-documented. When I was in search of talent for faster development, I was stunned to find that some of the most talented people were 18 or 19 years old, and working from Africa and India. The rich resources around the framework and the language created opportunities from people in these developing countries. I noticed that one of the people that built the library I was using had even begun to give back, creating a YouTube channel with tutorials on login flows. To create such a well-documented and clear framework is to lower the barrier to entry for people who need it more than I do. I'd be honored to be a part of that. 

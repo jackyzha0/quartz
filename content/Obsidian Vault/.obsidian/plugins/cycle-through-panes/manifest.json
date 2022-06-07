@@ -1,0 +1,10 @@
+{
+  "id": "cycle-through-panes",
+  "name": "Cycle through Panes",
+  "version": "0.0.12",
+  "minAppVersion": "0.12.5",
+  "description": "Cycle through your open Panes with `ctrl + Tab`, just like with Tabs in your Browser!, ctrl+shift+Tab for Reverse",
+  "author": "Vinadon & Rythm",
+  "authorUrl": "https://github.com/phibr0",
+  "isDesktopOnly": false
+}

@@ -1,0 +1,10 @@
+{
+  "id": "dataview",
+  "name": "Dataview",
+  "version": "0.4.19",
+  "minAppVersion": "0.12.0",
+  "description": "Complex data views for the data-obsessed.",
+  "author": "Michael Brenan <blacksmithgu@gmail.com>",
+  "authorUrl": "https://github.com/blacksmithgu",
+  "isDesktopOnly": false
+}

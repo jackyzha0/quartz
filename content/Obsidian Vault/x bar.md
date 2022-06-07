@@ -1,0 +1,1 @@
+$\bar X$ is samples taken from X, another random variable, and as such is a random variable. It's equivalent to $\hat \mu$

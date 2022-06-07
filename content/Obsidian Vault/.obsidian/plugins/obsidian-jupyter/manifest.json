@@ -1,0 +1,10 @@
+{
+    "author": "Till Hoffmann",
+    "authorUrl": "https://github.com/tillahoffmann/obsidian-jupyter",
+    "description": "This plugin allows code blocks to be executed as Jupyter notebooks.",
+    "id": "obsidian-jupyter",
+    "isDesktopOnly": true,
+    "minAppVersion": "0.9.12",
+    "name": "Jupyter plugin",
+    "version": "0.8.1"
+}

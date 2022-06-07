@@ -1,0 +1,9 @@
+{
+  "realTimeUpdate": false,
+  "realTimeUpdateInterval": 1000,
+  "realTimeAttemptsToProcess": 3,
+  "cleanContent": true,
+  "showNotifications": true,
+  "include": ".*\\.md",
+  "mediaRootDirectory": "media"
+}

@@ -1,0 +1,1 @@
+it just means find the best argument that gets the min or max of what comes next in the equation.

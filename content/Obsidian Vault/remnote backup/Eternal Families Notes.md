@@ -1,0 +1,57 @@
+- [[https://www.churchofjesuschrist.org/study/general-conference/2015/04/why-marriage-why-family?lang=eng]]
+    - According to Elder Christofferson, why is marriage more than the love couples feel for each other?↔It's a post/ office in the kingdom of God. Best setting for God's plan to thrive. 
+    - Why can no person or government alter the divine order of matrimony?↔It is not a human invention. Such marriage is indeed “from above, from God” and is as much a part of the plan of happiness as the Fall and the Atonement.
+- What four things did Elder Christofferson teach are "needed for the success of [God's] plan"?↔Creation of the Earth, condition of mortality, redemption from the fall, setting for our physical birth and subsequent spiritual rebirth into the kingdom of God.
+- [[https://www.churchofjesuschrist.org/study/general-conference/2015/04/why-marriage-why-family?lang=eng]]
+- article
+    - What did President Julie B. Beck teach that the theology of the family is based on?→the Creation, the Fall, and the Atonement.
+    - Rather than a consumer approach to dating, how did President Beck describe dating and courtship?→faith-based work.
+- marriage is essential to his eternal plan [[https://www.churchofjesuschrist.org/study/ensign/2006/06/marriage-is-essential-to-his-eternal-plan?lang=eng]] 
+    - What were Elder Bednar’s two reasons for why eternal marriage is essential to our exaltation?→Reason 1: The natures of male and female spirits complete and perfect each other, and therefore men and women are intended to progress together toward exaltation. Reason 2: By divine design, both a man and a woman are needed to bring children into mortality and to provide the best setting for the rearing and nurturing of children.
+    - Which issues did Elder Bednar say constitute Satan’s most direct and diabolical attack on the family?→Satan works unremittingly to confuse understanding about gender, to promote the premature and unrighteous use of procreative power, and to hinder righteous marriage precisely because marriage is ordained of God and the family is central to the plan of happiness.
+    - According to Elder Bednar, where must we look in order to overcome Satan’s counterfeit messages regarding gender and marriage?→understanding the intent of an enemy is a key prerequisite to effective preparation.
+- [[https://www.churchofjesuschrist.org/study/general-conference/1993/10/the-great-plan-of-happiness?lang=eng]]
+    - What eight ways did President Oaks say that Satan would try to destroy the plan?→Satan seeks to discredit the Savior and divine authority, to nullify the effects of the Atonement, to counterfeit revelation, to lead people away from the truth, to contradict individual accountability, to confuse gender, to undermine marriage, and to discourage childbearing (especially by parents who will raise children in righteousness).
+    - What did Adam and Eve need to do to keep the first commandment?→They could not fulfill the Father’s first commandment without transgressing the barrier between the bliss of the Garden of Eden and the terrible trials and wonderful opportunities of mortal life.
+    - What did Eve transgress to initiate the conditions of mortality?→The boundaries of the garden of Eden
+    - 
+- What was the first commandment given to Adam and Eve?→the Lord said, “Be fruitful, and multiply”
+- Unit 3
+    - [[https://www.churchofjesuschrist.org/study/ensign/2001/06/justification-and-sanctification?lang=eng]]
+        - “If justification removes the punishment for past sin, then sanctification ________.”→then sanctification removes the stain or effects of sin.
+        - Though we cannot earn the grace of Christ, what must we do to receive it?→Thus, it is not that we earn these gifts, but rather that we choose to seek and accept justification and sanctification.
+        - What is the medium through which Christ’s atoning grace is applied?→The Holy Spirit
+        - Is perfection dependent on justification and sanctification, or is justification and sanctification dependent on perfection?→the first one
+    - [[https://www.churchofjesuschrist.org/study/general-conference/2021/04/28ballard?lang=eng]]
+        - How did Elder Ballard define “waiting on the Lord?
+        - What is necessary in order to guarantee exaltation?
+        - 
+    - [[https://www.churchofjesuschrist.org/study/ensign/2015/05/sunday-morning-session/the-gift-of-grace?lang=eng]]
+        - True or false: According to the reading, the Atonement restores us to our previous innocent state.
+What two things does grace do according to Elder Uchtdorf?
+Why do “we seek to obey our Heavenly Father"?
+        - What doesn't "after all we can do" mean according to Elder Uchtdorf?
+- 
+- unit 5
+    - url
+        - According to President Oaks, how do we show God we love Him?→We show that love by “keep[ing] [His] commandments.”
+        - President Nelson identified two eternal laws that are most significant in relation to LGBTQ issues. One was God’s law of marriage. What was the other one?→its companion law of chastity.
+        - Why are God’s laws always a manifestation of God’s love?→“God’s laws are motivated entirely by His infinite love for us and His desire for us to become all we can become.”
+        - 
+    - topics
+        - Should a person feel guilty because they experience feelings of same-sex attraction?
+        - Can a person who experiences same-sex attraction experience happiness in this life and a fulness in the life to come?
+        - What should a person who is experiencing depression, anxiety, or suicidal thoughts do?
+        - What is the intended meaning of gender in “The Family: A Proclamation to the World”?
+        - Are all of God’s promised blessings available to those who experience transgenderism?
+- unit 7
+    - [[https://www2.byui.edu/Presentations/Transcripts/Devotionals/2007_10_23_Turley.htm]]
+        - How does Elder Turley define true love?→A selfless attitude, selfless action.
+        - Why did Elder Turley share the reality that many of our hopes and dreams will likely not come true?→Not to discourage you—quite the contrary. What I want to do today is focus our thoughts on one simple concept that will lead to the kind of success that really matters in life—success that lasts beyond the grave. That simple concept is true love.
+        - What is the “antithesis of love”?→Gordon B. Hinckley: Selfishness is the antithesis of love
+    - [[https://www.churchofjesuschrist.org/study/ensign/2002/09/choosing-and-being-the-right-spouse?lang=eng]] 
+        - What should we consider about ourselves before seeking to know if we have found the person we want to marry?→Therefore, when we focus on finding the right person, we should also focus on becoming the right person for someone else. The strengths we bring to a marriage will undoubtedly contribute to the success of the marriage.
+        - What are some factors we should consider when seeking for a marriage partner?→First, we need to know a lot about the person we are thinking of marrying. values, self-respect, positive communication, 
+        - When seeking to make the marriage decision, what five things should we keep in mind?→worthy to receive inspiration, understand the balance between agency and inspiration, seek several witnesess if needed, learn to discern btw inspiriation infatuation desperation, spiritual confirmation needs to come to both parties. 
+        - 
+- 

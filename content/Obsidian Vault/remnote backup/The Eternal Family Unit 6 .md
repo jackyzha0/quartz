@@ -1,0 +1,8 @@
+- [Marriage in the Lord’s Way, Part Two ](https://www.churchofjesuschrist.org/study/ensign/1998/06/marriage-in-the-lords-way-part-one?lang=eng)
+- [Marriage in the Lord’s Way, Part One  ](https://www.churchofjesuschrist.org/study/ensign/1998/06/marriage-in-the-lords-way-part-one?lang=eng)
+    - What did Elder Kofford say he believes sealing refers to?→the “sealing ordinance” or “being sealed” rather than just “being married in the temple.”
+    - What do we know about the patriarchal order?→The gospel, which is called “the new and everlasting covenant,” includes many specific covenants, one being called “the new and everlasting covenant of marriage.” This title, or name, is simply another way of saying “patriarchal order.”
+    - Why did Elder Kofford say we need a temple recommend before entering the temple?→once you enter the temple, you are expected and required to live the covenants you will make there. 2nd [D&C 109:20]: “No unclean [unworthy] thing shall be permitted to come into thy house to pollute it.” 
+    - If there is a difficulty in a marriage that is serious enough to threaten the marriage relationship, what counsel does Elder Kofford provide?→whenever there is a difficulty between a husband and wife in their marriage relationship that is serious enough to threaten that relationship, one or the other (or both) is not living the gospel of Jesus Christ. That means that one or both of the marriage partners are not keeping the covenants, commitments, and promises they made at the altar of the temple. If you love God enough and follow His teachings, everything else will work out just fine and you will be blessed to find solutions.
+- 
+- 

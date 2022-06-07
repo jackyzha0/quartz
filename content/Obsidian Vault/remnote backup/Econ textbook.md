@@ -1,0 +1,164 @@
+- #econ
+- 1
+    - nutshell
+        - The fundamental lessons about individual decision making are that people face trade-offs among alternative goals, that the cost of any action is measured in terms of forgone opportunities, that rational people make decisions by comparing marginal costs and marginal benefits, and that people change their behavior in response to the incentives they face.
+        - The fundamental lessons about the economy as a whole are that productivity is the ultimate source of living standards, that growth in the quantity of money is the ultimate source of inflation, and that society faces a short-run trade-off between inflation and unemployment.
+        - The fundamental lessons about interactions among people are that trade and interdependence can be mutually beneficial, that markets are usually a good way of coordinating economic activity among people, and that governments can potentially improve market outcomes by remedying a market failure or by promoting greater economic equality.
+- 2
+    - nutshell
+        - Economists try to address their subject with a scientist’s objectivity. Like all scientists, they make appropriate assumptions and build simplified models to understand the world around them. Two simple economic models are the circular-flow diagram and the production possibilities frontier. The circular-flow diagram shows how households and firms interact in markets for goods and services and in markets for the factors of production. The production possibilities frontier shows how society faces a trade-off between producing different goods.
+        - The field of economics is divided into two subfields: microeconomics and macroeconomics. Microeconomists study decision making by households and firms and the interactions among households and firms in the marketplace. Macroeconomists study the forces and trends that affect the economy as a whole.
+        - A positive statement is an assertion about how the world is. A normative statement is an assertion about how the world ought to be. While positive statements can be judged based on facts and the scientific method, normative statements entail value judgments as well. When economists make normative statements, they are acting more as policy advisers than as scientists.
+        - Economists who **advise **policymakers sometimes offer conflicting advice either because of differences in scientific judgments or because of differences in values. At other times, economists are united in the advice they offer, but policymakers may choose to **ignore   the advice **because of the many forces and constraints imposed on them by the political process.
+    - key concepts
+        - circular-flow diagram
+        - production possibilities frontier
+        - microeconomics
+        - macroeconomics
+        - positive statements
+        - normative statements
+- 3
+    - nutshell
+        - Each person consumes goods and services produced by many other people both in the United States and around the world. Interdependence and trade are desirable because they allow everyone to enjoy a greater quantity and variety of goods and services.
+        - There are two ways to compare the abilities of two people to produce a good. The person who can produce the good with the smaller quantity of inputs is said to have an absolute advantage in producing the good. The person who has the lower opportunity cost of producing the good is said to have a comparative advantage. The gains from trade are based on comparative advantage, not absolute advantage.
+        - Trade makes everyone better off because it allows people to specialize in those activities in which they have a comparative advantage.
+        - The principle of comparative advantage applies to countries as well as to people. Economists use the principle of comparative advantage to advocate free trade among countries
+    - key concepts
+        - absolute advantage
+        - opportunity cost
+        - comparative advantage
+        - imports
+        - exports
+- 4
+    - nutshell
+        - Economists use the model of supply and demand to analyze competitive markets. In a competitive market, there are many buyers and sellers, each of whom has little or no influence on the market price.
+        - The demand curve shows how the quantity of a good demanded depends on the price. According to the law of demand, as the price of a good falls, the quantity demanded rises. Therefore, the demand curve slopes downward.
+        - In addition to price, other determinants of how much consumers want to buy include income, the prices of substitutes and complements, tastes, expectations, and the number of buyers. When one of these factors changes, the quantity demanded at each price changes, and the demand curve shifts.
+        - The supply curve shows how the quantity of a good supplied depends on the price. According to the law of supply, as the price of a good rises, the quantity supplied rises. Therefore, the supply curve slopes upward.
+        - In addition to price, other determinants of how much producers want to sell include input prices, technology, expectations, and the number of sellers. When one of these factors changes, the quantity supplied at each price changes, and the supply curve shifts.
+        - The intersection of the supply and demand curves represents the market equilibrium. At the equilibrium price, the quantity demanded equals the quantity supplied.
+        - The behavior of buyers and sellers naturally drives markets toward their equilibrium. When the market price is above the equilibrium price, there is a surplus of the good, which causes the market price to fall. When the market price is below the equilibrium price, there is a shortage, which causes the market price to rise.
+        - To analyze how any event influences the equilibrium price and quantity in a market, we use the supply-and-demand diagram and follow three steps. First, we decide whether the event shifts the supply curve or the demand curve (or both). Second, we decide in which direction the curve shifts. Third, we compare the new equilibrium with the initial equilibrium.
+        - In market economies, prices are the signals that guide decisions and allocate scarce resources. For every good in the economy, the price ensures that supply and demand are in balance. The equilibrium price then determines how much of the good buyers choose to consume and how much sellers choose to produce.
+    - key concepts
+        - market
+        - competitive market
+        - quantity demanded
+        - law of demand
+        - demand schedule
+        - demand curve
+        - normal good
+        - inferior good
+        - substitutes
+        - complements
+        - quantity supplied
+        - law of supply
+        - supply schedule
+        - supply curve
+        - equilibrium
+        - equilibrium price
+        - equilibrium quantity
+        - surplus
+        - shortage
+        - law of supply and demand
+- 5
+    - nutshell
+        - The **price elasticity **of **demand **measures how much the quantity demanded responds to changes in the price. Demand tends to be more elastic if close substitutes are available, if the good is a luxury rather than a necessity, if the market is narrowly defined, or if buyers have substantial time to react to a price change.
+        - The **price elasticity **of **demand** is calculated as the percentage change in quantity demanded divided by the percentage change in price. If quantity demanded moves proportionately less than the price, then the elasticity is less than one and demand is said to be inelastic. If quantity demanded moves proportionately more than the price, then the elasticity is greater than one and demand is said to be elastic.
+        - **Total revenue**, the total amount paid for a good, equals the price of the good times the quantity sold. For inelastic demand curves, total revenue moves in the same direction as the price. For elastic demand curves, total revenue moves in the opposite direction as the price.
+        - The **income elasticity** of **demand **measures how much the quantity demanded responds to changes in consumers’ income. The cross-price elasticity of demand measures how much the quantity demanded of one good responds to changes in the price of another good.
+        - The **price elasticity **of **supply** measures how much the quantity supplied responds to changes in the price. This elasticity often depends on the time horizon under consideration. In most markets, supply is more elastic in the long run than in the short run.
+        - The **price elasticity **of **supply **is calculated as the percentage change in quantity supplied divided by the percentage change in price. If quantity supplied moves proportionately less than the price, then the elasticity is less than one and supply is said to be inelastic. If quantity supplied moves proportionately more than the price, then the elasticity is greater than one and supply is said to be elastic.
+        - The tools of supply and demand can be applied to many different kinds of markets. This chapter uses them to analyze the market for wheat, the market for oil, and the market for illegal drugs.
+    - key concepts
+        - elasticity
+        - price elasticity of demand
+        - total revenue
+        - income elasticity of demand
+        - cross-price elasticity of demand
+        - price elasticity of supply
+- 6
+    - nutshell
+        - A price ceiling is a legal maximum on the price of a good or service. An example is rent control. If the price ceiling is below the equilibrium price, then the price ceiling is binding, and the quantity demanded exceeds the quantity supplied. Because of the resulting shortage, sellers must in some way ration the good or service among buyers.
+        - A price floor is a legal minimum on the price of a good or service. An example is the minimum wage. If the price floor is above the equilibrium price, then the price floor is binding, and the quantity supplied exceeds the quantity demanded. Because of the resulting surplus, buyers’ demands for the good or service must in some way be rationed among sellers.
+        - When the government levies a tax on a good, the equilibrium quantity of the good falls. That is, a tax on a market shrinks the size of the market.
+        - A tax on a good places a wedge between the price paid by buyers and the price received by sellers. When the market moves to the new equilibrium, buyers pay more for the good and sellers receive less for it. In this sense, buyers and sellers share the tax burden. The incidence of a tax (that is, the division of the tax burden) does not depend on whether the tax is levied on buyers or sellers.
+        - The incidence of a tax depends on the price elasticities of supply and demand. Most of the burden falls on the side of the market that is less elastic because that side of the market cannot respond as easily to the tax by changing the quantity bought or sold.
+    - key concepts
+        - price ceiling
+        - price floor
+        - tax incidence
+- 7 ^78b82c
+    - nutshell
+        - Consumer surplus equals buyers’ willingness to pay for a good minus the amount they actually pay, and it measures the benefit buyers get from participating in a market. Consumer surplus can be found by computing the area below the demand curve and above the price.
+        - 
+        - Producer surplus equals the amount sellers receive for their goods minus their costs of production, and it measures the benefit sellers get from participating in a market. Producer surplus can be found by computing the area below the price and above the supply curve.
+        - 
+        - An allocation of resources that maximizes total surplus (the sum of consumer and producer surplus) is said to be efficient. Policymakers are often concerned with the efficiency, as well as the equality, of economic outcomes.
+        - 
+        - The equilibrium of supply and demand maximizes total surplus. That is, the invisible hand of the marketplace leads buyers and sellers to allocate resources efficiently.
+        - 
+        - Markets do not allocate resources efficiently in the presence of market failures such as market power or externalities.
+    - key concepts
+        - welfare economics
+        - willingness to pay
+        - consumer surplus
+        - cost
+        - producer surplus
+        - efficiency
+        - equality
+- 8
+    - nutshell
+        - A tax on a good reduces the welfare of buyers and sellers of the good, and the reduction in consumer and producer surplus usually exceeds the revenue raised by the government. The fall in total surplus—the sum of consumer surplus, producer surplus, and tax revenue—is called the deadweight loss of the tax.
+        - 
+        - Taxes have deadweight losses because they cause buyers to consume less and sellers to produce less, and these changes in behavior shrink the size of the market below the level that maximizes total surplus. Because the elasticities of supply and demand measure how much market participants respond to market conditions, larger elasticities imply larger deadweight losses.
+        - 
+        - As a tax grows larger, it distorts incentives more, and its deadweight loss grows larger. Because a tax reduces the size of the market, however, tax revenue does not continually increase. It first rises with the size of a tax, but if the tax gets large enough, tax revenue starts to fall.
+    - key concepts
+        - deadweight loss
+- 9
+    - nutshell
+        - The effects of free trade can be determined by comparing the domestic price before trade with the world price. A low domestic price indicates that the country has a comparative advantage in producing the good and that the country will become an exporter. A high domestic price indicates that the rest of the world has a comparative advantage in producing the good and that the country will become an importer.
+        - 
+        - When a country allows trade and becomes an exporter of a good, producers of the good are better off, and consumers of the good are worse off. When a country allows trade and becomes an importer of a good, consumers are better off, and producers are worse off. In both cases, the gains from trade exceed the losses.
+        - 
+        - A tariff—a tax on imports—moves a market closer to the equilibrium that would exist without trade and, therefore, reduces the gains from trade. Domestic producers are better off and the government raises revenue, but the losses to consumers exceed these gains.
+        - 
+        - There are various arguments for restricting trade: protecting jobs, defending national security, helping infant industries, preventing unfair competition, and responding to foreign trade restrictions. Although some of these arguments have merit in some cases, most economists believe that free trade is usually the better policy.
+    - key concepts
+        - world price
+        - tariff
+- 10
+- 11
+    - nutshell
+        - Goods differ in whether they are excludable and whether they are rival in consumption. A good is excludable if it is possible to prevent someone from using it. A good is rival in consumption if one person’s use of the good reduces others’ ability to use the same unit of the good. Markets work best for private goods, which are both excludable and rival in consumption. Markets do not work as well for other types of goods.
+        - Public goods are neither excludable nor rival in consumption. Examples of public goods include fireworks displays, national defense, and the discovery of fundamental knowledge. Because people are not charged for their use of the public good, they have an incentive to free ride, making private provision of the good infeasible. Governments can improve the allocation of resources by providing public goods and deciding the quantity of each good using cost–benefit analysis.
+        - Common resources are not excludable but are rival in consumption. Examples include common grazing land, clean air, and congested roads. Because people are not charged for their use of common resources, they tend to use them excessively. Governments can remedy this problem using various methods, such as regulations and corrective taxes, to limit the use of common resources.
+    - key concepts
+        - excludability
+        - rivalry in consumption
+        - private goods
+        - public goods
+        - common resources
+        - club goods
+        - free rider
+        - cost–benefit analysis
+        - Tragedy of the Commons
+- 13
+- 14
+    - nutshell
+        - Because a competitive firm is a price taker, its revenue is proportional to the amount of output it produces. The price of the good equals both the firm’s average revenue and its marginal revenue.
+        - To maximize profit, a firm chooses a quantity of output such that marginal revenue equals marginal cost. Because marginal revenue for a competitive firm equals the market price, the firm chooses quantity so that price equals marginal cost. Thus, the firm’s marginal-cost curve is its supply curve.
+        - ![[https://remnote-user-data.s3.amazonaws.com/lstfCGAE6mcNz6432YqNZU-lD0h2DqzHnXm2J1UkTDnYB1OJRcRjYAqZ65g5WPjF-LWJ0hqSK00lfzFQyb4hzRa6E8vqn0uiUnOXcEEYEz5pdrWcBGroCZBHE5PFdHqx.png]]
+        - In the short run when a firm cannot recover its fixed costs, the firm will choose to shut down temporarily if the price of the good is less than average variable cost. In the long run when the firm can recover both fixed and variable costs, it will choose to exit if the price is less than average total cost.
+        - In a market with free entry and exit, profit is driven to zero in the long run. In this long-run equilibrium, all firms produce at the efficient scale, price equals the minimum of average total cost, and the number of firms adjusts to satisfy the quantity demanded at this price.
+        - Changes in demand have different effects over different time horizons. In the short run, an increase in demand raises prices and leads to profits, and a decrease in demand lowers prices and leads to losses. But if firms can freely enter and exit the market, then in the long run, the number of firms adjusts to drive the market back to the zero-profit equilibrium.
+        - ![[https://remnote-user-data.s3.amazonaws.com/K2IB0JkxQpPCunO6S6rHNz4u7Ox9B2CeqqoZ-YNkdmr-AKyzG4kp8sXGo7FzIa2QQbYvmPxjIsJmJzFOMmNLpuh6RmpQvvizDswhWhFtEx3jEzDjkEBt5sN1fEtINheO.png]]
+- 
+- 25 - Production and Growth
+    - nutshell
+        - Economic prosperity, as measured by GDP per person, varies substantially around the world. The average income in the world’s richest countries is more than times that in the world’s poorest countries. Because growth rates of real GDP also vary substantially, the relative positions of countries can change dramatically over time.
+        - The standard of living in an economy depends on the economy’s ability to produce goods and services. Productivity, in turn, depends on the physical capital, human capital, natural resources, and technological knowledge available to workers.
+        - Government policies can try to influence the economy’s growth rate in many ways: by encouraging saving and investment, facilitating investment from abroad, fostering education, promoting good health, maintaining property rights and political stability, allowing free trade, and supporting the research and development of new technologies.
+        - The accumulation of capital is subject to diminishing returns: The more capital an economy has, the less additional output the economy gets from an extra unit of capital. As a result, although higher saving leads to higher growth for a period of time, growth eventually slows down as capital, productivity, and income rise. Also because of diminishing returns, the return to capital is especially high in poor countries. Other things being equal, these countries can grow faster because of the catch-up effect.
+        - Population growth has a variety of effects on economic growth. On the one hand, more rapid population growth may lower productivity by stretching the supply of natural resources and by reducing the amount of capital available to each worker. On the other hand, a larger population may enhance the rate of technological progress because there are more scientists and engineers.

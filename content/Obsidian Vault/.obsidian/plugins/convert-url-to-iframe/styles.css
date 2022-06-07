@@ -1,0 +1,26 @@
+.iframe__modal {
+    max-width: 90vw;
+}
+
+.iframe__modal .space-x {
+    margin-top: 1em;
+}
+
+.iframe__modal__container {
+    max-width: 100%;
+}
+
+.iframe__modal__container .iframe__container:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    background-color: white;
+    width: 8px;
+    height: 100%;
+}
+
+.iframe__modal__container .button__container {
+    text-align: center;
+}

@@ -1,0 +1,37 @@
+- commands
+    - tmux
+        - ctrl-b, d
+            - detaches the session
+        - tmux attach
+        - 
+- Xinru Page, Nancy Fulda, Mainack Mondal
+    - in charge, professors. Mainack is professor from india
+    - 
+- Anju Punuru - f
+    - Preliminary Stuff
+    - student from india
+- Isha Gosh - f
+    - sociology stuff, wrote one of the essays,
+    - U of U student
+    - grad student
+    - maybe card sort with scott
+- Yao Li - f
+    - grad student or professor
+    - just brought on
+    - from east??
+    - sociology or something
+    - 
+- Noah
+    - worked with neural network
+    - gone
+- Kenneth Vargas
+    - neural network
+    - maybe gone maybe not
+- Josh
+    - new, prolly working together.
+- Nathaniel Carlson
+    - probably left
+- Nathan Driggs
+    - passed off
+    - 8017071170
+    - Preliminary analysis, cleaning of tweets, more tweets w/andrew worked with nathaniel carlson on LDA

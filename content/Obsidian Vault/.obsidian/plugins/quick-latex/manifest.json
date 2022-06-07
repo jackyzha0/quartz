@@ -1,0 +1,10 @@
+{
+	"id": "quick-latex",
+	"name": "Quick Latex for Obsidian",
+	"version": "2.3.3",
+	"minAppVersion": "0.9.12",
+	"description": "Speedup latex math typing with auto fraction, align block shortcut, matrix shortcut...etc",
+	"author": "joeyuping",
+	"authorUrl": "https://github.com/joeyuping/quick_latex_obsidian",
+	"isDesktopOnly": true
+}
