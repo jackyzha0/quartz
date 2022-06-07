@@ -57,8 +57,14 @@
           content,
         }))
 
-    const render = () => {
+      const render = () => {
       // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page, adds event listeners, etc. If you are only dealing with basic DOM replacement, use the init function
+
+      const siteBaseURL = new URL({{$.Site.BaseURL}});
+      const pathBase = siteBaseURL.pathname;
+      const pathWindow = window.location.pathname;
+      const isHome = pathBase == pathWindow;
+
       {{if $.Site.Data.config.enableFooter}}
       const container = document.getElementById("graph-container")
       // retry if the graph is not ready
@@ -66,14 +72,14 @@
       // clear the graph in case there is anything within it
       container.textContent = ""
 
+      const drawGlobal = isHome && {{$.Site.Data.graphConfig.enableGlobalGraph}};
       drawGraph(
-        {{strings.TrimRight "/" .Site.BaseURL}},
-        {{$.Site.Data.graphConfig.paths}},
-        {{$.Site.Data.graphConfig.depth}},
-        {{$.Site.Data.graphConfig.enableDrag}},
-        {{$.Site.Data.graphConfig.enableLegend}},
-        {{$.Site.Data.graphConfig.enableZoom}}
-      );
+          {{strings.TrimRight "/" .Site.BaseURL}},
+          drawGlobal,
+          {{$.Site.Data.graphConfig.paths}},
+          drawGlobal ? {{$.Site.Data.graphConfig.globalGraph}} : {{$.Site.Data.graphConfig.localGraph}}
+        );
+
       {{end}}
 
       {{if $.Site.Data.config.enableLinkPreview}}
