@@ -1,3 +1,4 @@
+# map
 - customisable trick generator
 	- trick lists --> users can create lists for the generator to choose a trick from
 		- some built in lists
