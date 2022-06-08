@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "taylor.md",
+            "file": "Approximation.md",
             "mode": "source",
             "source": false
           }
@@ -22,7 +22,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "taylor.md",
+            "file": "Approximation.md",
             "mode": "preview",
             "source": false
           }
@@ -104,7 +104,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "taylor.md",
+                "file": "Approximation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +121,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "taylor.md",
+                "file": "Approximation.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "taylor.md"
+                "file": "Approximation.md"
               }
             }
           },
@@ -155,17 +155,17 @@
     "direction": "horizontal",
     "width": 300
   },
-  "active": "cdd64046e6539952",
+  "active": "e6ce38905c7e26b9",
   "lastOpenFiles": [
+    "Approximation.md",
+    "Simpson's Rule.md",
+    "arc length.md",
     "taylor.md",
     "binomial series.md",
     "econometrics/stats-econ-lecture-notes-plus.md",
     "recovered stats lecture notes.md",
     "econometrics/stats-econ-lecture-notes.md",
     "LinearAlgebra1.md",
-    "mean value theorem.md",
-    "Integration by Parts.md",
-    "systems of linear equations and matrices..md",
-    "ss12.md"
+    "mean value theorem.md"
   ]
 }

@@ -9,5 +9,6 @@
   "oz-image-plugin",
   "quick-latex",
   "wikilinks-to-mdlinks-obsidian",
-  "obsidian-local-images"
+  "obsidian-local-images",
+  "code-block-copy"
 ]

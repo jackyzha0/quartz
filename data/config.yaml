@@ -6,7 +6,7 @@ enableLatex: true
 enableSPA: true
 enableFooter: true
 enableContextualBacklinks: true
-enableRecentNotes: false
+enableRecentNotes: true
 description:
   Jaden Lorenc's site.
 page_title:
