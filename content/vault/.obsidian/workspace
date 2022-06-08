@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Approximation.md",
+            "file": "commands for hugo and obsidian thing.md",
             "mode": "source",
             "source": false
           }
@@ -22,8 +22,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Approximation.md",
-            "mode": "preview",
+            "file": "commands for hugo and obsidian thing.md",
+            "mode": "source",
             "source": false
           }
         },
@@ -54,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#math/calculus",
+                "query": "PXL",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -83,8 +83,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -104,7 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Approximation.md",
+                "file": "commands for hugo and obsidian thing.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Approximation.md",
+                "file": "commands for hugo and obsidian thing.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +132,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Approximation.md"
+                "file": "commands for hugo and obsidian thing.md"
               }
             }
           },
@@ -157,15 +156,15 @@
   },
   "active": "e6ce38905c7e26b9",
   "lastOpenFiles": [
+    "commands for hugo and obsidian thing.md",
     "Approximation.md",
-    "Simpson's Rule.md",
-    "arc length.md",
-    "taylor.md",
-    "binomial series.md",
-    "econometrics/stats-econ-lecture-notes-plus.md",
-    "recovered stats lecture notes.md",
-    "econometrics/stats-econ-lecture-notes.md",
-    "LinearAlgebra1.md",
-    "mean value theorem.md"
+    "um.jpg",
+    "_index.md",
+    "Pasted image 20210107191005 1.png",
+    "Pasted image 20210107191005.png",
+    "PXL_20211111_195701910.jpg",
+    "PXL_20220503_144942281.jpg",
+    "PXL_20220511_145131617~2.jpg",
+    "PXL_20220511_145131617~2 1.jpg"
   ]
 }

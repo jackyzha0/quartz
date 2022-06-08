@@ -1,4 +1,4 @@
-baseURL = "https://quartz.jzhao.xyz/"
+baseURL = "https://jaded0.github.io/quartz_personal_site/"
 languageCode = "en-us"
 googleAnalytics = "G-XYFD95KB4J"
 pygmentsUseClasses = true
@@ -11,7 +11,7 @@ ignoreFiles = [
     "/content/vault/pocket/*"
 ]
 summaryLength = 20
-paginate = 10
+paginate = 30
 enableGitInfo = true
 
 [markup]
