@@ -1,0 +1,1 @@
+categories are hierarchical and structured. they're good for things that are limited in a scope but don't work well for organic things like ideas.
