@@ -10,5 +10,10 @@ hugo server --disableFastRender
 ```
 
 ```bash
-
+git commit -m "fix pictures"
 ```
+
+```bash
+git push origin hugo
+```
+
