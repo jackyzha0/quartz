@@ -1,3 +1,13 @@
+---
+title: Milestone 3
+subtitle: Jet Hughes 9474308
+geometry:
+- right=20mm
+- left=20mm
+tags:
+- assignment/mobile-app
+---
+
 # Brain Storming
 ## Concept 1 - Snowboard trick generator. 
 This will be a mobile app that snowboarders can use to automatically generate random tricks. This app will be useful because snowboarders (riders) often get tunnel vision on a certain style of tricks or even a single trick. Using a algorithm to generate tricks provides a way for them to escape this focus. It can also be used when playing a game of SNOW, which is similar to a game of SKATE.
@@ -100,7 +110,8 @@ Takeaways:
 - Maybe incorporate some gestures
 - Consider using an aesthetic wich matches the culture/sport
 
-![100](Attachments/screenshots/skatedice/Screenshot_20220409-192630_Skate%20Dice.jpg)
+![](https://i.imgur.com/IqOErnh.png)
+
 
 ### Skate tricks
 This app is a much more fully featured solution. It is oriented towards learning skateboarding, and keeping track of you progress while doing it. It also has a built in trick generator, and game of skate. One of the most unique features it had that the other apps didn't was a trick of the day. This is one of the core features I want to include in my app. Another interesting feature it had was a page informing the user about injury prevention.
@@ -132,7 +143,7 @@ This app is a much more fully featured solution. It is oriented towards learning
 	- skill advanced (not with tricks just in general)
 	- focus off piste/backcountry, sometimes goes into park with friends/kids
 
-	## Primary: Casual Kyle
+## Primary: Casual Kyle
 
 ![](https://i.imgur.com/116a3bj.png)
 
@@ -225,23 +236,23 @@ Logan is snowboarding on the mountain with a group of his friends. Logan and his
 The first thing I wanted to was get a clear picture of how each screen should interact with the others. Identified three main screens: Home, Friends, and Schedule. I also identified some supplementary screens: Trick options, other settings, and welcome, and some more optional screens: Trick lists, trick dictionary. 
 
 I also listed some things that each screen should contain
-![300](Attachments/lofi-prototypes/navigation.JPG)
+![500](Attachments/lofi-prototypes/navigation.JPG)
 
 ### General protoypes
 Next I started to get down down general ideas about all of the screens. The main goal of this step for was to figure out the general flow of the app, and to get a general idea of how each screen should look.
 
 This first two pages I was experimenting mostly with the home screen. I tried three different layouts: Top tabs, Bottom tabs, and floating bottom buttons. I also started to explore ways for the user to navigate from the home screen to the trick options screen, and the schedule screen.
 
-![300](Attachments/lofi-prototypes/general-1.JPG)
-![300](Attachments/lofi-prototypes/general-4.JPG)
+![600](Attachments/lofi-prototypes/general-1.JPG)
+![600](Attachments/lofi-prototypes/general-4.JPG)
 
 The second page I explored a some variations on the floating button design. And begin  experimenting with the navigation and layout of the friends screen.
 
-![300](Attachments/lofi-prototypes/general-2.JPG)
+![600](Attachments/lofi-prototypes/general-2.JPG)
 
 On the third page I kept experimenting with the friends page. 
 
-![300](Attachments/lofi-prototypes/general-3.JPG)
+![600](Attachments/lofi-prototypes/general-3.JPG)
 
 ## In depth prototypes
 ### Home screen
@@ -252,20 +263,20 @@ I started with creating an partly new design that combined the floating buttons,
 I also decided against the swipe feature to show tricks, and opted instead for a button which opened another screen.
 
 I also tried out some other designs features a black background and round buttons.
-![500](Attachments/lofi-prototypes/home-2.jpg) ![300](Attachments/lofi-prototypes/home-3.jpg)![300](Attachments/lofi-prototypes/home-1.JPG)
+![500](Attachments/lofi-prototypes/home-2.jpg) ![600](Attachments/lofi-prototypes/home-3.jpg)![600](Attachments/lofi-prototypes/home-1.JPG)
 
 ### Other settings
-![300](Attachments/lofi-prototypes/other-settings-1.JPG)
+![600](Attachments/lofi-prototypes/other-settings-1.JPG)
 
 ### Trick Options
 For the trick Options I considered a few three main designs: the swipe/scroll, the modal, and the full screen.
 ![800](Attachments/lofi-prototypes/trick-options-1.JPG)
 
 ### Welcome
-![300](Attachments/lofi-prototypes/welcome-1.JPG)
+![600](Attachments/lofi-prototypes/welcome-1.JPG)
 
 ### Schedule
-![300](Attachments/lofi-prototypes/schedule-1.JPG)
+![600](Attachments/lofi-prototypes/schedule-1.JPG)
 
 ## Refinement
 Firstly I converted the lo-fi prototypes into Adobe XD designs.

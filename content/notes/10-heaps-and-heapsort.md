@@ -1,7 +1,7 @@
 ---
 title: "10-heaps-and-heapsort"
-sr-due: 2022-06-04
-sr-interval: 42
+sr-due: 2022-09-28
+sr-interval: 115
 sr-ease: 270
 tags: 
 - cosc201 

@@ -68,6 +68,7 @@ links:[_index](_index.md)
 - [running-in-person-experiments](notes/running-in-person-experiments.md)
 - [running-web-experiments](notes/running-web-experiments.md)
 - [analyzing-experiments](notes/analyzing-experiments.md)
+
 # Lectures
 - [04-evaluation-methods-birth-of-hci](notes/04-evaluation-methods-birth-of-hci.md)
 - [07-heuristic-evaluation-cont](notes/07-heuristic-evaluation-cont.md)
@@ -82,4 +83,4 @@ links:[_index](_index.md)
 - [16-distributing-cognition-and-visual-design-typography](notes/16-distributing-cognition-and-visual-design-typography.md)
 - [17-grids-grouping-alignment-reading-and-navigation](notes/17-grids-grouping-alignment-reading-and-navigation.md)
 - [18-ethics-in-hci](notes/18-ethics-in-hci.md)
-- 
+- [22-trends-in-hci](notes/22-trends-in-hci.md)

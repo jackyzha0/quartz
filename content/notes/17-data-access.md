@@ -4,12 +4,12 @@ aliases:
 tags: 
 - info201
 - lecture
-sr-due: 2022-05-15
-sr-interval: 7
+sr-due: 2022-07-08
+sr-interval: 38
 sr-ease: 250
 ---
 
-[revision questions](https://i.imgur.com/mPmQ28v.png)
+![revision questions](https://i.imgur.com/mPmQ28v.png)
 
 [data-access](notes/data-access.md)
 - [file-based-storage](notes/file-based-storage.md)

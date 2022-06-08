@@ -30,7 +30,7 @@ REST principles were Co-developed with the web
 java servelts are code blocks that handle requests. java.servlet.http library
 
 framworks like Spring support Java API development
-- wraps an aplicationserver around you data classes
+- wraps an aplication server around you data classes
 - can persist your data in a database
 - also provides servers that can host API access to your data
 

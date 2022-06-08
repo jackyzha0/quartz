@@ -15,9 +15,8 @@ Intro
 	- Time/Project Mangement
 	- Main Issues
 	- Main Non-Issues
-- Conclusion
 
-Communication/Division of tasks
+Communication
 - Discord
 	- Notes/resources
 	- Webhooks

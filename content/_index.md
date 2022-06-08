@@ -20,6 +20,9 @@ title: "Jet Hughes"
 
 # 5 Independent Learning
 - [networks](notes/networks.md)
+- [philosophy](notes/philosophy.md)
+- media
+	- [philosophize-this](notes/philosophize-this.md)
 - random
 	- [propogation-of-ideas](notes/propogation-of-ideas.md)
 	- [model-view-controller-pattern](notes/model-view-controller-pattern.md)
@@ -27,3 +30,4 @@ title: "Jet Hughes"
 
 # 6 Books
 - The book of illusions
+- the story of man

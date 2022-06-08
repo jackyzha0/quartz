@@ -3,8 +3,8 @@ title: "12-binary-search-tree-operations"
 tags: 
 - cosc201
 - lecture
-sr-due: 2022-05-27
-sr-interval: 34
+sr-due: 2023-03-03
+sr-interval: 273
 sr-ease: 270
 ---
 

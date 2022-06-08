@@ -3,8 +3,8 @@ title: "09-paper-prototypes-wiz-of-oz-video-prototypes"
 tags: 
 - info203 
 - lecture
-sr-due: 2022-05-23
-sr-interval: 26
+sr-due: 2022-08-26
+sr-interval: 84
 sr-ease: 270
 ---
 

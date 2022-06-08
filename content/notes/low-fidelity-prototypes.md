@@ -46,7 +46,6 @@ I also tried out some other designs features a black background and round button
 ## Other settings
 ![](https://i.imgur.com/5QPmErT.png)
 
-
 ## Trick Options
 For the trick Options I considered a few three main designs: the swipe/scroll, the modal, and the full screen.
 ![](https://i.imgur.com/sovj0Q5.png)
@@ -57,3 +56,25 @@ For the trick Options I considered a few three main designs: the swipe/scroll, t
 
 ## Schedule
 ![](https://i.imgur.com/zygYzAH.png)
+
+# Version 1
+After getting a general Idea of the basic layout of the app, I compiled my favourite versions of each screen into one design. This allowed to informally evaluate the design and find things to change.
+
+![600](https://i.imgur.com/KlcfDxK.png) ![600](https://i.imgur.com/hDfqduV.png)
+
+# Version 2
+The first Thing I want to change is the schedule/altitude screen. I thought I could remove the separation and combine the two screens. But this didn't work so well.  However, I think the ability to switch between meters and feet was good as this improves **user control and freedom**. Also the use of the spinner for time and altitude selection will be familiar to most users. This improves use of **consistency and standards**, and **recognitiona over recall**. I also decided to try a "switch" type design, where the user is forced to chooose between the schedule and the altitude. 
+
+I think think this works much better as it **shows the system status** clearly. And has a less cluttered more **miniml, aesthetic design**. I kept the weekday selection on both screens as the might only want use the altitude system on certain days. This improves, **user control and freedom**.
+
+I also thought it might not be super clear what the functions of the two options were, especially the altitude option. So decided to add a closable info card with some information. This improves **help and documentation**
+
+I also wanted to change the way the trick options worked. Instead of have the save cancel buttons I wanted the settings change to have immediate effect, so the user didn't have to save. These changes are in the second row of the first page of version 2. The actual options themselves are largely the same, except I added a header with a back button and removed the bottom save and cancel buttons. Next I changed the dropdown for each of the trick types to individual screens with the commonly used right chevron icon.
+
+I also added the bottom navigation bar back to the trick options screens to improve **user control and freedom**
+
+![600](https://i.imgur.com/Tph3x0V.png) ![600](https://i.imgur.com/rcK33u8.png)
+
+# Version 3
+After I had mostly finished the Layout. I changed the look to match the snowboarding "aesthetic", by making the app primarily black. However I dont think this design was as easy to use as the normal light design.
+![600](https://i.imgur.com/VRoFhvQ.png)

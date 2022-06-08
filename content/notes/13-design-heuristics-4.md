@@ -4,8 +4,8 @@ aliases:
 tags: 
 - info203
 - lecture
-sr-due: 2022-06-01
-sr-interval: 14
+sr-due: 2022-07-09
+sr-interval: 36
 sr-ease: 250
 ---
 [aesthetic-and-minimalist-design](notes/aesthetic-and-minimalist-design.md)

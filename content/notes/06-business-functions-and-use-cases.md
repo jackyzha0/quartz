@@ -3,8 +3,8 @@ title: "06-business-functions-and-use-cases"
 tags: 
 - info201 
 - lecture
-sr-due: 2022-06-04
-sr-interval: 17
+sr-due: 2022-07-22
+sr-interval: 47
 sr-ease: 270
 ---
 

@@ -4,14 +4,14 @@ aliases:
 tags: 
 - assignment/mobile-app
 ---
-#
+
 Firstly I converted the lo-fi prototypes into Adobe XD designs.
 
 ![](https://i.imgur.com/syq2HfK.png)
 
 I decided I wanted to make some chagnes to the design here so I saved this as version 1.
 
-### Schedule changes
+## Schedule changes
 
 I wanted to chagne the way the schedule/altude options worked. My first rough redesign was this:
 ![](https://i.imgur.com/CeYtNuP.png)
@@ -37,7 +37,7 @@ I also changed the alignment of the weekday selection buttons. And the altitude 
 ![](https://i.imgur.com/QzAfEaD.png)
 
 
-### Trick options Changes
+## Trick options Changes
 I decied to change the way this worked. Instead of have the save cancel buttons I wanted the settings change to have immediate effect, so the user didn't have to save. This was the first redesign:
 
 ![](https://i.imgur.com/0SMHkUX.png)
@@ -48,12 +48,12 @@ This is largely the same, except I added a head with back button and remove the 
 
 ![](https://i.imgur.com/0amkHJG.png)
 
-### "Color" scheme changes
+## "Color" scheme changes
 
 After I had mostly finished the Layout. I changed the look to match the snowboarding "aesthetic", by making the app primarily black
 
 ![](https://i.imgur.com/QgPjM5S.png)
 
-### More layout changes
+## More layout changes
 I decided to add the home row navigation back to the trick options screens to improve **user control and freedom**
 ![](https://i.imgur.com/474XINO.png)

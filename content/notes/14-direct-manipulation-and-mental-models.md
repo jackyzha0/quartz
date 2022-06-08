@@ -4,8 +4,8 @@ aliases:
 tags: 
 - info203
 - lecture
-sr-due: 2022-05-24
-sr-interval: 31
+sr-due: 2022-09-08
+sr-interval: 97
 sr-ease: 270
 ---
 
@@ -23,7 +23,7 @@ object action model maps to real life environment
 
 the designer needs to create mapping from the real world unicers ofb objects and intentios to the intrefac world universe of metaphors and plans
 
-# fits law
+# fitts law
 time to point to something depends on its size and distance:
 $$
 MT = C1 + C2\ log_2(2A/W)

@@ -1,7 +1,7 @@
 ---
 title: "cosc-202"
 year: 2022
-semester: 
+semester: 1
 tags: 
 - course 
 - cosc202
@@ -27,12 +27,13 @@ links: [_index](_index.md)
 - [continuous-integration](notes/continuous-integration.md)
 - [automation](notes/automation.md)
 - [software library](notes/libraries.md)
+- [application-programming-interface](notes/application-programming-interface.md)
 - [containers](notes/containers.md)
 - [linker](notes/linker.md)
 - [loader](notes/loader.md)s
 - [operating-system](notes/operating-system.md)
 - [software-licensing](notes/software-licensing.md)
-- [application-programming-interface](notes/application-programming-interface.md)
+- [[security](notes/security.md)]
 
 # Lectures
 - [07-testing](notes/07-testing.md)

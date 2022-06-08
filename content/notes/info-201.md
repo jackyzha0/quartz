@@ -12,18 +12,6 @@ links: [_index](_index.md)
 - [assignments tiddlywiki](https://isgb.otago.ac.nz/info201/shared/assignments_release/raw/master/output/info201_assignments.html)
 - [labs folder](file:///"C:/Users/Jet%20Hughes/Documents/Personal/courses/info-201/Labs")
 
-# Labs Checklist
-- [x] 2
-- [x] 3
-- [x] 4
-- [x] 5
-- [x] 6
-- [ ] 7
-- [x] 8
-- [x] 9
-- [x] 10
-- [x] 11
-
 # Outline
 - [version control system](notes/version-control-systems.md)
 - [stakeholders](notes/stakeholders.md)
@@ -46,8 +34,9 @@ links: [_index](_index.md)
 - [business-process](notes/business-process.md)
 - [business-process-model](notes/business-process-model.md)
 - [business-process-model-and-notation](notes/business-process-model-and-notation.md)
-- [unified-modelling-language](notes/unified-modelling-language.md)]
-- [use-case-diagrams](notes/use-case-diagrams.md)
+- [unified-modelling-language](notes/unified-modelling-language.md)
+	- [sequence-diagrams](notes/sequence-diagrams.md)
+	- [use-case-diagrams](notes/use-case-diagrams.md)
 	- [what-are-uml-diagrams](notes/what-are-uml-diagrams.md)
 	- [use-case-diagrams](notes/use-case-diagrams.md)
 	- [entity-relationship-diagrams](notes/entity-relationship-diagrams.md)

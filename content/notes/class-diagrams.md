@@ -30,8 +30,8 @@ PlUS
 - several differnt types, e.g., composition, aggregation, associateive classes
 
 ### 3.1 multuplicity
-[multiplicity-1](https://i.imgur.com/1dSergW.png)
-[multiplicity-2](https://i.imgur.com/4TKsBKd.png)
+![multiplicity-1](https://i.imgur.com/1dSergW.png)
+![multiplicity-2](https://i.imgur.com/4TKsBKd.png)
 
 ERDsd effectively only do zero one many
 UML can to any non negative integer

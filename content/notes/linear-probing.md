@@ -24,8 +24,8 @@ Frequency of collisions and time to find a new space are proportional to the *lo
 
 # Deletion
 we cant just empty cells as this will break search. We could:
-1. we could replace it by a "tombstone" maker. This counts as "full" for search and load purposes, but empty for insertion.
-2. we search foward form the element we're removing until we find something that belongs in that location or earlier - swap it back into this location and repeat until an empty cell is found.
+1. we could replace it by a "tombstone" marker. This counts as "full" for search and load purposes, but empty for insertion.
+2. we search foward from the element we're removing until we find something that belongs in that location or earlier - swap it back into this location and repeat until an empty cell is found.
 
 [^1]: Since we are able to do about n operation before we need to resize, we can spread this cost among those operation.
 [^2]: By not doubling exactly, the modulo remainder is "scrambled" a bit thus reducing collions.

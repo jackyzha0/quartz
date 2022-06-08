@@ -1,0 +1,55 @@
+- customisable trick generator
+	- trick lists --> users can create lists for the generator to choose a trick from
+		- some built in lists
+		- share lists with friends
+	- options
+		- trick types
+			- jump
+			- rail
+			- pipe
+			- butters
+		- flips
+		- spins
+		- grabs
+		- spin direction
+		- bring back or not
+		- stance
+			- regular
+			- goofy
+- daily trick
+	- same for all users?
+	- auto notification
+	- schedule
+		- weekly
+		- custom
+		- auto when at an altitude
+- App widget with daily trick? 
+- search for tricks
+	- options similar to generator
+	- save tricks to a list for generator
+- link with other users
+	- methods
+		- qr code
+		- url/link
+		- contact
+		- social media
+	- people
+		- friends
+		- coach
+		- parents
+	- features
+		- daily/sheduled trick group
+			- how would this work with altitude detector
+		- share trick lists
+		- community section for trick lists
+			- like spotify playlists
+		- users can share tutorials
+- Ease of use - (hard to use with gloves)
+	- voice controls
+	- gesture controls
+- goals tracking
+	- goal lists
+	- daily/weekly/yearly goals
+	- trick generator can choose a trick from goals
+	- share (or keep private) with coach and friends
+	- trick tutorials

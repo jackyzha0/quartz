@@ -3,8 +3,8 @@ title: "07-business-process-modelling"
 tags: 
 - info201 
 - lecture
-sr-due: 2022-05-16
-sr-interval: 6
+sr-due: 2022-07-14
+sr-interval: 41
 sr-ease: 270
 ---
 
