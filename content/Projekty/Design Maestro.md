@@ -9,6 +9,11 @@ To zestaw makr do aplikacji [[Optymalizacja/Narzędzia/Keyboard Maestro]], stwor
 
 Aktualnie zawiera około 80 makr przyspieszających pracę z projektami i plikami, oraz automatyzujących powtarzalne czynności. ~~W tej chwili dostęp do projektu jest zamknięty a jego premiera planowana jest na Styczeń / Luty 2022.~~
 
+## Trzecie miejsce na Product Hunt
+Trzeciego czerwca 2022 Design Maestro zdobyło [podium na Product Hunt](https://www.producthunt.com/posts/design-maestro), zajmując trzecie miejsce 🎉
+
+![](https://space.overment.com/product-hunt-dm-5EOI1/product-hunt-dm.png)
+
 ## Design Maestro FREE
 Projekt został opublikowany pod koniec marca 2022 w formie bezpłatnej wersji 10 makr: 
 https://designmaestro.io

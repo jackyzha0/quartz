@@ -18,8 +18,7 @@ Takie nastawienie sprawia, że z miłością podchodzę do wszystkiego co robię
 ### Poznawanie siebie
 *Każdy mówi Ci co jest dla Ciebie dobre. Nie chcą abyś znalazł własne odpowiedzi, tylko abyś uwierzył w ich.*
 
-> 
-**Socrates:**  
+***Socrates:**  
 Everyone tells you what to do and what's good for you. They don't want you to find your own answers. They want you to believe theirs.  
 `
 **Dan Millman:**  
@@ -32,7 +31,8 @@ No. I want you to stop gathering information from outside yourself and start gat
 Â :[Dan laughs] What are you, part of some cult or something?`
 `
 **Socrates:**  
-People are afraid of what's inside and that's the only place they're ever gonna find what they need.
+People are afraid of what's inside and that's the only place they're ever gonna find what they need.*
+
 
 ### Zasady życia
 Humor, Paradoks i Zmiana
