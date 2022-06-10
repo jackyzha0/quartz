@@ -1,5 +1,5 @@
 ---
-title: "What I'm d"
+title: "What I'm Doing"
 aliases: 
 tags: 
 
