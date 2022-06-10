@@ -2,6 +2,9 @@
 title: "Jet Hughes"
 ---
 
+Hello there, I'm Jet! I am a undergraduate student and the University of Otago and this is my personal collection of notes, slash my portfolio. 
+
+These notes 
 # 1 Papers
 - [cosc-201](notes/cosc-201.md)
 - [cosc-202](notes/cosc-202.md)

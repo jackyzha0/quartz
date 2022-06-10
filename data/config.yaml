@@ -3,10 +3,8 @@ enableToc: true
 openToc: false
 enableLinkPreview: true
 enableLatex: true
-description:
-  My University Notes
-page_title:
-  "Jet Hughes"
+description: "My Notes"
+page_title: "Jet Hughes"
 links:
   - link_name: Github
-    link: https://github.com/jethughes
+  - link: https://github.com/jethughes
