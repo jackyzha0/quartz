@@ -2,7 +2,7 @@
 title: "voltaire"
 aliases: 
 tags: 
-- person/philosophizethis
+- person/philosopher
 ---
 
 # Superstition
