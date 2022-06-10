@@ -1,8 +1,8 @@
 ---
-title: "now"
+title: "Now"
 aliases: 
 tags: 
 
 ---
 
-
+# 📖Reading
