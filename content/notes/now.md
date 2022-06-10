@@ -18,11 +18,11 @@ tags:
 		- [Software Development](notes/cosc-202.md)
 		- [Algorithms and DataStructures](notes/cosc-201.md)
 
-# 📖Reading
+# Reading
 - [The Art of War](notes/the-art-of-war.md)
 - [The Story of Man](notes/the-story-of-man.md)
 
-# 🎧Listening
+# Listening
 - [Philosophise This](https://www.philosophizethis.org)
 - [Album of the day](https://1001albumsgenerator.com)
 - Top 5 songs last week
