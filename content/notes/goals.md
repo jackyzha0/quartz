@@ -4,11 +4,6 @@ aliases:
 tags: 
 ---
 
-Week
-
-Month
-- 
-
 Year
 - 6/8 A's
 - Summer Job as Software Developer

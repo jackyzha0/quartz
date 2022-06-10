@@ -5,7 +5,7 @@ tags:
 
 ---
 
-- [goals](private/goals.md)
+- [goals](notes/goals.md)
 - [me](private/my-religion.md)
 - [cv](private/cv.md)
 - [Plan](private/Plan.md)
