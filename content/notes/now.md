@@ -10,7 +10,7 @@ tags:
 - [The Story of Man](notes/the-story-of-man.md)
 
 # 🎧Listening
-- Philosophize this
+- [Philosophise This](https://open.spotify.com/show/2Shpxw7dPoxRJCdfFXTWLE?si=7031e49c705c4cf7)
 - [Album of the day](1001albumsgenerator.com)
 - Top 5 songs last week
 	- Billy Jack - Curtis Mayfield
