@@ -12,5 +12,9 @@ tags:
 # 🎧Listening
 - Philosophize this
 - [Album of the day](1001albumsgenerator.com)
-- Billy Jack - Curtis Mayfield
-- Time is the Enemy
+- Top 5 songs last week
+	- Billy Jack - Curtis Mayfield
+	- Time is the Enemy - Quantic
+	- You Fly me - Fingathing
+	- Celos - Gotan Project
+	- Paris Texas - Gotan Project
