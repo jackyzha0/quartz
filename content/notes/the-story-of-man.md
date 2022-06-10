@@ -1,6 +1,6 @@
 ---
 title: "the-story-of-man"
-aliases: 
+aliases: The Story of Man
 tags: 
 - book/nonfiction/history
 ---

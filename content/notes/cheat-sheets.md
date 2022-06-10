@@ -1,8 +1,11 @@
 ---
 title: "cheat-sheets"
-aliases: <% tp.file.cursor(2) %>
+aliases: Cheat Sheets
 tags: 
-<% tp.file.cursor(3) %>
+
 ---
 
-<% tp.file.cursor(4) %>
+- [bash-tricks](cheatsheets/bash-tricks.md)
+- [git-cheat-sheet](cheatsheets/git-cheat-sheet.md)
+- [latex-cheat-sheet](cheatsheets/latex-cheat-sheet.md)
+- [puml-cheat-sheet](cheatsheets/puml-cheat-sheet.md)

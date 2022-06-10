@@ -1,6 +1,6 @@
 ---
 title: "the-art-of-war"
-aliases: art of war, sun tzu
+aliases: The Art of War, art of war, sun tzu
 tags: 
 - book/war
 ---
