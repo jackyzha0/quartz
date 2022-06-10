@@ -14,19 +14,19 @@
 const d = new Date().getDay()
 switch(d){
 	case 1:
-		tR+="- [ ] 11:00 Cosc202 Lecture\n- [ ] 12:00 Cosc201 lab"
+		tR+=""
 		break;
 	case 2:
-		tR+="- [ ] 10:00 Info203 Lecture\n- [ ] 11:00 Cosc201 Lecture\n- [ ] 13:00 Info201 Lecture\n- [ ] 14:00 Cosc202 Lab"
+		tR+=""
 		break;
 	case 3:
-		tR+="- [ ] 10:00 Info203 Lecture\n- [ ] 16:00 Cosc201 Tutorial"
+		tR+=""
 		break;
 	case 4:
-		tR+="- [ ] 11:00 Cosc202 Lecture\n- [ ] 12:00 Cosc201 Lab\n- [ ] 12:00 Info203 Tutorial\n- [ ] 16:00 Info201 Lecture"
+		tR+=""
 		break;
 	case 5:
-		tR+="- [ ] 09:00 Cosc202 Lab\n- [ ] 11:00 Cosc201 Lecture\n- [ ] 12:00 Info201 Lab"
+		tR+=""
 		break;
 	default:
 		break;
