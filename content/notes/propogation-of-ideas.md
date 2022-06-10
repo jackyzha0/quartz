@@ -1,5 +1,5 @@
 ---
-title: "Untitled 2"
+title: "Propagation of Ideas"
 aliases: Memes and the Eploitation of Imagination
 tags: 
 - article
