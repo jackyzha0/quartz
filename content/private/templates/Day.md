@@ -1,3 +1,0 @@
-- [ ] 10:00 Info203 Lecture
-- [ ] 14:00 Info203 Tutorial
-- [ ] 16:00 Cosc201 Tutorial°
