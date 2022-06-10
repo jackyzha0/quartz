@@ -10,4 +10,5 @@ tags:
 - [The Story of Man](notes/the-story-of-man.md)
 
 # 🎧Listening
-- Philoso
+- Philosophize this
+- [Album of the day](jethughes.)
