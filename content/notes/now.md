@@ -10,6 +10,7 @@ Updated Monthly: Next update (11/07)
 # Working
 - At Company-X as an Intern
 - On a [react native app](https://github.com/JetHughes/Generator-App)
+- O
 
 # Learning
 - At Otago Univeristy
@@ -27,14 +28,14 @@ Updated Monthly: Next update (11/07)
 # Listening
 - [Philosophise This](https://www.philosophizethis.org)
 - [Album of the day](https://1001albumsgenerator.com)
-- Top 10 songs last Month
-- You Fly Me - fingathing
-- Peacock Tail - boards of canada
-- The Day the Earth Stole Heaven - nine horses
-- Prayer in Passing - anoushka shankar
-- Golden Dawn - golden horse
-- Paris, Texas - gotan project
-- Billy Jack - curtis mayfield
-- Blessed Relief - frank zappa
-- Don't Talk (Put Your Head On My Shoulder) - beach boy
-- Seekers Who Are Lovers
+- Top 10 songs last month
+	- You Fly Me - fingathing
+	- Peacock Tail - boards of canada
+	- The Day the Earth Stole Heaven - nine horses
+	- Prayer in Passing - anoushka shankar
+	- Golden Dawn - golden horse
+	- Paris, Texas - gotan project
+	- Billy Jack - curtis mayfield
+	- Blessed Relief - frank zappa
+	- Don't Talk (Put Your Head On My Shoulder) - beach boys
+	- Seekers Who Are Lovers - cocteau twins
