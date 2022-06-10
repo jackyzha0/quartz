@@ -10,6 +10,7 @@ These are very rough, work-in-progress notes. I would not expect them to be very
 - My [goals](private/goals.md)
 - Some of my favourite [photos](notes/photos.md)
 
+## Notes
 1) [Uni Notes](notes/uni-notes.md)
 2) [Cheat Sheets](notes/cheat-sheets.md)
 3) [Philosophy](notes/philosophy.md)
