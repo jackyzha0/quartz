@@ -32,3 +32,5 @@ list from #lecture where sr-due = date(today)
 - [i201 Assignments](https://isgb.otago.ac.nz/info201/shared/assignments_release/raw/master/output/info201_assignments.html)
 
 ## Today's Log
+{{time}} boi
+{{time}} time
