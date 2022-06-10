@@ -27,7 +27,7 @@ Updated Monthly: Next update (11/07)
 # Listening
 - [Philosophise This](https://www.philosophizethis.org)
 - [Album of the day](https://1001albumsgenerator.com)
-- Top 5 songs last week
+- Top 10 songs last Month
 	- Billy Jack - Curtis Mayfield
 	- Time is the Enemy - Quantic
 	- You Fly me - Fingathing
