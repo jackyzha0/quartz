@@ -5,7 +5,10 @@ tags:
 
 ---
 
-# ::learn
+# 🧑‍🎓Learning
+- At Otago Univeristy
+- Bachelor of Computer Science
+- 
 
 # 📖Reading
 - [The Art of War](notes/the-art-of-war.md)
