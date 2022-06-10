@@ -1,5 +1,6 @@
 ---
 title: "info-203"
+aliases: Human Computer Interaction
 year: 2022
 semester: 
 tags: 

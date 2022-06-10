@@ -8,7 +8,8 @@ tags:
 # 🧑‍🎓Learning
 - At Otago Univeristy
 - Bachelor of Computer Science
-- 
+- Current Papers
+	- []
 
 # 📖Reading
 - [The Art of War](notes/the-art-of-war.md)

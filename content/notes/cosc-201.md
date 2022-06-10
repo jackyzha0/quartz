@@ -1,5 +1,6 @@
 ---
 title: "cosc-201"
+alias
 year: 2022
 semester: 1
 tags: 
