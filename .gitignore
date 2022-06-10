@@ -1,9 +1,9 @@
 .DS_Store
 public/
 resources
-.obsidian/
-private/
-Attachments/
+content/.obsidian
+content/private
+content/Attachments
 .vscode/
 assets/indices/linkIndex.json
 assets/indices/contentIndex.json
