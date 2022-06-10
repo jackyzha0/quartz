@@ -3,8 +3,14 @@ enableToc: true
 openToc: false
 enableLinkPreview: true
 enableLatex: true
-description: "My Notes"
-page_title: "Jet Hughes"
+enableSPA: true
+enableFooter: true
+enableContextualBacklinks: true
+enableRecentNotes: false
+description:
+  My notes
+page_title:
+  "Jet's Notes"
 links:
   - link_name: Github
-  - link: https://github.com/jethughes
+    link: https://github.com/jethughes

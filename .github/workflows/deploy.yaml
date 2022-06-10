@@ -10,9 +10,11 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Build Link Index
-        uses: jackyzha0/hugo-obsidian@v2.12
+        uses: jackyzha0/hugo-obsidian@v2.13
         with:
           index: true
           input: content
@@ -34,4 +36,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: master  # deploying branch
-          cname: jethughes.github.io
+          cname: quartz.jzhao.xyz
