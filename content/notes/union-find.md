@@ -159,7 +159,7 @@ If could happen that the sequence of Union operations does not create a rank tha
 ^this is an example of a semi-formal proof by [induction](notes/induction.md)
 
 ### 3.4 UF 4
-Change find so it implements path compression to "flatten" the chains
+Change find so it implements path compression to "flatten" the chains. When we follow tht path to a nodes representative we "learn" the final result
 
 ```java
 	if (x != reps[x]) {
