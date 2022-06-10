@@ -1,3 +1,5 @@
+#info203
+
 # Concept 1 - Snowboard trick generator. 
 
 This will be a mobile app that snowboarders can use to automatically generate random tricks. This app will be useful because snowboarders (riders) often get tunnel vision on a certain style of tricks or even a single trick. Using a algorithm to generate tricks provides a way for them to escape this focus. It can also be used when playing a game of SNOW, which is similar to a game of SKATE.

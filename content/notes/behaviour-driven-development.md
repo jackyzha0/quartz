@@ -7,7 +7,7 @@ tags:
 
 Models should be created with the users needs in mind. 
 Required bahaviour determines acceptance criteria
-This is called Behaviour Driven Development [[BDD]]
+This is called Behaviour Driven Development
 
 **Resources** 
 [Domain Driven Design with BDD](https://www.youtube.com/watch?v=Ju50D11EIoE)

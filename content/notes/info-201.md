@@ -49,6 +49,7 @@ tags:
 - [data-access](notes/data-access.md)
 - [data-access-object](notes/data-access-object.md)
 - [java-database-connectibity](notes/java-database-connectibity.md)
+- [SQL](notes/SQL.md)
 
 # Lectures
 - [02-version-control-system](notes/02-version-control-system.md)

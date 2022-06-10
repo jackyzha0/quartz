@@ -1,3 +1,9 @@
+---
+title: "mood-board"
+tags:
+- info203
+---
+
 # Mood board
 - Black and white maybe an accent color
 - sharp edges
