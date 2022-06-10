@@ -7,10 +7,9 @@ tags:
 
 Updated Monthly: Next update (11/07)
 
-# Working
-- At Company-X as an Intern
-- On a [react native app](https://github.com/JetHughes/Generator-App)
-- O
+# Creating
+- A [react native app](https://github.com/JetHughes/Generator-App) 
+- A [slack bot](https://github.com/JetHughes/slack-album-bot)
 
 # Learning
 - At Otago Univeristy
