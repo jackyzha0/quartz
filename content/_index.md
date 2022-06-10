@@ -7,7 +7,8 @@ Hello there, I'm Jet! I am a undergraduate student at the University of Otago an
 These are very rough, work-in-progress notes. I would not expect them to be very useful to anyone besides myself.
 
 - What I'm doing [now](notes/now.md)
-- My [goals](notes/goals.md)
+- My [goals](private/goals.md)
+- 
 
 1) [Uni Notes](notes/uni-notes.md)
 2) [Cheat Sheets](notes/cheat-sheets.md)
