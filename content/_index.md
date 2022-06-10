@@ -2,7 +2,7 @@
 title: "Jet Hughes"
 ---
 
-Hello there, I'm Jet! I am a undergraduate student and the University of Otago and this is my personal collection of notes, slash my portfolio. 
+Hello there, I'm Jet! I am a undergraduate student and the University of Otago and this is my personal collection of notes, slash my portfolio. boo
 
 These notes 
 # 1 Papers
