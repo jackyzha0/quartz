@@ -60,8 +60,8 @@ key concepts
 
 
 ## JDBI
-- bette version of JDBI
-	- layered on top of [JDBC](#JDBC)
+- better version of [JDBC](notes/java-database-connectibity.md)
+	- layered on top of it
 	- better APIs
 	- less code
 - simple class <-> table mapping 
