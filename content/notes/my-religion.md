@@ -4,8 +4,10 @@ aliases:
 tags: 
 ---
 
+inspired by [078-marx-and-kierkegaard-religion](notes/078-marx-and-kierkegaard-religion.md)
+
 Daily Routine
-- wake up 6.00
+- wake up 6.30
 - drink 1 litre
 - brush teeth
 - 6.15 walk -> listen to podcast episode + meditate
@@ -18,8 +20,10 @@ Daily Routine
 - surf/frisbee golf
 - work (personal -> projects, organisation, research, etc)
 - dinner
-- stretch, read, take notes (if non-fiction)
-- sleep
+- stretch
+- teeth
+- read and take notes (if non-fiction)
+- sleep 10.30
 
 Weekly
 - Review finance

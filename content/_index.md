@@ -30,4 +30,5 @@ title: "Jet Hughes"
 
 # 6 Books
 - The book of illusions
-- the story of man
+- [the-story-of-man](notes/the-story-of-man.md)
+- [the-art-of-war](notes/the-art-of-war.md)

@@ -1,4 +1,4 @@
-baseURL = "https://jethughes.github.io/quartz/"
+baseURL = "https://jethughes.github.io/notes/"
 languageCode = "en-us"
 googleAnalytics = "G-XYFD95KB4J"
 pygmentsUseClasses = true

@@ -47,7 +47,7 @@ ways to describe:
 - fueled by religion - the counter reforation of the curch
 - propaganda - thinker propped up by people to give legitamacy to new way of thinking
 
-regardless it was transformative - attempt to abolish superstition is all aread of thought
+regardless it was transformative - attempt to abolish superstition is all areas of thought
 
 ### bishop berkley
 aboish superstitions with senses. 

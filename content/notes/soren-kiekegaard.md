@@ -22,7 +22,6 @@ Loss of the individual
 
 He thought the best way to avoid these states was to take a "leap of faith" (toward religion), and that the bible was a system for bringing about the highest form of us an an individual
 
-
 # Anxiety
 [079-kierkegaard-anxiety](notes/079-kierkegaard-anxiety.md)
 
