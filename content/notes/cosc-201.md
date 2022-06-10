@@ -1,6 +1,6 @@
 ---
 title: "cosc-201"
-alias
+aliases: Algorithms and DataStructures
 year: 2022
 semester: 1
 tags: 

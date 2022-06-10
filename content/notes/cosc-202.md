@@ -1,5 +1,6 @@
 ---
 title: "cosc-202"
+aliases: Software Development
 year: 2022
 semester: 1
 tags: 
