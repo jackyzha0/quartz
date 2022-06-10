@@ -9,7 +9,6 @@ tags:
 
 - [coursework tiddlywiki](https://isgb.otago.ac.nz/infosci/INFO201/labs_release/raw/master/output/info201_labs.html#)
 - [assignments tiddlywiki](https://isgb.otago.ac.nz/info201/shared/assignments_release/raw/master/output/info201_assignments.html)
-- [labs folder](file:///"C:/Users/Jet%20Hughes/Documents/Personal/courses/info-201/Labs")
 
 # Outline
 - [version control system](notes/version-control-systems.md)
