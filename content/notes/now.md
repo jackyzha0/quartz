@@ -30,4 +30,4 @@ tags:
 	- Time is the Enemy - Quantic
 	- You Fly me - Fingathing
 	- Celos - Gotan Project
-	- Paris Texas - Gotan Project
+	- Paris Texas - Gotan Project 
