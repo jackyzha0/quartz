@@ -11,9 +11,11 @@ tags:
 [pdf](https://blackboard.otago.ac.nz/bbcswebdav/pid-2827493-dt-content-rid-18385743_1/courses/INFO203_S1DNIE_2022/Assignment3.pdf)
 
 [idea](notes/idea.md)
+[initial-ideas-mind-map](notes/initial-ideas-mind-map.md)
 [brainstorming](notes/brainstorming.md)
 [personas-development](notes/personas-development.md)
 [personas-final](notes/personas-final.md)
+[hi-fi-development](notes/hi-fi-development.md)
 
 - [x] brainstorming [brainstorming](notes/brainstorming.md)
 - [x] Personas and scenarios

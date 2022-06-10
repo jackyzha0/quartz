@@ -156,10 +156,10 @@ since the time for $Find$ is big-$\theta$ of the rank of the representative foun
 
 If could happen that the sequence of Union operations does not create a rank that is as big as i could be
 
-^this is an example of a semi-formal proof by [[Induction]]
+^this is an example of a semi-formal proof by [induction](notes/induction.md)
 
 ### 3.4 UF 4
-Change find so it implements [[path compression]] to "flatten" the chains
+Change find so it implements path compression to "flatten" the chains
 
 ```java
 	if (x != reps[x]) {

@@ -8,7 +8,7 @@ tags:
 - [[soren-kiekegaard]]
 - [[karl-marx]]
 - [[henry-david-thoreau]]
-- [065-mary-woolstonecraft](notes/065-mary-woolstonecraft.md)
+- [mary-woolstonecraft](notes/mary-woolstonecraft.md)
 - [[david-hume]]
 - [[voltaire]]
 - [[bishop-berkely]]

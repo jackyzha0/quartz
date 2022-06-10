@@ -11,3 +11,6 @@ tags:
 
 # Podcasts
 - [philosophize-this](notes/philosophize-this.md)
+
+# Videos
+- [dr.k-reckless](private/dr.k-reckless.md)

@@ -8,7 +8,6 @@ tags:
 ---
 
 # Assignments
-- [[notes/assignment-01]]
 - [[notes/assignment-02]]
 
 # Analysis
@@ -62,3 +61,7 @@ tags:
 - [18-hash-examples](notes/18-hash-examples.md)
 - [19-graphs](notes/19-graphs.md)
 - [20-graphs-2](notes/20-graphs-2.md)
+
+
+# Archive
+- [16-c201-archive](notes/16-c201-archive.md)

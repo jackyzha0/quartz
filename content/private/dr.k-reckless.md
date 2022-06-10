@@ -3,8 +3,7 @@ title: "dr.k-reckless"
 aliases: 
 tags: 
 - video
-- psycology
-- inbox
+- psychology
 link: https://www.youtube.com/watch?v=cbSwhMeYqtQ
 ---
 
@@ -28,7 +27,7 @@ in a proper  relationship, the doctor has access to information that could be cr
 confidentiality
 the doctors obligation not to reveal personal information. the patient can waive confidentiality. However the doctor often knows better e.g., kids wanting picture in paper.
 
-pro bono - no exchange on money - doctor tends to be "looser". Doctor might think it ok to take some other form of gain. this is a slippery slope.
+pro bono - no exchange of money - doctor tends to be "looser". Doctor might think it ok to take some other form of gain. this is a slippery slope.
 
 a therapy relationship needs to be focused on the needs of the patient. If it switches, you ender unethical territory. 
 

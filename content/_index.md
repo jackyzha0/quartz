@@ -9,3 +9,4 @@ Hello there, I'm Jet! I am a undergraduate student and the University of Otago a
 3) [Philosophy](notes/philosophy.md)
 4) [Media](notes/media.md)
 5) [Independent Learning](notes/independent-learning.md)
+6) [Personal Development](notes/personal-development.md)

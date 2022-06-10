@@ -4,7 +4,7 @@ aliases:
 tags: 
 ---
 
-# Figaro
+# Figaro - MF DOOM
 
 It's to hot to handle, you got blue sandals 
 Who shot ya? Ooh got you new spots to vandal?
