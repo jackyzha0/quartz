@@ -1,6 +1,6 @@
 ---
 title: "info-201"
-aliases: Developing Inf
+aliases: Developing Information Systems 1
 year: 2022
 semester: 
 tags: 

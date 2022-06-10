@@ -7,9 +7,14 @@ tags:
 
 # 🧑‍🎓Learning
 - At Otago Univeristy
-- Bachelor of Computer Science
-- Current Papers
-	- []
+	- Bachelor of Computer Science
+	- Current Papers
+		- [Human Computer Interaction](notes/info-203.md)
+		- [Developing Information Systems 1](notes/info-201.md)
+		- [Software Development](notes/cosc-202.md)
+		- [Algorithms and DataStructures](notes/cosc-201.md)
+- Idependently
+	- 
 
 # 📖Reading
 - [The Art of War](notes/the-art-of-war.md)
