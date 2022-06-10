@@ -8,7 +8,7 @@ These are very rough, work-in-progress notes. I would not expect them to be very
 
 - What I'm doing [now](notes/now.md)
 - My [goals](private/goals.md)
-- 
+- Some of my favourite photos 
 
 1) [Uni Notes](notes/uni-notes.md)
 2) [Cheat Sheets](notes/cheat-sheets.md)
