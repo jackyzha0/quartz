@@ -12,4 +12,5 @@ tags:
 # 🎧Listening
 - Philosophize this
 - [Album of the day](1001albumsgenerator.com)
-- [[spotify]]
+- Billy Jack - Curtis Mayfield
+- Time is the Enemy
