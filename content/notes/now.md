@@ -6,3 +6,8 @@ tags:
 ---
 
 # 📖Reading
+- [The Art of War](notes/the-art-of-war.md)
+- [The Story of Man](notes/the-story-of-man.md)
+
+# 🎧Listening
+- Philoso
