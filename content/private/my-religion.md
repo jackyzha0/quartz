@@ -1,10 +1,10 @@
 ---
-title: "my-religion"
+title: "me"
 aliases: 
 tags: 
 ---
 
-inspired by [078-marx-and-kierkegaard-religion](notes/078-marx-and-kierkegaard-religion.md)
+inspired by [KiekReligion](notes/soren-kiekegaard.md#Religion)
 
 Daily Routine
 - wake up 6.30
