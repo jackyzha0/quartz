@@ -11,4 +11,4 @@ tags:
 
 # 🎧Listening
 - Philosophize this
-- [Album of the day](jethughes.)
+- [Album of the day](1001albumsgenerator.com)
