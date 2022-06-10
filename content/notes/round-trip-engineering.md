@@ -9,7 +9,7 @@ This is the process of translating models into code, or vice versa. For example,
 
 Converting diagrams to code is more common than the opposite, but both do occur. This is [reverse engineering](notes/uml-java-reverse-engineering.md) 
 
-A [model driven architecture]() is when the code is completely derived from diagrams. This tends to be quite difficult. A much easier approach is only using foward engineering to generate skeleton code.
+A model driven architecture is when the code is completely derived from diagrams. This tends to be quite difficult. A much easier approach is only using foward engineering to generate skeleton code.
 
 [uml-java-forward-engineering](notes/uml-java-forward-engineering.md) is easier with SQL and ERDs than other types as these don't consider behaviour, so the mapping is more simple than with UML and Java.
 

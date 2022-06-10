@@ -86,8 +86,6 @@ The third core feature of the app is the link with friends. This is a core featu
 - Freestyle Generator for inline skating, tramp and skiing
 - Scooter trick generator
 
-[screenshots]()
-
 ## Summary
 ### Overview
 I was able to find only 7 apps with similar functionality to what I am planning. Of these none 5 were for skateboarding 2 for other sports and zero for snowboarding. 
