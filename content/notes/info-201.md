@@ -1,5 +1,6 @@
 ---
 title: "info-201"
+aliases: Developing Inf
 year: 2022
 semester: 
 tags: 

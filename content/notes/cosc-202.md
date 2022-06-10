@@ -7,7 +7,6 @@ tags:
 - course 
 - cosc202
 ---
-links: [_index](_index.md)
 
 # Assignment
 - [reflective-statement-plan](notes/reflective-statement-plan.md)
