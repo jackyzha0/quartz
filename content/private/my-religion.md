@@ -4,7 +4,7 @@ aliases:
 tags: 
 ---
 
-inspired by [KiekReligion](notes/soren-kiekegaard.md#Religion)
+inspired by [Kierkegaards views on Religion](notes/soren-kiekegaard.md#Religion)
 
 Daily Routine
 - wake up 6.30
@@ -22,7 +22,7 @@ Daily Routine
 - dinner
 - stretch
 - teeth
-- read and take notes (if non-fiction)
+- read and take notes
 - sleep 10.30
 
 Weekly
