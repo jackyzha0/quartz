@@ -161,6 +161,8 @@ If could happen that the sequence of Union operations does not create a rank tha
 ### 3.4 UF 4
 Change find so it implements path compression to "flatten" the chains. When we follow tht path to a nodes representative we "learn" the final result
 
+path compression occurs during find when we the chain of links from an element to its representative with a direct link (and do the same along the chain)
+
 ```java
 	if (x != reps[x]) {
 		reps[x] = find(reps[x]);
