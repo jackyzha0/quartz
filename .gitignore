@@ -6,7 +6,7 @@ content/203-mobile-app
 content/.obsidian
 content/private
 content/Attachments
-.obsidian
+.vscode
 assets/indices/linkIndex.json
 assets/indices/contentIndex.json
 *.ps1
