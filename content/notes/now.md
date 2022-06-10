@@ -5,11 +5,11 @@ tags:
 
 ---
 
-# 💻 Working
+# Working
 - At Company-X as an Intern
 - On a [react native app](https://github.com/JetHughes/Generator-App)
 
-# 🧑‍🎓Learning
+# Learning
 - At Otago Univeristy
 	- Bachelor of Computer Science
 	- Current Papers
