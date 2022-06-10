@@ -5,6 +5,10 @@ tags:
 
 ---
 
+# Working
+- At Company-X
+- On 
+
 # 🧑‍🎓Learning
 - At Otago Univeristy
 	- Bachelor of Computer Science
@@ -13,8 +17,6 @@ tags:
 		- [Developing Information Systems 1](notes/info-201.md)
 		- [Software Development](notes/cosc-202.md)
 		- [Algorithms and DataStructures](notes/cosc-201.md)
-- Idependently
-	- 
 
 # 📖Reading
 - [The Art of War](notes/the-art-of-war.md)
