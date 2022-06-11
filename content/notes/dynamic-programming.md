@@ -26,7 +26,7 @@ public long fibDP (int n) {
 A similar effect can be achieved using *memoization* (caching)
 
 # DP vs memoization
-A DP algorithm will typically compute *all* simpler versions of the problem. When this is neccessary then DP will be faster. However if only a small proportion of the simpler cases are actually needed it may be better to use memoization. Sometimes we can reduct the storage need for DP too. e.g., in the following fibonacci example
+A DP algorithm will typically compute *all* simpler versions of the problem from the bottom up. When this is neccessary then DP will be faster. However if only a small proportion of the simpler cases are actually needed it may be better to use memoization. Sometimes we can reduct the storage need for DP too. e.g., in the following fibonacci example
 
 ```java
 public long fibDP (int n) {
