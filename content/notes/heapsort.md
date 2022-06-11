@@ -9,6 +9,9 @@ tags:
 # 3 Heap Sort
 In place and ϴ(n lg n)
 
+![works in place](https://i.imgur.com/EbqSl4Y.png)
+
+
 - start with array
 - using itself as a heap, add the elements one at a time until all been added
 - Then remove them one at a time - the largest elements gets removed first and the place where is needs to be put gets freed from the map
