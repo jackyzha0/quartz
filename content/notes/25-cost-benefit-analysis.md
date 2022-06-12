@@ -85,8 +85,25 @@ e.g.,
 - payback period - how long until accumulated benefits equal the cost  
 - NPV: sum of costs and benefits , but future years discouted
 	- ![example](https://i.imgur.com/W6lhzKb.png)
+	- ![](https://i.imgur.com/rpOBYdc.png)
 - ROI: what is the discounted benefit relative to the costs
+	- ![](https://i.imgur.com/puvRpYm.png)
+	- ![](https://i.imgur.com/19rMyQa.png)
+
+# Example: what is better
+- ![](https://i.imgur.com/nxMstV5.png)
+- financial analysis isn't everything
+- possible reasons to ignore a financial analysis
+	- organisational: ack of institutional will, or not aligned with strategy, or legislated requirement
+	- technical
+	- legal risk
+	- reputational risk
+
+# Comparing methods
+- payback: ignores discounting; gives a *year*
+- NPV considers discounting, give *net benefit* in financial terms, but ignores time and amount invested
+- ROI considers discounting and amount invested, but ignored time period; gives a *percentage*
 - 
 
-
+![summary](https://i.imgur.com/rnBdIfg.png)
 
