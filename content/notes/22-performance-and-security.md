@@ -4,6 +4,9 @@ aliases:
 tags: 
 - info201
 - lecture
+sr-due: 2022-06-15
+sr-interval: 3
+sr-ease: 250
 ---
 
 # Performance requirements
@@ -171,3 +174,5 @@ increased security -> decreased accessiblility and usability
 	- security patches and updates
 	- preventing or mitigating known attack vectors
 
+![](https://i.imgur.com/KzYIz1b.png)
+z

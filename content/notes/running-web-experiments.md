@@ -5,6 +5,9 @@ tags:
 - info203
 - scott-video
 - lecture
+sr-due: 2022-06-21
+sr-interval: 9
+sr-ease: 270
 ---
 
 randomly split traffic to website between two versions.
