@@ -69,4 +69,49 @@ tags:
 
 # Data access
 - data persistence file vs database
-- da
+- database APIs (JDBC etc)
+- DAOs
+		- oner per use case (not just per domain class)
+		- often programming via DAO interface
+
+# Database transactions
+- ACID
+- what and why
+- commit vs rollback
+
+# SQL select
+- select from where
+- sorting grouping aggregation
+- view, inner and outer joins, subqueries
+
+# data integrity
+- nulls and their issues
+- business rules, databas contrainsts, veification, validation
+- in-database vs outside database 
+- in data base automation: sequence, triggers, stored procedures
+
+# softare architectures, patterns, and templates
+- monolithic vs client/server vs distributed (services)
+- separation of reponsilbilities
+- "standard patters" of design (recognise)
+- sysstem templates 
+
+# performance and security
+- performance requirements
+	- how to quantify and measure
+	- response time, workload, scalability
+	- caching pooling
+	- system reliability
+- security and integrity requirements
+	- consider throughout development
+	- authentication and authorisation
+	- principle of least privilege
+
+ # cost benefit analysis
+ - project feasbility
+	 - need, funding, strong will
+	 - duration, priority, rick, uncertainty
+	 - should we, can we, is it worth it?
+ - economic feasibility:
+	 - costs vs benefits (tangigble/intangible)
+	 - payback time (break even), NPV, ROI
