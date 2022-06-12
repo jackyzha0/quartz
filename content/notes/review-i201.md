@@ -5,19 +5,19 @@ tags:
 
 ---
 
-# soft dev methods
-- sdlc
-- tradition 9predictive vs agile flexible
-- up (OO)
-- scrun
-- xp
+# soft. dev. methods
+- [SDLC](notes/systems-development-life-cycle.md)
+- [1 traditional](notes/approaches-to-systems-development.md#1%20traditional) (predictive) vs [1 object oriented](notes/approaches-to-systems-development.md#1%20object%20oriented) (flexible)
+- [3 Unified Processes notes unified-processes md UP](notes/03-agile-methodologies.md#3%20Unified%20Processes%20notes%20unified-processes%20md%20UP) (OO)
+- [1 scrum notes scrum md](notes/03-agile-methodologies.md#1%20scrum%20notes%20scrum%20md)
+- [2 Extreme Programming notes extreme-programming md XP](notes/03-agile-methodologies.md#2%20Extreme%20Programming%20notes%20extreme-programming%20md%20XP)
 
 # requirements engineering
-- bp re egineering
-- requirments
-	- properties of good ones
-	- functional vs not
-	- importance (moscow)
+- [business-process](notes/business-process.md) re engineering 
+- [requirements](notes/requirements.md)
+	- properties of good ones [requirements-guidelines](notes/requirements-guidelines.md)
+	- functional vs not [furps](notes/furps.md)
+	- importance (moscow) 
 - elicitation
 	- stakeholders techniques
 	- outcome validation
