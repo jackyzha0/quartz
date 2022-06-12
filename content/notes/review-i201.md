@@ -55,45 +55,47 @@ tags:
 - inheritance [1 Inheritance](notes/modelling-behaviour.md#1%20Inheritance)
 	- specialisation vs implementing an interface [1 1 Via Specialisation](notes/modelling-behaviour.md#1%201%20Via%20Specialisation) vs [1 2 Via Interface](notes/modelling-behaviour.md#1%202%20Via%20Interface)
 	- separation of public private API (programming to interface) [1 3 Public vs Private](notes/modelling-behaviour.md#1%203%20Public%20vs%20Private)
-- rich vs anaemic domaini models "processor objects"
-- modelling behaviour with uml
-	- sequnce diagrams
-	- low level activity and state diagrams
+- rich vs anaemic domaini models "processor objects" [2 Behaviour](notes/modelling-behaviour.md#2%20Behaviour)
+- modelling behaviour with uml [modelling-behaviour](notes/modelling-behaviour.md)
+	- sequnce diagrams [sequence-diagrams](notes/sequence-diagrams.md)
+	- low level activity and state diagrams [activity-diagrams](notes/activity-diagrams.md) 
 
 # round trip engineering
-- foward engineering
+- foward engineering [UML to Java Foward Engineering](notes/uml-java-forward-engineering.md)
 	- erd -> SQL
 	- uml class diagram -> e.g., java 
 	- correspondenc with use cases
-- reverse engineering (code <- diagrams)
+- reverse engineering (code <- diagrams) [reverse engineering](notes/uml-java-reverse-engineering.md)
 
 # Data access
-- data persistence file vs database
-- database APIs (JDBC etc)
-- DAOs
+- data persistence file vs database [Data Access](notes/data-access.md)
+- database APIs (JDBC etc) [JDBC](notes/java-database-connectibity.md)
+- DAOs [DAO](notes/data-access-object.md)
 		- oner per use case (not just per domain class)
 		- often programming via DAO interface
 
 # Database transactions
-- ACID
-- what and why
-- commit vs rollback
+- ACID [ACID](notes/18-advanced-sql-1.md#ACID)
+- what and why [Transactions](notes/18-advanced-sql-1.md#Transactions)
+- commit vs rollback [commit and rollback](notes/18-advanced-sql-1.md#commit%20and%20rollback)
 
 # SQL select
-- select from where
-- sorting grouping aggregation
-- view, inner and outer joins, subqueries
+- select from where [Select](notes/19-advanced-sql-2.md#Select)
+- sorting grouping aggregation [Aggregation and grouping](notes/19-advanced-sql-2.md#Aggregation%20and%20grouping)
+- view, inner and outer joins, subqueries [Inline views](notes/19-advanced-sql-2.md#Inline%20views) [Joins](notes/19-advanced-sql-2.md#Joins), [Subqueries](notes/19-advanced-sql-2.md#Subqueries)
 
 # data integrity
-- nulls and their issues
-- business rules, databas contrainsts, veification, validation
-- in-database vs outside database 
-- in data base automation: sequence, triggers, stored procedures
+[20-data-integrity](notes/20-data-integrity.md)
+- nulls and their issues 
+- business rules, databas contrainsts, veification, validation [Validation](notes/20-data-integrity.md#Validation) [Verification](notes/20-data-integrity.md#Verification) [Check constrainsts](notes/20-data-integrity.md#Check%20constrainsts) [Primary and foreign key constraints](notes/20-data-integrity.md#Primary%20and%20foreign%20key%20constraints)
+- in-database vs outside database
+- in data base automation: sequence, triggers, stored procedures [Automation](notes/20-data-integrity.md#Automation)
 
 # softare architectures, patterns, and templates
-- monolithic vs client/server vs distributed (services)
-- separation of reponsilbilities
-- "standard patters" of design (recognise)
+[08-business-patterns](notes/08-business-patterns.md)
+- monolithic vs client/server vs distributed (services) [Monolithic architecture](notes/software-architectures.md#Monolithic%20architecture)
+- separation of reponsilbilities [Separation of reponsibilities](notes/software-architectures.md#Separation%20of%20reponsibilities)
+- "standard patters" of design (recognise) [[s]]
 - sysstem templates 
 
 # performance and security

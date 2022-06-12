@@ -1,5 +1,5 @@
 ---
-title: "20-database-3"
+title: "20-data-integrity"
 aliases: 
 tags: 
 - info201

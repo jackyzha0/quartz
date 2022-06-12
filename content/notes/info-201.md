@@ -69,5 +69,5 @@ tags:
 - [17-data-access](notes/17-data-access.md) 
 - [18-advanced-sql-1](notes/18-advanced-sql-1.md)
 - [19-advanced-sql-2](notes/19-advanced-sql-2.md)
-- [20-database-3](notes/20-database-3.md)
+- [20-data-integrity](notes/20-data-integrity.md)
 - [21-software-architecture-and-templates](notes/21-software-architecture-and-templates.md)
