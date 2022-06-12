@@ -123,4 +123,51 @@ Things to consider
 - raw errors shouldn't bubble up to the user
 	- user wont understand -> pointless
 	- may expose sensitive information (e.g., file system paths)
-	- parti
+	- particularly relevant for web applications
+	- handle exceptions accordingly
+- system should handle capacity issues as cleanly as possible
+	- give relevant feedback to user (not just spinning wheel of death)
+	- implement load balancing for web applications, expecially if they use a services model
+	- also pooling, cachig, etc.
+
+
+# Integrity and security considerations
+- consider following security requirements
+	- only staff with correct authority can alter data
+	- secure transactions over iternet
+	- https is better
+	- validation of data
+	- secure storage of passowrds
+	- legilsations complliance
+- needs to be integreated into application and database
+- and considered throughout development
+
+# Integity and securuty controls
+- ensure correct system function by:
+	- reject invalid data inputs
+	- preventing unauthorised data inputs and outputs
+	- protecting data and programs against tampering
+- objectives:
+	- ensure only appropriate business transactions occur
+	- ensure transactions are recoreded and processed correctly
+	- protect and safeguard organisational assets
+	- protect and safegurad customer data
+
+increased security -> decreased accessiblility and usability
+
+# integity and securuty mechanisms
+- data integrity
+	- input field validation
+	- database constraints
+- data security
+	- databas access control
+	- trasaction logging
+	- redundancy, backup, recovery
+	- encryption, hashing, digital signatures
+	- ouput control (exfiltration prevention)
+- system security
+	- user authentication and authorisation
+	- authentication methods
+	- security patches and updates
+	- preventing or mitigating known attack vectors
+
