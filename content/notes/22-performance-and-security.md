@@ -21,10 +21,6 @@ Why are they important
 - infosystems are wide and varied
 - wide range of performance characteristics
 
-- impact of changing requirements, e.g., adding a new module
-- need to consider (often conflicting) organisational priorities
-- critical to unambiguously document and agree
-
 Things to consider
 - can interact and conflict with each other
 	- accuracy vs speed
@@ -34,4 +30,54 @@ Things to consider
 	- algorithms
 	- data structures
 	- languages and frameworkds
-	- constraints of target platform
+	- constraints of target platform 
+		- (devs machines are often more powerful)
+		- minimum requiremnts for system e.g., min specs for windows
+	- ...
+
+- impact of changing requirements, e.g., adding a new module
+- need to consider (often conflicting) organisational priorities
+- critical to unambiguously document and agree
+
+# Response time
+- what is quick
+- for most people
+	- < 0.1s: instant
+	- 0.1s to 1s: noticable
+	- 1s to 10s: slow
+	- > 10s: user will probably switch tasks
+- affected by system workload: number of concurrent users, volume of data, etc vs available resources
+- most users really dislike variable response times (unpredicatbility)
+
+
+- example requiremen: "cards are validated within 2s"
+	- this implies 100%
+	- better: "95% of cards are validated within 2 s"
+- other consideration
+	- what is included in response time?
+	- what is the measurement period (of the system in general) (often varied workload changes performance)
+	- what is the acceptable error rate
+
+# Workload
+- system workload is almost never constant
+	- may may well defined peaks and troughs
+	- may be unpreditable
+	- peak vs typical vs minimum
+- differet transaction types
+	- read vs write transactions
+	- online vs batch
+
+- define workload requirements around use cases
+- e.g., " the system must be able to validate 1 million cards per day"
+
+# Scalability
+- can the system scale to meet changing demand
+- can it scale quickly enough
+- elasticity particularly important to large public-facing systems
+- can be difficult to test "for real"
+- example requirement: "the system must be able to handle up to 2 million cards on a busy day"
+
+# Platform
+- target for system deployment
+	- on prem
+	- cl
