@@ -95,25 +95,25 @@ tags:
 [08-business-patterns](notes/08-business-patterns.md)
 - monolithic vs client/server vs distributed (services) [Monolithic architecture](notes/software-architectures.md#Monolithic%20architecture)
 - separation of reponsilbilities [Separation of reponsibilities](notes/software-architectures.md#Separation%20of%20reponsibilities)
-- "standard patters" of design (recognise) [[s]]
-- sysstem templates 
+- "standard patters" of design (recognise) [Generic old info sys architecture](notes/software-architectures.md#Generic%20old%20info%20sys%20architecture)
+- sysstem templates [system-templates](notes/system-templates.md)
 
 # performance and security
-- performance requirements
+- performance requirements [Performance requirements](notes/22-performance-and-security.md#Performance%20requirements)
 	- how to quantify and measure
 	- response time, workload, scalability
 	- caching pooling
 	- system reliability
-- security and integrity requirements
+- security and integrity requirements [Integity and securuty controls](notes/22-performance-and-security.md#Integity%20and%20securuty%20controls)
 	- consider throughout development
 	- authentication and authorisation
 	- principle of least privilege
 
- # cost benefit analysis
- - project feasbility
+# cost benefit analysis
+ - project feasbility  [justifying a project](notes/25-cost-benefit-analysis.md#justifying%20a%20project)
 	 - need, funding, strong will
 	 - duration, priority, rick, uncertainty
 	 - should we, can we, is it worth it?
- - economic feasibility:
+ - economic feasibility: [costs and benefits](notes/25-cost-benefit-analysis.md#costs%20and%20benefits)
 	 - costs vs benefits (tangigble/intangible)
 	 - payback time (break even), NPV, ROI

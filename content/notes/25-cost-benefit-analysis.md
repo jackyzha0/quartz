@@ -16,7 +16,7 @@ sr-ease: 270
 	- funds
 	- strong will
 
-# deciding whether to pursue a project
+## deciding whether to pursue a project
 - what the project address
 	- a problem
 	- opportunity
@@ -25,10 +25,10 @@ sr-ease: 270
 - overall priority
 - what options do you have
 
-# Case study
+## Case study
 ![library web system](https://i.imgur.com/KXOOiQ9.png)
 
-# Feasability analysis
+## Feasability analysis
 - should we build it (organisational)
 	- nature and strength of need
 	- strategic alignment? overall priority?
@@ -74,7 +74,7 @@ benefits
 	- market share
 	- improved perception of company "cool", happier staff
 
-# quantify
+## quantify
 dollar values. usually estimates/guesse
 
 e.g.,
@@ -84,7 +84,7 @@ e.g.,
 - smarter student management system with better prerequisite, modelling: how to estimate benefit
 - these are tangible benefits, intangible benefits are harder
 
-# assess economic value
+## assess economic value
 - payback period - how long until accumulated benefits equal the cost  
 - NPV: sum of costs and benefits , but future years discouted
 	- ![example](https://i.imgur.com/W6lhzKb.png)
@@ -93,7 +93,7 @@ e.g.,
 	- ![](https://i.imgur.com/puvRpYm.png)
 	- ![](https://i.imgur.com/19rMyQa.png)
 
-# Example: what is better
+## Example: what is better
 - ![](https://i.imgur.com/nxMstV5.png)
 - financial analysis isn't everything
 - possible reasons to ignore a financial analysis
@@ -102,7 +102,7 @@ e.g.,
 	- legal risk
 	- reputational risk
 
-# Comparing methods
+## Comparing methods
 - payback: ignores discounting; gives a *year*
 - NPV considers discounting, give *net benefit* in financial terms, but ignores time and amount invested
 - ROI considers discounting and amount invested, but ignored time period; gives a *percentage*
