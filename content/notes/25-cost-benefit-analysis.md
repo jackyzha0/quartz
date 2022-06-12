@@ -4,6 +4,9 @@ aliases:
 tags: 
 - info201
 - lecture
+sr-due: 2022-06-15
+sr-interval: 3
+sr-ease: 270
 ---
 
 # justifying a project
