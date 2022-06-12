@@ -18,8 +18,8 @@ tags:
 	- properties of good ones [requirements-guidelines](notes/requirements-guidelines.md)
 	- functional vs not [furps](notes/furps.md)
 	- importance (moscow) 
-- elicitation
-	- stakeholders techniques
+- elicitation [requirements-engineering](notes/requirements-engineering.md)
+	- stakeholders techniques [stakeholders](notes/stakeholders.md)
 	- outcome validation
 
 # business functions and use cases
