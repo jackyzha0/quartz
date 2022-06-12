@@ -80,4 +80,47 @@ Things to consider
 # Platform
 - target for system deployment
 	- on prem
-	- cl
+	- cloud
+- do you have a choice
+- will the platform be only just for this system or for other things (multi tenanting)
+- what limits are imposed by the platform
+- does it inlclude external systems or resources
+
+
+# Caching
+- temporarily store frequently used data
+- same concept as [memoization](notes/memoization.md)
+- mainly about improving read performance
+	- when retrieving data, look in the cache first
+	- if its there (=hit), done
+	- if not (or stale) (=miss), read from original source
+	- can be several orders of magnitude faster
+	- ideal for small, frequently accessed data
+- cache contents needs to be managed
+	- e.g., least recently used (LRU) data drop out as cache fills up
+	- cahced data can become inconsistent with original source
+- can go anywhere
+	- databse, client, dedicated caching server
+	- numberourus cahcing tools, e.g., memcache, redis
+
+# Pooling
+- pre allocate a set of shared resources that are kept ready for use (e.g., databse connetions, objects)
+- useful when:
+	- allocating eacch resources has a significant cost (time space)
+	- there are frequent requests of short duration
+	- we need to limit the total number of resources
+- mainly about resource management, so pools ar maintaineed by the resource allocator
+- important to reset resources when returning to the pool.
+	- e.g., ensure atabase connection has no incomplete statements
+	- ensures state doesn't leak across different uses of same resource
+
+# System reliability
+- behaviour of system
+- graceful degradation - should behave sensibly under all but the most extreme circumstances
+- should't just crash
+	- thorough automated testing
+	- thorough user testing
+- raw errors shouldn't bubble up to the user
+	- user wont understand -> pointless
+	- may expose sensitive information (e.g., file system paths)
+	- parti
