@@ -16,4 +16,13 @@ a) this could cause an update anomly. this is because there is reduncancy as sam
 b) the database should be normalised to remve the redundancy. it could be separated into three entities: store, product, and an associative entity
 
 ## 3
+they will need to analyse the costs. this id hard because. the cost of development is uncertain due to variable salaries, time for development, testing and quality control costs. It is also near impossible to esimate the dollar values of benefits such as: improved security, market share, improved perception of company, reduced customer service costs, efficiency
 
+## 4
+requirements - Requirements are something an information system should do, or some constraint it should adhere to
+
+acceptance tests - not covered
+
+## 5
+a) adaptive - this is more suitable for systems with uncertain requirements
+b) i would use a Unified Processes approach. there are four maini steps. these are inception, elaboration, construction, and transition
