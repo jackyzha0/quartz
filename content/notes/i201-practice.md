@@ -7,7 +7,6 @@ tags:
 
 
 # Section A
-
 ## 1
 a) sequence diagram - to document a *sequence* of particpant interactions required to carry out a use case
 b) 
@@ -38,3 +37,15 @@ requirements - Requirements are something an information system should do, or so
 acceptance tests - not covered
 
 ## 6
+use predictive when
+- simple requirements
+- stable/mature technologiess
+- stable environment
+- non experimental
+
+## 7
+1) how quickly? - requirements should be unambiguous
+2) shouldn't say how? - requirements hould say what and not how
+
+# Section B
+## 8
