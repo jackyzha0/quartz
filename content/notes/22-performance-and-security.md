@@ -144,6 +144,8 @@ Things to consider
 	- legilsations complliance
 - needs to be integreated into application and database
 - and considered throughout development
+- least privilege
+	- a user should only have access to what they absolutely need in order to perform their responsibilities, and no more.
 
 # Integity and securuty controls
 - ensure correct system function by:
@@ -170,6 +172,11 @@ increased security -> decreased accessiblility and usability
 	- ouput control (exfiltration prevention)
 - system security
 	- user authentication and authorisation
+		- In authentication process, the identity of users are checked for providing the access to the system. While in authorization process, person’s or user’s authorities are checked for accessing the resources. Authentication is done before the authorization process, whereas authorization process is done after the authentication process.
+		- | Authentication determines whether the person is user or not. | While it determines What permission do user have? |
+		- authentication| Example : Employees in a company are required to authenticate through the network before accessing their company email.
+		- authorization | Example : After an employee successfully authenticates, the system determines what information the employees are allowed to access. |
+
 	- authentication methods
 	- security patches and updates
 	- preventing or mitigating known attack vectors

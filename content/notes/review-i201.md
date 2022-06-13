@@ -108,6 +108,7 @@ tags:
 	- consider throughout development
 	- authentication and authorisation
 	- principle of least privilege
+		- hat a user should only have access to what they absolutely need in order to perform their responsibilities, and no more.
 
 # cost benefit analysis
  - project feasbility  [justifying a project](notes/25-cost-benefit-analysis.md#justifying%20a%20project)

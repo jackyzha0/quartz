@@ -30,6 +30,9 @@ easy to deploy,  awkward to upgrade.
 - widely spaced "big bang releases"
 usually only seen in legacy systems now
 
+## service oriented architecture
+https://www.ibm.com/cloud/learn/soa
+
 ## Separation of reponsibilities
 partition systems into logically separated parts. e.g., UI, business rules, data access, utilities
 
