@@ -175,4 +175,3 @@ increased security -> decreased accessiblility and usability
 	- preventing or mitigating known attack vectors
 
 ![](https://i.imgur.com/KzYIz1b.png)
-z
