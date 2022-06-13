@@ -5,7 +5,6 @@ tags:
 
 ---
 
-
 # Section A
 ## 1
 a) sequence diagram - to document a *sequence* of particpant interactions required to carry out a use case
@@ -49,3 +48,4 @@ use predictive when
 
 # Section B
 ## 8
+ 
