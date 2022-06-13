@@ -23,4 +23,18 @@ root causes - this occired because there was redundancy within the database - th
 how it can be solved/avoided - this can be easily avoided by normalising the database to remove redundancies.
 
 ## 3
-a) business functions are things that the business *ought* to be doing, for example "accept payment from customer". The can be identified by verb phrases
+a) business functions are things that the business *ought* to be doing (not what it is doing now), for example "accept payment from customer". each business function essentially become a fuction or a set of functions within the information system. they do not describe the who, how, or where of the function.
+
+b) business function are typiclaly modelled using use case diagrams. in the final system they become features or a set of features
+
+## 4
+1) dont have the technical ability
+2) not legal
+3) organisational - lack of institutional will
+
+## 5
+requirements - Requirements are something an information system should do, or some constraint it should adhere to
+
+acceptance tests - not covered
+
+## 6
