@@ -10,9 +10,9 @@ ANALYST For a start, how does someone become a
 
 member?
 
-MANAGER We’re approached by a prospective
+MANAGER We’re ==approached by a prospective
 
-member and we get them to fill in their personal
+member and we get them to fill in their personal==
 
 details on our form (see Section 3 on page 8).
 
