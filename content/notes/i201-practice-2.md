@@ -25,4 +25,7 @@ acceptance tests - not covered
 
 ## 5
 a) adaptive - this is more suitable for systems with uncertain requirements
-b) i would use a Unified Processes approach. there are four maini steps. these are inception, elaboration, construction, and transition
+b) i would use a Unified Processes approach. there are four main steps. these are inception, elaboration, construction, and transition
+
+## 6
+
