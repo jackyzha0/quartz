@@ -29,7 +29,7 @@ These diagrams are:
 	- back and forth process
 
 
-General overview example: [annotated example](https://i.imgur.com/1myG3rU.png)
+General overview example: ![annotated example](https://i.imgur.com/1myG3rU.png)
 - time goes from top to bottom
 	- however no specific time units
 - can have actors as participants
@@ -62,25 +62,25 @@ relevant slide:
 
 
 # Messages
-[example](https://i.imgur.com/XedVmng.png)
+![example](https://i.imgur.com/XedVmng.png)
 - direction
 	- <- or ->
 	- easier to under stand if most messages are ->
 	- however this is not always possible
 		- same object used by multiple other objects
 		- an object calls back to the object that called it
-- can be conditions (guards) [example](https://i.imgur.com/yWTcD1F.png)
+- can be conditions (guards) ![example](https://i.imgur.com/yWTcD1F.png)
 	- only sent if condition is true
 	- able to approximate if-then-else using multiple branches with exclusive conditions
 	- this is better done in activity diagram
-- looping messages [example](https://i.imgur.com/tcFZ4bb.png)
+- looping messages ![example](https://i.imgur.com/tcFZ4bb.png)
 	- an asterisk idicated looping
 		- repeat message until condition id false
 		- send messge to each object in a collection
 	- may also be better in activity diagram
 
 # Interaction frames (UML 2.x)
-[example](https://i.imgur.com/V1Jhnd2.png)
+![example](https://i.imgur.com/V1Jhnd2.png)
 - loop frame
 	- any kind of loop
 	- replaces * notation
@@ -141,10 +141,10 @@ note navigability of domain
 
 sequence diagram
 
-- [part 1](https://i.imgur.com/PJJBZav.png)
-- [part 2](https://i.imgur.com/M3jRM8g.png)
-- [part 3](https://i.imgur.com/PhCYWsy.png)
-- [part 4](https://i.imgur.com/L0h4nb8.png)
+- ![part 1](https://i.imgur.com/PJJBZav.png)
+- ![part 2](https://i.imgur.com/M3jRM8g.png)
+- ![part 3](https://i.imgur.com/PhCYWsy.png)
+- ![part 4](https://i.imgur.com/L0h4nb8.png)
 
 
 
