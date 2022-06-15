@@ -6,6 +6,8 @@ lastmod: 2022-04-12
 ---
 When we organize notes through connections, the [[notes/having more connections is better|more the better]]. Fleeting Notes is a separate network of notes outside of Obsidian. The goal of this plugin sync both these networks of notes into one! Below are step-by-step instructions on how to do this.
 
+**NOTE:** The plugin ONLY works on the desktop version of Obsidian...for now.
+
 ## Installation / Setup
 1. Before you begin, you'll need to create an account in the [Fleeting Notes App](https://fleetingnotes.app/). You can do this by navigating to the settings and registering.
 ![Fleeting Notes authentication form](posts/img/fn-auth-form.png)

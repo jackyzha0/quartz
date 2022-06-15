@@ -1,5 +1,6 @@
 ---
 title: The Best Web Clipper for Obsidian
+description: "Let's be real, most web clippers suck. They either give limited functionality for an application or don't provide enough functionality to be anything more than a web clipper. For me, I wanted a quick way to take connected notes from the web and sync it with Obsidian. However, I couldn't find *anything* that could do that for me. So I created something that did just that."
 date: 2022-06-10
 lastmod: 2022-06-10
 ---
