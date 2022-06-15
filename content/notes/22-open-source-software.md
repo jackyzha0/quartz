@@ -34,6 +34,25 @@ tags:
 	- community - keeping team motivated and focused
 
 # Contrast Governance vs management
+- mangement
+	- day to day decisions
+- governance
+	- controlling overall roadmap
+	- setting priorities to reach intended milestones
+	- often a spectrum between
+		- commercial organisation that retain ownership
+		- open community-led approach
+	- community-led governance needs agreed stucture
+		- e.g., executive, committees, voting process for key decisions
+# # sharing development and governance
+- required governanc processes similar in big projects
+	- can benefit from manageing multiple projects together
+- e.g. apache software foundation (ASF)
+	- american non-profit
+	- manages more than 350 projects
+	- can share governance, management, and commounity
+		- conferences (apacheCon) bringing community together
+- many others e.g., free software foundation (GNU)
 
 # Sketch OSS foundations
 
