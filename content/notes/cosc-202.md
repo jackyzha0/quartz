@@ -50,3 +50,4 @@ tags:
 - [18-build-tools](notes/18-build-tools.md)
 - [19-security](notes/19-security.md)
 - [20-software-licensing](notes/20-software-licensing.md)
+- [22-open-source-software](notes/22-open-source-software.md)
