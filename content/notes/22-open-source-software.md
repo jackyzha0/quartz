@@ -68,3 +68,9 @@ tags:
 	- e.g., google wave 
 
 # Understand sustainability challenges
+- need mechanisms to keep project resouced
+	- e.g., financial support for key developers
+- sustainability - software is seldom "finished"
+	- new features require development
+	- bugs need fiing, but hobbyists don't give 24/7 service
+	- older code within project may nee
