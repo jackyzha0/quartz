@@ -44,8 +44,10 @@ tags:
 		- open community-led approach
 	- community-led governance needs agreed stucture
 		- e.g., executive, committees, voting process for key decisions
+
+# Sketch OSS foundations
 # # sharing development and governance
-- required governanc processes similar in big projects
+- required governance processes similar in big projects
 	- can benefit from manageing multiple projects together
 - e.g. apache software foundation (ASF)
 	- american non-profit
@@ -54,6 +56,15 @@ tags:
 		- conferences (apacheCon) bringing community together
 - many others e.g., free software foundation (GNU)
 
-# Sketch OSS foundations
+## Incubation into open source foundations
+- foundations reputation: projects must he high quality
+	- but also want to be boradly accepting
+- ASF has Apache incubator
+	- new projects gain inital ASF linkage
+	- see if projects demonstrate continued development activity
+	- see if projects are popular iwth end users
+- Large organisations can donate code to incubator
+	- need to be sure that code can be maintained
+	- e.g., google wave 
 
 # Understand sustainability challenges
