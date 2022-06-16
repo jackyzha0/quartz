@@ -73,4 +73,22 @@ tags:
 - sustainability - software is seldom "finished"
 	- new features require development
 	- bugs need fiing, but hobbyists don't give 24/7 service
-	- older code within project may nee
+	- older code within project may need maintenance
+- Development path can become contentious
+	- e.g., too slow, or percieved to be in wrong direction
+		- ...which can lead to project forks and split community
+
+## Examples
+- PEP python enchancement proposal
+	- usually focis on language feature additions or changes
+	- but sometimes relate to the governance of Python
+	- PEP approval process involves input from:
+		- python community
+		- python steering council
+	- Guido van rossum was 'benevolent dictator for life'
+		- st ood d
+- JCP java community process
+	- open collaboration to ratify java standards
+	- ![](https://i.imgur.com/ls7GAck.png)
+	- JSRs java specification request
+	- 
