@@ -14,6 +14,7 @@ sr-ease: 250
 what does it mean for people to use your software. What responsitilities do you have
 
 - Understand the default protection of code 
+	- 
 - Contrast ‘libre’ free and ‘gratis’ free 
 - Define what makes open source software 
 - Contrast copyleft and more permissive licences 
