@@ -27,8 +27,12 @@ what does it mean for people to use your software. What responsitilities do you 
 	- others e.g., creative commons
 		- allow a selection of *facets* [Creative commons](notes/software-licensing.md#Creative%20commons)
 - Appreciate that code can be multi-licensed 
-	- 
+	- e.g., floss for non-commercial use but commercially licenced otherwise
 - Understand how to apply a license to code 
+	- project should include complete license text: LICENSE file in top-level of project directory
+	- also good idea to add to each file
 - Appreciate licenses can be mutually incompatible
+	- e.g., developing software that combines two FLOSS code bases that have different code licenses.
+	- could be impossible to satisfy both licenses simultaneously.
 
 [software-licensing](notes/software-licensing.md)
