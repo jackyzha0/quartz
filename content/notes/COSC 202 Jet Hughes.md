@@ -86,16 +86,16 @@ ii) Often there is no library that perfectly matches your specific needs, and it
 <div style="page-break-after: always;"></div>
 
 # 7 Security
-a) Users will try to input malicious data to your software. For example, an Injection attack. This is when the user inputs data to a form, which tries to change the underlying 
+a) Users will try to input malicious data to your software. For example, an SQL Injection attack. This is when the user inputs data to a form, which tries to change the underlying SQL string, and alter the data in the database, in a malicious way. This can usually be avoided by using SQL prepared statements, or secure datbase abstraction.
 
-
-
-
+b) more software ∴ more dependecies ∴ more complex ∴ more "surface area" of risk of vulnerability. so it is very important to manage which dependencies you have, and monitor their status, so you can quickly resolve any vulnerabilities they might introduce, or remove, them entirely if necessary.
 
 <div style="page-break-after: always;"></div>
 
-# 8 Graphs
+# 8 Software Licensing
 
+a) Authors copyright holds for software that does not have a specific license. This means 
 
+b) Copyleft licenses require, software that uses other code with a copyleft license to use the same license. i.e., code with a copyleft license requires it's derivatives to have the same requirements. This is not enforced with other licenses like MIT or CC-0
 
-
+c) 
