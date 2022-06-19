@@ -72,14 +72,21 @@ ii) ADD HERE
 
 # 6 Libraries and APIs
 
-a) A code library is embe
+a) A code library provide code that can be used within one's own project. APIs differ from libraries because they deal with the interactions between applications at runtime. 
 
+b) A RESTful API adheres to the guidlines of Representational state transfer. Some fo these best practices include:
+- decoupled
+- stateless
+- uniform interface
 
-
+c)
+i) Sorting algorthims can be very complicated. Is would be far easier and faster to use one that has been thouroughly tested and optimised already.
+ii) Often there is no library that perfectly matches your specific needs, and it would be faster, and better to create if yourself. Also using a library can bloat your program and introduce security vulnerabilities as well as other things
 
 <div style="page-break-after: always;"></div>
 
-# 7 Hashing
+# 7 Security
+a) Users will try to input malicious data to your software. For example, an Injection attack. This is when the user inputs data to a form, which tries to change the underlying 
 
 
 
