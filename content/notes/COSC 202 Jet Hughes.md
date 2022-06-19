@@ -96,6 +96,8 @@ b) more software ∴ more dependecies ∴ more complex ∴ more "surface area" o
 
 a) Authors copyright holds for software that does not have a specific license. This means 
 
-b) Copyleft licenses require, software that uses other code with a copyleft license to use the same license. i.e., code with a copyleft license requires it's derivatives to have the same requirements. This is not enforced with other licenses like MIT or CC-0
+b) Copyleft licenses require, software that uses other code (not limited to code, could be art, writing, etc) with a copyleft license to use the same license. i.e., code with a copyleft license requires it's derivatives to have the same requirements. This is not enforced with other licenses like MIT or CC-0
 
-c) 
+c) Open source software is software which is considered 'free libre open source software'. This means it has no cost, and other people are allowed to use it in their own projects, or contribute to it. Software with a copyleft license like (CC BY-SA-NC or GPL) *can* be open source, and this is usually the case. These two example ()
+
+However it is not necessarily closed source, e.g., with lesser GPL. 
