@@ -38,30 +38,41 @@ b)
 a) If you introduced a bug into your program,the bug is an array index out of bounds error, and the error message shows which method the bug occured. This debug symbol (the name of the method) is useful because it shows you where the bug is
 b) 
 
+| Unit tests                                             | end to end tests                           |
+|:-------------------------------------------------------|:-------------------------------------------|
+| testing only small "unit" of the code e.g., one method | Test the entire system from "end" to "end" |
+| Very quick to run, and are run frequently              | Often run less often                       |
+| Independent so no dependencies                         | Often interconnected with other systems    |
+
+
+<div style="page-break-after: always;"></div>
+
+# 4 Documentation and source code management
+
+a) 
+1) Open source contributors - if the project is open source, it is very useful to provide documentation so that is is as easy as possible for other people to understand your code, and thus contribute to it
+2) Users of a public API - the people who want to use the API, need to now about the data they can get, what authentication they need to provide, what parameters they should consider, and many other things. 
+
+
+<div style="page-break-after: always;"></div>
+
+# 5 Continuous integration and automation
+
+a) 
+1) IDEs - These can be used to greatly speed up development with advanced tools like code completion, and many other things. They are best suited for large projects, with many team members. However there are also many lightweight IDEs (e.g., vscode) which are also quite suitable for small projects
+2) shell scripting languages(e.g., poweshell, bash, fish, etc) - can be used to automate quick and simple tasks. They are not suited for more complex tasks as edge cases and quirks become hard to handle and are usually not worth the time. For these tasks you could use python or some other language.
+
+b)
+i) ADD HERE
+ii) ADD HERE
 
 
 
 <div style="page-break-after: always;"></div>
 
-# 4 Sorting
+# 6 Libraries and APIs
 
-
-
-
-
-<div style="page-break-after: always;"></div>
-
-# 5 Heaps
-
-
-
-
-
-
-<div style="page-break-after: always;"></div>
-
-# 6 BSTs
-
+a) A code library is embe
 
 
 
