@@ -21,8 +21,10 @@ b)
 2) Another course of action you could take, which would be unethical, would be to confront him, and ask for a raise with the threat of quitting
 3) Sabotage the project from the inside, so that the product is never released
 4) Consult a lawyer and try to find a problem with the legality of the software
+5) approach an ethics commitee and inform them of your situation
+6) arrange a meeting with with your manager, and with a third party to discuss the situation
 
-(META: I dont think this question is specific enough about what the action should accomplish, a person could take any action is this situation, you haven't specified that the action should be ethical)
+(META: I dont think this question is specific enough about what the action should accomplish, a person could take any action is this situation, you haven't specified that the action should be ethical.)
 
 5) I could hold my foot and count to three
 
@@ -31,14 +33,15 @@ b)
 
 # 3 Testing and Debugging
 
-a) If you introduced a bug into your program, the bug is an array index out of bounds error, and the error message shows which method the bug occurred. This debug symbol (the name of the method) is useful because it shows you where the bug is
+a) If you introduced a bug into your program, the bug is an array index out of bounds error, and the error message shows which method the bug occurred. This debug symbol (the name of the method) is useful because it shows you where the bug is. Debug symbols would also be useful if you were debugging a program by stepping though the program line by line, because they help you to identity and track the values of variables.
 b) 
 
-| Unit tests                                             | end-to-end tests                           |
-|:-------------------------------------------------------|:-------------------------------------------|
-| testing only small "unit" of the code e.g., one method | Test the entire system from "end" to "end" |
-| Very quick to run, and are run frequently              | Often run less often                       |
-| Independent so no dependencies                         | Often interconnected with other systems    |
+|  Unit tests                                              |  end-to-end tests                            |
+|:---------------------------------------------------------|:---------------------------------------------|
+|  testing only small "unit" of the code e.g., one method  |  Test the entire system from "end" to "end"  |
+|  Very quick to run, and are run frequently               |  Often run less often                        |
+|  Independent so no dependencies                          |  Often interconnected with other systems     |
+| usually manually tested                                  | Can be manual or automated<br>               |
 
 
 <div style="page-break-after: always;"></div>
@@ -46,8 +49,8 @@ b)
 # 4 Documentation and source code management
 
 a) 
-1) Open source contributors - if the project is open source, it is very useful to provide documentation so that is is as easy as possible for other people to understand your code, and thus contribute to it
-2) Users of a public API - the people who want to use the API, need to now about the data they can get, what authentication they need to provide, what parameters they should consider, and many other things. 
+1) Open source contributors - if the project is open source, it is very useful to provide documentation so that it is as easy as possible for other people to understand your code, and thus contribute to it
+2) Users of a public API - the people who want to use the API, need to know about the data they can get, what authentication they need to provide, what parameters they should consider, and many other things. 
 
 
 <div style="page-break-after: always;"></div>
