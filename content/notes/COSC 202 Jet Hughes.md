@@ -3,10 +3,10 @@ a)
 - Quality control/testing
 - Developer
 
-These roles are complementary because the person in the quality control role, helps the developer to write better code, by identifying bugs and any obscure or unecessarily complicated c
+These roles are complementary because the person in the quality control role, helps the developer to write better code, by identifying bugs and any obscure or unecessarily complicated or bad code.
 
 b) 
-- It can help to reduce errors via quality control and code review
+- It can help to reduce errors and produce 'cleaner' code via e.g., code reviews by peers
 - It can help to speed up development because two people will (usually) be faster than one
 
 
@@ -17,8 +17,14 @@ b)
 a) One example could be an AI algorithm for a self-driving car. There are multiple ethical issues with this. The main one being the choice of whether to save the driver or the pedestrians in the event of an inevitable accident. Another is whether it is morally right to produce these cars, knowing it is very possible that they could be hacked, and controlled by others.
 
 b) 
-1) Confront your manager, and explain to him your feelings, then quit
+1) Confront your manager, and explain to him your feelings, then quit.
 2) Another course of action you could take, which would be unethical, would be to confront him, and ask for a raise with the threat of quitting
+3) Sabotage the project from the inside, so that the product is never released
+4) Consult a lawyer and try to find a problem with the legality of the software
+
+(META: I dont think this question is specific enough about what the action should accomplish, a person could take any action is this situation, you haven't specified that the action should be ethical)
+
+5) I could hold my foot and count to three
 
 
 <div style="page-break-after: always;"></div>
