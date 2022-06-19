@@ -1,12 +1,15 @@
+# COSC 202 Exam
+Jet Hughes  9474308
+
 # 1 Teamwork
 a) 
 - Quality control/testing
 - Developer
 
-These roles are complementary because the person in the quality control role, helps the developer to write better code, by identifying bugs and any obscure or unecessarily complicated or bad code.
+These roles are complementary because the person in the quality control role, helps the developer to write better code, by identifying bugs and any obscure or unnecessarily complicated or bad code.
 
 b) 
-- It can help to reduce errors and produce 'cleaner' code via e.g., code reviews by peers
+- It can help to reduce errors and produce 'cleaner' code via, e.g., code reviews by peers
 - It can help to speed up development because two people will (usually) be faster than one
 
 
@@ -21,10 +24,10 @@ b)
 2) Another course of action you could take, which would be unethical, would be to confront him, and ask for a raise with the threat of quitting
 3) Sabotage the project from the inside, so that the product is never released
 4) Consult a lawyer and try to find a problem with the legality of the software
-5) approach an ethics commitee and inform them of your situation
-6) arrange a meeting with with your manager, and with a third party to discuss the situation
+5) approach an ethics committee and inform them of your situation
+6) arrange a meeting with your manager, and with a third party to discuss the ethics of the project
 
-(META: I dont think this question is specific enough about what the action should accomplish, a person could take any action is this situation, you haven't specified that the action should be ethical.)
+(META: I don't think this question is specific enough about what the action should accomplish, a person could take any action is this situation, you haven't specified that the action should be ethical.)
 
 5) I could hold my foot and count to three
 
@@ -41,7 +44,7 @@ b)
 |  testing only small "unit" of the code e.g., one method  |  Test the entire system from "end" to "end"  |
 |  Very quick to run, and are run frequently               |  Often run less often                        |
 |  Independent so no dependencies                          |  Often interconnected with other systems     |
-| usually manually tested                                  | Can be manual or automated<br>               |
+|  usually manually tested                                 |  Can be manual or automated                  |
 
 
 <div style="page-break-after: always;"></div>
@@ -78,7 +81,7 @@ b) A RESTful API adheres to the guidelines of Representational state transfer. S
 - uniform interface
 
 c)
-i) Sorting algorithms can be very complicated. It is would be far easier and faster to use one that has been thoroughly tested and optimized already.
+i) Sorting algorithms can be very complicated. It would be far easier and faster to use one that has been thoroughly tested and optimized already.
 ii) Often there is no library that perfectly matches your specific needs, and it would be faster, and better to create if yourself. Also, using a library can bloat your program and introduce security vulnerabilities as well as other things
 
 <div style="page-break-after: always;"></div>
