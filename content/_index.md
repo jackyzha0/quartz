@@ -34,7 +34,6 @@ The combination of full-text search and linking makes it easy to find any note. 
 - Full-text search
 - History of traversed notes
 
-## What Now?
-- Join the [discord channel](https://discord.gg/xrj6yuGNmx)
-- Support development by [donating](https://ko-fi.com/fleetingnotes)
-- Check out my [blog](../posts)
+## Questions? Contact Me.
+- Email me at: ithinkwong@gmail.com
+- Join the [discord channel](https://discord.gg/xrj6yuGNmx) 
