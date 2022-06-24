@@ -8,7 +8,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-18.04
-    permissions: write-all
     steps:
       - uses: actions/checkout@v2
         with:
@@ -37,4 +36,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: master  # deploying branch
-          cname: https://lawn.pages.dev
+          cname: quartz.jzhao.xyz

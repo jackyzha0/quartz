@@ -1,14 +1,19 @@
-name: Anmol
+name: Jacky Zhao
 enableToc: true
-openToc: true
+openToc: false
 enableLinkPreview: true
 enableLatex: true
 enableSPA: true
+enableFooter: true
 enableContextualBacklinks: true
+enableRecentNotes: false
 description:
-  Hosted digital brain
+  Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
+  Wikilink support, backlinks, local graph, tags, and link previews.
 page_title:
-  "⛲️ Lawn"
+  "🪴 Quartz 3.2"
 links:
+  - link_name: Twitter
+    link: https://twitter.com/_jzhao
   - link_name: Github
-    link: https://github.com/anmolpandita1
+    link: https://github.com/jackyzha0
