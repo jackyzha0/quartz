@@ -1,0 +1,125 @@
+<head>
+  <!-- Meta tags -->
+  <meta charset="UTF-8" />
+  <meta
+    name="description"
+    content="{{if .IsHome}}{{$.Site.Data.config.description}}{{else}}{{.Summary}}{{end}}"
+  />
+  <title>
+    {{ if .Title }}{{ .Title }}{{ else }}{{ $.Site.Data.config.page_title }}{{
+    end }}
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="image/png" href="{{$.Site.BaseURL}}/icon.png" />
+
+  <!-- CSS Stylesheets and Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  {{$sass := resources.Match "styles/[!_]*.scss" }}
+  {{$css := slice }}
+  {{range $sass}}
+  {{$scss := . | resources.ToCSS (dict "outputStyle" "compressed") }}
+  {{$css = $css | append $scss}}
+  {{end}}
+  {{$finalCss := $css | resources.Concat "styles.css" | resources.Fingerprint "md5" | resources.Minify  }}
+  <link href="{{$finalCss.Permalink}}" rel="stylesheet" />
+
+  {{ $darkMode := resources.Get "js/darkmode.js" | resources.Fingerprint "md5" | resources.Minify }}
+  <script src="{{$darkMode.Permalink}}"></script>
+  {{partial "katex.html" .}}
+
+  {{ $popover := resources.Get "js/popover.js" | resources.Fingerprint "md5" |
+  resources.Minify }}
+  <script src="{{$popover.Permalink}}"></script>
+
+  <!--  Preload page vars  -->
+  {{$linkIndex := resources.Get "indices/linkIndex.json" | resources.Fingerprint
+  "md5" | resources.Minify | }} {{$contentIndex := resources.Get
+  "indices/contentIndex.json" | resources.Fingerprint "md5" | resources.Minify
+  }}
+  <script>
+    const BASE_URL = {{.Site.BaseURL}}
+    const fetchData = Promise.all([
+          fetch("{{ $linkIndex.Permalink }}")
+            .then(data => data.json())
+            .then(data => ({
+              index: data.index,
+              links: data.links,
+            })),
+          fetch("{{ $contentIndex.Permalink }}")
+            .then(data => data.json()),
+        ])
+        .then(([{index, links}, content]) => ({
+          index,
+          links,
+          content,
+        }))
+
+      const render = () => {
+      // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page, adds event listeners, etc. If you are only dealing with basic DOM replacement, use the init function
+
+      const siteBaseURL = new URL({{$.Site.BaseURL}});
+      const pathBase = siteBaseURL.pathname;
+      const pathWindow = window.location.pathname;
+      const isHome = pathBase == pathWindow;
+
+      {{if $.Site.Data.config.enableFooter}}
+      const container = document.getElementById("graph-container")
+      // retry if the graph is not ready
+      if (!container) return requestAnimationFrame(render)
+      // clear the graph in case there is anything within it
+      container.textContent = ""
+
+      const drawGlobal = isHome && {{$.Site.Data.graphConfig.enableGlobalGraph}};
+      drawGraph(
+          {{strings.TrimRight "/" .Site.BaseURL}},
+          drawGlobal,
+          {{$.Site.Data.graphConfig.paths}},
+          drawGlobal ? {{$.Site.Data.graphConfig.globalGraph}} : {{$.Site.Data.graphConfig.localGraph}}
+        );
+
+      {{end}}
+
+      {{if $.Site.Data.config.enableLinkPreview}}
+      initPopover(
+        {{strings.TrimRight "/" .Site.BaseURL }},
+        {{$.Site.Data.config.enableContextualBacklinks}},
+        {{$.Site.Data.config.enableLatex}}
+      )
+      {{end}}
+    }
+
+    const init = (doc = document) => {
+      // NOTE: everything within this callback will be executed for initial page navigation. This is a good place to put JavaScript that only replaces DOM nodes.
+      {{if $.Site.Data.config.enableLatex}}
+      renderMathInElement(doc.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+        ],
+        throwOnError : false
+      });
+      {{end}}
+    };
+  </script>
+  {{if $.Site.Data.config.enableSPA}}
+  {{ $router := resources.Get "js/router.js" | resources.Fingerprint "md5" |
+  resources.Minify }}
+  <script type="module">
+    import { attachSPARouting } from "{{$router.Permalink}}"
+    attachSPARouting(init, render)
+  </script>
+  {{else}}
+  <script>
+    window.Million = {
+      navigate: (url) => (window.location.href = url),
+      prefetch: () => {},
+    }
+    init()
+    render()
+  </script>
+  {{end}}
+</head>
+{{ template "_internal/google_analytics.html" . }}
