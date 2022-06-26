@@ -13,4 +13,4 @@ Here is a demo of the sentence similarity ranking in action:
 {{< youtube 3ySN4o0o7Hw >}}
 
 
-AI-powered link suggestions is a paid feature in Fleeting Notes. If you want to try it out, use the promo code `AILINKS` for a 1 month free trial (Note: This coupon code expires July 31st).
+Fleeting Notes is a free application, but AI-powered link suggestions is a paid feature in Fleeting Notes. If you want to try it out, use the promo code `AILINKS` for a 1 month free trial (Note: This coupon code expires July 31st, 2022).
