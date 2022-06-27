@@ -18,7 +18,7 @@
   {{ $favicon | safeHTML }}
   {{ else }}
   {{ range $favicon }}
-  <link rel="{{.rel}}" {{if .type}}type="{{.type}}"{{end}} {{if .sizes}}sizes="{{.sizes}}"{{end}} href="{{$.Site.BaseURL}}{{.href}}" />
+  <link rel="{{.rel}}" {{if .type}}type="{{.type}}"{{end}} {{if .sizes}}sizes="{{.sizes}}"{{end}} href="{{$.Site.BaseURL}}/{{.href}}" />
   {{- end }}
   {{ end }}
 
