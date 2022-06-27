@@ -25,7 +25,13 @@ links: # Links to show in footer
 
 ### HTML Favicons
 
-If you would like to customize the favicons of your website, you can add them to the `data/config.yaml` file. The default without any set `favicon` key is:
+A Favicon is most commonly seen preceding the URL in a browser. Some
+other examples include (but are not limited to) bookmarks, search history, and 
+app icons (i.e. "save page to homescreen" on mobile devices). [File format support](https://en.wikipedia.org/wiki/Favicon#File_format_support)
+and the [use of favicons](https://en.wikipedia.org/wiki/Favicon#Use_of_favicon) differ
+across the combination of platforms and browsers.
+
+If you would like to customize the favicons of your website, you can add them to the `data/config.yaml` file. The **default** without any set `favicon` key is:
 
 ```html
 <link rel="shortcut icon" href="icon.png" type="image/png">
