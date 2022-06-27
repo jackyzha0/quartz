@@ -10,7 +10,17 @@
     end }}
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="shortcut icon" type="image/png" href="{{$.Site.BaseURL}}/icon.png" />
+
+  <!-- HTML Favicon -->
+  {{ $favicon := $.Site.Data.config.favicon | default (slice (dict "rel" "shortcut icon" "type" "image/png" "href" "icon.png")) }}
+  {{ $type := (printf "%T" $favicon) }}
+  {{ if eq $type "string" }}
+  {{ $favicon | safeHTML }}
+  {{ else }}
+  {{ range $favicon }}
+  <link rel="{{.rel}}" {{if .type}}type="{{.type}}"{{end}} {{if .sizes}}sizes="{{.sizes}}"{{end}} href="{{$.Site.BaseURL}}{{.href}}" />
+  {{- end }}
+  {{ end }}
 
   <!-- CSS Stylesheets and Fonts -->
   <link
