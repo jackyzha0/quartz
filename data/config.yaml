@@ -3,6 +3,7 @@ enableToc: true
 openToc: false
 enableLinkPreview: true
 enableLatex: true
+enableCodeBlockTitle: true
 enableSPA: true
 enableFooter: true
 enableContextualBacklinks: true
