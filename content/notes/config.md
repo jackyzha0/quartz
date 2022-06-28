@@ -37,7 +37,7 @@ If you would like to customize the favicons of your quartz-based website, you
 can add them to the `data/config.yaml` file. The **default** without any set 
 `favicon` key is:
 
-```html {title="data/config.yaml", linenos=false}
+```html {title="layouts/partials/head.html", linenostart=15}
 <link rel="shortcut icon" href="icon.png" type="image/png">
 ```
 
