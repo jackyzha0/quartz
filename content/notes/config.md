@@ -9,7 +9,7 @@ Quartz is designed to be extremely configurable. You can find the bulk of the co
 
 The majority of configuration can be be found under `data/config.yaml`. An annotated example configuration is shown below.
 
-```yaml
+```yaml {title="data/config.yaml"}
 name: Your name here! # Shows in the footer
 enableToc: true # Whether to show a Table of Contents
 enableLinkPreview: true # whether to render card previews for links

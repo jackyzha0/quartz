@@ -36,6 +36,7 @@
   {{$finalCss := $css | resources.Concat "styles.css" | resources.Fingerprint "md5" | resources.Minify  }}
   <link href="{{$finalCss.Permalink}}" rel="stylesheet" />
 
+   <!-- Base scripts -->
   {{ $darkMode := resources.Get "js/darkmode.js" | resources.Fingerprint "md5" | resources.Minify }}
   <script src="{{$darkMode.Permalink}}"></script>
   {{partial "katex.html" .}}
@@ -43,6 +44,12 @@
   {{ $popover := resources.Get "js/popover.js" | resources.Fingerprint "md5" |
   resources.Minify }}
   <script src="{{$popover.Permalink}}"></script>
+
+  <!-- Optional scripts -->
+  {{ if $.Site.Data.config.enableCodeBlockTitle }}
+  {{ $codeTitle := resources.Get "js/code-title.js" | resources.Fingerprint "md5" | resources.Minify }}
+  <script src="{{$codeTitle.Permalink}}"></script>
+  {{end}}
 
   <!--  Preload page vars  -->
   {{$linkIndex := resources.Get "indices/linkIndex.json" | resources.Fingerprint
@@ -91,6 +98,10 @@
         );
 
       {{end}}
+
+      {{if $.Site.Data.config.enableCodeBlockTitle -}}
+      addTitleToCodeBlocks();
+      {{- end -}}
 
       {{if $.Site.Data.config.enableLinkPreview}}
       initPopover(
