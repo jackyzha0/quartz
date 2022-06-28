@@ -1,0 +1,14 @@
+.code-title {
+  color: #ff79c6;
+  background-color: #424656;
+  font-family: monospace;
+  display: inline-block;
+  position: relative;
+  padding: 0.3em 0.6em 0.6em;
+  margin-bottom: -0.3em;
+  z-index: -1;
+  paint-order: fill;
+  border-top-left-radius: 0.3em;
+  border-top-right-radius: 0.3em;
+  font-size: 0.9em;
+}
