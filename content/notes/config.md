@@ -13,6 +13,7 @@ The majority of configuration can be found under `data/config.yaml`. An annotate
 name: Your name here! # Shows in the footer
 enableToc: true # Whether to show a Table of Contents
 enableLinkPreview: true # whether to render card previews for links
+enableCodeBlockTitle: true # whether to render titles for code blocks
 description: Page description to show to search engines
 page_title: Quartz Example Page # Default Page Title
 
