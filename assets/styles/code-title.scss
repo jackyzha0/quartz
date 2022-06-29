@@ -1,6 +1,5 @@
 .code-title {
-  color: rgb(222, 114, 222);
-  background-color: rgb(42, 47, 55);
+  color: var(--primary) ;
   font-family: monospace;
   width: max-content;
   overflow-x: auto;
@@ -16,4 +15,6 @@
   border-top-left-radius: 0.3em;
   border-top-right-radius: 0.3em;
   font-size: 0.9em;
+  background-color: var(--lightgray);
+  filter: hue-rotate(-30deg) contrast(1.0) opacity(0.8);
 }
