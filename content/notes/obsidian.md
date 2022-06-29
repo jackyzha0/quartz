@@ -2,6 +2,7 @@
 title: "Obsidian Vault Integration"
 tags:
 - setup
+weight: 2
 ---
 
 ## Setup
@@ -27,3 +28,5 @@ Inserting front matter everytime you want to create a new Note gets annoying rea
 **If you decide to overwrite the `/content` folder completely, don't remove the `/content/templates` folder!**
 
 Head over to Options > Core Plugins and enable the Templates plugin. Then go to Options > Hotkeys and set a hotkey for 'Insert Template' (I recommend `[cmd]+T`). That way, when you create a new note, you can just press the hotkey for a new template and be ready to go!
+
+> 👀 Step 4: [Preview Quartz Changes](notes/preview%20changes.md)

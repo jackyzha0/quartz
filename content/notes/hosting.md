@@ -2,6 +2,7 @@
 title: "Deploying Quartz to the Web"
 tags:
 - setup
+weight: 4
 ---
 
 ## GitHub Pages
@@ -41,7 +42,7 @@ Note: we specifically push to the `hugo` branch here. Our GitHub action automati
 ### Setting up the Site
 Now let's get this site up and running. Never hosted a site before? No problem. Have a fancy custom domain you already own or want to subdomain your Quartz? That's easy too.
 
-Here, we take advantage of GitHub's free page hosting to deploy our site. Change `baseURL` in `/config.toml`.
+Here, we take advantage of GitHub's free page hosting to deploy our site. Change `baseURL` in `/config.toml`. 
 
 Make sure that your `baseURL` has a trailing `/`!
 
@@ -51,7 +52,7 @@ Make sure that your `baseURL` has a trailing `/`!
 baseURL = "https://<YOUR-DOMAIN>/"
 ```
 
-If you are using this under a subdomain (e.g. `<YOUR-GITHUB-USERNAME>.github.io/quartz`), include the trailing `/`.
+If you are using this under a subdomain (e.g. `<YOUR-GITHUB-USERNAME>.github.io/quartz`), include the trailing `/`. **You need to do this especially if you are using GitHub!**
 
 ```toml
 baseURL = "https://<YOUR-GITHUB-USERNAME>.github.io/quartz/"
@@ -75,10 +76,15 @@ Please note that the `cname` field should *not* have any path `e.g. end with /qu
 
 Have a custom domain? [Learn how to set it up with Quartz ](notes/custom%20Domain.md).
 
+### Ignoring Files
+Only want to publish a subset of all of your notes? Don't worry, Quartz makes this a simple two-step process.
+
+❌ [Excluding pages from being published](notes/ignore%20notes.md)
+
 ---
 
 Now that your Quartz is live, let's figure out how to make Quartz really *yours*!
 
-🎨 [Customizing Quartz](notes/config.md)
+> Step 6: 🎨 [Customizing Quartz](notes/config.md)
 
 Having problems? Checkout our [FAQ and Troubleshooting guide](notes/troubleshooting.md).
