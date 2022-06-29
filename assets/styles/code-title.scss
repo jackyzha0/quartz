@@ -2,12 +2,17 @@
   color: rgb(222, 114, 222);
   background-color: rgb(42, 47, 55);
   font-family: monospace;
+  width: max-content;
+  overflow-x: auto;
   display: inline-block;
+  vertical-align: middle;
+  font-weight: normal;
+  line-height: 1em;
   position: relative;
-  padding: 0.3em 0.6em 0.6em;
-  margin-bottom: -0.3em;
+  padding: 0.5em 0.6em 0.6em;      // + 1.2 em
+  max-width: calc(100% - 1.2em);   // (-1.2 em) fits article width exactly
+  margin-bottom: -0.2em;
   z-index: -1;
-  paint-order: fill;
   border-top-left-radius: 0.3em;
   border-top-right-radius: 0.3em;
   font-size: 0.9em;
