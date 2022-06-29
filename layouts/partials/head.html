@@ -76,11 +76,12 @@
 
       const render = () => {
       // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page, adds event listeners, etc. If you are only dealing with basic DOM replacement, use the init function
-
       const siteBaseURL = new URL({{$.Site.BaseURL}});
       const pathBase = siteBaseURL.pathname;
       const pathWindow = window.location.pathname;
       const isHome = pathBase == pathWindow;
+
+
 
       {{if $.Site.Data.config.enableFooter}}
       const container = document.getElementById("graph-container")
@@ -99,9 +100,6 @@
 
       {{end}}
 
-      {{if $.Site.Data.config.enableCodeBlockTitle -}}
-      addTitleToCodeBlocks();
-      {{- end -}}
 
       {{if $.Site.Data.config.enableLinkPreview}}
       initPopover(
@@ -114,6 +112,13 @@
 
     const init = (doc = document) => {
       // NOTE: everything within this callback will be executed for initial page navigation. This is a good place to put JavaScript that only replaces DOM nodes.
+      {{if $.Site.Data.config.enableCodeBlockTitle -}}
+      {{if $.Site.Data.config.enableSPA -}}
+      addTitleToCodeBlocks();
+      {{ else }}
+      window.addEventListener("DOMContentLoaded", addTitleToCodeBlocks);
+      {{- end -}}
+      {{- end -}}
       {{if $.Site.Data.config.enableLatex}}
       renderMathInElement(doc.body, {
         delimiters: [
