@@ -36,8 +36,12 @@
   {{$finalCss := $css | resources.Concat "styles.css" | resources.Fingerprint "md5" | resources.Minify  }}
   <link href="{{$finalCss.Permalink}}" rel="stylesheet" />
 
+  {{$lightSyntax := resources.Get "styles/_light_syntax.scss" | resources.ToCSS (dict "outputStyle" "compressed")}}
+  {{$darkSyntax  := resources.Get "styles/_dark_syntax.scss" }}
+  <link href="{{$lightSyntax.Permalink}}" rel="stylesheet" id="theme-link">
+
    <!-- Base scripts -->
-  {{ $darkMode := resources.Get "js/darkmode.js" | resources.Fingerprint "md5" | resources.Minify }}
+  {{ $darkMode := resources.Get "js/darkmode.js" | resources.ExecuteAsTemplate "js/darkmode.js" . | resources.Fingerprint "md5" | resources.Minify }}
   <script src="{{$darkMode.Permalink}}"></script>
   {{partial "katex.html" .}}
 
