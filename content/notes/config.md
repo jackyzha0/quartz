@@ -26,16 +26,7 @@ links: # Links to show in footer
 
 ### Code Block Titles
 
-Quartz relies on Hugo's code highlighter,
-[Chroma](https://github.com/alecthomas/chroma), which happens to be ["really,
-really fast"](https://gohugo.io/content-management/syntax-highlighting/). As
-fast as it is, it does leave much to be desired, such as code block titles. In
-Obsidian, there's a plugin which provides this feature, called [Obsidian Better
-Code Block](https://github.com/stargrey/obsidian-better-codeblock). The idea
-behind the syntax is similar to Hugo's, although unfortunately not identical
-(stay tuned for a [Quartz
-binary](https://github.com/jackyzha0/quartz/issues/81)). To add code titles
-with Quartz:
+To add code block titles with Quartz:
 
 1. Ensure that code block titles are enabled in Quartz's configuration:
 
@@ -43,29 +34,17 @@ with Quartz:
     enableCodeBlockTitle: true
     ```
 
-2. Add the `title` attribute to the desired code block. Note there are two ways of
-   defining code blocks in Hugo.
-
-   - [**Highlight Shortcode**](https://gohugo.io/content-management/syntax-highlighting/#example-highlight-shortcode): Example not included as Hugo will insist on attempting to render it.
-   - [**Highlight Code Fences**](https://gohugo.io/content-management/syntax-highlighting/#highlighting-in-code-fences): Example provided 
-     intentionally omits a single back quote.
+2. Add the `title` attribute to the desired [code block
+   fence](https://gohugo.io/content-management/syntax-highlighting/#highlighting-in-code-fences):
 
       ```markdown {linenos=false}
-      ```yaml {title="data/config.yaml"}
-      enableCodeBlockTitle: true  # step 1 example
-      ``
+       ```yaml {title="data/config.yaml"}
+       enableCodeBlockTitle: true  # example from step 1
+       ```
       ```
 
-**Note** that if `{title=<my-title>}` is included, and code titles are not
+**Note** that if `{title=<my-title>}` is included, and code block titles are not
 enabled, no errors will occur and the title attribute will be ignored.
-Furthermore, by enabling code blocks, the header of each page will contain a
-script which will automatically attempt to find code blocks, and render their
-titles. In other words, if you don't have any code blocks (with titles), rather
-disable this feature in the configuration. For more information on syntax see
-[Hugo's syntax
-highlighting](https://gohugo.io/content-management/syntax-highlighting/).
-Finally, you can style the code block titles with the
-`assets/styles/code-title.scss` file.
 
 ### HTML Favicons
 
