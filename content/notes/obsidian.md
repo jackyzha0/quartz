@@ -2,7 +2,7 @@
 title: "Obsidian Vault Integration"
 tags:
 - setup
-weight: 2
+weight: -3
 ---
 
 ## Setup

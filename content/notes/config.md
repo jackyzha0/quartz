@@ -2,7 +2,7 @@
 title: "Configuration"
 tags:
 - setup
-weight: 5
+weight: 0
 ---
 
 ## Configuration
@@ -180,3 +180,5 @@ defaultContentLanguage = 'ar'
     title = 'مدونتي'
     weight = 1
 ```
+
+[[setup]]
