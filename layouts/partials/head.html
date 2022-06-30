@@ -84,7 +84,9 @@
       const pathWindow = window.location.pathname;
       const isHome = pathBase == pathWindow;
 
-
+      {{if $.Site.Data.config.enableSPA -}}
+      addTitleToCodeBlocks();
+      {{ end }}
 
       {{if $.Site.Data.config.enableFooter}}
       const container = document.getElementById("graph-container")
