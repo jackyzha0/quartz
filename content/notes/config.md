@@ -136,7 +136,7 @@ enableGlobalGraph: false
 
 ### Local Graph ###
 localGraph:
-	# whether automatically generate a legend
+    # whether automatically generate a legend
     enableLegend: false
     
     # whether to allow dragging nodes in the graph
