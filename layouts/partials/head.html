@@ -54,6 +54,13 @@
   <script src="{{$codeTitle.Permalink}}"></script>
   {{end}}
 
+  {{ if $.Site.Data.config.enableClipboard }}
+  {{ $clipboard := resources.Get "js/clipboard.js" | resources.Fingerprint "md5" | resources.Minify }}
+  {{ if (findRE "<pre" .Content 1) }}
+    <script src="{{$clipboard.Permalink}}"></script>
+  {{ end }}
+  {{ end }}
+
   <!--  Preload page vars  -->
   {{$linkIndex := resources.Get "indices/linkIndex.json" | resources.Fingerprint
   "md5" | resources.Minify | }} {{$contentIndex := resources.Get
@@ -84,6 +91,9 @@
       const pathWindow = window.location.pathname;
       const isHome = pathBase == pathWindow;
 
+      {{if $.Site.Data.config.enableClipboard -}}
+      initClipboard();
+      {{ end }}
       {{if $.Site.Data.config.enableSPA -}}
       addTitleToCodeBlocks();
       {{ end }}
@@ -117,6 +127,13 @@
 
     const init = (doc = document) => {
       // NOTE: everything within this callback will be executed for initial page navigation. This is a good place to put JavaScript that only replaces DOM nodes.
+      {{if $.Site.Data.config.enableClipboard -}}
+      {{if $.Site.Data.config.enableSPA -}}
+      initClipboard();
+      {{ else }}
+      window.addEventListener("DOMContentLoaded", initClipboard);
+      {{ end }}
+      {{ end }}
       {{if $.Site.Data.config.enableCodeBlockTitle -}}
       {{if $.Site.Data.config.enableSPA -}}
       addTitleToCodeBlocks();
