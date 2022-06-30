@@ -34,7 +34,7 @@ You can also use wikilinks if that is what you are more comfortable with!
 ### Front Matter
 Hugo is picky when it comes to metadata for files. Make sure that your title is double-quoted and that you have a title defined at the top of your file like so. You can also add tags here as well.
 
-```markdown
+```yaml
 ---
 title: "Example Title"
 tags:

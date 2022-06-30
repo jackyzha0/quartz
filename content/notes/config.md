@@ -180,5 +180,3 @@ defaultContentLanguage = 'ar'
     title = 'مدونتي'
     weight = 1
 ```
-
-[[setup]]

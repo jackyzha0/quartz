@@ -39,7 +39,7 @@
       {{$reference := split $path "#"}}
       {{$title := index $reference 0}}
       {{$block := default "" (index $reference 1)}}
-      {{$block = strings.TrimRight "/" (cond (eq $block "") $block (printf "#%s" $block))}}
+      {{$block = strings.TrimRight "/" (cond (eq $block "") $block (printf "#%s" $block)) | urlize | lower}}
       {{$href := strings.TrimRight "/" ($page.GetPage $title).RelPermalink}}
       {{$display := default $title (index $split 1)}}
       {{if not $href}}
@@ -54,7 +54,7 @@
   {{end}}
 {{end}}
 
-{{/* Add copyable anchors */}}
+{{/* Add jumpable anchors */}}
 {{ $content = $content | replaceRE "(<h[1-9] id=\"([^\"]+)\">)(.+)(</h[1-9]>)" `<a href="#${2}">${1}<span class="hanchor" ariaLabel="Anchor"># </span>${3}${4}</a>` }}
 
 {{ $content | safeHTML }}
