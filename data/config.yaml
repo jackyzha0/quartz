@@ -5,7 +5,7 @@ enableLinkPreview: true
 enableLatex: true
 enableCodeBlockTitle: true
 enableClipboard: true
-enableSPA: false
+enableSPA: true
 enableFooter: true
 enableContextualBacklinks: true
 enableRecentNotes: false

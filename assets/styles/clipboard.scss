@@ -3,26 +3,26 @@
   display: flex;
   float: right;
   right: 0;
-  padding: 0.7em;
+  padding: 0.69em;
   margin: 0.5em;
-  color: var(--lightgray);
+  color: var(--outlinegray);
   border-color: var(--dark);
   background-color: var(--lightgray);
-  filter: brightness(1.5);
-  border: 1px solid;
+  filter: contrast(1.1);
+  border: 2px solid;
   border-radius: 6px;
   font-size: 0.8em;
   z-index: 1;
   opacity: 0;
-  transition: 0.1s;
+  transition: 0.12s;
 }
 .clipboard-button > svg {
-  fill: var(--dark);
+  fill: var(--light);
+  filter: contrast(0.3);
 }
 .clipboard-button:hover {
   cursor: pointer;
   border-color: var(--primary);
-  background-color: var(--dark);
 }
 .clipboard-button:hover > svg {
   fill: var(--primary);

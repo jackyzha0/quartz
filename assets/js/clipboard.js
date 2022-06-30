@@ -5,17 +5,23 @@ const svgCheck =
 
 
 const addCopyButtons = (clipboard) => {
-    // 1. Look for pre > code elements in the DOM
-    document.querySelectorAll("pre > code").forEach((codeBlock) => {
-        // if buttom exists, skip
-        if (codeBlock.parentElement.querySelector(".clipboard-button")) return;
-        // 2. Create a button that will trigger a copy operation
+    var els = document.getElementsByClassName("highlight");
+    // for each highlight
+    for (var i = 0; i < els.length; i++) {
+        if (els[i].getElementsByClassName("clipboard-button").length) continue;
+
+        // find pre > code inside els[i]
+        let codeBlocks = els[i].getElementsByTagName("code");
+
+         // line numbers are inside first code block
+        let lastCodeBlock = codeBlocks[codeBlocks.length - 1];
         const button = document.createElement("button");
         button.className = "clipboard-button";
         button.type = "button";
         button.innerHTML = svgCopy;
+        // remove every second newline from lastCodeBlock.innerText
         button.addEventListener("click", () => {
-            clipboard.writeText(codeBlock.innerText).then(
+            clipboard.writeText(lastCodeBlock.innerText.replace(/\n\n/g, "\n")).then(
                 () => {
                     button.blur();
                     button.innerHTML = svgCheck;
@@ -24,12 +30,12 @@ const addCopyButtons = (clipboard) => {
                 (error) => (button.innerHTML = "Error")
             );
         });
-        // 3. Append the button directly before the pre tag
-        const pre = codeBlock.parentNode;
-        pre.parentNode.insertBefore(button, pre);
-    });
-};
-
+        // find chroma inside els[i]
+        let chroma = els[i].getElementsByClassName("chroma")[0];
+        els[i].insertBefore(button, chroma);
+        console.log(els[i].lastChild)
+    }
+}
 
 function initClipboard() {
     if (navigator && navigator.clipboard) {
