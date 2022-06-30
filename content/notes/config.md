@@ -154,10 +154,10 @@ localGraph:
     # how strongly nodes should repel each other
     repelForce: 2
 
-	  # how strongly should nodes be attracted to the center of gravity
+    # how strongly should nodes be attracted to the center of gravity
     centerForce: 1
 
-	  # what the default link length should be
+    # what the default link length should be
     linkDistance: 1
     
     # how big the node labels should be
