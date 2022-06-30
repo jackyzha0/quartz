@@ -15,8 +15,6 @@ By default, GitHub disables workflows from running automatically on Forked Repos
 
 ![Enable GitHub Actions](notes/images/github-actions.png)*Enable GitHub Actions*
 
-![[notes/images/github-actions.png|200]]
-
 ### Enable GitHub Pages
 
 Head to the 'Settings' tab of your forked repository and go to the 'Pages' tab.
