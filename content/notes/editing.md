@@ -2,7 +2,7 @@
 title: "Editing Content in Quartz"
 tags:
 - setup
-weight: 1
+weight: -4
 ---
 
 ## Editing 
