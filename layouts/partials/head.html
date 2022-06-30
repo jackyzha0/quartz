@@ -79,7 +79,8 @@
 
       const render = () => {
       // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page, adds event listeners, etc. If you are only dealing with basic DOM replacement, use the init function
-      const siteBaseURL = new URL({{$.Site.BaseURL}});
+
+      const siteBaseURL = new URL(BASE_URL);
       const pathBase = siteBaseURL.pathname;
       const pathWindow = window.location.pathname;
       const isHome = pathBase == pathWindow;
