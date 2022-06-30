@@ -27,10 +27,8 @@
       {{$inner := . | strings.TrimPrefix "![[" | strings.TrimSuffix "]]" }}
       {{$split := split $inner "|"}}
       {{$path := index $split 0 | relURL}}
-      {{$reference := split $path "#"}}
-      {{$title := index $reference 0}}
-      {{$display := default $title (index $split 1)}}
-      {{$img := printf "<img src=\"%s\" title=\"%s\">" $path $display}}
+      {{$width := index $split 1}}
+      {{$img := printf "<img src=\"%s\" width=\"%s\" />" $path (default "auto" $width)}}
       {{$content = replace $content . $img}}
     {{else}}
       {{$inner := . | strings.TrimPrefix "[[" | strings.TrimSuffix "]]" }}
