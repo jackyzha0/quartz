@@ -127,8 +127,11 @@
       navigate: (url) => (window.location.href = url),
       prefetch: () => {},
     }
-    init()
-    render()
+
+    window.addEventListener("DOMContentLoaded", () => {
+      init()
+      render()
+    })
   </script>
   {{end}}
 </head>
