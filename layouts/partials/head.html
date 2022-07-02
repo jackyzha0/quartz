@@ -95,6 +95,7 @@
       {{if $.Site.Data.config.enableClipboard -}}
       initClipboard();
       {{ end }}
+
       {{if $.Site.Data.config.enableSPA -}}
       addTitleToCodeBlocks();
       {{ end }}
@@ -135,6 +136,7 @@
       window.addEventListener("DOMContentLoaded", initClipboard);
       {{ end }}
       {{ end }}
+
       {{if $.Site.Data.config.enableCodeBlockTitle -}}
       {{if $.Site.Data.config.enableSPA -}}
       addTitleToCodeBlocks();
@@ -166,8 +168,11 @@
       navigate: (url) => (window.location.href = url),
       prefetch: () => {},
     }
-    init()
-    render()
+
+    window.addEventListener("DOMContentLoaded", () => {
+      init()
+      render()
+    })
   </script>
   {{end}}
 </head>
