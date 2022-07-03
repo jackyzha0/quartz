@@ -4,10 +4,10 @@ const svgCheck =
     '<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" fill="rgb(63, 185, 80)" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>';
 
 
-const addCopyButtons = (clipboard) => {
-    var els = document.getElementsByClassName("highlight");
+const addCopyButtons = () => {
+    let els = document.getElementsByClassName("highlight");
     // for each highlight
-    for (var i = 0; i < els.length; i++) {
+    for (let i = 0; i < els.length; i++) {
         if (els[i].getElementsByClassName("clipboard-button").length) continue;
 
         // find pre > code inside els[i]
@@ -21,7 +21,7 @@ const addCopyButtons = (clipboard) => {
         button.innerHTML = svgCopy;
         // remove every second newline from lastCodeBlock.innerText
         button.addEventListener("click", () => {
-            clipboard.writeText(lastCodeBlock.innerText.replace(/\n\n/g, "\n")).then(
+            navigator.clipboard.writeText(lastCodeBlock.innerText.replace(/\n\n/g, "\n")).then(
                 () => {
                     button.blur();
                     button.innerHTML = svgCheck;
@@ -34,19 +34,5 @@ const addCopyButtons = (clipboard) => {
         let chroma = els[i].getElementsByClassName("chroma")[0];
         els[i].insertBefore(button, chroma);
         console.log(els[i].lastChild)
-    }
-}
-
-function initClipboard() {
-    if (navigator && navigator.clipboard) {
-        addCopyButtons(navigator.clipboard);
-    } else {
-        const script = document.createElement("script");
-        script.src =
-            "https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js";
-        script.integrity = "sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=";
-        script.crossOrigin = "anonymous";
-        script.onload = () => addCopyButtons(clipboard);
-        document.body.appendChild(script);
     }
 }
