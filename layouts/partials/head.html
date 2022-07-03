@@ -93,7 +93,7 @@
       const isHome = pathBase == pathWindow;
 
       {{if $.Site.Data.config.enableClipboard -}}
-      initClipboard();
+      addCopyButtons();
       {{ end }}
       {{if $.Site.Data.config.enableSPA -}}
       addTitleToCodeBlocks();
@@ -130,9 +130,9 @@
       // NOTE: everything within this callback will be executed for initial page navigation. This is a good place to put JavaScript that only replaces DOM nodes.
       {{if $.Site.Data.config.enableClipboard -}}
       {{if $.Site.Data.config.enableSPA -}}
-      initClipboard();
+      addCopyButtons();
       {{ else }}
-      window.addEventListener("DOMContentLoaded", initClipboard);
+      window.addEventListener("DOMContentLoaded", addCopyButtons);
       {{ end }}
       {{ end }}
       {{if $.Site.Data.config.enableCodeBlockTitle -}}
