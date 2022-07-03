@@ -56,9 +56,7 @@
 
   {{ if $.Site.Data.config.enableCodeBlockCopy }}
   {{ $clipboard := resources.Get "js/clipboard.js" | resources.Fingerprint "md5" | resources.Minify }}
-  {{ if (findRE "<pre" .Content 1) }}
-    <script src="{{$clipboard.Permalink}}"></script>
-  {{ end }}
+  <script src="{{$clipboard.Permalink}}"></script>
   {{ end }}
 
   <!--  Preload page vars  -->
