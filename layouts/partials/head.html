@@ -54,6 +54,13 @@
   <script src="{{$codeTitle.Permalink}}"></script>
   {{end}}
 
+  {{ if $.Site.Data.config.enableCodeBlockCopy }}
+  {{ $clipboard := resources.Get "js/clipboard.js" | resources.Fingerprint "md5" | resources.Minify }}
+  {{ if (findRE "<pre" .Content 1) }}
+    <script src="{{$clipboard.Permalink}}"></script>
+  {{ end }}
+  {{ end }}
+
   <!--  Preload page vars  -->
   {{$linkIndex := resources.Get "indices/linkIndex.json" | resources.Fingerprint
   "md5" | resources.Minify | }} {{$contentIndex := resources.Get
@@ -84,6 +91,10 @@
       const pathBase = siteBaseURL.pathname;
       const pathWindow = window.location.pathname;
       const isHome = pathBase == pathWindow;
+
+      {{if $.Site.Data.config.enableCodeBlockCopy -}}
+      addCopyButtons();
+      {{ end }}
 
       {{if $.Site.Data.config.enableSPA -}}
       addTitleToCodeBlocks();
@@ -118,12 +129,12 @@
 
     const init = (doc = document) => {
       // NOTE: everything within this callback will be executed for initial page navigation. This is a good place to put JavaScript that only replaces DOM nodes.
+      {{if $.Site.Data.config.enableCodeBlockCopy -}}
+      addCopyButtons();
+      {{ end }}
+
       {{if $.Site.Data.config.enableCodeBlockTitle -}}
-      {{if $.Site.Data.config.enableSPA -}}
       addTitleToCodeBlocks();
-      {{ else }}
-      window.addEventListener("DOMContentLoaded", addTitleToCodeBlocks);
-      {{- end -}}
       {{- end -}}
       {{if $.Site.Data.config.enableLatex}}
       renderMathInElement(doc.body, {

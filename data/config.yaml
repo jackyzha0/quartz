@@ -4,6 +4,7 @@ openToc: false
 enableLinkPreview: true
 enableLatex: true
 enableCodeBlockTitle: true
+enableCodeBlockCopy: true
 enableSPA: true
 enableFooter: true
 enableContextualBacklinks: true
