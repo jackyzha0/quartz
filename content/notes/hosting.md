@@ -66,7 +66,7 @@ Please note that the `cname` field should *not* have any path `e.g. end with /qu
 
 [Reference `deploy.yaml` here](https://github.com/jackyzha0/quartz/blob/hugo/.github/workflows/deploy.yaml)
 
-```yaml
+```yaml {title=".github/workflows/deploy.yaml"}
 - name: Deploy  
   uses: peaceiris/actions-gh-pages@v3  
   with:  

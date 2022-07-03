@@ -8,12 +8,7 @@ const syntaxTheme = document.querySelector("#theme-link");
 
 if (currentTheme) {
   document.documentElement.setAttribute('saved-theme', currentTheme);
-  if (currentTheme === 'dark') {
-    syntaxTheme.href = '{{ $darkSyntax.Permalink }}';
-  }
-  else {
-    syntaxTheme.href = '{{ $lightSyntax.Permalink }}';
-  }
+  syntaxTheme.href = currentTheme === 'dark' ?  '{{ $darkSyntax.Permalink }}' :  '{{ $lightSyntax.Permalink }}';
 }
 
 const switchTheme = (e) => {
