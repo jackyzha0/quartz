@@ -54,7 +54,7 @@
   <script src="{{$codeTitle.Permalink}}"></script>
   {{end}}
 
-  {{ if $.Site.Data.config.enableClipboard }}
+  {{ if $.Site.Data.config.enableCodeBlockCopy }}
   {{ $clipboard := resources.Get "js/clipboard.js" | resources.Fingerprint "md5" | resources.Minify }}
   {{ if (findRE "<pre" .Content 1) }}
     <script src="{{$clipboard.Permalink}}"></script>
@@ -92,7 +92,7 @@
       const pathWindow = window.location.pathname;
       const isHome = pathBase == pathWindow;
 
-      {{if $.Site.Data.config.enableClipboard -}}
+      {{if $.Site.Data.config.enableCodeBlockCopy -}}
       addCopyButtons();
       {{ end }}
 
@@ -129,7 +129,7 @@
 
     const init = (doc = document) => {
       // NOTE: everything within this callback will be executed for initial page navigation. This is a good place to put JavaScript that only replaces DOM nodes.
-      {{if $.Site.Data.config.enableClipboard -}}
+      {{if $.Site.Data.config.enableCodeBlockCopy -}}
       {{if $.Site.Data.config.enableSPA -}}
       addCopyButtons();
       {{ else }}

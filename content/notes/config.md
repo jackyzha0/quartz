@@ -28,6 +28,9 @@ enableLinkPreview: true
 # whether to render titles for code blocks
 enableCodeBlockTitle: true 
 
+# whether to render copy buttons for code blocks
+enableCodeBlockCopy: true 
+
 # whether to try to process Latex
 enableLatex: true
 
