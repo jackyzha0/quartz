@@ -2,7 +2,7 @@
 title: How to Sync Fleeting Notes with Obsidian
 description: A step-by-step guide on how to sync Fleeting Notes with Obsidian
 date: 2022-04-12
-lastmod: 2022-06-18
+lastmod: 2022-07-04
 ---
 When we organize notes through connections, the [[notes/having more connections is better|more the better]]. Fleeting Notes is a separate network of notes outside of Obsidian. The goal of this plugin sync both these networks of notes into one! Below are step-by-step instructions on how to do this.
 
@@ -17,9 +17,13 @@ When we organize notes through connections, the [[notes/having more connections 
 
 4. Install the plugin and ensure you have it enabled
 ![Ensure Plugin Enabled](posts/img/fleeting-notes-sync-1.png)
-
-5. Once enabled click "Fleeting Notes Sync" under Plugin Options > Fleeting Notes Sync. Under here, fill in your username, password, and desired folder location to sync your notes. Additionally, you can toggle the "Sync notes on startup", to run the sync whenever Obsidian is opened.
+5. Once enabled click "Fleeting Notes Sync" under Plugin Options > Fleeting Notes Sync. Under here, fill in your username, password, and desired folder location to sync your notes. 
 ![Fleeting Notes Settings](posts/img/fleeting-notes-sync-4.png)
+6. (Optional) Adjust sync settings:
+	1. Toggle the "Sync notes on startup", to run the sync whenever Obsidian is opened.
+	2. Change sync type to "Two-way sync" for [[posts/imagine-google-keep-with-obsidian-sync|bi-directional sync]]
+	3. Adjust note template to your needs (Note: metadata is needed for sync)
+![[posts/img/fleeting-notes-sync-8.png]]
 
 ## Usage
 1.  Now open the [command palette](https://help.obsidian.md/Plugins/Command+palette) and run `Fleeting Notes: Pull All Notes from Fleeting Notes`
