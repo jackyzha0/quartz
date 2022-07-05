@@ -49,6 +49,11 @@ enableContextualBacklinks: true
 # whether to show a section of recent notes on the home page
 enableRecentNotes: false
 
+# whether to display and 'edit' button next to the last edited field
+# that links to github
+enableGitHubEdit: false
+GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
+
 # page description used for SEO
 description:
   Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
