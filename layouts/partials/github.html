@@ -1,3 +1,3 @@
-{{if $.Site.Data.config.onGitHub}}
-<a href="{{$.Site.Data.config.GHlink}}/{{ .Path}}" rel="noopener">Edit</a>
+{{if $.Site.Data.config.enableGitHubEdit}
+<a href="{{$.Site.Data.config.GHlink}}/{{ .Path}}" rel="noopener">Edit Source</a>
 {{end}}
