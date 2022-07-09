@@ -184,11 +184,11 @@ article {
 
       &.broken {
         opacity: 0.5;
-        background-color: transparent; 
+        background-color: transparent;
       }
     }
   }
-  
+
   & p {
     overflow-wrap: anywhere;
   }
@@ -293,7 +293,7 @@ footer {
   text-align: center;
   & ul {
     padding-left: 0;
-  } 
+  }
 }
 
 hr {
@@ -318,6 +318,11 @@ hr {
   display: flex;
   flex-direction: row;
   gap: 2em;
+
+  &.vertical{
+    flex-direction: column;
+    gap: 0;
+  }
 
   @media all and (max-width: 780px) {
     flex-direction: column;
@@ -352,6 +357,18 @@ hr {
 
     }
   }
+  
+  #graph-container-modal {
+   border: var(--outlinegray) 1px solid;
+   border-radius: 5px;
+   box-sizing: border-box;
+   min-height: 250px;
+
+   & > svg {
+     margin-bottom: -5px;
+
+   }
+ }
 }
 
 .centered {
@@ -591,5 +608,3 @@ header {
     padding: 0 1em;
   }
 }
-
-
