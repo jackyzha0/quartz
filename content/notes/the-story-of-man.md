@@ -2,7 +2,8 @@
 title: "the-story-of-man"
 aliases: The Story of Man
 tags: 
-- book/nonfiction/history
+- book
+- history
 ---
 
 # African Origins
