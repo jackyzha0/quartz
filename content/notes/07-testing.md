@@ -15,7 +15,7 @@ sr-ease: 270
 - understand that testing is useful for detecting bugs
 - contrast different types of testting
 - descrive the principle of test driven development
-- explain how unit tests ar developed
+- explain how unit tests are developed
 - indicate how languages integreate unit test support
 - apppreiciate limitation of software testing
 

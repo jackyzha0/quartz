@@ -4,9 +4,9 @@ aliases:
 tags: 
 - cosc202
 - lecture
-sr-due: 2022-07-10
-sr-interval: 37
-sr-ease: 252
+sr-due: 2022-11-03
+sr-interval: 116
+sr-ease: 272
 ---
 
 - understnad the purpose of build tools
