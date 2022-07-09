@@ -12,7 +12,8 @@ tags:
 
 # Notes
 
-# Lectures
+# Lectures/Chapters
+- [01-Vector Spaces and Subspaces](notes/01-Vector-Spaces-and-Subspaces)
 
 # Archive
 
