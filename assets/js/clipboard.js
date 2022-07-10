@@ -33,6 +33,5 @@ const addCopyButtons = () => {
         // find chroma inside els[i]
         let chroma = els[i].getElementsByClassName("chroma")[0];
         els[i].insertBefore(button, chroma);
-        console.log(els[i].lastChild)
     }
 }
