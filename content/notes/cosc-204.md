@@ -18,6 +18,8 @@ By completion of this paper students are expected to:
 ## Hardware
 - Understand how programs are executed on computer hardware
 
+- [01-bits-and-bytes](notes/01-bits-and-bytes.md)
+
 ## Assembly
 - Demonstrate an ability to read and write assembly language programs
 
