@@ -8,6 +8,7 @@ tags:
 - math202
 ---
 
+![[C:\User\Jet HUghes\Documents\Personal\courses\math-202\Textbook.pdf]]
 # Assignments
 
 # Notes
