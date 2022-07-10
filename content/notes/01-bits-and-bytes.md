@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc204
 - lecture
+sr-due: 2022-07-14
+sr-interval: 3
+sr-ease: 250
 ---
 
 # What is data
