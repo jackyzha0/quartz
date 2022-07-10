@@ -13,5 +13,4 @@ tags:
 - [model-view-controller-pattern](notes/model-view-controller-pattern.md)
 - [.NET](notes/dotnet.md)
 - [programatic-evolution](notes/programatic-evolution.md)
-- [lyrics](notes/lyrics.md)
 - [behaviour-driven-development](notes/behaviour-driven-development.md)

@@ -62,6 +62,8 @@ tags:
 - when the code is compile, the name is assigned an address, in memory. The meaning of that data depends on how a human interprets it. it might be small integer, or a character, or a color etc.
 
 ## ASCII Character Code
+![ascii code](https://i.imgur.com/NbBtm1v.png)
+
 1. The computer uses ch as a integer index into a pre-existing table 
 2. the computer screen is made up of a thousand little dots called pixels. theyre in a rectangular grid like a table.a
 
@@ -78,5 +80,24 @@ tags:
 - ASCII characters are stored using 7-bits
 	- so there are 128 (2^7) possible characters
 	- stored as a byte with the 8th bit set to zero
-	- For sorting p
+	- For sorting purposes characters are compared on their numeric value (called the *collating sequence*)
+	- 'A' is before 'Z' but 'a' is after 'Z'!
 
+## Unicode
+![unicode](https://i.imgur.com/GEtVItW.png)
+
+- Other non roman languages
+	- greek, arabic, chinese, hebrew, japanese, thai etc.
+	- atrology symbols
+	- emoji etc
+- Unicode
+	- developed by the Unicode Consortium
+	- coordinated with ISO/IEC 10646
+	- a 21-bit code with 144,697 characters from 159 scripts
+	- unicode maps from character numbers (code points) into glyphs (graphical representations)
+	- Some(many) are reserved
+
+
+# Homework
+- How are character strings (e.g. “hello world”) stored in a computer?
+- Is this different between different programming languages (for example; C and Java)?
