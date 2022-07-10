@@ -121,13 +121,15 @@
 
       {{end}}
 
+      // draw graph in modal
       drawGraph(
-        {{strings.TrimRight "/" .Site.BaseURL}},
-        500,
-        {{$.Site.Data.graphConfig.paths}},
-        {{$.Site.Data.graphConfig.globalGraph}},
-        true
-      );
+          {{strings.TrimRight "/" .Site.BaseURL}},
+          true,
+          {{$.Site.Data.graphConfig.paths}},
+          {{$.Site.Data.graphConfig.globalGraph}},
+          true
+        );
+
 
       {{if $.Site.Data.config.enableLinkPreview}}
       initPopover(
