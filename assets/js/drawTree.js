@@ -80,11 +80,34 @@ tree.forEach((el) => {
   parentEl.children = [...(parentEl.children || []), el];
 });
 
-// display tree structure
-// from https://www.cssscript.com/folder-tree-json/
-
-// keep track of the original node objects
 const structure = root.children;
+
+// a temporary function to traverse the tree and allowing to display something
+function* traverse(o, path = []) {
+  for (var i in o) {
+    const itemPath = path.concat(i);
+    yield [i, o[i], itemPath, o];
+    if (o[i] !== null && typeof o[i] == "object") {
+      //going one step down in the object tree!!
+      yield* traverse(o[i], itemPath);
+    }
+  }
+}
+
+// console.log(structure)
+for (var [key, value, path] of traverse(structure)) {
+  // console.log(key);
+  // console.log(value);
+  // console.log(path);
+  // console.log("---");
+  let doc = document.getElementById("tree").innerHTML
+  if (value?.type == "folder") {
+  document.getElementById("tree").innerHTML = doc +  '<h3>'+value.name + '</h3>'
+  }
+  if (value?.type == "page") {
+  document.getElementById("tree").innerHTML = doc +  '&emsp;<a href="' + value.href + '">'+ value.name+'</a><br/>'
+  }
+}
 
 return structure
 

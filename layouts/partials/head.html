@@ -156,61 +156,6 @@
         throwOnError : false
       });
 
-      const siteBaseURL = new URL(BASE_URL);
-      const pathBase = siteBaseURL.pathname;
-
-      // a temporary function to traverse the tree and allowing to display something
-      function* traverse(o, path = []) {
-        for (var i in o) {
-          const itemPath = path.concat(i);
-          yield [i, o[i], itemPath, o];
-          if (o[i] !== null && typeof o[i] == "object") {
-            //going one step down in the object tree!!
-            yield* traverse(o[i], itemPath);
-          }
-        }
-      }
-
-      {{if $.Site.Data.config.enableColumnLayout}}
-        drawTree(pathBase).then(
-          function(structure) {
-              // console.log(structure)
-              for (var [key, value, path] of traverse(structure)) {
-                // console.log(key);
-                // console.log(value);
-                // console.log(path);
-                // console.log("---");
-                let doc = document.getElementById("tree").innerHTML
-                if (value?.type == "folder") {
-                document.getElementById("tree").innerHTML = doc +  '<h3>'+value.name + '</h3>'
-                }
-                if (value?.type == "page") {
-                document.getElementById("tree").innerHTML = doc +  '&emsp;<a href="' + value.href + '">'+ value.name+'</a><br/>'
-                }
-              }
-            }
-          );
-      {{end}}
-
-      // Get the modal
-      var modal = document.getElementById("myModal");
-
-      // Get the button that opens the modal
-      var btn = document.getElementById("myBtn");
-
-      // Get the <span> element that closes the modal
-      var span = document.getElementsByClassName("close")[0];
-
-      // When the user clicks the button, open the modal
-      btn.onclick = function() {
-        modal.style.display = "block";
-      }
-
-      // When the user clicks on <span> (x), close the modal
-      span.onclick = function() {
-        modal.style.display = "none";
-      }
-
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
         if (event.target == modal) {
@@ -218,8 +163,33 @@
         }
       }
 
-
       {{end}}
+
+      {{if $.Site.Data.config.enableColumnLayout}}
+        const siteBaseURL = new URL(BASE_URL);
+        const pathBase = siteBaseURL.pathname;
+        drawTree(pathBase)
+
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+      {{end}}
+
     };
   </script>
   {{if $.Site.Data.config.enableSPA}}
