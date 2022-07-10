@@ -15,7 +15,7 @@ are you oblisged to agree with the majority ina democracy or the opposite.
 
 read self reliance by ralph waldo emerson. meant to teach the importatnce of being an "individual" - "there comes a time in every mans education, when he arrives at the conviction that envy is ignorance, that imitation is suicide that he must take himself for better or for worse as his portion" 
 
-as a human we need to find out who we are. none of us are born with this knowledge so we conform with what others are doing. but imitation is suicide of you individuality. 
+as a human we need to find out who we are. none of us are born with this knowledge so we conform with what others are doing. but imitation is suicide of your individuality. 
 
 best thing to do is figure it out for yourself. objective truth is hard to define
 
