@@ -42,7 +42,7 @@ tags:
 - (for convenience) bit are grouped into larger units.
 	- a nibble is 4 bits
 	- a byte is 8 bits
-- For convenience bytes are given addresses, not nibble or bits. (they are too small to work with most of the time)
+- For convenience bytes are given addresses, not nibbles or bits. (they are too small to work with most of the time)
 
 # A Word of memory
 - The word is the number of bits the cpu uses internally, varies between manufacturers and CPUs.
