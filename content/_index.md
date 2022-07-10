@@ -1,5 +1,5 @@
 ---
-title: "Jet Hughes"
+title: "Jet's Notes"
 ---
 
 Hello there, I'm Jet! I am a undergraduate student at the University of Otago and this is my personal collection of notes, slash my portfolio.
