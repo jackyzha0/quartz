@@ -121,7 +121,14 @@
 
       {{end}}
 
-      // draw graph in modal
+      // draw graph in modal // not working 
+
+      // const containerModal = document.getElementById("graph-container-modal")
+      // // retry if the graph is not ready
+      // if (!containerModal) return requestAnimationFrame(render)
+      // // clear the graph in case there is anything within it
+      // containerModal.textContent = ""
+
       drawGraph(
           {{strings.TrimRight "/" .Site.BaseURL}},
           true,
