@@ -16,8 +16,4 @@ tags:
 
 - a vector subspace is a subset of a vector space whose elements (which are vectors) are additively and multipicatively closed and contain the zero vector
 
-complex numbers: 
-
-$The complex number z has the from a+b i where a,b \element$
-
 
