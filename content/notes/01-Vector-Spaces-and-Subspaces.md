@@ -8,4 +8,6 @@ tags:
 
 - ![pdf](https://www.maths.otago.ac.nz/webdata/resources/math202/2022_S2_Outline_Notes/Ch1.pdf?m=1657334841)
 
-- a vector space is a set of elements 
+- a vector space is a set whose elements conformm to the eight axioms of scaling and additiveness
+- e.g.,
+	- 
