@@ -63,6 +63,12 @@
   {{ if $.Site.Data.config.enableColumnLayout }}
   {{ $drawTree := resources.Get "js/drawTree.js" | resources.Fingerprint "md5" | resources.Minify }}
   <script src="{{$drawTree.Permalink}}"></script>
+
+  {{ $jquery := resources.Get "js/jquery.js" | resources.Fingerprint "md5" | resources.Minify }}
+  <script src="{{$jquery.Permalink}}"></script>
+
+  {{ $jstree := resources.Get "js/jstree.js" | resources.Fingerprint "md5" | resources.Minify }}
+  <script src="{{$jstree.Permalink}}"></script>
   {{ end }}
 
   <!--  Preload page vars  -->
@@ -121,7 +127,7 @@
 
       {{end}}
 
-      // draw graph in modal // not working 
+      // draw graph in modal // not working
 
       // const containerModal = document.getElementById("graph-container-modal")
       // // retry if the graph is not ready
@@ -178,6 +184,8 @@
         const siteBaseURL = new URL(BASE_URL);
         const pathBase = siteBaseURL.pathname;
         drawTree(pathBase)
+
+        
 
         // Get the modal
         var modal = document.getElementById("myModal");
