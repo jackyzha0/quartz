@@ -8,6 +8,8 @@ tags:
 - cosc203
 ---
 
+[page](https://cosc203.cspages.otago.ac.nz)
+
 # Assignments
 - [front end project](notes/front-end-project)
 - [back end project](notes/back-end-project)

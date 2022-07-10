@@ -8,6 +8,8 @@ tags:
 - cosc204
 ---
 
+[page](https://cosc204.cspages.otago.ac.nz)
+
 # Assignments
 
 # Notes
