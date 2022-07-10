@@ -47,4 +47,14 @@ tags:
 # A Word of memory
 - The word is the number of bits the cpu uses internally, varies between manufacturers and CPUs.
 - Now its usually 64 bits
--  
+- [amount of bits for different devices](https://i.imgur.com/nHrz1zX.png)
+
+# Characters
+- A written symbol.
+- In english are represented as a single byte, (other languages use 2 bytes or more)
+- e.g., [different types of characters](https://i.imgur.com/DBLVhw8.png)
+
+- characters are joined together to make human readable numbers and words
+
+- `char ch` 
+- ch is a variable name
