@@ -345,8 +345,24 @@ hr {
       }
     }
   }
+  .graph-grid{
+    display : grid;
+    grid-row:1/1;
+    grid-column:1/1;
+    grid-template-columns: 1fr;
+    & > svg {
+      margin-bottom: -5px;
+
+    }
+  }
+  .graph-grid>*{
+    grid-row:1/1;
+    grid-column:1/1;
+  }
 
   & #graph-container {
+    grid-row:1/1;
+    grid-column:1/1;
     border: var(--outlinegray) 1px solid;
     border-radius: 5px;
     box-sizing: border-box;
@@ -608,3 +624,4 @@ header {
     padding: 0 1em;
   }
 }
+

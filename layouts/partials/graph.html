@@ -4,7 +4,16 @@
   crossorigin="anonymous"
 ></script>
 <h3>Interactive Graph</h3>
-<div id="graph-container"></div>
+<div class="graph-grid">
+<div>
+<button id="global-graph-toggle-button">
+<span id="global-graph-svg" class="icon"></span>
+</button>
+</div>
+<div id="graph-container">
+</div>
+</div>
+
 <style>
   :root {
     --g-node: var(--secondary);
