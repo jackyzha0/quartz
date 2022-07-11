@@ -13,3 +13,4 @@ tags:
 - [078-marx-and-kierkegaard-religion](notes/078-marx-and-kierkegaard-religion.md)
 - [079-kierkegaard-anxiety](notes/079-kierkegaard-anxiety.md)
 - [083-henry-david-thoreau](notes/083-henry-david-thoreau.md)
+- [090-nietzsche-god-is-dead](notes/090-nietzsche-god-is-dead.md)

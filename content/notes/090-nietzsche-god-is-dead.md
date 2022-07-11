@@ -1,5 +1,5 @@
 ---
-title: "090-nietzsche"
+title: "090-nietzsche-god-is-dead"
 aliases: 
 tags: 
 - podcast/philosophizethis
@@ -39,4 +39,14 @@ Nietzsche also says these theories breed complacency, e.g., god forgiving you fo
 Nietzsche says Envy (a sin) is a powerful force driving us to become the best version of us. It can be used as motivation. It's highly personalised, you dont envy something you dont want (?). What we are envious about can teach us about who we are.
 
 Nietzsche says christianity, creates weakness and passivity as a virtue. 
+
+He reccomends: dont drink alcohol: you feel good for a little while, but it's bad for you, is calorie dense, opportunity cost, monetary cost. even so: is wierd to not drink. The other pro is that it instantly (temporarily) solves all your problems. 
+
+> "There have been two great narcotics in history: Christianity, and alcohol"
+
+It is a trap to use alcohol in the same way as christianity. 
+
+AA replaces alcohol with god
+
+We have created so many excuses to drink
 
