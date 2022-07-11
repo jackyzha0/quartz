@@ -26,7 +26,7 @@ This is the basic gitlab infrastructure which uses google cloud
 ![300](https://i.imgur.com/HTWz2mQ.png) ![300](https://i.imgur.com/V87CeQY.png)
 
 # 6 CI Website hosting
-Due to the need to share artifacts produces by CI, most repo hosting services now also host websites. These are static websites i.e., all content if fixed. These websites are produced using Static Site Generators (SSGs). The code is hosted on the repo, which a CI pipeline converts into HTML files and publishes automatically.
+Due to the need to share artifacts produces by CI, most repo hosting services now also host websites. These are static websites i.e., all content is fixed. These websites are produced using Static Site Generators (SSGs). The code is hosted on the repo, which a CI pipeline converts into HTML files and publishes automatically.
 
 # 7 How to create
 Most CI frameworks use YAML for configuration. YAML  has a structured text based format similar to python and json
