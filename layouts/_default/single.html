@@ -2,14 +2,14 @@
 <html lang="{{ .Lang }}">
 {{ partial "head.html" . }}
 
-<body>
+<body class="singlePage">
   {{partial "search.html" .}}
 
   {{if $.Site.Data.config.enableColumnLayout}}
     <r-c join>
-    <main data-lg1-2 data-lg2 data-m2 data-sm1 data-xs1 class="singlePage">
+    <main data-lg1-2 data-lg2 data-m2 data-sm1 data-xs1>
   {{else}}
-    <main class="singlePage">
+    <main >
   {{end}}
 
     <!-- Begin actual content -->
@@ -49,13 +49,22 @@
   </main>
 
   {{if $.Site.Data.config.enableColumnLayout}}
-      <aside data-sm1-2 data-md1-2 data-lg1-4 data-lg1 data-m1 data-sm2 data-xs3 class="singlePage">
+      <aside data-sm1-2 data-md1-2 data-lg1-4 data-lg1 data-m1 data-sm2 data-xs3>
         <div class="sticky page-end vertical">
-          <h3> Menu </h3>
-          <div id="jstree"></div>
+          <h3> Menu hugo</h3>
+          <div class="menu-toc">
+                <ol class="tree">
+                {{partial "menu-hugo.html" .}}
+                </ol>
+            </div>
+
+            <h3> Menu JStree</h3>
+
+            <div id="jstree">
+            </div>
         </div>
       </aside>
-      <aside data-sm1-2 data-md1-2 data-lg1-4 data-lg3 data-m3 data-sm3 data-xs2 class="singlePage">
+      <aside data-sm1-2 data-md1-2 data-lg1-4 data-lg3 data-m3 data-sm3 data-xs2>
         <div class="sticky">
           <div class="page-end vertical">
             <button id="myBtn">Open Modal</button>

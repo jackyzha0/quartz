@@ -4,6 +4,27 @@ div.sticky {
   top: 0;
   // background-color: yellow;
 }
+.tree,
+.tree ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tree ol {
+    padding-left: 1em;
+}
+.tree summary {
+    color: #6b879a;
+}
+.tree a{
+    font-weight:unset;
+    color: black;
+}
+
+a.active{
+  color: #f28482;
+}
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
