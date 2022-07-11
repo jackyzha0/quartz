@@ -28,5 +28,15 @@ e.g., hinduism/buddism: a wave is a temporary manifestation of the ocean: its no
 this one thing is the true world
 
 
-There are many more and they are all very similar. Niezsche would say these true world theoru
+There are many more and they are all very similar. Niezsche would say these true world theories are human inventions, a common tactic used to satisfy our psycological needs. They are a solution to a universal problem. Similar to the problem of moving heavy things which everyone solved using the wheel.
+
+The reason they have existed so long, is that we havent always been able to refute the existence of another world. 
+
+Once everyone is aware of this Niezsche says "God is dead". He  not talking about some deity. He saying that humanity's pursuit of a true theory is dead. He's saying its becoming more difficult for humans to believe in one of these theories. Our solution to the problem dissapears. 
+
+Nietzsche also says these theories breed complacency, e.g., god forgiving you for your sins. Every one become a "member of a herd". The code they share removes their individuality. 
+
+Nietzsche says Envy (a sin) is a powerful force driving us to become the best version of us. It can be used as motivation. It's highly personalised, you dont envy something you dont want (?). What we are envious about can teach us about who we are.
+
+Nietzsche says christianity, creates weakness and passivity as a virtue. 
 
