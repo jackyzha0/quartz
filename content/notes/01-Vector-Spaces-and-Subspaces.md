@@ -4,6 +4,9 @@ aliases:
 tags: 
 - lecture
 - math202
+sr-due: 2022-07-14
+sr-interval: 3
+sr-ease: 250
 ---
 
 - [pdf](https://www.maths.otago.ac.nz/webdata/resources/math202/2022_S2_Outline_Notes/Ch1.pdf?m=1657334841)
