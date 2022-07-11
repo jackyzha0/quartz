@@ -35,6 +35,7 @@ tags:
 
 
 # Lectures
+[01-bits-and-bytes](notes/01-bits-and-bytes.md)
 
 # Archive
 
