@@ -37,3 +37,5 @@ the worst thing is a fear of failure. we should take calculated risks. embrace t
 the only way to experience the most intense highes is to experience the most intense pain. its only people with courage who will summit the mountain. 
 
 its easy to manufacture the most comfortable life. 
+
+thought experiment: what if you had to repeat your life over and over again, without changing anything, how pecious does each decision become then?
