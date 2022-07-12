@@ -17,7 +17,7 @@
 
     {{ range (where .Section.Pages "Params.bookhidden" "ne" true) }}
       {{ if .IsSection }}
-        <details open>
+        <details>
         <summary>
           {{ template "book-page-link" (dict "Page" . "CurrentPage" $.CurrentPage) }}
         </summary>
@@ -35,16 +35,7 @@
 {{ define "book-page-link" }}{{/* (dict "Page" .Page "CurrentPage" .CurrentPage) */}}
   {{ $current := eq .CurrentPage .Page }}
   {{ $ancestor := .Page.IsAncestor .CurrentPage }}
-
-  {{ if .Page.Params.bookCollapseSection }}
-    <input type="checkbox" id="section-{{ md5 .Page }}" class="toggle" {{ if or $current $ancestor }}checked{{ end }} />
-    <label for="section-{{ md5 .Page }}" class="flex justify-between">
-      <a {{ if .Page.Content }}href="{{ .Page.Permalink }}"{{ else }}role="button"{{ end }} class="{{ if $current }}active{{ end }}">
-        {{- partial "docs/title" .Page -}}
-      </a>
-    </label>
-
-  {{ else if .Page.Content }}
+  {{if .Page.Content }}
 
     <a href="{{ .Page.Permalink }}" class="{{ if $current }}active{{ end }}">
       {{- partial "title" .Page -}}
