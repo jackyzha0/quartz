@@ -9,4 +9,4 @@ tags:
 **column space:** the set of all possible outputs Av is the column space of A
 **full rank:** When the rank equals the number of columns
 **null space/kernel:** the space of all vectors that become null following a transformation
- 
+ **span:** 
