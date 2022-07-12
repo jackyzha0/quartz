@@ -165,7 +165,7 @@ td, th {
   }
 }
 
-article {
+article, .tree{
   & > .meta {
     margin: -1.5em 0 1em 0;
     opacity: 0.7;
@@ -312,6 +312,13 @@ hr {
   // @media all and (max-width: 1200px) {
   //   padding: 25px 5vw;
   // }
+}
+.singlePage-oldLayout {
+  padding: 4em 30vw;
+
+  @media all and (max-width: 1200px) {
+    padding: 25px 5vw;
+  }
 }
 
 .page-end {

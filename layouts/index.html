@@ -7,10 +7,10 @@
 
   {{if $.Site.Data.config.enableColumnLayout}}
   <r-c join>
-    <main data-lg1-2 data-lg2 data-m2 data-sm1 data-xs1 >
-      {{else}}
-        <main>
-          {{end}}
+    <main data-lg1-2 data-lg2 data-m2 data-sm1 data-xs1>
+  {{else}}
+    <main class="singlePage-oldLayout">
+  {{end}}
 
           <!-- Begin actual content -->
           <header>
@@ -42,37 +42,37 @@
         </main>
 
         {{if $.Site.Data.config.enableColumnLayout}}
-          <aside data-sm1-2 data-md1-2 data-lg1-4 data-lg1 data-m1 data-sm2 data-xs3>
-            <div class="sticky page-end vertical">
-              <h3> Menu hugo</h3>
-              <div class="menu-toc">
-                    <ol class="tree">
-                    {{partial "menu-hugo.html" .}}
-                    </ol>
-                </div>
+        <aside data-sm1-2 data-md1-2 data-lg1-4 data-lg1 data-m1 data-sm2 data-xs3>
+          <div class="sticky page-end vertical">
+            <h3> Menu</h3>
+            <div class="menu-toc">
+              <ol class="tree">
+                {{partial "menu-hugo.html" .}}
+              </ol>
             </div>
-          </aside>
-          <aside data-sm1-2 data-md1-2 data-lg1-4 data-lg3 data-m3 data-sm3 data-xs2>
-            <div class="sticky">
-              <div class="page-end vertical">
-                <button id="myBtn">Open Modal</button>
-                <div id="myModal" class="modal">
-                  <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <div id="graph-container-modal"></div>
-                  </div>
+          </div>
+        </aside>
+        <aside data-sm1-2 data-md1-2 data-lg1-4 data-lg3 data-m3 data-sm3 data-xs2>
+          <div class="sticky">
+            <div class="page-end vertical">
+              <button id="myBtn">Open Modal</button>
+              <div id="myModal" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <div id="graph-container-modal"></div>
                 </div>
               </div>
-              {{partial "footer.html" .}}
             </div>
-          </aside>
-          </r-c>
-          <footer data-r-c data-join>
-            <c1-1>
-              {{partial "contact.html" .}}
-            </c1-1>
-          </footer>
-        {{end}}
+            {{partial "footer.html" .}}
+          </div>
+        </aside>
+  </r-c>
+  <footer data-r-c data-join>
+    <c1-1>
+      {{partial "contact.html" .}}
+    </c1-1>
+  </footer>
+  {{end}}
 
 </body>
 
