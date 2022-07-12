@@ -18,7 +18,7 @@ tags:
 | Form: category filtering                                         | 3     | x  |
 | Form: Handle special characters (diacritics)                     | 1     | x  |
 | Correctness: pass the W3C Validator                              | 1     | x  |
-| Correctness: correct use of form and semantic elements           | 1     |   |
+| Correctness: correct use of form and semantic elements           | 1     | x  |
 | Style: Responsive design                                         | 1     |   |
 | Style: looks nice                                                | 1     | x  |
-| Extra feature(s) bonus marks                                     |       |   |
+| Extra feature(s) bonus marks                                     |       |    |
