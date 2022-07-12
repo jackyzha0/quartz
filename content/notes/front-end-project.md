@@ -16,7 +16,7 @@ tags:
 | Display: credit for each photo                                   | 1     | x  |
 | Form: search filtering                                           | 3     | x  |
 | Form: category filtering                                         | 3     | x  |
-| Form: Handle special characters (diacritics)                     | 1     |   |
+| Form: Handle special characters (diacritics)                     | 1     | x  |
 | Correctness: pass the W3C Validator                              | 1     | x  |
 | Correctness: correct use of form and semantic elements           | 1     |   |
 | Style: Responsive design                                         | 1     |   |
