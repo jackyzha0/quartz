@@ -98,6 +98,7 @@ a.active{
 #global-graph-svg{
   background: black;
   mask: url(graph.svg);
+  -webkit-mask-image: url(graph.svg);
   cursor:pointer;
 }
 #global-graph-svg:hover{
