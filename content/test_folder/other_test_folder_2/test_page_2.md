@@ -1,5 +1,5 @@
 ---
-title: test_page_2
+title: Test Page 1
 ---
 
 test

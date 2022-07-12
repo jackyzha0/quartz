@@ -1,4 +1,3 @@
 ---
-title: Folder Title 2
+title: Nice Folder Title 2
 ---
-test

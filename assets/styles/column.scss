@@ -16,14 +16,30 @@ div.sticky {
 }
 .tree summary {
     color: #6b879a;
+    position: relative;
+    left: -1em;
+    margin-top: 0.2em;
+
+}
+.tree details {
+    margin-bottom: 0.3em;
 }
 .tree a{
-    font-weight:unset;
-    color: black;
+    // font-weight:unset;
+    // color: black;
+    font-weight: 600;
+    // font-size: 0.9rem;
 }
 
 a.active{
-  color: #f28482;
+  // color: #f28482;
+  // margin: 0.5em 0;
+  padding: 0.2em 0.5em ;
+  // padding: 0.25em 1em;
+  position: relative;
+  left: -0.5em;
+  border: var(--outlinegray) 1px solid;
+  border-radius: 5px
 }
 /* The Modal (background) */
 .modal {

@@ -59,18 +59,6 @@
   <script src="{{$clipboard.Permalink}}"></script>
   {{ end }}
 
-  <!-- columns layout scripts -->
-  {{ if $.Site.Data.config.enableColumnLayout }}
-  {{ $drawTree := resources.Get "js/drawTree.js" | resources.Fingerprint "md5" | resources.Minify }}
-  <script src="{{$drawTree.Permalink}}"></script>
-
-  {{ $jquery := resources.Get "js/jquery.js" | resources.Fingerprint "md5" | resources.Minify }}
-  <script src="{{$jquery.Permalink}}"></script>
-
-  {{ $jstree := resources.Get "js/jstree.js" | resources.Fingerprint "md5" | resources.Minify }}
-  <script src="{{$jstree.Permalink}}"></script>
-  {{ end }}
-
   <!--  Preload page vars  -->
   {{$linkIndex := resources.Get "indices/linkIndex.json" | resources.Fingerprint
   "md5" | resources.Minify | }} {{$contentIndex := resources.Get
@@ -127,6 +115,9 @@
 
       {{end}}
 
+      {{if $.Site.Data.config.enableColumnLayout}}
+
+
       // draw graph in modal // not working
 
       // const containerModal = document.getElementById("graph-container-modal")
@@ -143,6 +134,7 @@
           true
         );
 
+      {{end}}
 
       {{if $.Site.Data.config.enableLinkPreview}}
       initPopover(
@@ -181,11 +173,6 @@
       {{end}}
 
       {{if $.Site.Data.config.enableColumnLayout}}
-        const siteBaseURL = new URL(BASE_URL);
-        const pathBase = siteBaseURL.pathname;
-        drawTree(pathBase)
-
-        
 
         // Get the modal
         var modal = document.getElementById("myModal");
