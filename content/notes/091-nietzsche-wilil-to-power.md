@@ -26,4 +26,14 @@ There are things we must overcome find get this "power". Humans have many differ
 
 
 
-since we exist in this world as individual agents exerting our will power, everything else is the same. all the different wills to power often condtradict each other. we dont have control over the universe, about 
+since we exist in this world as individual agents exerting our will power, everything else is the same. all the different wills to power often condtradict each other. we dont have control over the universe, about who hits my car, etc. we have no ultimate control over the world. this is usually solves by focusing on controlling the internal world: buddism, stoicism, etc. "pain is certain, suffering is optional". however this diminishes value of good things. 
+
+Nietzsche says that earthly attachment is necessary and, the solution is to try as hard as we can to control as much as possible.
+
+the reason most people dont do anything extraordianry is becaue of fear or laziness. 
+
+the worst thing is a fear of failure. we should take calculated risks. embrace the danger, embrace pain. most people run from pain and try to minimiise is. pain serves a purpose to us. its the only way we grow as people. 
+
+the only way to experience the most intense highes is to experience the most intense pain. its only people with courage who will summit the mountain. 
+
+its easy to manufacture the most comfortable life. 
