@@ -114,18 +114,13 @@
         );
 
       {{end}}
-
+      
       {{if $.Site.Data.config.enableColumnLayout}}
-
-
-      // draw graph in modal // not working
-
-      // const containerModal = document.getElementById("graph-container-modal")
-      // // retry if the graph is not ready
-      // if (!containerModal) return requestAnimationFrame(render)
-      // // clear the graph in case there is anything within it
-      // containerModal.textContent = ""
-
+      const containerModal = document.getElementById("graph-container-modal")
+      // retry if the graph is not ready
+      if (!containerModal) return requestAnimationFrame(render)
+      // clear the graph in case there is anything within it
+      containerModal.textContent = ""
       drawGraph(
           {{strings.TrimRight "/" .Site.BaseURL}},
           true,
@@ -166,7 +161,7 @@
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
         if (event.target == modal) {
-          modal.style.display = "none";
+          modal.style.visibility = "hidden";
         }
       }
 
@@ -178,19 +173,19 @@
         var modal = document.getElementById("myModal");
 
         // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
+        var btn = document.getElementById("global-graph-toggle-button");
 
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
         // When the user clicks the button, open the modal
         btn.onclick = function() {
-          modal.style.display = "block";
+          modal.style.visibility = "visible";
         }
 
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
-          modal.style.display = "none";
+          modal.style.visibility = "hidden";
         }
       {{end}}
 

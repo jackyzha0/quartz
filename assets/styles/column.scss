@@ -43,7 +43,7 @@ a.active{
 }
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
+  visibility: hidden; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding-top: 100px; /* Location of the box */
@@ -79,3 +79,28 @@ a.active{
   text-decoration: none;
   cursor: pointer;
 }
+#global-graph-toggle-button
+{
+  float:right;
+   background-color: Transparent;
+   background-repeat:no-repeat;
+  border: none;  
+  padding:0.5em;
+}
+
+
+.icon {
+  display: inline-block;
+  width: 18px;
+  min-width:18px;
+  height: 18px;
+}
+#global-graph-svg{
+  background: black;
+  mask: url(graph.svg);
+  cursor:pointer;
+}
+#global-graph-svg:hover{
+  background: var(--primary);
+}
+
