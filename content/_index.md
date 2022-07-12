@@ -7,12 +7,11 @@ title: Home
 Take speedy notes in a browser extension, a mobile app, or a web app and [[posts/sync-fleeting-notes-with-obsidian|sync the notes with Obsidian]]. Click the links to see how you can [[posts/simplest-way-to-use-zettelkasten-for-note-management|get started]].
 
 
-<div style="display: flex; justify-content: center;">
+<div style="display: flex; justify-content: center; margin-bottom: 16px">
     <a href="/download" class="button">Try it free</a>
 </div>
 
-
-<video src="/fleeting-notes-demo.mp4#t=1" type="video/mp4" width="100%" height="100%" display="flex" controls=""></video>
+{{< youtube sFQaDeFNecc >}}
 ## Features:
 ### Quick capture. Anywhere.
 Capture notes anywhere with an array of supported platforms and built-in sync between all platforms.
