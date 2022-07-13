@@ -11,6 +11,13 @@ tags:
 # Assignments
 
 # Notes
+- Risks
+- Ethics and Privacy
+- Cyrptography
+- Physical security
+- Electronic Forensics
+- Authentication
+- Pen-Testing
 
 # Lectures
 

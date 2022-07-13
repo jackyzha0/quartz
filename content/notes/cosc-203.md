@@ -18,24 +18,21 @@ tags:
 - [ethics essay](notes/ethics-essay)
 
 # Notes
-## Web
-- [html](notes/html)
-- [css](notes/css)
-- [javascript](notes/javascript)
-- [react](notes/react)
-- [design](notes/design)
-
-## Databases
-- [databases](notes/databases)
-
-## Networks
-- [[]]
-
-## Other
-
+- Web
+	- [html](notes/html)
+	- [css](notes/css)
+	- [javascript](notes/javascript)
+	- [react](notes/react)
+	- [design](notes/design)
+ - Databases
+	- [databases](notes/databases)
+ - Networks
+	- [[]]
+ - Other
+	
 
 # Lectures
-
+- [01-basic-html](notes/01-basic-html.md)
 
 # Archive
 
