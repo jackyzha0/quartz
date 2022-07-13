@@ -1,11 +1,11 @@
 ---
-title: "cosc-210"
+title: "comp-210"
 aliases: Information Assurance
 year: 2022
 semester: 2
 tags: 
 - course
-- cosc210
+- comp210
 ---
 
 # Assignments

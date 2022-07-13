@@ -14,5 +14,5 @@ tags:
 ## 2022 s2
 - [cosc-203](notes/cosc-203.md)
 - [cosc-204](notes/cosc-204.md)
-- [cosc-210](notes/cosc-210.md)
+- [comp-210](notes/comp-210.md)
 - [math-202](notes/math-202.md)
