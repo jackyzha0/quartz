@@ -8,6 +8,16 @@ tags:
 
 [spec](https://cosc203.cspages.otago.ac.nz/assignments/a1/)
 
+
+Links to sites:
+- https://jethughes.github.io/nzbirds/
+- https://cosc-203.cspages.otago.ac.nz/assignment-01/
+
+Links to repos:
+- https://github.com/JetHughes/nzbirds
+- https://altitude.otago.ac.nz/cosc-203/assignment-01
+
+
 | Features                                                         | marks | x  |
 |------------------------------------------------------------------|-------| -- |
 | Display: all photos by default                                   | 2     | x  |
