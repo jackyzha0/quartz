@@ -46,7 +46,18 @@ function initPopover(baseURL, useContextualBacklinks, renderLatex) {
               throwOnError: false
             })
           }
+
           li.addEventListener("mouseover", () => {
+            // fix tooltip positioning
+            window.FloatingUIDOM.computePosition(li, el, {
+              middleware: [window.FloatingUIDOM.offset(15), window.FloatingUIDOM.inline(), window.FloatingUIDOM.shift()],
+            }).then(({ x, y }) => {
+              Object.assign(el.style, {
+                left: `${x}px`,
+                top: `${y}px`,
+              })
+            })
+
             el.classList.add("visible")
           })
           li.addEventListener("mouseout", () => {
