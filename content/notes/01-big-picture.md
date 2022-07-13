@@ -59,6 +59,32 @@ can all be sources of attacks
 	- e.g., back: inside knowledge of faults within the business, that can be exploited
 
 # CIA Triad
+how security has been appraoched by industry for ages
+
 - Confidentiality
+	- having information protected from exposure
+	- blocking unauthorised access
 - Availability
-- Integ
+	- authentic state of information
+	- preventing corruption etc.
+	- e.g., checksum, hash check etc
+- Integrity
+	- information being available to users without obstables 
+	- DDoS
+
+Other models have been developed
+- [slide](https://i.imgur.com/GJfb8Ph.png)
+
+# McCumber Cube
+- a way to think about how to protect your information
+- [slide](https://i.imgur.com/5Ls2yUp.png)
+
+- a map
+- can be used to find "holes"
+
+# Access Security tradeoff
+- perfect info security is impossible
+- unrestricted access is dangerous
+- completely secure would not allow access to anyone
+- balance is key
+

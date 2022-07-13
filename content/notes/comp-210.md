@@ -9,6 +9,9 @@ tags:
 ---
 
 # Assignments
+No final exam
+- [assignment 1](notes/01-security-audit)
+- [assignment 2](notes/02-repaired-system)
 
 # Notes
 - Risks
