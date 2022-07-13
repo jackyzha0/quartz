@@ -1,11 +1,11 @@
 ---
-title: "info-210"
+title: "cosc-210"
 aliases: Information Assurance
 year: 2022
 semester: 2
 tags: 
 - course
-- info210
+- cosc210
 ---
 
 # Assignments
@@ -20,5 +20,6 @@ tags:
 - Pen-Testing
 
 # Lectures
+
 
 # Archive
