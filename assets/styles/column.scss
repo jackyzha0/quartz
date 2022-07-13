@@ -71,6 +71,7 @@ a.active{
   float: right;
   font-size: 28px;
   font-weight: bold;
+  margin-right: 0.3em;
 }
 
 .close:hover,
@@ -84,7 +85,7 @@ a.active{
   float:right;
    background-color: Transparent;
    background-repeat:no-repeat;
-  border: none;  
+  border: none;
   padding:0.5em;
 }
 
@@ -104,4 +105,3 @@ a.active{
 #global-graph-svg:hover{
   background: var(--primary);
 }
-
