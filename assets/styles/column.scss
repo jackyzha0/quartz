@@ -4,32 +4,141 @@ div.sticky {
   top: 0;
   // background-color: yellow;
 }
+
+// old tree
+// .tree,
+// .tree ol {
+//     list-style: none;
+//     margin: 0;
+//     padding: 0;
+// }
+//
+// .tree ol {
+//     padding-left: 1em;
+// }
+// .tree summary {
+//     // color: #6b879a;
+//     position: relative;
+//     left: -1em;
+//     margin-top: 0.2em;
+//     cursor: pointer;
+//
+// }
+// .tree details {
+//     margin-bottom: 0.3em;
+// }
+// .tree a{
+//     // font-weight:unset;
+//     // color: black;
+//     font-weight: 600;
+//     // font-size: 0.9rem;
+// }
+
+// new tree
+.tree {
+  user-select: none;
+  -moz-user-select: none;
+}
+.tree ::-webkit-details-marker {
+  display: none;
+}
+.tree>details>summary {
+  display: none;
+}
+.tree details>summary::-webkit-details-marker {
+  display: none;
+}
 .tree,
 .tree ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-left: 1em;
 }
-
-.tree ol {
-    padding-left: 1em;
+.tree a,
+.tree summary {
+  position: relative;
+  left: -1em;
+  margin-top: 0.2em;
+  cursor: pointer;
+}
+.tree a {
+  font-weight: 600;
 }
 .tree summary {
-    color: #6b879a;
-    position: relative;
-    left: -1em;
-    margin-top: 0.2em;
+  list-style-type: none;
+  outline: none;
+}
+.tree details>:not(details),
+.tree details {
+  position: relative;
+}
+.tree details :not(summary) {
+  // margin-left: 20px;
+}
+.tree.nodots details :not(summary) {
+  // margin-left: 12px;
+}
+.tree details::before,
+.tree details>:not(details)::before {
+  content: '';
+  width: 10px;
+  display: block;
+  position: absolute;
+}
+.tree details::before,
+.tree details>:not(details)::before {
+  // background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><g><rect x="0" y="0" width="1" height="1"/></g></svg>') left top / 2px 2px;
+}
+.tree.dark details::before,
+.tree.dark details>:not(summary)::before {
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><g><rect x="0" y="0" width="1" height="1" fill="white"/></g></svg>');
+}
+.tree.nodots details::before,
+.tree.nodots details>:not(summary)::before {
+  background-image: none;
+}
+.tree details::before {
+  top: 0;
+  height: 100%;
+  background-repeat: repeat-y;
+  left: 5px;
+  z-index: -1;
+}
+.tree details>:not(details)::before {
+  top: 8px;
+  height: calc(100% - 8px);
+  background-repeat: repeat-x;
+  left: -15px;
+}
+.tree details>summary::before {
+  // background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g><rect x="0" y="0" width="12" height="12" fill="white" stroke="gray" stroke-width="1"/><line x1="3" y1="6" x2="9" y2="6" stroke="black" stroke-width="2"/><line x1="6" y1="3" x2="6" y2="9" stroke="black" stroke-width="2"/></g></svg>') center center / 12px 12px no-repeat;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve">
+  <path id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001  c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213  C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606  C255,161.018,253.42,157.202,250.606,154.389z"/></svg>')center center / 12px 12px no-repeat;
+  left: -22px;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+}
+.tree details[open]>summary::before {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve"><path id="XMLID_225_" d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393  c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393  s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"/></svg>') center center / 12px 12px no-repeat;
+  // background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><title/><g><rect x="0" y="0" width="12" height="12" fill="white" stroke="gray" stroke-width="1"/><line x1="3" y1="6" x2="9" y2="6" stroke="black" stroke-width="2"/></g></svg>');
 
 }
-.tree details {
-    margin-bottom: 0.3em;
-}
-.tree a{
-    // font-weight:unset;
-    // color: black;
-    font-weight: 600;
-    // font-size: 0.9rem;
-}
+
+// .tree details>summary::before {
+//   // background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><g><rect x="0" y="0" width="12" height="12" fill="white" stroke="gray" stroke-width="1"/><line x1="3" y1="6" x2="9" y2="6" stroke="black" stroke-width="2"/><line x1="6" y1="3" x2="6" y2="9" stroke="black" stroke-width="2"/></g></svg>') center center / 12px 12px no-repeat;
+//   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve">
+//   <path id="XMLID_222_" d="M250.606,154.389l-150-149.996c-5.857-5.858-15.355-5.858-21.213,0.001  c-5.857,5.858-5.857,15.355,0.001,21.213l139.393,139.39L79.393,304.394c-5.857,5.858-5.857,15.355,0.001,21.213  C82.322,328.536,86.161,330,90,330s7.678-1.464,10.607-4.394l149.999-150.004c2.814-2.813,4.394-6.628,4.394-10.606  C255,161.018,253.42,157.202,250.606,154.389z"/></svg>')center center / 12px 12px no-repeat;
+//   left: -22px;
+//   top: 2px;
+//   width: 16px;
+//   height: 16px;
+// }
+// .tree details[open]>summary::before {
+//   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve"><path id="XMLID_225_" d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393  c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393  s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"/></svg>') center center / 12px 12px no-repeat;
+//   // background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><title/><g><rect x="0" y="0" width="12" height="12" fill="white" stroke="gray" stroke-width="1"/><line x1="3" y1="6" x2="9" y2="6" stroke="black" stroke-width="2"/></g></svg>');
+// }
 
 a.active{
   // color: #f28482;
@@ -37,7 +146,7 @@ a.active{
   padding: 0.2em 0.5em ;
   // padding: 0.25em 1em;
   position: relative;
-  left: -0.5em;
+  left: -1.5em;
   border: var(--outlinegray) 1px solid;
   border-radius: 5px
 }
