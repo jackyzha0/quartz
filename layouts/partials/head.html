@@ -129,6 +129,17 @@
           true
         );
 
+   // open all parents items of selected page
+    document.querySelectorAll('a.active').forEach(function(child){
+	  while(!child.classList.contains("tree")){
+		if (child.tagName=="DETAILS"){
+			child.open=true
+		}
+      child=child.parentElement;
+   }
+  });
+
+
       {{end}}
 
       {{if $.Site.Data.config.enableLinkPreview}}
