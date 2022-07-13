@@ -1,1 +1,1 @@
-<% tp.user.reviewNotes() %>
+- [ ] [07-heuristic-evaluation-cont)](notes\07-heuristic-evaluation-cont.md)
