@@ -6,7 +6,7 @@
   {{partial "search.html" .}}
 
   {{if $.Site.Data.config.enableColumnLayout}}
-  <div r-c join> <!-- r-c = Responsive Columns with flexbox -->
+  <div r-c join>
     <main data-lg1-2 data-lg2 data-m2 data-sm1 data-xs1>
   {{else}}
     <main class="singlePage-oldLayout">
@@ -66,8 +66,8 @@
           </div>
         </aside>
   </div>
-  <footer r-c data-join> <!-- r-c = Responsive Columns with flexbox -->
-    <div c1-1> <!-- c1-1 = 1 column of width 1/1 = 100% -->
+  <footer r-c data-join>
+    <div c1-1>
       {{partial "contact.html" .}}
     </div>
   </footer>
