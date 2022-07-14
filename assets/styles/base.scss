@@ -498,34 +498,35 @@ header {
   margin-top: 2em;
   padding-left: 0;
 
-  & > li {
-    margin-bottom: 1em;
+}
 
-    & > .section {
-      display: flex;
-      align-items: center; 
-      
-      & h3 > a {
-        font-weight: 700;
-        margin: 0;
-      }
-      
-      & p {
-        margin: 0;
-        padding-right: 1em;
-        flex-basis: 6em; 
-      }
-    }
+.section-li {
+  margin-bottom: 1em;
 
-    & h3 {
-      opacity: 1;
+  & > .section {
+    display: flex;
+    align-items: center; 
+    
+    & h3 > a {
       font-weight: 700;
-      margin: 0em;
+      margin: 0;
     }
+    
+    & p {
+      margin: 0;
+      padding-right: 1em;
+      flex-basis: 6em; 
+    }
+  }
 
-    & .meta {
-      opacity: 0.6;
-    }
+  & h3 {
+    opacity: 1;
+    font-weight: 700;
+    margin: 0em;
+  }
+
+  & .meta {
+    opacity: 0.6;
   }
 }
 
