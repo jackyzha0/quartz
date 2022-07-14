@@ -120,7 +120,9 @@ e.g.,
 - utility - serve a purpose (e.g., census data)
 - possession - ownership or control (importat for privacy)
 
-# Privacy and Actions
+# Privacy and Actors
+- [facebook gdpr](https://techcrunch.com/2018/04/17/facebook-gdpr-changes/)
+
 ## GDPR
 - To protect specific aspects of information that may be related to natural persons (personal information) 
 - Prevent unauthorized collection and storage of personal information 
@@ -129,6 +131,23 @@ e.g.,
 - Provide adequate information security (C.I.A) around personal information 
 - Define clear responsibilities around personal information 
 - GDPR became EU law on 25 May 2018 (General Data Protection Regulation)
+
+- [who can see my email](https://i.imgur.com/34R3hJx.png)
+
+## Actors
+- threat actors
+	- those responsible for the security incident
+- (security) Hacker
+	- uses technical skills and knowledge to uncover bugs or exploits
+- Attacker
+	- may use other (non-technical) means to exploit data and system (the malicious intention is what matters here)
+
+- intelligence agencies
+- law enforcement
+- nation states
+- independents (hackers, criminals, private surveillance, manufacturers etc)
+
+- [motivaitions](https://i.imgur.com/74qgpsc.png)
 
 # Shared responsibility
 
