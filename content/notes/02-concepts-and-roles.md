@@ -3,7 +3,13 @@ title: "02-concepts-and-roles"
 aliases: 
 tags: 
 - comp210
+- lecture
+sr-due: 2022-07-17
+sr-interval: 3
+sr-ease: 250
 ---
+
+- [slides](https://blackboard.otago.ac.nz/bbcswebdav/pid-2956897-dt-content-rid-18930757_1/courses/COMP210_S2DNI_2022/Lecture_02%281%29.pdf)
 
 # News
 - [more personal email scams](https://theconversation.com/email-scams-are-getting-more-personal-they-even-fool-cybersecurity-experts-186009)
@@ -149,8 +155,21 @@ e.g.,
 
 - [motivaitions](https://i.imgur.com/74qgpsc.png)
 
+## Skills and focus of actors
+- low skill & low focus
+- high skill & low focus
+- high skill & high focus
+	- intelligence agencies
+	- highly sophicticated
+
 # Shared responsibility
+- business needs first
+- [information securty functions](https://i.imgur.com/apXn7Qb.png)
+- [protecting the functionality of an organization](https://i.imgur.com/pT1nL8E.png)
+- [enablling safe operation of applications](https://i.imgur.com/Ytzlqhc.png)
+- [safeguarding technology assets in organizations](https://i.imgur.com/gNgScT8.png)
 
 # Balance
 
+- [balance](https://i.imgur.com/df1LZuP.png)
 
