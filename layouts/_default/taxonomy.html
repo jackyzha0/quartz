@@ -9,6 +9,9 @@
     {{partial "header.html" .}}
     <article>
         <h1>All {{.Title}}</h1>
+        {{with .Params.description}}
+            <p>{{.}}</p>
+        {{end}}
         <div class="tags">
             {{ range .Site.Taxonomies.tags.ByCount }}
             <div class="meta">
