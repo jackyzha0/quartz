@@ -24,7 +24,6 @@ h1, h2, h3, h4, h5, h6, ol, ul, thead {
   opacity: 0.3;
   transition: opacity 0.3s ease;
   color: var(--secondary);
-
 }
 
 p, ul, text {
@@ -421,11 +420,24 @@ header {
     flex: 1 1 auto;
   }
 
-  & > svg {
+  #search-icon {
+    background-color: var(--lightgray);
+    border-radius: 4px;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    & > p {
+      display: inline;
+      padding: 0 0.5em 0 1em;
+    }
+  }
+
+  & svg {
     cursor: pointer;
     width: 18px;
     min-width: 18px;
-    margin: 0 1em;
+    margin: 0 0.5em;
 
     &:hover .search-path {
       stroke: var(--tertiary);
@@ -562,12 +574,10 @@ header {
   1% {
     display: inline-block;
     opacity: 0;
-    transform: translate(-50%, 40%);
   }
   100% {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, 20%);
   }
 }
 
@@ -578,9 +588,9 @@ header {
   display: none;
   background-color: var(--light);
   padding: 1em;
+  margin: 1em;
   border: 1px solid var(--outlinegray);
   border-radius: 5px;
-  transform: translate(-50%, 40%);
   pointer-events: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
   user-select: none;
@@ -594,7 +604,6 @@ header {
   &.visible {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, 20%);
     display: inline-block;
     animation: dropin 0.2s ease;
   }
@@ -617,8 +626,6 @@ header {
     user-select: none;
   }
 }
-
-
 
 #contact_buttons ul {
   list-style-type: none;
