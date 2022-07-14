@@ -42,15 +42,15 @@ h1, h2, h3, h4, h5, h6, thead {
   padding: 2rem auto 1rem;
 
   &:hover > .hanchor {
-    opacity: 1;
+    color: var(--secondary);
   }
 }
 
 .hanchor {
   font-family: var(--font-header);
-  opacity: 0.2;
-  transition: opacity 0.3s ease;
-  color: var(--secondary);
+  opacity: 0.8;
+  transition: color 0.3s ease;
+  color: var(--dark);
 }
 
 p, ul, text, a, tr, td, li, ol, ul {
