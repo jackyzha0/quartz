@@ -28,6 +28,7 @@
             <div class="spacer"></div>
             {{partial "darkmode.html" .}}
           </header>
+
           <article>
             {{partial "toc.html" .}}
             {{partial "textprocessing.html" . }}
@@ -35,6 +36,7 @@
             {{partial "recent.html" . }}
             {{end}}
           </article>
+
           {{if not $.Site.Data.config.enableColumnLayout}}
           {{partial "footerIndex.html" .}}
           {{partial "contact.html" .}}
@@ -42,7 +44,8 @@
         </main>
 
         {{if $.Site.Data.config.enableColumnLayout}}
-        <aside data-sm1-2 data-md1-2 data-lg1-4 data-lg1 data-m1 data-sm2 data-xs3>
+
+        <nav data-sm1-2 data-md1-2 data-lg1-4 data-lg1 data-m1 data-sm2 data-xs3>
           <div class="sticky page-end vertical">
             <h3> Menu</h3>
             <div class="menu-toc">
@@ -51,7 +54,8 @@
               </ol>
             </div>
           </div>
-        </aside>
+        </nav>
+
         <aside data-sm1-2 data-md1-2 data-lg1-4 data-lg3 data-m3 data-sm3 data-xs2>
           <div class="sticky">
             <div class="page-end vertical">
@@ -65,6 +69,7 @@
             {{partial "footer.html" .}}
           </div>
         </aside>
+        
   </div>
   <footer r-c data-join> <!-- r-c = Responsive Columns with flexbox -->
     <div c1-1> <!-- c1-1 = 1 column of width 1/1 = 100% -->
