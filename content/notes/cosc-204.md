@@ -17,8 +17,8 @@ By completion of this paper students are expected to:
 
 ## Hardware
 - Understand how programs are executed on computer hardware
+- [memory](notes/memory.md)
 
-- [01-bits-and-bytes](notes/01-bits-and-bytes.md)
 
 ## Assembly
 - Demonstrate an ability to read and write assembly language programs
@@ -36,6 +36,7 @@ By completion of this paper students are expected to:
 - Be aware of the importance of efficient use of resources from computational, economic, and environmental viewpoints
 
 # Lectures
+- [01-bits-and-bytes](notes/01-bits-and-bytes.md)
 
 
 # Archive
