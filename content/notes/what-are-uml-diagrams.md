@@ -1,13 +1,13 @@
-s---
+---
 title: "what-are-uml-diagrams"
 aliases: 
 tags: 
 - info201
 ---
 
-A standard set of model constructs and notation defined by the object management group
+A standard set of constructs and notation defined by the object management group for creating [models](notes/models.md)
 
-specify what not how
+**specify what not how**
 
 - activity diagrams
 	- high level for business prcesses workflows
@@ -41,11 +41,11 @@ enables implementation-independent specification of:
 ## 3 Types of diagram
 ### 3.1 structural
 
-[](https://i.imgur.com/zS15EFj.png#invert)
+![](https://i.imgur.com/zS15EFj.png#invert)
 
 ### 3.2 behavioural
 
-[](https://i.imgur.com/4lj2QIt.png#invert)
+![](https://i.imgur.com/4lj2QIt.png#invert)
 
 ### 3.3 Linked diagrams
 each digram type models a dfiferenct aspect of the system

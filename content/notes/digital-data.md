@@ -50,4 +50,4 @@ Data is stored in [memory](notes/memory.md)
 - used to label a location in the computer's memory where a byte is stored
 - when the code is compile, the name is assigned an address, in memory. The meaning of that data depends on how a human interprets it. it might be small integer, or a character, or a color etc.d
 
-- each byte represents a number which maps to a character using either [[unic]]
+- each byte (or group of bytes) represents a number which maps to a character using a mapping like [unicode](notes/unicode.md) or [ASCII](notes/ASCII.md)

@@ -4,10 +4,38 @@ aliases:
 tags: 
 - cosc204
 - lecture
-sr-due: 2022-07-14
-sr-interval: 3
+sr-due: 2022-07-21
+sr-interval: 7
 sr-ease: 250
 ---
+
+[memory](notes/memory.md)
+[unicode](notes/unicode.md)
+[ASCII](notes/ASCII.md)
+[digital-data](notes/digital-data.md)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # What is data
 - A fact — a piece of information
