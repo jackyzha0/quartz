@@ -29,11 +29,70 @@ e.g.,
 
 # Security services and control
 - services
-	- the intended security goal or property (C.I.C provides the three main security services)
+	- the intended security goal or property (C.I.A provides the three main security services)
+	- confidentiality
+	- integrity
+	- awareness
 - controls
 	- the mechanisms employed to implement the services
+	- encryption
+	- firewalls
+	- awareness
+
+## Controls
+- physical controls
+	- facility protection
+	- guards
+	- locks
+	- monitoring
+	- environment controls
+	- intrustion detection
+- technical controls
+	- network security
+	- cryptography
+	- forensics
+	- user authentication
+	- etc
+- administrative controls
+	- policies
+	- standards
+	- procedures
+	- guidelines
+	- personnel screening
+	- awareness training
+
+- Preventive 
+	- e.g., "prevent exposure of critical information"
+	- control - e.g., encrpytion
+- detective
+	- e.g., "we want to warn attempts of intrustions"
+	- control - e.g., intrusion detection systems
+- corrective
+	- reduce/fix damage
+	- e.g., "we want to repair our system in case of errors"
+	- conrtol - e.g., restoration point mechanisms (e.g., version control systems like [git](notes/git.md))
+
+- we need security controls for all info states:
+	- storage
+		- information storage containers
+		- electronic, physical, human
+	- transmission
+		- physical or electronic
+	- processing
+		- physical or electronic
 
 # CIA
+- a security service provides a high level security property
+
+## Confidentiality
+- information should not be available to unauthorised people
+- divided into:
+	- secrecy: protecting business data
+	- privacy: protecting personal data
+	- anonymity: hide who is engaging in what actions
+- threats: information theft, unintentional disclosure
+- controls: encyption, access control, perimeter defense
+- general controls: secure systems development, and incident response
 
 # Privacy and Actions
 
