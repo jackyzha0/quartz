@@ -9,6 +9,9 @@
     {{partial "header.html" .}}
     <article>
         <h1>All {{.Title}}</h1>
+        {{with .Params.description}}
+            <p>{{.}}</p>
+        {{end}}
         {{partial "page-list.html" .Paginator.Pages.ByLastmod.Reverse }}
         {{ template "_internal/pagination.html" .}}
     </article>
