@@ -50,7 +50,7 @@ function initPopover(baseURL, useContextualBacklinks, renderLatex) {
           li.addEventListener("mouseover", () => {
             // fix tooltip positioning
             window.FloatingUIDOM.computePosition(li, el, {
-              middleware: [window.FloatingUIDOM.offset(15), window.FloatingUIDOM.inline(), window.FloatingUIDOM.shift()],
+              middleware: [window.FloatingUIDOM.offset(10), window.FloatingUIDOM.inline(), window.FloatingUIDOM.shift()],
             }).then(({ x, y }) => {
               Object.assign(el.style, {
                 left: `${x}px`,
