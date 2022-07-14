@@ -45,7 +45,7 @@
 }
 
 .chroma code {
-  font-family: 'Fira Code' !important;
+  font-family: var(--font-mono) !important;
   font-size: 0.85em !important;
   line-height: 2em !important;
   background: none !important;

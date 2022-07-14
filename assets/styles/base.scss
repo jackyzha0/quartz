@@ -1,13 +1,41 @@
+// Replace this with your own font imports!
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600&display=swap');
 :root {
-  --lt-colours-light: var(--light) !important;
-  --lt-colours-lightgray: var(--lightgray) !important;
-  --lt-colours-dark: var(--secondary) !important;
-  --lt-colours-secondary: var(--tertiary) !important;
-  --lt-colours-gray: var(--outlinegray) !important;
+  --font-body: "Source Sans Pro";
+  --font-header: "Inter";
+  --font-mono: "Fira Code"
+}
+
+// typography
+html {
+  scroll-behavior: smooth;
+  &:lang(ar) {
+    & p, & h1, & h2, & h3, article {
+      direction: rtl;
+      text-align: right;
+    }
+  }
+}
+
+.singlePage {
+  padding: 4em 30vw;
+  @media all and (max-width: 1200px) {
+    padding: 25px 5vw;
+  }
+}
+
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  box-sizing: border-box;
+  background-color: var(--light);
 }
 
 h1, h2, h3, h4, h5, h6, ol, ul, thead {
-  font-family: Inter;
+  font-family: var(--font-header);
   color: var(--dark);
   font-weight: revert;
   margin: revert;
@@ -19,15 +47,15 @@ h1, h2, h3, h4, h5, h6, ol, ul, thead {
 }
 
 .hanchor {
-  font-family: Inter;
+  font-family: var(--font-header);
   margin-left: -1em;
   opacity: 0.3;
   transition: opacity 0.3s ease;
   color: var(--secondary);
 }
 
-p, ul, text {
-  font-family: 'Source Sans Pro', sans-serif;
+p, ul, text, a, tr, td {
+  font-family: var(--font-body);
   color: var(--gray);
   fill: var(--gray);
   font-weight: revert;
@@ -35,21 +63,26 @@ p, ul, text {
   padding: revert;
 }
 
+tbody, li {
+  line-height: 1.5em;
+}
+
 .mainTOC {
-  background: var(--lightgray);
   border-radius: 5px;
-  padding: 0.75em 1em;
-}
+  padding: 0.75em 0;
 
-.mainTOC details summary {
-  cursor: zoom-in;
-  font-family: Inter;
-  color: var(--dark);
-  font-weight: 700;
-}
+  & details {
+    & summary {
+      cursor: zoom-in;
+      font-family: var(--font-header);
+      color: var(--dark);
+      font-weight: 700;
+    }
 
-.mainTOC details[open] summary {
-    cursor: zoom-out;
+    &[open] summary {
+      cursor: zoom-out;
+    }
+  }
 }
 
 #TableOfContents > ol {
@@ -74,13 +107,21 @@ p, ul, text {
   }
 
   & > li::marker, & > li > ol > li::marker {
-    font-family: Source Sans Pro;
+    font-family: var(--font-body);
     font-weight: 700;
   }
 }
 
 table {
+  border: 1px solid var(--outlinegray);
   width: 100%;
+  padding: 1.5em;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 0.2em 1em;
+  border: 1px solid var(--outlinegray);
 }
 
 img {
@@ -89,7 +130,7 @@ img {
   margin: 1em 0;
 }
 
-p>img+em {
+p > img + em {
   display: block;
   transform: translateY(-1em);
 }
@@ -98,29 +139,11 @@ sup {
   line-height: 0
 }
 
-p, tbody, li {
-  font-family: Source Sans Pro;
-  color: var(--gray);
-  line-height: 1.5em;
-}
-
 blockquote {
   margin-left: 0em;
   border-left: 3px solid var(--secondary);
   padding-left: 1em;
   transition: border-color 0.2s ease;
-
-  &:hover {
-    border-color: var(--tertiary);
-  }
-}
-
-table {
-  padding: 1.5em;
-}
-
-td, th {
-  padding: 0.1em 0.5em;
 }
 
 .footnotes p {
@@ -156,7 +179,6 @@ td, th {
 .section {
   & h3 > a {
     font-weight: 700;
-    font-family: Inter;
     margin: 0;
   }
   & p {
@@ -165,13 +187,16 @@ td, th {
 }
 
 article {
+  & > h1 {
+    font-size: 2em;
+  }
+  
   & > .meta {
     margin: -1.5em 0 1em 0;
     opacity: 0.7;
   }
 
   & a {
-    font-family: Source Sans Pro;
     font-weight: 600;
 
     &.internal-link {
@@ -233,53 +258,34 @@ sup > a {
   padding: 0 0.1em 0 0.2em;
 }
 
+#page-title > a {
+  font-family: var(--font-header);
+}
+
 a {
-  font-family: Inter, sans-serif;
   font-size: 1em;
   font-weight: 700;
   text-decoration: none;
   transition: all 0.2s ease;
   color: var(--secondary);
-
   &:hover {
     color: var(--tertiary) !important;
   }
 }
 
 pre {
-  font-family: 'Fira Code';
+  font-family: var(--font-mono);
   padding: 0.75em;
   border-radius: 3px;
   overflow-x: scroll;
 }
 
 code {
-  font-family: 'Fira Code';
+  font-family: var(--font-mono);
   font-size: 0.85em;
   padding: 0.15em 0.3em;
   border-radius: 5px;
   background: var(--lightgray);
-}
-
-html {
-  scroll-behavior: smooth;
-
-  &:lang(ar) {
-    & p, & h1, & h2, & h3, article {
-      direction: rtl;
-      text-align: right;
-    }
-  }
-}
-
-body {
-  margin: 0;
-  height: 100vh;
-  width: 100vw;
-  //overflow-x: hidden;
-  max-width: 100%;
-  box-sizing: border-box;
-  background-color: var(--light);
 }
 
 @keyframes fadeIn {
@@ -303,14 +309,6 @@ hr {
   border-width: 0;
   color: var(--dark);
   background-color: var(--dark);
-}
-
-.singlePage {
-  padding: 4em 30vw;
-
-  @media all and (max-width: 1200px) {
-    padding: 25px 5vw;
-  }
 }
 
 .page-end {
@@ -355,10 +353,6 @@ hr {
 
 .centered {
   margin-top: 30vh;
-}
-
-article > h1 {
-  font-size: 2em;
 }
 
 header {
@@ -444,7 +438,7 @@ header {
     & > input {
       box-sizing: border-box;
       padding: 0.5em 1em;
-      font-family: Inter, sans-serif;
+      font-family: var(--font-body);
       color: var(--dark);
       font-size: 1.1em;
       border: 1px solid var(--outlinegray);
@@ -544,11 +538,11 @@ header {
 .popover {
   z-index: 999;
   position: absolute;
-  width: 20em;
+  width: 20rem;
   display: none;
   background-color: var(--light);
-  padding: 1em;
-  margin: 1em;
+  padding: 1rem;
+  margin: 1rem;
   border: 1px solid var(--outlinegray);
   border-radius: 5px;
   pointer-events: none;
@@ -570,17 +564,18 @@ header {
 
   & > h3 {
     font-size: 1rem;
-    margin: 0.25em 0;
+    margin: 0.25rem 0;
   }
 
   & > .meta {
-    margin-top: 0.25em;
+    margin-top: 0.25rem;
     opacity: 0.5;
-    font-family: "JetBrains Mono", monospace;
+    font-family: var(--font-mono);
     font-size: 0.8rem;
   }
 
   & > p, & > a {
+    font-size: 1rem;
     margin: 0;
     font-weight: 400;
     user-select: none;
