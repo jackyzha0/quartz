@@ -34,12 +34,12 @@ body {
   background-color: var(--light);
 }
 
-h1, h2, h3, h4, h5, h6, ol, ul, thead {
+h1, h2, h3, h4, h5, h6, thead {
   font-family: var(--font-header);
   color: var(--dark);
   font-weight: revert;
   margin: 2rem 0 0;
-  padding: revert;
+  padding: 2rem auto 1rem;
 
   &:hover > .hanchor {
     opacity: 1;
@@ -48,13 +48,12 @@ h1, h2, h3, h4, h5, h6, ol, ul, thead {
 
 .hanchor {
   font-family: var(--font-header);
-  margin-left: -1em;
-  opacity: 0.3;
+  opacity: 0.2;
   transition: opacity 0.3s ease;
   color: var(--secondary);
 }
 
-p, ul, text, a, tr, td, li {
+p, ul, text, a, tr, td, li, ol, ul {
   font-family: var(--font-body);
   color: var(--gray);
   fill: var(--gray);
@@ -176,16 +175,6 @@ blockquote {
   }
 }
 
-.section {
-  & h3 > a {
-    font-weight: 700;
-    margin: 0;
-  }
-  & p {
-    margin-top: 0;
-  }
-}
-
 article {
   & > h1 {
     font-size: 2em;
@@ -223,6 +212,7 @@ article {
   padding-left: 0;
 
   & .meta {
+    margin: 1.5em 0;
     & > h1 {
       margin: 0;
     }
@@ -258,8 +248,11 @@ sup > a {
   padding: 0 0.1em 0 0.2em;
 }
 
-#page-title > a {
-  font-family: var(--font-header);
+#page-title {
+  margin: 0;
+  & > a {
+    font-family: var(--font-header);
+  }
 }
 
 a {
@@ -357,10 +350,15 @@ hr {
   margin-top: 30vh;
 }
 
+.spacer {
+  flex: 1 1 auto;
+}
+
 header {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin: 1em 0 2em;
 
   & > h1 {
     font-size: 2em;
@@ -372,10 +370,6 @@ header {
     }
   }
 
-  & > .spacer {
-    flex: 1 1 auto;
-  }
-
   #search-icon {
     background-color: var(--lightgray);
     border-radius: 4px;
@@ -385,7 +379,7 @@ header {
     cursor: pointer;
     & > p {
       display: inline;
-      padding: 0 0.5em 0 1em;
+      padding: 0 1.5em 0 2em;
     }
   }
 
@@ -501,18 +495,32 @@ header {
 
 .section-ul {
   list-style: none;
+  margin-top: 2em;
   padding-left: 0;
 
   & > li {
-    border: 1px solid var(--outlinegray);
-    border-radius: 5px;
-    padding: 0 1em;
     margin-bottom: 1em;
+
+    & > .section {
+      display: flex;
+      align-items: center; 
+      
+      & h3 > a {
+        font-weight: 700;
+        margin: 0;
+      }
+      
+      & p {
+        margin: 0;
+        padding-right: 1em;
+        flex-basis: 6em; 
+      }
+    }
 
     & h3 {
       opacity: 1;
       font-weight: 700;
-      margin-bottom: 0em;
+      margin: 0em;
     }
 
     & .meta {

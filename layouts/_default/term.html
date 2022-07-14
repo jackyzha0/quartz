@@ -8,7 +8,7 @@
     <!-- Begin actual content -->
     {{partial "header.html" .}}
     <article>
-        <h1>Tag: {{.Title | humanize}}</h1>
+        <h1>Tag: {{ .Title }}</h1>
         {{partial "page-list.html" .Paginator.Pages}}
         {{ template "_internal/pagination.html" . }}
     </article>
