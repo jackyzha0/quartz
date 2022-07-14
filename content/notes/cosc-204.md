@@ -14,10 +14,13 @@ tags:
 
 # Notes
 By completion of this paper students are expected to:
+- [ASCII](notes/ASCII.md)
+- [unicode](notes/unicode.md)
+- [digital-data](notes/digital-data.md)
+- [memory](notes/memory.md)
 
 ## Hardware
 - Understand how programs are executed on computer hardware
-- [memory](notes/memory.md)
 
 
 ## Assembly
