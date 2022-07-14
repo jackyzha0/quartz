@@ -38,7 +38,7 @@ h1, h2, h3, h4, h5, h6, ol, ul, thead {
   font-family: var(--font-header);
   color: var(--dark);
   font-weight: revert;
-  margin: revert;
+  margin: 2rem 0 0;
   padding: revert;
 
   &:hover > .hanchor {
@@ -54,7 +54,7 @@ h1, h2, h3, h4, h5, h6, ol, ul, thead {
   color: var(--secondary);
 }
 
-p, ul, text, a, tr, td {
+p, ul, text, a, tr, td, li {
   font-family: var(--font-body);
   color: var(--gray);
   fill: var(--gray);
@@ -63,7 +63,7 @@ p, ul, text, a, tr, td {
   padding: revert;
 }
 
-tbody, li {
+tbody, li, p {
   line-height: 1.5em;
 }
 
@@ -192,7 +192,7 @@ article {
   }
   
   & > .meta {
-    margin: -1.5em 0 1em 0;
+    margin: 0 0 1em 0;
     opacity: 0.7;
   }
 
@@ -327,7 +327,8 @@ hr {
   & > .backlinks-container {
     & > ul {
       list-style: none;
-      padding-left: 0;
+      padding: 0;
+      margin: 0;
 
       & > li {
         margin: 0.5em 0;
@@ -343,6 +344,7 @@ hr {
     border-radius: 5px;
     box-sizing: border-box;
     min-height: 250px;
+    margin: 0.5em 0;
 
     & > svg {
       margin-bottom: -5px;
@@ -576,7 +578,7 @@ header {
 
   & > p, & > a {
     font-size: 1rem;
-    margin: 0;
+    margin: 0.7rem 0;
     font-weight: 400;
     user-select: none;
   }
