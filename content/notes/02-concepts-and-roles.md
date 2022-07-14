@@ -94,7 +94,41 @@ e.g.,
 - controls: encyption, access control, perimeter defense
 - general controls: secure systems development, and incident response
 
+## Integrity
+- data integrity: should not be corruped, tampered, altered with etc in an unauthorised manner
+- system inegrity: accuracy and completeness
+- threats: data and system corruption, loss of accountability
+- controls: 
+	- hashing, cryptographic integrity check and encryption
+	- authentiation, access control
+	- digital signing
+	- config management and change control 
+- general controls: Secure Systems Development and Incident Response
+
+## Availability
+- information should be accessible and usable upon demand by an authorised entity
+- main threat: DoS
+- controls:
+	- redundancy of resources
+	- load balancing
+	- software and data backups
+- general controls: Secure Systems Development and Incident Response
+
+## Additionally properties
+- accuracy - free from mistakes and erors
+- authenticity - genuine or original
+- utility - serve a purpose (e.g., census data)
+- possession - ownership or control (importat for privacy)
+
 # Privacy and Actions
+## GDPR
+- To protect specific aspects of information that may be related to natural persons (personal information) 
+- Prevent unauthorized collection and storage of personal information 
+- Make sure your personal information is correct 
+- Ensure transparency and access for data subjects 
+- Provide adequate information security (C.I.A) around personal information 
+- Define clear responsibilities around personal information 
+- GDPR became EU law on 25 May 2018 (General Data Protection Regulation)
 
 # Shared responsibility
 
