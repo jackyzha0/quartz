@@ -11,6 +11,10 @@ sr-ease: 250
 
 - [slides](https://blackboard.otago.ac.nz/bbcswebdav/pid-2954102-dt-content-rid-18888626_1/courses/COSC204_S2DNI_2022/L2%20-%20Combinatorial%20Logic.pdf)
 
+# Circuit basics:
+- current flows + to -
+- input to a unit (e.g., LED) is the + end
+
 # Combinatorial Logic Circuit
 > [!Definition]
 > Combinatorial Logic Circuit is a circuit whose digital outputs are dependent only on its digital inputs
@@ -41,22 +45,27 @@ Precedence
 
 ![Precedence table|200](https://i.imgur.com/jPlrVwW.png)
 
-De Morgan's Theorum
-- (͞A͞+ B) = Ā  · B̄
-- 
-
 Creating boolean equations:
 - for each row where output is 1
 - write the equation as a function of the inputs  (using AND)
 - Write the final equation, putting OR between each clause
 - [example](https://i.imgur.com/RoBTEfH.png)
 
+# De Morgan's Theorum
+- !(A + B) = A! & !B
+- !(A + B + C + ... + X) = !A & !B & !C & ... & !X
+- [truth table](https://i.imgur.com/QegVxkx.png)
+- any boolean function can be represented as the sum of logical products
+- All combinatorial circuits can be described using just one gate type (either nand or nor) [^2]
 
+# Transistors
+![simple transistor diagram|100](https://i.imgur.com/oBuNR9m.png)
 
+- B: Base ⇒ A swtich connecting C to E
+	- c
+- C: Collector
+- E: Emitter
 
-# Circuit basics:
-- current flows + to -
-- input to a unit (e.g., LED) is the + end
 
 # Logic Gates
 - NOT
@@ -70,3 +79,4 @@ Creating boolean equations:
 
 
 [^1] : In real circuits propagation delay must be considered, hence the clock cycle on CPUs
+[^2] : The Apollo Guidance Computer used about 5600 NOR gates and no other gate types!
