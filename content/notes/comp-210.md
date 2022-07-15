@@ -23,6 +23,6 @@ No final exam
 - Pen-Testing
 
 # Lectures
-
+- [01-big-picture](notes/01-big-picture.md)
 
 # Archive
