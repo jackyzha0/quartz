@@ -62,10 +62,16 @@ Creating boolean equations:
 ![simple transistor diagram|100](https://i.imgur.com/oBuNR9m.png)
 
 - B: Base ⇒ A swtich connecting C to E
-	- c
+	- open (C is disconnected from E) when supplied 0v
+	- closed (C is connected to E) by applying +5V
 - C: Collector
 - E: Emitter
 
+Possible to create NAND gate using just transistors ∴ possible to create all logic gates using only transistors [^3]
+
+# Demultiplexor
+- Mutli way swtich where the address determines which output recieves the input
+- [2 bit address diagram and truth table](https://i.imgur.com/XQteI3j.png)
 
 # Logic Gates
 - NOT
@@ -80,3 +86,4 @@ Creating boolean equations:
 
 [^1] : In real circuits propagation delay must be considered, hence the clock cycle on CPUs
 [^2] : The Apollo Guidance Computer used about 5600 NOR gates and no other gate types!
+[^3] : They dont actually do it this way (see lab)
