@@ -42,6 +42,7 @@ Precedence
 ![Precedence table|200](https://i.imgur.com/jPlrVwW.png)
 
 De Morgan's Theorum
+- (͞A͞+ B) = Ā  · B̄
 - 
 
 Creating boolean equations:
