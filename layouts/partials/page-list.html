@@ -3,7 +3,7 @@
     <li class="section-li">
         <div class="section">
             <p class="meta">
-                {{if ne .Date .Lastmod}}{{ .Lastmod.Format "January 2, 2006" }}{{else}}Unknown{{end}}
+                {{partial "date-fmt.html" .}}
             </p>
             <div class="desc">
                 <h3><a href="{{ .Permalink }}">{{- .Title -}}</a></h3>
