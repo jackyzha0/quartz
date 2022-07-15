@@ -21,9 +21,36 @@ They can be defined:
 - Using boolean equations ($Q\ =\ A+\ B$) 
 - Using graphical symbols  
 
-- [1 Bit half adder(https://i.imgur.com/mjCVU4I.png)
-- 1 Bit full adder: (includes carry input) [](https://i.imgur.com/yu6kS83.png)
- 
+- [1 Bit half adder](https://i.imgur.com/mjCVU4I.png)
+- [1 Bit full adder: (includes carry input)](https://i.imgur.com/yu6kS83.png)
+- [Ripple carry adder](https://i.imgur.com/HtEIZ5t.png)
+- 3 Bit parity Generator
+	- Adds an extra bit to the input data so that the number of ones in the output is always odd
+	- Used for error checking
+	- [truth table](https://i.imgur.com/KDUiJbN.png)
+	- [boolean equation](https://i.imgur.com/mwBpnlO.png)
+	- [circuit](https://i.imgur.com/tsgDISC.png)
+- [7 segment displlay](https://i.imgur.com/qtPmtwR.png)
+
+# Boolean Equations
+
+Precedence
+- NOT is unary, so it has the highest precedence
+- AND is mulitply, so it comes next
+- OR is like plusl, to it comes last
+
+![Precedence table|200](https://i.imgur.com/jPlrVwW.png)
+
+De Morgan's Theorum
+- 
+
+Creating boolean equations:
+- for each row where output is 1
+- write the equation as a function of the inputs  (using AND)
+- Write the final equation, putting OR between each clause
+- [example](https://i.imgur.com/RoBTEfH.png)
+
+
 
 
 # Circuit basics:
