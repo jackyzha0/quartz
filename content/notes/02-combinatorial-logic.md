@@ -11,6 +11,29 @@ sr-ease: 250
 
 - [slides](https://blackboard.otago.ac.nz/bbcswebdav/pid-2954102-dt-content-rid-18888626_1/courses/COSC204_S2DNI_2022/L2%20-%20Combinatorial%20Logic.pdf)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Circuit basics:
 - current flows + to -
 - input to a unit (e.g., LED) is the + end

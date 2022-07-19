@@ -17,6 +17,8 @@ tags:
 - [unicode](notes/unicode.md)
 - [digital-data](notes/digital-data.md)
 - [memory](notes/memory.md)
+- [boolean-equations](notes/boolean-equations.md)
+- 
 
 - Hardware
 - Assembly
