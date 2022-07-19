@@ -4,8 +4,8 @@ aliases:
 tags: 
 - cosc204
 - lecture
-sr-due: 2022-07-19
-sr-interval: 3
+sr-due: 2022-07-27
+sr-interval: 8
 sr-ease: 250
 ---
 
@@ -13,7 +13,11 @@ sr-ease: 250
 
 
 
-
+- [transistors](notes/transistors.md)
+- [combinatorial-logic-circuit](notes/combinatorial-logic-circuit.md)
+- [boolean-equations](notes/boolean-equations.md)
+- [logic-gates](notes/logic-gates.md)
+- [demultiplexor](notes/demultiplexor.md)
 
 
 

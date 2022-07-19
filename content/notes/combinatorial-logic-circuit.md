@@ -14,9 +14,8 @@ They can be described using logic expressions and therefore logic gates. We assu
 
 They can be defined:
 - Using a truth table
-- Using boolean equations ($Q\ =\ A+\ B$) 
+- Using [boolean-equations](notes/boolean-equations.md) ($Q\ =\ A+\ B$) 
 - Using graphical symbols
-
 
 # Notable Examples
 - [1 Bit half adder](https://i.imgur.com/mjCVU4I.png)

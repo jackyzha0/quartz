@@ -4,8 +4,8 @@ tags:
 - cosc202 
 - lecture
 
-sr-due: 2022-06-9
-sr-interval: 22
+sr-due: 2022-11-09
+sr-interval: 113
 sr-ease: 270
 ---
 - [testing](notes/testing.md)

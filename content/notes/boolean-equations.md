@@ -5,7 +5,7 @@ tags:
 - cosc204
 ---
 
-Often used to describe/define Combinatorial logic circuits
+Often used to describe/define [combinatorial-logic-circuit](notes/combinatorial-logic-circuit.md)
 
 # Precedence
 Precedence
