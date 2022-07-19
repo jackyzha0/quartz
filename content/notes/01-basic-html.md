@@ -4,12 +4,31 @@ aliases:
 tags: 
 - cosc203
 - lecture
-sr-due: 2022-07-19
-sr-interval: 3
+sr-due: 2022-07-26
+sr-interval: 7
 sr-ease: 250
 ---
 
 [slides](https://blackboard.otago.ac.nz/bbcswebdav/pid-2932183-dt-content-rid-18925536_1/courses/COSC203_S2DNI_2022/COSC203_lecture1.pdf)
+
+
+
+[html](notes/html.md)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 3 Main parts
 - html - structure
