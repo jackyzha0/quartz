@@ -32,6 +32,8 @@ tags:
 
 # Lectures
 - [01-bits-and-bytes](notes/01-bits-and-bytes.md)
+- [02-combinatorial-logic](notes/02-combinatorial-logic.md)
+- 
 
 
 # Archive

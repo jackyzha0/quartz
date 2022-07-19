@@ -1,6 +1,6 @@
 ---
 title: "combinatorial-logic-circuit"
-aliases: logic circuit
+aliases:
 tags: 
 - cosc204
 ---
