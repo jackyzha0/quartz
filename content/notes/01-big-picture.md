@@ -3,6 +3,10 @@ title: "01-big-picture"
 aliases: 
 tags: 
 - comp210
+- lecture
+sr-due: 2022-07-22
+sr-interval: 3
+sr-ease: 250
 ---
 
 # In the news

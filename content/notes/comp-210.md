@@ -10,8 +10,8 @@ tags:
 
 # Assignments
 No final exam
-- [assignment 1](notes/01-security-audit)
-- [assignment 2](notes/02-repaired-system)
+- [assignment 1](notes/ass01-security-audit)
+- [assignment 2](notes/ass02-repaired-system)
 
 # Notes
 - Risks
@@ -24,5 +24,6 @@ No final exam
 
 # Lectures
 - [01-big-picture](notes/01-big-picture.md)
+- [02-concepts-and-roles](notes/02-concepts-and-roles.md)
 
 # Archive
