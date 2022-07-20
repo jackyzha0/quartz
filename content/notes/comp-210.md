@@ -14,6 +14,7 @@ No final exam
 - [assignment 2](notes/ass02-repaired-system)
 
 # Notes
+- 
 - Risks
 - Ethics and Privacy
 - Cyrptography
