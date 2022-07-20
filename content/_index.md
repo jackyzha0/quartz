@@ -24,8 +24,9 @@ Capture notes anywhere with an array of supported platforms and built-in sync be
 ### Full control of your notes
 Keep a backup of your notes or sync with other note-taking applications
 - 100% of your notes are stored locally with optional sync
-- Export all notes in Markdown or JSON
+- [[posts/end-to-end-encryption-in-fleeting-notes|Support for end-to-end encryption]]
 - [[posts/sync-fleeting-notes-with-obsidian|Sync notes with Obsidian]]
+- Export all notes in Markdown or JSON
 
 ### Find notes easily
 The combination of full-text search and linking makes it easy to find any note. Either search for the note or [[notes/following a train of thought|follow a trail of linked notes]].
