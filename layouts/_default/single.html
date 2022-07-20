@@ -20,6 +20,9 @@
       {{partial "toc.html" .}} 
       {{partial "textprocessing.html" . }}
     </article>
+    {{ if in .Page.RelPermalink "/posts/" }}
+        {{partial "hyvor.html" .}}
+    {{ end }}
     {{partial "footer.html" .}}
     {{partial "popover.html" .}}
 </div>
