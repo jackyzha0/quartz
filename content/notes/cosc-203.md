@@ -34,6 +34,7 @@ tags:
 # Lectures
 - [01-basic-html](notes/01-basic-html.md)
 - [02-basic-css](notes/02-basic-css.md)
+- [03-more-css](notes/03-more-css.md)
 
 # Archive
 
