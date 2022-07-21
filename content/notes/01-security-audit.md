@@ -1,8 +1,9 @@
 ---
 title: "01-security-audit"
-aliases: <% tp.file.cursor(2) %>
+aliases: 
 tags: 
-<% tp.file.cursor(3) %>
+- assignment
+- comp210
 ---
 
-<% tp.file.cursor(4) %>
+
