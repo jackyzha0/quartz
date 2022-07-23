@@ -48,3 +48,25 @@ tags:
 - used where large amount of RAM is needed
 - slower than SRAM
 - inexpensive
+
+## Non-Volatile Memory
+- often called ROM (read only memory)
+	- can also be called PROM, EPROM, EEPROM, FLASH
+- flash
+	- uses floating-gate flash cells, not quite a transistor
+
+# ALU
+![](https://i.imgur.com/wLJhTSG.png)
+
+- performs arithmetic
+	- add, subtract, etc.
+- logical operations
+	- and, or, shift, etc
+- subunits
+	- lofical operations
+	- addition
+	- multiplication and dividion
+	- shifting
+	- comparison
+	- logical tests (if, >0, <0, =0, <=0, etc)
+	- 
