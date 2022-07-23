@@ -1,6 +1,6 @@
 ---
 title: "cosc-203"
-aliases: Web, Databases, and Networks
+aliases: Web Databases and Networks
 year: 2022
 semester: 
 tags: 
