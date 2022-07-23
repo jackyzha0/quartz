@@ -8,5 +8,8 @@ tags:
 Security had been split into three main areas
 
 - Confidentiality -> Information should be protected from exposure
-- Availability -> Information should not be corrupte
-- Integrity
+- Availability -> Information should not be corrupted
+- Integrity -> Information should be available users without obstacles
+
+
+![slide](https://i.imgur.com/GJfb8Ph.png)

@@ -15,10 +15,10 @@ No final exam
 
 # Notes
 
-[mccumber-cube](notes/mccumber-cube.md)
-[access-security-tradeoff](notes/access-security-tradeoff.md)
-
-[[]]
+- [mccumber-cube](notes/mccumber-cube.md)
+- [access-security-tradeoff](notes/access-security-tradeoff.md)
+- [cia-triad](notes/cia-triad.md)
+- 
 
 - 
 - Risks
