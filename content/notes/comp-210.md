@@ -14,6 +14,12 @@ No final exam
 - [assignment 2](notes/ass02-repaired-system)
 
 # Notes
+
+[mccumber-cube](notes/mccumber-cube.md)
+[access-security-tradeoff](notes/access-security-tradeoff.md)
+
+[[]]
+
 - 
 - Risks
 - Ethics and Privacy
