@@ -3,6 +3,10 @@ title: "03-sequential-logic-circuits"
 aliases: 
 tags: 
 - cosc204
+- lecture
+sr-due: 2022-07-26
+sr-interval: 3
+sr-ease: 250
 ---
 
 comb log. circuits always produce the same output with the same inputs
