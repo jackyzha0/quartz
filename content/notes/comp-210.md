@@ -14,7 +14,7 @@ No final exam
 - [assignment 2](notes/ass02-repaired-system)
 
 # Notes
-
+- [information-security](notes/information-security.md)
 - [mccumber-cube](notes/mccumber-cube.md)
 - [access-security-tradeoff](notes/access-security-tradeoff.md)
 - [cia-triad](notes/cia-triad.md)

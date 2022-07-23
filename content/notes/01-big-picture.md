@@ -4,10 +4,33 @@ aliases:
 tags: 
 - comp210
 - lecture
-sr-due: 2022-07-22
-sr-interval: 3
+sr-due: 2022-08-01
+sr-interval: 9
 sr-ease: 250
 ---
+
+- [information-security](notes/information-security.md)
+- [mccumber-cube](notes/mccumber-cube.md)
+- [access-security-tradeoff](notes/access-security-tradeoff.md)
+- [cia-triad](notes/cia-triad.md)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # In the news
 
