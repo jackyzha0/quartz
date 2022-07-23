@@ -33,7 +33,7 @@ tags:
 # Lectures
 - [01-bits-and-bytes](notes/01-bits-and-bytes.md)
 - [02-combinatorial-logic](notes/02-combinatorial-logic.md)
-- 
+- [03-sequential-logic-circuits](notes/03-sequential-logic-circuits.md)
 
 
 # Archive
