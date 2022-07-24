@@ -92,4 +92,50 @@ security is a never ending arms race. Security is improving but so are the numbe
 - fire, flood, lightening, earthquake, eruptions, etc.
 - can use controls to protect against these
 - very dynamic
-- unpre
+- unpredicatble
+
+# Human errors or failure
+- actions performed without malicious intent or ignorance (by an authorised user)
+- inexperience
+- improper training
+- incorrect assumptions
+- employees are among the greatest threats to an organisations data
+- e.g, 
+	- accidental deletion
+	- revelation of classified data
+	- entry or erroneous data
+	- storage in unprotected areas
+	- failure to protect information
+- can be prevented with training, ongoing awareness activites, and controls
+
+# Social engineering
+- using social skills to convince people to reveal access credentials or other valuable information to an attacker
+- used for a broad range of malicious activities through human interactions
+
+![kevin mitkick quote](https://i.imgur.com/Q7ChU37.png)
+
+Developing trust if a powerful technique in social engineering
+- people are naturally helpful and trusting
+- ask during seemingly innocent conversations
+	- slowly ask for increasingly imprtant information
+- lean company lingo, names of people, names, servers etc
+- cause a problem and subsequently offer your help to fix it
+- talk negatively about common enemy
+- talk positively about common hero
+
+Inducing strong emotions
+- you won a prize etc
+- excitement 
+- fear
+- confusion
+
+information overload technique
+- reduce targets ability to sctrutinize arguments proposed by attacker
+- trigger by
+	- providing a lot of information
+	- providing arguments from an unexpected angle, whicih forces the victim to analyse the situation from a new perspective which requires additional mental processing
+
+
+Reciprocation
+- technique that exploits our tendency to return a favour
+- even if first
