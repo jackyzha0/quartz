@@ -3,6 +3,10 @@ title: "03-threats-social-engineering-and-failures"
 aliases: 
 tags: 
 - comp210
+- lecture
+sr-due: 2022-07-27
+sr-interval: 3
+sr-ease: 250
 ---
 
 # News
@@ -156,4 +160,7 @@ information exortion is the practive of requesting a ransom for your valuable in
 
 # Attacks
 represent intentional or unintentional acts that can damage or compromise assets
-- 
+- range from petty to vandalism to organized sabotage
+- defacing
+- threats are rising
+- cyberterrorism/warfare is much more sinister form of hacking
