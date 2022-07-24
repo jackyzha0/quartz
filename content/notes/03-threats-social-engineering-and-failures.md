@@ -60,3 +60,19 @@ security is a never ending arms race. Security is improving but so are the numbe
 
 ## espionage or trespass 
 - unauthorized attempts to gain illegal access to information
+- competitive intelligence vs industrial espionage vs cyber terrorism
+- shoulder surfing 
+- controls mark the virtual boundaries of an organisations
+	- controls oftentimes let trespassers know they are encroaching on an organizations cyberspace
+	- hackers use skill, guile, or fraud, to bypass controls protecting others information
+		- expert
+			- develop scripts and exploits
+			- master of many skills
+			- of create software (malware etc) and share with others
+			- minority
+		- novice
+			- script kiddies
+			- more common
+			- use scripts written by experts
+			- do not understand the systems the are hacking
+			- 
