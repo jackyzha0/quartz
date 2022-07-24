@@ -75,4 +75,21 @@ security is a never ending arms race. Security is improving but so are the numbe
 			- more common
 			- use scripts written by experts
 			- do not understand the systems the are hacking
-			- 
+			- packet monkeys: script kiddies that use worms to overload systems
+		- cracker
+			- cracks or removes software protections designed to precent unauthorized duplication
+			- also crack passwords
+		- phreaker
+			- hacks the public telephone system to make free calls or disrupt services
+			- more specific
+- also includes password attacks
+	- brute force- tried all possible combinations
+	- dictionary - include information related to the target user
+	- rainbow tables - a hacker with access to encrypted password, they can find the corresponding plaintext in a dataset called a rainbow table
+	- social engineering - e.g., attacks as posing at IT professionals to gain access toa systems information (normally by contacting other employees)
+
+# Forces of nature
+- fire, flood, lightening, earthquake, eruptions, etc.
+- can use controls to protect against these
+- very dynamic
+- unpre
