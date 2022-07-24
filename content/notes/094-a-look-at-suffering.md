@@ -11,10 +11,11 @@ niel degrasse tyson said two things to live your life by
 
 Is the second one something we should all do?
 
+fyodor dostoyevsky says suffering is a necessary part of human life.
+
 How do we define human progress?
 
-Transhumanism hedonistic imperative
-- fyodor dostoyevsky
+Transhumanism/hedonistic imperative
 - we limit physical pain by drugs
 - why not limit all pain and place ourselves in an eternal state of bliss
 
