@@ -138,4 +138,22 @@ information overload technique
 
 Reciprocation
 - technique that exploits our tendency to return a favour
-- even if first
+- even if first favour was not requested
+- even if the return favour is more valuable
+- double disagreement
+	- if the attacker created a double disagreement and gives in one, the victim will have the tendency to ive in the other
+- expectation
+	- if the victim is requested to give the first favour, they will believe that the attacker becomes a future ally
+
+tendency to obey authority
+- milgram experiement
+
+dont be a commitment creep
+- people have a tendency to follow commitments even when is might be unwise
+
+information exortion is the practive of requesting a ransom for your valuable information
+- ransomware
+
+# Attacks
+represent intentional or unintentional acts that can damage or compromise assets
+- 
