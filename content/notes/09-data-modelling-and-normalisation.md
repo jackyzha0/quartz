@@ -3,8 +3,8 @@ title: "09-data-modelling-and-normalisation"
 tags: 
 - info201 
 - lecture
-sr-due: 2022-06-18
-sr-interval: 31
+sr-due: 2022-11-26
+sr-interval: 124
 sr-ease: 250
 ---
 

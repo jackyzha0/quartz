@@ -3,8 +3,8 @@ title: "11-design-heuristics-2"
 tags: 
 - info203 
 - lecture
-sr-due: 2022-06-17
-sr-interval: 46
+sr-due: 2023-01-23
+sr-interval: 182
 sr-ease: 280
 ---
 

@@ -4,15 +4,15 @@ aliases:
 tags: 
 - cosc202
 - lecture
-sr-due: 2022-06-19
-sr-interval: 3
+sr-due: 2022-09-15
+sr-interval: 52
 sr-ease: 250
 ---
 
 ![](https://i.imgur.com/3EQenkP.png)
 
 # Describe Origination
-- how to floss projects get created
+- how do floss projects get created
 	- forking an existing open source project
 		- mangement of existig project "run out of steam"
 		- users decide to take development of themselves
