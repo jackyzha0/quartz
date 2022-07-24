@@ -13,7 +13,8 @@ Is the second one something we should all do?
 
 How do we define human progress?
 
-Transhumanism/posthumanism:
+Transhumanism hedonistic imperative
+- fyodor dostoyevsty
 - we limit physical pain by drugs
 - why not limit all pain and place ourselves in an eternal state of bliss
 
