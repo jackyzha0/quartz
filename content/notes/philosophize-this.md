@@ -17,4 +17,5 @@ tags:
 - [091-nietzsche-wilil-to-power](notes/091-nietzsche-wilil-to-power.md)
 - [092-nietzsche-pt3-thus-spole-zarathustra](notes/092-nietzsche-pt3-thus-spole-zarathustra.md)
 - [093-nietzsche-pt4-love](notes/093-nietzsche-pt4-love.md)
+- [094-a-look-at-suffering](notes/094-a-look-at-suffering.md)
 - 
