@@ -14,7 +14,7 @@ Is the second one something we should all do?
 How do we define human progress?
 
 Transhumanism hedonistic imperative
-- fyodor dostoyevsty
+- fyodor dostoyevsky
 - we limit physical pain by drugs
 - why not limit all pain and place ourselves in an eternal state of bliss
 
