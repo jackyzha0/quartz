@@ -1,10 +1,10 @@
-s---
+---
 title: "10-oop-concepts-and-uml"
 tags: 
 - info201 
 - lecture
-sr-due: 2022-07-24
-sr-interval: 49
+sr-due: 2022-12-03
+sr-interval: 132
 sr-ease: 270
 ---
 
