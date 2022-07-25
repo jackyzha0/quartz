@@ -4,8 +4,8 @@ aliases:
 tags: 
 - cosc204
 - lecture
-sr-due: 2022-07-26
-sr-interval: 3
+sr-due: 2022-08-03
+sr-interval: 8
 sr-ease: 250
 ---
 
@@ -31,8 +31,8 @@ Two types:
 - Set-reset latch ![sr latch](https://i.imgur.com/mhXd77i.png)
 - D-type flip-flop ![delay flip flop](https://i.imgur.com/IpQfNRm.png)
 - T-type flip-flop ![t flip flop](https://i.imgur.com/SZn2J94.png)
-- JK-type flip-flop ![jk flip flop](https://i.imgur.com/OgfTehO.png), [jk flip flop 2](https://i.imgur.com/8zJvDuw.png)
-- synchronous counter ![simulation](https://tinyurl.com/25olydjb), [slide](https://i.imgur.com/81LS7HL.png)
+- JK-type flip-flop ![jk flip flop](https://i.imgur.com/OgfTehO.png), [jk flip flop 2](https://i.imgur.com/8zJvDuw.png) [simulation](https://tinyurl.com/2bewwd7h)
+- synchronous counter ![simulation](https://tinyurl.com/25olydjb), ![slide](https://i.imgur.com/81LS7HL.png)
 
 # State transition
 
