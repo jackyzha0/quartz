@@ -23,6 +23,8 @@ To watch
 - the tree of life
 - black swan
 - ikuru (the idiot)
+- audition mike takashi
+- boogie nights
 - both blade runners
 - fistful of dollars
 - magnificent seven
@@ -35,6 +37,24 @@ To watch
 - black narcissist
 - the red shoes
 - paris texas
+
+tarantinos faves
+- battle royale kinji fukasaku
+- anything else
+- the blade
+- audition mike takashi
+- boogie nights
+- dazed and confused
+- rio bravo
+- dogville
+- fight club
+- friday 
+- the host
+- the insider
+- joint security area (jsa)
+- lost in translation
+- the matrix
+- memories of murder
 - 
 
 american
