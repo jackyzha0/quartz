@@ -81,7 +81,10 @@ horror
 - plague dogs
 - salvador dali experimental film un chien andalou
 - threads
-- 
+- relic
+- possesion 1981
+- occult 2009
+- last summer
 
 
 australian
