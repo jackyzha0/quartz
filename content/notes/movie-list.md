@@ -17,6 +17,7 @@ Top movies
 - 
 
 To watch
+- largent
 - fistful of dollars
 - magnificent seven
 - godfather
@@ -27,6 +28,8 @@ To watch
 - a matter of life and death
 - black narcissist
 - the red shoes
+- paris texas
+- 
 
 american
 - midnight cowboy
@@ -37,7 +40,15 @@ american
 - the last picture show
 - the deer hunter
 - the exocist
-- indiana jones and the temple
+- indiana jones and the temple of doom
+
+horror
+- halloween
+- the thing
+- the texas chainsaw massacre
+- the evil dead
+- a nightmare on elm street
+
 
 australian
 - walkabout
