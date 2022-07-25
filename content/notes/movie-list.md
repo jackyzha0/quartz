@@ -33,7 +33,51 @@ australian
 - wake in fright
 - picnic at hanging rock
 - the last wave
-- 
+- mad max
+
+india
+- apu trilogy
+
+russian
+- the cranes are flying
+- andre rublove
+- war and peace
+
+germany
+- kings of the road
+- the marriange of maria bron
+- world on a wire
+- geray the wrath of god
+- fitzkoraldo
+
+sweden
+- inmar bergman entire collection
+
+france + italy
+- rome open city
+- bicycle thieves
+- e vilatoni
+- lestrada
+- le dolce vita
+- 8 and a half
+- fallini stariacon
+- roma
+- ill sorpasos road trip comedy though italy
+- investigation of a citizen above suspicion
+- the conformist
+- le ventura
+- eclise
+- dollar trilogy
+- once upon a time in the west
+
+french new wave
+- breathless
+- contempt
+- four hundred blows
+- day for night
+- stolen kisses
+- the umbrellas of cherberg
+- the young girls of 
 
 anime
 - grave of the fireflies
