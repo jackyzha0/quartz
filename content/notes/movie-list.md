@@ -5,7 +5,7 @@ tags:
 ---
 
 Top movies
-1 jojimbo
+- jojimbo
 - taxi driver
 - pulp fiction
 - rashomon
@@ -14,7 +14,7 @@ Top movies
 - ghost in the shell
 - good the bad the ugly
 - perfect blue
-- psycho
+- 
 
 To watch
 - fistful of dollars
@@ -22,4 +22,4 @@ To watch
 - godfather
 - taxi driver (rewatch)
 - suspiria (new version)
-- 
+- the passion of joan of arc
