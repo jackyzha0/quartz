@@ -28,11 +28,11 @@ Two types:
 
 
 # Memory circuits
-- Set-reset latch [sr latch](https://i.imgur.com/mhXd77i.png)
-- D-type flip-flop [delay flip flop](https://i.imgur.com/IpQfNRm.png)
-- T-type flip-flop [t flip flop](https://i.imgur.com/SZn2J94.png)
-- JK-type flip-flop [jk flip flop](https://i.imgur.com/OgfTehO.png), [jk flip flop 2](https://i.imgur.com/8zJvDuw.png)
-- synchronous counter [simulation](https://tinyurl.com/25olydjb), [slide](https://i.imgur.com/81LS7HL.png)
+- Set-reset latch ![sr latch](https://i.imgur.com/mhXd77i.png)
+- D-type flip-flop ![delay flip flop](https://i.imgur.com/IpQfNRm.png)
+- T-type flip-flop ![t flip flop](https://i.imgur.com/SZn2J94.png)
+- JK-type flip-flop ![jk flip flop](https://i.imgur.com/OgfTehO.png), [jk flip flop 2](https://i.imgur.com/8zJvDuw.png)
+- synchronous counter ![simulation](https://tinyurl.com/25olydjb), [slide](https://i.imgur.com/81LS7HL.png)
 
 # State transition
 
