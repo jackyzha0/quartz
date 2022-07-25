@@ -18,6 +18,11 @@ Top movies
 
 To watch
 - largent
+- the brown bunny
+- salo
+- the tree of life
+- black swan
+- ikuru (the idiot)
 - fistful of dollars
 - magnificent seven
 - godfather
