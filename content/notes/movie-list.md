@@ -28,6 +28,17 @@ To watch
 - black narcissist
 - the red shoes
 
+american
+- midnight cowboy
+- easy rider
+- the last movie
+- five easy pieces
+- the king of marvin gardens
+- the last picture show
+- the deer hunter
+- the exocist
+- indiana jones and the temple
+
 australian
 - walkabout
 - wake in fright
@@ -70,6 +81,15 @@ france + italy
 - dollar trilogy
 - once upon a time in the west
 
+french
+- o hazard balthazar
+- le samurai
+- le circle rouge
+- bob le flember
+- playtime
+- the discreet charm of the bugoise
+- belle de jour
+
 french new wave
 - breathless
 - contempt
@@ -77,7 +97,14 @@ french new wave
 - day for night
 - stolen kisses
 - the umbrellas of cherberg
-- the young girls of 
+- the young girls of rochefort
+- donkey skin
+- my night at mauds
+- la collectionneuse
+- claire's knee
+- elevator to the gallows
+- cleo from 5 to 7
+- last year at marienbad
 
 anime
 - grave of the fireflies
