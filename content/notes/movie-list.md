@@ -23,3 +23,8 @@ To watch
 - taxi driver (rewatch)
 - suspiria (new version)
 - the passion of joan of arc
+- salvador dali experimental film
+- a matter of life and death
+- black narcissist
+- the red shoes
+- 
