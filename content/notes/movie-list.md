@@ -16,6 +16,12 @@ Top movies
 - perfect blue
 - 
 
+downloaded
+- salo
+- donnie darko
+- blade runner original
+- audition mike takashi
+
 To watch
 - largent
 - the brown bunny
@@ -23,7 +29,6 @@ To watch
 - the tree of life
 - black swan
 - ikuru (the idiot)
-- audition mike takashi
 - boogie nights
 - both blade runners
 - fistful of dollars
