@@ -32,5 +32,7 @@ No final exam
 # Lectures
 - [01-big-picture](notes/01-big-picture.md)
 - [02-concepts-and-roles](notes/02-concepts-and-roles.md)
+- [03-threats-social-engineering-and-failures](notes/03-threats-social-engineering-and-failures.md)
+
 
 # Archive
