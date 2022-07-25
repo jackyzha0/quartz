@@ -23,6 +23,7 @@ To watch
 - the tree of life
 - black swan
 - ikuru (the idiot)
+- both blade runners
 - fistful of dollars
 - magnificent seven
 - godfather
