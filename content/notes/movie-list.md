@@ -32,7 +32,6 @@ To watch
 - taxi driver (rewatch)
 - suspiria (new version)
 - the passion of joan of arc
-- salvador dali experimental film
 - a matter of life and death
 - black narcissist
 - the red shoes
@@ -79,6 +78,10 @@ horror
 - the texas chainsaw massacre
 - the evil dead
 - a nightmare on elm street
+- plague dogs
+- salvador dali experimental film un chien andalou
+- threads
+- 
 
 
 australian
