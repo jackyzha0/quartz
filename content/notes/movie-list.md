@@ -55,7 +55,12 @@ tarantinos faves
 - lost in translation
 - the matrix
 - memories of murder
-- 
+- police story 3 supercop
+- shaun of the dead
+- speed 1994
+- team america
+- unbreakable 2000
+- brian de palma blowout
 
 american
 - midnight cowboy
