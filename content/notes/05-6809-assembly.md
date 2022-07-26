@@ -4,6 +4,9 @@ aliases:
 tags: 
 - lecture
 - cosc204
+sr-due: 2022-07-29
+sr-interval: 3
+sr-ease: 250
 ---
 
 
@@ -139,7 +142,26 @@ the hard part is the missing instructions
 ![opcode table](https://i.imgur.com/VUGYHPi.png)
 
 ### Functional Groups
-
+- Instructions exist for 
+	- data transfer
+		- between registers
+		- betwen registers and memory
+		- push and pull from stack
+		- [instructions](https://i.imgur.com/nMQuwma.png)
+	- data processing
+		- arithmetic, logical, shift operaitons
+		- [instructions](https://i.imgur.com/67Els9d.png)
+		- [instructions 2](https://i.imgur.com/gMhKiVb.png)
+	- test and jump / branch
+		- check bits in the flag resister and conditional jump
+		- [test and jump instructions](https://i.imgur.com/q0GImXS.png)
+		- ![branch instructions](https://i.imgur.com/OBNIwMj.png)
+	- input ouput
+		- instructions that access the zero page
+		- `out` and `in` instructions on x86
+	- control
+		- interrupt handling
+		- [instructions](https://i.imgur.com/Mj4PYC2.png)
 
 ## 6502 Fibonacci in Machine Code
 
