@@ -118,6 +118,15 @@ The programmer's model of a computer is not the same as the hardware model. The 
 	- Load A with the value $0F
 		- this is like A = 0x0F
 		- `lda #$0F`
+	- Load A with the value stored at memory location $000F
+		- This is like: `A = memory[0x0F]`
+		- `lda $0F$`
+	- Transfer the value stored in B into A
+		- This is like `A = B`
+		- `tfr b,a`
+
+### Opcodes
+
 
 ## 6502 Fibonacci in Machine Code
 
