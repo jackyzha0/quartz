@@ -4,6 +4,9 @@ aliases:
 tags: 
 - lecture
 - cosc203
+sr-due: 2022-07-29
+sr-interval: 3
+sr-ease: 250
 ---
 
 # Javascript
@@ -38,5 +41,21 @@ typing
  - you dont need to specify the type of variable
 
 events
-- e.g., click, hover, etc
-- 
+- e.g., click, hover, resize etc
+- smoke alarm analogy
+	- fire is the event
+	- alarm is the listener
+	- sound of the alarm is the handler
+
+cookies
+- websites can use JS to store cookies on client machines.
+- usually server 'serve' the file to the user and nothing else
+- cookies allow to server to remember information about the client
+- `document.cookie`
+
+limitations
+- cannot write to files (apart from cookies)
+- cannot execute programs on client computer
+- cannot establish a connection to any server except the one it came from (apart from re-directing to a new site)
+- cannot read history of brower (but is can cause the brower to move around in the history list)
+- not supposed to be able to open an invisible window
