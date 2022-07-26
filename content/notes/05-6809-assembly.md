@@ -97,7 +97,27 @@ The programmer's model of a computer is not the same as the hardware model. The 
 - instructions consist of one or more fields
 	- the mnemonic **opcode**
 		- e.g., return from subroutine (`rts`)
-	- and (optionally)
+	- and (optionally) parameters called **operands**
+		- e.g., GOTO (`bra more`)
+	- instuctionsare often of different lengths
+		- `rts` one byte on the 6809
+		- `bra more` is two bytes on the 6809
+		- On ARM32 they are all 32-bits (4 bytes)
+
+### Syntax
+- normally case sensitive
+- syntax
+	- `<label:><opcode><operands>;<comment>`
+- labels
+	- Start with a letter and ends with a colon (can be alphanumberic)
+- Operands
+	- \# immediate (if no # is given then it's an address)
+	- $ hex value
+	- % binary value
+- Examples
+	- Load A with the value $0F
+		- this is like A = 0x0F
+		- `lda #$0F`
 
 ## 6502 Fibonacci in Machine Code
 
