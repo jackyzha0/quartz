@@ -49,12 +49,25 @@ The T flip flop swtiches between the two outputs Q and Q̄ when
 
 ## JK Flip Flop
 
-![JK flip flop diagram](https://i.imgur.com/dFZGyMh.png)
+![JK flip flop diagram|200](https://i.imgur.com/dFZGyMh.png)
 
 The JK flip flop is a combination of the d flip flop and the t flip flop. 
 
+| J | K | Result    |
+|:--|:--|:----------|
+| 0 | 0 | No Change |
+| 0 | 1 | Set       |
+| 1 | 0 | Reset     |
+| 1 | 1 | Toggle    |
 
+It can be used as a toggle *and* as a d flip flop.
 
+![jk flip flop simulation](https://tinyurl.com/22pvm3sf)
+
+## Synchronous Counter
+
+ ![simulation](https://tinyurl.com/25olydjb)
+ ![slide|300](https://i.imgur.com/81LS7HL.png)
 
 
 ## Video demonstration of some sequential circuits
