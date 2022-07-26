@@ -76,8 +76,28 @@ The programmer's model of a computer is not the same as the hardware model. The 
 - some have special meaning
 	- DP - direct page register, can beused to make instuctons that refer to the same memory page faster
 	- PC - the program counter, stores the location of the instruction that is currently being executed
-	- S - system stack pointer is just an index 
+	- S - system stack pointer is just an index into the byte array we call memory [diagram](https://i.imgur.com/vImSjAJ.png)
+		- e.g., we can say `lds #$BCD7` - `S=0xBCD7`
+		- it's more useful to say `pshs a` - `memory[--S]=A`
+		- or `puls a` - `A = memory[S==]`
+		- this is why we call it a stack pointer
+	- U - user stack pointer, like S but used for in routine (function) calls to 
+	- CC - condition codes, hold information about the result of previous operations
+		- E - Entire
+		- F - FIRQ mask (on 1)
+		- H - half carry
+		- I - IRQ mask (on 1)
+		- N - negative
+		- Z - zero
+		- V - overflow
+		- C - carry (ripple carry adder pushes and pulls carry from here)
 
+## Instruction Set
+- Determined by the CPU designers
+- instructions consist of one or more fields
+	- the mnemonic **opcode**
+		- e.g., return from subroutine (`rts`)
+	- and (optionally)
 
 ## 6502 Fibonacci in Machine Code
 
