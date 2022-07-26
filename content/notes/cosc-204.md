@@ -36,6 +36,7 @@ tags:
 - [02-combinatorial-logic](notes/02-combinatorial-logic.md)
 - [03-sequential-logic-circuits](notes/03-sequential-logic-circuits.md)
 - [04-computer-architecture](notes/04-computer-architecture.md)
+- [05-6809-assembly](notes/05-6809-assembly.md)
 
 # Archive
 
