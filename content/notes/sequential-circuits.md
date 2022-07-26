@@ -23,5 +23,19 @@ There are two main types of sequential circuit
 ## SR latch
 The set reset latch is the most basic and simple sequential circuit
 
-![sr latch](https://i.imgur.com/mhXd77i.png)
+![simple sr latch with NOR gate](https://i.imgur.com/ay6uk33.png)
 
+The ouput is remembered and changed basic on previous output. 
+- When S (set) is pulsed Q is one and Q̄ is zero
+- When R (reset) is pulsed Q is set to zero and Q̄ is set to one
+
+## D Flip FLop
+
+![D flip flop with NAND gates](https://i.imgur.com/XVnK2s6.png)
+
+The D flip flop is basically an SR connected to a clock. Instead 
+
+[circuit simulation](https://tinyurl.com/2cafc57y)
+
+## Simple video demonstration of some sequential circuits
+<iframe width="560" height="315" src="https://www.youtube.com/embed/I0-izyq6q5s?start=84" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
