@@ -126,6 +126,19 @@ The programmer's model of a computer is not the same as the hardware model. The 
 		- `tfr b,a`
 
 ### Opcodes
+- lda / ldx / ldy
+	- load a value into the given register
+- sta / stx / sty
+	- store the value of the register back into memory
+- tfr
+	- transfer from one register to another. (tfr b,a)
+
+the hard part is the missing instructions
+- 6809 has no `div` or `sqrt`
+
+![opcode table](https://i.imgur.com/VUGYHPi.png)
+
+### Functional Groups
 
 
 ## 6502 Fibonacci in Machine Code
