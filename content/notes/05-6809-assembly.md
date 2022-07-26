@@ -46,7 +46,38 @@ To make the process easier, we assign names to the numbers. This allows us to pr
 
 ## Programmer's Model
 
-The programmer's model of a computer is not the same as the hardware model. The hardware makes the computer look a par
+The programmer's model of a computer is not the same as the hardware model. The hardware makes the computer look a particular way to the programmer
+- e.g., your computer could have several memory chips in it, but it looks like one continuous block of memory
+
+## 6809 Memory
+- 64KB memory
+	- called *memory space* or *address space*
+- each byte in numbered from $0000 to $FFFF
+	- $ means hex (base 16)
+	- for our purposes, all memory locations exist
+	- so the computer memory is just an array
+		- `unsigned char memory[65536]`
+	- the 6809 memory is conceptually broken into **pages** of 256 bytes each
+	- the first page is called zero page ( all address are of the form $00xx)
+	- the second page is called page 1 ($01xx)
+	- and so on
+
+## 6809 Registers
+
+![6809 registers table](https://i.imgur.com/Icvj7BJ.png)
+
+- Registers are like global variables
+- some are general purpose (X, Y)
+- some are broken down like a `struct` or `union`
+	- D is made u of A and B
+	- Write to A or B and D changes
+	- Write a 16 bit value to D
+		- Read each byte usinig A or B
+- some have special meaning
+	- DP - direct page register, can beused to make instuctons that refer to the same memory page faster
+	- PC - the program counter, stores the location of the instruction that is currently being executed
+	- S - system stack pointer is just an index 
+
 
 ## 6502 Fibonacci in Machine Code
 
