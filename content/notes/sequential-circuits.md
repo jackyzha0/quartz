@@ -8,7 +8,7 @@ tags:
 
 [combinatorial-logic-circuits](notes/combinatorial-logic-circuit.md) always  produce the same outputs given the same input. Sequential curcuits on the other hand, produce different outputs depending on past history and the inputs. 
 
-![combinatorial vs sequential](https://i.imgur.com/GbfAZ4c.png)
+![combinatorial vs sequential|200](https://i.imgur.com/GbfAZ4c.png)
 
 There are two main types of sequential circuit
 - Sychronous
@@ -21,9 +21,9 @@ There are two main types of sequential circuit
 
 # Main circuits
 ## SR latch
-The set reset latch is the most basic and simple sequential circuit
+The set reset latch is the most basic and simple sequential circuit. It is anychronous
 
-![simple sr latch with NOR gate](https://i.imgur.com/ay6uk33.png)
+![simple sr latch with NOR gate|200](https://i.imgur.com/ay6uk33.png)
 
 The ouput is remembered and changed basic on previous output. 
 - When S (set) is pulsed Q is one and Q̄ is zero
@@ -31,11 +31,31 @@ The ouput is remembered and changed basic on previous output.
 
 ## D Flip FLop
 
-![D flip flop with NAND gates](https://i.imgur.com/XVnK2s6.png)
+![D flip flop with NAND gates|200](https://i.imgur.com/XVnK2s6.png)
 
-The D flip flop is basically an SR connected to a clock. Instead 
+The D flip flop is basically an SR connected to a clock. Making it synchronous.
+
+Instead of switching when you set or reset. The outputs change when the clock pulses. Depending on the value of the D(ata) input. 
 
 [circuit simulation](https://tinyurl.com/2cafc57y)
 
-## Simple video demonstration of some sequential circuits
+## T Flip Flop
+
+![T Flip Flop with NAND and NOR gates|200](https://i.imgur.com/CZd3aYK.png)
+
+The T flip flop swtiches between the two outputs Q and Q̄ when
+- T(oggle) is held high
+- And the clock is cycled (from off to on to off)
+
+## JK Flip Flop
+
+![JK flip flop diagram](https://i.imgur.com/dFZGyMh.png)
+
+The JK flip flop is a combination of the d flip flop and the t flip flop. 
+
+
+
+
+
+## Video demonstration of some sequential circuits
 <iframe width="560" height="315" src="https://www.youtube.com/embed/I0-izyq6q5s?start=84" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
