@@ -93,7 +93,7 @@ sta $0401
 	- Move on to the next screen location 
 	- GOTO start
 
-PUTS()
+PUTS() 1
 
 ```
 ;
@@ -115,3 +115,88 @@ done:
 	rts ; return from this routine
 ```
 
+using a as a temp variable
+
+read from y to x
+
+### constants
+```
+ldx #$0400 ; start of screen
+```
+
+- this is a hard coded constant
+- the assembler replaces instances of screen with $0400 when it assembles the code
+
+```
+screen EQU $0400 ; start of screen
+ldx #screen
+```
+
+### post increment
+
+loaded A with 0 bytes past where Y point then increment Y
+```
+lda 0,y ; current char -> A 
+leay 1,y ; increment y
+```
+
+can do this in one go
+```
+lda 0,y+
+```
+
+can do the same with x
+```
+sta 0,x+
+```
+
+
+PUTS() 2
+```
+;
+; 
+Routine: PUTS 
+; Pass the address of the string in Y 
+; 
+
+screen EQU #$0400 ;start of screen
+
+PUTS: 
+	ldx #$screen ; start of screen 
+more: 
+	lda 0,y+ ; current char -> A
+	cmpa #$00 ; was it a zero? 
+	beq done ; if it was 0 then return 
+	sta 0,x+ ; write
+	bra more ; repeat 
+done: 
+	rts ; return from this routine
+```
+
+
+## CC set on load
+CC is set on an `lda` so if we loaded a zero then the Z flag will be set so we dont need cmpa
+```
+lda 0,y+ ; current char -> A 
+beq done ; if it was 0 then return
+```
+
+## storing x, y, a
+need to add an insruction to save them at the start and resotre them at the end
+```
+pshs a,x,y
+puls a,x,y
+```
+
+there are other ways to do this
+
+```
+; Routine: PUTS 
+; Pass the address of the string in Y 
+; 
+screen EQU $0400 ; start of screen 
+
+PUTS: 
+	pshs a,x,y ; save a, x, and y 
+	ldx #screen ; start of screen more: lda 0,y+ ; current char -> A cmpa #$00 ; was it a zero? beq done ; if it was 0 then return sta 0,x+ ; write bra more ; repeat done: puls a,x,y ; restore a, x, y rts ; return from this routine
+```
