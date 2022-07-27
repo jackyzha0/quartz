@@ -27,6 +27,11 @@ We all have legit needs for privacy. Cryptography provides technical measure for
 - caesar cipher
 	- simple substitution scheme (rotation)
 	- vulnerable to cryptanalysis
+	- key is a single integer
+	- symmetrical (same key for encrypt and decrypt)
+	- so ciphertext has the same patterns as the plaintext e.g., letter frequencies
+	- this leads to cryptanalysis: systematic ways of determining the encryption scheme
+	- modern ciphers aim to make the cipher text resemble *noise* (random data)
 
 # General process
 - encrypt
@@ -46,3 +51,4 @@ mathmatically
 refers to unencypted message. In the digital age the messages are often not plain text (ascii, unicode, etc).
 
 digital crypto schemes normally work on the binary data (images, .docs, .txt, mp4 etc.)
+
