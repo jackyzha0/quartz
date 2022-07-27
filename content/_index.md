@@ -4,7 +4,7 @@ title: Home
 ---
 <div class="row" style="margin-top: 2em; margin-bottom: 2em">
     <article class="col-6">
-        <h1 id="quick-notes-arent-quick-in-obsidian" style="margin: 0">Quick Notes aren't "quick" in Obsidian</h1>
+        <h1 id="quick-notes-arent-quick-in-obsidian" style="margin: 0">Quick Notes aren't "[[posts/put-quick-notes-into-obsidian-from-anywhere|quick]]" in Obsidian</h1>
         <p>Take speedy notes in a browser extension, a mobile app, or a web app and [[posts/sync-fleeting-notes-with-obsidian|sync the notes with Obsidian]].</p>
         <div style="display: flex; justify-content: center; margin-bottom: 16px">
             <a href="/download" class="button">Try it free</a>
