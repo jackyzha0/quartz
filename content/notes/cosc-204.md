@@ -42,6 +42,7 @@ tags:
 - [03-sequential-logic-circuits](notes/03-sequential-logic-circuits.md)
 - [04-computer-architecture](notes/04-computer-architecture.md)
 - [05-6809-assembly](notes/05-6809-assembly.md)
+- [06-6809-programming](notes/06-6809-programming.md)
 
 # Archive
 
