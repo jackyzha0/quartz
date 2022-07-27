@@ -84,4 +84,19 @@ computers have the same problem: they are deterministic
 
 entropy pool
 - modern OSs implement an entropy pool that processes can draw on when the need random data
-	- some systems provide blocking and non-blocking random sourc
+	- some systems provide blocking and non-blocking random source devices
+		- blocking: will stop when entropy is exhausted
+
+how to prove randomness
+- cannot prove
+- but can check for uniformity, bias, distribution etc. 
+- difficult with small samples
+- can identify data that is unlikely to be random
+	- (rngtext, diehard, dieharder etc)
+
+# Future
+- arms race
+- parallell co-ordination
+- quantum copmuting/cryptography could radically change the field
+	- already being developed and investigated
+- security practitioners are are already developing things for quantum computing. 
