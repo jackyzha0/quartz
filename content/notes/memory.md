@@ -32,4 +32,14 @@ This is often called ROM (read only memory)
 - Registers are memory cells with names within the CPU. 
 - They hold data instructions or CPU status.
 
-
+## Special purpose registers
+- program counter
+	- stores address of current instruction
+- accumulator
+	- source of one of the operands
+	- destination of the result
+- status flags
+	- individaul bits store information about results of operations
+		- result of last instruction was negative, zero, or postive
+		- carry from most recent arithmetic operation
+		- overflow occurred during the last instruction

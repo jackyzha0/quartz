@@ -4,10 +4,26 @@ aliases:
 tags: 
 - cosc204
 - lecture
-sr-due: 2022-07-26
-sr-interval: 3
+sr-due: 2022-08-04
+sr-interval: 8
 sr-ease: 250
 ---
+
+- [memory](notes/memory.md)
+- [control-unit](notes/control-unit.md)
+- [bus](notes/bus.md)
+- [CPU](notes/CPU.md)
+- [ALU](notes/ALU.md)
+- [computer-architecture](notes/computer-architecture.md)
+
+
+
+
+
+
+
+
+
 
 
 - tristate buffer [slide](https://i.imgur.com/2Kb419g.png)

@@ -23,7 +23,11 @@ tags:
 - [transistors](notes/transistors.md)
 - [demultiplexor](notes/demultiplexor.md)
 - [sequential-circuits](notes/sequential-circuits.md)
-- 
+- [bus](notes/bus.md)
+- [control-unit](notes/control-unit.md)
+- [CPU](notes/CPU.md)
+- [ALU](notes/ALU.md)
+- [computer-architecture](notes/computer-architecture.md)
 
 - Hardware
 - Assembly
