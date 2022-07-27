@@ -2,16 +2,19 @@
 id: home
 title: Home
 ---
-
-# The quickest way for writing connected notes
-Take speedy notes in a browser extension, a mobile app, or a web app and [[posts/sync-fleeting-notes-with-obsidian|sync the notes with Obsidian]]. Click the links to see how you can [[posts/simplest-way-to-use-zettelkasten-for-note-management|get started]].
-
-
-<div style="display: flex; justify-content: center; margin-bottom: 16px">
-    <a href="/download" class="button">Try it free</a>
+<div class="row" style="margin-top: 2em; margin-bottom: 2em">
+    <article class="col-6">
+        <h1 id="quick-notes-arent-quick-in-obsidian" style="margin: 0">Quick Notes aren't "quick" in Obsidian</h1>
+        <p>Take speedy notes in a browser extension, a mobile app, or a web app and [[posts/sync-fleeting-notes-with-obsidian|sync the notes with Obsidian]].</p>
+        <div style="display: flex; justify-content: center; margin-bottom: 16px">
+            <a href="/download" class="button">Try it free</a>
+        </div>
+    </article>
+    <div class="col-6">
+        {{< youtube sFQaDeFNecc >}}
+    </div>
 </div>
 
-{{< youtube sFQaDeFNecc >}}
 ## Features:
 ### Quick capture. Anywhere.
 Capture notes anywhere with an array of supported platforms and built-in sync between all platforms.
