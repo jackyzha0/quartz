@@ -4,6 +4,9 @@ aliases:
 tags: 
 - lecture
 - comp210
+sr-due: 2022-07-30
+sr-interval: 3
+sr-ease: 250
 ---
 
 # news
