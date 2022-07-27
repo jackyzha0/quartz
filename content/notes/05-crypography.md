@@ -52,3 +52,15 @@ refers to unencypted message. In the digital age the messages are often not plai
 
 digital crypto schemes normally work on the binary data (images, .docs, .txt, mp4 etc.)
 
+# Conventions
+- alice, bob, charlie, etc
+- mallory -> malicious
+- etc
+- public vs private domains
+	- assume communication is public
+	- assume information is prepared and consumed in private domain
+
+# Randomness
+- a lack of predicability
+- no patterns
+- 
