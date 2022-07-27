@@ -4,6 +4,9 @@ aliases:
 tags: 
 - lecture
 - cosc204
+sr-due: 2022-07-31
+sr-interval: 3
+sr-ease: 250
 ---
 
 difficult
@@ -194,9 +197,46 @@ there are other ways to do this
 ; Routine: PUTS 
 ; Pass the address of the string in Y 
 ; 
-screen EQU $0400 ; start of screen 
+screen EQU $0400      ; start of screen 
 
 PUTS: 
-	pshs a,x,y ; save a, x, and y 
-	ldx #screen ; start of screen more: lda 0,y+ ; current char -> A cmpa #$00 ; was it a zero? beq done ; if it was 0 then return sta 0,x+ ; write bra more ; repeat done: puls a,x,y ; restore a, x, y rts ; return from this routine
+	pshs a,x,y        ; save a, x, and y 
+	ldx #screen       ; start of screen 
+more: 
+	lda 0,y+          ; current char -> A 
+	cmpa #$00         ; was it a zero? 
+	beq done          ; if it was 0 then return 
+	sta 0,x+          ; write 
+	bra more          ; repeat 
+done: 
+	puls a,x,y        ; restore a, x, y 
+	rts               ; return from this routine
 ```
+
+
+## calling the routine
+```
+
+```
+
+- label (message) to mark a sequence of bytes stored in memory
+- 0 at the end puts out routine only stops when is sees the $00
+
+then
+```
+message:
+	.byte "HELLO WORLD", 0
+
+START:
+	ldy #message
+	bsr puts
+	rts
+```
+
+
+# assembler
+- compiles assemble to machine code
+- can also dissamble machine code
+
+assembler create a listing file that gives the location, machines lcode, and assembly of the program 
+![](https://i.imgur.com/a3DEdyj.png)
