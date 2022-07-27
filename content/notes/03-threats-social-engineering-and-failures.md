@@ -10,10 +10,10 @@ sr-ease: 250
 ---
 
 # News
-- kiwis urged to get new passwords by government cybersecurity agency (big password energy)
+- kiwis urged to get new passwords by government cybersecurity agency ("big password energy")
 - ukraine cyber agency reports cyber attack surge
 - plymouth households hit by clarion housing cyber attack
-- facebook "unintentionally uploaded" 1.5 million peoles email contacts without their consent
+- facebook "unintentionally uploaded" 1.5 million peoples email contacts without their consent
 - threat maps: https://threatmap.checkpoint.com/ThreatPortal/livemap.html
 
 # Threats
@@ -116,9 +116,9 @@ security is a never ending arms race. Security is improving but so are the numbe
 - using social skills to convince people to reveal access credentials or other valuable information to an attacker
 - used for a broad range of malicious activities through human interactions
 
-![kevin mitkick quote](https://i.imgur.com/Q7ChU37.png)
+![kevin mitnick quote](https://i.imgur.com/Q7ChU37.png)
 
-Developing trust if a powerful technique in social engineering
+Developing trust is a powerful technique in social engineering
 - people are naturally helpful and trusting
 - ask during seemingly innocent conversations
 	- slowly ask for increasingly imprtant information
@@ -138,7 +138,6 @@ information overload technique
 - trigger by
 	- providing a lot of information
 	- providing arguments from an unexpected angle, whicih forces the victim to analyse the situation from a new perspective which requires additional mental processing
-
 
 Reciprocation
 - technique that exploits our tendency to return a favour

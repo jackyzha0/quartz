@@ -4,8 +4,8 @@ aliases:
 tags: 
 - cosc204
 - lecture
-sr-due: 2022-07-27
-sr-interval: 8
+sr-due: 2022-08-16
+sr-interval: 20
 sr-ease: 250
 ---
 
@@ -18,11 +18,6 @@ sr-ease: 250
 - [boolean-equations](notes/boolean-equations.md)
 - [logic-gates](notes/logic-gates.md)
 - [demultiplexor](notes/demultiplexor.md)
-
-
-
-
-
 
 
 

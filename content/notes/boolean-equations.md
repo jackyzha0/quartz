@@ -11,7 +11,7 @@ Often used to describe/define [combinatorial-logic-circuit](notes/combinatorial-
 Precedence
 - NOT is unary, so it has the highest precedence
 - AND is mulitply, so it comes next
-- OR is like plusl, to it comes last
+- OR is like plus, to it comes last
 
 ![Precedence table|200](https://i.imgur.com/jPlrVwW.png)
 
