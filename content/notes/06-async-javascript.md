@@ -80,3 +80,24 @@ fetchPromise
 		console.error('could not get products: ${error}')
 	})
 ```
+
+# JSON
+
+Javasript Object Notionation
+
+``` json
+[
+	{
+		"name": "john",
+		"type": "person"
+	},
+	{
+		"name": "bob",
+		"type": "person"
+	},
+	{
+		"name": "sally",
+		"type": "person"
+	},
+]	
+```
