@@ -4,8 +4,8 @@ aliases:
 tags: 
 - lecture
 - cosc204
-sr-due: 2022-07-29
-sr-interval: 3
+sr-due: 2022-08-05
+sr-interval: 7
 sr-ease: 250
 ---
 
@@ -102,7 +102,7 @@ The programmer's model of a computer is not the same as the hardware model. The 
 		- e.g., return from subroutine (`rts`)
 	- and (optionally) parameters called **operands**
 		- e.g., GOTO (`bra more`)
-	- instuctionsare often of different lengths
+	- instuctions are often of different lengths
 		- `rts` one byte on the 6809
 		- `bra more` is two bytes on the 6809
 		- On ARM32 they are all 32-bits (4 bytes)
@@ -123,7 +123,7 @@ The programmer's model of a computer is not the same as the hardware model. The 
 		- `lda #$0F`
 	- Load A with the value stored at memory location $000F
 		- This is like: `A = memory[0x0F]`
-		- `lda $0F$`
+		- `lda $0F`
 	- Transfer the value stored in B into A
 		- This is like `A = B`
 		- `tfr b,a`
