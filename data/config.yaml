@@ -3,8 +3,8 @@ enableToc: true
 openToc: false
 enableLinkPreview: true
 enableLatex: true
-tagline: A scratchpad for connected notes
-description: Fleeting Notes is the speediest way to take connected notes. Capture notes across an array of platforms and build your network of ideas.
+tagline: Short-form Notes for Obsidian
+description: Take short-form notes and sync them with Obsidian. Capture notes across an array of platforms and build your network of ideas.
 page_title:
   "Fleeting Notes"
 links:
