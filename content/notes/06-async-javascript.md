@@ -13,7 +13,6 @@ Async programming allows you to start a potentially long running task have still
 - return immediately so other tasks can run
 - notify us with result when the task is finished
 
-
 # promises
 - an object returned by an async function
 - represents the current state of the operation
@@ -45,8 +44,21 @@ each `.then` itself returns another promise which also has a `.then` method. Thi
 ## combining promises
 
 ```javascript
-Promise.all([fetchPromsise1, fetchPromsise2, fetchPromsise3]) //all promises need to be fulfilled but they dont depend of each other
-Promise.any([fetchPromsise1, fetchPromsise2, fetchPromsise3]) //any 
+Promise.all([fetchPromsise1, fetchPromsise2, fetchPromsise3]) //it is fullfilled once and if all the promises are fulfilled
+Promise.any([fetchPromsise1, fetchPromsise2, fetchPromsise3]) //it is fulfilled once any one of the promises is fullfilled or all are rejected
+```
+
+# Async and await
+looks like sync code but is actually async
+
+async functions always return a promise
+
+the `await` keyword can only be used in async functions. It makes the code wait at that point untill the promise is fulfilled
+
+``` javascript
+async function myFunction(){
+	const response = await fetch('https://mdn.github.io/learningarea/javascript/apis/fetching-data/can-store/products.json');
+}
 ```
 
 # error handling
