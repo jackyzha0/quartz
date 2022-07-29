@@ -4,6 +4,9 @@ aliases:
 tags: 
 - lecture
 - cosc203
+sr-due: 2022-08-01
+sr-interval: 3
+sr-ease: 250
 ---
 
 Async programming allows you to start a potentially long running task have still be able to interact while it it running
