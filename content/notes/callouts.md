@@ -6,6 +6,20 @@ title: "Callouts"
 
 Supports built-in Callouts. See [documentation on supported types here](https://help.obsidian.md/How+to/Use+callouts#Types).
 
+## Format:
+
+```
+> [!example] Example
+> 
+> Text
+```
+
+Turns to:
+
+> [!example] Example
+>
+> Test
+
 ## Showcase:
 
 > [!example] example
