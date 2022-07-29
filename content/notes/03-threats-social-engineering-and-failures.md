@@ -4,8 +4,8 @@ aliases:
 tags: 
 - comp210
 - lecture
-sr-due: 2022-08-05
-sr-interval: 9
+sr-due: 2022-08-21
+sr-interval: 23
 sr-ease: 250
 ---
 
@@ -182,3 +182,62 @@ represent intentional or unintentional acts that can damage or compromise assets
 - pharming - attacks browsers address bar to redirect users to a illegitamate site for the purpose of obtaining private information .e.g., DNS cache poisoning
 	- make the DNS change to point to an illegitamate site instead of the real site
 - man-in-the-middle - an attack monitors (sniffs) the network packes, modifies them, and inserts them back into the network.
+
+# failure
+> A failure occur when our security mechanisms (controls), hardware, or information systems have failed to protect our assets
+
+Technical Hardware Failures (or Errors) occur when an equipment is distributed containing a unknown or known flaw 
+- They can cause the system to perform outside of expected parameters, resulting in unreliable service or lack of availability. 
+- Some errors are terminal and some are intermittent. 
+	- Intel Pentium CPU failure – the floating point operation bug (loss over 475 million). 
+	- Mean time between failure (or mean time to failure): measures the amount of time between hardware failures or to failure.
+
+## Spectre & meltdown
+https://meltdownattack.com/
+
+![](https://i.imgur.com/SI9QzRv.png)
+
+## Technical Software Failures or Errors 
+- Large quantities of computer code are written, debugged, published, and sold before all bugs are detected and resolved. 
+- Combinations of certain software and hardware can reveal new software bugs. 
+- Entire Web sites are dedicated to documenting bugs. 
+- Open Web Application Security Project (OWASP) is dedicated to helping organizations create/operate trustworthy software and publishes a list of top security risks.
+
+## The Deadly Sins in Software Security 
+- Buffer overruns 
+- Catching exceptions 
+- Command injection 
+- Cross-site scripting (XSS) 
+- Failure to handle errors 
+- Failure to protect network traffic (e.g., by not using WPA in a local wifi) 
+- Failure to store and protect data securely (e.g., access control) 
+- Failure to use cryptographically strong random numbers 
+- Format string problems 
+- Neglecting change control
+- Improper file access
+- Improper use of Secure Sockets Layer (SSL)
+- Information leakage
+- Integer bugs (overflows/underflows)
+- Race conditions
+- SQL injection
+- Trusting network address resolution
+- Unauthenticated key exchange
+- Use of magic URLs and hidden forms
+- Use of weak password-based systems
+- Poor usability
+
+# Technological obsolescence
+> when antiquated/outdated infrastructure can lead to security issues
+
+- Proper managerial planning should prevent technology obsolescence.
+- IT plays a large role
+
+# Theft
+occurs when taking of another’s physical, electronic or intellectual property
+- Physical theft is controlled relatively easily
+- Electronic theft is a more complex problem as the evidence of crime is not really apparent (e.g., you don’t notice the theft as you would for a physical object)
+
+# what to do
+- Don’t panic!
+- Knowledge and Education are key.
+- You make more progress by fixing the problem than by fixing the blame. (H.B. Wolfe)
