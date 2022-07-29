@@ -17,16 +17,16 @@ sr-ease: 250
 - threat maps: https://threatmap.checkpoint.com/ThreatPortal/livemap.html
 
 # Threats
-events are circumstances that has the potential (risk) to adversely affect assets (reducing their value)
+events are circumstances that has the **potential** (risk) to adversely affect assets (reducing their value)
 - e.g., possibility of text messages stop working -> phone loses value
 
 # Attack
-intentional or unintentional (e.g., lightning) acts that can damage or compromise assets.
+intentional or unintentional (e.g., lightning) **acts** that can damage or compromise assets.
 - the actual act of attacking
 - can be passive attack: e.g., stumble accross information accidentaly
 
 # Exploits
-- the techniques used
+- the **techniques** used
 
 # Vulnerabilities
 - the potential weaknesses in assets or in their defensive control systems
@@ -163,3 +163,22 @@ represent intentional or unintentional acts that can damage or compromise assets
 - defacing
 - threats are rising
 - cyberterrorism/warfare is much more sinister form of hacking
+
+## Types of attacks
+- Virus - code segments that attach to existing program and take control of access to the targeted computer
+- Worms - replicate themselves until they completely fill available resources like memory and hardrive space
+- Tojan Horses - malware disguised as helpful, intersting or necessary pieces of software
+- Polymorphic threat - actually evolves to elude detection
+- Virus and worm hoaxes - nonexistent malware that employees waste time spreading awareness about
+- back door - gain access to system or network using known or previously unknown/newly discovered access mechanism
+- DoS - attacker sends a large number of connection or information requests to a target
+	- target becomes overloaded and cannot respond to legitamate requests for service
+	- may result in crach or inability to perform ordinary functions
+- DDoS - coordinated stream of requresets is launched against a target from many locations
+- Mail bombing (also a DoS - attacker routes large quantities of e-mail to a target to overwhelm them
+- Spam (unusoliciited commercial e-mail) - more a nuisiance than an attack, is emerging as a vector for some attacks
+- packet sniffer - monitors data traveling over network, can also be used for legit purposes, but can be used to steal data
+- spoofing -> technique used to gain unauthorized access; intruder assumes a trusted IP address
+- pharming - attacks browsers address bar to redirect users to a illegitamate site for the purpose of obtaining private information .e.g., DNS cache poisoning
+	- make the DNS change to point to an illegitamate site instead of the real site
+- man-in-the-middle - an attack monitors (sniffs) the network packes, modifies them, and inserts them back into the network.
