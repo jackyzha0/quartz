@@ -41,4 +41,12 @@ tags:
 - one is useless without the other
 - many security vulnerabilities are caused by inexperienced/incompetent programmer creating systems that only have one or the other
 - authenticaion without authorisation can lead to *path traversal* flaws
+	- changing the url path to find admin sites
 - authorisation without authenticaion is the equivalent of blindly trusting your users.
+
+# Passwords
+- not good
+- lots of bad advice
+- we are lazy
+- "safe" passwords are difficult to enter on touch screen devies
+- to many accouts
