@@ -8,6 +8,10 @@ Supports built-in Callouts. See [documentation on supported types here](https://
 
 ## Showcase:
 
+> [!example] example
+>
+> example
+
 > [!note] note
 >
 > note
@@ -47,10 +51,6 @@ Supports built-in Callouts. See [documentation on supported types here](https://
 > [!bug] bug
 >
 > bug
-
-> [!example] example
->
-> example
 
 > [!quote] quote, cite
 >
