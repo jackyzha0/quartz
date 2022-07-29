@@ -7,6 +7,7 @@ function htmlToElement(html) {
 
 function initPopover(baseURL, useContextualBacklinks, renderLatex) {
   const basePath = baseURL.replace(window.location.origin, "")
+  const regex = /\[!.+\]-? /;
   fetchData.then(({ content }) => {
     const links = [...document.getElementsByClassName("internal-link")]
     links
@@ -17,7 +18,7 @@ function initPopover(baseURL, useContextualBacklinks, renderLatex) {
           const linkDest = content[li.dataset.src]
           const popoverElement = `<div class="popover">
     <h3>${linkDest.title}</h3>
-    <p>${highlight(removeMarkdown(linkDest.content), li.dataset.ctx)}...</p>
+    <p>${highlight(removeMarkdown(linkDest.content), li.dataset.ctx).replace(regex, "")}...</p>
     <p class="meta">${new Date(linkDest.lastmodified).toLocaleDateString()}</p>
 </div>`
           el = htmlToElement(popoverElement)
@@ -26,7 +27,7 @@ function initPopover(baseURL, useContextualBacklinks, renderLatex) {
           if (linkDest) {
             const popoverElement = `<div class="popover">
     <h3>${linkDest.title}</h3>
-    <p>${removeMarkdown(linkDest.content).split(" ", 20).join(" ")}...</p>
+    <p>${removeMarkdown(linkDest.content).split(" ", 20).join(" ").replace(regex, "")}...</p>
     <p class="meta">${new Date(linkDest.lastmodified).toLocaleDateString()}</p>
 </div>`
             el = htmlToElement(popoverElement)
