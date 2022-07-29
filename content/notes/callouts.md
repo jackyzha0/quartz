@@ -18,7 +18,7 @@ Turns to:
 
 > [!example] Example
 >
-> Test
+> Text
 
 ## Showcase:
 
