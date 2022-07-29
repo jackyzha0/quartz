@@ -18,16 +18,6 @@ No final exam
 - [mccumber-cube](notes/mccumber-cube.md)
 - [access-security-tradeoff](notes/access-security-tradeoff.md)
 - [cia-triad](notes/cia-triad.md)
-- 
-
-- 
-- Risks
-- Ethics and Privacy
-- Cyrptography
-- Physical security
-- Electronic Forensics
-- Authentication
-- Pen-Testing
 
 # Lectures
 - [01-big-picture](notes/01-big-picture.md)
