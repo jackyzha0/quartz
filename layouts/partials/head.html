@@ -30,7 +30,7 @@
   {{$css = $css | append $scss}}
   {{end}}
   {{if $.Site.Data.enableCallouts}}
-    {{$scss := resources.Get "styles/_light_syntax.scss" | resources.ToCSS (dict "outputStyle" "compressed") }}
+    {{$scss := resources.Get "styles/_callouts.scss" | resources.ToCSS (dict "outputStyle" "compressed") }}
     {{$css = $css | append $scss}}
   {{end}}
   {{$finalCss := $css | resources.Concat "styles.css" | resources.Fingerprint "md5" | resources.Minify  }}
