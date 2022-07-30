@@ -78,7 +78,7 @@
     {{ end }}
     {{ $counter = add $counter 1 }}
   {{end}}
-  {{ $content = $content | replaceRE `\[![a-zA-Z]+\]-?` "" }}
+  {{ $content = $content | replaceRE `\[![a-zA-Z]+\][-\+]?` "" }}
   {{ $content = $content | replaceRE "blockquote class=callout" "blockquote" }}
 {{end}}
 

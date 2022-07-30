@@ -3,7 +3,7 @@
   <meta charset="UTF-8" />
   <meta
     name="description"
-    content="{{if .IsHome}}{{$.Site.Data.config.description}}{{else}}{{ replaceRE ` \[!.+\]-? ` `` .Summary }}{{end}}"
+    content="{{if .IsHome}}{{$.Site.Data.config.description}}{{else}}{{ replaceRE ` \[!.+\][-\+]? ` `` .Summary }}{{end}}"
   />
   <title>
     {{ if .Title }}{{ .Title }}{{ else }}{{ $.Site.Data.config.page_title }}{{
