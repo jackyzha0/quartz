@@ -52,7 +52,18 @@
     --callout-warning-accent: #7f4800 !important;
 }
 
-blockquote[class$="-callout"] {
+blockquote.callout-collapsible {
+    cursor: pointer;
+}
+blockquote.callout-collapsed {
+    border-bottom-right-radius: 5px !important;
+    padding-bottom: 0 !important;
+}
+blockquote.callout-collapsed > p:not(:first-child) {
+    display: none !important;
+}
+
+blockquote[class*="-callout"] {
     margin-right: 0;
     border-radius: 5px;
     position: relative;
@@ -61,14 +72,14 @@ blockquote[class$="-callout"] {
     color: var(--dark);
     background-color: var(--outlinegray);
 }
-blockquote[class$="-callout"] > p {
+blockquote[class*="-callout"] > p {
     border-top-right-radius: 5px;
     padding-left: 1em;
     padding-right: 1em;
     color: var(--dark);
     background-color: var(--outlinegray);
 }
-blockquote[class$="-callout"] > p:first-child::after {
+blockquote[class*="-callout"] > p:first-child::after {
     display: inline-block;
     height: 24px;
     width: 18px;
@@ -77,10 +88,11 @@ blockquote[class$="-callout"] > p:first-child::after {
     left: 6px;
     top: 0;
 }
-blockquote[class$="-callout"] > p:first-child {
+blockquote[class*="-callout"] > p:first-child {
     font-size: 125%;
     font-weight: bold;
     padding-left: 30px;
+    border-bottom-right-radius: 5px;
 }
 
 blockquote.abstract-callout,

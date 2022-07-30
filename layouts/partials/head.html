@@ -24,14 +24,14 @@
 
   <!-- CSS Stylesheets and Fonts -->
   {{$sass := resources.Match "styles/[!_]*.scss" }}
+  {{ if (not $.Site.Data.config.enableCallouts) }}
+  {{ $calloutsCss := resources.Get "styles/callouts.scss" }}
+  {{$sass = $sass | symdiff (slice $calloutsCss)}}
+  {{end}}
   {{$css := slice }}
   {{range $sass}}
   {{$scss := . | resources.ToCSS (dict "outputStyle" "compressed") }}
   {{$css = $css | append $scss}}
-  {{end}}
-  {{ if $.Site.Data.config.enableCallouts }}
-  {{ $calloutsCss := resources.Get "styles/callouts.scss" | resources.ToCSS (dict "outputStyle" "compressed") }}
-  {{$css = $css | append $calloutsCss}}
   {{end}}
   {{$finalCss := $css | resources.Concat "styles.css" | resources.Fingerprint "md5" | resources.Minify  }}
   <link href="{{$finalCss.Permalink}}" rel="stylesheet" />
@@ -60,6 +60,11 @@
   {{ if $.Site.Data.config.enableCodeBlockCopy }}
   {{ $clipboard := resources.Get "js/clipboard.js" | resources.Fingerprint "md5" | resources.Minify }}
   <script src="{{$clipboard.Permalink}}"></script>
+  {{ end }}
+
+  {{ if $.Site.Data.config.enableCallouts }}
+  {{ $callouts := resources.Get "js/callouts.js" | resources.Fingerprint "md5" | resources.Minify }}
+  <script src="{{$callouts.Permalink}}"></script>
   {{ end }}
 
   <!--  Preload page vars  -->
@@ -99,6 +104,10 @@
 
       {{if $.Site.Data.config.enableSPA -}}
       addTitleToCodeBlocks();
+      {{ end }}
+
+      {{if $.Site.Data.config.enableCallouts -}}
+      addCollapsibleCallouts();
       {{ end }}
 
       {{if $.Site.Data.config.enableFooter}}
