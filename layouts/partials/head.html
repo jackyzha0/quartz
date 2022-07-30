@@ -3,7 +3,7 @@
   <meta charset="UTF-8" />
   <meta
     name="description"
-    content="{{if .IsHome}}{{$.Site.Data.config.description}}{{else}}{{ replaceRE ` \[!.+\][-\+]? ` `` .Summary }}{{end}}"
+    content="{{if .IsHome}}{{$.Site.Data.config.description}}{{else}}{{.Summary}}{{end}}"
   />
   <title>
     {{ if .Title }}{{ .Title }}{{ else }}{{ $.Site.Data.config.page_title }}{{
@@ -24,10 +24,6 @@
 
   <!-- CSS Stylesheets and Fonts -->
   {{$sass := resources.Match "styles/[!_]*.scss" }}
-  {{ if (not $.Site.Data.config.enableCallouts) }}
-  {{ $calloutsCss := resources.Get "styles/callouts.scss" }}
-  {{$sass = $sass | symdiff (slice $calloutsCss)}}
-  {{end}}
   {{$css := slice }}
   {{range $sass}}
   {{$scss := . | resources.ToCSS (dict "outputStyle" "compressed") }}

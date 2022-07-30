@@ -139,13 +139,12 @@ const highlight = (content, term) => {
   }
 
   const resultToHTML = ({ url, title, content, term }) => {
-    const regex = /\[![a-zA-z]\][-\+]? /;
     const text = removeMarkdown(content)
     const resultTitle = highlight(title, term)
     const resultText = highlight(text, term)
     return `<button class="result-card" id="${url}">
         <h3>${resultTitle}</h3>
-        <p>${resultText.replace(regex, "")}</p>
+        <p>${resultText}</p>
     </button>`
   }
 
