@@ -20,6 +20,32 @@ Turns to:
 >
 > Text
 
+## Collapsible Callouts:
+
+```
+> [!example]- Starts Collapsed
+> 
+> Text
+```
+
+Turns to:
+
+> [!example]- Starts Collapsed
+>
+> Text
+
+```
+> [!example]- Starts Opened
+> 
+> Text
+```
+
+Turns to:
+
+> [!example]- Starts Opened
+>
+> Text
+
 ## Showcase:
 
 > [!example] example
