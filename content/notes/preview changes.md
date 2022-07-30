@@ -14,7 +14,7 @@ This step will generate the list of backlinks for Hugo to parse. Ensure you have
 
 ```shell
 # Install and link `hugo-obsidian` locally
-$ go install github.com/jackyzha0/hugo-obsidian@latest
+go install github.com/jackyzha0/hugo-obsidian@latest
 ```
 
 If you are running into an error saying that `command not found: hugo-obsidian`, make sure you set your `GOPATH` correctly! This will allow your terminal to correctly recognize hugo-obsidian as an executable.
@@ -26,10 +26,10 @@ Hugo is the static site generator that powers Quartz. [Install Hugo with "extend
 
 ```
 # Navigate to your local Quartz folder
-$ cd <location-of-your-local-quartz>
+cd <location-of-your-local-quartz>
 
 # Start local server
-$ make serve
+make serve
 
 # View your site in a browser at http://localhost:1313/
 ```

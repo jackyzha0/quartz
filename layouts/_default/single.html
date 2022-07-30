@@ -17,8 +17,8 @@
     <article>
       {{if .Title}}<h1>{{ .Title }}</h1>{{end}}
       <p class="meta">
-        Last updated {{if ne .Date .Lastmod}}{{ .Lastmod.Format "January 2, 2006" }}
-        {{else}}Unknown{{end}}.
+
+          Last updated {{ partial "date-fmt.html" .}} 
           {{ partial "github.html" . }}
       </p>
       <ul class="tags">

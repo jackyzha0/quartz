@@ -21,7 +21,7 @@ Then, Fork the repository into your own GitHub account. If you don't have an acc
 After you've made a fork of the repository, you need to download the files locally onto your machine. Ensure you have `git`, then type the following command replacing `YOUR-USERNAME` with your GitHub username.
 
 ```shell
-$ git clone https://github.com/YOUR-USERNAME/quartz
+git clone https://github.com/YOUR-USERNAME/quartz
 ```
 
 ## Editing
