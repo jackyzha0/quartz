@@ -59,7 +59,7 @@ blockquote.callout-collapsed {
     border-bottom-right-radius: 5px !important;
     padding-bottom: 0 !important;
 }
-blockquote.callout-collapsed > p:not(:first-child) {
+blockquote.callout-collapsed > *:not(:first-child) {
     display: none !important;
 }
 
