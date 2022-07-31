@@ -40,7 +40,7 @@ calling routine
 bsr routine
 ```
 
-## Interation
+## Iteration
 use GOTOs
 
 ```

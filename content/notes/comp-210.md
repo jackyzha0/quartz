@@ -18,11 +18,14 @@ No final exam
 - [mccumber-cube](notes/mccumber-cube.md)
 - [access-security-tradeoff](notes/access-security-tradeoff.md)
 - [cia-triad](notes/cia-triad.md)
+- [cryptography](notes/cryptography.md)
+- [randomness](notes/randomness.md)
 
 # Lectures
 - [01-big-picture](notes/01-big-picture.md)
 - [02-concepts-and-roles](notes/02-concepts-and-roles.md)
 - [03-threats-social-engineering-and-failures](notes/03-threats-social-engineering-and-failures.md)
+- [04-authentication-authorisation-passwords](notes/04-authentication-authorisation-passwords.md)
 - [05-cryptography](notes/05-cryptography.md)
 
 # Archive
