@@ -108,13 +108,11 @@ const highlight = (content, term) => {
 }
 
 // Common utilities for search
-const resultToHTML = ({ url, title, content, term }) => {
-  const text = removeMarkdown(content)
-  const resultTitle = highlight(title, term)
-  const resultText = highlight(text, term)
+const resultToHTML = ({ url, title, content }) => {
+  const cleaned = removeMarkdown(content)
   return `<button class="result-card" id="${url}">
-      <h3>${resultTitle}</h3>
-      <p>${resultText}</p>
+      <h3>${title}</h3>
+      <p>${cleaned}</p>
   </button>`
 }
 
@@ -183,7 +181,7 @@ const registerHandlers = (onInputFn) => {
   })
 }
 
-const displayResults = (finalResults) => {
+const displayResults = (finalResults, extractHighlight = false) => {
   const results = document.getElementById("results-container")
   if (finalResults.length === 0) {
     results.innerHTML = `<button class="result-card">
@@ -192,11 +190,17 @@ const displayResults = (finalResults) => {
                 </button>`
   } else {
     results.innerHTML = finalResults
-      .map((result) =>
-        resultToHTML({
-          ...result,
-          term,
-        }),
+      .map((result) => {
+          if (extractHighlight) {
+            return resultToHTML({
+              url: result.url,
+              title: highlight(result.title, term),
+              content: highlight(result.content, term)
+            })
+          } else {
+            return resultToHTML(result)
+          }
+        }
       )
       .join("\n")
     const anchors = [...document.getElementsByClassName("result-card")]

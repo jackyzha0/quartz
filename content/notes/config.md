@@ -54,8 +54,12 @@ enableRecentNotes: false
 
 # whether to display and 'edit' button next to the last edited field
 # that links to github
-enableGitHubEdit: false
+enableGitHubEdit: true
 GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
+
+# whether to use Operand to power semantic search
+enableSemanticSearch: true
+operandApiKey: "1e47d93b-1468-45b7-98d5-7f733d5e45e2"
 
 # page description used for SEO
 description:

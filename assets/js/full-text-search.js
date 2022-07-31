@@ -56,6 +56,6 @@
     }
     const allIds = new Set([...getByField("title"), ...getByField("content")])
     const finalResults = [...allIds].map(formatForDisplay)
-    displayResults(finalResults)
+    displayResults(finalResults, true)
   })
 })()
