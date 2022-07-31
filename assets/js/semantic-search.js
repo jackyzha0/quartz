@@ -25,11 +25,14 @@ function debounce(func, timeout = 300) {
 
 registerHandlers(debounce((e) => {
   term = e.target.value
-  searchContents(term)
-    .then((res) => res.results.map(entry => ({
-      url: entry.object.metadata.url,
-      content: entry.snippet,
-      title: entry.object.title
-    })))
-    .then(results => displayResults(results))
+  if (term !== "") {
+    searchContents(term)
+      .then((res) => res.results.map(entry => ({
+        url: entry.object.properties.url,
+        content: entry.snippet,
+        title: entry.object.metadata.title
+      })
+      ))
+      .then(results => displayResults(results))
+  }
 }))
