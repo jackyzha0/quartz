@@ -59,6 +59,22 @@ blockquote.callout-collapsed {
     border-bottom-right-radius: 5px !important;
     padding-bottom: 0 !important;
 }
+blockquote.callout-collapsible::after {
+    content: '-';
+    display: inline-block;
+    height: 24px;
+    width: 18px;
+    margin: 0;
+    position: absolute;
+    right: 6px;
+    top: 0;
+    font-size: 175%;
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+}
+blockquote.callout-collapsed::after {
+    content: '+' !important;
+}
 blockquote.callout-collapsed > *:not(:first-child) {
     display: none !important;
 }
