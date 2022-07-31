@@ -45,6 +45,7 @@ const removeMarkdown = (
       .replace(/(`{3,})(.*?)\1/gm, "$2")
       .replace(/`(.+?)`/g, "$1")
       .replace(/\n{2,}/g, "\n\n")
+      .replace(/\[![a-zA-Z]+\][-\+]? /g, "")
   } catch (e) {
     console.error(e)
     return markdown
