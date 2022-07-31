@@ -4,94 +4,60 @@ title: "Callouts"
 
 ## Callout support
 
-Supports built-in Callouts. See [documentation on supported types here](https://help.obsidian.md/How+to/Use+callouts#Types).
+Quartz supports the same Admonition-callout syntax as Obsidian.
 
-## Format:
+This includes
+- 12 Distinct callout types (each with several aliases)
+- Collapsable callouts
 
-```
-> [!example] Example
-> 
-> Text
-```
+See [documentation on supported types and syntax here](https://help.obsidian.md/How+to/Use+callouts#Types).
 
-Turns to:
+## Showcase
 
-> [!example] Example
+> [!example] Examples
 >
-> Text
+> Aliases: example
 
-## Collapsible Callouts:
-
-```
-> [!example]- Starts Collapsed
-> 
-> Text
-```
-
-Turns to:
-
-> [!example]- Starts Collapsed
+> [!note] Notes
 >
-> Text
+> Aliases: note
 
-```
-> [!example]- Starts Opened
-> 
-> Text
-```
-
-Turns to:
-
-> [!example]- Starts Opened
+> [!abstract] Summaries 
 >
-> Text
+> Aliases: abstract, summary, tldr
 
-## Showcase:
-
-> [!example] example
+> [!info] Info 
 >
-> example
+> Aliases: info, todo
 
-> [!note] note
+> [!tip] Hint 
 >
-> note
+> Aliases: tip, hint, important
 
-> [!abstract] abstract, summary, tldr
+> [!success] Success 
 >
-> abstract, summary, tldr
+> Aliases: success, check, done
 
-> [!info] info, todo
+> [!question] Question 
 >
-> info, todo
+> Aliases: question, help, faq
 
-> [!tip] tip, hint, important
+> [!warning] Warning 
 >
-> tip, hint, important
+> Aliases: warning, caution, attention
 
-> [!success] success, check, done
+> [!failure] Failure 
 >
-> success, check, done
+> Aliases: failure, fail, missing
 
-> [!question] question, help, faq
+> [!danger] Error
 >
-> question, help, faq
+> Aliases: danger, error
 
-> [!warning] warning, caution, attention
+> [!bug] Bug
 >
-> warning, caution, attention
+> Aliases: bug
 
-> [!failure] failure, fail, missing
+> [!quote] Quote
 >
-> failure, fail, missing
-
-> [!danger] danger, error
->
-> danger, error
-
-> [!bug] bug
->
-> bug
-
-> [!quote] quote, cite
->
-> quote, cite
+> Aliases: quote, cite

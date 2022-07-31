@@ -54,29 +54,24 @@
 
 blockquote.callout-collapsible {
     cursor: pointer;
+
+    &.callout-collapsible::after {
+        content: '-';
+        right: 6px;
+        font-weight: bolder;
+        font-family: 'Courier New', Courier, monospace;
+    }
 }
+
 blockquote.callout-collapsed {
-    border-bottom-right-radius: 5px !important;
+    & > p { border-bottom-right-radius: 5px !important; }
     padding-bottom: 0 !important;
-}
-blockquote.callout-collapsible::after {
-    content: '-';
-    display: inline-block;
-    height: 24px;
-    width: 18px;
-    margin: 0;
-    position: absolute;
-    right: 6px;
-    top: 0;
-    font-size: 175%;
-    font-weight: bolder;
-    font-family: 'Courier New', Courier, monospace;
-}
-blockquote.callout-collapsed::after {
-    content: '+' !important;
-}
-blockquote.callout-collapsed > *:not(:first-child) {
-    display: none !important;
+    &::after {
+        content: '+' !important;
+    }
+    & > *:not(:first-child) {
+        display: none !important;
+    }
 }
 
 blockquote[class*="-callout"] {
@@ -86,29 +81,38 @@ blockquote[class*="-callout"] {
     padding-left: 0 !important;
     padding-bottom: 0.25em;
     color: var(--dark);
-    background-color: var(--outlinegray);
+    background-color: var(--lightgray);
+
+    & > p {
+        border-top-right-radius: 5px;
+        padding: 0.5em 1em;
+        margin: 0;
+        color: var(--gray);
+
+        &:first-child {
+            font-weight: bold;
+            color: var(--dark);
+            padding: 0.4em 30px;
+        }
+    }
 }
-blockquote[class*="-callout"] > p {
-    border-top-right-radius: 5px;
-    padding-left: 1em;
-    padding-right: 1em;
-    color: var(--dark);
-    background-color: var(--outlinegray);
-}
-blockquote[class*="-callout"] > p:first-child::after {
+
+blockquote[class*="-callout"] > p:first-child::after, blockquote.callout-collapsible::after {
     display: inline-block;
-    height: 24px;
+    height: 18px;
     width: 18px;
-    margin: 3px 0;
     position: absolute;
-    left: 6px;
-    top: 0;
+    top: 0.4em;
+    margin: 0.2em 0.4em;
 }
+
 blockquote[class*="-callout"] > p:first-child {
-    font-size: 125%;
     font-weight: bold;
-    padding-left: 30px;
-    border-bottom-right-radius: 5px;
+    padding: 0.4em 35px;
+
+    &::after {
+      left: 0;
+    }
 }
 
 blockquote.abstract-callout,
