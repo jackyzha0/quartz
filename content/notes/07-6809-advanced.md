@@ -4,6 +4,9 @@ aliases:
 tags: 
 - lecture
 - cosc204
+sr-due: 2022-08-04
+sr-interval: 3
+sr-ease: 250
 ---
 
 # addressing modes
@@ -54,7 +57,7 @@ callling conventions
 - We’re not going to talk about passing a struct by value
 
 ### example in C
-
+parameters
 ``` c
 uint16_t two_params(uint8_t first, uint16_t second) { 
 	return first + second; 
@@ -66,9 +69,28 @@ uint16_t call_one(void) {
 ```
 
 ```
-LDD #$01AF ;
-decimal 431 PSHS B,A ;
-argument 2, int CLRA LDB #$CC ;
-decimal 204 PSHS B,A ;
-argument 1, int LBSR _two_params
+```
+
+local variables
+
+``` c
+uint16_t one_param(uint16_t xyzzy) { 
+	uint16_t val = xyzzy; 
+	return val; 
+}
+```
+
+```
+_one_param 
+	PSHS U 
+	LEAU ,S 
+	LEAS -2,S 
+	* Formal parameter(s): 
+	* 4,U: 2 bytes: xyzzy 
+	* Local non-static variable(s): 
+	* -2,U: 2 bytes: val 
+	LDD 4,U 
+	STD -2,U 
+	LEAS ,U 
+	PULS U,PC
 ```

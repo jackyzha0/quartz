@@ -43,6 +43,7 @@ tags:
 - [04-computer-architecture](notes/04-computer-architecture.md)
 - [05-6809-assembly](notes/05-6809-assembly.md)
 - [06-6809-programming](notes/06-6809-programming.md)
+- [07-6809-advanced](notes/07-6809-advanced.md)
 
 # Archive
 
