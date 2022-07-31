@@ -1,5 +1,5 @@
 ---
-title: "05-crypography"
+title: "05-cryptography"
 aliases: 
 tags: 
 - lecture

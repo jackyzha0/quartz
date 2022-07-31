@@ -23,6 +23,6 @@ No final exam
 - [01-big-picture](notes/01-big-picture.md)
 - [02-concepts-and-roles](notes/02-concepts-and-roles.md)
 - [03-threats-social-engineering-and-failures](notes/03-threats-social-engineering-and-failures.md)
-- [05-crypography](notes/05-crypography.md)
+- [05-cryptography](notes/05-cryptography.md)
 
 # Archive
