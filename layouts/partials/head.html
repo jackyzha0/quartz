@@ -40,10 +40,13 @@
   <link href="{{$lightSyntax.Permalink}}" rel="stylesheet" id="theme-link">
 
    <!-- Base scripts -->
-  {{ $darkMode := resources.Get "js/darkmode.js" | resources.ExecuteAsTemplate "js/darkmode.js" . | resources.Fingerprint "md5" | resources.Minify }}
-  <script src="{{$darkMode.Permalink}}"></script>
+  {{$scripts := (slice "js/darkmode.js" "js/util.js")}}
+  {{range $scripts}}
+  {{$scriptname := .}}
+  {{ $s := resources.Get $scriptname | resources.ExecuteAsTemplate $scriptname . | resources.Fingerprint "md5" | resources.Minify }}
+  <script src="{{$s.Permalink}}"></script>
+  {{end}}
   {{partial "katex.html" .}}
-
     
   <script src="https://unpkg.com/@floating-ui/core@0.7.3"></script>
   <script src="https://unpkg.com/@floating-ui/dom@0.5.4"></script>
