@@ -48,7 +48,7 @@ tags:
 - not good
 - lots of bad advice
 - we are lazy
-- "safe" passwords are difficult to enter on touch screen devies
+- "safe" passwords are difficult to enter on touch screen devices
 - to many accouts
 
 ## entropy
