@@ -12,7 +12,7 @@ Note that both of these steps need to be completed.
 ## Install `hugo-obsidian`
 This step will generate the list of backlinks for Hugo to parse. Ensure you have [Go](https://golang.org/doc/install) (>= 1.16) installed.
 
-```shell
+```bash
 # Install and link `hugo-obsidian` locally
 go install github.com/jackyzha0/hugo-obsidian@latest
 ```
@@ -24,7 +24,7 @@ Afterwards, start the Hugo server as shown above and your local backlinks and in
 ##  Installing Hugo
 Hugo is the static site generator that powers Quartz. [Install Hugo with "extended" Sass/SCSS version](https://gohugo.io/getting-started/installing/) first. Then,
 
-```
+```bash
 # Navigate to your local Quartz folder
 cd <location-of-your-local-quartz>
 
