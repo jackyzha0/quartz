@@ -175,7 +175,18 @@ blockquote {
   }
 }
 
-article {
+.section {
+  & h3 > a {
+    font-weight: 700;
+    font-family: Inter;
+    margin: 0;
+  }
+  & p {
+    margin-top: 0;
+  }
+}
+
+article, .tree{
   & > h1 {
     margin-top: 2em;
     font-size: 2em;
@@ -198,11 +209,11 @@ article {
 
       &.broken {
         opacity: 0.5;
-        background-color: transparent; 
+        background-color: transparent;
       }
     }
   }
-  
+
   & p {
     overflow-wrap: anywhere;
   }
@@ -292,7 +303,7 @@ footer {
   text-align: center;
   & ul {
     padding-left: 0;
-  } 
+  }
 }
 
 hr {
@@ -305,10 +316,30 @@ hr {
   background-color: var(--dark);
 }
 
+.singlePage {
+  // padding: 4em 30vw;
+  //
+  // @media all and (max-width: 1200px) {
+  //   padding: 25px 5vw;
+  // }
+}
+.singlePage-oldLayout {
+  padding: 4em 30vw;
+
+  @media all and (max-width: 1200px) {
+    padding: 25px 5vw;
+  }
+}
+
 .page-end {
   display: flex;
   flex-direction: row;
   gap: 2em;
+
+  &.vertical{
+    flex-direction: column;
+    gap: 0;
+  }
 
   @media all and (max-width: 780px) {
     flex-direction: column;
@@ -332,8 +363,24 @@ hr {
       }
     }
   }
+  .graph-grid{
+    display : grid;
+    grid-row:1/1;
+    grid-column:1/1;
+    grid-template-columns: 1fr;
+    & > svg {
+      margin-bottom: -5px;
+
+    }
+  }
+  .graph-grid>*{
+    grid-row:1/1;
+    grid-column:1/1;
+  }
 
   & #graph-container {
+    grid-row:1/1;
+    grid-column:1/1;
     border: var(--outlinegray) 1px solid;
     border-radius: 5px;
     box-sizing: border-box;
@@ -345,6 +392,18 @@ hr {
 
     }
   }
+
+  #graph-container-modal {
+   border: var(--outlinegray) 1px solid;
+   border-radius: 5px;
+   box-sizing: border-box;
+   min-height: 250px;
+
+   & > svg {
+     margin-bottom: -5px;
+
+   }
+ }
 }
 
 .centered {

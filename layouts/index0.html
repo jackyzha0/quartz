@@ -6,15 +6,28 @@
   {{partial "search.html" .}}
 
   {{if $.Site.Data.config.enableColumnLayout}}
-  <div r-c join> <!-- r-c = Responsive Columns with flexbox -->
+  <r-c join>
     <main data-lg1-2 data-lg2 data-m2 data-sm1 data-xs1>
   {{else}}
     <main class="singlePage-oldLayout">
   {{end}}
 
           <!-- Begin actual content -->
-          {{partial "header.html" .}}
-
+          <header>
+            <h1>{{if .Title}}{{ .Title }}
+              {{else}}Untitled{{end}}
+            </h1>
+            <svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7">
+              <title id="title">Search Icon</title>
+              <desc id="desc">Icon to open search</desc>
+              <g class="search-path" fill="none">
+                <path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4" />
+                <circle cx="8" cy="8" r="7" />
+              </g>
+            </svg>
+            <div class="spacer"></div>
+            {{partial "darkmode.html" .}}
+          </header>
           <article>
             {{partial "toc.html" .}}
             {{partial "textprocessing.html" . }}
@@ -22,7 +35,6 @@
             {{partial "recent.html" . }}
             {{end}}
           </article>
-
           {{if not $.Site.Data.config.enableColumnLayout}}
           {{partial "footerIndex.html" .}}
           {{partial "contact.html" .}}
@@ -30,8 +42,7 @@
         </main>
 
         {{if $.Site.Data.config.enableColumnLayout}}
-
-        <nav data-sm1-2 data-md1-2 data-lg1-4 data-lg1 data-m1 data-sm2 data-xs3>
+        <aside data-sm1-2 data-md1-2 data-lg1-4 data-lg1 data-m1 data-sm2 data-xs3>
           <div class="sticky page-end vertical">
             <h3> Menu</h3>
             <div class="menu-toc">
@@ -40,8 +51,7 @@
               </ol>
             </div>
           </div>
-        </nav>
-
+        </aside>
         <aside data-sm1-2 data-md1-2 data-lg1-4 data-lg3 data-m3 data-sm3 data-xs2>
           <div class="sticky">
             <div class="page-end vertical">
@@ -55,14 +65,14 @@
             {{partial "footer.html" .}}
           </div>
         </aside>
-        
-  </div>
-  <footer r-c data-join> <!-- r-c = Responsive Columns with flexbox -->
-    <div c1-1> <!-- c1-1 = 1 column of width 1/1 = 100% -->
+  </r-c>
+  <footer data-r-c data-join>
+    <c1-1>
       {{partial "contact.html" .}}
-    </div>
+    </c1-1>
   </footer>
   {{end}}
+
 </body>
 
 </html>

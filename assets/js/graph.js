@@ -1,4 +1,4 @@
-async function drawGraph(baseUrl, isHome, pathColors, graphConfig) {
+async function drawGraph(baseUrl, isHome, pathColors, graphConfig, modal = false) {
 
   let {
   depth,
@@ -10,7 +10,9 @@ async function drawGraph(baseUrl, isHome, pathColors, graphConfig) {
   repelForce,
   fontSize} = graphConfig;
 
-  const container = document.getElementById("graph-container")
+  const elementId = modal ? "graph-container-modal" : "graph-container" ;
+
+  const container =  document.getElementById(elementId);
   const { index, links, content } = await fetchData
 
   // Use .pathname to remove hashes / searchParams / text fragments
@@ -109,7 +111,7 @@ async function drawGraph(baseUrl, isHome, pathColors, graphConfig) {
     .force("center", d3.forceCenter())
 
   const svg = d3
-    .select("#graph-container")
+    .select('#'+elementId)
     .append("svg")
     .attr("width", width)
     .attr("height", height)

@@ -1,7 +1,15 @@
-# if true, a Global Graph will be shown on home page with full width, no backlink.
-# A different set of Local Graphs will be shown on sub pages.
-# if false, Local Graph will be default on every page as usual
-enableGlobalGraph: false
+
+# If enableColumnLayout: true in config.yaml, then you have
+# the possiblity of showing a global graph by clicking on an
+# icon at the top right corner of the graph window. To do so,
+# configure below enableGlobalGraph: true
+
+# If enableColumnLayout: false, then you have the possiblility
+# to show a Global Graph on home page with full width, no backlink
+# by setting below enableGlobalGraph: true. A different set of
+# Local Graphs will be shown on sub pages.
+
+enableGlobalGraph: true
 
 ### Local Graph ###
 
