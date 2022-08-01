@@ -185,7 +185,7 @@ beq done ; if it was 0 then return
 ```
 
 ## storing x, y, a
-need to add an insruction to save them at the start and resotre them at the end
+need to add an insruction to save them at the start and restore them at the end
 ```
 pshs a,x,y
 puls a,x,y
