@@ -4,8 +4,8 @@ aliases:
 tags: 
 - lecture
 - cosc203
-sr-due: 2022-08-01
-sr-interval: 3
+sr-due: 2022-08-09
+sr-interval: 8
 sr-ease: 250
 ---
 
@@ -67,7 +67,7 @@ async function myFunction(){
 # error handling
 the fetch API can throw errors
 
-to handle these promise objects have a `catch` method. this is similar to a `.then` but only trigger when there is an error.
+to handle these, promise objects have a `catch` method. this is similar to a `.then` but only trigger when there is an error.
 
 ``` javascript
 const fetchPromise = fetch('https://url.url.json')
