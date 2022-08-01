@@ -55,16 +55,17 @@ const removeMarkdown = (
 
 const highlight = (content, term) => {
   const highlightWindow = 20
-
   // try to find direct match first
   const directMatchIdx = content.indexOf(term)
   if (directMatchIdx !== -1) {
-    const h = highlightWindow / 2
+    console.log(directMatchIdx)
+    const h = highlightWindow
     const before = content.substring(0, directMatchIdx).split(" ").slice(-h)
     const after = content
-      .substring(directMatchIdx + term.length, content.length - 1)
+      .substring(directMatchIdx + term.length, content.length - 2)
       .split(" ")
       .slice(0, h)
+    console.log(before, after)
     return (
       (before.length == h ? `...${before.join(" ")}` : before.join(" ")) +
       `<span class="search-highlight">${term}</span>` +
@@ -109,10 +110,9 @@ const highlight = (content, term) => {
 
 // Common utilities for search
 const resultToHTML = ({ url, title, content }) => {
-  const cleaned = removeMarkdown(content)
   return `<button class="result-card" id="${url}">
       <h3>${title}</h3>
-      <p>${cleaned}</p>
+      <p>${content}</p>
   </button>`
 }
 
@@ -195,7 +195,7 @@ const displayResults = (finalResults, extractHighlight = false) => {
             return resultToHTML({
               url: result.url,
               title: highlight(result.title, term),
-              content: highlight(result.content, term)
+              content: highlight(removeMarkdown(result.content), term)
             })
           } else {
             return resultToHTML(result)
