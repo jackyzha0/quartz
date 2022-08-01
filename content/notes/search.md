@@ -47,4 +47,4 @@ operandApiKey: "0e733a7f-9b9c-48c6-9691-b54fa1c8b910"
 	3. Set the 'Repository Ref' to `master`
 	4. Set the 'Repository Name' to the name of your repository (usually just `quartz` if you forked the repository without changing the name)
 	5. Leave 'Root Path' and 'Root URL' empty
-9. Wait for your repository to index and enjoy natural language search in Quartz!
+9. Wait for your repository to index and enjoy natural language search in Quartz! Operand refreshes the index every 2h so all you need to do is just push to GitHub to update the contents in the search.

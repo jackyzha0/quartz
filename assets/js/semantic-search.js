@@ -15,7 +15,15 @@ async function searchContents(query) {
   return (await response.json());
 }
 
-registerHandlers((e) => {
+function debounce(func, timeout = 200) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer)
+    timer = setTimeout(() => { func.apply(this, args); }, timeout)
+  };
+}
+
+registerHandlers(debounce((e) => {
   term = e.target.value
   if (term !== "") {
     searchContents(term)
@@ -27,4 +35,4 @@ registerHandlers((e) => {
       ))
       .then(results => displayResults(results))
   }
-})
+}))
