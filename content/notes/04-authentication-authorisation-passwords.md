@@ -4,6 +4,9 @@ aliases:
 tags: 
 - lecture
 - comp210
+sr-due: 2022-08-04
+sr-interval: 3
+sr-ease: 250
 ---
 
 # Authentication
@@ -53,7 +56,7 @@ tags:
 
 ## entropy
 - amount of randomness
-- measure of the number of guesse an attacker would need to brute force
+- measure of the number of guesse an attacker would need to brute foarce
 - $E = log_2(A^L)$ 
 - A = size of alphabet
 - L = length of password
