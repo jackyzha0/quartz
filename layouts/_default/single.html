@@ -21,7 +21,7 @@
       {{partial "textprocessing.html" . }}
     </article>
     {{ if in .Page.RelPermalink "/posts/" }}
-        {{partial "hyvor.html" .}}
+        {{partial "comments.html" .}}
     {{ end }}
     {{partial "footer.html" .}}
     {{partial "popover.html" .}}
