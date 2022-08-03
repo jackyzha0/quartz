@@ -60,3 +60,42 @@ routines must be declared bfore being used
 - `extern int eleven(void):`
 
 # if, const, for, while, do, case etc same as java
+
+# Types
+
+```
+char
+float, double
+int, short, long
+signed, unsigned
+void
+```
+
+![integer ranges](https://i.imgur.com/5gmgTer.png)
+
+## sizeof
+- to find out size of any type (built-in or user defined)
+
+## stdint
+![stdint.h](https://i.imgur.com/7W6T0y5.png)
+
+## Structs
+- like classes but without methods
+- all fields public
+- you can have structs in structs
+
+## typedef
+- any type can be given a new name using typedef
+
+```
+typedef struct
+	{
+		float x, y, z;
+	} coordinate;
+```
+
+## static
+- the scope of this routine is local to this file
+- this variable maintains its value between calls
+
+
