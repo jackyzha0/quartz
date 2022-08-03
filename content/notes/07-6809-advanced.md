@@ -16,7 +16,7 @@ sr-ease: 250
 - extended indirect `LDA [$31FE]` or `LDA [HERE]` points to a memory location which specifies another memory location
 - direct `LDA $ff` or `lda <HERE`
 - register `trf X,Y`
-- indexed `LDA $3111E, X` use memory location that is the sum of the operands
+- indexed `LDA $311E, X` use memory location that is the sum of the operands
 	- `LDA ,X`
 	- `LDA $23,X`
 	- etc

@@ -28,6 +28,7 @@ tags:
 - [CPU](notes/CPU.md)
 - [ALU](notes/ALU.md)
 - [computer-architecture](notes/computer-architecture.md)
+- [6809-addressing-modes](notes/6809-addressing-modes.md)
 
 - Hardware
 - Assembly
