@@ -98,4 +98,30 @@ typedef struct
 - the scope of this routine is local to this file
 - this variable maintains its value between calls
 
+```
+void keeper(void) { 
+	static uint64_t times_called = 0; 
+	times_called++; 
+	printf("Count:%llu\n", times_called); 
+}
+```
 
+## typecasting
+like java
+```
+uint64_t y = 1024;
+unit32_t x = (unit32_t) y;
+```
+
+## Keywords to ignore
+- auto
+	- all local variables are auto
+- register
+	- deprecated
+
+## keywords to think about
+- volatile
+	- do not optimize accesses to this variable
+		- might be changed by another thread or a harware event
+	- you're likely to see this in operating system souce code
+	- you're likely to see this in multithreaded programs
