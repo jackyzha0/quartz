@@ -20,7 +20,7 @@ Developed 1972 for Unix
 
 > “C is an imperative procedural language supporting structured programming, lexical variable scope, and recursion, with a static type system. It was designed to be compiled to provide low-level access to memory and language constructs that map efficiently to machine instructions, all with minimal runtime support. Despite its low-level capabilities, the language was designed to encourage cross-platform programming. A standards-compliant C program written with portability in mind can be compiled for a wide variety of computer platforms and operating systems with few changes to its source code.” - wikipedia
 
-```
+``` c
 #include <stdio.h>
 
 int main(int argc, const char *argv[])
@@ -37,7 +37,7 @@ java uses .class files, C uses .c and .h
 
 java uses `import`, C uses `#include`
 
-```
+``` c
 #include <stdio.h>
 #include "myfile.h"
 ```
@@ -46,7 +46,7 @@ java uses `import`, C uses `#include`
 - in `hello_world.c` we include `stdio.h` so we can call `puts()`
 
 # Routines
-```
+``` c
 int main(int argc, const char *argv[])
 {
 
@@ -57,7 +57,6 @@ routines can be scoped to just the source code file
 - `statis int eleven(void`
 
 routines must be declared bfore being used
-- `extern int eleven(void)`
+- `extern int eleven(void):`
 
-# If statements
-
+# if, const, for, while, do, case etc same as java
