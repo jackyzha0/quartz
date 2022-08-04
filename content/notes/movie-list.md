@@ -14,13 +14,11 @@ Top movies
 - ghost in the shell
 - good the bad the ugly
 - perfect blue
-- 
-
-downloaded
-- salo
-- donnie darko
 - blade runner original
 - audition mike takashi
+- donnie darko
+
+downloaded
 
 To watch
 - largent
