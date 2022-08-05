@@ -75,7 +75,7 @@
       {{ else}}
         {{ $inner = $inner | replaceRE `\[!([a-zA-Z]+)\]` `${1}` }}
       {{ end }}
-      {{ $inner = printf "blockquote class=\"%s-callout\"" $inner}}
+      {{ $inner = printf "blockquote class=\"%s-callout\"" $inner | lower}}
       {{ $content = replace $content . $inner 1}}
       {{ $counter1 = add $counter1 1 }}
     {{ else }}

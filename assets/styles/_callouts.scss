@@ -82,6 +82,7 @@ blockquote[class*="-callout"] {
   padding-bottom: 0.25em;
   color: var(--dark);
   background-color: var(--lightgray);
+  border-left: 6px solid var(--primary) !important;
   & > p {
     border-top-right-radius: 5px;
     padding: 0.5em 1em;

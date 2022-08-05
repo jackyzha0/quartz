@@ -14,7 +14,7 @@ See [documentation on supported types and syntax here](https://help.obsidian.md/
 
 ## Showcase
 
-> [!example] Examples
+> [!EXAMPLE] Examples
 >
 > Aliases: example
 
