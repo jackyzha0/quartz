@@ -10,8 +10,6 @@ tags:
 
 [page](https://cosc204.cspages.otago.ac.nz)
 
-# Assignments
-
 # Notes
 - [ASCII](notes/ASCII.md)
 - [unicode](notes/unicode.md)
@@ -30,13 +28,6 @@ tags:
 - [computer-architecture](notes/computer-architecture.md)
 - [6809-addressing-modes](notes/6809-addressing-modes.md)
 
-- Hardware
-- Assembly
-- C
-- Operating systems
-- OS Algorithms
-- Use of Resources
-
 # Lectures
 - [01-bits-and-bytes](notes/01-bits-and-bytes.md)
 - [02-combinatorial-logic](notes/02-combinatorial-logic.md)
@@ -45,6 +36,7 @@ tags:
 - [05-6809-assembly](notes/05-6809-assembly.md)
 - [06-6809-programming](notes/06-6809-programming.md)
 - [07-6809-advanced](notes/07-6809-advanced.md)
+- [08-intro-to-c](notes/08-intro-to-c.md)
 
 # Archive
 
