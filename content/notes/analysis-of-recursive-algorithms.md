@@ -41,7 +41,7 @@ in the recirsive case, since all the elements before $p$ are smaller than it and
 	def fib(n)
 		if n <= 1
 			return 1
-	return fib(n-1) + fib(n-2)
+		return fib(n-1) + fib(n-2)
 ```
 
 line 1 -> always executed

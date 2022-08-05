@@ -54,7 +54,7 @@ int main(int argc, const char *argv[])
 ```
 
 routines can be scoped to just the source code file
-- `statis int eleven(void`
+- `static int eleven(void`
 
 routines must be declared bfore being used
 - `extern int eleven(void):`
