@@ -9,6 +9,16 @@ sr-interval: 3
 sr-ease: 250
 ---
 
+- [authorisation](notes/authorisation.md)
+- [authentication](notes/authentication.md)
+- [passwords](notes/passwords.md)
+
+
+
+
+
+
+
 # Authentication
 - proof of identity
 - need to be sure a user is who they say they are before you can trust them

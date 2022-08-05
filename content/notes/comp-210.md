@@ -20,6 +20,9 @@ No final exam
 - [cia-triad](notes/cia-triad.md)
 - [cryptography](notes/cryptography.md)
 - [randomness](notes/randomness.md)
+- [authorisation](notes/authorisation.md)
+- [authentication](notes/authentication.md)
+- [passwords](notes/passwords.md)
 
 # Lectures
 - [01-information-assurance](notes/01-information-assurance.md)
@@ -27,5 +30,3 @@ No final exam
 - [03-threats-social-engineering-and-failures](notes/03-threats-social-engineering-and-failures.md)
 - [04-authentication-authorisation-passwords](notes/04-authentication-authorisation-passwords.md)
 - [05-cryptography](notes/05-cryptography.md)
-
-# Archive
