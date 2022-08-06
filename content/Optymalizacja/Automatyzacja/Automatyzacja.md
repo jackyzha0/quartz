@@ -60,7 +60,7 @@ Rose pomaga mi ze wszystkim, co związane z rozbudową i prowadzeniem całej kom
 
 ## Tony - Developer
 ![avatar](https://space.overment.com/Tony-Programmer-qiFwc/Tony-Programmer.png)
-Tony skupia się na pomocy w programowaniu i tworzeniu produktów. Ułatwia mi organizację i zarządzanie projektami czy obsługę narzędzi typowo związanych z programowaniem (terminal, IDE ([[, )
+Tony skupia się na pomocy w programowaniu i tworzeniu produktów. Ułatwia mi organizację i zarządzanie projektami czy obsługę narzędzi typowo związanych z programowaniem (np. terminal czy IDE ([[Optymalizacja/Narzędzia/Intellij]])
 
 
 ## Zarządzanie rosnącą liczbą scenariuszy
