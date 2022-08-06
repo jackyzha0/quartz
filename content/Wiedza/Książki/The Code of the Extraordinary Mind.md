@@ -1,4 +1,3 @@
 ---
-title: The Code of the Extraordinary Mind
+title: The Code Of The Extraordinary Mind
 ---
-

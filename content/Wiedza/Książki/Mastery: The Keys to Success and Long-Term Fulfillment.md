@@ -1,5 +1,3 @@
 ---
-title: Mastery - The Keys to Success and Long-Term Fulfillment
+title: Mastery: The Keys To Success And Long-Term Fulfillment
 ---
-
- 

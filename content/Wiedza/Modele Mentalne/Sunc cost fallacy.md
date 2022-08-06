@@ -1,5 +1,0 @@
----
-title: Sunc cost fallacy
----
-
- 

@@ -1,6 +1,6 @@
 ---
 title: Product Development
---- 
+---
 
 ## Książki
 - [[Wiedza/Książki/Inspired]]

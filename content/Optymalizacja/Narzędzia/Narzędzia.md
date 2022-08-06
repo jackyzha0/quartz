@@ -53,3 +53,4 @@ title: Narzędzia
 - [[Optymalizacja/Narzędzia/Digital Ocean]]
 - [[Optymalizacja/Narzędzia/Session]]
 - [[Optymalizacja/Narzędzia/Rize]]
+- [[Optymalizacja/Narzędzia/Intellij]]

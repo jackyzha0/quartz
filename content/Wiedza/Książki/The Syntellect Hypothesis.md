@@ -1,5 +1,3 @@
 ---
 title: The Syntellect Hypothesis
 ---
-
- 

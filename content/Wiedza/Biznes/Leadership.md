@@ -1,6 +1,6 @@
 ---
 title: Leadership
---- 
+---
 
 Uważam że każdy z nas jest lub powinien być liderem dla siebie i innych. Niewiele wspólnego ma z tym nasze stanowisko czy pozycja społeczna. Dodatkowo nawet najwięksi liderzy powinni być gotowi na to aby podążyć za innymi w chwili gdy jest to konieczne. 
 

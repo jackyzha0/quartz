@@ -58,6 +58,19 @@ Rolą Luke'a jest pomoc mi w przygotowaniu materiałów. Początkowo wyłącznie
 ![avatar](https://space.overment.com/Bj4t3VyAuX4IZFC8aZ9f/Rose-Newsletter.png)
 Rose pomaga mi ze wszystkim, co związane z rozbudową i prowadzeniem całej komunikacji mailowej. Np. planuje kampanie [[Optymalizacja/Narzędzia/Sendgrid]] czy wspólnie z Nicky i Jenny, publikują informacje o nim w mediach społecznościowych. 
 
+## Tony - Developer
+![](https://space.overment.com/Tony-Programmer-qiFwc/Tony-Programmer.png)
+Tony skupia się na pomocy w programowaniu i tworzeniu produktów. Ułatwia mi organizację i zarządzanie projektami czy obsługę narzędzi typowo związanych z programowaniem (terminal, IDE ([[, )
+
+
+## Zarządzanie rosnącą liczbą scenariuszy
+Wraz z rozwojem scenariuszy, makr, skrótów i listy narzędzi z których korzystam, pojawiają się momenty w których krótko mówiąc, zaczynam się w nich gubić lub przynajmniej zauważam, że nie korzystam z części z nich. 
+
+To jak adresuję ten problem opisałem na [[Projekty/Ahoy!]] w tym wpisie:
+https://community.ahoy.so/c/integromat/jak-zarzadzac-rosnaca-liczba-scenariuszy-automatyzacji. Uwzględniłem w nim też różne techniki pracy, które ułatwiają mi budowanie nowych scenariuszy i makr.
+
+Jednym z najważniejszych elementów tego procesu **jest usuwanie a nie dodawanie**. To nawiązanie do "Hack Away the Unessentials" o których tak wiele nauczył mnie [[Wiedza/Ludzie/Bruce Lee]]. 
+
 
 ## Powiązania
 - [[Optymalizacja/Automatyzacja/Mikroserwisy]]

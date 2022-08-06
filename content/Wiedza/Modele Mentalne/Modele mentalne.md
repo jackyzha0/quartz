@@ -68,7 +68,7 @@ title: Modele mentalne
 - [[Wiedza/Modele Mentalne/Generation effect]]
 - [[Wiedza/Modele Mentalne/Escalation of commitment]]
 - [[Wiedza/Modele Mentalne/Irration escalation]]
-- [[Wiedza/Modele Mentalne/Sunc cost fallacy]]
+- [[Wiedza/Modele Mentalne/Sunk cost fallacy]]
 - [[Wiedza/Modele Mentalne/Identifable victim effect]]
 - [[Wiedza/Modele Mentalne/Appeal to Novelty]]
 - [[Wiedza/Modele Mentalne/Hyperbolic discounting]]
