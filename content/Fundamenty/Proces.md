@@ -69,7 +69,7 @@ Działam w oparciu o nieustannie optymalizowany [[Wiedza/Słownik/Proces]] uwzgl
 - Działanie w oparciu o rzeczy które mnie wzmacniają ([[Wiedza/Książki/Antifragile]] i [[Wiedza/Książki/Fooled by Randomness]])
 - Nie poddawanie się ([[Wiedza/Książki/Grit]] oraz [[Wiedza/Książki/That Will Never Work]])
 - Uczenie się wszystkiego, o wszystkim ([[Wiedza/Książki/Way of The Peaceful Warrior]], [[Wiedza/Książki/Range]] i [[Wiedza/Książki/Rebel Ideas]])
-- Podejmowanie mądrych decyzji ([[Wiedza/Książki/All I Want to Know is Where Im Going to Die So Ill Never Go There]], [[Wiedza/Książki/The Great Mental Models]], [[Wiedza/Książki/Seeking Wisdom]], [[Wiedza/Książki/Gladiators, Pirates and Games of Trust]])
+- Podejmowanie mądrych decyzji ([[Wiedza/Książki/All I Want to Know is Where Im Going to Die So Ill Never Go There]], [[Wiedza/Książki/The Great Mental Models]], [[Wiedza/Książki/Seeking Wisdom]], [[Wiedza/Książki/Gladiators Pirates and Games of Trust]])
 - Rozumienie siebie (jest to fundament) ([[Wiedza/Książki/Understanding the INFJ Personality Type]] oraz [[StrenghtsFinder 2.0]])
 - Kwestionowanie autorytetów [[Wiedza/Modele Mentalne/Authority bias]]
 
