@@ -59,7 +59,7 @@ Rolą Luke'a jest pomoc mi w przygotowaniu materiałów. Początkowo wyłącznie
 Rose pomaga mi ze wszystkim, co związane z rozbudową i prowadzeniem całej komunikacji mailowej. Np. planuje kampanie [[Optymalizacja/Narzędzia/Sendgrid]] czy wspólnie z Nicky i Jenny, publikują informacje o nim w mediach społecznościowych. 
 
 ## Tony - Developer
-![](https://space.overment.com/Tony-Programmer-qiFwc/Tony-Programmer.png)
+![avatar](https://space.overment.com/Tony-Programmer-qiFwc/Tony-Programmer.png)
 Tony skupia się na pomocy w programowaniu i tworzeniu produktów. Ułatwia mi organizację i zarządzanie projektami czy obsługę narzędzi typowo związanych z programowaniem (terminal, IDE ([[, )
 
 
