@@ -35,3 +35,13 @@ names are allocated to emmory locations of declaration
 
 ## Call by address
 - address of parameter is passed to the rountine
+- changes do propogate back to the caller
+- more efficient because we only need to pass a pointer and not a value
+
+### Multiple results
+- c routine can return at most one value
+- you can use input parameters which are pointers for "returning" results
+
+### Arrays
+- strings
+- 
