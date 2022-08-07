@@ -44,4 +44,13 @@ names are allocated to emmory locations of declaration
 
 ### Arrays
 - strings
-- 
+	- terminated by "\0"
+- argc, argv[]
+	- length specified
+- null terminated
+	- array of pointers
+
+### Pointer arithmetic
+- ++ move a pointer fowards in an array
+- -- move a pointer back in an array
+- these operations are "type aware" and increment (the pointer) by the size of the elements of the array
