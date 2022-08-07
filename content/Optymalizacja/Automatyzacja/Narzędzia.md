@@ -3,7 +3,7 @@ title: Narzędzia
 ---
 
 ## [[Optymalizacja/Narzędzia/MakeHQ]] 
-MakeHQ (dawniej Integromat) to najlepsza znana mi platforma do łatwego łączenia usług poprzez [[API]]. Jej najważniejszą funkcją są webhooki, moduł http umożliwiający połączenie z dowolną aplikacją oraz świetne API, które wykorzystuję do własnych rozszerzeń. 
+MakeHQ (dawniej Integromat) to najlepsza znana mi platforma do łatwego łączenia usług poprzez [[Wiedza/Programowanie/API]]. Jej najważniejszą funkcją są webhooki, moduł http umożliwiający połączenie z dowolną aplikacją oraz świetne API, które wykorzystuję do własnych rozszerzeń. 
 
 ## [[Optymalizacja/Narzędzia/Raycast]]
 Raycast to aktualnie aplikacja numer #1 w moim rankingu. Genialne API i interfejs sprawiają że tworzenie automatyzacji jest niezwykle przyjemne. Dodatkowo z pomocą [[Wiedza/Programowanie/JavaScript/JavaScript]], [[TypeScript]] oraz [[Wiedza/Programowanie/Node.js]] bez problemu można tworzyć własne rozszerzenia. 

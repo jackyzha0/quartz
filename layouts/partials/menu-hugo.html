@@ -1,0 +1,53 @@
+<!--
+  based on
+  https://github.com/alex-shpak/hugo-book/blob/master/layouts/partials/docs/menu-filetree.html
+  This is template for hugo menus, accepts MenuEntity as context
+  https://gohugo.io/variables/menus/
+-->
+{{ $bookSection := default "/" .Site.Params.BookSection  }}
+{{ if eq $bookSection "*" }}
+    {{ $bookSection = "/" }}{{/* Backward compatibility */}}
+{{ end }}
+{{ with .Site.GetPage $bookSection }}
+    {{ template "book-section-children" (dict "Section" . "CurrentPage" $) }}
+{{ end }}
+
+{{ define "book-section-children" }}{{/* (dict "Section" .Section "CurrentPage" .CurrentPage) */}}
+<ol>
+    {{ range (where .Section.Pages "Params.bookhidden" "ne" true ) }}
+        {{ if .IsSection }}
+        <details open>
+            <summary>
+                {{ template "book-page-link" (dict "Page" . "CurrentPage" $.CurrentPage) }}
+            </summary>
+            {{ template "book-section-children" (dict "Section" . "CurrentPage" $.CurrentPage) }}
+        </details>
+        {{ else if and .IsPage .Content }}
+            <li>
+                {{ template "book-page-link" (dict "Page" . "CurrentPage" $.CurrentPage) }}
+            </li>
+        {{ end }}
+    {{ end }}
+</ol>
+{{ end }}
+
+{{ define "book-page-link" }}{{/* (dict "Page"  "CurrentPage" .CurrentPage) */}}
+{{ $current := eq .CurrentPage .Page }}
+{{ $ancestor := .Page.IsAncestor .CurrentPage }}
+
+{{ if .Page.Params.bookCollapseSection }}
+<input type="checkbox" id="section-{{ md5 .Page }}" class="toggle" {{ if or $current $ancestor }}checked{{ end }} />
+<label for="section-{{ md5 .Page }}" class="flex justify-between">
+    <a {{ if .Page.Content }}href="{{ .Page.Permalink }}"{{ else }}role="button"{{ end }} class="{{ if $current }}active{{ end }}">
+        {{- partial "docs/title" .Page -}}
+    </a>
+</label>
+{{ else if .Page.Content }}
+
+<a href="{{ .Page.Permalink }}" class="{{ if $current }}active{{ end }}">
+    {{- partial "title" .Page -}}
+</a>
+{{ else }}
+<span>{{- partial "title" .Page -}}</span>
+{{ end }}
+{{ end }}

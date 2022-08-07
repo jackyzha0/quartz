@@ -209,3 +209,62 @@ img[alt="avatar"] { width: 150px; display: block; }
 .newsletter-btn:hover {
   transform: scale(1.1);
 }
+
+
+
+.tree,
+.tree ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tree ol {
+  padding-left: 1em;
+  padding-top: 5px;
+}
+.tree summary {
+  color: #fff;
+  font-size: 14px;
+}
+.tree a{
+  font-weight:unset;
+  font-size: 14px;
+  color: #fff;
+}
+
+a.active{
+  color: #ff40ff;
+}
+
+body {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    display: none !important;
+  }
+}
+
+.menu {
+  background: #000;
+  padding: 25px 35px 0 0;
+  min-width: 250px;
+  max-width: 250px;
+  margin-right: 40px;
+  flex: 1;
+}
+
+.menu details {
+  padding: 5px 0;
+}
+
+.singlePage {
+  padding-left: 0;
+}
+
+.singlePage img {
+  max-width: 500px;
+  display: block;
+}

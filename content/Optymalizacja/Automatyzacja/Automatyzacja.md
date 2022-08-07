@@ -4,7 +4,7 @@ title: Automatyzacja
 
 > Every great software developer, for example, now has an army of robots working for him at nighttime while he or she sleeps, after they’ve written the code, and it’s cranking away. ~ Naval Ravikant
 
-Automatyzacja w moim rozumieniu polega na wykorzystaniu [[API]] do łączenia ze sobą wszystkich usług i serwisów, które je udostępniają. W dużym uproszczeniu chodzi o wymianę informacji pomiędzy aplikacjami, ograniczając zaangażowanie człowieka do minimum.
+Automatyzacja w moim rozumieniu polega na wykorzystaniu [[Wiedza/Programowanie/API]] do łączenia ze sobą wszystkich usług i serwisów, które je udostępniają. W dużym uproszczeniu chodzi o wymianę informacji pomiędzy aplikacjami, ograniczając zaangażowanie człowieka do minimum.
 
 ## White-hat Automation
 Mając w zasięgu możliwość wysyłania tysięcy wiadomości i eliminowania kolejnych aktywności na rzecz automatyzacji, łatwo dojść do miejsca w którym zwyczajnie "przesadzimy". 

@@ -11,6 +11,7 @@ ignoreFiles = [
 summaryLength = 20
 paginate = 10
 enableGitInfo = true
+pluralizelisttitles = false
 
 [markup]
     [markup.goldmark.renderer]

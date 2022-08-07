@@ -26,7 +26,7 @@ W przypadku dużego celu, wystarczy podzielić go na mniejsze aby zmniejszyć "o
 - nigdy nie wiemy CZY naprawdę tego chcemy
 - nigdy nie wiemy co tak naprawdę otrzymamy [[Wiedza/Ludzie/Dan Millman#Oczekiwania wobec celu]]
 - realizacja dużego celu daje efekt **"no dobra, ale co teraz?!"**
-- zrezygnowanie z celu lub modyfikacja nie jest łatwa (np. ze względu na [[Commitment Bias]] i/lub [[Wiedza/Modele Mentalne/Status quo bias]]
+- zrezygnowanie z celu lub modyfikacja nie jest łatwa (np. ze względu na [[Wiedza/Modele Mentalne/Commitment Bias]] i/lub [[Wiedza/Modele Mentalne/Status quo bias]]
 
 Między innymi z powyższych powodów, stosuję cele w pojedynczych przypadkach. Wcześniej stosowałem system [[OKR]]. Dziś głównie działam w oparciu o [[Wiedza/Słownik/Proces]] i [[Wiedza/Słownik/Kierunek]]. 
 

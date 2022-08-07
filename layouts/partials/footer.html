@@ -23,8 +23,17 @@
                 link.textContent = newContent;
             }
         })
+
+        function reverseChildren(parent) {
+            for (var i = 1; i < parent.childNodes.length; i++){
+                parent.insertBefore(parent.childNodes[i], parent.firstChild);
+            }
+        }
+        reverseChildren(document.querySelector('.tree > ol'))
         })()
     </script>
     {{partial "contact.html" .}}
     <button class="newsletter-btn" data-tally-open="nrjOON" data-tally-emoji-text="💜" data-tally-emoji-animation="heart-beat">Dołącz do newslettera</button>
     {{partial "newsletter.html" .}}
+
+

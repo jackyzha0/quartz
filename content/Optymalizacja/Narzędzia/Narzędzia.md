@@ -3,8 +3,8 @@ title: Narzędzia
 ---
 
 - [[Optymalizacja/Narzędzia/Airtable]] - API first excel na sterydach
-- [[Optymalizacja/Narzędzia/MakeHQ]] - Najlepsze narzędzie do automatyzacji i szybkiego łączenia API
-- [[Optymalizacja/Narzędzia/Zapier]] - Automatyzacje i szybkie łączenie API
+- [[Optymalizacja/Narzędzia/MakeHQ]] - Najlepsze narzędzie do automatyzacji i szybkiego łączenia [[Wiedza/Programowanie/API]]
+- [[Optymalizacja/Narzędzia/Zapier]] - Automatyzacje i szybkie łączenie [[Wiedza/Programowanie/API]]
 - [[Optymalizacja/Narzędzia/Keyboard Maestro]] - Automatyzacje w OSX
 - [[Optymalizacja/Narzędzia/Romwod]] - Aplikacja z programem ćwiczeń rozciągających
 - [[Optymalizacja/Narzędzia/Raycast]] - Launcher w którym tworzę własne rozszerzenia w [[Wiedza/Programowanie/Node.js]], [[Wiedza/Programowanie/JavaScript/JavaScript]], [[React.js]] i [[TypeScript]]

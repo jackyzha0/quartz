@@ -2,7 +2,7 @@
 title: MakeHQ
 ---
 
-[Integromat](https://Integromat.com/) to najważniejsze narzędzie automatyzacji z jakiego korzystam. Z jego pomocą łączę wszystkie usługi posiadające [[API]] wykorzystując albo wbudowane moduły albo podłączając się bezpośrednio przez [[API]] przez moduł HTTP. 
+[Integromat](https://Integromat.com/) to najważniejsze narzędzie automatyzacji z jakiego korzystam. Z jego pomocą łączę wszystkie usługi posiadające [[Wiedza/Programowanie/API]] wykorzystując albo wbudowane moduły albo podłączając się bezpośrednio przez [[Wiedza/Programowanie/API]] przez moduł HTTP. 
 
 W niektórych przypadkach tworzę swoje własne [[Optymalizacja/Automatyzacja/Mikroserwisy]] do realizacji zadań, które: 
 - nie są możliwe do zrealizowania z pomocą gotowych narzędzi
