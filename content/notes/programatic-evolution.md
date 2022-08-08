@@ -4,9 +4,9 @@ aliases:
 tags: 
 - video
 - inbox
-sr-due: 2022-08-07
-sr-interval: 10
-sr-ease: 270
+sr-due: 2022-09-14
+sr-interval: 37
+sr-ease: 290
 ---
  5 condiditons for evolution
  - self-replication
