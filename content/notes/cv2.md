@@ -2,8 +2,8 @@
 
 Mobile: 0276509548
 Email: jethughes0@gmail.com
-Github: [github.com/jethughes](github.com/jethughes)
-Linkedin: [linkedin.com/in/jet-hughes ](linkedin.com/in/jet-hughes)
+Github: [github.com/jethughes](https://github.com/JetHughes)
+Linkedin: [linkedin.com/in/jet-hughes ](https://www.linkedin.com/in/jet-hughes)
 Based in: Dunedin/Raglan/Wanaka
 
 <hr>
@@ -18,7 +18,6 @@ The first language I learnt when I started programming was C# in year 9. I start
 I often stay up far too late fixating on a stubborn bug or a difficult feature. But the satisfaction I get when I finally solve it, quite often warrants a little dance. These moments are why I enjoy coding so much.
 
 <hr>
-
 
 # Skill Summary
 ## Web Development
@@ -61,10 +60,10 @@ Otago University (2021 - present)
 <hr>
 
 # Interests
-- Music: All of it - I have listed to about 200 albums, 580 artists, and 3065 tracks this year. (https://www.last.fm/user/JetLikeAPlane)
+- Music: All of it - I have listed to about 200 albums, 580 artists, and 3065 tracks this year. [last.fm/user/JetLikeAPlane](https://www.last.fm/user/JetLikeAPlane)
 - Surfing + Snowboarding: Grew up in Raglan and living in Dunedin: How can I not?
 - Philosophy: Food for the brain - Currently listening to the podcast Philosphize This by Stephen West
-- Cooking: Japanese, Mexican, Chinese, Thai, Caveman - I love trying new things
+- Cooking: Japanese, Mexican, Chinese, Thai, Inidan, Caveman, etc - I love trying new things
 
 <hr>
 
