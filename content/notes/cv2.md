@@ -2,9 +2,11 @@
 
 Mobile: 0276509548
 Email: jethughes0@gmail.com
-Github: github.com/jethughes
-Linkedin: linkedin.com/in/jet-hughes 
+Github: [github.com/jethughes](github.com/jethughes)
+Linkedin: [linkedin.com/in/jet-hughes ](linkedin.com/in/jet-hughes)
 Based in: Dunedin/Raglan/Wanaka
+
+<hr>
 
 # Career Objective
 I am open to a role in a wide variety of areas: web development, ML/AI, game development, AR/VR or even Dev-ops. I enjoy solving complex problems and experimenting with new tech. I have dabbled in many fields within computer science.
@@ -15,18 +17,16 @@ The first language I learnt when I started programming was C# in year 9. I start
 
 I often stay up far too late fixating on a stubborn bug or a difficult feature. But the satisfaction I get when I finally solve it, quite often warrants a little dance. These moments are why I enjoy coding so much.
 
+<hr>
+
+
 # Skill Summary
-
 ## Web Development
-
-## 
-
 ## Time Management
-
 ## Independent Learning
-
 ## Communication
 
+<hr>
 
 # Experience
 Intern - Company-X (Dec 2020 - present)
@@ -36,27 +36,37 @@ Intern - Company-X (Dec 2020 - present)
 - Used Jira, git (with Bitbucket), google sheets, excel, SharePoint, slack
 - Co-ordinated with an international team
 
+<hr>
+
 # Education
 Otago University (2021 - present)
 - Bachelor of commerce and science in computer science and finance
 - Expected graduation November 2023
 
+<hr>
+
 # Technical Skills
 ## Java
-
 ## Front End
-
 ## Python
-
 ## Back End
 
+<hr>
+
 # Project Experience
+## React Native App
+## 202 Project
+## Python Bots
+
+<hr>
 
 # Interests
 - Music: All of it - I have listed to about 200 albums, 580 artists, and 3065 tracks this year. (https://www.last.fm/user/JetLikeAPlane)
 - Surfing + Snowboarding: Grew up in Raglan and living in Dunedin: How can I not?
 - Philosophy: Food for the brain - Currently listening to the podcast Philosphize This by Stephen West
 - Cooking: Japanese, Mexican, Chinese, Thai, Caveman - I love trying new things
+
+<hr>
 
 # References
 **Dilan Prasad - Company-X:** My current Project Manager
