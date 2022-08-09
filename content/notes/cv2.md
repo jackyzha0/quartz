@@ -4,9 +4,10 @@ Mobile: 0276509548
 Email: jethughes0@gmail.com
 Github: github.com/jethughes
 Linkedin: linkedin.com/in/jet-hughes 
+Based in: Dunedin/Raglan/Wanaka
 
 # Career Objective
-I am open to a role in a wide variety of areas: web development, ML/AI, game development, AR/VR or even devops. I enjoy solving complex problems and experimenting with new tech. I have dabbled in many fields within computer science.
+I am open to a role in a wide variety of areas: web development, ML/AI, game development, AR/VR or even Dev-ops. I enjoy solving complex problems and experimenting with new tech. I have dabbled in many fields within computer science.
 
 In year 13 I made a complete mobile application using React Native and expo. Since then, I have made a simple website with plain HTML and JavaScript, and started another React Native expo app. Last year I took a very cool data science paper, and learnt how to use python for ML/AI. I found this paper very interesting and fun. In the following summer, I used what I had learned to turn a GoPro into a motion detection camera.
 
