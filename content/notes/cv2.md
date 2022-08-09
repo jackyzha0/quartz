@@ -17,13 +17,16 @@ I often stay up far too late fixating on a stubborn bug or a difficult feature. 
 
 # Skill Summary
 
-## Java
+## Web Development
 
-## Front End
+## 
 
-## Python
+## Time Management
 
-## Back End
+## Independent Learning
+
+## Communication
+
 
 # Experience
 
@@ -31,6 +34,13 @@ I often stay up far too late fixating on a stubborn bug or a difficult feature. 
 Bachelor of Commerce and Science - February 2021 - November 2023
 
 # Technical Skills
+## Java
+
+## Front End
+
+## Python
+
+## Back End
 
 # Project Experience
 
