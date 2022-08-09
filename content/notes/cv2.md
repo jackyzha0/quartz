@@ -56,11 +56,12 @@ Otago University (2021 - present)
 ## React Native App
 ## 202 Project
 ## Python Bots
+## Motion Detector
 
 <hr>
 
 # Interests
-- Music: All of it - I have listed to about 200 albums, 580 artists, and 3065 tracks this year. [last.fm/user/JetLikeAPlane](https://www.last.fm/user/JetLikeAPlane)
+- Music: All of it - I have listed to about 953 albums, 756 artists, and 9467 tracks this year. [last.fm/user/JetLikeAPlane](https://www.last.fm/user/JetLikeAPlane)
 - Surfing + Snowboarding: Grew up in Raglan and living in Dunedin: How can I not?
 - Philosophy: Food for the brain - Currently listening to the podcast Philosphize This by Stephen West
 - Cooking: Japanese, Mexican, Chinese, Thai, Inidan, Caveman, etc - I love trying new things
