@@ -29,9 +29,17 @@ I often stay up far too late fixating on a stubborn bug or a difficult feature. 
 
 
 # Experience
+Intern - Company-X (Dec 2020 - present)
+- Learn't complex process of translating e-learning modules in less than one week
+- Trained new hires in process
+- Increased efficiency of process from ~4 hrs to ~2.5hrs
+- Used Jira, git (with Bitbucket), google sheets, excel, SharePoint, slack
+- Co-ordinated with an international team
 
 # Education
-Bachelor of Commerce and Science - February 2021 - November 2023
+Otago University (2021 - present)
+- Bachelor of commerce and science in computer science and finance
+- Expected graduation November 2023
 
 # Technical Skills
 ## Java
@@ -45,5 +53,10 @@ Bachelor of Commerce and Science - February 2021 - November 2023
 # Project Experience
 
 # Interests
+- Music: All of it - I have listed to about 200 albums, 580 artists, and 3065 tracks this year. (https://www.last.fm/user/JetLikeAPlane)
+- Surfing + Snowboarding: Grew up in Raglan and living in Dunedin: How can I not?
+- Philosophy: Food for the brain - Currently listening to the podcast Philosphize This by Stephen West
+- Cooking: Japanese, Mexican, Chinese, Thai, Caveman - I love trying new things
 
 # References
+**Dilan Prasad - Company-X:** My current Project Manager
