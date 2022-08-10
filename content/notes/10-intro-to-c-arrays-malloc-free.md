@@ -93,5 +93,6 @@ free(block);
 	- memory fragmentation
 - free same block more than once
 	- corrupt memory management routines
+	- lots of space between blocks that is too small to be used
 - using memory after it has been freed
 	- it have been re-used by malloc
