@@ -52,3 +52,16 @@ uint_t byte_array[1024];
 - compiler chooses somewhere in memory
 - the name of the array maps to the location
 
+## segments
+- ![diagram](https://i.imgur.com/owQcqhJ.png)
+- translation between virtual and physical pages
+- compiler knows
+	- where in memory program is stored
+	- how much global data you use
+	- where the stack is
+
+## malloc
+- "memory allocate"
+- 
+
+
