@@ -21,16 +21,27 @@ I often stay up far too late fixating on a stubborn bug or a difficult feature. 
 
 # Skill Summary
 ## Web Development
-In year 13 I made a complete mobile application using React Native and expo. Since then, I have made a simple website with plain HTML and JavaScript, and started another React Native expo app.
+- react native app
+- nzbirds app
+- album of the day site + API
 
 ## Time Management
-I often stay up far too late fixating on a stubborn bug or a difficult feature. But the satisfaction I get when I finally solve it, quite often warrants a little dance. And these moments are why I enjoy coding so much.
+- overseas
+- winters
+- working + studying + surfing + projects
+- grades
 
 ## Independent Learning
-The first language I learnt when I started programming was C# in year 9. I started by making simple text-based games in the terminal, but soon grew bored and started to experiment with Unity. I stated simple with some 2d games, eventually working up to a 3D top down shooter with procedurally generated maps, which I later transformed into a basic single-player first-person shooter game.
+- react native + javascript
+- unity
+- html + css
+- networks and security
+- winters + overseas
 
 ## Communication
-worked at company-x with an international team. worked at company-x with an international team. worked at company-x with an international team. worked at company-x with an international team. worked at company-x with an international team. worked at company-x with an international team. worked at company-x with an international team. 
+- worked at company-x with an international team. 
+- worked with a local team 
+- asked questions
 
 <hr>
 
@@ -53,16 +64,21 @@ Otago University (2021 - present)
 
 # Technical Skills
 ## Java
-The first language I learnt when I started programming was C# in year 9. I started by making simple text-based games in the terminal, but soon grew bored and started to experiment with Unity. I stated simple with some 2d games, eventually working up to a 3D top down shooter with procedurally generated maps, which I later transformed into a basic single-player first-person shooter game.
+- 2 years
+- andie
+	- kernel thing
+	- k means p
 
-## Front End
+## Javascript
 The first language I learnt when I started programming was C# in year 9. I started by making simple text-based games in the terminal, but soon grew bored and started to experiment with Unity. I stated simple with some 2d games, eventually working up to a 3D top down shooter with procedurally generated maps, which I later transformed into a basic single-player first-person shooter game.
 
 ## Python
 The first language I learnt when I started programming was C# in year 9. I started by making simple text-based games in the terminal, but soon grew bored and started to experiment with Unity. I stated simple with some 2d games, eventually working up to a 3D top down shooter with procedurally generated maps, which I later transformed into a basic single-player first-person shooter game.
 
-## Back End
+## React Native
 The first language I learnt when I started programming was C# in year 9. I started by making simple text-based games in the terminal, but soon grew bored and started to experiment with Unity. I stated simple with some 2d games, eventually working up to a 3D top down shooter with procedurally generated maps, which I later transformed into a basic single-player first-person shooter game.
+
+## Back End Technologies
 
 <hr>
 
