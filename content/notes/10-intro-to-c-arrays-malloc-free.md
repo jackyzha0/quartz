@@ -62,6 +62,36 @@ uint_t byte_array[1024];
 
 ## malloc
 - "memory allocate"
-- 
+- always in bytes
+
+```c
+uint8_t *space = malloc(16); //give me 16 bytes of space
+uint64_t *block = malloc(sizeof(*uint64_t) * 16);
+uint64_t *another = malloc(sizeof(*another) * 16); //better: can change type without breaking it
+```
 
 
+## free
+**when you have finished using an allocated block you must free that block**
+
+```c
+uint64_t *block = malloc(sizeof(*block) * 16); //better: can change type without breaking it
+//do something
+free(block);
+```
+
+- never free memory you didn't allocate
+- never free the same memory twice
+- must call free before you lose the pointer to the block of memory
+
+## bugs
+- malloc'd block is too small
+	- buffer-overrun
+- didn't free a block
+	- memory leak
+- malloc and free small units a large number of times
+	- memory fragmentation
+- free same block more than once
+	- corrupt memory management routines
+- using memory after it has been freed
+	- it have been re-used by malloc
