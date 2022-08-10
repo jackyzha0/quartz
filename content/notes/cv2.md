@@ -1,4 +1,4 @@
-# Resume - Jet Hughes
+ Resume - Jet Hughes
 
 Mobile: 0276509548
 Email: jethughes0@gmail.com
@@ -67,18 +67,33 @@ Otago University (2021 - present)
 - 2 years
 - andie
 	- kernel thing
-	- k means p
-
-## Javascript
-The first language I learnt when I started programming was C# in year 9. I started by making simple text-based games in the terminal, but soon grew bored and started to experiment with Unity. I stated simple with some 2d games, eventually working up to a 3D top down shooter with procedurally generated maps, which I later transformed into a basic single-player first-person shooter game.
+	- k means posterise
 
 ## Python
-The first language I learnt when I started programming was C# in year 9. I started by making simple text-based games in the terminal, but soon grew bored and started to experiment with Unity. I stated simple with some 2d games, eventually working up to a 3D top down shooter with procedurally generated maps, which I later transformed into a basic single-player first-person shooter game.
+- info 204
+- motion detector
+- slack + python bots
+
+## Javascript
+- react native app
+- nz birds site
+- discord bot
 
 ## React Native
-The first language I learnt when I started programming was C# in year 9. I started by making simple text-based games in the terminal, but soon grew bored and started to experiment with Unity. I stated simple with some 2d games, eventually working up to a 3D top down shooter with procedurally generated maps, which I later transformed into a basic single-player first-person shooter game.
+- react native app
 
-## Back End Technologies
+## Back End/Other
+- CI/CD
+- nodeJs
+- flask
+- zappa
+- aws
+- docker
+- linux
+- terminal
+	- powershell etc
+	- vim
+	- 
 
 <hr>
 
