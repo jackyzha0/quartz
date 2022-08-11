@@ -9,8 +9,7 @@ The solution I've settled on is to order the links by relevance when link sugges
 
 Essentially, the text that is written + every link is fed into a machine learning model. Then, the model spits out the most relevant links for the given text. If you're curious about the details of this machine learning model, see the [library](https://www.npmjs.com/package/@tensorflow-models/universal-sentence-encoder) I used to accomplish this.
 
+Fleeting Notes is a free application, but AI-powered link suggestions is a paid feature in Fleeting Notes. If you want to try it out, use the promo code `AILINKS` for a 1 month free trial (Note: This coupon code expires July 31st, 2022).
+
 Here is a demo of the sentence similarity ranking in action:
 {{< youtube 3ySN4o0o7Hw >}}
-
-
-Fleeting Notes is a free application, but AI-powered link suggestions is a paid feature in Fleeting Notes. If you want to try it out, use the promo code `AILINKS` for a 1 month free trial (Note: This coupon code expires July 31st, 2022).

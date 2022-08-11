@@ -2,9 +2,9 @@
 title: How to Sync Fleeting Notes with Obsidian
 description: A step-by-step guide on how to sync Fleeting Notes with Obsidian
 date: 2022-04-12
-lastmod: 2022-07-04
+lastmod: 2022-08-11
 ---
-When we organize notes through connections, the [[notes/having more connections is better|more the better]]. Fleeting Notes is a separate network of notes outside of Obsidian. The goal of this plugin sync both these networks of notes into one! Below are step-by-step instructions on how to do this.
+[[notes/Fleeting Notes|Fleeting Notes]] is a separate network of notes outside of Obsidian. The goal of this plugin sync both these networks of notes into one! Below are step-by-step instructions on how to do this.
 
 ## Installation / Setup
 1. Before you begin, you'll need to create an account in the [Fleeting Notes App](https://fleetingnotes.app/). You can do this by navigating to the settings and registering.
@@ -31,3 +31,5 @@ When we organize notes through connections, the [[notes/having more connections 
 
 2. Your notes will be synced with Fleeting Notes and you will get a notification!
 ![Sync Notification](posts/img/fleeting-notes-sync-7.png)
+## Next Steps
+Now that you have your notes synced, see the [[posts/3-ways-to-process-fleeting-notes-within-obsidian|3 Ways to Process Fleeting Notes within Obidian]]
