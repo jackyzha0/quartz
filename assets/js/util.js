@@ -58,14 +58,12 @@ const highlight = (content, term) => {
   // try to find direct match first
   const directMatchIdx = content.indexOf(term)
   if (directMatchIdx !== -1) {
-    console.log(directMatchIdx)
     const h = highlightWindow
     const before = content.substring(0, directMatchIdx).split(" ").slice(-h)
     const after = content
       .substring(directMatchIdx + term.length, content.length - 2)
       .split(" ")
       .slice(0, h)
-    console.log(before, after)
     return (
       (before.length == h ? `...${before.join(" ")}` : before.join(" ")) +
       `<span class="search-highlight">${term}</span>` +
