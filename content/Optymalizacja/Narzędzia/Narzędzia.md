@@ -54,3 +54,4 @@ title: Narzędzia
 - [[Optymalizacja/Narzędzia/Session]]
 - [[Optymalizacja/Narzędzia/Rize]]
 - [[Optymalizacja/Narzędzia/Intellij]]
+- [[Optymalizacja/Narzędzia/Obsidian]]
