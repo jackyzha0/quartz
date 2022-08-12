@@ -72,6 +72,8 @@ Działam w oparciu o nieustannie optymalizowany [[Wiedza/Słownik/Proces]] uwzgl
 - Podejmowanie mądrych decyzji ([[Wiedza/Książki/All I Want to Know is Where Im Going to Die So Ill Never Go There]], [[Wiedza/Książki/The Great Mental Models]], [[Wiedza/Książki/Seeking Wisdom]], [[Wiedza/Książki/Gladiators Pirates and Games of Trust]])
 - Rozumienie siebie (jest to fundament) ([[Wiedza/Książki/Understanding the INFJ Personality Type]] oraz [[StrenghtsFinder 2.0]])
 - Kwestionowanie autorytetów [[Wiedza/Modele Mentalne/Authority bias]]
+- Kształtowanie oraz aktualizowanie tzw. Modeli Rzeczywistości ([[Wiedza/Książki/The Code Of The Extraordinary Mind]])
+- Naginanie rzeczywistości do swojej woli [[Wiedza/Książki/Cant Hurt Me]]
 
 ## Mój [[Wiedza/Słownik/Proces]]
 
