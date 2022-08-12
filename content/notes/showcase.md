@@ -14,5 +14,6 @@ Want to see what Quartz can do? Here are some cool community gardens :)
 - [Course notes for Information Technology Advanced Theory](https://a2itnotes.github.io/quartz/)
 - [Brandon Boswell's Garden](https://brandonkboswell.com)
 - [Siyang's Courtyard](https://siyangsun.github.io/courtyard/)
+- [A turbulent mind](https://sohom-ud.github.io/quartz/)
 
 If you want to see your own on here, submit a [Pull Request adding yourself to this file](https://github.com/jackyzha0/quartz/blob/hugo/content/notes/showcase.md)!
