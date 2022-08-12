@@ -31,7 +31,7 @@ Do pracy z Obsidianem wykorzystuję [[Optymalizacja/Narzędzia/Keyboard Maestro]
 - dopisywanie linków do bardzo popularnych tematów (jak wyżej)
 - wprowadzanie globalnych zmian do notatek (z pomcą [[Regex]])
 - aktualizacje metadanych (np. czasu ostatniej edycji pliku interpretowanej przez Quartz)
-- szablonów dodawania notatek (text expander)
+- szablony dodawania notatek (text expander)
 
 Przykład wykorzystania Deisgn Maestro - szybkie dodawanie nowych narzędzi. Wykonanie tego makro dodaje narzędzie do listy ToC oraz tworzy nową notatkę. Do schowka trafia link do niej, dzięki czemu w razie potrzeby mogę bardzo szybko otworzyć Obsidiana a jeżeli nie ma takiej potrzeby, nie muszę się odrywać od aktualnie wykonywanego zadania: 
 ![](https://space.overment.com/Screen-Shot-2022-08-12-14-11-53-xmPJB/Screen-Shot-2022-08-12-14-11-53.png)
