@@ -2,10 +2,10 @@
 title: EasyLove
 ---
 
-# Czym jest EasyLove?
-To narzędzie ułatwiające proces gromadzenia oraz udostepniania opinii klientów.
+# What is EasyLove?
+It's a tool that facilitates the process of collecting and sharing customer reviews.
 
-Opinie klientów stanowią jeden z najbardziej istotnych elementów marketingu oraz sprzedaży a pomimo tego często są pomijane lub gubią się pośród maili i komentarzy Social Media. 
+Customer reviews are one of the most essential elements of marketing and sales and yet they are often overlooked or lost amidst emails and Social Media comments.
 
-EasyLove stanowi część [[EasyTools]] i jest dostępny tutaj: https://app.easytools.pl/easylove
+EasyLove is part of [[EasyTools]] and is available here: https://app.easytools.pl/easylove
 

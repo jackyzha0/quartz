@@ -1,5 +1,5 @@
 ---
-title: Optymalizacja
+title: Optimization
 --- 
 
 [[Foundations/Process]]

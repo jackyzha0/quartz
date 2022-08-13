@@ -10,7 +10,7 @@ Praca głęboka ([[Knowledge/Books/Deep Work]]) to: realizacja jednego zadania p
 
 Opiera się o zasady: 
 - Wysiłku, 
-- [[Knowledge/Thoughts/Nuda]], 
+- [[Knowledge/Thoughts/Boredom]], 
 - braku Social Media i wyznaczenia czasu na pracę płytką (np. odpisywanie na maile).
 
 Jest to umiejętność jak każda inna, którą należy trenować aby z czasem wykonywać ją lepiej. W [[Knowledge/Books/Deep Work]] znajdziemy wiele bardzo praktycznych porad, które pomogą nam ją rozwijać i kształcić odpowiednie [[Nawyk]]i.

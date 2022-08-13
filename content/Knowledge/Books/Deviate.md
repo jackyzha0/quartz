@@ -2,9 +2,9 @@
 title: Deviate
 ---
 
-Czy to co widzimy to [[Knowledge/Thoughts/Rzeczywistość]]? Odpowiedź na to pytanie wydaje się oczywista. Przecież widzimy, możemy dotknąć, usłyszeć, spróbować i to istnieje. 
+Czy to co widzimy to [[Knowledge/Thoughts/Reality]]? Odpowiedź na to pytanie wydaje się oczywista. Przecież widzimy, możemy dotknąć, usłyszeć, spróbować i to istnieje. 
 
-Okazuje się jednak, że nadal nie jest to [[Knowledge/Thoughts/Rzeczywistość]]. Każdy z nas tą samą rzecz jest w stanie postrzegać zupełnie inaczej i wpływ na to ma tak wiele czynników, że śmiało można stwierdzić że to nasza rzeczywistość jest w pełni subiektywna. 
+Okazuje się jednak, że nadal nie jest to [[Knowledge/Thoughts/Reality]]. Każdy z nas tą samą rzecz jest w stanie postrzegać zupełnie inaczej i wpływ na to ma tak wiele czynników, że śmiało można stwierdzić że to nasza rzeczywistość jest w pełni subiektywna. 
 
 Więcej o tym mówi m.in. [[Knowledge/People/Andrew Huberman]].
 

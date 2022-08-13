@@ -2,21 +2,21 @@
 title: EasyBanner
 ---
 
-## Czym jest EasyBanner?
+## What is EasyBanner?
 
-EasyBanner to mój mikroserwis, umożliwiający generowanie plików jpg / png / pdf na podstawie kodu HTML / CSS.
+EasyBanner is my microservice to generate jpg / png / pdf files based on HTML / CSS code.
 
-Wykorzystuję go w połączeniu z [[Optimization/Tools/MakeHQ]] do tworzenia [[Optimization/Automation/Automation]]. 
+I use it in conjunction with [[Optimization/Tools/MakeHQ]] to create [[Optimization/Automation/Automation]].
 
-Aktualnie większość grafik, które publikuję w mediach społecznościowych, tworzona jest na podstawie szablonów i generowana z pomocą [[Projects/EasyBanner]].
+Currently, most of the graphics I post on social media are created from templates and generated with the help of [[Projects/EasyBanner]].
 
 ## [[Optimization/Tools/MakeHQ]]
-EasyBanner posiada swój własny moduł w MakeHQ, aktualnie dostępny wyłącznie dla osób posiadających wykupiony dostęp.
+EasyBanner has its own module in MakeHQ, currently available only to those with purchased access.
 
 ![](https://space.overment.com/Shared-Image-2021-11-07-23-26-34/Shared-Image-2021-11-07-23-26-34.png)
 
-## Jak uzyskać dostęp? 
-EasyBanner dostępny jest aktualnie w abonamencie 39 zł / miesięcznie.
+## How to gain access?
+EasyBanner is currently available at a subscription of 39 PLN / month.
 
-Można go wykupić dzięki [[Projects/EasyCart]] na stronie: 
+It can be purchased through [[Projects/EasyCart]] on the site:
 https://app.easycart.pl/checkout/zautomatyzowani/easybanner

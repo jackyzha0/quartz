@@ -38,7 +38,7 @@ Według Navala dźwignia biznesowa pochodzi z Kapitału, Ludzi i Produktów posi
 - Naucz się budować i sprzedawać: staniesz się niepowstrzymany
 - Nigdy nie będziesz wart więcej niż myślisz. W kontekście biznesowym, wyznacz sobie swoją stawkę godzinową i pracuj tak, jakbyś rzeczywiście tyle zarabiał
 - Niezależność jest ważniejsza niż to ile zarabiasz. To ona daje przestrzeń i kontrolę.
-- Kiedy ostatnio się nudziłeś? [[Knowledge/Thoughts/Nuda]] daje przestrzeń, przestrzeń jest elementem kreatywności
+- Kiedy ostatnio się nudziłeś? [[Knowledge/Thoughts/Boredom]] daje przestrzeń, przestrzeń jest elementem kreatywności
 - Jeżeli nie potrafisz zdecydować, odpowiedź brzmi NIE"
 - Jeżeli podejmujesz decyzję, wybierz opcję która krótkoterminowo jest trudniejsza.
 - Szczęście to kwestia naszej decyzji

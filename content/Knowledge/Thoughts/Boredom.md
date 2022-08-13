@@ -1,8 +1,8 @@
 ---
-title: Nuda
+title: Boredom
 ---
 
 
 
-### Źródła
+### Sources
 https://thriveglobal.com/stories/three-ways-to-reset-your-stress-in-any-situation

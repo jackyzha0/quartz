@@ -2,21 +2,20 @@
 title: Dan Millman
 ---
 
-# Kim jest?
-Dan Millman to Mistrz Świata w gimnastyce i autor książek w których mocno nawiązuje do filozofii buddyjskiej. Jego książka [[Knowledge/Books/Way of The Peaceful Warrior]] jest dla mnie absolutnym numerem 1 spośród wszysktich przeczytanych przeze mnie [[Knowledge/Books/Książki]].
+# Who is he?
+Dan Millman is a World Champion in gymnastics and author of books in which he makes strong references to Buddhist philosophy. His book [[Knowledge/Books/Way of The Peaceful Warrior]] is, for me, the absolute No. 1 of all the [[Knowledge/Books/Books]] I have read.
 
-## Czego nauczył mnie Dan? 
+## What did Dan teach me?
 
-### Nie ma zwykłych chwil.
+### There are no ordinary moments.
 Zawsze coś się dzieje. 
 
 ### Wojownik Spokoju
-Wojownik nie rezygnuje z tego co kocha. Odnajduje miłość w tym co robi.
+A warrior doesn't give up what he loves. He finds love in what he does.
 
-Takie nastawienie sprawia, że z miłością podchodzę do wszystkiego co robię, niezależnie od tego jak trudne to się wydaje. 
+This attitude makes me approach everything I do with love, no matter how difficult it seems.
 
-### Poznawanie siebie
-*Każdy mówi Ci co jest dla Ciebie dobre. Nie chcą abyś znalazł własne odpowiedzi, tylko abyś uwierzył w ich.*
+### Getting to know yourself
 
 ***Socrates:**  
 Everyone tells you what to do and what's good for you. They don't want you to find your own answers. They want you to believe theirs.  
@@ -34,29 +33,29 @@ No. I want you to stop gathering information from outside yourself and start gat
 People are afraid of what's inside and that's the only place they're ever gonna find what they need.*
 
 
-### Zasady życia
-Humor, Paradoks i Zmiana
+### Rules of life
+Humor, Paradox and Change
 
-- Humor: Poczucie humoru szczególnie względem siebie to siła ponad miarę ([[Foundations/Values#Moje wartości]])
-- Paradoks: Życie jest tajemnicą, nie marnuj czasu aby ją rozwikłać.
-- Zmiana: Nic nigdy nie pozostaje takie samo
+- Humor: A sense of humor especially toward oneself is a strength beyond measure ([[Foundations/Values#My Values]])
+- Paradox: Life is a mystery, don't waste time to unravel it.
+- Change: Nothing ever stays the same
 
-### Wiedza vs Mądrość
-Wiedza to nie to samo co mądrość. Nieistotne jest to co wiesz, ważne jest to co robisz. Mądrość to wykorzystanie swojej wiedzy. 
+### Knowledge vs Wisdom
+Knowledge is not the same as wisdom. What you know is not important, what you do is important. Wisdom is using your knowledge.
 
-### Szczęście
-Bądź szczęśliwy tu i teraz, bez powodu. Albo nigdy nie będziesz. 
+### Happiness
+Be happy here and now, for no reason. Or you will never be.
 
-(wideo dostępne na youtube):
+(video available on youtube):
 <iframe width="560" height="315" src="https://www.youtube.com/embed/anFzcVb7mR8?start=26" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Coś podobnego powiedział [[Knowledge/People/Naval Ravikant]]. Przeczytanie tego w [[Knowledge/Books/Alamanck of Naval Ravikant]] było dla mnie przełomowym momentem ze względu na całkowitą zmianę nastawienia względem swojego życia i poczucia szczęścia. 
+Something similar was said by [[Knowledge/People/Naval Ravikant]]. Reading this in [[Knowledge/Books/Alamanck of Naval Ravikant]] was a watershed moment for me because of a complete change of attitude towards my life and sense of happiness.
 
-### Oczekiwania wobec celu
-Fragment filmu "Siła Spokoju" pokazujący nieoczekiwany efekt długiej podróży związany z [[Knowledge/Dictionary/Goal]]em i [[Knowledge/Thoughts/Oczekiwania]]mi.
+### Expectations of the target
+An excerpt from the film 'The Power of Tranquility' showing the unexpected result of a long journey related to [[Knowledge/Dictionary/Goal]]s and [[Knowledge/Thoughts/Expectations]]s.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/wdKzBrzl_i8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-### Źródła
+### Sources
 - [[Knowledge/Books/Way of The Peaceful Warrior]]
 - [[Knowledge/Books/Body Mind Mastery]]

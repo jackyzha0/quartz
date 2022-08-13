@@ -2,8 +2,8 @@
 title: 1Password
 ---
 
-# Czym jest 1Password?
+# What is 1Password?
 
-To płatny manager haseł. Z perspektywy bezpieczeństwa w sieci, posługiwanie się managerem jest bardzo ważne. 
+It is a paid password manager. From the perspective of online security, using the manager is very important.
 
-Przechowuję na jednym koncie dostępy do wszystkich pozostałych kont. W przypadku najbardziej kluczowych serwisów regularnie zmieniam hasła i stosuję uwierzytelnianie dwuetapowe.
+I store access to all other accounts in one account. For the most critical services, I regularly change passwords and use two-step authentication.

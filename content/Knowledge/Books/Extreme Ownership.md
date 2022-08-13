@@ -9,7 +9,7 @@ title: Extreme Ownership
 Autorzy to byli komandosi [[Navy Seal's]], którzy po swoich misjach m.in. w Iraku przenoszą swoje doświadczenia z najbardziej ekstremalnych na kontekst biznesowy.
 
 ## Lekcje
-- [[Knowledge/Thoughts/Dyscyplina]] daje wolność
+- [[Knowledge/Thoughts/Discipline]] daje wolność
 - Relax, look around, make a call.
 - Nie ma złych zespołów. Są tylko źli liderzy.
 - Pozwól działać swojemu zespołowi w ramach ustalonego celu i bez Twojego zaangażowania we wszystko.

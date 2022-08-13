@@ -22,7 +22,7 @@ A well-defined goal [[Knowledge/Dictionary/Goal]] determines the end result and 
 For a large target, simply divide it into smaller ones to reduce "resistance" ([[Knowledge/Books/War of Art]]). The realization of smaller goals imparts [[Momentum]] through, among other things, the use of dopamine, about which more is said by [[Knowledge/People/Andrew Huberman#Motywacja Drive]]
 
 **In practice, the goals have drawbacks:** 
-- goals build [[Knowledge/Thoughts/Oczekiwania]] that may not match [[Knowledge/Thoughts/Rzeczywistość]]
+- goals build [[Knowledge/Thoughts/Expectations]] that may not match [[Knowledge/Thoughts/Reality]]
 - goals build that may not agree with (the result)
 - we never know IF we really want it
 - we never know what we're really going to get [[Knowledge/People/Dan Millman#Oczekiwania wobec celu]]
@@ -42,7 +42,7 @@ I operate on the basis of a continuously optimized [[Knowledge/Dictionary/Proces
 * Fundamenty \(sen, diet, sports, being bored\)
 * Getting to know yourself \n(journal writing and reading it, StrengthsFinder, MBTI, Principles You).
 * Surrounding environment \n(people I spend time with).
-* Development of [[Foundations/Knowledge acquisition system]], learning about [[Knowledge/Mental models/Modele mentalne]] and reading [[Knowledge/Books/Książki]]
+* Development of [[Foundations/Knowledge acquisition system]], learning about [[Knowledge/Mental models/Mental models]] and reading [[Knowledge/Books/Books]]
 * Using of a ([[Knowledge/Mental models/Leverage]])) \(my hour generates a multiplying effect\)
 * Freedom \(I don't sell my time, avoid planned activities\)
 
@@ -52,7 +52,7 @@ I operate on the basis of a continuously optimized [[Knowledge/Dictionary/Proces
 
 - Curiosity - because it's what leads us to unimaginable places.
 - Open-mindedness - also to the fact that I, as well as any other person, simply may be wrong and something that is even widely accepted as truth may have little to do with it.
-- In implementing this process, the most important thing for me is to maintain a [[Knowledge/Thoughts/Dyscyplina]] A discipline that Jocko Willink [[Knowledge/People/Jocko Willink]] talks a lot about and [[Knowledge/People/David Goggins]] writes in his book [[Knowledge/Books/Cant Hurt Me]]. 
+- In implementing this process, the most important thing for me is to maintain a [[Knowledge/Thoughts/Discipline]] A discipline that Jocko Willink [[Knowledge/People/Jocko Willink]] talks a lot about and [[Knowledge/People/David Goggins]] writes in his book [[Knowledge/Books/Cant Hurt Me]]. 
 - In designing the process, I pay attention to [[Knowledge/Mental models/Ergodicity]] and ([[Knowledge/Mental models/Leverage]]) and compound interest ([[Knowledge/Books/The Compound Effect]])
 - [[Knowledge/People/Dan Millman]] and his book [[Knowledge/Books/Way of The Peaceful Warrior]] and [[Knowledge/Books/How to Fail at Almost Anything and Still Win Big]] i [[Knowledge/Books/Pound the Stone]] has played a huge role in my attitude towards a process.
 - Taking full responsibility for what I do ([[Knowledge/Books/Extreme Ownership]]) and full commitment ([[Knowledge/Books/Skin in the Game]])
@@ -86,7 +86,7 @@ The foundation for me is health (physical and mental) and sleep.
 - **Sport** - [3x a week](https://www.reddit.com/r/bodyweightfitness/wiki/kb/recommended_routine) + daily stretching with [[Optimization/Tools/Romwod]]
 - Breathing exercises with [[Optimization/Tools/Oak]] & tips from [[Knowledge/People/Andrew Huberman#Oddychanie]]
 - [[Medytacja]] ~20-30 minutes a day with [[Optimization/Tools/Headspace]], [[Optimization/Tools/Waking Up]] and [[Optimization/Tools/Reveri]]
-- [[Knowledge/Thoughts/Nuda]] - a key element in remaining creative
+- [[Knowledge/Thoughts/Boredom]] - a key element in remaining creative
 - I practice the ability to focus on the basis of [[Knowledge/Books/Deep Work]] and I often listen to [[Optimization/Tools/Endel.io]]
 
 ### Getting to know myself
@@ -103,14 +103,14 @@ I believe that it is impossible to change fundamentally, while our beliefs and h
 * **Nearest [[Knowledge/Dictionary/Surrounding]]** - I pay attention to who I spend the most time with.
 * **Proactivity** - I actively maintain contact with selected individuals.
 * **Discovery** - I intentionally reach out to people I feel I want to have contact with.
-* **Limitation** - I eliminate meeting and being among people who take away my energy (or I take away theirs). Restrictions also improve the process [[Knowledge/Thoughts/Podejmowanie decyzji]]
+* **Limitation** - I eliminate meeting and being among people who take away my energy (or I take away theirs). Restrictions also improve the process [[Knowledge/Thoughts/Decision-making]]
 
 > Surround yourself with people who have achieved what you want to achieve and have something in common with them.
 
 ### Working style
 I often receive questions "How do you embrace it all?". There is no secret to this and it consists of three things:
 - I work quite a bit (~8-12 hours a day 6 days a week)
-- I maintain as much [[Knowledge/Thoughts/Skupienie]] as possible 
+- I maintain as much [[Knowledge/Thoughts/Focus]] as possible 
 - I am streamlining the implemented processes by using [[Optimization/Automation/Automation]]
 
 In other words, I do everything to make the best use of my time. For this it is necessary to build a strong [[Foundations/Process#Fundamenty]] As well as space to rest effectively. One of the most important suggestions I received on this topic was as follows: "Adam, if you work hard, you must also rest to the max". I completely agree with this.
@@ -123,8 +123,8 @@ In other words, I do everything to make the best use of my time. For this it is 
 ### Development
 Realizing and developing my [[Knowledge/Dictionary/Process]] is a priority for me. I base it almost 100% on English-language sources.
 
-- [[Knowledge/Mental models/Modele mentalne]] - understanding and using them is a superpower, it helps in thinking and decision-making - and I believe that our lives are about them.
-- [[Knowledge/Books/Książki]] - reading is for me one of the main elements of my development process
+- [[Knowledge/Mental models/Mental models]] - understanding and using them is a superpower, it helps in thinking and decision-making - and I believe that our lives are about them.
+- [[Knowledge/Books/Books]] - reading is for me one of the main elements of my development process
 - [[Knowledge/Podcasts/Podcast]]
 - Specialization and Generalization - I do not have any specialization. I learn everything about everything ([[Knowledge/Books/Range]] & [[T-Shape Leader]])
 

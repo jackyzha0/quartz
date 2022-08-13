@@ -20,4 +20,4 @@ Opieram o ten mechanizm niemal wszystkie podejmowane przeze mnie działania w ra
 
 Aktywności takie jak spotkania czy rozmowy zabierają nieproporconalnie dużo czasu do wartości jaką dają. Wyjątek stanowią tutaj spotkania z ludźmi których lubię aczkolwiek też zachowuję tutaj zdrowy balans.
 
-Mechanizm dźwigni świetnie łączy się z efektem procentu składanego ([[Knowledge/Books/The Compound Effect]]). Bardzo istotną rolę w wykorzystaniu obu koncepcji odgrywa [[Knowledge/Thoughts/Dyscyplina]] bardzo mocno promowana przez [[Knowledge/People/David Goggins]] w książce [[Knowledge/Books/Cant Hurt Me]] oraz [[Knowledge/People/Jocko Willink]] w książce [[Knowledge/Books/Extreme Ownership]]
+Mechanizm dźwigni świetnie łączy się z efektem procentu składanego ([[Knowledge/Books/The Compound Effect]]). Bardzo istotną rolę w wykorzystaniu obu koncepcji odgrywa [[Knowledge/Thoughts/Discipline]] bardzo mocno promowana przez [[Knowledge/People/David Goggins]] w książce [[Knowledge/Books/Cant Hurt Me]] oraz [[Knowledge/People/Jocko Willink]] w książce [[Knowledge/Books/Extreme Ownership]]

@@ -2,32 +2,33 @@
 title: EasyCart
 ---
 
-# Czym jest EasyCart?
-EasyCart to projekt ułatwiający sprzedaż w produktów cyfrowych. Jego największą przewaga konkurencyjną jest UX (np. płatność "one-click") oraz "efekt sieci" (zapamiętanie danych płatności przy zakupie u dowolnego sprzedawcy w sieci EasyCart).
+# What is EasyCart?
+EasyCart is a project that facilitates sales in digital products. Its biggest competitive advantage is its UX (e.g., 'one-click' payment) and 'network effect' (remembering payment details when purchasing from any EasyCart merchant).
 
-Początkowo EasyCart powstał jako koszyk na potrzeby naszych projektów. Obecnie dzięki technologii Stripe możliwe było udostępnienie go innym.
+Initially EasyCart was created as a shopping cart for our projects. Now, thanks to Stripe technology, it was possible to make it available to others.
 
-## Aktualności 
-- Maj 2022 EasyCart przekracza 3 000 000 zł transakcji
-- Grudzień 2021 EasyCart przekracza 700 tys zł transakcji i 4000 klientów w sieci
-- Listopad 2021 EasyCart wkrótce zakończy publiczną betę
-- Sierpień 2021 Pierwszy klient po testach przełącza wszystkie swoje produkty na EC 🎉
-- Sierpień 2021 - EasyCart staje się projektem #buildinpublic
-- Sierpień 2021 - EasyCart jest na etapie zamkniętej bety
+## News 
+- August 2022 Easycart exceedes PLN 5,000,000 in transactions
+- May 2022 EasyCart exceeds PLN 3,000,000 in transactions
+- December 2021 EasyCart exceeds 700K transactions and 4,000 customers online
+- November 2021 EasyCart to end public beta soon
+- August 2021 First customer switches all its products to EC after testing 🎉
+- August 2021 - EasyCart becomes a project #buildinpublic
+- August 2021 - EasyCart is in closed beta stage
 
 ---
 
-## Testy koszyka
-Koszyk można testować pod adresami: 
+## Sandbox
+The shopping cart can be tested at the following addresses:
 - [https://sandbox.easycart.pl/checkout/ahoy/konsultacje](https://sandbox.easycart.pl/checkout/ahoy/konsultacje)
 - [https://sandbox.easycart.pl/checkout/ahoy/postaw-mi-kawe](https://sandbox.easycart.pl/checkout/ahoy/postaw-mi-kawe)
 - [https://sandbox.easycart.pl/checkout/ahoy/kurs-improwizacji-w-biznesie](https://sandbox.easycart.pl/checkout/ahoy/kurs-improwizacji-w-biznesie)
 
-Możesz także użyć przykładowych kart, z dowolnym 3 cyfrowym CVC oraz datą wygaśnięcia w przyszłości:
-- Bez autoryzacji 3D Secure: **`4242 4242 4242 4242`**
-- Z autoryzacją 3D Secure: **`4000 0027 6000 3184`**
+You can also use sample cards, with any 3-digit CVC and an expiration date in the future:
+- Without 3D Secure authorization: **`4242 4242 4242 4242`**
+- With 3D Secure authorization: **`4000 0027 6000 3184`**
 
-## Publikacje
+## Publications
 - [Jak pomóc Twórcom sprzedawać? Budujemy EasyCart!](https://www.linkedin.com/pulse/jak-pom%25C3%25B3c-tw%25C3%25B3rcom-sprzedawa%25C4%2587-budujemy-easycart-easycartpl/?trackingId=u964yQIP9WE8WCzc61XGeg%3D%3D)
 - [Nieoczywiste automatyzacje po sprzedaży](https://www.easycart.pl/blog/nie-oczywiste-automatyzacje-po-sprzedazy)
 - [Automatyzacje po sprzedaży](https://www.easycart.pl/blog/automatyzacje-po-sprzedazy)

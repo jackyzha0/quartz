@@ -11,8 +11,8 @@ Zachęcam do obejrzenia animacji / podsumowania książki:
 [[Knowledge/People/Ray Dalio]] w książce [[Knowledge/Books/Principles]] opisuje zasady które kreował na przestrzeni swojego życia. Opierał na nich rozwój firmy Bridgewater Associates, która doprowadziła go do listy jednego z najbogatszych ludzi na ziemi. 
 
 Fundamentem budowania tych zasad są:
-- trudna sztuka postrzegania [[Knowledge/Thoughts/Rzeczywistość]] taką jaką faktycznie jest a nie taką jak byśmy chcieli aby była.
-- jeszcze trudniejsza [[Knowledge/Thoughts/Radykalna Transparentność]] i [[Szczerość]].
+- trudna sztuka postrzegania [[Knowledge/Thoughts/Reality]] taką jaką faktycznie jest a nie taką jak byśmy chcieli aby była.
+- jeszcze trudniejsza [[Knowledge/Thoughts/Radical Transparency]] i [[Szczerość]].
 
 Przykładowo w jego firmie KAŻDY ma dostęp do WSZYSTKICH informacji za wyjątkiem tych z prywatnego życia pracowników, które nie mają związku z funkcjonowaniem firmy. 
 

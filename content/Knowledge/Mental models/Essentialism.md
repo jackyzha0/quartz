@@ -21,4 +21,4 @@ W pratyce opiera się to o nieustanne kwestionowanie wszystkiego, co mnie otacza
 
 - usuwam zbędne [[Optimization/Automation/Tools]] ze swojego codziennego wykorzystania
 - pozbywam się niewykorzystywanego [[Optimization/Hardware/Hardware]]u
-- ograniczam myślenie do niezbędnego minimum ([[Knowledge/Thoughts/Niemyślenie]])
+- ograniczam myślenie do niezbędnego minimum ([[Knowledge/Thoughts/Nonthinking]])

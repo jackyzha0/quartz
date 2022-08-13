@@ -12,10 +12,10 @@ This is where I share everything I know with you. I created it primarily for mys
 
 * My [[Foundations/Process]] which I implement every day and which is constantly changing, This keeps me moving in the [[Foundations/Direction]]  I have set for myself based on [[Foundations/Values]] and getting to [[Foundations/Understanding myself]]
 * How I build my [[Foundations/Knowledge acquisition system]]
-* [[Knowledge/Mental models/Modele mentalne]] I consciously use
-* Notes from the [[Knowledge/Books/Książki]] I've read
+* [[Knowledge/Mental models/Mental models]] I consciously use
+* Notes from the [[Knowledge/Books/Books]] I've read
 * [[Knowledge/People/Ludzie]] I observe on the Internet
-* My [[Knowledge/Thoughts/Przemyślenia]] and style of operation (e.g., [[Knowledge/Thoughts/Skupienie]])
+* My [[Knowledge/Thoughts/Rethinking]] and style of operation (e.g., [[Knowledge/Thoughts/Focus]])
 * My notes on Programming, Design, Marketing and Business in general.
 * [[Optimization/Hardware/Hardware]] I use
 * Descriptions of the [[Optimization/Automation/Automation]] and [[Optimization/Tools/Narzędzia]] I use

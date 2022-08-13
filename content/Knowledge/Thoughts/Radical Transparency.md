@@ -1,5 +1,5 @@
 ---
-title: Radykalna Transparentność
+title: Radical Transparency
 ---
 
 - [[Knowledge/Books/Principles]]

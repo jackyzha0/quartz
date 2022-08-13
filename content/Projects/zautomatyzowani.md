@@ -2,22 +2,22 @@
 title: zautomatyzowani
 ---
 
-[[Projects/zautomatyzowani]] to projekt, który powołałem wspólnie z [[Grzegorz Róg]] ([[Projects/eduweb]]) aby pokazać nasze podejście do [[Optimization/Automation/Automation]], wykorzystania narzędzi [[Knowledge/Programming/No-Code]] oraz szeroko pojętego prowadzenia biznesu w sieci. 
+[[Projects/zautomatyzowani]] is a project that I set up together with [[Grzegorz Róg]] ([[Projects/eduweb]]) to demonstrate our approach to [[Optimization/Automation/Automation]], The use of [[Knowledge/Programming/No-Code]] tools and doing business online more broadly.
 
 🔗 https://zautomatyzowani.pl/
 
-> Strona zautomatyzowani.pl powstała z wykorzystaniem [[Tailwind CSS]] i [[Tailwind UI]] w ciągu kilku dni.
+> The automated.co.uk website was created using [[Tailwind CSS]] and [[Tailwind UI]] in just a few days.
 
-## Produkty
+## Products
 ### YouTube na Autopilocie
 - [YouTube na Autopilocie](https://youtube.zautomatyzowani.pl)
-	- Automatyzacja YouTube jaką wykorzystuję w [[Projects/overment]] do prowadzenia kanału. 
-	- Narzędzia: [[Optimization/Tools/Airtable]], [[Optimization/Tools/MakeHQ]], [[Optimization/Tools/Zapier]]
+	- YouTube automation I use in [[Projects/overment]] to run the channel.
+	- Tools: [[Optimization/Tools/Airtable]], [[Optimization/Tools/MakeHQ]], [[Optimization/Tools/Zapier]]
 
 ### Newsletter na Autopilocie
 - [Newsletter na Autopilocie](http://newsletter.zautomatyzowani.pl)
-	- Automatyzacja Newslettera jaką wykorzystuję w [[Projects/zautomatyzowani]] i [[Projects/eduweb]]
-	- Narzędzia: [[Optimization/Tools/Airtable]], [[Optimization/Tools/MakeHQ]], [[Optimization/Tools/Buffer]] oraz SendGrid / MailChimp / MailerLite / GetResponse
+	- Newsletter automation that I use in [[Projects/zautomatyzowani]] i [[Projects/eduweb]]
+	- Tools: [[Optimization/Tools/Airtable]], [[Optimization/Tools/MakeHQ]], [[Optimization/Tools/Buffer]] and SendGrid / MailChimp / MailerLite / GetResponse
 
 ### Podcast na Autopilocie
 - [Podcast na Autopilocie](https://podcast.zautomatyzowani.pl)

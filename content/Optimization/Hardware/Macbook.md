@@ -1,35 +1,35 @@
 ---
 title: Macbook
 ---
-# Kontekst 
-MacBook jest dla mnie najważniejszym narzędziem pracy. Przez lata pracowałem na Windowsie ale odkąd kupiłem pierwszego MacBooka, nie wyobrażam sobie powrotu. 
+# Context
+MacBook is the most important work tool for me. For years I worked on Windows but since I bought my first MacBook, I can't imagine going back.
 
-Wykorzystuję go nie tylko do programowania ale też projektowania grafiki oraz nagrywania i montażu filmów.
+I use it not only for programming but also for graphic design and video recording and editing.
 
-Na każdym kroku wykorzystuję maksimum potencjału (np. z pomocą [[Optimization/Tools/Keyboard Maestro]] czy [[Optimization/Tools/Raycast]]) oraz sięgam po najlepszy aktualnie dostępny dla mnie sprzęt.
+At every step, I use the maximum potential (e.g., with the help of [[Optimization/Tools/Keyboard Maestro]] or [[Optimization/Tools/Raycast]]) and reach for the best equipment currently available to me.
 
-## Specyfikacja
+## Specifications
 
-> ⚠️ WAŻNE: Poniższa specyfikacja zawiera listę sprzętu, który posiadam obecnie. Przez lata rozwijałem swoje projekty korzystając z narzędzi na które wówczas po prostu nie mogłem sobie pozwolić. Dbałem wyłącznie o to, aby w miarę możliwości aktualizować swój setup, by dawał mi jak największy komfort pracy i jednocześnie był w zasięgu moich możliwości.
+> ⚠️ IMPORTANT: The following specification lists the equipment I currently own. Over the years, I have developed my projects using tools that I simply could not afford at the time. I only made sure to update my setup as much as possible to give me the most comfort while still being within my capabilities.
 
 ![](https://space.overment.com/Screen-Shot-2021-11-20-14-00-50/Screen-Shot-2021-11-20-14-00-50.png)
 
-## Komputer
+## Computer
 - MacBook Pro 2021 14"
 - Procesor M1 Max - 10 rdzeni CPU / 32 GPU / 16 NE
 - 64 GB RAM
 - 2 TB SSD
 
-Przez większość czasu pracuję w trybie stacjonarnym z podłączonym monitorem [Apple Pro Display XDR](https://www.apple.com/pl/pro-display-xdr/) oraz klawiaturą Keychron K3 v2 Slim i Trackpadem (Magic Trackpad).
+Most of the time I work in desktop mode with a monitor [Apple Pro Display XDR](https://www.apple.com/pl/pro-display-xdr/) and Keychron K3 v2 Slim keyboard and Trackpad (Magic Trackpad) connected.
 
-## Sprzęt wideo i oświetlenie
-Nagrywam wideo z pomocą kamery Sony ZV-1 (z [dummy battery](https://www.amazon.co.uk/gp/product/B07DMXX9W6/ref=ppx_od_dt_b_asin_title_s00?ie=UTF8&th=1)) oraz mikrofonem Razer Seiren z uchwytem Rode PSA-1. Obraz przechwytuję z pomocą [[Optimization/Tools/Screenflow]] i edytuję w [[FinalCut Pro]]. Stosuję oświetlenie w postaci lamp [YN-900](https://yongnuo.com.pl/?p=463).
+## Video equipment and lighting
+I record video with the help of Sony ZV-1 camcorder (with [dummy battery](https://www.amazon.co.uk/gp/product/B07DMXX9W6/ref=ppx_od_dt_b_asin_title_s00?ie=UTF8&th=1)) And a Razer Seiren microphone with a Rode PSA-1 handle. I capture the image with the help of [[Optimization/Tools/Screenflow]] And I edit in [[FinalCut Pro]]. I use lighting in the form of [[YN-900]](https://yongnuo.com.pl/?p=463) lights.
 
-> Mikrofon Razer Seiren kupiłem zaraz na początku rozwoju kanału na YouTube. Zadbanie o wysokiej jakości audio jest kluczowe, aczkolwiek obecnie można dostać znacznie tańszy sprzęt, oferujący większe możliwości.
+> I bought a Razer Seiren microphone right at the beginning of the development of my YouTube channel. Taking care of high quality audio is key, although nowadays you can get much cheaper equipment that offers more capabilities.
 
-W celu redukcji pogłosu podczas nagrań, wykorzystuję panele akustyczne z firmy [Addictive Sound](https://addictivesound.pl/), które bardzo polecam. 
+To reduce reverberation during recordings, I use acoustic panels from [Addictive Sound](https://addictivesound.pl/), which I highly recommend.
 
-## Biurko i fotel
-Biurko wspierające opcję pracy na stojąco, pochodzi z firmy [Deskwise](https://deskwise.pl/), natomiast ze względu na to, że dostałem je w prezencie, nie posiadam informacji na temat modelu (nie został nigdzie wskazany).
+## Desk and chair
+The desk, which supports the option of standing work, is from the company [Deskwise](https://deskwise.pl/), but because I received it as a gift, I do not have information on the model (it was not indicated anywhere).
 
-W trybie pracy siedzącej wykorzystuję fotel [Herman Miller Embody Balance](https://sklep.k-r.pl/pl/p/Herman-Miller-Embody-Balance-C7/12)
+In sitting mode, I use the [Herman Miller Embody Balance] chair(https://sklep.k-r.pl/pl/p/Herman-Miller-Embody-Balance-C7/12)

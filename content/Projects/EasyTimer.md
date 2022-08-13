@@ -2,19 +2,19 @@
 title: EasyTimer
 ---
 
-# Czym jest EasyTimer?
+# What is EasyTimer?
 
-To generator liczników, które można wykorzystać w kampaniach mailowych. Aplikacja generuje zegar odliczający czas do wskazanej daty.
+It is a generator of countdown timers that can be used in email campaigns. The application generates a timer that counts down to the indicated date.
 
-W grudniu 2021 EasyTimer został nagrodzony tytułem "Produktu dnia" na [[Product Hunt]]
+In December 2021, EasyTimer was awarded the title of 'Product of the Day' at the [[Product Hunt]].
 
 ![](https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=321103&theme=dark&period=daily)
 
-Bezpłatna wersja dostępna jest tutaj: 
+The free version is available here:
 https://easytimer.app/
 
-A wersja udostępniająca API oraz prywatny moduł w Integromacie, dostępna jest tutaj: https://app.easycart.pl/checkout/zautomatyzowani/easytimer
+And the version that provides the API and private module in Integromat, is available here: https://app.easycart.pl/checkout/zautomatyzowani/easytimer
 
-EasyTimer stanowi część [[EasyTools]] i w momencie pisania tego artykułu znajduje się jeszcze w wersji beta. Oznacza to, że w niektórych przypadkach może nie działać poprawnie i może jeszcze zawierać drobne bugi. 
+EasyTimer is part of [[EasyTools]] and is still in beta at the time of writing this article. This means that in some cases it may not work properly and may still contain minor bugs.
 
 https://app.easytools.pl/easytimer

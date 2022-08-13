@@ -1,9 +1,9 @@
 ---
-title: Sprzęt
+title: Equipment
 ---
 
-## Kontekst
-Kupując sprzęt uwzględniam przede wszystkim to, jak bardzo wpłynie na moje dotychczasowe funkcjonowanie. Bardzo zgadzam się z opinią [Grzegorza Roga](https://twitter.com/isloggedout/status/1457770727029895176), która jasno pokazuje że w przypadku profesjonalnego zastosowania, warto wybierać najlepszy dostępny sprzęt, który jest w naszym zasięgu finansowym oraz potrzeb.
+## Context
+When buying equipment, I take into account first and foremost how much it will affect my existing operation. I very much agree with the opinion of [Greg Rog](https://twitter.com/isloggedout/status/1457770727029895176), which clearly shows that for professional use, it makes sense to choose the best available equipment that is within our financial reach and needs.
 
 - [[Optimization/Hardware/Macbook]]
 - [[Optimization/Hardware/iPad]]

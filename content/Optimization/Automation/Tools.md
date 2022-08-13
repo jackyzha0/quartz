@@ -1,20 +1,20 @@
 ---
-title: Narzędzia
+title: Tools
 ---
 
 ## [[Optimization/Tools/MakeHQ]] 
-MakeHQ (dawniej Integromat) to najlepsza znana mi platforma do łatwego łączenia usług poprzez [[Knowledge/Programming/API]]. Jej najważniejszą funkcją są webhooki, moduł http umożliwiający połączenie z dowolną aplikacją oraz świetne API, które wykorzystuję do własnych rozszerzeń. 
+MakeHQ (formerly Integromat) is the best platform I know for easily connecting services through [[Knowledge/Programming/API]]. Its most important features are webhooks, an http module that allows you to connect to any application, and a great API that I use for my own extensions.
 
 ## [[Optimization/Tools/Raycast]]
-Raycast to aktualnie aplikacja numer #1 w moim rankingu. Genialne API i interfejs sprawiają że tworzenie automatyzacji jest niezwykle przyjemne. Dodatkowo z pomocą [[Knowledge/Programming/JavaScript/JavaScript]], [[TypeScript]] oraz [[Knowledge/Programming/Node.js]] bez problemu można tworzyć własne rozszerzenia. 
+Raycast is currently the #1 app in my ranking. The brilliant API and interface make it extremely fun to create automations. Additionally, with the help of [[Knowledge/Programming/JavaScript/JavaScript]], [[TypeScript]] and [[Knowledge/Programming/Node.js]] you can easily create your own extensions.
 
 ## [[Optimization/Tools/Zapier]]
-Zapier wykorzystuję w chwilach gdy MakeHQ nie daje rady (np. w przypadku Lead Score by Zapier lub przesyłania dużych plików).
+I use Zapier at times when MakeHQ can't handle it (e.g. for Lead Score by Zapier or transferring large files).
 
 ## [[Optimization/Tools/Airtable]]
-Airtable do nic innego jak baza danych, która domyślnie wystawia API. Poza gromadzeniem danych i łączeniem ich z pomocą [[Optimization/Tools/MakeHQ]], wykorzystuję również [[Knowledge/Programming/JavaScript/JavaScript]] do tworzenia automatyzacji bezpośrednio w [[Optimization/Tools/Airtable]]
+Airtable to nothing more than a database that exposes an API by default. In addition to collecting data and combining it with the help of [[Optimization/Tools/MakeHQ]], I also use [[Knowledge/Programming/JavaScript/JavaScript]] to create automation directly in [[Optimization/Tools/Airtable]]
 
 ## [[Optimization/Tools/Keyboard Maestro]]
-Keyboard Maestro to genialna aplikacja z pomocą której automatyzuję niemal wszystko w moim systemie. Świetnie integruje się z [[Optimization/Tools/Raycast]], [[Optimization/Tools/Alfred]] oraz [[Optimization/Tools/Better Touch Tool]]. Dodatkowo często wykonuję z jej pomocą kod JavaScript, skrypty bash oraz AppleScript.
+Keyboard Maestro is a brilliant application with the help of which I automate almost everything on my system. It integrates great with [[Optimization/Tools/Raycast]], [[Optimization/Tools/Alfred]] and [[Optimization/Tools/Better Touch Tool]]. In addition, I often execute JavaScript code, bash scripts and AppleScript with its help.
 
-Wykorzystując KM wspólnie z Mateuszem Wierzbickim stworzyliśmy [[Projects/Design Maestro]]. 
+Using KM together with Matthew Wierzbicki, we created [[Projects/Design Maestro]].

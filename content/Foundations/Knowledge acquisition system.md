@@ -5,7 +5,7 @@ title: Knowledge acquisition system
 I see the ability to **acquire knowledge quickly** as one of the most important, especially in the face of a very fast-changing world. As such, it is a skill that can simply be developed.
 
 For example, I see from myself that my memory has become incomparably better over the past few years. I could be wrong but I assume they have an effect on this:
-- reading [[Knowledge/Books/Książki]]
+- reading [[Knowledge/Books/Books]]
 - knowledge from the podcast [[Knowledge/Podcasts/Huberman Lab]]
 - taking care of [[Foundations/Process#Fundamenty]] (for example, about sleep and rest)
 

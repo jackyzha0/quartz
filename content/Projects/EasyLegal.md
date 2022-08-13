@@ -2,7 +2,7 @@
 title: EasyLegal
 ---
 
-# Czym jest EasyLegal?
-EasyLegal to narzędzie do generowania Regulaminu oraz Polityki prywatności, niezbędnych do funkcjonowania strony Internetowej oraz sklepu.
+# What is EasyLegal?
+EasyLegal is a tool for generating the Terms and Conditions and Privacy Policy necessary for the operation of the website and store.
 
-EasyLegal stanowi część [[EasyTools]] i jest dostępny tutaj https://app.easytools.pl/easylegal
+EasyLegal is part of [[EasyTools]] and is available here https://app.easytools.pl/easylegal

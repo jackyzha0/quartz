@@ -2,45 +2,45 @@
 title: Stream Deck
 ---
 
-## Czym jest StreamDeck?
-Elgato StreamDeck to rodzaj dodatkowej klawiatury, na której klawiszach można wyświetlać dowolne grafiki, również dynamiczne (automatyczna podmiana zdjęcia i opisu).
+## What is StreamDeck?
+Elgato StreamDeck is a kind of auxiliary keyboard, on the keys of which you can display any graphics, including dynamic ones (automatic replacement of photo and description).
 
-Dodatkowo klawisze mogą zmieniać się w zależności od kontekstu (np. otwartego programu) oraz pełnić funkcję "folderów" wewnątrz których mamy do dyspozycji dodatkowe przyciski. 
+In addition, the keys can change depending on the context (e.g., an open program) and act as folders inside which we have additional buttons.
 
-Jest to sprzęt zaprojektowany dla streamerów ale świetnie sprawdza się również do obsługi profesjonalnych programów, wymagających dostępu do wielu opcji oraz oczywiście [[Optimization/Automation/Automation]].
+It is designed for streamers but is also great for professional programs that require access to multiple options and, of course, [[Optimization/Automation/Automation]].
 
-## Jak wykorzystuję StreamDeck? 
-Od lipca 2021 wykorzystuję [Elgato StreamDeck](https://www.elgato.com/en/stream-deck) jako dodatkową klawiaturę, wykorzystywaną w celu automatyzacji oraz łatwego sterowania makrami zdefiniowanymi w [[Optimization/Tools/Keyboard Maestro]]
+## How do I use StreamDeck?
+As of July 2021, I am using [Elgato StreamDeck](https://www.elgato.com/en/stream-deck) as an additional keyboard, used for automation and easy control of macros defined in [[Optimization/Tools/Keyboard Maestro]]
 
-Posiadam StreamDeck w wersji XL i dodatkowo wykorzystuję możliwość definiowania folderów.
+I have StreamDeck version XL and additionally use the ability to define folders.
 
-**Najczęsciej uruchamiane makra z jego pomocą dotyczą:**
-- uruchamiania grup notatek w [[Optimization/Tools/Obsidian]] / [[Optimization/Tools/Notion]]
-- uruchamiania baz [[Optimization/Tools/Airtable]]
-- uruchamiania często otwieranych przeze mnie stron www (i nie tylko)
-- sterowania muzyką, również w całym domu
-- przełączania kontekstów pomiędzy projektami (automatyzacja workflow)
+**Mostly with its help I launch the:**
+- launching groups of notes in [[Optimization/Tools/Obsidian]] / [[Optimization/Tools/Notion]]
+- launching databases from [[Optimization/Tools/Airtable]]
+- running the web pages I open frequently (and not only)
+- music control, including throughout the house
+- switching contexts between projects (workflow automation)
 
-## Automatyzacje
-Lubię odkrywać nowe sposoby korzystania z StreamDeck. Pozornie jest to po prostu nietypowa klawiatura a w praktyce daje bardzo duże możliwości. 
+## Automations
+I enjoy discovering new ways to use StreamDeck. Seemingly, it is just an unusual keyboard and in practice it offers very great possibilities.
 
-### Tryby pracy
-Podczas pracy najwięcej czasu i energii zabiera zmiana kontekstu. Skonfigurowałem przyciski na głównym ekranie, powiązane z aktywnościami, które chcę wykonywać regularnie. Dzięki powiązaniu akcji z [[Optimization/Tools/Keyboard Maestro]], mogę jednym przyciskiem przełączać się pomiędzy projektami i zadaniami. 
+### Modes of operation
+When working, it takes the most time and energy to change the context. I've set up buttons on the main screen linked to activities I want to do regularly. By linking actions to [[Optimization/Tools/Keyboard Maestro]], I can switch between projects and tasks with a single button.
 
-**Przykłady:** 
-- włączenie trybu odpisywania na maile (luźna muzyka, brak DND i aktywacja Superhuman oraz przeglądarki)
-- projekty w które jestem zaangażowany są folderami wewnątrz których znajdują się akcje z nimi powiązane (np. pisanie artykułów na bloga easycart czy tworzenie scenariuszy podcastu dla zautomatyzowanych)
-- przełączanie się pomiędzy trybami pracy (skupiony / luźny)
-- sygnalizowanie, że włączone jest nagrywanie
+**Examples:** 
+- Activate email reply mode (loose music, no DND and activation of Superhuman and browser)
+- The projects I am involved in are folders inside of which there are actions related to them (such as writing articles for the easycart blog or creating podcast scripts for automated)
+- switching between operating modes (focused / loose)
+- signaling that recording is on
 
-### Aktywności botów 
-Kategoryzuję moje [[Optimization/Automation/Automation]] według avatarów botów, które realizują dla mnie określone zadania. Ich scenariusze zaprojektowane są w taki sposób aby dało się je ze sobą łączyć lub wywoływać oddzielnie.
+### Activating bots
+I categorize my [[Optimization/Automation/Automation]] by bot avatars that perform specific tasks for me. Their scenarios are designed in such a way that they can be combined with each other or called separately.
 
 ![](https://space.overment.com/Shared-Image-2022-06-01-14-14-06-gTWCY/Shared-Image-2022-06-01-14-14-06.png)
 
-### Dodatkowe spostrzeżenia  
-Stream Deck najlepiej sprawdza się w połączeniu z [[Optimization/Tools/Keyboard Maestro]], ponieważ dzięki temu jesteśmy w stanie przypisać dowolne makro do przycisku. 
+### Additional observations
+Stream Deck works best in conjunction with [[Optimization/Tools/Keyboard Maestro]], as this allows us to assign any macro to a button.
 
-Jednocześnie sprawia to że skonfigurowanie Stream Decka staje się wymagające technicznie oraz koncepcyjnie, ponieważ przygotowanie faktycznie użytecznych makr nie jest oczywiste. 
+At the same time, this makes setting up a Stream Deck technically and conceptually challenging, as preparing actually useful macros is not obvious.
 
-Najważniejszą korzyścią z SD jest to, że można z jego pomocą aktywować różne funkcje systemu "szybciej". Minusem jest fakt, że nie mając do niego dostępu (np. na wyjeździe z laptopem) zaburzamy swój cały workflow. W rezultacie coraz częściej korzystam z [[Optimization/Tools/Raycast]] czy [[Projects/Design Maestro]] niż Stream Deck. 
+The most important benefit of SD is that you can use it to activate various system functions faster. The downside is that not having access to it (e.g., on a trip with a laptop) disrupts your entire workflow. As a result, I use [[Optimization/Tools/Raycast]] or [[Projects/Design Maestro]] more and more often than Stream Deck.

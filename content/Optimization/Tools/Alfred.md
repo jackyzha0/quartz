@@ -4,25 +4,26 @@ date: "2022-04-27"
 lastmod: "2022-04-27"
 ---
 
-## Czym jest Alfred? 
+## What is Alfred?
 
-[[Optimization/Tools/Alfred]] to nakładka (lub alternatywa) dla Spotlight. Dzięki płatnemu rozszerzeniu (PowerPack) umożliwia połączenie np. z [[Optimization/Tools/Keyboard Maestro]] czy [[Spotify]].
+[Optimization/Tools/Alfred]] is an overlay (or alternative) for Spotlight. With a paid extension (PowerPack), it allows you to connect to, for example, [[Optimization/Tools/Keyboard Maestro]] or [[Spotify]].
 
-Największą zaletą Alfreda jest szybkość działania oraz pluginy, które można rozwijać samodzielnie wykorzystując [[Knowledge/Programming/JavaScript/JavaScript]] oraz [[Knowledge/Programming/Node.js]]. 
+Alfred's biggest advantages are its speed and plugins, which can be developed independently using [[Knowledge/Programming/JavaScript/JavaScript]] and [[Knowledge/Programming/Node.js]].
 
-> ℹ️ Dla użytkowników Windowsa istnieje alternatywa w postaci Wox Launcher. Nie miałem jednak okazji z niej korzystać. 
-> ⚠️ Aktualnie Alfred wykorzystuję wyłącznie do szybkiego przenoszenia plików z pomocą akcji `Universal Actions`. Pozostałe funkcje w całości zastąpił mi [[Optimization/Tools/Raycast]]
+> ℹ️ For Windows users, there is an alternative in the form of Wox Launcher. However, I have not had the opportunity to use it.
+> 
+> ⚠️ Currently, I use Alfred exclusively to quickly transfer files with the help of actions . The other functions have been completely replaced by [[Optimization/Tools/Raycast]] for me.
 
-## Jak wykorzystuję Alfred? 
+## How do I use Alfred?
 
-- Opcja `File Search` pozwala na bardzo szybkie otwieranie plików i katalogów. Wystarczy w oknie Alfreda rozpocząć wyszukiwanie od znaku `'`, np.:  ![](https://space.overment.com/Screen-Shot-2021-11-19-22-22-50/Screen-Shot-2021-11-19-22-22-50.png)
-- Opcja `Universal Actions` pozwala na bardzo szybkie wykonywanie akcji na plikach (i nie tylko). Głównie wykorzystuję ją do szybkiego przenoszenia plików pomiędzy folderami: ![](https://space.overment.com/Screen-Shot-2021-11-19-22-23-46/Screen-Shot-2021-11-19-22-23-46.png)
+- The File Search option allows you to open files and directories very quickly. All you need to do in the Alfred window is to start the search from the character `'`:  ![](https://space.overment.com/Screen-Shot-2021-11-19-22-22-50/Screen-Shot-2021-11-19-22-22-50.png)
+- The option allows you to perform actions on files (and more) very quickly. I mainly use it to quickly move files between folders: ![](https://space.overment.com/Screen-Shot-2021-11-19-22-23-46/Screen-Shot-2021-11-19-22-23-46.png)
 
-**Poza tym wykorzystuję rozszerzenia:** 
-- [[Spotify]] Mini Player - łatwa kontrola muzyki
-- Alfred Maestro - integracja z [[Optimization/Tools/Keyboard Maestro]]
-- Google Suggest - wyszukiwanie w Google bezpośrednio w Alfredzie 
-- Menu Bar Search - **genialne** rozszerzenie umożliwiające uruchamianie dowolnej akcji z menu aktywnego programu. Jest idealne w przypadku aplikacji, które nie dają możliwości pełnej konfiguracji skrótów klawiszowych
-- Password Generator - świetne rozwiązanie do szybkiego generowania haseł. Działa świetnie w połączeniu z [[Optimization/Tools/1Password]]
-- Tailwind CSS Doc - wyszukiwarka dokumentacji [[Tailwind CSS]]
-- Dash - dokumentacja dla ponad 200 technologii. Ja korzystam z około 10
+**I also use extensions.
+- [[Spotify]] Mini Player - easy control of music
+- Alfred Maestro - integration with [[Optimization/Tools/Keyboard Maestro]]
+- Google Suggest - Google search directly in Alfred
+- Menu Bar Search - **genius** extension that allows you to launch any action from the menu of the active program. It is ideal for applications that do not give you the ability to fully configure keyboard shortcuts
+- Password Generator - a great solution for quick password generation. Works great in combination with [[Optimization/Tools/1Password]]
+- Tailwind CSS Doc - [[Tailwind CSS]] documentation search engine.
+- Dash - documentation for more than 200 technologies. I use about 10

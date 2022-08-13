@@ -8,5 +8,5 @@ To sytuacja w której na podjętą decyzję ma wpływ posiadanie niewystarczają
 
  ## Jak wykorzystuję [[Knowledge/Mental models/Ambiguity bias]]?
 
-Gdy nie mam wystarczającej ilości informacji i mam taką możliwość, wstrzymuję się od podjęcia decyzji. Jeżeli jednak muszę jakąś podjąć opieram się o [[Knowledge/Thoughts/Ciekawość]], [[Knowledge/Thoughts/Intuicja]], [[Knowledge/Mental models/Inversion]] oraz [[Knowledge/Dictionary/Perspective]]. Dzięki nim mogę nieco lepiej zrozumieć sytuację przed którą stoję i zaburzyć domyślne odruchy na które mocny wpływ mają uprzedzenia takie jak [[Knowledge/Mental models/Ambiguity bias]].
+Gdy nie mam wystarczającej ilości informacji i mam taką możliwość, wstrzymuję się od podjęcia decyzji. Jeżeli jednak muszę jakąś podjąć opieram się o [[Knowledge/Thoughts/Curiosity]], [[Knowledge/Thoughts/Intuition]], [[Knowledge/Mental models/Inversion]] oraz [[Knowledge/Dictionary/Perspective]]. Dzięki nim mogę nieco lepiej zrozumieć sytuację przed którą stoję i zaburzyć domyślne odruchy na które mocny wpływ mają uprzedzenia takie jak [[Knowledge/Mental models/Ambiguity bias]].
 

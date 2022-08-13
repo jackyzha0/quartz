@@ -2,10 +2,10 @@
 title: Buffer
 ---
 
-## Czym jest Buffer?
-[[Optimization/Tools/Buffer]] to serwis z pomocą którego publikuję niemal wszystkie posty we wszystkich kanałach społecznościowych. Świetnie łączy się z [[Optimization/Tools/Airtable]] oraz [[Optimization/Tools/MakeHQ]].
+## What is a Buffer?
+[[Optimization/Tools/Buffer]] is a service with the help of which I publish almost all posts in all social channels. It connects great with [[Optimization/Tools/Airtable]] and [[Optimization/Tools/MakeHQ]].
 
-## Jak wykorzystuję Buffer?
-Z pomocą [[Optimization/Tools/MakeHQ]] przesyłam do niego informacje, które wcześniej zapisuję w [[Optimization/Tools/Airtable]]. 
+## How do I use Buffer?
+With the help of [[Optimization/Tools/MakeHQ]], I send information to it, which I save in [[Optimization/Tools/Airtable]] beforehand.
 
-Nie zdarza mi się do niego logować i coraz częściej publikuję posty bezpośrednio w mediach społecznościowych, ponieważ harmonogram i tak przechowuję w [[Optimization/Tools/Notion]] lub [[Optimization/Tools/Airtable]].
+I don't happen to log into it, and I'm increasingly posting directly to social media, since I store the schedule in [[Optimization/Tools/Notion]] or [[Optimization/Tools/Airtable]] anyway.

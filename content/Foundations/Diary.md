@@ -7,14 +7,14 @@ I keep a journal on [[Optimization/Hardware/iPad]] in an application called [[Op
 ## Why?
 This is a way for me to "getting the garbage out of your head" (concept from [[Knowledge/People/Dan Millman]]).
 
-Besides, writing is an expression of thought. Writing improves one's thinking process, which is something I care a lot about. A similar role is played by [[Knowledge/Mental models/Modele mentalne]]
+Besides, writing is an expression of thought. Writing improves one's thinking process, which is something I care a lot about. A similar role is played by [[Knowledge/Mental models/Mental models]]
 
 In addition to writing, I also read my journal, which gives me a [[Knowledge/Dictionary/Perspective]] (for ex. By looking at yourself and your attitudes from years ago).
 
 ## Rules
 - I write practically every day
 - I don't have a set time or structure
-- I am honest with myself according to [[Knowledge/Thoughts/Radykalna Transparentność]] from a books [[Knowledge/Books/Principles]] and [[Knowledge/Books/That Will Never Work]]
+- I am honest with myself according to [[Knowledge/Thoughts/Radical Transparency]] from a books [[Knowledge/Books/Principles]] and [[Knowledge/Books/That Will Never Work]]
 - I do not have a requirement for quantity
 - I write what is in my mind at the moment
 - Sometimes I write in the third person in order to gain distance from the written words

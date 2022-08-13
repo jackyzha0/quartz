@@ -1,8 +1,8 @@
 ---
 title: Principles You
---- 
+---
 
 # Principles You
-Test osobowości przygotowany przez [[Knowledge/People/Ray Dalio]] i [[Knowledge/People/Adam Grant]]
+Personality test prepared by [[Knowledge/People/Ray Dalio]] and [[Knowledge/People/Adam Grant]]
 
 https://principlesyou.com/

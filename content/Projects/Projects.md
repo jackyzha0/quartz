@@ -1,5 +1,5 @@
 ---
-title: Projekty
+title: Projects
 ---
 
 - [[Projects/eduweb]]

@@ -2,10 +2,10 @@
 title: Audible
 ---
 
-# Czym jest Audible?
-To aplikacja z Audiobookami, bezpośrednio od Amazon. W mojej opinii jest to najlepsza aplikacja do słuchania książek, jaka istnieje na rynku. 
+# What is Audible?
+This is an app with Audiobooks, directly from Amazon. In my opinion, it is the best book listening app that exists on the market.
 
 ## Jak wykorzystuję Audible? 
-W [[Optimization/Tools/Audible]] słucham wszystkich audiobooków. Od początku sięgam po oryginalne, anglojęzyczne tytuły aby przy okazji czytania, uczyć się języka angielskiego. Bardzo często słuchając książek przeglądam również e-booki na [[Optimization/Tools/Kindle]] oraz zapisuję wybrane framenty książek w formie kart [[Optimization/Tools/Anki]].
+In [[Optimization/Tools/Audible]], I listen to all audiobooks. From the beginning, I reach for original English-language titles to learn English while reading. Very often, while listening to books, I also browse e-books on [[Optimization/Tools/Kindle]] and save selected fractions of books as [[Optimization/Tools/Anki]] cards 
 
-Po ukończeniu słuchania książki, zawsze zapisuję ją na moim profilu [[Goodreads]].
+After I finish listening to a book, I always save it on my [[Goodreads]] profile.

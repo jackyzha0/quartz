@@ -1,17 +1,17 @@
 ---
-title: Perspektywa
+title: Perspective
 ---
 
-Perspektywa to jedno z najważniejszych narzędzi jakie wykoorzystuję (zaraz obok [[Knowledge/Thoughts/Intuicja]]). Umiejętność jej dostosowania jest dla mnie wyjątkowo ważna ze względu na moje aktualne przekonania na temat [[Knowledge/Thoughts/Rzeczywistość]]. 
+Perspective is one of the most important tools I use (right next to [[Knowledge/Thoughts/Intuition]]). Being able to adjust it is extremely important to me because of my current beliefs about [[Knowledge/Thoughts/Reality]].
 
-Jedno z podejść mówi o tym, że na [[Prawda]] składa się kilka perspektyw:
+One approach says that [[Truth]] is made up of several perspectives:
 
 ![](https://space.overment.com/Ed6LDM6U8AEtqIx-ETgq5/Ed6LDM6U8AEtqIx.png)
-Źródło: [visualize value](https://visualizevalue.com/)
+Source: [visualize value](https://visualizevalue.com/)
 
-I jest to podejście, które jest według mnie bardzo trafne. Ale jednocześnie, jeżeli spojrzymy na ten obraz:
+And this is an approach that I think is very accurate. But at the same time, if we look at the picture:
 ![](https://space.overment.com/90458c1323e2babfec0400280e04212d-UnhJO/90458c1323e2babfec0400280e04212d.jpeg)
 
-To faktycznie można przyznać, że patrząc z danej perspektywy rzeczywistość jest dla nas inna niż jest dla kogoś z inną perspektywą oraz różni się od samej rzeczywistości. 
+It can actually be admitted that looking from a given perspective, reality is different for us than it is for someone with a different perspective and different from reality itself.
 
-Jednocześnie faktycznie zebranie kilku perspektyw, wydaje się rysować obraz całości.
+At the same time, actually bringing together several perspectives, seems to draw a picture of the whole.

@@ -1,10 +1,10 @@
 ---
-title: Słuchawki
+title: Headphones
 ---
 
-Słuchawki to dla mnie niezbędny element dobrego [[Knowledge/Thoughts/Skupienie]], szczególnie w połączeniu z [[Optimization/Tools/Endel.io]], [[Optimization/Tools/Session]] oraz technologią ANC (Active Noise Cancelling).
+For me, headphones are an essential part of good [[Knowledge/Thoughts/Focus]], especially in combination with [[Optimization/Tools/Endel.io]], [[Optimization/Tools/Session]] and ANC (Active Noise Cancelling) technology.
 
-Posiadam słuchawki Airpods Pro oraz Airpods Max. W tych pierwszych korzystam poza domem, z tych drugich praktycznie zawsze gdy jestem przy komputerze.
+I own Airpods Pro and Airpods Max headphones. I use the former away from home, the latter practically whenever I'm at my computer.
 
 ## ANC
-Możliwość wyciszenia otoczenia jest dla mnie najważniejszą cechą zarówno w kontekście [[Knowledge/Thoughts/Skupienie]] jak i [[Knowledge/Thoughts/Relaks]]u. W przypadku Airpods Max wypada to niesamowicie dobrze, aczkolwiek wiem że w słuchawki z podobnej półki innych producentów, oferują podobne rezultaty.
+The ability to mute the surroundings is the most important feature for me in terms of both [[Knowledge/Thoughts/Focus]] and [[Knowledge/Thoughts/Relax]]s. In the case of the Airpods Max, this performs amazingly well, although I know that in headphones from a similar shelf of other manufacturers, they offer similar results.

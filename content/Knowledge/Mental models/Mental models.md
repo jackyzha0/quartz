@@ -1,8 +1,8 @@
 ---
-title: Modele mentalne
+title: Mental models
 ---
 
-[[Knowledge/Mental models/Modele mentalne]] usprawniają mój proces myślowy, szczególnie w kontekście podejmowania decyzji oraz rozwiązywania problemów.
+[[Knowledge/Mental models/Mental models]] improve my thought process, especially in the context of decision-making and problem-solving.
 
 
 ## Źródła

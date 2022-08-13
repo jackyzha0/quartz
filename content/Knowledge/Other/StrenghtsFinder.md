@@ -1,39 +1,39 @@
 ---
 title: StrenghtsFinder
---- 
+---
 
 # StrengthsFinder
-To obok [[Knowledge/Other/MBTI]], [[Knowledge/Other/The Big Five]] i [[UnderstandMyself]] najważniejsze narzędzie, jakie wykorzystałem w procesie [[Fundamenty/💛 Poznawanie siebie]].
+To obok [[Knowledge/Other/MBTI]], [[Knowledge/Other/The Big Five]] i [[UnderstandMyself]] najważniejsze narzędzie, jakie wykorzystałem w procesie [[Foundations/Understanding myself]].
 
-## Dlaczego StrengthsFinder?
-Instytut Gallupa od lat zajmuje się badaniem populacji. Jednym z pytań, które sobie zadał, dotyczyło tego "dlaczego niektóre osoby tak bardzo wyróżniają się z tłumu?". 
+## Why StrengthsFinder?
+The Gallup Institute has been studying populations for years. One of the questions he asked himself was 'why do some people stand out from the crowd so much?' 
 
-Po wieloletnich badaniach doszli do wniosku, że jednym z ważniejszych elementów jest rozwijanie swoich mocnych stron, zamiast próbie doprowadzenia słabych na "normalny poziom".
+After years of research, they concluded that one of the most important elements is to develop one's strengths, rather than trying to bring weaknesses to a 'normal level'.
 
-W rezultacie powstał StrenghtsFinder, który w założeniu ma pomóc nam zidentyfikować nasze talenty i dostarczyć wiedzy w jaki sposób możemy zamienić je w nasze mocne strony.
+The result is StrenghtsFinder, which is designed to help us identify our talents and provide insight into how we can turn them into our strengths.
 
-## Talent vs Mocna Strona
-- Talent to naturalny dla nas styl działania.
-- Mocna strona to talent wykonywany w sposób zbliżony do doskonałości
+## Talent vs Strengths
+- Talent is a natural fit for us.
+- Strengths are talents performed near perfection
 
-W praktyce StrengthsFinder pomaga nam zidentyfikować nasze Talenty, jednak dopiero praca nad nimi może sprawić, że staną się dla nas mocnymi stronami.
+In practice, StrengthsFinder helps us identify our Talents, but only by working on them can they become strengths for us.
 
-## Jak wykonać "Test Gallupa"?
-Sam korzystałem z instrukcji na [blogu Dominika Juszczyka](https://dominikjuszczyk.pl/2016/03/jak-zrobic-test-strengthsfinder-po-polsku/). 
+## How to take the 'Gallup Test'?
+I myself used the instructions on a [blog of Dominik Juszczyk](https://dominikjuszczyk.pl/2016/03/jak-zrobic-test-strengthsfinder-po-polsku/). 
 
-Polecam też całą działalność Dominika w temacie Testu Gallupa. 
+I also recommend all of Dominic's work on the subject of the Gallup Test.
 
-⚠️ Uwaga: test ma ~180 pytań i warto zarezerwować sobie na jego wykonanie minimum 2 godziny. 
+⚠️ Note: the test has ~180 questions and you should reserve a minimum of 2 hours to complete it.
 
-## Wersja 5 czy 34? 
-Początkowo wykonałem wersję odkrywającą 5 talentów a później odblokowałem pozostałe wyniki. 
+## Version 5 or 34?
+Initially I did the version discovering 5 talents and later unlocked the other results.
 
-W mojej opinii jest to dobre podejście aby w pierwszej kolejności odpowiednio skupić swoją uwagę na TOP5, nad którymi warto pracować najbardziej. Dopiero później odblokowanie 34 talentów pozwoli na uzyskanie dodatkowej, bardzo wartościowej perspektywy. 
+In my opinion, it is a good approach to first properly focus your attention on the TOP5 that are worth working on the most. Only later will unlocking the 34 talents allow you to get an additional, very valuable perspective.
 
-## Ponowne wykonanie testu
-Wykonałem test ponownie po kilku latach. Niektóre talenty pozostały niezmienne a inne całkowicie zmieniły swoją pozycję.
+## Re-execute the test
+I performed the test again after several years. Some talents remained the same and others completely changed their position.
 
-Moje ogólne wrażenie: "Fundament pozostał niezmienny a rzeczy nad którymi bardzo pracowałem, zmieniły swoje znaczenie."
+My overall impression: 'The foundation has remained the same and the things I worked on a lot have changed their meaning.'
 
 ## Linki
 - [CliftonStrengths 34](https://store.gallup.com/p/en-ie/10003/cliftonstrengths-34)

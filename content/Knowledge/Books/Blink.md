@@ -2,7 +2,7 @@
 title: Blink
 ---
 
-Odkąd pamiętam [[Knowledge/Thoughts/Intuicja]] odgrywa w moim życiu kluczową rolę a odkąd sobie to uświadomiłem, intencjonalnie obserwuję jej obecność oraz eksploruję wszelkie dostępne materiały na jej temat. 
+Odkąd pamiętam [[Knowledge/Thoughts/Intuition]] odgrywa w moim życiu kluczową rolę a odkąd sobie to uświadomiłem, intencjonalnie obserwuję jej obecność oraz eksploruję wszelkie dostępne materiały na jej temat. 
 
 Intuicja w swojej definicji określana jest jako zdolność do natychmiastowego podejmowania trafnych decyzji a jej fundament stanowią nasze wcześniejsze doświadczenia. Inaczej mówiąc: im więcej doświadczeń tym bardziej większa szansa na trafność intuicji. 
 

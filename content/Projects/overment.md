@@ -2,21 +2,21 @@
 title: overment
 ---
 
-overment to kanał na YouTube dedykowany programistom. Cały projekt oparty jest o najważniejszą dla mnie zasadę jaką jest [[Szacunek do Czasu]] zarówno mojego jak i innych. 
+overment is a YouTube channel dedicated to programmers. The whole project is based on the most important principle for me which is [[Respect for Time]] both mine and others.
 
-## Zasady tworzenia filmów
-- Szanuję czas odbiorców [[Szacunek do Czasu]]
-	- Robię solidny research
-	- Wycinam niepotrzebne elementy
-- Mówię prostymi słowami o rzeczach trudnych
-- Ukrywam zbędne elementy interfejsu
-- Nagrywam filmy na tematy, które sam chcę lepiej poznać lub utrwalić
+## Principles of making a videos
+- I respect the time of the recipients of [[Respect for Time]]
+	- I'm doing some solid research
+	- I cut out unnecessary elements
+- I speak in simple words about difficult things
+- I hide unnecessary interface elements
+- I make videos on topics that I myself want to know better or consolidate
 
-## Narzędzia
-- Do tworzenia scenariuszy wykorzystuję [[Workflowy]] a od niedawna [[Optimization/Tools/Obsidian]]
-- Nagrywam w [[Optimization/Tools/Screenflow]]
-- Gromadzę informacje o filmach w [[Optimization/Tools/Airtable]]
-- Publikuję i promuję filmy automatycznie [[Projects/zautomatyzowani#YouTube na Autopilocie]]
+## Tools
+- I use [[Workflowy]] to create scenarios and more recently [[Optimization/Tools/Obsidian]].
+- I use [[Optimization/Tools/Screenflow]] for recordings
+- I collect information about movies in [[Optimization/Tools/Airtable]].
+- I publish and promote videos automatically [[Projects/zautomatyzowani#YouTube na Autopilocie]]
 
 ## YouTube
 - [[Knowledge/Programming/JavaScript/JavaScript]]

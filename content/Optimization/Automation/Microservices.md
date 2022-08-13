@@ -1,20 +1,20 @@
 ---
-title: Mikroserwisy
+title: Microservices
 ---
-## Generowanie grafik
-Początkowo na własne potrzeby zaprojektowałem mikroserwis, który generuje zoptymalizowane kreacje na podstawie specjalnego szablonu. Później projekt został rozszerzony o moduł w [[Optimization/Tools/MakeHQ]] oraz teraz jest dostępny dla innych pod nazwą [[Projects/EasyBanner]].
+## Generating graphics
+Initially, for my own purposes, I designed a microservice that generates optimized creatives based on a special template. Later, the project was extended to a module in [[Optimization/Tools/MakeHQ]] and is now available to others under the name [[Projects/EasyBanner]].
 
-Z jego pomocą jestem w stanie tworzyć setki grafik w ciągu kilku minut, przesyłając np. dane z [[Optimization/Tools/Airtable]] lub nawet bezpośrednio z mojego komputera (z pomocą [[Optimization/Tools/Keyboard Maestro]] lub [[Optimization/Tools/Raycast]])
+With its help, I am able to create hundreds of graphics in a matter of minutes by uploading, for example, data from [[Optimization/Tools/Airtable]] or even directly from my computer (with the help of [[Optimization/Tools/Keyboard Maestro]] or [[Optimization/Tools/Raycast]]).
 
-Poza tworzeniem grafik na podstawie szablonu HTML, możliwe jest też generowanie ich na podstawie projektu [[Optimization/Tools/Webflow]], który po udostępnieniu zostaje przekazany do [[Projects/EasyBanner]]. 
+In addition to creating graphics based on an HTML template, it is also possible to generate them based on a [[Optimization/Tools/Webflow]] project, which, when shared, is passed to [[Projects/EasyBanner]].
 
-## Licznik na stronę i e-mail
-W kampaniach wykorzystuję liczniki odmierzające czas do zakończenia sprzedaży lub promocji. Początkowo wykorzystywałem sendtric.com do generowania prostego licznika, jednak potrzebowałem mieć nad nim większą kontrolę i dostosowac go do swoich potrzeb. 
+## Counter for a website and email
+I use counters in my campaigns to time the end of a sale or promotion. Initially, I used sendtric.com to generate a simple counter, but I needed to have more control over it and customize it to my needs.
 
-Tak powstał mikroserwis umożliwiający generowanie timerów w formie pliku .gif. Aktualnie dostępny jest jako [[Projects/EasyTimer]]
+This is how a microservice was created to generate timers in the form of a .gif file. It is currently available as [[Projects/EasyTimer]]
 
 ## Carbon.now.sh
-Prosty mikroserwis do którego mogę przesłać ID gista i na jego podstawie zostanie wygenerowana grafika z odpowiednio sformatowanym fragmentem kodu. Alternatywa to [ray.so](https://ray.so)
+A simple microservice to which I can upload a gist ID and based on it a graphic will be generated with a properly formatted code snippet. The alternative is [ray.so](https://ray.so)
 
 ## $AHOY
-Mikroserwis symulujący blockchain, umożliwiający zapisywanie historii transakcji, tworzenie portfeli i ich kategorii. 
+A microservice that simulates the blockchain, enabling the recording of transaction history, creation of wallets and their categories.

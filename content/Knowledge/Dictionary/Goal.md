@@ -2,12 +2,12 @@
 title: Cel
 ---
 
-Cele uznawane są jako niezbędne elementy osiągania wielkich rezultatów. 
+Goals are recognized as essential elements for achieving great results.
 
-Osobiście zrezygowałem z ich wyznaczania na początku 2019 roku, gdy robiąc podsumowanie poprzedniego roku, zadałem sobie pytanie "**Czy można inaczej?**"
+Personally, I gave up on designating them at the beginning of 2019, when, doing a recap of the previous year, I asked myself '**Can it be done differently?
 
-Potem trafiłem na książki takie jak [[Knowledge/Books/So Good They Cant Ignore You]], [[Knowledge/Books/The Compound Effect]] czy [[Knowledge/Books/How to Fail at Almost Anything and Still Win Big]], które utwierdziły mnie w przekonaniu, że wyznaczanie celów nie jest jedyną drogą. 
+Then I came across books such as [[Knowledge/Books/So Good They Cant Ignore You]], [[Knowledge/Books/The Compound Effect]] and [[Knowledge/Books/How to Fail at Almost Anything and Still Win Big]], which reinforced my belief that setting goals is not the only way.
 
-Co więcej teraz uważam, że wyznaczanie celów po prostu w moim przypadku nie sprawdzało się dobrze (co nie oznacza, że u innych również tak jest).
+What's more, I now believe that goal setting simply didn't work well in my case (which doesn't mean that it does in others as well).
 
-Obecnie działam wyłącznie w oparciu o [[Foundations/Process]] oraz [[Foundations/Values]]
+I currently operate solely on [[Foundations/Process]] and [[Foundations/Values]]

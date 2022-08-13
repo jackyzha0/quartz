@@ -1,5 +1,5 @@
 ---
-title: Książki
+title: Books
 ---
 
 - [[Knowledge/Books/Way of The Peaceful Warrior]]

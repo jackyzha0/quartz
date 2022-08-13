@@ -2,15 +2,15 @@
 title: Better Touch Tool
 ---
 
-# Czym jest Better Touch Tool?
-To aplikacja umożliwiająca skonfigurowanie zaawansowanych gestów na trackpadzie. Gesty można przypisać do zdefiniowanych akcji lub nawet wykonać skrypty (w tym uruchomienie akcji [[Optimization/Tools/Keyboard Maestro]]).
+# What is the Better Touch Tool?
+This is an application that allows you to set up advanced gestures on your trackpad. You can assign gestures to predefined actions or even execute scripts (including running [[Optimization/Tools/Keyboard Maestro]] actions).
 
-## Jak wykorzystuję Better Touch Tool?
-- Do kontroli pozycji okien
-- Do kontroli muzyki bez konieczności zmiany kontekstu
-- Do nawigowania pomiędzy zakładkami w [[Optimization/Tools/SigmaOS]]
-- Do blokowania komputera
-- Do kontroli głośności
+## How do I use the Better Touch Tool?
+- To control the position of windows
+- To control music without changing the context
+- To navigate between tabs in [[Optimization/Tools/SigmaOS]]
+- To lock your computer
+- To control the volume
 
-## Źródła
+## Sources
 - https://folivora.ai/

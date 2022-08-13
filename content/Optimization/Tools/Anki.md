@@ -2,15 +2,15 @@
 title: Anki
 ---
 
-# Czym jest Anki?
+# What is Anki?
 
-[[Optimization/Tools/Anki]] to aplikacja ułatwiająca zapamiętywanie. Opiera się o tzw. [[Spaced Repetition]], czyli powtórki w odstępach czasu. 
+[Optimization/Tools/Anki]] is an application that facilitates memorization. It is based on the so-called [[Spaced Repetition]], which is repetition at intervals.
 
-## Jak wykorzystuję Anki?
+## How do I use Anki?
 
-Niemal zawsze mam aktywną aplikację albo w telefonie albo na komputerze. Zawsze wtedy gdy spotkam się z informajcą którą uznaję za wartą zapamiętania, zapisuję ją w formie karty Anki.
+I almost always have the app active either on my phone or computer. Whenever I come across information that I consider worth remembering, I save it as an Anki card.
 
-Codziennie przeklikuję kilkanaście kart przez ~20 minut, przypominając sobie w ten sposób sugerowne karty. 
+Every day I flick through a dozen cards for ~20 minutes, thus recalling the suggested cards.
 
 ## Źródła: 
 🔗 https://fs.blog/2018/12/spacing-effect/
