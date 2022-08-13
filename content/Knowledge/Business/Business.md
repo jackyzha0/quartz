@@ -3,19 +3,19 @@ title: Biznes
 ---
 
 # Biznes
-Tworzenie firmy jest dla mnie sposobem na realizowanie wszystkich moich pomysłów oraz jest to droga do życia zgodnie z moimi [[Foundations/Values]]ami 
+Creating a company is a way for me to realize all my ideas and it is a way to live according to my [[Foundations/Values]]
 
-Aktualnie niemal wszystkie swoje projekty realizuję z Grzegorzem Rogiem, Piotrem Palarzem i Mateuszem Wierzbickim. Współtworzę też pojedyncze projekty z Marcinem i Przemkiem z Przeprogramowani.pl oraz posiadam kilka własnych inicjatyw, które stanowią dla mnie dodatkową formę przychodu lub formą ekspresji.
+Currently, I do almost all my projects with Grzegorz Rog, Piotr Palarz and Mateusz Wierzbicki. I also co-create individual projects with Marcin and Przemek from Przeprogramowani.pl and have a few initiatives of my own, which are an additional form of income or form of expression for me.
 
-## Moja historia biznesowa
+## My business history
 
-Własne projekty realizuję od czasów gdy miałem 11-13 lat. Początkowo były to gry oraz szkolne radio internetowe. 
+I have been doing my own projects since I was 11-13 years old. At first it was games and school internet radio.
 
-Mając 16-18 lat realizowałem pierwsze projekty dla klientów a mając 19/20 lat przeprowadziłem się do Krakowa gdzie zacząłem staż w startupie w którym spędziłem kolejne 8 lat życia. Tam w roli CTO rozwijałem m.in produkty: Notatek.pl, Skillveo oraz Talent Place. 
+At the age of 16-18 I did my first projects for clients and at the age of 19/20 I moved to Krakow where I started an internship at a startup where I spent the next 8 years of my life. There in the role of CTO I developed products such as: Notatek.pl, Skillveo and Talent Place.
 
-Od 2017 rozwijam overment a od 2020 eduweb i wszystkie pozostałe [[Projects/Projects]]
+I have been developing overment since 2017 and eduweb and all other [[Projects/Projects]] since 2020.
 
-## Książki
+## Books
 
 - [[Knowledge/Books/Getting Real]]
 - [[Knowledge/Books/Alamanck of Naval Ravikant]]

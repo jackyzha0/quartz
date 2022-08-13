@@ -2,14 +2,14 @@
 title: 20 mile march
 ---
 
-## O co chodzi?
-[[Knowledge/Mental models/20 mile march]] to koncept z książki [[Knowledge/Books/Great by Choice]] ~ [[Knowledge/People/Jim Collins]]
+## What is it about?
+[[Knowledge/Mental models/20 mile march]] is a concept from the book [[Knowledge/Books/Great by Choice]] ~ [[Knowledge/People/Jim Collins]]
 
-Na długim dystansie lepsze jest mniejsze, ale regularne tempo niż sprinty.
+For a long distance, a smaller but regular pace is better than sprints.
 
-Inaczej mówiąc: chodzi o poruszanie się w stałym tempie niezależnie od czynników zewnętrznych i wewnętrznych.
+In other words: it's about moving at a steady pace regardless of external and internal factors.
 
-## Jak stosuję [[Knowledge/Mental models/20 mile march]]?
-Dbam o [[Foundations/Process#Fundamenty]] oraz podejmując działania, zawsze myślę długoterminowo mając na uwadze [[Knowledge/Books/The Infinite Game]].
+## How do I apply [[Knowledge/Mental models/20 mile march]]?
+I care about [[Foundations/Process#Foundations]] and when taking action, I always think long-term with [[Knowledge/Books/The Infinite Game]] in mind.
 
-Np. mógłbym tygodniowo nagrywać 3-4 filmy na [[Projects/overment]]. W praktyce nagrywam jeden ale za to jestem w stanie to robić regularnie (o ile jest to dla mnie [[Knowledge/Dictionary/Priority]])
+E.g. I could record 3-4 videos a week for [[Projects/overment]]. In practice I record one but for that I am able to do it regularly (as long as it is [[Knowledge/Dictionary/Priority]] for me).

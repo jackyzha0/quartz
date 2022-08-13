@@ -5,7 +5,7 @@ title: Marketing
 ## E-mail marketing
 - https://chasedimond.com/welcome-series-guide-for-nonbuyers
 
-## Książki
+## Books
 - [[Knowledge/Books/The Brain Audit]]
 - [[Knowledge/Books/Simplify]]
 - [[Knowledge/Books/Insanely Simple]]

@@ -1,5 +1,5 @@
 ---
-title: Słownik
+title: Dictionary
 ---
 
 - [[Knowledge/Dictionary/Goal]]

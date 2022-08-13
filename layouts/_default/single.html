@@ -22,7 +22,7 @@
   <article>
       {{if .Title}}<h1>{{ .Title }}</h1>{{end}}
       <p class="meta">
-          Ostatnia aktualizacja: {{if ne .Date .Lastmod}} {{ .Lastmod.Format "02/01/2006" }}{{else}} nieznana {{end}}
+          Last update: {{if ne .Date .Lastmod}} {{ .Lastmod.Format "02/01/2006" }}{{else}} nieznana {{end}}
       </p>
       <ul class="tags">
           {{ range (.GetTerms "tags") }}

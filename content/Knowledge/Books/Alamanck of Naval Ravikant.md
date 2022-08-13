@@ -4,43 +4,43 @@ title: Alamanck of Naval Ravikant
 
 Autor: Eric Jorgenson
 
-## Kontekst
-[[Knowledge/Books/Alamanck of Naval Ravikant]] to jedna z książek w przypadku której zaznaczanie wartościowych fragmentów, kończy się zamazaniem całej. Jest to zbiór i interpretacja wypowiedzi [[Navala Ravikant]]a - znanego inwestory z Doliny Krzemowej, który na wczesnym etapie zainwestował w firmy takie jak Notion, Twitter czy Uber. 
+## Context
+[[Knowledge/Books/Alamanck of Naval Ravikant]] is one of the books where marking valuable passages, ends up blurring the whole. It is a collection and interpretation of statements made by [[Naval Ravikant]]-a well-known Silicon Valley investor who made early investments in companies such as Notion, Twitter and Uber.
 
-Naval kładzie ogromny nacisk w tej książce na mechanizm dźwigni (eng. [[Knowledge/Mental models/Leverage]]) opartą o tworzenie produktów, których koszt replikacji jest marginalny. 
+Naval places great emphasis in this book on leverage (eng. [[Knowledge/Mental models/Leverage]]) based on the creation of products whose cost of replication is marginal.
 
-Poza zawodowymi sukcesami, Naval wyróżnia się szczególną mądrością oraz faktem, że jest po prostu szczęśliwy a to nie zawsze idzie w parze z sukcesem zawodowym. 
+In addition to his professional successes, Naval stands out for his special wisdom and the fact that he is simply happy and this does not always go hand in hand with professional success.
 
-> Każdy wielki programista posiada już dziś armię robotów, która pracuje dla niego dzień i noc, nawet wtedy gdy on śpi ([[Optimization/Automation/Automation]])
+> Every great programmer today already has an army of robots working for him day and night, even when he is sleeping ([[Optimization/Automation/Automation]]).
 
-## Koncepcje
+## Concepts
 
 ### Wealth vs. Money/Status Game
-- Bogactwo ([[Wealth Game]]) to zasoby, które pracują dla Ciebie nawet gdy śpisz.
-- Pieniądze to sposób transformacji czasu i bogactwa
-- Status to Twoja pozycja w hierarchii społecznej
+- Wealth ([[Wealth Game]]) is a resource that works for you even when you sleep.
+- Money is a way of transforming time and wealth
+- Status is your position in the social hierarchy
 
-Dobrze jest żyć grając w [[Wealth Game]] zamiast [[Status Game]]. W szczególności warto zrozumieć w jaki sposób kreować w oparciu o etykę oraz ignorować ludzi, którzy funkcjonują w oparciu o Status Game - zyskują go atakując ludzi budujących swoje bogactwo. 
+It is good to live playing the [[Wealth Game]] instead of the [[Status Game]]. In particular, it is useful to understand how to create based on ethics and ignore people who function based on Status Game - they gain it by attacking people who build their wealth.
 
 ### [[Specific Knowledge]]
-[[Specific Knowledge]] to rodzaj wiedzy która nie może być przekazana a jej automatyzacja nie jest możliwa. Jeżeli ktoś może Cię czegoś nauczyć, oznacza to że może nauczyć też kogoś innego.
+[Specific Knowledge]] is a type of knowledge that cannot be transferred and its automation is not possible. If someone can teach you something, it means they can also teach someone else.
 
-Taka wiedza w moim przekonaniu płynie z połączenia naturalnych predyspozycji ([[Fundamenty/💛 Poznawanie siebie]]), ciężkiej pracy ([[Knowledge/Dictionary/Process]]) oraz połączenia tego z unikatowymi cechami naszego charakteru.
+Such knowledge, in my opinion, flows from a combination of natural predispositions ([[Foundations/Understanding myself]]), hard work ([[Knowledge/Dictionary/Process]]), and combining that with the unique qualities of our character.
 
 ### [[Knowledge/Mental models/Leverage]]
-Według Navala dźwignia biznesowa pochodzi z Kapitału, Ludzi i Produktów posiadających niski lub zerowy koszt replikacji (kod i media).
+According to Naval, business leverage comes from Capital, People and Products having low or zero cost of replication (code and media).
 
 ### [[Konkurencja]]
 🚧
 
 
-## Lekcje
-- Naucz się budować i sprzedawać: staniesz się niepowstrzymany
-- Nigdy nie będziesz wart więcej niż myślisz. W kontekście biznesowym, wyznacz sobie swoją stawkę godzinową i pracuj tak, jakbyś rzeczywiście tyle zarabiał
-- Niezależność jest ważniejsza niż to ile zarabiasz. To ona daje przestrzeń i kontrolę.
-- Kiedy ostatnio się nudziłeś? [[Knowledge/Thoughts/Boredom]] daje przestrzeń, przestrzeń jest elementem kreatywności
-- Jeżeli nie potrafisz zdecydować, odpowiedź brzmi NIE"
-- Jeżeli podejmujesz decyzję, wybierz opcję która krótkoterminowo jest trudniejsza.
-- Szczęście to kwestia naszej decyzji
+## Lessons
+- Learn to build and sell: you will become unstoppable
+- You will never be worth more than you think. In a business context, set yourself your hourly rate and work as if you actually earn that much
+- Independence is more important than how much you earn. It is what gives you space and control.
+- When was the last time you were bored? [Knowledge/Thoughts/Boredom]] gives space, space is an element of creativity
+- If you can't decide, the answer is NO
+- If you are making a decision, choose the option that is more difficult in the short term.
+- Happiness is a matter of our decision
 
-I wiele, wiele innych.
+And many, many others.

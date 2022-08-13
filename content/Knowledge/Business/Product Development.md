@@ -2,7 +2,7 @@
 title: Product Development
 ---
 
-## Książki
+## Books
 - [[Knowledge/Books/Inspired]]
 - [[Knowledge/Books/The Mom Test]]
 - [[Knowledge/Books/MAKE]]

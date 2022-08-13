@@ -1,4 +1,4 @@
 ---
-title: Priorytet
+title: Priority
 ---
 

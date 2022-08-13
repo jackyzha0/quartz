@@ -2,13 +2,13 @@
 title: Leadership
 ---
 
-Uważam że każdy z nas jest lub powinien być liderem dla siebie i innych. Niewiele wspólnego ma z tym nasze stanowisko czy pozycja społeczna. Dodatkowo nawet najwięksi liderzy powinni być gotowi na to aby podążyć za innymi w chwili gdy jest to konieczne. 
+I believe that each of us is or should be a leader for ourselves and others. It has little to do with our position or social standing. Additionally, even the greatest leaders should be willing to follow others when necessary.
 
-Więcej o byciu liderem dla samego siebie napisałem w jednym z moich artykułów: [Jakim liderem jesteś...dla samego siebie?](https://www.linkedin.com/pulse/jakim-liderem-jeste%C5%9Bdla-samego-siebie-adam-gospodarczyk-/)
+I wrote more about being a leader for yourself in one of my articles: [Jakim liderem jesteś...dla samego siebie?](https://www.linkedin.com/pulse/jakim-liderem-jeste%C5%9Bdla-samego-siebie-adam-gospodarczyk-/)
 
-Leadershipu uczę się aktywnie każdego dnia. Dużą rolę w tym obszarze odegrały osoby takie jak [[Knowledge/People/Jocko Willink]] czy [[Simon Sinek]] a nawet filmy takie jak A Faster Horse czy Ocean Ognia.
+I am actively learning leadership every day. People like [[Knowledge/People/Jocko Willink]] and [[Simon Sinek]] and even movies like A Faster Horse and Ocean of Fire have played a big role in this area.
 
-## Książki
+## Books
 - [[Knowledge/Books/Leaders Eat Last]]
 - [[Knowledge/Books/The Infinite Game]]
 - [[Knowledge/Books/Extreme Ownership]]
