@@ -1,5 +1,5 @@
 ---
-title: Przemyślenia
+title: Thoughts
 ---
 
 - [[Knowledge/Thoughts/Reality]]
