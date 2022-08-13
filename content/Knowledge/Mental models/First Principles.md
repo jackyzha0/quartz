@@ -2,9 +2,9 @@
 title: First Principles
 ---
 
-## O co chodzi? 
-O myślenie w kategoriach fundamentalnych prawd składających się na wybrane zagadnienie i budowanie rozwiązań w oparciu o nie. 
+## What is it about?
+About thinking in terms of the fundamental truths that make up the chosen issue and building solutions based on them.
 
-Jednym z najbardziej aktualnym i najbardziej wybitnym przykładem wykorzystania myślenia pierwszego rzędu jest styl rozwiązywania problemów [[Knowledge/People/Elon Musk]]. Projekt SpaceX rozbił na czynniki pierwsze loty w kosmos i zidentyfikował problem (wysokie koszty) i znalazł rozwiązanie (rakiety wielokrotnego użytku).
+One of the most current and outstanding examples of the use of first-order thinking is the problem-solving style of [[Knowledge/People/Elon Musk]]. The SpaceX project took spaceflight apart and identified a problem (high costs) and found a solution (reusable rockets).
 
-Z pewnością rozumowanie z poziomu zasad pierwszego rzędu może prowadzić do osiągnięcia skrajnie różnych rezultatów, szczególnie w połączeniu z bardziej aktualną wiedżą w porównaniu do czasów w których zostało opracowane dotychczasowe rozwiązanie.
+Certainly, reasoning from the level of first-order principles can lead to extremely different results, especially when combined with more up-to-date knowledge compared to the time in which the existing solution was developed.
