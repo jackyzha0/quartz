@@ -2,7 +2,6 @@
 title: Values
 ---
 
-# Values
 My fundamental values facilitate my decision-making during the [[Foundations/Process]] and moving in the [[Foundations/Direction]] I set out
 
 Each of the following values is equally important to me and unchanging throughout my life.
