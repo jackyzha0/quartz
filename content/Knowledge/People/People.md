@@ -1,8 +1,8 @@
 ---
-title: Ludzie
+title: People
 ---
 
-Zależy mi na tym aby otaczali mnie ludzie, których obecność ma na mnie pozytywny wpływ. Poniżej znajduje się lista osób, które obserwuję w Internecie.
+I care about being surrounded by people whose presence has a positive impact on me. Below is a list of people I follow online.
 
 - [[Knowledge/People/Naval Ravikant]]
 - [[Knowledge/People/Dan Millman]]

@@ -14,12 +14,12 @@ This is where I share everything I know with you. I created it primarily for mys
 * How I build my [[Foundations/Knowledge acquisition system]]
 * [[Knowledge/Mental models/Mental models]] I consciously use
 * Notes from the [[Knowledge/Books/Books]] I've read
-* [[Knowledge/People/Ludzie]] I observe on the Internet
+* [[Knowledge/People/People]] I observe on the Internet
 * My [[Knowledge/Thoughts/Rethinking]] and style of operation (e.g., [[Knowledge/Thoughts/Focus]])
 * My notes on Programming, Design, Marketing and Business in general.
 * [[Optimization/Hardware/Hardware]] I use
 * Descriptions of the [[Optimization/Automation/Automation]] and [[Optimization/Tools/Narzędzia]] I use
-* Information on the projects I am involved in ([[Projects/eduweb]], [[Projects/Ahoy!]], [[Projects/zautomatyzowani]], [[Projects/overment]], [[Projects/EasyCart]], [[Projects/EasyBanner]], [[Projects/Design Maestro]])
+* Informations about projects I am involved in ([[Projects/eduweb]], [[Projects/Ahoy!]], [[Projects/zautomatyzowani]], [[Projects/overment]], [[Projects/EasyCart]], [[Projects/EasyBanner]], [[Projects/Design Maestro]])
 * What I know about [[Knowledge/Programming/Programming]]
 * My all free and paid publications
 
