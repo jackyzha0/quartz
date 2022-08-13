@@ -2,25 +2,25 @@
 title: Principles
 ---
 
-Jakimi zasadami kierujecie się w życiu? Jak podejmujecie decyzje i w jaki sposób wyciągacie wnioski z popełnionych błędów? 
+What principles do you follow in life? How do you make decisions and how do you learn from your mistakes?
 
-Zachęcam do obejrzenia animacji / podsumowania książki: 
+I encourage you to watch the animation / summary of the book:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/B9XGUpQZY38" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-[[Knowledge/People/Ray Dalio]] w książce [[Knowledge/Books/Principles]] opisuje zasady które kreował na przestrzeni swojego życia. Opierał na nich rozwój firmy Bridgewater Associates, która doprowadziła go do listy jednego z najbogatszych ludzi na ziemi. 
+[[Knowledge/People/Ray Dalio]] in his book [[Knowledge/Books/Principles]] describes the principles he created throughout his life. He based the development of his company Bridgewater Associates on them, which led him to the list of one of the richest people on earth.
 
-Fundamentem budowania tych zasad są:
-- trudna sztuka postrzegania [[Knowledge/Thoughts/Reality]] taką jaką faktycznie jest a nie taką jak byśmy chcieli aby była.
-- jeszcze trudniejsza [[Knowledge/Thoughts/Radical Transparency]] i [[Szczerość]].
+The foundation for building these principles is:
+- The difficult art of seeing [[Knowledge/Thoughts/Reality]] as it actually is and not as we would like it to be.
+- Even more difficult [[Knowledge/Thoughts/Radical Transparency]] and [[Honesty]].
 
-Przykładowo w jego firmie KAŻDY ma dostęp do WSZYSTKICH informacji za wyjątkiem tych z prywatnego życia pracowników, które nie mają związku z funkcjonowaniem firmy. 
+For example, in his company EVERYONE has access to ALL information except that from the private lives of employees that is not related to the operation of the company.
 
-Według Raya Dalio realizacja dowolnego celu sprowadza się do powtarzalnego procesu: 
-1. Wyznaczenia PRIORYTETU (nie priorytetÓW) (więcej również w [[Knowledge/Mental models/Essentialism]])
-2. Identyfikacji PROBLEMÓW i ich nietolerowania
-3. Odnalezienia ich PRZYCZYNY 
-4. Opracowania PLANU
-5. WYKONANIA
+According to Ray Dalio, achieving any goal boils down to a repeatable process:
+1. PRIORITY determinations (not priorities) (more also in [[Knowledge/Mental models/Essentialism]])
+2. identifying PROBLEMS and not tolerating them
+3. finding their CAUSE
+4. development of the PLAN
+5. EXECUTION
 
-Ostatecznie najważniejszą rzeczą nie jest to abyśmy zastosowali zasady przedstawione w książce, lecz opracowali własne, które spójne są z nami i naszymi [[Knowledge/Dictionary/Goal]]ami. 
+At the end of the day, the most important thing is not that we apply the principles presented in the book, but that we develop our own that are consistent with us and our [[Knowledge/Dictionary/Goal]]s.

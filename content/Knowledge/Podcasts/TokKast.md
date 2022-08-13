@@ -2,4 +2,4 @@
 title: TokKast
 ---
 
-ToKast to podcast w całości poświęcony książkom [[Knowledge/Books/The Beginning of Infinity]] oraz [[Knowledge/Books/The Fabric of Reality]]. Dość kiepski pod kątem technicznym ale wszystko wynagradza najwyżej klasy merytoryka.
+ToKast is a podcast devoted entirely to the books [[Knowledge/Books/The Beginning of Infinity]] and [[Knowledge/Books/The Fabric of Reality]]. Quite poor technically but everything is made up for by top-notch content.

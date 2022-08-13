@@ -4,21 +4,21 @@ title: Think Like a Rocket Scientist
 
 [[Knowledge/Books/Think Like a Rocket Scientist]]
 
-Potrafisz myśleć? To chyba potrafi każdy, nie? 
+Can you think? I guess that's something anyone can do, right?
 
-A nie wydaje Ci się czasem że inni robią to lepiej od Ciebie? Wydają się szybciej wpadać na lepsze rozwiązania. Ich umysł wydaje się działać na zupełnie innych zasadach i mieć dostęp do obszarów do których Ty nawet się nie zbliżasz. 
+And don't you sometimes think that others do it better than you? They seem to come up with better solutions faster. Their mind seems to work on completely different principles and access areas that you don't even come close to.
 
-Tylko dlaczego tak jest skoro wszyscy jesteśmy ludźmi? Chodzi o predyspozycje? Jakiś wrodzony talent, którego nie posiadasz?
+Just why is that if we are all human? Is it about predisposition? Some innate talent that you don't possess?
 
-Szczerze mówiąc nie mam co do tego pewności. Jednak z dużym przekonaniem mogę powiedzieć że myślenie to umiejętność, której możemy uczyć się jak każdej innej. 
+To be honest, I am not sure about this. However, I can say with great conviction that thinking is a skill that we can learn like any other.
 
-A jeżeli mamy się uczyć to od najlepszych - naukowców od rakiet. 
+And if we are to learn it from the best - rocket scientists.
 
 ## Lekcje
-- trzymając się znanego, nie odkryjesz nieznanego
-- jesteśmy zaprogramowani by obawiać się nieznanego
-- najprostsze rozwiązania często bywają najlepsze [[Knowledge/Mental models/Occams Razor]]
-- ego i [[Knowledge/Dictionary/Blind Spots]] to największe bariery przed poznaniem prawdy (o tym mówi też [[Knowledge/People/Ray Dalio]] w [[Knowledge/Books/Principles]])
-- chodź w nieznane ale pamiętaj o zarządzaniu ryzykiem
-- poznaj modele mentalne (np. [[Knowledge/Mental models/First Principles]], [[Knowledge/Mental models/Second Order Thinking]])
-- są rzeczy o których wiesz, o których nie wiesz że wiesz, o których wiesz że nie wiesz i takie o których nie wiesz że nie wiesz ([[Knowledge/Mental models/Blindspot Matrix]])
+- by sticking to the known, you will not discover the unknown
+- we are programmed to fear the unknown
+- The simplest solutions are often the best [[Knowledge/Mental models/Occams Razor]].
+- ego and [[Knowledge/Dictionary/Blind Spots]] are the biggest barriers against knowing the truth (this is also discussed by [[Knowledge/People/Ray Dalio]] in [[Knowledge/Books/Principles]])
+- walk into the unknown but remember to manage risk
+- know the mental models (e.g. [[Knowledge/Mental models/First Principles]], [[Knowledge/Mental models/Second Order Thinking]])
+- There are things you know that you don't know that you know, things you know that you don't know, and things you don't know that you don't know ([[Knowledge/Mental models/Blindspot Matrix]])

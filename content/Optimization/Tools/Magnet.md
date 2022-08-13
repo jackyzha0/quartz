@@ -2,6 +2,6 @@
 title: Magnet
 ---
 
-To manager okien, który wykorzystuję razem z [[Optimization/Tools/Keyboard Maestro]] do organizacji swojej pracy na [[Optimization/Hardware/Macbook]]. 
+This is a window manager that I use together with [[Optimization/Tools/Keyboard Maestro]] to organize my work on [[Optimization/Hardware/Macbook]].
 
-Alternatywa to Mosaic, dostępna w pakiecie Setapp.
+An alternative is Mosaic, available in the Setapp package.

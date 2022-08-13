@@ -3,7 +3,7 @@ title: Podcast
 ---
 
 ## Podcasty
-Osobiście nie przepadam za podcastami, poza niżej wymienionymi wyjątkami. Znacznie bardziej przemawiają też do mnie podcasty w bardzo zwięzłych formach lub bardzo ściśle określonej tematyce, niż podcasty rozrywkowe lub prowadzone bez wcześniejszego przygotowania. 
+Personally, I am not fond of podcasts, with the exceptions listed below. I am also much more appealed to podcasts in very concise forms or very strictly defined topics, rather than entertaining podcasts or podcasts conducted without prior preparation.
 
 ## Jakich podcastów słucham? 
 - [[Knowledge/Podcasts/Huberman Lab]]

@@ -4,7 +4,7 @@ date: "2022-04-27"
 lastmod: "2022-04-27"
 ---
 
-## What is Alfred?
+# What is Alfred?
 
 [Optimization/Tools/Alfred]] is an overlay (or alternative) for Spotlight. With a paid extension (PowerPack), it allows you to connect to, for example, [[Optimization/Tools/Keyboard Maestro]] or [[Spotify]].
 

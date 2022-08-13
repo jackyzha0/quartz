@@ -2,14 +2,14 @@
 title: Antifragile
 ---
 
-Jeżeli pomyślimy o przeciwieństwie kruchości, do głowy przychodzi nam siła lub twardość. 
+If we think of the opposite of fragility, strength or hardness comes to mind.
 
-W rzeczywistości jednak nawet, jeżeli wyobrazimy sobie super twardy materiał, jest duża sznasa na to, że będziemy w stanie znaleźć twardszy, wykorzystać słaby punkt lub dźwignię, do tego aby go zniszczyć lub trwale uszkodzić.  
+In reality, however, even if we imagine a super-hard material, there is a good chance that we can find a harder one, use a weak point or leverage, to destroy or permanently damage it.  
   
-A teraz wyobraźmy sobie materiał, który za każdym razem gdy próbujemy go uszkodzić lub zniszczyć, staje się silniejszy niż wcześniej. Taka cecha to [[Antykruchość]] (eng. [[Knowledge/Books/Antifragile]])
+Now imagine a material that every time you try to damage or destroy it, it becomes stronger than before. Such a feature is [[Antifragility]] (eng. [[Knowledge/Books/Antifragile]])
 
-[[Antykruchość]] to potężna koncepcja w kontekście budowania systemów, np. firmy lub naszego życiowego systemu. Sam nieustannie myślę o tym budując mój własny [[Foundations/Process]]. Do tego niezbędne jest nieustannie [[Kwestionowanie]], [[Popełnianie Błędów]] i wyciągnie z nich wniosków. 
+[Antifragility]] is a powerful concept in the context of building systems, such as a company or our life system. I myself constantly think about this when building my own [[Foundations/Process]]. For this it is necessary to constantly [[Questioning]], [[Making Mistakes]] and learning from them.
 
-Podobnie swój system opisuje [[Knowledge/People/Ray Dalio]], który jego budowę opiera o [[Zasady]] opisane w książce [[Knowledge/Books/Principles]].
+Similarly, his system is described by [[Knowledge/People/Ray Dalio]], who bases its construction on the [[Principles]] described in the book [[Knowledge/Books/Principles]].
 
-W przypadku [[Nassim Nicholas Taleb]] zdecydowanie polecam sięgnąć jeszcze po książki [[Knowledge/Books/Black Box Thinking]], [[Black Swan]], [[Knowledge/Books/Fooled by Randomness]] oraz [[Knowledge/Books/Skin in the Game]] - każda z nich zawiera koncepcje, które drastycznie ulepszają sposób myślenia, ze szczególnym uwzględnieniem przyszłych wydarzeń.
+In the case of [[Nassim Nicholas Taleb]], I strongly recommend you still reach for the books [[Knowledge/Books/Black Box Thinking]], [[Black Swan]], [[Knowledge/Books/Fooled by Randomness]] and [[Knowledge/Books/Skin in the Game]] - each contain concepts that drastically improve thinking, with a focus on future events.

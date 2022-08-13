@@ -2,7 +2,7 @@
 title: Figma
 ---
 
-To aktualnie jedna z lepszych aplikacji do projektowania interfejsów (o ile nie najlepsza).
+This is currently one of the best interface design applications (if not the best).
 
-## Jak wykorzystuję Figma? 
-Zwykle posługuję się design systemami, np. [[Systemflow]]. Poza tym projektuję w niej wszystkie szablony graficzne, które potem odwzorowuję w [[Optimization/Tools/Webflow]] i generuję z pomocą [[Projects/EasyBanner]].
+## How do I use Figma?
+I usually use design systems, such as [[Systemflow]]. Besides, I design all graphic templates in it, which I then map in [[Optimization/Tools/Webflow]] and generate with the help of [[Projects/EasyBanner]].

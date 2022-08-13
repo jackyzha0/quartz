@@ -2,4 +2,4 @@
 title: Notion
 ---
 
-To aplikacja do notowania, która obecnie jest rozbudowanym narzędziem w którym organizuję wszystkie swoje projekty. Jej największą zaletą jest dostęp do [[Knowledge/Programming/API]] oraz możliwość połączenia z [[Optimization/Tools/Raycast]] i [[Optimization/Tools/MakeHQ]] do tworzenia własnych [[Optimization/Automation/Automation]].
+This is a note-taking application, which is now an extensive tool in which I organize all my projects. Its biggest advantage is access to [[Knowledge/Programming/API]] and the ability to connect with [[Optimization/Tools/Raycast]] and [[Optimization/Tools/MakeHQ]] to create your own [[Optimization/Automation/Automation]].

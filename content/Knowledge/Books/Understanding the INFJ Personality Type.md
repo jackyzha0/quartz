@@ -2,14 +2,14 @@
 title: Understanding the INFJ Personality Type
 ---
 
-Kilka lat temu usłyszałem o teście osobowości MBTI, natomiast dopiero później po wykonaniu testu "Gallupa", zrozumiałem jak wiele wskazówek dają nam takie narzędzia. 
+A few years ago I heard about the MBTI personality test, while it was only later after taking the 'Gallup' test that I realized how much guidance such tools give us.
 
-W przypadku MBTI okazało się, że moim profilem jest najrzadziej występujący z wszystkich szesnastu (~1-3% ludzkości). 
+In the case of MBTI, it turned out that my profile is the least common of all sixteen (~1-3% of humanity).
 
-Szukając dodatkowych materiałów dotyczących poszczególnych profili, trafiłem na wielokrotnie polecaną książkę Megan, która nie tylko pozwoliła mi dokładnie zrozumieć zarówno plusy jak i minusy profilu INFJ ale również wdrożyć szereg aktywności, które pozwalają mi je zaadresować i wykorzystać. 
+While looking for additional materials on each profile, I came across Megan's oft-recommended book, which not only allowed me to thoroughly understand both the pros and cons of the INFJ profile, but also to implement a series of activities that allow me to address and take advantage of them.
 
-Ciekawostka: W rozdziale ""Jak zrozumieć INFJ"", pierwsze zdanie brzmi: ""Zaakceptuj że nie da się zrozumieć INFJ"" 😅
+Interesting fact: In the chapter ''How to understand INFJs'', the first sentence reads: ''Accept that it is impossible to understand INFJs'' 😅
 
-Wygląda to na bardzo wymijającą ""radę"" ale w rzeczywistości kryje się za nią bardzo konkretny przekaz. 
+It looks like very evasive ''advice'' but in fact there is a very specific message behind it.
 
-Zachęcam wszystkich do tego aby wykonując testy osobowości poszukać dodatkowych materiałów na ich temat. Jednocześnie ważne jest to aby nie zapominać, że to tylko test reprezentujący bardzo uproszczony model osobowości. 
+I encourage everyone to look for additional material on personality tests when taking them. At the same time, it is important not to forget that this is only a test representing a very simplified model of personality.

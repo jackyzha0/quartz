@@ -2,12 +2,12 @@
 title: The Infinite Game
 ---
 
-Istnieją dwa rodzaje gier: 
-- takie w które gramy po to aby wygrać 
-- oraz takie w których gramy aby pozostać w grze.
+There are two types of games:
+- The kind we play to win
+- As well as those in which we play to stay in the game.
 
-Są to fundamentalnie inne podejścia, które możemy stosować w wielu obszarach życia. To pierwsze skupia się na zwykle krótkoterminowym osiąganiu efektów a drugie na długoterminowej wizji. 
+These are fundamentally different approaches that we can apply to many areas of life. The former focuses on the usual short-term achievement of results and the latter on a long-term vision.
 
-Pierwsze opiera się o intensywność a drugie o konsekwencję (zobacz [[Knowledge/Mental models/20 mile march]]). 
+The former is based on intensity and the latter on consistency (see [[Knowledge/Mental models/20 mile march]]).
 
-W praktyce granie w nieskończoną grę jest nieporównywalnie trudniejsze. Powodem jest fakt, że działania nastawione na długoterminowe efekty są ważne ale niemal nigdy nie pilne. To sprawia że po prostu łatwiej jest podjąć aktywności, które dadzą nam efekt tu i teraz niż takie na których rezultaty przyjdzie nam czekać.
+In practice, playing the endless game is incomparably more difficult. The reason is that activities aimed at long-term results are important but almost never urgent. This makes it simply easier to undertake activities that will give us an effect in the here and now, rather than ones for which we will have to wait for results.

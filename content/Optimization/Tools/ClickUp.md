@@ -2,7 +2,7 @@
 title: ClickUp
 ---
 
-## Czym jest ClickUp?
-To rozbudowana aplikacja do zarządzania zadaniami w zespole. Aktualnie nie korzystam z niej ze względu na to, że oferuje znacznie większe możliwości niż są mi potrzebne. W zamian zadania zapisuję w [[Optimization/Tools/Todoist]].
+## What is ClickUp?
+This is a powerful application for managing tasks in a team. I currently do not use it due to the fact that it offers much more capabilities than I need. Instead, I save tasks in [[Optimization/Tools/Todoist]].
 
-Najważniejszym punktem dla ClickUp jest możliwość automatyzacji zarówno przez API, jak i bezpośrednio wewnątrz aplikacji. 
+The highlight for ClickUp is the ability to automate both through the API and directly inside the application.

@@ -2,15 +2,15 @@
 title: Extreme Ownership
 ---
 
-[[Knowledge/Books/Extreme Ownership]] to jedna z książek których nie polecam czytać. Zdecydowanie bardziej polecam przesłuchać oryginalny audiobook, czytany przez autorów!
+[Knowledge/Books/Extreme Ownership]] is one book I do not recommend reading. I definitely recommend listening to the original audiobook, read by the authors!
 
-[[Knowledge/Books/Extreme Ownership]] to niezwykła lekcja biznesu ale i nie tylko, ponieważ jej przekaz można zastosować w każdym obszarze życia. Dodatkowo bardzo polecam od razu przeczytać drugą część [[Dichotomy of Leadership]], która podkreśla bardzo ważny element [[Wiedza/🎲 Biznes/Leadership]]u jakim jest jego dwuznaczność.
+[[Knowledge/Books/Extreme Ownership]] is a remarkable lesson in business but not only, as its message can be applied to any area of life. In addition, I highly recommend reading the second part of [[Knowledge/Books/The Dichotomy of Leadership]] right away, which highlights the very important element of [[Knowledge/Business/Leadership]] which is its ambiguity.
 
-Autorzy to byli komandosi [[Navy Seal's]], którzy po swoich misjach m.in. w Iraku przenoszą swoje doświadczenia z najbardziej ekstremalnych na kontekst biznesowy.
+The authors are former [[Navy Seal's]] commandos who, after their missions in Iraq, among others, transfer their experiences from the most extreme to a business context.
 
-## Lekcje
+## Lessons
 - [[Knowledge/Thoughts/Discipline]] daje wolność
 - Relax, look around, make a call.
-- Nie ma złych zespołów. Są tylko źli liderzy.
-- Pozwól działać swojemu zespołowi w ramach ustalonego celu i bez Twojego zaangażowania we wszystko.
-- Kluczowy jest przepływ informacji - szeroki kontekst pochodzi z góry a szczegóły operacyjne z dołu
+- There are no bad teams. There are only bad leaders.
+- Let your team work within the set goal and without your involvement in everything.
+- Information flow is key - broad context comes from the top and operational details from the bottom

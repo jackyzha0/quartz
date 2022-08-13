@@ -4,13 +4,13 @@ title: War of Art
 
 Autor: Steven Pressfield
 
-Czy zdajesz sobie sprawę o istnieniu pewnej siły, która nieustannie powstrzymuje Cię przed działaniem?
+Are you aware of the existence of a certain force that constantly holds you back?
 
-To ukryty pod jedną z wielu mask - strachu, lęku, zmęczenia, wymówek, braku weny czy ważniejszych spraw - [[Opór]], którego podstawowym celem jest destrukcja i całkowite powstrzymanie nas przed działaniem.
+It's hidden under one of many masks - fear, anxiety, fatigue, excuses, lack of vitality or more important matters - [[Resistance]], whose primary goal is to destroy us and stop us from acting altogether.
 
-[[Steven Pressfield]] w [[Knowledge/Books/The Art of War]] opisuje na czym polega opór, czym się objawia oraz podkreśla fakt, że czuje go każdy, niezależenie od miejsca i czasu. Zrozumienie tego faktu daje nam przewagę w postaci świadomości problemu.
+[[Steven Pressfield]] in [[Knowledge/Books/The Art of War]] describes what resistance is, what it manifests itself as, and emphasizes the fact that everyone feels it, regardless of place or time. Understanding this fact gives us the advantage of being aware of the problem.
 
 ## Lekcje
-1. Opór dotyczy każdego. Niezależnie od miejsca i czasu.
-2. Aby realizować marzenia, traktuj je poważnie. 
-3. Zaakceptuj fakt, że opór nigdy nie mija. To przeciwnik z którym będziesz mierzyć się każdego dnia. Każdego dnia możesz przegrać ... i wygrać.
+1. Resistance affects everyone. Regardless of place and time.
+2. to pursue your dreams, take them seriously.
+3. Accept the fact that resistance never passes. It is an opponent you will face every day. Every day you can lose ... and win.

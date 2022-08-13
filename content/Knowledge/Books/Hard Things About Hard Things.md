@@ -2,8 +2,8 @@
 title: Hard Things About Hard Things
 ---
 
-Jak trudne jest prowadzenie firmy? O tym mogą przekonać się tylko osoby prowadzące firmę. Mowa tutaj nie tylko o zachowaniu zimnej krwi podczas kryzysu ale nieustannym narażeniu na to, że "coś może przestać działać" i odpowiedzialność za to spadnie tylko i wyłącznie na CEO.
+How difficult is running a company? Only those who run a company can find out. We are talking here not only about keeping a cool head during a crisis, but the constant exposure to the fact that 'something may stop working' and the responsibility for this will fall solely on the CEO.
 
-Ale gdyby to kryzysy były największym wyzwaniem, chyba nie byłoby tak źle. Sam wiele razy przekonałem się, że w chwilach gdy firma rośnie, pojawiają się nowi klienci i wszystko wydaje się być okey, wystarczy chwila nieuwagi aby zaniedbać pracowników, rodzinę czy siebie samego. 
+But if crises were the biggest challenge, I guess it wouldn't be so bad. I myself have found many times that in moments when the company is growing, new customers are appearing and everything seems okey, it only takes a moment of inattention to neglect employees, family or oneself.
 
-O potrzebie zachowania nieustannego balansu pisał wiele [[Knowledge/People/Jocko Willink]] w książce [[Dichotomy of Leadership]], którą również bardzo polecam przeczytać.
+The need for constant balance was written about a lot by [[Knowledge/People/Jocko Willink]] in his book [[Dichotomy of Leadership]], which I also highly recommend reading.

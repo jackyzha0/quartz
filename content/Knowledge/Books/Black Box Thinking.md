@@ -2,15 +2,15 @@
 title: Black Box Thinking
 ---
 
-[[Antykruchość]] (eng. [[Knowledge/Books/Antifragile]]) bardzo jasno tłumaczy nam dlaczego loty samolotem są tak bezpieczne. Jednym z głównych powodów jest to, że każdy popełniony błąd lub katastrofa przyczyniają się do tego aby powstały nowe [[Zasady]] i procedury, które minimalizują ich ponowne wystąpienie oraz wzmacniają cały system.
+[[Antifragility]] (eng. [[Knowledge/Books/Antifragile]]) explains very clearly to us why airplane flights are so safe. One of the main reasons is that every mistake or disaster that occurs contributes to the creation of new [[Policies]] and procedures that minimize their recurrence and strengthen the entire system.
 
-W takim procesie najbardziej istotne jest to aby wyciągać wnioski z popełnionych błędów i otwarcie się do nich przyznawać. 
+In such a process, the most important thing is to learn from your mistakes and openly admit them.
 
-Problem w tym, że popełnianie błędów często kojarzone jest negatywnie, bo już od najmłodszych lat uczymy się tego, aby najlepiej wcale ich nie popełniać - często pod groźbą kary.
+The problem is that making mistakes is often associated negatively, because from an early age we are taught that it is best not to make them at all - often under threat of punishment.
 
-[[Knowledge/Books/Black Box Thinking]] (podobnie jak [[Knowledge/Books/Think Like a Rocket Scientist]]) przedstawia zupełnie inną perspektywę, według której popełnienie błędu i wyciągnięcie wniosków na przyszłość, są niezbędnymi elementami nauki i rozwoju. 
+[[Knowledge/Books/Black Box Thinking]] (as well as [[Knowledge/Books/Think Like a Rocket Scientist]]) presents a very different perspective, according to which making mistakes and learning lessons for the future are essential elements of learning and development.
 
 ## Lekcje
-- Przyznawaj się do swoich błędów - również przed sobą samym.
-- Traktuj swoje pomysły i wnioski jako hipotezy - które należy sprawdzić i które mają prawo się nie udać.
-- Traktuj porażkę jako lekcję. Zamień negatywne, w pozytywne.
+- Admit your mistakes - including to yourself.
+- Treat your ideas and conclusions as hypotheses - which need to be tested and have the right to fail.
+- Treat failure as a lesson. Turn a negative, into a positive.

@@ -2,10 +2,10 @@
 title: Appeal to probability fallacy
 ---
 
- ## O co chodzi? 
-To tendencja do uznawania czegoś za pewne, tylko dlatego że jest prawdopodobne. Inaczej mówiąc: przeceniamy szansę wystąpienia jakiegoś zdarzenia, opierając się na pojedynczych sygnałach, które to potwierdzają.
+## What is it about?
+It's the tendency to consider something certain, simply because it's likely. In other words: we overestimate the chance of an event occurring based on single signals that support it.
 
-## Jak wykorzystuję [[Knowledge/Mental models/Appeal to probability fallacy]]? 
-Zwykle zakładam odwrotnie ([[Knowledge/Mental models/Inversion]]) i zastanawiam się co zrobię gdy coś się **nie wydarzy**. Jednocześnie szukam sposobów oraz wzroców, które mogą realnie zwiększyć prawdopodobieństwo wystąpienia jakiegoś zdarzenia (lub jemu zapobiec).
+## How I use [[Knowledge/Mental models/Appeal to probability fallacy]]? 
+I usually assume the opposite ([[Knowledge/Mental models/Inversion]]) and think about what I will do when something **doesn't** happen. At the same time, I look for ways and sights that can realistically increase the likelihood of an event happening (or prevent it).
 
-W chwili gdy przyłapuję się na tym, że uzasadaniam sobie coś podając albo powtarzające się powody albo doszukuję się powodów, oznacza to dla mnie, że w grę wchodzi [[Knowledge/Mental models/Appeal to probability fallacy]].
+The moment I catch myself justifying something to myself by giving either repeated reasons or looking for reasons, it means to me that [[Knowledge/Mental models/Appeal to probability fallacy]] is involved.

@@ -2,14 +2,14 @@
 title: UI
 ---
 
-## Jak projektuję UI? 
+## How do I design the UI?
 
-Do projektowania UI aktualnie wykorzystuję niemal wyłącznie [[Optimization/Tools/Figma]] w połączeniu z biblioteką komponentów [[Tailwind UI]]. 
+For UI design, I currently use almost exclusively [[Optimization/Tools/Figma]] in conjunction with the [[Tailwind UI]] component library.
 
-W przypadku projektów no-code wykorzystuję [[Optimization/Tools/Webflow]] w połączeniu z frameworkiem [Systemflow.co](https://systemflow.co). 
+For no-code projects, I use [[Optimization/Tools/Webflow]] in conjunction with the [Systemflow.co] framework(https://systemflow.co).
 
-## Źródła wiedzy
-W temacie projektowania interfejsów zawsze polecam 
+## Sources of knowledge
+On the topic of interface design, I always recommend
 - [Refactoring UI](https://www.refactoringui.com/) ~ [[Knowledge/People/Adam Wathan]] (twórca [[Tailwind CSS]]):
 - [Learnux.io](https://learnux.io) ~ [[Grzegorz Róg]]
 

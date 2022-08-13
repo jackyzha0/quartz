@@ -4,21 +4,15 @@ title: Seeking Wisdom
 
 Autor: Peter Bevelin
 
-[[Knowledge/Books/Seeking Wisdom]] absolutnie najlepsza książka jaką czytałem w temacie usprawnienie procesów myślenia i podejmowania decyzji ([[Knowledge/Mental models/Mental models]]).
+[[Knowledge/Books/Seeking Wisdom]] the absolute best book I've read on the subject of improving thinking and decision-making processes ([[Knowledge/Mental models/Mental models]]).
 
-Pomimo niecałych 300 stron, zawiera tak dużo wiedzy i konkretów, że potrzebowałem 12 miesięcy aby ją przeczytać a i tak wielokrotnie będę do niej wracał. 
+Despite less than 300 pages, it contains so much knowledge and specifics that it took me 12 months to read it and I will still return to it many times.
 
-Najważniejsza lekcja: Posiadanie zrozumienia koncepcji i mechanik kierujących światem jest krytycznie ważne w każdym obszarze życia. Jednocześnie to zrozumienie nie stawia nas ponad panującymi zasadami bo dalej "gramy" w ramach systemu, ale jesteśmy w tanie bardziej świadomie się w nim poruszać. 
+The most important lesson: Having an understanding of the concepts and mechanics that guide the world is critically important in every area of life. At the same time, this understanding does not put us above the prevailing rules because we continue to 'play' within the system, but we are able to move more consciously within it.
 
-Poza tym [[Knowledge/Books/Seeking Wisdom]] stanowi esencję z wielu przeczytanych przeze mnie książek, szczególnie w obszarach: 
+In addition, [[Knowledge/Books/Seeking Wisdom]] represents the essence from the many books I have read, especially in the areas:
 - [[Knowledge/Mental models/Mental models]], 
-- Uprzedzeń (eng. [[Bias]]es), 
-- Elementów ekonomii, biznesu 
-- oraz ogólnych zasad dotyczących funkcjonowania jednostek oraz społeczeństw.
+- Bias (eng. [[Bias]]es),
+- Elements of economics, business
+- and general principles concerning the functioning of individuals and societies.
 
-## Cytaty
-> Testowy cytat.
-
-## Kontekst
-
-## Lekcja

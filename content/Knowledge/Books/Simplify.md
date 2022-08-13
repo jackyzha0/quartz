@@ -2,14 +2,14 @@
 title: Simplify
 ---
 
-> "Coś jest proste nie wtedy gdy ignorujesz niektóre elementy, ale wtedy gdy docierając do źródła, świadomie odrzucasz te niepotrzebne" ~ overment
+> 'Something is simple not when you ignore some elements, but when, reaching the source, you consciously reject the unnecessary ones' ~ overment
 
-Richard Koch inwestuje w firmy według zasady "Star". Mówi ona o klasyfikacji firm według: market share oraz tempie wzrostu rynku na którym działają. Te które są najwyżej, określa się mianem "Gwiazd". 
+Richard Koch invests in companies according to the 'Star' principle. It says to rank companies according to: market share and the growth rate of the market in which they operate. Those that rank highest are referred to as 'Stars'.
 
-Według Kocha kluczowe jest tutaj tytułowe [[Uproszczenie]]: ceny lub oferowanej wartości. 
+According to Koch, the key here is the title [[Simplification]]: price or value offered.
 
-[[Uproszczenie]] ceny uwzględnia jej redukcję nawet o 90% poprzez optymalizację procesu produkcji (patrz IKEA)
+[[Simplification]] price takes into account its reduction by up to 90% by optimizing the production process (see IKEA)
 
-Uproszczenie oferowanej wartości uwzględnia stworzenie produktu prostego i przyjemnego w użyciu (najlepszy UX) (patrz Apple).
+Simplifying the value offered takes into account creating a product that is simple and pleasant to use (the best UX) (see Apple).
 
-Które uproszczenie jest lepsze? To nie wybór, lecz dojście do tego, które uproszczenie MOŻE być zastosowane w przypadku Twojego biznesu i Twoich możliwości.
+Which simplification is better? It's not a choice, but getting to which simplification MAY work for your business and your capabilities.

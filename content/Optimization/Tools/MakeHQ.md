@@ -2,10 +2,10 @@
 title: MakeHQ
 ---
 
-[Integromat](https://Integromat.com/) to najważniejsze narzędzie automatyzacji z jakiego korzystam. Z jego pomocą łączę wszystkie usługi posiadające [[Knowledge/Programming/API]] wykorzystując albo wbudowane moduły albo podłączając się bezpośrednio przez [[Knowledge/Programming/API]] przez moduł HTTP. 
+[Integromat](https://Integromat.com/) is the most important automation tool I use. With it, I connect all services that have [[Knowledge/Programming/API]] using either built-in modules or connecting directly through [[Knowledge/Programming/API]] via the HTTP module.
 
-W niektórych przypadkach tworzę swoje własne [[Optimization/Automation/Microservices]] do realizacji zadań, które: 
-- nie są możliwe do zrealizowania z pomocą gotowych narzędzi
-- rozszerzają możliwości istniejących narzędzi
+In some cases, I create my own [[Optimization/Automation/Microservices]] to perform tasks that:
+- are not feasible with off-the-shelf tools
+- expand the capabilities of existing tools
 
-Bardzo często scenariusze automatyzacji rozpoczynam Webhookiem, aby uruchamiać je natychmiast z poziomu [[Optimization/Tools/Keyboard Maestro]] lub dowolnego skryptu czy automatyzacji [[Optimization/Tools/Airtable]]
+Very often I start automation scenarios with Webhook to run them immediately from [[Optimization/Tools/Keyboard Maestro]] or any [[Optimization/Tools/Airtable]] script or automation.

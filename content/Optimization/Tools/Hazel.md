@@ -2,14 +2,14 @@
 title: Hazel
 ---
 
-[[Optimization/Tools/Hazel]] to aplikacja do automatycznej organizacji plików. Pozwala definiować zasady dla poszczególnych folderów. Zgodnie z tymi zasadami możliwa jest zmiana nazw według określonych schematów, przenoszenie pomiędzy folderami czy nawet uruchamianie dowolnych skryptów [[Knowledge/Programming/JavaScript/JavaScript]] (!)
+[Optimization/Tools/Hazel]] is an application for automatic file organization. It allows you to define rules for individual folders. According to these rules, it is possible to rename according to certain schemes, move between folders or even run any [[Knowledge/Programming/JavaScript/JavaScript]] scripts. (!)
 
-## W praktyce
-- Organizacja plików w Downloads (starszych niż jeden dzień) w podfoldery uzależnione od rodzaju pliku
-- Organizacja plików na moim Dysku Google w podfoldery uzależnione od rodzaju pliku
-- Automatyczne przesyłanie plików z nagraniami dla montażysty
-	- Zapisanie na dysku Google
-	- Wysłanie informacji o "drafcie" do montażysty przez [[Optimization/Tools/MakeHQ]] i [[Optimization/Tools/Sendgrid]]
-	- Dodanie wpisu w [[Optimization/Tools/Airtable]] w tabeli projektu (np. [[Projects/overment]] / [[Projects/zautomatyzowani]] / [[Projects/eduweb]])
+## In practice
+- Organization of files in Downloads (older than one day) into subfolders depending on the type of file
+- Organization of files on my Google Drive into subfolders depending on the type of file
+- Automatic transfer of recording files for the editor
+	- Save to Google Drive
+	- Sending 'draftee' information to the editor via [[Optimization/Tools/MakeHQ]] and [[Optimization/Tools/Sendgrid]]
+	- Add an entry in [[Optimization/Tools/Airtable]] in the project table (e.g. [[Projects/overment]] / [[Projects/automated]] / [[Projects/eduweb]])
 
-## Źródła
+## Sources

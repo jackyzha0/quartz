@@ -2,23 +2,23 @@
 title: Way of The Peaceful Warrior
 ---
 
-[[Knowledge/Books/Way of The Peaceful Warrior]] to dla mnie jedna z najważniejszych książek. Jej narracja bardzo ze mną rezonuje i od lat ma na mnie ogromny wpływ. To książka do której wracam kilka razy w roku. Stanowi dla mnie absolutny #1 w mojej kolekcji książek.
+[Knowledge/Books/Way of The Peaceful Warrior]] is one of the most important books for me. Its narrative resonates very much with me and has had a huge impact on me over the years. It is a book that I return to several times a year. It represents for me the absolute #1 in my collection of books.
 
-Jest to autobiografia Dana Millmana - Mistrza Świata w gimnastyce i z pozoru jest to prosta historia człowieka, który pokonał przeciwności losu w drodze do realizacji swoich celów. 
+This is the autobiography of Dan Millman - World Champion in gymnastics, and on the surface it is a simple story of a man who overcame adversity on the way to achieving his goals.
 
-Warto dodać że na podstawie tej książki powstał świetny film "Siła Spokoju". Jeżeli chcesz od czegoś zacząć, zacznij od niego.
+It is worth adding that a great movie 'Peaceful Warrior' was based on this book. If you want to start with something, start with it.
 
 ## Cytaty
-- _Nie ma zwykłych chwil, zawsze coś się dzieje_
-- _Nieistotne jest to co wiesz, lecz to co z tym robisz_
+- _There are no ordinary moments, there is always something going on_.
+- _It is not important what you know, but what you do with it_.
 - _Never struggle with anyone or anything. When you're pushed, pull; when you're pulled, push_
 
 ## Lekcje
-- Zrozumiałem dzięki niej rolę jaką odgrywają [[Knowledge/Thoughts/Expectations]]
-- Droga do celu stanowi znaczną część podróży
-- Nie ma zwykłych chwil - doceniaj każdą z nich
-- Dźwignia ([[Knowledge/Mental models/Leverage]]) zastosowana w odpowiednim miejscu i czasie potrafi zdziałać cuda
+- It made me understand the role played by [[Knowledge/Thoughts/Expectations]]
+- The road to the destination is a significant part of the journey
+- There are no ordinary moments - appreciate every one of them
+- Leverage ([[Knowledge/Mental models/Leverage]]) applied at the right place and time can work wonders
 
 ## Akcje
-- Zrezygnowałem z wyznaczania [[Knowledge/Dictionary/Goal]]ów na rzecz realizacji [[Knowledge/Dictionary/Process]]u, który przybliża mnie do wyznaczonego [[Knowledge/Dictionary/Direction]]
-- W połączeniu z [[Knowledge/Books/The Infinite Game]] oraz [[Knowledge/Books/The Compound Effect]] zmieniłem swoje nastawienie na długoterminowe. Dokładając do tego [[Knowledge/Thoughts/Discipline]] z [[Knowledge/Books/Extreme Ownership]] sprawiłem, że upływający czas stał się moim największym przyjacielem.
+- I have abandoned the [[Knowledge/Dictionary/Goal]]designation in favor of implementing [[Knowledge/Dictionary/Process]]s that bring me closer to the designated [[Knowledge/Dictionary/Direction]]
+- Combined with [[Knowledge/Books/The Infinite Game]] and [[Knowledge/Books/The Compound Effect]], I changed my focus to the long-term. Adding [[Knowledge/Thoughts/Discipline]] with [[Knowledge/Books/Extreme Ownership]] made passing time my greatest friend.

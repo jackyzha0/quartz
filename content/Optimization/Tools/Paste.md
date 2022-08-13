@@ -1,6 +1,6 @@
 ---
 title: Paste
 ---
-To najlepszy znany mi manager schowka dla [[MacOS]]. Zapisuje historię zmian systemowego schowka i umożliwia łatwe wyszukiwanie.
+This is the best clipboard manager for [[macOS]] that I know of. It saves the history of system clipboard changes and allows easy searching.
 
-Wykorzystuję Paste razem z [[Optimization/Tools/Keyboard Maestro]] poprzez makra modyfikujące dane, które trafiają do mojego schowka. 
+I use Paste together with [[Optimization/Tools/Keyboard Maestro]] through macros that modify the data that goes to my clipboard.

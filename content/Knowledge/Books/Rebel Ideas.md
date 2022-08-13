@@ -2,16 +2,16 @@
 title: Rebel Ideas
 ---
 
- Rozwiązanie wybitnie złożonego problemu ekstremalnie prostym rozwiązaniem, brzmi jak przejaw geniuszu lub szczęścia. 
+ Solving an eminently complex problem with an extremely simple solution sounds like a display of genius or luck.
 
-Jak jest w rzeczywistości? Nie wiem. Ale potrafię upraszczać nawet najbardziej skomplikowane zagadnienia i mówić o nich prosto.
+How is it in reality? I don't know. But I can simplify even the most complicated issues and talk about them simply.
 
-W dużym stopniu właśnie o tym jest [[Knowledge/Books/Rebel Ideas]] - książka podkreślająca to jak ważna jest różnorodność poznawcza w kontekście nieszablonowego myślenia oraz wychodzenia poza wszelkie granice. 
+This is largely what [[Knowledge/Books/Rebel Ideas]] is about. - a book that emphasizes how important cognitive diversity is in terms of thinking outside the box and going beyond all boundaries.
 
-Taka różnorodność nie bierze się jednak np. z cech zewnętrznych, lecz z doświadczeń kształtujących różne schematy myślenia. 
+Such diversity, however, does not come from external features, for example, but from experiences that shape different patterns of thinking.
 
-W kreatywnym rozwiązywaniu problemów kluczowa jest [[Knowledge/Dictionary/Perspective]] a konkretnie wiele różnych perspektyw. I właśnie z tego powodu różnorodność poznawcza odgrywa tutaj tak ważną rolę. 
+In creative problem solving, [[Knowledge/Dictionary/Perspective]] and specifically multiple perspectives are key. And this is why cognitive diversity plays such an important role here.
 
-W chwili gdy patrzymy na ten sam problem, na wiele różnych sposobów, dostrzegamy rozwiązania które w połączeniu ze sobą mogą okazać się wybitne. 
+The moment we look at the same problem, in many different ways, we see solutions that, when combined, can be outstanding.
 
-W książce zabrakło mi tylko jednego: różnorodność poznawczą można również osiągać w pojedynkę. Wiem to, ponieważ jest to mój domyślny styl myślenia. Ale o tym opowiem innym razem.
+There was only one thing missing from the book for me: cognitive diversity can also be achieved alone. I know this because this is my default style of thinking. But I'll talk about it another time.

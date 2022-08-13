@@ -1,4 +1,4 @@
 ---
 title: Sendgrid
 ---
-Sendgrid to najlepszy znany mi system mailowy z którego korzystam poprzez automatyzacje [[Optimization/Tools/Raycast]] i [[Optimization/Tools/MakeHQ]].
+Sendgrid is the best email system I know of, which I use by automating [[Optimization/Tools/Raycast]] and [[Optimization/Tools/MakeHQ]].

@@ -2,4 +2,4 @@
 title: Digital Ocean
 ---
 
-To hosting który wykorzystuję w przypadku praktycznie każdego z moich projektów. Posiadam również serwer developerski, który służy mi do nauki i różnego rodzaju testów. To również na Digital Ocean hostuję moje [[Optimization/Automation/Microservices]].
+This is the hosting I use for virtually every one of my projects. I also have a developer server that I use for learning and various types of testing. It is also on Digital Ocean that I host my [[Optimization/Automation/Microservices]].

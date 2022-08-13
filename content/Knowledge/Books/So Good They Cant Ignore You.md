@@ -2,14 +2,10 @@
 title: So Good They Cant Ignore You
 ---
 
----
-title: So Good They Can't Ignore You
----
+'Follow your passion' is popular but counterintuitively very poor advice and even ... dangerous.
 
-Podążaj za swoją pasją" to popularna ale wbrew pozorom bardzo kiepska rada a nawet ... niebezpieczna. 
+Above all, [[Cal Newport]] believes that passion does not come out of nowhere, but emerges over time as we become progressively better at what we already do.
 
-Przede wszystkim [[Cal Newport]] uważa że pasja nie bierze się znikąd, lecz pojawia na z czasem, gdy stajemy się stopniowo lepsi w tym co już robimy.
+Besides, basing one's job satisfaction on following one's passion and often idealized vision is a source of [[Knowledge/Thoughts/Disappointment]] and takes away satisfaction instead of adding to it. After all, even the dreamiest occupation has its bright and dark sides.
 
-Poza tym opieranie swojej satysfakcji z pracy o podążanie za pasją i często wyidealizowaną wizją, jest źródłem [[Knowledge/Thoughts/Disappointment]] i zamiast dodawać, odbiera nam satysfakcję. W końcu nawet najbardziej wymarzone zajęcie posiada swoje jasne i ciemne strony.
-
-Ale skoro nie pasją to czym mamy kierować się na ścieżce zawodowej i co jest w tym najbardziej istotne? Tzw. "[[Knowledge/Mental models/Craftsman Mindset]]" - skupienie się na pozyskaniu umiejętności w "której stajemy się tak dobrzy, że nikt nie może nas zignorować".
+But if not passion, then what should guide us on our career path and what is most important about it? The so-called '[[Knowledge/Mental models/Craftsman Mindset]]'' - focusing on acquiring a skill in 'which we become so good that no one can ignore us.

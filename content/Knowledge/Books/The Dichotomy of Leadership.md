@@ -2,18 +2,18 @@
 title: The Dichotomy of Leadership
 ---
 
-Pierwsza książka Jocko i Leifa - [[Knowledge/Books/Extreme Ownership]], przedstawia leadership przez pryzmat skrajności, tak [[Knowledge/Books/The Dichotomy of Leadership]] rozwija temat zwracając uwagę na kluczowy element całości: BALANS. 
+Jocko and Leif's first book, [[Knowledge/Books/Extreme Ownership]], presents leadership through the lens of extremes, so [[Knowledge/Books/The Dichotomy of Leadership]] elaborates on the topic by drawing attention to a key element of the whole: BALANCE.
 
 ## Lekcje
-1. Bierz odpowiedzialność i dawaj odpowiedzialność innym
-2. Dbaj o ludzi i pozwalaj im odejść
-3. Bądź stanowczy i elastyczny
-4. Pomagaj przekraczać granice ale nie przytłaczaj
-5. Bądź agresywny ale nie lekkomyślny
-6. Bądź zdyscyplinowany ale dawaj swobodę
-7. Pociągaj do odpowiedzialności ale nie patrz stale na ręce
-8. Bądź pokorny ale nie pasywny
-9. Patrz wąsko i szeroko (Zoom in & Zoom Out - Jim Collins)
-10. Bądź liderem i naucz się podążać za innymi
+1. take responsibility and give responsibility to others
+2. take care of people and let them go
+3. be firm and flexible
+4. help push boundaries but don't overwhelm
+5. be aggressive but not reckless
+6. be disciplined but give freedom
+7. hold you accountable but don't constantly look at your hands
+8. be humble but not passive
+9. look narrow and wide (Zoom in and Zoom Out - Jim Collins)
+10. be a leader and learn to follow others
 
-Połączenie Extreme Ownership i The Dichotomy of Leadership to druga najlepsza lekcja przywództwa z jaką miałem do czynienia. Pierwszą jest rzeczywistość i praktyka. 
+The combination of Extreme Ownership and The Dichotomy of Leadership is the second best leadership lesson I have encountered. The first is reality and practice.

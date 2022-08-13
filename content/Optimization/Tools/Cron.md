@@ -2,6 +2,6 @@
 title: Cron
 ---
 
-Cron to kalendarz zaprojektowany podobnie do [[Optimization/Tools/Superhuman]], ułatwiający szybkie planowanie wydarzeń i zarządzanie kalendarzem. 
+Cron is a calendar designed similarly to [[Optimization/Tools/Superhuman]], facilitating quick event planning and calendar management.
 
 - https://cron.com/

@@ -1,7 +1,7 @@
 ---
 title: Airtable
 ---
-# Czym jest Airtable?
+# What is Airtable?
 It's a data storage application that resembles an Excel spreadsheet. Its biggest advantage is that it is built according to the [[Knowledge/Programming/API]] first approach, which works well in the context of [[Optimization/Automation/Automation]]
 
 I store virtually all of my published content in [[Optimization/Tools/Airtable]] and use it as a database.

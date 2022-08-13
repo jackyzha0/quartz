@@ -10,7 +10,7 @@ Dan Millman is a World Champion in gymnastics and author of books in which he ma
 ### There are no ordinary moments.
 Zawsze coś się dzieje. 
 
-### Wojownik Spokoju
+### Peaceful Warrior
 A warrior doesn't give up what he loves. He finds love in what he does.
 
 This attitude makes me approach everything I do with love, no matter how difficult it seems.

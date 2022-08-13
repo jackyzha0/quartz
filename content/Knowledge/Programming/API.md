@@ -2,16 +2,16 @@
 title: API
 ---
 
-## Czym jest API? 
-Wiesz czym jest **interfejs**? Jest to **sposób** **umożliwiający komunikację**. Np. klawiatura jest interfejsem umożliwiającym Ci komunikację z komputerem. Przyciski w aplikacji równiez są interfejsem (w tym przypadku graficznym - User Interface / UI).
+## What is an API?
+Do you know what an **interface** is? It is a **interface** that **enables you to communicate**. E.g. a keyboard is an interface that allows you to communicate with your computer. Buttons in an application are also an interface (in this case a graphical one - User Interface / UI).
 
-Z kolei API to Application Programming Interface, w tłumaczeniu, programistyczny interfejs aplikacji. Bardziej po ludzku: **programistyczny sposób komunikacji wykorzystywany w aplikacjach.**
+API, on the other hand, is Application Programming Interface, translated, application programming interface. In more human terms: **a programmatic means of communication used in applications.
 
-Mówiąc wprost, aplikacje w jakiś sposób muszą przesyłać informację albo **w obrębie samych siebie** albo **do komunikacji z innymi aplikacjami.** W zależności od potrzeby, możemy mówić o API zamkniętym (wykorzystywanym tylko wewnątrz aplikacji lub firmy) lub API otwartym (udostępnianym publicznie, niekoniecznie bezpłatnie).
+Simply put, applications somehow need to send information either **within themselves** or **to communicate with other applications.** Depending on the need, we can talk about a closed API (used only inside the application or company) or an open API (made available to the public, not necessarily free of charge).
 
-Aktualnie dzięki narzędziom takim jak [[Optimization/Tools/MakeHQ]] czy [[Optimization/Tools/Zapier]], korzystanie z API stało się łatwiejsze nie tylko dla osób potrafiących programować.
+Currently, thanks to tools such as [[Optimization/Tools/MakeHQ]] and [[Optimization/Tools/Zapier]], using the API has become easier for more than just those who can program.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/P9b8-BrWdYs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Źródła
+## Sources
 - https://rapidapi.com/hub

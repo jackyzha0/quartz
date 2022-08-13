@@ -2,15 +2,15 @@
 title: Anything You Want
 ---
 
-[[Knowledge/Books/Anything You Want]] to książka która ze mną niesamowicie rezonuje. Mówi o tym że wielka wizja, duże finansowanie i zespół pełen ekspertów nie są niezbędnymi elementami rozwoju biznesu. Wystarczy że skupisz się na tym aby zatroszczyć się o swoich przyszłych klientów.  
+[[Knowledge/Books/Anything You Want]] is a book that resonates with me incredibly. It talks about how a big vision, big funding, and a team full of experts are not necessary elements of business growth. All you need to do is focus on taking care of your future customers.  
   
-[[Derek Sivers]] dzieli się swoimi lekcjami i spostrzeżeniami z drogi podczas której zbudował firmę zarabiającą ponad $20M.  
+[[Derek Sivers]] shares his lessons and insights from the journey during which he built a company earning more than 0M.  
   
-## Lekcje
-- Nigdy nie rób czegoś wyłącznie dla pieniędzy  
-- Upraszczaj, testuj, iteruj, rozwiązuj realne problemy
-- Nie dowiesz się czy chcesz coś robić zanim tego nie zrobisz  
-- Umiejetność mówienia "nie" we właściwych momentach to "supermoc" (więcej w książce [[Knowledge/Mental models/Essentialism]])  
-- Umiejętność wycofania się we właściwym momencie również (więcej w książce [[The Dip]])  
-- Zwracaj uwagę na szczegóły. One mają największe znaczenie.
-- Spełniaj swoje marzenia i rób to co kochasz. Nie marnuj życia.
+## Lessons
+- Never do something just for the money
+- Simplify, test, iterate, solve real problems
+- You won't know if you want to do something until you do it
+- The ability to say no at the right times is a superpower (more in [[Knowledge/Mental models/Essentialism]])
+- The ability to withdraw at the right moment is superpower as well (more in the book [[The Dip]])
+- Pay attention to the details. They matter most.
+- Fulfill your dreams and do what you love. Don't waste your life.

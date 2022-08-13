@@ -2,13 +2,13 @@
 title: Intellij
 ---
 
-## Czym jest IntelliJ?
-To stworzone przez firmę JetBrains IDE, które w mojej opinii jest najlepszym narzędziem dla programistów i trudno mi wyjaśnić dlaczego tak wiele osób nadal korzysta z Visual Studio Code. W jednym zdaniu różnicę pomiędzy nimi można opisać jako "IntelliJ po prostu 'rozumie' Twój kod".
+## What is IntelliJ?
+It's an IDE created by JetBrains that, in my opinion, is the best tool for developers, and I find it hard to explain why so many people still use Visual Studio Code. In one sentence, the difference between the two can be described as 'IntelliJ just 'understands' your code'.
 
-Dlaczego IntelliJ skoro nie programuję w Javie? Ponieważ spośród wszystkich IDE JetBrains, jest najbardziej rozbudowany. W rezultacie tylko w niektórych przypadkach potrzebuję doinstalować do niego jakieś pluginy. Jako full-stack developer, pracujący równolegle w wielu technologiach, jest to dla mnie bardzo wygodne. W przeciwieństwie do WebStorm, IntellIJ sprawdza mi się perfekcyjnie, niezależnie od projektu.
+Why IntelliJ if I don't program in Java? Because of all the JetBrains IDEs, it is the most powerful. As a result, only in some cases I need to install some plug-ins for it. As a full-stack developer, working in parallel in multiple technologies, it is very convenient for me. Unlike WebStorm, IntellIJ works perfectly for me, regardless of the project.
 
-## Z jakich pluginów korzystam? 
-Lista nie jest długa i dbam o to aby tak pozostało. Absolutnie najważniejsze to: 
+## What plugins do I use?
+The list is not long, and I make sure it stays that way. The absolute most important are:
 - Tabnine
 - Github Copilot
 - Quokka.js

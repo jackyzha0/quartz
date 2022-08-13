@@ -2,16 +2,16 @@
 title: The Mom Test
 ---
 
-Mówią że zapytanie własnej matki czy nasz pomysł na nowy biznes jest dobry, nie jest zbyt mądre. 
+They say that asking our own mother if our idea for a new business is a good one is not very wise.
 
-[[Knowledge/Books/The Mom Test]] mówi o tym, że pytanie kogokolwiek o to czy nasz pomysł jest dobry, mija się z celem - nie usłyszymy prawdziwej odpowiedzi i ma na to wpływ wiele różnych czynników. 
+[[Knowledge/Books/The Mom Test]] says that asking anyone if our idea is a good one misses the point - we won't hear the real answer and it is influenced by many different factors.
 
-W tej książce znajdziesz BARDZO praktyczne porady dotyczące tego jak rozmawiać o swoich pomysłach oraz jak przeprowadzać rozmowy z klientami tak, aby rzeczywiście zrozumieć ich problemy i móc dostarczyć im jak największą wartość (z której często nawet oni nie zdają sobie sprawy).
+In this book, you will find VERY practical advice on how to talk about your ideas and how to interview your customers so that you truly understand their problems and can deliver the most value to them (which they often don't even realize).
 
 ## Lekcje
-- nie rozmawiaj o swoim pomyśle tylko o klientach
-- skupiaj się na przeszłości i rzeczywistych akcjach które zostały podjęte a nie o opinii na temat przyszłości
-- słuchaj!
-- jeżeli ktoś mówi Ci o swoim problemie zapytaj: jak go teraz rozwiązuje i co ostatnio zrobił aby zmienić aktualne rozwiązanie?
-- ostateczną walidacją jest zakup a nie obietnica zakupu.
-- weryfikuj "krytyczne założenia" stanowiące fundament Twojej firmy. Jeżeli są one błędne lub stały się nieaktualne a Ty o tym nie wiesz - **to masz problem.**
+- don't talk about your idea just your customers
+- focus on the past and the actual actions that were taken and not on an opinion about the future
+- LISTEN!
+- if someone tells you about his problem ask: how is he solving it now and what has he done recently to change the current solution?
+- The ultimate validation is a purchase and not a promise to buy.
+- Verify the 'critical assumptions' that are the foundation of your business. If they are wrong or have become outdated and you don't know it - **then you have a problem.

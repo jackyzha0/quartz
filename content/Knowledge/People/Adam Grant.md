@@ -2,6 +2,6 @@
 title: Adam Grant
 ---
 
-Autor m.in. genialnej książki [[Knowledge/Books/Think Again]] - "Uczenie się jest tak samo ważne jak zdolność ODuczenia". Podobna koncepcja poruszona jest m.in. w książce [[The Code of Extraordinary Mind]] jako "kiedy zmieniłeś/aś jakieś swoje fundamentalne przekonanie?"
+Author, among other things, of the brilliant book [[Knowledge/Books/Think Again]] - 'Learning is as important as the ability to ODlearn'. A similar concept is touched upon in, among other books, [[The Code of Extraordinary Mind]] as 'when have you changed any of your fundamental beliefs?'
 
 https://www.adamgrant.net

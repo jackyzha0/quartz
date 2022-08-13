@@ -2,12 +2,12 @@
 title: Automation bias
 ---
 
-## O co chodzi? 
-Automation bias dotyczy popełniania błędów w wysoce zautomatyzowanym środowisku, w przypadku którego ludzie bardziej ufają maszynom niż własnemu osądowi.
+## What is it about?
+Automation bias refers to making mistakes in a highly automated environment where people trust machines more than their own judgment.
 
-## Jak stosuję [[Knowledge/Mental models/Automation bias]]?
-Podobnie jak w przypadku [[Knowledge/Mental models/Authority bias]], nie uznaję autorytetu maszyny. Tym bardziej, że jako programista, jestem świadomy tego jak łatwo popełnić błąd, nawet w przypadku rozwijania oprogramowania o wysokim standardzie jakości.
+## How I apply [[Knowledge/Mental models/Automation bias]]?
+As with the [[Knowledge/Mental models/Authority bias]], I do not recognize the authority of the machine. Especially since, as a programmer, I am aware of how easy it is to make mistakes, even when developing software with a high standard of quality.
 
-Z tego powodu w sytuacji gdy mam do czynienia z błędem, zawsze weryfikuję czy system z którym mam do czynienia jest zaprojektowany we właściwy sposób. 
+For this reason, when I am faced with an error, I always verify that the system I am dealing with is designed in the right way.
 
-Co ciekawe: swoje decyzje również poddaję podwójnej weryfikacji przez inne osoby. 
+Interestingly: I also have my decisions double-checked by other people.

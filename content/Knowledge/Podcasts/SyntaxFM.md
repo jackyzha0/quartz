@@ -2,4 +2,4 @@
 title: SyntaxFM
 ---
 
-SyntaxFM to podcast o web developmencie prowadzony przez Wes Bos'a oraz Scotta Tolinskiego.
+SyntaxFM is a podcast about web development hosted by Wes Bos and Scott Tolinsky.

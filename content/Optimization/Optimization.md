@@ -1,6 +1,6 @@
 ---
 title: Optimization
---- 
+---
 
 [[Foundations/Process]]
 [[Optimization/Hardware/Hardware]]

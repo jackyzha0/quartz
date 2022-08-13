@@ -2,49 +2,49 @@
 title: Obsidian
 ---
 
-## Czym jest Obsidian?
-Najprościej mówiąc to aplikacja do notowania. Jej głównymi zaletami jest fakt, że pracuje na lokalnych plikach [[markdown]] oraz umożliwia połączenia między notatkami poprzez tzw. "wiki links". Na ich podstawie może budować mapy treści. 
+## What is Obsidian?
+Simply put, it's a note-taking application. Its main advantages are that it works on local [[markdown]] files and allows connections between notes through so-called 'wiki links'. Based on these, it can build content maps.
 
-## Jak wykorzystuję Obsidian? 
-Wyłącznie w jednym celu: rozwijania tego projektu, czyli tzw. Digital Garden. Z pomocą projektu [Quartz](https://quartz.jzhao.xyz/) (opartego o framework Hugo) publikuję te notatki w domenie brain.overment.com. 
+## How do I use Obsidian?
+For one purpose only: Developing this project, the so-called Digital Garden. With the help of the [Quartz](https://quartz.jzhao.xyz/) project (based on the Hugo framework), I am publishing these notes in the brain.overment.com domain.
 
-### Zasady
-Pomimo tego, że zapoznałem się z więkością materiałów od osób takich jak Tiago Forte, tak jednocześnie większość zasad rozwoju notatek w Obsidianie opracowałem samodzielnie. Według mnie Tiago świetnie organizuje temat ale jego system jest dla mnie zbyt złożony. Z pewnością pod wieloma względami się różnimy, więc mój proces musiał zostać dopasowany do mnie. 
+### Rules
+Although I have read most of the material from people like Tiago Forte, at the same time I have developed most of the principles of note development in Obsidian on my own. In my opinion, Tiago does a great job of organizing the topic but his system is too complex for me. We are certainly different in many ways, so my process had to be tailored to me.
 
-**Zasady to:** 
-- Gdy o czymś piszę i pada słowo kluczowe na temat którego chcę powiedzieć więcej, oznaczam je linkiem. 
-- Stosuję prostą organizację katalogów, czyli:
-	- Fundamenty - moje podstawy funkcjonowania
-	- Optymalizacja - moje techniki optymalizacji
-	- Wiedza - to, co wiem
-	- i Projekty - to, co robię
-- W przypadku gdy widzę, że jakiś temat uwzględnia wiele powiązanych ze sobą zagadnień tworzę notatkę zbiorczą, stanowiącą zbiór lików do wszystkich tematów. Według m.in. Tiago, to tzw. ToC - Table of Contents.
-- Tworzę treści o tym, co chcę eksplorować lub o tym, co jest dla mnie w danej chwili ważne. Często wyzwalaczem jest sytuacja w której ktoś zadaje mi pytanie a ja widzę, że powtarza się ono często, więc lepiej będzie napisać o nim notatkę zamiast odpowiadać indywidualnie. 
+**Principles are.
+- When I write about something and a keyword falls on which I want to say more, I mark it with a link.
+- I use a simple directory organization, that is:
+	- Foundations - my basis for functioning
+	- Optimization - my optimization techniques
+	- Knowledge - what I know
+	- and Projects - what I do
+- In case I see that a topic takes into account many related issues I create a summary note, which is a collection of likenesses to all topics. According to Tiago, among others, this is called a ToC - Table of Contents.
+- I create content about what I want to explore or what is important to me at the moment. Often the trigger is when someone asks me a question and I see it repeated often, so it would be better to write a note about it instead of answering individually.
 
-i to wszystko. Nie ma nic poza tym. 
+And that's it. There is nothing beyond that.
 
-### Automatyzacja
-Do pracy z Obsidianem wykorzystuję [[Optimization/Tools/Keyboard Maestro]] oraz moje makra [[Projects/Design Maestro]]. Umożliwiają mi one przede wszystkim: 
+### Automation
+To work with Obsidian, I use [[Optimization/Tools/Keyboard Maestro]] and my [[Projects/Design Maestro]] macros. These enable me to primarily:
 
-- szybkie otwieranie wybranych notatek (x-scheme-url np. obsidian://open?vault=content&file=_index)
-- szybkie dodawanie treści (Keyboard Maestro, akcja Append text to a File)
-- dopisywanie linków do bardzo popularnych tematów (jak wyżej)
-- wprowadzanie globalnych zmian do notatek (z pomcą [[Regex]])
-- aktualizacje metadanych (np. czasu ostatniej edycji pliku interpretowanej przez Quartz)
-- szablony dodawania notatek (text expander)
+- Quickly open selected notes (x-scheme-url e.g. obsidian://open?vault=content
+- Quickly add content (Keyboard Maestro, action Append text to a File)
+- Adding links to very popular topics (as above)
+- making global changes to notes (with the help of [[Regex]])
+- Metadata updates (e.g., time of last file edit interpreted by Quartz)
+- templates for adding notes (text expander)
 
-Przykład wykorzystania Deisgn Maestro - szybkie dodawanie nowych narzędzi. Wykonanie tego makro dodaje narzędzie do listy ToC oraz tworzy nową notatkę. Do schowka trafia link do niej, dzięki czemu w razie potrzeby mogę bardzo szybko otworzyć Obsidiana a jeżeli nie ma takiej potrzeby, nie muszę się odrywać od aktualnie wykonywanego zadania: 
+An example of using Deisgn Maestro - quickly adding new tools. Executing this macro adds the tool to the ToC list and creates a new note. A link to it goes to the clipboard, so I can open Obsidian very quickly if necessary and if not, I don't have to divert from the task at hand:
 ![](https://space.overment.com/Screen-Shot-2022-08-12-14-11-53-xmPJB/Screen-Shot-2022-08-12-14-11-53.png)
-Powyższe makro nie jest częscią [[Projects/Design Maestro]] i zostało przygotowane na moje potrzeby. Analogiczne makra mam dla Książek, Automatyzacji czy Modeli Mentalnych.
-### Publikacja notatek
-Mój `vault` jest jednocześnie repozytorium [[Knowledge/Programming/git/git]]. Oznacza to, że moje notatki przechowywane są nie tylko lokalnie na moim komputerze ale także we wspomnianym repozytorium. 
+The above macro is not part of [[Projects/Design Maestro]] and was prepared for my needs. I have analogous macros for Books, Automation or Mental Models.
+### Publication of notes
+My `vault` is also a repository [[Knowledge/Programming/git/git]]. This means that my notes are stored not only locally on my computer but also in the aforementioned repository.
 
-Jednocześnie `vault` umieszczony jest wewnątrz wspomnianej aplikacji przygotowanej na podstawie projektu Quartz, z pomocą której generuję strony HTML oraz publikuję je na brain.overment.com z pomocą automatyzacji [[Github Actions]]. 
+At the same time `vault` is placed inside the aforementioned application prepared based on the Quartz project, with the help of which I generate HTML pages and publish them on brain.overment.com with the help of [[Github Actions]] automation.
 
-Proces konfiguracji Quartz szczegółowo pokazałem na filmie dostępnym na [[Projects/Ahoy!]] [Czytaj wpis](https://community.ahoy.so/c/nocode-podziel-sie-wiedza/publikacja-notatek-na-obsidian-z-quartz-na-github-pages) oraz jest on również dość szczegółowo opisany na stronie projektu Quartz, przy czym sam zastosowałem jeszcze kilka własnych modyfikacji. O części z nich wspominam na filmie a nad niektórymi nadal pracuję. 
+I have shown the process of configuring Quartz in detail in a video available at [[Projects/Ahoy!]] [Read entry](https://community.ahoy.so/c/nocode-podziel-sie-wiedza/publikacja-notatek-na-obsidian-z-quartz-na-github-pages) and it is also described in quite a bit of detail on the Quartz project website, with some more modifications of my own that I have applied myself. Some of them I mention in the video and some I am still working on.
 
-Co ciekawe aktualizacje odbywają się w 100% automatycznie, ponieważ w chwili zamknięcia Obsidiana, makro Keyboard Maestro zostaje uruchomione i: 
-- dodaje zmiany do repozytorium
-- wysyła je do zdalnego repozytorium
-- przesłanie danych uruchamia [[Github Actions]] i tym samym publikuje notatki
+Interestingly, the updates happen 100% automatically, because the moment Obsidian closes, the Keyboard Maestro macro is launched and:
+- adds changes to the repository
+- sends them to a remote repository
+- data upload launches [[Github Actions]] and thus publishes the notes
 

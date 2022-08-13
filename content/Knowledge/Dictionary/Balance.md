@@ -4,7 +4,7 @@ title: Balans
 
 According to the [[Knowledge/Other/MBTI]] test, I have an INFJ profile, also known as an 'extremity profile' or 'paradox profile'. For this reason, understanding and using [[Knowledge/Dictionary/Balance]]is fundamentally important to me.
 
-Dodatkowo o balansie mówili m.in. [[Knowledge/People/Jocko Willink]] w [[Dichotomy of Leadership]] oraz [[Knowledge/People/Jim Collins]] w [[Knowledge/Books/Great by Choice]] i koncepcji [[Knowledge/Mental models/Genius of The AND]].
+In addition, the balance was discussed, among others [[Knowledge/People/Jocko Willink]] in [[Dichotomy of Leadership]] and [[Knowledge/People/Jim Collins]] in [[Knowledge/Books/Great by Choice]] and a concept of [[Knowledge/Mental models/Genius of The AND]].
 
 According to my current understanding, balance is not about striving to stay 'in the center', between extremes. It's about the ability to move around the extremes according to the situation and need.
 

@@ -1,6 +1,6 @@
 ---
 title: Notability
 ---
-To aplikacja do notowania stworzona z myślą o [[Optimization/Hardware/iPad]]. Korzystam z niej od 2017 roku i prowdzę w niej swój [[Foundations/Diary]]. 
+This is a note-taking app designed for [[Optimization/Hardware/iPad]]. I've been using it since 2017 and I keep my [[Foundations/Diary]] in it.
 
-Nie wykorzystuję jej do żadnych innych notatek i tworzenia dokumentów.
+I don't use it for any other notes or document creation.

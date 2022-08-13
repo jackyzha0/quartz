@@ -1,4 +1,4 @@
 ---
 title: Session
 ---
-Session to aplikacja do sesji pomodoro, którą wykorzystuję równolegle z [[Optimization/Tools/Endel.io]] aby skupić się na swojej pracy (deep work - czytaj więcej: [[Knowledge/Books/Deep Work]])
+Session is a pomodoro session application that I use in parallel with [[Optimization/Tools/Endel.io]] to focus on my work (deep work - read more: [[Knowledge/Books/Deep Work]])

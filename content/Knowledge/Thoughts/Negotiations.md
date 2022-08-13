@@ -1,4 +1,4 @@
 ---
-title: Negocjacje
+title: Negotiations
 ---
 

@@ -4,7 +4,7 @@ title: UX
 
 
 
-## Źródła
+## Sources
 - https://learnux.io/
 - [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/guidelines/overview/)
 - [[Projects/Ahoy!]]

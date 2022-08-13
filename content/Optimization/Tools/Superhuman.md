@@ -3,37 +3,37 @@ title: Superhuman
 ---
 
 ## Czym jest Superhuman? 
-Superhuman to świetny klient poczty e-mail nastawiony na wysoką efektywność poprzez wsparcie skrótów klawiszowych oraz świetnie zoptymalizowany UI. Jego istotnym ograniczeniem jest fakt, że łączy się wyłącznie ze skrzynkami gmail lub GSuite. 
+Superhuman is a great email client focused on high efficiency through support for keyboard shortcuts and a superbly optimized UI. Its major limitation is that it only connects to gmail or GSuite mailboxes.
 
-**Błędy:** 
-Kilka razy spotkalem się z błędami synchronizacji a nawet z sytuacją gdy utraciłem draft pisanej wiadomości. Czasem występują problemy z formatowaniem wiadomości oraz same opcje dostosowania tekstu są dość ograniczone co jest jednocześnie zaletą i wadą. I ostatnią wadą jest fakt, że wykonywanie akcji na wielu wątkach jednocześnie trwa znacznie dłużej niż w przypadku gmaila. 
+**Errors:**
+Several times I encountered synchronization errors and even a situation when I lost the draft of a written message. Sometimes there are problems with message formatting and the text customization options themselves are quite limited, which is both an advantage and a disadvantage. And the last disadvantage is that it takes much longer to perform actions on multiple threads simultaneously than it does with gmail.
 
-**Korzystając z Superhuman:** 
-- mam 5 skrzynek pocztowych, przełączanych skrótem ⌃1-5
-- `k` i `j` przełącza kolejną i poprzednią wiadomość
-- ⇧ i strzałki góra / dół zaznaczają wiadomości w inboxie
-- skrót `gi` przenosi do widoku inbox
-- `/` aktywuje wyszukiwarkę
-- ⇧? włącza listę skrótów klawiszowych
-- ⌘K włącza paletę komend (niezwykle użyteczne)
-- wszystkie wiadomości archiwizuję lub ostatecznie przypisuję do nich etykiety (action required / awaiting response)
-- gwiazdką oznaczam wybitnie ważne wiadomości
-- korzystam z opcji schedule send
-- na resztę wiadomości odpisuję natychmiast
-- treść długich maili piszę w [[Optimization/Tools/iA Writer]] a następnie z pomocą makra [[Projects/Design Maestro]] (dostępne w wersji premium) zamieniam składnię markdown na styled text i wklejam od razu do treści wiadomości.
-	- to makro będzie dostępne w wersji Premium Design Maestro
-- korzystam z makra [[Optimization/Tools/Keyboard Maestro]] do tworzenia nowych wiadomości na podstawie zawartości schowka
-	- to makro nie jest publicznie dostępne
-- powiadomienia Superhuman mam wyłączone, jednak niektóre wiadomości przekazywane są na kanał Slack, który ma prawo dodawania mi powiadomienia o ile nie jestem w trybie DND. 
-- korzystam ze Split Inbox (wyszukaj wątek, aktywuj paletę ⌘K, wybierz split inbox, nadaj nazwę. TIP: w wyszukiwaniu można użyć formuł, np. `from:` czy `and`)
-- newslettery filtruję sobie dodatkowo z pomocą [[Optimization/Tools/MakeHQ]]
-	- scenariusze automatyzacji nie są publicznie dostępne
-- korzystam z superhuman:// do bezpośredniego linkowania wątków (otwiera aplikację)
-- korzystam z aplikacji mobilnej Superhuman. Co do niej nie mam najmniejszych zastrzeżeń
-- pracuję w oparciu o inbox 0 i nie odpisuję na wszystkie wiadomości jeżeli nie widzę takiej potrzeby.
+**Using Superhuman:**.
+- I have 5 mailboxes, switched by a shortcut ⌃1-5
+- `k` and `j` switches the next and previous message
+- ⇧ and up/down arrows highlight messages in the inbox
+- a shortcut `gi` takes you to the inbox view
+- `/` activates the search engine
+- ⇧? enables the list of keyboard shortcuts
+- ⌘K Enables the command palette (extremely useful)
+- I archive all messages or eventually assign labels to them (action required / awaiting response)
+- with an asterisk I mark outstandingly important news
+- I use the schedule send option
+- I will reply to the rest of the messages immediately
+- I write the content of long emails in [[Optimization/Tools/iA Writer]] and then with the help of the [[Projects/Design Maestro]] macro. (available in the premium version) I convert the markdown syntax into styled text and paste it right into the body of the message.
+	- this macro will be available in the premium version of Design Maestro
+- I use the [[Optimization/Tools/Keyboard Maestro]] macro to create new messages based on the contents of the clipboard
+	- this macro is not publicly available
+- Superhuman notifications I have disabled, but some messages are forwarded to the Slack channel, which has the right to add notifications to me as long as I am not in DND mode.
+- I use Split Inbox (search for a thread, activate ⌘K palette, select split inbox, give name. TIP: you can use formulas in the search, such as whether )
+- I additionally filter the newsletters for myself with the help of [[Optimization/Tools/MakeHQ]]
+- automation scenarios are not publicly available
+- I use superhuman:// to link threads directly (opens the application)
+- I use the Superhuman mobile application. As for it, I do not have the slightest reservations
+- I work on the basis of inbox 0 and do not write back to all messages if I do not see the need.
 
 
-Ciekawostka: [[Optimization/Tools/Cron]] to kalendarz stworzony w duchu Superhuman. 
+Interesting fact: [[Optimization/Tools/Cron]] is a calendar created in the spirit of Superhuman.
 
-## Źródła
+## Sources
 -- https://blog.superhuman.com

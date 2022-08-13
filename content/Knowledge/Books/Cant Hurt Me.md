@@ -2,15 +2,15 @@
 title: Cant Hurt Me
 ---
 
-[[Can't Hurt Me]] to autobiografia [[Knowledge/People/David Goggins]]a który całym swoim życiem pokazuje gdzie może doprowadzić nas [[Knowledge/Thoughts/Discipline]] i ekstremalnie ciężka praca. 
+[[Can't Hurt Me]] is the autobiography of [[Knowledge/People/David Goggins]]who shows with his entire life where [[Knowledge/Thoughts/Discipline]] and extreme hard work can take us.
 
-Ta historia to droga od pełnej przemocy i tyranicznego ojca, do ultramaratonów, rekordu świata w podciąganiu na drążku i dołączenia do [[Navy Seal's]] (kilkukrotnie ukończył Hell Week) oraz TACP Air Force. 
+This story follows his journey from a violent and tyrannical father, to ultramarathons, a world record in the pull-up bar and joining the [[Navy Seal's]] (completed Hell Week several times) and TACP Air Force.
 
-## Lekcje
-- Dobre [[Nawyk]]i ([[Knowledge/Books/Atomic Habits]]) i skuteczny [[Foundations/Process]] są fundamentem rozwoju
-- Nie poddawaj się w chwili gdy jest trudno i masz już dość. 
-- Naucz się działać poza swoją strefą komfortu.
-- Większość z nas żyje wykorzystując max. 40% swojego potencjału [[Zasada 40%]] Poziom 60-80% również jest możliwy 
-- Nie wszystkie fizyczne i psychiczne ograniczenia są prawdziwe. Część z nich jest tylko w naszych głowach ([[Knowledge/Thoughts/Reality]])
+## Lessons
+- Good [[Habit]]s ([[Knowledge/Books/Atomic Habits]]) and effective [[Foundations/Process]] are the foundation of development
+- Don't give up when the going gets tough and you've had enough.
+- Learn to operate outside your comfort zone.
+- Most of us live using max. 40% of its potential [[40% rule]] A level of 60-80% is also possible
+- Not all physical and mental limitations are real. Some of them are only in our heads ([[Knowledge/Thoughts/Reality]])
 
-> Wszystko w życiu jest GRĄ UMYSŁU
+> Everything in life is a MIND GAME

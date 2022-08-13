@@ -2,7 +2,7 @@
 title: iA Writer
 ---
 
-To edytor markdown nastawiony na minimalistyczny interfejs i wysokie skupienie podczas pisania. 
+It's a markdown editor geared toward a minimalist interface and high focus when writing.
 
-## Jak wykorzystuję iA Writer?
-W połączeniu z [[Optimization/Tools/Session]] i [[Optimization/Tools/Endel.io]] stanowi dla mnie najważniejsze narzędzie pracy w którym tworzę praktycznie wszystko co wymaga napisania minimum kilku zdań.
+## How do I use iA Writer?
+In combination with [[Optimization/Tools/Session]] and [[Optimization/Tools/Endel.io]], it is the most important work tool for me, in which I create virtually anything that requires writing a minimum of a few sentences.

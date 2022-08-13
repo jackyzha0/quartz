@@ -4,9 +4,9 @@ title: The Brain Audit
 
 Autor: Sean D'Souza
 
-Jeżeli miałbym przeczytać tylko jedną książkę aby zrozumieć sprzedaż, to byłaby ta książka. 
+If I had to read just one book to understand sales, it would be this book.
 
-Przy czym nie jest to wyłącznie książka o sprzedaży ale też o tym jak projektować rozwiązania ISTOTNYCH problemów i jak je komunikować aby przyciągnąć uwagę idealnych klientów i zaadresować ich obiekcje wykorzystując np. tzw. ""odwrócone referencje"". 
+At the same time, it is not just a book about sales, but also about how to design solutions to IMPORTANT problems and how to communicate them in order to attract the attention of ideal customers and address their objections using, for example, the so-called ''reverse references''.
 
 Ta książka stanowi potężne narzędzie, szczególnie w połączeniu z wiedzą z "[[Knowledge/Books/The Mom Test]]", "[[Knowledge/Books/Predictably Irrational]]" oraz "[[Knowledge/Books/Never Split the Difference]]". 
 

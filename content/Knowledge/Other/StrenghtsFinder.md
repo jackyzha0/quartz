@@ -3,7 +3,7 @@ title: StrenghtsFinder
 ---
 
 # StrengthsFinder
-To obok [[Knowledge/Other/MBTI]], [[Knowledge/Other/The Big Five]] i [[UnderstandMyself]] najważniejsze narzędzie, jakie wykorzystałem w procesie [[Foundations/Understanding myself]].
+Along with [[Knowledge/Other/MBTI]], [[Knowledge/Other/The Big Five]] and [[UnderstandMyself]], this is the most important tool I used in the [[Foundations/Understanding myself]] process.
 
 ## Why StrengthsFinder?
 The Gallup Institute has been studying populations for years. One of the questions he asked himself was 'why do some people stand out from the crowd so much?' 

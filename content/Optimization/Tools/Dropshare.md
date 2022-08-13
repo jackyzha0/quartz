@@ -2,9 +2,9 @@
 title: Dropshare
 ---
 
-To aplikacja umożliwiająca szybkie przesyłanie zrzutów ekranu oraz plików na serwer FTP. W moim przypadku łączę się z VPS [[Optimization/Tools/Digital Ocean]].
+This is an application that allows you to quickly upload screenshots and files to an FTP server. In my case, I am connecting to the VPS [[Optimization/Tools/Digital Ocean]].
 
-## Jak wykorzystuję Dropshare?
-Przede wszystkim do udostępniania wspomnianych wyżej skrótów klawiszowych. Przypisałem zarówno możliwość natychmiastowego przesłania zaznaczonego fragmentu ekranu, jak i możliwość dodatkowej edycji. 
+## How do I use Dropshare?
+First of all, to share the aforementioned keyboard shortcuts. I assigned both the ability to instantly upload the selected portion of the screen and the ability for additional editing.
 
-Poza tym wykorzystuję [[Optimization/Tools/Keyboard Maestro]] w celu szybkiego wysyłania plików z Findera dzięki CLI Dropshare.
+Besides, I use [[Optimization/Tools/Keyboard Maestro]] to quickly upload files from the Finder thanks to the Dropshare CLI.

@@ -2,8 +2,8 @@
 title: Getting Real
 ---
 
-[[Knowledge/Books/Getting Real]] to książka która ze mną rezonuje na niespotykanym poziomie i śmiało mogę podpisać się pod niemal wszystkim, co jest tam napisane. 
+[[Knowledge/Books/Getting Real]] is a book that resonates with me on an unprecedented level, and I can confidently subscribe to almost everything written there.
 
-W temacie tworzenia produktów i rozwoju firmy to dla mnie absolutny numer jeden spośród wszystkich książek jakie do tej pory przeczytałem. 
+On the subject of product creation and business development, this is for me the absolute number one of all the books I have read so far.
 
-Getting Real pokazuje bardzo spójne do mojego podejście realizacji projektów, nastawione na DZIAŁANIE, BUDOWANIE i WERYFIKOWANIE. To wszystko w oparciu o fakty a nie tworzoną przez nas iluzję wynikającą z emocjonalnego przywiązania do naszych pomysłów oraz wykonanej pracy.
+Getting Real shows a very consistent-to-me approach to project implementation, focused on ACTION, CONSTRUCT and VERIFICATION. This is all based on facts and not an illusion we create due to emotional attachment to our ideas and the work we have done.

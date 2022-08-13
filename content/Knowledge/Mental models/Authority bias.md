@@ -2,18 +2,18 @@
 title: Authority bias
 ---
 
-## O co chodzi?
-Authority bias to tendencja do przyznawania wyższej skuteczności opiniom ludzi, posiadających autorytet.
+## What is it about?
+Authority bias is the tendency to give higher effectiveness to the opinions of people with authority.
 
-W praktyce takie osoby mylą się równie często, o czym na każdym kroku wspomina [[Nassim Nicholas Taleb]].
+In practice, such people are wrong just as often, as [[Nassim Nicholas Taleb]] mentions at every turn.
 
-## Jak stosuję [[Knowledge/Mental models/Authority bias]]
-Przede wszystkim nie uznaję koncepcji autorytetu. Jest to skrajne podejście, które chroni mnie przed bezkrytycznym przyjmowamiem sugestii.
+## How I apply [[Knowledge/Mental models/Authority bias]]
+First of all, I do not recognize the concept of authority. This is an extreme approach that protects me from accepting suggestions uncritically.
 
-**Aby było jasne:** nie ma to nic wspólnego z brakiem szacunku do osób, które czegoś dokonały. Chodzi wyłącznie o podkreślanie faktu, że nadal są to ludzie, którzy mają prawo popełniać błędy (i to robią).
+**To be clear:** this has nothing to do with disrespecting people who have accomplished something. It is purely about highlighting the fact that they are still people who have the right to make mistakes (and they do).
 
-Nadal w moim najbliższym [[Knowledge/Dictionary/Surrounding]] są osoby, które można uznać za autorytet. Jednak sam nie patrzę na to w ten sposób.
+Still, there are people in my immediate [[Knowledge/Dictionary/Surrounding]] who can be considered an authority. However, I don't look at it that way myself.
 
-Ogólnie koncepcja tego, że ktoś jest "wyżej" lub "niżej" do mnie nie przemawia. Stosuję podejście, że "ludzie są różni" a to sprawia, że mogę "jak równy z równym" rozmawiać z każdym. Warto dodać, że zwykle jest to odbierane bardzo pozytywnie. 
+In general, the concept that someone is 'above' or 'below' doesn't appeal to me. I use the approach that 'people are different' and this makes it possible for me to talk 'as equals' with everyone. It is worth adding that this is usually received very positively.
 
-Wyjątek stanowią osoby o bardzo wysokich, korporacyjnych stanowiskach lub osoby praujące w branżach w których hierarchia ma duże znaczenie (np. szkolnictwo wyższe). Zwykle jednak unikam kontaktu z takimi ludźmi.
+The exceptions to this are people with very senior, corporate positions or those working in industries where hierarchy is important (such as higher education). However, I usually avoid contact with such people.

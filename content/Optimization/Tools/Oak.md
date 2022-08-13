@@ -2,4 +2,4 @@
 title: Oak
 ---
 
-To bezpłatna aplikacja na [[Optimization/Hardware/iPad]] którą wykorzystuję do realizacji swojego [[Foundations/Process]] a konkretnie ćwiczeń oddechowych, które redukują stres. Wykorzystuję ją równolegle z [[Optimization/Tools/Headspace]] (nie jednocześnie)
+This is a free app for [[Optimization/Hardware/iPad]] that I use to implement my [[Foundations/Process]] and specifically stress-reducing breathing exercises. I use it in parallel with [[Optimization/Tools/Headspace]] (not simultaneously)

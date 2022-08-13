@@ -2,22 +2,22 @@
 title: Huberman Lab
 ---
 
-[[Knowledge/Podcasts/Huberman Lab]] to podcast Dr [[Knowledge/People/Andrew Huberman]] w którego odcinkach porusza jeden temat dotyczący codziennego funkcjonowania lub ważnego dla organizmu procesu, dając jednocześnie praktyczne wskazówki, które można łatwo przełożyć na działanie. 
+[[Knowledge/Podcasts/Huberman Lab]] is a podcast by Dr. [[Knowledge/People/Andrew Huberman]] in whose episodes he addresses a single topic on a daily function or important process for the body, while giving practical tips that can be easily translated into action.
 
-Osobiście tę wiedzę opieram niemal cały swój [[Foundations/Process#Fundamenty]] oraz do tego aby utrzymywać odpowiedni poziom skupienia czy niski poziom skupienia.
+Personally, I base this knowledge on almost all of my [[Foundations/Process#The foundation]] and to keep the right level of focus or low level of focus.
 
-## Lekcje
+## Lessons
 
-### Neuroplastyczność mózgu
-Powszechnie uważa się, że nasza zdolność do szybkiej i trwałej nauki zmniejsza się z wiekiem oraz że jako dorośli ludzie (powyżej 25 lat) nie jesteśmy już w stanie uczyć się tak szybko jak dzieci. 
+### Neuroplasticity of the brain
+It is widely believed that our ability to learn quickly and sustainably diminishes with age, and that as adults (over 25) we are no longer able to learn as quickly as children.
 
 Według Andrew Hubermana jest to tylko po części prawda.
 
-### Kształtowanie nawyków
+### Forming habits
 [[Knowledge/Books/Atomic Habits]]
 
-### Cykl okołodobowy
+### Circadian cycle
 [[Foundations/Process#Fundamenty]]
 
-### Redukcja stresu
+### Stress reduction
 [[Foundations/Process#Fundamenty]]

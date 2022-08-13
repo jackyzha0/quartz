@@ -2,9 +2,9 @@
 title: Never Split the Difference
 ---
 
-[[Knowledge/Thoughts/Negotiations]] często kojarzą nam się tylko z wybranymi zawodami (np. rolą sprzedawcy) i są ludzie, którzy sądzą że dla nich nie wniosi to żadnej wartości. Jeżeli się chwilę zastanowimy, to zauważymy że negocjacje są nieodłącznym elementem interakcji międzyludzkich, niemal na każdej płaszczyźnie. 
+[Knowledge/Thoughts/Negotiations]] are often associated by us only with selected professions (e.g., the role of a salesman), and there are people who believe that for them it will not bring any value. If we take a moment to think about it, we can see that negotiation is an integral part of human interaction, at almost every level.
 
 ## Lekcje
-- [[Knowledge/Thoughts/Negotiations]] zaczynają sie w chwili gdy ktoś mówi "nie" a ich celem jest dojście do punktu w którym druga strona mówi "tak, to prawda"
-- [[Knowledge/Thoughts/Negotiations]] są o "aktywnym słuchaniu"
-- Najważniejsze narzędzia: [[Taktyczna Empatia]], ton głosu, [[Mirorring]], cisza, powtarzanie i etykietowanie (eng. labeling)
+- Knowledge/Thoughts/Negotiations]] begin when someone says 'no' and their goal is to get to the point where the other party says 'yes, it's true'
+- Knowledge/Thoughts/Negotiations]] are about 'active listening'
+- Key tools: [[Tactical Empathy]], tone of voice, [[Mirorring]], silence, repetition and labeling (eng. labeling)

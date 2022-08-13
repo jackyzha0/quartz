@@ -1,6 +1,6 @@
 ---
 title: Hyper.is
 ---
-To terminal stworzony w HTML/CSS/JS. Bardzo go lubię, jednak jego wydajność nie jest satysfakcjonująca. Ostatnio całkowicie zastąpił mi go [[Warp.dev]].
+It is a terminal created in HTML/CSS/JS. I like it a lot, but its performance is not satisfactory. Recently it was completely replaced by [[Warp.dev]] for me.
 
-Hyper.is charakteryzuje się przede wszystkim możliwością dostosowania praktycznie każdego elementu poprzez style CSS.
+Hyper.is is primarily characterized by the ability to customize virtually any element through CSS styles.

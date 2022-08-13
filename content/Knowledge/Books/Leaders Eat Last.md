@@ -2,14 +2,15 @@
 title: Leaders Eat Last
 ---
 
-[[Knowledge/Books/Leaders Eat Last]] to książka w której [[Simon Sinek]] przedstawia [[Wiedza/🎲 Biznes/Leadership]] w odsłonie z którą sam się utożsamiam. Jest on w dużym stopniu oparty o doświadczenia a z obszarów militarnych z uwzględnieniem jednostek specjalnych takich jak [[Navy Seal's]]. Więcej o tym można przeczytać w książkach [[Knowledge/People/Jocko Willink]] - [[Knowledge/Books/Extreme Ownership]] oraz [[Dichotomy of Leadership]].
+[[Knowledge/Books/Leaders Eat Last]] is a book in which [[Simon Sinek]] presents [[Knowledge/Business/Leadership]] in a view I identify with myself. It is largely based on experiences a from military areas with a focus on special units such as [[Navy Seal's]]. You can read more about this in the books [[Knowledge/People/Jocko Willink]] - [[Knowledge/Books/Extreme Ownership]] and [[Dichotomy of Leadership]].
 
-Cytatem, który pozostaje na długo w pamięci są słowa
-> - Dlaczego ryzykowałeś życie dla kogoś, kogo ledwo znasz?⠀
-> - Bo wiem, że on zrobiłby to samo dla mnie.⠀
+A quote that remains long in the memory are the words
 
-Te słowa zwracają uwagę na jeden z fundamentalnych elementów przywództwa oraz każdej relacji - chodzi o [[Zaufanie]]
+> - Why would you risk your life for someone you barely know?
+> - Because I know he would do the same for me.⠀
 
-[[Odpowiedzialność]] jest podstawą [[Zaufanie]] a to stanowi podstawę Relacji. Z kolei Relacje dają poczucie przynależności, której podświadomie szuka każdy człowiek. ⠀
+These words highlight one of the fundamental elements of leadership and any relationship - it's all about [[Trust]]
+
+[[Responsibility]] is the basis of [[Trust]] and this is the basis of Relationships. Relationships, in turn, provide the sense of belonging that every person subconsciously seeks. ⠀
 ⠀
-Polecam [[Knowledge/Books/Leaders Eat Last]] każdemu. W pewnych momentach każdy z nas jest Liderem [[Lead]]. I w pewnych dobry lider, potrafi podążać za innymi.
+I recommend [[Knowledge/Books/Leaders Eat Last]] to everyone. At certain times, everyone is a Leader [[Lead]]. And at certain good leader, can follow others.

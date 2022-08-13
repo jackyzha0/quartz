@@ -1,12 +1,12 @@
 ---
 title: Raycast
---- 
+---
 
-Raycast to launcher, który niemal w całości zastąpiło mi [[Optimization/Tools/Alfred]] oraz w dużym stopniu zastępuje [[Optimization/Tools/Keyboard Maestro]].
+Raycast is a launcher that has almost entirely replaced [[Optimization/Tools/Alfred]] and largely replaces [[Optimization/Tools/Keyboard Maestro]].
 
-Jego największą zaletą dla mnie jest: 
-- szybkość działania
-- estetyczny interfejs
-- genialne API umożliwiające tworzenie rozszerzeń w JS / TS / Node.js oraz wykorzystania AppleScript i Bash.
+Its biggest advantage for me is:
+- speed
+- aesthetically pleasing interface
+- An ingenious API for creating extensions in JS / TS / Node.js and the use of AppleScript and Bash.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/CUBp9sHayh4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

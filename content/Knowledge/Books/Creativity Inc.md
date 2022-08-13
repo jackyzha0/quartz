@@ -2,17 +2,17 @@
 title: Creativity Inc
 ---
 
-[[Creativity.inc]] to książka autorstwa założyciela Pixara. Firmy którą wszyscy doskonale znamy z animowanych hitów kinowych.
+[[Creativity.inc]] is a book written by the founder of Pixar. The company we all know very well from animated blockbusters.
 
-Najważniejsza lekcja z książki: 
-> Porażka nie zawsze musi być zła o ile wyciągniesz z niej wnioski.
+The most important lesson from the book:
+> Failure doesn't always have to be bad as long as you learn from it.
 
-Lekcja znana z książek - [[Knowledge/Books/Black Box Thinking]] & [[Knowledge/Books/Antifragile]]
+A lesson known from books - [[Knowledge/Books/Black Box Thinking]]
 
-## Lekcje
-Dobry pomysł bez dobrego zespołu jest niczym (o tym pisał również [[Knowledge/People/Jim Collins]] w [[Knowledge/Books/Good to Great]] oraz [[Knowledge/People/Jocko Willink]] w [[Knowledge/Books/Extreme Ownership]]).
+## Lessons
+A good idea without a good team is nothing (this was also written about by [[Knowledge/People/Jim Collins]] in [[Knowledge/Books/Good to Great]] and [[Knowledge/People/Jocko Willink]] in [[Knowledge/Books/Extreme Ownership]]).
 
-W zespole każdy powinien mieć równe prawo i możliwość wyrażenia swojego zdania oraz dania feedbacku innym. O tym również pisał [[Knowledge/People/Jim Collins]] omawiając koncepcję [[Level 5 Leadership]].
+In a team, everyone should have equal right and opportunity to express their opinion and give feedback to others. This is also what [[Knowledge/People/Jim Collins]] wrote about when discussing the concept of [[Level 5 Leadership]].
 
-## Ciekawostki: 
-Jeżeli uczycie się rysować, róbcie to do góry nogami oraz skupiajcie się na białej przestrzeni a nie rysowanym kształcie. Np. gdy rysujecie krzesło, rysujcie wszystko to, co nie jest krzesłem. W ten sposób umiejętności rysunku rozwijały pracownicy Pixara.
+## Trivia:
+If you are learning to draw, do it upside down and focus on the white space and not the shape being drawn. E.g., when you draw a chair, draw everything that is not a chair. This is how Pixar employees developed their drawing skills.

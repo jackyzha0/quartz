@@ -2,6 +2,6 @@
 title: Rize
 ---
 
-Rize to aplikacja działająca podobnie do RescueTime. Działając w tle monitoruje aktywności na komputerze i mierzy czas spędzony w poszczególnych aplikacjach / stronach www.
+Rize is an application that works similarly to RescueTime. Running in the background, it monitors activities on your computer and measures the time spent in particular applications/websites.
 
 - [Rize.io](https://rize.io)

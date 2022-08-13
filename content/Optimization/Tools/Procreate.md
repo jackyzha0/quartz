@@ -1,4 +1,4 @@
 ---
 title: Procreate
 ---
-To aplikacja na [[Optimization/Hardware/iPad]] w której hobbystycznie rysuję oraz tworzę elementy na potrzeby filmów do [[Projects/overment]] czy [[Projects/eduweb]].
+This is an application for [[Optimization/Hardware/iPad]] in which I draw as a hobby and create elements for videos for [[Projects/overment]] or [[Projects/eduweb]].

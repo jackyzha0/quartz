@@ -2,11 +2,12 @@
 title: Daring Greatly
 ---
 
-Ta książka uczy czegoś ważnego: 
-**[[Wrażliwość]] jest największą Odwagą.**
+This book teaches something important:
 
-Na pierwszy rzut oka może to brzmieć absurdalnie, ponieważ najczęściej wrażliwość utożsamiana jest ze słabością. Gdy się jednak nad tym zastanowimy to nie sztuką jest "podnieść gardę" czy "założyć maskę". 
+**[[Vulnerability]] is the greatest Courage.
 
-Nagle okazuje się że pozostawanie otwartym na wszystko co nas otacza, jest trudniejsze niż mogłoby się wydawać i rzeczywiście jest to cecha tych najbardziej odważnych.
+At first glance this may sound absurd, because most often vulnerability is equated with weakness. However, when you think about it, it's not an art to 'raise your guard' or 'put on a mask'.
 
-Dodam jeszcze że rolę jaką odgrywa [[Wrażliwość]], porusza w swoich książkach [[Knowledge/People/Dan Millman]] i to właśnie w niej pada zdanie z początku tego wpisu.
+Suddenly it appears that remaining open to everything around us is more difficult than it might seem, and indeed it is a trait of those most courageous.
+
+I would also add that the role played by [[Sensitivity]] is addressed in his books [[Knowledge/People/Dan Millman]], and it is in this book that the sentence from the beginning of this post falls.

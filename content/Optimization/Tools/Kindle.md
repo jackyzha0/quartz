@@ -2,6 +2,6 @@
 title: Kindle
 ---
 
-To aplikacja w której czytam wszystkie [[Knowledge/Books/Books]] zarówno na [[Optimization/Hardware/iPhone]] jak i [[Optimization/Hardware/iPad]].
+This is the application in which I read all [[Knowledge/Books/Books]] on both [[Optimization/Hardware/iPhone]] and [[Optimization/Hardware/iPad]].
 
-Większość cytatów, które publikuję pochodzą właśnie z highglightów zaznaczonych w tej aplikacji.
+Most of the quotes I publish are just from the highglights marked in this application.

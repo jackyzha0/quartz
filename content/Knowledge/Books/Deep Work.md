@@ -2,15 +2,15 @@
 title: Deep Work
 ---
 
-[[Knowledge/Books/Deep Work]] to jedna z najczęściej polecanych przeze mnie książek. Uważam że praktycznie każdy powinien ją przeczytać. 
+[[Knowledge/Books/Deep Work]] is one of my most recommended books. I believe that virtually everyone should read it.
 
-Żyjemy w świecie pełnym rozproszeń - od powiadomień po złe nawyki sięgania po telefon co kilka minut. Umiejętność skupienia na jednej rzeczy przez dłuższy czas staje się rzadkością. Problem w tym że TYLKO "praca głęboka" pozwala nam działać na granicy naszych możliwości i generować zwykle nieosiągalne rezultaty. 
+We live in a world full of distractions - from notifications to bad habits of reaching for the phone every few minutes. The ability to focus on one thing for an extended period of time is becoming rare. The problem is that ONLY 'deep work' allows us to operate at the limits of our abilities and generate usually unattainable results.
 
-Praca głęboka ([[Knowledge/Books/Deep Work]]) to: realizacja jednego zadania przez określony czas, z aktywnym skupieniem i brakiem rozproszeń. 
+Deep Work ([[Knowledge/Books/Deep Work]]) is: completing one task for a specified period of time with active focus and no distractions.
 
-Opiera się o zasady: 
-- Wysiłku, 
+It is based on principles:
+- Effort,
 - [[Knowledge/Thoughts/Boredom]], 
-- braku Social Media i wyznaczenia czasu na pracę płytką (np. odpisywanie na maile).
+- No Social Media and designating time for shallow work (e.g., answering emails).
 
-Jest to umiejętność jak każda inna, którą należy trenować aby z czasem wykonywać ją lepiej. W [[Knowledge/Books/Deep Work]] znajdziemy wiele bardzo praktycznych porad, które pomogą nam ją rozwijać i kształcić odpowiednie [[Nawyk]]i.
+It is a skill like any other, which needs to be trained to perform better over time. In [[Knowledge/Books/Deep Work]] there is a lot of very practical advice to help us develop it and form the right [[Habit]]s.

@@ -2,9 +2,9 @@
 title: Endel.io
 ---
 
-[[Optimization/Tools/Endel.io]] to aplikacja wykorzystująca [AI] do generowania dźwięków ułatwiających m.in. skupienie. Sięgam po nią niemal każdego dnia.  
+[[Optimization/Tools/Endel.io]] is an application that uses [AI] to generate sounds to help with focus, among other things. I reach for it almost every day.  
 
-## Jak wykorzystuję Endel?
-W połączeniu z aplikacją [[Optimization/Tools/Session]] włączam go przy realizacji najbardziej wymagających, kreatywnych zadań. 
+## How do I use Endel?
+In combination with the [[Optimization/Tools/Session]] application, I turn it on when performing the most demanding creative tasks.
 
-Poza tym sięgam po niego podczas pisania, czytania oraz odpoczynku. Wtedy zwykle włączam go bezpośrednio na [[Optimization/Hardware/Apple Watch]]
+In addition, I reach for it while writing, reading and resting. Then I usually turn it on directly on [[Optimization/Hardware/Apple Watch]]

@@ -3,9 +3,9 @@ title: Design System
 ---
 
 ## Design System 
-Aktualnie projektuję niemal wyłącznie w oparciu o tzw. Design Systemy, np. [[Tailwind UI]] czy [[Systemflow]]. Dzięki temu łatwo tworzę przejrzysty [[Wiedza/🎨 Projektowanie/UI]], zachowując spójność, co wpływa pozytywnie na ogólny [[Knowledge/Design/UX]] aplikacji. 
+Currently, I design almost exclusively based on so-called Design Systems, such as [[Tailwind UI]] or [[Systemflow]]. This makes it easy for me to create a clear [[Knowledge/Design/UI]], maintaining consistency, which positively affects the overall [[Knowledge/Design/UX]] of the application.
 
-Jednocześnie praca w oparciu o deisgn system narzuca pewne ograniczenia, które warto świadomie przełamywać. Przy projektowaniu pomocne są modele mentalne [[Knowledge/Mental models/First Principles]], [[Knowledge/Mental models/Inversion]] czy [[Knowledge/Mental models/Occams Razor]] oraz tytuły takie jak [[Knowledge/Books/Refactoring UI]] czy z mniej technicznych [[Knowledge/Books/Think Like a Rocket Scientist]].
+At the same time, working on the basis of the deisgn system imposes certain limitations that are worth consciously overcoming. Mental models such as [[Knowledge/Mental models/First Principles]], [[Knowledge/Mental models/Inversion]] or [[Knowledge/Mental models/Occams Razor]] and titles such as [[Knowledge/Books/Refactoring UI]] or from the less technical [[Knowledge/Books/Think Like a Rocket Scientist]] are helpful for design.
 
-## Źródła wiedzy
+## Sources of knowledge
 - https://www.figmaster.co

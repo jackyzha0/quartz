@@ -2,11 +2,11 @@
 title: Anthropomorphism
 ---
 
- ## O co chodzi? 
- O przypisywanie intencjonalności i stanów mentalnych, charakterystycznych dla żywych stworzeń, stworzeniom które ożywione nie są. 
+## What is it about?
+ About attributing intentionality and mental states, characteristic of living creatures, to creatures that are not animate.
 
- ## Jak wykorzystuję [[Knowledge/Mental models/Anthropomorphism]]
-Aktualnie nie potrafię wskazać żadnych sensownych przykładów, poza tym że świadomość takiej tendencji jest łatwo zauważalna w otaczającym świecie. Zwykle po prostu mam do tego pewien dystans. 
+## How I use [[Knowledge/Mental models/Anthropomorphism]]
+Currently, I can't point to any meaningful examples, other than the fact that awareness of such a trend is readily apparent in the surrounding world. I usually just have a certain distance from it.
  
 
  

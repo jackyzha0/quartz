@@ -2,17 +2,17 @@
 title: Range
 ---
 
-Świat jest skomplikowany i trudno temu zaprzeczyć. W dodatku w ciągu ostatnich kilkudziesięciu lat, technologia przyspieszyła ogólny rozwój niemal każdego obszaru naszego życia, w mgnieniu oka wprowadzając znaczące zmiany. 
+The world is complicated, and it's hard to deny that. In addition, over the past few decades, technology has accelerated the overall development of almost every area of our lives, bringing about significant changes in the blink of an eye.
 
-W obliczu tego najlepszym rozwiązaniem wydaje się być zasada 10 000 godzin, która pozwala stać się ekspertem w dowolnej dziedzinie (swoją drogą o tym jak to wygląda w praktyce, polecam książkę [[The Outliers]]). 
+In the face of this, the best solution seems to be the 10,000-hour rule for becoming an expert in any field (by the way, about what this looks like in practice, I recommend the book [[The Outliers]]).
 
-Inaczej mówiąc: zanim próbować odnaleźć się w wielu obszarach, wybieramy jeden w którym stajemy się Ekspertem. 
+In other words: before trying to find ourselves in many areas, we choose one in which we become an Expert.
 
-A co powiecie na inne podejście? Zamiast skupiać całą swoją uwagę na wąskiej dziedzinie, nieustannie równolegle rozwijamy wiedzę w wielu różnych obszarach. No ale skoro wszystko zmienia się tak szybko, czy w ogóle jest to możliwe? 
+How about a different approach? Instead of focusing all our attention on a narrow field, we constantly develop knowledge in many different areas in parallel. Well, but since everything is changing so fast, is this even possible?
 
-Okazuje się że tak i daje nam więcej możliwości niż mogłoby się na pierwszy rzut oka wydawać. 
+It turns out that it does, and gives us more options than we might think at first glance.
 
-## Lekcje
-- Zbyt wczesna specjalizacja nie zawsze jest dobra
-- Umiejętność szybkiej nauki i zmiany kontekstu daje niezwykłe możliwości
-- Zawód który wykonujesz dziś, nie będzie czymś co będziesz robił przez całe życie.
+## Lessons
+- Specializing too early is not always a good thing
+- The ability to learn quickly and change context provides extraordinary opportunities
+- The profession you do today will not be something you do for life.

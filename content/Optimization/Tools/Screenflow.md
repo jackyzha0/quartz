@@ -1,4 +1,4 @@
 ---
 title: Screenflow
 ---
-Screenflow to aplikacja do nagrywania ekranu którą wykorzystuję do nagrywania i montażu screencastów.
+Screenflow is a screen recording application that I use to record and edit screencasts.

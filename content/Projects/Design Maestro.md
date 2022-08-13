@@ -7,7 +7,7 @@ This is a set of macros for [[Optimization/Tools/Keyboard Maestro]], designed fo
 
 ![](https://assets.website-files.com/61b2fbca6d7f8d1f991971f3/61b2fd7ff4169b747cf8a134_DM%20Logo.svg)
 
-Aktualnie zawiera około 80 makr przyspieszających pracę z projektami i plikami, oraz automatyzujących powtarzalne czynności. ~~W tej chwili dostęp do projektu jest zamknięty a jego premiera planowana jest na Styczeń / Luty 2022.~~
+It currently contains about 80 macros to speed up work with projects and files, and automate repetitive tasks. ~~Access to the project is currently closed and its release is planned for January / February 2022.
 
 ## Third place on Product Hunt
 On the third of June 2022, Design Maestro won [the podium at Product Hunt](https://www.producthunt.com/posts/design-maestro), taking third place 🎉
