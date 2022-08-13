@@ -1,5 +1,5 @@
 ---
-title: Narzędzia
+title: Tools
 ---
 
 - [[Optimization/Tools/Airtable]] - API first excel na sterydach

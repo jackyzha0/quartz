@@ -28,7 +28,7 @@ Everything.
 It is difficult to function and even more so to concentrate in moments when our [[Mind]] is full of unnecessary thoughts that generate negative [[Knowledge/Thoughts/Emotions]] that take us away from [[Knowledge/Thoughts/Energy]].
 
 ## Work organization
-Not without reason [[Optimization/Hardware/Hardware]] which I use for work and [[Optimization/Tools/Narzędzia]] play such an important role in my functioning and certainly contribute to my overall overall effectiveness.
+Not without reason [[Optimization/Hardware/Hardware]] which I use for work and [[Optimization/Tools/Tools]] play such an important role in my functioning and certainly contribute to my overall overall effectiveness.
 
 In addition to just having the right equipment and tool configuration, the way I use them is also important.
 - I limited my use of [[Optimization/Hardware/iPhone]] to 15-25 mins per day

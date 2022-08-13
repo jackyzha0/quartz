@@ -14,7 +14,7 @@ I myself follow a simple rule: I do not automate the process of building relatio
 ## Scenario design
 I use all my skills, both technical and knowledge of business and relationship building, to create automation scenarios.
 
-**Most important stack [[Optimization/Tools/Narzędzia]]:** 
+**Most important stack [[Optimization/Tools/Tools]]:** 
 - [[Optimization/Tools/Airtable]] - databases
 - [[Optimization/Tools/Notion]] - task management, notes and activity panels
 - [[Optimization/Tools/MakeHQ]] i [[Optimization/Tools/Zapier]] - connecting a servies
