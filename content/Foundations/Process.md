@@ -39,9 +39,9 @@ Among other reasons, I use targets on a case-by-case basis. Previously, I used a
 ### Process
 I operate on the basis of a continuously optimized [[Knowledge/Dictionary/Process]] that takes into account: 
 
-* Fundamenty \(sen, diet, sports, being bored\)
-* Getting to know yourself \n(journal writing and reading it, StrengthsFinder, MBTI, Principles You).
-* Surrounding environment \n(people I spend time with).
+* Fundamenty (sleep, diet, sports, being bored)
+* Getting to know yourself (journal writing and reading it, StrengthsFinder, MBTI, Principles You).
+* Surrounding environment (people I spend time with).
 * Development of [[Foundations/Knowledge acquisition system]], learning about [[Knowledge/Mental models/Mental models]] and reading [[Knowledge/Books/Books]]
 * Using of a ([[Knowledge/Mental models/Leverage]])) \(my hour generates a multiplying effect\)
 * Freedom \(I don't sell my time, avoid planned activities\)
