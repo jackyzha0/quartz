@@ -92,7 +92,7 @@ The foundation for me is health (physical and mental) and sleep.
 ### Getting to know myself
 Getting to know myself is the most important part of my process after the foundations.
 
-- **Keeping a [[Foundations/Diary]]**
+- **Keeping a [[Foundations/Journal]]**
 - **Personality Tests**. - [[Foundations/Understanding myself#MBTI]], [[Foundations/Understanding myself#StrenghtsFinder]], [[Foundations/Understanding myself#Principles You]], [[Foundations/Understanding myself#The Big Five]]
 - **Spending time alone with yourself** - without distractions and the Internet
 - **Staying open** - I try to stay open to making mistakes. ([[Knowledge/Books/Think Like a Rocket Scientist]] & [[Knowledge/Books/Black Box Thinking]]) and the fact that I could be wrong.
