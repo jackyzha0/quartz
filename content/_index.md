@@ -1,34 +1,34 @@
 ---
-title: Co to za miejsce?
+title: What is this place?
 enableToc: true
 openToc: true
 ---
 
 ![overment](https://space.overment.com/overment/overment.png)
 
-W tym miejscu dzielę się z Tobą wszystkim co wiem. Stworzyłem je przede wszystkim dla siebie, aby móc łatwo wracać do wszystkich zamieszczonych tu materiałów. Jednocześnie pomyślałem że to wszystko może okazać się równie wartościowe dla Ciebie.
+This is where I share everything I know with you. I created it primarily for myself, so that I can easily return to all the material posted here. At the same time, I thought you might find it all equally valuable to you.
 
-## Znajdziesz tutaj
+## You can find here
 
-* Mojego procesu ([[Fundamenty/Proces]]) który realizuję codziennie \(i który nieustannie się zmienia\). Dzięki niemu podążam w wyznaczonym przeze mnie [[Fundamenty/Kierunek]] w oparciu o nazwane [[Fundamenty/Wartości]] i [[Fundamenty/Poznawanie siebie]]
-* Jak buduję swój [[Fundamenty/System zdobywania wiedzy]]
-* [[Wiedza/Modele Mentalne/Modele mentalne]] z których świadomie korzystam
-* Notatki z przeczytanych przeze mnie [[Wiedza/Książki/Książki]]
-* [[Wiedza/Ludzie/Ludzie]] jakich obserwuję w Internecie
-* Moje [[Wiedza/Przemyślenia/Przemyślenia]] i styl działania (np. [[Wiedza/Przemyślenia/Skupienie]])
-* Moje notatki na temat Programowania, Projektowania, Marketingu i szeroko pojętego Biznesu
-* [[Optymalizacja/Sprzęt/Sprzęt]] z jakiego korzystam
-* Opisy wykorzystywanych przeze mnie [[Optymalizacja/Automatyzacja/Automatyzacja]] i [[Optymalizacja/Narzędzia/Narzędzia]]
-* Informacje na temat projektów w które jestem zaangażowany ([[Projekty/eduweb]], [[Projekty/Ahoy!]], [[Projekty/zautomatyzowani]], [[Projekty/overment]], [[Projekty/EasyCart]], [[Projekty/EasyBanner]], [[Projekty/Design Maestro]])
-* To co wiem o [[Wiedza/Programowanie/Programowanie]]
-* Moje wszystkie bezpłatne i płatne publikacje
+* My [[Foundations/Process]] which I implement every day and which is constantly changing, This keeps me moving in the [[Foundations/Direction]]  I have set for myself based on [[Foundations/Values]] and getting to [[Foundations/Understanding myself]]
+* How I build my [[Foundations/Knowledge acquisition system]]
+* [[Knowledge/Mental models/Modele mentalne]] I consciously use
+* Notes from the [[Knowledge/Books/Książki]] I've read
+* [[Knowledge/People/Ludzie]] I observe on the Internet
+* My [[Knowledge/Thoughts/Przemyślenia]] and style of operation (e.g., [[Knowledge/Thoughts/Skupienie]])
+* My notes on Programming, Design, Marketing and Business in general.
+* [[Optimization/Hardware/Hardware]] I use
+* Descriptions of the [[Optimization/Automation/Automation]] and [[Optimization/Tools/Narzędzia]] I use
+* Information on the projects I am involved in ([[Projects/eduweb]], [[Projects/Ahoy!]], [[Projects/zautomatyzowani]], [[Projects/overment]], [[Projects/EasyCart]], [[Projects/EasyBanner]], [[Projects/Design Maestro]])
+* What I know about [[Knowledge/Programming/Programming]]
+* My all free and paid publications
 
-## Wyszukiwanie & Obsidian
+## Search
 
-Wszystkie zawarte tutaj informacje możesz przeszukiwać z pomocą wyszukiwarki dostępnej na tej stronie, którą możesz włączyć skrótem **⌘ + /** lub **CTRL + /**
+You can search all the information contained here with the help of the search engine available on this page, which you can enable with the shortcut **⌘ /** or **CTRL /**.
 
-## Koncepcja
+## Concept
 
-Cały ten projekt oparty jest o koncepcję tzw. [digital garden](https://joelhooks.com/digital-garden). W moim przypadku testowałem połączenie Notion oraz Super.so oraz integrację Githuba z GitBookiem. Przez jakiś czas wykorzystywałem funkcję Obsidian Publish a aktualnie całość generuję w Hugo na podstawie projektu [Quartz](https://quartz.jzhao.xyz/) 
+This entire project is based on the concept of the so-called [digital garden](https://joelhooks.com/digital-garden). In my case, I've been testing a combination of Notion and Super.so and Github integration with GitBook. For a while I used the Obsidian Publish function and currently I generate the whole thing in Hugo based on the Quartz project [Quartz](https://quartz.jzhao.xyz/) 
 
-> **Ważne!** Jeżeli w jakichś definicjach znajdziesz błąd lub chcesz zasugerować zmianę, będę Ci za to bardzo wdzięczny. Możesz to zrobić z pomocą Pull Request przesłanym do [tego repozytorium](https://github.com/iceener/brain), [zgłaszając Issue](https://github.com/iceener/brain/issues/new) lub po prostu pisząc do mnie na [e-mail](mailto:adam@overment.com).
+> **Important!** If you find a mistake in some definitions or want to suggest a change, I will be very grateful for it. You can do this with a Pull Request sent to the [of this repository](https://github.com/iceener/brain), [reporting Issue](https://github.com/iceener/brain/issues/new) or simply by emailing me at [e-mail](mailto:adam@overment.com).

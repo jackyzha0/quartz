@@ -1,0 +1,57 @@
+---
+title: Narzędzia
+---
+
+- [[Optimization/Tools/Airtable]] - API first excel na sterydach
+- [[Optimization/Tools/MakeHQ]] - Najlepsze narzędzie do automatyzacji i szybkiego łączenia [[Knowledge/Programming/API]]
+- [[Optimization/Tools/Zapier]] - Automatyzacje i szybkie łączenie [[Knowledge/Programming/API]]
+- [[Optimization/Tools/Keyboard Maestro]] - Automatyzacje w OSX
+- [[Optimization/Tools/Romwod]] - Aplikacja z programem ćwiczeń rozciągających
+- [[Optimization/Tools/Raycast]] - Launcher w którym tworzę własne rozszerzenia w [[Knowledge/Programming/Node.js]], [[Knowledge/Programming/JavaScript/JavaScript]], [[React.js]] i [[TypeScript]]
+- [[Reeder 5]] - News feed z obserwowanych przeze mnie blogów
+- [[Optimization/Tools/iA Writer]] - Edytor Markdown nastawiony na minimalizm i focus
+- [[Optimization/Tools/Anki]] - Aplikacja do treningu pamięci opartego o [[Spacing Repetition]]
+- [[Optimization/Tools/Buffer]] - Narzędzie do publikowania treści w wielu kanałach Social Media
+- [[Optimization/Tools/ClickUp]] - Zaawansowana aplikacja do zarządzania zadaniami
+- [[Optimization/Tools/Procreate]] - Najlepsza aplikacja na iPada do rysowania
+- [[Optimization/Tools/Notability]] - Aplikacja do Notowania na iPadzie
+- [[Optimization/Tools/Dropshare]] - Szybkie udostępnianie plików (przez własny serwer FTP)
+- [[Optimization/Tools/Cron]] - Fajna aplikacja do kalendarza
+- [[Optimization/Tools/Magnet]] - Aplikacja do zarządzania położeniem okien
+- [[Optimization/Tools/Paste]] - Manager schowka
+- [[Optimization/Tools/TextSnipper]] - OCR czytający zaznaczony fragment ekranu
+- [[Optimization/Tools/Sip]] - systemowy color picker
+- [[Optimization/Tools/Screenflow]] - świetna aplikacja do nagrywania ekranu i edycji w locie
+- [[Optimization/Tools/Audible]] - Audiobooki od Amazon
+- [[Optimization/Tools/MindNode]] - jedna z lepszych aplikacji do tworzenia map myśli
+- [[Optimization/Tools/Oak]] - aplikacja z ćwiczeniami oddechowymi
+- [[Optimization/Tools/Waking Up]] - aplikacja do medytacji od [[Sam Harris]]
+- [[Optimization/Tools/Endel.io]] - aplikacja generująca dźwięki ułatwiające skupienie 
+- [[Optimization/Tools/Mentorist]] - wdrażanie wiedzy z książek
+- [[Optimization/Tools/Rocket]] - systemowy emoji Picker
+- [[Optimization/Tools/1Password]] - manager haseł
+- [[Optimization/Tools/Onyx]] - aplikacja optymalizująca / czyszcząca system
+- [[Optimization/Tools/Figma]] - webowa aplikacja do projektowania grafiki wektorowej
+- [[Optimization/Tools/Webflow]] - najlepszy no-code web builder
+- [[Optimization/Tools/Framer Sites]] - nowy no-code web builder
+- [[Optimization/Tools/Kindle]] - aplikacja do czytania książek
+- [[Optimization/Tools/Superhuman]] - klient pocztowy nastawiony na produktywność
+- [[Optimization/Tools/Headspace]] - aplikacja do medytacji
+- [[Optimization/Tools/AirBuddy]] - łatwe przełączanie AirPods pomiędzy urządzeniami
+- [[Optimization/Tools/Tabnine]] - AI based Intellisense do popularnych IDE
+- [[Optimization/Tools/Hazel]] - automatyzacja zarządzania plikami i folderami
+- [[Optimization/Tools/Reveri]] - aplikacja do autohipnozy
+- [[Optimization/Tools/Yoink]] - aplikacja ułatwiająca przenoszenie plików i przechowywanie ich metodą drag&drop
+- [[Optimization/Tools/Notion]] - aplikacja do notatek z API 
+- [[Optimization/Tools/Better Touch Tool]] - aplikacja rozszerzająca możliwości trackpada
+- [[Optimization/Tools/Hyper.is]] - ~~alternatywa dla terminala napisana w HTML5 / CSS / JS~~
+- [[Warp.dev]] - alternatywa dla terminala
+- [[Optimization/Tools/Sendgrid]]
+- [[Optimization/Tools/Shortcuts]]
+- [[Optimization/Tools/Slack]]
+- [[Optimization/Tools/Todoist]]
+- [[Optimization/Tools/Digital Ocean]]
+- [[Optimization/Tools/Session]]
+- [[Optimization/Tools/Rize]]
+- [[Optimization/Tools/Intellij]]
+- [[Optimization/Tools/Obsidian]]
