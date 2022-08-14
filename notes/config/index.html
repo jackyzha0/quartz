@@ -1,0 +1,283 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="Configuration Quartz is designed to be extremely configurable. You can find the bulk of the configuration scattered throughout the repository depending on how in-depth you&rsquo;d like to get."><title>Configuration</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://quartz.jzhao.xyz//icon.png><link href=https://quartz.jzhao.xyz/styles.d2f738589684858118a26e4c88e3fef5.min.css rel=stylesheet><link href=https://quartz.jzhao.xyz/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://quartz.jzhao.xyz/js/darkmode.63d6a3e095d0bd2b935b62adec9dc11b.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/util.9825137f5e7825e8553c68ce39ac9e44.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script src=https://quartz.jzhao.xyz/js/popover.37b1455b8f0603154072b9467132c659.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const BASE_URL="https://quartz.jzhao.xyz/",fetchData=Promise.all([fetch("https://quartz.jzhao.xyz/indices/linkIndex.2258705b061970aace54cd8b929903f8.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://quartz.jzhao.xyz/indices/contentIndex.85eb26c3e216b7735eeda5fab61b2d7b.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://quartz.jzhao.xyz",!0,!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!1;drawGraph("https://quartz.jzhao.xyz",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/quartz.jzhao.xyz\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://quartz.jzhao.xyz/js/full-text-search.24827f874defbbc6d529926cbfcfb493.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://quartz.jzhao.xyz/>🪴 Quartz 3.2</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>Configuration</h1><p class=meta>Last updated
+Jul 31, 2022
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/notes/config.md rel=noopener>Edit Source</a></p><ul class=tags><li><a href=https://quartz.jzhao.xyz/tags/setup/>Setup</a></li></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#configuration>Configuration</a><ol><li><a href=#code-block-titles>Code Block Titles</a></li><li><a href=#html-favicons>HTML Favicons</a></li><li><a href=#graph-view>Graph View</a></li></ol></li><li><a href=#styling>Styling</a><ol><li><a href=#partials>Partials</a></li></ol></li><li><a href=#language-support>Language Support</a></li></ol></nav></details></aside><a href=#configuration><h2 id=configuration><span class=hanchor arialabel=Anchor># </span>Configuration</h2></a><p>Quartz is designed to be extremely configurable. You can find the bulk of the configuration scattered throughout the repository depending on how in-depth you&rsquo;d like to get.</p><p>The majority of configuration can be found under <code>data/config.yaml</code>. An annotated example configuration is shown below.</p><div class=highlight title=data/config.yaml><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># The name to display in the footer</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Jacky Zhao</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># whether to globally show the table of contents on each page</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># this can be turned off on a per-page basis by adding this to the</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># front-matter of that note</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableToc</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># whether to by-default open or close the table of contents on each page</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>openToc</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># whether to display on-hover link preview cards</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableLinkPreview</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># whether to render titles for code blocks</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableCodeBlockTitle</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># whether to render copy buttons for code blocks</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableCodeBlockCopy</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># whether to render callouts</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableCallouts</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># whether to try to process Latex</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableLatex</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># whether to enable single-page-app style rendering</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># this prevents flashes of unstyled content and improves</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># smoothness of Quartz. More info in issue #109 on GitHub</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableSPA</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># whether to render a footer</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableFooter</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># whether backlinks of pages should show the context in which</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># they were mentioned</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableContextualBacklinks</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># whether to show a section of recent notes on the home page</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableRecentNotes</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># whether to display an &#39;edit&#39; button next to the last edited field</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># that links to github</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableGitHubEdit</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>GitHubLink</span><span class=p>:</span><span class=w> </span><span class=l>https://github.com/jackyzha0/quartz/tree/hugo/content</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># whether to use Operand to power semantic search</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># IMPORTANT: replace this API key with your own if you plan on using</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Operand search!</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableSemanticSearch</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>operandApiKey</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;REPLACE-WITH-YOUR-OPERAND-API-KEY&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># page description used for SEO</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>description</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>Host your second brain and digital garden for free. Quartz features extremely fast full-text search,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>Wikilink support, backlinks, local graph, tags, and link previews.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># title of the home page (also for SEO)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>page_title</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=s2>&#34;🪴 Quartz 3.2&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># links to show in the footer</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>links</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>link_name</span><span class=p>:</span><span class=w> </span><span class=l>Twitter</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>link</span><span class=p>:</span><span class=w> </span><span class=l>https://twitter.com/_jzhao</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>link_name</span><span class=p>:</span><span class=w> </span><span class=l>Github</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>link</span><span class=p>:</span><span class=w> </span><span class=l>https://github.com/jackyzha0</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><a href=#code-block-titles><h3 id=code-block-titles><span class=hanchor arialabel=Anchor># </span>Code Block Titles</h3></a><p>To add code block titles with Quartz:</p><ol><li><p>Ensure that code block titles are enabled in Quartz&rsquo;s configuration:</p><div class=highlight title=data/config.yaml><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>enableCodeBlockTitle</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span></code></pre></div></li><li><p>Add the <code>title</code> attribute to the desired
+<a href=https://gohugo.io/content-management/syntax-highlighting/#highlighting-in-code-fences rel=noopener>code block
+fence</a>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl> ```yaml {title=&#34;data/config.yaml&#34;}
+</span></span><span class=line><span class=cl> enableCodeBlockTitle: true  # example from step 1
+</span></span><span class=line><span class=cl> ```
+</span></span></code></pre></div></li></ol><p><strong>Note</strong> that if <code>{title=&lt;my-title>}</code> is included, and code block titles are not
+enabled, no errors will occur, and the title attribute will be ignored.</p><a href=#html-favicons><h3 id=html-favicons><span class=hanchor arialabel=Anchor># </span>HTML Favicons</h3></a><p>If you would like to customize the favicons of your Quartz-based website, you
+can add them to the <code>data/config.yaml</code> file. The <strong>default</strong> without any set
+<code>favicon</code> key is:</p><div class=highlight title=layouts/partials/head.html><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>link</span> <span class=na>rel</span><span class=o>=</span><span class=s>&#34;shortcut icon&#34;</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;icon.png&#34;</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;image/png&#34;</span><span class=p>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>The default can be overridden by defining a value to the <code>favicon</code> key in your
+<code>data/config.yaml</code> file. For example, here is a <code>List[Dictionary]</code> example format, which is
+equivalent to the default:</p><div class=highlight title=data/config.yaml><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>favicon</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- {<span class=w> </span><span class=nt>rel</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;shortcut icon&#34;</span><span class=nt>, href</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;icon.png&#34;</span><span class=nt>, type</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;image/png&#34;</span><span class=w> </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>#  - { ... } # Repeat for each additional favicon you want to add</span><span class=w>
+</span></span></span></code></pre></div><p>In this format, the keys are identical to their HTML representations.</p><p>If you plan to add multiple favicons generated by a website (see list below), it
+may be easier to define it as HTML. Here is an example which appends the
+<strong>Apple touch icon</strong> to Quartz&rsquo;s default favicon:</p><div class=highlight title=data/config.yaml><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>favicon</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>  &lt;link rel=&#34;shortcut icon&#34; href=&#34;icon.png&#34; type=&#34;image/png&#34;&gt;
+</span></span></span><span class=line><span class=cl><span class=sd>  &lt;link rel=&#34;apple-touch-icon&#34; sizes=&#34;180x180&#34; href=&#34;/apple-touch-icon.png&#34;&gt;</span><span class=w>  
+</span></span></span></code></pre></div><p>This second favicon will now be used as a web page icon when someone adds your
+webpage to the home screen of their Apple device. If you are interested in more
+information about the current and past standards of favicons, you can read
+<a href=https://www.emergeinteractive.com/insights/detail/the-essentials-of-favicons/ rel=noopener>this article</a>.</p><p><strong>Note</strong> that all generated favicon paths, defined by the <code>href</code>
+attribute, are relative to the <code>static/</code> directory.</p><a href=#graph-view><h3 id=graph-view><span class=hanchor arialabel=Anchor># </span>Graph View</h3></a><p>To customize the Interactive Graph view, you can poke around <code>data/graphConfig.yaml</code>.</p><div class=highlight title=data/graphConfig.yaml><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># if true, a Global Graph will be shown on home page with full width, no backlink.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># A different set of Local Graphs will be shown on sub pages.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># if false, Local Graph will be default on every page as usual</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>enableGlobalGraph</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>### Local Graph ###</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>localGraph</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># whether automatically generate a legend</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>enableLegend</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># whether to allow dragging nodes in the graph</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>enableDrag</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># whether to allow zooming and panning the graph</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>enableZoom</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># how many neighbours of the current node to show (-1 is all nodes)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>depth</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># initial zoom factor of the graph</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>scale</span><span class=p>:</span><span class=w> </span><span class=m>1.2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># how strongly nodes should repel each other</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>repelForce</span><span class=p>:</span><span class=w> </span><span class=m>2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># how strongly should nodes be attracted to the center of gravity</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>centerForce</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># what the default link length should be</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>linkDistance</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># how big the node labels should be</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>fontSize</span><span class=p>:</span><span class=w> </span><span class=m>0.6</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># scale at which to start fading the labes on nodes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>opacityScale</span><span class=p>:</span><span class=w> </span><span class=m>3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>### Global Graph ###</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>globalGraph</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=c># same settings as above</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c>### For all graphs ###</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># colour specific nodes path off of their path</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>paths</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>/moc</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;#4388cc&#34;</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><a href=#styling><h2 id=styling><span class=hanchor arialabel=Anchor># </span>Styling</h2></a><p>Want to go even more in-depth? You can add custom CSS styling and change existing colours through editing <code>assets/styles/custom.scss</code>. If you&rsquo;d like to target specific parts of the site, you can add ids and classes to the HTML partials in <code>/layouts/partials</code>.</p><a href=#partials><h3 id=partials><span class=hanchor arialabel=Anchor># </span>Partials</h3></a><p>Partials are what dictate what gets rendered to the page. Want to change how pages are styled and structured? You can edit the appropriate layout in <code>/layouts</code>.</p><p>For example, the structure of the home page can be edited through <code>/layouts/index.html</code>. To customize the footer, you can edit <code>/layouts/partials/footer.html</code></p><p>More info about partials on
+<a href=https://gohugo.io/templates/partials/ rel=noopener>Hugo&rsquo;s website.</a></p><p>Still having problems? Checkout our
+<a href=/notes/troubleshooting/ rel=noopener class=internal-link data-src=/notes/troubleshooting/>FAQ and Troubleshooting guide</a>.</p><a href=#language-support><h2 id=language-support><span class=hanchor arialabel=Anchor># </span>Language Support</h2></a><p><a href=/notes/CJK-+-Latex-Support-%E6%B5%8B%E8%AF%95/ rel=noopener class=internal-link data-src=/notes/CJK-+-Latex-Support-%E6%B5%8B%E8%AF%95/>CJK + Latex Support (测试)</a> comes out of the box with Quartz.</p><p>Want to support languages that read from right-to-left (like Arabic)? Hugo (and by proxy, Quartz) supports this natively.</p><p>Follow the steps
+<a href=https://gohugo.io/content-management/multilingual/#configure-languages rel=noopener>Hugo provides here</a> and modify your <code>config.toml</code></p><p>For example:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=nx>defaultContentLanguage</span> <span class=p>=</span> <span class=s1>&#39;ar&#39;</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>languages</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>[</span><span class=nx>languages</span><span class=p>.</span><span class=nx>ar</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=nx>languagedirection</span> <span class=p>=</span> <span class=s1>&#39;rtl&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>title</span> <span class=p>=</span> <span class=s1>&#39;مدونتي&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>weight</span> <span class=p>=</span> <span class=mi>1</span>
+</span></span></code></pre></td></tr></table></div></div></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li><a href=/notes/CJK-+-Latex-Support-%E6%B5%8B%E8%AF%95/ data-ctx=config data-src=/notes/CJK-+-Latex-Support-%E6%B5%8B%E8%AF%95 class=internal-link>CJK + Latex Support (测试)</a></li><li><a href=/notes/hosting/ data-ctx="Customizing Quartz" data-src=/notes/hosting class=internal-link>Deploying Quartz to the Web</a></li><li><a href=/notes/troubleshooting/ data-ctx="customization guide" data-src=/notes/troubleshooting class=internal-link>Troubleshooting and FAQ</a></li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://quartz.jzhao.xyz/js/graph.abd4bc2af3869a96524d7d23b76152c7.js></script></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=https://quartz.jzhao.xyz/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div></body></html>
