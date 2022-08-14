@@ -13,7 +13,7 @@ Additionally, there is a way to [[notes/How to copy Obsidian links to Fleeting N
 ![Link suggestions in Fleeting Notes](posts/img/link-suggestion-fn.png)
 
 ## 2. Using the "Insert Unprocessed Notes" Command
-The "[[posts/how-to-process-fleeting-notes-in-obsidian|Insert Unprocessed Notes]]" command is built into the Fleeting Notes Sync plugin and it creates a checklist of notes that are "unprocessed". Unprocessed notes are fleeting notes that aren't "checked" within a checklist. Using this command takes advantage of the links to reference notes created within Fleeting Notes.
+The "[[posts/how-to-process-fleeting-notes-in-obsidian|Insert Unprocessed Notes]]" command is built into the Fleeting Notes Sync plugin and it creates a checklist of notes that are "unprocessed". Unprocessed notes are fleeting notes that aren't "checked" within a checklist. Using this takes advantage of the links within Obsidian and allows you to reference Fleeting Notes wherever you please.
 
 This command is intended to be used alongside the Daily Notes plugin. At the end of every day, I'd run the "Insert Unprocessed Notes" command within the daily notes and go through each item in the checklist to process my fleeting notes.
 
@@ -39,3 +39,4 @@ source: ""
 deleted: true
 ---
 ```
+{{< youtube iXLyEvTZp9I >}}
