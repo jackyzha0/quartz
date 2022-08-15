@@ -75,4 +75,20 @@ I think It might be more productive to spend time figuring out what I actually w
 
 Should I show this to mum? I dont want to its embarrasing (why is that btw?)? I think showing it to her could only bring good things. I'm not thinking logically, why would I not show this to her, when theres nothing bad-
 
-There is something bad (not actual just imagined). I am sort of a "perfect" child. Jesus that is so vain. Anyway, I dont want to because it would be a hard conversation and I'm lazy and afraid (my life is ruled by fear).   
+There is something bad (not actual just imagined). I am sort of a "perfect" child. Jesus that is so vain. Anyway, I dont want to because it would be a hard conversation and I'm lazy and afraid (my life is ruled by fear) (not a good think to think I know) (although maybe it is good, becuase by recognising it I can (maybe?) work toward fixing it).
+
+I feel trapped. Trapped between ignoring/dismissing these bad, stupid thoughts as unproductive and unhealthy and self-deprecating, and actually accepting them as true and working towards fixing them. 
+
+I definitely have an overthinking problem. But there no way for me to know whether I'm actually overthinking or whether these are valid, contructive thoughts. 
+
+I think It will be very difficult (if not impossible) for me to climb out of this hole by myself. I need help. I need to actualy talk to someone about my feelings. 
+
+(seekers who are lovers is a great song)
+
+I think the happiest peope might be the stupid (ignorance is bliss) people. But are they really that stupid? They're happier than me aren't they? (what a weird thing to think). I dont know enought about them to compare them to me.
+
+Why-
+
+When did I start having these "deep" thoughts. They're not helpful. I've not been truly happy since primary school. I have had happy moments. But not lasting happiness. 
+
+I should be using philosphizet this as a way to find new perspectives (which I might agree with. I should be more critical), rather a 
