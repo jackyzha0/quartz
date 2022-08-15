@@ -111,6 +111,14 @@ In intermediate school (middle school in america I think), I-
 
 -did bad things. (future self you know what I did)
 
-I'm not sure if I really understood what I was doing. And I dont know how/if it still affects me. Maybe Its why I
+I'm not sure if I really understood what I was doing. And I dont know how/if it still affects me. Maybe Its why I'm afraid of-
 
 𝄞 I need theerapee 𝄞 (sing song voice)
+
+I also might be addicted to porn. I masturbate most nights. I watch some weird porn. Maybe this is why I'm afraid of being a creep? Why I didn't make move that night with larissa?
+
+Am I selfish? A self-proclaimed "niceguy"? Why does "niceguy" have bad connotations? Its becuse "niceguy" isn't referring to actual nice guys. It's about dickheads who appear nice and who are actually selfish. 
+
+Reddit is bad for me.
+
+Maybe it can be good. If I follow the right subs. But then I'll still be exposed to the general culture of reddit (I dont even know what I mean the the general culture of reddit). How has reddit benefitted me in a substantial way? - It hasn't. If it had I don't 
