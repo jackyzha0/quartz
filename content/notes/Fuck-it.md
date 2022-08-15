@@ -91,4 +91,26 @@ Why-
 
 When did I start having these "deep" thoughts. They're not helpful. I've not been truly happy since primary school. I have had happy moments. But not lasting happiness. 
 
-I should be using philosphizet this as a way to find new perspectives (which I might agree with. I should be more critical), rather a 
+I should be using philosphize this as a way to find new perspectives (which I might agree with. I should be more critical), rather than a phrase book for my life. 
+
+OoOhHh I need to be *eNlIgHtEnEd*. How can I expect myself to have achieved enlightenment by 19. Maybe I am on a track to becomeing a "true individual". 
+
+Or maybe I'm just overthinking. 
+
+Fear again. I'm afraid of overthinking. 
+
+Such a pussy. 
+
+Jesus. Im afraid of being not afraid. I think that If i'm more confident and start to "be myself", people will realise how stupid, boring, and digusting I really am. 
+
+
+
+Was I sexually assaulted by that bitch at soccer practice in primary? (She took me behind the storage container, asked me for a kiss, I said no, she said close your eyes, promise I wont kiss you. Then I closed my eyes, and she kissed me) Sounds fucking stupid right? Am I just looking for something to blame my social anxiety on? I wonder how people who were more seriously abused must feel? 
+
+In intermediate school (middle school in america I think), I-
+
+-did bad things. (future self you know what I did)
+
+I'm not sure if I really understood what I was doing. And I dont know how/if it still affects me. Maybe Its why I
+
+𝄞 I need theerapee 𝄞 (sing song voice)
