@@ -55,4 +55,12 @@ Usualy I feel like a sick cunt while I'm snowboarding or surfing or something, b
 
 Why do I care what others think of my style/skill? I want people to like me. This is normal (I hope). (frank zappa is a legend, blessed relief is a beautiful song). The question is whether I have a normal amount of "wanting people to like me". (could have said that more perfecter, but perfect grammer is not the point of this, im just thinking on my keyboard. I should stop adding these stupid brackets th). 
 
-Is there a point in wanting people to like you? Yes, it helps to find friends. ( just realised my need to be interesting is)
+Is there a point in wanting people to like you? Yes, it helps to find friends. ( just realised my need to be interesting comes from wanting people to like me) (just realised, fuck I forgot what I realised, need to learn to type faster). Assuming the ultimate goal of my life is to be happy (maybe having different goal like contributing to human progress, whatever that might be, may inadvertently(spelling?) create happiness), having people like me, helps to make friends, form connections, etc, which In turn create happiness(?). Maybe I if just do what I want to be happy, people with like me. Jesus, this is some circular bullshit. 
+
+I think i should go to therapy.
+
+But I know Im never gonna do that because I'm too lazy, and because I keep arguing with myself about needing it.
+
+Why am I writing this as if its addressed to someone? With annotations in brackets and stuff. Future self? (hello btw) Some authority (cool person, random redditor, therapist maybe)?
+
+Im fucked. No I'm not. I need to just be more accepting. Stoic. No I dont like stoicism, I prefer Nietzsche's [091-nietzsche-wilil-to-power](notes/091-nietzsche-wilil-to-power.md). I think not accepting leads to finding a way to fix it? Maybe stoicism is only about accepting the things you cant control. I think I need to read more about stoicism before I reject it. I'm tolerant of other ideas and cultures I think. Willing to see things from a different perspective. But, maybe I'm just a pushover and don't have any stong beliefs hindering my tolerance. Does there exist a tradeoff between tolerance and belief in ones values? Yes, an extreme example is that I belief in true facts (1 + 1 = 2) and I have no tolerance of people who disagree. But if I didn't believe in anyting, would I be necessarily tolerant of others Ideas? I dont think so. It is also possible for 
