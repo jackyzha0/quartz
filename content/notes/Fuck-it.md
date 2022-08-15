@@ -123,4 +123,26 @@ Reddit is bad for me.
 
 Maybe it can be good. If I follow the right subs. But then I'll still be exposed to the general culture of reddit (I dont even know what I mean the the general culture of reddit). How has reddit benefitted me in a substantial way? - It hasn't. If it had I don't think it would be this hard think of something. Introduced me to OE (is that really a good thing?). Lots of help with calisthenics and mobility. Cool art. Interesting articles about futurology. Although I could have got all those three things just as easily from other places. Whatever, I didn't really miss it that much when I deleted it for a week or two. 
 
-Same with instagram. It's hard not to feel inadequate. Because I compare myself to others. And judge them, and then project my judgemental nature onto other people and become scared that they'll judge me. Maybe I'm judgemen- . Am I actually judgemental? Yeah, sometimes I look at someone wearing clothes that don't fit my sujective standard of "coolness", and say in my head "why would you wear those stupid, tight jeans". But usually I catch myself, and realise that i'm being judgemental and that they can wear whatever the fuck they want and why should I care. Hmmm on second thought who know how many times i've subconciously judged people, and discr
+Same with instagram. It's hard not to feel inadequate. Because I compare myself to others. And judge them, and then project my judgemental nature onto other people and become scared that they'll judge me. Maybe I'm judgemen- . Am I actually judgemental? Yeah, sometimes I look at someone wearing clothes that don't fit my sujective standard of "coolness", and say in my head "why would you wear those stupid, tight jeans". But usually I catch myself, and realise that i'm being judgemental and that they can wear whatever the fuck they want and why should I care. Hmmm on second thought who knows how many times i've subconciously judged people, and discriminated against them because of it? Maybe I'm not so tolerant after all. 
+
+Maybe I need to "trust my insticts". But how do I know what fucking "instincts" are right, and which are wrong. What if all pedo's trusted their instincts (there must be a lot of people who fantansise but wont act). Yes I know its pretty clear that those intincts are wrong. But not all insticts are so clear cut. 
+
+Be yourself, but dont be x,y,z
+
+What if myself is x,y,z
+
+Then dont be myself dumbass.
+
+Be yourself, and dont be a dickhead.
+
+very Scary
+
+Need to have faith that I'm not a dickhead. Need to take a leap of faith into my self-religion.
+
+
+I wonder how many other people are like this?
+
+
+All this thinking hasn't inspired or motivated me one bit. Is it because I keep doubting myself. I ~~maybe~~ shouldn't expect an intropsective thinking session to motivate me. I shouldn't expect to be motivated. I (fuck this) just need to blindly do whatever I think is best in the moment, and trust my judgement, and be confident in my ability to succeed. And not think to hard about it. 
+
+I ~~think~~ it is nessesary (to learn how to spell that word) to stop and consider the general direction of my life. I.e., set goals and work towards them
