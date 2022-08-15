@@ -63,4 +63,16 @@ But I know Im never gonna do that because I'm too lazy, and because I keep argui
 
 Why am I writing this as if its addressed to someone? With annotations in brackets and stuff. Future self? (hello btw) Some authority (cool person, random redditor, therapist maybe)?
 
-Im fucked. No I'm not. I need to just be more accepting. Stoic. No I dont like stoicism, I prefer Nietzsche's [091-nietzsche-wilil-to-power](notes/091-nietzsche-wilil-to-power.md). I think not accepting leads to finding a way to fix it? Maybe stoicism is only about accepting the things you cant control. I think I need to read more about stoicism before I reject it. I'm tolerant of other ideas and cultures I think. Willing to see things from a different perspective. But, maybe I'm just a pushover and don't have any stong beliefs hindering my tolerance. Does there exist a tradeoff between tolerance and belief in ones values? Yes, an extreme example is that I belief in true facts (1 + 1 = 2) and I have no tolerance of people who disagree. But if I didn't believe in anyting, would I be necessarily tolerant of others Ideas? I dont think so. It is also possible for 
+Im fucked. No I'm not. I need to just be more accepting. Stoic. No I dont like stoicism, I prefer Nietzsche's [091-nietzsche-wilil-to-power](notes/091-nietzsche-wilil-to-power.md). I think not accepting leads to finding a way to fix it? Maybe stoicism is only about accepting the things you cant control. I think I need to read more about stoicism before I reject it. I'm tolerant of other ideas and cultures I think. Willing to see things from a different perspective. But, maybe I'm just a pushover and don't have any stong beliefs hindering my tolerance. Does there exist a tradeoff between tolerance and belief in ones values? Yes, an extreme example is that I belief in true facts (1 + 1 = 2) and I have no tolerance of people who disagree. But if I didn't believe in anyting, would I be necessarily tolerant of others Ideas? I dont think so. It is also possible for people who believe equally in something do have varied tolerance of other things.
+
+I think thats enought for today. I haven't done anything all day, and-
+
+I cant be fucked doing uni work. 
+
+Do I not care enough about what I'm studying? Do I have a good reason to be here? Am I making the most of my time? I think I am making *good enough* maybe even above average use. Above what average dumbass. I dont think it (dont know what to call making the most of your time) can be measured. It's relative to what you want to achieve in life. Which for me is to be happy. Ok, thats good and all but how are you going to be happy? Will to power? Acceptance? Stoicism? Buddism (ha bdsm)?  
+
+I think It might be more productive to spend time figuring out what I actually want to do, than just doing uni for the sake of it (I am lost in the finite and the infinite at the same time rn) (I could be wrong tho, maybe I don't actually understand what kiekegaard was saying). 
+
+Should I show this to mum? I dont want to its embarrasing (why is that btw?)? I think showing it to her could only bring good things. I'm not thinking logically, why would I not show this to her, when theres nothing bad-
+
+There is something bad (not actual just imagined). I am sort of a "perfect" child. Jesus that is so vain. Anyway, I dont want to because it would be a hard conversation and I'm lazy and afraid (my life is ruled by fear).   
