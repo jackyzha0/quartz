@@ -27,4 +27,24 @@ That's my real motivation. I think of myself as a boring person because I can't 
 
 I dont have "big thoughts". I tell myself I don't care about modern politics. Maybe I'm just lazy, to boring and stupid to have an original opinion on world issues. 
 
-Huh, I guess that's normal. I would imagine most people don't have original thoughts about world issues. Just the cool people who I know. And "influencers" who parrot what other people say. Kant said 
+Huh, I guess that's normal. I would imagine most people don't have original thoughts about world issues. Just the cool people who I know. And "influencers" who parrot what other people say. I think it was Kant (maybe aristotle, maybe marx) who said something about people not having original thoughts (maybe it was both). Oh, it was kant who said "enlightenment is man's emergence from a self-imposed state of immaturity (nonage?)". Basically what he meant was that from a young age we learn to depend on others — (not sure about the punctuation here) Parents, teachers, coaches, peers, etc. And that most people never learn to think for themselves. This certainly applies to me, I started listening to [philosophize-this](notes/philosophize-this.md) and it made me feel smart. But I never took the time to actually process and engage with the ideas being discussed. I just tried to memorise them and parrot them to friends (At least I never, at least not intentionally, claimed those ideas to be my own). 
+
+Got sidetracked again. 
+
+Just realised I was never on a track to begin with haha. I'm just freestyling baby.
+
+I'm also a coward. Somehow I managed to get Larissa to meet me at my (parents) place in Wanaka. Then we sat there and watched donnie darko, and I was too much of a pussy to make a move. On second thought, maybe that's not such a bad thing. Maybe it would have been wrong for me to make a move? I am so afraid of being a creep. Maybe it's because I am a creep. I know thats not a productive thing to think. I have no way to prove myself wrong though because I'm afraid that If i talk to someone about it they out me as a creep. 
+
+Fuck. I'm living my life in fear. Fear of failure, of beinig boring, of being a creep, etc etc. About to cry rn. 
+
+I should have dont this a long time ago. Writing like this makes it easy to think more clearly. Or maybe i'm overthinking. This shit is too hard.
+
+I'm not sui
+
+Not gonna finish that sentence.
+
+Cocteau twins are great btw. 
+
+I'm glad I learnt to type faster. Really helping me. I cant type fast enought that its not frustrating, but it limits the speed of my thinking in a way that allows me to self-evaluate (?). Not sure how to word that. 
+
+I've started to read more recently. Very good decision. I need to
