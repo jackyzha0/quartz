@@ -19,7 +19,7 @@ Anyway, I got a bit sidetracked there.
 
 I am getting behind in my uni work. I keep telling myself I work hard enough, harder than most. But people like Luc and Alex work so much harder than me. I tell myself that I don't want to be "excellent", just  good enough. And that I don't desire greatness enought to warrant the amount of work required. I think I might just be being lazy.
 
-I have a stong tendency to reject "popular" things. I have a strong bias towards novelty. Maybe It's because pop music its actually bad or maybe its because I just dont want to be "boring".
+I have a stong tendency to reject "popular" things. I have a strong bias towards novelty. Maybe It's because pop music (or pop whatever) is actually bad or maybe its because I just dont want to be "boring".
 
 That's my real motivation. I think of myself as a boring person because I can't hold a decent converstation, or speak eloquently. So I try to be interesting in other ways: snowboarding, surfing, music, movies, books, all that. And philosphy. But. But what? Does this make me actually interesting? Some girls in tinder seem to find me entertaining to talk to. But is it just because of the pickup lines and jokes I copied? I guess I'll never know without being origianl. Although, maybe there is an element of orgininality in that I selected the ones I liked. That's definitely a strech. 
 
@@ -147,6 +147,12 @@ All this thinking hasn't inspired or motivated me one bit. Is it because I keep 
 
 I ~~think~~ it is nessesary (to learn how to spell that word) to stop and consider the general direction of my life. I.e., set goals and work towards them, while periodically reviewing so that I don't go off track. It's like i'm playing heads down thumbs up, but everyone else has gone to lunch. Like I don't understand the assignment (read: the meaning of life). Obvisously I dont understand the meaning of life. But when doing actual assignments, I tend to just start and then figure it out as I go. Generally it works out ok. Although I rarely put in 100% effort. I could do a lot better If I just put in more effort. 
 
-This is another I have. Trying to find a balance between studying, and having fun. Yes, a trade off is neccessary (holy shit i think i spelt it right) because no pain no gain blah blah blah need to work hard ooga booga. 
+This is another issue I have. Trying to find a balance between studying, and having fun. Yes, a trade off is neccessary (holy shit i think i spelt it right) because no pain no gain blah blah blah need to work hard ooga booga. 
 
-I think I actually know how to and am capable of being better. But am too lazy, therefore am not capable of doing better. If I am capable of doing better, who don't I? ~~I think~~ ~~People~~ I forget about laziness, and procrastination when setting ~~their~~ my expectations of ~~themselves~~ myself. I set my expectations too high because I tell myself "I wont be lazy this semester". When I look back, my laziness has only got worse, not better. 
+I think I actually know how to and am capable of being better. But am too lazy, therefore am not capable of doing better. If I am capable of doing better, who don't I? ~~I think~~ ~~People~~ I forget about laziness, and procrastination when setting ~~their~~ my expectations of ~~themselves~~ myself. I set my expectations too high because I tell myself "I wont be lazy this semester". When I look back, my laziness has only got worse, not better. (But my grades were better last semester?).
+
+I don't want to stop writing. I'm procrastinating right now. 
+
+**Courage and Temperament**
+- Think, but dont overthink
+- etc
