@@ -47,4 +47,12 @@ Cocteau twins are great btw.
 
 I'm glad I learnt to type faster. Really helping me. I cant type fast enought that its not frustrating, but it limits the speed of my thinking in a way that allows me to self-evaluate (?). Not sure how to word that. 
 
-I've started to read more recently. Very good decision. I need to
+I've started to read more recently. Very good decision. I need to keep doing it. 
+
+Why don't I have cool style? Snowboarding, surfing, writing, photography, art, arts. Maybe I actually do, but I don't have high enough self-esteem to realise it. I wish I could see myself from someone else's perspective. I get plently of compiments about cool tricks, good photos, good surfing. But for some (stupid) reason I dont believe them. 
+
+Usualy I feel like a sick cunt while I'm snowboarding or surfing or something, but then when I watch the footage, I think I look stupid. Hmmmm, not always though. The Cab 9 on my insta is fucking sick. I know I'm good (at snowboarding) compared to most people, and I should (i think?) be content. Why do I compare myself to people like tiarn, and zoi, and oscar, and mitch, when I know they are the best in NZ. I am merely a weekend warrior, I don't train etc. On the other hand, there are people with far less technical skill than me, who are drippy as fuck. I think I just need to accept my style for what it is, and just focus on (aha moment) *impressing other people* with my techincal skill. 
+
+Why do I care what others think of my style/skill? I want people to like me. This is normal (I hope). (frank zappa is a legend, blessed relief is a beautiful song). The question is whether I have a normal amount of "wanting people to like me". (could have said that more perfecter, but perfect grammer is not the point of this, im just thinking on my keyboard. I should stop adding these stupid brackets th). 
+
+Is there a point in wanting people to like you? Yes, it helps to find friends. ( just realised my need to be interesting is)
