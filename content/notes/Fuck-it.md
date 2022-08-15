@@ -93,7 +93,7 @@ When did I start having these "deep" thoughts. They're not helpful. I've not bee
 
 I should be using philosphize this as a way to find new perspectives (which I might agree with. I should be more critical), rather than a phrase book for my life. 
 
-OoOhHh I need to be *eNlIgHtEnEd*. How can I expect myself to have achieved enlightenment by 19. Maybe I am on a track to becomeing a "true individual". 
+OoOhHh I need to be *eNlIgHtEnEd*. How can I expect myself to have achieved enlightenment by 19. Maybe I am on a track to becoming a "true individual". 
 
 Or maybe I'm just overthinking. 
 
@@ -105,7 +105,7 @@ Jesus. Im afraid of being not afraid. I think that If i'm more confident and sta
 
 
 
-Was I sexually assaulted by that bitch at soccer practice in primary? (She took me behind the storage container, asked me for a kiss, I said no, she said close your eyes, promise I wont kiss you. Then I closed my eyes, and she kissed me) Sounds fucking stupid right? Am I just looking for something to blame my social anxiety on? I wonder how people who were more seriously abused must feel? 
+Was I sexually assaulted by that bitch at soccer practice in primary? (She took me behind the storage container, asked me for a kiss, I said no, she said "close your eyes, promise I wont kiss you" then I closed my eyes, and she kissed me) Sounds fucking stupid right? Am I just looking for something to blame my social anxiety on? I wonder how people who were more seriously abused must feel? 
 
 In intermediate school (middle school in america I think), I-
 
@@ -121,4 +121,6 @@ Am I selfish? A self-proclaimed "niceguy"? Why does "niceguy" have bad connotati
 
 Reddit is bad for me.
 
-Maybe it can be good. If I follow the right subs. But then I'll still be exposed to the general culture of reddit (I dont even know what I mean the the general culture of reddit). How has reddit benefitted me in a substantial way? - It hasn't. If it had I don't 
+Maybe it can be good. If I follow the right subs. But then I'll still be exposed to the general culture of reddit (I dont even know what I mean the the general culture of reddit). How has reddit benefitted me in a substantial way? - It hasn't. If it had I don't think it would be this hard think of something. Introduced me to OE (is that really a good thing?). Lots of help with calisthenics and mobility. Cool art. Interesting articles about futurology. Although I could have got all those three things just as easily from other places. Whatever, I didn't really miss it that much when I deleted it for a week or two. 
+
+Same with instagram. It's hard not to feel inadequate. Because I compare myself to others. And judge them, and then project my judgemental nature onto other people and become scared that they'll judge me. Maybe I'm judgemen- . Am I actually judgemental? Yeah, sometimes I look at someone wearing clothes that don't fit my sujective standard of "coolness", and say in my head "why would you wear those stupid, tight jeans". But usually I catch myself, and realise that i'm being judgemental and that they can wear whatever the fuck they want and why should I care. Hmmm on second thought who know how many times i've subconciously judged people, and discr
