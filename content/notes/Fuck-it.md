@@ -145,4 +145,8 @@ I wonder how many other people are like this?
 
 All this thinking hasn't inspired or motivated me one bit. Is it because I keep doubting myself. I ~~maybe~~ shouldn't expect an intropsective thinking session to motivate me. I shouldn't expect to be motivated. I (fuck this) just need to blindly do whatever I think is best in the moment, and trust my judgement, and be confident in my ability to succeed. And not think to hard about it. 
 
-I ~~think~~ it is nessesary (to learn how to spell that word) to stop and consider the general direction of my life. I.e., set goals and work towards them
+I ~~think~~ it is nessesary (to learn how to spell that word) to stop and consider the general direction of my life. I.e., set goals and work towards them, while periodically reviewing so that I don't go off track. It's like i'm playing heads down thumbs up, but everyone else has gone to lunch. Like I don't understand the assignment (read: the meaning of life). Obvisously I dont understand the meaning of life. But when doing actual assignments, I tend to just start and then figure it out as I go. Generally it works out ok. Although I rarely put in 100% effort. I could do a lot better If I just put in more effort. 
+
+This is another I have. Trying to find a balance between studying, and having fun. Yes, a trade off is neccessary (holy shit i think i spelt it right) because no pain no gain blah blah blah need to work hard ooga booga. 
+
+I think I actually know how to and am capable of being better. But am too lazy, therefore am not capable of doing better. If I am capable of doing better, who don't I? ~~I think~~ ~~People~~ I forget about laziness, and procrastination when setting ~~their~~ my expectations of ~~themselves~~ myself. I set my expectations too high because I tell myself "I wont be lazy this semester". When I look back, my laziness has only got worse, not better. 
