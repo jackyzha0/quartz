@@ -9,6 +9,8 @@ sr-interval: 3
 sr-ease: 250
 ---
 
+- ![terminology](https://i.imgur.com/p3b7Z0i.png)
+
 # news
 - pegasus project
 - cutting internet cables
@@ -62,20 +64,48 @@ can also be used to compare complexity of passwords
 - ![collision probability slide|400](https://i.imgur.com/auwVphr.png)
 
 ## uses of hashing
-![hashing security appplications slide|400](https://i.imgur.com/v5T9yTB.png)
+- ![hashing security appplications slide|400](https://i.imgur.com/v5T9yTB.png)
+- ![2|400](https://i.imgur.com/B9fgkGv.png)
 
-
-# Binary
+## good algorithms
+- ![safe|400](https://i.imgur.com/BlvhRJw.png)
+- ![not-safe|400](https://i.imgur.com/6ssAVGK.png)
 
 
 # One-time-pads
-
+- basic idea
+	- generate single-use truly-random key they is at least as long as the plaintext
+	- combine the key with the plaintext using XOR one bit at a time
+	- resulting ciphertext looks like random noise
+	- decryption must use same key (symmetric)
 
 ## limitations
-
+impossible to crack, if properly implemented.
+- but key must be shared
+- key distribution problem
+- need long, truly random, one time keys
+	- must be used only once
 
 # assymetric cryptography
+uses different but mathematically related keys for encrption and decryption
+
+![asymmetric enryptio process|400](https://i.imgur.com/6fLEB5Z.png)
+
+![symmetric diagram|400](https://i.imgur.com/hGaHUWO.png)
+
+![asymmetric enryption diagram|400](https://i.imgur.com/0gp24Re.png)
+
 
 
 # digital signatures
+encryption + signing. signing verfies authenticity of sender
 
+![signing|400](https://i.imgur.com/kSqMnNC.png)
+![signin diagram|400](https://i.imgur.com/f9LSnIA.png)
+
+stream ciphers vs block ciphers
+
+one bit at a time vs chunks
+
+reciprocal cipher
+![slide|400](https://i.imgur.com/fzxBWM9.png)
