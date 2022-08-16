@@ -19,3 +19,4 @@ tags:
 - [093-nietzsche-pt4-love](notes/093-nietzsche-pt4-love.md)
 - [094-a-look-at-suffering](notes/094-a-look-at-suffering.md)
 - [095-are-we-living-in-a-simulation](notes/095-are-we-living-in-a-simulation.md)
+- 
