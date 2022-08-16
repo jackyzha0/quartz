@@ -6,10 +6,9 @@ openToc: true
 
 ![overment](https://space.overment.com/overment/overment.png)
 
-This is where I share everything I know with you. I created it primarily for myself, so that I can easily return to all the material posted here. At the same time, I thought you might find it all equally valuable to you.
+Here, I share everything I know. I created this place primarily for myself, so I can easily return to all the materials posted here. At the same time, I thought you might find it all equally valuable to you. Please keep in mind, that this project won't be finished and what's more important, many things will change over time. What is true for me today, probably tomorrow won't be. 
 
-## You can find here
-
+## You can find here:
 * My [[Foundations/Process]] which I implement every day and which is constantly changing, This keeps me moving in the [[Foundations/Direction]]  I have set for myself based on [[Foundations/Values]] and getting to [[Foundations/Understanding myself]]
 * How I build my [[Foundations/Knowledge acquisition system]]
 * [[Knowledge/Mental models/Mental models]] I consciously use

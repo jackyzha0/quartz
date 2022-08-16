@@ -1,5 +1,5 @@
 ---
-title: Equipment
+title: Hardware
 ---
 
 ## Context
