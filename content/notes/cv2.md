@@ -20,16 +20,10 @@ I often stay up far too late fixating on a stubborn bug or a difficult feature. 
 <hr>
 
 # Skill Summary
-## Web Development
+## Problem Solving
 - react native app
 - nzbirds app
 - album of the day site + API
-
-## Time Management
-- overseas
-- winters
-- working + studying + surfing + projects
-- grades
 
 ## Independent Learning
 - react native + javascript
@@ -42,6 +36,8 @@ I often stay up far too late fixating on a stubborn bug or a difficult feature. 
 - worked at company-x with an international team. 
 - worked with a local team 
 - asked questions
+
+# 
 
 <hr>
 
@@ -63,37 +59,13 @@ Otago University (2021 - present)
 <hr>
 
 # Technical Skills
-## Java
-- 2 years
-- andie
-	- kernel thing
-	- k means posterise
+## Solution Design
 
-## Python
-- info 204
-- motion detector
-- slack + python bots
+## User Experience
 
-## Javascript
-- react native app
-- nz birds site
-- discord bot
+## Front-End Development
 
-## React Native
-- react native app
-
-## Back End/Other
-- CI/CD
-- nodeJs
-- flask
-- zappa
-- aws
-- docker
-- linux
-- terminal
-	- powershell etc
-	- vim
-	- 
+## Adobe Suite
 
 <hr>
 
