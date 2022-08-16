@@ -4,6 +4,9 @@ aliases:
 tags: 
 - comp210
 - lecture
+sr-due: 2022-08-19
+sr-interval: 3
+sr-ease: 250
 ---
 
 
@@ -47,4 +50,18 @@ TCP model
 - trusted third parties are used to sign server host's certificates
 - "tree of trust"
 - based on public key crypto
+
+# GPG
+GNU privacy gurad (free libre open source) work alike for PGP
+
+![GPG example|400](https://i.imgur.com/9f2TJl2.png)
+
+# S/MIME
+cryptography for email
+
+secure multipupose internet mail expensions
+
+often not used, as it is not usually built in
+
+# Crypto
 

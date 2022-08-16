@@ -31,4 +31,4 @@ No final exam
 - [04-authentication-authorisation-passwords](notes/04-authentication-authorisation-passwords.md)
 - [05-cryptography](notes/05-cryptography.md)
 - [06-hashing-binary-public-key-cryptography](notes/06-hashing-binary-public-key-cryptography.md)
-- 
+- [07-cryptography-applications](notes/07-cryptography-applications.md)
