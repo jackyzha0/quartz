@@ -30,4 +30,5 @@ No final exam
 - [03-threats-social-engineering-and-failures](notes/03-threats-social-engineering-and-failures.md)
 - [04-authentication-authorisation-passwords](notes/04-authentication-authorisation-passwords.md)
 - [05-cryptography](notes/05-cryptography.md)
+- [06-hashing-binary-public-key-cryptography](notes/06-hashing-binary-public-key-cryptography.md)
 - 
