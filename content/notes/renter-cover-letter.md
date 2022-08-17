@@ -5,38 +5,20 @@ tags:
 - 
 ---
 
-Jet Hughes
-597 George St
-Dunedin, 9016
+To whom it may concern,
 
-17/08/2022
+My name is Jet Hughes and I have a keen interest in renting the apartment you have available at 128 Forth St.
 
-(Landlord or Property Manager Name)  
-(Address)  
-(City, State Zip)
+I currently live at 597 George St and have lived there for 6 months. I am looking for a new place to live because I want to move out of my studio room and into a flat with close friends. I find your flat particularly appealing because it is close to the Uni, has a nice view and looks very clean and tidy.
 
-Dear (Name of landlord or property manager),
+I believe I'd be a wonderful tentant at this property — and here's why. I am employed part-time Company-X and have been working there for 2 years. I am also studying Computer Science at the University of Otago. In my free time, I snowboard, surf, and love hiking. I also enjoy reading, drawing, cooking, and gardening.
 
-My name is (Your name) and I have a keen interest in renting the apartment you have available at (Property name or address).
+I am quiet and friendly, a good tenant who always pays bills on time. Attached you will find my [renter resume](https://www.apartmentguide.com/blog/sample-letter-renter-resume/), along with several references from previous landlords, my snowboard coach, and my current project manager.
 
-I currently live at (Your current address) and have lived there for (XX) years. I am looking for a new place to live because (reason for moving: closer to home, closer to family, downsizing, etc.). I find your (apartment community/available unit/rental home) particularly appealing because (list specifically why you want to live in this property).
-
-[The next two paragraphs apply only for potential tenants who will be utilizing an assistance program; omit if not applicable.]
-
-While my current monthly income is $(X,XXX), I have been approved for rental assistance through the (name of your program). This program is funded by and administered by (organization funding the program). A brief fact sheet about the program is attached to this letter.
-
-Per the plan, I will pay (XX percent) of my monthly adjusted income toward rent, enabling me to make rent, in full, each month with no problem. (Program name) pays the remainder of my rent each month.
-
-I believe I'd be a wonderful addition to your rental community — and here's why. I am employed at (Your employer) and have been working there for (XX) years. In my free time, I (list some interests here and other things about yourself. For instance: play on the company softball team, coach your daughter's soccer team, volunteer at specific organizations and enjoy hiking and baking. My current neighbors will miss my banana bread when I make the move to your community!)
-
-I am quiet and friendly, a good neighbor who always pays bills on time. Attached you will find my [renter resume](https://www.apartmentguide.com/blog/sample-letter-renter-resume/), along with [several references](https://www.apartmentguide.com/blog/sample-letter-of-recommendation-for-your-apartment/) from neighbors and co-workers, as well as staffers from my current rental community.
-
-If you have any questions, please don't hesitate to call or e-mail me at (Your phone number) or (Email address).
+If you have any questions, please don't hesitate to call or e-mail me at 027 650 9548 or jethughes0@gmail.com.
 
 Thank you very much for considering my rental application. I look forward to hearing from you.
 
 Sincerely,
 
-(Signature)
-
-(Printed name)
+Jet Hughes
