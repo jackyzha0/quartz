@@ -21,9 +21,7 @@ I often stay up far too late fixating on a stubborn bug or a difficult feature. 
 
 # Skill Summary
 ## Problem Solving
-- react native app
-- nzbirds app
-- album of the day site + API
+I love solving problems. Tell me yours! 
 
 ## Independent Learning
 - react native + javascript
