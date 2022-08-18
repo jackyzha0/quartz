@@ -65,7 +65,6 @@ SANS - (SysAdmin, Audit, Network, Security) Institute. A research and education 
 MITRE - A not-for-profit research organisation that works with the US government.
 
 ## Top 25 errors
-
 1. Out-of-bounds Write ** 
 2. Cross-site Scripting (XSS) ** 
 3. Out-of-bounds Read ** 
@@ -96,14 +95,58 @@ MITRE - A not-for-profit research organisation that works with the US government
 **. covered in this lecture
 *. Covered in other lectures 
 
-1
-Injection 2
-Broken Authentication 3
-Sensitive Data Exposure 4
-XML External Entities (XXE) 5
-Broken Access Control 6
-Security Misconfiguration 7
-Cross-Site Scripting (XSS) 8
-Insecure Deserialization 9
-Using Components with Known Vulnerabilities 10
-Insufficient Logging & Monitoring
+## OWASP top 10 errors
+1. Injection 
+2. Broken Authentication 
+3. Sensitive Data Exposure 
+4. XML External Entities (XXE) 
+5. Broken Access Control 
+6. Security Misconfiguration 
+7. Cross-Site Scripting (XSS) 
+8. Insecure Deserialization 
+9. Using Components with Known Vulnerabilities 1
+0. Insufficient Logging & Monitoring
+
+# Software development is not a core competency
+- A ‘core competency’ is an area that an organisation has extensive skill and experience in.
+	- Usually something that contributes directly to the organisation’s revenue stream, and that they consider to be a competitive advantage.
+- Unless the organisation is actually a software development business (or similar) then they probably lack the necessary skills and experience to manage a development project.
+	- Often massively underestimating the costs and complexity. 
+		- Ideally they will contract the development to a reputable software development company. 
+		- Too often this is not the case.
+
+# Layers of abstraction
+1. Transistors
+2. Logic gates
+3. Arithmetic circuits
+4. Arithmetic logic units (ALU)
+5. Instruction set architectures (ISA)
+6. Machine code
+7. Compilers
+8. Programming languages
+9. OS kernels and drivers 
+10. System APIs 
+11. Programming language APIs 
+12. Library APIs 
+13. Application APIs 
+14. Applications
+
+It is very likely that there are security flaws in lower layers before we even start writing code
+
+# Deficiencies in programming languages
+some of these flaws are due to issue with programming languages. e.g.,
+- buffer overflow (1, 3, 17)
+- use after free (7)
+
+Ideally the compiler or runtime should be able to detect these and throw an error. Some languages, like C and C++ dont. This is why some experts reccomend that they shuold no longer be used for systems and server programming
+
+# Injection flaws
+## SQL injection
+- a user provides malicious data which gets executed due to poorly constructed code.
+
+- fix by using prepared statements(java) or equivalent
+- use input sanitation libraries
+
+## command injection
+
+## cross site scripting
