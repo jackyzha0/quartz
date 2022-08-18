@@ -38,7 +38,7 @@ $dim(U\cap W) \leq 4$ so from the formula $dim(U+W) = dim(U) + dim(W) - dim(U \c
 
 (c). Max value of $dim(U+W)$
 
-We have $dim(U+W) \leq dim(U) + dim(W) = 11$. But since $U+W$ is a subspace of $V$ which has dimension $10$ , we must have $dim(U+W) \leq 10$. To show that this can be achieved, we could let $\{v_1,...,v_{10}\}$ be a basis for V, and choose $U = span\{v_1, v_2, v_3, v_4, v_5, v_5, v_7)\}$ and $W=span\{v_7,v_8,v_9,v_{10}\}$. Then $U+W$ will contain the basis for $V$ and hence $U+W=V$. So the maximum possible value of dim(U+W) is 10.
+We have $dim(U+W) \leq dim(U) + dim(W) = 11$. But since $U+W$ is a subspace of $V$ which has dimension $10$ , we must have $dim(U+W) \leq 10$. To show that this can be achieved, we could let $\{v_1,...,v_{10}\}$ be a basis for V, and choose $U = span\{v_1, v_2, v_3, v_4, v_5, v_5, v_7)\}$ and $W=span\{v_7,v_8,v_9,v_{10}\}$. Then $U+W$ will contain the basis for $V$ and hence $U+W=V$. So the maximum possible value of dim(U+W) is 10. ==need to reword==
 
 (d). Since $dim(U+W) \leq 10$ and $dim(U+W) = 11 - dim(U\cap W)$, we have $dim(U\cap W) \geq 11-10= 1$ 
 
@@ -46,6 +46,16 @@ We have $dim(U+W) \leq dim(U) + dim(W) = 11$. But since $U+W$ is a subspace of $
 
 # 3.
 Let $U$ = $\{p\in P_2(\mathbb{R}): p(x)$ is divisible by $x-3\}$. Then U is a subspace of P2
+
 (a) Find a basis of U.
 
 Suppose a polynomial of degree 2 is divisible by $x-3$ . It can be written as $(x-3)(ax+b)$ where $a,b \in \mathbb{R}$. Then we have a basis $\{(x-3), x(x-3)\}$
+
+To prove this is a basis we need to show that it is linearly independent and that is spans $U$ . To show linear independece if $a(x-3)+b(x^2+3x) = (0x^2 + 0x + 0)$, we have $-3a=0, a-3b=0$ and $b =0$. So $a=b=0$ and the only linear combination equal to the zero vector is the one where $a=b=0$, hence this set is linearly independent. ==need to add proof of span==
+
+(b). Find another subspace $W$ of $P_2(\mathbb{R})$ such that $U+W$ is a direct sum.
+
+Need to find $W$ where $U\cap W = \{0_v\}$ and $U+W = P_2(\mathbb{R})$. We have a basis of $U = \{(x-3), (x^2-3x)\}$. We can adjoin a basis $\{1, x, x^2\}$ of $P_2(\mathbb{R})$ to get a spanning set $\{x-3, x^2-3x,1, x, x^2\}$ of $P_2(\mathbb{R})$. 
+
+The 3rd vector is not a linear combination of the first two. The 4th vector is  a linar combination of the 1st and 3rd vectors: $(x)=(x-3)+3(1)$ 
+
