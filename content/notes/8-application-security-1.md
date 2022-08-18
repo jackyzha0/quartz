@@ -4,6 +4,9 @@ aliases:
 tags: 
 - comp210
 - lecture
+sr-due: 2022-08-21
+sr-interval: 3
+sr-ease: 250
 ---
 
 application development security
@@ -150,3 +153,6 @@ Ideally the compiler or runtime should be able to detect these and throw an erro
 ## command injection
 
 ## cross site scripting
+second order attack - inject redirect as data will be displayed on other users webpages
+- session id is as good as username and passoword
+
