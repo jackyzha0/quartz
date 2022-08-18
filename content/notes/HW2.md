@@ -57,5 +57,7 @@ To prove this is a basis we need to show that it is linearly independent and tha
 
 Need to find $W$ where $U\cap W = \{0_v\}$ and $U+W = P_2(\mathbb{R})$. We have a basis of $U = \{(x-3), (x^2-3x)\}$. We can adjoin a basis $\{1, x, x^2\}$ of $P_2(\mathbb{R})$ to get a spanning set $\{x-3, x^2-3x,1, x, x^2\}$ of $P_2(\mathbb{R})$. 
 
-The 3rd vector is not a linear combination of the first two. The 4th vector is  a linar combination of the 1st and 3rd vectors: $(x)=(x-3)+3(1)$ 
+The 3rd vector is not a linear combination of the first two. The 4th vector is  a linar combination of the 1st and 3rd vectors: $(x)=(x-3)+3(1)$. So we eliminate the 4th vector. The 5th vector is a linear combination of the 2nd 3rd and 1st vector: $(x^2) = (x^2-3x) + 3(x-3) +9(1) = x^2 - 3x +3x -9 + 9 = x^2$. So we eliminate the 5th vector. This leaves the basis $\{x-3. x^2-3x,1\}$ of $P_2(\mathbb{R})$. Let $W=span\{(1)\}$. To show that the sum $U+W$ is direct we compute $U\cap W$. $W$ consists of all polynomials of degree 0, and $U$ consists polynomials divisible by $x-3$. The only polynomial of degree 0 divisible by $x-3$ is $0$. So $U\cap W = \{0\}$, hence the sum is direct.
+
+To show the sum is equal to $P_2(\mathbb{R})$, we use the formula $dim(U+W) = dim(U) + dim(W) - dim(U \cap W)=2+1-0=3$ since $U+W$ is a subspace of $P_2(\mathbb{R})$ of dimension 3, we must have $U+W=P_2(\mathbb{R})$. 
 
