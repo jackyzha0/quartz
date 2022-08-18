@@ -30,11 +30,15 @@ Let $V$ be a vector space such that $dim(V)= 10$. Let $U$ and $W$ denote subspac
 
 (a). What is the max value of $dim(U\cap W)$, assuming $dim(U)=7$ and $dim(W)=4$ ?
 
-From the formula $dim(U+W) = dim(U) + dim(W) - dim(U \cap W)$ we have $dim(U+W) = 7 + 4 - dim(U \cap W)$.
+The largest possible dimension of $(U\cap W)$ is 4 which occurs when $W$ is entirely contained in $U$.
 
-The largest possible dimension of $(U\cap W)$ is 4 which occurs when $W$ is entirely contained in $U$. So we have $dim(U\cap W) \leq 4$  hence the maximum pos$dim(U+W) = 7+4 - 4
+(b). What is the min value of $dim(U+W)$
 
+$dim(U\cap W) \leq 4$ so from the formula $dim(U+W) = dim(U) + dim(W) - dim(U \cap W)$ we have $dim(U+W) \geq 7 + 4 - 4= 7$.
 
+(c). Max value of $dim(U+W)$
+
+We have $dim(U+W) \leq dim(U) + dim(W) = 11$. But since $U+W$ is a subspace of $V$ which has dimension $10$ , we must have $dim(U+W) \leq 10$. 
 
 # 3.
 Let $U$ = $\{p\in P_2(\mathbb{R}): p(x)$ is divisible by $x-3\}$. Then U is a subspace of P2
