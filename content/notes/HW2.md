@@ -26,7 +26,16 @@ To show linear independence, if $a(1-x)+b(2x^2)+c(3+x^2)=(0x^2 + 0x + 0)$, we ha
 To show linear independence, if $a(0 +2x+0x^2)+b(4+2x-x^2)+c(-4-6x+x^2)=(0+0x+0x^2)$, we have $4b-4c=0$, $2a+2b-6c=0$ and $-b+c = 0$. So $b=c$ which implies $-c+c=0$ and $2a+2c-6c=0$ so $a=2c=2b$. But this does no force $a,b,c$ t obe zero; we could have e.g., $a=2$ and $b=c=1$. Therefore we have a linear combination of the vectors that gives the zero vector when the coefficients are not all zero. So it is linearly dependent, and therefore can't be a basis.
 
 # 2. 
+Let $V$ be a vector space such that $dim(V)= 10$. Let $U$ and $W$ denote subspaces of $V$.
+
+(a). What is the max value of $dim(U\cap W)$, assuming $dim(U)=7$ and $dim(W)=4$ ?
+
+From the formula $dim(U+W) = dim(U) + dim(W) - dim(U \cap W)$ we have $dim(U+W) = 7 + 4 - dim(U \cap W)$.
+
+The largest possible dimension of $(U\cap W)$ is 4 which occurs when $W$ is entirely contained in $U$. So we have $dim(U\cap W) \leq 4$  hence the maximum pos$dim(U+W) = 7+4 - 4
+
+
+
+# 3.
 Let $U$ = $\{p\in P_2(\mathbb{R}): p(x)$ is divisible by $x-3\}$. Then U is a subspace of P2
-
 (a) Find a basis of U.
-
