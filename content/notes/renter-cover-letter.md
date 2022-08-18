@@ -1,10 +1,3 @@
----
-title: "renter-cover-letter"
-aliases: 
-tags: 
-- 
----
-
 To whom it may concern,
 
 My name is Jet Hughes and I have a keen interest in renting the apartment you have available at 128 Forth St.
