@@ -38,7 +38,7 @@ $dim(U\cap W) \leq 4$ so from the formula $dim(U+W) = dim(U) + dim(W) - dim(U \c
 
 (c). Max value of $dim(U+W)$
 
-We have $dim(U+W) \leq dim(U) + dim(W) = 11$. But since $U+W$ is a subspace of $V$ which has dimension $10$ , we must have $dim(U+W) \leq 10$. To show that this can be achieved, we could let $\{v_1,...,v_{10}\}$ be a basis for V, and choose $U = span\{v_1, v_2, v_3, v_4, v_5, v_5, v_7)\}$ and $W=span\{v_7,v_8,v_9,v_{10}\}$. Then $U+W$ will contain the basis for $V$ and hence $U+W=V$. So the maximum possible value of dim(U+W) is 10. ==need to reword==
+We have $dim(U+W) \leq dim(U) + dim(W) = 11$. But since $U+W$ is a subspace of $V$ which has dimension $10$ , we must have $dim(U+W) \leq 10$. To show that this can be achieved, we could let $\{v_1,...,v_{10}\}$ be a basis for V, and choose $U = span\{v_1, v_2, v_3, v_4, v_5, v_5, v_7)\}$ and $W=span\{v_7,v_8,v_9,v_{10}\}$. Then $U+W$ will contain the basis for $V$ and hence $U+W=V$. So the maximum possible value of dim(U+W) is 10.
 
 (d). Since $dim(U+W) \leq 10$ and $dim(U+W) = 11 - dim(U\cap W)$, we have $dim(U\cap W) \geq 11-10= 1$ 
 
