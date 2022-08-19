@@ -62,3 +62,15 @@ The 3rd vector is not a linear combination of the first two. The 4th vector is  
 To show the sum is equal to $P_2(\mathbb{R})$, we use the formula $dim(U+W) = dim(U) + dim(W) - dim(U \cap W)=2+1-0=3$ since $U+W$ is a subspace of $P_2(\mathbb{R})$ of dimension 3, we must have $U+W=P_2(\mathbb{R})$. 
 
 # 4. 
+Let $V$ and $W$ be vector spaces over $\mathbb{R}$ and $T: V → W$ a linear transformation. Let $\{v_1,...,.v_n\}$ be a basis for $V$
+
+(a) Since T is linear and $\{v_1,...,.v_n\}$ is s basis of $V$ $range(T) = T(V) = \{T(v): v \in V\}$. So $V= a_{1}v_{1}+...+a_{n}v_{n}$ for $a_1,...,a_n \in \mathbb{R}$. Then $T(V) = T(a_{1}v_{1}+...+a_{n}v_{n}) = a_{1}T(v_1)+...+a_{n}T(v_n)$ So $range(T) = T(V)$ is a linear combination of ${T(v_1),...,T(v_n)}$. So this must be a spanning set of $range(T)$
+
+(b) let $V = \mathbb{R}^2$ and  $W = \mathbb{R}^2$. Let $V$ have a basis $\{(1,0), (0,1)\}$ Define $T:V→W$ by $T(x,y) = (x,y+3)$
+
+# 5.
+
+(a)
+
+
+(b) 
