@@ -51,7 +51,7 @@ Let $U$ = $\{p\in P_2(\mathbb{R}): p(x)$ is divisible by $x-3\}$. Then U is a su
 
 Suppose a polynomial of degree 2 is divisible by $x-3$ . It can be written as $(x-3)(ax+b)$ where $a,b \in \mathbb{R}$. Then we have a basis $\{(x-3), x(x-3)\}$
 
-To prove this is a basis we need to show that it is linearly independent and that is spans $U$ . To show linear independece if $a(x-3)+b(x^2+3x) = (0x^2 + 0x + 0)$, we have $-3a=0, a-3b=0$ and $b =0$. So $a=b=0$ and the only linear combination equal to the zero vector is the one where $a=b=0$, hence this set is linearly independent. ==need to add proof of span==
+To prove this is a basis we need to show that it is linearly independent and that is spans $U$ . To show linear independece if $a(x-3)+b(x^2+3x) = (0x^2 + 0x + 0)$, we have $-3a=0, a-3b=0$ and $b =0$. So $a=b=0$ and the only linear combination equal to the zero vector is the one where $a=b=0$, hence this set is linearly independent. Since U must have dimension 2, it must be a spanning set and therefore must be a basis.
 
 (b). Find another subspace $W$ of $P_2(\mathbb{R})$ such that $U+W$ is a direct sum.
 
@@ -61,3 +61,4 @@ The 3rd vector is not a linear combination of the first two. The 4th vector is  
 
 To show the sum is equal to $P_2(\mathbb{R})$, we use the formula $dim(U+W) = dim(U) + dim(W) - dim(U \cap W)=2+1-0=3$ since $U+W$ is a subspace of $P_2(\mathbb{R})$ of dimension 3, we must have $U+W=P_2(\mathbb{R})$. 
 
+# 4. 
