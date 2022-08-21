@@ -44,9 +44,11 @@ you can play a different set of notes (a scale) over the base key. e.g., a blues
 
 root note - note that we start the scale on
 
-# major
-
 major pattern - 2 wholetones 1 semitone 3 whole tones 1 semitone
+
+numbering notes - each note in a scale is given a number: 1 is the root note, then 2, then 3 etc
+
+accidental - a flat for sharp note
 
 
 
