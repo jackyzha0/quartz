@@ -71,5 +71,12 @@ major - root 3 4
 
 you can have minor chords in major scales
 
+# Melodies
+
+notes can be within or not in the current chord
+
+melodies with the pentatonic (remove 4th and 7th note) something are good
+
+
 
 
