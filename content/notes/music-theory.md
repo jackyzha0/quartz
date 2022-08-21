@@ -50,6 +50,26 @@ numbering notes - each note in a scale is given a number: 1 is the root note, th
 
 accidental - a flat for sharp note
 
+# Chords
+
+multiple notes at the same time
+
+set emotion - guide the user through story
+
+usually in the same key
+
+most common - triads - 1 3 5 - play skip play skip play
+
+# Major vs minor
+major - happy
+minor - sad
+
+usually
+
+major - root 4 3
+major - root 3 4
+
+you can have minor chords in major scales
 
 
 
