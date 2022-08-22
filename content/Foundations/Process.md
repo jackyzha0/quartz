@@ -9,7 +9,7 @@ I operate on the basis of a proprietary [[Knowledge/Dictionary/Process]], design
 
 ## Context
 
-It is widely accepted that setting a [[Knowledge/Dictionary/Goal]]s is **essential to achieving results.** Others say it's better to work on a process [[Knowledge/Dictionary/Process]] basis.
+It is widely accepted that setting a [[Knowledge/Dictionary/Goal]]s is **essential to achieving results.** Others say it's better to work on a [[Knowledge/Dictionary/Process]] basis.
 
 I myself act on the basis of the [[Knowledge/Dictionary/Goal]] AND [[Knowledge/Dictionary/Process]] (a concept [[Knowledge/Mental models/Genius of The AND]] from [[Knowledge/People/Jim Collins]]).
 

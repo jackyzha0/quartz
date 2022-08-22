@@ -7,17 +7,19 @@ I see the ability to **acquire knowledge quickly** as one of the most important,
 For example, I see from myself that my memory has become incomparably better over the past few years. I could be wrong but I assume they have an effect on this:
 
 - reading [[Knowledge/Books/Books]]
-- knowledge from the podcast [[Knowledge/Podcasts/Huberman Lab]]
+- listening to i.e.:  [[Knowledge/Podcasts/Huberman Lab]]
 - taking care of [[Foundations/Process#The foundation]] (for example, about sleep and rest)
+- much less stress
 
 ## How do I learn new topics?
 It's a process based on **surrounding myself with a chosen topic** based on the **best available sources**, which I choose carefully. I believe they define how effectively I learn.
 
 Sources are usually centered around people or projects. There are also people around them who are worth watching. We can say that it is a network of connections that allows us to reach out to more sources and thus shape our entire environment.
 
-Books are another part of the knowledge acquisition process. The key is just to choose the right titles. The aforementioned sources help with this.
+[[Knowledge/Books/Books]] are another part of the knowledge acquisition process. The key is just to choose the right titles. The aforementioned sources help with this.
 
-**So in simple terms:** 
+**Basically:** 
+- Reading a book is in a way, like a conversation with an author
 - I treat the whole process as fun and having a good time
 - I accept everything I find with openness and detachment
 	- openness: I assume that the information is true and valuable
@@ -36,7 +38,7 @@ Na [[Projects/Ahoy!]] I described the detailed process of how I learn (polish on
 
 ![](https://space.overment.com/Screen-Shot-2022-05-02-17-34-46-wwzjR/Screen-Shot-2022-05-02-17-34-46.png)
 
-Link: [](https://community.ahoy.so/c/podziel-sie-wiedza-a4965c/jak-sie-ucze)
+Link: [How Do I Learn? (PL)](https://community.ahoy.so/c/podziel-sie-wiedza-a4965c/jak-sie-ucze)
 
 ## Newsletters
 - https://trends.co
@@ -57,4 +59,4 @@ Link: [](https://community.ahoy.so/c/podziel-sie-wiedza-a4965c/jak-sie-ucze)
 - http://www.paulgraham.com
 - https://www.britannica.com/browse/Science
 - https://www.wealest.com
-- https://untools.co/
+- https://untools.co
