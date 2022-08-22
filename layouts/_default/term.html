@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ .Lang }}">
 {{ partial "head.html" . }}
 
 <body>
@@ -8,7 +8,7 @@
     <!-- Begin actual content -->
     {{partial "header.html" .}}
     <article>
-        <h1>Tag: {{ .Title }}</h1>
+        <h1>{{ i18n "tag" }}: {{ .Title }}</h1>
         {{with .Params.description}}
             <p>{{.}}</p>
         {{end}}
@@ -18,5 +18,4 @@
     {{partial "contact.html" .}}
 </div>
 </body>
-
 </html>

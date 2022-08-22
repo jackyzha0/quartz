@@ -10,7 +10,7 @@
     <article>
       {{if .Title}}<h1>{{ .Title }}</h1>{{end}}
       <p class="meta">
-          Last updated {{ partial "date-fmt.html" .}} 
+        {{ i18n "last_updated" }} {{ partial "date-fmt.html" .}} 
           {{ partial "github.html" . }}
       </p>
       <ul class="tags">
@@ -24,5 +24,4 @@
     {{partial "footer.html" .}}
 </div>
 </body>
-
 </html>
