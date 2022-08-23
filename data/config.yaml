@@ -3,10 +3,17 @@ enableToc: true
 openToc: false
 enableLinkPreview: true
 enableLatex: true
+enableCodeBlockTitle: true
+enableCodeBlockCopy: true
+enableCallouts: true
 enableSPA: true
 enableFooter: true
 enableContextualBacklinks: true
 enableRecentNotes: true
+enableGitHubEdit: true
+GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
+enableSemanticSearch: false
+operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
 description:
   Jaden Lorenc's site.
 page_title:

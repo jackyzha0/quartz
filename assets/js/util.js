@@ -45,24 +45,23 @@ const removeMarkdown = (
       .replace(/(`{3,})(.*?)\1/gm, "$2")
       .replace(/`(.+?)`/g, "$1")
       .replace(/\n{2,}/g, "\n\n")
+      .replace(/\[![a-zA-Z]+\][-\+]? /g, "")
   } catch (e) {
     console.error(e)
     return markdown
   }
   return output
 }
-// -----
 
 const highlight = (content, term) => {
   const highlightWindow = 20
-
   // try to find direct match first
   const directMatchIdx = content.indexOf(term)
   if (directMatchIdx !== -1) {
-    const h = highlightWindow / 2
+    const h = highlightWindow
     const before = content.substring(0, directMatchIdx).split(" ").slice(-h)
     const after = content
-      .substring(directMatchIdx + term.length, content.length - 1)
+      .substring(directMatchIdx + term.length, content.length - 2)
       .split(" ")
       .slice(0, h)
     return (
@@ -103,68 +102,49 @@ const highlight = (content, term) => {
     })
     .join(" ")
     .replaceAll('</span> <span class="search-highlight">', " ")
-  return `${startIndex === 0 ? "" : "..."}${mappedText}${
-    endIndex === splitText.length ? "" : "..."
-  }`
+  return `${startIndex === 0 ? "" : "..."}${mappedText}${endIndex === splitText.length ? "" : "..."
+    }`
 }
 
-;(async function () {
-  const encoder = (str) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])+/)
-  const contentIndex = new FlexSearch.Document({
-    cache: true,
-    charset: "latin:extra",
-    optimize: true,
-    index: [
-      {
-        field: "content",
-        tokenize: "reverse",
-        encode: encoder,
-      },
-      {
-        field: "title",
-        tokenize: "forward",
-        encode: encoder,
-      },
-    ],
-  })
+// Common utilities for search
+const resultToHTML = ({ url, title, content }) => {
+  return `<button class="result-card" id="${url}">
+      <h3>${title}</h3>
+      <p>${content}</p>
+  </button>`
+}
 
-  const { content } = await fetchData
-  for (const [key, value] of Object.entries(content)) {
-    contentIndex.add({
-      id: key,
-      title: value.title,
-      content: removeMarkdown(value.content),
-    })
-  }
+const redir = (id, term) => {
+  // SPA navigation
+  window.Million.navigate(
+    new URL(`${BASE_URL.replace(/\/$/g, "")}${id}#:~:text=${encodeURIComponent(term)}/`),
+    ".singlePage",
+  )
+  closeSearch()
+}
 
-  const resultToHTML = ({ url, title, content, term }) => {
-    const text = removeMarkdown(content)
-    const resultTitle = highlight(title, term)
-    const resultText = highlight(text, term)
-    return `<button class="result-card" id="${url}">
-        <h3>${resultTitle}</h3>
-        <p>${resultText}</p>
-    </button>`
-  }
-
-  const redir = (id, term) => {
-    // SPA navigation
-    window.Million.navigate(
-      new URL(`${BASE_URL.replace(/\/$/g, "")}${id}#:~:text=${encodeURIComponent(term)}/`),
-      ".singlePage",
-    )
-    closeSearch()
-  }
-
-  const formatForDisplay = (id) => ({
-    id,
-    url: id,
-    title: content[id].title,
-    content: content[id].content,
-  })
-
+function openSearch() {
   const source = document.getElementById("search-bar")
   const results = document.getElementById("results-container")
+  const searchContainer = document.getElementById("search-container")
+  if (searchContainer.style.display === "none" || searchContainer.style.display === "") {
+    source.value = ""
+    results.innerHTML = ""
+    searchContainer.style.display = "block"
+    source.focus()
+  } else {
+    searchContainer.style.display = "none"
+  }
+}
+
+function closeSearch() {
+  const searchContainer = document.getElementById("search-container")
+  searchContainer.style.display = "none"
+}
+
+const registerHandlers = (onInputFn) => {
+  const source = document.getElementById("search-bar")
+  const searchContainer = document.getElementById("search-container")
   let term
   source.addEventListener("keyup", (e) => {
     if (e.key === "Enter") {
@@ -172,68 +152,7 @@ const highlight = (content, term) => {
       redir(anchor.id, term)
     }
   })
-  source.addEventListener("input", (e) => {
-    term = e.target.value
-    const searchResults = contentIndex.search(term, [
-      {
-        field: "content",
-        limit: 10,
-      },
-      {
-        field: "title",
-        limit: 5,
-      },
-    ])
-    const getByField = (field) => {
-      const results = searchResults.filter((x) => x.field === field)
-      if (results.length === 0) {
-        return []
-      } else {
-        return [...results[0].result]
-      }
-    }
-    const allIds = new Set([...getByField("title"), ...getByField("content")])
-    const finalResults = [...allIds].map(formatForDisplay)
-
-    // display
-    if (finalResults.length === 0) {
-      results.innerHTML = `<button class="result-card">
-                    <h3>No results.</h3>
-                    <p>Try another search term?</p>
-                </button>`
-    } else {
-      results.innerHTML = finalResults
-        .map((result) =>
-          resultToHTML({
-            ...result,
-            term,
-          }),
-        )
-        .join("\n")
-      const anchors = [...document.getElementsByClassName("result-card")]
-      anchors.forEach((anchor) => {
-        anchor.onclick = () => redir(anchor.id, term)
-      })
-    }
-  })
-
-  const searchContainer = document.getElementById("search-container")
-
-  function openSearch() {
-    if (searchContainer.style.display === "none" || searchContainer.style.display === "") {
-      source.value = ""
-      results.innerHTML = ""
-      searchContainer.style.display = "block"
-      source.focus()
-    } else {
-      searchContainer.style.display = "none"
-    }
-  }
-
-  function closeSearch() {
-    searchContainer.style.display = "none"
-  }
-
+  source.addEventListener("input", onInputFn)
   document.addEventListener("keydown", (event) => {
     if (event.key === "k" && (event.ctrlKey || event.metaKey)) {
       event.preventDefault()
@@ -246,16 +165,45 @@ const highlight = (content, term) => {
   })
 
   const searchButton = document.getElementById("search-icon")
-  searchButton.addEventListener("click", (evt) => {
+  searchButton.addEventListener("click", (_) => {
     openSearch()
   })
-  searchButton.addEventListener("keydown", (evt) => {
+  searchButton.addEventListener("keydown", (_) => {
     openSearch()
   })
-  searchContainer.addEventListener("click", (evt) => {
+  searchContainer.addEventListener("click", (_) => {
     closeSearch()
   })
   document.getElementById("search-space").addEventListener("click", (evt) => {
     evt.stopPropagation()
   })
-})()
+}
+
+const displayResults = (finalResults, extractHighlight = false) => {
+  const results = document.getElementById("results-container")
+  if (finalResults.length === 0) {
+    results.innerHTML = `<button class="result-card">
+                    <h3>No results.</h3>
+                    <p>Try another search term?</p>
+                </button>`
+  } else {
+    results.innerHTML = finalResults
+      .map((result) => {
+          if (extractHighlight) {
+            return resultToHTML({
+              url: result.url,
+              title: highlight(result.title, term),
+              content: highlight(removeMarkdown(result.content), term)
+            })
+          } else {
+            return resultToHTML(result)
+          }
+        }
+      )
+      .join("\n")
+    const anchors = [...document.getElementsByClassName("result-card")]
+    anchors.forEach((anchor) => {
+      anchor.onclick = () => redir(anchor.id, term)
+    })
+  }
+}
