@@ -6,16 +6,16 @@
   <meta charset="UTF-8" />
   <meta
     name="description"
-    content="{{if .IsHome}}{{$data.description}}{{else}}{{.Summary}}{{end}}"
+    content="{{if .IsHome}}{{$data.description | default $.Site.Data.config.description}}{{else}}{{.Summary}}{{end}}"
   />
   <title>
-    {{ if .Title }}{{ .Title }}{{ else }}{{ $data.page_title }}{{
+    {{ if .Title }}{{ .Title }}{{ else }}{{ $data.page_title | default $.Site.Data.config.page_title }}{{
     end }}
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- HTML Favicon -->
-  {{ $favicon := $data.favicon | default (slice (dict "rel" "shortcut icon" "type" "image/png" "href" "icon.png")) }}
+  {{ $favicon := $data.favicon  | default $.Site.Data.config.favicon | default (slice (dict "rel" "shortcut icon" "type" "image/png" "href" "icon.png")) }}
   {{ $type := (printf "%T" $favicon) }}
   {{ if eq $type "string" }}
   {{ $favicon | safeHTML }}
@@ -32,7 +32,7 @@
   {{$scss := . | resources.ToCSS (dict "outputStyle" "compressed") }}
   {{$css = $css | append $scss}}
   {{end}}
-  {{if $data.enableCallouts}}
+  {{if $data.enableCallouts | default $.Site.Data.config.enableCallouts}}
     {{$scss := resources.Get "styles/_callouts.scss" | resources.ToCSS (dict "outputStyle" "compressed") }}
     {{$css = $css | append $scss}}
   {{end}}
@@ -58,17 +58,17 @@
   <script src="{{$popover.Permalink}}"></script>
 
   <!-- Optional scripts -->
-  {{ if $data.enableCodeBlockTitle }}
+  {{ if $data.enableCodeBlockTitle | default $.Site.Data.config.enableCallouts }}
   {{ $codeTitle := resources.Get "js/code-title.js" | resources.Fingerprint "md5" | resources.Minify }}
   <script src="{{$codeTitle.Permalink}}"></script>
   {{end}}
 
-  {{ if $data.enableCodeBlockCopy }}
+  {{ if $data.enableCodeBlockCopy | default $.Site.Data.config.enableCodeBlockCopy }}
   {{ $clipboard := resources.Get "js/clipboard.js" | resources.Fingerprint "md5" | resources.Minify }}
   <script src="{{$clipboard.Permalink}}"></script>
   {{ end }}
 
-  {{ if $data.enableCallouts }}
+  {{ if $data.enableCallouts | default $.Site.Data.config.enableCallouts }}
   {{ $callouts := resources.Get "js/callouts.js" | resources.Fingerprint "md5" | resources.Minify }}
   <script src="{{$callouts.Permalink}}"></script>
   {{ end }}
@@ -104,27 +104,27 @@
       const pathWindow = window.location.pathname;
       const isHome = pathBase == pathWindow;
 
-      {{if $data.enableCodeBlockCopy -}}
+      {{if $data.enableCodeBlockCopy | default $.Site.Data.config.enableCodeBlockCopy -}}
       addCopyButtons();
       {{ end }}
 
-      {{if $data.enableSPA -}}
+      {{if $data.enableSPA | default $.Site.Data.config.enableSPA -}}
       addTitleToCodeBlocks();
       {{ end }}
 
-      {{if $data.enableCallouts -}}
+      {{if $data.enableCallouts | default $.Site.Data.config.enableCallouts -}}
       addCollapsibleCallouts();
       {{ end }}
      
-      {{if $data.enableLinkPreview}}
+      {{if $data.enableLinkPreview | default $.Site.Data.config.enableLinkPreview}}
       initPopover(
         {{strings.TrimRight "/" .Site.BaseURL }},
-        {{$data.enableContextualBacklinks}},
-        {{$data.enableLatex}}
+        {{$data.enableContextualBacklinks | default $.Site.Data.config.enableContextualBacklinks}},
+        {{$data.enableLatex | default $.Site.Data.config.enableLatex}}
       )
       {{end}}
 
-      {{if $data.enableFooter}}
+      {{if $data.enableFooter | default $.Site.Data.config.enableFooter}}
       const footer = document.getElementById("footer")
       if (footer) {
         const container = document.getElementById("graph-container")
@@ -147,14 +147,14 @@
 
     const init = (doc = document) => {
       // NOTE: everything within this callback will be executed for initial page navigation. This is a good place to put JavaScript that only replaces DOM nodes.
-      {{if $data.enableCodeBlockCopy -}}
+      {{if $data.enableCodeBlockCopy | default $.Site.Data.config.enableCodeBlockCopy -}}
       addCopyButtons();
       {{ end }}
 
-      {{if $data.enableCodeBlockTitle -}}
+      {{if $data.enableCodeBlockTitle | default $.Site.Data.config.enableCodeBlockTitle -}}
       addTitleToCodeBlocks();
       {{- end -}}
-      {{if $data.enableLatex}}
+      {{if $data.enableLatex | default $.Site.Data.config.enableLatex}}
       renderMathInElement(doc.body, {
         delimiters: [
           {left: '$$', right: '$$', display: true},
@@ -165,7 +165,7 @@
       {{end}}
     };
   </script>
-  {{if $data.enableSPA}}
+  {{if $data.enableSPA | default $.Site.Data.config.enableSPA}}
   {{ $router := resources.Get "js/router.js" | resources.Fingerprint "md5" |
   resources.Minify }}
   <script type="module">
