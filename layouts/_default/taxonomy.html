@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ .Lang }}">
 {{ partial "head.html" . }}
 
 <body>
@@ -8,7 +8,7 @@
     <!-- Begin actual content -->
     {{partial "header.html" .}}
     <article>
-        <h1>All {{.Title}}</h1>
+        <h1>{{ i18n "all_posts" . }}</h1>
         {{with .Params.description}}
             <p>{{.}}</p>
         {{end}}
@@ -16,7 +16,7 @@
             {{ range .Site.Taxonomies.tags.ByCount }}
             <div class="meta">
                 <h1><a href="{{ .Page.Permalink }}">{{ .Page.Title | humanize }}</a></h1>
-                <p><b>{{ .Count }}</b> notes with this tag {{if gt .Count 10}}(showing first 10 results){{end}}</p>
+                <p><b>{{ .Count }}</b> {{ i18n "notes_count" }} {{if gt .Count 10}}({{ i18n "first_10"}}){{end}}</p>
             </div>
             {{ with ($.Site.GetPage (printf "/tags/%s" .Page.Title)) }}
             {{partial "page-list.html" (first 10 .Pages.ByLastmod.Reverse)}}
@@ -27,5 +27,4 @@
     {{partial "contact.html" .}}
 </div>
 </body>
-
 </html>
