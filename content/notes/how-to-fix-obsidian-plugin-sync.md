@@ -15,3 +15,5 @@ There could be a number of reasons as to why the sync doesn't work. Here are som
 1. If two-way sync is enabled, ensure that the note-template is the default note template. You can refresh the template with the button beside it.
 2. Once the above steps are done, try deleting all your Fleeting Notes. Then run the sync command to pull all the notes to a specified folder.
 3. Try sync again
+
+If you're still having trouble, don't hesitate to email me at ithinkwong@gmail.com with a screenshot of your settings page and a screenshot of the error you're getting! I'll be happy to help
