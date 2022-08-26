@@ -1,8 +1,8 @@
 ---
 title: "04-evaluation-methods-birth-of-hci"
-sr-due: 2022-08-22
-sr-interval: 92
-sr-ease: 230
+sr-due: 2023-05-29
+sr-interval: 276
+sr-ease: 250
 aliases: 
 tags: 
 - info203
