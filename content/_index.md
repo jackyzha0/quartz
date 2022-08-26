@@ -1,26 +1,50 @@
 ---
-title: 🪴 Quartz 3.2
+title: Hi there, I'm Mattia!👋
 ---
 
-Host your second brain and [digital garden](https://jzhao.xyz/posts/networked-thought) for free. Quartz features
+Your now in my personal North Star... and Hola! 👋, I'm Mattia Ippoliti this is Mattia's Brain 🧠 [^1]
 
-1. Extremely fast natural-language [[notes/search|search]]
-2. Customizable and hackable design based on [Hugo](https://gohugo.io/)
-3. Automatically generated backlinks, link previews, and local graph
-4. Built-in [[notes/CJK + Latex Support (测试) | CJK + Latex Support]] and [[notes/callouts | Admonition-style callouts]]
-5. Support for both Markdown Links and Wikilinks
+- [[1. Projects]]
+- [[2. Areas]]
+- [[3. Resources]]
+- [[4. Archive]]
 
-Check out some of the [amazing gardens that community members](notes/showcase.md) have published with Quartz or read about [why I made Quartz](notes/philosophy.md) to begin with.
+---
 
-## Get Started
-> 📚 Step 1: [Setup your own digital garden using Quartz](notes/setup.md)
+Taking a deep breath, you [[README|enter the forest]].  My sub-brain :
 
-Returning user? Figure out how to [[notes/updating|update]] your existing Quartz garden.
+- [[1. Projects]]
+  - [[1. Projects/Workout/Workout|Workout]]
+- [[2. Areas]]
+  - [[2. Areas/Finances/Finances|Finances]]
+  - [[2. Areas/Health/Health|Health]]
+  - [[2. Areas/Personae/Personae| Personae]]
+  - [[2. Areas/Quotes/Quotes| Quotes]]
+  - [[2. Areas/Libri/Libri| Libri]]
+- [[3. Resources]]
+  - [[3. Resources/Cheat Sheet/Cheat Sheet| Cheat Sheet]]
+  - [[3. Resources/Critical Thinking/Critical Thinking| Critical Thinking]]
+  - [[3. Resources/Financial Indipendence/Financial Indipendence| Financial Indipendence]]
+  - [[3. Resources/Personal Finance/Personal Finance| Personal Finance]]
+  - [[3. Resources/Pillole Economia/Pillole Economia| Pillole Economia]]
+  - [[3. Resources/PKM/PKM| PKM]]
+  - [[3. Resources/Programmazione/Programmazione| Programmazione]]
+  - [[3. Resources/Project Management/Project Management| Project Management]]
+  - [[3. Resources/Strumenti Finanziari/Strumenti Finanziari| Strumenti Finanziari]]
+  - [[Tablerone]]
+- [[4. Archive]]
+  - [[4. Archive/Archive Areas/Archive Areas |Archive Areas]]
+  - [[4. Archive/Archive Projects/Archive Projects |Archive Projects]]
+  - [[4. Archive/Archive Resources/Archive Resources |Archive Resources]]
 
-If you prefer browsing the contents of this site through a list instead of a graph, you see a list of all [setup-related notes](/tags/setup).
+---
 
-### Troubleshooting
-- 🚧 [Troubleshooting and FAQ](notes/troubleshooting.md)
-- 🐛 [Submit an Issue](https://github.com/jackyzha0/quartz/issues)
-- 👀 [Discord Community](https://discord.gg/cRFFHYye7t)
+- | #state/tobecontinued  | [[Tablerone]] | [[Others/Templates/mdToDo]] | [[Daily Notes]] | [[mdToDo]] |
+- #home/projects| #home/areas | #home/resources | #home/archived
+
+---
+[^1]: If you wanna join the dark site of *your life*, please go to [[your life in weeks]].  👁️
+
+
+[⬆ back to top](#Home)
 
