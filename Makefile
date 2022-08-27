@@ -16,3 +16,8 @@ update-force: ## Forcefully pull all changes and don't ask to patch
 
 serve: ## Serve Quartz locally
 	hugo-obsidian -input=content -output=assets/indices -index -root=. && hugo server --enableGitInfo
+
+build: ## use v2.17 commit in hugo-obsidian repo
+	go install github.com/jackyzha0/hugo-obsidian@f79a0b0d6a59fe6f6514af2c052b2930146a1af2 && \
+	hugo-obsidian -input=content -output=assets/indices -index -root=. && \
+	hugo --minify
