@@ -60,3 +60,4 @@ Link: [How Do I Learn? (PL)](https://community.ahoy.so/c/podziel-sie-wiedza-a496
 - https://www.britannica.com/browse/Science
 - https://www.wealest.com
 - https://untools.co
+- https://effectiviology.com
