@@ -82,3 +82,8 @@
   <!-- End Meta Pixel Code -->
 </head>
 {{ template "_internal/google_analytics.html" . }}
+<script>
+  ga('send', 'pageview', {
+    'Branch':  '{{ getenv "BRANCH" }}'
+  });
+</script>

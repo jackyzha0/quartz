@@ -30,4 +30,6 @@ enableGitInfo = true
         tabWidth = 4
     [markup.goldmark.renderer]
         unsafe= true
-
+[security]
+  [security.funcs]
+    getenv = ['^HUGO_', '^BRANCH']
