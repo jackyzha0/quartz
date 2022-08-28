@@ -2,17 +2,14 @@
 title: Tools
 ---
 
+- [[Optimization/Tools/Arc]] - web browser
 - [[Optimization/Tools/Airtable]] - API first excel na sterydach
 - [[Optimization/Tools/MakeHQ]] - The best tool for automating and quickly combining [[Knowledge/Programming/API]]
-- [[Optimization/Tools/Zapier]] - Automation and quick linking [[Knowledge/Programming/API]]
 - [[Optimization/Tools/Keyboard Maestro]] - Automations in OSX
 - [[Optimization/Tools/Romwod]] - Application with stretching exercise program
 - [[Optimization/Tools/Raycast]] - Launcher w którym tworzę własne rozszerzenia w [[Knowledge/Programming/Node.js]], [[Knowledge/Programming/JavaScript/JavaScript]], [[React.js]] i [[TypeScript]]
-- [[Reeder 5]] - News feed z obserwowanych przeze mnie blogów
 - [[Optimization/Tools/iA Writer]] - Markdown editor focused on minimalism and focus
 - [[Optimization/Tools/Anki]] - Memory training application based on [[Spacing Repetition]]
-- [[Optimization/Tools/Buffer]] - Tool for publishing content to multiple social media channels
-- [[Optimization/Tools/ClickUp]] - Advanced task management application
 - [[Optimization/Tools/Procreate]] - Best iPad app for drawing
 - [[Optimization/Tools/Notability]] - notepad for iPad
 - [[Optimization/Tools/Dropshare]] - Fast file sharing (via your own FTP server)
@@ -44,14 +41,21 @@ title: Tools
 - [[Optimization/Tools/Yoink]] - an application that makes it easy to drag and store files
 - [[Optimization/Tools/Notion]] - note application with API
 - [[Optimization/Tools/Better Touch Tool]] - application to extend the capabilities of the trackpad
-- [[Optimization/Tools/Hyper.is]] - A ~~alternative for the terminal written in HTML5 / CSS / JS~~.
 - [[Warp.dev]] - terminal alternative
-- [[Optimization/Tools/Sendgrid]]
-- [[Optimization/Tools/Shortcuts]]
-- [[Optimization/Tools/Slack]]
-- [[Optimization/Tools/Todoist]]
-- [[Optimization/Tools/Digital Ocean]]
-- [[Optimization/Tools/Session]]
-- [[Optimization/Tools/Rize]]
-- [[Optimization/Tools/Intellij]]
-- [[Optimization/Tools/Obsidian]]
+- [[Optimization/Tools/Sendgrid]] - newsletter system 
+- [[Optimization/Tools/Shortcuts]] - iOS / macOS Automation
+- [[Optimization/Tools/Slack]] - communicator for work & automations
+- [[Optimization/Tools/Todoist]] - todo app
+- [[Optimization/Tools/Digital Ocean]] - VPS
+- [[Optimization/Tools/Session]] - Pomodoro timer
+- [[Optimization/Tools/Rize]] - activity tracker for macOS 
+- [[Optimization/Tools/Intellij]] - best IDE ever
+- [[Optimization/Tools/Obsidian]] - markdown editor
+- [[Optimization/Tools/Karabiner]] - low level keyboard modifications
+- [[Optimization/Tools/Matter]] - RSS reader
+
+
+~~- [[Optimization/Tools/Zapier]] - Automation and quick linking [[Knowledge/Programming/API]]~~
+~~- [[Optimization/Tools/Buffer]] - Tool for publishing content to multiple social media channels~~
+~~- [[Optimization/Tools/ClickUp]] - Advanced task management application~~
+~~- [[Optimization/Tools/Hyper.is]] - an alternative for the terminal written in HTML5 / CSS / JS~~
