@@ -4,7 +4,9 @@ title: Airtable
 # What is Airtable?
 It's a data storage application that resembles an Excel spreadsheet. Its biggest advantage is that it is built according to the [[Knowledge/Programming/API]] first approach, which works well in the context of [[Optimization/Automation/Automation]]
 
-I store virtually all of my published content in [[Optimization/Tools/Airtable]] and use it as a database.
+I store virtually all of my published content in [[Optimization/Tools/Airtable]] and use it as a database. An example database for one of my projects:
+
+![](https://space.overment.com/Screen-Shot-2022-08-28-10-52-20-D2QTY/Screen-Shot-2022-08-28-10-52-20.png)
 
 **The big advantage here is:**.
 - instant access to [[Knowledge/Programming/API]] integrations with [[Optimization/Tools/MakeHQ]] / [[Optimization/Tools/Zapier]]

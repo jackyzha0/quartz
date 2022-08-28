@@ -2,85 +2,18 @@
 title: Keyboard Maestro
 ---
 
-[[Optimization/Tools/Keyboard Maestro]] is an application I use to automate many tasks within the OSX operating system. I use it together with [[Optimization/Tools/Alfred]] and [[Optimization/Hardware/StreamDeck]].
+[[Optimization/Tools/Keyboard Maestro]] is an application I use to automate many tasks within the OSX operating system. I use it together with [[Raycast]] and [[Better Touch Tool]]. I regularly find myself using [[Knowledge/Programming/JavaScript/JavaScript]], [[ActionScript]] and [[Knowledge/Programming/Node.js]] scripts to create individual actions.
 
-I regularly find myself using [[Knowledge/Programming/JavaScript/JavaScript]] and [[Knowledge/Programming/Node.js]] scripts to create individual actions.
+[[Design Maestro]] is a project created by me and Matt Wierzbicki. It's a plug & play package of Keyboard Maestro macros with a dedicated UI created in [[Svelte]].
 
-## Macros
+![](https://space.overment.com/Screen-Shot-2022-08-28-11-23-33-pVIiG/Screen-Shot-2022-08-28-11-23-33.png)
 
-**System Features**.
-- DND on/off
-- Putting to sleep
-- Restarting
-- Security
+## My macros
+As of today I have ~400 macros which are highly coupled with [[Automation]] scenarios and tools like [[MakeHQ]] and [[Shortcuts]]. 
+![](https://space.overment.com/Screen-Shot-2022-08-28-11-27-34-mp3WQ/Screen-Shot-2022-08-28-11-27-34.png)
 
-**Files
 
-**Communicators**.
+## Keyboard Maestro online course
+I've created an online course (PL) which is available at [[eduweb]] 👉 https://eduweb.pl/marketing-i-biznes/biznes/keyboard-maestro-automatyzacja-macos?ref=overment
 
-**E-mail**
-
-**Calendar**
-
-**Keyboard Maestro**
-
-**Writing**.
-- text expander
-- markdown
-- quick answers
-- emoji picker
-
-**Browser**.
-
-**Music**.
-
-**Development**
-
-**External Automations**.
-
-## Individual shares
-- Faster system navigation (e.g., switching applications or launching functions)
-- Useful notifications (such as [[Pomodoro]] and reminders for daily habits)
-- Autosave in programs that do not have this feature
-- Assigning keyboard shortcuts to program options that do not allow this (thanks to the [Menu Bar Search](https://github.com/BenziAhamed/Menu-Bar-Search) extension, among others)
-- Manage window positioning in a custom way (in conjunction with [[Optimization/Tools/Magnet]])
-- Application management (e.g., disabling Messenger after 5 minutes)
-
-## Working with text
-- Faster text navigation (keyboard shortcuts)
-- [[Text Expander]] with support for external scripting (e.g., date generation).
-- Working with Markdown syntax
-- Quick open notes ([[Optimization/Tools/Notion]] / [[Optimization/Tools/Obsidian]])
-- Macro palette with quick responses
-- Adding emoticons from [Emoji Taco](https://www.packal.org/workflow/emoji-taco) and [Rocket](https://matthewpalmer.net/rocket/)
-- Quickly add information to notes (even without opening the editor)
-
-## Working with files
-- Create documents based on a template (through the Find function
-- Automatic transfer / renaming
-- Name changes and extensions
-- Size changes
-- Image optimization
-- Quickly open files with [[Optimization/Tools/Alfred]]
-- Automatic file transfer, including uploading to Google Drive with [[Optimization/Tools/Hazel]]
-
-## Changing the context
-
-## Browser
-
-## Meetings
-
-## Communication
-
-## Focus
-
-## Entertainment
-- 
-
-## External automations
-- Running webhooks taken over by [[Optimization/Tools/MakeHQ]], [[Optimization/Tools/Zapier]] or [[Optimization/Automation/Microservices]]
-- Sending data via [[Optimization/Tools/MakeHQ]] to [[Optimization/Tools/Airtable]].
-- Sending notifications to your phone
-
-## Mój kurs online: Keyboard Maestro
-I discuss all the techniques for working with [[Optimization/Tools/Keyboard Maestro]] and Alfred in my course: [[Projects/eduweb#Keyboard Maestro Course]] available at [[Projects/eduweb]].
+![](https://space.overment.com/Screen-Shot-2022-08-28-11-26-56-MejYy/Screen-Shot-2022-08-28-11-26-56.png)
