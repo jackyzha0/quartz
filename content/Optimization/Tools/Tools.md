@@ -56,6 +56,9 @@ title: Tools
 
 
 ~~- [[Optimization/Tools/Zapier]] - Automation and quick linking [[Knowledge/Programming/API]]~~
+
 ~~- [[Optimization/Tools/Buffer]] - Tool for publishing content to multiple social media channels~~
-~~- [[Optimization/Tools/ClickUp]] - Advanced task management application~~
+
+~~- [[Optimization/Tools/ClickUp]] - Advanced task management application
+~~
 ~~- [[Optimization/Tools/Hyper.is]] - an alternative for the terminal written in HTML5 / CSS / JS~~
