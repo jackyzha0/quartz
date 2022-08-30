@@ -2,7 +2,7 @@
 title: Tools
 ---
 
-- [[Optimization/Tools/Arc]] - web browser
+- [[Optimization/Tools/Arc]] - Web Browser from The Browser Company
 - [[Optimization/Tools/Airtable]] - API first excel na sterydach
 - [[Optimization/Tools/MakeHQ]] - The best tool for automating and quickly combining [[Knowledge/Programming/API]]
 - [[Optimization/Tools/Keyboard Maestro]] - Automations in OSX
