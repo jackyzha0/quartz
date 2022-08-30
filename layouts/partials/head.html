@@ -83,7 +83,7 @@
 </head>
 {{ template "_internal/google_analytics.html" . }}
 <script>
-  ga('send', 'pageview', {
-    'Branch':  '{{ getenv "BRANCH" }}'
+  window.dataLayer.push({
+    'git_branch': '{{ getenv "BRANCH" }}',
   });
 </script>
