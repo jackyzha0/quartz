@@ -57,7 +57,7 @@ Do I want to be great? Or do I want to be a little bit great? I think on my curr
 
 Would that be so bad? I'm conflating the idea of being a nobody with working a boring desk job. That, I dont want. But I can be a "nobody" and still be great? What even is greatness? Is it to be remembered? Thats the real question. Do I want to be remembered (in a positive manner). Not sure yet I guess. 
 
-Fuck that, a decision isn't just going to pop into my head. I need to decide (story of my life). Stopped writing here for a while. Didn't make a decision. Just thought about my last journal, about needing therapy. I-
+Fuck that, a decision isn't just going to pop into my head. I need to decide (story of my life). Stopped writing here for a while. Didn't make a decision. Just thought about my last journal ([Fuck-it](private/Fuck-it.md), about needing therapy. I-
 
 need to stop thinking about it. 
 
@@ -72,3 +72,15 @@ Yes I think I would improve.
 When then do a lot of the great thinkers do their best work in complete solitude. I guess they are the people who inspire others? Not sure.
 
 Why ~~don't~~ won't I anwer that question? Not worth it? Too lazy? Once again not sure, and I can't be fucked finding the answer.
+
+Lost in the infinite. And the finite? ([kierkegaard](notes/soren-kiekegaard.md))
+
+Yeah I want to great. No I don't want to be remembered.
+
+What flavour of greatness do I want? How am I going to achieve it?
+
+I think setting goals is important. 
+
+But thats just a surface leve technique. What I need is subconcious change to my mindset. How do I do this. Surrounding myself with likeminded people? That's part of it, but not the whole story. There must be something else. Genertic engineering? Drugs? Enlightenment? Near death experience? Sublime experience? Mushrooms? Microdosing?
+
+I want to be more creative. AI and big tech and stuff is cool, but Art is cooler. 
