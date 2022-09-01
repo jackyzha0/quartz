@@ -27,19 +27,21 @@ Ever since I was a kid, solving problems has been one of my favourite things. I 
 To create these solutions, I needed to learn new things. My desire to solve problems, necessitates independent learning. While the things I've learnt at school and in university have been helpful, their real value to me is that they provide a launching pad from which I can expand my knowledge, and dive deeper into technologies I find interesting and exciting, and technologies I can use to solve whatever problem I have.
 
 ## Communication
-For the past 2 years I worked part-time for Company-X. My job was to assemble e-learning modules in different languages. This project involved working under a project manager and with multiple teams, spread across the globe. Initially we were a team of four people, but after the first few weeks I working on the project independently. Working with many international teams provided a huge challenge as they did not always have great english speaking skills. This meant I had to communicate very clearly and mini
-
+For the past 2 years I have been working part-time for Company-X. My job was to assemble e-learning modules in different languages. This project involved working under a project manager and with multiple teams, spread across the globe. Initially we were a team of four people, but after the first few weeks I working on the project independently. Working with many international teams provided a huge challenge as they did not always have great english speaking skills. This meant I had to communicate very clearly, and make absolutely sure that I correctly understood the client and their requests. Futhermore, I had to manage communication with my project manager, and keep him up-to-date and informed.
 
 <hr>
 
 # Experience
 Intern - Company-X (Dec 2020 - present)
-- Learn't complex process of translating e-learning modules in less than one week
-- Trained new hires in process
-- Increased efficiency of process from ~4 hrs to ~2.5hrs
-- Used Jira, git (with Bitbucket), google sheets, excel, SharePoint, slack
-- Co-ordinated with an international team
 
+Skills/Tools: Jira, Git, Git LFS, PowerShell, BitBucket, Adobe Premiere Pro, Adobe After Effects, Storyline Articulate, WinSCP, SharePoint, Google Sheets.
+
+My job was to assemble e-learning modules in different languages. I had to:
+- Co-ordinate with an international team
+- Provide time frame estimates
+- Train new hires
+- Manage large file system with Git and Git LFS
+- 
 <hr>
 
 # Education
