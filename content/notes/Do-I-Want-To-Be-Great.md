@@ -57,4 +57,18 @@ Do I want to be great? Or do I want to be a little bit great? I think on my curr
 
 Would that be so bad? I'm conflating the idea of being a nobody with working a boring desk job. That, I dont want. But I can be a "nobody" and still be great? What even is greatness? Is it to be remembered? Thats the real question. Do I want to be remembered (in a positive manner). Not sure yet I guess. 
 
-Fuck that, a decision isn't just going to pop into my head. I need to decide (story of my life). 
+Fuck that, a decision isn't just going to pop into my head. I need to decide (story of my life). Stopped writing here for a while. Didn't make a decision. Just thought about my last journal, about needing therapy. I-
+
+need to stop thinking about it. 
+
+Do I want to be remembered? No? I think If I did, I would know it. I wonder if if i'd made different friends, or gone to a different school, I would have a different answer. Probably, but no point thinking about it. But maybe there is. Maybe If I change schools, and go to harvard or something, my mindset would change. 
+
+Maybe thats the real value of going to a prestigious school? The mindset of the people around you. Yeah that's one of the benefits. I wouldn't say it's the "real value" as if I've made some sort of discovery.
+
+If I make new friends who are just nerdy (not a bad thing) overachievers. (wtf why does the term overachiever exist, so stupid. Probably comes from jealous people). (I think I spend to much time asking questions and not enough time finding answers). Got sidetracked there.
+
+Yes I think I would improve.
+
+When then do a lot of the great thinkers do their best work in complete solitude. I guess they are the people who inspire others? Not sure.
+
+Why ~~don't~~ won't I anwer that question? Not worth it? Too lazy? Once again not sure, and I can't be fucked finding the answer.
