@@ -75,14 +75,21 @@ Other Languages I have used: C, C#, 6809 Assembly, SQL.
 ## Album of the Day Website
 https://github.com/JetHughes/album
 
+This is my most recent project. I created this as a way to put in to practive the things I have been learning at university. I is a basic website with user authentication and authorisation. It is built using Express and Pug and is hosted on AWS.
+
 ## React Native App
 https://github.com/JetHughes/snowboard-goals-app
+
+This was one of my first large projects. It was my year 13 IT scholarship project. It is built using React-Native and Expo. Throughout the creation of this project I had to consider many factors besides the code. This included working with a stakeholder, considering legal and ethical implications, privacy, security, UI design, Iterative development and more.
 
 ## Motion Detector
 https://github.com/JetHughes/motion-detector
 
+This was a small project I made last summer. Someone was stealing my cookies, so rather than recording 24/7 I configured my GoPro to stream to an RTMP server. This video was then analysed by a python script using OpenCV and I was alerted when motion was detected.
+
 ## Python Bots
 https://github.com/JetHughes/discord-album-bot, https://github.com/JetHughes/slack-album-bot
+
 
 ## Non-Destructive Image Editor
 
@@ -91,7 +98,7 @@ https://github.com/JetHughes/discord-album-bot, https://github.com/JetHughes/sla
 # Interests
 - Music: Probably too much - I have listed to about 1072 albums, 820 artists, and 11,395 tracks this year. I also recently started to produce my own music
 - Surfing, Snowboarding, and Skating: Grew up in Raglan and living in Dunedin: How can I not?
-- Philosophy: Food for the brain - Currently 100 episodes into the podcast Philosphize This by Stephen West
+- Philosophy: Food for the brain - Currently 100 episodes into Philosphize This by Stephen West
 - Cooking: Japanese, Mexican, Chinese, Thai, Inidan, Caveman, etc - I love trying new things
 - Reading: Currently reading Ouf of the flames by Lawrence and Nancy Goldstone - a book about Michael Servetus's work.
 - Frisbee Golf: Just pure relaxing fun.
