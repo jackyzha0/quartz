@@ -37,11 +37,12 @@ Intern - Company-X (Dec 2020 - present)
 Skills/Tools: Jira, Git, Git LFS, PowerShell, BitBucket, Adobe Premiere Pro, Adobe After Effects, Storyline Articulate, WinSCP, SharePoint, Google Sheets.
 
 My job was to assemble e-learning modules in different languages. I had to:
-- Co-ordinate with an international team
+- Co-ordinate with multiple international teams
 - Provide time frame estimates
 - Train new hires
-- Manage large file system with Git and Git LFS
-- 
+- Manage a large file system with Git and Git LFS
+- Automate processes using PowerShell
+
 <hr>
 
 # Education
@@ -52,15 +53,20 @@ Otago University (2021 - present)
 <hr>
 
 # Technical Skills
-## Solution Design
 
-## User Experience
+## Java
+- Used OOP concepts to creat a non-destructive image editor as part of a group project
 
-## Front-End Development
+## Python
+- Created a Slack bot using Flask which is currently running as an AWS Lambda function
+- Transformed my GoPro to a motion detector by streaming video using an RTMP server and analysing the data using OpenCV
+- Implemented various machine learning and AI methods using Jupyter notebooks
 
-## Back-End Development
+## Web Frameworks
+- Created a snowboard goals tracking application using Expo and React-Native
+- Currently creating a website with user authentication using Express and Pug
 
-## Adobe Suite
+Other Skills: c#, C, 6809 assebmly Git, PowerShell, Bash, Linux, KeyCloak, 
 
 <hr>
 
