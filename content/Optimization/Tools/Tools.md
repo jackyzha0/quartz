@@ -11,9 +11,9 @@ title: Tools
 - [[Optimization/Tools/iA Writer]] - Markdown editor focused on minimalism and focus
 - [[Optimization/Tools/Anki]] - Memory training application based on [[Spacing Repetition]]
 - [[Optimization/Tools/Procreate]] - Best iPad app for drawing
-- [[Optimization/Tools/Notability]] - notepad for iPad
+- [[Optimization/Tools/Notability]] - Minimalistic Notepad for [[iPad]]
 - [[Optimization/Tools/Dropshare]] - Fast file sharing (via your own FTP server)
-- [[Optimization/Tools/Cron]] - Cool calendar app
+- [[Optimization/Tools/Cron]] - Cool calendar app, similar to [[Superhuman]]
 - [[Optimization/Tools/Magnet]] - Window position management application
 - [[Optimization/Tools/Paste]] - Clipboard Manager
 - [[Optimization/Tools/TextSnipper]] - OCR that reads the selected portion of the screen
