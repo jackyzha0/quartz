@@ -61,7 +61,7 @@ Otago University (2021 - present)
 ## Python
 - Created a Slack bot using Flask which is currently running as an AWS Lambda function
 - Transformed my GoPro to a motion detector by streaming video to an RTMP server and analysing the data using OpenCV
-- Implemented various machine learning and AI methods using Jupyter notebooks
+- Implemented various machine learning and AI methods using Jupyter notebooks. Used numpy, pandas, scikit-learn, matplotlib and more
 
 ## Web Technologies
 - Created a snowboard goals tracking application using Expo and React-Native
@@ -73,13 +73,16 @@ Other Languages I have used: C, C#, 6809 Assembly, SQL.
 
 # Project Experience
 ## Album of the Day Website
+https://github.com/JetHughes/album
 
 ## React Native App
+https://github.com/JetHughes/snowboard-goals-app
 
 ## Motion Detector
-
+https://github.com/JetHughes/motion-detector
 
 ## Python Bots
+https://github.com/JetHughes/discord-album-bot, https://github.com/JetHughes/slack-album-bot
 
 ## Non-Destructive Image Editor
 
@@ -88,8 +91,9 @@ Other Languages I have used: C, C#, 6809 Assembly, SQL.
 # Interests
 - Music: All of it - I have listed to about 1072 albums, 820 artists, and 11,395 tracks this year. [last.fm/user/JetLikeAPlane](https://www.last.fm/user/JetLikeAPlane)
 - Surfing + Snowboarding: Grew up in Raglan and living in Dunedin: How can I not?
-- Philosophy: Food for the brain - Currently listening to the podcast Philosphize This by Stephen West
+- Philosophy: Food for the brain - Currently 100 episodes into the podcast Philosphize This by Stephen West
 - Cooking: Japanese, Mexican, Chinese, Thai, Inidan, Caveman, etc - I love trying new things
+- Reading: Currently reading Ouf of the flames by Lawrence and Nancy Goldstone - a book about Michael servetus's Restitutio
 
 <hr>
 
