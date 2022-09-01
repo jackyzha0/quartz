@@ -89,11 +89,12 @@ https://github.com/JetHughes/discord-album-bot, https://github.com/JetHughes/sla
 <hr>
 
 # Interests
-- Music: All of it - I have listed to about 1072 albums, 820 artists, and 11,395 tracks this year. [last.fm/user/JetLikeAPlane](https://www.last.fm/user/JetLikeAPlane)
-- Surfing + Snowboarding: Grew up in Raglan and living in Dunedin: How can I not?
+- Music: Probably too much - I have listed to about 1072 albums, 820 artists, and 11,395 tracks this year. I also recently started to produce my own music
+- Surfing, Snowboarding, and Skating: Grew up in Raglan and living in Dunedin: How can I not?
 - Philosophy: Food for the brain - Currently 100 episodes into the podcast Philosphize This by Stephen West
 - Cooking: Japanese, Mexican, Chinese, Thai, Inidan, Caveman, etc - I love trying new things
-- Reading: Currently reading Ouf of the flames by Lawrence and Nancy Goldstone - a book about Michael servetus's Restitutio
+- Reading: Currently reading Ouf of the flames by Lawrence and Nancy Goldstone - a book about Michael Servetus's work.
+- Frisbee Golf: Just pure relaxing fun.
 
 <hr>
 
