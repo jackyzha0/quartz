@@ -24,23 +24,11 @@ I often stay up far too late fixating on a stubborn bug or a difficult feature. 
 Ever since I was a kid, solving problems has been one of my favourite things. I have grown a lot since my days of engineering lego machines and finding creative ways to read at night without my parents knowing. I recently transformed my GoPro into a motion detector and made an app to track my snowboarding progress. These projects were direct solutions to problems I faced often. I wanted to know which member of the family was stealing my cookies, so I made a motion detector. I wanted to have a clear picture of what my snowboarding goals were and what I needed to do to achieve them, so I created an app which helped me do those things. I Iove solving problems. Tell me yours! 
 
 ## Independent Learning
-To create these solutions, I needed to learn new things. My desire to solve problems, necessitates independent learning. While the things i've learnt at school and in university have been helpful, their real value to me, is that they provide a launching pad from which I can expand my knowledge, and dive deeper into technologies I find interesting and exciting. 
-- react native + javascript
-- unity
-- html + css
-- networks and security
-- winters + overseas
+To create these solutions, I needed to learn new things. My desire to solve problems, necessitates independent learning. While the things I've learnt at school and in university have been helpful, their real value to me is that they provide a launching pad from which I can expand my knowledge, and dive deeper into technologies I find interesting and exciting, and technologies I can use to solve whatever problem I have.
 
 ## Communication
-- worked at company-x with an international team. 
-- worked with a local team 
-- asked questions
+For the past 2 years I worked part-time for Company-X. My job was to assemble e-learning modules in different languages. This project involved working under a project manager and with multiple teams, spread across the globe. Initially we were a team of four people, but after the first few weeks I working on the project independently. Working with many international teams provided a huge challenge as they did not always have great english speaking skills. This meant I had to communicate very clearly and mini
 
-## Time Management
-- time in wanaka
-- part time + studying
-- projects
-- exercise and hobbies
 
 <hr>
 
