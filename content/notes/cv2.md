@@ -35,7 +35,9 @@ I love solving problems. Tell me yours!
 - worked with a local team 
 - asked questions
 
-# 
+## Time Management
+- time in wanaka
+- part time 
 
 <hr>
 
