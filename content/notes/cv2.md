@@ -15,13 +15,15 @@ In year 13 I made a complete mobile application using React Native and expo. Sin
 
 The first language I learnt when I started programming was C# in year 9. I started by making simple text-based games in the terminal, but soon grew bored and started to experiment with Unity. I stated simple with some 2d games, eventually working up to a 3D top down shooter with procedurally generated maps, which I later transformed into a basic single-player first-person shooter game. 
 
-I often stay up far too late fixating on a stubborn bug or a difficult feature. But the satisfaction I get when I finally solve it, quite often warrants a little dance. These moments are why I enjoy coding so much.
+I often stay up far too late fixating on a stubborn bug or a difficult feature. But the satisfaction I get when I finally solve it, quite often warrants a little dance. These moments are why I enjoy computer science so much.
 
 <hr>
 
 # Skill Summary
 ## Problem Solving
-I love solving problems. Tell me yours! 
+Ever since I was a kid, solving problems has been one of my favourite things. I
+
+From perfecting the nuances various lego machines to transforming a GoPro to a motion detector camera and creating an app to track my snowboarding progress I Iove solving problems. Tell me yours! 
 
 ## Independent Learning
 - react native + javascript
@@ -37,7 +39,9 @@ I love solving problems. Tell me yours!
 
 ## Time Management
 - time in wanaka
-- part time 
+- part time + studying
+- projects
+- exercise and hobbies
 
 <hr>
 
@@ -64,6 +68,8 @@ Otago University (2021 - present)
 ## User Experience
 
 ## Front-End Development
+
+## Back-End Development
 
 ## Adobe Suite
 
