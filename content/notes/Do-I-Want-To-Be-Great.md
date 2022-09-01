@@ -39,3 +39,22 @@ Why do people prcrastinate? Laziness, no purpose blah etc.
 
 Is it genetic?? Yes, I think genetic must play a role. Attention span (?), memory, energy levels, hormones, chemicals etc. 
 
+I still think hard work can overcome these things.
+
+~~Am I willing~~ Can I make myself willing to be great? 
+
+Building habits, "Dicipline", learning the fundamentals properly, understanding not observing and memorising. 
+
+Is that all bullshit? 
+
+Alex _ video about cooking and gym - "everything works". Minor adjustments only provide miniscule improvements. VS "1% ing".
+
+How much different is there between being a little bit great (yt er) vs really great (jobs, musk, bezos) (are they even great?) vs the best (ghandi, socrates aristotle, nietzsche, khan, ceasar, francis, etc )
+
+Why did I just rank philosophers and historical figures? ~~It is because I~~ Why do I consider them to be the greatest ~~or~~ is it because they are the oldest? Or because I respect philosophers more than.. They're not even all philosophers. This is stupid
+
+Do I want to be great? Or do I want to be a little bit great? I think on my current path I will be a big fat nobody. I don't want to be a nobo
+
+Would that be so bad? I'm conflating the idea of being a nobody with working a boring desk job. That, I dont want. But I can be a "nobody" and still be great? What even is greatness? Is it to be remembered? Thats the real question. Do I want to be remembered (in a positive manner). Not sure yet I guess. 
+
+Fuck that, a decision isn't just going to pop into my head. I need to decide (story of my life). 
