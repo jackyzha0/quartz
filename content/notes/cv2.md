@@ -73,25 +73,25 @@ Other Languages I have used: C, C#, 6809 Assembly, SQL.
 
 # Project Experience
 ## Album of the Day Website
-https://github.com/JetHughes/album
+[github album website](https://github.com/JetHughes/album)
 
 This is my most recent project. I created this as a way to put in to practive the things I have been learning at university. I is a basic website with user authentication and authorisation. It is built using Express and Pug and is hosted on AWS.
 
 ## React Native App
-https://github.com/JetHughes/snowboard-goals-app
+[github react native app](https://github.com/JetHughes/snowboard-goals-app)
 
 This was one of my first large projects. It was my year 13 IT scholarship project. It is built using React-Native and Expo. Throughout the creation of this project I had to consider many factors besides the code. This included working with a stakeholder, considering legal and ethical implications, privacy, security, UI design, Iterative development and more.
 
 ## Motion Detector
-https://github.com/JetHughes/motion-detector
+[github motion detector](https://github.com/JetHughes/motion-detector)
 
 This was a small project I made last summer. Someone was stealing my cookies, so rather than recording 24/7 I configured my GoPro to stream to an RTMP server. This video was then analysed by a python script using OpenCV and I was alerted when motion was detected.
 
 ## Python Bots
-https://github.com/JetHughes/discord-album-bot, https://github.com/JetHughes/slack-album-bot
-
+[github slack bot](https://github.com/JetHughes/discord-album-bot) [github album bot](https://github.com/JetHughes/slack-album-bot)
 
 ## Non-Destructive Image Editor
+This was a group project for my software development paper last semester. We were provided with the basic skeleton of the app, then we had to add features such as: zoom, image saving, and various image filters such as sharpen, posterise, contrast and brightness and more. We also had to add unit testing, mange communication, set deadlines, allocate tasks, and maintain a repository.
 
 <hr>
 
