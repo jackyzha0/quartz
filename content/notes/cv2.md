@@ -55,38 +55,38 @@ Otago University (2021 - present)
 # Technical Skills
 
 ## Java
-- Used OOP concepts to creat a non-destructive image editor as part of a group project
+- Used OOP concepts to creat a non-destructive image editor as part of a group project with JUnit testing and GitLab CI/CD
+- Implemented and experiemented with various algorithms and data structures.
 
 ## Python
 - Created a Slack bot using Flask which is currently running as an AWS Lambda function
-- Transformed my GoPro to a motion detector by streaming video using an RTMP server and analysing the data using OpenCV
+- Transformed my GoPro to a motion detector by streaming video to an RTMP server and analysing the data using OpenCV
 - Implemented various machine learning and AI methods using Jupyter notebooks
 
-## Web Frameworks
+## Web Technologies
 - Created a snowboard goals tracking application using Expo and React-Native
-- Currently creating a website with user authentication using Express and Pug
+- Currently creating a website with user authentication using Express, MongoDB, and Pug, hosted using AWS
 
-Other Skills: c#, C, 6809 assebmly Git, PowerShell, Bash, Linux, KeyCloak, 
+Other Languages I have used: C, C#, 6809 Assembly, SQL.
 
 <hr>
 
 # Project Experience
+## Album of the Day Website
+
 ## React Native App
-The first language I learnt when I started programming was C# in year 9. I started by making simple text-based games in the terminal, but soon grew bored and started to experiment with Unity. I stated simple with some 2d games, eventually working up to a 3D top down shooter with procedurally generated maps, which I later transformed into a basic single-player first-person shooter game.
-
-## 202 Project
-The first language I learnt when I started programming was C# in year 9. I started by making simple text-based games in the terminal, but soon grew bored and started to experiment with Unity. I stated simple with some 2d games, eventually working up to a 3D top down shooter with procedurally generated maps, which I later transformed into a basic single-player first-person shooter game.
-
-## Python Bots
-The first language I learnt when I started programming was C# in year 9. I started by making simple text-based games in the terminal, but soon grew bored and started to experiment with Unity. I stated simple with some 2d games, eventually working up to a 3D top down shooter with procedurally generated maps, which I later transformed into a basic single-player first-person shooter game.
 
 ## Motion Detector
-The first language I learnt when I started programming was C# in year 9. I started by making simple text-based games in the terminal, but soon grew bored and started to experiment with Unity. I stated simple with some 2d games, eventually working up to a 3D top down shooter with procedurally generated maps, which I later transformed into a basic single-player first-person shooter game.
+
+
+## Python Bots
+
+## Non-Destructive Image Editor
 
 <hr>
 
 # Interests
-- Music: All of it - I have listed to about 953 albums, 756 artists, and 9467 tracks this year. [last.fm/user/JetLikeAPlane](https://www.last.fm/user/JetLikeAPlane)
+- Music: All of it - I have listed to about 1072 albums, 820 artists, and 11,395 tracks this year. [last.fm/user/JetLikeAPlane](https://www.last.fm/user/JetLikeAPlane)
 - Surfing + Snowboarding: Grew up in Raglan and living in Dunedin: How can I not?
 - Philosophy: Food for the brain - Currently listening to the podcast Philosphize This by Stephen West
 - Cooking: Japanese, Mexican, Chinese, Thai, Inidan, Caveman, etc - I love trying new things
@@ -94,4 +94,5 @@ The first language I learnt when I started programming was C# in year 9. I start
 <hr>
 
 # References
-**Dilan Prasad - Company-X:** My current Project Manager
+**Dilan Prasad** My current Project Manager at Company-X
+**Aaron Jamieson:** My snowboard coach of 2 years
