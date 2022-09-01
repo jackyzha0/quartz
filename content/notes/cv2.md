@@ -21,11 +21,10 @@ I often stay up far too late fixating on a stubborn bug or a difficult feature. 
 
 # Skill Summary
 ## Problem Solving
-Ever since I was a kid, solving problems has been one of my favourite things. I
-
-From perfecting the nuances various lego machines to transforming a GoPro to a motion detector camera and creating an app to track my snowboarding progress I Iove solving problems. Tell me yours! 
+Ever since I was a kid, solving problems has been one of my favourite things. I have grown a lot since my days of engineering lego machines and finding creative ways to read at night without my parents knowing. I recently transformed my GoPro into a motion detector and made an app to track my snowboarding progress. These projects were direct solutions to problems I faced often. I wanted to know which member of the family was stealing my cookies, so I made a motion detector. I wanted to have a clear picture of what my snowboarding goals were and what I needed to do to achieve them, so I created an app which helped me do those things. I Iove solving problems. Tell me yours! 
 
 ## Independent Learning
+To create these solutions, I needed to learn new things. My desire to solve problems, necessitates independent learning. While the things i've learnt at school and in university have been helpful, their real value to me, is that they provide a launching pad from which I can expand my knowledge, and dive deeper into technologies I find interesting and exciting. 
 - react native + javascript
 - unity
 - html + css
