@@ -12,7 +12,7 @@ Initially EasyCart was created as a shopping cart for our projects. Now, thanks 
 - August 2022 EasyCart exceedes PLN 5,000,000 in transactions
 - May 2022 EasyCart exceeds PLN 3,000,000 in transactions
 - December 2021 EasyCart exceeds 700K transactions and 4,000 customers online
-- November 2021 EasyCart to end public beta soon
+- November 2021 EasyCart ends public beta
 - August 2021 First customer switches all his products to EC after testing 🎉
 - August 2021 - EasyCart becomes a project #buildinpublic
 - August 2021 - EasyCart is in closed beta stage
