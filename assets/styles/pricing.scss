@@ -12,7 +12,7 @@ $secondary-color: rgb(73, 144, 191);
   flex-direction: column;
   align-items: center;
   &-text {
-    text-align: center;
+    text-align: center;#
     margin: 4px 0;
   }
 }
@@ -100,7 +100,6 @@ $secondary-color: rgb(73, 144, 191);
       margin: 0px 24px;
     }
     li:before {
-      background-color: #111;
       content: '\2713';
       display: inline-block;
       color: green;
