@@ -8,11 +8,12 @@ EasyCart is a project that facilitates sales in digital products. Its biggest co
 Initially EasyCart was created as a shopping cart for our projects. Now, thanks to Stripe technology, it was possible to make it available to others.
 
 ## News 
-- August 2022 Easycart exceedes PLN 5,000,000 in transactions
+- September 2022 EasyCart exceedes PLN 6,000,000 in transactions 
+- August 2022 EasyCart exceedes PLN 5,000,000 in transactions
 - May 2022 EasyCart exceeds PLN 3,000,000 in transactions
 - December 2021 EasyCart exceeds 700K transactions and 4,000 customers online
 - November 2021 EasyCart to end public beta soon
-- August 2021 First customer switches all its products to EC after testing 🎉
+- August 2021 First customer switches all his products to EC after testing 🎉
 - August 2021 - EasyCart becomes a project #buildinpublic
 - August 2021 - EasyCart is in closed beta stage
 
