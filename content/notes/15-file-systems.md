@@ -63,8 +63,48 @@ these issues have been solved using block allocaiton instead of continuous alloc
 	- returns -1 if error. and errno is set
 	- should return number of bytes written if ok
 
-# file access pattersns
+`ssize_t read(int fd, void *buf, size_t count)`
+- attempt to read up to count bytes from the fd into the buffer starting at buf. On success, the numbber of bytes read is returned and the file position is advanced by this number. It may be < count. zero means end of file
+- error is -1 and errno is set
+
+# file access patterns
+- sequential access (most common)
+	- a file pointer specifies a record within the file.
+	- the poniter can be moved incrementally forwards (in read or write) operations or backwards (in rewinding)
+	- the hardware metaphor is a tape
+- direct access
+	- a file is viewed as a numbered sequence of records
+	- operations (e.g., read write) can be carried out on any record in any order
+	- the hardware metaphor is a disk
+
+you can give *advice* to the OS about how to read the file by specifying sequential or direct
+
+
 # directory structure
+
+tree structured
+![diagram|400](https://i.imgur.com/opniDLZ.png)
+
+mapped onto a storage device
+
+this is done by the organisation module
+
+smallest unit in a disk is a block
+
+the file organiser has to allocate blocks for the storage of files
+
+a file is broken into logical blocks, to make the mapping to disk blocks easier to manage
+
+
+
 # file system implementation
 # disk allocation methods
+
+continiour allocation
+- each file occupies a set of continuous blocks on the disk
+- advantages
+	- sequential access is easy becaues the next character is in the current block or the very next block
+	- direct access is also good, just count the numbe of blocks
+- disadvantages
+	- extern
 
