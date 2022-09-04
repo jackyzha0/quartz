@@ -38,7 +38,8 @@ tags:
 - [06-6809-programming](notes/06-6809-programming.md)
 - [07-6809-advanced](notes/07-6809-advanced.md)
 - [08-intro-to-c](notes/08-intro-to-c.md)
-- 
+- [11-struct-and-union](notes/11-struct-and-union.md)
+
 # Archive
 
 # Info

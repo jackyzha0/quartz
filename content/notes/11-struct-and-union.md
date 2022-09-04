@@ -3,6 +3,10 @@ title: "11-struct-and-union"
 aliases: 
 tags: 
 - cosc204
+- lecture
+sr-due: 2022-09-08
+sr-interval: 3
+sr-ease: 250
 ---
 
 # Struct
@@ -54,8 +58,8 @@ location.y = 1;
 copy the members including pointers
 - but not the things the pointers point to
 
-![shallow copy example 1](https://i.imgur.com/w3B3ce0.png)
-![shallow copy example 2](https://i.imgur.com/mL5QION.png)
+![shallow copy example 1|200](https://i.imgur.com/w3B3ce0.png)
+![shallow copy example 2|400](https://i.imgur.com/mL5QION.png)
 
  both point to the same memory location.
 when you change one - they both change.
@@ -128,7 +132,39 @@ queue *queue_new(void){
 ```
 
 enqueue
-
 ![enqueue code|400](https://i.imgur.com/suaKfi9.png)
 
+dequeue
+![dequeue code|400](https://i.imgur.com/u3mKX5R.png)
+
+# Structs as view
+```
+typedef struct q_item {
+	int value;             //4-byte integer
+	struct q_item *next;   //8-byte pointer
+} queue_item;
+```
+
+![](https://i.imgur.com/ObfIzew.png)
+
+struct is a view where the members are laid out consecutively
+
+# Union
+multiple views of the same memory
+- each line in the declaration is a different view
+
+```
+typedef union {
+	struct {
+		uint8_t a, b, c, d;
+	};
+	uint32_t integer;
+} two_views;
+```
+
+![diagram|100](https://i.imgur.com/qL8KnW5.png)
+
+## endianess
+big-endian vs little-endian
+some computer store the most significatn byte first, other store the least significant byte first
 
