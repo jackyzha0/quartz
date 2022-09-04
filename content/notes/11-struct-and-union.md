@@ -61,9 +61,74 @@ copy the members including pointers
 when you change one - they both change.
 
 ## passing to routines
-passed by value
+### by value
+need to copy the whole objcet, usually slower
+```
+void thing_print(thing object) {
+	print("%f ",object.value)
+	print("%f\n", object.string)	
+	object.value = object.value -1; //does not affect first because it is a copy of object
+}
+
+thing_print(first)
+```
+
+### by address
+usually faster. less data coming off and onto the stack
+```
+void thing_print(thing *object) {
+	print("%f ",object->value) //struct->field === (*struct).field
+	print("%f\n", object->string)	
+	object->value = object->value -1; //does not affect first because object is a pointer to first
+}
+
+thing_print(&first)
+```
+
+## returning
+- return by value
+- never return a pointer to somthing on the stack
+
+# Queue
+- enqeue to tail
+- dequeue from head
+- FIFO
+
+![diagram|400](https://i.imgur.com/nD0AxGd.png)
+
+## enqueue with pointers
+queue is a linked list
+`NULL` as sentinel value at end
+
+![diagram linked list|400](https://i.imgur.com/WFCbQjR.png)
+
+- go down list till we find null
+- create new object (`malloc`), value = 123, pointer = NULL
+- change null in final object to the new object
 
 ```
-void print(thing object)
+typedef struct q_item {
+	int value;
+	stuct q_item *next;
+} queue_item;
+
+//for convenience we have a struct for the queue
+typedef struct {
+	queue_item *head;
+} queue;
 ```
+
+constructor
+```
+queue *queue_new(void){
+	queue *this = malloc(sizeof(queue));
+	this->head = NULL;
+	return this;
+}
+```
+
+enqueue
+
+![enqueue code|400](https://i.imgur.com/suaKfi9.png)
+
 
