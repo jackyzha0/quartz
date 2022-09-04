@@ -1,7 +1,8 @@
 $base-color: rgb(20, 20, 20);
 $base-color-light: rgb(104, 104, 104);
 $primary-color: rgb(40, 75, 98);
-$secondary-color: rgb(73, 144, 191);
+$secondary-color: var(--secondary);
+$secondary-color-active: #00c7eb;
 
 * {
   box-sizing: border-box;
@@ -57,6 +58,7 @@ $secondary-color: rgb(73, 144, 191);
   gap: 32px;
   margin-top: 32px;
   background-color: $base-color;
+  transition: filter 0.5s;
 
   &-header {
     width: 100%;
@@ -71,10 +73,13 @@ $secondary-color: rgb(73, 144, 191);
   &-label {
     margin-bottom: 0px;
     color: white;
+    filter: drop-shadow(0 0 2px black);
     font-size: 28px;
   }
   &-price {
     font-size: 20px;
+    color: white;
+    filter: drop-shadow(0 0 2px black);
   }
 
   &-body {
@@ -100,22 +105,24 @@ $secondary-color: rgb(73, 144, 191);
       margin: 0px 24px;
     }
     li:before {
-      content: '\2713';
+      content: "\2713";
       display: inline-block;
       color: green;
       padding: 0 6px 0 0;
     }
   }
-  :hover {
-    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+  
+  &:hover {
+
+    filter: drop-shadow(0 0 8px black);
   }
 }
+
 
 /* Grey list item */
 .price .grey {
   font-size: 20px;
 }
-
 
 /* The "Sign Up" button */
 .button {
@@ -126,6 +133,10 @@ $secondary-color: rgb(73, 144, 191);
   text-align: center;
   text-decoration: none;
   font-size: 18px;
+  &:hover{
+    background-color: #356483;
+    color: white !important;
+  }
 }
 
 /* Change the width of the three columns to 100%
@@ -138,4 +149,11 @@ $secondary-color: rgb(73, 144, 191);
 
 .premium {
   background-color: $secondary-color;
+  &-btn {
+    background-color: $secondary-color;
+    &:hover{
+      background-color: $secondary-color-active;
+      color: white !important;
+    }
+  }
 }
