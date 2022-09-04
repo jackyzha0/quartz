@@ -2,14 +2,7 @@
     margin-top: 64px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     padding-top: 32px;
-    &-title {
-        font-size: 48px;
-        font-weight: 600;
-        margin: 4px 4px;
-    }
 }
 .hero {
     display: flex;
@@ -24,6 +17,12 @@
         margin: 4px 4px;
     }
     &-subtitle {
+        text-align: center;
+        font-size: 32px;
+        font-weight: 600;
+        margin: 4px 4px;
+    }
+    &-text {
         text-align: center;
         font-size: 20px;
         font-weight: 600;
@@ -41,19 +40,52 @@
   }
 
 .feature {
+    
     display: flex;
     flex-direction: column;
 
+    &-container {
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+        @media all and (max-width: 780px) {
+            gap: 32px;
+        }
+    }
+
     &-title {
-        font-size: 36px;
+        font-size: 48px;
         font-weight: 600;
         margin: 12px 4px;
+        @media all and (max-width: 780px) {
+            font-size: 32px;
+        }
     }
 
     &-subtitle {
-        font-size: 20px;
+        font-size: 30px;
         font-weight: 600;
         margin: 4px 4px;
+        @media all and (max-width: 780px) {
+            font-size: 20px;
+        }
+    }
+
+    &-image {
+        height: inherit;
+        object-fit: cover;
+    }
+
+    &-list {
+        li {
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 4px 4px;
+            @media all and (max-width: 780px) {
+                font-size: 16px;
+            }
+        }
     }
 
     &-big {

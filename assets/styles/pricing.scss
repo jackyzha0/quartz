@@ -2,7 +2,7 @@ $base-color: rgb(20, 20, 20);
 $base-color-light: rgb(104, 104, 104);
 $primary-color: rgb(40, 75, 98);
 $secondary-color: var(--secondary);
-$secondary-color-active: #00c7eb;
+$secondary-color-active: var(--secondary-active);
 
 * {
   box-sizing: border-box;
