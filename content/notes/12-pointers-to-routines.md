@@ -6,5 +6,50 @@ tags:
 - lecture
 ---
 
-# compiler
-converts high level language description of program into machine code description of the program
+compiler ⇒ converts high level language description of program into assembly description of the program
+assembler ⇒ converts assebly language description into machine code description
+loader ⇒ loads program into memory, loaded at $4000
+
+data has an address in memory, so does the application. Therefore functions must also have an address in memory which we can access
+
+# pointers to routines
+
+```
+int (*method)(int param)
+```
+
+to assign a pointer to a routine
+
+```
+method = square;
+```
+
+to call the routine
+```
+result = method(6);
+```
+
+
+## basic example
+![pointer to routine example|400](https://i.imgur.com/qLy2uh3.png)
+
+## pointer as member of a struct;
+pointers to routines can beused anyqhere variables can
+
+- member of struct
+![|200](https://i.imgur.com/03utoNr.png)
+
+- parameter to other routine
+![|200](https://i.imgur.com/cwjCgBg.png)
+
+# modules
+we can break programs into functional modules
+- each modules excapsulates one behaviour
+- give us a way of data hiding
+
+add pointer to structs as parameters to methods in modules
+- call this an abstract data type ADT
+- we communicatre with an ADT via its public interface
+	- so that the implementation details are hidden
+
+![queue ADT|400](https://i.imgur.com/pk2kOE2.png)
