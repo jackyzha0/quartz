@@ -39,6 +39,7 @@ tags:
 - [07-6809-advanced](notes/07-6809-advanced.md)
 - [08-intro-to-c](notes/08-intro-to-c.md)
 - [11-struct-and-union](notes/11-struct-and-union.md)
+- [12-pointers-to-routines](notes/12-pointers-to-routines.md)
 
 # Archive
 
