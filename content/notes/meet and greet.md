@@ -31,4 +31,7 @@ introductions
 - ask them what they do at the company
 	- find common ground
 - go with the flow
-- 
+
+questions
+- ask them to elaborate on tech and projects
+- tell me more vs what is this
