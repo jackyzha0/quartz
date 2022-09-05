@@ -83,7 +83,7 @@ title: Home
                     <h2 class="feature-title">Made for Obsidian MD</h2>
                     <p class="feature-subtitle">Use the [[posts/sync-fleeting-notes-with-obsidian|Fleeting Notes plugin]] to sync and process notes</p>
                     <ul class="feature-list">
-                        <li><a href="notes/How-to-copy-Obsidian-links-to-Fleeting-Notes">Import your wikilinks</a> and start connecting your notes</li>
+                        <li>[[notes/How to copy Obsidian links to Fleeting Notes|Import your wikilinks]] and start connecting your notes</li>
                         <li>Choose your syncing type (delete after sync, two-way)</li>
                         <li>Run commmands to show unprocessed or same-source notes</li>
                         <li>Customize your own import note template with metadata</li>
