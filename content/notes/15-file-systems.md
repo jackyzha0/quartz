@@ -100,11 +100,40 @@ a file is broken into logical blocks, to make the mapping to disk blocks easier 
 # file system implementation
 # disk allocation methods
 
-continiour allocation
+continious allocation
 - each file occupies a set of continuous blocks on the disk
 - advantages
 	- sequential access is easy becaues the next character is in the current block or the very next block
 	- direct access is also good, just count the numbe of blocks
 - disadvantages
-	- extern
+	- external fragmentation
+		- free space is fragmented. the total space is enough for a file but none of the continuous space is large enogh
+		- space is not large enough to be allocated
+	- internal fragmentation
+		- files can grow. and we dont know how big a file is going to be. even if we did, files can shrink too, in which case space is unused
+		- this space is allocated but not used
+
+linked allocation
+- each file is a linked list of blocks
+- the directory contains a pointer to the firsrt (and last) blocks of the file
+- each block contains a poniter to the next block
+- advantages
+	- no external fragmentation
+	- files can grow and shrink easily
+- disadvantages
+	- can only be used effectively for qequential access
+	- pointer take up space
+	- internal fragmentation (get worse as clusters grow)
+	- reliability -> if one pointer is lost, the whole file therafter is also lost
+
+FAT file allocation table
+- variation of linked allocation scheme (used in ms-dos)
+- a table is created at  tthe beginning of each partition
+- can also be a point of failure. two copies are kept to safeguard from corruption
+
+![diagram|400](https://i.imgur.com/IYTB9EP.png)
+
+
+indexed allocation
+![diagram|400](https://i.imgur.com/LUv1PJA.png)
 
