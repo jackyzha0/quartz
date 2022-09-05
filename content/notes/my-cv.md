@@ -69,22 +69,22 @@ Other Languages I have used: C, C#, 6809 Assembly, SQL.
 
 # Project Experience
 ## Album of the Day Website
-[GitHub album website](https://github.com/JetHughes/album)
+[Album website GitHub repo](https://github.com/JetHughes/album)
 
 This is my most recent project. I created this as a way to put in to practice the things I have been learning at university. It is a basic website with user authentication and authorization. It is built using Express and Pug and is hosted on AWS.
 
 ## React Native App
-[GitHub React Native app](https://github.com/JetHughes/snowboard-goals-app)
+[React Native app GitHub repo](https://github.com/JetHughes/snowboard-goals-app)
 
 This was one of my first large projects. It was my year 13 IT scholarship project. It is built using React-Native and Expo. Throughout the creation of this project, I had to consider many factors besides the code. This included working with a stakeholder, considering legal and ethical implications, privacy, security, UI design, Iterative development and more.
 
 ## Motion Detector
-[GitHub motion detector](https://github.com/JetHughes/motion-detector)
+[Motion Detector GitHub repo](https://github.com/JetHughes/motion-detector)
 
 This was a small project I made last summer. Someone was stealing my cookies, so rather than recording 24/7 I configured my GoPro to stream to an RTMP server. This video was then analysed by a python script using OpenCV, and I was alerted when motion was detected.
 
 ## Python Bots
-GitHubb slack bot](https://github.com/JetHughes/discord-album-bot) GitHubb album bot](https://github.com/JetHughes/slack-album-bot)
+GitHub slack bot](https://github.com/JetHughes/discord-album-bot) GitHub album bot](https://github.com/JetHughes/slack-album-bot)
 
 Some simple slash command bots for discord and slack. They both make an api request and return some information. The slack bot is a flask app currently running on an AWS Lambda function, but the discord one is not running.
 
@@ -105,4 +105,5 @@ This was a group project for my software development paper last semester. We wer
 
 # References
 **Dilan Prasad** My current Project Manager at Company-X
+
 **Aaron Jamieson:** My snowboard coach of 2 years
