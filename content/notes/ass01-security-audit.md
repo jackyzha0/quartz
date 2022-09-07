@@ -33,5 +33,8 @@ Jet Hughes - 9474308
 - e.g. '; update PRODUCT set DESCRIPTION = '<script>alert("hello")</script>' where PRODUCT_ID = 67696;--
 
 ## Path traversal
+- I dont think there are any path traversal flaws in this website. This is because there isn't any urls which contain queryies or 
 ## Network-Level security
+- when a user logs in a post request to the server transmits the username and unhashed password to the server. This informaiton is susceptible to a man in the middle attack or 
+![example payload](https://i.imgur.com/9Tn6gx1.png)
 ## Other
