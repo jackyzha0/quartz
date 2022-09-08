@@ -18,7 +18,7 @@ tags:
 - [ethics essay](notes/ethics-essay)
 
 # Labs
-
+[cosc203-lab16](notes/cosc203-lab16.md)
 
 # Notes
 
