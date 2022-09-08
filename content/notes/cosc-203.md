@@ -17,6 +17,9 @@ tags:
 - [back end project](notes/back-end-project)
 - [ethics essay](notes/ethics-essay)
 
+# Labs
+
+
 # Notes
 
 # Lectures
