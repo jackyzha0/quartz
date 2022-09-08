@@ -26,7 +26,20 @@ In the username field of the login form I entered the string:
 
 ' union select group_concat(username||':'||password||':'||name||':'||credit_card_number||':'||credit_card_expiry||':'||credit_card_cvv) from user as name;--
 
-This resulted in all the users data
+This resulted in all the users data and hashed passwords being displayed in the browser. I was then able to crack 48 of the passwords using hashcat and the rockyou wordlist. 
+
+## Cross site scripting/Javascript injection
+CWE: 79
+
+The product catalogue is visible to other users. This means if we were able to update the product information in the database we could run javascript on the brower of other users.
+
+Since we are able to inject SQL using the username field on the login page, we can execute an UPDATE command on the database. This is the input I used:
+
+'; update PRODUCT set DESCRIPTION = '<script>alert("hello")</script>' where PRODUCT_ID = 67696;--
+
+An attacker could use this to present the user with an unsafe link, or export data such as session Id to a remote server where they can view it.
+
+I was also able to create an account with the username ''<script>alert("hello")</script>", however when I logged in, the alert was not shown and the username in the login page was blank. 
 
 ## Password policy
 - must have at least 5 characters and one digit.
