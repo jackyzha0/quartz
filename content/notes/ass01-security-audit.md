@@ -14,6 +14,20 @@ Jet Hughes - 9474308
 - technology
 
 # Flaws
+## SQL Injection 
+CWE: 89
+
+It is possible to inject SQL into the database using the login username field, and display it in the brower as the "username" of the logged in user.
+
+The first thing I attempted was to login using the username " 'or 1=1;--". This worked and I was logged in as administrator.
+After that I created an account. When I noticed that my username was displayed in the brower I attempted to extract data from the database and display is as this username. 
+
+In the username field of the login form I entered the string:
+
+' union select group_concat(username||':'||password||':'||name||':'||credit_card_number||':'||credit_card_expiry||':'||credit_card_cvv) from user as name;--
+
+This resulted in all the users data
+
 ## Password policy
 - must have at least 5 characters and one digit.
 	- not suffiecient
