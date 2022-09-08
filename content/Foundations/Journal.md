@@ -2,12 +2,12 @@
 title: Journal
 ---
 
-I keep a journal on [[Optimization/Hardware/iPad]] in an [[Optimization/Tools/Notability]] app. I wrote my first notes in the [[Bear]] app back in 2016. Then I've realised that taking notes by hand is way better.
+I keep a Journal on [[Optimization/Hardware/iPad]] in an [[Optimization/Tools/Notability]] app. I wrote my first notes in the [[Bear]] app back in 2016. Then I've realised that taking notes by hand is way better because of many reasons. For example I can go back to my notes and see emotions reflected in my writing character.
 
-## Why?
-This is a way for me to "getting the garbage out of your head" (concept from [[Knowledge/People/Dan Millman]]).
+## Why I keep my Journal?
+This is a way for me to "getting the garbage out of your head" (a concept from [[Knowledge/People/Dan Millman]]).
 
-Besides, writing is an expression of thoughts. Writing improves one's thinking process, which is something I care about a lot. A similar role is played by [[Knowledge/Mental models/Mental models]]. 
+Besides, writing is a way to express my thoughts and emotions. Writing improves one's thinking process, which is something I care about a lot. A similar role is played by [[Knowledge/Mental models/Mental models]]. In a simple words - **by writing I'm learninig how to think.**
 
 In addition to writing, I also read my journal, which gives me a [[Knowledge/Dictionary/Perspective]] (for ex. By looking at yourself and your attitudes from years ago).
 
