@@ -31,6 +31,8 @@ In the username field of the login form I entered the string:
 
 ' union select group_concat(username||':'||password||':'||name||':'||credit_card_number||':'||credit_card_expiry||':'||credit_card_cvv) from user as name;--
 
+' union (select TABLE_NAME, TABLE_SCHEMA, 1, 2 FROM information_schema.tables) ;--
+
 This resulted in all the users data, credit card informaton, and hashed passwords being displayed in the browser. I was then able to crack 48 of the passwords using hashcat and the rockyou wordlist. 
 
 An attacker would not know the names of the fields or the tables. However security through obscurity is not sufficient and an attacker could guess or otherwise find the information.
@@ -73,10 +75,14 @@ CWE: 22
 ### Cleartext Transmission of Sensitive Information
 CWE: 319
 
-When a user logs in, their username  and unhashed password are transmitted in a cleartext post request to the server. This information is susceptible to a man in the middle attack and other kinds of interception.
+When a user logs in, their username  and unhashed password are transmitted in a cleartext post request to the server. This information is susceptible to a man in the middle attack and other methods of interception.
 
 #### Example payload:
 ![example payload](https://i.imgur.com/9Tn6gx1.png)
 
 ## Conclusion
-This system is not secure. I was able to identify multiple vulnerabilities, and successfully carry out attacks to exploit these vulnerabilities. The most damaging of these was a simple SQL Injection attack. I was able to extract the credit card information of all the users, and crack the passwords of nearly 50% of the accounts. This is a major security issue. 
+This system is not secure. I was able to identify multiple vulnerabilities, and successfully carry out attacks to exploit these vulnerabilities. 
+
+The most severe of these was a simple SQL Injection attack. I was able to extract the credit card information of all the users, and crack the passwords of nearly 50% of the accounts. This is a major security issue. 
+
+I was also able to inject Javascript code into the database which would then be run on the browser of other users. 
