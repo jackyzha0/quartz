@@ -33,7 +33,7 @@ Jet Hughes - 9474308
 - You was able to update a product name to be a script which would then run on others systems
 	- e.g. '; update PRODUCT set DESCRIPTION = '<script>alert("hello")</script>' where PRODUCT_ID = 67696;--
 - this could be used to export JSESSIONIDs of other users. Which would allow the attack to access their account (while the other user is logged in).
-- It could also be used to present the user with a message 
+- It could also be used to present the user with a legitamate seeming message encouraging them to open a malicious link.
 
 ## Path traversal
 - You can access the welcome page simply using the path /catalogue/welcome.jsp. This will load the welcome page with the username null. However it is unclear whether this is a security issue as curently the welcome page offers no functionality. 
