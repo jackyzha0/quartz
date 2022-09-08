@@ -37,13 +37,36 @@ Since we are able to inject SQL using the username field on the login page, we c
 
 '; update PRODUCT set DESCRIPTION = '<script>alert("hello")</script>' where PRODUCT_ID = 67696;--
 
-An attacker could use this to present the user with an unsafe link, or export data such as session Id to a remote server where they can view it.
+An attacker could use this to present the user with an unsafe link, or export data such as session ID's and cookie data to a remote server where they can view it.
 
 I was also able to create an account with the username ''<script>alert("hello")</script>", however when I logged in, the alert was not shown and the username in the login page was blank. 
 
 ## Password policy
-- must have at least 5 characters and one digit.
-	- not suffiecient
+CWE: 521
+
+This website only requires that the users passwords have 5 character and 1 number. This does not at all meet the requirements for a secure password, and means the passwords can be easily cracked.
+
+## Use of a Broken or Risky Cryptographic Algorithm
+CWE: 327
+
+The website uses md5 to hash the passwords which is not a secure hash function. It also does not salt or pepper the passwords.
+
+## Improper Restriction of Excessive Authentication Attempts
+CWE: 307
+
+The login page does not restrict the number of login attempts. This means it is possible for an attacker to attempt many passwords to gain access to an account.
+
+## Path traversal
+CWE: 22
+- You can access the welcome page simply using the path /catalogue/welcome.jsp. This will load the welcome page with the username null. However it is unclear whether this is a security issue as curently the welcome page offers no functionality. 
+- I dont think there are any path traversal flaws in this website. This is because there isn't any urls which contain queries or parameters relating to sensitive pages. 
+
+
+
+
+
+
+
 
 ## SQL Injection
 - can log in to admin using username: " 'or 1=1;--"
@@ -62,9 +85,6 @@ I was also able to create an account with the username ''<script>alert("hello")<
 - this could be used to export JSESSIONIDs of other users. Which would allow the attack to access their account (while the other user is logged in).
 - It could also be used to present the user with a legitamate seeming message encouraging them to open a malicious link.
 
-## Path traversal
-- You can access the welcome page simply using the path /catalogue/welcome.jsp. This will load the welcome page with the username null. However it is unclear whether this is a security issue as curently the welcome page offers no functionality. 
-- I dont think there are any path traversal flaws in this website. This is because there isn't any urls which contain queries or parameters relating to sensitive pages. 
 ## Network-Level security
 - when a user logs in a post request to the server transmits the username and unhashed password to the server. This informaiton is susceptible to a man in the middle attack or other kinds of interception. Hopefully the website uses http. 
 ![example payload](https://i.imgur.com/9Tn6gx1.png)
