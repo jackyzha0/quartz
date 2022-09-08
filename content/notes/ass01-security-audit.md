@@ -53,12 +53,14 @@ I was also able to create an account with the username ''<script>alert("hello")<
 ### Password policy
 CWE: 521
 
-This website only requires that the users passwords have 5 character and 1 number. This does not at all meet the requirements for a secure password, and means the passwords can be easily cracked. It is also likely that many of the passwords will be simply 5 letters then a number. This makes it very easy to crack these passwords using a pattern technique.
+This website only requires that the users passwords have 5 character and 1 number. Uppercase letters and numbers are not required. This results in a character set size of 36, and a Shannon Entropy of 15 bits.
+
+This does not results in a secure password, and means the passwords can be easily cracked. It is also likely that many of the passwords will be simply 5 letters then a number. This makes it very easy to crack these passwords using a pattern technique.
 
 ### Use of a Broken or Risky Cryptographic Algorithm
 CWE: 327
 
-The website uses md5 to hash the passwords which is not a secure hash function. It also does not salt or pepper the passwords.
+The website uses md5 to hash the passwords which is not a secure hash function. Furthermore the passwords are not salted or peppered.
 
 I was able to crack 48 of the 100 passwords using hashcat and the rockyou wordlist with the command: hashcat.exe -m 0 -a 0 pwds.txt rockyou.txt.
 
@@ -86,3 +88,5 @@ This system is not secure. I was able to identify multiple vulnerabilities, and 
 The most severe of these was a simple SQL Injection attack. I was able to extract the credit card information of all the users, and crack the passwords of nearly 50% of the accounts. This is a major security issue. 
 
 I was also able to inject Javascript code into the database which would then be run on the browser of other users. 
+
+Furthermore the system does not have adequate password policy and allows users to enter weak passwords. 
