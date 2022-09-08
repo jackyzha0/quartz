@@ -10,8 +10,13 @@ tags:
 Jet Hughes - 9474308
 
 ## Summary of system
-- function
-- technology
+### Function
+This system is a simple website for a store called Things & Co. It allows users to create an account, login, and view their products. There are four pages: Home, Create Account, View Catalogue, and Log In. The home page is a simple landing page with a bried description of the website and some images. The View Catalogue page shows informationa bout the lilst of products the store sells. It also allows the user to search for products.
+
+To create an account the user musta provide a Username, Real name, email, address, credt card information and a password. They are then able to login to their account using the Log In page. 
+
+### Technology
+It is a Web application running on a local virtual machine using Java Servlets and JSPs in the Tomcat Web server. It also uses an H2 database for storage of user, and product data. 
 
 ## Flaws
 ### SQL Injection 
