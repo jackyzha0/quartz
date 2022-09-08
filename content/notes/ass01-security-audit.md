@@ -61,6 +61,32 @@ CWE: 22
 - You can access the welcome page simply using the path /catalogue/welcome.jsp. This will load the welcome page with the username null. However it is unclear whether this is a security issue as curently the welcome page offers no functionality. 
 - I dont think there are any path traversal flaws in this website. This is because there isn't any urls which contain queries or parameters relating to sensitive pages. 
 
+## Cleartext Transmission of Sensitive Information
+CWE: 319
+
+When a user logs in, their username  and unhashed password are transmitted in a cleartext post request to the server. This informaiton is susceptible to a man in the middle attack and other kinds of interception.
+![example payload](https://i.imgur.com/9Tn6gx1.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -85,7 +111,4 @@ CWE: 22
 - this could be used to export JSESSIONIDs of other users. Which would allow the attack to access their account (while the other user is logged in).
 - It could also be used to present the user with a legitamate seeming message encouraging them to open a malicious link.
 
-## Network-Level security
-- when a user logs in a post request to the server transmits the username and unhashed password to the server. This informaiton is susceptible to a man in the middle attack or other kinds of interception. Hopefully the website uses http. 
-![example payload](https://i.imgur.com/9Tn6gx1.png)
 ## Other
