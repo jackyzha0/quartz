@@ -89,4 +89,4 @@ The most severe of these was a simple SQL Injection attack. I was able to extrac
 
 I was also able to inject Javascript code into the database which would then be run on the browser of other users. 
 
-Furthermore the system does not have adequate password policy and allows users to enter weak passwords. 
+Furthermore the system does not have adequate password policy and allows users to choose weak passwords. It also allow excessive authentication attempts.
