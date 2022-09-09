@@ -7,7 +7,7 @@
 }
 
 h1, h2, h3, h4, h5, h6, ol, ul, thead {
-  font-family: Inter;
+  font-family: Poppins;
   color: var(--dark);
   font-weight: revert;
   margin: revert;
@@ -228,7 +228,7 @@ a {
   color: var(--secondary);
 
   &:hover {
-    color: var(--tertiary) !important;
+    color: var(--secondary-active) !important;
   }
 }
 
@@ -292,6 +292,16 @@ hr {
 }
 
 .singlePage {
+  
+  .index-container {
+    width: 160%;
+    margin-left: -30%;
+    @media all and (max-width: 1200px) {
+      width: 100%;
+      margin-left: 0;
+    }
+    padding: 0 16px;
+  }
   padding: 4em 25vw;
 
   @media all and (max-width: 1200px) {

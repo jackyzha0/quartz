@@ -1,65 +1,159 @@
+$base-color: rgb(20, 20, 20);
+$base-color-light: rgb(104, 104, 104);
+$primary-color: rgb(40, 75, 98);
+$secondary-color: var(--secondary);
+$secondary-color-active: var(--secondary-active);
+
 * {
-    box-sizing: border-box;
-  }
-  
-  /* Create three columns of equal width */
-  .pricing-columns {
-    float: left;
-    width: 50%;
-    padding: 8px;
-  }
-  
-  /* Style the list */
-  .price {
-    list-style-type: none;
-    border: 1px solid #eee;
-    margin: 0;
-    padding: 0;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
-  }
-  
-  /* Add shadows on hover */
-  .price:hover {
-    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
-  }
-  
-  /* Pricing header */
-  .price .header {
-    background-color: #111;
-    color: white;
-    font-size: 25px;
-  }
-  
-  /* List items */
-  .price li {
-    border-bottom: 1px solid #eee;
-    padding: 20px;
+  box-sizing: border-box;
+}
+
+.plan-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &-text {
     text-align: center;
+    margin: 4px 0;
   }
-  
-  /* Grey list item */
-  .price .grey {
-    background-color: #eee;
+}
+
+.plan-title {
+  font-size: 48px;
+  font-weight: 600;
+  margin: 4px 4px;
+}
+
+/* Style the list */
+.plan-list {
+  margin: 0;
+  padding: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.plan-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 40px;
+  //flex-direction colunn for mobile
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* Pricing header */
+.plan {
+  height: 560px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 24px;
+  padding: 0 0 40px 0;
+  gap: 32px;
+  margin-top: 32px;
+  background-color: $base-color;
+  transition: filter 0.5s;
+
+  &-header {
+    width: 100%;
+    border-radius: 24px 24px 0px 0px;
+    background-color: $primary-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // border-bottom: solid white;
+    // border-width: 4px;
+  }
+  &-label {
+    margin-bottom: 0px;
+    color: white;
+    filter: drop-shadow(0 0 2px black);
+    font-size: 28px;
+  }
+  &-price {
     font-size: 20px;
-    color: black;
-  }
-  
-  /* The "Sign Up" button */
-  .button {
-    background-color: #284b63;
-    border: none;
     color: white;
-    padding: 10px 25px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 18px;
+    filter: drop-shadow(0 0 2px black);
   }
-  
-  /* Change the width of the three columns to 100%
-  (to stack horizontally on small screens) */
-  @media only screen and (max-width: 600px) {
-    .pricing-columns {
-      width: 100%;
+
+  &-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    padding: 0 24px;
+  }
+
+  &-list {
+    width: 100%;
+    background-color: $base-color;
+    display: flex;
+    list-style-type: none;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 1em;
+    li {
+      margin: 0px 24px;
+    }
+    li:before {
+      content: "\2713";
+      display: inline-block;
+      color: green;
+      padding: 0 6px 0 0;
     }
   }
+  
+  &:hover {
+
+    filter: drop-shadow(0 0 8px black);
+  }
+}
+
+
+/* Grey list item */
+.price .grey {
+  font-size: 20px;
+}
+
+/* The "Sign Up" button */
+.button {
+  background-color: #284b63;
+  border-radius: 8px;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  &:hover{
+    background-color: #356483;
+    color: white !important;
+  }
+}
+
+/* Change the width of the three columns to 100%
+  (to stack horizontally on small screens) */
+@media only screen and (max-width: 600px) {
+  .pricing-columns {
+    width: 100%;
+  }
+}
+
+.premium {
+  background-color: $secondary-color;
+  &-btn {
+    background-color: $secondary-color;
+    &:hover{
+      background-color: $secondary-color-active;
+      color: white !important;
+    }
+  }
+}

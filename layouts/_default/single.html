@@ -9,9 +9,9 @@
     {{partial "header.html" .}}
   <article>
       {{if .Title}}<h1>{{ .Title }}</h1>{{end}}
-      <p class="meta">
+      <!-- <p class="meta">
           Last updated {{if ne .Date .Lastmod}}{{ .Lastmod.Format "January 2, 2006" }}{{else}}Unknown{{end}}
-      </p>
+      </p> -->
       <ul class="tags">
           {{ range (.GetTerms "tags") }}
           <li><a href="{{ .Permalink }}">{{ .LinkTitle | humanize }}</a></li>
