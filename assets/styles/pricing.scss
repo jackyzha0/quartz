@@ -40,7 +40,7 @@ $secondary-color-active: var(--secondary-active);
   width: 100%;
   gap: 40px;
   //flex-direction colunn for mobile
-  @media (max-width: 600px) {
+  @media (max-width: 1024px) {
     flex-direction: column;
     gap: 20px;
   }
@@ -48,7 +48,7 @@ $secondary-color-active: var(--secondary-active);
 
 /* Pricing header */
 .plan {
-  height: 560px;
+  height: 660px;
   width: 400px;
   display: flex;
   flex-direction: column;
