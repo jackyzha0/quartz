@@ -2,7 +2,8 @@
 title: "cosc203-lab16"
 aliases: 
 tags: 
-
+- cosc203
+- lab
 ---
 VISIT(doctor_id, patient_id, patient_name, date_time, diagnosis, treat_code, charge)
 1. No
