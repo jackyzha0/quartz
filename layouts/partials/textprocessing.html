@@ -31,14 +31,22 @@
       {{$img := printf "<img src=\"%s\" width=\"%s\" />" $path (default "auto" $width)}}
       {{$content = replace $content . $img}}
     {{else}}
+      <!-- remove link delimiters -->
       {{$inner := . | strings.TrimPrefix "[[" | strings.TrimSuffix "]]" }}
+      <!-- split from alias -->
       {{$split := split $inner "|"}}
+      <!-- separate link path -->
       {{$path := index $split 0}}
       {{$reference := split $path "#"}}
+      <!-- path with heading link (i.e. $block) removed -->
       {{$title := index $reference 0}}
+      <!-- ADDED LINE TO REMOVE SUBFOLDER FROM TITLE: -->
+      {{$title := index (last 1 (split $title "/")) 0}}
+      <!-- heading link -->
       {{$block := default "" (index $reference 1)}}
       {{$block = strings.TrimRight "/" (cond (eq $block "") $block (printf "#%s" $block)) | urlize | lower}}
       {{$href := strings.TrimRight "/" ($page.GetPage $title).RelPermalink}}
+      <!-- if alias given, use alias, else title -->
       {{$display := default $title (index $split 1)}}
       {{if not $href}}
         {{$link := printf "<a class=\"internal-link broken\">%s</a>" $display}}
