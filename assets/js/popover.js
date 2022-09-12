@@ -47,8 +47,6 @@ function initPopover(baseURL, useContextualBacklinks, renderLatex) {
               delimiters: [
                 { left: '$$', right: '$$', display: false },
                 { left: '$', right: '$', display: false },
-                { left: '\\(', right: '\\)', display: false },
-                { left: '\\[', right: '\\]', display: false }
               ],
               throwOnError: false
             })
