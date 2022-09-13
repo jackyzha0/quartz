@@ -65,6 +65,10 @@ Otago University (2021 - present)
 
 Other Languages I have used: C, C#, 6809 Assembly, SQL.
 
+| Skill | :d |  | $ |
+|:------|:---|:---|:--|
+|       |    |  |   |
+
 <hr>
 
 # Project Experience
@@ -94,12 +98,13 @@ This was a group project for my software development paper last semester. We wer
 <hr>
 
 # Interests
-- Music: Probably too much - I have listed to about 1072 albums, 820 artists, and 11,395 tracks this year. I also recently started to produce my own music
+- Music: Probably too much - I have listed to about 1128 albums, 856 artists, and 12,546 tracks this year. I also recently started to produce my own music
 - Surfing, Snowboarding, and Skating: Grew up in Raglan and living in Dunedin: How can I not?
 - Philosophy: Food for the brain - Currently 100 episodes into Philosophize This by Stephen West
 - Cooking: Japanese, Mexican, Chinese, Thai, Indian, Caveman, etc - I love trying new things
 - Reading: Currently reading Out of the flames by Lawrence and Nancy Goldstone - a book about Michael Servetus's work.
-- Frisbee Golf: Just pure relaxing fun.
+- Frisbee Golf: Just pure fun.
+- Drawing: Not a lot but I'm trying to draw more.
 
 <hr>
 
