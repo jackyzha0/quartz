@@ -1,4 +1,4 @@
-# Resume  Jet Hughes
+# Jet Hughes
 
 Mobile: 0276509548
 Email: jethughes0@gmail.com
@@ -23,12 +23,12 @@ Ever since I was a kid, solving problems has been one of my favourite things. I 
 To create these solutions, I needed to learn new things. My desire to solve problems, necessitates independent learning. While the things I've learned at school and in university have been helpful, their real value to me is that they provide a launching pad from which I can expand my knowledge, and dive deeper into technologies I find interesting and exciting, and technologies I can use to solve whatever problem I have.
 
 ## Communication
-For the past 2 years, I have been working part-time for Company-X. My job was to assemble e-learning modules in different languages. This project involved working under a project manager and with multiple teams, spread across the globe. Initially we were a team of four people, but after the first few weeks I was working on the project independently. Working with many international teams provided a huge challenge, as they did not always have great English speaking skills. This meant I had to communicate very clearly, and make absolutely sure that I correctly understood the client and their requests. Furthermore, I had to manage communication with my project manager, and keep him up-to-date and informed.
+For the past 2 years, I have been working part-time for Company-X. My job was to assemble e-learning modules in different languages. This project involved working under a project manager and with multiple teams, spread across the globe. Initially we were a team of four people, but after the first few weeks I was working on the project independently. Working with many international teams provided a huge challenge, as they did not always have great English-speaking skills. This meant I had to communicate very clearly, and make absolutely sure that I correctly understood the client and their requests. Furthermore, I had to manage communication with my project manager, and keep him up-to-date and informed.
 
 <hr>
 
 # Experience
-Intern  Company-X (Dec 2020  present)
+Intern  Company-X (Dec 2020 - present)
 
 Skills/Tools: Jira, Git, Git LFS, PowerShell, Bitbucket, Adobe Premiere Pro, Adobe After Effects, Storyline Articulate, WinSCP, SharePoint, Google Sheets.
 
@@ -42,13 +42,16 @@ My job was to assemble e-learning modules in different languages. I had to:
 <hr>
 
 # Education
-Otago University (2021  present)
+Otago University (2021 - present)
 - Bachelor of commerce and science in computer science and finance
 - Expected graduation November 2023
 
 <hr>
 
 # Technical Skills
+Languages I have used: C, C#, JavaScript, CSS, Python, Java, SQL, 6809 assembly
+Web Tools I have used: React/React-Native, Expo, Express, Pug/Jade, Nginx, Hugo, MongoDB/Atlas/Mongoose, AWS (Lambda, Cloudwatch, IAM), NodeJS
+Other Tools I have used: Git, PowerShell, Bash
 
 ## Java
 - Used OOP concepts to create a non-destructive image editor as part of a group project with JUnit testing and GitLab CI/CD
@@ -61,80 +64,8 @@ Otago University (2021  present)
 
 ## Web Technologies
 - Created a snowboard goal tracking application using Expo and React-Native
-- Currently creating a website with user authentication using Express, MongoDB, and Pug, hosted using AWS
+- Currently creating a NodeJS web application with user authentication using Express, MongoDB, and Pug, hosted using Linode and Nginx
 
-Other Languages I have used: C, C#, 6809 Assembly, SQL.
-
-Languages
-- C
-- C#
-- Javascript
-- CSS
-- Python
-- Java
-- SQL
-- 6809 assembly
-
-Web Tools
-- React/React-Native
-- Expo
-- Express
-- Pug/Jade
-- Nginx
-- Hugo
-- Mongodb/Atlas/Mongoose
-- AWS Lambda, Elastic Beanstalk, Cloudwatch, IAM, 
-- NodeJS
-
-#### BUSINESS / DATA / PEOPLE
-- learning and development
--  Presentation skills    
--  Problem solving    
--  Process Improvement    
--  Remote work    
--  Team work    
--  Verbal communication    
--  Written communication      
-
-#### SYSTEMS / OPS / DBA    
--  Amazon Web Services (AWS)    
--  CI/CD Pipelines    
--  DBA  Oracle    
--  Information Security    
--  Powershell    
--  VMware    
-
-#### WEB / PROGRAMMING    
--  AI    
--  Android    
--  Automated Testing    
--  Automation    
--  C#    
--  C/C++    
--  CSS    
--  Computer Architecture    
--  Docker    
--  Front-end Web Frameworks    
--  Functional Programming    
--  HTML    
--  J-Unit    
--  Java    
--  Javascript    
--  Linux / Unix    
--  Machine Learning    
--  Node.js    
--  Oracle    
--  Python    
--  React    
--  React Native     
--  Responsive Web    
--  SQL    
--  Tensorflow    
--  Testing    
--  Unity    
--  Vue.js    
--  Web Development    
--  Git    
 <hr>
 
 # Project Experience
@@ -154,7 +85,7 @@ This was one of my first large projects. It was my year 13 IT scholarship projec
 This was a small project I made last summer. Someone was stealing my cookies, so rather than recording 24/7 I configured my GoPro to stream to an RTMP server. This video was then analysed by a python script using OpenCV, and I was alerted when motion was detected.
 
 ## Python Bots
-GitHub slack bot](https://github.com/JetHughes/discord-album-bot) GitHub album bot](https://github.com/JetHughes/slack-album-bot)
+[GitHub slack bot](https://github.com/JetHughes/discord-album-bot) [GitHub album bot](https://github.com/JetHughes/slack-album-bot)
 
 Some simple slash command bots for discord and slack. They both make an api request and return some information. The slack bot is a flask app currently running on an AWS Lambda function, but the discord one is not running.
 
@@ -164,13 +95,13 @@ This was a group project for my software development paper last semester. We wer
 <hr>
 
 # Interests
-- Music: Probably too much  I have listed to about 1128 albums, 856 artists, and 12,546 tracks this year. I also recently started to produce my own music
+- Music: Probably too much - I have listed to about 1128 albums, 856 artists, and 12,546 tracks this year. I also recently started to produce my own music
 - Surfing, Snowboarding, and Skating: Grew up in Raglan and living in Dunedin: How can I not?
-- Philosophy: Food for the brain  Currently 100 episodes into Philosophize This by Stephen West
-- Cooking: Japanese, Mexican, Chinese, Thai, Indian, Caveman, etc  I love trying new things
-- Reading: Currently reading Out of the flames by Lawrence and Nancy Goldstone  a book about Michael Servetus's work.
+- Philosophy: Food for the brain - Currently 100 episodes into Philosophize This by Stephen West
+- Cooking: Japanese, Mexican, Chinese, Thai, Indian, Caveman, etc - I love trying new things
+- Reading: Currently reading Out of the flames by Lawrence and Nancy Goldstone - a book about Michael Servetus's work.
 - Frisbee Golf: Just pure fun.
-- Drawing: Not a lot but I'm trying to draw more.
+- Drawing: Not a lot, but I'm trying to draw more.
 
 <hr>
 
