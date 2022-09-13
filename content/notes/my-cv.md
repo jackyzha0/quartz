@@ -1,4 +1,4 @@
-# Resume - Jet Hughes
+# Resume  Jet Hughes
 
 Mobile: 0276509548
 Email: jethughes0@gmail.com
@@ -28,7 +28,7 @@ For the past 2 years, I have been working part-time for Company-X. My job was to
 <hr>
 
 # Experience
-Intern - Company-X (Dec 2020 - present)
+Intern  Company-X (Dec 2020  present)
 
 Skills/Tools: Jira, Git, Git LFS, PowerShell, Bitbucket, Adobe Premiere Pro, Adobe After Effects, Storyline Articulate, WinSCP, SharePoint, Google Sheets.
 
@@ -42,7 +42,7 @@ My job was to assemble e-learning modules in different languages. I had to:
 <hr>
 
 # Education
-Otago University (2021 - present)
+Otago University (2021  present)
 - Bachelor of commerce and science in computer science and finance
 - Expected graduation November 2023
 
@@ -65,85 +65,76 @@ Otago University (2021 - present)
 
 Other Languages I have used: C, C#, 6809 Assembly, SQL.
 
-📖: Educational experience
-⌨: Practical experience
-$\$: Paid experience
+Languages
+- C
+- C#
+- Javascript
+- CSS
+- Python
+- Java
+- SQL
+- 6809 assembly
+
+Web Tools
+- React/React-Native
+- Expo
+- Express
+- Pug/Jade
+- Nginx
+- Hugo
+- Mongodb/Atlas/Mongoose
+- AWS Lambda, Elastic Beanstalk, Cloudwatch, IAM, 
+- NodeJS
+
 #### BUSINESS / DATA / PEOPLE
-| Skill | 📖 | ⌨ |  |
-|:------|:---|:---|:--|
-| Learning and development | [ ] | [ ] | [ ] |
-| Presentation skills | [ ] | [ ] | [ ] |
-| Problem solving | [ ] | [ ] | [ ] |
-| Process Improvement | [ ] | [ ] | [ ] |
-| Remote work | [ ] | [ ] | [ ] |
-| Team work | [ ] | [ ] | [ ] |
-| Verbal communication | [ ] | [ ] | [ ] |
-| Written communication | [ ] | [ ] | [ ] |
-
-#### DESIGN    
-| Skill | 📖 | ⌨ |  |
-|:------|:---|:---|:--|
-| 3D Modelling | [ ] | [ ] | [ ] |
-| After Effects | [ ] | [ ] | [ ] |
-| Graphic Design | [ ] | [ ] | [ ] |
-| Illustrator | [ ] | [ ] | [ ] |
-| Photography | [ ] | [ ] | [ ] |
-| Photoshop | [ ] | [ ] | [ ] |
-| User Experience (UX) | [ ] | [ ] | [ ] |
-| Video Editing | [ ] | [ ] | [ ] |
-
-#### ENGINEERING    
-| Skill | 📖 | ⌨ |  |
-|:------|:---|:---|:--|
-| 3D Printing | [ ] | [ ] | [ ] |
-| CAD / CAM | [ ] | [ ] | [ ] |
-| Product Design | [ ] | [ ] | [ ] |
+- learning and development
+-  Presentation skills    
+-  Problem solving    
+-  Process Improvement    
+-  Remote work    
+-  Team work    
+-  Verbal communication    
+-  Written communication      
 
 #### SYSTEMS / OPS / DBA    
-| Skill | 📖 | ⌨ |  |
-|:------|:---|:---|:--|
-| Amazon Web Services (AWS) | [ ] | [ ] | [ ] |
-| CI/CD Pipelines | [ ] | [ ] | [ ] |
-| DBA - Oracle | [ ] | [ ] | [ ] |
-| Information Security | [ ] | [ ] | [ ] |
-| Powershell | [ ] | [ ] | [ ] |
-| VMware | [ ] | [ ] | [ ] |
+-  Amazon Web Services (AWS)    
+-  CI/CD Pipelines    
+-  DBA  Oracle    
+-  Information Security    
+-  Powershell    
+-  VMware    
 
 #### WEB / PROGRAMMING    
-| Skill | 📖 | ⌨ |  |
-|:------|:---|:---|:--|
-| AI | [ ] | [ ] | [ ] |
-| Android | [ ] | [ ] | [ ] |
-| Automated Testing | [ ] | [ ] | [ ] |
-| Automation | [ ] | [ ] | [ ] |
-| C# | [ ] | [ ] | [ ] |
-| C/C++ | [ ] | [ ] | [ ] |
-| CSS | [ ] | [ ] | [ ] |
-| Computer Architecture | [ ] | [ ] | [ ] |
-| Docker | [ ] | [ ] | [ ] |
-| Front-end Web Frameworks | [ ] | [ ] | [ ] |
-| Functional Programming | [ ] | [ ] | [ ] |
-| HTML | [ ] | [ ] | [ ] |
-| J-Unit | [ ] | [ ] | [ ] |
-| Java | [ ] | [ ] | [ ] |
-| Javascript | [ ] | [ ] | [ ] |
-| Linux / Unix | [ ] | [ ] | [ ] |
-| Machine Learning | [ ] | [ ] | [ ] |
-| Node.js | [ ] | [ ] | [ ] |
-| Oracle | [ ] | [ ] | [ ] |
-| Python | [ ] | [ ] | [ ] |
-| React | [ ] | [ ] | [ ] |
-| React Native | [ ] | [ ] | [ ] | 
-| Responsive Web | [ ] | [ ] | [ ] |
-| SQL | [ ] | [ ] | [ ] |
-| Tensorflow | [ ] | [ ] | [ ] |
-| Testing | [ ] | [ ] | [ ] |
-| Unity | [ ] | [ ] | [ ] |
-| Vue.js | [ ] | [ ] | [ ] |
-| Web Development | [ ] | [ ] | [ ] |
-|  | [ ] | [ ] | [ ] |
-&#9744;
-&#9745;
+-  AI    
+-  Android    
+-  Automated Testing    
+-  Automation    
+-  C#    
+-  C/C++    
+-  CSS    
+-  Computer Architecture    
+-  Docker    
+-  Front-end Web Frameworks    
+-  Functional Programming    
+-  HTML    
+-  J-Unit    
+-  Java    
+-  Javascript    
+-  Linux / Unix    
+-  Machine Learning    
+-  Node.js    
+-  Oracle    
+-  Python    
+-  React    
+-  React Native     
+-  Responsive Web    
+-  SQL    
+-  Tensorflow    
+-  Testing    
+-  Unity    
+-  Vue.js    
+-  Web Development    
+-  Git    
 <hr>
 
 # Project Experience
@@ -173,11 +164,11 @@ This was a group project for my software development paper last semester. We wer
 <hr>
 
 # Interests
-- Music: Probably too much - I have listed to about 1128 albums, 856 artists, and 12,546 tracks this year. I also recently started to produce my own music
+- Music: Probably too much  I have listed to about 1128 albums, 856 artists, and 12,546 tracks this year. I also recently started to produce my own music
 - Surfing, Snowboarding, and Skating: Grew up in Raglan and living in Dunedin: How can I not?
-- Philosophy: Food for the brain - Currently 100 episodes into Philosophize This by Stephen West
-- Cooking: Japanese, Mexican, Chinese, Thai, Indian, Caveman, etc - I love trying new things
-- Reading: Currently reading Out of the flames by Lawrence and Nancy Goldstone - a book about Michael Servetus's work.
+- Philosophy: Food for the brain  Currently 100 episodes into Philosophize This by Stephen West
+- Cooking: Japanese, Mexican, Chinese, Thai, Indian, Caveman, etc  I love trying new things
+- Reading: Currently reading Out of the flames by Lawrence and Nancy Goldstone  a book about Michael Servetus's work.
 - Frisbee Golf: Just pure fun.
 - Drawing: Not a lot but I'm trying to draw more.
 
