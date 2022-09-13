@@ -65,10 +65,85 @@ Otago University (2021 - present)
 
 Other Languages I have used: C, C#, 6809 Assembly, SQL.
 
-| Skill | :d |  | $ |
+📖: Educational experience
+⌨: Practical experience
+$\$: Paid experience
+#### BUSINESS / DATA / PEOPLE
+| Skill | 📖 | ⌨ |  |
 |:------|:---|:---|:--|
-|       |    |  |   |
+| Learning and development | [ ] | [ ] | [ ] |
+| Presentation skills | [ ] | [ ] | [ ] |
+| Problem solving | [ ] | [ ] | [ ] |
+| Process Improvement | [ ] | [ ] | [ ] |
+| Remote work | [ ] | [ ] | [ ] |
+| Team work | [ ] | [ ] | [ ] |
+| Verbal communication | [ ] | [ ] | [ ] |
+| Written communication | [ ] | [ ] | [ ] |
 
+#### DESIGN    
+| Skill | 📖 | ⌨ |  |
+|:------|:---|:---|:--|
+| 3D Modelling | [ ] | [ ] | [ ] |
+| After Effects | [ ] | [ ] | [ ] |
+| Graphic Design | [ ] | [ ] | [ ] |
+| Illustrator | [ ] | [ ] | [ ] |
+| Photography | [ ] | [ ] | [ ] |
+| Photoshop | [ ] | [ ] | [ ] |
+| User Experience (UX) | [ ] | [ ] | [ ] |
+| Video Editing | [ ] | [ ] | [ ] |
+
+#### ENGINEERING    
+| Skill | 📖 | ⌨ |  |
+|:------|:---|:---|:--|
+| 3D Printing | [ ] | [ ] | [ ] |
+| CAD / CAM | [ ] | [ ] | [ ] |
+| Product Design | [ ] | [ ] | [ ] |
+
+#### SYSTEMS / OPS / DBA    
+| Skill | 📖 | ⌨ |  |
+|:------|:---|:---|:--|
+| Amazon Web Services (AWS) | [ ] | [ ] | [ ] |
+| CI/CD Pipelines | [ ] | [ ] | [ ] |
+| DBA - Oracle | [ ] | [ ] | [ ] |
+| Information Security | [ ] | [ ] | [ ] |
+| Powershell | [ ] | [ ] | [ ] |
+| VMware | [ ] | [ ] | [ ] |
+
+#### WEB / PROGRAMMING    
+| Skill | 📖 | ⌨ |  |
+|:------|:---|:---|:--|
+| AI | [ ] | [ ] | [ ] |
+| Android | [ ] | [ ] | [ ] |
+| Automated Testing | [ ] | [ ] | [ ] |
+| Automation | [ ] | [ ] | [ ] |
+| C# | [ ] | [ ] | [ ] |
+| C/C++ | [ ] | [ ] | [ ] |
+| CSS | [ ] | [ ] | [ ] |
+| Computer Architecture | [ ] | [ ] | [ ] |
+| Docker | [ ] | [ ] | [ ] |
+| Front-end Web Frameworks | [ ] | [ ] | [ ] |
+| Functional Programming | [ ] | [ ] | [ ] |
+| HTML | [ ] | [ ] | [ ] |
+| J-Unit | [ ] | [ ] | [ ] |
+| Java | [ ] | [ ] | [ ] |
+| Javascript | [ ] | [ ] | [ ] |
+| Linux / Unix | [ ] | [ ] | [ ] |
+| Machine Learning | [ ] | [ ] | [ ] |
+| Node.js | [ ] | [ ] | [ ] |
+| Oracle | [ ] | [ ] | [ ] |
+| Python | [ ] | [ ] | [ ] |
+| React | [ ] | [ ] | [ ] |
+| React Native | [ ] | [ ] | [ ] | 
+| Responsive Web | [ ] | [ ] | [ ] |
+| SQL | [ ] | [ ] | [ ] |
+| Tensorflow | [ ] | [ ] | [ ] |
+| Testing | [ ] | [ ] | [ ] |
+| Unity | [ ] | [ ] | [ ] |
+| Vue.js | [ ] | [ ] | [ ] |
+| Web Development | [ ] | [ ] | [ ] |
+|  | [ ] | [ ] | [ ] |
+&#9744;
+&#9745;
 <hr>
 
 # Project Experience
