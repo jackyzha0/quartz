@@ -70,4 +70,54 @@ Once score is calculated, the course of action can be determined using the follo
 ![actions table|400](https://i.imgur.com/qWCvGgI.png)
 
 ### Security through obscurity
-an optimistic/idealist approach. Better to think of STO as a 
+an optimistic/idealist approach. Better to think of STO as a pseudosecurity measure
+
+### Shannon's Maxim
+"The enemy knows the system", i.e., assume that any security mechanism is not secret.
+
+### Kerckoff's Principle (crypto specific)
+A cryptosystem should be secure even it its inner workings (though not the key) are know to an attacker
+
+### Questions to consider
+- what are the stakes?
+	- why might you be a target?
+- who are your potential adversaries?
+- what resources might they have?
+- what is the cost to safeguarding against plausible attacks?
+- can you put a monetary value on your data or uptime?
+
+# Intrusion detection
+Knowing that an attack has happened, who did it etc
+
+- "logging in"/"logout" the event is logged
+- log files get large to rotation (splitting, compression and culling) is used
+- need to have a policy of retention and level of detail for log files
+- unix-like systems tend to use a standard format (plain test, one line per event, with a timestamp)
+- may need specialised tools to searching logs for relevant events
+	- correlations, etc
+
+many levels
+- system wide events (startup/shutdown)
+	- often includes memory dump
+- authentication events (log in/log out, sudo commands)
+- network level (esp in conjunction with firewall rules)
+	- log attempts to access ports
+- service specific (e.g., web server, db server, SSH)
+
+![example web server log](https://i.imgur.com/b6XDvJj.png)
+client ip, timestamp, request, response code, data length
+
+## system monitoring in general
+attacks will often incur ususual loads on the system
+- more CPU usage
+- high login attempt frequency
+- large number of running processes
+- (unusuallly) high memory use
+- unusual or high network activity (DDoS or incoming attack)
+- unusual disk/io usage
+
+standard tools
+- top
+	- busiest processes - and their information (CPU, Memory)
+	- general system information (cpu usage, num processes, network, etc)
+- 
