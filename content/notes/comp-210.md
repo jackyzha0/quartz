@@ -33,3 +33,4 @@ No final exam
 - [06-hashing-binary-public-key-cryptography](notes/06-hashing-binary-public-key-cryptography.md)
 - [07-cryptography-applications](notes/07-cryptography-applications.md)
 - [8-application-security-1](notes/8-application-security-1.md)
+- [12-pen-testing](notes/12-pen-testing.md)
