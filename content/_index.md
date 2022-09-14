@@ -35,7 +35,7 @@ title: Home
                 }
             }
             </style>
-            <iframe id=flutter-container class="embed-size" width=800 height=500 src="https://my.fleetingnotes.app/" ></iframe>
+            <iframe id=flutter-container class="embed-size" width=800 height=500 src="https://my.fleetingnotes.app/?note=d8e2d800-3470-11ed-8f75-019219fce7fb" ></iframe>
             <div style="display: flex; justify-content: center; margin-bottom: 16px">
                 <a href="/download" class="button premium-btn">Try the webapp instead</a>
             </div>
