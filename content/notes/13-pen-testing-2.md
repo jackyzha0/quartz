@@ -65,3 +65,37 @@ deliberately place sofware where it will interact with attacks, somewhat resembl
 ## Tarpits
 - similar to honeypots but for *slowing* attack not diverting
 - often deployed as a proxy server in front of the real service
+	- talks to a web server as a client on behalf of another client
+	- intermediate between client and server
+	- logging, throttling,  
+
+## Heroic human tarpits
+- ![videos|400](https://i.imgur.com/ZqQqBi1.png)
+
+## DNS blackholes/sinkholes
+- aka real time blackhole list (RBL)
+- anti-spam measure, widely used by ISPs
+- traditional SMTP is highly vulnerable to abuse
+	- STMP assumes people "will be nice". 
+	- you can list whoever you like as the sender
+- open mail relays are readly exploited by spammers
+	- mail servers recieve email from anywhere and send to anyone
+	- exlpoited by spammers
+	- can usually be identified by AI and sent to blackholes
+- use existing DNS protocols to communicate (OK/bad status)
+
+## Software
+- mac os activity monitor
+- mac os console (sys logs)
+- `tcpdump`
+- `iptraf`
+- WireShark
+- Snort (open source NIDS)
+- Fail2Ban ( intrusion prevention system usins logfile monitoring)
+- TCP wrappers (historically significant)
+- SATAN
+
+# Pen-Testing
+checking if system is secure. Simulated attacks of system to detect vulnerabilities
+
+ 
