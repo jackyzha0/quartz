@@ -3,8 +3,8 @@ title: "09-documentation"
 tags: 
 - cosc202 
 - lecture
-sr-due: 2022-09-11
-sr-interval: 100
+sr-due: 2023-07-08
+sr-interval: 296
 sr-ease: 290
 ---
 

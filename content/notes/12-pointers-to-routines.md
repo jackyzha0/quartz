@@ -4,9 +4,9 @@ aliases:
 tags: 
 - cosc204
 - lecture
-sr-due: 2022-09-08
-sr-interval: 3
-sr-ease: 250
+sr-due: 2022-09-19
+sr-interval: 4
+sr-ease: 230
 ---
 
 compiler ⇒ converts high level language description of program into assembly description of the program
