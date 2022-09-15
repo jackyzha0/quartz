@@ -19,7 +19,8 @@ tags:
 
 # Labs
 - [cosc203-lab16](notes/cosc203-lab16.md)
-
+- [cosc203-lab17](notes/cosc203-lab17.md)
+- 
 
 # Notes
 
