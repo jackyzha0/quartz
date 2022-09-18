@@ -301,7 +301,6 @@ hr {
 }
 
 .singlePage {
-  
   .index-container {
     width: 160%;
     margin-left: -30%;
@@ -311,7 +310,7 @@ hr {
     }
     padding: 0 16px;
   }
-  padding: 4em 25vw;
+  padding: 4em 30vw;
 
   @media all and (max-width: 1200px) {
     padding: 25px 5vw;
@@ -384,18 +383,18 @@ header {
     }
   }
 
-  #search-icon {
-    background-color: var(--lightgray);
-    border-radius: 4px;
-    height: 2em;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    & > p {
-      display: inline;
-      padding: 0 1.5em 0 2em;
-    }
-  }
+  // #search-icon {
+  //   background-color: var(--lightgray);
+  //   border-radius: 4px;
+  //   height: 2em;
+  //   display: flex;
+  //   align-items: center;
+  //   cursor: pointer;
+  //   & > p {
+  //     display: inline;
+  //     padding: 0 1.5em 0 2em;
+  //   }
+  // }
 
   & svg {
     cursor: pointer;

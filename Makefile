@@ -20,7 +20,7 @@ serve: ## Serve Quartz locally
 	$(GOPATH)/bin/hugo-obsidian -input=content -output=assets/indices -index -root=. && hugo server --enableGitInfo --minify
 
 install: ## use v2.12 commit in hugo-obsidian repo
-	go install github.com/jackyzha0/hugo-obsidian@3ce308411ee36c94b33e082f984e1741c6354584
+	go install github.com/jackyzha0/hugo-obsidian@latest
 
 build: 
 	$(GOPATH)/bin/hugo-obsidian -input=content -output=assets/indices -index -root=. && \
