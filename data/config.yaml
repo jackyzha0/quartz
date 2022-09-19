@@ -3,6 +3,17 @@ enableToc: false
 openToc: false
 enableLinkPreview: true
 enableLatex: true
+enableCodeBlockTitle: true
+enableCodeBlockCopy: true
+enableCallouts: true
+enableSPA: true
+enableFooter: true
+enableContextualBacklinks: true
+enableRecentNotes: false
+enableGitHubEdit: true
+GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
+enableSemanticSearch: false
+operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
 tagline: "Quick Short-form Notes for Obsidian"
 description: "Take short-form notes at breakneck speeds and sync them with Obsidian. Then, build your network of ideas across all platforms."
 page_title:

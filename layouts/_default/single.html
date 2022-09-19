@@ -10,22 +10,21 @@
   <article>
       {{if .Title}}<h1>{{ .Title }}</h1>{{end}}
       <!-- <p class="meta">
-          Last updated {{if ne .Date .Lastmod}}{{ .Lastmod.Format "January 2, 2006" }}{{else}}Unknown{{end}}
+        {{ i18n "last_updated" }} {{ partial "date-fmt.html" .}} 
+          {{ partial "github.html" . }}
       </p> -->
       <ul class="tags">
           {{ range (.GetTerms "tags") }}
           <li><a href="{{ .Permalink }}">{{ .LinkTitle | humanize }}</a></li>
           {{ end }}
       </ul>
-      {{partial "toc.html" .}} 
+      {{partial "toc.html" .}}
       {{partial "textprocessing.html" . }}
     </article>
     {{ if in .Page.RelPermalink "/posts/" }}
         {{partial "comments.html" .}}
     {{ end }}
     {{partial "footer.html" .}}
-    {{partial "popover.html" .}}
 </div>
 </body>
-
 </html>

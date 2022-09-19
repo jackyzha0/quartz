@@ -9,12 +9,13 @@
     <!-- Begin actual content -->
     {{partial "header.html" .}}
     <article>
-        {{partial "toc.html" .}} 
+        {{partial "toc.html" .}}
         {{partial "textprocessing.html" . }}
+        {{if $.Site.Data.config.enableRecentNotes}}
+          {{partial "recent.html" . }}
+        {{end}}
     </article>
-    {{partial "footer.html" .}}
-    {{partial "popover.html" .}}
+    {{partial "footerIndex.html" .}}
 </div>
 </body>
 </html>
-

@@ -1,7 +1,0 @@
-{{if $.Site.Data.config.enableLinkPreview}}
-{{ $js := resources.Get "js/popover.js" |  resources.Fingerprint "md5" | resources.Minify }}
-<script src="{{ $js.Permalink }}"></script>
-<script>
-  initPopover({{strings.TrimRight "/" .Site.BaseURL }})
-</script>
-{{end}}
