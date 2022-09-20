@@ -97,5 +97,43 @@ deliberately place sofware where it will interact with attacks, somewhat resembl
 
 # Pen-Testing
 checking if system is secure. Simulated attacks of system to detect vulnerabilities
+- specialised and technical
+- often done by consultants
+- mindset of attacker
+- complements intrusion detection
+	- but proactive not reactive
 
- 
+## tools
+- same tools as attackers
+- develop own tools
+- automate
+	- scripts 
+	- dedicated hardware
+	- parrallel/dist attacks
+- create new attacks
+
+## e.g., software
+- nmap - network exploration tool
+	- scan ports
+	- reports finding
+		- os, version
+		- used to find vulnerabilities
+- netcat/ncat interact with network services
+- nessus
+- hashcat - password cracking
+- sqlmap (SQL database pen tester)
+	- find account with default passwords etc
+- specialised pen-testing OS distribution
+	- e.g., blackbox linux
+
+## Phases
+- reconnaissance (info gathering) (e.g., finding relevant ip addresses)
+- scanning (e.g.,, nmap)
+	- which hosts are availale
+	- which ports
+	- etc
+- gaining access (attack)
+	- may require sequenced attacks
+- maintaining access (avoid detection)
+- covering tracks (remove files, edit logs, change timestamps etc)
+- 
