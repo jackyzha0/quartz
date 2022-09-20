@@ -54,4 +54,50 @@ app.use(cookieParser())
 	- end the req-res cycle
 	- call next middleware function in stack
 
+## forms
+- in html — a  collection of elements inside <form></form> tags, containing a submit element
+- used to collect user input
+- flexible - can colect many different types of input
+- secure - can send data in post requests with cross site request forgery protection
+
+e.g., 
+``` html
+<form action="/login" method="post">
+	<label for="username">Username</label>
+	<input id="username" type="text" name="username_field" value="">
+	<input tupe="submit" value="OK">
+</form>
+```
+
+sequence
+- display form
+	- blank or prepopulated fields
+- recieve data from user in HTTP post request
+- validate and sanitze data
+- if invalid - redisplay form with error messages, and user populated fields
+- if valid - perform required actions
+- redirect user to other page
+
+### validation and sanitization
+- required fields
+- correct format etc
+- remov/replace malicious input
+- can use express-validator module
+
+``` js
+const {body, validationResult} = require('express-validator');
+
+[
+//...
+ body('name', "Empty name")
+  .trim() //remove whitespace
+  .isLength({min: 1}) //check length
+  .escape(), //escape potentially dangerous chars
+]
+```
+
+### form routes
+- router.get() - serve page
+- router.post() - process request
+
 ![](https://i.imgur.com/H1BXggu.png)
