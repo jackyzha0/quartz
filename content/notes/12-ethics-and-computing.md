@@ -17,7 +17,7 @@ requirements for an ethical system
 
 need to maintain respect for others views
 
-## normative ethics
+# normative ethics
 - the study of ethical behaviour
 - investigates questions regarding how someone should act
 
@@ -72,4 +72,34 @@ unforseen consequences can occur
 
 # applied ethics
 - association for computing machinery (ACM)
-- 
+- ![applied ethics slide|400](https://i.imgur.com/NUDInYq.png)
+
+![acm 1.1|400](https://i.imgur.com/N1jc50w.png)
+![acm 1.2|400](https://i.imgur.com/rcMzx7X.png)
+![acm 1.3|400](https://i.imgur.com/tUrFHVC.png)
+![acm 1.4|400](https://i.imgur.com/3g7Q2Jt.png)
+
+![acm 2.1|400](https://i.imgur.com/ZbW5Ius.png)
+![acm 2.5|400](https://i.imgur.com/otCEEWY.png)
+
+![acm 3.1|400](https://i.imgur.com/uIrA0uy.png)
+![acm 3.7|400](https://i.imgur.com/sM2jCUH.png)
+
+# censorship and misinformation
+- fire and fury documentary
+- disinformation project
+
+- what is it
+- what is censorship
+- how do we know what information is accurate
+- searchiing forinformation
+- why is this relevant to us
+- who decides what is legitimate information
+- how can science help with decisions
+
+## replication crisis
+![slide|400](https://i.imgur.com/iABMGCY.png)
+
+does funding influence the results that are obtained
+
+## controversial i
