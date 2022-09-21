@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc203
 - lecture
+sr-due: 2022-09-25
+sr-interval: 3
+sr-ease: 250
 ---
 
 # What is a database
@@ -118,9 +121,20 @@ relationship types can have attributes
 		- marked by single line
 		- relationsihp is not required
 
-## weak entities
-- regular tyupes 
-
 ![cardinality examples|300](https://i.imgur.com/DmHQaVc.png)
 ![participation example|300](https://i.imgur.com/hH0v4bR.png)
+
+## weak entities
+- regular types have key attributes
+
+- weak types do not have their own key attributes
+- they are identified by their relationship with another entity
+- this creates and identifying relationship
+- must have a total participation constraint
+- the other entity type is called the identifying or owner entity type
+- denoted by double lined rectable and double lined diamond
+- have a partial key
+	- a set of attributes that uniquiely identify the weak entities that are related to the same owner entity
+
+![weak entity example|300](https://i.imgur.com/4JMDcN7.png)
 
