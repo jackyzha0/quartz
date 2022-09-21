@@ -42,6 +42,7 @@ tags:
 - [11-struct-and-union](notes/11-struct-and-union.md)
 - [12-pointers-to-routines](notes/12-pointers-to-routines.md)
 - [13-OS-intro](notes/13-OS-intro.md)
+- [14-processes-and-system-calls](notes/14-processes-and-system-calls.md)
 
 # Archive
 
