@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc203
 - lecture
+sr-due: 2022-09-24
+sr-interval: 3
+sr-ease: 250
 ---
 
 # what is ethics
@@ -74,6 +77,12 @@ unforseen consequences can occur
 - association for computing machinery (ACM)
 - ![applied ethics slide|400](https://i.imgur.com/NUDInYq.png)
 
+acm code
+- concern for human well being
+- protecting individual rights and autonomy
+- do no harm (well inteded actions can lead to harm)
+- people should always be the central concern in computing
+
 ![acm 1.1|400](https://i.imgur.com/N1jc50w.png)
 ![acm 1.2|400](https://i.imgur.com/rcMzx7X.png)
 ![acm 1.3|400](https://i.imgur.com/tUrFHVC.png)
@@ -102,4 +111,9 @@ unforseen consequences can occur
 
 does funding influence the results that are obtained
 
-## controversial i
+## controversial issue
+![ivermectin issue|400](https://i.imgur.com/LtRwXCk.png)
+
+##
+![points to consider slide|400](https://i.imgur.com/HommQ9Y.png)
+![summary slide|400](https://i.imgur.com/rQdBdjP.png)
