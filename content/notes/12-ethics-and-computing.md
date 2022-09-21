@@ -60,4 +60,16 @@ three approaches
 	- how to decide on common rules when different groups have opposing views
 	- what is a "right" choice results in bad consequences
 - utilitatianism
-	- harming a minority and benefiting a majority doesn't build mutually be
+	- harming a minority and benefiting a majority doesn't build mutually beneficial relationships.
+	- can legitimise doing wrong by claiming that it is justified by the outcome
+	- how do you know the outcome of thier choices
+	- bad results can be explained away
+
+## bad examples
+![czarist russia vs russian revolution|400](https://i.imgur.com/6PVESbU.png)
+
+unforseen consequences can occur
+
+# applied ethics
+- association for computing machinery (ACM)
+- 
