@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc203
 - lecture
+sr-due: 2022-09-24
+sr-interval: 3
+sr-ease: 250
 ---
 
 [slides](https://blackboard.otago.ac.nz/bbcswebdav/pid-2971203-dt-content-rid-19033355_1/courses/COSC203_S2DNI_2022/COSC203_lecture10%281%29.pdf)
