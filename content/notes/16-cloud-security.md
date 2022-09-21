@@ -74,6 +74,7 @@ examples
 
 ## primary selling points
 - agility/elasticity
+	- scalable as needed
 - reduced cost
 	- multitenancy
 	- economies of scale
@@ -82,7 +83,7 @@ examples
 	- massive redundancy
 - low capital expenditure
 - greener
-	- low power hardware, virtualisation, centralisation of cooling, environmental cooling, sharing of resources
+	- low power hardware, virtualisation, centralisation of cooling, environmental cooling, sharing of resources, on demand activation
 
 ## potential problems
 - Saas
@@ -97,3 +98,26 @@ examples
 - IaaS
 	- mitigated by sticking to the standard services (MySQL & nginx for example) and standard libs
 	- avoid vendor specific interfaces to proprietary services
+
+# Cloud Security
+- large orgs can spend more money on security than small ones
+	- find flaws in the full stack
+- however only covers their infrastructure
+	- your application can have its own security flaws
+- virtualisation segregates apps from each other
+	- a flaw in the application of another organisation should not be able to be exploited in a way that puts your application at risk
+- need to trust provider admins
+- need to trust governments of host countries
+
+# Virtualisation
+- when a real computer runs virtual machines
+	- virtual computers where the hardware is virtual (implemented entirely in software)
+	- software that provides the virtual hardware is called hypervisor
+- can run linux, windows —nesting operating systems
+- os on real computer is called the host os
+- os running on VM is called the guest os
+- a single host can run many guests (limited by memory usually)
+
+![virtualisation diagram|400](https://i.imgur.com/y9vgful.png)
+
+## virtualisation within cloud computing
