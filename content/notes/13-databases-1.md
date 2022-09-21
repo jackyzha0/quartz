@@ -32,8 +32,8 @@ specifiically *relational databases*
 - datbase normalisation
 - SQL
 
-#
-
+## relational vs nosql
+relation is better for structured data, nosql is better for abstract data, as it is more flexible
 
 # Data modelling
 first step in designing database
@@ -45,3 +45,6 @@ schema Defn: a collection of metadata that describes the logical view of a datab
 
 noSQL databases are either schema-free or have relaxed schemas
 
+![example database schema|400](https://i.imgur.com/09ATkHZ.png)
+
+## conceptual data modelling
