@@ -4,6 +4,9 @@ aliases:
 tags: 
 - comp210
 - lecture
+sr-due: 2022-09-24
+sr-interval: 3
+sr-ease: 250
 ---
 
 - what is cloud computing
@@ -132,3 +135,18 @@ examples
 		- an OS (usually linux)
 		- a deployment environment (web server, database server, libraries, etc)
 		- the service application/executables
+- to start a new instance of a service you boot the relevant machine image on a hypervisor
+	- its easy to add additional services for scaling to manage load
+- copies and backups can be made by snapshotting the state of the virtual machine
+	- captures state of disk image
+	- and contents of system memory
+	- can be used as version control for services
+	- can be moved to anothe rhost by making a snapshot and booting on a hypervisor on a new server
+
+## rule 1 and virtualisation
+rule 1: if a bad guy can run his program on your computer, then its not your computer anymore
+
+- your apps may be running on the same physical computer as a bad guy
+- if they can exit the VM (flaws in hypervisor or hardware) they can cause trouble
+- speculative flaws meltdown and spectre are difficult to exploit (no known exlpoits since being found 5 years ago)
+	- benefits outweigh risks

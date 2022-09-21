@@ -36,3 +36,4 @@ No final exam
 - [12-pen-testing](notes/12-pen-testing.md)
 - [13-pen-testing-2](notes/13-pen-testing-2.md)
 - [15-policies-standards-practices](notes/15-policies-standards-practices.md)
+- [16-cloud-security](notes/16-cloud-security.md)
