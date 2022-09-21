@@ -110,3 +110,17 @@ relationship types can have attributes
 	- one to one
 	- one to n
 	- m to n
+- participation
+	- total participation
+		- marked by double line
+		- relationship is required
+	- partial
+		- marked by single line
+		- relationsihp is not required
+
+## weak entities
+- regular tyupes 
+
+![cardinality examples|300](https://i.imgur.com/DmHQaVc.png)
+![participation example|300](https://i.imgur.com/hH0v4bR.png)
+
