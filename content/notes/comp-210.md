@@ -34,4 +34,5 @@ No final exam
 - [07-cryptography-applications](notes/07-cryptography-applications.md)
 - [8-application-security-1](notes/8-application-security-1.md)
 - [12-pen-testing](notes/12-pen-testing.md)
-
+- [13-pen-testing-2](notes/13-pen-testing-2.md)
+- [14-policies-standards-practices](notes/14-policies-standards-practices.md)
