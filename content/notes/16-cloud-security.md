@@ -121,3 +121,14 @@ examples
 ![virtualisation diagram|400](https://i.imgur.com/y9vgful.png)
 
 ## virtualisation within cloud computing
+- makes it easy for providers to run several services on a single physical server
+- efficient use of hardware
+- no idle servers
+- move services from busy server to idle servers to balance load
+- standardised virtual hardware exposed to guest OS simplifies guest configuration
+- guests are segregated
+- deployed using machine image
+	- file containing a bit for bit copy of what a real hard drive would contain if it contained
+		- an OS (usually linux)
+		- a deployment environment (web server, database server, libraries, etc)
+		- the service application/executables
