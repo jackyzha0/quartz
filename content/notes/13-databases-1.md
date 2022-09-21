@@ -48,3 +48,65 @@ noSQL databases are either schema-free or have relaxed schemas
 ![example database schema|400](https://i.imgur.com/09ATkHZ.png)
 
 ## conceptual data modelling
+model the data close to the way the users percieve the data
+
+ER model
+- popular high level conceptual model
+- uses diagrammatic notations - er diagram (ERD)
+
+three notations
+- chens notation
+- crows foot notation
+- UML notation
+
+# Example
+![example data|400](https://i.imgur.com/t3fjN78.png)
+![examle chen notation diagram|400](https://i.imgur.com/5a2TCXm.png)
+
+
+# how to model
+## entities
+- a thing in the real world with independent existence
+	- physical existence
+	- conceptial existence
+
+entity type is a collection of entities with the same attributes — represented by a rectangle
+
+![example entity type|200](https://i.imgur.com/70VJhDg.png)
+
+## attribute
+- a property of an entity
+	- simple (atomic) e.g, first name
+	- composite (can be divided) e.g., address
+	- single value e.g., id number
+	- multi value e.g., siblings
+	- stored - by default
+	- derived - drawn as dashed ovals e.g., age is derived from birth date
+	- key
+		- unique
+		- simple or composite
+		- underlined in ERD
+
+![example attributes|300](https://i.imgur.com/D50Uxad.png)
+
+## relationships
+a relationship model the connection between entitiy types
+
+e.g., each employee works for one department
+
+relationship type is a set of relationsihps among entities from the particular entity types
+	- represented by diamonds
+
+![example relationship|400](https://i.imgur.com/5ZmJerl.png)
+
+
+relationship types can have attributes
+
+ properties
+ - degree
+	 - binary [binary relationship|200](https://i.imgur.com/QDpdMo7.png)
+	 - n-ary [n-ary relationship|300](https://i.imgur.com/7oIJP5j.png)
+- cardinality for binary relationships
+	- one to one
+	- one to n
+	- m to n
