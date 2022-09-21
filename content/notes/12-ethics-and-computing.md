@@ -37,4 +37,27 @@ three approaches
 ## utilitarianism
 - maximise happiness and wellbeing for people
 - john stuart mill
-- practical approach, does not consider the rights of those who disagree
+- practical approach, does not consider the rights of those who disagree, minorities, or the powerless
+
+- identify various courses of action, ask who will be affeced by each acction, and what benefits or harms with be derived from each
+- the ethical action is the one that provides the greatest good for the greatest number
+
+- best for everyone overall
+
+## virtue ethics
+- focues on character of individuals and developing qualities of virtue or excellence.
+- being a moral person rather than rule or action oriented
+- aristotle
+- eudaimonia - state of happiness, blessedness, or well-being
+- golden rule - treat other the way you want to be treated
+- golden mean - balance between extremes
+	- e.g., courage - cowardice - recklessness
+
+## problems with ethical theories
+- virtue
+	- depend on community having similar beliefs, values and close relationsihps
+- deontology
+	- how to decide on common rules when different groups have opposing views
+	- what is a "right" choice results in bad consequences
+- utilitatianism
+	- harming a minority and benefiting a majority doesn't build mutually be
