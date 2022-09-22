@@ -24,3 +24,15 @@ tags:
 	5. 7 ![](https://i.imgur.com/OXFBaOy.png)
 	6. 6 ![](https://i.imgur.com/MHOIR2B.png)
 
+5. dns responses after nslookup on www.otago.ac.nz
+	1. ![](https://i.imgur.com/PRKiVlq.png)
+	2. ![](https://i.imgur.com/d1P36MI.png)
+	3. ![](https://i.imgur.com/drMqoQG.png)
+	4. ![](https://i.imgur.com/gprPSoO.png)
+	5. ![](https://i.imgur.com/u3Imagz.png)
+	6. ![](https://i.imgur.com/M1ZFhwF.png)
+	7. ![](https://i.imgur.com/bgVmCub.png)
+	8. ![](https://i.imgur.com/eiHDN1m.png)
+	9. ![](https://i.imgur.com/7A5aHYe.png)
+
+
