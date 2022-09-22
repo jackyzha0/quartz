@@ -21,8 +21,10 @@ tags:
 - [cosc203-lab16](notes/cosc203-lab16.md)
 - [cosc203-lab17](notes/cosc203-lab17.md)
 - [cosc203-lab18](notes/cosc203-lab18.md)
+- 
 
 # Notes
+[dns](notes/dns.md)
 
 # Lectures
 - [01-basic-html](notes/01-basic-html.md)
