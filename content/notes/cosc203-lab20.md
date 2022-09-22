@@ -35,4 +35,16 @@ tags:
 	8. ![](https://i.imgur.com/eiHDN1m.png)
 	9. ![](https://i.imgur.com/7A5aHYe.png)
 
+6. destination is 10.64.0.112. this is one of my local dns servers ![](https://i.imgur.com/lz8MBcI.png) ![](https://i.imgur.com/xIaz0vH.png)
+
+7. name servers are
+	1. ![](https://i.imgur.com/EQqLyDa.png)
+	2. ![](https://i.imgur.com/Xq4FHUr.png)
+	3. ![](https://i.imgur.com/v2gcibe.png)
+
+8. nslookup google
+	1. 7 queries
+	2. 10.64.0.112 (local dns server) and 216.239.34.10 (the address of the google ns2 nameserver)
+
+9. only one answer
 
