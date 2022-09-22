@@ -51,4 +51,36 @@ tags:
 10. ack segments
 	1. rtt average 4ms
 	2. numbers
-		1. 
+		1. 1
+		2. 1
+		3. 1
+		4. 1
+		5. 1461
+		6. 2921
+
+11. buffer space: ?
+
+
+12. ? 
+
+13. 0 - maybe i stopped tracing too early?
+
+
+14. bytes per second
+
+![](https://i.imgur.com/JYkAKPp.png)
+
+![](https://i.imgur.com/SajGkG7.png)
+
+![](https://i.imgur.com/1hAMZmf.png)
+
+![](https://i.imgur.com/R5wfyhQ.png)
+
+average size of segment is 1514 bytes. there were (155-32 = 123 segments). so 186222 bytes were sent in 0.049 secs = 3800448.98 bytes per second
+
+
+![](https://i.imgur.com/c0ZMykO.png)
+
+
+15. 0.0034 seconds
+16. 
