@@ -43,7 +43,8 @@ tags:
 - [12-pointers-to-routines](notes/12-pointers-to-routines.md)
 - [13-OS-intro](notes/13-OS-intro.md)
 - [14-processes-and-system-calls](notes/14-processes-and-system-calls.md)
-
+- [15-file-systems](notes/15-file-systems.md)
+- [16-device-drivers](notes/16-device-drivers.md)
 # Archive
 
 # Info

@@ -37,3 +37,4 @@ No final exam
 - [13-pen-testing-2](notes/13-pen-testing-2.md)
 - [15-policies-standards-practices](notes/15-policies-standards-practices.md)
 - [16-cloud-security](notes/16-cloud-security.md)
+- [17-ML-in-IA-1](notes/17-ML-in-IA-1.md)

@@ -36,6 +36,7 @@ tags:
 - [10-routes-controllers](notes/10-routes-controllers.md)
 - [11-view-templates](notes/11-view-templates.md)
 - [12-ethics-and-computing](notes/12-ethics-and-computing.md)
+- [13-databases-1](notes/13-databases-1.md)
 
 # Archive
 
