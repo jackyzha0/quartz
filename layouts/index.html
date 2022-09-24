@@ -3,7 +3,7 @@
 {{ partial "head.html" . }}
 <body>
 {{partial "search.html" .}}
-<main class="main-container"><div class="blur-element"></div>
+  <main class="main-container"><div class="blur-element"></div>
     <aside class="main-aside disabled">
         {{ partial "menu" . }}
     </aside>
@@ -22,5 +22,4 @@
   </body>
 {{ $js := resources.Get "js/menu.js" }}
 <script src="{{ $js.Permalink }}"></script>
-{{/*  <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>  */}}
 </html>

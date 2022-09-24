@@ -3,6 +3,10 @@
 {{ partial "head.html" . }}
 
 <body>
+<main class="main-container"><div class="blur-element"></div>
+<aside class="main-aside disabled">
+    {{ partial "menu" . }}
+</aside>
 <div class="singlePage">
     {{partial "darkmode.html" .}}
     <div class="centered">
@@ -11,5 +15,8 @@
         <a href="{{ .Site.BaseURL }}">{{ i18n "404_back" }}</a>
     </div>
 </div>
+</main>
 </body>
+{{ $js := resources.Get "js/menu.js" }}
+<script src="{{ $js.Permalink }}"></script>
 </html>

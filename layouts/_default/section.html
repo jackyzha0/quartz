@@ -4,6 +4,11 @@
 
 <body>
 {{partial "search.html" .}}
+
+<main class="main-container"><div class="blur-element"></div>
+<aside class="main-aside disabled">
+    {{ partial "menu" . }}
+</aside>
 <div class="singlePage">
     <!-- Begin actual content -->
     {{partial "header.html" .}}
@@ -17,5 +22,8 @@
     </article>
     {{partial "contact.html" .}}
 </div>
+</main>
 </body>
+{{ $js := resources.Get "js/menu.js" }}
+<script src="{{ $js.Permalink }}"></script>
 </html>
