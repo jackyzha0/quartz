@@ -17,8 +17,7 @@ operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
 description:
   Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
   Wikilink support, backlinks, local graph, tags, and link previews.
-page_title:
-  "🪴 Quartz 3.3"
+page_title: "Brain"
 links:
   - link_name: Twitter
     link: https://twitter.com/_jzhao
