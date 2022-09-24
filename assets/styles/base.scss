@@ -6,6 +6,8 @@
   --font-mono: "Fira Code"
 }
 
+
+
 // typography
 html {
   scroll-behavior: smooth;
@@ -20,8 +22,9 @@ html {
   }
 }
 
+
 .singlePage {
-  padding: 4em 30vw;
+  padding: 1em 20vw;
   @media all and (max-width: 1200px) {
     padding: 25px 5vw;
   }
@@ -180,7 +183,7 @@ blockquote {
 
 article {
   & > h1 {
-    margin-top: 2em;
+    margin-top: 1.5em;
     font-size: 2em;
   }
   
@@ -618,4 +621,6 @@ header {
     padding: 0 1em;
   }
 }
+
+
 
