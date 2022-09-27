@@ -18,10 +18,10 @@ description:
   Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
   Wikilink support, backlinks, local graph, tags, and link previews.
 # RESPONSIVE HEADER BUG
-# this works fine
+# this works fine (centered)
 page_title: "Brain"
 # and this not
-page_title: "🪴 Quartz 3.3"
+# page_title: "🪴 Quartz 3.3"
 links:
   - link_name: Twitter
     link: https://twitter.com/_jzhao

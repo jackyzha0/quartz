@@ -6,3 +6,5 @@ content/.obsidian
 assets/indices/linkIndex.json
 assets/indices/contentIndex.json
 linkmap
+# vim extension to obsidian custom bindings
+content/.obsidian.vimrc
