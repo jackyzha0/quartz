@@ -39,6 +39,15 @@ tags:
 - [11-view-templates](notes/11-view-templates.md)
 - [12-ethics-and-computing](notes/12-ethics-and-computing.md)
 - [13-databases-1](notes/13-databases-1.md)
+- [14 relational db]
+- [15 basic sql]
+- [16-networks](notes/16-networks)
+- [17 application layer]
+- [18 transport layer]
+- [19 network layer data plane]
+- [20 network layer control plane]
+- [21 data link layer and LAN]
+- [22 LAN and physical layer]
 
 # Archive
 
