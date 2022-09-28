@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc204
 - lecture
+sr-due: 2022-10-02
+sr-interval: 3
+sr-ease: 250
 ---
 
 ![process tree example](https://i.imgur.com/4ysHisl.png)
@@ -41,6 +44,30 @@ automatically executes exit after the last statement.
 - all rsouces are dallocated by the OS
 
  they can also die more violently
- 
+ - `kill` command
+ - you can only processes you 'own'
+ - Orphan process: a process whose parent terminated (inherited by init)
+ - Zombie process: one which terminated, but its live parent process is not WAITING for it. Since no process is receiving its exit status, it stays in the process table
 
 # signal and pipe for inter process communication
+## signal
+communication between OS kernel and processes and between processes
+
+- process can install a handler (function) for a signal using the system call signaction() except for SIGKILL
+- The default action for a signal is usually to kill/terminate the process if a handler is not installed.
+- Other actions are ignore, core (dump a large file for debugging), stop(stop the process), and continue. The last two actions are used by debuggers like gdb to debug a program.
+
+![partial list of signals](https://i.imgur.com/MMCEPqW.png)
+
+
+## pipe
+connect process output and another process input. 
+
+uni-directional channel
+
+file descriptors
+- 0 - stdin
+- 1 - stdout
+- 2 - sterr
+
+you can make file descriptors point to the same file using dup/dup2/dup3
