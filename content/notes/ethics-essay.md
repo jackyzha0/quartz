@@ -9,6 +9,8 @@ tags:
 ![specs](file:///C:/Users/Jet%20Hughes/Documents/Personal/courses/cosc-203/assignments/03-essay/asgn3.pdf)
 
 
+
+
 2000 words
 
 6 paragaphs
