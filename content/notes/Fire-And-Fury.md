@@ -34,6 +34,7 @@ karlene heriora
 - antisemitism
 - climate change denial
 - shares counterspins media
+- government is a corporation
 
 amy benjamin
 - law lecturer
@@ -87,3 +88,40 @@ Josie
 
 
 appealing to confirmation bias 23:45
+
+have features of facistic ideas
+
+"swarm social media" "flood the zone" "saturate content to" 27:05
+
+"grand jury" 27:30
+
+"deep state"
+
+
+"dont trust the media trust us"
+
+moved from facebook to gab/telegram 
+- unregulated program 
+- haven of the far right
+
+2020 aug 17
+- turning point
+- big posters becoming more active
+-  "i literally see no one dying, this is bullshit" 30:20
+- Nuremberg 2.0 
+	- nurenberg (professional medical ethics) people tried for crimes against humanity (nazia etc)
+	- people voted on who should be hung
+- soveregn citizen sheriffs
+- combined threat assessment group
+	- "measureing extremeist violence in opposition to covid measures internationally"
+	- people who have intent and capability to make an attack
+	- "temperature has risen"
+
+voices for freedom contacted anti vax leader to ask for help about how to get the word out
+- "we need to give them an alternative narrative do you know anyone has been injured"
+- used iwth flu and mmr vaccine
+
+
+started with protest in ottowa
+- "join the convoy"
+- started from bluff and capre reigna - met in wellington 
