@@ -11,6 +11,7 @@ damien dament
 - banned from twitter 2021
 	- for tweets promiting similar acts to the insurgence at the white house
 	- "nz politician will fear for their lives, and rightfully so"
+- came together out of necessity for a common purpose. common purpose was based on freedom hope love and somthing better thatn this entire shithole we have been given to us in nz
 
 kelvyn alps
 - former soldier
@@ -35,6 +36,7 @@ karlene heriora
 - climate change denial
 - shares counterspins media
 - government is a corporation
+- want the structure of governance gone
 
 amy benjamin
 - law lecturer
@@ -124,4 +126,27 @@ voices for freedom contacted anti vax leader to ask for help about how to get th
 
 started with protest in ottowa
 - "join the convoy"
-- started from bluff and capre reigna - met in wellington 
+- started from bluff and capre reigna - met in wellington 37:30
+
+
+40:13 far right neo nazi align iwth hippie influsence mum -> views aligno n the pandemic, vaccine lockdown measures
+
+when the pandemic happen anti vaxxers lost relationsihps 41:28 so found them with other people who shared the same belief
+
+where do you find information
+- voice for freedom - we tust them very much
+- counterspin media - a little bit radical but sometimes some good
+	- they can be rough and ready but they are out there filming the truth
+- got sick of hearing same narrative that we all need to be jabbed, and that there is a terrible virus
+
+their realities are splintered - fully believe that mainstream media is fake
+
+attempt to remove people fails
+- not a peaceful process
+- march 2nd 24 days in
+	- police move
+	- forced their way into freedom village
+	- "quite terrifying" 46:30
+	- jounalists are forcfully shoved out of protest
+	- childrens playground on fire in parliament 50:00
+	- 
