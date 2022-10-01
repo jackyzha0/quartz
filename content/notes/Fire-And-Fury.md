@@ -6,7 +6,7 @@ tags:
 ---
 
 
-damien dament
+damien de ment
 - "super spreader"
 - banned from twitter 2021
 	- for tweets promiting similar acts to the insurgence at the white house
@@ -149,4 +149,20 @@ attempt to remove people fails
 	- "quite terrifying" 46:30
 	- jounalists are forcfully shoved out of protest
 	- childrens playground on fire in parliament 50:00
-	- 
+
+blamed violence on protest on people "who werent aligned with their cause and werent part of the movement"
+
+
+agenda surfing - changing topics
+- pro life
+- pro putin
+- false flag chch shooting
+
+
+become ungovernable
+- create out own nation
+
+
+become stormtoopers 1:01:00
+
+"wellington was the beginning "
