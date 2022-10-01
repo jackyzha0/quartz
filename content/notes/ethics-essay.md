@@ -31,11 +31,12 @@ tags:
 # Intro
 As members of society we must consider the ethical implications of our actions and inactions. This extends to our private lives, and our work. As members of the IT profession we have an obligation to adhere to certain standards. These have been collated and formalised into the ACM Code of Ethics. This document "expresses the conscience of the profession", putting human well-being as the main focus. Although it provides a guidline for us to follow, it is not specific to everyone and should merely act as a foundation for individuals, businesses, and governments to build upon. 
 
-The recent outbreak of misinformation and censorship, culminating in Aotearoa with the convoy and the Wellington protest in February and March this year, provides an interesting avenue through which we can analyse the spread of information through online channels, and the impact of the computing profession. 
+The recent outbreak of misinformation and censorship, culminating in Aotearoa with the convoy and the Wellington protest in February and March this year, provides an interesting avenue through which we can analyse the spread of information through online channels, and the impact of the computing profession. Many business in the computing sector were key components of the event. For example, Facebook, Gab and Telegram, as well as stuff.co.nz and other news outlets. These organisations have an inherent obligation to consider how their platforms are being used to encourage or discourage the spread of information, regardless of its source and credibility. 
 
-
+I myself do not have the knowledge or experience to make informed decision about what should be allowed on large platforms such as spotify, facebook, and youtube. However, I am able to give my opinion about how misinformation, censorship, and freedom of expression should be balanced. This essay will examine the point of view of the protesters at wellington and contrast it with Stuff's Fire and Fury in an IT context. 
 
 # Point 1
+Anti-Vaccination movements existed long before the Covid-19 pandemic. 
 
 
 # Point 2
