@@ -15,6 +15,10 @@ tags:
 
 350x4 + 300x2
 
+# References
+- https://www.alcor.org/library/persons-apparently-dead/
+
+
 # Plan
 - intro
 	- about the protests
@@ -36,6 +40,8 @@ The recent outbreak of misinformation and censorship, culminating in Aotearoa wi
 I myself do not have the knowledge or experience to make informed decision about what should be allowed on large platforms such as spotify, facebook, and youtube. However, I am able to give my opinion about how misinformation, censorship, and freedom of expression should be balanced. This essay will examine the point of view of the protesters at wellington and contrast it with Stuff's Fire and Fury in an IT context. 
 
 # Point 1
+Throughout history we can observe countless instances of delayed acceptance of medical discoveries.
+
 Anti-Vaccination movements existed long before the Covid-19 pandemic. 
 
 

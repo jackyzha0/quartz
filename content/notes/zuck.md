@@ -3,6 +3,7 @@ title: "zuck"
 aliases: 
 tags: 
 - cosc203
+- asgn3
 ---
 
 a friend of yours had a reaction to something so you might be interested in it too.
