@@ -9,18 +9,29 @@ tags:
 ![specs](file:///C:/Users/Jet%20Hughes/Documents/Personal/courses/cosc-203/assignments/03-essay/asgn3.pdf)
 
 
-
-
 2000 words
 
 6 paragaphs
 
 350x4 + 300x2
 
+# Plan
+- intro
+	- about the protests
+	- 
+- compare and contrast fire and fury with the river of filth
+- about misinformation and censorship
+	- relate to videos
+- compare misinformaiton and censoship in each of the videos
+- critiques of fire and fury
+- conclusion
+
 # Intro
+
 300 words
 
 # Point 1
+
 
 # Point 2
 
