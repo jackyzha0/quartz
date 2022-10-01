@@ -40,7 +40,8 @@ The recent outbreak of misinformation and censorship, culminating in Aotearoa wi
 I myself do not have the knowledge or experience to make informed decision about what should be allowed on large platforms such as spotify, facebook, and youtube. However, I am able to give my opinion about how misinformation, censorship, and freedom of expression should be balanced. This essay will examine the point of view of the protesters at wellington and contrast it with Stuff's Fire and Fury in an IT context. 
 
 # Point 1
-Throughout history we can observe countless instances of delayed acceptance of medical discoveries. Even the process of resuscitation through mouth to mouth breathing and chest compressions was initally rejected by the public and discouraged. Anti-Vaccination movements existed long before the Covid-19 pandemic. Ever since the first vaccinations REF people have felt uncomfortable. Shorty before Covid-19 struck, Anti Vaccination supporters have protested against the MMR and Measles vaccines. However, following the announcement of the Covid-19 vaccine, these groups gained more followers and start to spread the views, eventually 
+Throughout history we can observe countless instances of delayed acceptance of medical discoveries. Even the process of resuscitation through mouth to mouth breathing and chest compressions was initally rejected by the public and discouraged. Anti-Vaccination movements existed long before the Covid-19 pandemic. Ever since the first vaccinations REF people have felt uncomfortable. Shorty before Covid-19 struck, Anti Vaccination supporters have protested against the MMR and Measles vaccines. However, following the announcement of the Covid-19 vaccine, these groups gained more followers and start to spread the views, eventually led to the convoy and the wellington protests. 
+
 
 
 # Point 2
