@@ -54,7 +54,7 @@ This protest is part of a worldwide trend, an "epidemic of misinformation" REF. 
 The role of the IT sector in the wellington protests is clearly a significant one. Without the platforms mentioned the protest would have likely never happened REF?. However, the eradication of these platforms is not a solution REF?. What we can do however, is try to balance and regulate the spread of misinformation on these platforms. But we must be carful in doing so, as people have a right to free speech. How can we balance censorship and freedom of expression on platform such as these? 
 
 # Point 2
-The documentay Fire and Fury created by a team of journalists from Stuff.co.nz, investigating the wellington protests, what caused them, and some of the key peopl behind the protests. 
+The documentay Fire and Fury created by a team of journalists from Stuff.co.nz, investigating the wellington protests, what caused them, and some of the key people behind the protests. 
 
 # Point 3
 contrast
