@@ -23,7 +23,7 @@ kelvyn alps
 - "my sister is married to a samoan"
 
 hannah spearer
-- kalvin apls partner
+- kalvin alps partner
 - anitfeminist and patriot
 - "slavery vs freedom"
 - also sarah smith
