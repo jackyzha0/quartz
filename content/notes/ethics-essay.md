@@ -17,6 +17,9 @@ tags:
 
 # References
 - https://www.alcor.org/library/persons-apparently-dead/
+- https://www.stuff.co.nz/dominion-post/news/wellington/127928119/protesters-disperse-after-major-police-operation-ends-parliament-occupation
+- https://www.nzherald.co.nz/nz/wellington-protest-police-wont-stop-until-occupation-cleared-out-says-former-frontline-cop/RMVTC7A6FYGTJCHLNM36QDWDZM/
+- https://en.wikipedia.org/wiki/2022_Wellington_protest
 
 
 # Plan
@@ -40,9 +43,8 @@ The recent outbreak of misinformation and censorship, culminating in Aotearoa wi
 I myself do not have the knowledge or experience to make informed decision about what should be allowed on large platforms such as spotify, facebook, and youtube. However, I am able to give my opinion about how misinformation, censorship, and freedom of expression should be balanced. This essay will examine the point of view of the protesters at wellington and contrast it with Stuff's Fire and Fury in an IT context. 
 
 # Point 1
-Throughout history we can observe countless instances of delayed acceptance of medical discoveries. Even the process of resuscitation through mouth to mouth breathing and chest compressions was initally rejected by the public and discouraged. Anti-Vaccination movements existed long before the Covid-19 pandemic. Ever since the first vaccinations REF people have felt uncomfortable. Shorty before Covid-19 struck, Anti Vaccination supporters have protested against the MMR and Measles vaccines. However, following the announcement of the Covid-19 vaccine, these groups gained more followers and start to spread their views, eventually led to the convoy and the wellington protests. They documented their journey in the video titled River of Filth. The video starts with news and articles where the NZ government stated that the vaccine would not be mandatory. Next, they depict the governments betrayl of this promise, forcing 40% of the NZ workforce to be vaccinated. They then showed footage of the convoy, various protests along the way, and the camp out at Wellington parliament CAPS?. The video then finishes with a message condemning the government and mainstream media, and praising the protesters and their efforts
+Throughout history we can observe countless instances of delayed acceptance of medical discoveries. Even the process of resuscitation through mouth to mouth breathing and chest compressions was initally rejected by the public and discouraged. Anti-Vaccination movements existed long before the Covid-19 pandemic. Ever since the first vaccinations REF people have felt uncomfortable. Shorty before Covid-19 struck, Anti Vaccination supporters have protested against the MMR and Measles vaccines. However, following the announcement of the Covid-19 vaccine, these groups gained more followers and start to spread their views, eventually led to the convoy and the wellington protests. They documented their journey in the video titled River of Filth. The video starts with news and articles where the NZ government stated that the vaccine would not be mandatory. Next, they depict the governments betrayl of this promise, forcing 40% of the NZ workforce to be vaccinated. They then showed footage of the convoy, various protests along the way, and the camp out at Wellington parliament CAPS?. The video then finishes with a message condemning the government and mainstream media, and praising the protesters and their efforts. After 23 days the protesters were forcefully removed by a large police force, 87 protesters were arrested and 50 vehicles towed REF. 
 
-The protesting group was a combination of many parties indcluding, anti vaxers, far right conspircay theoriests, hippie youtubers, and disgruntled citizens. They were upset because the government didn't uphold its promise of non-compulsory covid vaccines. 
 
 - what did they do
 - why were they able to do it

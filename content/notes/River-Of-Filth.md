@@ -55,7 +55,7 @@ using each other strength to stand up
 
 defying to be silenced
 
-unfortunatel those elected to represent the people failed to do just that
+unfortunately those elected to represent the people failed to do just that
 
 instead the government signed a pact promising not to talk with the people
 
