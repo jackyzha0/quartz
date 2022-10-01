@@ -23,6 +23,7 @@ tags:
 - https://www.theguardian.com/world/2022/feb/26/so-many-rabbit-holes-even-in-trusting-new-zealand-protests-show-fringe-beliefs-can-flourish
 - https://www.theguardian.com/world/2021/aug/30/even-as-new-zealand-battles-covid-trust-in-government-bucks-global-trend
 - https://time.com/5929252/edelman-trust-barometer-2021/
+- https://www.brookings.edu/blog/order-from-chaos/2018/05/09/how-misinformation-spreads-on-social-media-and-what-to-do-about-it/
 
 
 # Plan
@@ -50,16 +51,10 @@ Throughout history we can observe countless instances of delayed acceptance of m
 
 This protest is part of a worldwide trend, an "epidemic of misinformation" REF. The protests spawned from online campaigns and pre-existing fringe groups who found a common cause. Online platforms such as Facebook, Instagram, TikTok, Gab and Telegram facilitated the formation and propagation of these groups. They enabled the protesters to reach a large audience, spread their agenda and influence the public REF. Some groups were banned from Facebook, and were able to successfully migrate to other, more lenient platforms such as Gab and Telegram. They deployed techniques similar fascist strategies such as "flooding the zone" and "swarm[ing] social media". They asked for assistance from long standing members of the anti-vax community who gave advice such as giving the people "an alternative narrative", a strategy used refute the Flu and MMR vaccines. 
 
-The role of the IT sector in the wellington protests is clearly a significant one. Without the platforms mentioned the protest would have likely never happened. However, eradication these platforms is not a solution. 
-
-
-- what did they do
-- why were they able to do it
-- what could be have done
-- what should we do in the future
+The role of the IT sector in the wellington protests is clearly a significant one. Without the platforms mentioned the protest would have likely never happened REF?. However, the eradication of these platforms is not a solution REF?. What we can do however, is try to balance and regulate the spread of misinformation on these platforms. But we must be carful in doing so, as people have a right to free speech. How can we balance censorship and freedom of expression on platform such as these? 
 
 # Point 2
-From the general populations perspective. 
+The documentay Fire and Fury created by a team of journalists from Stuff.co.nz, investigating the wellington protests, what caused them, and some of the key peopl behind the protests. 
 
 # Point 3
 contrast
