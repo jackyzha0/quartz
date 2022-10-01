@@ -26,9 +26,14 @@ tags:
 - critiques of fire and fury
 - conclusion
 
-# Intro
-
 300 words
+
+# Intro
+As members of society we must consider the ethical implications of our actions and inactions. This extends to our private lives, and our work. As members of the IT profession we have an obligation to adhere to certain standards. These have been collated and formalised into the ACM Code of Ethics. This document "expresses the conscience of the profession", putting human well-being as the main focus. Although it provides a guidline for us to follow, it is not specific to everyone and should merely act as a foundation for individuals, businesses, and governments to build upon. 
+
+The recent outbreak of misinformation and censorship, culminating in Aotearoa with the convoy and the Wellington protest in February and March this year, provides an interesting avenue through which we can analyse the spread of information through online channels, and the impact of the computing profession. 
+
+
 
 # Point 1
 
