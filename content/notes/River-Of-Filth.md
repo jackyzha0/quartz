@@ -71,6 +71,6 @@ to the many who sacrificed so much
 
 you are never alone
 
-in memory of the fredom camp
+in memory of the freedom camp
 
-produced by like reich
+produced by luke reich
