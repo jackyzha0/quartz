@@ -24,6 +24,9 @@ tags:
 - https://www.theguardian.com/world/2021/aug/30/even-as-new-zealand-battles-covid-trust-in-government-bucks-global-trend
 - https://time.com/5929252/edelman-trust-barometer-2021/
 - https://www.brookings.edu/blog/order-from-chaos/2018/05/09/how-misinformation-spreads-on-social-media-and-what-to-do-about-it/
+- https://www.thedailyexaminer.co.nz/state-funded-fire-and-fury-documentary-unbalanced-hyperbole/
+- https://www.imdb.com/title/tt21914900/
+- https://karldufresne.blogspot.com/2022/08/a-few-thoughts-on-stuffs-fire-and-fury.html
 
 
 # Plan
@@ -54,7 +57,13 @@ This protest is part of a worldwide trend, an "epidemic of misinformation" REF. 
 The role of the IT sector in the wellington protests is clearly a significant one. Without the platforms mentioned the protest would have likely never happened REF?. However, the eradication of these platforms is not a solution REF?. What we can do however, is try to balance and regulate the spread of misinformation on these platforms. But we must be carful in doing so, as people have a right to free speech. How can we balance censorship and freedom of expression on platform such as these? 
 
 # Point 2
-The documentay Fire and Fury created by a team of journalists from Stuff.co.nz, investigating the wellington protests, what caused them, and some of the key people behind the protests. 
+The documentay Fire and Fury created by a team of journalists from Stuff.co.nz, investigating the wellington protests, what caused them, and some of the key people behind the protests. It showed the progess of the movement leading up to the occupation. The documentary was w
+
+- qanon 
+- influence of social media
+- moving to other platforms
+- nuremburg
+- 
 
 # Point 3
 contrast
