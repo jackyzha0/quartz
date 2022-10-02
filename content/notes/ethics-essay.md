@@ -84,4 +84,7 @@ Ideas
 	- educate people about how to come to their own conclusions and do reasearch
 
 # Outro
-conclusion
+In conclusion the anti-vax, anti-establishement protests in Wellington are a symptom of a larger problem within the online world. p
+
+what is fire and fury, and river of filth, how do they relate to
+
