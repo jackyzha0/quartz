@@ -29,6 +29,7 @@ tags:
 - https://karldufresne.blogspot.com/2022/08/a-few-thoughts-on-stuffs-fire-and-fury.html
 - https://www.voicesforfreedom.co.nz/blog/post/fire-fury-stuff-formal-complaint
 - https://interactives.stuff.co.nz/2022/08/circuit/why-we-made-fire-and-fury/
+- https://www.ucsusa.org/resources/how-stop-disinformation
 
 
 # Plan
@@ -68,7 +69,9 @@ Each of these two documentaties, Fire and Fury and River of Filth depict a diffe
 I am not able to go into depth about what good journalism looks like, however as a computer science student, I can consider the impact that the IT profession can have on the issue. 
 
 # 3 - The spread of information
-We live in an online age. Vast amounts of Information is widely accessible to everyone. This is made possible by various websites, applications CHANGE. Although the benefits of these technologies are great, they come with great responsibilty. Not only do they provide a platform for individual to access information, they also enable the spread of potentially harmful, false, and misleading information.  
+We live in an online age. Vast amounts of Information is widely accessible to everyone. This is made possible by various websites, applications CHANGE. Although the benefits of these technologies are great, they come with great responsibilty. Not only do they provide a platform for individual to access information, they also enable the spread of potentially harmful, false, and misleading information.
+
+The spread of information has evolved. What news is shown is carefully considered by algorithms built into social media platforms such as Facebook, and Twitter. Rather than show you each post 
 
 One of the major websites in this sector is Facebook. 
 
