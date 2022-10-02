@@ -6,33 +6,6 @@ tags:
 - assignment
 ---
 
-![specs](file:///C:/Users/Jet%20Hughes/Documents/Personal/courses/cosc-203/assignments/03-essay/asgn3.pdf)
-
-# References
-- https://www.alcor.org/library/persons-apparently-dead/
-- https://www.stuff.co.nz/dominion-post/news/wellington/127928119/protesters-disperse-after-major-police-operation-ends-parliament-occupation
-- https://www.nzherald.co.nz/nz/wellington-protest-police-wont-stop-until-occupation-cleared-out-says-former-frontline-cop/RMVTC7A6FYGTJCHLNM36QDWDZM/
-- https://en.wikipedia.org/wiki/2022_Wellington_protest
-- https://www.theguardian.com/world/2022/feb/26/so-many-rabbit-holes-even-in-trusting-new-zealand-protests-show-fringe-beliefs-can-flourish
-- https://www.theguardian.com/world/2021/aug/30/even-as-new-zealand-battles-covid-trust-in-government-bucks-global-trend
-- https://time.com/5929252/edelman-trust-barometer-2021/
-- https://www.brookings.edu/blog/order-from-chaos/2018/05/09/how-misinformation-spreads-on-social-media-and-what-to-do-about-it/
-- https://www.thedailyexaminer.co.nz/state-funded-fire-and-fury-documentary-unbalanced-hyperbole/
-- https://www.imdb.com/title/tt21914900/
-- https://karldufresne.blogspot.com/2022/08/a-few-thoughts-on-stuffs-fire-and-fury.html
-- https://www.voicesforfreedom.co.nz/blog/post/fire-fury-stuff-formal-complaint
-- https://interactives.stuff.co.nz/2022/08/circuit/why-we-made-fire-and-fury/
-- https://www.ucsusa.org/resources/how-stop-disinformation
-- https://www.makeuseof.com/social-media-platforms-dislike-buttons/
-- https://gab.com
-- https://telegram.org
-- https://en.wikipedia.org/wiki/Gab_(social_network)
-- https://www.theguardian.com/media/2016/nov/17/gab-alt-right-social-media-twitter
-- https://arxiv.org/pdf/1906.04261.pdf
-- https://arxiv.org/abs/1802.05287
-- https://www.reddithelp.com/hc/en-us/articles/204511829-What-is-karma-
-- https://web.archive.org/web/20181031003944/https://www.bloomberg.com/news/articles/2018-10-30/gab-an-online-haven-for-white-supremacists-plots-its-future
-
 # Intro
 As members of society we must consider the ethical implications of our actions and inactions. This extends to our private lives, and our work. As members of the IT profession we have an obligation to adhere to certain standards. These have been collated and formalised into the ACM Code of Ethics. This Code "expresses the conscience of the profession", putting human well-being as the main focus. Although it provides a guidline for us to follow, it is not specific to everyone and should merely act as a foundation for individuals, businesses, and governments to build upon. 
 
@@ -65,14 +38,17 @@ Some social media sites such as Reddit and YouTube have employed some interestin
 
 Although other platforms like Facebook and Twitter
 
-
-# 4 - Our responsibility
-
-So what can we do - as IT professionals, to improve the situation of widespread information. The ACM code of ethics outlines a set of principles that should act as a baseline for our actions. The ACM code of ethics was "designed to inspire and guide the ethical conduct of all computing professionals" and act as a "basis for remediation when violations occur". The Code is a set of principles with the public good as the primary consideration, each with a set of guidlines to help professionals put the principles into practice. The Code is an attempt to apply fundamental ethical principles to the computing profession.
+# 4 - What can we do about it?
+So what can we do as IT professionals, to improve the situation of widespread information IMPROVE? The ACM code of ethics outlines a set of principles that should act as a baseline for our actions. The ACM code of ethics was "designed to inspire and guide the ethical conduct of all computing professionals" and act as a "basis for remediation when violations occur". The Code is a set of principles with the public good as the primary consideration, each with a set of guidlines to help professionals put the principles into practice. The Code is an attempt to apply fundamental ethical principles to the computing profession.
 
 How can we apply this Code to the issue of misinformation, censorship, and freedom of expression. This is a very difficuly an nuanced topic. I personally think that freedom of speech is a very important part of our lives and that it should be held in the highest regard. However, it is not possible to grant entirely free speech to everyone while completely prohibiting misinformation. We must find a trade off between free speech and censorship of misinformation. As Mark Zuckerberg mention on episode 1863 on the Joe Rogan Experience podcast, when identifying which channels should be censored, we have to choose between more false positives or more false negatives. It takes a substantial effort to fact check and verify articles. For this reason, sites such as Facebook, make us of AI algorithms to flag potentially unwanted content REF. This has some inherent issues: Namely, how do these algorithms decide what is harmful? What data is it trained on? Who chose what to train the algorithms on? Why should they be the ones to decide what is right and wrong? In the interview with Joe Rogan, Zuckerberg stated that for important and controversial cases, posts are reviewed by third parties which analyse and fact check these articles. This is still not a perfect solution. The decision about what is censored is still made by a select group of people. Maybe this is the best option, I cant say for sure that is not.
 
 When the Voices for Freedom group grew sufficiently large, Facebook made the decision to ban them. Subsequently, they switched to using Telegram messenger and the Gab social network as their main platforms. These sites value free speech and individual liberty above all else. These sites have become a haven for the far-right and other fringe groups, many of which have been banned from mainstream sites such as Facebook and TwitterREF. This is concerning because It is concentrating all the misinformation spreaders, trolls, and conspiracy theorists in one large echochamber.
+
+# Outro
+In conclusion the anti-vax, anti-establishement protests in Wellington are a symptom of a larger problem within the online world. We live in an age where information is widely availble and consumed by a large proportion of the world. This information is not always truthful, and is often intentionally misleading and/or harmful. Groups such as Voices for Freedom and Counterspin Media at the forefront of the Wellington protests are able to utilise these platforms, to further their agenda and reach a larger audience, regardless of the accuracy and truthfullness of their information. As IT professionals, our work plays an important role in this environment, and we have an obligation to  
+
+what is fire and fury, and river of filth, how do they relate to
 
 Ideas
 - a social media platform that had a cap on the number of followers a person can have, and the number of people a person can follow
@@ -82,9 +58,29 @@ Ideas
 	- then you'd need reliable sources of new for mainstream media
 - give warnning and spread awareness about misinformation
 	- educate people about how to come to their own conclusions and do reasearch
+d
 
-# Outro
-In conclusion the anti-vax, anti-establishement protests in Wellington are a symptom of a larger problem within the online world. p
-
-what is fire and fury, and river of filth, how do they relate to
-
+# References
+- https://www.alcor.org/library/persons-apparently-dead/
+- https://www.stuff.co.nz/dominion-post/news/wellington/127928119/protesters-disperse-after-major-police-operation-ends-parliament-occupation
+- https://www.nzherald.co.nz/nz/wellington-protest-police-wont-stop-until-occupation-cleared-out-says-former-frontline-cop/RMVTC7A6FYGTJCHLNM36QDWDZM/
+- https://en.wikipedia.org/wiki/2022_Wellington_protest
+- https://www.theguardian.com/world/2022/feb/26/so-many-rabbit-holes-even-in-trusting-new-zealand-protests-show-fringe-beliefs-can-flourish
+- https://www.theguardian.com/world/2021/aug/30/even-as-new-zealand-battles-covid-trust-in-government-bucks-global-trend
+- https://time.com/5929252/edelman-trust-barometer-2021/
+- https://www.brookings.edu/blog/order-from-chaos/2018/05/09/how-misinformation-spreads-on-social-media-and-what-to-do-about-it/
+- https://www.thedailyexaminer.co.nz/state-funded-fire-and-fury-documentary-unbalanced-hyperbole/
+- https://www.imdb.com/title/tt21914900/
+- https://karldufresne.blogspot.com/2022/08/a-few-thoughts-on-stuffs-fire-and-fury.html
+- https://www.voicesforfreedom.co.nz/blog/post/fire-fury-stuff-formal-complaint
+- https://interactives.stuff.co.nz/2022/08/circuit/why-we-made-fire-and-fury/
+- https://www.ucsusa.org/resources/how-stop-disinformation
+- https://www.makeuseof.com/social-media-platforms-dislike-buttons/
+- https://gab.com
+- https://telegram.org
+- https://en.wikipedia.org/wiki/Gab_(social_network)
+- https://www.theguardian.com/media/2016/nov/17/gab-alt-right-social-media-twitter
+- https://arxiv.org/pdf/1906.04261.pdf
+- https://arxiv.org/abs/1802.05287
+- https://www.reddithelp.com/hc/en-us/articles/204511829-What-is-karma-
+- https://web.archive.org/web/20181031003944/https://www.bloomberg.com/news/articles/2018-10-30/gab-an-online-haven-for-white-supremacists-plots-its-future
