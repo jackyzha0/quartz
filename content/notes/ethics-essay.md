@@ -68,11 +68,15 @@ Each of these two documentaties, Fire and Fury and River of Filth depict a diffe
 I am not able to go into depth about what good journalism looks like, however as a computer science student, I can consider the impact that the IT profession can have on the issue. 
 
 # 3 - The spread of information
+We live in an online age. Vast amounts of Information is widely accessible to everyone. This is made possible by various websites, applications CHANGE. Although the benefits of these technologies are great, they come with great responsibilty. Not only do they provide a platform for individual to access information, they also enable the spread of potentially harmful, false, and misleading information.  
+
+One of the major websites in this sector is Facebook. 
+
 - how information spreads
 - how social media filters information
 
 - facebook
-	- not imprint their opion - empower people to share
+	- not imprint their opion - empower people to share 
 	- bring world closer together
 	- huge responsibility
 	- choose what gets aplified - what gets supressed
@@ -82,11 +86,11 @@ I am not able to go into depth about what good journalism looks like, however as
 	- coordinated inauthentic behaviour
 		- team of people to find and remove these
 		- "arms race" 1:40:10
-		- "defend integrity of the community" 1:40:30
-		- sometimes they get it wrong
-		- "do you want more false positive or more false negative" 1:42:01
-- 
-
+	- "defend integrity of the community" 1:40:30
+	- sometimes they get it wrong
+	- "do you want more false positive or more false negative" 1:42:01 which do you value more
+	- "not black and white" 
+	- temporary waiting period white visibility is supressed white the story if fact checked.
 
 # 4 - Our responsibility
 
