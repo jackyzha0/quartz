@@ -62,10 +62,19 @@ The documentay Fire and Fury created by a team of journalists from Stuff.co.nz, 
 
 The stuff article praising the documentary says the team behind it "interviewed the right people", "spoke to a vast audience", and "told us 'what lies behind the cloud'". However, those critical of it suggest it fails to consider the viewpoint of those it depicts, and that is itself state-funded propaganda and "is part of the very problem the makers purport to deplore". These critics also assert that "the makers set out with a preconieved objective" REF, and that there was no attempt to understand what drove the protesters and consider both sides of the story. They say the documentary failed to ask an important question: "why so many people no longer trust the media". They say the mainstream media "have lost sight of what was previously their primary objective which, was to reflect society back to itself and report, as neutrally as possible, on matters of interest and concern to the communities they purported to serve".
 
-I am not able to go into depth about what good journalism looks like, however as a compute rscience student, I can consider the way in which the IT proffesion can help. 
+I am not able to go into depth about what good journalism looks like, however as a computer science student, I can consider the impact that the IT profession can have on the issue. 
 
 # Point 3
-contrast
+Each of these two documentaties, Fire and Fury and River of Filth depict a different perspective of the Wellington Protests. Their are many differences in the production of each of the pieces. 
+
+- fire and fury is backed by large corporation government etc.
+	- lots of funding, well produced, lots of time spent
+- river of filth
+	- mostly footage from iphones by various members of the protest
+	- not clear about funding etc
+	- low budget
+	- raw footage
+	- 
 
 # Point 4
 tech
