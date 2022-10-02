@@ -30,6 +30,7 @@ tags:
 - https://www.voicesforfreedom.co.nz/blog/post/fire-fury-stuff-formal-complaint
 - https://interactives.stuff.co.nz/2022/08/circuit/why-we-made-fire-and-fury/
 - https://www.ucsusa.org/resources/how-stop-disinformation
+- https://www.makeuseof.com/social-media-platforms-dislike-buttons/
 
 
 # Plan
@@ -72,6 +73,8 @@ I am not able to go into depth about what good journalism looks like, however as
 We live in an online age. Vast amounts of Information is widely accessible to everyone. This is made possible by various websites, applications CHANGE. Although the benefits of these technologies are great, they come with great responsibilty. Not only do they provide a platform for individual to access information, they also enable the spread of potentially harmful, false, and misleading information.
 
 The spread of information has evolved. What news is shown is carefully considered by algorithms built into social media platforms such as Facebook, and Twitter. Rather than show you each post in chronological order, algorithms consider the amount of engagement posts are getting, and show more popular posts higher up in viewers feeds, thus it reaches a larger audience. This helps to improve the experience of the viewers as the posts they see will be of higher quality. However, by promoting content that gets are large amount of engagement, these algorithms have a tendency to promote controversial content. This is because controversial content creates a stronger emotional response in a viewer REF. The algorithms have no way to determine whether engament people sharing something because they dislike it or because they like it. 
+
+Some social media sites such as Reddit have employed some interesting, and sometimes effective techniques to combat this issue REF.  The main one being the upvote and downvote system. This allowed users to condemn posts that they believe are harmful, wrong, or contain misinformation. However, users can just as easily downvote posts simply because they disagree. A similar system existed is youtube however they recently stopped showing the number of dislike on each video. This was to combat a few issues including hate campaings against particular channel is which groups would spam a channel with dislikes with the intent of damaging the channel. ADD MORE HERE
 
 One of the major websites in this sector is Facebook. 
 
