@@ -21,9 +21,9 @@ This protest is part of a worldwide trend, an "epidemic of misinformation" [^5].
 The role of the IT sector in the wellington protests is clearly a significant one. Without the platforms mentioned the protest could have likely never happened. However, the eradication of these platforms is not a solution. What we can do however, is try to balance and regulate the spread of misinformation on these platforms. But we must be careful in doing so, as people have a right to free speech. How can we balance censorship and freedom of expression on platform such as these? 
 
 # 2 - Fire and Fury
-The documentary Fire and Fury created by a team of journalists from Stuff.co.nz, investigating the wellington protests, what caused them, and some of the key people behind the protests. It showed the progess of the movement leading up to the occupation [^7]. The documentary recieved mixed reviews. An in-house review by stuff praised it as "journalism at the peak of its powers" , while others have said it "veers into the absurd" REF. Of course each of these third parties, have biases of their own which must be taken into account. Everyone online is able to present themselves however they like, and masquerade as something they are not. It is incredibly difficult to separate the good from the bad. 
+The documentary Fire and Fury created by a team of journalists from Stuff.co.nz, investigating the wellington protests, what caused them, and some of the key people behind the protests. It showed the progess of the movement leading up to the occupation [^7]. The documentary recieved mixed reviews and a very low score of 3.9/10 from IMDB [^8]. An in-house review by stuff praised it as "journalism at the peak of its powers" [^9], while others have said it "veers into the absurd" [^9]. Of course each of these third parties have biases of their own which must be taken into account. Everyone online is able to present themselves however they like, and masquerade as something they are not. It is incredibly difficult to separate the good from the bad. 
 
-The stuff article praising the documentary says the team behind it "interviewed the right people", "spoke to a vast audience", and "told us 'what lies behind the cloud'". However, those critical of it suggest it fails to consider the viewpoint of those it depicts, and that is itself state-funded propaganda and "is part of the very problem the makers purport to deplore". These critics also assert that "the makers set out with a preconieved objective" REF, and that there was no attempt to understand what drove the protesters and consider both sides of the story. They say the documentary failed to ask an important question: "why so many people no longer trust the media". They say the mainstream media "have lost sight of what was previously their primary objective which, was to reflect society back to itself and report, as neutrally as possible, on matters of interest and concern to the communities they purported to serve".
+The stuff article praising the documentary [^9] says the team behind it "interviewed the right people", "spoke to a vast audience", and "told us 'what lies behind the cloud'". However, those critical of it [^10][^11] suggest it fails to consider the viewpoint of those it depicts, and that is itself state-funded propaganda and "is part of the very problem the makers purport to deplore" [^12]. These critics also assert that "the makers set out with a preconieved objective" [^12], and that there was no attempt to understand what drove the protesters and consider both sides of the story. They say the documentary failed to ask an important question: "why so many people no longer trust the media". They say the mainstream media "have lost sight of what was previously their primary objective which, was to reflect society back to itself and report, as neutrally as possible, on matters of interest and concern to the communities they purported to serve" [^10.
 
 Each of these two documentaties, Fire and Fury and River of Filth depict a different perspective of the Wellington Protests. Their are many differences in the production of each of the pieces. Firstly the stuff documentary had significant funding, took significant time and effort to complete, and was backed by a large team of successful journallists REF. Conversely, the River of Filth had very little funding, and was made my a very small team REF. Despite this, both videos demonstrate 
 
@@ -69,13 +69,14 @@ d
 [^5]: https://www.theguardian.com/world/2021/aug/30/even-as-new-zealand-battles-covid-trust-in-government-bucks-global-trend
 [^6]:https://89initiative.com/the-role-of-social-media-in-protests-mobilising-or-polarising/
 [^7]:https://interactives.stuff.co.nz/2022/08/circuit/fire-and-fury-disinformation-in-new-zealand/
-[^8]:https://www.stuff.co.nz/opinion/129689450/fire-and-fury-documentary-shows-journalism-at-the-peak-of-its-powers
+[^8]: https://www.imdb.com/title/tt21914900/
+[^9]:https://www.stuff.co.nz/opinion/129689450/fire-and-fury-documentary-shows-journalism-at-the-peak-of-its-powers
+[^10]:https://theplatform.kiwi/opinions/fire-and-fury-is-often-funny-unintentionally
+[^11]: https://www.thedailyexaminer.co.nz/state-funded-fire-and-fury-documentary-unbalanced-hyperbole/
+[^12]: https://karldufresne.blogspot.com/2022/08/a-few-thoughts-on-stuffs-fire-and-fury.html
 [^]: https://www.theguardian.com/world/2022/feb/26/so-many-rabbit-holes-even-in-trusting-new-zealand-protests-show-fringe-beliefs-can-flourish
 [^]: https://time.com/5929252/edelman-trust-barometer-2021/
 [^]: https://www.brookings.edu/blog/order-from-chaos/2018/05/09/how-misinformation-spreads-on-social-media-and-what-to-do-about-it/
-[^]: https://www.thedailyexaminer.co.nz/state-funded-fire-and-fury-documentary-unbalanced-hyperbole/
-[^]: https://www.imdb.com/title/tt21914900/
-[^]: https://karldufresne.blogspot.com/2022/08/a-few-thoughts-on-stuffs-fire-and-fury.html
 [^]: https://www.voicesforfreedom.co.nz/blog/post/fire-fury-stuff-formal-complaint
 [^]: https://interactives.stuff.co.nz/2022/08/circuit/why-we-made-fire-and-fury/
 [^]: https://www.ucsusa.org/resources/how-stop-disinformation
