@@ -8,13 +8,6 @@ tags:
 
 ![specs](file:///C:/Users/Jet%20Hughes/Documents/Personal/courses/cosc-203/assignments/03-essay/asgn3.pdf)
 
-
-2000 words
-
-6 paragaphs
-
-350x4 + 300x2
-
 # References
 - https://www.alcor.org/library/persons-apparently-dead/
 - https://www.stuff.co.nz/dominion-post/news/wellington/127928119/protesters-disperse-after-major-police-operation-ends-parliament-occupation
@@ -31,20 +24,6 @@ tags:
 - https://interactives.stuff.co.nz/2022/08/circuit/why-we-made-fire-and-fury/
 - https://www.ucsusa.org/resources/how-stop-disinformation
 - https://www.makeuseof.com/social-media-platforms-dislike-buttons/
-
-
-# Plan
-- intro
-	- about the protests
-	- 
-- compare and contrast fire and fury with the river of filth
-- about misinformation and censorship
-	- relate to videos
-- compare misinformaiton and censoship in each of the videos
-- critiques of fire and fury
-- conclusion
-
-300 words
 
 # Intro
 As members of society we must consider the ethical implications of our actions and inactions. This extends to our private lives, and our work. As members of the IT profession we have an obligation to adhere to certain standards. These have been collated and formalised into the ACM Code of Ethics. This document "expresses the conscience of the profession", putting human well-being as the main focus. Although it provides a guidline for us to follow, it is not specific to everyone and should merely act as a foundation for individuals, businesses, and governments to build upon. 
@@ -78,40 +57,19 @@ Some social media sites such as Reddit and YouTube have employed some interestin
 
 Although other platforms like Facebook and Twitter
 
-One of the major websites in this sector is Facebook. 
-
-- how information spreads
-- how social media filters information
-
-- facebook
-	- not imprint their opion - empower people to share 
-	- bring world closer together
-	- huge responsibility
-	- choose what gets aplified - what gets supressed
-	- help peopple discover what they want
-	- value that people can believe different things - good to let them express that
-	- knowledge of people utilising facebook for fake pages to promote political agendas
-	- coordinated inauthentic behaviour
-		- team of people to find and remove these
-		- "arms race" 1:40:10
-	- "defend integrity of the community" 1:40:30
-	- sometimes they get it wrong
-	- "do you want more false positive or more false negative" 1:42:01 which do you value more
-	- "not black and white" 
-	- temporary waiting period white visibility is supressed white the story if fact checked.
 
 # 4 - Our responsibility
 
+So what can we do - as IT professionals, to improve the situation of widespread information. 
 
 Ideas
 - a social media platform that had a cap on the number of followers a person can have, and the number of people a person can follow
-- keep mainstream media separated from social media
-- keep the focus on close friends
-- no "influencers"
-- then you'd need reliable sources of new for mainstream media
-
-# Point 4
-So how can we, as IT professionals help to balance misinformation, censorship, and freedom of expression. 
+	- keep mainstream media separated from social media
+	- keep the focus on close friends
+	- no "influencers"
+	- then you'd need reliable sources of new for mainstream media
+- give warnning and spread awareness about misinformation
+	- educate people about how to come to their own conclusions and do reasearch
 
 # Outro
 conclusion
