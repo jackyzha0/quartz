@@ -1,3 +1,6 @@
+# Misinformation and the Wellington Protests
+Jet Hughes 9474308
+
 # Intro
 As members of society, we must consider the ethical implications of our actions and inactions. This extends to our private lives, and our work. As members of the IT profession, we have an obligation to adhere to certain standards. These have been collated and formalised into the ACM Code of Ethics [^0]. This Code "expresses the conscience of the profession", putting human well-being as the main focus. Although it provides a guideline for us to follow, it is not specific to everyone and should merely act as a foundation for individuals, businesses, and governments to build upon. 
 
@@ -26,7 +29,7 @@ We live in an digital age. Vast amounts of Information is widely accessible to e
 
 The spread of information has evolved. Articles show to users are carefully ranked by algorithms built into social media platforms such as Facebook [^13], and Twitter [^14]. Rather than show you each post in chronological order, algorithms consider the amount of engagement posts are getting, and show more popular posts higher up in viewers feeds, thus making them reach a larger audience. This helps to improve the experience of the viewers, as the posts they see will be of higher interest. However, by promoting content that receives a large amount of engagement, these algorithms have a tendency to promote controversial content. This is because controversial content creates a stronger emotional response in a viewer [^15]. Unfortunately, the algorithms are unable to determine whether engagement is from people sharing something because they dislike it or because they like it. Furthermore, there are many groups with the intent of creating hordes of fake accounts to spread a particular agenda and create controversy. This has been termed - "Coordinated Inauthentic Behaviour" within Facebook [^13].
 
-Some social media sites such as Reddit and YouTube have employed some interesting, and sometimes effective, techniques to combat these issues.  The main ones being YouTube's dislike button and Reddit Karma system [^17]. On Reddit, this allows users to condemn posts that they believe are harmful, wrong, or contain misinformation. However, users can just as easily downvote posts simply because they disagree. YouTube however, recently removed the dislike count from videos but kept the dislike button. This was to combat a few issues, including hate campaigns against a particular channel is which groups would spam a channel with dislikes with the intent of damaging the channel [^18]. The YouTube was outraged at this decision. Many users stated they relied on the dislike count to discern the authenticity and usefullness of a video before wasting time watching it.
+Some social media sites such as Reddit and YouTube have employed some interesting, and sometimes effective, techniques to combat these issues.  The main ones being YouTube's dislike button and Reddit Karma system [^17]. On Reddit, this allows users to condemn posts that they believe are harmful, wrong, or contain misinformation. However, users can just as easily downvote posts simply because they disagree. YouTube however, recently removed the dislike count from videos but kept the dislike button. This was to combat a few issues, including hate campaigns against a particular channel is which groups would spam a channel with dislikes with the intent of damaging the channel [^18]. The YouTube community was outraged at this decision. Many users stated they relied on the dislike count to discern the authenticity and usefullness of a video before wasting time watching it.
 
 # 4 - What can we do about it?
 So what can we do, as IT professionals, to improve the online environemnt wit regard to the spread of information? The ACM code of ethics outlines a set of principles that should act as a baseline for our actions. The ACM code of ethics was "designed to inspire and guide the ethical conduct of all computing professionals" and act as a "basis for remediation when violations occur". The Code is a set of principles with the public good as the primary consideration, each with a set of guidelines to help professionals put the principles into practice. The Code is an attempt to apply fundamental ethical principles to the computing profession.
@@ -65,14 +68,3 @@ In conclusion the anti-vax, anti-establishment protests in Wellington are a symp
 [^20]: https://telegram.org
 [^21]: https://www.theguardian.com/media/2016/nov/17/gab-alt-right-social-media-twitter
 [^22]: https://web.archive.org/web/20181031003944/https://www.bloomberg.com/news/articles/2018-10-30/gab-an-online-haven-for-white-supremacists-plots-its-future
-
-[^]: https://www.theguardian.com/world/2022/feb/26/so-many-rabbit-holes-even-in-trusting-new-zealand-protests-show-fringe-beliefs-can-flourish
-[^]: https://time.com/5929252/edelman-trust-barometer-2021/
-[^]: https://www.brookings.edu/blog/order-from-chaos/2018/05/09/how-misinformation-spreads-on-social-media-and-what-to-do-about-it/
-[^]: https://www.voicesforfreedom.co.nz/blog/post/fire-fury-stuff-formal-complaint
-[^]: https://interactives.stuff.co.nz/2022/08/circuit/why-we-made-fire-and-fury/
-[^]: https://www.ucsusa.org/resources/how-stop-disinformation
-[^]: https://www.makeuseof.com/social-media-platforms-dislike-buttons/
-[^]: https://en.wikipedia.org/wiki/Gab_(social_network)
-[^]: https://arxiv.org/pdf/1906.04261.pdf
-[^]: https://arxiv.org/abs/1802.05287
