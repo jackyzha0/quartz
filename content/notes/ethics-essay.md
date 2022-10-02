@@ -34,7 +34,7 @@ We live in an online age. Vast amounts of Information is widely accessible to ev
 
 The spread of information has evolved. Articles show to users are carefully ranked by algorithms built into social media platforms such as Facebook [^13], and Twitter [^14]. Rather than show you each post in chronological order, algorithms consider the amount of engagement posts are getting, and show more popular posts higher up in viewers feeds, thus making them reach a larger audience. This helps to improve the experience of the viewers as the posts they see will be of higher interest. However, by promoting content that recieves a large amount of engagement, these algorithms have a tendency to promote controversial content. This is because controversial content creates a stronger emotional response in a viewer [^15]. Unfortunately, the algorithms are unable to determine whether engagement is from people sharing something because they dislike it or because they like it. Futhermore, there are many groups with the intent of creating hordes of fake accounts to spread a particular agenda and create controversy. This has been termed - "Coordinated Inauthentic Behaviour" within Facebook [^13].
 
-Some social media sites such as Reddit and YouTube have employed some interesting, and sometimes effective techniques to combat these issues REF.  The main one being the youtubes dislike button and reddits Karma system ADD MORE. This allowed users to condemn posts that they believe are harmful, wrong, or contain misinformation. However, users can just as easily downvote posts simply because they disagree. A similar system existed is youtube however they recently stopped showing the number of dislike on each video. This was to combat a few issues including hate campaings against particular channel is which groups would spam a channel with dislikes with the intent of damaging the channel. ADD MORE HERE.  
+Some social media sites such as Reddit and YouTube have employed some interesting, and sometimes effective techniques to combat these issues.  The main ones being Youtubes dislike button and Reddits Karma system [^17]. On Reddit this allows users to condemn posts that they believe are harmful, wrong, or contain misinformation. However, users can just as easily downvote posts simply because they disagree. Youtube however, recently removed the dislike count from videos but kept the dislike button. This was to combat a few issues including hate campaings against particular channel is which groups would spam a channel with dislikes with the intent of damaging the channel [^18]. ADD MORE HERE.  
 
 Although other platforms like Facebook and Twitter
 
@@ -77,6 +77,10 @@ d
 [^13]:https://open.spotify.com/episode/51gxrAActH18RGhKNza598?si=c97b379af53445b9
 [^14]:https://blog.hootsuite.com/twitter-algorithm/
 [^15]:https://www.warc.com/newsandopinion/news/consumers-respond-to-emotional-content/en-gb/38426
+[^16]:https://msafaksari.com/2022/02/28/fake-and-troll-accounts-on-social-media/
+[^17]: https://www.reddithelp.com/hc/en-us/articles/204511829-What-is-karma-
+[^18]:https://www.makeuseof.com/the-real-reason-why-youtube-hid-dislikes/
+
 [^]: https://www.theguardian.com/world/2022/feb/26/so-many-rabbit-holes-even-in-trusting-new-zealand-protests-show-fringe-beliefs-can-flourish
 [^]: https://time.com/5929252/edelman-trust-barometer-2021/
 [^]: https://www.brookings.edu/blog/order-from-chaos/2018/05/09/how-misinformation-spreads-on-social-media-and-what-to-do-about-it/
@@ -90,5 +94,4 @@ d
 [^]: https://www.theguardian.com/media/2016/nov/17/gab-alt-right-social-media-twitter
 [^]: https://arxiv.org/pdf/1906.04261.pdf
 [^]: https://arxiv.org/abs/1802.05287
-[^]: https://www.reddithelp.com/hc/en-us/articles/204511829-What-is-karma-
 [^]: https://web.archive.org/web/20181031003944/https://www.bloomberg.com/news/articles/2018-10-30/gab-an-online-haven-for-white-supremacists-plots-its-future
