@@ -71,7 +71,7 @@ I am not able to go into depth about what good journalism looks like, however as
 # 3 - The spread of information
 We live in an online age. Vast amounts of Information is widely accessible to everyone. This is made possible by various websites, applications CHANGE. Although the benefits of these technologies are great, they come with great responsibilty. Not only do they provide a platform for individual to access information, they also enable the spread of potentially harmful, false, and misleading information.
 
-The spread of information has evolved. What news is shown is carefully considered by algorithms built into social media platforms such as Facebook, and Twitter. Rather than show you each post 
+The spread of information has evolved. What news is shown is carefully considered by algorithms built into social media platforms such as Facebook, and Twitter. Rather than show you each post in chronological order, algorithms consider the amount of engagement posts are getting, and show more popular posts higher up in viewers feeds, thus it reaches a larger audience. This helps to improve the experience of the viewers as the posts they see will be of higher quality. 
 
 One of the major websites in this sector is Facebook. 
 
