@@ -72,9 +72,11 @@ I am not able to go into depth about what good journalism looks like, however as
 # 3 - The spread of information
 We live in an online age. Vast amounts of Information is widely accessible to everyone. This is made possible by various websites, applications CHANGE. Although the benefits of these technologies are great, they come with great responsibilty. Not only do they provide a platform for individual to access information, they also enable the spread of potentially harmful, false, and misleading information.
 
-The spread of information has evolved. What news is shown is carefully considered by algorithms built into social media platforms such as Facebook, and Twitter. Rather than show you each post in chronological order, algorithms consider the amount of engagement posts are getting, and show more popular posts higher up in viewers feeds, thus it reaches a larger audience. This helps to improve the experience of the viewers as the posts they see will be of higher quality. However, by promoting content that gets are large amount of engagement, these algorithms have a tendency to promote controversial content. This is because controversial content creates a stronger emotional response in a viewer REF. The algorithms have no way to determine whether engament people sharing something because they dislike it or because they like it. 
+The spread of information has evolved. What news is shown is carefully considered by algorithms built into social media platforms such as Facebook, and Twitter. Rather than show you each post in chronological order, algorithms consider the amount of engagement posts are getting, and show more popular posts higher up in viewers feeds, thus it reaches a larger audience. This helps to improve the experience of the viewers as the posts they see will be of higher quality. However, by promoting content that gets are large amount of engagement, these algorithms have a tendency to promote controversial content. This is because controversial content creates a stronger emotional response in a viewer REF. The algorithms have no way to determine whether engament people sharing something because they dislike it or because they like it. Futhermore, there are many groups with the intent of creating horders of fake accounts to spread a particular agenda and create controversy REF.
 
-Some social media sites such as Reddit have employed some interesting, and sometimes effective techniques to combat this issue REF.  The main one being the upvote and downvote system. This allowed users to condemn posts that they believe are harmful, wrong, or contain misinformation. However, users can just as easily downvote posts simply because they disagree. A similar system existed is youtube however they recently stopped showing the number of dislike on each video. This was to combat a few issues including hate campaings against particular channel is which groups would spam a channel with dislikes with the intent of damaging the channel. ADD MORE HERE
+Some social media sites such as Reddit and YouTube have employed some interesting, and sometimes effective techniques to combat these issues REF.  The main one being the downvote and dislike buttons. This allowed users to condemn posts that they believe are harmful, wrong, or contain misinformation. However, users can just as easily downvote posts simply because they disagree. A similar system existed is youtube however they recently stopped showing the number of dislike on each video. This was to combat a few issues including hate campaings against particular channel is which groups would spam a channel with dislikes with the intent of damaging the channel. ADD MORE HERE. 
+
+Although other platforms like Facebook and Twitter
 
 One of the major websites in this sector is Facebook. 
 
@@ -99,6 +101,14 @@ One of the major websites in this sector is Facebook.
 	- temporary waiting period white visibility is supressed white the story if fact checked.
 
 # 4 - Our responsibility
+
+
+Ideas
+- a social media platform that had a cap on the number of followers a person can have, and the number of people a person can follow
+- keep mainstream media separated from social media
+- keep the focus on close friends
+- no "influencers"
+- then you'd need reliable sources of new for mainstream media
 
 # Point 4
 So how can we, as IT professionals help to balance misinformation, censorship, and freedom of expression. 
