@@ -27,6 +27,7 @@ tags:
 - https://www.thedailyexaminer.co.nz/state-funded-fire-and-fury-documentary-unbalanced-hyperbole/
 - https://www.imdb.com/title/tt21914900/
 - https://karldufresne.blogspot.com/2022/08/a-few-thoughts-on-stuffs-fire-and-fury.html
+- https://www.voicesforfreedom.co.nz/blog/post/fire-fury-stuff-formal-complaint
 
 
 # Plan
