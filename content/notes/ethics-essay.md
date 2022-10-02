@@ -53,14 +53,14 @@ We live in an online age. Vast amounts of Information is widely accessible to ev
 
 The spread of information has evolved. What news is shown is carefully considered by algorithms built into social media platforms such as Facebook, and Twitter. Rather than show you each post in chronological order, algorithms consider the amount of engagement posts are getting, and show more popular posts higher up in viewers feeds, thus it reaches a larger audience. This helps to improve the experience of the viewers as the posts they see will be of higher quality. However, by promoting content that gets are large amount of engagement, these algorithms have a tendency to promote controversial content. This is because controversial content creates a stronger emotional response in a viewer REF. The algorithms have no way to determine whether engament people sharing something because they dislike it or because they like it. Futhermore, there are many groups with the intent of creating horders of fake accounts to spread a particular agenda and create controversy REF.
 
-Some social media sites such as Reddit and YouTube have employed some interesting, and sometimes effective techniques to combat these issues REF.  The main one being the downvote and dislike buttons. This allowed users to condemn posts that they believe are harmful, wrong, or contain misinformation. However, users can just as easily downvote posts simply because they disagree. A similar system existed is youtube however they recently stopped showing the number of dislike on each video. This was to combat a few issues including hate campaings against particular channel is which groups would spam a channel with dislikes with the intent of damaging the channel. ADD MORE HERE. 
+Some social media sites such as Reddit and YouTube have employed some interesting, and sometimes effective techniques to combat these issues REF.  The main one being the youtubes dislike button and reddits Karma system ADD MORE. This allowed users to condemn posts that they believe are harmful, wrong, or contain misinformation. However, users can just as easily downvote posts simply because they disagree. A similar system existed is youtube however they recently stopped showing the number of dislike on each video. This was to combat a few issues including hate campaings against particular channel is which groups would spam a channel with dislikes with the intent of damaging the channel. ADD MORE HERE.  
 
 Although other platforms like Facebook and Twitter
 
 
 # 4 - Our responsibility
 
-So what can we do - as IT professionals, to improve the situation of widespread information. 
+So what can we do - as IT professionals, to improve the situation of widespread information. The ACM code of ethics outlines a set of principles that should act as a baseline for our actions. It outlines
 
 Ideas
 - a social media platform that had a cap on the number of followers a person can have, and the number of people a person can follow
