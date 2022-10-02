@@ -28,6 +28,7 @@ tags:
 - https://www.imdb.com/title/tt21914900/
 - https://karldufresne.blogspot.com/2022/08/a-few-thoughts-on-stuffs-fire-and-fury.html
 - https://www.voicesforfreedom.co.nz/blog/post/fire-fury-stuff-formal-complaint
+- https://interactives.stuff.co.nz/2022/08/circuit/why-we-made-fire-and-fury/
 
 
 # Plan
@@ -65,7 +66,7 @@ The stuff article praising the documentary says the team behind it "interviewed 
 I am not able to go into depth about what good journalism looks like, however as a computer science student, I can consider the impact that the IT profession can have on the issue. 
 
 # Point 3
-Each of these two documentaties, Fire and Fury and River of Filth depict a different perspective of the Wellington Protests. Their are many differences in the production of each of the pieces. 
+Each of these two documentaties, Fire and Fury and River of Filth depict a different perspective of the Wellington Protests. Their are many differences in the production of each of the pieces. Firstly the stuff documentary had significant funding, took significant time and effort to complete, and was backed by a large team of successful journallists REF. Conversely, the River of Filth had very little funding, and was made my a very small team REF. Despite this, both videos show a 
 
 - fire and fury is backed by large corporation government etc.
 	- lots of funding, well produced, lots of time spent
