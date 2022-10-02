@@ -59,7 +59,9 @@ The role of the IT sector in the wellington protests is clearly a significant on
 # Point 2
 The documentay Fire and Fury created by a team of journalists from Stuff.co.nz, investigating the wellington protests, what caused them, and some of the key people behind the protests. It showed the progess of the movement leading up to the occupation. The documentary recieved mixed reviews. An in-house review by stuff praised it as "journalism at the peak of its powers" REF, while others have said it "veers into the absurd" REF. Of course each of these third parties, have biases of their own which must be taken into account. Everyone online is able to present themselves however they like, and masquerade as something they are not. It is incredibly difficult to separate the good from the bad. 
 
-The stuff article praising the documentary says the team behind it "interviewed the right people", "spoke to a vast audience", and "told us 'what lies behind the cloud'". However, those critical of it suggest it fails to consider the viewpoint of those it depicts, and is itself state-funded propaganda 
+The stuff article praising the documentary says the team behind it "interviewed the right people", "spoke to a vast audience", and "told us 'what lies behind the cloud'". However, those critical of it suggest it fails to consider the viewpoint of those it depicts, and that is itself state-funded propaganda and "is part of the very problem the makers purport to deplore". These critics also assert that 
+
+The documentary Depicts some key people behind the protests namely the Voices for Freedom group, Counterspin Media, Damien De Ment, Karlene Hereora, Chantell Baker, Clair Deeks, Amy Benjamin, and more. It examines the relationships between all these groups, their common beliefs, and delves into the deeper conspiracies put foward by groups such as the QAnon movement.
 
 - qanon 
 - influence of social media
