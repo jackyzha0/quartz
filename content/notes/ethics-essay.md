@@ -14,7 +14,7 @@ The recent outbreak of misinformation and censorship, culminating in Aotearoa wi
 I do not have the knowledge or experience to make informed decision about what should be allowed on large platforms such as spotify, facebook, and youtube. However, I am able to give my opinion about how misinformation, censorship, and freedom of expression should be balanced. This essay will examine the point of view of the protesters at wellington and contrast it with Stuff's Fire and Fury in an attempt to learn more about how to balance censorship and freedom of expression in an online world. 
 
 # 1 - River of Filth
-Throughout history we can observe countless instances of delayed acceptance of medical discoveries. Even the process of resuscitation through mouth to mouth breathing and chest compressions was initally rejected by the public and discouraged. Anti-Vaccination movements existed long before the Covid-19 pandemic. Ever since the first vaccinations REF people have felt uncomfortable. Shorty before Covid-19 struck, Anti Vaccination supporters have protested against the MMR and Measles vaccines. However, following the announcement of the Covid-19 vaccine, these groups gained more followers and start to spread their views, eventually led to the convoy and the wellington protests. They documented their journey in the video titled River of Filth. The video starts with news and articles where the NZ government stated that the vaccine would not be mandatory. Next, they depict the governments betrayl of this promise, forcing 40% of the NZ workforce to be vaccinated. They then showed footage of the convoy, various protests along the way, and the camp out at Wellington parliament CAPS?. The video then finishes with a message condemning the government and mainstream media, and praising the protesters and their efforts. After 23 days the protesters were forcefully and violently removed by a large police force, 87 protesters were arrested and 50 vehicles towed REF. The protesters were mostly protesting the NZ government Covid-19 response, including mask mandates, vaccine mandates and lockdowns. However, various anti-establishment and/or anti-mainstream media groups were also present, many of which were calling for trials and executions. 
+Throughout history we can observe countless instances of delayed acceptance of medical discoveries. Even the process of resuscitation through mouth to mouth breathing and chest compressions was initally rejected by the public and discouraged [^1]. Anti-Vaccination movements existed long before the Covid-19 pandemic. Ever since the first vaccinations REF people have felt uncomfortable. Shorty before Covid-19 struck, Anti Vaccination supporters protested against the MMR and Measles vaccines. However, following the announcement of the Covid-19 vaccine, these groups gained more followers and started to spread their views, which eventually led to the convoy and the wellington protests. They documented their journey in the video titled River of Filth. The video starts with news and articles where the NZ government stated that the vaccine would not be mandatory. Next, they depict the governments betrayl of this promise, forcing 40% of the NZ workforce to be vaccinated. They then showed footage of the convoy, various protests along the way, and the camp out at Wellington parliament CAPS?. The video then finishes with a message condemning the government and mainstream media, and praising the protesters and their efforts. After 23 days the protesters were forcefully and violently removed by a large police force, 87 protesters were arrested and 50 vehicles towed [^2]. The protesters were mostly protesting the NZ government Covid-19 response, including mask mandates, vaccine mandates and lockdowns. However, various anti-establishment and/or anti-mainstream media groups were also present, many of which were calling for trials and executions. 
 
 This protest is part of a worldwide trend, an "epidemic of misinformation" REF. The protests spawned from online campaigns and pre-existing fringe groups who found a common cause. Online platforms such as Facebook, Instagram, TikTok, Gab and Telegram facilitated the formation and propagation of these groups. They enabled the protesters to reach a large audience, spread their agenda and influence the public REF. Some groups were banned from Facebook, and were able to successfully migrate to other, more lenient platforms such as Gab and Telegram. They deployed techniques similar fascist strategies such as "flooding the zone" and "swarm[ing] social media". They asked for assistance from long standing members of the anti-vax community who gave advice such as giving the people "an alternative narrative", a strategy used refute the Flu and MMR vaccines. 
 
@@ -45,10 +45,10 @@ How can we apply this Code to the issue of misinformation, censorship, and freed
 
 When the Voices for Freedom group grew sufficiently large, Facebook made the decision to ban them. Subsequently, they switched to using Telegram messenger and the Gab social network as their main platforms. These sites value free speech and individual liberty above all else. These sites have become a haven for the far-right and other fringe groups, many of which have been banned from mainstream sites such as Facebook and TwitterREF. This is concerning because It is concentrating all the misinformation spreaders, trolls, and conspiracy theorists in one large echochamber.
 
-# Outro
-In conclusion the anti-vax, anti-establishement protests in Wellington are a symptom of a larger problem within the online world. We live in an age where information is widely availble and consumed by a large proportion of the world. This information is not always truthful, and is often intentionally misleading and/or harmful. Groups such as Voices for Freedom and Counterspin Media at the forefront of the Wellington protests are able to utilise these platforms, to further their agenda and reach a larger audience, regardless of the accuracy and truthfullness of their information. As IT professionals, our work plays an important role in this environment, and we have an obligation to  
+While it is not feasable to fully eliminate harmful media there are ways in which we can protect our society against it. Firstly, we should place greater priority on educating people about misinformation, disinformation, and other harmful media, and suggest ways in which individuals can protet themselves. We should encourage people to do proper research and come to their own conclusions about controversial subjects. Unfortunately, this is very difficult when media, both mainstream and social, is so saturated with bad information and malignant organisations.
 
-what is fire and fury, and river of filth, how do they relate to
+# Conclusion
+In conclusion the anti-vax, anti-establishement protests in Wellington are a symptom of a larger problem within the online world. We live in an age where information is widely availble and consumed by a large proportion of the world. This information is not always truthful, and is often intentionally misleading and/or harmful. Groups such as Voices for Freedom and Counterspin Media at the forefront of the Wellington protests are able to utilise these platforms, to further their agenda and reach a larger audience, regardless of the accuracy and truthfullness of their information. As IT professionals, our work plays an important role in this environment, and we have an obligation to consider the ethical implication of our actions. As stated in the ACM Code of Ethics, the public good, and human lives should be the primary factor informing our decisions. However, despite our best efforts, it is not possible to fully eradicate harmful misinformation, disinformation, and conspiracy theories without forfeiting our right to free speech.
 
 Ideas
 - a social media platform that had a cap on the number of followers a person can have, and the number of people a person can follow
@@ -61,26 +61,27 @@ Ideas
 d
 
 # References
-- https://www.alcor.org/library/persons-apparently-dead/
-- https://www.stuff.co.nz/dominion-post/news/wellington/127928119/protesters-disperse-after-major-police-operation-ends-parliament-occupation
-- https://www.nzherald.co.nz/nz/wellington-protest-police-wont-stop-until-occupation-cleared-out-says-former-frontline-cop/RMVTC7A6FYGTJCHLNM36QDWDZM/
-- https://en.wikipedia.org/wiki/2022_Wellington_protest
-- https://www.theguardian.com/world/2022/feb/26/so-many-rabbit-holes-even-in-trusting-new-zealand-protests-show-fringe-beliefs-can-flourish
-- https://www.theguardian.com/world/2021/aug/30/even-as-new-zealand-battles-covid-trust-in-government-bucks-global-trend
-- https://time.com/5929252/edelman-trust-barometer-2021/
-- https://www.brookings.edu/blog/order-from-chaos/2018/05/09/how-misinformation-spreads-on-social-media-and-what-to-do-about-it/
-- https://www.thedailyexaminer.co.nz/state-funded-fire-and-fury-documentary-unbalanced-hyperbole/
-- https://www.imdb.com/title/tt21914900/
-- https://karldufresne.blogspot.com/2022/08/a-few-thoughts-on-stuffs-fire-and-fury.html
-- https://www.voicesforfreedom.co.nz/blog/post/fire-fury-stuff-formal-complaint
-- https://interactives.stuff.co.nz/2022/08/circuit/why-we-made-fire-and-fury/
-- https://www.ucsusa.org/resources/how-stop-disinformation
-- https://www.makeuseof.com/social-media-platforms-dislike-buttons/
-- https://gab.com
-- https://telegram.org
-- https://en.wikipedia.org/wiki/Gab_(social_network)
-- https://www.theguardian.com/media/2016/nov/17/gab-alt-right-social-media-twitter
-- https://arxiv.org/pdf/1906.04261.pdf
-- https://arxiv.org/abs/1802.05287
-- https://www.reddithelp.com/hc/en-us/articles/204511829-What-is-karma-
-- https://web.archive.org/web/20181031003944/https://www.bloomberg.com/news/articles/2018-10-30/gab-an-online-haven-for-white-supremacists-plots-its-future
+
+[^1]: https://www.alcor.org/library/persons-apparently-dead/
+[^2]: https://www.stuff.co.nz/dominion-post/news/wellington/127928119/protesters-disperse-after-major-police-operation-ends-parliament-occupation
+[^3]: https://en.wikipedia.org/wiki/2022_Wellington_protest
+[^]:  https://www.nzherald.co.nz/nz/wellington-protest-police-wont-stop-until-occupation-cleared-out-says-former-frontline-cop/RMVTC7A6FYGTJCHLNM36QDWDZM/
+[^]: https://www.theguardian.com/world/2022/feb/26/so-many-rabbit-holes-even-in-trusting-new-zealand-protests-show-fringe-beliefs-can-flourish
+[^]: https://www.theguardian.com/world/2021/aug/30/even-as-new-zealand-battles-covid-trust-in-government-bucks-global-trend
+[^]: https://time.com/5929252/edelman-trust-barometer-2021/
+[^]: https://www.brookings.edu/blog/order-from-chaos/2018/05/09/how-misinformation-spreads-on-social-media-and-what-to-do-about-it/
+[^]: https://www.thedailyexaminer.co.nz/state-funded-fire-and-fury-documentary-unbalanced-hyperbole/
+[^]: https://www.imdb.com/title/tt21914900/
+[^]: https://karldufresne.blogspot.com/2022/08/a-few-thoughts-on-stuffs-fire-and-fury.html
+[^]: https://www.voicesforfreedom.co.nz/blog/post/fire-fury-stuff-formal-complaint
+[^]: https://interactives.stuff.co.nz/2022/08/circuit/why-we-made-fire-and-fury/
+[^]: https://www.ucsusa.org/resources/how-stop-disinformation
+[^]: https://www.makeuseof.com/social-media-platforms-dislike-buttons/
+[^]: https://gab.com
+[^]: https://telegram.org
+[^]: https://en.wikipedia.org/wiki/Gab_(social_network)
+[^]: https://www.theguardian.com/media/2016/nov/17/gab-alt-right-social-media-twitter
+[^]: https://arxiv.org/pdf/1906.04261.pdf
+[^]: https://arxiv.org/abs/1802.05287
+[^]: https://www.reddithelp.com/hc/en-us/articles/204511829-What-is-karma-
+[^]: https://web.archive.org/web/20181031003944/https://www.bloomberg.com/news/articles/2018-10-30/gab-an-online-haven-for-white-supremacists-plots-its-future
