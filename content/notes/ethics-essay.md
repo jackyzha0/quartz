@@ -51,34 +51,47 @@ The recent outbreak of misinformation and censorship, culminating in Aotearoa wi
 
 I do not have the knowledge or experience to make informed decision about what should be allowed on large platforms such as spotify, facebook, and youtube. However, I am able to give my opinion about how misinformation, censorship, and freedom of expression should be balanced. This essay will examine the point of view of the protesters at wellington and contrast it with Stuff's Fire and Fury in an attempt to learn more about how to balance censorship and freedom of expression in an online world. 
 
-# Point 1
+# 1 - River of Filth
 Throughout history we can observe countless instances of delayed acceptance of medical discoveries. Even the process of resuscitation through mouth to mouth breathing and chest compressions was initally rejected by the public and discouraged. Anti-Vaccination movements existed long before the Covid-19 pandemic. Ever since the first vaccinations REF people have felt uncomfortable. Shorty before Covid-19 struck, Anti Vaccination supporters have protested against the MMR and Measles vaccines. However, following the announcement of the Covid-19 vaccine, these groups gained more followers and start to spread their views, eventually led to the convoy and the wellington protests. They documented their journey in the video titled River of Filth. The video starts with news and articles where the NZ government stated that the vaccine would not be mandatory. Next, they depict the governments betrayl of this promise, forcing 40% of the NZ workforce to be vaccinated. They then showed footage of the convoy, various protests along the way, and the camp out at Wellington parliament CAPS?. The video then finishes with a message condemning the government and mainstream media, and praising the protesters and their efforts. After 23 days the protesters were forcefully and violently removed by a large police force, 87 protesters were arrested and 50 vehicles towed REF. The protesters were mostly protesting the NZ government Covid-19 response, including mask mandates, vaccine mandates and lockdowns. However, various anti-establishment and/or anti-mainstream media groups were also present, many of which were calling for trials and executions. 
 
 This protest is part of a worldwide trend, an "epidemic of misinformation" REF. The protests spawned from online campaigns and pre-existing fringe groups who found a common cause. Online platforms such as Facebook, Instagram, TikTok, Gab and Telegram facilitated the formation and propagation of these groups. They enabled the protesters to reach a large audience, spread their agenda and influence the public REF. Some groups were banned from Facebook, and were able to successfully migrate to other, more lenient platforms such as Gab and Telegram. They deployed techniques similar fascist strategies such as "flooding the zone" and "swarm[ing] social media". They asked for assistance from long standing members of the anti-vax community who gave advice such as giving the people "an alternative narrative", a strategy used refute the Flu and MMR vaccines. 
 
 The role of the IT sector in the wellington protests is clearly a significant one. Without the platforms mentioned the protest would have likely never happened REF?. However, the eradication of these platforms is not a solution REF?. What we can do however, is try to balance and regulate the spread of misinformation on these platforms. But we must be carful in doing so, as people have a right to free speech. How can we balance censorship and freedom of expression on platform such as these? 
 
-# Point 2
+# 2 - Fire and Fury
 The documentay Fire and Fury created by a team of journalists from Stuff.co.nz, investigating the wellington protests, what caused them, and some of the key people behind the protests. It showed the progess of the movement leading up to the occupation. The documentary recieved mixed reviews. An in-house review by stuff praised it as "journalism at the peak of its powers" REF, while others have said it "veers into the absurd" REF. Of course each of these third parties, have biases of their own which must be taken into account. Everyone online is able to present themselves however they like, and masquerade as something they are not. It is incredibly difficult to separate the good from the bad. 
 
 The stuff article praising the documentary says the team behind it "interviewed the right people", "spoke to a vast audience", and "told us 'what lies behind the cloud'". However, those critical of it suggest it fails to consider the viewpoint of those it depicts, and that is itself state-funded propaganda and "is part of the very problem the makers purport to deplore". These critics also assert that "the makers set out with a preconieved objective" REF, and that there was no attempt to understand what drove the protesters and consider both sides of the story. They say the documentary failed to ask an important question: "why so many people no longer trust the media". They say the mainstream media "have lost sight of what was previously their primary objective which, was to reflect society back to itself and report, as neutrally as possible, on matters of interest and concern to the communities they purported to serve".
 
+Each of these two documentaties, Fire and Fury and River of Filth depict a different perspective of the Wellington Protests. Their are many differences in the production of each of the pieces. Firstly the stuff documentary had significant funding, took significant time and effort to complete, and was backed by a large team of successful journallists REF. Conversely, the River of Filth had very little funding, and was made my a very small team REF. Despite this, both videos demonstrate 
+
 I am not able to go into depth about what good journalism looks like, however as a computer science student, I can consider the impact that the IT profession can have on the issue. 
 
-# Point 3
-Each of these two documentaties, Fire and Fury and River of Filth depict a different perspective of the Wellington Protests. Their are many differences in the production of each of the pieces. Firstly the stuff documentary had significant funding, took significant time and effort to complete, and was backed by a large team of successful journallists REF. Conversely, the River of Filth had very little funding, and was made my a very small team REF. Despite this, both videos show a 
+# 3 - The spread of information
+- how information spreads
+- how social media filters information
 
-- fire and fury is backed by large corporation government etc.
-	- lots of funding, well produced, lots of time spent
-- river of filth
-	- mostly footage from iphones by various members of the protest
-	- not clear about funding etc
-	- low budget
-	- raw footage
-	- 
+- facebook
+	- not imprint their opion - empower people to share
+	- bring world closer together
+	- huge responsibility
+	- choose what gets aplified - what gets supressed
+	- help peopple discover what they want
+	- value that people can believe different things - good to let them express that
+	- knowledge of people utilising facebook for fake pages to promote political agendas
+	- coordinated inauthentic behaviour
+		- team of people to find and remove these
+		- "arms race" 1:40:10
+		- "defend integrity of the community" 1:40:30
+		- sometimes they get it wrong
+		- "do you want more false positive or more false negative" 1:42:01
+- 
+
+
+# 4 - Our responsibility
 
 # Point 4
-tech
+So how can we, as IT professionals help to balance misinformation, censorship, and freedom of expression. 
 
 # Outro
 conclusion
