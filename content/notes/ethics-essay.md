@@ -62,7 +62,7 @@ Although other platforms like Facebook and Twitter
 
 So what can we do - as IT professionals, to improve the situation of widespread information. The ACM code of ethics outlines a set of principles that should act as a baseline for our actions. The ACM code of ethics was "designed to inspire and guide the ethical conduct of all computing professionals" and act as a "basis for remediation when violations occur". The Code is a set of principles with the public good as the primary consideration, each with a set of guidlines to help professionals put the principles into practice. The Code is an attempt to apply fundamental ethical principles to the computing profession.
 
-How can we apply this Code to the issue of misinformation, censorship, and freedom of expression.  
+How can we apply this Code to the issue of misinformation, censorship, and freedom of expression. This is a very difficuly an nuanced topic. I personally think that freedom of speech is a very important part of our lives and that it should be held in the highest regard. However, it is not possible to grant entirely free speech to everyone while completely prohibiting misinformation.
 
 Ideas
 - a social media platform that had a cap on the number of followers a person can have, and the number of people a person can follow
