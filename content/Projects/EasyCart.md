@@ -8,6 +8,7 @@ EasyCart is a project that facilitates sales in digital products. Its biggest co
 Initially EasyCart was created as a shopping cart for our projects. Now, thanks to Stripe technology, it was possible to make it available to others.
 
 ## News 
+- October 2022 EasyCart exceedes PLN 10,000,000 in transactions
 - September 2022 EasyCart exceedes PLN 6,000,000 in transactions 
 - August 2022 EasyCart exceedes PLN 5,000,000 in transactions
 - May 2022 EasyCart exceeds PLN 3,000,000 in transactions
