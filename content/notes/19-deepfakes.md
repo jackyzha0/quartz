@@ -4,6 +4,9 @@ aliases:
 tags: 
 - comp210
 - lecture
+sr-due: 2022-10-13
+sr-interval: 3
+sr-ease: 250
 ---
 
 # what, origins, how
@@ -82,4 +85,16 @@ plausible deniability
 should "you" be concerned
 - for your personal integrity no
 - likely not enough data for you to be faked
-- 
+	- "one shot deepfakes"
+- as a citizen yes
+
+## responses
+- crytpographic siging to authenticate origin
+	- will this work about leaked content
+
+ml to analyse deepfakes (e.g., blinking)
+
+another arms race
+
+# summary
+![](https://i.imgur.com/H9wv8Bv.png)
