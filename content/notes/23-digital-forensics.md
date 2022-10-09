@@ -49,3 +49,12 @@ computers everywhere
 ## computers as a witness
 - good at storing info, with great reliability.
 - have no common sense, no initative.
+
+## expert witnesses
+- ![tips](https://i.imgur.com/6z7FpgU.png)
+
+# documentation
+- want to be able to recr
+
+# volatility
+- how quickly does the data vanish when power if removed.

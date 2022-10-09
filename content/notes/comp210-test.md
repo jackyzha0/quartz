@@ -9,9 +9,14 @@ tags:
 # 1
 
 # 2
+This is saying that a computer is very good at storing data with great reliability. This makes them a good companion technology for us, as we are often not great at remembering things. We also tend to be biased, susceptable to stereotypes and impresssions, and are easily fooled. However, although computers are great at storing information, they have no "common sense" or initative. The data from a computer needs to be interpreted by a human in order for it to be useful.
+
+In a court of law, this means that a person has to "tell the story" for the computer. This means the computer data is technically circumstantial evidece - in court you are giving your account of your interpretation of the data. You are not providing direct evidence
 
 # 3
+Volatility refers to the time it takes for stored information to "vanish" after power has been removed. Data can be stored on a variety of mediums. These range from small, fast, and volatile to large, slow, but stable.
 
+Triage is the process of analysing hardware to find potentially relevant information. During this process, the most volatile storage mediums should be analysed first, before non-volatile types. This ensures you have the highest chance of capturing the volatile data.
 
 # 4
 The term is used to indicate the reliability of a system. For example if a spam detector stopped 99.99% of spam emails it would be 5 nines secure.
