@@ -4,6 +4,9 @@ aliases:
 tags: 
 - comp210
 - lecture
+sr-due: 2022-10-13
+sr-interval: 3
+sr-ease: 250
 ---
 
 # need in all phases
@@ -16,19 +19,19 @@ tags:
 more costly to fix bug in development than in design
 - the later we fix it the more costly it is
 
-from the start
+## from the start
 - hire right people
 - with hacking mindset
 	- so they alwasys think about security
 - invite customers to training and seminars
 	- testing could uncover security issues
 
-questions during feasability
+## questions during feasability
 - ![](https://i.imgur.com/svo2sIb.png)
 - what are the implications for users if assets are lost
 	- some information is more high risk that other information
 
-during design
+## during design
 - should be designed in iterative manner
 - threat modelling
 	- ![diagram](https://i.imgur.com/RM6lyC1.png)
@@ -61,7 +64,39 @@ responsing to threats
 - remove problem
 - fix problem
 
+- design choice sto counter threats
+	- ![](https://i.imgur.com/LzIHfdF.png)
+
+## during development
+- techniques vary based on type of software
+- sytem 
+- firmware
+- drive
+- programming software
+
+- common vulnerabilities
+	- ![](https://i.imgur.com/lmU61jd.png)
+
+example connection string
+- ![](https://i.imgur.com/sV6OzCo.png)
+- can provide extraneous parameters to fiind the right ones
+
+example SQL injection
+- ![](https://i.imgur.com/XNNDur9.png)
+
+tips for vailidation and preventing overruns
+- ![](https://i.imgur.com/Mz7edc6.png)
 
 
+## during evolution
+- assign security evagelist
+- plan "security days"
+- learn from mistakes
+- minize attack surface
+
+## stack overflow
+- ![examples](https://i.imgur.com/NumPTGn.png)
 
 
+# summary
+![](https://i.imgur.com/tTC8jIs.png)
