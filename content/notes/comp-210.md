@@ -42,4 +42,4 @@ No final exam
 - [19-deepfakes](notes/19-deepfakes.md)
 - [20-SE-in-IA](notes/20-SE-in-IA.md)
 - [21-SE-in-IA-2](notes/21-SE-in-IA-2.md)
-- 
+- [22-digital-preservation](notes/22-digital-preservation.md)
