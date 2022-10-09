@@ -4,6 +4,9 @@ aliases:
 tags: 
 - lecture
 - comp210
+sr-due: 2022-10-13
+sr-interval: 3
+sr-ease: 250
 ---
 
 # nefarious uses of ml
@@ -71,9 +74,48 @@ how
 
 F5 steganographic algorithm
 - developed to fool analysis of dct distributions
-- 
+- seeded with key to create pseudorandom sequence for embedding
+- can preserve statistical properties of DCT distributions
 
+can use ML to find hidden images
+- then hackers will try to fool this
+- some will always get through
 
 # bigger issues
+- deepfakes to to shape political views of the day
+- pixel replacement with segmentation and inpainting 
+	- ![examples](https://i.imgur.com/zGOtqZa.png)
+
+## is ML good or bad
+- being used everywhere
+
+- should we care
+
+- data and modelling cannot always be 100% perfect
+	- e.g., killer drones
+
+- privacy concerns
+- linked data
+- pipelins - information seepage
+
+nx integrated data infrastructure
+
+ethics
+- what considerations need to be made
+- ML being used to automate decision making
+- ML sentencing of criminals
+
+theft
+- theft of data
+- data is more valuable
+- transfer learning
+
+- reverse engineering a ML model
+![ml extraction attack](https://i.imgur.com/jiinX6m.png)
+
 
 # where to from here
+- good and bad are human constructs
+- how will laws work
+- can we use ML to make laws
+- Do we need to stop it?
