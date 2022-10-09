@@ -40,3 +40,5 @@ No final exam
 - [17-ML-in-IA-1](notes/17-ML-in-IA-1.md)
 - [18-ML-in-IA-2](notes/18-ML-in-IA-2.md)
 - [19-deepfakes](notes/19-deepfakes.md)
+- [20-SE-in-IA](notes/20-SE-in-IA.md)
+- 
