@@ -7,6 +7,9 @@ tags:
 ---
 
 # 1
+Logging is when information systems keep track of all the events the occur within that system. These events are usually stored as a list of entries in one or more text files. These logs are very useful, they can be used to detect errors, debug issues, and other things. 
+
+Within Information assure they are very useful. They can be used to find the origin, and nature of an attack, and can help to find out what went wrong, and how such an an attack could be avoided in the future. They are particularly useful within the field of digital forensics, as they keep a record of all the activity that occurs with a system. This record can then analysed by experts to find potentially relevant evidence, which can be used in court.
 
 # 2
 This is saying that a computer is very good at storing data with great reliability. This makes them a good companion technology for us, as we are often not great at remembering things. We also tend to be biased, susceptable to stereotypes and impresssions, and are easily fooled. However, although computers are great at storing information, they have no "common sense" or initative. The data from a computer needs to be interpreted by a human in order for it to be useful.
