@@ -28,8 +28,10 @@ tags:
 
 8. yes - combined with client hello random to create master secret
 combined with server hello random to create master secret
+![](https://i.imgur.com/DS45Ved.png)
 
-9. 3 certificates - others are for DigiCert Global Root CA and  DigiCert 
-![](https://i.imgur.com/QKSUtlG.png)
+9. 3 certificates - others are for DigiCert Global Root CA and DigiCert TLS RSA SHA256 2020 CA1
+![](https://i.imgur.com/0zDN8Zv.png)
 
-10. 
+
+19.
