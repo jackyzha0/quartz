@@ -39,4 +39,10 @@ combined with server hello random to create master secret
 11. sha 256 with rsa encryption
  ![](https://i.imgur.com/Qbta96a.png)
 
-12. 
+12. yes - 1
+![](https://i.imgur.com/jWh3nbT.png)
+
+13. number 11
+![](https://i.imgur.com/8PW0Bts.png)
+
+14. 
