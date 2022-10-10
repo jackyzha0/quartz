@@ -23,7 +23,7 @@ tags:
 
 6. combined with server hello random to create master secret
 
-7. 0xc030 
+7. TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 ![](https://i.imgur.com/gFqpTCg.png)
 
 8. yes - combined with client hello random to create master secret
@@ -49,4 +49,11 @@ combined with server hello random to create master secret
 
 15. duplicate question?
 
-16. 
+16. TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+![](https://i.imgur.com/gFqpTCg.png)
+
+17. The server hello
+
+18. number 15
+![](https://i.imgur.com/JngIBH3.png)
+
