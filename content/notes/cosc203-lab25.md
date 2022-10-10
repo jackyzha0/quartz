@@ -45,4 +45,8 @@ combined with server hello random to create master secret
 13. number 11
 ![](https://i.imgur.com/8PW0Bts.png)
 
-14. 
+14. I dont think It does
+
+15. duplicate question?
+
+16. 
