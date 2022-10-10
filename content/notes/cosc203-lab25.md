@@ -33,5 +33,10 @@ combined with server hello random to create master secret
 9. 3 certificates - others are for DigiCert Global Root CA and DigiCert TLS RSA SHA256 2020 CA1
 ![](https://i.imgur.com/0zDN8Zv.png)
 
+10. DigiCert
+![](https://i.imgur.com/1ffEFio.png)
 
-19.
+11. sha 256 with rsa encryption
+ ![](https://i.imgur.com/Qbta96a.png)
+
+12. 
