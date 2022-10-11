@@ -12,6 +12,7 @@ tags:
 No final exam
 - [assignment 1](notes/ass01-security-audit)
 - [assignment 2](notes/ass02-repaired-system)
+- [assingment 3](notes/ass03-security-flaws-essay)
 
 # Notes
 - [information-security](notes/information-security.md)
