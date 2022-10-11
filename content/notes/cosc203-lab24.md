@@ -25,4 +25,10 @@ tags:
 get - packet 76
 res - 78
 
-6. 
+6. bc:54:2f:5e:83:d7
+![](https://i.imgur.com/vdfqIRO.png)
+
+7. (00:00:0c:9f:f0:04) - the router i'm connected to
+![](https://i.imgur.com/20ZlLfr.png)
+
+8. 
