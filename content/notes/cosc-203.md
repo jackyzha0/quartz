@@ -23,6 +23,7 @@ tags:
 - [cosc203-lab18](notes/cosc203-lab18.md)
 - [cosc203-lab19](notes/cosc203-lab19.md)
 - [cosc203-lab20](notes/cosc203-lab20.md)
+- [cosc203-lab24](notes/cosc203-lab24.md)
 - [cosc203-lab25](notes/cosc203-lab25.md)
 
 # Notes

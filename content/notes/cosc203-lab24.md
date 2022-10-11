@@ -43,3 +43,20 @@ res - 78
 11. bc:54:2f:5e:83:d7 - yes this is my computer
 ![](https://i.imgur.com/WrhwhBb.png)
 
+12. 10.66.8.42
+![](https://i.imgur.com/L7pPydW.png)
+
+13. its different not sure why
+![](https://i.imgur.com/QiyHc6L.png)
+
+14. Destination: Broadcast (ff:ff:ff:ff:ff:ff) this is the default gateway
+![](https://i.imgur.com/KfqWJti.png)
+![](https://i.imgur.com/o8936Ye.png)
+
+15. Opcode: request (1)
+![](https://i.imgur.com/G5lyukY.png)
+
+16. yes - needed so that people can reply without also having to send an ARP
+![](https://i.imgur.com/QQ5CX6r.png)
+
+17. 
