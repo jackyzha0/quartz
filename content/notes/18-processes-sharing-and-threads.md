@@ -9,6 +9,7 @@ tags:
 # Shared memory for processes
 ![linux memory space layout](https://i.imgur.com/vLlD03U.png)
 
+Can't assume all variables are initally zero. 
 
 # Threads
 Lightweight process - shares everything except the stack
