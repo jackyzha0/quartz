@@ -60,3 +60,9 @@ res - 78
 ![](https://i.imgur.com/QQ5CX6r.png)
 
 17. 
+a. Sender MAC address: Cisco_9f:f0:04 (00:00:0c:9f:f0:04) the router i am connected to
+b. Target MAC address: IntelCor_5e:83:d7 (bc:54:2f:5e:83:d7) my computer
+![](https://i.imgur.com/3GYvZuV.png)
+
+18. default time is 20mins
+[source](https://duckduckgo.com/?q=default+amount+of+time+that+an+entry+remains+in+your+ARP+windows+11&t=opera&ia=web)
