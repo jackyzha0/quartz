@@ -22,6 +22,8 @@ tags:
 - [cosc203-lab17](notes/cosc203-lab17.md)
 - [cosc203-lab18](notes/cosc203-lab18.md)
 - [cosc203-lab19](notes/cosc203-lab19.md)
+- [cosc203-lab20](notes/cosc203-lab20.md)
+- [cosc203-lab25](notes/cosc203-lab25.md)
 
 # Notes
 [dns](notes/dns.md)

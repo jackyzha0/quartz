@@ -69,16 +69,16 @@ consumer must wait if buffer is empty
 
 ``` c
 void *myThreadFun(void *vargp) { 
-	sleep(1)
-	printf("Hello from Thread \n")
-	return NULL
+	sleep(1);
+	printf("Hello from Thread \n");
+	return NULL;
 } 
 	
 int main() { 
-	pthread_t thread_id
-	printf("Before Thread\n")
-	pthread_create(&thread_id, NULL, myThreadFun, NULL)
-	pthread_join(thread_id, NULL)
+	pthread_t thread_id;
+	printf("Before Thread\n");
+	pthread_create(&thread_id, NULL, myThreadFun, NULL);
+	pthread_join(thread_id, NULL);
 	printf("After Thread\n");
 	exit(0);
 }
