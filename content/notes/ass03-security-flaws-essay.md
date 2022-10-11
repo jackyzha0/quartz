@@ -101,10 +101,15 @@ Jet Hughes 9474308
 
 - I’m not even especially angry at Phobia, or his partner in the attack. I’m mostly mad at myself. I’m mad as hell for not backing up my data. I’m sad, and shocked, and feel that I am ultimately to blame for that loss
 
-- 
-
 ## 2015 Brandom Anatomy of a Hack
 [link](https://blackboard.otago.ac.nz/bbcswebdav/pid-2956926-dt-content-rid-18904225_1/xid-18904225_1)
+
+- david was careful -2fa etc
+- used mail.com address which fowarded to another
+- someone broke in and stopped the fowarding, added a phone number, 
+	- burner Android device registered in Florida.
+	- new backup email too, swagger@mailinator.com,
+	- likely that she used a script to target a weakness in Mail.com’s password reset page
 
 # What do they have in common?
 
