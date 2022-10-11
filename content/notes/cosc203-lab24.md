@@ -31,4 +31,15 @@ res - 78
 7. (00:00:0c:9f:f0:04) - the router i'm connected to
 ![](https://i.imgur.com/20ZlLfr.png)
 
-8. 
+8. 0800 - ipv4 
+![](https://i.imgur.com/V4YB7Y0.png)
+
+9. the G is the 41st byte. Before this is the TCP information
+![](https://i.imgur.com/Pbq8QaV.png)
+
+10. Source: Cisco_65:34:42 (00:2a:6a:65:34:42). the address of the router
+![](https://i.imgur.com/VEulBZs.png)
+
+11. bc:54:2f:5e:83:d7 - yes this is my computer
+![](https://i.imgur.com/WrhwhBb.png)
+
