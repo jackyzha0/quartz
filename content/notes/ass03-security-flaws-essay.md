@@ -72,8 +72,36 @@ Jet Hughes 9474308
 	- why - the hack was simply a grab for my three-character Twitter handle
 	- take it, and fuck shit up, and watch it burn.
 - My Twitter account linked to my personal website, where they found my Gmail address
-- I didn’t have Google's two-factor authentication turned on, when Phobia entered my Gmail address, he could view the alternate e-mail I had set up for account recovery - ****@me.com - rev
+- I didn’t have Google's two-factor authentication turned on, when Phobia entered my Gmail address, he could view the alternate e-mail I had set up for account recovery - ....@me.com - revealed he had an appleID acc, and was vulnerable
 - Google partially obscures that information, starring out many characters, but there were enough characters available
+- “You honestly can get into any email associated with apple,”
+- all he needed was my billing address and the last four digits of my credit card
+- got the billing address by doing a whois search on my personal web domain
+	- can also look up his or her information on Spokeo, WhitePages, and PeopleSmart.
+- Getting a credit card number is tricker,
+	- call Amazon and tell them you are the account holder, and want to add a credit card number to the account.
+	- All you need is the name on the account, an associated e-mail address, and the billing address
+	- call back, and tell Amazon that you've lost access to your account
+	- providing a name, billing address, and the new credit card number you gave the company on the prior call
+	- allow you to add a new e-mail address
+	- go to the Amazon website, and send a password reset to the new e-mail account.
+	- allows you to see all the credit cards on file for the account – not the complete numbers, just the last four digits
+	- Apple only needs those last four digits
+- could have used my e-mail accounts to gain access to my online banking, or financial services. They could have used them to contact other people, and socially engineer them as well.
+
+- should have been regularly backing up my MacBook
+- shouldn't have daisy-chained two such vital accounts – my Google and my iCloud account – together.
+- I shouldn't have used the same e-mail prefix across multiple accounts – mhonan@gmail.com, mhonan@me.com, and mhonan@wired.com.
+- should have had a recovery address that's only used for recovery without being tied to core services
+- mostly, I shouldn’t have used Find My Mac
+- Find My iPhone has been a brilliant Apple service
+- When you perform a remote hard drive wipe on Find my Mac, the system asks you to create a four-digit PIN so that the process can be reversed
+- If someone else performs that wipe – someone who gained access to your iCloud account through malicious means – there’s no way for you to enter that PIN
+- A better way to have this set up would be to require a second method of authentication when Find My Mac is initially set up.
+
+- I’m not even especially angry at Phobia, or his partner in the attack. I’m mostly mad at myself. I’m mad as hell for not backing up my data. I’m sad, and shocked, and feel that I am ultimately to blame for that loss
+
+- 
 
 ## 2015 Brandom Anatomy of a Hack
 [link](https://blackboard.otago.ac.nz/bbcswebdav/pid-2956926-dt-content-rid-18904225_1/xid-18904225_1)
