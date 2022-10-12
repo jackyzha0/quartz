@@ -198,8 +198,10 @@ Backups for different devices should be done at varying intervals - the more sen
 Backups should be stored in a secure place in encrypted form. They should be stored offsite either via a cloud service or external physical locations.
 
 ### Perimeter defenses
+use firewalls to protect against online threats. Spam and malicious emails should be filtered. should use secure wifi. 
 
 ### Access control and Authorisation
+Should follow the principle of least privilege. User's should have only the minimal permission required to do their task. Higher level accounts like administrators should have 
 
 
 # References
