@@ -164,11 +164,17 @@ lessons learned
 - try to prevent information leaks
 - use security questions
 
-## threats
+## main threats
+- theft of company information
+- website defacement
+- phishing attacks
+- ransomware
+- data loss due to natural events and accidents
 
 # References
 - https://www.cisecurity.org/wp-content/uploads/2017/09/CIS-Controls-Guide-for-SMEs.pdf
 - https://support.google.com/a/answer/7587183?hl=en
+- https://support.google.com/a/answer/9211704?hl=en
 - https://gblogs.cisco.com/ca/2019/11/08/baseline-cybersecurity-controls-for-small-and-medium-organizations/
 - https://www.cisecurity.org/controls/cis-controls-list
 
