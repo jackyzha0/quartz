@@ -164,12 +164,27 @@ lessons learned
 - try to prevent information leaks
 - use security questions
 
-## main threats
+## Identify risk and threats
 - theft of company information
 - website defacement
 - phishing attacks
 - ransomware
 - data loss due to natural events and accidents
+
+1. incident response plan
+4. use strong user authentication
+5. awareness training
+6. backups
+7. perimeter defenses
+8. access control and authorisation
+9. secure portable media
+
+### IR Plan
+SMEs should assume that they will be inevitably be compromised, and they should be ready to respond. They should have systems in place to detect attacks when they happen, and have a plan for how to respond, and prevent it from occuring again in the future. If they are unable to respond to attacks themselves, they should know who to contact. They should also purchase a cyber security insurance policy, and consider what legal obligations they have to their stakeholders.
+
+### Strong User Authentication
+This one of the most important rules. 
+
 
 # References
 - https://www.cisecurity.org/wp-content/uploads/2017/09/CIS-Controls-Guide-for-SMEs.pdf
@@ -177,6 +192,4 @@ lessons learned
 - https://support.google.com/a/answer/9211704?hl=en
 - https://gblogs.cisco.com/ca/2019/11/08/baseline-cybersecurity-controls-for-small-and-medium-organizations/
 - https://www.cisecurity.org/controls/cis-controls-list
-
--   Organizational controls
--   Baseline controls
+- https://cyber.gc.ca/en/guidance/baseline-cyber-security-controls-small-and-medium-organizations
