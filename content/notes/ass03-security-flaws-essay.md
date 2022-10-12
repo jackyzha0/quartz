@@ -146,6 +146,12 @@ Why did she choose Partap Davis?
 
 # What do they have in common?
 
+- both stories of people being hacked
+- both times customer service and convenience had higher priority than security
+- access to one account allowed access to many other account by resetting passwords etc
+- 
+
 # Which C.I.A Dimensions are affected?
+Confidentiality, Itegrity and availablility are all affected
 
 # Case
