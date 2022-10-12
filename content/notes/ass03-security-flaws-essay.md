@@ -183,7 +183,15 @@ lessons learned
 SMEs should assume that they will be inevitably be compromised, and they should be ready to respond. They should have systems in place to detect attacks when they happen, and have a plan for how to respond, and prevent it from occuring again in the future. If they are unable to respond to attacks themselves, they should know who to contact. They should also purchase a cyber security insurance policy, and consider what legal obligations they have to their stakeholders.
 
 ### Strong User Authentication
-This one of the most important rules. 
+This one of the most important rules. In addition to strong passwords SMEs should require two-factor authentication, preferrably with an authenticator not just by text. 
+
+SMEs should also require users to create strong security questions, so that accounts can be recovered if a password is stolen, there should not be any secondary questions that a user can use to recover an account.
+
+### Awareness Training
+For all employees including customer service and tech support. Employees should be made aware of the proper procedures and standards and adhere strictly to them.
+
+### Backups
+In the event of an attack, or a natural disast
 
 
 # References
