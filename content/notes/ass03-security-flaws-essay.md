@@ -191,7 +191,15 @@ SMEs should also require users to create strong security questions, so that acco
 For all employees including customer service and tech support. Employees should be made aware of the proper procedures and standards and adhere strictly to them.
 
 ### Backups
-In the event of an attack, or a natural disast
+In the event of an attack, the company needs to have their data backed up. Backups should be done regularly. Backups should be made not only the main company and user data but also of all employees laptops and mobile devices.
+
+Backups for different devices should be done at varying intervals - the more sensitive or important the data, the more frequent the backup. 
+
+Backups should be stored in a secure place in encrypted form. They should be stored offsite either via a cloud service or external physical locations.
+
+### Perimeter defenses
+
+### Access control and Authorisation
 
 
 # References
