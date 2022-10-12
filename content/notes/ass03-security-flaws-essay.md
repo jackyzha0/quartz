@@ -152,6 +152,17 @@ Why did she choose Partap Davis?
 - 
 
 # Which C.I.A Dimensions are affected?
-Confidentiality, Itegrity and availablility are all affected
+Confidentiality, Integrity and availablility are all affected
+
+C - attackers were able to access private information
+I - attackers were able to change information
+A - attackers were able to block victims from accessing their accounts
 
 # Case
+
+lessons learned
+- large attack surface is bad
+- value security over convenience/customer service
+- try to prevent information leaks
+- use security questions
+- 
