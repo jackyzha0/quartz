@@ -8,8 +8,6 @@ tags:
 
 Jet Hughes 9474308
 
-# References
-- 
 
 # What are the articles?
 ## 2012 Honan Wired
@@ -165,4 +163,14 @@ lessons learned
 - value security over convenience/customer service
 - try to prevent information leaks
 - use security questions
-- 
+
+## threats
+
+# References
+- https://www.cisecurity.org/wp-content/uploads/2017/09/CIS-Controls-Guide-for-SMEs.pdf
+- https://support.google.com/a/answer/7587183?hl=en
+- https://gblogs.cisco.com/ca/2019/11/08/baseline-cybersecurity-controls-for-small-and-medium-organizations/
+- https://www.cisecurity.org/controls/cis-controls-list
+
+-   Organizational controls
+-   Baseline controls
