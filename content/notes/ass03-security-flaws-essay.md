@@ -177,7 +177,6 @@ lessons learned
 6. backups
 7. perimeter defenses
 8. access control and authorisation
-9. secure portable media
 
 ### IR Plan
 SMEs should assume that they will be inevitably be compromised, and they should be ready to respond. They should have systems in place to detect attacks when they happen, and have a plan for how to respond, and prevent it from occuring again in the future. If they are unable to respond to attacks themselves, they should know who to contact. They should also purchase a cyber security insurance policy, and consider what legal obligations they have to their stakeholders.
@@ -201,8 +200,9 @@ Backups should be stored in a secure place in encrypted form. They should be sto
 use firewalls to protect against online threats. Spam and malicious emails should be filtered. should use secure wifi. 
 
 ### Access control and Authorisation
-Should follow the principle of least privilege. User's should have only the minimal permission required to do their task. Higher level accounts like administrators should have 
+Should follow the principle of least privilege. User's should have only the minimal permission required to do their task. Higher level accounts like administrators should have further restrictions preventing them from doing user-level activities
 
+Shared and shared-use accounts should be minimized. Unused accounts should be deleted. 
 
 # References
 - https://www.cisecurity.org/wp-content/uploads/2017/09/CIS-Controls-Guide-for-SMEs.pdf
