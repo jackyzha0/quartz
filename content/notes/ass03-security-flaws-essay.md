@@ -13,7 +13,11 @@ Jet Hughes 9474308
 ## 2012 Honan Wired
 [link](https://blackboard.otago.ac.nz/bbcswebdav/pid-2956926-dt-content-rid-18904224_1/xid-18904224_1)
 
-This article written by Mat Homan for Wired magazine in 2012 gives a detailed account of how Honan's digital life was torn apart. His amazon, apple, gmail and twitter accounts were hacked, and 
+This article, written by Mat Homan for Wired magazine in 2012, gives a detailed account of how Honan's digital life was torn apart. His amazon, apple and gmail account were used to gain access to his twitter profile, which was then used to broadcast hateful messages. And if that wasn't bad enough, his iPhone, iPad, and macbook were all wiped to prevent him from regaining access to his accounts. Unfortunately, Honan did not keep backups of his macbook and lost all his photos and videos of his daughters first few years. 
+
+Firstly, the hacker was able to find his email address on his personal website which was linked to on his twitter profile. Then from the google account recovery website he was able to find out that Honan's recovery email was a me.com email provided by Apple. The hacker then got Honan's billing address using a whois request on his personal website, then manipulated amazons customer service to obtain the last four digits of one of Honan's credit cards. He then used the billing address and the credit card to convince Apple's customer service team that he was Honan - despite being unable to answer the security questions - and take over his Apple account. The hacker then wiped Honan's devices then used his email accounts to gain access to his Twitter.  
+
+When Honan discovered that he had been hacked, he called apple customer service, which achieved very little. He then made a post on his Tumblr account detailing what had happene
 
 - guy got hacked
 - amazon - apple - gmail - twitter
