@@ -20,12 +20,10 @@ Firstly, the hacker was able to find his email address on his personal website w
 When Honan discovered that he had been hacked, he called apple customer service, which achieved very little. He then made a post on his Tumblr account detailing what had happened to him. Subsequently, the hackers reached out to him and told him how and why they had hacked him. Ultimately the hacks main purpose was to gain access to his twitter account which was valuable because he had a short username. They just wanted to "fuck shit up".
 
 
-
-
-
 ## 2015 Brandom Anatomy of a Hack
 [link](https://blackboard.otago.ac.nz/bbcswebdav/pid-2956926-dt-content-rid-18904225_1/xid-18904225_1)
 
+The second article, written by Russell Brandom, is vey similar to the previous one. Brandom was also the victim of a hack. However, this time the goal was not just to "fuck shit up". The attackers had a specific goal in mind - his valuable cryptocurrency. The hackers were able to hijack his email and his phone, fool two-factor authentication, and then access his coinbase account/
 
 
 # What do they have in common?
