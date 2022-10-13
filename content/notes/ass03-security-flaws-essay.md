@@ -17,7 +17,7 @@ This article, written by Mat Homan for Wired magazine in 2012, gives a detailed 
 
 Firstly, the hacker was able to find his email address on his personal website which was linked to on his twitter profile. Then from the google account recovery website he was able to find out that Honan's recovery email was a me.com email provided by Apple. The hacker then got Honan's billing address using a whois request on his personal website, then manipulated amazons customer service to obtain the last four digits of one of Honan's credit cards. He then used the billing address and the credit card to convince Apple's customer service team that he was Honan - despite being unable to answer the security questions - and take over his Apple account. The hacker then wiped Honan's devices then used his email accounts to gain access to his Twitter.  
 
-When Honan discovered that he had been hacked, he called apple customer service, which achieved very little. He then made a post on his Tumblr account detailing what had happened to him. Subsequently, the hackers reached out to him and told him how and why they had hacked him. Ultimately the hacks main purpose was to gain access to his twitter account which was valuable because he had a short username
+When Honan discovered that he had been hacked, he called apple customer service, which achieved very little. He then made a post on his Tumblr account detailing what had happened to him. Subsequently, the hackers reached out to him and told him how and why they had hacked him. Ultimately the hacks main purpose was to gain access to his twitter account which was valuable because he had a short username. They just wanted to ""
 
 - guy got hacked
 - amazon - apple - gmail - twitter
