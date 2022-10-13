@@ -13,6 +13,8 @@ Jet Hughes 9474308
 ## 2012 Honan Wired
 [link](https://blackboard.otago.ac.nz/bbcswebdav/pid-2956926-dt-content-rid-18904224_1/xid-18904224_1)
 
+This article written by Mat Homan for Wired magazine in 2012 gives a detailed account of how Honan's digital life was torn apart. His amazon, apple, gmail and twitter accounts were hacked, and 
+
 - guy got hacked
 - amazon - apple - gmail - twitter
 - could have been prevented with 2fa on google
