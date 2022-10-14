@@ -25,6 +25,7 @@ When Honan discovered that he had been hacked, he called apple customer service,
 
 The second article, written by Russell Brandom, is vey similar to the previous one. Brandom was also the victim of a hack. However, this time the goal was not just to "fuck shit up". The attackers had a specific goal in mind - his valuable cryptocurrency. They stole 10 bitcoin worth roughly $3000 at the time. However, the other two cryptocurrency services that Brandom used - BTC-e and Bitstamp - had some very simple security measures that prevented the hacker from breaking int them. 
 
+Dave was not an extremely easy target, he used two-factor authentication, secure passwords, and authentication apps. However, this did not protect him. The hacker 
 
 
 
