@@ -3,7 +3,7 @@
 Jet Hughes 9474308
 
 ## The Articles
-### Mat Honan - Wired 201
+### Mat Honan - Wired 2012
 This article [^8], written by Mat Honan for Wired magazine in 2012, gives a detailed account of how Honan's digital life was torn apart. His Amazon, apple and Gmail account were used to gain access to his Twitter profile, which was then used to broadcast hateful messages. And if that was not bad enough, his iPhone, iPad, and MacBook were all wiped to prevent him from regaining access to his accounts. Unfortunately, Honan did not keep backups of his MacBook and lost all his photos and videos of his daughter's first few years.
 
 Firstly, the hacker - Phobia, was able to find his email address on his personal website, which was linked to on his Twitter profile. Then from the Google account recovery website he was able to find out that Honan's recovery email was a me.com email provided by Apple. Phobia then got Honan's billing address using a whois request on his personal website, then manipulated Amazon's customer service to obtain the last four digits of one of Honan's credit cards. He then used the billing address and the credit card to convince Apple's customer service team that he was Honan - despite being unable to answer the security questions - and take over his Apple account. Phobia then wiped Honan's devices, then used his email accounts to gain access to his Twitter.
@@ -38,7 +38,7 @@ These two articles have taught us some valuable lessons. Some of these include:
 
 Based on these lessons, we can design a set of rules which small to medium enterprises should follow to keep themselves and their customers secure. Firstly, SMEs should identify and understand their risks. For example: Theft of company information, website defacement, phishing attacks, ransomware, and data loss due to natural events and accidents as well as others.
 
-There are six main rules which I have decided on
+There are six main rules which I have decided on. These are based on the CIS 18 controls list [^5], the CIS SME controls list [^1], Google's security control list for small [^3] and medium to large [^2] companies, and Canada's list of security controls for small and medium organisations [^6].
 
 **Incident Response Plan:** SMEs should assume that they will inevitably be compromised, and they should be ready to respond. They should have systems in place to detect attacks when they happen, and have a plan for how to respond, and prevent it from occurring again in the future. 
 
@@ -46,7 +46,7 @@ There are six main rules which I have decided on
 
 **Awareness Training:** For all employees, including customer service and tech support. Employees should be made aware of the proper procedures and standards and adhere strictly to them.
 
-**Backups:** Backups should be done regularly.. Backups for different devices should be done at varying intervals - the more sensitive or important the data, the more frequent the backup. They should be stored in a secure place in encrypted form. They should be stored off-site, either via a cloud service or at external physical locations.
+**Backups:** Backups should be done regularly. Backups for different devices should be done at varying intervals - the more sensitive or important the data, the more frequent the backup. They should be stored in a secure place in encrypted form. They should be stored off-site, either via a cloud service or at external physical locations.
 
 **Perimeter defences:** SMEs should use firewalls to protect against online threats. Spam and malicious emails should be filtered. Should use secure Wi-Fi.
 
