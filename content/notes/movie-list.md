@@ -19,15 +19,16 @@ Top movies
 - donnie darko
 
 downloaded
-
-To watch
+- black narcissist
+- ikuru (the idiot)
 - largent
 - the brown bunny
-- salo
 - the tree of life
-- black swan
-- ikuru (the idiot)
 - both blade runners
+
+To watch
+- salo
+- black swan
 - fistful of dollars
 - magnificent seven
 - godfather
@@ -35,7 +36,6 @@ To watch
 - suspiria (new version)
 - the passion of joan of arc
 - a matter of life and death
-- black narcissist
 - the red shoes
 - paris texas
 
