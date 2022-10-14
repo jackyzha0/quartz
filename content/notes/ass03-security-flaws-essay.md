@@ -23,7 +23,9 @@ When Honan discovered that he had been hacked, he called apple customer service,
 ## 2015 Brandom Anatomy of a Hack
 [link](https://blackboard.otago.ac.nz/bbcswebdav/pid-2956926-dt-content-rid-18904225_1/xid-18904225_1)
 
-The second article, written by Russell Brandom, is vey similar to the previous one. Brandom was also the victim of a hack. However, this time the goal was not just to "fuck shit up". The attackers had a specific goal in mind - his valuable cryptocurrency. The hackers were able to hijack his email and his phone, fool two-factor authentication, and then access his coinbase account/
+The second article, written by Russell Brandom, is vey similar to the previous one. Brandom was also the victim of a hack. However, this time the goal was not just to "fuck shit up". The attackers had a specific goal in mind - his valuable cryptocurrency. They stole 10 bitcoin worth roughly $3000 at the time. However, the other two cryptocurrency services that Brandom used - BTC-e and Bitstamp - had some very simple security measures that prevented the hacker from breaking int them. 
+
+
 
 
 # What do they have in common?
