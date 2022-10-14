@@ -1,73 +1,54 @@
----
-title: "ass03-security-flaws-essay"
-aliases: 
-tags: 
-- comp210
-- assignment
----
-
+# Security Flaws Essay
 Jet Hughes 9474308
 
-# What are the articles?
-## 2012 Honan Wired
-[link](https://blackboard.otago.ac.nz/bbcswebdav/pid-2956926-dt-content-rid-18904224_1/xid-18904224_1)
-
+## The Articles
+### Mat Honan - Wired 2012
 This article, written by Mat Homan for Wired magazine in 2012, gives a detailed account of how Honan's digital life was torn apart. His amazon, apple and gmail account were used to gain access to his twitter profile, which was then used to broadcast hateful messages. And if that wasn't bad enough, his iPhone, iPad, and macbook were all wiped to prevent him from regaining access to his accounts. Unfortunately, Honan did not keep backups of his macbook and lost all his photos and videos of his daughters first few years. 
 
 Firstly, the hacker was able to find his email address on his personal website which was linked to on his twitter profile. Then from the google account recovery website he was able to find out that Honan's recovery email was a me.com email provided by Apple. The hacker then got Honan's billing address using a whois request on his personal website, then manipulated amazons customer service to obtain the last four digits of one of Honan's credit cards. He then used the billing address and the credit card to convince Apple's customer service team that he was Honan - despite being unable to answer the security questions - and take over his Apple account. The hacker then wiped Honan's devices then used his email accounts to gain access to his Twitter.  
 
 When Honan discovered that he had been hacked, he called apple customer service, which achieved very little. He then made a post on his Tumblr account detailing what had happened to him. Subsequently, the hackers reached out to him and told him how and why they had hacked him. Ultimately the hacks main purpose was to gain access to his twitter account which was valuable because he had a short username. They just wanted to "fuck shit up".
 
-## 2015 Brandom Anatomy of a Hack
-[link](https://blackboard.otago.ac.nz/bbcswebdav/pid-2956926-dt-content-rid-18904225_1/xid-18904225_1)
+### Russel Brandom - The Verge 2015
+The second article, written by Russell Brandom, is vey similar to the previous one. It descirbes how one persons online life was compromised - Partap Davis. However, this time the goal was not just to "fuck shit up". The attackers had a specific goal in mind - his valuable cryptocurrency. They stole 10 bitcoin worth roughly $3000 at the time. However, the other two cryptocurrency services that Davis used - BTC-e and Bitstamp - had some very simple security measures that prevented the hacker from breaking int them. 
 
-The second article, written by Russell Brandom, is vey similar to the previous one. Brandom was also the victim of a hack. However, this time the goal was not just to "fuck shit up". The attackers had a specific goal in mind - his valuable cryptocurrency. They stole 10 bitcoin worth roughly $3000 at the time. However, the other two cryptocurrency services that Brandom used - BTC-e and Bitstamp - had some very simple security measures that prevented the hacker from breaking int them. 
+Davis was not an extremely easy target, he used two-factor authentication, secure passwords, and authentication apps. However, this did not protect him. Davis used a mail.com address which fowarded emails to his another email. Unfortunately, a script existed that the hacker was able to use to send a password reset email to themselves, thus gaining access to the account. They were then able to manipulate Davis's phone company so that they would reroute calls to his number to a burner phone the hacker had purchased. The hacker was able to use this phone to get around all the two-factor authentication Davis had set up. This allowed them to access his coinbase account, and take his Bitcoin. Luckily, Davis's BTC-e and Bitstamp account were safe. BTC-e required 48 hours wait after a password change, and Bitstamp required a picture of Davis's drivers license. 
 
-Brandom was not an extremely easy target, he used two-factor authentication, secure passwords, and authentication apps. However, this did not protect him. Brandom used a mail.com address which fowarded emails to his another email. Unfortunately, a script existed that the hacker was able to use to send a password reset email to themselves, thus gaining access to the account. They were then able to manipulate Brandom's phone company so that they would reroute calls to his number to a burner phone the hacker had purchased. The hacker was able to use this phone to get around all the two-factor authentication Brandom had set up. This allowed them to access his coinbase account, and take his Bitcoin. Luckily, Brandom's BTC-e and Bitstamp account were safe. BTC-e required 48 hours wait after a password change, and Bitstamp required a picture of Brandom's drivers license. 
+So why did the hacker choose Davis as their victim? It's clear they chose Davis because they knew in advance that he had a Coinbase account. It's likely his email was leaked in a list of Coinbase users or from an equipment manufacturer or a bitcoin retailer. The fact is, when people like Davis have so many different account, all linked together, there is a very large attack surface. This makes it more likely that a hacker will be able to find *some* way to compromise your digital life.
 
-So why did the hacker choose Brandom as their victim? It's clear they chose Brandom because they knew in advance that he had a Coinbase account. It's likely his email was leaked in a list of Coinbase users or from an equipment manufacturer or a bitcoin retailer. The fact is, when people like Brandom have so many different account, all linked together, there is a very large attack surface. This makes it more likely that a hacker will be able to find *some* way to compromise your digital life.
+## Commonalities
+Although the events describes in these articles are unfortunate to put it midly, they do provide valuable insight into the security practices of the individuals and companies affected. There many similarities in the methods that each of the hackers used, as well in which type of vulnerabilites they were able to exploit. In both cases, the hackers were able to gain access to an email account, and use it to reset passwords, and break into its associated accounts. Both of the hackers were able to convince tech support that they were who they said they were, with minimal information. These tech support workers, although they may have been merely folllowing company procedure, placed a higher priority on the convienence of their services, to the detriment of their security. There are a number of ways in which the hackers could have been stopped.
 
-# What do they have in common?
-Although the events describes in these articles are unfortunate to put it midly, they do provide valuable insight into the security practices of the individuals and companies affected. There many similarities in the methods that each of the hackers used, as well in which type of vulnerabilites they were able to exploit. In both cases, the hackers were able to gain access to an email account, and use it to reset passwords, and break into its associated accounts. Both of the hackers were able to convinve tech support that they were who they said they were, with minimal information. These tech support workers, although they may have been merely folllowing company procedure, placed a higher priority on the convienence of their services, to the detriment of their security. There are a number of ways in which the hackers could have been stopped.
-
-# Which C.I.A Dimensions are affected?
+## C.I.A Dimensions
 Confidentiality, Integrity and availablility are all affected
 
-## Confidentiality
+### Confidentiality
 Attackers were able to access private information. Eve gained access to his emails, phone calls, twitter, and any information stored on his cryptocurrency accounts. Phobia also gained access to all of Honan's emails, and any information stored on his twitter, iCloud, iPad, iPhone or macbook.
 
-## Integrity
+### Integrity
 Attackers were able to alter information about the victims, without authorisation. They were both able to change the victims passwords, and most notably - Phobia wiped all the data from Honan's apple devices.
 
-## Availability
-Attackers were able to block victims from accessing their accounts. Phobia wiped all of Honan's apple devices, and he lost all the data stored on them that wasn't backed up. He was also block from accessing any of the accounts where his password was changed. Eve rerouted Brandom's calls, and locked him out of many accounts he should have had access to. 
-
-# Case Study - SME 
-Based on the lessons learned from these two articles such as:
-- large attack surface is bad
-- value security over convenience/customer service
-- try to prevent information leaks
-- use security questions
-
-We can design a set of rules which small to medium enterpirises should follow in order keep themselves and their customers secure.
-
-## Identify risk and threats
-- theft of company information
-- website defacement
-- phishing attacks
-- ransomware
-- data loss due to natural events and accidents
-
+### Availability
+Attackers were able to block victims from accessing their accounts. Phobia wiped all of Honan's apple devices, and he lost all the data stored on them that wasn't backed up. He was also block from accessing any of the accounts where his password was changed. Eve rerouted Davis's calls, and locked him out of many accounts he should have had access to. 
 
 ## Rules
-1. incident response plan
-4. use strong user authentication
-5. awareness training
-6. backups
-7. perimeter defenses
-8. access control and authorisation
+These two articles have taught us some valuable lessons. Some of these include:
+- Companies should value security over convenience (to a degree) and tech support staff should adhere strictly to policy
+- Companies should be more aware of how information available through their servce can be used by hackers to break into other services.
+- Individuals should try to limit the degree to which accounts are daisy-chained together.
+- Individuals should keep regular backups.
 
-### IR Plan
+Based on these lessons, we can design a set of rules which small to medium enterpirises should follow in order keep themselves and their customers secure. Firstly, SMEs should identify and understand their risks. For example: Theft of company information, website defacement, phishing attacks, ransomware and data loss due to natural events and accidents as well as others.
+
+There are 6 main rules which I have decided on:
+1. Incident Response Plan
+2. Strong User Authentication
+3. Awareness Training
+4. Backups
+5. Perimeter defenses
+6. Access Control and Authorisation
+
+### Incident Response Plan
 SMEs should assume that they will be inevitably be compromised, and they should be ready to respond. They should have systems in place to detect attacks when they happen, and have a plan for how to respond, and prevent it from occuring again in the future. If they are unable to respond to attacks themselves, they should know who to contact. They should also purchase a cyber security insurance policy, and consider what legal obligations they have to their stakeholders.
 
 ### Strong User Authentication
@@ -80,12 +61,12 @@ For all employees including customer service and tech support. Employees should 
 In the event of an attack, the company needs to have their data backed up. Backups should be done regularly. Backups should be made not only the main company and user data but also of all employees laptops and mobile devices. Backups for different devices should be done at varying intervals - the more sensitive or important the data, the more frequent the backup. Backups should be stored in a secure place in encrypted form. They should be stored offsite either via a cloud service or external physical locations.
 
 ### Perimeter defenses
-use firewalls to protect against online threats. Spam and malicious emails should be filtered. should use secure wifi. 
+use firewalls to protect against online threats. Spam and malicious emails should be filtered. Should use secure wifi. 
 
-### Access control and Authorisation
+### Access Control and Authorisation
 Should follow the principle of least privilege. User's should have only the minimal permission required to do their task. Higher level accounts like administrators should have further restrictions preventing them from doing user-level activities. Shared and shared-use accounts should be minimized. Unused accounts should be deleted. 
 
-# References
+## References
 - https://www.cisecurity.org/wp-content/uploads/2017/09/CIS-Controls-Guide-for-SMEs.pdf
 - https://support.google.com/a/answer/7587183?hl=en
 - https://support.google.com/a/answer/9211704?hl=en
