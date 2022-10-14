@@ -37,16 +37,19 @@ Confidentiality, Integrity and availablility are all affected
 Attackers were able to access private information. Eve gained access to his emails, phone calls, twitter, and any information stored on his cryptocurrency accounts. Phobia also gained access to all of Honan's emails, and any information stored on his twitter, iCloud, iPad, iPhone or macbook.
 
 ## Integrity
-Attackers were able to change information.
+Attackers were able to alter information about the victims, without authorisation. They were both able to change the victims passwords, and most notably - Phobia wiped all the data from Honan's apple devices.
 
 ## Availability
-Attackers were able to block victims from accessing their accounts.
+Attackers were able to block victims from accessing their accounts. Phobia wiped all of Honan's apple devices, and he lost all the data stored on them that wasn't backed up. He was also block from accessing any of the accounts where his password was changed. Eve rerouted Brandom's calls, and locked him out of many accounts he should have had access to. 
 
-# Case
+# Case Study - SME 
+Based on the lessons learned from these two articles such as:
 - large attack surface is bad
 - value security over convenience/customer service
 - try to prevent information leaks
 - use security questions
+
+We can design a set of rules which small to medium enterpirises should follow in order keep themselves and their customers secure.
 
 ## Identify risk and threats
 - theft of company information
@@ -55,6 +58,8 @@ Attackers were able to block victims from accessing their accounts.
 - ransomware
 - data loss due to natural events and accidents
 
+
+## Rules
 1. incident response plan
 4. use strong user authentication
 5. awareness training
@@ -66,27 +71,19 @@ Attackers were able to block victims from accessing their accounts.
 SMEs should assume that they will be inevitably be compromised, and they should be ready to respond. They should have systems in place to detect attacks when they happen, and have a plan for how to respond, and prevent it from occuring again in the future. If they are unable to respond to attacks themselves, they should know who to contact. They should also purchase a cyber security insurance policy, and consider what legal obligations they have to their stakeholders.
 
 ### Strong User Authentication
-This one of the most important rules. In addition to strong passwords SMEs should require two-factor authentication, preferrably with an authenticator not just by text. 
-
-SMEs should also require users to create strong security questions, so that accounts can be recovered if a password is stolen, there should not be any secondary questions that a user can use to recover an account.
+This one of the most important rules. In addition to strong passwords SMEs should require two-factor authentication, preferrably with an authenticator not just by text. SMEs should also require users to create strong security questions, so that accounts can be recovered if a password is stolen, there should not be any secondary questions that a user can use to recover an account.
 
 ### Awareness Training
 For all employees including customer service and tech support. Employees should be made aware of the proper procedures and standards and adhere strictly to them.
 
 ### Backups
-In the event of an attack, the company needs to have their data backed up. Backups should be done regularly. Backups should be made not only the main company and user data but also of all employees laptops and mobile devices.
-
-Backups for different devices should be done at varying intervals - the more sensitive or important the data, the more frequent the backup. 
-
-Backups should be stored in a secure place in encrypted form. They should be stored offsite either via a cloud service or external physical locations.
+In the event of an attack, the company needs to have their data backed up. Backups should be done regularly. Backups should be made not only the main company and user data but also of all employees laptops and mobile devices. Backups for different devices should be done at varying intervals - the more sensitive or important the data, the more frequent the backup. Backups should be stored in a secure place in encrypted form. They should be stored offsite either via a cloud service or external physical locations.
 
 ### Perimeter defenses
 use firewalls to protect against online threats. Spam and malicious emails should be filtered. should use secure wifi. 
 
 ### Access control and Authorisation
-Should follow the principle of least privilege. User's should have only the minimal permission required to do their task. Higher level accounts like administrators should have further restrictions preventing them from doing user-level activities
-
-Shared and shared-use accounts should be minimized. Unused accounts should be deleted. 
+Should follow the principle of least privilege. User's should have only the minimal permission required to do their task. Higher level accounts like administrators should have further restrictions preventing them from doing user-level activities. Shared and shared-use accounts should be minimized. Unused accounts should be deleted. 
 
 # References
 - https://www.cisecurity.org/wp-content/uploads/2017/09/CIS-Controls-Guide-for-SMEs.pdf
