@@ -28,7 +28,7 @@ Brandom was not an extremely easy target, he used two-factor authentication, sec
 So why did the hacker choose Brandom as their victim? It's clear they chose Brandom because they knew in advance that he had a Coinbase account. It's likely his email was leaked in a list of Coinbase users or from an equipment manufacturer or a bitcoin retailer. The fact is, when people like Brandom have so many different account, all linked together, there is a very large attack surface. This makes it more likely that a hacker will be able to find *some* way to compromise your digital life.
 
 # What do they have in common?
-Although the events describes in these articles are unfortunate to put it midly, they do provide valuable insight into the practi
+Although the events describes in these articles are unfortunate to put it midly, they do provide valuable insight into the security practices of those individuals and companies affected.
 
 
 - both stories of people being hacked
