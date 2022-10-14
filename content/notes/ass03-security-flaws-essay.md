@@ -33,13 +33,16 @@ Although the events describes in these articles are unfortunate to put it midly,
 # Which C.I.A Dimensions are affected?
 Confidentiality, Integrity and availablility are all affected
 
-C - attackers were able to access private information
-I - attackers were able to change information
-A - attackers were able to block victims from accessing their accounts
+## Confidentiality
+Attackers were able to access private information. Eve gained access to his emails, phone calls, twitter, and any information stored on his cryptocurrency accounts. Phobia also gained access to all of Honan's emails, and any information stored on his twitter, iCloud, iPad, iPhone or macbook.
+
+## Integrity
+Attackers were able to change information.
+
+## Availability
+Attackers were able to block victims from accessing their accounts.
 
 # Case
-
-## lessons learned
 - large attack surface is bad
 - value security over convenience/customer service
 - try to prevent information leaks
