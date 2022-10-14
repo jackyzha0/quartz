@@ -8,7 +8,6 @@ tags:
 
 Jet Hughes 9474308
 
-
 # What are the articles?
 ## 2012 Honan Wired
 [link](https://blackboard.otago.ac.nz/bbcswebdav/pid-2956926-dt-content-rid-18904224_1/xid-18904224_1)
@@ -19,17 +18,18 @@ Firstly, the hacker was able to find his email address on his personal website w
 
 When Honan discovered that he had been hacked, he called apple customer service, which achieved very little. He then made a post on his Tumblr account detailing what had happened to him. Subsequently, the hackers reached out to him and told him how and why they had hacked him. Ultimately the hacks main purpose was to gain access to his twitter account which was valuable because he had a short username. They just wanted to "fuck shit up".
 
-
 ## 2015 Brandom Anatomy of a Hack
 [link](https://blackboard.otago.ac.nz/bbcswebdav/pid-2956926-dt-content-rid-18904225_1/xid-18904225_1)
 
 The second article, written by Russell Brandom, is vey similar to the previous one. Brandom was also the victim of a hack. However, this time the goal was not just to "fuck shit up". The attackers had a specific goal in mind - his valuable cryptocurrency. They stole 10 bitcoin worth roughly $3000 at the time. However, the other two cryptocurrency services that Brandom used - BTC-e and Bitstamp - had some very simple security measures that prevented the hacker from breaking int them. 
 
-Dave was not an extremely easy target, he used two-factor authentication, secure passwords, and authentication apps. However, this did not protect him. The hacker 
+Brandom was not an extremely easy target, he used two-factor authentication, secure passwords, and authentication apps. However, this did not protect him. Brandom used a mail.com address which fowarded emails to his another email. Unfortunately, a script existed that the hacker was able to use to send a password reset email to themselves, thus gaining access to the account. They were then able to manipulate Brandom's phone company so that they would reroute calls to his number to a burner phone the hacker had purchased. The hacker was able to use this phone to get around all the two-factor authentication Brandom had set up. This allowed them to access his coinbase account, and take his Bitcoin. Luckily, Brandom's BTC-e and Bitstamp account were safe. BTC-e required 48 hours wait after a password change, and Bitstamp required a picture of Brandom's drivers license. 
 
-
+So why did the hacker choose Brandom as their victim? It's clear they chose Brandom because they knew in advance that he had a Coinbase account. It's likely his email was leaked in a list of Coinbase users or from an equipment manufacturer or a bitcoin retailer. The fact is, when people like Brandom have so many different account, all linked together, there is a very large attack surface. This makes it more likely that a hacker will be able to find *some* way to compromise your digital life.
 
 # What do they have in common?
+Although the events describes in these articles are unfortunate to put it midly, they do provide valuable insight into the practi
+
 
 - both stories of people being hacked
 - both times customer service and convenience had higher priority than security
@@ -37,6 +37,7 @@ Dave was not an extremely easy target, he used two-factor authentication, secure
 - 
 
 # Which C.I.A Dimensions are affected?
+250
 Confidentiality, Integrity and availablility are all affected
 
 C - attackers were able to access private information
