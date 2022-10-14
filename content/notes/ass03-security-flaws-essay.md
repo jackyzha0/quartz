@@ -28,16 +28,9 @@ Brandom was not an extremely easy target, he used two-factor authentication, sec
 So why did the hacker choose Brandom as their victim? It's clear they chose Brandom because they knew in advance that he had a Coinbase account. It's likely his email was leaked in a list of Coinbase users or from an equipment manufacturer or a bitcoin retailer. The fact is, when people like Brandom have so many different account, all linked together, there is a very large attack surface. This makes it more likely that a hacker will be able to find *some* way to compromise your digital life.
 
 # What do they have in common?
-Although the events describes in these articles are unfortunate to put it midly, they do provide valuable insight into the security practices of the individuals and companies affected. There many similarities in the methods that each of the hackers used, as well in which type of vulnerabilites they were able to exploit. In both cases, the hackers were able to gain access to an email account, then use to reset passwords, and break into accounts associated with said email.  
-
-
-- both stories of people being hacked
-- both times customer service and convenience had higher priority than security
-- access to one account allowed access to many other account by resetting passwords etc
-- 
+Although the events describes in these articles are unfortunate to put it midly, they do provide valuable insight into the security practices of the individuals and companies affected. There many similarities in the methods that each of the hackers used, as well in which type of vulnerabilites they were able to exploit. In both cases, the hackers were able to gain access to an email account, and use it to reset passwords, and break into its associated accounts. Both of the hackers were able to convinve tech support that they were who they said they were, with minimal information. These tech support workers, although they may have been merely folllowing company procedure, placed a higher priority on the convienence of their services, to the detriment of their security. There are a number of ways in which the hackers could have been stopped.
 
 # Which C.I.A Dimensions are affected?
-250
 Confidentiality, Integrity and availablility are all affected
 
 C - attackers were able to access private information
@@ -46,7 +39,7 @@ A - attackers were able to block victims from accessing their accounts
 
 # Case
 
-lessons learned
+## lessons learned
 - large attack surface is bad
 - value security over convenience/customer service
 - try to prevent information leaks
