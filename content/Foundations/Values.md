@@ -32,4 +32,3 @@ In my case, enthusiasm has been on the list relatively recently. The reason for 
 From that point on, I decided to take it seriously, contrary to what [[Knowledge/Other/The Big Five]] test told me, suggesting that in terms of enthusiasm I am in the 1st percentile (lowest).
 
 At the same time, books such as. [[Knowledge/Books/The Happiness Advantage]], [[Knowledge/Books/Letting Go]] or even [[Knowledge/Books/Think Like a Rocket Scientist]] suggest unequivocally the huge role of enthusiasm in achieving anything.
-
