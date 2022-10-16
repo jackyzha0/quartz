@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc203
 - lecture
+sr-due: 2022-10-20
+sr-interval: 3
+sr-ease: 250
 ---
 
 # Client-server vs peer to peer
@@ -132,7 +135,43 @@ three components
 ## DNS
 - ip adresses are hard to remember
 - need to map betwen host name and ip address
-- 
+- hierarchical, domain-based naming scheme implemented using a distributed databse system
+- core internet function, but implemented as an application layer protocol 
+
+- tree structure ![](https://i.imgur.com/TtiMt9U.png)
+- domain name space
+	- each node has a label : the root label is a null string
+	- each node has a domain name: a sequence of labels separated by dots, reading from the node up to the root.
+	- ![](https://i.imgur.com/TvHwuPK.png)
+- name servers
+	- name space is divided into non-ovelapping zones
+	- each zone had name servers to hold information
+	- top level dns servers are responsible for domains such as .com .org .net and country domains
+	- authoritative DNS servers: maintained by organization or service providers
+	- ![](https://i.imgur.com/AU5F2Mv.png)
+
+DNS caching
+- once (any) name server learns mapping, it caches mapping, and immediately returns a cached mapping in response to a query 
+	- caching improves response time 
+	- cache entries timeout (disappear) after some time (TTL) 
+	- top-level domain names typically cached in local name servers
+- cached entries may be out-of-date 
+	- if named host changes IP address, may not be known Internet-wide until all TTLs expire! 
+	- best-effort name-to-address translation!
+
+DNS name resolution: recursive query
+- e.g., host at cs.otago.ac.nz wants IP address for ai.cs.waikato.ac.nz
+-  ![](https://i.imgur.com/1jW21AI.png)
 
 
 # Socket programming
+- socket
+	- software component that has
+		- local/remote socket address: IP + port no.
+		- transport layer protocol: TCP or UDP
+- socket api
+	- application programming interface usually provided by the operating system
+	- ![](https://i.imgur.com/ORLYEVH.png)
+
+![TCP socket](https://i.imgur.com/JIOQOGM.png)
+![UDP socket](https://i.imgur.com/SATuwYL.png)
