@@ -66,7 +66,49 @@ IANA (internet assign number authority) has divded port number into three ranges
 	- bi directional data flow in the same connection
 	- MSS: maximum segment size
 - cumulative ACKs
+	- one ack message confirms multiple segments
 - connection-oriented
-	- handshaking (exchange of control messages) initializes se
+	- handshaking (exchange of control messages) initializes sender, reciever state before data exchange
+- flow controlled
+	- sender will not overwhelm reciever
+- congestion controlled
+	- dynamically adjust congestion window size
+
+Structure
+- sequence number - numbe assigned to the first byte of data in this segment
+- ACK # - the seq # of the next expected byte; flagged as a single bit
+- internet checksum - used to check for corruption
+-  TCP options (variable length)
+-  length (of TCP header)
+-  application data
+-  RST, SYN, FIN - connection management
+-  recieve window - flow control # of bytes reciever willing to accept
+	-  protect against buffer overflow
+-  C, E: congestion notification 
+
+![](https://i.imgur.com/M4nQCr3.png)
+
+seq number
+- byte stream
+- "number" of first byte in segments data
+- sliding window ![](https://i.imgur.com/qY5kmsN.png)
+ 
+ ack
+ - seq # of next bytes expected from other side
+ - cumulative ACK
+
+![](https://i.imgur.com/jxhCPpa.png)
+
+lost and duplicated segments
+- lost
+	- host does not recieve data, ack is not send, 
+	- timeout + retransmission
+	- ![](https://i.imgur.com/wtHhht4.png)	
+	- sender sets the retransmittion timer when sending a segment
+	- sender retransmits the segment iin ACK is not recieved when timer fires
+- duplicated
+	- host recieved data, ack is send and lost
+	- data is resent, and a duplicat
+
 
 # UDP
