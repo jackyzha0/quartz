@@ -3,11 +3,16 @@ title: Ahoy!
 ---
 
 ## What is Ahoy?
-Ahoy! is a community we always wanted to be a part of. As a result of not finding such a place, we decided to create one ourselves. Actual focus on topics like [[Knowledge/Design/UX]]/[[Wiedza/🎨 Projektowanie/UI]], Photography, [[Optimization/Automation/Automation]] and [[Web Development]].
+Ahoy! is a community we always wanted to be a part of. As a result of not finding such a place, we decided to create one ourselves. 
+
+Actual focus on a cutting edge topics in areas like UX&UI, Photography, Graphic Design, [[Optimization/Automation/Automation]] and [[Web Development]]. In practice, this is a place for Tech Outliers who want to meet like minded people. 
 
 The community is based on the Circle.so platform and a number of our plug-ins and products (e.g. [[Projects/EasyCart]]).
 
 ## News
+
+- Q3 2022
+	- We have started a Shipyard DAO (https://shipyarrd.com) which is a project connected with our NFT - Gods of the Sea https://opensea.io/collection/gods-of-the-sea-gots
 
 - Q2 2022
 	- We have launched all parts of the community and have largely merged Ahoy with eduweb. Similarly, we also stop developing [[Projects/zautomatyzowani]] as a separate project

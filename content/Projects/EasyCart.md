@@ -8,7 +8,7 @@ EasyCart is a project that facilitates sales in digital products. Its biggest co
 Initially EasyCart was created as a shopping cart for our projects. Now, thanks to Stripe technology, it was possible to make it available to others.
 
 ## News 
-- October 2022 EasyCart exceedes PLN 10,000,000 in transactions
+- October 2022 EasyCart exceedes PLN 11,000,000 in transactions
 - September 2022 EasyCart exceedes PLN 6,000,000 in transactions 
 - August 2022 EasyCart exceedes PLN 5,000,000 in transactions
 - May 2022 EasyCart exceeds PLN 3,000,000 in transactions
@@ -21,6 +21,7 @@ Initially EasyCart was created as a shopping cart for our projects. Now, thanks 
 ---
 
 ## Sandbox
+
 The shopping cart can be tested at the following addresses:
 - [https://sandbox.easycart.pl/checkout/ahoy/konsultacje](https://sandbox.easycart.pl/checkout/ahoy/konsultacje)
 - [https://sandbox.easycart.pl/checkout/ahoy/postaw-mi-kawe](https://sandbox.easycart.pl/checkout/ahoy/postaw-mi-kawe)
@@ -30,7 +31,7 @@ You can also use sample cards, with any 3-digit CVC and an expiration date in th
 - Without 3D Secure authorization: **`4242 4242 4242 4242`**
 - With 3D Secure authorization: **`4000 0027 6000 3184`**
 
-## Publications
+## Publications (PL)
 - [Jak pomóc Twórcom sprzedawać? Budujemy EasyCart!](https://www.linkedin.com/pulse/jak-pom%25C3%25B3c-tw%25C3%25B3rcom-sprzedawa%25C4%2587-budujemy-easycart-easycartpl/?trackingId=u964yQIP9WE8WCzc61XGeg%3D%3D)
 - [Nieoczywiste automatyzacje po sprzedaży](https://www.easycart.pl/blog/nie-oczywiste-automatyzacje-po-sprzedazy)
 - [Automatyzacje po sprzedaży](https://www.easycart.pl/blog/automatyzacje-po-sprzedazy)
