@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc203
 - lecture
+sr-due: 2022-10-20
+sr-interval: 3
+sr-ease: 250
 ---
 
 # Types of devices
@@ -167,7 +170,34 @@ TCP/IP reference model
 - link
 	- transfers datagram from host to neighboring host using network layer services
 - physical
-	- 
+
+TCP/IP protocol suite
+- TCP - transmission control protocol
+- IP - internet protocol
+- ![](https://i.imgur.com/3BX3RRG.png)
+
+OSI model
+- two more layers
+	- presentation
+	- session
+- ![](https://i.imgur.com/jBhk7Ox.png)
 
 # network performance metrics
+- bandwidth - maximum rate (bits/second) a link or network can theoretically transmit
+- throughput - the actual reate a link or network is transmitting
+- ![](https://i.imgur.com/XajLKbf.png)
 
+- nodal delay - delay at a single router
+	- propagation delay - time to send data along a link
+	- transmission delay
+	- processing - time to find route within router
+	- queueing
+	- dnodal = dproc + dqueue + dtrans + dprop
+- end-to-end delay - total delay to send a packet from source to destination
+
+- packet loss
+	- queue (aka buffer) preceding link in buffer had finite capacity
+	- packet arriving to full queue dropped
+	- lost packet may be retransmitted by previous node, by source end system, or not at all
+	- also lost due to corupted packets
+	- 

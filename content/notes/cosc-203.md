@@ -45,7 +45,7 @@ tags:
 - [14-relational db]
 - [15-basic sql]
 - [16-networks](notes/16-networks)
-- [17-application layer]
+- [17-application layer](notes/17-app-layer)
 - [18-transport layer]
 - [19-network layer data plane]
 - [20-network layer control plane]
