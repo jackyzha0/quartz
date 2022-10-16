@@ -108,12 +108,66 @@ Fibre-optic cable
 packet switching
 - host break application layer messages into packets
 - network fowards packets from one router to the next, across links on path from source to destination
+- store and foward: entire packet must arrive at trouter before it can be transmitted on next link
+- packet queueing: occurs when work arrives faster than it can be serviced
 
-store and fowards: entire packet must arrive at trouter before it can be transmitted on next link
-packet queueing: occurs when work arrives faster than it can be serviced
-
+circuit switching
+- end-end resources allocated and reserved for "call" between source and destination
+- one connection is set up - reserved resources are not shared.
+- ![](https://i.imgur.com/HA7TWrq.png)
+- circuit segment is idle if not used by call
+- used for e.g., telephones
 
 # network protocol
+current network structure
+- ![](https://i.imgur.com/JNzSZXa.png)
+- composed of multiple subnets
+- a network of networks
+- not owned by one entity
+- you need to connect using an ISP e.g., spark vodaphone, 2degress
+- have their own network
+- provice access to users
+- not isolated from each other
+	- connected using internet exchange point
+	- or peering link?
+
+types of ISP
+- ![](https://i.imgur.com/aGTYf13.png)
+- tier 1
+	- potentially cover multiple countries
+- content provider networks e.g., google have a private network
+	- often bypass tier-1, regional isps
+
+
+network protocol
+- a set of rules that dictate how to format, transmit and recieve data so that network devices can communicate
+- like a common language for computers
+- specifies a format
+	- what in withing the packet
+	- reciever can understand based on the format
+
+- complex layered design
+	- explicit structure allows identification of systems pieces
+	- modularization eases the maintenance
+	- layer
+		- each implements a service
+		- via its on internal layer actions
+		- relying on services provided by layer below
+
+
+TCP/IP reference model
+- application
+	- exchanges message to implement a service using the services of transport layer
+- transport
+	- transfers from one process to another using services of network layer
+	- encapsulates application layer message, M, with transport layer-layer header H1 to create a transport-layer segment
+	- Ht used by transport layer protocol to implement its service
+- network
+	- transferse transport-layer segment from one host to another using link layer services
+- link
+	- transfers datagram from host to neighboring host using network layer services
+- physical
+	- 
 
 # network performance metrics
 
