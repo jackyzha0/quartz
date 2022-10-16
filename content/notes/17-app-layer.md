@@ -79,8 +79,60 @@ protocols define:
 methods
 - get, head, post, put (request to store a webpage), delete, link (connect two existing resources), unlink
 
-### exampl
+web cache
+- store data to be used later
+- makes loading faster
+- browser sends all request to cache
+	- if object is not in cache, the cache requests from the server
+	- files are stored as representation (a snapshot) 
+	- files expire after their time to live is finished
+- we need to check if cache is up to date
+	- conditional get: If-modified-since:
+	- if up to date then: HTTP/1.0 304 Not Modified
+
 ## Email
+three components
+- user agents
+	- software to compose, read, reply etc email
+	- handle local mailboxes
+	- e.g., outlook, thunderbird
+- mail servers
+	- mailbox contains emails for user
+	- each box has a unique address
+	- localpart@domain
+	- message queue of outgoing to send messages
+- protocols
+	- ![](https://i.imgur.com/2GxXXLu.png)
+	- SMTP to send (simple mail transfer protocol)
+		- send from user agent to mail server and between mail servers
+		- simple ascii protocol
+	- POP (post office protocol)
+		- fetch email from mail server
+		- simple but limited
+		- delete and keep mode (delete from server of keep)
+	- IMAP (internet mail access protocol)
+		- more functions
+		- e.g., check email header before downloading, partially download email
+		- allow users to organize mails on server
+	- MIME (multi prpose internet mail extensions)
+		- supplementary protocol to allow non-ASCII dat to be send through emails
+		- WAN connect LANS together
+- email format
+	- ![](https://i.imgur.com/pwvTvnL.png)
+	- envelope
+		- contains address of sender and reciever
+		- used by smtp to transport email
+	- message
+		- header
+			- defines sender, reciever, subject etc
+		- body
+			- contains actial information
+	- email spoofing can make the addresses in header and in envelope different
+
 ## DNS
+- ip adresses are hard to remember
+- need to map betwen host name and ip address
+- 
+
 
 # Socket programming
