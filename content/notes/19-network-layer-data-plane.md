@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc203
 - lecture
+sr-due: 2022-10-21
+sr-interval: 3
+sr-ease: 250
 ---
 
 - transport layer messages are divided into segments
@@ -168,3 +171,11 @@ CIDR
 extension headers: ![](https://i.imgur.com/8rM3clb.png)
 differencees: ![](https://i.imgur.com/cWKDpEY.png)
 
+# transition from v4 to v6
+- cant change all router at once
+- will need mixed v4 and v6 routers
+
+tunneling
+- v6 datagram is carried as the payload in v4 datagram among v4 routers ("packet with a packet")
+- used alot with 4G/5G
+- ![example](https://i.imgur.com/h4awnaL.png)
