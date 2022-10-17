@@ -60,15 +60,17 @@ iterative: after k interations, know least cost path to k destinations
 ![](https://i.imgur.com/NfrM72Y.png)
 
 ## Dijkstra's algorithm
+foward search algorithm
 
-initialization
 ```
+///initialization
 N` = {u}
 for all nodes v
 	if v adjacent to u
 		then D(v) = Cuv
 	else D(v) = infinity
 	
+//loop
 loop until all nodes in N`
 	find W not in N` such that D(w) is a min
 	add w to N`
@@ -77,6 +79,12 @@ loop until all nodes in N`
 	//new least-path-cost to v is either old least-cost-path to v or known least-path-cost to w plus direct-cost from w to v
 
 ```
+
+![example](https://i.imgur.com/zeR9DAI.png)
+
+complexity:
+- n nodes
+- O(n)
 
 # routing in the internet
 
