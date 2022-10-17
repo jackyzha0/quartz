@@ -71,6 +71,53 @@ input port queueing: if datagrams arrive faster than fowarding rate into switch 
 overhead:
 - 20 bytes TCP
 - 20 bytes IP
-- = 40 bytes 
+- = 40 bytes + app layer overhead for TCP+IP
+
+
+interface: connection between host/router and physical link
+- router have multiple interfaces
+- host has one or two interfaces :e.g., ethernet and wireless
+
+IPv4 address: 32-bit id associated with each host or router interface
+![dotted decimal IP address notation](https://i.imgur.com/N0hB8u8.png)
+- two main components
+	- network ID
+		- addresses in the same network have the same network ID
+	- host ID
+- 5 classes
+	- ![](https://i.imgur.com/9dOLoyr.png)
+
+## subnetting
+- partitioning an IP network into multiple smaller network segments
+	- designate some high-order bits from host part as subnet ID
+	- ![](https://i.imgur.com/wGjPOJb.png)
+- netmask
+	- a 32-bit number with all 1s for network part and all 0s for host part
+
+![example](https://i.imgur.com/7COPiAh.png)
+- use bitwise and to find network part from address and mask
+
+
+## fragmentation
+- network links have an MTU (maximum transmission unit)
+	- different linktypes have different MTUs
+- large UP datagrams are fragmented at routers
+	- one datagram become several
+	- reassemble only at destination
+	- IP header bits are used to identify fragments
+
+
+header
+- identifier
+	- same for all fragments
+- flag: 3 bits
+	- 1st not used
+	- 2nd - do fragment
+	- 3rd - more fragment (0 for the last fragment)
+- offset
+	- offset of the fragment in the packets data field (units of 8 bytes)
+
+![example](https://i.imgur.com/eENmMTd.png)
+
 
 # IPv6
