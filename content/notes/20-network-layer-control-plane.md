@@ -46,6 +46,9 @@ static: routes change very slowly over time
 dynamic: routes change more quickly
 - periodic updates or in response to link cost changes
 
+## notations
+![](https://i.imgur.com/NfrM72Y.png)
+
 ## link state routing
 centralized: network topology, link costs are known to all nodes
 - each node gathers informatin on each link to its neighbors
@@ -56,10 +59,8 @@ computes least costs paths from one node to all other nodes
 
 iterative: after k interations, know least cost path to k destinations
 
-## notations
-![](https://i.imgur.com/NfrM72Y.png)
 
-## Dijkstra's algorithm
+### Dijkstra's algorithm
 foward search algorithm
 
 ```
@@ -82,9 +83,38 @@ loop until all nodes in N`
 
 ![example](https://i.imgur.com/zeR9DAI.png)
 
-complexity:
+algorithm complexity:
 - n nodes
-- O(n)
+- for each of n interation: need to check all nodes, w, not in N
+- n(n+1)/2 comparisons: O(n²)
+- more efficient implementations possible: O(nlogn)
+
+message complexity
+- each router must broadcast its link state information to other n routers
+- efficient broadcast algorithms: O(n) link crossings to dissenimate a bradcast message from one source
+- each router's message crosses O(n) links: overall message compexity O(n²)
+
+## Distance vector routing
+### bellman-ford equation
+backward search algorithm
+$D_{x}(y) = min_{v} \{c_{x, v} + D_{v}(y)\}$
+
+### distance vector algorithm
+each node:
+- **wait** for change in local link cost or msg from neighbor
+- **recompute** DV estimate using DV recieved from neighbor
+- if DV to any destination had changed, **notify** neighbors
+
+- iterative, asynchronous
+- distributed, self-stopping
+	- no notifications recieved, no action taken
+
+"good news (decrease on link cost) travels quickly"
+
+"bad news (increase on link cost) travels slowly"
+- if a link is broken other routers become aware slowly
+- 
+
 
 # routing in the internet
 
