@@ -44,10 +44,10 @@ other = "Gráfico Interactivo"
 other = "Búsqueda"
 
 [search_icon]
-other = "Icono de Búsqueda"
+other = "Ícono de Búsqueda"
 
 [icon_search]
-other = "Icono para abrir búsqueda"
+other = "Ícono para abrir la búsqueda"
 
 [recent_notes]
 other = "Notas Recientes"
