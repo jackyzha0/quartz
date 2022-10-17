@@ -4,9 +4,9 @@ aliases:
 tags: 
 - lecture
 - comp210
-sr-due: 2022-10-13
-sr-interval: 3
-sr-ease: 250
+sr-due: 2022-11-08
+sr-interval: 22
+sr-ease: 270
 ---
 
 # nefarious uses of ml

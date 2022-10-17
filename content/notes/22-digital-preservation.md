@@ -4,9 +4,9 @@ aliases:
 tags: 
 - comp210
 - lecture
-sr-due: 2022-10-13
-sr-interval: 3
-sr-ease: 250
+sr-due: 2022-11-06
+sr-interval: 20
+sr-ease: 270
 ---
 
 how long will data survive?

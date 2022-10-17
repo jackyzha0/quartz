@@ -4,9 +4,9 @@ aliases:
 tags: 
 - comp210
 - lecture
-sr-due: 2022-10-13
-sr-interval: 3
-sr-ease: 250
+sr-due: 2022-12-29
+sr-interval: 73
+sr-ease: 290
 ---
 
 # what, origins, how

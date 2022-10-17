@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc203
 - lecture
+sr-due: 2022-10-20
+sr-interval: 3
+sr-ease: 250
 ---
 chapter 3
 # service provided by transport layer
@@ -151,5 +154,41 @@ different from flow control (one sender too fast for one reciever)
 
 ![causes](https://i.imgur.com/Ae5xOa3.png)
 
-AIMD - senders can increase sending rate until packet loss occurs, then decrese rate on loss event
+AIMD 
+- senders can increase sending rate until packet loss occurs, then decrese rate on loss event
+- additive increase: increase sending rate by 1 maximum segment size every RTT until loss detected
+- multiplicative decrease: at each loss event, cut sending rate: in half (TCP Reno), to 1 MSS (TCP Tahoe)
+- ![diagram](https://i.imgur.com/AeOEapp.png)
+- creates sawtooth behavioiur: probing for bandwidth
+
+![](https://i.imgur.com/Citauiv.png)
+- tcp sender limits transmission: LastByteSent- LastByteAcked < cwnd
+- cwnd is dynamically adjusted in response to observed network congestion (implementing TCP congestion control)
+
+TCP sending behavior: roughly: 
+- send cwnd bytes, 
+- wait RTT for ACKS, 
+- then send more bytes
+
+TCP rate = cwnd/RTT * bytes/sec
+
+TCP slow start
+- when connectin begins, increase rate exponentially until first loss event
+	- intially, cwnd = 1 MSS
+	- double cwnd every RTT
+	- increment cwnd for every ack recieved
+- initally slow but ramps up fast
+- ![](https://i.imgur.com/khbzr79.png)
+
+ssthresh variable: determines when to switch between exponential and linear
+
 # UDP
+- connectionless:
+	- no handshaking between UDP sender, reciever
+	- each UDP segment handled independently of others
+- beset effort service, UDP segments may be lost or delivered out of order
+- no flow and congestion control
+- applications
+	- streaming
+	- dns SNMP
+- less overhead
