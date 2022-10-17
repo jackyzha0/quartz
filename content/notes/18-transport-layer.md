@@ -82,6 +82,8 @@ Structure
 -  length (of TCP header)
 -  application data
 -  RST, SYN, FIN - connection management
+	-  syn - initiate a connection
+	-  fin - close a connection
 -  recieve window - flow control # of bytes reciever willing to accept
 	-  protect against buffer overflow
 -  C, E: congestion notification 
@@ -108,7 +110,46 @@ lost and duplicated segments
 	- sender retransmits the segment iin ACK is not recieved when timer fires
 - duplicated
 	- host recieved data, ack is send and lost
-	- data is resent, and a duplicat
+	- data is resent, and a duplication is detected (same sequence number)
 
 
+## connections setup
+three way handshake to set up virtual connection
+- each knowing the other willing to communnicate
+- agree on connection parameters (e.g., starting seq # s)
+
+![diagram|400](https://i.imgur.com/XPfKER3.png)
+
+## connection termination
+half-close
+- ![](https://i.imgur.com/Ldi03j9.png)
+
+2-way handshake
+- combine ack and and server fin message
+- ![](https://i.imgur.com/osXuN2h.png)
+
+![](https://i.imgur.com/d1Tt0eL.png)
+
+## TCP flow control
+- happens at reciever side
+- we have applications, and in the kernel we have receive buffer
+- incoming data is stored in recieve buffer
+- applications fetch data from this buffer
+- reciever advertises free buffer space in recieve window field in TCP header
+- sender limits amount of in-flight data to guarantee recieve buffer will not oveflow
+
+![diagram](https://i.imgur.com/wsm9MA5.png)
+
+### congestion control
+"too many sources sending too much data too fast for network to handle"
+
+consequences:
+- long delay (queueing)
+- packet loss (buffer overflow)
+
+different from flow control (one sender too fast for one reciever)
+
+![causes](https://i.imgur.com/Ae5xOa3.png)
+
+AIMD - senders can increase sending rate until packet loss occurs, then decrese rate on loss event
 # UDP
