@@ -117,7 +117,54 @@ header
 - offset
 	- offset of the fragment in the packets data field (units of 8 bytes)
 
-![example](https://i.imgur.com/eENmMTd.png)
+![frag example](https://i.imgur.com/eENmMTd.png)
 
+what needs to change in the header of fragment
+- flag
+- offset
+- length
+- ttl
+- checksum
+
+## special IPv4 Adresses and NAT
+special addresses
+- 127.0.0.1 localhost/loopback
+- 10.0.0.0/8 private use
+- 192.168.0.0/16 private use
+
+NAT (network address translation): all devices in local network share just one IPv4 address
+- allow multiple devices to share the same adresses
+- help preserve the limited amount of IP address
+- translate from private IP to public IP
+- ![NAT diagram](https://i.imgur.com/fU7hTbO.png)
 
 # IPv6
+- inital motivation: IPv4 mostly used up
+- additional motivation
+	- speed prcessing/forwarding: 40 byte fixed length header
+	- enable different network-layer treatment of "flows"
+	- better support for host mobility
+	- better support for security
+
+datagram format![](https://i.imgur.com/6O7jPQg.png)
+
+adressses
+- 128 bits
+- hexadecimal colon notation
+	- 12AB:0000:0000:CD30:0000:0000:0000:0000
+- adress compression
+	- consecutive sections of seros are replaced with ::
+	- can be used only once per address
+	- e.g., 12AB:0000:0000:CD30::
+
+CIDR
+- classless interdomain routing
+- method for allocating IP addresses and IP routing
+- notation
+	- based of variable length subnet mask (VLSM)
+	- address format: IP address/x, where x is number of bits from left to right as network part
+	- ![](https://i.imgur.com/n681AV1.png)
+
+extension headers: ![](https://i.imgur.com/8rM3clb.png)
+differencees: ![](https://i.imgur.com/cWKDpEY.png)
+
