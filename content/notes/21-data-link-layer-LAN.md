@@ -71,6 +71,65 @@ two dimensional bit parity
 - G: bit pattern (generator), of r+1 bits (given)
 
 ![slide](https://i.imgur.com/UdmWtad.png)
-- widely used
+- widely used 
 
-# MAC protocols
+# multiple access links and protocols
+- single shared broadcast linl/channel
+	- shared wire or medium
+- interference between two or more simultaneous tranmissions
+	- collision may occur if node recieves two or more signals at the same time
+
+## MAC protocols
+- coordinates nodes sharing a channel
+- communication about channel sharing must use channel itself
+	- no out-of-band channel for coordination
+
+classes
+- channel partitinioning
+	- divide channel into smaller pieces: (time slots, frequency)
+	- allocate piece to node for exclusive use
+	- e.g., TDMA, FDMA
+- random access: contention-based
+	- channel not divided, allows for collisions
+	- "recover" from collisions
+	- e.g., ALOHA, CSMA
+- "taking turns"
+	- node takes turns, but nodes with more to send can take longer turns
+	- e.g., token-passing
+
+### TDMA time division mulitple access
+- acces to channel in "rounds"
+- each station gets a fixed length slot (length = packet transmission time) in each round
+- unused slots go idle
+
+### FDMA freqency division multiple access
+- channel spectrum divided into frequency bands
+- each station assigned fixed freqency band
+- unused bands go idle
+- ![](https://i.imgur.com/JOWIr1V.png)
+- can communicate in parrallel
+
+### slotted ALOHA
+assumptions
+- all frames same size
+- tiem divided into equal-size slots (time to transmit one frame)
+- start to transmit only slot beginning
+- nodes are synchronized
+- if two or more nodes transmit in a slot, all nodes detect collision
+
+operation
+- when node obtains fresh frame, transmits in next slot
+	- if no collision: node can send new frame in next slot
+	- if collision: node retransmits frame in each subsequent slot with probability p until success
+
+
+- simple
+- decentralized
+- single node transmit at full rate
+- wasting slots: collisions idle slots
+- requires synchronisation
+
+### pure ALOHA
+- unslotted aloha, no sync
+	- when first frame arrives, transmit immediately
+- collision probability increases with no sync
