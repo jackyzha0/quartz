@@ -111,9 +111,36 @@ each node:
 
 "good news (decrease on link cost) travels quickly"
 
-"bad news (increase on link cost) travels slowly"
+"bad news (increase on link cost) travels slowly" - count-to-infinity problem
 - if a link is broken other routers become aware slowly
-- 
+- routers unaware of broken link can "advertise" incorrect costs and create a routing loop
+- loop is broken if a hop count threshold is passed 
+
+## link state (LS) vs Distance vector (DV)
+message complexity
+- LS: n routers O(n²) messages sent
+- DV: exhange between neighbors; convergence time varies
+
+speed of convergence:
+- LS: O(n²) algorithm, O(n²) messages
+- DV: varies
+	- may have routing loops
+	- count-to-infinity problem
+
+robustness
+- LS:
+	- router can advertise incorrect link cost
+	- each router computes only its own table
+- DV:
+	- router can advertise incorrect path cost: black holing
+	- each routers table is used by others: errors propagate through network
+
+
+## routing in internet
+- autonomous system (AS): a group of networks and routers controled by a single administrative authority
+- Intra-AS routing:
+	- routing information protocol (RIP): distance vector routing
+	- open shortest path first (OSPF): link state routing
 
 
 # routing in the internet
