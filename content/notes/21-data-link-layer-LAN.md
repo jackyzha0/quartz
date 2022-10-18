@@ -39,6 +39,38 @@ each NIC has a unique ID - MAC (medium access control)
 - also called physical address, ethernet hardware address
 - manufacturer buys portion of MAC adress space (to assure uniqueness)
 
-# parity checking and CRC
+![interface communication diagram](https://i.imgur.com/No4evP9.png)
+
+## flow control
+- dont send to much data otherwise it will overflow
+
+different from transport layer flow controls
+- single link not end to end
+- frame oriented not byte oriented
+- als use sliding window scheme
+	- go back N and selective repeat
+
+# Error detection
+- add bit(s) to detect and correct bit errors (i.e., redundancy)
+- bits are added before frame is send over link
+- when recieved if some bits are corrupted frame is dropped
+
+## parity checking
+single bit
+- even parity: add parity bit and set so there is an even number of 1s
+- can detect single bit errors
+- cannot detect two bit errors
+
+two dimensional bit parity
+- detect and correct single bit errors
+- detect two bit errors
+
+## CRC
+- more powerful error-checking coding
+- D: data bits
+- G: bit pattern (generator), of r+1 bits (given)
+
+![slide](https://i.imgur.com/UdmWtad.png)
+- widely used
 
 # MAC protocols
