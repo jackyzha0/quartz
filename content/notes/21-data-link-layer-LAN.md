@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc203
 - lecture
+sr-due: 2022-10-21
+sr-interval: 3
+sr-ease: 250
 ---
 
 # data link layer services
@@ -122,14 +125,62 @@ operation
 	- if no collision: node can send new frame in next slot
 	- if collision: node retransmits frame in each subsequent slot with probability p until success
 
-
 - simple
 - decentralized
 - single node transmit at full rate
 - wasting slots: collisions idle slots
 - requires synchronisation
 
+![](https://i.imgur.com/Mi269KZ.png)
+
 ### pure ALOHA
 - unslotted aloha, no sync
 	- when first frame arrives, transmit immediately
 - collision probability increases with no sync
+- less efficient that slotted aloha 
+- 
+![](https://i.imgur.com/Rxvx0eJ.png)
+
+### CMSA carrier sense multiple access
+simple CSMA: listen before transmit:
+- idle: transmit entire frame
+- busy: defer transmission
+
+CSMA/CD: CSMA with collision detection
+- collisions detected within short time
+- colliding transmissions aborted, reducing channel wastage
+
+collisions can still occur with carrier sensing
+- propagation delay means two nodes may not hear each others just-started transmissions
+- on a collision the entire packet transmission time is wasted
+	- distance and propagation delay play role in determining collision probability
+
+### Ethernet CSMA/CD
+1. nic recieves datagram and created frame
+2. nic senses channel: 
+	1. if idle, start transmission
+	2. else wait wait until idle
+3. if nic transmits entire frame without collision, nic is done
+4. if nic detect another transmission while sending, abort, send jam signal
+5. after aborting, nic enters binary (exponential) backoff:
+	1. after mth collision, nic chooses K at random from {0, 1, 2, ..., 2^(m)-1}, nic waits K x 512 bit times, returns to step 2
+	2. more collisions: longer backoff interval
+
+
+### taking turns
+polling:
+- master node invites other nodes to transmit in turn
+- typically used with "dumb" devices
+- concerns:
+	- polling overhead
+	- latency
+	- single point of failure: master
+
+token passing:
+- control token passed from one node to next sequentially
+- a node can send data when it has the token 	
+- token message
+- concerns:
+	- token overhead
+	- latency
+	- signle point of failure: token
