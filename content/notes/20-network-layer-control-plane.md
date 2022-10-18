@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc203
 - lecture
+sr-due: 2022-10-21
+sr-interval: 3
+sr-ease: 250
 ---
 
 # per-router control vs SDN
@@ -136,13 +139,31 @@ robustness
 	- each routers table is used by others: errors propagate through network
 
 
-## routing in internet
+# Routing in internet
 - autonomous system (AS): a group of networks and routers controled by a single administrative authority
 - Intra-AS routing:
 	- routing information protocol (RIP): distance vector routing
 	- open shortest path first (OSPF): link state routing
-
-
-# routing in the internet
+- Inter-AS routing:
+	- border gateway protocol (BGP)L path-vector routing
 
 # ICMP
+- used by hosts and routers to communicate netowrk level information
+	- error reporting:
+	- echo requeset/reply
+- network layer "above" IP
+	- ICMP message carried in IP datagrams
+- ICMP message: type, code plus first 8 bytes of IP datagram causing error
+
+![ICMP types and codes](https://i.imgur.com/cv0DRXL.png)
+
+## traceroute
+- sends a set of UDP segments to destination
+- datagram in nth set arrives to nth router
+	- router discards datagram and sends source ICMP message (type 11 code 0)
+	- ICMP message possibly incldes name of router and IP
+- when ICMP message arrives at source: record RTTs
+
+stopping:
+- when a packet arrives that the destination, it returns ICMP "port unreachable message" (type 3 code 3)
+- source stops

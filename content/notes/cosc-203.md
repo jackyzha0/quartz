@@ -49,7 +49,7 @@ tags:
 - [18-transport layer](notes/18-transport-layer)
 - [19-network layer data plane](19-network-layer-data-plane)
 - [20-network layer control plane](20-network-layer-control-plane)
-- [21-data link layer and LAN]
+- [21-data link layer and LAN](21-data-link-layer-LAN)
 - [22-LAN and physical layer]
 
 # Archive
