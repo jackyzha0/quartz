@@ -1,5 +1,5 @@
 ---
-title: "21-data-link-layer-LAN"
+title: "21-data-link-layer"
 aliases: 
 tags: 
 - cosc203

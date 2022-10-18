@@ -47,8 +47,21 @@ Address resolution protocol
 arp table: each IP node on lan has table
 - IP/MAC mappings for some LAN nodes
 - mapping is forgotten after TTL is exceeded (usually 20min)
-- 
+
+![arp example](https://i.imgur.com/dnj9Fvi.png)
 
 # Switch vs Router
+switch:
+- link layer deivce
+- takes an active role
+- store and foward ethernet frames
+- examine incoming frame's MAC addr, selectively forward frame to one-or-more outgoing links when frame is to be fowarded on segment, uses CSMA/CD
+- transparent
+	- hosts unaware of presence of switches
+- plug and play, self-learning
+	- switches do not need to be configured
+
+multiple simultaneous transmissions
+- hosts have direct connection to sw
 
 # All layers together
