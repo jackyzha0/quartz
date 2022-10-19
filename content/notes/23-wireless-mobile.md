@@ -127,4 +127,41 @@ handoff
 	
 # 4G LTE
 similarity to wired
-- 
+- ![](https://i.imgur.com/IHSbxZv.png)
+
+difference:
+- ![](https://i.imgur.com/pjJQaGX.png)
+
+Long-Term Evolution (LTE), 4G standard
+- traffic recieved by wirless network is routed using the internet
+
+mobile device
+- 64-bit international mobile subscriber id (IMSI) stored on SIM (subscriber identity module) card
+- UE (user equipment) - any that has a sim card and connects to a cell tower
+
+base station
+- at "edge" of carrier network
+- ![](https://i.imgur.com/QxXmpp6.png)
+
+Mobility management entity
+- ![](https://i.imgur.com/P1EKv6y.png)
+
+data plane protocol stack
+- ![](https://i.imgur.com/wSf0IJl.png)
+
+associating with a BS
+- ![](https://i.imgur.com/PYoQtqL.png)
+
+# 5G
+increase data date by 10x, 10x latency decrease, 100x increase in traffic capacity
+
+5g NR
+- two freq bands
+- not back compatible
+- massive MIMO
+
+millimeter wave freq
+- higher rates
+- over shorter distances
+- dense deployment of new base stations
+
