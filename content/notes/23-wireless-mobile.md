@@ -96,10 +96,35 @@ reciever
 	- return ACK after SIFS (short interframe space)
 	- ACK needed due to hidden terminal problems
 	
-	 
-	
-# Hidden terminal problem
+collision avoidance
+- handshake to "reserve" channel use for data frames using request-to-send (RTS) and clear-to-send (CTS) packets
+- ![](https://i.imgur.com/awsot1V.png)
 
 # Cellular networks
+solution for wide-area mobile internet
+![generations](https://i.imgur.com/AyQEeMF.png)
 
+basic concepts
+- base stations: a.k.a., cell tower
+- cell: geographical area covered by a BS
+- frequency reuse principle
+	- set of freqs is limited
+	- neighboring cells cannot use the same set of freqs
+- a freq reuse pattern is a configuration of N cells where N is the reuse factor
+
+![reuse factor](https://i.imgur.com/QKOhTQ5.png)
+
+handoff
+- transfer ongoing call or data connection from one BS to another
+- methods
+	- hard handoff
+		- break before make
+	- soft handoff
+		- make before break
+- roaming
+	- users can use cell services when traveling outside the coverage area of home network by using a visited network
+	- roaming agreement bettween home at visited network
+	
 # 4G LTE
+similarity to wired
+- 
