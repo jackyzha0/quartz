@@ -82,9 +82,36 @@ RSA
 - encrypt message m (<n)
 	- $c = m^e\mod n$
 - decrypt recieved c
-	- $c = m^e\mod n$ 
+	- $m = c^d\mod n$ 
+- magic
+	- $m = (m^e \mod n)^d \mod n$ 
+	- where $c = m^e\mod n$
 
+![example ](https://i.imgur.com/eGFJ4OX.png)
 
 # Authentication of devices
+ - AP2.0 athenticate based on IP: bad because can spoof IP
+ - AP3.0 put secret password into each packet: bad because trudy can get a message and see the password
+	- replay attack
+	- can find password without decrypting
+- AP4.0 avoid replay attack: 
+	- nonce: number R used only once-in-a-lifetime
+	- prove alice "live", Bob sends alice nonce, R
+		- alice must return R, encrypted with shared key
+	- ![](https://i.imgur.com/wLHR8y2.png)
+	- problems
+		- must choose a key in a secure way before they communicate
+- AP5.0: use nonce but with public key techniques
+	- problem: man in the middle attack: trudy poses as alice to bob, and as bob to alice
+	- ![](https://i.imgur.com/SFdYjdZ.png)
+	- need a better way to get public key
+- Digital signatures
+	- analogous to hand-signatures
+	- sender digitally signs a document
+	- verifiable, nonforgeable
+	- simple digital signature
+		- bob signs with his private key: creating signed message
+		- 
+
 
 # digital signature
