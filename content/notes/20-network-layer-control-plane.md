@@ -9,6 +9,8 @@ sr-interval: 3
 sr-ease: 250
 ---
 
+[slides](https://blackboard.otago.ac.nz/bbcswebdav/pid-2982068-dt-content-rid-19209669_1/courses/COSC203_S2DNI_2022/COSC203_lecture22%281%29.pdf)
+
 # per-router control vs SDN
 ## per router
 - each router runs a routing algorithm

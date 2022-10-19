@@ -51,6 +51,7 @@ tags:
 - [20-network layer control plane](20-network-layer-control-plane)
 - [21-data link layer and LAN](21-data-link-layer)
 - [22-LAN and physical layer](22-LAN-physical-layer)
+- [23-wireless-mobile](23-wireless-mobile)
 
 # Archive
 
