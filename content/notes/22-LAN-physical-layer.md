@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc203
 - lecture
+sr-due: 2022-10-22
+sr-interval: 3
+sr-ease: 250
 ---
 
 # LAN vs WAN
