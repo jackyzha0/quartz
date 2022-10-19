@@ -57,10 +57,47 @@ Standards created and maintaned by IEEE
 - all use CSMA/CA for multiple access, and have base station and ad-hoc versions
 
 WLAN architecture
-- wireless hosts communicates with base station (A)
+- wireless hosts communicates with base station (Access point AP)
+- Basic service set (BSS): set of devices that share the same service identifier
+	- wireless hosts
+	- AP
+- in ad hoc mode: hosts only, no AP
+
+channels and association
+- spectrum divided into channels at different frequencies
+	- admin chooses frequency for AP
+	- interference possible: channel can be the same as a neighboring AP
+- a new host must assiciate with the AP (connect)
+	- listens for *beacon frames*
+		- contain AP name (SSID) and MAC	
+	- may perform authentication
+	- run DHCP to get IP in AP's subnet
 
 # CSMA/CA
+- avoid collisions
+- CSMA sense before transmitting
+- wifi: no collision detection
+	- hard due to: hidden terminal, fading, 
+	- instead: CA collision avoidance
 
+DCF (distributed coordination function)
+- CSMA/CA with binary exponential backoff algorithm
+
+sender
+- if sense channel idle for DIFS (DCF interframe space) then send data (no CD)
+- if sense channel busy: 
+	- start random backoff time
+	- timer counts down while channel idle
+	- transmit when timer expires
+	- if no ACK, increase random back of interval, repeat 2
+
+reciever
+- if frame recieved ok
+	- return ACK after SIFS (short interframe space)
+	- ACK needed due to hidden terminal problems
+	
+	 
+	
 # Hidden terminal problem
 
 # Cellular networks
