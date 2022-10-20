@@ -5,8 +5,6 @@ tags:
 - writing
 ---
 
-**
-
 1. What is your interpretation of one of your recent dreams?
 2. What does death teach us about life?
 3. When you look at an elderly person's hands what do you see?
