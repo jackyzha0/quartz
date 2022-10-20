@@ -118,8 +118,18 @@ three types
 limitaitons
 - IP spoofing
 - if multiple apps need special treatment, each has own app. gateway
-- client software must know how to ocnt
-
-
+- client software must know how to contact gateway
+	- e.g., must set IP of proxy in browser
+- filters oftenuser all or nothing policy for UDP
+- tradeoff: access with security
 
 # IDS
+- instrusion detection system
+- deep packet inspection
+	- look at contents (e.g., check strings in packet against DB of known virus, attack strings)
+- examine correlation among packets
+	- port scanning
+	- network mapping
+	- DoS attack
+
+multiple IDSs: different types of checking at different locations
