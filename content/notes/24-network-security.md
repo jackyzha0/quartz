@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc203
 - lecture
+sr-due: 2022-10-23
+sr-interval: 3
+sr-ease: 250
 ---
 
 # what is it?
@@ -105,13 +108,32 @@ RSA
 	- problem: man in the middle attack: trudy poses as alice to bob, and as bob to alice
 	- ![](https://i.imgur.com/SFdYjdZ.png)
 	- need a better way to get public key
+
+# digital signature
 - Digital signatures
 	- analogous to hand-signatures
 	- sender digitally signs a document
 	- verifiable, nonforgeable
 	- simple digital signature
 		- bob signs with his private key: creating signed message
-		- 
+		- alice uses publc key to verify 
+	- issue
+		- lots of computation on long messages
+- hash function
+	- apply hash function to get fixed size message digest, H(m)
+	- then sign on the digest not the full message
+
+![diagram](https://i.imgur.com/sSRoWGU.png)
+
+# certification authorities
+- binds public key to particular entity, E
+- entity registers its public key with CE provides proof of identity to CA
+	- CA creates cert binding id E to E's public key
+	- cert containing E's public key digitally signed by CA
+- when alice wants bobs public key
+	- get bobs cert
+	- apply CAs public key to bobs certificate, get bobs public key 
+
+![](https://i.imgur.com/zccc9XF.png)
 
 
-# digital signature
