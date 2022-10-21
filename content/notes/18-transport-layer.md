@@ -4,8 +4,8 @@ aliases:
 tags: 
 - cosc203
 - lecture
-sr-due: 2022-10-20
-sr-interval: 3
+sr-due: 2022-11-01
+sr-interval: 10
 sr-ease: 250
 ---
 chapter 3
@@ -25,13 +25,13 @@ protocols
 - UDP user datagram protocol
 
 ## actions and sender
-- is passed an app layer lessage
+- is passed an app layer message
 - determines segment header fields values
 - creates segment
-- passes segement to IP
+- passes segement to IP layer
 
 ## actions at reciever
-- recieves segment from IP
+- recieves segment from IP layer
 - checks header values
 - extract app layer message
 - de multiplexes message up to application via socket

@@ -4,9 +4,9 @@ aliases:
 tags: 
 - cosc204
 - lecture
-sr-due: 2022-10-19
-sr-interval: 54
-sr-ease: 250
+sr-due: 2022-12-03
+sr-interval: 42
+sr-ease: 230
 ---
 
 comb log. circuits always produce the same output with the same inputs
