@@ -3,8 +3,8 @@ title: "04-requirements"
 tags: 
 - info201
 - lecture
-sr-due: 2022-08-29
-sr-interval: 87
+sr-due: 2023-08-03
+sr-interval: 285
 sr-ease: 250
 ---
 

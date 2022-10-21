@@ -1,7 +1,7 @@
 ---
 title: "11-continuous-integration-2"
-sr-due: 2022-10-03
-sr-interval: 119
+sr-due: 2023-10-04
+sr-interval: 347
 sr-ease: 270
 tags: 
 - cosc202 

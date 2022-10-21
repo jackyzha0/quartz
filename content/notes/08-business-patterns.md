@@ -1,7 +1,7 @@
 ---
 title: "08-business-patterns"
-sr-due: 2022-08-27
-sr-interval: 100
+sr-due: 2023-10-03
+sr-interval: 346
 sr-ease: 270
 tags: 
 - info201 

@@ -4,9 +4,9 @@ aliases:
 tags: 
 - cosc204
 - lecture
-sr-due: 2022-10-02
-sr-interval: 3
-sr-ease: 250
+sr-due: 2022-10-28
+sr-interval: 6
+sr-ease: 230
 ---
 
 ![process tree example](https://i.imgur.com/4ysHisl.png)

@@ -3,8 +3,8 @@ title: "12-modelling-behaviour"
 tags: 
 - info201
 - lecture
-sr-due: 2022-08-28
-sr-interval: 86
+sr-due: 2023-08-02
+sr-interval: 284
 sr-ease: 250
 ---
 [slides](https://blackboard.otago.ac.nz/bbcswebdav/pid-2892846-dt-content-rid-18407618_1/courses/INFO201_S1DNIE_2022/2022/lectures/lecture_12_slides.pdf)

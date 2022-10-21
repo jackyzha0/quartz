@@ -4,9 +4,9 @@ aliases:
 tags: 
 - cosc204
 - lecture
-sr-due: 2022-09-25
-sr-interval: 3
-sr-ease: 250
+sr-due: 2022-10-29
+sr-interval: 7
+sr-ease: 230
 ---
 
 # what is a file (LINUX)

@@ -4,9 +4,9 @@ aliases:
 tags: 
 - cosc204
 - lecture
-sr-due: 2022-10-15
-sr-interval: 3
-sr-ease: 250
+sr-due: 2022-10-26
+sr-interval: 4
+sr-ease: 230
 ---
 
 # Shared memory for processes

@@ -4,9 +4,9 @@ aliases:
 tags: 
 - lecture
 - cosc204
-sr-due: 2022-09-29
-sr-interval: 34
-sr-ease: 250
+sr-due: 2022-11-21
+sr-interval: 30
+sr-ease: 230
 ---
 
 Developed 1972 for Unix

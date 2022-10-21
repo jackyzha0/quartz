@@ -3,8 +3,8 @@ title: "11-sets-maps-trees"
 tags: 
 - cosc201
 - lecture
-sr-due: 2022-09-10
-sr-interval: 99
+sr-due: 2023-09-11
+sr-interval: 324
 sr-ease: 270
 ---
 
