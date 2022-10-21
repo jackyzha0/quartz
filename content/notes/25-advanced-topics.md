@@ -1,0 +1,38 @@
+---
+title: "25-advanced-topics"
+aliases: 
+tags: 
+- cosc203
+- lecture
+---
+
+# Datacenter networks
+- 10's to 100's of thousands of hosts, often closely coupled, in close proximity
+	- e-business :(e.g., amazon)
+	- content servers: youtube etc
+	- search engines, data mining (e.g., google)
+- challenges
+	- multiple applications, each server many clients
+	- reliability
+	- managing/balancing load
+	- procesing, networking, data bottlenecks
+
+
+network elements
+- server racks, 20-40 server blades: host
+- Top of Rack (TOR) switch
+- Tier 2 switches: connect to ~16 TORS below
+- tier 1 switches connect to ~16 T-2s below
+- border routers: connections outside
+- ![](https://i.imgur.com/kFOrQ97.png)
+
+- multipath communcation
+	- rich interconnecitions so many routes
+	- increased throughput
+	- increased reliability through redundancy
+
+application-layer routing
+- load balancer: app-layer routing
+- recieves
+
+# Software Defined networks
