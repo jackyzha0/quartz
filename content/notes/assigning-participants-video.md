@@ -5,8 +5,8 @@ tags:
 - info203
 - lecture
 - scott-video
-sr-due: 2022-07-05
-sr-interval: 32
+sr-due: 2023-05-27
+sr-interval: 217
 sr-ease: 250
 ---
 

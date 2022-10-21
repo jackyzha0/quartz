@@ -4,8 +4,8 @@ aliases:
 tags: 
 - cosc202
 - lecture
-sr-due: 2022-06-29
-sr-interval: 26
+sr-due: 2023-05-20
+sr-interval: 210
 sr-ease: 252
 ---
 

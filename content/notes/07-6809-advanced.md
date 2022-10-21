@@ -4,9 +4,9 @@ aliases:
 tags: 
 - lecture
 - cosc204
-sr-due: 2022-08-15
-sr-interval: 10
-sr-ease: 250
+sr-due: 2022-11-13
+sr-interval: 22
+sr-ease: 230
 ---
 
 # addressing modes

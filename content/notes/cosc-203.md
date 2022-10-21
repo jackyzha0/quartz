@@ -53,7 +53,7 @@ tags:
 - [22-LAN and physical layer](22-LAN-physical-layer)
 - [23-wireless-mobile](23-wireless-mobile)
 - [24-network-security](notes/24-network-security.md)
-- 
+- [25-advanced-topics](notes/25-advanced-topics.md)
 
 # Archive
 

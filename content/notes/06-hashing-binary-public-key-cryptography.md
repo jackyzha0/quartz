@@ -4,9 +4,9 @@ aliases:
 tags: 
 - lecture
 - comp210
-sr-due: 2022-08-19
-sr-interval: 3
-sr-ease: 250
+sr-due: 2022-11-05
+sr-interval: 14
+sr-ease: 230
 ---
 
 - ![terminology](https://i.imgur.com/p3b7Z0i.png)

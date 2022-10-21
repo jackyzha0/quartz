@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc203
 - lecture
+sr-due: 2022-10-25
+sr-interval: 3
+sr-ease: 250
 ---
 
 # Datacenter networks

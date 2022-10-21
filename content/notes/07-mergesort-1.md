@@ -1,7 +1,7 @@
 ---
 title: "07-mergesort-1"
-sr-due: 2022-06-22
-sr-interval: 57
+sr-due: 2023-08-13
+sr-interval: 295
 sr-ease: 250
 tags: 
 - cosc201
