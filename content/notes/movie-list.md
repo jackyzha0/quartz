@@ -27,6 +27,7 @@ downloaded
 - both blade runners
 
 To watch
+- bullitt
 - Windfall
 - salo
 - black swan
