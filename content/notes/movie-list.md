@@ -5,26 +5,49 @@ tags:
 ---
 
 Top movies
-- jojimbo
-- taxi driver
-- pulp fiction
-- rashomon
-- annihilation
-- akira
-- ghost in the shell
-- good the bad the ugly
-- perfect blue
-- blade runner original
-- audition mike takashi
-- donnie darko
+1. yojimbo
+2. taxi driver
+3. pulp fiction
+4. rashomon
+5. annihilation
+6. akira
+7. ghost in the shell
+8. good the bad the ugly
+9. perfect blue
+10. blade runner original
 
-downloaded
-- black narcissist
-- ikuru (the idiot)
-- largent
-- the brown bunny
-- the tree of life
-- both blade runners
+watched movies 
+- before 10/22
+	- donnie darko
+	- audition
+	- whiplash
+	- eternal sunshine
+	- treasure planet
+	- requiem for a dream
+	- suspiria 1977
+	- good time
+	- enemy
+	- the batman 2022
+	- the shining
+	- perfect blue
+	- naussica
+	- the lighthouse
+	- nightcrawler
+	- good, bad, ugly
+	- akira
+	- clockwork orange
+	- psycho
+	- everything eveywhere
+	- american psycho
+- 10/22
+	- in the mood for love
+	- greener grass
+	- brown bunny
+	- drive my car
+	- shiva baby
+	- martyrs
+	- suspiria 2018
+	- the red shoes
 
 To watch
 - bullitt
@@ -34,11 +57,10 @@ To watch
 - fistful of dollars
 - magnificent seven
 - godfather
-- taxi driver (rewatch)
-- suspiria (new version)
 - the passion of joan of arc
-- the red shoes
 - paris texas
+- the deer hunter
+- rio bravo
 
 tarantinos faves
 - battle royale kinji fukasaku
@@ -71,7 +93,6 @@ american
 - five easy pieces
 - the king of marvin gardens
 - the last picture show
-- the deer hunter
 - the exocist
 - indiana jones and the temple of doom
 
