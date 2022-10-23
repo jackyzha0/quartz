@@ -11,6 +11,10 @@ tags:
 - [The Friar and the Cipher](notes/The-Friar-and-the-Cipher)
 - The Island of sea women
 - Reminiscences of a stock operator
+- The stranger
+- Talking to strangers
+- The overstory
+- 
 
 # Podcasts
 - [philosophize-this](notes/philosophize-this.md)
