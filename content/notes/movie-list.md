@@ -16,39 +16,6 @@ Top movies
 9. perfect blue
 10. blade runner original
 
-watched movies 
-- before 10/22
-	- donnie darko
-	- audition
-	- whiplash
-	- eternal sunshine
-	- treasure planet
-	- requiem for a dream
-	- suspiria 1977
-	- good time
-	- enemy
-	- the batman 2022
-	- the shining
-	- perfect blue
-	- naussica
-	- the lighthouse
-	- nightcrawler
-	- good, bad, ugly
-	- akira
-	- clockwork orange
-	- psycho
-	- everything eveywhere
-	- american psycho
-- 10/22
-	- in the mood for love
-	- greener grass
-	- brown bunny
-	- drive my car
-	- shiva baby
-	- martyrs
-	- suspiria 2018
-	- the red shoes
-
 To watch
 - bullitt
 - Windfall
@@ -61,7 +28,7 @@ To watch
 - paris texas
 - the deer hunter
 - rio bravo
-- le samurai
+- le samourai
 - schindlers list
 
 tarantinos faves

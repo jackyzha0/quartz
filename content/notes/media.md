@@ -26,6 +26,8 @@ tags:
 
 # Films
 - before 10/22
+	- eyes wide shut
+	- the talented mr ripley
 	- donnie darko
 	- audition
 	- whiplash
