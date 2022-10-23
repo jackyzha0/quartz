@@ -61,6 +61,8 @@ To watch
 - paris texas
 - the deer hunter
 - rio bravo
+- le samurai
+- schindlers list
 
 tarantinos faves
 - battle royale kinji fukasaku
@@ -110,7 +112,6 @@ horror
 - occult 2009
 - last summer
 
-
 australian
 - walkabout
 - wake in fright
@@ -155,7 +156,6 @@ france + italy
 
 french
 - o hazard balthazar
-- le samurai
 - le circle rouge
 - bob le flember
 - playtime
@@ -199,7 +199,6 @@ ww2
 - army of shadows
 - come and see
 - the selons de samare
-
 
 The definitives
 1.  [_2001: A Space Odyssey_ (1968)](https://deepfocusreview.com/definitives/2001-a-space-odyssey/)
