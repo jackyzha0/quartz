@@ -20,7 +20,6 @@ sr-ease: 250
 	- layer-2 packet: frame, encapsulates datagram
 		- ![](https://i.imgur.com/9RcK8WD.png)
 
-
 services
 - framing, link access:
 	- encapsulate datgram into frame, add head, trailer
