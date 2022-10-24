@@ -13,9 +13,6 @@ h1(selector) {
 }
 ```
 
-
-
-
 # Selectors
 Types
 - Universal: `*`
@@ -70,15 +67,23 @@ Rules at a higher level of specificity will override a rule at a lower level
 
 ID > class > element.
 
-Types
-- Universal: 1
-- Type: 10
-- Class: 100
-- Id: 1000
+- ID: 100
+- Class (also, attr selector or pseudo class): 10
+- Element (also pseudo element): 1
+
+# Box Model
+![box model diagram|400](https://i.imgur.com/G7oIlKC.png)
+![border-box box model|400](https://i.imgur.com/iY8O3hd.png)
+
+Margin Collapse: If two vertically adjcent elements have touching margins, the smaller of the two will collapse
+
+# Layout
+## Flexbox
+## Grid
+## Trad
+
+# Positioning
 
 
-
-
-# Media Queries
 
 
