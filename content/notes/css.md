@@ -78,12 +78,45 @@ ID > class > element.
 Margin Collapse: If two vertically adjcent elements have touching margins, the smaller of the two will collapse
 
 # Layout
-## Flexbox
-## Grid
-## Trad
+`display: <inside type> <outside type>`
+e.g., `display: inline flex`
+e.g., `display: inline grid`
+e.g., `display: block flex`
 
-# Positioning
+## Outside
+Block
+- Breaks onto new line
+- width and height respected
+- padding, margin, border will push other elements away
+- box will extend in inline direction to fill space
+- box will become as wide as its container
 
+Inline
+- box will not break onto new line
+- width and height will not apply
+- size of inline is the size of their content
+- padding, border, margins apply but only horizontal with push other elements
 
+Inline-Block
+- does not break onto new line but respects height and width, and vertical margin/padding/border
 
+## Inside
+Normal Flow
+- Using block and inline elements
+- Ensures readable content even with old browsers and weird devices
 
+Flexbox
+- One dimensional, either row or col
+- children become flex items
+![flex diagram](https://i.imgur.com/gpYlpyo.png)
+
+Grid
+- Better for two dimensions, both row and col
+
+## Positioning
+Types
+- static
+- relative
+- absolute
+- fixed
+- sticky
