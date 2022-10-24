@@ -66,10 +66,10 @@ symmetric requires sharing of key
 process
 - sender and reciever do not share secret key
 - public key known to all
-- pricate key known ony to reciever
+- private key known ony to reciever
 
-- use public key to encrypt
-- use private key to decrypt
+- sender uses their public key to encrypt
+- reciever uses their private key to decrypt
 
 public key reqs
 - ![](https://i.imgur.com/DrH8hmU.png)
