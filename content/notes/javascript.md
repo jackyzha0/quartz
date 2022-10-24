@@ -9,7 +9,7 @@ An dynamically typed interpreted scripting language to dynamically control websi
 
 # HTML DOM
 (Document object model)
-- JS can access and alter HTML elements
+- JS can access and alter [html](notes/html.md) elements
 - When a page loads it creates the DOM as a tree of objects
 
 # Using js
@@ -54,4 +54,4 @@ promise: object which represents the status of a function
 await: keyword within as async function which makes code wait at a point for a task to finish
 
 ## Fetch
-Used to request data from a server to update the page. Data is i
+Used to request data from a server to update the page. 

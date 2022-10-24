@@ -1,5 +1,5 @@
 ---
-title: "Data Link Layer"
+title: "Data-Link-Layer"
 aliases: 
 tags: 
 - cosc203

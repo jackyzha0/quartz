@@ -1,5 +1,5 @@
 ---
-title: "Network Layer"
+title: "Network-Layer"
 aliases: 
 tags: 
 - cosc203
