@@ -6,7 +6,22 @@ tags:
 ---
 
 # Overview
-
+Physical Media
+- TP cable
+	- two wired twisted together surrounded by a shield
+	- signal and ground reference
+	- short range (100meters)
+	- phone, DSL, ethernet lan
+- Coaxial
+	- inner conductor
+	- insulator
+	- outer conductor (shield)
+	- insulator
+	- plastic cover
+	- long distance high speed: cable tv ethernet lan
+- fibre optic
+	- light within glass
+	- high speed low error
 # Application Layer
 [Application Layer](notes/Application Layer)
 # Transport Layer
