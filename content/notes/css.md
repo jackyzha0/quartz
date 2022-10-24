@@ -14,6 +14,8 @@ h1(selector) {
 ```
 
 
+
+
 # Selectors
 Types
 - Universal: `*`
@@ -21,8 +23,14 @@ Types
 - Class: `.myclass`
 - Id: `#myID`
 
-adjacent: `p + li {...}`
-descendant: `p li {...}`
+Combining
+- grouping: `p, li`
+- adjacent: `p + li`
+- descendant: `p li`
+- direct descendant: `div > h1`
+- general sibling: `div ~ h1`
+- chaining: `.class1.class2`
+- attribute: `div[lang]`
 
 ```css
 /* selects any <span> that is inside a <p>, which is inside an
@@ -43,8 +51,24 @@ Pseudo Classes:
 Pseudo Elements
 - `p::first-line {...}`
 
+## Inheritance
+Some properties like color are inherited by some children elements. width, margin, padding, border are not inherited
+
+Controls
+- inherit: sets property to the same as parent element
+- inital: sets property value to inital/default value of that property
+- unset: sets property to natural value (inherit or dont inherit)
+
+## Cascade
+Three rules - higher ones overrule lower ones
+- Importance
+- Specificity
+- Source Order (only matters if specificity is the same)
+
 ## Specificity
 Rules at a higher level of specificity will override a rule at a lower level
+
+ID > class > element.
 
 Types
 - Universal: 1
@@ -52,5 +76,9 @@ Types
 - Class: 100
 - Id: 1000
 
-# Tables
+
+
+
+# Media Queries
+
 
