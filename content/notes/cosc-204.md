@@ -39,6 +39,8 @@ tags:
 - [06-6809-programming](notes/06-6809-programming.md)
 - [07-6809-advanced](notes/07-6809-advanced.md)
 - [08-intro-to-c](notes/08-intro-to-c.md)
+- [09-intro-to-c-2](notes/09-intro-to-c-2.md)
+- [10-intro-to-c-arrays-malloc-free](notes/10-intro-to-c-arrays-malloc-free.md)
 - [11-struct-and-union](notes/11-struct-and-union.md)
 - [12-pointers-to-routines](notes/12-pointers-to-routines.md)
 - [13-OS-intro](notes/13-OS-intro.md)
