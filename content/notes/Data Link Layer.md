@@ -1,6 +1,8 @@
 ---
-title: "SQL"
+title: "Data Link Layer"
 aliases: 
 tags: 
 - cosc203
 ---
+
+

@@ -1,6 +1,8 @@
 ---
-title: "SQL"
+title: "javascript"
 aliases: 
 tags: 
 - cosc203
 ---
+
+

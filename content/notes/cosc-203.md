@@ -28,6 +28,25 @@ tags:
 
 # Notes
 [dns](notes/dns.md)
+- [Web](notes/web)
+	- [html](notes/html.md)
+	- [css](notes/css.md)
+	- [javascript](notes/javascript)
+	- [backend](notes/backend)
+- [Databases](notes/databases)
+	- [ER Diagram](notes/ER-Diagram)
+	- [Normal Forms](notes/Normal-Forms)
+	- [Schemas](notes/Schemas)
+	- [SQL](notes/SQL)
+- [Networks](notes/network)
+	- [Application Layer](notes/Application Layer)
+	- [Transport Layer](notes/Transport Layer)
+	- [Network Layer](notes/Network Layer)
+	- [Data Link Layer](notes/Data Link Layer)
+	- [Physical Layer](notes/Physical Layer)
+	- [Wireless Layer](notes/Wireless Layer)
+	- [Security Layer](notes/Security Layer)
+	- [Other Layer](notes/Other Layer)
 
 # Lectures
 - [01-basic-html](notes/01-basic-html.md)

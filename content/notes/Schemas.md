@@ -1,6 +1,8 @@
 ---
-title: "SQL"
+title: "Schemas"
 aliases: 
 tags: 
 - cosc203
 ---
+
+

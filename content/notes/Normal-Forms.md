@@ -1,6 +1,8 @@
 ---
-title: "SQL"
+title: "Normal-Forms"
 aliases: 
 tags: 
 - cosc203
 ---
+
+
