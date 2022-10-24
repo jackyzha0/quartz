@@ -69,7 +69,6 @@ protocols define:
 - communcation rules
 	- when and how proceses send and response to messages
 
-
 ## WEB http
 - client server model
 	- browser requests, recieves and displays web objects
