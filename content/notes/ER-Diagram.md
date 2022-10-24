@@ -19,5 +19,12 @@ Attibute types:
 Relationship: when one entity refers to another
 Relationship type: a set of relationships with the same entity types
 - relationships can have attributes
-- relationships haveL
+- relationships have:
+	- degree (bi/n-ary)
+	- cardinality (1:1, 1:N N:M)
+	- participation constraints (total (marked by double line) or partial)
 
+Weak entities
+- no key attributes
+- requires total participation constraint on identifying relationship to its identifying entity type
+- partial key used in combination with identifying entity
