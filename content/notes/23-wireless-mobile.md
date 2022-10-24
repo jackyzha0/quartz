@@ -49,7 +49,7 @@ SNR BER tradeoffs
 - many parameters at physical level which alter SNR
 
 hidden terminal problem
-- multiple wireless sender, recievers create additional problems (beyond multiple access):
+- multiple wireless sender, recievers qcreate additional problems (beyond multiple access):
 - ![](https://i.imgur.com/SK9pcMz.png)
 - ![](https://i.imgur.com/12vOuH1.png)
 
