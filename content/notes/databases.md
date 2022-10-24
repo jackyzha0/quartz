@@ -5,11 +5,15 @@ tags:
 - cosc203
 ---
 
-# ER Diagram
+# Modelling
+Database: integrated collection of data
+- meaning
+- specific purpose
+
 [ER Diagram](notes/ER-Diagram)
+[Schemas](notes/Schemas)
+
 # Normal Forms
 [Normal Forms](notes/Normal-Forms)
-# Schemas
-[Schemas](notes/Schemas)
 # SQL
 [SQL](notes/SQL)

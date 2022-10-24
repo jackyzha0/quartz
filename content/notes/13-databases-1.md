@@ -66,7 +66,6 @@ three notations
 ![example data|400](https://i.imgur.com/t3fjN78.png)
 ![examle chen notation diagram|400](https://i.imgur.com/5a2TCXm.png)
 
-
 # how to model
 ## entities
 - a thing in the real world with independent existence
