@@ -115,7 +115,6 @@ lost and duplicated segments
 	- host recieved data, ack is send and lost
 	- data is resent, and a duplication is detected (same sequence number)
 
-
 ## connections setup
 three way handshake to set up virtual connection
 - each knowing the other willing to communnicate
