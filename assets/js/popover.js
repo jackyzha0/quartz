@@ -27,7 +27,7 @@ function initPopover(baseURL, useContextualBacklinks, renderLatex) {
             let splitLink = li.href.split("#")
             let cleanedContent = removeMarkdown(linkDest.content)
             if (splitLink.length > 1) {
-              let headingName = splitLink[1].replace(/\-/g, " ")
+              let headingName = decodeURIComponent(splitLink[1]).replace(/\-/g, " ")
               let headingIndex = cleanedContent.toLowerCase().indexOf("<b>" + headingName + "</b>")
               cleanedContent = cleanedContent.substring(headingIndex, cleanedContent.length)
             }

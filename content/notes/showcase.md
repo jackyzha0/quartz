@@ -17,5 +17,6 @@ Want to see what Quartz can do? Here are some cool community gardens :)
 - [Data Dictionary 🧠](https://glossary.airbyte.com/)
 - [sspaeti.com's Second Brain](https://brain.sspaeti.com/)
 - [oldwinterの数字花园](https://garden.oldwinter.top/)
+- [SethMB Work](https://sethmb.xyz/)
 
 If you want to see your own on here, submit a [Pull Request adding yourself to this file](https://github.com/jackyzha0/quartz/blob/hugo/content/notes/showcase.md)!
