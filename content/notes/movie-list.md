@@ -6,15 +6,14 @@ tags:
 
 Top movies
 1. yojimbo
-2. taxi driver
-3. pulp fiction
-4. rashomon
-5. annihilation
-6. akira
-7. ghost in the shell
+2. le samourai
+3. akira
+4. ghost in the shell
+5. taxi driver
+6. rashomon
+7. annihilation
 8. good the bad the ugly
 9. perfect blue
-10. blade runner original
 
 To watch
 - bullitt
