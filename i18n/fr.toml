@@ -1,0 +1,65 @@
+[404_message]
+other = "Hey ! Vous semblez perdu‧e. Cette page n'existe pas (ou est privée)."
+
+[404_back]
+other = "↳ On va te faire retourner à l'accueil"
+
+[all_posts]
+other = "Tout {{.Title}}"
+
+[last_updated]
+other = "Dernière modification"
+
+[notes_count]
+other = "notes avec ce tag"
+
+[first_10]
+other = "affichant les 10 premiers résultats"
+
+[tag]
+other = "Tag"
+
+[backlinks]
+other = "Backlinks"
+
+[no_backlinks]
+other = "Pas de backlinks trouvés"
+
+[home]
+other = "Accueil"
+
+[light_mode]
+other = "Mode Clair"
+
+[dark_mode]
+other = "Mode Sombre"
+
+[edit_source]
+other = "Editer la source"
+
+[interactive_graph]
+other = "Graphique interactif"
+
+[search]
+other = "Rechercher"
+
+[search_icon]
+other = "Icône de recherche"
+
+[icon_search]
+other = "Icon pour ouvrir la recherche"
+
+[recent_notes]
+other = "Notes récentes"
+
+[first_3_notes]
+other = "3 premières {{ .notes }}"
+
+[search_for_something]
+other = "Rechercher quelque-chose..."
+
+[toc]
+other = "Table des matières"
+
+[copyright]
+other = "Fait avec 💛 par {{ .name }} en utilisant <a href=\"https://github.com/jackyzha0/quartz\">Quartz</a>, © {{ .year }}"
