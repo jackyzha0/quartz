@@ -16,3 +16,4 @@ tags:
 - post civilization
 - indigenous sovereignty
 - permablitzing
+	- permaculture
