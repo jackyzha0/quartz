@@ -21,6 +21,8 @@ tags:
 	- What if?
 	- The age of reason - Sartre
 	- Jane Eyre
+- future
+	- actual air david berman
 
 # Podcasts
 - [philosophize-this](notes/philosophize-this.md)
