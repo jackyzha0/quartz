@@ -20,6 +20,7 @@ tags:
 	- The stranger
 	- What if?
 	- The age of reason - Sartre
+	- Jane Eyre
 
 # Podcasts
 - [philosophize-this](notes/philosophize-this.md)
