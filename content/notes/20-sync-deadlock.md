@@ -53,3 +53,24 @@ CONSUMER: repeat
 counter is a shared variable - causes a data race problem
 
 ![data race problem slide|400](https://i.imgur.com/qIz6FGU.png)
+
+# critical sections
+guarantee that certain sections of coopeating processes are not interleaved to avoid data race problem
+
+only one process can execute critical section at a time
+
+![locking examle](https://i.imgur.com/YTqizzt.png)
+
+but there is a data race problem for locking the processes!
+
+# hardware locking
+disalow interrupts while a shared variable is being modified. only works for one CPU
+
+modern computers have special **atomic instructions**
+- CompareAndSwap
+- testAndSet
+
+`CAS(0, a, n)`: If the value at address a is o, write the value n to address a and then return true; Otherwise, return false, where o and n are integers, and a is the address of a memory location.
+
+# CAS based LOCK function
+![slide|400](https://i.imgur.com/aeS3HGS.png)
