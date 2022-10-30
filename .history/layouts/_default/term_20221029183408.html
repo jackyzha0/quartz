@@ -11,7 +11,6 @@
         <h1>{{ i18n "tag" }}: {{ .Title }}</h1>
         {{with .Params.description}}
             <p>{{.}}</p>
-            <a href="/tags">See all tags →</a>
         {{end}}
         {{partial "page-list.html" .Paginator.Pages}}
         {{ template "_internal/pagination.html" . }}

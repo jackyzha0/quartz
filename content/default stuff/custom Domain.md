@@ -12,6 +12,6 @@ GitHub has some [documentation on this](https://docs.github.com/en/pages/configu
 1. Go to your forked repository (`github.com/<YOUR-GITHUB-USERNAME>/quartz`) settings page and go to the Pages tab. Under "Custom domain", type your custom domain, then click **Save**.
 2. Go to your DNS Provider and create a CNAME record that points from your domain to `<YOUR-GITHUB-USERNAME.github.io.` (yes, with the trailing period).
 
-	![Example Configuration for Quartz](/notes/images/google-domains.png)*Example Configuration for Quartz*
+	![Example Configuration for Quartz](google-domains.png)*Example Configuration for Quartz*
 3. Wait 30 minutes to an hour for the network changes to kick in.
 4. Done!
