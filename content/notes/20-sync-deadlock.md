@@ -107,7 +107,34 @@ again:
 
 ```
 
-## for mutual exclusion
-![slide|400](https://i.imgur.com/fkBl7PR.png)
+semaphore without busy waiting ![](https://i.imgur.com/bLzY5q3.png)
+![mutex|400](https://i.imgur.com/fkBl7PR.png)
+![producer consumer again](https://i.imgur.com/ZN8bonW.png)
 
+range of semaphore init vals
+- 1 for mutex
+- 0 for process sync
+- >1 for concurrent processes/threads
 
+- negative values tell us how many processes are waiting
+
+# Deadlock
+Definition of deadlock: a set of processes is in a deadlocked state if every process is waiting for an event that can only be caused by another process in the set.
+
+![slide|400](https://i.imgur.com/XTSVwVI.png)
+
+conditions
+- mutual exclusion: at least one of the held resources must be nonsharable
+- hold and wait: must be at least one process holding a resource and one waiting
+- no preemption: a resource can only be released by the process thats holding it
+- circular wait: 
+	- P1 is waiting on a resource held by P2; 
+	- P2 is waiting on . . . 
+	- Pn is waiting on a resource held by P1.
+
+typical solution
+- break wait by acquiring lock in the same order
+- ![](https://i.imgur.com/tDCTXWu.png)
+
+os solution
+- ![](https://i.imgur.com/1qHM2w0.png)

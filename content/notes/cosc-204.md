@@ -50,6 +50,7 @@ tags:
 - [17-processes-communication](notes/17-processes-communication.md)
 - [18-processes-sharing-and-threads](notes/18-processes-sharing-and-threads.md)
 - [19-cpu-scheduling](notes/19-cpu-scheduling.md)
+- [20-sync-deadlock](notes/20-sync-deadlock.md)
 
 
 # Archive
