@@ -1,4 +1,4 @@
-name: hansel
+name: Jacky Zhao
 enableToc: true
 openToc: false
 enableLinkPreview: true
@@ -11,15 +11,16 @@ enableFooter: true
 enableContextualBacklinks: true
 enableRecentNotes: false
 enableGitHubEdit: true
-GitHubLink: https://github.com/hansel-li/quartz/tree/hugo/content
+GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
 enableSemanticSearch: false
 operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
 description:
-  tbd
+  Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
+  Wikilink support, backlinks, local graph, tags, and link previews.
 page_title:
-  "hansel"
+  "🪴 Quartz 3.3"
 links:
-  # - link_name: Twitter
-  #   link: https://twitter.com/concupiscere
+  - link_name: Twitter
+    link: https://twitter.com/_jzhao
   - link_name: Github
-    link: https://github.com/hansel-li
+    link: https://github.com/jackyzha0
