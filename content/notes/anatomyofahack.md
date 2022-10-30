@@ -3,7 +3,6 @@ title: "anatomyofahack"
 aliases: 
 tags: 
 - comp210
-- 
 ---
 
 - david was careful -2fa etc
