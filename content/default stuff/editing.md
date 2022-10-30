@@ -49,18 +49,18 @@ I recommend using [Obsidian](http://obsidian.md/) as a way to edit and grow your
 
 This step is **highly recommended**.
 
-> 🔗 Step 3: [How to setup your Obsidian Vault to work with Quartz](notes/obsidian.md)
+> 🔗 Step 3: [How to setup your Obsidian Vault to work with Quartz](obsidian.md)
 
 ## Previewing Changes
 This step is purely optional and mostly for those who want to see the published version of their digital garden locally before opening it up to the internet. This is *highly recommended* but not required.
 
-> 👀 Step 4: [Preview Quartz Changes](notes/preview%20changes.md)
+> 👀 Step 4: [Preview Quartz Changes](preview%20changes.md)
 
 For those who like to live life more on the edge, viewing the garden through Obsidian gets you pretty close to the real thing.
 
 ## Publishing Changes
 Now that you know the basics of managing your digital garden using Quartz, you can publish it to the internet!
 
-> 🌍 Step 5: [Hosting Quartz online!](notes/hosting.md)
+> 🌍 Step 5: [Hosting Quartz online!](hosting.md)
 
-Having problems? Checkout our [FAQ and Troubleshooting guide](notes/troubleshooting.md).
+Having problems? Checkout our [FAQ and Troubleshooting guide](troubleshooting.md).

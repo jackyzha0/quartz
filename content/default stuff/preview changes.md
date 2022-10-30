@@ -34,4 +34,4 @@ make serve
 # View your site in a browser at http://localhost:1313/
 ```
 
-> 🌍 Step 5: [Hosting Quartz online!](notes/hosting.md)
+> 🌍 Step 5: [Hosting Quartz online!](hosting.md)

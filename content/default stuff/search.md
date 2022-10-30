@@ -38,7 +38,7 @@ Here's how to set it up.
 enableSemanticSearch: true
 operandApiKey: "0e733a7f-9b9c-48c6-9691-b54fa1c8b910"
 ```
-7. Make a commit and push your changes to GitHub. See the [[notes/hosting|hosting]] page if you haven't done this already.
+7. Make a commit and push your changes to GitHub. See the [[hosting|hosting]] page if you haven't done this already.
 	1. This step is *required* for Operand to be able to properly index your content. 
 	2. Head over to Dashboard > Objects and select the collection that you made earlier
 8. Press `(Cmd + K)` to open the omnibar again and select 'Create GitHub Repo'
