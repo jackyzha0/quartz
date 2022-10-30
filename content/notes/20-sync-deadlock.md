@@ -73,4 +73,41 @@ modern computers have special **atomic instructions**
 `CAS(0, a, n)`: If the value at address a is o, write the value n to address a and then return true; Otherwise, return false, where o and n are integers, and a is the address of a memory location.
 
 # CAS based LOCK function
-![slide|400](https://i.imgur.com/aeS3HGS.png)
+![slide|400mp](https://i.imgur.com/aeS3HGS.png)
+
+![locked producer and consumer|400](https://i.imgur.com/LQfdIVC.png)
+
+still has busy waiting problem
+
+# Semaphores
+tool for sync using atomic operations
+
+a semphore S is an integer variable that can only be accessed via two functions fo system calls
+
+``` c
+//Wait(S): 
+while S <=  do no op;
+S := S-1;
+
+//Signal(S):
+S := S + 1;
+```
+
+implementaion using CAS
+``` c
+//Wait(int *S): 
+again: 
+	T = *S;
+	if (T <= 0) goto again;
+	if(CAS(T, S, T-1) == false) goto again;
+//Signal(int *S): 
+again: 
+	T = *S;
+	if(CAS(T, S, T+1) == false) goto again;	
+
+```
+
+## for mutual exclusion
+![slide|400](https://i.imgur.com/fkBl7PR.png)
+
+
