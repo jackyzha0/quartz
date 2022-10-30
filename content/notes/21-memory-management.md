@@ -30,3 +30,5 @@ as we move from secondary to primary:
  - CPUrefers to this table to map between physical and logical address
 
 # paging for memory translation
+
+![address bidning for process space slide|400](https://i.imgur.com/N0iAw0z.png)
