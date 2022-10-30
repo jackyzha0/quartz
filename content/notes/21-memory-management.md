@@ -29,6 +29,4 @@ as we move from secondary to primary:
  - OS kernel creates a map from logical address to the physical address using a mapping table
  - CPUrefers to this table to map between physical and logical address
 
-
-
 # paging for memory translation
