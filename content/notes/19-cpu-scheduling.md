@@ -73,4 +73,58 @@ choose the job in the queue with the shortest burst time.
 ![SJF example|400](https://i.imgur.com/nzwBwjc.png)
 
 pro
-- prova
+- provably optimal average waiting time
+
+con
+- never know in advance what the length of next cpu burst will be
+- possibility of long processes never being executed
+	- starvation of process
+- not "fair"
+
+### predicting next burst time
+machine learning sorta - burst length predicted from previous CPU bursts using exponential average equation
+![example|400](https://i.imgur.com/pPydNXN.png)
+
+preemption example
+- p1 is executing
+- p2 arrived with burst time shorter that remainging bust time of P1
+	- non preemptive - P1 finishes
+	- preemptive - P2 takes CPU
+
+![example|400](https://i.imgur.com/oJbB3d4.png)
+
+## Priority scheduling
+- each process allocated a priotit when it arrives
+- cpu is allocated to the process with the highest priority
+
+low number is a higher priority
+
+- non preemptive - run processes until finished
+- preemptive - higher priority process should take over CPU when they arrive
+
+SJF is a type of priority scheduling where the priority is based on the estimated next cpu burst
+
+![example|400](https://i.imgur.com/lLhSjtY.png)
+
+
+## Starvation and aging
+starvation occurs when a proces waits indefinitely to be allocated the CPU
+
+aging - as a process waits its priority increases
+
+## Round Robin
+commonly used today
+
+designed for time sharing systems
+- small unit of time (time quantum) if defined
+- ready queue is treated as a circular list
+- cpu schedular goes round the ready queue, allocating the CPU to each process for a time interval up to 1 time quantum
+
+![slide|400](https://i.imgur.com/7swmOID.png)
+![example|400](https://i.imgur.com/Crl3xOz.png)
+
+choosing time quantum
+- if infinitely large - we have FCFS
+- if very small - we have processor sharing - lots of overhead for switching
+
+![pros/cons](https://i.imgur.com/aDemb5s.png)
