@@ -51,6 +51,8 @@ tags:
 - [18-processes-sharing-and-threads](notes/18-processes-sharing-and-threads.md)
 - [19-cpu-scheduling](notes/19-cpu-scheduling.md)
 - [20-sync-deadlock](notes/20-sync-deadlock.md)
+- [21-memory-management](notes/21-memory-management.md)
+- 
 
 
 # Archive
