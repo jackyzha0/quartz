@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc204
 - lecture
+sr-due: 2022-11-04
+sr-interval: 3
+sr-ease: 250
 ---
 
 interactive between device drivers and IO devices
@@ -49,8 +52,15 @@ Direct memory access
 
 IO performance
 - reduce context switches
-- reduce data copies in memory (normamly two: user mem)
+- reduce data copies in memory (normamly two: user memory, device/kernel memory): can mmap to share memory
 - reduce number of interrupts (e.g., using polling)
+	- it data is coming more frequently polling may be faster than interrupts
 - increase concurrency (e.g., DMA)
 - move data processing to hardware (e.g., network interface card)
 - balance CPU, memory system, bus, IO performance
+
+Zero-copy
+- avoid memory copy in IO data transfer
+- use dynamic mmap
+- copy data from deice directly to user spce e.g., remote direct memory access RDMA
+- pass packet buffer pointers between layers of TCP/IP protocol
