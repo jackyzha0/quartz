@@ -4,12 +4,15 @@ aliases:
 tags: 
 - cosc204
 - lecture
+sr-due: 2022-11-04
+sr-interval: 3
+sr-ease: 250
 ---
 
 why shedule?
 - keep cpu busy (cpu utilisation)
 - so processed dont hae to spend time waithing for the CPU
-	- even if cpu is always bust executing processses in different orders can change the average time spent in queue
+	- even if cpu is always busy executing processses in different orders can change the average time spent in queue
 - cpu burst
 	- ![](https://i.imgur.com/0eTDVVu.png)
 	- (diagram is old the timing will have changed)

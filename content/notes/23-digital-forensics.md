@@ -4,6 +4,9 @@ aliases:
 tags: 
 - comp210
 - lecture
+sr-due: 2022-11-11
+sr-interval: 10
+sr-ease: 290
 ---
 
 assit in legal/criminal proceedings

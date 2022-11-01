@@ -4,6 +4,9 @@ aliases:
 tags: 
 - info203
 - lecture
+sr-due: 2022-11-04
+sr-interval: 3
+sr-ease: 270
 ---
 
 [slides](https://blackboard.otago.ac.nz/bbcswebdav/pid-2827522-dt-content-rid-18612267_1/courses/INFO203_S1DNIE_2022/2022/INFO203_Lecture23.pdf
