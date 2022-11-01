@@ -45,7 +45,7 @@ implementing
 note: each page can be stored twice: loaded in main memory and in the backing store - these two copies need to remain consistent. i.e.., changes to one must be reflected in the other
 
 page faults
-- "trap" occurs when trying to access and invalid page
+- "trap" occurs when trying to access an invalid page
 - what the os does:
 	- check if caused by invalid memory access or unavailable page frame
 	- if nvalid mem access
