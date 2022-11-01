@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc204
 - lecture
+sr-due: 2022-11-04
+sr-interval: 3
+sr-ease: 250
 ---
 
 # Swapping and virtual memory
@@ -102,4 +105,6 @@ when a proces has too lttle frames it will have a lot of page faults.
 
 a thrashing process spending more time paging than executing
 
-the working set of a process is the number of pages a process needs in orde
+the working set of a process is the number of pages a process needs in order to execute without causing too many page faults
+
+this is how much memory we allocate to a process to avoid thrashing
