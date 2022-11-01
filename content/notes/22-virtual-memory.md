@@ -35,8 +35,43 @@ implementing
 - in paging scheme there are extra bits in the table to provide more information
 	- valid/invlid bit
 	- protection bits
-- in demand paging the mem manager 
+- in demand paging the mem manager uses valid/invalid bit to tell if a page is loaded
+
+![example|400](https://i.imgur.com/JeQxF4H.png)
+
+note: each page can be stored twice: loaded in main memory and in the backing store - these two copies need to remain consistent. i.e.., changes to one must be reflected in the other
+
+page faults
+- "trap" occurs when trying to access and invalid page
+- what the os does:
+	- check if caused by invalid memory access or unavailable page frame
+	- if nvalid mem access
+		- terminate process
+	- else
+		- find a free frame
+		- read the page from the disk to the free frame
+		- modify the page table
+		- restart the instruction
+	- VMAs are searched to find valid areas or memory access
+
 # page replacement algorithms
+If main memory is full when a page fault is generated, one of the pages currently being held needs to be replaced.
+
+This means an extra step in the operating system’s page-servicing routine. 
+- Find the desired page on the backing store (secondary storage). 
+- Find a free frame of memory
+	- If there’s a free frame in memory, use it
+	- Otherwise: Select a frame to swap out
+	- Save it to the backing store (in case it’s changed) 
+	- Proceed as before.
+
+FIFO
+- replace the oldest page
+- pro
+	- simple to understand/implement
+- con
+	- maybe first page to be ref'd is often being referenced
+	- belady's anomaly
 
 # frame allocation
 
