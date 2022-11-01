@@ -29,7 +29,13 @@ extends main memory to secondary storage, and allows dynamic loading of processe
 - mem manager in OS kernel controls loading pages of the process into main mem from secondary storage
 
 # Demand paging
+dont load a page into mem until it is referenced by CPU
 
+implementing
+- in paging scheme there are extra bits in the table to provide more information
+	- valid/invlid bit
+	- protection bits
+- in demand paging the mem manager 
 # page replacement algorithms
 
 # frame allocation
