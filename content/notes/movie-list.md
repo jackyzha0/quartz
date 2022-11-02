@@ -17,7 +17,7 @@ Top movies
 10. in the mood for love
 
 To watch
-- wendy and lucy
+- woman in the dunes
 - bullitt
 - Windfall
 - salo
@@ -25,11 +25,9 @@ To watch
 - fistful of dollars
 - magnificent seven
 - godfather
-- the passion of joan of arc
 - paris texas
 - the deer hunter
 - rio bravo
-- le samourai
 - schindlers list
 
 tarantinos faves
