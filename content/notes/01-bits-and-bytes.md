@@ -11,7 +11,7 @@ sr-ease: 230
 
 [memory](notes/memory.md)
 [unicode](notes/unicode.md)
-[ASCII](notes/ASCII.md)
+[characters](notes/characters.md)
 [digital-data](notes/digital-data.md)
 
 

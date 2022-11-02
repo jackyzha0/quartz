@@ -11,8 +11,7 @@ tags:
 [page](https://cosc204.cspages.otago.ac.nz)
 
 # Notes
-- [ASCII](notes/ASCII.md)
-- [unicode](notes/unicode.md)
+- [characters](notes/characters.md)
 - [digital-data](notes/digital-data.md)
 - [memory](notes/memory.md)
 - [boolean-equations](notes/boolean-equations.md)
