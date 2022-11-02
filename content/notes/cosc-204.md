@@ -16,7 +16,7 @@ tags:
 - [digital-data](notes/digital-data.md)
 - [memory](notes/memory.md)
 - [boolean-equations](notes/boolean-equations.md)
-- [combinatorial-logic-circuit](notes/combinatorial-logic-circuit.md)
+- [combinatorial-logic](notes/combinatorial-logic.md)
 - [logic-gates](notes/logic-gates.md)
 - [transistors](notes/transistors.md)
 - [demultiplexor](notes/demultiplexor.md)

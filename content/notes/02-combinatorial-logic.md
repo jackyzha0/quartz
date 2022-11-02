@@ -14,7 +14,7 @@ sr-ease: 250
 
 
 - [transistors](notes/transistors.md)
-- [combinatorial-logic-circuit](notes/combinatorial-logic-circuit.md)
+- [combinatorial-logic](notes/combinatorial-logic.md)
 - [boolean-equations](notes/boolean-equations.md)
 - [logic-gates](notes/logic-gates.md)
 - [demultiplexor](notes/demultiplexor.md)

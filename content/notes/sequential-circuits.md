@@ -6,7 +6,7 @@ tags:
 ---
 
 
-[combinatorial-logic-circuits](notes/combinatorial-logic-circuit.md) always  produce the same outputs given the same input. Sequential curcuits on the other hand, produce different outputs depending on past history and the inputs. 
+[combinatorial-logic-circuits](notes/combinatorial-logic.md) always  produce the same outputs given the same input. Sequential curcuits on the other hand, produce different outputs depending on past history and the inputs. 
 
 ![combinatorial vs sequential|200](https://i.imgur.com/GbfAZ4c.png)
 
