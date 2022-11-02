@@ -28,9 +28,6 @@ tags:
 - [6809-addressing-modes](notes/6809-addressing-modes.md)
 - [6809](notes/6809.md)
 
-
-
-
 # Lectures
 - [01-bits-and-bytes](notes/01-bits-and-bytes.md)
 - [02-combinatorial-logic](notes/02-combinatorial-logic.md)
@@ -56,9 +53,6 @@ tags:
 - [22-virtual-memory](notes/22-virtual-memory.md)
 - [23-IO-systems](notes/23-IO-systems.md)
 - [24-protection-of-file-systems](notes/24-protection-of-file-systems.md)
-- 
-
-# Archive
 
 # Info
 By completion of this paper students are expected to:
@@ -68,4 +62,3 @@ By completion of this paper students are expected to:
 	- Be able to construct programs in C and understand its role as a systems programming language
 	- Understand core operating systems algorithms such as process scheduling and resource allocation and management
 	- Be aware of the importance of efficient use of resources from computational, economic, and environmental viewpoints
-
