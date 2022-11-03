@@ -4,9 +4,9 @@ aliases:
 tags: 
 - conp210
 - lecture
-sr-due: 2022-11-04
-sr-interval: 3
-sr-ease: 250
+sr-due: 2022-11-15
+sr-interval: 11
+sr-ease: 270
 ---
 
 # Intrusion detection cont.

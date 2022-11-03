@@ -3,9 +3,9 @@ title: "07-business-process-modelling"
 tags: 
 - info201 
 - lecture
-sr-due: 2022-11-02
-sr-interval: 111
-sr-ease: 270
+sr-due: 2023-11-16
+sr-interval: 377
+sr-ease: 290
 ---
 
 - understand core conepts related to business process mondelling
