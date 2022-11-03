@@ -22,7 +22,7 @@ struct <name>{
 } <variable>;
 
 struct point_2d {
-	double x;
+	double x;e
 	double y;
 } point;
 ```
