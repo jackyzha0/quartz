@@ -18,7 +18,6 @@ they are arrangges logically in sequence
 
 files need to be interpreted. THis is done by applications. e.g., powerpoint, ms paint, etc.
 
-
 - the OS provides a logical unit of storage for the user
 	- the user refers to files
 	- the operating system maps files onto regions of the storage
