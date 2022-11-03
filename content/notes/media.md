@@ -24,7 +24,10 @@ tags:
 - future
 	- actual air david berman
 	- woman in the dunes
-	- 
+	- the second sex
+	- sophies world
+	- cryptonomicon
+	- on the trail of genghis khan
 
 # Podcasts
 - [philosophize-this](notes/philosophize-this.md)
