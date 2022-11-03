@@ -60,7 +60,7 @@ these issues have been solved using block allocaiton instead of continuous alloc
 ## system calls for file systems
 - open close, read, write, ioctl, etc
 
-`ssize_t write(int fd, const, void *buf, size_t count)`
+`ssize_t write(int fd, const void *buf, size_t count)`
 	- fd - file descriptor
 	- write up to count butes from the buffer pointed buf to the file referred to by the file descriptor
 	- returns -1 if error. and errno is set
@@ -81,7 +81,6 @@ these issues have been solved using block allocaiton instead of continuous alloc
 	- the hardware metaphor is a disk
 
 you can give *advice* to the OS about how to read the file by specifying sequential or direct
-
 
 # directory structure
 
