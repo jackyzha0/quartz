@@ -73,3 +73,4 @@ tags:
 - 11/22
 	- wendy and lucy
 	- the passion of joan of arc
+	- ikiru
