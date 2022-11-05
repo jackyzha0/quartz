@@ -1,8 +1,0 @@
-{{ if (and $.Site.Data.config.enableToc (ne .Params.enableToc false)  (gt .WordCount 150)) }}
-<aside class="mainTOC">
-    <details >
-        <summary> Zawartość tej strony</summary>
-        {{ .TableOfContents }}
-    </details>
-</aside>
-{{end}}
