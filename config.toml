@@ -1,7 +1,7 @@
 baseURL = "https://brain.overment.com/"
 languageCode = "en-us"
-googleAnalytics = ""
 pygmentsUseClasses = true
+googleAnalytics = "G-XYFD95KB4J"
 relativeURLs = false
 disablePathToLower = true
 ignoreFiles = [
@@ -21,6 +21,7 @@ pluralizelisttitles = false
         ordered = true
         startLevel = 2
     [markup.highlight]
+        noClasses = false
         anchorLineNos = false
         codeFences = true
         guessSyntax = true
@@ -30,4 +31,8 @@ pluralizelisttitles = false
         lineNos = true
         lineNumbersInTable = true
         style = "dracula"
-        tabWidth = 4
+    [frontmatter]
+        lastmod = ["lastmod", ":git", "date", "publishDate"]
+        publishDate = ["publishDate", "date"]
+    [markup.goldmark.renderer]
+        unsafe = true

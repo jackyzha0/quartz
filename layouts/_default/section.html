@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ .Lang }}">
 {{ partial "head.html" . }}
 
 <body>
@@ -12,13 +12,14 @@
         <div class="spacer"></div>
     </header>
     <article>
-        <h1>All {{.Title}}</h1>
+        <h1>{{ i18n "all_posts" . }}</h1>
+        {{with .Params.description}}
+            <p>{{.}}</p>
+        {{end}}
         {{partial "page-list.html" .Paginator.Pages.ByLastmod.Reverse }}
         {{ template "_internal/pagination.html" .}}
     </article>
     {{partial "contact.html" .}}
 </div>
-{{partial "popover.html" .}}
 </body>
-
 </html>

@@ -1,13 +1,17 @@
+
+
 <hr/>
-{{partial "graph.html" .}}
-<div class="page-end">
-<!--    <div class="backlinks-container">-->
-<!--        {{partial "backlinks.html" .}}-->
-<!--    </div>-->
+
+{{if $.Site.Data.config.enableFooter}}
+<div class="page-end" id="footer">
+    <div class="backlinks-container">
+        {{partial "backlinks.html" .}}
+    </div>
     <div>
 
     </div>
 </div>
+{{end}}
 
     <script defer>
         (() => {
@@ -37,3 +41,4 @@
     {{partial "newsletter.html" .}}
 
 
+{{partial "contact.html" .}}

@@ -1,0 +1,65 @@
+[404_message]
+other = "يبدو أنك ضللت الطريق. هذه الصفحة غير موجودة (أو قد تكون خاصة)."
+
+[404_back]
+other = "↳ العودة للرئيسية."
+
+[all_posts]
+other = "كل منشورات {{.Title}}"
+
+[last_updated]
+other = "آخر تعديل"
+
+[notes_count]
+other = "ملاحظات بهذه التسمية"
+
+[first_10]
+other = "(تعرض أول 10 نتائج فقط)"
+
+[tag]
+other = "التسمية"
+
+[backlinks]
+other = "الروابط الخلفية"
+
+[no_backlinks]
+other = "لا توجد روابط خلفية"
+
+[home]
+other = "الرئيسية"
+
+[light_mode]
+other = "السمة الفاتحة"
+
+[dark_mode]
+other = "السمة الداكنة"
+
+[edit_source]
+other = "تعديل المصدر"
+
+[interactive_graph]
+other = "المخطط التفاعلي"
+
+[search]
+other = "البحث"
+
+[search_icon]
+other = "أيقونة البحث"
+
+[icon_search]
+other = "أيقونة فتح نافذة البحث"
+
+[recent_notes]
+other = "الملاحظات اﻷخيرة"
+
+[first_3_notes]
+other = "أول 3 {{ .notes }}"
+
+[search_for_something]
+other = "ابحث عن شيء ما..."
+
+[toc]
+other = "الفهرس"
+
+[copyright]
+other = "صُمم بواسطة {{ .name }} باستخدام <a href='https://github.com/jackyzha0/quartz'>كوارتز</a>، {{ .year }} ©"
