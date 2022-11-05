@@ -1,0 +1,16 @@
+<<<<<<< HEAD
+{{ if (and $.Site.Data.config.enableToc (ne .Params.enableToc false)  (gt .WordCount 150)) }}
+<aside class="mainTOC">
+    <details >
+        <summary> Zawartość tej strony</summary>
+=======
+{{ $hasHeaders := gt (len (findRE "<h\\d.*?>(.|\n)*?</h\\d>" .Content)) 0 }}
+{{ if (and $.Site.Data.config.enableToc (ne .Params.enableToc false) $hasHeaders) }}
+<aside class="mainTOC">
+    <details {{ if $.Site.Data.config.openToc }}open {{ end }}>
+        <summary>{{ i18n "toc" }}</summary>
+>>>>>>> d56a58044dcc619f6e26674316e7c38fc8ace8c4
+        {{ .TableOfContents }}
+    </details>
+</aside>
+{{end}}

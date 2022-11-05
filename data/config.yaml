@@ -1,0 +1,26 @@
+name: Adam Gospodarczyk
+enableToc: false
+aopenToc: false
+enableLinkPreview: false
+enableLatex: false
+openToc: false
+enableCodeBlockTitle: true
+enableCodeBlockCopy: true
+enableCallouts: true
+enableSPA: true
+enableFooter: true
+enableContextualBacklinks: true
+enableRecentNotes: false
+enableGitHubEdit: true
+GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
+enableSemanticSearch: false
+operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
+description:
+  This is where I share everything I know with you. I created it primarily for myself, so that I can easily return to all the material posted here. At the same time, I thought you might find it all equally valuable to you.
+page_title:
+  "brain.overment.com"
+links:
+  - link_name: Twitter
+    link: https://twitter.com/_overment
+  - link_name: Github
+    link: https://github.com/iceener

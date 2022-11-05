@@ -31,3 +31,4 @@ You can search all the information contained here with the help of the search en
 This entire project is based on the concept of the so-called [digital garden](https://joelhooks.com/digital-garden). In my case, I've been testing a combination of Notion and Super.so and Github integration with GitBook. For a while I used the Obsidian Publish function and currently I generate the whole thing in Hugo based on the Quartz project [Quartz](https://quartz.jzhao.xyz/) 
 
 > **Important!** If you find a mistake in some definitions or want to suggest a change, I will be very grateful for it. You can do this with a Pull Request sent to the [of this repository](https://github.com/iceener/brain), [reporting Issue](https://github.com/iceener/brain/issues/new) or simply by emailing me at [e-mail](mailto:adam@overment.com).
+

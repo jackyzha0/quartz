@@ -1,0 +1,11 @@
+<header>
+    {{ $config := cond (eq $.Site.Language.Lang "en") "config" (printf "config.%s" $.Site.Language.Lang) }}
+    <h1 id="page-title"><a href="{{ "" | absLangURL }}">{{ ( index $.Site.Data $config ).page_title | default $.Site.Data.config.page_title }}</a></h1>
+    <div class="spacer"></div>
+    <div id="search-icon">
+      <p>{{ i18n "search" }}</p>
+      <svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">{{ i18n "search_icon" }}</title><desc id="desc">{{ i18n "icon_search" }}</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg>
+    </div>
+    {{partial "darkmode.html" .}}
+</header>
+
