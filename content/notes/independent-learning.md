@@ -14,3 +14,4 @@ tags:
 - [.NET](notes/dotnet.md)
 - [programatic-evolution](notes/programatic-evolution.md)
 - [behaviour-driven-development](notes/behaviour-driven-development.md)
+- [brutalist-architecture](notes/brutalist-architecture.md)
