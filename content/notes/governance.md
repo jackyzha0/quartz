@@ -14,5 +14,12 @@ Governance types:
 	- Direct (each user takes part in the governance model by directly affecting every decision. Votes determine the actions)
 	- Representative (user vote to choose a representative who makes decisions on their behalf)
 - Blockchain (managing the ever changing state of the blockchain's needs nand demands)
-	- Off-chain
-	- On-Chain
+	- Off-chain/On-Chain
+	- Governance of the infrastructure/govrenance by the infrastructure
+
+# Block chain governance
+Four central parties
+- Core developers
+- Node operatoes
+- Token holders
+- Blockchain team
