@@ -102,4 +102,21 @@ content of transaction
 	- remainder of input, after subtracting output, is transaction fee
 - can search back in time to find a transaction
 	- either genesis block (50 bitcoin) ir a coinbase mining reward
-	- 
+
+main node roles
+- network - all nodes help routing with p2p protocol
+- wallet - manage keys that show ownership of transactions
+- miner - participate in proof of work block verifications
+- blockchain - can carry full blockchain
+
+bitcoin core refereence client contains all four functions
+- miners (may) leave out wallet
+- lightweight wallet only has wallet and network components
+- some nodes store blockchain but do not do mining
+
+# Lecture 9
+![merkle tree|300](https://i.imgur.com/umkxpSZ.png)
+
+Merkle tree
+ - hash value compted for each data block
+ - tree built with parent
