@@ -69,4 +69,37 @@ distributed consensus in bitcoin
 - a wallet is a hash of a public key a client generates
 
 proof of work
-- 
+- to protect from sybil attacks it is computationaly costly to add transactions
+- reward for incorporative a new transaction
+- to validate a transaction
+	- check for double spending internally
+	- make merkle tree over transaction hashes
+	-  to close block, apply proof of work algorithm
+- must be easy to check and hard to compute
+	- bitcoin: find a nonce that when appended to the block of transactions gives a hash value less than the target (SHA-256, target is dynamic ~10min to compute)
+	- block has is included in next block
+
+miners
+- validate blocks
+- reward of 6.25 bitcoin
+- ability to levy fees
+- broadcast communication between miners uses a p2p protocol
+- variance in mining time is larger than message broadcast time - helps serialisation
+- possible for multiple answers to be broadcast
+	- nodes who 'hear' multiple solutions keep them all
+	- subsequent mining is done on the longest fork (parallel forks tend to die quickly)
+
+approving transactions
+- transaction is recorded in a block
+- relevant block must be in longest blockchain and five for more blocks must follow it
+- transaction clearing delay (in effect)
+
+content of transaction
+- no persistens coins: serial numbers are transaction hashes
+- transaction specifies number of inputs and outputs, 
+	- inputs usually previous transactions
+	- can ouput back to yourself, thus pocketing 'change'
+	- remainder of input, after subtracting output, is transaction fee
+- can search back in time to find a transaction
+	- either genesis block (50 bitcoin) ir a coinbase mining reward
+	- 
