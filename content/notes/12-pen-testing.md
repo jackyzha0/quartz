@@ -4,14 +4,13 @@ aliases:
 tags: 
 - comp210
 - lecture
-sr-due: 2022-11-12
-sr-interval: 8
+sr-due: 2022-12-11
+sr-interval: 26
 sr-ease: 250
 ---
 
 # News
 - DOC mt cook ransomware
-
 
 # Pen Testing
 intrustion detection, system monitoring, penetration testing

@@ -4,6 +4,9 @@ aliases:
 tags: 
 - cosc204
 - lecture
+sr-due: 2022-11-18
+sr-interval: 3
+sr-ease: 250
 ---
 
 # protection model
