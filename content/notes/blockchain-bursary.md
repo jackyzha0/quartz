@@ -15,6 +15,7 @@ tags:
 - [decentralized-autonomous-organization](notes/decentralized-autonomous-organization.md)
 - [DeFi](notes/DeFi.md)
 - [dApps](notes/dApps.md)
+- [sybil-problem](notes/sybil-problem.md)
 
 # Reading
 - [ ] https://en.wikipedia.org/wiki/Cyberocracy

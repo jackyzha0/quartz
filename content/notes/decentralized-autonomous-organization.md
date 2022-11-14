@@ -20,7 +20,10 @@ A DeFi protocol with $1B+ of assets governed on-chain by 10,000+ token holders i
 E.g., [The DAO](https://en.wikipedia.org/wiki/The_DAO_(organization))
 
 # Social DAOs
-
+e.g.,
+- seed club
+- FWB
+- kramos
 
 # My opinions
 sounds like extreme democracy basically
