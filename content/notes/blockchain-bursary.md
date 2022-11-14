@@ -18,6 +18,7 @@ tags:
 - [DeFi](notes/DeFi.md)
 - [dApps](notes/dApps.md)
 - [sybil-problem](notes/sybil-problem.md)
+- [smart-contracts](smart-contracts)
 
 # Reading
 - [ ] https://en.wikipedia.org/wiki/Cyberocracy
