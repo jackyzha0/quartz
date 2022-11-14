@@ -31,6 +31,6 @@ users within the chain directly vote on decisions to be made, changes are then m
 
 some say this method is dangerous [^1] because it uses a one-vote-per-person system, and therefore is vulnerable to the [sybil-problem](notes/sybil-problem.md). To counteract this some use a one-vote-per-coin system via [proof-of-stake](proof-of-stake). However this means that people/orgs with more coin have more weight in their votes — this is at best a plutocracy
 
-blockchains are experimental software. they are evolving rapidly. There already exists good models for governing hard technical projects: the Linux Foundation and the IETF. demoracies are not suited for fast, 
+blockchains are experimental software. they are evolving rapidly. There already exists good models for governing hard technical projects: the Linux Foundation and the IETF. demoracies are not suited for fast, robust, change — they waste a lot of time and effort on campaigns, etc.
 
 [^1]: https://hackernoon.com/blockchains-should-not-be-democracies-14379e0e23ad

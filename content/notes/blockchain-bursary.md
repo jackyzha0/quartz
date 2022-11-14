@@ -22,6 +22,9 @@ tags:
 - [ ] https://en.wikipedia.org/wiki/Government_by_algorithm
 - [ ] https://coopahtroopa.mirror.xyz/_EDyn4cs9tDoOxNGZLfKL7JjLo5rGkkEfRa_a-6VEWw
 - [ ] https://101blockchains.com/permissioned-blockchain/
+- [ ] http://eyler.freeservers.com/JeffPers/jefpco55.htm?ref=hackernoon.com
+- [ ] https://medium.com/@Vlad_Zamfir/against-on-chain-governance-a4ceacd040ca
+- [ ] https://medium.com/@FEhrsam/blockchain-governance-programming-our-future-c3bfe30f2d74
 
 # Log
 - 14/11
