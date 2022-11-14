@@ -10,6 +10,9 @@ tags:
 - confirm understanding of permissioned vs permissionless blockchain
 - My understanding of the issue is that permissioned blockchains have no incentives for participant to validate transactions. So I am trying to create a permissioned blockchain with these incentives
 - who are the nodes in a closed blockchain, 
+- why do closed blockchains need POW/POS are we assuming there are malicious nodes in a closed blockchain?
+- are we looking for something like a closed blockchain for tracking a parcel where we can authorise random people to join the blockchain and validate transactions without rewarding them with a cryptocurrency.
+- 
 
 # Notes
 - [412-lectures](notes/412-lectures.md)
@@ -28,7 +31,7 @@ tags:
 - [ ] http://eyler.freeservers.com/JeffPers/jefpco55.htm?ref=hackernoon.com
 - [ ] https://medium.com/@Vlad_Zamfir/against-on-chain-governance-a4ceacd040ca
 - [ ] https://medium.com/@FEhrsam/blockchain-governance-programming-our-future-c3bfe30f2d74
-- [ ] 
+- [ ] [https://doi.org/10.1016/j.ipm.2021.102556](https://doi-org.ezproxy.otago.ac.nz/10.1016/j.ipm.2021.102556 "Persistent link using digital object identifier")
 
 # Log
 - 14/11
