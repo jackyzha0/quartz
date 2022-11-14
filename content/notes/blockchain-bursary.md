@@ -17,9 +17,10 @@ tags:
 - [dApps](notes/dApps.md)
 
 # Reading
-- https://en.wikipedia.org/wiki/Cyberocracy
-- https://en.wikipedia.org/wiki/Government_by_algorithm
-- https://coopahtroopa.mirror.xyz/_EDyn4cs9tDoOxNGZLfKL7JjLo5rGkkEfRa_a-6VEWw
+- [ ] https://en.wikipedia.org/wiki/Cyberocracy
+- [ ] https://en.wikipedia.org/wiki/Government_by_algorithm
+- [ ] https://coopahtroopa.mirror.xyz/_EDyn4cs9tDoOxNGZLfKL7JjLo5rGkkEfRa_a-6VEWw
+- [ ] https://101blockchains.com/permissioned-blockchain/
 
 # Log
 - 14/11
