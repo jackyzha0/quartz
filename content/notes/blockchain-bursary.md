@@ -8,6 +8,7 @@ tags:
 # Questions for David	
 - what is on-chain vs off-chain governance
 - confirm understanding of permissioned vs permissionless blockchain
+- My understanding of the issue is that permissioned blockchains have no incentives for participant to validate transactions. So I am trying to create a permissioned blockchain with these incentives
 
 # Notes
 - [412-lectures](notes/412-lectures.md)
