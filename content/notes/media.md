@@ -21,6 +21,8 @@ tags:
 	- What if?
 	- The age of reason - Sartre
 	- Jane Eyre
+	- a midsummer nights dream
+	- the second sex
 - future
 	- actual air david berman
 	- woman in the dunes

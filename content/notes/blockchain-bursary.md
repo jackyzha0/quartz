@@ -11,6 +11,13 @@ tags:
 
 # Notes
 - [412-lectures](notes/412-lectures.md)
+- [governance](notes/governance.md)
+- [decentralized-autonomous-organization](notes/decentralized-autonomous-organization.md)
+
+
+# Reading
+- https://en.wikipedia.org/wiki/Cyberocracy
+- https://en.wikipedia.org/wiki/Government_by_algorithm
 
 # Log
 - 14/11

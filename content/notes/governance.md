@@ -16,7 +16,7 @@ Governance types:
 - Blockchain (managing the ever changing state of the blockchain's needs nand demands)
 	- Off-chain/On-Chain
 		- off-chain/soft- similar to institutions - a group of individuals trusted by the community form a group which is responsible for the blockchain's governance and well-being
-		- on - users within the chin, directly vote on decisions to be made, changes are then made automatically depending on the outcome - this all happens intra-protocol 
+		- on (self governing) - users within the chin, directly vote on decisions to be made, changes are then made automatically depending on the outcome - this all happens intra-protocol 
 	- Governance of the infrastructure/govrenance by the infrastructure
 
 # Block chain governance
@@ -25,3 +25,4 @@ Four central parties
 - Node operatoes
 - Token holders
 - Blockchain team
+
