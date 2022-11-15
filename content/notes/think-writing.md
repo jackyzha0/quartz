@@ -15,3 +15,7 @@ From the abstract - "closed blockchains are considered by some to be insufficien
 "closed blockchain system that encodes voting rules about self-governance" - this will allow users to come and go at will - to a degree. There must be some limiting factor because otherwise this is just an open blockchain.
 
 I need to lower my expectation for the rate of progess I think. If I can establish a clear goal by the end of the week I will be happy. 
+
+16/11
+
+so is it a closed blockchain with a set number of participants (or a set of requirements for participants?) who can join (what does join mean in this context) and leave at will. How are all the different companies on the same blockchain.  
