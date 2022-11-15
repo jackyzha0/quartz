@@ -11,8 +11,8 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - what actually is hyperledger fabric? Is it a closed blockchain that different groups can run independently for their own use-case? Or is it one single closed blockchain that many different groups participate in.
 
 
-
 # Notes
+- [think-writing](notes/think-writing.md)
 - [412-lectures](notes/412-lectures.md)
 - [hyperledger-fabric](notes/hyperledger-fabric.md)
 - [governance](notes/governance.md) 
@@ -21,8 +21,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [dApps](notes/dApps.md)
 - [sybil-problem](notes/sybil-problem.md)
 - [smart-contracts](smart-contracts)
-- [against on chain governance](notes/against-on-chain-governance)
-- 
+
 # Reading
 - https://en.wikipedia.org/wiki/Cyberocracy
 - https://en.wikipedia.org/wiki/Government_by_algorithm
