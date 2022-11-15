@@ -12,4 +12,6 @@ From the abstract - "closed blockchains are considered by some to be insufficien
 
 "insufficiently decentralised" - closed blockchain are regulated by a central authority who decides who can join and leave the network. 
 
+"closed blockchain system that encodes voting rules about self-governance" - this will allow users to come and go at will - to a degree. There must be some limiting factor because otherwise this is just an open blockchain.
+
 I need to lower my expectation for the rate of progess I think. If I can establish a clear goal by the end of the week I will be happy. 
