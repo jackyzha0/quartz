@@ -35,6 +35,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://vitalik.ca/general/2017/12/17/voting.html
 - https://bitcoin.org/bitcoin.pdf
 - https://medium.com/@WayneVaughan/open-vs-closed-blockchains-let-s-end-this-madness-8313e4095ead
+- https://medium.com/good-audience/blockchain-governance-101-eea5201d7992
 
 # Log
 - 14/11
