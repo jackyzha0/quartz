@@ -5,7 +5,7 @@ tags:
 - project
 ---
 
-# Questions for David	
+# Questions	
 - next meeting 2pm thursday
 - what is on-chain vs off-chain governance
 - confirm understanding of permissioned vs permissionless blockchain

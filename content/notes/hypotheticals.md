@@ -1,4 +1,3 @@
----
 title: "hypotheticals"
 aliases: 
 tags: 

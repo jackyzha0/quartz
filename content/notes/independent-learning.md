@@ -9,7 +9,7 @@ tags:
 - [Networks](notes/networks.md)
 
 # Stand Alone Notes
-- [propogation-of-ideas](notes/propogation-of-ideas.md)
+- [propagation-of-ideas](notes/propagation-of-ideas.md)
 - [model-view-controller-pattern](notes/model-view-controller-pattern.md)
 - [.NET](notes/dotnet.md)
 - [programatic-evolution](notes/programatic-evolution.md)
