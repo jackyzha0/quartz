@@ -12,7 +12,6 @@ they seek to
 - flatten hirarchy and create fluid workstreams
 - allocate reources to achieve a core mission
 
-
 A Telegram group with 10 members and 1 ETH is a DAO.
 
 A DeFi protocol with $1B+ of assets governed on-chain by 10,000+ token holders is a DAO.
@@ -24,9 +23,6 @@ e.g.,
 - seed club
 - FWB
 - kramos
-
-# My opinions
-sounds like extreme democracy basically
 
 # Sources
 - https://coopahtroopa.mirror.xyz/_EDyn4cs9tDoOxNGZLfKL7JjLo5rGkkEfRa_a-6VEWw
