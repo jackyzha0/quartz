@@ -35,23 +35,26 @@
       {{$inner := . | strings.TrimPrefix "[[" | strings.TrimSuffix "]]" }}
       <!-- split from alias -->
       {{$split := split $inner "|"}}
+
       <!-- separate link path -->
       {{$path := index $split 0}}
       {{$reference := split $path "#"}}
       <!-- path with heading link (i.e. $block) removed -->
       {{$title := index $reference 0}}
-      <!-- heading link -->
-      {{$block := default "" (index $reference 1)}}
-      {{$block = strings.TrimRight "/" (cond (eq $block "") $block (printf "#%s" $block)) | urlize | lower}}
-      {{$href := strings.TrimRight "/" ($page.GetPage $title).RelPermalink}}
+
       <!-- if alias given, use alias, else title -->
       {{$display := default $title (index $split 1)}}
-      <!-- ADDED LINE TO REMOVE SUBFOLDER FROM TITLE: -->
+      <!-- REMOVE SUBFOLDER FROM TITLE -->
       {{$display := index (last 1 (split $display "/")) 0}}
-      {{if not $href}}
-        {{$link := printf "<a class=\"internal-link broken\">%s</a>" $display}}
+
+      {{if eq (string ($page.GetPage $title)) "nopPage"}}
+        {{$path := index $split 0 | relURL}}
+        {{$link := printf "<a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a>" $path $display}}
         {{$content = replace $content . $link}}
       {{else}}
+        {{$block := default "" (index $reference 1)}}
+        {{$block = strings.TrimRight "/" (cond (eq $block "") $block (printf "#%s" $block)) | urlize | lower}}
+        {{$href := strings.TrimRight "/" ($page.GetPage $title).RelPermalink}}
         {{$fullhref := printf "%s%s" $href $block }}
         {{$link := printf "<a href=\"%s\" rel=\"noopener\" class=\"internal-link\" data-src=\"%s\">%s</a>" $fullhref $href $display}}
         {{$content = replace $content . $link}}
