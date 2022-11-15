@@ -39,5 +39,8 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 	- starting today
 	- reviewing 412 lectures 7 and 9
 	- reading https://101blockchains.com/blockchain-governance/
+- 15/12
+	- meeting with David
+	- 
 
 # Sources
