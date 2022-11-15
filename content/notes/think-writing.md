@@ -30,4 +30,8 @@ https://medium.com/@WayneVaughan/open-vs-closed-blockchains-let-s-end-this-madne
 https://developer.oracle.com/learn/technical-articles/permissioned-blockchain
 - Permissioned — Open, decentralized networks with universal consensus validation; anyone can join the network and possess a copy of the ledger
 
-https://www.mobycrypt.com/do-we-need-closed-blockchains/
+https://www.mobycrypt.com/do-we-need-closed-blockchains/ (badly written) Gives an examle of a closed blockchain IBM food trust which tracks the history (changes, as transactions within blocks?) of the food from beginning to end. The members of the supply chain process are the participants in the blockchain. 
+
+So within a supply chain blockchain, each change in the state of an item is recorded as a "transaction" and appended to the blockchain. These transactions are stored indefinitely? Then we can go back and look through the history of that item. How can you view the history of the item. I thought all previous transactions were stored as a hash. I guess we have the key to decrypt it?
+
+From the bitcoin whitepaper: ![](https://i.imgur.com/VutNw5Y.png) Do closed blockchains look the same?
