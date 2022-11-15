@@ -6,17 +6,17 @@ tags:
 ---
 
 # Questions for David	
+- next meeting 2pm thursday
 - what is on-chain vs off-chain governance
 - confirm understanding of permissioned vs permissionless blockchain
 - My understanding of the issue is that permissioned blockchains have no incentives for participant to validate transactions. So I am trying to create a permissioned blockchain with these incentives
 - who are the nodes in a closed blockchain, 
 - why do closed blockchains need POW/POS are we assuming there are malicious nodes in a closed blockchain?
 - are we looking for something like a closed blockchain for tracking a parcel where we can authorise random people to join the blockchain and validate transactions without rewarding them with a cryptocurrency.
-- 
 
 # Notes
 - [412-lectures](notes/412-lectures.md)
-- [governance](notes/governance.md)
+- [governance](notes/governance.md) 
 - [decentralized-autonomous-organization](notes/decentralized-autonomous-organization.md)
 - [DeFi](notes/DeFi.md)
 - [dApps](notes/dApps.md)
