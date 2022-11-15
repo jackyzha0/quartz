@@ -24,4 +24,9 @@ https://medium.com/wavesprotocol/what-closed-blockchain-is-for-190534b5951 This 
 
 Didn't really answer my above questions and It also seems like all the "new" thing proposed by the article have already been done without blockchain technology. However it does seem like the data is not sequential and works just like a regular database. It's stil not super clear though. 
 
+https://medium.com/@WayneVaughan/open-vs-closed-blockchains-let-s-end-this-madness-8313e4095ead This artivle from 2015 seeks to clear up the terms used to talk about open and closed blockchains. It's defines closed as:
+>"A private network that maintains a shared record of transactions. The network is accessible only to those who have permission and transactions can be edited by administrators. Examples: [Hyperledger](http://hyperledger.com/), [Ripple](https://ripple.com/), [Eris](https://erisindustries.com/)"
 
+https://developer.oracle.com/learn/technical-articles/permissioned-blockchain
+- Permissioned — Open, decentralized networks with universal consensus validation; anyone can join the network and possess a copy of the ledger
+- 
