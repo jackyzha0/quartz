@@ -31,7 +31,9 @@ tags:
 - [ ] http://eyler.freeservers.com/JeffPers/jefpco55.htm?ref=hackernoon.com
 - [ ] https://medium.com/@Vlad_Zamfir/against-on-chain-governance-a4ceacd040ca
 - [ ] https://medium.com/@FEhrsam/blockchain-governance-programming-our-future-c3bfe30f2d74
-- [ ] [https://doi.org/10.1016/j.ipm.2021.102556](https://doi-org.ezproxy.otago.ac.nz/10.1016/j.ipm.2021.102556 "Persistent link using digital object identifier")
+- [ ] https://doi.org/10.1016/j.ipm.2021.102556
+- [ ] https://vitalik.ca/general/2017/12/17/voting.html
+- [ ] https://bitcoin.org/bitcoin.pdf
 
 # Log
 - 14/11
