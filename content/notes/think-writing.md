@@ -37,3 +37,10 @@ So within a supply chain blockchain, each change in the state of an item is reco
 From the bitcoin whitepaper: ![](https://i.imgur.com/VutNw5Y.png) Do closed blockchains look the same?
 
 https://www.hyperledger.org/wp-content/uploads/2018/08/HL_Whitepaper_IntroductiontoHyperledger.pdf
+- Different services within hyperledger
+	- fabric
+	- indy
+	- explore
+	- sawtooth
+	- grid
+	- aries
