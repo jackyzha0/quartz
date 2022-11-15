@@ -35,3 +35,5 @@ https://www.mobycrypt.com/do-we-need-closed-blockchains/ (badly written) Gives a
 So within a supply chain blockchain, each change in the state of an item is recorded as a "transaction" and appended to the blockchain. These transactions are stored indefinitely? Then we can go back and look through the history of that item. How can you view the history of the item. I thought all previous transactions were stored as a hash. I guess we have the key to decrypt it?
 
 From the bitcoin whitepaper: ![](https://i.imgur.com/VutNw5Y.png) Do closed blockchains look the same?
+
+https://www.hyperledger.org/wp-content/uploads/2018/08/HL_Whitepaper_IntroductiontoHyperledger.pdf
