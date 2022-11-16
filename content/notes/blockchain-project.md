@@ -10,14 +10,14 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 # Questions	
 - [x] what actually is hyperledger fabric? Is it a closed blockchain that different groups can run independently for their own use-case? Or is it one single closed blockchain that many different groups participate in.
 	- hyperledger fabric is one of the projects created by hyperledger. It is a framework/base from which the community can develop their own blockchains.
-- [ ] is governance within a closed blockchain the same as within an open blockchain
+- [x] is governance within a closed blockchain the same as within an open blockchain
+	- [ ] 
 - [ ] why would a participant want to fork?
 - [ ] does the central authority e.g., govt decide who can join and leave?
 - [ ] It the code developed by the central authority or spread across partipants?
 - [x] What are public vs private permissioned blockchains
 	- [blockchain-types](notes/blockchain-types.md)
 - [ ] do the records remain forever on the chain?
-
 
 # Notes
 - [think-writing](notes/think-writing.md)
@@ -30,14 +30,13 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [dApps](notes/dApps.md)
 - [sybil-problem](notes/sybil-problem.md)
 - [smart-contracts](smart-contracts.md)
-- 
 
 # Reading
-- https://en.wikipedia.org/wiki/Cyberocracy
-- https://en.wikipedia.org/wiki/Government_by_algorithm
 - https://coopahtroopa.mirror.xyz/_EDyn4cs9tDoOxNGZLfKL7JjLo5rGkkEfRa_a-6VEWw
 - https://101blockchains.com/permissioned-blockchain/
 - http://eyler.freeservers.com/JeffPers/jefpco55.htm?ref=hackernoon.com
+- https://en.wikipedia.org/wiki/Cyberocracy
+- https://en.wikipedia.org/wiki/Government_by_algorithm
 - https://medium.com/@Vlad_Zamfir/against-on-chain-governance-a4ceacd040ca
 - https://medium.com/@FEhrsam/blockchain-governance-programming-our-future-c3bfe30f2d74
 - https://doi.org/10.1016/j.ipm.2021.102556

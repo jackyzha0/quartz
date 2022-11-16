@@ -80,5 +80,5 @@ is a private blockchain even a chain of blocks. Its an immutable, more transpare
 
 Permissioned (public) blockchains allow "anyone to join the permissioned network after a suitable identity verification process. Some give special and designated permissions to perform only specific activities on a network"
 
+https://sovrin.org example of a public permissioned blockchain. it is a public service utility enabling self-sovereign identity on the internet. it is based on hyperledger indy. interesting but doesn't really help me.
 
- 
