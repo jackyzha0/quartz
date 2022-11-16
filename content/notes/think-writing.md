@@ -38,9 +38,4 @@ From the bitcoin whitepaper: ![](https://i.imgur.com/VutNw5Y.png) Do closed bloc
 
 https://www.hyperledger.org/wp-content/uploads/2018/08/HL_Whitepaper_IntroductiontoHyperledger.pdf
 - Different services within hyperledger
-	- fabric
-	- indy
-	- explore
-	- sawtooth
-	- grid
-	- aries
+- 
