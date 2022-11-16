@@ -63,3 +63,9 @@ Now what do I do? Still many unanswered questions. I dont understand the scope o
 https://www.ibm.com/blockchain-supply-chain There are clearly many different blockchains. So how do these work together? using the example of the organic produce. A large store like paknsave has an agreement with a farm to but their supposed organic produce. paknsave has created a blockchain where suppliers like these can join and provide relevant information about their product, which pak n save can see. 
 
 or. the government creates some regulations for organic items, and a blockchain. then suppliers can join the blockchain and add their data to it, and retailers like pak n save (maybe also consumers) can also join and view the relevant information. maybe these regulations are trusted internationally so local growers exporting produce dont have to comply to the regulations of multiple governments. so where do the intermediaries such as shipping companies and various depots fit in. are they also participants in this blockchain
+
+---
+
+17/11
+
+So who runs the blockchain? Initiated by central authority like the govt. Then compies who want to verify that they are an 
