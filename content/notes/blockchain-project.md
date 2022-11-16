@@ -8,8 +8,14 @@ tags:
 Blockchain technology falls into two distinct classes: open (permissionless) blockchains such as those underlying bitcoin, Ethereum and Cardano; and closed (permissioned) blockchains such as implemented in the Hyperledger Fabric project. To motivate decentralised participation, open blockchains (presently) require an associated cryptocurrency, which can be a risky distraction. However, closed blockchains are considered by some to be insufficiently decentralised.This summer project aims to prototype a compromise: a closed blockchain system that encodes voting rules about self-governance, so that closed blockchain technology can be used in a more open manner. Experience in programming blockchain systems is not assumed. Depending on the student involved, the project will balance work between design and modelling of the blockchain governance rules, and implementation of such a rule set over an existing closed blockchain system.
 
 # Questions	
-- what actually is hyperledger fabric? Is it a closed blockchain that different groups can run independently for their own use-case? Or is it one single closed blockchain that many different groups participate in.
-
+- [x] what actually is hyperledger fabric? Is it a closed blockchain that different groups can run independently for their own use-case? Or is it one single closed blockchain that many different groups participate in.
+	- hyperledger fabric is one of the projects created by hyperledger. It is a framework/base from which the community can develop their own blockchains.
+- [ ] is governance within a closed blockchain the same as within an open blockchain
+- [ ] why would a participant want to fork?
+- [ ] does the central authority e.g., govt decide who can join and leave?
+- [ ] It the code developed by the central authority or spread across partipants?
+- [ ] What are public vs private permissioned blockchains
+- [ ] do the records remain forever on the chain?
 
 # Notes
 - [think-writing](notes/think-writing.md)
@@ -35,14 +41,11 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://bitcoin.org/bitcoin.pdf
 - https://medium.com/@WayneVaughan/open-vs-closed-blockchains-let-s-end-this-madness-8313e4095ead
 - https://medium.com/good-audience/blockchain-governance-101-eea5201d7992
+- https://www.ibm.com/blockchain-supply-chain
+- https://www.hyperledger.org/wp-content/uploads/2018/08/HL_Whitepaper_IntroductiontoHyperledger.pdf
+- https://www.mobycrypt.com/do-we-need-closed-blockchains/
+- https://developer.oracle.com/learn/technical-articles/permissioned-blockchain
+- https://medium.com/wavesprotocol/what-closed-blockchain-is-for-190534b5951
 
-# Log
-- 14/11
-	- starting today
-	- reviewing 412 lectures 7 and 9
-	- reading https://101blockchains.com/blockchain-governance/
-- 15/12
-	- meeting with David
-	- 
 
 # Sources
