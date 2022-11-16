@@ -78,3 +78,5 @@ public vs private blockchains — [blockchain-types](notes/blockchain-types.md).
 
 is a private blockchain even a chain of blocks. Its an immutable, more transparent, distributed ledger. Why cant that be done with a regular database?
 
+Permissioned (public) blockchains allow 	"anyone to join the permissioned network after a suitable identity verification process. Some give special and designated permissions to perform only specific activities on a network"
+
