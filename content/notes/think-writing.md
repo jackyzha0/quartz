@@ -68,4 +68,10 @@ or. the government creates some regulations for organic items, and a blockchain.
 
 # 17/11
 
-So who runs/starts the blockchain? Initiated by central authority like the govt. Then compies who want to verify that they are an organic producer ask to join the network so they can add the required documents (or pointers to the documents) to the chain. These documents are now viewable by governing authorities (perhaps internationally). If necessary, various parties involved in the supply chain can also 
+So who runs/starts the blockchain? Initiated by central authority like the govt. Then compies who want to verify that they are an organic producer ask to join the network so they can add the required documents (or pointers to the documents) to the chain. These documents are now viewable by governing authorities (perhaps internationally) and maybe also other particpants. If necessary, various parties involved in the supply chain can also add blocks. 
+
+In the hyderledger whitepaper they described a use case for seafood tracking where-
+
+is all this writing productive, ive actually started using this doc as just a place to write stuff not as actual think writing. is there a better way to take notes? document for each article? 
+
+public vs private blockchains

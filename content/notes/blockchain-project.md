@@ -17,8 +17,9 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [ ] What are public vs private permissioned blockchains
 - [ ] do the records remain forever on the chain?
 
-# Notes
 - [think-writing](notes/think-writing.md)
+
+# Notes
 - [412-lectures](notes/412-lectures.md)
 - [hyperledger-fabric](notes/hyperledger-fabric.md)
 - [governance](notes/governance.md) 
@@ -28,7 +29,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [sybil-problem](notes/sybil-problem.md)
 - [smart-contracts](smart-contracts)
 
-# Reading
+# Read
 - https://en.wikipedia.org/wiki/Cyberocracy
 - https://en.wikipedia.org/wiki/Government_by_algorithm
 - https://coopahtroopa.mirror.xyz/_EDyn4cs9tDoOxNGZLfKL7JjLo5rGkkEfRa_a-6VEWw
@@ -46,6 +47,9 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://www.mobycrypt.com/do-we-need-closed-blockchains/
 - https://developer.oracle.com/learn/technical-articles/permissioned-blockchain
 - https://medium.com/wavesprotocol/what-closed-blockchain-is-for-190534b5951
+
+# To Read
+- https://www.mas.gov.sg/schemes-and-initiatives/project-ubin
 
 
 # Sources
