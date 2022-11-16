@@ -82,4 +82,5 @@ Permissioned (public) blockchains allow "anyone to join the permissioned network
 
 https://sovrin.org example of a public permissioned blockchain. it is a public service utility enabling self-sovereign identity on the internet. it is based on hyperledger indy. interesting but doesn't really help me.
 
-https://www.linkedin.com/pulse/public-permissioned-blockchains-common-pool-resources-jesus-ruiz/ seems like a very relevant article. It describes a public-permissioned blockchain, with decentralised governance.
+https://www.linkedin.com/pulse/public-permissioned-blockchains-common-pool-resources-jesus-ruiz/ seems like a very relevant article. It describes a public-permissioned blockchain, with decentralised governance. It likens managing a public permissionless blockchain to managing common pool resources. One of the issues with managing CPRs is developing the required trust. However, with blockchain technology, you can encode goverance rules directly into the infrastructure which are immutable, transparent and automatic. this is [On chain governance](notes/governance.md#On%20chain%20governance) 
+
