@@ -14,7 +14,8 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [ ] why would a participant want to fork?
 - [ ] does the central authority e.g., govt decide who can join and leave?
 - [ ] It the code developed by the central authority or spread across partipants?
-- [ ] What are public vs private permissioned blockchains
+- [x] What are public vs private permissioned blockchains
+	- [blockchain-types](notes/blockchain-types.md)
 - [ ] do the records remain forever on the chain?
 
 - [think-writing](notes/think-writing.md)
@@ -28,6 +29,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [dApps](notes/dApps.md)
 - [sybil-problem](notes/sybil-problem.md)
 - [smart-contracts](smart-contracts)
+- 
 
 # Read
 - https://en.wikipedia.org/wiki/Cyberocracy

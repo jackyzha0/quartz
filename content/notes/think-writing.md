@@ -74,4 +74,7 @@ In the hyderledger whitepaper they described a use case for seafood tracking whe
 
 is all this writing productive, ive actually started using this doc as just a place to write stuff not as actual think writing. is there a better way to take notes? document for each article? 
 
-public vs private blockchains
+public vs private blockchains — [blockchain-types](notes/blockchain-types.md). So it sounds like what I am trying to do Is very similar to a public permissioned blockchain.
+
+is a private blockchain even a chain of blocks. Its an immutable, more transparent, distributed ledger. Why cant that be done with a regular database?
+
