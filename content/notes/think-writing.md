@@ -57,3 +57,7 @@ what are public vs private permissioned blockchains
 a normal permissioned blockchain is developed and managed by one group. this group governs everything, and decides who can join and leave etc. What i am looking for is a way for a closed blockchain such as this, to be governed by a more decentralised group. This means development is spread across participants, and decisions are voted on by many participants through rules/protocols encoded within the blockchain itself (similar to on-chain governance).
 
 I think I am getting somewhere.
+
+Now what do I do? Still many unanswered questions. I dont understand the scope of a blockchain within a supply chain context.
+
+https://www.ibm.com/blockchain-supply-chain
