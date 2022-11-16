@@ -60,4 +60,4 @@ I think I am getting somewhere.
 
 Now what do I do? Still many unanswered questions. I dont understand the scope of a blockchain within a supply chain context.
 
-https://www.ibm.com/blockchain-supply-chain
+https://www.ibm.com/blockchain-supply-chain There are clearly many different blockchains. So how do these work together? using the example of the organic produce. A large store like paknsave has an agreement with a farm to but their supposed organic produce.  
