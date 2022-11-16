@@ -11,7 +11,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [x] what actually is hyperledger fabric? Is it a closed blockchain that different groups can run independently for their own use-case? Or is it one single closed blockchain that many different groups participate in.
 	- hyperledger fabric is one of the projects created by hyperledger. It is a framework/base from which the community can develop their own blockchains.
 - [x] is governance within a closed blockchain the same as within an open blockchain
-	- [ ] 
+	- no of course not. 
 - [ ] why would a participant want to fork?
 - [ ] does the central authority e.g., govt decide who can join and leave?
 - [ ] It the code developed by the central authority or spread across partipants?
@@ -51,8 +51,9 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://medium.com/wavesprotocol/what-closed-blockchain-is-for-190534b5951
 - https://www.investopedia.com/news/public-private-permissioned-blockchains-compared/
 - https://www.forbes.com/sites/forbestechcouncil/2019/06/11/public-vs-private-permissioned-ledgers-and-blockchain-standards/?sh=39aaa258550b
+- https://www.linkedin.com/pulse/public-permissioned-blockchains-common-pool-resources-jesus-ruiz/
 
 - https://www.mas.gov.sg/schemes-and-initiatives/project-ubin
-
+- https://alastria.io/en/what-is-alastria/
 
 # Sources

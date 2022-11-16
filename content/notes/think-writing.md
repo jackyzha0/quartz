@@ -82,3 +82,4 @@ Permissioned (public) blockchains allow "anyone to join the permissioned network
 
 https://sovrin.org example of a public permissioned blockchain. it is a public service utility enabling self-sovereign identity on the internet. it is based on hyperledger indy. interesting but doesn't really help me.
 
+https://www.linkedin.com/pulse/public-permissioned-blockchains-common-pool-resources-jesus-ruiz/ 
