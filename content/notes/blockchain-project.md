@@ -55,5 +55,6 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 
 - https://www.mas.gov.sg/schemes-and-initiatives/project-ubin
 - https://alastria.io/en/what-is-alastria/
+- https://www.lacchain.net
 
 # Sources
