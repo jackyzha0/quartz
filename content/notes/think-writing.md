@@ -38,4 +38,5 @@ From the bitcoin whitepaper: ![](https://i.imgur.com/VutNw5Y.png) Do closed bloc
 
 https://www.hyperledger.org/wp-content/uploads/2018/08/HL_Whitepaper_IntroductiontoHyperledger.pdf
 - Different services within hyperledger
-- 
+
+So what is the issue with current closed blockchains - "not sufficiently decentralised". Is the problem of storing the history of product within a supply chain "solved"? Let me try an example. There is a company growing organic oranges. Do I need to research the regulations for organicness? The company growing the oranges adds a block to the blockchain containing information or pointers to information required to verify their authenticity. (what about all the products used for growing the oranges, not sure how all the details work here. I dont think that is in the scope) Then as the shipment travels through the supply chain, each step along the way a new "transaction" is added to the chain. These transactiona are created by each of the companies handling the shipment. (what is the scope of the blockchain. is there one chain per shipment, are all shipments tracked on one blockchain, is it separated by industry. wouldn't shipping companies operate across multiple industries? do they participate in several chains)
