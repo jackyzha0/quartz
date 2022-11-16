@@ -18,9 +18,10 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 	- [blockchain-types](notes/blockchain-types.md)
 - [ ] do the records remain forever on the chain?
 
-- [think-writing](notes/think-writing.md)
 
 # Notes
+- [think-writing](notes/think-writing.md)
+
 - [412-lectures](notes/412-lectures.md)
 - [hyperledger-fabric](notes/hyperledger-fabric.md)
 - [governance](notes/governance.md) 
@@ -28,10 +29,10 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [DeFi](notes/DeFi.md)
 - [dApps](notes/dApps.md)
 - [sybil-problem](notes/sybil-problem.md)
-- [smart-contracts](smart-contracts)
+- [smart-contracts](smart-contracts.md)
 - 
 
-# Read
+# Reading
 - https://en.wikipedia.org/wiki/Cyberocracy
 - https://en.wikipedia.org/wiki/Government_by_algorithm
 - https://coopahtroopa.mirror.xyz/_EDyn4cs9tDoOxNGZLfKL7JjLo5rGkkEfRa_a-6VEWw
@@ -49,8 +50,9 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://www.mobycrypt.com/do-we-need-closed-blockchains/
 - https://developer.oracle.com/learn/technical-articles/permissioned-blockchain
 - https://medium.com/wavesprotocol/what-closed-blockchain-is-for-190534b5951
+- https://www.investopedia.com/news/public-private-permissioned-blockchains-compared/
+- https://www.forbes.com/sites/forbestechcouncil/2019/06/11/public-vs-private-permissioned-ledgers-and-blockchain-standards/?sh=39aaa258550b
 
-# To Read
 - https://www.mas.gov.sg/schemes-and-initiatives/project-ubin
 
 
