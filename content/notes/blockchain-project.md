@@ -35,6 +35,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [CPR-governance](notes/CPR-governance.md)
 
 # Reading
+- https://101blockchains.com/blockchain-governance/
 - https://coopahtroopa.mirror.xyz/_EDyn4cs9tDoOxNGZLfKL7JjLo5rGkkEfRa_a-6VEWw
 - https://101blockchains.com/permissioned-blockchain/
 - http://eyler.freeservers.com/JeffPers/jefpco55.htm?ref=hackernoon.com
@@ -56,8 +57,10 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://www.forbes.com/sites/forbestechcouncil/2019/06/11/public-vs-private-permissioned-ledgers-and-blockchain-standards/?sh=39aaa258550b
 - https://www.linkedin.com/pulse/public-permissioned-blockchains-common-pool-resources-jesus-ruiz/
 - https://smithandcrown.com/glossary/transaction-finality-probabilisticdeterministic/
+- https://www.r3.com/blog/how-public-permissioned-blockchains-are-not-an-oxymoron-2/
 
 - https://www.mas.gov.sg/schemes-and-initiatives/project-ubin
+- https://www.apc.org/en/pubs/network-infrastructures-commons-model-local-participation-governance-and-sustainability
 - https://alastria.io/en/what-is-alastria/
 - https://www.lacchain.net
 

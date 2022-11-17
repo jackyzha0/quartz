@@ -90,4 +90,6 @@ two types of nodes in a permissioned blockchain network:
 - Consensus nodes - responsible for the execution of the consensus algorithm
 - Regular nodes - perform the maintenance of a local copy of the blockchain using the blocks generated from the set of consensus nodes.
 
+alastria uses IBFT consensus algorithm.
+
 
