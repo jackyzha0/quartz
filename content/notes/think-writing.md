@@ -87,7 +87,7 @@ https://www.academia.edu/41965099/Public_Permissioned_blockchains_as_Common_Pool
 [transaction-finality](notes/transaction-finality.md)
 
 two types of nodes in a permissioned blockchain network:
-- Consensus nodes**: are responsible for the execution of the consensus algorithm
-- Regular nodes**: perform the maintenance of a local copy of the blockchain using the blocks generated from the set of consensus nodes.
+- Consensus nodes - responsible for the execution of the consensus algorithm
+- Regular nodes - perform the maintenance of a local copy of the blockchain using the blocks generated from the set of consensus nodes.
 
 
