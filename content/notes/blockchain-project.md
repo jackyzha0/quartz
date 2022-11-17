@@ -13,6 +13,8 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [x] is governance within a closed blockchain the same as within an open blockchain
 	- no I dont think so.[Governance of open vs closed blockchains](notes/governance.md#Governance%20of%20open%20vs%20closed%20blockchains)
 - [ ] why would a participant want to fork?
+	- just having the capability is important
+	- swtiching authorities?
 - [x] does the central authority e.g., govt decide who can join and leave?
 	- yes, but is this responsibility restricted only to them? Can other parties approve new participants?
 - [ ] It the code developed by the central authority or spread across partipants?
