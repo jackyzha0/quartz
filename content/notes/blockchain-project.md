@@ -69,5 +69,5 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://alastria.io/en/what-is-alastria/
 - https://www.lacchain.net
 - https://ec.europa.eu/digital-building-blocks/wikis/display/EBSI/Home
-
+- https://time.com/6142810/proof-of-humanity/
 # Sources
