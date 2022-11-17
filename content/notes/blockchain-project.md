@@ -61,6 +61,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://www.linkedin.com/pulse/public-permissioned-blockchains-common-pool-resources-jesus-ruiz/
 - https://smithandcrown.com/glossary/transaction-finality-probabilisticdeterministic/
 - https://www.r3.com/blog/how-public-permissioned-blockchains-are-not-an-oxymoron-2/
+- https://blog.dshr.org/2022/02/ee380-talk.html
 
 - https://www.mas.gov.sg/schemes-and-initiatives/project-ubin
 - https://www.apc.org/en/pubs/network-infrastructures-commons-model-local-participation-governance-and-sustainability
