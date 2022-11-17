@@ -30,6 +30,9 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [dApps](notes/dApps.md)
 - [sybil-problem](notes/sybil-problem.md)
 - [smart-contracts](smart-contracts.md)
+- [transaction-finality](transaction-finality.md)
+- [consensus](notes/consensus.md)
+- [CPR-governance](notes/CPR-governance.md)
 
 # Reading
 - https://coopahtroopa.mirror.xyz/_EDyn4cs9tDoOxNGZLfKL7JjLo5rGkkEfRa_a-6VEWw
@@ -52,6 +55,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://www.investopedia.com/news/public-private-permissioned-blockchains-compared/
 - https://www.forbes.com/sites/forbestechcouncil/2019/06/11/public-vs-private-permissioned-ledgers-and-blockchain-standards/?sh=39aaa258550b
 - https://www.linkedin.com/pulse/public-permissioned-blockchains-common-pool-resources-jesus-ruiz/
+- https://smithandcrown.com/glossary/transaction-finality-probabilisticdeterministic/
 
 - https://www.mas.gov.sg/schemes-and-initiatives/project-ubin
 - https://alastria.io/en/what-is-alastria/
