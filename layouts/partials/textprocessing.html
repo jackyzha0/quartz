@@ -96,4 +96,11 @@
   {{ $content = $content | replaceRE "blockquote class=callout" "blockquote" }}
 {{end}}
 
+{{/* Make ==text== into <mark>text</mark> */}}
+{{$mark := findRE "(?Us)==([^\\$]+)==" $content}}
+{{range $mark}}
+  {{$fixed := printf "<mark>%s</mark>" (replace . "==" "")}}
+  {{$content = replace $content . $fixed}}
+{{end}}
+
 {{ $content | safeHTML }}
