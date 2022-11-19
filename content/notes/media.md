@@ -78,3 +78,4 @@ tags:
 	- ikiru
 	- raw
 	- in brudges
+	- in the loop
