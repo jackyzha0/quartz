@@ -83,6 +83,10 @@ Only want to publish a subset of all of your notes? Don't worry, Quartz makes th
 
 ❌ [Excluding pages from being published](notes/ignore%20notes.md)
 
+## Docker Support
+If you don't want to use a hosting service, you can host using [Docker](notes/docker.md) instead!
+I would *not use this method* unless you know what you are doing.
+
 ---
 
 Now that your Quartz is live, let's figure out how to make Quartz really *yours*!

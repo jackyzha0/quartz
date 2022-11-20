@@ -4,11 +4,10 @@ tags:
 - setup
 ---
 
-If you want to host Quartz on a specific machine, it may be easier to [install Docker Compose](https://docs.docker.com/compose/install/) and follow the instructions below (than to [install Quartz's dependencies manually](notes/preview%20changes.md)).
-
+If you want to host Quartz on a machine without using a webpage hosting service, it may be easier to [install Docker Compose](https://docs.docker.com/compose/install/) and follow the instructions below than to [install Quartz's dependencies manually](notes/preview%20changes.md).
 ## Hosting Quartz Locally
-
-You can serve Quartz locally at `http://localhost:1313` with the following script:
+You can serve Quartz locally at `http://localhost:1313` with the following script, replacing `/path/to/quartz` with the 
+actual path to your Quartz folder.
 
 docker-compose.yml
 ```
@@ -29,11 +28,9 @@ services:
       - HUGO_APPENDPORT=true
 ```
 
-By default, the container will clone and serve `github:jackyzha0/quartz`. However, you can serve your own fork of `quartz` by cloning to the above `/path/to/quartz` directory.
-
 Then run with: `docker-compose up -d` in the same directory as your `docker-compose.yml` file.
 
-While the container is running, you can update their `quartz` fork with: `docker exec -it quartz-hugo make update`.
+While the container is running, you can update the `quartz` fork with: `docker exec -it quartz-hugo make update`.
 
 ## Exposing Your Container to the Internet
 
