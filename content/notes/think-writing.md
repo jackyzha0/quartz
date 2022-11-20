@@ -121,5 +121,16 @@ ethereum whitepaper
 			- send messages
 			- create contracts
 			- etc
-- messages
-	- 
+- messages - similar to bitcoin transactions but:	
+	- can be created by contract and externall accounts (not only external)
+	- can contain data
+	- contract accounts can return responses when they recieve a message
+		- ∴ can act as functions
+- transaction - refers to signed package that stores a message to be sent from an external account
+	- they contain
+		- recipient of message
+		- signature of sender
+		- amout of ether and data to send
+		- STARTGAS - limit to number of steps of code
+		- GASPRICE - fee to pay miner per step
+		- 
