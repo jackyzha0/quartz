@@ -92,4 +92,13 @@ two types of nodes in a permissioned blockchain network:
 
 alastria uses IBFT consensus algorithm.
 
+---
 
+# 21/11
+On friday I tried to get haydens hypderledge iroha code from last year to work [here](https://github.com/hmcalister/SWIPL-Notebook-Blockchain-Filehashing) and [here](https://github.com/hmcalister/Hypderledger-Iroha-Multinode-Demo). I was unable to. Each of the blockchain nodes were running in their containers, but I wasn't able to connect to them from a python script running locally. I need to make a plan for this week. 
+
+- Try to figure out a way to connect to the nodes from a script 
+	- Maybe from a fifth container?
+- If I am unable to connect to the nodes I might have to start them from scratch
+	- This would help me to learn the tools also.
+- Try to figure out how the public permissioned blockchain might work in some more detail.
