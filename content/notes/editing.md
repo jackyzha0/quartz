@@ -56,19 +56,11 @@ This step is purely optional and mostly for those who want to see the published 
 
 > 👀 Step 4: [Preview Quartz Changes](notes/preview%20changes.md)
 
-If you prefer, you can preview changes by [hosting locally with Docker](notes/docker.md) instead! If you have Docker, this might be the easiest approach.
-
 For those who like to live life more on the edge, viewing the garden through Obsidian gets you pretty close to the real thing.
 
 ## Publishing Changes
 Now that you know the basics of managing your digital garden using Quartz, you can publish it to the internet!
 
 > 🌍 Step 5: [Hosting Quartz online!](notes/hosting.md)
-
-## Hosting with Docker
-You can also choose to publish your digital garden on a local or remote machine using Docker.
-
-> 🐳 [Hosting with Docker](notes/docker.md)
-
 
 Having problems? Checkout our [FAQ and Troubleshooting guide](notes/troubleshooting.md).
