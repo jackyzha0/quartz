@@ -133,4 +133,14 @@ ethereum whitepaper
 		- amout of ether and data to send
 		- STARTGAS - limit to number of steps of code
 		- GASPRICE - fee to pay miner per step
-		- 
+- applications
+	- identiy and reputation systems
+	- decentralised file storage
+	- decentralised autonomous organisations [DAO](notes/decentralized-autonomous-organization.md)
+	- savings wallets
+	- crop insurance
+	- decentralised data feed
+	- smart multi-signature escrow
+	- cloud computing
+	- p2p gambling
+	- on-chain decentralised marketplaces
