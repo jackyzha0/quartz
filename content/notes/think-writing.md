@@ -102,3 +102,24 @@ On friday I tried to get haydens hypderledge iroha code from last year to work [
 - If I am unable to connect to the nodes I might have to start them from scratch
 	- This would help me to learn the tools also.
 - Try to figure out how the public permissioned blockchain might work in some more detail.
+
+ethereum whitepaper
+- a new version of blockchain which has better internal scripting
+- the state of ethereum is made up account objects. each acc has:
+	- nonce
+	- balance
+	- contract code
+	- storage
+- There are two types of accounts
+	- external: 
+		- controlled by private keys
+		- no code
+		- can send "messages" as a transaction
+	- contract: controled by contract code
+		- executes code when it recieves a message
+			- read/write from storage
+			- send messages
+			- create contracts
+			- etc
+- messages
+	- 
