@@ -38,6 +38,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [CPR-governance](notes/CPR-governance.md)
 
 # Reading
+## Blockchain
 - https://101blockchains.com/blockchain-governance/
 - https://coopahtroopa.mirror.xyz/_EDyn4cs9tDoOxNGZLfKL7JjLo5rGkkEfRa_a-6VEWw
 - https://101blockchains.com/permissioned-blockchain/
@@ -72,5 +73,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://ec.europa.eu/digital-building-blocks/wikis/display/EBSI/Home
 - https://time.com/6142810/proof-of-humanity/
 
+## Other
+- https://docs.docker.com/config/containers/container-networking/
 
 # Sources
