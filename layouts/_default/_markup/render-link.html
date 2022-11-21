@@ -1,7 +1,7 @@
 {{$dashedurl := replace .Destination "%20" "-" }}
 {{$external := strings.HasPrefix $dashedurl "http" }}
 {{- if $external -}}
-	<a href="{{ $dashedurl }}" target="_blank" rel="noopener noreferrer">{{ .Text | safeHTML }}</a>
+	<a href="{{ $dashedurl }}" rel="noopener">{{ .Text | safeHTML }}</a>
 {{- else -}}
 	{{$trimmed := strings.TrimSuffix ".md" (.Destination | safeURL)}}
 	{{$spacedurl := replace $trimmed "%20" " " }}
