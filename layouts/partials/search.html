@@ -6,9 +6,9 @@
     </div>
   </div>
 </div>
-{{if $.Site.Data.config.enableSemanticSearch}}
+{{if $.Site.Data.config.search.enableSemanticSearch}}
 {{ $js := resources.Get "js/semantic-search.js" | resources.ExecuteAsTemplate "js/semantic-search.js" . | resources.Fingerprint "md5" | resources.Minify }}
-<script defer src="{{ $js.Permalink }}"></script>
+<script defer type="module" src="{{ $js.Permalink }}"></script>
 {{else}}
 <script src="https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js"
   integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin="anonymous" defer></script>

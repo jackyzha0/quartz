@@ -60,8 +60,10 @@ GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
 # whether to use Operand to power semantic search
 # IMPORTANT: replace this API key with your own if you plan on using
 # Operand search!
-enableSemanticSearch: false
-operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
+search:
+  enableSemanticSearch: false
+  operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
+  operandIndexId: "REPLACE-WITH-YOUR-OPERAND-INDEX-ID"
 
 # page description used for SEO
 description:

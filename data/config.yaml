@@ -12,8 +12,10 @@ enableContextualBacklinks: true
 enableRecentNotes: false
 enableGitHubEdit: true
 GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
-enableSemanticSearch: false
-operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
+search:
+  enableSemanticSearch: false
+  operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
+  operandIndexId: "REPLACE-WITH-YOUR-OPERAND-INDEX-ID"
 description:
   Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
   Wikilink support, backlinks, local graph, tags, and link previews.
