@@ -144,3 +144,10 @@ ethereum whitepaper
 	- cloud computing
 	- p2p gambling
 	- on-chain decentralised marketplaces
+
+---
+
+# 22/11
+
+Yesterday I got one iroha node running by itself in a docker container and was able to make transactions and queries using a python script. This morning I'll try to get a few nodes to interact together. And In the afternoon I will do some reading about CPRs and governance.
+
