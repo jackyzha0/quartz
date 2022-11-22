@@ -193,11 +193,20 @@ Many enthusiasts simply promote the blockchain as a more efficient, decentralize
 # 23/11
 
 - https://doi.org/10.1016/j.eneco.2022.106375 A renewable energy microgrids trading management platform based on permissioned blockchain
-	- ![](https://i.imgur.com/5CDGjeL.png)
+	- [blockchain types](https://i.imgur.com/5CDGjeL.png)
 
 - M. Crosby, P. Pattanayak, S. Verma, V. Kalyanaraman **Blockchain technology: beyond bitcoin** (2016)
 - https://doi.org/10.1155/2020/5385207 Application of Blockchain and Internet of Things to Ensure Tamper-Proof Data Availability for Food Safety
+	- supply chain connect three sectors: agriculture, food-manufacturing, marketing (incl dist).
+	- three sources of food: crops livestock, seafood
+	- [similarities and differences between different meat and milk production systems](https://i.imgur.com/g1NnYSl.png)
+	- food fraud is increasing
+	- [blockchain types and techs table](https://i.imgur.com/NcCoxiU.png)'
+	- '
+
+
 - https://doi.org/10.1016/j.tre.2020.102025 Evaluating the factors that influence blockchain adoption in the
 freight logistics industry
 - [http://www.ijpe-online.com/EN/Y2018/V14/I9/2040](http://www.ijpe-online.com/EN/Y2018/V14/I9/2040) Research and Development of Blockchain Security
 - https://dl.acm.org/doi/pdf/10.1145/3190508.3190538 Hyperledger Fabric: A Distributed Operating System for Permissioned Blockchains
+- https://www.ibm.com/blogs/blockchain/2018/02/one-nations-move-to-increase-food-safety-with-blockchain/
