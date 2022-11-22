@@ -192,3 +192,4 @@ Many enthusiasts simply promote the blockchain as a more efficient, decentralize
 
 # 23/11
 
+[https://doi.org/10.1016/j.eneco.2022.106375](https://doi.org/10.1016/j.eneco.2022.106375 "Persistent link using digital object identifier")
