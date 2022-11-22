@@ -79,6 +79,8 @@
   "indices/contentIndex.json" | resources.Fingerprint "md5" | resources.Minify
   }}
   <script>
+    const SEARCH_ENABLED = {{.Site.Data.config.search.enableSemanticSearch}}
+    const PRODUCTION = {{ hugo.IsProduction }}
     const BASE_URL = {{.Site.BaseURL}}
     const fetchData = Promise.all([
           fetch("{{ $linkIndex.Permalink }}")
