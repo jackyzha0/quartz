@@ -192,4 +192,7 @@ Many enthusiasts simply promote the blockchain as a more efficient, decentralize
 
 # 23/11
 
-[https://doi.org/10.1016/j.eneco.2022.106375](https://doi.org/10.1016/j.eneco.2022.106375 "Persistent link using digital object identifier")
+- https://doi.org/10.1016/j.eneco.2022.106375 A renewable energy microgrids trading management platform based on permissioned blockchain
+- M. Crosby, P. Pattanayak, S. Verma, V. Kalyanaraman **Blockchain technology: beyond bitcoin** (2016)
+- https://doi.org/10.1155/2020/5385207 Application of Blockchain and Internet of Things to Ensure Tamper-Proof Data Availability for Food Safety
+- 
