@@ -78,6 +78,8 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://doi.org/10.1016/j.future.2019.02.059 Fork-free hybrid consensus with flexible Proof-of-Activity
 - Digital Object Identifier 10.1109/TII.2019.2941735 zkCrowd: A Hybrid Blockchain-Based Crowdsourcing Platform
 - https://dx.doi.org/10.1109/TEM.2019.2920154
+- DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
+- 
 
 ## Other
 - https://docs.docker.com/config/containers/container-networking/
