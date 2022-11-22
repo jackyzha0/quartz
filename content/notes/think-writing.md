@@ -169,5 +169,7 @@ doi: 10.1109/TEM.2020.3003565: Permissionless and Permissioned, Technology-Focus
 permissioned blockchain "connected" to permionless blockchain 
 
 DOI 10.1109/Blockchain.2019.00045
+- https://en.wikipedia.org/wiki/Zero-knowledge_proof
+- https://en.wikipedia.org/wiki/Hidden_Markov_model
 
 in a public permissioned blockchain, what is stopping an attacker from registering enough nodes to perform a 51% attack, If we are not using a BFT consensus algorithm?
