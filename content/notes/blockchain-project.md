@@ -64,6 +64,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://www.r3.com/blog/how-public-permissioned-blockchains-are-not-an-oxymoron-2/
 - https://blog.dshr.org/2022/02/ee380-talk.html
 - https://ethereum.org/669c9e2e2027310b6b3cdce6e1c52962/Ethereum_Whitepaper_-_Buterin_2014.pdf
+- https://www.investopedia.com/terms/b/blockchainasaservice-baas.asp
 
 - https://en.wikipedia.org/wiki/Futarchy
 - https://pluralistic.net/2022/02/14/externalities/#dshr

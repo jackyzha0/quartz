@@ -158,4 +158,12 @@ doi: 10.1109/TEM.2020.3003565: Permissionless and Permissioned, Technology-Focus
 	- hard: a complete separate copy of a blockchain
 - How will the blockchain be funded? Maybe I need to consider this.
 - Blockchain as a service?
+	- https://www.investopedia.com/terms/b/blockchainasaservice-baas.asp
+	- amazon managed blockchain
+	- microsoft ethereum blockchain-as-a-service
+	- r3
+	- paystand
+	- hyperledger cello
+	- [IBM Blockchain Platform](https://www.trustradius.com/products/ibm-blockchain-platform/reviews "IBM Blockchain Platform reviews."), [Oracle Blockchain Cloud](https://www.trustradius.com/products/oracle-blockchain-cloud/reviews "Oracle Blockchain Cloud reviews."), [Azure Blockchain Service](https://www.trustradius.com/products/azure-blockchain-service/reviews "Azure Blockchain Service reviews."), [Alchemy](https://www.trustradius.com/products/alchemy/reviews "Alchemy reviews."), [Infura Ethereum API](https://www.trustradius.com/products/infura-ethereum-api/reviews "Infura Ethereum API reviews."), [Kaleido](https://www.trustradius.com/products/kaleido/reviews "Kaleido reviews."), [Amazon Managed Blockchain](https://www.trustradius.com/products/amazon-managed-blockchain/reviews "Amazon Managed Blockchain reviews."), [Crypto APIs](https://www.trustradius.com/products/crypto-apis/reviews "Crypto APIs reviews."), [VMware Blockchain](https://www.trustradius.com/products/vmware-blockchain/reviews "VMware Blockchain reviews."), and [Cryptomat](https://www.trustradius.com/products/cryptomat/reviews "Cryptomat reviews.").
+- permissioned blockchain "connected" to permionless blockchain
 
