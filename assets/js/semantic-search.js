@@ -24,7 +24,7 @@ async function searchContents(query) {
     },
     body: JSON.stringify({
       query: query,
-      limit: 8,
+      limit: 10,
     }),
   })
   if (result.ok) {
@@ -48,7 +48,7 @@ registerHandlers(
   debounce((e) => {
     let term = e.target.value
     if (term !== "") {
-      searchContents(term).then((results) => displayResults(results))
+      searchContents(term).then((results) => displayResults(term, results))
     }
   }),
 )
