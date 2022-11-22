@@ -152,3 +152,8 @@ ethereum whitepaper
 Yesterday I got one iroha node running by itself in a docker container and was able to make transactions and queries using a python script. This morning I'll try to get a few nodes to interact together. And In the afternoon I will do some reading about CPRs and governance.
 
 doi: 10.1109/TEM.2020.3003565: Permissionless and Permissioned, Technology-Focused and Business Needs-Driven: Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar. 
+- Sidechains? 
+- soft vs hard fork
+	- soft: different states of the same blochain that coexist and are eventually reconnected
+	- hard: a complete separate copy of a blockchain
+
