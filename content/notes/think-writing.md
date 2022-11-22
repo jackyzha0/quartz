@@ -193,6 +193,9 @@ Many enthusiasts simply promote the blockchain as a more efficient, decentralize
 # 23/11
 
 - https://doi.org/10.1016/j.eneco.2022.106375 A renewable energy microgrids trading management platform based on permissioned blockchain
+	- 
 - M. Crosby, P. Pattanayak, S. Verma, V. Kalyanaraman **Blockchain technology: beyond bitcoin** (2016)
 - https://doi.org/10.1155/2020/5385207 Application of Blockchain and Internet of Things to Ensure Tamper-Proof Data Availability for Food Safety
-- 
+- https://doi.org/10.1016/j.tre.2020.102025 Evaluating the factors that influence blockchain adoption in the
+freight logistics industry
+- 10.23940/ijpe.18.09.p12.20402047 Research and Development of Blockchain Security
