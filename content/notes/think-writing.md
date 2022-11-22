@@ -156,4 +156,6 @@ doi: 10.1109/TEM.2020.3003565: Permissionless and Permissioned, Technology-Focus
 - soft vs hard fork
 	- soft: different states of the same blochain that coexist and are eventually reconnected
 	- hard: a complete separate copy of a blockchain
+- How will the blockchain be funded? Maybe I need to consider this.
+- Blockchain as a service?
 
