@@ -180,6 +180,8 @@ what type of technology is bitcoin (DOI:[10.2139/ssrn.2811995](http://dx.doi.org
 
 p18 social operating system
 
+p20 stigmergic coordination. governance based on a reputation system. reputation can be gained by either making a value contribution or evaluating someone elses conrtibution that is in line with the organisations value system. agents are judged on their actions and their judgements of others actions
+
 p21
 "Blockchain distributed ledger technology is a rare and special general purpose technology because it adds a further category to the suite of Williamson’s (1985) ‘economic institutions of capitalism’—namely, markets, hierarchies and relational contracting—with a new type of economic order: a Decentralized Collaborative Organization.16 A Decentralized Collaborative Organization (DCO) is a selfgoverning organization with the coordination properties of a market, the governance properties of a commons, and the constitutional properties of a nation state. It is an organization, but it is not hierarchical. It has the coordination properties of a market through the token systems that coordinate distributed action, but it is not a market because the predominant activity is production, not exchange. And it has the unanimous constitutional properties of a rule-of-law governed nation state, by complicit agreement of all ‘citizens’ who opt-in to such a DCO, and the automatic execution of the rules of that DCO through smart contract enforcement"
 
