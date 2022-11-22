@@ -187,3 +187,8 @@ p21
 
 p4
 Many enthusiasts simply promote the blockchain as a more efficient, decentralized and consensus-driven public repository, which can have a number of applications in order to make citizens less dependent on governments, yet within a society that is ultimately founded upon the State authority. Techno-libertarians and crypto-anarchists hold instead a more extremist position. They are generally inclined to consider the State as an illegitimate, unnecessary and irremediably obsolete depository of power, and they openly encourage the use of the new information technology as a liberating force against the very concept of authority. According to this view, we are at a stage in history when individuals can gradually overcome any centralized political institution through distributed consensus and create the conditions for an idealistic society of equals, characterized by flat, rather than hierarchical, structures.
+
+---
+
+# 23/11
+
