@@ -15,4 +15,6 @@ tags:
 	- [blockchain-types](notes/blockchain-types.md)
 - [x] why would a participant want to fork?
 	- just having the capability is important
+		- means the authority has to act in the interest of the parites otherwise they will fork
 	- swtiching authorities?
+
