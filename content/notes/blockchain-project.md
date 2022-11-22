@@ -74,6 +74,8 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://time.com/6142810/proof-of-humanity/
 
 - H. M. Kim, H. Turesson, M. Laskowski and A. F. Bahreini, "Permissionless and Permissioned, Technology-Focused and Business Needs-Driven: Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar," in IEEE Transactions on Engineering Management, vol. 69, no. 3, pp. 776-791, June 2022, doi: 10.1109/TEM.2020.3003565.
+- https://doi.org/10.1016/j.future.2019.02.059 Fork-free hybrid consensus with flexible Proof-of-Activity
+- Digital Object Identifier 10.1109/TII.2019.2941735 zkCrowd: A Hybrid Blockchain-Based Crowdsourcing Platform
 
 ## Other
 - https://docs.docker.com/config/containers/container-networking/
