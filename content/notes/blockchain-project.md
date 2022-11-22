@@ -14,7 +14,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [ ] do the records remain forever on the chain?
 
 # Notes
-[think-writing](notes/think-writing.md)
+[think-writing/log](notes/think-writing.md)
 
 - [412-lectures](notes/412-lectures.md)
 - [hyperledger-fabric](notes/hyperledger-fabric.md)
