@@ -165,5 +165,9 @@ doi: 10.1109/TEM.2020.3003565: Permissionless and Permissioned, Technology-Focus
 	- paystand
 	- hyperledger cello
 	- [IBM Blockchain Platform](https://www.trustradius.com/products/ibm-blockchain-platform/reviews "IBM Blockchain Platform reviews."), [Oracle Blockchain Cloud](https://www.trustradius.com/products/oracle-blockchain-cloud/reviews "Oracle Blockchain Cloud reviews."), [Azure Blockchain Service](https://www.trustradius.com/products/azure-blockchain-service/reviews "Azure Blockchain Service reviews."), [Alchemy](https://www.trustradius.com/products/alchemy/reviews "Alchemy reviews."), [Infura Ethereum API](https://www.trustradius.com/products/infura-ethereum-api/reviews "Infura Ethereum API reviews."), [Kaleido](https://www.trustradius.com/products/kaleido/reviews "Kaleido reviews."), [Amazon Managed Blockchain](https://www.trustradius.com/products/amazon-managed-blockchain/reviews "Amazon Managed Blockchain reviews."), [Crypto APIs](https://www.trustradius.com/products/crypto-apis/reviews "Crypto APIs reviews."), [VMware Blockchain](https://www.trustradius.com/products/vmware-blockchain/reviews "VMware Blockchain reviews."), and [Cryptomat](https://www.trustradius.com/products/cryptomat/reviews "Cryptomat reviews.").
-- permissioned blockchain "connected" to permionless blockchain 
 
+permissioned blockchain "connected" to permionless blockchain 
+
+DOI 10.1109/Blockchain.2019.00045
+
+in a public permissioned blockchain, what is stopping an attacker from registering enough nodes to perform a 51% attack, If we are not using a BFT consensus algorithm?
