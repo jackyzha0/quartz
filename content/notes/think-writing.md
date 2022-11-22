@@ -173,3 +173,7 @@ DOI 10.1109/Blockchain.2019.00045
 - https://en.wikipedia.org/wiki/Hidden_Markov_model
 
 in a public permissioned blockchain, what is stopping an attacker from registering enough nodes to perform a 51% attack, If we are not using a BFT consensus algorithm?
+
+what type of technology is bitcoin (DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995)) makes the case that bitcoin/blockchain technology is not merely a new general purpose technology but a new institutional technology of governance.
+
+"In an important sense the limits of this new technology are the limits of imagination in the same way that once upon a time it was hard to imagine what use computers could be, or to see what things computers could be applied to, before it eventually became clear that the answer was everything. The same pattern unfolded for the internet, and now everything is on the internet. It is Electronic copy available at: https://ssrn.com/abstract=2811995 11 not unreasonable to think this same dynamic will play out with blockchain, which is also made of computers and the interne"
