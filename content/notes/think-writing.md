@@ -257,4 +257,21 @@ starting with https://ethereum.org/en/governance/.
 		- on: proposed changes to the protocol are decided by stakeholders (holders of a governance token) and voting happens "on the blockchain" – sometimes changes are already written and are automatically implemented if a vote is successful
 		- off: decisions are made through an informal process of social discussion, which , if approved, would be implemented in code
 	- eth is off chain – but many things built on eth (e.g., DAOs) use on chain governance
-	- 
+- who is involved (stakeholders)
+	- ether holders
+	- application users
+	- application tooling devs
+	- node operators
+	- EIP authors – propose changes to the eth protocol
+	- miners/validators
+	- protocol developers
+- EIP – eth improvement protocol
+	- anyone can create
+- process for change
+	- propose a core EIP
+	- present EIP to devs
+		- rejected/modified/considered for dev
+	- EIP is developed
+	- EIP included in network upgrade (coordination required)
+	- upgrade activated (tested on a testnet first)
+- 
