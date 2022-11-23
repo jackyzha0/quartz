@@ -202,7 +202,8 @@ Many enthusiasts simply promote the blockchain as a more efficient, decentralize
 	- [similarities and differences between different meat and milk production systems](https://i.imgur.com/g1NnYSl.png)
 	- food fraud is increasing
 	- [blockchain types and techs table](https://i.imgur.com/NcCoxiU.png)'
-	- '
+	- rfid tracking
+	- traceability
 
 
 - https://doi.org/10.1016/j.tre.2020.102025 Evaluating the factors that influence blockchain adoption in the
@@ -210,3 +211,11 @@ freight logistics industry
 - [http://www.ijpe-online.com/EN/Y2018/V14/I9/2040](http://www.ijpe-online.com/EN/Y2018/V14/I9/2040) Research and Development of Blockchain Security
 - https://dl.acm.org/doi/pdf/10.1145/3190508.3190538 Hyperledger Fabric: A Distributed Operating System for Permissioned Blockchains
 - https://www.ibm.com/blogs/blockchain/2018/02/one-nations-move-to-increase-food-safety-with-blockchain/
+- https://www.researchgate.net/publication/321474197_Blockchain_Based_Wine_Supply_Chain_Traceability_System
+- https://ieeexplore.ieee.org/document/8823910 # Ensure Traceability in European Food Supply Chain by Using a Blockchain System
+- http://dx.doi.org/10.21900/iconf.2019.103295 # Processes and challenges for the adoption of blockchain technology in food supply chains: A thematic analysis
+- https://nofima.com/publication/1673512/ # Applications, limitations, costs, and benefits related to the use of blockchain technology in the food industry 
+- https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3344839 # Blockchain Meets Genomics: Governance Considerations for Promoting Food Safety and Public Health
+- https://ieeexplore.ieee.org/document/8674550 # Blockchain Inspired RFID-Based Information Architecture for Food Supply Chain
+
+I will some of these later maybe. I think i need to start focusing on "design and modelling of the blockchain governance rules, and implementation of such a rule set over an existing closed blockchain system". Clearly the existing blockchain network is not working yet so I might try to implement that later. 
