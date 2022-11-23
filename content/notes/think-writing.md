@@ -206,8 +206,7 @@ Many enthusiasts simply promote the blockchain as a more efficient, decentralize
 	- [blockchain types and techs table](https://i.imgur.com/NcCoxiU.png)'
 	- rfid tracking
 	- traceability
-	- [](https://i.imgur.com/qTuzm4e.png)
-
+	- [flow of products and associated data on the blockchain](https://i.imgur.com/qTuzm4e.png)
 
 - https://doi.org/10.1016/j.tre.2020.102025 Evaluating the factors that influence blockchain adoption in the
 freight logistics industry
