@@ -188,6 +188,8 @@ p21
 p4
 Many enthusiasts simply promote the blockchain as a more efficient, decentralized and consensus-driven public repository, which can have a number of applications in order to make citizens less dependent on governments, yet within a society that is ultimately founded upon the State authority. Techno-libertarians and crypto-anarchists hold instead a more extremist position. They are generally inclined to consider the State as an illegitimate, unnecessary and irremediably obsolete depository of power, and they openly encourage the use of the new information technology as a liberating force against the very concept of authority. According to this view, we are at a stage in history when individuals can gradually overcome any centralized political institution through distributed consensus and create the conditions for an idealistic society of equals, characterized by flat, rather than hierarchical, structures.
 
+^ this method of note taking does not work. I need to engage more with the material I think. I need to have a specific purpose when reading, instead of just looking at vaguely relevant papers/articles
+
 ---
 
 # 23/11
@@ -205,7 +207,6 @@ Many enthusiasts simply promote the blockchain as a more efficient, decentralize
 	- rfid tracking
 	- traceability
 
-
 - https://doi.org/10.1016/j.tre.2020.102025 Evaluating the factors that influence blockchain adoption in the
 freight logistics industry
 - [http://www.ijpe-online.com/EN/Y2018/V14/I9/2040](http://www.ijpe-online.com/EN/Y2018/V14/I9/2040) Research and Development of Blockchain Security
@@ -218,4 +219,10 @@ freight logistics industry
 - https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3344839 # Blockchain Meets Genomics: Governance Considerations for Promoting Food Safety and Public Health
 - https://ieeexplore.ieee.org/document/8674550 # Blockchain Inspired RFID-Based Information Architecture for Food Supply Chain
 
-I will some of these later maybe. I think i need to start focusing on "design and modelling of the blockchain governance rules, and implementation of such a rule set over an existing closed blockchain system". Clearly the existing blockchain network is not working yet so I might try to implement that later. 
+I will some of these later maybe. I think i need to start focusing on "design and modelling of the blockchain governance rules, and implementation of such a rule set over an existing closed blockchain system". Clearly the existing blockchain network is not working yet so I might try to implement that later. I think I should start trying to design some governance rules. 
+
+How are they implemented? Are they like smart contracts? Is it like on-chain governance - how is that implemented? Do I need to know that yet? maybe I could look at some existing blockchains with on-chain governance and see how that works. It would have to be a permissioned blockchain because I think a permissionless blockchain would be radically different. "Encodes voting rules about self governance" — What are they voting on? What are they actually governing?
+- Development decisions
+- Allowing new participants to join the network
+
+Who are the members that are allowed to vote? Who are the member of the network. E.g., three farms producing products want to verify they are organic. There exists a blockchain which was initiated by the government, where they can "join" and uploaded documents or pointers to documents (zero knowledge proof?) which prove they are organic. (Do we need to track the actual products using IoT/RFID/etc). Who else is part of the blockchain? Retailers and Food-manufacturing?

@@ -12,6 +12,8 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 
 - [ ] It the code developed by the central authority or spread across partipants?
 - [ ] do the records remain forever on the chain?
+- [ ] How is on-chain governance implemented?
+- [ ] Do we need to track the products physically?
 
 # Notes
 [think-writing/log](notes/think-writing.md)
