@@ -256,4 +256,5 @@ starting with https://ethereum.org/en/governance/.
 	- on/off chain
 		- on: proposed changes to the protocol are decided by stakeholders (holders of a governance token) and voting happens "on the blockchain" – sometimes changes are already written and are automatically implemented if a vote is successful
 		- off: decisions are made through an informal process of social discussion, which , if approved, would be implemented in code
-	- eth is off chain – but mane dApps and 
+	- eth is off chain – but many things built on eth (e.g., DAOs) use on chain governance
+	- 
