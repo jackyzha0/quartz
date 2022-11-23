@@ -229,5 +229,4 @@ Who are the members that are allowed to vote? Who are the member of the network.
 
 E.g., three farms producing products want to verify they are organic. There exists a blockchain which was initiated by the government, where they can "join" and upload documents (or pointers to documents – maybe using zero knowledge proof?) which prove they are organic. (Do we need to track the actual products using IoT/RFID/etc). Who else is part of the blockchain? Retailers and Food-manufacturing? Then what happens? The farm sends produce to the manufacturers who use it in an organic way and who also upload relevant documents to the blockchain. Next, the product arrives at a retailer who can view the history of the item and market it accordingly. Finally a customer sees it and can and verify that it is organic before they buy it (are they able to view all the documents?).  
 
-What do the "voting rules about self governance" need to accomplish?
-- 
+What do the "voting rules about self governance" need to accomplish? Shouldn't the system just work by itself. Its just a database, what do they need to vote on? Allowsing new members in?

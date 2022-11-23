@@ -21,6 +21,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [ ] What are they voting on?
 	- Seems like a very dumb question. I guess a lot of things
 - [ ] What do the governance rules need to accomplish?
+	- Shouldn't the system just work?
 	- Very broad question
 
 # Notes
