@@ -225,4 +225,6 @@ How are they implemented? Are they like smart contracts? Is it like on-chain gov
 - Development decisions
 - Allowing new participants to join the network
 
-Who are the members that are allowed to vote? Who are the member of the network. E.g., three farms producing products want to verify they are organic. There exists a blockchain which was initiated by the government, where they can "join" and uploaded documents or pointers to documents (zero knowledge proof?) which prove they are organic. (Do we need to track the actual products using IoT/RFID/etc). Who else is part of the blockchain? Retailers and Food-manufacturing?
+Who are the members that are allowed to vote? Who are the member of the network. 
+
+E.g., three farms producing products want to verify they are organic. There exists a blockchain which was initiated by the government, where they can "join" and upload documents (or pointers to documents – zero knowledge proof?) which prove they are organic. (Do we need to track the actual products using IoT/RFID/etc). Who else is part of the blockchain? Retailers and Food-manufacturing? 

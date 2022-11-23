@@ -11,9 +11,14 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 [answered-questions](notes/answered-questions.md)
 
 - [ ] It the code developed by the central authority or spread across partipants?
-- [ ] do the records remain forever on the chain?
+- [ ] Do the records remain forever on the chain?
 - [ ] How is on-chain governance implemented?
+	- Smart contracts?
 - [ ] Do we need to track the products physically?
+- [ ] Who will be participating in the blockchain?
+	- Three major parties in food supply-chain: Market, Manufacturing, Agriculture
+- [ ] What are they voting on?
+	- Seems like a very dumb question. I guess a lot of things
 
 # Notes
 [think-writing/log](notes/think-writing.md)
