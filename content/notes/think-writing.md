@@ -206,6 +206,8 @@ Many enthusiasts simply promote the blockchain as a more efficient, decentralize
 	- [blockchain types and techs table](https://i.imgur.com/NcCoxiU.png)'
 	- rfid tracking
 	- traceability
+	- [](https://i.imgur.com/qTuzm4e.png)
+
 
 - https://doi.org/10.1016/j.tre.2020.102025 Evaluating the factors that influence blockchain adoption in the
 freight logistics industry
@@ -225,8 +227,9 @@ How are they implemented? Are they like smart contracts? Is it like on-chain gov
 - Development decisions
 - Allowing new participants to join the network
 
-Who are the members that are allowed to vote? Who are the member of the network. 
+Who are the members that are allowed to vote? Who are the members of the network. 
 
 E.g., three farms producing products want to verify they are organic. There exists a blockchain which was initiated by the government, where they can "join" and upload documents (or pointers to documents – maybe using zero knowledge proof?) which prove they are organic. (Do we need to track the actual products using IoT/RFID/etc). Who else is part of the blockchain? Retailers and Food-manufacturing? Then what happens? The farm sends produce to the manufacturers who use it in an organic way and who also upload relevant documents to the blockchain. Next, the product arrives at a retailer who can view the history of the item and market it accordingly. Finally a customer sees it and can and verify that it is organic before they buy it (are they able to view all the documents?).  
 
-What do the "voting rules about self governance" need to accomplish? Shouldn't the system just work by itself. Its just a database, what do they need to vote on? Allowsing new members in?
+What do the "voting rules about self governance" need to accomplish? Shouldn't the system just work by itself. Its just a database, what do they need to vote on? Allowing new members in?
+

@@ -11,18 +11,24 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 [answered-questions](notes/answered-questions.md)
 
 - [ ] It the code developed by the central authority or spread across partipants?
+	- I think the initiating authority is in charge of developing the inital system. (either they do it internally or contract a software company to do it for them)
+	- Maybe they can partner with others to initiate it
+	- It is then maintained by the participants
 - [ ] Do the records remain forever on the chain?
 - [ ] How is on-chain governance implemented?
 	- Smart contracts?
 - [ ] Do we need to track the products physically?
 - [ ] Who will be participating in the blockchain?
 	- Three major parties in food supply-chain: Market, Manufacturing, Agriculture
-	- Do I to define this in more detail?
+	- Do I need to define this in more detail?
 - [ ] What are they voting on?
-	- Seems like a very dumb question. I guess a lot of things
+	- Seems like a very dumb question. I guess a lot of things. But I'm not sure so I'll add it here
 - [ ] What do the governance rules need to accomplish?
 	- Shouldn't the system just work?
 	- Very broad question
+	- Maybe:
+		- Maintenance/Development of the codebase
+		- Inviting/banning participants
 
 # Notes
 [think-writing/log](notes/think-writing.md)
