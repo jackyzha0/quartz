@@ -240,3 +240,20 @@ I GOT HAYDENS FOUR NODES TO WORK!!
 
 Today I'll spend the morning to get the SWIPL Iroha network to work. And do more reading/thinking this arvo.
 
+Couldn't figure out swipl kernel. Reinstalling virtualbox, and trying to get VM working again. 
+
+In the meantime. I'm going to try to find some example of "governance rules".
+
+starting with https://ethereum.org/en/governance/.
+- governance are the systems that allow decisions to be made
+	- e.g., shareholders vote on proposals for change, elected officials enact legislation that attempts to represent their constituents desires, board of directors have the final say in decision making
+- decentralised governance
+	- no one person owns or controls ethereum, this makes traditional organizational governance an incompatible solution
+- eth governance
+	- the process by which protocol changes are made
+		- not related to how people and applications use the protocol because eth is permissionless – anyone can participate in on chain activities
+	- the governance systems need to ensure that changes to the protocol are secure and widely supported by the community
+	- on/off chain
+		- on: proposed changes to the protocol are decided by stakeholders (holders of a governance token) and voting happens "on the blockchain" – sometimes changes are already written and are automatically implemented if a vote is successful
+		- off: decisions are made through an informal process of social discussion, which , if approved, would be implemented in code
+	- eth is off chain – but mane dApps and 
