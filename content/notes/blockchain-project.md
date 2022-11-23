@@ -17,8 +17,11 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [ ] Do we need to track the products physically?
 - [ ] Who will be participating in the blockchain?
 	- Three major parties in food supply-chain: Market, Manufacturing, Agriculture
+	- Do I to define this in more detail?
 - [ ] What are they voting on?
 	- Seems like a very dumb question. I guess a lot of things
+- [ ] What do the governance rules need to accomplish?
+	- Very broad question
 
 # Notes
 [think-writing/log](notes/think-writing.md)
