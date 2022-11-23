@@ -74,5 +74,6 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 
 ## Other
 - https://docs.docker.com/config/containers/container-networking/
+- http://nzfoodmanufacturer.co.nz/alibaba-blockchain-technology-drive-food-safety-quality/
 
 # Sources
