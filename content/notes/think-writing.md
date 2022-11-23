@@ -244,7 +244,7 @@ Couldn't figure out swipl kernel. Reinstalling virtualbox, and trying to get VM 
 
 In the meantime. I'm going to try to find some example of "governance rules".
 
-starting with https://ethereum.org/en/governance/.
+starting with https://ethereum.org/en/governance/. Maybe I should aim to produce a similar documet for a proposed veracity blockchain?
 - governance are the systems that allow decisions to be made
 	- e.g., shareholders vote on proposals for change, elected officials enact legislation that attempts to represent their constituents desires, board of directors have the final say in decision making
 - decentralised governance
