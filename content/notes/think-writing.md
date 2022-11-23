@@ -232,3 +232,8 @@ E.g., three farms producing products want to verify they are organic. There exis
 
 What do the "voting rules about self governance" need to accomplish? Shouldn't the system just work by itself. Its just a database, what do they need to vote on? Allowing new members in?
 
+I GOT HAYDENS FOUR NODES TO WORK!!
+
+---
+
+# 24/11
