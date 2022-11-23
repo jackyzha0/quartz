@@ -237,3 +237,6 @@ I GOT HAYDENS FOUR NODES TO WORK!!
 ---
 
 # 24/11
+
+Today I'll spend the morning to get the SWIPL Iroha network to work. And do more reading/thinking this arvo.
+
