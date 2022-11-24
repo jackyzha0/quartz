@@ -2,7 +2,7 @@
 title: "veracity-governance"
 tags: 
 ---
-note: nothing about this document is final. I expect it will evolve a lot. I just want to start to get some basic structure down.
+I just started this to get some basic structure down.
 
 # Aim
 

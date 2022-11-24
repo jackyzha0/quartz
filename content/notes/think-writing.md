@@ -262,3 +262,8 @@ In ethereum governance rules are the systems that allow the protocol to change. 
 - The process for admitting a new participant
 
 What happens if a participant is caught being untruthful? Can they be automatically kicked out or is a vote required? How can we distinguish between mistakes and intentional deceit?
+
+---
+
+25/11
+
