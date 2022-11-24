@@ -19,4 +19,10 @@ the bitcoin governance process maintains a set of rules about
 - reconciliation with the memory pool and main branch
 - coinbase reward and fee calculation
 - block header verification
+
+proposal
+- researcher disovers a solution
+	- share proposed changes will devs through email, white paper and/or a BIP
+
+implementation
 - 
