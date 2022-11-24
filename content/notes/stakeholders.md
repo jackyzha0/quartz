@@ -13,6 +13,12 @@ three primary groups
 - clients -> pay for and own systems
 - technical staff -> ensure system operation
 
+other classifications
+- Internal stakeholders — people within the organisation, e.g., employees, volunteers, ….
+- External stakeholders — people outside the organisation, e.g., suppliers or shipping companies.
+- Operational stakeholders — people who regularly interact with the system, e.g., accountants, factory supervisors, customers, ….
+- Executive stakeholders — people who don’t directly interact, but use the information or have a financial interest, e.g., senior managers, board of directors, regulatory authorities, ….
+
 Analyst should id every type of stakeholder during [systems-development-life-cycle](notes/systems-development-life-cycle.md)
 
 ### 0.2 users as stakeholders

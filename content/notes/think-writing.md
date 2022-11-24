@@ -254,4 +254,5 @@ What do I need to define so that I can design rules for the governance of my blo
 	- A process for change
 	- Handling Disagreements
 	- Voting protocol
-	- 
+
+I just started [this](notes/veracity-governance.md) document. I think I am going too much into detail about the external system.

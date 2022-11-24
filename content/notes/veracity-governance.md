@@ -9,17 +9,23 @@ note: nothing about this document is final. I expect it will evolve a lot. I jus
 # Stakeholders
 Three main industries
 - Agriculture
+	- Farms
+		- Large Corporations
+			- Possibly a representative (or group of reps) from within the org
+		- Small/Family owned
+			- May not be 'tech savvy'
+			- Do they need to run
 - Food-Manufacturing
 - Retail/Marketing
 - + End consumer
 
-Stakeholders
-- Users
-- Clients
-- Technical Staff
-- Consumers
-- Farmers
-- 
+Direct: Stakeholders who interact with the blockchain
+Indirect: Stakeholders who are affected by but do not interact with the blockchain
+
+Things to consider:
+- Should small and large business have equal weight in the vote?
+- ~~Will small businesses be able to set up the required infrastructure?~~
+	- What is the required infrastructure — NVM I think they just use a website/app to upload information
 
 # Process for Change
 
