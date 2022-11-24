@@ -52,9 +52,10 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [consensus](notes/consensus.md)
 - [CPR-governance](notes/CPR-governance.md)
 - [eth-governance](notes/eth-governance.md)
+- [food-manufacturing](notes/food-manufacturing.md)
 
 # Reading
-## Blockchain
+## Blockchain Articles
 **Read
 - https://101blockchains.com/blockchain-governance/
 - https://coopahtroopa.mirror.xyz/_EDyn4cs9tDoOxNGZLfKL7JjLo5rGkkEfRa_a-6VEWw
@@ -83,7 +84,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://www.investopedia.com/terms/b/blockchainasaservice-baas.asp
 - https://nodes.com/#blockchain-nodes-types
 
-**Papers
+## Blockchain Papers
 - https://doi.org/10.1016/j.ipm.2021.102556 # A novel framework for policy based on-chain governance of blockchain networks
 - H. M. Kim, H. Turesson, M. Laskowski and A. F. Bahreini, "Permissionless and Permissioned, Technology-Focused and Business Needs-Driven: Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar," in IEEE Transactions on Engineering Management, vol. 69, no. 3, pp. 776-791, June 2022, doi: 10.1109/TEM.2020.3003565.
 - https://doi.org/10.1016/j.future.2019.02.059 Fork-free hybrid consensus with flexible Proof-of-Activity
@@ -105,5 +106,6 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 ## Other
 - https://docs.docker.com/config/containers/container-networking/
 - http://nzfoodmanufacturer.co.nz/alibaba-blockchain-technology-drive-food-safety-quality/
+- https://collegegrad.com/industries/food-manufacturing
 
 # Sources

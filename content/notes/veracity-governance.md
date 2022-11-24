@@ -16,6 +16,7 @@ Three main industries
 			- May not be 'tech savvy'
 			- Can choose to be any type of node.
 - Food-Manufacturing
+	- 
 - Retail/Marketing
 - + End consumer
 
