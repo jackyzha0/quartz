@@ -271,3 +271,6 @@ https://www.researchgate.net/publication/321474197_Blockchain_Based_Wine_Supply_
 - [wine supply chain entities](https://i.imgur.com/9D0tsVF.png)
 	- could be very similar to organic food supply chain
 - The proposed traceability system uses a private blockchain with pre-selected miners and a block is added to the chain if and only if it is verified by the majority number of miners
+
+https://www.multichain.com/download/MultiChain-White-Paper.pdf
+- assigns roles to each node which determine their permissions
