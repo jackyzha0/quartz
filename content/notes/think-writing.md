@@ -249,3 +249,9 @@ starting with https://ethereum.org/en/governance/. Maybe I should aim to produce
 
 What do I need to define so that I can design rules for the governance of my blockchain?
 - How much can I adapt from existing chains? I should probably review the governance of other chains (while developing my own)
+- I need to define:
+	- Stakeholders
+	- A process for change
+	- Handling Disagreements
+	- Voting protocol
+	- 
