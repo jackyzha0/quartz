@@ -257,3 +257,8 @@ What do I need to define so that I can design rules for the governance of my blo
 
 I just started [this](notes/veracity-governance.md) document. I think I am going too much into detail about the external system.
 
+In ethereum governance rules are the systems that allow the protocol to change. Do the governance rules in our permissioned chain need to cover anything else. So far I've identified two things that the governance need to manage:
+- The process for change of the codebase/protocol
+- The process for admitting a new participant
+
+What happens if a participant is caught being untruthful? Can they be automatically kicked out or is a vote required? How can we distinguish between mistakes and intentional deceit?

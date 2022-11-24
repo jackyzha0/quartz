@@ -28,6 +28,8 @@ Things to consider:
 	- What is the required infrastructure — NVM I think they just use a website/app to upload information
 
 # Process for Change
+Can/Should we use a system similar to EIPs/BIPs?
+- 
 
 # Voting Protocol
 
