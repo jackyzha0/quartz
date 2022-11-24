@@ -23,7 +23,7 @@ other = "Tag"
 other = "Tilbakekoblinger"
 
 [no_backlinks]
-other = "ingen tilbakekoblinger funnet"
+other = "Ingen tilbakekoblinger funnet"
 
 [home]
 other = "Hjem"
