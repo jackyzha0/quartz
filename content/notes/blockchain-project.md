@@ -10,7 +10,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 # Questions	
 [answered-questions](notes/answered-questions.md)
 
-- [ ] It the code developed by the central authority or spread across partipants?
+- [ ] Is the code developed by the central authority or spread across partipants?
 	- I think the initiating authority is in charge of developing the inital system. (either they do it internally or contract a software company to do it for them)
 	- Maybe they can partner with others to initiate it
 	- It is then maintained by the participants
@@ -29,6 +29,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 	- Maybe:
 		- Maintenance/Development of the codebase
 		- Inviting/banning participants
+- [ ] Need to consider applications of decentralized identity technology
 
 # Notes
 [think-writing/log](notes/think-writing.md)
@@ -49,6 +50,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 
 # Reading
 ## Blockchain
+**Read
 - https://101blockchains.com/blockchain-governance/
 - https://coopahtroopa.mirror.xyz/_EDyn4cs9tDoOxNGZLfKL7JjLo5rGkkEfRa_a-6VEWw
 - https://101blockchains.com/permissioned-blockchain/
@@ -57,7 +59,6 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://en.wikipedia.org/wiki/Government_by_algorithm
 - https://medium.com/@Vlad_Zamfir/against-on-chain-governance-a4ceacd040ca
 - https://medium.com/@FEhrsam/blockchain-governance-programming-our-future-c3bfe30f2d74
-- https://doi.org/10.1016/j.ipm.2021.102556
 - https://vitalik.ca/general/2017/12/17/voting.html
 - https://bitcoin.org/bitcoin.pdf
 - https://medium.com/@WayneVaughan/open-vs-closed-blockchains-let-s-end-this-madness-8313e4095ead
@@ -75,7 +76,18 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://blog.dshr.org/2022/02/ee380-talk.html
 - https://ethereum.org/669c9e2e2027310b6b3cdce6e1c52962/Ethereum_Whitepaper_-_Buterin_2014.pdf
 - https://www.investopedia.com/terms/b/blockchainasaservice-baas.asp
+- https://nodes.com/#blockchain-nodes-types
 
+**Papers
+- https://doi.org/10.1016/j.ipm.2021.102556 # A novel framework for policy based on-chain governance of blockchain networks
+- H. M. Kim, H. Turesson, M. Laskowski and A. F. Bahreini, "Permissionless and Permissioned, Technology-Focused and Business Needs-Driven: Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar," in IEEE Transactions on Engineering Management, vol. 69, no. 3, pp. 776-791, June 2022, doi: 10.1109/TEM.2020.3003565.
+- https://doi.org/10.1016/j.future.2019.02.059 Fork-free hybrid consensus with flexible Proof-of-Activity
+- Digital Object Identifier 10.1109/TII.2019.2941735 zkCrowd: A Hybrid Blockchain-Based Crowdsourcing Platform
+- https://dx.doi.org/10.1109/TEM.2019.2920154
+- DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
+- https://dx.doi.org/10.2139/ssrn.2709713 # Blockchain Technology and Decentralized Governance: Is the State Still Necessary?
+
+**To Read
 - https://en.wikipedia.org/wiki/Futarchy
 - https://pluralistic.net/2022/02/14/externalities/#dshr
 - https://www.apc.org/en/pubs/network-infrastructures-commons-model-local-participation-governance-and-sustainability
@@ -84,12 +96,6 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://ec.europa.eu/digital-building-blocks/wikis/display/EBSI/Home
 - https://time.com/6142810/proof-of-humanity/
 
-- H. M. Kim, H. Turesson, M. Laskowski and A. F. Bahreini, "Permissionless and Permissioned, Technology-Focused and Business Needs-Driven: Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar," in IEEE Transactions on Engineering Management, vol. 69, no. 3, pp. 776-791, June 2022, doi: 10.1109/TEM.2020.3003565.
-- https://doi.org/10.1016/j.future.2019.02.059 Fork-free hybrid consensus with flexible Proof-of-Activity
-- Digital Object Identifier 10.1109/TII.2019.2941735 zkCrowd: A Hybrid Blockchain-Based Crowdsourcing Platform
-- https://dx.doi.org/10.1109/TEM.2019.2920154
-- DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
-- https://dx.doi.org/10.2139/ssrn.2709713 # Blockchain Technology and Decentralized Governance: Is the State Still Necessary?
 
 ## Other
 - https://docs.docker.com/config/containers/container-networking/

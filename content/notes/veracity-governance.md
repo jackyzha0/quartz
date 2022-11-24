@@ -14,7 +14,7 @@ Three main industries
 			- Possibly a representative (or group of reps) from within the org
 		- Small/Family owned
 			- May not be 'tech savvy'
-			- Do they need to run
+			- Can choose to be any type of node.
 - Food-Manufacturing
 - Retail/Marketing
 - + End consumer

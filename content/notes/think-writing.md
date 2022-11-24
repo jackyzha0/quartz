@@ -206,7 +206,7 @@ Many enthusiasts simply promote the blockchain as a more efficient, decentralize
 	- [blockchain types and techs table](https://i.imgur.com/NcCoxiU.png)'
 	- rfid tracking
 	- traceability
-	- [flow of products and associated data on the blockchain](https://i.imgur.com/qTuzm4e.png)
+	- ![flow of products and associated data on the blockchain](https://i.imgur.com/qTuzm4e.png)
 
 - https://doi.org/10.1016/j.tre.2020.102025 Evaluating the factors that influence blockchain adoption in the
 freight logistics industry
@@ -256,3 +256,4 @@ What do I need to define so that I can design rules for the governance of my blo
 	- Voting protocol
 
 I just started [this](notes/veracity-governance.md) document. I think I am going too much into detail about the external system.
+
