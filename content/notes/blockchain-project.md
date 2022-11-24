@@ -41,7 +41,9 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 
 # Notes
 - [think-writing/log](notes/think-writing.md)
-- [veracity-governance](notes/veracity-governance.md)]
+- [veracity-governance](notes/veracity-governance.md)
+- [reading-papers](notes/reading-papers.md)
+- 
 
 - [412-lectures](notes/412-lectures.md)
 - [hyperledger-fabric](notes/hyperledger-fabric.md)
@@ -87,15 +89,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://ethereum.org/669c9e2e2027310b6b3cdce6e1c52962/Ethereum_Whitepaper_-_Buterin_2014.pdf
 - https://www.investopedia.com/terms/b/blockchainasaservice-baas.asp
 - https://nodes.com/#blockchain-nodes-types
-
-## Blockchain Papers
-- https://doi.org/10.1016/j.ipm.2021.102556 # A novel framework for policy based on-chain governance of blockchain networks
-- H. M. Kim, H. Turesson, M. Laskowski and A. F. Bahreini, "Permissionless and Permissioned, Technology-Focused and Business Needs-Driven: Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar," in IEEE Transactions on Engineering Management, vol. 69, no. 3, pp. 776-791, June 2022, doi: 10.1109/TEM.2020.3003565.
-- https://doi.org/10.1016/j.future.2019.02.059 Fork-free hybrid consensus with flexible Proof-of-Activity
-- Digital Object Identifier 10.1109/TII.2019.2941735 zkCrowd: A Hybrid Blockchain-Based Crowdsourcing Platform
-- https://dx.doi.org/10.1109/TEM.2019.2920154
-- DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
-- https://dx.doi.org/10.2139/ssrn.2709713 # Blockchain Technology and Decentralized Governance: Is the State Still Necessary?
+- https://ethereum.org/en/governance/
 
 **To Read
 - https://en.wikipedia.org/wiki/Futarchy
@@ -106,6 +100,29 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://ec.europa.eu/digital-building-blocks/wikis/display/EBSI/Home
 - https://time.com/6142810/proof-of-humanity/
 
+## Blockchain Papers
+**Very good
+
+**Good
+- H. M. Kim, H. Turesson, M. Laskowski and A. F. Bahreini, "Permissionless and Permissioned, Technology-Focused and Business Needs-Driven: Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar," in IEEE Transactions on Engineering Management, vol. 69, no. 3, pp. 776-791, June 2022, doi: 10.1109/TEM.2020.3003565.
+- https://doi.org/10.1016/j.future.2019.02.059 Fork-free hybrid consensus with flexible Proof-of-Activity
+- Digital Object Identifier 10.1109/TII.2019.2941735 zkCrowd: A Hybrid Blockchain-Based Crowdsourcing Platform
+- https://dx.doi.org/10.1109/TEM.2019.2920154
+- https://dx.doi.org/10.2139/ssrn.2709713 # Blockchain Technology and Decentralized Governance: Is the State Still Necessary?
+- https://www.researchgate.net/publication/321474197_Blockchain_Based_Wine_Supply_Chain_Traceability_System
+- https://doi.org/10.1016/j.eneco.2022.106375 A renewable energy microgrids trading management platform based on permissioned blockchain
+
+**Not good
+- 
+
+**Papers to read
+- https://doi.org/10.1016/j.ipm.2021.102556 # A novel framework for policy based on-chain governance of blockchain networks
+	- 
+- DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
+- 
+
+**Other maybe relevant Papers
+- https://www.multichain.com/download/MultiChain-White-Paper.pdf
 
 ## Other
 - https://docs.docker.com/config/containers/container-networking/
