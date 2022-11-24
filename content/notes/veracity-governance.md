@@ -7,18 +7,16 @@ note: nothing about this document is final. I expect it will evolve a lot. I jus
 # Aim
 
 # Stakeholders
-Three main industries
-- Agriculture
-	- Farms
+- Main Authority e.g., govt
+- Other Participants
+	- Agriculture
 		- Large Corporations
-			- Possibly a representative (or group of reps) from within the org
 		- Small/Family owned
-			- May not be 'tech savvy'
-			- Can choose to be any type of node.
-- Food-Manufacturing
-	- 
-- Retail/Marketing
-- + End consumer
+	- Food-Manufacturing
+	- Retail/Marketing
+	- Shipping?
+
+Who operates the nodes?
 
 Direct: Stakeholders who interact with the blockchain
 Indirect: Stakeholders who are affected by but do not interact with the blockchain
