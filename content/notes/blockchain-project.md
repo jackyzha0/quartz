@@ -2,7 +2,6 @@
 title: "Blockchain Project"
 aliases: 
 tags: 
-- project
 ---
 # Abstract
 Blockchain technology falls into two distinct classes: open (permissionless) blockchains such as those underlying bitcoin, Ethereum and Cardano; and closed (permissioned) blockchains such as implemented in the Hyperledger Fabric project. To motivate decentralised participation, open blockchains (presently) require an associated cryptocurrency, which can be a risky distraction. However, closed blockchains are considered by some to be insufficiently decentralised.This summer project aims to prototype a compromise: a closed blockchain system that encodes voting rules about self-governance, so that closed blockchain technology can be used in a more open manner. Experience in programming blockchain systems is not assumed. Depending on the student involved, the project will balance work between design and modelling of the blockchain governance rules, and implementation of such a rule set over an existing closed blockchain system.
@@ -14,7 +13,6 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 	- I think the initiating authority is in charge of developing the inital system. (either they do it internally or contract a software company to do it for them)
 	- Maybe they can partner with others to initiate it
 	- It is then maintained by the participants
-- [ ] Do the records remain forever on the chain?
 - [ ] How is on-chain governance implemented?
 	- Smart contracts?
 - [ ] Do we need to track the products physically?
@@ -30,16 +28,19 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 	- Maybe:
 		- Maintenance/Development of the codebase
 		- Inviting/banning participants
+		- Conducting phsysical audits?
 - [ ] Need to consider applications of decentralized identity technology
 - [ ] What happens if a participant is caught being untruthful? 
 	- Can they be automatically kicked out or is a vote required? 
 	- How can we distinguish between mistakes and intentional deceit?
 		- Maybe a reputation system. This way one mistake is not fatal, and a reputation can be restored over time
 - [ ] Should the central/initiating groups retain higher privileges even after other participants have joined?
+- [ ] Even if a farm says they didn't use some chemical, how does the blockchain verify that. Does someone need to go and physically audit them?
+	- Can the group, as a DAO almost, collectively employ someone to do this?
 
 # Notes
-[think-writing/log](notes/think-writing.md)
-[veracity-governance](notes/veracity-governance.md)]
+- [think-writing/log](notes/think-writing.md)
+- [veracity-governance](notes/veracity-governance.md)]
 
 - [412-lectures](notes/412-lectures.md)
 - [hyperledger-fabric](notes/hyperledger-fabric.md)
