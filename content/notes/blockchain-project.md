@@ -44,6 +44,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [transaction-finality](transaction-finality.md)
 - [consensus](notes/consensus.md)
 - [CPR-governance](notes/CPR-governance.md)
+- [eth-governance](notes/eth-governance.md)
 
 # Reading
 ## Blockchain

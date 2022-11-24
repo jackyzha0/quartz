@@ -245,33 +245,7 @@ Couldn't figure out swipl kernel. Reinstalling virtualbox, and trying to get VM 
 In the meantime. I'm going to try to find some example of "governance rules".
 
 starting with https://ethereum.org/en/governance/. Maybe I should aim to produce a similar documet for a proposed veracity blockchain?
-- governance are the systems that allow decisions to be made
-	- e.g., shareholders vote on proposals for change, elected officials enact legislation that attempts to represent their constituents desires, board of directors have the final say in decision making
-- decentralised governance
-	- no one person owns or controls ethereum, this makes traditional organizational governance an incompatible solution
-- eth governance
-	- the process by which protocol changes are made
-		- not related to how people and applications use the protocol because eth is permissionless – anyone can participate in on chain activities
-	- the governance systems need to ensure that changes to the protocol are secure and widely supported by the community
-	- on/off chain
-		- on: proposed changes to the protocol are decided by stakeholders (holders of a governance token) and voting happens "on the blockchain" – sometimes changes are already written and are automatically implemented if a vote is successful
-		- off: decisions are made through an informal process of social discussion, which , if approved, would be implemented in code
-	- eth is off chain – but many things built on eth (e.g., DAOs) use on chain governance
-- who is involved (stakeholders)
-	- ether holders
-	- application users
-	- application tooling devs
-	- node operators
-	- EIP authors – propose changes to the eth protocol
-	- miners/validators
-	- protocol developers
-- EIP – eth improvement protocol
-	- anyone can create
-- process for change
-	- propose a core EIP
-	- present EIP to devs
-		- rejected/modified/considered for dev
-	- EIP is developed
-	- EIP included in network upgrade (coordination required)
-	- upgrade activated (tested on a testnet first)
-- 
+- [eth-governance](notes/eth-governance.md)
+
+What do I need to define so that I can design rules for the governance of my blockchain?
+- How much can I adapt from existing chains? I should probably review the governance of other chains (while developing my own)
