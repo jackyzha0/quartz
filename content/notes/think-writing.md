@@ -287,4 +287,4 @@ https://www.multichain.com/download/MultiChain-White-Paper.pdf
 		- flexible governance
 		- slow response in problem cases
 		- inter proposeal dependencies
-		- 
+	- It is a double-edged sword. It allows quicker decision-making but it's risky because the governance system becomes harder to change once instituted.

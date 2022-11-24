@@ -99,6 +99,8 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://www.lacchain.net
 - https://ec.europa.eu/digital-building-blocks/wikis/display/EBSI/Home
 - https://time.com/6142810/proof-of-humanity/
+- https://internetcomputer.org/what-is-the-ic
+- https://docs.decred.org/governance/overview/
 
 ## Blockchain Papers
 **Very good
@@ -119,6 +121,9 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 **Papers to read
 - DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
 - https://doi.org/10.1080/10580530.2020.1720046 Defining Blockchain Governance: A Framework for Analysis and Comparison
+- https://tezos.com/whitepaper.pdf
+- https://www.ndss-symposium.org/wp-content/uploads/2019/02/ndss2019_02A-2_Zhang_paper.pdf A Treasury System for Cryptocurrencies: Enabling Better Collaborative Intelligence
+	- Quadratic voting
 
 **Other maybe relevant Papers
 - https://www.multichain.com/download/MultiChain-White-Paper.pdf
