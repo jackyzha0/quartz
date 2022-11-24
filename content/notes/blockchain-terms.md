@@ -19,7 +19,7 @@ tags:
 
 **Common Pool Resource (CPR):**
 
-**:**
+**UTXO unspent transaction output:**
 
 **:**
 

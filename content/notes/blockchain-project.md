@@ -43,7 +43,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [think-writing/log](notes/think-writing.md)
 - [veracity-governance](notes/veracity-governance.md)
 - [reading-papers](notes/reading-papers.md)
-- 
+- [blockchain-terms](notes/blockchain-terms.md)
 
 - [412-lectures](notes/412-lectures.md)
 - [hyperledger-fabric](notes/hyperledger-fabric.md)
