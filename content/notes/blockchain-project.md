@@ -102,6 +102,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 
 ## Blockchain Papers
 **Very good
+- https://doi.org/10.1016/j.ipm.2021.102556 # A novel framework for policy based on-chain governance of blockchain networks
 
 **Good
 - H. M. Kim, H. Turesson, M. Laskowski and A. F. Bahreini, "Permissionless and Permissioned, Technology-Focused and Business Needs-Driven: Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar," in IEEE Transactions on Engineering Management, vol. 69, no. 3, pp. 776-791, June 2022, doi: 10.1109/TEM.2020.3003565.
@@ -116,10 +117,8 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - 
 
 **Papers to read
-- https://doi.org/10.1016/j.ipm.2021.102556 # A novel framework for policy based on-chain governance of blockchain networks
-	- 
 - DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
-- 
+- https://doi.org/10.1080/10580530.2020.1720046 Defining Blockchain Governance: A Framework for Analysis and Comparison
 
 **Other maybe relevant Papers
 - https://www.multichain.com/download/MultiChain-White-Paper.pdf

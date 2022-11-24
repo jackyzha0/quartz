@@ -273,4 +273,18 @@ https://www.researchgate.net/publication/321474197_Blockchain_Based_Wine_Supply_
 - The proposed traceability system uses a private blockchain with pre-selected miners and a block is added to the chain if and only if it is verified by the majority number of miners
 
 https://www.multichain.com/download/MultiChain-White-Paper.pdf
-- 
+
+- https://doi.org/10.1016/j.ipm.2021.102556 # A novel framework for policy based on-chain governance of blockchain networks
+	- Like other PDCAs, blockchains may require human intervention from different perspectives (fault, configuration, asset, performance, and security management).
+	- main issue with decntralised governance
+		- consensus of stakeholders
+		- security of governance
+		- centralisation risk
+		- fairness
+		- conflicting interests
+		- effectiveness
+		- complexity
+		- flexible governance
+		- slow response in problem cases
+		- inter proposeal dependencies
+		- 
