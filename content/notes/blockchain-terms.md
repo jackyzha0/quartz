@@ -3,13 +3,9 @@ title: "blockchain-terms"
 tags: 
 ---
 
-**Hyperledger:**
+**Hyperledger: An organisation made up of industry leaders who are helping to develop various permissioned blockchain framworks**
 
-**DeFi:**
-
-**Blockchain:**
-
-**Smart Contracts:**
+**Smart Contracts:** Within ethereum a smart contract is a type of account which had storage and code
 
 **Consensus:**
 
