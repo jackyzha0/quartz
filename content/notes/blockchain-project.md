@@ -44,6 +44,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [veracity-governance](notes/veracity-governance.md)
 - [reading-papers](notes/reading-papers.md)
 - [blockchain-terms](notes/blockchain-terms.md)
+- 
 
 - [412-lectures](notes/412-lectures.md)
 - [hyperledger-fabric](notes/hyperledger-fabric.md)
@@ -124,6 +125,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://tezos.com/whitepaper.pdf
 - https://www.ndss-symposium.org/wp-content/uploads/2019/02/ndss2019_02A-2_Zhang_paper.pdf A Treasury System for Cryptocurrencies: Enabling Better Collaborative Intelligence
 	- Quadratic voting
+- https://arxiv.org/pdf/2105.05460.pdf A SYSTEMATIC LITERATURE REVIEW ON BLOCKCHAIN GOVERNANCE
 
 **Other maybe relevant Papers
 - https://www.multichain.com/download/MultiChain-White-Paper.pdf
