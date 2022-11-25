@@ -289,4 +289,6 @@ https://www.multichain.com/download/MultiChain-White-Paper.pdf
 		- inter proposeal dependencies
 	- It is a double-edged sword. It allows quicker decision-making but it's risky because the governance system becomes harder to change once instituted.
 
-pradessh gave me some tips for reading papers
+https://arxiv.org/pdf/2105.05460.pdf A SYSTEMATIC LITERATURE REVIEW ON BLOCKCHAIN GOVERNANCE
+- 
+
