@@ -3,6 +3,8 @@ title: "reading-papers"
 tags: 
 ---
 
+Read a survey paper first
+
 1. Abstract
 2. Intro
 3. Conclusion

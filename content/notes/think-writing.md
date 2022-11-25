@@ -288,3 +288,5 @@ https://www.multichain.com/download/MultiChain-White-Paper.pdf
 		- slow response in problem cases
 		- inter proposeal dependencies
 	- It is a double-edged sword. It allows quicker decision-making but it's risky because the governance system becomes harder to change once instituted.
+
+pradessh gave me some tips for reading papers
