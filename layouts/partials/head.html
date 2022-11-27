@@ -147,6 +147,19 @@
 
         }
       {{end}}
+
+      {{if $data.enableMermaid | default $.Site.Data.config.enableMermaid}}
+        var els = document.getElementsByClassName("mermaid");
+        if (els.length > 0) {
+          import('https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs').then(
+            (obj) => {
+              // init forces mermaid to render mermaid markdown without waiting
+              // for DOMContentLoaded event
+              obj.default.init();
+            }
+          )
+        }
+      {{end}}
     }
 
     const init = (doc = document) => {
