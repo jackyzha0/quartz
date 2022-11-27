@@ -1,0 +1,65 @@
+[404_message]
+other = "Hei! Ser ut til at du har gått deg vill. Denne siden finnes ikke (eller den kan være privat)."
+
+[404_back]
+other = "↳ La oss få deg hjem."
+
+[all_posts]
+other = "Alle {{.Title}}"
+
+[last_updated]
+other = "Sist oppdatert"
+
+[notes_count]
+other = "notater med denne taggen"
+
+[first_10]
+other = "viser første 10 resultatene"
+
+[tag]
+other = "Tag"
+
+[backlinks]
+other = "Tilbakekoblinger"
+
+[no_backlinks]
+other = "Ingen tilbakekoblinger funnet"
+
+[home]
+other = "Hjem"
+
+[light_mode]
+other = "Lys Modus"
+
+[dark_mode]
+other = "Mørk Modus"
+
+[edit_source]
+other = "Rediger Kilde"
+
+[interactive_graph]
+other = "Interaktiv Graf"
+
+[search]
+other = "Søk"
+
+[search_icon]
+other = "Søkeikon"
+
+[icon_search]
+other = "Ikon for å åpne søk"
+
+[recent_notes]
+other = "Nylige notater"
+
+[first_3_notes]
+other = "første 3 {{ .notes }}"
+
+[search_for_something]
+other = "Søk etter noe..."
+
+[toc]
+other = "Innholdsfortegnelse"
+
+[copyright]
+other = "Opprettet av {{ .name }} ved hjelp av <a href=\"https://github.com/jackyzha0/quartz\">Quartz</a>, © {{ .year }}"
