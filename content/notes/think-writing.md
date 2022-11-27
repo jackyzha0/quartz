@@ -298,10 +298,13 @@ https://arxiv.org/pdf/2105.05460.pdf A SYSTEMATIC LITERATURE REVIEW ON BLOCKCHAI
 
 Week Review. 
 - Got four hypderleger iroha nodes working, and connected to them from a python script
-- Read the ethereum whitepaper. This gave me a much better understanding of how smart contracts work. As well as how a blockchain more advanced than bitcoin works.
+- I wasn't able to get the SWIPL notebook to work. Need to decide how much time to spend on that
+- I Read the ethereum whitepaper. This gave me a much better understanding of how smart contracts work. As well as how a blockchain more advanced than bitcoin works.
 - Some interesting things to note from my reading
 	- Permissioned blockchain connect to permissionless chain. (Interesting idea, I cant find where i got this from, need to organise better. Might be worth spending some time today to do this)
 	- Storing proof of documents using. Zero Knowledge Proof, Hidden Markov Model. This as also in a paper I cant find.
 	- The idea of governance based on a reputation system. Look into stigmergic coordination (http://dx.doi.org/10.2139/ssrn.2811995)
-	- https://doi.org/10.1155/2020/5385207 was a useful paper. It gave me some of idea of what we might need t st
+	- https://doi.org/10.1155/2020/5385207 was a useful paper. It gave me some of idea of what we might need to store on the chain, and what steps are involved in the supply chain
+- Identified what the governance rules might need to manage. And made a list of some questions I will need to answer.
+- I also got some tips from pradeesh for reading papers and started reading a survey paper.
 - 

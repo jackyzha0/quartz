@@ -94,7 +94,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://medium.com/cryptoapis/utxo-and-account-based-blockchains-d1d3c638524
 - https://medium.com/crypto-24-7/bitcoin-is-finished-863e5370150
 
-**To Read
+**Might Read
 - https://en.wikipedia.org/wiki/Futarchy
 - https://pluralistic.net/2022/02/14/externalities/#dshr
 - https://www.apc.org/en/pubs/network-infrastructures-commons-model-local-participation-governance-and-sustainability
@@ -107,7 +107,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 
 ## Blockchain Papers
 **Very good
-- https://doi.org/10.1016/j.ipm.2021.102556 # A novel framework for policy based on-chain governance of blockchain networks
+- https://doi.org/10.1016/j.ipm.2021.102556 # [[A novel framework for policy based on-chain governance of blockchain networks]]
 - https://doi.org/10.1155/2020/5385207 Application of Blockchain and Internet of Things to Ensure Tamper-Proof Data Availability for Food Safety
 
 **Good
