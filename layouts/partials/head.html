@@ -50,6 +50,8 @@
   <script src="{{$s.Permalink}}"></script>
   {{end}}
   {{partial "katex.html" .}}
+
+  {{partial "mermaid.html" .}}
     
   <script src="https://unpkg.com/@floating-ui/core@0.7.3"></script>
   <script src="https://unpkg.com/@floating-ui/dom@0.5.4"></script>
@@ -143,6 +145,19 @@
             drawGlobal ? {{$.Site.Data.graphConfig.globalGraph}} : {{$.Site.Data.graphConfig.localGraph}}
           );
 
+        }
+      {{end}}
+
+      {{if $data.enableMermaid | default $.Site.Data.config.enableMermaid}}
+        var els = document.getElementsByClassName("mermaid");
+        if (els.length > 0) {
+          import('https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs').then(
+            (obj) => {
+              // init forces mermaid to render mermaid markdown without waiting
+              // for DOMContentLoaded event
+              obj.default.init();
+            }
+          )
         }
       {{end}}
     }

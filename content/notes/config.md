@@ -57,6 +57,9 @@ enableRecentNotes: false
 enableGitHubEdit: true
 GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
 
+# whether to render mermaid diagrams
+enableMermaid: true
+
 # whether to use Operand to power semantic search
 # IMPORTANT: replace this API key with your own if you plan on using
 # Operand search!
