@@ -12,3 +12,7 @@ Read a survey paper first
 
 Check for good papers using Core rankings. 
 Maybe keep a WTF terms note
+
+- scopus
+- core ranking
+- plumx metrics

@@ -166,7 +166,7 @@ doi: 10.1109/TEM.2020.3003565: Permissionless and Permissioned, Technology-Focus
 	- hyperledger cello
 	- [IBM Blockchain Platform](https://www.trustradius.com/products/ibm-blockchain-platform/reviews "IBM Blockchain Platform reviews."), [Oracle Blockchain Cloud](https://www.trustradius.com/products/oracle-blockchain-cloud/reviews "Oracle Blockchain Cloud reviews."), [Azure Blockchain Service](https://www.trustradius.com/products/azure-blockchain-service/reviews "Azure Blockchain Service reviews."), [Alchemy](https://www.trustradius.com/products/alchemy/reviews "Alchemy reviews."), [Infura Ethereum API](https://www.trustradius.com/products/infura-ethereum-api/reviews "Infura Ethereum API reviews."), [Kaleido](https://www.trustradius.com/products/kaleido/reviews "Kaleido reviews."), [Amazon Managed Blockchain](https://www.trustradius.com/products/amazon-managed-blockchain/reviews "Amazon Managed Blockchain reviews."), [Crypto APIs](https://www.trustradius.com/products/crypto-apis/reviews "Crypto APIs reviews."), [VMware Blockchain](https://www.trustradius.com/products/vmware-blockchain/reviews "VMware Blockchain reviews."), and [Cryptomat](https://www.trustradius.com/products/cryptomat/reviews "Cryptomat reviews.").
 
-permissioned blockchain "connected" to permionless blockchain 
+permissioned blockchain "connected" to permissionless blockchain 
 
 DOI 10.1109/Blockchain.2019.00045
 - https://en.wikipedia.org/wiki/Zero-knowledge_proof
@@ -299,5 +299,8 @@ https://arxiv.org/pdf/2105.05460.pdf A SYSTEMATIC LITERATURE REVIEW ON BLOCKCHAI
 Week Review. 
 - Got four hypderleger iroha nodes working, and connected to them from a python script
 - Read the ethereum whitepaper. This gave me a much better understanding of how smart contracts work. As well as how a blockchain more advanced than bitcoin works.
-- 
+- Some interesting things to note from my reading
+	- Permissioned blockchain connect to permissionless chain. Within the 
+	- Storing proof of documents using, Zero Knowledge Proof, Hidden Markov Modev 
+	- 
 - 
