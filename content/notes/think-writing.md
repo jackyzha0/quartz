@@ -168,7 +168,7 @@ doi: 10.1109/TEM.2020.3003565: Permissionless and Permissioned, Technology-Focus
 
 permissioned blockchain "connected" to permissionless blockchain 
 
-DOI 10.1109/Blockchain.2019.00045
+https://ieeexplore.ieee.org/document/8818409 # A Full-Spectrum Blockchain-as-a-Service for Business Collaboration
 - https://en.wikipedia.org/wiki/Zero-knowledge_proof
 - https://en.wikipedia.org/wiki/Hidden_Markov_model
 
@@ -176,8 +176,8 @@ in a public permissioned blockchain, what is stopping an attacker from registeri
 
 what type of technology is bitcoin (DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995)) makes the case that bitcoin/blockchain technology is not merely a new general purpose technology but a new institutional technology of governance.
 
-"In an important sense the limits of this new technology are the limits of imagination in the same way that once upon a time it was hard to imagine what use computers could be, or to see what things computers could be applied to, before it eventually became clear that the answer was everything. The same pattern unfolded for the internet, and now everything is on the internet. it is not unreasonable to think this same dynamic will play out with blockchain, which is also made of computers and the internet"
 
+"In an important sense the limits of this new technology are the limits of imagination in the same way that once upon a time it was hard to imagine what use computers could be, or to see what things computers could be applied to, before it eventually became clear that the answer was everything. The same pattern unfolded for the internet, and now everything is on the internet. it is not unreasonable to think this same dynamic will play out with blockchain, which is also made of computers and the internet"
 p18 social operating system
 
 p20 stigmergic coordination. governance based on a reputation system. reputation can be gained by either making a value contribution or evaluating someone elses conrtibution that is in line with the organisations value system. agents are judged on their actions and their judgements of others actions
@@ -220,7 +220,7 @@ freight logistics industry
 - https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3344839 # Blockchain Meets Genomics: Governance Considerations for Promoting Food Safety and Public Health
 - https://ieeexplore.ieee.org/document/8674550 # Blockchain Inspired RFID-Based Information Architecture for Food Supply Chain
 
-I will some of these later maybe. I think i need to start focusing on "design and modelling of the blockchain governance rules, and implementation of such a rule set over an existing closed blockchain system". Clearly the existing blockchain network is not working yet so I might try to implement that later. I think I should start trying to design some governance rules. 
+I read will some of these later maybe. I think i need to start focusing on "design and modelling of the blockchain governance rules, and implementation of such a rule set over an existing closed blockchain system". Clearly the existing blockchain network is not working yet so I might try to implement that later. I think I should start trying to design some governance rules. 
 
 How are they implemented? Are they like smart contracts? Is it like on-chain governance - how is that implemented? Do I need to know that yet? maybe I could look at some existing blockchains with on-chain governance and see how that works. It would have to be a permissioned blockchain because I think a permissionless blockchain would be radically different. "Encodes voting rules about self governance" — What are they voting on? What are they actually governing?
 - Development decisions
@@ -300,7 +300,8 @@ Week Review.
 - Got four hypderleger iroha nodes working, and connected to them from a python script
 - Read the ethereum whitepaper. This gave me a much better understanding of how smart contracts work. As well as how a blockchain more advanced than bitcoin works.
 - Some interesting things to note from my reading
-	- Permissioned blockchain connect to permissionless chain. Within the 
-	- Storing proof of documents using, Zero Knowledge Proof, Hidden Markov Modev 
-	- 
+	- Permissioned blockchain connect to permissionless chain. (Interesting idea, I cant find where i got this from, need to organise better. Might be worth spending some time today to do this)
+	- Storing proof of documents using. Zero Knowledge Proof, Hidden Markov Model. This as also in a paper I cant find.
+	- The idea of governance based on a reputation system. Look into stigmergic coordination (http://dx.doi.org/10.2139/ssrn.2811995)
+	- https://doi.org/10.1155/2020/5385207 was a useful paper. It gave me some of idea of what we might need t st
 - 
