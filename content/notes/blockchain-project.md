@@ -46,6 +46,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [reading-papers](notes/reading-papers.md)
 - [blockchain-terms](notes/blockchain-terms.md)
 
+
 - [412-lectures](notes/412-lectures.md)
 - [hyperledger-fabric](notes/hyperledger-fabric.md)
 - [governance](notes/governance.md) 
@@ -64,12 +65,12 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 # Reading
 
 ## Blockchain Papers
-**Very good
+**Very good**
 - [[a systematic literature review on blockchain governance]]
 - [[A novel framework for policy based on-chain governance of blockchain networks]]
 - [[Application of Blockchain and Internet of Things to Ensure Tamper-Proof Data Availability for Food Safety]]
 
-**Good
+**Good**
 - [[Permissionless and Permissioned, Technology-Focused and Business Needs-Driven — Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar]]
 - [[Fork-free hybrid consensus with flexible Proof-of-Activity]]
 - [[zkCrowd — A Hybrid Blockchain-Based Crowdsourcing Platform]]
@@ -78,7 +79,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [[Blockchain Based Wine Supply Chain Traceability System]]
 - [[A renewable energy microgrids trading management platform based on permissioned blockchain]]
 
-**Papers to read
+**Papers to read**
 - DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
 - https://doi.org/10.1080/10580530.2020.1720046 Defining Blockchain Governance: A Framework for Analysis and Comparison
 - https://tezos.com/whitepaper.pdf
@@ -86,11 +87,11 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 	- Quadratic voting
 - https://ieeexplore.ieee.org/document/8818409 # A Full-Spectrum Blockchain-as-a-Service for Business Collaboration
 
-**Other maybe relevant Papers
+**Other maybe relevant Papers**
 - https://www.multichain.com/download/MultiChain-White-Paper.pdf
 
 ## Blockchain Articles
-**Read
+**Read**
 - https://101blockchains.com/blockchain-governance/
 - https://coopahtroopa.mirror.xyz/_EDyn4cs9tDoOxNGZLfKL7JjLo5rGkkEfRa_a-6VEWw
 - https://101blockchains.com/permissioned-blockchain/
@@ -121,7 +122,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://medium.com/cryptoapis/utxo-and-account-based-blockchains-d1d3c638524
 - https://medium.com/crypto-24-7/bitcoin-is-finished-863e5370150
 
-**Might Read
+**Might Read**
 - https://en.wikipedia.org/wiki/Futarchy
 - https://pluralistic.net/2022/02/14/externalities/#dshr
 - https://www.apc.org/en/pubs/network-infrastructures-commons-model-local-participation-governance-and-sustainability
@@ -132,7 +133,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://internetcomputer.org/what-is-the-ic
 - https://docs.decred.org/governance/overview/
 
-## Other
+## Other Reading
 - https://docs.docker.com/config/containers/container-networking/
 - http://nzfoodmanufacturer.co.nz/alibaba-blockchain-technology-drive-food-safety-quality/
 - https://collegegrad.com/industries/food-manufacturing

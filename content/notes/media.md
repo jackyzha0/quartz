@@ -5,6 +5,9 @@ tags:
 
 ---
 
+# Albums
+
+
 # Books
 - 2022
 	- The diamond age
