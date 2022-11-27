@@ -6,7 +6,9 @@ tags:
 ---
 
 # Albums
-
+- https://open.spotify.com/album/63EL3UcZwzgO8rLyCnvNj6?si=TBa8bX_sRZ28oPDsfJjUNw
+- plantation lullabies
+- 
 
 # Books
 - 2022

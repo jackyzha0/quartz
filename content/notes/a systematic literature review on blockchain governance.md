@@ -28,6 +28,11 @@ p10 Governance of blockchain itself — "governance of blockchain should determi
 
 p10 Governance of the blockchain community — "governance of community places an emphasis on both formal and informal governance processes of different stakeholders and their collaborations via off-chain channels (e.g., Twitter, Reddit and GitHub) [29, 36, 37, 40, 59]." "Governance over community also includes institutional governance"
 
+p12 
+![Table 14: RQ5: Who is involved in blockchain governance?|300](https://i.imgur.com/6nIyFNH.png)
+
+p14 
+![Table 15: RQ6: How is blockchain governance designed?|300](https://i.imgur.com/lrqRrMT.png)
 
 
 # Notes
@@ -38,6 +43,13 @@ p10 Governance of the blockchain community — "governance of community places a
 	- community
 	- applications
 	- data
-- 
+- When is governance applied? Steps?
+	- Planning
+	- Analysis
+	- Design
+	- Implementation
+	- Testing
+	- Operation
+	- Termination
 
 # Related
