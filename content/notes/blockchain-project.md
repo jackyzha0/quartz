@@ -44,7 +44,6 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [veracity-governance](notes/veracity-governance.md)
 - [reading-papers](notes/reading-papers.md)
 - [blockchain-terms](notes/blockchain-terms.md)
-- 
 
 - [412-lectures](notes/412-lectures.md)
 - [hyperledger-fabric](notes/hyperledger-fabric.md)
@@ -59,9 +58,36 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [CPR-governance](notes/CPR-governance.md)
 - [eth-governance](notes/eth-governance.md)
 - [food-manufacturing](notes/food-manufacturing.md)
-- [bitcoin-governance](notes/bitcoin-governance.md)]
+- [bitcoin-governance](notes/bitcoin-governance.md)
 
 # Reading
+
+## Blockchain Papers
+**Very good
+- [[A novel framework for policy based on-chain governance of blockchain networks]]
+- [[Application of Blockchain and Internet of Things to Ensure Tamper-Proof Data Availability for Food Safety]]
+- [[a systematic literature review on blockchain governance]]
+
+**Good
+- [[Permissionless and Permissioned, Technology-Focused and Business Needs-Driven — Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar]]
+- [[Fork-free hybrid consensus with flexible Proof-of-Activity]]
+- [[zkCrowd — A Hybrid Blockchain-Based Crowdsourcing Platform]]
+- [[Toward an Interoperability Architecture for Blockchain Autonomous Systems]]
+- [[Blockchain Technology and Decentralized Governance – Is the State Still Necessary]]
+- [[Blockchain Based Wine Supply Chain Traceability System]]
+- [[A renewable energy microgrids trading management platform based on permissioned blockchain]]
+
+**Papers to read
+- DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
+- https://doi.org/10.1080/10580530.2020.1720046 Defining Blockchain Governance: A Framework for Analysis and Comparison
+- https://tezos.com/whitepaper.pdf
+- https://www.ndss-symposium.org/wp-content/uploads/2019/02/ndss2019_02A-2_Zhang_paper.pdf A Treasury System for Cryptocurrencies: Enabling Better Collaborative Intelligence
+	- Quadratic voting
+- https://ieeexplore.ieee.org/document/8818409 # A Full-Spectrum Blockchain-as-a-Service for Business Collaboration
+
+**Other maybe relevant Papers
+- https://www.multichain.com/download/MultiChain-White-Paper.pdf
+
 ## Blockchain Articles
 **Read
 - https://101blockchains.com/blockchain-governance/
@@ -105,38 +131,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://internetcomputer.org/what-is-the-ic
 - https://docs.decred.org/governance/overview/
 
-## Blockchain Papers
-**Very good
-- [[A novel framework for policy based on-chain governance of blockchain networks]]
-- [[Application of Blockchain and Internet of Things to Ensure Tamper-Proof Data Availability for Food Safety]]
-
-**Good
-- [[Permissionless and Permissioned, Technology-Focused and Business Needs-Driven — Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar]]
-- [[Fork-free hybrid consensus with flexible Proof-of-Activity]]
-- [[zkCrowd — A Hybrid Blockchain-Based Crowdsourcing Platform]]
-- [[Toward an Interoperability Architecture for Blockchain Autonomous Systems]]
-- [[Blockchain Technology and Decentralized Governance – Is the State Still Necessary]]
-- [[Blockchain Based Wine Supply Chain Traceability System]]
-- [[A renewable energy microgrids trading management platform based on permissioned blockchain]]
-
-**Not good
-- 
-
-**Papers to read
-- DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
-- https://doi.org/10.1080/10580530.2020.1720046 Defining Blockchain Governance: A Framework for Analysis and Comparison
-- https://tezos.com/whitepaper.pdf
-- https://www.ndss-symposium.org/wp-content/uploads/2019/02/ndss2019_02A-2_Zhang_paper.pdf A Treasury System for Cryptocurrencies: Enabling Better Collaborative Intelligence
-	- Quadratic voting
-- https://arxiv.org/pdf/2105.05460.pdf A SYSTEMATIC LITERATURE REVIEW ON BLOCKCHAIN GOVERNANCE
-- https://ieeexplore.ieee.org/document/8818409 # A Full-Spectrum Blockchain-as-a-Service for Business Collaboration
-
-**Other maybe relevant Papers
-- https://www.multichain.com/download/MultiChain-White-Paper.pdf
-
 ## Other
 - https://docs.docker.com/config/containers/container-networking/
 - http://nzfoodmanufacturer.co.nz/alibaba-blockchain-technology-drive-food-safety-quality/
 - https://collegegrad.com/industries/food-manufacturing
-
-# Sources
