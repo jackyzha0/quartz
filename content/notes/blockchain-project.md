@@ -38,6 +38,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [ ] Even if a farm says they didn't use some chemical, how does the blockchain verify that. Does someone need to go and physically audit them?
 	- Can the group, as a DAO almost, collectively employ someone to do this?
 	- I guess that still wouldn't stop the participant being audited from bribing them or something.
+- Why is block size significant
 
 # Notes
 - [think-writing/log](notes/think-writing.md)
@@ -64,9 +65,9 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 
 ## Blockchain Papers
 **Very good
+- [[a systematic literature review on blockchain governance]]
 - [[A novel framework for policy based on-chain governance of blockchain networks]]
 - [[Application of Blockchain and Internet of Things to Ensure Tamper-Proof Data Availability for Food Safety]]
-- [[a systematic literature review on blockchain governance]]
 
 **Good
 - [[Permissionless and Permissioned, Technology-Focused and Business Needs-Driven — Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar]]
