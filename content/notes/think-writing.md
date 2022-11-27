@@ -292,3 +292,12 @@ https://www.multichain.com/download/MultiChain-White-Paper.pdf
 https://arxiv.org/pdf/2105.05460.pdf A SYSTEMATIC LITERATURE REVIEW ON BLOCKCHAIN GOVERNANCE
 - 
 
+---
+
+# 28/11
+
+Week Review. 
+- Got four hypderleger iroha nodes working, and connected to them from a python script
+- Read the ethereum whitepaper. This gave me a much better understanding of how smart contracts work. As well as how a blockchain more advanced than bitcoin works.
+- 
+- 
