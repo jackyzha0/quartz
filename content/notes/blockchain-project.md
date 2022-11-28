@@ -80,11 +80,10 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 
 From search
 - allintitle:(public) (permissioned) (blockchain OR DLT OR "distributed ledger technology")
-- [Designing the architecture of a blockchain platform: The case of alastria, a national public permissioned blockchain](https://www.igi-global.com/article/designing-the-architecture-of-a-blockchain-platform/259370)
-- [New permissioned public blockchain based on master-sub chain architecture](http://www.joca.cn/EN/10.11772/j.issn.1001-9081.2021101790)
-- [Permissioned public blockchain with high performance](https://journal.szu.edu.cn/en/oa/darticle.aspx?type=view&id=202003003)
-- [Eximchain: Supply Chain Finance solutions on a secured public, permissioned blockchain hybrid](https://cryptorating.eu/whitepapers/Eximchain/Whitepaper%20-%20Eximchain.pdf)
-- [Design and Validation of Tertiary General Education System based on Public Permissioned Blockchain and Smart Contract](https://www.researchgate.net/profile/Suna-Kyun/publication/359728024_Design_and_Validation_of_Tertiary_General_Education_System_based_on_Public_Permissioned_Blockchain_and_Smart_Contract/links/624ba62f5e2f8c7a035bb5a0/Design-and-Validation-of-Tertiary-General-Education-System-based-on-Public-Permissioned-Blockchain-and-Smart-Contract.pdf)
+- paywall [Designing the architecture of a blockchain platform: The case of alastria, a national public permissioned blockchain](https://www.igi-global.com/article/designing-the-architecture-of-a-blockchain-platform/259370)
+- chinese [New permissioned public blockchain based on master-sub chain architecture](http://www.joca.cn/EN/10.11772/j.issn.1001-9081.2021101790)
+- chinese [Permissioned public blockchain with high performance](https://journal.szu.edu.cn/en/oa/darticle.aspx?type=view&id=202003003)
+- korean [Design and Validation of Tertiary General Education System based on Public Permissioned Blockchain and Smart Contract](https://www.researchgate.net/profile/Suna-Kyun/publication/359728024_Design_and_Validation_of_Tertiary_General_Education_System_based_on_Public_Permissioned_Blockchain_and_Smart_Contract/links/624ba62f5e2f8c7a035bb5a0/Design-and-Validation-of-Tertiary-General-Education-System-based-on-Public-Permissioned-Blockchain-and-Smart-Contract.pdf)
 - [LACChain Framework for Permissioned Public Blockchain Networks: From Blockchain Technology to Blockchain Networks](https://policycommons.net/artifacts/1864961/lacchain-framework-for-permissioned-public-blockchain-networks/2613335/)
 - [GAS Distribution Protocol for Permissioned-Public Ethereum-Based Blockchain Networks](https://policycommons.net/artifacts/2437174/gas-distribution-protocol-for-permissioned-public-ethereum-based-blockchain-networks/3458762/)
 
@@ -94,6 +93,7 @@ From search
 
 ## Blockchain Articles
 **Read**
+- ISO Technical Committees. Blockchain and distributed ledger technologies. ISO TC307 WG5 TS23635 
 - https://101blockchains.com/blockchain-governance/
 - https://coopahtroopa.mirror.xyz/_EDyn4cs9tDoOxNGZLfKL7JjLo5rGkkEfRa_a-6VEWw
 - https://101blockchains.com/permissioned-blockchain/
