@@ -307,4 +307,5 @@ Week Review.
 	- https://doi.org/10.1155/2020/5385207 was a useful paper. It gave me some of idea of what we might need to store on the chain, and what steps are involved in the supply chain
 - Identified what the governance rules might need to manage. And made a list of some questions I will need to answer.
 - I also got some tips from pradeesh for reading papers and started reading a survey paper.
-- 
+
+Finished reading 
