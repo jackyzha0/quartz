@@ -125,6 +125,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://ethereum.org/en/governance/
 - https://medium.com/cryptoapis/utxo-and-account-based-blockchains-d1d3c638524
 - https://medium.com/crypto-24-7/bitcoin-is-finished-863e5370150
+- https://www.hyperledger.org/blog/2017/09/06/abcs-of-open-governance
 
 **Might Read**
 - https://en.wikipedia.org/wiki/Futarchy
