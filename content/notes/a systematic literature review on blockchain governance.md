@@ -7,7 +7,7 @@ authors:
 ---
 
 # Summary
-As the title states, this paper is a systematic literature review on blockchain governance. 
+As the title states, this paper is a systematic literature review on blockchain governance. It address six main questions (listed below). They selected 37 papers written between the release of bitcoin and before nov 2022 about blockchain governance. This paper will help to provide a roadmap for what I need to do, and bring up some things that I will have to consider when developing my own governance rules. 
 
 # Extracts
 
