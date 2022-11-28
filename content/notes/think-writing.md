@@ -324,4 +324,19 @@ After: Start from ground up. Work on Implementation
 
 In order to find a base I need to know how a system is governed. This might not be the easiest information to find. I will have to rely on implementation of platform governance using product mechanisms as there are more publicly available. Could I use a combination of different bases. e.g., a DAO for community governance, Ethereum for platform governance, and something else for data. Is that a good way of splitting it up. How can I leverage existing governance of organisations such as the Linux Foundation. 
 
+---
+
+# 29/11
+I have decided to start from a base such as ethereum and adapt it to what I need. By doing this I will either create a solution or gain a much better understanding of the problems which would allow me to create my own solution from the ground up.
+
+Possible starting points
+- swarm.city
+- alastria
+- various DAOs
+- ethereum
+- bitcoin
+
+The governance of a blockchain can be split into four main components: platform, community, apps, data. It is possible that I will choose a different starting point for each component.
+
+How am I going to choose a base? I need to decide on some criteria. What does it need to accomplish? Are there any vendor solutions that are close to what we want.
 
