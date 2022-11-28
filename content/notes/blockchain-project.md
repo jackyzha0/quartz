@@ -77,6 +77,11 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://ieeexplore.ieee.org/document/8818409 # A Full-Spectrum Blockchain-as-a-Service for Business Collaboration
 - [systematic review Related papers](notes/a%20systematic%20literature%20review%20on%20blockchain%20governance.md#Related)
 
+From search
+- allintitle:(public) (permissioned) (blockchain OR DLT OR "distributed ledger technology")
+- ### [Designing the architecture of a **blockchain** platform: The case of alastria, a national **public permissioned blockchain**](https://www.igi-global.com/article/designing-the-architecture-of-a-blockchain-platform/259370)
+- 
+
 
 **Other maybe relevant Papers**
 - https://www.multichain.com/download/MultiChain-White-Paper.pdf

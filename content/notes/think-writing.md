@@ -338,5 +338,6 @@ Possible starting points
 
 The governance of a blockchain can be split into four main components: platform, community, apps, data. It is possible that I will choose a different starting point for each component.
 
-How am I going to choose a base? I need to decide on some criteria. What does it need to accomplish? Are there any vendor solutions that are close to what we want.
+How am I going to choose a base? I need to decide on some criteria. What does it need to accomplish? Are there any vendor solutions that are close to what we want? I think its not as easy as I thought to understand fully the governance of a blockchain project from its website.
+
 
