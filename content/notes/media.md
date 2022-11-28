@@ -6,9 +6,9 @@ tags:
 ---
 
 # Albums
-- https://open.spotify.com/album/63EL3UcZwzgO8rLyCnvNj6?si=TBa8bX_sRZ28oPDsfJjUNw
+- https://open.spotify.com/album/63EL3UcZwzgO8rLyCnvNj6
 - plantation lullabies
-- 
+- the way through, deca
 
 # Books
 - 2022
@@ -28,6 +28,8 @@ tags:
 	- Jane Eyre
 	- a midsummer nights dream
 	- the second sex
+	- cryptonicon
+	- the amazing maurice and his educated rodents
 - future
 	- actual air david berman
 	- woman in the dunes

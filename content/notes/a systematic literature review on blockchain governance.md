@@ -7,6 +7,7 @@ authors:
 ---
 
 # Summary
+As the title states, this paper is a systematic literature review on blockchain governance. 
 
 # Extracts
 
@@ -56,4 +57,16 @@ p14 "process mechanisms describe the steps of blockchain development via the gov
 - How is it implemented
 	- Process Mechanisms - steps of development via governance meta-rules
 	- Product Mechanisms - features of a blockchain, as outcomes of the development process
+
 # Related
+- J. Werner, S. Frost, and R. Zarnekow, “Towards a taxonomy for governance mechanisms of blockchain-based platforms,” 2020.
+- Z. Bao, K. Wang, and W. Zhang, “An auditable and secure model for permissioned blockchain.” New York, NY, USA: Association for Computing Machinery, 2019.
+- Governance in the Blockchain Economy: A Framework and Research Agenda
+- The invisible politics of bitcoin: governance crisis of a decentralized infrastructure
+- Regulatory issues in blockchain technology
+- The internal and external governance of blockchain-based organizations: Evidence from cryptocurrencies
+- M. Finck, Blockchain regulation and governance in Europe. Cambridge University Press, 2018
+- S. Azouvi, M. Maller, and S. Meiklejohn, “Egalitarian society or benevolent dictatorship: The state of cryptocurrency governance,” in Financial Cryptography and Data Security, A. Zohar, I. Eyal, V. Teague, J. Clark, A. Bracciali, F. Pintore, and M. Sala, Eds. Berlin, Heidelberg: Springer Berlin Heidelberg, 2019, pp. 127–143.
+- W. Reijers, I. Wuisman, M. Mannan, P. De Filippi, C. Wray, V. Rae-Looi, A. C. Velez, and L. Orgad, “Now the ´ code runs itself: On-chain and off-chain governance of blockchain technologies,” Topoi, pp. 1–11, 2018.
+- B. D. Trump, M. Florin, H. S. Matthews, D. Sicker, and I. Linkov, “Governing the use of blockchain and distributed ledger technologies: Not one-size-fits-all,” IEEE Engineering Management Review, vol. 46, no. 3, pp. 56–62, 2018.
+- T. John and M. Pam, “Complex adaptive blockchain governance,” in MATEC Web of Conferences, vol. 223. EDP Sciences, 2018, p. 01010.
