@@ -38,7 +38,9 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [ ] Even if a farm says they didn't use some chemical, how does the blockchain verify that. Does someone need to go and physically audit them?
 	- Can the group, as a DAO almost, collectively employ someone to do this?
 	- I guess that still wouldn't stop the participant being audited from bribing them or something.
-- Why is block size significant
+- Why is block size significant?
+- What is Sharding?
+- 
 
 # Notes
 - [think-writing/log](notes/think-writing.md)

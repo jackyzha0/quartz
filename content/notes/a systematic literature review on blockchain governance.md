@@ -32,8 +32,9 @@ p12
 ![Table 14: RQ5: Who is involved in blockchain governance?|300](https://i.imgur.com/6nIyFNH.png)
 
 p14 
-![Table 15: RQ6: How is blockchain governance designed?|300](https://i.imgur.com/lrqRrMT.png)
+![Table 15: RQ6: How is blockchain governance designed (implemented)?|300](https://i.imgur.com/lrqRrMT.png)
 
+p14 "process mechanisms describe the steps of blockchain development via the governance meta-rules" "product mechanisms include the features of a blockchain, as the final outcomes of software development process."
 
 # Notes
 
@@ -51,5 +52,8 @@ p14
 	- Testing
 	- Operation
 	- Termination
-
+- Sharding?
+- How is it implemented
+	- Process Mechanisms - steps of development via governance meta-rules
+	- Product Mechanisms - features of a blockchain, as outcomes of the development process
 # Related
