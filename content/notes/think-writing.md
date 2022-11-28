@@ -308,4 +308,16 @@ Week Review.
 - Identified what the governance rules might need to manage. And made a list of some questions I will need to answer.
 - I also got some tips from pradeesh for reading papers and started reading a survey paper.
 
-Finished reading 
+Finished reading Survey paper. Some key takeaways:
+- need to consider governance of: platform, community, applications and data
+- need to consider governance during 
+- need to consider process as well as product mechanisms
+
+I think I should start with an existing example as a base and work on improving/changing it. After that, once I understand what is required, I could think about designing one from the ground up.
+- What exists for me to start from?
+- What the issues with it? What do I need to change?
+
+Tomorrow/Wednesday: Find a base
+EOW: Identify Issues
+Next Week or Two: Fix issues and work on implementations as I go
+After: Start from ground up. Work on Implementation
