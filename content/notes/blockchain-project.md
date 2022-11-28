@@ -120,6 +120,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - https://www.apc.org/en/pubs/network-infrastructures-commons-model-local-participation-governance-and-sustainability
 - https://alastria.io/en/what-is-alastria/
 - https://www.lacchain.net
+- https://swarm.city
 - https://ec.europa.eu/digital-building-blocks/wikis/display/EBSI/Home
 - https://time.com/6142810/proof-of-humanity/
 - https://internetcomputer.org/what-is-the-ic

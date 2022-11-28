@@ -5,6 +5,16 @@ tags:
 I just started this to get some basic structure down.
 
 # Aim
+I have decided to start from a base such as ethereum and work to adapt it to what I need. I think by doing this I will either create a solution or gain a much better understanding of the problems which would allow me to create my own solution from the ground up.
+
+Possible starting points
+- swarm.city
+- alastria
+- various DAOs
+- ethereum
+- bitcoin
+
+The governance of a blockchain can be split into four main components [](notes/a%20systematic%20literature%20review%20on%20blockchain%20governance.md)
 
 # Stakeholders
 - Main Authority e.g., govt
