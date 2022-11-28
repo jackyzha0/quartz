@@ -7,8 +7,6 @@ tags:
 
 # Albums
 - https://open.spotify.com/album/63EL3UcZwzgO8rLyCnvNj6
-- plantation lullabies
-- the way through, deca
 
 # Books
 - 2022

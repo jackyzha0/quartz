@@ -61,7 +61,7 @@ p14 "process mechanisms describe the steps of blockchain development via the gov
 # Related
 - J. Werner, S. Frost, and R. Zarnekow, “Towards a taxonomy for governance mechanisms of blockchain-based platforms,” 2020.
 - Z. Bao, K. Wang, and W. Zhang, “An auditable and secure model for permissioned blockchain.” New York, NY, USA: Association for Computing Machinery, 2019.
-- Governance in the Blockchain Economy: A Framework and Research Agenda
+- [[Governance in the Blockchain Economy — A Framework and Research Agenda]]
 - The invisible politics of bitcoin: governance crisis of a decentralized infrastructure
 - Regulatory issues in blockchain technology
 - The internal and external governance of blockchain-based organizations: Evidence from cryptocurrencies

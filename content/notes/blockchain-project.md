@@ -80,6 +80,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [[Blockchain Technology and Decentralized Governance – Is the State Still Necessary]]
 - [[Blockchain Based Wine Supply Chain Traceability System]]
 - [[A renewable energy microgrids trading management platform based on permissioned blockchain]]
+- [[Governance in the Blockchain Economy — A Framework and Research Agenda]]
 
 **Papers to read**
 - DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
