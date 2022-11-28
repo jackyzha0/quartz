@@ -19,6 +19,7 @@ authors:
 ---
 
 # Summary
+This paper proposed a new type of economy – the blockchain economy. These examined Swarm City as a case study. They revealed some current issues with the blockchain economy
 
 # Extracts
 
