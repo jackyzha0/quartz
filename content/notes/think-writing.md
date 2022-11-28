@@ -340,4 +340,4 @@ The governance of a blockchain can be split into four main components: platform,
 
 How am I going to choose a base? I need to decide on some criteria. What does it need to accomplish? Are there any vendor solutions that are close to what we want? I think its not as easy as I thought to understand fully the governance of a blockchain project from its website.
 
-
+- needs to be a permissioned blockchain. I think? maybe not. 
