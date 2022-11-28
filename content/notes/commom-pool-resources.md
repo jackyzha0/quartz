@@ -16,3 +16,4 @@ producers: those who construct, repair, and sustain
 
 one person can be all three
 
+[CPR-governance](notes/CPR-governance.md)
