@@ -321,3 +321,5 @@ Tomorrow/Wednesday: Find a base
 EOW: Identify Issues
 Next Week or Two: Fix issues and work on implementations as I go
 After: Start from ground up. Work on Implementation
+
+In order to find a base I need to know how a system is governed. This might not be the easiest information to find. I will have to rely on implementation of platform governance using product mechanisms as there are more publicly available. Could I use a combination of different bases. e.g., a DAO for community/App governance, Ethereum for platform governance, and something else for data. Is that a good way of splitting it up. 
