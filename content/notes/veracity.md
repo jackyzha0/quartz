@@ -69,6 +69,8 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [[A renewable energy microgrids trading management platform based on permissioned blockchain]]
 - [[Governance in the Blockchain Economy — A Framework and Research Agenda]]
 - [[Enhanced immutability of permissioned blockchain networks by tethering provenance with a public blockchain network]]
+- [[A review on blockchain governance]]
+- [[research-on-the-reciprocal-mechanism-of-hybrid-governance-in-blockchain]]
 
 **Papers to read**
 - DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
