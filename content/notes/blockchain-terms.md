@@ -9,13 +9,13 @@ tags:
 
 **Sybil Attack:** A type of attack on a distributed ledger where an attack amasses a 51% majority over something so they can take control
 
-**Common Pool Resource (CPR):**
+**Common Pool Resource (CPR):** [common-pool-resources](notes/common-pool-resources.md)
 
 **UTXO unspent transaction output:** The original method of record keeping in a blockchain where there are no "accounts" at the protocol layer, and coins are stored as unspent transaction outputs (UTXOs). The alternative which is used by ethereum, tron, etc are Account-based blockchains
 
-**:**
+**Provenance:** The chronology of the ownership, custody or location of a historical object.
 
-**:**
+**Notary:**
 
 **:**
 

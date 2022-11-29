@@ -1,5 +1,6 @@
 ---
 title: "commom-pool-resources"
+alias: CPR
 tags: 
 ---
 
