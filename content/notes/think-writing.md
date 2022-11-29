@@ -350,7 +350,7 @@ How am I going to choose a base? I need to decide on some criteria. What does it
 # 30/11
 
 Yesterday
-- looked at swarm city, alastria, etherum as bases. 
+- looked at swarm city, alastria, etherum, polymesh as bases.
 - Tried to read some papers about public permissioned blockchain. some good. 4 of them most cited were in chinese so I couldn't read them
-- i read about lacchain and the tethering blockchain papers. this way 
-- started to think about what I am looking for in a base. I realised I still dont really know and that starting from a base might not actually help me to find that out. I need to identify issues with current systems, because to me it seems like I could almost just use an existing p
+- i read about lacchain and the tethering blockchain papers. tethering would allow you do leverage the security that public chains get from have a large number of participants without having to have that many participants
+- started to think about what I am looking for in a base. I realised I still dont really know and that starting from a base might not actually help me to find that out. I need to identify issues with current systems, because to me it seems like I could almost just use an existing p- maybe not. I think I just need to write down a basic overview of what I want, then work out the details later.

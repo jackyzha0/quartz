@@ -15,7 +15,7 @@ tags:
 
 **Provenance:** The chronology of the ownership, custody or location of a historical object.
 
-**Notary:**
+**Notary:** A public officer authorized by law to perform similar functions, and to authenticate the execution of deeds and contracts, and the accuracy of copies of documents, and to take affidavits and administer oaths.
 
 **:**
 
