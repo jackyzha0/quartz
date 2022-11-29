@@ -1,8 +1,11 @@
 ---
-title: "veracity-governance"
+title: "veracity-chain"
 tags: 
 ---
 I just started this to get some basic structure down.
+
+# Overview
+
 
 # Stakeholders
 - Main Authority e.g., govt

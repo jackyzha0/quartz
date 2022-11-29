@@ -255,7 +255,7 @@ What do I need to define so that I can design rules for the governance of my blo
 	- Handling Disagreements
 	- Voting protocol
 
-I just started [this](notes/veracity-governance.md) document. I think I am going too much into detail about the external system.
+I just started [this](notes/veracity-chain.md) document. I think I am going too much into detail about the external system.
 
 In ethereum governance rules are the systems that allow the protocol to change. Do the governance rules in our permissioned chain need to cover anything else. So far I've identified two things that the governance need to manage:
 - The process for change of the codebase/protocol
@@ -354,3 +354,4 @@ Yesterday
 - Tried to read some papers about public permissioned blockchain. some good. 4 of them most cited were in chinese so I couldn't read them
 - i read about lacchain and the tethering blockchain papers. tethering would allow you do leverage the security that public chains get from have a large number of participants without having to have that many participants
 - started to think about what I am looking for in a base. I realised I still dont really know and that starting from a base might not actually help me to find that out. I need to identify issues with current systems, because to me it seems like I could almost just use an existing p- maybe not. I think I just need to write down a basic overview of what I want, then work out the details later.
+

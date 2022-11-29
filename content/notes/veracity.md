@@ -15,6 +15,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 	- It is then maintained by the participants
 - [ ] How is on-chain governance implemented?
 	- Smart contracts?
+	
 - [ ] Do we need to track the products physically?
 	- e.g., using IoT devices
 - [ ] Who will be participating in the blockchain?
@@ -44,11 +45,11 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 
 # Notes
 - [think-writing/log](notes/think-writing.md)
-- [veracity-governance](notes/veracity-governance.md)
+- [veracity-chain](notes/veracity-chain.md)
 - [reading-papers](notes/reading-papers.md)
 - [blockchain-terms](notes/blockchain-terms.md)
 
-, [412-lectures](notes/412-lectures.md), [hyperledger-fabric](notes/hyperledger-fabric.md), [governance](notes/governance.md) , [decentralized-autonomous-organization](notes/decentralized-autonomous-organization.md), [DeFi](notes/DeFi.md), [dApps](notes/dApps.md), [sybil-problem](notes/sybil-problem.md), [smart-contracts](smart-contracts.md), [transaction-finality](transaction-finality.md), [consensus](notes/consensus.md), [CPR-governance](notes/CPR-governance.md), [eth-governance](notes/eth-governance.md), [food-manufacturing](notes/food-manufacturing.md), [bitcoin-governance](notes/bitcoin-governance.md)
+[412-lectures](notes/412-lectures.md), [hyperledger-fabric](notes/hyperledger-fabric.md), [governance](notes/governance.md) , [decentralized-autonomous-organization](notes/decentralized-autonomous-organization.md), [DeFi](notes/DeFi.md), [dApps](notes/dApps.md), [sybil-problem](notes/sybil-problem.md), [smart-contracts](smart-contracts.md), [transaction-finality](transaction-finality.md), [consensus](notes/consensus.md), [CPR-governance](notes/CPR-governance.md), [eth-governance](notes/eth-governance.md), [food-manufacturing](notes/food-manufacturing.md), [bitcoin-governance](notes/bitcoin-governance.md)
 
 # Reading
 
