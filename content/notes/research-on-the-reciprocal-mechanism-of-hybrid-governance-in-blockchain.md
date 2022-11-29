@@ -26,7 +26,7 @@ They propose that neither on-chain governance-by-BC nor off-chain governance-of-
 what is contingency theory
 
 # Related
-Now the Code Runs Itself: On-Chain and Off- Chain Governance-of- Blockchain Technologies 
+[[Now the Code Runs Itself — On-Chain and Off- Chain Governance-of- Blockchain Technologies]] 
 - On-chain governance refers to rules and decision-making processes that have been encoded directly into the underlying infrastructure of a blockchain-based system as the ‘rule of code’, sovereignty asserts itself through off-chain mechanisms during the state of exception. 
 - (Reijers et al., 2018)
 
