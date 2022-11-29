@@ -15,3 +15,4 @@ Algorithms
 - BFT
 - Paxos
 - etc
+- nominated PoS

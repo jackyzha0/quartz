@@ -125,10 +125,13 @@ From search
 - https://www.hyperledger.org/blog/2017/09/06/abcs-of-open-governance
 
 **Might Read**
+- https://stakingfac.medium.com/what-is-nominated-proof-of-stake-889fc22bef8f
 - https://en.wikipedia.org/wiki/Futarchy
 - https://pluralistic.net/2022/02/14/externalities/#dshr
 - https://www.apc.org/en/pubs/network-infrastructures-commons-model-local-participation-governance-and-sustainability
 - https://ec.europa.eu/digital-building-blocks/wikis/display/EBSI/Home
+- substrate based blockchains
+- 
 
 **Blockchain Projects**
 - https://ethereum.org/en/governance/
@@ -140,6 +143,11 @@ From search
 	- https://whitepaper.io/document/140/swarm-whitepaper
 - https://internetcomputer.org/what-is-the-ic
 - https://polymesh.network/permissioned-blockchain
+	- https://polymath.network/polymesh-whitepaper
+	- [[polymesh]]
+- kosama
+- edgeware
+- Polkadot
 
 ## Other Reading
 - https://docs.docker.com/config/containers/container-networking/
