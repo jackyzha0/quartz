@@ -17,7 +17,7 @@ tags:
 
 **Notary:** A public officer authorized by law to perform similar functions, and to authenticate the execution of deeds and contracts, and the accuracy of copies of documents, and to take affidavits and administer oaths.
 
-**:**
+**Contingency theory:** A contingency theory is an orgzational theory that claims that there is no best way to organize a corporation, to lead a company, or to make decisions. Instead, the optimal course of action is contingent upon the internal and external situation.
 
 **:**
 
