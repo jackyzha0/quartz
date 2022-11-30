@@ -75,6 +75,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 	- Quadratic voting
 - https://ieeexplore.ieee.org/document/8818409 # A Full-Spectrum Blockchain-as-a-Service for Business Collaboration
 - [systematic review Related papers](notes/a%20systematic%20literature%20review%20on%20blockchain%20governance.md#Related)
+- https://doi.org/10.1177/0170840606067250 # Neither Market nor Hierarchy nor Network: The Emergence of Bazaar Governance
 
 From search
 - allintitle:(public) (permissioned) (blockchain OR DLT OR "distributed ledger technology")
