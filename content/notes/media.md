@@ -15,26 +15,25 @@ nathan salsburg
 	- [The Story of Man](notes/the-story-of-man.md)
 	- [The Art of War](notes/the-art-of-war.md)
 	- [The Friar and the Cipher](notes/The-Friar-and-the-Cipher)
-	- The Island of sea women
+	- The Island of sea women, lisa see
 	- Reminiscences of a stock operator
-	- Out of the flames
-	- Talking to strangers
-	- The overstory
-	- Poe - Ligeia
-	- The stranger
-	- What if?
-	- The age of reason - Sartre
-	- Jane Eyre
-	- a midsummer nights dream
-	- the second sex
-	- cryptonicon
-	- the amazing maurice and his educated rodents
+	- Out of the flames, lawrence and nancy goldstone
+	- Talking to strangers, malcolm gladwell
+	- The overstory, richard powers
+	- Ligeia, edgar allan poe
+	- The stranger, albert camus
+	- What if?, randall monroe
+	- The age of reason - jean paul Sartre
+	- Jane Eyre, charlotte bronte
+	- a midsummer nights dream, shakespeare
+	- cryptonomicon, neal stephenson
+	- the amazing maurice and his educated rodents, terry pratchet
 - future
+	- the second sex, simone de beauvoir
 	- actual air david berman
 	- woman in the dunes
 	- the second sex
 	- sophies world
-	- cryptonomicon
 	- on the trail of genghis khan
 
 # Podcasts
@@ -85,3 +84,6 @@ nathan salsburg
 	- raw
 	- in brudges
 	- in the loop
+	- nobody
+	- raw
+	- the thin blue line

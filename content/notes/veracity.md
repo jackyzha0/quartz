@@ -64,6 +64,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [[Enhanced immutability of permissioned blockchain networks by tethering provenance with a public blockchain network]]
 - [[A review on blockchain governance]]
 - [[research-on-the-reciprocal-mechanism-of-hybrid-governance-in-blockchain]]
+- [[Now the Code Runs Itself — On-Chain and Off- Chain Governance-of- Blockchain Technologies]]
 
 **Papers to read**
 - DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
@@ -82,7 +83,6 @@ From search
 -  https://www.researchgate.net/profile/Suna-Kyun/publication/359728024_Design_and_Validation_of_Tertiary_General_Education_System_based_on_Public_Permissioned_Blockchain_and_Smart_Contract/links/624ba62f5e2f8c7a035bb5a0/Design-and-Validation-of-Tertiary-General-Education-System-based-on-Public-Permissioned-Blockchain-and-Smart-Contract.pdf
 - [[LACChain Framework for Permissioned Public Blockchain Networks – From Blockchain Technology to Blockchain Networks]]
 - https://policycommons.net/artifacts/2437174/gas-distribution-protocol-for-permissioned-public-ethereum-based-blockchain-networks/3458762/
-
 
 **Other maybe relevant Papers**
 - https://www.multichain.com/download/MultiChain-White-Paper.pdf
@@ -127,7 +127,6 @@ From search
 - https://www.apc.org/en/pubs/network-infrastructures-commons-model-local-participation-governance-and-sustainability
 - https://ec.europa.eu/digital-building-blocks/wikis/display/EBSI/Home
 - substrate based blockchains
-- 
 
 **Blockchain Projects**
 - https://ethereum.org/en/governance/

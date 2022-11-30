@@ -376,3 +376,9 @@ Yesterday
 - decided to spend some more time trying to get the prolog kernel to work
 - instead of designing the whole governance system, I'll look how some scenarios might play out within existing closed blockchain systems. Hopefully after ive done a lot of those I will run into some scenarios where the existing system is not good enough and then I can try to improve on it.
 - for example say we have a closed chain with 10 participants, and 4 of them are unhappy with the something about how the blockchain is being run. what happens then? can they just fork? how would that work? etc
+
+Today
+- read some papers
+- think abt some scenarios
+- work on swipl notebook
+
