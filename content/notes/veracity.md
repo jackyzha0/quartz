@@ -15,7 +15,6 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 	- It is then maintained by the participants
 - [ ] How is on-chain governance implemented?
 	- Smart contracts?
-	
 - [ ] Do we need to track the products physically?
 	- e.g., using IoT devices
 - [ ] Who will be participating in the blockchain?

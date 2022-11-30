@@ -359,11 +359,11 @@ Meeting with david
 	- kicking out one or more participants
 	- forking due to not trusting or agreeing with other participants
 	- what if one participant is a bad actor and the other want to remove them, but the bad actors vote is required
-- The idea of tethering a closed blockchain to a public blockchain is worth considering
-- Rather than acting directly as a source of truth, a blockchain as applied to the veracity project should act as a store of records that can then be used by relevant authorities make decisions – which can then be recorded on the chain
+- The idea of tethering a closed blockchain to a public blockchain is worth exploring further
+- Within the veracity project (or outside it), rather than acting directly as a source of truth, a blockchain should act as a store of records that can then be used by relevant authorities to make decisions – which can then be recorded on the chain
 - maybe consider something related to a reputation system like ebay (talk to andrew), trademe, etc
-- regarding scope: this is something I need to think about. Does it make sense to have a closed blockchain with 100s or 1000s of participants. This is somewhere where we would like have a small group of validator nodes and many less-priviledged participant nodes
-- my role is this project is exploratory. By considering many small scenarios, I might eventually find one which breaks the existing architectures and I can then work on a solution for that.
-- i should spend some time to try and get the prolog kernel working
+- regarding scope: this is something I need to think about. Does it make sense to have a closed blockchain with 100s or 1000s of participants. This is somewhere where we would likely have a small group of validator nodes and many less-priviledged participant nodes
+- my role is this project is exploratory. By considering many small (or big) scenarios, I might eventually find one which breaks the existing architectures and I can then work on a solution for that.
+- I should spend some time to try and get the prolog kernel working
 	- try rolling back to an earlier version
 - also test the aforementioned scenario using a small network of ~10 participants

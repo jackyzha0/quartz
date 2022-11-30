@@ -7,6 +7,8 @@ tags:
 
 # Albums
 Andrew Wasylyk - Fugitive Light And Themes Of Consolation
+nathan salsburg
+maggie nicols
 
 # Books
 - 2022
