@@ -4,7 +4,14 @@ tags:
 
 ---
 
+Answered
 
+- [x] What is Sharding?
+	- breaking blockchain into smaller pieces (not sure how or how) to increase scalability
+- [x] Even if a farm says they didn't use some chemical, how does the blockchain verify that. Does someone need to go and physically audit them?
+	- records stored on the chain are just timestamped hashes of documents obtained via e.g., a lab who tests the soil
+	- Can the group, as a DAO almost, collectively employ someone to do this?
+	- I guess that still wouldn't stop the participant being audited from bribing them or something.
 - [x] what actually is hyperledger fabric? Is it a closed blockchain that different groups can run independently for their own use-case? Or is it one single closed blockchain that many different groups participate in.
 	- hyperledger fabric is one of the projects created by hyperledger. It is a framework/base from which the community can develop their own blockchains.
 - [x] is governance within a closed blockchain the same as within an open blockchain
@@ -18,3 +25,24 @@ tags:
 		- means the authority has to act in the interest of the parites otherwise they will fork
 	- swtiching authorities?
 
+Ignored questions
+
+- [x] What do the governance rules need to accomplish?
+	- Shouldn't the system just work?
+	- Very broad question
+	- Maybe:
+		- Maintenance/Development of the codebase (PIP/EIP?)
+		- Inviting/banning participants
+		- Conducting phsysical audits?
+	- this is something i need to figure out myself
+- [x] What are they voting on?
+	- Seems like a very dumb question. I guess a lot of things. But I'm not sure so I'll add it here
+- [x] Who will be participating in the blockchain?
+	- Three major parties in food supply-chain: Market, Manufacturing, Agriculture
+	- Do I need to define this in more detail?
+ - [x] Do we need to track the products physically?
+	- A: not relevant yet
+- [x] How is on-chain governance implemented?
+	- Smart contracts? Consensus algorithms?
+- [x] Why is block size significant?
+	- not relevant

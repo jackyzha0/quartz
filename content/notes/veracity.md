@@ -9,32 +9,11 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 # Questions	
 [answered-questions](notes/answered-questions.md)
 
-- [ ] How is on-chain governance implemented?
-	- Smart contracts?
-- [ ] Do we need to track the products physically?
-	- e.g., using IoT devices
-- [ ] Who will be participating in the blockchain?
-	- Three major parties in food supply-chain: Market, Manufacturing, Agriculture
-	- Do I need to define this in more detail?
-- [ ] What are they voting on?
-	- Seems like a very dumb question. I guess a lot of things. But I'm not sure so I'll add it here
-- [ ] What do the governance rules need to accomplish?
-	- Shouldn't the system just work?
-	- Very broad question
-	- Maybe:
-		- Maintenance/Development of the codebase (PIP/EIP?)
-		- Inviting/banning participants
-		- Conducting phsysical audits?
 - [ ] What happens if a participant is caught being untruthful? 
 	- Can they be automatically kicked out or is a vote required? 
 	- How can we distinguish between mistakes and intentional deceit?
 		- Maybe a reputation system. This way one mistake is not fatal, and a reputation can be restored over time
 - [ ] Should the central/initiating groups retain higher privileges even after other participants have joined?
-- [ ] Even if a farm says they didn't use some chemical, how does the blockchain verify that. Does someone need to go and physically audit them?
-	- Can the group, as a DAO almost, collectively employ someone to do this?
-	- I guess that still wouldn't stop the participant being audited from bribing them or something.
-- Why is block size significant?
-- What is Sharding?
 
 # Notes
 - [think-writing/log](notes/think-writing.md)
