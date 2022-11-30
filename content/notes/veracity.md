@@ -66,10 +66,10 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [[research-on-the-reciprocal-mechanism-of-hybrid-governance-in-blockchain]]
 - [[Now the Code Runs Itself — On-Chain and Off- Chain Governance-of- Blockchain Technologies]]
 - [[Decision Problems in Blockchain Governance — Old Wine in New Bottles or Walking in Someone Elses Shoes]]
+- [[Defining Blockchain Governance — A Framework for Analysis and Comparison]]
 
 **Papers to read**
 - DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
-- https://doi.org/10.1080/10580530.2020.1720046 Defining Blockchain Governance: A Framework for Analysis and Comparison
 - https://tezos.com/whitepaper.pdf
 - https://www.ndss-symposium.org/wp-content/uploads/2019/02/ndss2019_02A-2_Zhang_paper.pdf A Treasury System for Cryptocurrencies: Enabling Better Collaborative Intelligence
 	- Quadratic voting
