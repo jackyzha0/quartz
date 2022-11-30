@@ -1,7 +1,6 @@
 ---
 title: "think-writing"
 tags: 
-
 ---
 
 # 15/11
@@ -355,3 +354,7 @@ Yesterday
 - i read about lacchain and the tethering blockchain papers. tethering would allow you do leverage the security that public chains get from have a large number of participants without having to have that many participants
 - started to think about what I am looking for in a base. I realised I still dont really know and that starting from a base might not actually help me to find that out. I need to identify issues with current systems, because to me it seems like I could almost just use an existing p- maybe not. I think I just need to write down a basic overview of what I want, then work out the details later.
 
+Meeting with david
+- I should look into some specific scenarios and how they might play out within existing closed blockchain systems
+- The idea of tethering a closed blockchain to a public blockchain is worth considering
+- Rather than acting directly as a source of truth, a blockchain as applied to the veracity project should 

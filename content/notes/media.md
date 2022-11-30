@@ -6,6 +6,7 @@ tags:
 ---
 
 # Albums
+Andrew Wasylyk - Fugitive Light And Themes Of Consolation
 
 # Books
 - 2022
