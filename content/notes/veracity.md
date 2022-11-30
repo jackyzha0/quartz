@@ -9,10 +9,6 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 # Questions	
 [answered-questions](notes/answered-questions.md)
 
-- [ ] Is the code developed by the central authority or spread across partipants?
-	- I think the initiating authority is in charge of developing the inital system. (either they do it internally or contract a software company to do it for them)
-	- Maybe they can partner with others to initiate it
-	- It is then maintained by the participants
 - [ ] How is on-chain governance implemented?
 	- Smart contracts?
 - [ ] Do we need to track the products physically?
@@ -29,7 +25,6 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 		- Maintenance/Development of the codebase (PIP/EIP?)
 		- Inviting/banning participants
 		- Conducting phsysical audits?
-- [ ] Need to consider applications of decentralized identity technology
 - [ ] What happens if a participant is caught being untruthful? 
 	- Can they be automatically kicked out or is a vote required? 
 	- How can we distinguish between mistakes and intentional deceit?
@@ -40,7 +35,6 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 	- I guess that still wouldn't stop the participant being audited from bribing them or something.
 - Why is block size significant?
 - What is Sharding?
-
 
 # Notes
 - [think-writing/log](notes/think-writing.md)
