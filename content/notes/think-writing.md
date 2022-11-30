@@ -369,3 +369,10 @@ Meeting with david
 - also test the aforementioned scenarios using a small network of ~10 participants
 
 I want to think about how some scenarios may play out within an existing closed blockchain. Firstlly, what happens if one participant turned bad and the other wanted to remove them from the group. Ssay we havea grup of 10 participants in a closed blockchain system using a CFT consensus algorithm Then they can be voted out so that their vote is desregarded and so they cant view or access data on the chain. what if they require access to decuments stored on-chain which they dont have local copies of. I guess they wuld have access to a stored copy of the blockchain on their node. But then would this chain be considered valid by oters. they dont store the actual document on the blockchain – only a timestamped hash to prove they had that doc at this particular time. participats should keep local copies of documents. Can participants kick out the initiating authority? You would have some mechanism to ensure that they cant be kicked out. firstly there would have to be a vote to kick them out. unless they aren't actually needed. who are the people that look at the documents to check them. Some third party collectively employed by the group? the govt? maybe its required for each participant to sometimes go and check if other participants are being truthful.
+
+# 01/12
+Yesterday
+- had a good chat with david.
+- decided to spend some more time trying to get the prolog kernel to work
+- instead of designing the whole governance system, I'll look how some scenarios might play out within existing closed blockchain systems. Hopefully after ive done a lot of those I will run into some scenarios where the existing system is not good enough and then I can try to improve on it.
+- for example say we have a closed chain with 10 participants, and 4 of them are unhappy with the something about how the blockchain is being run. what happens then? can they just fork? how would that work? etc
