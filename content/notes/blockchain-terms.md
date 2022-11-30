@@ -19,7 +19,7 @@ tags:
 
 **Contingency theory:** A contingency theory is an orgzational theory that claims that there is no best way to organize a corporation, to lead a company, or to make decisions. Instead, the optimal course of action is contingent upon the internal and external situation.
 
-**:**
+**Decision problem:** In computability theory and computational complexity theory, a decision problem is a computational problem that can be posed as a yes–no question of the input values.
 
 **:**
 
