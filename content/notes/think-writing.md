@@ -387,11 +387,11 @@ Today
 Within an existing closed BC with 10 participants. say we wanted to add another participant as a validator node. they run the node software on a machine. this node is fully priviledged. they new member had to go through a screening and sign a legal contract to ensure they are not a bad actor. this node recieves a copy of the blockchain so far, and begins participating in the consensus algorithm and submitting transactions. their contract is added to the blockchain as their first transaction (maybe. or it can be stored somewhere else). 
 
 **Scenario 3**
- The new participant makes a mistake and puts the entire document instead of  just a hash. this document is sensitive and contains data that should be kept private. 
+ The new participant makes a mistake and puts the entire document instead of just a hash. this document is sensitive and contains data that should be kept private. 
  - automatically perform some checks to ensure the data lodged during a transaction is always just a hash.
  - is this the responsibility of the participant or the network to prevent. should be participant but that doesn't mean there shouldn't be some checks that the network can do 
  - do we want to store data other than hashed documents.
- - if the document is lodged on the BC can the consortium agree to remove it by 
+ - if the document is lodged on the BC can the consortium agree to remove it by doing basically a hard fork
 	 - i guess thats a lot easier in a closed BC than an open one
 
 # 02/12
@@ -403,4 +403,4 @@ Yesterday
 today
 - get kernel to work
 - read more papers
-- tink about more scenarios
+- tink about more scenarios+
