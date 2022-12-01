@@ -47,6 +47,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [[Now the Code Runs Itself — On-Chain and Off- Chain Governance-of- Blockchain Technologies]]
 - [[Decision Problems in Blockchain Governance — Old Wine in New Bottles or Walking in Someone Elses Shoes]]
 - [[Defining Blockchain Governance — A Framework for Analysis and Comparison]]
+- [[Blockchain Governance Challenges — Beyond Libertarianism]]
 
 **Papers to read**
 - DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
