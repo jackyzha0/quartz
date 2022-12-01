@@ -113,7 +113,7 @@
 {{end}}
 
 {{/* Make ==text== into <mark>text</mark> */}}
-{{$mark := findRE "(?Us)==([^\\$]+)==" $content}}
+{{$mark := findRE "==([^=\n]+)==" $content}}
 {{range $mark}}
   {{$fixed := printf "<mark>%s</mark>" (replace . "==" "")}}
   {{$content = replace $content . $fixed}}
