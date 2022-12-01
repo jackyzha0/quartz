@@ -406,4 +406,6 @@ today
 - read more papers
 - tink about more scenarios+
 
+The SWIPL notebook is working. just need to change the version of pyswip back to 0.2.9. 
+
 **Scenario 3 cont.**
