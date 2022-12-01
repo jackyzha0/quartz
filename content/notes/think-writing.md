@@ -393,3 +393,14 @@ Within an existing closed BC with 10 participants. say we wanted to add another 
  - do we want to store data other than hashed documents.
  - if the document is lodged on the BC can the consortium agree to remove it by 
 	 - i guess thats a lot easier in a closed BC than an open one
+
+# 02/12
+Yesterday
+- spent about a ½ hr figuring out how to edit the code running in the docker container. then I added more logging and found which line was breaking. `prolog.consult(f.name)`. `prolog` is from the `pyswip` package. so ill try a previous version of that today.
+- considered two scenarios: uploading a document not a hash and adding a member to the chain
+- and read two papers: [Defining Blockchain Governance — A Framework for Analysis and Comparison](notes/Defining%20Blockchain%20Governance%20—%20A%20Framework%20for%20Analysis%20and%20Comparison.md) and [Decision Problems in Blockchain Governance — Old Wine in New Bottles or Walking in Someone Elses Shoes](notes/Decision%20Problems%20in%20Blockchain%20Governance%20—%20Old%20Wine%20in%20New%20Bottles%20or%20Walking%20in%20Someone%20Elses%20Shoes.md)
+
+today
+- get kernel to work
+- read more papers
+- tink about more scenarios
