@@ -13,7 +13,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 	- Can they be automatically kicked out or is a vote required? 
 	- How can we distinguish between mistakes and intentional deceit?
 		- Maybe a reputation system. This way one mistake is not fatal, and a reputation can be restored over time
-- [ ] Should the central/initiating groups retain higher privileges even after other participants have joined?
+- [ ] Should the central/initiating groups retain higher privileges even after other participants have joined?W
 
 # Notes
 - [think-writing/log](notes/think-writing.md)

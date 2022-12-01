@@ -368,6 +368,7 @@ Meeting with david
 	- try rolling back to an earlier version
 - also test the aforementioned scenarios using a small network of ~10 participants
 
+**Scenario 1**
 I want to think about how some scenarios may play out within an existing closed blockchain. Firstlly, what happens if one participant turned bad and the other wanted to remove them from the group. Ssay we havea grup of 10 participants in a closed blockchain system using a CFT consensus algorithm Then they can be voted out so that their vote is desregarded and so they cant view or access data on the chain. what if they require access to decuments stored on-chain which they dont have local copies of. I guess they wuld have access to a stored copy of the blockchain on their node. But then would this chain be considered valid by oters. they dont store the actual document on the blockchain – only a timestamped hash to prove they had that doc at this particular time. participats should keep local copies of documents. Can participants kick out the initiating authority? You would have some mechanism to ensure that they cant be kicked out. firstly there would have to be a vote to kick them out. unless they aren't actually needed. who are the people that look at the documents to check them. Some third party collectively employed by the group? the govt? maybe its required for each participant to sometimes go and check if other participants are being truthful.
 
 # 01/12
@@ -382,3 +383,5 @@ Today
 - think abt some scenarios
 - work on swipl notebook
 
+**Scenario 2**
+Within an existing closed BC with 10 participants. say we wanted to add another participant as a validator node. they run the node software on a machine. this node is fully priviledged. they new member had to go through a screening and sign a legal contract to ensure they are not a bad actor. this 
