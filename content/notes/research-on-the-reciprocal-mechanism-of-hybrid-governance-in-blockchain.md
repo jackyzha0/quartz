@@ -45,7 +45,7 @@ Decision Problems in Blockchain Governance: Old Wine in New Bottles or Walking i
 - This research studied blockchain systems through the lens of six decision problems emerging from blockchain governance: problems of demand management, data management, system architecture design and development, membership, ownership disputes, and transaction reversals. 
 - (Ziolkowski et al., 2020)
 
-Blockchain Governance—A New Way of Organizing Collaborations? 
+[[Blockchain Governance—A New Way of Organizing Collaborations]]? 
 - The importance of codifiability and verifiability as two transactional characteristics that have an important impact on the efficiency of blockchain governance 
 - (Lumineau, Wang, & Schilke, 2020)
 
