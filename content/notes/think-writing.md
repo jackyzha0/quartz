@@ -392,7 +392,8 @@ Within an existing closed BC with 10 participants. say we wanted to add another 
  - is this the responsibility of the participant or the network to prevent. should be participant but that doesn't mean there shouldn't be some checks that the network can do 
  - do we want to store data other than hashed documents.
  - if the document is lodged on the BC can the consortium agree to remove it by doing basically a hard fork
-	 - i guess thats a lot easier in a closed BC than an open one
+	 - what happens to the other side of the fork? just stops. 
+ - i guess thats a lot easier in a closed BC than an open one
 
 # 02/12
 Yesterday
@@ -404,3 +405,5 @@ today
 - get kernel to work
 - read more papers
 - tink about more scenarios+
+
+**Scenario 3 cont.**
