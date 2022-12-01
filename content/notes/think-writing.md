@@ -384,4 +384,4 @@ Today
 - work on swipl notebook
 
 **Scenario 2**
-Within an existing closed BC with 10 participants. say we wanted to add another participant as a validator node. they run the node software on a machine. this node is fully priviledged. they new member had to go through a screening and sign a legal contract to ensure they are not a bad actor. this 
+Within an existing closed BC with 10 participants. say we wanted to add another participant as a validator node. they run the node software on a machine. this node is fully priviledged. they new member had to go through a screening and sign a legal contract to ensure they are not a bad actor. this node recieves a copy of the blockchain so far, and begins participating in the consensus algorithm and submitting transactions. their contract is added to the blockchain as the first transaction (maybe. or it can be stored somewhere else). 
