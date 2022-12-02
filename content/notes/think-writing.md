@@ -406,6 +406,6 @@ today
 - read more papers
 - tink about more scenarios+
 
-The SWIPL notebook is working. just need to change the version of pyswip back to 0.2.9. 
+The SWIPL notebook is working. just need to change the version of pyswip back to 0.2.9. now what code can I work on in the evenings? 
 
 **Scenario 3 cont.**
