@@ -409,3 +409,4 @@ today
 The SWIPL notebook is working. just need to change the version of pyswip back to 0.2.9. now what code can I work on in the evenings? 
 
 **Scenario 3 cont.**
+If someone uploads a document by accident that is sensitive, then the chain hard forks to remove it from the history, is it still publicly available (to the members of chain) or is the old fork erased. bu then what if someone stored a local copy (which they do). maybe the local copy is stored encrypted and the owner of the document has the key to unlock it.
