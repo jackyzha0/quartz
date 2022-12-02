@@ -87,3 +87,6 @@ nathan salsburg
 	- nobody
 	- raw
 	- the thin blue line
+- 12/22
+	- Cure
+		- Bertrand Russell wrote, “One should as a rule respect public opinion in so far as is necessary to avoid starvation and to keep out of prison, but anything that goes beyond this is voluntary submission to an unnecessary tyranny, and is likely to interfere with happiness in all kinds of ways.”

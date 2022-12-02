@@ -8,14 +8,15 @@ Top movies
 1. yojimbo
 2. le samourai
 3. akira
-4. ghost in the shell
-5. taxi driver
 6. rashomon
-7. annihilation
-8. good the bad the ugly
+11. ikiru
 9. perfect blue
 10. in the mood for love
-11. ikiru
+12. cure
+5. taxi driver
+8. good the bad the ugly
+4. ghost in the shell
+7. annihilation
 
 To watch
 - the beguiled
