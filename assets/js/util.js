@@ -203,6 +203,16 @@ const displayResults = (term, finalResults, extractHighlight = false) => {
       }
       )
       .join("\n")
+    if (LATEX_ENABLED) {
+      renderMathInElement(results, {
+        delimiters: [
+          { left: '$$', right: '$$', display: false },
+          { left: '$', right: '$', display: false },
+        ],
+        throwOnError: false
+      })
+    }
+
     const anchors = [...document.getElementsByClassName("result-card")]
     anchors.forEach((anchor) => {
       anchor.onclick = () => redir(anchor.id, term)
