@@ -406,10 +406,24 @@ today
 - read more papers
 - tink about more scenarios+
 
-The SWIPL notebook is working. just need to change the version of pyswip back to 0.2.9. now what code can I work on in the evenings? 
+The SWIPL notebook is working. just need to change the version of pyswip back to 0.2.9. now what code can I work on in the afternoons? 
 
 **Scenario 3 cont.**
 If someone uploads a document by accident that is sensitive, then the chain hard forks to remove it from the history, is it still publicly available (to the members of chain) or is the old fork erased. bu then what if someone stored a local copy (which they do). maybe the local copy is stored encrypted and the owner of the document has the key to unlock it.
 
 **Scenario 4**
 what if someone found a security vulnerability in the code. would they exploit it? how to change the code. would there be a different process to normal code changes for something critical like this. within the blockchain wallets/accounts are linked to a real world identity. but i guess the person who found the vulnerability could easily (note the "person" is a member of an organisation who has access to the code) tell someone else who is not identifiable and have them exploit the vulnerability. how do organisations decide who has access to the code. if the person does not decide to try to exploit it, they have to bring it to the attention of others or try to fix it themselves. 
+
+---
+
+# 5/12
+
+Week Review
+- Got the prolog notebook to work. 
+- Read some interesting papers, tethering to public chain, reciprocal hyribd on/off chain governance
+- thought about some scenarios
+	- kick out participant
+	- add new participant
+	- mistakently add senstitive data to chain
+	- one participant finds a security bug
+	- 
