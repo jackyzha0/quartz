@@ -82,6 +82,7 @@
   }}
   <script>
     const SEARCH_ENABLED = {{.Site.Data.config.search.enableSemanticSearch}}
+    const LATEX_ENABLED = {{.Site.Data.config.enableLatex}}
     const PRODUCTION = {{ hugo.IsProduction }}
     const BASE_URL = {{.Site.BaseURL}}
     const fetchData = Promise.all([
@@ -123,8 +124,7 @@
       {{if $data.enableLinkPreview | default $.Site.Data.config.enableLinkPreview}}
       initPopover(
         {{strings.TrimRight "/" .Site.BaseURL }},
-        {{$data.enableContextualBacklinks | default $.Site.Data.config.enableContextualBacklinks}},
-        {{$data.enableLatex | default $.Site.Data.config.enableLatex}}
+        {{$data.enableContextualBacklinks | default $.Site.Data.config.enableContextualBacklinks}}
       )
       {{end}}
 
