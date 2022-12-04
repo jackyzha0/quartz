@@ -426,4 +426,6 @@ Week Review
 	- add new participant
 	- mistakently add senstitive data to chain
 	- one participant finds a security bug
-	- 
+
+This week
+- 
