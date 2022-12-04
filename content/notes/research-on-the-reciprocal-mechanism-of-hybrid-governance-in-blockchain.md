@@ -23,7 +23,7 @@ They propose that neither on-chain governance-by-BC nor off-chain governance-of-
 
 # Notes
 
-what is contingency theory
+what is contingency theory 
 
 # Related
 [[Now the Code Runs Itself — On-Chain and Off- Chain Governance-of- Blockchain Technologies]] 
@@ -37,11 +37,11 @@ Blockchain Governance: What We Can Learn from the Economics of Corporate Governa
 Research on Mechanism and Method of Blockchain Governance 
 - Three content levels of blockchain governance: consensus protocol governance, resource governance and rule governance. Three methods of blockchain governance: onchain governance, off-chain governance and hybrid governance. (Chao, 2020)
 
-Defining Blockchain Governance: A Framework for Analysis and Comparison 
+[[Defining Blockchain Governance — A Framework for Analysis and Comparison]]
 - A blockchain governance framework that defines the governance of a blockchain as a combination of six dimensions (formation and context, roles, incentives, membership, communication and decision making) and three layers (off-chain community layer, off-chain development layer and on-chain protocol layer). 
 - (Pelt et al., 2021)
 
-Decision Problems in Blockchain Governance: Old Wine in New Bottles or Walking in Someone Else’s Shoes? 
+[[Decision Problems in Blockchain Governance — Old Wine in New Bottles or Walking in Someone Elses Shoes]]
 - This research studied blockchain systems through the lens of six decision problems emerging from blockchain governance: problems of demand management, data management, system architecture design and development, membership, ownership disputes, and transaction reversals. 
 - (Ziolkowski et al., 2020)
 
@@ -57,7 +57,7 @@ The Generic Blockchain Ecosystem and its Strategic Implications
 - This paper identified three strategic implications where blockchain is fundamentally different from prior approaches: governance, trust, and openness. 
 - (Riasanow, Burckhardt, Soto Setzke, Böhm, & Krcmar, 2018)
 
-Governance in the Blockchain Economy: A Framework and Research Agenda 
+[[Governance in the Blockchain Economy — A Framework and Research Agenda]]
 - It discusses the blockchain economy along dimensions defined in the IT governance literature: decision rights, accountability, and incentives. 
 - (Beck et al., 2018)
 
