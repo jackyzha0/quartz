@@ -37,3 +37,7 @@ More about adding new member
 	- can nodes with this perssion remove peers at will?
 	- not 1:1 nodes:accounts
 	- with HL Burrow you can use Solidity smart-contracts on Iroha
+	- iroha would either have to be off-chain voting then a trusted peer (or initial) would add them
+	- or: will need to look into HL Burrow but there might a way to have an on-chain smart contract voting system which automatically adds them depending on the vote
+		- I could spend time thinking about implementation of such a smart contract
+	- 
