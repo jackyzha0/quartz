@@ -53,3 +53,7 @@ yesterday
 
 what about removing a person from the chain?
 - within hyperledger. 
+
+should i be using iroha2 - much better docs, newer version.
+
+https://github.com/hyperledger/iroha/blob/iroha2-dev/docs/source/iroha_2_whitepaper.md
