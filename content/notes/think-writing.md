@@ -33,6 +33,7 @@ More about adding new member
 	- details of vote cutoff time
 	- parameters of vote change during vote
 - hyperledger
+	- The purpose of add peer command is to write into ledger the fact of peer addition into the peer network. After a transaction with AddPeer has been committed, consensus and synchronization components will start using it.
 	- transaction to remove peer requires the node making the transaction to have the can-remove-peer permission
 	- can nodes with this perssion remove peers at will?
 	- not 1:1 nodes:accounts
@@ -51,4 +52,4 @@ yesterday
 	- one existing peer needs permission to add another peer
 
 what about removing a person from the chain?
-- 
+- within hyperledger. 
