@@ -48,4 +48,5 @@ yesterday
 - trying to get notebook to work with pyswip 0.2.10
 - some thoughts about adding a new person to the chain
 	- looked at how to do it within hyperledger
+	- one existing peer needs permission to add another peer
 	- 
