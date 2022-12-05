@@ -35,4 +35,4 @@ More about adding new member
 - hyperledger docs
 	- transaction to remove peer requires the node making the transaction to have the can-remove-peer permission
 	- can nodes with this perssion remove peers at will?
-	- 
+	- not 1:1 nodes:accounts
