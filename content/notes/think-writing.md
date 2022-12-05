@@ -50,3 +50,5 @@ yesterday
 	- looked at how to do it within hyperledger
 	- one existing peer needs permission to add another peer
 
+what about removing a person from the chain?
+- 
