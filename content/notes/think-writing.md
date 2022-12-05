@@ -49,4 +49,4 @@ yesterday
 - some thoughts about adding a new person to the chain
 	- looked at how to do it within hyperledger
 	- one existing peer needs permission to add another peer
-	- 
+
