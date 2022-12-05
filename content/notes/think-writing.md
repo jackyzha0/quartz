@@ -40,4 +40,12 @@ More about adding new member
 	- iroha would either have to be off-chain voting then a trusted peer (or initial) would add them
 	- or: will need to look into HL Burrow but there might a way to have an on-chain smart contract voting system which automatically adds them depending on the vote
 		- I could think about how to implement such a smart contract
+
+# 6/12
+
+yesterday
+- didn't get a lot done
+- trying to get notebook to work with pyswip 0.2.10
+- some thoughts about adding a new person to the chain
+	- looked at how to do it within hyperledger
 	- 
