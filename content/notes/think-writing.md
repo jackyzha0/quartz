@@ -25,4 +25,14 @@ This week
 - consider more scenarios
 - read more papers
 
-
+More about adding new member
+- Existing members vote to add new member
+- on or off chain vote?
+- store record of vote outcome on-chain
+- consider special cases
+	- details of vote cutoff time
+	- parameters of vote change during vote
+- hyperledger docs
+	- transaction to remove peer requires the node making the transaction to have the can-remove-peer permission
+	- can nodes with this perssion remove peers at will?
+	- 

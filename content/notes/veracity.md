@@ -105,6 +105,10 @@ From search
 - https://www.hyperledger.org/blog/2017/09/06/abcs-of-open-governance
 - https://www2.deloitte.com/us/en/insights/focus/signals-for-strategists/emergence-of-blockchain-consortia.html
 
+**Docs**
+- https://iroha.readthedocs.io/en/develop/maintenance/add_peer.html
+- 
+
 **Might Read**
 - https://stakingfac.medium.com/what-is-nominated-proof-of-stake-889fc22bef8f
 - https://en.wikipedia.org/wiki/Futarchy
