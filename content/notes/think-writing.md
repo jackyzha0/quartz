@@ -32,12 +32,12 @@ More about adding new member
 - consider special cases
 	- details of vote cutoff time
 	- parameters of vote change during vote
-- hyperledger docs
+- hyperledger
 	- transaction to remove peer requires the node making the transaction to have the can-remove-peer permission
 	- can nodes with this perssion remove peers at will?
 	- not 1:1 nodes:accounts
 	- with HL Burrow you can use Solidity smart-contracts on Iroha
 	- iroha would either have to be off-chain voting then a trusted peer (or initial) would add them
 	- or: will need to look into HL Burrow but there might a way to have an on-chain smart contract voting system which automatically adds them depending on the vote
-		- I could spend time thinking about implementation of such a smart contract
+		- I could think about how to implement such a smart contract
 	- 
