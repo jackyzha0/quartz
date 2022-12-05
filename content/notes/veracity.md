@@ -31,24 +31,24 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [[a systematic literature review on blockchain governance]]
 - [[A novel framework for policy based on-chain governance of blockchain networks]]
 - [[Application of Blockchain and Internet of Things to Ensure Tamper-Proof Data Availability for Food Safety]]
+- [[Defining Blockchain Governance — A Framework for Analysis and Comparison]]
 
 **Good**
-- [[Permissionless and Permissioned, Technology-Focused and Business Needs-Driven — Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar]]
+- [[Governance in the Blockchain Economy — A Framework and Research Agenda]]
+- [[Now the Code Runs Itself — On-Chain and Off- Chain Governance-of- Blockchain Technologies]]
+- [[Decision Problems in Blockchain Governance — Old Wine in New Bottles or Walking in Someone Elses Shoes]]
 - [[Fork-free hybrid consensus with flexible Proof-of-Activity]]
+- [[A renewable energy microgrids trading management platform based on permissioned blockchain]]
+- [[research-on-the-reciprocal-mechanism-of-hybrid-governance-in-blockchain]]
 - [[zkCrowd — A Hybrid Blockchain-Based Crowdsourcing Platform]]
 - [[Toward an Interoperability Architecture for Blockchain Autonomous Systems]]
 - [[Blockchain Technology and Decentralized Governance – Is the State Still Necessary]]
 - [[Blockchain Based Wine Supply Chain Traceability System]]
-- [[A renewable energy microgrids trading management platform based on permissioned blockchain]]
-- [[Governance in the Blockchain Economy — A Framework and Research Agenda]]
 - [[Enhanced immutability of permissioned blockchain networks by tethering provenance with a public blockchain network]]
-- [[A review on blockchain governance]]
-- [[research-on-the-reciprocal-mechanism-of-hybrid-governance-in-blockchain]]
-- [[Now the Code Runs Itself — On-Chain and Off- Chain Governance-of- Blockchain Technologies]]
-- [[Decision Problems in Blockchain Governance — Old Wine in New Bottles or Walking in Someone Elses Shoes]]
-- [[Defining Blockchain Governance — A Framework for Analysis and Comparison]]
 - [[Blockchain Governance Challenges — Beyond Libertarianism]]
 - [[Decentralized Network Governance — Blockchain Technology and the Future of Regulation]]
+- [[A review on blockchain governance]]
+- [[Permissionless and Permissioned, Technology-Focused and Business Needs-Driven — Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar]]
 
 **Papers to read**
 - DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
