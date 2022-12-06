@@ -27,7 +27,7 @@
               "state": {
                 "file": "README.md",
                 "mode": "source",
-                "source": false
+                "source": true
               }
             }
           }
@@ -149,8 +149,10 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "d5588582587567b9",
+  "active": "41f646123a82fd4c",
   "lastOpenFiles": [
+    "CODE_OF_CONDUCT.md",
+    "README.md",
     "content/_index.md",
     "content/page2.md",
     "content/page1.md"

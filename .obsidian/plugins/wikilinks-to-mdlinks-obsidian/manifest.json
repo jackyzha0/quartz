@@ -1,0 +1,10 @@
+{
+	"id": "wikilinks-to-mdlinks-obsidian",
+	"name": "Wikilinks to MDLinks",
+	"version": "0.0.12",
+	"minAppVersion": "0.9.12",
+	"description": "A plugin that converts wikilinks to markdown links and vice versa",
+	"author": "Agatha Uy",
+	"authorUrl": "https://github.com/agathauy",
+	"isDesktopOnly": false
+}

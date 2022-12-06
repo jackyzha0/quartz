@@ -3,9 +3,9 @@ title: _index
 enableToc: false
 ---
 
-## page 1[[page1]]
+## page 1[page1](page1.md)
 
-## page 2[[page2]]
+## page 2[page2](page2.md)
 
 
 
