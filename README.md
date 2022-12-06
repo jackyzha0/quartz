@@ -1,5 +1,8 @@
 # Quartz
 
+# page1: [[page1]]
+# page2: [[page2]]
+
 Host your second brain and [digital garden](https://jzhao.xyz/posts/networked-thought) for free. Quartz features
 
 1. Extremely fast natural-language search
