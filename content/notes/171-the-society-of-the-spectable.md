@@ -47,6 +47,8 @@ Or relationship with commodities was a prophecy for what all things would become
 > In a [dérive](https://en.wikipedia.org/wiki/D%C3%A9rive "Dérive") one or more persons during a certain period drop their usual motives for movement and action, their relations, their work and leisure activities, and let themselves be drawn by the attractions of the terrain and the encounters they find there... But the dérive includes both this letting go and its necessary contradiction: the domination of psychogeographical variations by the knowledge and calculation of their possibilities.
 >— Ken Knabb
 
+> the core Lettrist concept that every major arena of human interaction, whether it be [literary](https://en.wikipedia.org/wiki/Literary "Literary") or [economic](https://en.wikipedia.org/wiki/Economic "Economic"), follows the same basic pattern. A paradigm is introduced into a system and iterated upon until all possibilities are exhausted (this is deemed the [amplic phase](https://en.wikipedia.org/wiki/Lettrism#Key_concepts "Lettrism")), at which point the only path forward is to deconstruct the system down to its most granular elements (the [chiseling phase](https://en.wikipedia.org/wiki/Lettrism#Key_concepts "Lettrism")). Once the system has been fully deconstructed, the pieces are set into a new paradigm and the cycle begins again.
+
 # Further Reading
 
 https://en.wikipedia.org/wiki/The_Society_of_the_Spectacle
