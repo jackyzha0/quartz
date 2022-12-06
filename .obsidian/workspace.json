@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "content/page2.md",
                 "mode": "source",
                 "source": true
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "content/page2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "content/page2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md"
+                "file": "content/page2.md"
               }
             }
           }
@@ -149,12 +149,12 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "41f646123a82fd4c",
+  "active": "d5588582587567b9",
   "lastOpenFiles": [
-    "CODE_OF_CONDUCT.md",
+    "content/page1.md",
     "README.md",
+    "CODE_OF_CONDUCT.md",
     "content/_index.md",
-    "content/page2.md",
-    "content/page1.md"
+    "content/page2.md"
   ]
 }
