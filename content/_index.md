@@ -1,7 +1,15 @@
 ---
-title: 🪴 Quartz 3.
+title: _index
 enableToc: false
 ---
+
+## page 1[[page1]]
+
+## page 2[[page2]]
+
+
+
+
 
 Host your second brain and [digital garden](https://jzhao.xyz/posts/networked-thought) for free. Quartz features
 
