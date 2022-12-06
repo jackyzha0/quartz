@@ -57,3 +57,5 @@ what about removing a person from the chain?
 should i be using iroha2 - much better docs, newer version.
 
 https://github.com/hyperledger/iroha/blob/iroha2-dev/docs/source/iroha_2_whitepaper.md
+
+Im going to try to add a fifth peer to the four node demo network while its running
