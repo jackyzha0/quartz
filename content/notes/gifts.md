@@ -29,7 +29,9 @@ The point of gift giving: Make people feel loved (even if you don't love them)
 	- Wok cookbook
 	- Wok
 - Dad
-	- 
+	- Vinyl?
 - Eli
+	- 
 - Leeto
 - Pearl
+	- mountain equipment
