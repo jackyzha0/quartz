@@ -22,3 +22,14 @@ tags:
 
 Gift receiving: Send a thank you note \
 The point of gift giving: Make people feel loved (even if you don't love them)
+
+# Christmas
+- Mum
+	- Knife
+	- Wok cookbook
+	- Wok
+- Dad
+	- 
+- Eli
+- Leeto
+- Pearl
