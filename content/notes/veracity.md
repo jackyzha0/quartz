@@ -49,6 +49,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [[Decentralized Network Governance — Blockchain Technology and the Future of Regulation]]
 - [[A review on blockchain governance]]
 - [[Permissionless and Permissioned, Technology-Focused and Business Needs-Driven — Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar]]
+- [[The Generic Blockchain Ecosystem and its Strategic Implications]]
 
 **Papers to read**
 - DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology

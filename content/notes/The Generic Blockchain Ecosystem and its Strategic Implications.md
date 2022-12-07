@@ -10,6 +10,7 @@ link: https://www.researchgate.net/publication/325677489_The_Generic_Blockchain_
 # Summary
 
 # Extracts
+![Genereic blockchain ecosystem](https://i.imgur.com/ASjT6zp.png)
 
 # Notes
 
