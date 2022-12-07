@@ -34,6 +34,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [[Defining Blockchain Governance — A Framework for Analysis and Comparison]]
 
 **Good**
+- [[Vulnerabilities on Hyperledger Fabric]]
 - [[Governance in the Blockchain Economy — A Framework and Research Agenda]]
 - [[Now the Code Runs Itself — On-Chain and Off- Chain Governance-of- Blockchain Technologies]]
 - [[Decision Problems in Blockchain Governance — Old Wine in New Bottles or Walking in Someone Elses Shoes]]
