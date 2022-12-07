@@ -66,3 +66,6 @@ yesterday
 - think i got but i need to add some logs to check
 
 what i did yesterday didn't work. spend some time this morning to try to get it to work. the docs are not very helpful. might give up on that for now. 
+
+brain is fried. will do some light (ish) reading. 
+
