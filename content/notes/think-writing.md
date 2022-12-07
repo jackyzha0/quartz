@@ -64,4 +64,5 @@ Im going to try to add a fifth peer to the four node demo network while its runn
 yesterday
 - tried to get HL iroha to add a node
 - think i got but i need to add some logs to check
-- 
+
+what i did yesterday didn't work. spend some time this morning to try to get it to work. the docs are not very helpful. might give up on that for now. 
