@@ -53,7 +53,7 @@ Blockchain Governance and The Role of Trust Service Providers: The TrustedChain 
 - The essential conditions are confidentiality of transactions and long-term preservation of data to thrive and accomplish complex tasks in an effective and reliable way for blockchain networks. 
 - (Atzori, 2017)
 
-The Generic Blockchain Ecosystem and its Strategic Implications 
+[[The Generic Blockchain Ecosystem and its Strategic Implications ]]
 - This paper identified three strategic implications where blockchain is fundamentally different from prior approaches: governance, trust, and openness. 
 - (Riasanow, Burckhardt, Soto Setzke, Böhm, & Krcmar, 2018)
 
