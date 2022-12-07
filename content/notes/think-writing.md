@@ -69,3 +69,10 @@ what i did yesterday didn't work. spend some time this morning to try to get it 
 
 brain is fried. will do some light (ish) reading. 
 
+---
+
+# 7/12
+
+https://doi.org/10.1016/j.pmcj.2019.101050
+https://doi.org/10.1016/j.im.2021.103444
+https://doi.org/10.1016/j.giq.2021.101625
