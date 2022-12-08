@@ -8,6 +8,7 @@ tags:
 # Albums
 Andrew Wasylyk - Fugitive Light And Themes Of Consolation
 nathan salsburg
+Zeal and ardour self titled
 
 # Books
 - 2022
