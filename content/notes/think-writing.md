@@ -85,3 +85,4 @@ Changed docker container to use iroha-burrow instead of haydens own docker image
 
 # 8/12
 
+https://doi.org/10.3390/admsci12030096
