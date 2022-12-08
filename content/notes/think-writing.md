@@ -77,4 +77,7 @@ https://doi.org/10.1016/j.pmcj.2019.101050
 https://doi.org/10.1016/j.im.2021.103444
 https://doi.org/10.1016/j.giq.2021.101625 [[Vulnerabilities on Hyperledger Fabric]]
 
+I was able to start a network with three nodes and add a fourth. Next I will try to set up integration with hyperledger burrow so I can use smart contracts.
+
 **Scenario 5** - Making a change to the codebase/protocol
+
