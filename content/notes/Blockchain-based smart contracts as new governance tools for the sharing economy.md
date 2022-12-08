@@ -23,7 +23,7 @@ Explores use of blockchain management systems (BMSs) in the sharing economy for 
 - 
 
 # Related
-https://doi.org/10.1016/j.cities.2021.103104 Blockchain: The operating system of smart cities
+https://doi.org/10.1016/j.cities.2021.103104 [[Blockchain — The operating system of smart cities]]
 https://doi.org/10.1016/j.jmse.2021.03.003 A systematic review of a digital twin city: A new pattern of urban governance toward smart cities
 https://www.taylorfrancis.com/chapters/edit/10.1201/9781003017547-2/towards-digital-twin-based-smart-built-environment-ibrahim-yitmen-sepehr-alizadehsalehi
 
