@@ -79,5 +79,9 @@ https://doi.org/10.1016/j.giq.2021.101625 [[Vulnerabilities on Hyperledger Fabri
 
 I was able to start a network with three nodes and add a fourth. Next I will try to set up integration with hyperledger burrow so I can use smart contracts.
 
-Changed docker container to use iroha-burrow instead of haydens own docker image. 
+Changed docker container to use iroha-burrow instead of haydens own docker image. All works so far. installed solidity compiler and started trying to add a smart contract
+
+---
+
+# 8/12
 
