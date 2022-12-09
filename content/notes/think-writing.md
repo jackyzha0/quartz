@@ -71,7 +71,7 @@ brain is fried. will do some light (ish) reading.
 
 ---
 
-# 7/12
+# 8/12
 
 https://doi.org/10.1016/j.pmcj.2019.101050
 https://doi.org/10.1016/j.im.2021.103444
@@ -83,7 +83,7 @@ Changed docker container to use iroha-burrow instead of haydens own docker image
 
 ---
 
-# 8/12
+# 9/12
 
 https://doi.org/10.3390/admsci12030096
 https://doi.org/10.1016/j.cities.2021.103325 [[Blockchain-based smart contracts as new governance tools for the sharing economy]]
