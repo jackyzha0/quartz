@@ -31,3 +31,31 @@ Story Files_Translate: Contains the Storyline files for each language. There is 
 
 
 # Translation Process
+
+Script Translate
+
+Animation
+
+Voice
+
+Premiere
+
+Storyfile
+
+Review
+
+Fixes
+
+- recieve translated scripts
+- input sentences into voxcoda
+- translate animations
+- when translated voice is recieved edit together with video in premiere
+- in storyline
+	- for each new language create a template
+	- for each new module
+		- update headings
+		- create quiz (text and voice)
+		- add videos
+		- add subtitles to main video
+		- add script pdf to resources
+		- 
