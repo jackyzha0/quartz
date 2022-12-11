@@ -60,7 +60,6 @@ https://github.com/hyperledger/iroha/blob/iroha2-dev/docs/source/iroha_2_whitepa
 
 Im going to try to add a fifth peer to the four node demo network while its running
 # 7/12
-
 yesterday
 - tried to get HL iroha to add a node
 - think i got but i need to add some logs to check
@@ -72,7 +71,6 @@ brain is fried. will do some light (ish) reading.
 ---
 
 # 8/12
-
 https://doi.org/10.1016/j.pmcj.2019.101050
 https://doi.org/10.1016/j.im.2021.103444
 https://doi.org/10.1016/j.giq.2021.101625 [[Vulnerabilities on Hyperledger Fabric]]
@@ -88,3 +86,7 @@ Changed docker container to use iroha-burrow instead of haydens own docker image
 https://doi.org/10.3390/admsci12030096
 https://doi.org/10.1016/j.cities.2021.103325 [[Blockchain-based smart contracts as new governance tools for the sharing economy]]
 
+---
+
+# 12/12
+https://doi.org/10.1109/DTPI52967.2021.9540069 [[Parallel Governance for Decentralized Autonomous Organizations enabled by Blockchain and Smart Contracts]]
