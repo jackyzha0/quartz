@@ -19,7 +19,7 @@ tags:
     └── Story Files_Translate
 		
 			
-Animation: Contains the After Effects files for Each scene. Folder ending with `_translation` include text that needs to be translated using [[templater]]
+Animation: Contains the After Effects files for Each scene. Folder ending with `_translation` include text that needs to be translated using
 Assets/Audio: Contains the English version of the audio for the module
 Assets/Audio_Translate: Contains the Translated versions of the audio for the module
 Assets/PDF: Contains the translated scripts as PDF and .docx
