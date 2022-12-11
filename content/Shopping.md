@@ -1,9 +1,18 @@
+Indian
+Pork chops
+Pork noodles
 
-Tomatoes
-Cloves
-Garlic
-Ginger
-Cookies
-Pesto
-Lemon
-Lemongrass
+Rice
+Milk
+Chips
+Tomatoes Tim plus fresh
+Mushroom
+
+
+Sun, venison pasta
+Mon chops
+Tue nachos
+Wed pork noodle
+Thur sausages
+Fri curry
+
