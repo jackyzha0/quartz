@@ -92,3 +92,9 @@ https://doi.org/10.1016/j.cities.2021.103325 [[Blockchain-based smart contracts 
 https://doi.org/10.1109/DTPI52967.2021.9540069 [[Parallel Governance for Decentralized Autonomous Organizations enabled by Blockchain and Smart Contracts]]
 
 trying to call a function of a smart contract. I suspect its not working because the function signature hash is wrong
+
+---
+
+# 13/12
+Battled the smart contract all day yesterday. Might take a break from that and try to do something else
+
