@@ -98,3 +98,5 @@ trying to call a function of a smart contract. I suspect its not working because
 # 13/12
 Battled the smart contract all day yesterday. Might take a break from that and try to do something else
 
+who generates the keys for a new node?
+
