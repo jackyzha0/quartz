@@ -20,7 +20,7 @@ voting mechanisms
  
 ^ lead to whale effect (?)
 
-- quadratic - aims to solve problem of voting influence
+- [[quadratic voting]] - aims to solve problem of voting influence
 	- reduces effect of holder with large amounts of tokens
 	- vulnerable to collusion and sybil attacks
 
