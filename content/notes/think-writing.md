@@ -100,3 +100,5 @@ Battled the smart contract all day yesterday. Might take a break from that and t
 
 who generates the keys for a new node?
 
+what if a node removes itself
+
