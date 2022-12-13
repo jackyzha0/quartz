@@ -114,3 +114,5 @@ https://ieeexplore.ieee.org/abstract/document/9947249/
 
 Hyperledger consensus algorithm: https://doi.org/10.48550/arXiv.1809.00554
 
+# 14/12
+
