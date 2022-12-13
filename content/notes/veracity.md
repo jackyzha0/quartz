@@ -35,6 +35,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [[YAC — BFT Consensus Algorithm for Blockchain]]
 
 **Good**
+- [[Parallel Governance for Decentralized Autonomous Organizations enabled by Blockchain and Smart Contracts]]
 - [[Vulnerabilities on Hyperledger Fabric]]
 - [[Governance in the Blockchain Economy — A Framework and Research Agenda]]
 - [[Now the Code Runs Itself — On-Chain and Off- Chain Governance-of- Blockchain Technologies]]

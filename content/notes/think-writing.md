@@ -107,7 +107,6 @@ Implemented a test to remove a node.
 What about forking. do you remove a group of nodes? 
 
 https://eprints.soton.ac.uk/415083
-https://arxiv.org/abs/2102.10006
 https://arxiv.org/abs/1910.08547
 https://scholar.archive.org/work/uf7vmdzi7na5dazrh2jlhvuhr4/access/wayback/https://www.persistent.com/wp-content/uploads/2017/04/WP-Understanding-Blockchain-Consensus-Models.pdf?pdf=Understanding-Blockchain-Consensus-Models
 https://ieeexplore.ieee.org/abstract/document/9947249/
@@ -116,3 +115,5 @@ Hyperledger consensus algorithm: https://doi.org/10.48550/arXiv.1809.00554
 
 # 14/12
 
+https://arxiv.org/abs/2102.10006
+[[An Overview of Forks and Coordination in Blockchain Development]]
