@@ -19,7 +19,13 @@ BFT/CFT
 Algorithms
 - PoW: Bitcoin
 - PoS: [[ethereum]]
-- YAC: [[hyperledger#Iroha]]
+- [[YAC]]: [[hyperledger#Iroha]]
 
 
 [^7]: L. Lamport, “Generalized consensus and paxos,” Technical Report MSR-TR-2005-33, Microsoft Research, Tech. Rep., 2005. [Online]. Available: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-2005-33.pdf
+
+
+# Components
+- Peer
+- Ordering service
+- Client

@@ -21,6 +21,8 @@ tags:
 
 **Decision problem:** In computability theory and computational complexity theory, a decision problem is a computational problem that can be posed as a yes–no question of the input values.
 
+**Stateless Validation**: Verifying that a transaction is not malformed
+
 **:**
 
 **:**
