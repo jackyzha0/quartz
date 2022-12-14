@@ -117,3 +117,8 @@ Hyperledger consensus algorithm: https://doi.org/10.48550/arXiv.1809.00554
 
 https://arxiv.org/abs/2102.10006
 [[An Overview of Forks and Coordination in Blockchain Development]]
+
+# 15/12
+
+https://www.holochain.org [[holochain]]
+https://blockchaingov.eu
