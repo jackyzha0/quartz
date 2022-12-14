@@ -1,5 +1,5 @@
 ---
-title: "Blockchain Project"
+title: "Veracity"
 aliases: 
 tags: 
 ---
@@ -18,6 +18,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 
 # Notes
 - [think-writing/log](notes/think-writing.md)
+- [[isolated scenarios]]
 - [veracity-chain](notes/veracity-chain.md)
 - [reading-papers](notes/reading-papers.md)
 - [blockchain-terms](notes/blockchain-terms.md)
