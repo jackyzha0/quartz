@@ -122,3 +122,5 @@ https://arxiv.org/abs/2102.10006
 
 https://www.holochain.org [[holochain]]
 https://blockchaingov.eu
+
+Holochain is interesting
