@@ -123,4 +123,4 @@ https://arxiv.org/abs/2102.10006
 https://www.holochain.org [[holochain]]
 https://blockchaingov.eu
 
-Holochain is interesting
+Holochain is interesting. Framework for peer for peer apps. Apps built on holochain connect users devices directly in a p2p network. Data created by each user is digitally signed and stored in their device. The apps defines rules about what valid data looks like. The network of peers makes up the entire Distributed Hash Table (DHT), where each peer has a small, random 'shard' of the DHT. 
