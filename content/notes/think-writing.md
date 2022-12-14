@@ -125,7 +125,9 @@ https://blockchaingov.eu
 
 Holochain is interesting. Framework for peer for peer apps. Apps built on holochain connect users devices directly in a p2p network. Data created by each user is digitally signed and stored in their device. The apps defines rules about what valid data looks like. The network of peers makes up the entire Distributed Hash Table (DHT), where each peer has a small, random 'shard' of the DHT. 
 
-How could we use this for veracity. 
+How does the blockchain work? How does it achieve consensus? Is it BFT? 
+
+How could we use this for veracity? We could make a holochain app. 
 
 https://doi.org/10.1016/j.icte.2020.09.002
 https://doi.org/10.1016/j.techfore.2020.120465
