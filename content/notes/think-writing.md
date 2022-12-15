@@ -133,3 +133,13 @@ https://doi.org/10.1016/j.icte.2020.09.002
 https://doi.org/10.1016/j.techfore.2020.120465
 
 www.kaleido.io 
+
+meeting
+- removing participant
+	- security risks (whats stopping them from rejoining)
+	- remove permanently vs temporarily
+- skeptical of decentralised storage:
+	- less protections
+	- tradeoff availablility vs confidentiality
+
+I need to have a more skeptical mindset.
