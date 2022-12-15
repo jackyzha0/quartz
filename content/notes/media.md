@@ -39,6 +39,7 @@ Zeal and ardour self titled
 
 # Podcasts
 - [philosophize-this](notes/philosophize-this.md)
+- Sean Carroll's mindscapes
 
 # Films
 - before 10/22
