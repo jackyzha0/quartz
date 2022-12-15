@@ -12,3 +12,5 @@ From their website
 
 # Iroha
 Uses YAC consensus
+
+Torii > MST Processor > Peer Comms Service > Ordering Gate > Ordering Service > Verified Proposal Creator > Block Creator > Block Consensus [[YAC]] > Synchronizer > Blockstore > WSV
