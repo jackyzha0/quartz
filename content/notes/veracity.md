@@ -18,28 +18,28 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 
 # Notes
 - [think-writing/log](notes/think-writing.md)
-	- [[veracity-week01]]
-	- [[veracity-week02]]
-	- [[veracity-week03]]
-	- [[verac]]
-- [[isolated scenarios]]
+	- [[veracity-week01|week1]]
+	- [[veracity-week02|week2]]
+	- [[veracity-week03|week3]]
+	- [[veracity-week04|week4]]
+- [[scenarios]]
 - [veracity-chain](notes/veracity-chain.md)
 - [reading-papers](notes/reading-papers.md)
 - [blockchain-terms](notes/blockchain-terms.md)
 
-[412-lectures](notes/412-lectures.md), [hyperledger](hyperledger.md), [governance](notes/governance.md) , [decentralized-autonomous-organization](notes/decentralized-autonomous-organization.md), [DeFi](notes/DeFi.md), [dApps](notes/dApps.md), [sybil-problem](notes/sybil-problem.md), [smart-contracts](smart-contracts.md), [transaction-finality](transaction-finality.md), [consensus](notes/consensus.md), [CPR-governance](notes/CPR-governance.md), [eth-governance](notes/eth-governance.md), [food-manufacturing](notes/food-manufacturing.md), [bitcoin](bitcoin.md)
+[412-lectures](notes/412-lectures.md), [hyperledger](hyperledger.md), [governance](notes/governance.md) , [decentralized-autonomous-organization](notes/decentralized-autonomous-organization.md), [DeFi](notes/DeFi.md), [dApps](notes/dApps.md), [sybil-problem](notes/sybil-problem.md), [smart-contracts](smart-contracts.md), [transaction-finality](transaction-finality.md), [consensus](notes/consensus.md), [CPR-governance](notes/CPR-governance.md), [eth-governance](notes/eth-governance.md), [food-manufacturing](notes/food-manufacturing.md), [bitcoin](bitcoin.md), [[YAC]], [[holochain]], [[quadratic voting]]
 
 # Reading
 
 ## Blockchain Papers
-**Very good**
+**Good**
 - [[a systematic literature review on blockchain governance]]
 - [[A novel framework for policy based on-chain governance of blockchain networks]]
 - [[Application of Blockchain and Internet of Things to Ensure Tamper-Proof Data Availability for Food Safety]]
 - [[Defining Blockchain Governance — A Framework for Analysis and Comparison]]
-- [[YAC — BFT Consensus Algorithm for Blockchain]]
 
-**Good**
+**Read**
+- [[YAC — BFT Consensus Algorithm for Blockchain]]
 - [[Parallel Governance for Decentralized Autonomous Organizations enabled by Blockchain and Smart Contracts]]
 - [[Vulnerabilities on Hyperledger Fabric]]
 - [[Governance in the Blockchain Economy — A Framework and Research Agenda]]
@@ -58,6 +58,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [[A review on blockchain governance]]
 - [[Permissionless and Permissioned, Technology-Focused and Business Needs-Driven — Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar]]  
 - [[The Generic Blockchain Ecosystem and its Strategic Implications]]
+- [[LACChain Framework for Permissioned Public Blockchain Networks – From Blockchain Technology to Blockchain Networks]]
 
 **Papers to read**
 - DOI:[10.2139/ssrn.2811995](http://dx.doi.org/10.2139/ssrn.2811995) Disrupting Governance: The New Institutional Economics of Distributed Ledger Technology
@@ -74,7 +75,6 @@ From search
 - New permissioned public blockchain based on master-sub chain architecture (http://www.joca.cn/EN/10.11772/j.issn.1001-9081.2021101790)
 -  Permissioned public blockchain with high performance (https://journal.szu.edu.cn/en/oa/darticle.aspx?type=view&id=202003003)
 -  https://www.researchgate.net/profile/Suna-Kyun/publication/359728024_Design_and_Validation_of_Tertiary_General_Education_System_based_on_Public_Permissioned_Blockchain_and_Smart_Contract/links/624ba62f5e2f8c7a035bb5a0/Design-and-Validation-of-Tertiary-General-Education-System-based-on-Public-Permissioned-Blockchain-and-Smart-Contract.pdf
-- [[LACChain Framework for Permissioned Public Blockchain Networks – From Blockchain Technology to Blockchain Networks]]
 - https://policycommons.net/artifacts/2437174/gas-distribution-protocol-for-permissioned-public-ethereum-based-blockchain-networks/3458762/
 
 **Other maybe relevant Papers**
@@ -141,6 +141,9 @@ From search
 - kosama
 - edgeware
 - Polkadot
+- www.kaleido.io
+- holochain
+- 
 
 ## Other Reading
 - https://docs.docker.com/config/containers/container-networking/

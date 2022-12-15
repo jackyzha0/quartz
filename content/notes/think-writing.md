@@ -42,7 +42,7 @@ https://arxiv.org/abs/2102.10006
 # 15/12
 
 https://www.holochain.org [[holochain]]
-https://blockchaingov.eu
+https://blockchaingov.eu focused more on the legal side of things
 
 Holochain is interesting. Framework for peer for peer apps. Apps built on holochain connect users devices directly in a p2p network. Data created by each user is digitally signed and stored in their device. The apps defines rules about what valid data looks like. The network of peers makes up the entire Distributed Hash Table (DHT), where each peer has a small, random 'shard' of the DHT. 
 
@@ -62,8 +62,10 @@ meeting
 - skeptical of decentralised storage:
 	- less protections
 	- tradeoff availablility vs confidentiality
+- maybe dig into holochain "data rules" used for validation
 
 I need to have a more skeptical mindset.
 
 Why cant we use blockchain as a service (blockstream, kaleido, alchemy, aws, IBM). Is it up to me to look into this and decide if we can rule it out?
 
+https://doi.org/10.1016/j.icte.2020.09.002 # Permissioned blockchain frameworks in the industry: A comparison
