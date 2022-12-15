@@ -131,3 +131,5 @@ How could we use this for veracity? We could make a holochain app.
 
 https://doi.org/10.1016/j.icte.2020.09.002
 https://doi.org/10.1016/j.techfore.2020.120465
+
+www.kaleido.io 
