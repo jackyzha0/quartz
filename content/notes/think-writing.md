@@ -70,3 +70,6 @@ Why cant we use blockchain as a service (blockstream, kaleido, alchemy, aws, IBM
 
 https://doi.org/10.1016/j.icte.2020.09.002 Permissioned blockchain frameworks in the industry: A comparison
 
+Quorum: developed by jp morgan for finance applications. It is a fork of go-ethereum. Add the ability to have private contracts and transactions which are only visible/viewable by participants specifies in the transaction. 
+
+R3 Corda: open source permissioned platform. Follow know your customer principle. each node must prove identity. verified by the  _doorman_ node. Network is made up of one or many _notary_ nodes which validate the uniqueness and sequencing of transactions without global broadcasting. two types of consensus: validity and sequencing, 
