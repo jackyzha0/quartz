@@ -12,7 +12,19 @@ tags:
 - [[nope-threshold]]
 - [[stages of learning]]
 - [[hiragani]]
-- 
+
+
+# Grammar
+![](https://i.imgur.com/uB2CLf6.png)
+
+sort of SOV e.g., I sushi eat. (english is SVO i eat sushi)
+
+in english the order of words tells us who did what
+
+in japanese sentences are made up of _particles_. each one indicates how the word before it relates to other words in the sentence, usually to the verb — which is usually last. the order of the words can vary because the particles tell us who did what not the word order
+
+
+
 
 # Sound system
 24 consonant sounds, 5 vowel sounds (english: 24 and 14)
@@ -75,3 +87,4 @@ three types or writing
 - https://www.kanshudo.com/grammar/pronunciation
 - https://files.tofugu.com/articles/japanese/2016-04-05-hiragana-chart/hiragana-mnemonics-chart.jpge
 - https://cotoacademy.com/learning-hiragana-hiragana-chart-practice-sheets-apps-online-quiz/
+- https://8020japanese.com/japanese-sentence-structure/
