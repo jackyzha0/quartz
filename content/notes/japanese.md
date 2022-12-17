@@ -88,3 +88,4 @@ three types or writing
 - https://files.tofugu.com/articles/japanese/2016-04-05-hiragana-chart/hiragana-mnemonics-chart.jpge
 - https://cotoacademy.com/learning-hiragana-hiragana-chart-practice-sheets-apps-online-quiz/
 - https://8020japanese.com/japanese-sentence-structure/
+- https://ankiweb.net/shared/info/278530045
