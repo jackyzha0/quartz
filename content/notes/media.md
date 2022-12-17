@@ -5,11 +5,6 @@ tags:
 
 ---
 
-# Albums
-Andrew Wasylyk - Fugitive Light And Themes Of Consolation
-nathan salsburg
-Zeal and ardour self titled
-
 # Books
 - 2022
 	- The diamond age
@@ -27,13 +22,16 @@ Zeal and ardour self titled
 	- The age of reason - jean paul Sartre
 	- Jane Eyre, charlotte bronte
 	- a midsummer nights dream, shakespeare
-	- cryptonomicon, neal stephenson
 	- the amazing maurice and his educated rodents, terry pratchet
-- future
+	- the ocean at the end of the lane
+- current
+	- cryptonomicon, neal stephenson
+	- the curious case of the dog in the night time
+	- thinking fast and slow
 	- the second sex, simone de beauvoir
+- future
 	- actual air david berman
 	- woman in the dunes
-	- the second sex
 	- sophies world
 	- on the trail of genghis khan
 
@@ -92,3 +90,5 @@ Zeal and ardour self titled
 - 12/22
 	- Cure
 		- Bertrand Russell wrote, “One should as a rule respect public opinion in so far as is necessary to avoid starvation and to keep out of prison, but anything that goes beyond this is voluntary submission to an unnecessary tyranny, and is likely to interfere with happiness in all kinds of ways.”
+	- raise the red lantern
+	- 
