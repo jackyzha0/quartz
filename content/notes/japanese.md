@@ -70,3 +70,5 @@ three types or writing
 - https://luckytoilet.wordpress.com/2017/07/12/the-power-law-distribution-and-the-harsh-reality-of-language-learning/
 - https://www.reddit.com/r/languagelearning/comments/fc8sot/the_nope_threshold_some_thoughts_on_what_words_to/
 - https://www.sinosplice.com/life/archives/2016/08/25/what-80-comprehension-feels-like
+- https://www.kanshudo.com/howto/pitch
+- https://www.kanshudo.com/grammar/pronunciation
