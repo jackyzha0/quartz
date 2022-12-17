@@ -74,3 +74,4 @@ three types or writing
 - https://www.kanshudo.com/howto/pitch
 - https://www.kanshudo.com/grammar/pronunciation
 - https://files.tofugu.com/articles/japanese/2016-04-05-hiragana-chart/hiragana-mnemonics-chart.jpge
+- https://cotoacademy.com/learning-hiragana-hiragana-chart-practice-sheets-apps-online-quiz/
