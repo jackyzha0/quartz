@@ -22,6 +22,11 @@ tags:
 - http://japanese-lesson.com/resources/pdf/characters/katakana_writing_practice_sheets.pdf
 - https://pomax.github.io/nrGrammar/
 - https://github.com/EngJpDiscordExchange/Awesome-Japanese/blob/master/readme.md
+- https://luckytoilet.wordpress.com/2017/07/12/the-power-law-distribution-and-the-harsh-reality-of-language-learning/
+- https://www.reddit.com/r/languagelearning/comments/fc8sot/the_nope_threshold_some_thoughts_on_what_words_to/
+
+# Misc Notes
+- [[nope-threshold]]
 
 
 # Sound system
