@@ -21,6 +21,9 @@ tags:
 - http://japanese-lesson.com/resources/pdf/characters/katakana_chart.pdf
 - http://japanese-lesson.com/resources/pdf/characters/katakana_writing_practice_sheets.pdf
 - https://pomax.github.io/nrGrammar/
+- https://github.com/EngJpDiscordExchange/Awesome-Japanese/blob/master/readme.md
+
+
 # Sound system
 24 consonant sounds, 5 vowel sounds (english: 24 and 14)
 
