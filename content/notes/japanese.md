@@ -73,3 +73,4 @@ three types or writing
 - https://www.sinosplice.com/life/archives/2016/08/25/what-80-comprehension-feels-like
 - https://www.kanshudo.com/howto/pitch
 - https://www.kanshudo.com/grammar/pronunciation
+- https://files.tofugu.com/articles/japanese/2016-04-05-hiragana-chart/hiragana-mnemonics-chart.jpge
