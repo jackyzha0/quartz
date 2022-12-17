@@ -47,21 +47,8 @@ three types or writing
 - **katakana** a syllabary used or loan or onomaopoeic words and scientific words
 - **kanji** (from china), used for meaning and sound traditionally
 
-| - | ん | w | r | y | m | h | n | t | s | k |   | - |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| a | ん | わ | ら | や | ま | は | な | た | さ | か | あ | a |
-| i |   |   | り |   | み | ひ | に | ち | し | き | い | i |
-| u |   |   | る | ゆ | む | ふ | ぬ | つ | す | く | う | u |
-| e |   |   | れ |   | め | へ | ね | て | せ | け | え | e |
-| o |   | を | ろ | よ | も | ほ | の | と | そ | こ | お | o |
+![|300](https://i.imgur.com/xtWqFBK.png)
 
-| - | ん | w | r | y | m | h | n | t | s | k | |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| a | n    | wa | ra | ya | ma | ha  | na  | ta  | sa | ka | a |
-| i | | (wi) | ri |    | mi | hi | ni  | chi | shi | ki | i  |
-| u | | |ru   | yu | mu | fu | nu | tsu | su  | ku  | u  |
-| e | |(we) | re |    | me | he | ne  | te  | se  | ke | e  |
-| o | |(w)o | ro | yo | mo | ho | no  | to  | so  | ko | o  |
 
 # Resources
 
