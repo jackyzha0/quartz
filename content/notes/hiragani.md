@@ -11,9 +11,9 @@ tags:
 え e
 お o
 か ka
-き
+きki
 くku
-け
+けke
 こko
 さsa
 しshi
