@@ -8,6 +8,7 @@ tags:
 
 # Resources
 
+- http://plus.ajatt.com/nutshell/
 - http://guidetojapanese.org/learn/grammar
 - https://app.memrise.com/course/29267/genki-i/
 - https://www.reddit.com/r/LearnJapanese/comments/4vhe30/6_months_later_how_i_learned_to_learn_japanese/
@@ -24,9 +25,11 @@ tags:
 - https://github.com/EngJpDiscordExchange/Awesome-Japanese/blob/master/readme.md
 - https://luckytoilet.wordpress.com/2017/07/12/the-power-law-distribution-and-the-harsh-reality-of-language-learning/
 - https://www.reddit.com/r/languagelearning/comments/fc8sot/the_nope_threshold_some_thoughts_on_what_words_to/
+- https://www.sinosplice.com/life/archives/2016/08/25/what-80-comprehension-feels-like
 
 # Misc Notes
 - [[nope-threshold]]
+- [[stages of learning]]
 
 
 # Sound system
