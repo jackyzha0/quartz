@@ -11,7 +11,6 @@ tags:
 - [[japanese-words]]
 - [[nope-threshold]]
 - [[stages of learning]]
-- [[hiragani]]
 
 
 # Grammar
