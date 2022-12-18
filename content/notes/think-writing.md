@@ -93,3 +93,6 @@ Fabric has pluggable consensus algorithms: iroha has only YAC
 
 I started reading the bitcoin paper again. In bitcoin they are able to save space by storing hashes of transactions in a merkle tree and stubbing off branches. In Ethereum and other chains with smart contracts and storage, how to they prevent the chain from taking up a lot of space? I also thought that blockchain can act basically as a database and you are able to go back and look at data stored "on-chain". Where is this data stored? I'll have to read up about Ethereum again but I suspect the chain must use more storage space, or maybe they clean up old smart contracts? How would that even work?
 
+In etherum each block hold the entire state of the chain. The state is stored in a tree structure. And for each block only a small part of the tree needs to be changed. So the data can be stored once, and referenced twice using pointers. This is done using a "patricia tree". Patricia trees are similar to merkle trees but the allow insertion and deletion of nodes. Also since the entire state is stored on each chain there is no need to store the entire blokchain history. 
+
+So, 
