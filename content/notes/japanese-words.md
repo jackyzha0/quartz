@@ -5,5 +5,7 @@ tags:
 ---
 
 mora: syllable
+yabai: sick!
+
 
 
