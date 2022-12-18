@@ -50,7 +50,7 @@ three types or writing
 ![|500](https://i.imgur.com/1YgwdZr.png)
 ![](https://i.imgur.com/X0adoZu.png)
 
-
+[[kanji]]
 
 
 # Resources
