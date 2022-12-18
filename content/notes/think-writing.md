@@ -98,3 +98,5 @@ In etherum each block hold the entire state of the chain. The state is stored in
 Did some research on [[merkle tree]]s. Think in bitcoin and ethereum the raw data is also stored somewhere, not only the hashes. But then how does pruning the tree help in bitcoin. Does bitcoin just not store a record of transactions? Does ethereum? I know where blockchain is stored but not what is stored.
 
 https://www.makeuseof.com/what-data-stored-bitcoin-blockchain/ From here it seems that within a block the transactions are stored separately from the merkle tree. And the number of transactions in a block cannot take up more than 1MB.
+
+https://hackernoon.com/getting-deep-into-ethereum-how-data-is-stored-in-ethereum-e3f669d96033
