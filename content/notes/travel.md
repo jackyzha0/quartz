@@ -25,3 +25,4 @@ total: 8600
 
 # Japan
 
+https://tokyocheapo.com/travel/a-guide-to-hitchhiking-in-japan/
