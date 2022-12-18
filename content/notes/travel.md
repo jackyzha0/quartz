@@ -11,11 +11,15 @@ Utah
 paid for
 
 Japan stage 1
-flights: >
+flights: 2000
+accom: 800
+other: 2000
 
 Japan stage 2
-flights: ?
-other:
+flights: 2000
+other: 1800
+
+total: 8600
 
 # Utah
 
