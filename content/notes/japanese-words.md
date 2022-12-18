@@ -7,5 +7,7 @@ tags:
 mora: syllable
 yabai: sick!
 
+![](https://i.imgur.com/52SnhHt.png)
+
 
 
