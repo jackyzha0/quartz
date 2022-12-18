@@ -91,4 +91,5 @@ For business use cases:
 
 Fabric has pluggable consensus algorithms: iroha has only YAC
 
-I started reading the bitcoin paper again. In bitcoin they are able to save space by storing hashes of transactions in a merkle tree and stubbing off branches. In Ethereum and other chains with smart contracts and storage, how to they prevent the chain from taking up a lot of space? I also thought that blockchain can act basically as a database and you are able to go back and look at data stored "on-chain". Where is this data stored? I'll have to read up about Ethereum again but I suspect the chain must use more storage space, or they only sto
+I started reading the bitcoin paper again. In bitcoin they are able to save space by storing hashes of transactions in a merkle tree and stubbing off branches. In Ethereum and other chains with smart contracts and storage, how to they prevent the chain from taking up a lot of space? I also thought that blockchain can act basically as a database and you are able to go back and look at data stored "on-chain". Where is this data stored? I'll have to read up about Ethereum again but I suspect the chain must use more storage space, or maybe they clean up old smart contracts? How would that even work?
+
