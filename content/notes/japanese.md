@@ -47,6 +47,8 @@ three types or writing
 - **kanji** (from china), used for meaning and sound traditionally
 
 ![|300](https://i.imgur.com/xtWqFBK.png)
+![|500](https://i.imgur.com/1YgwdZr.png)
+
 
 
 # Resources
