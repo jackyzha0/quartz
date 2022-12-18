@@ -14,4 +14,3 @@ Merkle trees exist to prove consistency of data. They are essentially a tree of 
 
 They provide a means to prove the integrity and validity of data. E.g., if you change the value of a data block, the entire path leading to the root hash would also be changed. So, if we hold the value of the root hash, we could verify the consistency of data by rebuilding the trie to get the root hash and compare it to the value we are holding.
 
-

@@ -95,4 +95,6 @@ I started reading the bitcoin paper again. In bitcoin they are able to save spac
 
 In etherum each block hold the entire state of the chain. The state is stored in a tree structure. And for each block only a small part of the tree needs to be changed. So the data can be stored once, and referenced twice using pointers. This is done using a "patricia tree". Patricia trees are similar to merkle trees but the allow insertion and deletion of nodes. Also since the entire state is stored on each chain there is no need to store the entire blokchain history. 
 
-So, 
+Did some research on [[merkle tree]]s. Think in bitcoin and ethereum the raw data is also stored somewhere, not only the hashes. But then how does pruning the tree help in bitcoin. Does bitcoin just not store a record of transactions? Does ethereum? I know where blockchain is stored but not what is stored.
+
+https://www.makeuseof.com/what-data-stored-bitcoin-blockchain/ From here it seems that within a block the transactions are stored separately from the merkle tree. And the number of transactions in a block cannot take up more than 1MB.
