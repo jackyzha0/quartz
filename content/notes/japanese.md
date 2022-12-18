@@ -48,6 +48,8 @@ three types or writing
 
 ![|300](https://i.imgur.com/xtWqFBK.png)
 ![|500](https://i.imgur.com/1YgwdZr.png)
+![](https://i.imgur.com/X0adoZu.png)
+
 
 
 
