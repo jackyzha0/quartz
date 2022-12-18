@@ -78,3 +78,17 @@ R3 Corda: open source permissioned platform. Follow know your customer principle
 
 # 19/12
 
+Still dont understand fabric vs iroha.
+
+https://hyperledger-fabric.readthedocs.io/en/release-2.5/whatis.html
+
+For business use cases:
+-   Participants must be identified/identifiable
+-   Networks need to be _permissioned_
+-   High transaction throughput performance
+-   Low latency of transaction confirmation
+-   Privacy and confidentiality of transactions and data pertaining to business transactions
+
+Fabric has pluggable consensus algorithms: iroha has only YAC
+
+I started reading the bitcoin paper again. In bitcoin they are able to save space by storing hashes of transactions in a merkle tree and stubbing off branches. In Ethereum and other chains with smart contracts and storage, how to they prevent the chain from taking up a lot of space? I also thought that blockchain can act basically as a database and you are able to go back and look at data stored "on-chain". Where is this data stored? I'll have to read up about Ethereum again but I suspect the chain must use more storage space, or they only sto
