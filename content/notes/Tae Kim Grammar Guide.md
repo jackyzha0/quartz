@@ -70,10 +70,10 @@ https://guidetojapanese.org/learn/grammar/
 Ａ５）　ううん、　それじゃない　　　　　　　　　。 (object is away from the speaker)
 
 Ｑ６）　先生だった？  
-Ａ６）　うん、　先生　　　　　　　　　。
+Ａ６）　うん、　先生だった　　　　　　　　　。
 
 Ｑ７）　小学校だった？  
-Ａ７）　ううん、　　　　　　　　　　。
+Ａ７）　ううん、小学校じゃなかった　　　　　　　　　　。
 
 Ｑ８）　子供？  
-Ａ８）　うん、　　　　　　　　　　。 (female)
+Ａ８）　うん、　子供　　　　　　　　　。 (female)
