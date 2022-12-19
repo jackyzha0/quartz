@@ -40,12 +40,12 @@ https://guidetojapanese.org/learn/grammar/
 | 1. Is college.                | ＝ | 大学だ |
 | 2. Is not high school.        | ＝ | 高校じゃない |
 | 3. Was teacher.               | ＝ | 先生だった
-| 4. Is adult.                  | ＝ | 
-| 5. Was not child.             | ＝ | 
-| 6. This was the way it was.   | ＝ | 
-| 7. Wasn’t that over there.    | ＝ | 
-| 8. Is not middle school.      | ＝ | 
-| 9. Is friend.                 | ＝ | 
-| 10. Was not car.              | ＝ | 
-| 11. Was this.                 | ＝ | 
-| 12. That’s not the way it is. | ＝ | 
+| 4. Is adult.                  | ＝ | 大人だ
+| 5. Was not child.             | ＝ | 子供じゃなかった
+| 6. This was the way it was.   | ＝ | こうだった
+| 7. Wasn’t that over there.    | ＝ | あれじゃない
+| 8. Is not middle school.      | ＝ | 中学校じゃない
+| 9. Is friend.                 | ＝ | 友達だ
+| 10. Was not car.              | ＝ | 車じゃなかった
+| 11. Was this.                 | ＝ | これだった
+| 12. That’s not the way it is. | ＝ | 高じゃない
