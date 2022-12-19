@@ -3,6 +3,8 @@ title: "ethereum"
 tags: 
 ---
 
+https://ethereum.github.io/yellowpaper/paper.pdf
+
 ethereum whitepaper 
 - a new version of blockchain which has better internal scripting
 - the state of ethereum is made up account objects. each acc has:
@@ -67,3 +69,4 @@ The root node (a hash of the entire tree) is dependent on all internal state tri
 This is where the contract data lives. Each eth account has its own storage trie. this is stored as a hash of the storage trie's root node "storageRoot" in the global state trie
 
 ## Transaction Trie
+Each block has it own transaction trie. the order of transactions is determined by th eminer hwo assembles the block. The path to a transaction in its trie is via the index of where the transactio sits in the block.
