@@ -44,3 +44,12 @@ ethereum whitepaper
 	- cloud computing
 	- p2p gambling
 	- on-chain decentralised marketplaces
+
+# Storage
+The state of ethereum is not an abstract concept as it is in [[bitcoin]]
+
+Ethereum is a transaction based state machine. 
+
+Activities such as transactions, contracts, and minig all change the state of the ethereum blockchain.
+
+e.g., an accout balance (stored in the state trie) which changes every time a transac
