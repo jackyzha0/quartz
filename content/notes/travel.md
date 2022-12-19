@@ -12,14 +12,14 @@ paid for
 
 Japan stage 1 4th - 25th
 flights: 2000
-accom: 800
+accom: 1000
 other: 2000
 
 Japan stage 2 25th - 
 flights: 2000
 other: 1800
 
-total: 8600
+total: 8800
 
 # Utah
 
