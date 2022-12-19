@@ -43,9 +43,37 @@ https://guidetojapanese.org/learn/grammar/
 | 4. Is adult.                  | ＝ | 大人だ
 | 5. Was not child.             | ＝ | 子供じゃなかった
 | 6. This was the way it was.   | ＝ | こうだった
-| 7. Wasn’t that over there.    | ＝ | あれじゃない
+| 7. Wasn’t that over there.    | ＝ | あれじゃなかった
 | 8. Is not middle school.      | ＝ | 中学校じゃない
 | 9. Is friend.                 | ＝ | 友達だ
 | 10. Was not car.              | ＝ | 車じゃなかった
 | 11. Was this.                 | ＝ | これだった
-| 12. That’s not the way it is. | ＝ | 高じゃない
+| 12. That’s not the way it is. | ＝ | そうじゃない。
+
+### 3
+Ｑ）　学生？  
+Ａ）　ううん、学生じゃない。
+
+Ｑ１）　友達？  
+Ａ１）　うん、　友達　　　　　　　　。 (female)
+
+Ｑ２）　学校？  
+Ａ２）　ううん、　学校じゃない　　　　　　　　　。
+
+Ｑ３）　それだった？  
+Ａ３）　ううん、　　それじゃなかった。
+
+Ｑ４）　そう？ (Is that so?)  
+Ａ４）　うん、　そうだ　　　　　　　　　。 (male)
+
+Ｑ５）　これ？  
+Ａ５）　ううん、　それじゃない　　　　　　　　　。 (object is away from the speaker)
+
+Ｑ６）　先生だった？  
+Ａ６）　うん、　先生　　　　　　　　　。
+
+Ｑ７）　小学校だった？  
+Ａ７）　ううん、　　　　　　　　　　。
+
+Ｑ８）　子供？  
+Ａ８）　うん、　　　　　　　　　　。 (female)
