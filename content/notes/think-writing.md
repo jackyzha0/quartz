@@ -102,3 +102,8 @@ https://www.makeuseof.com/what-data-stored-bitcoin-blockchain/ From here it seem
 https://hackernoon.com/getting-deep-into-ethereum-how-data-is-stored-in-ethereum-e3f669d96033 [[ethereum#storage]]
 
 https://medium.com/cybermiles/diving-into-ethereums-world-state-c893102030ed
+
+I think I have a much better understanding 
+
+![](https://i.imgur.com/aKtNoso.png)
+![](https://i.imgur.com/xqUG10J.png)
