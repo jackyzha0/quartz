@@ -6,8 +6,9 @@ tags:
 
 https://www.otago.ac.nz/international/future-students/student-exchange-and-study-abroad/student-exchange/partners/hokkaidouniversity.html
 
-echange tips: https://www.otago.ac.nz/otago0233780.pdf
-
+- exchange tips: https://www.otago.ac.nz/otago0233780.pdf
+- partners: https://www.otago.ac.nz/international/future-students/student-exchange-and-study-abroad/student-exchange/partners/otago001484.html#japan
+- 
 # Grant/awards/scholarships
 
 https://www.otago.ac.nz/international/future-students/student-exchange-and-study-abroad/student-exchange/otago007324.html

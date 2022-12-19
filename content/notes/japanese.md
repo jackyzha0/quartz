@@ -11,6 +11,9 @@ tags:
 - [[japanese-words]]
 - [[nope-threshold]]
 - [[stages of learning]]
+- [[conjugation]]
+- [[particles]]
+- [[cheatsheet]]
 
 
 # Grammar
@@ -21,9 +24,6 @@ sort of SOV e.g., I sushi eat. (english is SVO i eat sushi)
 in english the order of words tells us who did what
 
 in japanese sentences are made up of _particles_. each one indicates how the word before it relates to other words in the sentence, usually to the verb — which is usually last. the order of the words can vary because the particles tell us who did what not the word order
-
-
-
 
 # Sound system
 24 consonant sounds, 5 vowel sounds (english: 24 and 14)
@@ -55,6 +55,7 @@ three types or writing
 
 # Resources
 
+- https://drive.google.com/drive/folders/1Na1ve1h-mbVJiPUdXNh73-xlIydGZ65-
 - http://plus.ajatt.com/nutshell/
 - http://guidetojapanese.org/learn/grammar
 - https://app.memrise.com/course/29267/genki-i/
