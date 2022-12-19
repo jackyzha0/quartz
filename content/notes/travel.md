@@ -7,15 +7,15 @@ tags:
 # Budget.
 10,000
 
-Utah
+Utah 14th - 4th
 paid for
 
-Japan stage 1
+Japan stage 1 4th - 25th
 flights: 2000
 accom: 800
 other: 2000
 
-Japan stage 2
+Japan stage 2 25th - 
 flights: 2000
 other: 1800
 
@@ -26,3 +26,12 @@ total: 8600
 # Japan
 
 https://tokyocheapo.com/travel/a-guide-to-hitchhiking-in-japan/
+
+hitchhike: maybe
+
+questions for AJ
+- can I just go and hike around places without a pass?
+- does the snow stay good for a long time after it dumps
+- what is your favourite place
+- what do you think about learning the language
+- 
