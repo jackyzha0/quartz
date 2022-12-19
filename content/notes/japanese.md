@@ -15,6 +15,8 @@ tags:
 - [[particles]]
 - [[cheatsheet]]
 
+- [[Tae Kim Grammar Guide]]
+
 
 # Grammar
 ![](https://i.imgur.com/uB2CLf6.png)
