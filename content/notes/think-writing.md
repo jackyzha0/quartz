@@ -113,3 +113,8 @@ I think I have a much better understanding
 
 # 20/12
 
+Battled the smart contracts again. I dont know why its not working. 
+
+`[2022-12-19 23:20:38.413993700][I][Irohad/Simulator]: process proposal: Proposal: [height=3, transactions=[Transaction: [hash=03ff6949aeaaf73e5d49852222faf6ebc4ef69aeeba9932a419f53bc45713ac3, creatorAccountId=admin@test, createdTime=1671492033073, quorum=1, commands=[CallEngine: [type=83, caller=admin@test, callee=(not set), input=40c10f19000000000000000000000000f205c4a929072dd6e7fc081c2a78dbc79c76070b00000000000000000000000000000000000000000000000000000000000003e8]], batch_meta=(not set), reducedHash=Hash: [32416f07cde13adef372c26fed0be91650317cd806865ce5f72abf05115bc447], signatures=[Signature: [publicKey=313a07e6384776ed95447710d15e59148473ccfc052a681317a72a69f2a49910, signedData=5822a622957b2c3d9eed5533120bc9721cd3649e3b6f69657c8cef29723a81dee652ff3dbb8386c55c17f15fdf9c2160d67c6caddbb7dc58329cec6453c74b0c]]]]]`
+
+
