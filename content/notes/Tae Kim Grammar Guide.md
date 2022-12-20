@@ -148,7 +148,7 @@ e.g., Who is the student?
 | １．どこ？（Topic: 学校）         | ＝ |   学校がどこ？  | (Where is school?)             |
 | ２．どうして？（Topic: それ）  	   | ＝ | それはどうして？     | (Why is that?)                 |
 | ３．いつ？（Topic: ミーティング）	  | ＝ | ミーティングはいつ？     | (When is meeting?)             |
-| ４．何？（Topic: これ）      		  | ＝ |  これはなに？    | (What is this?)                |
+| ４．何？（Topic: これ）      		  | ＝ |  これは何？    | (What is this?)                |
 | ５．どう？（Topic: 映画）     		 | ＝ |  映画はどう？       | (How is movie?)                |
 | ６．中学生だ。（Topic: 彼）   	    | ＝ |   彼は中学校だ   | (He is middle school student.) |
 | ７．先生だ。（Topic: 彼女）         | ＝ |   彼女は先生だ。    | (She is teacher.)              |
@@ -158,4 +158,9 @@ e.g., Who is the student?
 
 
 
-
+１．今日は雨だ。昨日　は　　　雨だった。
+２．ジムは大学生だ。でも、私　　　大学生じゃない。
+３．これは水。これ　　　そう。
+４．これはボールペンだ。でも、それ　　　ボールペンじゃない。
+５．仕事は明日。今日　　　仕事じゃなかった。
+６．ここは入口。出口　　　ここだ。
