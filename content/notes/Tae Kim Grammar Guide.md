@@ -142,6 +142,19 @@ e.g., Who is the student?
 2.  私が学生。  
     I (am) _the one_ (that is) student.
 	
+### Exercises
+| １．誰？（Topic: アリス）         | ＝ | アリスは誰？    |             |
+|-----------------------------------|---|-----|--------------------------------|
+| １．どこ？（Topic: 学校）         | ＝ |     | (Where is school?)             |
+| ２．どうして？（Topic: それ）  	   | ＝ |      | (Why is that?)                 |
+| ３．いつ？（Topic: ミーティング）	  | ＝ |      | (When is meeting?)             |
+| ４．何？（Topic: これ）      		  | ＝ |      | (What is this?)                |
+| ５．どう？（Topic: 映画）     		 | ＝ |         | (How is movie?)                |
+| ６．中学生だ。（Topic: 彼）   	    | ＝ |       | (He is middle school student.) |
+| ７．先生だ。（Topic: 彼女）         | ＝ |       | (She is teacher.)              |
+| ８．雨。（Topic: 今日）             | ＝ |       | (Today is rain.)               |
+| ９．友達。（Topic: ボブ）           | ＝ |       | (Bob is friend.)               |
+| １０． 知り合い？（Topic: 彼）       | ＝ |       | (Is he an acquaintance?)       |
 
 
 
