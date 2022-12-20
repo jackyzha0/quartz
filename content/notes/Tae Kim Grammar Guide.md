@@ -77,3 +77,8 @@ https://guidetojapanese.org/learn/grammar/
 
 Ｑ８）　子供？  
 Ａ８）　うん、　子供　　　　　　　　　。 (female)
+
+## Particles
+Hiragana characters that attck to the end of a word to define the grammatrical function of that word in the sentence
+
+
