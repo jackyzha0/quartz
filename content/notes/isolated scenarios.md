@@ -3,7 +3,7 @@ title: "isolated scenarios"
 tags: 
 ---
 # Adding a new member
-Within an existing closed BC with 10 participants. say we wanted to add another participant as a validator node. they run the node software on a machine. this node is fully priviledged. they new member had to go through a screening and sign a legal contract to ensure they are not a bad actor. this node recieves a copy of the blockchain so far, and begins participating in the consensus algorithm and submitting transactions. their contract is added to the blockchain as their first transaction (maybe. or it can be stored somewhere else). 
+Within an existing closed BC with 10 participants. say we wanted to add another participant as a validator node. the new participant will run the node software on a machine. the new node will have some privilege/role assigned to it. the new member has to go through a screening and sign a legal contract to ensure they are not a bad actor. this node recieves a copy of the blockchain so far, and begins participating in the consensus algorithm and submitting transactions. their legal contract is added to the blockchain as their first transaction (maybe. or it can be stored somewhere else). 
 
 - Existing members vote to add new member
 - on or off chain vote?
@@ -12,14 +12,16 @@ Within an existing closed BC with 10 participants. say we wanted to add another 
 	- details of vote cutoff time
 	- parameters of vote change during vote
 - hyperledger
-	- The purpose of add peer command is to write into ledger the fact of peer addition into the peer network. After a transaction with AddPeer has been committed, consensus and synchronization components will start using it.
+	- "The purpose of add peer command is to write into ledger the fact of peer addition into the peer network. After a transaction with AddPeer has been committed, consensus and synchronization components will start using it."
 	- transaction to remove peer requires the node making the transaction to have the can-remove-peer permission
 	- can nodes with this perssion remove peers at will?
-	- not 1:1 nodes:accounts
+	- not necessarily 1:1 nodes:accounts
 	- with HL Burrow you can use Solidity smart-contracts on Iroha
-	- iroha would either have to be off-chain voting then a trusted peer (or initial) would add them
+	- iroha would either have to be off-chain voting then a trusted peer (maybe the initiating peer) would add them
 	- or: will need to look into HL Burrow but there might a way to have an on-chain smart contract voting system which automatically adds them depending on the vote
 		- I could think about how to implement such a smart contract
+
+How could a bad actor try to get themselves on the chain? Could they dupe someone else into signing the entry contract on their behalf? Or could they bypass the contract? The genesis block of a new peer (in HL iroha) has to be the exact same as the genesis block of all other peers. Could the genesis block be like a sort of "key to the network. Maybe not because there is not much to stop one of the existing peers sharing the genesis block with third parties. 
 
 # Remove Member
 What happens if one participant turned bad and the other wanted to remove them from the group. Ssay we havea grup of 10 participants in a closed blockchain system using a CFT consensus algorithm Then they can be voted out so that their vote is desregarded and so they cant view or access data on the chain. what if they require access to decuments stored on-chain which they dont have local copies of. I guess they wuld have access to a stored copy of the blockchain on their node. But then would this chain be considered valid by oters. they dont store the actual document on the blockchain – only a timestamped hash to prove they had that doc at this particular time. participats should keep local copies of documents. Can participants kick out the initiating authority? You would have some mechanism to ensure that they cant be kicked out. firstly there would have to be a vote to kick them out. unless they aren't actually needed. who are the people that look at the documents that are stored on the chain to check them. Some third party collectively employed by the group? the govt? maybe its required for each participant to sometimes go and check if other participants are being truthful.
