@@ -24,6 +24,8 @@ Hume [[58](https://www.sciencedirect.com/science/article/pii/S0160791X20303067?d
 
 "According to Giddens [[25](https://www.sciencedirect.com/science/article/pii/S0160791X20303067?dgcid=raven_sd_recommender_email#bib25)]: “There would be no need to trust anyone whose activities were continually visible and whose thought processes were transparent, or to trust any system whose workings were wholly known and understood” (p. 33)"
 
+"confidence in a blockchain-based system may also be undermined by the actions of core developers who hold significant influence over exceptional (yet fundamental) decisions concerning changes in the blockchain protocol, as well as by the possible collusion of miners or mining-pools. Hence, despite the qualification as a trustless system, enabled by the building of confidence, the need for trust in a blockchain-based system is not eliminated."
+
 ## Highlights
 - Blockchain technology is not a trustless technology but rather a confidence machine.
 - Blockchain technology increase confidence in the operations of a computational system.
@@ -33,5 +35,14 @@ Hume [[58](https://www.sciencedirect.com/science/article/pii/S0160791X20303067?d
 
 # Notes
 Since blockchain is without trust, what replaces trust as the fundamental aspect of its governance? 
+
+There are at least four different types of actors that blockchian technology requires us to trust
+- minings farms, mining pools, popular online exchanges and blockchain explorers
+	- these have become centralized points of failure
+- Core developes and open source contributors
+	- They have the power to influence the evolution of the blockchain
+- crypto and token holders (to a lesser extent) e.g., eth fork/bitcoin blocksize thing
+- regulators
+- 
 
 # Related
