@@ -90,6 +90,11 @@ Hiragana characters that attck to the end of a word to define the grammatrical f
 2.  うん – yes (casual)
 4.  ううん – no (casual)
 7.  でも – but
+8.  ボブ – bob
+9.  アリス – alice  
+10.  誰 – who
+11.  私 –  me;myself;i
+12.  学生 – student
 
 ### Topic Particle は
 The topic particle identifies what it is that you’re talking about, essentially the topic of your sentence
@@ -100,12 +105,30 @@ While this character is normally pronounced as /ha/, it is pronounced
 /wa/ only when it is being used as the topic particle.
 
 Examples
-ボブ：アリスは学生
-アリス：うん
+ボブ：アリスは学生？
+アリス：うん、学生。
 
+ボブ：ジョンは明日？
+アリス：ううん、明日じゃない。
+
+アリス：今日は試験だ。
+ボブ：ジョンは？
+アリス：ジョンはあした。
 
 ### Inclusive Topic Particle も
 essentially the topic particle with the additional meaning of “also”
 
 Basically, it can introduce another topic in addition to the current topic.
+
+Examples:
+アリスはごく制？
+うん、トムも学生。
+
+アリスは学生？
+うん、でもトムは学生じゃない。
+
+アリスは学生？
+ううん、トムも学生じゃない。
+
+### Identifier Particle 
 
