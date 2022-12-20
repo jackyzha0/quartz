@@ -80,5 +80,23 @@ https://guidetojapanese.org/learn/grammar/
 
 ## Particles
 Hiragana characters that attck to the end of a word to define the grammatrical function of that word in the sentence
+ 
+ ### Vocab
+ 
+1.  学生 【がく・せい】 – student
+2.  うん – yes (casual)
+3.  明日 【あした】 – tomorrow
+4.  ううん – no (casual)
+5.  今日 【きょう】 – today
+6.  試験 【しけん】 – exam
 
-
+ ### Topic Particle
+ 
+ The topic particle identifies what it is that you’re talking about, essentially the topic of your sentence
+ 
+ The topic particle is the character 「は」. 
+ 
+ While this character is normally pronounced as /ha/, it is pronounced 
+ /wa/ only when it is being used as the topic particle.
+ 
+ 
