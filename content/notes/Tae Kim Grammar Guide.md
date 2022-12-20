@@ -92,7 +92,7 @@ Hiragana characters that attck to the end of a word to define the grammatrical f
 7.  でも – but
 8.  ボブ – bob
 9.  アリス – alice  
-10.  誰 – who
+10.  誰 【だれ】– who
 11.  私 –  me;myself;i
 12.  学生 – student
 
@@ -130,5 +130,19 @@ Examples:
 アリスは学生？
 ううん、トムも学生じゃない。
 
-### Identifier Particle 
+### Identifier Particle が
+indicates that the speaker wants to identify something unspecified.
+e.g., Who is the student?
+
+誰が学生？
+ジョンが学生。
+
+1.  私は学生。  
+    _As for_ me, (I am) student.
+2.  私が学生。  
+    I (am) _the one_ (that is) student.
+	
+
+
+
 
