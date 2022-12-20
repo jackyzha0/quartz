@@ -150,11 +150,11 @@ e.g., Who is the student?
 | ３．いつ？（Topic: ミーティング）	  | ＝ | ミーティングはいつ？     | (When is meeting?)             |
 | ４．何？（Topic: これ）      		  | ＝ |  これはなに？    | (What is this?)                |
 | ５．どう？（Topic: 映画）     		 | ＝ |  映画はどう？       | (How is movie?)                |
-| ６．中学生だ。（Topic: 彼）   	    | ＝ |       | (He is middle school student.) |
-| ７．先生だ。（Topic: 彼女）         | ＝ |       | (She is teacher.)              |
-| ８．雨。（Topic: 今日）             | ＝ |       | (Today is rain.)               |
-| ９．友達。（Topic: ボブ）           | ＝ |       | (Bob is friend.)               |
-| １０． 知り合い？（Topic: 彼）       | ＝ |       | (Is he an acquaintance?)       |
+| ６．中学生だ。（Topic: 彼）   	    | ＝ |   彼は中学校だ   | (He is middle school student.) |
+| ７．先生だ。（Topic: 彼女）         | ＝ |   彼女は先生だ。    | (She is teacher.)              |
+| ８．雨。（Topic: 今日）             | ＝ |  今日は雨。     | (Today is rain.)               |
+| ９．友達。（Topic: ボブ）           | ＝ |  ボブは友達。     | (Bob is friend.)               |
+| １０． 知り合い？（Topic: 彼）       | ＝ |  彼は知り合い？     | (Is he an acquaintance?)       |
 
 
 
