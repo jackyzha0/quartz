@@ -126,3 +126,13 @@ Fooken worked.
 [[scenarios#Adding a new member]] added some stuff. Idea of having a "lobby" subnetwork where people can apply, and have their documents checked, and where we can vote on them. 
 
 [[scenarios#Proposing Changes/Upgrades to the code or the goverance system]] I think I need to to some reading about the BIP/EIP system. from what I understand they are an off-chain system were someone proposes a change to the protocol, then it is reviewed and accepted, rejected, or modified. I'm not sure who does the voting or how the voting system works for these systems.
+
+---
+
+# 21/12
+
+Last day In Dunedin.
+
+Need to write some documentation so that when I come back after the break I wont be totally lost. 
+
+[[Blockchain as a confidence machine — The problem of trust & challenges of governance]]
