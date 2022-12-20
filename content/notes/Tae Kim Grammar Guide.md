@@ -145,11 +145,11 @@ e.g., Who is the student?
 ### Exercises
 | １．誰？（Topic: アリス）         | ＝ | アリスは誰？    |             |
 |-----------------------------------|---|-----|--------------------------------|
-| １．どこ？（Topic: 学校）         | ＝ |     | (Where is school?)             |
-| ２．どうして？（Topic: それ）  	   | ＝ |      | (Why is that?)                 |
-| ３．いつ？（Topic: ミーティング）	  | ＝ |      | (When is meeting?)             |
-| ４．何？（Topic: これ）      		  | ＝ |      | (What is this?)                |
-| ５．どう？（Topic: 映画）     		 | ＝ |         | (How is movie?)                |
+| １．どこ？（Topic: 学校）         | ＝ |   学校がどこ？  | (Where is school?)             |
+| ２．どうして？（Topic: それ）  	   | ＝ | それはどうして？     | (Why is that?)                 |
+| ３．いつ？（Topic: ミーティング）	  | ＝ | ミーティングはいつ？     | (When is meeting?)             |
+| ４．何？（Topic: これ）      		  | ＝ |  これはなに？    | (What is this?)                |
+| ５．どう？（Topic: 映画）     		 | ＝ |  映画はどう？       | (How is movie?)                |
 | ６．中学生だ。（Topic: 彼）   	    | ＝ |       | (He is middle school student.) |
 | ７．先生だ。（Topic: 彼女）         | ＝ |       | (She is teacher.)              |
 | ８．雨。（Topic: 今日）             | ＝ |       | (Today is rain.)               |
