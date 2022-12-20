@@ -1,5 +1,5 @@
 ---
-title: "isolated scenarios"
+title: "scenarios"
 tags: 
 ---
 # Adding a new member
