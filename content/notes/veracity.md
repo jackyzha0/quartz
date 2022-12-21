@@ -37,6 +37,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [[A novel framework for policy based on-chain governance of blockchain networks]]
 - [[Application of Blockchain and Internet of Things to Ensure Tamper-Proof Data Availability for Food Safety]]
 - [[Defining Blockchain Governance — A Framework for Analysis and Comparison]]
+- [[A blockchain architecture for industrial applications]]
 
 **Read**
 - [[YAC — BFT Consensus Algorithm for Blockchain]]
