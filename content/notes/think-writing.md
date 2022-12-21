@@ -136,7 +136,7 @@ Last day In Dunedin.
 Need to write some documentation so that when I come back after the break I wont be totally lost. 
 
 [[Blockchain as a confidence machine — The problem of trust & challenges of governance]]
-[[A blockchain architecture for industrial applications]]
+==[[A blockchain architecture for industrial applications]]==
 https://www.google.co.nz/books/edition/_/vqXaDwAAQBAJ?hl=en&gbpv=1&pg=PP1
 
 meeting
