@@ -10,7 +10,9 @@ link: https://doi.org/10.1016/j.bcra.2022.100088
 # Summary
 
 # Extracts
+"In open permissioned blockchains, the addition of a node and the downloading of the blockchain are granted to everyone. Validator nodes, however, must be approved, either automatically through a poll among existing validators, using a suitable SC, or by the consortium members. Deploying a new SC on the blockchain can be made only by participants with the permission to do so. Everyone can send transactions to the blockchain, but, as in public ones, it is the task of the SC receiving the transaction to decide whether to accept or not the request." - could be relevant to [[scenarios#Adding a new member]]
 
+"in the case that some validators leave, this should trigger a search for new validators to keep the dApp stable." 
 # Notes
 
 # Related

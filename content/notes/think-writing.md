@@ -139,10 +139,12 @@ Need to write some documentation so that when I come back after the break I wont
 [[A blockchain architecture for industrial applications]]
 https://www.google.co.nz/books/edition/_/vqXaDwAAQBAJ?hl=en&gbpv=1&pg=PP1
 
-prioritise most important things for the future. 
+meeting
+- prioritise most important things for the future. 
+- what do I want from david
+- think about comlexity of the example
+- kerberos decentralised authentication
 
-what do I want from david
+I dont understand how etherum DApps are related to the Eth main net. And how permissioned Eth networks work
 
-think about comlexity of the example
-
-kerberos decentralised authentication
+Do you need to use a blockchain explorer to view data on the blockchain? In order to limit who can view the documents, you could limit access to the exlporer, or you could require some key in order to view the documents
