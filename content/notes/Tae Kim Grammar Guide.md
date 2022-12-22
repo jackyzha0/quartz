@@ -6,8 +6,6 @@ tags:
 
 https://guidetojapanese.org/learn/grammar/
 
-# Exercises
-
 ## State of Being
 ### 1
 これ
@@ -178,3 +176,5 @@ e.g., Who is the student?
 ボブ）　ここ　が　　図書館だ。  
 アリス）　そこ　は　　図書館じゃない？  
 ボブ）　そこじゃない。図書館　は　　ここだ。
+
+## Adjectives
