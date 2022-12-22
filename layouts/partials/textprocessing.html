@@ -42,7 +42,24 @@
     <!-- remove subfolder from title -->
     {{$display := index (last 1 (split $display "/")) 0}}
 
-    {{$curpage := $page.GetPage $title}}
+    <!-- attempt to get title -->
+    {{$searchtitle := $title }}
+    {{$curpage := $page.GetPage $searchtitle }}
+    <!-- attempt to search md file instead  -->
+    {{ if (eq $curpage.String "nopPage") }}
+      {{$searchtitle = (add $title ".md") }}
+      {{$curpage = $page.GetPage $searchtitle }}
+    {{ end }}
+    <!-- attempt to reverse typographer behaviour  -->
+    {{ if (eq $curpage.String "nopPage") }}
+      {{$searchtitle = (replace $searchtitle "&amp;" "&") }}
+      {{$searchtitle = (replace $searchtitle "&quot;" "\"") }}
+      {{$searchtitle = (replace $searchtitle "&rdquo;" "\"") }}
+      {{$searchtitle = (replace $searchtitle "&ldquo;" "\"") }}
+      {{$searchtitle = (replace $searchtitle "&rsquo;" "'") }}
+      {{$searchtitle = (replace $searchtitle "&lsquo;" "'") }}
+      {{$curpage = $page.GetPage $searchtitle }}
+    {{ end }}
     {{$relpath := relURL $path}}
 
     <!-- If path to Hugo page -->
