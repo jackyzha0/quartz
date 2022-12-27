@@ -39,4 +39,6 @@ questions for AJ
 Accomodation
 - Dave Wright?
 - 5th tabist hotel
-- 
+- 6th - 12th furano
+- 13th - 16th asahidake
+-  
