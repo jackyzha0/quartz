@@ -34,4 +34,9 @@ questions for AJ
 - does the snow stay good for a long time after it dumps
 - what is your favourite place
 - what do you think about learning the language
+
+
+Accomodation
+- Dave Wright?
+- 5th tabist hotel
 - 
