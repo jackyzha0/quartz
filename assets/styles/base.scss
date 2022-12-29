@@ -89,7 +89,7 @@ tbody, li, p {
 
 #TableOfContents > ol {
   counter-reset: section;
-  margin-left: 0em;
+  margin-left: 0;
   padding-left: 1.5em;
   & > li {
     counter-increment: section;
@@ -142,7 +142,7 @@ sup {
 }
 
 blockquote {
-  margin-left: 0em;
+  margin-left: 0;
   border-left: 3px solid var(--secondary);
   padding-left: 1em;
   transition: border-color 0.2s ease;
@@ -183,7 +183,7 @@ article {
     margin-top: 2em;
     font-size: 2em;
   }
-  
+
   & > .meta {
     margin: 0 0 1em 0;
     opacity: 0.7;
@@ -201,11 +201,11 @@ article {
 
       &.broken {
         opacity: 0.5;
-        background-color: transparent; 
+        background-color: transparent;
       }
     }
   }
-  
+
   & p {
     overflow-wrap: anywhere;
   }
@@ -295,7 +295,7 @@ footer {
   text-align: center;
   & ul {
     padding-left: 0;
-  } 
+  }
 }
 
 hr {
@@ -507,7 +507,7 @@ header {
 
   & > .section {
     display: flex;
-    align-items: center; 
+    align-items: center;
 
     @media all and (max-width: 600px) {
       & .tags {
@@ -519,18 +519,18 @@ header {
       font-weight: 700;
       margin: 0;
     }
-    
+
     & p {
       margin: 0;
       padding-right: 1em;
-      flex-basis: 6em; 
+      flex-basis: 6em;
     }
   }
 
   & h3 {
     opacity: 1;
     font-weight: 700;
-    margin: 0em;
+    margin: 0;
   }
 
   & .meta {
@@ -568,7 +568,7 @@ header {
   transition: opacity 0.2s ease, transform 0.2s ease;
   user-select: none;
   overflow-wrap: anywhere;
-  box-shadow: 6px 6px 36px 0px rgba(0,0,0,0.25);
+  box-shadow: 6px 6px 36px 0 rgba(0,0,0,0.25);
 
   @media all and (max-width: 600px) {
     display: none !important;
@@ -596,7 +596,7 @@ header {
   & > p {
     margin: 0;
     padding: 0.5rem 0;
-  } 
+  }
 
   & > p, & > a {
     font-size: 1rem;
