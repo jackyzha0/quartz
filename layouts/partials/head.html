@@ -52,27 +52,27 @@
   {{partial "katex.html" .}}
 
   {{partial "mermaid.html" .}}
-    
-  <script src="https://unpkg.com/@floating-ui/core@0.7.3"></script>
-  <script src="https://unpkg.com/@floating-ui/dom@0.5.4"></script>
+
+  <script async src="https://unpkg.com/@floating-ui/core@0.7.3"></script>
+  <script async src="https://unpkg.com/@floating-ui/dom@0.5.4"></script>
   {{ $popover := resources.Get "js/popover.js" | resources.Fingerprint "md5" |
   resources.Minify }}
-  <script src="{{$popover.Permalink}}"></script>
+  <script async src="{{$popover.Permalink}}"></script>
 
   <!-- Optional scripts -->
   {{ if $data.enableCodeBlockTitle | default $.Site.Data.config.enableCallouts }}
   {{ $codeTitle := resources.Get "js/code-title.js" | resources.Fingerprint "md5" | resources.Minify }}
-  <script src="{{$codeTitle.Permalink}}"></script>
+  <script defer src="{{$codeTitle.Permalink}}"></script>
   {{end}}
 
   {{ if $data.enableCodeBlockCopy | default $.Site.Data.config.enableCodeBlockCopy }}
   {{ $clipboard := resources.Get "js/clipboard.js" | resources.Fingerprint "md5" | resources.Minify }}
-  <script src="{{$clipboard.Permalink}}"></script>
+  <script defer src="{{$clipboard.Permalink}}"></script>
   {{ end }}
 
   {{ if $data.enableCallouts | default $.Site.Data.config.enableCallouts }}
   {{ $callouts := resources.Get "js/callouts.js" | resources.Fingerprint "md5" | resources.Minify }}
-  <script src="{{$callouts.Permalink}}"></script>
+  <script defer src="{{$callouts.Permalink}}"></script>
   {{ end }}
 
   <!--  Preload page vars  -->
@@ -120,7 +120,7 @@
       {{if $data.enableCallouts | default $.Site.Data.config.enableCallouts -}}
       addCollapsibleCallouts();
       {{ end }}
-     
+
       {{if $data.enableLinkPreview | default $.Site.Data.config.enableLinkPreview}}
       initPopover(
         {{strings.TrimRight "/" .Site.BaseURL }},

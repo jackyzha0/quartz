@@ -8,33 +8,38 @@ const addCopyButtons = () => {
     let els = document.getElementsByClassName("highlight");
     // for each highlight
     for (let i = 0; i < els.length; i++) {
-        if (els[i].getElementsByClassName("clipboard-button").length) continue;
+        try {
+            if (els[i].getElementsByClassName("clipboard-button").length) continue;
 
-        // find pre > code inside els[i]
-        let codeBlocks = els[i].getElementsByTagName("code");
+            // find pre > code inside els[i]
+            let codeBlocks = els[i].getElementsByTagName("code");
 
-         // line numbers are inside first code block
-        let lastCodeBlock = codeBlocks[codeBlocks.length - 1];
-        const button = document.createElement("button");
-        button.className = "clipboard-button";
-        button.type = "button";
-        button.innerHTML = svgCopy;
-        // remove every second newline from lastCodeBlock.innerText
-        button.addEventListener("click", () => {
-            navigator.clipboard.writeText(lastCodeBlock.innerText.replace(/\n\n/g, "\n")).then(
-                () => {
-                    button.blur();
-                    button.innerHTML = svgCheck;
-                    setTimeout(() => {
-                    	button.innerHTML = svgCopy
-                    	button.style.borderColor = ""
-                    }, 2000);
-                },
-                (error) => (button.innerHTML = "Error")
-            );
-        });
-        // find chroma inside els[i]
-        let chroma = els[i].getElementsByClassName("chroma")[0];
-        els[i].insertBefore(button, chroma);
+            // line numbers are inside first code block
+            let lastCodeBlock = codeBlocks[codeBlocks.length - 1];
+            const button = document.createElement("button");
+            button.className = "clipboard-button";
+            button.type = "button";
+            button.innerHTML = svgCopy;
+            button.ariaLabel = "opy the shown code";
+            // remove every second newline from lastCodeBlock.innerText
+            button.addEventListener("click", () => {
+                navigator.clipboard.writeText(lastCodeBlock.innerText.replace(/\n\n/g, "\n")).then(
+                  () => {
+                      button.blur();
+                      button.innerHTML = svgCheck;
+                      setTimeout(() => {
+                          button.innerHTML = svgCopy
+                          button.style.borderColor = ""
+                      }, 2000);
+                  },
+                  (error) => (button.innerHTML = "Error")
+                );
+            });
+            // find chroma inside els[i]
+            let chroma = els[i].getElementsByClassName("chroma")[0];
+            els[i].insertBefore(button, chroma);
+        } catch(error) {
+            console.debug(error);
+        }
     }
 }
