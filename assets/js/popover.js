@@ -12,7 +12,7 @@ function initPopover(baseURL, useContextualBacklinks) {
     links
       .filter(li => li.dataset.src || (li.dataset.idx && useContextualBacklinks))
       .forEach(li => {
-        var el
+        let el
         if (li.dataset.ctx) {
           const linkDest = content[li.dataset.src]
           const popoverElement = `<div class="popover">
