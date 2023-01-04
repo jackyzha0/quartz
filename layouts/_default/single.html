@@ -15,7 +15,14 @@
       </p>
       <ul class="tags">
           {{ range (.GetTerms "tags") }}
-          <li><a href="{{ .Permalink }}">{{ .LinkTitle | humanize }}</a></li>
+          <li><a href="{{ .Permalink }}">
+          {{if (eq $.Site.Language.Lang "en")}}
+            {{ .LinkTitle | humanize }}
+          {{else}}
+            {{ .LinkTitle }}
+          {{end}}
+            </a>
+           </li>
           {{ end }}
       </ul>
       {{partial "toc.html" .}}
