@@ -127,6 +127,7 @@
   {{end}}
   {{ $content = $content | replaceRE `\[![a-zA-Z]+\][-\+]?` "" }}
   {{ $content = $content | replaceRE "blockquote class=callout" "blockquote" }}
+  {{ $content = $content | replaceRE `(?s)(<blockquote class="\S+-callout">.*?)<br>(.*?<\/blockquote)` `${1}</p><p>${2}` }}
 {{end}}
 
 {{/* Make ==text== into <mark>text</mark> */}}
