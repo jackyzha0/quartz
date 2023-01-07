@@ -227,3 +227,11 @@ E.g.,
 - 魚が好きだった人。peson that liked fish
 -魚が好きじゃなかった人。person that did not like fish
 
+^here the entire clause 「魚が好き」is modifying "person". This is useful because something like 「人が魚が好きだ」would mean "people like fish".
+
+the entire clause 「魚が好きじゃなかった人」can be treated as a noun.
+
+E.g., 
+- 魚が好きじゃない人は、肉が好きだ。Person who does not like fish like meat.
+- 魚が好きな人は、野菜も好きだ。 Person who likes fish also likes vegetables.
+
