@@ -348,5 +348,6 @@ no, not famous
 
 7.
 アリス）　昨日のテストは、よかった？  
-yesterday test is, 
-ボブ）　ううん、　　 
+was your test yesterday good?
+ボブ）　ううん, よかなかった
+no, not good
