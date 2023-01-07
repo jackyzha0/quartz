@@ -7,19 +7,19 @@ tags:
 # Budget.
 10,000
 
-Utah 14th - 4th
-paid for
+Utah 14th - 4th free
 
 Japan stage 1 4th - 25th
-flights: 700
+~~flights: 700~~ paid
 accom: 1000
 other (food, lift passes, transport): 2000
 
 Japan stage 2 25th - 
-flights: 2000
-other (accom, transport, passes): 1800
+~~flights: 2000~~paid
+~~other (accom, transport, passes): 1800~~ paid
 
-total: 7500
+4740 left
+- 
 
 # Utah
 
