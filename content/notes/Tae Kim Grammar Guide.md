@@ -311,20 +311,25 @@ There is one exception. The adjectives "good"  いい and "cool" かっこいい
 Ａ）　ううん、学生じゃない。
 
 1.
-ジム）　アリス、今　　　忙しい？
+ジム）　アリス、今は忙しい？
 jim)		alice, are you busy now?
-アリス）　ううん、　　　　　　　。
+アリス）　ううん、　。
 
 2.
-アリス）　何　　　楽しい？  
-ボブ）　ゲーム　　　楽しい。
+アリス）　何が楽しい？  
+whats fun?
+ボブ）　ゲームが楽しい。
+the game is fun
 
 3.
-アリス）　　　　　　　　人は誰？  
-ボブ）　ジム　　　大切だ。
+アリス）　　　大切な　　　　　人は誰？  
+who is important?
+ボブ）　ジム　が　　　大切だ。
+Jim is important
 
 4.
 アリス）　　　　　　　料理は、好き？  
+
 ボブ）　ううん、辛くない料理　　　好きだ。
 
 5.
