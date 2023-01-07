@@ -11,15 +11,25 @@ Utah 14th - 4th free
 
 Japan stage 1 4th - 25th
 ~~flights: 700~~ paid
-accom: 1000
-other (food, lift passes, transport): 2000
+accom: 1000 (max 1500)
+other (food, lift passes, transport): 2000 (max 3000)
 
 Japan stage 2 25th - 
 ~~flights: 2000~~paid
 ~~other (accom, transport, passes): 1800~~ paid
 
-4740 left
-- 
+asses
+- 2700 bank
+- 2000 project
+- 1500 studylink (1000 course related costs + 500 living costs)
+total 6200
+
+expenses:
+- japan 3500
+- rent 960
+total: 4460
+
+leftover: 1740
 
 # Utah
 
