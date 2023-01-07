@@ -246,6 +246,8 @@ E.g.,
 8.  あまり／あんまり – not very (when used with negative)
 9.  好き 【す・き】 (na-adj) – likable; desirable
 10.  いい (i-adj) – good
+11.   彼 【かれ】 – he; boyfriend
+12.  かっこいい (i-adj) – cool; handsome
 
 Always end in "い. There are some na-adjs that also end in い (when written in kanji): きれい and 嫌い 
 きれいれいれい. 
@@ -264,8 +266,20 @@ Conjugation rules
 - Negative Past: replace い with くなかった
 
 E.g.,
-- 高いベル
-- 高くないベル
+- 高いベル。Tall building
+- 高くないベル。not tall building
+- 高かったベル。building that was tall
+- 高くなかったベル。building that was not tall.
+
+You can make descriptive noun clause the same way as na-adjs. But you dont need な to directly modify the noun.
+
+There is one exception. The adjectives "good"  いい and "cool" かっこいい have different conjugations:
+
+いい
+- いい
+- よかった
+- よくない
+- よくなかった　
 
 | plain | declarative | negative | past | negative-past |
 |-------|-------------|----------|------|---------------|
