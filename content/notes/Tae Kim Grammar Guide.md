@@ -328,18 +328,25 @@ who is important?
 Jim is important
 
 4.
-アリス）　　　　　　　料理は、好き？  
-
-ボブ）　ううん、辛くない料理　　　好きだ。
+アリス）　辛い料理は、好き？  
+do you like spicy food
+ボブ）　ううん、辛くない料理が好きだ。
+no, I like non-spicy food
 
 5.
-アリス）　ジム　　　、かっこいい人？  
-ボブ）　ううん、　　　　　　　　　。
+アリス）　ジムは、かっこいい人？  
+is jim a cool person
+jim is, cool person?
+ボブ）　ううん、かっこよくない　　　　　　　　　。
+no, not cool.
 
 6.
-アリス）　ボブは、　　　　　　　人？  
+アリス）　ボブは、有名な人？  
+bob is, famous	person?
 ボブ）　ううん、有名じゃない。
+no, not famous
 
 7.
 アリス）　昨日のテストは、よかった？  
+yesterday test is, 
 ボブ）　ううん、　　 
