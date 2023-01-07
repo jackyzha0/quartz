@@ -226,3 +226,4 @@ E.g.,
 - 魚が好きじゃない人。person that does not like fish
 - 魚が好きだった人。peson that liked fish
 -魚が好きじゃなかった人。person that did not like fish
+
