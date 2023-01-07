@@ -178,3 +178,4 @@ e.g., Who is the student?
 ボブ）　そこじゃない。図書館　は　　ここだ。
 
 ## Adjectives
+Used to describe nouns. Adjective modifies a noun that follows it. Can also be connectd the sam
