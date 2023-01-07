@@ -28,6 +28,16 @@ minimize exposure to risks
 - know if you are in avalanche terrain
 	- maps, guidbooks, photos
 	- clinometers
-	- _quality_ level 1 course
+	- _quality_ level 1 course 
 
+Use the bulletin forecast
+- low
+- moderate : natural avalanches not likely, man made avalanches possible if you ski in the wrong spot
+- considerable: if you ski in the wrong spot, human triggered avalances are likely
+
+no overhead hazard: not below a large face or something
+
+avalanche problem:
+- persistent weak layer
+- wind drifted snow
 
