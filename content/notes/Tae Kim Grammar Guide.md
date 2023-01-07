@@ -311,7 +311,8 @@ There is one exception. The adjectives "good"  いい and "cool" かっこいい
 Ａ）　ううん、学生じゃない。
 
 1.
-ジム）　アリス、今　　　忙しい？  
+ジム）　アリス、今　　　忙しい？
+jim)		alice, are you busy now?
 アリス）　ううん、　　　　　　　。
 
 2.
