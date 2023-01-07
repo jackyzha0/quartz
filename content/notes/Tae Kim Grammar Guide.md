@@ -235,7 +235,37 @@ E.g.,
 - 魚が好きじゃない人は、肉が好きだ。Person who does not like fish like meat.
 - 魚が好きな人は、野菜も好きだ。 Person who likes fish also likes vegetables.
 
+### The i-adjective
+1.  嫌い 【きら・い】 (na-adj) – distasteful, hateful
+2.  食べ物 【た・べ・もの】 – food
+3.  おいしい (i-adj) – tasty
+4.  高い 【たか・い】 (i-adj) – high; tall; expensive
+5.  ビル – building
+6.  値段 【ね・だん】 – price
+7.  レストラン – restaurant
+8.  あまり／あんまり – not very (when used with negative)
+9.  好き 【す・き】 (na-adj) – likable; desirable
+10.  いい (i-adj) – good
 
+Always end in "い. There are some na-adjs that also end in い (when written in kanji): きれい and 嫌い 
+きれいれいれい. 
+
+Do not need to add な to directly modify a noun.
+
+E.g.,
+- 嫌い食べ物。
+- おいしい食べ物。
+
+You can never attach the declarative だ to i-adjs.
+
+Conjugation rules
+- Negative: replace い with くない
+- Past: replace い with 買った
+- Negative Past: replace い with くなかった
+
+E.g.,
+- 高いベル
+- 高くないベル
 
 | plain | declarative | negative | past | negative-past |
 |-------|-------------|----------|------|---------------|
