@@ -41,3 +41,8 @@ avalanche problem:
 - persistent weak layer
 - wind drifted snow
 
+whoomps under skis: collapsing snow, avalanches likely
+
+## Video 2
+link: https://www.youtube.com/watch?v=1r0YIgdjm6M
+
