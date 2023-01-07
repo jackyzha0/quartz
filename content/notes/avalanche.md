@@ -46,3 +46,11 @@ whoomps under skis: collapsing snow, avalanches likely
 ## Video 2
 link: https://www.youtube.com/watch?v=1r0YIgdjm6M
 
+lots of different types of avalanche. loose vs slab, wet vs dry.
+
+usually: strong snow over weak snow.
+
+strong: often wind effect: ltighly bonded grains
+weak: light snow with no wind and cold clear nights
+
+important: slope angle 
