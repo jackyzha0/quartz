@@ -178,4 +178,39 @@ e.g., Who is the student?
 ボブ）　そこじゃない。図書館　は　　ここだ。
 
 ## Adjectives
-Used to describe nouns. Adjective modifies a noun that follows it. Can also be connectd the sam
+Used to describe nouns. Adjective modifies a noun that follows it. Can also be connectd the same way as nouns using particles. 
+
+Two types of adjectives:
+- na-adjectives
+- i-adjectives
+
+### The na-adjective
+1.  静か 【しず・か】 (na-adj) – quiet
+2.  人 【ひと】 – person
+3.  きれい (na-adj) – pretty; clean
+4.  友達 【とも・だち】 – friend
+5.  親切 【しん・せつ】 (na-adj) – kind
+6.  魚 【さかな】 – fish
+7.  好き 【す・き】 (na-adj) – likable; desirable
+8.  肉 【にく】 – meat
+9.  野菜 【や・さい】 – vegetables
+
+Acts essentaially like a noun. Conjugation rules for nouns and na-adjs are the same. 
+
+One difference: na-adjs can modify a noun following by adding 「な」between the adj and the noun. 
+
+E.g., 
+- 静かな人。Quiet person
+- きれいな人。Pretty person
+
+You can also use adjs with particles like nouns.
+
+E.g.,
+- 友達は親切。Friend is kind
+- 友達は親切な人だ。Friend is kind person
+
+Conjugation rules for na-adjs are the same as nouns
+
+E.g.,
+- ボブは魚が好きだ。Bob likes fish
+- ボブは魚が好き
