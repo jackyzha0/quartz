@@ -213,4 +213,16 @@ Conjugation rules for na-adjs are the same as nouns
 
 E.g.,
 - ボブは魚が好きだ。Bob likes fish
-- ボブは魚が好き
+- ボブは魚が好きじゃない。bob does not like fish
+- ボブは魚が好きだった。Bob liked fish
+- ボブは魚が好きじゃなかった。Bob did not like fish
+
+"Like" is an adjective not a verb in japanese. 
+
+You can also use the last three conjugations to _directly_ modify the noun. 
+
+E.g.,
+- 魚が好きな人。person that likes fish
+- 魚が好きじゃない人。person that does not like fish
+- 魚が好きだった人。peson that liked fish
+-魚が好きじゃなかった人。person that did not like fish
