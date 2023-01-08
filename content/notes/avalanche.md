@@ -54,3 +54,28 @@ strong: often wind effect: ltighly bonded grains
 weak: light snow with no wind and cold clear nights
 
 important: slope angle 
+
+## Snowpack tests
+link: https://www.youtube.com/watch?v=OvwhuP4qtQg
+
+- compression test
+	- locating instabilities near surface
+	- 30(upslope not horixontal) x30cmx110cm ()
+	- ![](https://i.imgur.com/ebmXC6M.png)
+	- tap 10 times with finger tips
+		- mark factures as easy
+	- tap 1
+- deep tap test
+- extended column test
+- rutschblock test
+- propagation saw test
+- shovel shear test
+- hand shear test
+
+equipment
+- shovel
+- probe
+- snow saw
+- ruler
+- cord
+- 
