@@ -64,10 +64,22 @@ link: https://www.youtube.com/watch?v=OvwhuP4qtQg
 	- ![](https://i.imgur.com/ebmXC6M.png)
 	- tap 10 times with finger tips
 		- mark factures as easy
-	- tap 1
+	- level column
+	- tap 10 times with finger tips from elbow
+	- level
+	- tap with hand or fist from shoulder
+	- ![](https://i.imgur.com/2sCLTuz.png)
+	- ![](https://i.imgur.com/YT6hWpT.png)
+	- facture types video: http://vimeo.com/30996756
+ 
 - deep tap test
+	- similar to compression test but tests only for weak persistent layer relatively deep in the snowpack
 - extended column test
+	- same as compresion test but 90cm wide not just 30cm
+	- ![](https://i.imgur.com/itugyJ1.png)
+
 - rutschblock test
+	- ![](https://i.imgur.com/FnocAmt.png)
 - propagation saw test
 - shovel shear test
 - hand shear test
