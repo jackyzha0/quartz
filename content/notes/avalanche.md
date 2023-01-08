@@ -142,4 +142,46 @@ human factor
 
 
 ## Weather and snowpack: slab avalanche formation
-avalanches
+avalanches are about timing: know when to go
+terrain is like a railway track: safe or not safe
+
+snowpack
+- can the snow slide
+- layered snowpack
+- ingredients
+	- slope
+	- slab
+	- weak layer
+	- trigger
+	- also
+		- initiation
+		- propagation
+- weak layers
+	- new snow
+		- storm
+		- wind
+		- direct-action: hours-days
+	- persistent weak layer
+		- depth hoar
+		- surface hoar
+		- near-surface facets
+		- persisten: weeks-months
+- temp changes during storm can create instabiliies
+	- upside down: cold then warms up
+	- right side up: warm then cools
+	- ![](https://i.imgur.com/7zoi5Z7.png)
+- weak layers between storms
+	- more persitent hazard
+	- depth hoar
+		- easy to see when you dig deep enough
+			- fall apart in hands
+			- sugary
+		- ![](https://i.imgur.com/TvBlaC0.png)
+		- deep in the snowpack
+		- forms the base of the snowpack
+		- forms early season
+		- formed by thin early season snowpack and cold temps
+		- ![](https://i.imgur.com/bPduxfH.png)
+		- creates vapour pressure gradient / temperature gradient
+	- near surface facets
+	- surface hoar
