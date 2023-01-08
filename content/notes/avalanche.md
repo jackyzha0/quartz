@@ -41,7 +41,7 @@ avalanche problem:
 - persistent weak layer
 - wind drifted snow
 
-whoomps under skis: collapsing snow, avalanches likely
+whumpfs under skis: collapsing snow, avalanches likely
 
 ## Video 2
 link: https://www.youtube.com/watch?v=1r0YIgdjm6M
@@ -217,3 +217,24 @@ loading
 	- adds weight and stress and destabilises
 
 
+looking at weather:
+- bullseye data
+	- recent loading
+	- recent avalances
+	- shooint cracks
+	- rapid warming
+	- collapsing
+
+![](https://i.imgur.com/qrlmp8g.png)
+
+snow pits only give you one data point
+
+spatial variability exists
+
+snow on the ground in always changing
+
+strong over weak = BAD
+
+rapid change = BAD
+
+ 
