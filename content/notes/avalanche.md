@@ -126,3 +126,20 @@ steepness
 - caltopo
 - hill map
 
+
+100 with hand vs 1 snow pit
+
+human factor
+- familiarity: assuming this are safe because they have been in the past
+- acceptance: allowing desire for acceptance (of others) to override decision making process
+- consistency: fear of appearing indecisive,
+- expert halo: deferring automatically to the expert
+- tracks/scarcity:allowing desire to have your day out to influence decisions
+
+
+**develop a routine**
+
+
+
+## Weather and snowpack: slab avalanche formation
+avalanches
