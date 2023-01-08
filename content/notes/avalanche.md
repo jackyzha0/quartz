@@ -104,6 +104,7 @@ terrain
 	- recent wind loading
 	- recent snow
 	- thaw, snow snails
+	- debris in creeks
 
 snowpack
 - ![](https://i.imgur.com/huT2fni.png)
@@ -114,4 +115,14 @@ weather
 alptruth
 - ![](https://i.imgur.com/EIoOczr.png)
 
+stay far apart so you dont all get trapped. 
+
+uptracking
+- ![](https://i.imgur.com/fs8b8Vm.png)
+- use google earth
+
+steepness
+- ![](https://i.imgur.com/TNsm8Wd.png)
+- caltopo
+- hill map
 
