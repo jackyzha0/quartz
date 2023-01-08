@@ -183,5 +183,37 @@ snowpack
 		- formed by thin early season snowpack and cold temps
 		- ![](https://i.imgur.com/bPduxfH.png)
 		- creates vapour pressure gradient / temperature gradient
+			- ground is about 0 degrees c
+			- surface is similar to air temp e.g., -10c
+			- 10c per m gradient
+			- with a shallow snowpack and the same temps. the gradient is higher, causing _faceting_ creating sugary crystals
+			- deeper snowpack lessens the gradient
+				- less rapid vapour transfer
+				- 
 	- near surface facets
+		- hard to see
+		- small grains with sharp angles
+		- develop near surface during cold clear nights and warm sunny days
 	- surface hoar
+		- frozen dew
+		- large feathery crystals
+		- deposition of moisture on snow surface
+		- ![](https://i.imgur.com/pvsVjwG.png)
+		- ![](https://i.imgur.com/g3zwefO.png)
+
+weak ≠ unstable (weak + slab + steep)
+
+loading
+- new snow
+	- rate of loading is important
+	- 2 feet overnight is bad
+	- 2 feet over a week is good 
+- wind
+	- can be 10 times faster than from sky
+	- cornices
+	- large drifts
+	- harder snow
+- rain
+	- adds weight and stress and destabilises
+
+
