@@ -52,4 +52,13 @@ Accomodation
 - 6th - 12th Furano
 - 13th - 16th Asahidake
 - 17th - 25th Niseko 
+
+
+things to know
+- entry requirements
+	- vaccinated
+	- visit japan web
+- need data
+- local sim
+- speak slow, use translation apps
 - 
