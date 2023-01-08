@@ -90,4 +90,28 @@ equipment
 - snow saw
 - ruler
 - cord
-- 
+
+## uptracking and route selection
+link:https://www.youtube.com/watch?v=RAXgSoSUD3Y
+
+avalanche triangle: snowpack, terrain, weather.
+
+terrain
+- ![](https://i.imgur.com/31KOLSD.png)
+- 5 red flags: "natures freebies"
+	- recent avalanches
+	- shooting cracks
+	- recent wind loading
+	- recent snow
+	- thaw, snow snails
+
+snowpack
+- ![](https://i.imgur.com/huT2fni.png)
+
+weather
+- ![](https://i.imgur.com/7zMk1mx.png)
+
+alptruth
+- ![](https://i.imgur.com/EIoOczr.png)
+
+
