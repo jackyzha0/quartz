@@ -61,4 +61,19 @@ things to know
 - need data
 - local sim
 - speak slow, use translation apps
-- 
+
+
+making friends
+- in japan people are not as friendly?
+- break the ice, make questions
+	- blood type
+	- school clubs
+	- ramen vs soba
+	- are you an M or a S
+	- are you rikei or bunkei
+	- study the culture beforehand
+
+
+call 110 police
+ambulance/fire 119
+
