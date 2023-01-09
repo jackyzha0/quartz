@@ -150,3 +150,7 @@ I dont understand how etherum DApps are related to the Eth main net. And how per
 Do you need to use a blockchain explorer to view data on the blockchain? In order to limit who can view the documents, you could limit access to the exlporer, or you could require some key in order to view the documents
 
 https://www.sciencedirect.com/journal/blockchain-research-and-applications/vol/3/issue/4
+
+
+# 10/01
+
