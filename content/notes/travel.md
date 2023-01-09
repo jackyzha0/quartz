@@ -79,3 +79,6 @@ ambulance/fire 119
 
 
 insurance
+card that reimburses atm fees
+japan wifi buddy
+
