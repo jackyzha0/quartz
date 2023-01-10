@@ -6,7 +6,7 @@ tags:
 
 https://guidetojapanese.org/learn/grammar/
 
-## State of Being
+# State of Being
 ### 1
 これ
 これだ
@@ -76,7 +76,7 @@ https://guidetojapanese.org/learn/grammar/
 Ｑ８）　子供？  
 Ａ８）　うん、　子供　　　　　　　　　。 (female)
 
-## Particles
+# Particles
 Hiragana characters that attck to the end of a word to define the grammatrical function of that word in the sentence
  
 ### Vocab
@@ -177,7 +177,7 @@ e.g., Who is the student?
 アリス）　そこ　は　　図書館じゃない？  
 ボブ）　そこじゃない。図書館　は　　ここだ。
 
-## Adjectives
+# Adjectives
 Used to describe nouns. Adjective modifies a noun that follows it. Can also be connectd the same way as nouns using particles. 
 
 Two types of adjectives:
@@ -395,9 +395,17 @@ some exceptions
 - ある→ない
 
 Sentence examples
+- アルスは食べない
 - as for alice, does not eat
+- ジムは遊ばない
 - jim is the one that does not play
+- ボブもしない
 - bob also does not do
+- お金がない
 - there is no money (money is the thing that does not exist)
+- 私は買わない
 - as for me, not buy
-- there is no ca
+- 猫はいない
+- there is no cat (as for cat, does not exist)
+
+## Excersises
