@@ -409,6 +409,18 @@ Sentence examples
 - there is no cat (as for cat, does not exist)
 
 ## Exercises
-- 行く→行かない
-- 出る→出ない
-- する→
+- 行く→行かない			yes
+- 出る→出ない		 	 yes
+- する→しない			yes
+- 買う→買わない			yes
+- 売る→　売らない
+- 食べる→食べない		yes
+- 入る→入らない		yes
+- 来る→ 来ない
+- 飲む→飲まない　
+- しゃべる→しゃべらない
+- 見る→見ない
+- 切る→切らない
+- 書く→書かない
+
+# Past verbs
