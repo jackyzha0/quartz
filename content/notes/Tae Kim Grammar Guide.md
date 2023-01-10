@@ -408,4 +408,7 @@ Sentence examples
 - 猫はいない
 - there is no cat (as for cat, does not exist)
 
-## Excersises
+## Exercises
+- 行く→行かない
+- 出る→出ない
+- する→
