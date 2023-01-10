@@ -154,3 +154,6 @@ https://www.sciencedirect.com/journal/blockchain-research-and-applications/vol/3
 
 # 10/01
 
+tomorrow
+- figure out what needs to be done before the end of the project
+	- some concrete example of maybe a new member being added via a smart contract vote
