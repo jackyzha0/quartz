@@ -368,3 +368,36 @@ Conjugations
 	- くる→こない
 	- ある→ない
 
+ru-verb Examples:
+- 見る→見ない
+- 食べる→食べない
+- 寝る→寝ない
+- 起きる→起きない
+- 考える→考えない
+- 教える→教えない
+- 着る→着ない
+- いる→いない
+
+u-verb examples:
+- 話す→話さない
+- 聞く→聞かない
+- 泳ぐ→泳がない
+- 遊ぶ→遊ばない
+- 待つ→待たない
+- 飲む→飲まない
+- 買う→買わない
+- 帰る→帰らない
+- 死ぬ→死なない
+
+some exceptions
+- する→しない
+- くる→こない
+- ある→ない
+
+Sentence examples
+- as for alice, does not eat
+- jim is the one that does not play
+- bob also does not do
+- there is no money (money is the thing that does not exist)
+- as for me, not buy
+- there is no ca
