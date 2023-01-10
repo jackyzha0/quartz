@@ -351,3 +351,20 @@ no, not famous
 was your test yesterday good?
 ボブ）　ううん, よかなかった
 no, not good
+
+# Negative Verbs
+Saying that some action was not performed. 
+
+Done by conjugating the verb to a negative form.
+
+One exception: ある negative of aru is nai. 
+
+Conjugations
+- ru-verbs: drop る and attach ない
+- u-vebs ending in う: replace う　with わ and attach ない
+- other u-verbs:　replace the u-vowel soud with the a-vowel equivalent and attach ない
+- exceptions
+	- する→しない
+	- くる→こない
+	- ある→ない
+
