@@ -27,9 +27,10 @@ total 6200
 expenses:
 - japan 3500
 - rent 960
-total: 4460
+- insurance 480
+total: 4940
 
-leftover: 1740
+leftover: 1260
 
 # Utah
 
