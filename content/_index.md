@@ -1,27 +1,21 @@
 ---
-title: 🪴 Quartz 3.
+title: Atem Aguer
 enableToc: false
 ---
 
-Host your second brain and [digital garden](https://jzhao.xyz/posts/networked-thought) for free. Quartz features
+Hi! I’m Atem Aguer, an undergraduate studying computer science at Stanford.  
+  
+Welcome to my blog where I hope to explore my curiosities, document my learnings, and practice my writing. I’ve broad and varied interests spanning technology and startups, product development, physics, football(soccer), machine learning and artificial intelligence, and crypto/blockchains, among many other things.  
+  
+In the past, I’ve built marketplace applications and infrastructure for a startup during my gap year after high school, was an early intern at Alchemy during DeFi summer, researched NLP and information retrieval systems at Stanford Future Data Systems under the guidance of Omar Khattab and Matei Zaharia, and worked on distributed storage infrastructure at DoorDash during the summer of my junior year.  
+  
+In my spare time, I hack on open-source projects, play football, watch movies and tv shows, and hike trails.  
+  
+Presently, I’m exploring startup opportunities at the intersection of personalized AI, and education. I believe education is one of the sectors that will undergo radical transformation from AI and I hope to be part of those bringing that transformation. 
 
-1. Extremely fast natural-language [[notes/search]]
-2. Customizable and hackable design based on [Hugo](https://gohugo.io/)
-3. Automatically generated backlinks, link previews, and local graph
-4. Built-in [[notes/CJK + Latex Support (测试) | CJK + Latex Support]] and [[notes/callouts | Admonition-style callouts]]
-5. Support for both Markdown Links and Wikilinks
-
-Check out some of the [amazing gardens that community members](notes/showcase.md) have published with Quartz or read about [why I made Quartz](notes/philosophy.md) to begin with.
-
-## Get Started
-> 📚 Step 1: [Setup your own digital garden using Quartz](notes/setup.md)
-
-Returning user? Figure out how to [[notes/updating|update]] your existing Quartz garden.
-
-If you prefer browsing the contents of this site through a list instead of a graph, you see a list of all [setup-related notes](/tags/setup).
-
-### Troubleshooting
-- 🚧 [Troubleshooting and FAQ](notes/troubleshooting.md)
-- 🐛 [Submit an Issue](https://github.com/jackyzha0/quartz/issues)
-- 👀 [Discord Community](https://discord.gg/cRFFHYye7t)
+When not hacking, I’m designing methods and systems to leverage information retrieval in the service of  large anguage models at Stanford Future Data Systems.  
+  
+You can get in touch with me through email or twitter.  
+  
+Also, my past technical work can be found here.
 
