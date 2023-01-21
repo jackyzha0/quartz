@@ -93,7 +93,7 @@
           {{$content = replace $content . $link}}
         <!-- PDF -->
         {{else if in ".pdf" $embed_ext }}
-		      {{$link := printf "<a href=\"%s\" rel=\"noopener\" class=\"internal-link\">[source]</a>" $href}}
+          {{$link := printf "<a href=\"%s\" rel=\"noopener\" class=\"internal-link\">[source]</a>" $href}}
           {{$link := printf "%s<br><iframe src=\"%s\" style=\"height: -webkit-fill-available; width: -webkit-fill-available;\"></iframe>" $link $href}}
           {{$content = replace $content . $link}}
         <!-- other -->
