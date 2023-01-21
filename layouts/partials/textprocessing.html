@@ -77,9 +77,31 @@
       {{$href := printf "/%s/%s" $dirname $basename}}
       <!-- Embedded? -->
       {{if (hasPrefix . "!")}}
-        {{$width := index $split 1}}
-        {{$link := printf "<img src=\"%s\" width=\"%s\" />" $href (default "auto" $width)}}
-        {{$content = replace $content . $link}}
+        {{ $embed_ext := lower (path.Ext $href) }}
+        <!-- Image -->
+        {{if in ".png .jpg .jpeg .gif .bmp .svg" $embed_ext }}
+          {{$width := default "auto" (index $split 1) }}
+          {{$link := printf "<img src=\"%s\" width=\"%s\" />" $href $width}}
+          {{$content = replace $content . $link}}
+        <!-- Video -->
+        {{else if in ".mp4 .webm .ogv .mov .mkv" $embed_ext}}
+          {{$link := printf "<video src=\"%s\" style=\"width: -webkit-fill-available;\" controls></video>" $href}}
+          {{$content = replace $content . $link}}
+        <!-- Audio -->
+        {{else if in ".mp3 .webm .wav .m4a .ogg .3gp .flac" $embed_ext}}
+          {{$link := printf "<audio src=\"%s\" controls></audio>" $href}}
+          {{$content = replace $content . $link}}
+        <!-- PDF -->
+        {{else if in ".pdf" $embed_ext }}
+          {{$src_link := printf "<a href=\"%s\" rel=\"noopener\" class=\"internal-link\">[source]</a>" $href}}
+          {{$iframe_link := printf "<iframe src=\"%s\" style=\"height: -webkit-fill-available; width: -webkit-fill-available;\"></iframe>" $href}}
+          {{$link := printf "%s<br>%s" $src_link $iframe_link}}
+          {{$content = replace $content . $link}}
+        <!-- other -->
+        {{else}}
+          {{$link := printf "<a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a>" $href $href}}
+          {{$content = replace $content . $link}}
+        {{end}}
       {{else}}
         {{$link := printf "<a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a>" $href $display}}
         {{$content = replace $content . $link}}
