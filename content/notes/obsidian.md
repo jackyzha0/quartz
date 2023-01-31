@@ -17,8 +17,10 @@ The easiest way to use an existing Vault is to copy all of your files (directory
 ## Settings
 Great, now that you have your Obsidian linked to your Quartz, let's fix some settings so that they play well.
 
-1. Under Options > Files and Links, set the New link format to always use Absolute Path in Vault.
-2. Go to Settings > Files & Links > Turn "on" automatically update internal links.
+Open Settings > Files & Links and look for these two items:
+
+1. Set the **New link format** to **Absolute Path in vault**.
+2. Turn **on** the **Automatically update internal links** setting.
 
 ![Obsidian Settings](/notes/images/obsidian-settings.png)*Obsidian Settings*
 
