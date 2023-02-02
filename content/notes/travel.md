@@ -19,18 +19,17 @@ Japan stage 2 25th -
 ~~other (accom, transport, passes): 1800~~ paid
 
 asses
-- 2700 bank
+- 2000 bank
 - 2000 project
-- 1500 studylink (1000 course related costs + 500 living costs)
-total 6200
+- 500 studylink
+total 4500
 
 expenses:
 - japan 3500
 - rent 960
-- insurance 480
-total: 4940
+- ~~insurance 480~~ paid
+total: 4460
 
-leftover: 1260
 
 # Utah
 

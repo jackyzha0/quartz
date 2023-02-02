@@ -24,9 +24,9 @@ tags:
 	- a midsummer nights dream, shakespeare
 	- the amazing maurice and his educated rodents, terry pratchet
 	- the ocean at the end of the lane
+	- the curious case of the dog in the night time
 - current
 	- cryptonomicon, neal stephenson
-	- the curious case of the dog in the night time
 	- thinking fast and slow
 	- the second sex, simone de beauvoir
 - future
@@ -34,6 +34,7 @@ tags:
 	- woman in the dunes
 	- sophies world
 	- on the trail of genghis khan
+	- A psalm for the wild built
 
 # Podcasts
 - [philosophize-this](notes/philosophize-this.md)
