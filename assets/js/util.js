@@ -123,6 +123,11 @@ const redir = (id, term) => {
     ".singlePage",
   )
   closeSearch()
+  plausible("Search", {
+    props: {
+      term
+    }
+  })
 }
 
 function openSearch() {

@@ -15,7 +15,6 @@ export const attachSPARouting = (init, rerender) => {
   }
 
   const render = () => requestAnimationFrame(rerender)
-
   window.addEventListener("DOMContentLoaded", () => {
     apply((doc) => init(doc))
     init()
