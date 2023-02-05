@@ -183,6 +183,28 @@
         throwOnError : false
       });
       {{end}}
+
+      // analytics
+      function clickHandler(evt) {
+        const target = evt.target 
+        const classNames = target.className.split(" ")
+        const broken = classNames.includes("broken")
+        const internal = classNames.includes("internal-link")
+        plausible("Link Click", {
+          props: {
+            href: target.href,
+            broken,
+            internal,
+            graph: false,
+          }
+        })
+      }
+
+      const links = document.querySelectorAll("a")
+      for (link of links) {
+        link.addEventListener('click', clickHandler)
+        link.addEventListener('auxclick', clickHandler)
+      }
     };
   </script>
   {{if $data.enableSPA | default $.Site.Data.config.enableSPA}}
@@ -207,4 +229,5 @@
   {{end}}
   {{ $trimmedURL := trim (index (split .Site.BaseURL "://") 1) "/" }}
   <script defer data-domain="{{$trimmedURL}}" src="https://plausible.io/js/script.js"></script>
+  <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
 </head>
