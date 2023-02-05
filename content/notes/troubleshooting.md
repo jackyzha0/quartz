@@ -52,8 +52,13 @@ You probably forgot to include front matter in your Markdown files. You can eith
 ### My custom domain isn't working!
 Walk through the steps in [the hosting guide](notes/hosting.md) again. Make sure you wait 30 min to 1 hour for changes to take effect.
 
-### How do I setup Google Analytics?
-You can edit it in `config.toml` and either use a V3 (UA-) or V4 (G-) tag.
+### How do I setup analytics?
+Quartz by default uses [Plausible](https://plausible.io/) for analytics. 
+
+If you would prefer to use Google Analytics, you can follow this [guide in the Hugo documentation](https://gohugo.io/templates/internal/#google-analytics). 
+
+Alternatively, you can also import your Google Analytics data into Plausible by [following this guide](https://plausible.io/docs/google-analytics-import).
+
 
 ### How do I change the content on the home page?
 To edit the main home page, open `/content/_index.md`.
