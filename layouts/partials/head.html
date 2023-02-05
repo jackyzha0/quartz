@@ -205,5 +205,6 @@
     })
   </script>
   {{end}}
+  {{ $trimmedURL := trim (index (split .Site.BaseURL "://") 1) "/" }}
+  <script defer data-domain="{{$trimmedURL}}" src="https://plausible.io/js/script.js"></script>
 </head>
-{{ template "_internal/google_analytics.html" . }}
