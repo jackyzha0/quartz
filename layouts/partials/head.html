@@ -160,6 +160,29 @@
           )
         }
       {{end}}
+      
+      // analytics
+      function clickHandler(evt) {
+        const target = evt.target 
+        const classNames = target.className.split(" ")
+        const broken = classNames.includes("broken")
+        const internal = classNames.includes("internal-link")
+        plausible("Link Click", {
+          props: {
+            href: target.href,
+            broken,
+            internal,
+            graph: false,
+          }
+        })
+      }
+
+      const links = document.querySelectorAll("a")
+      for (link of links) {
+        if (link.className.includes("root-title")) {
+          link.addEventListener('click', clickHandler, {once: true})
+        }
+      }
     }
 
     const init = (doc = document) => {
@@ -183,28 +206,6 @@
         throwOnError : false
       });
       {{end}}
-
-      // analytics
-      function clickHandler(evt) {
-        const target = evt.target 
-        const classNames = target.className.split(" ")
-        const broken = classNames.includes("broken")
-        const internal = classNames.includes("internal-link")
-        plausible("Link Click", {
-          props: {
-            href: target.href,
-            broken,
-            internal,
-            graph: false,
-          }
-        })
-      }
-
-      const links = document.querySelectorAll("a")
-      for (link of links) {
-        link.addEventListener('click', clickHandler)
-        link.addEventListener('auxclick', clickHandler)
-      }
     };
   </script>
   {{if $data.enableSPA | default $.Site.Data.config.enableSPA}}
