@@ -1,6 +1,7 @@
 <!-- set data/config yaml file based on website language -->
 {{ $config := cond (eq $.Site.Language.Lang "en") "config" (printf "config.%s" $.Site.Language.Lang) }}
 {{ $data := index $.Site.Data $config }}
+{{.Site.BaseURL}}icon.png
 <head>
   <!-- Meta tags -->
   <meta charset="UTF-8" />
@@ -8,6 +9,23 @@
     name="description"
     content="{{if .IsHome}}{{$data.description | default $.Site.Data.config.description}}{{else}}{{.Summary}}{{end}}"
   />
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{.Site.BaseURL}}icon.png">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:width" content="200">
+  <meta property="og:height" content="200">
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="{{ .Title }}" />
+  <meta name="twitter:description" content="{{if .IsHome}}{{$data.description | default $.Site.Data.config.description}}{{else}}{{.Summary}}{{end}}" />
+  <meta name="twitter:image" content="{{.Site.BaseURL}}icon.png">
+  {{ range $data.links }}
+    {{ if strings.Contains .link "twitter.com" }}
+      {{ $twitter_handle := index (split .link "/") (sub (len (split .link "/")) 1) }}
+      <meta name="twitter:site" content="{{ $twitter_handle }}" />
+    {{ end }}
+  {{ end }}
+
   <title>
     {{ if .Title }}{{ .Title }}{{ else }}{{ $data.page_title | default $.Site.Data.config.page_title }}{{
     end }}
