@@ -1,7 +1,6 @@
 <!-- set data/config yaml file based on website language -->
 {{ $config := cond (eq $.Site.Language.Lang "en") "config" (printf "config.%s" $.Site.Language.Lang) }}
 {{ $data := index $.Site.Data $config }}
-{{.Site.BaseURL}}icon.png
 <head>
   <!-- Meta tags -->
   <meta charset="UTF-8" />
@@ -10,6 +9,7 @@
     content="{{if .IsHome}}{{$data.description | default $.Site.Data.config.description}}{{else}}{{.Summary}}{{end}}"
   />
   <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:description" content="{{if .IsHome}}{{$data.description | default $.Site.Data.config.description}}{{else}}{{.Summary}}{{end}}">
   <meta property="og:type" content="website">
   <meta property="og:image" content="{{.Site.BaseURL}}icon.png">
   <meta property="og:url" content="{{ .Permalink }}">
