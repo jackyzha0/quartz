@@ -13,4 +13,5 @@ title: "Sources"
 - [Buddhadust](http://buddhadust.net/)
 - [Access to Insight](https://www.accesstoinsight.org/ptf/index.html) : A Path to Freedom
 - [Lucid24](https://www.lucid24.org/sted/8aam/index.html) : Strang website
+
 ![[attachements/DharmaLists.pdf]]

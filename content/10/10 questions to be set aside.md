@@ -1,5 +1,5 @@
 ---
-title: "Ten questions to be set aside"
+title: "10 questions to be set aside"
 tags: 
 ---
 
