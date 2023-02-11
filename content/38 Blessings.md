@@ -1,0 +1,6 @@
+---
+title: "38 Blessings"
+tags: 
+---
+
+The 38 Blessings: 1. Not associating with fools 2. Keeping the company of wise ones 3. Paying reverence to those who are worthy of reverence 4. Having one‘s abode in a favorable place 5. Gaining merit in the past 6. The pursuit of higher aspirations 7. Being rich in knowledge 8. Being rich in skill 9. The moral precepts, well practiced 10. Using only well-spoken words 11. Supporting parents in every way 12. Caring for the family 13. Unconfused actions 14. Generosity 15. Right living 16. Caring for one‘s realatives 17. Refraining from unskillful things 18. To abhor unwholeseom things 19. To avoid unwholesome things 20. To avoid intoxicants 21. Diligence in righteousness 22. Reverence 23. Humility 24. Contentment 25. Gratitude 26. Hearing the Dhamma at the right time 27. Patience 28. Compliance 29. Seeing the monks 30. Discussing the Dhamma 31. Self-restraint 32. A holy life 33. Seeing The Four Noble Truths 34. Realizing Nibbana 35. A heart not trembling, unshaken 36. A heart not trembling, sorrowless 37. A heart not trembling, stainless 38. A heart not trembling, secure (from Khuddaka Nikaya, Sutta Nipata 2.4)
