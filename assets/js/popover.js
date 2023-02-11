@@ -5,14 +5,14 @@ function htmlToElement(html) {
   return template.content.firstChild
 }
 
-function initPopover(baseURL, useContextualBacklinks) {
+function initPopover(baseURL, useContextualBacklinks, renderLatex) {
   const basePath = baseURL.replace(window.location.origin, "")
   fetchData.then(({ content }) => {
     const links = [...document.getElementsByClassName("internal-link")]
     links
       .filter(li => li.dataset.src || (li.dataset.idx && useContextualBacklinks))
       .forEach(li => {
-        let el
+        var el
         if (li.dataset.ctx) {
           const linkDest = content[li.dataset.src]
           const popoverElement = `<div class="popover">
@@ -24,16 +24,9 @@ function initPopover(baseURL, useContextualBacklinks) {
         } else {
           const linkDest = content[li.dataset.src.replace(/\/$/g, "").replace(basePath, "")]
           if (linkDest) {
-            let splitLink = li.href.split("#")
-            let cleanedContent = removeMarkdown(linkDest.content)
-            if (splitLink.length > 1) {
-              let headingName = decodeURIComponent(splitLink[1]).replace(/\-/g, " ")
-              let headingIndex = cleanedContent.toLowerCase().indexOf("<b>" + headingName + "</b>")
-              cleanedContent = cleanedContent.substring(headingIndex, cleanedContent.length)
-            }
             const popoverElement = `<div class="popover">
     <h3>${linkDest.title}</h3>
-    <p>${cleanedContent.split(" ", 20).join(" ")}...</p>
+    <p>${removeMarkdown(linkDest.content).split(" ", 20).join(" ")}...</p>
     <p class="meta">${new Date(linkDest.lastmodified).toLocaleDateString()}</p>
 </div>`
             el = htmlToElement(popoverElement)
@@ -42,11 +35,13 @@ function initPopover(baseURL, useContextualBacklinks) {
 
         if (el) {
           li.appendChild(el)
-          if (LATEX_ENABLED) {
+          if (renderLatex) {
             renderMathInElement(el, {
               delimiters: [
                 { left: '$$', right: '$$', display: false },
                 { left: '$', right: '$', display: false },
+                { left: '\\(', right: '\\)', display: false },
+                { left: '\\[', right: '\\]', display: false }
               ],
               throwOnError: false
             })
@@ -64,11 +59,6 @@ function initPopover(baseURL, useContextualBacklinks) {
             })
 
             el.classList.add("visible")
-            plausible("Popover Hover", {
-              props: {
-                href: li.dataset.src 
-              }
-            })
           })
           li.addEventListener("mouseout", () => {
             el.classList.remove("visible")
