@@ -15,7 +15,7 @@
 {{ define "book-section-children" }}{{/* (dict "Section" .Section "CurrentPage" .CurrentPage) */}}
   <ol>
 
-    {{ range sort (where .Section.Pages "Params.bookhidden" "ne" true) }}
+    {{ range sort (where .Section.Pages "Params.bookhidden" "ne" true) .File.BaseFileName }}
       {{ if .IsSection }}
         <details>
         <summary>
