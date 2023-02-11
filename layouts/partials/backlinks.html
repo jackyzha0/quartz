@@ -1,4 +1,4 @@
-<h3>Backlinks</h3>
+<h3>{{ i18n "backlinks" }}</h3>
 <ul class="backlinks">
     {{$url := urls.Parse .Site.BaseURL }}
     {{$host := strings.TrimRight "/" $url.Path }}
@@ -24,7 +24,7 @@
     {{- end -}}
     {{else}}
     <li>
-        No backlinks found
+      {{ i18n "no_backlinks" }}
     </li>
     {{end}}
 </ul>

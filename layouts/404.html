@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ .Lang }}">
 {{ partial "head.html" . }}
 
 <body>
@@ -7,10 +7,9 @@
     {{partial "darkmode.html" .}}
     <div class="centered">
         <h1>404.</h1>
-        <h3>Hey! You look a little lost. This page doesn't exist (or may be private).</h3>
-        <a href="{{ .Site.BaseURL }}">↳ Let's get you home.</a>
+        <h3>{{ i18n "404_message" }}</h3>
+        <a href="{{ .Site.BaseURL }}">{{ i18n "404_back" }}</a>
     </div>
 </div>
 </body>
-
 </html>

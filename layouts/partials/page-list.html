@@ -6,7 +6,7 @@
                 {{partial "date-fmt.html" .}}
             </p>
             <div class="desc">
-                <h3><a href="{{ .Permalink }}">{{- .Title -}}</a></h3>
+              <h3><a href="{{ .Permalink }}" class="internal-link" data-src="{{ .RelPermalink }}">{{- .Title -}}</a></h3>
             </div>
             <div class="spacer"></div>
             <ul class="tags">
