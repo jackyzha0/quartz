@@ -1,5 +1,6 @@
-baseURL = "https://quartz.jzhao.xyz/"
-languageCode = "en-us"
+baseURL = "https://decatetsu.tech/"
+languageCode = "uk"
+defaultContentLanguage = "uk"
 relativeURLs = false
 disablePathToLower = true
 ignoreFiles = [

@@ -1,4 +1,4 @@
-name: Jacky Zhao
+name: decatetsu
 enableToc: true
 openToc: false
 enableLinkPreview: true
@@ -9,21 +9,18 @@ enableCallouts: true
 enableSPA: true
 enableFooter: true
 enableContextualBacklinks: true
-enableRecentNotes: false
-enableGitHubEdit: true
+enableRecentNotes: true
+enableGitHubEdit: false
 enableMermaid: true
-GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
+GitHubLink:
 search:
   enableSemanticSearch: false
   operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
   operandIndexId: "REPLACE-WITH-YOUR-OPERAND-INDEX-ID"
 description:
-  Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
-  Wikilink support, backlinks, local graph, tags, and link previews.
+  A pretty simple blog about PKM and programming.
 page_title:
-  "🪴 Quartz 3.3"
+  "🪴 decarden"
 links:
-  - link_name: Twitter
-    link: https://twitter.com/_jzhao
   - link_name: GitHub
-    link: https://github.com/jackyzha0
+    link: https://github.com/decatetsu

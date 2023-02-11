@@ -1,3 +1,4 @@
 ---
-title: "{{title}}"
+title: "{{VALUE:Title}}"
+date: "{{DATE}}"
 ---
