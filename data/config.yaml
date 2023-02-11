@@ -1,4 +1,4 @@
-name: Jacky Zhao
+name: DhammaVault
 enableColumnLayout: true
 enableToc: true
 openToc: false
@@ -10,15 +10,14 @@ enableSPA: true
 enableFooter: true
 enableContextualBacklinks: true
 enableRecentNotes: false
-enableGitHubEdit: false
-GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
+enableGitHubEdit: true
+GitHubLink: https://github.com/DhammaCharts/quartz/tree/holy-grail/content
 description:
-  Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
-  Wikilink support, backlinks, local graph, tags, and link previews.
+  All the concets of Dhamma
 page_title:
-  "🪴 Quartz 3.2"
+  "Dhamma Vault"
 links:
-  - link_name: Twitter
-    link: https://twitter.com/_jzhao
-  - link_name: Github
-    link: https://github.com/jackyzha0
+    - link_name: Sources
+      link: https://dhammacharts.github.io/dhammas/sources
+    - link_name: DhammaCharts
+      link: https://dhammacharts.github.io
