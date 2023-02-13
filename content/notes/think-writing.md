@@ -11,8 +11,15 @@ tags:
 - [[veracity-week05]]
 - [[veracity-week06]]
 
-# 10/01
+# 13/02
+Goal: solidity smart contract for adding participant
+Hours: 2.5 * 14 = 35 hours
 
-tomorrow
-- figure out what needs to be done before the end of the project
-	- some concrete example of maybe a new member being added via a smart contract vote
+What do do?
+- Get network running again
+- Review where I was up to before break
+- Check default contract
+- Try some modifications
+- Read more papers
+- Learn solidity basics
+- Make contract
