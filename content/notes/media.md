@@ -37,7 +37,8 @@ tags:
 	- sophies world
 	- on the trail of genghis khan
 	- A psalm for the wild built
-	- 
+- author 
+- 
 
 # Podcasts
 - [philosophize-this](notes/philosophize-this.md)
