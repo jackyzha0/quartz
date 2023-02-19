@@ -11,6 +11,7 @@ enableFooter: true
 enableContextualBacklinks: true
 enableRecentNotes: false
 enableGitHubEdit: true
+GitHubLink: https://VedantAndhale/vedantandhale.github.io/tree/hugo/content
 enableMermaid: true
 GitHubLink: https://github.com/VedantAndhale/vedantandhale.github.io/tree/hugo/content
 search:
