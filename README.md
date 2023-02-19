@@ -1,19 +1,19 @@
-# Quartz
+## This site is always a work in progress
 
-Host your second brain and [digital garden](https://jzhao.xyz/posts/networked-thought) for free. Quartz features
+Check it out here -> https://VedantAndhale.github.io/
+This will be the place where i will post Whatever i learned today similar to [TIL](https://github.com/jbranchaud/til) as my initiative of learn in public.
 
-1. Extremely fast natural-language search
-2. Customizable and hackable design based on Hugo
-3. Automatically generated backlinks, link previews, and local graph
-4. Built-in CJK + Latex Support and Admonition-style callouts
-5. Support for both Markdown Links and Wikilinks
+So What can you expect now ?
 
-Check out some of the [amazing gardens that community members](https://quartz.jzhao.xyz/notes/showcase/) have published with Quartz!
+    1. Today I learned notes
+    2. Tools and Software I use
+    3. Tips & Tricks I learnt and use
+    4. Summaries of Podcasts, talks and blogs
+    5. Along with a resource directory which i will be making on the way.
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
+Reachout to me on [Twitter](https://twitter.com/Vedantpr0) or [LinkedIn](https://www.linkedin.com/in/Vedantandhale/)
 
-🔗 Get Started: https://quartz.jzhao.xyz/
 
-![Quartz Example Screenshot](./screenshot.png)*Quartz Example Screenshot*
 
-[Join the Discord Community](https://discord.gg/cRFFHYye7t)
+
+Made with ❤️ using [Quartz](https://github.com/jackyzha0/quartz)
