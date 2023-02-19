@@ -7,8 +7,8 @@ enableToc: false
 - And this is a collection of my notes, resources and just about everything I do everyday.
 
 #### My Content
-- [[Today I Learned]] 
-- [[Resource Repositories]]
+- [Today I Learned](notes/Resource Repositories) 
+- [Resource Repositories](notes/Resource Repositories)
 - blogs -- comming soon
 
 #### Skills I have in my Portfolio currently
