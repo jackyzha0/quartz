@@ -1,5 +1,5 @@
 ---
-title: Vedant Andhale
+title: "Vedant Andhale"
 enableToc: false
 ---
 
