@@ -7,15 +7,15 @@ enableToc: false
 
 - And this is a collection of my notes, resources and just about everything I do everyday.
 
-- ####My Content
-    Today I Learned Notes
-    Resource Repositories
-    Blogs -- comming soon
+#### My Content
+    -Today I Learned Notes
+    -Resource Repositories
+    -logs -- comming soon
 
-- ####Skills I have in my Portfolio currently
+#### Skills I have in my Portfolio currently
     - Python Programming
 
-- #### Connect with me
-    Twitter - https://twitter.com/Vedantpr0
-    LinkedIn - https://www.linkedin.com/in/VedantAndhale
-    GitHub - https://github.com/VedantAndhale
+#### Connect with me
+    - Twitter - https://twitter.com/Vedantpr0
+    - LinkedIn - https://www.linkedin.com/in/VedantAndhale
+    - GitHub - https://github.com/VedantAndhale
