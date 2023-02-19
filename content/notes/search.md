@@ -35,3 +35,6 @@ search:
 ```
 7. Push your changes to the site and wait for it to deploy.
 8. Check the Operand dashboard and wait for your site to index. Enjoy natural language search powered by Operand!
+
+
+Notes
