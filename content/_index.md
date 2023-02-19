@@ -11,7 +11,7 @@ tags:
 #### My Content
 - [[Today I Learned]]  [Notes](#setup)
 - Resource Repositories
-- logs -- comming soon
+- blogs -- comming soon
 
 #### Skills I have in my Portfolio currently
 - Python Programming
