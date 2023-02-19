@@ -7,9 +7,9 @@ enableToc: false
 - And this is a collection of my notes, resources and just about everything I do everyday.
 
 #### My Content
-- [Today I Learned](notes/Resource Repositories) 
+- [Today I Learned](notes/Today%20I%20Learned) 
 >Here you find all my notes
-- [Resource Repositories](notes/Resource Repositories)
+- [Resource Repositories](notes/Resource%20Repositories)
 >Here you find all the resources which I find along my way on internet 
  
 
