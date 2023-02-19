@@ -12,7 +12,7 @@ The majority of configuration can be found under `data/config.yaml`. An annotate
 
 ```yaml {title="data/config.yaml"}
 # The name to display in the footer
-name: Jacky Zhao
+name: Vedant Andhale
 
 # whether to globally show the table of contents on each page
 # this can be turned off on a per-page basis by adding this to the
@@ -55,7 +55,7 @@ enableRecentNotes: false
 # whether to display an 'edit' button next to the last edited field
 # that links to github
 enableGitHubEdit: true
-GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
+GitHubLink: https://github.com/VedantAndhale/vedantandhale.github.io/tree/hugo/content
 
 # whether to render mermaid diagrams
 enableMermaid: true
@@ -75,14 +75,14 @@ description:
 
 # title of the home page (also for SEO)
 page_title:
-  "🪴 Quartz 3.3"
+  "Vedant Andhale"
 
 # links to show in the footer
 links:
   - link_name: Twitter
-    link: https://twitter.com/_jzhao
+    link: https://twitter.com/Vedantpr0
   - link_name: Github
-    link: https://github.com/jackyzha0
+    link: https://github.com/VedantAndhale
 ```
 
 ### Code Block Titles
