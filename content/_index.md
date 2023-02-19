@@ -8,8 +8,10 @@ enableToc: false
 
 #### My Content
 - [Today I Learned](notes/Resource Repositories) 
+>Here you find all my notes
 - [Resource Repositories](notes/Resource Repositories)
-- blogs -- comming soon
+>Here you find all the resources which I find along my way on internet 
+ 
 
 #### Skills I have in my Portfolio currently
 - Python Programming
