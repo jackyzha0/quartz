@@ -1,17 +1,14 @@
 ---
 title: Vedant Andhale
 enableToc: false
-tags:
-- setup
-weight: -5
 ---
 
 - I am Vedant Andhale, an who just falled in love of python and data while learning wed development and now trying to be Pythonist.
 - And this is a collection of my notes, resources and just about everything I do everyday.
 
 #### My Content
-- [[Today I Learned]]  [Notes](#setup)
-- Resource Repositories
+- [[Today I Learned]] 
+- [[Resource Repositories]]
 - blogs -- comming soon
 
 #### Skills I have in my Portfolio currently
