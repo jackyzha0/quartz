@@ -1,6 +1,6 @@
 name: Vedant Andhale
-enableToc: true
-openToc: true
+enableToc: false
+openToc: false
 enableLinkPreview: true
 enableLatex: true
 enableCodeBlockTitle: true
