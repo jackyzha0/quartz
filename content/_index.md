@@ -3,6 +3,7 @@ title: Vedant Andhale
 enableToc: false
 tags:
 - setup
+weight: -5
 ---
 
 - I am Vedant Andhale, an who just falled in love of python and data while learning wed development and now trying to be Pythonist.
