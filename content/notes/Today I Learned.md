@@ -2,6 +2,7 @@
 title: "Today I Learned"
 enableGitHubEdit: false
 enableToc: true
+openToc: true
 ---
 
 # 1
