@@ -7,7 +7,7 @@ enableToc: false
 - And this is a collection of my notes, resources and just about everything I do everyday.
 
 #### My Content
-- Today I Learned Notes[Notes](editing.md)
+- Today I Learned Notes[Notes](#setup)
 - Resource Repositories
 - logs -- comming soon
 
