@@ -11,7 +11,7 @@ enableToc: false
     >Here you find all my notes
 - [Resource Repositories](notes/Resource%20Repositories)
     >Here you find all the resources which I find along my way on internet 
-- [Article Repositories](notes/article%20Repositories)
+- [Article Repositories](notes/Article%20Repositories.md)
     >Here you find all the snippets/summary of blogs or tweet i like
 
 #### Skills I have in my Portfolio currently
