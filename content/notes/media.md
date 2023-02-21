@@ -5,6 +5,11 @@ tags:
 
 ---
 
+# Writing Topics
+- Do I want to be a cook
+- Do I actually like computer science
+- I should write more
+
 # Books
 - 2022
 	- The diamond age
