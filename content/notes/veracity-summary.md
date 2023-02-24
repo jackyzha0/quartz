@@ -36,4 +36,13 @@ Stage 5 - (incomplete) test out ideas for the proposed system in a small scale e
 
 
 ### Solidity Contract
-Near the end of the project before my break I had decided to try to test the Add New Participant scenario. I decided to do this by making
+Near the end of the project before my break I had decided to try to test the Add New Participant scenario. I decided to do this by making a smart contract that would run on the Iroha Blockchain. I could use the Hyperledger Burrow integration to run a smart contract in the Ethereum Virtual Machine, which could interact with Iroha. 
+
+This contract would be called when a new member ==how would it be called?== needed to be added to the chain. When it was called it would wait ==for what amount of time?== for all ==(or some percentage of)== existing voting members to vote on whether to accept the new member. Based on the outcome of the vote, the contract would then either reject the applicant or add them to the chain. ==how to add?==
+
+### Security Issues
+
+### %%Three tier system
+This Idea occured when considering the possibility of a Dos attack on the chain targeted at the system of adding new participants. By creating numerous request to join the chain, the voting system would become inundated with request and legitamate applicants would be ==hidden?==. 
+
+The propsed three tier system consists of an application "lobby", a set of non-voting participants, and a set of voting participants.er system consists of an application "lobby", a set of non-voting participants, and a set of voting participants. %%
