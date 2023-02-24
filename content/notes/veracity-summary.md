@@ -41,8 +41,8 @@ Near the end of the project before my break I had decided to try to test the Add
 This contract would be called when a new member ==how would it be called?== needed to be added to the chain. When it was called it would wait ==for what amount of time?== for all ==(or some percentage of)== existing voting members to vote on whether to accept the new member. Based on the outcome of the vote, the contract would then either reject the applicant or add them to the chain. ==how to add?==
 
 ### Security Issues
+Dos attack on the chain targeted at the system of adding new participants. By creating numerous request to join the chain, the voting system would become inundated with request and legitamate applicants would be ==hidden?==. 
 
 ### %%Three tier system
-This Idea occured when considering the possibility of a Dos attack on the chain targeted at the system of adding new participants. By creating numerous request to join the chain, the voting system would become inundated with request and legitamate applicants would be ==hidden?==. 
 
 The propsed three tier system consists of an application "lobby", a set of non-voting participants, and a set of voting participants.er system consists of an application "lobby", a set of non-voting participants, and a set of voting participants. %%
