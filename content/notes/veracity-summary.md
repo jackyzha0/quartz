@@ -17,7 +17,6 @@ tags:
 	- what I got implemented
 		- default contract
 
-
 ### Aim
 The aim of this project was to consider aspects of a closed public permissioned blockchain. Currently some believe there is an issue with current permissioned blockchains in that they are not sifficiently decentralised. On the other hand open permissionless blockchains such as Bitcoin are cumbersome to use due to their need for an associated cryptocurrency.
 
@@ -33,6 +32,7 @@ Stage 4 - evaluate select scenarios that coild arise with the proposed system, c
 Stage 5 - (incomplete) test out ideas for the proposed system in a small scale environment
 
 ### Scenarios
+There were three main scenarios that spend time to explore: Adding a new member, removing a member and accidental transactions. This process helped me to understand some of the intricacies of the system I was trying to conceptualise. It made It seem
 
 
 ### Solidity Contract
