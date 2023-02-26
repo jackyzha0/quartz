@@ -13,7 +13,9 @@ The aim of this project was to consider aspects of a closed public permissioned 
 There were three main scenarios that spend time to explore: Adding a new member, removing a member and accidental transactions. This process helped me to understand some of the intricacies of the system I was trying to conceptualise. Before this process I was lost in the infinite number of forms that a solution to our problem count take. By focusing one single aspect of the system I was forced to accept a basic framework of what the solution could be and use it to explore how a given scenario might occur
 
 #### Adding a member
-e
+This was the first scenario I considered. Initally I wanted to explore how a group of participants might band together to create a fork of the chain. However, this seemed like an unecessarily complex scenario to begin with.  The idea I came up with was to have a smart contract which is triggered when an application arrives, which then collects votes from the existing participants and accepts or rejects the application based on the outcome of the vote. We would also need to find some way of protecting the application process from a sort of DoS attack where the attacker flooded the system with applications. 
+
+#### Removing a member
 
 
 ### Solidity Contract
