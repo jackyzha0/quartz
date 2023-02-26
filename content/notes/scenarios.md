@@ -53,4 +53,4 @@ If someone uploads a document by accident that is sensitive, then the chain hard
 what if someone found a security vulnerability in the code. would they exploit it? how to change the code. would there be a different process to normal code changes for something critical like this. within the blockchain wallets/accounts are linked to a real world identity. but i guess the person who found the vulnerability could easily (note the "person" is a member of an organisation who has access to the code) tell someone else who is not identifiable and have them exploit the vulnerability. how do organisations decide who has access to the code. if the person does not decide to try to exploit it, they have to bring it to the attention of others or try to fix it themselves. 
 
 # Proposing Changes/Upgrades to the code or the goverance system
-How do the participants in the network proposed changes to the code or the system of governance? Could it work similar to the BIP/EIP systems? 
+How do the participants in the network proposed changes to the code or the system of governance? Could it work similar to the BIP/EIP systems? d
