@@ -16,7 +16,9 @@ There were three main scenarios that spend time to explore: Adding a new member,
 This was the first scenario I considered. Initally I wanted to explore how a group of participants might band together to create a fork of the chain. However, this seemed like an unecessarily complex scenario to begin with.  The idea I came up with was to have a smart contract which is triggered when an application arrives, which then collects votes from the existing participants and accepts or rejects the application based on the outcome of the vote. We would also need to find some way of protecting the application process from a sort of DoS attack where the attacker flooded the system with applications. 
 
 #### Removing a participant
-This scenario occurs in two situations. Firstly when a participant wants to leave coluntarily, which can be handled easily, and secondly when a participant or group of participants agree to forcefully remove another participant or group of participants. 
+This scenario occurs in two situations. Firstly when a participant wants to leave coluntarily, which can be handled easily, and secondly when a participant or group of participants agree to forcefully remove another participant or group of participants. To accopmlish this we could use a similar system to the add participant but in reverse. 
+
+
 
 ### Solidity Contract
 Near the end of the project before my break I decided to try to test the Add New Participant scenario. I decided to do this by making a smart contract that would run on the Iroha Blockchain. I could use the Hyperledger Burrow integration to run a smart contract in the Ethereum Virtual Machine, which could interact with Iroha. 
