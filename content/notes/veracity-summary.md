@@ -19,7 +19,7 @@ This was the first scenario I considered. Initally I wanted to explore how a gro
 
 
 ### Solidity Contract
-Near the end of the project before my break I had decided to try to test the Add New Participant scenario. I decided to do this by making a smart contract that would run on the Iroha Blockchain. I could use the Hyperledger Burrow integration to run a smart contract in the Ethereum Virtual Machine, which could interact with Iroha. 
+Near the end of the project before my break I decided to try to test the Add New Participant scenario. I decided to do this by making a smart contract that would run on the Iroha Blockchain. I could use the Hyperledger Burrow integration to run a smart contract in the Ethereum Virtual Machine, which could interact with Iroha. 
 
 This contract would be called when a new member ==how would it be called?== needed to be added to the chain. When it was called it would wait ==for what amount of time?== for all ==(or some percentage of)== existing voting members to vote on whether to accept the new member. Based on the outcome of the vote, the contract would then either reject the applicant or add them to the chain. ==how to add?==
 
