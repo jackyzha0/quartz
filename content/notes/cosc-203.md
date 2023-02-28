@@ -74,8 +74,6 @@ tags:
 - [24-network-security](notes/24-network-security.md)
 - [25-advanced-topics](notes/25-advanced-topics.md)
 
-# Archive
-
 # Info
 - [Course Calendar](https://i.imgur.com/76tMf5e.png)
 - [Contacts](https://i.imgur.com/UAAqXTJ.png)
