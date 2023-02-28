@@ -3,6 +3,9 @@ title: 🪴 Quartz 3.
 enableToc: false
 ---
 
-[[notes]]
-[[callouts]]
+'notes/config.md'
+
+(notes/config.md)
+
+[notes/config.md]
 
