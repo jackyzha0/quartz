@@ -1,5 +1,5 @@
 ---
-title: "01-network and hardware protocols"
+title: "02-network and hardware protocols"
 tags: 
 - cosc301
 - lecture
@@ -17,7 +17,8 @@ sr-ease: 250
 
 TCP/IP sits in kernel of operating system. packet is passed from RAM to the network card, then through the ethernet cable.
 
-There is a specific bus for tcp/ip between ram and NIC
+There is a specific bus for tcp/ip between ram and NIC ![](https://i.imgur.com/LanUiYW.png)
+
 
 ^ Data link and physical layer.
 

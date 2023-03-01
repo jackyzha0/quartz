@@ -16,7 +16,9 @@ https://www.cs.otago.ac.nz/cosc301/s
 # Notes
 
 # Lectures
-- [[01-network and hardware protocols]]
+- [[01-intro]]
+- [[02-network and hardware protocols]]
+
 
 # Info
 
