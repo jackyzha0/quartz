@@ -24,4 +24,9 @@ you can configure the swtich to send the packets to only the correct address
 
 Network Layer ≡ IP layer
 
-Port number distinguishes addresses at the IP layer
+Port number distinguishes addresses at the transport/application layer. 
+
+ARP - to find destination MAC address given IP address
+- send broadcast message to everyone - who had this IP address? What is your MAC address
+- the store the results of the MAC:IP pairing
+- 
