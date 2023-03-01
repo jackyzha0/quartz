@@ -7,7 +7,7 @@ tags:
 - 
 ---
 
-https://www.cs.otago.ac.nz/cosc301/s
+https://www.cs.otago.ac.nz/cosc301/schedule.php
 
 # Assignments
 
