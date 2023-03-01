@@ -18,7 +18,9 @@ self assessment
 	- make it easy to reply
 	- make a good header: 
 		- consider object-deviation template
-	- describe the symptoms of the proble
+	- describe the symptoms of the problem, not your guesses
+	- describe the goal not the step
+	- for code: provide a minimal bug-demonstrating test
 	
 # Questions
 > Actually, neither command requires that you end up as root. Indeed, su is short for substitute user, so you could change to any other user. This is perhaps useful if you need to change from root to a normal user, or from a normal user to a special account, such as a database administrator

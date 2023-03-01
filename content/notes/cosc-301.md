@@ -20,7 +20,7 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 	- [x] http://www.schneier.com/blog/archives/2006/12/realworld_passw.html
 	- https://www.ietf.org/rfc/rfc1855.txt
 	- https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
-	- http://catb.org/~esr/faqs/smart-questions.html
+	- [x] http://catb.org/~esr/faqs/smart-questions.html
 		- [[asking questions]]
 # Lectures
 - [[01-intro]]
