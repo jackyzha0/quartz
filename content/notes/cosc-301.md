@@ -12,6 +12,7 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 # Assignments
 
 # Labs
+- [[01-VM-intro]]
 
 # Notes
 - readings
