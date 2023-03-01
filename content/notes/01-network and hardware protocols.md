@@ -29,4 +29,10 @@ Port number distinguishes addresses at the transport/application layer.
 ARP - to find destination MAC address given IP address
 - send broadcast message to everyone - who had this IP address? What is your MAC address
 - the store the results of the MAC:IP pairing
-- 
+- `sudo arp -a` list arp pairings
+
+Journey of IP packet. ![](https://i.imgur.com/TKw5s1Y.png)
+
+routing table created - manual or dynamic. DNS, etc
+
+TCP IP moves the data - there are more protocols within the TCP IP layer that help it to work better.
