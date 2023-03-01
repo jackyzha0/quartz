@@ -13,6 +13,7 @@ tags:
 # Notes
 
 # Lectures
-- [[01-]]
+- [[01-intro]]
+- [[02-network and hardware protocols]]
 
 # Info

@@ -3,6 +3,9 @@ title: "01-network and hardware protocols"
 tags: 
 - cosc301
 - lecture
+sr-due: 2023-03-04
+sr-interval: 3
+sr-ease: 250
 ---
 
 
@@ -36,3 +39,10 @@ Journey of IP packet. ![](https://i.imgur.com/TKw5s1Y.png)
 routing table created - manual or dynamic. DNS, etc
 
 TCP IP moves the data - there are more protocols within the TCP IP layer that help it to work better.
+
+Questions
+- what is a gateway
+	- connected to the same LAN
+	- when ip is created it will check this table
+	- LAN can have more that one gateway
+	- 
