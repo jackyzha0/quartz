@@ -10,10 +10,13 @@ aliases:
 ## Hosting on GitHub Pages
 Quartz is designed to be effortless to deploy. If you forked and cloned Quartz directly from the repository, everything should already be good to go! Follow the steps below.
 
-### Enable GitHub Actions
-By default, GitHub disables workflows from running automatically on Forked Repostories. Head to the 'Actions' tab of your forked repository and Enable Workflows to setup deploying your Quartz site!
+### Enable GitHub Actions Permissions
+By default, GitHub disables workflows from modifying your files (for good reason!). However, Quartz needs this to write the actual site files back to GitHub.
 
-![Enable GitHub Actions](notes/images/github-actions.png)*Enable GitHub Actions*
+Head to `Settings > Action > General > Workflow Permissions` and choose `Read and Write Permissions`
+
+![[notes/images/github-actions.png]]
+*Enable GitHub Actions*
 
 ### Enable GitHub Pages
 

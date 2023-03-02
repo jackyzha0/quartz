@@ -38,12 +38,12 @@ Yes! All built files can be found under `/public` in the `master` branch. More d
 Make sure you set your `GOPATH` correctly! This will allow your terminal to correctly recognize `hugo-obsidian` as an executable.
 
 ```shell
-# Add the following 2 lines to your ~/.bash_profile
+# Add the following 2 lines to your ~/.bash_profile (~/.zshrc if you are on Mac)
 export GOPATH=/Users/$USER/go
 export PATH=$GOPATH/bin:$PATH
 
 # In your current terminal, to reload the session
-source ~/.bash_profile
+source ~/.bash_profile # again, (~/.zshrc if you are on Mac)
 ```
 
 ### How come my notes aren't being rendered?
