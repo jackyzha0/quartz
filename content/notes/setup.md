@@ -15,10 +15,14 @@ Navigate to the GitHub repository for the Quartz project:
 
 📁 [Quartz Repository](https://github.com/jackyzha0/quartz)
 
-Then, Fork the repository into your own GitHub account. If you don't have an account, you can make on for free [here](https://github.com/join). More details about forking a repo can be found on [GitHub's documentation](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
+Then, Fork the repository into your own GitHub account. **Make sure that when you fork, you _uncheck_ the 'Copy the `hugo` branch only' option**.
+
+If you don't have an account, you can make on for free [here](https://github.com/join). More details about forking a repo can be found on [GitHub's documentation](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
+
+![[notes/images/fork.png]]
 
 ### Cloning
-After you've made a fork of the repository, you need to download the files locally onto your machine. Ensure you have `git`, then type the following command replacing `YOUR-USERNAME` with your GitHub username.
+After you've made a fork of the repository, you need to download the files locally onto your machine. Ensure you have `git`, then type the following command in your terminal replacing `YOUR-USERNAME` with your GitHub username.
 
 ```shell
 git clone https://github.com/YOUR-USERNAME/quartz

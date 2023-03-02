@@ -71,8 +71,8 @@
 
   {{partial "mermaid.html" .}}
 
-  <script async src="https://unpkg.com/@floating-ui/core@0.7.3"></script>
-  <script async src="https://unpkg.com/@floating-ui/dom@0.5.4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.2.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.1"></script>
   {{ $popover := resources.Get "js/popover.js" | resources.Fingerprint "md5" |
   resources.Minify }}
   <script async src="{{$popover.Permalink}}"></script>

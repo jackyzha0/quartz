@@ -15,24 +15,10 @@ Here's a rough overview of what's what.
 
 **To edit the main home page, open `/content/_index.md`.**
 
-To create a link between notes in your garden, just create a normal link using Markdown pointing to the document in question. Please note that **all links should be relative to the root `/content` path**. 
-
-```markdown
-For example, I want to link this current document to `notes/config.md`.
-[A link to the config page](notes/config.md)
-```
-
-Similarly, you can put local images anywhere in the `/content` folder.
-
-```markdown
-Example image (source is in content/notes/images/example.png)
-![Example Image](/content/notes/images/example.png)
-```
-
-You can also use wikilinks if that is what you are more comfortable with!
-
 ### Front Matter
-Hugo is picky when it comes to metadata for files. Make sure that your title is double-quoted and that you have a title defined at the top of your file like so. You can also add tags here as well.
+Hugo is picky when it comes to metadata for files. Make sure that your title is double-quoted and that you have a title defined at the top of your file like so, otherwise the generated page will not have a title!
+
+You can also add tags here as well.
 
 ```yaml
 ---
