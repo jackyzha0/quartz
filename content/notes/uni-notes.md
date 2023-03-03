@@ -16,3 +16,8 @@ tags:
 - [cosc-204](notes/cosc-204.md)
 - [comp-210](notes/comp-210.md)
 - [math-202](notes/math-202.md)
+
+## 2023 s1
+
+- [[cosc-301]]
+- [[cosc-342]]

@@ -25,6 +25,8 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 # Lectures
 - [[01-intro]]
 - [[02-network and hardware protocols]]
+- [[03-ipv6-bootcamp]]
+- [[04-scripting]]
 
 
 # Info
