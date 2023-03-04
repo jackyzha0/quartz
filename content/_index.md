@@ -1,9 +1,9 @@
 ---
-title: 🪴 Quartz 3.3
+title: Year 11 Atar Notes
 enableToc: false
 ---
 
-Host your second brain and [digital garden](https://jzhao.xyz/posts/networked-thought) for free. Quartz features
+Hi! This is a website I made as a side project! Thanks to Thomas Han and Edward Hunyh for helping! [digital garden](https://jzhao.xyz/posts/networked-thought) for free. Quartz features
 
 1. Extremely fast natural-language [[notes/search]]
 2. Customizable and hackable design based on [Hugo](https://gohugo.io/)
@@ -23,5 +23,5 @@ If you prefer browsing the contents of this site through a list instead of a gra
 ### Troubleshooting
 - 🚧 [Troubleshooting and FAQ](notes/troubleshooting.md)
 - 🐛 [Submit an Issue](https://github.com/jackyzha0/quartz/issues)
-- 👀 [Discord Community](https://discord.gg/cRFFHYye7t)
+- 👀 [Discord Community](https://discord.gg/36uJSF7cwz)
 
