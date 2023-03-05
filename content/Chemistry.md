@@ -1,8 +1,9 @@
 ---
 title: Chemistry Year 11 Notes
+enableToc: false
 ---
 
 [go back] (index.md)
 
-[Atomic Spectra] (content/Chemistry/AtomicSpectra.md)
-[Atomic Structure] (content/Chemistry/AtomicStructure.md)
+[Atomic Spectra] (Chemistry/AtomicSpectra.md)
+[Atomic Structure] (Chemistry/AtomicStructure.md)
