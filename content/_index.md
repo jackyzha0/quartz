@@ -3,13 +3,18 @@ title: Year 11 Atar Notes
 enableToc: false
 ---
 
-Hi! This is a website I made as a side project! Thanks to Thomas Han and Edward Hunyh for helping! [digital garden](https://jzhao.xyz/posts/networked-thought) for free. Quartz features
+Hi! This is a website I made as a side project! Thanks to Thomas Han and Edward Hunyh for helping! 
 
-1. Extremely fast natural-language [[notes/search]]
-2. Customizable and hackable design based on [Hugo](https://gohugo.io/)
-3. Automatically generated backlinks, link previews, and local graph
-4. Built-in [[notes/CJK + Latex Support (测试) | CJK + Latex Support]] and [[notes/callouts | Admonition-style callouts]]
-5. Support for both Markdown Links and Wikilinks
+These notes are on Obsidian! You can also ask me on Discord for them!
+
+Subjects:
+1. Chemistry
+2. Physics
+3. Economics
+4. Literature
+5. Methods
+6. Specialist 
+
 
 Check out some of the [amazing gardens that community members](notes/showcase.md) have published with Quartz or read about [why I made Quartz](notes/philosophy.md) to begin with.
 
@@ -20,8 +25,4 @@ Returning user? Figure out how to [[notes/updating|update]] your existing Quartz
 
 If you prefer browsing the contents of this site through a list instead of a graph, you see a list of all [setup-related notes](/tags/setup).
 
-### Troubleshooting
-- 🚧 [Troubleshooting and FAQ](notes/troubleshooting.md)
-- 🐛 [Submit an Issue](https://github.com/jackyzha0/quartz/issues)
-- 👀 [Discord Community](https://discord.gg/36uJSF7cwz)
 
