@@ -50,4 +50,4 @@
 2.  Salt may not be completely excited, meaning only a part of the emission spectra is emitted, leading to a different colour being observed
 3.  If the material is a non-metal (e.g. ionic compound), it may not be (fully?) excited at low temperatures or may produce EMR outside the visible spectrum
 4.  Ethanol and oxygen may get involved, changing the observed colour (orange flame)
-5.  Some elements have (very?) similar colours; this makes it difficult to distinguish between 2 different elements/bac
+5.  Some elements have (very?) similar colours; this makes it difficult to distinguish between 2 different elements

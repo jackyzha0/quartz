@@ -8,7 +8,7 @@ Hi! This is a website I made as a side project! Thanks to Thomas Han and Edward 
 These notes are on Obsidian! You can also ask me on Discord for them!
 
 Subjects:
-1. [Chemistry] (/content/Chemistry)
+1. [Chemistry] (content/Chemistry.md)
 2. Physics
 3. Economics
 4. Literature
