@@ -3,7 +3,7 @@ title: Chemistry Notes
 enableToc: false
 ---
 
-[Go back](Economics/Economics.md)
+[go back](obsidian://open?vault=content&file=_index)
 
 Year 11 Notes:
 
