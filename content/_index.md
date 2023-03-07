@@ -10,7 +10,7 @@ These notes are on Obsidian! You can also ask me on Discord for them!
 Subjects:
 1. [Chemistry](Chemistry/Chemistry.md)
 2. Physics
-3. Economics
+3. [Economics](Economics/Economics.md)
 4. Literature
 5. Methods
 6. Specialist 
