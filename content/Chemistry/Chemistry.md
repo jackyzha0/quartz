@@ -3,7 +3,7 @@ title: Chemistry Notes
 enableToc: false
 ---
 
-[go back](index.md)
+[go back](_index.md)
 
 Year 11 Notes:
 [Atomic Spectra](Chemistry/AtomicSpectra.md)

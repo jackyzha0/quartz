@@ -1,4 +1,4 @@
-[Go Back](Chemistry.md)
+[Go Back](Chemistry/Chemistry.md)
 
 # _**Differences in Discrete Energy Levels**_
 
