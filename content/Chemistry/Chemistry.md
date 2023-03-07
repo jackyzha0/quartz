@@ -3,7 +3,7 @@ title: Chemistry Notes
 enableToc: false
 ---
 
-[go back](_index.md)
+[Go back](Economics/Economics.md)
 
 Year 11 Notes:
 
