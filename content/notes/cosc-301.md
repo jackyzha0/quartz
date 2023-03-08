@@ -13,6 +13,7 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 
 # Labs
 - [[01-VM-intro]]
+- [[02-Baisc-Interface-Management]]
 
 # Notes
 - readings
