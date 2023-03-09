@@ -14,6 +14,7 @@ tags:
 
 # Lectures
 - [[01-intro-to-342]]
+- [[02-colour-representation]]
 
 # Info
 
