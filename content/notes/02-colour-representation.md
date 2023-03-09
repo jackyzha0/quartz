@@ -10,7 +10,11 @@ representing colors;
 	- most common
 	- sensors in camera
 	- projects + monitors
-	- 
+	- aRGB/RGBa
+	- GIT, PNG etc
 - CMYK
 - HSV/HSL
 - others: YUV, CIE
+
+![](https://i.imgur.com/RG5WOUb.png)
+ 
