@@ -7,11 +7,15 @@ tags:
 ---
 
 access control models
+- DAC - subject centered
+- MAC - object centered
+- RBAC
+- ACL
 
 backups
 
 devices for filesystems
-- device naming conventions under dev explanation
+- device naming conventions under /dev explanation
 - 
 
 UNIX file system
@@ -19,10 +23,10 @@ UNIX file system
 - descriptions
 - implementation
 
-struture of directory
+structure of directory
 
 soft vs hard links
-- hard link must always poin to data - to delete a file with hard links you must also delete all the hard links
+- hard link must always point to data - to delete a file with hard links you must also delete all the hard links
 - soft links can point to a non-existing file 
 
 advanced file attrs
