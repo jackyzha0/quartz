@@ -11,12 +11,18 @@ access control models
 - MAC - object centered
 - RBAC
 - ACL
+	- list of who can do what things to which files
+	- 
 
 backups
 
-devices for filesystems
+devices for file systems
 - device naming conventions under /dev explanation
-- 
+- full
+	- easy, costly
+- incremental
+	- updates only files that have changed
+	- level 0, 1, 2, 3, 4, 5 ... 9
 
 UNIX file system
 - tree ![](https://i.imgur.com/9iDILn6.png)
