@@ -1,12 +1,32 @@
 {
   "recentFiles": [
     {
+      "basename": "shell scripting",
+      "path": "shell scripting.md"
+    },
+    {
+      "basename": "Linux",
+      "path": "Linux.md"
+    },
+    {
+      "basename": "new post",
+      "path": "templates/new post.md"
+    },
+    {
       "basename": "git and github",
       "path": "git and github.md"
     },
     {
+      "basename": "markup languages",
+      "path": "markup languages.md"
+    },
+    {
       "basename": "internet protocols",
       "path": "internet protocols.md"
+    },
+    {
+      "basename": "rmarkdown and LaTeX",
+      "path": "rmarkdown and LaTeX.md"
     },
     {
       "basename": "packages",

@@ -1,5 +1,6 @@
 ---
-title: "AI chatbots"
+title: "new post"
 tags :
-- tag1
+- entry
+- budding
 ---

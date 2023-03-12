@@ -12,4 +12,5 @@ Internet protocols are sets of rules that enable communication and data exchange
 -   HTTP: Hypertext Transfer Protocol. [This protocol is used for accessing and displaying web pages over the internet](https://www.techwalla.com/articles/types-of-internet-protocol)[1](https://www.techwalla.com/articles/types-of-internet-protocol)[2](https://www.geeksforgeeks.org/types-of-internet-protocols/).
 -   DNS: Domain Name System. [This protocol is used for translating domain names into IP addresses, which are easier for computers to understand](https://www.techtarget.com/searchnetworking/feature/12-common-network-protocols-and-their-functions-explained)[3](https://www.techtarget.com/searchnetworking/feature/12-common-network-protocols-and-their-functions-explained).
 
+geminis
 These are some examples of internet protocols that you may encounter or use on a daily basis. You can learn more about each protocol by reading their specifications or tutorials online
