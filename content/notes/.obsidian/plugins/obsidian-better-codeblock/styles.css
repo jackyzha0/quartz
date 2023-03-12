@@ -1,0 +1,175 @@
+
+.obsidian-embedded-code-title__code-block-title {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* font-size: 85%!important; */
+    padding: 3px !important;
+    padding-left: 15px !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+
+.copy-code-button{
+  margin-top: 42px !important; /* 为自带的按钮增加上边距 */
+}
+
+
+pre[class*=language-] {
+  font-size: var(--editor-font-size);
+  line-height: 1.5em;
+  padding-bottom: 0px;
+}
+.obsidian-embedded-code-title__code-block-title + code[class*=language-]{
+  padding: 0em 0em 0em 0em !important;
+  /* padding-top: 0 !important; */
+  font-size: var(--editor-font-size) !important;
+  line-height: 1.5em !important;
+}
+/* pre[class*=language-] > code[class*=language-] {
+  padding: 0em 0em 0em 0.5em !important;
+  /* padding-top: 0 !important; */
+  /* font-size: var(--editor-font-size) !important;
+  line-height: 1.5em !important;
+} */
+
+pre[class*=language-].code-block-pre__has-linenum {
+  padding-left: 3.5em;
+}
+
+.code-block-pre__has-linenum::before {
+  padding-top: 6px;
+}
+
+/* 代码行号 */
+.code-block-linenum-wrap {
+  position: absolute;
+  /* top: 35px; */
+  left: 0px;
+  min-width: 3em;
+  font-size: var(--editor-font-size);
+  line-height: 1.5em;
+  counter-reset: line-num;
+  text-align: center;
+  /* border-right: #999 2px solid; 行号与代码间分隔线 */ 
+  user-select: none;
+  pointer-events: none;
+  background-color: transparent;
+  /* background-color: inherit; */
+}
+.code-block-linenum-wrap .code-block-linenum {
+  display: block;
+  counter-increment: line-num;
+  pointer-events: none;
+}
+.code-block-linenum-wrap .code-block-linenum::before {
+  content: counter(line-num);
+}
+
+/* 代码高亮 */
+pre[class*=language-] .code-block-highlight-wrap {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 0px;
+  top: 35px;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+pre[class*=language-] .code-block-highlight-wrap span {
+  display: block;
+  height: 1.5em;
+  width: 100%;
+}
+
+/* 折叠代码块 */
+
+:root {
+  --admonition-details-icon: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z'/></svg>");
+}
+.obsidian-embedded-code-title__code-block-title{
+  line-height: 35px;
+  height: 35px !important;
+  color: currentColor !important;
+}
+
+.obsidian-embedded-code-title__code-block-title .langName {
+  display: inline;
+  float: right;
+  line-height: 29px;
+  margin-right: 35px;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: var(--font-default);
+}
+
+.obsidian-embedded-code-title__code-block-title .collapser {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  content: "";
+}
+.obsidian-embedded-code-title__code-block-title .collapser .handle {
+  transform: rotate(90deg);
+  transition: transform 0.25s;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-image: var(--admonition-details-icon);
+  mask-image: var(--admonition-details-icon);
+  width: 20px;
+  height: 20px;
+}
+.obsidian-embedded-code-title__code-block-title[closed] .collapser .handle{
+  transform: rotate(0deg);
+}
+.obsidian-embedded-code-title__code-block-title[closed] + code{
+  height: 0;
+}
+.obsidian-embedded-code-title__code-block-title[closed] + code + span{
+  height: 0;
+}
+
+.obsidian-embedded-code-title__code-block-title[closed] + code + span span{
+  visibility: hidden;
+}
+
+.obsidian-embedded-code-title__code-block-title[closed] + code + span + span span{
+  visibility: hidden;
+}
+
+.obsidian-embedded-code-title__code-block-title > .title {
+  display: inline-block;
+  position: relative;
+  margin-left: 5px !important;
+  margin: 0;
+  padding: 0;
+
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* .obsidian-embedded-code-title__code-block-title > .icon-wrap {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background-position: center;
+
+  top: 50%;
+  transform: translateY(-50%);
+} */
+
+.code-block-wrap > pre > code[class*=language-]{
+  padding: 0em 0em 0em 0em !important;
+  /* padding-top: 0 !important; */
+  font-size: var(--editor-font-size) !important;
+  line-height: 1.5em !important;
+}

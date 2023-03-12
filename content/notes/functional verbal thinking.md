@@ -1,0 +1,1 @@
+what's functional thinking

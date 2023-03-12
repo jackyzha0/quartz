@@ -1,0 +1,33 @@
+.recent-files-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.recent-files-title-content {
+  flex-grow: 1;
+}
+
+.recent-files-file-delete {
+  display: none;
+  color: var(--nav-item-color);
+  height: 17px;
+}
+
+.recent-files-title:hover .recent-files-file-delete {
+  display: block;
+  cursor: pointer;
+}
+
+.recent-files-file-delete:hover {
+  color: var(--nav-item-color-hover);
+}
+
+.recent-files-donation {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.recent-files-donate-button {
+  margin: 10px;
+}

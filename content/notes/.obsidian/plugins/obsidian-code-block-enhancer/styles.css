@@ -1,0 +1,78 @@
+.code-block-copy-button {
+  display: none;
+  margin: 0 0 0 auto;
+  padding: 4px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.code-block-copy-button svg.copy path {
+  fill: var(--interactive-accent);
+}
+.code-block-copy-button:hover, .code-block-copy-button:active {
+  cursor: pointer;
+}
+.code-block-copy-button:hover svg path, .code-block-copy-button:active svg path {
+  filter: brightness(1.4);
+  transition: all ease 0.3s;
+}
+.code-block-copy-button svg.copy-success path {
+  fill: var(--interactive-success);
+}
+.code-block-copy-button:focus {
+  outline: 0;
+}
+
+.code-block-lang-name {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: var(--text-normal);
+  font-size: 0.8rem;
+  margin-left: 4px;
+  user-select: none;
+}
+
+.code-block-wrap {
+  position: relative;
+}
+
+pre[class*=language-] {
+  font-size: var(--editor-font-size);
+  line-height: 1.5em;
+}
+pre[class*=language-] > code[class*=language-] {
+  padding-top: 0 !important;
+  font-size: var(--editor-font-size) !important;
+  line-height: 1.5em !important;
+}
+pre[class*=language-].code-block-pre__has-linenum {
+  padding-left: 4.5em;
+}
+
+.code-block-pre__has-copy-button:hover .code-block-copy-button {
+  display: block;
+}
+
+.code-block-linenum-wrap {
+  position: absolute;
+  top: 1em;
+  left: 0px;
+  min-width: 4em;
+  font-size: var(--editor-font-size);
+  line-height: 1.5em;
+  counter-reset: line-num;
+  text-align: center;
+  border-right: #999 1px solid;
+  user-select: none;
+  pointer-events: none;
+  background-color: inherit;
+}
+.code-block-linenum-wrap .code-block-linenum {
+  display: block;
+  counter-increment: line-num;
+  pointer-events: none;
+}
+.code-block-linenum-wrap .code-block-linenum::before {
+  content: counter(line-num);
+}

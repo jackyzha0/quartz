@@ -1,3 +1,6 @@
 ---
-title: "{{title}}"
+title: ""
+tags :
+- 
 ---
+

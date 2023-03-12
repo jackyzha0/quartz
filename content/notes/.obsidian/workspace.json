@@ -1,0 +1,231 @@
+{
+  "main": {
+    "id": "2e77921329d2946c",
+    "type": "split",
+    "children": [
+      {
+        "id": "901cc941d6441933",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "31227c0140005e5b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "powershell scripting.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "12892f8696d422f4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "functional verbal thinking.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "15ef7883f13f9d0f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "powershell scripting.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "fdc84cbeec2d94cd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "packages.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "5e809567807707d4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "internet protocols.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "fbd5c78d637b9b76",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "git and github.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d2c66f217c3669ad",
+    "type": "split",
+    "children": [
+      {
+        "id": "fec7b54826ba561b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4a4f75cada993933",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "5bc7bb94f07c2929",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "b1e00a1bcf7fc30f",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "6133ddf95786f880",
+            "type": "leaf",
+            "state": {
+              "type": "recent-files",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "edd979fd1d0352d7",
+    "type": "split",
+    "children": [
+      {
+        "id": "7a35368b6fa38a45",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "542fa7b64d69ad3b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "git and github.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5764b49b429db3f7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "git and github.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "ba3c72881f015763",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "d72ec2def13ddc41",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "git and github.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "fbd5c78d637b9b76",
+  "lastOpenFiles": [
+    "internet protocols.md",
+    "git and github.md",
+    "packages.md",
+    "powershell scripting.md",
+    "functional verbal thinking.md",
+    "AI chatbots.md",
+    "This digital garden.md",
+    "templates/new post.md",
+    "templates"
+  ]
+}

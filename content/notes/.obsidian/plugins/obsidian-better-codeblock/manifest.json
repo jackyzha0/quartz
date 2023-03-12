@@ -1,0 +1,10 @@
+{
+	"id": "obsidian-better-codeblock",
+	"name": "Better CodeBlock",
+	"version": "1.0.8",
+	"minAppVersion": "0.12.0",
+	"description": "Add title, line number to Obsidian code block",
+	"author": "StarGrey",
+	"authorUrl": "https://github.com/stargrey",
+	"isDesktopOnly": false
+}

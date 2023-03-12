@@ -1,0 +1,177 @@
+@charset "UTF-8";
+.cm-s-obsidian pre.HyperMD-codeblock span.cm-formatting-code-block {
+  color: var(--text-muted);
+}
+
+.cm-s-obsidian pre.HyperMD-codeblock .cm-keyword {
+  font-weight: normal;
+}
+
+.theme-dark .cm-s-obsidian {
+  /*
+
+  Name:       yoncé
+  Author:     Thomas MacLean (http://github.com/thomasmaclean)
+
+  Original yoncé color scheme by Mina Markham (https://github.com/minamarkham)
+
+  */
+  /**/
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock {
+  color: #d4d4d4;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-keyword,
+.theme-dark .cm-s-obsidian .cm-math.cm-keyword,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-keyword {
+  color: #00A7AA;
+  font-weight: normal;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-atom,
+.theme-dark .cm-s-obsidian .cm-math.cm-atom,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-atom {
+  color: #F39B35;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-number,
+.theme-dark .cm-s-obsidian .cm-math.cm-number,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-number {
+  color: #A06FCA;
+}
+.theme-dark .cm-s-obsidian span.cm-hmd-frontmatter.cm-type,
+.theme-dark .cm-s-obsidian span.cm-math.cm-type,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock span.cm-type {
+  color: #A06FCA;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-def,
+.theme-dark .cm-s-obsidian .cm-math.cm-def,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-def {
+  color: #98E342;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-property,
+.theme-dark .cm-s-obsidian .cm-math.cm-property,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-property {
+  color: #D4D4D4;
+}
+.theme-dark .cm-s-obsidian span.cm-hmd-frontmatter.cm-variable,
+.theme-dark .cm-s-obsidian span.cm-math.cm-variable,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock span.cm-variable {
+  color: #D4D4D4;
+}
+.theme-dark .cm-s-obsidian span.cm-hmd-frontmatter.cm-variable-2,
+.theme-dark .cm-s-obsidian span.cm-math.cm-variable-2,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock span.cm-variable-2 {
+  color: #da7dae;
+}
+.theme-dark .cm-s-obsidian span.cm-hmd-frontmatter.cm-variable-3,
+.theme-dark .cm-s-obsidian span.cm-math.cm-variable-3,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock span.cm-variable-3 {
+  color: #A06FCA;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-type.cm-def,
+.theme-dark .cm-s-obsidian .cm-math.cm-type.cm-def,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-type.cm-def {
+  color: #FC4384;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-property.cm-def,
+.theme-dark .cm-s-obsidian .cm-math.cm-property.cm-def,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-property.cm-def {
+  color: #FC4384;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-callee,
+.theme-dark .cm-s-obsidian .cm-math.cm-callee,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-callee {
+  color: #FC4384;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-operator,
+.theme-dark .cm-s-obsidian .cm-math.cm-operator,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-operator {
+  color: #FC4384;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-qualifier,
+.theme-dark .cm-s-obsidian .cm-math.cm-qualifier,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-qualifier {
+  color: #FC4384;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-tag,
+.theme-dark .cm-s-obsidian .cm-math.cm-tag,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-tag {
+  color: #FC4384;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-tag.cm-bracket,
+.theme-dark .cm-s-obsidian .cm-math.cm-tag.cm-bracket,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-tag.cm-bracket {
+  color: #D4D4D4;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-attribute,
+.theme-dark .cm-s-obsidian .cm-math.cm-attribute,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-attribute {
+  color: #A06FCA;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-comment,
+.theme-dark .cm-s-obsidian .cm-math.cm-comment,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-comment {
+  color: #696d70;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-comment.cm-tag,
+.theme-dark .cm-s-obsidian .cm-math.cm-comment.cm-tag,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-comment.cm-tag {
+  color: #FC4384;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-comment.cm-attribute,
+.theme-dark .cm-s-obsidian .cm-math.cm-comment.cm-attribute,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-comment.cm-attribute {
+  color: #D4D4D4;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-string,
+.theme-dark .cm-s-obsidian .cm-math.cm-string,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-string {
+  color: #E6DB74;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-string-2,
+.theme-dark .cm-s-obsidian .cm-math.cm-string-2,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-string-2 {
+  color: #F39B35;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-meta,
+.theme-dark .cm-s-obsidian .cm-math.cm-meta,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-meta {
+  color: #D4D4D4;
+  background: inherit;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-builtin,
+.theme-dark .cm-s-obsidian .cm-math.cm-builtin,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-builtin {
+  color: #FC4384;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-header,
+.theme-dark .cm-s-obsidian .cm-math.cm-header,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-header {
+  color: #da7dae;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-hr,
+.theme-dark .cm-s-obsidian .cm-math.cm-hr,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-hr {
+  color: #98E342;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-link,
+.theme-dark .cm-s-obsidian .cm-math.cm-link,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-link {
+  color: #696d70;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-error,
+.theme-dark .cm-s-obsidian .cm-math.cm-error,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .cm-error {
+  border-bottom: 1px solid #C42412;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.CodeMirror-activeline-background,
+.theme-dark .cm-s-obsidian .cm-math.CodeMirror-activeline-background,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .CodeMirror-activeline-background {
+  background: #272727;
+}
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.CodeMirror-matchingbracket,
+.theme-dark .cm-s-obsidian .cm-math.CodeMirror-matchingbracket,
+.theme-dark .cm-s-obsidian pre.HyperMD-codeblock .CodeMirror-matchingbracket {
+  outline: 1px solid grey;
+  color: #D4D4D4 !important;
+}
