@@ -28,8 +28,9 @@ UNIX file system
 - tree ![](https://i.imgur.com/9iDILn6.png)
 - descriptions
 - implementation
-
+	- inode ⇒ data structure documenting data about a file
 structure of directory
+- current working DIR is always in memory
 
 soft vs hard links
 - hard link must always point to data - to delete a file with hard links you must also delete all the hard links
