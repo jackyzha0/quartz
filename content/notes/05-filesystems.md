@@ -11,9 +11,11 @@ access control models
 backups
 
 devices for filesystems
+- device naming conventions under dev explanation
+- 
 
 UNIX file system
-- tree
+- tree ![](https://i.imgur.com/9iDILn6.png)
 - descriptions
 - implementation
 
