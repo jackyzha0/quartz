@@ -13,7 +13,8 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 
 # Labs
 - [[01-VM-intro]]
-- [[02-Baisc-Interface-Management]]
+- [[02-basic-interface-management]]
+- [[03-ipv6-bootcamp]]
 
 # Notes
 - readings
@@ -27,8 +28,9 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 - [[01-intro]]
 - [[02-network and hardware protocols]]
 - [[03-ipv6-bootcamp]]
-- [[04-scripting]]
-
-
+- [[04-scripting-techniques]]
+- [[05-filesystems]]
+- [[06-network-system-administration]]
+- 
 # Info
 

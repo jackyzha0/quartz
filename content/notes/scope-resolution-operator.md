@@ -5,6 +5,8 @@ tags:
 - cosc-342
 ---
 
+`::`
+
 from chat gpt:
 The dot `.` operator is used to access the members of an object instance, which includes both non-static and static members. When you use the dot `.` operator, the left-hand side of the operator must be an instance of a class.
 
