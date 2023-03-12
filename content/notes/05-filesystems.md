@@ -22,11 +22,16 @@ UNIX file system
 struture of directory
 
 soft vs hard links
+- hard link must always poin to data - to delete a file with hard links you must also delete all the hard links
+- soft links can point to a non-existing file 
 
 advanced file attrs
 
 special files
 
 journaling
+ - logs changes to journal before writing
+ - impact on performance requires data be written twice
+ - **question** why not just write a description of the change
 
 creating FS demo
