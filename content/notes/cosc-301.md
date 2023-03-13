@@ -25,6 +25,7 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 	- https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
 	- [x] http://catb.org/~esr/faqs/smart-questions.html
 		- [[asking questions]]
+	- bash beginner guide
 # Lectures
 - [x] [[01-intro]]
 - [x] [[02-network and hardware protocols]]
