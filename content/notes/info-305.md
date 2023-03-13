@@ -18,5 +18,6 @@ tags:
 - [[02-intro-pervasive-and-ubiquitious]]
 - [[03-intro-AR-dev]]
 - [[04-lens-studio]]
+- [[05-pervasive-ubiquitious-2]]
 
 # Info
