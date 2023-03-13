@@ -16,6 +16,12 @@ tags:
 	- temporary files shouldn't be in /tmp ⇒ everyone can access tmp, not secure
 
 scripting
+- weakly typed, interpreted, no need to compile
+- cons
+	- inefficient
+	- TOCTTOU
+	- pasrsing issies
+	- interface inconsistency
 - history
 - origin
 - examples
