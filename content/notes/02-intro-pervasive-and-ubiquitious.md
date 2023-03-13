@@ -71,8 +71,7 @@ context awareness
 > [!INFO] same thing: camera constantly running: but neck camera
 
 
-> [!INFO] toll gates scanning number plates: initally kept private. can we use it to 
-
+> [!INFO] toll gates scanning number plates: initally kept private. can we use it to solve a crime though?
 
 # Tangible computing
 
@@ -80,3 +79,32 @@ context awareness
 - ‘Pure’ form of ubicomp in that there is no computer to be seen
 
 ![H. Ishii, B. Ullmer. Tangible Bits: Towards seamless interfaces between people, bits and atoms](https://i.imgur.com/mmgQMCY.png)
+
+
+
+![1992 – Durrell Bishop's Marble Answering Machine](https://i.imgur.com/qCWtriU.png)
+
+> [!INFO] message "captured in balls"
+
+
+
+![Daniel Leithinger, Sean Follmer, Alex Olwal, and Hiroshi Ishii. 2014. Physical telepresence: shape capture and display for embodied, computer-mediated remote collaboration. In Proceedings of the 27th annual ACM symposium on User interface software and technology (UIST '14).](https://i.imgur.com/Uh5rNE5.png)
+
+> [!INFO] physical telepresence. physical interaction remotely
+
+![Ryokai, Marti, Ishii. I/O Brush: Drawing with Everyday Objects as Ink. ACM CHI ’04.](https://i.imgur.com/GhglQbZ.png)
+
+
+![SoundFORMS: Manipulating Sound Through Touch CHI 2016](https://i.imgur.com/3LWqoIe.png)
+
+
+# Calm computing
+![Project Blinkenlights (2001), http://blinkenlights.net, Haus des Lehrers, Berlin, Germany](https://i.imgur.com/zyEBMGV.png)
+
+
+![N. Jeremijenko, LiveWire, Demo ACM Siggraph ’95](https://i.imgur.com/kUd3zrK.png)
+> [!INFO] interactive surfaces and spaces. physicalise information. wire was moved according to network traffic
+
+
+# Input and Interaction
+Google ATAP. track fingers using radar
