@@ -14,7 +14,7 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 
 # Labs
 - [x] [[01-VM-intro]]
-- [[02-basic-interface-management]]
+- [x] [[02-basic-interface-management]]
 - [[03-ipv6-bootcamp]]
 
 # Notes
