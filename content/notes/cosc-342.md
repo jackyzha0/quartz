@@ -1,7 +1,7 @@
 ---
 title: "cosc-342"
-year: 2022
-semester: 
+year: 2023
+semester: 1
 tags: 
 - course
 - 
