@@ -42,4 +42,41 @@ context awareness
 
 > [!INFO] measure cognitive load using pupil dilation. with high cognitive load they show less information on screen to stop from distracting you.
 
-> [!QUESTION] if they block other stuff while we have high workload, how do we deci
+> [!QUESTION] if they block other stuff while we have high workload, how do we decide which important things to show
+
+
+
+
+![Gregory D. Abowd, “Classroom 2000: An Experiment with the Instrumentation of a Living Educational Environment”, IBM Systems Journal, Special issue on Pervasive Computing, Volume 38, Number 4, pp. 508-530, October 1999](https://i.imgur.com/jibhsuL.png)
+
+> [!INFO] camera is class: idea to show automactically that everything is caputred, audio recording are matched to slides, annotations are shared with the whole class, as well as individual comments. able to split up video to see which parts of the slides are being talked about when. collects a lot of data that can be used later
+
+> [!QUESTION] auto sharing annotations sounds very easy, i think we should make the _default_ that annotations are shared
+
+
+
+
+
+![Steve Mann, “My “Augmediated” Life What I’ve learned from 35 years of wearing computerized eyewear” IEEE Explore, 2013](https://i.imgur.com/PTijDvG.png)
+
+> [!INFO] cameras constantly running, recorded his whole life. he is controversial, recording other people.
+
+> [!INFO] if everything is recorded there is an ethical dilemma, is contanst recording what we really want.
+
+
+
+
+![Hodges, et al. SenseCam: A retrospective memory aid. ACM Ubicomp ’06](https://i.imgur.com/v9SziUx.png)
+
+> [!INFO] same thing: camera constantly running: but neck camera
+
+
+> [!INFO] toll gates scanning number plates: initally kept private. can we use it to 
+
+
+# Tangible computing
+
+- Directly-manipulable physical interfaces to data and computation 
+- ‘Pure’ form of ubicomp in that there is no computer to be seen
+
+![H. Ishii, B. Ullmer. Tangible Bits: Towards seamless interfaces between people, bits and atoms](https://i.imgur.com/mmgQMCY.png)
