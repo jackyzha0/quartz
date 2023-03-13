@@ -15,5 +15,11 @@ Natural user interfaces
 - support special needs people
 
 context awareness
-- 
+- apps are aware of the environment around the user/the app and can adjus their behaviour to suit it
+
+automatic capture and access
+- automatically record and store things to remove the burden from humans and allows us to focus on things we are better at
+
+
+
 - 
