@@ -10,6 +10,7 @@ tags:
 https://www.cs.otago.ac.nz/cosc301/schedule.php
 
 # Assignments
+[[01-vm-ipv6]]
 
 # Labs
 - [x] [[01-VM-intro]]
