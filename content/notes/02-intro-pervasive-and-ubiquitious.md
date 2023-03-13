@@ -108,3 +108,22 @@ context awareness
 
 # Input and Interaction
 Google ATAP. track fingers using radar
+
+> [!QUESTION] Is it always tracking your finger? what if you do something accidentally
+
+
+# Wearable computing
+Thad Starner, starting using weable computing such as glasses. more interested in showing information, than capturing it
+
+# Challenges
+- What’s difficult about Pervasive and Ubiquitous Computing? 
+- Requires understanding of sensors and new sensing technologies 
+- Noisy inputs 
+- Sensor fusion 
+- Wireless communication channels 
+- Power consumption 
+- Context is only a proxy for human intent 
+- Unpredictable ussage context in particular for mobile devices 
+- Require novel user interfaces, limited/different I/O capabilities 
+- Lack of standardization in interface patterns 
+- Privacy & Security
