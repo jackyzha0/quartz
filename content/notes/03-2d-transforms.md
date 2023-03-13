@@ -53,6 +53,13 @@ homogenous coordinates
 - all linear transformations become 3x3 matrices
 - ![](https://i.imgur.com/aksrjQw.png)
 
->[!DIFFICULT] 
+>[!DANGER]  homogenous coordinates
 
 homogenous transforms
+- ![homogenous rotation and translation](https://i.imgur.com/qSIy9L1.png)
+- ![homogenous scaling](https://i.imgur.com/1YHOsWH.png)
+- ![non-uniform scaling](https://i.imgur.com/qkqFWa1.png)
+
+> [!INFO] non uniform scaling is when you dont scale each dimension equally, i.e., stretch 
+
+it is easy to apply a sequence of transformations by applying each one to the result of the previous one. the transformations can be combined into one translation which can be applied to any number of points
