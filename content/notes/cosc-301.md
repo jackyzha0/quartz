@@ -12,7 +12,7 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 # Assignments
 
 # Labs
-- [[01-VM-intro]]
+- [x] [[01-VM-intro]]
 - [[02-basic-interface-management]]
 - [[03-ipv6-bootcamp]]
 

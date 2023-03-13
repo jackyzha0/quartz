@@ -10,8 +10,8 @@ tags:
 
 # Labs
 
-- [[01a-getting-started]]
-- [[01b-cpp-essentials]]
+- [x] [[01a-getting-started]]
+- [x] [[01b-cpp-essentials]]
 - [[02-image-transforms]]
 
 # Notes
