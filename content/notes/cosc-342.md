@@ -10,11 +10,17 @@ tags:
 
 # Labs
 
+- [[01a-getting-started]]
+- [[01b-cpp-essentials]]
+- [[02-image-transforms]]
+
 # Notes
 
 # Lectures
-- [[01-intro-to-342]]
-- [[02-colour-representation]]
+- [x] [[01-intro-to-342]]
+- [x] [[02-colour-representation]]
+- [[03-2d-transforms]]
+- [[04-mosaicing]]
 
 # Info
 

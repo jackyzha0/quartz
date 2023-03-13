@@ -25,11 +25,11 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 	- [x] http://catb.org/~esr/faqs/smart-questions.html
 		- [[asking questions]]
 # Lectures
-- [[01-intro]]
-- [[02-network and hardware protocols]]
-- [[03-ipv6-bootcamp]]
+- [x] [[01-intro]]
+- [x] [[02-network and hardware protocols]]
+- [x] [[03-ipv6-bootcamp]]
 - [[04-scripting-techniques]]
-- [[05-filesystems]]
+- [x] [[05-filesystems]]
 - [[06-network-system-administration]]
 - 
 # Info
