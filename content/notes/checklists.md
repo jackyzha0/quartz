@@ -12,7 +12,14 @@ TIPS
 - flexibility in performing key points, but stop at critical steps
 - doesn't need to be written and marked off
 - trim the list as much as possible
-
+- clear pause point to use the checklist
+- 5-9 items - not too strict
+- longer than 60-90 seconds people start shortcutting
+- killer items - most important and easy to miss
+- simple and exact wording
+- fit on one page
+- no unnecessary font/colors
+- has to be tested in the real world
 
 three types of problems
 - simple > like baking a cake from a recipe
