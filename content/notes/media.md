@@ -32,11 +32,18 @@ tags:
 	- the curious case of the dog in the night time
 	- cryptonomicon, neal stephenson
 	- the secret history of joan of arc
-- current
 	- thinking fast and slow
+	- a checklist manifesto
+	- the book of tea
+	- norwegian wood
+	- the life of a stupid man, rashomon
+	- nocturnes
+	- the fall
+	- star
+- current
+	- the life of pi
 	- the second sex, simone de beauvoir
 - future
-	- a checklist manifesto
 	- actual air david berman
 	- woman in the dunes
 	- sophies world
