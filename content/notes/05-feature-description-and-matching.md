@@ -46,6 +46,7 @@ A SIMPLE FEATURE DESCRIPTOR
 
 Feature invariance
 ![](https://i.imgur.com/DTsADVj.png)
+> [!INFO] does not handle rotation, changing scale or brightness
 ![](https://i.imgur.com/mNxr2XK.png)
 
 SIFT: SCALE-INVARIANT FEATURE TRANSFORM
@@ -58,11 +59,16 @@ SIFT: SCALE-INVARIANT FEATURE TRANSFORM
 - Rotation invariance by estimating feature orientation 
 - Window is oriented to the dominant image gradient
 
+> [!INFO] not just direct comparision, compared on multiple, permutations
+
+> [!QUESTION] how is this different from doing different perumtations of grayscale vlues
+
+> [!INFO] 
+
 SIFT FEATURE DETECTION/DESCRIPTION
 - Detect blob features and determine their scale 
 - Compute a Histogram of Gradients around the blob 
 - Peak(s) in the Histogram determine the orientation 
 - A square region is used to compute the descriptor 
 - Square’s size from the blob size; orientation from HoG peaks
-
 

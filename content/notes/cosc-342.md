@@ -21,7 +21,7 @@ tags:
 - [x] [[02-colour-representation]]
 - [x] [[03-2d-transforms]]
 - [[04-mosaicing]]
-- [[05-feature-description-and-matching]]
+- [x] [[05-feature-description-and-matching]]
 
 # Info
 
