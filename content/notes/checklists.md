@@ -25,3 +25,24 @@ three types of problems
 many simple problems with many steps are error prone. people forget steps. they are amenable to "forcing functions": straightforward solutions that force the necessary behaviour
 
 always a decision: follow protocol or just do it ⇒ get the stupid stuff right but allow room for creativity and individual judgement
+
+checklists in building:
+- used to be a "master builder who knew everything"
+- building became very complex
+- people and to specialize and work together
+- e.g., labour, archiecture, engineering
+- use checklists to organise 
+	- construction tasks checklist
+	- communication task checklist
+
+
+van halen m&m clause
+- a bowl of m&m'm backstage with brown candies removed
+- van halen was the first band to take huge productions into tertiary third level markets
+- the contract rider was huge
+- buried somewhere in the middle of it was the m&m clause
+- if they find a brown m&m they line check the entire production and pretty much 100% of the time they find something wrong
+
+> [!QUOTE] under conditions of true complexity—where the knowledge required exceeds that of any individual and unpredictability reigns—efforts to dictate every step from the center will fail. People need room to act and adapt. Yet they cannot succeed as isolated individuals, either—that is anarchy. Instead, they require a seemingly contradictory mix of freedom and expectation—expectation to coordinate, for example, and also to measure progress toward common goals
+
+
