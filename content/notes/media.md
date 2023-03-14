@@ -42,8 +42,8 @@ tags:
 	- star
 - current
 	- the life of pi
-	- the second sex, simone de beauvoir
 - future
+	- the second sex, simone de beauvoir
 	- actual air david berman
 	- woman in the dunes
 	- sophies world
