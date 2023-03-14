@@ -15,7 +15,7 @@ tags:
 
 # Lectures
 - [x] [[01-intro-to-305]]
-- [[02-intro-pervasive-and-ubiquitious]]
+- [x] [[02-intro-pervasive-and-ubiquitious]]
 - [[03-intro-AR-dev]]
 - [[04-lens-studio]]
 - [x] [[05-pervasive-ubiquitious-2]]
