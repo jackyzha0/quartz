@@ -19,5 +19,6 @@ tags:
 - [[03-intro-AR-dev]]
 - [[04-lens-studio]]
 - [x] [[05-pervasive-ubiquitious-2]]
+- [[06-challenges-for-ubicomp-and-intro-to-sensors]]
 
 # Info
