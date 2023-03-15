@@ -60,3 +60,27 @@ Privacy and Security
 - Problem 1: No pervasive encryption 
 - Problem 2: Voluntary use of cloud services, interconnected services
 
+# Sensors
+need to capture context information to build context aware systems
+
+smartphone sensors
+- Smartphones house highly integrated sensors for sensing the environment: 
+- Proximity Sensors (e.g. NFC, Cameras) 
+- Location sensors (e.g. Cell,. AGPS, WiFi, GSM, Cameras) 
+- Orientation Sensors (e.g. Magnetometer, Accelerometer, Gyroscope, Camera) 
+- 3D sensors (LiDAR, Cameras) 
+- Microphone 
+- Lux-meter 
+- Future smartphones likely to add more: 
+- Kinect (e.g., Primesense Capri, Motorola Tango) 
+- RTK GPS 
+- Health sensors (glucose sensor, heart rate monitor,..)
+
+head mounted displays
+- Head-mounted displays (e.g. Hololens, Snap Spectacles) house highly integrated sensors for sensing the environment: 
+- Location sensors (e.g. 2 x cameras and depth camera) 
+- Orientation Sensors (e.g. Magnetometer, Accelerometer, Gyroscope, Camera) 
+- Microphone 
+- Lux-meter 
+- Eye tracking cameras
+
