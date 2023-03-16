@@ -7,6 +7,7 @@ tags:
 - 
 ---
 # Assignments
+- [[01-states]]
 
 # Labs
 - [[01]]
