@@ -22,6 +22,7 @@ tags:
 - [x] [[03-2d-transforms]]
 - [[04-mosaicing]]
 - [x] [[05-feature-description-and-matching]]
+- [ ] [[06-homographies]]
 
 # Info
 
