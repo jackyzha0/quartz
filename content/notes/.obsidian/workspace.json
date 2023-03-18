@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "my ricing and dev enviroment showcase_ make the best enviroment for  your windows 11.md",
+                "file": "git and github.md",
                 "mode": "source",
                 "source": false
               }
@@ -107,7 +107,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "my ricing and dev enviroment showcase_ make the best enviroment for  your windows 11.md",
+                "file": "git and github.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,7 +124,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "my ricing and dev enviroment showcase_ make the best enviroment for  your windows 11.md",
+                "file": "git and github.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -147,7 +147,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "my ricing and dev enviroment showcase_ make the best enviroment for  your windows 11.md"
+                "file": "git and github.md"
               }
             }
           }
@@ -170,8 +170,8 @@
   },
   "active": "24da404567122ff2",
   "lastOpenFiles": [
-    "windows packages installers.md",
     "my ricing and dev enviroment showcase_ make the best enviroment for  your windows 11.md",
+    "windows packages installers.md",
     "navingating through different internet protocols.md",
     "fresh windows install.md",
     "terminals apps.md",

@@ -1,6 +1,10 @@
 {
   "recentFiles": [
     {
+      "basename": "git and github",
+      "path": "git and github.md"
+    },
+    {
       "basename": "my ricing and dev enviroment showcase_ make the best enviroment for  your windows 11",
       "path": "my ricing and dev enviroment showcase_ make the best enviroment for  your windows 11.md"
     },
@@ -59,10 +63,6 @@
     {
       "basename": "rmarkdown and LaTeX",
       "path": "rmarkdown and LaTeX.md"
-    },
-    {
-      "basename": "git and github",
-      "path": "git and github.md"
     },
     {
       "basename": "shell scripting",
