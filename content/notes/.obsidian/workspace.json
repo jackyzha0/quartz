@@ -4,131 +4,34 @@
     "type": "split",
     "children": [
       {
-        "id": "901cc941d6441933",
+        "id": "bd365acc3ec0aad0",
         "type": "tabs",
         "children": [
           {
-            "id": "31227c0140005e5b",
+            "id": "24da404567122ff2",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "powershell scripting.md",
+                "file": "my ricing and dev enviroment showcase_ make the best enviroment for  your windows 11.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "12892f8696d422f4",
+            "id": "266c8db5df24ac73",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "functional verbal thinking.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "15ef7883f13f9d0f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "powershell scripting.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "fdc84cbeec2d94cd",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "packages.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "5e809567807707d4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "internet protocols.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "fdfe7d0817eb2e88",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "shell scripting.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "279ad3ef4fd3a2af",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Linux.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "732cda13d69e8846",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "templates/new post.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "fbd5c78d637b9b76",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "git and github.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "9724238b221bd7bc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "rmarkdown and LaTeX.md",
+                "file": "guide for AI chatbots.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "vertical"
@@ -157,7 +60,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:entry",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -182,11 +85,13 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "edd979fd1d0352d7",
@@ -202,7 +107,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "shell scripting.md",
+                "file": "my ricing and dev enviroment showcase_ make the best enviroment for  your windows 11.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -219,7 +124,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "shell scripting.md",
+                "file": "my ricing and dev enviroment showcase_ make the best enviroment for  your windows 11.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -242,7 +147,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "shell scripting.md"
+                "file": "my ricing and dev enviroment showcase_ make the best enviroment for  your windows 11.md"
               }
             }
           }
@@ -263,19 +168,26 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "fdfe7d0817eb2e88",
+  "active": "24da404567122ff2",
   "lastOpenFiles": [
-    "Linux.md",
-    "shell scripting.md",
-    "templates/new post.md",
-    "git and github.md",
-    "markup languages.md",
+    "windows packages installers.md",
+    "my ricing and dev enviroment showcase_ make the best enviroment for  your windows 11.md",
+    "navingating through different internet protocols.md",
+    "fresh windows install.md",
+    "terminals apps.md",
     "internet protocols.md",
-    "rmarkdown and LaTeX.md",
-    "packages.md",
+    "Linux.md",
+    "templates/new post.md",
+    "Open AI competitors.md",
+    "SQL subsets.md",
+    "guide for AI chatbots.md",
+    "AI chatbots.md",
     "powershell scripting.md",
     "functional verbal thinking.md",
-    "AI chatbots.md",
+    "rmarkdown and LaTeX.md",
+    "git and github.md",
+    "shell scripting.md",
+    "markup languages.md",
     "This digital garden.md",
     "templates"
   ]

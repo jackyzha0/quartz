@@ -5,5 +5,7 @@
   "obsidian-better-codeblock",
   "cm-editor-syntax-highlight-obsidian",
   "highlightr-plugin",
-  "recent-files-obsidian"
+  "recent-files-obsidian",
+  "obsidian-git",
+  "obsidian-plugin-groups"
 ]

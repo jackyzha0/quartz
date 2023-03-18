@@ -2,6 +2,7 @@
 title: "internet protocols"
 tags :
 - entry
+- ignore
 ---
 
 Internet protocols are sets of rules that enable communication and data exchange across the internet. There are many types of internet protocols for different purposes and functions. Here are some examples of common internet protocols:

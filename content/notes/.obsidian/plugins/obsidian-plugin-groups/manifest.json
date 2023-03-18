@@ -1,0 +1,11 @@
+{
+	"id": "obsidian-plugin-groups",
+	"name": "Plugin Groups",
+	"version": "2.0.2",
+	"minAppVersion": "0.15.0",
+	"description": "Manage your Plugins through groups: Enable and disable multiple plugins through a single command, or delay the startup of plugins to speed up your Obsidian start up time.",
+	"author": "Mocca101",
+	"authorUrl": "https://github.com/Mocca101",
+	"isDesktopOnly": false,
+	"fundingUrl": "https://www.buymeacoffee.com/Mocca101"
+}
