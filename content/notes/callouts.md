@@ -10,7 +10,7 @@ This includes
 - 12 Distinct callout types (each with several aliases)
 - Collapsable callouts
 
-See [documentation on supported types and syntax here](https://help.obsidian.md/How+to/Use+callouts#Types).
+See [documentation on supported types and syntax here](https://help.obsidian.md/Editing+and+formatting/Callouts).
 
 ## Showcase
 
