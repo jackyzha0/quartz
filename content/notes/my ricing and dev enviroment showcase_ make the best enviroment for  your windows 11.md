@@ -8,7 +8,7 @@ tags :
 This is a ==megapost==.
 https://vsthemes.org/en/software/808-ultrauxthemepatcher.html
 
-you have lots of option I personally use Sophia for Windows 11 [[fresh windows install]]
+you have lots of option I personally use Sophia for Windows 11 [[fresh windows install]] also
 https://github.com/stars/aleendev/lists/windows
 
 [[navingating through different internet protocols]]
