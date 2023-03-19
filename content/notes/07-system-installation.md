@@ -39,7 +39,7 @@ BIOS or EFI
 > bios checks conditioni of hardware, then hands over to some bootable disk
 > boot sequence - find boot disk, with the bootloader, and loads linux
 > if live cd it will just read from the cd
-> bios reads MBR (master bootable record) sector (hard drive has many sectors) first "track" on the hard drive, has sector zero. bios read this, it contains the boot loader code (LILA, GRUB). this is not the kernel, it boots the kinux kernel. the boot loader run in memory (obv cant run program from hard drive).
+> bios reads MBR (master bootable record) sector (hard drive has many sectors) first "track" on the hard drive, has sector zero. bios read this, it contains the boot loader code (LILO, GRUB). this is not the kernel, it boots the kinux kernel. the boot loader run in memory (obv cant run program from hard drive).
 > checks partitions. boot loader know what files to load. firs file is linux kernel
 > if there are multiple partitions. (each partition is one fs/device). one partition is labeled as bootable (label in boot sector) and contains a boot sector with OS dependent code. you can have multiple bootable fs's with a differnt OS
 > magic number also, contains information about bootale disks
@@ -96,7 +96,7 @@ Disk Partitioning
 - Logical Volume Management (LVM) 
 	- For multiple hard drives with flexible FS space management.
 
-> [!INFO] 
+> [!INFO] LVM allows you to mount fs's remotely
 
 Boot procedure (hard disk) 
 - Boot from hard disk 
@@ -133,7 +133,8 @@ Boot up phases
 	- https://wiki.ubuntu.com/Booting 
 	- http://manpages.ubuntu.com/manpages/bionic/man7/boot.7.html
 
-> [!INFO]
+> [!INFO] Kernel does initalisation. e.g., load device driver, start daemons
+> hard drive needs to be loaded so kernel. but hdd has command to load the hardrive. kernels needs to first mount root HD, this is part on the kernel. it contains the base commands like mount and sh.
 
 How Linux started? 
 - When Linux kernel is loaded into memory and initialised, the init program is executed 
@@ -141,7 +142,7 @@ How Linux started?
 	- Runs some start-up scripts to start up services according to the run-level 
 	- Runs getty program that prompts login waiting for users to login
 
-> [!INFO]
+> [!INFO] init.d mounts rood directory, which is used the start the "real" kernel and mount other fs's
 
 Run levels for boot or shutdown 
 - Linux run levels 
