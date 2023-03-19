@@ -39,19 +39,26 @@ BIOS or EFI
 > bios checks conditioni of hardware, then hands over to some bootable disk
 > boot sequence - find boot disk, with the bootloader, and loads linux
 > if live cd it will just read from the cd
-> bios reads MBR sector (hard drive has many sectors) first "track" on the hard drive, has sector zero. bios read this, it contains the boot loader code (LILA, GRUB). this is not the kernel, it boots the kinux kernel. the boot loader run in memory (obv cant run program from hard drive).
+> bios reads MBR (master bootable record) sector (hard drive has many sectors) first "track" on the hard drive, has sector zero. bios read this, it contains the boot loader code (LILA, GRUB). this is not the kernel, it boots the kinux kernel. the boot loader run in memory (obv cant run program from hard drive).
 > checks partitions. boot loader know what files to load. firs file is linux kernel
 > if there are multiple partitions. (each partition is one fs/device). one partition is labeled as bootable (label in boot sector) and contains a boot sector with OS dependent code. you can have multiple bootable fs's with a differnt OS
 > magic number also, contains information about bootale disks
 > the kernel is run from the boot sector
+> every partition has a boot sector. not bootable disks have an empty boot sector
 
 > [!INFO] just like a series of dominoes, its pre-arranged and you need to check that the chain works.
+
+> [!INFO] EFI has more features. it is a more advanced BIOS
 
 Disk Partitioning 
 - A hard disk can be divided into several partitions. Each partition functions as if it were a separate hard disk. 
 - If you have one hard disk, and want to have, say, two operating systems on it, you can divide the disk into two partitions. Each operating system uses its partition as it wishes and doesn't touch the other one. This way the two operating systems can co-exist peacefully on the same hard disk. Without partitions one would have to buy a hard disk for each operating system.
 
-> [!INFO] 
+> [!INFO] logical vs physical partitions
+> bios allows only 4 physical partitoins (MBR). linux created logical partitions to split these up more
+> logical partition not recognised by windows.
+> using GPT you can have more than 4 physical partitions. this way they are windows compatible
+> 
 
 - Why partition a disk? 
 	- Easy maintenance of file systems 
@@ -89,7 +96,7 @@ Disk Partitioning
 - Logical Volume Management (LVM) 
 	- For multiple hard drives with flexible FS space management.
 
-> [!INFO]
+> [!INFO] 
 
 Boot procedure (hard disk) 
 - Boot from hard disk 
