@@ -19,6 +19,9 @@ Installation of linux
 > operating systems have different package managers
 > to install linux, you need to use linux - from bootable disk, has a small linux system which installs linux
 > these days pretty much everything is just downloaded from internet repo
+> conf file : sources, hold information about repos of packages
+> you can also boot using UDP to contact a server with a copy of a disk image
+> 
 
 Disk layout after installation
 ![Disk layout after installation](https://i.imgur.com/C3njX6h.png)
@@ -32,7 +35,17 @@ BIOS or EFI
 
 > [!INFO] if the hardware is base, the operating system does more work
 > hardware have their own little "OSs" which reduce load on the main OS. these are handles of the BIOS
-> [!INFO] 
+> get to bios menu by pressing f2 after boot
+> bios checks conditioni of hardware, then hands over to some bootable disk
+> boot sequence - find boot disk, with the bootloader, and loads linux
+> if live cd it will just read from the cd
+> bios reads MBR sector (hard drive has many sectors) first "track" on the hard drive, has sector zero. bios read this, it contains the boot loader code (LILA, GRUB). this is not the kernel, it boots the kinux kernel. the boot loader run in memory (obv cant run program from hard drive).
+> checks partitions. boot loader know what files to load. firs file is linux kernel
+> if there are multiple partitions. (each partition is one fs/device). one partition is labeled as bootable (label in boot sector) and contains a boot sector with OS dependent code. you can have multiple bootable fs's with a differnt OS
+> magic number also, contains information about bootale disks
+> the kernel is run from the boot sector
+
+> [!INFO] just like a series of dominoes, its pre-arranged and you need to check that the chain works.
 
 Disk Partitioning 
 - A hard disk can be divided into several partitions. Each partition functions as if it were a separate hard disk. 
