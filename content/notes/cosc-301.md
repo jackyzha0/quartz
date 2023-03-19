@@ -32,6 +32,6 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 - [x] [[03-ipv6-bootcamp]]
 - [x] [[04-scripting-techniques]]
 - [x] [[05-filesystems]]
-- [[06-network-system-administration]]
+- [x] [[06-network-system-administration]]
 - [[07-system-installation]]
 # Info

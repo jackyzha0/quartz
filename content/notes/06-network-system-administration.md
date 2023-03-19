@@ -5,6 +5,9 @@ tags:
 - cosc301
 ---
 
+> [!DANGER] need to study this and watch lecture
+
+
 
 security awareness
 - physical and network attacks
@@ -72,6 +75,7 @@ User Management
 - Paths and prompts 
 	- Keep a copy of your shell scripts (initial setups) in order to survive them from upgrade of OS/software 
 - For more detailed info, man bash
+
 - Password 
 	- Very important for security 
 	- Should not be names of persons, books, places, your computer, nor your phone number, birthday, car registration plate, login name, words in dictionaries, keyboard sequence 
@@ -87,5 +91,45 @@ User Management
 	- video:x:33:hzy,paul,kai 
 	- Group name:password:group id;list of members
 
-- Remove a user: deluser – The relevant lines from /etc/passwd, /etc/group, and /etc/shadow will be removed. – It is a good idea to first disable the account before you start removing stuff 
-- Disable a user temporarily – A better way when you are not sure if a user will come back – Way 1: Put an * in the password field of /etc/shadow – Way 2: use passwd -{l|u} username – Way 3: Change the login shell to a script file
+- Remove a user: deluser 
+	- The relevant lines from /etc/passwd, /etc/group, and /etc/shadow will be removed. 
+	- It is a good idea to first disable the account before you start removing stuff 
+- Disable a user temporarily 
+	- A better way when you are not sure if a user will come back 
+	- Way 1: Put an * in the password field of /etc/shadow 
+	- Way 2: use passwd -{l|u} username 
+	- Way 3: Change the login shell to a script file
+
+
+User Account
+- How to manage user accounts on different computers?
+	- Share home directory using NFS
+	- Share passwords using NIS (Network Information System) or LDAP (lightweight directory access protocol)
+	- Allocate an Email server
+	- Directory services like LDAP
+- How to remember different passwords for different accounts on different computers?
+- 
+
+- Control user resources 
+	- Disk space 
+		- Separate disk partition for problem users 
+	- Use df command to monitor space 
+	- Quotas and limits 
+		- Better not to put them on users until necessary 
+		- Check limits.conf under /etc/security 
+	- Killing old processes: kill 
+		- Don’t do it unless you are absolutely sure 
+- Account policy 
+	- Who shouldn’t have a user code? 
+	- How to deal with weak passwords?
+
+User Support 
+- User support services 
+	- cshelp 
+- User training and well-being 
+- How to treat the users? 
+	- Your adversaries? 
+	- Your friends? 
+	- Your co-operators?
+
+friendly attitude
