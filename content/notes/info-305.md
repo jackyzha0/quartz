@@ -17,9 +17,9 @@ tags:
 # Lectures
 - [x] [[01-intro-to-305]]
 - [x] [[02-intro-pervasive-and-ubiquitious]]
-- [[03-intro-AR-dev]]
-- [[04-lens-studio]]
+- [x] [[03-intro-AR-dev]]
+- [x] [[04-lens-studio]]
 - [x] [[05-pervasive-ubiquitious-2]]
-- [[06-challenges-for-ubicomp-and-intro-to-sensors]]
+- [x] [[06-challenges-for-ubicomp-and-intro-to-sensors]]
 
 # Info
