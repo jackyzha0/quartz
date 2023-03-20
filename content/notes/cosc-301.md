@@ -33,5 +33,5 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 - [x] [[04-scripting-techniques]]
 - [x] [[05-filesystems]]
 - [x] [[06-network-system-administration]]
-- [[07-system-installation]]
+- [x] [[07-system-installation]]
 # Info

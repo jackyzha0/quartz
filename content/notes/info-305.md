@@ -21,5 +21,6 @@ tags:
 - [x] [[04-lens-studio]]
 - [x] [[05-pervasive-ubiquitious-2]]
 - [x] [[06-challenges-for-ubicomp-and-intro-to-sensors]]
+- [ ] [[07-location-sensors]]
 
 # Info
