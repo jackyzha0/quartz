@@ -12,7 +12,6 @@ tags:
 - How practical are systems that are: 
 	- Precise but not accurate? 
 	- Accurate but not precise?
-
 ![Accuracy vs. Precision](https://i.imgur.com/r0dRA8K.png)
 
 - Degrees of Freedom (DoF): 
@@ -24,7 +23,6 @@ tags:
 	- 9 DoF? 
 	- Unlimited DoF? 
 - How many degrees of freedom in 2D space?
-
 ![Degrees of Freedom](https://i.imgur.com/uWDwFsO.png)
 
 - (Tri)angulation: 
@@ -33,16 +31,16 @@ tags:
 		- Angle to reference point determined by means of special antennas 
 	- Positions of reference points have to be known 
 	- 3D-positioning requires three reference points (triangulation)
-
 ![Angulation](https://i.imgur.com/8k8aD5h.png)
+> [!INFO] if you have two reference points and the angle towards them, you can get the location
 
 - (Tri)lateration 
 	- Based on distances between device and reference points 
 	- Calculated e.g. by time of arrival (ToA) or signal strength 
 	- Positions of reference points have to be known 
 	- 3D-positioning requires three reference points (trilateration)
-
 ![Lateration](https://i.imgur.com/KQTJDSH.png)
+> [!INFO] siimilra to triangulation but you need three points and its calculated using distancees not angles. the distances can be calculated by time of arrival of a signal
 
 ## Cell-based
 - Positioning based on GSM cell ID 
@@ -53,17 +51,18 @@ tags:
 	- Uses GSM cell ID 
 	- If sector-antennas used position can be narrowed to segment of the circle 
 	- Angulation
-
 ![](https://i.imgur.com/uzTcwTC.png)
+> [!INFO] compute your position based on which cell tower you are connected to. each tower has a unique ID. 
+> used by emergency providers, they know where you last logged in
 
 2. GSM based on FDMA (Frequency-division multiple access) and TDMA (Time-division multiple access) 
 	- Exact timing required for the synchronization of uplink and downlink 
 	- Timing Advance (TA) 
 	- Device calculates distance based on signal propagation time 
 	- Can be used for positioning in combination with CGI
-
 ![|200](https://i.imgur.com/zGMWd9E.png)
 ![](https://i.imgur.com/U2VHcye.png)
+> [!INFO] "towers" use FDMA or TDMA  [[21-data-link-layer#multiple access links and protocols]] Timing advance used for multiple access can be used to calculate time
 
 3. Uplink-Time Difference of Arrival (UL-TOA) 
 	- Four base stations needed 
@@ -73,8 +72,8 @@ tags:
 	- Network-based location technology, 
 		- Can locate any type of mobile phone. 
 		- Only available to the owner of the sensor network
-
 ![Uplink-Time Difference of Arrival](https://i.imgur.com/CI07t5Z.png)
+> [!INFO]
 
 - Integrated approach based on existing infrastructure 
 - Low costs (for user) 
@@ -84,14 +83,12 @@ tags:
 - Information not always available to the user (often only network provider) 
 	- Used for “Enhanced 911” 	
 - But relatively low accuracy
-
 ![](https://i.imgur.com/oLITCmM.png)
 
 
 - Other cell-based location approaches: WiFi/WLan-cells 
 	- Integrated infrastructure approach 
 	- WiFi/WLAN (cell-id, lateration, fingerprinting)
-
 ![](https://i.imgur.com/VSMfEqW.png)
 
 - Based on already existing WLAN infrastructure, primarily installed for communication purposes 
