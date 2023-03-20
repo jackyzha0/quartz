@@ -73,8 +73,9 @@ tags:
 		- Can locate any type of mobile phone. 
 		- Only available to the owner of the sensor network
 ![Uplink-Time Difference of Arrival](https://i.imgur.com/CI07t5Z.png)
-> [!INFO]
+> [!INFO]biggest drawback is that it is network based - cant be used offline. and you phone doesn't have this data - only the network provider e.g., vodaphone. the police and request vodaphone to send them data for your phone
 
+cell based location summary
 - Integrated approach based on existing infrastructure 
 - Low costs (for user) 
 - Low power draw 
@@ -108,7 +109,7 @@ tags:
 - 2nd Phase: Radio Map Usage (Online): 
 	- Fingerprint of current position is taken 
 	- Search for closest matching reference point on radio map Position taken from that reference point or interpolated
-
+> [!INFO] uses trilateration
 
 - Fingerprint 
 	- Location: lat,lon,floor 
@@ -123,8 +124,8 @@ tags:
 			- MAC: 08:17:35:33:5f:81 
 			- signal strength: -61 
 		- APn o...
-
 ![](https://i.imgur.com/vJSirwu.png)
+> [!INFO] e.g., when you load google maps, you send this fingerprint. indoors you send access points, if outside you send gps and access points. by combining data they know the rough location of access points. google maps used their database of access points to know where requests are coming from
 
 Fingerprinting services using Wifi 
 - ~99% of queries use Google location database (Google Maps Geolocation API) 
@@ -137,7 +138,6 @@ Fingerprinting services using Wifi
 	- Mozilla Location DB 
 - Not available when offline, cell DB too large 
 - WLAN cells can move/change - frequent update required
-
 ![](https://i.imgur.com/FowUq39.png)
 
 
@@ -148,7 +148,6 @@ Fingerprinting services using Wifi
 	- WiFi: 10m - 100m 
 	- 3G (UMTS): 100m - 5km 
 	- 2G (GSM): 100m - 35km
-
 ![7-cell cluster (commonly used)](https://i.imgur.com/4s8Bv7g.png)
 ![cell characteristics](https://i.imgur.com/maI9ctM.png)
 
