@@ -1,9 +1,12 @@
 
-
-Bread
-Rice triangle things
-Salad stuff
-B
+Daikon
+Sambal oelek
+Yeast
+Pork belly/loin
+Chilli's
+Cuc
+Coriander
+Hoisin
 
 
 
