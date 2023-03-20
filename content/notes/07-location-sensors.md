@@ -126,6 +126,10 @@ cell based location summary
 		- APn o...
 ![](https://i.imgur.com/vJSirwu.png)
 > [!INFO] e.g., when you load google maps, you send this fingerprint. indoors you send access points, if outside you send gps and access points. by combining data they know the rough location of access points. google maps used their database of access points to know where requests are coming from
+> if acces point is moved the database can be invalid for a short time
+> ∴ position is not always from GPS
+> access points dont need to be connected to be transmitted in the fingerprint
+> also only work online because you need database query
 
 Fingerprinting services using Wifi 
 - ~99% of queries use Google location database (Google Maps Geolocation API) 
@@ -140,7 +144,6 @@ Fingerprinting services using Wifi
 - WLAN cells can move/change - frequent update required
 ![](https://i.imgur.com/FowUq39.png)
 
-
 - Cell structure: circular (theory), hexagonal (planning), irregular (reality) 
 - Neighbouring cells use different frequencies to minimise interference 
 	- Some overlap inevitable 	
@@ -150,15 +153,17 @@ Fingerprinting services using Wifi
 	- 2G (GSM): 100m - 35km
 ![7-cell cluster (commonly used)](https://i.imgur.com/4s8Bv7g.png)
 ![cell characteristics](https://i.imgur.com/maI9ctM.png)
+> [!INFO] shape of cell affected by environment
+> 5G has higher density
 
 ## Proximity Sensors & Near Field Communication
 - Different technologies for sensing proximity or exchanging data (often dual purpose) 
 	- Stand-alone infrastructure approaches 
 	- Not widely accepted due to special hardware requirements infrastructure costs (for tracking) 
 - Conceptually often similar to cell-based approaches but require extra infrastructure
-
 ![](https://i.imgur.com/AdxaFMb.png)
-
+> [!INFO] smaller distances
+> require their own infrastructure
 
 - WIPS (Infrared) 
 	- Beacons installed in the rooms sending unique ID 
@@ -170,9 +175,11 @@ Fingerprinting services using Wifi
 	- IR-receivers in the rooms receive those signals 
 	- Position of user is tracked by central server 
 	- Energy-efficient badges (sending short signals of 0,1s each 15s)
-
 ![](https://i.imgur.com/y2wweyT.png)
-
+> [!INFO] active badge and WIPS are the opposite of each other
+> WIPS - user recieves
+> AB - user transmits
+> used to track people is large building sometimes: IBM, the pentagon
 
 - Bluetooth Low Energy LE (Bluetooth specification 4.0) 
 - Not to confuse with “classic” Bluetooth (e.g. used in headsets or for I/O devices) 
@@ -180,8 +187,8 @@ Fingerprinting services using Wifi
 	- Months or years of battery liftetime 
 	- Lower data rate (1MBIT/sec) 
 	- Backwards compatible (same frequency and modulation)
-
 ![](https://i.imgur.com/BKftnA4.png)
+> [!INFO] not classic bluetooth. doesn't send large amounts of data constantly
 
 - Two classes for peripherals: 
 	- Beacons (pure static broadcasts: 
