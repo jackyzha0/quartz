@@ -199,7 +199,8 @@ Fingerprinting services using Wifi
 		- Notification possible to avoid polling 
 	- Bidirectional communication 
 		- Not primarily focus, mostly for setting parameters
-
+> [!INFO] beacons send out theur UUID periodically, does not use much battery, low bandwith
+> sensors send out some data with the UUID
 
 - Location and Proximity Sensing using Bluetooth LE 
 	- One beacon (e.g. per room) 
@@ -209,8 +210,8 @@ Fingerprinting services using Wifi
 		- Range calculation using Received Signal Strength Indicator (RSSI) and calibrated transmitter power (txPower = RSSI at 1m) 
 		- Trilateration using several beacons but not very accurate 
 - Range different for beacons but typically between 20-50m (rarely 100m)
-
 ![](https://i.imgur.com/Xqh7cp0.png)
+> [!INFO] can locate things using similar techniques to cell towers
 
 
 - Different protocols on top of Bluetooth LE 
