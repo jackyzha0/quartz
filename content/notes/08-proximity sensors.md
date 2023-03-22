@@ -85,16 +85,22 @@ Proximity Sensors & Near Field Communication 11
 	- Data exchange rate today up to 424 kilobits/s 
 	- Usually used for Smartcards, digital payment, or device to device communication/ authentification NFC smartcards 
 
-Proximity Sensors & Near Field Communication 12 NFC-based communication / authentification 
+> [!INFO] small transmitters can be read with a large reader
+> nfc is one specific spectrum of rfid
+
+![Proximity Sensors & Near Field Communication 12 NFC-based communication / authentification ](https://i.imgur.com/WwidfDA.png)
+> [!INFO] phones are a reader. but they can also emulate a tag
 
 Proximity Sensors & Near Field Communication 13 
 - Each full NFC device can work in three modes: 
 - NFC card emulation 
-- NFC-enabled devices act like smart cards, allowing users to perform transactions such as payment or ticketing. 
+	- NFC-enabled devices act like smart cards, allowing users to perform transactions such as payment or ticketing. 
 - NFC reader/writer 
-- NFC-enabled devices to read information stored on inexpensive NFC tags embedded in labels or smart posters. 
+	- NFC-enabled devices to read information stored on inexpensive NFC tags embedded in labels or smart posters. 
 - NFC peer-to-peer 
-- Enables two NFC-enabled devices to communicate with each other to exchange information in an adhoc fashion. 14 
+	- Enables two NFC-enabled devices to communicate with each other to exchange information in an adhoc fashion. 14 
+
+> [!INFO] Three modes. emulation, writer, p2p. 
 
 Proximity Sensors & Near Field Communication 
 - Different technologies for sensing proximity or exchanging data (often dual purpose) 
@@ -104,27 +110,30 @@ Proximity Sensors & Near Field Communication
 
 GPS - Overview 
 - (Navstar-) GPS is a satellite-based navigation system that provides users with Positioning (and Timing services 
-- Provides information anywhere on Earth with unobstructed Line Of Sight 
-- Operates in any weather conditions (but with accuracy constraints) 
-- Available to military, commercial and civil users 
+	- Provides information anywhere on Earth with unobstructed Line Of Sight 
+	- Operates in any weather conditions (but with accuracy constraints) 
+	- Available to military, commercial and civil users 
 - Similar systems: 
-- Glonass (Russia, Operational) 
-- Beidou/Compass/Beidu 2 (China, operational since 2020) 
-- Galileo (Europe, expected operational since 2020) 
-- Local coverage (DORIS, IRNSS, ..) 
+	- Glonass (Russia, Operational) 
+	- Beidou/Compass/Beidu 2 (China, operational since 2020) 
+	- Galileo (Europe, expected operational since 2020) 
+	- Local coverage (DORIS, IRNSS, ..) 
+
+> [!INFO] initally only for millitary. now open to anyone but need under open sky
 
 GPS - Applications 
 - Numerous GPS applications & GPS Receivers: 
-- Military 
-- Car navigation 
-- Marine 
-- Flight control 
-- Agriculture 
-- Recreation 
+	- Military 
+		- initally for remote guided bombs
+	- Car navigation 
+	- Marine 
+	- Flight control 
+	- Agriculture 
+	- Recreation 
 - For mobile devices 
-- Car an personal navigation 
-- Location-based services 
-- Augmented Reality 
+	- Car an personal navigation 
+	- Location-based services 
+	- Augmented Reality 
 
 GPS - History 
 - GPS project was developed in 1973 by U.S. Department of Defence (successor of Transit/NAVSAT 
@@ -135,6 +144,10 @@ GPS - History
 - Accuracy errors of 100m 
 - SA was removed for civilian users in 2003. 
 - GPS achieved initial operational capability (24 Satellites) in 1993 GPS – Satellites 
+
+![original gps diagram](https://i.imgur.com/PJYIoMo.png)
+
+GPS – Satellites
 - Constellation of 24 + X satellites transmitting radio signals to users 
 - Altitude of 20,000km (approx.) 
 - Each satellite orbits Earth twice/day 
