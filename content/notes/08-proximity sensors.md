@@ -156,13 +156,17 @@ GPS – Satellites
 - At least four satellites from virtually anywhere on earth (we come back to this..) 
 - Satellites use high precision atomic clock 
 
+> [!INFO] constantly transmitting signal. they send the route they are flying, and where the other satelittes are flying
+
 GPS - Signal 
 - GPS satellite constantly transmits radio signals (L1 signal for privat, L2 military 
 - The navigation message is made up of three major components: 
-- GPS date and time, plus the satellite's status and an indication of its health 
-- Orbital information called ephemeris data and allows the receiver to calculate the position of the satellite (valid ~4h) 
-- Almanac, contains information and status concerning all the satellites; their locations and PRN numbers needed to find satellites (valid ~180days) 
+	- GPS date and time, plus the satellite's status and an indication of its health 
+	- Orbital information called ephemeris data and allows the receiver to calculate the position of the satellite (valid ~4h) 
+	- Almanac, contains information and status concerning all the satellites; their locations and PRN numbers needed to find satellites (valid ~180days) 
 - Each satellite has a unique ID called “Gold codes” or PRNs (pseudo-random noise sequences) to differentiate each satellite 
+
+> [!INFO] get data from four satellites, (position, time, etc). 
 
 GPS - Receiver 
 - Uses messages received from satellites (n≥4) to determine the satellite positions and time sent 
