@@ -23,7 +23,7 @@ tags:
 - [[04-mosaicing]]
 - [x] [[05-feature-description-and-matching]]
 - [x] [[06-homographies]]
-- [[08-]]
+- [[08-visual-tracking-and-matching]]
 
 # Info
 
