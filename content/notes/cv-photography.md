@@ -15,14 +15,9 @@ Intern, Company-x
 -   [List key responsibilities and achievements relevant to photography]
 -   [Include any relevant experience with photo editing software and equipment]
 
-[Job Title], [Company], [Employment Dates]
-
--   [List key responsibilities and achievements relevant to photography]
--   [Include any relevant experience with photo editing software and equipment]
-
 Skills:
 
--   Proficient in Adobe Photoshop, Lightroom, and other photo editing software
+-   Proficient in Adobe Photoshop and Lightroom
 -   Knowledgeable in various photography techniques and equipment
 -   Excellent communication and interpersonal skills
 -   Creative and detail-oriented
