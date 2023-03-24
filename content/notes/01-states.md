@@ -30,19 +30,25 @@ Sitting vs Standing
 	- show other things when you look to either side or down
 	- virtual workspace
 	- track hand to move virtual tabs around on screen
-	- 
+	- this is developing into an OS i should keep it simple
+- instead of sitting vs standing detect working at computer/laptop
  
 walking
 - navigation information and directions
 - maps of the area with users location
 - nearby points of interest
-- Local weather information
-- Directions or maps to nearby places of interest
-- Health and fitness stats, like step count or distance traveled
-- Public transportation schedules or alerts
-- Recommendations for nearby shops, attractions or entertainment
-- Social media updates or messages
-- Emergency services or support
+- local weather information
+- directions or maps to nearby places of interest
+- health and fitness stats
+  - step count, calories
+- public transport
+  - closures
+  - delays
+  - nearby
+- recommendations for nearby shops, attractions or entertainment
+  - depends on time of walk. maybe show different stuff on a walk after work vs a walk on the weekend vs during lunch break
+  - if walk during lunch time show nearby food
+- social media updates or messages
 
 running
 - Health and fitness stats, like heart rate or calories burned
