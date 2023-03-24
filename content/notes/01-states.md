@@ -4,8 +4,6 @@ tags:
 - assignment
 - info305
 ---
-Brainstorm
-
 Sitting vs Standing
 - show weather briefly
 - show time briefly
@@ -18,9 +16,21 @@ Sitting vs Standing
 - Reminders or notifications about upcoming events
 - News headlines or briefs
 - A list of tasks or to-do items
-- Access to a calendar or schedule
-- Nearby restaurants, cafes or other leisure spots
-- Music or audio player controls
+- calendar/schedule
+- music/audio player
+- pomodoro timer
+- reminders
+	- break
+	- drink water
+	- stretch
+- "deep work" periods with no notifications
+- auto generate suggestions based on
+- look up and down to change view
+	- only show notifications/calendar when head is tilted up
+	- show other things when you look to either side or down
+	- virtual workspace
+	- track hand to move virtual tabs around on screen
+	- 
  
 walking
 - navigation information and directions
