@@ -30,6 +30,9 @@ IEEE 802 Standards
 - 802.11aj -- 15Gbps, mmWave 
 - 802.11ay -- 20Gbps, mmWave
 
+> [!INFO] millimeter wave still not popular but very fast. might be dangerous to human health. very short range
+> wifi has different frequency band in different countries. same frequency band but different "sub freqs" - channel
+
 Operation Modes of 802.11 
 - Independent or ad-hoc mode 
 	- Nodes in an ad-hoc network communicate without any need for network infrastructure such as an AP, or network level services such as DHCP, DNS 
@@ -39,9 +42,14 @@ Operation Modes of 802.11
 	- Higher network layers such as data link and IP are configured using the same methods as any wired Ethernet. Most commonly DHCP is used 
 	- Further security measures may be employed to manage security risks associated with wireless
 
+> [!INFO] more bandwidth = higher speed but less range
+
 Ad Hoc mode
 ![](https://i.imgur.com/LwTjKdU.png)
-> [!INFO]
+> [!INFO] e.g., peer to peer directly between laptops. e.g., airdrop, bluetooth, android wifi direct
+> can set up computer to copmuter network. 
+> you can make any host an access point. and set it up as a server to route traffic to the internet. but this would be a slow AP
+> dont need configuration. i.e., no DHCP nor DNS
 
 Infrastructure mode
 ![](https://i.imgur.com/GuhlwVA.png)
@@ -121,3 +129,41 @@ Security Issues
 - AP Spoofing
 
 > [!INFO]
+
+Uses of Wireless 
+- When cables are a hassle/liability ✔ 
+- Transient networks ✔ 
+- Hotspots✔ 
+- Backup links ✔ 
+- Reliability ✗ 
+- Security (can be managed) ✗ 
+- Speed ✗
+
+Channel Layout 
+- 13 channels (1, 2, …, 13) 
+- Hex-pattern layout for non-overlapping channels 
+	- But don’t forget that space is 3D 
+- Limit number of nodes to about 30 per AP
+![|200](https://i.imgur.com/Kq0zHzP.png)
+
+Antenna Types 
+- Omni-directional 
+	- Diversity antennas 
+	- High-gain Omni
+![|100](https://i.imgur.com/xLFfzdX.png) ![|150](https://i.imgur.com/GkPoavC.png)
+
+Antenna Types 
+- Directional 
+	- Panel, Yagi, Parabolic 
+	- Shown is a Wave-Guide “cantenna” 
+	- Trade off polar coverage for distance 
+	- dBi is used to measure the gain: 10*log10(PD/PO), PD is the power for directional, PO is the power for standard omnidirectional.
+![](https://i.imgur.com/RwgaD7b.png)
+
+
+![Directional Antennas](https://i.imgur.com/4BzfacB.png)
+![DIY Antennas](https://i.imgur.com/ZQ0WHin.png)
+![Frying scoop parabolic](https://i.imgur.com/YTwXLbT.png)
+![Coffee Can WaveguideD](https://i.imgur.com/bLNbhhC.png)
+![Easy Parabolic](https://i.imgur.com/MsdBygq.png)
+
