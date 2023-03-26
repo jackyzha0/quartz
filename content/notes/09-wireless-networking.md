@@ -53,8 +53,9 @@ Ad Hoc mode
 
 Infrastructure mode
 ![](https://i.imgur.com/GuhlwVA.png)
-> [!INFO]
-
+> [!INFO] AP includes services like DHCP and DNS
+> eventually connects to wired network
+> [!INFO] Infrasrtucture mode can have multiple APs connected together
 
 Basic terminology 
 - AP: Access Point 
@@ -67,18 +68,25 @@ Basic terminology
 	- The MAC address of an AP 
 - ESSID: Extended Service Set Identifier 
 	- The name of the network
+> [!INFO] if there is only on AP it is BSS
+> if there are more than one AP it is ESS
+> each AP in a ESS can have a different configuration
 
 Wireless Distribution System (WDS) 
 - Backbone of multiple APs, and the inter-AP communication. Usually Ethernet, may be wireless. 
 - 802.11F defines the Inter Access-Point Protocol (IAPP)
 
+> [!INFO] used for ESS. connected APs togehter
+> do handover, access control etc
+
 Signal Strength 
 - Signal Level: Strength of the received signal 
 - Noise Level: Strength of the noise 
-- Link Quality: Signal to Noise Ratio (SNR) 
+- Link Quality: Signal to Noise Ratio (SNR) (10:1 is a good ratio) (1:1 is a bad ratio)
 - Transmit Power: How loud we speak 
 - Receive Sensitivity: How well we can hear 
 - Decibel: 10*log10(P/P0), which shows the ratio of power of one signal over another.
+> [!INFO] 
 
 Finding a Network 
 - Passive scanning listens for AP beacons 
