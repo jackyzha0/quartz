@@ -96,6 +96,11 @@ Finding a Network
 	- On each channel 
 	- Requests a particular ESSID or “any” 
 	- Produces a scan report with discovered ESSIDs
+> [!INFO] active scanning is most only hacker trying to access other peoples wifi
+> most laptops use passive scanning
+> drive by, tries to scan all wifi networks (including hidden), and identify possible weak ones
+> if you dont become a target no one will try to hack you
+> dont "boast" about what you have
 
 Security of WiFi 
 - MAC Filter List 
@@ -106,6 +111,8 @@ Security of WiFi
 	- Minimal protection 
 	- Not secure due to short key length 
 	- Pre-Shared Key (PSK)
+> [!INFO] MAC can be forged. not secure
+> WEP not secure, key is too short
 
 WPA 
 - Wi-Fi Protected Access 
@@ -115,6 +122,7 @@ WPA
 	- Temporal Key Integrity Protocol (TKIP) 
 	- Different key per user/session/packet 
 	- Performance cost if not done in hardware
+> WPA/WPA2 is common
 
 WPA Enterprise 
 - WPA Enterprise 
@@ -124,6 +132,7 @@ WPA Enterprise
 	- Requires RADIUS backend 
 - 802.11i—WiFi Alliance calls it WPA2 
 	- Advanced Encryption Standard (AES) cryptography
+>[!INFO] WPA enterprise everyone has their own account. this way you can hold people acountable is their accound is hacked. we know which accound had access
 
 > [!QUESTION] what is RADIUS backend
 
@@ -136,7 +145,7 @@ Security Issues
 	- Man-in-the-middle attacks 
 - AP Spoofing
 
-> [!INFO]
+> [!INFO] ARP poisoning, once you connect to the wifi someone else can pretend to be the router. respond to ARP requets before AP, and route request through their own computer
 
 Uses of Wireless 
 - When cables are a hassle/liability ✔ 
