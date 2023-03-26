@@ -34,4 +34,8 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 - [x] [[05-filesystems]]
 - [x] [[06-network-system-administration]]
 - [x] [[07-system-installation]]
+- [ ] [[08-post-installation]]
+- [ ] [[09-wireless-networking]]
+
+
 # Info
