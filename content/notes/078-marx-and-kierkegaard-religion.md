@@ -14,7 +14,7 @@ colloseum example
 
 two pitfalls that make you less of an idividual
 - lost in infinite
-	- "anxiety is the diziness of freedom"
+	- "anxiety is the diziness of freedom" 
 	- "analysis paralysis"
 	- need to take action
 	- not using the ability to freely act - losing a part of your individuality
