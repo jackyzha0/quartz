@@ -19,5 +19,6 @@ Want to see what Quartz can do? Here are some cool community gardens :)
 - [SethMB Work](https://sethmb.xyz/)
 - [Abhijeet's Math Wiki](https://abhmul.github.io/quartz/Math-Wiki/)
 - [Mike's AI Garden 🤖🪴](https://mwalton.me/)
+- [Kanna's Digital Garden](https://kannna.xyz/garden/)
 
 If you want to see your own on here, submit a [Pull Request adding yourself to this file](https://github.com/jackyzha0/quartz/blob/hugo/content/notes/showcase.md)!
