@@ -22,6 +22,6 @@ tags:
 - [x] [[05-pervasive-ubiquitious-2]]
 - [x] [[06-challenges-for-ubicomp-and-intro-to-sensors]]
 - [x] [[07-location-sensors]]
-- [[08-proximity sensors]]
-- 
+- [x] [[08-proximity sensors]]
+- [ ] [[09-location-sensors-3]]
 # Info
