@@ -32,6 +32,8 @@ Urban Canyon
 ![Urban canyon](https://i.imgur.com/1aKMSLg.png)
 > [!INFO] buildings block some satellites
 > reflected signals take more time to arrive and disrupt accuracy
+> also happens with lower building that are closer together
+> happens also with trees
 
 
 GPS - Problems 
@@ -45,8 +47,10 @@ GPS - Problems
 	- “Very large errors are uncommon and rarely exceed 30m”
 - Long startup time ( 30s - 12.5min needed for sending almanac) 
 - Several proposed improvements: AGPS, DGPS, RTKGPS
-
-> [!INFO] ^Depends on many parameters
+> [!INFO] ^Depends on many parameters 
+> bad weather also affects travel time hence accuracy
+> long start up time. almanac (satellite position and future positions) is a large amount of data that each device needs to recieve 
+> with data/wifi can download almanac from phone provider
 
 # Location Sensors - AGPS, DGPS, RTK GPS
 
@@ -61,8 +65,9 @@ A(ssisted) GPS
 	- Higher precision (with WiFi Positioning & cell-site multilateration) 
 - Disadvantages: 
 	- Requires Internet connection
-
 ![A(ssisted) GPS](https://i.imgur.com/u7iLeWG.png)
+> [!INFO] most relevant to us. used in mobile phones. trad gps uses only satellite. AGPS used that and network information 
+> also incorporates wifi and cell location
 
 D(ifferential) GPS
 - Enhancement to GPS to increase location accuracy and integrity 
