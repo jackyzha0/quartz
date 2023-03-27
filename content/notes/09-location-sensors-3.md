@@ -19,6 +19,8 @@ GPS - Receiver
 - Buildings reflect and occlude satellite signals 
 - Reducing precision of positioning in urban environments 
 - Makes positioning impossible 
+> [!INFO] Add a fourth satellite so we can find the clock bias
+> there are timer networks where you can get time from an atomic clock (still not accurate but better)
 
 Urban Canyon 
 - Urban environment similar to a natural canyon 
@@ -28,6 +30,9 @@ Urban Canyon
 - Makes positioning impossible www.hci.otago.ac.nz The end!
 ![Urban canyon](https://i.imgur.com/WgWREXs.png)
 ![Urban canyon](https://i.imgur.com/1aKMSLg.png)
+> [!INFO] buildings block some satellites
+> reflected signals take more time to arrive and disrupt accuracy
+
 
 GPS - Problems 
 - Urban environment similar to a natural canyon 
@@ -58,7 +63,6 @@ A(ssisted) GPS
 	- Requires Internet connection
 
 ![A(ssisted) GPS](https://i.imgur.com/u7iLeWG.png)
-
 
 D(ifferential) GPS
 - Enhancement to GPS to increase location accuracy and integrity 
