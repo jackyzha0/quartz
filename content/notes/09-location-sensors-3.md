@@ -77,6 +77,7 @@ D(ifferential) GPS
 - Standalone GPS provides ~15m accuracy 
 - DGPS can provide ~3-5m (and max. 10-15cm) accuracy
 ![D(ifferential) GPS](https://i.imgur.com/WCH4dJk.png)
+> [!INFO] a lot of towers around farming areas
 
 - Various DGPS networks implemented worldwide 
 - iBase VRS (New Zealand) (see also Trimble) 
@@ -84,4 +85,11 @@ D(ifferential) GPS
 - http://www.geosystems.co.nz/solutions/ ibase-vrs/
 ![nz iBASE VRS](https://i.imgur.com/0yv7rWC.png)
 
-
+Real Time Kinematic (RTK) 
+- Technique to enhance location precision of satellite-based navigation systems 
+	- Provides centimetre-level accuracy (approx. 5cm) 
+	- Similar to DGPS, as RTK GPS also uses a base station with a stationary known location 
+	- Uses measurements of phase of the signal carrier wave (whereas GPS only uses signal content information) 
+		- L1 receiver measures only L1 signal (19cm)
+> [!INFO] built on top of DGPS
+> assumes you use diff GPS with custom rover which is close to you 
