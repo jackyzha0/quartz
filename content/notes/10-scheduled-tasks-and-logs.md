@@ -73,6 +73,9 @@ Level
 - LOG_NOTICE (5): normal but significant conditions 
 - LOG_INFO (6): informational 
 - LOG_DEBUG (7): debug-level messages, has lowest priority
+> [!INFO] applies to individual applications as well as the kernel. e.g., LOG_EMERG in a application will exit straight after
+> ERR most relevant to us
+> need to set this level in syslogd.conf
 
 Facility 
 - Identify the type of process sending the message 
@@ -88,9 +91,23 @@ Facility
 	- LOG_SYSLOG: internal messages from syslogd 
 	- LOG_LOCAL0 
 	- LOG_LOCAL7: local, discretional use by programmers.
+> [!INFO] 
 
 klogd 
 - klogd provides a facility for system admin to check only kernel messages (which can also be checked through syslogd) 
 - Kernel messages can be read from /proc/kmsg 
 - Use /proc/sys/kernel/printk to control the level of log messages. 
 	- cat /proc/sys/kernel/printk
+> [!INFO] /proc has kernel information about system
+> klogd is an application level deamon that cleans up logs
+
+syslog.conf 
+- Syslogd configuration file 
+	- /etc/syslog.conf 
+	- Consists of . entries 
+- mail.* /var/log/maillog 
+- authpriv.* /var/log/secure 
+- *.alert root, mal 
+	- Use “man 5 syslog.conf” to find more information about the format of the file
+
+Log processing • Log scanning and filtering – Scanning: use scripts (put as a cron job) to scan key words in log files – Filtering: use scripts to remove useless messages from the log files • Pros and cons of scanning and filtering – Scanning: can find useful information, but may have to process a large amount of log files – Filtering: can reduce the amount of log files but may miss some useful information.
