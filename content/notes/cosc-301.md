@@ -39,6 +39,7 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 - [x] [[07-system-installation]]
 - [ ] [[08-post-installation]]
 - [ ] [[09-wireless-networking]]
+- [ ] [[10-scheduled-tasks-and-logs]]
 
 
 # Info
