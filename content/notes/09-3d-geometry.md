@@ -41,6 +41,7 @@ ROTATION IN 3D
 	- Yaw, pitch, roll 
 	- Some angle about an axis
 ![](https://i.imgur.com/4I3HrZO.png)
+> [!INFO] yaz, pitch, roll better to describe relation to iself. e.g., in aircraft
 
 ROTATION ABOUT 𝑋, 𝑌, AND 𝑍 AXES 
 - We know that a 2D rotation looks like ![](https://i.imgur.com/OEP8agu.png)
