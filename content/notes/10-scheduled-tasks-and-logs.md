@@ -110,4 +110,44 @@ syslog.conf
 - *.alert root, mal 
 	- Use “man 5 syslog.conf” to find more information about the format of the file
 
-Log processing • Log scanning and filtering – Scanning: use scripts (put as a cron job) to scan key words in log files – Filtering: use scripts to remove useless messages from the log files • Pros and cons of scanning and filtering – Scanning: can find useful information, but may have to process a large amount of log files – Filtering: can reduce the amount of log files but may miss some useful information.
+Log processing 
+- Log scanning and filtering 
+	- Scanning: use scripts (put as a cron job) to scan key words in log files 
+	- Filtering: use scripts to remove useless messages from the log files 
+- Pros and cons of scanning and filtering 
+	- Scanning: can find useful information, but may have to process a large amount of log files 
+	- Filtering: can reduce the amount of log files but may miss some useful information
+> [!INFO] remove uncessesary logs
+> grep is scanning
+> can be filtering with the -v flag 
+
+Log processing (cont.) 
+- Log rotation 
+	- Use logrotate command 
+		- logrotate is designed to ease administration of systems that generate large number of log files. It allows automatic rotation, compression, removal, and mailing of log files. Each log file may be handled daily, weekly, monthly, or when it grows too large 
+	- Configuration file:/etc/logrotate.conf (see the manual page for logrotate) 
+	- Run logrotate as a cron jo
+
+Log processing (cont.) 
+- Store log files in computer archive 
+	- Legal issues regarding how long log files should be stored. 
+	- How to process a huge amount of log files efficiently? 
+- Risks of log management 
+	- Log files can be changed (MD5?) 
+	- Log files can be exposed while being transmitted (encryption?)
+> [!INFO] checksum for knowing if someone changed logs
+> encryption
+> legal issues (how long to store)
+
+Cloud services for sharing? 
+- Privacy issue 
+- Issue on confidential information 
+- Who owns the data? 
+- Enterprise cloud is recommended for sharing confidential documents inside an organization. 
+- git and svn are good tools for sharing.
+
+Set up cloud services 
+- It is possible to set up cloud services in Ubuntu using cloud-init with a simple recipe. 
+- Video of using cloud-init 
+	- https://cloud-init.io/
+
