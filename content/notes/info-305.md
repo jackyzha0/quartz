@@ -23,5 +23,6 @@ tags:
 - [x] [[06-challenges-for-ubicomp-and-intro-to-sensors]]
 - [x] [[07-location-sensors]]
 - [x] [[08-proximity sensors]]
-- [ ] [[09-location-sensors-3]]
+- [x] [[09-location-sensors-3]]
+- [ ] 
 # Info

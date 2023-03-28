@@ -24,6 +24,7 @@ tags:
 - [x] [[05-feature-description-and-matching]]
 - [x] [[06-homographies]]
 - [[08-visual-tracking-and-matching]]
+- [[09-3d-geometry]]
 
 # Info
 
