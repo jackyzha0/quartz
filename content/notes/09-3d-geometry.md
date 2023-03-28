@@ -3,12 +3,9 @@ title: "09-3d-geometry"
 tags: 
 - lecture
 - cosc342
-sr-due: 2023-03-29
-sr-interval: 1
-sr-ease: 230
 ---
 
-Assignemnt
+Assignment/Labs
 > [!INFO] main thinking needs to go into finding a good experiment
 > dont need to do labs before assignment
 > need to work in own time outisde lab
@@ -30,6 +27,7 @@ LEFT & RIGHT-HANDED CO-ORDINATES
 
 HOMOGENEOUS CO-ORDINATES IN 3D
 ![](https://i.imgur.com/vS0mkkK.png)
+> [!INFO] the '1' (fourth coord) can be used for scaling
 
 TRANSLATION AND SCALING IN 3D
 ![](https://i.imgur.com/CRfRm7D.png)
