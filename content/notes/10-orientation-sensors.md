@@ -88,7 +88,7 @@ Gyroscope
 ![MEMS gyro|100](https://i.imgur.com/dzTVCpE.png)
 ![gyro chip](https://i.imgur.com/zVoQ3wM.png)
 > [!INFO] 
-> works similar to spinning gyro but uses vibrations instead
+> works similar to spinning gyro but uses vibrations instead (coriolis effect)
 
 Problem: 
 - The gyroscope gives us angular rate with a unit of rad/s [deg/s] 
@@ -99,6 +99,7 @@ Problem:
 - Gyroscope data changes faster than the sampling frequency 
 	- We will not detect it, and the integral approximation will be incorrect 
 	- This error is called drift/bias as it increases in time, no return to 0o
+> [!INFO] dont need to fully understand the math
 
 
 

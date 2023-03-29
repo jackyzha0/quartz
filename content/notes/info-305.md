@@ -24,5 +24,5 @@ tags:
 - [x] [[07-location-sensors]]
 - [x] [[08-proximity sensors]]
 - [x] [[09-location-sensors-3]]
-- [ ] [[10-orientation-sensors]] 
+- [x] [[10-orientation-sensors]] 
 # Info
