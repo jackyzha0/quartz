@@ -91,7 +91,6 @@ Facility
 	- LOG_SYSLOG: internal messages from syslogd 
 	- LOG_LOCAL0 
 	- LOG_LOCAL7: local, discretional use by programmers.
-> [!INFO] 
 
 klogd 
 - klogd provides a facility for system admin to check only kernel messages (which can also be checked through syslogd) 
