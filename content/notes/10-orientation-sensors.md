@@ -32,6 +32,7 @@ Accelerometers
 	
 	
 	
+![two phones|300](https://i.imgur.com/s45a4TF.png)
 Compass / Magnetometer 
 - Measures the strength of earth’s magnetic field 
 - Strength is expressed in tesla [T] 
@@ -41,11 +42,42 @@ Compass / Magnetometer
 
 ![Error around metal/magnetic objects](https://i.imgur.com/YIJAcGS.png)
 
+Compass / Magnetometer 
+- Advantage: 
+	- Absolute orientation measurement 
+- Disadvantage: 
+	- Usually slow update 
+	- Sensitive to errors 
+		- Local discontinuities in magnetic field 
+		- Ferromagnetic materials 
+		- Power sources
 
-	
-	
-	
-	
+![gryroscope|300](https://i.imgur.com/VnL5seY.png)
+Gyroscope 
+- Detects the current orientation of the device, or changes in the orientation 
+- Precisely: orientation can be computed from the angular rate that is detected by the gyroscope, expressed in rad/s [deg/s] on 3 axis. 
+- Traditional gyroscopes use the e!ect of angular momentum
+![gyro deg of freedom|300](https://i.imgur.com/q1LjfPD.png)
+![gyro electronic|300](https://i.imgur.com/5Ti80sO.png)
+
+- MEMS (microelectromechanical system) gyro 
+- Used in most smartphones or mobile/embedded devices 
+- Use the displacement of vibrating proof mass to compute orientation (Coriolis effect)
+![MEMS gyro|100](https://i.imgur.com/dzTVCpE.png)
+![gyro chip](https://i.imgur.com/zVoQ3wM.png)
+
+Problem: 
+- The gyroscope gives us angular rate with a unit of rad/s [deg/s] 
+- We can find the angular position at any given moment t with the following equation (assuming t=0 theta=0) 
+![eq1|100](https://i.imgur.com/CZKk1M7.png)
+- We cannot take a perfectly continuous integral -> take the sum of a finite number of samples taken at a constant interval Ts 
+![eq2|100](https://i.imgur.com/vL0gRbV.png)
+- Gyroscope data changes faster than the sampling frequency 
+	- We will not detect it, and the integral approximation will be incorrect 
+	- This error is called drift/bias as it increases in time, no return to 0o
+
+
+
 Recap
 - Several improvements to traditional GPS 
 - AGPS for improved startup time and improved localisation using WIFI 
