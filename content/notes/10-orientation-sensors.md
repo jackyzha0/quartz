@@ -5,7 +5,8 @@ tags:
 - info305
 ---
 
-> [!INFO] Location sensors dont know
+> [!INFO] 
+> Location sensors dont know what direction you are looking
 
 Accelerometers 
 - Measures proper acceleration (acceleration it experiences relative to freefall. gravity), felt by people or objects 
@@ -13,6 +14,11 @@ Accelerometers
 - Most smartphone accelerometers trade large value range for high precision 
 	- iPhone range: ±2g, precision 0.018g
 ![g forces|300](https://i.imgur.com/l4DnMSN.png)
+
+> [!INFO] 
+> measure accelerationi with respect to gravity
+> measure gravity along three axis
+> tradeoff large range with high precision
 
 Accelerometers 
 - Acceleration is measured on 3 axes 
@@ -24,14 +30,17 @@ Accelerometers
 - Measuring flowing current over an differential capacitor indicates the acceleration
 ![|300](https://i.imgur.com/UIS4zDV.png)
 
+> [!INFO]
+> dont need to fully understand how MEMS work
+
 Accelerometers 
 - Advantage: 
 	- Fast update rate 
 	- Relatively accurate 
 - Disadvantage: 
 	- Can’t easily identify certain kind of acceleration (small value range)
-	
-	
+> [!INFO]
+> only give you direction to the center of the earth (from gravity)
 	
 ![two phones|300](https://i.imgur.com/s45a4TF.png)
 Compass / Magnetometer 
@@ -40,6 +49,11 @@ Compass / Magnetometer
 - iPhone 4 magnetometer range: ±2mT 
 - Pro tip: prolonged exposure to a fridge magnet decalibrates your phones’ magnetometer for at least a week ;-)
 ![field strength examples|300](https://i.imgur.com/00VV74x.png)
+> [!INFO] 
+> doesn't directly measure north
+> measure magentic fielf of earth and aligns with magenetic north
+> earth field is very weak so we need sensitive magnetometer
+> 
 
 ![Error around metal/magnetic objects](https://i.imgur.com/YIJAcGS.png)
 
