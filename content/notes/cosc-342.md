@@ -8,6 +8,8 @@ tags:
 ---
 # Assignments
 
+- [ ] [[342-assignment-01]]
+
 # Labs
 
 - [x] [[01a-getting-started]]
