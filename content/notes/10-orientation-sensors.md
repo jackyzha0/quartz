@@ -5,6 +5,7 @@ tags:
 - info305
 ---
 
+> [!INFO] Location sensors dont know
 
 Accelerometers 
 - Measures proper acceleration (acceleration it experiences relative to freefall. gravity), felt by people or objects 

@@ -7,6 +7,10 @@ tags:
 
 in lecture angles vs distances used to compute location
 
+gps distance
+nfc also distance
+cell tower both depending on configuration
+
 # Location Sensors - GPS (cont.)
 
 GPS - Receiver 
@@ -95,3 +99,8 @@ Real Time Kinematic (RTK)
 		- L1 receiver measures only L1 signal (19cm)
 > [!INFO] built on top of DGPS
 > assumes you use diff GPS with custom rover which is close to you 
+> not built into phone.
+> they cost a lot of money $1000 - $2000
+> you need a base station which is quite close to you
+
+
