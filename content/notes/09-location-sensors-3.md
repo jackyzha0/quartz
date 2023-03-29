@@ -5,6 +5,8 @@ tags:
 - info305
 ---
 
+in lecture angles vs distances used to compute location
+
 # Location Sensors - GPS (cont.)
 
 GPS - Receiver 
