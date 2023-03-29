@@ -49,11 +49,6 @@ Compass / Magnetometer
 - iPhone 4 magnetometer range: ±2mT 
 - Pro tip: prolonged exposure to a fridge magnet decalibrates your phones’ magnetometer for at least a week ;-)
 ![field strength examples|300](https://i.imgur.com/00VV74x.png)
-> [!INFO] 
-> doesn't directly measure north
-> measure magentic fielf of earth and aligns with magenetic north
-> earth field is very weak so we need sensitive magnetometer
-> 
 
 ![Error around metal/magnetic objects](https://i.imgur.com/YIJAcGS.png)
 
@@ -66,6 +61,13 @@ Compass / Magnetometer
 		- Local discontinuities in magnetic field 
 		- Ferromagnetic materials 
 		- Power sources
+> [!INFO] 
+> doesn't directly measure north
+> measure magentic fielf of earth and aligns with magenetic north
+> earth field is very weak so we need sensitive magnetometer
+> electronic from phone affect sensor but the error can be calibrated out
+> balance between what is cheap and what is good enough
+> only one degree on freedom (bearing to north)
 
 ![gryroscope|300](https://i.imgur.com/VnL5seY.png)
 Gyroscope 
@@ -73,13 +75,20 @@ Gyroscope
 - Precisely: orientation can be computed from the angular rate that is detected by the gyroscope, expressed in rad/s [deg/s] on 3 axis. 
 - Traditional gyroscopes use the e!ect of angular momentum
 ![gyro deg of freedom|300](https://i.imgur.com/q1LjfPD.png)
-![gyro electronic|300](https://i.imgur.com/5Ti80sO.png)
+![gyro electronic plane,satellite|300](https://i.imgur.com/5Ti80sO.png)
+> [!INFO] 
+> car, phone, game controller, etc
+> measure orientation
+> measure change of orientation using angular rate
+> use the effect of angular momentum. when you spin something fast, it want to keep that rotation axis
 
 - MEMS (microelectromechanical system) gyro 
 - Used in most smartphones or mobile/embedded devices 
 - Use the displacement of vibrating proof mass to compute orientation (Coriolis effect)
 ![MEMS gyro|100](https://i.imgur.com/dzTVCpE.png)
 ![gyro chip](https://i.imgur.com/zVoQ3wM.png)
+> [!INFO] 
+> works similar to spinning gyro but uses vibrations instead
 
 Problem: 
 - The gyroscope gives us angular rate with a unit of rad/s [deg/s] 
