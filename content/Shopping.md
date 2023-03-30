@@ -1,14 +1,10 @@
-
-Daikon
-Sambal oelek
-Yeast
-Pork belly/loin
-Chilli's
-Cuc
-Coriander
-Hoisin
-
-
-
+Bread
+Peppercorns
+Tofu silken firm
+Ground beef
+Chilli
+Scallion
+Ginger
+Mirin
 
 
