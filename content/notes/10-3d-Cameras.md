@@ -38,3 +38,36 @@ PERSPECTIVE PROJECTION
 	- A simple, but useful, model 
 	- There is a central point of projection (the pinhole, often a lens in reality) 
 	- Light travels from the world, through the pinhole, to the image plane
+> [!INFO] need a hole that is big enough to get enough light
+> but small enough to create a sharp image
+> light goes through the hole to the image plane
+> pin hole is also the "lens"
+
+THE PINHOLE CAMERA MODEL
+![pin hole top view|300](https://i.imgur.com/bTSLvWR.png)
+![pin hole diagam|300](https://i.imgur.com/TfclYHD.png)
+> [!INFO] use negative of f as it is behind the pinhole
+> find U using similar triangles rule
+
+![|300](https://i.imgur.com/paeALF6.png)
+> [!INFO] now we can project a point from 3d to 2d
+> z is multiplies by 1 in the matrix so that the 3rd point of the homogenous coord becomes the z value
+
+- We can put the image plane in front of the pinhole 
+	- Removes the sign change 
+	- Not practical for real cameras 
+	- The maths works out just fine
+![|200](https://i.imgur.com/hxPFHET.png)
+![|100](https://i.imgur.com/KEiY1bf.png)
+
+> [!INFO] cant really convert from 2d back to 3d without knowing focal length and z coord of every point
+
+TRANSFORMING CAMERAS
+
+INTRINSICS AND EXTRINSICS 
+- Often break this down into 
+![](https://i.imgur.com/3eENBA4.png)
+
+- Most simple case: 
+- : camera calibration or intrinsics 
+- : camera pose or extrinsics
