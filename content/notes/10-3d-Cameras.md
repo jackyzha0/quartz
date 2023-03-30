@@ -68,6 +68,36 @@ INTRINSICS AND EXTRINSICS
 - Often break this down into 
 ![](https://i.imgur.com/3eENBA4.png)
 
-- Most simple case: 
-- : camera calibration or intrinsics 
-- : camera pose or extrinsics
+- Most simple case: 𝐮 = K[I 𝟎]�
+- K: camera calibration or intrinsics 
+- [I | 0]: camera pose or extrinsics
+![](https://i.imgur.com/9AwfvSk.png)
+
+CAMERA CALIBRATION
+
+- The model has image origin in the centre of the frame 
+	- We usually put this at the top corner 
+	- Can fix this with a translation 
+- If the centre is at $(c_u, c_v)$ 
+![](https://i.imgur.com/aIynYTx.png)
+![](https://i.imgur.com/XfSdzye.png)
+
+
+TRANSFORMING CAMERAS 
+- We have assumed 
+	- A camera at the origin 
+	- Pointing along the +ve $Z$ axis 
+- We will need the general case 
+	- Move the camera to any location 
+	- Point the camera in any direction
+	![](https://i.imgur.com/oWYorU4.png)
+> [!INFO] camera in games etc. always moves around with the player/operator,
+> instead of transforming the camera we transform the world
+> only need to apply inverse matrix to the 3d points of the world
+
+TRANSFORM THE WORLD (!) 
+- To transform a camera by 
+- Apply inverse, , to points 
+- To move the camera left 3 units, move the world right 3 units 
+- To rotate the camera about , rotate the world about 
+- The relative motion of the camera and the world is the same
