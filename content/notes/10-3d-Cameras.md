@@ -96,8 +96,67 @@ TRANSFORMING CAMERAS
 > only need to apply inverse matrix to the 3d points of the world
 
 TRANSFORM THE WORLD (!) 
-- To transform a camera by 
-- Apply inverse, , to points 
+- To transform a camera by $T$
+- Apply inverse, $T^{-1}$ , to points 
 - To move the camera left 3 units, move the world right 3 units 
-- To rotate the camera about , rotate the world about 
+- To rotate the camera $45⁰$ about $Z$, rotate the world $-45⁰$ about Z 
 - The relative motion of the camera and the world is the same
+
+ROTATE AND TRANSLATE A CAMERA
+![|300](https://i.imgur.com/HKjLw2w.png)
+
+CAMERA CALIBRATION
+```
+double cv::calibrateCamera( 
+	// Input parameters 
+	//std::vector> objectPoints, 
+	//std::vector> imagePoints, 
+	//cv::Size imageSize, 
+	// Output parameters 
+	//cv::Mat cameraMatrix, 
+	//std::vector distCoeffs, 
+	//std::vector rotationVectors, 
+	//std::vector translationVectors);
+```
+
+CALIBRATION TARGETS 
+- Input is 3D-2D matches 
+	- Want easy-to find 2D points 
+	- Need known 3D co-ordinates 
+- Planar targets common 
+	- Easy to make with a printer 
+	- Chess/Checkerboards 
+	- Grids of dots or lines 
+- Is a 2D pattern enough?
+![|200](https://i.imgur.com/dNpoWGM.png)
+
+3D POINT LOCATIONS 
+- Choice of co-ordinates 
+	- X-Y plane is the target 
+	- Origin at one internal corner 
+	- Z runs into the target plane 
+- Need to decide on units 
+	- Best to use real-world units 
+	- Here 1 square = 1cm 
+	- Can use 1 square = 1 unit
+![|200](https://i.imgur.com/BM0FzYg.png)
+
+FINDING CHECKERBOARD CORNERS 
+- OpenCV method (in brief) 
+	- Threshold image to B&W 
+	- Look for quads 
+	- Link quads -> checkerboard 
+	- Sub-pixel refinement
+![|200](https://i.imgur.com/Gfhn2kX.png)
+
+MATCHING 2D TO 3D POINTS 
+- Corners are in rows/cols 
+	- View of all corners required 
+	- Aligns 2D corners to 3D target point locations 
+- Targets often odd-sized 
+	- Example here is 7x6
+	- Why is this better than 8x8? 
+	- Is this required?
+![|200](https://i.imgur.com/5XIFVKT.png)
+
+
