@@ -21,7 +21,10 @@ Level of detail in images will have more of an affect on accuracy of FLANN based
 EXPERIMENT DESIGN:
 Collect a number of highly detailed images and a number of less detailed images. Highly detailed images with have a lot of information such as trees, text, buildings, landscapes etc. Less detailed images with be sparse, these could be bare buildings, walls, images with large blocks of color.
 
-Detailed Images will result in a large number of features, and the opposite should be true for less detailed images. 
+Detailed Images will result in a large number of features, and the opposite should be true for less detailed images. This could affect the accuracy of image mosaics.
+
+To conduct the experiment I will measure the reprojection error of FLANN and Brute force matching on various
+
 
 RESULTS
 
