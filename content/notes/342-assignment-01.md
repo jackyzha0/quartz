@@ -15,33 +15,28 @@ Choosing images
 use a range of input images
 
 # Experiment 1: Feature Matching
+Highly detailed images will have a lot of information such as trees, text, buildings, landscapes etc. Less detailed images with be sparse, these could be bare buildings, walls, images with large blocks of color, etc. Detailed Images will result in a large number of features which are tightly grouped. I predict this will reduce the accuracy of FLANN based matching.
+
 HYPOTHESIS: 
-Level of detail in images will have a significant effect on the accuracy of FLANN based matching
+FLANN based matching will decrease in accuracy as level of detail increases
 
 EXPERIMENT DESIGN:
 
 Variables
 - Independent Variables: Level of detail (Number of SIFT features detected)
-- Dependent Variable: reprojection error of image mosaics
+- Dependent Variable: Reprojection error of feature matches
 
-Collect a number of highly detailed pairs of images and the same number pairs of less detailed images. Highly detailed images will have a lot of information such as trees, text, buildings, landscapes etc. Less detailed images with be sparse, these could be bare buildings, walls, images with large blocks of color, etc.
-
-Detailed Images will result in a large number of features which are tightly grouped. This could significantly affect the accuracy of FLANN based matching
-
-To conduct the experiment I will measure the reprojection error of image mosiacs created using FLANN and Brute force matching
-
-1. Select a set of highly detailed image pairs, and a set of sparsly detailed image pairs
+Procedure
+1. Select a set of image pairs with various levels of detail
 2. For each image pair, detect SIFT features and perform both FLANN and Brute force matching
 3. Calculate the reprojection error of features matched using both methods for each image pair
 4. For each method, plot the accuracy as a function of the number of features/level of detail
 
 _control for other factors: lighting, camera settings (exposure, iso, etc), resolution?__
 
-**hypothesis super wordy
-what is your error metric
-how will you decide statistically  if your hypothesis is true or not**
-
-
+**hypothesis super wordy**: fixed
+**what is your error metric**: reprojection error
+**how will you decide statistically if your hypothesis is true or not**: measure correlation between number of features and level of detail
 
 RESULTS
 
@@ -52,6 +47,8 @@ DISCUSSION
 QUESTION: How does the choice of RANSAC threshold affect the speed of homography estimation in highly detailed images?
 
 HYPOTHESIS: The choice of RANSAC threshold affects the speed of homography estimation in highly detailed images.
+
+As the RANSAC threshold increases the speed of homography estimation decreases
 
 EXPERIMENT DESIGN:
 
