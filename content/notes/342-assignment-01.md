@@ -23,7 +23,12 @@ Collect a number of highly detailed images and a number of less detailed images.
 
 Detailed Images will result in a large number of features, and the opposite should be true for less detailed images. This could affect the accuracy of image mosaics.
 
-To conduct the experiment I will measure the reprojection error of FLANN and Brute force matching on various
+To conduct the experiment I will measure the reprojection error of FLANN and Brute force matching on images with high and low level of detail. 
+
+_control for other factors: lighting, camera settings (exposure, iso, etc), resolution,_
+
+
+
 
 RESULTS
 
