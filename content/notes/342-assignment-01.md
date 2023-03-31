@@ -25,7 +25,6 @@ Detailed Images will result in a large number of features, and the opposite shou
 
 To conduct the experiment I will measure the reprojection error of FLANN and Brute force matching on various
 
-
 RESULTS
 
 DISCUSSION
