@@ -14,6 +14,30 @@ Choosing images
 
 use a range of input images
 
+# Experiment 1: Feature Matching
+HYPOTHESIS: 
+Level of detail in images will have more of an affect on accuracy of FLANN based matching that in Brute-Force mathing
+
+EXPERIMENT DESIGN:
+Collect a number of highly detailed images and a number of less detailed images. Highly detailed images with have a lot of information such as trees, text, buildings, landscapes etc. Less detailed images with be sparse, these could be bare buildings, walls, images with large blocks of color.
+
+Detailed Images will result in a large number of features, and the opposite should be true for less detailed images. 
+
+RESULTS
+
+DISCUSSION
+
+
+# Experiment 2: RANSAC for Homography Estimation
+QUESTION: How does the choice of RANSAC threshold affect the speed of homography estimation in highly detailed images?
+
+EXPERIMENT DESIGN:
+
+RESULTS
+
+DISCUSSION
+
+
 # Todo
 - specify number and type of images to collect
 - choose question
