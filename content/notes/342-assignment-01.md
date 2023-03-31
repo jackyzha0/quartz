@@ -19,6 +19,11 @@ HYPOTHESIS:
 Level of detail in images will have more of an affect on accuracy of FLANN based matching that in Brute-Force mathing
 
 EXPERIMENT DESIGN:
+
+Variables
+- Independent Variables: Level of detail (Number of SIFT features detected)
+- Dependent Variable: reprojection error image mosaics
+
 Collect a number of highly detailed images and a number of less detailed images. Highly detailed images with have a lot of information such as trees, text, buildings, landscapes etc. Less detailed images with be sparse, these could be bare buildings, walls, images with large blocks of color.
 
 Detailed Images will result in a large number of features, and the opposite should be true for less detailed images. This could affect the accuracy of image mosaics.
@@ -38,12 +43,27 @@ DISCUSSION
 # Experiment 2: RANSAC for Homography Estimation
 QUESTION: How does the choice of RANSAC threshold affect the speed of homography estimation in highly detailed images?
 
+HYPOTHESIS: The choice of RANSAC threshold affects the speed of homography estimation in highly detailed images.
+
 EXPERIMENT DESIGN:
+
+Variables
+- Independent variable: The RANSAC threshold (in pixels).
+- Dependent variable: The time taken to estimate the homography matrix (in seconds).
+
+Procedure
+1.  Select a set of image pairs with high levels of detail.
+2.  For each image pair, estimate the homography matrix that relates one image to the other, using a fixed set of matching features.
+3.  Vary the RANSAC threshold from small to large values, and for each value of the threshold, estimate the homography matrix for each image pair, using the same set of matching features.
+4.  Measure the time taken to estimate the homography matrix for each value of the threshold and each image pair.
+5.  Plot the time taken as a function of the RANSAC threshold, and analyze the results.
 
 RESULTS
 
 DISCUSSION
 
+4.  Procedure:
+    
 
 # Todo
 - specify number and type of images to collect
