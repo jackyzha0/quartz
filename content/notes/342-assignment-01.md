@@ -16,19 +16,19 @@ use a range of input images
 
 # Experiment 1: Feature Matching
 HYPOTHESIS: 
-Level of detail in images will have more of an affect on accuracy of FLANN based matching that in Brute-Force mathing
+Level of detail in images will have more of an affect on the accuracy of image mosaics created using FLANN based matching that those creating using Brute-Force mathing
 
 EXPERIMENT DESIGN:
 
 Variables
 - Independent Variables: Level of detail (Number of SIFT features detected)
-- Dependent Variable: reprojection error image mosaics
+- Dependent Variable: reprojection error of image mosaics
 
 Collect a number of highly detailed images and a number of less detailed images. Highly detailed images with have a lot of information such as trees, text, buildings, landscapes etc. Less detailed images with be sparse, these could be bare buildings, walls, images with large blocks of color.
 
 Detailed Images will result in a large number of features, and the opposite should be true for less detailed images. This could affect the accuracy of image mosaics.
 
-To conduct the experiment I will measure the reprojection error of FLANN and Brute force matching on images with high and low level of detail. 
+To conduct the experiment I will measure the reprojection error of image mosiacs created using FLANN and Brute force matching
 
 _control for other factors: lighting, camera settings (exposure, iso, etc), resolution,_
 
