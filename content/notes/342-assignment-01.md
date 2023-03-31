@@ -46,9 +46,7 @@ DISCUSSION
 # Experiment 2: RANSAC for Homography Estimation
 QUESTION: How does the choice of RANSAC threshold affect the speed of homography estimation in highly detailed images?
 
-HYPOTHESIS: The choice of RANSAC threshold affects the speed of homography estimation in highly detailed images.
-
-As the RANSAC threshold increases the speed of homography estimation decreases
+HYPOTHESIS: As the RANSAC threshold increases the speed of homography estimation in highly detailed images increases
 
 EXPERIMENT DESIGN:
 
@@ -61,13 +59,11 @@ Procedure
 2.  For each image pair, estimate the homography matrix that relates one image to the other, using a fixed set of matching features.
 3.  Vary the RANSAC threshold from small to large values, and for each value of the threshold, estimate the homography matrix for each image pair, using the same set of matching features.
 4.  Measure the time taken to estimate the homography matrix for each value of the threshold and each image pair.
-5.  Plot the time taken as a function of the RANSAC threshold, and analyze the results.
+5.  Plot the time taken as a function of the RANSAC threshold.
 
 RESULTS
 
 DISCUSSION
-
-4.  Procedure:
     
 
 # Todo
