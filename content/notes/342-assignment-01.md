@@ -16,7 +16,7 @@ use a range of input images
 
 # Experiment 1: Feature Matching
 HYPOTHESIS: 
-Level of detail in images will have more of an effect on the accuracy of image mosaics created using FLANN based matching that those creating using Brute-Force mathing
+Level of detail in images will have a significant effect on the accuracy of FLANN based matching
 
 EXPERIMENT DESIGN:
 
