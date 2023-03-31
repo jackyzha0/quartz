@@ -65,6 +65,14 @@ RESULTS
 
 DISCUSSION
     
+**Speed of homography????** speed is not a science word unless you are driving a car my friend
+and even then its velocity
+also spin around your hypotheses to make homograhy estmation the subject of the sentance
+
+part 3 needs to be worded better... think about it like you are writing a recipe... you dont say vary the number of choclate chips on a muffin, you say, for each muffin put on 1 chocolate chip for the first batch, then x for further batches...
+
+4 is wordy
+
 
 # Todo
 - specify number and type of images to collect
