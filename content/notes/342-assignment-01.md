@@ -46,15 +46,7 @@ DISCUSSION
 # Experiment 2: RANSAC for Homography Estimation
 QUESTION: How does the choice of RANSAC threshold affect the speed of homography estimation in highly detailed images?
 
-HYPOTHESIS: As the RANSAC threshold increases the efficiency of homography estimation in highly detailed images increases
-
-Homography esimation in highly detailed images is faster with higher RANSAC thresholds
-
-Higher RANSAC thresholds result in faster homography estimation for highly detailed images
-
-Higher RANSAC thresholds for homography estimation in highly detailed images are more efficient		
-
-In highly detailed images, homography estimation using higher RANSAC thresholds is faster/more efficient
+HYPOTHESIS: In highly detailed images, homography estimation using higher RANSAC thresholds is faster/more efficient
 
 EXPERIMENT DESIGN:
 
