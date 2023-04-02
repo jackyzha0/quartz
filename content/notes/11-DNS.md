@@ -19,7 +19,37 @@ tags:
 
 > [!INFO] distributed dns
 > now dns is distributed. it is a BIND (berkely internet name domain) service. 
-> to do something distributedly. each LAN has their own DNS
+> to do something distributedly. each LAN has their own NIS. each LAN manages their own domain names and IP addresses.
+> LANs can talk between each other. 
+> we use a tree structure for domain names
+> at the start we have a root domain ⇒ `.`
+> then we have domains ⇒ `.com`, `.nz`, `.org`
+> then sub domains ⇒ `google.com`, `ocss.nz`
+> and sub sub ⇒ `otago.ac.nz`
+> the advatage of tree structure is that the parent only need to know the domain name of the sub domains and the name server
+
+> [!INFO] google.com -> otago.ac.nz
+> first find nameserver for `.nz` if they already know the address for `.nz` then can go directly
+> otherwise they need to go through the root name server `.`
+>  you should configure this root Domain name server on a new installation
+>  the root name server send the address of the `.nz` name server which sends the address of the `.ac.nz` name server, and so on until you get the final address
+
+> [!INFO] nameserver storage
+> some nameservers such as `.nz` are held by IANA
+
+> [!DEFINITION] NIS
+> network information system
+
+> [!DEFINITION] DNS
+> domain name service
+
+> [!INFO] DNS vs NIS
+> dns is centralised, NIS is local
+
+> [!INFO] Queries
+> iterative query - doesn't give you the final answer only gives the name of the next server
+> recursive query - only send the recurive query to final server. this must return the data requested for tell you that it doesn't exist. 
+> a LAN with an NIS will return recursive queries for all subdomain with that LAN
 
 Problem  
 - How to get the IP address with an IP name?  
