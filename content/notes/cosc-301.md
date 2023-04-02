@@ -40,7 +40,8 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 - [ ] [[08-post-installation]]
 - [x] [[09-wireless-networking]]
 - [x] [[10-scheduled-tasks-and-logs]]
-- [ ] [[11-DNS]]
+- [ ] [[11-DNS]] need to read about security
+- [ ] 
 
 
 # Info
