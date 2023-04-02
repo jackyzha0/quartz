@@ -72,6 +72,8 @@ tags:
 > e.g., server1 becomes server1.otago.ac.nz
 > resource records have different types
 > this allow sthe BIND to know which is which
+> need to set TTL of file. set the time for every record. Time to Live. e.g., 3 days. dns records are forgotten"flushed" after TTL has passed. after this they need to request the address again from the root nameserver
+> if you change ip address you might have to wait for 3days for everyones record of you to be changed. while changing you should have two nameservers → one for the old and one for the new
 
 > [!INFO] types of server
 > primary - one which most of the time is working
