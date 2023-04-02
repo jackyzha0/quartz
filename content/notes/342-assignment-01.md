@@ -34,10 +34,6 @@ Procedure
 
 _control for other factors: lighting, camera settings (exposure, iso, etc), resolution?__
 
-**hypothesis super wordy**: fixed
-**what is your error metric**: reprojection error
-**how will you decide statistically if your hypothesis is true or not**: measure correlation between number of features and level of detail
-
 RESULTS
 
 DISCUSSION
