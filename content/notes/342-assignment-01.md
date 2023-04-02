@@ -86,3 +86,20 @@ part 3 needs to be worded better... think about it like you are writing a recipe
 - I also need to develop a selection of images that I need to get
 - There are also some issues with the display of the mosaic. doesn't always fit perfectly on screen and there were a few instances of line of randomly colours pixels on the screen
 - ![](https://i.imgur.com/tAw2HJQ.png)
+
+02/04
+- refactored lab4 for work better for the assignment
+	- created new classes Mosaic, and Utils.
+	- created new file experiement1.cpp for experiment1
+	- rename features.cpp to main.cpp
+- collected more images using a mirrorless digital camera
+- start python script to analyse results from experiement
+
+03/04
+- ran experiment against new images
+- had some issues with filename "JPG" vs "jpg"
+- used power renamer to rename images
+- ran new data through analysis script
+- looks like error has very little correlation with the number of features using a flann based matcher
+- re ran experiement with bf matcher and redid analysis still very little correlation
+- 
