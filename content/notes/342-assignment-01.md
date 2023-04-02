@@ -102,4 +102,5 @@ part 3 needs to be worded better... think about it like you are writing a recipe
 - ran new data through analysis script
 - looks like error has very little correlation with the number of features using a flann based matcher
 - re ran experiement with bf matcher and redid analysis still very little correlation
+- change experiment 1 to run BFMatcher and FlannBasedMatcher on same keypoints.
 - 
