@@ -27,6 +27,8 @@ tags:
 > then sub domains ⇒ `google.com`, `ocss.nz`
 > and sub sub ⇒ `otago.ac.nz`
 > the advatage of tree structure is that the parent only need to know the domain name of the sub domains and the name server
+> internal nodes are "zones"
+> a "domain" is a leaf node.
 
 > [!INFO] google.com -> otago.ac.nz
 > first find nameserver for `.nz` if they already know the address for `.nz` then can go directly
@@ -46,10 +48,36 @@ tags:
 > [!INFO] DNS vs NIS
 > dns is centralised, NIS is local
 
+> [!INFO] BIND
+> windows -> WIND
+> software to implement a DNS server
+> "**BIND (Berkeley Internet Name Domain) is a software collection of tools including the world's most widely used DNS (Domain Name System) server software**. This feature-full implementation of DNS service and tools aims to be 100% standards-compliant and is; intended to serve as a reference architecture for DNS software."
+
 > [!INFO] Queries
 > iterative query - doesn't give you the final answer only gives the name of the next server
 > recursive query - only send the recurive query to final server. this must return the data requested for tell you that it doesn't exist. 
 > a LAN with an NIS will return recursive queries for all subdomain with that LAN
+
+> [!INFO] Files
+> /etc/nsswitch
+> /etc/hosts → contains local names, you can hardcode mappings in this file. this is more secure. if a domain name server if compromised you dont get the wrong name
+> /etc/resolv.conf → should put address  here?
+> /etc/named.conf  → root of the conf file. recruits other conf files. contains foward and reverse mappings
+> /etc/named.root → contain the names and other information of root servers
+> need to configure resolve order files->DNS
+
+> [!INFO] resource record
+> when you contact nameserver you need to put resource record there?
+> all names is record automaticall append parent domain name
+> e.g., server1 becomes server1.otago.ac.nz
+> resource records have different types
+> this allow sthe BIND to know which is which
+
+> [!INFO] types of server
+> primary - one which most of the time is working
+> secondary - backup
+> we need high reliability, they can communicate between each other to update changes
+
 
 Problem  
 - How to get the IP address with an IP name?  
