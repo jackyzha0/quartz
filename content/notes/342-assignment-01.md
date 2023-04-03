@@ -35,6 +35,7 @@ Procedure
 _control for other factors: lighting, camera settings (exposure, iso, etc), resolution?__
 
 RESULTS
+![](https://i.imgur.com/cxVO8up.png)
 
 DISCUSSION
 
@@ -58,6 +59,7 @@ Procedure
 5.  Plot the time taken as a function of the RANSAC threshold.
 
 RESULTS
+![](https://i.imgur.com/uAWQ2W3.png)
 
 DISCUSSION
     
@@ -103,4 +105,13 @@ part 3 needs to be worded better... think about it like you are writing a recipe
 - looks like error has very little correlation with the number of features using a flann based matcher
 - re ran experiement with bf matcher and redid analysis still very little correlation
 - change experiment 1 to run BFMatcher and FlannBasedMatcher on same keypoints.
-- 
+
+
+- wrote experiment 2 which went quite smoothly
+- ran tests for ransac values {1.0, 2.0, 3.0}, very similar resutls
+- used scatter plot to graph results
+- ran tests for ransac values {0.1, 1, 3, 10, 100}, there was some variation which suggested an exponential set of values was a good idea
+- used box plot to graph results
+- ran tests for threshold values { 0.05, 0.1, 0.5, 1.0,3.0, 10.0, 50.0, 100.0 }. 
+- clear trends
+
