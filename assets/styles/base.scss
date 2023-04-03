@@ -72,7 +72,7 @@ tbody, li, p {
 }
 
 .mainTOC {
-  border-radius: 5px;
+  border-radius: 0.6em;
   padding: 0.75em 0;
 
   & details {
@@ -130,7 +130,7 @@ td, th {
 
 img {
   max-width: 100%;
-  border-radius: 3px;
+  border-radius: 0.6em;
   margin: 1em 0;
 }
 
@@ -233,7 +233,7 @@ article {
   }
 
   & > li > a {
-    border-radius: 8px;
+    border-radius: 0.6em;
     border: var(--outlinegray) 1px solid;
     padding: 0.2em 0.5em;
     &::before {
@@ -283,7 +283,7 @@ code {
   font-family: var(--font-mono);
   font-size: 0.85em;
   padding: 0.15em 0.3em;
-  border-radius: 5px;
+  border-radius: 0.6em;
   background: var(--lightgray);
 }
 
@@ -331,14 +331,14 @@ hr {
         margin: 0.5em 0;
         padding: 0.25em 1em;
         border: var(--outlinegray) 1px solid;
-        border-radius: 5px
+        border-radius: 0.6em;
       }
     }
   }
 
   & #graph-container {
     border: var(--outlinegray) 1px solid;
-    border-radius: 5px;
+    border-radius: 0.6em;
     box-sizing: border-box;
     min-height: 250px;
     margin: 0.5em 0;
@@ -376,7 +376,7 @@ header {
 
   #search-icon {
     background-color: var(--lightgray);
-    border-radius: 4px;
+    border-radius: 0.6em;
     height: 2em;
     display: flex;
     align-items: center;
@@ -442,6 +442,7 @@ header {
       color: var(--dark);
       font-size: 1.1em;
       border: 1px solid var(--outlinegray);
+      border-radius: 0.6em;
 
       &:focus {
         outline: none;
@@ -565,7 +566,7 @@ header {
   padding: 1rem;
   margin: 1rem;
   border: 1px solid var(--outlinegray);
-  border-radius: 5px;
+  border-radius: 0.6em;
   pointer-events: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
   user-select: none;
