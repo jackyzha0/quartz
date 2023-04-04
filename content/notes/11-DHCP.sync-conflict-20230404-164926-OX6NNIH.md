@@ -5,8 +5,6 @@ tags:
 - cosc301
 ---
 
-> [!DANGER]  NEED TO STUDY
-
 Address Assignment 
 - First there was Reverse ARP (RARP) 
 	- Only IP address, no options for DNS etc. 
