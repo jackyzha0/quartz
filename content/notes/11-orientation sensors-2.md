@@ -81,3 +81,8 @@ Dead Reckoning
 - Orientation is biggest issues 
 - Periodic recalibration with new reference point required
 ![](https://i.imgur.com/ZKd8Z4t.png)
+
+![](https://i.imgur.com/7h9nO5Z.png)
+![](https://i.imgur.com/xNrcbm7.png)
+
+> [!INFO] detect when you take a lift as a calibration point
