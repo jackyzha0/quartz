@@ -44,6 +44,8 @@ Sensor Fusion
 > low pass filter, lets the low frequencies through
 > high pass filter, lets high frequencies through
 
+> [!INFO] you can create more sophisicated algorithms, but these usually introduce latency
+
 Dead Reckoning
 - Dead Reckoning 
 	- Estimates current position using 
@@ -53,6 +55,7 @@ Dead Reckoning
 		- Elapsed time 	
 - Used in all kinds of navigation (Marine, Aerial, Car, Robot, Pedestrian, .. )
 
+> [!INFO] guessing where you are based on you previous movements
 
 - Starting with a reference point (known position) 
 - Detect relative movements 
@@ -61,3 +64,20 @@ Dead Reckoning
 	- Magnetometer and gyroscope (orientation) 
 	- Barometer (level changes) 
 
+> [!INFO] GPS in cars sometimes just put you on the nearest road
+> robots use a lot of dead reckoning
+
+
+- Starting with a reference point (known position) 
+- Detect relative movements 
+- Smartphone sensors can be used 
+	- Accelerometer – step detection (distance) 
+	- Magnetometer and gyroscope (orientation) 
+	- Barometer (level changes)
+
+- Issues: 
+- Even small errors lead to incorrect positions 
+- Subsequent errors increase incorrectness 
+- Orientation is biggest issues 
+- Periodic recalibration with new reference point required
+![](https://i.imgur.com/ZKd8Z4t.png)
