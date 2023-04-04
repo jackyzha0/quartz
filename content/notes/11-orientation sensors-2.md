@@ -20,11 +20,15 @@ Advanced sensing
 - Can we combine sensors for model more complex states? 
 - Can we filter sensor measurements to improve the data quality?
 
+> [!INFO] this is what is happening, there is a lot of processing on top of the raw data. we combine sensors to get better results
+
 Sensor Fusion
 - The idea: 
 	- Combine (fuse) sensor to achieve better results 
 	- Better Location (When signal ist lost, not enough satellites, ..) 
 	- Better Orientation (Less drift (gyroscope), less error prone (compass), ..)
+
+> [!INFO] e.g., fuse wifi signal with GPS to make AGPS. 
 
 Sensor Fusion
 - Example for Orientation 
@@ -34,8 +38,26 @@ Sensor Fusion
 	- Gyroscope output is applied only for orientation changes in short time intervals (high-pass filtering) 
 	- Accelerometer/Magnetometer is used as support information over long periods of time for absolute orientation (low pass filtering)
 ![sensor fusion](https://i.imgur.com/vO3rjBd.png)
-
 ![sensor fusion signal filters](https://i.imgur.com/oYSFNvi.png)
 
+> [!INFO] when phone is still, use the magnetometer, when moving faster use the gyro
+> low pass filter, lets the low frequencies through
+> high pass filter, lets high frequencies through
+
 Dead Reckoning
-- 
+- Dead Reckoning 
+	- Estimates current position using 
+		- Previously known position 
+		- Speed 
+		- Orientation/direction 
+		- Elapsed time 	
+- Used in all kinds of navigation (Marine, Aerial, Car, Robot, Pedestrian, .. )
+
+
+- Starting with a reference point (known position) 
+- Detect relative movements 
+- Smartphone sensors can be used 
+	- Accelerometer – step detection (distance) 
+	- Magnetometer and gyroscope (orientation) 
+	- Barometer (level changes) 
+
