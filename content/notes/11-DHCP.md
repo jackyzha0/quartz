@@ -14,6 +14,14 @@ Address Assignment
 	- Allow direct network booting 
 	- Like RARP, constrained to single subnet, but perform at UDP/IP, instead of MAC layer
 
+> [!INFO] RARP
+> given mac address it finds the ip address. the opposite of ARP
+
+> [!INFO] ARP
+> we need arp because we need the data link layer protocol. so we need the destination mac address. this allows us to send ethernet frame to a MAC address
+
+> [!INFO] BOOTP
+
 DHCP 
 - Dynamic Host Configuration Protocol (DHCP) 
 - Compatible with BOOTP (uses same ports) 
@@ -23,12 +31,21 @@ DHCP
 - Limited to a single subnet, but routers can incorporate relay agents 
 - Successor: DHCPv6, less useful in IPv6
 
+> [!INFO] DHCP 
+> more widely used. more compatible and generalised
+> gives not only address. also tell you what is DNS server and gateway. 
+> ubiquitious
+> radvd and slacc similar to DHCPv6
+> send broadcast message to network. the server takes these broadcast messages and returns and IP address, and the lease time of the address. broadcaster sends another messages to accept/reject the offer. this sequence of messages has a session ID
+
 Static vs. Dynamic 
 - Static address is assigned manually by system admin in the DHCP configuration file using the client’s MAC address 
 	- Server machines’ addresses should be static 
 - Dynamically allocated addresses have a lease time period before they are re-assigned 
 	- Dynamically allocated address can be assigned to the same client as it keeps a table of past IP addresses and their clients MAC addresses. 
 	- Layer 3 (IP) change breaks existing connections if IP addresses change in a long session such as downloaders, terminal sessions
+
+> [!INFO] 
 
 How DHCP Works 
 - Client broadcasts UDP request to 255.255.255.255 port 67 
@@ -106,3 +123,14 @@ S.D. with DHCP
 - Requires client support, in DHCP client or application 
 - You can provision based on the machine or subnet, or a single group
 
+S.D. with DNS-SD 
+- Service (SRV) records specify service type, transport protocol, and the domain. 
+- _smtp._tcp.domain returns Priority, Weight, Port and Address of mail servers, for browsing. 
+	- DNS Service Discovery (DNS-SD) allows for browsing service instances. 
+	- Most commonly used with mDNS. 
+- Not suitable for very dynamic data in traditional DNS. Why?
+
+DNS-SD Example 
+- Examples taken from draft DNS-SD standard. 
+- What services are available on dns-sd.org? (provides a discovery starting point) dig +short -t any _services._dns-sd._udp.dnssd.org _ftp._tcp.dns-sd.org. _ssh._tcp.dns-sd.org. (and others...) 
+- What FTP services are available on dnssd.org? dig +short -t any _ftp._tcp.dnssd.org Apple\032QuickTime\032Files._ftp._tcp.d ns-sd.org. (and others...)
