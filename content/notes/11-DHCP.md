@@ -45,7 +45,13 @@ Static vs. Dynamic
 	- Dynamically allocated address can be assigned to the same client as it keeps a table of past IP addresses and their clients MAC addresses. 
 	- Layer 3 (IP) change breaks existing connections if IP addresses change in a long session such as downloaders, terminal sessions
 
+> [!INFO] RFC 
+> docs of all protocols
+
 > [!INFO] 
+> static more stable
+> dynamic susceptible to man in the middle attacks, from the gateway. 
+
 
 How DHCP Works 
 - Client broadcasts UDP request to 255.255.255.255 port 67 
