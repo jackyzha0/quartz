@@ -26,4 +26,5 @@ tags:
 - [x] [[09-location-sensors-3]]
 - [x] [[10-orientation-sensors]] 
 - [x] [[11-orientation sensors-2]]
+- [ ] [[12-advanced-sensing-and-vision-sensors]]
 # Info
