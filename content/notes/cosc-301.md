@@ -41,8 +41,7 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 - [x] [[09-wireless-networking]]
 - [x] [[10-scheduled-tasks-and-logs]]
 - [ ] [[11-DNS]] need to read about security
-- [ ] [[11-DHCP]] 
-- [ ] [[13-ssh]]
-
+- [ ] [[12-DHCP]] need to study
+- [x] [[13-ssh]]
 
 # Info

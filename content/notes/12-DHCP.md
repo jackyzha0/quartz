@@ -1,5 +1,5 @@
 ---
-title: "11-DHCP"
+title: "12-DHCP"
 tags: 
 - lecture
 - cosc301
