@@ -42,6 +42,7 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 - [x] [[10-scheduled-tasks-and-logs]]
 - [ ] [[11-DNS]] need to read about security
 - [ ] [[11-DHCP]] 
+- [ ] [[13-ssh]]
 
 
 # Info
