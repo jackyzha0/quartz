@@ -26,3 +26,36 @@ What is a terminal?
 > [!INFO] there are two entities → terminal master/client and terminal client/slave/server. 
 > similar to client server
 > a process can access the pseudo terminal
+
+
+> [!INFO] terminal modes
+> raw mode sends every keystroke
+> canonical mode sends processed input. with tab completion etc
+
+TTY Remote History 
+- Berkeley ‘r’-commands 
+	- rsh remote shell commands 
+	- rlogin remote terminal 
+	- rcp remote copy 
+	- Bad security
+		- Weak host-based authentication Privileged ports
+		- .rhosts
+		- no password
+- Telnet 
+	- Remote terminal, similar to rlogin 
+	- User-based authentication
+
+Past Problems & Solutions 
+	- Everything sent in clear-text, no encryption 
+	- **solution** encrypt all traffic
+- Weak Host-based authentication 
+	- Exploitable trust relationships 
+	- Privileged ports offer little protection 
+	- **solution** Port forwarding
+- Server is not authenticated 
+	- Potential Man-in-the-middle (MITM) attack Encrypt all traffic 
+	- **solution** Authenticate both user and server
+
+> [!INFO] port forwarding
+> in old days when you has an open for for mail/internet, anyone could connect
+> now only allow certain points to be accessed
