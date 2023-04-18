@@ -75,7 +75,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.1"></script>
   {{ $popover := resources.Get "js/popover.js" | resources.Fingerprint "md5" |
   resources.Minify }}
-  <script async src="{{$popover.Permalink}}"></script>
+  <script defer src="{{$popover.Permalink}}"></script>
 
   <!-- Optional scripts -->
   {{ if $data.enableCodeBlockTitle | default $.Site.Data.config.enableCallouts }}
