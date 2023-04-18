@@ -43,5 +43,6 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 - [ ] [[11-DNS]] need to read about security
 - [ ] [[12-DHCP]] need to study
 - [x] [[13-ssh]]
+- [ ] [[14-mail-servers]]
 
 # Info
