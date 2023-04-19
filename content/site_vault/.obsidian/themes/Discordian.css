@@ -1,0 +1,3223 @@
+/*----------------------------------------------------------------
+THEME BASE
+----------------------------------------------------------------*/
+
+:root {
+  --default-font: Catamaran, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --font-editor: Catamaran SSm, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --font-monospace: Consolas, Andale Mono, Lucida Console, Source Code Pro, iA Writer Mono S, Jetbrains Mono, Menlo, SFMono-Regular, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Monaco, Courier New, Courier, monospace;
+
+  /* discord palette */
+  --discord-green: hsla(153, 46%, 49%, 1);
+  --discord-yellow: hsla(38, 96%, 54%, 1);
+  --discord-yellow-alt: hsla(37, 65%, 63%, 1);
+  --discord-yellow-light: hsla(50, 42%, 48%, 1);
+  --discord-yellow-bg: hsla(38, 96%, 54%, 0.1);
+  --discord-orange: hsla(20, 84%, 52%, 1);
+  --discord-orange-light: hsla(24, 90%, 61%, 1);
+  --discord-red: hsla(0, 85%, 61%, 1);
+  --discord-red-hover: hsla(0, 66%, 55%, 1);
+  --discord-blue: hsla(227, 58%, 65%, 1);
+  --discord-blue-hover: hsla(227, 44%, 59%, 1);
+  --discord-grey: hsla(214, 10%, 50%, 1);
+  --discord-grey-hover: hsla(214, 10%, 45%, 1);
+  --discord-grey-toggle: hsla(218, 5%, 47%, 1);
+  --discord-dark: hsla(216, 7%, 14%, 1);
+  --discord-dark-hover: hsla(216, 7%, 14%, 0.7);
+
+  --elevation-stroke: 0 1px 0 1px hsla(240, 11%, 2%, 0.1);
+  --elevation-low: 0 1px 0 hsla(240, 11%, 2%, 0.2), 0 1.5px 0 hsla(240, 8%, 3%, 0.05), 0 2px 0 hsla(240, 11%, 2%, 0.05);
+  --elevation-medium: 0 4px 4px hsla(0, 0%, 0%, 0.16);
+  --elevation-high: 0 8px 16px hsla(0, 0%, 0%, 0.24);
+
+  --readable-line-length: 45rem;
+  --font-size-notes: 0.875rem;
+  --font-size-file-explorer: 0.875rem;
+  --letter-spacing-notes: -0.2px;
+}
+
+.theme-dark {
+  --background-primary: hsla(220, 8%, 23%, 1);
+  --background-primary-alt: hsla(232, 14%, 31%, 1);
+  --background-secondary: hsla(223, 7%, 20%, 1);
+  --background-secondary-alt: hsla(216, 7%, 14%, 1);
+  --background-tertiary: hsla(220, 7%, 17%, 1);
+
+  --background-accent: hsla(217, 8%, 34%, 1);
+
+  --background-code: hsla(204, 6%, 17%, 1);
+  --background-code-preview: hsla(204, 6%, 17%, 1);
+  --background-code-border: hsla(0, 0%, 16%, 1);
+
+  --background-modifier-cover: hsla(220, 8%, 23%, 1);
+  --background-modifier-hover: hsla(217, 8%, 34%, 0.16);
+  --background-modifier-active: hsla(217, 8%, 34%, 0.24);
+  --background-modifier-selected: hsla(217, 8%, 34%, 0.32);
+  --background-modifier-accent: hsla(0, 0%, 100%, 0.06);
+  --background-modifier-error: var(--discord-red);
+  --background-modifier-error-hover: var(--discord-red-hover);
+  --background-modifier-form-field: hsla(0, 0%, 0%, 0.2);
+  --background-modifier-form-field-highlighted: hsla(0, 0%, 0%, 0.2);
+  --background-modifier-border: var(--background-secondary-alt);
+
+  --text-normal: hsla(213, 3%, 82%, 1);
+  --text-muted: hsla(213, 4%, 57%, 1);
+  --text-faint: hsla(0, 0%, 61%, 1);
+  --text-link: hsla(197, 100%, 48%, 1);
+  --text-accent: hsla(265, 66%, 72%, 1);
+  --text-on-accent: hsla(210, 3%, 87%, 1);
+  --text-selection: hsla(212, 34%, 54%, 0.5);
+  --text-highlight-bg: hsla(212, 34%, 54%, 1);
+
+  --text-strong: var(--discord-yellow-alt);
+  --text-em: hsla(62, 31%, 61%, 1);
+  --text-tag: hsla(27, 100%, 63%, 0.73);
+  --text-mark: hsla(37, 82%, 74%, 1);
+
+  --markup-code: hsla(34, 89%, 61%, 1);
+
+  --text-header: hsla(233, 45%, 69%, 1);
+
+  --text-title-h1: hsla(243, 35%, 65%, 1);
+  --text-title-h2: var(--text-header);
+  --text-title-h3: var(--text-header);
+  --text-title-h4: var(--text-header);
+  --text-title-h5: var(--text-header);
+  --text-title-h6: hsla(192, 13%, 53%, 1);
+
+  --text-a: hsla(322, 65%, 70%, 1);
+  --text-a-hover: hsla(327, 100%, 77%, 1);
+
+  --interactive-accent: var(--discord-green);
+  --interactive-accent-hover: hsla(152, 60%, 43%, 1);
+  --interactive-accent-light: var(--discord-yellow-light);
+
+  --interactive-accent-alt: hsla(220, 7%, 17%, 1);
+  --interactive-hover: hsla(210, 3%, 87%, 1);
+  --interactive-muted: hsla(217, 8%, 34%, 1);
+  --interactive-normal: hsla(216, 4%, 74%, 1);
+  --interactive-active: hsla(0, 100%, 100%, 1);
+
+  --blockquote-border: hsla(286, 22%, 66%, 1);
+  --blockquote-bg: hsla(240, 11%, 2%, 0.07);
+
+  --scrollbar-bg: transparent;
+  --scrollbar-thin-thumb: hsla(216, 7%, 14%, 1);
+  --scrollbar-thin-track: transparent;
+  --scrollbar-auto-thumb: hsla(216, 7%, 14%, 1);
+  --scrollbar-auto-track: hsla(210, 10%, 20%, 1);
+  --scrollbar-auto-scrollbar-color-thumb: hsla(216, 7%, 14%, 1);
+  --scrollbar-auto-scrollbar-color-track: hsla(223, 7%, 20%, 1);
+
+  --cursor: default;
+  --opacity-translucency: 1;
+
+  --graph-line: hsla(191, 57%, 35%, 1);
+  --graph-line-highlight: hsla(191, 57%, 59%, 1);
+  --graph-circle-outline: transparent;
+  --graph-circle-fill: hsla(59, 99%, 50%, 1);
+  --graph-circle-fill-highlight: hsla(59, 99%, 50%, 1);
+  --graph-circle-fill-unresolved: hsla(206, 89%, 71%, 1);
+  --graph-fill-tag: hsla(250, 100%, 77%, 1);
+  --graph-fill-attachment: hsla(314, 57%, 63%, 1);
+  --graph-arrow: hsla(314, 57%, 63%, 1);
+}
+
+/* HACK for settings panel if title bar is brought back by user */
+body.theme-dark:not(.hider-frameless):not(.discordian-writer):not(.discordian-theme) .modal-container {
+  top: -22px !important;
+  height: 100vh !important;
+}
+
+/*----------------------------------------------------------------
+HIDDEN (comment in/out to toggle things)
+----------------------------------------------------------------*/
+
+/*----------------------------------------------------------------
+Hide main title bar */
+
+.titlebar {
+  display: none;
+}
+
+body {
+  padding-top: 0 !important;
+}
+
+body:not(.mod-windows):not(.discordian-theme) .mod-left-split .workspace-tab-header-container {
+  padding-left: 24px !important;
+}
+
+body:not(.plugin-sliding-panes):not(.is-fullscreen):not(.mod-windows) .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header {
+  padding-left: 30px;
+  transition: padding-left .15s ease;
+}
+
+body.hider-ribbon:not(.plugin-sliding-panes):not(.is-fullscreen):not(.mod-windows) .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header {
+  padding-left: 62px;
+  transition: padding-left .15s ease;
+}
+
+body.theme-dark:not(.hider-frameless):not(.discordian-writer):not(.discordian-theme) .modal-container,
+body.theme-dark:not(.hider-frameless) .modal-container,
+body.theme-dark:not(.discordian-writer) .modal-container,
+body.theme-dark:not(.discordian-theme) .modal-container {
+  top: 0 !important;
+  height: 100vh !important;
+}
+
+/*----------------------------------------------------------------
+Hide status bar */
+
+.status-bar {
+  display: none;
+}
+
+/*----------------------------------------------------------------
+Hide the name of the root folder (vault) */
+
+.nav-folder.mod-root > .nav-folder-title {
+  display: none;
+}
+
+/*----------------------------------------------------------------
+FOUNDATION
+----------------------------------------------------------------*/
+
+/* font for everything outside of editor/preview panes */
+body,
+.app-container {
+  font-size: 16px;
+  line-height: 22px !important;
+  font-family: var(--default-font);
+  color: var(--text-normal);
+  word-wrap: break-word;
+  text-rendering: optimizeLegibility;
+  vertical-align: baseline;
+  -webkit-font-feature-settings: "tnum";
+  -moz-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+  -webkit-font-variant-numeric: tabular-nums;
+  -moz-font-variant-numeric: tabular-nums;
+  font-variant-numeric: tabular-nums;
+  margin: 0 !important;
+}
+
+.cm-s-obsidian .hmd-fold-html-stub,
+.cm-s-obsidian .hmd-fold-code-stub,
+.cm-s-obsidian.CodeMirror .HyperMD-hover > .HyperMD-hover-content code,
+.cm-s-obsidian .cm-formatting-hashtag,
+.cm-s-obsidian .cm-inline-code,
+.cm-s-obsidian .HyperMD-codeblock,
+.cm-s-obsidian .HyperMD-hr,
+.cm-s-obsidian .cm-hmd-frontmatter,
+.cm-s-obsidian .cm-hmd-orgmode-markup,
+.cm-s-obsidian .cm-formatting-code,
+.cm-s-obsidian .cm-math,
+.cm-s-obsidian span.hmd-fold-math-placeholder,
+.cm-s-obsidian .CodeMirror-linewidget kbd,
+.cm-s-obsidian .hmd-fold-html kbd {
+  font-family: var(--font-monospace);
+  font-weight: normal;
+  color: var(--text-muted);
+  font-size: 100%;
+  letter-spacing: 0;
+}
+
+.CodeMirror-sizer {
+  border-right: 0;
+}
+
+.CodeMirror-lines {
+  padding: 0 0 20px 0;
+}
+
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
+  padding: 0;
+}
+
+.CodeMirror-scroll {
+  margin-right: 25px;
+}
+
+.cm-s-obsidian .CodeMirror-code {
+  padding-right: 0;
+}
+
+.markdown-source-view.is-readable-line-width .CodeMirror {
+  max-width: var(--readable-line-length);
+}
+
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+  max-width: var(--readable-line-length);
+}
+
+button,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type='search'],
+.splash-brand-name,
+.dropdown,
+.setting-hotkey,
+.suggestion-hotkey {
+  font-family: var(--default-font) !important;
+  border-color: var(--background-secondary-alt) !important;
+  letter-spacing: -0.01rem;
+}
+
+button {
+  -webkit-transition: background-color .17s ease, color .17s ease;
+  transition: background-color .17s ease, color .17s ease;
+}
+
+input[type='text'],
+input[type='search'],
+input[type='email'],
+input[type='password'],
+input[type='number'] {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  border-radius: 4px;
+  background-color: var(--discord-dark) !important;
+}
+
+input[type='text']:focus-within,
+input[type='search']:focus-within,
+input[type='email']:focus-within,
+input[type='password']:focus-within,
+input[type='number']:focus-within {
+  color: var(--text-normal);
+}
+
+ul li {
+  margin: 4px 0;
+}
+
+p {
+  margin-block-start: 1.4375rem;
+  margin-block-end: 1.4375rem;
+}
+
+p.mod-warning {
+  color: var(--discord-red);
+}
+
+.search-result-file-match::after {
+  background-color: var(--background-tertiary);
+}
+
+/* Discord-like tooltip  */
+.tooltip {
+  font-size: 1rem;
+  padding: 10px;
+}
+
+/* html tags in editor */
+.cm-tag,
+.cm-attribute { /* .cm-string */
+  color: var(--text-muted) !important;
+}
+
+/* horizontal line in preview */
+.markdown-preview-view hr {
+  background-color: var(--text-muted);
+  border: none;
+  height: 1px;
+  margin: 1.4375rem 0;
+}
+
+/* internal embedded link rendering in preview */
+.markdown-embed-title {
+  font-weight: 600;
+  color: var(--text-link);
+}
+
+.markdown-embed {
+  padding-left: 8px !important;
+  padding-right: 4px !important;
+  margin-left: 8px !important;
+  margin-right: 4px !important;
+}
+
+/* NO FILE OPEN page */
+
+.empty-state-title {
+  color: var(--discord-yellow-alt) !important;
+}
+
+.empty-state-action {
+  color: var(--text-muted) !important;
+}
+
+.empty-state-action:hover {
+  color: var(--text-normal) !important;
+}
+
+/*----------------------------------------------------------------
+BLOCKQUOTES */
+
+.cm-s-obsidian span.cm-quote {
+  color: var(--interactive-accent);
+}
+
+.cm-hmd-indent-in-quote {
+  padding-left: 4px;
+}
+
+.markdown-preview-view blockquote {
+  color: var(--interactive-accent) !important;
+  border: none;
+  border-left: 3px solid var(--blockquote-border) !important;
+  border-radius: 4px !important;
+  margin: 1.5rem 1.5rem 1.5rem 3.5rem;
+  background-color: var(--blockquote-bg);
+}
+
+blockquote p {
+  display: inline;
+}
+
+/*----------------------------------------------------------------
+IMAGES */
+
+img {
+  display: block;
+  margin-right: auto;
+}
+
+/*----------------------------------------------------------------
+Normal text outside of headings and code */
+
+/* preview */
+
+.markdown-preview-view {
+  font-family: var(--font-editor);
+  color: var(--text-normal);
+  font-weight: 400;
+  font-size: var(--font-size-notes);
+  letter-spacing: var(--letter-spacing-notes);
+  line-height: 1.65 !important;
+  padding-left: 6% !important;
+  padding-right: 4% !important;
+  padding-top: 20px;
+  overflow-x: hidden;
+}
+
+/* editor */
+
+.cm-s-obsidian {
+  font-family: var(--font-editor);
+  color: var(--text-normal);
+  font-weight: 400;
+  font-size: var(--font-size-notes);
+  letter-spacing: var(--letter-spacing-notes);
+  line-height: 1.65 !important;
+
+  /* Editor font: make it thicker so it is like in Preview */
+  -webkit-font-smoothing: subpixel-antialiased !important;
+}
+
+.markdown-source-view {
+  padding-left: 6% !important;
+  padding-right: 4% !important;
+  padding-top: 20px;
+}
+
+/*----------------------------------------------------------------
+Bold */
+
+strong {
+  color: var(--discord-yellow-alt);
+  font-weight: 500;
+}
+
+.cm-strong {
+  color: var(--discord-yellow-alt);
+  font-weight: 500;
+}
+
+/*----------------------------------------------------------------
+Italics */
+
+em {
+  color: var(--text-em);
+}
+
+.cm-em {
+  color: var(--text-em);
+}
+
+.cm-formatting-em {
+  font-style: normal;
+}
+
+.cm-em:not(.cm-formatting-em) {
+  margin-left: -1px;
+}
+
+/*----------------------------------------------------------------
+Highlights */
+
+.markdown-preview-view mark {
+  background-color: transparent !important;
+  -webkit-box-shadow: inset 0 -2px var(--discord-yellow-alt);
+  box-shadow: inset 0 -2px var(--discord-yellow-alt);
+  padding-bottom: 4px;
+}
+
+.cm-highlight {
+  background-color: transparent !important;
+  -webkit-box-shadow: inset 0 -2px var(--discord-yellow-alt);
+  box-shadow: inset 0 -2px var(--discord-yellow-alt);
+  padding-bottom: 4px;
+}
+
+mark > strong {
+  color: var(--discord-yellow-alt) !important;
+  font-weight: 500;
+  padding: 0 2px;
+}
+
+/*----------------------------------------------------------------
+Popup notifications */
+
+.notice {
+  color: var(--text-on-accent) !important;
+  background-color: var(--background-primary-alt) !important;
+}
+
+/*----------------------------------------------------------------
+Dropdown */
+
+.dropdown {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(32, 34, 37, 0.5) !important;
+  border-radius: 6px;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' height='20' width='20' viewBox='0 0 20 20' focusable='false' stroke-width='px' fill='%23B9BBBE' class='dropdown-svg'%3E%3Cpath d='M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 1.2em auto, 100%;
+  -webkit-transition: background-color .17s ease, color .17s ease;
+  transition: background-color .17s ease, color .17s ease;
+  outline: 0 !important;
+  cursor: pointer;
+}
+
+.dropdown:hover {
+  background-color: var(--background-modifier-form-field);
+}
+
+.dropdown:focus {
+  background-color: var(--background-modifier-form-field-highlighted);
+}
+
+/*----------------------------------------------------------------
+Selections */
+
+.markdown-preview-view .mod-highlighted {
+  background-color: var(--text-selection);
+  color: inherit;
+}
+
+/* flashing and selections when searching */
+.is-flashing {
+  background-color: var(--text-highlight-bg);
+  transition: all 0.7s ease-in !important;
+}
+
+/*----------------------------------------------------------------
+HEADINGS
+----------------------------------------------------------------*/
+
+/*----------------------------------------------------------------
+Preview */
+
+.markdown-preview-view h1,
+.markdown-preview-view h2,
+.markdown-preview-view h3,
+.markdown-preview-view h4,
+.markdown-preview-view h5,
+.markdown-preview-view h6 {
+  font-weight: 600;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  line-height: 125% !important;
+}
+
+.markdown-preview-view h1 {
+  font-size: 2rem;
+  color: var(--text-title-h1);
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-top: 0;
+}
+
+.markdown-preview-view h2 {
+  font-size: 1.625rem;
+  color: var(--text-title-h2);
+}
+
+.markdown-preview-view h3 {
+  font-size: 1.375rem;
+  color: var(--text-title-h3);
+}
+
+.markdown-preview-view h4 {
+  font-size: 1.125rem;
+  color: var(--text-title-h4);
+}
+
+.markdown-preview-view h5 {
+  font-size: 1.125rem;
+  color: var(--text-title-h5);
+}
+
+.markdown-preview-view h6 {
+  font-size: 1rem;
+  color: var(--text-title-h6);
+}
+
+/*----------------------------------------------------------------
+Editor */
+
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: 600;
+  margin-block-start: 1em;
+  line-height: 125% !important;
+}
+
+.cm-header-1 {
+  font-size: 2rem;
+  color: var(--text-title-h1);
+  margin-block-start: 0;
+}
+
+.cm-header-2 {
+  font-size: 1.625rem;
+  color: var(--text-title-h2);
+}
+
+.cm-header-3 {
+  font-size: 1.375rem;
+  color: var(--text-title-h3);
+}
+
+.cm-header-4 {
+  font-size: 1.125rem;
+  color: var(--text-title-h4);
+}
+
+.cm-header-5 {
+  font-size: 1.125rem;
+  color: var(--text-title-h5);
+}
+
+.cm-header-6 {
+  font-size: 1rem;
+  color: var(--text-title-h6);
+}
+
+.cm-s-obsidian span.cm-header-1.cm-footref,
+.cm-s-obsidian span.cm-header-1.cm-blockid,
+.cm-s-obsidian span.cm-header-2.cm-footref,
+.cm-s-obsidian span.cm-header-2.cm-blockid,
+.cm-s-obsidian span.cm-header-3.cm-footref,
+.cm-s-obsidian span.cm-header-3.cm-blockid {
+  font-size: 1rem;
+  vertical-align: text-top;
+  margin-top: -1rem;
+}
+
+.cm-s-obsidian span.cm-header-4.cm-footref,
+.cm-s-obsidian span.cm-header-4.cm-blockid,
+.cm-s-obsidian span.cm-header-5.cm-footref,
+.cm-s-obsidian span.cm-header-5.cm-blockid,
+.cm-s-obsidian span.cm-header-6.cm-footref,
+.cm-s-obsidian span.cm-header-6.cm-blockid {
+  font-size: 0.75rem;
+  vertical-align: text-top;
+  margin-top: -0.75rem;
+}
+
+.cm-s-obsidian pre.HyperMD-header {
+  padding-bottom: 0;
+  padding-left: 0 !important;
+}
+
+.vertical-tab-content h1:first-child,
+.vertical-tab-content h2:first-child,
+.vertical-tab-content h3:first-child {
+  margin-block-start: 0;
+}
+
+/*----------------------------------------------------------------
+POPOVERS
+----------------------------------------------------------------*/
+
+.menu,
+div.popover.hover-popover,
+.suggestion-container {
+  background-color: var(--background-secondary);
+  border-radius: 4px;
+  border: none !important;
+  min-width: 15rem;
+  font-family: var(--font-editor);
+  font-size: 15px !important;
+  -webkit-box-shadow: var(--elevation-stroke), var(--elevation-high);
+  box-shadow: var(--elevation-stroke), var(--elevation-high);
+}
+
+/* Bigger popovers */
+div.popover.hover-popover {
+  width: 35rem;
+  max-height: 25rem;
+}
+
+div.popover.hover-popover .markdown-preview-view {
+  font-size: 13px !important;
+}
+
+.popover.hover-popover .markdown-embed {
+  height: 25rem;
+}
+
+div.popover.hover-popover .markdown-preview-view h1 {
+  font-size: 1.375rem;
+}
+
+div.popover.hover-popover .markdown-preview-view h2 {
+  font-size: 1.25rem;
+}
+
+div.popover.hover-popover .markdown-preview-view h3 {
+  font-size: 1.125rem;
+}
+
+div.popover.hover-popover .markdown-preview-view h4 {
+  font-size: 1rem;
+}
+
+div.popover.hover-popover .markdown-preview-view h5,
+div.popover.hover-popover .markdown-preview-view h6 {
+  font-size: 0.875rem;
+}
+
+/*----------------------------------------------------------------
+SUGGESTIONS
+----------------------------------------------------------------*/
+
+.suggestion-item,
+.suggestion-empty {
+  font-size: 15px;
+}
+
+.suggestion .suggestion-item.is-selected {
+  background-color: var(--background-modifier-form-field-highlighted);
+  color: var(--text-on-accent);
+}
+
+.suggestion-highlight {
+  color: var(--interactive-accent) !important;
+}
+
+/*----------------------------------------------------------------
+SCROLLBARS
+----------------------------------------------------------------*/
+
+/*----------------------------------------------------------------
+theme-default thin scrollbars */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  border-color: var(--scrollbar-thin-track);
+  background-color: var(--background-secondary);
+  border: 2px solid var(--scrollbar-thin-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background-clip: padding-box;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  background-color: var(--scrollbar-thin-thumb);
+  min-height: 40px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+/* Clean up secondary scrollbar*/
+.CodeMirror-scroll::-webkit-scrollbar {
+  display: none !important;
+}
+
+/*----------------------------------------------------------------
+scrollbars in editor & preview */
+
+.mod-root {
+  scrollbar-width: auto;
+  scrollbar-color: var(--scrollbar-auto-scrollbar-color-thumb) var(--scrollbar-auto-scrollbar-color-track);
+}
+
+.mod-root ::-webkit-scrollbar {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.mod-root ::-webkit-scrollbar-track {
+  background-color: var(--scrollbar-auto-track);
+  border: 4px solid var(--background-primary);
+}
+
+.mod-root ::-webkit-scrollbar-thumb,
+.mod-root ::-webkit-scrollbar-track {
+  border: 4px solid transparent;
+  background-clip: padding-box;
+  border-radius: 8px;
+}
+
+.mod-root ::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-auto-thumb);
+  min-height: 40px;
+}
+
+.mod-root ::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+/*----------------------------------------------------------------
+graph controls scrollbars */
+
+.mod-root .graph-controls::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+.mod-root .graph-controls::-webkit-scrollbar-track {
+  border-color: var(--background-secondary-alt) !important;
+  background-color: var(--background-primary) !important;
+  border: 0 solid var(--scrollbar-thin-track) !important;
+  border-radius: 0 !important;
+}
+
+.mod-root .graph-controls::-webkit-scrollbar-thumb {
+  background-clip: padding-box !important;
+  border: 2px solid transparent !important;
+  border-radius: 0 !important;
+  background-color: var(--scrollbar-thin-thumb);
+  min-height: 40px !important;
+}
+
+.mod-root .graph-controls::-webkit-scrollbar-corner {
+  background-color: transparent !important;
+}
+
+/*----------------------------------------------------------------
+codeblocks - scrollable content without horizontal scrollbar */
+
+.markdown-preview-section pre::-webkit-scrollbar-track {
+  border: 0;
+  border-radius: 0;
+  background-color: var(--background-primary);
+}
+
+.markdown-preview-section pre::-webkit-scrollbar-thumb {
+  background-color: var(--background-primary); /* --scrollbar-thin-thumb to reveal */
+  border: 6px solid transparent;
+}
+
+/*----------------------------------------------------------------
+WORKSPACE
+----------------------------------------------------------------*/
+
+.app-container {
+  border-top: 1px solid var(--background-tertiary) !important;
+}
+
+.view-content {
+  height: calc(100% - 32px);
+}
+
+.titlebar-button-container {
+  top: 0;
+}
+
+.nav-action-button.is-active {
+  background-color: var(--interactive-accent-alt);
+  color: var(--text-on-accent);
+}
+
+/* straight corners */
+.workspace-split.mod-left-split .workspace-tabs .workspace-leaf,
+.workspace-split.mod-right-split .workspace-tabs .workspace-leaf,
+.workspace-leaf-content {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+/*----------------------------------------------------------------
+Collapsed Ribbons */
+
+.workspace-ribbon.is-collapsed {
+  background-color: var(--background-secondary-alt) !important;
+}
+
+.workspace-ribbon.mod-right.is-collapsed {
+  background-color: var(--background-secondary-alt) !important;
+}
+
+.workspace-ribbon.mod-left.is-collapsed {
+  background-color: var(--background-secondary-alt) !important;
+}
+
+/*----------------------------------------------------------------
+Tabs */
+
+.workspace-tabs {
+  background-color: var(--background-secondary);
+  overflow: hidden;
+  padding: 0 0 1rem 0;
+  position: relative;
+}
+
+.workspace-tab-header {
+  color: var(--text-muted) !important;
+  text-decoration: none !important;
+}
+
+.workspace-tab-header:hover {
+  color: var(--text-normal) !important;
+}
+
+.workspace-tags,
+.tag-container {
+  padding: 0;
+}
+
+/*----------------------------------------------------------------
+Resize Handlers */
+
+body.is-translucent {
+  background-color: var(--background-primary);
+}
+
+.workspace-leaf-resize-handle,
+.is-translucent .workspace-leaf-resize-handle {
+  background-color: var(--background-secondary); /*--background-secondary-alt*/
+  margin: 0;
+}
+
+.workspace-leaf-resize-handle:hover,
+.is-translucent .workspace-leaf-resize-handle:hover {
+  background-color: var(--interactive-accent-light);
+}
+
+/*----------------------------------------------------------------
+Split Mode */
+
+.workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
+.workspace-split.mod-left-split > .workspace-leaf-resize-handle,
+.workspace-split.mod-right-split > .workspace-leaf-resize-handle {
+  width: 2px !important;
+}
+
+.workspace-split.mod-horizontal > * > .workspace-leaf-resize-handle {
+  height: 2px;
+}
+
+.workspace-split.mod-root > .workspace-leaf:first-of-type .workspace-leaf-content {
+  padding-right: 0;
+}
+
+.workspace-split.mod-vertical > .workspace-leaf {
+  padding-right: 0;
+}
+
+.workspace-split.mod-root {
+  background-color: transparent !important;
+}
+
+/* no animation for panels - feels more snappier */
+.workspace-split.mod-left-split,
+.workspace-split.mod-right-split {
+  transition: none;
+}
+
+.workspace-split.mod-root > .workspace-leaf:first-of-type .workspace-leaf-content .view-content {
+  padding-right: 0;
+}
+
+/*----------------------------------------------------------------
+Side Dock */
+
+.side-dock-ribbon-action {
+  color: var(--text-muted) !important;
+}
+
+.side-dock-ribbon-action:hover {
+  color: var(--text-normal) !important;
+}
+
+.side-dock-ribbon-tab.is-active {
+  color: var(--interactive-accent) !important;
+}
+
+.side-dock-ribbon-tab.is-active .side-dock-ribbon-tab-inner:hover {
+  color: #6272a4 !important;
+  background-color: var(--background-secondary);
+}
+
+.side-dock-panels-container {
+  font-size: 13px !important;
+  background-color: var(--background-secondary-alt) !important;
+  color: var(--background-secondary-alt);
+}
+
+/* side dock titles at top */
+.side-dock-title {
+  font-size: 20px !important;
+  font-weight: 800 !important;
+}
+
+.side-dock-collapsible-section-header {
+  font-size: 14px;
+}
+
+/* hover actions on side dock navigation */
+.side-dock-ribbon-tab:hover,
+.side-dock-ribbon-tab-inner:hover,
+.side-dock-ribbon-action:hover,
+.side-dock-ribbon-action.is-active:hover,
+.nav-action-button:hover,
+.side-dock-collapse-btn:hover {
+  color: var(--text-normal);
+}
+
+/*----------------------------------------------------------------
+Navigation & File Explorer */
+
+.nav-action-button {
+  margin-bottom: 5px;
+}
+
+.nav-action-button svg {
+  width: 15px;
+}
+
+.nav-header {
+  padding: 8px 20px 4px 20px;
+}
+
+.nav-file-title,
+.nav-folder-title {
+  cursor: var(--cursor);
+  align-items: baseline;
+  width: 100%;
+  vertical-align: middle;
+  line-height: 1.25;
+}
+
+.nav-file-title {
+  padding: 6px 10px 6px 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-family: var(--font-editor);
+  font-variant-numeric: tabular-nums !important;
+  font-size: var(--font-size-file-explorer);
+  border-radius: 4px;
+  color: var(--text-muted) !important;
+  background-color: var(--background-secondary);
+  display: inline-flex;
+  -webkit-font-feature-settings: "tnum" !important;
+  -moz-font-feature-settings: "tnum" !important;
+  font-feature-settings: "tnum" !important;
+  -webkit-font-variant-numeric: tabular-nums !important;
+  -moz-font-variant-numeric: tabular-nums !important;
+}
+
+.nav-file-title:hover,
+.nav-folder-title:hover {
+  color: var(--text-normal) !important;
+}
+
+.nav-folder-title {
+  font-size: calc(var(--font-size-file-explorer) + 0.125rem);
+  color: var(--interactive-active) !important;
+  background-color: var(--background-secondary);
+  padding: 2px 10px 2px 22px;
+}
+
+/*----------------------------------------------------------------
+Condense line spacing on file explorer title list.
+Avoid character-level word breaks */
+
+.nav-file-title-content,
+.search-result-file-title {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  line-height: normal !important;
+  word-break: keep-all;
+}
+
+.nav-file-title-content,
+.nav-folder-title-content {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+}
+
+.nav-folder-title-content {
+  padding: 1px 4px;
+}
+
+.nav-file-title-content {
+  width: 100%;
+}
+
+.nav-files-container {
+  overflow-x: hidden !important;
+  padding-bottom: 25px;
+}
+
+/* smaller & bold vault title */
+.nav-folder.mod-root > .nav-folder-title {
+  padding-left: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  top: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: default;
+  color: var(--text-accent) !important;
+}
+
+.nav-file {
+  margin-right: 10px;
+}
+
+.nav-folder-children .nav-folder-children > .nav-file > .nav-file-title {
+  padding: 6px 10px 6px 10px;
+  margin-left: 0 !important;
+  margin-right: 10px;
+}
+
+.nav-folder-children .nav-folder-children > .nav-file > .nav-file-title > .nav-file-title-content {
+  padding: 2px 0;
+}
+
+/*----------------------------------------------------------------
+Files & folders: active & hover */
+
+.nav-file.is-active .nav-file-tag {
+  color: var(--text-normal);
+}
+
+.nav-file-title.is-active::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='8' width='8'%3E%3Ccircle cx='4' cy='4' r='4' stroke='white' stroke-width='0' fill='white'/%3E%3C/svg%3E");
+  position: absolute;
+  left: -4px;
+}
+
+.nav-folder-children .nav-folder-children > .nav-file > .nav-file-title.is-active::before {
+  content: none;
+}
+
+.nav-file-title.is-active,
+.nav-file-title.is-active:hover {
+  background-color: var(--background-primary);
+  color: var(--text-normal) !important;
+}
+
+.nav-file-title.is-active,
+.nav-folder-title.is-active,
+body:not(.is-grabbing) .nav-file-title:hover,
+body:not(.is-grabbing) .nav-folder-title:hover {
+  background-color: var(--background-primary);
+  border-radius: 4px;
+}
+
+.nav-folder-collapse-indicator {
+  background-color: transparent !important;
+}
+
+.collapse-icon svg {
+  height: 12px;
+}
+
+.nav-file-tag {
+  background-color: var(--background-secondary-alt);
+  top: -1px;
+  margin-left: 0;
+}
+
+.nav-file-tag + .nav-file-title-content {
+  margin-left: 4px;
+}
+
+/*----------------------------------------------------------------
+Search */
+
+.search-result {
+  margin-bottom: 0;
+}
+
+.search-result-file-title {
+  color: var(--text-a) !important;
+  background-color: var(--background-secondary);
+  font-weight: 400;
+}
+
+.search-result-file-title:hover {
+  background-color: var(--background-secondary);
+}
+
+.search-result-file-matches {
+  font-size: 13px;
+  line-height: 16px;
+  margin-right: 5px;
+  border-bottom: 0;
+}
+
+.search-result-file-match::before {
+  display: none;
+}
+
+.search-result-file-match:not(:first-child) {
+  margin-top: 0;
+}
+
+.search-result-file-match {
+  line-height: normal !important;
+  word-break: keep-all;
+  left: 0;
+  width: 100%;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+.search-result-file-match:hover {
+  background-color: var(--background-tertiary);
+}
+
+.search-result-file-matched-text {
+  background-color: var(--text-selection);
+}
+
+.search-result-collapse-indicator {
+  top: -5px !important;
+}
+
+.search-result-file-match-replace-button {
+  color: var(--text-on-accent);
+  top: 3px;
+  right: 8px;
+  opacity: 0.8;
+  font-size: .625rem;
+  text-transform: uppercase;
+  background-color: var(--interactive-accent) !important;
+  height: .9375rem;
+  padding: 0 .275rem;
+  margin-top: .075em;
+  border-radius: .1875rem;
+  letter-spacing: 1px;
+}
+
+.tree-item-self .collapse-icon {
+  margin-top: -1px;
+}
+
+.tree-item-flair {
+  background-color: unset;
+}
+
+.tree-item-self .tree-item-flair {
+  font-family: var(--font-editor);
+  font-size: 0.6875rem;
+}
+
+.tree-item-self:hover .tree-item-flair {
+  background-color: unset;
+  color: var(--text-a);
+}
+
+.backlink-pane .tree-item-inner {
+  font-size: 0.875rem;
+}
+
+.backlink-pane > .tree-item-self:hover .tree-item-flair {
+  color: var(--text-normal);
+}
+
+.tag-container .tree-item-self:hover .tree-item-flair {
+  color: var(--text-normal);
+}
+
+.tree-item-children {
+  margin-left: 15px;
+}
+
+/* search count boxes */
+.search-result-count {
+  font-family: var(--font-monospace);
+  letter-spacing: 0;
+}
+
+.search-result-file-title .pane-list-item-ending-flair {
+  position: absolute;
+  top: 1px;
+  font-size: 12px;
+  background-color: var(--background-secondary-alt);
+  line-height: 12px;
+  border-radius: 3px;
+}
+
+/* clean up side bar empty state (e.g. unlinked mentions) */
+.search-empty-state {
+  width: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: normal;
+  font-size: 0.875rem;
+  color: var(--discord-red-hover);
+}
+
+/*----------------------------------------------------------------
+Header */
+
+.workspace-split.mod-root > .workspace-leaf:first-of-type:last-of-type .view-header {
+  border-bottom: 0;
+  background-color: var(--background-primary);
+}
+
+.view-header {
+  height: 30px;
+  border-top: 0;
+  border-bottom: 0;
+  background-color: var(--background-primary);
+}
+
+.view-header::before {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 28px;
+  height: 1px;
+  -webkit-box-shadow: var(--elevation-low) !important;
+  box-shadow: var(--elevation-low) !important;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.view-header-title {
+  font-size: 13px;
+  line-height: 32px;
+  font-family: var(--font-editor) !important;
+}
+
+.view-header-title-container {
+  position: relative;
+}
+
+.workspace-leaf.mod-active .view-header {
+  background-color: var(--background-primary);
+  border-bottom: 2px solid var(--discord-yellow-light);
+}
+
+/* fix the long-title-obscuring shadows */
+.workspace-leaf.mod-active .view-header-title-container::after,
+.view-header-title-container::after {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 28px;
+  background: linear-gradient(to right, transparent, var(--background-primary)) !important; /* rgb(51,53,59) */
+}
+
+.view-header-title-container::after {
+  background: linear-gradient(to right, transparent, var(--background-primary)) !important;
+}
+
+/* Change color of note title active pane */
+.workspace-leaf.mod-active .view-header-title {
+  color: var(--text-normal);
+}
+
+.workspace-leaf-content .view-content,
+.workspace-leaf-content[data-type='tag'] {
+  padding: 10px;
+}
+
+.view-header-icon {
+  top: 0 !important;
+}
+
+/*----------------------------------------------------------------
+View Actions */
+
+.view-action {
+  top: 0;
+  color: var(--text-muted) !important;
+  text-decoration: none !important;
+}
+
+.view-action:hover,
+.view-action.is-active {
+  color: var(--text-normal) !important;
+}
+
+.view-actions {
+  padding: 5px 10px;
+  margin-left: auto;
+}
+
+/* icons at top of panes */
+.file-view-actions a {
+  color: var(--text-muted) !important;
+}
+
+.file-view-actions a:hover {
+  color: var(--text-muted) !important;
+}
+
+/*.workspace-leaf.mod-active .view-header-icon {
+  color: var(--text-normal);
+}*/
+
+/*.view-actions {
+  opacity: 0.2;
+}
+
+.view-actions:hover {
+  opacity: 1;
+}*/
+
+/*----------------------------------------------------------------
+Top Window Frame */
+
+.titlebar {
+  background: var(--background-primary);
+}
+
+.titlebar-text {
+  display: none;
+  color: var(--text-faint);
+  letter-spacing: inherit;
+}
+
+.titlebar-button {
+  opacity: 1;
+  cursor: var(--cursor);
+}
+
+.titlebar-button svg path {
+  fill: var(--text-muted) !important;
+  stroke: var(--text-muted) !important;
+}
+
+.titlebar-button:hover svg path {
+  fill: var(--text-normal) !important;
+  stroke: var(--text-normal) !important;
+}
+
+/*----------------------------------------------------------------
+Status Bar */
+
+.status-bar {
+  border-top: 0;
+  background-color: var(--background-secondary-alt) !important;
+  color: var(--text-faint);
+  padding: 0 4em 0 0;
+}
+
+.status-bar-item {
+  padding: 0 5px;
+  font-size: 13px;
+}
+
+.status-bar-item-segment {
+  margin-right: 1rem;
+}
+
+/*----------------------------------------------------------------
+LISTS
+----------------------------------------------------------------*/
+
+ul {
+  padding-inline-start: 2em;
+  list-style: none;
+}
+
+ul ul,
+ol ul,
+ol ol ul,
+ol ul ul,
+ul ol ul,
+ul ul ul {
+  list-style: none;
+}
+
+ul > li:not(.task-list-item)::before {
+  content: "\2022";
+  color: var(--text-faint);
+  font-weight: 400;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+ul li p,
+ol li p {
+  display: inline;
+}
+
+ol {
+  padding-inline-start: 1em;
+  margin-left: 1em;
+  list-style: none;
+  counter-reset: counter;
+  position: relative;
+}
+
+ol > li {
+  counter-increment: counter;
+  margin: 0.3rem 0 0.3rem 0;
+}
+
+ol > li::before {
+  content: counter(counter) ". ";
+  color: var(--text-faint);
+  position: absolute;
+  text-align: left;
+  left: 0;
+  width: 1em;
+}
+
+/*----------------------------------------------------------------
+ul, li & ol colors in editor */
+
+.markdown-preview-section > ul.contains-task-list {
+  margin-block-end: 2rem;
+}
+
+/*----------------------------------------------------------------
+TASK LISTS
+----------------------------------------------------------------*/
+
+input[type=checkbox] {
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0;
+  cursor: pointer;
+  background-color: var(--background-primary);
+  border: 1px solid var(--text-faint);
+  border-radius: 3px;
+}
+
+input[type=checkbox]:focus,
+input[type=checkbox]:hover {
+  outline: 0;
+  border-color: var(--text-faint);
+}
+
+input[type=checkbox]:checked {
+  background-color: var(--discord-blue) !important;
+  border: 1px solid var(--discord-blue);
+  background-position: center;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' aria-hidden='true' focusable='false' width='1em' height='1em' style='-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);' preserveAspectRatio='xMidYMid meet' viewBox='0 0 20 20'%3E%3Cpath d='M0 11l2-2l5 5L18 3l2 2L7 18z' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+/*----------------------------------------------------------------
+Preview Mode */
+
+.markdown-preview-view .task-list-item-checkbox {
+  top: 8px;
+  width: calc(var(--font-size-notes) + 0.375rem);
+  height: calc(var(--font-size-notes) + 0.375rem);
+  margin-left: -0.2em;
+  margin-right: 0.5rem;
+  filter: none;
+}
+
+ul.contains-task-list li > div.list-collapse-indicator {
+  margin-left: -3.5rem;
+  margin-top: 0.5rem;
+}
+
+/*----------------------------------------------------------------
+Smart Visual Task Lists ALSO in Editor Mode ! (HACKISH)
+
+This works properly only with "Smart Indent List" setting enabled
+as it produces checkboxes automatically when entering next line.
+Best combined with "Toggle checklist status" command shortcut.
+
+FOR DEFAULT BEHAVIOUR PLEASE REMOVE THIS WHOLE SECTION TILL END */
+
+.cm-s-obsidian span.cm-formatting-list {
+  margin: 0;
+}
+
+.cm-s-obsidian pre.HyperMD-list-line {
+  padding-bottom: 0.1rem;
+  padding-top: 0;
+}
+
+.cm-s-obsidian span.cm-formatting-task {
+  white-space: pre;
+  text-align: center;
+  color: transparent;
+  font-size: calc(0.7 * calc(var(--font-size-notes) + 0.125rem));
+  line-height: 2rem;
+  background-color: var(--background-primary);
+  font-family: var(--default-font);
+  margin-left: -0.8rem;
+  padding-bottom: 0.1rem;
+}
+
+.cm-formatting-task {
+  border: 1px solid var(--text-faint);
+  border-radius: 3px;
+  padding: 0;
+}
+
+/* HACK: makes unchecked task same size as checked one */
+.cm-s-obsidian span.cm-formatting-task::after {
+  content: '\0020\0020\0020\0020';
+  color: transparent;
+}
+
+input[type=checkbox]:checked,
+.cm-formatting-task.cm-property {
+  background-color: var(--discord-blue) !important;
+  border: 1px solid var(--discord-blue);
+}
+
+.cm-formatting-task.cm-property::after {
+  content: '\0020\0020\0020' !important;
+  color: transparent !important;
+}
+
+.cm-formatting-task + span {
+  padding-left: 0.3rem;
+  vertical-align: sub;
+}
+
+/*----------------------------------------------------------------
+Adjust nested level task lists when collapsed
+Order matters here - from top level supported (7) down to first */
+
+pre.HyperMD-list-line-7 {
+  padding-left: calc(12.25 * calc(var(--font-size-notes) + 0.125rem)) !important;
+}
+
+pre.HyperMD-list-line-6 {
+  padding-left: calc(10.5 * calc(var(--font-size-notes) + 0.125rem)) !important;
+}
+
+pre.HyperMD-list-line-5 {
+  padding-left: calc(8.75 * calc(var(--font-size-notes) + 0.125rem)) !important;
+}
+
+pre.HyperMD-list-line-4 {
+  padding-left: calc(7 * calc(var(--font-size-notes) + 0.125rem)) !important;
+}
+
+pre.HyperMD-list-line-3 {
+  padding-left: calc(5.25 * calc(var(--font-size-notes) + 0.125rem)) !important;
+}
+
+pre.HyperMD-list-line-2:not(.HyperMD-list-line-1) {
+  padding-left: calc(3.5 * calc(var(--font-size-notes) + 0.125rem)) !important;
+}
+
+/*----------------------------------------------------------------
+LINKS & BRACKETS
+----------------------------------------------------------------*/
+
+a,
+.internal-link,
+.cm-hmd-internal-link,
+.cm-link,
+.cm-url,
+.cm-formatting-link,
+.cm-s-obsidian span.cm-link,
+.cm-s-obsidian span.cm-hmd-internal-link {
+  color: var(--text-a);
+  text-decoration: none;
+  font-family: var(--font-editor);
+}
+
+a:hover,
+.internal-link:hover,
+.cm-hmd-internal-link:hover,
+.cm-link:hover,
+.cm-url:hover,
+.cm-formatting-link:hover {
+  color: var(--text-a-hover);
+  text-decoration: none;
+}
+
+.cm-s-obsidian span.cm-formatting-link {
+  color: var(--text-a);
+  padding: 0 1px;
+}
+
+.cm-s-obsidian span.cm-link:hover,
+.cm-s-obsidian span.cm-hmd-internal-link:hover {
+  color: var(--text-a-hover);
+  text-decoration: none;
+}
+
+/* regular urls in editor */
+.cm-s-obsidian span.cm-url {
+  /*text-decoration: none;*/
+}
+
+/* preview */
+.markdown-preview-view .internal-link {
+  text-decoration: none;
+}
+
+.markdown-preview-view .internal-link.is-unresolved {
+  opacity: 1;
+}
+
+.external-link {
+  background-image: unset;
+  padding-right: 0;
+}
+
+.markdown-preview-view .external-link {
+  color: var(--text-link);
+}
+
+a:not(.internal-link) {
+  color: var(--text-link);
+}
+
+a:not(.internal-link):hover {
+  color: var(--text-link);
+  text-decoration: underline;
+}
+
+a:not(.internal-link).footnote-link {
+  color: var(--text-a);
+  text-decoration: none;
+}
+
+/*----------------------------------------------------------------
+TAGS
+----------------------------------------------------------------*/
+
+.cm-s-obsidian .cm-formatting-hashtag {
+  font-family: var(--font-editor);
+}
+
+a.tag,
+span:not(.cm-header).cm-hashtag {
+  font-weight: 400;
+  unicode-bidi: -moz-plaintext;
+  unicode-bidi: plaintext;
+  color: var(--discord-blue);
+  background: rgba(114, 137, 218, 0.1);
+  position: relative;
+  -webkit-transition: background-color .15s ease-out, color .15s ease-out;
+  transition: background-color .15s ease-out, color .15s ease-out;
+}
+
+span:not(.cm-header).cm-hashtag-begin {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  padding-left: 4px;
+  padding-top: 3px;
+  padding-bottom: 1px;
+}
+
+span:not(.cm-header).cm-hashtag-end {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  padding: 3px 3px 1px 0;
+  margin-right: 2px;
+}
+
+a.tag {
+  padding: 3px 4px 1px 4px !important;
+  border-radius: 3px;
+  margin-right: 2px;
+}
+
+span:not(.cm-header).cm-hashtag {
+  text-decoration: none !important;
+}
+
+a.tag:hover {
+  text-decoration: none !important;
+  color: var(--discord-blue);
+  background-color: rgba(114, 137, 218, 0.2);
+}
+
+h1 a.tag,
+h2 a.tag,
+h3 a.tag,
+h4 a.tag,
+h5 a.tag,
+h6 a.tag {
+  background: unset;
+  font-style: italic;
+  color: unset;
+  filter: invert(30%);
+}
+
+h1 a.tag:hover,
+h2 a.tag:hover,
+h3 a.tag:hover,
+h4 a.tag:hover,
+h5 a.tag:hover,
+h6 a.tag:hover {
+  background: unset;
+  color: unset;
+}
+
+span.cm-hashtag {
+  text-decoration: none !important;
+}
+
+/*----------------------------------------------------------------
+FOOTNOTES
+----------------------------------------------------------------*/
+
+sup {
+  letter-spacing: 0;
+  padding-left: 0.2rem;
+}
+
+.cm-s-obsidian span.cm-footref,
+.cm-s-obsidian span.cm-blockid {
+  vertical-align: super;
+  margin-top: 0;
+  font-size: small;
+}
+
+.cm-s-obsidian pre.HyperMD-footnote {
+  padding-left: 3rem;
+  padding-bottom: 0.5rem;
+  font-size: small;
+}
+
+.footnote-link {
+  color: var(--text-a);
+}
+
+.footnote-link:hover {
+  text-decoration: none;
+}
+
+.footnote-backref {
+  color: var(--text-muted);
+  margin-left: 0.2rem;
+}
+
+/*----------------------------------------------------------------
+TOGGLE SWITCHES
+----------------------------------------------------------------*/
+
+.checkbox-container {
+  background-color: var(--discord-grey-toggle);
+  border: none;
+  box-shadow: none;
+  width: 40px;
+  height: 24px;
+  -webkit-transition: all .17s;
+  transition: all .17s ease;
+}
+
+.checkbox-container.is-enabled {
+  background-color: var(--interactive-accent);
+}
+
+.checkbox-container::before,
+.checkbox-container::after {
+  color: var(--discord-grey-toggle);
+}
+
+.checkbox-container::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 20' preserveAspectRatio='xMinYMid meet'%3E%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath fill='rgba(114, 118, 125, 1)' d='M5.13231 6.72963L6.7233 5.13864L14.855 13.2704L13.264 14.8614L5.13231 6.72963Z'%3E%3C/path%3E%3Cpath fill='rgba(114, 118, 125, 1)' d='M13.2704 5.13864L14.8614 6.72963L6.72963 14.8614L5.13864 13.2704L13.2704 5.13864Z'%3E%3C/path%3E%3C/svg%3E%3C/svg%3E");
+  display: block;
+  position: absolute;
+  opacity: 1;
+  z-index: 1;
+  transform: translate3d(-7px, 3px, 0);
+}
+
+.checkbox-container.is-enabled::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 20' preserveAspectRatio='xMinYMid meet'%3E%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath fill='rgba(67, 181, 129, 1)' d='M7.89561 14.8538L6.30462 13.2629L14.3099 5.25755L15.9009 6.84854L7.89561 14.8538Z'%3E%3C/path%3E%3Cpath fill='rgba(67, 181, 129, 1)' d='M4.08643 11.0903L5.67742 9.49929L9.4485 13.2704L7.85751 14.8614L4.08643 11.0903Z'%3E%3C/path%3E%3C/svg%3E%3C/svg%3E");
+  transform: translate3d(7px, 3px, 0);
+}
+
+.checkbox-container.is-enabled::after {
+  transform: translate3d(15px, 0, 0);
+}
+
+.checkbox-container::after {
+  box-shadow: none !important;
+  width: 18px;
+  height: 18px;
+  transform: translate3d(1px, 0, 0);
+}
+
+/*----------------------------------------------------------------
+TABLES
+----------------------------------------------------------------*/
+
+th {
+  font-weight: 800;
+}
+
+thead {
+  border-top: 2px solid var(--discord-yellow-alt);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/*----------------------------------------------------------------
+Preview Mode */
+
+.markdown-preview-view table {
+  margin: 2rem 0;
+}
+
+.markdown-preview-view td,
+.markdown-preview-view th {
+  border: none;
+}
+
+.markdown-preview-view th {
+  font-family: var(--default-font);
+  font-weight: bold;
+}
+
+.markdown-preview-view thead > tr {
+  border-top: 0 !important;
+}
+
+.markdown-preview-view tr {
+  border-top: 1px solid var(--background-accent);
+}
+
+.markdown-preview-view td,
+.markdown-preview-view tr > th {
+  border-left: 1px solid var(--background-accent);
+}
+
+.markdown-preview-view tr > td:first-of-type,
+tr > th:first-of-type {
+  border-left: 0;
+}
+
+/*----------------------------------------------------------------
+Editor Mode */
+
+.CodeMirror pre.HyperMD-table-row {
+  font-family: var(--font-monospace);
+  font-size: 100%;
+  letter-spacing: 0;
+}
+
+.cm-s-obsidian pre.HyperMD-table-row.HyperMD-table-row-0 {
+  margin-top: 0.15rem;
+}
+
+/*----------------------------------------------------------------
+CODEBLOCKS & INLINE CODE
+----------------------------------------------------------------*/
+
+code,
+.cm-inline-code {
+  padding: 2px 1px;
+}
+
+/*----------------------------------------------------------------
+editor */
+
+.cm-s-obsidian span.cm-inline-code:not(.cm-formatting):not(.cm-hmd-indented-code):not(.obsidian-search-match-highlight) {
+  color: var(--markup-code);
+  font-size: 100%;
+  background-color: var(--discord-yellow-bg);
+}
+
+.cm-s-obsidian span.cm-inline-code {
+  color: var(--markup-code);
+  font-size: 100%;
+  background-color: var(--discord-yellow-bg);
+  border-radius: 3px;
+  padding-top: 4px;
+  padding-bottom: 1px;
+}
+
+span.cm-inline-code.cm-hmd-indented-code,
+.cm-s-obsidian span.cm-inline-code.cm-hmd-indented-code {
+  background-color: unset !important;
+  color: var(--text-normal);
+  padding: 0.2rem 0;
+}
+
+.cm-s-obsidian span.cm-formatting-code.cm-inline-code {
+  border-right-width: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.cm-s-obsidian span.cm-formatting-code.cm-inline-code + span.cm-inline-code {
+  border-right: none;
+  border-left: none;
+  border-radius: 0;
+}
+
+.cm-s-obsidian span.cm-formatting-code.cm-inline-code + span.cm-inline-code + span.cm-formatting-code.cm-inline-code {
+  border-left-width: 0;
+  border-right-width: 1px;
+  border-radius: 0 3px 3px 0;
+}
+
+.cm-s-obsidian pre.HyperMD-codeblock {
+  padding: 0.25rem 0.5rem;
+  color: var(--interactive-normal);
+  font-size: 100%;
+  white-space: pre-wrap;
+  background-clip: border-box;
+  line-height: 1.3;
+}
+
+.cm-s-obsidian div.HyperMD-codeblock-bg {
+  background-color: var(--background-code-preview);
+}
+
+.cm-s-obsidian pre.HyperMD-codeblock.HyperMD-codeblock-begin {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding-top: 0.5rem;
+}
+
+.cm-s-obsidian pre.HyperMD-codeblock.HyperMD-codeblock-end {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+/*----------------------------------------------------------------
+preview */
+
+.theme-dark :not(pre) > code[class*="language-"],
+.theme-dark pre[class*="language-"] {
+  background: var(--background-code-preview);
+  text-shadow: unset !important;
+  padding: 6px 10px;
+  margin: 1.5rem 0;
+}
+
+.markdown-preview-view pre {
+  background-color: var(--background-code-preview);
+  margin: 2rem 0;
+}
+
+.markdown-preview-view code {
+  text-shadow: unset !important;
+  color: var(--markup-code) !important;
+  background-color: var(--discord-yellow-bg);
+  font-size: 100%;
+  padding-top: 4px;
+  padding-bottom: 1px;
+}
+
+.markdown-preview-view pre code {
+  color: var(--text-normal) !important;
+  background-color: unset !important;
+  font-size: 100%;
+}
+
+pre.frontmatter[class*="language-"] {
+  background-color: transparent;
+  text-shadow: unset !important;
+  color: var(--text-normal) !important;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  line-height: 20px;
+}
+
+/*----------------------------------------------------------------
+frontmatter */
+
+.markdown-preview-view pre code.language-yaml,
+.markdown-preview-view pre code.language-yaml span.token {
+  color: var(--text-muted) !important;
+}
+
+.frontmatter-container {
+  background-color: var(--background-secondary-alt);
+  border: 0;
+  margin: 0 0 1rem 0;
+}
+
+.frontmatter-container .frontmatter-section {
+  margin: 0;
+}
+
+.frontmatter-container .frontmatter-collapse-indicator {
+  margin-top: -1px;
+}
+
+.frontmatter-container .frontmatter-section-label {
+  text-transform: lowercase;
+  display: inline-flex;
+  margin-top: 2px;
+}
+
+.frontmatter-container .frontmatter-section-label::after {
+  content: ':';
+  display: inline-block;
+}
+
+.frontmatter-container .tag,
+.frontmatter-container .frontmatter-alias {
+  border-radius: 3px !important;
+  margin: 0 4px;
+  line-height: 0.9em;
+}
+
+.frontmatter-container .frontmatter-alias {
+  padding: 1px 4px !important;
+}
+
+/*----------------------------------------------------------------
+MODALS
+----------------------------------------------------------------*/
+
+/*----------------------------------------------------------------
+Settings Modal */
+
+.modal.mod-settings {
+  width: 100vw;
+  max-width: 100%;
+}
+
+.modal:not(.mod-settings) {
+  -webkit-box-shadow: var(--elevation-stroke), var(--elevation-high);
+  box-shadow: var(--elevation-stroke), var(--elevation-high);
+  padding: 0;
+  border: 0 !important;
+}
+
+.modal:not(.mod-settings) .modal-content {
+  padding: 30px 50px;
+  margin-top: 0;
+}
+
+.modal:not(.mod-settings) .modal-title {
+  font-size: 22px;
+  line-height: 36px;
+  padding: 1rem 2rem;
+  background-color: var(--background-secondary-alt);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.modal.mod-settings,
+.modal.mod-settings .vertical-tab-content-container,
+.modal.mod-settings .vertical-tab-header {
+  height: 100vh;
+  max-height: 100%;
+}
+
+.modal.mod-settings .modal-close-button {
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 36px;
+  flex: 0 0 36px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  padding-top: 2px;
+  top: 3.75rem;
+  right: 11vw;
+}
+
+.modal.mod-settings .modal-close-button:hover {
+  background-color: rgba(114, 118, 125, .3);
+}
+
+.modal.mod-settings .modal-close-button::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' width='18' height='18' viewBox='0 0 24 24'%3E%3Cpath fill='%23dcddde' d='M18.4 4L12 10.4L5.6 4L4 5.6L10.4 12L4 18.4L5.6 20L12 13.6L18.4 20L20 18.4L13.6 12L20 5.6L18.4 4Z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.modal.mod-settings .modal-close-button::after {
+  position: absolute;
+  content: 'ESC';
+  font-weight: 600;
+  font-size: 13px;
+  text-align: right;
+  width: 36px;
+  height: 36px;
+  margin-top: 4.75rem;
+  margin-left: -1rem;
+  cursor: default;
+  pointer-events: none;
+}
+
+.horizontal-tab-content,
+.vertical-tab-content {
+  background-color: var(--background-primary);
+  padding: 3.75rem 0 5rem 2.5rem;
+}
+
+.vertical-tabs-container {
+  padding: 0;
+}
+
+.modal.mod-settings .vertical-tab-header {
+  padding-top: 2.5rem;
+
+  --scrollbar-thin-thumb: transparent;
+
+  flex: 1 0 auto;
+  display: grid;
+  grid-template-rows: min-content;
+  -webkit-box-flex: 1;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-pack: end;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.modal.mod-settings .vertical-tab-header:hover {
+  --scrollbar-thin-thumb: unset;
+}
+
+.modal.mod-settings .setting-item {
+  margin-right: 17vw;
+}
+
+.modal.mod-settings .vertical-tab-content > div:not(.setting-item):not(.plugin-list-plugins):not(.loader-cube):not(.hotkey-settings-container) {
+  margin-right: 17vw;
+}
+
+.modal.mod-settings .setting-editor-extra-setting-button {
+  margin-right: 1rem;
+}
+
+.modal.mod-settings .vertical-tab-content-container {
+  background-color: var(--background-primary);
+  padding: 0;
+  flex: 1 1 50rem;
+}
+
+.vertical-tab-header {
+  background-color: var(--background-secondary);
+}
+
+.horizontal-tab-nav-item.is-active,
+.vertical-tab-nav-item.is-active {
+  color: var(--interactive-active);
+  background-color: var(--background-modifier-active);
+}
+
+.horizontal-tab-nav-item:hover,
+.vertical-tab-nav-item:hover {
+  color: var(--interactive-hover);
+  background-color: var(--background-modifier-hover);
+}
+
+.horizontal-tab-nav-item,
+.vertical-tab-nav-item {
+  background-color: var(--background-secondary);
+  letter-spacing: 0;
+  padding: 6px 6px 6px 24px;
+  margin: 0 10px;
+  color: var(--interactive-normal);
+  border-radius: 3px;
+}
+
+.setting-item {
+  border-top: thin solid var(--background-modifier-accent);
+}
+
+.setting-item-control button {
+  padding: 5px 16px;
+}
+
+.setting-hotkey {
+  min-height: unset;
+  padding: 0 0 0 10px;
+}
+
+.setting-delete-hotkey {
+  line-height: unset;
+  top: 0;
+  right: 0;
+  height: unset;
+  border-radius: 0;
+  margin-left: 5px;
+}
+
+.setting-add-hotkey-button:hover,
+.setting-restore-hotkey-button:hover {
+  background-color: unset;
+}
+
+.hotkey-list-container {
+  padding-left: 2px;
+  padding-right: 0;
+}
+
+.community-theme-filters-container,
+.hotkey-search-container {
+  padding: 0 10px 30px 0;
+}
+
+.modal.mod-settings button {
+  margin: 0;
+}
+
+/*----------------------------------------------------------------
+Document Search */
+
+.document-search-container {
+  background-color: var(--background-primary);
+  padding-top: 10px;
+  height: 50px;
+}
+
+.document-search-button {
+  background-color: var(--discord-dark) !important;
+  color: var(--text-muted) !important;
+}
+
+.document-search-button:hover {
+  background-color: var(--discord-dark-hover) !important;
+  color: var(--text-normal) !important;
+}
+
+.document-search-close-button {
+  color: var(--discord-dark);
+}
+
+.document-replace-input {
+  margin-right: 8px;
+}
+
+.document-replace-buttons {
+  margin-right: 4px;
+}
+
+.document-search-container.mod-replace-mode {
+  height: 90px;
+}
+
+/*----------------------------------------------------------------
+Modal Confirmations */
+
+.modal-button-container {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+/*----------------------------------------------------------------
+Prompts - Discord-like */
+
+.prompt {
+  background-color: var(--background-secondary);
+  border-radius: 8px;
+  padding: 1.25rem 1.25rem 0.75rem 1.25rem;
+}
+
+input.prompt-input::placeholder {
+  color: var(--text-normal);
+  font-weight: 400;
+}
+
+input.prompt-input::-webkit-input-placeholder {
+  color: #ffffff4d;
+  font-weight: 400;
+}
+
+input.prompt-input::-ms-input-placeholder {
+  color: var(--text-normal);
+  font-weight: 400;
+}
+
+input.prompt-input {
+  position: relative;
+  z-index: 1;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  display: block;
+  padding: 0 12px;
+  font-size: 21px;
+  border-radius: 5px;
+  border: none;
+  height: 70px;
+  line-height: 70px;
+  background-color: var(--text-muted) !important;
+  color: var(--text-on-accent);
+  -webkit-box-shadow: var(--elevation-high);
+  box-shadow: var(--elevation-high);
+}
+
+input.prompt-input:focus-within {
+  color: var(--text-on-accent);
+}
+
+.prompt-results {
+  margin-right: -12px;
+}
+
+.prompt-results .suggestion-item {
+  color: var(--interactive-normal);
+  padding: 0 10px;
+  line-height: 2rem;
+  font-weight: 500;
+  border-radius: 3px;
+  width: calc(100% - 12px);
+}
+
+.prompt-results .suggestion-item.is-selected,
+.prompt-results .suggestion-item:hover {
+  background-color: var(--background-modifier-selected);
+}
+
+.prompt-results .suggestion-hotkey {
+  border-color: transparent;
+  background-color: transparent;
+  border-radius: 0;
+  padding-right: 20px;
+}
+
+.prompt-results .suggestion-item.is-selected .suggestion-hotkey,
+.prompt-results .suggestion-item:hover .suggestion-hotkey {
+  margin-right: -12px;
+}
+
+.suggestion-container .prompt-instructions {
+  padding: 0.625rem;
+}
+
+.prompt-instructions {
+  padding: 0.625rem 0.625rem 0 0.625rem;
+  border-top: 1px solid var(--background-modifier-accent);
+  opacity: 1;
+  color: var(--text-on-accent);
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.prompt-instruction span {
+  opacity: 0.6;
+}
+
+.prompt-instruction:first-of-type::before {
+  content: 'tips:';
+  text-transform: uppercase;
+  color: var(--interactive-accent);
+  margin-right: 0.5rem;
+  font-weight: 600;
+}
+
+.prompt-instruction-command {
+  font-size: 11px;
+}
+
+/*----------------------------------------------------------------
+Community plugins panel */
+
+.community-plugin-search {
+  background-color: var(--background-secondary);
+  padding: 20px 0 0 0;
+}
+
+.modal-content.community-plugin {
+  padding: 0 0 50px 0 !important;
+}
+
+.community-plugin-readme {
+  overflow-x: hidden;
+}
+
+/*----------------------------------------------------------------
+Community themes panel */
+
+.community-theme-filters-container {
+  padding: 10px 30px 30px 0;
+  width: fit-content !important;
+}
+
+.community-theme {
+  padding: 10px 20px 20px 0;
+}
+
+.community-theme-search-container {
+  display: inline-block;
+  margin-right: 2rem;
+}
+
+.community-theme-list {
+  margin-top: 1rem;
+  justify-content: flex-start;
+}
+
+.community-theme-mode-toggle-label {
+  bottom: 6px;
+}
+
+.community-theme-container button {
+  margin-right: 8px;
+}
+
+.community-theme a {
+  vertical-align: middle;
+}
+
+.modal.mod-community-theme {
+  max-width: 56rem;
+}
+
+/*----------------------------------------------------------------
+BUTTONS
+----------------------------------------------------------------*/
+
+button {
+}
+
+button.mod-cta {
+  background-color: var(--discord-blue);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+button.mod-cta:hover {
+  background-color: var(--discord-blue-hover);
+}
+
+button:not(.mod-cta):not(.mod-warning),
+.modal button:not(.mod-cta):not(.mod-warning) {
+  background-color: var(--discord-grey);
+  color: white;
+}
+
+button:not(.mod-cta):not(.mod-warning):hover {
+  background-color: var(--discord-grey-hover);
+}
+
+button.mod-cta a {
+  font-family: var(--default-font);
+}
+
+button.mod-cta a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.modal.mod-settings a > button {
+  margin-right: 8px;
+}
+
+/*----------------------------------------------------------------
+GRAPH
+----------------------------------------------------------------*/
+
+.theme-dark .graph-controls {
+  background-color: var(--background-tertiary);
+  border: none;
+}
+
+.theme-dark .graph-view.color-line {
+  color: var(--graph-line);
+  opacity: 0.7;
+}
+
+.theme-dark .graph-view.color-line-highlight {
+  color: var(--graph-line-highlight);
+}
+
+.theme-dark .graph-view.color-fill {
+  color: var(--graph-circle-fill);
+  opacity: 0.9;
+}
+
+.theme-dark .graph-view.color-fill-highlight {
+  color: var(--graph-circle-fill-highlight);
+}
+
+.theme-dark .graph-view.color-circle {
+  color: var(--graph-circle-outline);
+}
+
+/*----------------------------------------------------------------
+Graph filters */
+
+.theme-dark .graph-view.color-fill-tag {
+  color: var(--graph-fill-tag);
+}
+
+.theme-dark .graph-view.color-fill-attachment {
+  color: var(--graph-fill-attachment);
+}
+
+.theme-dark .graph-view.color-fill-unresolved {
+  color: var(--graph-circle-fill-unresolved);
+  opacity: 1;
+}
+
+.theme-dark .graph-view.color-arrow {
+  color: var(--graph-arrow);
+}
+
+/*----------------------------------------------------------------
+Graph controls */
+
+.graph-control-search-button {
+  background-color: transparent !important;
+  opacity: 0.7;
+}
+
+.graph-control-search-button:hover {
+  opacity: 1;
+}
+
+.mod-root .graph-controls {
+  top: 20px;
+  left: 30px;
+}
+
+/*----------------------------------------------------------------
+FOLDING
+----------------------------------------------------------------*/
+
+/* preview */
+.markdown-preview-view .collapse-indicator,
+.markdown-preview-view .collapse-indicator:hover {
+  color: var(--text-faint);
+  font-size: unset;
+}
+
+.markdown-preview-view .collapse-indicator svg {
+  vertical-align: text-top !important;
+}
+
+/* subtler folding gutter arrows */
+.CodeMirror-foldgutter-folded::after,
+.CodeMirror-foldgutter-open::after {
+  font-size: 50%;
+  color: var(--text-faint);
+}
+
+.CodeMirror-foldgutter-folded::after {
+  content: "\25C0";
+  position: absolute;
+  right: 0;
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -o-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  width: 10px;
+  height: 10px;
+  transform: rotate(180deg);
+}
+
+.CodeMirror-foldgutter-open::after {
+  content: "\25C0";
+  position: absolute;
+  right: 0;
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -o-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  transform: rotate(-90deg);
+  width: 10px;
+  height: 10px;
+}
+
+.CodeMirror-gutter-elt {
+  top: 0.35rem;
+}
+
+/*----------------------------------------------------------------
+EMBEDS
+----------------------------------------------------------------*/
+
+/*----------------------------------------------------------------
+Seamless notes transclusions */
+
+.markdown-preview-view .markdown-embed {
+  margin: 2rem 0 0 0 !important;
+  padding: 0 !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+
+.markdown-preview-view .markdown-embed-content {
+  max-height: none !important;
+}
+
+/* Hide frontmatters in embeds */
+.markdown-preview-view .markdown-embed-content .frontmatter {
+  display: none;
+}
+
+.markdown-embed-title,
+.internal-embed .markdown-preview-section {
+  max-width: 100%;
+}
+
+.markdown-embed-title {
+  display: none !important;
+}
+
+.markdown-preview-view .markdown-embed-content > .markdown-preview-view {
+  max-height: none !important;
+}
+
+.markdown-embed .markdown-preview-view {
+  padding: 0 !important;
+}
+
+.file-embed-link svg,
+.markdown-embed-link svg {
+  width: 16px;
+  opacity: 0;
+}
+
+.markdown-embed:hover .file-embed-link svg,
+.markdown-embed:hover .markdown-embed-link svg {
+  opacity: 1;
+}
+
+/*----------------------------------------------------------------
+Audio embed */
+
+audio,
+.theme-dark audio {
+  filter: unset !important;
+}
+
+.theme-dark audio::-webkit-media-controls-enclosure {
+  filter: sepia(10%) contrast(90%) invert(90%) !important;
+  opacity: 0.8;
+  border-radius: 6px;
+  height: 20px;
+}
+
+audio::-webkit-media-controls-enclosure {
+  filter: sepia(10%) contrast(90%) invert(90%) !important;
+  opacity: 0.8;
+  border-radius: 6px;
+  height: 20px;
+}
+
+.markdown-preview-view img:not([width]),
+.markdown-preview-view audio,
+.markdown-preview-view video {
+  margin: 0 auto;
+}
+
+/*----------------------------------------------------------------
+Internal Queries */
+
+.markdown-preview-view .internal-query.is-embed {
+  border-top: 0;
+  border-bottom: 0;
+  background-color: var(--background-code-preview);
+  border-radius: 4px;
+  cursor: default !important;
+}
+
+.markdown-preview-view .internal-query.is-embed .internal-query-header-title::before,
+.markdown-preview-view .internal-query.is-embed .internal-query-header-title::after {
+  content: "";
+}
+
+/* Seamless internal queries - no scrollbar */
+.markdown-preview-view .internal-query.is-embed .search-results-children {
+  max-height: none !important;
+  padding: 0;
+}
+
+.internal-query .search-result-file-matches {
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.internal-query .search-result-file-title {
+  background-color: transparent;
+  opacity: 1;
+}
+
+.internal-query .search-result-file-title:hover {
+  color: var(--text-a-hover) !important;
+  opacity: 1;
+}
+
+.internal-query .tree-item-self.is-clickable:hover {
+  background-color: transparent;
+}
+
+.internal-query .tree-item.search-result {
+  padding: 10px;
+}
+
+.internal-query .tree-item.search-result.is-collapsed:hover {
+  background-color: var(--background-modifier-border);
+  cursor: pointer;
+}
+
+.internal-query .search-result-file-matched-text {
+  padding: 2px;
+  border-radius: 2px;
+}
+
+.internal-query .search-result-file-match {
+  opacity: 1;
+  padding: 6px 0 6px 10px !important;
+}
+
+.internal-query .search-result-file-match:hover {
+  background-color: var(--background-modifier-cover);
+}
+
+.internal-query .search-result-file-match::after {
+  background-color: transparent;
+}
+
+/*----------------------------------------------------------------
+BULLET POINT RELATIONSHIP LINES
+----------------------------------------------------------------*/
+
+.cm-hmd-list-indent .cm-tab,
+ul ul {
+  position: relative;
+}
+
+.cm-hmd-list-indent .cm-tab::before,
+ul ul::before {
+  content: "";
+  border-left: 1px solid var(--text-muted);
+  /*color: #92CDD6;*/
+  position: absolute;
+  margin-left: -0.75rem;
+}
+
+ul ul::before {
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+ul.contains-task-list ul::before {
+  left: -0.1rem;
+  top: 0.3rem;
+  bottom: -0.15rem;
+}
+
+/*----------------------------------------------------------------
+SYNTAX HIGHLIGHTER COLORS
+----------------------------------------------------------------*/
+
+.theme-dark {
+  --syntax-default: rgb(191, 193, 194);
+  --syntax-red: rgb(224, 108, 117);
+  --syntax-green: rgb(152, 195, 121);
+  --syntax-yellow: rgb(209, 154, 102);
+  --syntax-blue: rgb(86, 156, 214);
+  --syntax-teal: rgb(86, 182, 194);
+  --syntax-purple: rgb(198, 120, 221);
+  --syntax-grey: rgb(112, 128, 144);
+}
+
+.theme-dark .token.property,
+.theme-dark .token.tag,
+.theme-dark .token.constant,
+.theme-dark .token.symbol,
+.theme-dark .token.deleted {
+  color: var(--syntax-red);
+}
+
+.theme-dark .token.selector,
+.theme-dark .token.attr-name,
+.theme-dark .token.string,
+.theme-dark .token.char,
+.theme-dark .token.builtin,
+.theme-dark .token.inserted {
+  color: var(--syntax-green);
+}
+
+.theme-dark .token.atrule,
+.theme-dark .token.attr-value,
+.theme-dark .token.function,
+.theme-dark .token.class-name {
+  color: var(--syntax-yellow);
+}
+
+.theme-dark .token.punctuation {
+  color: var(--text-normal);
+}
+
+.theme-dark .token.keyword {
+  color: var(--syntax-blue);
+}
+
+.theme-dark .token.operator,
+.theme-dark .token.entity,
+.theme-dark .token.url,
+.theme-dark .language-css .token.string,
+.theme-dark .style .token.string,
+.theme-dark .token.variable {
+  color: var(--syntax-teal);
+}
+
+.theme-dark .token.boolean,
+.theme-dark .token.number,
+.theme-dark .language-css .token.unit {
+  color: var(--syntax-purple);
+}
+
+.theme-dark .token.comment,
+.theme-dark .token.prolog,
+.theme-dark .token.doctype,
+.theme-dark .token.cdata {
+  color: var(--syntax-grey);
+}
+
+/*----------------------------------------------------------------
+HIDER PLUGIN v1.0.5
+----------------------------------------------------------------*/
+
+.hider-ribbon .workspace-split.mod-left-split .nav-files-container {
+  margin-left: 0;
+}
+
+.hider-frameless:not(.hider-ribbon):not(.mod-windows) .workspace-split.mod-left-split .workspace-tab-header-container,
+.discordian-writer-mode:not(.hider-ribbon):not(.mod-windows) .workspace-split.mod-left-split .workspace-tab-header-container {
+  padding-left: 24px;
+}
+
+.discordian-writer-mode.hider-ribbon:not(.mod-windows) .mod-left-split .workspace-tab-header-container,
+.hider-frameless.hider-ribbon:not(.mod-windows) .mod-left-split .workspace-tab-header-container,
+.hider-ribbon:not(.mod-windows) .mod-left-split .workspace-tab-header-container {
+  padding-left: 54px;
+}
+
+body:not(.mod-windows):not(.discordian-theme).hider-ribbon .mod-left-split .workspace-tab-header-container {
+  padding-left: 54px !important;
+}
+
+.discordian-writer-mode .workspace-split.mod-left-split > .workspace-tabs {
+  padding-top: 0 !important;
+}
+
+.hider-frameless .workspace-split.mod-left-split > .workspace-tabs {
+  padding-top: 0 !important;
+}
+
+body.discordian-theme:not(.is-fullscreen):not(.plugin-sliding-panes):not(.mod-windows) .workspace-leaf:first-of-type:last-of-type .view-header,
+body.discordian-theme:not(.is-fullscreen):not(.plugin-sliding-panes):not(.mod-windows) .workspace-leaf:first-of-type .view-header {
+  padding-left: 0 !important;
+}
+
+.discordian-writer-mode:not(.plugin-sliding-panes):not(.is-fullscreen):not(.mod-windows) .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header,
+.discordian-writer-mode.hider-frameless:not(.plugin-sliding-panes):not(.is-fullscreen):not(.mod-windows) .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header,
+.discordian-writer-mode.discordian-hide-titlebar:not(.plugin-sliding-panes):not(.is-fullscreen):not(.mod-windows) .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header,
+.hider-frameless:not(.plugin-sliding-panes):not(.is-fullscreen):not(.mod-windows).discordian-theme .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header,
+.hider-frameless:not(.is-fullscreen):not(.plugin-sliding-panes):not(.mod-windows) .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header {
+  padding-left: 30px !important;
+  transition: padding-left .15s ease;
+}
+
+.discordian-writer-mode.hider-ribbon:not(.is-fullscreen):not(.plugin-sliding-panes):not(.mod-windows) .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header,
+.hider-frameless.hider-ribbon:not(.is-fullscreen):not(.plugin-sliding-panes):not(.mod-windows) .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header,
+.hider-ribbon.discordian-hide-titlebar:not(.is-fullscreen):not(.plugin-sliding-panes):not(.mod-windows) .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header,
+.hider-ribbon.discordian-theme.discordian-hide-titlebar:not(.hider-frameless):not(.is-fullscreen):not(.plugin-sliding-panes):not(.mod-windows) .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header {
+  padding-left: 62px !important;
+  transition: padding-left .15s ease;
+}
+
+.discordian-writer-mode .titlebar,
+.hider-frameless .titlebar {
+  border-bottom: none;
+}
+
+/*----------------------------------------------------------------
+Force-hide titlebar regardless of settings
+This is required to make settings modal like in Discord */
+
+body:not(.hider-frameless):not(.discordian-writer-mode) .modal-container {
+  top: 0 !important;
+  height: 100vh !important;
+}
+
+body.discordian-theme.discordian-writer-mode .modal-container,
+body.discordian-theme.hider-frameless .modal-container,
+body.discordian-theme.discordian-hide-titlebar .modal-container {
+  top: 0 !important;
+  height: 100vh !important;
+}
+
+body.discordian-theme:not(.discordian-hide-titlebar):not(.hider-frameless):not(.discordian-writer-mode) .modal-container {
+  top: -22px !important;
+  height: 100vh !important;
+}
+
+body.discordian-theme.is-fullscreen .modal-container {
+  top: 0 !important;
+  height: 100vh !important;
+}
+
+/*----------------------------------------------------------------
+CALENDAR PLUGIN v1.4.11
+----------------------------------------------------------------*/
+
+.workspace-leaf-content[data-type='calendar'] .view-content {
+  padding: 5px 0 0 0;
+}
+
+#calendar-container {
+  padding: 5px 15px;
+  font-family: var(--font-editor);
+  font-size: 15px;
+  
+  --color-background-day-empty: var(--background-secondary-alt);
+  --color-background-day-active: var(--background-tertiary);
+  --color-background-day-hover: var(--background-tertiary);
+  --color-dot: var(--text-faint);
+  --color-text-title: var(--text-normal);
+  --color-text-heading: var(--text-muted);
+  --color-text-day: var(--text-normal);
+  --color-text-today: var(--text-accent);
+  --color-arrow: var(--text-faint);
+  --color-arrow-hover: var(--text-normal);
+  --interactive-hover: var(--background-secondary-alt);
+  --interactive-accent: var(--discord-blue-hover);
+  --interactive-accent-hover: var(--discord-blue-hover);
+}
+
+#calendar-container .table {
+  border-collapse: separate;
+  table-layout: fixed;
+}
+
+#calendar-container h3 {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.mod-root #calendar-container {
+  width: var(--line-width);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0;
+}
+
+#calendar-container .arrow {
+  color: var(--text-faint);
+  cursor: var(--cursor);
+}
+
+#calendar-container tr th {
+  padding: 4px 0;
+  font-weight: 500;
+}
+
+#calendar-container tr td {
+  padding: 4px 0 4px;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  transition: none;
+}
+
+#calendar-container .year {
+  color: var(--discord-green) !important;
+}
+
+#calendar-container .day {
+  transition: none !important;
+  cursor: var(--cursor);
+}
+
+#calendar-container .arrow:hover > svg {
+  color: var(--color-arrow-hover) !important;
+}
+
+#calendar-container .reset-button:hover {
+  color: var(--color-text-title) !important;
+}
+
+/*----------------------------------------------------------------
+Andy's Mode Sliding Panes v3.2.1 (death_au's plugin)
+----------------------------------------------------------------*/
+
+/* fill title container for better visual separation */
+body.plugin-sliding-panes-rotate-header .workspace > .mod-root > .workspace-leaf > .workspace-leaf-content > .view-header {
+  background-color: var(--background-secondary);
+  border-right: 0 !important;
+  border-left: 0 !important;
+}
+
+body.plugin-sliding-panes.plugin-sliding-panes-rotate-header .app-container {
+  border-top: solid 1px var(--background-tertiary) !important;
+}
+
+body.plugin-sliding-panes .app-container::before {
+  content: none;
+}
+
+body.plugin-sliding-panes .workspace > .mod-root > .workspace-leaf > .workspace-leaf-content > .view-header {
+  border-left: 0;
+  box-shadow: none !important;
+}
+
+body.plugin-sliding-panes .view-header::before,
+body.plugin-sliding-panes .workspace-leaf.mod-active .view-header::before {
+  display: none;
+}
+
+/* remove long-title-obscuring gradient in normal mode */
+body.plugin-sliding-panes-rotate-header .workspace > .mod-root > .workspace-leaf > .workspace-leaf-content > .view-header > .view-header-title-container::before,
+body.plugin-sliding-panes-rotate-header .workspace > .mod-root > .workspace-leaf.mod-active > .workspace-leaf-content > .view-header > .view-header-title-container::before {
+  content: none;
+}
+
+/* fix the long-title-obscuring gradient for andy mode */
+body.plugin-sliding-panes-rotate-header .workspace > .mod-root > .workspace-leaf > .workspace-leaf-content > .view-header > .view-header-title-container::after,
+body.plugin-sliding-panes-rotate-header .workspace > .mod-root > .workspace-leaf.mod-active > .workspace-leaf-content > .view-header > .view-header-title-container::after {
+  content: ' ';
+  position: absolute;
+  bottom: 100px !important;
+  top: unset;
+  right: 0;
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(to bottom, transparent, var(--background-secondary)) !important;
+}
+
+body.plugin-sliding-panes .mod-horizontal .workspace-leaf {
+  box-shadow: none !important;
+}
+
+body.plugin-sliding-panes:not(.discordian-writer) .workspace-split.mod-left-split {
+  border-right: 1px solid var(--background-tertiary);
+}
+
+body.plugin-sliding-panes:not(.discordian-writer) .workspace-split.mod-right-split {
+  border-left: 1px solid var(--background-tertiary);
+}
+
+body.plugin-sliding-panes:not(.plugin-sliding-panes-rotate-header) .workspace > .mod-root > .workspace-leaf.mod-active > .workspace-leaf-content > .view-header {
+  border-right: none;
+  border-bottom: 2px solid var(--discord-yellow-light);
+}
+
+body.plugin-sliding-panes.plugin-sliding-panes-rotate-header .workspace > .mod-root > .workspace-leaf.mod-active > .workspace-leaf-content > .view-header {
+  border-right: 2px solid var(--discord-yellow-light) !important;
+}
+
+body.plugin-sliding-panes.plugin-sliding-panes-rotate-header .workspace > .mod-root > .workspace-leaf.mod-active:first-of-type:last-of-type > .workspace-leaf-content > .view-header {
+  border-right: 0 !important;
+}
+
+body.plugin-sliding-panes .view-header::after {
+  content: none;
+}
+
+body.plugin-sliding-panes.hider-frameless .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header {
+  padding-left: 0 !important;
+}
+
+body.plugin-sliding-panes-rotate-header .workspace > .mod-root .view-header-title-container,
+body.plugin-sliding-panes-rotate-header.plugin-sliding-panes-header-alt .workspace > .mod-root .view-header-title {
+  margin-top: 0;
+}
+
+body.plugin-sliding-panes-rotate-header .workspace > .mod-root .view-header-title-container {
+  margin-left: 0;
+  padding-top: 0;
+}
+
+body.plugin-sliding-panes-rotate-header .view-header-title-container {
+  position: static;
+}
+
+body.plugin-sliding-panes-rotate-header .workspace > .mod-root .view-actions {
+  padding-left: 0;
+  padding-bottom: 20px;
+  margin-left: 0;
+  bottom: 0;
+}
+
+body.plugin-sliding-panes.is-fullscreen.plugin-sliding-panes-rotate-header .view-header-icon {
+  padding-top: 8px;
+}
+
+body.plugin-sliding-panes .workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
+body.plugin-sliding-panes .workspace-split.mod-left-split > .workspace-leaf-resize-handle,
+body.plugin-sliding-panes .workspace-split.mod-right-split > .workspace-leaf-resize-handle {
+  display: none;
+}
+
+body.plugin-sliding-panes.hider-frameless.hider-ribbon .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header,
+body.plugin-sliding-panes.hider-ribbon .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header {
+  padding-left: 0 !important;
+}
+
+body.plugin-sliding-panes.hider-ribbon:not(.is-fullscreen):not(.hider-ribbon) .mod-left-split .workspace-tab-header-container {
+  padding-left: 54px !important;
+}
+
+/* or workspace-leaf:first-of-type if only padding first header under OSX icons */
+body.plugin-sliding-panes.plugin-sliding-panes-rotate-header:not(.is-fullscreen):not(.mod-windows).hider-frameless .mod-left-split.is-collapsed + div.mod-root > .workspace-leaf:first-of-type > .workspace-leaf-content > .view-header,
+body.plugin-sliding-panes.plugin-sliding-panes-rotate-header:not(.is-fullscreen):not(.mod-windows).discordian-hide-titlebar .mod-left-split.is-collapsed + div.mod-root > .workspace-leaf:first-of-type > .workspace-leaf-content > .view-header {
+  padding-top: 18px;
+  /*  transition: padding .1s ease;*/
+}
+
+body.discordian-hide-titlebar:not(.is-fullscreen):not(.hider-ribbon):not(.plugin-sliding-panes):not(.mod-windows) .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header,
+body.hider-frameless:not(.is-fullscreen):not(.hider-ribbon):not(.plugin-sliding-panes):not(.mod-windows).discordian-theme .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header,
+body.discordian-hide-titlebar:not(.is-fullscreen):not(.hider-ribbon):not(.plugin-sliding-panes-rotate-header):not(.mod-windows) .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header {
+  padding-left: 30px !important;
+  transition: padding .15s ease;
+}
+
+body.plugin-sliding-panes.hider-frameless:not(.hider-ribbon):not(.plugin-sliding-panes-rotate-header):not(.is-fullscreen):not(.mod-windows) .mod-left-split.is-collapsed + div.mod-root .workspace-leaf:first-of-type .view-header {
+  padding-left: 30px !important;
+}

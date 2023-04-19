@@ -1,0 +1,441 @@
+/* This Theme is called "Reverie" and Obsidian Theme created by Santi Younger */
+
+Last Update: 2020-12-24 15:40
+
+:root
+{
+--font-monospace: "Source Code Pro", monospace;
+}
+
+.theme-dark
+{
+--background-primary:         #1A2023;
+--background-primary-alt:     #1A2023;
+--background-secondary:       #222B2F;
+--background-secondary-alt:   #073334;
+--text-normal:                #faf2d6;
+--text-faint:                 #bdae93;
+--text-title-h1:              #c1dde1;
+--text-title-h2:              #8ab8bd;
+--text-title-h3:              #56a7b0;
+--text-title-h4:              #309093;
+--text-title-h5:              #0b797d;
+--text-title-h6:              #0b797d;
+--text-highlight-bg:          #22a578;
+--text-link:                  #83a598; 
+--text-a-hover:               #83a598; 
+--inline-code:                #83a598; 
+--code-block:                 #83a598; 
+--text-a:                     #2ccab7; 
+--interactive-accent:         #0b797d;
+--text-accent:                #2ccab7; 
+--text-on-accent:             #fff;
+--interactive-accent-rgb:     #2ccab7; 
+--vim-cursor:                 #2ccab7; 
+/*  --text-mark:                  add text-mark if needed, this should work together with 'mark' */
+--pre-code:                   #073334;
+--interactive-before:         #7c6f64;
+--background-modifier-border: #95c1bb;
+--text-selection:             #16304D;
+}
+
+.theme-dark .cm-s-obsidian span.obsidian-search-match-highlight {
+color: var(--text-normal);
+background-color: #483699;
+}
+
+.theme-light
+{
+--background-primary:         #e7e7e7;
+--background-primary-alt:     #e7e7e7;
+--background-secondary:       #e3e3e3; /* thick menu border */
+--background-secondary-alt:   #bebebe; /* ← ↓  corner */
+--text-normal:                #1A2023;
+--text-faint:                 #665c54;
+--text-title-h1:              #1bb0b6;
+--text-title-h2:              #3fa7ab;
+--text-title-h3:              #458588;
+--text-title-h4:              #4b6667;
+--text-title-h5:              #3b4646;
+--text-link:                  #458588;
+--text-a-hover:               #458588;
+--inline-code:                #458588;
+/*  --text-mark:                  add if needed */
+--pre-code:                   #bebebe;
+/*  --text-highlight-bg:          add if needed */
+--interactive-before:         #a89984;
+--background-modifier-border: #1bb0b6;
+--text-a:                     #22a578;
+--interactive-accent:         #22a578;
+--text-accent:                #22a578;
+--interactive-accent-rgb:     #22a578;
+--vim-cursor:                 #22a578;
+/*  --text-selection:             add if needed */
+}
+
+.cm-header-1,
+.markdown-preview-section h1
+{
+font-weight: 500;
+font-size: 20px;
+color: var(--text-title-h1) !important;
+}
+
+.cm-header-2,
+.markdown-preview-section h2
+{
+font-weight: 500;
+font-size: 20px;
+color: var(--text-title-h2) !important;
+}
+
+.cm-header-3,
+.markdown-preview-section h3
+{
+font-weight: 500;
+font-size: 20px;
+color: var(--text-title-h3) !important;
+}
+
+.cm-header-4,
+.markdown-preview-section h4
+{
+font-weight: 500;
+font-size: 20px;
+color: var(--text-title-h4) !important;
+}
+
+.cm-header-5,
+.markdown-preview-section h5
+{
+font-weight: 500;
+font-size: 20px;
+color: var(--text-title-h5) !important;
+}
+
+.cm-header-6,
+.markdown-preview-section h6
+{
+font-weight: 500;
+font-size: 20px;
+color: var(--text-title-h5) !important;
+}
+
+/* ------------ other basic theme configurations ------------*/
+
+.theme-dark code[class*="language-"],
+.theme-dark pre[class*="language-"],
+.theme-light code[class*="language-"],
+.theme-light pre[class*="language-"]
+{
+text-shadow: none !important;
+background-color: var(--pre-code) !important;
+}
+
+.graph-view.color-circle,
+.graph-view.color-fill-highlight,
+.graph-view.color-line-highlight
+{
+color: var(--interactive-accent-rgb) !important;
+}
+.graph-view.color-text
+{
+color: var(--text-a-hover) !important;
+}
+/*
+.graph-view.color-fill
+{
+color: var(--background-secondary);
+}
+.graph-view.color-line
+{
+color: var(--background-modifier-border);
+}
+*/
+
+html,
+body
+{
+font-size: 16px !important;
+}
+
+strong
+{
+font-weight: 600 !important;
+}
+
+a,
+.cm-hmd-internal-link
+{
+color: var(--text-a) !important;
+text-decoration: none !important;
+}
+
+a:hover,
+.cm-hmd-internal-link:hover,
+.cm-url
+{
+color: var(--text-a-hover) !important;
+text-decoration: none !important;
+}
+
+mark
+{
+background-color: var(--text-mark) !important;
+color: #E5A200 !important;
+}
+
+.view-actions a
+{
+color: var(--text-normal) !important;
+}
+
+.view-actions a:hover
+{
+color: var(--text-a) !important;
+}
+
+.HyperMD-codeblock-bg
+{
+background-color: var(--pre-code) !important;
+}
+
+.HyperMD-codeblock
+{
+line-height: 1.4em !important;
+color: var(--code-block) !important;
+}
+
+.HyperMD-codeblock-begin
+{
+border-top-left-radius: 4px !important;
+border-top-right-radius: 4px !important;
+}
+
+.HyperMD-codeblock-end
+{
+border-bottom-left-radius: 4px !important;
+border-bottom-right-radius: 4px !important;
+}
+
+th
+{
+font-weight: 600 !important;
+}
+
+thead
+{
+border-bottom: 2px solid var(--background-modifier-border) !important;
+}
+
+.HyperMD-table-row
+{
+line-height: normal !important;
+padding-left: 4px !important;
+padding-right: 4px !important;
+background-color: var(--pre-code) !important;
+}
+
+.HyperMD-table-row-0
+{
+/* padding-top: 4px !important; */
+}
+
+.CodeMirror-foldgutter-folded,
+.is-collapsed .nav-folder-collapse-indicator
+{
+color: var(--text-a) !important;
+}
+
+.nav-file-tag
+{
+color: var(--text-a) !important;
+}
+
+.is-active .nav-file-title
+{
+color: var(--text-a) !important;
+background-color: var(--background-primary-alt) !important;
+}
+
+.nav-file-title
+{
+border-bottom-left-radius: 0 !important;
+border-bottom-right-radius: 0 !important;
+border-top-left-radius: 0 !important;
+border-top-right-radius: 0 !important;
+}
+
+img
+{
+display: block !important;
+margin-left: auto !important;
+margin-right: auto !important;
+}
+
+.HyperMD-list-line
+{
+padding-top: 0 !important;
+}
+
+.CodeMirror-linenumber,
+.cm-formatting
+{
+font-family: var(--font-monospace) !important;
+}
+
+.markdown-preview-section pre code,
+.markdown-preview-section code
+{
+font-size: 0.9em !important;
+background-color: var(--pre-code) !important;
+}
+
+.markdown-preview-section pre code
+{
+padding: 4px !important;
+line-height: 1.4em !important;
+display: block !important;
+color: var(--code-block) !important;
+}
+
+.markdown-preview-section code
+{
+color: var(--inline-code) !important;
+}
+
+.cm-s-obsidian,
+.cm-inline-code
+{
+-webkit-font-smoothing: auto !important;
+}
+
+.cm-inline-code
+{
+color: var(--inline-code) !important;
+background-color: var(--pre-code) !important;
+padding: 1px !important;
+}
+
+.workspace-leaf-header-title
+{
+font-weight: 600 !important;
+}
+
+.side-dock-title
+{
+padding-top: 15px !important;
+font-size: 20px !important;
+}
+
+.side-dock-ribbon-tab:hover,
+.side-dock-ribbon-action:hover,
+.side-dock-ribbon-action.is-active:hover,
+.nav-action-button:hover,
+.side-dock-collapse-btn:hover
+{
+color: var(--text-a);
+}
+
+.side-dock
+{
+border-right: 0 !important;
+}
+
+.cm-s-obsidian,
+.markdown-preview-view
+{
+padding-left: 10px !important;
+padding-right: 10px !important;
+}
+
+/* vertical resize-handle */
+.workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
+.workspace-split.mod-left-split > .workspace-leaf-resize-handle, 
+.workspace-split.mod-right-split > .workspace-leaf-resize-handle
+{
+width: 1px !important;
+background-color: var(--background-secondary-alt);
+}
+
+/* horizontal resize-handle */
+.workspace-split.mod-horizontal > * > .workspace-leaf-resize-handle
+{
+height: 1px !important;
+background-color: var(--background-secondary-alt);
+}
+
+/* Remove vertical split padding */
+.workspace-split.mod-root .workspace-split.mod-vertical .workspace-leaf-content,
+.workspace-split.mod-vertical > .workspace-split,
+.workspace-split.mod-vertical > .workspace-leaf,
+.workspace-tabs
+{
+padding-right: 0px;
+}
+
+.markdown-embed-title
+{
+font-weight: 600 !important;
+}
+
+.markdown-embed
+{
+padding-left: 10px !important;
+padding-right: 10px !important;
+margin-left: 10px !important;
+margin-right: 10px !important;
+}
+
+.suggestion-item.is-selected
+{
+background-color: var(--background-secondary);
+}
+
+.empty-state-container:hover
+{
+background-color: var(--background-secondary-alt);
+border: 5px solid var(--interactive-accent) !important;
+}
+
+.checkbox-container
+{
+background-color: var(--interactive-before);
+}
+
+.checkbox-container:after
+{
+background-color: var(--background-secondary-alt);
+}
+
+.mod-cta
+{
+color: var(--background-secondary-alt) !important;
+font-weight: 600 !important;
+}
+
+.mod-cta:hover
+{
+background-color: var(--interactive-before) !important;
+font-weight: 600 !important;
+}
+input.task-list-item-checkbox {
+border: 1px solid #7c6f64;
+appearance: none;
+-webkit-appearance: none;
+}
+
+input.task-list-item-checkbox:checked {
+background-color: #7c6f64;
+box-shadow: inset 0 0 0 2px var(--background-primary);
+}
+
+.cm-fat-cursor .CodeMirror-cursor {
+background-color: #2ccab7 !important;
+opacity: 60% !important;
+width: 9px !important; 
+visibility: visible !important
+}
+
+/*-----------------------------------------*/
+/* End of main theme, extra functionality can be added below */
