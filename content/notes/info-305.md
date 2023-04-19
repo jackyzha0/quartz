@@ -27,4 +27,6 @@ tags:
 - [x] [[10-orientation-sensors]] 
 - [x] [[11-orientation sensors-2]]
 - [x] [[12-advanced-sensing-and-vision-sensors]]
+- [ ] [[13-computer-vision]]
+- [ ] [[14-computer-vision-for-p&u-computing]]
 # Info
