@@ -1,3 +1,8 @@
+# ugh
+> no deployment?
+![https://i.postimg.cc/x8BzBxvc/Ed-cowboy-HD-screenshot-anime.png]
+
+
 # Quartz
 
 Host your second brain and [digital garden](https://jzhao.xyz/posts/networked-thought) for free. Quartz features
