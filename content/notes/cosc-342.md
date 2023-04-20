@@ -10,6 +10,9 @@ tags:
 
 - [ ] [[342-assignment-01]]
 
+exam: | COSC342 | Friday 09 June 2023 | 09:30 |
+
+
 # Labs
 
 - [x] [[01a-getting-started]]

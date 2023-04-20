@@ -9,6 +9,9 @@ tags:
 # Assignments
 - [[01-states]]
 
+exam: | INFO305 | Thursday 15 June 2023 | 14:30 |
+
+
 # Labs
 - [[01]]
 

@@ -12,6 +12,8 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 # Assignments
 [[01-vm-ipv6]]
 
+exam: | COSC301 | Saturday 17 June 2023 | 09:30 |
+
 # Labs
 - [x] [[01-VM-intro]]
 - [x] [[02-basic-interface-management]]
