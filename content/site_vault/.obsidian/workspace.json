@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "first note.md",
+                "file": "test.md",
                 "mode": "source",
                 "source": false
               }
@@ -25,26 +25,38 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "templates/Frontmatter.md",
+                "file": "test.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "1a030dc8faa6ef28",
+            "id": "f0dd55a59ef25961",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "templates/Untitled.md",
+                "file": "private/How to view changes locally.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "67c17fe77d7bdae6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "test.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -110,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "templates/Frontmatter.md",
+                "file": "test.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "templates/Frontmatter.md",
+                "file": "test.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "templates/Frontmatter.md"
+                "file": "test.md"
               }
             }
           }
@@ -171,11 +183,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e53851ed0a3d5a30",
+  "active": "67c17fe77d7bdae6",
   "lastOpenFiles": [
+    "test.md",
     "templates/Untitled.md",
+    "private/How to push changes.md",
+    "private/How to view changes locally.md",
+    "private",
     "templates/Frontmatter.md",
-    "first note.md",
     "templates",
     "themes/Things/theme.css",
     "themes/Things/manifest.json",
@@ -184,7 +199,6 @@
     "themes/Minimal.css",
     "themes/Discordian.css",
     "themes/California Coast.css",
-    "themes/Reverie.css",
-    "themes"
+    "themes/Reverie.css"
   ]
 }

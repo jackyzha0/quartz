@@ -1,5 +1,7 @@
 baseURL = "https://cjnanthony.github.io/"
 languageCode = "en-us"
+title = "chris's site"
+Copyright = "© Chris 2023"
 relativeURLs = false
 disablePathToLower = true
 ignoreFiles = [
@@ -9,6 +11,9 @@ ignoreFiles = [
 summaryLength = 20
 paginate = 10
 enableGitInfo = true
+
+[author]
+  name = "chris anthony"
 
 [markup]
     [markup.tableOfContents]
