@@ -9,7 +9,7 @@ weight: -3
 Obsidian is the preferred way to use Quartz. You can either create a new Obsidian Vault or link one that your already have.
 
 ### New Vault
-If you don't have an existing Vault, [download Obsidian](https://obsidian.md/) and create a new Vault in the `/content` folder that you created and cloned during the [setup](notes/setup.md) step.
+If you don't have an existing Vault, [download Obsidian](https://obsidian.md/) and create a new Vault in the `/content` folder that you created and cloned during the [setup](private/Jackie's%20how%20to/setup.md) step.
 
 ### Linking an existing Vault
 The easiest way to use an existing Vault is to copy all of your files (directory and hierarchies intact) into the `/content` folder.
@@ -34,4 +34,4 @@ Inserting front matter everytime you want to create a new Note gets annoying rea
 
 Head over to Options > Core Plugins and enable the Templates plugin. Then go to Options > Hotkeys and set a hotkey for 'Insert Template' (I recommend `[cmd]+T`). That way, when you create a new note, you can just press the hotkey for a new template and be ready to go!
 
-> 👀 Step 4: [Preview Quartz Changes](notes/preview%20changes.md)
+> 👀 Step 4: [Preview Quartz Changes](private/Jackie's%20how%20to/preview%20changes.md)

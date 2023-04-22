@@ -207,7 +207,7 @@ For example, the structure of the home page can be edited through `/layouts/inde
 
 More info about partials on [Hugo's website.](https://gohugo.io/templates/partials/)
 
-Still having problems? Checkout our [FAQ and Troubleshooting guide](notes/troubleshooting.md).
+Still having problems? Checkout our [FAQ and Troubleshooting guide](private/Jackie's%20how%20to/troubleshooting.md).
 
 ## Language Support
 [CJK + Latex Support (测试)](notes/CJK%20+%20Latex%20Support%20(测试).md) comes out of the box with Quartz.
