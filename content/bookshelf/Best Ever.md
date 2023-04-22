@@ -1,0 +1,7 @@
+- Kitchen Confidential
+- Catch-22
+- East of Eden
+- The Tender Bar
+- The Things They Carried
+- One Flew Over the Cuckoo's Nest
+- The Innovators
