@@ -1,3 +1,9 @@
+---
+title: "Best Ever"
+tags:
+- example-tag
+---
+
 - Kitchen Confidential
 - Catch-22
 - East of Eden
