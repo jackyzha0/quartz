@@ -3,6 +3,7 @@ title: "Git for Data Analysts"
 tags:
 - example-tag
 ---
+
 > [!note] Note
 >
 > My boss asked me to write this up for a previous role for the company blog, although he completely forgot to ever post it. At least it's here now.
