@@ -1,5 +1,5 @@
 ---
-title: "test1"
+title: "test"
 tags:
 - example-tag
 ---
