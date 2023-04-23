@@ -62,3 +62,94 @@ Uniform Resource Locator (URL)
 	- Create a user friendly alias for the website path
 
 URLs can be quite comprehensive. `http://user:password@host:port/path#anchor?p1=x&p2=y`
+
+> [!INFO] can have cookies for each page. 
+> URLs can have variables - params, and queries
+
+HTTP (1) 
+- HyperText Transfer Protocol 
+	- Communication between HTTP clients and server 
+	- Server uses port 80; Client uses a temporary port number 
+	- Use the service of TCP (connected-orient & reliable)
+![TCP, three way handshake etc|300](https://i.imgur.com/icLECn1.png)
+
+HTTP (2) Request methods 
+	- GET: retrieve a file (95% of requests) 
+	- HEAD: just get meta-data (e.g., mod time) 
+	- POST: submitting a form to a server 
+	- PUT: store enclosed document as URI 
+	- PATCH: make partial modifications to a document 
+	- DELETE: removed named resource 
+	- TRACE: http “echo” for debugging (added in 1.1) 
+	- CONNECT: used by proxies for tunneling (1.1) 
+	- OPTIONS: request for server/proxy options (1.1)
+![example web page|300](https://i.imgur.com/aYpLgTe.png)
+
+Nonpersistent Connection 
+	- 1 HTTP request/TCP connection 
+	- A file containing links to N different objects in different files (in the same sever) needs N+1 TCP connections. 
+	- Used in HTTP prior to version 1.1
+	
+> [!INFO] **non persistent connections impose high overhead on the server**
+![non persistent connection diagram|200](https://i.imgur.com/FzX80uC.png)
+
+Persistent Connection 
+- Multiple HTTP requests/TCP connection 
+- Default in HTTP version 1.1 and later
+![persistent connection diagram|200](https://i.imgur.com/u3RqHQ0.png)
+> [!INFO] much more efficient
+
+Cookies (1) 
+- HTTP is a stateless protocol 
+	- Client requests a page, and server sends it 
+	- Client later requests a 2nd page; it is sent 
+- HTTP doesn’t give a way for the server to know it’ s from the same user 
+	- Being stateless is simpler for HTTP 
+	- But limiting to applications
+> [!INFO] originally from fortune cookie, with a message inside it. 
+
+> [!INFO] need to have a lot of requests at the same/diferent time. we need to know which customer is which. this makes the site stateful. 
+
+Cookies (2) 
+- What is HTTP Cookie? 
+	- A small piece of text made by the server and eaten by the server. 
+- Upon receiving a Cookie, the browser: 
+	- (1) Stores the cookie in memory
+	- (2) Sends the cookie back to the server every time it requests a new web page. 
+- How does a Cookie look like? 
+	- A cookie is a name-value pair: 
+		- cookie name = cookie value 
+	- Example: languagePreference = EN.
+
+Cookies (3) The Web NEEDs state information for clients 
+- Authentication 
+	- User-id, password stored on client 
+	- Sent on next visit. No login required! 
+- Personalization 
+	- Remember user preference for fonts, colors, skin, site-options, etc. 
+- Shopping carts 
+	- Tracking clients 
+- Tracking 
+	- How is our site used? 
+	- Multi-site tracking by companies looking for usage profiles, etc.
+
+![A scenario of an online shopping|300](https://i.imgur.com/CMyemmh.png)
+
+Cookies (4) 
+- Security 
+	- Users can change cookies before continuing to browse. 
+	- Users could swap / steal cookies. 
+	- Session Hijacking 
+- Privacy 
+	- Servers can remember your previous actions 
+	- If you give out personal information, servers can link that information to your previous actions 
+	- Servers can share cookie information through use of a cooperating third party 
+	- Poorly designed sites store sensitive information like credit card numbers directly in cookie
+
+Cross-site scripting attack (XSS) 
+- Attacker injects a malicious script into the webpage viewed by a victim user 
+- Two main types of XSS 
+	- Non-persistent (or reflected) XSS 
+	- Attacker gets the victim user to click on specially-crafted URL with scripts in it, e.g., delivered via email 
+- Persistent (or stored) XSS 
+- A	ttacker injects the malicious script into the victim’s server to be loaded together with the normal pages, e.g., through forum, blog, and feedback form.
