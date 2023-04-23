@@ -146,10 +146,35 @@ Cookies (4)
 	- Servers can share cookie information through use of a cooperating third party 
 	- Poorly designed sites store sensitive information like credit card numbers directly in cookie
 
+> [!INFO] some websites that aren't secure can expose your credit card through cookies. you need to be careful and check if a website is secure and credible
+
 Cross-site scripting attack (XSS) 
 - Attacker injects a malicious script into the webpage viewed by a victim user 
 - Two main types of XSS 
 	- Non-persistent (or reflected) XSS 
-	- Attacker gets the victim user to click on specially-crafted URL with scripts in it, e.g., delivered via email 
-- Persistent (or stored) XSS 
-- A	ttacker injects the malicious script into the victim’s server to be loaded together with the normal pages, e.g., through forum, blog, and feedback form.
+		- Attacker gets the victim user to click on specially-crafted URL with scripts in it, e.g., delivered via email 
+	- Persistent (or stored) XSS 
+		- Attacker injects the malicious script into the victim’s server to be loaded together with the normal pages, e.g., through forum, blog, and feedback form.
+
+![non persistent reflected XSS](https://i.imgur.com/FNUcVXn.png)
+![persistent stored XSS](https://i.imgur.com/fWg2XOT.png)
+
+Preventing XSS
+- Input validation: check that inputs are of expected 
+	- HTML sanitization to remove tags such as
+	- `<script>, <object> and <link>`
+- Output escaping: escape dynamic data before inserting it into HTML
+	- `<script>alert(document.cookie)</script>`
+- Cookie security 
+- Disable scripts
+
+![character escape sequences|300](https://i.imgur.com/Jlr373B.png)
+
+SQL Injection Attack 
+- The placement of malicious code in SQL statements via web page input
+	- `txtUserId = getRequestString("UserId"); txtSQL = "SELECT * FROM Users WHERE UserId = " + txtUserId;`
+	- `Attacker input 1050 OR 1=1`
+	- `SELECT * FROM Users WHERE UserID = 1050 or 1=1;`
+- Use SQL parameters for protection
+- `$stmt = $dbh->prepare(“SELECT * FROM Users WHERE UserID = :uid"); `
+- ``$stmt->setString(':uid', $userID); $stmt->execute();
