@@ -170,6 +170,8 @@ Preventing XSS
 
 ![character escape sequences|300](https://i.imgur.com/Jlr373B.png)
 
+> [!INFO] root cause of most security issues is not checking user input properly
+
 SQL Injection Attack 
 - The placement of malicious code in SQL statements via web page input
 	- `txtUserId = getRequestString("UserId"); txtSQL = "SELECT * FROM Users WHERE UserId = " + txtUserId;`
@@ -177,4 +179,16 @@ SQL Injection Attack
 	- `SELECT * FROM Users WHERE UserID = 1050 or 1=1;`
 - Use SQL parameters for protection
 - `$stmt = $dbh->prepare(“SELECT * FROM Users WHERE UserID = :uid"); `
-- ``$stmt->setString(':uid', $userID); $stmt->execute();
+- `$stmt->setString(':uid', $userID);`
+- `$stmt->execute();`
+
+HTTP Weakness 
+- HTTP Authentication Security Risks 
+	- Username and password are encoded, not encrypted. 
+- Base 64 encoding and decoding tools are freely available. 
+	- Authentication information does not change between different requests. 
+- Sniffer can replay! 
+	- Requesting unnecessary authentication leads to password sharing. 
+	- Basic authentication only authenticates the browser (user), not the server. 
+- Impersonating websites could harvest passwords
+
