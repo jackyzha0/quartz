@@ -46,6 +46,6 @@ exam: | COSC301 | Saturday 17 June 2023 | 09:30 |
 - [ ] [[12-DHCP]] need to study
 - [x] [[13-ssh]]
 - [x] [[14-mail-servers]]
-- [ ] [[15-www]]
+- [x] [[15-www]]
 
 # Info
