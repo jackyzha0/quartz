@@ -15,3 +15,6 @@ I've personally found that
 I was really inspired by [Bianca](https://garden.bianca.digital/) and [Joel](https://joelhooks.com/digital-garden)'s digital gardens and wanted to try making my own.
 
 **The goal of Quartz is to make hosting your own public digital garden free and simple.** You don't even need your own website. Quartz does all of that for you and gives your own little corner of the internet.
+
+
+[[hosting]]

@@ -4,6 +4,8 @@ title: "Callouts"
 
 ## Callout support
 
+[[content/private/private-note.md]]
+
 Quartz supports the same Admonition-callout syntax as Obsidian.
 
 This includes

@@ -97,3 +97,6 @@ Now that your Quartz is live, let's figure out how to make Quartz really *yours*
 > Step 6: 🎨 [Customizing Quartz](notes/config.md)
 
 Having problems? Checkout our [FAQ and Troubleshooting guide](notes/troubleshooting.md).
+
+
+[[notes/editing]]
