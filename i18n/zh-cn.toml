@@ -62,4 +62,4 @@ other = "进行搜索......"
 other = "目录"
 
 [copyright]
-other = "由 {{ .name }} 用 <a href=\"https://github.com/jackyzha0/quartz\">Quartz</a> 创造, © {{ .year }}"
+other = "<a href=\"https://janeilagan.github.io\">Jane Ilagan</a> © {{ .year }}"

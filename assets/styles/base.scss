@@ -1,9 +1,10 @@
 // Replace this with your own font imports!
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Quicksand:wght@500;600&family=Ubuntu+Mono&display=swap');
 :root {
-  --font-body: "Source Sans Pro";
-  --font-header: "Inter";
-  --font-mono: "Fira Code"
+  --font-body: 'Quicksand', sans-serif !important;
+  --font-header: 'Quicksand', sans-serif;
+  --font-mono: 'Ubuntu Mono', monospace;
+  --font-page: 'Cedarville Cursive', cursive;
 }
 
 // typography
@@ -21,9 +22,7 @@ html {
 }
 
 .singlePage {
-  padding: 4em 30vw;
-  margin: 0 auto;
-  max-width: 1000px;
+  padding: 3em 28vw;
   @media all and (max-width: 1200px) {
     padding: 25px 5vw;
   }
@@ -49,6 +48,11 @@ h1, h2, h3, h4, h5, h6, thead {
   &:hover > .hanchor {
     color: var(--secondary);
   }
+}
+
+#gitalk-container {
+  font-family: var(--font-header);
+  color: var(--dark);
 }
 
 .hanchor {
@@ -78,7 +82,7 @@ tbody, li, p {
   & details {
     & summary {
       cursor: zoom-in;
-      font-family: var(--font-header);
+      font-family: var(--font-body);
       color: var(--dark);
       font-weight: 700;
     }
@@ -91,7 +95,7 @@ tbody, li, p {
 
 #TableOfContents > ol {
   counter-reset: section;
-  margin-left: 0;
+  margin-left: 0em;
   padding-left: 1.5em;
   & > li {
     counter-increment: section;
@@ -144,7 +148,7 @@ sup {
 }
 
 blockquote {
-  margin-left: 0;
+  margin-left: 0em;
   border-left: 3px solid var(--secondary);
   padding-left: 1em;
   transition: border-color 0.2s ease;
@@ -185,7 +189,7 @@ article {
     margin-top: 2em;
     font-size: 2em;
   }
-
+  
   & > .meta {
     margin: 0 0 1em 0;
     opacity: 0.7;
@@ -203,11 +207,11 @@ article {
 
       &.broken {
         opacity: 0.5;
-        background-color: transparent;
+        background-color: transparent; 
       }
     }
   }
-
+  
   & p {
     overflow-wrap: anywhere;
   }
@@ -257,7 +261,14 @@ sup > a {
 #page-title {
   margin: 0;
   & > a {
-    font-family: var(--font-header);
+    font-family: var(--font-page);
+  }
+}
+
+#gitalk-container {
+  margin: 0;
+  & > a {
+    font-family: var(--font-page);
   }
 }
 
@@ -297,15 +308,17 @@ footer {
   text-align: center;
   & ul {
     padding-left: 0;
-  }
+  } 
 }
 
 hr {
-  width: 100%;
-  margin: 2em auto;
-  height: 1px;
-  border: none;
-  background-color: var(--outlinegray);
+  width: 25%;
+  margin: 4em auto;
+  height: 2px;
+  border-radius: 1px;
+  border-width: 0;
+  color: var(--dark);
+  background-color: var(--dark);
 }
 
 .page-end {
@@ -509,7 +522,7 @@ header {
 
   & > .section {
     display: flex;
-    align-items: center;
+    align-items: center; 
 
     @media all and (max-width: 600px) {
       & .tags {
@@ -521,18 +534,18 @@ header {
       font-weight: 700;
       margin: 0;
     }
-
+    
     & p {
       margin: 0;
       padding-right: 1em;
-      flex-basis: 6em;
+      flex-basis: 6em; 
     }
   }
 
   & h3 {
     opacity: 1;
     font-weight: 700;
-    margin: 0;
+    margin: 0em;
   }
 
   & .meta {
@@ -570,7 +583,7 @@ header {
   transition: opacity 0.2s ease, transform 0.2s ease;
   user-select: none;
   overflow-wrap: anywhere;
-  box-shadow: 6px 6px 36px 0 rgba(0,0,0,0.25);
+  box-shadow: 6px 6px 36px 0px rgba(0,0,0,0.25);
 
   @media all and (max-width: 600px) {
     display: none !important;
@@ -598,7 +611,7 @@ header {
   & > p {
     margin: 0;
     padding: 0.5rem 0;
-  }
+  } 
 
   & > p, & > a {
     font-size: 1rem;

@@ -62,4 +62,4 @@ other = "ابحث عن شيء ما..."
 other = "الفهرس"
 
 [copyright]
-other = "صُمم بواسطة {{ .name }} باستخدام <a href='https://github.com/jackyzha0/quartz'>كوارتز</a>، {{ .year }} ©"
+other = "صُمم بواسطة {{ .name }} باستخدام <a href='https://janeilagan.github.io/'>كوارتز</a>، {{ .year }} ©"

@@ -62,4 +62,4 @@ other = "Søk etter noe..."
 other = "Innholdsfortegnelse"
 
 [copyright]
-other = "Opprettet av {{ .name }} ved hjelp av <a href=\"https://github.com/jackyzha0/quartz\">Quartz</a>, © {{ .year }}"
+other = "<a href=\"https://janeilagan.github.io\">Jane Ilagan</a> © {{ .year }}"

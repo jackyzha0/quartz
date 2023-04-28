@@ -114,10 +114,6 @@ blockquote[class*="-callout"] > p:first-child {
   }
 }
 
-blockquote[class*="-callout"] > p:empty {
-  padding: 1.2em 35px;
-}
-
 $summary: summary, abstract, tldr;
 $bug: bug;
 $danger: danger, error;

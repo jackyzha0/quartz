@@ -1,4 +1,4 @@
-name: Jacky Zhao
+name: Jane Ilagan
 enableToc: true
 openToc: false
 enableLinkPreview: true
@@ -10,20 +10,23 @@ enableSPA: true
 enableFooter: true
 enableContextualBacklinks: true
 enableRecentNotes: false
-enableGitHubEdit: true
+enableGitHubEdit: false
 enableMermaid: true
-GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
-search:
-  enableSemanticSearch: false
-  operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
-  operandIndexId: "REPLACE-WITH-YOUR-OPERAND-INDEX-ID"
+enableGitalk: true
+clientID: "6a83451f6823935a7010"
+clientSecret: "826b6ea7347aa1d09de2e93dc4a34dbae754fa2a"
+repo: "janeilagan.github.io"
+owner: "janeilagan"
+admin: "janeilagan"
+GitHubLink: https://janeilagan.github.io/
+
 description:
-  Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
-  Wikilink support, backlinks, local graph, tags, and link previews.
+ A digital jungle - wild and tangled ecosystem of notes, ideas, and thoughts. 
 page_title:
-  "🪴 Quartz 3.3"
+  "jane ilagan"
+  
 links:
-  - link_name: Twitter
-    link: https://twitter.com/_jzhao
-  - link_name: GitHub
-    link: https://github.com/jackyzha0
+  - link_name: Github
+    link: https://github.com/janeilagan
+  - link_name: LinkedIn
+    link: https://www.linkedin.com/in/janeilagan/
