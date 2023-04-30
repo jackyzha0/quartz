@@ -101,9 +101,50 @@ SSL/TLS Protocols
 - transport layer
 ![SSL/TLS Protocols|300](https://i.imgur.com/DufvW2C.png)
 
+> [!INFO] not always iimplemented in the kernel. also implemented outside the kernel as part of the application
+
 The Handshake Protocol 
 - Uses messages to 
 	- Negotiate the cipher suite 
 	- Authenticate sever and/or client 
 	- Exchange information for building cryptographic secrets
+- https://tls.ulfheim.net/
 ![exchange process|300](https://i.imgur.com/DVuemNf.png)
+
+A Closer Look at Handshake 
+- The client sends a "Client hello" message to the server, along with the client's random value and supported cipher suites. 
+- The server responds by sending a "Server hello" message to the client, along with the server's random value. 
+- The server sends its certificate to the client for authentication and may request a certificate from the client. The server sends the "Server hello done" message. 
+- If the server has requested a certificate from the client, the client sends it. 
+- The client creates a random Pre-Master Secret and encrypts it with the public key from the server's certificate, sending the encrypted Pre-Master Secret to the server. 
+- The server receives the Pre-Master Secret. The server and client each generate the Master Secret and session keys based on the Pre-Master Secret and the random numbers. 
+- The client sends "Change cipher spec" notification to server to indicate that the client will start using the new session keys for hashing and encrypting messages. Client also sends "Client finished" message. 
+- Server receives "Change cipher spec" and switches its record layer security state to symmetric encryption using the session keys. Server sends "Server finished" message to the client. 
+- Client and server can now exchange application data over the secured channel they have established. All messages sent from client to server and from server to client are encrypted using a session key.
+
+ChangeCipherSpec & Alert Protocols 
+- When can the two parties use these parameters or secrets? 
+	- Cannot use them until they have sent or received a special message -> the ChangeCipherSpec message 
+- How to deal with errors? 
+	- Uses the Alert protocol to report errors and abnormal conditions.
+
+The Record Protocol 
+- Carries messages from the upper layers 
+- Message fragmentation 
+- Message compression (optional) 
+- Message encryption
+![|300](https://i.imgur.com/NWzYmdY.png)
+
+Examples to use SSL/TLS 
+- openssl s_client –starttls smtp –connect smtp.gmail.com:587 –crlf 
+- openssl s_client –connect smtp.gmail.com:465 –crlf 
+- See more details of STARTTLS at https://www.fastmail.com/help/technical/ssltlsstarttls.html
+
+HTTPS 
+- HTTP over TLS or HTTP over SSL 
+	- Layering HTTP on top of the SSL or TLS 
+	- Adding security capabilities of SSL/TLS to standard HTTP 
+- Difference from HTTP 
+	- HTTP URLs begin with “http://” and use port 80 by default 
+	- HTTPS URLs begin with “https://” and use port 443 by default
+-
