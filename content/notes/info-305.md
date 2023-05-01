@@ -32,6 +32,6 @@ exam: | INFO305 | Thursday 15 June 2023 | 14:30 |
 - [x] [[12-advanced-sensing-and-vision-sensors]]
 - [ ] [[13-computer-vision]]
 - [x] [[14-computer-vision-for-p&u-computing]]
-- [ ] [[15-computer-vision-2-SIFT]]
+- [ ] [[15-computer-vision-2-SIFT]] WACTH LECTURE
 - [ ] [[16-computer-vision-3]]
 # Info

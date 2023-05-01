@@ -5,6 +5,8 @@ tags:
 - info305
 ---
 
+> [!DANGER] Watch lecture
+
 Scale Invariant Features Transform (SIFT)
 
 Natural Feature Based Tracking (NFT)

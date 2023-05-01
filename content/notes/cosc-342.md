@@ -33,5 +33,7 @@ exam: | COSC342 | Friday 09 June 2023 | 09:30 |
 - [x] [[09-3d-geometry]]
 - [x] [[10-3d-Cameras]]
 
+- [ ] [[16-intro-computer-graphics]]
+
 # Info
 
