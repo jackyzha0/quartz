@@ -31,5 +31,7 @@ exam: | INFO305 | Thursday 15 June 2023 | 14:30 |
 - [x] [[11-orientation sensors-2]]
 - [x] [[12-advanced-sensing-and-vision-sensors]]
 - [ ] [[13-computer-vision]]
-- [ ] [[14-computer-vision-for-p&u-computing]]
+- [x] [[14-computer-vision-for-p&u-computing]]
+- [ ] [[15-computer-vision-2-SIFT]]
+- [ ] [[16-computer-vision-3]]
 # Info
