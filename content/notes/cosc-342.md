@@ -8,7 +8,8 @@ tags:
 ---
 # Assignments
 
-- [ ] [[342-assignment-01]]
+- [x] [[342-assignment-01]]
+- [ ] [[342-assignment-02]]
 
 exam: | COSC342 | Friday 09 June 2023 | 09:30 |
 
