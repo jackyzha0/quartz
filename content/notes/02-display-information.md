@@ -6,9 +6,9 @@ tags:
 ---
 
 # On Screen
-State: Sitting
+State: Walking
 Display: Basic Information (Time, date, etc)
-Location: In the corner when the user taps the button.
+Location: At the top of the scree when the user taps
 
 Ideas
 - display computer information just above computer (not on screen)
