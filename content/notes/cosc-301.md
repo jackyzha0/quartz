@@ -48,6 +48,6 @@ exam: | COSC301 | Saturday 17 June 2023 | 09:30 |
 - [x] [[14-mail-servers]]
 - [x] [[15-www]]
 - [x] [[16-TLS]]
-- [ ] [[17-Network-Security]]
+- [x] [[17-Network-Security]]
 
 # Info

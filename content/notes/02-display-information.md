@@ -15,9 +15,19 @@ Ideas
 - display information on displays around computer (not on screen)
 
 # User Centric
-Display:
+State: Running
+Display: Heartrate etc
+Location: On the ground in front of you
 
 # World Centric (Marker)
-Display:
-- to do list
-- 
+State: Sitting
+Display: Paper pads around your desk with information
+Location: on the marker
+
+State: Walking
+Display: Directions
+Location: Markers in buildings/hallways
+
+Ideas
+- in japan there are a zillion different signs in train stations. Have only one sign with a marker. Plug in your destination and signs show only directions to your destination.
+
