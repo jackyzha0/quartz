@@ -8,6 +8,11 @@ tags:
 
 SLAM: Simultaneous Localisation and Mapping
 
+> [!INFO] new and modern. last 10-15 years.
+> we can do dept estimation with stereo camera
+> we can also do depth estimatio by taking two photos with one camera
+> by continuously taking images with a moving camera, we can calculate the offset from the inital photos, using sift, we can track features between images to build a model of the environment. while moving we recalcualte the position of the camera in space. the model getting better over time. 
+
 SLAM
 - What if we don’t have an existing model/ marker/feature databased? 
 - Origins in robotics 
