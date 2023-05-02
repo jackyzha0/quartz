@@ -12,4 +12,13 @@ tags:
 
 > [!INFO] perspective-3-point pose
 > using the three 2D-3D matches. we find the location of the camera, using the angles between these vectors (direction, and distance).
-> P is at the inters 
+> P is at the intersection of the sphere around A B and C
+
+> [!INFO] bundle adjustment
+> as we add more cameras the error increases over time. 
+> at the end we run a final optimisationa algorithm to make sure the features match well. 
+
+> [!INFO]
+> when you have 1000 features and 100 cameras, there are a lot of features. we need to optimise reprojection error of all these points. 
+> we can use a sparse matrix (the jacobian matrix is mostly zeros) 
+> bundles of rays for each camera are adjusted using levenberg-marquadt get an optimal reconstruction
