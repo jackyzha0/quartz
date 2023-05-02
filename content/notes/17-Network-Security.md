@@ -28,6 +28,11 @@ Security
 	- Define how secure we want to be, what threats we care about, what controls we implement 
 	- Balance between risk, convenience and cost
 
+> [!INFO] always need to have backups. this is easy now because of cloud storage. but also need to be careful of privay and encryption when using cloud services. 
+
+> [!INFO] policy
+> purpose is to protect your safety. potential risk vs convenience vs cost. 
+
 Network Security 
 - Secures the network, as well as protecting and overseeing operations being done. 
 	- Confidentiality: only sender, intended receiver should “understand” message contents 
