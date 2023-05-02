@@ -82,6 +82,8 @@ Authentication Protocols (2)
 	- Encrypted password can be played back
 ![|300](https://i.imgur.com/cX9Ntp4.png)
 
+> [!INFO] password never changes.
+
 Authentication Protocols (3) 
 - AP4.0 
 	- Use a number, called a nonce, that will be used only once in a lifetime 
@@ -92,6 +94,8 @@ Authentication Protocols (3)
 - Bob decrypts the received message. If the decrypted nonce equals the nonce he sent Alice, then Alice is authenticated. 
 	- Key distribution can be a logistic problem.
 ![|300](https://i.imgur.com/N56L9G4.png)
+
+> [!INFO] prevent playback attack because "password" changes.
 
 Key Distribution 
 - Key Distribution Centre (KDC) 
