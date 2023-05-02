@@ -32,7 +32,7 @@ exam: | COSC342 | Friday 09 June 2023 | 09:30 |
 - [[08-visual-tracking-and-matching]]
 - [x] [[09-3d-geometry]]
 - [x] [[10-3d-Cameras]]
-
+- [ ] [[15-multiview-stereo]]
 - [ ] [[16-intro-computer-graphics]]
 
 # Info
