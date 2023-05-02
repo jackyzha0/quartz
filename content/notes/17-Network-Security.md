@@ -158,6 +158,8 @@ Denial of service (DOS):
 	- traceback to source of floods
 ![|300](https://i.imgur.com/9qBk1LP.png)
 
+> [!INFO] send syn, but change ip before recieving syn ack. this means
+
 Security Policy 
 - Security policy 
 	- A formal statement of the rules by which people who are given access to an organisation’s technology and information assets must abide 
