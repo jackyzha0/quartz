@@ -8,6 +8,7 @@ tags:
 ---
 # Assignments
 - [[01-states]]
+- [[02-display-information]]
 
 exam: | INFO305 | Thursday 15 June 2023 | 14:30 |
 
