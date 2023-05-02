@@ -12,6 +12,12 @@ SLAM: Simultaneous Localisation and Mapping
 > we can do dept estimation with stereo camera
 > we can also do depth estimatio by taking two photos with one camera
 > by continuously taking images with a moving camera, we can calculate the offset from the inital photos, using sift, we can track features between images to build a model of the environment. while moving we recalcualte the position of the camera in space. the model getting better over time. 
+> only gives relative location between the world and the camera. whereas marker based tracking we can get position of camera in the world
+> we need to build in some mechanisms to compensate for error.
+
+> [!INFO] hololens
+> uses four camera for SLAM tracking to find location in space. 
+> to track without features (e.g.,) on plain walls, we can track using the relative position and oreientation of the camera (using IMUs)
 
 SLAM
 - What if we don’t have an existing model/ marker/feature databased? 
