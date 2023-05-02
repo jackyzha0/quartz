@@ -8,7 +8,7 @@ tags:
 # On Screen
 State: Sitting
 Display: Basic Information (Time, date, etc)
-Location: Slightly above eyeline.
+Location: In the corner when the user taps the button.
 
 Ideas
 - display computer information just above computer (not on screen)
