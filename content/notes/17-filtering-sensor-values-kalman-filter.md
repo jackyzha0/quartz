@@ -12,8 +12,6 @@ tags:
 Kalman Filter for Sensor Fusion
 - sensor fusion: dead-reckoning, low/high pass filters
 
-
-
 - A very simple example: 
 - Position of a train, human, car, phone, device, … 
 - 1DoF (Simplification of a 2DoF/3DoF positioning problem)
@@ -67,3 +65,30 @@ Equations
 Kalman Filter - Predict and Correct
 - Running the filter: 
 - Two steps: Predict and Correct
+![Predict and Correct Cycle|300](https://i.imgur.com/KrCVMab.png)
+
+- (3) In simple words, the new best estimate is a prediction made from previous best estimate, plus a correction for known external influences. 
+- (4) The new uncertainty is predicted from the old uncertainty, with some additional uncertainty from the environment.
+- ![](https://i.imgur.com/CHEzMAG.png)
+
+- (5) In simple words the estimation of the state after the measurement, is the prediction from the last state plus the Kalman gain (K) times the innovation. The innovation is the difference between measurement and where we expected to find the measurement.
+- (6) The new uncertainty is estimated from the predicted uncertainty, corrected with the Kalman gain (K) times
+- (7) The Kalman gain is the relative weight given to the measurements and current state estimate [0..1]. If there is high uncertainty relative to the process noise (e.g. sensor noise), the gain will be low, otherwise it would be high. As the filter converges, the gains gets smaller, into a steady state.
+- ![](https://i.imgur.com/Ksg5QAL.png)
+
+https://simondlevy.academic.wlu.edu/kalman-tutorial/the-extended-kalman-filter-an-interactive-tutorial-for-non-experts-part-14/
+![](https://i.imgur.com/CKKOyQR.png)
+
+
+Kalman Filter: 
+- Kalman filter is an algorithm permitting exact inference in a linear dynamical system 
+- All latent and observed variables have a Gaussian distribution 
+- Optimal estimator for smoothing noisy data, providing estimates of parameters of interest, and fusing sensors with different characteristics 
+- Applications include global positioning system receivers, smoothing the output from laptop trackpads, smoothing noisy sensors, general sensor fusion, and more
+
+Examples
+- Example 1: https://home.wlu.edu/~levys/kalman_tutorial/kalman_07.html (Simple Example) 
+- Example 2: https://home.wlu.edu/~levys/kalman_tutorial/kalman_14.html (Sensor Fusion) 
+- Kalman Filter in pictures (very good but still mathematical): http://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/ 
+- Kalman Filter Tutorial: http://www.cs.unc.edu/~welch/kalman/ 
+- Kalman Filter Code: https://github.com/simondlevy/TinyEKF
