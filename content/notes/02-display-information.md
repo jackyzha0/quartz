@@ -5,6 +5,28 @@ tags:
 - assignment
 ---
 
+# Walking
+## On Screen
+## User centric
+## World Centric
+## Conclusion
+
+# Running
+## On Screen
+## User centric
+## World Centric
+## Conclusion
+
+# Sitting/Standing
+## On Screen
+## User centric
+## World Centric
+## Conclusion
+
+# Final Remarks
+
+
+
 # On Screen
 State: Walking
 Display: Basic Information (Time, date, etc)
