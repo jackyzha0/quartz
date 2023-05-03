@@ -6,6 +6,17 @@ tags:
 ---
 
 
+
+> [!INFO] other methods dont take into account the noise of the data
+> not predicting from a series of states
+
+> [!IMPORTANT] only predicting from a single inital known state
+> spread around midpoint using a gaussian distribution. 
+> we have a probability of a midpoint.
+
+> [!INFO] we can get information about accuracy of sensors from specifications on the sensors.
+> 
+
 ![Activity/Context Recognition|300](https://i.imgur.com/MUdRlDa.png)
 
 
