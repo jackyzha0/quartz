@@ -15,7 +15,12 @@ tags:
 > we have a probability of a midpoint.
 
 > [!INFO] we can get information about accuracy of sensors from specifications on the sensors.
-> 
+
+
+> [!INFO] use vectors because there could be multiple sensors, each with multple values.
+
+> [!INFO] to make predictions we need. prediction. kalman gain (K), 
+> K is the ratio of trust in the prediction vs the measurement. higher K means more trust in accumulated prediction
 
 ![Activity/Context Recognition|300](https://i.imgur.com/MUdRlDa.png)
 
