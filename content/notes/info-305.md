@@ -35,4 +35,5 @@ exam: | INFO305 | Thursday 15 June 2023 | 14:30 |
 - [x] [[14-computer-vision-for-p&u-computing]]
 - [ ] [[15-computer-vision-2-SIFT]] WACTH LECTURE
 - [ ] [[16-computer-vision-3]]
+- [ ] [[17-filtering-sensor-values-kalman-filter]]
 # Info
