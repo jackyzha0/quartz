@@ -5,8 +5,9 @@ tags:
 - lecture
 ---
 
-![GRAPHICS PIPELINE](https://i.imgur.com/RUY0jsN.png)
+> [!INFO] better to use gPU for computations and rendering because it can do multiple operations in parallel
 
+![GRAPHICS PIPELINE](https://i.imgur.com/RUY0jsN.png)
 ![GRAPHICS PIPELINE](https://i.imgur.com/LgzVaeQ.png)
 
 VERTEX PROCESSING
