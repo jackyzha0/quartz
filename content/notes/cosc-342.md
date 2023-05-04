@@ -34,6 +34,7 @@ exam: | COSC342 | Friday 09 June 2023 | 09:30 |
 - [x] [[10-3d-Cameras]]
 - [ ] [[15-multiview-stereo]]
 - [ ] [[16-intro-computer-graphics]]
+- [ ] [[17-OpenGL-essentials]]
 
 # Info
 
