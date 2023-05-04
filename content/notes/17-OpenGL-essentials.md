@@ -7,6 +7,8 @@ tags:
 
 > [!INFO] better to use gPU for computations and rendering because it can do multiple operations in parallel
 
+> [!INFO] vertices are the points. they are assembled into primitives (triangles). rasterisation projects the primitives to the screen. the fragment processer colours the rasterised primitives and produces pixels.
+
 ![GRAPHICS PIPELINE](https://i.imgur.com/RUY0jsN.png)
 ![GRAPHICS PIPELINE](https://i.imgur.com/LgzVaeQ.png)
 
@@ -15,9 +17,17 @@ VERTEX PROCESSING
 - “Shaders” were small programs performing lighting calculations 
 - Transforms input vertex stream into stream of vertices mapped onto the screen (clip space coordinates: homogeneous coordinates) 
 - Uses model, view and projection matrices to transform from model to world to view and to clip space
-
 VERTEX SHADER: TRANSFORMATIONS
 ![VERTEX SHADER: TRANSFORMATIONS](https://i.imgur.com/69mgYvL.png)
+
+> [!INFO] vertex shader: small program, runs on the GPU. shaders were historically used for calculating lighting. now shaders might have nothing to do with shading - they are just programs that run on the GPU. 
+> performs the same computation (possible matrix multiplication) for each point/pixel/vertex
+
+> [!INFO] matrices
+> model matrix: places triangle in the real world. gives relationship for other objects in the world
+> view matrix: brings coordnates from world space into image/eye space. defines where virtual camera is relative to object. still in 3d space
+> projection matrix: uses the relationship of virtual camera and object to projetc object onto screen (clip space)
+> model-view matrix: model-view-projection matrix: can combine matrices into one. allows you to precomute the multiplicatoin and apply all at once to the object. so we dont have to recompute for each vertex. MVP should be the same for each vertex of the object.
 
 ![VERTEX SHADER: EXAMPLE](https://i.imgur.com/aEtj50Z.png)
 
