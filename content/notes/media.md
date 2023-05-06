@@ -5,6 +5,13 @@ tags:
 
 ---
 
+# What music do I Listen to?
+- genres
+	- ambient(dark, drone, metal, industrial, dungeon synth)
+	- hip hop (instrumental, jazz, lo fi, old school)
+	- folk
+	- jazz
+
 # Writing Topics
 - Do I want to be a cook
 - Do I actually like computer science
@@ -109,4 +116,6 @@ tags:
 	- Cure
 		- Bertrand Russell wrote, “One should as a rule respect public opinion in so far as is necessary to avoid starvation and to keep out of prison, but anything that goes beyond this is voluntary submission to an unnecessary tyranny, and is likely to interfere with happiness in all kinds of ways.”
 	- raise the red lantern
-	- 
+- 05/23
+	- paris texas
+	- rye lane
