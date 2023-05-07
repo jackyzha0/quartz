@@ -44,7 +44,7 @@ Static vs. Dynamic
 
 > [!INFO] routing types
 > static routing:  just deliver a packet to the right MAC address. e.g., static address in server 1
-> dynamic routing: e.g., `default` in server1. sends all other address to `gateway`. this is a form of dynamic routing.  every computer
+> dynamic routing: e.g., `default` in server1. sends all other address to `gateway`. this is a form of dynamic routing.  every computer has its own routing table which you can modify. dynamic routers can `learn` which routes to prioritise
 
 Routing Information Protocol (RIP) 
 - Early, easy, and common 
@@ -56,9 +56,14 @@ Routing Information Protocol (RIP)
 	- Metric is hop-count, and metric of 16 indicates unreachbility
 ![](https://i.imgur.com/aah2vDU.png)
 
+> [!INFO] one you know a path. tell you neighbor about the path. send information only to neighbors. 
+
+**only for interior routing**
+
 RIP Metric
 Network with Fast Ethernet links between A-B and B-C, and a 802.11g backup link A-C What is RIP’s next hop for A to C?
 ![](https://i.imgur.com/gjfIIca.png)
+> [!INFO] would always choose A-C directly which is not ideal. this is becuase the only metric is hop count. not the cost of the hop
 
 RIP Limitations (1)
 - No Variable Length Subnet Masks support 
