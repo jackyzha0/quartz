@@ -68,12 +68,13 @@ Network with Fast Ethernet links between A-B and B-C, and a 802.11g backup link 
 RIP Limitations (1)
 - No Variable Length Subnet Masks support 
 	- e.g. /28, but is supported in RIPv2 
-- Slow convergence –Full advertisements broadcast every 30s 
+- Slow convergence 
+	- Full advertisements broadcast every 30s 
 	- Count-to-Infinity 
-- RtrA loses connection to NetA 
-- Before RtrA sends update (of break), RtrB sends full update, advertising NetA at a cost of 1 
-- RtrA now thinks it can get to NetA via RtrB at a cost of 1+1=2 hops 
-- RtrA advertises this to RtrB, which sees an increased cost. RtrB advertises 2+1 = 3, continues to 16 (infinity/unreachability)
+		- RtrA loses connection to NetA 
+		- Before RtrA sends update (of break), RtrB sends full update, advertising NetA at a cost of 1 
+		- RtrA now thinks it can get to NetA via RtrB at a cost of 1+1=2 hops 
+		- RtrA advertises this to RtrB, which sees an increased cost. RtrB advertises 2+1 = 3, continues to 16 (infinity/unreachability)
 ![](https://i.imgur.com/aVQqRtb.png)
 
 RIP Limitations (2)
@@ -83,14 +84,17 @@ RIP Limitations (2)
 - Advertisements not authenticated (v1) 
 	- attacking the network made very easy RIP is okay when … 
 - moderate network or minimal IT support 
-- Homogeneous network –With respect to link speed 
+- Homogeneous network 
+	- With respect to link speed 
 - Convergence time is acceptable
 
 RIP Versions 
 - RIP V1 
 	- No support for variable length subnet masks (VLSM) 
 	- No support for router authentication 
-- RIP V2 –Support Classless Inter-Domain Routing (CIDR) –Support authentication (MD5) 
+- RIP V2 
+	- Support Classless Inter-Domain Routing (CIDR) 
+	- Support authentication (MD5) 
 - RIPng 
 	- RIP next generation: an extension of RIPv2 to support IPv6 
 	- No router authentication. IP routers were supposed to use IPsec for authentication
@@ -105,6 +109,12 @@ RIP Optimizations
 - Triggered Update 
 	- send updates as soon as something changes (bad news happens) about a route’s metric or state
 
+> [!INFO] split horizon. image information sent from right to left. only send to right always. always forward to the right. this helps to avoid count to infinity problemm. if there is a circle this doesn't work
+> hold down timer: when a route breaks. dont update table for 60s. this can avoid cti as rtrA wont update with information fron rtrB
+> poison reverse: bad news first. rtrA immediately say that it is unreachable. 
+> triggered update: immediately send information when there is a change.
+> still not suitable for a large network
+
 Link State vs. Distance Vector 
 - Distance Vector 
 	- routing by rumour 
@@ -115,6 +125,8 @@ Link State vs. Distance Vector
 	- each router then assembles topology 
 	- Dijkstra’s algorithm 
 	- higher memory and processor requirements
+	
+> [!INFO] find the shortest path. 
 
 OSPF 
 - Open Shortest Path First 
@@ -125,6 +137,8 @@ OSPF
 - Areas attached to backbone 
 	- area 0 is backbone area
 
+> [!INFO] uses link state with some optimisations. tyring to avoid huge amounts of traffic. dijkstra's algorithm is costly for large numbers. 
+
 ![](https://i.imgur.com/myezCFe.png)
 
 Route Summarisation 
@@ -133,15 +147,18 @@ Route Summarisation
 - Reflects hierarchical nature of a network 192.168.1.32/28 + 0010 0000 192.168.1.48/28 = 0011 0000 192.168.1.32/27 .001 we own everything in 192.168.1.32/27
 
 Route Summarisation 
-- Advantages –Shrink the routing table 
+- Advantages 
+	- Shrink the routing table 
 	- Improve router operation 
 	- Reduce route updates 
 - Disadvantage 
 	- If a subnet of the summarized network is down, the other routers keep sending data to the router that advertises the summarized network.
 
 Virtual LANs 
-- A local area network configured by software, not by physical wiring –Virtually connecting devices in different physical LANs 
-- IEEE802.1Q –The protocol most commonly used today to configure VLANs
+- A local area network configured by software, not by physical wiring 
+	- Virtually connecting devices in different physical LANs 
+- IEEE802.1Q 
+	- The protocol most commonly used today to configure VLANs
 
 Broadcast Domains
 ![](https://i.imgur.com/XWxL9gt.png)
@@ -152,8 +169,11 @@ VLAN MotivationsD
 Virtual LAN Types
 - Layer 1 VLAN: Membership by Port 
 	- Does not allow for user mobility 
-- Layer 2 VLAN: Membership by MAC Address –Support user mobility –VLAN membership must be assigned initially. 
-- Layer 3 VLAN: Membership by IP Subnet Address –Support user mobility 
+- Layer 2 VLAN: Membership by MAC Address 
+	- Support user mobility 
+	- VLAN membership must be assigned initially. 
+- Layer 3 VLAN: Membership by IP Subnet Address 
+	- Support user mobility 
 	- takes longer to forward packets using Layer 3 information than using MAC addresses.
 
 Port Assignments
