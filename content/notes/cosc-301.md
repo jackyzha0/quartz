@@ -13,6 +13,8 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 [[01-vm-ipv6]]
 
 exam: | COSC301 | Saturday 17 June 2023 | 09:30 |
+- subnetting/supernetting
+- 
 
 # Labs
 - [x] [[01-VM-intro]]
@@ -49,6 +51,6 @@ exam: | COSC301 | Saturday 17 June 2023 | 09:30 |
 - [x] [[15-www]]
 - [x] [[16-TLS]]
 - [x] [[17-Network-Security]]
-- [ ] [[18-internal-routing]]
+- [x] [[18-internal-routing]]
 
 # Info

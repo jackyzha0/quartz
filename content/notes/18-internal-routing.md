@@ -141,10 +141,16 @@ OSPF
 
 ![](https://i.imgur.com/myezCFe.png)
 
+> [!INFO] backbone routes connect main areas
+
 Route Summarisation 
 - Reduce size of routing tables 
 	- supernetting (route aggregation) 
-- Reflects hierarchical nature of a network 192.168.1.32/28 + 0010 0000 192.168.1.48/28 = 0011 0000 192.168.1.32/27 .001 we own everything in 192.168.1.32/27
+- Reflects hierarchical nature of a network 
+	- 192.168.1.32/28 + 	0010 0000 
+	- 192.168.1.48/28 = 	0011 0000 
+	- 192.168.1.32/27 		.001 					join common part as subnet ID `01`
+- we own everything in 192.168.1.32/27
 
 Route Summarisation 
 - Advantages 
@@ -153,6 +159,8 @@ Route Summarisation
 	- Reduce route updates 
 - Disadvantage 
 	- If a subnet of the summarized network is down, the other routers keep sending data to the router that advertises the summarized network.
+
+> [!DANGER] super/subnetting will be examined
 
 Virtual LANs 
 - A local area network configured by software, not by physical wiring 
@@ -175,6 +183,8 @@ Virtual LAN Types
 - Layer 3 VLAN: Membership by IP Subnet Address 
 	- Support user mobility 
 	- takes longer to forward packets using Layer 3 information than using MAC addresses.
+
+> [!INFO] separate traffic through the same physical switch/router, into many different logical routes
 
 Port Assignments
 ![](https://i.imgur.com/nNg1tyl.png)
