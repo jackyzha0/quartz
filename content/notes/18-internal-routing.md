@@ -5,6 +5,9 @@ tags:
 - cosc301
 ---
 
+> [!INFO] different topologies
+> mesh, tree. within data centres they have a tree structure with tiers. leafs are local area networks. trees are easier to structure and manage and routing tables are more clean. 
+
 Autonomous System 
 - The Internet does not consist of independent networks 
 	- Networks and routers are owned by organizations or individuals 
@@ -13,6 +16,10 @@ Autonomous System
 	- Routers are free to choose their own mechanisms for discovering, validating, and checking consistency of routes 
 	- The Internet is divided into autonomous systems with each owned by a single administrative authority. 
 	- In the current Internet, each large ISP is an autonomous system.
+
+> [!INFO] we cant impose one standard on organisations. they have their own interests. 
+> some autonomous systems may charge more money to route through them. routing decisions can be political. (e.g., dont want to route through russia, they might view your data). some autonomous systems are more technical and efficient than others. 
+
 
 Internet Routing
 - Interior routing 
@@ -25,6 +32,8 @@ Internet Routing
 	- BGP
 ![](https://i.imgur.com/ayIXFNg.png)
 
+> [!INFO] otago uni can be considered an ISP. they are an autonomous system. if you provide a home network - you are considered and autonomous system. 
+
 Static vs. Dynamic
 - Static routing 
 	- Advantage: Simplicity, less software that might fail 
@@ -32,6 +41,10 @@ Static vs. Dynamic
 - Dynamic routing 
 	- Advantage: Scalable, optimal routes, automatic fail-over and fail-back, load balancing 
 	- Disadvantage: route update consumes bandwidth, additional load on router CPU
+
+> [!INFO] routing types
+> static routing:  just deliver a packet to the right MAC address. e.g., static address in server 1
+> dynamic routing: e.g., `default` in server1. sends all other address to `gateway`. this is a form of dynamic routing.  every computer
 
 Routing Information Protocol (RIP) 
 - Early, easy, and common 
