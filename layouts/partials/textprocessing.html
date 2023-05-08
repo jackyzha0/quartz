@@ -4,7 +4,7 @@
 
 <!-- detect code blocks and fences -->
 {{$codefences := $raw | findRE "\\x60[^\\x60\\n]+\\x60"}}
-{{$codeblocks := $raw | findRE "\\x60{3}[^\\x60]+\\x60{3}"}}
+{{$codeblocks := $raw | findRE "\\x60{3}([^\\x60]|\\x60[^\\x60]|\\x60\\x60[^\\x60])*\\x60{3}"}}
 {{$code := union $codefences $codeblocks}}
 
 {{/*  pre-parse processing  */}}
