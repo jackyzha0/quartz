@@ -10,7 +10,6 @@ Context
 - Context-aware computing (Schilit and Theimer, 1994) Software that “adapts according to its location of use, the collection of nearby people and objects, as well as changes to those objects over time” 
 - Context (Dey, 2001) “Context is any information that can be used to characterize the situation of an entity. An entity is a person, place or object that is considered relevant to the interaction between a user and an application, including the user and applications themselves, and by extension, the environment the user and applications are embedded in.”
 
-> [!INFO] 
 
 Context
 - Active Artifacts / Context-aware artifacts 
@@ -26,6 +25,8 @@ Context
 	- Working alone 
 - What sensors? How to represent the situation?
 
+> [!INFO] giving self-perception to objects.
+
 Context
 - Context 
 	- Where you are, who you are with, what resources are nearby 
@@ -38,8 +39,10 @@ Context
 	- Reduce need for explicit user input 
 	- Are better integrated with user’s environment and activity
 
-![Context](https://i.imgur.com/0hJZQGU.png)
+![Context|300](https://i.imgur.com/0hJZQGU.png)
 
+> [!INFO] resources example: availablility of wifi (auto switch to use wifi not cell). food in fridge. 
+> [!INFO] problem: user context changes a lot very quickly. 
 
 - Context Sources: 
 	- Factors to which a system can adapt 
@@ -53,6 +56,9 @@ Context
 	- Include the context factors to which a system can adapt. 
 	- Context targets address the question “What is adapted”?
 
+> [!INFO] sources: based on one thing we make a change
+> controller: how do we make the change
+> target: what do we change
 
 - Context Sources: 
 	- Current location 
@@ -74,8 +80,8 @@ Context
 	- Group constellation 
 	- Number of people around
 
-![Example (in the context of Augmented Reality systems):](https://i.imgur.com/gMlKoVl.png)
-![Example](https://i.imgur.com/hyPLVii.png)
+![Example (in the context of Augmented Reality systems):|300](https://i.imgur.com/gMlKoVl.png)
+![Example|300](https://i.imgur.com/hyPLVii.png)
 
 
 - Example: 
@@ -86,8 +92,8 @@ Context
 		- Outside. Here the ring volume goes as high as possible and vibra-alarm is on. All possible ways to get the users attention are used. 
 		- General. General mode is used when none of the above apply.
 
-![](https://i.imgur.com/2kQUKwH.png)
-![](https://i.imgur.com/m8qN7t5.png)
+![|300](https://i.imgur.com/2kQUKwH.png)
+![|300](https://i.imgur.com/m8qN7t5.png)
 
 
 - Techniques in Context-Aware Computing: 
@@ -101,9 +107,9 @@ Context
 	- Context-triggered actions 
 		- Condition-action rules
 
-![Proxemic Interaction: Designing for a Proximity and Orientation-Aware Environment](https://i.imgur.com/xrPgIXg.png)
-![Proxemic Interaction: Designing for a Proximity and Orientation-Aware Environment](https://i.imgur.com/kEILi6u.png)
-![Proxemic Interaction: Designing for a Proximity and Orientation-Aware Environment](https://i.imgur.com/Bs6aS1u.png)
+![Proxemic Interaction: Designing for a Proximity and Orientation-Aware Environment|300](https://i.imgur.com/xrPgIXg.png)
+![Proxemic Interaction: Designing for a Proximity and Orientation-Aware Environment|300](https://i.imgur.com/kEILi6u.png)
+![Proxemic Interaction: Designing for a Proximity and Orientation-Aware Environment|300](https://i.imgur.com/Bs6aS1u.png)
 
 Context Challenges
 	- Usability Risks for Mobile Context-Aware Applications 
