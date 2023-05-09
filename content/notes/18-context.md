@@ -102,9 +102,9 @@ Context
 
 - Techniques in Context-Aware Computing: 
 	- Proximate selection 
-		- E.g., list nearest printer first 
+		- E.g., list nearest printer first, best wifi strength first
 	- Automatic contextual reconfiguration 
-		- E.g., share nearby electronic whiteboard automatically 
+		- E.g., share nearby electronic whiteboard automatically , rotate phone change display, focus mode (work vs home) notification level
 	- Contextual information and commands 
 		- Commands with different meanings in different contexts 
 		- Command only in certain contexts 
