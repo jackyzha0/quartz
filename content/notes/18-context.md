@@ -56,9 +56,13 @@ Context
 	- Include the context factors to which a system can adapt. 
 	- Context targets address the question “What is adapted”?
 
-> [!INFO] sources: based on one thing we make a change
+> [!INFO] sources: what is the cause of the change
 > controller: how do we make the change
 > target: what do we change
+
+> [!INFO] .e.g, rotate phone; based on accelerometer, using the code, change the orientation of the display
+> e.g., connect to uni wifii: detect wifi and detect access, using wifi protocols, connect to the closest/best wifi
+> e.g., activity tracker - track cycling: using gps and accel, detect the acitivity of the user using code, put information on the activity app
 
 - Context Sources: 
 	- Current location 
