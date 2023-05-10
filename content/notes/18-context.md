@@ -119,6 +119,7 @@ Proxemic Interaction: Designing for a Proximity and Orientation-Aware Environmen
 ![Proxemic Interaction: Designing for a Proximity and Orientation-Aware Environment|300](https://i.imgur.com/xrPgIXg.png)
 ![Proxemic Interaction: Designing for a Proximity and Orientation-Aware Environment|300](https://i.imgur.com/kEILi6u.png)
 ![Proxemic Interaction: Designing for a Proximity and Orientation-Aware Environment|300](https://i.imgur.com/Bs6aS1u.png)
+> [!INFO] used motion tracking balls and camera to track users location and where they are looking and pointing.
 
 Context Challenges
 	- Usability Risks for Mobile Context-Aware Applications 
@@ -131,14 +132,24 @@ Context Challenges
 	- Lack of common agreed ontologies 
 	- Imbalance between automatic and user-initiated actions 
 	- Poor interoperability
+	
+> [!INFO] challenges
+> uncertainty of context recognition. sensors are cheap, and not very accurate. it is likely that we will detect the wrong pattern. 
+> context awarenessa can be a lack of user control. if the user cant override the machine it can be very annoying.
+> privacy violations. we capture a lot of data. this data can be used against you or just sold. 
+> some people dont agree the attributes of a certain context
+> inbalance can mean you spend a lot of time adjusting the settings of the context awareness. e.g,, focus mode.  
 
 - Design Guidelines for Mobile Context-Aware Applications 
 	- Select appropriate level of automation depending on level of uncertainty 
 	- Ensure user control 
 	- Avoid unnecessary interruptions 
-	- Intrusive, distract, but can have high value 
+		- Intrusive, distract, but can have high value 
 	- Avoid information overflow 
 	- Appropriate visibility level of system status 
 	- Personalization for individual needs 
 	- Secure user’s privacy 
 	- Take into account the impact of social context
+
+> [!INFO] the amount of automation should depend of the certaincy of your assumptions about the context of the user
+> secure users privacy is easier said than done
