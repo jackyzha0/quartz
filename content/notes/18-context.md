@@ -111,6 +111,11 @@ Context
 	- Context-triggered actions 
 		- Condition-action rules
 
+> [!INFO] contextual commands: google search with different locations: maps search etc
+> context triggered actions: when you start running, watch automatically starts activity tracking
+> 
+
+Proxemic Interaction: Designing for a Proximity and Orientation-Aware Environment
 ![Proxemic Interaction: Designing for a Proximity and Orientation-Aware Environment|300](https://i.imgur.com/xrPgIXg.png)
 ![Proxemic Interaction: Designing for a Proximity and Orientation-Aware Environment|300](https://i.imgur.com/kEILi6u.png)
 ![Proxemic Interaction: Designing for a Proximity and Orientation-Aware Environment|300](https://i.imgur.com/Bs6aS1u.png)
