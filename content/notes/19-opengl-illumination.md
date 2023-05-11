@@ -15,6 +15,7 @@ WHY ILLUMINATION?
 	- Materials 
 	- Viewpoint
 
+
 ILLUMINATION MODEL 
 - Can be complex 
 - Equation for computing illumination 
@@ -26,6 +27,11 @@ ILLUMINATION MODEL
 	- Introduced 1986 by Kajiya 
 	- Global illumination model
 
+> [!INFO] very complex. a light rays bounce around. and in very different ways. 
+> we just try to simulate as close as possible
+> would usually compute using ray tracing
+> 
+
 - OpenGL cannot render full global illumination 
 - We need a simplified approximation 
 - Local illumination model 
@@ -36,6 +42,9 @@ ILLUMINATION MODEL
 	- Surface material properties 
 	- Geometry
 
+> [!INFO] Local illumination model
+> does not take into account subsequent path of light. only the first "hit"
+> 
 
 - Perpendicular to tangent plane of surface 
 - For triangles: 
