@@ -134,7 +134,7 @@ REFLECTION MODELS
 	- Oren-Naya
 
 PHONG REFLECTION MODEL
-![PHONG REFLECTION MODEL(https://i.imgur.com/0JuEGqq.png)
+![PHONG REFLECTION MODEL|300](https://i.imgur.com/0JuEGqq.png)
 
 BLINN-PHONG REFLECTION MODEL
 - Modification of phong reflection model by Jim Blinn 
