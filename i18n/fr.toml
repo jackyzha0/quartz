@@ -2,7 +2,7 @@
 other = "Hey ! Vous semblez perdu‧e. Cette page n'existe pas (ou est privée)."
 
 [404_back]
-other = "↳ On va te faire retourner à l'accueil"
+other = "↳ Clique ici pour retourner sur la page d'accueil"
 
 [all_posts]
 other = "Tout {{.Title}}"
@@ -14,7 +14,7 @@ other = "Dernière modification"
 other = "notes avec ce tag"
 
 [first_10]
-other = "affichant les 10 premiers résultats"
+other = "les 10 premiers résultats"
 
 [tag]
 other = "Tag"
@@ -35,7 +35,7 @@ other = "Mode Clair"
 other = "Mode Sombre"
 
 [edit_source]
-other = "Editer la source"
+other = "Modifier la source"
 
 [interactive_graph]
 other = "Graphique interactif"
@@ -44,16 +44,16 @@ other = "Graphique interactif"
 other = "Rechercher"
 
 [search_icon]
-other = "Icône de recherche"
+other = "l'icône de recherche"
 
 [icon_search]
-other = "Icon pour ouvrir la recherche"
+other = "L'icône pour ouvrir la recherche"
 
 [recent_notes]
 other = "Notes récentes"
 
 [first_3_notes]
-other = "3 premières {{ .notes }}"
+other = "les 3 premières {{ .notes }}"
 
 [search_for_something]
 other = "Rechercher quelque-chose..."
