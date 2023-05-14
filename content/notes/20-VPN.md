@@ -65,6 +65,9 @@ Pros and Cons of VPN
 	- Understanding of security is harder due to complex protocol 
 	- If not configured and managed correctly, serious security issues can arise
 
+> [!INFO] cons extra overhead on traffic, compatibility (many standards), lots of configuration for security 
+> pros less infrastrcutre
+
 How VPN works? 
 - Operates at layer 2 or layer 3 of OSI model 
 	- Layer 2 frame 
@@ -75,9 +78,17 @@ How VPN works?
 	- Encapsulate data in IP packets that encrypt their payload 
 	- Two VPN routers/switches exchange such IP packets directly but encode/decode before sending or after receiving the IP packets.
 
-![How VPN works?|300](https://i.imgur.com/H8JHhoC.png)
+> [!INFO] with authenication you know who sent the traffic. 
 
-![Tunneling|300](https://i.imgur.com/umrSZlA.png)
+![Encrypted packet](https://i.imgur.com/H8JHhoC.png)
+
+![Tunneling](https://i.imgur.com/umrSZlA.png)
+
+> [!INFO] tunneling
+> send to ISP/telephone company
+> the ISP "Box" is a POP
+> connect to their VPN, tunnel to destination VPN, 
+> this diagram is only one part - moving through private network. 
 
 Layer 3 VPN Protocols - IPSec 
 - IPSec 
@@ -85,4 +96,25 @@ Layer 3 VPN Protocols - IPSec
 	- It has two sub-protocols: 
 		- Encapsulated Security Payload (ESP) encrypts the payload with a symmetric key 
 		- Authentication Header (AH) ensures data integrity by using a hash function and a shared secret key.
+
+> [!INFO] ipsec
+> ESP mainly for encryption: uses **symmetric** key. same as ssh/tls (cant see)
+> AH for integrity. (cant tamper/change)
+
+IP sec two modes:
+- transport (simple)
+- tunnel (more layers)
+
+![Transport mode](https://i.imgur.com/OhDec9W.png)
+> [!INFO] more restricted than tunnel mode
+![Tunnel mode](https://i.imgur.com/uehDnMw.png)
+> [!INFO] can use any transport protocol: TCP etc
+
+
+- Authentication Header in two modes
+![original header](https://i.imgur.com/eMEsV0m.png)
+![transport mode](https://i.imgur.com/oDiGfQN.png)
+![tunnel mode](https://i.imgur.com/nsm5bMl.png)
+
+
 
