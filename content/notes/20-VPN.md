@@ -116,5 +116,48 @@ IP sec two modes:
 ![transport mode](https://i.imgur.com/oDiGfQN.png)
 ![tunnel mode](https://i.imgur.com/nsm5bMl.png)
 
+- ESP header in two modes
+![original header](https://i.imgur.com/bApUC0V.png)
+![transport mode](https://i.imgur.com/BWVQf1i.png)
+![tunnel mode](https://i.imgur.com/oAKeikJ.png)
 
+Layer 3 VPN Protocols - GRE 
+- GRE (Generic Routing Encapsulation) 
+	- a non-secure site-to-site VPN tunneling protocol developed by Cisco. 
+	- defined as an IETF standard (RFC 2784)
+- A tunnel interface supports a header for each of the following: 
+	- An encapsulated protocol or passenger protocol such as IPv4, IPv6. 
+	- An encapsulation protocol or carrier protocol, such as GRE. 
+	- A transport delivery protocol, such as IP.
+![](https://i.imgur.com/8i28t6S.png)
 
+> [!INFO] similar to ipsec. no encryption. uses GRE header
+
+![Layer 3 VPN Protocols - GRE](https://i.imgur.com/RI1lqow.png)
+- In the outer IP header, 47 is used in the protocol field. 
+- GRE encapsulation uses a protocol type field in the GRE header to support the encapsulation of any OSI Layer 3 protocol. 
+- GRE does not include any strong security mechanisms. 
+- GRE header, together with the tunneling IP header, creates at least 24 bytes of additional overhead for tunneled packets.
+
+Layer 2 VPN Protocols 
+- In remote access VPN, tunneling relies on Pointto-Point Protocol (PPP), on which the following three protocols are based. 
+- L2F (Layer 2 Forwarding)
+	- Developed by Cisco; uses any authentication scheme supported by PPP 
+- PPTP (Point-to-Point Tunneling Protocol)
+	- Supports 40-bit and 128-bit encryption and any authentication scheme supported by PPP. 
+- L2TP (Layer 2 Tunneling Protocol)
+	- Combines features of PPTP and L2F and fully supports IPSec
+
+> [!INFO] L2TP similar to ipsec. dont need to worry  unless youll work for cisco
+
+VPN vs SSH 
+- VPN 
+	- the network/data link layer 
+	- encrypt data packets/frames 
+	- require routers and software to run which makes it a more costly solution 
+- SSH with port forwarding 
+	- the application layer 
+	- encrypt the application data 
+	- require each service to be configured and maintained separately, a lot of effort to set up and maintain.
+
+> [!INFO] vpn vs ssh differnet layers
