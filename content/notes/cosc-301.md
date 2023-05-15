@@ -52,6 +52,7 @@ exam: | COSC301 | Saturday 17 June 2023 | 09:30 |
 - [x] [[16-TLS]]
 - [x] [[17-Network-Security]]
 - [x] [[18-internal-routing]]
-- [ ] [[20-VPN]]
+- [ ] [[19-management-tools-and-protocols]]
+- [x] [[20-VPN]]
 
 # Info
