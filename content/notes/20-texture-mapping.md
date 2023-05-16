@@ -83,6 +83,7 @@ PARAMETRISATION
 	- p(x,y,z) value of a point is converted into spherical coordinates (theta, phi) 
 	- Wraps texture around the object
 ![](https://i.imgur.com/IVdXGkg.png)
+> [!INFO] project ray from normal of texture onto spherical map
 
 - Box mapping 
 	- Similar to planar mapping 
