@@ -5,6 +5,12 @@ tags:
 - lecture
 ---
 
+> [!INFO] could go into a lot of detila
+> three qustions: what is network, accounting. why we need accounting. how do we do accounting.
+> always three questions: what, why, how
+> before you stufy compsci. e.g., what is it, why do it, how do I do it. without first two questions we don't care about the third one. 
+> learn how to learn. normally how takes a lot of time. 
+> at uni - better to broaden knowledge. specialise later.  
 
 Business Requirements 
 - How to efficiently track network and application resource usage? 
@@ -12,6 +18,10 @@ Business Requirements
 - How to effectively plan to allocate and deploy resources most efficiently? 
 - How to track customers to enhance marketing customer service opportunities? 
 - How to know if customers are adhering to usage policy agreements?
+
+> [!INFO] related to management. relative to management. 
+> track customers usage. 
+> we need a mechanism to enforce it
 
 Why Account? 
 - Usage-based Billing 
@@ -24,6 +34,11 @@ Why Account?
 - Application monitoring and profiling 
 - User monitoring and profiling.
 
+> [!INFO] commercial world - easy to understand why we need it. 
+> we need to pay. but how to pay fairly?
+> (now we have the overall picture our knowledge can be structured. we can place information into this structure)
+> learning is reoganisation of your knowledge in a structured way
+
 What/Who to Account? 
 - Subnets 
 	- Traffic through router 
@@ -34,6 +49,8 @@ What/Who to Account?
 	- Authenticating proxy 
 - Switch ports 
 	- Higher implementation cost
+	
+	> [!INFO] 
 
 Where are we accounting? 
 - Datalink Layer 
