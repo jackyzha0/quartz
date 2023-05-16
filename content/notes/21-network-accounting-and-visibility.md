@@ -5,7 +5,8 @@ tags:
 - lecture
 ---
 
-> [!INFO] could go into a lot of detila
+> [!INFO] 
+> could go into a lot of detila
 > three qustions: what is network, accounting. why we need accounting. how do we do accounting.
 > always three questions: what, why, how
 > before you stufy compsci. e.g., what is it, why do it, how do I do it. without first two questions we don't care about the third one. 
@@ -19,7 +20,8 @@ Business Requirements
 - How to track customers to enhance marketing customer service opportunities? 
 - How to know if customers are adhering to usage policy agreements?
 
-> [!INFO] related to management. relative to management. 
+> [!INFO] 
+> related to management. relative to management. 
 > track customers usage. 
 > we need a mechanism to enforce it
 
@@ -34,7 +36,8 @@ Why Account?
 - Application monitoring and profiling 
 - User monitoring and profiling.
 
-> [!INFO] commercial world - easy to understand why we need it. 
+> [!INFO] 
+> commercial world - easy to understand why we need it. 
 > we need to pay. but how to pay fairly?
 > (now we have the overall picture our knowledge can be structured. we can place information into this structure)
 > learning is reoganisation of your knowledge in a structured way
@@ -51,6 +54,9 @@ What/Who to Account?
 	- Higher implementation cost
 	
 	> [!INFO] 
+	> demarcation routers: routers on the boundary
+	> track usage of subnets
+	> sometimes computer is shared by multiple users. can have different ports on a switch which are measured separately. need hardware to implement this tracking
 
 Where are we accounting? 
 - Datalink Layer 
@@ -66,11 +72,29 @@ Where are we accounting?
 	- fairest from users’ point of view 
 	- does not charge for LAN/IP overhead traffic.
 
+> [!INFO] 
+> count number of packets
+> count ip packets
+> count datagrams
+> different places to do the accounting
+> extra overhead from recording data can be unfairly loaded onto the user.
+> normally not suggested at datalink layer
+> network layer is better: easier for e.g. cisco to implement tools
+> application layer also good.
+> stuff to think about (should three way handskates etc be charged to the user)
+> you can argue for different methods of accounting
+
 Caching and Charging 
 - If a user’s request goes through a proxy, do they still get charged for cache hits? 
 	- Is it fair that the first requester gets charged if subsequent users do not? –Similar problems with multicast. –Are you charging for a data product (bytes), or a service (connectivity)? 
 - Charge provider or consumer? 
 - Consumers want predictable charging.
+
+> [!INFO]
+> accesing external website from with university network. uni network proxy server may cache the site.
+> does does the user still get charged the second time they acess it?
+> similar problem with multicast. e.g., email to mail list with 1000 people, 
+> usually charge consumer and provider.
 
 International/Domestic 
 - Commercial links may be charged at different rates for different types of traffic. 
@@ -79,6 +103,10 @@ International/Domestic
 	- Hard to come by, no standard mechanism. 
 	- Processor / memory intensive. 
 - Best results comes from routing tables for national routers.
+
+> [!INFO] costly to find out it something is international or domestic.
+> need to find a balance between fine-grained vs coarse-grained.
+> fine -> make more money, but use more resources
 
 Getting the Data (1) 
 - Method 1: Use firewall counters 
