@@ -8,7 +8,7 @@ tags:
 
 17 W	[[2023-05-17]]
 18 T	
-19 F	etude 05 etude 07
+19 F	etudes 05, 07, 09
 20 S
 21 S 	
 
@@ -16,10 +16,10 @@ tags:
 23 T
 24 W	342 ASS 3
 25 T
-26 F	etudes(13,08)
+26 F	etudes(10, 08)
 27 S
 28 S
 
-29 M	
+29 M	etudes 11, 12, 13
 30 T
 31 W
