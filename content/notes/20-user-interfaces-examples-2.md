@@ -70,10 +70,12 @@ tags:
 > [!INFO] inital phone vibration paper
 
 ![AIREAL: Interactive Tactile Experiences in Free Air|300](https://i.imgur.com/npIorHh.png)
+![AIREAL: Interactive Tactile Experiences in Free Air|300](https://i.imgur.com/E1pan5l.png)
 > [!INFO] haptics in free air
 
-![AIREAL: Interactive Tactile Experiences in Free Air|300](https://i.imgur.com/E1pan5l.png)
 ![Ultrahaptic|300](https://i.imgur.com/NPwws0I.png)
+> [!INFO] instead of one air gun. there are many
+
 ![Haptic Revolver(https://i.imgur.com/xGZMSGw.png)
 ![Touch and Fold|300](https://i.imgur.com/evcNCBw.png)
 ![Springlets|300](https://i.imgur.com/OKYkQoc.png)
