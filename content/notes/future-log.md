@@ -4,9 +4,14 @@ tags:
 - bujo
 ---
 
-![[may]]
-![[june]]
-![[july]]
-![[august]]
-![[september]]
-![[november]]
+# [[may]]
+
+# june
+
+# july
+
+# august
+
+# september
+
+# november
