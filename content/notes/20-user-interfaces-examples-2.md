@@ -60,11 +60,18 @@ tags:
 ![|300](https://i.imgur.com/dSOsLta.png)
 > [!INFO] use the position and orientation of people to connect devices and share information
 
+> [!INFO] airdrop acrutall uses proximity to send via bluetooth. but not as good spatiality
+
 ![|300](https://i.imgur.com/85jFC9a.png)
+> [!INFO] share by baning on the table with devices laying on it. turn phone upside down to opt out
 
 # Haptics
 ![Ambient Touch vor Mobile Devices|300](https://i.imgur.com/9SIdB0R.png)
+> [!INFO] inital phone vibration paper
+
 ![AIREAL: Interactive Tactile Experiences in Free Air|300](https://i.imgur.com/npIorHh.png)
+> [!INFO] haptics in free air
+
 ![AIREAL: Interactive Tactile Experiences in Free Air|300](https://i.imgur.com/E1pan5l.png)
 ![Ultrahaptic|300](https://i.imgur.com/NPwws0I.png)
 ![Haptic Revolver(https://i.imgur.com/xGZMSGw.png)
