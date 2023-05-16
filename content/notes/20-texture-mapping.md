@@ -29,6 +29,13 @@ WHY TEXTURING?
 - Often the surface of an object is viewed only from a distance 
 - We can ‘paint’ the detail on the object instead of increasing the complexity of the object
 
+> [!INFO] dont need to model everything, can get small details just from textures.
+> details takes a long time and is expensive to model
+> can put normal maps into a texture also. simulate geometric changes with a texture
+> reflections using a skybox and apllyting the texture
+> transparent texures to simulate transparent things (duh)
+> 
+
 TEXTURING Simulation of different material properties: 
 - Color 
 - Reflection 
@@ -45,6 +52,10 @@ HOW?
 - We need a coordinate system on the surface to find the right part of the texture
 
 `vec3 textureVal = texture( myTexture, UV ).rgb;`
+
+> [!INFO] apply colour from the texture.
+> happens in the fragment shader
+> pass in coordinates UV into texture
 
 OBJECT OR WORLD COORDINATES?
 ![OBJECT OR WORLD COORDINATES?](https://i.imgur.com/ioq9o8x.png)
