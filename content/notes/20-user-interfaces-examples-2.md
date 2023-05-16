@@ -38,18 +38,28 @@ tags:
 > bots to place on interfaces. 
 
 ![BitDrones Towards Using 3D Nanocopter Displays as Interactive Self-Levitating Programmable Matter|300](https://i.imgur.com/jVNcV7v.png)
-> [!INFO] siimilar to the 
+> [!INFO] siimilar to the 3d physical object vr thing but with drones
+> > drones carrying user interface elements
+> windows that fly with you
 
 ![Opportunistic Control|300](https://i.imgur.com/SwciqVD.png)
+> [!INFO] placeing user interface elements in AR on actual physical things. e.g., tube for a slider
 
 ![Project Zanzibar|300](https://i.imgur.com/8ZZTJSb.png)
+> [!INFO] mat to track objects place on it
 
 # Pervasive Displays Proxemic Interaction & Context-Aware Interfaces
 
 ![|300](https://i.imgur.com/o6Akw6R.png)
 ![|300](https://i.imgur.com/O5qQ4zW.png)
 ![|300](https://i.imgur.com/6LXvzft.png)
+![|300](https://i.imgur.com/uli7CQt.png)
+> [!INFO] smart homes are good when they are your home. not so much when you dont know what can be controlled.
+> user proxemic interactionand orientation and distance to control smart appliances
+
 ![|300](https://i.imgur.com/dSOsLta.png)
+> [!INFO] use the position and orientation of people to connect devices and share information
+
 ![|300](https://i.imgur.com/85jFC9a.png)
 
 # Haptics
