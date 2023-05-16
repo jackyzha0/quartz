@@ -86,7 +86,9 @@ Where are we accounting?
 
 Caching and Charging 
 - If a user’s request goes through a proxy, do they still get charged for cache hits? 
-	- Is it fair that the first requester gets charged if subsequent users do not? –Similar problems with multicast. –Are you charging for a data product (bytes), or a service (connectivity)? 
+	- Is it fair that the first requester gets charged if subsequent users do not? 
+	- Similar problems with multicast. 
+	- Are you charging for a data product (bytes), or a service (connectivity)? 
 - Charge provider or consumer? 
 - Consumers want predictable charging.
 
@@ -116,10 +118,16 @@ Getting the Data (1)
 	- Adds to latency. 
 	- Cannot acquire a post-capture breakdown of traffic.
 
+> [!INFO] when a firewall recieves traffic it checks all the rules to allow or not a user. also can add checks to find the users an number of bytes and do accounting from it. but this can add latency
+
 Getting the Data (2) 
-- Method 2: Capture packet headers –Either listen on a router, or a switch’s mirror port –Flexibility in processing of the packet headers 
-- As in Method 1, there can be problems with respect to NAT. Do you get the packets pre/post NAT? 
-- Again, don’t know if packets get dropped.
+- Method 2: Capture packet headers 
+	- Either listen on a router, or a switch’s mirror port 
+	- Flexibility in processing of the packet headers 
+		- As in Method 1, there can be problems with respect to NAT. Do you get the packets pre/post NAT? 
+		- Again, don’t know if packets get dropped.
+> [!INFO] network address translation, convert local to global address
+> can have problem if packets get dropped by the router. traffic jam in router ⇒drop packets and resend. still have to pay for dropped packets. 
 
 Capturing Packets 
 - Modern (usually managed) switches have a mirror port, in which a copy of every frame that goes through the switch also gets forwarded out the mirror port. 
@@ -136,6 +144,10 @@ NetFlow
 	- Version 9 for IPv6. 
 - Use UDP as transport
 
+> [!INFO] 
+> UDP used to convey accounting information
+> need to record every flow in a unidirectional flow
+
 Flow Concept in NetFlow 
 - A flow is a unidirectional sequence of packets between a given source and destination, defined by a 7-tuple key consisting of the following fields: 
 	- Source IP address 
@@ -145,6 +157,9 @@ Flow Concept in NetFlow
 	- IP Protocol 
 	- Ingress interface 
 	- IP Type of Service
+
+> [!INFO] first four field uniqely identify the network traffic between the two software entities. e.g., client, web server. 
+> ip protocol is: udp, tcp, etc
 
 NetFlow Architecture 
 - NetFlow Exporter 
