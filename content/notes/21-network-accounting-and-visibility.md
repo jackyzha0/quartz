@@ -170,6 +170,8 @@ NetFlow Architecture
 	- analyzes the NetFlow records for information of interest, which may include bandwidth usage, policy adherence, and forensic research
 ![NetFlow Architecture](https://i.imgur.com/Ft2ufcK.png)
 
+> [!INFO] exporter collects the information. collecter stores the data.. storage is in the collector
+
 NetFlow Records 
 - The statistical information gathered from the network traffic is placed in a flow record. 
 - Each record is stored and managed in NetFlow cache 
@@ -197,10 +199,15 @@ Radius
 	- Only accounts for total traffic. Cannot break down traffic into services, different destinations, etc. 
 	- runs in the application layer, using UDP as transport
 
+> [!INFO] radius
+> used to authentication in wireless networks. also used to accounting as they are user based.
+
 Proxy Caches 
 - Because proxies can authenticate users, it is reasonable to use them as user-based accounting points. 
 - However, this only covers a fraction of the traffic that could be accounted for on an internet link—e.g. what about peer-to-peer? 
 - SOCKS proxies could be more effective.
+> [!INFO] e.g., uni saves websites. source of request can be hidden. privacy issue in vocles
+> SOCKS - secures socket. 
 
 Connection Logger 
 - Used for security history—make a historical record of connections made to the server. 
