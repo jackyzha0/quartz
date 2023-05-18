@@ -7,8 +7,8 @@ tags:
 ![](https://i.imgur.com/N8S8mAZ.png)
 
 17 W	[[2023-05-17]]
-18 T	
-19 F	etudes ~~05~~, 07, 09
+18 T	 [[2023-05-18]]
+19 F	etudes ~~05~~, 07, ~~09~~
 20 S
 21 S 	
 
