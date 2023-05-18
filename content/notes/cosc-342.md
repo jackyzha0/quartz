@@ -38,6 +38,7 @@ exam: | COSC342 | Friday 09 June 2023 | 09:30 |
 - [x] [[18-shader-programming]]
 - [x] [[19-opengl-illumination]]
 - [x] [[20-texture-mapping]]
+- [ ] [[21-shadows]]
 
 # Info
 

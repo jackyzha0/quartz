@@ -9,18 +9,18 @@ tags:
 # Assignments
 
 # Etudes
-- [[01-dates]] E
-- [[02-]] E
-- [[03-snowflake]] E
-- 04-desert-crossing A
-- 05-look-whos-talking
-- 06-counting-it-up
-- 07-witw
-- 08-rational-thinking
-- 09-bug-squashing
-- 10-pushing-buttons
-- 11-dropping-cars
-- 12-floating-point
+- [x] 01-dates EI
+- [x] 02-syllable-slam EG
+- [x] [[03-snowflake]] M
+- [x] 04-desert-crossing EG
+- [x] 05-look-whos-talking	S
+- [ ] 06-counting-it-up
+- [ ] 07-witw
+- [ ] 08-rational-thinking
+- [x] 09-bug-squashing S
+- [ ] 10-pushing-buttons
+- [ ] 11-dropping-cars
+- [ ] 12-floating-point
 
 # Notes
 - [[townhall-04]]
