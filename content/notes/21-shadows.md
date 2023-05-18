@@ -92,7 +92,6 @@ SECOND PASS: RENDER SCENE
 ![](https://i.imgur.com/VNRwUPf.png)
 ![](https://i.imgur.com/AzzKkuq.png)
 
-
 - Transform points in light space 
 - Transform points in shadow map 
 - Look up value from shadow map (depthVal(p)) 
@@ -107,6 +106,8 @@ Final Shading Step
 - **In practice**: use visibility in fragment shader:
 - ![](https://i.imgur.com/ggc9I79.png)
 
+> [!INFO] dont cancel out ambient light
+
 LIMITATIONS 
 - Field of View 
 - Surface Acne 
@@ -118,6 +119,8 @@ FIELD OF VIEW PROBLEM
 - For spot lights, this can be changed by tweaking its range 
 - Problem in particular for larger scenes
 ![](https://i.imgur.com/LSmO1SZ.png)
+
+> [!INFO] Takes a lot of tweaking (tiral and error). limitation on size of FOV
 
 SURFACE ACNE 
 - Self-shadowing problem due to precision and depth map resolution 
