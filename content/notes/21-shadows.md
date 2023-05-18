@@ -76,6 +76,8 @@ Create a map of depth values as seen from the light’s point of view
 ![](https://i.imgur.com/WuZ1LJw.png)
 ![](https://i.imgur.com/90Aeed0.png)
 
+> [!INFO] same as model view projection matrix excpet projecting into the light not the camera
+
 In practice: Vertex shader transforms the geometry into light-view space
 ![](https://i.imgur.com/ZKd6vYg.png)
 
@@ -121,3 +123,40 @@ SURFACE ACNE
 - Self-shadowing problem due to precision and depth map resolution 
 	- Depth value in map can differs from actual distance between object and light source 
 	- Sampling problem: neighbouring vertices map to the same depth map pixel
+![](https://i.imgur.com/jNlM4RR.png)
+
+SHADOW MAP BIAS 
+- Solution for surface acne: 
+	- Shadow map bias for shadow test: ShadowMap(x,y) + bias < dist 
+	- Choosing a good bias value can be tricky - otherwise Peter Panning
+![](https://i.imgur.com/wVuSnnX.png)
+
+SHADOW MAP ALIASING 
+- Quality depends on shadow map resolution 
+- Higher resolution: 
+	- Higher quality 
+	- More memory required
+![](https://i.imgur.com/12EXMZG.png)
+
+MORE SOLUTIONS FOR SHADOW MAP ALIASING 
+- Under-sampling of the shadow map – Jagged shadow edges 
+- Solution: Percentage closer filtering (PCF)
+![](https://i.imgur.com/UncfDuR.png)
+
+PERCENTAGE CLOSER FILTERING (PCF)
+- Interpolation of the results of the shadow map computation 
+- Quality increases with Percentage closer filtering 
+- Softer appearance of shadows
+![](https://i.imgur.com/AWFhwA0.png)
+
+PERCENTAGE CLOSER FILTERING (PCF)
+- Results for different filter size
+![](https://i.imgur.com/Se3tCdU.png)
+
+PERSPECTIVE ALIASING 
+- View space resolution vs. shadow map resolution
+![](https://i.imgur.com/4ihsVhv.png)
+
+CASCADE SHADOW MAPS 
+- Providing higher resolution of the depth texture near the viewer and lower resolution far away
+![](https://i.imgur.com/P1FuJvX.png)
