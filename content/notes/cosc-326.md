@@ -20,7 +20,7 @@ tags:
 - [x] 09-bug-squashing S
 - [ ] 10-pushing-buttons
 - [ ] 11-dropping-cars
-- [ ] 12-floating-point
+- [ ] [[12-floating-point]]
 
 # Notes
 - [[townhall-04]]
