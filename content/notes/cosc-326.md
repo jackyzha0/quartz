@@ -14,13 +14,14 @@ tags:
 - [x] [[03-snowflake]] M
 - [x] 04-desert-crossing EG
 - [x] 05-look-whos-talking	S
-- [ ] 06-counting-it-up
-- [ ] 07-witw
-- [ ] 08-rational-thinking
+- [x] 06-counting-it-up
+- [x] 07-witw
+- [ ] [[08-rational-thinking]]
 - [x] 09-bug-squashing S
 - [ ] 10-pushing-buttons
 - [ ] 11-dropping-cars
 - [ ] [[12-floating-point]]
+- [ ] 13-pitch
 
 # Notes
 - [[townhall-04]]
