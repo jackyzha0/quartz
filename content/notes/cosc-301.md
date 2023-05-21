@@ -55,5 +55,6 @@ exam: | COSC301 | Saturday 17 June 2023 | 09:30 |
 - [ ] [[19-management-tools-and-protocols]]
 - [x] [[20-VPN]]
 - [x] [[21-network-accounting-and-visibility]]
+- [ ] [[22-firewalls-NAT]]
 
 # Info
