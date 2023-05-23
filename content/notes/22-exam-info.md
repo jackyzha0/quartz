@@ -50,7 +50,8 @@ tags:
 	- Functionality, Messages exchanged, Constraints, … 
 	- Differences with and between AGPS, DGPS, RTK GPS
 	
-> [!INFO] be able to explain how GPS works. how do we know position. general funcitonality
+> [!INFO] be able to explain how GPS works. how do we know position. general funcitonality, constraints etc. 
+> different types of GPS: what and how.
 	
 - Orientation Sensors: 
 	- Accelerometers 
@@ -60,6 +61,11 @@ tags:
 	- Filter-based sensor fusion 
 	- Dead Reckoning 
 	- Kalman
+
+> [!INFO] what is gyro drift. 
+> general idea of dead reckoning
+> high level kalman filter
+
 - Vision-based Sensors 
 	- Marker-based Tracking 
 	- Natural Feature-based Tracking & SIFT & SLAM 
@@ -68,27 +74,53 @@ tags:
 	- Model-based Tracking
 - Using a camera as sensor, advantages and challenges
 
+> [!INFO] how does marker based tracking work: roughly
+> SIFT, SLAM high level. variance, invariance
+> how is sift invariant to X (e.g., scale, lighting, ) 
+> lighting -> greyscale (dont, care about color of light, only care about gradient -> gradient is still the same regarless of light intensity. still local light changes -> we have enought points that we can ignore local light changes)
+> scale -> blur and change resolution -> difference of gaussian. recreates effect of seeing from a long distance
+
+> [!INFO] camera -> advatages, cheap, lots of information, . disatvantage, light, privacy, 
 
 
-		- Context 
-			- Definition, Context-Sources, Context Controllers, Context Targets 
-			- Context-Awareness 
-			- Challenges of Context-Awareness 
-		- Natural User Interfaces 
-			- Why Natural User Interfaces 
-			- Tangible User Interfaces 
-			- Proxemic Interacions 
-			- Context-Aware Interfaces 
-			- Haptics
-			- Augmented Reality 
-				- What is AR? 
-				- Classes of AR interfaces 
-				- Spatial AR vs. Video see-through AR vs. Optical see-through AR 
-				- Context-aware AR and Input for AR
+## Context 
+- Definition, Context-Sources, Context Controllers, Context Targets 
+- Context-Awareness 
+- Challenges of Context-Awareness 
+- Natural User Interfaces 
+	- Why Natural User Interfaces 
+	- Tangible User Interfaces 
+	- Proxemic Interacions 
+	- Context-Aware Interfaces 
+	- Haptics
+
+> [!INFO] pick example of context awareness in phone. -> 
+> calendar event (source:time/calendar/location, controller, target:notification)
+> have a few examples ready.
+> context awareness examples: privacy, sensors are not always accurate, lack of control -need to find balalnce between user control and context awareness.
+
+> [!INFO] NAT
+> lots of examples 
+> proxemic interactions: proximity and orientation
+	 
+- Augmented Reality 
+	- What is AR? 
+	- Classes of AR interfaces 
+	- Spatial AR vs. Video see-through AR vs. Optical see-through AR 
+	- Context-aware AR and Input for AR
 
 
 # Example Questions: 
+
+> [!INFO] defend your position, justify, convince him. 
+
+- Provide and discuss an example for Ubiqitious Computing and for Mobile Computing. 
+- How does SIFT achieve invariance to lighting? 
+- Describe the main steps of SIFT when describing a feature point. Assume that the feature point is already found. 
+- Describe the main steps of SIFT for detecting a feature point. 
+- Explain the general concept of Fingerprinting and how it is used by Google to improve GPS localisation
 - Contrast Bluetooth LE and NFC technology for sensing your location. 
+	- bluetooth needs power source, also more
 - Explain how cell phone towers can be used for estimating your position (cell-based localisation). Explain also different techniques that can be utilised to refine the position estimate 
 - Explain Realtime Kinematics (RTK) GPS. How does it achieve improvements of traditional GPS? 
 - Describe the sensors you would use for a fitness tracker application on your mobile phone. How would you refine or transform raw sensor readings to be of use? 
@@ -101,6 +133,8 @@ tags:
 - Why is sensing crucial for the concept of Ubiqitious Computing? 
 - Identify 5 challenges for the concept of Ubiqitious Computing. Provide possible directions for overcoming the identified challenges. 
 - Outline the communication beween satellites and receivers for GPSbased localisation. Explain the three components of the satellites and how they are used by the receiver.
+
+> [!INFO] long secario questions: no right or wrong, make your case. descript pros and cons. otline and describe. defend and really explain yours. 
 
 Scenario A - The university wants to track position of people on the campus (e.g. for emergency reasons) 
 - You are the contractor or want to get the contract. 

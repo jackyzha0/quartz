@@ -10,6 +10,7 @@ tags:
 
 - [x] [[342-assignment-01]]
 - [ ] [[342-assignment-02]]
+- [ ] [[342-assignment-03]]
 
 exam: | COSC342 | Friday 09 June 2023 | 09:30 |
 
@@ -38,7 +39,8 @@ exam: | COSC342 | Friday 09 June 2023 | 09:30 |
 - [x] [[18-shader-programming]]
 - [x] [[19-opengl-illumination]]
 - [x] [[20-texture-mapping]]
-- [ ] [[21-shadows]]
+- [x] [[21-shadows]]
+- [ ] [[22-webgl]]
 
 # Info
 

@@ -84,6 +84,8 @@ D(ifferential) GPS
 - DGPS can provide ~3-5m (and max. 10-15cm) accuracy
 ![D(ifferential) GPS](https://i.imgur.com/WCH4dJk.png)
 > [!INFO] a lot of towers around farming areas
+> DGPS propogrates the current gps error to nearby recievers
+> wont overcome urban canyon
 
 - Various DGPS networks implemented worldwide 
 - iBase VRS (New Zealand) (see also Trimble) 

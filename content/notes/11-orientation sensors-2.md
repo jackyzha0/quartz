@@ -56,6 +56,7 @@ Dead Reckoning
 - Used in all kinds of navigation (Marine, Aerial, Car, Robot, Pedestrian, .. )
 
 > [!INFO] guessing where you are based on you previous movements
+> prediciton of current locationi based of previous state
 
 - Starting with a reference point (known position) 
 - Detect relative movements 
