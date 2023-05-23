@@ -4,4 +4,39 @@ tags:
 - 
 ---
 
-<% tp.file.cursor(2) %>
+
+01 T	COSC326 DUE
+02 F
+03 S
+04 S
+
+05 M
+06 T
+07 W
+08 T
+09 F	COSC342 EXAM
+10 S
+11 S
+
+12 M
+13 T
+14 W
+15 T	INFO305 EXAM
+16 F
+17 S 	COSC 301 EXAM
+18 S
+
+19 M
+20 T
+21 W
+22 T
+23 F
+24 S
+25 S
+
+26 M
+27 T
+28 W
+29 T
+30 F
+31 S

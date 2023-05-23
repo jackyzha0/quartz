@@ -12,9 +12,9 @@ tags:
 20 S [[2023-05-20]]
 21 S 	
 
-22 M	305 ASS 3 [[2023-05-22]]
+22 M	 [[2023-05-22]]
 23 T
-24 W	342 ASS 3
+24 W	342 ASS 3	305 ASS 3
 25 T
 26 F	etudes(10, 08) email dilan abt work	
 27 S

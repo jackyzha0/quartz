@@ -22,7 +22,6 @@ WEBGL
 - Development is likely to involve HTML, CSS, JavaScript, GLSL, in addition to WebGL’s OpenGL-style naming.
 
 ![SUPPORT OF WEBGL](https://i.imgur.com/P51IBm1.png)
-
 ![WEBGL APPLICATION STRUCTURE](https://i.imgur.com/nOXZNZO.png)
 
 WEBGL “HELLO TRIANGLE”
@@ -33,6 +32,9 @@ WEBGL “HELLO TRIANGLE”
 ![](https://i.imgur.com/HwvLfOS.png)
 ![](https://i.imgur.com/3HLWdvB.png)
 ![](https://i.imgur.com/edVLWnb.png)
+
+> [!INFO] need to bin buffer. tell gl to use this vertex buffer. 
+> very similar to opengl.
 
 THREE.JS 
 - First released April 2010 
