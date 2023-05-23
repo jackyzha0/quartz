@@ -97,10 +97,14 @@ Two Types of BGP Neighbour Relationships
 	- New routes learned by an iBGP are advertised to only iBGP peers.
 ![|300](https://i.imgur.com/II3HeEM.png)
 
-> [!INFO] 
+> [!INFO] in a large AS, you may need multople iBGP routers. uses the same protocol, but the policy may be different because they trust each other more
+> reflector acts as central point for a large AS with many iBGP routers
 
 BGP Route Processing
 ![BGP Route Processing|300](https://i.imgur.com/ZXrHu4P.png)
+
+> [!INFO] apply import policies: recieve updates from neighbors
+> apply export policies: infrom neighbors of updates etc. can tell only internal, or also external. (internal-> trust everyone. external -> dont)
 
 Import/Export Routes 
 - Import Routes 
@@ -113,6 +117,8 @@ Import/Export Routes
 	- Transit provider routes: Most likely not (no money earned) 
 	- Peer routes: only selected routes to other peering ISPs.
 
+> [!INFO] 
+
 Best Route Selection 
 - Use BGP attributes
 Given multiple routes to the same prefix, a BGP speaker must pick at most one best route
@@ -121,15 +127,22 @@ Given multiple routes to the same prefix, a BGP speaker must pick at most one be
 BGP Attributes
 ![BGP Attributes|300](https://i.imgur.com/B11GmqN.png)
 
+> [!INFO] can look into these more if you want to. EXAM ask about this 
+
 AS-Path and Loop Detection
 - AS_PATH: sequence of AS identifiers that the route advertisement has traversed.
 ![|300](https://i.imgur.com/iRDCAwJ.png)
+
+> [!INFO] recieve three updates from neighbor (lower left rect)
+> direct connection to 100 is better than path through 200 and 100
 
 Next_Hop 
 - IP address of the next-hop router along the path to the destination. 
 	- On eBGP sessions, the next hop is set to the IP address of the border router of the neighbouring AS. 
 	- On iBGP sessions, the next hop is not modified.
 ![|300](https://i.imgur.com/CTsG8xq.png)
+
+> [!INFO] dont need to update next hop in internal network. never have direction connetc with border router unless they do. but if they are it should be eBGP. 
 
 Local Preference 
 - The first criteria used to select routes 
@@ -155,7 +168,7 @@ BGP Problem and Migration
 	- Route summarization 
 - Load-balancing 
 	- Locater/Identifier Separation Protocol
-
+	
 Summary 
 - Inter-AS relationships 
 	- Peering 
