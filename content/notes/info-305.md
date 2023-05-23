@@ -38,5 +38,7 @@ exam: | INFO305 | Thursday 15 June 2023 | 14:30 | 2 hours
 - [ ] [[17-filtering-sensor-values-kalman-filter]] WATCH END OF LECTURE
 - [x] [[18-context]]
 - [ ] [[19-user-interface-examples]]
-- [ ] [[20-user-interfaces-examples-2]]
+- [x] [[20-user-interfaces-examples-2]]
+- [[21-ui-examples-3]]
+- [[22-exam-info]]
 # Info

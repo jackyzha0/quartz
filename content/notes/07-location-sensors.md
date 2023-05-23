@@ -92,6 +92,13 @@ cell based location summary
 	- WiFi/WLAN (cell-id, lateration, fingerprinting)
 ![](https://i.imgur.com/VSMfEqW.png)
 
+> [!INFO] fingerprinting.
+> want to extend wifi to find location
+> create fingerprint for many location in a room - contains all the signals recieved in each spot.
+> fingerprints are automatically created.
+> fingerprints are aligned between people to find where they are
+> used by google.
+
 - Based on already existing WLAN infrastructure, primarily installed for communication purposes 
 - Cell ID requires database with mapping WiFi cell ID to GPS or …. (e.g. created by Apple, Google) 
 - Lateration 
