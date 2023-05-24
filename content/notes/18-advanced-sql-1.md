@@ -4,8 +4,8 @@ aliases:
 tags: 
 - info201
 - lecture
-sr-due: 2023-05-25
-sr-interval: 215
+sr-due: 2024-11-13
+sr-interval: 538
 sr-ease: 250
 ---
 ![create table 2](https://i.imgur.com/sVoiVud.png)
