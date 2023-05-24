@@ -56,6 +56,6 @@ exam: | COSC301 | Saturday 17 June 2023 | 09:30 |
 - [x] [[20-VPN]]
 - [x] [[21-network-accounting-and-visibility]]
 - [x] [[22-firewalls-NAT]]
-- [ ] [[23-exterior-routing]]
+- [x] [[23-exterior-routing]]
 
 # Info
