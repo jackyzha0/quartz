@@ -21,7 +21,7 @@ tags:
 - [ ] 10-pushing-buttons
 - [ ] 11-dropping-cars
 - [ ] [[12-floating-point]]
-- [ ] 13-pitch
+- [x] 13-pitch
 
 # Notes
 - [[townhall-04]]
