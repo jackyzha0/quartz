@@ -9,7 +9,7 @@ Need to be more specific than "Do you like my interface". Need to avoid experime
 
 # Terms
 - **Comparison:** What is good
-	- "Yark stick"
+	- "Yard stick"
 - **Baserate:** how often does Y occur
 	- requires measurin Y
 - **Correlation:** Do X and Y co-vary

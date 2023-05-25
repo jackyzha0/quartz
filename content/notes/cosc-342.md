@@ -41,7 +41,7 @@ exam: | COSC342 | Friday 09 June 2023 | 09:30 |
 - [x] [[20-texture-mapping]]
 - [x] [[21-shadows]]
 - [x] [[22-webgl]]
-- [ ] [[23-webgl-2]]
+- [x] [[23-webgl-2]]
 
 # Info
 
