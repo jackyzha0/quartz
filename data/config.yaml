@@ -1,4 +1,4 @@
-name: Jacky Zhao
+name: Tomas Castro Santos
 enableToc: true
 openToc: false
 enableLinkPreview: true
@@ -18,10 +18,9 @@ search:
   operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
   operandIndexId: "REPLACE-WITH-YOUR-OPERAND-INDEX-ID"
 description:
-  Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
-  Wikilink support, backlinks, local graph, tags, and link previews.
+  "Tomas' obsidian-powered personal website"
 page_title:
-  "🪴 Quartz 3.3"
+  "Tomas' Digital Garden"
 links:
   - link_name: Twitter
     link: https://twitter.com/_jzhao
