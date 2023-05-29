@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "esnext"
+    ],
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "incremental": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "./package.json"
+  ],
+  "exclude": [
+    "build/**/*.d.ts"
+  ]
+}

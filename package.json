@@ -1,0 +1,55 @@
+{
+  "name": "@jackyzha0/quartz",
+  "description": "🌱 publish your digital garden and notes as a website",
+  "version": "4.1.0",
+  "author": "jackyzha0 <j.zhao2k19@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://quartz.jzhao.xyz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jackyzha0/quartz.git"
+  },
+  "keywords": [
+    "site generator",
+    "ssg",
+    "digital-garden",
+    "markdown",
+    "blog",
+    "quartz"
+  ],
+  "bin": {
+    "quartz": "./quartz/bootstrap.mjs"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^1.0.3",
+    "chalk": "^4.1.2",
+    "cli-spinner": "^0.2.10",
+    "esbuild": "0.17.18",
+    "globby": "^13.1.4",
+    "preact": "^10.14.1",
+    "preact-render-to-string": "^6.0.3",
+    "pretty-time": "^1.1.0",
+    "rehype-react": "^7.2.0",
+    "remark": "^14.0.2",
+    "remark-parse": "^10.0.1",
+    "remark-rehype": "^10.1.0",
+    "require-from-string": "^2.0.2",
+    "rimraf": "^5.0.0",
+    "serve-handler": "^6.1.5",
+    "to-vfile": "^7.2.4",
+    "unified": "^10.1.2",
+    "vfile": "^5.3.7",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/cli-spinner": "^0.2.1",
+    "@types/hast": "^2.3.4",
+    "@types/pretty-time": "^1.1.2",
+    "@types/require-from-string": "^1.2.1",
+    "@types/serve-handler": "^6.1.1",
+    "@types/yargs": "^17.0.24",
+    "@types/node": "^20.1.2",
+    "esbuild": "0.17.18",
+    "typescript": "^5.0.4"
+  }
+}
