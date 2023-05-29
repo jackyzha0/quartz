@@ -1,8 +1,3 @@
 .DS_Store
+node_modules
 public
-resources
-.idea
-content/.obsidian
-assets/indices/linkIndex.json
-assets/indices/contentIndex.json
-linkmap
