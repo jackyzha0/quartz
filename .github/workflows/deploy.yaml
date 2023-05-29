@@ -1,9 +1,9 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
+  merge:
     branches:
-      - hugo
+      - tomas 
 
 jobs:
   deploy:
