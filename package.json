@@ -1,13 +1,17 @@
 {
   "name": "@jackyzha0/quartz",
   "description": "🌱 publish your digital garden and notes as a website",
-  "version": "4.1.0",
+  "version": "4.0.3",
   "author": "jackyzha0 <j.zhao2k19@gmail.com>",
   "license": "MIT",
   "homepage": "https://quartz.jzhao.xyz",
   "repository": {
     "type": "git",
     "url": "https://github.com/jackyzha0/quartz.git"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "cycle-detect": "madge --circular --extensions ts quartz/index.ts"
   },
   "keywords": [
     "site generator",
@@ -22,19 +26,25 @@
   },
   "dependencies": {
     "@inquirer/prompts": "^1.0.3",
+    "@napi-rs/simple-git": "^0.1.8",
     "chalk": "^4.1.2",
     "cli-spinner": "^0.2.10",
-    "esbuild": "0.17.18",
     "globby": "^13.1.4",
+    "gray-matter": "^4.0.3",
+    "hast-util-to-string": "^2.0.0",
     "preact": "^10.14.1",
     "preact-render-to-string": "^6.0.3",
     "pretty-time": "^1.1.0",
-    "rehype-react": "^7.2.0",
+    "rehype-katex": "^6.0.3",
     "remark": "^14.0.2",
+    "remark-frontmatter": "^4.0.1",
+    "remark-gfm": "^3.0.1",
+    "remark-math": "^5.1.1",
     "remark-parse": "^10.0.1",
     "remark-rehype": "^10.1.0",
+    "remark-smartypants": "^2.0.0",
     "require-from-string": "^2.0.2",
-    "rimraf": "^5.0.0",
+    "rimraf": "^5.0.1",
     "serve-handler": "^6.1.5",
     "to-vfile": "^7.2.4",
     "unified": "^10.1.2",
@@ -44,12 +54,13 @@
   "devDependencies": {
     "@types/cli-spinner": "^0.2.1",
     "@types/hast": "^2.3.4",
+    "@types/node": "^20.1.2",
     "@types/pretty-time": "^1.1.2",
     "@types/require-from-string": "^1.2.1",
     "@types/serve-handler": "^6.1.1",
     "@types/yargs": "^17.0.24",
-    "@types/node": "^20.1.2",
-    "esbuild": "0.17.18",
+    "esbuild": "^0.17.18",
+    "madge": "^6.0.0",
     "typescript": "^5.0.4"
   }
 }
