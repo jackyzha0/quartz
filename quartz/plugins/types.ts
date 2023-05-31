@@ -15,20 +15,15 @@ export abstract class QuartzFilterPlugin {
 }
 
 export interface EmitOptions {
-  // meta
-  title: string
-  description: string
   slug: string
   ext: `.${string}`
-  
-  // rendering related 
   content: string
 }
 
-export type EmitCallback = (data: EmitOptions) => Promise<void>
+export type EmitCallback = (data: EmitOptions) => Promise<string>
 export abstract class QuartzEmitterPlugin {
   abstract name: string
-  abstract emit(content: ProcessedContent[], emitCallback: EmitCallback): Promise<string[]>
+  abstract emit(content: ProcessedContent[], resources: StaticResources, emitCallback: EmitCallback): Promise<string[]>
 }
 
 export interface PluginTypes {

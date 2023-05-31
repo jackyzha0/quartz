@@ -45,12 +45,11 @@ export class CreatedModifiedDate extends QuartzTransformerPlugin {
               modified ||= file.data.frontmatter["last-modified"]
               published ||= file.data.frontmatter.publishDate
             } else if (source === "git") {
-              console.log(file)
               if (!repo) {
                 repo = new Repository(file.cwd)
               }
 
-              modified ||= new Date(await repo.getFileLatestModifiedDateAsync(fp))
+              modified ||= new Date(await repo.getFileLatestModifiedDateAsync(file.data.filePath!))
             }
           }
 

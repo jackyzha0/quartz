@@ -7,6 +7,8 @@ import chalk from "chalk"
 import http from "http"
 import serveHandler from "serve-handler"
 import { createProcessor, parseMarkdown } from "./processors/parse"
+import { filterContent } from "./processors/filter"
+import { emitContent } from "./processors/emit"
 
 interface Argv {
   directory: string
@@ -21,7 +23,16 @@ export function buildQuartz(cfg: QuartzConfig) {
   return async (argv: Argv, version: string) => {
     console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
     const perf = new PerfTimer()
-    const output = path.join(argv.directory, argv.output)
+    const output = argv.output
+
+    if (argv.verbose) {
+      const pluginCount = Object.values(cfg.plugins).flat().length
+      const pluginNames = (key: 'transformers' | 'filters' | 'emitters') => cfg.plugins[key].map(plugin => plugin.name)
+      console.log(`Loaded ${pluginCount} plugins`)
+      console.log(`  Transformers: ${pluginNames('transformers').join(", ")}`)
+      console.log(`  Filters: ${pluginNames('filters').join(", ")}`)
+      console.log(`  Emitters: ${pluginNames('emitters').join(", ")}`)
+    }
 
     // clean
     if (argv.clean) {
@@ -36,7 +47,7 @@ export function buildQuartz(cfg: QuartzConfig) {
     perf.addEvent('glob')
     const fps = await globby('**/*.md', {
       cwd: argv.directory,
-      ignore: [...cfg.configuration.ignorePatterns, 'quartz/**'],
+      ignore: cfg.configuration.ignorePatterns,
       gitignore: true,
     })
 
@@ -47,8 +58,8 @@ export function buildQuartz(cfg: QuartzConfig) {
     const processor = createProcessor(cfg.plugins.transformers)
     const filePaths = fps.map(fp => `${argv.directory}${path.sep}${fp}`)
     const parsedFiles = await parseMarkdown(processor, argv.directory, filePaths, argv.verbose)
-    // const filteredContent = filterContent(cfg.plugins.filters, processedContent, argv.verbose)
-    // await emitContent(argv.directory, output, cfg, filteredContent, argv.verbose)
+    const filteredContent = filterContent(cfg.plugins.filters, parsedFiles, argv.verbose)
+    await emitContent(output, cfg, filteredContent, argv.verbose)
     console.log(chalk.green(`Done in ${perf.timeSince()}`))
 
     if (argv.serve) {
