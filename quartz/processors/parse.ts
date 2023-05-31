@@ -6,7 +6,7 @@ import { Root as HTMLRoot } from 'hast'
 import { ProcessedContent } from '../plugins/vfile'
 import { PerfTimer } from '../perf'
 import { read } from 'to-vfile'
-import { pathToSlug } from '../path'
+import { slugify } from '../path'
 import path from 'path'
 import { QuartzTransformerPlugin } from '../plugins/types'
 
@@ -39,7 +39,7 @@ export async function parseMarkdown(processor: QuartzProcessor, baseDir: string,
     const file = await read(fp)
 
     // base data properties that plugins may use
-    file.data.slug = pathToSlug(path.relative(baseDir, file.path))
+    file.data.slug = slugify(path.relative(baseDir, file.path))
     file.data.filePath = fp
 
     const ast = processor.parse(file)

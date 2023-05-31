@@ -53,8 +53,6 @@ yargs(hideBin(process.argv))
     const out = await esbuild.build({
       entryPoints: [fp],
       write: false,
-      minifySyntax: true,
-      minifyWhitespace: true,
       bundle: true,
       keepNames: true,
       platform: "node",

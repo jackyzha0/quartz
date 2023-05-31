@@ -25,13 +25,16 @@
     "quartz": "./quartz/bootstrap.mjs"
   },
   "dependencies": {
+    "@flowershow/remark-wiki-link": "^1.2.0",
     "@inquirer/prompts": "^1.0.3",
     "@napi-rs/simple-git": "^0.1.8",
     "chalk": "^4.1.2",
     "cli-spinner": "^0.2.10",
     "globby": "^13.1.4",
     "gray-matter": "^4.0.3",
+    "hast-util-to-jsx-runtime": "^1.2.0",
     "hast-util-to-string": "^2.0.0",
+    "is-absolute-url": "^4.0.1",
     "preact": "^10.14.1",
     "preact-render-to-string": "^6.0.3",
     "pretty-time": "^1.1.0",
@@ -48,6 +51,7 @@
     "serve-handler": "^6.1.5",
     "to-vfile": "^7.2.4",
     "unified": "^10.1.2",
+    "unist-util-visit": "^4.1.2",
     "vfile": "^5.3.7",
     "yargs": "^17.7.2"
   },

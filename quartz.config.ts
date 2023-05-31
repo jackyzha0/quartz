@@ -1,14 +1,13 @@
 import { buildQuartz } from "./quartz"
+import Head from "./quartz/components/Head"
 import { ContentPage, CreatedModifiedDate, Description, FrontMatter, GitHubFlavoredMarkdown, Katex, RemoveDrafts } from "./quartz/plugins"
+import { LinkProcessing } from "./quartz/plugins/transformers/links"
 
 export default buildQuartz({
   configuration: {
     siteTitle: "🪴 Quartz 4.0",
-    prettyLinks: true,
-    markdownLinkResolution: 'absolute',
-    enableLatex: true,
     enableSPA: true,
-    ignorePatterns: [],
+    ignorePatterns: ["private", "templates"],
   },
   plugins: {
     transformers: [
@@ -16,13 +15,18 @@ export default buildQuartz({
       new GitHubFlavoredMarkdown(),
       new Katex(),
       new Description(),
-      new CreatedModifiedDate()
+      new CreatedModifiedDate({
+        priority: ['frontmatter', 'filesystem'] // you can add 'git' here for last modified from Git but this makes the build slower
+      }),
+      new LinkProcessing()
     ],
     filters: [
       new RemoveDrafts()
     ],
     emitters: [
-      new ContentPage()
+      new ContentPage({
+        Head: Head
+      })
     ]
   },
   theme: {

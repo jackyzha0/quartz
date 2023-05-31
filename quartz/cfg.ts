@@ -1,4 +1,4 @@
-import { PluginTypes } from "./plugins"
+import { PluginTypes } from "./plugins/types"
 
 export interface ColorScheme {
   light: string,
@@ -14,12 +14,6 @@ export interface ColorScheme {
 export interface QuartzConfig {
   configuration: {
     siteTitle: string,
-    /** How to resolve Markdown paths */
-    markdownLinkResolution: 'absolute' | 'relative'
-    /** Strips folders from a link so that it looks nice */
-    prettyLinks: boolean
-    /** Whether to process and render latex (increases bundle size) */
-    enableLatex: boolean,
     /** Whether to enable single-page-app style rendering. this prevents flashes of unstyled content and improves smoothness of Quartz */
     enableSPA: boolean,
     /** Glob patterns to not search */
