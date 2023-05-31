@@ -12,7 +12,6 @@ export function slugify(s: string): string {
   const slugParts: string = rawSlugSegments
     .map((segment) => slugSegment(segment))
     .join(path.posix.sep)
-    // .replace(/index$/, '')
     .replace(/\/$/, '')
   return path.normalize(slugParts) + sluggedAnchor
 }

@@ -8,7 +8,7 @@ import { ProcessedContent } from "../plugins/vfile"
 import { QUARTZ, slugify } from "../path"
 import { globbyStream } from "globby"
 
-export async function emitContent(output: string, cfg: QuartzConfig, content: ProcessedContent[], verbose: boolean) {
+export async function emitContent(contentFolder: string, output: string, cfg: QuartzConfig, content: ProcessedContent[], verbose: boolean) {
   const perf = new PerfTimer()
 
 
@@ -39,11 +39,11 @@ export async function emitContent(output: string, cfg: QuartzConfig, content: Pr
   // glob all non MD/MDX/HTML files in content folder and copy it over
   const assetsPath = path.join("public", "assets")
   for await (const fp of globbyStream("**", {
-    ignore: ["**/*.{md,mdx,html}"],
-    cwd: "./content",
+    ignore: ["**/*.md"],
+    cwd: contentFolder,
   })) {
     const ext = path.extname(fp as string)
-    const src = path.join("content", fp as string)
+    const src = path.join(contentFolder, fp as string)
     const dest = path.join(assetsPath, slugify(fp as string) + ext)
     const dir = path.dirname(dest)
     await fs.promises.mkdir(dir, { recursive: true }) // ensure dir exists
