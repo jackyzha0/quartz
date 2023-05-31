@@ -59,7 +59,7 @@ export function buildQuartz(cfg: QuartzConfig) {
     const filePaths = fps.map(fp => `${argv.directory}${path.sep}${fp}`)
     const parsedFiles = await parseMarkdown(processor, argv.directory, filePaths, argv.verbose)
     const filteredContent = filterContent(cfg.plugins.filters, parsedFiles, argv.verbose)
-    await emitContent(output, cfg, filteredContent, argv.verbose)
+    await emitContent(argv.directory, output, cfg, filteredContent, argv.verbose)
     console.log(chalk.green(`Done in ${perf.timeSince()}`))
 
     if (argv.serve) {

@@ -29,16 +29,16 @@ export class LinkProcessing extends QuartzTransformerPlugin {
 
   markdownPlugins(): PluggableList {
     return [[remarkWikiLink, {
-      pathFormat: this.opts.markdownLinkResolution === "absolute" ? 'obsidian-absolute' : 'raw'
+      pathFormat: this.opts.markdownLinkResolution === "absolute" ? 'obsidian-absolute' : 'raw',
     }]]
   }
 
   htmlPlugins(): PluggableList {
     return [() => {
       return (tree, file) => {
-        const curSlug = file.data.slug! 
+        const curSlug = file.data.slug!
         const transformLink = (target: string) => {
-          const targetSlug = slugify(decodeURI(target))
+          const targetSlug = slugify(decodeURI(target).trim())
           if (this.opts.markdownLinkResolution === 'relative' && !path.isAbsolute(targetSlug)) {
             return './' + relative(curSlug, targetSlug)
           } else {
@@ -46,8 +46,8 @@ export class LinkProcessing extends QuartzTransformerPlugin {
           }
         }
 
-        // rewrite all links
         visit(tree, 'element', (node, _index, _parent) => {
+          // rewrite all links
           if (
             node.tagName === 'a' &&
             node.properties &&
@@ -60,14 +60,13 @@ export class LinkProcessing extends QuartzTransformerPlugin {
               node.properties.href = transformLink(node.properties.href)
             }
 
+            // rewrite link internals if prettylinks is on
             if (this.opts.prettyLinks && node.children.length === 1 && node.children[0].type === 'text') {
               node.children[0].value = path.basename(node.children[0].value)
             }
           }
-        })
 
-        // transform all images
-        visit(tree, 'element', (node, _index, _parent) => {
+          // transform all images
           if (
             node.tagName === 'img' &&
             node.properties &&
@@ -75,7 +74,7 @@ export class LinkProcessing extends QuartzTransformerPlugin {
           ) {
             if (!isAbsoluteUrl(node.properties.src)) {
               const ext = path.extname(node.properties.src)
-              node.properties.src = transformLink("/assets/" + node.properties.src) + ext
+              node.properties.src = transformLink(path.join("assets", node.properties.src)) + ext
             }
           }
         })

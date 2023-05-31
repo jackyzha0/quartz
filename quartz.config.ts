@@ -11,6 +11,7 @@ export default buildQuartz({
   },
   plugins: {
     transformers: [
+      new LinkProcessing(),
       new FrontMatter(),
       new GitHubFlavoredMarkdown(),
       new Katex(),
@@ -18,7 +19,6 @@ export default buildQuartz({
       new CreatedModifiedDate({
         priority: ['frontmatter', 'filesystem'] // you can add 'git' here for last modified from Git but this makes the build slower
       }),
-      new LinkProcessing()
     ],
     filters: [
       new RemoveDrafts()
