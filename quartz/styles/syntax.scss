@@ -1,5 +1,5 @@
 // npx convert-sh-theme https://raw.githubusercontent.com/shikijs/shiki/main/packages/shiki/themes/github-light.json
-body {
+:root {
   --shiki-color-text: #24292e;
   --shiki-color-background: #f8f8f8;
   --shiki-token-constant: #005cc5;
@@ -14,7 +14,7 @@ body {
 }
 
 // npx convert-sh-theme https://raw.githubusercontent.com/shikijs/shiki/main/packages/shiki/themes/github-dark.json
-:root[saved-theme="dark"] body {
+:root[saved-theme="dark"] {
   --shiki-color-text: #e1e4e8 !important;
   --shiki-color-background: #24292e !important;
   --shiki-token-constant: #79b8ff !important;

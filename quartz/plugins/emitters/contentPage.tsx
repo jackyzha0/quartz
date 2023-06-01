@@ -6,13 +6,15 @@ import { Fragment, jsx, jsxs } from 'preact/jsx-runtime'
 import { render } from "preact-render-to-string"
 import { ComponentType } from "preact"
 import { HeadProps } from "../../components/Head"
-
-import styles from '../../styles/base.scss'
 import { googleFontHref, templateThemeStyles } from "../../theme"
 import { GlobalConfiguration } from "../../cfg"
+import { HeaderProps } from "../../components/Header"
+
+import styles from '../../styles/base.scss'
 
 interface Options {
   Head: ComponentType<HeadProps>
+  Header: ComponentType<HeaderProps>
 }
 
 export class ContentPage extends QuartzEmitterPlugin {
@@ -37,23 +39,22 @@ export class ContentPage extends QuartzEmitterPlugin {
     resources.css.push(googleFontHref(cfg.theme))
 
     for (const [tree, file] of content) {
-
       // @ts-ignore (preact makes it angry)
       const content = toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: 'html' })
 
-      const { Head } = this.opts
+      const title = file.data.frontmatter?.title
+      const { Head, Header } = this.opts
       const doc = <html>
         <Head
-          title={file.data.frontmatter?.title ?? "Untitled"}
+          title={title ?? "Untitled"}
           description={file.data.description ?? "No description provided"}
           slug={file.data.slug!}
           externalResources={resources} />
         <body>
           <div id="quartz-root" class="page">
-            <header>
-              <h1>{file.data.frontmatter?.title}</h1>
-            </header>
+            <Header title={cfg.siteTitle} slug={file.data.slug!} />
             <article>
+              {file.data.slug !== "index" && <h1>{title}</h1>}
               {content}
             </article>
           </div>
