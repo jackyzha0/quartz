@@ -1,6 +1,7 @@
 import { PluggableList } from "unified"
 import { StaticResources } from "../resources"
 import { ProcessedContent } from "./vfile"
+import { GlobalConfiguration } from "../cfg"
 
 export abstract class QuartzTransformerPlugin {
   abstract name: string
@@ -23,7 +24,7 @@ export interface EmitOptions {
 export type EmitCallback = (data: EmitOptions) => Promise<string>
 export abstract class QuartzEmitterPlugin {
   abstract name: string
-  abstract emit(content: ProcessedContent[], resources: StaticResources, emitCallback: EmitCallback): Promise<string[]>
+  abstract emit(cfg: GlobalConfiguration, content: ProcessedContent[], resources: StaticResources, emitCallback: EmitCallback): Promise<string[]>
 }
 
 export interface PluginTypes {

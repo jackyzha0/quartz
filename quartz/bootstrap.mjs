@@ -5,6 +5,7 @@ import { hideBin } from 'yargs/helpers'
 import esbuild from 'esbuild'
 import chalk from 'chalk'
 import requireFromString from 'require-from-string'
+import { sassPlugin } from 'esbuild-sass-plugin'
 
 const fp = "./quartz.config.ts"
 const { version } = JSON.parse(readFileSync("./package.json").toString())
@@ -59,7 +60,10 @@ yargs(hideBin(process.argv))
       format: "cjs",
       jsx: "automatic",
       jsxImportSource: "preact",
-      external: ["@napi-rs/simple-git"]
+      external: ["@napi-rs/simple-git"],
+      plugins: [sassPlugin({
+        type: 'css-text'
+      })]
     }).catch(err => {
       console.error(`${chalk.red("Couldn't parse Quartz configuration:")} ${fp}`)
       console.log(`Reason: ${chalk.grey(err)}`)
