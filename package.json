@@ -28,6 +28,7 @@
     "@napi-rs/simple-git": "^0.1.8",
     "chalk": "^4.1.2",
     "cli-spinner": "^0.2.10",
+    "esbuild-sass-plugin": "^2.9.0",
     "globby": "^13.1.4",
     "gray-matter": "^4.0.3",
     "hast-util-to-jsx-runtime": "^1.2.0",

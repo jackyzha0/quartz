@@ -1,0 +1,207 @@
+@import "./syntax.scss";
+
+html {
+  scroll-behavior: smooth;
+  & footer > p {
+    text-align: center !important;
+  }
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  box-sizing: border-box;
+  background-color: var(--light);
+  font-family: var(--bodyFont);
+}
+
+.text-highlight {
+  background-color: #fff236aa;
+  padding: 0 0.1rem;
+  border-radius: 5px;
+}
+
+p, ul, text, a, tr, td, li, ol, ul {
+  color: var(--darkgray);
+  fill: var(--darkgray);
+}
+
+a {
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  color: var(--secondary);
+
+  &:hover {
+    color: var(--tertiary) !important;
+  }
+
+  &.internal {
+    text-decoration: none;
+    background-color: var(--highlight);
+    padding: 0 0.1rem;
+    border-radius: 5px;
+  }
+}
+
+.page {
+  padding: 4rem 30vw;
+  margin: 0 auto;
+  max-width: 1000px;
+  @media all and (max-width: 1200px) {
+    padding: 25px 5vw;
+  }
+
+  & p {
+    overflow-wrap: anywhere;
+  }
+
+  & article {
+    & > h1 {
+      font-size: 2rem;
+    }
+  }
+}
+
+blockquote {
+  font-style: italic;
+  margin-left: 0;
+  border-left: 3px solid var(--secondary);
+  padding-left: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+thead {
+  font-family: var(--headerFont);
+  color: var(--dark);
+  font-weight: revert;
+  margin: 2rem 0 0;
+
+  &:hover > .hanchor {
+    color: var(--secondary);
+  }
+
+  article > & > a {
+    color: var(--dark)
+  }
+}
+
+div[data-rehype-pretty-code-fragment] {
+  line-height: 1.5rem;
+  position: relative;
+
+  & > div[data-rehype-pretty-code-title] {
+    font-family: var(--codeFont);
+    font-size: 0.9rem;
+    padding: 0.1rem 0.8rem;
+    border: 1px solid var(--lightgray);
+    width: max-content;
+    border-radius: 5px;
+    margin-bottom: -0.8rem;
+    color: var(--darkgray);
+  }
+
+  & pre {
+    font-family: var(--codeFont);
+    padding: 0.5rem 0;
+    border-radius: 5px;
+    overflow-x: scroll;
+    border: 1px solid var(--lightgray);
+
+    & > code {
+      background: none;
+      padding: 0;
+      font-size: 0.9rem;
+      counter-reset: line;
+      counter-increment: line 0;
+      display: grid;
+
+      & .line {
+        padding: 0 0.75rem;
+        box-sizing: border-box;
+        border-left: 3px solid transparent;
+
+        &.highlighted {
+          background-color: var(--highlight);
+          border-left: 3px solid var(--secondary);
+        }
+
+        &::before {
+          content: counter(line);
+          counter-increment: line;
+          width: 1rem;
+          margin-right: 1rem;
+          display: inline-block;
+          text-align: right;
+          color: rgba(115, 138, 148, 0.4);
+        }
+      }
+    }
+  }
+}
+
+code {
+  font-size: 0.9em;
+  font-family: var(--codeFont);
+  border-radius: 5px;
+  padding: 0.1rem 0.2rem;
+  background: var(--lightgray);
+}
+
+tbody, li, p {
+  line-height: 1.5rem;
+}
+
+table {
+  border: 2px solid var(--gray);
+  width: 100%;
+  padding: 1.5rem;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 0.2rem 1rem;
+  border: 2px solid var(--gray);
+}
+
+img {
+  max-width: 100%;
+  border-radius: 5px;
+  margin: 1rem 0;
+}
+
+p > img + em {
+  display: block;
+  transform: translateY(-1rem);
+}
+
+hr {
+  width: 100%;
+  margin: 2rem auto;
+  height: 1px;
+  border: none;
+  background-color: var(--lightgray);
+}
+
+section {
+  margin: 2rem auto;
+  border-top: 1px solid var(--lightgray);
+
+  & > #footnote-label {
+    & > a {
+      color: var(--dark);
+    }
+  }
+  
+  & ol, & ul {
+    padding: 0 1em
+  }
+}

@@ -1,5 +1,4 @@
 import { toJsxRuntime } from "hast-util-to-jsx-runtime"
-import { resolveToRoot } from "../../path"
 import { StaticResources } from "../../resources"
 import { EmitCallback, QuartzEmitterPlugin } from "../types"
 import { ProcessedContent } from "../vfile"
@@ -7,6 +6,10 @@ import { Fragment, jsx, jsxs } from 'preact/jsx-runtime'
 import { render } from "preact-render-to-string"
 import { ComponentType } from "preact"
 import { HeadProps } from "../../components/Head"
+
+import styles from '../../styles/base.scss'
+import { googleFontHref, templateThemeStyles } from "../../theme"
+import { GlobalConfiguration } from "../../cfg"
 
 interface Options {
   Head: ComponentType<HeadProps>
@@ -21,8 +24,18 @@ export class ContentPage extends QuartzEmitterPlugin {
     this.opts = opts
   }
 
-  async emit(content: ProcessedContent[], resources: StaticResources, emit: EmitCallback): Promise<string[]> {
+  async emit(cfg: GlobalConfiguration, content: ProcessedContent[], resources: StaticResources, emit: EmitCallback): Promise<string[]> {
     const fps: string[] = []
+
+    // emit styles
+    emit({
+      slug: "index",
+      ext: ".css",
+      content: templateThemeStyles(cfg.theme, styles)
+    })
+    fps.push("index.css")
+    resources.css.push(googleFontHref(cfg.theme))
+
     for (const [tree, file] of content) {
 
       // @ts-ignore (preact makes it angry)
@@ -36,7 +49,7 @@ export class ContentPage extends QuartzEmitterPlugin {
           slug={file.data.slug!}
           externalResources={resources} />
         <body>
-          <div id="quartz-root">
+          <div id="quartz-root" class="page">
             <header>
               <h1>{file.data.frontmatter?.title}</h1>
             </header>

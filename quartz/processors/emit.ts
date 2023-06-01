@@ -23,7 +23,7 @@ export async function emitContent(contentFolder: string, output: string, cfg: Qu
 
   let emittedFiles = 0
   for (const emitter of cfg.plugins.emitters) {
-    const emitted = await emitter.emit(content, staticResources, emit)
+    const emitted = await emitter.emit(cfg.configuration, content, staticResources, emit)
     emittedFiles += emitted.length
 
     if (verbose) {

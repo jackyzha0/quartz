@@ -38,17 +38,21 @@ export class ObsidianFlavoredMarkdown extends QuartzTransformerPlugin {
         const backlinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)(#[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/, "g")
         return (tree: Root, _file) => {
           findAndReplace(tree, backlinkRegex, (value: string, ...capture: string[]) => {
-            const [path, rawHeader, rawAlias] = capture
-            const header = rawHeader?.slice(1).trim() ?? ""
-            const alias = rawAlias?.slice(1).trim() ?? value 
-            const url = slugify(path.trim() + header)
-            return {
-              type: 'link',
-              url,
-              children: [{
-                type: 'text',
-                value: alias
-              }]
+            if (value.startsWith("!")) {
+
+            } else {
+              const [path, rawHeader, rawAlias] = capture
+              const header = rawHeader?.slice(1).trim() ?? ""
+              const alias = rawAlias?.slice(1).trim() ?? path
+              const url = slugify(path.trim() + header)
+              return {
+                type: 'link',
+                url,
+                children: [{
+                  type: 'text',
+                  value: alias
+                }]
+              }
             }
           })
         }
