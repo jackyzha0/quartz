@@ -10,8 +10,7 @@
     "url": "https://github.com/jackyzha0/quartz.git"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit",
-    "cycle-detect": "madge --circular --extensions ts quartz/index.ts"
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "site generator",
@@ -25,7 +24,6 @@
     "quartz": "./quartz/bootstrap.mjs"
   },
   "dependencies": {
-    "@flowershow/remark-wiki-link": "^1.2.0",
     "@inquirer/prompts": "^1.0.3",
     "@napi-rs/simple-git": "^0.1.8",
     "chalk": "^4.1.2",
@@ -35,10 +33,12 @@
     "hast-util-to-jsx-runtime": "^1.2.0",
     "hast-util-to-string": "^2.0.0",
     "is-absolute-url": "^4.0.1",
+    "mdast-util-find-and-replace": "^2.2.2",
     "preact": "^10.14.1",
     "preact-render-to-string": "^6.0.3",
     "pretty-time": "^1.1.0",
     "rehype-katex": "^6.0.3",
+    "rehype-raw": "^6.1.1",
     "remark": "^14.0.2",
     "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1",
@@ -64,7 +64,6 @@
     "@types/serve-handler": "^6.1.1",
     "@types/yargs": "^17.0.24",
     "esbuild": "^0.17.18",
-    "madge": "^6.0.0",
     "typescript": "^5.0.4"
   }
 }
