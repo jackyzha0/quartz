@@ -1,6 +1,5 @@
 import { PluggableList } from "unified"
 import { QuartzTransformerPlugin } from "../types"
-import { remarkWikiLink } from "@flowershow/remark-wiki-link"
 import { relative, relativeToRoot, slugify } from "../../path"
 import path from "path"
 import { visit } from 'unist-util-visit'
@@ -18,7 +17,7 @@ const defaultOptions: Options = {
   prettyLinks: true
 }
 
-export class LinkProcessing extends QuartzTransformerPlugin {
+export class ResolveLinks extends QuartzTransformerPlugin {
   name = "LinkProcessing"
   opts: Options
 
@@ -28,9 +27,7 @@ export class LinkProcessing extends QuartzTransformerPlugin {
   }
 
   markdownPlugins(): PluggableList {
-    return [[remarkWikiLink, {
-      pathFormat: this.opts.markdownLinkResolution === "absolute" ? 'obsidian-absolute' : 'raw',
-    }]]
+    return []
   }
 
   htmlPlugins(): PluggableList {

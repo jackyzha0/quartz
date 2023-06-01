@@ -13,9 +13,11 @@ title: "CJK + Latex Support (测试)"
 
 Block math works with two dollar signs `$$...$$`
 
-$$f(x) = \int_{-\infty}^\infty
+$$
+f(x) = \int_{-\infty}^\infty
     f\hat(\xi),e^{2 \pi i \xi x}
-    \,d\xi$$
+    \,d\xi
+$$
 	
 Inline math also works with single dollar signs `$...$`. For example, Euler's identity but inline: $e^{i\pi} = -1$
 
