@@ -60,7 +60,7 @@ yargs(hideBin(process.argv))
       format: "cjs",
       jsx: "automatic",
       jsxImportSource: "preact",
-      external: ["@napi-rs/simple-git"],
+      external: ["@napi-rs/simple-git", "shiki"],
       plugins: [sassPlugin({
         type: 'css-text'
       })]

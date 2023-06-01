@@ -1,6 +1,7 @@
 import { buildQuartz } from "./quartz"
 import Head from "./quartz/components/Head"
-import { ContentPage, CreatedModifiedDate, Description, FrontMatter, GitHubFlavoredMarkdown, Katex, ObsidianFlavoredMarkdown, RemoveDrafts, ResolveLinks } from "./quartz/plugins"
+import Header from "./quartz/components/Header"
+import { ContentPage, CreatedModifiedDate, Description, FrontMatter, GitHubFlavoredMarkdown, Katex, ObsidianFlavoredMarkdown, RemoveDrafts, ResolveLinks, SyntaxHighlighting } from "./quartz/plugins"
 
 export default buildQuartz({
   configuration: {
@@ -45,6 +46,7 @@ export default buildQuartz({
       new CreatedModifiedDate({
         priority: ['frontmatter', 'filesystem'] // you can add 'git' here for last modified from Git but this makes the build slower
       }),
+      new SyntaxHighlighting(),
       new GitHubFlavoredMarkdown(),
       new ObsidianFlavoredMarkdown(),
       new ResolveLinks(),
@@ -54,7 +56,8 @@ export default buildQuartz({
     ],
     emitters: [
       new ContentPage({
-        Head: Head
+        Head: Head,
+        Header: Header
       })
     ]
   },
