@@ -2,13 +2,17 @@ import { PluggableList } from "unified"
 import remarkGfm from "remark-gfm"
 import smartypants from 'remark-smartypants'
 import { QuartzTransformerPlugin } from "../types"
+import rehypeSlug from "rehype-slug"
+import rehypeAutolinkHeadings from "rehype-autolink-headings/lib"
 
 export interface Options {
   enableSmartyPants: boolean
+  linkHeadings: boolean
 }
 
 const defaultOptions: Options = {
-  enableSmartyPants: true
+  enableSmartyPants: true,
+  linkHeadings: true
 }
 
 export class GitHubFlavoredMarkdown extends QuartzTransformerPlugin {
@@ -25,6 +29,13 @@ export class GitHubFlavoredMarkdown extends QuartzTransformerPlugin {
   }
 
   htmlPlugins(): PluggableList {
-    return []
+    return this.opts.linkHeadings
+      ? [rehypeSlug, [rehypeAutolinkHeadings, {
+        behavior: 'append', content: {
+          type: 'text',
+          value: '§'
+        }
+      }]]
+      : []
   }
 }

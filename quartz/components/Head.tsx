@@ -26,7 +26,6 @@ export default function({ title, description, slug, externalResources }: HeadPro
     <link rel="icon" href={iconPath} />
     <meta name="description" content={description} />
     <meta name="generator" content="Quartz" />
-    <base href={slug} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link rel="stylesheet" type="text/css" href={stylePath} />

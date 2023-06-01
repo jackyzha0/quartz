@@ -85,12 +85,24 @@ thead {
   font-weight: revert;
   margin: 2rem 0 0;
 
-  &:hover > .hanchor {
-    color: var(--secondary);
-  }
-
   article > & > a {
-    color: var(--dark)
+    color: var(--dark);
+    &.internal {
+      background-color: transparent;
+    }
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  &[id] > a {
+    margin: 0 0.5rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    font-family: var(--codeFont);
+    user-select: none;
+  }
+  &[id]:hover > a {
+    opacity: 1;
   }
 }
 
