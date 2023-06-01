@@ -42,9 +42,9 @@ export class ObsidianFlavoredMarkdown extends QuartzTransformerPlugin {
 
             } else {
               const [path, rawHeader, rawAlias] = capture
-              const header = rawHeader?.slice(1).trim() ?? ""
+              const anchor = rawHeader?.slice(1).trim() ?? ""
               const alias = rawAlias?.slice(1).trim() ?? path
-              const url = slugify(path.trim() + header)
+              const url = slugify(path.trim() + anchor)
               return {
                 type: 'link',
                 url,

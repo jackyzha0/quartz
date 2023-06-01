@@ -1,4 +1,7 @@
 import path from 'path'
+import SlugAnchor from 'github-slugger'
+
+const slugAnchor = new SlugAnchor()
 
 function slugSegment(s: string): string {
   return s.replace(/\s/g, '-')
@@ -6,7 +9,7 @@ function slugSegment(s: string): string {
 
 export function slugify(s: string): string {
   const [fp, anchor] = s.split("#", 2)
-  const sluggedAnchor = anchor === undefined ? "" : "#" + slugSegment(anchor)
+  const sluggedAnchor = anchor === undefined ? "" : "#" + slugAnchor.slug(anchor)
   const withoutFileExt = fp.replace(new RegExp(path.extname(fp) + '$'), '')
   const rawSlugSegments = withoutFileExt.split(path.sep)
   const slugParts: string = rawSlugSegments
