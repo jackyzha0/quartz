@@ -6,11 +6,18 @@ export function filterContent(plugins: QuartzFilterPlugin[], content: ProcessedC
   const perf = new PerfTimer()
   const initialLength = content.length
   for (const plugin of plugins) {
-    content = content.filter(plugin.shouldPublish)
+    const updatedContent = content.filter(plugin.shouldPublish)
+
+    if (verbose) {
+      const diff = content.filter(x => !updatedContent.includes(x))
+      for (const file of diff) {
+        console.log(`[filter:${plugin.name}] ${file[1].data.slug}`)
+      }
+    }
+
+    content = updatedContent
   }
 
-  if (verbose) {
-    console.log(`Filtered out ${initialLength - content.length} files in ${perf.timeSince()}`)
-  }
+  console.log(`Filtered out ${initialLength - content.length} files in ${perf.timeSince()}`)
   return content
 }

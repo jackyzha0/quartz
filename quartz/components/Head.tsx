@@ -8,10 +8,9 @@ export interface HeadProps {
   externalResources: StaticResources
 }
 
-export default function({ title, description, slug, externalResources }: HeadProps) {
+export function Component({ title, description, slug, externalResources }: HeadProps) {
   const { css, js } = externalResources
   const baseDir = resolveToRoot(slug)
-  const stylePath = baseDir + "/index.css"
   const iconPath = baseDir + "/static/icon.png"
   const ogImagePath = baseDir + "/static/og-image.png"
   return <head>
@@ -28,16 +27,7 @@ export default function({ title, description, slug, externalResources }: HeadPro
     <meta name="generator" content="Quartz" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel="stylesheet" type="text/css" href={stylePath} />
     {css.map(href => <link key={href} href={href} rel="stylesheet" type="text/css" />)}
-    {js.filter(resource => resource.loadTime === "beforeDOMReady").map(resource => <script key={resource.src} src={resource.src} />)}
+    {js.filter(resource => resource.loadTime === "beforeDOMReady").map(resource => <script key={resource.src} {...resource} />)}
   </head>
-}
-
-export function beforeDOMLoaded() {
-
-}
-
-export function onDOMLoaded() {
-
 }

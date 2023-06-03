@@ -26,9 +26,8 @@ export function googleFontHref(theme: Theme) {
   return `https://fonts.googleapis.com/css2?family=${code}&family=${header}:wght@400;700&family=${body}:ital,wght@0,400;0,600;1,400;1,600&display=swap`
 }
 
-export function templateThemeStyles(theme: Theme, stylesheet: string) {
-  return `
-:root {
+export function joinStyles(theme: Theme, ...stylesheet: string[]) {
+  return `:root {
   --light: ${theme.colors.lightMode.light};
   --lightgray: ${theme.colors.lightMode.lightgray};
   --gray: ${theme.colors.lightMode.gray};
@@ -54,6 +53,5 @@ export function templateThemeStyles(theme: Theme, stylesheet: string) {
   --highlight: ${theme.colors.darkMode.highlight};
 }
 
-${stylesheet}
-`
+${stylesheet.join("\n\n")}`
 }

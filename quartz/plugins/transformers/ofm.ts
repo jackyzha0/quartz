@@ -12,7 +12,7 @@ export interface Options {
 
 const defaultOptions: Options = {
   highlight: true,
-  wikilinks: true
+  wikilinks: true,
 }
 
 export class ObsidianFlavoredMarkdown extends QuartzTransformerPlugin {
@@ -39,10 +39,10 @@ export class ObsidianFlavoredMarkdown extends QuartzTransformerPlugin {
         return (tree: Root, _file) => {
           findAndReplace(tree, backlinkRegex, (value: string, ...capture: string[]) => {
             if (value.startsWith("!")) {
-
+              // TODO: handle embeds
             } else {
               const [path, rawHeader, rawAlias] = capture
-              const anchor = rawHeader?.slice(1).trim() ?? ""
+              const anchor = rawHeader?.trim() ?? ""
               const alias = rawAlias?.slice(1).trim() ?? path
               const url = slugify(path.trim() + anchor)
               return {

@@ -60,7 +60,7 @@ export function buildQuartz(cfg: QuartzConfig) {
     const parsedFiles = await parseMarkdown(processor, argv.directory, filePaths, argv.verbose)
     const filteredContent = filterContent(cfg.plugins.filters, parsedFiles, argv.verbose)
     await emitContent(argv.directory, output, cfg, filteredContent, argv.verbose)
-    console.log(chalk.green(`Done in ${perf.timeSince()}`))
+    console.log(chalk.green(`Done processing ${fps.length} files in ${perf.timeSince()}`))
 
     if (argv.serve) {
       const server = http.createServer(async (req, res) => {
