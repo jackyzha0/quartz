@@ -22,11 +22,15 @@ export function slugify(s: string): string {
 // resolve /a/b/c to ../../
 export function resolveToRoot(slug: string): string {
   let fp = slug
-  if (fp.endsWith("/index")) {
-    fp = fp.slice(0, -"/index".length)
+  if (fp.endsWith("index")) {
+    fp = fp.slice(0, -"index".length)
   }
 
-  return fp
+  if (fp === "") {
+    return "."
+  }
+
+  return "./" + fp
     .split('/')
     .filter(x => x !== '')
     .map(_ => '..')

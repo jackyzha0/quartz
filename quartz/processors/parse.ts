@@ -50,9 +50,6 @@ export async function parseMarkdown(processor: QuartzProcessor, baseDir: string,
     }
   }
 
-  if (verbose) {
-    console.log(`Parsed and transformed ${res.length} Markdown files in ${perf.timeSince()}`)
-  }
-
+  console.log(`Parsed and transformed ${res.length} Markdown files in ${perf.timeSince()}`)
   return res
 }

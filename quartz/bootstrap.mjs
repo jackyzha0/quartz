@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-import { readFileSync } from 'fs'
+import { promises, readFileSync } from 'fs'
 import yargs from 'yargs'
+import path from 'path'
 import { hideBin } from 'yargs/helpers'
 import esbuild from 'esbuild'
 import chalk from 'chalk'
@@ -61,9 +62,34 @@ yargs(hideBin(process.argv))
       jsx: "automatic",
       jsxImportSource: "preact",
       external: ["@napi-rs/simple-git", "shiki"],
-      plugins: [sassPlugin({
-        type: 'css-text'
-      })]
+      plugins: [
+        sassPlugin({
+          type: 'css-text'
+        }),
+        {
+          name: 'inline-script-loader',
+          setup(build) {
+            build.onLoad({ filter: /\.inline\.(ts|js)$/ }, async (args) => {
+              let text = await promises.readFile(args.path, 'utf8')
+              const transpiled = await esbuild.build({
+                stdin: {
+                  contents: text,
+                  sourcefile: path.relative(path.resolve('.'), args.path),
+                },
+                write: false,
+                bundle: true,
+                platform: "browser",
+                format: "esm",
+              })
+              const rawMod = transpiled.outputFiles[0].text
+              return {
+                contents: rawMod,
+                loader: 'text',
+              }
+            })
+          }
+        }
+      ]
     }).catch(err => {
       console.error(`${chalk.red("Couldn't parse Quartz configuration:")} ${fp}`)
       console.log(`Reason: ${chalk.grey(err)}`)
