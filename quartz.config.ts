@@ -1,9 +1,20 @@
-import { buildQuartz } from "./quartz"
-import Head from "./quartz/components/Head"
-import Header from "./quartz/components/Header"
-import { ContentPage, CreatedModifiedDate, Description, FrontMatter, GitHubFlavoredMarkdown, Katex, ObsidianFlavoredMarkdown, RemoveDrafts, ResolveLinks, SyntaxHighlighting } from "./quartz/plugins"
+import { QuartzConfig } from "./quartz/cfg"
+import * as Head from "./quartz/components/Head"
+import * as Header from "./quartz/components/Header"
+import {
+  ContentPage,
+  CreatedModifiedDate,
+  Description,
+  FrontMatter,
+  GitHubFlavoredMarkdown,
+  Katex,
+  ObsidianFlavoredMarkdown,
+  RemoveDrafts,
+  ResolveLinks,
+  SyntaxHighlighting
+} from "./quartz/plugins"
 
-export default buildQuartz({
+const config: QuartzConfig = {
   configuration: {
     siteTitle: "🪴 Quartz 4.0",
     enableSPA: true,
@@ -61,4 +72,6 @@ export default buildQuartz({
       })
     ]
   },
-})
+}
+
+export default config
