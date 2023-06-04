@@ -24,10 +24,10 @@ export default async function buildQuartz(argv: Argv, version: string) {
   const perf = new PerfTimer()
   const output = argv.output
 
+  const pluginCount = Object.values(cfg.plugins).flat().length
+  const pluginNames = (key: 'transformers' | 'filters' | 'emitters') => cfg.plugins[key].map(plugin => plugin.name)
+  console.log(`Loaded ${pluginCount} plugins`)
   if (argv.verbose) {
-    const pluginCount = Object.values(cfg.plugins).flat().length
-    const pluginNames = (key: 'transformers' | 'filters' | 'emitters') => cfg.plugins[key].map(plugin => plugin.name)
-    console.log(`Loaded ${pluginCount} plugins`)
     console.log(`  Transformers: ${pluginNames('transformers').join(", ")}`)
     console.log(`  Filters: ${pluginNames('filters').join(", ")}`)
     console.log(`  Emitters: ${pluginNames('emitters').join(", ")}`)
@@ -37,9 +37,7 @@ export default async function buildQuartz(argv: Argv, version: string) {
   if (argv.clean) {
     perf.addEvent('clean')
     await rimraf(output)
-    if (argv.verbose) {
-      console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince('clean')}`)
-    }
+    console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince('clean')}`)
   }
 
   // glob
@@ -49,11 +47,7 @@ export default async function buildQuartz(argv: Argv, version: string) {
     ignore: cfg.configuration.ignorePatterns,
     gitignore: true,
   })
-
-  if (argv.verbose) {
-    console.log(`Found ${fps.length} input files in ${perf.timeSince('glob')}`)
-
-  }
+  console.log(`Found ${fps.length} input files in ${perf.timeSince('glob')}`)
 
   const filePaths = fps.map(fp => `${argv.directory}${path.sep}${fp}`)
   const parsedFiles = await parseMarkdown(cfg.plugins.transformers, argv.directory, filePaths, argv.verbose)
