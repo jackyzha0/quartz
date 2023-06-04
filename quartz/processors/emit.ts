@@ -7,6 +7,7 @@ import { EmitCallback } from "../plugins/types"
 import { ProcessedContent } from "../plugins/vfile"
 import { QUARTZ, slugify } from "../path"
 import { globbyStream } from "globby"
+import chalk from "chalk"
 
 export async function emitContent(contentFolder: string, output: string, cfg: QuartzConfig, content: ProcessedContent[], verbose: boolean) {
   const perf = new PerfTimer()
@@ -23,13 +24,18 @@ export async function emitContent(contentFolder: string, output: string, cfg: Qu
 
   let emittedFiles = 0
   for (const emitter of cfg.plugins.emitters) {
-    const emitted = await emitter.emit(cfg.configuration, content, staticResources, emit)
-    emittedFiles += emitted.length
+    try {
+      const emitted = await emitter.emit(cfg.configuration, content, staticResources, emit)
+      emittedFiles += emitted.length
 
-    if (verbose) {
-      for (const file of emitted) {
-        console.log(`[emit:${emitter.name}] ${file}`)
+      if (verbose) {
+        for (const file of emitted) {
+          console.log(`[emit:${emitter.name}] ${file}`)
+        }
       }
+    } catch (err) {
+      console.log(chalk.red(`Failed to emit from plugin \`${emitter.name}\`: `) + err)
+      process.exit(1)
     }
   }
 
