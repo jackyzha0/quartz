@@ -5,10 +5,10 @@ import path from 'path'
 import { hideBin } from 'yargs/helpers'
 import esbuild from 'esbuild'
 import chalk from 'chalk'
-import requireFromString from 'require-from-string'
 import { sassPlugin } from 'esbuild-sass-plugin'
 
-const fp = "./quartz.config.ts"
+const cacheFile = "./.quartz-cache/transpiled-build.mjs"
+const fp = "./quartz/build.ts"
 const { version } = JSON.parse(readFileSync("./package.json").toString())
 
 export const BuildArgv = {
@@ -52,16 +52,16 @@ yargs(hideBin(process.argv))
   .version(version)
   .usage('$0 <cmd> [args]')
   .command('build', 'Build Quartz into a bundle of static HTML files', BuildArgv, async (argv) => {
-    const out = await esbuild.build({
+    await esbuild.build({
       entryPoints: [fp],
-      write: false,
+      outfile: path.join("quartz", cacheFile),
       bundle: true,
       keepNames: true,
       platform: "node",
-      format: "cjs",
+      format: "esm",
       jsx: "automatic",
       jsxImportSource: "preact",
-      external: ["@napi-rs/simple-git", "shiki"],
+      packages: "external",
       plugins: [
         sassPlugin({
           type: 'css-text'
@@ -97,8 +97,7 @@ yargs(hideBin(process.argv))
       process.exit(1)
     })
 
-    const mod = out.outputFiles[0].text
-    const init = requireFromString(mod, fp).default
+    const { default: init } = await import(cacheFile)
     init(argv, version)
   })
   .showHelpOnFail(false)

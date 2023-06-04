@@ -3,7 +3,7 @@ import remarkGfm from "remark-gfm"
 import smartypants from 'remark-smartypants'
 import { QuartzTransformerPlugin } from "../types"
 import rehypeSlug from "rehype-slug"
-import rehypeAutolinkHeadings from "rehype-autolink-headings/lib"
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
 
 export interface Options {
   enableSmartyPants: boolean
