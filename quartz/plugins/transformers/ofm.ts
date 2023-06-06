@@ -5,6 +5,7 @@ import { findAndReplace } from "mdast-util-find-and-replace"
 import { slugify } from "../../path"
 import rehypeRaw from "rehype-raw"
 import { visit } from "unist-util-visit"
+import path from "path"
 
 export interface Options {
   highlight: boolean
@@ -111,21 +112,56 @@ export class ObsidianFlavoredMarkdown extends QuartzTransformerPlugin {
         const backlinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)(#[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/, "g")
         return (tree: Root, _file) => {
           findAndReplace(tree, backlinkRegex, (value: string, ...capture: string[]) => {
+            const [fp, rawHeader, rawAlias] = capture
+            const anchor = rawHeader?.trim() ?? ""
+            const alias = rawAlias?.slice(1).trim()
+
+            // embed cases
             if (value.startsWith("!")) {
-              // TODO: handle embeds
-            } else {
-              const [path, rawHeader, rawAlias] = capture
-              const anchor = rawHeader?.trim() ?? ""
-              const alias = rawAlias?.slice(1).trim() ?? path
-              const url = slugify(path.trim() + anchor)
-              return {
-                type: 'link',
-                url,
-                children: [{
-                  type: 'text',
-                  value: alias
-                }]
+              const ext = path.extname(fp).toLowerCase()
+              const url = slugify(fp.trim()) + ext
+              if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg"].includes(ext)) {
+                const dims = alias ?? ""
+                let [width, height] = dims.split("x", 2)
+                width ||= "auto"
+                height ||= "auto"
+                return {
+                  type: 'image',
+                  url,
+                  data: {
+                    hProperties: {
+                      width, height
+                    }
+                  }
+                }
+              } else if ([".mp4", ".webm", ".ogv", ".mov", ".mkv"].includes(ext)) {
+                return {
+                  type: 'html',
+                  value: `<video src="${url}" controls></video>`
+                }
+              } else if ([".mp3", ".webm", ".wav", ".m4a", ".ogg", ".3gp", ".flac"].includes(ext)) {
+                return {
+                  type: 'html',
+                  value: `<audio src="${url}" controls></audio>`
+                }
+              } else if ([".pdf"].includes(ext)) {
+                return {
+                  type: 'html',
+                  value: `<iframe src="${url}"></iframe>`
+                }
               }
+              // otherwise, fall through to regular link
+            }
+
+            // internal link
+            const url = slugify(fp.trim() + anchor)
+            return {
+              type: 'link',
+              url,
+              children: [{
+                type: 'text',
+                value: alias ?? fp
+              }]
             }
           })
         }

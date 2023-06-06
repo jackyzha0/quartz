@@ -92,7 +92,7 @@ export function createFileParser(baseDir: string, fps: string[], verbose: boolea
           console.log(`[process] ${fp} -> ${file.data.slug}`)
         }
       } catch (err) {
-        console.log(chalk.red(`Failed to process \`${fp}\`: `) + err)
+        console.log(chalk.red(`\nFailed to process \`${fp}\`: `) + err)
         process.exit(1)
       }
     }
