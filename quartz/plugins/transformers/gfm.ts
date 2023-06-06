@@ -33,7 +33,7 @@ export class GitHubFlavoredMarkdown extends QuartzTransformerPlugin {
       ? [rehypeSlug, [rehypeAutolinkHeadings, {
         behavior: 'append', content: {
           type: 'text',
-          value: '§'
+          value: ' §'
         }
       }]]
       : []

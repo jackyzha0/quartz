@@ -1,0 +1,86 @@
+@use "sass:color";
+
+.callout {
+	border: 1px solid var(--border);
+	background-color: var(--bg);
+	border-radius: 5px;
+	padding: 0 0.7rem;
+
+	&[data-callout="note"] {
+	  --color: #448aff;
+	  --border: #448aff22;
+	  --bg: #448aff09;
+	}
+
+	&[data-callout="abstract"] {
+	  --color: #00b0ff;
+	  --border: #00b0ff22;
+	  --bg: #00b0ff09;
+	}
+
+	&[data-callout="info"], &[data-callout="todo"] {
+	  --color: #00b8d4;
+	  --border: #00b8d422;
+	  --bg: #00b8d409;
+	}
+
+	&[data-callout="tip"] {
+	  --color: #00bfa5;
+	  --border: #00bfa522;
+	  --bg: #00bfa509;
+	}
+
+	&[data-callout="success"] {
+	  --color: #09ad7a;
+	  --border: #09ad7122;
+	  --bg: #09ad7109;
+	}
+
+	&[data-callout="question"] {
+	  --color: #dba642;
+	  --border: #dba64222;
+	  --bg: #dba64209;
+	}
+
+	&[data-callout="warning"] {
+	  --color: #db8942;
+	  --border: #db894222;
+	  --bg: #db894209;
+	}
+
+	&[data-callout="failure"], &[data-callout="danger"], &[data-callout="bug"] {
+	  --color: #db4242;
+	  --border: #db424222;
+	  --bg: #db424209;
+	}
+
+	&[data-callout="example"] {
+	  --color: #7a43b5;
+	  --border: #7a43b522;
+	  --bg: #7a43b509;
+	}
+
+	&[data-callout="quote"] {
+	  --color: var(--secondary);
+	  --border: var(--lightgray);
+	}
+}
+
+
+.callout-title {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	margin: 1rem 0;
+	color: var(--color);
+}
+
+.callout-icon {
+	width: 18px;
+	height: 18px;
+}
+
+.callout-title-inner {
+	font-weight: 700;
+}
+
