@@ -1,25 +1,23 @@
-export default "Darkmode"
+const userPref = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+const currentTheme = localStorage.getItem('theme') ?? userPref
+document.documentElement.setAttribute('saved-theme', currentTheme)
 
-const currentTheme = localStorage.getItem("theme")
-const theme =
-  currentTheme ??
-  (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark")
-
-document.documentElement.setAttribute("saved-theme", theme)
-
-window.addEventListener("DOMContentLoaded", () => {
-  const toggleSwitch = document.querySelector("#darkmode-toggle") as HTMLInputElement
-  toggleSwitch.addEventListener("change", (e: any) => {
+window.addEventListener('DOMContentLoaded', () => {
+  const switchTheme = (e: any) => {
     if (e.target.checked) {
-      document.documentElement.setAttribute("saved-theme", "dark")
-      localStorage.setItem("theme", "dark")
-    } else {
-      document.documentElement.setAttribute("saved-theme", "light")
-      localStorage.setItem("theme", "light")
+      document.documentElement.setAttribute('saved-theme', 'dark')
+      localStorage.setItem('theme', 'dark')
     }
-  })
+    else {
+      document.documentElement.setAttribute('saved-theme', 'light')
+      localStorage.setItem('theme', 'light')
+    }
+  }
 
-  if (theme === "dark") {
+  // Darkmode toggle
+  const toggleSwitch = document.querySelector('#darkmode-toggle') as HTMLInputElement
+  toggleSwitch.addEventListener('change', switchTheme, false)
+  if (currentTheme === 'dark') {
     toggleSwitch.checked = true
   }
 })
