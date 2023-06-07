@@ -74,6 +74,7 @@ yargs(hideBin(process.argv))
               const transpiled = await esbuild.build({
                 stdin: {
                   contents: text,
+                  loader: 'ts',
                   sourcefile: path.relative(path.resolve('.'), args.path),
                 },
                 write: false,
