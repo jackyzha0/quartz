@@ -1,0 +1,10 @@
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 1em 0 2em 0;
+  & > h1 {
+    margin: 0;
+    flex: auto;
+  }
+}

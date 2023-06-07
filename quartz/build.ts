@@ -59,7 +59,7 @@ export default async function buildQuartz(argv: Argv, version: string) {
     const server = http.createServer(async (req, res) => {
       return serveHandler(req, res, {
         public: output,
-        directoryListing: false
+        directoryListing: false,
       })
     })
     server.listen(argv.port)

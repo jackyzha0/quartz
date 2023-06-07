@@ -8,7 +8,7 @@ export interface HeadProps {
   externalResources: StaticResources
 }
 
-export function Component({ title, description, slug, externalResources }: HeadProps) {
+export default function Head({ title, description, slug, externalResources }: HeadProps) {
   const { css, js } = externalResources
   const baseDir = resolveToRoot(slug)
   const iconPath = baseDir + "/static/icon.png"

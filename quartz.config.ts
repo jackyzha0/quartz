@@ -1,6 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
-import * as Head from "./quartz/components/Head"
-import * as Header from "./quartz/components/Header"
+import Head from "./quartz/components/Head"
+import Header from "./quartz/components/Header"
 import {
   ContentPage,
   CreatedModifiedDate,

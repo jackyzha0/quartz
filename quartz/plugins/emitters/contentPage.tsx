@@ -48,14 +48,14 @@ export class ContentPage extends QuartzEmitterPlugin {
 
       const title = file.data.frontmatter?.title
       const doc = <html>
-        <Head.Component
+        <Head
           title={title ?? "Untitled"}
           description={file.data.description ?? "No description provided"}
           slug={file.data.slug!}
           externalResources={pageResources} />
         <body>
           <div id="quartz-root" class="page">
-            <Header.Component title={cfg.siteTitle} slug={file.data.slug!} />
+            <Header title={cfg.siteTitle} slug={file.data.slug!} />
             <article>
               {file.data.slug !== "index" && <h1>{title}</h1>}
               {content}
