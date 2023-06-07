@@ -40,9 +40,9 @@ export class ContentPage extends QuartzEmitterPlugin {
       const pageResources: StaticResources = {
         css: [baseDir + "/index.css", ...resources.css,],
         js: [
-          { src: baseDir + "/prescript.js", loadTime: "beforeDOMReady", type: 'module' },
+          { src: baseDir + "/prescript.js", loadTime: "beforeDOMReady" },
           ...resources.js,
-          { src: baseDir + "/postscript.js", loadTime: "afterDOMReady", type: 'module' }
+          { src: baseDir + "/postscript.js", loadTime: "afterDOMReady" }
         ]
       }
 
