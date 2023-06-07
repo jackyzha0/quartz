@@ -1,0 +1,31 @@
+name: publish
+on:
+  push:
+    branches:
+      - v4-alpha # TODO: update
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - id: publish-cli
+        name: Publish @jackyzha0/quartz
+        uses: JS-DevTools/npm-publish@v2
+        with:
+          package: ./package.json
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
+          strategy: upgrade
+          access: public
+      
+      - if: steps.publish-cli.outputs.type != 'none'
+        run: |
+          echo "Version of @jackyzha0/quartz changed: ${{ steps.publish-cli.outputs.old-version }} => ${{ steps.publish-cli.outputs.version }}"

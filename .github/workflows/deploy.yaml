@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - v4-alpha
+      - v4-alpha # TODO: update
 
 jobs:
   deploy:
@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Cache dependencies
         uses: actions/cache@v3
@@ -31,10 +31,11 @@ jobs:
       - run: npm ci
 
       - name: Build Quartz
-        run: npx quartx build 
+        run: npx quartz build 
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+      # TODO: when we actually release
+      # - name: Deploy
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./public
