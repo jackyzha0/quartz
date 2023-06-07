@@ -1,6 +1,6 @@
 import { resolveToRoot } from "../path"
 import Darkmode from "./Darkmode"
-import style from '../styles/header.scss'
+import style from './styles/header.scss'
 
 export interface HeaderProps {
   title: string

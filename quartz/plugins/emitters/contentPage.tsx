@@ -9,10 +9,12 @@ import { GlobalConfiguration } from "../../cfg"
 import { HeaderProps } from "../../components/Header"
 import { QuartzComponent } from "../../components/types"
 import { resolveToRoot } from "../../path"
+import { BodyProps } from "../../components/Body"
 
 interface Options {
   Head: QuartzComponent<HeadProps>
   Header: QuartzComponent<HeaderProps>
+  Body: QuartzComponent<BodyProps>
 }
 
 export class ContentPage extends QuartzEmitterPlugin {
@@ -31,7 +33,7 @@ export class ContentPage extends QuartzEmitterPlugin {
   async emit(cfg: GlobalConfiguration, content: ProcessedContent[], resources: StaticResources, emit: EmitCallback): Promise<string[]> {
     const fps: string[] = []
 
-    const { Head, Header } = this.opts
+    const { Head, Header, Body } = this.opts
     for (const [tree, file] of content) {
       // @ts-ignore (preact makes it angry)
       const content = toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: 'html' })
@@ -42,7 +44,7 @@ export class ContentPage extends QuartzEmitterPlugin {
         js: [
           { src: baseDir + "/prescript.js", loadTime: "beforeDOMReady" },
           ...resources.js,
-          { src: baseDir + "/postscript.js", loadTime: "afterDOMReady" }
+          { src: baseDir + "/postscript.js", loadTime: "afterDOMReady", type: 'module' }
         ]
       }
 
@@ -56,10 +58,7 @@ export class ContentPage extends QuartzEmitterPlugin {
         <body>
           <div id="quartz-root" class="page">
             <Header title={cfg.siteTitle} slug={file.data.slug!} />
-            <article>
-              {file.data.slug !== "index" && <h1>{title}</h1>}
-              {content}
-            </article>
+            <Body title={file.data.slug === "index" ? undefined : title}>{content}</Body>
           </div>
         </body>
         {pageResources.js.filter(resource => resource.loadTime === "afterDOMReady").map(resource => <script key={resource.src} {...resource} />)}

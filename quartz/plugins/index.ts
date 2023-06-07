@@ -40,7 +40,7 @@ export function emitComponentResources(cfg: GlobalConfiguration, resources: Stat
       componentResources.beforeDOMLoaded.push(beforeDOMLoaded)
     }
     if (afterDOMLoaded) {
-      componentResources.beforeDOMLoaded.push(afterDOMLoaded)
+      componentResources.afterDOMLoaded.push(afterDOMLoaded)
     }
   }
 

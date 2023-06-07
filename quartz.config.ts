@@ -1,4 +1,5 @@
 import { QuartzConfig } from "./quartz/cfg"
+import Body from "./quartz/components/Body"
 import Head from "./quartz/components/Head"
 import Header from "./quartz/components/Header"
 import {
@@ -68,7 +69,8 @@ const config: QuartzConfig = {
     emitters: [
       new ContentPage({
         Head: Head,
-        Header: Header
+        Header: Header,
+        Body: Body
       })
     ]
   },
