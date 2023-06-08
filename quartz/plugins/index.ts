@@ -17,7 +17,7 @@ function joinScripts(scripts: string[]): string {
 
 export function emitComponentResources(cfg: GlobalConfiguration, resources: StaticResources, plugins: PluginTypes, emit: EmitCallback) {
   const fps: string[] = []
-  const allComponents: Set<QuartzComponent<any>> = new Set()
+  const allComponents: Set<QuartzComponent> = new Set()
   for (const emitter of plugins.emitters) {
     const components = emitter.getQuartzComponents()
     for (const component of components) {

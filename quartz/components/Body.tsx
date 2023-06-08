@@ -1,15 +1,14 @@
-import { ComponentChildren } from "preact"
 import clipboardScript from './scripts/clipboard.inline'
 import clipboardStyle from './styles/clipboard.scss'
+import { QuartzComponentProps } from "./types"
 
-export interface BodyProps {
-  title?: string
-  children: ComponentChildren
-}
-
-export default function Body({ title, children }: BodyProps) {
+export default function Body({ fileData, children }: QuartzComponentProps) {
+  const title = fileData.frontmatter?.title
+  const displayTitle = fileData.slug === "index" ? undefined : title
   return <article>
-    {title && <h1>{title}</h1>}
+    <div class="top-section">
+      {displayTitle && <h1>{displayTitle}</h1>}
+    </div>
     {children}
   </article>
 }

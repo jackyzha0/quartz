@@ -1,7 +1,9 @@
 import { QuartzConfig } from "./quartz/cfg"
 import Body from "./quartz/components/Body"
+import Darkmode from "./quartz/components/Darkmode"
 import Head from "./quartz/components/Head"
-import Header from "./quartz/components/Header"
+import PageTitle from "./quartz/components/PageTitle"
+import Spacer from "./quartz/components/Spacer"
 import {
   ContentPage,
   CreatedModifiedDate,
@@ -68,9 +70,9 @@ const config: QuartzConfig = {
     ],
     emitters: [
       new ContentPage({
-        Head: Head,
-        Header: Header,
-        Body: Body
+        head: Head,
+        header: [PageTitle, Spacer, Darkmode],
+        body: Body
       })
     ]
   },

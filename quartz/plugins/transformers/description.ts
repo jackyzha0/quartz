@@ -29,7 +29,9 @@ export class Description extends QuartzTransformerPlugin {
       () => {
         return async (tree: HTMLRoot, file) => {
           const frontMatterDescription = file.data.frontmatter?.description
-          const desc = frontMatterDescription ?? toString(tree)
+          const text = toString(tree)
+
+          const desc = frontMatterDescription ?? text
           const sentences = desc.replace(/\s+/g, ' ').split('.')
           let finalDesc = ""
           let sentenceIdx = 0
@@ -40,6 +42,7 @@ export class Description extends QuartzTransformerPlugin {
           }
 
           file.data.description = finalDesc
+          file.data.text = text
         }
       }
     ]
@@ -49,6 +52,7 @@ export class Description extends QuartzTransformerPlugin {
 declare module 'vfile' {
   interface DataMap {
     description: string
+    text: string
   }
 }
 
