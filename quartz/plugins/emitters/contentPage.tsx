@@ -4,17 +4,16 @@ import { EmitCallback, QuartzEmitterPlugin } from "../types"
 import { ProcessedContent } from "../vfile"
 import { Fragment, jsx, jsxs } from 'preact/jsx-runtime'
 import { render } from "preact-render-to-string"
-import { HeadProps } from "../../components/Head"
 import { GlobalConfiguration } from "../../cfg"
-import { HeaderProps } from "../../components/Header"
 import { QuartzComponent } from "../../components/types"
 import { resolveToRoot } from "../../path"
-import { BodyProps } from "../../components/Body"
+import Header from "../../components/Header"
+import { QuartzComponentProps } from "../../components/types"
 
 interface Options {
-  Head: QuartzComponent<HeadProps>
-  Header: QuartzComponent<HeaderProps>
-  Body: QuartzComponent<BodyProps>
+  head: QuartzComponent
+  header: QuartzComponent[],
+  body: QuartzComponent
 }
 
 export class ContentPage extends QuartzEmitterPlugin {
@@ -26,21 +25,21 @@ export class ContentPage extends QuartzEmitterPlugin {
     this.opts = opts
   }
 
-  getQuartzComponents(): QuartzComponent<any>[] {
-    return [...Object.values(this.opts)]
+  getQuartzComponents(): QuartzComponent[] {
+    return [this.opts.head, Header, ...this.opts.header, this.opts.body]
   }
 
   async emit(cfg: GlobalConfiguration, content: ProcessedContent[], resources: StaticResources, emit: EmitCallback): Promise<string[]> {
     const fps: string[] = []
 
-    const { Head, Header, Body } = this.opts
+    const { head: Head, header, body: Body } = this.opts
     for (const [tree, file] of content) {
       // @ts-ignore (preact makes it angry)
       const content = toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: 'html' })
 
       const baseDir = resolveToRoot(file.data.slug!)
       const pageResources: StaticResources = {
-        css: [baseDir + "/index.css", ...resources.css,],
+        css: [baseDir + "/index.css", ...resources.css],
         js: [
           { src: baseDir + "/prescript.js", loadTime: "beforeDOMReady" },
           ...resources.js,
@@ -48,17 +47,23 @@ export class ContentPage extends QuartzEmitterPlugin {
         ]
       }
 
-      const title = file.data.frontmatter?.title
+      const componentData: QuartzComponentProps = {
+        fileData: file.data,
+        externalResources: pageResources,
+        cfg,
+        children: [content]
+      }
+
       const doc = <html>
-        <Head
-          title={title ?? "Untitled"}
-          description={file.data.description ?? "No description provided"}
-          slug={file.data.slug!}
-          externalResources={pageResources} />
+        <Head {...componentData} />
         <body>
           <div id="quartz-root" class="page">
-            <Header title={cfg.siteTitle} slug={file.data.slug!} />
-            <Body title={file.data.slug === "index" ? undefined : title}>{content}</Body>
+            <Header {...componentData} >
+              {header.map(HeaderComponent => <HeaderComponent {...componentData}/>)}
+            </Header>
+            <Body {...componentData}>
+              {content}
+            </Body>
           </div>
         </body>
         {pageResources.js.filter(resource => resource.loadTime === "afterDOMReady").map(resource => <script key={resource.src} {...resource} />)}

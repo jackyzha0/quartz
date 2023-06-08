@@ -1,18 +1,15 @@
 import { resolveToRoot } from "../path"
-import { StaticResources } from "../resources"
+import { QuartzComponentProps } from "./types"
 
-export interface HeadProps {
-  title: string
-  description: string
-  slug: string
-  externalResources: StaticResources
-}
-
-export default function Head({ title, description, slug, externalResources }: HeadProps) {
+export default function Head({ fileData, externalResources }: QuartzComponentProps) {
+  const slug = fileData.slug!
+  const title = fileData.frontmatter?.title ?? "Untitled"
+  const description = fileData.description ?? "No description provided"
   const { css, js } = externalResources
   const baseDir = resolveToRoot(slug)
   const iconPath = baseDir + "/static/icon.png"
   const ogImagePath = baseDir + "/static/og-image.png"
+
   return <head>
     <title>{title}</title>
     <meta charSet="utf-8" />

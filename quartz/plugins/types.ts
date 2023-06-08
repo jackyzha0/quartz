@@ -26,7 +26,7 @@ export type EmitCallback = (data: EmitOptions) => Promise<string>
 export abstract class QuartzEmitterPlugin {
   abstract name: string
   abstract emit(cfg: GlobalConfiguration, content: ProcessedContent[], resources: StaticResources, emitCallback: EmitCallback): Promise<string[]>
-  abstract getQuartzComponents(): QuartzComponent<any>[]
+  abstract getQuartzComponents(): QuartzComponent[]
 }
 
 export interface PluginTypes {
