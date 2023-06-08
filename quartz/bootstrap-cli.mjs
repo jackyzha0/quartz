@@ -75,6 +75,7 @@ yargs(hideBin(process.argv))
                 stdin: {
                   contents: text,
                   loader: 'ts',
+                  resolveDir: '.',
                   sourcefile: path.relative(path.resolve('.'), args.path),
                 },
                 write: false,

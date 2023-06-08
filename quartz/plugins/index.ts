@@ -4,6 +4,7 @@ import { StaticResources } from '../resources'
 import { googleFontHref, joinStyles } from '../theme'
 import { EmitCallback, PluginTypes } from './types'
 import styles from '../styles/base.scss'
+import spaRouterScript from '../components/scripts/spa.inline'
 
 export type ComponentResources = {
   css: string[],
@@ -29,6 +30,10 @@ export function emitComponentResources(cfg: GlobalConfiguration, resources: Stat
     css: [],
     beforeDOMLoaded: [],
     afterDOMLoaded: []
+  }
+
+  if (cfg.enableSPA) {
+    componentResources.afterDOMLoaded.push(spaRouterScript)
   }
 
   for (const component of allComponents) {
