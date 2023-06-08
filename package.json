@@ -30,6 +30,7 @@
     "chalk": "^4.1.2",
     "cli-spinner": "^0.2.10",
     "esbuild-sass-plugin": "^2.9.0",
+    "flamethrower-router": "^0.0.0-meme.12",
     "github-slugger": "^2.0.0",
     "globby": "^13.1.4",
     "gray-matter": "^4.0.3",
