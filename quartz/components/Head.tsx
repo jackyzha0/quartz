@@ -9,7 +9,7 @@ export default function Head({ fileData, externalResources }: QuartzComponentPro
   const baseDir = resolveToRoot(slug)
   const iconPath = baseDir + "/static/icon.png"
   const ogImagePath = baseDir + "/static/og-image.png"
-
+  
   return <head>
     <title>{title}</title>
     <meta charSet="utf-8" />
@@ -24,7 +24,7 @@ export default function Head({ fileData, externalResources }: QuartzComponentPro
     <meta name="generator" content="Quartz" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    {css.map(href => <link key={href} href={href} rel="stylesheet" type="text/css" />)}
-    {js.filter(resource => resource.loadTime === "beforeDOMReady").map(resource => <script key={resource.src} {...resource} />)}
+    {css.map(href => <link key={href} href={href} rel="stylesheet" type="text/css" spa-preserve />)}
+    {js.filter(resource => resource.loadTime === "beforeDOMReady").map(resource => <script key={resource.src} {...resource} spa-preserve />)}
   </head>
 }

@@ -71,6 +71,10 @@ yargs(hideBin(process.argv))
           setup(build) {
             build.onLoad({ filter: /\.inline\.(ts|js)$/ }, async (args) => {
               let text = await promises.readFile(args.path, 'utf8')
+              // remove default exports that we manually inserted
+              text = text.replace('export default', '')
+              text = text.replace('export', '')
+
               const transpiled = await esbuild.build({
                 stdin: {
                   contents: text,
