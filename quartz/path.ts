@@ -1,7 +1,7 @@
 import path from 'path'
 import SlugAnchor from 'github-slugger'
 
-const slugAnchor = new SlugAnchor()
+export const slugAnchor = new SlugAnchor()
 
 function slugSegment(s: string): string {
   return s.replace(/\s/g, '-')

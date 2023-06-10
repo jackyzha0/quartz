@@ -93,7 +93,7 @@ export class ObsidianFlavoredMarkdown extends QuartzTransformerPlugin {
   name = "ObsidianFlavoredMarkdown"
   opts: Options
 
-  constructor(opts?: Options) {
+  constructor(opts?: Partial<Options>) {
     super()
     this.opts = { ...defaultOptions, ...opts }
   }

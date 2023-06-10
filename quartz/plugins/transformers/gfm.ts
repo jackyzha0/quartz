@@ -19,7 +19,7 @@ export class GitHubFlavoredMarkdown extends QuartzTransformerPlugin {
   name = "GitHubFlavoredMarkdown"
   opts: Options
 
-  constructor(opts?: Options) {
+  constructor(opts?: Partial<Options>) {
     super()
     this.opts = { ...defaultOptions, ...opts }
   }

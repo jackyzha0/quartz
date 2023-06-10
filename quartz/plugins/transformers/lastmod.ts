@@ -16,7 +16,7 @@ export class CreatedModifiedDate extends QuartzTransformerPlugin {
   name = "CreatedModifiedDate"
   opts: Options
 
-  constructor(opts?: Options) {
+  constructor(opts?: Partial<Options>) {
     super()
     this.opts = {
       ...defaultOptions,
