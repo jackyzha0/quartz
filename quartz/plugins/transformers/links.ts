@@ -21,7 +21,7 @@ export class ResolveLinks extends QuartzTransformerPlugin {
   name = "LinkProcessing"
   opts: Options
 
-  constructor(opts?: Options) {
+  constructor(opts?: Partial<Options>) {
     super()
     this.opts = { ...defaultOptions, ...opts }
   }

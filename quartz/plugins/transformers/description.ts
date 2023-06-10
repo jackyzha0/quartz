@@ -15,7 +15,7 @@ export class Description extends QuartzTransformerPlugin {
   name = "Description"
   opts: Options
 
-  constructor(opts?: Options) {
+  constructor(opts?: Partial<Options>) {
     super()
     this.opts = { ...defaultOptions, ...opts }
   }

@@ -1,4 +1,3 @@
-import style from './styles/header.scss'
 import { QuartzComponentProps } from "./types"
 
 export default function Header({ children }: QuartzComponentProps) {
@@ -7,4 +6,18 @@ export default function Header({ children }: QuartzComponentProps) {
   </header>
 }
 
-Header.css = style
+Header.css = `
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 1em 0 2em 0;
+  & > h1 {
+  }
+}
+
+header > h1 {
+  margin: 0;
+  flex: auto;
+}
+`

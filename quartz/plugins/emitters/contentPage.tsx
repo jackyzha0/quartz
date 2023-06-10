@@ -1,19 +1,18 @@
-import { toJsxRuntime } from "hast-util-to-jsx-runtime"
 import { StaticResources } from "../../resources"
 import { EmitCallback, QuartzEmitterPlugin } from "../types"
 import { ProcessedContent } from "../vfile"
-import { Fragment, jsx, jsxs } from 'preact/jsx-runtime'
 import { render } from "preact-render-to-string"
 import { GlobalConfiguration } from "../../cfg"
 import { QuartzComponent } from "../../components/types"
 import { resolveToRoot } from "../../path"
 import Header from "../../components/Header"
 import { QuartzComponentProps } from "../../components/types"
+import Body from "../../components/Body"
 
 interface Options {
   head: QuartzComponent
   header: QuartzComponent[],
-  body: QuartzComponent
+  body: QuartzComponent[]
 }
 
 export class ContentPage extends QuartzEmitterPlugin {
@@ -26,17 +25,14 @@ export class ContentPage extends QuartzEmitterPlugin {
   }
 
   getQuartzComponents(): QuartzComponent[] {
-    return [this.opts.head, Header, ...this.opts.header, this.opts.body]
+    return [this.opts.head, Header, ...this.opts.header, ...this.opts.body]
   }
 
   async emit(cfg: GlobalConfiguration, content: ProcessedContent[], resources: StaticResources, emit: EmitCallback): Promise<string[]> {
     const fps: string[] = []
 
-    const { head: Head, header, body: Body } = this.opts
+    const { head: Head, header, body } = this.opts
     for (const [tree, file] of content) {
-      // @ts-ignore (preact makes it angry)
-      const content = toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: 'html' })
-
       const baseDir = resolveToRoot(file.data.slug!)
       const pageResources: StaticResources = {
         css: [baseDir + "/index.css", ...resources.css],
@@ -51,7 +47,8 @@ export class ContentPage extends QuartzEmitterPlugin {
         fileData: file.data,
         externalResources: pageResources,
         cfg,
-        children: [content]
+        children: [],
+        tree
       }
 
       const doc = <html>
@@ -59,10 +56,10 @@ export class ContentPage extends QuartzEmitterPlugin {
         <body>
           <div id="quartz-root" class="page">
             <Header {...componentData} >
-              {header.map(HeaderComponent => <HeaderComponent {...componentData}/>)}
+              {header.map(HeaderComponent => <HeaderComponent {...componentData} position="header" />)}
             </Header>
             <Body {...componentData}>
-              {content}
+              {body.map(BodyComponent => <BodyComponent {...componentData } position="body" />)}
             </Body>
           </div>
         </body>

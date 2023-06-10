@@ -1,21 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
-import Body from "./quartz/components/Body"
-import Darkmode from "./quartz/components/Darkmode"
-import Head from "./quartz/components/Head"
-import PageTitle from "./quartz/components/PageTitle"
-import Spacer from "./quartz/components/Spacer"
-import {
-  ContentPage,
-  CreatedModifiedDate,
-  Description,
-  FrontMatter,
-  GitHubFlavoredMarkdown,
-  Katex,
-  ObsidianFlavoredMarkdown,
-  RemoveDrafts,
-  ResolveLinks,
-  SyntaxHighlighting
-} from "./quartz/plugins"
+import * as Component from "./quartz/components"
+import * as Plugin from "./quartz/plugins"
 
 const config: QuartzConfig = {
   configuration: {
@@ -54,25 +39,26 @@ const config: QuartzConfig = {
   },
   plugins: {
     transformers: [
-      new FrontMatter(),
-      new Katex(),
-      new Description(),
-      new CreatedModifiedDate({
+      new Plugin.FrontMatter(),
+      new Plugin.Description(),
+      new Plugin.TableOfContents({ showByDefault: true }),
+      new Plugin.CreatedModifiedDate({
         priority: ['frontmatter', 'filesystem'] // you can add 'git' here for last modified from Git but this makes the build slower
       }),
-      new SyntaxHighlighting(),
-      new GitHubFlavoredMarkdown(),
-      new ObsidianFlavoredMarkdown(),
-      new ResolveLinks(),
+      new Plugin.GitHubFlavoredMarkdown(),
+      new Plugin.ObsidianFlavoredMarkdown(),
+      new Plugin.ResolveLinks(),
+      new Plugin.SyntaxHighlighting(),
+      new Plugin.Katex(),
     ],
     filters: [
-      new RemoveDrafts()
+      new Plugin.RemoveDrafts()
     ],
     emitters: [
-      new ContentPage({
-        head: Head,
-        header: [PageTitle, Spacer, Darkmode],
-        body: Body
+      new Plugin.ContentPage({
+        head: Component.Head,
+        header: [Component.PageTitle, Component.Spacer, Component.Darkmode],
+        body: [Component.ArticleTitle, Component.ReadingTime, Component.TableOfContents, Component.Content]
       })
     ]
   },
