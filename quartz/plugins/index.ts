@@ -4,6 +4,7 @@ import { StaticResources } from '../resources'
 import { googleFontHref, joinStyles } from '../theme'
 import { EmitCallback, PluginTypes } from './types'
 import styles from '../styles/base.scss'
+// @ts-ignore
 import spaRouterScript from '../components/scripts/spa.inline'
 
 export type ComponentResources = {
