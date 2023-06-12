@@ -1,7 +1,7 @@
 import { resolveToRoot } from "../path"
-import { QuartzComponentProps } from "./types"
+import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
-export default function Head({ fileData, externalResources }: QuartzComponentProps) {
+function Head({ fileData, externalResources }: QuartzComponentProps) {
   const slug = fileData.slug!
   const title = fileData.frontmatter?.title ?? "Untitled"
   const description = fileData.description ?? "No description provided"
@@ -9,7 +9,7 @@ export default function Head({ fileData, externalResources }: QuartzComponentPro
   const baseDir = resolveToRoot(slug)
   const iconPath = baseDir + "/static/icon.png"
   const ogImagePath = baseDir + "/static/og-image.png"
-  
+
   return <head>
     <title>{title}</title>
     <meta charSet="utf-8" />
@@ -28,3 +28,5 @@ export default function Head({ fileData, externalResources }: QuartzComponentPro
     {js.filter(resource => resource.loadTime === "beforeDOMReady").map(resource => <script key={resource.src} {...resource} spa-preserve />)}
   </head>
 }
+
+export default (() => Head) satisfies QuartzComponentConstructor

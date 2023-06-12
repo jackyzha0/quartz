@@ -1,8 +1,8 @@
 import clipboardScript from './scripts/clipboard.inline'
 import clipboardStyle from './styles/clipboard.scss'
-import { QuartzComponentProps } from "./types"
+import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
-export default function Body({ children }: QuartzComponentProps) {
+function Body({ children }: QuartzComponentProps) {
   return <article>
     {children}
   </article>
@@ -10,3 +10,6 @@ export default function Body({ children }: QuartzComponentProps) {
 
 Body.afterDOMLoaded = clipboardScript
 Body.css = clipboardStyle
+
+export default (() => Body) satisfies QuartzComponentConstructor
+

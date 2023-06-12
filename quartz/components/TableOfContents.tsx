@@ -1,7 +1,7 @@
-import { QuartzComponentProps } from "./types"
+import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import style from "./styles/toc.scss"
 
-export default function TableOfContents({ fileData }: QuartzComponentProps) {
+function TableOfContents({ fileData }: QuartzComponentProps) {
   if (!fileData.toc) {
     return null
   }
@@ -17,3 +17,5 @@ export default function TableOfContents({ fileData }: QuartzComponentProps) {
 }
 
 TableOfContents.css = style
+
+export default (() => TableOfContents) satisfies QuartzComponentConstructor

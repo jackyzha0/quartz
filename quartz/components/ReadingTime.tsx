@@ -1,7 +1,7 @@
-import { QuartzComponentProps } from "./types"
+import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import readingTime from "reading-time"
 
-export default function ReadingTime({ fileData }: QuartzComponentProps) {
+function ReadingTime({ fileData }: QuartzComponentProps) {
   const text = fileData.text
   const isHomePage = fileData.slug === "index"
   if (text && !isHomePage) {
@@ -18,3 +18,5 @@ ReadingTime.css = `
   opacity: 0.5;
 }
 `
+
+export default (() => ReadingTime) satisfies QuartzComponentConstructor

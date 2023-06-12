@@ -1,6 +1,6 @@
-import { QuartzComponentProps } from "./types"
+import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
-export default function ArticleTitle({ fileData }: QuartzComponentProps) {
+function ArticleTitle({ fileData }: QuartzComponentProps) {
   const title = fileData.frontmatter?.title
   const displayTitle = fileData.slug === "index" ? undefined : title
   if (displayTitle) {
@@ -9,3 +9,5 @@ export default function ArticleTitle({ fileData }: QuartzComponentProps) {
     return null
   }
 }
+
+export default (() => ArticleTitle) satisfies QuartzComponentConstructor
