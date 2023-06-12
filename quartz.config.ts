@@ -39,23 +39,23 @@ const config: QuartzConfig = {
   },
   plugins: {
     transformers: [
-      new Plugin.FrontMatter(),
-      new Plugin.Description(),
-      new Plugin.TableOfContents({ showByDefault: true }),
-      new Plugin.CreatedModifiedDate({
+      Plugin.FrontMatter(),
+      Plugin.Description(),
+      Plugin.TableOfContents({ showByDefault: true }),
+      Plugin.CreatedModifiedDate({
         priority: ['frontmatter', 'filesystem'] // you can add 'git' here for last modified from Git but this makes the build slower
       }),
-      new Plugin.GitHubFlavoredMarkdown(),
-      new Plugin.ObsidianFlavoredMarkdown(),
-      new Plugin.ResolveLinks(),
-      new Plugin.SyntaxHighlighting(),
-      new Plugin.Katex(),
+      Plugin.GitHubFlavoredMarkdown(),
+      Plugin.ObsidianFlavoredMarkdown(),
+      Plugin.ResolveLinks(),
+      Plugin.SyntaxHighlighting(),
+      Plugin.Katex(),
     ],
     filters: [
-      new Plugin.RemoveDrafts()
+      Plugin.RemoveDrafts()
     ],
     emitters: [
-      new Plugin.ContentPage({
+      Plugin.ContentPage({
         head: Component.Head,
         header: [Component.PageTitle, Component.Spacer, Component.Darkmode],
         body: [Component.ArticleTitle, Component.ReadingTime, Component.TableOfContents, Component.Content]
