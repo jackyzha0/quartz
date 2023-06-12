@@ -56,9 +56,9 @@ const config: QuartzConfig = {
     ],
     emitters: [
       Plugin.ContentPage({
-        head: Component.Head,
-        header: [Component.PageTitle, Component.Spacer, Component.Darkmode],
-        body: [Component.ArticleTitle, Component.ReadingTime, Component.TableOfContents, Component.Content]
+        head: Component.Head(),
+        header: [Component.PageTitle(), Component.Spacer(), Component.Darkmode()],
+        body: [Component.ArticleTitle(), Component.ReadingTime(), Component.TableOfContents(), Component.Content()]
       })
     ]
   },

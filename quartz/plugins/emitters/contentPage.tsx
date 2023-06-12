@@ -5,9 +5,9 @@ import { render } from "preact-render-to-string"
 import { GlobalConfiguration } from "../../cfg"
 import { QuartzComponent } from "../../components/types"
 import { resolveToRoot } from "../../path"
-import Header from "../../components/Header"
+import HeaderConstructor from "../../components/Header"
 import { QuartzComponentProps } from "../../components/types"
-import Body from "../../components/Body"
+import BodyConstructor from "../../components/Body"
 
 interface Options {
   head: QuartzComponent
@@ -20,6 +20,10 @@ export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
     throw new Error("ContentPage must be initialized with options specifiying the components to use")
   }
 
+  const { head: Head, header, body } = opts
+  const Header = HeaderConstructor()
+  const Body = BodyConstructor()
+
   return {
     name: "ContentPage",
     getQuartzComponents() {
@@ -28,7 +32,6 @@ export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
     async emit(cfg: GlobalConfiguration, content: ProcessedContent[], resources: StaticResources, emit: EmitCallback): Promise<string[]> {
       const fps: string[] = []
 
-      const { head: Head, header, body } = opts
       for (const [tree, file] of content) {
         const baseDir = resolveToRoot(file.data.slug!)
         const pageResources: StaticResources = {

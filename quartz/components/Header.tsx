@@ -1,6 +1,6 @@
-import { QuartzComponentProps } from "./types"
+import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
-export default function Header({ children }: QuartzComponentProps) {
+function Header({ children }: QuartzComponentProps) {
   return <header>
     {children}
   </header>
@@ -21,3 +21,5 @@ header > h1 {
   flex: auto;
 }
 `
+
+export default (() => Header) satisfies QuartzComponentConstructor
