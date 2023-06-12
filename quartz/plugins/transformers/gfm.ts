@@ -15,27 +15,24 @@ const defaultOptions: Options = {
   linkHeadings: true
 }
 
-export class GitHubFlavoredMarkdown extends QuartzTransformerPlugin {
-  name = "GitHubFlavoredMarkdown"
-  opts: Options
-
-  constructor(opts?: Partial<Options>) {
-    super()
-    this.opts = { ...defaultOptions, ...opts }
-  }
-
-  markdownPlugins(): PluggableList {
-    return this.opts.enableSmartyPants ? [remarkGfm] : [remarkGfm, smartypants]
-  }
-
-  htmlPlugins(): PluggableList {
-    return this.opts.linkHeadings
-      ? [rehypeSlug, [rehypeAutolinkHeadings, {
-        behavior: 'append', content: {
-          type: 'text',
-          value: ' §'
-        }
-      }]]
-      : []
+export const GitHubFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
+  const opts = { ...defaultOptions, ...userOpts }
+  return {
+    name: "GitHubFlavoredMarkdown",
+    markdownPlugins() {
+      return opts.enableSmartyPants ? [remarkGfm] : [remarkGfm, smartypants]
+    },
+    htmlPlugins() {
+      if (opts.linkHeadings) {
+        return [rehypeSlug, [rehypeAutolinkHeadings, {
+          behavior: 'append', content: {
+            type: 'text',
+            value: ' §'
+          }
+        }]]
+      } else {
+        return []
+      }
+    }
   }
 }

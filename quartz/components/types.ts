@@ -10,7 +10,6 @@ export type QuartzComponentProps = {
   cfg: GlobalConfiguration
   children: QuartzComponent[] | JSX.Element[]
   tree: Node<QuartzPluginData>
-  position?: 'sidebar' | 'header' | 'body'
 }
 
 export type QuartzComponent = ComponentType<QuartzComponentProps> & {
@@ -18,3 +17,5 @@ export type QuartzComponent = ComponentType<QuartzComponentProps> & {
   beforeDOMLoaded?: string,
   afterDOMLoaded?: string,
 }
+
+export type QuartzComponentConstructor<Options extends object> = (opts: Options) => QuartzComponent

@@ -89,174 +89,168 @@ const capitalize = (s: string): string => {
   return s.substring(0, 1).toUpperCase() + s.substring(1);
 }
 
-export class ObsidianFlavoredMarkdown extends QuartzTransformerPlugin {
-  name = "ObsidianFlavoredMarkdown"
-  opts: Options
+export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
+  const opts = { ...defaultOptions, ...userOpts }
+  return {
+    name: "ObsidianFlavoredMarkdown",
+    markdownPlugins() {
+      const plugins: PluggableList = []
+      if (opts.wikilinks) {
+        plugins.push(() => {
+          // Match wikilinks 
+          // !?               -> optional embedding
+          // \[\[             -> open brace
+          // ([^\[\]\|\#]+)   -> one or more non-special characters ([,],|, or #) (name)
+          // (#[^\[\]\|\#]+)? -> # then one or more non-special characters (heading link)
+          // (|[^\[\]\|\#]+)? -> | then one or more non-special characters (alias)
+          const backlinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)(#[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/, "g")
+          return (tree: Root, _file) => {
+            findAndReplace(tree, backlinkRegex, (value: string, ...capture: string[]) => {
+              const [fp, rawHeader, rawAlias] = capture
+              const anchor = rawHeader?.trim() ?? ""
+              const alias = rawAlias?.slice(1).trim()
 
-  constructor(opts?: Partial<Options>) {
-    super()
-    this.opts = { ...defaultOptions, ...opts }
-  }
-
-  markdownPlugins(): PluggableList {
-    const plugins: PluggableList = []
-
-    if (this.opts.wikilinks) {
-      plugins.push(() => {
-        // Match wikilinks 
-        // !?               -> optional embedding
-        // \[\[             -> open brace
-        // ([^\[\]\|\#]+)   -> one or more non-special characters ([,],|, or #) (name)
-        // (#[^\[\]\|\#]+)? -> # then one or more non-special characters (heading link)
-        // (|[^\[\]\|\#]+)? -> | then one or more non-special characters (alias)
-        const backlinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)(#[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/, "g")
-        return (tree: Root, _file) => {
-          findAndReplace(tree, backlinkRegex, (value: string, ...capture: string[]) => {
-            const [fp, rawHeader, rawAlias] = capture
-            const anchor = rawHeader?.trim() ?? ""
-            const alias = rawAlias?.slice(1).trim()
-
-            // embed cases
-            if (value.startsWith("!")) {
-              const ext = path.extname(fp).toLowerCase()
-              const url = slugify(fp.trim()) + ext
-              if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg"].includes(ext)) {
-                const dims = alias ?? ""
-                let [width, height] = dims.split("x", 2)
-                width ||= "auto"
-                height ||= "auto"
-                return {
-                  type: 'image',
-                  url,
-                  data: {
-                    hProperties: {
-                      width, height
+              // embed cases
+              if (value.startsWith("!")) {
+                const ext = path.extname(fp).toLowerCase()
+                const url = slugify(fp.trim()) + ext
+                if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg"].includes(ext)) {
+                  const dims = alias ?? ""
+                  let [width, height] = dims.split("x", 2)
+                  width ||= "auto"
+                  height ||= "auto"
+                  return {
+                    type: 'image',
+                    url,
+                    data: {
+                      hProperties: {
+                        width, height
+                      }
                     }
                   }
+                } else if ([".mp4", ".webm", ".ogv", ".mov", ".mkv"].includes(ext)) {
+                  return {
+                    type: 'html',
+                    value: `<video src="${url}" controls></video>`
+                  }
+                } else if ([".mp3", ".webm", ".wav", ".m4a", ".ogg", ".3gp", ".flac"].includes(ext)) {
+                  return {
+                    type: 'html',
+                    value: `<audio src="${url}" controls></audio>`
+                  }
+                } else if ([".pdf"].includes(ext)) {
+                  return {
+                    type: 'html',
+                    value: `<iframe src="${url}"></iframe>`
+                  }
                 }
-              } else if ([".mp4", ".webm", ".ogv", ".mov", ".mkv"].includes(ext)) {
-                return {
-                  type: 'html',
-                  value: `<video src="${url}" controls></video>`
-                }
-              } else if ([".mp3", ".webm", ".wav", ".m4a", ".ogg", ".3gp", ".flac"].includes(ext)) {
-                return {
-                  type: 'html',
-                  value: `<audio src="${url}" controls></audio>`
-                }
-              } else if ([".pdf"].includes(ext)) {
-                return {
-                  type: 'html',
-                  value: `<iframe src="${url}"></iframe>`
-                }
+                // otherwise, fall through to regular link
               }
-              // otherwise, fall through to regular link
-            }
 
-            // internal link
-            const url = slugify(fp.trim() + anchor)
-            return {
-              type: 'link',
-              url,
-              children: [{
-                type: 'text',
-                value: alias ?? fp
-              }]
-            }
-          })
+              // internal link
+              const url = slugify(fp.trim() + anchor)
+              return {
+                type: 'link',
+                url,
+                children: [{
+                  type: 'text',
+                  value: alias ?? fp
+                }]
+              }
+            })
+          }
         }
+        )
       }
-      )
-    }
 
-    if (this.opts.highlight) {
-      plugins.push(() => {
-        // Match highlights 
-        const highlightRegex = new RegExp(/==(.+)==/, "g")
-        return (tree: Root, _file) => {
-          findAndReplace(tree, highlightRegex, (_value: string, ...capture: string[]) => {
-            const [inner] = capture
-            return {
-              type: 'html',
-              value: `<span class="text-highlight">${inner}</span>`
-            }
-          })
-        }
-      })
-    }
+      if (opts.highlight) {
+        plugins.push(() => {
+          // Match highlights 
+          const highlightRegex = new RegExp(/==(.+)==/, "g")
+          return (tree: Root, _file) => {
+            findAndReplace(tree, highlightRegex, (_value: string, ...capture: string[]) => {
+              const [inner] = capture
+              return {
+                type: 'html',
+                value: `<span class="text-highlight">${inner}</span>`
+              }
+            })
+          }
+        })
+      }
 
-    if (this.opts.callouts) {
-      plugins.push(() => {
-        // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
-        const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
-        return (tree: Root, _file) => {
-          visit(tree, "blockquote", (node) => {
-            if (node.children.length === 0) {
-              return
-            }
+      if (opts.callouts) {
+        plugins.push(() => {
+          // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
+          const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
+          return (tree: Root, _file) => {
+            visit(tree, "blockquote", (node) => {
+              if (node.children.length === 0) {
+                return
+              }
 
-            // find first line
-            const firstChild = node.children[0]
-            if (firstChild.type !== "paragraph" || firstChild.children[0]?.type !== "text") {
-              return
-            }
+              // find first line
+              const firstChild = node.children[0]
+              if (firstChild.type !== "paragraph" || firstChild.children[0]?.type !== "text") {
+                return
+              }
 
-            const text = firstChild.children[0].value
-            const [firstLine, ...remainingLines] = text.split("\n")
-            const remainingText = remainingLines.join("\n")
+              const text = firstChild.children[0].value
+              const [firstLine, ...remainingLines] = text.split("\n")
+              const remainingText = remainingLines.join("\n")
 
-            const match = firstLine.match(calloutRegex)
-            if (match && match.input) {
-              const [calloutDirective, typeString, collapseChar] = match
-              const calloutType = typeString.toLowerCase() as keyof typeof callouts
-              const collapse = collapseChar === "+" || collapseChar === "-"
-              const defaultState = collapseChar === "-" ? "collapsed" : "expanded"
-              const title = match.input.slice(calloutDirective.length).trim() || capitalize(calloutType)
+              const match = firstLine.match(calloutRegex)
+              if (match && match.input) {
+                const [calloutDirective, typeString, collapseChar] = match
+                const calloutType = typeString.toLowerCase() as keyof typeof callouts
+                const collapse = collapseChar === "+" || collapseChar === "-"
+                const defaultState = collapseChar === "-" ? "collapsed" : "expanded"
+                const title = match.input.slice(calloutDirective.length).trim() || capitalize(calloutType)
 
-              const titleNode: HTML = {
-                type: "html",
-                value: `<div 
+                const titleNode: HTML = {
+                  type: "html",
+                  value: `<div 
                   class="callout-title"
                 >
                   <div class="callout-icon">${callouts[canonicalizeCallout(calloutType)]}</div>
                   <div class="callout-title-inner">${title}</div>
                 </div>`
-              }
+                }
 
-              const blockquoteContent: (BlockContent | DefinitionContent)[] = [titleNode]
-              if (remainingText.length > 0) {
-                blockquoteContent.push({
-                  type: 'paragraph',
-                  children: [{
-                    type: 'text',
-                    value: remainingText,
-                  }]
+                const blockquoteContent: (BlockContent | DefinitionContent)[] = [titleNode]
+                if (remainingText.length > 0) {
+                  blockquoteContent.push({
+                    type: 'paragraph',
+                    children: [{
+                      type: 'text',
+                      value: remainingText,
+                    }]
 
-                })
-              }
+                  })
+                }
 
-              // replace first line of blockquote with title and rest of the paragraph text
-              node.children.splice(0, 1, ...blockquoteContent)
+                // replace first line of blockquote with title and rest of the paragraph text
+                node.children.splice(0, 1, ...blockquoteContent)
 
-              // add properties to base blockquote
-              node.data = {
-                hProperties: {
-                  ...(node.data?.hProperties ?? {}),
-                  className: `callout ${collapse ? "is-collapsible" : ""} ${defaultState === "collapsed" ? "is-collapsed" : ""}`,
-                  "data-callout": calloutType,
-                  "data-callout-fold": collapse,
+                // add properties to base blockquote
+                node.data = {
+                  hProperties: {
+                    ...(node.data?.hProperties ?? {}),
+                    className: `callout ${collapse ? "is-collapsible" : ""} ${defaultState === "collapsed" ? "is-collapsed" : ""}`,
+                    "data-callout": calloutType,
+                    "data-callout-fold": collapse,
+                  }
                 }
               }
-            }
-          })
-        }
-      })
+            })
+          }
+        })
+      }
+      return plugins
+    },
+
+    htmlPlugins() {
+      return [rehypeRaw]
     }
-
-    return plugins
-  }
-
-  htmlPlugins(): PluggableList {
-    return [rehypeRaw]
   }
 }

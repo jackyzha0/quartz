@@ -11,12 +11,12 @@ import { slugify } from '../path'
 import path from 'path'
 import os from 'os'
 import workerpool, { Promise as WorkerPromise } from 'workerpool'
-import { QuartzTransformerPlugin } from '../plugins/types'
+import { QuartzTransformerPluginInstance } from '../plugins/types'
 import { QuartzLogger } from '../log'
 import chalk from 'chalk'
 
 export type QuartzProcessor = Processor<MDRoot, HTMLRoot, void>
-export function createProcessor(transformers: QuartzTransformerPlugin[]): QuartzProcessor {
+export function createProcessor(transformers: QuartzTransformerPluginInstance[]): QuartzProcessor {
   // base Markdown -> MD AST
   let processor = unified().use(remarkParse)
 
@@ -101,7 +101,7 @@ export function createFileParser(baseDir: string, fps: string[], verbose: boolea
   }
 }
 
-export async function parseMarkdown(transformers: QuartzTransformerPlugin[], baseDir: string, fps: string[], verbose: boolean): Promise<ProcessedContent[]> {
+export async function parseMarkdown(transformers: QuartzTransformerPluginInstance[], baseDir: string, fps: string[], verbose: boolean): Promise<ProcessedContent[]> {
   const perf = new PerfTimer()
   const log = new QuartzLogger(verbose)
 

@@ -1,4 +1,3 @@
-import { PluggableList } from "unified"
 import matter from "gray-matter"
 import remarkFrontmatter from 'remark-frontmatter'
 import { QuartzTransformerPlugin } from "../types"
@@ -13,35 +12,30 @@ const defaultOptions: Options = {
   delims: '---'
 }
 
-export class FrontMatter extends QuartzTransformerPlugin {
-  name = "FrontMatter"
-  opts: Options
+export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
+  const opts = { ...defaultOptions, ...userOpts }
+  return {
+    name: "FrontMatter",
+    markdownPlugins() {
+      return [
+        remarkFrontmatter,
+        () => {
+          return (_, file) => {
+            const { data } = matter(file.value, opts)
 
-  constructor(opts?: Partial<Options>) {
-    super()
-    this.opts = { ...defaultOptions, ...opts }
-  }
-
-  markdownPlugins(): PluggableList {
-    return [
-      remarkFrontmatter,
-      () => {
-        return (_, file) => {
-          const { data } = matter(file.value, this.opts)
-
-          // fill in frontmatter
-          file.data.frontmatter = {
-            title: file.stem ?? "Untitled",
-            tags: [],
-            ...data
+            // fill in frontmatter
+            file.data.frontmatter = {
+              title: file.stem ?? "Untitled",
+              tags: [],
+              ...data
+            }
           }
         }
-      }
-    ]
-  }
-
-  htmlPlugins(): PluggableList {
-    return []
+      ]
+    },
+    htmlPlugins() {
+      return []
+    }
   }
 }
 

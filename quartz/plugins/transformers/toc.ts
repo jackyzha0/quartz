@@ -1,4 +1,3 @@
-import { PluggableList } from "unified"
 import { QuartzTransformerPlugin } from "../types"
 import { Root } from "mdast"
 import { visit } from "unist-util-visit"
@@ -23,44 +22,39 @@ interface TocEntry {
   slug: string
 }
 
-export class TableOfContents extends QuartzTransformerPlugin {
-  name = "TableOfContents"
-  opts: Options
+export const TableOfContents: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
+  const opts = { ...defaultOptions, ...userOpts }
+  return {
+    name: "TableOfContents",
+    markdownPlugins() {
+      return [() => {
+        return async (tree: Root, file) => {
+          const display = file.data.frontmatter?.enableToc ?? opts.showByDefault
+          if (display) {
+            const toc: TocEntry[] = []
+            let highestDepth: number = opts.maxDepth
+            visit(tree, 'heading', (node) => {
+              if (node.depth <= opts.maxDepth) {
+                const text = toString(node)
+                highestDepth = Math.min(highestDepth, node.depth)
+                toc.push({
+                  depth: node.depth,
+                  text,
+                  slug: slugAnchor.slug(text)
+                })
+              }
+            })
 
-  constructor(opts?: Partial<Options>) {
-    super()
-    this.opts = { ...defaultOptions, ...opts }
-  }
-
-  markdownPlugins(): PluggableList {
-    return [() => {
-      return async (tree: Root, file) => {
-        const display = file.data.frontmatter?.enableToc ?? this.opts.showByDefault
-        if (display) {
-          const toc: TocEntry[] = []
-          let highestDepth: number = this.opts.maxDepth
-          visit(tree, 'heading', (node) => {
-            if (node.depth <= this.opts.maxDepth) {
-              const text = toString(node)
-              highestDepth = Math.min(highestDepth, node.depth)
-              toc.push({
-                depth: node.depth,
-                text,
-                slug: slugAnchor.slug(text)
-              })
+            if (toc.length > opts.minEntries) {
+              file.data.toc = toc.map(entry => ({ ...entry, depth: entry.depth - highestDepth }))
             }
-          })
-
-          if (toc.length > this.opts.minEntries) {
-            file.data.toc = toc.map(entry => ({ ...entry, depth: entry.depth - highestDepth }))
           }
         }
-      }
-    }]
-  }
-
-  htmlPlugins(): PluggableList {
-    return []
+      }]
+    },
+    htmlPlugins() {
+      return []
+    }
   }
 }
 

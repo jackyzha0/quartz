@@ -1,24 +1,20 @@
-import { PluggableList } from "unified"
 import remarkMath from "remark-math"
 import rehypeKatex from 'rehype-katex'
-import { StaticResources } from "../../resources"
 import { QuartzTransformerPlugin } from "../types"
 
-export class Katex extends QuartzTransformerPlugin {
-  name = "Katex"
-  markdownPlugins(): PluggableList {
+export const Katex: QuartzTransformerPlugin = () => ({
+  name: "Katex",
+  markdownPlugins() {
     return [remarkMath]
-  }
-
-  htmlPlugins(): PluggableList {
+  },
+  htmlPlugins() {
     return [
       [rehypeKatex, {
         output: 'html',
       }]
     ]
-  }
-
-  externalResources: Partial<StaticResources> = {
+  },
+  externalResources: {
     css: [
       // base css
       "https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css",
@@ -31,4 +27,4 @@ export class Katex extends QuartzTransformerPlugin {
       }
     ]
   }
-}
+})

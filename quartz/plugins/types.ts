@@ -4,16 +4,32 @@ import { ProcessedContent } from "./vfile"
 import { GlobalConfiguration } from "../cfg"
 import { QuartzComponent } from "../components/types"
 
-export abstract class QuartzTransformerPlugin {
-  abstract name: string
-  abstract markdownPlugins(): PluggableList
-  abstract htmlPlugins(): PluggableList
+export interface PluginTypes {
+  transformers: QuartzTransformerPluginInstance[],
+  filters: QuartzFilterPluginInstance[],
+  emitters: QuartzEmitterPluginInstance[],
+}
+
+type OptionType = object | undefined
+export type QuartzTransformerPlugin<Options extends OptionType = undefined> = (opts?: Options) => QuartzTransformerPluginInstance
+export type QuartzTransformerPluginInstance = {
+  name: string
+  markdownPlugins(): PluggableList
+  htmlPlugins(): PluggableList
   externalResources?: Partial<StaticResources>
 }
 
-export abstract class QuartzFilterPlugin {
-  abstract name: string
-  abstract shouldPublish(content: ProcessedContent): boolean
+export type QuartzFilterPlugin<Options extends OptionType = undefined> = (opts?: Options) => QuartzFilterPluginInstance 
+export type QuartzFilterPluginInstance = {
+  name: string
+  shouldPublish(content: ProcessedContent): boolean
+}
+
+export type QuartzEmitterPlugin<Options extends OptionType = undefined> = (opts?: Options) => QuartzEmitterPluginInstance 
+export type QuartzEmitterPluginInstance = {
+  name: string
+  emit(cfg: GlobalConfiguration, content: ProcessedContent[], resources: StaticResources, emitCallback: EmitCallback): Promise<string[]>
+  getQuartzComponents(): QuartzComponent[]
 }
 
 export interface EmitOptions {
@@ -23,14 +39,3 @@ export interface EmitOptions {
 }
 
 export type EmitCallback = (data: EmitOptions) => Promise<string>
-export abstract class QuartzEmitterPlugin {
-  abstract name: string
-  abstract emit(cfg: GlobalConfiguration, content: ProcessedContent[], resources: StaticResources, emitCallback: EmitCallback): Promise<string[]>
-  abstract getQuartzComponents(): QuartzComponent[]
-}
-
-export interface PluginTypes {
-  transformers: QuartzTransformerPlugin[],
-  filters: QuartzFilterPlugin[],
-  emitters: QuartzEmitterPlugin[],
-}

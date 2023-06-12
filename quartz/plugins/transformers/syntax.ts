@@ -1,15 +1,12 @@
-import { PluggableList } from "unified"
 import { QuartzTransformerPlugin } from "../types"
 import rehypePrettyCode, { Options as CodeOptions } from "rehype-pretty-code"
 
-export class SyntaxHighlighting extends QuartzTransformerPlugin {
-  name = "SyntaxHighlighting"
-
-  markdownPlugins(): PluggableList {
+export const SyntaxHighlighting: QuartzTransformerPlugin = () => ({
+  name: "SyntaxHighlighting",
+  markdownPlugins() {
     return []
-  }
-
-  htmlPlugins(): PluggableList {
+  },
+  htmlPlugins() {
     return [[rehypePrettyCode, {
       theme: 'css-variables',
       onVisitLine(node) {
@@ -25,4 +22,4 @@ export class SyntaxHighlighting extends QuartzTransformerPlugin {
       },
     } satisfies Partial<CodeOptions>]]
   }
-}
+})
