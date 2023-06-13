@@ -1,4 +1,4 @@
-import { StaticResources } from "../../resources"
+import { JSResourceToScriptElement, StaticResources } from "../../resources"
 import { EmitCallback, QuartzEmitterPlugin } from "../types"
 import { ProcessedContent } from "../vfile"
 import { render } from "preact-render-to-string"
@@ -37,9 +37,9 @@ export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
         const pageResources: StaticResources = {
           css: [baseDir + "/index.css", ...resources.css],
           js: [
-            { src: baseDir + "/prescript.js", loadTime: "beforeDOMReady" },
+            { src: baseDir + "/prescript.js", loadTime: "beforeDOMReady", contentType: "external" },
             ...resources.js,
-            { src: baseDir + "/postscript.js", loadTime: "afterDOMReady", type: 'module' }
+            { src: baseDir + "/postscript.js", loadTime: "afterDOMReady", moduleType: 'module', contentType: "external" }
           ]
         }
 
@@ -63,7 +63,7 @@ export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
               </Body>
             </div>
           </body>
-          {pageResources.js.filter(resource => resource.loadTime === "afterDOMReady").map(resource => <script key={resource.src} {...resource} />)}
+          {pageResources.js.filter(resource => resource.loadTime === "afterDOMReady").map(res => JSResourceToScriptElement(res))}
         </html>
 
         const fp = file.data.slug + ".html"

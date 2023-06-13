@@ -58,7 +58,7 @@ const config: QuartzConfig = {
       Plugin.ContentPage({
         head: Component.Head(),
         header: [Component.PageTitle(), Component.Spacer(), Component.Darkmode()],
-        body: [Component.ArticleTitle(), Component.ReadingTime(), Component.TableOfContents(), Component.Content()]
+        body: [Component.ArticleTitle(), Component.ReadingTime(), Component.TagList(), Component.TableOfContents(), Component.Content()]
       })
     ]
   },
