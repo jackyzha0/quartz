@@ -2,7 +2,7 @@ import { QuartzTransformerPlugin } from "../types"
 import { Root } from "mdast"
 import { visit } from "unist-util-visit"
 import { toString } from "mdast-util-to-string"
-import { slugAnchor } from "../../path"
+import { slug as slugAnchor } from 'github-slugger'
 
 export interface Options {
   maxDepth: 1 | 2 | 3 | 4 | 5 | 6,
@@ -40,7 +40,7 @@ export const TableOfContents: QuartzTransformerPlugin<Partial<Options> | undefin
                 toc.push({
                   depth: node.depth,
                   text,
-                  slug: slugAnchor.slug(text)
+                  slug: slugAnchor(text)
                 })
               }
             })

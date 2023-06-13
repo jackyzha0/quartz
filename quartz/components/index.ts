@@ -6,6 +6,7 @@ import PageTitle from "./PageTitle"
 import ReadingTime from "./ReadingTime"
 import Spacer from "./Spacer"
 import TableOfContents from "./TableOfContents"
+import TagList from "./TagList"
 
 export {
   ArticleTitle,
@@ -15,5 +16,6 @@ export {
   PageTitle,
   ReadingTime,
   Spacer,
-  TableOfContents
+  TableOfContents,
+  TagList
 } 

@@ -23,7 +23,8 @@ export const Katex: QuartzTransformerPlugin = () => ({
       {
         // fix copy behaviour: https://github.com/KaTeX/KaTeX/blob/main/contrib/copy-tex/README.md
         src: "https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/copy-tex.min.js",
-        loadTime: "afterDOMReady"
+        loadTime: "afterDOMReady",
+        contentType: 'external'
       }
     ]
   }

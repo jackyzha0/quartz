@@ -1,4 +1,5 @@
 import { resolveToRoot } from "../path"
+import { JSResourceToScriptElement } from "../resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
 function Head({ fileData, externalResources }: QuartzComponentProps) {
@@ -25,7 +26,7 @@ function Head({ fileData, externalResources }: QuartzComponentProps) {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     {css.map(href => <link key={href} href={href} rel="stylesheet" type="text/css" spa-preserve />)}
-    {js.filter(resource => resource.loadTime === "beforeDOMReady").map(resource => <script key={resource.src} {...resource} spa-preserve />)}
+    {js.filter(resource => resource.loadTime === "beforeDOMReady").map(res => JSResourceToScriptElement(res, true))}
   </head>
 }
 

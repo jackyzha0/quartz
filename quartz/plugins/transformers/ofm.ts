@@ -1,6 +1,6 @@
 import { PluggableList } from "unified"
 import { QuartzTransformerPlugin } from "../types"
-import { Root, HTML, BlockContent, DefinitionContent } from 'mdast'
+import { Root, HTML, BlockContent, DefinitionContent, Code } from 'mdast'
 import { findAndReplace } from "mdast-util-find-and-replace"
 import { slugify } from "../../path"
 import rehypeRaw from "rehype-raw"
@@ -11,12 +11,14 @@ export interface Options {
   highlight: boolean
   wikilinks: boolean
   callouts: boolean
+  mermaid: boolean
 }
 
 const defaultOptions: Options = {
   highlight: true,
   wikilinks: true,
-  callouts: true
+  callouts: true,
+  mermaid: false,
 }
 
 const icons = {
@@ -246,11 +248,38 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           }
         })
       }
+
+      if (opts.mermaid) {
+        plugins.push(() => {
+          return (tree: Root, _file) => {
+            visit(tree, 'code', (node: Code) => {
+              if (node.lang === 'mermaid') {
+                node.data = {
+                  hProperties: {
+                    className: 'mermaid'
+                  }
+                }
+              }
+            })
+          }
+        })
+      }
+
       return plugins
     },
-
     htmlPlugins() {
       return [rehypeRaw]
+    },
+    externalResources: {
+      js: [{
+        script: `
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: true });
+        `,
+        loadTime: 'afterDOMReady',
+        moduleType: 'module',
+        contentType: 'inline'
+      }]
     }
   }
 }
