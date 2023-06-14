@@ -13,7 +13,7 @@ paginate = 10
 enableGitInfo = true
 
 [author]
-  name = "chris anthony"
+  name = "Chris Anthony"
 
 [markup]
     [markup.tableOfContents]

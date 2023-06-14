@@ -1,10 +1,12 @@
 // Replace this with your own font imports!
-// @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Newsreader:opsz,wght@6..72,400;6..72,700&family=Spectral:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Newsreader:opsz,wght@6..72,400;6..72,700&family=Spectral:wght@400;600&display=swap');
 :root {
-  --font-body: "Spectral";
-  --font-header: "Newsreader";
-  --font-mono: "Fira Code"
+  --font-body: "Inter";
+  --font-header: "Inter";
+  --font-mono: "Inter"
+  --font-weight: 400
+  --h1font-weight: 700
 }
 
 // typography
@@ -40,10 +42,22 @@ body {
   background-color: var(--light);
 }
 
-h1, h2, h3, h4, h5, h6, thead {
+h1 {
   font-family: var(--font-header);
   color: var(--dark);
-  font-weight: revert;
+  font-weight: var(--h1font-weight);
+  margin: 2rem 0 0;
+  padding: 2rem auto 1rem;
+
+  &:hover > .hanchor {
+    color: var(--secondary);
+  }
+}
+
+h2, h3, h4, h5, h6, thead {
+  font-family: var(--font-header);
+  color: var(--dark);
+  font-weight: var(--font-weight);
   margin: 2rem 0 0;
   padding: 2rem auto 1rem;
 
@@ -63,7 +77,7 @@ p, ul, text, a, tr, td, li, ol, ul {
   font-family: var(--font-body);
   color: var(--gray);
   fill: var(--gray);
-  font-weight: revert;
+  font-weight: var(--font-weight);
   margin: revert;
   padding: revert;
 }
@@ -81,7 +95,7 @@ tbody, li, p {
       cursor: zoom-in;
       font-family: var(--font-header);
       color: var(--dark);
-      font-weight: 700;
+      font-weight: var(--font-weight);
     }
 
     &[open] summary {
@@ -113,7 +127,7 @@ tbody, li, p {
 
   & > li::marker, & > li > ol > li::marker {
     font-family: var(--font-body);
-    font-weight: 700;
+    font-weight: var(--font-weight);
   }
 }
 
@@ -193,7 +207,7 @@ article {
   }
 
   & a {
-    font-weight: 600;
+    font-weight: var(--font-weight);
 
     &.internal-link {
       text-decoration: none;
@@ -246,7 +260,7 @@ article {
 }
 
 .backlinks a {
-  font-weight: 600;
+  font-weight: var(--font-weight);
   font-size: 0.9rem;
 }
 
@@ -264,7 +278,7 @@ sup > a {
 
 a {
   font-size: 1em;
-  font-weight: 700;
+  font-weight: var(--font-weight);
   text-decoration: none;
   transition: all 0.2s ease;
   color: var(--secondary);
@@ -519,7 +533,7 @@ header {
     }
 
     & h3 > a {
-      font-weight: 700;
+      font-weight: var(--font-weight);
       margin: 0;
     }
 
@@ -532,7 +546,7 @@ header {
 
   & h3 {
     opacity: 1;
-    font-weight: 700;
+    font-weight: var(--font-weight);
     margin: 0;
   }
 
@@ -603,7 +617,7 @@ header {
 
   & > p, & > a {
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: var(--font-weight);
     user-select: none;
   }
 }
