@@ -1,7 +1,7 @@
 ---
 title: "Git for Data Analysts"
 tags:
-- example-tag
+- articles
 ---
 
 > [!note] Note

@@ -1,7 +1,7 @@
 ---
 title: "2023 Books"
 tags:
-- example-tag
+- books
 ---
 
 - Getting Things Done

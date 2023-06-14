@@ -1,0 +1,2 @@
+- Tag files must be completely empty for them to work 
+- 

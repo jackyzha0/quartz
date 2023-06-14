@@ -1,7 +1,7 @@
 ---
 title: "Best Ever"
 tags:
-- example-tag
+- books
 ---
 
 - Kitchen Confidential
