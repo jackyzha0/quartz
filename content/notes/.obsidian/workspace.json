@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "git and github.md",
+                "file": "terminals apps.md",
                 "mode": "source",
                 "source": false
               }
@@ -84,9 +84,17 @@
               "type": "recent-files",
               "state": {}
             }
+          },
+          {
+            "id": "84d6981acc81a6e3",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -107,7 +115,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "git and github.md",
+                "file": "terminals apps.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,7 +132,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "git and github.md",
+                "file": "terminals apps.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -147,7 +155,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "git and github.md"
+                "file": "terminals apps.md"
               }
             }
           }
@@ -170,6 +178,7 @@
   },
   "active": "24da404567122ff2",
   "lastOpenFiles": [
+    "git and github.md",
     "my ricing and dev enviroment showcase_ make the best enviroment for  your windows 11.md",
     "windows packages installers.md",
     "navingating through different internet protocols.md",
@@ -185,7 +194,6 @@
     "powershell scripting.md",
     "functional verbal thinking.md",
     "rmarkdown and LaTeX.md",
-    "git and github.md",
     "shell scripting.md",
     "markup languages.md",
     "This digital garden.md",

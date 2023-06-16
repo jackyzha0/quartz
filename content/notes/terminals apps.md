@@ -4,5 +4,7 @@ tags :
 - entry
 - budding
 ---
+chrome-extension://bajifjohhghngljcfhkbpcggafpiajdo/view-tab.html
 
-https://github.com/stars/aleendev/lists/terminal
+https://github.com/Textualize/rich
+https://github.com/stars/hiyorijl/lists/terminal
