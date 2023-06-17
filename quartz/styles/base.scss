@@ -51,8 +51,31 @@ a {
   padding: 4rem 30vw;
   margin: 0 auto;
   max-width: 1000px;
+  position: relative;
+
+  & .left, & .right {
+    position: fixed;
+    padding: 0 4rem 0 6rem;
+    max-width: 30vw;
+    box-sizing: border-box;
+    top: 10rem;
+  }
+  
+  & .left {
+    left: 0;
+  }
+
+  & .right {
+    right: 0;
+  }
+
   @media all and (max-width: 1200px) {
     padding: 25px 5vw;
+    & .left, & .right {
+      padding: 0;
+      max-width: none;
+      position: initial;
+    }
   }
 
   & p {

@@ -14,19 +14,24 @@ const observer = new IntersectionObserver(entries => {
   }
 })
 
-function toggleCollapsible(this: HTMLElement) {
+function toggleToc(this: HTMLElement) {
   this.classList.toggle("collapsed")
   const content = this.nextElementSibling as HTMLElement
   content.classList.toggle("collapsed")
   content.style.maxHeight = content.style.maxHeight === "0px" ? content.scrollHeight + "px" : "0px"
 }
 
-document.addEventListener("nav", () => {
+function setupToc() {
   const toc = document.getElementById("toc")!
   const content = toc.nextElementSibling as HTMLElement
   content.style.maxHeight = content.scrollHeight + "px"
-  toc.removeEventListener("click", toggleCollapsible)
-  toc.addEventListener("click", toggleCollapsible)
+  toc.removeEventListener("click", toggleToc)
+  toc.addEventListener("click", toggleToc)
+}
+
+window.addEventListener("resize", setupToc)
+document.addEventListener("nav", () => {
+  setupToc()
 
   // update toc entry highlighting
   observer.disconnect()

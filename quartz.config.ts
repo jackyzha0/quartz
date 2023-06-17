@@ -59,15 +59,16 @@ const config: QuartzConfig = {
       Plugin.ContentPage({
         head: Component.Head(),
         header: [Component.PageTitle(), Component.Spacer(), Component.Darkmode()],
-        body: [
+        beforeBody: [
           Component.ArticleTitle(),
           Component.ReadingTime(),
           Component.TagList(),
-          Component.TableOfContents(),
-          Component.Content()
         ],
-        left: [],
-        right: [],
+        left: [
+          Component.TableOfContents(),
+        ],
+        right: [
+        ],
         footer: []
       }),
       Plugin.ContentIndex(), // you can exclude this if you don't plan on using popovers, graph, or backlinks,
