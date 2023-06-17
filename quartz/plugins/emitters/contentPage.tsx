@@ -28,7 +28,7 @@ export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
   return {
     name: "ContentPage",
     getQuartzComponents() {
-      return [opts.head, Header, ...opts.header, ...opts.body]
+      return [opts.head, Header, Body, ...opts.header, ...opts.body, ...opts.left, ...opts.right, ...opts.footer]
     },
     async emit(_contentDir, cfg, content, resources, emit): Promise<string[]> {
       const fps: string[] = []

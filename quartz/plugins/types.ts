@@ -16,7 +16,7 @@ export type QuartzTransformerPluginInstance = {
   name: string
   markdownPlugins(): PluggableList
   htmlPlugins(): PluggableList
-  externalResources?: Partial<StaticResources>
+  externalResources?(): Partial<StaticResources>
 }
 
 export type QuartzFilterPlugin<Options extends OptionType = undefined> = (opts?: Options) => QuartzFilterPluginInstance 

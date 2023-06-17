@@ -5,7 +5,7 @@ declare module '*.scss' {
 
 // dom custom event
 interface CustomEventMap {
-  "spa_nav": CustomEvent<{ url: string }>;
+  "nav": CustomEvent<{ url: string }>;
 }
 
 declare global {
