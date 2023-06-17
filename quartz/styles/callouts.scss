@@ -5,6 +5,8 @@
 	background-color: var(--bg);
 	border-radius: 5px;
 	padding: 0 1rem;
+	overflow-y: hidden;
+  transition: max-height 0.3s ease;
 
 	&[data-callout="note"] {
 	  --color: #448aff;
@@ -71,8 +73,20 @@
 	display: flex;
 	align-items: center;
 	gap: 5px;
-	margin: 1rem 0;
+	padding: 1rem 0;
+	margin-bottom: -1rem;
 	color: var(--color);
+
+	& .fold {
+    margin-left: 0.5rem; 
+    transition: transform 0.3s ease;
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  &.is-collapsed .fold {
+    transform: rotateZ(-90deg)
+  }
 }
 
 .callout-icon {
