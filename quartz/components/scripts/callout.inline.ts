@@ -6,19 +6,21 @@ function toggleCallout(this: HTMLElement) {
   outerBlock.style.maxHeight = height + `px`
 }
 
-function setupCallout(div: HTMLElement) {
-  const collapsed = div.classList.contains(`is-collapsed`)
-  const title = div.firstElementChild!
-  const height = collapsed ? title.scrollHeight : div.scrollHeight
-  div.style.maxHeight = height + `px`
-}
-
-document.addEventListener(`nav`, () => {
+function setupCallout() {
   const collapsible = document.getElementsByClassName(`callout is-collapsible`) as HTMLCollectionOf<HTMLElement>
   for (const div of collapsible) {
     const title = div.firstElementChild
-    setupCallout(div)
-    title?.removeEventListener(`click`, toggleCallout)
-    title?.addEventListener(`click`, toggleCallout)
+
+    if (title) {
+      title.removeEventListener(`click`, toggleCallout)
+      title.addEventListener(`click`, toggleCallout)
+
+      const collapsed = div.classList.contains(`is-collapsed`)
+      const height = collapsed ? title.scrollHeight : div.scrollHeight
+      div.style.maxHeight = height + `px`
+    }
   }
-})
+}
+
+document.addEventListener(`nav`, setupCallout)
+window.addEventListener(`resize`, setupCallout)

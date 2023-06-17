@@ -8,6 +8,10 @@
 	overflow-y: hidden;
   transition: max-height 0.3s ease;
 
+  & > *:nth-child(2) {
+    margin-top: 0;
+  }
+
 	&[data-callout="note"] {
 	  --color: #448aff;
 	  --border: #448aff22;
@@ -74,7 +78,6 @@
 	align-items: center;
 	gap: 5px;
 	padding: 1rem 0;
-	margin-bottom: -1rem;
 	color: var(--color);
 
 	& .fold {

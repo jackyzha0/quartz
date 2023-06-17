@@ -6,7 +6,7 @@ function TagList({ fileData }: QuartzComponentProps) {
   const tags = fileData.frontmatter?.tags
   const slug = fileData.slug!
   const baseDir = resolveToRoot(slug)
-  if (tags) {
+  if (tags && tags.length > 0) {
     return <ul class="tags">{tags.map(tag => {
       const display = `#${tag}`
       const linkDest = baseDir + `/tags/${slugAnchor(tag)}`

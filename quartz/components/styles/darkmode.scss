@@ -4,10 +4,6 @@
   min-width: 30px;
   position: relative;
 
-  @media all and (max-width: 450px) {
-    padding: 1rem;
-  }
-
   & > .toggle {
     display: none;
     box-sizing: border-box;

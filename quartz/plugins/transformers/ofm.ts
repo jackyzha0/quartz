@@ -300,8 +300,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         })
       }
 
-      console.log(js)
-
       return { js }
     }
   }

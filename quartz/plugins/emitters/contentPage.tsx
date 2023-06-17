@@ -6,11 +6,12 @@ import { resolveToRoot } from "../../path"
 import HeaderConstructor from "../../components/Header"
 import { QuartzComponentProps } from "../../components/types"
 import BodyConstructor from "../../components/Body"
+import ContentConstructor from "../../components/Content"
 
 interface Options {
   head: QuartzComponent
   header: QuartzComponent[],
-  body: QuartzComponent[],
+  beforeBody: QuartzComponent[],
   left: QuartzComponent[],
   right: QuartzComponent[],
   footer: QuartzComponent[],
@@ -21,14 +22,15 @@ export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
     throw new Error("ContentPage must be initialized with options specifiying the components to use")
   }
 
-  const { head: Head, header, body } = opts
+  const { head: Head, header, beforeBody, left, right, footer } = opts
   const Header = HeaderConstructor()
   const Body = BodyConstructor()
+  const Content = ContentConstructor()
 
   return {
     name: "ContentPage",
     getQuartzComponents() {
-      return [opts.head, Header, Body, ...opts.header, ...opts.body, ...opts.left, ...opts.right, ...opts.footer]
+      return [opts.head, Header, Body, ...opts.header, ...opts.beforeBody, ...opts.left, ...opts.right, ...opts.footer]
     },
     async emit(_contentDir, cfg, content, resources, emit): Promise<string[]> {
       const fps: string[] = []
@@ -59,9 +61,19 @@ export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
               <Header {...componentData} >
                 {header.map(HeaderComponent => <HeaderComponent {...componentData} />)}
               </Header>
+              {beforeBody.map(BodyComponent => <BodyComponent {...componentData} />)}
               <Body {...componentData}>
-                {body.map(BodyComponent => <BodyComponent {...componentData} />)}
+                <div class="left">
+                  {left.map(BodyComponent => <BodyComponent {...componentData} />)}
+                </div>
+                <div class="center">
+                  <Content {...componentData} />
+                </div>
+                <div class="right">
+                  {right.map(BodyComponent => <BodyComponent {...componentData} />)}
+                </div>
               </Body>
+
             </div>
           </body>
           {pageResources.js.filter(resource => resource.loadTime === "afterDOMReady").map(res => JSResourceToScriptElement(res))}
