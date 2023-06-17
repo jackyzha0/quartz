@@ -36,4 +36,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: master  # deploying branch
-          cname: ttps://hiyorijl.github.io/verbal_garden_quartz/
+          cname: hiyorijl.github.io/verbal_garden_quartz/
