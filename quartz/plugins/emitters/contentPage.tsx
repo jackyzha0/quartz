@@ -1,8 +1,6 @@
 import { JSResourceToScriptElement, StaticResources } from "../../resources"
-import { EmitCallback, QuartzEmitterPlugin } from "../types"
-import { ProcessedContent } from "../vfile"
+import { QuartzEmitterPlugin } from "../types"
 import { render } from "preact-render-to-string"
-import { GlobalConfiguration } from "../../cfg"
 import { QuartzComponent } from "../../components/types"
 import { resolveToRoot } from "../../path"
 import HeaderConstructor from "../../components/Header"
@@ -12,7 +10,10 @@ import BodyConstructor from "../../components/Body"
 interface Options {
   head: QuartzComponent
   header: QuartzComponent[],
-  body: QuartzComponent[]
+  body: QuartzComponent[],
+  left: QuartzComponent[],
+  right: QuartzComponent[],
+  footer: QuartzComponent[],
 }
 
 export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
@@ -29,7 +30,7 @@ export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
     getQuartzComponents() {
       return [opts.head, Header, ...opts.header, ...opts.body]
     },
-    async emit(cfg: GlobalConfiguration, content: ProcessedContent[], resources: StaticResources, emit: EmitCallback): Promise<string[]> {
+    async emit(_contentDir, cfg, content, resources, emit): Promise<string[]> {
       const fps: string[] = []
 
       for (const [tree, file] of content) {
@@ -53,7 +54,7 @@ export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
 
         const doc = <html>
           <Head {...componentData} />
-          <body>
+          <body data-slug={file.data.slug}>
             <div id="quartz-root" class="page">
               <Header {...componentData} >
                 {header.map(HeaderComponent => <HeaderComponent {...componentData} />)}

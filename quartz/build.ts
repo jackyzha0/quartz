@@ -57,6 +57,7 @@ export default async function buildQuartz(argv: Argv, version: string) {
 
   if (argv.serve) {
     const server = http.createServer(async (req, res) => {
+      console.log(chalk.grey(`[req] ${req.url}`))
       return serveHandler(req, res, {
         public: output,
         directoryListing: false,

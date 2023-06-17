@@ -1,3 +1,4 @@
+// @ts-ignore
 import clipboardScript from './scripts/clipboard.inline'
 import clipboardStyle from './styles/clipboard.scss'
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"

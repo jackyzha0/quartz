@@ -5,6 +5,21 @@ function slugSegment(s: string): string {
   return s.replace(/\s/g, '-')
 }
 
+export function trimPathSuffix(fp: string): string {
+  let [cleanPath, anchor] = fp.split("#", 2)
+  anchor = anchor === undefined ? "" : "#" + anchor
+
+  if (cleanPath.endsWith("index")) {
+    cleanPath = cleanPath.slice(0, -"index".length)
+  }
+
+  if (cleanPath === "") {
+    cleanPath = "./"
+  }
+
+  return cleanPath + anchor
+}
+
 export function slugify(s: string): string {
   const [fp, anchor] = s.split("#", 2)
   const sluggedAnchor = anchor === undefined ? "" : "#" + slugAnchor(anchor)
@@ -19,12 +34,9 @@ export function slugify(s: string): string {
 
 // resolve /a/b/c to ../../
 export function resolveToRoot(slug: string): string {
-  let fp = slug
-  if (fp.endsWith("index")) {
-    fp = fp.slice(0, -"index".length)
-  }
+  let fp = trimPathSuffix(slug)
 
-  if (fp === "") {
+  if (fp === "./") {
     return "."
   }
 

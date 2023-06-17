@@ -29,6 +29,11 @@ const getOpts = ({ target }: Event): { url: URL, scroll?: boolean } | undefined 
   return { url: new URL(href), scroll: 'routerNoscroll' in a.dataset ? false : undefined }
 }
 
+function notifyNav(slug: string) {
+  const event = new CustomEvent("spa_nav", { detail: { slug } })
+  document.dispatchEvent(event)
+}
+
 let p: DOMParser
 async function navigate(url: URL, isBack: boolean = false) {
   p = p || new DOMParser()
@@ -64,9 +69,7 @@ async function navigate(url: URL, isBack: boolean = false) {
   const elementsToAdd = html.head.querySelectorAll(':not([spa-preserve])')
   elementsToAdd.forEach(el => document.head.appendChild(el))
 
-  if (!document.activeElement?.closest('[data-persist]')) {
-    document.body.focus()
-  }
+  notifyNav(document.body.dataset.slug!)
   delete announcer.dataset.persist
 }
 

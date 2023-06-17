@@ -2,24 +2,36 @@ details.toc {
   & summary {
     cursor: pointer;
 
-    &::marker {
-      color: var(--dark);
+    list-style: none;
+    &::marker, &::-webkit-details-marker {
+      display: none;
     }
 
     & > * {
-      padding-left: 0.25rem;
       display: inline-block;
       margin: 0;
+    }
+
+    & > h3 {
+      font-size: 1rem;
     }
   }
     
   & ul {
     list-style: none;
-    margin: 0.5rem 1.25rem;
+    margin: 0.5rem 0;
     padding: 0;
+    & > li > a {
+      color: var(--dark);
+      opacity: 0.35;
+      transition: 0.5s ease opacity;
+      &.in-view {
+        opacity: 0.75;
+      }
+    }
   }
 
-  @for $i from 1 through 6 {
+  @for $i from 0 through 6 {
     & .depth-#{$i} {
       padding-left: calc(1rem * #{$i});
     }

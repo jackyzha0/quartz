@@ -25,7 +25,7 @@ const config: QuartzConfig = {
           highlight: 'rgba(143, 159, 169, 0.15)',
         },
         darkMode: {
-          light: '#1e1e21',
+          light: '#161618',
           lightgray: '#292629',
           gray: '#343434',
           darkgray: '#d4d4d4',
@@ -41,7 +41,7 @@ const config: QuartzConfig = {
     transformers: [
       Plugin.FrontMatter(),
       Plugin.Description(),
-      Plugin.TableOfContents({ showByDefault: true }),
+      Plugin.TableOfContents(),
       Plugin.CreatedModifiedDate({
         priority: ['frontmatter', 'filesystem'] // you can add 'git' here for last modified from Git but this makes the build slower
       }),
@@ -55,11 +55,23 @@ const config: QuartzConfig = {
       Plugin.RemoveDrafts()
     ],
     emitters: [
+      Plugin.AliasRedirects(),
       Plugin.ContentPage({
         head: Component.Head(),
         header: [Component.PageTitle(), Component.Spacer(), Component.Darkmode()],
-        body: [Component.ArticleTitle(), Component.ReadingTime(), Component.TagList(), Component.TableOfContents(), Component.Content()]
-      })
+        body: [
+          Component.ArticleTitle(),
+          Component.ReadingTime(),
+          Component.TagList(),
+          Component.TableOfContents(),
+          Component.Content()
+        ],
+        left: [],
+        right: [],
+        footer: []
+      }),
+      Plugin.ContentIndex(), // you can exclude this if you don't plan on using popovers, graph, or backlinks,
+      Plugin.CNAME({ domain: "yoursite.xyz" }) // set this to your final deployed domain
     ]
   },
 }
