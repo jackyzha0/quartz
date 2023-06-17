@@ -25,6 +25,7 @@
     "quartz": "./quartz/bootstrap-cli.mjs"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.4.0",
     "@inquirer/prompts": "^1.0.3",
     "@napi-rs/simple-git": "^0.1.8",
     "chalk": "^4.1.2",

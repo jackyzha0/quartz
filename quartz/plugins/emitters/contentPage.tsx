@@ -6,12 +6,12 @@ import { resolveToRoot } from "../../path"
 import HeaderConstructor from "../../components/Header"
 import { QuartzComponentProps } from "../../components/types"
 import BodyConstructor from "../../components/Body"
-import ContentConstructor from "../../components/Content"
 
 interface Options {
   head: QuartzComponent
   header: QuartzComponent[],
   beforeBody: QuartzComponent[],
+  content: QuartzComponent,
   left: QuartzComponent[],
   right: QuartzComponent[],
   footer: QuartzComponent[],
@@ -25,12 +25,11 @@ export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
   const { head: Head, header, beforeBody, left, right, footer } = opts
   const Header = HeaderConstructor()
   const Body = BodyConstructor()
-  const Content = ContentConstructor()
 
   return {
     name: "ContentPage",
     getQuartzComponents() {
-      return [opts.head, Header, Body, ...opts.header, ...opts.beforeBody, ...opts.left, ...opts.right, ...opts.footer]
+      return [opts.head, Header, Body, ...opts.header, ...opts.beforeBody, opts.content, ...opts.left, ...opts.right, ...opts.footer]
     },
     async emit(_contentDir, cfg, content, resources, emit): Promise<string[]> {
       const fps: string[] = []
@@ -54,6 +53,7 @@ export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
           tree
         }
 
+        const Content = opts.content
         const doc = <html>
           <Head {...componentData} />
           <body data-slug={file.data.slug}>
@@ -61,12 +61,14 @@ export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
               <Header {...componentData} >
                 {header.map(HeaderComponent => <HeaderComponent {...componentData} />)}
               </Header>
-              {beforeBody.map(BodyComponent => <BodyComponent {...componentData} />)}
+              <div class="popover-hint">
+                {beforeBody.map(BodyComponent => <BodyComponent {...componentData} />)}
+              </div>
               <Body {...componentData}>
                 <div class="left">
                   {left.map(BodyComponent => <BodyComponent {...componentData} />)}
                 </div>
-                <div class="center">
+                <div class="center popover-hint">
                   <Content {...componentData} />
                 </div>
                 <div class="right">

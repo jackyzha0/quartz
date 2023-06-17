@@ -22,11 +22,13 @@ function toggleToc(this: HTMLElement) {
 }
 
 function setupToc() {
-  const toc = document.getElementById("toc")!
-  const content = toc.nextElementSibling as HTMLElement
-  content.style.maxHeight = content.scrollHeight + "px"
-  toc.removeEventListener("click", toggleToc)
-  toc.addEventListener("click", toggleToc)
+  const toc = document.getElementById("toc")
+  if (toc) {
+    const content = toc.nextElementSibling as HTMLElement
+    content.style.maxHeight = content.scrollHeight + "px"
+    toc.removeEventListener("click", toggleToc)
+    toc.addEventListener("click", toggleToc)
+  }
 }
 
 window.addEventListener("resize", setupToc)

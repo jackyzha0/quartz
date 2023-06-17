@@ -64,6 +64,7 @@ const config: QuartzConfig = {
           Component.ReadingTime(),
           Component.TagList(),
         ],
+        content: Component.Content(),
         left: [
           Component.TableOfContents(),
         ],

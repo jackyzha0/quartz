@@ -14,7 +14,8 @@ export type ComponentResources = {
 }
 
 function joinScripts(scripts: string[]): string {
-  return scripts.join("\n")
+  // wrap with iife to prevent scope collision
+  return scripts.map(script => `(function () {${script}})();`).join("\n")
 }
 
 export function emitComponentResources(cfg: GlobalConfiguration, resources: StaticResources, plugins: PluginTypes, emit: EmitCallback) {
