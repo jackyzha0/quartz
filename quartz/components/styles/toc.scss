@@ -1,22 +1,36 @@
-details.toc {
-  & summary {
-    cursor: pointer;
+button#toc {
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
 
-    list-style: none;
-    &::marker, &::-webkit-details-marker {
-      display: none;
-    }
-
-    & > * {
-      display: inline-block;
-      margin: 0;
-    }
-
-    & > h3 {
-      font-size: 1rem;
-    }
+  & h3 {
+    font-size: 1rem;
+    display: inline-block;
+    margin: 0;
   }
-    
+
+  & .fold {
+    margin-left: 0.5rem; 
+    transition: transform 0.3s ease;
+    opacity: 0.8;
+  }
+
+  &.collapsed .fold {
+    transform: rotateZ(-90deg)
+  }
+}
+  
+#toc-content {
+  list-style: none;
+  overflow: hidden;
+  max-height: none;
+  transition: max-height 0.3s ease;
+
   & ul {
     list-style: none;
     margin: 0.5rem 0;
@@ -37,3 +51,4 @@ details.toc {
     }
   }
 }
+  

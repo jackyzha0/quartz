@@ -30,7 +30,7 @@ const getOpts = ({ target }: Event): { url: URL, scroll?: boolean } | undefined 
 }
 
 function notifyNav(slug: string) {
-  const event = new CustomEvent("spa_nav", { detail: { slug } })
+  const event = new CustomEvent("nav", { detail: { slug } })
   document.dispatchEvent(event)
 }
 
@@ -96,6 +96,7 @@ function createRouter() {
       return
     })
   }
+
   return new class Router {
     go(pathname: string) {
       const url = new URL(pathname, window.location.toString())
@@ -113,6 +114,7 @@ function createRouter() {
 }
 
 createRouter()
+notifyNav(document.body.dataset.slug!)
 
 if (!customElements.get('route-announcer')) {
   const attrs = {

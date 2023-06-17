@@ -6,6 +6,7 @@ import { slugify } from "../../path"
 import rehypeRaw from "rehype-raw"
 import { visit } from "unist-util-visit"
 import path from "path"
+import { JSResource } from "../../resources"
 
 export interface Options {
   highlight: boolean
@@ -235,6 +236,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 node.children.splice(0, 1, ...blockquoteContent)
 
                 // add properties to base blockquote
+                // TODO: add the js to actually support collapsing callout
                 node.data = {
                   hProperties: {
                     ...(node.data?.hProperties ?? {}),
@@ -270,16 +272,19 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
     htmlPlugins() {
       return [rehypeRaw]
     },
-    externalResources: {
-      js: [{
+    externalResources() {
+      const mermaidScript: JSResource = {
         script: `
-import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
-mermaid.initialize({ startOnLoad: true });
-        `,
+          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+          mermaid.initialize({ startOnLoad: true });
+          `,
         loadTime: 'afterDOMReady',
         moduleType: 'module',
         contentType: 'inline'
-      }]
+      }
+      return {
+        js: opts.mermaid ? [mermaidScript] : []
+      }
     }
   }
 }

@@ -33,10 +33,6 @@ export function emitComponentResources(cfg: GlobalConfiguration, resources: Stat
     afterDOMLoaded: []
   }
 
-  if (cfg.enableSPA) {
-    componentResources.afterDOMLoaded.push(spaRouterScript)
-  }
-
   for (const component of allComponents) {
     const { css, beforeDOMLoaded, afterDOMLoaded } = component
     if (css) {
@@ -48,6 +44,15 @@ export function emitComponentResources(cfg: GlobalConfiguration, resources: Stat
     if (afterDOMLoaded) {
       componentResources.afterDOMLoaded.push(afterDOMLoaded)
     }
+  }
+
+  if (cfg.enableSPA) {
+    componentResources.afterDOMLoaded.push(spaRouterScript)
+  } else {
+    componentResources.afterDOMLoaded.push(`
+      const event = new CustomEvent("nav", { detail: { slug: document.body.dataset.slug } })
+      document.dispatchEvent(event)`
+    )
   }
 
   emit({

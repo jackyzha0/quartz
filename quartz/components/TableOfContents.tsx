@@ -2,6 +2,9 @@ import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import legacyStyle from "./styles/legacyToc.scss"
 import modernStyle from "./styles/toc.scss"
 
+// @ts-ignore
+import script from "./scripts/toc.inline"
+
 interface Options {
   layout: 'modern' | 'legacy'
 }
@@ -10,56 +13,49 @@ const defaultOptions: Options = {
   layout: 'modern'
 }
 
-export default ((opts?: Partial<Options>) => {
-  const layout = opts?.layout ?? defaultOptions.layout
-  function TableOfContents({ fileData }: QuartzComponentProps) {
-    if (!fileData.toc) {
-      return null
-    }
+function TableOfContents({ fileData }: QuartzComponentProps) {
+  if (!fileData.toc) {
+    return null
+  }
 
-    return <details class="toc" open>
-      <summary><h3>Table of Contents</h3></summary>
+  return <>
+    <button type="button" id="toc">
+      <h3>Table of Contents</h3>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+    <div id="toc-content">
       <ul>
         {fileData.toc.map(tocEntry => <li key={tocEntry.slug} class={`depth-${tocEntry.depth}`}>
           <a href={`#${tocEntry.slug}`} data-for={tocEntry.slug}>{tocEntry.text}</a>
         </li>)}
       </ul>
-    </details>
-  }
-
-  TableOfContents.css = layout === "modern" ? modernStyle : legacyStyle
-
-  if (layout === "modern") {
-    TableOfContents.afterDOMLoaded = `
-const bufferPx = 150
-const observer = new IntersectionObserver(entries => {
-  for (const entry of entries) {
-    const slug = entry.target.id
-    const tocEntryElement = document.querySelector(\`a[data-for="$\{slug\}"]\`)
-    const windowHeight = entry.rootBounds?.height
-    if (windowHeight && tocEntryElement) {
-      if (entry.boundingClientRect.y < windowHeight) {
-        tocEntryElement.classList.add("in-view")
-      } else {
-        tocEntryElement.classList.remove("in-view")
-      }
-    }
-  }
-})
-
-function init() {
-  const headers = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]")
-  headers.forEach(header => observer.observe(header))
+    </div>
+  </>
 }
+TableOfContents.css = modernStyle
+TableOfContents.afterDOMLoaded = script
 
-init()
-
-document.addEventListener("spa_nav", (e) => {
-  observer.disconnect()
-  init()
-})
-`
+function LegacyTableOfContents({ fileData }: QuartzComponentProps) {
+  if (!fileData.toc) {
+    return null
   }
 
-  return TableOfContents
+  return <details id="toc" open>
+    <summary>
+      <h3>Table of Contents</h3>
+    </summary>
+    <ul>
+      {fileData.toc.map(tocEntry => <li key={tocEntry.slug} class={`depth-${tocEntry.depth}`}>
+        <a href={`#${tocEntry.slug}`} data-for={tocEntry.slug}>{tocEntry.text}</a>
+      </li>)}
+    </ul>
+  </details>
+}
+LegacyTableOfContents.css = legacyStyle
+
+export default ((opts?: Partial<Options>) => {
+  const layout = opts?.layout ?? defaultOptions.layout
+  return layout === "modern" ? TableOfContents : LegacyTableOfContents
 }) satisfies QuartzComponentConstructor
