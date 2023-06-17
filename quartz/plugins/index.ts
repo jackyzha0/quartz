@@ -83,7 +83,7 @@ export function getStaticResourcesFromPlugins(plugins: PluginTypes) {
   }
 
   for (const transformer of plugins.transformers) {
-    const res = transformer.externalResources
+    const res = transformer.externalResources ? transformer.externalResources() : {}
     if (res?.js) {
       staticResources.js = staticResources.js.concat(res.js)
     }

@@ -7,6 +7,8 @@ import rehypeRaw from "rehype-raw"
 import { visit } from "unist-util-visit"
 import path from "path"
 import { JSResource } from "../../resources"
+// @ts-ignore
+import calloutScript from "../../components/scripts/callout.inline.ts"
 
 export interface Options {
   highlight: boolean
@@ -210,6 +212,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 const defaultState = collapseChar === "-" ? "collapsed" : "expanded"
                 const title = match.input.slice(calloutDirective.length).trim() || capitalize(calloutType)
 
+                const toggleIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>`
+
                 const titleNode: HTML = {
                   type: "html",
                   value: `<div 
@@ -217,6 +223,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 >
                   <div class="callout-icon">${callouts[canonicalizeCallout(calloutType)]}</div>
                   <div class="callout-title-inner">${title}</div>
+                  ${collapse ? toggleIcon : ""}
                 </div>`
                 }
 
@@ -228,7 +235,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                       type: 'text',
                       value: remainingText,
                     }]
-
                   })
                 }
 
@@ -236,7 +242,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 node.children.splice(0, 1, ...blockquoteContent)
 
                 // add properties to base blockquote
-                // TODO: add the js to actually support collapsing callout
                 node.data = {
                   hProperties: {
                     ...(node.data?.hProperties ?? {}),
@@ -273,18 +278,31 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
       return [rehypeRaw]
     },
     externalResources() {
-      const mermaidScript: JSResource = {
-        script: `
+      const js: JSResource[] = []
+
+      if (opts.callouts) {
+        js.push({
+          script: calloutScript,
+          loadTime: 'afterDOMReady',
+          contentType: 'inline'
+        })
+      }
+
+      if (opts.mermaid) {
+        js.push({
+          script: `
           import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
           mermaid.initialize({ startOnLoad: true });
           `,
-        loadTime: 'afterDOMReady',
-        moduleType: 'module',
-        contentType: 'inline'
+          loadTime: 'afterDOMReady',
+          moduleType: 'module',
+          contentType: 'inline'
+        })
       }
-      return {
-        js: opts.mermaid ? [mermaidScript] : []
-      }
+
+      console.log(js)
+
+      return { js }
     }
   }
 }
