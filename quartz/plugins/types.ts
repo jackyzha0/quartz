@@ -28,13 +28,13 @@ export type QuartzFilterPluginInstance = {
 export type QuartzEmitterPlugin<Options extends OptionType = undefined> = (opts?: Options) => QuartzEmitterPluginInstance 
 export type QuartzEmitterPluginInstance = {
   name: string
-  emit(cfg: GlobalConfiguration, content: ProcessedContent[], resources: StaticResources, emitCallback: EmitCallback): Promise<string[]>
+  emit(contentDir: string, cfg: GlobalConfiguration, content: ProcessedContent[], resources: StaticResources, emitCallback: EmitCallback): Promise<string[]>
   getQuartzComponents(): QuartzComponent[]
 }
 
 export interface EmitOptions {
   slug: string
-  ext: `.${string}`
+  ext: `.${string}` | ""
   content: string
 }
 

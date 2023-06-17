@@ -25,7 +25,7 @@ export async function emitContent(contentFolder: string, output: string, cfg: Qu
   let emittedFiles = 0
   for (const emitter of cfg.plugins.emitters) {
     try {
-      const emitted = await emitter.emit(cfg.configuration, content, staticResources, emit)
+      const emitted = await emitter.emit(contentFolder, cfg.configuration, content, staticResources, emit)
       emittedFiles += emitted.length
 
       if (verbose) {
@@ -42,24 +42,25 @@ export async function emitContent(contentFolder: string, output: string, cfg: Qu
   const staticPath = path.join(QUARTZ, "static")
   await fs.promises.cp(staticPath, path.join(output, "static"), { recursive: true })
   if (verbose) {
-    console.log(`[emit:Static] ${path.join(output, "static", "**")}`)
+    console.log(`[emit:Static] ${path.join("static", "**")}`)
   }
 
   // glob all non MD/MDX/HTML files in content folder and copy it over
-  const assetsPath = path.join("public", "assets")
+  const assetsPath = path.join(output, "assets")
   for await (const fp of globbyStream("**", {
     ignore: ["**/*.md"],
     cwd: contentFolder,
   })) {
     const ext = path.extname(fp as string)
     const src = path.join(contentFolder, fp as string)
-    const dest = path.join(assetsPath, slugify(fp as string) + ext)
+    const name = slugify(fp as string) + ext
+    const dest = path.join(assetsPath, name)
     const dir = path.dirname(dest)
     await fs.promises.mkdir(dir, { recursive: true }) // ensure dir exists
     await fs.promises.copyFile(src, dest)
     emittedFiles += 1
     if (verbose) {
-      console.log(`[emit:Assets] ${dest}`)
+      console.log(`[emit:Assets] ${path.join("assets", name)}`)
     }
   }
 
