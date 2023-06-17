@@ -48,6 +48,8 @@ export const ResolveLinks: QuartzTransformerPlugin<Partial<Options> | undefined>
               // don't process external links or intra-document anchors
               if (!(isAbsoluteUrl(node.properties.href) || node.properties.href.startsWith("#"))) {
                 node.properties.href = transformLink(node.properties.href)
+              } else {
+
               }
 
               // rewrite link internals if prettylinks is on
