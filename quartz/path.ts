@@ -13,10 +13,6 @@ export function trimPathSuffix(fp: string): string {
     cleanPath = cleanPath.slice(0, -"index".length)
   }
 
-  if (cleanPath === "") {
-    cleanPath = "./"
-  }
-
   return cleanPath + anchor
 }
 
@@ -36,7 +32,7 @@ export function slugify(s: string): string {
 export function resolveToRoot(slug: string): string {
   let fp = trimPathSuffix(slug)
 
-  if (fp === "./") {
+  if (fp === "") {
     return "."
   }
 

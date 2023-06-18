@@ -30,6 +30,7 @@
     "@napi-rs/simple-git": "^0.1.8",
     "chalk": "^4.1.2",
     "cli-spinner": "^0.2.10",
+    "d3": "^7.8.5",
     "esbuild-sass-plugin": "^2.9.0",
     "github-slugger": "^2.0.0",
     "globby": "^13.1.4",
@@ -67,6 +68,7 @@
   },
   "devDependencies": {
     "@types/cli-spinner": "^0.2.1",
+    "@types/d3": "^7.4.0",
     "@types/hast": "^2.3.4",
     "@types/node": "^20.1.2",
     "@types/pretty-time": "^1.1.2",

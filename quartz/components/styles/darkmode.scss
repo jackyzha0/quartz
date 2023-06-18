@@ -1,8 +1,7 @@
 .darkmode {
-  float: right;
-  padding: 1rem;
-  min-width: 30px;
   position: relative;
+  width: 20px;
+  height: 20px;
 
   & > .toggle {
     display: none;
@@ -16,7 +15,6 @@
     width: 20px;
     height: 20px;
     top: calc(50% - 10px);
-    margin: 0 7px;
     fill: var(--darkgray);
     transition: opacity 0.1s ease;
   }

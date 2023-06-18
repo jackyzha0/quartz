@@ -2,7 +2,7 @@ import { JSResourceToScriptElement, StaticResources } from "../../resources"
 import { QuartzEmitterPlugin } from "../types"
 import { render } from "preact-render-to-string"
 import { QuartzComponent } from "../../components/types"
-import { resolveToRoot } from "../../path"
+import { resolveToRoot, trimPathSuffix } from "../../path"
 import HeaderConstructor from "../../components/Header"
 import { QuartzComponentProps } from "../../components/types"
 import BodyConstructor from "../../components/Body"
@@ -56,7 +56,7 @@ export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
         const Content = opts.content
         const doc = <html>
           <Head {...componentData} />
-          <body data-slug={file.data.slug}>
+          <body data-slug={trimPathSuffix(file.data.slug ?? "")}>
             <div id="quartz-root" class="page">
               <Header {...componentData} >
                 {header.map(HeaderComponent => <HeaderComponent {...componentData} />)}

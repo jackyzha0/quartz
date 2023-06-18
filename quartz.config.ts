@@ -4,7 +4,6 @@ import * as Plugin from "./quartz/plugins"
 
 const config: QuartzConfig = {
   configuration: {
-    siteTitle: "🪴 Quartz 4.0",
     enableSPA: true,
     ignorePatterns: ["private", "templates"],
     theme: {
@@ -58,7 +57,11 @@ const config: QuartzConfig = {
       Plugin.AliasRedirects(),
       Plugin.ContentPage({
         head: Component.Head(),
-        header: [Component.PageTitle(), Component.Spacer(), Component.Darkmode()],
+        header: [
+          Component.PageTitle({ title: "🪴 Quartz 4.0" }),
+          Component.Spacer(),
+          Component.Darkmode()
+        ],
         beforeBody: [
           Component.ArticleTitle(),
           Component.ReadingTime(),
@@ -66,9 +69,10 @@ const config: QuartzConfig = {
         ],
         content: Component.Content(),
         left: [
-          Component.TableOfContents(),
         ],
         right: [
+          Component.Graph(),
+          Component.TableOfContents(),
         ],
         footer: []
       }),
