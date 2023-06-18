@@ -1,9 +1,9 @@
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
 function Header({ children }: QuartzComponentProps) {
-  return <header>
+  return (children.length > 0) ? <header>
     {children}
-  </header>
+  </header> : null
 }
 
 Header.css = `
@@ -11,12 +11,10 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 1em 0 2em 0;
-  & > h1 {
-  }
+  margin: 2em 0;
 }
 
-header > h1 {
+header h1 {
   margin: 0;
   flex: auto;
 }

@@ -29,8 +29,8 @@ const getOpts = ({ target }: Event): { url: URL, scroll?: boolean } | undefined 
   return { url: new URL(href), scroll: 'routerNoscroll' in a.dataset ? false : undefined }
 }
 
-function notifyNav(slug: string) {
-  const event = new CustomEvent("nav", { detail: { slug } })
+function notifyNav(url: string) {
+  const event: CustomEventMap["nav"] = new CustomEvent("nav", { detail: { url } })
   document.dispatchEvent(event)
 }
 
@@ -72,6 +72,8 @@ async function navigate(url: URL, isBack: boolean = false) {
   notifyNav(document.body.dataset.slug!)
   delete announcer.dataset.persist
 }
+
+window.spaNavigate = navigate
 
 function createRouter() {
   if (typeof window !== "undefined") {

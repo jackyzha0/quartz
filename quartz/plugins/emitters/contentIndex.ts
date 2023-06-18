@@ -14,19 +14,20 @@ const defaultOptions: Options = {
   indexExternalLinks: false,
 }
 
-type ContentIndex = Map<string, {
+export type ContentIndex = Map<string, ContentDetails> 
+export type ContentDetails = {
   title: string,
   links?: string[],
   tags?: string[],
   content: string,
-}> 
+}
 
 export const ContentIndex: QuartzEmitterPlugin<Options> = (userOpts) => {
   const opts = { ...userOpts, ...defaultOptions }
   return {
     name: "ContentIndex",
     async emit(_contentDir, _cfg, content, _resources, emit) {
-      const fp = "contentIndex"
+      const fp = path.join("static", "contentIndex")
       const linkIndex: ContentIndex = new Map()
       for (const [tree, file] of content) {
         let slug = trimPathSuffix(file.data.slug!)

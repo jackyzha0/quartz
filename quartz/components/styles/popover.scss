@@ -3,7 +3,7 @@
     opacity: 0;
     visibility: hidden;
   }
-  50% {
+  1% {
     opacity: 0;
   }
   100% {
@@ -15,21 +15,24 @@
 .popover {
   z-index: 999;
   position: absolute;
-  overflow: scroll;
-  width: 30rem;
-  height: 20rem;
-  padding: 0 1rem;
-  margin-top: -1rem;
-  border: 1px solid var(--lightgray);
-  background-color: var(--light);
-  border-radius: 5px;
-  box-shadow: 6px 6px 36px 0 rgba(0,0,0,0.25);
+  overflow: visible;
+  padding: 1rem;
 
-  font-weight: initial;
+  & > .popover-inner {
+    width: 30rem;
+    height: 20rem;
+    padding: 0 1rem 1rem 1rem;
+    font-weight: initial;
+    border: 1px solid var(--gray);
+    background-color: var(--light);
+    border-radius: 5px;
+    box-shadow: 6px 6px 36px 0 rgba(0,0,0,0.25);
+    overflow: scroll;
+  }
 
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 
   @media all and (max-width: 600px) {
     display: none !important;
@@ -37,7 +40,7 @@
 }
 
 a:hover .popover, .popover:hover {
-  animation: dropin 0.5s ease;
-  opacity: 1;
-  visibility: visible;
+  animation: dropin 0.3s ease;
+  animation-fill-mode: forwards;
+  animation-delay: 0.2s;
 }

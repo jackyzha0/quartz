@@ -7,6 +7,7 @@ import ReadingTime from "./ReadingTime"
 import Spacer from "./Spacer"
 import TableOfContents from "./TableOfContents"
 import TagList from "./TagList"
+import Graph from "./Graph" 
 
 export {
   ArticleTitle,
@@ -17,5 +18,6 @@ export {
   ReadingTime,
   Spacer,
   TableOfContents,
-  TagList
+  TagList,
+  Graph
 } 

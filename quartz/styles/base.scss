@@ -10,8 +10,6 @@ html {
 
 body {
   margin: 0;
-  height: 100vh;
-  width: 100vw;
   max-width: 100%;
   box-sizing: border-box;
   background-color: var(--light);
@@ -48,31 +46,39 @@ a {
 }
 
 .page {
-  padding: 4rem 30vw;
-  margin: 0 auto;
+  margin: 6rem 35vw 6rem 20vw;
   max-width: 1000px;
   position: relative;
 
   & .left, & .right {
     position: fixed;
-    padding: 0 4rem 0 6rem;
-    max-width: 30vw;
+    height: 100vh;
+    overflow-y: scroll;
     box-sizing: border-box;
-    top: 10rem;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    gap: 2rem;
+    padding: 6rem;
   }
   
   & .left {
     left: 0;
+    padding-left: 10vw;
+    width: 20vw;
   }
 
   & .right {
     right: 0;
+    padding-right: 10vw;
+    width: 35vw;
   }
 
   @media all and (max-width: 1200px) {
-    padding: 25px 5vw;
+    margin: 25px 5vw;
     & .left, & .right {
       padding: 0;
+      height: initial;
       max-width: none;
       position: initial;
     }
@@ -246,4 +252,8 @@ section {
 audio, video {
   width: 100%;
   border-radius: 5px;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }
