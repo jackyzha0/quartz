@@ -10,6 +10,7 @@ export type QuartzComponentProps = {
   cfg: GlobalConfiguration
   children: QuartzComponent[] | JSX.Element[]
   tree: Node<QuartzPluginData>
+  allFiles: QuartzPluginData[]
 }
 
 export type QuartzComponent = ComponentType<QuartzComponentProps> & {

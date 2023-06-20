@@ -1,5 +1,6 @@
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
 import * as d3 from 'd3'
+import { registerEscapeHandler } from "./handler"
 
 type NodeData = {
   id: string,
@@ -25,7 +26,8 @@ function removeAllChildren(node: HTMLElement) {
 }
 
 async function renderGraph(container: string, slug: string) {
-  const graph = document.getElementById(container)!
+  const graph = document.getElementById(container)
+  if (!graph) return
   removeAllChildren(graph)
 
   let {
@@ -265,16 +267,15 @@ function renderGlobalGraph() {
   const container = document.getElementById("global-graph-outer")
   container?.classList.add("active")
 
-  function hideGlobalGraph(this: HTMLElement, e: HTMLElementEventMap["click"]) {
-    if (e.target !== this) return
 
+  function hideGlobalGraph() {
     container?.classList.remove("active")
-    const graph = document.getElementById("global-graph-container")!
+    const graph = document.getElementById("global-graph-container")
+    if (!graph) return
     removeAllChildren(graph)
   }
 
-  container?.removeEventListener("click", hideGlobalGraph)
-  container?.addEventListener("click", hideGlobalGraph)
+  registerEscapeHandler(container, hideGlobalGraph)
 }
 
 document.addEventListener("nav", async (e: unknown) => {

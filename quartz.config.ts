@@ -39,16 +39,16 @@ const config: QuartzConfig = {
   plugins: {
     transformers: [
       Plugin.FrontMatter(),
-      Plugin.Description(),
       Plugin.TableOfContents(),
       Plugin.CreatedModifiedDate({
         priority: ['frontmatter', 'filesystem'] // you can add 'git' here for last modified from Git but this makes the build slower
       }),
-      Plugin.GitHubFlavoredMarkdown(),
       Plugin.ObsidianFlavoredMarkdown(),
-      Plugin.ResolveLinks(),
+      Plugin.GitHubFlavoredMarkdown(),
+      Plugin.CrawlLinks(),
       Plugin.SyntaxHighlighting(),
       Plugin.Katex(),
+      Plugin.Description(),
     ],
     filters: [
       Plugin.RemoveDrafts()
@@ -60,6 +60,7 @@ const config: QuartzConfig = {
         header: [
           Component.PageTitle({ title: "🪴 Quartz 4.0" }),
           Component.Spacer(),
+          Component.Search(),
           Component.Darkmode()
         ],
         beforeBody: [
@@ -73,6 +74,7 @@ const config: QuartzConfig = {
         right: [
           Component.Graph(),
           Component.TableOfContents(),
+          Component.Backlinks()
         ],
         footer: []
       }),

@@ -8,6 +8,8 @@ import Spacer from "./Spacer"
 import TableOfContents from "./TableOfContents"
 import TagList from "./TagList"
 import Graph from "./Graph" 
+import Backlinks from "./Backlinks"
+import Search from "./Search"
 
 export {
   ArticleTitle,
@@ -19,5 +21,7 @@ export {
   Spacer,
   TableOfContents,
   TagList,
-  Graph
+  Graph,
+  Backlinks,
+  Search
 } 

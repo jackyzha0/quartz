@@ -9,10 +9,6 @@ export function trimPathSuffix(fp: string): string {
   let [cleanPath, anchor] = fp.split("#", 2)
   anchor = anchor === undefined ? "" : "#" + anchor
 
-  if (cleanPath.endsWith("index")) {
-    cleanPath = cleanPath.slice(0, -"index".length)
-  }
-
   return cleanPath + anchor
 }
 
@@ -48,7 +44,8 @@ export function relativeToRoot(slug: string, fp: string): string {
 }
 
 export function relative(src: string, dest: string): string {
-  return path.relative(src, dest)
+  return "./" + path.relative(src, dest)
+
 }
 
 export const QUARTZ = "quartz"

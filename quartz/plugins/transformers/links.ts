@@ -1,5 +1,5 @@
 import { QuartzTransformerPlugin } from "../types"
-import { relative, relativeToRoot, slugify } from "../../path"
+import { relative, relativeToRoot, slugify, trimPathSuffix } from "../../path"
 import path from "path"
 import { visit } from 'unist-util-visit'
 import isAbsoluteUrl from "is-absolute-url"
@@ -9,14 +9,18 @@ interface Options {
   markdownLinkResolution: 'absolute' | 'relative'
   /** Strips folders from a link so that it looks nice */
   prettyLinks: boolean
+  indexAnchorLinks: boolean
+  indexExternalLinks: boolean
 }
 
 const defaultOptions: Options = {
   markdownLinkResolution: 'absolute',
-  prettyLinks: true
+  prettyLinks: true,
+  indexAnchorLinks: false,
+  indexExternalLinks: false,
 }
 
-export const ResolveLinks: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
+export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "LinkProcessing",
@@ -36,6 +40,7 @@ export const ResolveLinks: QuartzTransformerPlugin<Partial<Options> | undefined>
             }
           }
 
+          const outgoing: Set<string> = new Set()
           visit(tree, 'element', (node, _index, _parent) => {
             // rewrite all links
             if (
@@ -43,13 +48,27 @@ export const ResolveLinks: QuartzTransformerPlugin<Partial<Options> | undefined>
               node.properties &&
               typeof node.properties.href === 'string'
             ) {
-              node.properties.className = isAbsoluteUrl(node.properties.href) ? "external" : "internal"
+              let dest = node.properties.href
+              node.properties.className = isAbsoluteUrl(dest) ? "external" : "internal"
+
 
               // don't process external links or intra-document anchors
-              if (!(isAbsoluteUrl(node.properties.href) || node.properties.href.startsWith("#"))) {
-                node.properties.href = transformLink(node.properties.href)
+              if (!(isAbsoluteUrl(dest) || dest.startsWith("#"))) {
+                node.properties.href = transformLink(dest)
+              }
+              
+              dest = node.properties.href
+              if (dest.startsWith(".")) {
+                const normalizedPath = path.normalize(path.join(curSlug, dest))
+                outgoing.add(trimPathSuffix(normalizedPath))
+              } else if (dest.startsWith("#")) {
+                if (opts.indexAnchorLinks) {
+                  outgoing.add(dest)
+                }
               } else {
-
+                if (opts.indexExternalLinks) {
+                  outgoing.add(dest)
+                }
               }
 
               // rewrite link internals if prettylinks is on
@@ -70,8 +89,16 @@ export const ResolveLinks: QuartzTransformerPlugin<Partial<Options> | undefined>
               }
             }
           })
+
+          file.data.links = [...outgoing]
         }
       }]
     }
+  }
+}
+
+declare module 'vfile' {
+  interface DataMap {
+    links: string[]
   }
 }

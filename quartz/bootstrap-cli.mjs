@@ -75,12 +75,14 @@ yargs(hideBin(process.argv))
               text = text.replace('export default', '')
               text = text.replace('export', '')
 
+              const sourcefile = path.relative(path.resolve('.'), args.path)
+              const resolveDir = path.dirname(sourcefile)
               const transpiled = await esbuild.build({
                 stdin: {
                   contents: text,
                   loader: 'ts',
-                  resolveDir: '.',
-                  sourcefile: path.relative(path.resolve('.'), args.path),
+                  resolveDir,
+                  sourcefile,
                 },
                 write: false,
                 bundle: true,

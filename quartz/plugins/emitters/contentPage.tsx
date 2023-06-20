@@ -33,7 +33,7 @@ export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
     },
     async emit(_contentDir, cfg, content, resources, emit): Promise<string[]> {
       const fps: string[] = []
-
+      const allFiles = content.map(c => c[1].data)
       for (const [tree, file] of content) {
         const baseDir = resolveToRoot(file.data.slug!)
         const pageResources: StaticResources = {
@@ -50,13 +50,14 @@ export const ContentPage: QuartzEmitterPlugin<Options> = (opts) => {
           externalResources: pageResources,
           cfg,
           children: [],
-          tree
+          tree,
+          allFiles
         }
 
         const Content = opts.content
         const doc = <html>
           <Head {...componentData} />
-          <body data-slug={trimPathSuffix(file.data.slug ?? "")}>
+          <body data-slug={file.data.slug ?? ""}>
             <div id="quartz-root" class="page">
               <Header {...componentData} >
                 {header.map(HeaderComponent => <HeaderComponent {...componentData} />)}
