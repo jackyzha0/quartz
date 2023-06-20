@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "lib": [
-      "esnext"
+      "esnext",
+      "DOM",
+      "DOM.Iterable"
     ],
     "module": "esnext",
     "target": "esnext",

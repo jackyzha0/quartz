@@ -39,6 +39,7 @@ document.addEventListener("nav", () => {
 
       const popoverElement = document.createElement("div")
       popoverElement.classList.add("popover")
+      // TODO: scroll this element if we specify a header/anchor to jump to
       const popoverInner = document.createElement("div")
       popoverInner.classList.add("popover-inner")
       popoverElement.appendChild(popoverInner)

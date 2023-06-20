@@ -51,6 +51,7 @@ export function emitComponentResources(cfg: GlobalConfiguration, resources: Stat
     componentResources.afterDOMLoaded.push(spaRouterScript)
   } else {
     componentResources.afterDOMLoaded.push(`
+      window.spaNavigate = (url, _) => window.location.assign(url)
       const event = new CustomEvent("nav", { detail: { slug: document.body.dataset.slug } })
       document.dispatchEvent(event)`
     )
