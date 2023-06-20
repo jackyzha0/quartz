@@ -14,9 +14,6 @@ export const Description: QuartzTransformerPlugin<Partial<Options> | undefined> 
   const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "Description",
-    markdownPlugins() {
-      return []
-    },
     htmlPlugins() {
       return [
         () => {

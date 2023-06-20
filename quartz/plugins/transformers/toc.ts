@@ -52,9 +52,6 @@ export const TableOfContents: QuartzTransformerPlugin<Partial<Options> | undefin
         }
       }]
     },
-    htmlPlugins() {
-      return []
-    }
   }
 }
 

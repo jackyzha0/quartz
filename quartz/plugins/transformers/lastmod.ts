@@ -53,9 +53,6 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | und
         }
       ]
     },
-    htmlPlugins() {
-      return []
-    }
   }
 }
 

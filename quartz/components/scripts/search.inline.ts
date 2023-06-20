@@ -1,6 +1,6 @@
 import { Document } from "flexsearch"
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
-import { registerEscapeHandler } from "./handler"
+import { registerEscapeHandler, relative, removeAllChildren } from "./util"
 
 interface Item {
   slug: string,
@@ -8,16 +8,6 @@ interface Item {
   content: string,
 }
 let index: Document<Item> | undefined = undefined
-
-function relative(from: string, to: string) {
-  const pieces = [location.protocol, '//', location.host, location.pathname]
-  const url = pieces.join('').slice(0, -from.length) + to
-  return url
-}
-
-function removeAllChildren(node: HTMLElement) {
-  node.innerHTML = ``
-}
 
 const contextWindowWords = 30
 function highlight(searchTerm: string, text: string, trim?: boolean) {

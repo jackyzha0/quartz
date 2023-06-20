@@ -3,6 +3,7 @@ import { QuartzTransformerPlugin } from "../types"
 import { Root, HTML, BlockContent, DefinitionContent, Code } from 'mdast'
 import { findAndReplace } from "mdast-util-find-and-replace"
 import { slugify } from "../../path"
+import { slug as slugAnchor } from 'github-slugger'
 import rehypeRaw from "rehype-raw"
 import { visit } from "unist-util-visit"
 import path from "path"
@@ -94,21 +95,43 @@ const capitalize = (s: string): string => {
   return s.substring(0, 1).toUpperCase() + s.substring(1);
 }
 
+// Match wikilinks 
+// !?               -> optional embedding
+// \[\[             -> open brace
+// ([^\[\]\|\#]+)   -> one or more non-special characters ([,],|, or #) (name)
+// (#[^\[\]\|\#]+)? -> # then one or more non-special characters (heading link)
+// (|[^\[\]\|\#]+)? -> | then one or more non-special characters (alias)
+const backlinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)(#[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/, "g")
+
+// Match highlights 
+const highlightRegex = new RegExp(/==(.+)==/, "g")
+
+// from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
+const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
+
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "ObsidianFlavoredMarkdown",
+    textTransform(src) {
+      // pre-transform wikilinks (fix anchors to things that may contain illegal syntax e.g. codeblocks, latex)
+      if (opts.wikilinks) {
+        src = src.toString()
+        return src.replaceAll(backlinkRegex, (value, ...capture) => {
+          const [fp, rawHeader, rawAlias] = capture
+          const anchor = rawHeader?.trim().slice(1)
+          const displayAnchor = anchor ? `#${slugAnchor(anchor)}` : ""
+          const displayAlias = rawAlias ?? ""
+          const embedDisplay = value.startsWith("!") ? "!" : ""
+          return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`
+        })
+      }
+      return src
+    },
     markdownPlugins() {
       const plugins: PluggableList = []
       if (opts.wikilinks) {
         plugins.push(() => {
-          // Match wikilinks 
-          // !?               -> optional embedding
-          // \[\[             -> open brace
-          // ([^\[\]\|\#]+)   -> one or more non-special characters ([,],|, or #) (name)
-          // (#[^\[\]\|\#]+)? -> # then one or more non-special characters (heading link)
-          // (|[^\[\]\|\#]+)? -> | then one or more non-special characters (alias)
-          const backlinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)(#[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/, "g")
           return (tree: Root, _file) => {
             findAndReplace(tree, backlinkRegex, (value: string, ...capture: string[]) => {
               const [fp, rawHeader, rawAlias] = capture
@@ -170,8 +193,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
       if (opts.highlight) {
         plugins.push(() => {
-          // Match highlights 
-          const highlightRegex = new RegExp(/==(.+)==/, "g")
           return (tree: Root, _file) => {
             findAndReplace(tree, highlightRegex, (_value: string, ...capture: string[]) => {
               const [inner] = capture
@@ -186,8 +207,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
       if (opts.callouts) {
         plugins.push(() => {
-          // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
-          const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
           return (tree: Root, _file) => {
             visit(tree, "blockquote", (node) => {
               if (node.children.length === 0) {
