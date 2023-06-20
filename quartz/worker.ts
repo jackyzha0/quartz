@@ -6,6 +6,6 @@ const processor = createProcessor(transformers)
 
 // only called from worker thread
 export async function parseFiles(baseDir: string, fps: string[], verbose: boolean) {
-  const parse = createFileParser(baseDir, fps, verbose)
+  const parse = createFileParser(transformers, baseDir, fps, verbose)
   return parse(processor)
 }

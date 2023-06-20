@@ -7,10 +7,11 @@ document.addEventListener("nav", () => {
     link.addEventListener("mouseenter", async ({ clientX, clientY }) => {
       async function setPosition(popoverElement: HTMLElement) {
         const { x, y } = await computePosition(link, popoverElement, {
-          middleware: [inline({
-            x: clientX,
-            y: clientY
-          }), shift(), flip()]
+          middleware: [
+            inline({ x: clientX, y: clientY }),
+            shift(),
+            flip()
+          ]
         })
         Object.assign(popoverElement.style, {
           left: `${x}px`,
@@ -22,11 +23,17 @@ document.addEventListener("nav", () => {
         return setPosition(link.lastChild as HTMLElement)
       }
 
-      const url = link.href
-      const anchor = new URL(url).hash
-      if (anchor.startsWith("#")) return
+      const thisUrl = new URL(document.location.href)
+      thisUrl.hash = ""
+      thisUrl.search = ""
+      const targetUrl = new URL(link.href)
+      const hash = targetUrl.hash
+      targetUrl.hash = ""
+      targetUrl.search = ""
+      // prevent hover of the same page
+      if (thisUrl.toString() === targetUrl.toString()) return
 
-      const contents = await fetch(`${url}`)
+      const contents = await fetch(`${targetUrl}`)
         .then((res) => res.text())
         .catch((err) => {
           console.error(err)
@@ -39,7 +46,6 @@ document.addEventListener("nav", () => {
 
       const popoverElement = document.createElement("div")
       popoverElement.classList.add("popover")
-      // TODO: scroll this element if we specify a header/anchor to jump to
       const popoverInner = document.createElement("div")
       popoverInner.classList.add("popover-inner")
       popoverElement.appendChild(popoverInner)
@@ -48,6 +54,12 @@ document.addEventListener("nav", () => {
       setPosition(popoverElement)
       link.appendChild(popoverElement)
       link.dataset.fetchedPopover = "true"
+      
+      const heading = popoverInner.querySelector(hash) as HTMLElement | null
+      if (heading) {
+        // leave ~12px of buffer when scrolling to a heading
+        popoverInner.scroll({ top: heading.offsetTop - 12, behavior: 'instant' })
+      }
     })
   }
 })

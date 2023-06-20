@@ -33,9 +33,6 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
         }
       ]
     },
-    htmlPlugins() {
-      return []
-    }
   }
 }
 

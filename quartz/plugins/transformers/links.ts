@@ -1,5 +1,5 @@
 import { QuartzTransformerPlugin } from "../types"
-import { relative, relativeToRoot, slugify, trimPathSuffix } from "../../path"
+import { relativeToRoot, slugify, trimPathSuffix } from "../../path"
 import path from "path"
 import { visit } from 'unist-util-visit'
 import isAbsoluteUrl from "is-absolute-url"
@@ -24,9 +24,6 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
   const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "LinkProcessing",
-    markdownPlugins() {
-      return []
-    },
     htmlPlugins() {
       return [() => {
         return (tree, file) => {
@@ -34,7 +31,8 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
           const transformLink = (target: string) => {
             const targetSlug = slugify(decodeURI(target).trim())
             if (opts.markdownLinkResolution === 'relative' && !path.isAbsolute(targetSlug)) {
-              return './' + relative(curSlug, targetSlug)
+              // TODO
+              // return './' + relative(curSlug, targetSlug)
             } else {
               return './' + relativeToRoot(curSlug, targetSlug)
             }
@@ -77,9 +75,9 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
               }
             }
 
-            // transform all images
+            // transform all other resources that may use links
             if (
-              node.tagName === 'img' &&
+              ["img", "video", "audio", "iframe"].includes(node.tagName) &&
               node.properties &&
               typeof node.properties.src === 'string'
             ) {

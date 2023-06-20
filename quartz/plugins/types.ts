@@ -14,9 +14,10 @@ type OptionType = object | undefined
 export type QuartzTransformerPlugin<Options extends OptionType = undefined> = (opts?: Options) => QuartzTransformerPluginInstance
 export type QuartzTransformerPluginInstance = {
   name: string
-  markdownPlugins(): PluggableList
-  htmlPlugins(): PluggableList
-  externalResources?(): Partial<StaticResources>
+  textTransform?: (src: string | Buffer) => string | Buffer
+  markdownPlugins?: () => PluggableList
+  htmlPlugins?: () => PluggableList
+  externalResources?: () => Partial<StaticResources>
 }
 
 export type QuartzFilterPlugin<Options extends OptionType = undefined> = (opts?: Options) => QuartzFilterPluginInstance 

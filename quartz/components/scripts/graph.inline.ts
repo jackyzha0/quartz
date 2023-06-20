@@ -1,6 +1,6 @@
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
 import * as d3 from 'd3'
-import { registerEscapeHandler } from "./handler"
+import { registerEscapeHandler, relative, removeAllChildren } from "./util"
 
 type NodeData = {
   id: string,
@@ -11,18 +11,6 @@ type NodeData = {
 type LinkData = {
   source: string,
   target: string
-}
-
-function relative(from: string, to: string) {
-  const pieces = [location.protocol, '//', location.host, location.pathname]
-  const url = pieces.join('').slice(0, -from.length) + to
-  return url
-}
-
-function removeAllChildren(node: HTMLElement) {
-  while (node.firstChild) {
-    node.removeChild(node.firstChild)
-  }
 }
 
 async function renderGraph(container: string, slug: string) {
@@ -117,7 +105,6 @@ async function renderGraph(container: string, slug: string) {
 
   // calculate radius
   const color = (d: NodeData) => {
-    // TODO: does this handle the index page
     const isCurrent = d.id === slug
     return isCurrent ? "var(--secondary)" : "var(--gray)"
   }

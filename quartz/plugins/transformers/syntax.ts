@@ -3,9 +3,6 @@ import rehypePrettyCode, { Options as CodeOptions } from "rehype-pretty-code"
 
 export const SyntaxHighlighting: QuartzTransformerPlugin = () => ({
   name: "SyntaxHighlighting",
-  markdownPlugins() {
-    return []
-  },
   htmlPlugins() {
     return [[rehypePrettyCode, {
       theme: 'css-variables',
@@ -15,10 +12,12 @@ export const SyntaxHighlighting: QuartzTransformerPlugin = () => ({
         }
       },
       onVisitHighlightedLine(node) {
+        node.properties.className ??= []
         node.properties.className.push('highlighted')
       },
       onVisitHighlightedWord(node) {
-        node.properties.className = ['word']
+        node.properties.className ??= []
+        node.properties.className.push('word')
       },
     } satisfies Partial<CodeOptions>]]
   }

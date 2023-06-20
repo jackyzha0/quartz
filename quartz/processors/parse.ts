@@ -21,8 +21,8 @@ export function createProcessor(transformers: QuartzTransformerPluginInstance[])
   let processor = unified().use(remarkParse)
 
   // MD AST -> MD AST transforms
-  for (const plugin of transformers) {
-    processor = processor.use(plugin.markdownPlugins())
+  for (const plugin of transformers.filter(p => p.markdownPlugins)) {
+    processor = processor.use(plugin.markdownPlugins!())
   }
 
   // MD AST -> HTML AST
@@ -30,8 +30,8 @@ export function createProcessor(transformers: QuartzTransformerPluginInstance[])
 
 
   // HTML AST -> HTML AST transforms
-  for (const plugin of transformers) {
-    processor = processor.use(plugin.htmlPlugins())
+  for (const plugin of transformers.filter(p => p.htmlPlugins)) {
+    processor = processor.use(plugin.htmlPlugins!())
   }
 
   return processor
@@ -73,12 +73,17 @@ async function transpileWorkerScript() {
   })
 }
 
-export function createFileParser(baseDir: string, fps: string[], verbose: boolean) {
+export function createFileParser(transformers: QuartzTransformerPluginInstance[], baseDir: string, fps: string[], verbose: boolean) {
   return async (processor: QuartzProcessor) => {
     const res: ProcessedContent[] = []
     for (const fp of fps) {
       try {
         const file = await read(fp)
+
+        // Text -> Text transforms
+        for (const plugin of transformers.filter(p => p.textTransform)) {
+          file.value = plugin.textTransform!(file.value)
+        }
 
         // base data properties that plugins may use
         file.data.slug = slugify(path.relative(baseDir, file.path))
@@ -111,9 +116,8 @@ export async function parseMarkdown(transformers: QuartzTransformerPluginInstanc
 
   log.start(`Parsing input files using ${concurrency} threads`)
   if (concurrency === 1) {
-    // single-thread
     const processor = createProcessor(transformers)
-    const parse = createFileParser(baseDir, fps, verbose)
+    const parse = createFileParser(transformers, baseDir, fps, verbose)
     res = await parse(processor)
   } else {
     await transpileWorkerScript()
