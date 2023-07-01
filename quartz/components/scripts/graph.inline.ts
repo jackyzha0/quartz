@@ -13,7 +13,19 @@ type LinkData = {
   target: string
 }
 
+const localStorageKey = "graph-visited"
+function getVisited(): Set<string> {
+  return new Set(JSON.parse(localStorage.getItem(localStorageKey) ?? "[]"))
+}
+
+function addToVisited(slug: string) {
+  const visited = getVisited()
+  visited.add(slug)
+  localStorage.setItem(localStorageKey, JSON.stringify([...visited]))
+}
+
 async function renderGraph(container: string, slug: string) {
+  const visited = getVisited()
   const graph = document.getElementById(container)
   if (!graph) return
   removeAllChildren(graph)
@@ -106,7 +118,13 @@ async function renderGraph(container: string, slug: string) {
   // calculate radius
   const color = (d: NodeData) => {
     const isCurrent = d.id === slug
-    return isCurrent ? "var(--secondary)" : "var(--gray)"
+    if (isCurrent) {
+      return "var(--secondary)"
+    } else if (visited.has(d.id)) {
+      return "var(--tertiary)"
+    } else {
+      return "var(--gray)"
+    }
   }
 
   const drag = (simulation: d3.Simulation<NodeData, LinkData>) => {
@@ -267,9 +285,15 @@ function renderGlobalGraph() {
 
 document.addEventListener("nav", async (e: unknown) => {
   const slug = (e as CustomEventMap["nav"]).detail.url
+  addToVisited(slug)
   await renderGraph("graph-container", slug)
 
   const containerIcon = document.getElementById("global-graph-icon")
   containerIcon?.removeEventListener("click", renderGlobalGraph)
   containerIcon?.addEventListener("click", renderGlobalGraph)
+})
+
+window.addEventListener('resize', async () => {
+  const slug = document.body.dataset["slug"]!
+  await renderGraph("graph-container", slug)
 })

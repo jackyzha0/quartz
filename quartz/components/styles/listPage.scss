@@ -1,0 +1,36 @@
+ul.section-ul {
+  list-style: none;
+  margin-top: 2em;
+  padding-left: 0;
+}
+
+li.section-li {
+  margin-bottom: 1em;
+
+  & > .section {
+    display: flex;
+    align-items: center;
+
+    @media all and (max-width: 600px) {
+      & .tags {
+        display: none;
+      }
+    }
+
+    & h3 > a {
+      font-weight: 700;
+      margin: 0;
+      background-color: transparent;
+    }
+
+    & p {
+      margin: 0;
+      padding-right: 1em;
+      flex-basis: 6em;
+    }
+  }
+
+  & .meta {
+    opacity: 0.6;
+  }
+}
