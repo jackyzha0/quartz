@@ -50,6 +50,11 @@ export function emitComponentResources(cfg: GlobalConfiguration, resources: Stat
       componentResources.afterDOMLoaded.push(afterDOMLoaded)
     }
   }
+  
+  if (cfg.enablePopovers) {
+    componentResources.afterDOMLoaded.push(popoverScript)
+    componentResources.css.push(popoverStyle)
+  }
 
   if (cfg.enableSPA) {
     componentResources.afterDOMLoaded.push(spaRouterScript)
@@ -59,11 +64,6 @@ export function emitComponentResources(cfg: GlobalConfiguration, resources: Stat
       const event = new CustomEvent("nav", { detail: { slug: document.body.dataset.slug } })
       document.dispatchEvent(event)`
     )
-  }
-
-  if (cfg.enablePopovers) {
-    componentResources.afterDOMLoaded.push(popoverScript)
-    componentResources.css.push(popoverStyle)
   }
 
   emit({
