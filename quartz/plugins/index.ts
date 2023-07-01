@@ -4,8 +4,12 @@ import { StaticResources } from '../resources'
 import { googleFontHref, joinStyles } from '../theme'
 import { EmitCallback, PluginTypes } from './types'
 import styles from '../styles/base.scss'
+
 // @ts-ignore
 import spaRouterScript from '../components/scripts/spa.inline'
+// @ts-ignore
+import popoverScript from '../components/scripts/popover.inline'
+import popoverStyle from '../components/styles/popover.scss'
 
 export type ComponentResources = {
   css: string[],
@@ -55,6 +59,11 @@ export function emitComponentResources(cfg: GlobalConfiguration, resources: Stat
       const event = new CustomEvent("nav", { detail: { slug: document.body.dataset.slug } })
       document.dispatchEvent(event)`
     )
+  }
+
+  if (cfg.enablePopovers) {
+    componentResources.afterDOMLoaded.push(popoverScript)
+    componentResources.css.push(popoverStyle)
   }
 
   emit({

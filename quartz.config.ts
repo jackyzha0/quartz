@@ -1,6 +1,45 @@
-import { QuartzConfig } from "./quartz/cfg"
+import { PageLayout, QuartzConfig } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 import * as Plugin from "./quartz/plugins"
+
+const sharedPageComponents = {
+  head: Component.Head(),
+  header: [
+    Component.PageTitle({ title: "🪴 Quartz 4.0" }),
+    Component.Spacer(),
+    Component.Search(),
+    Component.Darkmode()
+  ],
+  footer: Component.Footer({
+    authorName: "Jacky",
+    links: {
+      "GitHub": "https://github.com/jackyzha0",
+      "Twitter": "https://twitter.com/_jzhao"
+    }
+  })
+}
+
+const contentPageLayout: PageLayout = {
+  beforeBody: [
+    Component.ArticleTitle(),
+    Component.ReadingTime(),
+    Component.TagList(),
+  ],
+  left: [],
+  right: [
+    Component.Graph(),
+    Component.TableOfContents(),
+    Component.Backlinks()
+  ],
+}
+
+const listPageLayout: PageLayout = {
+  beforeBody: [
+    Component.ArticleTitle()
+  ],
+  left: [],
+  right: [],
+}
 
 const config: QuartzConfig = {
   configuration: {
@@ -56,30 +95,22 @@ const config: QuartzConfig = {
     emitters: [
       Plugin.AliasRedirects(),
       Plugin.ContentPage({
-        head: Component.Head(),
-        header: [
-          Component.PageTitle({ title: "🪴 Quartz 4.0" }),
-          Component.Spacer(),
-          Component.Search(),
-          Component.Darkmode()
-        ],
-        beforeBody: [
-          Component.ArticleTitle(),
-          Component.ReadingTime(),
-          Component.TagList(),
-        ],
-        content: Component.Content(),
-        left: [
-        ],
-        right: [
-          Component.Graph(),
-          Component.TableOfContents(),
-          Component.Backlinks()
-        ],
-        footer: []
+        ...sharedPageComponents,
+        ...contentPageLayout,
+        pageBody: Component.Content(),
       }),
-      Plugin.ContentIndex(), // you can exclude this if you don't plan on using popovers, graph, or backlinks,
-      Plugin.CNAME({ domain: "yoursite.xyz" }) // set this to your final deployed domain
+      Plugin.TagPage({
+        ...sharedPageComponents,
+        ...listPageLayout,
+        pageBody: Component.TagContent(),
+      }),
+      Plugin.FolderPage({
+        ...sharedPageComponents,
+        ...listPageLayout,
+        pageBody: Component.FolderContent(),
+      }),
+      Plugin.ContentIndex(), // you can exclude this if you don't plan on using popovers, graph view, or backlinks
+      Plugin.CNAME({ domain: "quartz.jzhao.xyz" }) // set this to your final deployed domain
     ]
   },
 }

@@ -1,0 +1,13 @@
+footer {
+  text-align: left;
+  opacity: 0.8;
+  & ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: -1rem;
+  }
+}
