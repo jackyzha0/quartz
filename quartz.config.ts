@@ -5,7 +5,7 @@ import * as Plugin from "./quartz/plugins"
 const sharedPageComponents = {
   head: Component.Head(),
   header: [
-    Component.PageTitle({ title: "🪴 Quartz 4.0" }),
+    Component.PageTitle(),
     Component.Spacer(),
     Component.Search(),
     Component.Darkmode()
@@ -43,7 +43,10 @@ const listPageLayout: PageLayout = {
 
 const config: QuartzConfig = {
   configuration: {
+    pageTitle: "🪴 Quartz 4.0",
     enableSPA: true,
+    enablePopovers: true,
+    canonicalUrl: "quartz.jzhao.xyz",
     ignorePatterns: ["private", "templates"],
     theme: {
       typography: { // loaded from Google Fonts
@@ -90,7 +93,7 @@ const config: QuartzConfig = {
       Plugin.Description(),
     ],
     filters: [
-      Plugin.RemoveDrafts()
+      Plugin.RemoveDrafts(),
     ],
     emitters: [
       Plugin.AliasRedirects(),
@@ -109,8 +112,10 @@ const config: QuartzConfig = {
         ...listPageLayout,
         pageBody: Component.FolderContent(),
       }),
-      Plugin.ContentIndex(), // you can exclude this if you don't plan on using popovers, graph view, or backlinks
-      Plugin.CNAME({ domain: "quartz.jzhao.xyz" }) // set this to your final deployed domain
+      Plugin.ContentIndex({
+        enableSiteMap: true,
+        enableRSS: true,
+      }),
     ]
   },
 }
