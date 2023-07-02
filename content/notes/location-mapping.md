@@ -1,0 +1,6 @@
+- mapping between location classes
+	- geocoding
+		- convert street address to coords
+	- reverse geocoding
+	- Cell to geographic/topo
+		- proxemic to geographic/topo

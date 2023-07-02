@@ -17,6 +17,7 @@ Blockchain technology falls into two distinct classes: open (permissionless) blo
 - [ ] Do members of a private consortium blockchain enter into a legal agreement?
 
 # Notes
+- [[veracity-summary]]
 - [think-writing/log](notes/think-writing.md)
 	- [[veracity-week01|week1]]
 	- [[veracity-week02|week2]]

@@ -1,0 +1,2 @@
+- e.g., screen rotation
+	- code which detects a change in the sensed values, and makes the screen rotate

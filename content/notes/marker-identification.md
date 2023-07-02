@@ -1,0 +1,3 @@
+- template matching
+- use perspective projection to map bring marker into normalised coordinate system
+- sliding window, search for position with most similarity

@@ -85,7 +85,7 @@ Gyroscope
 - MEMS (microelectromechanical system) gyro 
 - Used in most smartphones or mobile/embedded devices 
 - Use the displacement of vibrating proof mass to compute orientation (Coriolis effect)
-![MEMS gyro|100](https://i.imgur.com/dzTVCpE.png)
+![MEMS gyro|900](https://i.imgur.com/dzTVCpE.png)
 ![gyro chip](https://i.imgur.com/zVoQ3wM.png)
 > [!INFO] 
 > works similar to spinning gyro but uses vibrations instead (coriolis effect)

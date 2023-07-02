@@ -1,0 +1,2 @@
+- The idea that computers should become a more natural part of our environment
+- Instead of using mounse and keyboard etc to interact we should use more natural interactions such as with physical objects, or even no interaction at all

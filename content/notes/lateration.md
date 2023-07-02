@@ -1,0 +1,3 @@
+- Calculating postion based on **distances** from objects
+- Calculated by time of arrival (ToA) or signal strength
+- 3D-Positioning requires three reference points

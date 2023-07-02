@@ -1,0 +1,3 @@
+- GPS in combination with cell and wifi location
+- used very commonly in phones etc
+- works better online

@@ -1,0 +1,2 @@
+- "Computers" should not be fixed in place
+- We should be able to take them with us

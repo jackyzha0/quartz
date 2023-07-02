@@ -13,7 +13,7 @@ sr-ease: 250
 	- [closure](notes/law-of-closure.md)
 	- [grouping](notes/grouping.md)
 	- [similarity](notes/law-of-similarity.md)
-- [color](notes/color.md)
+- [color-in-design](color-in-design.md)
 - [reading-and-navigating](notes/reading-and-navigating.md)
 
 

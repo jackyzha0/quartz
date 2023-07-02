@@ -1,0 +1,3 @@
+- Computers that are embedded in our enviroment.
+- within cars, homes
+- so it become almost "invisble"

@@ -1,0 +1,5 @@
+- extention of DGPS
+- also uses base station
+- uses measurements of the phase of the signal
+- cost many money
+- need a very close base station

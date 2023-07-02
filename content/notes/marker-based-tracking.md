@@ -1,0 +1,7 @@
+- tracking the location of objects with a symbol
+- process
+	- search for markers, using black and white image
+	- find marker position and oreintation
+	- the symbol inside the marker matched with templates in memory
+	- position and orient objects on marker using calculated position T of marker
+	- virtual objects are rendred in video frame

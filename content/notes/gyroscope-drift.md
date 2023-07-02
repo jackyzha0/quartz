@@ -1,0 +1,5 @@
+- we cant take perfectly continuous integral of time over angle
+- so instead sum  a finite number of samples from a constant interval
+- but data changes faster than we can sample
+- integral approximation may be incorrect
+- this causes drift

@@ -1,0 +1,3 @@
+- measures flow of current over differential capacitor
+- inidicates acceleraton
+- measure movement of seismic mass in a housing.

@@ -69,13 +69,6 @@ Dead Reckoning
 > robots use a lot of dead reckoning
 
 
-- Starting with a reference point (known position) 
-- Detect relative movements 
-- Smartphone sensors can be used 
-	- Accelerometer – step detection (distance) 
-	- Magnetometer and gyroscope (orientation) 
-	- Barometer (level changes)
-
 - Issues: 
 - Even small errors lead to incorrect positions 
 - Subsequent errors increase incorrectness 

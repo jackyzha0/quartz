@@ -1,0 +1,5 @@
+- similar to [[cell-based-location]]
+- uses existing infrastructure
+- MAC/SSID of current wifi endpoint
+- requires mapping of wifi endpoints to geographic locations
+	- creating by large companies (e.g., google, apple) using fingerprinting

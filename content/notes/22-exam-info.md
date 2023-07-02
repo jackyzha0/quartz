@@ -9,11 +9,11 @@ tags:
 
 # Topics: 
 ## Ubiquitous Computing: 
-		- Concept & Visions 
-		- Examples for Ubiquitous Computing 
-		- Common characteristics 
-		- Ubiquitous Computing vs. Pervasive Computing vs. Mobile Computing vs. Traditional Computing 
-		- Challenges		
+- Concept & Visions 
+- Examples for Ubiquitous Computing 
+- Common characteristics 
+- Ubiquitous Computing vs. Pervasive Computing vs. Mobile Computing vs. Traditional Computing 
+- Challenges		
 > [!INFO] what we need to undetstand
 > what is ubiquiitous computing? general concept, vision, etc. computers become smaller/cheaper - become almost everywhere
 > graphics -> ubiquiteous vs pervasive vs mobile vs traditional. 2 axis scale, mobility and embeddedness. UBI:mobile and embedded. PERVAS:embedded not mobile. MOBILE: mobile not embedded. TC: neither. 

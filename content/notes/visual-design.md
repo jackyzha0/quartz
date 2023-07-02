@@ -22,4 +22,4 @@ three goals
 Three tools
 - [typography](notes/typography.md)
 - [layout](notes/layout.md)
-- [color](notes/color.md)
+- [color-in-design](color-in-design.md)

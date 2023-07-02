@@ -8,6 +8,7 @@ tags:
 # What music do I Listen to?
 - genres
 	- ambient(dark, drone, metal, industrial, dungeon synth)
+	- rock
 	- hip hop (instrumental, jazz, lo fi, old school)
 	- folk
 	- jazz

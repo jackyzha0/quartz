@@ -12,11 +12,9 @@ https://www.cs.otago.ac.nz/cosc301/schedule.php
 # Assignments
 [[01-vm-ipv6]]
 
-exam: | COSC301 | Saturday 17 June 2023 | 09:30 |
-- subnetting/supernetting
-- 
-
-# Labs
+# exam:
+| COSC301 | Saturday 17 June 2023 | 09:30 |
+- subnetting/supernetting# Labs
 - [x] [[01-VM-intro]]
 - [x] [[02-basic-interface-management]]
 - [x] [[03-ipv6-bootcamp]]
@@ -57,5 +55,7 @@ exam: | COSC301 | Saturday 17 June 2023 | 09:30 |
 - [x] [[21-network-accounting-and-visibility]]
 - [x] [[22-firewalls-NAT]]
 - [x] [[23-exterior-routing]]
+- [x] [[24-diagnostics-ethics]]
+- [x] [[25-revision]]
 
 # Info

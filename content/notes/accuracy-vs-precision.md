@@ -1,0 +1,5 @@
+- precise
+	- consistent but possibly off target
+- accurate
+	- centered on the target but possibly spread
+- sensors missing one or with neither, are still useful, just a little more difficul to get information out of them

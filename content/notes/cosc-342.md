@@ -9,8 +9,8 @@ tags:
 # Assignments
 
 - [x] [[342-assignment-01]]
-- [ ] [[342-assignment-02]]
-- [ ] [[342-assignment-03]]
+- [x] [[342-assignment-02]]
+- [x] [[342-assignment-03]]
 
 exam: | COSC342 | Friday 09 June 2023 | 09:30 |
 
@@ -19,12 +19,12 @@ exam: | COSC342 | Friday 09 June 2023 | 09:30 |
 
 - [x] [[01a-getting-started]]
 - [x] [[01b-cpp-essentials]]
-- [ ] [[02-image-transforms]]
 
 # Notes
+[[342-review]]
+- [[Colours]]
 
 # Lectures
-- [x] [[01-intro-to-342]]
 - [x] [[02-colour-representation]]
 - [x] [[03-2d-transforms]]
 - [[04-mosaicing]]
@@ -33,6 +33,10 @@ exam: | COSC342 | Friday 09 June 2023 | 09:30 |
 - [[08-visual-tracking-and-matching]]
 - [x] [[09-3d-geometry]]
 - [x] [[10-3d-Cameras]]
+- [ ] [[11-]]
+- [ ] [[12-]]
+- [ ] [[13-]]
+- [ ] [[14-]]
 - [x] [[15-multiview-stereo]]
 - [x] [[16-intro-computer-graphics]]
 - [x] [[17-OpenGL-essentials]]

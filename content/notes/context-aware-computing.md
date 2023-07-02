@@ -1,0 +1,1 @@
+- software that adapts according to its location of use, the collection of nearby people and objects, as well as changes to those objects over time

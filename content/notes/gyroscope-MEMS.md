@@ -1,0 +1,6 @@
+- microelectromechanical system
+- [[gyroscope]] used in smartphones
+- uses vibrating mass instead of spinning
+- coriolis force
+	- when something vibrating rotates
+	- the mass moves in a direction perpendicular to the axis of rotation 

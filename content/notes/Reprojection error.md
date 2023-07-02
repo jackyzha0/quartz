@@ -1,0 +1,2 @@
+- (re)project 3d points back into image plane and measure difference
+- optimise for lower reprojecttion error

@@ -6,6 +6,8 @@ tags:
 - visual-design
 ---
 
+[[Colours]] are very complex
+
 # Color
 - design grayscale first.
 - keep luminance values from grayscale when moving to color

@@ -1,0 +1,2 @@
+- unformatted memory
+- can store pixel data or vertex data (VBO)
