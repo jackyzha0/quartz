@@ -7,13 +7,9 @@
   & > ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0.5rem 0;
 
     & > li {
-      margin: 0.5rem 0;
-      padding: 0.25rem 1rem;
-      border: var(--lightgray) 1px solid;
-      border-radius: 5px;
       & > a {
         background-color: transparent;
       }

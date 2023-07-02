@@ -64,7 +64,7 @@ yargs(hideBin(process.argv))
       packages: "external",
       plugins: [
         sassPlugin({
-          type: 'css-text'
+          type: 'css-text',
         }),
         {
           name: 'inline-script-loader',

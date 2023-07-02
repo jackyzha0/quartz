@@ -1,13 +1,69 @@
 import path from "path"
 import fs from "fs"
-import { QuartzConfig } from "../cfg"
+import { GlobalConfiguration, QuartzConfig } from "../cfg"
 import { PerfTimer } from "../perf"
-import { emitComponentResources, getStaticResourcesFromPlugins } from "../plugins"
+import { ComponentResources, emitComponentResources, getComponentResources, getStaticResourcesFromPlugins } from "../plugins"
 import { EmitCallback } from "../plugins/types"
 import { ProcessedContent } from "../plugins/vfile"
 import { QUARTZ, slugify } from "../path"
 import { globbyStream } from "globby"
 import chalk from "chalk"
+import { googleFontHref } from '../theme'
+
+// @ts-ignore
+import spaRouterScript from '../components/scripts/spa.inline'
+// @ts-ignore
+import plausibleScript from '../components/scripts/plausible.inline'
+// @ts-ignore
+import popoverScript from '../components/scripts/popover.inline'
+import popoverStyle from '../components/styles/popover.scss'
+import { StaticResources } from "../resources"
+
+function addGlobalPageResources(cfg: GlobalConfiguration, staticResources: StaticResources, componentResources: ComponentResources) {
+  // font and other resources
+  staticResources.css.push(googleFontHref(cfg.theme))
+
+  // popovers
+  if (cfg.enablePopovers) {
+    componentResources.afterDOMLoaded.push(popoverScript)
+    componentResources.css.push(popoverStyle)
+  }
+
+  if (cfg.analytics?.provider === "google") {
+    const tagId = cfg.analytics.tagId
+    staticResources.js.push({
+      src: `https://www.googletagmanager.com/gtag/js?id=${tagId}`,
+      contentType: 'external',
+      loadTime: 'afterDOMReady',
+    })
+    componentResources.afterDOMLoaded.push(`
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag(\`js\`, new Date());
+    gtag(\`config\`, \`${tagId}\`, { send_page_view: false });
+
+    document.addEventListener(\`nav\`, () => {
+      gtag(\`event\`, \`page_view\`, {
+        page_title: document.title,
+        page_location: location.href,
+      });
+    });`
+    )
+  } else if (cfg.analytics?.provider === "plausible") {
+    componentResources.afterDOMLoaded.push(plausibleScript)
+  }
+
+  // spa
+  if (cfg.enableSPA) {
+    componentResources.afterDOMLoaded.push(spaRouterScript)
+  } else {
+    componentResources.afterDOMLoaded.push(`
+      window.spaNavigate = (url, _) => window.location.assign(url)
+      const event = new CustomEvent("nav", { detail: { slug: document.body.dataset.slug } })
+      document.dispatchEvent(event)`
+    )
+  }
+}
 
 export async function emitContent(contentFolder: string, output: string, cfg: QuartzConfig, content: ProcessedContent[], verbose: boolean) {
   const perf = new PerfTimer()
@@ -19,9 +75,25 @@ export async function emitContent(contentFolder: string, output: string, cfg: Qu
     return pathToPage
   }
 
+  // initialize from plugins
   const staticResources = getStaticResourcesFromPlugins(cfg.plugins)
-  emitComponentResources(cfg.configuration, staticResources, cfg.plugins, emit)
 
+  // component specific scripts and styles
+  const componentResources = getComponentResources(cfg.plugins)
+  // important that this goes *after* component scripts 
+  // as the "nav" event gets triggered here and we should make sure 
+  // that everyone else had the chance to register a listener for it
+  addGlobalPageResources(cfg.configuration, staticResources, componentResources)
+
+  // emit in one go
+  const emittedResources = await emitComponentResources(cfg.configuration, componentResources, emit)
+  if (verbose) {
+    for (const file of emittedResources) {
+      console.log(`[emit:Resources] ${file}`)
+    }
+  }
+
+  // emitter plugins
   let emittedFiles = 0
   for (const emitter of cfg.plugins.emitters) {
     try {

@@ -11,6 +11,9 @@ body {
   box-sizing: border-box;
   background-color: var(--light);
   font-family: var(--bodyFont);
+  --pageWidth: 800px;
+  --sidePanelWidth: 400px;
+  --topSpacing: 6rem;
 }
 
 .text-highlight {
@@ -27,7 +30,7 @@ p, ul, text, a, tr, td, li, ol, ul, .katex {
 a {
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
   color: var(--secondary);
 
   &:hover {
@@ -43,34 +46,48 @@ a {
 }
 
 .page {
-  margin: 6rem 35vw 6rem 20vw;
-  max-width: 1000px;
-  position: relative;
+  & > .page-header {
+    max-width: var(--pageWidth);
+    margin: var(--topSpacing) auto 0 auto;
+  }
 
-  & .left, & .right {
-    position: fixed;
-    height: 100vh;
-    overflow-y: scroll;
-    box-sizing: border-box;
+  & > #quartz-body {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    top: 0;
-    gap: 2rem;
-    padding: 6rem;
-  }
-  
-  & .left {
-    left: 0;
-    padding-left: 10vw;
-    width: 20vw;
-  }
 
-  & .right {
-    right: 0;
-    padding-right: 10vw;
-    width: 35vw;
-  }
+    & .left, & .right {
+      flex: 1;
+      width: calc(calc(100vw - var(--pageWidth)) / 2);
+    }
 
+    & .left-inner, & .right-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      top: 0;
+      width: var(--sidePanelWidth);
+      margin-top: calc(var(--topSpacing));
+      box-sizing: border-box;
+      padding: 0 4rem;
+      position: fixed;
+    }
+
+    & .left-inner {
+      left: calc(calc(100vw - var(--pageWidth)) / 2 - var(--sidePanelWidth));
+    }
+
+    & .right-inner {
+      right: calc(calc(100vw - var(--pageWidth)) / 2 - var(--sidePanelWidth));
+    }
+
+    & .center {
+      width: var(--pageWidth);
+      margin: 0 auto;
+    }
+  }
+}
+
+.page {
   @media all and (max-width: 1200px) {
     margin: 25px 5vw;
     & .left, & .right {
@@ -89,7 +106,24 @@ a {
     & > h1 {
       font-size: 2rem;
     }
+
+    // darkmode diagrams
+    & svg {
+      stroke: var(--dark);
+    }
+
+    & ul:has(input[type='checkbox']) {
+      list-style-type: none;
+      padding-left: 0;
+    }
   }
+}
+
+input[type="checkbox"] {
+  transform: translateY(2px);
+  color: var(--secondary);
+  border-color: var(--lightgray);
+  background-color: var(--light);
 }
 
 blockquote {
@@ -120,7 +154,7 @@ thead {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  &[id] > a {
+  &[id] > a[href^="#"] {
     margin: 0 0.5rem;
     opacity: 0;
     transition: opacity 0.2s ease;

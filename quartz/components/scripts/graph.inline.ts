@@ -266,9 +266,9 @@ async function renderGraph(container: string, slug: string) {
   })
 }
 
-function renderGlobalGraph() {
+async function renderGlobalGraph() {
   const slug = document.body.dataset["slug"]!
-  renderGraph("global-graph-container", slug)
+  await renderGraph("global-graph-container", slug)
   const container = document.getElementById("global-graph-outer")
   container?.classList.add("active")
 
@@ -293,7 +293,14 @@ document.addEventListener("nav", async (e: unknown) => {
   containerIcon?.addEventListener("click", renderGlobalGraph)
 })
 
-window.addEventListener('resize', async () => {
-  const slug = document.body.dataset["slug"]!
-  await renderGraph("graph-container", slug)
+let resizeEventDebounce: number | undefined = undefined
+window.addEventListener('resize', () => {
+  if (resizeEventDebounce) {
+    clearTimeout(resizeEventDebounce)
+  }
+
+  resizeEventDebounce = window.setTimeout(async () => {
+    const slug = document.body.dataset["slug"]!
+    await renderGraph("graph-container", slug)
+  }, 50)
 })

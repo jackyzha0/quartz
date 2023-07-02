@@ -17,10 +17,15 @@ interface RenderComponents {
 
 export function pageResources(slug: string, staticResources: StaticResources): StaticResources {
   const baseDir = resolveToRoot(slug)
+
+  const contentIndexPath = baseDir + "/static/contentIndex.json"
+  const contentIndexScript = `const fetchData = fetch(\`${contentIndexPath}\`).then(data => data.json())`
+
   return {
     css: [baseDir + "/index.css", ...staticResources.css],
     js: [
       { src: baseDir + "/prescript.js", loadTime: "beforeDOMReady", contentType: "external" },
+      { loadTime: "afterDOMReady", contentType: "inline", spaPreserve: true, script: contentIndexScript },
       ...staticResources.js,
       { src: baseDir + "/postscript.js", loadTime: "afterDOMReady", moduleType: 'module', contentType: "external" }
     ]
@@ -32,28 +37,40 @@ export function renderPage(slug: string, componentData: QuartzComponentProps, co
   const Header = HeaderConstructor()
   const Body = BodyConstructor()
 
+  const LeftComponent =
+    <div class="left">
+      <div class="left-inner">
+        {left.map(BodyComponent => <BodyComponent {...componentData} />)}
+      </div>
+    </div>
+
+  const RightComponent =
+    <div class="right">
+      <div class="right-inner">
+        {right.map(BodyComponent => <BodyComponent {...componentData} />)}
+      </div>
+    </div>
+
   const doc = <html>
     <Head {...componentData} />
     <body data-slug={slug}>
       <div id="quartz-root" class="page">
-        <Header {...componentData} >
-          {header.map(HeaderComponent => <HeaderComponent {...componentData} />)}
-        </Header>
-        <div class="popover-hint">
-          {beforeBody.map(BodyComponent => <BodyComponent {...componentData} />)}
+        <div class="page-header">
+          <Header {...componentData} >
+            {header.map(HeaderComponent => <HeaderComponent {...componentData} />)}
+          </Header>
+          <div class="popover-hint">
+            {beforeBody.map(BodyComponent => <BodyComponent {...componentData} />)}
+          </div>
         </div>
         <Body {...componentData}>
-          <div class="left">
-            {left.map(BodyComponent => <BodyComponent {...componentData} />)}
-          </div>
-          <div class="center popover-hint">
+          {LeftComponent}
+          <div class="center">
             <Content {...componentData} />
+            <Footer {...componentData} />
           </div>
-          <div class="right">
-            {right.map(BodyComponent => <BodyComponent {...componentData} />)}
-          </div>
+          {RightComponent}
         </Body>
-        <Footer {...componentData} />
       </div>
     </body>
     {pageResources.js.filter(resource => resource.loadTime === "afterDOMReady").map(res => JSResourceToScriptElement(res))}

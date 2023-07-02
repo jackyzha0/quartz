@@ -1,5 +1,24 @@
 import { computePosition, flip, inline, shift } from "@floating-ui/dom"
 
+// from micromorph/src/utils.ts
+// https://github.com/natemoo-re/micromorph/blob/main/src/utils.ts#L5
+export function normalizeRelativeURLs(
+  el: Element | Document,
+  base: string | URL
+) {
+  const update = (el: Element, attr: string, base: string | URL) => {
+    el.setAttribute(attr, new URL(el.getAttribute(attr)!, base).pathname)
+  }
+
+  el.querySelectorAll('[href^="./"], [href^="../"]').forEach((item) =>
+    update(item, 'href', base)
+  )
+
+  el.querySelectorAll('[src^="./"], [src^="../"]').forEach((item) =>
+    update(item, 'src', base)
+  )
+}
+
 document.addEventListener("nav", () => {
   const links = [...document.getElementsByClassName("internal")] as HTMLLinkElement[]
   const p = new DOMParser()
@@ -41,6 +60,7 @@ document.addEventListener("nav", () => {
 
       if (!contents) return
       const html = p.parseFromString(contents, "text/html")
+      normalizeRelativeURLs(html, targetUrl)
       const elts = [...html.getElementsByClassName("popover-hint")]
       if (elts.length === 0) return
 
@@ -54,11 +74,13 @@ document.addEventListener("nav", () => {
       setPosition(popoverElement)
       link.appendChild(popoverElement)
       link.dataset.fetchedPopover = "true"
-      
-      const heading = popoverInner.querySelector(hash) as HTMLElement | null
-      if (heading) {
-        // leave ~12px of buffer when scrolling to a heading
-        popoverInner.scroll({ top: heading.offsetTop - 12, behavior: 'instant' })
+
+      if (hash !== "") {
+        const heading = popoverInner.querySelector(hash) as HTMLElement | null
+        if (heading) {
+          // leave ~12px of buffer when scrolling to a heading
+          popoverInner.scroll({ top: heading.offsetTop - 12, behavior: 'instant' })
+        }
       }
     })
   }

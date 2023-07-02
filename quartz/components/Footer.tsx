@@ -14,7 +14,7 @@ export default ((opts?: Options) => {
     return <>
       <hr />
       <footer>
-        <p>Made by {name} using <a>Quartz</a>, © {year}</p>
+        <p>Made by {name} using <a href="https://quartz.jzhao.xyz/">Quartz</a>, © {year}</p>
         <ul>{Object.entries(links).map(([text, link]) => <li>
           <a href={link}>{text}</a>
         </li>)}</ul>

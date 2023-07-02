@@ -1,4 +1,3 @@
-import { PluggableList } from "unified"
 import remarkGfm from "remark-gfm"
 import smartypants from 'remark-smartypants'
 import { QuartzTransformerPlugin } from "../types"
@@ -20,14 +19,14 @@ export const GitHubFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | 
   return {
     name: "GitHubFlavoredMarkdown",
     markdownPlugins() {
-      return opts.enableSmartyPants ? [remarkGfm] : [remarkGfm, smartypants]
+      return opts.enableSmartyPants ? [remarkGfm, smartypants] : [remarkGfm]
     },
     htmlPlugins() {
       if (opts.linkHeadings) {
         return [rehypeSlug, [rehypeAutolinkHeadings, {
           behavior: 'append', content: {
             type: 'text',
-            value: ' §'
+            value: ' §',
           }
         }]]
       } else {

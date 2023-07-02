@@ -23,7 +23,7 @@ function byDateAndAlphabetical(f1: QuartzPluginData, f2: QuartzPluginData): numb
 
 export function PageList({ fileData, allFiles }: QuartzComponentProps) {
   const slug = fileData.slug!
-  return <ul class="section-ul">
+  return <ul class="section-ul popover-hint">
     {allFiles.sort(byDateAndAlphabetical).map(page => {
       const title = page.frontmatter?.title
       const pageSlug = page.slug!
@@ -36,9 +36,8 @@ export function PageList({ fileData, allFiles }: QuartzComponentProps) {
           <div class="desc">
             <h3><a href={stripIndex(relativeToRoot(slug, pageSlug))} class="internal">{title}</a></h3>
           </div>
-          <div class="spacer"></div>
           <ul class="tags">
-            {tags.map(tag => <li><a href={relativeToRoot(slug, `tags/${tag}`)}>#{tag}</a></li>)}
+            {tags.map(tag => <li><a class="internal" href={relativeToRoot(slug, `tags/${tag}`)}>#{tag}</a></li>)}
           </ul>
         </div>
       </li>

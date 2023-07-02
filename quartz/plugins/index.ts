@@ -1,15 +1,9 @@
 import { GlobalConfiguration } from '../cfg'
 import { QuartzComponent } from '../components/types'
 import { StaticResources } from '../resources'
-import { googleFontHref, joinStyles } from '../theme'
+import { joinStyles } from '../theme'
 import { EmitCallback, PluginTypes } from './types'
 import styles from '../styles/base.scss'
-
-// @ts-ignore
-import spaRouterScript from '../components/scripts/spa.inline'
-// @ts-ignore
-import popoverScript from '../components/scripts/popover.inline'
-import popoverStyle from '../components/styles/popover.scss'
 
 export type ComponentResources = {
   css: string[],
@@ -17,13 +11,7 @@ export type ComponentResources = {
   afterDOMLoaded: string[]
 }
 
-function joinScripts(scripts: string[]): string {
-  // wrap with iife to prevent scope collision
-  return scripts.map(script => `(function () {${script}})();`).join("\n")
-}
-
-export function emitComponentResources(cfg: GlobalConfiguration, resources: StaticResources, plugins: PluginTypes, emit: EmitCallback) {
-  const fps: string[] = []
+export function getComponentResources(plugins: PluginTypes): ComponentResources {
   const allComponents: Set<QuartzComponent> = new Set()
   for (const emitter of plugins.emitters) {
     const components = emitter.getQuartzComponents()
@@ -50,41 +38,35 @@ export function emitComponentResources(cfg: GlobalConfiguration, resources: Stat
       componentResources.afterDOMLoaded.push(afterDOMLoaded)
     }
   }
-  
-  if (cfg.enablePopovers) {
-    componentResources.afterDOMLoaded.push(popoverScript)
-    componentResources.css.push(popoverStyle)
-  }
 
-  if (cfg.enableSPA) {
-    componentResources.afterDOMLoaded.push(spaRouterScript)
-  } else {
-    componentResources.afterDOMLoaded.push(`
-      window.spaNavigate = (url, _) => window.location.assign(url)
-      const event = new CustomEvent("nav", { detail: { slug: document.body.dataset.slug } })
-      document.dispatchEvent(event)`
-    )
-  }
+  return componentResources
+}
 
-  emit({
-    slug: "index",
-    ext: ".css",
-    content: joinStyles(cfg.theme, styles, ...componentResources.css)
-  })
-  emit({
-    slug: "prescript",
-    ext: ".js",
-    content: joinScripts(componentResources.beforeDOMLoaded)
-  })
-  emit({
-    slug: "postscript",
-    ext: ".js",
-    content: joinScripts(componentResources.afterDOMLoaded)
-  })
+function joinScripts(scripts: string[]): string {
+  // wrap with iife to prevent scope collision
+  return scripts.map(script => `(function () {${script}})();`).join("\n")
+}
 
-  fps.push("index.css", "prescript.js", "postscript.js")
-  resources.css.push(googleFontHref(cfg.theme))
+export async function emitComponentResources(cfg: GlobalConfiguration, res: ComponentResources, emit: EmitCallback): Promise<string[]> {
+  const fps = await Promise.all([
+    emit({
+      slug: "index",
+      ext: ".css",
+      content: joinStyles(cfg.theme, styles, ...res.css)
+    }),
+    emit({
+      slug: "prescript",
+      ext: ".js",
+      content: joinScripts(res.beforeDOMLoaded)
+    }),
+    emit({
+      slug: "postscript",
+      ext: ".js",
+      content: joinScripts(res.afterDOMLoaded)
+    })
+  ])
   return fps
+
 }
 
 export function getStaticResourcesFromPlugins(plugins: PluginTypes) {

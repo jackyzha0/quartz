@@ -8,29 +8,36 @@ li.section-li {
   margin-bottom: 1em;
 
   & > .section {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 6em 3fr 1fr;
 
     @media all and (max-width: 600px) {
-      & .tags {
+      & > .tags {
         display: none;
       }
     }
 
-    & h3 > a {
-      font-weight: 700;
-      margin: 0;
-      background-color: transparent;
+    & > .tags {
+      justify-self: end;
+      margin-left: 1rem;
     }
 
-    & p {
+    & > .desc a {
+      background-color: transparent; 
+    }
+
+    & > .meta {
       margin: 0;
-      padding-right: 1em;
       flex-basis: 6em;
+      opacity: 0.6;
     }
   }
+}
 
-  & .meta {
-    opacity: 0.6;
+// modifications in popover context
+.popover .section {
+  grid-template-columns: 6em 1fr !important;
+  & > .tags {
+    display: none;
   }
 }

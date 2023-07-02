@@ -5,7 +5,17 @@ function slugSegment(s: string): string {
   return s.replace(/\s/g, '-')
 }
 
+// on the client, 'index' isn't ever rendered so we should clean it up
+export function clientSideSlug(fp: string): string {
+  if (fp.endsWith("index")) {
+    fp = fp.slice(0, -"index".length)
+  }
+
+  return fp
+}
+
 export function trimPathSuffix(fp: string): string {
+  fp = clientSideSlug(fp)
   let [cleanPath, anchor] = fp.split("#", 2)
   anchor = anchor === undefined ? "" : "#" + anchor
 
@@ -27,9 +37,6 @@ export function slugify(s: string): string {
 // resolve /a/b/c to ../../
 export function resolveToRoot(slug: string): string {
   let fp = trimPathSuffix(slug)
-  if (fp.endsWith("index")) {
-    fp = fp.slice(0, -"index".length)
-  }
 
   if (fp === "") {
     return "."

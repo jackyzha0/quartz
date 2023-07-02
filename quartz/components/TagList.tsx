@@ -11,7 +11,7 @@ function TagList({ fileData }: QuartzComponentProps) {
       const display = `#${tag}`
       const linkDest = baseDir + `/tags/${slugAnchor(tag)}`
       return <li>
-        <a href={linkDest}>{display}</a>
+        <a href={linkDest} class="internal">{display}</a>
       </li>
     })}</ul>
   } else {
@@ -25,17 +25,18 @@ TagList.css = `
   display: flex;
   padding-left: 0;
   gap: 0.4rem;
+}
+  
+.tags > li {
+  display: inline-block;
+  margin: 0;
+  overflow-wrap: normal;
+}
 
-  & > li {
-    display: inline-block;
-    margin: 0;
-
-    & > a {
-      border-radius: 8px;
-      border: var(--lightgray) 1px solid;
-      padding: 0.2rem 0.5rem;
-    }
-  }
+.tags > li > a {
+  border-radius: 8px;
+  background-color: var(--highlight);
+  padding: 0.2rem 0.5rem;
 }
 `
 

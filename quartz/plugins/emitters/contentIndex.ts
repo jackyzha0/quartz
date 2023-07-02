@@ -36,7 +36,6 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex): string {
   const base = cfg.canonicalUrl ?? ""
   const root = `https://${base}`
 
-  // TODO: ogimage
   const createURLEntry = (slug: string, content: ContentDetails): string => `<items>
     <title>${content.title}</title>
     <link>${root}/${slug}</link>
