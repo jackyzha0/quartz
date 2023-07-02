@@ -2,7 +2,8 @@ name: Jacky Zhao
 enableToc: true
 openToc: false
 enableLinkPreview: true
-enableLatex: true
+enableKatex: true
+enableMathjax: false
 enableCodeBlockTitle: true
 enableCodeBlockCopy: true
 enableCallouts: true

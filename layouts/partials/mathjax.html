@@ -1,0 +1,24 @@
+{{if $.Site.Data.config.enableMathjax}}
+<script>
+MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/color']},
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    packages: {'[+]': ['mathtools', 'color']}
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Setup custom LaTeX delimiters -->
+<div style="display: none;">
+\(
+% import your modules here
+%% \require{mathtools}
+
+% declare your macros here.
+%% \DeclarePairedDelimiters{\abs}{\lvert}{\rvert}
+%% \newcommand{\scalemid}[0]{\,\middle|\,}
+\)
+</div>
+{{end}}

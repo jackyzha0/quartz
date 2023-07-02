@@ -67,7 +67,12 @@
   {{ $s := resources.Get $scriptname | resources.ExecuteAsTemplate $scriptname . | resources.Fingerprint "md5" | resources.Minify }}
   <script src="{{$s.Permalink}}"></script>
   {{end}}
+  {{if $data.enableMathjax | default $.Site.Data.config.enableMathjax}}
+  {{partial "mathjax.html" .}}
+  {{end}}
+  {{if $data.enableKatex | default $.Site.Data.config.enableKatex}}
   {{partial "katex.html" .}}
+  {{end}}
 
   {{partial "mermaid.html" .}}
 
@@ -100,7 +105,8 @@
   }}
   <script>
     const SEARCH_ENABLED = {{.Site.Data.config.search.enableSemanticSearch}}
-    const LATEX_ENABLED = {{.Site.Data.config.enableLatex}}
+    const KATEX_ENABLED = {{.Site.Data.config.enableKatex}}
+    const MATHJAX_ENABLED = {{.Site.Data.config.enableMathjax}}
     const PRODUCTION = {{ hugo.IsProduction }}
     const BASE_URL = {{.Site.BaseURL}}
     const fetchData = Promise.all([
@@ -201,6 +207,10 @@
           link.addEventListener('click', clickHandler, {once: true})
         }
       }
+
+      {{if $data.enableMathjax | default $.Site.Data.config.enableMathjax}}
+      MathJax.typesetPromise();
+      {{end}}
     }
 
     const init = (doc = document) => {
@@ -212,7 +222,7 @@
       {{if $data.enableCodeBlockTitle | default $.Site.Data.config.enableCodeBlockTitle -}}
       addTitleToCodeBlocks();
       {{- end -}}
-      {{if $data.enableLatex | default $.Site.Data.config.enableLatex}}
+      {{if $data.enableKatex | default $.Site.Data.config.enableKatex}}
       renderMathInElement(doc.body, {
         delimiters: [
           {left: '$$', right: '$$', display: true},

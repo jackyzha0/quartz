@@ -42,7 +42,7 @@ function initPopover(baseURL, useContextualBacklinks) {
 
         if (el) {
           li.appendChild(el)
-          if (LATEX_ENABLED) {
+          if (KATEX_ENABLED) {
             renderMathInElement(el, {
               delimiters: [
                 { left: '$$', right: '$$', display: false },
@@ -75,5 +75,9 @@ function initPopover(baseURL, useContextualBacklinks) {
           })
         }
       })
+  }).then(() => {
+    if (MATHJAX_ENABLED) {
+      MathJax.typesetPromise();
+    }
   })
 }

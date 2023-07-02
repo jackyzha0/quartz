@@ -208,7 +208,7 @@ const displayResults = (term, finalResults, extractHighlight = false) => {
       }
       )
       .join("\n")
-    if (LATEX_ENABLED) {
+    if (KATEX_ENABLED) {
       renderMathInElement(results, {
         delimiters: [
           { left: '$$', right: '$$', display: false },
