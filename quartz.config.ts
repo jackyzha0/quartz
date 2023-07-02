@@ -4,12 +4,7 @@ import * as Plugin from "./quartz/plugins"
 
 const sharedPageComponents = {
   head: Component.Head(),
-  header: [
-    Component.PageTitle(),
-    Component.Spacer(),
-    Component.Search(),
-    Component.Darkmode()
-  ],
+  header: [],
   footer: Component.Footer({
     authorName: "Jacky",
     links: {
@@ -25,11 +20,15 @@ const contentPageLayout: PageLayout = {
     Component.ReadingTime(),
     Component.TagList(),
   ],
-  left: [],
+  left: [
+    Component.PageTitle(),
+    Component.Search(),
+    Component.TableOfContents(),
+    Component.Darkmode()
+  ],
   right: [
     Component.Graph(),
-    Component.TableOfContents(),
-    Component.Backlinks()
+    Component.Backlinks(),
   ],
 }
 
@@ -37,7 +36,11 @@ const listPageLayout: PageLayout = {
   beforeBody: [
     Component.ArticleTitle()
   ],
-  left: [],
+  left: [
+    Component.PageTitle(),
+    Component.Search(),
+    Component.Darkmode()
+  ],
   right: [],
 }
 
@@ -46,6 +49,9 @@ const config: QuartzConfig = {
     pageTitle: "🪴 Quartz 4.0",
     enableSPA: true,
     enablePopovers: true,
+    analytics: {
+      provider: 'plausible',
+    },
     canonicalUrl: "quartz.jzhao.xyz",
     ignorePatterns: ["private", "templates"],
     theme: {
@@ -102,15 +108,15 @@ const config: QuartzConfig = {
         ...contentPageLayout,
         pageBody: Component.Content(),
       }),
-      Plugin.TagPage({
-        ...sharedPageComponents,
-        ...listPageLayout,
-        pageBody: Component.TagContent(),
-      }),
       Plugin.FolderPage({
         ...sharedPageComponents,
         ...listPageLayout,
         pageBody: Component.FolderContent(),
+      }),
+      Plugin.TagPage({
+        ...sharedPageComponents,
+        ...listPageLayout,
+        pageBody: Component.TagContent(),
       }),
       Plugin.ContentIndex({
         enableSiteMap: true,

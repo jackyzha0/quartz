@@ -1,8 +1,7 @@
 .search {
   min-width: 5rem;
-  max-width: 12rem;
+  max-width: 14rem;
   flex-grow: 0.3;
-  margin: 0 1.5rem;
 
   & > #search-icon {
     background-color: var(--lightgray);

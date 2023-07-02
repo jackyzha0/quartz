@@ -8,7 +8,7 @@ export type QuartzComponentProps = {
   externalResources: StaticResources
   fileData: QuartzPluginData
   cfg: GlobalConfiguration
-  children: QuartzComponent[] | JSX.Element[]
+  children: (QuartzComponent | JSX.Element)[]
   tree: Node<QuartzPluginData>
   allFiles: QuartzPluginData[]
 }

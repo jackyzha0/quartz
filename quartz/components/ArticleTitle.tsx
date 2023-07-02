@@ -2,9 +2,8 @@ import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
 function ArticleTitle({ fileData }: QuartzComponentProps) {
   const title = fileData.frontmatter?.title
-  const displayTitle = fileData.slug === "index" ? undefined : title
-  if (displayTitle) {
-    return <h1 class="article-title">{displayTitle}</h1>
+  if (title) {
+    return <h1 class="article-title">{title}</h1>
   } else {
     return null
   }

@@ -2,15 +2,7 @@ import { resolveToRoot } from "../path"
 import { JSResourceToScriptElement } from "../resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
-interface Options {
-  prefetchContentIndex: boolean
-}
-
-const defaultOptions: Options = {
-  prefetchContentIndex: true
-}
-
-export default ((opts?: Options) => {
+export default (() => {
   function Head({ fileData, externalResources }: QuartzComponentProps) {
     const slug = fileData.slug!
     const title = fileData.frontmatter?.title ?? "Untitled"
@@ -19,10 +11,6 @@ export default ((opts?: Options) => {
     const baseDir = resolveToRoot(slug)
     const iconPath = baseDir + "/static/icon.png"
     const ogImagePath = baseDir + "/static/og-image.png"
-
-    const prefetchContentIndex = opts?.prefetchContentIndex ?? defaultOptions.prefetchContentIndex
-    const contentIndexPath = baseDir + "/static/contentIndex.json"
-    const contentIndexScript = `const fetchData = fetch(\`${contentIndexPath}\`).then(data => data.json())`
 
     return <head>
       <title>{title}</title>
@@ -36,9 +24,8 @@ export default ((opts?: Options) => {
       <link rel="icon" href={iconPath} />
       <meta name="description" content={description} />
       <meta name="generator" content="Quartz" />
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" />
-      {prefetchContentIndex && <script spa-preserve>{contentIndexScript}</script>}
+      <link rel="preconnect" href="https://fonts.googleapis.com"/>
+      <link rel="preconnect" href="https://fonts.gstatic.com"/>
       {css.map(href => <link key={href} href={href} rel="stylesheet" type="text/css" spa-preserve />)}
       {js.filter(resource => resource.loadTime === "beforeDOMReady").map(res => JSResourceToScriptElement(res, true))}
     </head>

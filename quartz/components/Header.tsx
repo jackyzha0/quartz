@@ -12,6 +12,7 @@ header {
   flex-direction: row;
   align-items: center;
   margin: 2em 0;
+  gap: 1.5rem;
 }
 
 header h1 {
