@@ -55,22 +55,22 @@ export function renderPage(slug: string, componentData: QuartzComponentProps, co
     <Head {...componentData} />
     <body data-slug={slug}>
       <div id="quartz-root" class="page">
-        <div class="page-header">
-          <Header {...componentData} >
-            {header.map(HeaderComponent => <HeaderComponent {...componentData} />)}
-          </Header>
-          <div class="popover-hint">
-            {beforeBody.map(BodyComponent => <BodyComponent {...componentData} />)}
-          </div>
-        </div>
         <Body {...componentData}>
           {LeftComponent}
           <div class="center">
+            <div class="page-header">
+              <Header {...componentData} >
+                {header.map(HeaderComponent => <HeaderComponent {...componentData} />)}
+              </Header>
+              <div class="popover-hint">
+                {beforeBody.map(BodyComponent => <BodyComponent {...componentData} />)}
+              </div>
+            </div>
             <Content {...componentData} />
-            <Footer {...componentData} />
           </div>
           {RightComponent}
         </Body>
+        <Footer {...componentData} />
       </div>
     </body>
     {pageResources.js.filter(resource => resource.loadTime === "afterDOMReady").map(res => JSResourceToScriptElement(res))}

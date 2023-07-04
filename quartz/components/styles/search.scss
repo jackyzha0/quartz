@@ -12,6 +12,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    white-space: nowrap;
 
     & > div {
       flex-grow: 1;
@@ -38,12 +39,13 @@
 
   & > #search-container {
     position: fixed;
+    contain: layout;
     z-index: 999;
     left: 0;
     top: 0;
     width: 100vw;
     height: 100vh;
-    overflow: scroll;
+    overflow-y: auto;
     display: none;
     backdrop-filter: blur(4px);
 
@@ -57,7 +59,7 @@
       margin-left: auto;
       margin-right: auto;
 
-      @media all and (max-width: $tabletBreakpoint) {
+      @media all and (max-width: $fullPageWidth) {
         width: 90%;
       }
 
