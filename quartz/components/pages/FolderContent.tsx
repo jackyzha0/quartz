@@ -6,7 +6,7 @@ import path from "path"
 import style from '../styles/listPage.scss'
 import { PageList } from "../PageList"
 
-function TagContent(props: QuartzComponentProps) {
+function FolderContent(props: QuartzComponentProps) {
   const { tree, fileData, allFiles } = props
   const folderSlug = fileData.slug!
   const allPagesInFolder = allFiles.filter(file => {
@@ -25,13 +25,15 @@ function TagContent(props: QuartzComponentProps) {
 
   // @ts-ignore
   const content = toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: 'html' })
-  return <div>
+  return <div class="popover-hint">
     <article>{content}</article>
+    <hr/>
+    <p>{allPagesInFolder.length} items under this folder.</p>
     <div>
       <PageList {...listProps} /> 
     </div>
   </div>
 }
 
-TagContent.css = style + PageList.css
-export default (() => TagContent) satisfies QuartzComponentConstructor
+FolderContent.css = style + PageList.css
+export default (() => FolderContent) satisfies QuartzComponentConstructor

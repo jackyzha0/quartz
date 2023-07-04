@@ -23,8 +23,8 @@ const contentPageLayout: PageLayout = {
   left: [
     Component.PageTitle(),
     Component.Search(),
-    Component.TableOfContents(),
-    Component.Darkmode()
+    Component.Darkmode(),
+    Component.DesktopOnly(Component.TableOfContents()),
   ],
   right: [
     Component.Graph(),

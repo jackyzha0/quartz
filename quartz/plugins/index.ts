@@ -20,26 +20,30 @@ export function getComponentResources(plugins: PluginTypes): ComponentResources 
     }
   }
 
-  const componentResources: ComponentResources = {
-    css: [],
-    beforeDOMLoaded: [],
-    afterDOMLoaded: []
+  const componentResources = {
+    css: new Set<string>(),
+    beforeDOMLoaded: new Set<string>(),
+    afterDOMLoaded: new Set<string>()
   }
 
   for (const component of allComponents) {
     const { css, beforeDOMLoaded, afterDOMLoaded } = component
     if (css) {
-      componentResources.css.push(css)
+      componentResources.css.add(css)
     }
     if (beforeDOMLoaded) {
-      componentResources.beforeDOMLoaded.push(beforeDOMLoaded)
+      componentResources.beforeDOMLoaded.add(beforeDOMLoaded)
     }
     if (afterDOMLoaded) {
-      componentResources.afterDOMLoaded.push(afterDOMLoaded)
+      componentResources.afterDOMLoaded.add(afterDOMLoaded)
     }
   }
-
-  return componentResources
+  
+  return {
+    css: [...componentResources.css],
+    beforeDOMLoaded: [...componentResources.beforeDOMLoaded],
+    afterDOMLoaded: [...componentResources.afterDOMLoaded]
+  }
 }
 
 function joinScripts(scripts: string[]): string {
@@ -78,10 +82,10 @@ export function getStaticResourcesFromPlugins(plugins: PluginTypes) {
   for (const transformer of plugins.transformers) {
     const res = transformer.externalResources ? transformer.externalResources() : {}
     if (res?.js) {
-      staticResources.js = staticResources.js.concat(res.js)
+      staticResources.js.push(...res.js)
     }
     if (res?.css) {
-      staticResources.css = staticResources.css.concat(res.css)
+      staticResources.css.push(...res.css)
     }
   }
 

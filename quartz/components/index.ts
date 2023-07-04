@@ -13,6 +13,8 @@ import Graph from "./Graph"
 import Backlinks from "./Backlinks"
 import Search from "./Search"
 import Footer from "./Footer"
+import DesktopOnly from "./DesktopOnly"
+import MobileOnly from "./MobileOnly"
 
 export {
   ArticleTitle,
@@ -29,5 +31,7 @@ export {
   Graph,
   Backlinks,
   Search,
-  Footer
+  Footer,
+  DesktopOnly,
+  MobileOnly
 } 

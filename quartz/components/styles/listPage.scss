@@ -1,3 +1,5 @@
+@use "../../styles/variables.scss" as *;
+
 ul.section-ul {
   list-style: none;
   margin-top: 2em;
@@ -11,7 +13,7 @@ li.section-li {
     display: grid;
     grid-template-columns: 6em 3fr 1fr;
 
-    @media all and (max-width: 600px) {
+    @media all and (max-width: $mobileBreakpoint) {
       & > .tags {
         display: none;
       }
@@ -22,7 +24,7 @@ li.section-li {
       margin-left: 1rem;
     }
 
-    & > .desc a {
+    & > .desc > h3 > a {
       background-color: transparent; 
     }
 

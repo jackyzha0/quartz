@@ -3,8 +3,7 @@ import readingTime from "reading-time"
 
 function ReadingTime({ fileData }: QuartzComponentProps) {
   const text = fileData.text
-  const isHomePage = fileData.slug === "index"
-  if (text && !isHomePage) {
+  if (text) {
     const { text: timeTaken, words } = readingTime(text)
     return <p class="reading-time">{words} words, {timeTaken}</p>
   } else {
