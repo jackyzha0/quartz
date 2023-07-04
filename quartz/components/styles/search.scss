@@ -1,3 +1,5 @@
+@use "../../styles/variables.scss" as *;
+
 .search {
   min-width: 5rem;
   max-width: 14rem;
@@ -55,7 +57,7 @@
       margin-left: auto;
       margin-right: auto;
 
-      @media all and (max-width: 1200px) {
+      @media all and (max-width: $tabletBreakpoint) {
         width: 90%;
       }
 

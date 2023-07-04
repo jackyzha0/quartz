@@ -23,7 +23,7 @@ function byDateAndAlphabetical(f1: QuartzPluginData, f2: QuartzPluginData): numb
 
 export function PageList({ fileData, allFiles }: QuartzComponentProps) {
   const slug = fileData.slug!
-  return <ul class="section-ul popover-hint">
+  return <ul class="section-ul">
     {allFiles.sort(byDateAndAlphabetical).map(page => {
       const title = page.frontmatter?.title
       const pageSlug = page.slug!

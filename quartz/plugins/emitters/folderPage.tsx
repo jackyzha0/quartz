@@ -6,6 +6,7 @@ import { pageResources, renderPage } from "../../components/renderPage"
 import { ProcessedContent, defaultProcessedContent } from "../vfile"
 import { FullPageLayout } from "../../cfg"
 import path from "path"
+import { clientSideSlug } from "../../path"
 
 export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
   if (!opts) {
@@ -36,7 +37,7 @@ export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
       ])))
 
       for (const [tree, file] of content) {
-        const slug = file.data.slug!
+        const slug = clientSideSlug(file.data.slug!)
         if (folders.has(slug)) {
           folderDescriptions[slug] = [tree, file]
         }

@@ -8,7 +8,6 @@ import { ProcessedContent } from "../plugins/vfile"
 import { QUARTZ, slugify } from "../path"
 import { globbyStream } from "globby"
 import chalk from "chalk"
-import { googleFontHref } from '../theme'
 
 // @ts-ignore
 import spaRouterScript from '../components/scripts/spa.inline'
@@ -18,9 +17,10 @@ import plausibleScript from '../components/scripts/plausible.inline'
 import popoverScript from '../components/scripts/popover.inline'
 import popoverStyle from '../components/styles/popover.scss'
 import { StaticResources } from "../resources"
+import { QuartzLogger } from "../log"
+import { googleFontHref } from "../theme"
 
 function addGlobalPageResources(cfg: GlobalConfiguration, staticResources: StaticResources, componentResources: ComponentResources) {
-  // font and other resources
   staticResources.css.push(googleFontHref(cfg.theme))
 
   // popovers
@@ -67,6 +67,9 @@ function addGlobalPageResources(cfg: GlobalConfiguration, staticResources: Stati
 
 export async function emitContent(contentFolder: string, output: string, cfg: QuartzConfig, content: ProcessedContent[], verbose: boolean) {
   const perf = new PerfTimer()
+  const log = new QuartzLogger(verbose)
+
+  log.start(`Emitting output files`)
   const emit: EmitCallback = async ({ slug, ext, content }) => {
     const pathToPage = path.join(output, slug + ext)
     const dir = path.dirname(pathToPage)
@@ -80,6 +83,7 @@ export async function emitContent(contentFolder: string, output: string, cfg: Qu
 
   // component specific scripts and styles
   const componentResources = getComponentResources(cfg.plugins)
+
   // important that this goes *after* component scripts 
   // as the "nav" event gets triggered here and we should make sure 
   // that everyone else had the chance to register a listener for it
@@ -136,5 +140,5 @@ export async function emitContent(contentFolder: string, output: string, cfg: Qu
     }
   }
 
-  console.log(`Emitted ${emittedFiles} files to \`${output}\` in ${perf.timeSince()}`)
+  log.success(`Emitted ${emittedFiles} files to \`${output}\` in ${perf.timeSince()}`)
 }

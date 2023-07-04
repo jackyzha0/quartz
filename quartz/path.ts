@@ -7,8 +7,14 @@ function slugSegment(s: string): string {
 
 // on the client, 'index' isn't ever rendered so we should clean it up
 export function clientSideSlug(fp: string): string {
+  // remove index
   if (fp.endsWith("index")) {
     fp = fp.slice(0, -"index".length)
+  }
+
+  // remove trailing slash
+  if (fp.endsWith("/")) {
+    fp = fp.slice(0, -1)
   }
 
   return fp
@@ -23,7 +29,7 @@ export function trimPathSuffix(fp: string): string {
 }
 
 export function slugify(s: string): string {
-  const [fp, anchor] = s.split("#", 2)
+  let [fp, anchor] = s.split("#", 2)
   const sluggedAnchor = anchor === undefined ? "" : "#" + slugAnchor(anchor)
   const withoutFileExt = fp.replace(new RegExp(path.extname(fp) + '$'), '')
   const rawSlugSegments = withoutFileExt.split(path.sep)

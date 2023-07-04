@@ -29,6 +29,7 @@ TagList.css = `
   
 .tags > li {
   display: inline-block;
+  white-space: nowrap;
   margin: 0;
   overflow-wrap: normal;
 }

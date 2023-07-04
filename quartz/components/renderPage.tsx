@@ -25,7 +25,7 @@ export function pageResources(slug: string, staticResources: StaticResources): S
     css: [baseDir + "/index.css", ...staticResources.css],
     js: [
       { src: baseDir + "/prescript.js", loadTime: "beforeDOMReady", contentType: "external" },
-      { loadTime: "afterDOMReady", contentType: "inline", spaPreserve: true, script: contentIndexScript },
+      { loadTime: "beforeDOMReady", contentType: "inline", spaPreserve: true, script: contentIndexScript },
       ...staticResources.js,
       { src: baseDir + "/postscript.js", loadTime: "afterDOMReady", moduleType: 'module', contentType: "external" }
     ]

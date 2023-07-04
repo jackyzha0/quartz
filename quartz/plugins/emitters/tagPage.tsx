@@ -5,6 +5,7 @@ import BodyConstructor from "../../components/Body"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { ProcessedContent, defaultProcessedContent } from "../vfile"
 import { FullPageLayout } from "../../cfg"
+import { clientSideSlug } from "../../path"
 
 export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
   if (!opts) {
@@ -30,7 +31,7 @@ export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
       ])))
 
       for (const [tree, file] of content) {
-        const slug = file.data.slug!
+        const slug = clientSideSlug(file.data.slug!)
         if (slug.startsWith("tags/")) {
           const tag = slug.slice("tags/".length)
           if (tags.has(tag)) {

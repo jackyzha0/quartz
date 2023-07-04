@@ -15,11 +15,13 @@ export type ContentDetails = {
 interface Options {
   enableSiteMap: boolean
   enableRSS: boolean
+  includeEmptyFiles: boolean
 }
 
 const defaultOptions: Options = {
   enableSiteMap: true,
   enableRSS: true,
+  includeEmptyFiles: false,
 }
 
 function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndex): string {
@@ -57,7 +59,7 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex): string {
   </rss>`
 }
 
-export const ContentIndex: QuartzEmitterPlugin<Options> = (opts) => {
+export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
   opts = { ...defaultOptions, ...opts }
   return {
     name: "ContentIndex",
@@ -67,6 +69,7 @@ export const ContentIndex: QuartzEmitterPlugin<Options> = (opts) => {
       for (const [_tree, file] of content) {
         const slug = file.data.slug!
         const date = file.data.dates?.modified ?? new Date()
+        if (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) {
         linkIndex.set(slug, {
           title: file.data.frontmatter?.title!,
           links: file.data.links ?? [],
@@ -75,6 +78,7 @@ export const ContentIndex: QuartzEmitterPlugin<Options> = (opts) => {
           date: date,
           description: file.data.description ?? ""
         })
+        }
       }
 
       if (opts?.enableSiteMap) {
@@ -106,6 +110,7 @@ export const ContentIndex: QuartzEmitterPlugin<Options> = (opts) => {
           return [slug, content]
         })
       )
+
       await emit({
         content: JSON.stringify(simplifiedIndex),
         slug: fp,

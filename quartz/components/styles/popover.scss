@@ -1,3 +1,5 @@
+@use "../../styles/variables.scss" as *;
+
 @keyframes dropin {
   0% {
     opacity: 0;
@@ -42,7 +44,7 @@
   opacity: 0;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 
-  @media all and (max-width: 600px) {
+  @media all and (max-width: $mobileBreakpoint) {
     display: none !important;
   }
 }

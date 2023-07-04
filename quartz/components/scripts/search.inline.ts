@@ -11,7 +11,8 @@ let index: Document<Item> | undefined = undefined
 
 const contextWindowWords = 30
 function highlight(searchTerm: string, text: string, trim?: boolean) {
-  const tokenizedTerms = searchTerm.split(/\s+/).filter(t => t !== "")
+  // try to highlight longest tokens first
+  const tokenizedTerms = searchTerm.split(/\s+/).filter(t => t !== "").sort((a, b) => b.length - a.length)
   let tokenizedText = text
     .split(/\s+/)
     .filter(t => t !== "")
@@ -42,7 +43,7 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
     // see if this tok is prefixed by any search terms 
     for (const searchTok of tokenizedTerms) {
       if (tok.toLowerCase().includes(searchTok.toLowerCase())) {
-        const regex = new RegExp(searchTok, "gi")
+        const regex = new RegExp(searchTok.toLowerCase(), "gi")
         return tok.replace(regex, `<span class="highlight">$&</span>`)
       }
     }
@@ -81,7 +82,7 @@ document.addEventListener("nav", async (e: unknown) => {
     })
 
     for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
-      index.add({
+      await index.addAsync(slug, {
         slug,
         title: fileData.title,
         content: fileData.content
@@ -168,7 +169,6 @@ document.addEventListener("nav", async (e: unknown) => {
     const finalResults = [...allIds].map(id => formatForDisplay(term, id))
     displayResults(finalResults)
   }
-
 
   document.removeEventListener("keydown", shortcutHandler)
   document.addEventListener("keydown", shortcutHandler)

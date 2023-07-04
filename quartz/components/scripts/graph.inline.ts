@@ -110,12 +110,12 @@ async function renderGraph(container: string, slug: string) {
     .join("line")
     .attr("class", "link")
     .attr("stroke", "var(--lightgray)")
-    .attr("stroke-width", 2)
+    .attr("stroke-width", 1)
 
   // svg groups
   const graphNode = svg.append("g").selectAll("g").data(graphData.nodes).enter().append("g")
 
-  // calculate radius
+  // calculate color
   const color = (d: NodeData) => {
     const isCurrent = d.id === slug
     if (isCurrent) {
@@ -182,7 +182,12 @@ async function renderGraph(container: string, slug: string) {
       neighbourNodes.transition().duration(200).attr("fill", color)
 
       // highlight links
-      linkNodes.transition().duration(200).attr("stroke", "var(--gray)")
+      linkNodes
+        .transition()
+        .duration(200)
+        .attr("stroke", "var(--gray)")
+        .attr("stroke-width", 1)
+
 
       const bigFont = fontSize * 1.5
 
@@ -220,7 +225,7 @@ async function renderGraph(container: string, slug: string) {
   const labels = graphNode
     .append("text")
     .attr("dx", 0)
-    .attr("dy", (d) => nodeRadius(d) + 8 + "px")
+    .attr("dy", (d) => nodeRadius(d) - 8 + "px")
     .attr("text-anchor", "middle")
     .text((d) => data[d.id]?.title || (d.id.charAt(1).toUpperCase() + d.id.slice(2)).replace("-", " "))
     .style('opacity', (opacityScale - 1) / 3.75)
@@ -266,12 +271,11 @@ async function renderGraph(container: string, slug: string) {
   })
 }
 
-async function renderGlobalGraph() {
+function renderGlobalGraph() {
   const slug = document.body.dataset["slug"]!
-  await renderGraph("global-graph-container", slug)
   const container = document.getElementById("global-graph-outer")
   container?.classList.add("active")
-
+  renderGraph("global-graph-container", slug)
 
   function hideGlobalGraph() {
     container?.classList.remove("active")

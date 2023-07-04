@@ -1,5 +1,6 @@
-@import "./syntax.scss";
-@import "./callouts.scss";
+@use "./syntax.scss";
+@use "./callouts.scss";
+@use "./variables.scss" as *;
 
 html {
   scroll-behavior: smooth;
@@ -11,9 +12,6 @@ body {
   box-sizing: border-box;
   background-color: var(--light);
   font-family: var(--bodyFont);
-  --pageWidth: 800px;
-  --sidePanelWidth: 400px;
-  --topSpacing: 6rem;
 }
 
 .text-highlight {
@@ -47,8 +45,8 @@ a {
 
 .page {
   & > .page-header {
-    max-width: var(--pageWidth);
-    margin: var(--topSpacing) auto 0 auto;
+    max-width: $pageWidth;
+    margin: $topSpacing auto 0 auto;
   }
 
   & > #quartz-body {
@@ -57,7 +55,7 @@ a {
 
     & .left, & .right {
       flex: 1;
-      width: calc(calc(100vw - var(--pageWidth)) / 2);
+      width: calc(calc(100vw - $pageWidth) / 2);
     }
 
     & .left-inner, & .right-inner {
@@ -65,30 +63,44 @@ a {
       flex-direction: column;
       gap: 2rem;
       top: 0;
-      width: var(--sidePanelWidth);
-      margin-top: calc(var(--topSpacing));
+      width: $sidePanelWidth;
+      margin-top: $topSpacing;
       box-sizing: border-box;
       padding: 0 4rem;
       position: fixed;
     }
 
     & .left-inner {
-      left: calc(calc(100vw - var(--pageWidth)) / 2 - var(--sidePanelWidth));
+      left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
     }
 
     & .right-inner {
-      right: calc(calc(100vw - var(--pageWidth)) / 2 - var(--sidePanelWidth));
+      right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
     }
 
     & .center {
-      width: var(--pageWidth);
+      width: $pageWidth;
       margin: 0 auto;
     }
   }
 }
 
+.desktop-only {
+  display: initial;
+  @media all and (max-width: ($pageWidth + 2 * $sidePanelWidth)) {
+    display: none;
+  }
+}
+
+.mobile-only {
+  display: none;
+  @media all and (max-width: ($pageWidth + 2 * $sidePanelWidth)) {
+    display: initial;
+  }
+}
+
 .page {
-  @media all and (max-width: 1200px) {
+  @media all and (max-width: $tabletBreakpoint) {
     margin: 25px 5vw;
     & .left, & .right {
       padding: 0;

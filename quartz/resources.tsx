@@ -17,7 +17,7 @@ export function JSResourceToScriptElement(resource: JSResource, preserve?: boole
   const scriptType = resource.moduleType ?? 'application/javascript'
   const spaPreserve = preserve ?? resource.spaPreserve
   if (resource.contentType === 'external') {
-    return <script key={resource.src} src={resource.src} type={scriptType} spa-preserve={spaPreserve} />
+    return <script key={resource.src} src={resource.src} type={scriptType} spa-preserve={spaPreserve}/>
   } else {
     const content = resource.script
     return <script key={randomUUID()} type={scriptType} spa-preserve={spaPreserve}>{content}</script>
