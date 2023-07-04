@@ -27,7 +27,6 @@ function FolderContent(props: QuartzComponentProps) {
   const content = toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: 'html' })
   return <div class="popover-hint">
     <article>{content}</article>
-    <hr/>
     <p>{allPagesInFolder.length} items under this folder.</p>
     <div>
       <PageList {...listProps} /> 

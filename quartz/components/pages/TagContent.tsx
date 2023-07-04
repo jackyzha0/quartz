@@ -21,7 +21,6 @@ function TagContent(props: QuartzComponentProps) {
     const content = toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: 'html' })
     return <div class="popover-hint">
       <article>{content}</article>
-      <hr/>
       <p>{allPagesWithTag.length} items with this tag.</p>
       <div>
         <PageList {...listProps} />

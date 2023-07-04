@@ -43,71 +43,23 @@ a {
   }
 }
 
-.page {
-  & > .page-header {
-    max-width: $pageWidth;
-    margin: $topSpacing auto 0 auto;
-  }
-
-  & > #quartz-body {
-    width: 100%;
-    display: flex;
-
-    & .left, & .right {
-      flex: 1;
-      width: calc(calc(100vw - $pageWidth) / 2);
-    }
-
-    & .left-inner, & .right-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      top: 0;
-      width: $sidePanelWidth;
-      margin-top: $topSpacing;
-      box-sizing: border-box;
-      padding: 0 4rem;
-      position: fixed;
-    }
-
-    & .left-inner {
-      left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
-    }
-
-    & .right-inner {
-      right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
-    }
-
-    & .center {
-      width: $pageWidth;
-      margin: 0 auto;
-    }
-  }
-}
-
 .desktop-only {
   display: initial;
-  @media all and (max-width: ($pageWidth + 2 * $sidePanelWidth)) {
+  @media all and (max-width: $fullPageWidth) {
     display: none;
   }
 }
 
 .mobile-only {
   display: none;
-  @media all and (max-width: ($pageWidth + 2 * $sidePanelWidth)) {
+  @media all and (max-width: $fullPageWidth) {
     display: initial;
   }
 }
 
 .page {
-  @media all and (max-width: $tabletBreakpoint) {
-    margin: 25px 5vw;
-    & .left, & .right {
-      padding: 0;
-      height: initial;
-      max-width: none;
-      position: initial;
-    }
+  @media all and (max-width: $fullPageWidth) {
+    margin: 0 5vw;
   }
 
   & p {
@@ -127,6 +79,78 @@ a {
     & ul:has(input[type='checkbox']) {
       list-style-type: none;
       padding-left: 0;
+    }
+  }
+
+  & > #quartz-body {
+    width: 100%;
+    display: flex;
+    @media all and (max-width: $fullPageWidth) {
+      flex-direction: column;
+    }
+
+    & .left, & .right {
+      flex: 1;
+      width: calc(calc(100vw - $pageWidth) / 2);
+      @media all and (max-width: $fullPageWidth) {
+        width: initial;
+      }
+    }
+
+    & .left-inner, & .right-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      top: 0;
+      width: $sidePanelWidth;
+      margin-top: $topSpacing;
+      box-sizing: border-box;
+      padding: 0 4rem;
+      position: fixed;
+      @media all and (max-width: $fullPageWidth) {
+        position: initial;
+        flex-direction: row;
+        padding: 0;
+        width: initial;
+        margin-top: 4rem;
+      }
+    }
+
+    & .left-inner {
+      left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
+      @media all and (max-width: $fullPageWidth) {
+        gap: 1rem;
+        align-items: center;
+      }
+    }
+
+    & .right-inner {
+      right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
+      & > * {
+        @media all and (max-width: $fullPageWidth) {
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  & .page-header {
+    width: $pageWidth;
+    margin: $topSpacing auto 0 auto;
+    @media all and (max-width: $fullPageWidth) {
+      width: initial;
+      margin-top: 2rem;
+    }
+  }
+
+  & .center, & footer {
+    width: $pageWidth;
+    margin-left: auto;
+    margin-right: auto;
+    @media all and (max-width: $fullPageWidth) {
+      width: initial;
+      margin-left: 0;
+      margin-right: 0;
     }
   }
 }
@@ -200,7 +224,7 @@ pre {
   font-family: var(--codeFont);
   padding: 0.5rem;
   border-radius: 5px;
-  overflow-x: scroll;
+  overflow-x: auto;
   border: 1px solid var(--lightgray);
 
   & > code {
@@ -300,4 +324,24 @@ audio, video {
 
 .spacer {
   flex: 1 1 auto;
+}
+
+ul.overflow, ol.overflow {
+  height: 400px;
+  overflow-y: scroll;
+
+  & > li:last-of-type {
+    margin-bottom: 50px;
+  }
+
+  &:after {
+    pointer-events: none;
+    content: '';
+    width: 100%;
+    height: 50px;    
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(transparent 0px, var(--light));
+  }
 }

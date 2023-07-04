@@ -58,38 +58,7 @@ const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/
 document.addEventListener("nav", async (e: unknown) => {
   const currentSlug = (e as CustomEventMap["nav"]).detail.url
 
-  // setup index if it hasn't been already
   const data = await fetchData
-  if (!index) {
-    index = new Document({
-      cache: true,
-      charset: 'latin:extra',
-      optimize: true,
-      encode: encoder,
-      document: {
-        id: "slug",
-        index: [
-          {
-            field: "title",
-            tokenize: "forward",
-          },
-          {
-            field: "content",
-            tokenize: "reverse",
-          },
-        ]
-      },
-    })
-
-    for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
-      await index.addAsync(slug, {
-        slug,
-        title: fileData.title,
-        content: fileData.content
-      })
-    }
-  }
-
   const container = document.getElementById("search-container")
   const searchIcon = document.getElementById("search-icon")
   const searchBar = document.getElementById("search-bar") as HTMLInputElement | null
@@ -176,6 +145,37 @@ document.addEventListener("nav", async (e: unknown) => {
   searchIcon?.addEventListener("click", showSearch)
   searchBar?.removeEventListener("input", onType)
   searchBar?.addEventListener("input", onType)
+  
+  // setup index if it hasn't been already
+  if (!index) {
+    index = new Document({
+      cache: true,
+      charset: 'latin:extra',
+      optimize: true,
+      encode: encoder,
+      document: {
+        id: "slug",
+        index: [
+          {
+            field: "title",
+            tokenize: "forward",
+          },
+          {
+            field: "content",
+            tokenize: "reverse",
+          },
+        ]
+      },
+    })
+
+    for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
+      await index.addAsync(slug, {
+        slug,
+        title: fileData.title,
+        content: fileData.content
+      })
+    }
+  }
 
   // register handlers
   registerEscapeHandler(container, hideSearch)

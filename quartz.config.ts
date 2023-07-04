@@ -22,6 +22,7 @@ const contentPageLayout: PageLayout = {
   ],
   left: [
     Component.PageTitle(),
+    Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
     Component.DesktopOnly(Component.TableOfContents()),
@@ -38,6 +39,7 @@ const listPageLayout: PageLayout = {
   ],
   left: [
     Component.PageTitle(),
+    Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode()
   ],
@@ -63,8 +65,8 @@ const config: QuartzConfig = {
       colors: {
         lightMode: {
           light: '#faf8f8',
-          lightgray: '#e8e8e8',
-          gray: '#dadada',
+          lightgray: '#e5e5e5',
+          gray: '#b8b8b8',
           darkgray: '#4e4e4e',
           dark: '#141021',
           secondary: '#284b63',
@@ -73,8 +75,8 @@ const config: QuartzConfig = {
         },
         darkMode: {
           light: '#161618',
-          lightgray: '#292629',
-          gray: '#343434',
+          lightgray: '#393639',
+          gray: '#646464',
           darkgray: '#d4d4d4',
           dark: '#fbfffe',
           secondary: '#7b97aa',

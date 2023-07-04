@@ -225,7 +225,7 @@ async function renderGraph(container: string, slug: string) {
   const labels = graphNode
     .append("text")
     .attr("dx", 0)
-    .attr("dy", (d) => nodeRadius(d) - 8 + "px")
+    .attr("dy", (d) => -nodeRadius(d) + "px")
     .attr("text-anchor", "middle")
     .text((d) => data[d.id]?.title || (d.id.charAt(1).toUpperCase() + d.id.slice(2)).replace("-", " "))
     .style('opacity', (opacityScale - 1) / 3.75)
@@ -297,14 +297,3 @@ document.addEventListener("nav", async (e: unknown) => {
   containerIcon?.addEventListener("click", renderGlobalGraph)
 })
 
-let resizeEventDebounce: number | undefined = undefined
-window.addEventListener('resize', () => {
-  if (resizeEventDebounce) {
-    clearTimeout(resizeEventDebounce)
-  }
-
-  resizeEventDebounce = window.setTimeout(async () => {
-    const slug = document.body.dataset["slug"]!
-    await renderGraph("graph-container", slug)
-  }, 50)
-})

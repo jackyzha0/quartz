@@ -14,7 +14,7 @@ function ReadingTime({ fileData }: QuartzComponentProps) {
 ReadingTime.css = `
 .reading-time {
   margin-top: 0;
-  opacity: 0.5;
+  color: var(--gray);
 }
 `
 

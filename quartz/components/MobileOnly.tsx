@@ -4,9 +4,7 @@ export default ((component?: QuartzComponent) => {
   if (component) {
     const Component = component
     function MobileOnly(props: QuartzComponentProps) {
-      return <div class="mobile-only">
-        <Component {...props} />
-      </div>
+      return <Component displayClass="mobile-only" {...props} />
     }
 
     MobileOnly.displayName = component.displayName
