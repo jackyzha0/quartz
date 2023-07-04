@@ -1,0 +1,11 @@
+{
+	"id": "chatgpt-md",
+	"name": "ChatGPT MD",
+	"version": "1.5.0",
+	"minAppVersion": "0.15.0",
+	"description": "A (nearly) seamless integration of ChatGPT into Obsidian.",
+	"author": "Bram Adams",
+	"authorUrl": "https://www.bramadams.dev",
+	"fundingUrl": "https://www.bramadams.dev/#/portal/",
+	"isDesktopOnly": false
+}

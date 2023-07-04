@@ -1,0 +1,831 @@
+/***** TABLE OF CONTENTS *****/
+/* 1. Font
+/* 2. Colours
+/*     2.1. Hue options (change these numbers for an entirely new look!)
+/*     2.2. Dark theme
+/*     2.3. Light theme
+/*     2.4. Common (calculated)
+/* 3. General UI
+/*     3.1. Title Bar
+/* 4. Markdown (editor / preview)
+/*     4.1. Headings
+/*         4.1.1. Fix font weights
+/*     4.2. Links
+/*         4.2.1. Nifty arrow before internal links (also applies to embeds)
+/*     4.3. Embeds
+/*     4.4. Tables
+/*     4.5. Popovers
+/*     4.6. Task Lists
+/*     4.7. Blockquotes
+/*     4.8. Code
+/*     4.9. Bulleted lists
+/*     4.10. Misc Fixes
+/* 5. Graph view colours
+/* 6. Notion Colour Blocks
+/* 7. In-document header (scrolls with the document) [remove for compatibility with Andy's mode]
+/*     7.1. Adjustments for non-in-document headers (graphs, etc)\
+/*     7.2. Active pane border 
+/*     7.3. Misc fixes
+/* 8. Tags
+/*     8.1. Tag custom colours
+/***** *****/
+
+/* 1. Font */
+body {
+  /* font stacks taken directly from Notion */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-monospace: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  -webkit-font-smoothing: auto;
+}
+
+/* 2. Colours */
+/* 2.1. Hue options ( change these numbers for an entirely new look!) */
+body.theme-light,
+body.theme-dark {
+  /* change these numbers for an entirely new look */
+  --hue: 203;
+  --sat: 8%;
+  --interactive-accent-rgb: 46, 170, 220;
+  --code: #EB5757;
+
+  --opacity-translucency: 0.7;
+}
+
+/* 2.2. Dark theme */
+.theme-dark {
+  --L0: 0%;
+  --L1: 20%;
+  --L2: 23%;
+  --L3: 26%;
+
+  --text-rgb: 255, 255, 255;
+
+  --text-highlight-bg: rgb(89, 86, 59);
+  --text-selection: hsla(211, 100%, 50%, 0.2);
+  --interactive-normal: #2a2a2a;
+  --interactive-hover: #303030;
+
+  --text-gray: rgba(255, 255, 255, 0.6);
+  --text-brown: rgb(147, 114, 100);
+  --text-orange: rgb(255, 163, 68);
+  --text-yellow: rgb(255, 220, 73);
+  --text-green: rgb(77, 171, 154);
+  --text-blue: rgb(82, 156, 202);
+  --text-purple: rgb(154, 109, 215);
+  --text-pink: rgb(226, 85, 161);
+  --text-red: rgb(255, 115, 105);
+
+  --background-gray: rgb(69, 75, 78);
+  --background-brown: rgb(67, 64, 64);
+  --background-orange: rgb(89, 74, 58);
+  --background-yellow: rgb(89, 86, 59);
+  --background-green: rgb(53, 76, 75);
+  --background-blue: rgb(54, 73, 84);
+  --background-purple: rgb(68, 63, 87);
+  --background-pink: rgb(83, 59, 76);
+  --background-red: rgb(89, 65, 65);
+}
+
+/* 2.3. Light theme */
+.theme-light {
+  --L0: 0%;
+  --L1: 100%;
+  --L2: 96%;
+  --L3: 90%;
+
+  --text-rgb: 55, 53, 47;
+
+  --text-highlight-bg: rgb(251, 243, 219);
+  --text-selection: rgba(0, 122, 255, 0.15);
+  --interactive-normal: #f2f3f5;
+  --interactive-hover: #e9e9e9;
+
+  --text-gray: rgba(55, 53, 47, 0.6);
+  --text-brown: rgb(100, 71, 58);
+  --text-orange: rgb(217, 115, 13);
+  --text-yellow: rgb(223, 171, 1);
+  --text-green: rgb(15, 123, 108);
+  --text-blue: rgb(11, 110, 153);
+  --text-purple: rgb(105, 64, 165);
+  --text-pink: rgb(173, 26, 114);
+  --text-red: rgb(224, 62, 62);
+
+  --background-gray: rgb(235, 236, 237);
+  --background-brown: rgb(233, 229, 227);
+  --background-orange: rgb(250, 235, 221);
+  --background-yellow: rgb(251, 243, 219);
+  --background-green: rgb(221, 237, 234);
+  --background-blue: rgb(221, 235, 241);
+  --background-purple: rgb(234, 228, 242);
+  --background-pink: rgb(244, 223, 235);
+  --background-red: rgb(251, 228, 228);
+}
+
+/* 2.4. Common (calculated) */
+body.theme-light,
+body.theme-dark {
+  --background-primary: hsl(var(--hue), var(--sat), var(--L1));
+  --background-primary-alt: hsl(var(--hue), var(--sat), var(--L3));
+  --background-secondary: hsl(var(--hue), var(--sat), var(--L2));
+  --background-secondary-alt: hsl(var(--hue), var(--sat), var(--L3));
+  --background-accent: hsl(var(--hue), var(--sat), var(--L0));
+  --background-modifier-border: rgba(var(--text-rgb), 0.14);
+  --text-accent: rgba(var(--text-rgb), 0.45);
+  --text-accent-hover: rgba(var(--text-rgb), 0.45);
+  --text-normal: rgba(var(--text-rgb), 0.9);
+  --text-muted: rgba(var(--text-rgb), 0.45);
+  --text-faint: rgba(var(--text-rgb), 0.25);
+  --text-on-accent: rgba(var(--text-rgb), 0.9);
+  --interactive-accent: rgb(var(--interactive-accent-rgb));
+  --interactive-accent-hover: rgba(var(--interactive-accent-rgb), 0.8);
+}
+
+body.theme-light {
+  --background-primary-alt: hsl(var(--hue), var(--sat), var(--L2));
+}
+
+/* 3. General UI */
+.view-header-title {
+  font-weight: 700;
+}
+
+/* 3.1. Title bar */
+.titlebar {
+  background-color: var(--background-secondary-alt);
+}
+
+.titlebar-inner {
+  color: var(--text-normal);
+}
+
+/* 4. Markdown (editor / preview)
+/* 4.1. Headings */
+.markdown-preview-view h1 {
+  font-size: 30px;
+  margin-top: 32px;
+  margin-bottom: 4px;
+}
+
+.markdown-preview-view h2 {
+  font-size: 24px;
+  margin-top: 23px;
+  margin-bottom: 1px;
+}
+
+.markdown-preview-view h3,
+.markdown-preview-view h4,
+.markdown-preview-view h5,
+.markdown-preview-view h6 {
+  font-size: 20px;
+  margin-top: 16px;
+  margin-bottom: 0px;
+}
+
+.cm-s-obsidian .cm-header-1 {
+  font-size: 30px;
+}
+
+.cm-s-obsidian .cm-header-2 {
+  font-size: 24px;
+}
+
+.cm-s-obsidian .cm-header-3,
+.cm-s-obsidian .cm-header-4,
+.cm-s-obsidian .cm-header-5,
+.cm-s-obsidian .cm-header-6 {
+  font-size: 20px;
+}
+
+.cm-s-obsidian .cm-header-6 {
+  color: var(--text-muted);
+}
+
+/* 4.1.1. Fix font weights */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+.cm-s-obsidian .cm-header {
+  font-weight: 600;
+}
+
+/* 4.2. Links */
+.external-link {
+  background-image: none;
+  /* no external link indicator */
+  padding: 0;
+  color: var(--text-normal);
+}
+
+.markdown-preview-view .internal-link,
+.popover.hover-popover .markdown-embed .internal-link {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  line-height: 1.3;
+  border-bottom: 1px solid var(--background-modifier-border);
+  color: var(--text-normal);
+  text-decoration: none;
+}
+
+.markdown-preview-view .internal-link.is-unresolved {
+  color: var(--text-muted);
+}
+
+.cm-s-obsidian span.cm-link.cm-hmd-barelink {
+  /* Not actually a link */
+  color: var(--text-normal);
+}
+
+/* 4.2.1. Nifty arrow before internal links (also applies to embeds) */
+.internal-link::before,
+.markdown-embed-link::before {
+  content: " ";
+  background-color: var(--text-normal);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='5.4 26 24 7.4 24 20 26 20 26 4 10 4 10 6 22.6 6 4 24.6'%3E%3C/polygon%3E%3C/svg%3E");
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 2px;
+  margin-bottom: -1px;
+}
+
+.markdown-preview-view .internal-link.is-unresolved::before {
+  background-color: var(--text-muted);
+  -webkit-mask-image: url('data:image/svg+xml;charset=UTF-8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M7.977 14.963c.407 0 .747-.324.747-.723V8.72h5.362c.399 0 .74-.34.74-.747a.746.746 0 00-.74-.738H8.724V1.706c0-.398-.34-.722-.747-.722a.732.732 0 00-.739.722v5.529h-5.37a.746.746 0 00-.74.738c0 .407.341.747.74.747h5.37v5.52c0 .399.332.723.739.723z"></path></svg>');
+  width: 13px;
+  height: 13px;
+}
+
+/* 4.3. embeds (mimics embedded tables from Notion) */
+.markdown-embed-title,
+.markdown-embed-content h1:first-child,
+.markdown-embed-content h2:first-child,
+.markdown-embed-content h3:first-child,
+.markdown-embed-content h4:first-child,
+.markdown-embed-content h5:first-child,
+.markdown-embed-content h6:first-child {
+  font-size: 1.25em;
+  line-height: 1.5;
+  font-weight: 600;
+  text-align: left;
+  margin-top: 0;
+}
+
+.markdown-embed-title {
+  padding-left: 30px;
+}
+
+.markdown-preview-view .markdown-embed {
+  border: none;
+  margin: 0;
+  border-bottom: 1px solid var(--background-modifier-border);
+  border-radius: 0;
+  padding-bottom: 5px;
+}
+
+.markdown-embed .markdown-preview-view {
+  padding-left: 8px;
+  padding-right: 4px;
+}
+
+.markdown-embed-link {
+  color: var(--text-normal);
+  right: unset;
+  left: 0;
+  top: 3px;
+  height: 30px;
+  width: calc(100% - 20px);
+  margin-left: 4px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.markdown-embed-link::before {
+  font-size: 0.8em;
+}
+
+.markdown-embed-link svg {
+  display: none;
+  /* hide the svg link icon, gets replaced with a nifty arrow */
+}
+
+/* 4.4. Tables */
+/* fix for long markdown editor text (tables) getting cut off */
+.CodeMirror-scroll {
+  margin-right: -10px;
+}
+
+/* table headers and first column styling */
+.markdown-preview-view th:first-child,
+.markdown-preview-view td:first-child {
+  border-left: none;
+}
+
+.markdown-preview-view th:last-child,
+.markdown-preview-view td:last-child {
+  border-right: none;
+}
+
+.markdown-preview-view th {
+  text-align: left;
+  font-weight: normal;
+  color: var(--text-muted);
+}
+
+.markdown-preview-view td:first-child {
+  font-weight: 600;
+}
+
+.markdown-preview-view hr {
+  height: 1px;
+  opacity: 0.5;
+}
+
+/* 4.5. Popovers */
+.popover.hover-popover .markdown-embed-link {
+  border-bottom: none;
+}
+
+/* 4.6. Task lists */
+.markdown-preview-view .task-list-item-checkbox {
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  border: 1px solid var(--text-normal);
+  position: relative;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  margin-right: 4px;
+  margin-bottom: 2px;
+  transition: background-color 200ms ease-out 0s;
+  cursor: pointer;
+  filter: none;
+}
+
+.markdown-preview-view .task-list-item-checkbox:checked {
+  border: none;
+  background-color: var(--interactive-accent);
+}
+
+.markdown-preview-view .task-list-item-checkbox:hover {
+  background-color: var(--background-primary-alt);
+}
+
+/* the SVG check mark */
+.markdown-preview-view .task-list-item-checkbox:checked::before {
+  content: ' ';
+  position: absolute;
+  background-color: white;
+  left: 2px;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpolygon points='5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039'%3E%3C/polygon%3E%3C/svg%3E");
+}
+
+.markdown-preview-view ul>li.task-list-item.is-checked {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* 4.7. Blockquotes */
+.markdown-preview-view blockquote,
+.cm-s-obsidian pre.HyperMD-quote-1 {
+  border: none;
+  border-left: 3px solid currentcolor;
+}
+
+/* for some reason messing with the padding and size like this caused weirdness
+  with the editor mode cursor position. So just preview for now */
+.markdown-preview-view blockquote {
+  padding: 0 0.9em;
+  font-size: 1.2em;
+  margin: 3px 2px;
+}
+
+/* 4.8. Code */
+.markdown-preview-view code,
+.cm-s-obsidian span.cm-inline-code,
+.cm-s-obsidian pre.HyperMD-codeblock {
+  color: var(--code);
+  font-family: var(--font-monospace);
+}
+
+.markdown-preview-view pre>code {
+  padding: 24px 6px 24px 10px;
+  color: var(--text-normal);
+  display: block;
+  overflow: auto;
+  white-space: pre;
+}
+
+/* 4.9. Bulleted lists */
+ul {
+  list-style-type: disc;
+}
+
+ul,
+ol {
+  padding-inline-start: 24px;
+}
+
+ul>li,
+ol>li {
+  padding: 3px 2px;
+  min-height: calc(1.5em + 6px);
+  margin-top: 2px;
+  margin-bottom: 1px;
+}
+
+/* 4.10. Misc fixes */
+.cm-s-obsidian span.cm-quote {
+  color: var(--text-normal);
+}
+
+/* escape character */
+.cm-s-obsidian span.cm-hmd-escape-backslash {
+  color: var(--text-faint);
+}
+
+/* highlight */
+.markdown-preview-view mark {
+  color: var(--text-normal);
+}
+
+/* 5. Graph view colours */
+.graph-view.color-fill,
+.graph-view.color-arrow {
+  color: hsl(var(--hue), var(--sat), 50%);
+}
+
+.graph-view.color-fill-unresolved {
+  color: hsl(var(--hue), var(--sat), 50%);
+  opacity: 0.5;
+}
+
+.graph-view.color-line {
+  color: hsl(var(--hue), var(--sat), 50%);
+  opacity: 0.25;
+}
+
+.graph-view.color-text {
+  color: var(--text-normal);
+}
+
+.graph-view.color-fill-highlight {
+  color: var(--interactive-accent);
+}
+
+.graph-view.color-line-highlight {
+  color: var(--interactive-accent);
+}
+
+.theme-light .graph-view.color-fill-attachment,
+.theme-dark .graph-view.color-fill-attachment {
+  color: var(--background-blue);
+}
+
+.theme-dark .graph-view.color-fill-tag,
+.theme-light .graph-view.color-fill-tag {
+  color: var(--text-yellow);
+}
+
+/* 6. Notion Colour Blocks */
+/* Original idea from: https://gist.github.com/mklepaczewski/54e451f09994b9d450de81c8baaf8aa4 */
+/* but also with simpler classes so you can use `<span class='colour'>` as well */
+
+.app-container .markdown-preview-view pre[class*="language-note-"] {
+  padding: 3px 2px;
+  border-radius: 0;
+}
+
+.app-container .markdown-preview-view pre[class*="language-note-"] code[class*="language-note-"] {
+  color: var(--text-normal);
+  white-space: pre-wrap;
+  font-family: var(--default-font);
+  font-size: 1rem;
+  padding: 0;
+}
+
+.app-container .markdown-preview-view pre.language-note-notice,
+.app-container .markdown-preview-view pre.language-note-gray-background,
+.app-container .markdown-preview-view pre.language-note-gray-bg,
+.gray-background,
+.gray-bg {
+  background-color: var(--background-gray);
+}
+
+.app-container .markdown-preview-view pre.language-note-brown-background,
+.app-container .markdown-preview-view pre.language-note-brown-bg,
+.brown-background,
+.brown-bg {
+  background-color: var(--background-brown);
+}
+
+.app-container .markdown-preview-view pre.language-note-orange-background,
+.app-container .markdown-preview-view pre.language-note-orange-bg,
+.orange-background,
+.orange-bg {
+  background-color: var(--background-orange);
+}
+
+.app-container .markdown-preview-view pre.language-note-warn,
+.app-container .markdown-preview-view pre.language-note-yellow-background,
+.app-container .markdown-preview-view pre.language-note-yellow-bg,
+.yellow-background,
+.yellow-bg {
+  background-color: var(--background-yellow)
+}
+
+.app-container .markdown-preview-view pre.language-note-success,
+.app-container .markdown-preview-view pre.language-note-green-background,
+.app-container .markdown-preview-view pre.language-note-green-bg,
+.green-background,
+.green-bg {
+  background-color: var(--background-green);
+}
+
+.app-container .markdown-preview-view pre.language-note-info,
+.app-container .markdown-preview-view pre.language-note-blue-background,
+.app-container .markdown-preview-view pre.language-note-blue-bg,
+.blue-background,
+.blue-bg {
+  background-color: var(--background-blue);
+}
+
+.app-container .markdown-preview-view pre.language-note-purple-background,
+.app-container .markdown-preview-view pre.language-note-purple-bg,
+.purple-background,
+.purple-bg {
+  background-color: var(--background-purple);
+}
+
+.app-container .markdown-preview-view pre.language-note-pink-background,
+.app-container .markdown-preview-view pre.language-note-pink-bg,
+.pink-background,
+.pink-bg {
+  background-color: var(--background-pink);
+}
+
+.app-container .markdown-preview-view pre.language-note-danger,
+.app-container .markdown-preview-view pre.language-note-red-background,
+.app-container .markdown-preview-view pre.language-note-red-bg,
+.red-background,
+.red-bg {
+  background-color: var(--background-red);
+}
+
+.app-container .markdown-preview-view pre.language-note-gray,
+.app-container .markdown-preview-view pre.language-note-brown,
+.app-container .markdown-preview-view pre.language-note-orange,
+.app-container .markdown-preview-view pre.language-note-yellow,
+.app-container .markdown-preview-view pre.language-note-green,
+.app-container .markdown-preview-view pre.language-note-blue,
+.app-container .markdown-preview-view pre.language-note-purple,
+.app-container .markdown-preview-view pre.language-note-pink,
+.app-container .markdown-preview-view pre.language-note-red {
+  background-color: transparent;
+}
+
+.app-container .markdown-preview-view pre.language-note-gray code.language-note-gray,
+.gray {
+  color: var(--text-gray);
+}
+
+.app-container .markdown-preview-view pre.language-note-brown code.language-note-brown,
+.brown {
+  color: var(--text-brown);
+}
+
+.app-container .markdown-preview-view pre.language-note-orange code.language-note-orange,
+.orange {
+  color: var(--text-orange);
+}
+
+.app-container .markdown-preview-view pre.language-note-yellow code.language-note-yellow,
+.yellow {
+  color: var(--text-yellow)
+}
+
+.app-container .markdown-preview-view pre.language-note-green code.language-note-green,
+.green {
+  color: var(--text-green);
+}
+
+.app-container .markdown-preview-view pre.language-note-blue code.language-note-blue,
+.blue {
+  color: var(--text-blue);
+}
+
+.app-container .markdown-preview-view pre.language-note-purple code.language-note-purple,
+.purple {
+  color: var(--text-purple);
+}
+
+.app-container .markdown-preview-view pre.language-note-pink code.language-note-pink,
+.pink {
+  color: var(--text-pink);
+}
+
+.app-container .markdown-preview-view pre.language-note-red code.language-note-red,
+.red {
+  color: var(--text-red);
+}
+
+/* 7. In-document header (scrolls with the document) [remove for compatibility with Andy's mode] */
+/* !!! Remove from here down if you want to use with Andy Matuschak mode V2 !!! */
+.markdown-preview-view,
+.markdown-source-view {
+  background-color: transparent;
+}
+
+/* fix to padding top so that the editor and preview line up */
+.markdown-source-view.is-readable-line-width .CodeMirror {
+  padding: 0;
+  padding-top: 15px;
+}
+
+.markdown-preview-view,
+.CodeMirror-lines {
+  padding-top: 15px;
+}
+
+.markdown-preview-view {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* This is where the magic happens */
+.workspace-leaf-content[data-type=markdown] .view-header,
+.workspace-leaf.mod-active .workspace-leaf-content[data-type=markdown] .view-header {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  height: auto;
+  padding-top: 108px;
+}
+
+.workspace-split.mod-root .workspace-leaf {
+  background-color: var(--background-primary);
+}
+
+.workspace>.workspace-split>.workspace-leaf:first-of-type:last-of-type .workspace-leaf-content[data-type=markdown] .view-header {
+  background-color: transparent;
+  border: none;
+}
+
+.workspace-leaf {
+  position: relative;
+}
+
+.workspace-leaf-content[data-type=markdown] {
+  overflow: auto;
+  position: unset;
+  margin-top: 35px;
+}
+
+.workspace-leaf-content[data-type=markdown] .view-header-title-container {
+  width: 100%;
+  margin-top: auto;
+  height: auto;
+  padding: 0;
+}
+
+.workspace-leaf-content[data-type=markdown] .view-header-title-container:after {
+  content: none;
+}
+
+.workspace-leaf-content[data-type=markdown] .view-header-title {
+  font-size: 40px;
+  line-height: 1.2em;
+  padding: 3px 2px;
+  height: auto;
+  margin: 0;
+  color: var(--text-normal);
+  white-space: normal;
+}
+
+.workspace-leaf-content[data-type=markdown] .view-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: transparent;
+  z-index: 1;
+}
+
+.workspace-leaf-content[data-type=markdown] .view-header-icon {
+  position: absolute;
+  left: 0;
+  z-index: 2;
+}
+
+.workspace-leaf-content[data-type=markdown] .view-content {
+  height: auto;
+}
+
+.workspace-leaf-content[data-type=markdown] .markdown-source-view {
+  z-index: 0;
+}
+
+.view-action {
+  color: var(--text-normal);
+  margin: 0;
+  padding: 0 8px;
+  height: 28px;
+  line-height: 28px;
+  border-radius: 3px;
+  transition: background-color 20ms ease-in 0s;
+}
+
+.view-action>svg {
+  max-width: 14px;
+  max-height: 14px;
+}
+
+.view-action:hover,
+.view-action.is-active {
+  color: var(--text-normal);
+  background-color: var(--background-primary-alt);
+}
+
+.workspace-split.mod-vertical>.workspace-leaf:not(:last-child) {
+  padding-right: 4px;
+}
+
+/* 7.1. Adjustments for non-in-document headers (graphs, etc) */
+.workspace-leaf-content:not([data-type=markdown]) .view-header,
+.workspace-leaf.mod-active .workspace-leaf-content:not([data-type=markdown]) .view-header {
+  border: none;
+  background-color: var(--background-primary);
+}
+
+.workspace-leaf-content:not([data-type=markdown]) .view-header-title-container:after,
+.workspace-leaf.mod-active .workspace-leaf-content:not([data-type=markdown]) .view-header-title-container:after {
+  background: linear-gradient(to right, transparent, var(--background-primary));
+}
+
+/* 7.2. Active pane border */
+/* Notion doesn't have multiple panes. And with the header modifications above,
+  how do you tell which pane is active? I'm just putting a border around the
+  active pane for now (unless there's only one pane) */
+.workspace-leaf.mod-active {
+  border: 1px solid var(--interactive-accent);
+}
+
+.workspace-leaf:not(.mod-active),
+.workspace>.workspace-split>.workspace-leaf:first-of-type:last-of-type {
+  border: 1px solid transparent;
+}
+
+/* 7.3 Misc fixes */
+/* Fix for the search pane scrolling off the page */
+.markdown-source-view,
+.workspace-split.mod-root .view-content {
+  position: unset;
+}
+
+/* 8. Tags */
+a.tag,
+.cm-s-obsidian span.cm-hashtag,
+.tag-pane-tag-text {
+  color: var(--text-normal);
+  text-decoration: none;
+  background-color: var(--background-yellow);
+  padding: 3px 6px;
+  border-radius: 3px;
+  font-size: 14px;
+  border: none;
+}
+
+.cm-s-obsidian span.cm-hashtag-begin {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+  padding-right: 0;
+  font-size: 15px; /* why? I dunno. Just needs it to balance out */
+}
+
+.cm-s-obsidian span.cm-hashtag-end {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none;
+  padding-left: 0;
+}
+
+/* 8.1. Tag custom colours */
+/* As of Obsidian 0.9.0 there are custom classes for tags. 
+ * this theme provides varibles of the form --background-<color> and --text-<color> for the following colours:
+ * gray, brown, orange, yellow, green, blue, purple, pink, red
+ * If you want your own colours for your own specific tags you can copy and utilize this: */
+.cm-s-obsidian span.cm-hashtag.cm-tag-important,
+.tag[href="#important"] {
+  background-color: var(--background-red);
+}

@@ -1,0 +1,111 @@
+.obsidian-icon-folder-icon {
+  border: 1px solid transparent;
+  margin: 0px 4px 0px 0px;
+  display: flex;
+  align-self: center;
+  margin: auto 0;
+}
+
+.nav-folder-title,
+.nav-file-title {
+  align-items: center;
+}
+
+.obsidian-icon-folder-setting .setting-item-control .dropdown {
+  margin-right: 12px;
+}
+
+.obsidian-icon-folder-setting input[type='color'] {
+  margin: 0 6px;
+}
+
+.obsidian-icon-folder-modal.prompt-results {
+  margin: 0;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.prompt .obsidian-icon-folder-subheadline {
+  margin-top: 12px;
+  font-size: 12px;
+  color: gray;
+  grid-column-start: 1;
+  grid-column-end: 6;
+}
+
+@media (max-width: 640px) {
+  .obsidian-icon-folder-modal.prompt-results {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .prompt .obsidian-icon-folder-subheadline {
+    grid-column-end: 4;
+  }
+}
+
+.obsidian-icon-folder-modal.prompt-results .suggestion-item {
+  cursor: pointer;
+  white-space: pre-wrap;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column-reverse;
+  text-align: center;
+  font-size: 13px;
+  color: gray;
+  padding: 16px 8px;
+  line-break: auto;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+.obsidian-icon-folder-modal.prompt-results .suggestion-item.suggestion-item__center {
+  justify-content: center;
+}
+
+.obsidian-icon-folder-icon-preview {
+  font-size: 22px;
+}
+
+.obsidian-icon-folder-icon-preview img {
+  width: 16px;
+  height: 16px;
+}
+
+.obsidian-icon-folder-icon-preview svg {
+  width: 24px;
+  height: 24px;
+  color: currentColor;
+  margin-bottom: 4px;
+}
+
+.obsidian-icon-folder-dragover {
+  position: relative;
+}
+
+.obsidian-icon-folder-dragover-el {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: var(--text-normal);
+  background-color: var(--background-secondary-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Custom rule modal. */
+.obsidian-icon-folder-custom-rule-modal .modal-title h3 {
+  margin: 0;
+}
+
+.obsidian-icon-folder-custom-rule-modal .modal-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.obsidian-icon-folder-custom-rule-modal .modal-content input {
+  width: 100%;
+  margin-right: 0.5rem;
+}

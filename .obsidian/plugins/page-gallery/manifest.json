@@ -1,0 +1,10 @@
+{
+	"id": "page-gallery",
+	"name": "Page Gallery",
+	"version": "0.7.3",
+	"minAppVersion": "0.15.0",
+	"description": "Creates an embeddable gallery based on selected page contents.",
+	"author": "Nathan Clark",
+	"authorUrl": "https://github.com/tokenshift/obsidian-page-gallery",
+	"isDesktopOnly": false
+}

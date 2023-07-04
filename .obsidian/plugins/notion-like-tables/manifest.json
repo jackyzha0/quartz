@@ -1,0 +1,11 @@
+{
+	"id": "notion-like-tables",
+	"name": "Dashboards",
+	"minAppVersion": "1.2.0",
+	"description": "Powerful dashboard suite inspired by Notion.so.",
+	"author": "Trey Wallis",
+	"authorUrl": "https://github.com/trey-wallis",
+	"isDesktopOnly": false,
+	"fundingUrl": "https://www.buymeacoffee.com/treywallis",
+	"version": "6.19.1"
+}

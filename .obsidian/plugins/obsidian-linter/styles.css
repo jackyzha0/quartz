@@ -1,0 +1,153 @@
+/**
+ * Based on https://github.com/Fevol/obsidian-translate/blob/master/src/ui/translator-components/SettingsPage.svelte 
+ */
+
+.linter-navigation-item {
+  cursor: pointer;
+  border-radius: 100px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px 8px 2px 2px;
+
+  font-weight: bold;
+  font-size: 16px;
+
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+
+  padding: 4px 6px;
+  align-items: center;
+  gap: 4px;
+  overflow: hidden;
+
+  background-color: var(--background-primary-secondary-alt);
+  
+  transition: color 0.25s ease-in-out,
+        padding 0.25s ease-in-out,
+        background-color 0.35s cubic-bezier(0.45, 0.25, 0.83, 0.67),
+        max-width 0.35s cubic-bezier(0.57, 0.04, 0.58, 1);
+  height: 32px;
+}
+
+@media screen and (max-width: 1325px) {
+  .linter-navigation-item.linter-desktop {
+		max-width: 32px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .linter-navigation-item.linter-mobile {
+		max-width: 32px;
+  }
+}
+
+.linter-navigation-item-icon {
+  padding-top: 5px;
+}
+
+.linter-navigation-item:hover {
+  border-color: var(--interactive-accent-hover);
+  border-bottom: 0px;
+}
+
+.linter-navigation-item-selected {
+  background-color: var(--interactive-accent) !important;
+  color: var(--text-on-accent);
+  padding: 4px 9px !important;
+  max-width: 100% !important;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px 8px 2px 2px;
+  border-bottom: 0px;
+  transition: color 0.25s ease-in-out,
+        padding 0.25s ease-in-out,
+        background-color 0.35s cubic-bezier(0.45, 0.25, 0.83, 0.67),
+        max-width 0.45s cubic-bezier(0.57, 0.04, 0.58, 1) 0.2s;
+}
+
+/**
+ * Based on https://github.com/phibr0/obsidian-commander/blob/main/src/styles.scss
+ */
+.linter {
+  transition: transform 400ms 0s;
+}
+
+.linter-setting-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 30px;
+}
+.linter-setting-title.linter-mobile {
+  justify-content: space-around;
+}
+.linter-setting-title h1 {
+  font-weight: 900;
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+.linter-setting-header {
+  margin-bottom: 24px;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.linter-setting-header .linter-setting-tab-group {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.linter-setting-tab-group {
+  margin-top: 6px;
+  padding-left: 2px;
+  padding-right: 2px;
+  border-bottom: 2px solid var(--background-modifier-border);
+}
+
+.linter-setting-header .linter-tab-settings {
+  padding: 6px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+}
+.linter-setting-header .linter-tab-settings:first-child {
+  margin-left: 6px;
+}
+.linter-setting-header .linter-tab-settings.linter-tab-settings-active {
+  border-bottom: 2px solid var(--background-primary);
+  transform: translateY(2px);
+  border-radius: 2px;
+  border-left: 2px solid var(--background-modifier-border);
+  border-top: 2px solid var(--background-modifier-border);
+  border-right: 2px solid var(--background-modifier-border);
+}
+
+/** Hide linter element css 
+ * Based on https://zellwk.com/blog/hide-content-accessibly/
+ */
+.linter-navigation-item:not(.linter-navigation-item-selected) > span:nth-child(2),
+.linter-visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
+/**
+* Full-width text areas
+*/
+textarea.full-width {
+  width: 100%;
+  min-height: 10em;
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}

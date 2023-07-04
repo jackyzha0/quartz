@@ -1,0 +1,200 @@
+{
+  "main": {
+    "id": "5ca2c29d0db15e39",
+    "type": "split",
+    "children": [
+      {
+        "id": "038c655c89506c3d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5d0af93c81b5dcd6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "My Portfolio/Empowering Users with Conversational Searching NLP.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "8064b0f6336d91dd",
+    "type": "split",
+    "children": [
+      {
+        "id": "048c28a545ad3d39",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "92ec0e069c92e2dc",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "82ef3d5542895ab7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "7a05b86a4a319516",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          },
+          {
+            "id": "a2f82e8346968989",
+            "type": "leaf",
+            "state": {
+              "type": "mk-file-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "daa11a7c406ad938",
+    "type": "split",
+    "children": [
+      {
+        "id": "af788e6011c0db2a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5dd419e01c432f94",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "My Portfolio/Empowering Users with Conversational Searching NLP.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "5466a225959bce4f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "My Portfolio/Empowering Users with Conversational Searching NLP.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "d8854a7201bcec6d",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "c3d10f8f5f19a33a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "My Portfolio/Empowering Users with Conversational Searching NLP.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "notion-like-tables:Create Notion-Like table": false
+    }
+  },
+  "active": "5d0af93c81b5dcd6",
+  "lastOpenFiles": [
+    "My Portfolio/Dinezo - Improving dining experience.md",
+    "My Portfolio/My Portfolio.md",
+    "Dinezo - Improving dining experience c2565ab8c31e4b54bd987d064a6b307e/Dinezo - Improving dining experience c2565ab8c31e4b54bd987d064a6b307e.md",
+    "My Portfolio/Empowering Users with Conversational Searching NLP.md",
+    "My Portfolio/Hi 👋🏼.md",
+    "My Portfolio/Pages/☀️ My Recent Work .md",
+    "My Portfolio/Pages/About .md",
+    "![[Background.md",
+    "☀️%20My%20Recent%20Work%2013ba2256391b4e3086178bda7d247380.csv.md",
+    "html-to-markdown.md",
+    "Assets/Pasted image 20230703180011.png",
+    "Assets/Pasted image 20230703142135.png",
+    "Assets/Screenshot_20221111-145800_Instagram.jpg",
+    "Assets/Screenshot_20221111-145800_Instagram 1.jpg",
+    "Assets/Slide 16_9 - 4.png",
+    "Assets/Slide 16_9 - 4.svg",
+    "Assets/Slide 16_9 - 4 1.png",
+    "Assets/Untitled.png",
+    "Assets/Untitled 3.png",
+    "Assets/Untitled 2.png",
+    "Dinezo - Improving dining experience c2565ab8c31e4b54bd987d064a6b307e/Web_capture_15-5-2023_155215_.jpeg.md",
+    "Dinezo - Improving dining experience c2565ab8c31e4b54bd987d064a6b307e",
+    "Untitled",
+    "Untitled.md",
+    "Hi 👋🏼 I’m Nitin Sagar 07cd5aba1da643058c448dee612a6c04/Contact me 0f3543f033b14ab19324a50f6b1431fa.md",
+    "Hi 👋🏼 I’m Nitin Sagar 07cd5aba1da643058c448dee612a6c04/Hi 👋🏼 I’m Nitin Sagar 07cd5aba1da643058c448dee612a6c04.md",
+    "Assets/Portfolio.md",
+    "My Portfolio/Pages/Pages.md",
+    "Context/spacesLastSync.log",
+    "Context",
+    "Hi 👋🏼 I’m Nitin Sagar 07cd5aba1da643058c448dee612a6c04",
+    "My Portfolio/Pages",
+    "Assets/Untitled",
+    "My Portfolio",
+    "Hi 👋🏼 I’m Nitin Sagar 07cd5aba1da643058c448dee612a6c04.md",
+    "Homepage",
+    "Untitled.table"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "obsidian-icon-folder",
+  "name": "Icon Folder",
+  "version": "2.1.2",
+  "minAppVersion": "0.9.12",
+  "description": "This plugin allows to add an emoji or an icon to a folder or file.",
+  "author": "Florian Woelki",
+  "authorUrl": "https://florianwoelki.com/",
+  "isDesktopOnly": false
+}
