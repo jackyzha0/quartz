@@ -14,7 +14,6 @@ interface Argv {
   directory: string
   verbose: boolean
   output: string
-  clean: boolean
   serve: boolean
   port: number
 }
@@ -34,11 +33,9 @@ export default async function buildQuartz(argv: Argv, version: string) {
   }
 
   // clean
-  if (argv.clean) {
-    perf.addEvent('clean')
-    await rimraf(output)
-    console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince('clean')}`)
-  }
+  perf.addEvent('clean')
+  await rimraf(output)
+  console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince('clean')}`)
 
   // glob
   perf.addEvent('glob')
