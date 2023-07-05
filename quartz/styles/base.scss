@@ -71,11 +71,6 @@ a {
       font-size: 2rem;
     }
 
-    // darkmode diagrams
-    & svg {
-      stroke: var(--dark);
-    }
-
     & ul:has(input[type='checkbox']) {
       list-style-type: none;
       padding-left: 0;

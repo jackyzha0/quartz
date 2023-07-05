@@ -70,6 +70,10 @@
 	  --color: var(--secondary);
 	  --border: var(--lightgray);
 	}
+  
+  &.is-collapsed > .callout-title > .fold {
+    transform: rotateZ(-90deg)
+  }
 }
 
 
@@ -87,9 +91,6 @@
     cursor: pointer;
   }
 
-  &.is-collapsed .fold {
-    transform: rotateZ(-90deg)
-  }
 }
 
 .callout-icon {
