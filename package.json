@@ -1,7 +1,8 @@
 {
   "name": "@jackyzha0/quartz",
   "description": "🌱 publish your digital garden and notes as a website",
-  "version": "4.0.3",
+  "private": true,
+  "version": "4.0.4",
   "type": "module",
   "author": "jackyzha0 <j.zhao2k19@gmail.com>",
   "license": "MIT",
@@ -25,6 +26,7 @@
     "quartz": "./quartz/bootstrap-cli.mjs"
   },
   "dependencies": {
+    "@clack/prompts": "^0.6.3",
     "@floating-ui/dom": "^1.4.0",
     "@napi-rs/simple-git": "^0.1.8",
     "chalk": "^4.1.2",

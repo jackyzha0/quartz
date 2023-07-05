@@ -6,6 +6,9 @@ import { hideBin } from 'yargs/helpers'
 import esbuild from 'esbuild'
 import chalk from 'chalk'
 import { sassPlugin } from 'esbuild-sass-plugin'
+import fs from 'fs'
+import { intro, isCancel, outro, select, text } from '@clack/prompts'
+import { rimraf } from 'rimraf'
 
 const cacheFile = "./.quartz-cache/transpiled-build.mjs"
 const fp = "./quartz/build.ts"
@@ -17,11 +20,6 @@ export const BuildArgv = {
     alias: ['o'],
     default: 'public',
     describe: 'output folder for files'
-  },
-  clean: {
-    boolean: true,
-    default: false,
-    describe: 'clean the output folder before building'
   },
   serve: {
     boolean: true,
@@ -51,6 +49,81 @@ yargs(hideBin(process.argv))
   .scriptName("quartz")
   .version(version)
   .usage('$0 <cmd> [args]')
+  .command('create', 'Initialize Quartz', async (_argv) => {
+    console.log()
+    intro(chalk.bgGreen.black(` Quartz v${version} `))
+    const contentFolder = path.join(process.cwd(), "content")
+    const setupStrategy = await select({
+      message: `Choose how to initialize the content in \`${contentFolder}\``,
+      options: [
+        { value: 'new', label: "Empty Quartz" },
+        { value: 'copy', label: "Replace with an existing folder", hint: "overwrites `content`" },
+        { value: 'symlink', label: "Symlink an existing folder", hint: "don't select this unless you know what you are doing!" },
+        { value: 'keep', label: "Keep the existing files" },
+      ]
+    })
+
+    if (isCancel(setupStrategy)) {
+      outro(chalk.red("Exiting"))
+      process.exit(0)
+    }
+
+    async function rmContentFolder() {
+      if (fs.existsSync(contentFolder)) {
+        const contentStat = await fs.promises.lstat(contentFolder)
+        if (contentStat.isSymbolicLink()) {
+          await fs.promises.unlink(contentFolder)
+        } else {
+          await rimraf(contentFolder)
+        }
+      }
+
+      await fs.promises.mkdir(contentFolder)
+    }
+
+    if (setupStrategy === 'copy' || setupStrategy === 'symlink') {
+      const originalFolder = await text({
+        message: "Enter the full path to existing content folder",
+        placeholder: 'On most terminal emulators, you can drag and drop a folder into the window and it will paste the full path',
+        validate(fp) {
+          if (!fs.existsSync(fp)) {
+            return "The given path doesn't exist"
+          } else if (!fs.lstatSync(fp).isDirectory()) {
+            return "The given path is not a folder"
+          }
+        }
+      })
+
+      if (isCancel(originalFolder)) {
+        outro(chalk.red("Exiting"))
+        process.exit(0)
+      }
+
+      await rmContentFolder()
+      if (setupStrategy === 'copy') {
+        await fs.promises.cp(originalFolder, contentFolder)
+      } else if (setupStrategy === 'symlink') {
+        await fs.promises.symlink(originalFolder, contentFolder)
+      }
+    } else if (setupStrategy === 'new') {
+      await rmContentFolder()
+      await fs.promises.writeFile(path.join(contentFolder, "index.md"), 
+`---
+title: Welcome to Quartz
+---
+
+This is a blank Quartz installation.
+See the [documentation](https://quartz.jzhao.xyz) for how to get started.
+`
+      )
+    }
+
+    outro(`You're all set! Not sure what to do next? Try:
+   • Customizing Quartz a bit more by editing \`quartz.config.ts\`
+   • Running \`npx quartz build --serve\` to preview your Quartz locally
+   • Hosting your Quartz online (see: https://quartz.jzhao.xyz/setup/hosting)
+`)
+  })
   .command('build', 'Build Quartz into a bundle of static HTML files', BuildArgv, async (argv) => {
     await esbuild.build({
       entryPoints: [fp],
