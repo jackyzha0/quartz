@@ -77,7 +77,7 @@
     "@types/serve-handler": "^6.1.1",
     "@types/workerpool": "^6.4.0",
     "@types/yargs": "^17.0.24",
-    "esbuild": "^0.17.18",
+    "esbuild": "^0.18.11",
     "typescript": "^5.0.4"
   }
 }
