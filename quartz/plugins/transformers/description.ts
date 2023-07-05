@@ -31,7 +31,9 @@ export const Description: QuartzTransformerPlugin<Partial<Options> | undefined> 
             let sentenceIdx = 0
             const len = opts.descriptionLength
             while (finalDesc.length < len) {
-              finalDesc += sentences[sentenceIdx] + '.'
+              const sentence = sentences[sentenceIdx]
+              if (!sentence) break
+              finalDesc += sentence + '.'
               sentenceIdx++
             }
 
