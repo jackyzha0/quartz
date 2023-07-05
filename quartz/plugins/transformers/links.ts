@@ -1,5 +1,5 @@
 import { QuartzTransformerPlugin } from "../types"
-import { clientSideSlug, relativeToRoot, slugify, trimPathSuffix } from "../../path"
+import { clientSideSlug, relative, relativeToRoot, slugify, trimPathSuffix } from "../../path"
 import path from "path"
 import { visit } from 'unist-util-visit'
 import isAbsoluteUrl from "is-absolute-url"
@@ -31,8 +31,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
           const transformLink = (target: string) => {
             const targetSlug = slugify(decodeURI(target).trim())
             if (opts.markdownLinkResolution === 'relative' && !path.isAbsolute(targetSlug)) {
-              // TODO
-              // return './' + relative(curSlug, targetSlug)
+              return './' + relative(curSlug, targetSlug)
             } else {
               return './' + relativeToRoot(curSlug, targetSlug)
             }
