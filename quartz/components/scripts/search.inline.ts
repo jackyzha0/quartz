@@ -60,6 +60,7 @@ document.addEventListener("nav", async (e: unknown) => {
 
   const data = await fetchData
   const container = document.getElementById("search-container")
+  const sidebar = container?.closest(".sidebar") as HTMLElement
   const searchIcon = document.getElementById("search-icon")
   const searchBar = document.getElementById("search-bar") as HTMLInputElement | null
   const results = document.getElementById("results-container")
@@ -69,12 +70,18 @@ document.addEventListener("nav", async (e: unknown) => {
     if (searchBar) {
       searchBar.value = "" // clear the input when we dismiss the search
     }
+    if (sidebar) {
+      sidebar.style.zIndex = "unset"
+    }
     if (results) {
       removeAllChildren(results)
     }
   }
 
   function showSearch() {
+    if (sidebar) {
+      sidebar.style.zIndex = "1"
+    }
     container?.classList.add("active")
     searchBar?.focus()
   }
@@ -145,7 +152,7 @@ document.addEventListener("nav", async (e: unknown) => {
   searchIcon?.addEventListener("click", showSearch)
   searchBar?.removeEventListener("input", onType)
   searchBar?.addEventListener("input", onType)
-  
+
   // setup index if it hasn't been already
   if (!index) {
     index = new Document({

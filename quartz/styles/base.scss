@@ -89,15 +89,8 @@ a {
       flex-direction: column;
     }
 
-    & .left, & .right {
+    & .sidebar {
       flex: 1;
-      width: calc(calc(100vw - $pageWidth) / 2);
-      @media all and (max-width: $fullPageWidth) {
-        width: initial;
-      }
-    }
-
-    & .left-inner, & .right-inner {
       display: flex;
       flex-direction: column;
       gap: 2rem;
@@ -116,7 +109,7 @@ a {
       }
     }
 
-    & .left-inner {
+    & .sidebar.left {
       left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
       @media all and (max-width: $fullPageWidth) {
         gap: 1rem;
@@ -124,7 +117,7 @@ a {
       }
     }
 
-    & .right-inner {
+    & .sidebar.right {
       right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
       & > * {
         @media all and (max-width: $fullPageWidth) {

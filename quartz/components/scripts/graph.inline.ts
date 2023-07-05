@@ -274,12 +274,20 @@ async function renderGraph(container: string, slug: string) {
 function renderGlobalGraph() {
   const slug = document.body.dataset["slug"]!
   const container = document.getElementById("global-graph-outer")
+  const sidebar = container?.closest(".sidebar") as HTMLElement
   container?.classList.add("active")
+  if (sidebar) {
+    sidebar.style.zIndex = "1"
+  }
+
   renderGraph("global-graph-container", slug)
 
   function hideGlobalGraph() {
     container?.classList.remove("active")
     const graph = document.getElementById("global-graph-container")
+    if (sidebar) {
+      sidebar.style.zIndex = "unset"
+    }
     if (!graph) return
     removeAllChildren(graph)
   }
