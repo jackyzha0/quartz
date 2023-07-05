@@ -38,17 +38,13 @@ export function renderPage(slug: string, componentData: QuartzComponentProps, co
   const Body = BodyConstructor()
 
   const LeftComponent =
-    <div class="left">
-      <div class="left-inner">
-        {left.map(BodyComponent => <BodyComponent {...componentData} />)}
-      </div>
+    <div class="left sidebar">
+      {left.map(BodyComponent => <BodyComponent {...componentData} />)}
     </div>
 
   const RightComponent =
-    <div class="right">
-      <div class="right-inner">
-        {right.map(BodyComponent => <BodyComponent {...componentData} />)}
-      </div>
+    <div class="right sidebar">
+      {right.map(BodyComponent => <BodyComponent {...componentData} />)}
     </div>
 
   const doc = <html>
