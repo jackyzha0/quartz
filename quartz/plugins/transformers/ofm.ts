@@ -220,6 +220,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               }
 
               const text = firstChild.children[0].value
+              const restChildren = firstChild.children.splice(1)
               const [firstLine, ...remainingLines] = text.split("\n")
               const remainingText = remainingLines.join("\n")
 
@@ -253,7 +254,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     children: [{
                       type: 'text',
                       value: remainingText,
-                    }]
+                    }, ...restChildren]
                   })
                 }
 

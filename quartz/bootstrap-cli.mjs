@@ -45,6 +45,14 @@ export const BuildArgv = {
   }
 }
 
+function escapePath(fp) {
+  return fp
+    .replace(/\\ /g, " ") // unescape spaces
+    .replace(/^".*"$/, "$1")
+    .replace(/^'.*"$/, "$1")
+    .trim()
+}
+
 yargs(hideBin(process.argv))
   .scriptName("quartz")
   .version(version)
@@ -69,30 +77,29 @@ yargs(hideBin(process.argv))
     }
 
     async function rmContentFolder() {
-      if (fs.existsSync(contentFolder)) {
-        const contentStat = await fs.promises.lstat(contentFolder)
+      const contentStat = await fs.promises.lstat(contentFolder)
+      if (contentStat) {
         if (contentStat.isSymbolicLink()) {
           await fs.promises.unlink(contentFolder)
         } else {
           await rimraf(contentFolder)
         }
       }
-
-      await fs.promises.mkdir(contentFolder)
     }
 
     if (setupStrategy === 'copy' || setupStrategy === 'symlink') {
-      const originalFolder = await text({
+      const originalFolder = escapePath(await text({
         message: "Enter the full path to existing content folder",
         placeholder: 'On most terminal emulators, you can drag and drop a folder into the window and it will paste the full path',
         validate(fp) {
-          if (!fs.existsSync(fp)) {
+          const fullPath = escapePath(fp)
+          if (!fs.existsSync(fullPath)) {
             return "The given path doesn't exist"
-          } else if (!fs.lstatSync(fp).isDirectory()) {
+          } else if (!fs.lstatSync(fullPath).isDirectory()) {
             return "The given path is not a folder"
           }
         }
-      })
+      }))
 
       if (isCancel(originalFolder)) {
         outro(chalk.red("Exiting"))
@@ -101,14 +108,15 @@ yargs(hideBin(process.argv))
 
       await rmContentFolder()
       if (setupStrategy === 'copy') {
-        await fs.promises.cp(originalFolder, contentFolder)
+        await fs.promises.cp(originalFolder, contentFolder, { recursive: true })
       } else if (setupStrategy === 'symlink') {
-        await fs.promises.symlink(originalFolder, contentFolder)
+        await fs.promises.symlink(originalFolder, contentFolder, 'dir')
       }
     } else if (setupStrategy === 'new') {
       await rmContentFolder()
-      await fs.promises.writeFile(path.join(contentFolder, "index.md"), 
-`---
+      await fs.promises.mkdir(contentFolder)
+      await fs.promises.writeFile(path.join(contentFolder, "index.md"),
+        `---
 title: Welcome to Quartz
 ---
 
