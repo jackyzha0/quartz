@@ -71,9 +71,10 @@ a {
       font-size: 2rem;
     }
 
-    & ul:has(input[type='checkbox']) {
+    & li:has(> input[type='checkbox']) {
       list-style-type: none;
       padding-left: 0;
+      margin-left: -1.4rem;
     }
   }
 
