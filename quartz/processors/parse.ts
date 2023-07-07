@@ -80,6 +80,9 @@ export function createFileParser(transformers: QuartzTransformerPluginInstance[]
       try {
         const file = await read(fp)
 
+        // strip leading and trailing whitespace
+        file.value = file.value.toString().trim()
+
         // Text -> Text transforms
         for (const plugin of transformers.filter(p => p.textTransform)) {
           file.value = plugin.textTransform!(file.value)
