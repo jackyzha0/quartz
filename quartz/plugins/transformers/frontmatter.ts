@@ -1,6 +1,7 @@
 import matter from "gray-matter"
 import remarkFrontmatter from 'remark-frontmatter'
 import { QuartzTransformerPlugin } from "../types"
+import yaml from 'js-yaml'
 
 export interface Options {
   language: 'yaml' | 'toml',
@@ -21,10 +22,15 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
         remarkFrontmatter,
         () => {
           return (_, file) => {
-            const { data } = matter(file.value, opts)
+            const { data } = matter(file.value, {
+              ...opts,
+              engines: {
+                yaml: s => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object
+              }
+            })
 
-            if (typeof data.tags === 'string') {
-              data.tags = data.tags.split(" ")
+            if (data.tags && !Array.isArray(data.tags)) {
+              data.tags = data.tags.toString().split(" ")
             }
 
             // fill in frontmatter

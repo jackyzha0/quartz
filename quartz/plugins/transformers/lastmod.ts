@@ -11,6 +11,7 @@ const defaultOptions: Options = {
   priority: ['frontmatter', 'git', 'filesystem']
 }
 
+type MaybeDate = undefined | string | number
 export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
   return {
@@ -20,16 +21,16 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | und
         () => {
           let repo: Repository | undefined = undefined
           return async (_tree, file) => {
-            let created: undefined | Date = undefined
-            let modified: undefined | Date = undefined
-            let published: undefined | Date = undefined
+            let created: MaybeDate = undefined
+            let modified: MaybeDate = undefined
+            let published: MaybeDate = undefined
 
             const fp = path.join(file.cwd, file.data.filePath as string)
             for (const source of opts.priority) {
               if (source === "filesystem") {
                 const st = await fs.promises.stat(fp)
-                created ||= new Date(st.birthtimeMs)
-                modified ||= new Date(st.mtimeMs)
+                created ||= st.birthtimeMs
+                modified ||= st.mtimeMs
               } else if (source === "frontmatter" && file.data.frontmatter) {
                 created ||= file.data.frontmatter.date
                 modified ||= file.data.frontmatter.lastmod
@@ -40,14 +41,14 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | und
                   repo = new Repository(file.cwd)
                 }
 
-                modified ||= new Date(await repo.getFileLatestModifiedDateAsync(file.data.filePath!))
+                modified ||= await repo.getFileLatestModifiedDateAsync(file.data.filePath!)
               }
             }
 
             file.data.dates = {
-              created: created ?? new Date(),
-              modified: modified ?? new Date(),
-              published: published ?? new Date()
+              created: created ? new Date(created) : new Date(),
+              modified: modified ? new Date(modified) : new Date(),
+              published: published ? new Date(published) : new Date(),
             }
           }
         }
