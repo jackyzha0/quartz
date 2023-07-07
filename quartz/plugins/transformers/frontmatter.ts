@@ -23,6 +23,10 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
           return (_, file) => {
             const { data } = matter(file.value, opts)
 
+            if (typeof data.tags === 'string') {
+              data.tags = data.tags.split(" ")
+            }
+
             // fill in frontmatter
             file.data.frontmatter = {
               title: file.stem ?? "Untitled",
