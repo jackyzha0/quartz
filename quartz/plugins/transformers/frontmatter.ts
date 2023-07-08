@@ -30,7 +30,7 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
             })
 
             if (data.tags && !Array.isArray(data.tags)) {
-              data.tags = data.tags.toString().split(" ")
+              data.tags = data.tags.toString().split(",").map((tag: string) => tag.trim())
             }
 
             // fill in frontmatter

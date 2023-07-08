@@ -6,7 +6,7 @@ import isAbsoluteUrl from "is-absolute-url"
 
 interface Options {
   /** How to resolve Markdown paths */
-  markdownLinkResolution: 'absolute' | 'relative'
+  markdownLinkResolution: 'absolute' | 'relative' | 'shortest'
   /** Strips folders from a link so that it looks nice */
   prettyLinks: boolean
   indexAnchorLinks: boolean
@@ -35,6 +35,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
             } else {
               return './' + relativeToRoot(curSlug, targetSlug)
             }
+            // todo: handle shortest path
           }
 
           const outgoing: Set<string> = new Set()

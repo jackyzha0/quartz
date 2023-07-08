@@ -22,7 +22,7 @@ const defaultOptions: Options = {
   highlight: true,
   wikilinks: true,
   callouts: true,
-  mermaid: false,
+  mermaid: true,
 }
 
 const icons = {

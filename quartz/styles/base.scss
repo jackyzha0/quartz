@@ -216,6 +216,10 @@ pre {
   overflow-x: auto;
   border: 1px solid var(--lightgray);
 
+  &:has(> code.mermaid) {
+    border: none;
+  }
+
   & > code {
     background: none;
     padding: 0;
@@ -261,15 +265,14 @@ tbody, li, p {
 }
 
 table {
-  border: 2px solid var(--gray);
-  width: 100%;
+  border: 1px solid var(--gray);
   padding: 1.5rem;
   border-collapse: collapse;
 }
 
 td, th {
   padding: 0.2rem 1rem;
-  border: 2px solid var(--gray);
+  border: 1px solid var(--gray);
 }
 
 img {

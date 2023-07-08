@@ -95,7 +95,7 @@ const config: QuartzConfig = {
       }),
       Plugin.ObsidianFlavoredMarkdown(),
       Plugin.GitHubFlavoredMarkdown(),
-      Plugin.CrawlLinks(),
+      Plugin.CrawlLinks({ markdownLinkResolution: 'absolute' }),
       Plugin.SyntaxHighlighting(),
       Plugin.Katex(),
       Plugin.Description(),
