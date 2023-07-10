@@ -1,7 +1,7 @@
 export { FrontMatter } from './frontmatter'
 export { GitHubFlavoredMarkdown } from './gfm'
 export { CreatedModifiedDate } from './lastmod'
-export { Katex } from './latex'
+export { Latex } from './latex'
 export { Description } from './description'
 export { CrawlLinks } from './links'
 export { ObsidianFlavoredMarkdown } from './ofm'

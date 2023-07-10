@@ -6,19 +6,6 @@ export const SyntaxHighlighting: QuartzTransformerPlugin = () => ({
   htmlPlugins() {
     return [[rehypePrettyCode, {
       theme: 'css-variables',
-      onVisitLine(node) {
-        if (node.children.length === 0) {
-          node.children = [{ type: 'text', value: ' ' }]
-        }
-      },
-      onVisitHighlightedLine(node) {
-        node.properties.className ??= []
-        node.properties.className.push('highlighted')
-      },
-      onVisitHighlightedWord(node) {
-        node.properties.className ??= []
-        node.properties.className.push('word')
-      },
     } satisfies Partial<CodeOptions>]]
   }
 })

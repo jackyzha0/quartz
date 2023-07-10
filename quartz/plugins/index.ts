@@ -100,6 +100,7 @@ declare module 'vfile' {
   // inserted in processors.ts
   interface DataMap {
     slug: string
+    allSlugs: string[]
     filePath: string
   }
 }

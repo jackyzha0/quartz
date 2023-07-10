@@ -15,14 +15,21 @@ body {
 }
 
 .text-highlight {
-  background-color: #fff236aa;
+  background-color: #fff23688;
   padding: 0 0.1rem;
   border-radius: 5px;
 }
 
-p, ul, text, a, tr, td, li, ol, ul, .katex {
+p, ul, text, a, tr, td, li, ol, ul, .katex, .math {
   color: var(--darkgray);
   fill: var(--darkgray);
+}
+
+.math {
+  font-size: 1.1rem;
+  &.math-display {
+    text-align: center;
+  }
 }
 
 a {
@@ -75,6 +82,10 @@ a {
       list-style-type: none;
       padding-left: 0;
       margin-left: -1.4rem;
+    }
+
+    & li > * {
+      margin: 0;
     }
   }
 
@@ -144,6 +155,11 @@ a {
   }
 }
 
+.footnotes {
+  margin-top: 2rem;
+  border-top: 1px solid var(--lightgray);
+}
+
 input[type="checkbox"] {
   transform: translateY(2px);
   color: var(--secondary);
@@ -168,7 +184,7 @@ thead {
   font-family: var(--headerFont);
   color: var(--dark);
   font-weight: revert;
-  margin: 2rem 0 0;
+  margin-bottom: 0;
 
   article > & > a {
     color: var(--dark);
@@ -177,6 +193,8 @@ thead {
     }
   }
 }
+
+
 
 h1, h2, h3, h4, h5, h6 {
   &[id] > a[href^="#"] {
@@ -200,12 +218,16 @@ div[data-rehype-pretty-code-fragment] {
   & > div[data-rehype-pretty-code-title] {
     font-family: var(--codeFont);
     font-size: 0.9rem;
-    padding: 0.1rem 0.8rem;
+    padding: 0.1rem 0.5rem;
     border: 1px solid var(--lightgray);
     width: max-content;
     border-radius: 5px;
-    margin-bottom: -0.8rem;
+    margin-bottom: -0.5rem;
     color: var(--darkgray);
+  }
+
+  & > pre {
+    padding: 0.5rem 0;
   }
 }
 
@@ -228,12 +250,17 @@ pre {
     counter-increment: line 0;
     display: grid;
 
-    & .line {
+    & [data-highlighted-chars] {
+      background-color: var(--highlight);
+      border-radius: 5px;
+    }
+
+    & > [data-line] {
       padding: 0 0.25rem;
       box-sizing: border-box;
       border-left: 3px solid transparent;
 
-      &.highlighted {
+      &[data-highlighted-line] {
         background-color: var(--highlight);
         border-left: 3px solid var(--secondary);
       }
@@ -245,8 +272,16 @@ pre {
         margin-right: 1rem;
         display: inline-block;
         text-align: right;
-        color: rgba(115, 138, 148, 0.4);
+        color: rgba(115, 138, 148, 0.6);
       }
+    }
+
+    &[data-line-numbers-max-digits='2'] > [data-line]::before {
+      width: 2rem;
+    }
+     
+    &[data-line-numbers-max-digits='3'] > [data-line]::before {
+      width: 3rem;
     }
   }
 }
@@ -265,6 +300,7 @@ tbody, li, p {
 }
 
 table {
+  margin: 1rem 0;
   border: 1px solid var(--gray);
   padding: 1.5rem;
   border-collapse: collapse;
@@ -294,21 +330,6 @@ hr {
   background-color: var(--lightgray);
 }
 
-section {
-  margin: 2rem auto;
-  border-top: 1px solid var(--lightgray);
-
-  & > #footnote-label {
-    & > a {
-      color: var(--dark);
-    }
-  }
-  
-  & ol, & ul {
-    padding: 0 1em
-  }
-}
-
 audio, video {
   width: 100%;
   border-radius: 5px;
@@ -322,6 +343,10 @@ ul.overflow, ol.overflow {
   height: 400px;
   overflow-y: scroll;
 
+  // clearfix
+  content: "";
+  clear: both;
+
   & > li:last-of-type {
     margin-bottom: 50px;
   }
@@ -334,6 +359,8 @@ ul.overflow, ol.overflow {
     position: absolute;
     left: 0;
     bottom: 0;
+    opacity: 1;
+    transition: opacity 0.3s ease;
     background: linear-gradient(transparent 0px, var(--light));
   }
 }

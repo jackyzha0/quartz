@@ -12,6 +12,7 @@ import { JSResource } from "../../resources"
 import calloutScript from "../../components/scripts/callout.inline.ts"
 
 export interface Options {
+  comments: boolean
   highlight: boolean
   wikilinks: boolean
   callouts: boolean
@@ -19,6 +20,7 @@ export interface Options {
 }
 
 const defaultOptions: Options = {
+  comments: true,
   highlight: true,
   wikilinks: true,
   callouts: true,
@@ -101,10 +103,13 @@ const capitalize = (s: string): string => {
 // ([^\[\]\|\#]+)   -> one or more non-special characters ([,],|, or #) (name)
 // (#[^\[\]\|\#]+)? -> # then one or more non-special characters (heading link)
 // (|[^\[\]\|\#]+)? -> | then one or more non-special characters (alias)
-const backlinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)(#[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/, "g")
+const wikilinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)(#[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/, "g")
 
 // Match highlights 
 const highlightRegex = new RegExp(/==(.+)==/, "g")
+
+// Match comments 
+const commentRegex = new RegExp(/%%(.+)%%/, "g")
 
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
 const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
@@ -117,7 +122,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
       // pre-transform wikilinks (fix anchors to things that may contain illegal syntax e.g. codeblocks, latex)
       if (opts.wikilinks) {
         src = src.toString()
-        return src.replaceAll(backlinkRegex, (value, ...capture) => {
+        return src.replaceAll(wikilinkRegex, (value, ...capture) => {
           const [fp, rawHeader, rawAlias] = capture
           const anchor = rawHeader?.trim().slice(1)
           const displayAnchor = anchor ? `#${slugAnchor(anchor)}` : ""
@@ -133,7 +138,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
       if (opts.wikilinks) {
         plugins.push(() => {
           return (tree: Root, _file) => {
-            findAndReplace(tree, backlinkRegex, (value: string, ...capture: string[]) => {
+            findAndReplace(tree, wikilinkRegex, (value: string, ...capture: string[]) => {
               const [fp, rawHeader, rawAlias] = capture
               const anchor = rawHeader?.trim() ?? ""
               const alias = rawAlias?.slice(1).trim()
@@ -199,6 +204,19 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               return {
                 type: 'html',
                 value: `<span class="text-highlight">${inner}</span>`
+              }
+            })
+          }
+        })
+      }
+      
+      if (opts.comments) {
+        plugins.push(() => {
+          return (tree: Root, _file) => {
+            findAndReplace(tree, commentRegex, (_value: string, ..._capture: string[]) => {
+              return {
+                type: 'text',
+                value: ''
               }
             })
           }

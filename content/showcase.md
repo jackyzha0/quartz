@@ -1,8 +1,8 @@
 ---
-title: "Showcase"
+title: "Quartz Showcase"
 ---
 
-Want to see what Quartz can do? Here are some cool community gardens :)
+Want to see what Quartz can do? Here are some cool community gardens:
 
 - [Quartz Documentation (this site!)](https://quartz.jzhao.xyz/)
 - [Jacky Zhao's Garden](https://jzhao.xyz/)
@@ -17,15 +17,3 @@ Want to see what Quartz can do? Here are some cool community gardens :)
 - [Mike's AI Garden 🤖🪴](https://mwalton.me/)
 
 If you want to see your own on here, submit a [Pull Request adding yourself to this file](https://github.com/jackyzha0/quartz/blob/v4-alpha/content/showcase.md)!
-
-Left-aligned text | Center-aligned text | Right-aligned text
-:-- | :--: | --:
-Content | Content | Content
-
-```mermaid
-sequenceDiagram
-    Alice->>+John: Hello John, how are you?
-    Alice->>+John: John, can you hear me?
-    John-->>-Alice: Hi Alice, I can hear you!
-    John-->>-Alice: I feel great!
-```

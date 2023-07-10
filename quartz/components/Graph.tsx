@@ -16,7 +16,7 @@ export interface D3Config {
 }
 
 interface GraphOptions {
-  localGraph: Partial<D3Config>,
+  localGraph: Partial<D3Config> | undefined,
   globalGraph: Partial<D3Config> | undefined
 }
 
@@ -50,7 +50,7 @@ export default ((opts?: GraphOptions) => {
     const localGraph = { ...opts?.localGraph, ...defaultOptions.localGraph }
     const globalGraph = { ...opts?.globalGraph, ...defaultOptions.globalGraph }
     return <div class="graph">
-      <h3>Site Graph</h3>
+      <h3>Graph View</h3>
       <div class="graph-outer">
         <div id="graph-container" data-cfg={JSON.stringify(localGraph)}></div>
         <svg version="1.1" id="global-graph-icon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

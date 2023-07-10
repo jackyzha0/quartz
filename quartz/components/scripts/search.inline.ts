@@ -10,6 +10,7 @@ interface Item {
 let index: Document<Item> | undefined = undefined
 
 const contextWindowWords = 30
+const numSearchResults = 5
 function highlight(searchTerm: string, text: string, trim?: boolean) {
   // try to highlight longest tokens first
   const tokenizedTerms = searchTerm.split(/\s+/).filter(t => t !== "").sort((a, b) => b.length - a.length)
@@ -134,7 +135,7 @@ document.addEventListener("nav", async (e: unknown) => {
 
   function onType(e: HTMLElementEventMap["input"]) {
     const term = (e.target as HTMLInputElement).value
-    const searchResults = index?.search(term, 5) ?? []
+    const searchResults = index?.search(term, numSearchResults) ?? []
     const getByField = (field: string): string[] => {
       const results = searchResults.filter((x) => x.field === field)
       return results.length === 0 ? [] : [...results[0].result] as string[]

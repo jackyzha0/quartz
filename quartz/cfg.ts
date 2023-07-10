@@ -2,7 +2,8 @@ import { QuartzComponent } from "./components/types"
 import { PluginTypes } from "./plugins/types"
 import { Theme } from "./theme"
 
-export type Analytics = null
+export type Analytics =
+  | null
   | {
     provider: 'plausible'
   }
@@ -18,7 +19,7 @@ export interface GlobalConfiguration {
   /** Whether to display Wikipedia-style popovers when hovering over links */
   enablePopovers: boolean,
   /** Analytics mode */
-  analytics: Analytics 
+  analytics: Analytics
   /** Glob patterns to not search */
   ignorePatterns: string[],
   /** Base URL to use for CNAME files, sitemaps, and RSS feeds that require an absolute URL.

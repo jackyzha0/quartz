@@ -73,7 +73,7 @@ async function transpileWorkerScript() {
   })
 }
 
-export function createFileParser(transformers: QuartzTransformerPluginInstance[], baseDir: string, fps: string[], verbose: boolean) {
+export function createFileParser(transformers: QuartzTransformerPluginInstance[], baseDir: string, fps: string[], allSlugs: string[], verbose: boolean) {
   return async (processor: QuartzProcessor) => {
     const res: ProcessedContent[] = []
     for (const fp of fps) {
@@ -90,6 +90,7 @@ export function createFileParser(transformers: QuartzTransformerPluginInstance[]
 
         // base data properties that plugins may use
         file.data.slug = slugify(path.relative(baseDir, file.path))
+        file.data.allSlugs = allSlugs
         file.data.filePath = fp
 
         const ast = processor.parse(file)
@@ -115,12 +116,16 @@ export async function parseMarkdown(transformers: QuartzTransformerPluginInstanc
 
   const CHUNK_SIZE = 128
   let concurrency = fps.length < CHUNK_SIZE ? 1 : os.availableParallelism()
-  let res: ProcessedContent[] = []
 
+  // get all slugs ahead of time as each thread needs a copy
+  // const slugs: string[] = fps.map(fp => slugify(path))
+  const allSlugs = fps.map(fp => slugify(path.relative(baseDir, path.resolve(fp))))
+
+  let res: ProcessedContent[] = []
   log.start(`Parsing input files using ${concurrency} threads`)
   if (concurrency === 1) {
     const processor = createProcessor(transformers)
-    const parse = createFileParser(transformers, baseDir, fps, verbose)
+    const parse = createFileParser(transformers, baseDir, fps, allSlugs, verbose)
     res = await parse(processor)
   } else {
     await transpileWorkerScript()
@@ -135,7 +140,7 @@ export async function parseMarkdown(transformers: QuartzTransformerPluginInstanc
 
     const childPromises: WorkerPromise<ProcessedContent[]>[] = []
     for (const chunk of chunks(fps, CHUNK_SIZE)) {
-      childPromises.push(pool.exec('parseFiles', [baseDir, chunk, verbose]))
+      childPromises.push(pool.exec('parseFiles', [baseDir, chunk, allSlugs, verbose]))
     }
 
     const results: ProcessedContent[][] = await WorkerPromise.all(childPromises)

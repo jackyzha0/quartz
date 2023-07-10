@@ -72,7 +72,7 @@ async function renderGraph(container: string, slug: string) {
       }
     }
   } else {
-    links.flatMap(l => [l.source, l.target]).forEach((id) => neighbourhood.add(id))
+    Object.keys(data).forEach(id => neighbourhood.add(id))
   }
 
   const graphData: { nodes: NodeData[], links: LinkData[] } = {
