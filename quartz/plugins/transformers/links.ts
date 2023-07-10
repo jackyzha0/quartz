@@ -29,13 +29,30 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
         return (tree, file) => {
           const curSlug = clientSideSlug(file.data.slug!)
           const transformLink = (target: string) => {
-            const targetSlug = slugify(decodeURI(target).trim())
+            const targetSlug = clientSideSlug(slugify(decodeURI(target).trim()))
             if (opts.markdownLinkResolution === 'relative' && !path.isAbsolute(targetSlug)) {
               return './' + relative(curSlug, targetSlug)
-            } else {
-              return './' + relativeToRoot(curSlug, targetSlug)
+            } else if (opts.markdownLinkResolution === 'shortest') {
+              // https://forum.obsidian.md/t/settings-new-link-format-what-is-shortest-path-when-possible/6748/5
+              const allSlugs = file.data.allSlugs!
+
+              // if the file name is unique, then it's just the filename
+              const matchingFileNames = allSlugs.filter(slug => {
+                const parts = clientSideSlug(slug).split(path.posix.sep)
+                const fileName = parts.at(-1)
+                return targetSlug === fileName
+              })
+
+              if (matchingFileNames.length === 1) {
+                const targetSlug = clientSideSlug(matchingFileNames[0])
+                return './' + relativeToRoot(curSlug, targetSlug)
+              }
+
+              // if it's not unique, then it's the absolute path from the vault root
+              // (fall-through case)
             }
-            // todo: handle shortest path
+            // treat as absolute
+            return './' + relativeToRoot(curSlug, targetSlug)
           }
 
           const outgoing: Set<string> = new Set()
@@ -53,7 +70,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
               if (!(isAbsoluteUrl(dest) || dest.startsWith("#"))) {
                 node.properties.href = transformLink(dest)
               }
-              
+
               dest = node.properties.href
               if (dest.startsWith(".")) {
                 const normalizedPath = path.normalize(path.join(curSlug, dest))

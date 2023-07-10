@@ -17,12 +17,9 @@ function TagContent(props: QuartzComponentProps) {
       allFiles: allPagesWithTag
     }
 
-    const desc = props.fileData.description
-
     // @ts-ignore
     const content = toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: 'html' })
     return <div class="popover-hint">
-      {desc && <p>{desc}</p>}
       <article>{content}</article>
       <p>{allPagesWithTag.length} items with this tag.</p>
       <div>

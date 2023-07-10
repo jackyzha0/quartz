@@ -1,15 +1,54 @@
-import { PageLayout, QuartzConfig } from "./quartz/cfg"
+import { GlobalConfiguration, PageLayout, QuartzConfig } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 import * as Plugin from "./quartz/plugins"
+
+const generalConfiguration: GlobalConfiguration = {
+  pageTitle: "🪴 Quartz 4.0",
+  enableSPA: true,
+  enablePopovers: true,
+  analytics: {
+    provider: 'plausible',
+  },
+  canonicalUrl: "quartz.jzhao.xyz",
+  ignorePatterns: ["private", "templates"],
+  theme: {
+    typography: {
+      header: "Schibsted Grotesk",
+      body: "Source Sans Pro",
+      code: "IBM Plex Mono",
+    },
+    colors: {
+      lightMode: {
+        light: '#faf8f8',
+        lightgray: '#e5e5e5',
+        gray: '#b8b8b8',
+        darkgray: '#4e4e4e',
+        dark: '#2b2b2b',
+        secondary: '#284b63',
+        tertiary: '#84a59d',
+        highlight: 'rgba(143, 159, 169, 0.15)',
+      },
+      darkMode: {
+        light: '#161618',
+        lightgray: '#393639',
+        gray: '#646464',
+        darkgray: '#d4d4d4',
+        dark: '#ebebec',
+        secondary: '#7b97aa',
+        tertiary: '#84a59d',
+        highlight: 'rgba(143, 159, 169, 0.15)',
+      },
+    }
+  }
+}
 
 const sharedPageComponents = {
   head: Component.Head(),
   header: [],
   footer: Component.Footer({
-    authorName: "Jacky",
     links: {
-      "GitHub": "https://github.com/jackyzha0",
-      "Twitter": "https://twitter.com/_jzhao"
+      "GitHub": "https://github.com/jackyzha0/quartz",
+      "Discord Community": "https://discord.gg/cRFFHYye7t"
     }
   })
 }
@@ -47,45 +86,7 @@ const listPageLayout: PageLayout = {
 }
 
 const config: QuartzConfig = {
-  configuration: {
-    pageTitle: "🪴 Quartz 4.0",
-    enableSPA: true,
-    enablePopovers: true,
-    analytics: {
-      provider: 'plausible',
-    },
-    canonicalUrl: "quartz.jzhao.xyz",
-    ignorePatterns: ["private", "templates"],
-    theme: {
-      typography: { // loaded from Google Fonts
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
-        code: "IBM Plex Mono",
-      },
-      colors: {
-        lightMode: {
-          light: '#faf8f8',
-          lightgray: '#e5e5e5',
-          gray: '#b8b8b8',
-          darkgray: '#4e4e4e',
-          dark: '#141021',
-          secondary: '#284b63',
-          tertiary: '#84a59d',
-          highlight: 'rgba(143, 159, 169, 0.15)',
-        },
-        darkMode: {
-          light: '#161618',
-          lightgray: '#393639',
-          gray: '#646464',
-          darkgray: '#d4d4d4',
-          dark: '#fbfffe',
-          secondary: '#7b97aa',
-          tertiary: '#84a59d',
-          highlight: 'rgba(143, 159, 169, 0.15)',
-        },
-      }
-    }
-  },
+  configuration: generalConfiguration,
   plugins: {
     transformers: [
       Plugin.FrontMatter(),
@@ -93,11 +94,11 @@ const config: QuartzConfig = {
       Plugin.CreatedModifiedDate({
         priority: ['frontmatter', 'filesystem'] // you can add 'git' here for last modified from Git but this makes the build slower
       }),
+      Plugin.SyntaxHighlighting(),
       Plugin.ObsidianFlavoredMarkdown(),
       Plugin.GitHubFlavoredMarkdown(),
-      Plugin.CrawlLinks({ markdownLinkResolution: 'absolute' }),
-      Plugin.SyntaxHighlighting(),
-      Plugin.Katex(),
+      Plugin.CrawlLinks({ markdownLinkResolution: 'shortest' }),
+      Plugin.Latex({ renderEngine: 'katex' }),
       Plugin.Description(),
     ],
     filters: [

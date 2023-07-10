@@ -54,21 +54,16 @@ export default async function buildQuartz(argv: Argv, version: string) {
 
   if (argv.serve) {
     const server = http.createServer(async (req, res) => {
-      let status = 200
-      const result = await serveHandler(req, res, {
+      await serveHandler(req, res, {
         public: output,
         directoryListing: false,
-      }, {
-        async sendError() {
-          status = 404
-        },
       })
+      const status = res.statusCode
       const statusString = status === 200 ? chalk.green(`[${status}]`) : chalk.red(`[${status}]`)
       console.log(statusString + chalk.grey(` ${req.url}`))
-      return result
     })
     server.listen(argv.port)
-    console.log(`Started a Quartz server listening at http://localhost:${argv.port}`)
+    console.log(chalk.cyan(`Started a Quartz server listening at http://localhost:${argv.port}`))
     console.log('hint: exit with ctrl+c')
   }
 }

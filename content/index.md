@@ -1,27 +1,33 @@
 ---
-title: Welcome to Quartz
+title: Welcome to Quartz 4
 ---
 
-Quartz is a framework for turning Markdown content into a website.
+Quartz is a fast, batteries-included static-site generator that transforms Markdown content into fully functional websites. Thousands of students, developers, and teachers are [[showcase|already using Quartz]] to publish personal notes, wikis, and [digital gardens](https://jzhao.xyz/posts/networked-thought/) to the web.
 
-- reduce the friction to go from notes to site
-- should work for everyone, from non-technical people to senior developers
-- customizability and extensibility
-
-See some of the [amazing gardens that community members](showcase.md) have published with Quartz or read about [[philosophy|why I made Quartz]] to begin with.
-
-> [!info] You are currently looking at the documentation for Quartz 4
-> If you're looking for Quartz 3, you can find the source for that version on the `hugo` branch. Alternatively, you can browse [an archived version of the old documentation on the Wayback Machine](https://web.archive.org/web/20230628023708/https://quartz.jzhao.xyz/).
-
-## Installation
-Ready to get started?
-
-Prerequisites:
-- Node >v16
+## 🪴 Get Started
+Quartz requires **at least [Node](https://nodejs.org/) v16** to function correctly. In your terminal of choice, enter the following commands line by line:
 
 ```shell
 git clone https://github.com/jackyzha0/quartz.git
 cd quartz
+git checkout v4-alpha
 npm i
 npx quartz create
 ```
+
+This will guide you through initializing your Quartz with content and previewing it locally.
+
+When you're ready, you can edit `quartz.config.ts` to customize and configure Quartz more. Read the [[configuration]] page for more information on what each field in the configuration does.
+
+## 🔧 Features
+
+- [[full-text search|Full-text search]], [[graph view]], [[backlinks]], [[Latex]], [[syntax highlighting]], [[popover previews]], and many more right out of the box
+- Simple JSX [[creating components|layouts and page components]]
+- [[SPA Routing|Ridiculously fast page loads]] and tiny bundle sizes
+- Fully-customizable parsing, filtering, and page generation through [[making plugins|plugins]]
+
+For a comprehensive list of features, visit the [features page](/features). You can read more the *why* behind these features on the [[philosophy]] page.
+
+### 🚧 Troubleshooting
+Having trouble with Quartz? Try searching for your issue using the search feature. If you're still having trouble, feel free to [submit an issue](https://github.com/jackyzha0/quartz/issues) if you feel you found a bug or ask for help in our [Discord Community](https://discord.gg/cRFFHYye7t).
+
