@@ -6,7 +6,7 @@ import { pageResources, renderPage } from "../../components/renderPage"
 import { ProcessedContent, defaultProcessedContent } from "../vfile"
 import { FullPageLayout } from "../../cfg"
 import path from "path"
-import { clientSideSlug } from "../../path"
+import { FilePath, toServerSlug } from "../../path"
 
 export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
   if (!opts) {
@@ -22,7 +22,7 @@ export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
     getQuartzComponents() {
       return [Head, Header, Body, ...header, ...beforeBody, Content, ...left, ...right, Footer]
     },
-    async emit(_contentDir, cfg, content, resources, emit): Promise<string[]> {
+    async emit(_contentDir, cfg, content, resources, emit): Promise<FilePath[]> {
       const fps: string[] = []
       const allFiles = content.map(c => c[1].data)
 
@@ -37,7 +37,7 @@ export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
       ])))
 
       for (const [tree, file] of content) {
-        const slug = clientSideSlug(file.data.slug!)
+        const slug = toServerSlug(file.data.slug!)
         if (folders.has(slug)) {
           folderDescriptions[slug] = [tree, file]
         }

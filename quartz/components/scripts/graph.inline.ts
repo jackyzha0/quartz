@@ -1,24 +1,25 @@
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
 import * as d3 from 'd3'
-import { registerEscapeHandler, relative, removeAllChildren } from "./util"
+import { registerEscapeHandler, clientSideRelativePath, removeAllChildren } from "./util"
+import { CanonicalSlug } from "../../path"
 
 type NodeData = {
-  id: string,
+  id: CanonicalSlug,
   text: string,
   tags: string[]
 } & d3.SimulationNodeDatum
 
 type LinkData = {
-  source: string,
-  target: string
+  source: CanonicalSlug,
+  target: CanonicalSlug
 }
 
 const localStorageKey = "graph-visited"
-function getVisited(): Set<string> {
+function getVisited(): Set<CanonicalSlug> {
   return new Set(JSON.parse(localStorage.getItem(localStorageKey) ?? "[]"))
 }
 
-function addToVisited(slug: string) {
+function addToVisited(slug: CanonicalSlug) {
   const visited = getVisited()
   visited.add(slug)
   localStorage.setItem(localStorageKey, JSON.stringify([...visited]))
@@ -167,7 +168,7 @@ async function renderGraph(container: string, slug: string) {
     .attr("fill", color)
     .style("cursor", "pointer")
     .on("click", (_, d) => {
-      const targ = relative(slug, d.id)
+      const targ = clientSideRelativePath(slug, d.id)
       window.spaNavigate(new URL(targ))
     })
     .on("mouseover", function(_, d) {

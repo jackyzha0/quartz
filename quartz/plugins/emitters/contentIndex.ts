@@ -1,11 +1,12 @@
 import { GlobalConfiguration } from "../../cfg"
+import { CanonicalSlug, ClientSlug } from "../../path"
 import { QuartzEmitterPlugin } from "../types"
 import path from "path"
 
-export type ContentIndex = Map<string, ContentDetails>
+export type ContentIndex = Map<CanonicalSlug, ContentDetails>
 export type ContentDetails = {
   title: string,
-  links: string[],
+  links: CanonicalSlug[],
   tags: string[],
   content: string,
   date?: Date,
@@ -25,8 +26,8 @@ const defaultOptions: Options = {
 }
 
 function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndex): string {
-  const base = cfg.canonicalUrl ?? ""
-  const createURLEntry = (slug: string, content: ContentDetails): string => `<url>
+  const base = cfg.baseUrl ?? ""
+  const createURLEntry = (slug: CanonicalSlug, content: ContentDetails): string => `<url>
     <loc>https://${base}/${slug}</loc>
     <lastmod>${content.date?.toISOString()}</lastmod>
   </url>`
@@ -35,10 +36,10 @@ function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndex): string {
 }
 
 function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex): string {
-  const base = cfg.canonicalUrl ?? ""
-  const root = `https://${base}`
+  const base = cfg.baseUrl ?? ""
+  const root = `https://${base}` as ClientSlug
 
-  const createURLEntry = (slug: string, content: ContentDetails): string => `<items>
+  const createURLEntry = (slug: CanonicalSlug, content: ContentDetails): string => `<items>
     <title>${content.title}</title>
     <link>${root}/${slug}</link>
     <guid>${root}/${slug}</guid>

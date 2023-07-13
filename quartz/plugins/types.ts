@@ -3,6 +3,7 @@ import { StaticResources } from "../resources"
 import { ProcessedContent } from "./vfile"
 import { GlobalConfiguration } from "../cfg"
 import { QuartzComponent } from "../components/types"
+import { FilePath, ServerSlug } from "../path"
 
 export interface PluginTypes {
   transformers: QuartzTransformerPluginInstance[],
@@ -29,14 +30,14 @@ export type QuartzFilterPluginInstance = {
 export type QuartzEmitterPlugin<Options extends OptionType = undefined> = (opts?: Options) => QuartzEmitterPluginInstance 
 export type QuartzEmitterPluginInstance = {
   name: string
-  emit(contentDir: string, cfg: GlobalConfiguration, content: ProcessedContent[], resources: StaticResources, emitCallback: EmitCallback): Promise<string[]>
+  emit(contentDir: string, cfg: GlobalConfiguration, content: ProcessedContent[], resources: StaticResources, emitCallback: EmitCallback): Promise<FilePath[]>
   getQuartzComponents(): QuartzComponent[]
 }
 
 export interface EmitOptions {
-  slug: string
+  slug: ServerSlug
   ext: `.${string}` | ""
   content: string
 }
 
-export type EmitCallback = (data: EmitOptions) => Promise<string>
+export type EmitCallback = (data: EmitOptions) => Promise<FilePath>

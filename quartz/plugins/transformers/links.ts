@@ -1,5 +1,5 @@
 import { QuartzTransformerPlugin } from "../types"
-import { clientSideSlug, relative, relativeToRoot, slugify, trimPathSuffix } from "../../path"
+import { CanonicalSlug, transformInternalLink } from "../../path"
 import path from "path"
 import { visit } from 'unist-util-visit'
 import isAbsoluteUrl from "is-absolute-url"
@@ -27,9 +27,9 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
     htmlPlugins() {
       return [() => {
         return (tree, file) => {
-          const curSlug = clientSideSlug(file.data.slug!)
+          const curSlug = file.data.slug!
           const transformLink = (target: string) => {
-            const targetSlug = clientSideSlug(slugify(decodeURI(target).trim()))
+            const targetSlug = transformInternalLink(target) 
             if (opts.markdownLinkResolution === 'relative' && !path.isAbsolute(targetSlug)) {
               return './' + relative(curSlug, targetSlug)
             } else if (opts.markdownLinkResolution === 'shortest') {
@@ -38,13 +38,13 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
 
               // if the file name is unique, then it's just the filename
               const matchingFileNames = allSlugs.filter(slug => {
-                const parts = clientSideSlug(slug).split(path.posix.sep)
+                const parts = toServerSlug(slug).split(path.posix.sep)
                 const fileName = parts.at(-1)
                 return targetSlug === fileName
               })
 
               if (matchingFileNames.length === 1) {
-                const targetSlug = clientSideSlug(matchingFileNames[0])
+                const targetSlug = toServerSlug(matchingFileNames[0])
                 return './' + relativeToRoot(curSlug, targetSlug)
               }
 
@@ -55,7 +55,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
             return './' + relativeToRoot(curSlug, targetSlug)
           }
 
-          const outgoing: Set<string> = new Set()
+          const outgoing: Set<CanonicalSlug> = new Set()
           visit(tree, 'element', (node, _index, _parent) => {
             // rewrite all links
             if (
@@ -113,6 +113,6 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
 
 declare module 'vfile' {
   interface DataMap {
-    links: string[]
+    links: CanonicalSlug[]
   }
 }

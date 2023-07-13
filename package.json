@@ -12,7 +12,8 @@
     "url": "https://github.com/jackyzha0/quartz.git"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "tsx ./quartz/path.test.ts"
   },
   "keywords": [
     "site generator",
@@ -83,6 +84,7 @@
     "@types/workerpool": "^6.4.0",
     "@types/yargs": "^17.0.24",
     "esbuild": "^0.18.11",
+    "tsx": "^3.12.7",
     "typescript": "^5.0.4"
   }
 }

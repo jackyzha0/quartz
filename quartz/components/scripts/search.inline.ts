@@ -1,9 +1,10 @@
 import { Document } from "flexsearch"
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
-import { registerEscapeHandler, relative, removeAllChildren } from "./util"
+import { registerEscapeHandler, clientSideRelativePath, removeAllChildren } from "./util"
+import { CanonicalSlug } from "../../path"
 
 interface Item {
-  slug: string,
+  slug: CanonicalSlug,
   title: string,
   content: string,
 }
@@ -100,7 +101,7 @@ document.addEventListener("nav", async (e: unknown) => {
     }
   }
 
-  const formatForDisplay = (term: string, slug: string) => ({
+  const formatForDisplay = (term: string, slug: CanonicalSlug) => ({
     slug,
     title: highlight(term, data[slug].title ?? ""),
     content: highlight(term, data[slug].content ?? "", true),
@@ -112,7 +113,7 @@ document.addEventListener("nav", async (e: unknown) => {
     button.id = slug
     button.innerHTML = `<h3>${title}</h3><p>${content}</p>`
     button.addEventListener('click', () => {
-      const targ = relative(currentSlug, slug)
+      const targ = clientSideRelativePath(currentSlug, slug)
       window.spaNavigate(new URL(targ))
     })
     return button
@@ -142,7 +143,7 @@ document.addEventListener("nav", async (e: unknown) => {
     }
 
     // order titles ahead of content
-    const allIds: Set<string> = new Set([...getByField("title"), ...getByField("content")])
+    const allIds: Set<CanonicalSlug> = new Set([...getByField("title"), ...getByField("content")])
     const finalResults = [...allIds].map(id => formatForDisplay(term, id))
     displayResults(finalResults)
   }
@@ -178,7 +179,7 @@ document.addEventListener("nav", async (e: unknown) => {
 
     for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
       await index.addAsync(slug, {
-        slug,
+        slug: slug as CanonicalSlug,
         title: fileData.title,
         content: fileData.content
       })
