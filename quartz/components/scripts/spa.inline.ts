@@ -1,4 +1,5 @@
 import micromorph from "micromorph"
+import { CanonicalSlug, RelativeURL } from "../../path"
 
 // adapted from `micromorph`
 // https://github.com/natemoo-re/micromorph
@@ -29,7 +30,7 @@ const getOpts = ({ target }: Event): { url: URL, scroll?: boolean } | undefined 
   return { url: new URL(href), scroll: 'routerNoscroll' in a.dataset ? false : undefined }
 }
 
-function notifyNav(url: string) {
+function notifyNav(url: CanonicalSlug) {
   const event: CustomEventMap["nav"] = new CustomEvent("nav", { detail: { url } })
   document.dispatchEvent(event)
 }
@@ -100,7 +101,7 @@ function createRouter() {
   }
 
   return new class Router {
-    go(pathname: string) {
+    go(pathname: RelativeURL) {
       const url = new URL(pathname, window.location.toString())
       return navigate(url, false)
     }

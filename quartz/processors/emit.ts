@@ -5,7 +5,7 @@ import { PerfTimer } from "../perf"
 import { ComponentResources, emitComponentResources, getComponentResources, getStaticResourcesFromPlugins } from "../plugins"
 import { EmitCallback } from "../plugins/types"
 import { ProcessedContent } from "../plugins/vfile"
-import { QUARTZ, slugify } from "../path"
+import { FilePath, QUARTZ, slugifyFilePath } from "../path"
 import { globbyStream } from "globby"
 import chalk from "chalk"
 
@@ -71,7 +71,7 @@ export async function emitContent(contentFolder: string, output: string, cfg: Qu
 
   log.start(`Emitting output files`)
   const emit: EmitCallback = async ({ slug, ext, content }) => {
-    const pathToPage = path.join(output, slug + ext)
+    const pathToPage = path.join(output, slug + ext) as FilePath
     const dir = path.dirname(pathToPage)
     await fs.promises.mkdir(dir, { recursive: true })
     await fs.promises.writeFile(pathToPage, content)
@@ -123,15 +123,16 @@ export async function emitContent(contentFolder: string, output: string, cfg: Qu
 
   // glob all non MD/MDX/HTML files in content folder and copy it over
   const assetsPath = path.join(output, "assets")
-  for await (const fp of globbyStream("**", {
+  for await (const rawFp of globbyStream("**", {
     ignore: ["**/*.md"],
     cwd: contentFolder,
   })) {
-    const ext = path.extname(fp as string)
-    const src = path.join(contentFolder, fp as string)
-    const name = slugify(fp as string) + ext
-    const dest = path.join(assetsPath, name)
-    const dir = path.dirname(dest)
+    const fp = rawFp as FilePath
+    const ext = path.extname(fp)
+    const src = path.join(contentFolder, fp) as FilePath
+    const name = slugifyFilePath(fp as FilePath) + ext as FilePath
+    const dest = path.join(assetsPath, name) as FilePath
+    const dir = path.dirname(dest) as FilePath
     await fs.promises.mkdir(dir, { recursive: true }) // ensure dir exists
     await fs.promises.copyFile(src, dest)
     emittedFiles += 1

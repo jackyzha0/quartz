@@ -30,12 +30,8 @@ jobs:
 
       - run: npm ci
 
-      - name: Build Quartz
-        run: npx quartz build 
+      - name: Test
+        run: npm test
 
-      # TODO: when we actually release
-      # - name: Deploy
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./public
+      - name: Ensure Quartz builds
+        run: npx quartz build 

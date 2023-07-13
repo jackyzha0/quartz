@@ -3,14 +3,14 @@ import { Fragment, jsx, jsxs } from 'preact/jsx-runtime'
 import { toJsxRuntime } from "hast-util-to-jsx-runtime"
 import style from '../styles/listPage.scss'
 import { PageList } from "../PageList"
-import { clientSideSlug } from "../../path"
+import { toServerSlug } from "../../path"
 
 function TagContent(props: QuartzComponentProps) {
   const { tree, fileData, allFiles } = props
   const slug = fileData.slug
 
   if (slug?.startsWith("tags/")) {
-    const tag = clientSideSlug(slug.slice("tags/".length))
+    const tag = toServerSlug(slug.slice("tags/".length))
     const allPagesWithTag = allFiles.filter(file => (file.frontmatter?.tags ?? []).includes(tag))
     const listProps = {
       ...props,

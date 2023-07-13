@@ -5,7 +5,7 @@ import BodyConstructor from "../../components/Body"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { ProcessedContent, defaultProcessedContent } from "../vfile"
 import { FullPageLayout } from "../../cfg"
-import { clientSideSlug } from "../../path"
+import { FilePath, ServerSlug, toServerSlug } from "../../path"
 
 export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
   if (!opts) {
@@ -21,17 +21,17 @@ export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
     getQuartzComponents() {
       return [Head, Header, Body, ...header, ...beforeBody, Content, ...left, ...right, Footer]
     },
-    async emit(_contentDir, cfg, content, resources, emit): Promise<string[]> {
-      const fps: string[] = []
+    async emit(_contentDir, cfg, content, resources, emit): Promise<FilePath[]> {
+      const fps: FilePath[] = []
       const allFiles = content.map(c => c[1].data)
 
       const tags: Set<string> = new Set(allFiles.flatMap(data => data.frontmatter?.tags ?? []))
       const tagDescriptions: Record<string, ProcessedContent> = Object.fromEntries([...tags].map(tag => ([
-        tag, defaultProcessedContent({ slug: `tags/${tag}`, frontmatter: { title: `Tag: ${tag}`, tags: [] } })
+        tag, defaultProcessedContent({ slug: `tags/${tag}` as ServerSlug, frontmatter: { title: `Tag: ${tag}`, tags: [] } })
       ])))
 
       for (const [tree, file] of content) {
-        const slug = clientSideSlug(file.data.slug!)
+        const slug = toServerSlug(file.data.slug!)
         if (slug.startsWith("tags/")) {
           const tag = slug.slice("tags/".length)
           if (tags.has(tag)) {
@@ -60,7 +60,7 @@ export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
           externalResources
         )
 
-        const fp = file.data.slug + ".html"
+        const fp = file.data.slug + ".html" as FilePath
         await emit({
           content,
           slug: file.data.slug!,

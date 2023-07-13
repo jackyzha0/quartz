@@ -7,7 +7,7 @@ import { Root as HTMLRoot } from 'hast'
 import { ProcessedContent } from '../plugins/vfile'
 import { PerfTimer } from '../perf'
 import { read } from 'to-vfile'
-import { slugify } from '../path'
+import { FilePath, ServerSlug, slugifyFilePath } from '../path'
 import path from 'path'
 import os from 'os'
 import workerpool, { Promise as WorkerPromise } from 'workerpool'
@@ -73,7 +73,7 @@ async function transpileWorkerScript() {
   })
 }
 
-export function createFileParser(transformers: QuartzTransformerPluginInstance[], baseDir: string, fps: string[], allSlugs: string[], verbose: boolean) {
+export function createFileParser(transformers: QuartzTransformerPluginInstance[], baseDir: string, fps: FilePath[], allSlugs: ServerSlug[], verbose: boolean) {
   return async (processor: QuartzProcessor) => {
     const res: ProcessedContent[] = []
     for (const fp of fps) {
@@ -89,7 +89,7 @@ export function createFileParser(transformers: QuartzTransformerPluginInstance[]
         }
 
         // base data properties that plugins may use
-        file.data.slug = slugify(path.relative(baseDir, file.path))
+        file.data.slug = slugifyFilePath(path.relative(baseDir, file.path) as FilePath)
         file.data.allSlugs = allSlugs
         file.data.filePath = fp
 
@@ -110,7 +110,7 @@ export function createFileParser(transformers: QuartzTransformerPluginInstance[]
   }
 }
 
-export async function parseMarkdown(transformers: QuartzTransformerPluginInstance[], baseDir: string, fps: string[], verbose: boolean): Promise<ProcessedContent[]> {
+export async function parseMarkdown(transformers: QuartzTransformerPluginInstance[], baseDir: string, fps: FilePath[], verbose: boolean): Promise<ProcessedContent[]> {
   const perf = new PerfTimer()
   const log = new QuartzLogger(verbose)
 
@@ -118,8 +118,7 @@ export async function parseMarkdown(transformers: QuartzTransformerPluginInstanc
   let concurrency = fps.length < CHUNK_SIZE ? 1 : os.availableParallelism()
 
   // get all slugs ahead of time as each thread needs a copy
-  // const slugs: string[] = fps.map(fp => slugify(path))
-  const allSlugs = fps.map(fp => slugify(path.relative(baseDir, path.resolve(fp))))
+  const allSlugs = fps.map(fp => slugifyFilePath(path.relative(baseDir, path.resolve(fp)) as FilePath))
 
   let res: ProcessedContent[] = []
   log.start(`Parsing input files using ${concurrency} threads`)

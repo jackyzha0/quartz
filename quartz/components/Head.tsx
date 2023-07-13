@@ -1,14 +1,14 @@
-import { clientSideSlug, resolveToRoot } from "../path"
+import { toServerSlug, pathToRoot } from "../path"
 import { JSResourceToScriptElement } from "../resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
 export default (() => {
   function Head({ fileData, externalResources }: QuartzComponentProps) {
-    const slug = clientSideSlug(fileData.slug!)
+    const slug = toServerSlug(fileData.slug!)
     const title = fileData.frontmatter?.title ?? "Untitled"
     const description = fileData.description ?? "No description provided"
     const { css, js } = externalResources
-    const baseDir = resolveToRoot(slug)
+    const baseDir = pathToRoot(slug)
     const iconPath = baseDir + "/static/icon.png"
     const ogImagePath = baseDir + "/static/og-image.png"
 

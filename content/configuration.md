@@ -45,6 +45,8 @@ This part of the configuration concerns anything that can affect the whole site.
 ## Plugins
 You can think of Quartz plugins as a series of transformations over content.
 
+![[quartz-transform-pipeline.png]]
+
 ```ts
 plugins: {
   transformers: [...],
@@ -72,6 +74,6 @@ transformers: [
 ```
 
 ### Layout
-Certain emitters may also output [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) files. 
+Certain emitters may also output [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) files. To make sure that 
 
 ### Components

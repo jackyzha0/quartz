@@ -1,11 +1,11 @@
-import { resolveToRoot } from "../path"
+import { pathToRoot } from "../path"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { slug as slugAnchor } from 'github-slugger'
 
 function TagList({ fileData }: QuartzComponentProps) {
   const tags = fileData.frontmatter?.tags
   const slug = fileData.slug!
-  const baseDir = resolveToRoot(slug)
+  const baseDir = pathToRoot(slug)
   if (tags && tags.length > 0) {
     return <ul class="tags">{tags.map(tag => {
       const display = `#${tag}`

@@ -9,7 +9,7 @@ const generalConfiguration: GlobalConfiguration = {
   analytics: {
     provider: 'plausible',
   },
-  canonicalUrl: "quartz.jzhao.xyz",
+  baseUrl: "quartz.jzhao.xyz",
   ignorePatterns: ["private", "templates"],
   theme: {
     typography: {

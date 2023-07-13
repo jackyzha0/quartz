@@ -1,7 +1,7 @@
 import { relativeToRoot } from "../path"
 import { QuartzPluginData } from "../plugins/vfile"
 import { Date } from "./Date"
-import { stripIndex } from "./scripts/util"
+import { clientSideSlug } from "./scripts/util"
 import { QuartzComponentProps } from "./types"
 
 function byDateAndAlphabetical(f1: QuartzPluginData, f2: QuartzPluginData): number {
@@ -34,7 +34,7 @@ export function PageList({ fileData, allFiles }: QuartzComponentProps) {
             <Date date={page.dates.modified} />
           </p>}
           <div class="desc">
-            <h3><a href={stripIndex(relativeToRoot(slug, pageSlug))} class="internal">{title}</a></h3>
+            <h3><a href={clientSideSlug(relativeToRoot(slug, pageSlug))} class="internal">{title}</a></h3>
           </div>
           <ul class="tags">
             {tags.map(tag => <li><a class="internal" href={relativeToRoot(slug, `tags/${tag}`)}>#{tag}</a></li>)}

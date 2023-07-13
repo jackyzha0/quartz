@@ -5,11 +5,11 @@ import path from "path"
 
 import style from '../styles/listPage.scss'
 import { PageList } from "../PageList"
-import { clientSideSlug } from "../../path"
+import { toServerSlug } from "../../path"
 
 function FolderContent(props: QuartzComponentProps) {
   const { tree, fileData, allFiles } = props
-  const folderSlug = clientSideSlug(fileData.slug!)
+  const folderSlug = toServerSlug(fileData.slug!)
   const allPagesInFolder = allFiles.filter(file => {
     const fileSlug = file.slug ?? ""
     const prefixed = fileSlug.startsWith(folderSlug)

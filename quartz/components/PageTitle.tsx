@@ -1,10 +1,10 @@
-import { resolveToRoot } from "../path"
+import { pathToRoot } from "../path"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
 function PageTitle({ fileData, cfg }: QuartzComponentProps) {
   const title = cfg?.pageTitle ?? "Untitled Quartz"
   const slug = fileData.slug!
-  const baseDir = resolveToRoot(slug)
+  const baseDir = pathToRoot(slug)
   return <h1 class="page-title"><a href={baseDir}>{title}</a></h1>
 }
 

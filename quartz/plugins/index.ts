@@ -4,6 +4,7 @@ import { StaticResources } from '../resources'
 import { joinStyles } from '../theme'
 import { EmitCallback, PluginTypes } from './types'
 import styles from '../styles/base.scss'
+import { FilePath, ServerSlug } from '../path'
 
 export type ComponentResources = {
   css: string[],
@@ -51,7 +52,7 @@ function joinScripts(scripts: string[]): string {
   return scripts.map(script => `(function () {${script}})();`).join("\n")
 }
 
-export async function emitComponentResources(cfg: GlobalConfiguration, res: ComponentResources, emit: EmitCallback): Promise<string[]> {
+export async function emitComponentResources(cfg: GlobalConfiguration, res: ComponentResources, emit: EmitCallback): Promise<FilePath[]> {
   const fps = await Promise.all([
     emit({
       slug: "index",
@@ -99,8 +100,8 @@ export * from './emitters'
 declare module 'vfile' {
   // inserted in processors.ts
   interface DataMap {
-    slug: string
-    allSlugs: string[]
-    filePath: string
+    slug: ServerSlug
+    allSlugs: ServerSlug[]
+    filePath: FilePath
   }
 }

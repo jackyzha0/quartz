@@ -1,4 +1,4 @@
-import { relativeToRoot } from "../../path"
+import { CanonicalSlug, FilePath, ServerSlug, relativeToRoot } from "../../path"
 import { QuartzEmitterPlugin } from "../types"
 import path from 'path'
 
@@ -7,14 +7,14 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
   getQuartzComponents() {
     return []
   },
-  async emit(contentFolder, _cfg, content, _resources, emit): Promise<string[]> {
-    const fps: string[] = []
+  async emit(contentFolder, _cfg, content, _resources, emit): Promise<FilePath[]> {
+    const fps: FilePath[] = []
 
     for (const [_tree, file] of content) {
       const ogSlug = file.data.slug!
       const dir = path.relative(contentFolder, file.dirname ?? contentFolder)
 
-      let aliases: string[] = []
+      let aliases: CanonicalSlug[] = []
       if (file.data.frontmatter?.aliases) {
         aliases = file.data.frontmatter?.aliases
       } else if (file.data.frontmatter?.alias) {
@@ -22,11 +22,11 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
       }
 
       for (const alias of aliases) {
-        const slug = alias.startsWith("/")
+        const slug = (alias.startsWith("/")
           ? alias
-          : path.posix.join(dir, alias)
+          : path.posix.join(dir, alias)) as ServerSlug
 
-        const fp = slug + ".html"
+        const fp = slug + ".html" as FilePath
         const redirUrl = relativeToRoot(slug, ogSlug)
         await emit({
           content: `

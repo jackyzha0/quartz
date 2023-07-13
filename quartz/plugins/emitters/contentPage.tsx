@@ -4,6 +4,7 @@ import HeaderConstructor from "../../components/Header"
 import BodyConstructor from "../../components/Body"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { FullPageLayout } from "../../cfg"
+import { FilePath } from "../../path"
 
 export const ContentPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
   if (!opts) {
@@ -19,8 +20,8 @@ export const ContentPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
     getQuartzComponents() {
       return [Head, Header, Body, ...header, ...beforeBody, Content, ...left, ...right, Footer]
     },
-    async emit(_contentDir, cfg, content, resources, emit): Promise<string[]> {
-      const fps: string[] = []
+    async emit(_contentDir, cfg, content, resources, emit): Promise<FilePath[]> {
+      const fps: FilePath[] = []
       const allFiles = content.map(c => c[1].data)
       for (const [tree, file] of content) {
         const slug = file.data.slug!
@@ -41,7 +42,7 @@ export const ContentPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
           externalResources
         )
 
-        const fp = file.data.slug + ".html"
+        const fp = file.data.slug + ".html" as FilePath
         await emit({
           content,
           slug: file.data.slug!,
