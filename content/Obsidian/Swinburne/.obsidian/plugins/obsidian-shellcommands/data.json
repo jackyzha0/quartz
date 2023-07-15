@@ -4,8 +4,10 @@
   "obsidian_command_palette_prefix": "Execute: ",
   "preview_variables_in_command_palette": true,
   "show_autocomplete_menu": true,
-  "working_directory": "D:\\Data\\ToHost\\GitHub\\quartz\\",
-  "default_shells": {},
+  "working_directory": "",
+  "default_shells": {
+    "win32": "PowerShell.exe"
+  },
   "environment_variable_path_augmentations": {},
   "error_message_duration": 20,
   "notification_message_duration": 10,
