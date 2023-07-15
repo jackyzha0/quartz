@@ -54,7 +54,7 @@
         "stderr": null
       },
       "output_channel_order": "stdout-first",
-      "output_handling_mode": "buffered",
+      "output_handling_mode": "realtime",
       "events": {},
       "command_palette_availability": "enabled",
       "preactions": [
