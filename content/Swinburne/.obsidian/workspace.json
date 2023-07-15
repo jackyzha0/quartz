@@ -11,8 +11,12 @@
             "id": "b8389de1a478c749",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Year 2023/Semester 2/Unit/Activity/Week 1.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Year 2023/Semester 2/Unit/Activity/Week 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Year 2023/Semester 2/Unit/Activity/Week 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Year 2023/Semester 2/Unit/Activity/Week 1.md"
+              }
             }
           }
         ]
@@ -138,9 +146,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "123e170c74409b10",
+  "active": "b8389de1a478c749",
   "lastOpenFiles": [
-    "Year 2023/Semester 2/Unit/Untitled",
+    "Year 2023/Semester 2/Unit/Activity/Week 1.md",
+    "Year 2023/Semester 2/Unit/Activity",
     "Year 2023/Semester 2/Unit",
     "Year 2023/Semester 2",
     "Year 2023",
