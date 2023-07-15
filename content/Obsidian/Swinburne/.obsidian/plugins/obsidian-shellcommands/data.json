@@ -45,7 +45,7 @@
           "convert_ansi_code": true
         },
         "stderr": {
-          "handler": "ignore",
+          "handler": "notification",
           "convert_ansi_code": true
         }
       },
