@@ -9,7 +9,7 @@
     "win32": "PowerShell.exe"
   },
   "environment_variable_path_augmentations": {},
-  "error_message_duration": 20,
+  "error_message_duration": 5,
   "notification_message_duration": 10,
   "execution_notification_mode": "permanent",
   "output_channel_clipboard_also_outputs_to_notification": true,
