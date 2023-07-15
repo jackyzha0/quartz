@@ -56,9 +56,6 @@
       "output_channel_order": "stdout-first",
       "output_handling_mode": "realtime",
       "events": {
-        "file-content-modified": {
-          "enabled": true
-        },
         "file-renamed": {
           "enabled": true
         },
