@@ -9,7 +9,7 @@
   "environment_variable_path_augmentations": {},
   "error_message_duration": 20,
   "notification_message_duration": 10,
-  "execution_notification_mode": "disabled",
+  "execution_notification_mode": "permanent",
   "output_channel_clipboard_also_outputs_to_notification": true,
   "output_channel_notification_decorates_output": true,
   "enable_events": true,
@@ -39,7 +39,7 @@
       },
       "output_handlers": {
         "stdout": {
-          "handler": "current-file-bottom",
+          "handler": "status-bar",
           "convert_ansi_code": true
         },
         "stderr": {
@@ -69,5 +69,11 @@
   "builtin_variables": {},
   "custom_variables": [],
   "custom_shells": [],
-  "output_wrappers": []
+  "output_wrappers": [
+    {
+      "id": "0b0zyhilte",
+      "title": "Output",
+      "content": "{{output}}"
+    }
+  ]
 }
