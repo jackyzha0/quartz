@@ -59,22 +59,10 @@
         "file-content-modified": {
           "enabled": true
         },
-        "file-deleted": {
-          "enabled": true
-        },
-        "file-moved": {
-          "enabled": true
-        },
         "file-renamed": {
           "enabled": true
         },
-        "folder-deleted": {
-          "enabled": true
-        },
-        "folder-moved": {
-          "enabled": true
-        },
-        "folder-renamed": {
+        "on-layout-ready": {
           "enabled": true
         }
       },
@@ -87,6 +75,71 @@
         }
       ],
       "variable_default_values": {}
+    },
+    {
+      "id": "fvbunk6oou",
+      "platform_specific_commands": {
+        "default": "git add .\ngit commit -m \"{{_commit_msg}}\" \n\ngit push origin hugo"
+      },
+      "shells": {},
+      "alias": "Auto commit changes to GitHub Quartz Repository (no prompt)",
+      "icon": "git-commit",
+      "confirm_execution": false,
+      "ignore_error_codes": [],
+      "input_contents": {
+        "stdin": null
+      },
+      "output_handlers": {
+        "stdout": {
+          "handler": "status-bar",
+          "convert_ansi_code": true
+        },
+        "stderr": {
+          "handler": "status-bar",
+          "convert_ansi_code": true
+        }
+      },
+      "output_wrappers": {
+        "stdout": null,
+        "stderr": null
+      },
+      "output_channel_order": "stdout-first",
+      "output_handling_mode": "buffered",
+      "events": {
+        "folder-renamed": {
+          "enabled": true
+        },
+        "folder-moved": {
+          "enabled": true
+        },
+        "folder-deleted": {
+          "enabled": true
+        },
+        "folder-created": {
+          "enabled": true
+        },
+        "file-deleted": {
+          "enabled": true
+        },
+        "file-moved": {
+          "enabled": true
+        },
+        "every-n-seconds": {
+          "enabled": true,
+          "seconds": 300
+        },
+        "on-quit": {
+          "enabled": true
+        }
+      },
+      "command_palette_availability": "enabled",
+      "preactions": [],
+      "variable_default_values": {
+        "wubes9rmct": {
+          "type": "value",
+          "value": "Update changes at {{date:DD/MM/YY hh:mm:ss A}}"
+        }
+      }
     }
   ],
   "prompts": [
