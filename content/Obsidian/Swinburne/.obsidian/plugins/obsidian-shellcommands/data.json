@@ -54,9 +54,6 @@
       "output_channel_order": "stdout-first",
       "output_handling_mode": "buffered",
       "events": {
-        "on-quit": {
-          "enabled": true
-        },
         "file-content-modified": {
           "enabled": true
         },
