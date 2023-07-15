@@ -4,7 +4,7 @@
   "obsidian_command_palette_prefix": "Execute: ",
   "preview_variables_in_command_palette": true,
   "show_autocomplete_menu": true,
-  "working_directory": "",
+  "working_directory": "D:\\Data\\ToHost\\GitHub\\quartz",
   "default_shells": {
     "win32": "PowerShell.exe"
   },
@@ -27,7 +27,7 @@
     {
       "id": "sokrnvx3q3",
       "platform_specific_commands": {
-        "default": "git add .\ngit commit -m \"Update changes at {{date:DD/MM/YYYY hh:mm:ss A}}\"\n\ngit push origin hugo"
+        "default": "git add .\ngit commit -m \"{{_commit_msg}}\" \n\ngit push origin hugo"
       },
       "shells": {
         "win32": "PowerShell.exe"
@@ -59,9 +59,6 @@
         "file-content-modified": {
           "enabled": true
         },
-        "file-created": {
-          "enabled": true
-        },
         "file-deleted": {
           "enabled": true
         },
@@ -69,9 +66,6 @@
           "enabled": true
         },
         "file-renamed": {
-          "enabled": true
-        },
-        "folder-created": {
           "enabled": true
         },
         "folder-deleted": {
@@ -88,16 +82,40 @@
       "preactions": [
         {
           "type": "prompt",
-          "enabled": false,
-          "prompt_id": ""
+          "enabled": true,
+          "prompt_id": "gta0c24juf"
         }
       ],
       "variable_default_values": {}
     }
   ],
-  "prompts": [],
+  "prompts": [
+    {
+      "id": "gta0c24juf",
+      "title": "Commit changes to Ryan5358/Quartz",
+      "description": "# FILE_INFO\nFilename: {{file_name}}\nLocal: {{file_path:absolute}}\n\n# ACTION\ncommit to hugo branch",
+      "preview_shell_command": false,
+      "fields": [
+        {
+          "label": "Commit message",
+          "description": "",
+          "default_value": "Update changes at {{date:DD/MM/YY hh:mm:ss A}}",
+          "target_variable_id": "wubes9rmct",
+          "required": true
+        }
+      ],
+      "execute_button_text": "Commit changes"
+    }
+  ],
   "builtin_variables": {},
-  "custom_variables": [],
+  "custom_variables": [
+    {
+      "id": "wubes9rmct",
+      "name": "commit_msg",
+      "description": "Commit Message",
+      "default_value": null
+    }
+  ],
   "custom_shells": [],
   "output_wrappers": [
     {

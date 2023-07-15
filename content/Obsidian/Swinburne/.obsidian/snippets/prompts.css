@@ -1,0 +1,20 @@
+div.SC-prompt-modal-gta0c24juf {
+	width: 650px;
+    background-color: rgb(22, 27, 34);
+}
+
+div.SC-prompt-modal-gta0c24juf button {
+    cursor: pointer;
+    background-color: rgb(35, 134, 54);
+    font-weight: 500;
+    font-size: 14px;
+    padding: 0 12px;
+}
+
+div.SC-prompt-modal-gta0c24juf button:hover {
+    background-color: rgb(46, 160, 67);
+}
+
+div.SC-prompt-modal-gta0c24juf label {
+    font-weight: 600;
+}

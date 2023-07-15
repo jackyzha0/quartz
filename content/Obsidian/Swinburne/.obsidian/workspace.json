@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "f1d6d20938ca11da",
+        "id": "b24ac0ad303b46da",
         "type": "tabs",
         "children": [
           {
-            "id": "65d13b6640e4c333",
+            "id": "b8389de1a478c749",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -16,12 +16,12 @@
             }
           },
           {
-            "id": "d92387e8ef1c9755",
+            "id": "c5e21cd0c8c44f6e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Hello.md",
+                "file": "Untitled.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Hello.md",
+                "file": "Untitled.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Hello.md",
+                "file": "Untitled.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Hello.md"
+                "file": "Untitled.md"
               }
             }
           }
@@ -155,8 +155,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d92387e8ef1c9755",
+  "active": "c5e21cd0c8c44f6e",
   "lastOpenFiles": [
+    "Untitled 1.md",
+    "Untitled.md",
+    "_index.md",
     "Hello.md"
   ]
 }
