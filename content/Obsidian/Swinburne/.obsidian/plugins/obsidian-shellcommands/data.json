@@ -27,7 +27,7 @@
     {
       "id": "sokrnvx3q3",
       "platform_specific_commands": {
-        "default": "git add .\ngit commit -m \"Update changes at {{date:DD/MM/YYYY hh:mm:ss A}}\"\n\ngit push origin hugo"
+        "default": "cd \"D:\\Data\\ToHost\\GitHub\\quartz\"\n\ngit add .\ngit commit -m \"Update changes at {{date:DD/MM/YYYY hh:mm:ss A}}\"\n\ngit push origin hugo"
       },
       "shells": {
         "win32": "PowerShell.exe"
