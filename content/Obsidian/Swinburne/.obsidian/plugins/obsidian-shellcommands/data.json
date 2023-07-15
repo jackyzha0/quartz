@@ -53,35 +53,7 @@
       },
       "output_channel_order": "stdout-first",
       "output_handling_mode": "buffered",
-      "events": {
-        "file-content-modified": {
-          "enabled": true
-        },
-        "file-created": {
-          "enabled": true
-        },
-        "file-deleted": {
-          "enabled": true
-        },
-        "file-moved": {
-          "enabled": true
-        },
-        "file-renamed": {
-          "enabled": true
-        },
-        "folder-created": {
-          "enabled": true
-        },
-        "folder-deleted": {
-          "enabled": true
-        },
-        "folder-moved": {
-          "enabled": true
-        },
-        "folder-renamed": {
-          "enabled": true
-        }
-      },
+      "events": {},
       "command_palette_availability": "enabled",
       "preactions": [
         {
