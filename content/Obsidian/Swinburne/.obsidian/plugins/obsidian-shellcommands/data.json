@@ -27,7 +27,7 @@
     {
       "id": "sokrnvx3q3",
       "platform_specific_commands": {
-        "default": "cd \"D:\\Data\\ToHost\\GitHub\\quartz\"\n\ngit add .\ngit commit -m \"Update changes at {{date:DD/MM/YYYY hh:mm:ss A}}\"\n\ngit push origin hugo"
+        "default": "git add .\ngit commit -m \"Update changes at {{date:DD/MM/YYYY hh:mm:ss A}}\"\n\ngit push origin hugo"
       },
       "shells": {
         "win32": "PowerShell.exe"
@@ -55,7 +55,35 @@
       },
       "output_channel_order": "stdout-first",
       "output_handling_mode": "realtime",
-      "events": {},
+      "events": {
+        "file-content-modified": {
+          "enabled": true
+        },
+        "file-created": {
+          "enabled": true
+        },
+        "file-deleted": {
+          "enabled": true
+        },
+        "file-moved": {
+          "enabled": true
+        },
+        "file-renamed": {
+          "enabled": true
+        },
+        "folder-created": {
+          "enabled": true
+        },
+        "folder-deleted": {
+          "enabled": true
+        },
+        "folder-moved": {
+          "enabled": true
+        },
+        "folder-renamed": {
+          "enabled": true
+        }
+      },
       "command_palette_availability": "enabled",
       "preactions": [
         {
