@@ -25,11 +25,13 @@
     {
       "id": "sokrnvx3q3",
       "platform_specific_commands": {
-        "default": "git add .\ngit commit -m \"Auto commit changes on '{{date:YY-MMM-DD [at] hh:mm:ss A}}'\"\n\ngit push origin hugo"
+        "default": "git add .\ngit commit -m \"Update changes at '{{date:YY-MMM-DD hh:mm:ss A}}'\"\n\ngit push origin hugo"
       },
-      "shells": {},
-      "alias": "",
-      "icon": null,
+      "shells": {
+        "win32": "PowerShell.exe"
+      },
+      "alias": "Auto commit changes to GitHub Quartz Repository",
+      "icon": "git-commit",
       "confirm_execution": false,
       "ignore_error_codes": [],
       "input_contents": {
@@ -37,7 +39,7 @@
       },
       "output_handlers": {
         "stdout": {
-          "handler": "ignore",
+          "handler": "current-file-bottom",
           "convert_ansi_code": true
         },
         "stderr": {
@@ -51,9 +53,49 @@
       },
       "output_channel_order": "stdout-first",
       "output_handling_mode": "buffered",
-      "events": {},
+      "events": {
+        "on-layout-ready": {
+          "enabled": true
+        },
+        "on-quit": {
+          "enabled": true
+        },
+        "file-content-modified": {
+          "enabled": true
+        },
+        "file-created": {
+          "enabled": true
+        },
+        "file-deleted": {
+          "enabled": true
+        },
+        "file-moved": {
+          "enabled": true
+        },
+        "file-renamed": {
+          "enabled": true
+        },
+        "folder-created": {
+          "enabled": true
+        },
+        "folder-deleted": {
+          "enabled": true
+        },
+        "folder-moved": {
+          "enabled": true
+        },
+        "folder-renamed": {
+          "enabled": true
+        }
+      },
       "command_palette_availability": "enabled",
-      "preactions": [],
+      "preactions": [
+        {
+          "type": "prompt",
+          "enabled": false,
+          "prompt_id": ""
+        }
+      ],
       "variable_default_values": {}
     }
   ],
