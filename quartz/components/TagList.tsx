@@ -1,10 +1,10 @@
-import { pathToRoot } from "../path"
+import { canonicalizeServer, pathToRoot } from "../path"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { slug as slugAnchor } from 'github-slugger'
 
 function TagList({ fileData }: QuartzComponentProps) {
   const tags = fileData.frontmatter?.tags
-  const slug = fileData.slug!
+  const slug = canonicalizeServer(fileData.slug!)
   const baseDir = pathToRoot(slug)
   if (tags && tags.length > 0) {
     return <ul class="tags">{tags.map(tag => {

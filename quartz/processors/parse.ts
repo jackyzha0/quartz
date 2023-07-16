@@ -14,6 +14,7 @@ import workerpool, { Promise as WorkerPromise } from 'workerpool'
 import { QuartzTransformerPluginInstance } from '../plugins/types'
 import { QuartzLogger } from '../log'
 import chalk from 'chalk'
+import { trace } from '../trace'
 
 export type QuartzProcessor = Processor<MDRoot, HTMLRoot, void>
 export function createProcessor(transformers: QuartzTransformerPluginInstance[]): QuartzProcessor {
@@ -101,7 +102,7 @@ export function createFileParser(transformers: QuartzTransformerPluginInstance[]
           console.log(`[process] ${fp} -> ${file.data.slug}`)
         }
       } catch (err) {
-        console.log(chalk.red(`\nFailed to process \`${fp}\`: `) + err)
+        trace(`\nFailed to process \`${fp}\``, err as Error)
         process.exit(1)
       }
     }

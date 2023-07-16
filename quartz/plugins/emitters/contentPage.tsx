@@ -4,7 +4,7 @@ import HeaderConstructor from "../../components/Header"
 import BodyConstructor from "../../components/Body"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { FullPageLayout } from "../../cfg"
-import { FilePath } from "../../path"
+import { FilePath, canonicalizeServer } from "../../path"
 
 export const ContentPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
   if (!opts) {
@@ -24,7 +24,7 @@ export const ContentPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
       const fps: FilePath[] = []
       const allFiles = content.map(c => c[1].data)
       for (const [tree, file] of content) {
-        const slug = file.data.slug!
+        const slug = canonicalizeServer(file.data.slug!)
         const externalResources = pageResources(slug, resources)
         const componentData: QuartzComponentProps = {
           fileData: file.data,

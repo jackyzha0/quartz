@@ -1,3 +1,4 @@
+import 'source-map-support/register.js'
 import path from "path"
 import { PerfTimer } from "./perf"
 import { rimraf } from "rimraf"
@@ -9,6 +10,7 @@ import { parseMarkdown } from "./processors/parse"
 import { filterContent } from "./processors/filter"
 import { emitContent } from "./processors/emit"
 import cfg from "../quartz.config"
+import { FilePath } from "./path"
 
 interface Argv {
   directory: string
@@ -46,7 +48,7 @@ export default async function buildQuartz(argv: Argv, version: string) {
   })
   console.log(`Found ${fps.length} input files from \`${argv.directory}\` in ${perf.timeSince('glob')}`)
 
-  const filePaths = fps.map(fp => `${argv.directory}${path.sep}${fp}`)
+  const filePaths = fps.map(fp => `${argv.directory}${path.sep}${fp}` as FilePath)
   const parsedFiles = await parseMarkdown(cfg.plugins.transformers, argv.directory, filePaths, argv.verbose)
   const filteredContent = filterContent(cfg.plugins.filters, parsedFiles, argv.verbose)
   await emitContent(argv.directory, output, cfg, filteredContent, argv.verbose)

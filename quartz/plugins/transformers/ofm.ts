@@ -2,7 +2,6 @@ import { PluggableList } from "unified"
 import { QuartzTransformerPlugin } from "../types"
 import { Root, HTML, BlockContent, DefinitionContent, Code } from 'mdast'
 import { findAndReplace } from "mdast-util-find-and-replace"
-import { slugify } from "../../path"
 import { slug as slugAnchor } from 'github-slugger'
 import rehypeRaw from "rehype-raw"
 import { visit } from "unist-util-visit"
@@ -10,6 +9,7 @@ import path from "path"
 import { JSResource } from "../../resources"
 // @ts-ignore
 import calloutScript from "../../components/scripts/callout.inline.ts"
+import { FilePath, slugifyFilePath, transformInternalLink } from "../../path"
 
 export interface Options {
   comments: boolean
@@ -139,14 +139,15 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         plugins.push(() => {
           return (tree: Root, _file) => {
             findAndReplace(tree, wikilinkRegex, (value: string, ...capture: string[]) => {
-              const [fp, rawHeader, rawAlias] = capture
+              let [fp, rawHeader, rawAlias] = capture
+              fp = fp.trim()
               const anchor = rawHeader?.trim() ?? ""
               const alias = rawAlias?.slice(1).trim()
 
               // embed cases
               if (value.startsWith("!")) {
-                const ext = path.extname(fp).toLowerCase()
-                const url = slugify(fp.trim()) + ext
+                const ext: string | undefined = path.extname(fp).toLowerCase()
+                const url = slugifyFilePath(fp as FilePath) + ext
                 if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg"].includes(ext)) {
                   const dims = alias ?? ""
                   let [width, height] = dims.split("x", 2)
@@ -176,12 +177,15 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     type: 'html',
                     value: `<iframe src="${url}"></iframe>`
                   }
+                } else {
+                  // TODO: this is the node embed case
                 }
                 // otherwise, fall through to regular link
               }
 
               // internal link
-              const url = slugify(fp.trim() + anchor)
+              // const url = transformInternalLink(fp + anchor)
+              const url = fp + anchor
               return {
                 type: 'link',
                 url,

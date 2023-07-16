@@ -19,6 +19,7 @@ import popoverStyle from '../components/styles/popover.scss'
 import { StaticResources } from "../resources"
 import { QuartzLogger } from "../log"
 import { googleFontHref } from "../theme"
+import { trace } from "../trace"
 
 function addGlobalPageResources(cfg: GlobalConfiguration, staticResources: StaticResources, componentResources: ComponentResources) {
   staticResources.css.push(googleFontHref(cfg.theme))
@@ -110,7 +111,7 @@ export async function emitContent(contentFolder: string, output: string, cfg: Qu
         }
       }
     } catch (err) {
-      console.log(chalk.red(`Failed to emit from plugin \`${emitter.name}\`: `) + err)
+      trace(`Failed to emit from plugin \`${emitter.name}\``, err as Error)
       process.exit(1)
     }
   }

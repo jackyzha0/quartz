@@ -5,11 +5,11 @@ import path from "path"
 
 import style from '../styles/listPage.scss'
 import { PageList } from "../PageList"
-import { toServerSlug } from "../../path"
+import { canonicalizeServer } from "../../path"
 
 function FolderContent(props: QuartzComponentProps) {
   const { tree, fileData, allFiles } = props
-  const folderSlug = toServerSlug(fileData.slug!)
+  const folderSlug = canonicalizeServer(fileData.slug!)
   const allPagesInFolder = allFiles.filter(file => {
     const fileSlug = file.slug ?? ""
     const prefixed = fileSlug.startsWith(folderSlug)
@@ -23,7 +23,7 @@ function FolderContent(props: QuartzComponentProps) {
     ...props,
     allFiles: allPagesInFolder
   }
-
+  
   // @ts-ignore
   const content = toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: 'html' })
   return <div class="popover-hint">

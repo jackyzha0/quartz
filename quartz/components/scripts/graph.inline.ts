@@ -1,7 +1,7 @@
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
 import * as d3 from 'd3'
-import { registerEscapeHandler, clientSideRelativePath, removeAllChildren } from "./util"
-import { CanonicalSlug } from "../../path"
+import { registerEscapeHandler, removeAllChildren } from "./util"
+import { CanonicalSlug, getCanonicalSlug, getClientSlug, resolveRelative } from "../../path"
 
 type NodeData = {
   id: CanonicalSlug,
@@ -25,7 +25,7 @@ function addToVisited(slug: CanonicalSlug) {
   localStorage.setItem(localStorageKey, JSON.stringify([...visited]))
 }
 
-async function renderGraph(container: string, slug: string) {
+async function renderGraph(container: string, slug: CanonicalSlug) {
   const visited = getVisited()
   const graph = document.getElementById(container)
   if (!graph) return
@@ -50,18 +50,17 @@ async function renderGraph(container: string, slug: string) {
     const outgoing = details.links ?? []
     for (const dest of outgoing) {
       if (src in data && dest in data) {
-        links.push({ source: src, target: dest })
+        links.push({ source: src as CanonicalSlug, target: dest })
       }
     }
   }
 
-  const neighbourhood = new Set()
-
-  const wl = [slug, "__SENTINEL"]
+  const neighbourhood = new Set<CanonicalSlug>()
+  const wl: (CanonicalSlug | "__SENTINEL")[] = [slug, "__SENTINEL"]
   if (depth >= 0) {
     while (depth >= 0 && wl.length > 0) {
       // compute neighbours
-      const cur = wl.shift()
+      const cur = wl.shift()!
       if (cur === "__SENTINEL") {
         depth--
         wl.push("__SENTINEL")
@@ -73,11 +72,11 @@ async function renderGraph(container: string, slug: string) {
       }
     }
   } else {
-    Object.keys(data).forEach(id => neighbourhood.add(id))
+    Object.keys(data).forEach(id => neighbourhood.add(id as CanonicalSlug))
   }
 
   const graphData: { nodes: NodeData[], links: LinkData[] } = {
-    nodes: Object.keys(data).filter(id => neighbourhood.has(id)).map(url => ({ id: url, text: data[url]?.title ?? url, tags: data[url]?.tags ?? [] })),
+    nodes: [...neighbourhood].map(url => ({ id: url, text: data[url]?.title ?? url, tags: data[url]?.tags ?? [] })),
     links: links.filter((l) => neighbourhood.has(l.source) && neighbourhood.has(l.target))
   }
 
@@ -168,12 +167,13 @@ async function renderGraph(container: string, slug: string) {
     .attr("fill", color)
     .style("cursor", "pointer")
     .on("click", (_, d) => {
-      const targ = clientSideRelativePath(slug, d.id)
-      window.spaNavigate(new URL(targ))
+      const targ = resolveRelative(slug, d.id)
+      window.spaNavigate(new URL(targ, getClientSlug(window)))
     })
     .on("mouseover", function(_, d) {
-      const neighbours: string[] = data[slug].links ?? []
+      const neighbours: CanonicalSlug[] = data[slug].links ?? []
       const neighbourNodes = d3.selectAll<HTMLElement, NodeData>(".node").filter((d) => neighbours.includes(d.id))
+      console.log(neighbourNodes)
       const currentId = d.id
       const linkNodes = d3
         .selectAll(".link")
@@ -273,7 +273,7 @@ async function renderGraph(container: string, slug: string) {
 }
 
 function renderGlobalGraph() {
-  const slug = document.body.dataset["slug"]!
+  const slug = getCanonicalSlug(window) 
   const container = document.getElementById("global-graph-outer")
   const sidebar = container?.closest(".sidebar") as HTMLElement
   container?.classList.add("active")

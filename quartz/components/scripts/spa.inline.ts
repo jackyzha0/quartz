@@ -1,5 +1,5 @@
 import micromorph from "micromorph"
-import { CanonicalSlug, RelativeURL } from "../../path"
+import { CanonicalSlug, RelativeURL, getCanonicalSlug } from "../../path"
 
 // adapted from `micromorph`
 // https://github.com/natemoo-re/micromorph
@@ -43,6 +43,7 @@ async function navigate(url: URL, isBack: boolean = false) {
     .catch(() => {
       window.location.assign(url)
     })
+
   if (!contents) return;
   if (!isBack) {
     history.pushState({}, "", url)
@@ -70,7 +71,7 @@ async function navigate(url: URL, isBack: boolean = false) {
   const elementsToAdd = html.head.querySelectorAll(':not([spa-preserve])')
   elementsToAdd.forEach(el => document.head.appendChild(el))
 
-  notifyNav(document.body.dataset.slug!)
+  notifyNav(getCanonicalSlug(window))
   delete announcer.dataset.persist
 }
 
@@ -117,7 +118,7 @@ function createRouter() {
 }
 
 createRouter()
-notifyNav(document.body.dataset.slug!)
+notifyNav(getCanonicalSlug(window))
 
 if (!customElements.get('route-announcer')) {
   const attrs = {

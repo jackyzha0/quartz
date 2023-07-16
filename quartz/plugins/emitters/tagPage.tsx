@@ -5,7 +5,7 @@ import BodyConstructor from "../../components/Body"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { ProcessedContent, defaultProcessedContent } from "../vfile"
 import { FullPageLayout } from "../../cfg"
-import { FilePath, ServerSlug, toServerSlug } from "../../path"
+import { CanonicalSlug, FilePath, ServerSlug } from "../../path"
 
 export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
   if (!opts) {
@@ -31,7 +31,7 @@ export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
       ])))
 
       for (const [tree, file] of content) {
-        const slug = toServerSlug(file.data.slug!)
+        const slug = file.data.slug!
         if (slug.startsWith("tags/")) {
           const tag = slug.slice("tags/".length)
           if (tags.has(tag)) {
@@ -41,7 +41,7 @@ export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
       }
 
       for (const tag of tags) {
-        const slug = `tags/${tag}`
+        const slug = `tags/${tag}` as CanonicalSlug
         const externalResources = pageResources(slug, resources)
         const [tree, file] = tagDescriptions[tag]
         const componentData: QuartzComponentProps = {

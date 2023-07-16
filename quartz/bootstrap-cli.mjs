@@ -9,6 +9,7 @@ import { sassPlugin } from 'esbuild-sass-plugin'
 import fs from 'fs'
 import { intro, isCancel, outro, select, text } from '@clack/prompts'
 import { rimraf } from 'rimraf'
+import prettyBytes from 'pretty-bytes'
 
 const cacheFile = "./.quartz-cache/transpiled-build.mjs"
 const fp = "./quartz/build.ts"
@@ -133,7 +134,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
 `)
   })
   .command('build', 'Build Quartz into a bundle of static HTML files', BuildArgv, async (argv) => {
-    await esbuild.build({
+    const result = await esbuild.build({
       entryPoints: [fp],
       outfile: path.join("quartz", cacheFile),
       bundle: true,
@@ -143,6 +144,8 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       jsx: "automatic",
       jsxImportSource: "preact",
       packages: "external",
+      metafile: true,
+      sourcemap: true,
       plugins: [
         sassPlugin({
           type: 'css-text',
@@ -185,6 +188,12 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       console.log("hint: make sure all the required dependencies are installed (run `npm install`)")
       process.exit(1)
     })
+
+    if (argv.verbose) {
+      const outputFileName = 'quartz/.quartz-cache/transpiled-build.mjs'
+      const meta = result.metafile.outputs[outputFileName]
+      console.log(chalk.gray(`[debug] Successfully transpiled ${Object.keys(meta.inputs).length} files (${prettyBytes(meta.bytes)})`))
+    }
 
     const { default: init } = await import(cacheFile)
     init(argv, version)
