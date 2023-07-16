@@ -7,13 +7,12 @@ import { Root as HTMLRoot } from 'hast'
 import { ProcessedContent } from '../plugins/vfile'
 import { PerfTimer } from '../perf'
 import { read } from 'to-vfile'
-import { FilePath, ServerSlug, slugifyFilePath } from '../path'
+import { FilePath, QUARTZ, ServerSlug, slugifyFilePath } from '../path'
 import path from 'path'
 import os from 'os'
 import workerpool, { Promise as WorkerPromise } from 'workerpool'
 import { QuartzTransformerPluginInstance } from '../plugins/types'
 import { QuartzLogger } from '../log'
-import chalk from 'chalk'
 import { trace } from '../trace'
 
 export type QuartzProcessor = Processor<MDRoot, HTMLRoot, void>
@@ -50,7 +49,7 @@ async function transpileWorkerScript() {
   const fp = "./quartz/worker.ts"
   return esbuild.build({
     entryPoints: [fp],
-    outfile: path.join("quartz", cacheFile),
+    outfile: path.join(QUARTZ, cacheFile),
     bundle: true,
     keepNames: true,
     platform: "node",
