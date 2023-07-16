@@ -9,7 +9,7 @@ import path from "path"
 import { JSResource } from "../../resources"
 // @ts-ignore
 import calloutScript from "../../components/scripts/callout.inline.ts"
-import { FilePath, slugifyFilePath, transformInternalLink } from "../../path"
+import { FilePath, slugifyFilePath } from "../../path"
 
 export interface Options {
   comments: boolean

@@ -54,6 +54,16 @@ function escapePath(fp) {
     .trim()
 }
 
+function exitIfCancel(val) {
+
+  if (isCancel(val)) {
+    outro(chalk.red("Exiting"))
+    process.exit(0)
+  } else {
+    return val
+  }
+}
+
 yargs(hideBin(process.argv))
   .scriptName("quartz")
   .version(version)
@@ -61,8 +71,9 @@ yargs(hideBin(process.argv))
   .command('create', 'Initialize Quartz', async (_argv) => {
     console.log()
     intro(chalk.bgGreen.black(` Quartz v${version} `))
-    const contentFolder = path.join(process.cwd(), "content")
-    const setupStrategy = await select({
+    const cwd = process.cwd()
+    const contentFolder = path.join(cwd, "content")
+    const setupStrategy = exitIfCancel(await select({
       message: `Choose how to initialize the content in \`${contentFolder}\``,
       options: [
         { value: 'new', label: "Empty Quartz" },
@@ -70,12 +81,17 @@ yargs(hideBin(process.argv))
         { value: 'symlink', label: "Symlink an existing folder", hint: "don't select this unless you know what you are doing!" },
         { value: 'keep', label: "Keep the existing files" },
       ]
-    })
+    }))
 
-    if (isCancel(setupStrategy)) {
-      outro(chalk.red("Exiting"))
-      process.exit(0)
-    }
+    // TODO
+    const linkResolutionStrategy = exitIfCancel(await select({
+      message: `Choose how Quartz should resolve links in your content. You can change this later in \`quartz.config.ts\`.`,
+      options: [
+        { value: 'absolute', label: "Treat links as absolute path", hint: "for content made for Quartz 3 and Hugo" },
+        { value: 'shortest', label: "Treat links as shortest path", hint: "for most Obsidian vaults" },
+        { value: 'relative', label: "Treat links as relative paths", hint: "for just normal Markdown files" },
+      ]
+    }))
 
     async function rmContentFolder() {
       const contentStat = await fs.promises.lstat(contentFolder)
@@ -89,7 +105,7 @@ yargs(hideBin(process.argv))
     }
 
     if (setupStrategy === 'copy' || setupStrategy === 'symlink') {
-      const originalFolder = escapePath(await text({
+      const originalFolder = escapePath(exitIfCancel(await text({
         message: "Enter the full path to existing content folder",
         placeholder: 'On most terminal emulators, you can drag and drop a folder into the window and it will paste the full path',
         validate(fp) {
@@ -100,12 +116,7 @@ yargs(hideBin(process.argv))
             return "The given path is not a folder"
           }
         }
-      }))
-
-      if (isCancel(originalFolder)) {
-        outro(chalk.red("Exiting"))
-        process.exit(0)
-      }
+      })))
 
       await rmContentFolder()
       if (setupStrategy === 'copy') {
@@ -127,11 +138,23 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       )
     }
 
+    // now, do config changes
+    const configFilePath = path.join(cwd, "quartz.config.ts")
+    let configContent = await fs.promises.readFile(configFilePath, { encoding: 'utf-8' })
+    configContent = configContent.replace(/markdownLinkResolution: '(.+)'/, `markdownLinkResolution: '${linkResolutionStrategy}'`)
+    await fs.promises.writeFile(configFilePath, configContent)
+
     outro(`You're all set! Not sure what to do next? Try:
    • Customizing Quartz a bit more by editing \`quartz.config.ts\`
    • Running \`npx quartz build --serve\` to preview your Quartz locally
    • Hosting your Quartz online (see: https://quartz.jzhao.xyz/setup/hosting)
 `)
+  })
+  .command('update', 'Get the latest Quartz updates', () => {
+    // TODO
+  })
+  .command('push', 'Push your Quartz updates to GitHub', () => {
+    // TODO
   })
   .command('build', 'Build Quartz into a bundle of static HTML files', BuildArgv, async (argv) => {
     const result = await esbuild.build({
