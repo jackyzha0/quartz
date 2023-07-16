@@ -134,11 +134,16 @@ export function slugifyFilePath(fp: FilePath): ServerSlug {
   conditionCheck(slugifyFilePath.name, 'pre', fp, isFilePath)
   fp = _stripSlashes(fp) as FilePath
   const withoutFileExt = fp.replace(new RegExp(_getFileExtension(fp) + '$'), '')
-  const slug = withoutFileExt
+  let slug = withoutFileExt
     .split('/')
     .map((segment) => segment.replace(/\s/g, '-')) // slugify all segments
     .join('/') // always use / as sep
     .replace(/\/$/, '') // remove trailing slash
+
+  // treat _index as index
+  if (_endsWith(slug, "_index")) {
+    slug = slug.replace(/_index$/, "index")
+  }
 
   conditionCheck(slugifyFilePath.name, 'post', slug, isServerSlug)
   return slug as ServerSlug
@@ -156,10 +161,7 @@ export function transformInternalLink(link: string): RelativeURL {
   }
 
   fp = canonicalizeServer(slugifyFilePath(fp as FilePath))
-
-  if (fp.endsWith("index")) {
-    fp = fp.slice(0, -"index".length)
-  }
+  fp = _trimSuffix(fp, "index")
 
   let joined = joinSegments(_stripSlashes(prefix), _stripSlashes(fp))
   const res = _addRelativeToStart(joined) + anchor as RelativeURL
@@ -202,11 +204,19 @@ export function joinSegments(...args: string[]): string {
 export const QUARTZ = "quartz"
 
 function _canonicalize(fp: string): string {
-  if (fp.endsWith("index")) {
-    fp = fp.slice(0, -"index".length)
-  }
-
+  fp = _trimSuffix(fp, "index")
   return _stripSlashes(fp) 
+}
+
+function _endsWith(s: string, suffix: string): boolean {
+  return s === suffix || s.endsWith("/" + suffix) 
+}
+
+function _trimSuffix(s: string, suffix: string): string {
+  if (_endsWith(s, suffix)) {
+    s = s.slice(0, -(suffix.length))
+  }
+  return s
 }
 
 function _containsForbiddenCharacters(s: string): boolean {

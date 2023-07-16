@@ -122,6 +122,7 @@ describe('transforms', () => {
   describe('slugifyFilePath', () => {
     asserts([
       ["content/index.md", "content/index"],
+      ["content/_index.md", "content/index"],
       ["/content/index.md", "content/index"],
       ["content/cool.png", "content/cool"],
       ["index.md", "index"],

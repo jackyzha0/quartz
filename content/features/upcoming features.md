@@ -1,6 +1,5 @@
 
 - fixes
-	- changing `_index` files
 	- typography
 - CLI    
     - update
