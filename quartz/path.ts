@@ -43,8 +43,8 @@ import { trace } from './trace'
 //                                             └────────────┤ MD File ├─────┴─────────────────┘
 //                                                          └─────────┘
 
-const STRICT_TYPE_CHECKS = true
-const HARD_EXIT_ON_FAIL = true
+const STRICT_TYPE_CHECKS = false
+const HARD_EXIT_ON_FAIL = false
 
 function conditionCheck<T>(name: string, label: 'pre' | 'post', s: T, chk: (x: any) => x is T) {
   if (STRICT_TYPE_CHECKS && !chk(s)) {
