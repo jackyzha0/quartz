@@ -1,4 +1,4 @@
-import { CanonicalSlug, FilePath, ServerSlug, relativeToRoot } from "../../path"
+import { CanonicalSlug, FilePath, ServerSlug, canonicalizeServer, resolveRelative } from "../../path"
 import { QuartzEmitterPlugin } from "../types"
 import path from 'path'
 
@@ -11,7 +11,7 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
     const fps: FilePath[] = []
 
     for (const [_tree, file] of content) {
-      const ogSlug = file.data.slug!
+      const ogSlug = canonicalizeServer(file.data.slug!)
       const dir = path.relative(contentFolder, file.dirname ?? contentFolder)
 
       let aliases: CanonicalSlug[] = []
@@ -22,12 +22,10 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
       }
 
       for (const alias of aliases) {
-        const slug = (alias.startsWith("/")
-          ? alias
-          : path.posix.join(dir, alias)) as ServerSlug
+        const slug = path.posix.join(dir, alias) as ServerSlug
 
         const fp = slug + ".html" as FilePath
-        const redirUrl = relativeToRoot(slug, ogSlug)
+        const redirUrl = resolveRelative(canonicalizeServer(slug), ogSlug)
         await emit({
           content: `
             <!DOCTYPE html>

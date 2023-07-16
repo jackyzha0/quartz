@@ -1,10 +1,10 @@
-import { toServerSlug, pathToRoot } from "../path"
+import { canonicalizeServer, pathToRoot } from "../path"
 import { JSResourceToScriptElement } from "../resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
 export default (() => {
   function Head({ fileData, externalResources }: QuartzComponentProps) {
-    const slug = toServerSlug(fileData.slug!)
+    const slug = canonicalizeServer(fileData.slug!)
     const title = fileData.frontmatter?.title ?? "Untitled"
     const description = fileData.description ?? "No description provided"
     const { css, js } = externalResources

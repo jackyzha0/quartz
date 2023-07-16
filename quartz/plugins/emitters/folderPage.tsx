@@ -6,7 +6,7 @@ import { pageResources, renderPage } from "../../components/renderPage"
 import { ProcessedContent, defaultProcessedContent } from "../vfile"
 import { FullPageLayout } from "../../cfg"
 import path from "path"
-import { FilePath, toServerSlug } from "../../path"
+import { CanonicalSlug, FilePath, ServerSlug, canonicalizeServer, joinSegments } from "../../path"
 
 export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
   if (!opts) {
@@ -23,28 +23,34 @@ export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
       return [Head, Header, Body, ...header, ...beforeBody, Content, ...left, ...right, Footer]
     },
     async emit(_contentDir, cfg, content, resources, emit): Promise<FilePath[]> {
-      const fps: string[] = []
+      const fps: FilePath[] = []
       const allFiles = content.map(c => c[1].data)
 
-      const folders: Set<string> = new Set(allFiles.flatMap(data => data.slug ? [path.dirname(data.slug)] : []))
+      const folders: Set<CanonicalSlug> = new Set(allFiles.flatMap(data => {
+        const slug = data.slug
+        const folderName = path.dirname(slug ?? "") as CanonicalSlug
+        if (slug && folderName !== ".") {
+          return [folderName]
+        }
+        return []
+      }))
 
       // remove special prefixes
-      folders.delete(".")
-      folders.delete("tags")
+      folders.delete("tags" as CanonicalSlug)
 
       const folderDescriptions: Record<string, ProcessedContent> = Object.fromEntries([...folders].map(folder => ([
-        folder, defaultProcessedContent({ slug: folder, frontmatter: { title: `Folder: ${folder}`, tags: [] } })
+        folder, defaultProcessedContent({ slug: joinSegments(folder, "index") as ServerSlug, frontmatter: { title: `Folder: ${folder}`, tags: [] } })
       ])))
 
       for (const [tree, file] of content) {
-        const slug = toServerSlug(file.data.slug!)
+        const slug = canonicalizeServer(file.data.slug!)
         if (folders.has(slug)) {
           folderDescriptions[slug] = [tree, file]
         }
       }
 
       for (const folder of folders) {
-        const slug = folder 
+        const slug = folder
         const externalResources = pageResources(slug, resources)
         const [tree, file] = folderDescriptions[folder]
         const componentData: QuartzComponentProps = {
@@ -63,7 +69,7 @@ export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
           externalResources
         )
 
-        const fp = file.data.slug + ".html"
+        const fp = file.data.slug! + ".html" as FilePath
         await emit({
           content,
           slug: file.data.slug!,

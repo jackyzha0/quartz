@@ -1,5 +1,5 @@
 import { GlobalConfiguration } from "../../cfg"
-import { CanonicalSlug, ClientSlug } from "../../path"
+import { CanonicalSlug, ClientSlug, FilePath, ServerSlug, canonicalizeServer } from "../../path"
 import { QuartzEmitterPlugin } from "../types"
 import path from "path"
 
@@ -65,10 +65,10 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
   return {
     name: "ContentIndex",
     async emit(_contentDir, cfg, content, _resources, emit) {
-      const emitted: string[] = []
+      const emitted: FilePath[] = []
       const linkIndex: ContentIndex = new Map()
       for (const [_tree, file] of content) {
-        const slug = file.data.slug!
+        const slug = canonicalizeServer(file.data.slug!)
         const date = file.data.dates?.modified ?? new Date()
         if (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) {
         linkIndex.set(slug, {
@@ -85,22 +85,22 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       if (opts?.enableSiteMap) {
         await emit({
           content: generateSiteMap(cfg, linkIndex),
-          slug: "sitemap",
+          slug: "sitemap" as ServerSlug,
           ext: ".xml"
         })
-        emitted.push("sitemap.xml")
+        emitted.push("sitemap.xml" as FilePath)
       }
 
       if (opts?.enableRSS) {
         await emit({
           content: generateRSSFeed(cfg, linkIndex),
-          slug: "index",
+          slug: "index" as ServerSlug,
           ext: ".xml"
         })
-        emitted.push("index.xml")
+        emitted.push("index.xml" as FilePath)
       }
 
-      const fp = path.join("static", "contentIndex")
+      const fp = path.join("static", "contentIndex") as ServerSlug
       const simplifiedIndex = Object.fromEntries(
         Array.from(linkIndex).map(([slug, content]) => {
           // remove description and from content index as nothing downstream
@@ -117,7 +117,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
         slug: fp,
         ext: ".json",
       })
-      emitted.push(`${fp}.json`)
+      emitted.push(`${fp}.json` as FilePath)
 
       return emitted
     },

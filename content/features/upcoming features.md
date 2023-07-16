@@ -1,5 +1,7 @@
 
 - fixes
+	- changing `_index` files
+	- typography
 - CLI    
     - update
     - push
@@ -30,3 +32,7 @@
         - [https://github.com/jackyzha0/quartz/issues/331](https://github.com/jackyzha0/quartz/issues/331)
     - block links: [https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note](https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note)
     - note/header/block transcludes: [https://help.obsidian.md/Linking+notes+and+files/Embedding+files](https://help.obsidian.md/Linking+notes+and+files/Embedding+files)
+- parse all images in page
+	- use this for page lists if applicable?
+- CV mode?
+	- with print stylesheet

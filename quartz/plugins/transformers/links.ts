@@ -1,5 +1,5 @@
 import { QuartzTransformerPlugin } from "../types"
-import { CanonicalSlug, transformInternalLink } from "../../path"
+import { CanonicalSlug, RelativeURL, canonicalizeServer, joinSegments, pathToRoot, resolveRelative, splitAnchor, transformInternalLink } from "../../path"
 import path from "path"
 import { visit } from 'unist-util-visit'
 import isAbsoluteUrl from "is-absolute-url"
@@ -9,15 +9,11 @@ interface Options {
   markdownLinkResolution: 'absolute' | 'relative' | 'shortest'
   /** Strips folders from a link so that it looks nice */
   prettyLinks: boolean
-  indexAnchorLinks: boolean
-  indexExternalLinks: boolean
 }
 
 const defaultOptions: Options = {
   markdownLinkResolution: 'absolute',
   prettyLinks: true,
-  indexAnchorLinks: false,
-  indexExternalLinks: false,
 }
 
 export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
@@ -27,32 +23,34 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
     htmlPlugins() {
       return [() => {
         return (tree, file) => {
-          const curSlug = file.data.slug!
-          const transformLink = (target: string) => {
-            const targetSlug = transformInternalLink(target) 
-            if (opts.markdownLinkResolution === 'relative' && !path.isAbsolute(targetSlug)) {
-              return './' + relative(curSlug, targetSlug)
+          const curSlug = canonicalizeServer(file.data.slug!)
+          const transformLink = (target: string): RelativeURL => {
+            const targetSlug = transformInternalLink(target).slice("./".length)
+            let [targetCanonical, targetAnchor] = splitAnchor(targetSlug)
+            if (opts.markdownLinkResolution === 'relative') {
+              return targetSlug as RelativeURL
             } else if (opts.markdownLinkResolution === 'shortest') {
               // https://forum.obsidian.md/t/settings-new-link-format-what-is-shortest-path-when-possible/6748/5
               const allSlugs = file.data.allSlugs!
 
               // if the file name is unique, then it's just the filename
               const matchingFileNames = allSlugs.filter(slug => {
-                const parts = toServerSlug(slug).split(path.posix.sep)
+                const parts = slug.split(path.posix.sep)
                 const fileName = parts.at(-1)
-                return targetSlug === fileName
+                return targetCanonical === fileName
               })
 
               if (matchingFileNames.length === 1) {
-                const targetSlug = toServerSlug(matchingFileNames[0])
-                return './' + relativeToRoot(curSlug, targetSlug)
+                const targetSlug = canonicalizeServer(matchingFileNames[0])
+                return resolveRelative(curSlug, targetSlug) + targetAnchor as RelativeURL
               }
 
               // if it's not unique, then it's the absolute path from the vault root
               // (fall-through case)
             }
+
             // treat as absolute
-            return './' + relativeToRoot(curSlug, targetSlug)
+            return joinSegments(pathToRoot(curSlug), targetSlug) as RelativeURL
           }
 
           const outgoing: Set<CanonicalSlug> = new Set()
@@ -63,26 +61,15 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
               node.properties &&
               typeof node.properties.href === 'string'
             ) {
-              let dest = node.properties.href
+              let dest = node.properties.href as RelativeURL
               node.properties.className = isAbsoluteUrl(dest) ? "external" : "internal"
 
               // don't process external links or intra-document anchors
               if (!(isAbsoluteUrl(dest) || dest.startsWith("#"))) {
-                node.properties.href = transformLink(dest)
-              }
-
-              dest = node.properties.href
-              if (dest.startsWith(".")) {
-                const normalizedPath = path.normalize(path.join(curSlug, dest))
-                outgoing.add(trimPathSuffix(normalizedPath))
-              } else if (dest.startsWith("#")) {
-                if (opts.indexAnchorLinks) {
-                  outgoing.add(dest)
-                }
-              } else {
-                if (opts.indexExternalLinks) {
-                  outgoing.add(dest)
-                }
+                dest = node.properties.href = transformLink(dest)
+                const canonicalDest = path.normalize(joinSegments(curSlug, dest))
+                const [destCanonical, _destAnchor] = splitAnchor(canonicalDest)
+                outgoing.add(destCanonical as CanonicalSlug)
               }
 
               // rewrite link internals if prettylinks is on

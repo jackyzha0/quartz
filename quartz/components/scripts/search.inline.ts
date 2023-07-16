@@ -1,13 +1,14 @@
 import { Document } from "flexsearch"
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
-import { registerEscapeHandler, clientSideRelativePath, removeAllChildren } from "./util"
-import { CanonicalSlug } from "../../path"
+import { registerEscapeHandler, removeAllChildren } from "./util"
+import { CanonicalSlug, getClientSlug, resolveRelative } from "../../path"
 
 interface Item {
   slug: CanonicalSlug,
   title: string,
   content: string,
 }
+
 let index: Document<Item> | undefined = undefined
 
 const contextWindowWords = 30
@@ -113,8 +114,8 @@ document.addEventListener("nav", async (e: unknown) => {
     button.id = slug
     button.innerHTML = `<h3>${title}</h3><p>${content}</p>`
     button.addEventListener('click', () => {
-      const targ = clientSideRelativePath(currentSlug, slug)
-      window.spaNavigate(new URL(targ))
+      const targ = resolveRelative(currentSlug, slug)
+      window.spaNavigate(new URL(targ, getClientSlug(window)))
     })
     return button
   }
@@ -137,9 +138,9 @@ document.addEventListener("nav", async (e: unknown) => {
   function onType(e: HTMLElementEventMap["input"]) {
     const term = (e.target as HTMLInputElement).value
     const searchResults = index?.search(term, numSearchResults) ?? []
-    const getByField = (field: string): string[] => {
+    const getByField = (field: string): CanonicalSlug[] => {
       const results = searchResults.filter((x) => x.field === field)
-      return results.length === 0 ? [] : [...results[0].result] as string[]
+      return results.length === 0 ? [] : [...results[0].result] as CanonicalSlug[]
     }
 
     // order titles ahead of content

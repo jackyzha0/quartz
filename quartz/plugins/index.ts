@@ -55,17 +55,17 @@ function joinScripts(scripts: string[]): string {
 export async function emitComponentResources(cfg: GlobalConfiguration, res: ComponentResources, emit: EmitCallback): Promise<FilePath[]> {
   const fps = await Promise.all([
     emit({
-      slug: "index",
+      slug: "index" as ServerSlug,
       ext: ".css",
       content: joinStyles(cfg.theme, styles, ...res.css)
     }),
     emit({
-      slug: "prescript",
+      slug: "prescript" as ServerSlug,
       ext: ".js",
       content: joinScripts(res.beforeDOMLoaded)
     }),
     emit({
-      slug: "postscript",
+      slug: "postscript" as ServerSlug,
       ext: ".js",
       content: joinScripts(res.afterDOMLoaded)
     })

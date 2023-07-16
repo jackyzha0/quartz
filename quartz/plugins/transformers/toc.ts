@@ -3,7 +3,6 @@ import { Root } from "mdast"
 import { visit } from "unist-util-visit"
 import { toString } from "mdast-util-to-string"
 import { slug as slugAnchor } from 'github-slugger'
-import { CanonicalSlug } from "../../path"
 
 export interface Options {
   maxDepth: 1 | 2 | 3 | 4 | 5 | 6,
@@ -20,7 +19,7 @@ const defaultOptions: Options = {
 interface TocEntry {
   depth: number,
   text: string,
-  slug: CanonicalSlug
+  slug: string // this is just the anchor (#some-slug), not the canonical slug
 }
 
 export const TableOfContents: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {

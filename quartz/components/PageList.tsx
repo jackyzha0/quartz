@@ -1,7 +1,6 @@
-import { relativeToRoot } from "../path"
+import { CanonicalSlug, canonicalizeServer, resolveRelative } from "../path"
 import { QuartzPluginData } from "../plugins/vfile"
 import { Date } from "./Date"
-import { clientSideSlug } from "./scripts/util"
 import { QuartzComponentProps } from "./types"
 
 function byDateAndAlphabetical(f1: QuartzPluginData, f2: QuartzPluginData): number {
@@ -22,22 +21,23 @@ function byDateAndAlphabetical(f1: QuartzPluginData, f2: QuartzPluginData): numb
 }
 
 export function PageList({ fileData, allFiles }: QuartzComponentProps) {
-  const slug = fileData.slug!
+  const slug = canonicalizeServer(fileData.slug!)
   return <ul class="section-ul">
     {allFiles.sort(byDateAndAlphabetical).map(page => {
       const title = page.frontmatter?.title
-      const pageSlug = page.slug!
+      const pageSlug = canonicalizeServer(page.slug!)
       const tags = page.frontmatter?.tags ?? []
+
       return <li class="section-li">
         <div class="section">
           {page.dates && <p class="meta">
             <Date date={page.dates.modified} />
           </p>}
           <div class="desc">
-            <h3><a href={clientSideSlug(relativeToRoot(slug, pageSlug))} class="internal">{title}</a></h3>
+            <h3><a href={resolveRelative(slug, pageSlug)} class="internal">{title}</a></h3>
           </div>
           <ul class="tags">
-            {tags.map(tag => <li><a class="internal" href={relativeToRoot(slug, `tags/${tag}`)}>#{tag}</a></li>)}
+            {tags.map(tag => <li><a class="internal" href={resolveRelative(slug, `tags/${tag}` as CanonicalSlug)}>#{tag}</a></li>)}
           </ul>
         </div>
       </li>

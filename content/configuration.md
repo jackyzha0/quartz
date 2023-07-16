@@ -40,7 +40,7 @@ This part of the configuration concerns anything that can affect the whole site.
 		- `dark`: header text and icons
 		- `secondary`: link colour, current [[graph view|graph]] node
 		- `tertiary`: hover states and visited [[graph view|graph]] nodes
-		- `highlight`: internal link background, highlighted text, highlighted [[syntax highlighting|lines of code]]
+		- `highlight`: internal link background, highlighted text, [[syntax highlighting|highlighted lines of code]]
 
 ## Plugins
 You can think of Quartz plugins as a series of transformations over content.
@@ -62,7 +62,7 @@ plugins: {
 By adding, removing, and reordering plugins from the `tranformers`, `filters`, and `emitters` fields, you can customize the behaviour of Quartz.
 
 > [!note]
-> Note that each node is modified by every transformer *in order*. Some transformers are position-sensitive so you may need to take special note of whether it needs come before or after any other particular plugins. 
+> Each node is modified by every transformer *in order*. Some transformers are position-sensitive so you may need to take special note of whether it needs come before or after any other particular plugins. 
 
 Additionally, plugins may also have their own configuration settings that you can pass in. For example, the [[Latex]] plugin allows you to pass in a field specifying the `renderEngine` to choose between Katex and MathJax.
 

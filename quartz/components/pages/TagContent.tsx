@@ -3,14 +3,14 @@ import { Fragment, jsx, jsxs } from 'preact/jsx-runtime'
 import { toJsxRuntime } from "hast-util-to-jsx-runtime"
 import style from '../styles/listPage.scss'
 import { PageList } from "../PageList"
-import { toServerSlug } from "../../path"
+import { ServerSlug, canonicalizeServer } from "../../path"
 
 function TagContent(props: QuartzComponentProps) {
   const { tree, fileData, allFiles } = props
   const slug = fileData.slug
 
   if (slug?.startsWith("tags/")) {
-    const tag = toServerSlug(slug.slice("tags/".length))
+    const tag = canonicalizeServer(slug.slice("tags/".length) as ServerSlug)
     const allPagesWithTag = allFiles.filter(file => (file.frontmatter?.tags ?? []).includes(tag))
     const listProps = {
       ...props,
@@ -27,7 +27,7 @@ function TagContent(props: QuartzComponentProps) {
       </div>
     </div>
   } else {
-    throw `Component "TagContent" tried to render a non-tag page: ${slug}`
+    throw new Error(`Component "TagContent" tried to render a non-tag page: ${slug}`)
   }
 }
 
