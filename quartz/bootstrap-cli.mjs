@@ -128,16 +128,6 @@ yargs(hideBin(process.argv))
       ]
     }))
 
-    // TODO
-    const linkResolutionStrategy = exitIfCancel(await select({
-      message: `Choose how Quartz should resolve links in your content. You can change this later in \`quartz.config.ts\`.`,
-      options: [
-        { value: 'absolute', label: "Treat links as absolute path", hint: "for content made for Quartz 3 and Hugo" },
-        { value: 'shortest', label: "Treat links as shortest path", hint: "for most Obsidian vaults" },
-        { value: 'relative', label: "Treat links as relative paths", hint: "for just normal Markdown files" },
-      ]
-    }))
-
     async function rmContentFolder() {
       const contentStat = await fs.promises.lstat(contentFolder)
       if (contentStat) {
@@ -182,6 +172,16 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
 `
       )
     }
+    
+    // get a prefered link resolution strategy
+    const linkResolutionStrategy = exitIfCancel(await select({
+      message: `Choose how Quartz should resolve links in your content. You can change this later in \`quartz.config.ts\`.`,
+      options: [
+        { value: 'absolute', label: "Treat links as absolute path", hint: "for content made for Quartz 3 and Hugo" },
+        { value: 'shortest', label: "Treat links as shortest path", hint: "for most Obsidian vaults" },
+        { value: 'relative', label: "Treat links as relative paths", hint: "for just normal Markdown files" },
+      ]
+    }))
 
     // now, do config changes
     const configFilePath = path.join(cwd, "quartz.config.ts")
