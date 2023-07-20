@@ -10,12 +10,59 @@ import fs from 'fs'
 import { intro, isCancel, outro, select, text } from '@clack/prompts'
 import { rimraf } from 'rimraf'
 import prettyBytes from 'pretty-bytes'
+import { spawnSync } from 'child_process'
 
+const UPSTREAM_NAME = 'upstream'
+const QUARTZ_SOURCE_BRANCH = 'v4-alpha'
+const cwd = process.cwd()
+const cacheDir = path.join(cwd, ".quartz-cache")
 const cacheFile = "./.quartz-cache/transpiled-build.mjs"
 const fp = "./quartz/build.ts"
 const { version } = JSON.parse(readFileSync("./package.json").toString())
+const contentCacheFolder = path.join(cacheDir, "content-cache")
 
-export const BuildArgv = {
+const CommonArgv = {
+  directory: {
+    string: true,
+    alias: ['d'],
+    default: 'content',
+    describe: 'directory to look for content files'
+  },
+  verbose: {
+    boolean: true,
+    alias: ['v'],
+    default: false,
+    describe: 'print out extra logging information'
+  }
+}
+
+const SyncArgv = {
+  ...CommonArgv,
+  commit: {
+    boolean: true,
+    default: true,
+    describe: 'create a git commit for your unsaved changes'
+  },
+  push: {
+    boolean: true,
+    default: true,
+    describe: 'push updates to your Quartz fork'
+  },
+  force: {
+    boolean: true,
+    alias: ['f'],
+    default: true,
+    describe: 'whether to apply the --force flag to git commands'
+  },
+  pull: {
+    boolean: true,
+    default: true,
+    describe: 'pull updates from your Quartz fork'
+  }
+}
+
+const BuildArgv = {
+  ...CommonArgv,
   output: {
     string: true,
     alias: ['o'],
@@ -32,19 +79,8 @@ export const BuildArgv = {
     default: 8080,
     describe: 'port to serve Quartz on'
   },
-  directory: {
-    string: true,
-    alias: ['d'],
-    default: 'content',
-    describe: 'directory to look for content files'
-  },
-  verbose: {
-    boolean: true,
-    alias: ['v'],
-    default: false,
-    describe: 'print out extra logging information'
-  }
 }
+
 
 function escapePath(fp) {
   return fp
@@ -64,15 +100,24 @@ function exitIfCancel(val) {
   }
 }
 
+async function stashContentFolder(contentFolder) {
+  await fs.promises.cp(contentFolder, contentCacheFolder, { force: true, recursive: true, verbatimSymlinks: true, preserveTimestamps: true })
+  await fs.promises.rm(contentFolder, { force: true, recursive: true })
+}
+
+async function popContentFolder(contentFolder) {
+  await fs.promises.cp(contentCacheFolder, contentFolder, { force: true, recursive: true, verbatimSymlinks: true, preserveTimestamps: true })
+  await fs.promises.rm(contentCacheFolder, { force: true, recursive: true })
+}
+
 yargs(hideBin(process.argv))
   .scriptName("quartz")
   .version(version)
   .usage('$0 <cmd> [args]')
-  .command('create', 'Initialize Quartz', async (_argv) => {
+  .command('create', 'Initialize Quartz', CommonArgv, async argv => {
     console.log()
     intro(chalk.bgGreen.black(` Quartz v${version} `))
-    const cwd = process.cwd()
-    const contentFolder = path.join(cwd, "content")
+    const contentFolder = path.join(cwd, argv.directory)
     const setupStrategy = exitIfCancel(await select({
       message: `Choose how to initialize the content in \`${contentFolder}\``,
       options: [
@@ -150,13 +195,45 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
    • Hosting your Quartz online (see: https://quartz.jzhao.xyz/setup/hosting)
 `)
   })
-  .command('update', 'Get the latest Quartz updates', () => {
-    // TODO
+  .command('update', 'Get the latest Quartz updates', CommonArgv, async argv => {
+    const contentFolder = path.join(cwd, argv.directory)
+    console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
+    console.log('Backing up your content')
+    await stashContentFolder(contentFolder)
+    console.log("Pulling updates... you may need to resolve some `git` conflicts if you've made changes to components or plugins.")
+    spawnSync('git', ['pull', UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH], { stdio: 'inherit' })
+    await popContentFolder(contentFolder)
+    console.log(chalk.green('Done!'))
   })
-  .command('push', 'Push your Quartz updates to GitHub', () => {
-    // TODO
+  .command('sync', 'Sync your Quartz to and from GitHub.', SyncArgv, async argv => {
+    const contentFolder = path.join(cwd, argv.directory)
+    console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
+    console.log('Backing up your content')
+
+    if (argv.commit) {
+      const currentTimestamp = new Date().toLocaleString('en-US', { dateStyle: "medium", timeStyle: "short" })
+      spawnSync('git', ['commit', '-am', `Quartz sync: ${currentTimestamp}`], { stdio: 'inherit' })
+    }
+
+    await stashContentFolder(contentFolder)
+
+    if (argv.pull) {
+      console.log("Pulling updates from your repository. You may need to resolve some `git` conflicts if you've made changes to components or plugins.")
+      spawnSync('git', ['pull', 'origin', QUARTZ_SOURCE_BRANCH], { stdio: 'inherit' })
+    }
+
+    await popContentFolder(contentFolder)
+    if (argv.push) {
+      console.log("Pushing your changes")
+      const args = argv.force ?
+        ['push', '-f', 'origin', QUARTZ_SOURCE_BRANCH] :
+        ['push', 'origin', QUARTZ_SOURCE_BRANCH]
+      spawnSync('git', args, { stdio: 'inherit' })
+    }
+
+    console.log(chalk.green('Done!'))
   })
-  .command('build', 'Build Quartz into a bundle of static HTML files', BuildArgv, async (argv) => {
+  .command('build', 'Build Quartz into a bundle of static HTML files', BuildArgv, async argv => {
     const result = await esbuild.build({
       entryPoints: [fp],
       outfile: path.join("quartz", cacheFile),
@@ -215,7 +292,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     if (argv.verbose) {
       const outputFileName = 'quartz/.quartz-cache/transpiled-build.mjs'
       const meta = result.metafile.outputs[outputFileName]
-      console.log(chalk.gray(`[debug] Successfully transpiled ${Object.keys(meta.inputs).length} files (${prettyBytes(meta.bytes)})`))
+      console.log(`Successfully transpiled ${Object.keys(meta.inputs).length} files (${prettyBytes(meta.bytes)})`)
     }
 
     const { default: init } = await import(cacheFile)
