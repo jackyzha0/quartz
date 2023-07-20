@@ -6,7 +6,7 @@ on:
       - v4-alpha # TODO: update
 
 jobs:
-  deploy:
+  build-and-test:
     runs-on: ubuntu-22.04
     permissions:
       contents: write
