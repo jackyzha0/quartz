@@ -29,14 +29,11 @@ export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
       const folders: Set<CanonicalSlug> = new Set(allFiles.flatMap(data => {
         const slug = data.slug
         const folderName = path.dirname(slug ?? "") as CanonicalSlug
-        if (slug && folderName !== ".") {
+        if (slug && folderName !== "." && folderName !== "tags") {
           return [folderName]
         }
         return []
       }))
-
-      // remove special prefixes
-      folders.delete("tags" as CanonicalSlug)
 
       const folderDescriptions: Record<string, ProcessedContent> = Object.fromEntries([...folders].map(folder => ([
         folder, defaultProcessedContent({ slug: joinSegments(folder, "index") as ServerSlug, frontmatter: { title: `Folder: ${folder}`, tags: [] } })

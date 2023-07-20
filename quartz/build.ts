@@ -61,7 +61,11 @@ export default async function buildQuartz(argv: Argv, version: string) {
         directoryListing: false,
       })
       const status = res.statusCode
-      const statusString = status === 200 ? chalk.green(`[${status}]`) : chalk.red(`[${status}]`)
+      const statusString = (status >= 200 && status < 300) ?
+        chalk.green(`[${status}]`) : 
+        (status >= 300 && status < 400) ?
+        chalk.yellow(`[${status}]`) :
+        chalk.red(`[${status}]`) 
       console.log(statusString + chalk.grey(` ${req.url}`))
     })
     server.listen(argv.port)

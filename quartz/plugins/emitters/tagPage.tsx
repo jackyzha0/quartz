@@ -5,7 +5,7 @@ import BodyConstructor from "../../components/Body"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { ProcessedContent, defaultProcessedContent } from "../vfile"
 import { FullPageLayout } from "../../cfg"
-import { CanonicalSlug, FilePath, ServerSlug } from "../../path"
+import { CanonicalSlug, FilePath, ServerSlug, joinSegments } from "../../path"
 
 export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
   if (!opts) {
@@ -27,13 +27,13 @@ export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
 
       const tags: Set<string> = new Set(allFiles.flatMap(data => data.frontmatter?.tags ?? []))
       const tagDescriptions: Record<string, ProcessedContent> = Object.fromEntries([...tags].map(tag => ([
-        tag, defaultProcessedContent({ slug: `tags/${tag}` as ServerSlug, frontmatter: { title: `Tag: ${tag}`, tags: [] } })
+        tag, defaultProcessedContent({ slug: `tags/${tag}/index` as ServerSlug, frontmatter: { title: `Tag: ${tag}`, tags: [] } })
       ])))
 
       for (const [tree, file] of content) {
         const slug = file.data.slug!
         if (slug.startsWith("tags/")) {
-          const tag = slug.slice("tags/".length)
+          const tag = joinSegments(slug.slice("tags/".length), "index")
           if (tags.has(tag)) {
             tagDescriptions[tag] = [tree, file]
           }
@@ -41,7 +41,7 @@ export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
       }
 
       for (const tag of tags) {
-        const slug = `tags/${tag}` as CanonicalSlug
+        const slug = `tags/${tag}/index` as CanonicalSlug
         const externalResources = pageResources(slug, resources)
         const [tree, file] = tagDescriptions[tag]
         const componentData: QuartzComponentProps = {
