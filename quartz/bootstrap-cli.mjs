@@ -295,8 +295,8 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       console.log(`Successfully transpiled ${Object.keys(meta.inputs).length} files (${prettyBytes(meta.bytes)})`)
     }
 
-    const { default: init } = await import(cacheFile)
-    init(argv, version)
+    const { default: buildQuartz } = await import(cacheFile)
+    buildQuartz(argv, version)
   })
   .showHelpOnFail(false)
   .help()
