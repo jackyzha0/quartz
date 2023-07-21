@@ -1,37 +1,33 @@
+---
+draft: true
+---
 
-- fixes
-	- typography
-- CLI    
-    - update
-    - push
-    - create → ask for link resolution strategy
-- cursor chat extension    
-- [https://giscus.app/](https://giscus.app/) extension
+- typography fixes
+- parse tags in content
 - breadcrumbs component
 - filetree component
 - recent notes component
+- cursor chat extension
+- [https://giscus.app/](https://giscus.app/) extension
 - custom md blocks (e.g. for poetry)
 - sidenotes? [https://github.com/capnfabs/paperesque](https://github.com/capnfabs/paperesque)
-- show orphans in graph
-- parse tags in content
 - watch mode
+	- watch for markdown changes and quartz config changes
+	- markdown changes only involve processing that single markdown file (at least for parsing) and then rerunning the filter and emitters
+	- config changes rebuild the whole thing
 - direct match in search using double quotes
-- obsidian quirks to account for:
-    - attachments path
-    - [https://help.obsidian.md/Advanced+topics/Using+Obsidian+URI](https://help.obsidian.md/Advanced+topics/Using+Obsidian+URI)
-    - angle bracket url escape [https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax#Escape+blank+spaces+in+links](https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax#Escape+blank+spaces+in+links) 
-    - [https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax#Task+lists](https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax#Task+lists) task list styling
-    - [https://help.obsidian.md/Editing+and+formatting/Tags#Nested+tags](https://help.obsidian.md/Editing+and+formatting/Tags#Nested+tags) nested tags??
-    - public metadata [https://help.obsidian.md/Editing+and+formatting/Metadata#Metadata+for+Obsidian+Publish](https://help.obsidian.md/Editing+and+formatting/Metadata#Metadata+for+Obsidian+Publish)
-    - metadata aliases: [https://help.obsidian.md/Editing+and+formatting/Metadata#Predefined+metadata](https://help.obsidian.md/Editing+and+formatting/Metadata#Predefined+metadata)
-    - \%\% style comments
-    - audio/video embed styling
-    - Canvas
-    - mermaid styling: [https://mermaid.js.org/config/theming.html#theme-variables-reference-table](https://mermaid.js.org/config/theming.html#theme-variables-reference-table)
-        - [https://github.com/jackyzha0/quartz/issues/331](https://github.com/jackyzha0/quartz/issues/331)
-    - block links: [https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note](https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note)
-    - note/header/block transcludes: [https://help.obsidian.md/Linking+notes+and+files/Embedding+files](https://help.obsidian.md/Linking+notes+and+files/Embedding+files)
-- parse all images in page
-	- use this for page lists if applicable?
-- CV mode?
-	- with print stylesheet
+- attachments path
+- [https://help.obsidian.md/Advanced+topics/Using+Obsidian+URI](https://help.obsidian.md/Advanced+topics/Using+Obsidian+URI)
+- [https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax#Task+lists](https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax#Task+lists) task list styling
+- [https://help.obsidian.md/Editing+and+formatting/Tags#Nested+tags](https://help.obsidian.md/Editing+and+formatting/Tags#Nested+tags) nested tags??
+- public metadata [https://help.obsidian.md/Editing+and+formatting/Metadata#Metadata+for+Obsidian+Publish](https://help.obsidian.md/Editing+and+formatting/Metadata#Metadata+for+Obsidian+Publish)
+- metadata aliases: [https://help.obsidian.md/Editing+and+formatting/Metadata#Predefined+metadata](https://help.obsidian.md/Editing+and+formatting/Metadata#Predefined+metadata)
+- \%\% style comments
+- audio/video embed styling
+- Canvas
+- mermaid styling: [https://mermaid.js.org/config/theming.html#theme-variables-reference-table](https://mermaid.js.org/config/theming.html#theme-variables-reference-table)
+	- [https://github.com/jackyzha0/quartz/issues/331](https://github.com/jackyzha0/quartz/issues/331)
+- block links: [https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note](https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note)
+- note/header/block transcludes: [https://help.obsidian.md/Linking+notes+and+files/Embedding+files](https://help.obsidian.md/Linking+notes+and+files/Embedding+files)
+- parse all images in page: use this for page lists if applicable?
+- CV mode? with print stylesheet
