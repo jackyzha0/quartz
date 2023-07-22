@@ -31,6 +31,7 @@
     "@floating-ui/dom": "^1.4.0",
     "@napi-rs/simple-git": "^0.1.8",
     "chalk": "^4.1.2",
+    "chokidar": "^3.5.3",
     "cli-spinner": "^0.2.10",
     "d3": "^7.8.5",
     "esbuild-sass-plugin": "^2.9.0",
@@ -72,6 +73,7 @@
     "unist-util-visit": "^4.1.2",
     "vfile": "^5.3.7",
     "workerpool": "^6.4.0",
+    "ws": "^8.13.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
@@ -84,6 +86,7 @@
     "@types/pretty-time": "^1.1.2",
     "@types/serve-handler": "^6.1.1",
     "@types/workerpool": "^6.4.0",
+    "@types/ws": "^8.5.5",
     "@types/yargs": "^17.0.24",
     "esbuild": "^0.18.11",
     "tsx": "^3.12.7",
