@@ -7,7 +7,6 @@ import { EmitCallback } from "../plugins/types"
 import { ProcessedContent } from "../plugins/vfile"
 import { FilePath, QUARTZ, slugifyFilePath } from "../path"
 import { globbyStream } from "globby"
-import chalk from "chalk"
 
 // @ts-ignore
 import spaRouterScript from '../components/scripts/spa.inline'
@@ -21,7 +20,7 @@ import { QuartzLogger } from "../log"
 import { googleFontHref } from "../theme"
 import { trace } from "../trace"
 
-function addGlobalPageResources(cfg: GlobalConfiguration, staticResources: StaticResources, componentResources: ComponentResources) {
+function addGlobalPageResources(cfg: GlobalConfiguration, reloadScript: boolean, staticResources: StaticResources, componentResources: ComponentResources) {
   staticResources.css.push(googleFontHref(cfg.theme))
 
   // popovers
@@ -64,9 +63,20 @@ function addGlobalPageResources(cfg: GlobalConfiguration, staticResources: Stati
       document.dispatchEvent(event)`
     )
   }
+
+  if (reloadScript) {
+    staticResources.js.push({
+      loadTime: "afterDOMReady",
+      contentType: "inline",
+      script: `
+        const socket = new WebSocket('ws://localhost:3001')
+        socket.addEventListener('message', () => document.location.reload())
+      `
+    })
+  }
 }
 
-export async function emitContent(contentFolder: string, output: string, cfg: QuartzConfig, content: ProcessedContent[], verbose: boolean) {
+export async function emitContent(contentFolder: string, output: string, cfg: QuartzConfig, content: ProcessedContent[], reloadScript: boolean, verbose: boolean) {
   const perf = new PerfTimer()
   const log = new QuartzLogger(verbose)
 
@@ -88,18 +98,18 @@ export async function emitContent(contentFolder: string, output: string, cfg: Qu
   // important that this goes *after* component scripts 
   // as the "nav" event gets triggered here and we should make sure 
   // that everyone else had the chance to register a listener for it
-  addGlobalPageResources(cfg.configuration, staticResources, componentResources)
+  addGlobalPageResources(cfg.configuration, reloadScript, staticResources, componentResources)
 
-  // emit in one go
+  let emittedFiles = 0
   const emittedResources = await emitComponentResources(cfg.configuration, componentResources, emit)
   if (verbose) {
     for (const file of emittedResources) {
+      emittedFiles += 1
       console.log(`[emit:Resources] ${file}`)
     }
   }
 
   // emitter plugins
-  let emittedFiles = 0
   for (const emitter of cfg.plugins.emitters) {
     try {
       const emitted = await emitter.emit(contentFolder, cfg.configuration, content, staticResources, emit)

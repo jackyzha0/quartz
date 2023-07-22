@@ -30,4 +30,3 @@ For a comprehensive list of features, visit the [features page](/features). You 
 
 ### 🚧 Troubleshooting
 Having trouble with Quartz? Try searching for your issue using the search feature. If you're still having trouble, feel free to [submit an issue](https://github.com/jackyzha0/quartz/issues) if you feel you found a bug or ask for help in our [Discord Community](https://discord.gg/cRFFHYye7t).
-

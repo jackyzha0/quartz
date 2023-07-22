@@ -72,7 +72,7 @@ const BuildArgv = {
   serve: {
     boolean: true,
     default: false,
-    describe: 'run a local server to preview your Quartz'
+    describe: 'run a local server to live-preview your Quartz'
   },
   port: {
     number: true,
@@ -255,6 +255,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
           setup(build) {
             build.onLoad({ filter: /\.inline\.(ts|js)$/ }, async (args) => {
               let text = await promises.readFile(args.path, 'utf8')
+
               // remove default exports that we manually inserted
               text = text.replace('export default', '')
               text = text.replace('export', '')
