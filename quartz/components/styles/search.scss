@@ -1,7 +1,7 @@
 @use "../../styles/variables.scss" as *;
 
 .search {
-  min-width: 5rem;
+  min-width: fit-content;
   max-width: 14rem;
   flex-grow: 0.3;
 

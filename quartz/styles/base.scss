@@ -125,14 +125,14 @@ a {
         flex-direction: row;
         padding: 0;
         width: initial;
-        margin-top: 4rem;
+        margin-top: 2rem;
       }
     }
 
     & .sidebar.left {
       left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
       @media all and (max-width: $fullPageWidth) {
-        gap: 1rem;
+        gap: 0rem;
         align-items: center;
       }
     }
