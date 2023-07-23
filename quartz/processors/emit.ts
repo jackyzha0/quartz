@@ -143,7 +143,7 @@ export async function emitContent(
       }
     } catch (err) {
       trace(`Failed to emit from plugin \`${emitter.name}\``, err as Error)
-      process.exit(1)
+      throw err
     }
   }
 
@@ -173,5 +173,5 @@ export async function emitContent(
     }
   }
 
-  log.success(`Emitted ${emittedFiles} files to \`${output}\` in ${perf.timeSince()}`)
+  log.end(`Emitted ${emittedFiles} files to \`${output}\` in ${perf.timeSince()}`)
 }

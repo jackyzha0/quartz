@@ -23,7 +23,7 @@ interface Argv {
   port: number
 }
 
-export default async function buildQuartz(argv: Argv, version: string) {
+async function buildQuartz(argv: Argv, version: string) {
   console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
   const perf = new PerfTimer()
   const output = argv.output
@@ -82,23 +82,29 @@ export default async function buildQuartz(argv: Argv, version: string) {
       if (!ignored(fp)) {
         console.log(chalk.yellow(`Detected change in ${fp}, rebuilding...`))
         const fullPath = `${argv.directory}${path.sep}${fp}` as FilePath
-        if (action === "add" || action === "change") {
-          const [parsedContent] = await parseMarkdown(
-            cfg.plugins.transformers,
-            argv.directory,
-            [fullPath],
-            argv.verbose,
-          )
-          contentMap.set(fullPath, parsedContent)
-        } else if (action === "unlink") {
-          contentMap.delete(fullPath)
+
+        try {
+          if (action === "add" || action === "change") {
+            const [parsedContent] = await parseMarkdown(
+              cfg.plugins.transformers,
+              argv.directory,
+              [fullPath],
+              argv.verbose,
+            )
+            contentMap.set(fullPath, parsedContent)
+          } else if (action === "unlink") {
+            contentMap.delete(fullPath)
+          }
+
+          await rimraf(output)
+          const parsedFiles = [...contentMap.values()]
+          const filteredContent = filterContent(cfg.plugins.filters, parsedFiles, argv.verbose)
+          await emitContent(argv.directory, output, cfg, filteredContent, argv.serve, argv.verbose)
+          console.log(chalk.green(`Done rebuilding in ${perf.timeSince("rebuild")}`))
+        } catch {
+          console.log(chalk.yellow(`Rebuild failed. Waiting on a change to fix the error...`))
         }
 
-        await rimraf(output)
-        const parsedFiles = [...contentMap.values()]
-        const filteredContent = filterContent(cfg.plugins.filters, parsedFiles, argv.verbose)
-        await emitContent(argv.directory, output, cfg, filteredContent, argv.serve, argv.verbose)
-        console.log(chalk.green(`Done rebuilding in ${perf.timeSince("rebuild")}`))
         connections.forEach((conn) => conn.send("rebuild"))
       }
     }
@@ -131,5 +137,14 @@ export default async function buildQuartz(argv: Argv, version: string) {
     server.listen(argv.port)
     console.log(chalk.cyan(`Started a Quartz server listening at http://localhost:${argv.port}`))
     console.log("hint: exit with ctrl+c")
+  }
+}
+
+export default async (argv: Argv, version: string) => {
+  try {
+    await buildQuartz(argv, version)
+  } catch {
+    console.log(chalk.red("\nExiting Quartz due to a fatal error"))
+    process.exit(1)
   }
 }

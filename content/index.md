@@ -16,9 +16,11 @@ npm i
 npx quartz create
 ```
 
-This will guide you through initializing your Quartz with content and previewing it locally.
+This will guide you through initializing your Quartz with content.
 
 When you're ready, you can edit `quartz.config.ts` to customize and configure Quartz more. Read the [[configuration]] page for more information on what each field in the configuration does.
+
+Then, when you're ready, see how to [[build]] and [[hosting|host]] Quartz.
 
 ## 🔧 Features
 
