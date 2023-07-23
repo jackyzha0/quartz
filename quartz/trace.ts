@@ -5,7 +5,9 @@ export function trace(msg: string, err: Error) {
   const stack = err.stack
   console.log()
   console.log(
-    chalk.bgRed.white.bold(" ERROR ") +
+    "\n" +
+      chalk.bgRed.black.bold(" ERROR ") +
+      "\n" +
       chalk.red(` ${msg}`) +
       (err.message.length > 0 ? `: ${err.message}` : ""),
   )

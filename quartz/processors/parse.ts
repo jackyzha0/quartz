@@ -107,7 +107,7 @@ export function createFileParser(
         }
       } catch (err) {
         trace(`\nFailed to process \`${fp}\``, err as Error)
-        process.exit(1)
+        throw err
       }
     }
 
@@ -135,9 +135,14 @@ export async function parseMarkdown(
   let res: ProcessedContent[] = []
   log.start(`Parsing input files using ${concurrency} threads`)
   if (concurrency === 1) {
-    const processor = createProcessor(transformers)
-    const parse = createFileParser(transformers, baseDir, fps, allSlugs, verbose)
-    res = await parse(processor)
+    try {
+      const processor = createProcessor(transformers)
+      const parse = createFileParser(transformers, baseDir, fps, allSlugs, verbose)
+      res = await parse(processor)
+    } catch (error) {
+      log.end()
+      throw error
+    }
   } else {
     await transpileWorkerScript()
     const pool = workerpool.pool("./quartz/bootstrap-worker.mjs", {
@@ -156,6 +161,6 @@ export async function parseMarkdown(
     await pool.terminate()
   }
 
-  log.success(`Parsed ${res.length} Markdown files in ${perf.timeSince()}`)
+  log.end(`Parsed ${res.length} Markdown files in ${perf.timeSince()}`)
   return res
 }

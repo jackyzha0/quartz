@@ -17,10 +17,12 @@ export class QuartzLogger {
     }
   }
 
-  success(text: string) {
+  end(text?: string) {
     if (!this.verbose) {
       this.spinner!.stop(true)
     }
-    console.log(text)
+    if (text) {
+      console.log(text)
+    }
   }
 }

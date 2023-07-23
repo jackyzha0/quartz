@@ -2,7 +2,6 @@
 draft: true
 ---
 
-- typography fixes
 - parse tags in content
 - breadcrumbs component
 - filetree component
