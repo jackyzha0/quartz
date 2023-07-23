@@ -1,4 +1,4 @@
-name: Build and Test 
+name: Build and Test
 
 on:
   push:
@@ -34,4 +34,4 @@ jobs:
         run: npm test
 
       - name: Ensure Quartz builds
-        run: npx quartz build 
+        run: npx quartz build

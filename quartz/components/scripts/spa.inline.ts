@@ -5,8 +5,9 @@ import { CanonicalSlug, RelativeURL, getCanonicalSlug } from "../../path"
 // https://github.com/natemoo-re/micromorph
 
 const NODE_TYPE_ELEMENT = 1
-let announcer = document.createElement('route-announcer')
-const isElement = (target: EventTarget | null): target is Element => (target as Node)?.nodeType === NODE_TYPE_ELEMENT
+let announcer = document.createElement("route-announcer")
+const isElement = (target: EventTarget | null): target is Element =>
+  (target as Node)?.nodeType === NODE_TYPE_ELEMENT
 const isLocalUrl = (href: string) => {
   try {
     const url = new URL(href)
@@ -16,18 +17,18 @@ const isLocalUrl = (href: string) => {
       }
       return true
     }
-  } catch (e) { }
+  } catch (e) {}
   return false
 }
 
-const getOpts = ({ target }: Event): { url: URL, scroll?: boolean } | undefined => {
+const getOpts = ({ target }: Event): { url: URL; scroll?: boolean } | undefined => {
   if (!isElement(target)) return
   const a = target.closest("a")
   if (!a) return
-  if ('routerIgnore' in a.dataset) return
+  if ("routerIgnore" in a.dataset) return
   const { href } = a
   if (!isLocalUrl(href)) return
-  return { url: new URL(href), scroll: 'routerNoscroll' in a.dataset ? false : undefined }
+  return { url: new URL(href), scroll: "routerNoscroll" in a.dataset ? false : undefined }
 }
 
 function notifyNav(url: CanonicalSlug) {
@@ -44,7 +45,7 @@ async function navigate(url: URL, isBack: boolean = false) {
       window.location.assign(url)
     })
 
-  if (!contents) return;
+  if (!contents) return
   if (!isBack) {
     history.pushState({}, "", url)
     window.scrollTo({ top: 0 })
@@ -54,22 +55,22 @@ async function navigate(url: URL, isBack: boolean = false) {
   if (title) {
     document.title = title
   } else {
-    const h1 = document.querySelector('h1')
+    const h1 = document.querySelector("h1")
     title = h1?.innerText ?? h1?.textContent ?? url.pathname
   }
   if (announcer.textContent !== title) {
     announcer.textContent = title
   }
-  announcer.dataset.persist = ''
+  announcer.dataset.persist = ""
   html.body.appendChild(announcer)
 
   micromorph(document.body, html.body)
 
-  // now, patch head 
-  const elementsToRemove = document.head.querySelectorAll(':not([spa-preserve])')
-  elementsToRemove.forEach(el => el.remove())
-  const elementsToAdd = html.head.querySelectorAll(':not([spa-preserve])')
-  elementsToAdd.forEach(el => document.head.appendChild(el))
+  // now, patch head
+  const elementsToRemove = document.head.querySelectorAll(":not([spa-preserve])")
+  elementsToRemove.forEach((el) => el.remove())
+  const elementsToAdd = html.head.querySelectorAll(":not([spa-preserve])")
+  elementsToAdd.forEach((el) => document.head.appendChild(el))
 
   notifyNav(getCanonicalSlug(window))
   delete announcer.dataset.persist
@@ -101,7 +102,7 @@ function createRouter() {
     })
   }
 
-  return new class Router {
+  return new (class Router {
     go(pathname: RelativeURL) {
       const url = new URL(pathname, window.location.toString())
       return navigate(url, false)
@@ -114,26 +115,30 @@ function createRouter() {
     forward() {
       return window.history.forward()
     }
-  }
+  })()
 }
 
 createRouter()
 notifyNav(getCanonicalSlug(window))
 
-if (!customElements.get('route-announcer')) {
+if (!customElements.get("route-announcer")) {
   const attrs = {
-    'aria-live': 'assertive',
-    'aria-atomic': 'true',
-    'style': 'position: absolute; left: 0; top: 0; clip: rect(0 0 0 0); clip-path: inset(50%); overflow: hidden; white-space: nowrap; width: 1px; height: 1px'
+    "aria-live": "assertive",
+    "aria-atomic": "true",
+    style:
+      "position: absolute; left: 0; top: 0; clip: rect(0 0 0 0); clip-path: inset(50%); overflow: hidden; white-space: nowrap; width: 1px; height: 1px",
   }
-  customElements.define('route-announcer', class RouteAnnouncer extends HTMLElement {
-    constructor() {
-      super()
-    }
-    connectedCallback() {
-      for (const [key, value] of Object.entries(attrs)) {
-        this.setAttribute(key, value)
+  customElements.define(
+    "route-announcer",
+    class RouteAnnouncer extends HTMLElement {
+      constructor() {
+        super()
       }
-    }
-  })
+      connectedCallback() {
+        for (const [key, value] of Object.entries(attrs)) {
+          this.setAttribute(key, value)
+        }
+      }
+    },
+  )
 }

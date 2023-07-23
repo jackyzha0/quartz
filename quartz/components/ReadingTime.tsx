@@ -5,7 +5,11 @@ function ReadingTime({ fileData }: QuartzComponentProps) {
   const text = fileData.text
   if (text) {
     const { text: timeTaken, words } = readingTime(text)
-    return <p class="reading-time">{words} words, {timeTaken}</p>
+    return (
+      <p class="reading-time">
+        {words} words, {timeTaken}
+      </p>
+    )
   } else {
     return null
   }

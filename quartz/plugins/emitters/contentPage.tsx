@@ -8,7 +8,9 @@ import { FilePath, canonicalizeServer } from "../../path"
 
 export const ContentPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
   if (!opts) {
-    throw new Error("ContentPage must be initialized with options specifiying the components to use")
+    throw new Error(
+      "ContentPage must be initialized with options specifiying the components to use",
+    )
   }
 
   const { head: Head, header, beforeBody, pageBody: Content, left, right, footer: Footer } = opts
@@ -22,7 +24,7 @@ export const ContentPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
     },
     async emit(_contentDir, cfg, content, resources, emit): Promise<FilePath[]> {
       const fps: FilePath[] = []
-      const allFiles = content.map(c => c[1].data)
+      const allFiles = content.map((c) => c[1].data)
       for (const [tree, file] of content) {
         const slug = canonicalizeServer(file.data.slug!)
         const externalResources = pageResources(slug, resources)
@@ -32,17 +34,12 @@ export const ContentPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
           cfg,
           children: [],
           tree,
-          allFiles
+          allFiles,
         }
 
-        const content = renderPage(
-          slug,
-          componentData,
-          opts,
-          externalResources
-        )
+        const content = renderPage(slug, componentData, opts, externalResources)
 
-        const fp = file.data.slug + ".html" as FilePath
+        const fp = (file.data.slug + ".html") as FilePath
         await emit({
           content,
           slug: file.data.slug!,
@@ -52,6 +49,6 @@ export const ContentPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
         fps.push(fp)
       }
       return fps
-    }
+    },
   }
 }

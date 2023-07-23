@@ -1,14 +1,14 @@
-import { GlobalConfiguration } from '../cfg'
-import { QuartzComponent } from '../components/types'
-import { StaticResources } from '../resources'
-import { joinStyles } from '../theme'
-import { EmitCallback, PluginTypes } from './types'
-import styles from '../styles/base.scss'
-import { FilePath, ServerSlug } from '../path'
+import { GlobalConfiguration } from "../cfg"
+import { QuartzComponent } from "../components/types"
+import { StaticResources } from "../resources"
+import { joinStyles } from "../theme"
+import { EmitCallback, PluginTypes } from "./types"
+import styles from "../styles/base.scss"
+import { FilePath, ServerSlug } from "../path"
 
 export type ComponentResources = {
-  css: string[],
-  beforeDOMLoaded: string[],
+  css: string[]
+  beforeDOMLoaded: string[]
   afterDOMLoaded: string[]
 }
 
@@ -24,7 +24,7 @@ export function getComponentResources(plugins: PluginTypes): ComponentResources 
   const componentResources = {
     css: new Set<string>(),
     beforeDOMLoaded: new Set<string>(),
-    afterDOMLoaded: new Set<string>()
+    afterDOMLoaded: new Set<string>(),
   }
 
   for (const component of allComponents) {
@@ -39,39 +39,42 @@ export function getComponentResources(plugins: PluginTypes): ComponentResources 
       componentResources.afterDOMLoaded.add(afterDOMLoaded)
     }
   }
-  
+
   return {
     css: [...componentResources.css],
     beforeDOMLoaded: [...componentResources.beforeDOMLoaded],
-    afterDOMLoaded: [...componentResources.afterDOMLoaded]
+    afterDOMLoaded: [...componentResources.afterDOMLoaded],
   }
 }
 
 function joinScripts(scripts: string[]): string {
   // wrap with iife to prevent scope collision
-  return scripts.map(script => `(function () {${script}})();`).join("\n")
+  return scripts.map((script) => `(function () {${script}})();`).join("\n")
 }
 
-export async function emitComponentResources(cfg: GlobalConfiguration, res: ComponentResources, emit: EmitCallback): Promise<FilePath[]> {
+export async function emitComponentResources(
+  cfg: GlobalConfiguration,
+  res: ComponentResources,
+  emit: EmitCallback,
+): Promise<FilePath[]> {
   const fps = await Promise.all([
     emit({
       slug: "index" as ServerSlug,
       ext: ".css",
-      content: joinStyles(cfg.theme, styles, ...res.css)
+      content: joinStyles(cfg.theme, styles, ...res.css),
     }),
     emit({
       slug: "prescript" as ServerSlug,
       ext: ".js",
-      content: joinScripts(res.beforeDOMLoaded)
+      content: joinScripts(res.beforeDOMLoaded),
     }),
     emit({
       slug: "postscript" as ServerSlug,
       ext: ".js",
-      content: joinScripts(res.afterDOMLoaded)
-    })
+      content: joinScripts(res.afterDOMLoaded),
+    }),
   ])
   return fps
-
 }
 
 export function getStaticResourcesFromPlugins(plugins: PluginTypes) {
@@ -93,11 +96,11 @@ export function getStaticResourcesFromPlugins(plugins: PluginTypes) {
   return staticResources
 }
 
-export * from './transformers'
-export * from './filters'
-export * from './emitters'
+export * from "./transformers"
+export * from "./filters"
+export * from "./emitters"
 
-declare module 'vfile' {
+declare module "vfile" {
   // inserted in processors.ts
   interface DataMap {
     slug: ServerSlug

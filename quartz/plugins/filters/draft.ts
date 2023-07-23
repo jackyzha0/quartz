@@ -5,5 +5,5 @@ export const RemoveDrafts: QuartzFilterPlugin<{}> = () => ({
   shouldPublish([_tree, vfile]) {
     const draftFlag: boolean = vfile.data?.frontmatter?.draft ?? false
     return !draftFlag
-  }
+  },
 })

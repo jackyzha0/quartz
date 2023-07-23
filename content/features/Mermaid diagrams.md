@@ -1,5 +1,5 @@
 > [!warning]
-> Wondering why Mermaid diagrams may not be showing up even if you have them enabled? You may need to reorder your plugins so that `Plugin.ObsidianFlavoredMarkdown()` is *after* `Plugin.SyntaxHighlighting()`.
+> Wondering why Mermaid diagrams may not be showing up even if you have them enabled? You may need to reorder your plugins so that `Plugin.ObsidianFlavoredMarkdown()` is _after_ `Plugin.SyntaxHighlighting()`.
 
 ```mermaid
 sequenceDiagram

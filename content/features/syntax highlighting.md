@@ -12,6 +12,7 @@ In short, it generates HTML that looks exactly like your code in an editor like 
 > Syntax highlighting does have an impact on build speed if you have a lot of code snippets in your notes.
 
 ## Formatting
+
 Text inside `backticks` on a line will be formatted like code.
 
 ````
@@ -37,11 +38,12 @@ export function trimPathSuffix(fp: string): string {
 ```
 
 ### Titles
+
 Add a file title to your code block, with text inside double quotes (`""`):
 
 ````
 ```js title="..."
- 
+
 ```
 ````
 
@@ -56,11 +58,12 @@ export function trimPathSuffix(fp: string): string {
 ```
 
 ### Line highlighting
+
 Place a numeric range inside `{}`.
 
 ````
 ```js {1-3,4}
- 
+
 ```
 ````
 
@@ -75,6 +78,7 @@ export function trimPathSuffix(fp: string): string {
 ```
 
 ### Word highlighting
+
 A series of characters, like a literal regex.
 
 ````
@@ -85,16 +89,17 @@ const [name, setName] = useState('Taylor');
 ````
 
 ```js /useState/
-const [age, setAge] = useState(50);
-const [name, setName] = useState('Taylor');
+const [age, setAge] = useState(50)
+const [name, setName] = useState("Taylor")
 ```
 
 ### Line numbers
+
 Syntax highlighting has line numbers configured automatically. If you want to start line numbers at a specific number, use `showLineNumbers{number}`:
 
 ````
 ```js showLineNumbers{number}
- 
+
 ```
 ````
 
@@ -109,6 +114,7 @@ export function trimPathSuffix(fp: string): string {
 ```
 
 ### Escaping code blocks
+
 You can format a codeblock inside of a codeblock by wrapping it with another level of backtick fences that has one more backtick than the previous fence.
 
 `````
@@ -121,6 +127,7 @@ const [name, setName] = useState('Taylor');
 `````
 
 ## Customization
+
 - Removing syntax highlighting: delete all usages of `Plugin.SyntaxHighlighting()` from `quartz.config.ts`.
 - Style: By default, Quartz uses derivatives of the GitHub light and dark themes. You can customize the colours in the `quartz/styles/syntax.scss` file.
 - Plugin: `quartz/plugins/transformers/syntax.ts`

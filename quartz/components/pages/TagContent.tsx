@@ -1,7 +1,7 @@
 import { QuartzComponentConstructor, QuartzComponentProps } from "../types"
-import { Fragment, jsx, jsxs } from 'preact/jsx-runtime'
+import { Fragment, jsx, jsxs } from "preact/jsx-runtime"
 import { toJsxRuntime } from "hast-util-to-jsx-runtime"
-import style from '../styles/listPage.scss'
+import style from "../styles/listPage.scss"
 import { PageList } from "../PageList"
 import { ServerSlug, canonicalizeServer } from "../../path"
 
@@ -11,21 +11,23 @@ function TagContent(props: QuartzComponentProps) {
 
   if (slug?.startsWith("tags/")) {
     const tag = canonicalizeServer(slug.slice("tags/".length) as ServerSlug)
-    const allPagesWithTag = allFiles.filter(file => (file.frontmatter?.tags ?? []).includes(tag))
+    const allPagesWithTag = allFiles.filter((file) => (file.frontmatter?.tags ?? []).includes(tag))
     const listProps = {
       ...props,
-      allFiles: allPagesWithTag
+      allFiles: allPagesWithTag,
     }
 
     // @ts-ignore
-    const content = toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: 'html' })
-    return <div class="popover-hint">
-      <article>{content}</article>
-      <p>{allPagesWithTag.length} items with this tag.</p>
-      <div>
-        <PageList {...listProps} />
+    const content = toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: "html" })
+    return (
+      <div class="popover-hint">
+        <article>{content}</article>
+        <p>{allPagesWithTag.length} items with this tag.</p>
+        <div>
+          <PageList {...listProps} />
+        </div>
       </div>
-    </div>
+    )
   } else {
     throw new Error(`Component "TagContent" tried to render a non-tag page: ${slug}`)
   }

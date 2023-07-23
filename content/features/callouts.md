@@ -3,15 +3,16 @@ title: Callouts
 ---
 
 > [!warning]
-> Wondering why callouts may not be showing up even if you have them enabled? You may need to reorder your plugins so that `Plugin.ObsidianFlavoredMarkdown()` is *after* `Plugin.SyntaxHighlighting()`.
-
+> Wondering why callouts may not be showing up even if you have them enabled? You may need to reorder your plugins so that `Plugin.ObsidianFlavoredMarkdown()` is _after_ `Plugin.SyntaxHighlighting()`.
 
 > [!info]
 > Default title
 
 > [!question]+ Can callouts be nested?
+>
 > > [!todo]- Yes!, they can.
-> > > [!example]  You can even use multiple layers of nesting.
+> >
+> > > [!example] You can even use multiple layers of nesting.
 
 > [!EXAMPLE] Examples
 >
@@ -21,31 +22,31 @@ title: Callouts
 >
 > Aliases: note
 
-> [!abstract] Summaries 
+> [!abstract] Summaries
 >
 > Aliases: abstract, summary, tldr
 
-> [!info] Info 
+> [!info] Info
 >
 > Aliases: info, todo
 
-> [!tip] Hint 
+> [!tip] Hint
 >
 > Aliases: tip, hint, important
 
-> [!success] Success 
+> [!success] Success
 >
 > Aliases: success, check, done
 
-> [!question] Question 
+> [!question] Question
 >
 > Aliases: question, help, faq
 
-> [!warning] Warning 
+> [!warning] Warning
 >
 > Aliases: warning, caution, attention
 
-> [!failure] Failure 
+> [!failure] Failure
 >
 > Aliases: failure, fail, missing
 

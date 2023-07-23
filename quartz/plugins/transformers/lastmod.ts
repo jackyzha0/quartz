@@ -1,18 +1,20 @@
 import fs from "fs"
-import path from 'path'
+import path from "path"
 import { Repository } from "@napi-rs/simple-git"
 import { QuartzTransformerPlugin } from "../types"
 
 export interface Options {
-  priority: ('frontmatter' | 'git' | 'filesystem')[],
+  priority: ("frontmatter" | "git" | "filesystem")[]
 }
 
 const defaultOptions: Options = {
-  priority: ['frontmatter', 'git', 'filesystem']
+  priority: ["frontmatter", "git", "filesystem"],
 }
 
 type MaybeDate = undefined | string | number
-export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
+export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | undefined> = (
+  userOpts,
+) => {
   const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "CreatedModifiedDate",
@@ -51,13 +53,13 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | und
               published: published ? new Date(published) : new Date(),
             }
           }
-        }
+        },
       ]
     },
   }
 }
 
-declare module 'vfile' {
+declare module "vfile" {
   interface DataMap {
     dates: {
       created: Date

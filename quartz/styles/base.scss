@@ -21,7 +21,17 @@ body {
   border-radius: 5px;
 }
 
-p, ul, text, a, tr, td, li, ol, ul, .katex, .math {
+p,
+ul,
+text,
+a,
+tr,
+td,
+li,
+ol,
+ul,
+.katex,
+.math {
   color: var(--darkgray);
   fill: var(--darkgray);
 }
@@ -79,7 +89,7 @@ a {
       font-size: 2rem;
     }
 
-    & li:has(> input[type='checkbox']) {
+    & li:has(> input[type="checkbox"]) {
       list-style-type: none;
       padding-left: 0;
       margin-left: -1.4rem;
@@ -144,7 +154,8 @@ a {
     }
   }
 
-  & .center, & footer {
+  & .center,
+  & footer {
     width: $pageWidth;
     margin-left: auto;
     margin-right: auto;
@@ -195,9 +206,12 @@ thead {
   }
 }
 
-
-
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   &[id] > a[href^="#"] {
     margin: 0 0.5rem;
     opacity: 0;
@@ -277,11 +291,11 @@ pre {
       }
     }
 
-    &[data-line-numbers-max-digits='2'] > [data-line]::before {
+    &[data-line-numbers-max-digits="2"] > [data-line]::before {
       width: 2rem;
     }
-     
-    &[data-line-numbers-max-digits='3'] > [data-line]::before {
+
+    &[data-line-numbers-max-digits="3"] > [data-line]::before {
       width: 3rem;
     }
   }
@@ -296,7 +310,9 @@ code {
   background: var(--lightgray);
 }
 
-tbody, li, p {
+tbody,
+li,
+p {
   line-height: 1.5rem;
 }
 
@@ -307,7 +323,8 @@ table {
   border-collapse: collapse;
 }
 
-td, th {
+td,
+th {
   padding: 0.2rem 1rem;
   border: 1px solid var(--gray);
 }
@@ -331,7 +348,8 @@ hr {
   background-color: var(--lightgray);
 }
 
-audio, video {
+audio,
+video {
   width: 100%;
   border-radius: 5px;
 }
@@ -340,7 +358,8 @@ audio, video {
   flex: 1 1 auto;
 }
 
-ul.overflow, ol.overflow {
+ul.overflow,
+ol.overflow {
   height: 400px;
   overflow-y: scroll;
 
@@ -354,9 +373,9 @@ ul.overflow, ol.overflow {
 
   &:after {
     pointer-events: none;
-    content: '';
+    content: "";
     width: 100%;
-    height: 50px;    
+    height: 50px;
     position: absolute;
     left: 0;
     bottom: 0;

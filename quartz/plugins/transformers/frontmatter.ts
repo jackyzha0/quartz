@@ -1,17 +1,17 @@
 import matter from "gray-matter"
-import remarkFrontmatter from 'remark-frontmatter'
+import remarkFrontmatter from "remark-frontmatter"
 import { QuartzTransformerPlugin } from "../types"
-import yaml from 'js-yaml'
-import { slug as slugAnchor } from 'github-slugger'
+import yaml from "js-yaml"
+import { slug as slugAnchor } from "github-slugger"
 
 export interface Options {
-  language: 'yaml' | 'toml',
+  language: "yaml" | "toml"
   delims: string | string[]
 }
 
 const defaultOptions: Options = {
-  language: 'yaml',
-  delims: '---'
+  language: "yaml",
+  delims: "---",
 }
 
 export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
@@ -26,8 +26,8 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
             const { data } = matter(file.value, {
               ...opts,
               engines: {
-                yaml: s => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object
-              }
+                yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object,
+              },
             })
 
             // tag is an alias for tags
@@ -36,7 +36,10 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
             }
 
             if (data.tags && !Array.isArray(data.tags)) {
-              data.tags = data.tags.toString().split(",").map((tag: string) => tag.trim())
+              data.tags = data.tags
+                .toString()
+                .split(",")
+                .map((tag: string) => tag.trim())
             }
 
             // slug them all!!
@@ -46,16 +49,16 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
             file.data.frontmatter = {
               title: file.stem ?? "Untitled",
               tags: [],
-              ...data
+              ...data,
             }
           }
-        }
+        },
       ]
     },
   }
 }
 
-declare module 'vfile' {
+declare module "vfile" {
   interface DataMap {
     frontmatter: { [key: string]: any } & {
       title: string

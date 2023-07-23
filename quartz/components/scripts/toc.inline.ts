@@ -1,5 +1,5 @@
 const bufferPx = 150
-const observer = new IntersectionObserver(entries => {
+const observer = new IntersectionObserver((entries) => {
   for (const entry of entries) {
     const slug = entry.target.id
     const tocEntryElement = document.querySelector(`a[data-for="${slug}"]`)
@@ -38,5 +38,5 @@ document.addEventListener("nav", () => {
   // update toc entry highlighting
   observer.disconnect()
   const headers = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]")
-  headers.forEach(header => observer.observe(header))
+  headers.forEach((header) => observer.observe(header))
 })

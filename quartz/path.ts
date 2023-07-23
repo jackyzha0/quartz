@@ -1,5 +1,5 @@
-import { slug as slugAnchor } from 'github-slugger'
-import { trace } from './trace'
+import { slug as slugAnchor } from "github-slugger"
+import { trace } from "./trace"
 
 // Quartz Paths
 // Things in boxes are not actual types but rather sources which these types can be acquired from
@@ -46,7 +46,7 @@ import { trace } from './trace'
 const STRICT_TYPE_CHECKS = false
 const HARD_EXIT_ON_FAIL = false
 
-function conditionCheck<T>(name: string, label: 'pre' | 'post', s: T, chk: (x: any) => x is T) {
+function conditionCheck<T>(name: string, label: "pre" | "post", s: T, chk: (x: any) => x is T) {
   if (STRICT_TYPE_CHECKS && !chk(s)) {
     trace(`${name} failed ${label}-condition check: ${s} does not pass ${chk.name}`, new Error())
     if (HARD_EXIT_ON_FAIL) {
@@ -66,8 +66,8 @@ export function isClientSlug(s: string): s is ClientSlug {
 }
 
 /** Canonical slug, should be used whenever you need to refer to the location of a file/note.
-  * On the client, this is normally stored in `document.body.dataset.slug`
-  */
+ * On the client, this is normally stored in `document.body.dataset.slug`
+ */
 export type CanonicalSlug = SlugLike<"canonical">
 export function isCanonicalSlug(s: string): s is CanonicalSlug {
   const validStart = !(s.startsWith(".") || s.startsWith("/"))
@@ -76,8 +76,8 @@ export function isCanonicalSlug(s: string): s is CanonicalSlug {
 }
 
 /** A relative link, can be found on `href`s but can also be constructed for
-  * client-side navigation (e.g. search and graph)
-  */
+ * client-side navigation (e.g. search and graph)
+ */
 export type RelativeURL = SlugLike<"relative">
 export function isRelativeURL(s: string): s is RelativeURL {
   const validStart = /^\.{1,2}/.test(s)
@@ -102,58 +102,58 @@ export function isFilePath(s: string): s is FilePath {
 
 export function getClientSlug(window: Window): ClientSlug {
   const res = window.location.href as ClientSlug
-  conditionCheck(getClientSlug.name, 'post', res, isClientSlug)
+  conditionCheck(getClientSlug.name, "post", res, isClientSlug)
   return res
 }
 
 export function getCanonicalSlug(window: Window): CanonicalSlug {
   const res = window.document.body.dataset.slug! as CanonicalSlug
-  conditionCheck(getCanonicalSlug.name, 'post', res, isCanonicalSlug)
+  conditionCheck(getCanonicalSlug.name, "post", res, isCanonicalSlug)
   return res
 }
 
 export function canonicalizeClient(slug: ClientSlug): CanonicalSlug {
-  conditionCheck(canonicalizeClient.name, 'pre', slug, isClientSlug)
+  conditionCheck(canonicalizeClient.name, "pre", slug, isClientSlug)
   const { pathname } = new URL(slug)
   let fp = pathname.slice(1)
-  fp = fp.replace(new RegExp(_getFileExtension(fp) + '$'), '')
+  fp = fp.replace(new RegExp(_getFileExtension(fp) + "$"), "")
   const res = _canonicalize(fp) as CanonicalSlug
-  conditionCheck(canonicalizeClient.name, 'post', res, isCanonicalSlug)
+  conditionCheck(canonicalizeClient.name, "post", res, isCanonicalSlug)
   return res
 }
 
 export function canonicalizeServer(slug: ServerSlug): CanonicalSlug {
-  conditionCheck(canonicalizeServer.name, 'pre', slug, isServerSlug)
+  conditionCheck(canonicalizeServer.name, "pre", slug, isServerSlug)
   let fp = slug as string
   const res = _canonicalize(fp) as CanonicalSlug
-  conditionCheck(canonicalizeServer.name, 'post', res, isCanonicalSlug)
+  conditionCheck(canonicalizeServer.name, "post", res, isCanonicalSlug)
   return res
 }
 
 export function slugifyFilePath(fp: FilePath): ServerSlug {
-  conditionCheck(slugifyFilePath.name, 'pre', fp, isFilePath)
+  conditionCheck(slugifyFilePath.name, "pre", fp, isFilePath)
   fp = _stripSlashes(fp) as FilePath
-  const withoutFileExt = fp.replace(new RegExp(_getFileExtension(fp) + '$'), '')
+  const withoutFileExt = fp.replace(new RegExp(_getFileExtension(fp) + "$"), "")
   let slug = withoutFileExt
-    .split('/')
-    .map((segment) => segment.replace(/\s/g, '-')) // slugify all segments
-    .join('/') // always use / as sep
-    .replace(/\/$/, '') // remove trailing slash
+    .split("/")
+    .map((segment) => segment.replace(/\s/g, "-")) // slugify all segments
+    .join("/") // always use / as sep
+    .replace(/\/$/, "") // remove trailing slash
 
   // treat _index as index
   if (_endsWith(slug, "_index")) {
     slug = slug.replace(/_index$/, "index")
   }
 
-  conditionCheck(slugifyFilePath.name, 'post', slug, isServerSlug)
+  conditionCheck(slugifyFilePath.name, "post", slug, isServerSlug)
   return slug as ServerSlug
 }
 
 export function transformInternalLink(link: string): RelativeURL {
   let [fplike, anchor] = splitAnchor(decodeURI(link))
-  let segments = fplike.split("/").filter(x => x.length > 0)
+  let segments = fplike.split("/").filter((x) => x.length > 0)
   let prefix = segments.filter(_isRelativeSegment).join("/")
-  let fp = segments.filter(seg => !_isRelativeSegment(seg)).join("/")
+  let fp = segments.filter((seg) => !_isRelativeSegment(seg)).join("/")
 
   // implicit markdown
   if (!_hasFileExtension(fp)) {
@@ -164,57 +164,57 @@ export function transformInternalLink(link: string): RelativeURL {
   fp = _trimSuffix(fp, "index")
 
   let joined = joinSegments(_stripSlashes(prefix), _stripSlashes(fp))
-  const res = _addRelativeToStart(joined) + anchor as RelativeURL
-  conditionCheck(transformInternalLink.name, 'post', res, isRelativeURL)
+  const res = (_addRelativeToStart(joined) + anchor) as RelativeURL
+  conditionCheck(transformInternalLink.name, "post", res, isRelativeURL)
   return res
 }
 
 // resolve /a/b/c to ../../
 export function pathToRoot(slug: CanonicalSlug): RelativeURL {
-  conditionCheck(pathToRoot.name, 'pre', slug, isCanonicalSlug)
+  conditionCheck(pathToRoot.name, "pre", slug, isCanonicalSlug)
   let rootPath = slug
-    .split('/')
-    .filter(x => x !== '')
-    .map(_ => '..')
-    .join('/')
+    .split("/")
+    .filter((x) => x !== "")
+    .map((_) => "..")
+    .join("/")
 
   const res = _addRelativeToStart(rootPath) as RelativeURL
-  conditionCheck(pathToRoot.name, 'post', res, isRelativeURL)
+  conditionCheck(pathToRoot.name, "post", res, isRelativeURL)
   return res
 }
 
 export function resolveRelative(current: CanonicalSlug, target: CanonicalSlug): RelativeURL {
-  conditionCheck(resolveRelative.name, 'pre', current, isCanonicalSlug)
-  conditionCheck(resolveRelative.name, 'pre', target, isCanonicalSlug)
+  conditionCheck(resolveRelative.name, "pre", current, isCanonicalSlug)
+  conditionCheck(resolveRelative.name, "pre", target, isCanonicalSlug)
   const res = joinSegments(pathToRoot(current), target) as RelativeURL
-  conditionCheck(resolveRelative.name, 'post', res, isRelativeURL)
+  conditionCheck(resolveRelative.name, "post", res, isRelativeURL)
   return res
 }
 
 export function splitAnchor(link: string): [string, string] {
   let [fp, anchor] = link.split("#", 2)
-  anchor = anchor === undefined ? "" : '#' + slugAnchor(anchor)
+  anchor = anchor === undefined ? "" : "#" + slugAnchor(anchor)
   return [fp, anchor]
 }
 
 export function joinSegments(...args: string[]): string {
-  return args.filter(segment => segment !== "").join('/')
+  return args.filter((segment) => segment !== "").join("/")
 }
 
 export const QUARTZ = "quartz"
 
 function _canonicalize(fp: string): string {
   fp = _trimSuffix(fp, "index")
-  return _stripSlashes(fp) 
+  return _stripSlashes(fp)
 }
 
 function _endsWith(s: string, suffix: string): boolean {
-  return s === suffix || s.endsWith("/" + suffix) 
+  return s === suffix || s.endsWith("/" + suffix)
 }
 
 function _trimSuffix(s: string, suffix: string): string {
   if (_endsWith(s, suffix)) {
-    s = s.slice(0, -(suffix.length))
+    s = s.slice(0, -suffix.length)
   }
   return s
 }

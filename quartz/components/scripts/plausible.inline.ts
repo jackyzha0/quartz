@@ -1,3 +1,3 @@
-import Plausible from 'plausible-tracker'
+import Plausible from "plausible-tracker"
 const { trackPageview } = Plausible()
 document.addEventListener("nav", () => trackPageview())

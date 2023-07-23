@@ -3,7 +3,7 @@
 .graph {
   & > h3 {
     font-size: 1rem;
-    margin: 0
+    margin: 0;
   }
 
   & > .graph-outer {
@@ -26,7 +26,7 @@
       top: 0;
       right: 0;
       border-radius: 4px;
-      background-color: transparent; 
+      background-color: transparent;
       transition: background-color 0.5s ease;
       cursor: pointer;
       &:hover {
@@ -52,7 +52,7 @@
 
     & > #global-graph-container {
       border: 1px solid var(--lightgray);
-      background-color: var(--light); 
+      background-color: var(--light);
       border-radius: 5px;
       box-sizing: border-box;
       position: fixed;

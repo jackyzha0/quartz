@@ -23,12 +23,18 @@ export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
     },
     async emit(_contentDir, cfg, content, resources, emit): Promise<FilePath[]> {
       const fps: FilePath[] = []
-      const allFiles = content.map(c => c[1].data)
+      const allFiles = content.map((c) => c[1].data)
 
-      const tags: Set<string> = new Set(allFiles.flatMap(data => data.frontmatter?.tags ?? []))
-      const tagDescriptions: Record<string, ProcessedContent> = Object.fromEntries([...tags].map(tag => ([
-        tag, defaultProcessedContent({ slug: `tags/${tag}/index` as ServerSlug, frontmatter: { title: `Tag: ${tag}`, tags: [] } })
-      ])))
+      const tags: Set<string> = new Set(allFiles.flatMap((data) => data.frontmatter?.tags ?? []))
+      const tagDescriptions: Record<string, ProcessedContent> = Object.fromEntries(
+        [...tags].map((tag) => [
+          tag,
+          defaultProcessedContent({
+            slug: `tags/${tag}/index` as ServerSlug,
+            frontmatter: { title: `Tag: ${tag}`, tags: [] },
+          }),
+        ]),
+      )
 
       for (const [tree, file] of content) {
         const slug = file.data.slug!
@@ -50,17 +56,12 @@ export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
           cfg,
           children: [],
           tree,
-          allFiles
+          allFiles,
         }
 
-        const content = renderPage(
-          slug,
-          componentData,
-          opts,
-          externalResources
-        )
+        const content = renderPage(slug, componentData, opts, externalResources)
 
-        const fp = file.data.slug + ".html" as FilePath
+        const fp = (file.data.slug + ".html") as FilePath
         await emit({
           content,
           slug: file.data.slug!,
@@ -70,6 +71,6 @@ export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
         fps.push(fp)
       }
       return fps
-    }
+    },
   }
 }
