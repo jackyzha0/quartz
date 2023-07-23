@@ -29,6 +29,8 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm ci
+      - name: Check types and style
+        run: npm check
 
       - name: Test
         run: npm test
