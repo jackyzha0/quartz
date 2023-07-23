@@ -12,7 +12,8 @@
     "url": "https://github.com/jackyzha0/quartz.git"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit",
+    "check": "tsc --noEmit && npx prettier . --check",
+    "format": "npx prettier . --write",
     "test": "tsx ./quartz/path.test.ts"
   },
   "keywords": [
@@ -89,6 +90,7 @@
     "@types/ws": "^8.5.5",
     "@types/yargs": "^17.0.24",
     "esbuild": "^0.18.11",
+    "prettier": "^3.0.0",
     "tsx": "^3.12.7",
     "typescript": "^5.0.4"
   }
