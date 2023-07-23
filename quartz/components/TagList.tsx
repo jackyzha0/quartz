@@ -14,7 +14,7 @@ function TagList({ fileData }: QuartzComponentProps) {
           const linkDest = baseDir + `/tags/${slugAnchor(tag)}`
           return (
             <li>
-              <a href={linkDest} class="internal">
+              <a href={linkDest} class="internal tag-link">
                 {display}
               </a>
             </li>
@@ -42,7 +42,7 @@ TagList.css = `
   overflow-wrap: normal;
 }
 
-.tags > li > a {
+a.tag-link {
   border-radius: 8px;
   background-color: var(--highlight);
   padding: 0.2rem 0.5rem;

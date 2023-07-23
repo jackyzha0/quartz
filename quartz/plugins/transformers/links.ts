@@ -72,7 +72,8 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                 typeof node.properties.href === "string"
               ) {
                 let dest = node.properties.href as RelativeURL
-                node.properties.className = isAbsoluteUrl(dest) ? "external" : "internal"
+                node.properties.className ??= []
+                node.properties.className.push(isAbsoluteUrl(dest) ? "external" : "internal")
 
                 // don't process external links or intra-document anchors
                 if (!(isAbsoluteUrl(dest) || dest.startsWith("#"))) {
