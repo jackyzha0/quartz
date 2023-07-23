@@ -9,7 +9,7 @@ import path from "path"
 import { JSResource } from "../../resources"
 // @ts-ignore
 import calloutScript from "../../components/scripts/callout.inline.ts"
-import { FilePath, slugifyFilePath } from "../../path"
+import { FilePath, canonicalizeServer, pathToRoot, slugifyFilePath } from "../../path"
 
 export interface Options {
   comments: boolean
@@ -17,6 +17,7 @@ export interface Options {
   wikilinks: boolean
   callouts: boolean
   mermaid: boolean
+  parseTags: boolean
 }
 
 const defaultOptions: Options = {
@@ -25,6 +26,7 @@ const defaultOptions: Options = {
   wikilinks: true,
   callouts: true,
   mermaid: true,
+  parseTags: true,
 }
 
 const icons = {
@@ -97,22 +99,19 @@ const capitalize = (s: string): string => {
   return s.substring(0, 1).toUpperCase() + s.substring(1)
 }
 
-// Match wikilinks
 // !?               -> optional embedding
 // \[\[             -> open brace
 // ([^\[\]\|\#]+)   -> one or more non-special characters ([,],|, or #) (name)
 // (#[^\[\]\|\#]+)? -> # then one or more non-special characters (heading link)
 // (|[^\[\]\|\#]+)? -> | then one or more non-special characters (alias)
 const wikilinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)(#[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/, "g")
-
-// Match highlights
 const highlightRegex = new RegExp(/==(.+)==/, "g")
-
-// Match comments
 const commentRegex = new RegExp(/%%(.+)%%/, "g")
-
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
 const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
+// (?:^| )   -> non-capturing group, tag should start be separated by a space or be the start of the line
+// #(\w+)    -> tag itself is # followed by a string of alpha-numeric characters 
+const tagRegex = new RegExp(/(?:^| )#(\w+)/, "g")
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
@@ -226,7 +225,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             findAndReplace(tree, commentRegex, (_value: string, ..._capture: string[]) => {
               return {
                 type: "text",
-                value: "",
+                value: ""
               }
             })
           }
@@ -297,9 +296,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 node.data = {
                   hProperties: {
                     ...(node.data?.hProperties ?? {}),
-                    className: `callout ${collapse ? "is-collapsible" : ""} ${
-                      defaultState === "collapsed" ? "is-collapsed" : ""
-                    }`,
+                    className: `callout ${collapse ? "is-collapsible" : ""} ${defaultState === "collapsed" ? "is-collapsed" : ""
+                      }`,
                     "data-callout": calloutType,
                     "data-callout-fold": collapse,
                   },
@@ -317,9 +315,35 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               if (node.lang === "mermaid") {
                 node.data = {
                   hProperties: {
-                    className: "mermaid",
+                    className: ["mermaid"],
                   },
                 }
+              }
+            })
+          }
+        })
+      }
+
+      if (opts.parseTags) {
+        plugins.push(() => {
+          return (tree: Root, file) => {
+            const slug = canonicalizeServer(file.data.slug!)
+            const base = pathToRoot(slug)
+            findAndReplace(tree, tagRegex, (value: string, tag: string) => {
+              return {
+                type: "link",
+                url: base + `/tags/${slugAnchor(tag)}`,
+                data: {
+                  hProperties: {
+                    className: ["tag-link"],
+                  },
+                },
+                children: [
+                  {
+                    type: "text",
+                    value,
+                  },
+                ],
               }
             })
           }

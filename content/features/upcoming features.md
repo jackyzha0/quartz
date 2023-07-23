@@ -2,7 +2,6 @@
 draft: true
 ---
 
-- parse tags in content
 - breadcrumbs component
 - filetree component
 - recent notes component
@@ -10,10 +9,7 @@ draft: true
 - [https://giscus.app/](https://giscus.app/) extension
 - custom md blocks (e.g. for poetry)
 - sidenotes? [https://github.com/capnfabs/paperesque](https://github.com/capnfabs/paperesque)
-- watch mode
-  - watch for markdown changes and quartz config changes
-  - markdown changes only involve processing that single markdown file (at least for parsing) and then rerunning the filter and emitters
-  - config changes rebuild the whole thing
+- watch mode for config/source code
 - direct match in search using double quotes
 - attachments path
 - [https://help.obsidian.md/Advanced+topics/Using+Obsidian+URI](https://help.obsidian.md/Advanced+topics/Using+Obsidian+URI)
