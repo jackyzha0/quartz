@@ -5,6 +5,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
 }
 
 body {
@@ -221,13 +223,38 @@ h6 {
     font-family: var(--codeFont);
     user-select: none;
   }
+
   &[id]:hover > a {
     opacity: 1;
   }
 }
 
+// typography improvements
+h1 {
+  font-size: 1.75rem;
+  margin-top: 2.75rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+  opacity: 0.95;
+  margin-top: 2.4rem;
+}
+
+h3 {
+  font-size: 1.12rem;
+  margin-top: 2.12rem;
+  opacity: 0.9;
+}
+
+h4, h5, h6 {
+  font-size: 1rem;
+  margin-top: 2rem;
+  opacity: 0.85;
+}
+
 div[data-rehype-pretty-code-fragment] {
-  line-height: 1.5rem;
+  line-height: 1.6rem;
   position: relative;
 
   & > div[data-rehype-pretty-code-title] {
@@ -313,7 +340,7 @@ code {
 tbody,
 li,
 p {
-  line-height: 1.5rem;
+  line-height: 1.6rem;
 }
 
 table {

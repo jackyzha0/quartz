@@ -16,7 +16,7 @@ export default (() => {
       <head>
         <title>{title}</title>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={title} />
         <meta property="og:image" content={ogImagePath} />
