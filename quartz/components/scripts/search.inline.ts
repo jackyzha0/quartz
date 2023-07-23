@@ -4,9 +4,9 @@ import { registerEscapeHandler, removeAllChildren } from "./util"
 import { CanonicalSlug, getClientSlug, resolveRelative } from "../../path"
 
 interface Item {
-  slug: CanonicalSlug,
-  title: string,
-  content: string,
+  slug: CanonicalSlug
+  title: string
+  content: string
 }
 
 let index: Document<Item> | undefined = undefined
@@ -15,15 +15,17 @@ const contextWindowWords = 30
 const numSearchResults = 5
 function highlight(searchTerm: string, text: string, trim?: boolean) {
   // try to highlight longest tokens first
-  const tokenizedTerms = searchTerm.split(/\s+/).filter(t => t !== "").sort((a, b) => b.length - a.length)
-  let tokenizedText = text
+  const tokenizedTerms = searchTerm
     .split(/\s+/)
-    .filter(t => t !== "")
+    .filter((t) => t !== "")
+    .sort((a, b) => b.length - a.length)
+  let tokenizedText = text.split(/\s+/).filter((t) => t !== "")
 
   let startIndex = 0
   let endIndex = tokenizedText.length - 1
   if (trim) {
-    const includesCheck = (tok: string) => tokenizedTerms.some((term) => tok.toLowerCase().startsWith(term.toLowerCase()))
+    const includesCheck = (tok: string) =>
+      tokenizedTerms.some((term) => tok.toLowerCase().startsWith(term.toLowerCase()))
     const occurencesIndices = tokenizedText.map(includesCheck)
 
     let bestSum = 0
@@ -42,19 +44,22 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
     tokenizedText = tokenizedText.slice(startIndex, endIndex)
   }
 
-  const slice = tokenizedText.map(tok => {
-    // see if this tok is prefixed by any search terms 
-    for (const searchTok of tokenizedTerms) {
-      if (tok.toLowerCase().includes(searchTok.toLowerCase())) {
-        const regex = new RegExp(searchTok.toLowerCase(), "gi")
-        return tok.replace(regex, `<span class="highlight">$&</span>`)
+  const slice = tokenizedText
+    .map((tok) => {
+      // see if this tok is prefixed by any search terms
+      for (const searchTok of tokenizedTerms) {
+        if (tok.toLowerCase().includes(searchTok.toLowerCase())) {
+          const regex = new RegExp(searchTok.toLowerCase(), "gi")
+          return tok.replace(regex, `<span class="highlight">$&</span>`)
+        }
       }
-    }
-    return tok
-  })
+      return tok
+    })
     .join(" ")
 
-  return `${startIndex === 0 ? "" : "..."}${slice}${endIndex === tokenizedText.length - 1 ? "" : "..."}`
+  return `${startIndex === 0 ? "" : "..."}${slice}${
+    endIndex === tokenizedText.length - 1 ? "" : "..."
+  }`
 }
 
 const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
@@ -113,7 +118,7 @@ document.addEventListener("nav", async (e: unknown) => {
     button.classList.add("result-card")
     button.id = slug
     button.innerHTML = `<h3>${title}</h3><p>${content}</p>`
-    button.addEventListener('click', () => {
+    button.addEventListener("click", () => {
       const targ = resolveRelative(currentSlug, slug)
       window.spaNavigate(new URL(targ, getClientSlug(window)))
     })
@@ -132,7 +137,6 @@ document.addEventListener("nav", async (e: unknown) => {
     } else {
       results.append(...finalResults.map(resultToHTML))
     }
-
   }
 
   function onType(e: HTMLElementEventMap["input"]) {
@@ -140,12 +144,12 @@ document.addEventListener("nav", async (e: unknown) => {
     const searchResults = index?.search(term, numSearchResults) ?? []
     const getByField = (field: string): CanonicalSlug[] => {
       const results = searchResults.filter((x) => x.field === field)
-      return results.length === 0 ? [] : [...results[0].result] as CanonicalSlug[]
+      return results.length === 0 ? [] : ([...results[0].result] as CanonicalSlug[])
     }
 
     // order titles ahead of content
     const allIds: Set<CanonicalSlug> = new Set([...getByField("title"), ...getByField("content")])
-    const finalResults = [...allIds].map(id => formatForDisplay(term, id))
+    const finalResults = [...allIds].map((id) => formatForDisplay(term, id))
     displayResults(finalResults)
   }
 
@@ -160,7 +164,7 @@ document.addEventListener("nav", async (e: unknown) => {
   if (!index) {
     index = new Document({
       cache: true,
-      charset: 'latin:extra',
+      charset: "latin:extra",
       optimize: true,
       encode: encoder,
       document: {
@@ -174,7 +178,7 @@ document.addEventListener("nav", async (e: unknown) => {
             field: "content",
             tokenize: "reverse",
           },
-        ]
+        ],
       },
     })
 
@@ -182,7 +186,7 @@ document.addEventListener("nav", async (e: unknown) => {
       await index.addAsync(slug, {
         slug: slug as CanonicalSlug,
         title: fileData.title,
-        content: fileData.content
+        content: fileData.content,
       })
     }
   }

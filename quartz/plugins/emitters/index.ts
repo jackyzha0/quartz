@@ -1,5 +1,5 @@
-export { ContentPage } from './contentPage'
-export { TagPage } from './tagPage'
-export { FolderPage } from './folderPage'
-export { ContentIndex } from './contentIndex'
-export { AliasRedirects } from './aliases'
+export { ContentPage } from "./contentPage"
+export { TagPage } from "./tagPage"
+export { FolderPage } from "./folderPage"
+export { ContentIndex } from "./contentIndex"
+export { AliasRedirects } from "./aliases"

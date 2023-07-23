@@ -32,7 +32,7 @@
     border: 1px solid var(--lightgray);
     background-color: var(--light);
     border-radius: 5px;
-    box-shadow: 6px 6px 36px 0 rgba(0,0,0,0.25);
+    box-shadow: 6px 6px 36px 0 rgba(0, 0, 0, 0.25);
     overflow: auto;
   }
 
@@ -42,14 +42,17 @@
 
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 
   @media all and (max-width: $mobileBreakpoint) {
     display: none !important;
   }
 }
 
-a:hover .popover, .popover:hover {
+a:hover .popover,
+.popover:hover {
   animation: dropin 0.3s ease;
   animation-fill-mode: forwards;
   animation-delay: 0.2s;

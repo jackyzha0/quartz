@@ -1,6 +1,12 @@
-import { CanonicalSlug, FilePath, ServerSlug, canonicalizeServer, resolveRelative } from "../../path"
+import {
+  CanonicalSlug,
+  FilePath,
+  ServerSlug,
+  canonicalizeServer,
+  resolveRelative,
+} from "../../path"
 import { QuartzEmitterPlugin } from "../types"
-import path from 'path'
+import path from "path"
 
 export const AliasRedirects: QuartzEmitterPlugin = () => ({
   name: "AliasRedirects",
@@ -24,7 +30,7 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
       for (const alias of aliases) {
         const slug = path.posix.join(dir, alias) as ServerSlug
 
-        const fp = slug + ".html" as FilePath
+        const fp = (slug + ".html") as FilePath
         const redirUrl = resolveRelative(canonicalizeServer(slug), ogSlug)
         await emit({
           content: `
@@ -47,5 +53,5 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
       }
     }
     return fps
-  }
+  },
 })

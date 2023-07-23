@@ -1,16 +1,16 @@
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
-import * as d3 from 'd3'
+import * as d3 from "d3"
 import { registerEscapeHandler, removeAllChildren } from "./util"
 import { CanonicalSlug, getCanonicalSlug, getClientSlug, resolveRelative } from "../../path"
 
 type NodeData = {
-  id: CanonicalSlug,
-  text: string,
+  id: CanonicalSlug
+  text: string
   tags: string[]
 } & d3.SimulationNodeDatum
 
 type LinkData = {
-  source: CanonicalSlug,
+  source: CanonicalSlug
   target: CanonicalSlug
 }
 
@@ -40,7 +40,7 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
     centerForce,
     linkDistance,
     fontSize,
-    opacityScale
+    opacityScale,
   } = JSON.parse(graph.dataset["cfg"]!)
 
   const data = await fetchData
@@ -66,18 +66,22 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
         wl.push("__SENTINEL")
       } else {
         neighbourhood.add(cur)
-        const outgoing = links.filter(l => l.source === cur)
-        const incoming = links.filter(l => l.target === cur)
+        const outgoing = links.filter((l) => l.source === cur)
+        const incoming = links.filter((l) => l.target === cur)
         wl.push(...outgoing.map((l) => l.target), ...incoming.map((l) => l.source))
       }
     }
   } else {
-    Object.keys(data).forEach(id => neighbourhood.add(id as CanonicalSlug))
+    Object.keys(data).forEach((id) => neighbourhood.add(id as CanonicalSlug))
   }
 
-  const graphData: { nodes: NodeData[], links: LinkData[] } = {
-    nodes: [...neighbourhood].map(url => ({ id: url, text: data[url]?.title ?? url, tags: data[url]?.tags ?? [] })),
-    links: links.filter((l) => neighbourhood.has(l.source) && neighbourhood.has(l.target))
+  const graphData: { nodes: NodeData[]; links: LinkData[] } = {
+    nodes: [...neighbourhood].map((url) => ({
+      id: url,
+      text: data[url]?.title ?? url,
+      tags: data[url]?.tags ?? [],
+    })),
+    links: links.filter((l) => neighbourhood.has(l.source) && neighbourhood.has(l.target)),
   }
 
   const simulation: d3.Simulation<NodeData, LinkData> = d3
@@ -96,11 +100,11 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
   const width = graph.offsetWidth
 
   const svg = d3
-    .select<HTMLElement, NodeData>('#' + container)
+    .select<HTMLElement, NodeData>("#" + container)
     .append("svg")
     .attr("width", width)
     .attr("height", height)
-    .attr('viewBox', [-width / 2 / scale, -height / 2 / scale, width / scale, height / scale])
+    .attr("viewBox", [-width / 2 / scale, -height / 2 / scale, width / scale, height / scale])
 
   // draw links between nodes
   const link = svg
@@ -145,7 +149,7 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
       d.fy = null
     }
 
-    const noop = () => { }
+    const noop = () => {}
     return d3
       .drag<Element, NodeData>()
       .on("start", enableDrag ? dragstarted : noop)
@@ -170,9 +174,11 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
       const targ = resolveRelative(slug, d.id)
       window.spaNavigate(new URL(targ, getClientSlug(window)))
     })
-    .on("mouseover", function(_, d) {
+    .on("mouseover", function (_, d) {
       const neighbours: CanonicalSlug[] = data[slug].links ?? []
-      const neighbourNodes = d3.selectAll<HTMLElement, NodeData>(".node").filter((d) => neighbours.includes(d.id))
+      const neighbourNodes = d3
+        .selectAll<HTMLElement, NodeData>(".node")
+        .filter((d) => neighbours.includes(d.id))
       console.log(neighbourNodes)
       const currentId = d.id
       const linkNodes = d3
@@ -183,12 +189,7 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
       neighbourNodes.transition().duration(200).attr("fill", color)
 
       // highlight links
-      linkNodes
-        .transition()
-        .duration(200)
-        .attr("stroke", "var(--gray)")
-        .attr("stroke-width", 1)
-
+      linkNodes.transition().duration(200).attr("stroke", "var(--gray)").attr("stroke-width", 1)
 
       const bigFont = fontSize * 1.5
 
@@ -199,11 +200,11 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
         .select("text")
         .transition()
         .duration(200)
-        .attr('opacityOld', d3.select(parent).select('text').style("opacity"))
-        .style('opacity', 1)
-        .style('font-size', bigFont + 'em')
+        .attr("opacityOld", d3.select(parent).select("text").style("opacity"))
+        .style("opacity", 1)
+        .style("font-size", bigFont + "em")
     })
-    .on("mouseleave", function(_, d) {
+    .on("mouseleave", function (_, d) {
       const currentId = d.id
       const linkNodes = d3
         .selectAll(".link")
@@ -216,8 +217,8 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
         .select("text")
         .transition()
         .duration(200)
-        .style('opacity', d3.select(parent).select('text').attr("opacityOld"))
-        .style('font-size', fontSize + 'em')
+        .style("opacity", d3.select(parent).select("text").attr("opacityOld"))
+        .style("font-size", fontSize + "em")
     })
     // @ts-ignore
     .call(drag(simulation))
@@ -228,10 +229,12 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
     .attr("dx", 0)
     .attr("dy", (d) => -nodeRadius(d) + "px")
     .attr("text-anchor", "middle")
-    .text((d) => data[d.id]?.title || (d.id.charAt(1).toUpperCase() + d.id.slice(2)).replace("-", " "))
-    .style('opacity', (opacityScale - 1) / 3.75)
+    .text(
+      (d) => data[d.id]?.title || (d.id.charAt(1).toUpperCase() + d.id.slice(2)).replace("-", " "),
+    )
+    .style("opacity", (opacityScale - 1) / 3.75)
     .style("pointer-events", "none")
-    .style('font-size', fontSize + 'em')
+    .style("font-size", fontSize + "em")
     .raise()
     // @ts-ignore
     .call(drag(simulation))
@@ -249,7 +252,7 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
         .on("zoom", ({ transform }) => {
           link.attr("transform", transform)
           node.attr("transform", transform)
-          const scale = transform.k * opacityScale;
+          const scale = transform.k * opacityScale
           const scaledOpacity = Math.max((scale - 1) / 3.75, 0)
           labels.attr("transform", transform).style("opacity", scaledOpacity)
         }),
@@ -263,17 +266,13 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
       .attr("y1", (d: any) => d.source.y)
       .attr("x2", (d: any) => d.target.x)
       .attr("y2", (d: any) => d.target.y)
-    node
-      .attr("cx", (d: any) => d.x)
-      .attr("cy", (d: any) => d.y)
-    labels
-      .attr("x", (d: any) => d.x)
-      .attr("y", (d: any) => d.y)
+    node.attr("cx", (d: any) => d.x).attr("cy", (d: any) => d.y)
+    labels.attr("x", (d: any) => d.x).attr("y", (d: any) => d.y)
   })
 }
 
 function renderGlobalGraph() {
-  const slug = getCanonicalSlug(window) 
+  const slug = getCanonicalSlug(window)
   const container = document.getElementById("global-graph-outer")
   const sidebar = container?.closest(".sidebar") as HTMLElement
   container?.classList.add("active")
@@ -305,4 +304,3 @@ document.addEventListener("nav", async (e: unknown) => {
   containerIcon?.removeEventListener("click", renderGlobalGraph)
   containerIcon?.addEventListener("click", renderGlobalGraph)
 })
-

@@ -4,13 +4,17 @@ const rootFile = /.*at file:/
 export function trace(msg: string, err: Error) {
   const stack = err.stack
   console.log()
-  console.log(chalk.bgRed.white.bold(" ERROR ") + chalk.red(` ${msg}`) + (err.message.length > 0 ? `: ${err.message}` : ""))
+  console.log(
+    chalk.bgRed.white.bold(" ERROR ") +
+      chalk.red(` ${msg}`) +
+      (err.message.length > 0 ? `: ${err.message}` : ""),
+  )
   if (!stack) {
     return
   }
 
   let reachedEndOfLegibleTrace = false
-  for (const line of stack.split('\n').slice(1)) {
+  for (const line of stack.split("\n").slice(1)) {
     if (reachedEndOfLegibleTrace) {
       break
     }

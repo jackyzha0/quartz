@@ -6,11 +6,11 @@ import modernStyle from "./styles/toc.scss"
 import script from "./scripts/toc.inline"
 
 interface Options {
-  layout: 'modern' | 'legacy'
+  layout: "modern" | "legacy"
 }
 
 const defaultOptions: Options = {
-  layout: 'modern'
+  layout: "modern",
 }
 
 function TableOfContents({ fileData }: QuartzComponentProps) {
@@ -18,21 +18,38 @@ function TableOfContents({ fileData }: QuartzComponentProps) {
     return null
   }
 
-  return <div class="desktop-only">
-    <button type="button" id="toc">
-      <h3>Table of Contents</h3>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold">
-        <polyline points="6 9 12 15 18 9"></polyline>
-      </svg>
-    </button>
-    <div id="toc-content">
-      <ul class="overflow">
-        {fileData.toc.map(tocEntry => <li key={tocEntry.slug} class={`depth-${tocEntry.depth}`}>
-          <a href={`#${tocEntry.slug}`} data-for={tocEntry.slug}>{tocEntry.text}</a>
-        </li>)}
-      </ul>
+  return (
+    <div class="desktop-only">
+      <button type="button" id="toc">
+        <h3>Table of Contents</h3>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="fold"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+      <div id="toc-content">
+        <ul class="overflow">
+          {fileData.toc.map((tocEntry) => (
+            <li key={tocEntry.slug} class={`depth-${tocEntry.depth}`}>
+              <a href={`#${tocEntry.slug}`} data-for={tocEntry.slug}>
+                {tocEntry.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
-  </div>
+  )
 }
 TableOfContents.css = modernStyle
 TableOfContents.afterDOMLoaded = script
@@ -42,16 +59,22 @@ function LegacyTableOfContents({ fileData }: QuartzComponentProps) {
     return null
   }
 
-  return <details id="toc" open>
-    <summary>
-      <h3>Table of Contents</h3>
-    </summary>
-    <ul>
-      {fileData.toc.map(tocEntry => <li key={tocEntry.slug} class={`depth-${tocEntry.depth}`}>
-        <a href={`#${tocEntry.slug}`} data-for={tocEntry.slug}>{tocEntry.text}</a>
-      </li>)}
-    </ul>
-  </details>
+  return (
+    <details id="toc" open>
+      <summary>
+        <h3>Table of Contents</h3>
+      </summary>
+      <ul>
+        {fileData.toc.map((tocEntry) => (
+          <li key={tocEntry.slug} class={`depth-${tocEntry.depth}`}>
+            <a href={`#${tocEntry.slug}`} data-for={tocEntry.slug}>
+              {tocEntry.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </details>
+  )
 }
 LegacyTableOfContents.css = legacyStyle
 

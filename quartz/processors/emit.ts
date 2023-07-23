@@ -2,25 +2,35 @@ import path from "path"
 import fs from "fs"
 import { GlobalConfiguration, QuartzConfig } from "../cfg"
 import { PerfTimer } from "../perf"
-import { ComponentResources, emitComponentResources, getComponentResources, getStaticResourcesFromPlugins } from "../plugins"
+import {
+  ComponentResources,
+  emitComponentResources,
+  getComponentResources,
+  getStaticResourcesFromPlugins,
+} from "../plugins"
 import { EmitCallback } from "../plugins/types"
 import { ProcessedContent } from "../plugins/vfile"
 import { FilePath, QUARTZ, slugifyFilePath } from "../path"
 import { globbyStream } from "globby"
 
 // @ts-ignore
-import spaRouterScript from '../components/scripts/spa.inline'
+import spaRouterScript from "../components/scripts/spa.inline"
 // @ts-ignore
-import plausibleScript from '../components/scripts/plausible.inline'
+import plausibleScript from "../components/scripts/plausible.inline"
 // @ts-ignore
-import popoverScript from '../components/scripts/popover.inline'
-import popoverStyle from '../components/styles/popover.scss'
+import popoverScript from "../components/scripts/popover.inline"
+import popoverStyle from "../components/styles/popover.scss"
 import { StaticResources } from "../resources"
 import { QuartzLogger } from "../log"
 import { googleFontHref } from "../theme"
 import { trace } from "../trace"
 
-function addGlobalPageResources(cfg: GlobalConfiguration, reloadScript: boolean, staticResources: StaticResources, componentResources: ComponentResources) {
+function addGlobalPageResources(
+  cfg: GlobalConfiguration,
+  reloadScript: boolean,
+  staticResources: StaticResources,
+  componentResources: ComponentResources,
+) {
   staticResources.css.push(googleFontHref(cfg.theme))
 
   // popovers
@@ -33,8 +43,8 @@ function addGlobalPageResources(cfg: GlobalConfiguration, reloadScript: boolean,
     const tagId = cfg.analytics.tagId
     staticResources.js.push({
       src: `https://www.googletagmanager.com/gtag/js?id=${tagId}`,
-      contentType: 'external',
-      loadTime: 'afterDOMReady',
+      contentType: "external",
+      loadTime: "afterDOMReady",
     })
     componentResources.afterDOMLoaded.push(`
     window.dataLayer = window.dataLayer || [];
@@ -47,8 +57,7 @@ function addGlobalPageResources(cfg: GlobalConfiguration, reloadScript: boolean,
         page_title: document.title,
         page_location: location.href,
       });
-    });`
-    )
+    });`)
   } else if (cfg.analytics?.provider === "plausible") {
     componentResources.afterDOMLoaded.push(plausibleScript)
   }
@@ -60,8 +69,7 @@ function addGlobalPageResources(cfg: GlobalConfiguration, reloadScript: boolean,
     componentResources.afterDOMLoaded.push(`
       window.spaNavigate = (url, _) => window.location.assign(url)
       const event = new CustomEvent("nav", { detail: { slug: document.body.dataset.slug } })
-      document.dispatchEvent(event)`
-    )
+      document.dispatchEvent(event)`)
   }
 
   if (reloadScript) {
@@ -71,12 +79,19 @@ function addGlobalPageResources(cfg: GlobalConfiguration, reloadScript: boolean,
       script: `
         const socket = new WebSocket('ws://localhost:3001')
         socket.addEventListener('message', () => document.location.reload())
-      `
+      `,
     })
   }
 }
 
-export async function emitContent(contentFolder: string, output: string, cfg: QuartzConfig, content: ProcessedContent[], reloadScript: boolean, verbose: boolean) {
+export async function emitContent(
+  contentFolder: string,
+  output: string,
+  cfg: QuartzConfig,
+  content: ProcessedContent[],
+  reloadScript: boolean,
+  verbose: boolean,
+) {
   const perf = new PerfTimer()
   const log = new QuartzLogger(verbose)
 
@@ -95,8 +110,8 @@ export async function emitContent(contentFolder: string, output: string, cfg: Qu
   // component specific scripts and styles
   const componentResources = getComponentResources(cfg.plugins)
 
-  // important that this goes *after* component scripts 
-  // as the "nav" event gets triggered here and we should make sure 
+  // important that this goes *after* component scripts
+  // as the "nav" event gets triggered here and we should make sure
   // that everyone else had the chance to register a listener for it
   addGlobalPageResources(cfg.configuration, reloadScript, staticResources, componentResources)
 
@@ -112,7 +127,13 @@ export async function emitContent(contentFolder: string, output: string, cfg: Qu
   // emitter plugins
   for (const emitter of cfg.plugins.emitters) {
     try {
-      const emitted = await emitter.emit(contentFolder, cfg.configuration, content, staticResources, emit)
+      const emitted = await emitter.emit(
+        contentFolder,
+        cfg.configuration,
+        content,
+        staticResources,
+        emit,
+      )
       emittedFiles += emitted.length
 
       if (verbose) {
@@ -141,7 +162,7 @@ export async function emitContent(contentFolder: string, output: string, cfg: Qu
     const fp = rawFp as FilePath
     const ext = path.extname(fp)
     const src = path.join(contentFolder, fp) as FilePath
-    const name = slugifyFilePath(fp as FilePath) + ext as FilePath
+    const name = (slugifyFilePath(fp as FilePath) + ext) as FilePath
     const dest = path.join(assetsPath, name) as FilePath
     const dir = path.dirname(dest) as FilePath
     await fs.promises.mkdir(dir, { recursive: true }) // ensure dir exists

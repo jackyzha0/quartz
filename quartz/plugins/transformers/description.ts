@@ -1,4 +1,4 @@
-import { Root as HTMLRoot } from 'hast'
+import { Root as HTMLRoot } from "hast"
 import { toString } from "hast-util-to-string"
 import { QuartzTransformerPlugin } from "../types"
 
@@ -7,11 +7,16 @@ export interface Options {
 }
 
 const defaultOptions: Options = {
-  descriptionLength: 150
+  descriptionLength: 150,
 }
 
 const escapeHTML = (unsafe: string) => {
-  return unsafe.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+  return unsafe
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;")
 }
 
 export const Description: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
@@ -26,30 +31,29 @@ export const Description: QuartzTransformerPlugin<Partial<Options> | undefined> 
             const text = escapeHTML(toString(tree))
 
             const desc = frontMatterDescription ?? text
-            const sentences = desc.replace(/\s+/g, ' ').split('.')
+            const sentences = desc.replace(/\s+/g, " ").split(".")
             let finalDesc = ""
             let sentenceIdx = 0
             const len = opts.descriptionLength
             while (finalDesc.length < len) {
               const sentence = sentences[sentenceIdx]
               if (!sentence) break
-              finalDesc += sentence + '.'
+              finalDesc += sentence + "."
               sentenceIdx++
             }
 
             file.data.description = finalDesc
             file.data.text = text
           }
-        }
+        },
       ]
-    }
+    },
   }
 }
 
-declare module 'vfile' {
+declare module "vfile" {
   interface DataMap {
     description: string
     text: string
   }
 }
-

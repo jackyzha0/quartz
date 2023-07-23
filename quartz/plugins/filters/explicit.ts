@@ -5,5 +5,5 @@ export const ExplicitPublish: QuartzFilterPlugin = () => ({
   shouldPublish([_tree, vfile]) {
     const publishFlag: boolean = vfile.data?.frontmatter?.publish ?? false
     return publishFlag
-  }
+  },
 })

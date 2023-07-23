@@ -9,6 +9,7 @@ By default, Quartz only fetches previews for pages inside your vault due to [COR
 When [[creating components|creating your own components]], you can include this `popover-hint` class to also include it in the popover.
 
 ## Configuration
+
 - Remove popovers: set the `enablePopovers` field in `quartz.config.ts` to be `false`.
 - Style: `quartz/components/styles/popover.scss`
 - Script: `quartz/components/scripts/popover.inline.ts`

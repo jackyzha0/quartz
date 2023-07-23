@@ -15,16 +15,16 @@ button#toc {
   }
 
   & .fold {
-    margin-left: 0.5rem; 
+    margin-left: 0.5rem;
     transition: transform 0.3s ease;
     opacity: 0.8;
   }
 
   &.collapsed .fold {
-    transform: rotateZ(-90deg)
+    transform: rotateZ(-90deg);
   }
 }
-  
+
 #toc-content {
   list-style: none;
   overflow: hidden;
@@ -42,7 +42,9 @@ button#toc {
     & > li > a {
       color: var(--dark);
       opacity: 0.35;
-      transition: 0.5s ease opacity, 0.3s ease color;
+      transition:
+        0.5s ease opacity,
+        0.3s ease color;
       &.in-view {
         opacity: 0.75;
       }
@@ -55,4 +57,3 @@ button#toc {
     }
   }
 }
-  

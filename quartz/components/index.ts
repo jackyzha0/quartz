@@ -9,7 +9,7 @@ import ReadingTime from "./ReadingTime"
 import Spacer from "./Spacer"
 import TableOfContents from "./TableOfContents"
 import TagList from "./TagList"
-import Graph from "./Graph" 
+import Graph from "./Graph"
 import Backlinks from "./Backlinks"
 import Search from "./Search"
 import Footer from "./Footer"
@@ -33,5 +33,5 @@ export {
   Search,
   Footer,
   DesktopOnly,
-  MobileOnly
-} 
+  MobileOnly,
+}

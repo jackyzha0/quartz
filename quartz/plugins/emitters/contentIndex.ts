@@ -5,12 +5,12 @@ import path from "path"
 
 export type ContentIndex = Map<CanonicalSlug, ContentDetails>
 export type ContentDetails = {
-  title: string,
-  links: CanonicalSlug[],
-  tags: string[],
-  content: string,
-  date?: Date,
-  description?: string,
+  title: string
+  links: CanonicalSlug[]
+  tags: string[]
+  content: string
+  date?: Date
+  description?: string
 }
 
 interface Options {
@@ -31,7 +31,9 @@ function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndex): string {
     <loc>https://${base}/${slug}</loc>
     <lastmod>${content.date?.toISOString()}</lastmod>
   </url>`
-  const urls = Array.from(idx).map(([slug, content]) => createURLEntry(slug, content)).join("")
+  const urls = Array.from(idx)
+    .map(([slug, content]) => createURLEntry(slug, content))
+    .join("")
   return `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${urls}</urlset>`
 }
 
@@ -47,7 +49,9 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex): string {
     <pubDate>${content.date?.toUTCString()}</pubDate>
   </items>`
 
-  const items = Array.from(idx).map(([slug, content]) => createURLEntry(slug, content)).join("")
+  const items = Array.from(idx)
+    .map(([slug, content]) => createURLEntry(slug, content))
+    .join("")
   return `<rss xmlns:atom="http://www.w3.org/2005/atom" version="2.0">
     <channel>
       <title>${cfg.pageTitle}</title>
@@ -71,14 +75,14 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
         const slug = canonicalizeServer(file.data.slug!)
         const date = file.data.dates?.modified ?? new Date()
         if (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) {
-        linkIndex.set(slug, {
-          title: file.data.frontmatter?.title!,
-          links: file.data.links ?? [],
-          tags: file.data.frontmatter?.tags ?? [],
-          content: file.data.text ?? "",
-          date: date,
-          description: file.data.description ?? ""
-        })
+          linkIndex.set(slug, {
+            title: file.data.frontmatter?.title!,
+            links: file.data.links ?? [],
+            tags: file.data.frontmatter?.tags ?? [],
+            content: file.data.text ?? "",
+            date: date,
+            description: file.data.description ?? "",
+          })
         }
       }
 
@@ -86,7 +90,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
         await emit({
           content: generateSiteMap(cfg, linkIndex),
           slug: "sitemap" as ServerSlug,
-          ext: ".xml"
+          ext: ".xml",
         })
         emitted.push("sitemap.xml" as FilePath)
       }
@@ -95,7 +99,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
         await emit({
           content: generateRSSFeed(cfg, linkIndex),
           slug: "index" as ServerSlug,
-          ext: ".xml"
+          ext: ".xml",
         })
         emitted.push("index.xml" as FilePath)
       }
@@ -109,7 +113,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
           delete content.description
           delete content.date
           return [slug, content]
-        })
+        }),
       )
 
       await emit({

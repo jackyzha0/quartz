@@ -17,32 +17,51 @@ function byDateAndAlphabetical(f1: QuartzPluginData, f2: QuartzPluginData): numb
   // otherwise, sort lexographically by title
   const f1Title = f1.frontmatter?.title.toLowerCase() ?? ""
   const f2Title = f2.frontmatter?.title.toLowerCase() ?? ""
-  return f1Title.localeCompare(f2Title) 
+  return f1Title.localeCompare(f2Title)
 }
 
 export function PageList({ fileData, allFiles }: QuartzComponentProps) {
   const slug = canonicalizeServer(fileData.slug!)
-  return <ul class="section-ul">
-    {allFiles.sort(byDateAndAlphabetical).map(page => {
-      const title = page.frontmatter?.title
-      const pageSlug = canonicalizeServer(page.slug!)
-      const tags = page.frontmatter?.tags ?? []
+  return (
+    <ul class="section-ul">
+      {allFiles.sort(byDateAndAlphabetical).map((page) => {
+        const title = page.frontmatter?.title
+        const pageSlug = canonicalizeServer(page.slug!)
+        const tags = page.frontmatter?.tags ?? []
 
-      return <li class="section-li">
-        <div class="section">
-          {page.dates && <p class="meta">
-            <Date date={page.dates.modified} />
-          </p>}
-          <div class="desc">
-            <h3><a href={resolveRelative(slug, pageSlug)} class="internal">{title}</a></h3>
-          </div>
-          <ul class="tags">
-            {tags.map(tag => <li><a class="internal" href={resolveRelative(slug, `tags/${tag}` as CanonicalSlug)}>#{tag}</a></li>)}
-          </ul>
-        </div>
-      </li>
-    })}
-  </ul>
+        return (
+          <li class="section-li">
+            <div class="section">
+              {page.dates && (
+                <p class="meta">
+                  <Date date={page.dates.modified} />
+                </p>
+              )}
+              <div class="desc">
+                <h3>
+                  <a href={resolveRelative(slug, pageSlug)} class="internal">
+                    {title}
+                  </a>
+                </h3>
+              </div>
+              <ul class="tags">
+                {tags.map((tag) => (
+                  <li>
+                    <a
+                      class="internal"
+                      href={resolveRelative(slug, `tags/${tag}` as CanonicalSlug)}
+                    >
+                      #{tag}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        )
+      })}
+    </ul>
+  )
 }
 
 PageList.css = `

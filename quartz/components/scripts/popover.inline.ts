@@ -2,33 +2,25 @@ import { computePosition, flip, inline, shift } from "@floating-ui/dom"
 
 // from micromorph/src/utils.ts
 // https://github.com/natemoo-re/micromorph/blob/main/src/utils.ts#L5
-export function normalizeRelativeURLs(
-  el: Element | Document,
-  base: string | URL
-) {
+export function normalizeRelativeURLs(el: Element | Document, base: string | URL) {
   const update = (el: Element, attr: string, base: string | URL) => {
     el.setAttribute(attr, new URL(el.getAttribute(attr)!, base).pathname)
   }
 
-  el.querySelectorAll('[href^="./"], [href^="../"]').forEach((item) =>
-    update(item, 'href', base)
-  )
+  el.querySelectorAll('[href^="./"], [href^="../"]').forEach((item) => update(item, "href", base))
 
-  el.querySelectorAll('[src^="./"], [src^="../"]').forEach((item) =>
-    update(item, 'src', base)
-  )
+  el.querySelectorAll('[src^="./"], [src^="../"]').forEach((item) => update(item, "src", base))
 }
 
 const p = new DOMParser()
-async function mouseEnterHandler(this: HTMLLinkElement, { clientX, clientY }: { clientX: number, clientY: number }) {
+async function mouseEnterHandler(
+  this: HTMLLinkElement,
+  { clientX, clientY }: { clientX: number; clientY: number },
+) {
   const link = this
   async function setPosition(popoverElement: HTMLElement) {
     const { x, y } = await computePosition(link, popoverElement, {
-      middleware: [
-        inline({ x: clientX, y: clientY }),
-        shift(),
-        flip()
-      ]
+      middleware: [inline({ x: clientX, y: clientY }), shift(), flip()],
     })
     Object.assign(popoverElement.style, {
       left: `${x}px`,
@@ -37,7 +29,7 @@ async function mouseEnterHandler(this: HTMLLinkElement, { clientX, clientY }: { 
   }
 
   // dont refetch if there's already a popover
-  if ([...link.children].some(child => child.classList.contains("popover"))) {
+  if ([...link.children].some((child) => child.classList.contains("popover"))) {
     return setPosition(link.lastChild as HTMLElement)
   }
 
@@ -68,7 +60,7 @@ async function mouseEnterHandler(this: HTMLLinkElement, { clientX, clientY }: { 
   const popoverInner = document.createElement("div")
   popoverInner.classList.add("popover-inner")
   popoverElement.appendChild(popoverInner)
-  elts.forEach(elt => popoverInner.appendChild(elt))
+  elts.forEach((elt) => popoverInner.appendChild(elt))
 
   setPosition(popoverElement)
   link.appendChild(popoverElement)
@@ -77,7 +69,7 @@ async function mouseEnterHandler(this: HTMLLinkElement, { clientX, clientY }: { 
     const heading = popoverInner.querySelector(hash) as HTMLElement | null
     if (heading) {
       // leave ~12px of buffer when scrolling to a heading
-      popoverInner.scroll({ top: heading.offsetTop - 12, behavior: 'instant' })
+      popoverInner.scroll({ top: heading.offsetTop - 12, behavior: "instant" })
     }
   }
 }

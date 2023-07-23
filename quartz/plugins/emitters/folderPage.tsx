@@ -24,20 +24,28 @@ export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
     },
     async emit(_contentDir, cfg, content, resources, emit): Promise<FilePath[]> {
       const fps: FilePath[] = []
-      const allFiles = content.map(c => c[1].data)
+      const allFiles = content.map((c) => c[1].data)
 
-      const folders: Set<CanonicalSlug> = new Set(allFiles.flatMap(data => {
-        const slug = data.slug
-        const folderName = path.dirname(slug ?? "") as CanonicalSlug
-        if (slug && folderName !== "." && folderName !== "tags") {
-          return [folderName]
-        }
-        return []
-      }))
+      const folders: Set<CanonicalSlug> = new Set(
+        allFiles.flatMap((data) => {
+          const slug = data.slug
+          const folderName = path.dirname(slug ?? "") as CanonicalSlug
+          if (slug && folderName !== "." && folderName !== "tags") {
+            return [folderName]
+          }
+          return []
+        }),
+      )
 
-      const folderDescriptions: Record<string, ProcessedContent> = Object.fromEntries([...folders].map(folder => ([
-        folder, defaultProcessedContent({ slug: joinSegments(folder, "index") as ServerSlug, frontmatter: { title: `Folder: ${folder}`, tags: [] } })
-      ])))
+      const folderDescriptions: Record<string, ProcessedContent> = Object.fromEntries(
+        [...folders].map((folder) => [
+          folder,
+          defaultProcessedContent({
+            slug: joinSegments(folder, "index") as ServerSlug,
+            frontmatter: { title: `Folder: ${folder}`, tags: [] },
+          }),
+        ]),
+      )
 
       for (const [tree, file] of content) {
         const slug = canonicalizeServer(file.data.slug!)
@@ -56,17 +64,12 @@ export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
           cfg,
           children: [],
           tree,
-          allFiles
+          allFiles,
         }
 
-        const content = renderPage(
-          slug,
-          componentData,
-          opts,
-          externalResources
-        )
+        const content = renderPage(slug, componentData, opts, externalResources)
 
-        const fp = file.data.slug! + ".html" as FilePath
+        const fp = (file.data.slug! + ".html") as FilePath
         await emit({
           content,
           slug: file.data.slug!,
@@ -76,6 +79,6 @@ export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
         fps.push(fp)
       }
       return fps
-    }
+    },
   }
 }

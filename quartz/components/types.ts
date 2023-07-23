@@ -11,15 +11,17 @@ export type QuartzComponentProps = {
   children: (QuartzComponent | JSX.Element)[]
   tree: Node<QuartzPluginData>
   allFiles: QuartzPluginData[]
-  displayClass?: 'mobile-only' | 'desktop-only'
+  displayClass?: "mobile-only" | "desktop-only"
 } & JSX.IntrinsicAttributes & {
-  [key: string]: any
-}
+    [key: string]: any
+  }
 
 export type QuartzComponent = ComponentType<QuartzComponentProps> & {
-  css?: string,
-  beforeDOMLoaded?: string,
-  afterDOMLoaded?: string,
+  css?: string
+  beforeDOMLoaded?: string
+  afterDOMLoaded?: string
 }
 
-export type QuartzComponentConstructor<Options extends object | undefined = undefined> = (opts: Options) => QuartzComponent
+export type QuartzComponentConstructor<Options extends object | undefined = undefined> = (
+  opts: Options,
+) => QuartzComponent
