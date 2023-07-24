@@ -79,6 +79,11 @@ const BuildArgv = {
     default: 8080,
     describe: "port to serve Quartz on",
   },
+  bundleInfo: {
+    boolean: true,
+    default: false,
+    describe: "show detailed bundle information"
+  }
 }
 
 function escapePath(fp) {
@@ -284,6 +289,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
         outfile: path.join("quartz", cacheFile),
         bundle: true,
         keepNames: true,
+        minify: true,
         platform: "node",
         format: "esm",
         jsx: "automatic",
@@ -315,6 +321,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
                     sourcefile,
                   },
                   write: false,
+                  minify: true,
                   bundle: true,
                   platform: "browser",
                   format: "esm",
@@ -338,13 +345,14 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
         process.exit(1)
       })
 
-    if (argv.verbose) {
+    if (argv.bundleInfo) {
       const outputFileName = "quartz/.quartz-cache/transpiled-build.mjs"
       const meta = result.metafile.outputs[outputFileName]
       console.log(
         `Successfully transpiled ${Object.keys(meta.inputs).length} files (${prettyBytes(
           meta.bytes,
-        )})`,
+        )})`)
+      console.log(await esbuild.analyzeMetafile(result.metafile, { color: true })
       )
     }
 
