@@ -91,10 +91,7 @@ async function startServing(ctx: BuildCtx, initialContent: ProcessedContent[]) {
         await rimraf(argv.output)
         const parsedFiles = [...contentMap.values()]
         const filteredContent = filterContent(ctx, parsedFiles)
-        await emitContent(
-          ctx,
-          filteredContent,
-        )
+        await emitContent(ctx, filteredContent)
         console.log(chalk.green(`Done rebuilding in ${perf.timeSince()}`))
       } catch {
         console.log(chalk.yellow(`Rebuild failed. Waiting on a change to fix the error...`))
