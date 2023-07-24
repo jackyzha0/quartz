@@ -13,7 +13,7 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
   getQuartzComponents() {
     return []
   },
-  async emit({argv}, content, _resources, emit): Promise<FilePath[]> {
+  async emit({ argv }, content, _resources, emit): Promise<FilePath[]> {
     const fps: FilePath[] = []
 
     for (const [_tree, file] of content) {

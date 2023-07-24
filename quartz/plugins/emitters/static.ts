@@ -1,11 +1,8 @@
 import { globby } from "globby"
-import {
-  FilePath, QUARTZ
-} from "../../path"
+import { FilePath, QUARTZ } from "../../path"
 import { QuartzEmitterPlugin } from "../types"
 import path from "path"
 import fs from "fs"
-
 
 export const Static: QuartzEmitterPlugin = () => ({
   name: "Static",
@@ -16,6 +13,6 @@ export const Static: QuartzEmitterPlugin = () => ({
     const staticPath = path.join(QUARTZ, "static")
     const fps = await globby("*", { cwd: staticPath })
     await fs.promises.cp(staticPath, path.join(argv.output, "static"), { recursive: true })
-    return fps.map(fp => path.join("static", fp)) as FilePath[]
+    return fps.map((fp) => path.join("static", fp)) as FilePath[]
   },
 })

@@ -1,7 +1,5 @@
 import { globbyStream } from "globby"
-import {
-  FilePath, slugifyFilePath,
-} from "../../path"
+import { FilePath, slugifyFilePath } from "../../path"
 import { QuartzEmitterPlugin } from "../types"
 import path from "path"
 import fs from "fs"

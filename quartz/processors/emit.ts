@@ -84,11 +84,8 @@ function addGlobalPageResources(
   }
 }
 
-export async function emitContent(
-  ctx: BuildCtx,
-  content: ProcessedContent[],
-) {
-  const { argv, cfg }= ctx
+export async function emitContent(ctx: BuildCtx, content: ProcessedContent[]) {
+  const { argv, cfg } = ctx
   const contentFolder = argv.directory
   const perf = new PerfTimer()
   const log = new QuartzLogger(ctx.argv.verbose)
@@ -125,12 +122,7 @@ export async function emitContent(
   // emitter plugins
   for (const emitter of cfg.plugins.emitters) {
     try {
-      const emitted = await emitter.emit(
-        ctx,
-        content,
-        staticResources,
-        emit,
-      )
+      const emitted = await emitter.emit(ctx, content, staticResources, emit)
       emittedFiles += emitted.length
 
       if (ctx.argv.verbose) {
