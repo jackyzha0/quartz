@@ -48,7 +48,7 @@ export function PageList({ fileData, allFiles }: QuartzComponentProps) {
                 {tags.map((tag) => (
                   <li>
                     <a
-                      class="internal"
+                      class="internal tag-link"
                       href={resolveRelative(slug, `tags/${tag}` as CanonicalSlug)}
                     >
                       #{tag}
@@ -66,6 +66,10 @@ export function PageList({ fileData, allFiles }: QuartzComponentProps) {
 
 PageList.css = `
 .section h3 {
+  margin: 0;
+}
+
+.section > .tags {
   margin: 0;
 }
 `
