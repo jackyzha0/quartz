@@ -13,12 +13,12 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
   getQuartzComponents() {
     return []
   },
-  async emit(contentFolder, _cfg, content, _resources, emit): Promise<FilePath[]> {
+  async emit({argv}, content, _resources, emit): Promise<FilePath[]> {
     const fps: FilePath[] = []
 
     for (const [_tree, file] of content) {
       const ogSlug = canonicalizeServer(file.data.slug!)
-      const dir = path.relative(contentFolder, file.dirname ?? contentFolder)
+      const dir = path.relative(argv.directory, file.dirname ?? argv.directory)
 
       let aliases: CanonicalSlug[] = []
       if (file.data.frontmatter?.aliases) {

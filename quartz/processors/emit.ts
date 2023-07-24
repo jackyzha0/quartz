@@ -1,6 +1,5 @@
 import path from "path"
 import fs from "fs"
-import { GlobalConfiguration, QuartzConfig } from "../cfg"
 import { PerfTimer } from "../perf"
 import {
   ComponentResources,
@@ -10,8 +9,7 @@ import {
 } from "../plugins"
 import { EmitCallback } from "../plugins/types"
 import { ProcessedContent } from "../plugins/vfile"
-import { FilePath, QUARTZ, slugifyFilePath } from "../path"
-import { globbyStream } from "globby"
+import { FilePath } from "../path"
 
 // @ts-ignore
 import spaRouterScript from "../components/scripts/spa.inline"
@@ -24,13 +22,15 @@ import { StaticResources } from "../resources"
 import { QuartzLogger } from "../log"
 import { googleFontHref } from "../theme"
 import { trace } from "../trace"
+import { BuildCtx } from "../ctx"
 
 function addGlobalPageResources(
-  cfg: GlobalConfiguration,
-  reloadScript: boolean,
+  ctx: BuildCtx,
   staticResources: StaticResources,
   componentResources: ComponentResources,
 ) {
+  const cfg = ctx.cfg.configuration
+  const reloadScript = ctx.argv.serve
   staticResources.css.push(googleFontHref(cfg.theme))
 
   // popovers
@@ -85,19 +85,17 @@ function addGlobalPageResources(
 }
 
 export async function emitContent(
-  contentFolder: string,
-  output: string,
-  cfg: QuartzConfig,
+  ctx: BuildCtx,
   content: ProcessedContent[],
-  reloadScript: boolean,
-  verbose: boolean,
 ) {
+  const { argv, cfg }= ctx
+  const contentFolder = argv.directory
   const perf = new PerfTimer()
-  const log = new QuartzLogger(verbose)
+  const log = new QuartzLogger(ctx.argv.verbose)
 
   log.start(`Emitting output files`)
   const emit: EmitCallback = async ({ slug, ext, content }) => {
-    const pathToPage = path.join(output, slug + ext) as FilePath
+    const pathToPage = path.join(argv.output, slug + ext) as FilePath
     const dir = path.dirname(pathToPage)
     await fs.promises.mkdir(dir, { recursive: true })
     await fs.promises.writeFile(pathToPage, content)
@@ -113,11 +111,11 @@ export async function emitContent(
   // important that this goes *after* component scripts
   // as the "nav" event gets triggered here and we should make sure
   // that everyone else had the chance to register a listener for it
-  addGlobalPageResources(cfg.configuration, reloadScript, staticResources, componentResources)
+  addGlobalPageResources(ctx, staticResources, componentResources)
 
   let emittedFiles = 0
   const emittedResources = await emitComponentResources(cfg.configuration, componentResources, emit)
-  if (verbose) {
+  if (argv.verbose) {
     for (const file of emittedResources) {
       emittedFiles += 1
       console.log(`[emit:Resources] ${file}`)
@@ -128,15 +126,14 @@ export async function emitContent(
   for (const emitter of cfg.plugins.emitters) {
     try {
       const emitted = await emitter.emit(
-        contentFolder,
-        cfg.configuration,
+        ctx,
         content,
         staticResources,
         emit,
       )
       emittedFiles += emitted.length
 
-      if (verbose) {
+      if (ctx.argv.verbose) {
         for (const file of emitted) {
           console.log(`[emit:${emitter.name}] ${file}`)
         }
@@ -147,31 +144,5 @@ export async function emitContent(
     }
   }
 
-  const staticPath = path.join(QUARTZ, "static")
-  await fs.promises.cp(staticPath, path.join(output, "static"), { recursive: true })
-  if (verbose) {
-    console.log(`[emit:Static] ${path.join("static", "**")}`)
-  }
-
-  // glob all non MD/MDX/HTML files in content folder and copy it over
-  const assetsPath = path.join(output, "assets")
-  for await (const rawFp of globbyStream("**", {
-    ignore: ["**/*.md"],
-    cwd: contentFolder,
-  })) {
-    const fp = rawFp as FilePath
-    const ext = path.extname(fp)
-    const src = path.join(contentFolder, fp) as FilePath
-    const name = (slugifyFilePath(fp as FilePath) + ext) as FilePath
-    const dest = path.join(assetsPath, name) as FilePath
-    const dir = path.dirname(dest) as FilePath
-    await fs.promises.mkdir(dir, { recursive: true }) // ensure dir exists
-    await fs.promises.copyFile(src, dest)
-    emittedFiles += 1
-    if (verbose) {
-      console.log(`[emit:Assets] ${path.join("assets", name)}`)
-    }
-  }
-
-  log.end(`Emitted ${emittedFiles} files to \`${output}\` in ${perf.timeSince()}`)
+  log.end(`Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince()}`)
 }

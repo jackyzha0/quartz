@@ -10,6 +10,5 @@ export interface Argv {
 
 export interface BuildCtx {
   argv: Argv
-  version: string
   cfg: QuartzConfig
 }

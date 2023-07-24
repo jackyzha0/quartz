@@ -68,7 +68,8 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
   opts = { ...defaultOptions, ...opts }
   return {
     name: "ContentIndex",
-    async emit(_contentDir, cfg, content, _resources, emit) {
+    async emit(ctx, content, _resources, emit) {
+      const cfg = ctx.cfg.configuration
       const emitted: FilePath[] = []
       const linkIndex: ContentIndex = new Map()
       for (const [_tree, file] of content) {
