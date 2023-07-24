@@ -1,15 +1,15 @@
 import { StaticResources } from "../resources"
-import { PluginTypes } from "./types"
 import { FilePath, ServerSlug } from "../path"
+import { BuildCtx } from "../ctx"
 
-export function getStaticResourcesFromPlugins(plugins: PluginTypes) {
+export function getStaticResourcesFromPlugins(ctx: BuildCtx) {
   const staticResources: StaticResources = {
     css: [],
     js: [],
   }
 
-  for (const transformer of plugins.transformers) {
-    const res = transformer.externalResources ? transformer.externalResources() : {}
+  for (const transformer of ctx.cfg.plugins.transformers) {
+    const res = transformer.externalResources ? transformer.externalResources(ctx) : {}
     if (res?.js) {
       staticResources.js.push(...res.js)
     }
@@ -29,7 +29,6 @@ declare module "vfile" {
   // inserted in processors.ts
   interface DataMap {
     slug: ServerSlug
-    allSlugs: ServerSlug[]
     filePath: FilePath
   }
 }

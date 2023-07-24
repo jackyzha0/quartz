@@ -10,7 +10,7 @@ import { parseMarkdown } from "./processors/parse"
 import { filterContent } from "./processors/filter"
 import { emitContent } from "./processors/emit"
 import cfg from "../quartz.config"
-import { FilePath } from "./path"
+import { FilePath, slugifyFilePath } from "./path"
 import chokidar from "chokidar"
 import { ProcessedContent } from "./plugins/vfile"
 import WebSocket, { WebSocketServer } from "ws"
@@ -20,6 +20,7 @@ async function buildQuartz(argv: Argv, version: string) {
   const ctx: BuildCtx = {
     argv,
     cfg,
+    allSlugs: [],
   }
 
   console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
@@ -51,6 +52,8 @@ async function buildQuartz(argv: Argv, version: string) {
   )
 
   const filePaths = fps.map((fp) => `${argv.directory}${path.sep}${fp}` as FilePath)
+  ctx.allSlugs = fps.map((fp) => slugifyFilePath(fp as FilePath))
+
   const parsedFiles = await parseMarkdown(ctx, filePaths)
   const filteredContent = filterContent(ctx, parsedFiles)
   await emitContent(ctx, filteredContent)
@@ -74,30 +77,54 @@ async function startServing(ctx: BuildCtx, initialContent: ProcessedContent[]) {
     contentMap.set(vfile.data.filePath!, content)
   }
 
-  async function rebuild(fp: string, action: "add" | "change" | "unlink") {
-    const perf = new PerfTimer()
+  let timeoutId: ReturnType<typeof setTimeout> | null = null
+  let toRebuild: Set<FilePath> = new Set()
+  let toRemove: Set<FilePath> = new Set()
+  async function rebuild(fp: string, action: "add" | "change" | "delete") {
     if (!ignored(fp)) {
-      console.log(chalk.yellow(`Detected change in ${fp}, rebuilding...`))
-      const fullPath = `${argv.directory}${path.sep}${fp}` as FilePath
-
-      try {
-        if (action === "add" || action === "change") {
-          const [parsedContent] = await parseMarkdown(ctx, [fullPath])
-          contentMap.set(fullPath, parsedContent)
-        } else if (action === "unlink") {
-          contentMap.delete(fullPath)
-        }
-
-        await rimraf(argv.output)
-        const parsedFiles = [...contentMap.values()]
-        const filteredContent = filterContent(ctx, parsedFiles)
-        await emitContent(ctx, filteredContent)
-        console.log(chalk.green(`Done rebuilding in ${perf.timeSince()}`))
-      } catch {
-        console.log(chalk.yellow(`Rebuild failed. Waiting on a change to fix the error...`))
+      const filePath = `${argv.directory}${path.sep}${fp}` as FilePath
+      if (action === "add" || action === "change") {
+        toRebuild.add(filePath)
+      } else if (action === "delete") {
+        toRemove.add(filePath)
       }
 
-      connections.forEach((conn) => conn.send("rebuild"))
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
+
+      timeoutId = setTimeout(async () => {
+        const perf = new PerfTimer()
+        console.log(chalk.yellow("Detected change, rebuilding..."))
+        try {
+          const filesToRebuild = [...toRebuild].filter((fp) => !toRemove.has(fp))
+
+          ctx.allSlugs = [...new Set([...contentMap.keys(), ...toRebuild])]
+            .filter((fp) => !toRemove.has(fp))
+            .map((fp) => slugifyFilePath(path.relative(argv.directory, fp) as FilePath))
+
+          const parsedContent = await parseMarkdown(ctx, filesToRebuild)
+          for (const content of parsedContent) {
+            const [_tree, vfile] = content
+            contentMap.set(vfile.data.filePath!, content)
+          }
+
+          for (const fp of toRemove) {
+            contentMap.delete(fp)
+          }
+
+          await rimraf(argv.output)
+          const parsedFiles = [...contentMap.values()]
+          const filteredContent = filterContent(ctx, parsedFiles)
+          await emitContent(ctx, filteredContent)
+          console.log(chalk.green(`Done rebuilding in ${perf.timeSince()}`))
+        } catch {
+          console.log(chalk.yellow(`Rebuild failed. Waiting on a change to fix the error...`))
+        }
+        connections.forEach((conn) => conn.send("rebuild"))
+        toRebuild.clear()
+        toRemove.clear()
+      }, 250)
     }
   }
 
@@ -110,7 +137,7 @@ async function startServing(ctx: BuildCtx, initialContent: ProcessedContent[]) {
   watcher
     .on("add", (fp) => rebuild(fp, "add"))
     .on("change", (fp) => rebuild(fp, "change"))
-    .on("unlink", (fp) => rebuild(fp, "unlink"))
+    .on("unlink", (fp) => rebuild(fp, "delete"))
 
   const server = http.createServer(async (req, res) => {
     await serveHandler(req, res, {

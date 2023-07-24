@@ -29,7 +29,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
   const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "LinkProcessing",
-    htmlPlugins() {
+    htmlPlugins(ctx) {
       return [
         () => {
           return (tree, file) => {
@@ -40,11 +40,8 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
               if (opts.markdownLinkResolution === "relative") {
                 return targetSlug as RelativeURL
               } else if (opts.markdownLinkResolution === "shortest") {
-                // https://forum.obsidian.md/t/settings-new-link-format-what-is-shortest-path-when-possible/6748/5
-                const allSlugs = file.data.allSlugs!
-
                 // if the file name is unique, then it's just the filename
-                const matchingFileNames = allSlugs.filter((slug) => {
+                const matchingFileNames = ctx.allSlugs.filter((slug) => {
                   const parts = slug.split(path.posix.sep)
                   const fileName = parts.at(-1)
                   return targetCanonical === fileName

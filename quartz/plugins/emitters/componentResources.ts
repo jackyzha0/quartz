@@ -20,10 +20,10 @@ type ComponentResources = {
   afterDOMLoaded: string[]
 }
 
-function getComponentResources(plugins: PluginTypes): ComponentResources {
+function getComponentResources(ctx: BuildCtx): ComponentResources {
   const allComponents: Set<QuartzComponent> = new Set()
-  for (const emitter of plugins.emitters) {
-    const components = emitter.getQuartzComponents()
+  for (const emitter of ctx.cfg.plugins.emitters) {
+    const components = emitter.getQuartzComponents(ctx)
     for (const component of components) {
       allComponents.add(component)
     }
@@ -127,7 +127,7 @@ export const ComponentResources: QuartzEmitterPlugin = () => ({
   },
   async emit(ctx, _content, resources, emit): Promise<FilePath[]> {
     // component specific scripts and styles
-    const componentResources = getComponentResources(ctx.cfg.plugins)
+    const componentResources = getComponentResources(ctx)
     // important that this goes *after* component scripts
     // as the "nav" event gets triggered here and we should make sure
     // that everyone else had the chance to register a listener for it
