@@ -4,7 +4,6 @@ draft: true
 
 ## high priority
 
-- component resources should be emitted by an emitter
 - https://help.obsidian.md/Editing+and+formatting/Tags#Nested+tags nested tags??
 - watch mode for config/source code
 - https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax#Task+lists task list styling

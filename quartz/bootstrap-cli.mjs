@@ -82,8 +82,8 @@ const BuildArgv = {
   bundleInfo: {
     boolean: true,
     default: false,
-    describe: "show detailed bundle information"
-  }
+    describe: "show detailed bundle information",
+  },
 }
 
 function escapePath(fp) {
@@ -351,9 +351,9 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       console.log(
         `Successfully transpiled ${Object.keys(meta.inputs).length} files (${prettyBytes(
           meta.bytes,
-        )})`)
-      console.log(await esbuild.analyzeMetafile(result.metafile, { color: true })
+        )})`,
       )
+      console.log(await esbuild.analyzeMetafile(result.metafile, { color: true }))
     }
 
     const { default: buildQuartz } = await import(cacheFile)
