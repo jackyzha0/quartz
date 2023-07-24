@@ -36,6 +36,8 @@ ul,
 .math {
   color: var(--darkgray);
   fill: var(--darkgray);
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .math {
@@ -80,10 +82,6 @@ a {
 .page {
   @media all and (max-width: $fullPageWidth) {
     margin: 0 5vw;
-  }
-
-  & p {
-    overflow-wrap: anywhere;
   }
 
   & article {
@@ -237,14 +235,12 @@ h1 {
 
 h2 {
   font-size: 1.4rem;
-  opacity: 0.95;
   margin-top: 2.4rem;
 }
 
 h3 {
   font-size: 1.12rem;
   margin-top: 2.12rem;
-  opacity: 0.9;
 }
 
 h4,
@@ -252,7 +248,6 @@ h5,
 h6 {
   font-size: 1rem;
   margin-top: 2rem;
-  opacity: 0.85;
 }
 
 div[data-rehype-pretty-code-fragment] {
