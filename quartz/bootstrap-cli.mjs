@@ -247,6 +247,8 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     )
     spawnSync("git", ["pull", UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH], { stdio: "inherit" })
     await popContentFolder(contentFolder)
+    console.log("Ensuring dependencies are up to date")
+    spawnSync("npm", ["i"], { stdio: "inherit" })
     console.log(chalk.green("Done!"))
   })
   .command("sync", "Sync your Quartz to and from GitHub.", SyncArgv, async (argv) => {
@@ -339,9 +341,6 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       .catch((err) => {
         console.error(`${chalk.red("Couldn't parse Quartz configuration:")} ${fp}`)
         console.log(`Reason: ${chalk.grey(err)}`)
-        console.log(
-          "hint: make sure all the required dependencies are installed (run `npm install`)",
-        )
         process.exit(1)
       })
 
