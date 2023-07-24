@@ -3,6 +3,7 @@ draft: true
 ---
 
 ## high priority
+
 - attachments path
 - https://help.obsidian.md/Editing+and+formatting/Tags#Nested+tags nested tags??
 - watch mode for config/source code
@@ -13,6 +14,7 @@ draft: true
 - note/header/block transcludes: https://help.obsidian.md/Linking+notes+and+files/Embedding+files
 
 ## misc
+
 - breadcrumbs component
 - filetree component
 - recent notes component
@@ -25,6 +27,6 @@ draft: true
 - audio/video embed styling
 - Canvas
 - mermaid styling: https://mermaid.js.org/config/theming.html#theme-variables-reference-table
-	- https://github.com/jackyzha0/quartz/issues/331
+  - https://github.com/jackyzha0/quartz/issues/331
 - parse all images in page: use this for page lists if applicable?
 - CV mode? with print stylesheet

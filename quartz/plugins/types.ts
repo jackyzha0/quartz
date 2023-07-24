@@ -4,6 +4,7 @@ import { ProcessedContent } from "./vfile"
 import { GlobalConfiguration } from "../cfg"
 import { QuartzComponent } from "../components/types"
 import { FilePath, ServerSlug } from "../path"
+import { BuildCtx } from "../ctx"
 
 export interface PluginTypes {
   transformers: QuartzTransformerPluginInstance[]
@@ -37,8 +38,7 @@ export type QuartzEmitterPlugin<Options extends OptionType = undefined> = (
 export type QuartzEmitterPluginInstance = {
   name: string
   emit(
-    contentDir: string,
-    cfg: GlobalConfiguration,
+    ctx: BuildCtx,
     content: ProcessedContent[],
     resources: StaticResources,
     emitCallback: EmitCallback,

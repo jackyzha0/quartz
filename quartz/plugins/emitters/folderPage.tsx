@@ -22,9 +22,10 @@ export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
     getQuartzComponents() {
       return [Head, Header, Body, ...header, ...beforeBody, Content, ...left, ...right, Footer]
     },
-    async emit(_contentDir, cfg, content, resources, emit): Promise<FilePath[]> {
+    async emit(ctx, content, resources, emit): Promise<FilePath[]> {
       const fps: FilePath[] = []
       const allFiles = content.map((c) => c[1].data)
+      const cfg = ctx.cfg.configuration
 
       const folders: Set<CanonicalSlug> = new Set(
         allFiles.flatMap((data) => {

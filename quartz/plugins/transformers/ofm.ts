@@ -110,7 +110,7 @@ const commentRegex = new RegExp(/%%(.+)%%/, "g")
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
 const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
 // (?:^| )   -> non-capturing group, tag should start be separated by a space or be the start of the line
-// #(\w+)    -> tag itself is # followed by a string of alpha-numeric characters 
+// #(\w+)    -> tag itself is # followed by a string of alpha-numeric characters
 const tagRegex = new RegExp(/(?:^| )#(\w+)/, "g")
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
@@ -225,7 +225,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             findAndReplace(tree, commentRegex, (_value: string, ..._capture: string[]) => {
               return {
                 type: "text",
-                value: ""
+                value: "",
               }
             })
           }
@@ -296,8 +296,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 node.data = {
                   hProperties: {
                     ...(node.data?.hProperties ?? {}),
-                    className: `callout ${collapse ? "is-collapsible" : ""} ${defaultState === "collapsed" ? "is-collapsed" : ""
-                      }`,
+                    className: `callout ${collapse ? "is-collapsible" : ""} ${
+                      defaultState === "collapsed" ? "is-collapsed" : ""
+                    }`,
                     "data-callout": calloutType,
                     "data-callout-fold": collapse,
                   },
