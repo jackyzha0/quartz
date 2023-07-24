@@ -331,6 +331,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             const slug = canonicalizeServer(file.data.slug!)
             const base = pathToRoot(slug)
             findAndReplace(tree, tagRegex, (value: string, tag: string) => {
+              if (file.data.frontmatter) {
+                file.data.frontmatter.tags.push(tag)
+              }
+
               return {
                 type: "link",
                 url: base + `/tags/${slugAnchor(tag)}`,
