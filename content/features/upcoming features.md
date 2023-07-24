@@ -6,8 +6,6 @@ draft: true
 
 - back button doesn't work sometimes
 - images in same folder are broken on shortest path mode
-
-- install dependencies on quartz update
 - https://help.obsidian.md/Editing+and+formatting/Tags#Nested+tags nested tags?? and big tag listing
 - watch mode for config/source code
 - https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax#Task+lists task list styling
