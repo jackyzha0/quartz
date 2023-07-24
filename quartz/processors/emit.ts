@@ -86,7 +86,6 @@ function addGlobalPageResources(
 
 export async function emitContent(ctx: BuildCtx, content: ProcessedContent[]) {
   const { argv, cfg } = ctx
-  const contentFolder = argv.directory
   const perf = new PerfTimer()
   const log = new QuartzLogger(ctx.argv.verbose)
 
