@@ -119,7 +119,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
   const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "ObsidianFlavoredMarkdown",
-    textTransform(src) {
+    textTransform(_ctx, src) {
       // pre-transform wikilinks (fix anchors to things that may contain illegal syntax e.g. codeblocks, latex)
       if (opts.wikilinks) {
         src = src.toString()

@@ -1,16 +1,13 @@
 import { BuildCtx } from "../ctx"
 import { PerfTimer } from "../perf"
-import { QuartzFilterPluginInstance } from "../plugins/types"
 import { ProcessedContent } from "../plugins/vfile"
 
-export function filterContent(
-  { cfg, argv }: BuildCtx,
-  content: ProcessedContent[],
-): ProcessedContent[] {
+export function filterContent(ctx: BuildCtx, content: ProcessedContent[]): ProcessedContent[] {
+  const { cfg, argv } = ctx
   const perf = new PerfTimer()
   const initialLength = content.length
   for (const plugin of cfg.plugins.filters) {
-    const updatedContent = content.filter(plugin.shouldPublish)
+    const updatedContent = content.filter((item) => plugin.shouldPublish(ctx, item))
 
     if (argv.verbose) {
       const diff = content.filter((x) => !updatedContent.includes(x))
