@@ -22,5 +22,6 @@ x=attended, s=studied
 - [x] [[03-uninformed-search]]
 - [ ] [[04-informed-search]]
 - [ ] [[05-adversarial search]]
+- [ ] [[06-genetic-algorithms]]
 
 # Info
