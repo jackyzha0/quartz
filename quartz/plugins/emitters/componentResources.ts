@@ -1,5 +1,5 @@
 import { FilePath, ServerSlug } from "../../path"
-import { PluginTypes, QuartzEmitterPlugin } from "../types"
+import { QuartzEmitterPlugin } from "../types"
 
 // @ts-ignore
 import spaRouterScript from "../../components/scripts/spa.inline"
@@ -13,6 +13,7 @@ import { BuildCtx } from "../../ctx"
 import { StaticResources } from "../../resources"
 import { QuartzComponent } from "../../components/types"
 import { googleFontHref, joinStyles } from "../../theme"
+import { transform } from "lightningcss"
 
 type ComponentResources = {
   css: string[]
@@ -67,7 +68,6 @@ function addGlobalPageResources(
 ) {
   const cfg = ctx.cfg.configuration
   const reloadScript = ctx.argv.serve
-  staticResources.css.push(googleFontHref(cfg.theme))
 
   // popovers
   if (cfg.enablePopovers) {
@@ -120,35 +120,61 @@ function addGlobalPageResources(
   }
 }
 
-export const ComponentResources: QuartzEmitterPlugin = () => ({
-  name: "ComponentResources",
-  getQuartzComponents() {
-    return []
-  },
-  async emit(ctx, _content, resources, emit): Promise<FilePath[]> {
-    // component specific scripts and styles
-    const componentResources = getComponentResources(ctx)
-    // important that this goes *after* component scripts
-    // as the "nav" event gets triggered here and we should make sure
-    // that everyone else had the chance to register a listener for it
-    addGlobalPageResources(ctx, resources, componentResources)
-    const fps = await Promise.all([
-      emit({
-        slug: "index" as ServerSlug,
-        ext: ".css",
-        content: joinStyles(ctx.cfg.configuration.theme, styles, ...componentResources.css),
-      }),
-      emit({
-        slug: "prescript" as ServerSlug,
-        ext: ".js",
-        content: joinScripts(componentResources.beforeDOMLoaded),
-      }),
-      emit({
-        slug: "postscript" as ServerSlug,
-        ext: ".js",
-        content: joinScripts(componentResources.afterDOMLoaded),
-      }),
-    ])
-    return fps
-  },
-})
+interface Options {
+  fontOrigin: "googleFonts" | "local"
+}
+
+const defaultOptions: Options = {
+  fontOrigin: "googleFonts",
+}
+
+export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<Options>) => {
+  const { fontOrigin } = { ...defaultOptions, ...opts }
+  return {
+    name: "ComponentResources",
+    getQuartzComponents() {
+      return []
+    },
+    async emit(ctx, _content, resources, emit): Promise<FilePath[]> {
+      // component specific scripts and styles
+      const componentResources = getComponentResources(ctx)
+      // important that this goes *after* component scripts
+      // as the "nav" event gets triggered here and we should make sure
+      // that everyone else had the chance to register a listener for it
+
+      if (fontOrigin === "googleFonts") {
+        resources.css.push(googleFontHref(ctx.cfg.configuration.theme))
+      } else if (fontOrigin === "local") {
+        // let the user do it themselves in css
+      }
+
+      addGlobalPageResources(ctx, resources, componentResources)
+
+      const stylesheet = joinStyles(ctx.cfg.configuration.theme, styles, ...componentResources.css)
+      const prescript = joinScripts(componentResources.beforeDOMLoaded)
+      const postscript = joinScripts(componentResources.afterDOMLoaded)
+      const fps = await Promise.all([
+        emit({
+          slug: "index" as ServerSlug,
+          ext: ".css",
+          content: transform({
+            filename: "index.css",
+            code: Buffer.from(stylesheet),
+            minify: true
+          }).code.toString(),
+        }),
+        emit({
+          slug: "prescript" as ServerSlug,
+          ext: ".js",
+          content: prescript,
+        }),
+        emit({
+          slug: "postscript" as ServerSlug,
+          ext: ".js",
+          content: postscript,
+        }),
+      ])
+      return fps
+    },
+  }
+}

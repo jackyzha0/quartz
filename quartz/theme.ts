@@ -24,13 +24,17 @@ export interface Theme {
 const DEFAULT_SANS_SERIF =
   '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif'
 const DEFAULT_MONO = "ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace"
+
 export function googleFontHref(theme: Theme) {
   const { code, header, body } = theme.typography
   return `https://fonts.googleapis.com/css2?family=${code}&family=${header}:wght@400;700&family=${body}:ital,wght@0,400;0,600;1,400;1,600&display=swap`
 }
 
 export function joinStyles(theme: Theme, ...stylesheet: string[]) {
-  return `:root {
+  return `
+${stylesheet.join("\n\n")}
+
+:root {
   --light: ${theme.colors.lightMode.light};
   --lightgray: ${theme.colors.lightMode.lightgray};
   --gray: ${theme.colors.lightMode.gray};
@@ -55,6 +59,6 @@ export function joinStyles(theme: Theme, ...stylesheet: string[]) {
   --tertiary: ${theme.colors.darkMode.tertiary};
   --highlight: ${theme.colors.darkMode.highlight};
 }
+`
 
-${stylesheet.join("\n\n")}`
 }

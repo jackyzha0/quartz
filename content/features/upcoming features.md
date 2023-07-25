@@ -4,6 +4,7 @@ draft: true
 
 ## high priority
 
+- local fonts
 - images in same folder are broken on shortest path mode
 - https://help.obsidian.md/Editing+and+formatting/Tags#Nested+tags nested tags?? and big tag listing
 - watch mode for config/source code

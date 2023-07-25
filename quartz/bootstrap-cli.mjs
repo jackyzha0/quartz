@@ -11,6 +11,7 @@ import { intro, isCancel, outro, select, text } from "@clack/prompts"
 import { rimraf } from "rimraf"
 import prettyBytes from "pretty-bytes"
 import { spawnSync } from "child_process"
+import { transform } from "lightningcss"
 
 const UPSTREAM_NAME = "upstream"
 const QUARTZ_SOURCE_BRANCH = "v4-alpha"
@@ -302,6 +303,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
         plugins: [
           sassPlugin({
             type: "css-text",
+            cssImports: true,
           }),
           {
             name: "inline-script-loader",
