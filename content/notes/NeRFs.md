@@ -36,3 +36,10 @@ tags:
 	- loss if function of fine and coarse. but output is only fine
 - single scene takes 1-2 days to train using a single V100 GPU
 
+few/one shot learning
+
+pixelnerf, nvidia instant ngp
+
+tensorf
+
+nerfstudio
