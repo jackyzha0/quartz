@@ -3,25 +3,24 @@ title: 🪴 Quartz 3.3
 enableToc: false
 ---
 
-Host your second brain and [digital garden](https://jzhao.xyz/posts/networked-thought) for free. Quartz features
+# Welcome to My Blog
 
-1. Extremely fast natural-language [[notes/search]]
-2. Customizable and hackable design based on [Hugo](https://gohugo.io/)
-3. Automatically generated backlinks, link previews, and local graph
-4. Built-in [[notes/CJK + Latex Support (测试) | CJK + Latex Support]] and [[notes/callouts | Admonition-style callouts]]
-5. Support for both Markdown Links and Wikilinks
+Welcome to my digital space where I share select thoughts, ideas, and notes on a variety of topics that pique my interest. As a tech enthusiast with a deep-seated passion for knowledge sharing, I've created this platform to document my learning journey and share my insights with the world.
 
-Check out some of the [amazing gardens that community members](notes/showcase.md) have published with Quartz or read about [why I made Quartz](notes/philosophy.md) to begin with.
+## About the Website
 
-## Get Started
-> 📚 Step 1: [Setup your own digital garden using Quartz](notes/setup.md)
+This website is a testament to my love for technology and efficient systems. It's hosted using Quartz, a powerful tool that allows me to create a personal website directly from my GitHub repository. Quartz's simplicity and efficiency make it an excellent choice for developers who appreciate organized and accessible systems.
 
-Returning user? Figure out how to [[notes/updating|update]] your existing Quartz garden.
+## My Notes and Their Format
 
-If you prefer browsing the contents of this site through a list instead of a graph, you see a list of all [setup-related notes](/tags/setup).
+The heart of this website lies in my notes. They are written in Markdown, a lightweight markup language that allows for easy formatting. The simplicity of Markdown lets me focus on the content, ensuring that my ideas and insights take center stage. 
 
-### Troubleshooting
-- 🚧 [Troubleshooting and FAQ](notes/troubleshooting.md)
-- 🐛 [Submit an Issue](https://github.com/jackyzha0/quartz/issues)
-- 👀 [Discord Community](https://discord.gg/cRFFHYye7t)
+## Explore and Connect
 
+The website is divided into various sections, each dedicated to a different topic. These sections house a collection of notes, articles, and resources, providing a comprehensive overview of each subject. 
+
+I encourage you to explore, learn, and share your thoughts. If you wish to connect, you can find my contact information in the 'Contact Me' section of [the main page](https://michael.smolkin.org/hire-me.html). I'm always open to questions, suggestions, or a simple hello.
+
+Thank you for visiting. I hope you find the content both useful and informative. Enjoy your exploration!
+
+Note to self: [[notes/callouts | Admonition-style callouts]]
