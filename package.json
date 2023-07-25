@@ -44,6 +44,7 @@
     "hast-util-to-string": "^2.0.0",
     "is-absolute-url": "^4.0.1",
     "js-yaml": "^4.1.0",
+    "lightningcss": "^1.21.5",
     "mdast-util-find-and-replace": "^2.2.2",
     "mdast-util-to-string": "^3.2.0",
     "micromorph": "^0.4.5",
