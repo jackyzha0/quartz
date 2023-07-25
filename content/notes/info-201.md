@@ -54,6 +54,7 @@ tags:
 
 # Lectures
 - [02-version-control-system](notes/02-version-control-system.md)
+- [[03-agile-methodologies]]
 - [04-requirements](notes/04-requirements)
 - [06-business-functions-and-use-cases](notes/06-business-functions-and-use-cases.md)
 - [07-business-process-modelling](notes/07-business-process-modelling.md)

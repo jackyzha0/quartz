@@ -1,0 +1,14 @@
+{
+	"nodes":[
+		{"type":"text","text":"Artificial Intelligence","id":"21e241739643bc2c","x":-132,"y":-65,"width":180,"height":58},
+		{"type":"text","text":"What is Intelligence\n- Thinking Rationally\n- Thinking Humanly\n- Acting Rationally\n- Acting Humanly","id":"91142d4da9624c5d","x":-326,"y":151,"width":250,"height":153},
+		{"type":"text","text":"Value Alignment Problem","id":"7eff047535570058","x":-129,"y":180,"width":250,"height":77},
+		{"type":"file","file":"notes/ai-foundations.md","id":"61e168dc61e2a07a","x":335,"y":-36,"width":400,"height":1273},
+		{"id":"0beeadd4a8318e08","x":784,"y":-35,"width":400,"height":1167,"type":"file","file":"notes/ai-history.md"}
+	],
+	"edges":[
+		{"id":"cd4d55385d5c0374","fromNode":"21e241739643bc2c","fromSide":"bottom","toNode":"91142d4da9624c5d","toSide":"top"},
+		{"id":"50770e7db58b5eb4","fromNode":"21e241739643bc2c","fromSide":"right","toNode":"61e168dc61e2a07a","toSide":"left"},
+		{"id":"f58ac8143df95583","fromNode":"21e241739643bc2c","fromSide":"right","toNode":"0beeadd4a8318e08","toSide":"left"}
+	]
+}

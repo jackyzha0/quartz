@@ -2,8 +2,9 @@
 title: "uni-notes"
 aliases: Uni Notes
 tags: 
-
 ---
+
+[[honours]]
 
 ## 2022 S1
 - [cosc-201](notes/cosc-201.md)
@@ -18,8 +19,12 @@ tags:
 - [math-202](notes/math-202.md)
 
 ## 2023 s1
-
 - [[cosc-301]]
 - [[cosc-342]]
 - [[cosc-326]]
 - [[info-305]]
+
+## 2023 s2
+- [[cosc-343]]
+- [[info-351]]
+- [[cosc-345]]

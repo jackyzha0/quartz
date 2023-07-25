@@ -5,7 +5,6 @@ tags:
 - info201
 ---
 
-<% tp.file.cursor(4) %>
 # System templates
 some standard patterns is system design
 

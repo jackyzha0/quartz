@@ -3,8 +3,8 @@ title: "Colour Spaces"
 tags: 
 - cosc342
 - review
-sr-due: 2023-06-08
-sr-interval: 3
+sr-due: 2023-09-29
+sr-interval: 66
 sr-ease: 250
 ---
 

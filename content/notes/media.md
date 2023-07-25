@@ -17,6 +17,7 @@ tags:
 - Do I want to be a cook
 - Do I actually like computer science
 - I should write more
+- this needs to be in a more visible place
 
 # Books
 - 2022
@@ -48,16 +49,23 @@ tags:
 	- nocturnes
 	- the fall
 	- star
+	- A psalm for the wild built
+	- a prayer for the crown shy
+	- convenience store woman
+	- 
 - current
 	- the life of pi
+	- the worm forgives the plough
+	- kimono
+	- 
 - future
 	- the second sex, simone de beauvoir
 	- actual air david berman
 	- woman in the dunes
 	- sophies world
 	- on the trail of genghis khan
-	- A psalm for the wild built
 	- the magic mountain
+	- the one straw revolution
 - author 
 - 
 
