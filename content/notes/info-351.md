@@ -14,8 +14,8 @@ tags:
 [[virtual-reality-is-genuine-reality-so-embrace-it-says-us-philosopher]]
 
 # Lectures
-- [[01-ARIVE-intro]]
-- [[02-terms-definitions-concepts]]
+- [x] [[01-ARIVE-intro]]
+- [x] [[02-terms-definitions-concepts]]
 
 # Info
 

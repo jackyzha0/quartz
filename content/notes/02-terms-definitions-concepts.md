@@ -98,3 +98,15 @@ Types
 	- sensors in the environment track the user
 
 To render things in the environment can estimate for example where the light sources are in the environment
+
+**Interaction**
+we are used to using  a keyboard and mouse. So how can we learn to interact with more complex environments
+
+- Occlusion
+![|300](https://i.imgur.com/HpNxYYI.png)
+
+- Gestures → using hand gestures as input
+- Controllers → smartphones, joysticks etc (mohr)
+	- Not good for crowded/social environments
+- Touch pads on HMD (gugenheimer 2016)
+- Eye tracking (lee 2016)
