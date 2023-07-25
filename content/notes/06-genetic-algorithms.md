@@ -45,3 +45,5 @@ mixing chromosomes using crossover
 | k-point      | many cuts                             |      |
 | uniform      | slice everywhere and mix randomly     |      |
 
+elitism
+- choose to retain n fittest individuals in next generation
