@@ -12,20 +12,25 @@ import {
   getAllSegmentPrefixes,
   joinSegments,
 } from "../../path"
+import { defaultListPageLayout, sharedPageComponents } from "../../../quartz.layout"
+import { TagContent } from "../../components"
 
-export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
-  if (!opts) {
-    throw new Error("TagPage must be initialized with options specifiying the components to use")
+export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (userOpts) => {
+  const opts: FullPageLayout = {
+    ...sharedPageComponents,
+    ...defaultListPageLayout,
+    pageBody: TagContent(),
+    ...userOpts,
   }
 
-  const { head: Head, header, beforeBody, pageBody: Content, left, right, footer: Footer } = opts
+  const { head: Head, header, beforeBody, pageBody, left, right, footer: Footer } = opts
   const Header = HeaderConstructor()
   const Body = BodyConstructor()
 
   return {
     name: "TagPage",
     getQuartzComponents() {
-      return [Head, Header, Body, ...header, ...beforeBody, Content, ...left, ...right, Footer]
+      return [Head, Header, Body, ...header, ...beforeBody, pageBody, ...left, ...right, Footer]
     },
     async emit(ctx, content, resources, emit): Promise<FilePath[]> {
       const fps: FilePath[] = []

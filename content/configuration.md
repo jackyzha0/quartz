@@ -75,8 +75,10 @@ transformers: [
 ]
 ```
 
+If you'd like to make your own plugins, read the guide on [[making plugins]] for more information.
+
 ### Layout
 
-Certain emitters may also output [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) files. To make sure that
+Certain emitters may also output [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) files. To enable easy customization, these emitters allow you to fully rearrange the layout of the page.
 
 ### Components
