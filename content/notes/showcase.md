@@ -6,6 +6,7 @@ Want to see what Quartz can do? Here are some cool community gardens :)
 
 - [Quartz Documentation (this site!)](https://quartz.jzhao.xyz/)
 - [Jacky Zhao's Garden](https://jzhao.xyz/)
+- [Michael's Musings](https://notes.smolkin.org/)
 - [Scaling Synthesis - A hypertext research notebook](https://scalingsynthesis.com/)
 - [AWAGMI Intern Notes](https://notes.awagmi.xyz/)
 - [Shihyu's PKM](https://shihyuho.github.io/pkm/)
