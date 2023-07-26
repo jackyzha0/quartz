@@ -60,5 +60,4 @@ ${stylesheet.join("\n\n")}
   --highlight: ${theme.colors.darkMode.highlight};
 }
 `
-
 }

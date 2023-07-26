@@ -9,7 +9,7 @@ import path from "path"
 import { JSResource } from "../../resources"
 // @ts-ignore
 import calloutScript from "../../components/scripts/callout.inline.ts"
-import { FilePath, canonicalizeServer, pathToRoot, slugifyFilePath } from "../../path"
+import { FilePath, canonicalizeServer, pathToRoot, slugTag, slugifyFilePath } from "../../path"
 
 export interface Options {
   comments: boolean
@@ -337,7 +337,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
               return {
                 type: "link",
-                url: base + `/tags/${slugAnchor(tag)}`,
+                url: base + `/tags/${slugTag(tag)}`,
                 data: {
                   hProperties: {
                     className: ["tag-link"],

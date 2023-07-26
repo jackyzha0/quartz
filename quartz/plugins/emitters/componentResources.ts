@@ -160,7 +160,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
           content: transform({
             filename: "index.css",
             code: Buffer.from(stylesheet),
-            minify: true
+            minify: true,
           }).code.toString(),
         }),
         emit({
