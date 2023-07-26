@@ -17,7 +17,7 @@ tags:
 - [x] [[02-team-organisation]]
 - [ ] [[03-requirements]]
 - [x] [[05-waterfall]]
-
+- [ ] [[06-agile]]
 
 # Info
 
