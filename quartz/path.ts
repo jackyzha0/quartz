@@ -1,4 +1,4 @@
-import { slug as slugAnchor } from "github-slugger"
+import { slug } from "github-slugger"
 import { trace } from "./trace"
 
 // Quartz Paths
@@ -197,8 +197,28 @@ export function splitAnchor(link: string): [string, string] {
   return [fp, anchor]
 }
 
+export function slugAnchor(anchor: string) {
+  return slug(anchor)
+}
+
+export function slugTag(tag: string) {
+  return tag
+    .split("/")
+    .map((tagSegment) => slug(tagSegment))
+    .join("/")
+}
+
 export function joinSegments(...args: string[]): string {
   return args.filter((segment) => segment !== "").join("/")
+}
+
+export function getAllSegmentPrefixes(tags: string): string[] {
+  const segments = tags.split("/")
+  const results: string[] = []
+  for (let i = 0; i < segments.length; i++) {
+    results.push(segments.slice(0, i + 1).join("/"))
+  }
+  return results
 }
 
 export const QUARTZ = "quartz"

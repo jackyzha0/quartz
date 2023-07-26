@@ -2,7 +2,7 @@ import matter from "gray-matter"
 import remarkFrontmatter from "remark-frontmatter"
 import { QuartzTransformerPlugin } from "../types"
 import yaml from "js-yaml"
-import { slug as slugAnchor } from "github-slugger"
+import { slugTag } from "../../path"
 
 export interface Options {
   language: "yaml" | "toml"
@@ -43,7 +43,7 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
             }
 
             // slug them all!!
-            data.tags = data.tags?.map((tag: string) => slugAnchor(tag)) ?? []
+            data.tags = data.tags?.map((tag: string) => slugTag(tag)) ?? []
 
             // fill in frontmatter
             file.data.frontmatter = {
