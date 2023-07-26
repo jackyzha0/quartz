@@ -5,22 +5,25 @@ import BodyConstructor from "../../components/Body"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { FullPageLayout } from "../../cfg"
 import { FilePath, canonicalizeServer } from "../../path"
+import { defaultContentPageLayout, sharedPageComponents } from "../../../quartz.layout"
+import { Content } from "../../components"
 
-export const ContentPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
-  if (!opts) {
-    throw new Error(
-      "ContentPage must be initialized with options specifiying the components to use",
-    )
+export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) => {
+  const opts: FullPageLayout = {
+    ...sharedPageComponents,
+    ...defaultContentPageLayout,
+    pageBody: Content(),
+    ...userOpts,
   }
 
-  const { head: Head, header, beforeBody, pageBody: Content, left, right, footer: Footer } = opts
+  const { head: Head, header, beforeBody, pageBody, left, right, footer: Footer } = opts
   const Header = HeaderConstructor()
   const Body = BodyConstructor()
 
   return {
     name: "ContentPage",
     getQuartzComponents() {
-      return [Head, Header, Body, ...header, ...beforeBody, Content, ...left, ...right, Footer]
+      return [Head, Header, Body, ...header, ...beforeBody, pageBody, ...left, ...right, Footer]
     },
     async emit(ctx, content, resources, emit): Promise<FilePath[]> {
       const cfg = ctx.cfg.configuration

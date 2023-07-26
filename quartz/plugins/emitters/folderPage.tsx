@@ -7,20 +7,25 @@ import { ProcessedContent, defaultProcessedContent } from "../vfile"
 import { FullPageLayout } from "../../cfg"
 import path from "path"
 import { CanonicalSlug, FilePath, ServerSlug, canonicalizeServer, joinSegments } from "../../path"
+import { defaultListPageLayout, sharedPageComponents } from "../../../quartz.layout"
+import { FolderContent } from "../../components"
 
-export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (opts) => {
-  if (!opts) {
-    throw new Error("ErrorPage must be initialized with options specifiying the components to use")
+export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (userOpts) => {
+  const opts: FullPageLayout = {
+    ...sharedPageComponents,
+    ...defaultListPageLayout,
+    pageBody: FolderContent(),
+    ...userOpts,
   }
 
-  const { head: Head, header, beforeBody, pageBody: Content, left, right, footer: Footer } = opts
+  const { head: Head, header, beforeBody, pageBody, left, right, footer: Footer } = opts
   const Header = HeaderConstructor()
   const Body = BodyConstructor()
 
   return {
     name: "FolderPage",
     getQuartzComponents() {
-      return [Head, Header, Body, ...header, ...beforeBody, Content, ...left, ...right, Footer]
+      return [Head, Header, Body, ...header, ...beforeBody, pageBody, ...left, ...right, Footer]
     },
     async emit(ctx, content, resources, emit): Promise<FilePath[]> {
       const fps: FilePath[] = []
