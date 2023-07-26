@@ -48,7 +48,10 @@ function TagContent(props: QuartzComponentProps) {
                     #{tag}
                   </a>
                 </h2>
-                <p>{pages.length} items with this tag. {pages.length > numPages && `Showing first ${numPages}.`}</p>
+                <p>
+                  {pages.length} items with this tag.{" "}
+                  {pages.length > numPages && `Showing first ${numPages}.`}
+                </p>
                 <PageList limit={numPages} {...listProps} />
               </div>
             )
