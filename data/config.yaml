@@ -15,15 +15,23 @@ enableMermaid: true
 GitHubLink: https://github.com/msmolkin/notes.smolkin.org/hugo/content
 search:
   enableSemanticSearch: false
-  operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
-  operandIndexId: "REPLACE-WITH-YOUR-OPERAND-INDEX-ID"
+#   Operand closed their public access in mid-June
+#   operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
+#   operandIndexId: "REPLACE-WITH-YOUR-OPERAND-INDEX-ID"
 description:
-  Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
-  Wikilink support, backlinks, local graph, tags, and link previews.
+  Please remind me to update this description. Yes, you. Welcome to my website! Please bear with me as I gather more public data that I'm comfortable sharing with Anthropic. Stay tuned for updates and a comprehensive description (written by Claude) soon!
 page_title:
-  "🪴 Quartz 3.3"
+  "🪴 Michael's Musings"
 links:
+  - link_name: Home
+  - link: https://michael.smolkin.org/
   - link_name: Twitter
-    link: https://twitter.com/_jzhao
+  - link: https://twitter.com/MichaelSmolkin
   - link_name: GitHub
-    link: https://github.com/jackyzha0
+  - link_name: GitHub
+  - link: https://github.com/msmolkin
+  - Secondary GitHub
+  - https://github.com/msmolkin1
+  - link_name: About
+  - link: https://michael.smolkin.org/
+
