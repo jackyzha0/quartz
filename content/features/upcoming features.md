@@ -6,7 +6,6 @@ draft: true
 
 - images in same folder are broken on shortest path mode
 - watch mode for config/source code
-- https://help.obsidian.md/Editing+and+formatting/Basic+formatting+syntax#Task+lists task list styling
 - publish metadata https://help.obsidian.md/Editing+and+formatting/Metadata#Metadata+for+Obsidian+Publish
 - metadata aliases: https://help.obsidian.md/Editing+and+formatting/Metadata#Predefined+metadata
 - block links: https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note

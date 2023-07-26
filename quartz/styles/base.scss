@@ -92,11 +92,17 @@ a {
     & li:has(> input[type="checkbox"]) {
       list-style-type: none;
       padding-left: 0;
-      margin-left: -1.4rem;
+    }
+
+    & li:has(> input[type="checkbox"]:checked) {
+      text-decoration: line-through;
+      text-decoration-color: var(--gray);
+      color: var(--gray);
     }
 
     & li > * {
-      margin: 0;
+      margin-top: 0;
+      margin-bottom: 0;
     }
   }
 
@@ -175,8 +181,35 @@ a {
 input[type="checkbox"] {
   transform: translateY(2px);
   color: var(--secondary);
-  border-color: var(--lightgray);
+  border: 1px solid var(--lightgray);
+  border-radius: 3px;
   background-color: var(--light);
+  position: relative;
+  margin-inline-end: 0.2rem;
+  margin-inline-start: -1.4rem;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+
+  &:checked {
+    border-color: var(--secondary);
+    background-color: var(--secondary);
+
+    &::after {
+      content: "";
+      top: -1px;
+      left: -1px;
+      position: absolute;
+      left: 4px;
+      top: 1px;
+      width: 4px;
+      height: 8px;
+      display: block;
+      border: solid 1px var(--light);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
 }
 
 blockquote {
