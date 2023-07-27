@@ -18,7 +18,7 @@ tags: info351, xr
 - Milgram & Kishino 1994
 - Reality
 - Augmented Reality
-- Augmented Virtuality
+- Augmented Virtuality e.g., virtual reality with physical (real) objects in the same place as the virtual objects
 - Virtuality
 ![|300](https://i.imgur.com/oPDfjAN.png)
 
