@@ -3,8 +3,8 @@ title: "08-debugging"
 tags: 
 - cosc202 
 - lecture
-sr-due: 2023-07-27
-sr-interval: 268
+sr-due: 2025-05-29
+sr-interval: 671
 sr-ease: 250
 ---
 
