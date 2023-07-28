@@ -7,6 +7,7 @@ tags:
 - 
 ---
 # Assignments
+[[report-draft]]
 
 # Labs
 
