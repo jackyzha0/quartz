@@ -8,7 +8,8 @@ tags:
 An executable file e.g., greet has to be **loaded and run** by your [OS](notes/operating-system.md). Depending on your OS and your harwdare this might need to be done differently
 
 ## C program example
-[400](https://i.imgur.com/1PlLlQ5.png) [400](https://i.imgur.com/bBQp3TH.png)
+![400](https://i.imgur.com/1PlLlQ5.png) 
+![400](https://i.imgur.com/bBQp3TH.png)
 
 ## OS Program loaders
 There identify the types of file that is being executed. E.g., a  #! at the beginning of a file tells the OS which interpreter to run that file through. Otherwise it will look into the binary file, loads any dynamic libraries, and adjusts the executable code to point to shared libraries in RAM. Eventaully the OS will point the CPU at the binary machine code, first creating an OS process to contain code execution so it cannot overwrite memory belonging to another process

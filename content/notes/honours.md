@@ -13,6 +13,7 @@ project-name:
 [[hons-projects-choice]]
 [[NeRFs]]
 [[SIREN]]
+[[ChromaGlasses]]
 
 ## Time
 [[honours-timesheet]]
