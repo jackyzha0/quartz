@@ -14,6 +14,7 @@ project-name:
 [[NeRFs]]
 [[SIREN]]
 [[ChromaGlasses]]
+[[Eye-Perspective View Management for OSTHMDs]]
 
 
 ## Time
