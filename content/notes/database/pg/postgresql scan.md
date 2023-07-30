@@ -28,4 +28,4 @@ If you only select a handful of rows, PostgreSQL will decide on an index scan â€
 
 To summarize, the bitmap scan happens when the result set will have a high selectivity rate with respect to the filter condition, it is a bitmap of which pages on disk to pull the data out from, it only scans the relevant pages on disk, skip the pages that it knows relevant data does not exist.
 
-![[notes/images/bitmap-scan.png]]*Bitmap scan*
+![[me/notes/images/bitmap-scan.png]]*Bitmap scan*
