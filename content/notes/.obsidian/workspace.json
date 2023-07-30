@@ -1,0 +1,198 @@
+{
+  "main": {
+    "id": "fd05ecb5bad6d562",
+    "type": "split",
+    "children": [
+      {
+        "id": "a560f3b85884dd4c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "007beb25e2193259",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "database/pg/postgresql-scan.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "cd94162cdba86c8c",
+    "type": "split",
+    "children": [
+      {
+        "id": "0e8fa1c782597cd1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "608d6b85b884b2f1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "9501958878f78ceb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "6d763c075e9f82db",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "2b99b07fedd72db8",
+    "type": "split",
+    "children": [
+      {
+        "id": "33aa5497f2f97457",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bfa29e2d94500af3",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "database/pg/postgresql-scan.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "f3a1938b3b51315c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "database/pg/postgresql-scan.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "87b2bea99015a7a9",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "c9fa9e369a6507db",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "database/pg/postgresql-scan.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "007beb25e2193259",
+  "lastOpenFiles": [
+    "database/pg/bitmap-scan.png",
+    "database/pg/images/bitmap-scan.png",
+    "database/pg/images/psql_bitmap_scan.png",
+    "database/pg/postgresql-scan.md",
+    "blog/database/pg/images/png.md",
+    "blog/database/pg/images",
+    "blog/database/pg",
+    "blog/database",
+    "blog",
+    "blog/database/PostgresQL/images/psql_bitmap_scan.png.md",
+    "blog/database/PostgresQL/images",
+    "blog/database/PostgresQL",
+    "database/pg/images",
+    "notes/images/obsidian-settings.png.md",
+    "notes/Untitled",
+    "notes/images",
+    "notes",
+    "Pasted image 20230717225307.png",
+    "Pasted image 20230718225132.png",
+    "Pasted image 20230717235705.png",
+    "Pasted image 20230725074015.png",
+    "Pasted image 20230725235306.png",
+    "Pasted image 20230725074322.png",
+    "Pasted image 20230717235644.png",
+    "Pasted image 20230717233520.png",
+    "aws/aws-ec2.md",
+    "aws/Summarize.md",
+    "aws/SSL.md",
+    "aws/Route 53.md",
+    "aws/Private & Public & Elastic IP.md",
+    "aws/IAM Security Tools.md",
+    "aws/ElastiCache.md",
+    "aws/EC2 Instance Store.md",
+    "aws/EBS Volume.md",
+    "aws/AWS Security Groups.md",
+    "aws/AWS RDS.md",
+    "aws/AWS Load balancer.md",
+    "aws/AWS IAM Roles.md",
+    "aws/AWS IAM Policy.md",
+    "aws/AWS Global Infrastructure.md",
+    "aws/AWS EC2.md",
+    "database/PostgreSQL/How the PostgreSQL scan?.md",
+    "AWS/Summarize.md",
+    "AWS/SSL.md",
+    "AWS/Route 53.md",
+    "AWS/Private & Public & Elastic IP.md"
+  ]
+}
