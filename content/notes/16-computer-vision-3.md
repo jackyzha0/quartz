@@ -6,7 +6,7 @@ tags:
 ---
 
 
-SLAM: Simultaneous Localisation and Mapping
+SLAM: Simultaneous Localisation and Mapping ^79f9f9
 
 > [!INFO] new and modern. last 10-15 years.
 > we can do dept estimation with stereo camera

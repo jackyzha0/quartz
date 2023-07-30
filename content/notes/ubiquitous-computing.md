@@ -5,3 +5,5 @@ tags: HCI, computing, UI
 ---
 
 we shouldn't need to learn how to use a system, it should work with us.
+
+Ubiquitious: when we can no longer distinguish between computing area and the experience

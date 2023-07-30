@@ -1,6 +1,6 @@
 ---
 title: "spatial-augmented-reality"
-aliases: SPA
+aliases: SPA, spatial AR
 tags: XR
 ---
 

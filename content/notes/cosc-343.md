@@ -4,7 +4,6 @@ year: 2022
 semester: 
 tags: 
 - course
-- 
 ---
 # Assignments
 [[report-draft]]
