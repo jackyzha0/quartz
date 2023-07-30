@@ -1,9 +1,8 @@
 ---
 title: "virtual-reality-is-genuine-reality-so-embrace-it-says-us-philosopher"
-tags: reading, vr, info351
+tags: article, XR, info351
+link: https://www.theguardian.com/technology/2022/jan/17/virtual-reality-is-genuine-reality-so-embrace-it-says-us-philosopher
 ---
-
-
 
 david chalmers. 
 

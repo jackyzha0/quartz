@@ -1,2 +1,2 @@
-- Need to know context for [[ubiquitious-computing]]
+- Need to know context for [[ubiquitous-computing]]
 - Sensors capture context information

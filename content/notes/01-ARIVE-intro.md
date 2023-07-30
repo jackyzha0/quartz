@@ -3,8 +3,6 @@ title: "01-ARIVE-intro"
 tags: lecture, info351, xr, ar, vr
 ---
 
-ubiquitious - we shouldn't need to learn how to use a system, it should work with us.
-
 big change/hype was when 
 - XR hardware became affordable. 
 - Unity etc allowed us to build XR applications a lot easier.

@@ -26,5 +26,5 @@ tags:
 
 ## 2023 s2
 - [[cosc-343]]
-- [[info-351]]
+- [[INFO351 Special Topic Virtual and Augmented Reality]]
 - [[cosc-345]]
