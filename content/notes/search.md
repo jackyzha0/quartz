@@ -30,8 +30,8 @@ Here's how to set it up.
 # the default option
 search:
   enableSemanticSearch: true
-  operandApiKey: "jp9k5hudse2a828z98kxd6z3payi8u90rnjf"
-  operandIndexId: "s0kf3bd6tldw"
+  operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
+  operandIndexId: "REPLACE-WITH-YOUR-OPERAND-INDEX-ID"
 ```
 7. Push your changes to the site and wait for it to deploy.
 8. Check the Operand dashboard and wait for your site to index. Enjoy natural language search powered by Operand!
