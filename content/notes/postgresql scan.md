@@ -1,7 +1,7 @@
 ---
 title: "How PostgresQL scan?"
 tags:
-- setup
+- postgres
 weight: -4
 ---
 
