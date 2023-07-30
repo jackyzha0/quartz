@@ -18,7 +18,7 @@ tags:
 - [developer](notes/developer.md)
 - [models](notes/models.md)
 - [systems-development-life-cycle](notes/systems-development-life-cycle.md)
-- [agile-development](notes/agile-development.md)
+- [agile](agile.md)
 - [scrum](notes/scrum.md)
 - [predictive-adaptive-spectrum](notes/predictive-adaptive-spectrum.md)
 - [domain-driven-design](notes/domain-driven-design.md)

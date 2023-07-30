@@ -42,7 +42,7 @@ different from individual programming because of the Audience
 timeline
 - waterfall
 - spiral
-- agile
+- [[agile]]
 
 # stages
 ## design

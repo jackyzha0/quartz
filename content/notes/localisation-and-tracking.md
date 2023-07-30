@@ -1,7 +1,7 @@
 ---
 title: "localisation-and-tracking"
 aliases: localisation and tracking
-tags: XR, computer vision, HCI
+tags: XR, CV, HCI
 ---
 
 Can be used for knowing where the user is in [[virtuality]] for [[Extended Reality]] applications

@@ -136,4 +136,4 @@ can be at conceptual level or implementation level
 
 ## 5 System class model
 [system class model](https://i.imgur.com/KsQuCd5.png)
-Models associations among domain objects and system components; implementation level only
+[[Models]] associations among domain objects and system components; implementation level only

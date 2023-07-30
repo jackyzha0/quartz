@@ -11,7 +11,7 @@ A new form for human-information interface using a virtual environment. Encompas
 | -------------- | ------------------------------------------------------------------------------ |
 | immersion      | senses                                                                         |
 | presence       | spatial/social/co/involvement/realism                                          |
-| telepresence   | user can interact with remote environment and feels present in the environemnt |
+| telepresence   | user can interact with remote environment and feels present in the environment |
 
 | elements of XR     |                                                                   |
 | ------------------ | ----------------------------------------------------------------- |
@@ -53,7 +53,7 @@ Some XR experiences also include [[haptics]] and acoustic, thermal, and olfactor
 we are used to using  a keyboard and mouse. So how can we learn to interact with more complex environments
 
 - Occlusion
-![|300](https://i.imgur.com/HpNxYYI.png)
+![df|300](https://i.imgur.com/HpNxYYI.png)
 
 - Gestures → using hand gestures as input
 - Controllers → smartphones, joysticks etc (mohr)

@@ -67,7 +67,7 @@
 		{"type":"file","file":"Specular component.png","id":"e6270f81075b9b36","x":2850,"y":62,"width":202,"height":151},
 		{"type":"file","file":"notes/surface-normal.md","id":"bd5960df0258ddba","x":920,"y":284,"width":400,"height":122},
 		{"type":"file","file":"notes/phong-reflection.md","id":"9de5c1bd8b1d2da9","x":2559,"y":315,"width":400,"height":200},
-		{"type":"file","file":"notes/features.md","id":"fabcbb068ee33ef0","x":-2312,"y":321,"width":400,"height":400},
+		{"type":"file","file":"notes/feature(computer-vision).md","id":"fabcbb068ee33ef0","x":-2312,"y":321,"width":400,"height":400},
 		{"type":"file","file":"notes/light-sources.md","id":"d0e25a7cb16bfea5","x":1429,"y":323,"width":400,"height":341},
 		{"type":"file","file":"notes/blob-features.md","id":"8df1c8ec32de8583","x":-2817,"y":-185,"width":251,"height":337},
 		{"type":"file","file":"notes/SIFT-features.md","id":"37bdad36e46ecf3c","x":-2817,"y":387,"width":322,"height":506},

@@ -5,7 +5,7 @@ tags:
 - info201
 ---
 
-This is the process of translating models into code, or vice versa. For example, ERDs to SQL, or UML to Java. The main idea is to keep the code and the diagrams sematically equivalent
+This is the process of translating [[models]] into code, or vice versa. For example, ERDs to SQL, or UML to Java. The main idea is to keep the code and the diagrams sematically equivalent
 
 Converting diagrams to code is more common than the opposite, but both do occur. This is [reverse engineering](notes/uml-java-reverse-engineering.md) 
 

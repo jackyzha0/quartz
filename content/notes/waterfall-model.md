@@ -1,6 +1,7 @@
 ---
-title: "05-waterfall"
-tags: cosc345
+title: "waterfall-model"
+aliases: waterfall, waterfall model, waterfall methodology
+tags: seng, projectmanagement
 ---
 
 - waterfall is almost viewed as an anti-example
@@ -18,31 +19,31 @@ Dilbert comics
 Five overlapping stages. 
 
 Requirements
-- 
+- [[requirements]]
 
 Design
 - convert requirements into a software design plan
-- models, schemas, business logic
-- e.g., UML class and sequence, etc
+- [[models]], [[schemas]], business logic
+- e.g., [[unified-modelling-language|UML]] class and sequence, etc
 - design code and design data
 
 Meta-software
 - software to build software
 - programs that write programs
-- e.g., IDE, little language, wiki creators, database things, 
+- e.g., [[integrated-development-environments|IDE]], little language, wiki creators, database things, 
 
-> [!INFO] you should have knowledge of a few design methodologies not just one
+> [!INFO] you should have knowledge of a few [[design-methodology]] not just one
 
 Implementation
-- coding, documentation, 
+- coding, [[documentation]], 
 
 Verification
-- debugging
+- [[debugging]]
 - internal and external bug reports
 - could be issue with code or with design or with requirements
 
 Maintenance
 - adding more features
-- dealing with changing dependencies
+- dealing with changing [[dependencies]]
 - 
 

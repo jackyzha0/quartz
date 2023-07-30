@@ -4,7 +4,7 @@ tags:
 - info201
 ---
 
-Models like ERDs are used to represent a high level conceptual overview of a system, or to as a lower level specification that can drive the implementation of the database.
+[[Models]] like ERDs are used to represent a high level conceptual overview of a system, or to as a lower level specification that can drive the implementation of the database.
 
 **Conceptual
 

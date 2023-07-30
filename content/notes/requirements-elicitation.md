@@ -37,7 +37,7 @@ ReFraming ⇒ be creative and “think outside the box”
 	- effective way to implement quality control early in project 
 	- verify and validate system requirements 
 	- review of findings from investigation 
-	- review of models based on findings 
+	- review of [[models]] based on findings 
 - Project manager responsible for system quality. 
 - Schedule review soon after document creation. 
 - Review conducted by experienced analyst and stakeholders, presented by analyst.

@@ -17,7 +17,7 @@ sr-ease: 250
 - used in ios development
 
 routes - foward requests to appropriate controller functions
-controller functions - get data from models, create html, display data, and return to view
+controller functions - get data from [[models]], create html, display data, and return to view
 views (templates) - used by controllers to render data
 
 ## Routes

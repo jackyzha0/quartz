@@ -10,13 +10,13 @@ A standard set of constructs and notation defined by the object management group
 **specify what not how**
 
 - activity diagrams
-	- high level for business prcesses workflows
-	- low level for dtailed business logicP
+	- high level for business processes workflows
+	- low level for detailed business logic
 - advantages
 	-  describe workflows
-	- specify relative processing rder of activites
+	- specify relative processing order of activities
 	- simple
-	- can be shown to stakeholders for checking and confirmation
+	- can be shown to [[stakeholders]] for checking and confirmation
 
 enables implementation-independent specification of:
 - user/system interactions
@@ -48,7 +48,7 @@ enables implementation-independent specification of:
 ![](https://i.imgur.com/4lj2QIt.png#invert)
 
 ### 3.3 Linked diagrams
-each digram type models a dfiferenct aspect of the system
+each digram type [[models]] a dfiferenct aspect of the system
 many of the diagrams link to each other
 - e.g., use case, sequence, activity
 - e.g., object, communication

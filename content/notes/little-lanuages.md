@@ -1,10 +1,8 @@
 ---
-title: "01-into-and-little-languages"
-tags: 
-- cosc345
+title: "little-lanuages"
+aliases: little languages
+tags: programming, paradigms
 ---
-
-
 
 sometimes easier to solve the meta problem, than the actual problem
 

@@ -16,7 +16,7 @@ This is where you identify all the requirments of the system. [requirements-elic
 This is also where you should learn about the domain of the system and the stakeholders
 
 # 2 Documenting
-This is where the requirements are specified and refined, and models and documents are created. All the requirements are compiled into a [requirements document](notes/requirements-document).
+This is where the requirements are specified and refined, and [[models]] and documents are created. All the requirements are compiled into a [requirements document](notes/requirements-document).
 
 # 3 Maintenance
 This occurs throughout development and is primarly focuses on managing changes in the environment of the system. 

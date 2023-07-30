@@ -1,14 +1,15 @@
 ---
-title: "06-agile"
-tags: 
+title: "agile"
+aliases: 
+tags: seng, projectmanagement
 ---
 
 ## Agile Manifesto
-- Customer satisfaction by early and continuous delivery of valuable software 
-	- CI/CD
+- Customer satisfaction by early and [[continuous-delivery]] of valuable software 
+	- [[continuous-integration|CI]]/CD
 	- success is beating your own plans
 	- "valuable" software the customer wants
-- Welcome changing requirements, even in late development 
+- Welcome changing [[requirements]], even in late development 
 	- encourage change: competitive advantage
 - Deliver working software frequently (weeks rather than months) 
 	- RAD
@@ -21,7 +22,7 @@ tags:
 - Face-to-face conversation is the best form of communication (co-location)
 	- meetings should be easy
 - Working software is the primary measure of progress 
-	- also needs to be maintainable software
+	- also needs to be maintainable software 
 	- not the only measure
 - Sustainable development, able to maintain a constant pace 
 	- constant pace implies lack of pressure
@@ -30,7 +31,7 @@ tags:
 - Simplicity—the art of maximizing the amount of work not done—is essential 
 	- refactoring
 	- build one to throw away
-- Best architectures, requirements, and designs emerge from self-organizing teams 
+- Best [[software-architectures]], [[requirements]], and designs emerge from self-organizing teams 
 	- 
 - Regularly, the team reflects on how to become more effective, and adjusts accordingly
 	- business as usual includes changing business as usual
@@ -38,6 +39,7 @@ tags:
 ## Kanban
 - JIT manufacturing sorta
 - managing team members' cognitive resources
-- understand provenance 
+- understand [[provenance]] 
 
-## Scrum
+## [[Scrum]]
+

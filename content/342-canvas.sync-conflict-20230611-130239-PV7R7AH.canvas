@@ -35,7 +35,7 @@
 		{"type":"file","file":"notes/feature-matching.md","id":"ab9d312e01c6af80","x":-2274,"y":1061,"width":420,"height":834},
 		{"type":"file","file":"notes/corner-features.md","id":"43e9d98de42dd010","x":-2878,"y":-246,"width":312,"height":399},
 		{"type":"file","file":"notes/SIFT-features.md","id":"37bdad36e46ecf3c","x":-3034,"y":191,"width":481,"height":770},
-		{"type":"file","file":"notes/features.md","id":"fabcbb068ee33ef0","x":-2455,"y":-75,"width":531,"height":997},
+		{"type":"file","file":"notes/feature(computer-vision).md","id":"fabcbb068ee33ef0","x":-2455,"y":-75,"width":531,"height":997},
 		{"type":"file","file":"notes/feature-match-filtering.md","id":"95b093d56977e25a","x":-3024,"y":1120,"width":400,"height":471},
 		{"type":"file","file":"notes/mosaicing.md","id":"cfe069a815b24eb7","x":-1712,"y":207,"width":413,"height":521},
 		{"type":"file","file":"notes/specular.md","id":"1c8b5a2c0f206384","x":2586,"y":-351,"width":337,"height":273},

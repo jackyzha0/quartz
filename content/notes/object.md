@@ -4,21 +4,23 @@ aliases: Object
 tags: 
 - info201
 ---
+
 # Objects
-an abastraction of somethin gin a problem domain, reflecting the capabilities of the system to keep information about it interact with it or  both
 
-entities in any of the software nmodelling int implmenation spaces that are enatly defined by their identity state and behaviour
+an abstraction of something gin a problem domain, reflecting the capabilities of the system to keep information about it, interact with it, or both
 
-similar to an entity but can also incude dynamic behaviour
+entities in any of the software modelling int implementation spaces that are neatly defined by their identity state and behaviour
 
-oop is programming and modelling using objects
+similar to an entity but can also include dynamic behaviour
+
+OOP is programming and modelling using objects
 
 ## Objects as a Model of reality
-theoreftically objects give us better omodels of reality
+theoretically objects give us better models of reality
 
-richer variaty of data types
+richer variety of data types
 - able to more closely model complexity of real world entities
-- compart with most data bases (numbers, text, datess)
+- compart with most data bases (numbers, text, dates)
 - objects and their operations (behaviour) are self contained
 - facilitate code reuse
 
@@ -30,18 +32,18 @@ behaviour
 
 ## Classes and instances
 class : definition of object structure and behaviour
-instance : object occurence, derived from a particular class
+instance : object occurrence, derived from a particular class
 
 
 ## References
-pointer dirctly to object _instance_ 
+pointer directly to object _instance_ 
 
 
 ## encapsulation
-decouples internal implementation from public API
-- can chagne each independently
-- e.g., performance, differnt algroithms
-- APi stability is important
+decouples internal implementation from public [[application-programming-interface|API]]
+- can change each independently
+- e.g., performance, different algorithms
+- [[application-programming-interface|API]] stability is important
 
 state and behaviour separated into pubic and private
 - all fields should be private
@@ -53,6 +55,6 @@ usually via specialisation - aka subclass, subtype
 subclasses inherit public state and behaviour from superclass
 - can define additional properties and behaviour
 
-enable polumorphism
-- e.g., Integer and Rational both subcalss Number
+enable [[polymorphism]]
+- e.g., Integer and Rational both subclass Number
 

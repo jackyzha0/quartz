@@ -79,7 +79,7 @@ one use case might require/use several classes. e.g., UI, processor, or data cla
 
 # Domain class model vs ERD structure
 - erd are about long term storage. data persistence
-- domain models are about application process, temporary storage. 
+- domain [[models]] are about application process, temporary storage. 
 - database and class structures dont need to be the same
 - but you do need to be able to map between them
 

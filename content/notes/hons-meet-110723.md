@@ -20,4 +20,5 @@ Topics:
 
 ## Questions
 - who owns the IP? will I own part of it?
+	- i own most, but he also owns a bit
 - what about commercialising it

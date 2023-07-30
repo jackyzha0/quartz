@@ -1,6 +1,7 @@
 ---
-title: "features"
-tags: 
+title: "feature(computer-vision)"
+aliases: feature, features
+tags: CV
 ---
 
 # Types of Features

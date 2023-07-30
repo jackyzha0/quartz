@@ -14,4 +14,4 @@ The requirements document should include:
 - The system's environment including related systems
 - Application domain information
 - Constraints on the development process
-	- e.g., [agile-development](notes/agile-development.md)
+	- e.g., [agile](agile.md)

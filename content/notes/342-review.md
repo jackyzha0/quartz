@@ -33,7 +33,7 @@ tags:
 ## Features
 - [[blob-features]]
 - [[sift]]
-- [[features]]
+- [[feature(computer-vision)]]
 - [[feature-matching]]
 
 ## Feature Matching

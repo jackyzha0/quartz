@@ -9,7 +9,7 @@ tags:
 Provides overall framework for managing the systems
 There are many methodologies to help guide us through this cycle
 Each methodology sits on the [predictive-adaptive-spectrum](notes/predictive-adaptive-spectrum.md)
-A very common methodology at the moment is [agile-development](notes/agile-development.md)
+A very common methodology at the moment is [agile](agile.md)
 
 ## 1 Phases
 ### 1.1 Analysis 

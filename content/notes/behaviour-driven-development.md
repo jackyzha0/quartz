@@ -5,7 +5,7 @@ tags:
 - info201
 ---
 
-Models should be created with the users needs in mind. 
+[[Models]] should be created with the users needs in mind. 
 Required bahaviour determines acceptance criteria
 This is called Behaviour Driven Development
 

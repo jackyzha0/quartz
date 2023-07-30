@@ -7,19 +7,19 @@ tags:
 - specifies the participants (actors) and the relationships between them
 - high level view of what a system does (not how) and who uses it
 - represent users perspective of a system
-- used mainly in requirements specification and early system dev
+- used mainly in [[requirements]] specification and early system dev
 - effectively a todo list
 
 ## 1 pros
-+ informal,flexible, easy to construct
++ informal, flexible, easy to construct
 + easily understood
 	+ improve communication between users and developers
-	+ can be used to confirm requirements
+	+ can be used to confirm [[requirements]]
 + provide overview
 + link analysis to design
 + can be used to inform subsequent dev tasks
 	+ derive test cases
-	+ prioritise imlementation tasks
+	+ prioritise implementation tasks
 	+ help clarify new feature requests or bug reports
 
 ## 2 Notation
@@ -32,7 +32,7 @@ tags:
 
 ### 2.2 Use case
 - discrete unit of system functionality
-- activity from perpective of an actor
+- activity from perspective of an actor
 - can be abstract or focused
 - say nothing about flow or behaviour
 - map to ⇒ menu items, forms, reports, etc
@@ -40,25 +40,25 @@ tags:
 ![](https://i.imgur.com/LiSjoef.png)
 
 ### 2.3 Association
-- relationship (interaction) between actor and use casel
+- relationship (interaction) between actor and use case
 - actor can be associated with more than one use case
 - use case can be associated with more than one actor
  
 ![](https://i.imgur.com/ySvfY3Y.png)
 
 ### 2.4 Specialisation/generalisation
-- actors and use cases can be orgainsed into special/general hierachies
-	- acotrs can be specialisations of another actor
+- actors and use cases can be organised into special/general hierarchies
+	- actors can be specialisations of another actor
 	- same for use cases
 	- mutually exclusive
-	- similar to inheritance
+	- similar to [[inheritance]]
 
 ![](https://i.imgur.com/cw21m6L.png)
 
 ### 2.5 Dependency
  - occur between use cases
 	 - one case extends the behaviour of another
-	 - one case includes the behabiour of another
+	 - one case includes the behaviour of another
 	 - one case requires the behaviour of another
  - read in direction of arrow
  - indicate opportunities for reuse of functionality
