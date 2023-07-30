@@ -1,7 +1,6 @@
 ---
 title: "ai-history"
-tags: 
-- cosc343
+tags: ai, history
 ---
 
 ## Inception (1943-1956)

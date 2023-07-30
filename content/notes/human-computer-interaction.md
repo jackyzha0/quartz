@@ -1,12 +1,13 @@
 ---
-title: "big-picture"
-tags: 
+title: "human-computer-interaction"
+aliases: HCI
+tags: HCI
 - info203
 ---
 
 >HCI is the cycle of design, implementation, evaluation of user interfaces
 
-![](https://i.imgur.com/SMtW2Zb.png)
+![300](https://i.imgur.com/SMtW2Zb.png)
 
 >"fail fast so you can succeed sooner"
 

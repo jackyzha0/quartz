@@ -1,10 +1,7 @@
 ---
-title: "01-intro-to-343"
-tags: 
+title: "intelligence"
+tags: ai
 ---
-
-Basic stuff
-
 What is Intelligence
 - Thinking Rationally
 - Thinking Humanly

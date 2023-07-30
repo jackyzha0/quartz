@@ -19,7 +19,7 @@ links:[_index](_index.md)
 - [mood-board](notes/mood-board) 
 
 # Outline
-- [big-picture](notes/big-picture.md)
+- [human-computer-interaction](human-computer-interaction.md)
 - [birth-of-hci](notes/birth-of-hci.md)
 - [user-experience](notes/user-experience.md)
 - [usbability](notes/usbability.md)

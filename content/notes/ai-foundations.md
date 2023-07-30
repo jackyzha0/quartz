@@ -1,7 +1,6 @@
 ---
 title: "ai-foundations"
-tags: 
-- cosc343
+tags: ai, philosophy, math, economics, neuroscience, linguistics
 ---
 
 ## Philosophy
