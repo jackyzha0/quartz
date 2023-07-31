@@ -14,10 +14,6 @@ This is the way we see the world:
 ## Pinhole Camera
 ![|400](https://i.imgur.com/KvqTvRF.png)
 - Light travels from world, through a point onto the image plane
-- central point of projection (lens)
-- $u = -\frac{fx}{z} \quad v = -\frac{fy}{z}$
-
-	$\begin{bmatrix}u \\ v \\ 1\end{bmatrix} \equiv \begin{bmatrix}-f & 0 & 0 & 0 \\ 0 & -f & 0 & 0 \\ 0 & 0 & 1 & 0 \end{bmatrix}\begin{bmatrix} x \\ y \\ z \\ 1\end{bmatrix}$
 
 
 ## Simplified Pinhole

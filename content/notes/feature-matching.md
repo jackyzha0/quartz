@@ -6,6 +6,8 @@ tags:
 
 Esssentially copmaring two arrays of data. 
 
+[[feature-match-filtering]]
+
 # Brute force methods:
 - L2 Distance: ![|100](https://i.imgur.com/tVCfuZt.png)
 - Normalized correlation: ![|200](https://i.imgur.com/LVnJIXo.png)

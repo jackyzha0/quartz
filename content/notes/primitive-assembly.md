@@ -7,4 +7,4 @@ tags:
 	- primitive generation
 	- primitive processing
 	- face culling
-- 
+- next step [[rasterisation]]

@@ -4,6 +4,9 @@ tags:
 ---
 
 - a graphics API to allow us to "talk" to the GPU and give it instructions
+	- [[opengl-context]]
+	- [[openGL-state]]
+	- [[openGL-object-model]]
 - platform independent
 - uses client server model
 	- "client" is GPU

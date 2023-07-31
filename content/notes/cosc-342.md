@@ -22,6 +22,12 @@ exam: | COSC342 | Friday 09 June 2023 | 09:30 |
 # Notes
 [[342-review]]
 - [[colour(visual_computing)]]
+- [[Image Compression]]
+- [[2d-geometry]]
+- [[3d-geometry]]
+- [[cameras]]
+- [[mosaicing]]
+- [[computer-graphics]]
 
 # Lectures
 - [x] [[02-colour-representation]]

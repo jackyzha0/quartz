@@ -1,3 +1,9 @@
+---
+title: "textures"
+aliases: texture
+tags: CV, graphics 
+---
+
 - 1 2 or 3 D array of texels
 - used as input for texture sampling
 - simulates detail
@@ -8,6 +14,12 @@
 	- bumpiness
 - fragment shading use the local colour of the texture image
 - can hold arbitrary information
+
+[[texture-mapping]]
+[[texture-addressing]]
+[[alpha-mapping]]
+[[bump-mapping]]
+[[environment-mapping]]
 
 **issues**
 - undersampling

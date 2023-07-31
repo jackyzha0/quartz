@@ -7,9 +7,6 @@ tags:
 - act as sources of input or output
 
 [[Buffer object]]
-
 [[textures]]
-
 [[Vertex Array objects]]
-
 [[Framebuffer objects]]

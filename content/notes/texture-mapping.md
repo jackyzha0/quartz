@@ -2,7 +2,7 @@
 title: "texture-mapping"
 tags: 
 ---
-- the proces of warping a texture onto an object
+- the proces of warping a [[texture]] onto an object
 - translate object surface coords onto texture
 - multiple methods
 	- manual: unwrap and paint
