@@ -1,0 +1,555 @@
+
+:root
+{
+    --dark0-hard_x:     29,32,33; /* #1d2021 */
+    --dark0-hard:       rgb(var(--dark0-hard_x));
+    --dark0_x:          40,40,40; /* #282828 */
+    --dark0:            rgb(var(--dark0_x));
+    --dark0-soft_x:     50,48,47; /* #32302f */
+    --dark0-soft:       rgb(var(--dark0-soft_x));
+    --dark1_x:          60,56,54; /* #3c3836 */
+    --dark1:            rgb(var(--dark1_x));
+    --dark2_x:          80,73,69; /* #504945 */
+    --dark2:            rgb(var(--dark2_x));
+    --dark3_x:          102,92,84; /* #665c54 */
+    --dark3:            rgb(var(--dark3_x));
+    --dark4_x:          124,111,100; /* #7c6f64 */
+    --dark4:            rgb(var(--dark4_x));
+    --gray_x:           146,131,116; /* #928374 */
+    --gray:             rgb(var(--gray_x));
+
+    --light0-hard_x:    249,245,215; /* #f9f5d7 */
+    --light0-hard:      rgb(var(--light0-hard_x));
+    --light0_x:         251,241,199; /* #fbf1c7 */
+    --light0:           rgb(var(--light0_x));
+    --light0-soft_x:    242,229,188; /* #f2e5bc */
+    --light0-soft:      rgb(var(--light0-soft_x));
+    --light1_x:         235,219,178; /* #ebdbb2 */
+    --light1:           rgb(var(--light1_x));
+    --light2_x:         213,196,161; /* #d5c4a1 */
+    --light2:           rgb(var(--light2_x));
+    --light3_x:         189,174,147; /* #bdae93 */
+    --light3:           rgb(var(--light3_x));
+    --light4_x:         168,153,132; /* #a89984 */
+    --light4:           rgb(var(--light4_x));
+
+    --bright-red_x:     251,73,52; /* #fb4934 */
+    --bright-red:       rgb(var(--bright-red_x));
+    --bright-green_x:   184,187,38; /* #b8bb26 */
+    --bright-green:     rgb(var(--bright-green_x));
+    --bright-yellow_x:  250,189,47; /* #fabd2f */
+    --bright-yellow:    rgb(var(--bright-yellow_x));
+    --bright-blue_x:    131,165,152; /* #83a598 */
+    --bright-blue:      rgb(var(--bright-blue_x));
+    --bright-purple_x:  211,134,155; /* #d3869b */
+    --bright-purple:    rgb(var(--bright-purple_x));
+    --bright-aqua_x:    142,192,124; /* #8ec07c */
+    --bright-aqua:      rgb(var(--bright-aqua_x));
+    --bright-orange_x:  254,128,25; /* #fe8019 */
+    --bright-orange:    rgb(var(--bright-orange_x));
+
+    --neutral-red_x:    204,36,29; /* #cc241d */
+    --neutral-red:      rgb(var(--neutral-red_x));
+    --neutral-green_x:  152,151,26; /* #98971a */
+    --neutral-green:    rgb(var(--neutral-green_x));
+    --neutral-yellow_x: 215,153,33; /* #d79921 */
+    --neutral-yellow:   rgb(var(--neutral-yellow_x));
+    --neutral-blue_x:   69,133,136; /* #458588 */
+    --neutral-blue:     rgb(var(--neutral-blue_x));
+    --neutral-purple_x: 177,98,134; /* #b16286 */
+    --neutral-purple:   rgb(var(--neutral-purple_x));
+    --neutral-aqua_x:   104,157,106; /* #689d6a */
+    --neutral-aqua:     rgb(var(--neutral-aqua_x));
+    --neutral-orange_x: 214,93,14; /* #d65d0e */
+    --neutral-orange:   rgb(var(--neutral-orange_x));
+
+    --faded-red_x:      157,0,6; /* #9d0006 */
+    --faded-red:        rgb(var(--faded-red_x));
+    --faded-green_x:    121,116,14; /* #79740e */
+    --faded-green:      rgb(var(--faded-green_x));
+    --faded-yellow_x:   181,118,20; /* #b57614 */
+    --faded-yellow:     rgb(var(--faded-yellow_x));
+    --faded-blue_x:     7,102,120; /* #076678 */
+    --faded-blue:       rgb(var(--faded-blue_x));
+    --faded-purple_x:   143,63,113; /* #8f3f71 */
+    --faded-purple:     rgb(var(--faded-purple_x));
+    --faded-aqua_x:     66,123,88; /* #427b58 */
+    --faded-aqua:       rgb(var(--faded-aqua_x));
+    --faded-orange_x:   175,58,3; /* #af3a03 */
+    --faded-orange:     rgb(var(--faded-orange_x));
+}
+
+body
+{
+    --accent-h: 12; /* --faded-red #9d0006 */
+    --accent-s: 107%;
+    --accent-l: 32%;
+
+    --link-decoration:                none;
+    --link-decoration-hover:          none;
+    --link-external-decoration:       none;
+    --link-external-decoration-hover: none;
+
+    --tag-decoration:                 none;
+    --tag-decoration-hover:           underline;
+    --tag-padding-x:                  .5em;
+    --tag-padding-y:                  .2em;
+    --tag-radius:                     .5em;
+
+    --tab-font-weight:                600;
+    --bold-weight:                    600;
+
+    --checkbox-radius:                0;
+
+    /* --list-indent:                    2em; */
+
+    --embed-border-left: 6px double var(--interactive-accent);
+}
+
+.theme-dark
+{
+    --color-red-rgb:                 var(--neutral-red_x);
+    --color-red:                     var(--neutral-red);
+    --color-purple-rgb:              var(--neutral-purple_x);
+    --color-purple:                  var(--neutral-purple);
+    --color-green-rgb:               var(--neutral-green_x);
+    --color-green:                   var(--neutral-green);
+    --color-cyan-rgb:                var(--neutral-blue_x);
+    --color-cyan:                    var(--neutral-blue);
+    --color-blue-rgb:                var(--faded-blue_x);
+    --color-blue:                    var(--faded-blue);
+    --color-yellow-rgb:              var(--neutral-yellow_x);
+    --color-yellow:                  var(--neutral-yellow);
+    --color-orange-rgb:              var(--neutral-orange_x);
+    --color-orange:                  var(--neutral-orange);
+    --color-pink-rgb:                var(--bright-purple_x);
+    --color-pink:                    var(--bright-purple);
+
+    --background-primary:            var(--dark0);
+    --background-primary-alt:        var(--dark0);
+    --background-secondary:          var(--dark0-hard);
+    --background-secondary-alt:      var(--dark1);
+    --background-modifier-border:    var(--dark1);
+
+    --cursor-line-background:        rgba(var(--dark1_x), 0.5);
+
+    --text-normal:                   var(--light0);
+    --text-faint:                    var(--light1);
+    --text-muted:                    var(--light2);
+
+    --link-url:                      var(--neutral-green);
+
+    --h1-color:                      var(--neutral-red);
+    --h2-color:                      var(--neutral-yellow);
+    --h3-color:                      var(--neutral-green);
+    --h4-color:                      var(--neutral-aqua);
+    --h5-color:                      var(--neutral-blue);
+    --h6-color:                      var(--neutral-purple);
+
+    --text-highlight-bg:             var(--neutral-yellow);
+    --text-highlight-fg:             var(--dark0-hard);
+
+    --text-accent:                   var(--neutral-orange);
+    --text-accent-hover:             var(--bright-aqua);
+
+    --tag-color:                     var(--bright-aqua);
+    --tag-background:                var(--dark2);
+    --tag-background-hover:          var(--dark1);
+
+    --titlebar-text-color-focused:   var(--bright-red);
+
+    --inline-title-color:            var(--bright-yellow);
+
+    --bold-color:                    var(--neutral-yellow);
+    --italic-color:                  var(--neutral-yellow);
+
+    --checkbox-color:                var(--light4);
+    --checkbox-color-hover:          var(--light4);
+    --checkbox-border-color:         var(--light4);
+    --checkbox-border-color-hover:   var(--light4);
+    --checklist-done-color:          rgba(var(--light2_x), 0.5);
+
+    --table-header-background:       rgba(var(--dark0_x), 0.2);
+    --table-header-background-hover: var(--dark2);
+    --table-row-even-background:     rgba(var(--dark2_x), 0.2);
+    --table-row-odd-background:      rgba(var(--dark2_x), 0.4);
+    --table-row-background-hover:    var(--dark2);
+
+    --text-selection:                rgba(var(--neutral-red_x), 0.6);
+    --flashing-background:           rgba(var(--neutral-red_x), 0.3);
+
+    --code-normal:                   var(--bright-blue);
+    --code-background:               var(--dark1);
+
+    --mermaid-note:                  var(--neutral-blue);
+    --mermaid-actor:                 var(--dark2);
+    --mermaid-loopline:              var(--neutral-blue);
+    --mermaid-exclude:               var(--dark4);
+    --mermaid-seqnum:                var(--dark0);
+
+    --icon-color-hover:              var(--bright-red);
+    --icon-color-focused:            var(--bright-blue);
+
+    --nav-item-color-hover:          var(--bright-red);
+    --nav-item-color-active:         var(--bright-aqua);
+    --nav-file-tag:                  rgba(var(--neutral-yellow_x), 0.9);
+
+    --graph-line:                    var(--dark2);
+    --graph-node:                    var(--light3);
+    --graph-node-tag:                var(--neutral-red);
+    --graph-node-attachment:         var(--neutral-green);
+
+    --calendar-hover:                var(--bright-red);
+    --calendar-background-hover:     var(--dark1);
+    --calendar-week:                 var(--neutral-orange);
+    --calendar-today:                var(--neutral-orange);
+
+    --dataview-key:                  var(--text-faint);
+    --dataview-key-background:       rgba(var(--faded-red_x), 0.5);
+    --dataview-value:                var(--text-faint);
+    --dataview-value-background:     rgba(var(--neutral-green_x), 0.3);
+
+    --tab-text-color-focused-active:         var(--neutral-yellow);
+    --tab-text-color-focused-active-current: var(--bright-red);
+}
+
+.theme-light
+{
+    --color-red-rgb:                 var(--neutral-red_x);
+    --color-red:                     var(--neutral-red);
+    --color-purple-rgb:              var(--neutral-purple_x);
+    --color-purple:                  var(--neutral-purple);
+    --color-green-rgb:               var(--neutral-green_x);
+    --color-green:                   var(--neutral-green);
+    --color-cyan-rgb:                var(--neutral-blue_x);
+    --color-cyan:                    var(--neutral-blue);
+    --color-blue-rgb:                var(--faded-blue_x);
+    --color-blue:                    var(--faded-blue);
+    --color-yellow-rgb:              var(--neutral-yellow_x);
+    --color-yellow:                  var(--neutral-yellow);
+    --color-orange-rgb:              var(--neutral-orange_x);
+    --color-orange:                  var(--neutral-orange);
+    --color-pink-rgb:                var(--bright-purple_x);
+    --color-pink:                    var(--bright-purple);
+
+    --background-primary:            var(--light0-hard);
+    --background-primary-alt:        var(--light0-hard);
+    --background-secondary:          var(--light1);
+    --background-secondary-alt:      var(--light1);
+    --background-modifier-border:    var(--light2);
+
+    --cursor-line-background:        rgba(var(--light1_x), 0.5);
+
+    --text-normal:                   var(--dark0);
+    --text-faint:                    var(--dark3);
+    --text-muted:                    var(--dark2);
+
+    --link-url:                      var(--neutral-green);
+
+    --h1-color:                      var(--neutral-red);
+    --h2-color:                      var(--neutral-yellow);
+    --h3-color:                      var(--neutral-green);
+    --h4-color:                      var(--neutral-aqua);
+    --h5-color:                      var(--neutral-blue);
+    --h6-color:                      var(--neutral-purple);
+
+    --text-highlight-bg:             var(--bright-yellow);
+    --text-highlight-fg:             var(--dark0);
+
+    --text-accent:                   var(--neutral-orange);
+    --text-accent-hover:             var(--bright-aqua);
+
+    --tag-color:                     var(--neutral-aqua);
+    --tag-background:                var(--light1);
+    --tag-background-hover:          rgba(var(--light1_x), 0.6);
+
+    --titlebar-text-color-focused:   var(--bright-red);
+
+    --inline-title-color:            var(--bright-yellow);
+
+    --bold-color:                    var(--neutral-yellow);
+    --italic-color:                  var(--neutral-yellow);
+
+    --checkbox-color:                var(--light4);
+    --checkbox-color-hover:          var(--light4);
+    --checkbox-border-color:         var(--light4);
+    --checkbox-border-color-hover:   var(--light4);
+    --checklist-done-color:          rgba(var(--dark2_x), 0.4);
+
+    --table-header-background:       rgba(var(--light3_x), 0.4);
+    --table-header-background-hover: var(--light2);
+    --table-row-even-background:     rgba(var(--light1_x), 0.2);
+    --table-row-odd-background:      rgba(var(--light1_x), 0.7);
+    --table-row-background-hover:    var(--light2);
+
+    --text-selection:                rgba(var(--neutral-red_x), 0.6);
+    --flashing-background:           rgba(var(--neutral-red_x), 0.3);
+
+    --code-normal:                   var(--bright-blue);
+    --code-background:               var(--light1);
+
+    --mermaid-note:                  var(--bright-blue);
+    --mermaid-actor:                 var(--light3);
+    --mermaid-loopline:              var(--neutral-blue);
+    --mermaid-exclude:               var(--light2);
+    --mermaid-seqnum:                var(--light0);
+
+    --icon-color-hover:              var(--bright-red);
+    --icon-color-focused:            var(--bright-blue);
+
+    --nav-item-color-hover:          var(--bright-red);
+    --nav-item-color-active:         var(--neutral-blue);
+    --nav-file-tag:                  rgba(var(--neutral-blue_x), 0.9);
+
+    --graph-line:                    var(--light1);
+    --graph-node:                    var(--gray);
+    --graph-node-tag:                var(--neutral-red);
+    --graph-node-attachment:         var(--bright-green);
+
+    --calendar-hover:                var(--bright-red);
+    --calendar-background-hover:     var(--light1);
+    --calendar-week:                 var(--bright-red);
+    --calendar-today:                var(--bright-red);
+
+    --dataview-key:                  var(--text-faint);
+    --dataview-key-background:       rgba(var(--faded-red_x), 0.3);
+    --dataview-value:                var(--text-faint);
+    --dataview-value-background:     rgba(var(--neutral-green_x), 0.2);
+
+    --tab-text-color-focused-active:         var(--neutral-yellow);
+    --tab-text-color-focused-active-current: var(--bright-red);
+}
+
+table
+{
+    border: 1px solid var(--background-secondary) !important;
+    border-collapse: collapse;
+}
+
+thead
+{
+    border-bottom: 2px solid var(--background-modifier-border) !important;
+}
+  
+th
+{
+    font-weight: 600 !important;
+    border: 1px solid var(--background-secondary) !important;
+}
+
+td
+{
+    border-left: 1px solid var(--background-secondary) !important;
+    border-right: 1px solid var(--background-secondary) !important;
+    border-bottom: 1px solid var(--background-secondary) !important;
+}
+
+.markdown-rendered tbody tr:nth-child(even)
+{
+    background-color: var(--table-row-even-background) !important;
+}
+
+.markdown-rendered tbody tr:nth-child(odd)
+{
+    background-color: var(--table-row-odd-background) !important;
+}
+
+.markdown-rendered tbody tr:nth-child(even):hover,
+.markdown-rendered tbody tr:nth-child(odd):hover
+{
+    background-color: var(--table-row-background-hover) !important;
+}
+
+.markdown-rendered mark
+{
+    background-color: var(--text-highlight-bg);
+    color: var(--text-highlight-fg);
+}
+
+.markdown-rendered mark a
+{
+    color: var(--red) !important;
+    font-weight: 600;
+}
+
+.search-result-file-matched-text
+{
+    color: var(--text-highlight-fg) !important;
+}
+
+.cm-hashtag-begin:hover, .cm-hashtag-end:hover
+{
+    color: var(--text-accent);
+    /* background-color: var(--tag-background-hover); */
+    text-decoration: underline;
+}
+
+input[type=checkbox]
+{
+    border: 1px solid var(--checkbox-color);
+}
+
+input[type=checkbox]:checked
+{
+    background-color: var(--checkbox-color);
+    box-shadow: inset 0 0 0 2px var(--background-primary);
+}
+
+input[type=checkbox]:checked:after
+{
+    display: none;
+}
+
+code[class*="language-"],
+pre[class*="language-"]
+{
+    line-height: var(--line-height-tight) !important;
+}
+
+.cm-url
+{
+    color: var(--link-url) !important;
+}
+
+.cm-url:hover
+{
+    color: var(--text-accent-color) !important;
+}
+
+/* Keep highlight/marks the same between viewer and editor. */
+.cm-highlight
+{
+    color: var(--text-highlight-fg) !important;
+}
+
+/* Keep inline code the same between viewer and editor. */
+.cm-inline-code
+{
+    border-radius: var(--radius-s);
+    font-size: var(--code-size);
+    padding: 0.1em 0.25em;
+}
+
+.cm-line .cm-strong
+{
+    color: var(--bold-color) !important;
+}
+
+/*
+ * Keep list bullet padding the same between viewer and editor.
+ * This is annoying with the cursor in the editor as there is a gap.
+ */
+/*
+.cm-formatting-list
+{
+    padding-right: 4px !important;
+}
+*/
+
+/*
+ * Keep sub-list indenting the same between viewer and editor.
+ * This assumes --list-indent is default at 2em.
+ */
+/*
+.cm-indent 
+{
+    text-indent: 1em !important;
+}
+*/
+
+.mermaid .note
+{
+    fill: var(--mermaid-note) !important;
+}
+
+.mermaid .actor
+{
+    fill: var(--mermaid-actor) !important;
+}
+
+.mermaid .loopLine
+{
+    stroke: var(--mermaid-loopline) !important;
+}
+
+.mermaid .loopText>tspan,
+.mermaid .entityLabel
+{
+    fill: var(--neutral-red) !important;
+}
+
+.mermaid .exclude-range
+{
+    fill: var(--mermaid-exclude) !important;
+}
+
+.mermaid .sequenceNumber
+{
+    fill: var(--mermaid-seqnum) !important;
+}
+
+.calendar .week-num
+{
+    color: var(--calendar-week) !important;
+}
+
+.calendar .today
+{
+    color: var(--calendar-today) !important;
+}
+
+.calendar .week-num:hover,
+.calendar .day:hover
+{
+    color: var(--calendar-hover) !important;
+    background-color: var(--calendar-background-hover) !important;
+}
+
+.markdown-embed-title
+{
+    color: var(--yellow);
+    font-weight: 600 !important;
+}
+
+.cm-active
+{
+    background-color: var(--cursor-line-background) !important;
+}
+
+.nav-file-tag
+{
+    color: var(--nav-file-tag) !important;
+}
+
+.is-flashing
+{
+    background-color: var(--flashing-background) !important;
+}
+
+.dataview.inline-field-key
+{
+    border-top-left-radius: var(--radius-s);
+    border-bottom-left-radius: var(--radius-s);
+    padding-left: 4px;
+    font-family: var(--font-monospace);
+    font-size: var(--font-smaller);
+    color: var(--dataview-key) !important;
+    background-color: var(--dataview-key-background) !important;
+}
+
+.dataview.inline-field-value
+{
+    border-top-right-radius: var(--radius-s);
+    border-bottom-right-radius: var(--radius-s);
+    padding-right: 4px;
+    font-family: var(--font-monospace);
+    font-size: var(--font-smaller);
+    color: var(--dataview-value) !important;
+    background-color: var(--dataview-value-background) !important;
+}
+
+.suggestion-highlight
+{
+    color: var(--bright-red);
+}
+
