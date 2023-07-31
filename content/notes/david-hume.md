@@ -8,7 +8,7 @@ tags:
 # Art
 [054-hume-on-art](notes/054-hume-on-art.md)
 
-In his essay [the standard of taste](Attachments/texts/david-hume-of-the-standard-of-taste-pdf.pdf) Hume sets out to determine how we can arrive at a universal standard of taste
+In his essay [the standard of taste](david-hume-of-the-standard-of-taste-pdf.pdf) Hume sets out to determine how we can arrive at a universal standard of taste
 
 "All sentiment is right; because sentiment has a reference to nothing beyond itself, and is always real, wherever a man is conscious of it."
 

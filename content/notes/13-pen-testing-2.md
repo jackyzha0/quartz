@@ -2,7 +2,7 @@
 title: "13-pen-testing-2"
 aliases: 
 tags: 
-- conp210
+- comp210
 - lecture
 sr-due: 2022-12-15
 sr-interval: 30

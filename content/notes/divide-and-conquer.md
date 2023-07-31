@@ -4,6 +4,7 @@ aliases: Divide and Conquer
 tags: 
 - cosc201
 - paradigm
+- code
 ---
 
 Divide an conquer algorithms have three parts:

@@ -2,7 +2,7 @@
 title: "HW2"
 aliases: 
 tags: 
-- math202
+- math
 - assignment
 ---
 

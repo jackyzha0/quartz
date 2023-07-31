@@ -4,6 +4,7 @@ aliases: caching
 tags: 
 - cosc201
 - paradigm
+- code
 ---
 
 A method of designing algorithms which is similar to dynamic programming in that previously calculated answers are stored in memory

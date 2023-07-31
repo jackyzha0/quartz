@@ -1,8 +1,6 @@
 ---
 title: "Colour Spaces"
-tags: 
-- cosc342
-- review
+tags: cosc342, CV
 sr-due: 2023-09-29
 sr-interval: 66
 sr-ease: 250

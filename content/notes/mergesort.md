@@ -2,7 +2,7 @@
 title: "mergesort"
 tags: 
 - cosc201
-- sorting-algorithm
+- algorithm
 ---
 
 Mergesort is a [divide-and-conquer](notes/divide-and-conquer.md) algorithm. It works by recursively splitting the array in half then merging the two (sorted) halfs together . It has three main steps. These are:

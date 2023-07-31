@@ -4,6 +4,7 @@ aliases: imperative programming
 tags: 
 - cosc202
 - paradigm
+- code
 ---
 [wikipedia article](https://en.wikipedia.org/wiki/Imperative_programming)
 

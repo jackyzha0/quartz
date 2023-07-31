@@ -1,6 +1,6 @@
 ---
 title: "blockchain-terms"
-tags: 
+tags: blockchain
 ---
 
 **Hyperledger: An organisation made up of industry leaders who are helping to develop various permissioned blockchain framworks**

@@ -1,7 +1,7 @@
 ---
 title: "little-lanuages"
 aliases: little languages
-tags: programming, paradigms
+tags: code, paradigm
 ---
 
 sometimes easier to solve the meta problem, than the actual problem

@@ -2,7 +2,7 @@
 title: "20-user-interfaces-examples-2"
 tags: 
 - lecture
-- info301
+- info305
 ---
 
 # Tangible Computing

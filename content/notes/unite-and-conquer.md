@@ -4,6 +4,7 @@ aliases: unite and conquer
 tags: 
 - cosc201
 - paradigm
+- code
 ---
 
 5 | 8 | 2 | 3 | 4 | 1 | 7 | 6

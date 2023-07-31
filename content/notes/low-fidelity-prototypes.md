@@ -1,8 +1,7 @@
 ---
 title: "low-fidelity-prototypes"
 aliases: 
-tags: 
-- assessment/mobile-app/prototypes
+tags: assignment/mobile-app, HCI
 ---
 
 # Inital Designs

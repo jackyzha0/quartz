@@ -7,8 +7,5 @@ tags:
 ---
 
 # Lectures
-- [x] [[03-uninformed-search]]
-- [ ] [[04-informed-search]]
-- [ ] [[05-adversarial search]]
 - [x] [[06-genetic-algorithms]]
 

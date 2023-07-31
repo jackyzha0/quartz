@@ -2,7 +2,7 @@
 title: "hash-map"
 aliases: hash map
 tags: 
-- cosmc201
+- cosc201
 - datastructure
 ---
 

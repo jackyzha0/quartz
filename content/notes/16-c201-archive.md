@@ -3,7 +3,7 @@ title: "16-c201-archive"
 aliases: 
 tags: 
 - cosc201
-- archived-lecture
+- lecture
 ---
 
 ## In a perfect world

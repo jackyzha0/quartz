@@ -3,8 +3,10 @@ title: "persons-apparently-dead"
 aliases: 
 tags: 
 - cosc203
-- asgn3
+- philosophy
 ---
+
+research for  [[cosc-203#Assignments]]
 
 delayed acceptance of discovery is always a factor in science. 
 

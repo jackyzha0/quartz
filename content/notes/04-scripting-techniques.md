@@ -1,7 +1,7 @@
 ---
 title: "04-scripting-techniques"
 tags: 
-- lectures
+- lecture
 - cosc301
 ---
 

@@ -3,7 +3,6 @@ title: "programatic-evolution"
 aliases: 
 tags: 
 - video
-- inbox
 sr-due: 2023-01-28
 sr-interval: 135
 sr-ease: 310

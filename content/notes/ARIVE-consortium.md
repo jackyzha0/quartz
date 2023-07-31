@@ -1,7 +1,7 @@
 ---
 title: "ARIVE-consortium"
 aliases: ARIVE
-tags: HCI, consortuim, group, XR
+tags: HCI, group, XR
 ---
 
 ## What is ARIVE

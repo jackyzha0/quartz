@@ -1,8 +1,8 @@
 ---
 title: "linear-algebra"
-tags: 
-- topic
+tags: math
 ---
+[[linear-algebra-terminology]]
 
 # Matrices
 ## Dot product

@@ -1,8 +1,0 @@
-- symmetries when searching for optimal first move mastermind
-- minimax good for recursion
-- time limit depth search for mastermind
-  - variable time limit
-- alpha beta pruning for mastermind
-- a b ordering matters same as CSP
-- adversarial graph search?
-- 

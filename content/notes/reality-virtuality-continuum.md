@@ -1,7 +1,7 @@
 ---
 title: "reality-virtuality-continuum"
 aliases: RV Continuum, RV
-tags: XR, HCI, continuum
+tags: XR, HCI
 ---
 
 **Reality-Virtuality (RV) Continuum**

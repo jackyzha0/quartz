@@ -4,6 +4,7 @@ aliases: dynamic programming, DP
 tags: 
 - cosc201
 - paradigm
+- code
 ---
 
 A method of designing algorithms, where a higher amount of space is used, in order to gain reduction in time. This usually done by *remembering previous calculations*. Typically these algorithms are done *bottom-up* i.e., by computing the "base case" first. 

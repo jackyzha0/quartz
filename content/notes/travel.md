@@ -1,7 +1,6 @@
 ---
 title: "travel"
-tags: 
-- travel
+tags: fleeting
 ---
 
 # Budget.

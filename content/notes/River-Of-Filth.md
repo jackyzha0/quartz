@@ -3,8 +3,9 @@ title: "River-Of-Filth"
 aliases: 
 tags: 
 - cosc203
-- asgn3
 ---
+
+reasearch for [[cosc-203#Assignments]]
 
 'its not going to be complusory'
 

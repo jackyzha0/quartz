@@ -28,5 +28,12 @@ Proponents of embodied AI believe that in order to reproduce human intelligence,
 
 Maybe systems of this kind will provide a good framework on which to implement distinctively human capabilities. 
 This line of thought is associated with a researcher called Rodney Brooks
-[[the-importance-of-practical-work]]
 
+
+## the importance of practical work
+
+Roboticists stress the importance of working in the physical world. 
+- It’s very hard to simulate all the relevant aspects of a robot’s physical environment. 
+- The physical world is far harder to work with than we might think—there are always unexpected problems. 
+ 
+So (though very briefly) we’re going to do some practical work with LEGO bots in Lab 1

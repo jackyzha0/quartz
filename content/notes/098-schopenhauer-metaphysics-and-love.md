@@ -2,7 +2,7 @@
 title: "098-schopenhauer-metaphysics-and-love"
 aliases: 
 tags: 
-- podcast/philosphizethis
+- podcast/philosophizethis
 ---
 
 Agreed with Kant (sorta)

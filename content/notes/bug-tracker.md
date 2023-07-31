@@ -19,7 +19,7 @@ Should built an app not 1 hour a day. Should do in large blocks. e.g., spend one
 
 Should:
 - follow a design pattern
-	- e.g., for web apps: mvc: model view controller [MVC](notes/model-view-controller-pattern.md)
+	- e.g., for web apps: mvc: model view controller [MVC](model-view-controller.md)
 - clean professional UI
 	- mobile and desktop
 	- people are "visual buyers"

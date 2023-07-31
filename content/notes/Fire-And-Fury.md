@@ -3,9 +3,10 @@ title: "Fire-And-Fury"
 aliases: 
 tags: 
 - cosc203
-- asgn3
+- documentary
 ---
 
+reasearch for [[cosc-203#Assignments]]
 
 damien de ment
 - "super spreader"
