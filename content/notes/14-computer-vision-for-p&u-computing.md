@@ -3,6 +3,9 @@ title: "14-computer-vision-for-p&u-computing"
 tags: 
 - info305
 - lecture
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 

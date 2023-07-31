@@ -3,6 +3,9 @@ title: "16-intro-computer-graphics"
 tags: 
 - lecture
 - cosc342
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 opposite of other topics -> 3d model to 2d image.

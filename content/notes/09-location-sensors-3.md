@@ -3,6 +3,9 @@ title: "09-location-sensors-3"
 tags: 
 - lecture
 - info305
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 in lecture angles vs distances used to compute location

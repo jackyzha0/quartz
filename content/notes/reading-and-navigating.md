@@ -3,7 +3,7 @@ title: "reading-and-navigating"
 aliases: reading, navigating
 tags: 
 - info203 
-- visual-design
+- visual_design
 ---
 
 # Reading and navigating

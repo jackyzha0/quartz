@@ -7,6 +7,10 @@ aliases:
 tags: 
 - info203
 - lecture
+- hci
+sr-due: 2025-09-07
+sr-interval: 769
+sr-ease: 250
 ---
 
 - [evaluating-designs](notes/evaluating-designs.md)

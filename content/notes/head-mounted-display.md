@@ -4,7 +4,7 @@ aliases: HMD
 tags: XR, HCI, hardware
 ---
 
-A screen placed near the users eye typically used for [[Extended Reality|XR]] applications
+A screen placed near the users eye typically used for [[extended-reality|XR]] applications
 
 Two main types: [[video-see-through|VST]] and [[optical-see-through|OST]]
 

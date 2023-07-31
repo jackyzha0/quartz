@@ -1,6 +1,6 @@
 ---
 title: "Parallel Governance for Decentralized Autonomous Organizations enabled by Blockchain and Smart Contracts"
-tags: 
+tags: paper, blockchain
 date:
 authors:
 ---

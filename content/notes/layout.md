@@ -3,7 +3,7 @@ title: "layout"
 aliases: 
 tags: 
 - info203
-- visual-design
+- visual_design
 ---
 
 Techniques such as, [similarity](notes/law-of-similarity.md), [grouping](notes/grouping.md) and (to a lesser extent) [closure](notes/law-of-closure.md), can be used to organise and groupu our interfaces. Often the grouping and layout is done before the rest of the design.

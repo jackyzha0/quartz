@@ -3,7 +3,7 @@ title: "running-in-person-experiments"
 aliases: 
 tags: 
 - info203
-- scott-video
+- scott_video
 - lecture
 sr-due: 2024-09-25
 sr-interval: 503

@@ -3,6 +3,9 @@ title: "05-feature-description-and-matching"
 tags: 
 - lecture
 - cosc342
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 last lecure: taking photographs and sticthcing them together. uses feature detection. identity interest points in image sequences. into homography matrix, map from one image into another

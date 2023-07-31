@@ -3,6 +3,9 @@ title: "18-shader-programming"
 tags: 
 - cosc342
 - lecture
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 first triangle

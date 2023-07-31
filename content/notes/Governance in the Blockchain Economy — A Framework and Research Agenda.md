@@ -1,6 +1,6 @@
 ---
 title: "Governance in the Blockchain Economy — A Framework and Research Agenda"
-tags: 
+tags: paper, blockchain
 link: https://aisel.aisnet.org/jais/vol19/iss10/1
 date:
 authors:

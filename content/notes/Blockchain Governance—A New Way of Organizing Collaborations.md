@@ -1,6 +1,6 @@
 ---
 title: "Blockchain Governance—A New Way of Organizing Collaborations"
-tags: 
+tags: paper, blockchain
 date:
 authors:
 ---

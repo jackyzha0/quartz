@@ -1,6 +1,6 @@
 ---
 title: "YAC — BFT Consensus Algorithm for Blockchain"
-tags: 
+tags: paper, blockchain
 date:
 authors:
 ---

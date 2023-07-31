@@ -1,6 +1,6 @@
 ---
 title: "Enhanced immutability of permissioned blockchain networks by tethering provenance with a public blockchain network"
-tags: 
+tags: paper, blockchain
 link:
 date:
 authors:

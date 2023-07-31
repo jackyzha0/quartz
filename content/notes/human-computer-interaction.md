@@ -1,9 +1,11 @@
 ---
 title: "human-computer-interaction"
-aliases: HCI
-tags: HCI
-- info203
+aliases: HCI, human computer interaction
+tags: HCI, info203
 ---
+
+[[birth-of-hci]]
+[[hci-ethics]]
 
 >HCI is the cycle of design, implementation, evaluation of user interfaces
 

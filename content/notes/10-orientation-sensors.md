@@ -3,6 +3,9 @@ title: "10-orientation-sensors"
 tags: 
 - lecture
 - info305
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 > [!INFO] 

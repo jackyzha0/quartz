@@ -3,10 +3,10 @@ title: "color"
 aliases: Colour, colour
 tags: 
 - info203
-- visual-design
+- visual_design
 ---
 
-[[Colours]] are very complex
+[[colour(visual_computing)]] are very complex
 
 # Color
 - design grayscale first.

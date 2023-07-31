@@ -1,7 +1,7 @@
 ---
 title: "scrum"
 aliases: SCRUM
-tags: seng, projectmanagement
+tags: seng, project_management
 ---
 
 Intense effort involving entire team for defined period of time

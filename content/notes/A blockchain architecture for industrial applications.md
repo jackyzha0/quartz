@@ -1,6 +1,6 @@
 ---
 title: "A blockchain architecture for industrial applications"
-tags: 
+tags: paper, blockchain
 date:
 authors:
 ---

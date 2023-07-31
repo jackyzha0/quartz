@@ -1,6 +1,6 @@
 ---
 title: "Blockchain — The operating system of smart cities"
-tags: 
+tags: paper, blockchain
 date:
 authors:
 ---

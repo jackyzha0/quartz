@@ -3,6 +3,9 @@ title: "11-orientation sensors-2"
 tags: 
 - lecture
 - info305
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 > [!INFO] we need sensors to that computing can be ubiquitous. from this we can think of completey new interfaces

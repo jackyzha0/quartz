@@ -3,6 +3,9 @@ title: "17-OpenGL-essentials"
 tags: 
 - cosc-342
 - lecture
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 > [!INFO] better to use gPU for computations and rendering because it can do multiple operations in parallel

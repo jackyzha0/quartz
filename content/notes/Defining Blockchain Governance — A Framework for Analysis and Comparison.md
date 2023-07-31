@@ -1,6 +1,6 @@
 ---
 title: "Defining Blockchain Governance — A Framework for Analysis and Comparison"
-tags: 
+tags: paper, blockchain
 date:
 authors:
 ---

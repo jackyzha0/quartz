@@ -3,8 +3,8 @@ title: "10-continuous-integration-1"
 tags: 
 - cosc202 
 - lecture
-sr-due: 2023-06-04
-sr-interval: 225
+sr-due: 2025-04-25
+sr-interval: 634
 sr-ease: 250
 ---
 

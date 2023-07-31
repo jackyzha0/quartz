@@ -3,7 +3,7 @@ title: "visual-design"
 aliases: Visual Design
 tags: 
 - info203
-- visual-design
+- visual_design
 ---
 
 combine text and graphics. how to represent?

@@ -3,6 +3,9 @@ title: "02-intro-pervasive-and-ubiquitious"
 tags: 
 - lecture
 - info305
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 # Pervasive and Ubiquitious computing

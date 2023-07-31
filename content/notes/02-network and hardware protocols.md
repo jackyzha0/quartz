@@ -3,8 +3,8 @@ title: "02-network and hardware protocols"
 tags: 
 - cosc301
 - lecture
-sr-due: 2023-03-04
-sr-interval: 3
+sr-due: 2024-02-10
+sr-interval: 194
 sr-ease: 250
 ---
 

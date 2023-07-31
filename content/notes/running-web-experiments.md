@@ -3,7 +3,7 @@ title: "running-web-experiments"
 aliases: 
 tags: 
 - info203
-- scott-video
+- scott_video
 - lecture
 sr-due: 2024-12-17
 sr-interval: 574

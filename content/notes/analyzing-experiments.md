@@ -4,9 +4,9 @@ aliases:
 tags: 
 - info203
 - lecture
-- scott-video
-sr-due: 2023-05-10
-sr-interval: 200
+- scott_video
+sr-due: 2025-03-25
+sr-interval: 603
 sr-ease: 250
 ---
 

@@ -4,8 +4,8 @@ aliases:
 tags: 
 - lecture
 - cosc204
-sr-due: 2023-01-09
-sr-interval: 55
+sr-due: 2024-07-25
+sr-interval: 360
 sr-ease: 230
 ---
 

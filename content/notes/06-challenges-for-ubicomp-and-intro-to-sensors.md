@@ -3,6 +3,9 @@ title: "06-challenges-for-ubicomp-and-intro-to-sensors"
 tags: 
 - lecture
 - info305
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 Challenges

@@ -3,8 +3,8 @@ title: "10-oop-concepts-and-uml"
 tags: 
 - info201 
 - lecture
-sr-due: 2022-12-03
-sr-interval: 132
+sr-due: 2025-06-10
+sr-interval: 680
 sr-ease: 270
 ---
 

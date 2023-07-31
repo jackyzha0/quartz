@@ -3,8 +3,8 @@ title: "07-heuristic-evaluation-cont"
 tags: 
 - info203 
 - lecture
-sr-due: 2023-06-05
-sr-interval: 226
+sr-due: 2025-04-26
+sr-interval: 635
 sr-ease: 250
 ---
 

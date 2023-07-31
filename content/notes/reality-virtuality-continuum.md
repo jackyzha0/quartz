@@ -13,4 +13,4 @@ tags: XR, HCI
 
 ![|300](https://i.imgur.com/oPDfjAN.png)
 
-Encompassed by [[Extended Reality|XR]]
+Encompassed by [[extended-reality|XR]]

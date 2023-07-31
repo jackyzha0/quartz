@@ -1,6 +1,6 @@
 ---
 title: "Permissionless and Permissioned, Technology-Focused and Business Needs-Driven — Understanding the Hybrid Opportunity in Blockchain Through a Case Study of Insolar"
-tags: 
+tags: paper, blockchain
 date:
 authors: 
 ---

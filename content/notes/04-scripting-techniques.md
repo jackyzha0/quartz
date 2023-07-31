@@ -3,6 +3,9 @@ title: "04-scripting-techniques"
 tags: 
 - lecture
 - cosc301
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 

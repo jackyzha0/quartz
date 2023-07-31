@@ -3,6 +3,9 @@ title: "23-exterior-routing"
 tags: 
 - lecture
 - cosc301
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 > [!INFO] for exam: general understanding for pass. for a+, detailed understanding.

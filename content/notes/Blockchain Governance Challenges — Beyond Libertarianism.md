@@ -1,6 +1,6 @@
 ---
 title: "Blockchain Governance Challenges — Beyond Libertarianism"
-tags: 
+tags: paper, blockchain
 date:
 authors:
 ---

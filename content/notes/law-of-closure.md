@@ -3,7 +3,7 @@ title: "law-of-closure"
 aliases: closure
 tags: 
 - info203
-- visual-design
+- visual_design
 ---
 
 Another law is the law of closure. Where our brain tries to "autocomplete" things

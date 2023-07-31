@@ -3,6 +3,9 @@ title: "12-DHCP"
 tags: 
 - lecture
 - cosc301
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 > [!DANGER]  NEED TO STUDY

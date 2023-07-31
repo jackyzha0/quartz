@@ -3,6 +3,9 @@ title: "20-texture-mapping"
 tags: 
 - cosc342
 - lecture
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 MATERIAL DEFINITIONS 

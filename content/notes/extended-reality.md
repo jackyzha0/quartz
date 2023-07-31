@@ -1,6 +1,6 @@
 ---
-title: "Extended Reality"
-aliases: XR
+title: "extended-reality"
+aliases: XR, extended reality
 tags: XR
 ---
 

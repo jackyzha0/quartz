@@ -3,6 +3,9 @@ title: "16-TLS"
 tags: 
 - lecture
 - cosc301
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 How to secure web applications? 

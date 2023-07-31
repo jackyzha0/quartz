@@ -3,6 +3,9 @@ title: "15-multiview-stereo"
 tags: 
 - lecture
 - cosc342
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 > [!INFO] need to find absolute pose for each additional camera

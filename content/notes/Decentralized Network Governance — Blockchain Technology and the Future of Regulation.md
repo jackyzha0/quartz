@@ -1,6 +1,6 @@
 ---
 title: "Decentralized Network Governance — Blockchain Technology and the Future of Regulation"
-tags: 
+tags: paper, blockchain
 date:
 authors:
 ---

@@ -3,6 +3,9 @@ title: "12-advanced-sensing-vision-sensors"
 tags: 
 - lecture
 - info305
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 

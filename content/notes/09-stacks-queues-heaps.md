@@ -3,8 +3,8 @@ title: "09-stacks-queues-heaps"
 tags: 
 - cosc201 
 - lecture
-sr-due: 2023-04-17
-sr-interval: 177
+sr-due: 2024-11-24
+sr-interval: 482
 sr-ease: 210
 ---
 

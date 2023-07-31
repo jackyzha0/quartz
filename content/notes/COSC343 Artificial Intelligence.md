@@ -1,9 +1,7 @@
 ---
 title: "cosc-343"
-year: 2022
-semester: 
-tags: 
-- course
+aliases: cosc343
+tags: AI, course
 ---
 
 # Lectures

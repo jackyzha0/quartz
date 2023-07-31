@@ -1,6 +1,6 @@
 ---
 title: "Blockchain as a confidence machine — The problem of trust & challenges of governance"
-tags: 
+tags: paper, blockchain
 date:
 authors:
 ---

@@ -3,7 +3,7 @@ title: "mental-models-video"
 aliases: 
 tags: 
 - info203
-- scott-video
+- scott_video
 ---
 
 The users mental model is how the user thinks the interface works.

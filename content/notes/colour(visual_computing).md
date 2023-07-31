@@ -1,5 +1,6 @@
 ---
-title: "Colour Spaces"
+title: "color"
+aliases: color
 tags: cosc342, CV
 sr-due: 2023-09-29
 sr-interval: 66

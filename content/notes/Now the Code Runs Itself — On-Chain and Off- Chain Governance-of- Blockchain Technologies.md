@@ -1,6 +1,6 @@
 ---
 title: "Now the Code Runs Itself — On-Chain and Off- Chain Governance-of- Blockchain Technologies"
-tags: 
+tags: paper, blockchain
 date: 12/2018
 authors: 
 ---

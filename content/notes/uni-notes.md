@@ -25,6 +25,6 @@ tags:
 - [[info-305]]
 
 ## 2023 s2
-- [[cosc-343]]
+- [[COSC343 Artificial Intelligence]]
 - [[INFO351 Special Topic Virtual and Augmented Reality]]
-- [[cosc-345]]
+- [[COSC345 Software Engineering]]

@@ -1,6 +1,6 @@
 ---
 title: "An Overview of Forks and Coordination in Blockchain Development"
-tags: 
+tags: paper, blockchain
 date:
 authors:
 ---

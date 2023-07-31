@@ -4,7 +4,6 @@ year: 2023
 semester: 1
 tags: 
 - course
-- 
 ---
 # Assignments
 
@@ -22,7 +21,7 @@ exam: | COSC342 | Friday 09 June 2023 | 09:30 |
 
 # Notes
 [[342-review]]
-- [[Colours]]
+- [[colour(visual_computing)]]
 
 # Lectures
 - [x] [[02-colour-representation]]

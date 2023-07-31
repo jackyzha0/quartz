@@ -3,6 +3,9 @@ title: "06-network-system-administration"
 tags: 
 - lecture
 - cosc301
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 > [!DANGER] need to study this and watch lecture

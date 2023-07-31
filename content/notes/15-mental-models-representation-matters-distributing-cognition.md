@@ -4,8 +4,8 @@ aliases:
 tags: 
 - info203
 - lecture
-sr-due: 2022-11-27
-sr-interval: 125
+sr-due: 2025-04-11
+sr-interval: 620
 sr-ease: 250
 ---
 

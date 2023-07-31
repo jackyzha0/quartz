@@ -1,6 +1,6 @@
 ---
 title: "A review on blockchain governance"
-tags: 
+tags: paper, blockchain
 date: 05/2022
 authors: Gonca Atici
 ---

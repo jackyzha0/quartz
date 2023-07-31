@@ -1,7 +1,7 @@
 ---
 title: "agile"
 aliases: 
-tags: seng, projectmanagement
+tags: seng, project_management
 ---
 
 ## Agile Manifesto

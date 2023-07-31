@@ -1,6 +1,6 @@
 ---
 title: "research-on-the-reciprocal-mechanism-of-hybrid-governance-in-blockchain"
-tags: 
+tags: paper, blockchain
 date: 03/2021
 authors:
 ---

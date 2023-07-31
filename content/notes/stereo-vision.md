@@ -1,10 +1,9 @@
 ---
 title: "stereo-vision"
-tags: 
-
+tags: CV, visual_computing 
 ---
 
-[[Simple stereo]]
+[[simple-stereo-vision]]
 
 [[Depth estimation]]
 
@@ -12,10 +11,9 @@ tags:
 
 [[Fundamental matrix]]
 
-[[Essential Matrix]]
+[[essential-matrix]]
 
 [[Relative Pose]]
 
 [[Reprojection error]]
 
-# 

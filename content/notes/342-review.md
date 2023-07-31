@@ -11,7 +11,7 @@ tags:
 
 # Images and Transformations
 ## Images and Colour
-- [[Colours]]
+- [[colour(visual_computing)]]
 - [[Image Compression]]
 	- [[Image Compression#Lossy Compression]]
 	- [[Image Compression#Lossless Compression]]

@@ -1,6 +1,6 @@
 ---
 title: "Blockchain-based smart contracts as new governance tools for the sharing economy"
-tags: 
+tags: paper, blockchain
 date:
 authors:
 ---

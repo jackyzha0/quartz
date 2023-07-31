@@ -3,6 +3,9 @@ title: "20-VPN"
 tags: 
 - cosc301
 - lecture
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 

@@ -3,6 +3,9 @@ title: "08-proximity sensors"
 tags: 
 - lecture
 - info305
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 Lecture 8: Location Sensors 2 Tobias Langlotz INFO 305: Advanced Human-Computer Interaction and Interactive Systems 2 

@@ -3,7 +3,7 @@ title: "typography"
 aliases: Typography
 tags: 
 - info203
-- visual-design
+- visual_design
 ---
 
 most common fonts

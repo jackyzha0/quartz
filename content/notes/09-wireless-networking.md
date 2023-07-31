@@ -3,6 +3,9 @@ title: "09-wireless-networking"
 tags: 
 - lecture
 - cosc301
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 IEEE 802 Standards 

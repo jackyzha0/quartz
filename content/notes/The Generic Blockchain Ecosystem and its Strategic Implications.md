@@ -1,6 +1,6 @@
 ---
 title: "The Generic Blockchain Ecosystem and its Strategic Implications"
-tags: 
+tags: paper, blockchain
 date:
 authors:
 ---

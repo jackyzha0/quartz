@@ -3,6 +3,9 @@ title: "06-homographies"
 tags: 
 - lecture
 - cosc342
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 Homographies and mosaics

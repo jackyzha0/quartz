@@ -2,7 +2,7 @@
 title: "video-prototyping"
 tags: 
 - info203
-- scott-video
+- scott_video
 ---
 
 ## 1 benefits

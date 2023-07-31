@@ -4,7 +4,7 @@ aliases: VR
 tags: XR, HCI
 ---
 
-a type of [[Extended Reality|XR]] where the user is fully immersed in the virtual, typically using a [[head-mounted-display]]
+a type of [[extended-reality|XR]] where the user is fully immersed in the virtual, typically using a [[head-mounted-display]]
 
 virtual reality
 - computer generated environment

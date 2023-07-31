@@ -3,7 +3,7 @@ title: "direct-manipulation-video"
 aliases: Direct Manipulation
 tags: 
 - info203
-- scott-video
+- scott_video
 ---
 
 e.g., better measuring cup

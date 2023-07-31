@@ -3,6 +3,9 @@ title: "20-user-interfaces-examples-2"
 tags: 
 - lecture
 - info305
+sr-due: 2023-08-03
+sr-interval: 3
+sr-ease: 250
 ---
 
 # Tangible Computing

@@ -3,7 +3,7 @@ title: "law-of-similarity"
 aliases: similarity
 tags: 
 - info203
-- visual-design
+- visual_design
 ---
 
 Another law is the law of similarty. Things with similar appearance are grouped by our brains. 

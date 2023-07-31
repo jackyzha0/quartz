@@ -2,7 +2,7 @@
 title: "model-view-controller"
 aliases: MVC
 tags: 
-- softwarepattern
+- software_pattern
 ---
 
 **Model:** An object carrying data

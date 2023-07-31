@@ -1,6 +1,6 @@
 ---
 title: "a systematic literature review on blockchain governance"
-tags: 
+tags: paper, blockchain
 date: 03/2022
 authors:
 ---

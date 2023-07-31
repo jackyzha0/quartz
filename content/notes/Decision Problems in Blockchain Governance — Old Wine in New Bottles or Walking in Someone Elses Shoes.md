@@ -1,6 +1,6 @@
 ---
 title: "Decision Problems in Blockchain Governance — Old Wine in New Bottles or Walking in Someone Elses Shoes"
-tags: 
+tags: paper, blockchain
 date: 06/2020
 authors:
 ---

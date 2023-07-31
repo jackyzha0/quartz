@@ -4,7 +4,7 @@ aliases: localisation and tracking
 tags: XR, CV, HCI
 ---
 
-Can be used for knowing where the user is in [[virtuality]] for [[Extended Reality]] applications
+Can be used for knowing where the user is in [[virtuality]] for [[extended-reality]] applications
 
 Tools
 - Markers [[marker-based-tracking]]

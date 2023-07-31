@@ -1,6 +1,6 @@
 ---
 title: "Vulnerabilities on Hyperledger Fabric"
-tags: 
+tags: paper, blockchain
 date:
 authors:
 ---
