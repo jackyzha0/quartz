@@ -27,7 +27,7 @@ EXPERIMENT DESIGN:
 
 Variables
 - Independent Variables: Level of detail (Number of SIFT features detected)
-- Dependent Variable: Reprojection error of feature matches
+- Dependent Variable: [[reprojection-error|Reprojection error]] of feature matches
 
 Procedure
 1. Select a set of image pairs with various levels of detail

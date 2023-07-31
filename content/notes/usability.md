@@ -1,7 +1,6 @@
 ---
-title: "usbability"
-tags: 
-- info203
+title: "usability"
+tags: hci, info203, UX
 ---
 
 The extent to which a product cn be used by specifies users to achieve specified goals with effectivenesss, efficiency, and satisfaction in a specified context of use.

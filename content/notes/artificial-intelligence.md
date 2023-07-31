@@ -9,4 +9,6 @@ Computerised [[intelligence]] as [[agents(AI)|agents]]
 [[ai-foundations]]
 [[ai-history]]
 
+[[computer-vision]]
+
 

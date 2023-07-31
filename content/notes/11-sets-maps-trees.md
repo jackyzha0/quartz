@@ -8,7 +8,7 @@ sr-interval: 324
 sr-ease: 270
 ---
 
-A [set](notes/set.md) is :: a collection of elements with no repetition allowed <!--SR:!2022-5-527,9,250-->
+A [set(computer_science)](set(computer_science).md) is :: a collection of elements with no repetition allowed <!--SR:!2022-5-527,9,250-->
 
 A [hash-map](notes/hash-map.md) is :: a set of key value pairs <!--SR:!2022-5-526,8,250-->
 

@@ -2,7 +2,7 @@
 title: "heap"
 tags: 
 - cosc201 
-- datastructure
+- data_structure
 ---
 
 A tree where:

@@ -1,6 +1,0 @@
-- difference between views is the disparity (depth)
-- stereo recification: warping a general stereo pair to this form
-- given recified images. find one point in the first image and match in second image along the same v using
-	- [[block-matching]]
-	- [[global-matching]]
-	- [[semi-global-matching]]

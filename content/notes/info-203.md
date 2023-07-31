@@ -7,7 +7,6 @@ tags:
 - course
 - info203
 ---
-links:[_index](_index.md)
 - [mobile-app-ass-03](notes/mobile-app-ass-03.md)
 
 # Assignments
@@ -20,9 +19,9 @@ links:[_index](_index.md)
 
 # Outline
 - [human-computer-interaction](human-computer-interaction.md)
-- [birth-of-hci](notes/birth-of-hci.md)
+- [hci-history](hci-history.md)
 - [user-experience](notes/user-experience.md)
-- [usbability](notes/usbability.md)
+- [usability](usability.md)
 - [prototyping](notes/prototyping.md)
 - [evaluating-designs](notes/evaluating-designs.md)
 - [Design Heuristics](notes/design-heuristics.md)

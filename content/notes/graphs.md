@@ -3,7 +3,7 @@ title: "graphs"
 aliases: 
 tags: 
 - cosc201
-- datastructure
+- data_structure
 ---
 
 Represents a set of things with relationships between them.

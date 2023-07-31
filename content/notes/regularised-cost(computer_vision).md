@@ -1,6 +1,6 @@
 ---
 title: "regularised-cost"
-tags: 
+tags: CV, np_hard
 ---
 - used for [[block-matching]] in stereo vision
 - aims to fix problem of inconsistency between pixel rows

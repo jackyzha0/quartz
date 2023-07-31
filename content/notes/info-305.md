@@ -14,7 +14,6 @@ exam: | INFO305 | Thursday 15 June 2023 | 14:30 | 2 hours
 
 
 # Labs
-- [[01]]
 
 # Notes
 

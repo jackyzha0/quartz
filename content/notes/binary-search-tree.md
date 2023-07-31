@@ -3,7 +3,7 @@ title: "binary-search-tree"
 aliases: binary search tree, BST
 tags: 
 - cosc201
-- datastructure
+- data_structure
 ---
 
 [code](https://blackboard.otago.ac.nz/bbcswebdav/pid-2890167-dt-content-rid-18354839_1/courses/COSC201_S1DNIE_2022/BST.java)

@@ -1,4 +1,10 @@
-- method of sensor fusion using a hidden markov model
+---
+title: "kalman-filtering"
+aliases: kalman filtering
+tags: CV, HCI, math, 
+---
+
+- method of [[sensor-fusion]] using a [[hidden-markov-model]]
 - estimate the current state and update previous state factoring in an amount of uncertainty
 
 **Kalman gain

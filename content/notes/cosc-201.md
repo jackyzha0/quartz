@@ -32,7 +32,7 @@ tags:
 - [treap](notes/treap.md)
 - [hash-map](notes/hash-map.md)
 	- [linear-probing](notes/linear-probing.md)
-- [set](notes/set.md)
+- [set(computer_science)](set(computer_science).md)
 - [tree](notes/tree.md)
 	- [binary-search-tree](notes/binary-search-tree.md)
 	- [balancing-binary-search-trees](notes/balancing-binary-search-trees.md)

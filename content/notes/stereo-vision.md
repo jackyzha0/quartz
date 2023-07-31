@@ -5,15 +5,15 @@ tags: CV, visual_computing
 
 [[simple-stereo-vision]]
 
-[[Depth estimation]]
+[[depth-estimation]]
 
-[[Epipolar Geometry]]
+[[epipolar-geometry]]
 
-[[Fundamental matrix]]
+[[fundamental-matrix(computer_vision)]]
 
-[[essential-matrix]]
+[[essential-matrix(computer_vision)]]
 
-[[Relative Pose]]
+[[relative-pose]]
 
-[[Reprojection error]]
+[[reprojection-error]]
 

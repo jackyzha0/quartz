@@ -52,9 +52,9 @@ tags:
 ## Disparity and Depth
 - Fundamental Matrix
 - 8 Point algorithm
-- Essential Matrix
+- [[essential-matrix(computer_vision)|Essential Matrix]]
 - Relative Pose
-- Epipolar Geometry
+- [[epipolar-geometry|Epipolar]] Geometry
 - Rectification
 
 ## Dense Stereo
@@ -66,7 +66,7 @@ tags:
 - Image Bag of words
 - Absolute Pose
 - PnP
-- Reprojection Error
+- [[reprojection-error|Reprojection Error]]
 
 # OpenGL/Rasterisation
 ## OpenGL Basic Concepts

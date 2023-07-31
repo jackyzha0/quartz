@@ -7,6 +7,6 @@ tags:
 	- select next best image using [[image-bag-of-words]]
 	- determine [[absolute-pose]]
 	- reconstruct more 3d points
-	- minimise [[Reprojection error]]
+	- minimise [[reprojection-error]]
 	- repeat
 	

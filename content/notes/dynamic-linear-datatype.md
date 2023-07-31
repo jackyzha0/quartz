@@ -2,7 +2,7 @@
 title: "dynamic-linear-datatype"
 tags: 
 - cosc201
-- datastructure
+- data_structure
 ---
 
 Both are Dynamic linear data types (interface) 

@@ -2,7 +2,7 @@
 title: "priority-queue"
 tags: 
 - cosc201
-- datastructure
+- data_structure
 ---
 
 - A dynamic linear data type that supports addition and removal on entrie 

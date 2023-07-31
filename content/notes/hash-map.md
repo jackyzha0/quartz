@@ -3,10 +3,10 @@ title: "hash-map"
 aliases: hash map
 tags: 
 - cosc201
-- datastructure
+- data_structure
 ---
 
-In compsci a map is a comprised of a [set](notes/set.md) of keys and values. (`<K, V>`). For example `<String, Integer>`
+In compsci a map is a comprised of a [set(computer_science)](set(computer_science).md) of keys and values. (`<K, V>`). For example `<String, Integer>`
 
 So sets are a prerequisite for maps
 

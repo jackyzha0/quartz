@@ -14,7 +14,7 @@ sr-ease: 250
 ---
 
 - [evaluating-designs](notes/evaluating-designs.md)
-- [birth-of-hci](notes/birth-of-hci.md)
+- [hci-history](hci-history.md)
 
 Possible exam questions
 - Define User Experience!

@@ -3,7 +3,7 @@ title: "avl-tree"
 aliases: AVL
 tags: 
 - cosc201
-- datastructure
+- data_structure
 ---
 
 AVL tree

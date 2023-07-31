@@ -3,7 +3,7 @@ title: "red-black-tree"
 aliases: Red Black Tree
 tags: 
 - cosc201
-- datastructure
+- data_structure
 ---
 
 

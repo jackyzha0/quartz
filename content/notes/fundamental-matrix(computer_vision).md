@@ -1,3 +1,9 @@
+---
+title: "Fundamental matrix"
+aliases: fundamental matrix
+tags: CV, math
+---
+
 - Represents a transformation 
 - $F = K_{2}^{-T}[t]_{\times}RK_{1}^{-1}$
 - $p'^{T}Fp = 0$

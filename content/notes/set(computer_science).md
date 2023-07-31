@@ -1,10 +1,10 @@
 ---
 number headings: auto, first-level 1, max 6, 1.1
-title: "set"
-aliases: sets, Set, Sets
+title: "set(computer_science)"
+aliases: sets, set
 tags: 
 - cosc201
-- datastructure
+- data_structure
 ---
 
 links: [java docs](https://docs.oracle.com/javase/7/docs/api/java/util/Set.html) for set interface

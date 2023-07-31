@@ -2,7 +2,7 @@
 title: "union-find"
 tags: 
 - cosc201 
-- datastructure
+- data_structure
 ---
 
 ## 1 Example

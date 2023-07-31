@@ -3,7 +3,7 @@ title: "treap"
 aliases: Treaps
 tags: 
 - cosc201
-- datastructure
+- data_structure
 ---
 
 Treaps

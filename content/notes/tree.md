@@ -8,7 +8,7 @@ not so much a data type. More of a data concept of a way in which data can be or
 
 The first example we saw was with the chains of representatives in [union-find](notes/union-find.md)
 
-The type required for the ordered [set](notes/set.md) data type is the binary tree
+The type required for the ordered [set(computer_science)](set(computer_science).md) data type is the binary tree
 
 Trees in general:
 - Consists of *Nodes*

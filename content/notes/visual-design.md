@@ -6,6 +6,14 @@ tags:
 - visual_design
 ---
 
+[[design-heuristics]]
+[[evaluating-designs]]
+[[mental-models]]
+[[personas-and-scenarios]]
+[[reading-and-navigating]]
+[[representation-and-distributing-cognition]]
+
+
 combine text and graphics. how to represent?
 
 - whitespace for grouping
