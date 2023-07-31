@@ -3,7 +3,7 @@ title: "Eye-Perspective View Management for OSTHMDs"
 tags: paper, XR, HCI
 ---
 29/07 4:46pm - 5:21pm
-30/07 12pm - 12:33pm
+30/07 12pm - 12:53pm
 
 ## Notes
 view management (placement of labels) requires knowledge of users true view
@@ -19,6 +19,17 @@ warps a view of a physical scene so it appears as seen by the user of a system. 
 - track the position of the head relative to the display using
 
 ### EPR
+- $T_H$ transform world coords to camera coors
+- $H$ Head coordinate system
+- $E_i$ Eye coordinate system ($i$ can be left or right)
+- $T_{E_i}$ Transform Head coordinates $H$ to eye coordinates $E_i$
+- $I_H$ Input image from RGBD camera
+- $I_{H,RGB}$ Colour component of image
+- $I_{H,D}$ Depth component of image
+- $I_{E_I}$ Synthesized image for $E_i$
+
+what is 3D proxy geometry? is it a 
+
 three methods: 
 - Homography
 	- slam tracking greate 3d geometry
