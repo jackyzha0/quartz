@@ -136,7 +136,7 @@ a {
     & .sidebar.left {
       left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
       @media all and (max-width: $fullPageWidth) {
-        gap: 0rem;
+        gap: 0;
         align-items: center;
       }
     }
@@ -197,15 +197,13 @@ input[type="checkbox"] {
 
     &::after {
       content: "";
-      top: -1px;
-      left: -1px;
       position: absolute;
       left: 4px;
       top: 1px;
       width: 4px;
       height: 8px;
       display: block;
-      border: solid 1px var(--light);
+      border: solid var(--light);
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
     }
