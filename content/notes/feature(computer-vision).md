@@ -1,5 +1,5 @@
 ---
-title: "feature(computer-vision)"
+title: "feature (computer-vision)"
 aliases: feature, features
 tags: CV
 ---

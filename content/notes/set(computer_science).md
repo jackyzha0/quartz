@@ -1,6 +1,6 @@
 ---
 number headings: auto, first-level 1, max 6, 1.1
-title: "set(computer_science)"
+title: "set (computer_science)"
 aliases: sets, set
 tags: 
 - cosc201
