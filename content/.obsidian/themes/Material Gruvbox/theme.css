@@ -1,0 +1,814 @@
+:root {
+    /* DEFAULTS */
+    --dark0-hard-x:      29,32,33;
+    --dark0-hard:        rgb(var(--dark0-hard-x));
+    --dark0-x:           40,40,40;
+    --dark0:             rgb(var(--dark0-x));
+    --dark0-soft-x:      50,48,47;
+    --dark0-soft:        rgb(var(--dark0-soft-x));
+    --dark1-x:           60,56,54;
+    --dark1:             rgb(var(--dark1-x));
+    --dark2-x:           80,73,69;
+    --dark2:             rgb(var(--dark2-x));
+    --dark3-x:           102,92,84;
+    --dark3:             rgb(var(--dark3-x));
+    --dark4-x:           124,111,100;
+    --dark4:             rgb(var(--dark4-x));
+    --gray-x:            146,131,116;
+    --gray:              rgb(var(--gray-x));
+    --dark-text-x:       101,71,53;
+    --dark-text:         rgb(var(--dark-text-x));
+    --dark-text-faint-x: 179,126,93;
+    --dark-text-faint:   rgb(var(--dark-text-faint-x));
+    --dark-text-muted-x: 115,81,69;
+    --dark-text-muted:   rgb(var(--dark-text-muted-x));
+
+    --light0-hard-x:     249,245,215;
+    --light0-hard:       rgb(var(--light0-hard-x));
+    --light0-x:          251,241,199;
+    --light0:            rgb(var(--light0-x));
+    --light0-soft-x:     242,229,188;
+    --light0-soft:       rgb(var(--light0-soft-x));
+    --light1-x:          235,219,178;
+    --light1:            rgb(var(--light1-x));
+    --light2-x:          213,196,161;
+    --light2:            rgb(var(--light2-x));
+    --light3-x:          189,174,147;
+    --light3:            rgb(var(--light3-x));
+    --light4-x:          168,153,132;
+    --light4:            rgb(var(--light4-x));
+    --light-text-x:      212,190,152;
+    --light-text:        rgb(var(--light-text-x));
+
+    --neutral-red-x:     234,105,98;
+    --neutral-red:       rgb(var(--neutral-red-x));
+    --neutral-green-x:   169,182,101;
+    --neutral-green:     rgb(var(--neutral-green-x));
+    --neutral-yellow-x:  231,138,78;
+    --neutral-yellow:    rgb(var(--neutral-yellow-x));
+    --neutral-blue-x:    125,174,163;
+    --neutral-blue:      rgb(var(--neutral-blue-x));
+    --neutral-purple-x:  211,134,155;
+    --neutral-purple:    rgb(var(--neutral-purple-x));
+    --neutral-aqua-x:    137,180,130;
+    --neutral-aqua:      rgb(var(--neutral-aqua-x));
+
+    --faded-red-x:       193,74,74;
+    --faded-red:         rgb(var(--faded-red-x));
+    --faded-green-x:     108,120,46;
+    --faded-green:       rgb(var(--faded-green-x));
+    --faded-yellow-x:    195,94,10;
+    --faded-yellow:      rgb(var(--faded-yellow-x));
+    --faded-blue-x:      69,112,122;
+    --faded-blue:        rgb(var(--faded-blue-x));
+    --faded-purple-x:    148,94,128;
+    --faded-purple:      rgb(var(--faded-purple-x));
+    --faded-aqua-x:      76,122,93;
+    --faded-aqua:        rgb(var(--faded-aqua-x));
+	
+/* @settings
+name: Gruvbox Material Color Overrides
+id: gruvbox-material-theme-override
+settings:
+  - id: section-dark
+    title: Dark Theme
+    type: heading
+    level: 2
+    collapsed: true
+
+  - id: dark0-hard
+    title: Dark 0 Hard
+    type: variable-color
+    format: rgb
+    default: '#1d2021'
+    alt-format:
+    - id: dark0-hard-x
+      format: hex
+
+  - id: dark0
+    title: Dark 0
+    type: variable-color
+    format: rgb
+    default: '#282828'
+    alt-format:
+    - id: dark0-x
+      format: hex
+
+  - id: dark0-soft
+    title: Dark 0 Soft
+    type: variable-color
+    format: rgb
+    default: '#282828'
+    alt-format:
+    - id: dark0-soft-x
+      format: hex
+
+  - id: dark1
+    title: Dark 1
+    type: variable-color
+    format: rgb
+    default: '#3c3836'
+    alt-format:
+    - id: dark1-x
+      format: hex
+
+  - id: dark2
+    title: Dark 2
+    type: variable-color
+    format: rgb
+    default: '#504945'
+    alt-format:
+    - id: dark2-x
+      format: hex
+
+  - id: dark3
+    title: Dark 3
+    type: variable-color
+    format: rgb
+    default: '#665c54'
+    alt-format:
+    - id: dark3-x
+      format: hex
+
+  - id: dark4
+    title: Dark 4
+    type: variable-color
+    format: rgb
+    default: '#7c6f64'
+    alt-format:
+    - id: dark4-x
+      format: hex
+
+  - id: section-light
+    title: Light Theme
+    type: heading
+    level: 2
+    collapsed: true
+
+  - id: light0-hard
+    title: Light 0 Hard
+    type: variable-color
+    format: rgb
+    default: '#f9f5d7'
+    alt-format:
+    - id: light0-hard-x
+      format: hex
+
+  - id: light0
+    title: Light 0
+    type: variable-color
+    format: rgb
+    default: '#fbf1c7'
+    alt-format:
+    - id: light0-x
+      format: hex
+
+  - id: light0-soft
+    title: Light 0 Soft
+    type: variable-color
+    format: rgb
+    default: '#f2e5bc'
+    alt-format:
+    - id: light0-soft-x
+      format: hex
+
+  - id: light1
+    title: Light 1
+    type: variable-color
+    format: rgb
+    default: '#ebdbb2'
+    alt-format:
+    - id: light1-x
+      format: hex
+
+  - id: light2
+    title: Light 2
+    type: variable-color
+    format: rgb
+    default: '#d5c4a1'
+    alt-format:
+    - id: light2-x
+      format: hex
+
+  - id: light3
+    title: Light 3
+    type: variable-color
+    format: rgb
+    default: '#bdae93'
+    alt-format:
+    - id: light3-x
+      format: hex
+
+  - id: light4
+    title: Light 4
+    type: variable-color
+    format: rgb
+    default: '#a89984'
+    alt-format:
+    - id: light4-x
+      format: hex
+
+  - id: section-general
+    title: General Colors
+    type: heading
+    level: 2
+    collapsed: false
+
+  - id: gray
+    title: Gray
+    type: variable-color
+    format: rgb
+    default: '#928374'
+    alt-format:
+    - id: gray-x
+      format: hex
+
+  - id: section-general-text
+    title: Text Colors
+    type: heading
+    level: 3
+    collapsed: true
+
+  - id: dark-text
+    title: Dark Text
+    type: variable-color
+    format: rgb
+    default: '#654735'
+    alt-format:
+    - id: dark-text-x
+      format: hex
+
+  - id: dark-text-faint
+    title: Dark Text Faint
+    type: variable-color
+    format: rgb
+    default: '#b37e5d'
+
+  - id: dark-text-muted
+    title: Dark Text Muted
+    type: variable-color
+    format: rgb
+    default: '#73513c'
+    alt-format:
+    - id: dark-text-muted-x
+      format: hex
+
+  - id: light-text
+    title: Light Text
+    type: variable-color
+    format: rgb
+    default: '#d4be98'
+    alt-format:
+    - id: light-text-x
+      format: hex
+
+  - id: light-text-faint
+    title: Light Text Faint
+    type: variable-color
+    format: rgb
+    default: '#b37e5d'
+    alt-format:
+    - id: light-text-faint-x
+      format: hex
+
+  - id: light-text-muted
+    title: Light Text Muted
+    type: variable-color
+    format: rgb
+    default: '#73513c'
+    alt-format:
+    - id: light-text-muted-x
+      format: hex
+
+  - id: section-general-neutral
+    title: Neutral Colors
+    type: heading
+    level: 3
+    collapsed: true
+
+  - id: neutral-red
+    title: Red
+    type: variable-color
+    format: rgb
+    default: '#ea6962'
+    alt-format:
+    - id: neutral-red-x
+      format: hex
+
+  - id: neutral-green
+    title: Green
+    type: variable-color
+    format: rgb
+    default: '#a9b665'
+    alt-format:
+    - id: neutral-green-x
+      format: hex
+
+  - id: neutral-yellow
+    title: Yellow
+    type: variable-color
+    format: rgb
+    default: '#e78a4e'
+    alt-format:
+    - id: neutral-yellow-x
+      format: hex
+
+  - id: neutral-blue
+    title: Blue
+    type: variable-color
+    format: rgb
+    default: '#7daea3'
+    alt-format:
+    - id: neutral-blue-x
+      format: hex
+
+  - id: neutral-purple
+    title: Purple
+    type: variable-color
+    format: rgb
+    default: '#d3869b'
+    alt-format:
+    - id: neutral-purple-x
+      format: hex
+
+  - id: neutral-aqua
+    title: Aqua
+    type: variable-color
+    format: rgb
+    default: '#89b482'
+    alt-format:
+    - id: neutral-aqua-x
+      format: hex
+
+  - id: section-general-faded
+    title: Faded Colors
+    type: heading
+    level: 3
+    collapsed: true
+
+  - id: faded-red
+    title: Red
+    type: variable-color
+    format: rgb
+    default: '#c14a4a'
+    alt-format:
+    - id: faded-red-x
+      format: hex
+
+  - id: faded-green
+    title: Green
+    type: variable-color
+    format: rgb
+    default: '#6c782e'
+    alt-format:
+    - id: faded-green-x
+      format: hex
+
+  - id: faded-yellow
+    title: Yellow
+    type: variable-color
+    format: rgb
+    default: '#c35e0a'
+    alt-format:
+    - id: faded-yellow-x
+      format: hex
+
+  - id: faded-blue
+    title: Blue
+    type: variable-color
+    format: rgb
+    default: '#45707a'
+    alt-format:
+    - id: faded-blue-x
+      format: hex
+
+  - id: faded-purple
+    title: Purple
+    type: variable-color
+    format: rgb
+    default: '#945e80'
+    alt-format:
+    - id: faded-purple-x
+      format: hex
+
+  - id: faded-aqua
+    title: Aqua
+    type: variable-color
+    format: rgb
+    default: '#4c7a5d'
+    alt-format:
+    - id: faded-aqua-x
+      format: hex
+*/
+}
+
+body {
+    --accent-h: 166; /* --neutral-blue #7daea3 */
+    --accent-s: 23%;
+    --accent-l: 58%;
+
+    --link-decoration:                none;
+    --link-decoration-hover:          none;
+    --link-external-decoration:       none;
+    --link-external-decoration-hover: none;
+
+    --tag-decoration:                 none;
+    --tag-decoration-hover:           underline;
+    --tag-padding-x:                  .5em;
+    --tag-padding-y:                  .2em;
+    --tag-radius:                     .5em;
+
+    --tab-font-weight:                600;
+    --bold-weight:                    600;
+
+    --checkbox-radius:                0;
+
+    /* --list-indent:                    2em; */
+
+    --embed-border-left: 6px double var(--interactive-accent);
+}
+
+.theme-dark {
+    --color-red-rgb:                 var(--neutral-red-x);
+    --color-red:                     var(--neutral-red);
+    --color-purple-rgb:              var(--neutral-purple-x);
+    --color-purple:                  var(--neutral-purple);
+    --color-green-rgb:               var(--neutral-green-x);
+    --color-green:                   var(--neutral-green);
+    --color-cyan-rgb:                var(--neutral-blue-x);
+    --color-cyan:                    var(--neutral-blue);
+    --color-blue-rgb:                var(--faded-blue-x);
+    --color-blue:                    var(--faded-blue);
+    --color-yellow-rgb:              var(--neutral-yellow-x);
+    --color-yellow:                  var(--neutral-yellow);
+    --color-orange-rgb:              var(--faded-yellow-x);
+    --color-orange:                  var(--faded-yellow);
+    --color-pink-rgb:                var(--neutral-purple-x);
+    --color-pink:                    var(--neutral-purple);
+
+    --background-primary:            var(--dark0);
+    --background-primary-alt:        var(--dark0-soft);
+    --background-secondary:          var(--dark0-hard);
+    --background-secondary-alt:      var(--dark1);
+    --background-modifier-border:    var(--dark1);
+    --background-accent:             var(--dark0-soft);
+
+    --cursor-line-background:        rgba(var(--dark1-x), 0.5);
+
+    --text-normal:                   var(--light-text);
+    --text-faint:                    var(--light1);
+    --text-muted:                    var(--light2);
+
+    --h1-color:                      var(--neutral-red);
+    --h2-color:                      var(--neutral-yellow);
+    --h3-color:                      var(--neutral-green);
+    --h4-color:                      var(--neutral-aqua);
+    --h5-color:                      var(--neutral-blue);
+    --h6-color:                      var(--neutral-purple);
+
+    --text-highlight-bg:             var(--neutral-yellow);
+    --text-highlight-fg:             var(--dark0-hard);
+
+    --text-accent:                   var(--neutral-yellow);
+    --text-accent-hover:             var(--faded-yellow);
+
+    --tag-color:                     var(--neutral-aqua);
+    --tag-background:                var(--dark2);
+    --tag-background-hover:          var(--dark1);
+
+    --titlebar-text-color-focused:   var(--neutral-red);
+
+    --inline-title-color:            var(--neutral-yellow);
+
+    --bold-color:                    var(--neutral-yellow);
+    --italic-color:                  var(--neutral-yellow);
+
+    --checkbox-color:                var(--light4);
+    --checkbox-color-hover:          var(--light4);
+    --checkbox-border-color:         var(--light4);
+    --checkbox-border-color-hover:   var(--light4);
+    --checklist-done-color:          rgba(var(--light2-x), 0.5);
+
+    --table-header-background:       rgba(var(--dark0-x), 0.2);
+    --table-header-background-hover: var(--dark2);
+    --table-row-even-background:     rgba(var(--dark2-x), 0.2);
+    --table-row-odd-background:      rgba(var(--dark2-x), 0.4);
+    --table-row-background-hover:    var(--dark2);
+
+    --text-selection:                rgba(var(--neutral-red-x), 0.6);
+    --flashing-background:           rgba(var(--neutral-red-x), 0.3);
+
+    --code-normal:                   var(--neutral-blue);
+    --code-background:               var(--dark1);
+
+    --mermaid-note:                  var(--neutral-blue);
+    --mermaid-actor:                 var(--dark2);
+    --mermaid-loopline:              var(--neutral-blue);
+
+    --icon-color-hover:              var(--neutral-red);
+    --icon-color-focused:            var(--neutral-blue);
+
+    --nav-item-color-hover:          var(--neutral-red);
+    --nav-item-color-active:         var(--neutral-aqua);
+    --nav-file-tag:                  rgba(var(--neutral-yellow-x), 0.9);
+
+    --graph-line:                    var(--dark2);
+    --graph-node:                    var(--light3);
+    --graph-node-tag:                var(--neutral-red);
+    --graph-node-attachment:         var(--neutral-green);
+
+    --calendar-hover:                var(--neutral-red);
+    --calendar-background-hover:     var(--dark1);
+    --calendar-week:                 var(--neutral-orange);
+    --calendar-today:                var(--neutral-orange);
+
+    --dataview-key:                  var(--text-faint);
+    --dataview-key-background:       rgba(var(--faded-red-x), 0.5);
+    --dataview-value:                var(--text-faint);
+    --dataview-value-background:     rgba(var(--neutral-green-x), 0.3);
+
+    --tab-text-color-focused-active:         var(--neutral-yellow);
+    --tab-text-color-focused-active-current: var(--neutral-red);
+}
+
+.theme-light {
+    --color-red-rgb:                 var(--faded-red-x);
+    --color-red:                     var(--faded-red);
+    --color-purple-rgb:              var(--faded-purple-x);
+    --color-purple:                  var(--faded-purple);
+    --color-green-rgb:               var(--faded-green-x);
+    --color-green:                   var(--faded-green);
+    --color-cyan-rgb:                var(--neutral-blue-x);
+    --color-cyan:                    var(--neutral-blue);
+    --color-blue-rgb:                var(--faded-blue-x);
+    --color-blue:                    var(--faded-blue);
+    --color-yellow-rgb:              var(--neutral-yellow-x);
+    --color-yellow:                  var(--neutral-yellow);
+    --color-orange-rgb:              var(--faded-yellow-x);
+    --color-orange:                  var(--faded-yellow);
+    --color-pink-rgb:                var(--faded-purple-x);
+    --color-pink:                    var(--faded-purple);
+
+    --background-primary:            var(--light0-hard);
+    --background-primary-alt:        var(--light0-hard);
+    --background-secondary:          var(--light1);
+    --background-secondary-alt:      var(--light1);
+    --background-modifier-border:    var(--light2);
+    --background-accent:             var(--light0-soft);
+
+    --cursor-line-background:        rgba(var(--light1-x), 0.5);
+
+    --text-normal:                   var(--dark-text);
+    --text-faint:                    var(--dark-text-faint);
+    --text-muted:                    var(--dark-text-muted);
+
+    --h1-color:                      var(--faded-red);
+    --h2-color:                      var(--faded-yellow);
+    --h3-color:                      var(--faded-green);
+    --h4-color:                      var(--faded-aqua);
+    --h5-color:                      var(--faded-blue);
+    --h6-color:                      var(--faded-purple);
+
+    --text-highlight-bg:             var(--faded-yellow);
+    --text-highlight-fg:             var(--light0-hard);
+
+    --text-accent:                   var(--neutral-yellow);
+    --text-accent-hover:             var(--faded-yellow);
+
+    --tag-color:                     var(--faded-aqua);
+    --tag-background:                var(--light1);
+    --tag-background-hover:          rgba(var(--light1-x), 0.6);
+
+    --titlebar-text-color-focused:   var(--bright-red);
+
+    --inline-title-color:            var(--neutral-yellow);
+
+    --bold-color:                    var(--faded-yellow);
+    --italic-color:                  var(--faded-yellow);
+
+    --checkbox-color:                var(--light4);
+    --checkbox-color-hover:          var(--light4);
+    --checkbox-border-color:         var(--light4);
+    --checkbox-border-color-hover:   var(--light4);
+    --checklist-done-color:          rgba(var(--dark2-x), 0.4);
+
+    --table-header-background:       rgba(var(--light3-x), 0.4);
+    --table-header-background-hover: var(--light2);
+    --table-row-even-background:     rgba(var(--light1-x), 0.2);
+    --table-row-odd-background:      rgba(var(--light1-x), 0.7);
+    --table-row-background-hover:    var(--light2);
+
+    --text-selection:                rgba(var(--neutral-red-x), 0.6);
+    --flashing-background:           rgba(var(--neutral-red-x), 0.3);
+
+    --code-normal:                   var(--neutral-blue);
+    --code-background:               var(--light1);
+
+    --mermaid-note:                  var(--neutral-blue);
+    --mermaid-actor:                 var(--light3);
+    --mermaid-loopline:              var(--faded-blue);
+
+    --icon-color-hover:              var(--neutral-red);
+    --icon-color-focused:            var(--neutral-blue);
+
+    --nav-item-color-hover:          var(--neutral-red);
+    --nav-item-color-active:         var(--faded-blue);
+    --nav-file-tag:                  rgba(var(--faded-blue-x), 0.9);
+
+    --graph-line:                    var(--light3);
+    --graph-node:                    var(--gray);
+    --graph-node-tag:                var(--faded-red);
+    --graph-node-attachment:         var(--neutral-green);
+
+    --calendar-hover:                var(--neutral-red);
+    --calendar-background-hover:     var(--light1);
+    --calendar-week:                 var(--neutral-red);
+    --calendar-today:                var(--neutral-red);
+
+    --dataview-key:                  var(--text-faint);
+    --dataview-key-background:       rgba(var(--faded-red-x), 0.3);
+    --dataview-value:                var(--text-faint);
+    --dataview-value-background:     rgba(var(--neutral-green-x), 0.2);
+
+    --tab-text-color-focused-active:         var(--neutral-yellow);
+    --tab-text-color-focused-active-current: var(--neutral-red);
+}
+
+table {
+    border: 1px solid var(--background-secondary) !important;
+    border-collapse: collapse;
+}
+
+thead {
+    border-bottom: 2px solid var(--background-modifier-border) !important;
+}
+  
+th {
+    font-weight: 600 !important;
+    border: 1px solid var(--background-secondary) !important;
+}
+
+td {
+    border-left: 1px solid var(--background-secondary) !important;
+    border-right: 1px solid var(--background-secondary) !important;
+    border-bottom: 1px solid var(--background-secondary) !important;
+}
+
+.markdown-rendered tbody tr:nth-child(even) {
+    background-color: var(--table-row-even-background) !important;
+}
+
+.markdown-rendered tbody tr:nth-child(odd) {
+    background-color: var(--table-row-odd-background) !important;
+}
+
+.markdown-rendered tbody tr:nth-child(even):hover,
+.markdown-rendered tbody tr:nth-child(odd):hover
+{
+    background-color: var(--table-row-background-hover) !important;
+}
+
+.markdown-rendered mark {
+    background-color: var(--text-highlight-bg) !important;
+    color: var(--text-highlight-fg) !important;
+}
+
+.markdown-rendered mark a {
+    color: var(--red) !important;
+    font-weight: 600;
+}
+
+.search-result-file-matched-text {
+    color: var(--text-highlight-fg) !important;
+}
+
+.cm-hashtag-begin:hover,
+.cm-hashtag-end:hover
+{
+    color: var(--text-accent);
+    /* background-color: var(--tag-background-hover); */
+    text-decoration: underline;
+}
+
+input[type=checkbox] {
+    border: 1px solid var(--checkbox-color);
+}
+
+input[type=checkbox]:checked {
+    background-color: var(--checkbox-color);
+    box-shadow: inset 0 0 0 2px var(--background-primary);
+}
+
+input[type=checkbox]:checked:after {
+    display: none;
+}
+
+code[class*="language-"],
+pre[class*="language-"]
+{
+    line-height: var(--line-height-tight) !important;
+}
+
+/* Keep highlight/marks the same between viewer and editor. */
+.cm-highlight {
+    color: var(--text-highlight-fg) !important;
+}
+
+/* Keep inline code the same between viewer and editor. */
+.cm-inline-code {
+    border-radius: var(--radius-s);
+    font-size: var(--code-size);
+    padding: 0.1em 0.25em;
+}
+
+/* Keep list bullet padding the same between viewer and editor. */
+.cm-formatting-list {
+    padding-right: 4px !important;
+}
+
+/*
+Keep sub-list indenting the same between viewer and editor.
+This assumes --list-indent is default at 2em.
+*/
+/*
+.cm-indent 
+{
+    text-indent: 1em !important;
+}
+*/
+
+.mermaid .note {
+    fill: var(--mermaid-note) !important;
+}
+
+.mermaid .actor {
+    fill: var(--mermaid-actor) !important;
+}
+
+.mermaid .loopLine {
+    stroke: var(--mermaid-loopline) !important;
+}
+
+.calendar .week-num {
+    color: var(--calendar-week) !important;
+}
+
+.calendar .today {
+    color: var(--calendar-today) !important;
+}
+
+.calendar .week-num:hover,
+.calendar .day:hover
+{
+    color: var(--calendar-hover) !important;
+    background-color: var(--calendar-background-hover) !important;
+}
+
+.markdown-embed-title {
+    color: var(--yellow);
+    font-weight: 600 !important;
+}
+
+.cm-active {
+    background-color: var(--cursor-line-background) !important;
+}
+
+.nav-file-tag {
+    color: var(--nav-file-tag) !important;
+}
+
+.is-flashing {
+    background-color: var(--flashing-background) !important;
+}
+
+.dataview.inline-field-key {
+    border-top-left-radius: var(--radius-s);
+    border-bottom-left-radius: var(--radius-s);
+    padding-left: 4px;
+    font-family: var(--font-monospace);
+    font-size: var(--font-smaller);
+    color: var(--dataview-key) !important;
+    background-color: var(--dataview-key-background) !important;
+}
+
+.dataview.inline-field-value {
+    border-top-right-radius: var(--radius-s);
+    border-bottom-right-radius: var(--radius-s);
+    padding-right: 4px;
+    font-family: var(--font-monospace);
+    font-size: var(--font-smaller);
+    color: var(--dataview-value) !important;
+    background-color: var(--dataview-value-background) !important;
+}
+
+.suggestion-highlight {
+    color: var(--bright-red);
+}
+
+.cm-line .cm-strong {
+    color: var(--bold-color) !important;
+}
+
+.cm-line .cm-em {
+    color: var(--italic-color) !important;
+}

@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/postgresql scan.md",
+                "file": "notes/how to engineer kindness.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/postgresql scan.md",
+                "file": "notes/how to engineer kindness.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "notes/postgresql scan.md",
+                "file": "notes/how to engineer kindness.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "notes/postgresql scan.md"
+                "file": "notes/how to engineer kindness.md"
               }
             }
           }
@@ -149,6 +149,8 @@
   "active": "67826c80fff6a076",
   "lastOpenFiles": [
     "notes/aws handbook.md",
+    "notes/how to engineer kindness.md",
+    "notes/postgresql scan.md",
     "private/private-note.md",
     "templates/post.md",
     "_index.md"
