@@ -1,7 +1,7 @@
 ---
 title: "waterfall-model"
 aliases: waterfall, waterfall model, waterfall methodology
-tags: seng, project_management
+tags: seng, projman
 ---
 
 - waterfall is almost viewed as an anti-example

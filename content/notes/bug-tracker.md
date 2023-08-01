@@ -2,7 +2,7 @@
 title: "bug-tracker"
 aliases: Bug Tracker
 tags: 
-- project_management
+- projman
 ---
 
 link: https://youtu.be/oC483DTjRXU
