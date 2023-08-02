@@ -101,12 +101,12 @@ blockquote[class*="-callout"] > p:first-child::after, blockquote.callout-collaps
   width: 18px;
   position: absolute;
   top: 0.4em;
-  margin: 0.2em 0.4em;
+  margin: 0.2em 0.6em;
 }
 
 blockquote[class*="-callout"] > p:first-child {
   font-weight: bold;
-  padding: 0.4em 35px;
+  padding: 0.4em 40px;
 
   &::after {
     left: 0;
@@ -114,7 +114,7 @@ blockquote[class*="-callout"] > p:first-child {
 }
 
 blockquote[class*="-callout"] > p:empty {
-  padding: 1.2em 35px;
+  padding: 1.2em 40px;
 }
 
 $summary: summary, abstract, tldr;
