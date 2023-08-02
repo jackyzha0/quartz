@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#project-background",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -65,8 +65,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -150,8 +149,8 @@
   "active": "b8389de1a478c749",
   "lastOpenFiles": [
     "Year 2023/Semester 2/COS30049/Lectures/Lecture 1- Theory of Blockchain.md",
-    "Pasted image 20230802145409.png",
     "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md",
+    "Pasted image 20230802145409.png",
     "Year 2023/Semester 2/COS30049/Workshops",
     "bitcoin.org.md",
     "Year 2023/Semester 2/COS30049/Lectures",

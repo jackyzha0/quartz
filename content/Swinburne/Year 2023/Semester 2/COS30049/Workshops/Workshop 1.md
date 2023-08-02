@@ -69,7 +69,7 @@ a global, open-source platform for decentralized applications.
 
 - Which of the following cryptographic algorithms is primarily used in the Bitcoin blockchain for the generation of public and private keys?  
 - [ ] RSA (Rivest-Shamir-Adleman)  
-- [ ] ECC (Elliptic Curve Cryptography)  
+- [x] ECC (Elliptic Curve Cryptography)  
 - [ ] AES (Advanced Encryption Standard)  
 - [ ] DES (Data Encryption Standard)
 
@@ -84,3 +84,6 @@ a global, open-source platform for decentralized applications.
 - [x] They serve to confirm transaction validity within a block.  
 - [ ] They function as a random number generator for each transaction.  
 - [ ] They are used to keep track of the number of miners on the network
+
+# Discussion
+
