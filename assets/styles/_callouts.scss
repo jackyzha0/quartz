@@ -89,7 +89,6 @@ blockquote[class*="-callout"] {
     color: var(--gray);
     &:first-child {
       font-weight: 600;
-      color: var(--dark);
       padding: 0.4em 30px;
     }
   }
@@ -156,6 +155,7 @@ $svgs: map-merge($svgs, ($warning: url("data:image/svg+xml,%3Csvg aria-hidden='t
       background-color: var(--callout-#{getstr($type)}-accent) !important;
       & > p:first-child {
         background-color: var(--callout-#{getstr($type)}-accent) !important;
+        color: var(--callout-#{getstr($type)}) !important;
         &::after {
           content: '';
           -webkit-mask: map-get($svgs, $type);
