@@ -6,6 +6,11 @@
 (discussed next week)
 
 ---
-#
+# Part B
+
+## Concepts
+- **Error**: 
+- **Fault**
+- **Failure**: unexpected behaviours
 
 
