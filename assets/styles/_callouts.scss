@@ -154,10 +154,9 @@ $svgs: map-merge($svgs, ($warning: url("data:image/svg+xml,%3Csvg aria-hidden='t
     blockquote.#{$s}-callout {
       border-left: 6px solid var(--callout-#{getstr($type)}) !important;
       background-color: var(--callout-#{getstr($type)}-accent) !important;
-      & > p {
+      & > p:first-child {
         background-color: var(--callout-#{getstr($type)}-accent) !important;
-      }
-      & > p:firstchild::after {
+        &::after {
           content: '';
           -webkit-mask: map-get($svgs, $type);
           mask: map-get($svgs, $type);
@@ -168,6 +167,7 @@ $svgs: map-merge($svgs, ($warning: url("data:image/svg+xml,%3Csvg aria-hidden='t
           mask-repeat: no-repeat;
           -webkit-mask-position: center;
           mask-position: center;
+        }
       }
     }
   }
