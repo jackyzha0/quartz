@@ -18,5 +18,5 @@
 a procedure to ensure an input produces a correct output or behave as expected.
 
 ## V&V
-- **Verification**: 
-- **Validation:** 
+- **Verification**: check if the product complies with the requirements or documentations
+- **Validation:** check if th progran 
