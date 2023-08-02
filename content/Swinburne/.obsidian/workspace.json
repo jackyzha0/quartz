@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Year 2023/Semester 2/COS30049/Lectures/Lecture 1- Theory of Blockchain.md",
+                "file": "Year 2023/Semester 2/COS30049/Tutorials/Workshop 1.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Year 2023/Semester 2/COS30049/Lectures/Lecture 1- Theory of Blockchain.md",
+                "file": "Year 2023/Semester 2/COS30049/Tutorials/Workshop 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Year 2023/Semester 2/COS30049/Lectures/Lecture 1- Theory of Blockchain.md",
+                "file": "Year 2023/Semester 2/COS30049/Tutorials/Workshop 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Year 2023/Semester 2/COS30049/Lectures/Lecture 1- Theory of Blockchain.md"
+                "file": "Year 2023/Semester 2/COS30049/Tutorials/Workshop 1.md"
               }
             }
           }
@@ -148,9 +148,10 @@
   },
   "active": "123e170c74409b10",
   "lastOpenFiles": [
-    "Year 2023/Semester 2/COS30049/Untitled",
-    "bitcoin.org.md",
     "Year 2023/Semester 2/COS30049/Lectures/Lecture 1- Theory of Blockchain.md",
+    "Year 2023/Semester 2/COS30049/Tutorials/Workshop 1.md",
+    "Year 2023/Semester 2/COS30049/Tutorials",
+    "bitcoin.org.md",
     "Year 2023/Semester 2/COS30049/Lectures",
     "Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Moivations.mp4",
     "Year 2023/Semester 2/SWE30009/Resources/STR-Tutorial-01a.pdf",
@@ -161,7 +162,6 @@
     "Year 2023/Semester 2/SWE30009/Tutorial",
     "Year 2023/Semester 2/SWE30009",
     "Year 2023/Semester 2",
-    "Year 2023",
     "Untitled 1.md",
     "Untitled.md",
     "_index.md",
