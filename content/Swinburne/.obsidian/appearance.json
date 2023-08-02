@@ -1,7 +1,8 @@
 {
   "accentColor": "",
   "enabledCssSnippets": [
-    "prompts"
+    "prompts",
+    "callouts"
   ],
   "baseFontSize": 16
 }

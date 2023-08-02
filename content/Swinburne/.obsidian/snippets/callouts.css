@@ -1,0 +1,9 @@
+.callout[data-callout="resource"] {
+    --callout-color: 201, 162, 107;
+    --callout-icon: lucide-package;
+}
+
+.callout[data-callout="media"] {
+    --callout-color: 139, 92, 246;
+    --callout-icon: lucide-play;
+}

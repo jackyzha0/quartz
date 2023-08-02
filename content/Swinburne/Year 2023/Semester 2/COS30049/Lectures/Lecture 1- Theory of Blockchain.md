@@ -3,7 +3,7 @@ title: "Lecture 1 | Theory of Blockchain"
 ---
 # History and Motivations
 
->[!Info]- Resource
+>[!media]- Video
 >![[Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Motivations.mp4|Sess1-1 History and Moivations]]
 
 - Digital coins emerged before the creation Bitcoin but do not gain popularity. 
@@ -17,5 +17,6 @@ Bitcoin has received dividing opinions at first by the public and was against by
 
 ## Basic Security Services and Definitions
 
->[!info]- Resource
+>[!media]- Video
 >![[Year 2023/Semester 2/COS30049/Resources/Sess1-2 Basic Security Services and Definitions.mp4|Sess1-2 Basic Security Services and Definitions]]
+
