@@ -79,6 +79,26 @@ If you'd like to make your own plugins, read the guide on [[making plugins]] for
 
 ### Layout
 
-Certain emitters may also output [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) files. To enable easy customization, these emitters allow you to fully rearrange the layout of the page.
+Certain emitters may also output [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) files. To enable easy customization, these emitters allow you to fully rearrange the layout of the page. The default page layouts can be found in `quartz.layout.ts`.
+
+Ultimately, each page is composed of multiple different sections which contain `QuartzComponents`. The following code snippet lists all of the valid sections that you can add components to:
+
+```typescript title="quartz/cfg.ts"
+export interface FullPageLayout {
+  head: QuartzComponent
+  header: QuartzComponent[]
+  beforeBody: QuartzComponent[]
+  pageBody: QuartzComponent
+  left: QuartzComponent[]
+  right: QuartzComponent[]
+  footer: QuartzComponent
+}
+```
+
+These correspond to following parts of the page:
 
 ### Components
+
+See [a list of all the components](./tags/component) for all available components.
+
+### Style

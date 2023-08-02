@@ -1,7 +1,7 @@
 import { PluggableList } from "unified"
 import { QuartzTransformerPlugin } from "../types"
 import { Root, HTML, BlockContent, DefinitionContent, Code } from "mdast"
-import { findAndReplace } from "mdast-util-find-and-replace"
+import { Replace, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { slug as slugAnchor } from "github-slugger"
 import rehypeRaw from "rehype-raw"
 import { visit } from "unist-util-visit"
@@ -10,6 +10,9 @@ import { JSResource } from "../../resources"
 // @ts-ignore
 import calloutScript from "../../components/scripts/callout.inline.ts"
 import { FilePath, canonicalizeServer, pathToRoot, slugTag, slugifyFilePath } from "../../path"
+import { toHast } from "mdast-util-to-hast"
+import { toHtml } from "hast-util-to-html"
+import { PhrasingContent } from "mdast-util-find-and-replace/lib"
 
 export interface Options {
   comments: boolean
@@ -18,6 +21,7 @@ export interface Options {
   callouts: boolean
   mermaid: boolean
   parseTags: boolean
+  enableInHtmlEmbed: boolean
 }
 
 const defaultOptions: Options = {
@@ -27,6 +31,7 @@ const defaultOptions: Options = {
   callouts: true,
   mermaid: true,
   parseTags: true,
+  enableInHtmlEmbed: false,
 }
 
 const icons = {
@@ -117,6 +122,39 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
   userOpts,
 ) => {
   const opts = { ...defaultOptions, ...userOpts }
+
+  const findAndReplace = opts.enableInHtmlEmbed
+    ? (tree: Root, regex: RegExp, replace?: Replace | null | undefined) => {
+        if (replace) {
+          const mdastToHtml = (ast: PhrasingContent) => {
+            const hast = toHast(ast, { allowDangerousHtml: true })!
+            return toHtml(hast, { allowDangerousHtml: true })
+          }
+
+          visit(tree, "html", (node: HTML) => {
+            if (typeof replace === "string") {
+              node.value = node.value.replace(regex, replace)
+            } else {
+              node.value = node.value.replaceAll(regex, (substring: string, ...args) => {
+                const replaceValue = replace(substring, ...args)
+                if (typeof replaceValue === "string") {
+                  return replaceValue
+                } else if (Array.isArray(replaceValue)) {
+                  return replaceValue.map(mdastToHtml).join("")
+                } else if (typeof replaceValue === "object" && replaceValue !== null) {
+                  return mdastToHtml(replaceValue)
+                } else {
+                  return substring
+                }
+              })
+            }
+          })
+        }
+
+        mdastFindReplace(tree, regex, replace)
+      }
+    : mdastFindReplace
+
   return {
     name: "ObsidianFlavoredMarkdown",
     textTransform(_ctx, src) {
