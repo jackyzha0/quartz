@@ -20,24 +20,6 @@
             }
           }
         ]
-      },
-      {
-        "id": "deaacc1e3c995b6c",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "3c38c51136955b06",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Year 2023/Semester 2/SWE30009/Tutorial/Tutorial 1.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          }
-        ]
       }
     ],
     "direction": "vertical"
@@ -166,7 +148,8 @@
   },
   "active": "123e170c74409b10",
   "lastOpenFiles": [
-    "Year 2023/Semester 2/SWE30009/Untitled",
+    "Year 2023/Semester 2/SWE30009/Resource/STR-Tutorial-01a.pdf",
+    "Year 2023/Semester 2/SWE30009/Resource",
     "Year 2023/Semester 2/SWE30009/Tutorial/Tutorial 1.md",
     "Year 2023/Semester 2/SWE30009/Tutorial",
     "Year 2023/Semester 2/SWE30009",
