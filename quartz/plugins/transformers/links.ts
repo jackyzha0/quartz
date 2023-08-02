@@ -47,6 +47,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                   return targetCanonical === fileName
                 })
 
+                // only match, just use it
                 if (matchingFileNames.length === 1) {
                   const targetSlug = canonicalizeServer(matchingFileNames[0])
                   return (resolveRelative(curSlug, targetSlug) + targetAnchor) as RelativeURL
