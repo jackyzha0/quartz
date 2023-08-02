@@ -154,7 +154,7 @@ $svgs: map-merge($svgs, ($warning: url("data:image/svg+xml,%3Csvg aria-hidden='t
       border-left: 6px solid var(--callout-#{getstr($type)}) !important;
       background-color: var(--callout-#{getstr($type)}-accent) !important;
       & > p:first-child {
-        background-color: var(--callout-#{getstr($type)}-accent) !important;
+        // background-color: var(--callout-#{getstr($type)}-accent) !important;
         color: var(--callout-#{getstr($type)}) !important;
         &::after {
           content: '';
