@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#B",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -65,8 +65,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -147,8 +146,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8ff99533bee2b467",
+  "active": "123e170c74409b10",
   "lastOpenFiles": [
+    "Year 2023/Semester 2/Untitled",
     "Year 2023/Semester 2/SWE30009/Resource/STR-Tutorial-01a.pdf",
     "Year 2023/Semester 2/SWE30009/Resource",
     "Year 2023/Semester 2/SWE30009/Tutorial/Tutorial 1.md",
