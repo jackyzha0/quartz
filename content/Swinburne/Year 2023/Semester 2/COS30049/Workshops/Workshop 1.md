@@ -96,4 +96,29 @@ c. How is Ethereum different from Bitcoin and what are its potential application
 - **Ethereum**: applications in other field than just payment which is what Bitcoin does.
 
 # Remix
-[https://remix.ethereum.org](Remix)
+[Remix Ethereum IDE](https://remix.ethereum.org)
+
+b. Creating a New File:  
+On the left side of the screen, click on the second icon from the top to open the "File explorers" tab. Click on the "+" icon to create a new file. Give it a name ending with .sol, such as MyContract.sol.  
+c. Writing the Smart Contract:  
+In the text editor area in the center of the screen, you can start writing your Solidity smart contract.
+
+
+Compiling the Smart Contract:  
+Click on the fourth icon from the top on the left side to open  
+the "Solidity compiler" tab. Under the compiler section, select  
+the appropriate compiler version that matches your contract (in  
+this case 0.5.1+commit.c8a2cb62 or higher) and then click on th  
+e "Compile" button.  
+e. Deploying the Smart Contract:  
+Click on the third icon from the top on the left side to open t  
+he "Deploy & run transactions" tab. Choose the correct contract  
+from the "Contract" dropdown (if you have multiple in your fil  
+e), then click "Deploy".  
+f. Interacting with the Smart Contract:  
+Once deployed, the contract will appear under the "Deployed Con  
+tracts" section. Here you can interact with your contract's fun  
+ctions. For the example contract, you could change the greeting  
+by entering a new string in the "setMyString" field and clickin  
+g the "Transact" button, and then see the updated greeting by c  
+licking the "myString" button.
