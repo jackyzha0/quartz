@@ -3,6 +3,7 @@
 
 ---
 # Part A
+
 (discussed next week)
 
 ---
@@ -12,7 +13,10 @@
 - **Error**: 
 - **Fault**
 - **Failure**: unexpected behaviours
+
 ## Test oracle
-a 
+a procedure to ensure an input produces a correct output or behave as expected.
 
-
+## V&V
+- **Verification**: 
+- **Validation:** 
