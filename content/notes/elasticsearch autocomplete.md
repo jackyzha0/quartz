@@ -1,7 +1,7 @@
 ---
 title: "Elasticsearch atocomplete functionalitity"
 tags:
-- tips
+- elasticsearch
 weight: -4
 ---
 
