@@ -8,3 +8,9 @@
 
 # Conecpts
 ## Blockchain
+a decentralised database system. Information is stored in a block and gets chained to other blocks.
+
+## Bitcoin
+a cryptocurrency based on **blockchain** and uses p2p technology for instant payment
+
+##Ethereum
