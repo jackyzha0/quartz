@@ -1,5 +1,5 @@
 baseURL = "https://ryan5358.github.io/quartz/"
-languageCode = "en-us"
+languageCode = "en-au"
 relativeURLs = false
 disablePathToLower = true
 ignoreFiles = [
