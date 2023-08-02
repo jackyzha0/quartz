@@ -10,3 +10,8 @@ Bitcoin has received dividing opinions at first by the public and was against by
 ---
 - 'white paper' is article published without peer-review process.
 
+## Basic Security Services and Definitions
+
+>[!info]- Resource
+>![[Year 2023/Semester 2/COS30049/Resources/Sess1-2 Basic Security Services and Definitions.mp4|Sess1-2 Basic Security Services and Definitions]]
+

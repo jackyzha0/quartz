@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "3f3511beefc93e23",
@@ -147,7 +146,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "123e170c74409b10",
+  "active": "b8389de1a478c749",
   "lastOpenFiles": [
     "Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Moivations.mp4",
     "Year 2023/Semester 2/SWE30009/Resources/STR-Tutorial-01a.pdf",
