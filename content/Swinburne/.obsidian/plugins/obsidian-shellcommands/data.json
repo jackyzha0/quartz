@@ -27,7 +27,7 @@
     {
       "id": "sokrnvx3q3",
       "platform_specific_commands": {
-        "default": "git add .\ngit commit -m \"{{_commit_msg}}\" \n\ngit push origin hugo"
+        "default": "git add .\ngit commit -m \"{{_commit_msg}}\" \n\ngit pull\ngit push origin hugo"
       },
       "shells": {
         "win32": "PowerShell.exe"
@@ -76,7 +76,7 @@
     {
       "id": "fvbunk6oou",
       "platform_specific_commands": {
-        "default": "git add .\ngit commit -m \"{{_commit_msg}}\" \n\ngit push origin hugo"
+        "default": "git add .\ngit commit -m \"{{_commit_msg}}\" \n\ngit pull\ngit push origin hugo"
       },
       "shells": {},
       "alias": "Auto commit changes to GitHub Quartz Repository (no prompt)",
