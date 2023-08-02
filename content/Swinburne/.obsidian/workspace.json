@@ -11,9 +11,11 @@
             "id": "b8389de1a478c749",
             "type": "leaf",
             "state": {
-              "type": "video",
+              "type": "markdown",
               "state": {
-                "file": "Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Moivations.mp4"
+                "file": "Year 2023/Semester 2/COS30049/Lecture 1- Theory of Blockchain.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -67,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "3f3511beefc93e23",
@@ -83,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Moivations.mp4",
+                "file": "Year 2023/Semester 2/COS30049/Lecture 1- Theory of Blockchain.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Moivations.mp4",
+                "file": "Year 2023/Semester 2/COS30049/Lecture 1- Theory of Blockchain.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Moivations.mp4"
+                "file": "Year 2023/Semester 2/COS30049/Lecture 1- Theory of Blockchain.md"
               }
             }
           }
@@ -146,12 +149,12 @@
   },
   "active": "123e170c74409b10",
   "lastOpenFiles": [
-    "Year 2023/Semester 2/COS30049/Lecture 1- Theory of Blockchain.md",
     "Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Moivations.mp4",
+    "Year 2023/Semester 2/SWE30009/Resources/STR-Tutorial-01a.pdf",
     "Year 2023/Semester 2/SWE30009/Tutorial/Tutorial 1.md",
+    "Year 2023/Semester 2/COS30049/Lecture 1- Theory of Blockchain.md",
     "Year 2023/Semester 2/COS30049/Resources",
     "Year 2023/Semester 2/COS30049",
-    "Year 2023/Semester 2/SWE30009/Resources/STR-Tutorial-01a.pdf",
     "Year 2023/Semester 2/SWE30009/Resources",
     "Year 2023/Semester 2/SWE30009/Tutorial",
     "Year 2023/Semester 2/SWE30009",
