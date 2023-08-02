@@ -11,9 +11,11 @@
             "id": "b8389de1a478c749",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "Pasted image 20230802160852.png"
+                "file": "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -67,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "3f3511beefc93e23",
@@ -83,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Pasted image 20230802160852.png",
+                "file": "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Pasted image 20230802160852.png",
+                "file": "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Pasted image 20230802160852.png"
+                "file": "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md"
               }
             }
           }
@@ -146,10 +149,10 @@
   },
   "active": "b8389de1a478c749",
   "lastOpenFiles": [
-    "Pasted image 20230802145409.png",
-    "Pasted image 20230802160852.png",
-    "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md",
     "Year 2023/Semester 2/COS30049/Lectures/Lecture 1- Theory of Blockchain.md",
+    "Year 2023/Semester 2/COS30049/Resources/Pasted image 20230802160852.png",
+    "Pasted image 20230802145409.png",
+    "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md",
     "Year 2023/Semester 2/COS30049/Workshops",
     "bitcoin.org.md",
     "Year 2023/Semester 2/COS30049/Lectures",

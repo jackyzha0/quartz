@@ -102,6 +102,16 @@ c. How is Ethereum different from Bitcoin and what are its potential application
 On the left side of the screen, click on the second icon from the top to open the "File explorers" tab. Click on the "+" icon to create a new file. Give it a name ending with .sol, such as MyContract.sol.  
 ## Writing the Smart Contract:  
 In the text editor area in the center of the screen, you can start writing your Solidity smart contract.
+pragma solidity ^0.5.1;
+
+```.sol
+contract MyContract {
+    string public myString = "Hello, world!";
+    function setMyString(string memory newString) public {
+        myString = newString;
+    }
+}
+```
 
 ## Compiling the Smart Contract:  
 Click on the fourth icon from the top on the left side to open the "Solidity compiler" tab. Under the compiler section, select the appropriate compiler version that matches your contract (in  
