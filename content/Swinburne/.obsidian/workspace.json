@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "sourceforge.net.md",
+                "file": "bitcoin.org.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "sourceforge.net.md",
+                "file": "bitcoin.org.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "sourceforge.net.md",
+                "file": "bitcoin.org.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "sourceforge.net.md"
+                "file": "bitcoin.org.md"
               }
             }
           }
@@ -149,13 +149,13 @@
   "active": "b0903fb0284e0ec3",
   "lastOpenFiles": [
     "Year 2023/Semester 2/COS30049/Lectures/Lecture 1- Theory of Blockchain.md",
+    "bitcoin.org.md",
     "sourceforge.net.md",
     "Untitled.canvas",
     "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md",
     "Year 2023/Semester 2/COS30049/Resources/Pasted image 20230802160852.png",
     "Pasted image 20230802145409.png",
     "Year 2023/Semester 2/COS30049/Workshops",
-    "bitcoin.org.md",
     "Year 2023/Semester 2/COS30049/Lectures",
     "Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Moivations.mp4",
     "Year 2023/Semester 2/SWE30009/Resources/STR-Tutorial-01a.pdf",
