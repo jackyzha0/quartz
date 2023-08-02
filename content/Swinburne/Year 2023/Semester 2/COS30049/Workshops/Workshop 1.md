@@ -1,5 +1,5 @@
 **Tags:** #project-background
-# Background
+# Project Background
 
 >[!info] Software Engineering and Mobile Development Background
 >- This **decentralized trading platform** is built on blockchain technology, aiming to ensure transparency and security of user transaction information. Through the immutability and distributed nature of  blockchain, each transaction is recorded on the blockchain, making transaction data openly transparent and tamper-proof.  
@@ -99,12 +99,12 @@ c. How is Ethereum different from Bitcoin and what are its potential application
 [Remix Ethereum IDE](https://remix.ethereum.org)
 
 ## Creating a New File:  
-On the left side of the screen, click on the second icon from the top to open the "File explorers" tab. Click on the "+" icon to create a new file. Give it a name ending with .sol, such as MyContract.sol.  
+On the left side of the screen, click on the second icon from the top to open the "File explorers" tab. Click on the "+" icon to create a new file. Give it a name ending with .sol, such as `MyContract.sol`.  
 ## Writing the Smart Contract:  
 In the text editor area in the center of the screen, you can start writing your Solidity smart contract.
 pragma solidity ^0.5.1;
 
-```.sol
+```sol
 contract MyContract {
     string public myString = "Hello, world!";
     function setMyString(string memory newString) public {
