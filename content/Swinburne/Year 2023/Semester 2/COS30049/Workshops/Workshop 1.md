@@ -8,7 +8,7 @@
 
 # Concepts
 ## Blockchain
-a decentralised database system. Information is stored in a block and gets chained to other blocks.
+a decentralized database system. Information is stored in a block and gets chained to other blocks.
 
 ## Bitcoin
 a cryptocurrency based on **blockchain** and uses p2p technology for instant payment
@@ -16,6 +16,7 @@ a cryptocurrency based on **blockchain** and uses p2p technology for instant pay
 ## Ethereum
 a global, open-source platform for decentralized applications.
 
+---
 # Quiz
 
 - Which of the following is a key feature of a blockchain?  
@@ -43,10 +44,10 @@ a global, open-source platform for decentralized applications.
 - [ ] Bitcoin  
 
 - What is the primary purpose of mining in Bitcoin?  
-- [x] To generate new Bitcoins  
+- [ ] To generate new Bitcoins  
 - [ ] To process and validate transactions  
 - [ ] To keep the network secure  
-- [ ] All of the above  
+- [x] All of the above  
 
 - What is a "smart contract"?  
 - [ ] A legal document for technology companies  
