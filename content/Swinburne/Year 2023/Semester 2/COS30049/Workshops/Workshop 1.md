@@ -120,8 +120,7 @@ this case 0.5.1+commit.c8a2cb62 or higher) and then click on the "Compile" butto
 ## Deploying the Smart Contract:  
 Click on the third icon from the top on the left side to open the "Deploy & run transactions" tab. Choose the correct contract from the "Contract" dropdown (if you have multiple in your file), then click "Deploy".  
 ## Interacting with the Smart Contract:  
-Once deployed, the contract will appear under the "Deployed Contracts" section. Here you can interact with your contract's functions. For the example contract, you could change the greeting  
-by entering a new string in the "setMyString" field and clicking the "Transact" button, and then see the updated greeting by clicking the "myString" button.
+Once deployed, the contract will appear under the "Deployed Contracts" section. Here you can interact with your contract's functions. For the example contract, you could change the greeting by entering a new string in the "setMyString" field and clicking the "Transact" button, and then see the updated greeting by clicking the "myString" button.
 
 ## Result
 ![[Year 2023/Semester 2/COS30049/Resources/Pasted image 20230802160852.png]]
