@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/how to engineer kindness.md",
+                "file": "notes/elasticsearch autocomplete.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/how to engineer kindness.md",
+                "file": "notes/elasticsearch autocomplete.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "notes/how to engineer kindness.md",
+                "file": "notes/elasticsearch autocomplete.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "notes/how to engineer kindness.md"
+                "file": "notes/elasticsearch autocomplete.md"
               }
             }
           }
@@ -148,8 +148,9 @@
   },
   "active": "67826c80fff6a076",
   "lastOpenFiles": [
-    "notes/aws handbook.md",
     "notes/how to engineer kindness.md",
+    "notes/elasticsearch autocomplete.md",
+    "notes/aws handbook.md",
     "notes/postgresql scan.md",
     "private/private-note.md",
     "templates/post.md",
