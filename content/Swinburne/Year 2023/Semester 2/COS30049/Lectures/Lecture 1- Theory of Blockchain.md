@@ -3,8 +3,6 @@ title: "Lecture 1 | Theory of Blockchain"
 ---
 # History and Motivations
 
- [digital garden](https://jzhao.xyz/posts/networked-thought)
-
 >[!Info]- Resource
 >![[Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Moivations.mp4|Sess1-1 History and Moivations]]
 
