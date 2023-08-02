@@ -10,7 +10,7 @@ import { parseMarkdown } from "./processors/parse"
 import { filterContent } from "./processors/filter"
 import { emitContent } from "./processors/emit"
 import cfg from "../quartz.config"
-import { FilePath, slugifyFilePath } from "./path"
+import { FilePath, joinSegments, slugifyFilePath } from "./path"
 import chokidar from "chokidar"
 import { ProcessedContent } from "./plugins/vfile"
 import WebSocket, { WebSocketServer } from "ws"
@@ -42,16 +42,16 @@ async function buildQuartz(argv: Argv, version: string) {
   console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince("clean")}`)
 
   perf.addEvent("glob")
-  const fps = await globby("**/*.md", {
+  const fps = (await globby("**/*.md", {
     cwd: argv.directory,
     ignore: cfg.configuration.ignorePatterns,
     gitignore: true,
-  })
+  })).map(fp => fp.split(path.sep).join(path.posix.sep))
   console.log(
     `Found ${fps.length} input files from \`${argv.directory}\` in ${perf.timeSince("glob")}`,
   )
 
-  const filePaths = fps.map((fp) => `${argv.directory}${path.sep}${fp}` as FilePath)
+  const filePaths = fps.map((fp) => joinSegments(argv.directory, fp) as FilePath)
   ctx.allSlugs = fps.map((fp) => slugifyFilePath(fp as FilePath))
 
   const parsedFiles = await parseMarkdown(ctx, filePaths)
@@ -81,8 +81,9 @@ async function startServing(ctx: BuildCtx, initialContent: ProcessedContent[]) {
   let toRebuild: Set<FilePath> = new Set()
   let toRemove: Set<FilePath> = new Set()
   async function rebuild(fp: string, action: "add" | "change" | "delete") {
+    fp = fp.split(path.sep).join(path.posix.sep)
     if (!ignored(fp)) {
-      const filePath = `${argv.directory}${path.sep}${fp}` as FilePath
+      const filePath = joinSegments(argv.directory, fp) as FilePath
       if (action === "add" || action === "change") {
         toRebuild.add(filePath)
       } else if (action === "delete") {
