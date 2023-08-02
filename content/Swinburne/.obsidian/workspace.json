@@ -4,18 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "b24ac0ad303b46da",
+        "id": "dfd0ae5380fda1bd",
         "type": "tabs",
         "children": [
           {
-            "id": "b8389de1a478c749",
+            "id": "b0903fb0284e0ec3",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md",
-                "mode": "source",
-                "source": false
+                "file": "Untitled.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": 0
+                }
               }
             }
           }
@@ -69,8 +72,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "3f3511beefc93e23",
@@ -86,7 +88,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md",
+                "file": "Untitled.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +105,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md",
+                "file": "Untitled.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +128,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md"
+                "file": "Untitled.canvas"
               }
             }
           }
@@ -147,12 +149,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b8389de1a478c749",
+  "active": "b0903fb0284e0ec3",
   "lastOpenFiles": [
+    "Untitled.canvas",
+    "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md",
     "Year 2023/Semester 2/COS30049/Lectures/Lecture 1- Theory of Blockchain.md",
     "Year 2023/Semester 2/COS30049/Resources/Pasted image 20230802160852.png",
     "Pasted image 20230802145409.png",
-    "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md",
     "Year 2023/Semester 2/COS30049/Workshops",
     "bitcoin.org.md",
     "Year 2023/Semester 2/COS30049/Lectures",
