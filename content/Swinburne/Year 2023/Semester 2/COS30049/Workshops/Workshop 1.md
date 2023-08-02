@@ -122,5 +122,6 @@ Click on the third icon from the top on the left side to open the "Deploy & run 
 ## Interacting with the Smart Contract:  
 Once deployed, the contract will appear under the "Deployed Contracts" section. Here you can interact with your contract's functions. For the example contract, you could change the greeting by entering a new string in the "setMyString" field and clicking the "Transact" button, and then see the updated greeting by clicking the "myString" button.
 
+
 ## Result
 ![[Year 2023/Semester 2/COS30049/Resources/Pasted image 20230802160852.png]]
