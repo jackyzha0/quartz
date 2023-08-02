@@ -75,12 +75,12 @@ a global, open-source platform for decentralized applications.
 
 - How does the Ethereum network handle "gas" in a transaction that runs out of gas before it's complete?  
 - [ ] It stops the transaction and returns the remaining gas to the sender's account  
-- [ ] It allows the transaction to complete but marks it as invalid  
+- [x] It allows the transaction to complete but marks it as invalid  
 - [ ] It stops the transaction and consumes all the provided gas  
 - [ ] It pauses the transaction until the sender's account has enough gas  
 
 - What is the primary role of Merkle trees in blockchain technology?  
 - [ ] They are used to control the creation of new blocks.  
-- [ ] They serve to confirm transaction validity within a block.  
+- [x] They serve to confirm transaction validity within a block.  
 - [ ] They function as a random number generator for each transaction.  
 - [ ] They are used to keep track of the number of miners on the network
