@@ -1,3 +1,6 @@
+---
+title: "Lecture 1 | Theory of Blockchain"
+---
 # History and Motivations
 
 >[!Info]- Resource

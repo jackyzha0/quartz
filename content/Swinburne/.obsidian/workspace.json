@@ -11,14 +11,11 @@
             "id": "b0903fb0284e0ec3",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Untitled.canvas",
-                "viewState": {
-                  "x": 0,
-                  "y": 0,
-                  "zoom": 0
-                }
+                "file": "Year 2023/Semester 2/COS30049/Lectures/Lecture 1- Theory of Blockchain.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -88,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled.canvas",
+                "file": "Year 2023/Semester 2/COS30049/Lectures/Lecture 1- Theory of Blockchain.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Untitled.canvas",
+                "file": "Year 2023/Semester 2/COS30049/Lectures/Lecture 1- Theory of Blockchain.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -128,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled.canvas"
+                "file": "Year 2023/Semester 2/COS30049/Lectures/Lecture 1- Theory of Blockchain.md"
               }
             }
           }
