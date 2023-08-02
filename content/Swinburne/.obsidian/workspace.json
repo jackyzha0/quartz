@@ -13,7 +13,7 @@
             "state": {
               "type": "image",
               "state": {
-                "file": "Pasted image 20230802145409.png"
+                "file": "Pasted image 20230802160852.png"
               }
             }
           }
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Pasted image 20230802145409.png",
+                "file": "Pasted image 20230802160852.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +100,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Pasted image 20230802145409.png",
+                "file": "Pasted image 20230802160852.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +123,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Pasted image 20230802145409.png"
+                "file": "Pasted image 20230802160852.png"
               }
             }
           }
@@ -144,12 +144,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "123e170c74409b10",
+  "active": "b8389de1a478c749",
   "lastOpenFiles": [
+    "Pasted image 20230802145409.png",
     "Pasted image 20230802160852.png",
     "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md",
     "Year 2023/Semester 2/COS30049/Lectures/Lecture 1- Theory of Blockchain.md",
-    "Pasted image 20230802145409.png",
     "Year 2023/Semester 2/COS30049/Workshops",
     "bitcoin.org.md",
     "Year 2023/Semester 2/COS30049/Lectures",
