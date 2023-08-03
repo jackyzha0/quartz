@@ -29,6 +29,3 @@ Bitcoin has received dividing opinions at first by the public and was against by
 >[!media] Media
 >Some video here
 
-
-
-<video src='https://files.catbox.moe/fchmkl.mp4' controls></video>
