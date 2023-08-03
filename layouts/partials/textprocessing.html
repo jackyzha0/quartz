@@ -86,7 +86,7 @@
           {{$link := printf "<img src=\"%s\" width=\"%s\" />" $href $width}}
           {{$content = replace $content . $link}} -->
         <!-- Video -->
-        {{else if in ".mp4 .webm .ogv .mov .mkv" $embed_ext }}
+        {{if in ".mp4 .webm .ogv .mov .mkv" $embed_ext }}
           {{$link := printf "<video src=\"%s\" style=\"width: -webkit-fill-available;\" controls></video>" $href}}
           {{$content = replace $content . $link}}
         <!-- Audio -->
