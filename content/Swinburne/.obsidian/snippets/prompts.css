@@ -2,8 +2,12 @@ div.SC-prompt-modal-gta0c24juf {
 	width: 650px;
 }
 
-.theme-light.div.SC-prompt-modal-gta0c24juf {
+.theme-dark .div.SC-prompt-modal-gta0c24juf {
 	background-color: rgb(22, 27, 34);
+}
+
+.theme-light .div.SC-prompt-modal-gta0c24juf button {
+	background-color: white;
 }
 
 div.SC-prompt-modal-gta0c24juf button {
