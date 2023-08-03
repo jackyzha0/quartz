@@ -1,6 +1,6 @@
 > [!info]- Resource
 > 
-> ![[notes/Swinburne/Year 2023/Semester 2/SWE30009/Resources/STR-Tutorial-01a.pdf|STR-Tutorial-01a]]
+> ![[Swinburne/Year 2023/Semester 2/SWE30009/Resources/STR-Tutorial-01a.pdf|STR-Tutorial-01a]]
 > ![](https://files.catbox.moe/t3c18i.pdf)
 
 ---
