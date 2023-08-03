@@ -4,6 +4,7 @@ title: "Lecture 1 | Theory of Blockchain"
 # History and Motivations
 
 >[!media]- Video
+>
 >![[Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Motivations.mp4|Sess1-1 History and Moivations]]
 
 - Digital coins emerged before the creation Bitcoin but do not gain popularity. 
@@ -13,14 +14,17 @@ title: "Lecture 1 | Theory of Blockchain"
 Bitcoin has received dividing opinions at first by the public and was against by the government. However, nowadays as we know, it is well-established, and has high capital market. Bitcoin has gain its fame as it was used as payment in a black market called Silk Road for anonymity.
 
 >[!note]
+>
 >'**white paper**' is article published without peer-review process.
 
 ## Basic Security Services and Definitions
 
 >[!media]- Video
+>
 >![[Year 2023/Semester 2/COS30049/Resources/Sess1-2 Basic Security Services and Definitions.mp4|Sess1-2 Basic Security Services and Definitions]]
 
 >[!todo]
+>
 >Test to-do
 
 >[!media] Media
