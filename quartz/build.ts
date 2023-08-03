@@ -78,7 +78,7 @@ async function startServing(ctx: BuildCtx, initialContent: ProcessedContent[]) {
   let toRebuild: Set<FilePath> = new Set()
   let toRemove: Set<FilePath> = new Set()
   async function rebuild(fp: string, action: "add" | "change" | "delete") {
-    fp = toPosixPath(fp) 
+    fp = toPosixPath(fp)
     if (!ignored(fp)) {
       const filePath = joinSegments(argv.directory, fp) as FilePath
       if (action === "add" || action === "change") {
