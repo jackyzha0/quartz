@@ -42,11 +42,13 @@ async function buildQuartz(argv: Argv, version: string) {
   console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince("clean")}`)
 
   perf.addEvent("glob")
-  const fps = (await globby("**/*.md", {
-    cwd: argv.directory,
-    ignore: cfg.configuration.ignorePatterns,
-    gitignore: true,
-  })).map(fp => fp.split(path.sep).join(path.posix.sep))
+  const fps = (
+    await globby("**/*.md", {
+      cwd: argv.directory,
+      ignore: cfg.configuration.ignorePatterns,
+      gitignore: true,
+    })
+  ).map((fp) => fp.split(path.sep).join(path.posix.sep))
   console.log(
     `Found ${fps.length} input files from \`${argv.directory}\` in ${perf.timeSince("glob")}`,
   )
