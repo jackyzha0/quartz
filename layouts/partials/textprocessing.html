@@ -75,6 +75,7 @@
       {{$dirname := first (sub (len $splitpath) 1) $splitpath | path.Join | urlize}}
       {{$basename := index (last 1 $splitpath) 0}}
       {{$href := printf "/%s/%s" $dirname $basename}}
+      {{$href}}
 
       <!-- Embedded? -->
       {{if (hasPrefix . "!")}}
