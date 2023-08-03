@@ -2,7 +2,7 @@ import "source-map-support/register.js"
 import path from "path"
 import { PerfTimer } from "./perf"
 import { rimraf } from "rimraf"
-import { globby, isGitIgnored } from "globby"
+import { isGitIgnored } from "globby"
 import chalk from "chalk"
 import http from "http"
 import serveHandler from "serve-handler"
@@ -15,6 +15,7 @@ import chokidar from "chokidar"
 import { ProcessedContent } from "./plugins/vfile"
 import WebSocket, { WebSocketServer } from "ws"
 import { Argv, BuildCtx } from "./ctx"
+import { glob, toPosixPath } from "./glob"
 
 async function buildQuartz(argv: Argv, version: string) {
   const ctx: BuildCtx = {
@@ -42,13 +43,7 @@ async function buildQuartz(argv: Argv, version: string) {
   console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince("clean")}`)
 
   perf.addEvent("glob")
-  const fps = (
-    await globby("**/*.md", {
-      cwd: argv.directory,
-      ignore: cfg.configuration.ignorePatterns,
-      gitignore: true,
-    })
-  ).map((fp) => fp.split(path.sep).join(path.posix.sep))
+  const fps = await glob("**/*.md", argv.directory, cfg.configuration.ignorePatterns)
   console.log(
     `Found ${fps.length} input files from \`${argv.directory}\` in ${perf.timeSince("glob")}`,
   )
@@ -83,7 +78,7 @@ async function startServing(ctx: BuildCtx, initialContent: ProcessedContent[]) {
   let toRebuild: Set<FilePath> = new Set()
   let toRemove: Set<FilePath> = new Set()
   async function rebuild(fp: string, action: "add" | "change" | "delete") {
-    fp = fp.split(path.sep).join(path.posix.sep)
+    fp = toPosixPath(fp) 
     if (!ignored(fp)) {
       const filePath = joinSegments(argv.directory, fp) as FilePath
       if (action === "add" || action === "change") {
