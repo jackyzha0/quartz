@@ -3,7 +3,6 @@ title: "Theory of Blockchain"
 ---
 # History and Motivations
 >[!media]- Watch
->![](/Swinburne/Year 2023)
 >![](Swinburne/Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Motivations.mp4|Sess1-1 History and Motivations)
 >
 ><video src='https://files.catbox.moe/fchmkl.mp4' width='100%' controls></video>
@@ -21,3 +20,5 @@ Bitcoin has received dividing opinions at first by the public and was against by
 >
 >[[Swinburne/Year 2023/Semester 2/COS30049/Resources/Sess1-2 Basic Security Services and Definitions.mp4|Sess1-2 Basic Security Services and Definitions]]
 ><video src='https://files.catbox.moe/370act.mp4' width='100%' controls></video>
+
+![](Swinburne/"Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Motivations.mp4|Sess1-1 History and Motivations)
