@@ -4,9 +4,8 @@ title: "Theory of Blockchain"
 # History and Motivations
 >[!media]- Watch
 >
->![Sess1-1 History and Motivations](/Swinburne/Year%202023/Semester%202/COS30049/Resources/Sess1-1%20History%20and%20Motivations.mp4|Sess1-1 History and Motivations)
+>![Sess1-1 History and Motivations](/Swinburne/Year%202023/Semester%202/COS30049/Resources/Sess1-1%20History%20and%20Motivations.mp4)
 
- 
 - Digital coins emerged before the creation Bitcoin but do not gain popularity. 
 - Bitcoin first introduced in 2008 with domain [bitcoin.org](https://bitcoin.org) registered and later that year made its white paper published and created open source project on [SourceForge.Net](https://sourceforge.net).
 - In Jan 3 2009, first block 'Genesis block' created and 'Bitcoin' was released and announced in three months later. The first transaction was done in the end of the same year.
@@ -18,5 +17,5 @@ Bitcoin has received dividing opinions at first by the public and was against by
 # Basic Security Services and Definitions
 >[!media]- Watch
 >
->[[Swinburne/Year 2023/Semester 2/COS30049/Resources/Sess1-2 Basic Security Services and Definitions.mp4|Sess1-2 Basic Security Services and Definitions]]
+>![Sess1-2 Basic Security Services and Definitions](Swinburne/Year 2023/Semester 2/COS30049/Resources/Sess1-2 Basic Security Services and Definitions.mp4)
 ><video src='https://files.catbox.moe/370act.mp4' width='100%' controls></video>
