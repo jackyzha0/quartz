@@ -125,6 +125,4 @@ Once deployed, the contract will appear under the "Deployed Contracts" section. 
 
 ## Result
 
-![](/content/Swinburne/Year-2023/Semester-2/COS30049/Resources/Pasted-image-20230802160852.png)
-
-![](/content/009.jpeg)
+![](/Swinburne/Year%202023/Semester%202/COS30049/Resources/Pasted%20image%2020230802160852.png)
