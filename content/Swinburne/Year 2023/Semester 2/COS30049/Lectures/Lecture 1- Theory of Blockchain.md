@@ -2,6 +2,7 @@
 title: "Theory of Blockchain"
 ---
 # History and Motivations
+
 >[!media]- Watch
 >
 >![Sess1-1 History and Motivations](/Swinburne/Year%202023/Semester%202/COS30049/Resources/Sess1-1%20History%20and%20Motivations.mp4)
@@ -15,6 +16,7 @@ Bitcoin has received dividing opinions at first by the public and was against by
 >'**white paper**': article published without peer-review process
 
 # Basic Security Services and Definitions
+
 >[!media]- Watch
 >
 ><video src='https://files.catbox.moe/370act.mp4' width='100%' controls></video>
