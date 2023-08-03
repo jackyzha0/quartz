@@ -99,7 +99,7 @@ async function startServing(ctx: BuildCtx, initialContent: ProcessedContent[]) {
 
           ctx.allSlugs = [...new Set([...contentMap.keys(), ...toRebuild])]
             .filter((fp) => !toRemove.has(fp))
-            .map((fp) => slugifyFilePath(path.relative(argv.directory, fp) as FilePath))
+            .map((fp) => slugifyFilePath(path.posix.relative(argv.directory, fp) as FilePath))
 
           const parsedContent = await parseMarkdown(ctx, filesToRebuild)
           for (const content of parsedContent) {

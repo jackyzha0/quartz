@@ -76,7 +76,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                 // don't process external links or intra-document anchors
                 if (!(isAbsoluteUrl(dest) || dest.startsWith("#"))) {
                   dest = node.properties.href = transformLink(dest)
-                  const canonicalDest = path.normalize(joinSegments(curSlug, dest))
+                  const canonicalDest = path.posix.normalize(joinSegments(curSlug, dest))
                   const [destCanonical, _destAnchor] = splitAnchor(canonicalDest)
                   outgoing.add(destCanonical as CanonicalSlug)
                 }
