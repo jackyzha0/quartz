@@ -63,7 +63,7 @@
     {{$relpath := relURL $path}}   
 
     {{/* Assuming that $relpath contains the relative path to the file you want to check */}}
-    {{$fileExists := fileExists "images/nayoshi.jpeg"}}
+    {{$fileExists := fileExists $path}}
     
     {{/* Now, you can print the value of $fileExists for debugging */}}
     {{$fileExists}}
