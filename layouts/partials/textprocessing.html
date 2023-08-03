@@ -32,7 +32,9 @@
     {{$split := split $inner "|"}}
     <!-- separate link path -->
     {{$path := index $split 0}}
-    {{printf "%s" $path}}
+    {{$mpath := relURL $path}}
+    {{printf "%s" $mpath}}
+
     {{$reference := split $path "#"}}
     <!-- path with heading link removed -->
     {{$title := index $reference 0}}
