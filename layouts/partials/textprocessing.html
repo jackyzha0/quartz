@@ -62,12 +62,6 @@
     {{ end }}
     {{$relpath := relURL $path}}   
 
-    {{/* Assuming that $relpath contains the relative path to the file you want to check */}}
-    {{$fileExists := fileExists $path}}
-    
-    {{/* Now, you can print the value of $fileExists for debugging */}}
-    {{$fileExists}}
-
     <!-- If path to Hugo page -->
     {{if not (eq $curpage.String "nopPage") }}
       {{$block := default "" (index $reference 1)}}
@@ -76,7 +70,7 @@
       {{$link := printf "<a href=\"%s%s\" rel=\"noopener\" class=\"internal-link\" data-src=\"%s\">%s</a>" $href $block $href $display}}
       {{$content = replace $content . $link}}
     <!-- If path to existing file -->
-    {{else if fileExists $relpath}}
+    {{else if fileExists $path}}
       {{$splitpath := split $relpath "/"}}
       {{$dirname := first (sub (len $splitpath) 1) $splitpath | path.Join | urlize}}
       {{$basename := index (last 1 $splitpath) 0}}
