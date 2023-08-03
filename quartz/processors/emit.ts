@@ -4,7 +4,7 @@ import { PerfTimer } from "../perf"
 import { getStaticResourcesFromPlugins } from "../plugins"
 import { EmitCallback } from "../plugins/types"
 import { ProcessedContent } from "../plugins/vfile"
-import { FilePath } from "../path"
+import { FilePath, joinSegments } from "../path"
 import { QuartzLogger } from "../log"
 import { trace } from "../trace"
 import { BuildCtx } from "../ctx"
@@ -16,7 +16,7 @@ export async function emitContent(ctx: BuildCtx, content: ProcessedContent[]) {
 
   log.start(`Emitting output files`)
   const emit: EmitCallback = async ({ slug, ext, content }) => {
-    const pathToPage = path.join(argv.output, slug + ext) as FilePath
+    const pathToPage = joinSegments(argv.output, slug + ext) as FilePath
     const dir = path.dirname(pathToPage)
     await fs.promises.mkdir(dir, { recursive: true })
     await fs.promises.writeFile(pathToPage, content)

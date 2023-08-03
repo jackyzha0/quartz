@@ -100,7 +100,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                 if (!isAbsoluteUrl(node.properties.src)) {
                   const ext = path.extname(node.properties.src)
                   node.properties.src =
-                    transformLink(path.join("assets", node.properties.src)) + ext
+                    transformLink(joinSegments("assets", node.properties.src)) + ext
                 }
               }
             })
