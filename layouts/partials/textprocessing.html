@@ -76,11 +76,6 @@
       {{$basename := index (last 1 $splitpath) 0}}
       {{$href := printf "/%s/%s" $dirname $basename}}
       <!-- Embedded? -->
-      {{if (hasPrefix . "!")}}
-        {{ $variable := "Embedding..." }}
-        {{ printf "%s" $variable }}
-
-
         {{ $embed_ext := lower (path.Ext $href) }}
         <!-- Image -->
         {{if in ".png .jpg .jpeg .gif .bmp .svg" $embed_ext }}
@@ -151,6 +146,7 @@
     {{ end }}
     {{ $counter = add $counter 1 }}
   {{end}}
+  {{ printf "%s" $content }}
   {{ $content = $content | replaceRE `\[![a-zA-Z]+\][-\+]?` "" }}
   {{ $content = $content | replaceRE "blockquote class=callout" "blockquote" }}
   {{ $content = $content | replaceRE `(?s)(<blockquote class="\S+-callout">.*?)<br>(.*?<\/blockquote)` `${1}</p><p>${2}` }}
