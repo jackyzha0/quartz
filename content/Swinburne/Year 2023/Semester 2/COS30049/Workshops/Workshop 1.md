@@ -1,4 +1,6 @@
-**Tags:** #project-background
+---
+tags: project-background
+---
 # Project Background
 
 >[!info] Software Engineering and Mobile Development Background
