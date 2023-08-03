@@ -76,7 +76,7 @@
       {{$basename := index (last 1 $splitpath) 0}}
       {{$href := printf "/%s/%s" $dirname $basename}}
 
-      {{printf "%s" $href}}
+      {{$content := printf "%s" $href}}
       <!-- Embedded? -->
       {{if (hasPrefix . "!")}}
         {{ $embed_ext := lower (path.Ext $href) }}
