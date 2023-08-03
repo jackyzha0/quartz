@@ -120,6 +120,7 @@
 
 {{/* Callouts */}}
 {{if $.Site.Data.config.enableCallouts}}
+  {{ printf "%s" $content }}
   {{ $content = $content | replaceRE "<blockquote>" "<blockquote class=callout>" }}
   {{ $blockquoteclasses := findRE `\[!.+\]` $content }}
   {{ $blockquoteclasses1 := findRE "<blockquote.*?>(.|\n)*?</blockquote>" $content }}
@@ -149,7 +150,6 @@
   {{end}}
   {{ $content = $content | replaceRE `\[![a-zA-Z]+\][-\+]?` "" }}
   {{ $content = $content | replaceRE "blockquote class=callout" "blockquote" }}
-  {{ printf "%s" $content }}
   {{ $content = $content | replaceRE `(?s)(<blockquote class="\S+-callout">.*?)<br>\n(.*?<\/blockquote)` `${1}</p><p>${2}` }}
 {{end}}
 
