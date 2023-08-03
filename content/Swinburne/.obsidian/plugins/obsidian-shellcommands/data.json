@@ -149,7 +149,7 @@
         {
           "label": "Commit message",
           "description": "",
-          "default_value": "Update changes at {{date:DD/MM/YY hh:mm:ss A}}",
+          "default_value": "Update changes on {{file_name}} at {{date:DD/MM/YY hh:mm:ss A}}",
           "target_variable_id": "wubes9rmct",
           "required": true
         }
