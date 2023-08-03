@@ -76,6 +76,7 @@
       {{$basename := index (last 1 $splitpath) 0}}
       {{$href := printf "/%s/%s" $dirname $basename}}
       <!-- Embedded? -->
+      {{if (hasPrefix . "!")}}
         {{ $embed_ext := lower (path.Ext $href) }}
         <!-- Image -->
         {{if in ".png .jpg .jpeg .gif .bmp .svg" $embed_ext }}
