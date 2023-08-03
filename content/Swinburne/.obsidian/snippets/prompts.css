@@ -6,10 +6,6 @@ div.SC-prompt-modal-gta0c24juf {
 	background-color: rgb(22, 27, 34);
 }
 
-.theme-light .div.SC-prompt-modal-gta0c24juf button {
-	background-color: white;
-}
-
 div.SC-prompt-modal-gta0c24juf button {
     cursor: pointer;
     background-color: rgb(35, 134, 54);
@@ -18,7 +14,19 @@ div.SC-prompt-modal-gta0c24juf button {
     padding: 0 12px;
 }
 
-div.SC-prompt-modal-gta0c24juf button:hover {
+.theme-light div.SC-prompt-modal-gta0c24juf button {
+    color: white;
+}
+
+.theme-dark div.SC-prompt-modal-gta0c24juf button {
+    color: black;
+}
+
+.theme-light div.SC-prompt-modal-gta0c24juf button:hover {
+    background-color: rgb(31, 136, 61);
+}
+
+.theme-dark .SC-prompt-modal-gta0c24juf button:hover {
     background-color: rgb(46, 160, 67);
 }
 
