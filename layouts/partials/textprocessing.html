@@ -71,11 +71,12 @@
       {{$content = replace $content . $link}}
     <!-- If path to existing file -->
     {{else if fileExists $path}}
-      {{$path}}
       {{$splitpath := split $relpath "/"}}
       {{$dirname := first (sub (len $splitpath) 1) $splitpath | path.Join | urlize}}
       {{$basename := index (last 1 $splitpath) 0}}
       {{$href := printf "/%s/%s" $dirname $basename}}
+
+      {{$href}}
       <!-- Embedded? -->
       {{if (hasPrefix . "!")}}
         {{ $embed_ext := lower (path.Ext $href) }}
