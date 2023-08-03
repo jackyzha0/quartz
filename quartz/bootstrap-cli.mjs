@@ -247,7 +247,9 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     console.log(
       "Pulling updates... you may need to resolve some `git` conflicts if you've made changes to components or plugins.",
     )
-    spawnSync("git", ["pull", "--rebase", "--autostash", UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH], { stdio: "inherit" })
+    spawnSync("git", ["pull", "--rebase", "--autostash", UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH], {
+      stdio: "inherit",
+    })
     await popContentFolder(contentFolder)
     console.log("Ensuring dependencies are up to date")
     spawnSync("npm", ["i"], { stdio: "inherit" })
@@ -272,7 +274,9 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       console.log(
         "Pulling updates from your repository. You may need to resolve some `git` conflicts if you've made changes to components or plugins.",
       )
-      spawnSync("git", ["pull", "--rebase", "--autostash", "origin", QUARTZ_SOURCE_BRANCH], { stdio: "inherit" })
+      spawnSync("git", ["pull", "--rebase", "--autostash", "origin", QUARTZ_SOURCE_BRANCH], {
+        stdio: "inherit",
+      })
     }
 
     await popContentFolder(contentFolder)
