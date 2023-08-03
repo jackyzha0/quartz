@@ -72,7 +72,10 @@
     <!-- If path to existing file -->
     {{else if fileExists $path}}
       {{$splitpath := split $relpath "/"}}
-      {{$href := apply $splitpath urlquery | printf "/%s" }}
+      {{ $href := "" }}
+      {{ range $i, $segment := $splitpath }}
+        {{ $href = printf "%s%s" $href (printf "/%s" $segment | urlquery) }}
+      {{ end }}
 
       {{$href}}
       <!-- Embedded? -->
