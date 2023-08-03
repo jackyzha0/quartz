@@ -8,18 +8,17 @@ div.SC-prompt-modal-gta0c24juf {
 
 div.SC-prompt-modal-gta0c24juf button {
     cursor: pointer;
+    color: white;
     font-weight: 500;
     font-size: 14px;
     padding: 0 12px;
 }
 
 .theme-light .SC-prompt-modal-gta0c24juf button {
-    color: white;
     background-color: rgb(31, 136, 61);
 }
 
 .theme-dark .SC-prompt-modal-gta0c24juf button {
-    color: black;
     background-color: rgb(35, 134, 54);
 }
 
