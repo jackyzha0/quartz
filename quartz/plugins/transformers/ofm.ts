@@ -50,40 +50,6 @@ const icons = {
   quoteIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg>`,
 }
 
-function canonicalizeCallout(calloutName: string): keyof typeof callouts {
-  let callout = calloutName.toLowerCase() as keyof typeof calloutMapping
-
-  const calloutMapping: Record<string, keyof typeof callouts> = {
-    note: "note",
-    abstract: "abstract",
-    info: "info",
-    todo: "todo",
-    tip: "tip",
-    hint: "tip",
-    important: "tip",
-    success: "success",
-    check: "success",
-    done: "success",
-    question: "question",
-    help: "question",
-    faq: "question",
-    warning: "warning",
-    attention: "warning",
-    caution: "warning",
-    failure: "failure",
-    missing: "failure",
-    fail: "failure",
-    danger: "danger",
-    error: "danger",
-    bug: "bug",
-    example: "example",
-    quote: "quote",
-    cite: "quote",
-  }
-
-  return calloutMapping[callout]
-}
-
 const callouts = {
   note: icons.pencilIcon,
   abstract: icons.clipboardListIcon,
@@ -99,6 +65,40 @@ const callouts = {
   example: icons.listIcon,
   quote: icons.quoteIcon,
 }
+
+const calloutMapping: Record<string, keyof typeof callouts> = {
+  note: "note",
+  abstract: "abstract",
+  info: "info",
+  todo: "todo",
+  tip: "tip",
+  hint: "tip",
+  important: "tip",
+  success: "success",
+  check: "success",
+  done: "success",
+  question: "question",
+  help: "question",
+  faq: "question",
+  warning: "warning",
+  attention: "warning",
+  caution: "warning",
+  failure: "failure",
+  missing: "failure",
+  fail: "failure",
+  danger: "danger",
+  error: "danger",
+  bug: "bug",
+  example: "example",
+  quote: "quote",
+  cite: "quote",
+}
+
+function canonicalizeCallout(calloutName: string): keyof typeof callouts {
+  let callout = calloutName.toLowerCase() as keyof typeof calloutMapping
+  return calloutMapping[callout]
+}
+
 
 const capitalize = (s: string): string => {
   return s.substring(0, 1).toUpperCase() + s.substring(1)
@@ -125,34 +125,34 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
   const findAndReplace = opts.enableInHtmlEmbed
     ? (tree: Root, regex: RegExp, replace?: Replace | null | undefined) => {
-        if (replace) {
-          const mdastToHtml = (ast: PhrasingContent) => {
-            const hast = toHast(ast, { allowDangerousHtml: true })!
-            return toHtml(hast, { allowDangerousHtml: true })
-          }
-
-          visit(tree, "html", (node: HTML) => {
-            if (typeof replace === "string") {
-              node.value = node.value.replace(regex, replace)
-            } else {
-              node.value = node.value.replaceAll(regex, (substring: string, ...args) => {
-                const replaceValue = replace(substring, ...args)
-                if (typeof replaceValue === "string") {
-                  return replaceValue
-                } else if (Array.isArray(replaceValue)) {
-                  return replaceValue.map(mdastToHtml).join("")
-                } else if (typeof replaceValue === "object" && replaceValue !== null) {
-                  return mdastToHtml(replaceValue)
-                } else {
-                  return substring
-                }
-              })
-            }
-          })
+      if (replace) {
+        const mdastToHtml = (ast: PhrasingContent) => {
+          const hast = toHast(ast, { allowDangerousHtml: true })!
+          return toHtml(hast, { allowDangerousHtml: true })
         }
 
-        mdastFindReplace(tree, regex, replace)
+        visit(tree, "html", (node: HTML) => {
+          if (typeof replace === "string") {
+            node.value = node.value.replace(regex, replace)
+          } else {
+            node.value = node.value.replaceAll(regex, (substring: string, ...args) => {
+              const replaceValue = replace(substring, ...args)
+              if (typeof replaceValue === "string") {
+                return replaceValue
+              } else if (Array.isArray(replaceValue)) {
+                return replaceValue.map(mdastToHtml).join("")
+              } else if (typeof replaceValue === "object" && replaceValue !== null) {
+                return mdastToHtml(replaceValue)
+              } else {
+                return substring
+              }
+            })
+          }
+        })
       }
+
+      mdastFindReplace(tree, regex, replace)
+    }
     : mdastFindReplace
 
   return {
@@ -292,7 +292,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               const match = firstLine.match(calloutRegex)
               if (match && match.input) {
                 const [calloutDirective, typeString, collapseChar] = match
-                const calloutType = typeString.toLowerCase() as keyof typeof callouts
+                const calloutType = canonicalizeCallout(typeString.toLowerCase() as keyof typeof calloutMapping)
                 const collapse = collapseChar === "+" || collapseChar === "-"
                 const defaultState = collapseChar === "-" ? "collapsed" : "expanded"
                 const title =
@@ -307,7 +307,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   value: `<div 
                   class="callout-title"
                 >
-                  <div class="callout-icon">${callouts[canonicalizeCallout(calloutType)]}</div>
+                  <div class="callout-icon">${callouts[calloutType]}</div>
                   <div class="callout-title-inner">${title}</div>
                   ${collapse ? toggleIcon : ""}
                 </div>`,
@@ -334,9 +334,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 node.data = {
                   hProperties: {
                     ...(node.data?.hProperties ?? {}),
-                    className: `callout ${collapse ? "is-collapsible" : ""} ${
-                      defaultState === "collapsed" ? "is-collapsed" : ""
-                    }`,
+                    className: `callout ${collapse ? "is-collapsible" : ""} ${defaultState === "collapsed" ? "is-collapsed" : ""
+                      }`,
                     "data-callout": calloutType,
                     "data-callout-fold": collapse,
                   },
