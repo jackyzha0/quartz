@@ -3,8 +3,9 @@ title: "Theory of Blockchain"
 ---
 # History and Motivations
 >[!media]- Watch
+>![](/Swinburne/Year 2023)
+>![](Swinburne/Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Motivations.mp4|Sess1-1 History and Motivations)
 >
->[[Swinburne/Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Motivations.mp4|Sess1-1 History and Motivations]]
 ><video src='https://files.catbox.moe/fchmkl.mp4' width='100%' controls></video>
  
 - Digital coins emerged before the creation Bitcoin but do not gain popularity. 
