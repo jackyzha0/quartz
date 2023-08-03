@@ -3,16 +3,11 @@ title: "Theory of Blockchain"
 ---
 # History and Motivations
 
-## Watch
-
->[!media]- Offline
+>[!media]- Watch
 >
->![[Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Motivations.mp4|Sess1-1 History and Motivations]]
-
->[!media]- Online
->
+>[[Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Motivations.mp4|Sess1-1 History and Motivations]]
 ><video src='https://files.catbox.moe/fchmkl.mp4' controls></video>
-
+ 
 - Digital coins emerged before the creation Bitcoin but do not gain popularity. 
 - Bitcoin first introduced in 2008 with domain [bitcoin.org](https://bitcoin.org) registered and later that year made its white paper published and created open source project on [SourceForge.Net](https://sourceforge.net).
 - In Jan 3 2009, first block 'Genesis block' created and 'Bitcoin' was released and announced in three months later. The first transaction was done in the end of the same year.
