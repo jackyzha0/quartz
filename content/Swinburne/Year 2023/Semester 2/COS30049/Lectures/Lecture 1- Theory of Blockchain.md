@@ -15,7 +15,7 @@ Bitcoin has received dividing opinions at first by the public and was against by
 
 >[!note]
 >
->'' is article published without peer-review process.
+>'**whitepaper**' is article published without peer-review process.
 
 ## Basic Security Services and Definitions
 
