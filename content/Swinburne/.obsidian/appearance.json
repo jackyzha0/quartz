@@ -1,9 +1,0 @@
-{
-  "accentColor": "",
-  "enabledCssSnippets": [
-    "prompts",
-    "callouts"
-  ],
-  "baseFontSize": 17,
-  "theme": "moonstone"
-}
