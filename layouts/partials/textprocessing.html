@@ -62,7 +62,8 @@
     {{ end }}
     {{$relpath := relURL $path}}    
 
-    {{printf "%s" $curpage.String}}
+    {{$page := $curpage.String}}
+    {{printf "%s" $page}}
     <!-- If path to Hugo page -->
     {{if not (eq $curpage.String "nopPage") }}
       {{$block := default "" (index $reference 1)}}
