@@ -14,8 +14,7 @@ title: "Theory of Blockchain"
 
 Bitcoin has received dividing opinions at first by the public and was against by the government. However, nowadays as we know, it is well-established, and has high capital market. Bitcoin has gain its fame as it was used as payment in a black market called Silk Road for anonymity.
 
----
-'**white paper**': article published without peer-review process
+>'**white paper**': article published without peer-review process
 
 ## Basic Security Services and Definitions
 
