@@ -60,7 +60,9 @@
       {{$searchtitle = (replace $searchtitle "&lsquo;" "'") }}
       {{$curpage = $page.GetPage $searchtitle }}
     {{ end }}
-    {{$relpath := relURL $path}}    
+    {{$relpath := relURL $path}}   
+
+    {{$relpath}}
 
     {{/* Assuming that $relpath contains the relative path to the file you want to check */}}
     {{$fileExists := fileExists $relpath}}
