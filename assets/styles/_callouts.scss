@@ -25,6 +25,10 @@
   --callout-important-accent: #e5f8f8;
   --callout-warning: #ec7500;
   --callout-warning-accent: #fdf1e5;
+  --callout-media: #8b5cf6;
+  --callout-media-accent: #f3eefe;
+  --callout-resource: #d4b68a;
+  --callout-resource-accent: #f9f6f0;
 }
 
 [saved-theme=dark] {
@@ -54,6 +58,10 @@
   --callout-important-accent: #233232 !important;
   --callout-warning: #e9973f !important;
   --callout-warning-accent: #332a21 !important;
+  --callout-media: #8b5cf6 !important;
+  --callout-media-accent: #292434 !important;
+  --callout-resource: #c9a26b !important;
+  --callout-resource-accent: #2f2c26 !important;
 }
 
 blockquote.callout-collapsible {
@@ -148,6 +156,8 @@ $svgs: map-merge($svgs, ($quote: url("data:image/svg+xml,%3Csvg xmlns='http://ww
 $svgs: map-merge($svgs, ($done: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-check'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E")));
 $svgs: map-merge($svgs, ($important: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-flame'%3E%3Cpath d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'/%3E%3C/svg%3E")));
 $svgs: map-merge($svgs, ($warning: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-alert-triangle'%3E%3Cpath d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'/%3E%3Cpath d='M12 9v4'/%3E%3Cpath d='M12 17h.01'/%3E%3C/svg%3E")));
+$svgs: map-merge($svgs, ($media: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-play'%3E%3Cpolygon points='5 3 19 12 5 21 5 3'/%3E%3C/svg%3E")));
+$svgs: map-merge($svgs, ($resource: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-package'%3E%3Cpath d='M16.5 9.4 7.55 4.24'/%3E%3Cpath d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'/%3E%3Cpolyline points='3.29 7 12 12 20.71 7'/%3E%3Cline x1='12' x2='12' y1='22' y2='12'/%3E%3C/svg%3E")));
 
 @function getstr($l) {
   $v: nth($l, 1);
