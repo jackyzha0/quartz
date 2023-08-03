@@ -61,8 +61,6 @@
       {{$curpage = $page.GetPage $searchtitle }}
     {{ end }}
     {{$relpath := relURL $path}}
-    {{$content := $relpath}}
-    {{ printf "%s" $content }}
 
     <!-- If path to Hugo page -->
     {{if not (eq $curpage.String "nopPage") }}
@@ -79,6 +77,10 @@
       {{$href := printf "/%s/%s" $dirname $basename}}
       <!-- Embedded? -->
       {{if (hasPrefix . "!")}}
+        {{ $variable := "Embedding..." }}
+        {{ printf "%s" $variable }}
+
+
         {{ $embed_ext := lower (path.Ext $href) }}
         <!-- Image -->
         {{if in ".png .jpg .jpeg .gif .bmp .svg" $embed_ext }}
