@@ -14,12 +14,6 @@ title: "Theory of Blockchain"
 
 Bitcoin has received dividing opinions at first by the public and was against by the government. However, nowadays as we know, it is well-established, and has high capital market. Bitcoin has gain its fame as it was used as payment in a black market called Silk Road for anonymity.
 
-This is a simple footnote[^1].
-[^1]: This is the referenced text.
-[^2]: Add 2 spaces at the start of each new line. 
-  This lets you write footnotes that span multiple lines.
-[^note]: Named footnotes still appears as numbers, but can make it easier to identify and link references.
-
 ## Basic Security Services and Definitions
 
 >[!media]- Video
