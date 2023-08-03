@@ -8,22 +8,23 @@ div.SC-prompt-modal-gta0c24juf {
 
 div.SC-prompt-modal-gta0c24juf button {
     cursor: pointer;
-    background-color: rgb(35, 134, 54);
     font-weight: 500;
     font-size: 14px;
     padding: 0 12px;
 }
 
-.theme-light div.SC-prompt-modal-gta0c24juf button {
+.theme-light .SC-prompt-modal-gta0c24juf button {
     color: white;
+    background-color: rgb(31, 136, 61);
 }
 
-.theme-dark div.SC-prompt-modal-gta0c24juf button {
+.theme-dark .SC-prompt-modal-gta0c24juf button {
     color: black;
+    background-color: rgb(35, 134, 54);
 }
 
 .theme-light div.SC-prompt-modal-gta0c24juf button:hover {
-    background-color: rgb(31, 136, 61);
+    background-color: rgb(26, 127, 55);
 }
 
 .theme-dark .SC-prompt-modal-gta0c24juf button:hover {
