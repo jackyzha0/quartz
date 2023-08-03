@@ -12,7 +12,7 @@ title: "Lecture 1 | Theory of Blockchain"
 - In Jan 3 2009, first block 'Genesis block' created and 'Bitcoin' was released and announced in three months later. The first transaction was done in the end of the same year.
 Bitcoin has received dividing opinions at first by the public and was against by the government. However, nowadays as we know, it is well-established, and has high capital market. Bitcoin has gain its fame as it was used as payment in a black market called Silk Road for anonymity.
 
->[!note]
+>[!note] Note
 >'**whitepaper**' is article published without peer-review process.
 
 ## Basic Security Services and Definitions
