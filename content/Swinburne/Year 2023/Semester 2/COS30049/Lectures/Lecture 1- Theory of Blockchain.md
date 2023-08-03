@@ -5,7 +5,7 @@ title: "Theory of Blockchain"
 
 >[!media]- Watch
 >
->![[Swinburne/Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Motivations.mp4]]
+>![[/Swinburne/Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Motivations.mp4]]
 
 - Digital coins emerged before the creation Bitcoin but do not gain popularity. 
 - Bitcoin first introduced in 2008 with domain [bitcoin.org](https://bitcoin.org) registered and later that year made its white paper published and created open source project on [SourceForge.Net](https://sourceforge.net).
