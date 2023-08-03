@@ -60,8 +60,7 @@
       {{$searchtitle = (replace $searchtitle "&lsquo;" "'") }}
       {{$curpage = $page.GetPage $searchtitle }}
     {{ end }}
-    {{$relpath := relURL $path}}
-    {{ printf "%s" $content }}    
+    {{$relpath := relURL $path}}    
     <!-- If path to Hugo page -->
     {{if not (eq $curpage.String "nopPage") }}
       {{$block := default "" (index $reference 1)}}
@@ -81,11 +80,11 @@
         <!-- Image -->
         {{if in ".png .jpg .jpeg .gif .bmp .svg" $embed_ext }}
           {{$width := default "auto" (index $split 1) }}
-          {{$link := printf "<img src=\"%s\" width=\"%s\" />" $href $width}}
+          {{$link := printf "<img src=\"%s\" width=\"%s\" data-ext=\"%s\" />" $href $width $embed_ext}}
           {{$content = replace $content . $link}}
         <!-- Video -->
         {{else if in ".mp4 .webm .ogv .mov .mkv" $embed_ext}}
-          {{$link := printf "<video src=\"%s\" style=\"width: -webkit-fill-available;\" controls></video>" $href}}
+          {{$link := printf "<video src=\"%s\" style=\"width: -webkit-fill-available;\" data-ext=\"%s\" controls></video>" $href $embed_ext}}
           {{$content = replace $content . $link}}
         <!-- Audio -->
         {{else if in ".mp3 .webm .wav .m4a .ogg .3gp .flac" $embed_ext}}
