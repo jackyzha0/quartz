@@ -4,6 +4,6 @@
     "prompts",
     "callouts"
   ],
-  "baseFontSize": 26,
+  "baseFontSize": 20,
   "theme": "moonstone"
 }
