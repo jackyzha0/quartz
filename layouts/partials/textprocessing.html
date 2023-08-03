@@ -72,9 +72,7 @@
     <!-- If path to existing file -->
     {{else if fileExists $path}}
       {{$splitpath := split $relpath "/"}}
-      {{$dirname := first (sub (len $splitpath) 1) $splitpath | path.Join | urlquery}}
-      {{$basename := index (last 1 $splitpath) 0}}
-      {{$href := printf "/%s/%s" $dirname $basename}}
+      {{$href := path.Join $splitpath | urlquery }}
 
       {{$href}}
       <!-- Embedded? -->
