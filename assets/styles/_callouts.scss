@@ -172,7 +172,6 @@ $svgs: map-merge($svgs, ($resource: url("data:image/svg+xml,%3Csvg xmlns='http:/
       border-left: 6px solid var(--callout-#{getstr($type)}) !important;
       background-color: var(--callout-#{getstr($type)}-accent) !important;
       & > p:first-child {
-        // background-color: var(--callout-#{getstr($type)}-accent) !important;
         color: var(--callout-#{getstr($type)}) !important;
         &::after {
           content: '';
