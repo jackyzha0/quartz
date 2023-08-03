@@ -4,17 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "dfd0ae5380fda1bd",
+        "id": "e347118c575adb87",
         "type": "tabs",
         "children": [
           {
-            "id": "b0903fb0284e0ec3",
+            "id": "d43affd055060ace",
             "type": "leaf",
             "state": {
-              "type": "image",
-              "state": {
-                "file": "Year 2023/Semester 2/COS30049/Resources/Pasted image 20230802160852.png"
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -83,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Year 2023/Semester 2/COS30049/Resources/Pasted image 20230802160852.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Year 2023/Semester 2/COS30049/Resources/Pasted image 20230802160852.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -122,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Year 2023/Semester 2/COS30049/Resources/Pasted image 20230802160852.png"
-              }
+              "state": {}
             }
           }
         ]
@@ -145,8 +139,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b0903fb0284e0ec3",
+  "active": "d43affd055060ace",
   "lastOpenFiles": [
+    "Year 2023/Semester 2/COS30049/Resources/Pasted image 20230802160852.png",
     "Swinburne/Year 2023/Semester 2/COS30049/Resources/Pasted image 20230802160852.png.md",
     "Year 2023/Semester 2/COS30049/Workshops/Workshop 1.md",
     "Swinburne/Year 2023/Semester 2/COS30049/Resources",
@@ -156,7 +151,6 @@
     "Swinburne",
     "content/009.jpeg.md",
     "content",
-    "Year 2023/Semester 2/COS30049/Resources/Pasted image 20230802160852.png",
     "Year 2023/Semester 2/SWE30009/Tutorial/Tutorial 1.md",
     "Year 2023/Semester 2/COS30049/Lectures/Lecture 1- Theory of Blockchain.md",
     "Year 2023/Semester 2/COS30049/Resources/Sess1-1 History and Motivations.mp4",
