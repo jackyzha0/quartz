@@ -68,7 +68,7 @@
     {{$abspath}}
 
     {{/* Assuming that $relpath contains the relative path to the file you want to check */}}
-    {{$fileExists := fileExists $relpath}}
+    {{$fileExists := fileExists $abspath}}
     
     {{/* Now, you can print the value of $fileExists for debugging */}}
     {{$fileExists}}
