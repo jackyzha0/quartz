@@ -13,6 +13,7 @@ import prettyBytes from "pretty-bytes"
 import { spawnSync } from "child_process"
 import { transform as cssTransform } from "lightningcss"
 
+const ORIGIN_NAME = "origin"
 const UPSTREAM_NAME = "upstream"
 const QUARTZ_SOURCE_BRANCH = "v4-alpha"
 const cwd = process.cwd()
@@ -117,6 +118,13 @@ async function popContentFolder(contentFolder) {
     preserveTimestamps: true,
   })
   await fs.promises.rm(contentCacheFolder, { force: true, recursive: true })
+}
+
+function gitPull(origin, branch) {
+  spawnSync("git", ["fetch", origin, branch], { stdio: "inherit" })
+  spawnSync("git", ["checkout", `${origin}/${branch}`, "--", ":(exclude)content"], {
+    stdio: "inherit",
+  }).error
 }
 
 yargs(hideBin(process.argv))
@@ -241,9 +249,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     console.log(
       "Pulling updates... you may need to resolve some `git` conflicts if you've made changes to components or plugins.",
     )
-    spawnSync("git", ["pull", "--rebase", "--autostash", UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH], {
-      stdio: "inherit",
-    })
+    gitPull(UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH)
     await popContentFolder(contentFolder)
     console.log("Ensuring dependencies are up to date")
     spawnSync("npm", ["i"], { stdio: "inherit" })
@@ -268,18 +274,13 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       console.log(
         "Pulling updates from your repository. You may need to resolve some `git` conflicts if you've made changes to components or plugins.",
       )
-      spawnSync("git", ["pull", "--rebase", "--autostash", "origin", QUARTZ_SOURCE_BRANCH], {
-        stdio: "inherit",
-      })
+      gitPull(ORIGIN_NAME, QUARTZ_SOURCE_BRANCH)
     }
 
     await popContentFolder(contentFolder)
     if (argv.push) {
       console.log("Pushing your changes")
-      const args = argv.force
-        ? ["push", "-f", "origin", QUARTZ_SOURCE_BRANCH]
-        : ["push", "origin", QUARTZ_SOURCE_BRANCH]
-      spawnSync("git", args, { stdio: "inherit" })
+      spawnSync("git", ["push", ORIGIN_NAME, QUARTZ_SOURCE_BRANCH], { stdio: "inherit" })
     }
 
     console.log(chalk.green("Done!"))
