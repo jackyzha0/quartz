@@ -78,8 +78,8 @@
 
       <!-- Embedded? -->
       {{if (hasPrefix . "!")}}
-        {{ $embed_ext }}
         {{ $embed_ext := lower (path.Ext $href) }}
+        {{ $embed_ext }}
         <!-- Image -->
         {{if in ".png .jpg .jpeg .gif .bmp .svg" $embed_ext }}
           {{$width := default "auto" (index $split 1) }}
