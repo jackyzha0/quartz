@@ -63,6 +63,9 @@
     {{$relpath := relURL $path}}   
 
     {{$relpath}}
+    {{$abspath := absURL $relpath}
+
+    {{$abspath}}
 
     {{/* Assuming that $relpath contains the relative path to the file you want to check */}}
     {{$fileExists := fileExists $relpath}}
