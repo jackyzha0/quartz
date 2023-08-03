@@ -74,17 +74,17 @@
       {{$splitpath := split $relpath "/"}}
       {{$dirname := first (sub (len $splitpath) 1) $splitpath | path.Join | urlize}}
       {{$basename := index (last 1 $splitpath) 0}}
-      {{$href := printf "/%s/%s" $dirname $basename}}
-      {{$href}}      
+      {{$href := printf "/%s/%s" $dirname $basename}}     
 
       <!-- Embedded? -->
       {{if (hasPrefix . "!")}}
         {{ $embed_ext := lower (path.Ext $href) }}
-
+        
         <!-- Image -->
         {{if in ".png .jpg .jpeg .gif .bmp .svg" $embed_ext }}
           {{$width := default "auto" (index $split 1) }}
-          {{$link := printf "<img src=\"%s\" width=\"%s\" />" $href $width}}
+<!--           {{$link := printf "<img src=\"%s\" width=\"%s\" />" $href $width}} -->
+          {{$link := printf "<video src=\"%s\" style=\"width: -webkit-fill-available;\" controls></video>" $href}}
           {{$content = replace $content . $link}}
         <!-- Video -->
         {{else if in ".mp4 .webm .ogv .mov .mkv" $embed_ext }}
