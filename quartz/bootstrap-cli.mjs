@@ -280,7 +280,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     await popContentFolder(contentFolder)
     if (argv.push) {
       console.log("Pushing your changes")
-      spawnSync("git", ["push", ORIGIN_NAME, QUARTZ_SOURCE_BRANCH], { stdio: "inherit" })
+      spawnSync("git", ["push", "-f", ORIGIN_NAME, QUARTZ_SOURCE_BRANCH], { stdio: "inherit" })
     }
 
     console.log(chalk.green("Done!"))

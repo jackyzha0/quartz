@@ -9,6 +9,6 @@ Please note that v4 is still beta software and will probably contain bugs. Use w
 
 **If you are looking for Quartz v3, you can find it on the [`hugo` branch](https://github.com/jackyzha0/quartz/tree/hugo).**
 
-🔗 Read the documentation and setup instructions: https://quartz.jzhao.xyz/
+🔗 Read the documentation and setup instructions: https://four.quartz.jzhao.xyz/
 
 [Join the Discord Community](https://discord.gg/cRFFHYye7t)
