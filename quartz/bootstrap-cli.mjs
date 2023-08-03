@@ -49,12 +49,6 @@ const SyncArgv = {
     default: true,
     describe: "push updates to your Quartz fork",
   },
-  force: {
-    boolean: true,
-    alias: ["f"],
-    default: true,
-    describe: "whether to apply the --force flag to git commands",
-  },
   pull: {
     boolean: true,
     default: true,

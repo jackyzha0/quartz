@@ -91,7 +91,7 @@ export function createFileParser(ctx: BuildCtx, fps: FilePath[]) {
         }
 
         // base data properties that plugins may use
-        file.data.slug = slugifyFilePath(path.relative(argv.directory, file.path) as FilePath)
+        file.data.slug = slugifyFilePath(path.posix.relative(argv.directory, file.path) as FilePath)
         file.data.filePath = fp
 
         const ast = processor.parse(file)

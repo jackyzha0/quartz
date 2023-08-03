@@ -18,7 +18,7 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
 
     for (const [_tree, file] of content) {
       const ogSlug = canonicalizeServer(file.data.slug!)
-      const dir = path.relative(argv.directory, file.dirname ?? argv.directory)
+      const dir = path.posix.relative(argv.directory, file.dirname ?? argv.directory)
 
       let aliases: CanonicalSlug[] = []
       if (file.data.frontmatter?.aliases) {
