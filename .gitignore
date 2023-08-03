@@ -1,6 +1,6 @@
 .DS_Store
 public
-resources
+.resources
 .idea
 content/.obsidian
 assets/indices/linkIndex.json
