@@ -149,6 +149,20 @@ blockquote {
   transition: border-color 0.2s ease;
 }
 
+input[type="checkbox"] {
+    position: relative;
+    & :checked::before {
+      content: "";
+      position: absolute;
+      height: 87%;
+      width: 90%;
+      left: 0;
+      top: 0.5px;
+      border-radius: 3px;
+      background-color: rgba(168, 130, 255, 1);
+    }
+}
+
 .footnotes p {
   margin: 0.5em 0;
 }
