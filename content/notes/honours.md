@@ -9,6 +9,7 @@ project-name:
 [[hons-meet-110723]]
 [[arno-meet-170723]]
 
+[[Hours]]
 ## Notes
 [[hons-projects-choice]]
 [[NeRFs]]
