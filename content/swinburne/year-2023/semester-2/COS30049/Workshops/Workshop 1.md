@@ -55,40 +55,40 @@ a global, open-source platform for decentralized applications.
 	- [x] All of the above  
 
 - What is a "smart contract"?  
-- [ ] A legal document for technology companies  
-- [x] A self-executing contract with the terms of the agreement directly written into code  
-- [ ] A contract signed between two cryptocurrency miners  
-- [ ] A software program that controls the transfer of digital currencies or assets between parties under certain conditions  
+	- [ ] A legal document for technology companies  
+	- [x] A self-executing contract with the terms of the agreement directly written into code  
+	- [ ] A contract signed between two cryptocurrency miners  
+	- [ ] A software program that controls the transfer of digital currencies or assets between parties under certain conditions  
 
 - Which of the following is an advantage of blockchain technology?  
-- [ ] High scalability  
-- [x] Immutability  
-- [ ] Centralization  
-- [ ] Low security  
+	- [ ] High scalability  
+	- [x] Immutability  
+	- [ ] Centralization  
+	- [ ] Low security  
 
 - What programming language is predominantly used to write Ethereum smart contracts?  
-- [x] Solidity  
-- [ ] Python  
-- [ ] JavaScript  
-- [ ] C++
+	- [x] Solidity  
+	- [ ] Python  
+	- [ ] JavaScript  
+	- [ ] C++
 
 - Which of the following cryptographic algorithms is primarily used in the Bitcoin blockchain for the generation of public and private keys?  
-- [ ] RSA (Rivest-Shamir-Adleman)  
-- [x] ECC (Elliptic Curve Cryptography)  
-- [ ] AES (Advanced Encryption Standard)  
-- [ ] DES (Data Encryption Standard)
+	- [ ] RSA (Rivest-Shamir-Adleman)  
+	- [x] ECC (Elliptic Curve Cryptography)  
+	- [ ] AES (Advanced Encryption Standard)  
+	- [ ] DES (Data Encryption Standard)
 
 - How does the Ethereum network handle "gas" in a transaction that runs out of gas before it's complete?  
-- [ ] It stops the transaction and returns the remaining gas to the sender's account  
-- [x] It allows the transaction to complete but marks it as invalid  
-- [ ] It stops the transaction and consumes all the provided gas  
-- [ ] It pauses the transaction until the sender's account has enough gas  
+	- [ ] It stops the transaction and returns the remaining gas to the sender's account  
+	- [x] It allows the transaction to complete but marks it as invalid  
+	- [ ] It stops the transaction and consumes all the provided gas  
+	- [ ] It pauses the transaction until the sender's account has enough gas  
 
 - What is the primary role of Merkle trees in blockchain technology?  
-- [ ] They are used to control the creation of new blocks.  
-- [x] They serve to confirm transaction validity within a block.  
-- [ ] They function as a random number generator for each transaction.  
-- [ ] They are used to keep track of the number of miners on the network
+	- [ ] They are used to control the creation of new blocks.  
+	- [x] They serve to confirm transaction validity within a block.  
+	- [ ] They function as a random number generator for each transaction.  
+	- [ ] They are used to keep track of the number of miners on the network
 
 # Discussion
 
