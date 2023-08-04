@@ -42,6 +42,8 @@
     <!-- remove subfolder from title -->
     {{$display := index (last 1 (split $display "/")) 0}}
 
+    {{$relpath := relURL $path}} 
+
     {{$splitpath := split $relpath "/"}}
     {{range $index, $val := $splitpath}}
         {{ $val = $val | replaceRE " " "%20" | urlquery }}
@@ -67,8 +69,7 @@
       {{$searchtitle = (replace $searchtitle "&rsquo;" "'") }}
       {{$searchtitle = (replace $searchtitle "&lsquo;" "'") }}
       {{$curpage = $page.GetPage $searchtitle }}
-    {{ end }}
-    {{$relpath := relURL $path}}   
+    {{ end }}  
 
     <!-- If path to Hugo page -->
     {{if not (eq $curpage.String "nopPage") }}
