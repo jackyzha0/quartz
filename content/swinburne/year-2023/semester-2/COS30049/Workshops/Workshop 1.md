@@ -64,19 +64,19 @@ weight: -5
 	- [ ] Centralization  
 	- [ ] Low security
 	
-7. What programming language is predominantly used to write Ethereum smart contracts?  
+7. **What programming language is predominantly used to write Ethereum smart contracts?**  
 	- [x] Solidity  
 	- [ ] Python  
 	- [ ] JavaScript  
 	- [ ] C++
 	
-8. Which of the following cryptographic algorithms is primarily used in the Bitcoin blockchain for the generation of public and private keys?  
+8. **Which of the following cryptographic algorithms is primarily used in the Bitcoin blockchain for the generation of public and private keys?**  
 	- [ ] RSA (Rivest-Shamir-Adleman)  
 	- [x] ECC (Elliptic Curve Cryptography)  
 	- [ ] AES (Advanced Encryption Standard)  
 	- [ ] DES (Data Encryption Standard)
 	
-9. How does the Ethereum network handle "gas" in a transaction that runs out of gas before it's complete?  
+9. **How does the Ethereum network handle "gas" in a transaction that runs out of gas before it's complete?**  
 	- [ ] It stops the transaction and returns the remaining gas to the sender's account  
 	- [x] It allows the transaction to complete but marks it as invalid  
 	- [ ] It stops the transaction and consumes all the provided gas  
