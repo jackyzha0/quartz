@@ -45,9 +45,11 @@
     {{$relpath := relURL $path}} 
 
     {{$splitpath := split $relpath "/"}}
-    {{range $index, $val := $splitpath}}
+    {{range $val := $splitpath}}
         {{ $val = $val | urlquery | replaceRE "\\+" "%20"}}
     {{end}}
+
+    {{$splitpath}}
 
     <!-- attempt to get title -->
     {{$searchtitle := $title }}
