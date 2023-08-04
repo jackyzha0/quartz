@@ -12,13 +12,17 @@ weight: -5
 >- For students, they are required to design **smart contract** functions according to their specific needs. This means they can write smart contract functions based on the platform's specific business logic and requirements, such as implementing asset exchange, transfer functionalities, or adding other custom features to meet user demands. Safety and effectiveness should be thoroughly considered in the design of smart contracts to ensure reliable execution of transactions and protection of user data
 
 # Concepts
-## Blockchain
+
+> -Blockchain
+
 a decentralized database system. Information is stored in a block and gets chained to other blocks.
 
 ## Bitcoin
+
 a cryptocurrency based on **blockchain** and uses p2p technology for instant payment
 
 ## Ethereum
+
 a global, open-source platform for decentralized applications.
 
 ---
@@ -107,7 +111,7 @@ a global, open-source platform for decentralized applications.
 
 # Remix
 
->![Remix Ethereum IDE](https://remix.ethereum.org)
+>[Remix Ethereum IDE](https://remix.ethereum.org)
 
 ## Creating a New File:  
 
