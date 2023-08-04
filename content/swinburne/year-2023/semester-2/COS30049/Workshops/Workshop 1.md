@@ -110,10 +110,12 @@ weight: -5
 
 >[Remix Ethereum IDE](https://remix.ethereum.org)
 
-### Creating a New File:  
+### Creating a New File
+
 On the left side of the screen, click on the second icon from the top to open the "File explorers" tab. Click on the "+" icon to create a new file. Give it a name ending with .sol, such as `MyContract.sol`.  
-## Writing the Smart Contract:  
-In the text editor area in the center of the screen, you can start writing your Solidity smart contract.
+### Writing the Smart Contract
+
+In the text editor area in the centre of the screen, you can start writing your Solidity smart contract.
 ```sol
 pragma solidity ^0.5.1;
 contract MyContract {
@@ -124,15 +126,18 @@ contract MyContract {
 }
 ```
 
-## Compiling the Smart Contract:  
+### Compiling the Smart Contract  
 Click on the fourth icon from the top on the left side to open the "Solidity compiler" tab. Under the compiler section, select the appropriate compiler version that matches your contract (in  
 this case 0.5.1+commit.c8a2cb62 or higher) and then click on the "Compile" button.  
 
-## Deploying the Smart Contract:  
+### Deploying the Smart Contract
+
 Click on the third icon from the top on the left side to open the "Deploy & run transactions" tab. Choose the correct contract from the "Contract" dropdown (if you have multiple in your file), then click "Deploy".  
 
-## Interacting with the Smart Contract: 
+### Interacting with the Smart Contract
+
 Once deployed, the contract will appear under the "Deployed Contracts" section. Here you can interact with your contract's functions. For the example contract, you could change the greeting by entering a new string in the "setMyString" field and clicking the "Transact" button, and then see the updated greeting by clicking the "myString" button.
 
-## Result
+### Result
+
 ![](swinburne/year-2023/semester-2/COS30049/Resources/Pasted%20image%2020230802160852.png)
