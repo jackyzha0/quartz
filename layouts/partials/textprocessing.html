@@ -77,7 +77,7 @@
         {{ $href = printf "%s%s" $href (printf "/%s" $segment | urlquery) }}
       {{ end }}
 
-      {{$href}}
+      {{$splitpath}}
       <!-- Embedded? -->
       {{if (hasPrefix . "!")}}
         {{ $embed_ext := lower (path.Ext $href) }}
