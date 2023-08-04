@@ -1,5 +1,7 @@
 ---
 title: "Theory of Blockchain"
+tags:
+- COS30049 Lectures
 ---
 ## History and Motivations
 
