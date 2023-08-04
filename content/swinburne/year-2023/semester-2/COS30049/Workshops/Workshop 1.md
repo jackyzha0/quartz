@@ -28,11 +28,15 @@ weight: -5
 ---
 # Quiz
 
-**Which of the following is a key feature of a blockchain?**  
+1. **Which of the following is a key feature of a blockchain?**  
 	- [ ] Centralized System  
 	- [x] Decentralized System  
 	- [ ] Both a and b  
 	- [ ] None of the above  
+- [ ] 
+
+
+
 
 **Which technology is Bitcoin based on?**  
 	- [ ] Internet of Things (IoT)  
@@ -58,13 +62,13 @@ weight: -5
 	- [ ] To keep the network secure  
 	- [x] All of the above  
 
-- What is a "smart contract"?  
+**What is a "smart contract"?**  
 	- [ ] A legal document for technology companies  
 	- [x] A self-executing contract with the terms of the agreement directly written into code  
 	- [ ] A contract signed between two cryptocurrency miners  
 	- [ ] A software program that controls the transfer of digital currencies or assets between parties under certain conditions  
 
-- Which of the following is an advantage of blockchain technology?  
+**Which of the following is an advantage of blockchain technology?**  
 	- [ ] High scalability  
 	- [x] Immutability  
 	- [ ] Centralization  
