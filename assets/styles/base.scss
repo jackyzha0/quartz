@@ -151,7 +151,7 @@ blockquote {
 
 input[type="checkbox"] {
     position: relative;
-    & :checked::before {
+    &:checked::before {
       content: "";
       position: absolute;
       height: 87%;
