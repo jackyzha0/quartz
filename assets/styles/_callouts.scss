@@ -141,12 +141,12 @@ $svgs: map-merge($svgs, ($resource: url("data:image/svg+xml,%3Csvg xmlns='http:/
       border-left: 6px solid var(--callout-#{getstr($type)}) !important;
       background-color: rgba(var(--callout-#{getstr($type)}), 0.1) !important;
       & > p:first-child {
-        color: var(--callout-#{getstr($type)}) !important;
+        color: rgb(var(--callout-#{getstr($type)})) !important;
         &::after {
           content: '';
           -webkit-mask: map-get($svgs, $type);
           mask: map-get($svgs, $type);
-          background-color: var(--callout-#{getstr($type)}) !important;
+          background-color: rgb(var(--callout-#{getstr($type)})) !important;
           -webkit-mask-size: contain;
           mask-size: contain;
           -webkit-mask-repeat: no-repeat;
