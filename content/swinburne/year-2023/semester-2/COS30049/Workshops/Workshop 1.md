@@ -82,7 +82,7 @@ weight: -5
 	- [ ] It stops the transaction and consumes all the provided gas  
 	- [ ] It pauses the transaction until the sender's account has enough gas  
 	
-10. What is the primary role of Merkle trees in blockchain technology?  
+10. **What is the primary role of Merkle trees in blockchain technology?**  
 	- [ ] They are used to control the creation of new blocks.  
 	- [x] They serve to confirm transaction validity within a block.  
 	- [ ] They function as a random number generator for each transaction.  
@@ -113,9 +113,8 @@ On the left side of the screen, click on the second icon from the top to open th
 ## Writing the Smart Contract:  
 
 In the text editor area in the center of the screen, you can start writing your Solidity smart contract.
-pragma solidity ^0.5.1;
-
 ```sol
+pragma solidity ^0.5.1;
 contract MyContract {
     string public myString = "Hello, world!";
     function setMyString(string memory newString) public {
@@ -132,10 +131,10 @@ this case 0.5.1+commit.c8a2cb62 or higher) and then click on the "Compile" butto
 ## Deploying the Smart Contract:  
 
 Click on the third icon from the top on the left side to open the "Deploy & run transactions" tab. Choose the correct contract from the "Contract" dropdown (if you have multiple in your file), then click "Deploy".  
+
 ## Interacting with the Smart Contract: 
 
 Once deployed, the contract will appear under the "Deployed Contracts" section. Here you can interact with your contract's functions. For the example contract, you could change the greeting by entering a new string in the "setMyString" field and clicking the "Transact" button, and then see the updated greeting by clicking the "myString" button.
-
 
 ## Result
 
