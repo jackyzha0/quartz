@@ -58,7 +58,7 @@ blockquote.callout-collapsed {
 
 blockquote[class*="-callout"] {
   margin-right: 0;
-  border-radius: 5px;
+  border-radius: 0 5px 5px 0;
   position: relative;
   padding-left: 0 !important;
   padding-bottom: 0.25em;
