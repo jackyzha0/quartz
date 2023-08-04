@@ -72,14 +72,7 @@
     <!-- If path to existing file -->
     {{else if fileExists $path}}
       {{$splitpath := split $relpath "/"}}
-      {{ $href := "" }}
-      {{ range $i, $segment := $splitpath }}
-        {{ $href = printf "%s%s" $href (printf "/%s" $segment | urlquery) }}
-      {{ end }}
-
-      {{$third := index $splitpath 3}}
-      {{$third = urlize $third}}
-      {{$third}}
+      {{$href := $splitpath | replaceRE " " "%20" | urlquery | path.Join}}
 
       <!-- Embedded? -->
       {{if (hasPrefix . "!")}}
