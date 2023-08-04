@@ -80,6 +80,7 @@
       {{$content = replace $content . $link}}
     <!-- If path to existing file -->
     {{else if fileExists $path}}
+      {{$filename := index (last 1 $splitpath) 0}}
       {{$href := path.Join $modpath}}
       {{$href = printf "/%s" $href}}
 
@@ -101,7 +102,7 @@
           {{$content = replace $content . $link}}
         <!-- PDF -->
         {{else if in ".pdf" $embed_ext }}
-          {{$src_link := printf "<a href=\"%s\" rel=\"noopener\" class=\"internal-link\">[source]</a>" $href}}
+          {{$src_link := printf "<a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a>" $href $filename}}
           {{$iframe_link := printf "<iframe src=\"%s\" style=\"height: -webkit-fill-available; width: -webkit-fill-available;\"></iframe>" $href}}
           {{$link := printf "%s<br>%s" $src_link $iframe_link}}
           {{$content = replace $content . $link}}
