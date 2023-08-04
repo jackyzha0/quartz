@@ -138,7 +138,7 @@ $svgs: map-merge($svgs, ($resource: url("data:image/svg+xml,%3Csvg xmlns='http:/
 @each $type in $types {
   @each $s in $type {
     blockquote.#{$s}-callout {
-      border-left: 6px solid var(--callout-#{getstr($type)}) !important;
+      border-left: 6px solid rgb(var(--callout-#{getstr($type)})) !important;
       background-color: rgba(var(--callout-#{getstr($type)}), 0.1) !important;
       & > p:first-child {
         color: rgb(var(--callout-#{getstr($type)})) !important;
