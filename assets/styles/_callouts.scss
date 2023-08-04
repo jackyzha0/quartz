@@ -177,7 +177,7 @@ $svgs: map-merge($svgs, ($resource: url("data:image/svg+xml,%3Csvg xmlns='http:/
           content: '';
           -webkit-mask: map-get($svgs, $type);
           mask: map-get($svgs, $type);
-          background-color: var(--callout-#{getstr($type)}) !important;
+          background-color: rgba(var(--callout-#{getstr($type)}), 0.1) !important;
           -webkit-mask-size: contain;
           mask-size: contain;
           -webkit-mask-repeat: no-repeat;
