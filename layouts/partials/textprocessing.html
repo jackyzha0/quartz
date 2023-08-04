@@ -45,11 +45,12 @@
     {{$relpath := relURL $path}} 
 
     {{$splitpath := split $relpath "/"}}
+
+    {{$modpath := slice ""}}
     {{range $val := $splitpath}}
         {{ $val = $val | urlquery | replaceRE "\\+" "%20"}}
+        {{ $modpath = $modpath | append $val}}
     {{end}}
-
-    {{$splitpath}}
 
     <!-- attempt to get title -->
     {{$searchtitle := $title }}
@@ -79,8 +80,8 @@
       {{$content = replace $content . $link}}
     <!-- If path to existing file -->
     {{else if fileExists $path}}
-      {{$href := path.Join $splitpath}}
-      {{$href = printf "/%s" $href}}
+      {{$href := path.Join $modpath}}
+
       <!-- Embedded? -->
       {{if (hasPrefix . "!")}}
         {{ $embed_ext := lower (path.Ext $href) }}
