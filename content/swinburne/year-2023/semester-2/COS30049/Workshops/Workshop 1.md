@@ -28,31 +28,31 @@ weight: -5
 ---
 # Quiz
 
-- Which of the following is a key feature of a blockchain?  
+**Which of the following is a key feature of a blockchain?**  
 	- [ ] Centralized System  
 	- [x] Decentralized System  
 	- [ ] Both a and b  
 	- [ ] None of the above  
 
-- Which technology is Bitcoin based on?  
+**Which technology is Bitcoin based on?**  
 	- [ ] Internet of Things (IoT)  
 	- [ ] Artificial Intelligence (AI)  
 	- [x] Blockchain  
 	- [ ] Augmented Reality (AR)  
 
-- What can Ethereum be used to build?  
+**What can Ethereum be used to build?**  
 	- [ ] Decentralized Applications  
 	- [ ] Smart Contracts  
 	- [ ] Cryptocurrencies  
 	- [x] All of the above
 
-- Which of the following is the native cryptocurrency of the Ethereum platform?  
+**Which of the following is the native cryptocurrency of the Ethereum platform?**  
 	- [ ] Litecoin  
 	- [ ] Ripple  
 	- [x] Ether  
 	- [ ] Bitcoin  
 
-- What is the primary purpose of mining in Bitcoin?  
+**What is the primary purpose of mining in Bitcoin?**  
 	- [ ] To generate new Bitcoins  
 	- [ ] To process and validate transactions  
 	- [ ] To keep the network secure  
