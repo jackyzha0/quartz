@@ -92,10 +92,12 @@ a global, open-source platform for decentralized applications.
 
 # Discussion
 
->[!question] 
+>[!question] How has blockchain technology impacted the financial industry?
+>
+> instant payment regardless of the physical distance.
 
-a. How has blockchain technology impacted the financial industry?  
-	instant payment regardless of the physical distance.
+>[!question] What are the potential advantages and challenges of cryptocurrencies like Bitcoin?  
+>
 b. What are the potential advantages and challenges of cryptocurrencies like Bitcoin?  
 - **Advantages**: \$$
 - **Challenges**: legitimate and policies based on country
