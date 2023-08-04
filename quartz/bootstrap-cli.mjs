@@ -121,10 +121,8 @@ async function popContentFolder(contentFolder) {
 }
 
 function gitPull(origin, branch) {
-  spawnSync("git", ["fetch", origin, branch], { stdio: "inherit" })
-  spawnSync("git", ["checkout", `${origin}/${branch}`, "--", ":(exclude)content"], {
-    stdio: "inherit",
-  }).error
+  const flags = ["-s", "recursive", "-X", "ours"]
+  spawnSync("git", ["pull", ...flags, origin, branch], { stdio: "inherit" })
 }
 
 yargs(hideBin(process.argv))

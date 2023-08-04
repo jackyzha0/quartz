@@ -50,10 +50,6 @@ title: Callouts
 >
 > Aliases: failure, fail, missing
 
-> [!fail] Failure
->
-> Aliases: failure, fail, missing
-
 > [!danger] Error
 >
 > Aliases: danger, error
