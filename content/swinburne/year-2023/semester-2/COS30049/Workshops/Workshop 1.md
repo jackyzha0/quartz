@@ -98,6 +98,13 @@ a global, open-source platform for decentralized applications.
 
 >[!question] What are the potential advantages and challenges of cryptocurrencies like Bitcoin?  
 >
+>- **Advantages**: \$$
+>- **Challenges**: legitimate and policies based on country
+
+>[!question] How is Ethereum different from Bitcoin and what are its potential applications?
+>
+>**Ethereum**: applications in other field than just payment which is what Bitcoin 
+
 b. What are the potential advantages and challenges of cryptocurrencies like Bitcoin?  
 - **Advantages**: \$$
 - **Challenges**: legitimate and policies based on country
