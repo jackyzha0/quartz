@@ -76,7 +76,7 @@
           {{$val = $val | replaceRE " " "%20" | urlquery}}
           {{$splitpath.Set $index $val}}
       {{end}}
-      {{$href := path.Join $spiltpath}}
+      {{$href := path.Join $splitpath}}
 
       <!-- Embedded? -->
       {{if (hasPrefix . "!")}}
