@@ -140,15 +140,15 @@ $svgs: map-merge($svgs, ($resource: url("data:image/svg+xml,%3Csvg xmlns='http:/
   @each $s in $type {
     blockquote.#{$s}-callout {
       --callout-color: var(--callout-#{getstr($type)});
-      border-left: 6px solid rgb(var(--callout-color)) !important;
+      border-left: 6px solid rgba(var(--callout-color), 0) !important;
       background-color: rgba(var(--callout-color), 0.1) !important;
       & > p:first-child {
-        color: rgb(var(--callout-color)) !important;
+        color: rgba(var(--callout-color), 0) !important;
         &::after {
           content: '';
           -webkit-mask: map-get($svgs, $type);
           mask: map-get($svgs, $type);
-          background-color: rgb(var(--callout-color)) !important;
+          background-color: rgba(var(--callout-color), 0) !important;
           -webkit-mask-size: contain;
           mask-size: contain;
           -webkit-mask-repeat: no-repeat;
