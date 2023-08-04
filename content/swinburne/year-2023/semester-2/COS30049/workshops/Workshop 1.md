@@ -16,7 +16,7 @@ weight: -5
 
 >[!info] Blockchain
 >
->a decentralized database system^[]. Information is stored in a block and gets chained to other blocks.
+>a decentralized database system. Information is stored in a block and gets chained to other blocks.
 
 >[!info] Bitcoin
 >
