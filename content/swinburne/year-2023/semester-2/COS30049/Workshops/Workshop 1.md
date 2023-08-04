@@ -81,8 +81,8 @@ weight: -5
 	- [x] It allows the transaction to complete but marks it as invalid  
 	- [ ] It stops the transaction and consumes all the provided gas  
 	- [ ] It pauses the transaction until the sender's account has enough gas  
-	- [
-1. What is the primary role of Merkle trees in blockchain technology?  
+	
+10. What is the primary role of Merkle trees in blockchain technology?  
 	- [ ] They are used to control the creation of new blocks.  
 	- [x] They serve to confirm transaction validity within a block.  
 	- [ ] They function as a random number generator for each transaction.  
