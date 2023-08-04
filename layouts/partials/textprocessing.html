@@ -75,7 +75,7 @@
       {{range $index, $val := $splitpath}}
           {{$val = $val | replaceRE " " "%20" | urlquery}}
           {{$splitpath.Set $index $val}}
-      {{end}
+      {{end}}
       {{$href := path.Join $spiltpath}}
 
       <!-- Embedded? -->
