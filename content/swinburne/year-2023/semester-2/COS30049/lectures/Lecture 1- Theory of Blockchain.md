@@ -1,7 +1,7 @@
 ---
 title: "Theory of Blockchain"
 ---
-# History and Motivations
+## History and Motivations
 
 >[!media]- Watch
 >
@@ -15,7 +15,7 @@ Bitcoin has received dividing opinions at first by the public and was against by
 
 [^1]: article published without peer-review process
 
-# Basic Security Services and Definitions
+## Basic Security Services and Definitions
 
 >[!media]- Watch
 >
