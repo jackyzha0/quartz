@@ -13,15 +13,15 @@ weight: -5
 
 # Concepts
 
-> -Blockchain
+>[!info] Blockchain
+>
+>a decentralized database system. Information is stored in a block and gets chained to other blocks.
 
-a decentralized database system. Information is stored in a block and gets chained to other blocks.
+>[!info] Bitcoin
+>
+>a cryptocurrency based on **blockchain** and uses p2p technology for instant payment
 
-## Bitcoin
-
-a cryptocurrency based on **blockchain** and uses p2p technology for instant payment
-
-## Ethereum
+>{}Ethereum
 
 a global, open-source platform for decentralized applications.
 
