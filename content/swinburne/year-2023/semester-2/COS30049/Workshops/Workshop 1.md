@@ -25,34 +25,34 @@ a global, open-source platform for decentralized applications.
 # Quiz
 
 - Which of the following is a key feature of a blockchain?  
-- [ ] Centralized System  
-- [x] Decentralized System  
-- [ ] Both a and b  
-- [ ] None of the above  
+	- [ ] Centralized System  
+	- [x] Decentralized System  
+	- [ ] Both a and b  
+	- [ ] None of the above  
 
 - Which technology is Bitcoin based on?  
-- [ ] Internet of Things (IoT)  
-- [ ] Artificial Intelligence (AI)  
-- [x] Blockchain  
-- [ ] Augmented Reality (AR)  
+	- [ ] Internet of Things (IoT)  
+	- [ ] Artificial Intelligence (AI)  
+	- [x] Blockchain  
+	- [ ] Augmented Reality (AR)  
 
 - What can Ethereum be used to build?  
-- [ ] Decentralized Applications  
-- [ ] Smart Contracts  
-- [ ] Cryptocurrencies  
-- [x] All of the above
+	- [ ] Decentralized Applications  
+	- [ ] Smart Contracts  
+	- [ ] Cryptocurrencies  
+	- [x] All of the above
 
 - Which of the following is the native cryptocurrency of the Ethereum platform?  
-- [ ] Litecoin  
-- [ ] Ripple  
-- [x] Ether  
-- [ ] Bitcoin  
+	- [ ] Litecoin  
+	- [ ] Ripple  
+	- [x] Ether  
+	- [ ] Bitcoin  
 
 - What is the primary purpose of mining in Bitcoin?  
-- [ ] To generate new Bitcoins  
-- [ ] To process and validate transactions  
-- [ ] To keep the network secure  
-- [x] All of the above  
+	- [ ] To generate new Bitcoins  
+	- [ ] To process and validate transactions  
+	- [ ] To keep the network secure  
+	- [x] All of the above  
 
 - What is a "smart contract"?  
 - [ ] A legal document for technology companies  
