@@ -46,7 +46,7 @@
 
     {{$splitpath := split $relpath "/"}}
 
-    {{$modpath := slice ""}}
+    {{$modpath := slice}}
     {{range $val := $splitpath}}
         {{ $val = $val | urlquery | replaceRE "\\+" "%20"}}
         {{ $modpath = $modpath | append $val}}
@@ -81,6 +81,7 @@
     <!-- If path to existing file -->
     {{else if fileExists $path}}
       {{$href := path.Join $modpath}}
+      {{$href = printf "/%s" $href}}
 
       <!-- Embedded? -->
       {{if (hasPrefix . "!")}}
