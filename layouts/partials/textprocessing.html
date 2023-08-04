@@ -78,7 +78,7 @@
       {{ end }}
 
       {{$third := index $splitpath 3}}
-      {{$third = urlquery | $third | safeURL}}
+      {{$third = urlquery $third | safeURL}}
       {{$third}}
 
       <!-- Embedded? -->
