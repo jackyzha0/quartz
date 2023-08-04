@@ -78,6 +78,8 @@
       {{ end }}
 
       {{$third := index $splitpath 2}}
+      {{$third}}
+
       <!-- Embedded? -->
       {{if (hasPrefix . "!")}}
         {{ $embed_ext := lower (path.Ext $href) }}
