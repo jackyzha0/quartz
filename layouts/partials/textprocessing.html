@@ -72,7 +72,12 @@
     <!-- If path to existing file -->
     {{else if fileExists $path}}
       {{$splitpath := split $relpath "/"}}
-      {{$href := $splitpath | range $val | replaceRE " " "%20" | urlquery | path.Join}}
+      {{$href := ""}}
+      {{range $index, $val := $splitpath}}
+          {{if $index}}{{ $href = $href + "/" }}{{end}}
+          {{$val = $val | replaceRE " " "%20" | urlquery}}
+          {{$href = $href + $val}}
+      {{end}
 
       <!-- Embedded? -->
       {{if (hasPrefix . "!")}}
