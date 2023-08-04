@@ -1,67 +1,36 @@
 :root {
-  --callout-summary: #00bfbc;
-  --callout-summary-accent: #e5f8f8;
-  --callout-bug: #e93147;
-  --callout-bug-accent: #fdeaec;
-  --callout-danger: #e93147;
-  --callout-danger-accent: #fdeaec;
-  --callout-example: #7852ee;
-  --callout-example-accent: #f1edfd;
-  --callout-fail: #e93147;
-  --callout-fail-accent: #fdeaec;
-  --callout-info: #086ddd;
-  --callout-info-accent: #e6f0fc;
-  --callout-todo: #086ddd;
-  --callout-todo-accent: #e6f0fc;
-  --callout-note: #086ddd;
-  --callout-note-accent: #e6f0fc;
-  --callout-question: #e0ac00;
-  --callout-question-accent: #fcf7e5;
-  --callout-quote: #9e9e9e;
-  --callout-quote-accent: #f5f5f5;
-  --callout-done: #0aba4f;
-  --callout-done-accent: #e6f8ed;
-  --callout-important: #00bfbc;
-  --callout-important-accent: #e5f8f8;
-  --callout-warning: #ec7500;
-  --callout-warning-accent: #fdf1e5;
-  --callout-media: #8b5cf6;
-  --callout-media-accent: #f3eefe;
-  --callout-resource: #d4b68a;
-  --callout-resource-accent: #f9f6f0;
+  --callout-summary: 0, 191, 188;
+  --callout-bug: 233, 49, 71;
+  --callout-danger: 233, 49, 71;
+  --callout-example: 120, 82, 238;
+  --callout-fail: 233, 49, 71;
+  --callout-info: 8, 109, 221;
+  --callout-todo: 8, 109, 221;
+  --callout-note: 8, 109, 221;
+  --callout-question: 224, 172, 0;
+  --callout-quote: 158, 158, 158;
+  --callout-success: 8, 185, 78;
+  --callout-important: 0, 191, 188;
+  --callout-warning: 236, 117, 0;
+  --callout-media: 120, 82, 238;
+  --callout-resource: 212, 182, 138;
 }
 
 [saved-theme=dark] {
-  --callout-summary: #53dfdd !important;
-  --callout-summary-accent: #233232 !important;
-  --callout-bug: #fb464c !important;
-  --callout-bug-accent: #352223 !important;
-  --callout-danger: #fb464c !important;
-  --callout-danger-accent: #352223 !important;
-  --callout-example: #a882ff !important;
-  --callout-example-accent: #2c2835 !important;
-  --callout-fail: #fb464c !important;
-  --callout-fail-accent: #352223 !important;
-  --callout-info: #1e7aff !important;
-  --callout-info-accent: #1e2735 !important;
-  --callout-todo: #1e7aff !important;
-  --callout-todo-accent: #1e2735 !important;
-  --callout-note: #1e7aff !important;
-  --callout-note-accent: #1e2735 !important;
-  --callout-question: #e0de71 !important;
-  --callout-question-accent: #323227 !important;
-  --callout-quote: #9e9e9e !important;
-  --callout-quote-accent: #2b2b2b !important;
-  --callout-done: #44cf6e !important;
-  --callout-done-accent: #223026 !important;
-  --callout-important: #53dfdd !important;
-  --callout-important-accent: #233232 !important;
-  --callout-warning: #e9973f !important;
-  --callout-warning-accent: #332a21 !important;
-  --callout-media: #8b5cf6 !important;
-  --callout-media-accent: #292434 !important;
-  --callout-resource: #c9a26b !important;
-  --callout-resource-accent: #2f2c26 !important;
+  --callout-summary: 83, 223, 221 !important;
+  --callout-bug: 251, 70, 76 !important;
+  --callout-danger: 251, 70, 76 !important;
+  --callout-example: 168, 130, 255 !important;
+  --callout-fail: 251, 70, 76 !important;
+  --callout-info: 2, 122, 255 !important;
+  --callout-todo: 2, 122, 255 !important;
+  --callout-note: 2, 122, 255 !important;
+  --callout-question: 224, 222, 113 !important;
+  --callout-success: 68, 207, 110 !important;
+  --callout-important: 83, 223, 221 !important;
+  --callout-warning: 233, 151, 63 !important;
+  --callout-media: 168, 130, 255 !important;
+  --callout-resource: 201, 162, 107 !important;
 }
 
 blockquote.callout-collapsible {
@@ -138,7 +107,7 @@ $todo: todo;
 $note: note;
 $question: question, help, faq;
 $quote: quote, cite;
-$done: done, success, check;
+$success: success, done, check;
 $important: important, tip, hint;
 $warning: warning, caution, attention;
 $media: media, video, audio, recording;
@@ -170,14 +139,14 @@ $svgs: map-merge($svgs, ($resource: url("data:image/svg+xml,%3Csvg xmlns='http:/
   @each $s in $type {
     blockquote.#{$s}-callout {
       border-left: 6px solid var(--callout-#{getstr($type)}) !important;
-      background-color: var(--callout-#{getstr($type)}-accent) !important;
+      background-color: rgba(var(--callout-#{getstr($type)}), 0.1) !important;
       & > p:first-child {
         color: var(--callout-#{getstr($type)}) !important;
         &::after {
           content: '';
           -webkit-mask: map-get($svgs, $type);
           mask: map-get($svgs, $type);
-          background-color: rgba(var(--callout-#{getstr($type)}), 0.1) !important;
+          background-color: var(--callout-#{getstr($type)}) !important;
           -webkit-mask-size: contain;
           mask-size: contain;
           -webkit-mask-repeat: no-repeat;
