@@ -247,7 +247,9 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     console.log(
       "Pulling updates... you may need to resolve some `git` conflicts if you've made changes to components or plugins.",
     )
-    execSync(`git remote add upstream https://github.com/jackyzha0/quartz.git`, { stdio: "ignore" })
+    execSync(
+      `git remote show upstream || git remote add upstream https://github.com/jackyzha0/quartz.git`,
+    )
     gitPull(UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH)
     await popContentFolder(contentFolder)
     console.log("Ensuring dependencies are up to date")
