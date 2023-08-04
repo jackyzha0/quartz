@@ -74,9 +74,9 @@
       {{$splitpath := split $relpath "/"}}
       {{$href := ""}}
       {{range $index, $val := $splitpath}}
-          {{if $index}}{{ $href = $href + "/" }}{{end}}
+          {{if $index}}{{ $href = printf "%s/" $href }}{{end}}
           {{$val = $val | replaceRE " " "%20" | urlquery}}
-          {{$href = $href + $val}}
+          {{$href = printf "%s%s" $href $val}}
       {{end}
 
       <!-- Embedded? -->
