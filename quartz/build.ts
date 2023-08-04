@@ -91,6 +91,7 @@ async function startServing(ctx: BuildCtx, initialContent: ProcessedContent[]) {
         clearTimeout(timeoutId)
       }
 
+      // debounce rebuilds every 250ms
       timeoutId = setTimeout(async () => {
         const perf = new PerfTimer()
         console.log(chalk.yellow("Detected change, rebuilding..."))

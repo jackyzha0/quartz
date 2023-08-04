@@ -10,7 +10,7 @@ import fs from "fs"
 import { intro, isCancel, outro, select, text } from "@clack/prompts"
 import { rimraf } from "rimraf"
 import prettyBytes from "pretty-bytes"
-import { spawnSync } from "child_process"
+import { execSync, spawnSync } from "child_process"
 import { transform as cssTransform } from "lightningcss"
 
 const ORIGIN_NAME = "origin"
@@ -246,6 +246,9 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     await stashContentFolder(contentFolder)
     console.log(
       "Pulling updates... you may need to resolve some `git` conflicts if you've made changes to components or plugins.",
+    )
+    execSync(
+      `git remote show upstream || git remote add upstream https://github.com/jackyzha0/quartz.git`,
     )
     gitPull(UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH)
     await popContentFolder(contentFolder)

@@ -99,7 +99,6 @@ function canonicalizeCallout(calloutName: string): keyof typeof callouts {
   return calloutMapping[callout]
 }
 
-
 const capitalize = (s: string): string => {
   return s.substring(0, 1).toUpperCase() + s.substring(1)
 }
@@ -125,34 +124,34 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
   const findAndReplace = opts.enableInHtmlEmbed
     ? (tree: Root, regex: RegExp, replace?: Replace | null | undefined) => {
-      if (replace) {
-        const mdastToHtml = (ast: PhrasingContent) => {
-          const hast = toHast(ast, { allowDangerousHtml: true })!
-          return toHtml(hast, { allowDangerousHtml: true })
+        if (replace) {
+          const mdastToHtml = (ast: PhrasingContent) => {
+            const hast = toHast(ast, { allowDangerousHtml: true })!
+            return toHtml(hast, { allowDangerousHtml: true })
+          }
+
+          visit(tree, "html", (node: HTML) => {
+            if (typeof replace === "string") {
+              node.value = node.value.replace(regex, replace)
+            } else {
+              node.value = node.value.replaceAll(regex, (substring: string, ...args) => {
+                const replaceValue = replace(substring, ...args)
+                if (typeof replaceValue === "string") {
+                  return replaceValue
+                } else if (Array.isArray(replaceValue)) {
+                  return replaceValue.map(mdastToHtml).join("")
+                } else if (typeof replaceValue === "object" && replaceValue !== null) {
+                  return mdastToHtml(replaceValue)
+                } else {
+                  return substring
+                }
+              })
+            }
+          })
         }
 
-        visit(tree, "html", (node: HTML) => {
-          if (typeof replace === "string") {
-            node.value = node.value.replace(regex, replace)
-          } else {
-            node.value = node.value.replaceAll(regex, (substring: string, ...args) => {
-              const replaceValue = replace(substring, ...args)
-              if (typeof replaceValue === "string") {
-                return replaceValue
-              } else if (Array.isArray(replaceValue)) {
-                return replaceValue.map(mdastToHtml).join("")
-              } else if (typeof replaceValue === "object" && replaceValue !== null) {
-                return mdastToHtml(replaceValue)
-              } else {
-                return substring
-              }
-            })
-          }
-        })
+        mdastFindReplace(tree, regex, replace)
       }
-
-      mdastFindReplace(tree, regex, replace)
-    }
     : mdastFindReplace
 
   return {
@@ -292,7 +291,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               const match = firstLine.match(calloutRegex)
               if (match && match.input) {
                 const [calloutDirective, typeString, collapseChar] = match
-                const calloutType = canonicalizeCallout(typeString.toLowerCase() as keyof typeof calloutMapping)
+                const calloutType = canonicalizeCallout(
+                  typeString.toLowerCase() as keyof typeof calloutMapping,
+                )
                 const collapse = collapseChar === "+" || collapseChar === "-"
                 const defaultState = collapseChar === "-" ? "collapsed" : "expanded"
                 const title =
@@ -334,8 +335,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 node.data = {
                   hProperties: {
                     ...(node.data?.hProperties ?? {}),
-                    className: `callout ${collapse ? "is-collapsible" : ""} ${defaultState === "collapsed" ? "is-collapsed" : ""
-                      }`,
+                    className: `callout ${collapse ? "is-collapsible" : ""} ${
+                      defaultState === "collapsed" ? "is-collapsed" : ""
+                    }`,
                     "data-callout": calloutType,
                     "data-callout-fold": collapse,
                   },
