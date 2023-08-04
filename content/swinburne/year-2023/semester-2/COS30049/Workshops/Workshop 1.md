@@ -4,7 +4,7 @@ tags:
 - project-background
 weight: -5
 ---
-# Project Background
+## Project Background
 
 >[!important] Software Engineering and Mobile Development Background
 >- This **decentralized trading platform** is built on blockchain technology, aiming to ensure transparency and security of user transaction information. Through the immutability and distributed nature of  blockchain, each transaction is recorded on the blockchain, making transaction data openly transparent and tamper-proof.  
@@ -12,7 +12,7 @@ weight: -5
 >- For students, they are required to design **smart contract** functions according to their specific needs. This means they can write smart contract functions based on the platform's specific business logic and requirements, such as implementing asset exchange, transfer functionalities, or adding other custom features to meet user demands. Safety and effectiveness should be thoroughly considered in the design of smart contracts to ensure reliable execution of transactions and protection of user data
 
 ---
-# Concepts
+## Concepts
 
 >[!info] Blockchain
 >
@@ -27,7 +27,7 @@ weight: -5
 >a global, open-source platform for decentralized applications.
 
 ---
-# Quiz
+## Quiz
 
 1. **Which technology is Bitcoin based on?**  
 	- [ ] Internet of Things (IoT)  
@@ -90,7 +90,8 @@ weight: -5
 	- [ ] They are used to keep track of the number of miners on the network
 
 ---
-# Discussion
+## Discussion
+
 >[!question] How has blockchain technology impacted the financial industry?
 >
 >instant payment regardless of the physical distance.
@@ -105,10 +106,11 @@ weight: -5
 >**Ethereum**: applications in other field than just payment which is what Bitcoin 
 
 ---
-# Remix
+## Remix
+
 >[Remix Ethereum IDE](https://remix.ethereum.org)
 
-## Creating a New File:  
+### Creating a New File:  
 On the left side of the screen, click on the second icon from the top to open the "File explorers" tab. Click on the "+" icon to create a new file. Give it a name ending with .sol, such as `MyContract.sol`.  
 ## Writing the Smart Contract:  
 In the text editor area in the center of the screen, you can start writing your Solidity smart contract.
