@@ -1,6 +1,8 @@
 ---
+title: "Workshop 1"
 tags: 
 - project-background
+weight: -5
 ---
 # Project Background
 
