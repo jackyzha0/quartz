@@ -17,7 +17,7 @@
           {{ range (.GetTerms "tags") }}
           <li><a href="{{ .Permalink }}">
           {{if (eq $.Site.Language.Lang "en")}}
-            {{ .LinkTitle | humanize }}
+            {{ .LinkTitle }}
           {{else}}
             {{ .LinkTitle }}
           {{end}}
