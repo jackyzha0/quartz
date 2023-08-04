@@ -42,6 +42,14 @@
     <!-- remove subfolder from title -->
     {{$display := index (last 1 (split $display "/")) 0}}
 
+    {{$splitpath := split $relpath "/"}}
+    {{range $index, $val := $splitpath}}
+        {{ $val = $val | replaceRE " " "%20" | urlquery }}
+        {{ $val }}
+    {{end}}
+
+    {{$href := path.Join $splitpath}}
+
     <!-- attempt to get title -->
     {{$searchtitle := $title }}
     {{$curpage := $page.GetPage $searchtitle }}
@@ -71,13 +79,6 @@
       {{$content = replace $content . $link}}
     <!-- If path to existing file -->
     {{else if fileExists $path}}
-      {{$splitpath := split $relpath "/"}}
-      {{range $index, $val := $splitpath}}
-          {{ $val = $val | replaceRE " " "%20" | urlquery }}
-      {{end}}
-
-      {{$href := path.Join $splitpath}}
-
       <!-- Embedded? -->
       {{if (hasPrefix . "!")}}
         {{ $embed_ext := lower (path.Ext $href) }}
