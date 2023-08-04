@@ -46,7 +46,7 @@
 
     {{$splitpath := split $relpath "/"}}
     {{range $index, $val := $splitpath}}
-        {{ $val = $val | urlquery | replaceRE "+" "%20"}}
+        {{ $val = $val | urlquery | replaceRE "\\+" "%20"}}
         {{ $val }}
     {{end}}
 
