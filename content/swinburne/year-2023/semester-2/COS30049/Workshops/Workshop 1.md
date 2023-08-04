@@ -28,12 +28,17 @@ weight: -5
 ---
 # Quiz
 
-1. **Which of the following is a key feature of a blockchain?**  
-	- [ ] Centralized System  
+1. **Which of the following is a key feature of a blockchain?** 
+2. - [ ] Centralized System  
 	- [x] Decentralized System  
 	- [ ] Both a and b  
-	- [ ] None of the above  
-- [ ] 
+	- [ ] None of the above
+3. **Which technology is Bitcoin based on?**
+4. **What can Ethereum be used to build?**  
+5. **Which of the following is the native cryptocurrency of the Ethereum platform?**
+6. **What is the primary purpose of mining in Bitcoin?**  
+7. 
+	  
 
 
 
