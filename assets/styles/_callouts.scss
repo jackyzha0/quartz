@@ -98,7 +98,7 @@ blockquote[class*="-callout"] > div:first-child > p::after, blockquote.callout-c
   margin: 0.2em 1em;
 }
 
-blockquote[class*="-callout"] > div:first-child > p {
+blockquote[class*="-callout"] > div:first-child {
   font-weight: bold;
   padding: 0.4em 37px;
 
@@ -107,7 +107,7 @@ blockquote[class*="-callout"] > div:first-child > p {
   }
 }
 
-blockquote[class*="-callout"] > div > p:empty {
+blockquote[class*="-callout"] > div:empty {
   padding: 1.2em 37px;
 }
 
