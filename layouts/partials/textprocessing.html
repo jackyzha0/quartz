@@ -159,7 +159,7 @@
   {{ $content = $content | replaceRE `\[![a-zA-Z]+\][-\+]?` "" }}
   {{ $content = $content | replaceRE "blockquote class=callout" "blockquote" }}
   {{ $content = $content | replaceRE `(?s)(<blockquote class="\S+-callout">.*?)<br>(.*?<\/blockquote>)` `${1}</p><p>${2}` }}
-  {{ $content = $content | replaceRE `(<blockquote class=".*">)\s<p>(.*?)<\/p>\s(.*?)<\/blockquote>` `${1}<div class="callout-title"><p>${2}</p></div><div class="callout-content">${3}</div></blockquote>` }}
+  {{ $content = $content | replaceRE `(?s)(<blockquote class=".*">)<p>(.*?)<\/p>(.*?)<\/blockquote>` `${1}<div class="callout-title"><p>${2}</p><\/div><div class="callout-content">${3}<\/div><\/blockquote>` }}
 {{end}}
 
 {{/* Make ==text== into <mark>text</mark> */}}
