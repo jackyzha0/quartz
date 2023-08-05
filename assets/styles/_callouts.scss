@@ -47,6 +47,9 @@ blockquote.callout-collapsible {
     display: grid;
     grid-template-rows: 1fr;
     transition: grid-template-rows 0.5s;
+    & > * {
+      overflow: hidden;
+    }
   }
 }
 
