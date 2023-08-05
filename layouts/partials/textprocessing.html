@@ -169,7 +169,7 @@
   {{$content = replace $content . $fixed}}
 {{end}}
 
-{{ $content := $content | replaceRE `<p>\s*(.*?)\s*</p>` `<p>{{ trim \"$1\" }}</p>` }}
+{{ $content := $content | replaceRE `<p>\s*(.*?)\s*</p>` `<p>${1}</p>` }}
 
 {{ printf "%s" $content }}
     
