@@ -46,7 +46,7 @@ blockquote.callout-collapsible {
   & > *:not(:first-child) {
     display: grid;
     grid-template-rows: 1fr;
-    transition: grid-template-rows 0.5s;
+    transition: grid-template-rows 0.3s;
     & > * {
       overflow: hidden;
     }
