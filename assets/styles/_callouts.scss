@@ -54,8 +54,10 @@ blockquote.callout-collapsible {
 }
 
 blockquote.callout-collapsed {
-  & > div { border-bottom-right-radius: 5px !important; }
   padding-bottom: 0 !important;
+  & > div { 
+    border-bottom-right-radius: 5px !important; 
+  }
   &::after {
     content: '+' !important;
   }
@@ -87,7 +89,7 @@ blockquote[class*="-callout"] {
   }
 }
 
-blockquote[class*="-callout"] > div > p:first-child::after, blockquote.callout-collapsible::after {
+blockquote[class*="-callout"] > div:first-child > p::after, blockquote.callout-collapsible::after {
   display: inline-block;
   height: 18px;
   width: 18px;
@@ -96,7 +98,7 @@ blockquote[class*="-callout"] > div > p:first-child::after, blockquote.callout-c
   margin: 0.2em 1em;
 }
 
-blockquote[class*="-callout"] > div > p:first-child {
+blockquote[class*="-callout"] > div:first-child > p {
   font-weight: bold;
   padding: 0.4em 37px;
 
