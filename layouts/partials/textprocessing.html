@@ -2,6 +2,8 @@
 {{ $raw := .RawContent }}
 {{ $page := .Page }}
 
+{{printf "%s" $content}}
+
 {{/* Escape slashes for Latex to fix line breaks */}}
 {{$latex := findRE "(?:\\${2}([^\\$]+)\\${2})|(?:\\$([^\\$]*)\\$)" $content}}
 {{range $latex}}
