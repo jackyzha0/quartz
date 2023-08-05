@@ -37,7 +37,6 @@ export async function emitContent(ctx: BuildCtx, content: ProcessedContent[]) {
       }
     } catch (err) {
       trace(`Failed to emit from plugin \`${emitter.name}\``, err as Error)
-      throw err
     }
   }
 

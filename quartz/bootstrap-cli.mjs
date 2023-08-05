@@ -9,9 +9,13 @@ import { sassPlugin } from "esbuild-sass-plugin"
 import fs from "fs"
 import { intro, isCancel, outro, select, text } from "@clack/prompts"
 import { rimraf } from "rimraf"
+import chokidar from "chokidar"
 import prettyBytes from "pretty-bytes"
 import { execSync, spawnSync } from "child_process"
 import { transform as cssTransform } from "lightningcss"
+import http from "http"
+import serveHandler from "serve-handler"
+import { WebSocketServer } from "ws"
 
 const ORIGIN_NAME = "origin"
 const UPSTREAM_NAME = "upstream"
@@ -287,86 +291,132 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     console.log(chalk.green("Done!"))
   })
   .command("build", "Build Quartz into a bundle of static HTML files", BuildArgv, async (argv) => {
-    const result = await esbuild
-      .build({
-        entryPoints: [fp],
-        outfile: path.join("quartz", cacheFile),
-        bundle: true,
-        keepNames: true,
-        minify: true,
-        platform: "node",
-        format: "esm",
-        jsx: "automatic",
-        jsxImportSource: "preact",
-        packages: "external",
-        metafile: true,
-        sourcemap: true,
-        plugins: [
-          sassPlugin({
-            type: "css-text",
-            cssImports: true,
-            async transform(css) {
-              const { code } = cssTransform({
-                filename: "style.css",
-                code: Buffer.from(css),
-                minify: true,
-              })
-              return code.toString()
-            },
-          }),
-          {
-            name: "inline-script-loader",
-            setup(build) {
-              build.onLoad({ filter: /\.inline\.(ts|js)$/ }, async (args) => {
-                let text = await promises.readFile(args.path, "utf8")
-
-                // remove default exports that we manually inserted
-                text = text.replace("export default", "")
-                text = text.replace("export", "")
-
-                const sourcefile = path.relative(path.resolve("."), args.path)
-                const resolveDir = path.dirname(sourcefile)
-                const transpiled = await esbuild.build({
-                  stdin: {
-                    contents: text,
-                    loader: "ts",
-                    resolveDir,
-                    sourcefile,
-                  },
-                  write: false,
-                  bundle: true,
-                  platform: "browser",
-                  format: "esm",
-                })
-                const rawMod = transpiled.outputFiles[0].text
-                return {
-                  contents: rawMod,
-                  loader: "text",
-                }
-              })
-            },
+    console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
+    const ctx = await esbuild.context({
+      entryPoints: [fp],
+      outfile: path.join("quartz", cacheFile),
+      bundle: true,
+      keepNames: true,
+      minify: true,
+      platform: "node",
+      format: "esm",
+      jsx: "automatic",
+      jsxImportSource: "preact",
+      packages: "external",
+      metafile: true,
+      sourcemap: true,
+      plugins: [
+        sassPlugin({
+          type: "css-text",
+          cssImports: true,
+          async transform(css) {
+            const { code } = cssTransform({
+              filename: "style.css",
+              code: Buffer.from(css),
+              minify: true,
+            })
+            return code.toString()
           },
-        ],
-      })
-      .catch((err) => {
+        }),
+        {
+          name: "inline-script-loader",
+          setup(build) {
+            build.onLoad({ filter: /\.inline\.(ts|js)$/ }, async (args) => {
+              let text = await promises.readFile(args.path, "utf8")
+
+              // remove default exports that we manually inserted
+              text = text.replace("export default", "")
+              text = text.replace("export", "")
+
+              const sourcefile = path.relative(path.resolve("."), args.path)
+              const resolveDir = path.dirname(sourcefile)
+              const transpiled = await esbuild.build({
+                stdin: {
+                  contents: text,
+                  loader: "ts",
+                  resolveDir,
+                  sourcefile,
+                },
+                write: false,
+                bundle: true,
+                platform: "browser",
+                format: "esm",
+              })
+              const rawMod = transpiled.outputFiles[0].text
+              return {
+                contents: rawMod,
+                loader: "text",
+              }
+            })
+          },
+        },
+      ],
+    })
+
+    let clientRefresh = () => {}
+    let closeHandler = null
+    const build = async () => {
+      const result = await ctx.rebuild().catch((err) => {
         console.error(`${chalk.red("Couldn't parse Quartz configuration:")} ${fp}`)
         console.log(`Reason: ${chalk.grey(err)}`)
         process.exit(1)
       })
 
-    if (argv.bundleInfo) {
-      const outputFileName = "quartz/.quartz-cache/transpiled-build.mjs"
-      const meta = result.metafile.outputs[outputFileName]
-      console.log(
-        `Successfully transpiled ${Object.keys(meta.inputs).length} files (${prettyBytes(
-          meta.bytes,
-        )})`,
-      )
-      console.log(await esbuild.analyzeMetafile(result.metafile, { color: true }))
+      if (argv.bundleInfo) {
+        const outputFileName = "quartz/.quartz-cache/transpiled-build.mjs"
+        const meta = result.metafile.outputs[outputFileName]
+        console.log(
+          `Successfully transpiled ${Object.keys(meta.inputs).length} files (${prettyBytes(
+            meta.bytes,
+          )})`,
+        )
+        console.log(await esbuild.analyzeMetafile(result.metafile, { color: true }))
+      }
+
+      // bypass module cache
+      const { default: buildQuartz } = await import(cacheFile + `?update=${new Date()}`)
+      if (closeHandler) {
+        await closeHandler()
+      }
+
+      closeHandler = await buildQuartz(argv, clientRefresh)
+      clientRefresh()
     }
 
-    const { default: buildQuartz } = await import(cacheFile)
-    buildQuartz(argv, version)
+    await build()
+    if (argv.serve) {
+      const wss = new WebSocketServer({ port: 3001 })
+      const connections = []
+      wss.on("connection", (ws) => connections.push(ws))
+      clientRefresh = () => connections.forEach((conn) => conn.send("rebuild"))
+      const server = http.createServer(async (req, res) => {
+        await serveHandler(req, res, {
+          public: argv.output,
+          directoryListing: false,
+        })
+        const status = res.statusCode
+        const statusString =
+          status >= 200 && status < 300
+            ? chalk.green(`[${status}]`)
+            : status >= 300 && status < 400
+            ? chalk.yellow(`[${status}]`)
+            : chalk.red(`[${status}]`)
+        console.log(statusString + chalk.grey(` ${req.url}`))
+      })
+      server.listen(argv.port)
+      console.log(chalk.cyan(`Started a Quartz server listening at http://localhost:${argv.port}`))
+      console.log("hint: exit with ctrl+c")
+      chokidar
+        .watch(["**/*.ts", "**/*.tsx", "**/*.scss", "package.json"], {
+          ignoreInitial: true,
+        })
+        .on("all", async () => {
+          console.log(chalk.yellow("Detected a source code change, doing a hard rebuild..."))
+          await build()
+        })
+    } else {
+      ctx.dispose()
+    }
   })
   .showHelpOnFail(false)
   .help()

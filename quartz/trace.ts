@@ -1,4 +1,5 @@
 import chalk from "chalk"
+import process from "process"
 
 const rootFile = /.*at file:/
 export function trace(msg: string, err: Error) {
@@ -28,4 +29,5 @@ export function trace(msg: string, err: Error) {
       }
     }
   }
+  process.exit(1)
 }

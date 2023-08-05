@@ -1,5 +1,4 @@
 import { slug } from "github-slugger"
-import { trace } from "./trace"
 
 // Quartz Paths
 // Things in boxes are not actual types but rather sources which these types can be acquired from
@@ -42,18 +41,6 @@ import { trace } from "./trace"
 //                                             │            ┌─────────┐     │                 │
 //                                             └────────────┤ MD File ├─────┴─────────────────┘
 //                                                          └─────────┘
-
-const STRICT_TYPE_CHECKS = false
-const HARD_EXIT_ON_FAIL = false
-
-function conditionCheck<T>(name: string, label: "pre" | "post", s: T, chk: (x: any) => x is T) {
-  if (STRICT_TYPE_CHECKS && !chk(s)) {
-    trace(`${name} failed ${label}-condition check: ${s} does not pass ${chk.name}`, new Error())
-    if (HARD_EXIT_ON_FAIL) {
-      process.exit(1)
-    }
-  }
-}
 
 /// Utility type to simulate nominal types in TypeScript
 type SlugLike<T> = string & { __brand: T }
@@ -102,36 +89,29 @@ export function isFilePath(s: string): s is FilePath {
 
 export function getClientSlug(window: Window): ClientSlug {
   const res = window.location.href as ClientSlug
-  conditionCheck(getClientSlug.name, "post", res, isClientSlug)
   return res
 }
 
 export function getCanonicalSlug(window: Window): CanonicalSlug {
   const res = window.document.body.dataset.slug! as CanonicalSlug
-  conditionCheck(getCanonicalSlug.name, "post", res, isCanonicalSlug)
   return res
 }
 
 export function canonicalizeClient(slug: ClientSlug): CanonicalSlug {
-  conditionCheck(canonicalizeClient.name, "pre", slug, isClientSlug)
   const { pathname } = new URL(slug)
   let fp = pathname.slice(1)
   fp = fp.replace(new RegExp(_getFileExtension(fp) + "$"), "")
   const res = _canonicalize(fp) as CanonicalSlug
-  conditionCheck(canonicalizeClient.name, "post", res, isCanonicalSlug)
   return res
 }
 
 export function canonicalizeServer(slug: ServerSlug): CanonicalSlug {
-  conditionCheck(canonicalizeServer.name, "pre", slug, isServerSlug)
   let fp = slug as string
   const res = _canonicalize(fp) as CanonicalSlug
-  conditionCheck(canonicalizeServer.name, "post", res, isCanonicalSlug)
   return res
 }
 
 export function slugifyFilePath(fp: FilePath): ServerSlug {
-  conditionCheck(slugifyFilePath.name, "pre", fp, isFilePath)
   fp = _stripSlashes(fp) as FilePath
   const withoutFileExt = fp.replace(new RegExp(_getFileExtension(fp) + "$"), "")
   let slug = withoutFileExt
@@ -145,7 +125,6 @@ export function slugifyFilePath(fp: FilePath): ServerSlug {
     slug = slug.replace(/_index$/, "index")
   }
 
-  conditionCheck(slugifyFilePath.name, "post", slug, isServerSlug)
   return slug as ServerSlug
 }
 
@@ -165,13 +144,11 @@ export function transformInternalLink(link: string): RelativeURL {
 
   let joined = joinSegments(_stripSlashes(prefix), _stripSlashes(fp))
   const res = (_addRelativeToStart(joined) + anchor) as RelativeURL
-  conditionCheck(transformInternalLink.name, "post", res, isRelativeURL)
   return res
 }
 
 // resolve /a/b/c to ../../
 export function pathToRoot(slug: CanonicalSlug): RelativeURL {
-  conditionCheck(pathToRoot.name, "pre", slug, isCanonicalSlug)
   let rootPath = slug
     .split("/")
     .filter((x) => x !== "")
@@ -179,15 +156,11 @@ export function pathToRoot(slug: CanonicalSlug): RelativeURL {
     .join("/")
 
   const res = _addRelativeToStart(rootPath) as RelativeURL
-  conditionCheck(pathToRoot.name, "post", res, isRelativeURL)
   return res
 }
 
 export function resolveRelative(current: CanonicalSlug, target: CanonicalSlug): RelativeURL {
-  conditionCheck(resolveRelative.name, "pre", current, isCanonicalSlug)
-  conditionCheck(resolveRelative.name, "pre", target, isCanonicalSlug)
   const res = joinSegments(pathToRoot(current), target) as RelativeURL
-  conditionCheck(resolveRelative.name, "post", res, isRelativeURL)
   return res
 }
 

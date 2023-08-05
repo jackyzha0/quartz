@@ -103,7 +103,6 @@ export function createFileParser(ctx: BuildCtx, fps: FilePath[]) {
         }
       } catch (err) {
         trace(`\nFailed to process \`${fp}\``, err as Error)
-        throw err
       }
     }
 
