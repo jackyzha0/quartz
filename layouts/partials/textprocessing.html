@@ -129,6 +129,7 @@
 
 {{/* Callouts */}}
 {{if $.Site.Data.config.enableCallouts}}
+  {{ printf "%s" $content }}
   {{ $content = $content | replaceRE "<blockquote>" "<blockquote class=callout>" }}
   {{ $blockquoteclasses := findRE `\[!.+\]` $content }}
   {{ $blockquoteclasses1 := findRE "<blockquote.*?>(.|\n)*?</blockquote>" $content }}
