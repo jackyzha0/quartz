@@ -155,9 +155,9 @@ $svgs: map-merge($svgs, ($resource: url("data:image/svg+xml,%3Csvg xmlns='http:/
       --callout-color: var(--callout-#{getstr($type)});
       border-left: 6px solid rgba(var(--callout-color), 1) !important;
       background-color: rgba(var(--callout-color), 0.1) !important;
-      & > div > p:first-child {
+      & > div:first-child > p {
         color: rgba(var(--callout-color), 1) !important;
-        &::after {
+        &::before {
           content: '';
           -webkit-mask: map-get($svgs, $type);
           mask: map-get($svgs, $type);
