@@ -6,7 +6,9 @@ Quartz is a fast, batteries-included static-site generator that transforms Markd
 
 ## 🪴 Get Started
 
-Quartz requires **at least [Node](https://nodejs.org/) v18.14** to function correctly. In your terminal of choice, enter the following commands line by line:
+Quartz requires **at least [Node](https://nodejs.org/) v18.14** to function correctly. Ensure you have this installed on your machine before continuing.
+
+Then, in your terminal of choice, enter the following commands line by line:
 
 ```shell
 git clone https://github.com/jackyzha0/quartz.git
@@ -21,6 +23,9 @@ This will guide you through initializing your Quartz with content.
 When you're ready, you can edit `quartz.config.ts` to customize and configure Quartz more. Read the [[configuration]] page for more information on what each field in the configuration does.
 
 Then, when you're ready, see how to [[build]] and [[hosting|host]] Quartz.
+
+> [!info]
+> Coming from Quartz 3? See the [[migrating from Quartz 3|migration guide]] for the differences between Quartz 3 and Quartz 4 and how to migrate.
 
 ## 🔧 Features
 
