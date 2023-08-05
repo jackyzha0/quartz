@@ -46,7 +46,7 @@ blockquote.callout-collapsible {
   & > *:not(:first-child) {
     display: grid;
     grid-template-rows: 1fr;
-    transition: grid-template-rows 0.3s;
+    transition: grid-template-rows 0.3s ease-in-out;
     & > * {
       overflow: hidden;
     }
@@ -54,7 +54,7 @@ blockquote.callout-collapsible {
 }
 
 blockquote.callout-collapsed {
-  & > p { border-bottom-right-radius: 5px !important; }
+  & > div { border-bottom-right-radius: 5px !important; }
   padding-bottom: 0 !important;
   &::after {
     content: '+' !important;
@@ -72,7 +72,7 @@ blockquote[class*="-callout"] {
   padding-bottom: 0.25em;
   color: var(--dark);
   border-left: 6px solid var(--primary) !important;
-  & > p {
+  & > div {
     border-top-right-radius: 5px;
     padding: 0.5em 1em;
     margin: 0;
@@ -84,7 +84,7 @@ blockquote[class*="-callout"] {
   }
 }
 
-blockquote[class*="-callout"] > p:first-child::after, blockquote.callout-collapsible::after {
+blockquote[class*="-callout"] > div > p:first-child::after, blockquote.callout-collapsible::after {
   display: inline-block;
   height: 18px;
   width: 18px;
@@ -93,7 +93,7 @@ blockquote[class*="-callout"] > p:first-child::after, blockquote.callout-collaps
   margin: 0.2em 1em;
 }
 
-blockquote[class*="-callout"] > p:first-child {
+blockquote[class*="-callout"] > div > p:first-child {
   font-weight: bold;
   padding: 0.4em 37px;
 
@@ -102,7 +102,7 @@ blockquote[class*="-callout"] > p:first-child {
   }
 }
 
-blockquote[class*="-callout"] > p:empty {
+blockquote[class*="-callout"] > div > p:empty {
   padding: 1.2em 37px;
 }
 
@@ -150,7 +150,7 @@ $svgs: map-merge($svgs, ($resource: url("data:image/svg+xml,%3Csvg xmlns='http:/
       --callout-color: var(--callout-#{getstr($type)});
       border-left: 6px solid rgba(var(--callout-color), 1) !important;
       background-color: rgba(var(--callout-color), 0.1) !important;
-      & > p:first-child {
+      & > div > p:first-child {
         color: rgba(var(--callout-color), 1) !important;
         &::after {
           content: '';
