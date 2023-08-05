@@ -121,7 +121,7 @@ async function popContentFolder(contentFolder) {
 }
 
 function gitPull(origin, branch) {
-  const flags = ["-s", "recursive", "-X", "ours"]
+  const flags = ["-s", "recursive", "-X", "ours", "--no-edit"]
   spawnSync("git", ["pull", ...flags, origin, branch], { stdio: "inherit" })
 }
 
@@ -334,7 +334,6 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
                     sourcefile,
                   },
                   write: false,
-                  minify: true,
                   bundle: true,
                   platform: "browser",
                   format: "esm",
