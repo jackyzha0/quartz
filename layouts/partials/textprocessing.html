@@ -90,34 +90,34 @@
         <!-- Image -->
         {{if in ".png .jpg .jpeg .gif .bmp .svg" $embed_ext }}
           {{$width := default "auto" (index $split 1) }}
-          {{$link := printf "<span><img src=\"%s\" width=\"%s\"/></span>" $href $width}}
+          {{$link := printf "<div><img src=\"%s\" width=\"%s\"/></div>" $href $width}}
           {{$content = replace $content . $link}}
         <!-- Video -->
         {{else if in ".mp4 .webm .ogv .mov .mkv" $embed_ext}}
-          {{$link := printf "<span><video src=\"%s\" style=\"width: -webkit-fill-available;\" controls></video></span>" $href}}
+          {{$link := printf "<div><video src=\"%s\" style=\"width: -webkit-fill-available;\" controls></video></div>" $href}}
           {{$content = replace $content . $link}}
         <!-- Audio -->
         {{else if in ".mp3 .webm .wav .m4a .ogg .3gp .flac" $embed_ext}}
-          {{$link := printf "<span><audio src=\"%s\" controls></audio></span>" $href}}
+          {{$link := printf "<div><audio src=\"%s\" controls></audio></div>" $href}}
           {{$content = replace $content . $link}}
         <!-- PDF -->
         {{else if in ".pdf" $embed_ext }}
-          {{$src_link := printf "<span><a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a>" $href $filename}}
-          {{$iframe_link := printf "<iframe src=\"%s#view=fit\" style=\"height: -webkit-fill-available; width: -webkit-fill-available;\"></iframe></span>" $href}}
+          {{$src_link := printf "<div><a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a>" $href $filename}}
+          {{$iframe_link := printf "<iframe src=\"%s#view=fit\" style=\"height: -webkit-fill-available; width: -webkit-fill-available;\"></iframe></div>" $href}}
           {{$link := printf "%s<br>%s" $src_link $iframe_link}}
           {{$content = replace $content . $link}}
         <!-- other -->
         {{else}}
-          {{$link := printf "<span><a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a></span>" $href $href}}
+          {{$link := printf "<div><a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a></div>" $href $href}}
           {{$content = replace $content . $link}}
         {{end}}
       {{else}}
-        {{$link := printf "<span><a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a></span>" $href $display}}
+        {{$link := printf "<div><a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a></div>" $href $display}}
         {{$content = replace $content . $link}}
       {{end}}
     <!-- Broken path -->
     {{else}}
-      {{$link := printf "<span><a class=\"internal-link broken\">%s</a></span>" $display}}
+      {{$link := printf "<div><a class=\"internal-link broken\">%s</a></div>" $display}}
       {{$content = replace $content . $link}}
     {{end}}
 
@@ -125,7 +125,7 @@
 {{end}}
 
 {{/* Add jumpable anchors */}}
-{{ $content = $content | replaceRE "(<h[1-9] id=\"([^\"]+)\">)(.+)(</h[1-9]>)" `<a href="#${2}">${1}<span class="hanchor" ariaLabel="Anchor"># </span>${3}${4}</a>` }}
+{{ $content = $content | replaceRE "(<h[1-9] id=\"([^\"]+)\">)(.+)(</h[1-9]>)" `<a href="#${2}">${1}<div class="hanchor" ariaLabel="Anchor"># </div>${3}${4}</a>` }}
 
 {{/* Callouts */}}
 {{if $.Site.Data.config.enableCallouts}}
@@ -158,7 +158,7 @@
   {{end}}
   {{ $content = $content | replaceRE `\[![a-zA-Z]+\][-\+]?` "" }}
   {{ $content = $content | replaceRE "blockquote class=callout" "blockquote" }}
-  {{ $content = $content | replaceRE `(?s)(<blockquote class="\S+-callout">.*?)<br>(.*?<\/blockquote)` `${1}</p><p>${2}` }}
+  {{ $content = $content | replaceRE `(?s)(<blockquote class="\S+-callout">.*?)<br>(.*?<\/blockquote)` `${1}</div><div>${2}` }}
 {{end}}
 
 {{/* Make ==text== into <mark>text</mark> */}}
