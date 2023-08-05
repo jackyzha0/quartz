@@ -90,34 +90,34 @@
         <!-- Image -->
         {{if in ".png .jpg .jpeg .gif .bmp .svg" $embed_ext }}
           {{$width := default "auto" (index $split 1) }}
-          {{$link := printf "<div><img src=\"%s\" width=\"%s\"/></div>" $href $width}}
+          {{$link := printf "<span><img src=\"%s\" width=\"%s\"/></span>" $href $width}}
           {{$content = replace $content . $link}}
         <!-- Video -->
         {{else if in ".mp4 .webm .ogv .mov .mkv" $embed_ext}}
-          {{$link := printf "<div><video src=\"%s\" style=\"width: -webkit-fill-available;\" controls></video></div>" $href}}
+          {{$link := printf "<span><video src=\"%s\" style=\"width: -webkit-fill-available;\" controls></video></span>" $href}}
           {{$content = replace $content . $link}}
         <!-- Audio -->
         {{else if in ".mp3 .webm .wav .m4a .ogg .3gp .flac" $embed_ext}}
-          {{$link := printf "<div><audio src=\"%s\" controls></audio></div>" $href}}
+          {{$link := printf "<span><audio src=\"%s\" controls></audio></span>" $href}}
           {{$content = replace $content . $link}}
         <!-- PDF -->
         {{else if in ".pdf" $embed_ext }}
-          {{$src_link := printf "<div><a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a>" $href $filename}}
-          {{$iframe_link := printf "<iframe src=\"%s#view=fit\" style=\"height: -webkit-fill-available; width: -webkit-fill-available;\"></iframe></div>" $href}}
+          {{$src_link := printf "<span><a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a>" $href $filename}}
+          {{$iframe_link := printf "<iframe src=\"%s#view=fit\" style=\"height: -webkit-fill-available; width: -webkit-fill-available;\"></iframe></span>" $href}}
           {{$link := printf "%s<br>%s" $src_link $iframe_link}}
           {{$content = replace $content . $link}}
         <!-- other -->
         {{else}}
-          {{$link := printf "<div><a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a></div>" $href $href}}
+          {{$link := printf "<span><a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a></span>" $href $href}}
           {{$content = replace $content . $link}}
         {{end}}
       {{else}}
-        {{$link := printf "<div><a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a></div>" $href $display}}
+        {{$link := printf "<span><a href=\"%s\" rel=\"noopener\" class=\"internal-link\">%s</a></span>" $href $display}}
         {{$content = replace $content . $link}}
       {{end}}
     <!-- Broken path -->
     {{else}}
-      {{$link := printf "<div><a class=\"internal-link broken\">%s</a></div>" $display}}
+      {{$link := printf "<span><a class=\"internal-link broken\">%s</a></span>" $display}}
       {{$content = replace $content . $link}}
     {{end}}
 
