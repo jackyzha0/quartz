@@ -16,6 +16,7 @@ import { transform as cssTransform } from "lightningcss"
 import http from "http"
 import serveHandler from "serve-handler"
 import { WebSocketServer } from "ws"
+import { randomUUID } from "crypto"
 
 const ORIGIN_NAME = "origin"
 const UPSTREAM_NAME = "upstream"
@@ -304,7 +305,8 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       jsxImportSource: "preact",
       packages: "external",
       metafile: true,
-      sourcemap: true,
+      sourcemap: "inline",
+      sourcesContent: false,
       plugins: [
         sassPlugin({
           type: "css-text",
@@ -372,7 +374,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       }
 
       // bypass module cache
-      const { default: buildQuartz } = await import(cacheFile + `?update=${new Date()}`)
+      const { default: buildQuartz } = await import(cacheFile + `?update=${randomUUID()}`)
       await buildQuartz(argv, clientRefresh)
       clientRefresh()
     }

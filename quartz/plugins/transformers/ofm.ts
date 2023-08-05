@@ -96,7 +96,7 @@ const calloutMapping: Record<string, keyof typeof callouts> = {
 
 function canonicalizeCallout(calloutName: string): keyof typeof callouts {
   let callout = calloutName.toLowerCase() as keyof typeof calloutMapping
-  return calloutMapping[callout]
+  return calloutMapping[callout] ?? calloutName
 }
 
 const capitalize = (s: string): string => {
