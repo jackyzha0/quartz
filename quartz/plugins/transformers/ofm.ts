@@ -184,7 +184,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
               // embed cases
               if (value.startsWith("!")) {
-                const ext: string | undefined = path.extname(fp).toLowerCase()
+                const ext: string = path.extname(fp).toLowerCase()
                 const url = slugifyFilePath(fp as FilePath) + ext
                 if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg"].includes(ext)) {
                   const dims = alias ?? ""
@@ -218,8 +218,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     type: "html",
                     value: `<iframe src="${url}"></iframe>`,
                   }
-                } else {
-                  // TODO: this is the node embed case
+                } else if (ext === "") {
+                  // TODO: note embed
                 }
                 // otherwise, fall through to regular link
               }

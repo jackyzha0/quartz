@@ -4,8 +4,6 @@ import { PerfTimer } from "./perf"
 import { rimraf } from "rimraf"
 import { isGitIgnored } from "globby"
 import chalk from "chalk"
-import http from "http"
-import serveHandler from "serve-handler"
 import { parseMarkdown } from "./processors/parse"
 import { filterContent } from "./processors/filter"
 import { emitContent } from "./processors/emit"
@@ -13,18 +11,17 @@ import cfg from "../quartz.config"
 import { FilePath, joinSegments, slugifyFilePath } from "./path"
 import chokidar from "chokidar"
 import { ProcessedContent } from "./plugins/vfile"
-import WebSocket, { WebSocketServer } from "ws"
 import { Argv, BuildCtx } from "./ctx"
 import { glob, toPosixPath } from "./glob"
+import { trace } from "./trace"
 
-async function buildQuartz(argv: Argv, version: string) {
+async function buildQuartz(argv: Argv, clientRefresh: () => void) {
   const ctx: BuildCtx = {
     argv,
     cfg,
     allSlugs: [],
   }
 
-  console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
   const perf = new PerfTimer()
   const output = argv.output
 
@@ -57,15 +54,17 @@ async function buildQuartz(argv: Argv, version: string) {
   console.log(chalk.green(`Done processing ${fps.length} files in ${perf.timeSince()}`))
 
   if (argv.serve) {
-    await startServing(ctx, parsedFiles)
+    return startServing(ctx, parsedFiles, clientRefresh)
   }
 }
 
-async function startServing(ctx: BuildCtx, initialContent: ProcessedContent[]) {
+// setup watcher for rebuilds
+async function startServing(
+  ctx: BuildCtx,
+  initialContent: ProcessedContent[],
+  clientRefresh: () => void,
+) {
   const { argv } = ctx
-  const wss = new WebSocketServer({ port: 3001 })
-  const connections: WebSocket[] = []
-  wss.on("connection", (ws) => connections.push(ws))
 
   const ignored = await isGitIgnored()
   const contentMap = new Map<FilePath, ProcessedContent>()
@@ -78,6 +77,12 @@ async function startServing(ctx: BuildCtx, initialContent: ProcessedContent[]) {
   let toRebuild: Set<FilePath> = new Set()
   let toRemove: Set<FilePath> = new Set()
   async function rebuild(fp: string, action: "add" | "change" | "delete") {
+    if (path.extname(fp) !== ".md") {
+      // dont bother rebuilding for non-content files, just refresh
+      clientRefresh()
+      return
+    }
+
     fp = toPosixPath(fp)
     if (!ignored(fp)) {
       const filePath = joinSegments(argv.directory, fp) as FilePath
@@ -120,7 +125,8 @@ async function startServing(ctx: BuildCtx, initialContent: ProcessedContent[]) {
         } catch {
           console.log(chalk.yellow(`Rebuild failed. Waiting on a change to fix the error...`))
         }
-        connections.forEach((conn) => conn.send("rebuild"))
+
+        clientRefresh()
         toRebuild.clear()
         toRemove.clear()
       }, 250)
@@ -137,31 +143,12 @@ async function startServing(ctx: BuildCtx, initialContent: ProcessedContent[]) {
     .on("add", (fp) => rebuild(fp, "add"))
     .on("change", (fp) => rebuild(fp, "change"))
     .on("unlink", (fp) => rebuild(fp, "delete"))
-
-  const server = http.createServer(async (req, res) => {
-    await serveHandler(req, res, {
-      public: argv.output,
-      directoryListing: false,
-    })
-    const status = res.statusCode
-    const statusString =
-      status >= 200 && status < 300
-        ? chalk.green(`[${status}]`)
-        : status >= 300 && status < 400
-        ? chalk.yellow(`[${status}]`)
-        : chalk.red(`[${status}]`)
-    console.log(statusString + chalk.grey(` ${req.url}`))
-  })
-  server.listen(argv.port)
-  console.log(chalk.cyan(`Started a Quartz server listening at http://localhost:${argv.port}`))
-  console.log("hint: exit with ctrl+c")
 }
 
-export default async (argv: Argv, version: string) => {
+export default async (argv: Argv, clientRefresh: () => void) => {
   try {
-    await buildQuartz(argv, version)
-  } catch {
-    console.log(chalk.red("\nExiting Quartz due to a fatal error"))
-    process.exit(1)
+    return await buildQuartz(argv, clientRefresh)
+  } catch (err) {
+    trace("\nExiting Quartz due to a fatal error", err as Error)
   }
 }
