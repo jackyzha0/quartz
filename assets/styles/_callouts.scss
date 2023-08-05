@@ -43,6 +43,11 @@ blockquote.callout-collapsible {
     font-weight: bolder;
     font-family: Courier New, Courier, monospace;
   }
+  & > *:not(:first-child) {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 0.5s;
+  }
 }
 
 blockquote.callout-collapsed {
@@ -52,7 +57,7 @@ blockquote.callout-collapsed {
     content: '+' !important;
   }
   & > *:not(:first-child) {
-    display: none !important;
+    grid-template-rows: 0fr;
   }
 }
 
