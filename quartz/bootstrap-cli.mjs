@@ -353,9 +353,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       ],
     })
 
-    let clientRefresh = () => {}
-    let closeHandler = null
-    const build = async () => {
+    const build = async (clientRefresh) => {
       const result = await ctx.rebuild().catch((err) => {
         console.error(`${chalk.red("Couldn't parse Quartz configuration:")} ${fp}`)
         console.log(`Reason: ${chalk.grey(err)}`)
@@ -375,20 +373,17 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
 
       // bypass module cache
       const { default: buildQuartz } = await import(cacheFile + `?update=${new Date()}`)
-      if (closeHandler) {
-        await closeHandler()
-      }
-
-      closeHandler = await buildQuartz(argv, clientRefresh)
+      await buildQuartz(argv, clientRefresh)
       clientRefresh()
     }
 
-    await build()
     if (argv.serve) {
       const wss = new WebSocketServer({ port: 3001 })
       const connections = []
       wss.on("connection", (ws) => connections.push(ws))
-      clientRefresh = () => connections.forEach((conn) => conn.send("rebuild"))
+      const clientRefresh = () => connections.forEach((conn) => conn.send("rebuild"))
+
+      await build(clientRefresh)
       const server = http.createServer(async (req, res) => {
         await serveHandler(req, res, {
           public: argv.output,
@@ -412,9 +407,10 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
         })
         .on("all", async () => {
           console.log(chalk.yellow("Detected a source code change, doing a hard rebuild..."))
-          await build()
+          await build(clientRefresh)
         })
     } else {
+      await build(() => {})
       ctx.dispose()
     }
   })

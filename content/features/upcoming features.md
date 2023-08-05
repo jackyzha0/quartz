@@ -6,6 +6,7 @@ draft: true
 
 - block links: https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note
 - note/header/block transcludes: https://help.obsidian.md/Linking+notes+and+files/Embedding+files
+- static dead link detection
 
 ## misc
 
@@ -14,7 +15,6 @@ draft: true
 - recent notes component
 - cursor chat extension
 - https://giscus.app/ extension
-- custom md blocks (e.g. for poetry)
 - sidenotes? https://github.com/capnfabs/paperesque
 - direct match in search using double quotes
 - https://help.obsidian.md/Advanced+topics/Using+Obsidian+URI
