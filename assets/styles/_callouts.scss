@@ -74,12 +74,14 @@ blockquote[class*="-callout"] {
   border-left: 6px solid var(--primary) !important;
   & > div {
     border-top-right-radius: 5px;
-    padding: 0.5em 1em;
     margin: 0;
     color: var(--gray);
     &:first-child {
       font-weight: 600;
       padding: 0.4em 30px;
+    }
+    & > * {
+      padding: 0.5em 1em;
     }
   }
 }
