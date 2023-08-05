@@ -170,7 +170,5 @@
 {{end}}
 
 {{ $content := $content | replaceRE `<p>\s*(.*?)\s*</p>` `<p>${1}</p>` }}
-
-{{ printf "%s" $content }}
     
-<!-- {{ $content | safeHTML }} -->
+{{ $content | safeHTML }}
