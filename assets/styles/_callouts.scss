@@ -74,15 +74,13 @@ blockquote[class*="-callout"] {
   padding-bottom: 0.25em;
   color: var(--dark);
   border-left: 6px solid var(--primary) !important;
-  & > div {
-    border-top-right-radius: 5px;
-    margin: 0;
-    color: var(--gray);
-    & .callout-title > * {
+  & .callout-title {
+    display: flex;
+    & .callout-title-inner {
       font-weight: 600;
     }
-    & > * {
-      font-size: 16px;
+    & .callout-fold {
+
     }
   }
 }
