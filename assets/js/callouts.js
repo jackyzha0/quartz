@@ -4,5 +4,6 @@ const addCollapsibleCallouts = () => {
         console.log(event.currentTarget);
         console.log(event.currentTarget.classList);
         event.currentTarget.classList.toggle("callout-collapsed");
+        event.stopPropagation();
     }));
 }
