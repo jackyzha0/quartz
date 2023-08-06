@@ -144,7 +144,7 @@ $types: $summary, $bug, $danger, $example, $fail, $info, $todo, $note, $question
         & .callout-icon {
           color: rgba(var(--callout-color), 1) !important;
         }
-        & > p {
+        & .callout-title-inner {
           color: rgba(var(--callout-color), 1) !important;
         }
       }  
