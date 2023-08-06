@@ -76,7 +76,7 @@ blockquote[class*="-callout"] {
   border-left: 6px solid var(--primary) !important;
   & .callout-title {
     display: flex;
-    & .callout-icon {
+    & .callout-icon > svg {
       height: 1em;
       width: 1em;
     }
