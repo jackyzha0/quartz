@@ -198,6 +198,7 @@
     {{ $content = $content | replaceRE `<div class="callout-content"><\/div>` "" }}
     
     {{ $blockquotes := findRE `<blockquote class=".*?">.*?<\/blockquote>` $content }}
+    {{ printf "%s" $blockquotes }}
     {{ range $blockquote := $blockquotes }}
       {{ $class := findRE `<blockquote class="(.*?)">.*?<\/blockquote>` $blockquote | plainify }}
       {{ if not (in $class "callout-collapsible") }}
@@ -217,6 +218,6 @@
 {{end}}
 
 {{ $content := $content | replaceRE `<p>\s*(.*?)\s*<\/p>` `<p>${1}</p>` }}
-{{ printf "%s" $content }}
+{{/* printf "%s" $content */}}
     
 {{/* $content | safeHTML */}}
