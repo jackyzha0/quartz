@@ -65,7 +65,7 @@ blockquote.callout-collapsed {
     grid-template-rows: 0fr;
     & > * {
       margin: 0;
-      transition: margin 0s 0.25s ease-in-out;
+      transition: margin 0s 0.28s ease-in-out;
     }
   }
 }
@@ -99,19 +99,6 @@ blockquote[class*="-callout"] > div:first-child > p::after, blockquote.callout-c
   position: absolute;
   top: 0.4em;
   margin: 0.2em 1em;
-}
-
-blockquote[class*="-callout"] > div:first-child > p {
-  font-weight: bold;
-  // padding: 0.4em 37px;
-
-  &::after {
-    left: 0;
-  }
-}
-
-blockquote[class*="-callout"] > div:empty {
-  padding: 1.2em 37px;
 }
 
 $summary: summary, abstract, tldr;
