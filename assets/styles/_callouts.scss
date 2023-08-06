@@ -37,13 +37,21 @@
 blockquote.callout-collapsible {
   cursor: pointer;
 
-  &.callout-collapsible::after {
+  & .callout-collapsible::after {
     content: '-';
     right: 6px;
     font-weight: bolder;
     font-family: Courier New, Courier, monospace;
   }
-  & > *:not(:first-child) {
+  & .callout-title {
+    & .callout-fold > svg {
+      height: 18px;
+      width: 18px;
+      rotate: 90deg;
+      transition: rotate 0.3s ease-in-out;
+    }
+  }
+  & .callout-content {
     display: grid;
     grid-template-rows: 1fr;
     transition: grid-template-rows 0.3s ease-in-out;
@@ -63,7 +71,7 @@ blockquote.callout-collapsed {
   }
   & .callout-title {
     & .callout-fold > svg {
-      rotate: 90deg;
+      rotate: -90deg;
       transition: rotate 0.3s ease-in-out;
     }
   }
@@ -89,12 +97,6 @@ blockquote[class*="-callout"] {
     }
     & .callout-title-inner {
       font-weight: 600;
-    }
-    & .callout-fold > svg {
-      height: 18px;
-      width: 18px;
-      rotate: -90deg;
-      transition: rotate 0.3s ease-in-out;
     }
   }
 }
