@@ -199,7 +199,7 @@
   {{ end }}
 {{end}}
 
-{{ $blockquotes := findRE `(?s)<blockquote.*?>\s.*?<\/blockquote>` $content }}
+{{ $blockquotes := findRE `(?s)<blockquote.*?>.*?<\/blockquote>` $content }}
 {{ range $blockquote := $blockquotes }}
   {{ $class := findRE `<blockquote class="(.*?)">.*?<\/blockquote>` $blockquote }}
   {{ if not (in $class "callout-collapsible") }}
