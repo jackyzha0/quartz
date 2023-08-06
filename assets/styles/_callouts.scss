@@ -55,7 +55,6 @@ blockquote.callout-collapsible {
 }
 
 blockquote.callout-collapsed {
-  padding-bottom: 0 !important;
   & .callout-title {
     & .callout-fold > svg {
       rotate: -90deg;
