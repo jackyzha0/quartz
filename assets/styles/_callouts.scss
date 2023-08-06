@@ -61,7 +61,13 @@ blockquote.callout-collapsed {
   &::after {
     content: '+' !important;
   }
-  & > *:not(:first-child) {
+  & .callout-title {
+    & .callout-fold > svg {
+      rotate: 90deg;
+      transition: rotate 0.3s ease-in-out;
+    }
+  }
+  & .callout-content {
     grid-template-rows: 0fr;
   }
 }
@@ -80,6 +86,8 @@ blockquote[class*="-callout"] {
     & .callout-icon > svg {
       height: 1em;
       width: 1em;
+      rotate: -90deg;
+      transition: rotate 0.3s ease-in-out;
     }
     & .callout-title-inner {
       font-weight: 600;
