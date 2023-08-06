@@ -215,6 +215,6 @@
   {{$content = replace $content . $fixed}}
 {{end}}
 
-{{ $content := $content | replaceRE `<p>\s*(.*?)\s*<\/p>` `<p>${1}</p>` }}
+{{ $content := $content | replaceRE `(?s)<p>\s*(.*?)\s*<\/p>` `<p>${1}</p>` }}
     
 {{ $content | safeHTML }}
