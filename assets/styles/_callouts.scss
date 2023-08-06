@@ -84,8 +84,9 @@ blockquote[class*="-callout"] {
     & .callout-title-inner {
       font-weight: 600;
     }
-    & .callout-fold {
-
+    & .callout-fold > svg {
+      height: 18px;
+      width: 18px;
     }
   }
 }
@@ -145,6 +146,9 @@ $types: $summary, $bug, $danger, $example, $fail, $info, $todo, $note, $question
           color: rgba(var(--callout-color), 1) !important;
         }
         & .callout-title-inner {
+          color: rgba(var(--callout-color), 1) !important;
+        }
+        & .callout-fold {
           color: rgba(var(--callout-color), 1) !important;
         }
       }  
