@@ -204,7 +204,7 @@
   {{ $class := findRE `(?s)<blockquote class="(.*?)">.*?<\/blockquote>` $blockquote }}
   {{ if not (in $class "callout-collapsible") }}
     {{ $mod_blockquote := $blockquote | replaceRE `(?s)<div class="callout-fold">.*?<\/div>` "" }}
-    {{ $content = $content | replaceRE printf(`(?s)%s` $blockquote) $mod_blockquote }}
+    {{ $content = $content | replaceRE (printf `(?s)%s` $blockquote) $mod_blockquote }}
   {{ end }}
 {{ end }}
 
