@@ -7,7 +7,7 @@ const addCollapsibleCallouts = () => {
   }
 
   const collapsibleCallouts = document.querySelectorAll("blockquote.callout-collapsible");
-  if (collapsibleCallouts) {
+  if (collapsibleCallouts.length != 0) {
     console.log("Adding Collapsible Callouts");
     collapsibleCallouts.forEach(el => el.addEventListener('click', event => {
       console.log("register collapsible callout event");
