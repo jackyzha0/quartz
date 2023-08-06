@@ -6,7 +6,7 @@ tags:
 
 > [!info]- Resource
 > 
-> ![[swinburne/Year 2023/Semester 2/SWE30009/Resources/STR-Tutorial-01a.pdf|STR-Tutorial-01a]]
+> ![[swinburne/year-2023/semester-2/SWE30009/resources/STR-Tutorial-01a.pdf|STR-Tutorial-01a]]
 
 ---
 # Part A
