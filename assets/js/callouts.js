@@ -1,4 +1,4 @@
-// let isInitialized = false;
+let isInitialized = false;
 
 const addCollapsibleCallouts = () => {
   if (isInitialized) {
