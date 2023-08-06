@@ -70,7 +70,7 @@ blockquote[class*="-callout"] {
   margin-right: 0;
   border-radius: 0 5px 5px 0;
   position: relative;
-  padding-left: 0 !important;
+  padding: 12px 12px 12px 24px;
   padding-bottom: 0.25em;
   color: var(--dark);
   border-left: 6px solid var(--primary) !important;
@@ -78,14 +78,11 @@ blockquote[class*="-callout"] {
     border-top-right-radius: 5px;
     margin: 0;
     color: var(--gray);
-    &:first-child > * {
-      font-weight: 700;
-      padding: 0.4em 37px;
+    & .callout-title > * {
+      font-weight: 600;
     }
     & > * {
-      font-size: 17px;
-      padding: 0.5em 1em;
-      margin: 0;
+      font-size: 16px;
     }
   }
 }
