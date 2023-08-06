@@ -64,6 +64,9 @@ blockquote.callout-collapsed {
   }
   & .callout-content {
     grid-template-rows: 0fr;
+    & > * {
+      margin: 0;
+    }
   }
 }
 
