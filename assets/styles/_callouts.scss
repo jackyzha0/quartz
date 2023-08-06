@@ -36,18 +36,11 @@
 
 blockquote.callout-collapsible {
   cursor: pointer;
-
-  & .callout-collapsible::after {
-    content: '-';
-    right: 6px;
-    font-weight: bolder;
-    font-family: Courier New, Courier, monospace;
-  }
   & .callout-title {
     & .callout-fold > svg {
       height: 18px;
       width: 18px;
-      rotate: 90deg;
+      rotate: 0deg;
       transition: rotate 0.3s ease-in-out;
     }
   }
@@ -63,12 +56,6 @@ blockquote.callout-collapsible {
 
 blockquote.callout-collapsed {
   padding-bottom: 0 !important;
-  & > div { 
-    border-bottom-right-radius: 5px !important; 
-  }
-  &::after {
-    content: '+' !important;
-  }
   & .callout-title {
     & .callout-fold > svg {
       rotate: -90deg;
