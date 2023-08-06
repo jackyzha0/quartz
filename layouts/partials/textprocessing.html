@@ -201,7 +201,7 @@
 
 {{ $blockquotes := findRE `(?s)<blockquote.*?>.*?<\/blockquote>` $content }}
 {{ range $blockquote := $blockquotes }}
-  {{ $class := findRE `<blockquote class="(.*?)">.*?<\/blockquote>` $blockquote }}
+  {{ $class := findRE `(?s)<blockquote class="(.*?)">.*?<\/blockquote>` $blockquote }}
   {{ printf "%s" $class }}
   {{ if not (in $class "callout-collapsible") }}
     {{ $mod_blockquote := $blockquote | replaceRE `<div class="callout-fold">.*?<\/div>` "" }}
