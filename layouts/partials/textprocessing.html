@@ -197,9 +197,9 @@
     {{ $content = $content | replaceRE (printf `(?s)(<blockquote class=".*?\s?%s-callout">)\s*<p>(.*?)<\/p>(.*?)<\/blockquote>` $c_type) (printf `${1}<div class="callout-title"><div class="callout-icon">%s</div><div class="callout-title-inner">${2}</div><div class="callout-fold"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg></div></div><div class="callout-content">${3}</div></blockquote>` $icon) }}
     {{ $content = $content | replaceRE `<div class="callout-content"><\/div>` "" }}
     
-    {{ $blockquotes := findRE "<blockquote class=".*?">.*?<\/blockquote>" $content }}
+    {{ $blockquotes := findRE `<blockquote class=".*?">.*?<\/blockquote>` $content }}
     {{ range $blockquote := $blockquotes }}
-      {{ $class := findRE "<blockquote class="(.*?)">.*?<\/blockquote>" $blockquote | plainify }}
+      {{ $class := findRE `<blockquote class="(.*?)">.*?<\/blockquote>` $blockquote | plainify }}
       {{ if not (in $class "callout-collapsible") }}
         {{ $mod_blockquote := $blockquote | replaceRE `<div class="callout-fold">.*?<\/div>` "" }}
         {{ $content = $content | replaceRE $blockquote $mod_blockquote }}
