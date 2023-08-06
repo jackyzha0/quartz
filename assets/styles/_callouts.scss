@@ -86,8 +86,6 @@ blockquote[class*="-callout"] {
     & .callout-icon > svg {
       height: 1em;
       width: 1em;
-      rotate: -90deg;
-      transition: rotate 0.3s ease-in-out;
     }
     & .callout-title-inner {
       font-weight: 600;
@@ -95,6 +93,8 @@ blockquote[class*="-callout"] {
     & .callout-fold > svg {
       height: 18px;
       width: 18px;
+      rotate: -90deg;
+      transition: rotate 0.3s ease-in-out;
     }
   }
 }
