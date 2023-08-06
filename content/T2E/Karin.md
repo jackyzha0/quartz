@@ -1,0 +1,1 @@
+Daughter of [[Astrid Lindgren]]

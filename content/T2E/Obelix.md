@@ -1,0 +1,1 @@
+Comes from [[Obelisk]] meaning little split and/or [[Obelus]]

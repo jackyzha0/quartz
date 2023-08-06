@@ -1,0 +1,2 @@
+#aster
+#satellite

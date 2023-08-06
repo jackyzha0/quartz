@@ -1,0 +1,9 @@
+---
+alias: Modulator, Modulators
+---
+#Mod 
+Meyer-Eppler's student [[Karlheinz Stockhausen]] [wiki](https://en.wikipedia.org/wiki/Karlheinz_Stockhausen "Karlheinz Stockhausen") used ring modulation in 1956 for some sounds. 
+
+A ring-modulator was the major component used in [Louis and Bebe Barron](https://en.wikipedia.org/wiki/Louis_and_Bebe_Barron "Louis and Bebe Barron")'s music for the film _[Forbidden Planet](https://en.wikipedia.org/wiki/Forbidden_Planet "Forbidden Planet")_ (1956). One of the best-known applications of the ring modulator may be its use by [Brian Hodgson](https://en.wikipedia.org/wiki/Brian_Hodgson "Brian Hodgson") of the [BBC Radiophonic Workshop](https://en.wikipedia.org/wiki/BBC_Radiophonic_Workshop "BBC Radiophonic Workshop") to produce the distinctive voice of the [Daleks](https://en.wikipedia.org/wiki/Dalek "Dalek") in the [television series](https://en.wikipedia.org/wiki/Television_series "Television series") [[Doctor Who]] [wiki](https://en.wikipedia.org/wiki/Doctor_Who "Doctor Who")_, starting in 1963.
+
+One of the first products dedicated for music was the _Bode Ring Modulator_ developed in 1961 by [Harald Bode](https://en.wikipedia.org/wiki/Harald_Bode "Harald Bode"). Also in 1964 he developed the _Bode Frequency Shifter,_ which produced a clearer sound by eliminating a side band. These devices were designed to be controlled by voltage, compatible with modular synthesizer architecture also advocated by him, and these modules were licensed to [R.A. Moog](https://en.wikipedia.org/wiki/Moog_Music "Moog Music") for their [[Moog modular synthesizers]] [wiki](https://en.wikipedia.org/wiki/Moog_modular_synthesizer "Moog modular synthesizer") started in 1963–1964.

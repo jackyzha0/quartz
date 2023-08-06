@@ -1,0 +1,12 @@
+---
+alias: Triazolam
+---
+[wiki](https://en.wikipedia.org/wiki/Triazolam "Triazolam")
+
+> **Triazolam**, sold under the brand name **Halcion** among others, is a [[Central Nervous System]] (CNS) [depressant](https://en.wikipedia.org/wiki/Depressant "Depressant") tranquilizer of the [triazolobenzodiazepine](https://en.wikipedia.org/wiki/Triazolobenzodiazepine "Triazolobenzodiazepine") (TBZD) class, which are [benzodiazepine](https://en.wikipedia.org/wiki/Benzodiazepine "Benzodiazepine") (BZD) derivatives. It possesses pharmacological properties similar to those of other benzodiazepines, but it is generally only used as a [sedative](https://en.wikipedia.org/wiki/Sedative "Sedative") to treat [severe insomnia](https://en.wikipedia.org/wiki/Insomnia#Benzodiazepines "Insomnia"). In addition to the [hypnotic](https://en.wikipedia.org/wiki/Hypnotic "Hypnotic") properties, triazolam's [amnesic](https://en.wikipedia.org/wiki/Amnesic "Amnesic"), [anxiolytic](https://en.wikipedia.org/wiki/Anxiolytic "Anxiolytic"), sedative, [anticonvulsant](https://en.wikipedia.org/wiki/Anticonvulsant "Anticonvulsant"), and [muscle relaxant](https://en.wikipedia.org/wiki/Muscle_relaxant "Muscle relaxant") properties are pronounced as well.
+
+> Triazolam was initially patented in 1970 and went on sale in the United States in 1982. In 2017, it was the 289th most commonly prescribed medication in the United States, with more than one million prescriptions.
+
+> The pharmacological effects of triazolam are similar to those of most other [benzodiazepines](https://en.wikipedia.org/wiki/Benzodiazepine#Pharmacology "Benzodiazepine"). It does not generate active metabolites. Triazolam is a short-acting benzodiazepine, is [lipophilic](https://en.wikipedia.org/wiki/Lipophilic "Lipophilic"), and is metabolised hepatically via oxidative pathways. The main pharmacological effects of triazolam are the enhancement of the [neurotransmitter](https://en.wikipedia.org/wiki/Neurotransmitter "Neurotransmitter") [GABA](https://en.wikipedia.org/wiki/GABA "GABA") at the GABAA #AB receptor. The half-life of triazolam is only 2 hours making it a very short acting benzodiazepine drug. It has [anticonvulsant](https://en.wikipedia.org/wiki/Anticonvulsant "Anticonvulsant") effects on brain function.
+![Triazolam_Ball-and-stick](https://upload.wikimedia.org/wikipedia/commons/b/b7/Triazolam_ball-and-stick_model.png)
+![Triazolam](https://upload.wikimedia.org/wikipedia/commons/f/ff/Triazolam.svg)

@@ -1,0 +1,3 @@
+Dagger, [[Obelisk]], or obelus, is a typographical mark † used if an [[Asterisk]] has already been used.
+
+The obelus is believed to have been invented by the Homeric scholar Zenodotus as one of a system of editorial symbols. They marked questionable or corrupt words or passages in manuscripts of the Homeric epics. The system was further refined by his student Aristophanes of Byzantium ([[Byzantine Empire|Byzantine]]), who first introduced the asterisk and used a symbol resembling a ⊤ for an obelus; and finally by Aristophanes' student, in turn, Aristarchus, from whom they earned the name of "Aristarchian symbols"

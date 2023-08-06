@@ -1,0 +1,3 @@
+[wiki](https://en.m.wikipedia.org/wiki/Egyptian_egg_oven)
+#Egypt
+> [Jean de Thévenot](https://en.wikipedia.org/wiki/Jean_de_Th%C3%A9venot "Jean de Thévenot") visited an oven in [Cairo](https://en.wikipedia.org/wiki/Cairo "Cairo") in 1657, and described its structure and scale of operation. He noted only [Copts](https://en.wikipedia.org/wiki/Copts "Copts") work there. In the 1670s [Johann Michael Wansleben](https://en.wikipedia.org/wiki/Johann_Michael_Wansleben "Johann Michael Wansleben") added that the good eggs were sorted from dead ones, by [inspection](https://en.wikipedia.org/wiki/Candling "Candling") against a sun-beam, at day 14 of the incubation. He denied that chicks are sold by the measure.

@@ -1,0 +1,4 @@
+#Band 
+#Love 
+ [wiki](https://en.wikipedia.org/wiki/Lovebites_(band) "Lovebites (band)")
+ The #Resurrection arc of [[Phoenix (manga)|Phoenix]] inspired the lyrical theme of the 2018 song "[M.D.O.](https://en.wikipedia.org/wiki/Clockwork_Immortality "Clockwork Immortality")" by heavy metal band [[Lovebites]]. In celebration of what would have been Tezuka's 90th birthday, Evil Line Records released the compilation album _New Gene, Inspired from Phoenix_ on October 30, 2019. It features songs inspired by _Phoenix_ written and performed by various artists, including [Glim Spanky](https://en.wikipedia.org/wiki/Glim_Spanky "Glim Spanky"), [Kizuna AI](https://en.wikipedia.org/wiki/Kizuna_AI "Kizuna AI"), [Tavito Nanao](https://en.wikipedia.org/wiki/Tavito_Nanao "Tavito Nanao") and [Naotarō Moriyama](https://en.wikipedia.org/wiki/Naotar%C5%8D_Moriyama "Naotarō Moriyama")
