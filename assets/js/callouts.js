@@ -1,6 +1,6 @@
 // let isInitialized = false;
 
-// const addCollapsibleCallouts = () => {
+const addCollapsibleCallouts = () => {
 //   if (isInitialized) {
 //     return;
 //   }
@@ -20,3 +20,4 @@ const collapsibleCallouts = document.querySelectorAll("blockquote.callout-collap
     console.log("register collapsible callout event");
     event.currentTarget.classList.toggle("callout-collapsed");
   }));
+}
