@@ -76,6 +76,10 @@ blockquote[class*="-callout"] {
   border-left: 6px solid var(--primary) !important;
   & .callout-title {
     display: flex;
+    & .callout-icon {
+      height: 1em;
+      width: 1em;
+    }
     & .callout-title-inner {
       font-weight: 600;
     }
