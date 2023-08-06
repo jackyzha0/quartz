@@ -81,7 +81,7 @@ blockquote[class*="-callout"] {
   & .callout-title {
     display: flex;
     gap: 4px;
-    align-items: center;
+    align-items: flex-start;
     & .callout-icon > svg {
       height: 1em;
       width: 1em;
