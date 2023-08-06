@@ -202,6 +202,7 @@
       {{ $class := findRE `<blockquote class="(.*?)">.*?<\/blockquote>` $blockquote | plainify }}
       {{ if not (in $class "callout-collapsible") }}
         {{ $mod_blockquote := $blockquote | replaceRE `<div class="callout-fold">.*?<\/div>` "" }}
+        {{ $mod_blockquote }}  
         {{ $content = $content | replaceRE $blockquote $mod_blockquote }}
       {{ end }}
     {{ end }}
@@ -217,4 +218,4 @@
 
 {{ $content := $content | replaceRE `<p>\s*(.*?)\s*<\/p>` `<p>${1}</p>` }}
     
-{{ $content | safeHTML }}
+{{/* $content | safeHTML */}}
