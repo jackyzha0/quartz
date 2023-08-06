@@ -80,11 +80,12 @@ blockquote[class*="-callout"] {
     color: var(--gray);
     &:first-child > * {
       font-weight: 600;
-      margin: 0;
-      padding: 0;
+      padding: 0.4em 37px;
     }
     & > * {
+      font-size: 17px;
       padding: 0.5em 1em;
+      margin: 0;
     }
   }
 }
