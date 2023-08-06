@@ -196,7 +196,7 @@
     {{ end }}
     {{ $icon }}
     {{ $c_type }}
-    {{ $content = $content | replaceRE `(?s)(<blockquote[^>]*>)\s*<p>(.*?)<\/p>(.*?)<\/blockquote>` `${1}<div class="callout-title"><div class="callout-icon">${icon}</div><div class="callout-title-inner">${2}</div><div class="callout-fold"></div></div><div class="callout-content">${3}</div></blockquote>` }}
+    {{ $content = $content | replaceRE `(?s)(<blockquote[^>]*>)\s*<p>(.*?)<\/p>(.*?)<\/blockquote>` (printf `${1}<div class="callout-title"><div class="callout-icon">%s</div><div class="callout-title-inner">${2}</div><div class="callout-fold"></div></div><div class="callout-content">${3}</div></blockquote>`, $icon) }}
   {{ end }}
 {{end}}
 
