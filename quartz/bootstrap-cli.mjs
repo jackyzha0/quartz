@@ -298,14 +298,15 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       outfile: path.join("quartz", cacheFile),
       bundle: true,
       keepNames: true,
-      minify: true,
+      minifyWhitespace: true,
+      minifySyntax: true,
       platform: "node",
       format: "esm",
       jsx: "automatic",
       jsxImportSource: "preact",
       packages: "external",
       metafile: true,
-      sourcemap: "inline",
+      sourcemap: true,
       sourcesContent: false,
       plugins: [
         sassPlugin({
@@ -374,6 +375,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       }
 
       // bypass module cache
+      // https://github.com/nodejs/modules/issues/307
       const { default: buildQuartz } = await import(cacheFile + `?update=${randomUUID()}`)
       await buildQuartz(argv, clientRefresh)
       clientRefresh()

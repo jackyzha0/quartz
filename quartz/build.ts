@@ -1,4 +1,19 @@
-import "source-map-support/register.js"
+import sourceMapSupport from "source-map-support"
+sourceMapSupport.install({
+  retrieveSourceMap(source) {
+    // source map hack to get around query param
+    // import cache busting
+    if (source.includes(".quartz-cache")) {
+      let realSource = fileURLToPath(source.split("?", 2)[0] + '.map')
+      return {
+        map: fs.readFileSync(realSource, 'utf8')
+      }
+    } else {
+      return null
+    }
+  }
+})
+
 import path from "path"
 import { PerfTimer } from "./perf"
 import { rimraf } from "rimraf"
@@ -14,6 +29,8 @@ import { ProcessedContent } from "./plugins/vfile"
 import { Argv, BuildCtx } from "./ctx"
 import { glob, toPosixPath } from "./glob"
 import { trace } from "./trace"
+import { fileURLToPath } from "url"
+import fs from "fs"
 
 async function buildQuartz(argv: Argv, clientRefresh: () => void) {
   const ctx: BuildCtx = {
