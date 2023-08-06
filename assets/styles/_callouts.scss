@@ -80,11 +80,11 @@ blockquote[class*="-callout"] {
     color: var(--gray);
     &:first-child > * {
       font-weight: 600;
-      padding: 0.4em 30px;
-    }
-    & > * {
       margin: 0;
       padding: 0;
+    }
+    & > * {
+      padding: 0.5em 1em;
     }
   }
 }
@@ -98,9 +98,9 @@ blockquote[class*="-callout"] > div:first-child > p::after, blockquote.callout-c
   margin: 0.2em 1em;
 }
 
-blockquote[class*="-callout"] > div:first-child {
+blockquote[class*="-callout"] > div:first-child > p {
   font-weight: bold;
-  padding: 0.4em 37px;
+  // padding: 0.4em 37px;
 
   &::after {
     left: 0;
