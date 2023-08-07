@@ -1,22 +1,22 @@
 const addCollapsibleCallouts = () => {
+  const $curPath = window.location.pathname;
+  console.log($curPath);
   console.log("Adding Collapsible Callouts");  
   const collapsibleCallouts = document.querySelectorAll("blockquote.callout-collapsible");
   
   if (collapsibleCallouts.length != 0) {
     console.log(collapsibleCallouts);
     collapsibleCallouts.forEach(el => {
-      const listeners = getEventListeners(el);
-      if (!listeners.click) {
-        el.addEventListener('click', event => {
-          const $toggledClass = "callout-collapsed";
-          let $before = event.currentTarget.classList.contains($toggledClass);
-          event.currentTarget.classList.toggle($toggledClass);
-          let $after = event.currentTarget.classList.contains($toggledClass);
-          if ($before == $after) { // in an event the class fails to toggle
-            location.reload();
-          }
-        });
-      }
+      el.addEventListener('click', event => {
+        console.log(event);
+        const $toggledClass = "callout-collapsed";
+        let $before = event.currentTarget.classList.contains($toggledClass);
+        event.currentTarget.classList.toggle($toggledClass);
+        let $after = event.currentTarget.classList.contains($toggledClass);
+        if ($before == $after) { // in an event the class fails to toggle
+          location.reload();
+        }
+      });
     });
   }
 }
