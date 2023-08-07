@@ -16,8 +16,9 @@ Once you're happy with it, let's see how to [[hosting|deploy Quartz to the web]]
 
 > [!hint] Flags and options
 > For full help options, you can run `npx quartz build --help`.
-> 
+>
 > Most of these have sensible defaults but you can override them if you have a custom setup:
+>
 > - `-d` or `--directory`: the content folder. This is normally just `content`
 > - `-v` or `--verbose`: print out extra logging information
 > - `-o` or `--output`: the output folder. This is normally just `public`
