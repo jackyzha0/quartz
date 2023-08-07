@@ -161,7 +161,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
             filename: "index.css",
             code: Buffer.from(stylesheet),
             minify: true,
-            include: Features.MediaQueries
+            include: Features.MediaQueries,
           }).code.toString(),
         }),
         emit({
