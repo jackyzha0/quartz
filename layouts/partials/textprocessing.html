@@ -162,6 +162,7 @@
 
   {{ $c_types := findRE `(?s)<blockquote class=".*?\s?(\S+)-callout.*?">.*?<\/blockquote>` $content }}
   {{ range $c_type := $c_types }}
+    {{ $c_type }}
     {{ $icon := "" }}
     {{ $c_type = $c_type | replaceRE `(?s)\[!([a-zA-Z]+)]` `${1}` }}
     {{ if or (eq $c_type "summary") (eq $c_type "abstract") (eq $c_type "tldr") }}
