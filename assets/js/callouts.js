@@ -8,7 +8,7 @@ const addCollapsibleCallouts = () => {
 
     window.addEventListener('million:navigate', (event) => {
       console.log("Navigating");
-      console.log(event.detail.path);
+      console.log(event.detail);
       if (event.detail.path === "_self") {
         onPageNavigation = true;
       }
