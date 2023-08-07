@@ -7,6 +7,8 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
+  overflow-x: none;
+  width: 100vw;
 }
 
 body {
@@ -83,7 +85,7 @@ a {
   @media all and (max-width: $fullPageWidth) {
     margin: 0 auto;
     padding: 0 1rem;
-    // max-width: 800px;
+    max-width: $pageWidth;
   }
 
   & article {
@@ -164,9 +166,9 @@ a {
 
   & .center,
   & footer {
-    width: $pageWidth;
     margin-left: auto;
     margin-right: auto;
+    width: $pageWidth;
     @media all and (max-width: $fullPageWidth) {
       width: initial;
       margin-left: 0;
@@ -431,7 +433,7 @@ video {
 
 ul.overflow,
 ol.overflow {
-  height: 400px;
+  height: 300px;
   overflow-y: scroll;
 
   // clearfix
