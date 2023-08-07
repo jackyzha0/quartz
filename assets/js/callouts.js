@@ -8,6 +8,7 @@ const addCollapsibleCallouts = () => {
     window.addEventListener('million:navigate', (event) => {
       console.log("Navigating");
       console.log(event.detail.url.pathname);
+      console.log(event.detail.url.pathname != window.location.pathname);
       if (event.detail.url.pathname != window.location.pathname) {
         console.log("Adding Collapsible Callouts Event Listener");
         collapsibleCallouts.forEach(el => el.addEventListener('click', event => {
