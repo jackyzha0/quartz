@@ -1,6 +1,7 @@
 let isInitialized = false;
 
 const addCollapsibleCallouts = () => {
+  console.log(isInitialized);
   if (isInitialized) {
     console.log("Collapsible Callouts already added!");
     return;
