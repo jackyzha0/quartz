@@ -5,7 +5,7 @@ const addCollapsibleCallouts = () => {
   if (collapsibleCallouts.length != 0) {
     console.log(collapsibleCallouts);
     collapsibleCallouts.forEach(el => {
-      if (!getEventListeners(el).click) {
+      if (!getEventListeners(el)) {
         el.addEventListener('click', event => {
           const $toggledClass = "callout-collapsed";
           let $before = event.currentTarget.classList.contains($toggledClass);
