@@ -12,12 +12,12 @@ However, if you'd like to publish your site to the world, you need a way to host
 2. In Account Home, select **Workers & Pages** > **Create application** > **Pages** > **Connect to Git**.
 3. Select the new GitHub repository that you created and, in the **Set up builds and deployments** section, provide the following information:
 
-|Configuration option|Value|
-|---|---|
-|Production branch|`v4-alpha`|
-|Framework preset|`None`|
-|Build command|`npx quartz build`|
-|Build output directory|`public`|
+| Configuration option   | Value              |
+| ---------------------- | ------------------ |
+| Production branch      | `v4-alpha`         |
+| Framework preset       | `None`             |
+| Build command          | `npx quartz build` |
+| Build output directory | `public`           |
 
 Press "Save and deploy" and Cloudflare should have a deployed version of your site in about a minute. Then, every time you sync your Quartz changes to GitHub, your site should be updated.
 
@@ -80,26 +80,25 @@ jobs:
 Then, commit these changes by doing `npx quartz sync`. This should deploy your site to `<github-username>.github.io/<repository-name>`.
 
 ### Custom Domain
+
 Here's how to add a custom domain to your GitHub pages deployment.
 
-1. Head to the "Settings" tab of your forked repository. 
+1. Head to the "Settings" tab of your forked repository.
 2. In the "Code and automation" section of the sidebar, click "Pages".
 3. Under "Custom Domain", type your custom domain and click "Save".
 4. This next step depends on whether you are using an apex domain (`example.com`) or a subdomain (`subdomain.example.com`).
-	- If you are using an apex domain, navigate to your DNS provider and create an `A` record that points your apex domain to GitHub's name servers which have the following IP addresses:
-		- `185.199.108.153`
-		- `185.199.109.153`
-		- `185.199.110.153`
-		- `185.199.111.153`
-	- If you are using a subdomain, navigate to your DNS provider and create a `CNAME` record that points your subdomain to the default domain for your site. For example, if you want to use the subdomain `quartz.example.com` for your user site, create a `CNAME` record that points `quartz.example.com` to `<github-username>.github.io`. 
+   - If you are using an apex domain, navigate to your DNS provider and create an `A` record that points your apex domain to GitHub's name servers which have the following IP addresses:
+     - `185.199.108.153`
+     - `185.199.109.153`
+     - `185.199.110.153`
+     - `185.199.111.153`
+   - If you are using a subdomain, navigate to your DNS provider and create a `CNAME` record that points your subdomain to the default domain for your site. For example, if you want to use the subdomain `quartz.example.com` for your user site, create a `CNAME` record that points `quartz.example.com` to `<github-username>.github.io`.
 
+![[dns-records.png]]_The above shows a screenshot of Google Domains configured for both `jzhao.xyz` (an apex domain) and `quartz.jzhao.xyz` (a subdomain)._
 
-![[dns-records.png]]*The above shows a screenshot of Google Domains configured for both `jzhao.xyz` (an apex domain) and `quartz.jzhao.xyz` (a subdomain).*
-
-See the [GitHub documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain) for more detail about how to setup your own custom domain with GitHub Pages. 
-
+See the [GitHub documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain) for more detail about how to setup your own custom domain with GitHub Pages.
 
 > [!question] Why aren't my changes showing up?
 > There could be many different reasons why your changes aren't showing up but the most likely reason is that you forgot to push your changes to GitHub.
-> 
+>
 > Make sure you save your changes to Git and sync it to GitHub by doing `npx quartz sync`. This will also make sure to pull any updates you may have made from other devices so you have them locally.
