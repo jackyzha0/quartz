@@ -8,7 +8,7 @@ Once you've [[index#🪴 Get Started|initialized]] Quartz, let's see what it loo
 npx quartz build --serve
 ```
 
-Then, open a web browser and visit `http://localhost:8080/` to view it!
+Then, open a web browser and visit `http://localhost:8080/` to view it.
 
 Want to change how Quartz looks? You can edit `quartz.config.ts` to customize and configure your Quartz, including styles, layout, and more. Read the [[configuration]] page for more information on what each field in the configuration does.
 
