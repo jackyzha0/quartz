@@ -161,6 +161,7 @@
   {{ $content = $content | replaceRE `(?s)(<blockquote class=".*?\s?\S+-callout.*?">.*?)(.*?<\/blockquote>)` `${1}</p><p>${2}` }}
 
   {{ $c_types := findRE `(?s)<blockquote class=".*?\s?(\S+)-callout.*?">.*?<\/blockquote>` $content }}
+  {{ $c_types }}
   {{ range $c_type := $c_types }}
     {{ $icon := "" }}
     {{ if or (eq $c_type "summary") (eq $c_type "abstract") (eq $c_type "tldr") }}
