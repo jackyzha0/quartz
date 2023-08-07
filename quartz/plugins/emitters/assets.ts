@@ -12,7 +12,7 @@ export const Assets: QuartzEmitterPlugin = () => {
     },
     async emit({ argv, cfg }, _content, _resources, _emit): Promise<FilePath[]> {
       // glob all non MD/MDX/HTML files in content folder and copy it over
-      const assetsPath = joinSegments(argv.output, "assets")
+      const assetsPath = argv.output
       const fps = await glob("**", argv.directory, ["**/*.md", ...cfg.configuration.ignorePatterns])
       const res: FilePath[] = []
       for (const fp of fps) {
@@ -24,7 +24,7 @@ export const Assets: QuartzEmitterPlugin = () => {
         const dir = path.dirname(dest) as FilePath
         await fs.promises.mkdir(dir, { recursive: true }) // ensure dir exists
         await fs.promises.copyFile(src, dest)
-        res.push(joinSegments("assets", fp) as FilePath)
+        res.push(fp)
       }
 
       return res

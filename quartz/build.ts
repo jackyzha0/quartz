@@ -57,13 +57,14 @@ async function buildQuartz(argv: Argv, clientRefresh: () => void) {
   console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince("clean")}`)
 
   perf.addEvent("glob")
-  const fps = await glob("**/*.md", argv.directory, cfg.configuration.ignorePatterns)
+  const allFiles = await glob("**/*.*", argv.directory, cfg.configuration.ignorePatterns)
+  const fps = allFiles.filter((fp) => fp.endsWith(".md"))
   console.log(
     `Found ${fps.length} input files from \`${argv.directory}\` in ${perf.timeSince("glob")}`,
   )
 
   const filePaths = fps.map((fp) => joinSegments(argv.directory, fp) as FilePath)
-  ctx.allSlugs = fps.map((fp) => slugifyFilePath(fp as FilePath))
+  ctx.allSlugs = allFiles.map((fp) => slugifyFilePath(fp as FilePath))
 
   const parsedFiles = await parseMarkdown(ctx, filePaths)
   const filteredContent = filterContent(ctx, parsedFiles)
@@ -93,61 +94,72 @@ async function startServing(
   let timeoutId: ReturnType<typeof setTimeout> | null = null
   let toRebuild: Set<FilePath> = new Set()
   let toRemove: Set<FilePath> = new Set()
+  let trackedAssets: Set<FilePath> = new Set()
   async function rebuild(fp: string, action: "add" | "change" | "delete") {
+    // don't do anything for gitignored files
+    if (ignored(fp)) {
+      return
+    }
+
+    // dont bother rebuilding for non-content files, just track and refresh
     if (path.extname(fp) !== ".md") {
-      // dont bother rebuilding for non-content files, just refresh
+      fp = toPosixPath(fp)
+      const filePath = joinSegments(argv.directory, fp) as FilePath
+      if (action === "add" || action === "change") {
+        trackedAssets.add(filePath)
+      } else if (action === "delete") {
+        trackedAssets.add(filePath)
+      }
       clientRefresh()
       return
     }
 
     fp = toPosixPath(fp)
-    if (!ignored(fp)) {
-      const filePath = joinSegments(argv.directory, fp) as FilePath
-      if (action === "add" || action === "change") {
-        toRebuild.add(filePath)
-      } else if (action === "delete") {
-        toRemove.add(filePath)
-      }
+    const filePath = joinSegments(argv.directory, fp) as FilePath
+    if (action === "add" || action === "change") {
+      toRebuild.add(filePath)
+    } else if (action === "delete") {
+      toRemove.add(filePath)
+    }
 
-      if (timeoutId) {
-        clearTimeout(timeoutId)
-      }
+    if (timeoutId) {
+      clearTimeout(timeoutId)
+    }
 
-      // debounce rebuilds every 250ms
-      timeoutId = setTimeout(async () => {
-        const perf = new PerfTimer()
-        console.log(chalk.yellow("Detected change, rebuilding..."))
-        try {
-          const filesToRebuild = [...toRebuild].filter((fp) => !toRemove.has(fp))
+    // debounce rebuilds every 250ms
+    timeoutId = setTimeout(async () => {
+      const perf = new PerfTimer()
+      console.log(chalk.yellow("Detected change, rebuilding..."))
+      try {
+        const filesToRebuild = [...toRebuild].filter((fp) => !toRemove.has(fp))
 
-          ctx.allSlugs = [...new Set([...contentMap.keys(), ...toRebuild])]
-            .filter((fp) => !toRemove.has(fp))
-            .map((fp) => slugifyFilePath(path.posix.relative(argv.directory, fp) as FilePath))
+        ctx.allSlugs = [...new Set([...contentMap.keys(), ...toRebuild, ...trackedAssets])]
+          .filter((fp) => !toRemove.has(fp))
+          .map((fp) => slugifyFilePath(path.posix.relative(argv.directory, fp) as FilePath))
 
-          const parsedContent = await parseMarkdown(ctx, filesToRebuild)
-          for (const content of parsedContent) {
-            const [_tree, vfile] = content
-            contentMap.set(vfile.data.filePath!, content)
-          }
-
-          for (const fp of toRemove) {
-            contentMap.delete(fp)
-          }
-
-          await rimraf(argv.output)
-          const parsedFiles = [...contentMap.values()]
-          const filteredContent = filterContent(ctx, parsedFiles)
-          await emitContent(ctx, filteredContent)
-          console.log(chalk.green(`Done rebuilding in ${perf.timeSince()}`))
-        } catch {
-          console.log(chalk.yellow(`Rebuild failed. Waiting on a change to fix the error...`))
+        const parsedContent = await parseMarkdown(ctx, filesToRebuild)
+        for (const content of parsedContent) {
+          const [_tree, vfile] = content
+          contentMap.set(vfile.data.filePath!, content)
         }
 
-        clientRefresh()
-        toRebuild.clear()
-        toRemove.clear()
-      }, 250)
-    }
+        for (const fp of toRemove) {
+          contentMap.delete(fp)
+        }
+
+        await rimraf(argv.output)
+        const parsedFiles = [...contentMap.values()]
+        const filteredContent = filterContent(ctx, parsedFiles)
+        await emitContent(ctx, filteredContent)
+        console.log(chalk.green(`Done rebuilding in ${perf.timeSince()}`))
+      } catch {
+        console.log(chalk.yellow(`Rebuild failed. Waiting on a change to fix the error...`))
+      }
+
+      clientRefresh()
+      toRebuild.clear()
+      toRemove.clear()
+    }, 250)
   }
 
   const watcher = chokidar.watch(".", {
