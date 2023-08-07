@@ -23,5 +23,5 @@ Bitcoin has received dividing opinions at first by the public and was against by
 >
 >![[swinburne/year-2023/semester-2/COS30049/resources/Sess1-2 Basic Security Services and Definitions.mp4]]
 
->[!info]- Test
+>[!info] Test
 
