@@ -228,7 +228,7 @@ function _isRelativeSegment(s: string): boolean {
   return /^\.{0,2}$/.test(s)
 }
 
-function _stripSlashes(s: string): string {
+export function _stripSlashes(s: string): string {
   if (s.startsWith("/")) {
     s = s.substring(1)
   }

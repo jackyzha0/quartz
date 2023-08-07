@@ -81,7 +81,9 @@ a {
 
 .page {
   @media all and (max-width: $fullPageWidth) {
-    margin: 0 5vw;
+    margin: 0 auto;
+    padding: 0 1rem;
+    max-width: 800px;
   }
 
   & article {

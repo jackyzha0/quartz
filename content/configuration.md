@@ -4,11 +4,12 @@ title: Configuration
 
 Quartz is meant to be extremely configurable, even if you don't know any coding. Most of the configuration you should need can be done by just editing `quartz.config.ts`.
 
-If you edit this file using a text-editor that has TypeScript language support like VSCode, it will warn you when you you've made an error in your configuration.
+> [!tip]
+> If you edit this file using a text-editor that has TypeScript language support like VSCode, it will warn you when you you've made an error in your configuration, helping you avoid configuration mistakes!
 
 This configuration can be broken down into two main parts:
 
-```ts
+```ts title="quartz.config.ts"
 const config: QuartzConfig = {
   configuration: { ... },
   plugins: { ... },
@@ -81,24 +82,41 @@ If you'd like to make your own plugins, read the guide on [[making plugins]] for
 
 Certain emitters may also output [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) files. To enable easy customization, these emitters allow you to fully rearrange the layout of the page. The default page layouts can be found in `quartz.layout.ts`.
 
-Ultimately, each page is composed of multiple different sections which contain `QuartzComponents`. The following code snippet lists all of the valid sections that you can add components to:
+Each page is composed of multiple different sections which contain `QuartzComponents`. The following code snippet lists all of the valid sections that you can add components to:
 
 ```typescript title="quartz/cfg.ts"
 export interface FullPageLayout {
-  head: QuartzComponent
-  header: QuartzComponent[]
-  beforeBody: QuartzComponent[]
-  pageBody: QuartzComponent
-  left: QuartzComponent[]
-  right: QuartzComponent[]
-  footer: QuartzComponent
+  head: QuartzComponent         // single component
+  header: QuartzComponent[]     // laid out horizontally
+  beforeBody: QuartzComponent[] // laid out vertically
+  pageBody: QuartzComponent     // single component
+  left: QuartzComponent[]       // vertical on desktop, horizontal on mobile
+  right: QuartzComponent[]      // vertical on desktop, horizontal on mobile
+  footer: QuartzComponent       // single component
 }
 ```
 
 These correspond to following parts of the page:
 
-### Components
+![[quartz-layout.png|800]]
 
-See [a list of all the components](./tags/component) for all available components.
+> [!note]
+> There are two additional layout fields that are *not* shown in the above diagram.
+> 1. `head` is a single component that renders the `<head>` [tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head) in the HTML. This doesn't appear visually on the page and is only is responsible for metadata about the document like the tab title, scripts, and styles.
+> 2. `header` is a set of components that are laid out horizontally and appears *before* the `beforeBody` section. This enables you to replicate the old Quartz 3 header bar where the title, search bar, and dark mode toggle. By default, Quartz 4 doesn't place any components in the `header`.
+
+Quartz **components**, like plugins, can take in additional properties as configuration options. If you're familiar with React terminology, you can think of them as Higher-order Components.
+
+See [a list of all the components](./tags/component) for all available components along with their configuration options.
 
 ### Style
+Most meaningful style changes like colour scheme and font can be done simply through the [[#General Configuration|general configuration]] options above. 
+
+However, if you'd like to make more involved style changes, you can do this by writing your own styles. Quartz 4, like Quartz 3, uses [Sass](https://sass-lang.com/guide/) for styling.
+
+You can see the base style sheet in `quartz/styles/base.scss` and write your own in `quartz/styles/custom.scss`. 
+
+> [!note]
+> Some components may provide their own styling as well! For example, `quartz/components/Darkmode.tsx` imports its styles from `quartz/components/styles/darkmode.scss`. If you'd like to customize styling for a specific component, double check the component definition to see how its styles are defined.
+
+When you're ready, see how [[build|build and preview]] Quartz locally.

@@ -2,6 +2,7 @@ import { QuartzTransformerPlugin } from "../types"
 import {
   CanonicalSlug,
   RelativeURL,
+  _stripSlashes,
   canonicalizeServer,
   joinSegments,
   pathToRoot,
@@ -35,7 +36,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
           return (tree, file) => {
             const curSlug = canonicalizeServer(file.data.slug!)
             const transformLink = (target: string): RelativeURL => {
-              const targetSlug = transformInternalLink(target).slice("./".length)
+              const targetSlug = _stripSlashes(transformInternalLink(target).slice(".".length))
               let [targetCanonical, targetAnchor] = splitAnchor(targetSlug)
               if (opts.markdownLinkResolution === "relative") {
                 return targetSlug as RelativeURL

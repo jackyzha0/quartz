@@ -225,7 +225,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               }
 
               // internal link
-              // const url = transformInternalLink(fp + anchor)
               const url = fp + anchor
               return {
                 type: "link",
