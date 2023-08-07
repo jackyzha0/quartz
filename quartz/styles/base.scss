@@ -375,16 +375,29 @@ p {
 }
 
 table {
-  margin: 1rem 0;
-  border: 1px solid var(--gray);
+  margin: 1rem;
   padding: 1.5rem;
   border-collapse: collapse;
+  & > * {
+    line-height: 2rem;
+  }
 }
 
-td,
 th {
+  text-align: left;
+  padding: 0.4rem 1rem;
+  border-bottom: 2px solid var(--gray);
+}
+
+td {
   padding: 0.2rem 1rem;
-  border: 1px solid var(--gray);
+}
+
+tr {
+  border-bottom: 1px solid var(--lightgray);
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 img {
