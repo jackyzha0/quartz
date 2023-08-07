@@ -6,6 +6,6 @@ const addCollapsibleCallouts = () => {
 
     collapsibleCallouts.forEach(el => el.onclick = (event) => {
       event.currentTarget.classList.toggle("callout-collapsed");
-    }));
+    });
   }
 }
