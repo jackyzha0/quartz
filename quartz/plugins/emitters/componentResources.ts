@@ -13,7 +13,7 @@ import { BuildCtx } from "../../ctx"
 import { StaticResources } from "../../resources"
 import { QuartzComponent } from "../../components/types"
 import { googleFontHref, joinStyles } from "../../theme"
-import { transform } from "lightningcss"
+import { Features, transform } from "lightningcss"
 
 type ComponentResources = {
   css: string[]
@@ -161,6 +161,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
             filename: "index.css",
             code: Buffer.from(stylesheet),
             minify: true,
+            include: Features.MediaQueries
           }).code.toString(),
         }),
         emit({

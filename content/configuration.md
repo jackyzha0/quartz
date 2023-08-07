@@ -119,6 +119,6 @@ However, if you'd like to make more involved style changes, you can do this by w
 You can see the base style sheet in `quartz/styles/base.scss` and write your own in `quartz/styles/custom.scss`.
 
 > [!note]
-> Some components may provide their own styling as well! For example, `quartz/components/Darkmode.tsx` imports its styles from `quartz/components/styles/darkmode.scss`. If you'd like to customize styling for a specific component, double check the component definition to see how its styles are defined.
+> Some components may provide their own styling as well! For example, `quartz/components/Darkmode.tsx` imports styles from `quartz/components/styles/darkmode.scss`. If you'd like to customize styling for a specific component, double check the component definition to see how its styles are defined.
 
 When you're ready, see how [[build|build and preview]] Quartz locally.

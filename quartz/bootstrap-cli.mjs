@@ -12,7 +12,6 @@ import { rimraf } from "rimraf"
 import chokidar from "chokidar"
 import prettyBytes from "pretty-bytes"
 import { execSync, spawnSync } from "child_process"
-import { transform as cssTransform } from "lightningcss"
 import http from "http"
 import serveHandler from "serve-handler"
 import { WebSocketServer } from "ws"
@@ -312,14 +311,6 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
         sassPlugin({
           type: "css-text",
           cssImports: true,
-          async transform(css) {
-            const { code } = cssTransform({
-              filename: "style.css",
-              code: Buffer.from(css),
-              minify: true,
-            })
-            return code.toString()
-          },
         }),
         {
           name: "inline-script-loader",
