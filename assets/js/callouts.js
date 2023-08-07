@@ -2,10 +2,10 @@ let isInitialized = false;
 
 const addCollapsibleCallouts = () => {
   console.log(isInitialized);
-  if (isInitialized) {
-    console.log("Collapsible Callouts already added!");
-    return;
-  }
+  // if (isInitialized) {
+  //   console.log("Collapsible Callouts already added!");
+  //   return;
+  // }
 
   const collapsibleCallouts = document.querySelectorAll("blockquote.callout-collapsible");
   if (collapsibleCallouts.length != 0) {
