@@ -21,11 +21,5 @@ export const attachSPARouting = (init, rerender) => {
     router(".singlePage")
     render()
   })
-  
-  // Handle million:navigate events, but avoid re-rendering for anchor links
-  window.addEventListener("million:navigate", (event) => {
-    if (event.detail.target !== "_self") {
-      render();
-    }
-  });
+  window.addEventListener("million:navigate", render);
 }
