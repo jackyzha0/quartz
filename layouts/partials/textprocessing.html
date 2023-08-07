@@ -160,7 +160,7 @@
   {{ $content = $content | replaceRE "blockquote class=callout" "blockquote" }}
   {{ $content = $content | replaceRE `(?s)(<blockquote class=".*?\s?\S+-callout.*?">.*?)<br>(.*?<\/blockquote>)` `${1}</p><p>${2}` }}
 
-  {{ $c_types := findRE `(?s)<blockquote class=".*?\s?(\S+)-callout.*?">.*?<\/blockquote>` $content }}
+  {{ $c_types := matchRE `(?s)<blockquote class=".*?\s?(\S+)-callout.*?">.*?<\/blockquote>` $content 1 }}
   {{ range $c_type := $c_types }}
     {{ $c_type }}
     {{ $icon := "" }}
