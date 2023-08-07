@@ -9,7 +9,7 @@ const addCollapsibleCallouts = () => {
     window.addEventListener('million:navigate', (event) => {
       console.log("Navigating");
       console.log(event.detail.target);
-      if (event.detail.target === "_self") {
+      if (event.detail.path === "_self") {
         onPageNavigation = true;
       }
     });
