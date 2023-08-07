@@ -14,7 +14,7 @@ const addCollapsibleCallouts = () => {
         if ($before == $after) { // in an event the class fails to toggle
           location.reload();
         }
-      });
+      }, { once: true });
     });
   }
 }
