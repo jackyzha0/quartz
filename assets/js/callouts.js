@@ -1,20 +1,23 @@
-let isInitialized = false;
-
 const addCollapsibleCallouts = () => {
-  console.log(isInitialized);
-  // if (isInitialized) {
-  //   console.log("Collapsible Callouts already added!");
-  //   return;
-  // }
-
+  let onPageNavigation = false;
+  console.log("Adding Collapsible Callouts");  
   const collapsibleCallouts = document.querySelectorAll("blockquote.callout-collapsible");
+  
   if (collapsibleCallouts.length != 0) {
-    console.log("Adding Collapsible Callouts");
     console.log(collapsibleCallouts);
-    collapsibleCallouts.forEach(el => el.addEventListener('click', event => {
-      console.log("Adding Collapsible Callouts Event Listener");
-      event.currentTarget.classList.toggle("callout-collapsed");
-    }));
-    isInitialized = true;
+
+    window.addEventListener('million:navigate', (event) => {
+      if (event.detail.target === "_self") {
+        onPageNavigation = true;
+      }
+    });
+
+    console.log(onPageNavigation);
+    if (!onPageNavigation) {
+        collapsibleCallouts.forEach(el => el.addEventListener('click', event => {
+        console.log("Adding Collapsible Callouts Event Listener");
+        event.currentTarget.classList.toggle("callout-collapsed");
+      }));
+    }
   }
 }
