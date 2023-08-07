@@ -11,7 +11,6 @@ const addCollapsibleCallouts = () => {
   if (collapsibleCallouts.length != 0) {
     console.log("Adding Collapsible Callouts");
     collapsibleCallouts.forEach(el => el.addEventListener('click', event => {
-      console.log("register collapsible callout event");
       event.currentTarget.classList.toggle("callout-collapsed");
     }));
     isInitialized = true;
