@@ -37,11 +37,15 @@
 blockquote.callout-collapsible {
   cursor: pointer;
   & .callout-title {
-    & .callout-fold > svg {
-      height: 18px;
-      width: 18px;
-      rotate: 0deg;
-      transition: rotate 0.3s ease-in-out;
+    & .callout-fold {
+      display: flex;
+      align-items: center;
+      & > svg {
+        height: 18px;
+        width: 18px;
+        rotate: 0deg;
+        transition: rotate 0.3s ease-in-out;
+      }
     }
   }
   & .callout-content {
@@ -81,9 +85,13 @@ blockquote[class*="-callout"] {
     display: flex;
     gap: 4px;
     align-items: flex-start;
-    & .callout-icon > svg {
-      height: 1em;
-      width: 1em;
+    & .callout-icon {
+      display: flex;
+      align-items: center;
+      & > svg {
+        height: 1em;
+        width: 1em;
+      }
     }
     & .callout-title-inner {
       font-weight: 600;
