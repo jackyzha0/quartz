@@ -7,6 +7,7 @@ draft: true
 - block links: https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note
 - note/header/block transcludes: https://help.obsidian.md/Linking+notes+and+files/Embedding+files
 - static dead link detection
+- docker support
 
 ## misc
 
