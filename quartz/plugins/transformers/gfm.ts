@@ -33,7 +33,7 @@ export const GitHubFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | 
               behavior: "append",
               content: {
                 type: "text",
-                value: " §",
+                value: " #",
               },
             },
           ],
