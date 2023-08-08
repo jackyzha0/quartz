@@ -163,6 +163,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
             minify: true,
             targets: {
               safari: (15 << 16) | (6 << 8), // 15.6
+              ios_saf: (15 << 16) | (6 << 8), // 15.6
               edge: 115 << 16,
               firefox: 102 << 16,
               chrome: 109 << 16,
