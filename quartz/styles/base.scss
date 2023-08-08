@@ -7,7 +7,7 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
-  overflow-x: none;
+  overflow-x: hidden;
   width: 100vw;
 }
 
@@ -311,10 +311,10 @@ pre {
   border-radius: 5px;
   overflow-x: auto;
   border: 1px solid var(--lightgray);
+  position: relative;
 
   &:has(> code.mermaid) {
     border: none;
-    position: relative;
   }
 
   & > code {

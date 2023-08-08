@@ -23,7 +23,7 @@ import { parseMarkdown } from "./processors/parse"
 import { filterContent } from "./processors/filter"
 import { emitContent } from "./processors/emit"
 import cfg from "../quartz.config"
-import { FilePath, joinSegments, slugifyFilePath } from "./path"
+import { FilePath, ServerSlug, joinSegments, slugifyFilePath } from "./path"
 import chokidar from "chokidar"
 import { ProcessedContent } from "./plugins/vfile"
 import { Argv, BuildCtx } from "./ctx"
@@ -91,6 +91,7 @@ async function startServing(
     contentMap.set(vfile.data.filePath!, content)
   }
 
+  const initialSlugs = ctx.allSlugs
   let timeoutId: ReturnType<typeof setTimeout> | null = null
   let toRebuild: Set<FilePath> = new Set()
   let toRemove: Set<FilePath> = new Set()
@@ -102,20 +103,19 @@ async function startServing(
     }
 
     // dont bother rebuilding for non-content files, just track and refresh
+    fp = toPosixPath(fp)
+    const filePath = joinSegments(argv.directory, fp) as FilePath
     if (path.extname(fp) !== ".md") {
-      fp = toPosixPath(fp)
-      const filePath = joinSegments(argv.directory, fp) as FilePath
       if (action === "add" || action === "change") {
         trackedAssets.add(filePath)
       } else if (action === "delete") {
-        trackedAssets.add(filePath)
+        trackedAssets.delete(filePath)
       }
       clientRefresh()
       return
     }
 
-    fp = toPosixPath(fp)
-    const filePath = joinSegments(argv.directory, fp) as FilePath
+
     if (action === "add" || action === "change") {
       toRebuild.add(filePath)
     } else if (action === "delete") {
@@ -133,10 +133,12 @@ async function startServing(
       try {
         const filesToRebuild = [...toRebuild].filter((fp) => !toRemove.has(fp))
 
-        ctx.allSlugs = [...new Set([...contentMap.keys(), ...toRebuild, ...trackedAssets])]
-          .filter((fp) => !toRemove.has(fp))
-          .map((fp) => slugifyFilePath(path.posix.relative(argv.directory, fp) as FilePath))
+        const trackedSlugs =
+          [...new Set([...contentMap.keys(), ...toRebuild, ...trackedAssets])]
+            .filter((fp) => !toRemove.has(fp))
+            .map((fp) => slugifyFilePath(path.posix.relative(argv.directory, fp) as FilePath))
 
+        ctx.allSlugs = [...new Set([...initialSlugs, ...trackedSlugs])]
         const parsedContent = await parseMarkdown(ctx, filesToRebuild)
         for (const content of parsedContent) {
           const [_tree, vfile] = content
