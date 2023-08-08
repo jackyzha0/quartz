@@ -1,0 +1,40 @@
+{
+    "name": "@types/d3-polygon",
+    "version": "3.0.0",
+    "description": "TypeScript definitions for D3JS d3-polygon module",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/d3-polygon",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Tom Wanzek",
+            "url": "https://github.com/tomwanzek",
+            "githubUsername": "tomwanzek"
+        },
+        {
+            "name": "Alex Ford",
+            "url": "https://github.com/gustavderdrache",
+            "githubUsername": "gustavderdrache"
+        },
+        {
+            "name": "Boris Yankov",
+            "url": "https://github.com/borisyankov",
+            "githubUsername": "borisyankov"
+        },
+        {
+            "name": "Nathan Bierema",
+            "url": "https://github.com/Methuselah96",
+            "githubUsername": "Methuselah96"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/d3-polygon"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "typesPublisherContentHash": "3d984ac0de983da631553c91a45708daac002aa029f058c14a3239e0c6929a02",
+    "typeScriptVersion": "3.6"
+}

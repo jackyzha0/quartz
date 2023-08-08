@@ -1,0 +1,37 @@
+{
+    "name": "@types/d3-fetch",
+    "version": "3.0.2",
+    "description": "TypeScript definitions for d3-fetch",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/d3-fetch",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Hugues Stefanski",
+            "url": "https://github.com/ledragon",
+            "githubUsername": "ledragon"
+        },
+        {
+            "name": "denisname",
+            "url": "https://github.com/denisname",
+            "githubUsername": "denisname"
+        },
+        {
+            "name": "Nathan Bierema",
+            "url": "https://github.com/Methuselah96",
+            "githubUsername": "Methuselah96"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/d3-fetch"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/d3-dsv": "*"
+    },
+    "typesPublisherContentHash": "ff639474b6b0681e130c5bccfbfb971e576c858733644ebe9ab55bedf406e1e7",
+    "typeScriptVersion": "4.2"
+}

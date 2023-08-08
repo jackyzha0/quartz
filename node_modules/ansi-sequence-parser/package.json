@@ -1,0 +1,43 @@
+{
+  "name": "ansi-sequence-parser",
+  "description": "A parser for ANSI escape sequences",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blake-mealey/ansi-sequence-parser.git"
+  },
+  "homepage": "https://github.com/blake-mealey/ansi-sequence-parser#readme",
+  "version": "1.1.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "keywords": [
+    "ansi",
+    "sequences",
+    "parser"
+  ],
+  "author": "blake-mealey",
+  "license": "MIT",
+  "devDependencies": {
+    "@changesets/cli": "^2.26.0",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4",
+    "vitest": "^0.28.3"
+  },
+  "packageManager": "pnpm@7.18.2",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "test": "vitest",
+    "changeset": "changeset"
+  }
+}

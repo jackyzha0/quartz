@@ -1,0 +1,42 @@
+{
+    "name": "@types/d3-brush",
+    "version": "3.0.2",
+    "description": "TypeScript definitions for D3JS d3-brush module",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/d3-brush",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Tom Wanzek",
+            "url": "https://github.com/tomwanzek",
+            "githubUsername": "tomwanzek"
+        },
+        {
+            "name": "Alex Ford",
+            "url": "https://github.com/gustavderdrache",
+            "githubUsername": "gustavderdrache"
+        },
+        {
+            "name": "Boris Yankov",
+            "url": "https://github.com/borisyankov",
+            "githubUsername": "borisyankov"
+        },
+        {
+            "name": "Nathan Bierema",
+            "url": "https://github.com/Methuselah96",
+            "githubUsername": "Methuselah96"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/d3-brush"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/d3-selection": "*"
+    },
+    "typesPublisherContentHash": "4673de6b4a9d807a80ce6e67af454974c0d204123cb700467ff49ba6352d3ad3",
+    "typeScriptVersion": "4.2"
+}

@@ -1,0 +1,48 @@
+{
+    "name": "@types/d3-zoom",
+    "version": "3.0.3",
+    "description": "TypeScript definitions for d3JS d3-zoom module",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/d3-zoom",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Tom Wanzek",
+            "url": "https://github.com/tomwanzek",
+            "githubUsername": "tomwanzek"
+        },
+        {
+            "name": "Alex Ford",
+            "url": "https://github.com/gustavderdrache",
+            "githubUsername": "gustavderdrache"
+        },
+        {
+            "name": "Boris Yankov",
+            "url": "https://github.com/borisyankov",
+            "githubUsername": "borisyankov"
+        },
+        {
+            "name": "denisname",
+            "url": "https://github.com/denisname",
+            "githubUsername": "denisname"
+        },
+        {
+            "name": "Nathan Bierema",
+            "url": "https://github.com/Methuselah96",
+            "githubUsername": "Methuselah96"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/d3-zoom"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/d3-interpolate": "*",
+        "@types/d3-selection": "*"
+    },
+    "typesPublisherContentHash": "e644f4cfd49c14f172e5f2126a8116b7fae06f266aea4293fe5b3c44b0e07d02",
+    "typeScriptVersion": "4.3"
+}

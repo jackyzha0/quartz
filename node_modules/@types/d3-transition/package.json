@@ -1,0 +1,47 @@
+{
+    "name": "@types/d3-transition",
+    "version": "3.0.3",
+    "description": "TypeScript definitions for D3JS d3-transition module",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/d3-transition",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Tom Wanzek",
+            "url": "https://github.com/tomwanzek",
+            "githubUsername": "tomwanzek"
+        },
+        {
+            "name": "Alex Ford",
+            "url": "https://github.com/gustavderdrache",
+            "githubUsername": "gustavderdrache"
+        },
+        {
+            "name": "Boris Yankov",
+            "url": "https://github.com/borisyankov",
+            "githubUsername": "borisyankov"
+        },
+        {
+            "name": "Robert Moura",
+            "url": "https://github.com/robertmoura",
+            "githubUsername": "robertmoura"
+        },
+        {
+            "name": "Nathan Bierema",
+            "url": "https://github.com/Methuselah96",
+            "githubUsername": "Methuselah96"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/d3-transition"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/d3-selection": "*"
+    },
+    "typesPublisherContentHash": "a35a7603cbf03344d97e3163f168c9cfb1f03e6f9355774084414819aceb7496",
+    "typeScriptVersion": "4.2"
+}

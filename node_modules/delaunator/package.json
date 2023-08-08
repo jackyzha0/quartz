@@ -1,0 +1,58 @@
+{
+  "name": "delaunator",
+  "version": "5.0.0",
+  "description": "An incredibly fast JavaScript library for Delaunay triangulation of 2D points",
+  "main": "index.js",
+  "module": "index.js",
+  "type": "module",
+  "jsdelivr": "delaunator.min.js",
+  "unpkg": "delaunator.min.js",
+  "sideEffects": false,
+  "dependencies": {
+    "robust-predicates": "^3.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "c8": "^7.6.0",
+    "eslint": "^7.22.0",
+    "eslint-config-mourner": "^3.0.0",
+    "rollup": "^2.42.4",
+    "rollup-plugin-terser": "^7.0.2",
+    "tape": "^5.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mapbox/delaunator.git"
+  },
+  "scripts": {
+    "lint": "eslint index.js test/test.js bench.js rollup.config.js docs/diagrams.js",
+    "pretest": "npm run lint",
+    "test": "node test/test.js",
+    "cov": "c8 node test/test.js && c8 report -r html",
+    "bench": "node bench.js",
+    "build": "rollup -c",
+    "start": "rollup -cw",
+    "prepublishOnly": "npm test && npm run build"
+  },
+  "files": [
+    "index.js",
+    "delaunator.js",
+    "delaunator.min.js"
+  ],
+  "eslintConfig": {
+    "extends": "mourner",
+    "rules": {
+      "no-sequences": 0
+    },
+    "parserOptions": {
+      "ecmaVersion": 2020
+    }
+  },
+  "keywords": [
+    "delaunay triangulation",
+    "computational geometry",
+    "algorithms"
+  ],
+  "author": "Vladimir Agafonkin",
+  "license": "ISC"
+}

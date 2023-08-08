@@ -1,0 +1,16 @@
+# Installation
+> `npm install --save @types/serve-handler`
+
+# Summary
+This package contains type definitions for serve-handler (https://github.com/zeit/serve-handler#readme).
+
+# Details
+Files were exported from https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/serve-handler.
+
+### Additional Details
+ * Last updated: Tue, 06 Jul 2021 16:34:37 GMT
+ * Dependencies: [@types/node](https://npmjs.com/package/@types/node)
+ * Global values: none
+
+# Credits
+These definitions were written by [simonhaenisch](https://github.com/simonhaenisch).

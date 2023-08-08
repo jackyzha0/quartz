@@ -1,0 +1,38 @@
+// @flow
+
+export interface Targets {
+  android?: number;
+  chrome?: number;
+  edge?: number;
+  firefox?: number;
+  ie?: number;
+  ios_saf?: number;
+  opera?: number;
+  safari?: number;
+  samsung?: number;
+}
+declare export var Features: {|
+  +Nesting: 1, // 1
+  +NotSelectorList: 2, // 2
+  +DirSelector: 4, // 4
+  +LangSelectorList: 8, // 8
+  +IsSelector: 16, // 16
+  +TextDecorationThicknessPercent: 32, // 32
+  +MediaIntervalSyntax: 64, // 64
+  +MediaRangeSyntax: 128, // 128
+  +CustomMediaQueries: 256, // 256
+  +ClampFunction: 512, // 512
+  +ColorFunction: 1024, // 1024
+  +OklabColors: 2048, // 2048
+  +LabColors: 4096, // 4096
+  +P3Colors: 8192, // 8192
+  +HexAlphaColors: 16384, // 16384
+  +SpaceSeparatedColorNotation: 32768, // 32768
+  +FontFamilySystemUi: 65536, // 65536
+  +DoublePositionGradients: 131072, // 131072
+  +VendorPrefixes: 262144, // 262144
+  +LogicalProperties: 524288, // 524288
+  +Selectors: 31, // 31
+  +MediaQueries: 448, // 448
+  +Colors: 64512, // 64512
+|};

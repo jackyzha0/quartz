@@ -1,0 +1,23 @@
+type OverflowAncestors = Array<Element | Window | VisualViewport>;
+export declare function getNodeName(node: Node | Window): string;
+export declare function getWindow(node: any): Window;
+export declare function getDocumentElement(node: Node | Window): HTMLElement;
+export declare function isNode(value: unknown): value is Node;
+export declare function isElement(value: unknown): value is Element;
+export declare function isHTMLElement(value: unknown): value is HTMLElement;
+export declare function isShadowRoot(value: unknown): value is ShadowRoot;
+export declare function isOverflowElement(element: Element): boolean;
+export declare function isTableElement(element: Element): boolean;
+export declare function isContainingBlock(element: Element): boolean;
+export declare function getContainingBlock(element: Element): HTMLElement | null;
+export declare function isWebKit(): boolean;
+export declare function isLastTraversableNode(node: Node): boolean;
+export declare function getComputedStyle(element: Element): CSSStyleDeclaration;
+export declare function getNodeScroll(element: Element | Window): {
+    scrollLeft: number;
+    scrollTop: number;
+};
+export declare function getParentNode(node: Node): Node;
+export declare function getNearestOverflowAncestor(node: Node): HTMLElement;
+export declare function getOverflowAncestors(node: Node, list?: OverflowAncestors): OverflowAncestors;
+export {};

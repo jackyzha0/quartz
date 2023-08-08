@@ -1,0 +1,32 @@
+{
+  "name": "cli-spinner",
+  "version": "0.2.10",
+  "author": "Pasquale Boemio <boemianrapsodi@gmail.com>",
+  "contributors": [
+    {
+      "name": "Bryce Kahle"
+    },
+    {
+      "name": "Brian Hirt"
+    },
+    {
+      "name": "Nathan Bleigh"
+    },
+    {
+      "name": "Kendrick Taylor"
+    }
+  ],
+  "description": "A simple spinner",
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/helloIAmPau/node-spinner.git"
+  },
+  "keywords": [
+    "cli"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10"
+  }
+}

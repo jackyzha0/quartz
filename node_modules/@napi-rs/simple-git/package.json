@@ -1,0 +1,61 @@
+{
+  "name": "@napi-rs/simple-git",
+  "version": "0.1.8",
+  "main": "index.js",
+  "types": "./index.d.ts",
+  "napi": {
+    "name": "simple-git",
+    "triples": {
+      "additional": [
+        "aarch64-apple-darwin",
+        "aarch64-linux-android",
+        "aarch64-unknown-linux-gnu",
+        "aarch64-unknown-linux-musl",
+        "aarch64-pc-windows-msvc",
+        "armv7-unknown-linux-gnueabihf",
+        "x86_64-unknown-linux-musl",
+        "armv7-linux-androideabi"
+      ]
+    }
+  },
+  "ava": {
+    "timeout": "3min",
+    "workerThreads": false
+  },
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@napi-rs/cli": "^2.8.0",
+    "@types/node": "^17.0.31",
+    "ava": "^4.2.0",
+    "pretty-ms": "^7.0.1"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release",
+    "build:debug": "napi build --platform",
+    "prepublishOnly": "napi prepublish -t npm",
+    "test": "ava",
+    "version": "napi version"
+  },
+  "packageManager": "yarn@3.2.0",
+  "optionalDependencies": {
+    "@napi-rs/simple-git-win32-x64-msvc": "0.1.8",
+    "@napi-rs/simple-git-darwin-x64": "0.1.8",
+    "@napi-rs/simple-git-linux-x64-gnu": "0.1.8",
+    "@napi-rs/simple-git-darwin-arm64": "0.1.8",
+    "@napi-rs/simple-git-android-arm64": "0.1.8",
+    "@napi-rs/simple-git-linux-arm64-gnu": "0.1.8",
+    "@napi-rs/simple-git-linux-arm64-musl": "0.1.8",
+    "@napi-rs/simple-git-win32-arm64-msvc": "0.1.8",
+    "@napi-rs/simple-git-linux-arm-gnueabihf": "0.1.8",
+    "@napi-rs/simple-git-linux-x64-musl": "0.1.8",
+    "@napi-rs/simple-git-android-arm-eabi": "0.1.8"
+  }
+}
