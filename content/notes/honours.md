@@ -6,10 +6,10 @@ project-name:
 ---
 
 ## Meetings
-[[hons-meet-110723]]
-[[arno-meet-170723]]
+[[hons-meet-1107]]
+[[hons-meet-0808]]
+[[arno-meet-1707]]
 
-[[Hours]]
 ## Notes
 [[hons-projects-choice]]
 [[NeRFs]]

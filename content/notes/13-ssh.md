@@ -3,8 +3,8 @@ title: "13-ssh"
 tags: 
 - lecture
 - cosc301
-sr-due: 2023-08-08
-sr-interval: 8
+sr-due: 2023-08-28
+sr-interval: 20
 sr-ease: 250
 ---
 
