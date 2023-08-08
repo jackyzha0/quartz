@@ -21,7 +21,7 @@ However, if you'd like to publish your site to the world, you need a way to host
 
 Press "Save and deploy" and Cloudflare should have a deployed version of your site in about a minute. Then, every time you sync your Quartz changes to GitHub, your site should be updated.
 
-To add a custom domain, check our [Cloudflare's documentation](https://developers.cloudflare.com/pages/platform/custom-domains/).
+To add a custom domain, check out [Cloudflare's documentation](https://developers.cloudflare.com/pages/platform/custom-domains/).
 
 ## GitHub Pages
 

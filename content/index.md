@@ -25,13 +25,13 @@ This will guide you through initializing your Quartz with content. Once you've d
 
 ## 🔧 Features
 
-- [[full-text search|Full-text search]], [[graph view]], [[backlinks]], [[Latex]], [[syntax highlighting]], [[popover previews]], and many more right out of the box
+- [[full-text search|Full-text search]], [[graph view]], [[wikilinks]], [[backlinks]], [[Latex]], [[syntax highlighting]], [[popover previews]], and many more right out of the box
 - Hot-reload for both configuration and content
 - Simple JSX [[creating components|layouts and page components]]
 - [[SPA Routing|Ridiculously fast page loads]] and tiny bundle sizes
 - Fully-customizable parsing, filtering, and page generation through [[making plugins|plugins]]
 
-For a comprehensive list of features, visit the [features page](/features). You can read more the _why_ behind these features on the [[philosophy]] page.
+For a comprehensive list of features, visit the [features page](/features). You can read more the _why_ behind these features on the [[philosophy]] page and a technical overview on the [[architecture]] page.
 
 ### 🚧 Troubleshooting
 
