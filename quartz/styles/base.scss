@@ -42,6 +42,7 @@ ul,
   hyphens: auto;
 }
 
+
 .math {
   font-size: 1.1rem;
   &.math-display {
@@ -107,6 +108,10 @@ a {
     & li > * {
       margin-top: 0;
       margin-bottom: 0;
+    }
+
+    p > strong {
+      color: var(--dark);
     }
   }
 
