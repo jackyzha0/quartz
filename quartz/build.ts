@@ -115,7 +115,6 @@ async function startServing(
       return
     }
 
-
     if (action === "add" || action === "change") {
       toRebuild.add(filePath)
     } else if (action === "delete") {
@@ -133,10 +132,9 @@ async function startServing(
       try {
         const filesToRebuild = [...toRebuild].filter((fp) => !toRemove.has(fp))
 
-        const trackedSlugs =
-          [...new Set([...contentMap.keys(), ...toRebuild, ...trackedAssets])]
-            .filter((fp) => !toRemove.has(fp))
-            .map((fp) => slugifyFilePath(path.posix.relative(argv.directory, fp) as FilePath))
+        const trackedSlugs = [...new Set([...contentMap.keys(), ...toRebuild, ...trackedAssets])]
+          .filter((fp) => !toRemove.has(fp))
+          .map((fp) => slugifyFilePath(path.posix.relative(argv.directory, fp) as FilePath))
 
         ctx.allSlugs = [...new Set([...initialSlugs, ...trackedSlugs])]
         const parsedContent = await parseMarkdown(ctx, filesToRebuild)
