@@ -1,8 +1,16 @@
 .DS_Store
+.gitignore
+node_modules
 public
+<<<<<<< HEAD
 .resources
 .idea
 content/.obsidian
 assets/indices/linkIndex.json
 assets/indices/contentIndex.json
 linkmap
+=======
+tsconfig.tsbuildinfo
+.obsidian
+.quartz-cache
+>>>>>>> d02af6a8ae4c3bea4c94ad63c118d517318146fe

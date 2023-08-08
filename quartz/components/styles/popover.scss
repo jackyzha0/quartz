@@ -1,0 +1,59 @@
+@use "../../styles/variables.scss" as *;
+
+@keyframes dropin {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  1% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.popover {
+  z-index: 999;
+  position: absolute;
+  overflow: visible;
+  padding: 1rem;
+
+  & > .popover-inner {
+    position: relative;
+    width: 30rem;
+    max-height: 20rem;
+    padding: 0 1rem 1rem 1rem;
+    font-weight: initial;
+    line-height: normal;
+    font-size: initial;
+    font-family: var(--bodyFont);
+    border: 1px solid var(--lightgray);
+    background-color: var(--light);
+    border-radius: 5px;
+    box-shadow: 6px 6px 36px 0 rgba(0, 0, 0, 0.25);
+    overflow: auto;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+  @media all and (max-width: $mobileBreakpoint) {
+    display: none !important;
+  }
+}
+
+a:hover .popover,
+.popover:hover {
+  animation: dropin 0.3s ease;
+  animation-fill-mode: forwards;
+  animation-delay: 0.2s;
+}

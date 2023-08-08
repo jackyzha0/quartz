@@ -1,0 +1,4 @@
+public
+node_modules
+.quartz-cache
+**/*.md

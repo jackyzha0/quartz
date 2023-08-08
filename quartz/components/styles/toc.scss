@@ -1,0 +1,59 @@
+button#toc {
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+
+  & h3 {
+    font-size: 1rem;
+    display: inline-block;
+    margin: 0;
+  }
+
+  & .fold {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+    opacity: 0.8;
+  }
+
+  &.collapsed .fold {
+    transform: rotateZ(-90deg);
+  }
+}
+
+#toc-content {
+  list-style: none;
+  overflow: hidden;
+  max-height: none;
+  transition: max-height 0.5s ease;
+
+  &.collapsed > .overflow::after {
+    opacity: 0;
+  }
+
+  & ul {
+    list-style: none;
+    margin: 0.5rem 0;
+    padding: 0;
+    & > li > a {
+      color: var(--dark);
+      opacity: 0.35;
+      transition:
+        0.5s ease opacity,
+        0.3s ease color;
+      &.in-view {
+        opacity: 0.75;
+      }
+    }
+  }
+
+  @for $i from 0 through 6 {
+    & .depth-#{$i} {
+      padding-left: calc(1rem * #{$i});
+    }
+  }
+}

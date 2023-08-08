@@ -1,0 +1,40 @@
+.darkmode {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+
+  & > .toggle {
+    display: none;
+    box-sizing: border-box;
+  }
+
+  & svg {
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: calc(50% - 10px);
+    fill: var(--darkgray);
+    transition: opacity 0.1s ease;
+  }
+}
+
+:root[saved-theme="dark"] .toggle ~ label {
+  & > #dayIcon {
+    opacity: 0;
+  }
+  & > #nightIcon {
+    opacity: 1;
+  }
+}
+
+:root .toggle ~ label {
+  & > #dayIcon {
+    opacity: 1;
+  }
+  & > #nightIcon {
+    opacity: 0;
+  }
+}

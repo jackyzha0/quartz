@@ -1,0 +1,140 @@
+@use "../../styles/variables.scss" as *;
+
+.search {
+  min-width: fit-content;
+  max-width: 14rem;
+  flex-grow: 0.3;
+
+  & > #search-icon {
+    background-color: var(--lightgray);
+    border-radius: 4px;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    white-space: nowrap;
+
+    & > div {
+      flex-grow: 1;
+    }
+
+    & > p {
+      display: inline;
+      padding: 0 1rem;
+    }
+
+    & svg {
+      cursor: pointer;
+      width: 18px;
+      min-width: 18px;
+      margin: 0 0.5rem;
+
+      .search-path {
+        stroke: var(--darkgray);
+        stroke-width: 2px;
+        transition: stroke 0.5s ease;
+      }
+    }
+  }
+
+  & > #search-container {
+    position: fixed;
+    contain: layout;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    display: none;
+    backdrop-filter: blur(4px);
+
+    &.active {
+      display: inline-block;
+    }
+
+    & > #search-space {
+      width: 50%;
+      margin-top: 15vh;
+      margin-left: auto;
+      margin-right: auto;
+
+      @media all and (max-width: $fullPageWidth) {
+        width: 90%;
+      }
+
+      & > * {
+        width: 100%;
+        border-radius: 5px;
+        background: var(--light);
+        box-shadow:
+          0 14px 50px rgba(27, 33, 48, 0.12),
+          0 10px 30px rgba(27, 33, 48, 0.16);
+        margin-bottom: 2em;
+      }
+
+      & > input {
+        box-sizing: border-box;
+        padding: 0.5em 1em;
+        font-family: var(--bodyFont);
+        color: var(--dark);
+        font-size: 1.1em;
+        border: 1px solid var(--lightgray);
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      & > #results-container {
+        & .result-card {
+          padding: 1em;
+          cursor: pointer;
+          transition: background 0.2s ease;
+          border: 1px solid var(--lightgray);
+          border-bottom: none;
+          width: 100%;
+
+          // normalize button props
+          font-family: inherit;
+          font-size: 100%;
+          line-height: 1.15;
+          margin: 0;
+          text-transform: none;
+          text-align: left;
+          background: var(--light);
+          outline: none;
+
+          & .highlight {
+            color: var(--secondary);
+            font-weight: 700;
+          }
+
+          &:hover,
+          &:focus {
+            background: var(--lightgray);
+          }
+
+          &:first-of-type {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+          }
+
+          &:last-of-type {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-bottom: 1px solid var(--lightgray);
+          }
+
+          & > h3 {
+            margin: 0;
+          }
+
+          & > p {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
