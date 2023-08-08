@@ -11,7 +11,7 @@ It would be silly to type these all as `string` and call it a day as it's pretty
 Luckily, we can mimic nominal typing using [brands](https://www.typescriptlang.org/play#example/nominal-typing).
 
 ```typescript
-// instead of 
+// instead of
 type ClientSlug = string
 
 // we do
@@ -21,7 +21,7 @@ type ClientSlug = string & { __brand: "client" }
 const slug: ClientSlug = "some random slug"
 ```
 
-While this prevents most typing mistakes *within* our nominal typing system (e.g. mistaking a server slug for a client slug), it doesn't prevent us from *accidentally* mistaking a string for a client slug when we forcibly cast it.
+While this prevents most typing mistakes _within_ our nominal typing system (e.g. mistaking a server slug for a client slug), it doesn't prevent us from _accidentally_ mistaking a string for a client slug when we forcibly cast it.
 
 Thus, we still need to be careful when casting from a string to one of these nominal types in the 'entrypoints', illustrated with hexagon shapes in the diagram below.
 
