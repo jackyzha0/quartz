@@ -5,7 +5,7 @@ import FolderContent from "./pages/FolderContent"
 import Darkmode from "./Darkmode"
 import Head from "./Head"
 import PageTitle from "./PageTitle"
-import ReadingTime from "./ReadingTime"
+import ContentMeta from "./ContentMeta"
 import Spacer from "./Spacer"
 import TableOfContents from "./TableOfContents"
 import TagList from "./TagList"
@@ -24,7 +24,7 @@ export {
   Darkmode,
   Head,
   PageTitle,
-  ReadingTime,
+  ContentMeta,
   Spacer,
   TableOfContents,
   TagList,
