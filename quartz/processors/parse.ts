@@ -112,7 +112,8 @@ export function createFileParser(ctx: BuildCtx, fps: FilePath[]) {
   }
 }
 
-const clamp = (num: number, min: number, max: number) => Math.min(Math.max(Math.round(num), min), max);
+const clamp = (num: number, min: number, max: number) =>
+  Math.min(Math.max(Math.round(num), min), max)
 export async function parseMarkdown(ctx: BuildCtx, fps: FilePath[]): Promise<ProcessedContent[]> {
   const { argv } = ctx
   const perf = new PerfTimer()

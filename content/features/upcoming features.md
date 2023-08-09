@@ -3,24 +3,25 @@ draft: true
 ---
 
 ## todo
+
 - docs for making plugins
 - nested tags showing duplicate
 - back button with anchors / popovers + spa is broken
 - search should be fast for large repos
 - debounce cfg rebuild on large repos
-	- investigate content rebuild triggering multiple times even when debounced, causing an esbuild deadlock
+  - investigate content rebuild triggering multiple times even when debounced, causing an esbuild deadlock
 - dereference symlink for npx quartz sync
 - test/fix with subpath
 - fix docs with deploy from github
 - write feature docs
-    - callouts
-    - folder and tag listings
-    - mermaid diagrams
-    - rss
-    - spa-routing
-    - table of contents
-    - darkmode
-    - frontmatter parsing
+  - callouts
+  - folder and tag listings
+  - mermaid diagrams
+  - rss
+  - spa-routing
+  - table of contents
+  - darkmode
+  - frontmatter parsing
 
 ## high priority backlog
 
