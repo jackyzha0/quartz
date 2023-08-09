@@ -86,8 +86,8 @@ const BuildArgv = {
   },
   concurrency: {
     number: true,
-    describe: "how many threads to use to parse notes"
-  }
+    describe: "how many threads to use to parse notes",
+  },
 }
 
 function escapePath(fp) {

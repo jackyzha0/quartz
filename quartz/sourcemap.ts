@@ -16,4 +16,3 @@ export const options: sourceMapSupport.Options = {
     }
   },
 }
-

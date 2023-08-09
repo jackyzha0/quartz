@@ -11,10 +11,10 @@ export function trace(msg: string, err: Error) {
   lines.push("")
   lines.push(
     "\n" +
-    chalk.bgRed.black.bold(" ERROR ") +
-    "\n" +
-    chalk.red(` ${msg}`) +
-    (err.message.length > 0 ? `: ${err.message}` : ""),
+      chalk.bgRed.black.bold(" ERROR ") +
+      "\n" +
+      chalk.red(` ${msg}`) +
+      (err.message.length > 0 ? `: ${err.message}` : ""),
   )
 
   if (!stack) {
