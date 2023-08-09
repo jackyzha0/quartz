@@ -140,17 +140,16 @@ export default (() => {
   `
   return YourComponent
 }) satisfies QuartzComponentConstructor
-
 ```
 
 > [!hint]
 > For those coming from React, Quartz components are different from React components in that it only uses JSX for templating and layout. Hooks like `useEffect`, `useState`, etc. are not rendered and other properties that accept functions like `onClick` handlers will not work. Instead, do it using a regular JS script that modifies the DOM element directly.
 
-As the names suggest, the `.beforeDOMLoaded` scripts are executed *before* the page is done loading so it doesn't have access to any elements on the page. This is mostly used to prefetch any critical data.
+As the names suggest, the `.beforeDOMLoaded` scripts are executed _before_ the page is done loading so it doesn't have access to any elements on the page. This is mostly used to prefetch any critical data.
 
 The `.afterDOMLoaded` script executes once the page has been completely loaded. This is a good place to setup anything that should last for the duration of a site visit (e.g. getting something saved from local storage).
 
-If you need to create an `afterDOMLoaded` script that depends on *page specific* elements that may change when navigating to a new page, you can listen for the `"nav"` event that gets fired whenever a page loads (which may happen on navigation if [[SPA Routing]] is enabled).
+If you need to create an `afterDOMLoaded` script that depends on _page specific_ elements that may change when navigating to a new page, you can listen for the `"nav"` event that gets fired whenever a page loads (which may happen on navigation if [[SPA Routing]] is enabled).
 
 ```ts
 document.addEventListener("nav", () => {
@@ -163,7 +162,9 @@ document.addEventListener("nav", () => {
 ```
 
 It is best practice to also unmount any existing event handlers to prevent memory leaks.
+
 #### Importing Code
+
 Of course, it isn't always practical (nor desired!) to write your code as a string literal in the component.
 
 Quartz supports importing component code through `.inline.ts` files.
@@ -181,20 +182,21 @@ export default (() => {
   YourComponent.afterDOM = script
   return YourComponent
 }) satisfies QuartzComponentConstructor
-
 ```
 
 ```ts title="quartz/components/scripts/graph.inline.ts"
 // any imports here are bundled for the browser
 import * as d3 from "d3"
 
-document.getElementById('btn').onclick = () => {
-  alert('button clicked!')
+document.getElementById("btn").onclick = () => {
+  alert("button clicked!")
 }
 ```
 
 Additionally, like what is shown in the example above, you can import packages in `.inline.ts` files. This will be bundled by Quartz and included in the actual script.
-### Using a Component 
+
+### Using a Component
+
 After creating your custom component, re-export it in `quartz/components/index.ts`:
 
 ```ts title="quartz/components/index.ts" {4,10}
@@ -203,12 +205,7 @@ import Content from "./pages/Content"
 import Darkmode from "./Darkmode"
 import YourComponent from "./YourComponent"
 
-export {
-  ArticleTitle,
-  Content,
-  Darkmode,
-  YourComponent
-}
+export { ArticleTitle, Content, Darkmode, YourComponent }
 ```
 
 Then, you can use it like any other component in `quartz.layout.ts` via `Component.YourComponent()`. See the [[configuration#Layout|layout]] section for more details.
@@ -220,10 +217,12 @@ import YourComponent from "./YourComponent"
 
 export default (() => {
   function AnotherComponent(props: QuartzComponentProps) {
-    return <div>
-	    <p>It's nested!</p>
-	    <YourComponent {...props} />
-    </div>
+    return (
+      <div>
+        <p>It's nested!</p>
+        <YourComponent {...props} />
+      </div>
+    )
   }
 
   return AnotherComponent

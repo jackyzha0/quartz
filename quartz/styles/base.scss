@@ -269,24 +269,28 @@ h6 {
 // typography improvements
 h1 {
   font-size: 1.75rem;
-  margin-top: 2.75rem;
+  margin-top: 2.25rem;
+  margin-bottom: 1rem;
 }
 
 h2 {
   font-size: 1.4rem;
-  margin-top: 2.4rem;
+  margin-top: 1.9rem;
+  margin-bottom: 1rem;
 }
 
 h3 {
   font-size: 1.12rem;
-  margin-top: 2.12rem;
+  margin-top: 1.62rem;
+  margin-bottom: 1rem;
 }
 
 h4,
 h5,
 h6 {
   font-size: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 div[data-rehype-pretty-code-fragment] {
