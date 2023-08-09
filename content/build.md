@@ -24,3 +24,4 @@ Once you're happy with it, let's see how to [[hosting|deploy Quartz to the web]]
 > - `-o` or `--output`: the output folder. This is normally just `public`
 > - `--serve`: run a local hot-reloading server to preview your Quartz
 > - `--port`: what port to run the local preview server on
+> - `--concurrency`: how many threads to use to parse notes

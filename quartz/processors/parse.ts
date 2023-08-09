@@ -56,6 +56,8 @@ async function transpileWorkerScript() {
     platform: "node",
     format: "esm",
     packages: "external",
+    sourcemap: true,
+    sourcesContent: false,
     plugins: [
       {
         name: "css-and-scripts-as-text",
@@ -116,7 +118,7 @@ export async function parseMarkdown(ctx: BuildCtx, fps: FilePath[]): Promise<Pro
   const log = new QuartzLogger(argv.verbose)
 
   const CHUNK_SIZE = 128
-  let concurrency = fps.length < CHUNK_SIZE ? 1 : os.availableParallelism()
+  let concurrency = ctx.argv.concurrency ?? (fps.length < CHUNK_SIZE ? 1 : os.availableParallelism())
 
   let res: ProcessedContent[] = []
   log.start(`Parsing input files using ${concurrency} threads`)
@@ -142,7 +144,11 @@ export async function parseMarkdown(ctx: BuildCtx, fps: FilePath[]): Promise<Pro
       childPromises.push(pool.exec("parseFiles", [argv, chunk, ctx.allSlugs]))
     }
 
-    const results: ProcessedContent[][] = await WorkerPromise.all(childPromises)
+    const results: ProcessedContent[][] = await WorkerPromise.all(childPromises).catch((err) => {
+      const errString = err.toString().slice("Error:".length)
+      console.error(errString)
+      process.exit(1)
+    })
     res = results.flat()
     await pool.terminate()
   }

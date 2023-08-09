@@ -84,6 +84,10 @@ const BuildArgv = {
     default: false,
     describe: "show detailed bundle information",
   },
+  concurrency: {
+    number: true,
+    describe: "how many threads to use to parse notes"
+  }
 }
 
 function escapePath(fp) {
