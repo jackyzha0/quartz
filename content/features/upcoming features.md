@@ -2,14 +2,34 @@
 draft: true
 ---
 
-## high priority
+## todo
+- docs for making plugins
+- nested tags showing duplicate
+- back button with anchors / popovers + spa is broken
+- search should be fast for large repos
+- debounce cfg rebuild on large repos
+	- investigate content rebuild triggering multiple times even when debounced, causing an esbuild deadlock
+- dereference symlink for npx quartz sync
+- test/fix with subpath
+- fix docs with deploy from github
+- write feature docs
+    - callouts
+    - folder and tag listings
+    - mermaid diagrams
+    - rss
+    - spa-routing
+    - table of contents
+    - darkmode
+    - frontmatter parsing
+
+## high priority backlog
 
 - block links: https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note
 - note/header/block transcludes: https://help.obsidian.md/Linking+notes+and+files/Embedding+files
 - static dead link detection
 - docker support
 
-## misc
+## misc backlog
 
 - breadcrumbs component
 - filetree component
