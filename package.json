@@ -14,7 +14,8 @@
   "scripts": {
     "check": "tsc --noEmit && npx prettier . --check",
     "format": "npx prettier . --write",
-    "test": "tsx ./quartz/path.test.ts"
+    "test": "tsx ./quartz/path.test.ts",
+    "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1"
   },
   "keywords": [
     "site generator",
