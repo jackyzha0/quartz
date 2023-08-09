@@ -221,7 +221,7 @@ function _hasFileExtension(s: string): boolean {
 }
 
 function _getFileExtension(s: string): string | undefined {
-  return s.match(/\.[A-Za-z]+$/)?.[0]
+  return s.match(/\.[A-Za-z0-9]+$/)?.[0]
 }
 
 function _isRelativeSegment(s: string): boolean {

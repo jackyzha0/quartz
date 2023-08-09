@@ -145,6 +145,7 @@ describe("transforms", () => {
         ["/content/index.md", "content/index"],
         ["content/cool.png", "content/cool"],
         ["index.md", "index"],
+        ["test.mp4", "test"],
         ["note with spaces.md", "note-with-spaces"],
       ],
       path.slugifyFilePath,
