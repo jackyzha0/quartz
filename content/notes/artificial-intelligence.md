@@ -4,7 +4,7 @@ aliases: AI
 tags: AI, 
 ---
 
-Computerised [[intelligence]] as [[agents(AI)|agents]]
+Computerised [[intelligence]] as [[agent-model|agent]]
 
 [[ai-foundations]]
 [[ai-history]]

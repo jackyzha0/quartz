@@ -7,8 +7,9 @@ project-name:
 
 ## Meetings
 [[hons-meet-1107]]
-[[hons-meet-0808]]
 [[arno-meet-1707]]
+[[hons-meet-0808]]
+[[jonathan-meet-0908]]
 
 ## Notes
 [[hons-projects-choice]]

@@ -10,4 +10,5 @@ virtual reality
 - computer generated environment
 - 3D
 - interactive with real time feedback
-- _sense of presence_
+- _sense of [[presence-immersion|presence]] **this is important** 
+

@@ -8,3 +8,6 @@ tags: HCI, group, XR
 - group of VR/AR experts in Aus/NZ universities
 
 https://hci.otago.ac.nz/ARIVE2020.html
+
+## Lectures
+- [[]]

@@ -10,7 +10,7 @@ A a form of [[human-computer-interaction]] using a [[virtuality|virtual]] enviro
 | features of XR   |                                                                                |
 | ---------------- | ------------------------------------------------------------------------------ |
 | immersion        | senses                                                                         |
-| [[presence]]     | spatial/social/co/involvement/realism                                          |
+| [[presence-immersion]]     | spatial/social/co/involvement/realism                                          |
 | [[telepresence]] | user can interact with remote environment and feels present in the environment |
 
 | elements of XR     |                                                                   |
@@ -40,7 +40,7 @@ This technology has historically been very affected by [[hype-cycles]]. There wa
 - how to interact with big data (immersive analytics?)
 - how to make invisible interfaces
 - how to make intelligent interfaces
-- how to enable [[presence]] and [[telepresence]]
+- how to enable [[presence-immersion]] and [[telepresence]]
 
 ## Displays
 The most common form factor of visual XR experience is with a [[head-mounted-display]].
