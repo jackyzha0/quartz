@@ -7,6 +7,7 @@ export interface Argv {
   output: string
   serve: boolean
   port: number
+  concurrency?: number
 }
 
 export interface BuildCtx {
