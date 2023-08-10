@@ -20,15 +20,15 @@ data sets exist with calibration for 4 things
 processing just didn't get done
 
 
-markus is by camera frame. not video
+markus thing is per camera frame. not video
 
 
 
 plan to write unity program to import frames and do something there. if using "dennis" stuff. 
 
 
-unity main frameowkr -> convert opencv code to unity c++ plugin. 
-- some code is alredy unity implementaton
+unity main framework -> convert opencv code to unity c++ plugin. 
+- some code is already unity implementation
 - some things not
 - for getting camera image
 - live stream. either works. 
@@ -40,14 +40,14 @@ calibration
 - need to know ideally for all camera where they are in space.
 - can just measure but not accurate
 - show the checkerboard
-- for ecah camera get the extrinsic (position relative to board) intrinsic (lens distortion etex)
+- for each camera get the extrinsic (position relative to board) intrinsic (lens distortion etex)
 
-once i can talk to camer try to calibrate
+once I can talk to camera try to calibrate
 
 if we recalibrate we can re use the old data set
+e
 
-
-from jonathan
+from Jonathan
 - camera calibration not easy
 
 c++ library easiest
