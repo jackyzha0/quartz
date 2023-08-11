@@ -4,7 +4,6 @@ draft: true
 
 ## todo
 
-- docs for making plugins
 - nested tags showing duplicate
   - tag page markdown file for description not being rendered
 - back button with anchors / popovers + spa is broken

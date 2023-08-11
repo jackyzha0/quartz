@@ -153,9 +153,9 @@ export const TextTransforms: QuartzTransformerPlugin = () => {
             }
           })
 
-		  // remove all links (replace with just the link content)
-		  // match by 'type' field on an mdast node
-		  // https://github.com/syntax-tree/mdast#link in this example
+         // remove all links (replace with just the link content)
+         // match by 'type' field on an mdast node
+         // https://github.com/syntax-tree/mdast#link in this example
           visit(tree, "link", (link: Link) => {
             return {
               type: "paragraph"
