@@ -43,11 +43,13 @@ graph LR
     Server --"canonicalizeServer()"--> Canonical
     style Canonical stroke-width:4px
 ```
+
 Here are the main types of slugs with a rough description of each type of path:
+
 - `ClientSlug`: client-side slug, usually obtained through `window.location`. Contains the protocol (i.e. starts with `https://`)
 - `CanonicalSlug`: should be used whenever you need to refer to the location of a file/note. Shouldn't be a relative path and shouldn't have leading or trailing slashes `/` either. Also shouldn't have `/index` as an ending or a file extension.
 - `RelativeURL`: must start with `.` or `..` to indicate it's a relative URL. Shouldn't have `/index` as an ending or a file extension.
-- `ServerSlug`: cannot be relative and may not have leading or trailing slashes. 
+- `ServerSlug`: cannot be relative and may not have leading or trailing slashes.
 - `FilePath`: a real file path to a file on disk. Cannot be relative and must have a file extension.
 
 To get a clearer picture of how these relate to each other, take a look at the path tests in `quartz/path.test.ts`.

@@ -88,19 +88,23 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       }
 
       if (opts?.enableSiteMap) {
-        emitted.push(await emit({
-          content: generateSiteMap(cfg, linkIndex),
-          slug: "sitemap" as ServerSlug,
-          ext: ".xml",
-        }))
+        emitted.push(
+          await emit({
+            content: generateSiteMap(cfg, linkIndex),
+            slug: "sitemap" as ServerSlug,
+            ext: ".xml",
+          }),
+        )
       }
 
       if (opts?.enableRSS) {
-        emitted.push(await emit({
-          content: generateRSSFeed(cfg, linkIndex),
-          slug: "index" as ServerSlug,
-          ext: ".xml",
-        }))
+        emitted.push(
+          await emit({
+            content: generateRSSFeed(cfg, linkIndex),
+            slug: "index" as ServerSlug,
+            ext: ".xml",
+          }),
+        )
       }
 
       const fp = path.join("static", "contentIndex") as ServerSlug
@@ -115,11 +119,13 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
         }),
       )
 
-      emitted.push(await emit({
-        content: JSON.stringify(simplifiedIndex),
-        slug: fp,
-        ext: ".json",
-      }))
+      emitted.push(
+        await emit({
+          content: JSON.stringify(simplifiedIndex),
+          slug: fp,
+          ext: ".json",
+        }),
+      )
 
       return emitted
     },
