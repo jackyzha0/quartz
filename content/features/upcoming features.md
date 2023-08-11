@@ -6,6 +6,7 @@ draft: true
 
 - docs for making plugins
 - nested tags showing duplicate
+	- tag page markdown file for description not being rendered
 - back button with anchors / popovers + spa is broken
 - search should be fast for large repos
 - debounce cfg rebuild on large repos

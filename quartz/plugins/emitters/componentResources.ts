@@ -98,7 +98,6 @@ function addGlobalPageResources(
     componentResources.afterDOMLoaded.push(plausibleScript)
   }
 
-  // spa
   if (cfg.enableSPA) {
     componentResources.afterDOMLoaded.push(spaRouterScript)
   } else {

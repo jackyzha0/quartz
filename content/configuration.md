@@ -58,9 +58,9 @@ plugins: {
 }
 ```
 
-- [[making plugins#Transformers|Transformers]] **map** over content, taking a Markdown file and outputting modified content or adding metadata to the file itself (e.g. parsing frontmatter, generating a description)
-- [[making plugins#Filters|Filters]] **filter** content, taking the output of all the transformers and determining what files to actually keep and what to discord (e.g. filtering out drafts)
-- [[making plugins#Emitters|Emitters]] **reduce** over content, taking in a list of all the transformed and filtered content and creating output files (e.g. creating an RSS feed or pages that list all files with a specific tag)
+- [[making plugins#Transformers|Transformers]] **map** over content (e.g. parsing frontmatter, generating a description)
+- [[making plugins#Filters|Filters]] **filter** content (e.g. filtering out drafts)
+- [[making plugins#Emitters|Emitters]] **reduce** over content (e.g. creating an RSS feed or pages that list all files with a specific tag)
 
 By adding, removing, and reordering plugins from the `tranformers`, `filters`, and `emitters` fields, you can customize the behaviour of Quartz.
 
