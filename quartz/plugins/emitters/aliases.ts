@@ -30,9 +30,8 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
       for (const alias of aliases) {
         const slug = path.posix.join(dir, alias) as ServerSlug
 
-        const fp = (slug + ".html") as FilePath
         const redirUrl = resolveRelative(canonicalizeServer(slug), ogSlug)
-        await emit({
+        const fp = await emit({
           content: `
             <!DOCTYPE html>
             <html lang="en-us">

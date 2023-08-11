@@ -42,9 +42,7 @@ export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOp
         }
 
         const content = renderPage(slug, componentData, opts, externalResources)
-
-        const fp = (file.data.slug + ".html") as FilePath
-        await emit({
+        const fp = await emit({
           content,
           slug: file.data.slug!,
           ext: ".html",
