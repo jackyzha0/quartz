@@ -14,7 +14,7 @@ All plugins are defined as a function that takes in a single parameter for optio
 ```ts
 type OptionType = object | undefined
 type QuartzPlugin<Options extends OptionType = undefined> = (opts?: Options) => QuartzPluginInstance
-type QuartzPluginInstance = 
+type QuartzPluginInstance =
   | QuartzTransformerPluginInstance
   | QuartzFilterPluginInstance
   | QuartzEmitterPluginInstance
@@ -22,14 +22,16 @@ type QuartzPluginInstance =
 
 The following sections will go into detail for what methods can be implemented for each plugin type. Before we do that, let's clarify a few more ambiguous types:
 
-- `BuildCtx` is defined in `quartz/ctx.ts`. It consists of 
-	- `argv`: The command line arguments passed to the Quartz [[build]] command
-	- `cfg`: The full Quartz [[configuration]]
-	- `allSlugs`: a list of all the valid content slugs (see [[paths]] for more information on what a `ServerSlug` is)
+- `BuildCtx` is defined in `quartz/ctx.ts`. It consists of
+  - `argv`: The command line arguments passed to the Quartz [[build]] command
+  - `cfg`: The full Quartz [[configuration]]
+  - `allSlugs`: a list of all the valid content slugs (see [[paths]] for more information on what a `ServerSlug` is)
 - `StaticResources` is defined in `quartz/resources.tsx`. It consists of
-	- `css`: a list of URLs for stylesheets that should be loaded
-	- `js`: a list of scripts that should be loaded. A script is described with the `JSResource` type which is also defined in `quartz/resources.tsx`. It allows you to define a load time (either before or after the DOM has been loaded), whether it should be a module, and either the source URL or the inline content of the script.
+  - `css`: a list of URLs for stylesheets that should be loaded
+  - `js`: a list of scripts that should be loaded. A script is described with the `JSResource` type which is also defined in `quartz/resources.tsx`. It allows you to define a load time (either before or after the DOM has been loaded), whether it should be a module, and either the source URL or the inline content of the script.
+
 ## Transformers
+
 Transformers **map** over content, taking a Markdown file and outputting modified content or adding metadata to the file itself.
 
 ```ts
@@ -44,7 +46,7 @@ export type QuartzTransformerPluginInstance = {
 
 All transformer plugins must define at least a `name` field to register the plugin and a few optional functions that allow you to hook into various parts of transforming a single Markdown file.
 
-- `textTransform` performs a text-to-text transformation *before* a file is parsed into the [Markdown AST](https://github.com/syntax-tree/mdast).
+- `textTransform` performs a text-to-text transformation _before_ a file is parsed into the [Markdown AST](https://github.com/syntax-tree/mdast).
 - `markdownPlugins` defines a list of [remark plugins](https://github.com/remarkjs/remark/blob/main/doc/plugins.md). `remark` is a tool that transforms Markdown to Markdown in a structured way.
 - `htmlPlugins` defines a list of [rehype plugins](https://github.com/rehypejs/rehype/blob/main/doc/plugins.md). Similar to how `remark` works, `rehype` is a tool that transforms HTML to HTML in a structured way.
 - `externalResources` defines any external resources the plugin may need to load on the client-side for it to work properly.
@@ -72,8 +74,8 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
     },
     htmlPlugins() {
       if (engine === "katex") {
-	    // if you need to pass options into a plugin, you
-	    // can use a tuple of [plugin, options]
+        // if you need to pass options into a plugin, you
+        // can use a tuple of [plugin, options]
         return [[rehypeKatex, { output: "html" }]]
       } else {
         return [rehypeMathjax]
@@ -82,9 +84,7 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
     externalResources() {
       if (engine === "katex") {
         return {
-          css: [
-            "https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css",
-          ],
+          css: ["https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"],
           js: [
             {
               src: "https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/copy-tex.min.js",
@@ -108,16 +108,18 @@ export const AddWordCount: QuartzTransformerPlugin = () => {
   return {
     name: "AddWordCount",
     markdownPlugins() {
-      return [() => {
-        return (tree, file) => {
-          // tree is an `mdast` root element
-          // file is a `vfile`
-          const text = file.value
-          const words = text.split(" ").length
-          file.data.wordcount = words
-        }
-      }]
-    }
+      return [
+        () => {
+          return (tree, file) => {
+            // tree is an `mdast` root element
+            // file is a `vfile`
+            const text = file.value
+            const words = text.split(" ").length
+            file.data.wordcount = words
+          }
+        },
+      ]
+    },
   }
 }
 
@@ -170,7 +172,9 @@ export const TextTransforms: QuartzTransformerPlugin = () => {
 All transformer plugins can be found under `quartz/plugins/transformers`. If you decide to write your own transformer plugin, don't forget to re-export it under `quartz/plugins/transformers/index.ts`
 
 A parting word: transformer plugins are quite complex so don't worry if you don't get them right away. Take a look at the built in transformers and see how they operate over content to get a better sense for how to accomplish what you are trying to do.
+
 ## Filters
+
 Filters **filter** content, taking the output of all the transformers and determining what files to actually keep and what to discard.
 
 ```ts
@@ -202,6 +206,7 @@ export const RemoveDrafts: QuartzFilterPlugin<{}> = () => ({
 ```
 
 ## Emitters
+
 Emitters **reduce** over content, taking in a list of all the transformed and filtered content and creating output files.
 
 ```ts
@@ -239,6 +244,7 @@ export type EmitCallback = (data: {
 This is a thin wrapper around writing to the appropriate output folder and ensuring that intermediate directories exist. If you choose to use the native Node `fs` APIs, ensure you emit to the `argv.output` folder as well.
 
 If you are creating an emitter plugin that needs to render components, there are three more things to be aware of:
+
 - Your component should use `getQuartzComponents` to declare a list of `QuartzComponents` that it uses to construct the page. See the page on [[creating components]] for more information.
 - You can use the `renderPage` function defined in `quartz/components/renderPage.tsx` to render Quartz components into HTML.
 - If you need to render an HTML AST to JSX, you can use the `toJsxRuntime` function from `hast-util-to-jsx-runtime` library. An example of this can be found in `quartz/components/pages/Content.tsx`.
@@ -253,7 +259,7 @@ export const ContentPage: QuartzEmitterPlugin = () => {
     ...defaultContentPageLayout,
     pageBody: Content(),
   }
-  const { head, header, beforeBody, pageBody, left, right, footer} = layout
+  const { head, header, beforeBody, pageBody, left, right, footer } = layout
   return {
     name: "ContentPage",
     getQuartzComponents() {
