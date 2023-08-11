@@ -18,14 +18,14 @@ npm i
 npx quartz create
 ```
 
-This will guide you through initializing your Quartz with content. Once you've done so, see how to [[build]] and [[hosting|host]] Quartz.
+This will guide you through initializing your Quartz with content. Once you've done so, see how to [[authoring content|author content]] or how to [[build]] and [[hosting|host]] Quartz.
 
 > [!info]
 > Coming from Quartz 3? See the [[migrating from Quartz 3|migration guide]] for the differences between Quartz 3 and Quartz 4 and how to migrate.
 
 ## 🔧 Features
 
-- [[full-text search|Full-text search]], [[graph view]], [[wikilinks]], [[backlinks]], [[Latex]], [[syntax highlighting]], [[popover previews]], and many more right out of the box
+- [[Obsidian compatibility]], [[full-text search]], [[graph view]], [[wikilinks]], [[backlinks]], [[Latex]], [[syntax highlighting]], [[popover previews]], and many more right out of the box
 - Hot-reload for both configuration and content
 - Simple JSX [[creating components|layouts and page components]]
 - [[SPA Routing|Ridiculously fast page loads]] and tiny bundle sizes

@@ -5,12 +5,10 @@ import yaml from "js-yaml"
 import { slugTag } from "../../path"
 
 export interface Options {
-  language: "yaml" | "toml"
   delims: string | string[]
 }
 
 const defaultOptions: Options = {
-  language: "yaml",
   delims: "---",
 }
 
