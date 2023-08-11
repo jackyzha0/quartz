@@ -14,9 +14,6 @@ draft: true
 - test/fix with subpath
 - fix docs with deploy from github
 - write feature docs
-  - callouts
-  - folder and tag listings
-  - mermaid diagrams
   - rss
   - spa-routing
   - table of contents

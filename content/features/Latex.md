@@ -25,6 +25,19 @@ f(x) = \int_{-\infty}^\infty
     \,d\xi
 $$
 
+$$
+\begin{aligned}
+a &= b + c \\ &= e + f \\
+\end{aligned}
+$$
+
+$$
+\begin{bmatrix}
+1 & 2 & 3 \\
+a & b & c
+\end{bmatrix}
+$$
+
 ### Inline Math
 
 Similarly, inline math can be rendered by delimiting math expression with a single `$`. For example, `$e^{i\pi} = -1$` produces $e^{i\pi} = -1$
