@@ -129,29 +129,29 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
   }
   const findAndReplace = opts.enableInHtmlEmbed
     ? (tree: Root, regex: RegExp, replace?: Replace | null | undefined) => {
-      if (replace) {
-        visit(tree, "html", (node: HTML) => {
-          if (typeof replace === "string") {
-            node.value = node.value.replace(regex, replace)
-          } else {
-            node.value = node.value.replaceAll(regex, (substring: string, ...args) => {
-              const replaceValue = replace(substring, ...args)
-              if (typeof replaceValue === "string") {
-                return replaceValue
-              } else if (Array.isArray(replaceValue)) {
-                return replaceValue.map(mdastToHtml).join("")
-              } else if (typeof replaceValue === "object" && replaceValue !== null) {
-                return mdastToHtml(replaceValue)
-              } else {
-                return substring
-              }
-            })
-          }
-        })
-      }
+        if (replace) {
+          visit(tree, "html", (node: HTML) => {
+            if (typeof replace === "string") {
+              node.value = node.value.replace(regex, replace)
+            } else {
+              node.value = node.value.replaceAll(regex, (substring: string, ...args) => {
+                const replaceValue = replace(substring, ...args)
+                if (typeof replaceValue === "string") {
+                  return replaceValue
+                } else if (Array.isArray(replaceValue)) {
+                  return replaceValue.map(mdastToHtml).join("")
+                } else if (typeof replaceValue === "object" && replaceValue !== null) {
+                  return mdastToHtml(replaceValue)
+                } else {
+                  return substring
+                }
+              })
+            }
+          })
+        }
 
-      mdastFindReplace(tree, regex, replace)
-    }
+        mdastFindReplace(tree, regex, replace)
+      }
     : mdastFindReplace
 
   return {
@@ -309,11 +309,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 const titleContent =
                   match.input.slice(calloutDirective.length).trim() || capitalize(calloutType)
                 const titleNode: Paragraph = {
-                  type: 'paragraph',
-                  children: [
-                    {type: 'text', value: titleContent + " "},
-                    ...restChildren
-                  ]
+                  type: "paragraph",
+                  children: [{ type: "text", value: titleContent + " " }, ...restChildren],
                 }
                 const title = mdastToHtml(titleNode)
 
@@ -352,8 +349,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 node.data = {
                   hProperties: {
                     ...(node.data?.hProperties ?? {}),
-                    className: `callout ${collapse ? "is-collapsible" : ""} ${defaultState === "collapsed" ? "is-collapsed" : ""
-                      }`,
+                    className: `callout ${collapse ? "is-collapsible" : ""} ${
+                      defaultState === "collapsed" ? "is-collapsed" : ""
+                    }`,
                     "data-callout": calloutType,
                     "data-callout-fold": collapse,
                   },
