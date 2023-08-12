@@ -24,7 +24,7 @@ export const Assets: QuartzEmitterPlugin = () => {
         const dir = path.dirname(dest) as FilePath
         await fs.promises.mkdir(dir, { recursive: true }) // ensure dir exists
         await fs.promises.copyFile(src, dest)
-        res.push(fp)
+        res.push(dest)
       }
 
       return res

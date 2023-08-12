@@ -3,7 +3,7 @@ import { Fragment, jsx, jsxs } from "preact/jsx-runtime"
 import { toJsxRuntime } from "hast-util-to-jsx-runtime"
 import style from "../styles/listPage.scss"
 import { PageList } from "../PageList"
-import { ServerSlug, canonicalizeServer, getAllSegmentPrefixes } from "../../path"
+import { ServerSlug, canonicalizeServer, getAllSegmentPrefixes, joinSegments } from "../../path"
 import { QuartzPluginData } from "../../plugins/vfile"
 
 const numPages = 10
@@ -11,7 +11,7 @@ function TagContent(props: QuartzComponentProps) {
   const { tree, fileData, allFiles } = props
   const slug = fileData.slug
 
-  if (!slug?.startsWith("tags/")) {
+  if (!(slug?.startsWith("tags/") || slug === "tags")) {
     throw new Error(`Component "TagContent" tried to render a non-tag page: ${slug}`)
   }
 
@@ -44,7 +44,7 @@ function TagContent(props: QuartzComponentProps) {
             return (
               <div>
                 <h2>
-                  <a class="internal tag-link" href={`./tags/${tag}`}>
+                  <a class="internal tag-link" href={`./${joinSegments("tags", tag)}`}>
                     #{tag}
                   </a>
                 </h2>
