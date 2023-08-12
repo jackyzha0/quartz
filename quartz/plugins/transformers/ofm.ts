@@ -108,7 +108,7 @@ const capitalize = (s: string): string => {
 // ([^\[\]\|\#]+)   -> one or more non-special characters ([,],|, or #) (name)
 // (#[^\[\]\|\#]+)? -> # then one or more non-special characters (heading link)
 // (|[^\[\]\|\#]+)? -> | then one or more non-special characters (alias)
-const wikilinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)(#[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/, "g")
+const wikilinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)?(#[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/, "g")
 const highlightRegex = new RegExp(/==(.+)==/, "g")
 const commentRegex = new RegExp(/%%(.+)%%/, "g")
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
@@ -161,10 +161,11 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
       if (opts.wikilinks) {
         src = src.toString()
         return src.replaceAll(wikilinkRegex, (value, ...capture) => {
-          const [fp, rawHeader, rawAlias] = capture
+          const [rawFp, rawHeader, rawAlias] = capture
+          const fp = rawFp ?? ""
           const anchor = rawHeader?.trim().slice(1)
           const displayAnchor = anchor ? `#${slugAnchor(anchor)}` : ""
-          const displayAlias = rawAlias ?? ""
+          const displayAlias = rawAlias ?? rawHeader?.replace("#", "|") ?? "" 
           const embedDisplay = value.startsWith("!") ? "!" : ""
           return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`
         })
@@ -177,8 +178,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         plugins.push(() => {
           return (tree: Root, _file) => {
             findAndReplace(tree, wikilinkRegex, (value: string, ...capture: string[]) => {
-              let [fp, rawHeader, rawAlias] = capture
-              fp = fp.trim()
+              let [rawFp, rawHeader, rawAlias] = capture
+              const fp = rawFp?.trim() ?? ""
               const anchor = rawHeader?.trim() ?? ""
               const alias = rawAlias?.slice(1).trim()
 
