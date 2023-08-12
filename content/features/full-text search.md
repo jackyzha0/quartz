@@ -21,7 +21,7 @@ It properly tokenizes Chinese, Korean, and Japenese characters and constructs se
 
 ## Customization
 
-- Removing search: delete all usages of `Component.Search()` from `quartz.config.ts`.
+- Removing search: delete all usages of `Component.Search()` from `quartz.layout.ts`.
 - Component: `quartz/components/Search.tsx`
 - Style: `quartz/components/styles/search.scss`
 - Script: `quartz/components/scripts/search.inline.ts`

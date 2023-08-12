@@ -14,9 +14,9 @@ Normally on the web, we write layout code using HTML which looks something like 
 </article>
 ```
 
-This piece of HTML represents an article with a leading header that says "An article header" and a paragraph that contains the text "Some content". This is normally combined with CSS to style the page and JavaScript to add interactivity.
+This piece of HTML represents an article with a leading header that says "An article header" and a paragraph that contains the text "Some content". This is combined with CSS to style the page and JavaScript to add interactivity.
 
-However, HTML doesn't let you create reusable templates. If you wanted to create a new page, you would need to copy and paste the above snippet and edit the header and content yourself. This isn't great if we have a lot of content on our site that shares a lot of similar layout. The smart people who created React also had similar thoughts, inventing the concept of JSX Components to solve the code duplication problem.
+However, HTML doesn't let you create reusable templates. If you wanted to create a new page, you would need to copy and paste the above snippet and edit the header and content yourself. This isn't great if we have a lot of content on our site that shares a lot of similar layout. The smart people who created React also had similar complaints and invented the concept of Components -- JavaScript functions that return JSX -- to solve the code duplication problem.
 
 In effect, components allow you to write a JavaScript function that takes some data and produces HTML as an output. **While Quartz doesn't use React, it uses the same component concept to allow you to easily express layout templates in your Quartz site.**
 
@@ -26,7 +26,7 @@ In effect, components allow you to write a JavaScript function that takes some d
 
 Component files are written in `.tsx` files that live in the `quartz/components` folder. These are re-exported in `quartz/components/index.ts` so you can use them in layouts and other components more easily.
 
-Each component file should have a default export that satisfies the `QuartzComponentConstructor` function signature. It is a function that takes in a single optional parameter `opts` and returns a Quartz Component. The type of the parameters `ops` is defined by the interface `Options` which you as the component creator also decide.
+Each component file should have a default export that satisfies the `QuartzComponentConstructor` function signature. It's a function that takes in a single optional parameter `opts` and returns a Quartz Component. The type of the parameters `opts` is defined by the interface `Options` which you as the component creator also decide.
 
 In your component, you can use the values from the configuration option to change the rendering behaviour inside of your component. For example, the component in the code snippet below will not render if the `favouriteNumber` option is below 0.
 
@@ -57,7 +57,7 @@ export default ((userOpts?: Options) => {
 
 The Quartz component itself (lines 11-17 highlighted above) looks like a React component. It takes in properties (sometimes called [props](https://react.dev/learn/passing-props-to-a-component)) and returns JSX.
 
-All Quartz components accept the same set of props which are defined in `QuartzComponentProps`:
+All Quartz components accept the same set of props:
 
 ```tsx title="quartz/components/types.ts"
 // simplified for sake of demonstration
@@ -82,7 +82,7 @@ export type QuartzComponentProps = {
 
 Quartz components can also define a `.css` property on the actual function component which will get picked up by Quartz. This is expected to be a CSS string which can either be inlined or imported from a `.scss` file.
 
-Note that inlined styles **must** be plain vanilla CSS.
+Note that inlined styles **must** be plain vanilla CSS:
 
 ```tsx {6-10} title="quartz/components/YourComponent.tsx"
 export default (() => {
@@ -100,7 +100,7 @@ export default (() => {
 }) satisfies QuartzComponentConstructor
 ```
 
-Imported styles, however, can be from SCSS files.
+Imported styles, however, can be from SCSS files:
 
 ```tsx {1-2,9} title="quartz/components/YourComponent.tsx"
 // assuming your stylesheet is in quartz/components/styles/YourComponent.scss

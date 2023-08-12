@@ -22,7 +22,7 @@ Most configuration can be done by passing in options to `Component.Graph()`.
 
 For example, here's what the default configuration looks like:
 
-```typescript title="quartz.config.ts"
+```typescript title="quartz.layout.ts"
 Component.Graph({
   localGraph: {
     drag: true, // whether to allow panning the view around
@@ -53,7 +53,7 @@ When passing in your own options, you can omit any or all of these fields if you
 
 Want to customize it even more?
 
-- Removing graph view: delete all usages of `Component.Graph()` from `quartz.config.ts`.
+- Removing graph view: delete all usages of `Component.Graph()` from `quartz.layout.ts`.
 - Component: `quartz/components/Graph.tsx`
 - Style: `quartz/components/styles/graph.scss`
 - Script: `quartz/components/scripts/graph.inline.ts`

@@ -18,21 +18,29 @@ npm i
 npx quartz create
 ```
 
-This will guide you through initializing your Quartz with content. Once you've done so, see how to [[authoring content|author content]] or how to [[build]] and [[hosting|host]] Quartz.
+This will guide you through initializing your Quartz with content. Once you've done so, see how to:
+
+1. [[authoring content|Author content]] in Quartz
+2. [[configuration|Configure]] Quartz's behaviour
+3. Change Quartz's [[layout]]
+4. [[build|Build and preview]] Quartz
+5. [[hosting|Host]] Quartz online
 
 > [!info]
 > Coming from Quartz 3? See the [[migrating from Quartz 3|migration guide]] for the differences between Quartz 3 and Quartz 4 and how to migrate.
 
 ## 🔧 Features
 
-- [[Obsidian compatibility]], [[full-text search]], [[graph view]], [[wikilinks]], [[backlinks]], [[Latex]], [[syntax highlighting]], [[popover previews]], and many more right out of the box
+- [[Obsidian compatibility]], [[full-text search]], [[graph view]], [[wikilinks]], [[backlinks]], [[Latex]], [[syntax highlighting]], [[popover previews]], and [many more](./features) right out of the box
 - Hot-reload for both configuration and content
-- Simple JSX [[creating components|layouts and page components]]
+- Simple JSX layouts and [[creating components|page components]]
 - [[SPA Routing|Ridiculously fast page loads]] and tiny bundle sizes
 - Fully-customizable parsing, filtering, and page generation through [[making plugins|plugins]]
 
 For a comprehensive list of features, visit the [features page](/features). You can read more the _why_ behind these features on the [[philosophy]] page and a technical overview on the [[architecture]] page.
 
-### 🚧 Troubleshooting
+### 🚧 Troubleshooting + Updating
 
-Having trouble with Quartz? Try searching for your issue using the search feature. If you're still having trouble, feel free to [submit an issue](https://github.com/jackyzha0/quartz/issues) if you feel you found a bug or ask for help in our [Discord Community](https://discord.gg/cRFFHYye7t).
+Having trouble with Quartz? Try searching for your issue using the search feature. If you haven't already, [[upgrading|upgrade]] to the newest version of Quartz to see if this fixes your issue.
+
+If you're still having trouble, feel free to [submit an issue](https://github.com/jackyzha0/quartz/issues) if you feel you found a bug or ask for help in our [Discord Community](https://discord.gg/cRFFHYye7t).

@@ -4,15 +4,15 @@ title: Authoring Content
 
 All of the content in your Quartz should go in the `/content` folder. The content for the home page of your Quartz lives in `content/index.md`. If you've [[index#🪴 Get Started|setup Quartz]] already, this folder should already be initailized. Any Markdown in this folder will get processed by Quartz.
 
-It is recommended that you use [Obsidian](https://obsidian.md/) as a way to edit and maintain your Quartz. It comes with a nice editor and graphical interface to preview all of your local files and allow you to easily edit and link across files.
+It is recommended that you use [Obsidian](https://obsidian.md/) as a way to edit and maintain your Quartz. It comes with a nice editor and graphical interface to preview, edit, and link your local files and attachments.
 
 Got everything setup? Let's [[build]] and preview your Quartz locally!
 
 ## Syntax
 
-As Quartz uses Markdown files as the main way of writing content, it fully supports Markdown syntax along with a few extensions like [Github Flavored Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) (footnotes, strikethrough, tables, tasklists) and [Obsidian Flavored Markdown](https://help.obsidian.md/Editing+and+formatting/Obsidian+Flavored+Markdown) ([[callouts]], [[wikilinks]]).
+As Quartz uses Markdown files as the main way of writing content, it fully supports Markdown syntax. By default, Quartz also ships with a few syntax extensions like [Github Flavored Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) (footnotes, strikethrough, tables, tasklists) and [Obsidian Flavored Markdown](https://help.obsidian.md/Editing+and+formatting/Obsidian+Flavored+Markdown) ([[callouts]], [[wikilinks]]).
 
-Additionally, Quartz also allows you to specify additional metadata in your notes called **frontmatter** using YAML.
+Additionally, Quartz also allows you to specify additional metadata in your notes called **frontmatter**.
 
 ```md title="content/note.md"
 ---
@@ -27,7 +27,7 @@ The rest of your content lives here. You can use **Markdown** here :)
 
 Some common frontmatter fields that are natively supported by Quartz:
 
-- `title`: Quartz will use the name of the file as the title if this isn't provided. If it is provided, it should be a string.
-- `draft`: Whether to publish the page or not. This is one way to make [[private pages|pages private]] in Quartz.
+- `title`: Title of the page. If it isn't provided, Quartz will use the name of the file as the title.
 - `aliases`: Other names for this note. This is a list of strings.
-- `date`: A string representing the day the note was published. Normally uses `YYYY-MM-DD` format but other formats _may_ work.
+- `draft`: Whether to publish the page or not. This is one way to make [[private pages|pages private]] in Quartz.
+- `date`: A string representing the day the note was published. Normally uses `YYYY-MM-DD` format.
