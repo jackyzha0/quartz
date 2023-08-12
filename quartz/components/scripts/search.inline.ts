@@ -4,6 +4,7 @@ import { registerEscapeHandler, removeAllChildren } from "./util"
 import { CanonicalSlug, getClientSlug, resolveRelative } from "../../path"
 
 interface Item {
+  id: number
   slug: CanonicalSlug
   title: string
   content: string
@@ -72,6 +73,7 @@ document.addEventListener("nav", async (e: unknown) => {
   const searchIcon = document.getElementById("search-icon")
   const searchBar = document.getElementById("search-bar") as HTMLInputElement | null
   const results = document.getElementById("results-container")
+  const idDataMap = Object.keys(data) as CanonicalSlug[]
 
   function hideSearch() {
     container?.classList.remove("active")
@@ -107,11 +109,15 @@ document.addEventListener("nav", async (e: unknown) => {
     }
   }
 
-  const formatForDisplay = (term: string, slug: CanonicalSlug) => ({
-    slug,
-    title: highlight(term, data[slug].title ?? ""),
-    content: highlight(term, data[slug].content ?? "", true),
-  })
+  const formatForDisplay = (term: string, id: number) => {
+    const slug = idDataMap[id]
+    return {
+      id,
+      slug,
+      title: highlight(term, data[slug].title ?? ""),
+      content: highlight(term, data[slug].content ?? "", true),
+    }
+  }
 
   const resultToHTML = ({ slug, title, content }: Item) => {
     const button = document.createElement("button")
@@ -142,13 +148,14 @@ document.addEventListener("nav", async (e: unknown) => {
   async function onType(e: HTMLElementEventMap["input"]) {
     const term = (e.target as HTMLInputElement).value
     const searchResults = (await index?.searchAsync(term, numSearchResults)) ?? []
-    const getByField = (field: string): CanonicalSlug[] => {
+    console.log(searchResults)
+    const getByField = (field: string): number[] => {
       const results = searchResults.filter((x) => x.field === field)
-      return results.length === 0 ? [] : ([...results[0].result] as CanonicalSlug[])
+      return results.length === 0 ? [] : ([...results[0].result] as number[])
     }
 
     // order titles ahead of content
-    const allIds: Set<CanonicalSlug> = new Set([...getByField("title"), ...getByField("content")])
+    const allIds: Set<number> = new Set([...getByField("title"), ...getByField("content")])
     const finalResults = [...allIds].map((id) => formatForDisplay(term, id))
     displayResults(finalResults)
   }
@@ -168,11 +175,11 @@ document.addEventListener("nav", async (e: unknown) => {
       optimize: true,
       encode: encoder,
       document: {
-        id: "slug",
+        id: "id",
         index: [
           {
             field: "title",
-            tokenize: "forward",
+            tokenize: "reverse",
           },
           {
             field: "content",
@@ -182,12 +189,15 @@ document.addEventListener("nav", async (e: unknown) => {
       },
     })
 
+    let id = 0
     for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
-      await index.addAsync(slug, {
+      await index.addAsync(id, {
+        id,
         slug: slug as CanonicalSlug,
         title: fileData.title,
         content: fileData.content,
       })
+      id++
     }
   }
 
