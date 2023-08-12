@@ -115,7 +115,7 @@ const commentRegex = new RegExp(/%%(.+)%%/, "g")
 const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
 // (?:^| )   -> non-capturing group, tag should start be separated by a space or be the start of the line
 // #(\w+)    -> tag itself is # followed by a string of alpha-numeric characters
-const tagRegex = new RegExp(/(?:^| )#(\w+)/, "g")
+const tagRegex = new RegExp(/(?:^| )#([\w-_\/]+)/, "g")
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
