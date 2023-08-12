@@ -1,6 +1,6 @@
 import { PluggableList } from "unified"
 import { QuartzTransformerPlugin } from "../types"
-import { Root, HTML, BlockContent, DefinitionContent, Code } from "mdast"
+import { Root, HTML, BlockContent, DefinitionContent, Code, Paragraph } from "mdast"
 import { Replace, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { slug as slugAnchor } from "github-slugger"
 import rehypeRaw from "rehype-raw"
@@ -113,6 +113,7 @@ const highlightRegex = new RegExp(/==(.+)==/, "g")
 const commentRegex = new RegExp(/%%(.+)%%/, "g")
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
 const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
+const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
 // (?:^| )   -> non-capturing group, tag should start be separated by a space or be the start of the line
 // #(\w+)    -> tag itself is # followed by a string of alpha-numeric characters
 const tagRegex = new RegExp(/(?:^| )#([\w-_\/]+)/, "g")
@@ -122,45 +123,53 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 ) => {
   const opts = { ...defaultOptions, ...userOpts }
 
+  const mdastToHtml = (ast: PhrasingContent | Paragraph) => {
+    const hast = toHast(ast, { allowDangerousHtml: true })!
+    return toHtml(hast, { allowDangerousHtml: true })
+  }
   const findAndReplace = opts.enableInHtmlEmbed
     ? (tree: Root, regex: RegExp, replace?: Replace | null | undefined) => {
-        if (replace) {
-          const mdastToHtml = (ast: PhrasingContent) => {
-            const hast = toHast(ast, { allowDangerousHtml: true })!
-            return toHtml(hast, { allowDangerousHtml: true })
+      if (replace) {
+        visit(tree, "html", (node: HTML) => {
+          if (typeof replace === "string") {
+            node.value = node.value.replace(regex, replace)
+          } else {
+            node.value = node.value.replaceAll(regex, (substring: string, ...args) => {
+              const replaceValue = replace(substring, ...args)
+              if (typeof replaceValue === "string") {
+                return replaceValue
+              } else if (Array.isArray(replaceValue)) {
+                return replaceValue.map(mdastToHtml).join("")
+              } else if (typeof replaceValue === "object" && replaceValue !== null) {
+                return mdastToHtml(replaceValue)
+              } else {
+                return substring
+              }
+            })
           }
-
-          visit(tree, "html", (node: HTML) => {
-            if (typeof replace === "string") {
-              node.value = node.value.replace(regex, replace)
-            } else {
-              node.value = node.value.replaceAll(regex, (substring: string, ...args) => {
-                const replaceValue = replace(substring, ...args)
-                if (typeof replaceValue === "string") {
-                  return replaceValue
-                } else if (Array.isArray(replaceValue)) {
-                  return replaceValue.map(mdastToHtml).join("")
-                } else if (typeof replaceValue === "object" && replaceValue !== null) {
-                  return mdastToHtml(replaceValue)
-                } else {
-                  return substring
-                }
-              })
-            }
-          })
-        }
-
-        mdastFindReplace(tree, regex, replace)
+        })
       }
+
+      mdastFindReplace(tree, regex, replace)
+    }
     : mdastFindReplace
 
   return {
     name: "ObsidianFlavoredMarkdown",
     textTransform(_ctx, src) {
+      // pre-transform blockquotes
+      if (opts.callouts) {
+        src = src.toString()
+        src = src.replaceAll(calloutLineRegex, (value) => {
+          // force newline after title of callout
+          return value + "\n> "
+        })
+      }
+
       // pre-transform wikilinks (fix anchors to things that may contain illegal syntax e.g. codeblocks, latex)
       if (opts.wikilinks) {
         src = src.toString()
-        return src.replaceAll(wikilinkRegex, (value, ...capture) => {
+        src = src.replaceAll(wikilinkRegex, (value, ...capture) => {
           const [rawFp, rawHeader, rawAlias] = capture
           const fp = rawFp ?? ""
           const anchor = rawHeader?.trim().slice(1)
@@ -170,6 +179,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`
         })
       }
+
       return src
     },
     markdownPlugins() {
@@ -296,14 +306,22 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 )
                 const collapse = collapseChar === "+" || collapseChar === "-"
                 const defaultState = collapseChar === "-" ? "collapsed" : "expanded"
-                const title =
+                const titleContent =
                   match.input.slice(calloutDirective.length).trim() || capitalize(calloutType)
+                const titleNode: Paragraph = {
+                  type: 'paragraph',
+                  children: [
+                    {type: 'text', value: titleContent + " "},
+                    ...restChildren
+                  ]
+                }
+                const title = mdastToHtml(titleNode)
 
                 const toggleIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>`
 
-                const titleNode: HTML = {
+                const titleHtml: HTML = {
                   type: "html",
                   value: `<div 
                   class="callout-title"
@@ -314,7 +332,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 </div>`,
                 }
 
-                const blockquoteContent: (BlockContent | DefinitionContent)[] = [titleNode]
+                const blockquoteContent: (BlockContent | DefinitionContent)[] = [titleHtml]
                 if (remainingText.length > 0) {
                   blockquoteContent.push({
                     type: "paragraph",
@@ -323,7 +341,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                         type: "text",
                         value: remainingText,
                       },
-                      ...restChildren,
                     ],
                   })
                 }
@@ -335,9 +352,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 node.data = {
                   hProperties: {
                     ...(node.data?.hProperties ?? {}),
-                    className: `callout ${collapse ? "is-collapsible" : ""} ${
-                      defaultState === "collapsed" ? "is-collapsed" : ""
-                    }`,
+                    className: `callout ${collapse ? "is-collapsible" : ""} ${defaultState === "collapsed" ? "is-collapsed" : ""
+                      }`,
                     "data-callout": calloutType,
                     "data-callout-fold": collapse,
                   },
