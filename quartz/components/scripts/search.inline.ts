@@ -139,9 +139,9 @@ document.addEventListener("nav", async (e: unknown) => {
     }
   }
 
-  function onType(e: HTMLElementEventMap["input"]) {
+  async function onType(e: HTMLElementEventMap["input"]) {
     const term = (e.target as HTMLInputElement).value
-    const searchResults = index?.search(term, numSearchResults) ?? []
+    const searchResults = (await index?.searchAsync(term, numSearchResults)) ?? []
     const getByField = (field: string): CanonicalSlug[] => {
       const results = searchResults.filter((x) => x.field === field)
       return results.length === 0 ? [] : ([...results[0].result] as CanonicalSlug[])
