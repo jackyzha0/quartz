@@ -5,10 +5,8 @@ draft: true
 ## todo
 
 - wikilink to anchors in the same document
-- folders, tags, and content emit overlapping (e.g. for tags/component)
+- blockquote with link in first child broken
 - 404 using base url
-- nested tags showing duplicate
-  - tag page markdown file for description not being rendered
 - back button with anchors / popovers + spa is broken
 - search should be fast for large repos
 - debounce cfg rebuild on large repos

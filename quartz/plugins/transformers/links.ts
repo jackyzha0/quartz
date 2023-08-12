@@ -86,7 +86,8 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                 if (
                   opts.prettyLinks &&
                   node.children.length === 1 &&
-                  node.children[0].type === "text"
+                  node.children[0].type === "text" &&
+                  !node.children[0].value.startsWith("#")
                 ) {
                   node.children[0].value = path.basename(node.children[0].value)
                 }
