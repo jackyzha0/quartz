@@ -92,6 +92,11 @@
     opacity: 0.8;
     cursor: pointer;
   }
+
+  & > .callout-title-inner > p {
+    color: var(--color);
+    margin: 0;
+  }
 }
 
 .callout-icon {
