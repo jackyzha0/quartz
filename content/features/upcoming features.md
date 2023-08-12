@@ -4,7 +4,6 @@ draft: true
 
 ## todo
 
-- blockquote with link in first child broken
 - 404 using base url
 - back button with anchors / popovers + spa is broken
 - search should be fast for large repos
