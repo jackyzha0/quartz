@@ -4,6 +4,9 @@ draft: true
 
 ## todo
 
+- wikilink to anchors in the same document
+- folders, tags, and content emit overlapping (e.g. for tags/component)
+- 404 using base url
 - nested tags showing duplicate
   - tag page markdown file for description not being rendered
 - back button with anchors / popovers + spa is broken
@@ -13,12 +16,6 @@ draft: true
 - dereference symlink for npx quartz sync
 - test/fix with subpath
 - fix docs with deploy from github
-- write feature docs
-  - rss
-  - spa-routing
-  - table of contents
-  - darkmode
-  - frontmatter parsing
 
 ## high priority backlog
 

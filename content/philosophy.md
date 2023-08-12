@@ -6,7 +6,7 @@ title: Philosophy of Quartz
 
 > The garden is the web as topology. Every walk through the garden creates new paths, new meanings, and when we add things to the garden we add them in a way that allows many future, unpredicted relationships.
 >
-> (The Garden and the Stream)
+> _(The Garden and the Stream)_
 
 The problem with the file cabinet is that it focuses on efficiency of access and interoperability rather than generativity and creativity. Thinking is not linear, nor is it hierarchical. In fact, not many things are linear or hierarchical at all. Then why is it that most tools and thinking strategies assume a nice chronological or hierarchical order for my thought processes? The ideal tool for thought for me would embrace the messiness of my mind, and organically help insights emerge from chaos instead of forcing an artificial order. A rhizomatic, not arboresecent, form of note taking.
 
@@ -22,6 +22,7 @@ The goal of digital gardening should be to tap into your network’s collective 
 
 Quartz is designed first and foremost as a tool for publishing [digital gardens](https://jzhao.xyz/posts/networked-thought/) to the web. To me, digital gardening is not just passive knowledge collection. It’s a form of expression and sharing.
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
+> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.”
+> — Richard Hamming
 
 **The goal of Quartz is to make sharing your digital garden free and simple.** At its core, Quartz is designed to be easy to use enough for non-technical people to get going but also powerful enough that senior developers can tweak it to work how they'd like it to work.

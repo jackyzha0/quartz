@@ -6,6 +6,9 @@ Quartz effectively turns your Markdown files and other resources into a bundle o
 
 However, if you'd like to publish your site to the world, you need a way to host it online. This guide will detail how to deploy with either GitHub Pages or Cloudflare pages but any service that allows you to deploy static HTML should work as well (e.g. Netlify, Replit, etc.)
 
+> [!hint]
+> Some Quartz features (like [[RSS Feed]] and sitemap generation) require `baseUrl` to be configured properly in your [[configuration]] to work properly. Make sure you set this before deploying!
+
 ## Cloudflare Pages
 
 1. Log in to the [Cloudflare dashboard](https://dash.cloudflare.com/) and select your account.
