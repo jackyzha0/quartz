@@ -4,7 +4,6 @@ draft: true
 
 ## todo
 
-- wikilink to anchors in the same document
 - blockquote with link in first child broken
 - 404 using base url
 - back button with anchors / popovers + spa is broken
