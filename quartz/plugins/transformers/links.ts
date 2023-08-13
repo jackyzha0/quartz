@@ -2,13 +2,12 @@ import { QuartzTransformerPlugin } from "../types"
 import {
   CanonicalSlug,
   RelativeURL,
+  TransformOptions,
   _stripSlashes,
   canonicalizeServer,
   joinSegments,
-  pathToRoot,
-  resolveRelative,
   splitAnchor,
-  transformInternalLink,
+  transformLink,
 } from "../../path"
 import path from "path"
 import { visit } from "unist-util-visit"
@@ -16,7 +15,7 @@ import isAbsoluteUrl from "is-absolute-url"
 
 interface Options {
   /** How to resolve Markdown paths */
-  markdownLinkResolution: "absolute" | "relative" | "shortest"
+  markdownLinkResolution: TransformOptions["strategy"]
   /** Strips folders from a link so that it looks nice */
   prettyLinks: boolean
 }
@@ -35,34 +34,13 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
         () => {
           return (tree, file) => {
             const curSlug = canonicalizeServer(file.data.slug!)
-            const transformLink = (target: string): RelativeURL => {
-              const targetSlug = _stripSlashes(transformInternalLink(target).slice(".".length))
-              let [targetCanonical, targetAnchor] = splitAnchor(targetSlug)
-              if (opts.markdownLinkResolution === "relative") {
-                return targetSlug as RelativeURL
-              } else if (opts.markdownLinkResolution === "shortest") {
-                // if the file name is unique, then it's just the filename
-                const matchingFileNames = ctx.allSlugs.filter((slug) => {
-                  const parts = slug.split(path.posix.sep)
-                  const fileName = parts.at(-1)
-                  return targetCanonical === fileName
-                })
+            const outgoing: Set<CanonicalSlug> = new Set()
 
-                // only match, just use it
-                if (matchingFileNames.length === 1) {
-                  const targetSlug = canonicalizeServer(matchingFileNames[0])
-                  return (resolveRelative(curSlug, targetSlug) + targetAnchor) as RelativeURL
-                }
-
-                // if it's not unique, then it's the absolute path from the vault root
-                // (fall-through case)
-              }
-
-              // treat as absolute
-              return joinSegments(pathToRoot(curSlug), targetSlug) as RelativeURL
+            const transformOptions: TransformOptions = {
+              strategy: opts.markdownLinkResolution,
+              allSlugs: ctx.allSlugs,
             }
 
-            const outgoing: Set<CanonicalSlug> = new Set()
             visit(tree, "element", (node, _index, _parent) => {
               // rewrite all links
               if (
@@ -76,7 +54,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
 
                 // don't process external links or intra-document anchors
                 if (!(isAbsoluteUrl(dest) || dest.startsWith("#"))) {
-                  dest = node.properties.href = transformLink(dest)
+                  dest = node.properties.href = transformLink(curSlug, dest, transformOptions)
                   const canonicalDest = path.posix.normalize(joinSegments(curSlug, dest))
                   const [destCanonical, _destAnchor] = splitAnchor(canonicalDest)
                   outgoing.add(destCanonical as CanonicalSlug)
@@ -102,7 +80,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                 if (!isAbsoluteUrl(node.properties.src)) {
                   let dest = node.properties.src as RelativeURL
                   const ext = path.extname(node.properties.src)
-                  dest = node.properties.src = transformLink(dest)
+                  dest = node.properties.src = transformLink(curSlug, dest, transformOptions)
                   node.properties.src = dest + ext
                 }
               }
