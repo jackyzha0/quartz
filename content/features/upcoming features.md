@@ -4,7 +4,6 @@ draft: true
 
 ## todo
 
-- relative links broken
 - back button with anchors / popovers + spa is broken
 - debounce cfg rebuild on large repos
   - investigate content rebuild triggering multiple times even when debounced, causing an esbuild deadlock
