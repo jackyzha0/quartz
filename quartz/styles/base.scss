@@ -11,12 +11,13 @@ html {
   width: 100vw;
 }
 
-body {
+body, section {
   margin: 0;
   max-width: 100%;
   box-sizing: border-box;
   background-color: var(--light);
   font-family: var(--bodyFont);
+  color: var(--darkgray);
 }
 
 .text-highlight {

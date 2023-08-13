@@ -4,9 +4,8 @@ draft: true
 
 ## todo
 
-- 404 using base url
+- relative links broken
 - back button with anchors / popovers + spa is broken
-- search should be fast for large repos
 - debounce cfg rebuild on large repos
   - investigate content rebuild triggering multiple times even when debounced, causing an esbuild deadlock
 - dereference symlink for npx quartz sync
