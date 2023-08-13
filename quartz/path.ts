@@ -42,6 +42,8 @@ import { slug } from "github-slugger"
 //                                             └────────────┤ MD File ├─────┴─────────────────┘
 //                                                          └─────────┘
 
+export const QUARTZ = "quartz"
+
 /// Utility type to simulate nominal types in TypeScript
 type SlugLike<T> = string & { __brand: T }
 
@@ -194,7 +196,43 @@ export function getAllSegmentPrefixes(tags: string): string[] {
   return results
 }
 
-export const QUARTZ = "quartz"
+export interface TransformOptions {
+  strategy: "absolute" | "relative" | "shortest"
+  allSlugs: ServerSlug[]
+}
+
+export function transformLink(
+  src: CanonicalSlug,
+  target: string,
+  opts: TransformOptions,
+): RelativeURL {
+  let targetSlug: string = transformInternalLink(target)
+
+  if (opts.strategy === "relative") {
+    return _addRelativeToStart(targetSlug) as RelativeURL
+  } else {
+    targetSlug = _stripSlashes(targetSlug.slice(".".length))
+    let [targetCanonical, targetAnchor] = splitAnchor(targetSlug)
+
+    if (opts.strategy === "shortest") {
+      // if the file name is unique, then it's just the filename
+      const matchingFileNames = opts.allSlugs.filter((slug) => {
+        const parts = slug.split("/")
+        const fileName = parts.at(-1)
+        return targetCanonical === fileName
+      })
+
+      // only match, just use it
+      if (matchingFileNames.length === 1) {
+        const targetSlug = canonicalizeServer(matchingFileNames[0])
+        return (resolveRelative(src, targetSlug) + targetAnchor) as RelativeURL
+      }
+    }
+
+    // if it's not unique, then it's the absolute path from the vault root
+    return joinSegments(pathToRoot(src), targetSlug) as RelativeURL
+  }
+}
 
 function _canonicalize(fp: string): string {
   fp = _trimSuffix(fp, "index")
