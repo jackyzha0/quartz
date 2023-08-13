@@ -55,7 +55,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0    # Fetch all history for git info
+          fetch-depth: 0 # Fetch all history for git info
       - uses: actions/setup-node@v3
         with:
           node-version: 18.14
