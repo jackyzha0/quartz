@@ -387,6 +387,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
         await serveHandler(req, res, {
           public: argv.output,
           directoryListing: false,
+          trailingSlash: true,
         })
         const status = res.statusCode
         const statusString =
