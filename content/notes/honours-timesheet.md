@@ -14,7 +14,7 @@ tags:
 04/08 1600-1700 [[passthrough-without-reprojection]] reading
 08/08 0740-0850 lab set up+ reading
 08/08 1000-1159 meeting + install spinnaker + lab setup
-09/08 0700-0845 start opencv project
-09/08 1300-1534  HCI meeting + stream video to opencv
-
-
+09/08 0700-0845 start OpenCV project
+09/08 1300-1534  HCI meeting + stream video to OpenCV
+11/08 0815-09:30 get files from Jonathan + open cameras in python
+14/08 1120-11:50 light field reading from textbook
