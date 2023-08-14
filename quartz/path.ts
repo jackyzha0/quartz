@@ -1,4 +1,5 @@
 import { slug } from "github-slugger"
+// this file must be isomorphic so it can't use node libs (e.g. path)
 
 // Quartz Paths
 // Things in boxes are not actual types but rather sources which these types can be acquired from
