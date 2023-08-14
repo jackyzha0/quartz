@@ -13,6 +13,9 @@ npx quartz create
 
 When running `npx quartz create`, you will be prompted as to how to initialize your content folder. Here, you can choose to import or link your previous content folder and Quartz should work just as you expect it to.
 
+> [!note]
+> If the existing content folder you'd like to use is at the _same_ path on a different branch, clone the repo again somewhere at a _different_ path in order to use it.
+
 ## Key changes
 
 1. **Removing Hugo and `hugo-obsidian`**: Hugo worked well for earlier versions of Quartz but it also made it hard for people outside of the Golang and Hugo communities to fully understand what Quartz was doing under the hood and be able to properly customize it to their needs. Quartz 4 now uses a Node-based static-site generation process which should lead to a much more helpful error messages and an overall smoother user experience.
