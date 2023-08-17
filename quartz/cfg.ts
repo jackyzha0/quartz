@@ -1,6 +1,6 @@
 import { QuartzComponent } from "./components/types"
 import { PluginTypes } from "./plugins/types"
-import { Theme } from "./theme"
+import { Theme } from "./util/theme"
 
 export type Analytics =
   | null
