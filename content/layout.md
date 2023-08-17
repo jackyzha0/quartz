@@ -20,7 +20,7 @@ export interface FullPageLayout {
 
 These correspond to following parts of the page:
 
-![[quartz-layout.png|800]]
+![[quartz layout.png|800]]
 
 > [!note]
 > There are two additional layout fields that are _not_ shown in the above diagram.

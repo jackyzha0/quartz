@@ -18,7 +18,7 @@ export const Assets: QuartzEmitterPlugin = () => {
       for (const fp of fps) {
         const ext = path.extname(fp)
         const src = joinSegments(argv.directory, fp) as FilePath
-        const name = (slugifyFilePath(fp as FilePath) + ext) as FilePath
+        const name = (slugifyFilePath(fp as FilePath, true) + ext) as FilePath
 
         const dest = joinSegments(assetsPath, name) as FilePath
         const dir = path.dirname(dest) as FilePath

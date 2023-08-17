@@ -17,7 +17,7 @@ const isLocalUrl = (href: string) => {
       }
       return true
     }
-  } catch (e) {}
+  } catch (e) { }
   return false
 }
 
@@ -50,6 +50,7 @@ async function navigate(url: URL, isBack: boolean = false) {
     history.pushState({}, "", url)
     window.scrollTo({ top: 0 })
   }
+
   const html = p.parseFromString(contents, "text/html")
   let title = html.querySelector("title")?.textContent
   if (title) {

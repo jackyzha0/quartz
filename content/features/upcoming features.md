@@ -4,6 +4,8 @@ draft: true
 
 ## todo
 
+- static icon path (in head) never gets updated
+	- do we update relative links on spa?
 - back button with anchors / popovers + spa is broken
 - debounce cfg rebuild on large repos
   - investigate content rebuild triggering multiple times even when debounced, causing an esbuild deadlock
