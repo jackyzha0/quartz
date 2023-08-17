@@ -46,10 +46,6 @@ async function navigate(url: URL, isBack: boolean = false) {
     })
 
   if (!contents) return
-  if (!isBack) {
-    history.pushState({}, "", url)
-    window.scrollTo({ top: 0 })
-  }
 
   const html = p.parseFromString(contents, "text/html")
   let title = html.querySelector("title")?.textContent
@@ -65,7 +61,19 @@ async function navigate(url: URL, isBack: boolean = false) {
   announcer.dataset.persist = ""
   html.body.appendChild(announcer)
 
+  // morph body
   micromorph(document.body, html.body)
+
+  // scroll into place and add history
+  if (!isBack) {
+    history.pushState({}, "", url)
+    if (url.hash) {
+      const el = document.getElementById(url.hash.substring(1))
+      el?.scrollIntoView()
+    } else {
+      window.scrollTo({ top: 0 })
+    }
+  }
 
   // now, patch head
   const elementsToRemove = document.head.querySelectorAll(":not([spa-preserve])")
@@ -92,8 +100,9 @@ function createRouter() {
       }
     })
 
-    window.addEventListener("popstate", () => {
-      if (window.location.hash) return
+    window.addEventListener("popstate", (event) => {
+      const { url } = getOpts(event) ?? {}
+      if (window.location.hash && window.location.pathname === url?.pathname) return
       try {
         navigate(new URL(window.location.toString()), true)
       } catch (e) {
