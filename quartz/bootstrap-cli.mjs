@@ -355,6 +355,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       ],
     })
 
+    const timeoutIds = new Set()
     const build = async (clientRefresh) => {
       const result = await ctx.rebuild().catch((err) => {
         console.error(`${chalk.red("Couldn't parse Quartz configuration:")} ${fp}`)
@@ -378,6 +379,11 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       const { default: buildQuartz } = await import(cacheFile + `?update=${randomUUID()}`)
       await buildQuartz(argv, clientRefresh)
       clientRefresh()
+    }
+
+    const rebuild = (clientRefresh) => {
+      timeoutIds.forEach((id) => clearTimeout(id))
+      timeoutIds.add(setTimeout(() => build(clientRefresh), 250))
     }
 
     if (argv.serve) {
@@ -457,7 +463,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
         })
         .on("all", async () => {
           console.log(chalk.yellow("Detected a source code change, doing a hard rebuild..."))
-          await build(clientRefresh)
+          rebuild(clientRefresh)
         })
     } else {
       await build(() => {})
