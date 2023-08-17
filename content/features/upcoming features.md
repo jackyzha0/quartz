@@ -4,9 +4,8 @@ draft: true
 
 ## todo
 
-- debounce cfg rebuild on large repos
-  - investigate content rebuild triggering multiple times even when debounced, causing an esbuild deadlock
 - dereference symlink for npx quartz sync
+  - prompt user as to whether to do it (it's expensive for large vaults)
 
 ## high priority backlog
 
