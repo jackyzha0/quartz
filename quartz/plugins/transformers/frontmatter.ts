@@ -2,7 +2,7 @@ import matter from "gray-matter"
 import remarkFrontmatter from "remark-frontmatter"
 import { QuartzTransformerPlugin } from "../types"
 import yaml from "js-yaml"
-import { slugTag } from "../../path"
+import { slugTag } from "../../util/path"
 
 export interface Options {
   delims: string | string[]

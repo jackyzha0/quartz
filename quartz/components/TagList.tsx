@@ -1,4 +1,4 @@
-import { canonicalizeServer, pathToRoot, slugTag } from "../path"
+import { canonicalizeServer, pathToRoot, slugTag } from "../util/path"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
 function TagList({ fileData }: QuartzComponentProps) {

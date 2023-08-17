@@ -1,5 +1,5 @@
-import { canonicalizeServer, pathToRoot } from "../path"
-import { JSResourceToScriptElement } from "../resources"
+import { canonicalizeServer, pathToRoot } from "../util/path"
+import { JSResourceToScriptElement } from "../util/resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
 export default (() => {

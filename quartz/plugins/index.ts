@@ -1,6 +1,6 @@
-import { StaticResources } from "../resources"
-import { FilePath, ServerSlug } from "../path"
-import { BuildCtx } from "../ctx"
+import { StaticResources } from "../util/resources"
+import { FilePath, ServerSlug } from "../util/path"
+import { BuildCtx } from "../util/ctx"
 
 export function getStaticResourcesFromPlugins(ctx: BuildCtx) {
   const staticResources: StaticResources = {

@@ -1,13 +1,13 @@
 import path from "path"
 import fs from "fs"
-import { PerfTimer } from "../perf"
+import { PerfTimer } from "../util/perf"
 import { getStaticResourcesFromPlugins } from "../plugins"
 import { EmitCallback } from "../plugins/types"
 import { ProcessedContent } from "../plugins/vfile"
-import { FilePath, joinSegments } from "../path"
-import { QuartzLogger } from "../log"
-import { trace } from "../trace"
-import { BuildCtx } from "../ctx"
+import { FilePath, joinSegments } from "../util/path"
+import { QuartzLogger } from "../util/log"
+import { trace } from "../util/trace"
+import { BuildCtx } from "../util/ctx"
 
 export async function emitContent(ctx: BuildCtx, content: ProcessedContent[]) {
   const { argv, cfg } = ctx

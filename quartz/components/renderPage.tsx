@@ -2,8 +2,8 @@ import { render } from "preact-render-to-string"
 import { QuartzComponent, QuartzComponentProps } from "./types"
 import HeaderConstructor from "./Header"
 import BodyConstructor from "./Body"
-import { JSResourceToScriptElement, StaticResources } from "../resources"
-import { CanonicalSlug, pathToRoot } from "../path"
+import { JSResourceToScriptElement, StaticResources } from "../util/resources"
+import { CanonicalSlug, pathToRoot } from "../util/path"
 
 interface RenderComponents {
   head: QuartzComponent

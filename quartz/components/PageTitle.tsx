@@ -1,4 +1,4 @@
-import { canonicalizeServer, pathToRoot } from "../path"
+import { canonicalizeServer, pathToRoot } from "../util/path"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
 function PageTitle({ fileData, cfg }: QuartzComponentProps) {

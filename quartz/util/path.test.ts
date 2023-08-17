@@ -53,8 +53,6 @@ describe("typeguards", () => {
     assert(!path.isRelativeURL("abc"))
     assert(!path.isRelativeURL("/abc/def"))
     assert(!path.isRelativeURL(""))
-    assert(!path.isRelativeURL("../"))
-    assert(!path.isRelativeURL("./"))
     assert(!path.isRelativeURL("./abc/def.html"))
     assert(!path.isRelativeURL("./abc/def.md"))
   })
@@ -160,17 +158,18 @@ describe("transforms", () => {
       [
         ["", "."],
         [".", "."],
-        ["./", "."],
-        ["./index", "."],
-        ["./index.html", "."],
-        ["./index.md", "."],
+        ["./", "./"],
+        ["./index", "./"],
+        ["./index.html", "./"],
+        ["./index.md", "./"],
         ["content", "./content"],
         ["content/test.md", "./content/test"],
         ["./content/test.md", "./content/test"],
         ["../content/test.md", "../content/test"],
-        ["tags/", "./tags"],
-        ["/tags/", "./tags"],
+        ["tags/", "./tags/"],
+        ["/tags/", "./tags/"],
         ["content/with spaces", "./content/with-spaces"],
+        ["content/with spaces/index", "./content/with-spaces/"],
         ["content/with spaces#and Anchor!", "./content/with-spaces#and-anchor"],
       ],
       path.transformInternalLink,
@@ -269,16 +268,16 @@ describe("link strategies", () => {
     test("from a/b/c", () => {
       const cur = "a/b/c" as CanonicalSlug
       assert.strictEqual(path.transformLink(cur, "d", opts), "./d")
-      assert.strictEqual(path.transformLink(cur, "index", opts), ".")
-      assert.strictEqual(path.transformLink(cur, "../../index", opts), "../..")
-      assert.strictEqual(path.transformLink(cur, "../../", opts), "../..")
+      assert.strictEqual(path.transformLink(cur, "index", opts), "./")
+      assert.strictEqual(path.transformLink(cur, "../../index", opts), "../../")
+      assert.strictEqual(path.transformLink(cur, "../../", opts), "../../")
       assert.strictEqual(path.transformLink(cur, "../../e/g/h", opts), "../../e/g/h")
     })
 
     test("from a/b/index", () => {
       const cur = "a/b" as CanonicalSlug
-      assert.strictEqual(path.transformLink(cur, "../../index", opts), "../..")
-      assert.strictEqual(path.transformLink(cur, "../../", opts), "../..")
+      assert.strictEqual(path.transformLink(cur, "../../index", opts), "../../")
+      assert.strictEqual(path.transformLink(cur, "../../", opts), "../../")
       assert.strictEqual(path.transformLink(cur, "../../e/g/h", opts), "../../e/g/h")
       assert.strictEqual(path.transformLink(cur, "c", opts), "./c")
     })
@@ -286,7 +285,7 @@ describe("link strategies", () => {
     test("from index", () => {
       const cur = "" as CanonicalSlug
       assert.strictEqual(path.transformLink(cur, "e/g/h", opts), "./e/g/h")
-      assert.strictEqual(path.transformLink(cur, "a/b/index", opts), "./a/b")
+      assert.strictEqual(path.transformLink(cur, "a/b/index", opts), "./a/b/")
     })
   })
 })

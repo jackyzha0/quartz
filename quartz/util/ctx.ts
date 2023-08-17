@@ -1,4 +1,4 @@
-import { QuartzConfig } from "./cfg"
+import { QuartzConfig } from "../cfg"
 import { ServerSlug } from "./path"
 
 export interface Argv {

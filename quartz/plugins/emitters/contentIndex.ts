@@ -1,5 +1,11 @@
 import { GlobalConfiguration } from "../../cfg"
-import { CanonicalSlug, ClientSlug, FilePath, ServerSlug, canonicalizeServer } from "../../path"
+import {
+  CanonicalSlug,
+  ClientSlug,
+  FilePath,
+  ServerSlug,
+  canonicalizeServer,
+} from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 import path from "path"
 

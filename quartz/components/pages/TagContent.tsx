@@ -3,7 +3,7 @@ import { Fragment, jsx, jsxs } from "preact/jsx-runtime"
 import { toJsxRuntime } from "hast-util-to-jsx-runtime"
 import style from "../styles/listPage.scss"
 import { PageList } from "../PageList"
-import { ServerSlug, canonicalizeServer, getAllSegmentPrefixes } from "../../path"
+import { ServerSlug, canonicalizeServer, getAllSegmentPrefixes } from "../../util/path"
 import { QuartzPluginData } from "../../plugins/vfile"
 
 const numPages = 10

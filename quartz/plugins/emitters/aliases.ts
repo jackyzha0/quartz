@@ -4,7 +4,7 @@ import {
   ServerSlug,
   canonicalizeServer,
   resolveRelative,
-} from "../../path"
+} from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 import path from "path"
 

@@ -80,7 +80,10 @@ jobs:
         uses: actions/deploy-pages@v2
 ```
 
-Then, commit these changes by doing `npx quartz sync`. This should deploy your site to `<github-username>.github.io/<repository-name>`.
+Then:
+
+1. Head to "Settings" tab of your forked repository and in the sidebar, click "Pages". Under "Source", select "GitHub Actions".
+2. Commit these changes by doing `npx quartz sync`. This should deploy your site to `<github-username>.github.io/<repository-name>`.
 
 ### Custom Domain
 

@@ -1,4 +1,4 @@
-import { FilePath, ServerSlug } from "../../path"
+import { FilePath, ServerSlug } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 
 // @ts-ignore
@@ -9,10 +9,10 @@ import plausibleScript from "../../components/scripts/plausible.inline"
 import popoverScript from "../../components/scripts/popover.inline"
 import styles from "../../styles/base.scss"
 import popoverStyle from "../../components/styles/popover.scss"
-import { BuildCtx } from "../../ctx"
-import { StaticResources } from "../../resources"
+import { BuildCtx } from "../../util/ctx"
+import { StaticResources } from "../../util/resources"
 import { QuartzComponent } from "../../components/types"
-import { googleFontHref, joinStyles } from "../../theme"
+import { googleFontHref, joinStyles } from "../../util/theme"
 import { Features, transform } from "lightningcss"
 
 type ComponentResources = {
