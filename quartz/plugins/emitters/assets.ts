@@ -1,8 +1,8 @@
-import { FilePath, joinSegments, slugifyFilePath } from "../../path"
+import { FilePath, joinSegments, slugifyFilePath } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 import path from "path"
 import fs from "fs"
-import { glob } from "../../glob"
+import { glob } from "../../util/glob"
 
 export const Assets: QuartzEmitterPlugin = () => {
   return {

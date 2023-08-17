@@ -1,4 +1,4 @@
-import { CanonicalSlug, canonicalizeServer, resolveRelative } from "../path"
+import { CanonicalSlug, canonicalizeServer, resolveRelative } from "../util/path"
 import { QuartzPluginData } from "../plugins/vfile"
 import { Date } from "./Date"
 import { QuartzComponentProps } from "./types"

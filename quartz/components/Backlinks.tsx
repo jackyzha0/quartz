@@ -1,6 +1,6 @@
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import style from "./styles/backlinks.scss"
-import { canonicalizeServer, resolveRelative } from "../path"
+import { canonicalizeServer, resolveRelative } from "../util/path"
 
 function Backlinks({ fileData, allFiles }: QuartzComponentProps) {
   const slug = canonicalizeServer(fileData.slug!)

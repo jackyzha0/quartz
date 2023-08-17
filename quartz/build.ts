@@ -1,7 +1,7 @@
 import sourceMapSupport from "source-map-support"
 sourceMapSupport.install(options)
 import path from "path"
-import { PerfTimer } from "./perf"
+import { PerfTimer } from "./util/perf"
 import { rimraf } from "rimraf"
 import { isGitIgnored } from "globby"
 import chalk from "chalk"
@@ -9,13 +9,13 @@ import { parseMarkdown } from "./processors/parse"
 import { filterContent } from "./processors/filter"
 import { emitContent } from "./processors/emit"
 import cfg from "../quartz.config"
-import { FilePath, joinSegments, slugifyFilePath } from "./path"
+import { FilePath, joinSegments, slugifyFilePath } from "./util/path"
 import chokidar from "chokidar"
 import { ProcessedContent } from "./plugins/vfile"
-import { Argv, BuildCtx } from "./ctx"
-import { glob, toPosixPath } from "./glob"
-import { trace } from "./trace"
-import { options } from "./sourcemap"
+import { Argv, BuildCtx } from "./util/ctx"
+import { glob, toPosixPath } from "./util/glob"
+import { trace } from "./util/trace"
+import { options } from "./util/sourcemap"
 
 async function buildQuartz(argv: Argv, clientRefresh: () => void) {
   const ctx: BuildCtx = {

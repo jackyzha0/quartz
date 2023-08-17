@@ -6,10 +6,10 @@ import { slug as slugAnchor } from "github-slugger"
 import rehypeRaw from "rehype-raw"
 import { visit } from "unist-util-visit"
 import path from "path"
-import { JSResource } from "../../resources"
+import { JSResource } from "../../util/resources"
 // @ts-ignore
 import calloutScript from "../../components/scripts/callout.inline.ts"
-import { FilePath, canonicalizeServer, pathToRoot, slugTag, slugifyFilePath } from "../../path"
+import { FilePath, canonicalizeServer, pathToRoot, slugTag, slugifyFilePath } from "../../util/path"
 import { toHast } from "mdast-util-to-hast"
 import { toHtml } from "hast-util-to-html"
 import { PhrasingContent } from "mdast-util-find-and-replace/lib"
@@ -294,7 +294,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               }
 
               const text = firstChild.children[0].value
-              const restChildren = firstChild.children.splice(1)
+              const restChildren = firstChild.children.slice(1)
               const [firstLine, ...remainingLines] = text.split("\n")
               const remainingText = remainingLines.join("\n")
 

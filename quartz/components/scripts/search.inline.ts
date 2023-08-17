@@ -1,7 +1,7 @@
 import { Document } from "flexsearch"
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
 import { registerEscapeHandler, removeAllChildren } from "./util"
-import { CanonicalSlug, getClientSlug, resolveRelative } from "../../path"
+import { CanonicalSlug, getClientSlug, resolveRelative } from "../../util/path"
 
 interface Item {
   id: number

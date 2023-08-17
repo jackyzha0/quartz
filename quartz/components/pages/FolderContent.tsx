@@ -5,7 +5,7 @@ import path from "path"
 
 import style from "../styles/listPage.scss"
 import { PageList } from "../PageList"
-import { canonicalizeServer } from "../../path"
+import { canonicalizeServer } from "../../util/path"
 
 function FolderContent(props: QuartzComponentProps) {
   const { tree, fileData, allFiles } = props

@@ -11,7 +11,7 @@ import {
   ServerSlug,
   getAllSegmentPrefixes,
   joinSegments,
-} from "../../path"
+} from "../../util/path"
 import { defaultListPageLayout, sharedPageComponents } from "../../../quartz.layout"
 import { TagContent } from "../../components"
 
@@ -41,7 +41,7 @@ export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (userOpts) => {
         allFiles.flatMap((data) => data.frontmatter?.tags ?? []).flatMap(getAllSegmentPrefixes),
       )
       // add base tag
-      tags.add("")
+      tags.add("index")
 
       const tagDescriptions: Record<string, ProcessedContent> = Object.fromEntries(
         [...tags].map((tag) => {

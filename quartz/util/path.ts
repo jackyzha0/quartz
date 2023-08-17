@@ -71,7 +71,7 @@ export function isCanonicalSlug(s: string): s is CanonicalSlug {
 export type RelativeURL = SlugLike<"relative">
 export function isRelativeURL(s: string): s is RelativeURL {
   const validStart = /^\.{1,2}/.test(s)
-  const validEnding = !(s.endsWith("/") || s.endsWith("/index") || s === "index")
+  const validEnding = !(s.endsWith("/index") || s === "index")
   return validStart && validEnding && !_hasFileExtension(s)
 }
 
@@ -133,6 +133,12 @@ export function slugifyFilePath(fp: FilePath): ServerSlug {
 
 export function transformInternalLink(link: string): RelativeURL {
   let [fplike, anchor] = splitAnchor(decodeURI(link))
+
+  const folderPath =
+    fplike.endsWith("index") ||
+    fplike.endsWith("index.md") ||
+    fplike.endsWith("index.html") ||
+    fplike.endsWith("/")
   let segments = fplike.split("/").filter((x) => x.length > 0)
   let prefix = segments.filter(_isRelativeSegment).join("/")
   let fp = segments.filter((seg) => !_isRelativeSegment(seg)).join("/")
@@ -143,14 +149,13 @@ export function transformInternalLink(link: string): RelativeURL {
   }
 
   fp = canonicalizeServer(slugifyFilePath(fp as FilePath))
-  fp = _trimSuffix(fp, "index")
-
-  let joined = joinSegments(_stripSlashes(prefix), _stripSlashes(fp))
-  const res = (_addRelativeToStart(joined) + anchor) as RelativeURL
+  const joined = joinSegments(_stripSlashes(prefix), _stripSlashes(fp))
+  const trail = folderPath ? "/" : ""
+  const res = (_addRelativeToStart(joined) + anchor + trail) as RelativeURL
   return res
 }
 
-// resolve /a/b/c to ../../
+// resolve /a/b/c to ../../..
 export function pathToRoot(slug: CanonicalSlug): RelativeURL {
   let rootPath = slug
     .split("/")

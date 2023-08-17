@@ -6,7 +6,13 @@ import { pageResources, renderPage } from "../../components/renderPage"
 import { ProcessedContent, defaultProcessedContent } from "../vfile"
 import { FullPageLayout } from "../../cfg"
 import path from "path"
-import { CanonicalSlug, FilePath, ServerSlug, canonicalizeServer, joinSegments } from "../../path"
+import {
+  CanonicalSlug,
+  FilePath,
+  ServerSlug,
+  canonicalizeServer,
+  joinSegments,
+} from "../../util/path"
 import { defaultListPageLayout, sharedPageComponents } from "../../../quartz.layout"
 import { FolderContent } from "../../components"
 

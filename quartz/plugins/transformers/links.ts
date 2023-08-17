@@ -8,7 +8,7 @@ import {
   joinSegments,
   splitAnchor,
   transformLink,
-} from "../../path"
+} from "../../util/path"
 import path from "path"
 import { visit } from "unist-util-visit"
 import isAbsoluteUrl from "is-absolute-url"

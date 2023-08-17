@@ -1,5 +1,5 @@
 import micromorph from "micromorph"
-import { CanonicalSlug, RelativeURL, getCanonicalSlug } from "../../path"
+import { CanonicalSlug, RelativeURL, getCanonicalSlug } from "../../util/path"
 
 // adapted from `micromorph`
 // https://github.com/natemoo-re/micromorph

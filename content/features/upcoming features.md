@@ -8,8 +8,6 @@ draft: true
 - debounce cfg rebuild on large repos
   - investigate content rebuild triggering multiple times even when debounced, causing an esbuild deadlock
 - dereference symlink for npx quartz sync
-- test/fix with subpath
-- fix docs with deploy from github
 
 ## high priority backlog
 
