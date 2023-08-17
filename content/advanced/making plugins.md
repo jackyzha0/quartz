@@ -7,7 +7,7 @@ title: Making your own plugins
 
 Quartz's plugins are a series of transformations over content. This is illustrated in the diagram of the processing pipeline below:
 
-![[quartz-transform-pipeline.png]]
+![[quartz transform pipeline.png]]
 
 All plugins are defined as a function that takes in a single parameter for options `type OptionType = object | undefined` and return an object that corresponds to the type of plugin it is.
 

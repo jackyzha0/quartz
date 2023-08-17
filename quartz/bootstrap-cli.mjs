@@ -388,7 +388,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
 
       await build(clientRefresh)
       const server = http.createServer(async (req, res) => {
-        const serve = async (fp) => {
+        const serve = async () => {
           await serveHandler(req, res, {
             public: argv.output,
             directoryListing: false,
@@ -400,11 +400,11 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
         }
 
         const redirect = (newFp) => {
-          res.writeHead(301, {
+          res.writeHead(302, {
             Location: newFp,
           })
-          console.log(chalk.yellow("[301]") + chalk.grey(` ${req.url} -> ${newFp}`))
-          return res.end()
+          console.log(chalk.yellow("[302]") + chalk.grey(` ${req.url} -> ${newFp}`))
+          res.end()
         }
 
         let fp = req.url?.split("?")[0] ?? "/"
@@ -415,7 +415,8 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
           // does /trailing/index.html exist? if so, serve it
           const indexFp = path.posix.join(fp, "index.html")
           if (fs.existsSync(path.posix.join(argv.output, indexFp))) {
-            return serve(indexFp)
+            req.url = fp
+            return serve()
           }
 
           // does /trailing.html exist? if so, redirect to /trailing
@@ -424,7 +425,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
             base += ".html"
           }
           if (fs.existsSync(path.posix.join(argv.output, base))) {
-            return redirect(base)
+            return redirect(fp.slice(0, -1))
           }
         } else {
           // /regular
@@ -434,7 +435,8 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
             base += ".html"
           }
           if (fs.existsSync(path.posix.join(argv.output, base))) {
-            return serve(base)
+            req.url = fp
+            return serve()
           }
 
           // does /regular/index.html exist? if so, redirect to /regular/
@@ -444,7 +446,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
           }
         }
 
-        return serve(fp)
+        return serve()
       })
       server.listen(argv.port)
       console.log(chalk.cyan(`Started a Quartz server listening at http://localhost:${argv.port}`))
@@ -458,7 +460,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
           await build(clientRefresh)
         })
     } else {
-      await build(() => {})
+      await build(() => { })
       ctx.dispose()
     }
   })

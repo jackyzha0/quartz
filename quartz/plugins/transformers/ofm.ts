@@ -196,7 +196,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               // embed cases
               if (value.startsWith("!")) {
                 const ext: string = path.extname(fp).toLowerCase()
-                const url = slugifyFilePath(fp as FilePath) + ext
+                const url = slugifyFilePath(fp as FilePath)
                 if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg"].includes(ext)) {
                   const dims = alias ?? ""
                   let [width, height] = dims.split("x", 2)
