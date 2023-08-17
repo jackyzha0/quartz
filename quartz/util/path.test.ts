@@ -198,7 +198,15 @@ describe("transforms", () => {
 })
 
 describe("link strategies", () => {
-  const allSlugs = ["a/b/c", "a/b/d", "a/b/index", "e/f", "e/g/h", "index", "a/test.png"] as ServerSlug[]
+  const allSlugs = [
+    "a/b/c",
+    "a/b/d",
+    "a/b/index",
+    "e/f",
+    "e/g/h",
+    "index",
+    "a/test.png",
+  ] as ServerSlug[]
 
   describe("absolute", () => {
     const opts: TransformOptions = {
@@ -285,7 +293,10 @@ describe("link strategies", () => {
       assert.strictEqual(path.transformLink(cur, "../../../index.png", opts), "../../../index.png")
       assert.strictEqual(path.transformLink(cur, "../../../index#abc", opts), "../../../#abc")
       assert.strictEqual(path.transformLink(cur, "../../../", opts), "../../../")
-      assert.strictEqual(path.transformLink(cur, "../../../a/test.png", opts), "../../../a/test.png")
+      assert.strictEqual(
+        path.transformLink(cur, "../../../a/test.png", opts),
+        "../../../a/test.png",
+      )
       assert.strictEqual(path.transformLink(cur, "../../../e/g/h", opts), "../../../e/g/h")
       assert.strictEqual(path.transformLink(cur, "../../../e/g/h", opts), "../../../e/g/h")
       assert.strictEqual(path.transformLink(cur, "../../../e/g/h#abc", opts), "../../../e/g/h#abc")
