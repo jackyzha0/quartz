@@ -72,7 +72,7 @@ export type RelativeURL = SlugLike<"relative">
 export function isRelativeURL(s: string): s is RelativeURL {
   const validStart = /^\.{1,2}/.test(s)
   const validEnding = !(s.endsWith("/index") || s === "index")
-  return validStart && validEnding && ![".md", ".html"].includes(_getFileExtension(s) ?? "") 
+  return validStart && validEnding && ![".md", ".html"].includes(_getFileExtension(s) ?? "")
 }
 
 /** A server side slug. This is what Quartz uses to emit files so uses index suffixes */
@@ -133,7 +133,7 @@ export function slugifyFilePath(fp: FilePath, excludeExt?: boolean): ServerSlug 
     slug = slug.replace(/_index$/, "index")
   }
 
-  return slug + ext as ServerSlug
+  return (slug + ext) as ServerSlug
 }
 
 export function transformInternalLink(link: string): RelativeURL {
@@ -239,7 +239,7 @@ export function transformLink(
     }
 
     // if it's not unique, then it's the absolute path from the vault root
-    return joinSegments(pathToRoot(src), canonicalSlug) + folderTail as RelativeURL
+    return (joinSegments(pathToRoot(src), canonicalSlug) + folderTail) as RelativeURL
   }
 }
 

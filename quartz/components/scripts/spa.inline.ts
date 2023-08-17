@@ -17,7 +17,7 @@ const isLocalUrl = (href: string) => {
       }
       return true
     }
-  } catch (e) { }
+  } catch (e) {}
   return false
 }
 

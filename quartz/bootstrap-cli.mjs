@@ -460,7 +460,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
           await build(clientRefresh)
         })
     } else {
-      await build(() => { })
+      await build(() => {})
       ctx.dispose()
     }
   })
