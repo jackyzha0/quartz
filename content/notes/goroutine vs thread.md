@@ -27,7 +27,8 @@ weight: -4
 	- 1-1
 	- n-1
 	- n-n
-![[Pasted image 20230817171544.png]]
+![](/notes/images/attachments/Pasted image 20230817171544.png)
+
 ## Goroutine
 - It is **logical processor** (NOT physical processor). Each of these are bound to a single OS thread
 ```
