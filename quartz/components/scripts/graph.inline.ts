@@ -179,7 +179,6 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
       const neighbourNodes = d3
         .selectAll<HTMLElement, NodeData>(".node")
         .filter((d) => neighbours.includes(d.id))
-      console.log(neighbourNodes)
       const currentId = d.id
       const linkNodes = d3
         .selectAll(".link")
