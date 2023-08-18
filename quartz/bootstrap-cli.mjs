@@ -192,7 +192,7 @@ yargs(hideBin(process.argv))
 
       await rmContentFolder()
       if (setupStrategy === "copy") {
-        await fs.promises.cp(originalFolder, contentFolder, { recursive: true })
+        await fs.promises.cp(originalFolder, contentFolder, { recursive: true, preserveTimestamps: true })
       } else if (setupStrategy === "symlink") {
         await fs.promises.symlink(originalFolder, contentFolder, "dir")
       }
@@ -292,7 +292,6 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
 
         // follow symlink and copy content
         await fs.promises.cp(linkTarg, contentFolder, {
-          force: true,
           recursive: true,
           preserveTimestamps: true,
         })
@@ -302,7 +301,8 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
         dateStyle: "medium",
         timeStyle: "short",
       })
-      spawnSync("git", ["commit", "-am", `Quartz sync: ${currentTimestamp}`], { stdio: "inherit" })
+      spawnSync("git", ["add", "."], { stdio: "inherit" })
+      spawnSync("git", ["commit", "-m", `Quartz sync: ${currentTimestamp}`], { stdio: "inherit" })
 
       if (contentStat.isSymbolicLink()) {
         // put symlink back
