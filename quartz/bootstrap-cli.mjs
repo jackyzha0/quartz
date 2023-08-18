@@ -192,7 +192,10 @@ yargs(hideBin(process.argv))
 
       await rmContentFolder()
       if (setupStrategy === "copy") {
-        await fs.promises.cp(originalFolder, contentFolder, { recursive: true, preserveTimestamps: true })
+        await fs.promises.cp(originalFolder, contentFolder, {
+          recursive: true,
+          preserveTimestamps: true,
+        })
       } else if (setupStrategy === "symlink") {
         await fs.promises.symlink(originalFolder, contentFolder, "dir")
       }
