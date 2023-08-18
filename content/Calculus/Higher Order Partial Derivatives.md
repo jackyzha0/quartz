@@ -47,7 +47,6 @@ When functions are "nice enough" they will have $f_{xy} = f_{yx}$.
 >Suppose that $f$ is defined on a disk $D$ that contains the point $(a,b)$. If the functions $f_{xy}$ and $f_{yx}$ are continuous on this disk then, 
 >$$f_{xy}(a,b) = f_{yx}(a,b)$$
 
-Test test
 
 
 
