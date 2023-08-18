@@ -8,7 +8,7 @@ title: "Upgrading Quartz"
 To fetch the latest Quartz updates, simply run
 
 ```bash
-npx quartz upgrade
+npx quartz update
 ```
 
 As Quartz uses [git](https://git-scm.com/) under the hood for versioning, updating effectively 'pulls' in the updates from the official Quartz GitHub repository. If you have local changes that might conflict with the updates, you may need to resolve these manually yourself (or, pull manually using `git pull origin upstream`).
