@@ -486,7 +486,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
           rebuild(clientRefresh)
         })
     } else {
-      await build(() => { })
+      await build(() => {})
       ctx.dispose()
     }
   })
