@@ -267,6 +267,9 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     spawnSync("npm", ["i"], { stdio: "inherit" })
     console.log(chalk.green("Done!"))
   })
+  .command("restore", "Try to restore your content folder from the cache", async () => {
+    await popContentFolder()
+  })
   .command("sync", "Sync your Quartz to and from GitHub.", SyncArgv, async (argv) => {
     const contentFolder = path.join(cwd, argv.directory)
     console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
@@ -275,13 +278,13 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     if (argv.commit) {
       const contentStat = await fs.promises.lstat(contentFolder)
       if (contentStat.isSymbolicLink()) {
+        const linkTarg = await fs.promises.readlink(contentFolder)
         console.log(chalk.yellow("Detected symlink, trying to dereference before committing"))
 
         // stash symlink file
         await stashContentFolder(contentFolder)
 
         // follow symlink and copy content
-        const linkTarg = await fs.promises.readlink(contentFolder)
         await fs.promises.cp(linkTarg, contentFolder, {
           force: true,
           recursive: true,
