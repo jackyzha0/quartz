@@ -1,0 +1,15 @@
+{
+	"nodes":[
+		{"type":"text","text":"**Patchwork + Linwei magic**\n\n\n\n\n\n\n","id":"fd0fac71c3a0e4ad","x":-560,"y":150,"width":330,"height":65},
+		{"type":"text","text":"**Multi-modal detection — BEVFusion**\n","id":"a646e124d33269c5","x":260,"y":150,"width":320,"height":65},
+		{"type":"text","text":"**Lidar-only detection — PointPillars / BEVFusion-lidar**\n\n\n","id":"becf668674fe8e53","x":-200,"y":150,"width":430,"height":65},
+		{"type":"text","text":"How hard is the environment in terms of lidar feature diversity?\n","id":"1fce9099dbcdd360","x":135,"y":-60,"width":250,"height":80},
+		{"type":"text","text":" Do you need semantic or spatial awareness?","id":"6f7abf66ebbcabc5","x":-200,"y":-260,"width":250,"height":60}
+	],
+	"edges":[
+		{"id":"7bd5055ee49163bb","fromNode":"6f7abf66ebbcabc5","fromSide":"bottom","toNode":"fd0fac71c3a0e4ad","toSide":"top","color":"6","label":"Spatial"},
+		{"id":"fde1cf21ed2eb019","fromNode":"6f7abf66ebbcabc5","fromSide":"bottom","toNode":"1fce9099dbcdd360","toSide":"top","color":"6","label":"Both"},
+		{"id":"b39bc20ff7f57607","fromNode":"1fce9099dbcdd360","fromSide":"bottom","toNode":"a646e124d33269c5","toSide":"top","color":"6","label":"Hard"},
+		{"id":"bd065034d6a30dd0","fromNode":"1fce9099dbcdd360","fromSide":"bottom","toNode":"becf668674fe8e53","toSide":"top","color":"6","label":"Easy"}
+	]
+}

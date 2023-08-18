@@ -1,0 +1,16 @@
+{
+	"nodes":[
+		{"type":"text","text":"# Do you need semantic or spatial awareness?","id":"6f7abf66ebbcabc5","x":-200,"y":-280,"width":250,"height":60},
+		{"type":"text","text":"Patchwork + Linwei magic\n\n- Current method\n- Ground segmentation with patchwork + height-based filtering\n- Good spatial awareness but no semantic information\n\t- In some environments, semantic information is not necessary!\n\n\n\n\n\n\n![[Pasted image 20230801125130.png]]","id":"fd0fac71c3a0e4ad","x":-560,"y":150,"width":330,"height":690},
+		{"type":"text","text":"BEVFusion (Lidar + Image)\n\n- New multi-modal approach\n- Better for complex environments where point clouds for semantically different objects appear similar\n\t- Example: rock and bush might be shaped similarly but one is a lot more dangerous\n- But can be finicky and hard to train!\n\n\n![[Pasted image 20230801131058.png]]","id":"a646e124d33269c5","x":260,"y":150,"width":480,"height":690},
+		{"type":"text","text":"PointPillars (Lidar only)\n\n- Classic lidar object detection approach\n- Labeled bounding boxes around objects of interest\n\n![[Pasted image 20230801130809.png]]","id":"becf668674fe8e53","x":-200,"y":150,"width":430,"height":690},
+		{"type":"text","text":"# How hard is the environment in terms of lidar feature diversity?\n","id":"1fce9099dbcdd360","x":135,"y":-60,"width":250,"height":73},
+		{"type":"text","text":"Inspired by Netflix.\n\n![[Pasted image 20230801131246.png]]","id":"72253f527e04f3cb","x":-287,"y":880,"width":605,"height":520}
+	],
+	"edges":[
+		{"id":"7bd5055ee49163bb","fromNode":"6f7abf66ebbcabc5","fromSide":"bottom","toNode":"fd0fac71c3a0e4ad","toSide":"top","color":"6","label":"Spatial"},
+		{"id":"fde1cf21ed2eb019","fromNode":"6f7abf66ebbcabc5","fromSide":"bottom","toNode":"1fce9099dbcdd360","toSide":"top","color":"6","label":"Both"},
+		{"id":"b39bc20ff7f57607","fromNode":"1fce9099dbcdd360","fromSide":"bottom","toNode":"a646e124d33269c5","toSide":"top","color":"6","label":"Hard"},
+		{"id":"bd065034d6a30dd0","fromNode":"1fce9099dbcdd360","fromSide":"bottom","toNode":"becf668674fe8e53","toSide":"top","color":"6","label":"Easy"}
+	]
+}

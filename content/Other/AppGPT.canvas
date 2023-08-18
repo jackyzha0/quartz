@@ -1,0 +1,14 @@
+{
+	"nodes":[
+		{"id":"119710604db03fe3","x":-240,"y":-60,"width":280,"height":420,"type":"text","text":"# Code-Generation with LLM\n\n- Generates code to do task\n\t- Writes test cases\n\t- Debugs itself by using errors as prompt for next iteration\n\t- Asks for user approval\n\t- Generate button name/filename based on prompt\n- Virtual environment creation with dependencies/whatever\n- Prompting user for more information if needed"},
+		{"id":"8083e3d216607332","x":120,"y":-60,"width":260,"height":300,"type":"text","text":"# App-ify\n\n- Save generated code to a folder so that it can be run again at any time\n- For every \"applet\" in the folder, make a fucking button\n\t- When you press the button, it runs the thing that you made"},
+		{"id":"f13a71f9f6c99936","x":460,"y":-60,"width":250,"height":300,"type":"text","text":"# Sharing\n\n- If you create an applet that you like and think other people would find useful, you can upload to a \"social media\" platform\n- Others can download it and use it for their own purposes"},
+		{"id":"c6aa122953e35b88","x":-580,"y":-60,"width":250,"height":260,"type":"text","text":"# Prompt\n- Text prompt\n- \"Write a program to set an alarm and text Zara 'yo what did i miss in class'\"\n- THE ONLY LIMIT IS YOUR IMAGINATION"},
+		{"id":"055b560f4b8d7cc7","x":200,"y":340,"width":494,"height":200,"type":"text","text":"- The real bottleneck LLM capability\n\t- GoRILLA API LLM\n- Because generated code is saved locally, it's personal and secure\n- Voyager skill-building type shit\n- For sharing: make a GH account for the application, every applet gets its own repository"}
+	],
+	"edges":[
+		{"id":"449b7c9c4900f7bf","fromNode":"c6aa122953e35b88","fromSide":"right","toNode":"119710604db03fe3","toSide":"left"},
+		{"id":"d24e3885c11c4712","fromNode":"119710604db03fe3","fromSide":"right","toNode":"8083e3d216607332","toSide":"left"},
+		{"id":"2a6bc95867eb7ab6","fromNode":"8083e3d216607332","fromSide":"right","toNode":"f13a71f9f6c99936","toSide":"left"}
+	]
+}
