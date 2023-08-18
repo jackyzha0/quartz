@@ -74,19 +74,6 @@ tbody, li, p {
 .mainTOC {
   border-radius: 5px;
   padding: 0.75em 0;
-
-  & details {
-    & summary {
-      cursor: zoom-in;
-      font-family: var(--font-header);
-      color: var(--dark);
-      font-weight: 700;
-    }
-
-    &[open] summary {
-      cursor: zoom-out;
-    }
-  }
 }
 
 #TableOfContents > ol {
@@ -131,7 +118,6 @@ td, th {
 img {
   max-width: 100%;
   border-radius: 3px;
-  margin: 1em 0;
 }
 
 p > img + em {

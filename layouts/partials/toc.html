@@ -1,9 +1,8 @@
 {{ $hasHeaders := gt (len (findRE "<h\\d.*?>(.|\n)*?</h\\d>" .Content)) 0 }}
 {{ if (or (and (not $.Site.Data.config.enableToc) .Params.enableToc) (and $.Site.Data.config.enableToc (ne .Params.enableToc false) $hasHeaders)) }}
+{{ if $.Site.Data.config.openToc }}{{ end }}
 <aside class="mainTOC">
-    <details {{ if $.Site.Data.config.openToc }}open {{ end }}>
-        <summary>{{ i18n "toc" }}</summary>
-        {{ .TableOfContents }}
-    </details>
+  <h4>{{ i18n "toc" }}</h4>
+  {{ .TableOfContents }}
 </aside>
-{{end}}
+{{ end }}

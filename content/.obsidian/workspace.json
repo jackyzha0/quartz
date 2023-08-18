@@ -133,8 +133,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -146,14 +145,16 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "57cb606f1d81ddf0",
+  "active": "47f41e50d592acfb",
   "lastOpenFiles": [
+    "notes/images/thread-mapping.png",
+    "notes/images/attachments/Pasted.md",
+    "notes/goroutine vs thread.md",
+    "notes/images/attachments",
     "notes/postgresql scan.md",
     "notes/how to engineer kindness.md",
-    "notes/images/Pasted image 20230817171544.png",
     "notes/images/bitmap-scan.png",
     "_index.md",
-    "notes/goroutine vs thread.md",
     "notes/elasticsearch autocomplete.md",
     "notes/aws handbook.md",
     "private/private-note.md",
