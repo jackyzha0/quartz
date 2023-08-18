@@ -1,12 +1,6 @@
 ---
 draft: true
 ---
-
-## todo
-
-- dereference symlink for npx quartz sync
-  - prompt user as to whether to do it (it's expensive for large vaults)
-
 ## high priority backlog
 
 - block links: https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note
