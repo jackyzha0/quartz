@@ -112,6 +112,7 @@ function exitIfCancel(val) {
 }
 
 async function stashContentFolder(contentFolder) {
+  await fs.promises.rm(contentCacheFolder, { force: true, recursive: true })
   await fs.promises.cp(contentFolder, contentCacheFolder, {
     force: true,
     recursive: true,
@@ -150,7 +151,7 @@ yargs(hideBin(process.argv))
         message: `Choose how to initialize the content in \`${contentFolder}\``,
         options: [
           { value: "new", label: "Empty Quartz" },
-          { value: "copy", label: "Replace with an existing folder", hint: "overwrites `content`" },
+          { value: "copy", label: "Copy an existing folder", hint: "overwrites `content`" },
           {
             value: "symlink",
             label: "Symlink an existing folder",
@@ -163,12 +164,10 @@ yargs(hideBin(process.argv))
 
     async function rmContentFolder() {
       const contentStat = await fs.promises.lstat(contentFolder)
-      if (contentStat) {
-        if (contentStat.isSymbolicLink()) {
-          await fs.promises.unlink(contentFolder)
-        } else {
-          await rimraf(contentFolder)
-        }
+      if (contentStat.isSymbolicLink()) {
+        await fs.promises.unlink(contentFolder)
+      } else {
+        await rimraf(contentFolder)
       }
     }
 
@@ -274,11 +273,32 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     console.log("Backing up your content")
 
     if (argv.commit) {
+      const contentStat = await fs.promises.lstat(contentFolder)
+      if (contentStat.isSymbolicLink()) {
+        console.log(chalk.yellow("Detected symlink, trying to dereference before committing"))
+
+        // stash symlink file
+        await stashContentFolder(contentFolder)
+
+        // follow symlink and copy content
+        const linkTarg = await fs.promises.readlink(contentFolder)
+        await fs.promises.cp(linkTarg, contentFolder, {
+          force: true,
+          recursive: true,
+          preserveTimestamps: true,
+        })
+      }
+
       const currentTimestamp = new Date().toLocaleString("en-US", {
         dateStyle: "medium",
         timeStyle: "short",
       })
       spawnSync("git", ["commit", "-am", `Quartz sync: ${currentTimestamp}`], { stdio: "inherit" })
+
+      if (contentStat.isSymbolicLink()) {
+        // put symlink back
+        await popContentFolder()
+      }
     }
 
     await stashContentFolder(contentFolder)
@@ -466,7 +486,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
           rebuild(clientRefresh)
         })
     } else {
-      await build(() => {})
+      await build(() => { })
       ctx.dispose()
     }
   })
