@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "e0d03c52dc3500d2",
+        "id": "1fe6fdc75cf02ea6",
         "type": "tabs",
         "children": [
           {
-            "id": "57cb606f1d81ddf0",
+            "id": "061c94e7450bea4e",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "golang/goroutine vs thread.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "golang/goroutine vs thread.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "golang/goroutine vs thread.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "golang/goroutine vs thread.md"
+              }
             }
           }
         ]
@@ -137,18 +145,26 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "47f41e50d592acfb",
+  "active": "061c94e7450bea4e",
   "lastOpenFiles": [
+    "golang/attachment/goroutine-sys-call.png",
+    "golang/attachment/goroutine.png",
+    "golang/goroutine vs thread.md",
     "home.md",
+    "Pasted image 20230819000741.png",
+    "Pasted image 20230819000629.png.md",
+    "Pasted image 20230819000622.png",
+    "Pasted image 20230819000629.png",
+    "Pasted image 20230819000624.png",
+    "golang/attachment/request-thread.png",
+    "es/elasticsearch autocomplete.md",
     "postgres/attachment/bitmap-scan.png",
     "postgres/attachment",
     "golang/attachment/thread-mapping.png",
     "golang/attachment",
     "tips/how to engineer kindness.md",
     "tips",
-    "golang/goroutine vs thread.md",
     "golang",
-    "es/elasticsearch autocomplete.md",
     "postgres/postgresql scan.md",
     "es",
     "postgres",
@@ -156,8 +172,6 @@
     "aws",
     "notes/aws/aws handbook.md",
     "notes/aws",
-    "notes/images/thread-mapping.png",
-    "notes/images/bitmap-scan.png",
     "notes/postgresql scan.md",
     "notes/images",
     "notes/how to engineer kindness.md",
@@ -165,8 +179,6 @@
     "notes/aws handbook.md",
     "notes/elasticsearch autocomplete.md",
     "notes",
-    "sixth/images/bitmap-scan.png",
-    "sixth/images/thread-mapping.png",
     "sixth/postgresql scan.md",
     "sixth/how to engineer kindness.md",
     "sixth/goroutine vs thread.md",
@@ -174,16 +186,10 @@
     "sixth/elasticsearch autocomplete.md",
     "notes/aws/notes/aws handbook 2.md",
     "notes/aws/notes/aws handbook.md",
-    "mint/images/thread-mapping.png",
-    "mint/images/bitmap-scan.png",
     "mint/postgresql scan.md",
     "mint/how to engineer kindness.md",
     "mint/goroutine vs thread.md",
     "mint/elasticsearch autocomplete.md",
-    "mint/aws handbook.md",
-    "aws/test.md",
-    "aws/aws-handbook.md",
-    "notes/postgres/attachment/bitmap-scan.png",
-    "notes/golang/attachment/thread-mapping.png"
+    "mint/aws handbook.md"
   ]
 }

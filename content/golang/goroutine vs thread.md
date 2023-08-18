@@ -7,31 +7,39 @@ weight: -4
 ---
 
 ## Concurrency
-- Concurrency allows program how to **deal** with multiple things at the same time
-	- Eg: one person is responsible for receiving the order and making food concurrently
+Concurrency allows a program to manage multiple tasks simultaneously. For example, imagine one person handling both order reception and food preparation concurrently.
 ### Concurrency on Single-Core CPU
-- On a single core CPU. the single core (processor) might trick you to think that it’s executing multiple tasks at once, when in fact what happens is that the task execution in the processor is overlapping, meaning that each task is given a time window on the processor to run on, then it would be replaced with another task to be executed on that processor.
-- Eg: If we have task “A”, “B” The processor might first assign task “A” 5 microseconds to execute on it, then even though task A needs more time to finish, it tells task “B” to take over and do the computation it needs for let’s say another 5 microseconds. And finally when task “B” is done executing, task “A” can start processing again for another 5 microseconds
+On a single-core CPU, it might appear as though the processor is executing multiple tasks simultaneously. However, what's actually happening is that task execution is overlapping. Each task is given a time window on the processor to run, and then it's replaced by another task. For instance, if tasks **A** and **B** are present, the processor might allocate 5 microseconds to task **A** for execution. Even if task **A** requires more time, it will yield to task **B** after 5 microseconds. Once task **B** finishes executing, task **A** resumes for another 5 microseconds.
 ## Parallelism
-- It refers to a CPU can handle multiple tasks at the same exact time
+Parallelism refers to a CPU's ability to handle multiple tasks truly simultaneously.
 ## Process
-- Process is the instance of the program that is being executed by one or many threads
-- At the beginning, CPU can only handle only one process at the time
-- Multi processing is introduced to solve problem by *time sharing model*
-- **time sharing** is the way to share resources between processes, allows them run parallel
-- But it is just illusion, under hood of it is **context switch**, it means CPU 
+A process is an instance of a program being executed by one or many threads. Initially, a CPU could handle only one process at a time. **Multi-processing** was introduced to address this limitation through a time-sharing model. Time sharing enables resource sharing between processes, allowing them to run in parallel. However, this is an illusion; underneath lies **context switching**, which involves the CPU.
 ## Thread
-- A **thread** is an execution context, which is all the information a CPU needs to execute a stream of the instructions
-- Java threads map directly to OS threads
-- Threads are created and managed in different ways
-	- 1-1
-	- n-1
-	- n-n
+A thread is an execution context containing all the information a CPU needs to execute a sequence of instructions. In Java, threads directly map to OS threads. Threads do not switch between units of work, and they are created and managed using various methods such as the 1-1, n-1, and n-n models.
 
 ![](/golang/attachment/thread-mapping.png)
 
+When a thread encounters an I/O call (e.g., reading a file), it becomes blocked. If all threads make system calls, incoming requests get queued.
+
+![](/golang/attachment/request-thread.png)
 ## Goroutine
-- It is **logical processor** (NOT physical processor). Each of these are bound to a single OS thread
-```
-OS Thread ------ Logical Processor ------ Goroutine 1, Goroutine 2..... Goroutine n
-```
+A **goroutine** is a logical processor (not a physical one). Each **goroutine** is bound to a single OS thread.
+ ![](golang/attachment/goroutine.png)
+
+In the diagram above:
+- **M** represents an OS thread, functioning like a machine.
+- **P** signifies the Go scheduler, acting as a processor.
+- **G** denotes a goroutine.
+
+The Go runtime schedules each goroutine internally for concurrent execution. However, when a goroutine makes a system call, such as in the following diagram:
+
+![](golang/attachment/goroutine-sys-call.png)
+As you can see, the goroutine that makes the system call is moved to the **NETPOLLER** and **P** continues to handle other goroutines. This prevents your program from becoming blocked.
+
+## Summary
+- Thread is good for *CPU bound* operation that needs strong computation 
+- Goroutine is good for *IO bound* operation that allows a program can handle numerous tasks which does not strong computation just *IO operation* only
+
+## Source
+- https://tuhuynh.com/posts/nio-under-the-hood/
+- https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part2.html

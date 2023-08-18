@@ -2,5 +2,6 @@
   "accentColor": "",
   "cssTheme": "Material Gruvbox",
   "interfaceFontFamily": "",
-  "textFontFamily": ""
+  "textFontFamily": "",
+  "baseFontSize": 15
 }
