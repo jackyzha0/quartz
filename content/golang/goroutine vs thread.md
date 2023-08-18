@@ -28,7 +28,7 @@ weight: -4
 	- n-1
 	- n-n
 
-![](/notes/images/thread-mapping.png)
+![](/golang/attachment/thread-mapping.png)
 
 ## Goroutine
 - It is **logical processor** (NOT physical processor). Each of these are bound to a single OS thread

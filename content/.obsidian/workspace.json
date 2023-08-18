@@ -11,12 +11,8 @@
             "id": "57cb606f1d81ddf0",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "notes/goroutine vs thread.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "notes/goroutine vs thread.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "notes/goroutine vs thread.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "notes/goroutine vs thread.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -147,17 +139,51 @@
   },
   "active": "47f41e50d592acfb",
   "lastOpenFiles": [
+    "home.md",
+    "postgres/attachment/bitmap-scan.png",
+    "postgres/attachment",
+    "golang/attachment/thread-mapping.png",
+    "golang/attachment",
+    "tips/how to engineer kindness.md",
+    "tips",
+    "golang/goroutine vs thread.md",
+    "golang",
+    "es/elasticsearch autocomplete.md",
+    "postgres/postgresql scan.md",
+    "es",
+    "postgres",
+    "aws/aws handbook.md",
+    "aws",
+    "notes/aws/aws handbook.md",
+    "notes/aws",
     "notes/images/thread-mapping.png",
-    "notes/images/attachments/Pasted.md",
-    "notes/goroutine vs thread.md",
-    "notes/images/attachments",
-    "notes/postgresql scan.md",
-    "notes/how to engineer kindness.md",
     "notes/images/bitmap-scan.png",
-    "_index.md",
-    "notes/elasticsearch autocomplete.md",
+    "notes/postgresql scan.md",
+    "notes/images",
+    "notes/how to engineer kindness.md",
+    "notes/goroutine vs thread.md",
     "notes/aws handbook.md",
-    "private/private-note.md",
-    "templates/post.md"
+    "notes/elasticsearch autocomplete.md",
+    "notes",
+    "sixth/images/bitmap-scan.png",
+    "sixth/images/thread-mapping.png",
+    "sixth/postgresql scan.md",
+    "sixth/how to engineer kindness.md",
+    "sixth/goroutine vs thread.md",
+    "sixth/aws handbook.md",
+    "sixth/elasticsearch autocomplete.md",
+    "notes/aws/notes/aws handbook 2.md",
+    "notes/aws/notes/aws handbook.md",
+    "mint/images/thread-mapping.png",
+    "mint/images/bitmap-scan.png",
+    "mint/postgresql scan.md",
+    "mint/how to engineer kindness.md",
+    "mint/goroutine vs thread.md",
+    "mint/elasticsearch autocomplete.md",
+    "mint/aws handbook.md",
+    "aws/test.md",
+    "aws/aws-handbook.md",
+    "notes/postgres/attachment/bitmap-scan.png",
+    "notes/golang/attachment/thread-mapping.png"
   ]
 }
