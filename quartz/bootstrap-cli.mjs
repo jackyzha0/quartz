@@ -267,9 +267,15 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     spawnSync("npm", ["i"], { stdio: "inherit" })
     console.log(chalk.green("Done!"))
   })
-  .command("restore", "Try to restore your content folder from the cache", async () => {
-    await popContentFolder()
-  })
+  .command(
+    "restore",
+    "Try to restore your content folder from the cache",
+    CommonArgv,
+    async (argv) => {
+      const contentFolder = path.join(cwd, argv.directory)
+      await popContentFolder(contentFolder)
+    },
+  )
   .command("sync", "Sync your Quartz to and from GitHub.", SyncArgv, async (argv) => {
     const contentFolder = path.join(cwd, argv.directory)
     console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
@@ -300,7 +306,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
 
       if (contentStat.isSymbolicLink()) {
         // put symlink back
-        await popContentFolder()
+        await popContentFolder(contentFolder)
       }
     }
 
