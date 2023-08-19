@@ -5,11 +5,11 @@ import path from "path"
 
 import style from "../styles/listPage.scss"
 import { PageList } from "../PageList"
-import { simplifySlug } from "../../util/path"
+import { _stripSlashes, simplifySlug } from "../../util/path"
 
 function FolderContent(props: QuartzComponentProps) {
   const { tree, fileData, allFiles } = props
-  const folderSlug = simplifySlug(fileData.slug!)
+  const folderSlug = _stripSlashes(simplifySlug(fileData.slug!))
   const allPagesInFolder = allFiles.filter((file) => {
     const fileSlug = simplifySlug(file.slug!)
     const prefixed = fileSlug.startsWith(folderSlug) && fileSlug !== folderSlug
