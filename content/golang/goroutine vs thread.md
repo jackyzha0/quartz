@@ -36,7 +36,7 @@ The Go runtime schedules each goroutine internally for concurrent execution. How
 ![](golang/attachment/goroutine-sys-call.png)
 As you can see, the goroutine that makes the system call is moved to the **NETPOLLER** and **P** continues to handle other goroutines. This prevents your program from becoming blocked.
 
-## Summary
+## Conclusion
 - Thread is good for *CPU bound* operation that needs strong computation 
 - Goroutine is good for *IO bound* operation that allows a program can handle numerous tasks which does not strong computation just *IO operation* only
 
