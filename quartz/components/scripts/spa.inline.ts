@@ -66,7 +66,6 @@ async function navigate(url: URL, isBack: boolean = false) {
 
   // scroll into place and add history
   if (!isBack) {
-    history.pushState({}, "", url)
     if (url.hash) {
       const el = document.getElementById(url.hash.substring(1))
       el?.scrollIntoView()
@@ -81,6 +80,9 @@ async function navigate(url: URL, isBack: boolean = false) {
   const elementsToAdd = html.head.querySelectorAll(":not([spa-preserve])")
   elementsToAdd.forEach((el) => document.head.appendChild(el))
 
+  // delay setting the url until now
+  // at this point everything is loaded so changing the url should resolve to the correct addresses
+  history.pushState({}, "", url)
   notifyNav(getFullSlug(window))
   delete announcer.dataset.persist
 }

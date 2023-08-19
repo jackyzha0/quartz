@@ -1,4 +1,4 @@
-import { pathToRoot } from "../util/path"
+import { joinSegments, pathToRoot } from "../util/path"
 import { JSResourceToScriptElement } from "../util/resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
@@ -8,7 +8,7 @@ export default (() => {
     const description = fileData.description?.trim() ?? "No description provided"
     const { css, js } = externalResources
     const baseDir = pathToRoot(fileData.slug!)
-    const iconPath = baseDir + "/static/icon.png"
+    const iconPath = joinSegments(baseDir, "static/icon.png")
     const ogImagePath = `https://${cfg.baseUrl}/static/og-image.png`
 
     return (
