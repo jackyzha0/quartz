@@ -27,7 +27,7 @@ Notes I took from [Paul’s Online Math Notes](https://tutorial.math.lamar.edu/C
 - [x] [[Limits (Multivariable)]]
 - [x] [[Partial Derivatives]]
 - [x] [[Interpretations of Partial Derivatives]]
-- [ ] [[Higher Order Partial Derivatives]]
+- [x] [[Higher Order Partial Derivatives]]
 - [ ] [[Differentials]]
 - [ ] [[Chain Rule]]
 - [ ] [[Directional Derivatives]]

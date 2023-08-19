@@ -47,6 +47,23 @@ When functions are "nice enough" they will have $f_{xy} = f_{yx}$.
 >Suppose that $f$ is defined on a disk $D$ that contains the point $(a,b)$. If the functions $f_{xy}$ and $f_{yx}$ are continuous on this disk then, 
 >$$f_{xy}(a,b) = f_{yx}(a,b)$$
 
+This applies to most functions where the two mixed 2nd-order derivatives are continuous then they will be equal. 
 
+This also works for higher orders:
+$$f_{xxy} = f_{xyx} = f_{yxx}$$
+And also for more variables:
+$$f_{xz}(x,y,z) = f_{zx}(x,y,z)$$
+
+---
+## Higher Orders
+
+For example, third order:
+$$
+\begin{align}
+f_{xyx} &= (f_{xy})_{x} = \frac{ \partial}{ \partial x }\left( \frac{ \partial^{2}f }{ \partial x \partial y}  \right) = \frac{ \partial^{3} f }{ \partial x \partial y \partial x}  \\
+f_{yxx} &= (f_{yx})_{x} = \frac{ \partial}{ \partial x }\left( \frac{ \partial^{2}f }{ \partial y \partial x}  \right) = \frac{ \partial^{3} f }{ \partial x^{2} \partial y}  \\
+
+\end{align}
+$$
 
 
