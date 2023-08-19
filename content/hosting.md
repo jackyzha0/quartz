@@ -17,7 +17,7 @@ However, if you'd like to publish your site to the world, you need a way to host
 
 | Configuration option   | Value              |
 | ---------------------- | ------------------ |
-| Production branch      | `v4-alpha`         |
+| Production branch      | `v4`         |
 | Framework preset       | `None`             |
 | Build command          | `npx quartz build` |
 | Build output directory | `public`           |
@@ -38,7 +38,7 @@ name: Deploy Quartz site to GitHub Pages
 on:
   push:
     branches:
-      - v4-alpha
+      - v4
 
 permissions:
   contents: read
