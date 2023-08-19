@@ -6,7 +6,7 @@ import { pageResources, renderPage } from "../../components/renderPage"
 import { ProcessedContent, defaultProcessedContent } from "../vfile"
 import { FullPageLayout } from "../../cfg"
 import path from "path"
-import { FilePath, FullSlug, SimpleSlug, joinSegments, simplifySlug } from "../../util/path"
+import { FilePath, FullSlug, SimpleSlug, _stripSlashes, joinSegments, simplifySlug } from "../../util/path"
 import { defaultListPageLayout, sharedPageComponents } from "../../../quartz.layout"
 import { FolderContent } from "../../components"
 
@@ -54,7 +54,7 @@ export const FolderPage: QuartzEmitterPlugin<FullPageLayout> = (userOpts) => {
       )
 
       for (const [tree, file] of content) {
-        const slug = simplifySlug(file.data.slug!)
+        const slug = _stripSlashes(simplifySlug(file.data.slug!)) as SimpleSlug
         if (folders.has(slug)) {
           folderDescriptions[slug] = [tree, file]
         }
