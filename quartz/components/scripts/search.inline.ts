@@ -1,11 +1,11 @@
 import { Document } from "flexsearch"
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
 import { registerEscapeHandler, removeAllChildren } from "./util"
-import { CanonicalSlug, getClientSlug, resolveRelative } from "../../util/path"
+import { FullSlug, getFullSlug, resolveRelative, simplifySlug } from "../../util/path"
 
 interface Item {
   id: number
-  slug: CanonicalSlug
+  slug: FullSlug
   title: string
   content: string
 }
@@ -73,7 +73,7 @@ document.addEventListener("nav", async (e: unknown) => {
   const searchIcon = document.getElementById("search-icon")
   const searchBar = document.getElementById("search-bar") as HTMLInputElement | null
   const results = document.getElementById("results-container")
-  const idDataMap = Object.keys(data) as CanonicalSlug[]
+  const idDataMap = Object.keys(data) as FullSlug[]
 
   function hideSearch() {
     container?.classList.remove("active")
@@ -126,7 +126,7 @@ document.addEventListener("nav", async (e: unknown) => {
     button.innerHTML = `<h3>${title}</h3><p>${content}</p>`
     button.addEventListener("click", () => {
       const targ = resolveRelative(currentSlug, slug)
-      window.spaNavigate(new URL(targ, getClientSlug(window)))
+      window.spaNavigate(new URL(targ, window.location.toString()))
     })
     return button
   }
@@ -192,7 +192,7 @@ document.addEventListener("nav", async (e: unknown) => {
     for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
       await index.addAsync(id, {
         id,
-        slug: slug as CanonicalSlug,
+        slug: slug as FullSlug,
         title: fileData.title,
         content: fileData.content,
       })

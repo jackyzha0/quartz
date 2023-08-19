@@ -1,31 +1,32 @@
 import type { ContentDetails } from "../../plugins/emitters/contentIndex"
 import * as d3 from "d3"
 import { registerEscapeHandler, removeAllChildren } from "./util"
-import { CanonicalSlug, getCanonicalSlug, getClientSlug, resolveRelative } from "../../util/path"
+import { FullSlug, SimpleSlug, getFullSlug, resolveRelative, simplifySlug } from "../../util/path"
 
 type NodeData = {
-  id: CanonicalSlug
+  id: SimpleSlug
   text: string
   tags: string[]
 } & d3.SimulationNodeDatum
 
 type LinkData = {
-  source: CanonicalSlug
-  target: CanonicalSlug
+  source: SimpleSlug
+  target: SimpleSlug
 }
 
 const localStorageKey = "graph-visited"
-function getVisited(): Set<CanonicalSlug> {
+function getVisited(): Set<SimpleSlug> {
   return new Set(JSON.parse(localStorage.getItem(localStorageKey) ?? "[]"))
 }
 
-function addToVisited(slug: CanonicalSlug) {
+function addToVisited(slug: SimpleSlug) {
   const visited = getVisited()
   visited.add(slug)
   localStorage.setItem(localStorageKey, JSON.stringify([...visited]))
 }
 
-async function renderGraph(container: string, slug: CanonicalSlug) {
+async function renderGraph(container: string, fullSlug: FullSlug) {
+  const slug = simplifySlug(fullSlug)
   const visited = getVisited()
   const graph = document.getElementById(container)
   if (!graph) return
@@ -47,16 +48,17 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
 
   const links: LinkData[] = []
   for (const [src, details] of Object.entries<ContentDetails>(data)) {
+    const source = simplifySlug(src as FullSlug)
     const outgoing = details.links ?? []
     for (const dest of outgoing) {
-      if (src in data && dest in data) {
-        links.push({ source: src as CanonicalSlug, target: dest })
+      if (dest in data) {
+        links.push({ source, target: dest })
       }
     }
   }
 
-  const neighbourhood = new Set<CanonicalSlug>()
-  const wl: (CanonicalSlug | "__SENTINEL")[] = [slug, "__SENTINEL"]
+  const neighbourhood = new Set<SimpleSlug>()
+  const wl: (SimpleSlug | "__SENTINEL")[] = [slug, "__SENTINEL"]
   if (depth >= 0) {
     while (depth >= 0 && wl.length > 0) {
       // compute neighbours
@@ -72,7 +74,7 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
       }
     }
   } else {
-    Object.keys(data).forEach((id) => neighbourhood.add(id as CanonicalSlug))
+    Object.keys(data).forEach((id) => neighbourhood.add(simplifySlug(id as FullSlug)))
   }
 
   const graphData: { nodes: NodeData[]; links: LinkData[] } = {
@@ -171,11 +173,11 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
     .attr("fill", color)
     .style("cursor", "pointer")
     .on("click", (_, d) => {
-      const targ = resolveRelative(slug, d.id)
-      window.spaNavigate(new URL(targ, getClientSlug(window)))
+      const targ = resolveRelative(fullSlug, d.id)
+      window.spaNavigate(new URL(targ, window.location.toString()))
     })
     .on("mouseover", function (_, d) {
-      const neighbours: CanonicalSlug[] = data[slug].links ?? []
+      const neighbours: SimpleSlug[] = data[slug].links ?? []
       const neighbourNodes = d3
         .selectAll<HTMLElement, NodeData>(".node")
         .filter((d) => neighbours.includes(d.id))
@@ -271,7 +273,7 @@ async function renderGraph(container: string, slug: CanonicalSlug) {
 }
 
 function renderGlobalGraph() {
-  const slug = getCanonicalSlug(window)
+  const slug = getFullSlug(window)
   const container = document.getElementById("global-graph-outer")
   const sidebar = container?.closest(".sidebar") as HTMLElement
   container?.classList.add("active")

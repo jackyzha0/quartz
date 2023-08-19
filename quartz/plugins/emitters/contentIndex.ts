@@ -1,18 +1,12 @@
 import { GlobalConfiguration } from "../../cfg"
-import {
-  CanonicalSlug,
-  ClientSlug,
-  FilePath,
-  ServerSlug,
-  canonicalizeServer,
-} from "../../util/path"
+import { FilePath, FullSlug, SimpleSlug, simplifySlug } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 import path from "path"
 
-export type ContentIndex = Map<CanonicalSlug, ContentDetails>
+export type ContentIndex = Map<FullSlug, ContentDetails>
 export type ContentDetails = {
   title: string
-  links: CanonicalSlug[]
+  links: SimpleSlug[]
   tags: string[]
   content: string
   date?: Date
@@ -33,21 +27,21 @@ const defaultOptions: Options = {
 
 function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndex): string {
   const base = cfg.baseUrl ?? ""
-  const createURLEntry = (slug: CanonicalSlug, content: ContentDetails): string => `<url>
+  const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => `<url>
     <loc>https://${base}/${slug}</loc>
     <lastmod>${content.date?.toISOString()}</lastmod>
   </url>`
   const urls = Array.from(idx)
-    .map(([slug, content]) => createURLEntry(slug, content))
+    .map(([slug, content]) => createURLEntry(simplifySlug(slug), content))
     .join("")
   return `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${urls}</urlset>`
 }
 
 function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex): string {
   const base = cfg.baseUrl ?? ""
-  const root = `https://${base}` as ClientSlug
+  const root = `https://${base}`
 
-  const createURLEntry = (slug: CanonicalSlug, content: ContentDetails): string => `<items>
+  const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => `<items>
     <title>${content.title}</title>
     <link>${root}/${slug}</link>
     <guid>${root}/${slug}</guid>
@@ -56,7 +50,7 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex): string {
   </items>`
 
   const items = Array.from(idx)
-    .map(([slug, content]) => createURLEntry(slug, content))
+    .map(([slug, content]) => createURLEntry(simplifySlug(slug), content))
     .join("")
   return `<rss xmlns:atom="http://www.w3.org/2005/atom" version="2.0">
     <channel>
@@ -79,7 +73,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       const emitted: FilePath[] = []
       const linkIndex: ContentIndex = new Map()
       for (const [_tree, file] of content) {
-        const slug = canonicalizeServer(file.data.slug!)
+        const slug = file.data.slug!
         const date = file.data.dates?.modified ?? new Date()
         if (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) {
           linkIndex.set(slug, {
@@ -97,7 +91,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
         emitted.push(
           await emit({
             content: generateSiteMap(cfg, linkIndex),
-            slug: "sitemap" as ServerSlug,
+            slug: "sitemap" as FullSlug,
             ext: ".xml",
           }),
         )
@@ -107,13 +101,13 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
         emitted.push(
           await emit({
             content: generateRSSFeed(cfg, linkIndex),
-            slug: "index" as ServerSlug,
+            slug: "index" as FullSlug,
             ext: ".xml",
           }),
         )
       }
 
-      const fp = path.join("static", "contentIndex") as ServerSlug
+      const fp = path.join("static", "contentIndex") as FullSlug
       const simplifiedIndex = Object.fromEntries(
         Array.from(linkIndex).map(([slug, content]) => {
           // remove description and from content index as nothing downstream

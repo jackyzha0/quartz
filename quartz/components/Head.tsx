@@ -1,14 +1,13 @@
-import { canonicalizeServer, pathToRoot } from "../util/path"
+import { pathToRoot } from "../util/path"
 import { JSResourceToScriptElement } from "../util/resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
 export default (() => {
   function Head({ cfg, fileData, externalResources }: QuartzComponentProps) {
-    const slug = canonicalizeServer(fileData.slug!)
     const title = fileData.frontmatter?.title ?? "Untitled"
     const description = fileData.description?.trim() ?? "No description provided"
     const { css, js } = externalResources
-    const baseDir = pathToRoot(slug)
+    const baseDir = pathToRoot(fileData.slug!)
     const iconPath = baseDir + "/static/icon.png"
     const ogImagePath = `https://${cfg.baseUrl}/static/og-image.png`
 

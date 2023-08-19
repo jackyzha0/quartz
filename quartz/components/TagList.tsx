@@ -1,10 +1,9 @@
-import { canonicalizeServer, pathToRoot, slugTag } from "../util/path"
+import { pathToRoot, slugTag } from "../util/path"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
 function TagList({ fileData }: QuartzComponentProps) {
   const tags = fileData.frontmatter?.tags
-  const slug = canonicalizeServer(fileData.slug!)
-  const baseDir = pathToRoot(slug)
+  const baseDir = pathToRoot(fileData.slug!)
   if (tags && tags.length > 0) {
     return (
       <ul class="tags">

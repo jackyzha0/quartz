@@ -9,7 +9,7 @@ import path from "path"
 import { JSResource } from "../../util/resources"
 // @ts-ignore
 import calloutScript from "../../components/scripts/callout.inline.ts"
-import { FilePath, canonicalizeServer, pathToRoot, slugTag, slugifyFilePath } from "../../util/path"
+import { FilePath, pathToRoot, slugTag, slugifyFilePath } from "../../util/path"
 import { toHast } from "mdast-util-to-hast"
 import { toHtml } from "hast-util-to-html"
 import { PhrasingContent } from "mdast-util-find-and-replace/lib"
@@ -381,8 +381,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
       if (opts.parseTags) {
         plugins.push(() => {
           return (tree: Root, file) => {
-            const slug = canonicalizeServer(file.data.slug!)
-            const base = pathToRoot(slug)
+            const base = pathToRoot(file.data.slug!)
             findAndReplace(tree, tagRegex, (value: string, tag: string) => {
               if (file.data.frontmatter) {
                 file.data.frontmatter.tags.push(tag)

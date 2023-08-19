@@ -1,73 +1,35 @@
 import { slug } from "github-slugger"
 // this file must be isomorphic so it can't use node libs (e.g. path)
 
-// Quartz Paths
-// Things in boxes are not actual types but rather sources which these types can be acquired from
-//
-//                                                         ┌────────────┐
-//                                             ┌───────────┤  Browser   ├────────────┐
-//                                             │           └────────────┘            │
-//                                             │                                     │
-//                                             ▼                                     ▼
-//                                        ┌────────┐                          ┌─────────────┐
-//                    ┌───────────────────┤ Window │                          │ LinkElement │
-//                    │                   └────┬───┘                          └──────┬──────┘
-//                    │                        │                                     │
-//                    │        getClientSlug() │                               .href │
-//                    │                        ▼                                     ▼
-//                    │
-//                    │                  Client Slug                    ┌───►  Relative URL
-// getCanonicalSlug() │     https://test.ca/note/abc#anchor?query=123   │      ../note/def#anchor
-//                    │                                                 │
-//                    │   canonicalizeClient() │                        │      ▲     ▲
-//                    │                        ▼                        │      │     │
-//                    │                                  pathToRoot()   │      │     │
-//                    └───────────────►  Canonical Slug ────────────────┘      │     │
-//                                          note/abc                           │     │
-//                                                   ──────────────────────────┘     │
-//                                             ▲             resolveRelative()       │
-//                        canonicalizeServer() │                                     │
-//                                                                                   │
-// HTML File                               Server Slug                               │
-//  note/abc/index.html  ◄─────────────   note/abc/index                             │
-//                                                                                   │
-//                                             ▲                            ┌────────┴────────┐
-//                           slugifyFilePath() │            transformLink() │                 │
-//                                             │                            │                 │
-//                                   ┌─────────┴──────────┐           ┌─────┴─────┐  ┌────────┴──────┐
-//                                   │     File Path      │           │ Wikilinks │  │ Markdown Link │
-//                                   │  note/abc/index.md │           └───────────┘  └───────────────┘
-//                                   └────────────────────┘                 ▲                 ▲
-//                                             ▲                            │                 │
-//                                             │            ┌─────────┐     │                 │
-//                                             └────────────┤ MD File ├─────┴─────────────────┘
-//                                                          └─────────┘
-
 export const QUARTZ = "quartz"
 
 /// Utility type to simulate nominal types in TypeScript
 type SlugLike<T> = string & { __brand: T }
 
-/** Client-side slug, usually obtained through `window.location` */
-export type ClientSlug = SlugLike<"client">
-export function isClientSlug(s: string): s is ClientSlug {
-  const res = /^https?:\/\/.+/.test(s)
-  return res
+/** Cannot be relative and must have a file extension. */
+export type FilePath = SlugLike<"filepath">
+export function isFilePath(s: string): s is FilePath {
+  const validStart = !s.startsWith(".")
+  return validStart && _hasFileExtension(s)
 }
 
-/** Canonical slug, should be used whenever you need to refer to the location of a file/note.
- * On the client, this is normally stored in `document.body.dataset.slug`
- */
-export type CanonicalSlug = SlugLike<"canonical">
-export function isCanonicalSlug(s: string): s is CanonicalSlug {
+/** Cannot be relative and may not have leading or trailing slashes. It can have `index` as it's last segment. Use this wherever possible is it's the most 'general' interpretation of a slug. */
+export type FullSlug = SlugLike<"full">
+export function isFullSlug(s: string): s is FullSlug {
   const validStart = !(s.startsWith(".") || s.startsWith("/"))
-  const validEnding = !(s.endsWith("/") || s.endsWith("/index") || s === "index")
+  const validEnding = !s.endsWith("/")
+  return validStart && validEnding && !_containsForbiddenCharacters(s)
+}
+
+/** Shouldn't be a relative path and shouldn't have `/index` as an ending or a file extension. It _can_ however have a trailing slash to indicate a folder path. */
+export type SimpleSlug = SlugLike<"simple">
+export function isSimpleSlug(s: string): s is SimpleSlug {
+  const validStart = !(s.startsWith(".") || s.startsWith("/"))
+  const validEnding = !(s.endsWith("/index") || s === "index")
   return validStart && !_containsForbiddenCharacters(s) && validEnding && !_hasFileExtension(s)
 }
 
-/** A relative link, can be found on `href`s but can also be constructed for
- * client-side navigation (e.g. search and graph)
- */
+/** Can be found on `href`s but can also be constructed for client-side navigation (e.g. search and graph) */
 export type RelativeURL = SlugLike<"relative">
 export function isRelativeURL(s: string): s is RelativeURL {
   const validStart = /^\.{1,2}/.test(s)
@@ -75,46 +37,12 @@ export function isRelativeURL(s: string): s is RelativeURL {
   return validStart && validEnding && ![".md", ".html"].includes(_getFileExtension(s) ?? "")
 }
 
-/** A server side slug. This is what Quartz uses to emit files so uses index suffixes */
-export type ServerSlug = SlugLike<"server">
-export function isServerSlug(s: string): s is ServerSlug {
-  const validStart = !(s.startsWith(".") || s.startsWith("/"))
-  const validEnding = !s.endsWith("/")
-  return validStart && validEnding && !_containsForbiddenCharacters(s)
-}
-
-/** The real file path to a file on disk */
-export type FilePath = SlugLike<"filepath">
-export function isFilePath(s: string): s is FilePath {
-  const validStart = !s.startsWith(".")
-  return validStart && _hasFileExtension(s)
-}
-
-export function getClientSlug(window: Window): ClientSlug {
-  const res = window.location.href as ClientSlug
+export function getFullSlug(window: Window): FullSlug {
+  const res = window.document.body.dataset.slug! as FullSlug
   return res
 }
 
-export function getCanonicalSlug(window: Window): CanonicalSlug {
-  const res = window.document.body.dataset.slug! as CanonicalSlug
-  return res
-}
-
-export function canonicalizeClient(slug: ClientSlug): CanonicalSlug {
-  const { pathname } = new URL(slug)
-  let fp = pathname.slice(1)
-  fp = fp.replace(new RegExp(_getFileExtension(fp) + "$"), "")
-  const res = _canonicalize(fp) as CanonicalSlug
-  return res
-}
-
-export function canonicalizeServer(slug: ServerSlug): CanonicalSlug {
-  let fp = slug as string
-  const res = _canonicalize(fp) as CanonicalSlug
-  return res
-}
-
-export function slugifyFilePath(fp: FilePath, excludeExt?: boolean): ServerSlug {
+export function slugifyFilePath(fp: FilePath, excludeExt?: boolean): FullSlug {
   fp = _stripSlashes(fp) as FilePath
   let ext = _getFileExtension(fp)
   const withoutFileExt = fp.replace(new RegExp(ext + "$"), "")
@@ -133,44 +61,47 @@ export function slugifyFilePath(fp: FilePath, excludeExt?: boolean): ServerSlug 
     slug = slug.replace(/_index$/, "index")
   }
 
-  return (slug + ext) as ServerSlug
+  return (slug + ext) as FullSlug
+}
+
+export function simplifySlug(fp: FullSlug): SimpleSlug {
+  return _stripSlashes(_trimSuffix(fp, "index"), true) as SimpleSlug
 }
 
 export function transformInternalLink(link: string): RelativeURL {
   let [fplike, anchor] = splitAnchor(decodeURI(link))
 
-  const folderPath =
-    fplike.endsWith("index") ||
-    fplike.endsWith("index.md") ||
-    fplike.endsWith("index.html") ||
-    fplike.endsWith("/")
-
+  const folderPath = _isFolderPath(fplike)
   let segments = fplike.split("/").filter((x) => x.length > 0)
   let prefix = segments.filter(_isRelativeSegment).join("/")
-  let fp = segments.filter((seg) => !_isRelativeSegment(seg)).join("/")
+  let fp = segments.filter((seg) => !_isRelativeSegment(seg) && seg !== "").join("/")
 
   // manually add ext here as we want to not strip 'index' if it has an extension
-  fp = canonicalizeServer(slugifyFilePath(fp as FilePath) as ServerSlug)
-  const joined = joinSegments(_stripSlashes(prefix), _stripSlashes(fp))
+  const simpleSlug = simplifySlug(slugifyFilePath(fp as FilePath))
+  const joined = joinSegments(_stripSlashes(prefix), _stripSlashes(simpleSlug))
   const trail = folderPath ? "/" : ""
   const res = (_addRelativeToStart(joined) + trail + anchor) as RelativeURL
   return res
 }
 
-// resolve /a/b/c to ../../..
-export function pathToRoot(slug: CanonicalSlug): RelativeURL {
+// resolve /a/b/c to ../..
+export function pathToRoot(slug: FullSlug): RelativeURL {
   let rootPath = slug
     .split("/")
     .filter((x) => x !== "")
+    .slice(0, -1)
     .map((_) => "..")
     .join("/")
 
-  const res = _addRelativeToStart(rootPath) as RelativeURL
-  return res
+  if (rootPath.length === 0) {
+    rootPath = "."
+  }
+
+  return rootPath as RelativeURL
 }
 
-export function resolveRelative(current: CanonicalSlug, target: CanonicalSlug): RelativeURL {
-  const res = joinSegments(pathToRoot(current), target) as RelativeURL
+export function resolveRelative(current: FullSlug, target: FullSlug | SimpleSlug): RelativeURL {
+  const res = joinSegments(pathToRoot(current), simplifySlug(target as FullSlug)) as RelativeURL
   return res
 }
 
@@ -206,20 +137,16 @@ export function getAllSegmentPrefixes(tags: string): string[] {
 
 export interface TransformOptions {
   strategy: "absolute" | "relative" | "shortest"
-  allSlugs: ServerSlug[]
+  allSlugs: FullSlug[]
 }
 
-export function transformLink(
-  src: CanonicalSlug,
-  target: string,
-  opts: TransformOptions,
-): RelativeURL {
-  let targetSlug: string = transformInternalLink(target)
+export function transformLink(src: FullSlug, target: string, opts: TransformOptions): RelativeURL {
+  let targetSlug = transformInternalLink(target)
 
   if (opts.strategy === "relative") {
-    return _addRelativeToStart(targetSlug) as RelativeURL
+    return targetSlug as RelativeURL
   } else {
-    const folderTail = targetSlug.endsWith("/") ? "/" : ""
+    const folderTail = _isFolderPath(targetSlug) ? "/" : ""
     const canonicalSlug = _stripSlashes(targetSlug.slice(".".length))
     let [targetCanonical, targetAnchor] = splitAnchor(canonicalSlug)
 
@@ -233,7 +160,7 @@ export function transformLink(
 
       // only match, just use it
       if (matchingFileNames.length === 1) {
-        const targetSlug = canonicalizeServer(matchingFileNames[0])
+        const targetSlug = matchingFileNames[0]
         return (resolveRelative(src, targetSlug) + targetAnchor) as RelativeURL
       }
     }
@@ -243,9 +170,13 @@ export function transformLink(
   }
 }
 
-function _canonicalize(fp: string): string {
-  fp = _trimSuffix(fp, "index")
-  return _stripSlashes(fp)
+function _isFolderPath(fplike: string): boolean {
+  return (
+    fplike.endsWith("/") ||
+    _endsWith(fplike, "index") ||
+    _endsWith(fplike, "index.md") ||
+    _endsWith(fplike, "index.html")
+  )
 }
 
 function _endsWith(s: string, suffix: string): boolean {
@@ -275,12 +206,12 @@ function _isRelativeSegment(s: string): boolean {
   return /^\.{0,2}$/.test(s)
 }
 
-export function _stripSlashes(s: string): string {
+export function _stripSlashes(s: string, onlyStripPrefix?: boolean): string {
   if (s.startsWith("/")) {
     s = s.substring(1)
   }
 
-  if (s.endsWith("/")) {
+  if (!onlyStripPrefix && s.endsWith("/")) {
     s = s.slice(0, -1)
   }
 

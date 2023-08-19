@@ -1,11 +1,12 @@
 import { QuartzTransformerPlugin } from "../types"
 import {
-  CanonicalSlug,
+  FullSlug,
   RelativeURL,
+  SimpleSlug,
   TransformOptions,
   _stripSlashes,
-  canonicalizeServer,
   joinSegments,
+  simplifySlug,
   splitAnchor,
   transformLink,
 } from "../../util/path"
@@ -33,8 +34,8 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
       return [
         () => {
           return (tree, file) => {
-            const curSlug = canonicalizeServer(file.data.slug!)
-            const outgoing: Set<CanonicalSlug> = new Set()
+            const curSlug = simplifySlug(file.data.slug!)
+            const outgoing: Set<SimpleSlug> = new Set()
 
             const transformOptions: TransformOptions = {
               strategy: opts.markdownLinkResolution,
@@ -54,10 +55,15 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
 
                 // don't process external links or intra-document anchors
                 if (!(isAbsoluteUrl(dest) || dest.startsWith("#"))) {
-                  dest = node.properties.href = transformLink(curSlug, dest, transformOptions)
+                  dest = node.properties.href = transformLink(
+                    file.data.slug!,
+                    dest,
+                    transformOptions,
+                  )
                   const canonicalDest = path.posix.normalize(joinSegments(curSlug, dest))
                   const [destCanonical, _destAnchor] = splitAnchor(canonicalDest)
-                  outgoing.add(destCanonical as CanonicalSlug)
+                  const simple = simplifySlug(destCanonical as FullSlug)
+                  outgoing.add(simple)
                 }
 
                 // rewrite link internals if prettylinks is on
@@ -79,7 +85,11 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
               ) {
                 if (!isAbsoluteUrl(node.properties.src)) {
                   let dest = node.properties.src as RelativeURL
-                  dest = node.properties.src = transformLink(curSlug, dest, transformOptions)
+                  dest = node.properties.src = transformLink(
+                    file.data.slug!,
+                    dest,
+                    transformOptions,
+                  )
                   node.properties.src = dest
                 }
               }
@@ -95,6 +105,6 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
 
 declare module "vfile" {
   interface DataMap {
-    links: CanonicalSlug[]
+    links: SimpleSlug[]
   }
 }
