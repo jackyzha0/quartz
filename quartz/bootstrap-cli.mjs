@@ -19,7 +19,7 @@ import { randomUUID } from "crypto"
 
 const ORIGIN_NAME = "origin"
 const UPSTREAM_NAME = "upstream"
-const QUARTZ_SOURCE_BRANCH = "v4-alpha"
+const QUARTZ_SOURCE_BRANCH = "v4"
 const cwd = process.cwd()
 const cacheDir = path.join(cwd, ".quartz-cache")
 const cacheFile = "./.quartz-cache/transpiled-build.mjs"
