@@ -3,7 +3,7 @@ import { Fragment, jsx, jsxs } from "preact/jsx-runtime"
 import { toJsxRuntime } from "hast-util-to-jsx-runtime"
 import style from "../styles/listPage.scss"
 import { PageList } from "../PageList"
-import { ServerSlug, canonicalizeServer, getAllSegmentPrefixes } from "../../util/path"
+import { FullSlug, getAllSegmentPrefixes, simplifySlug } from "../../util/path"
 import { QuartzPluginData } from "../../plugins/vfile"
 
 const numPages = 10
@@ -15,7 +15,7 @@ function TagContent(props: QuartzComponentProps) {
     throw new Error(`Component "TagContent" tried to render a non-tag page: ${slug}`)
   }
 
-  const tag = canonicalizeServer(slug.slice("tags/".length) as ServerSlug)
+  const tag = simplifySlug(slug.slice("tags/".length) as FullSlug)
   const allPagesWithTag = (tag: string) =>
     allFiles.filter((file) =>
       (file.frontmatter?.tags ?? []).flatMap(getAllSegmentPrefixes).includes(tag),

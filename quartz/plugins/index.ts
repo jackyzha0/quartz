@@ -1,5 +1,5 @@
 import { StaticResources } from "../util/resources"
-import { FilePath, ServerSlug } from "../util/path"
+import { FilePath, FullSlug } from "../util/path"
 import { BuildCtx } from "../util/ctx"
 
 export function getStaticResourcesFromPlugins(ctx: BuildCtx) {
@@ -28,7 +28,7 @@ export * from "./emitters"
 declare module "vfile" {
   // inserted in processors.ts
   interface DataMap {
-    slug: ServerSlug
+    slug: FullSlug
     filePath: FilePath
   }
 }

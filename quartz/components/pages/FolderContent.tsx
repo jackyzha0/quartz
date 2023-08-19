@@ -5,13 +5,13 @@ import path from "path"
 
 import style from "../styles/listPage.scss"
 import { PageList } from "../PageList"
-import { canonicalizeServer } from "../../util/path"
+import { simplifySlug } from "../../util/path"
 
 function FolderContent(props: QuartzComponentProps) {
   const { tree, fileData, allFiles } = props
-  const folderSlug = canonicalizeServer(fileData.slug!)
+  const folderSlug = simplifySlug(fileData.slug!)
   const allPagesInFolder = allFiles.filter((file) => {
-    const fileSlug = canonicalizeServer(file.slug!)
+    const fileSlug = simplifySlug(file.slug!)
     const prefixed = fileSlug.startsWith(folderSlug) && fileSlug !== folderSlug
     const folderParts = folderSlug.split(path.posix.sep)
     const fileParts = fileSlug.split(path.posix.sep)

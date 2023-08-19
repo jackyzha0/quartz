@@ -3,7 +3,7 @@ import { QuartzComponent, QuartzComponentProps } from "./types"
 import HeaderConstructor from "./Header"
 import BodyConstructor from "./Body"
 import { JSResourceToScriptElement, StaticResources } from "../util/resources"
-import { CanonicalSlug, pathToRoot } from "../util/path"
+import { FullSlug, joinSegments, pathToRoot } from "../util/path"
 
 interface RenderComponents {
   head: QuartzComponent
@@ -15,19 +15,20 @@ interface RenderComponents {
   footer: QuartzComponent
 }
 
-export function pageResources(
-  slug: CanonicalSlug,
-  staticResources: StaticResources,
-): StaticResources {
+export function pageResources(slug: FullSlug, staticResources: StaticResources): StaticResources {
   const baseDir = pathToRoot(slug)
 
-  const contentIndexPath = baseDir + "/static/contentIndex.json"
+  const contentIndexPath = joinSegments(baseDir, "static/contentIndex.json")
   const contentIndexScript = `const fetchData = fetch(\`${contentIndexPath}\`).then(data => data.json())`
 
   return {
-    css: [baseDir + "/index.css", ...staticResources.css],
+    css: [joinSegments(baseDir, "index.css"), ...staticResources.css],
     js: [
-      { src: baseDir + "/prescript.js", loadTime: "beforeDOMReady", contentType: "external" },
+      {
+        src: joinSegments(baseDir, "/prescript.js"),
+        loadTime: "beforeDOMReady",
+        contentType: "external",
+      },
       {
         loadTime: "beforeDOMReady",
         contentType: "inline",
@@ -46,7 +47,7 @@ export function pageResources(
 }
 
 export function renderPage(
-  slug: CanonicalSlug,
+  slug: FullSlug,
   componentData: QuartzComponentProps,
   components: RenderComponents,
   pageResources: StaticResources,

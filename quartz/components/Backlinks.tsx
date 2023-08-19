@@ -1,9 +1,9 @@
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import style from "./styles/backlinks.scss"
-import { canonicalizeServer, resolveRelative } from "../util/path"
+import { resolveRelative, simplifySlug } from "../util/path"
 
 function Backlinks({ fileData, allFiles }: QuartzComponentProps) {
-  const slug = canonicalizeServer(fileData.slug!)
+  const slug = simplifySlug(fileData.slug!)
   const backlinkFiles = allFiles.filter((file) => file.links?.includes(slug))
   return (
     <div class="backlinks">
@@ -12,7 +12,7 @@ function Backlinks({ fileData, allFiles }: QuartzComponentProps) {
         {backlinkFiles.length > 0 ? (
           backlinkFiles.map((f) => (
             <li>
-              <a href={resolveRelative(slug, canonicalizeServer(f.slug!))} class="internal">
+              <a href={resolveRelative(fileData.slug!, f.slug!)} class="internal">
                 {f.frontmatter?.title}
               </a>
             </li>

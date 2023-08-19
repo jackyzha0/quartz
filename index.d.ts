@@ -5,7 +5,7 @@ declare module "*.scss" {
 
 // dom custom event
 interface CustomEventMap {
-  nav: CustomEvent<{ url: CanonicalSlug }>
+  nav: CustomEvent<{ url: FullSlug }>
 }
 
 declare const fetchData: Promise<ContentIndex>
