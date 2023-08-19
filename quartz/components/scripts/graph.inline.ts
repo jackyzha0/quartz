@@ -177,7 +177,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       window.spaNavigate(new URL(targ, window.location.toString()))
     })
     .on("mouseover", function (_, d) {
-      const neighbours: SimpleSlug[] = data[slug].links ?? []
+      const neighbours: SimpleSlug[] = data[fullSlug].links ?? []
       const neighbourNodes = d3
         .selectAll<HTMLElement, NodeData>(".node")
         .filter((d) => neighbours.includes(d.id))

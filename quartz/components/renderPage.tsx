@@ -25,7 +25,7 @@ export function pageResources(slug: FullSlug, staticResources: StaticResources):
     css: [joinSegments(baseDir, "index.css"), ...staticResources.css],
     js: [
       {
-        src: joinSegments(baseDir, "/prescript.js"),
+        src: joinSegments(baseDir, "prescript.js"),
         loadTime: "beforeDOMReady",
         contentType: "external",
       },
@@ -37,7 +37,7 @@ export function pageResources(slug: FullSlug, staticResources: StaticResources):
       },
       ...staticResources.js,
       {
-        src: baseDir + "/postscript.js",
+        src: joinSegments(baseDir, "postscript.js"),
         loadTime: "afterDOMReady",
         moduleType: "module",
         contentType: "external",
