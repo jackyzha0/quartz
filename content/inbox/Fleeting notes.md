@@ -1,0 +1,4 @@
+# Fleeting notes
+
+Tags: [[Skipped]]
+

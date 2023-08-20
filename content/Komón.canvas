@@ -1,0 +1,18 @@
+{
+	"nodes":[
+		{"type":"text","text":"A meditation of ownership of place","id":"4cde34284bba39a7","x":-245,"y":-700,"width":250,"height":60},
+		{"type":"text","text":"Within our hearts, the meaning of place is limitless.\n\nThis \"komon\" (desire, hope, anticipation) ends in physical space","id":"477098d1910f834c","x":-335,"y":-620,"width":445,"height":136},
+		{"type":"text","text":"A dictionary interpolation of the word komon","id":"ae1ec5d0fbe408ed","x":-720,"y":-380,"width":250,"height":60},
+		{"type":"text","text":"The story of how I lost the snake road","id":"cb725d8496f3a7eb","x":-140,"y":-380,"width":250,"height":60},
+		{"type":"text","text":"Story of the Punay cumon","id":"f4d890214fe136ab","x":180,"y":-380,"width":250,"height":60},
+		{"type":"text","text":"Story of the Pao cumon","id":"51f903aac902a424","x":180,"y":-280,"width":250,"height":60},
+		{"type":"text","text":"Reading from a history book that the place I was riding back and forth was once a jungle change how I saw the place","id":"dc3846959d068920","x":-440,"y":-280,"width":250,"height":160},
+		{"type":"text","text":"","id":"1dabd69e11f5852b","x":-1329,"y":-1016,"width":250,"height":60},
+		{"type":"text","text":"No linear chronology, narrative, and plot","id":"cb5ffb5855052434","x":-798,"y":-967,"width":250,"height":60},
+		{"type":"text","text":"Move by association","id":"99b4d298b5b6ea9a","x":-798,"y":-880,"width":250,"height":60},
+		{"type":"text","text":"Swirling disgressions","id":"c518cc36ddd23e67","x":-495,"y":-967,"width":250,"height":60}
+	],
+	"edges":[
+		{"id":"f87e4b58a6220581","fromNode":"477098d1910f834c","fromSide":"bottom","toNode":"ae1ec5d0fbe408ed","toSide":"top"}
+	]
+}

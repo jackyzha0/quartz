@@ -1,46 +1,24 @@
 ---
-title: Welcome to Quartz 4
+title: ""
+enableToc: false
 ---
+![Banner](files/banner.jpg)
+<h2>I was thrown here—alone and oblivious. The landscape is gray, cold, and frightening. I stared at the horizon and immediately understood—I knew nothing of this terrain.</h2>
 
-Quartz is a fast, batteries-included static-site generator that transforms Markdown content into fully functional websites. Thousands of students, developers, and teachers are [[showcase|already using Quartz]] to publish personal notes, wikis, and [digital gardens](https://jzhao.xyz/posts/networked-thought/) to the web.
+I wanted to leave, but instead I did what I knew I had to do. I set forth to [[The long walk|a long walk]] into [[The Wilderness|the Wilderness]].
 
-## 🪴 Get Started
+As I walk, I cover two planes simultaneously—a finite [[Wilderness of geographic space]] and a vast and never-ending [[Wilderness of the mind]]. [[thoughts/walking]] geographic space expands the mind. Walking the mind deepens the meaning of geographic space.
 
-Quartz requires **at least [Node](https://nodejs.org/) v18.14** to function correctly. Ensure you have this installed on your machine before continuing.
+In this excursion, which ends only in death, I gather [seeds](tags/seeds) of thoughts, verses, images, and experiences. I pocket these seeds until I find the right soil to plant them, here in a third space—cyberspace.
 
-Then, in your terminal of choice, enter the following commands line by line:
+I revisit what were planted rhythmically to tend to them, re-walking once verdant valleys and creating trails through my footsteps—trails that connect what later become [seedlings](tags/seedlings). I am bound to re-walk these trails and re-walk them again, until what were planted have grown into [evergreens](tags/evergreens).
 
-```shell
-git clone https://github.com/jackyzha0/quartz.git
-cd quartz
-git checkout v4
-npm i
-npx quartz create
-```
+One day, I will be surrounded with [[thoughts/my forest garden of the mind|a forest garden of the mind]], and everything will finally make sense.
 
-This will guide you through initializing your Quartz with content. Once you've done so, see how to:
+I walk only to find answers to one question: [[thoughts/how to live?|how to live?]]
 
-1. [[authoring content|Author content]] in Quartz
-2. [[configuration|Configure]] Quartz's behaviour
-3. Change Quartz's [[layout]]
-4. [[build|Build and preview]] Quartz
-5. [[hosting|Host]] Quartz online
+I write these words and share them here if only I can make this thrown existence more meaningful.
 
-> [!info]
-> Coming from Quartz 3? See the [[migrating from Quartz 3|migration guide]] for the differences between Quartz 3 and Quartz 4 and how to migrate.
+Would you like to walk with me?
 
-## 🔧 Features
-
-- [[Obsidian compatibility]], [[full-text search]], [[graph view]], [[wikilinks]], [[backlinks]], [[Latex]], [[syntax highlighting]], [[popover previews]], and [many more](./features) right out of the box
-- Hot-reload for both configuration and content
-- Simple JSX layouts and [[creating components|page components]]
-- [[SPA Routing|Ridiculously fast page loads]] and tiny bundle sizes
-- Fully-customizable parsing, filtering, and page generation through [[making plugins|plugins]]
-
-For a comprehensive list of features, visit the [features page](/features). You can read more about the _why_ behind these features on the [[philosophy]] page and a technical overview on the [[architecture]] page.
-
-### 🚧 Troubleshooting + Updating
-
-Having trouble with Quartz? Try searching for your issue using the search feature. If you haven't already, [[upgrading|upgrade]] to the newest version of Quartz to see if this fixes your issue.
-
-If you're still having trouble, feel free to [submit an issue](https://github.com/jackyzha0/quartz/issues) if you feel you found a bug or ask for help in our [Discord Community](https://discord.gg/cRFFHYye7t).
+[[start|Let's begin here]] .

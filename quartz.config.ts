@@ -3,19 +3,19 @@ import * as Plugin from "./quartz/plugins"
 
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "🪴 Quartz 4.0",
+    pageTitle: "Vince Imbat",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
-      provider: "plausible",
+      provider: "google", tagId: "G-HP7HTWFTR8"
     },
-    baseUrl: "quartz.jzhao.xyz",
-    ignorePatterns: ["private", "templates"],
+    baseUrl: "vinceimbat.com",
+    ignorePatterns: ["daily notes", "inbox", "private", "projects", "projects someday", "templates"],
     theme: {
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
-        code: "IBM Plex Mono",
+        header: "Newsreader",
+        body: "Spectral",
+        code: "Jetbrains Mono",
       },
       colors: {
         lightMode: {

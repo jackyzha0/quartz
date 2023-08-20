@@ -51,7 +51,7 @@ export default ((opts?: GraphOptions) => {
     const globalGraph = { ...opts?.globalGraph, ...defaultOptions.globalGraph }
     return (
       <div class="graph">
-        <h3>Graph View</h3>
+        <h3>Topography of Thoughts</h3>
         <div class="graph-outer">
           <div id="graph-container" data-cfg={JSON.stringify(localGraph)}></div>
           <svg

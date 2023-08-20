@@ -1,0 +1,8 @@
+# _      Windy day today esp in the afternoon. The m
+
+```other
+Windy day today esp in the afternoon. The majority of the fields in my left and right are unplanted. A single plot has been tilled. About half have greeneries around the leftover rice stalks on them suggesting that these land have been untouched for a whi
+```
+
+Windy day today esp in the afternoon. The majority of the fields in my left and right are unplanted. A single plot has been tilled. About half have greeneries around the leftover rice stalks on them suggesting that these land have been untouched for a while now. The other half or perhaps two thirds are really dry. Just the rice stalks and no greenery have grown on them.
+

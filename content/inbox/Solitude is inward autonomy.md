@@ -1,0 +1,2 @@
+# Solitude is inward autonomy
+

@@ -1,0 +1,106 @@
+---
+title: "Walk Poem 1"
+date: "2023-07-18"
+tags:
+- "seedlings"
+sr-due: 2023-08-03
+sr-interval: 4
+sr-ease: 270
+---
+
+Blue ternate  
+Someone bought a new Orocan  
+He left the light of his tricycle on  
+A dog sits on a road before cars resume  
+Drums  
+A cat  
+Garbage left scattered by dogs  
+The dogs bark at me  
+Where is Chewy?  
+Trixie is standing up  
+
+Beware: more dogs  
+
+Oh just one  
+Afraid of me but barks at me  
+Cumulus over the horizon  
+Nimbus across the sky  
+Dry everywhere hasn't rained for a while  
+A child cries  
+He blows his cigarette  
+as he leans his belly on the car's window  
+She throws the water she drained her mop on  
+to a line of ornamental plants  
+His motorcycle starts without a noise  
+He pressed on his phone while driving  
+Dog and chicken chorus  
+
+Was that durian?  
+Must watch those dog shits  
+
+Peel off your ref and there's a foam  
+His children, five of them, at the back of his motorcycle  
+I felt water kiss the back of my feet  
+Stench of old sweat on thick sofa  
+White kitten barely alive  
+
+Pink hair  
+I though she sold something  
+I looked and saw nothing  
+No one watching the store  
+Tempted to take a supot of bread  
+But everyone was watching  
+
+The bird almost broke my broken eardrum  
+Jeep passed in front  
+Students passed from behind  
+The closer I look the more I want to live  
+Clearer skies I predict less rain ahead  
+Two bags of ice really is one not enough?  
+
+Cicadas and a lady with a folded umbrella  
+Is this Narra or Lantican?  
+
+A single lampost lights all of us  
+"Los Baños Walks" sounds like a good name for a book  
+People talk and so I write  
+When silence sets in what will I write?  
+
+The Mitsubishi parked means she's there  
+Balitbitan leaves glow in the dark  
+A bright light calls my pupils  
+When nothing happens in the landscape memories arrive  
+How is the house at Sta. Maria?  
+The cloud moved to show Makiling's nipples  
+I follow a brown butterfly  
+A guard coughs  
+
+Are they missing?  
+Doña Elena is as clean as a street could be  
+Laughter breaks a journey I have taken inside my head  
+Wet brown leaves and white Calachuchi  
+I smell paksiw na isda and remember my father  
+They left a table and two chairs under the tree  
+A cat meows and insect sound fill the air  
+Dogs bark at me  
+The lady and her large black dog  
+Lucky barks at me and the lady worries  
+She calls her he follows  
+And I settle  
+A red butterfly follows me  
+
+Red wigo  
+I piss  
+These are birds right? Awake at night  
+I hear the train from a far 7 pm  
+A thing at the middle of the road  
+Pitch dark  
+I looked closer  
+A coconut?  
+It moved  
+Hair at the back of my neck stood  
+I see patches of sweat on my shirt  
+A plane passes by  
+Who would let a car rot on the side of a narrow road?  
+
+This is the first draft of a poem written by piecing snippets of observations during a two-hour walk. Streets walked equals stanzas.

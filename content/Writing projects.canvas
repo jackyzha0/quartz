@@ -1,0 +1,22 @@
+{
+	"nodes":[
+		{"type":"text","text":"After ANWW20","id":"b5835ea8edd7d06b","x":-760,"y":-440,"width":250,"height":60},
+		{"type":"text","text":"A book about LB","id":"38df57009991ec41","x":-760,"y":-240,"width":250,"height":60},
+		{"type":"text","text":"Week-long walk at LB","id":"c5d684ed409a3197","x":-760,"y":-140,"width":250,"height":60},
+		{"type":"text","text":"Finish reading \"Read this if you want to take good photographs\" by Caroll","id":"6466b3b2957f7215","x":-760,"y":-40,"width":250,"height":120},
+		{"type":"text","text":"Process notes of Caroll's book","id":"5e8cbce7cca5ee23","x":-760,"y":100,"width":250,"height":80},
+		{"type":"text","text":"Complete The Complete 2023 Web Development Bootcamp.","id":"78350cdb31aff4c2","x":-760,"y":220,"width":250,"height":100},
+		{"type":"text","text":"Translated all my favorite Thoreau entries from English to Filipino.","id":"1de420b7287772ae","x":-760,"y":360,"width":250,"height":88},
+		{"type":"text","text":"Learned how to take binaural videos and edit them for YouTube.","id":"d58c4367b8036562","x":-760,"y":480,"width":250,"height":107},
+		{"type":"text","text":"Create walking poems in Pangasinan for the Cordillera Workshop.","id":"0c75231a73df686b","x":-760,"y":620,"width":250,"height":87},
+		{"type":"text","text":"Process highlights of The Elements of Style.","id":"9d2327f7552a4851","x":-760,"y":740,"width":250,"height":60},
+		{"type":"text","text":"Read On Writing Well","id":"c263434729ac471f","x":-760,"y":840,"width":250,"height":60},
+		{"type":"text","text":"Read Songlines by Chatwin","id":"882a6d99c20d9cea","x":-760,"y":940,"width":250,"height":60},
+		{"type":"text","text":"Read History of Walking by Solnit.","id":"62e68ab75290b780","x":-760,"y":1040,"width":250,"height":87},
+		{"type":"text","text":"Review DIY MFA.","id":"d2a4c4c7b43a6c73","x":-240,"y":-440,"width":250,"height":60},
+		{"type":"text","text":"Study walking poems","id":"a38cbc8e6bd9843b","x":-240,"y":-340,"width":250,"height":60},
+		{"id":"ce8b33bed0e4b729","x":-760,"y":1160,"width":250,"height":60,"type":"text","text":"Learn to use the map plug-in in Obsidian."},
+		{"type":"text","text":"Redesign + redevelop vinceimbat.com","id":"2286b5edad1e0669","x":-240,"y":-240,"width":250,"height":60}
+	],
+	"edges":[]
+}

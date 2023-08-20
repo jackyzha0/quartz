@@ -1,0 +1,2 @@
+# Applied philosophy
+

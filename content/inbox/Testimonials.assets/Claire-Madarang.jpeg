@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="light" data-auto-appearance="false"><head>
+<meta charset="utf-8" />
+<meta http-equiv="content-language" content="en" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>404 Page not found &middot; Vince Imbat</title>
+<meta name="title" content="404 Page not found &middot; Vince Imbat" />
+<meta name="description" content="Vince Imbat is a writer, photographer, and walker who contemplates how to live." />
+<link rel="canonical" href="https://vinceimbat.com/404.html" />
+<link type="text/css" rel="stylesheet" href="/css/main.bundle.min.803c0af7dcf06925af4f2d29de7559ffda40580c96b57238b4b7fefc4e3f0d23caaa25dafc98ec130a50167ef5dc2e76289de37001e7369366e624f1ba0aef15.css" integrity="sha512-gDwK99zwaSWvTy0p3nVZ/9pAWAyWtXI4tLf&#43;/E4/DSPKqiXa/JjsEwpQFn713C52KJ3jcAHnNpNm5iTxugrvFQ==" />
+<script type="text/javascript" src="/js/appearance.min.dbca9e2200cf929a23b55442f2ff09361b8d5290147ff1407f89ed3839f0fea13db4e94f5ae6bf2f3de10d322b4bede74b578455e9cc7d5565314d914602c974.js" integrity="sha512-28qeIgDPkpojtVRC8v8JNhuNUpAUf/FAf4ntODnw/qE9tOlPWua/Lz3hDTIrS&#43;3nS1eEVenMfVVlMU2RRgLJdA=="></script>
+<script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.238e7ce9c541b4e7abb5781ad8e736e849e74890fcb8a26e73ea1845f573b3a0cf91418b20ac4401bdbb57d9c6c009d8f6ec50dad6d44b48f3936aea0f95c391.js" integrity="sha512-I4586cVBtOertXga2Oc26EnnSJD8uKJuc&#43;oYRfVzs6DPkUGLIKxEAb27V9nGwAnY9uxQ2tbUS0jzk2rqD5XDkQ==" data-copy="Copy" data-copied="Copied"></script>
+<meta property="og:title" content="404 Page not found" />
+<meta property="og:description" content="Vince Imbat is a writer, photographer, and walker who contemplates how to live." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://vinceimbat.com/404.html" /><meta property="og:site_name" content="Vince Imbat" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="404 Page not found" />
+<meta name="twitter:description" content="Vince Imbat is a writer, photographer, and walker who contemplates how to live." />
+<meta name="generator" content="Hugo 0.91.2" />
+<meta name="author" content="Vince Imbat" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HP7HTWFTR8"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-HP7HTWFTR8', { 'anonymize_ip': false });
+}
+</script>
+</head>
+<body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 bg-neutral text-neutral-900 sm:px-14 md:px-24 lg:px-32 dark:bg-neutral-800 dark:text-neutral max-w-7xl">
+<div id="the-top" class="absolute flex self-center">
+<a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 dark:bg-neutral-600 focus:translate-y-0" href="#main-content"><span class="font-bold ltr:pr-2 rtl:pl-2 text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+</div><header class="flex justify-between py-6 font-semibold sm:items-center sm:py-10 text-neutral-900 dark:text-neutral">
+<div>
+<a class="hover:underline hover:decoration-primary-500 hover:decoration-2 hover:underline-offset-2" rel="me" href="/">Vince Imbat</a
+      >
+</div>
+<nav>
+<ul class="flex flex-col list-none sm:flex-row">
+<li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+<a class="hover:underline hover:decoration-primary-500 hover:decoration-2 hover:underline-offset-2" href="/about/" title="About Me">About</a
+            >
+</li>
+<li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+<a class="hover:underline hover:decoration-primary-500 hover:decoration-2 hover:underline-offset-2" href="https://notes.vinceimbat.com" title="">Notes</a
+            >
+</li>
+<li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+<a class="hover:underline hover:decoration-primary-500 hover:decoration-2 hover:underline-offset-2" href="/blog/" title="Blog">Blog</a
+            >
+</li>
+<li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+<a class="hover:underline hover:decoration-primary-500 hover:decoration-2 hover:underline-offset-2" href="/newsletter/" title="Uman">Newsletter</a
+            >
+</li>
+<li class="ltr:text-right rtl:text-left ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+<button id="search-button" class="text-base hover:text-primary-600 dark:hover:text-primary-400" title="Search (/)">
+<span class="relative inline-block align-text-bottom icon">
+<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg>
+</span>
+</button>
+</li>
+</ul>
+</nav>
+</header>
+<main id="main-content" class="relative grow">
+<h1 class="mb-3 text-4xl font-extrabold">Page Not Found 😕</h1>
+<p class="mt-8 mb-12 text-neutral-400 dark:text-neutral-500">
+Error 404
+</p>
+<div class="prose dark:prose-invert">
+<p>It seems that the page you've requested does not exist.</p>
+</div>
+</main>
+<div id="search-wrapper" class="fixed inset-0 z-50 flex flex-col p-4 sm:p-6 md:p-[10vh] lg:p-[12vh] w-screen h-screen cursor-default bg-neutral-500/50 backdrop-blur-sm dark:bg-neutral-900/50 invisible" data-url="https://vinceimbat.com/">
+<div id="search-modal" class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg border-neutral-200 top-20 bg-neutral dark:bg-neutral-800 dark:border-neutral-700">
+<header class="relative z-10 flex items-center justify-between flex-none px-2">
+<form class="flex items-center flex-auto min-w-0">
+<div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+<span class="relative inline-block align-text-bottom icon">
+<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg>
+</span>
+</div>
+<input type="search" id="search-query" class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-transparent focus:outline-2" placeholder="Search" tabindex="0" />
+</form>
+<button id="close-search-button" class="flex items-center justify-center w-8 h-8 text-neutral-700 dark:text-neutral hover:text-primary-600 dark:hover:text-primary-400" title="Close (Esc)">
+<span class="relative inline-block align-text-bottom icon">
+<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+</span>
+</button>
+</header>
+<section class="flex-auto px-2 overflow-auto">
+<ul id="search-results">
+</ul>
+</section>
+</div>
+</div>
+<footer class="py-10">
+<div class="flex justify-between">
+<div>
+<p class="text-sm text-neutral-500 dark:text-neutral-400">
+&copy;
+2022
+Vince Imbat
+</p>
+<p class="text-xs text-neutral-500 dark:text-neutral-400">
+Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://git.io/hugo-congo" target="_blank" rel="noopener noreferrer">Congo</a>
+</p>
+</div>
+</div>
+</footer>
+</body>
+</html>

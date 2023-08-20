@@ -1,0 +1,4 @@
+# REGULAR LIFE REVIEWS DEVELOP MODESTY
+
+Last year, I started closely tracking my actions and goals by conducting regular reviews of my life: daily, weekly, monthly, and yearly. My biggest takeaway from doing these reviews is this: My time in this life is too short and I can only accomplish few goals in the course of a year and even fewer in a month. Heck a goal a month might even be too much! These reviews have profoundly changed how I set goals. I have lots of interests but I now see that I can't possibly pursue all of them in one lifetime. These reviews forced me to be more modest. I am now more conscious of what I commit to. I continue to let go of commitments that no longer resonate. What I found is that if I don't reflect on my actions in a regular basis, I deprive myself of important insights about patterns in my own behavior.
+

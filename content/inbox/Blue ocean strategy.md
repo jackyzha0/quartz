@@ -1,0 +1,2 @@
+# Blue ocean strategy
+

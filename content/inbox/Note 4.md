@@ -1,0 +1,10 @@
+# Note
+
+![Evernote Snapshot 20200815 133512.jpeg](https://res.craft.do/user/full/63534923-d6b9-bddc-93d1-c854ccf112a8/doc/A55A7741-092A-4569-B882-4B8974127F32/CBC89843-C9EE-4BE6-9F15-C19766605489_2/Evernote%20Snapshot%2020200815%20133512.jpeg)
+
+![Evernote Snapshot 20200815 133512 2.jpeg](https://res.craft.do/user/full/63534923-d6b9-bddc-93d1-c854ccf112a8/doc/A55A7741-092A-4569-B882-4B8974127F32/AEDC91C2-20FF-4B8E-8301-3F1207961B5F_2/Evernote%20Snapshot%2020200815%20133512%202.jpeg)
+
+![Evernote Snapshot 20200815 133512 3.jpeg](https://res.craft.do/user/full/63534923-d6b9-bddc-93d1-c854ccf112a8/doc/A55A7741-092A-4569-B882-4B8974127F32/17542C32-B309-4244-BF2E-84310A077023_2/Evernote%20Snapshot%2020200815%20133512%203.jpeg)
+
+\#evernote
+

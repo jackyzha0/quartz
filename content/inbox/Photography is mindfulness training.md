@@ -1,0 +1,2 @@
+# Photography is mindfulness training
+
