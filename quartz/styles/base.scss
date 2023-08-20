@@ -444,7 +444,7 @@ video {
 ul.overflow,
 ol.overflow {
   height: 300px;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   // clearfix
   content: "";
