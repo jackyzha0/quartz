@@ -3,7 +3,7 @@ import { QuartzPluginData } from "../plugins/vfile"
 import { Date } from "./Date"
 import { QuartzComponentProps } from "./types"
 
-function byDateAndAlphabetical(f1: QuartzPluginData, f2: QuartzPluginData): number {
+export function byDateAndAlphabetical(f1: QuartzPluginData, f2: QuartzPluginData): number {
   if (f1.dates && f2.dates) {
     // sort descending by last modified
     return f2.dates.modified.getTime() - f1.dates.modified.getTime()

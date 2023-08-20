@@ -136,7 +136,10 @@ async function popContentFolder(contentFolder) {
 
 function gitPull(origin, branch) {
   const flags = ["--no-rebase", "--autostash", "-s", "recursive", "-X", "ours", "--no-edit"]
-  spawnSync("git", ["pull", ...flags, origin, branch], { stdio: "inherit" })
+  const out = spawnSync("git", ["pull", ...flags, origin, branch], { stdio: "inherit" })
+  if (out.stderr) {
+    throw new Error(`Error while pulling updates: ${out.stderr}`)
+  }
 }
 
 yargs(hideBin(process.argv))
@@ -258,12 +261,12 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     const contentFolder = path.join(cwd, argv.directory)
     console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
     console.log("Backing up your content")
+    execSync(
+      `git remote show upstream || git remote add upstream https://github.com/jackyzha0/quartz.git`,
+    )
     await stashContentFolder(contentFolder)
     console.log(
       "Pulling updates... you may need to resolve some `git` conflicts if you've made changes to components or plugins.",
-    )
-    execSync(
-      `git remote show upstream || git remote add upstream https://github.com/jackyzha0/quartz.git`,
     )
     gitPull(UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH)
     await popContentFolder(contentFolder)
