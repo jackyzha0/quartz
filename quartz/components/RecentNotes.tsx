@@ -25,13 +25,13 @@ export default ((userOpts?: Partial<Options>) => {
   const opts = { ...defaultOptions, ...userOpts }
   function RecentNotes(props: QuartzComponentProps) {
     const { allFiles, fileData, displayClass } = props
-    const pages = allFiles.filter(opts.filter).sort(opts.sort).slice(0, opts.limit)
+    const pages = allFiles.filter(opts.filter).sort(opts.sort)
     const remaining = Math.max(0, pages.length - opts.limit)
     return (
       <div class={`recent-notes ${displayClass}`}>
         <h3>{opts.title}</h3>
         <ul class="recent-ul">
-          {pages.map((page) => {
+          {pages.slice(0, opts.limit).map((page) => {
             const title = page.frontmatter?.title
             const tags = page.frontmatter?.tags ?? []
 

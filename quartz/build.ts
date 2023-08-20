@@ -16,6 +16,7 @@ import { Argv, BuildCtx } from "./util/ctx"
 import { glob, toPosixPath } from "./util/glob"
 import { trace } from "./util/trace"
 import { options } from "./util/sourcemap"
+import { Mutex } from "async-mutex"
 
 async function buildQuartz(argv: Argv, clientRefresh: () => void) {
   const ctx: BuildCtx = {
@@ -77,10 +78,11 @@ async function startServing(
   }
 
   const initialSlugs = ctx.allSlugs
-  let timeoutIds: Set<ReturnType<typeof setTimeout>> = new Set()
-  let toRebuild: Set<FilePath> = new Set()
-  let toRemove: Set<FilePath> = new Set()
-  let trackedAssets: Set<FilePath> = new Set()
+  const buildMutex = new Mutex()
+  const timeoutIds: Set<ReturnType<typeof setTimeout>> = new Set()
+  const toRebuild: Set<FilePath> = new Set()
+  const toRemove: Set<FilePath> = new Set()
+  const trackedAssets: Set<FilePath> = new Set()
   async function rebuild(fp: string, action: "add" | "change" | "delete") {
     // don't do anything for gitignored files
     if (ignored(fp)) {
@@ -111,6 +113,7 @@ async function startServing(
     // debounce rebuilds every 250ms
     timeoutIds.add(
       setTimeout(async () => {
+        await buildMutex.acquire()
         const perf = new PerfTimer()
         console.log(chalk.yellow("Detected change, rebuilding..."))
         try {
@@ -143,6 +146,7 @@ async function startServing(
         clientRefresh()
         toRebuild.clear()
         toRemove.clear()
+        buildMutex.release()
       }, 250),
     )
   }
