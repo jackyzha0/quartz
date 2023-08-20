@@ -13,7 +13,6 @@ Then, in your terminal of choice, enter the following commands line by line:
 ```shell
 git clone https://github.com/jackyzha0/quartz.git
 cd quartz
-git checkout v4
 npm i
 npx quartz create
 ```

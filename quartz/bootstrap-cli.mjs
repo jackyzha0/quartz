@@ -423,6 +423,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
 
     const rebuild = (clientRefresh) => {
       timeoutIds.forEach((id) => clearTimeout(id))
+      timeoutIds.clear()
       timeoutIds.add(setTimeout(() => build(clientRefresh), 250))
     }
 
