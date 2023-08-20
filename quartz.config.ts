@@ -9,7 +9,7 @@ const config: QuartzConfig = {
     analytics: {
       provider: "plausible",
     },
-    baseUrl: "four.quartz.jzhao.xyz",
+    baseUrl: "quartz.jzhao.xyz",
     ignorePatterns: ["private", "templates"],
     theme: {
       typography: {
