@@ -13,7 +13,6 @@ draft: true
 
 - breadcrumbs component
 - filetree component
-- recent notes component
 - cursor chat extension
 - https://giscus.app/ extension
 - sidenotes? https://github.com/capnfabs/paperesque
