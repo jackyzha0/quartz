@@ -5,6 +5,7 @@ import style from "../styles/listPage.scss"
 import { PageList } from "../PageList"
 import { FullSlug, getAllSegmentPrefixes, simplifySlug } from "../../util/path"
 import { QuartzPluginData } from "../../plugins/vfile"
+import { Root } from "hast"
 
 const numPages = 10
 function TagContent(props: QuartzComponentProps) {
@@ -21,8 +22,11 @@ function TagContent(props: QuartzComponentProps) {
       (file.frontmatter?.tags ?? []).flatMap(getAllSegmentPrefixes).includes(tag),
     )
 
-  // @ts-ignore
-  const content = toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: "html" })
+  const content = (tree as Root).children.length === 0 ?
+    fileData.description :
+    // @ts-ignore
+    toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: "html" })
+
   if (tag === "") {
     const tags = [...new Set(allFiles.flatMap((data) => data.frontmatter?.tags ?? []))]
     const tagItemMap: Map<string, QuartzPluginData[]> = new Map()

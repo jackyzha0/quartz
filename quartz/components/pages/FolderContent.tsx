@@ -6,6 +6,7 @@ import path from "path"
 import style from "../styles/listPage.scss"
 import { PageList } from "../PageList"
 import { _stripSlashes, simplifySlug } from "../../util/path"
+import { Root } from "hast"
 
 function FolderContent(props: QuartzComponentProps) {
   const { tree, fileData, allFiles } = props
@@ -24,8 +25,11 @@ function FolderContent(props: QuartzComponentProps) {
     allFiles: allPagesInFolder,
   }
 
-  // @ts-ignore
-  const content = toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: "html" })
+  const content = (tree as Root).children.length === 0 ?
+    fileData.description :
+    // @ts-ignore
+    toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: "html" })
+
   return (
     <div class="popover-hint">
       <article>{content}</article>
