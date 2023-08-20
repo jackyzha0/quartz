@@ -320,7 +320,6 @@ pre {
   border-radius: 5px;
   overflow-x: auto;
   border: 1px solid var(--lightgray);
-  position: relative;
 
   &:has(> code.mermaid) {
     border: none;
