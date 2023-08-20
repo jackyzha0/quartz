@@ -14,11 +14,15 @@ Additionally, Quartz will also generate pages for subfolders. Say you have a not
 
 By default, Quartz will title the page `Folder: <name of folder>` and no description. You can override this by creating an `index.md` file in the folder with the `title` [[authoring content#Syntax|frontmatter]] field. Any content you write in this file will also be used in the description of the folder.
 
+For example, for the folder `content/posts`, you can add another file `content/posts/index.md` to add a specific description for it.
+
 ## Tag Listings
 
 Quartz will also create an index page for each unique tag in your vault and render a list of all notes with that tag.
 
 Quartz also supports tag hierarchies as well (e.g. `plugin/emitter`) and will also render a separate tag page for each layer of the tag hierarchy. It will also create a default global tag index page at `/tags` that displays a list of all the tags in your Quartz.
+
+Like folder listings, you can also provide a description and title for a tag page by creating a file for each tag. For example, if you wanted to create a custom description for the #component tag, you would create a file at `content/tags/component.md` with a title and description.
 
 ## Customization
 
