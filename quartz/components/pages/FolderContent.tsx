@@ -12,7 +12,7 @@ function FolderContent(props: QuartzComponentProps) {
   const { tree, fileData, allFiles } = props
   const folderSlug = _stripSlashes(simplifySlug(fileData.slug!))
   const allPagesInFolder = allFiles.filter((file) => {
-    const fileSlug = simplifySlug(file.slug!)
+    const fileSlug = _stripSlashes(simplifySlug(file.slug!))
     const prefixed = fileSlug.startsWith(folderSlug) && fileSlug !== folderSlug
     const folderParts = folderSlug.split(path.posix.sep)
     const fileParts = fileSlug.split(path.posix.sep)
