@@ -76,6 +76,7 @@ const BuildArgv = {
   },
   baseDir: {
     string: true,
+    default: "",
     describe: "base path to serve your local server on",
   },
   port: {
@@ -424,8 +425,26 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       wss.on("connection", (ws) => connections.push(ws))
       const clientRefresh = () => connections.forEach((conn) => conn.send("rebuild"))
 
+      if (argv.baseDir !== "" && !argv.baseDir.startsWith("/")) {
+        argv.baseDir = "/" + argv.baseDir
+      }
+
       await build(clientRefresh)
       const server = http.createServer(async (req, res) => {
+        if (argv.baseDir && !req.url?.startsWith(argv.baseDir)) {
+          console.log(
+            chalk.red(
+              `[404] ${req.url} (warning: link outside of site, this is likely a Quartz bug)`,
+            ),
+          )
+          res.writeHead(404)
+          res.end()
+          return
+        }
+
+        // strip baseDir prefix
+        req.url = req.url?.slice(argv.baseDir.length)
+
         const serve = async () => {
           await serveHandler(req, res, {
             public: argv.output,
@@ -434,14 +453,15 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
           const status = res.statusCode
           const statusString =
             status >= 200 && status < 300 ? chalk.green(`[${status}]`) : chalk.red(`[${status}]`)
-          console.log(statusString + chalk.grey(` ${req.url}`))
+          console.log(statusString + chalk.grey(` ${argv.baseDir}${req.url}`))
         }
 
         const redirect = (newFp) => {
+          newFp = argv.baseDir + newFp
           res.writeHead(302, {
             Location: newFp,
           })
-          console.log(chalk.yellow("[302]") + chalk.grey(` ${req.url} -> ${newFp}`))
+          console.log(chalk.yellow("[302]") + chalk.grey(` ${argv.baseDir}${req.url} -> ${newFp}`))
           res.end()
         }
 
@@ -487,7 +507,11 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
         return serve()
       })
       server.listen(argv.port)
-      console.log(chalk.cyan(`Started a Quartz server listening at http://localhost:${argv.port}`))
+      console.log(
+        chalk.cyan(
+          `Started a Quartz server listening at http://localhost:${argv.port}${argv.baseDir}`,
+        ),
+      )
       console.log("hint: exit with ctrl+c")
       chokidar
         .watch(["**/*.ts", "**/*.tsx", "**/*.scss", "package.json"], {
