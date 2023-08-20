@@ -17,6 +17,9 @@
     "test": "tsx ./quartz/util/path.test.ts",
     "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1"
   },
+  "engines": {
+    "node": ">=18.14"
+  },
   "keywords": [
     "site generator",
     "ssg",
