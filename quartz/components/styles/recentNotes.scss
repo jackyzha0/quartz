@@ -1,11 +1,12 @@
 .recent-notes {
   & > h3 {
+    margin: 0.5rem 0 0 0;
     font-size: 1rem;
   }
 
   & > ul.recent-ul {
     list-style: none;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     padding-left: 0;
 
     & > li {
