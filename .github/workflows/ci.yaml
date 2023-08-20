@@ -3,7 +3,7 @@ name: Build and Test
 on:
   push:
     branches:
-      - v4-alpha # TODO: update
+      - v4
 
 jobs:
   build-and-test:
