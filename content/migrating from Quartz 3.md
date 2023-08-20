@@ -12,6 +12,12 @@ npm i
 npx quartz create
 ```
 
+If you get an error like `fatal: 'upstream' does not appear to be a git repository`, make sure you add `upstream` as a remote origin:
+
+```shell
+git remote add upstream https://github.com/jackyzha0/quartz.git
+```
+
 When running `npx quartz create`, you will be prompted as to how to initialize your content folder. Here, you can choose to import or link your previous content folder and Quartz should work just as you expect it to.
 
 > [!note]
