@@ -108,12 +108,13 @@ async function startServing(
       toRemove.add(filePath)
     }
 
-    timeoutIds.forEach((id) => clearTimeout(id))
-
     // debounce rebuilds every 250ms
     timeoutIds.add(
       setTimeout(async () => {
-        await buildMutex.acquire()
+        const release = await buildMutex.acquire()
+        timeoutIds.forEach((id) => clearTimeout(id))
+        timeoutIds.clear()
+
         const perf = new PerfTimer()
         console.log(chalk.yellow("Detected change, rebuilding..."))
         try {
@@ -134,6 +135,8 @@ async function startServing(
             contentMap.delete(fp)
           }
 
+          // TODO: we can probably traverse the link graph to figure out what's safe to delete here
+          // instead of just deleting everything
           await rimraf(argv.output)
           const parsedFiles = [...contentMap.values()]
           const filteredContent = filterContent(ctx, parsedFiles)
@@ -146,7 +149,7 @@ async function startServing(
         clientRefresh()
         toRebuild.clear()
         toRemove.clear()
-        buildMutex.release()
+        release()
       }, 250),
     )
   }

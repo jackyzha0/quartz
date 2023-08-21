@@ -394,8 +394,15 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
 
     const buildMutex = new Mutex()
     const timeoutIds = new Set()
+    let firstBuild = true
     const build = async (clientRefresh) => {
-      await buildMutex.acquire()
+      const release = await buildMutex.acquire()
+      if (firstBuild) {
+        firstBuild = false
+      } else {
+        console.log(chalk.yellow("Detected a source code change, doing a hard rebuild..."))
+      }
+
       const result = await ctx.rebuild().catch((err) => {
         console.error(`${chalk.red("Couldn't parse Quartz configuration:")} ${fp}`)
         console.log(`Reason: ${chalk.grey(err)}`)
@@ -418,7 +425,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       const { default: buildQuartz } = await import(cacheFile + `?update=${randomUUID()}`)
       await buildQuartz(argv, clientRefresh)
       clientRefresh()
-      buildMutex.release()
+      release()
     }
 
     const rebuild = (clientRefresh) => {
@@ -526,7 +533,6 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
           ignoreInitial: true,
         })
         .on("all", async () => {
-          console.log(chalk.yellow("Detected a source code change, doing a hard rebuild..."))
           rebuild(clientRefresh)
         })
     } else {
