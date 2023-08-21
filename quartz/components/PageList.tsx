@@ -41,7 +41,7 @@ export function PageList({ fileData, allFiles, limit }: Props) {
             <div class="section">
               {page.dates && (
                 <p class="meta">
-                  <Date date={page.dates.modified} />
+                  <Date date={page.dates.created} />
                 </p>
               )}
               <div class="desc">
