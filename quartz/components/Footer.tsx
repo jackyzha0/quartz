@@ -13,23 +13,22 @@ export default ((opts?: Options) => {
     return (
       <footer>
         <hr />
-        <center>
-        <h2>ᜇ The Long Walk</h2>
-        <p><b>A newsletter about philosophical and contemplative living through walking and writing.</b></p>
-        <p>Every Sunday, I ask myself, is there something in the forest garden worth sharing?</p>
-        <p>If there is I send one. It could be a poem, a vignette, an insight, or an essay.</p>
-        <p>It's free and you can unsubscribe anytime.</p>
         <p>
-          <a href="https://vinceimbat.com/newsletter">Subscribe here.</a>
+        <a href="https://vinceimbat.com/newsletter">Subscribe</a> to <b>ᜇ The Long Walk</b>, my weekly newsletter on philosophy, walking, and writing.
         </p>
-        <hr />
         <p>
           Follow all changes in the forest garden via <a href="https://vinceimbat.com/index.xml">RSS.</a>
         </p>
         <p>
-          This forest garden of the mind was explored and cultivated using <a href="https://quartz.jzhao.xyz/">Quartz v{version}</a>, © {year}
+          Explored and cultivated using <a href="https://obsidian.md/">Obsidian</a> and <a href="https://quartz.jzhao.xyz/">Quartz v{version}</a>, © {year}
         </p>
-        </center>
+        <ul>
+          {Object.entries(links).map(([text, link]) => (
+            <li>
+              <a href={link}>{text}</a>
+            </li>
+          ))}
+        </ul>
       </footer>
     )
   }

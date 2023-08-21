@@ -195,3 +195,4 @@ Seeing life through this metaphor makes [[thoughts/walking]] relevant and writin
 # To do
 
 1. Use this to improve [[thoughts/my bio]]
+2. Include your commitment to philosophical lyric essay (poetry, personal essay, photography, philosophy)
