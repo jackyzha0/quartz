@@ -58,8 +58,9 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
     })
     .join(" ")
 
-  return `${startIndex === 0 ? "" : "..."}${slice}${endIndex === tokenizedText.length - 1 ? "" : "..."
-    }`
+  return `${startIndex === 0 ? "" : "..."}${slice}${
+    endIndex === tokenizedText.length - 1 ? "" : "..."
+  }`
 }
 
 const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
