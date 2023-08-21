@@ -94,6 +94,7 @@ function createRouter() {
     window.addEventListener("click", async (event) => {
       const { url } = getOpts(event) ?? {}
       if (!url) return
+      if (url.pathname === window.location.pathname) return
       event.preventDefault()
       try {
         navigate(url, false)
