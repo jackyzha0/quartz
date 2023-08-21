@@ -36,7 +36,7 @@ And yet, learning about multipotentialites through [Emilie's blog](https://putty
 
 ## The Struggles of Building a Multifaceted Life
 
-Nevertheless, building a life around my different passions was a tough ride. From [[tags/annual reviews|2013–2019]], I went through lots of frustrations particularly on just trying to set things up: my business, my routines, my habits, etc. The time I spent setting up my life robbed a lot of the time I could have spent nurturing my passions. This, in turn, made me feel guilty.
+Nevertheless, building a life around my different passions was a tough ride. From [[tags/annual-reviews/_index|2013–2019]], I went through lots of frustrations particularly on just trying to set things up: my business, my routines, my habits, etc. The time I spent setting up my life robbed a lot of the time I could have spent nurturing my passions. This, in turn, made me feel guilty.
 
 Many times, I wanted to shake off my multipotentiality and return to the "focus on one thing" credo. Having a traditional job could have solved a lot of my problems at that time: I would have had a strict schedule that I could organize around. Many multipotentialites have made this work with them and I now advocate that serious multipotentialites who would like to focus on nurturing their interests instead of building businesses could be greatly helped by the ["good enough job"](https://puttylike.com/dont-let-anyone-shame-you-for-having-a-day-job/) model. However, back then, I was mainly concerned about extending my freedom and freelancing sounded so good to let go.
 

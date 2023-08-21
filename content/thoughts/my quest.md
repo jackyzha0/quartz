@@ -40,7 +40,7 @@ The beliefs about responding to reality within my worldview most relevant to my 
 My worldview and quest defines [[thoughts/my poetics]].
 
 ## To do
-- Perhaps connect here all the metaphors you mentioned in [[tlw/_index]]
+- Perhaps connect here all the metaphors you mentioned in [[_index]]
 
 # References
 

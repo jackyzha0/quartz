@@ -6,7 +6,7 @@ import { QuartzComponentProps } from "./types"
 function byDateAndAlphabetical(f1: QuartzPluginData, f2: QuartzPluginData): number {
   if (f1.dates && f2.dates) {
     // sort descending by last modified
-    return f2.dates.modified.getTime() - f1.dates.modified.getTime()
+    return f2.dates.created.getTime() - f1.dates.created.getTime()
   } else if (f1.dates && !f2.dates) {
     // prioritize files with dates
     return -1

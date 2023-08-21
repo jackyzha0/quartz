@@ -18,5 +18,5 @@ Be mindful that the current annual review article will be used as a reference to
 
 The article should be published first through the blog, then newsletter, then social media.
 
-For a complete list of my annual review, see [[tags/annual reviews]].
+For a complete list of my annual review, see [[tags/annual-reviews/_index]].
 
