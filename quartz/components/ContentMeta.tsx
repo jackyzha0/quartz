@@ -11,12 +11,9 @@ export default (() => {
       if (fileData.dates?.created) {
         segments.push(formatDate(fileData.dates.created))
       }
-      if (fileData.dates?.modified) {
-        segments.push(formatDate(fileData.dates.modified))
-      }
 
       segments.push(timeTaken)
-      return <p class="content-meta">Created & Last modified: {segments.join(", ")}</p>
+      return <p class="content-meta">Created: {segments.join(", ")}</p>
     } else {
       return null
     }
