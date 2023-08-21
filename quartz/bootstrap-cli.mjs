@@ -428,9 +428,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     }
 
     if (argv.serve) {
-      const wss = new WebSocketServer({ port: 3001 })
       const connections = []
-      wss.on("connection", (ws) => connections.push(ws))
       const clientRefresh = () => connections.forEach((conn) => conn.send("rebuild"))
 
       if (argv.baseDir !== "" && !argv.baseDir.startsWith("/")) {
@@ -515,6 +513,8 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
         return serve()
       })
       server.listen(argv.port)
+      const wss = new WebSocketServer({ port: 3001 })
+      wss.on("connection", (ws) => connections.push(ws))
       console.log(
         chalk.cyan(
           `Started a Quartz server listening at http://localhost:${argv.port}${argv.baseDir}`,
