@@ -12,9 +12,6 @@ const isLocalUrl = (href: string) => {
   try {
     const url = new URL(href)
     if (window.location.origin === url.origin) {
-      if (url.pathname === window.location.pathname) {
-        return !url.hash
-      }
       return true
     }
   } catch (e) {}
@@ -94,7 +91,6 @@ function createRouter() {
     window.addEventListener("click", async (event) => {
       const { url } = getOpts(event) ?? {}
       if (!url) return
-      if (url.pathname === window.location.pathname) return
       event.preventDefault()
       try {
         navigate(url, false)
