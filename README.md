@@ -7,7 +7,7 @@ Quartz v4 features a from-the-ground rewrite focusing on end-user extensibility 
 
 **If you are looking for Quartz v3, you can find it on the [`hugo` branch](https://github.com/jackyzha0/quartz/tree/hugo).**
 
-🔗 Read the documentation and get started: https://four.quartz.jzhao.xyz/
+🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
 
 [Join the Discord Community](https://discord.gg/cRFFHYye7t)
 

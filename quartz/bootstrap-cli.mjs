@@ -255,7 +255,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     outro(`You're all set! Not sure what to do next? Try:
    • Customizing Quartz a bit more by editing \`quartz.config.ts\`
    • Running \`npx quartz build --serve\` to preview your Quartz locally
-   • Hosting your Quartz online (see: https://quartz.jzhao.xyz/setup/hosting)
+   • Hosting your Quartz online (see: https://quartz.jzhao.xyz/hosting)
 `)
   })
   .command("update", "Get the latest Quartz updates", CommonArgv, async (argv) => {
