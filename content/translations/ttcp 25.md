@@ -1,4 +1,10 @@
-# TTCP 25
+---
+title: "TTCP 25"
+date: "2023-08-21, Monday, 2:19:59 pm"
+tags:
+- "seedlings"
+- "pangasinan"
+---
 
 Ayadyari. Anggapoy itsura to.
 
@@ -37,6 +43,3 @@ Tutumbokey mundo so uniberso.
 Tutubokey uniberso so Tao.
 
 Tutumbokey Tao so Tao.
-
-\#evernote
-
