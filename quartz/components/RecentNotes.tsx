@@ -25,6 +25,11 @@ export default ((userOpts?: Partial<Options>) => {
   const opts = { ...defaultOptions, ...userOpts }
   function RecentNotes(props: QuartzComponentProps) {
     const { allFiles, fileData, displayClass } = props
+
+    if (fileData.slug !== "index") {
+      return <></>
+    }
+
     const pages = allFiles.filter(opts.filter).sort(opts.sort)
     const remaining = Math.max(0, pages.length - opts.limit)
     return (
@@ -33,7 +38,6 @@ export default ((userOpts?: Partial<Options>) => {
         <ul class="recent-ul">
           {pages.slice(0, opts.limit).map((page) => {
             const title = page.frontmatter?.title
-            const tags = page.frontmatter?.tags ?? []
 
             return (
               <li class="recent-li">
@@ -50,18 +54,6 @@ export default ((userOpts?: Partial<Options>) => {
                       <Date date={page.dates.modified} />
                     </p>
                   )}
-                  <ul class="tags">
-                    {tags.map((tag) => (
-                      <li>
-                        <a
-                          class="internal tag-link"
-                          href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}
-                        >
-                          #{tag}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </li>
             )
