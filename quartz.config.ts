@@ -13,9 +13,9 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates"],
     theme: {
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
-        code: "IBM Plex Mono",
+        header: "Newsreader",
+        body: "Spectral",
+        code: "JetBrains Mono",
       },
       colors: {
         lightMode: {
