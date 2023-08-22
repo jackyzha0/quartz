@@ -22,5 +22,5 @@ Want to talk or need help with something? You can check my [Office Hours policy]
 
 - [Writing for learning](digital-garden.md)
 - [Talks, Interviews and Podcast participation](appearances/)
-- [Research](research/research.md)
+- [Research](research/)
 - [Photography](photography/photography.md)
