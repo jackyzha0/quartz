@@ -63,7 +63,8 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                   const url = new URL(dest, `https://base.com/${curSlug}`)
                   const canonicalDest = url.pathname
                   const [destCanonical, _destAnchor] = splitAnchor(canonicalDest)
-                  const simple = simplifySlug(destCanonical as FullSlug)
+                  const simple = decodeURI(simplifySlug(destCanonical as FullSlug)) as SimpleSlug
+
                   outgoing.add(simple)
                 }
 
