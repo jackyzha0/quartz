@@ -462,6 +462,12 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
           await serveHandler(req, res, {
             public: argv.output,
             directoryListing: false,
+            headers: [
+              {
+                source: "**/*.html",
+                headers: [{ key: "Content-Disposition", value: "inline" }],
+              },
+            ],
           })
           const status = res.statusCode
           const statusString =
