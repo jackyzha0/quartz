@@ -21,6 +21,6 @@ Want to talk or need help with something? You can check my [Office Hours policy]
 ## Stuff I do
 
 - [Writing for learning](digital-garden.md)
-- [Talks, Interviews and Podcast participation](appearances/appearances.md)
+- [Talks, Interviews and Podcast participation](appearances/)
 - [Research](research/research.md)
 - [Photography](photography/photography.md)
