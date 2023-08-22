@@ -1,6 +1,5 @@
 ---
-author: [[Dawn Klinghoffer
-Katie Kirkpatrick-Husk]]
+author: [[Dawn Klinghoffer,Katie Kirkpatrick-Husk]]
 title: "More Than 50% of Managers Feel Burned Out"
 tags: 
 - articles
