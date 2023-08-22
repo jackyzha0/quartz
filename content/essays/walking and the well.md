@@ -3,11 +3,13 @@ title: "Walking and the Well"
 date: "2022-11-14"
 aliases:
 - "/the-long-walk-5"
+- "tlw/005"
 tags:
+- "tlw"
 - "evergreens"
 ---
 
-![Concrete tubes on a wall](/tlw/images/005/concrete-tubes-wall.jpg)
+![Concrete tubes on a wall](essays/images/concrete-tubes-wall.jpg)
 
 _Drink water from your own cistern  
 flowing water from your own well._  
@@ -20,9 +22,9 @@ I am an editor by profession. I chose to keep a day job to support my writing so
 
 Here is the past week's walk.
 
-## The Long Walk: November 7 to 12, 2022
+# The Long Walk: November 7 to 12, 2022
 
-### November 7, Monday
+## November 7, Monday
 
 In the evening, while I was walking, I contemplated the relevance of our beliefs about what exists (metaphysics) with our desire to belong. I wrote:
 
@@ -32,23 +34,23 @@ This is the reason why we join churches. In those churches, everyone believes th
 
 I look at my current circles and see that none of them really share my metaphysical beliefs. I am not part of any agnostic or atheistic circles even if I am one. Every interaction, therefore, involves stretching my tolerance muscles, getting used to listening, hearing, and sometimes even using the language of others that I don’t necessarily believe in. I think this has served well to increase my compassion and my ability to really empathize. But it can be tiring especially if I don’t have a “metaphysical home” to go back to.
 
-### November 8, Tuesday
+## November 8, Tuesday
 
 I am entertaining the possibility of writing a biography for Rem Tanauan. But this is a long-term project. It ought to be. Archival materials have to be gathered and preserved. Also, there is the issue of emotion. Write the biography this early and you won’t gain the wisdom that only time could reveal. And this wisdom is important because it will tell how much to reveal to the world. Reveal everything and you might hurt people, especially those who loved the person whose story you are writing about. Reveal too little and you risk people deifying a perfect yet dishonest image of the person. The story will be written. But it should be written in its own time.
 
 In the evening, I sat down on the empty bleachers in front of a softball field, alone in the dark. I looked up and stared at the stars for about 15 minutes.
 
-### November 9, Wednesday
+## November 9, Wednesday
 
 One of the conversations I wish Rem and I had more was about the uses of I Ching by a secular person. I asked him a few weeks before his death how the I Ching could help an atheist or an agnostic. He said the I Ching is like water. It takes the form of the vessel it pours into, and so the I Ching could be used purely as a philosophical text that could prompt a philosophical conversation.
 
 I remember this conversation and so I dug some more. **[People were asking the same question in Quora.](https://www.quora.com/Taoism-How-can-the-I-Ching-Hexagram-be-utilized-by-a-secular-person)**
 
-### November 10, Thursday
+## November 10, Thursday
 
 After watching **[this clip](https://twitter.com/claytoncubitt/status/1587882993393487872)** by the comedian Bo Burnham, I started questioning again how much of our social media use is preventing us from really hearing our deepest thoughts. For writers, philosophers, poets, and artists, hearing oneself is everything. And so this is an issue that I continue to grapple with. I am sure of one thing: the less I use social media, the more I think and write better. This is because I am able to maintain a deeper focus on a line of thought.
 
-### November 11, Friday
+## November 11, Friday
 
 In my journal, I returned to what I was thinking about last Monday (Nov. 7)—the relationship of our metaphysical beliefs with our desire for belongingness. I developed this journal entry into a note in my forest garden of the mind. Here is the note:
 
@@ -62,7 +64,7 @@ In my journal, I returned to what I was thinking about last Monday (Nov. 7)—th
 
 To illustrate the note, I drew concentric circles.
 
-![Life circles](/tlw/images/005/life-circles.jpeg)
+![Life circles](essays/images/life-circles.jpeg)
 The more I leave the center of the circle (my mind and body), the more I leave my comfort zone—my _ginhawa_. But leaving that comfort zone allows me to grow and create more meaning as it is only within the context of my relationships that I truly flourish. **[Sonja Lyubomirsky](https://sonjalyubomirsky.com/)**, a happiness researcher, agrees:
 
 > Perhaps most critical to improving and maintaining happiness is the ability to connect with other people and to create meaningful connecting moments…
@@ -71,7 +73,7 @@ But how often could I leave that center of comfort and for how long without comp
 
 I continued exploring the website of the Unitarian minister **[Andrew James Brown](http://andrewjbrown.blogspot.com/).** I first checked a new page he added to his site: Free Religion. It was a **[page](http://andrewjbrown.blogspot.com/p/free-religion.html)** introducing Shinichiro Imaoka, the advocate for free religion in Japan. I downloaded two free books: one his only biography and the other a collection of selected writings on free religion. Then I also read his short **[biography](https://biography.yourdictionary.com/shinichiro-imaoka)**.
 
-### November 12, Saturday
+## November 12, Saturday
 
 In the morning, I spent another long journaling session—about two hours—continuing the thread of thought that came to me the previous day. I started by simplifying my life areas into six:
 
@@ -107,4 +109,4 @@ This philosophy of living, creating, and connecting illustrated by the metaphor 
 > 
 > After I journal, I usually read one or two poems. When I opened Rofel Brion’s _Kapag Natagpuan Kita = Once I Find You_, this was the first poem that caught my attention.
 
-![Well by Rofel Brion](/tlw/images/005/well-poem.jpg)
+![Well by Rofel Brion](essays/images/well-poem.jpg)

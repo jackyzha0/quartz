@@ -1,7 +1,10 @@
 ---
 title: "In July"
 date: "2023-08-10, Thursday, 10:08:34 am"
+aliases:
+- "tlw/015"
 tags:
+- "tlw"
 - "seedlings"
 sr-due: 2023-08-11
 sr-interval: 1
@@ -25,3 +28,5 @@ I guess things are found when they are badly needed, when stomachs are hungry an
 .
 
 Once in a while, one of them would drop and while the brown has not yet consumed it, a lady with an umbrella would notice it, pick it up, and bring it below her nose. This will be the first and the last time we will ever understand existence.
+
+![Weeds at abandoned building](vignettes/images/ymca-weeds.jpg)

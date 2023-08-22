@@ -1,7 +1,10 @@
 ---
 title: "Those Stairs at Bakakeng"
 date: "2023-07-30"
+aliases:
+- "tlw/012"
 tags:
+- "tlw"
 - "seedlings"
 sr-due: 2023-08-10
 sr-interval: 6

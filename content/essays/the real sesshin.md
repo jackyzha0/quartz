@@ -3,10 +3,12 @@ title: "The Real Sesshin"
 date: "2022-11-28"
 aliases:
 - "/the-long-walk-7"
+- "tlw/007"
 tags:
+- "tlw"
 - "evergreens"
 ---
-![Hogar Kubo](/tlw/images/007/Hogar-kubo.jpg)
+![Hogar Kubo](essays/images/Hogar-kubo.jpg)
 
 > _What is the colour of wind?_
 
@@ -14,11 +16,11 @@ tags:
 
 I’m **[Vince Imbat](https://vinceimbat.com/)**, and this is _**[The Long Walk](https://vinceimbat.substack.com/)**_.
 
-## The Long Walk: November 21 to 26, 2022
+# The Long Walk: November 21 to 26, 2022
 
-### November 21, Monday
+## November 21, Monday
 
-I went to [[tlw/006|a group retreat in the mountains of Tanay]] over the weekend, hoping to get some more time with myself in nature. But the retreat felt more like an outing than a retreat, so as I returned to Los Baños, I felt like the real retreat was just about to begin.
+I went to [[essays/a metaphysical walk|a group retreat in the mountains of Tanay]] over the weekend, hoping to get some more time with myself in nature. But the retreat felt more like an outing than a retreat, so as I returned to Los Baños, I felt like the real retreat was just about to begin.
 
 During the last _sesshin_ (接心) I attended in 2018, our sensei Elda, in her closing talk, mentioned that the real sesshin begins the moment we leave the ICM Convent in Baguio, where the five-day silent retreat was held. The real _sesshin_ is out there in the world, she said. I reflect on what my life looks like, and it feels like a never-ending retreat, a pseudo-monastic life.
 
@@ -36,7 +38,7 @@ I remember Andrew James Brown’s similar method for what he calls **[“metaph
 > 
 > So how on earth are we to distinguish between missteps and sidesteps and the kind of steps that seem to us to right and which move us in what we feel is the right direction? Well, that can only achieved by those who find a way with a clean heart and full belief (_pathos_) to commit loyally to some kind of _**minimal, general sense of direction of travel and an associated minimalist, or basic form of life and style of movement**_ that will help then navigate towards that horizon. (emphases mine)
 
-### November 22, Tuesday
+## November 22, Tuesday
 
 One of the exercises in the book _**[Designing Your Life](https://designingyour.life/the-book/)**_, which I am slowly realizing is a compelling book that integrates a lot of lessons I have learned in the past about career planning and job searching, is writing your philosophy of work (workview) and philosophy of life (lifeview). After writing [[My workview]] and [[My lifeview]], I reflected on how the two relate to each other.
 
@@ -44,7 +46,7 @@ I realized that both my worview and my lifeview have this minimalist and balance
 
 That said, I see a contradiction between my philosophy of work and my life philosophy that needs to be immediately addressed. I still see work mainly as a tool to generate income. While money is supportive, work treated simply as something secondary to the real vocation I want to do could damage how I show up in this area of life. Is there a way to treat my income-generating activities as an integrated extension of my vocation, even if that vocation happens in the gift space? This is a question I continue to ponder about.
 
-### November 23, Wednesday
+## November 23, Wednesday
 
 Continuing the exercises in *[[designing your life - burnett and evans|Designing Your Life]]*, I went down memory lane. I listed all work- and nonwork-related activities I have engaged in throughout the years and graded each in terms of engagement and energy levels. I also placed a star on activities that brought me to flow. For each activity that induced flow, I wrote a quick reflection about what was happening during each activity that made the experience incredible. The authors of the book called this a “good time journal.”
 
@@ -52,7 +54,7 @@ While washing the dishes, I listened to **[a TED interview with the poet Ross G
 
 In the afternoon, I took a grounding, comforting, and pleasant walk along Pili Drive.
 
-### November 24, Thursday
+## November 24, Thursday
 
 In my journal, I wrote some common threads I noticed in my list of activities in my good time journal so far.
 
@@ -61,7 +63,7 @@ In my journal, I wrote some common threads I noticed in my list of activities in
 > -   I do my best work when I am alone.
 > -   there should always be an element of aloneness even if I want to work with other people.
 
-### November 25, Friday
+## November 25, Friday
 
 From all the activities I listed in my good time journal, I chose three: one that engaged me, energized me, and made me flow. I chose creating stories, walking, and photography for each, respectively. As the book instructed, I made a mindmap for each activity. I set a timer for six minutes and rigorously wrote the first words that came to me.
 
@@ -75,7 +77,7 @@ This was one of the most fun and eye-opening activities I have done in a long ti
 
 In the late afternoon, I walked at Jose Drilon Jr. Street alongside an arm of the Molawin Creek and sat at the end of the road to sketch my first odyssey plan, a five-year plan of the current life I was living. This was still part of the exercises in the _**Designing Your Life**_ book.
 
-### November 26, Saturday
+## November 26, Saturday
 
 Right after waking up, Lea and I walked toward Forestry at UPLB. Under one of the sheds, we sketched our odyssey plans and presented them to each other. We drew three odyssey plans each:
 
@@ -87,7 +89,7 @@ Lea presented her three plans: as a copywriter, a dentist, and a “hippie” re
 
 Here is what that last one looks like.
 
-![Odyssey plan](/tlw/images/007/odyssey-plan-3.jpg)]
+![Odyssey plan](essays/images/odyssey-plan-3.jpg)
 
 In the afternoon, I read the latest Nightingalingale newsletter by **[Craig Mod](https://craigmod.com/)**, a newsletter he sends to his membership patrons about the process of writing his latest book. He wrote about the importance of scale in creative projects.
 
@@ -101,4 +103,4 @@ After reading this, I returned to my odyssey plans and asked myself, “Do these
 
 I picked up new pieces of paper. There is a plan that needs revising.
 
-![Outside OJ Cafe](/tlw/images/007/OJ-cafe.jpg)
+![Outside OJ Cafe](essays/images/OJ-cafe.jpg)

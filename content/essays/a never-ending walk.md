@@ -1,8 +1,10 @@
 ---
 title: "A Never-ending Walk"
 date: "2023-07-15"
-aliases: ""
+aliases:
+- "tlw/011"
 tags:
+- "tlw"
 - "evergreens"
 ---
 

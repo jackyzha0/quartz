@@ -26,5 +26,5 @@ Others
 - [[Samo Burja]]
 - [[Steve Patterson]]
 - [[Theodore Zeldin]]
-- [[thich nhat hanh]]
+- [[thoughts/thich nhat hanh]]
 

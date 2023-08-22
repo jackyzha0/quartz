@@ -3,11 +3,13 @@ title: "A Philosophical Family Tree"
 date: "2022-10-09"
 aliases:
 - "/the-long-walk-1"
+- "tlw/001"
 tags:
+- tlw
 - "evergreens"
 ---
 
-![A lone flower](/tlw/images/001/lone-flower.jpg)
+![A lone flower](essays/images/lone-flower.jpg)
 
 >"In making the journey, I have no aims. These studies are intellectual footprints, not blueprints."
 
@@ -21,7 +23,7 @@ Welcome, welcome, and thank you for coming by. It is an honor to have you here e
 
 I am Vince, and this little abode of ours is _**The Long Walk**_, a new newsletter I hope to welcome you to every Sunday from now. Since it is probably our first time to meet (or we have met long ago and forgotten each other’s stories), please allow me some introduction.
 
-## My Long Walk So Far
+# My Long Walk So Far
 
 I wrote a longer piece of my story on my **[website](https://vinceimbat.com/about/)**, so I won’t bore you with the details here. But to provide some context, here’s a brief timeline of my long walk so far.
 
@@ -30,7 +32,7 @@ I wrote a longer piece of my story on my **[website](https://vinceimbat.com/abo
 - **2015–2016:** While I identified as an atheist, I never fully embraced that identity. I discovered blogging and encountered a writer who made me realize that I still resonated with what most people describe as “spiritual.” I started exploring Eastern philosophy (read the Bhagavad Gita and the Yoga Sutras of Patanjali!) and attended New Age gatherings. I still didn’t believe in “God,” but I knew I had “spiritual” sensibilities.
 - **2017–present:** I discovered philosophy. I dropped the New Age stuff but kept the Eastern philosophical ideas. Never wanting to go back to school, I taught myself the basics. I was first obsessed with metaphysics (what exists) and epistemology (how we know what we know), but later realized I was more interested in answering the question, “How should I live?” Around the same time, I discovered poetry, photography, and the power of walking. Plus, I was able to keep daily journaling, reading, and studying routines. So I thought, why not combine everything into a single lifelong learning project? And so, _**The Long Walk**_ was born.
 
-## A Note on Format
+# A Note on Format
 
 For now, this newsletter’s structure shall follow the rhythms of a walk. A walk leaves footprints and makes trails. Those who follow the walk must find the first footprint and begin there until the destination is reached. The tracks left allow us to “reenact” the walk. Interestingly, this is precisely what a poem or a narrative does. In a reading companion to a collection of his essays and poems, Thomas Gardner has this to say about narrative and poetry:
 
@@ -48,17 +50,17 @@ Since this is our first walk together, a preamble is necessary, making this firs
 
 With all that out of the way, please, I invite you to stand up and join me outside. Let us go under the trees and the warm rays of the sun for a little stroll down the trails of the previous week’s walk.
 
-## The Long Walk: October 3 to 8, 2022
+# The Long Walk: October 3 to 8, 2022
 
-### October 3, Monday
+## October 3, Monday
 
 While exploring Substack, the platform where you are currently reading _**The Long Walk**_, I subscribed to a few other newsletters. I read one entitled _**[Weary and Sated With Seeing: Lucretius and Us](https://tolma.substack.com/p/weary-and-sated-with-seeing)**_. The central thesis of the piece is that our minds are attracted to what is new rather than what truly matters. Here’s my favorite quote from the article:
 
 >No one prides themselves on knowing that the sky appears blue, but we do pride ourselves on more exotic types of knowledge.
 
-### October 4, Tuesday
+## October 4, Tuesday
 
-![Re-reading Steal Like an Artist](/tlw/images/001/steal-like-an-artist.jpg)
+![Re-reading Steal Like an Artist](essays/images/steal-like-an-artist.jpg)
 
 I reread _**Steal Like an Artist**_ by Austin Kleon while writing notes in my journal by hand. I came to this quote at the end, which got me thinking:
 
@@ -68,7 +70,7 @@ I looked for an example from my life, and one thing came to mind. Growing up, I 
 
 In the evening, I listened to Sam Harris’ interview with the poet David Whyte on the **[Making Sense podcast](https://www.youtube.com/watch?v=53g4sNZ40XI)**. In the interview, Sam alluded to the assumption that meditation requires silence or the absence of words or thoughts. We both agree that it doesn’t. It is impossible to be conscious and without thoughts at the same time. As long as you are aware, you produce thoughts. Meditation is not silence or nonthinking. _**Meditation is simply a careful discipline of paying attention.**_ We can do it both in silence or in the middle of a conversation, for one’s object of meditation can be anything.
 
-### October 5, Wednesday
+## October 5, Wednesday
 
 I did a morning walk with my partner, which I now find more regenerative than the late afternoon to early evening walks that I typically do. Now that students are back in Los Baños, the university has been filled with people in the afternoon, and my afternoon walks are beginning to lose their magic. I need to do more morning walks.
 
@@ -80,9 +82,9 @@ I wanted to look for heroes—mentors, alive or dead—and learn from them one b
 
 I read _**[Introduction: What is Lyric Philosophy?](https://muse.jhu.edu/article/593935)**_ by Warren Heiti, which talks about Jan Zwicky’s seminal book, _**Lyric Philosophy**_. I learned about the interesting design of Zwicky’s book, which she seemed to have replicated in at least one of her subsequent books. I also learned that “lyric philosophy” is a more accepted term with a decent amount of following in the academe compared to Edward Mooney’s “lyrical philosophy.” That said, both scholars find inspiration from the philosopher Ludwig Wittgenstein.
 
-![My philosophical genealogy](/tlw/images/001/my-philosophical-genealogy.png "My philosophical family tree so far")
+![My philosophical genealogy](essays/images/my-philosophical-genealogy.png "My philosophical family tree so far")
 
-### October 6, Thursday
+## October 6, Thursday
 
 Jan Zwicky is part of my philosophical genealogy, but should I start my studies with her? I was not sure. I felt like she spent most of her work talking about form rather than answering the central question I wanted to contemplate: “How should I live?”
 
@@ -90,20 +92,20 @@ I decided to start with someone else first: Edward Mooney. I began by reading hi
 
 In the evening, I dedicated a walk to a friend who died in a terrible vehicular accident a few years back. She once studied at UPLB and, for sure, walked some of the places I frequent on campus. A poem honoring her came to me while crossing the never-ending bridge of lore. You can read that **[poem on the website](https://vinceimbat.com/Never-ending-A-poem-for-Gyra/).**
 
-### October 7, Friday
+## October 7, Friday
 
 In my journal, I alluded to how translation facilitates understanding by forcing us to read something slowly. Although I love Thoreau, I find _**Walden**_, especially its first chapter, difficult to swallow. That changed when I decided to start translating it into Filipino. The translation process forces you to look at each sentence and word as closely as possible. Only then can you understand what you are reading and internalize it better because it is in your language. It doesn’t work all the time, but it will work for most of us.
 
 Back on Edward Mooney’s blog, I read _**[Sympathy with Intelligence](https://edmooneyblog.wordpress.com/2012/05/09/sympathy-with-intelligence/)**_, which touched me deeply. He writes so well that I started reading his latest book _**Living Philosophy in Kierkegaard, Melville, and Others**_.
 
-October 8, Saturday
+## October 8, Saturday
 
 As we often do on the weekends, my partner and I walked from our house to the School of Forestry at UPLB, a length which is enough to cover in about 45 minutes of leisurely walking. We do it in the morning right after we wake up. Upon arrival, we usually look for an empty cottage under the big trees and start meditating. This time, we tried something different. We looked for a single prompt, which each of us used to journal for one to three pages worth of writing. The prompt that came to us was the verb “articulating.” We read our essays to each other after. You can read **[mine on the website](https://vinceimbat.com/On-articulating/)**.
 
 ---
 This ends our walk for this week. Thank you for joining me, and I hope to see you again next Sunday!
 
-## References
+# References
 
 I cultivate a forest garden of the mind, which I call my collection of notes from almost a decade of reading, writing, and contemplation. Here are the notes from where this week’s newsletter came from.
 

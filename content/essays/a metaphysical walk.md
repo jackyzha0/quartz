@@ -3,11 +3,13 @@ title: "A Metaphysical Walk Along the Mountains of Rizal"
 date: "2022-11-22"
 aliases:
 - "/the-long-walk-6"
+- "tlw/006"
 tags:
+- "tlw"
 - "evergreens"
 ---
 
-![Tanay mountains](/tlw/images/006/Tanay-mountains.jpg)
+![Tanay mountains](essays/images/Tanay-mountains.jpg)
 
 > _Truth is always common and plain._
 
@@ -15,9 +17,9 @@ tags:
 
 I’m **[Vince Imbat](https://vinceimbat.com/)**, and this is _**[The Long Walk](https://vinceimbat.substack.com/)**_.
 
-## The Long Walk: November 14 to 20, 2022
+# The Long Walk: November 14 to 20, 2022
 
-### November 14, Monday
+## November 14, Monday
 
 In my forest garden of the mind, I wrote the following note.
 
@@ -51,9 +53,9 @@ ang sansinukob.*
 
 In the afternoon, while on a call with a friend, I heard him utter these most reassuring words: _“Do not feel guilty about your choice not to build community with people you don’t have relationships with. A community is made up, first and foremost, of relationships. When there is no relationship, there is no community.”_
 
-![More Tanay mountains](/tlw/images/006/Tanay-mountains-2.jpg)
+![More Tanay mountains](essays/images/Tanay-mountains-2.jpg)
 
-### November 15, Tuesday
+## November 15, Tuesday
 
 I consulted the I Ching on a question I asked today, “How do I balance going back to my source and helping others?”
 
@@ -70,7 +72,7 @@ I do not believe in divination; therefore, I could not see the I Ching as a tool
 
 This reading provided a helpful metaphor for what I could do while navigating my grief and my desire to actively help others at this time. Interestingly, the metaphor coincides with **[the metaphor of walking and the well](https://vinceimbat.substack.com/p/walking-and-the-well)**, which I explored last week. The way to ensure that we can actively do something for others while at the same time being mindful of our own needs is to strengthen our source (our well, mind, body, etc.) and then leave that source to help others incrementally—walking this distance today, returning to our source, then increasing the distance tomorrow. This incremental walking is similar to what the small ladle in Hexagram 46 does.
 
-### November 16, Wednesday
+## November 16, Wednesday
 
 In the morning, when I woke up, I was welcomed by an unexpected problem.
 
@@ -78,9 +80,9 @@ It broke my morning routine, evidenced by the fact that I started the day re-rea
 
 When I went home, I shared the thought with my partner, and she didn’t like it. She grabbed her phone and had me read one of her favorite newsletter articles. I read the article, and it was about a successful woman who asked herself the same berating question. She noticed that, like me, she always had to go through a tough challenge before she started to change. To stop this cycle, she intended to improve her life as much as she could, but when things started to go south, she would “ask the universe” for two gentle warnings, which she calls “feathers,” before getting a “hard rock”—the disaster. Once those feathers arrived, she promised to respond to either and not wait for the hard rock to come before making adjustments. While I am still unsure how to use it, I find this a good metaphor and an important lesson.
 
-![A jeep at Mt. Kulis](/tlw/images/006/jeep-at-kulis.jpg)
+![A jeep at Mt. Kulis](essays/images/jeep-at-kulis.jpg)
 
-### November 17, Thursday
+## November 17, Thursday
 
 I started reading the foreword of the book _**[Designing Your Life](https://designingyour.life/the-book/)**_.
 
@@ -88,15 +90,15 @@ In the evening, Lea and I walked until Viado. She left earlier while I continued
 
 While walking, the idea came to me: What if I facilitate awe and doubt?
 
-### November 18, Friday
+## November 18, Friday
 
 I read the first chapter of _**Designing Your Life**_. I made the book’s first exercise, a life design assessment of four life areas: work, health, play, and love. I took the assessment and found that all my areas are half-filled—I have done enough to manage them but not enough to feel fulfilled. Half of the work is left undone.
 
 The book also introduced the concepts of lifeview and workview. Workview is your philosophy of work. It states what work is for you and what it means to you in general. It defines what good work deserves to be. On the other hand, lifeview is similar to what I would call your life philosophy. It is your idea of what the world is and how it works. The chapter introduced questions one can ask to write a short articulation of one’s workview and lifeview. I am answering the questions slowly.
 
-![Kid playing at Tanay](/tlw/images/006/kid-playing-tanay.jpg)
+![Kid playing at Tanay](essays/images/kid-playing-tanay.jpg)
 
-### November 19, Saturday
+## November 19, Saturday
 
 Today, Lea and I left town to visit Hogar (or Hermitage and Organic Gardens) at Tanay, Rizal, a mountainous municipality in Southern Luzon, for a group retreat. We arrived along with other participants around 3 pm. After eating, I was instructed to go to my cottage and set my things up before returning for the opening program. I was staying by myself in the farthest cabin where I would be sleeping alone tonight.
 
@@ -116,9 +118,9 @@ In my journal that night, I wrote the following words:
 > 
 > My vision is to work with people one on one—a life of retreat and communion, of going back to my well by going out to help others. I plan on constructing a purely naturalistic belief system, my house, then from ther, get out. Where this will lead me, I still don’t know. But I ultimately want to walk into the wilderness of compassion.
 
-![Hermitage cottage](/tlw/images/006/hermitage-cottage-2.jpg)
+![Hermitage cottage](essays/images/hermitage-cottage-2.jpg)
 
-### November 20, Sunday
+## November 20, Sunday
 
 I woke up around 6:30 am and immediately started preparing to go out. I was set to walk the trail up to what they said was a cafe above the hill. Before walking, I cannot help but take photos of the hermitage cottage’s surroundings.
 
@@ -128,7 +130,7 @@ When I reached the top, I saw a better view of Hogar and its neighboring resorts
 
 I walked further down to catch breakfast, which was closing in about 30 minutes. After breakfast, we started preparing for the hike to Mt. Kulis. Mini, one of the organizers, led us. The walk towards the entrance of Fresno Agro-Forestry and Eco Tourist Campsite, which houses the trail to Mt. Kulis, was a wide dirt road with mud. Only cars, particularly those with large wheels, could pass. Not even tricycles or motorcycles could make it with ease. We walked on the sides. Some of us decided not to continue. The adventurous at heart pushed on. We were soon rewarded with some of the best views in Southern Luzon.
 
-![Jeep](/tlw/images/006/sikap-jeep.jpg)
+![Jeep](essays/images/sikap-jeep.jpg)
 
 Along the trail to the summit of Mt. Kulis, we saw what they called Noah’s ark from afar. But it was more like a large _balangay_ placed on top of a mountain.
 
@@ -156,4 +158,4 @@ From Calamba central terminal, we rode a notoriously slow jeep to Los Baños. At
 
 Perhaps my training isn’t over.
 
-![Sleeping Jesus](/tlw/images/006/sleeping-jesus.jpg)
+![Sleeping Jesus](essays/images/sleeping-jesus.jpg)

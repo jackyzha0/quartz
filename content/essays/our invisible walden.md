@@ -3,11 +3,13 @@ title: "Our Invisible Walden"
 date: "2022-10-23"
 aliases:
 - "the-long-walk-3"
+- "tlw/003"
 tags:
+- "tlw"
 - "evergreens"
 ---
 
-![Two boats at the beach](/tlw/images/003/two-boats-beach.jpg)
+![Two boats at the beach](essays/images/two-boats-beach.jpg)
 
 >*a hole inside me*  
 >*gapes open wide, expanding*  
@@ -20,9 +22,9 @@ I'm [Vince Imbat](https://vinceimbat.com/) and this is [The Long Walk](https://v
 
 Here is the past week's walk.
 
-## The Long Walk: October 17 to 22, 2022
+# The Long Walk: October 17 to 22, 2022
 
-### October 17, Monday
+## October 17, Monday
 
 In the morning, I decided to do my journaling and reading outdoors. My partner, Lea, agreed to come along. The sun was scorching hot when we left the house. But as we reached Freedom Park, the sky started to grow dark. Here goes Los Baños' bipolar weather.
 
@@ -40,7 +42,7 @@ We named it Carillon (after a week-long debate).
 
 And we did remember **[Keeley](https://vinceimbat.com/All-other-things-thrown/)**.
 
-![Little Carillon cat](/tlw/images/003/Carillon.jpg)
+![Little Carillon cat](essays/images/Carillon.jpg)
 
 Back at home, while still on my yoga mat, I started reading the foreword to Rofel Brion’s book _**Kapag Natagpuan Kita = Once I Find You**_, a collection of his Filipino poems with their corresponding English translations. The English translations were originally Rofel’s, but he had his friend Noelle de Jesus edit them. Noelle’s translation process inspired me to try translating Rofel’s poem _Umaga (Morning)_ into Pangasinan. My translation isn’t done, but I discovered a **[downloadable Pangasinan–English dictionary](https://www.jstor.org/stable/j.ctv9hvsfz)** along the way. My mother tongue, Pangasinan, is a dying language in the Philippines. I’ve been having a lot of difficulty finding a Pangasinan dictionary, so this one, although aged, was a big find for me.
 
@@ -52,7 +54,7 @@ On my computer, I reviewed a note I wrote a while back entitled **[“Our invis
 
 While washing the dishes in the evening, I listened to a **[podcast episode](https://www.bbc.co.uk/programmes/b016x2jp)** about the **[analytic and continental divide in philosophy](https://archive.nytimes.com/opinionator.blogs.nytimes.com/2012/02/19/bridging-the-analytic-continental-divide/)**. As I am slowly building **[my philosophical family tree](https://vinceimbat.substack.com/p/a-philosophical-family-tree)**, this is an issue I could not escape. The analytic–continental divide refers to a widespread assumption that there are two general traditions in philosophy: one that emphasizes clarity (analytic) and one that doesn’t (continental).
 
-### October 18, Tuesday
+## October 18, Tuesday
 
 I reviewed my highlights from the foreword of _**Kapag Natagpuan Kita = Once I Find You**_. In general, the foreword was an illuminating account of how a “translation by collaboration” could happen. I reflected on how Noelle de Jesus quickly acknowledged that she was not a poet and, in her words, a “learned speaker or writer of Tagalog or Filipino.” Instead of feeling less qualified to do the job of editing Rofel’s translations because of her “inadequacies,” she embraced them and had them guide her on choosing the approach she used to deliver the project.
 
@@ -62,7 +64,7 @@ This choice is sometimes shunned by poem translators, many of which are capable 
 
 I continued to study the analytic–continental divide in philosophy and am starting to share the conclusion of **[Brian Leiter](https://philosophybites.com/2011/12/brian-leiter-on-the-analyticcontinental-distinction.html)** that the divide is sociological and not intellectual. Moving forward, I intend to practice a form of philosophy that recognizes the value of both analysis and lyric, a practice that merges both clarity and depth, a way of looking at the world that is interested in both objective and subjective truth. In other words, a holistic worldview.
 
-### October 19, Wednesday
+## October 19, Wednesday
 
 With Lea, I traveled to my home province of Pangasinan to see my family and stay by the beach for a couple of days. Dickinson’s poem from last week’s newsletter and Rofel’s poem _Umaga (Morning)_ strengthened my resolve to see the sea before October ends.
 
@@ -98,7 +100,7 @@ The long bus ride afforded me some time to check substacks. Here are three good 
 
 Between long naps during a five-hour bus ride, I did some reading. I continued _**Living Philosophy**_ by Mooney, and I finished Chapter 5—a chapter about the lyrical philosophy of characters in _**Moby Dick**_.
 
-### October 20, Thursday
+## October 20, Thursday
 
 After waking up, I walked with my father for about an hour at the Matic-matic–Maronong road. The last time we walked together was back in 2011 when I was recovering from depression. He doesn’t know this, but it is that long already. So this morning’s walk was something special.
 
@@ -122,17 +124,17 @@ forever.*
 
 The sky was too cloudy for sunset, so we walked instead, until evening. Finally, I am in deep eternity.
 
-### October 21, Friday
+## October 21, Friday
 
 I woke up at 6:30 am and started walking towards the beach. The sun is already up. On the beach, an adult male, possibly in his 60s, was with a little girl, around three or four years old. She was his grandchild, perhaps. His _apo_.
 
 The child was walking around the man, chasing a few dogs with them. The dogs were free. They seem to know the beach well.
 
-![A grandfather and his grand daughter](/tlw/images/003/lolo-apo-beach.jpg)
+![A grandfather and his grand daughter](essays/images/lolo-apo-beach.jpg)
 
 I walked towards San Fabian and saw the Cordillera enveloped by a thick gray mist. Below me, tiny transparent crabs, almost invisible to the eye, moved from one hole to another. Beside the holes, large footprints—not of man but dog—pressed on the soft sand, so soft I felt so heavy.
 
-![Dog paw prints](/tlw/images/003/dog-foot-prints.jpg)
+![Dog paw prints](essays/images/dog-foot-prints.jpg)
 
 On the sand, near the crabs and the pawprints, I sat for a while, watching the waves and feeling sunlight on my cheeks.
 
@@ -140,9 +142,9 @@ On my way back, I saw a man dragging his bike towards the water. He looked as if
 
 As I made my way back to the resort, I saw an old man on the side of the road looking far into the horizon.
 
-![A lonely old man on a beach](/tlw/images/003/lonely-man-on-beach.jpg)
+![A lonely old man on a beach](essays/images/lonely-man-on-beach.jpg)
 
-### October 22, Saturday
+## October 22, Saturday
 
 After watching Lea ride the bus bound to Manila, I walked back home on my own, about two kilometers of concrete. Along the way, I saw farmers opening up their sacks of _ilik_ (unmilled rice), laying them out on the road to dry. I walked on the edges of the road, avoiding the _ilik._
 
@@ -188,12 +190,12 @@ Just reading this reminded me of the note I just wrote, which I mentioned above.
 
 I read this a few minutes before the golden hour. When the hour arrived, I took my camera and followed the light. I didn’t walk towards my favorite trails. I stayed at home, walked around the yard, and looked for the “simplest corners of nature.” The light did not fail me.
 
-![](/tlw/images/003/tree-shadow.jpg)
+![](essays/images/tree-shadow.jpg)
 
-![Shadow on tin](/tlw/images/003/tin-man.jpg)
+![Shadow on tin](essays/images/tin-man.jpg)
 
-![Leaf shadows](/tlw/images/003/shadows-on-leaves.jpg)
+![Leaf shadows](essays/images/shadows-on-leaves.jpg)
 
-![Sunlight on pen fence](/tlw/images/003/pen-fences.jpg)
+![Sunlight on pen fence](essays/images/pen-fences.jpg)
 
 This week’s walk ends here. For any feedback, please reply to the email or comment on the post. Thank you. I am happy that you are here.

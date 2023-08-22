@@ -3,11 +3,13 @@ title: "When I Look Up at the Night Sky"
 date: "2022-12-11"
 aliases:
 - "/the-long-walk-9"
+- "tlw/009"
 tags:
+- "tlw"
 - "evergreens"
 ---
 
-![Moonlight](/tlw/images/009/moonlight.jpg)
+![Moonlight](essays/images/moonlight.jpg)
 
 When I got off the bus on the evening of December 2, there was a single tricycle waiting at the entrance of the provincial road that would lead me home. Its LED lights shined brightly as the driver waited silently in the dark.
 
@@ -29,7 +31,7 @@ I've been here for more than a week and have intentionally walked in the evening
 
 Using the SkyView app on my phone and the pointers I remember from the stargazing session we did at Tanay, I can now identify Mars, Jupiter, Neptune, and the constellations Orion, Taurus, Gemini, Aries, Capricorn, Aquarius, and Pisces. Some nights, when I feel more geeky than usual, or when there is too much cloud in the sky, I would identify a completely unfamiliar star, usually, the one that shines the brightest.
 
-![Construction site](/tlw/images/009/construction-site-night.jpg)
+![Construction site](essays/images/construction-site-night.jpg)
 
 I've been doing this walking and stargazing for more than a week now that yesterday, I started to feel something—something both familiar yet seldomly felt. When I look long enough at celestial beings—the stars, the planets, and the moon (especially the moon)—something unexpected happens.
 
@@ -39,7 +41,7 @@ I remember that the star I am looking at now was probably already dead thousands
 
 And with this reminder comes the recognition that everything I am looking at above came before me. And, like them, I arose from nowhere. This existence that I possess came outside my volition. I was brought here by someone (or something) that is way more powerful than myself. My existence was never my choice. It was beyond my control, much like almost everything else around me—aging, illness, and death.
 
-Interestingly, I recently came across [[thich nhat hanh]]’s English translation of The Five Remembrances of Buddhism.
+Interestingly, I recently came across [[thoughts/thich nhat hanh|Thich Nhat Hanh]] ’s English translation of The Five Remembrances of Buddhism.
 
 *I am of the nature to grow old.  
 There is no way to escape growing old.*  
@@ -58,7 +60,7 @@ There is no way to escape being separated from them.*
 I cannot escape the consequences of my actions.  
 My actions are the ground upon which I stand.*  
 
-![Irrigation road at night](/tlw/images/009/irrigation-road-night.jpg)
+![Irrigation road at night](essays/images/irrigation-road-night.jpg)
 
 When I look up at the sky, I am also reminded of the question that has troubled human beings for millennia—a question that continues to perplex philosophers, scientists, and theologians: Where did all of these come from?
 
@@ -98,4 +100,4 @@ This seemingly paradoxical quality of nature was articulated beautifully through
 > 
 > I will be true to you. Whatever comes.
 
-![Cloudy night sky](/tlw/images/009/cloudy-night-sky.jpg)
+![Cloudy night sky](essays/images/cloudy-night-sky.jpg)

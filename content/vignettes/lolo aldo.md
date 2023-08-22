@@ -3,7 +3,9 @@ title: "Lolo Aldo"
 date: "2022-06-08"
 aliases:
 - "A visit to Lolo Aldo"
+- "tlw/014"
 tags:
+- "tlw"
 - "seedlings"
 sr-due: 2022-08-15
 sr-interval: 3
@@ -19,3 +21,5 @@ Since the old man can no longer talk audibly, I had to come near him. "Taga iner
 We talked a lot about many things but two things struck me. Lea's mom asked him what food he wants to eat. He doesn't seem to care. What goes in his mouth doesn't seem to matter anymore. He has reached the point where the taste of food is irrelevant. He is in his 90s. His daughter would later say to us that he can't eat much solid food. Soup on rice is usually enough. When asked what food he wants, he didn't answer. He stayed silent for a while. And then he uttered the words I will never forget. "It's near. The end is near for me. But thank you so much for remembering me. For visiting." He then said he was tired and wanted to lie down. We helped him get back to his pillow and we all left the room.
 
 Three months later, I heard that people visited Lolo Aldo once more. He was no longer in his room. And the stench of urine was no longer in the air.
+
+![Inside Lolo Aldo's house](vignettes/images/lolo-aldo-house.jpg)

@@ -3,11 +3,13 @@ title: "The Inward Morning"
 date: "2022-10-16"
 aliases:
 - "/the-long-walk-2"
+- "tlw/002"
 tags:
+- "tlw"
 - "evergreens"
 ---
 
-![Fertility tree](/tlw/images/002/fertility-tree.jpg)
+![Fertility tree](essays/images/fertility-tree.jpg)
 
 >*Exultation is the going*
 >*Of an inland soul to sea,*
@@ -18,7 +20,7 @@ tags:
 
 Welcome back, fellow saunterer. Thank you, thank you, for gracing me once more with your presence! After the first issue was sent last Sunday, a few more joined us. My heart is full. Welcome, welcome!
 
-If you are reading this newsletter for the first time, I encourage you to check **[[tlw/001|the inaugural issue]]**. That issue sets the stage for this second issue and all future issues, providing a brief introduction to my life and an explanation of the rationale behind this newsletter's format.
+If you are reading this newsletter for the first time, I encourage you to check **[[essays/a philosophical family tree|the inaugural issue]]**. That issue sets the stage for this second issue and all future issues, providing a brief introduction to my life and an explanation of the rationale behind this newsletter's format.
 
 If reading another issue on top of this is a big choir (it is!), here's the shorter version:
 
@@ -26,9 +28,9 @@ I am Vince Imbat, an ex-young pastor turn philosophy aficionado who loves to wal
 
 For many of you, this is our second week walking together. The outdoors is waiting. There is a lot to cover. So wear your best footwear and bring some water. Let us begin to follow the footprints of the previous week's walk.
 
-## The Long Walk: October 10 to 15, 2022
+# The Long Walk: October 10 to 15, 2022
 
-### October 10, Monday
+## October 10, Monday
 
 Have I told you about [[thoughts/henry bugbee]]? Oh, you must know about Henry Bugbee. We both share a love of [[thoughts/henry david thoreau]], and among all the candidates for being Thoreau's heir, I think he is the closest, at least in terms of resonance. [[Annie Dillard]] could be the closest modern Thoreau in terms of writing style (she's the only one I've read who could really pull it off!). But Bugbee's life is closer to Thoreau, and for me, that is more important.
 
@@ -44,7 +46,7 @@ In his entry, dated September 27, 1952 (the entry I read on this day), Bugbee me
 
 [[The Inward Morning Commentary 1952-09-27|Read the entire entry here]].
 
-### October 11, Tuesday
+## October 11, Tuesday
 
 I continued reading _**The Inward Morning**_. In his entry written on September 28, 1952, Bugbee presented a critique of the statement "believe in order to understand." He says that this statement invites dishonesty as it presupposes that we can believe in something we do not understand. He seems to suggest that belief cannot be used to achieve something (i.e., understanding). If anything, belief or faith is a place where we arrive, not a vehicle we use to arrive at something. After understanding everything and noticing that our knowledge can only get us to a point, we call upon faith. Faith is surrendering to mystery.
 
@@ -54,7 +56,7 @@ In the evening, I walked among the large palm trees at UPLB. I wrote these words
 
 >*I fancy these large trees. When I see them together like standing giants. I feel in awe. Astounded. Like silent watchers of the paths.*
 
-### October 12, Wednesday
+## October 12, Wednesday
 
 Hoping to establish some continuity in my days, I persevered into reading _**The Inward Morning**_. Bugbee's September 29 entry was about what is essential to a person's life. He mentioned in a previous entry that the realization of what is essential to us comes unexpectedly, usually in the middle of our normal routines. What is essential to one human, therefore, is subjective, as it may not be what is essential to another.
 
@@ -83,19 +85,19 @@ Here are two of my best entries:
 
 Inspired by reading my past nature journal entries, I tried writing brief notes of observations during my walk that evening: [[2022-10-12 seeds]].
 
-### October 13, Thursday
+## October 13, Thursday
 
 Curious to see if I could improve the quality of my walks, I decided to try a morning walk for a change. I left the house at around 7:30, which, I discovered, provides one of the best lights you will ever catch in Los Baños, so I took a few photos while on the walk, something I haven't done for a while.
 
-![Broken stove](/tlw/images/002/broken-stove.jpg)
+![Broken stove](essays/images/broken-stove.jpg)
 
-![Service entrance gate](/tlw/images/002/service-entrance-gate.jpg)
+![Service entrance gate](essays/images/service-entrance-gate.jpg)
 
 I stopped on a bench for a while to enjoy the cold breeze that blew from behind me. After a few minutes, I continued walking until I reached the Fertility Tree at Freedom Park (the featured photo for this newsletter). Under the tree, I journaled about how this morning's walk made me feel at home in Los Baños again. I wrote that perhaps it is not a change of location that I need but a change of routine. I also continued reading _**The Inward Morning**_ and wrote my commentary on Bugbee's October 2, 1952, entry. In this entry, Bugbee talks about Socrates and how the power of his thought lies not in his induction but in the ability of his inquiry to return us to ourselves. Bugbee also commented on Socrates’ idea of the examined life and its value. You can read my entire commentary on **[the website](https://vinceimbat.com/The-Inward-Morning-Commentary-1952-10-02)**.
 
 As if I needed more walking, my partner and I walked in the evening, under a bright moon after the new stray cat we adopted was spayed. We sat on one of the benches at Freedom Park. What ensued was her sharing of a podcast show she was currently listening to about a couple who left Christianity. This is my partner's current process, which is something I went through in 2012 (more than a decade now!). Listening to her made me realize how much trauma we could carry just by being brought up in a religious household. A question revisited me: Is the parent's role to mold the child to be who she wants him to be or to support the child to become who he wants to be?
 
-### October 14, Friday
+## October 14, Friday
 
 In the previous issue, I shared that I am currently reading the book ***[[thoughts/living philosophy by edward mooney|Living Philosphy in Kierkegaard, Melville, and Others]]*** by [[thoughts/edward mooney]]. Mooney is a student of Henry Bugbee, and I am currently reading him as the focal point from where I shall trace my philosophical family tree.
 
@@ -105,7 +107,7 @@ The book is a delightful collection of essays, relatively short in length, poeti
 
 I am realizing these days that, while I think analytic philosophy is extremely important and necessary, my talents fit a brand of philosophy that is closer to the arts than the sciiences. A living philosophy—this is what I am intent in studying more about.
 
-### October 15, Saturday
+## October 15, Saturday
 
 This entire day, I did a mind walk on the life and works of the poet [[contacts/rofel brion]].
 
@@ -149,7 +151,7 @@ de tu vientre
 mientras ronronearias
 con gran deleite.*
 
-![Stroking Champy the cat's belly](/tlw/images/002/champy-belly.jpg)
+![Stroking Champy the cat's belly](essays/images/champy-belly.jpg)
 
 I went home that night, with Rofel’s new book in my bag and a handful of new seeds of thoughts to write about in the following days.
 
@@ -159,6 +161,6 @@ I went home that night—and I remembered you, you who are reading this newslett
 
 Well, of course, to ask you to introduce yourself.
 
-## Before You Go
+# Before You Go
 
 I want to know your name, where you are from, and what you do these days. What philosophical or contemplative interests do you have? Please reply to this email or comment on the public post. And if there is anything that resonated with you from this week’s walk—or any feedback—please don’t hesitate to share them. I will read and respond to everything. I am happy you are here.

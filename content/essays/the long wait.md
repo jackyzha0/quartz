@@ -1,7 +1,10 @@
 ---
 title: "Updates: The Long Wait"
 date: "2023-05-23"
+aliases:
+- "tlw/010"
 tags:
+- "tlw"
 - "evergreens"
 ---
 
@@ -13,7 +16,7 @@ So what happened and what will happen moving forward?
 
 Let's start with what happened.  
 
-About two weeks after I lost my best friend, an event I wrote about [[tlw/004|here]], I lost my position at the agency I've worked as a freelance academic editor for the past three years.
+About two weeks after I lost my best friend, an event I wrote about [[essays/rewalking rem tanauan|here]], I lost my position at the agency I've worked as a freelance academic editor for the past three years.
 
 I discovered that grief and loss of income overpower any drive I have to write these emails. And the guilt that, somehow, losing my job took over the mental space I should've given to grieving my best friend's loss and helping those he left, sucks whatever motivation is left for me to write.
 
@@ -33,7 +36,7 @@ Things are still not perfect. I am nowhere near the income I used to have and I 
 
 But I have enough mental space and courage to be grateful that it is a disservice to the universe, to you, and to myself, not to send an email. So, yes, I will be visiting your inboxes once more, and to start, I have two announcements to share.
 
-First, I am tweaking my newsletter system. I used to send different emails to different groups of subscribers. But I am sending these emails to only a handful of you that dividing you into groups doesn't make sense right now. So, I will be sending everything to this list—[[tlw|The Long Walk list]]—moving forward.
+First, I am tweaking my newsletter system. I used to send different emails to different groups of subscribers. But I am sending these emails to only a handful of you that dividing you into groups doesn't make sense right now. So, I will be sending everything to this list—[[templates/tlw|The Long Walk list]]—moving forward.
 
 That said, I will be putting categories of emails I will send to you in the subject line so you immediately know what email you are getting. Here are the categories:
 
