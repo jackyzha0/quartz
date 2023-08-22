@@ -10,7 +10,7 @@ My desire to walk arose out of the realization that to answer the central questi
 
 ## References
 
-[[lilim/001]]
+[[essays/lilim intro]]
 >Over the extent of my entire young life, and especially during my lowest moments, I have tried and retried to answer a single question that has always baffled me—How should I live?
 >
 >And as I get older, I’m starting to realize that the question eludes an answer. I’m starting to see that its very nature is that of a guide that tells you how to walk but never when to arrive.

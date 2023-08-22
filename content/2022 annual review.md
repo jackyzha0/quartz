@@ -112,9 +112,9 @@ Meanwhile, I sent my blackout poems to be included in the Tuloy-Daloy exhibit, v
 
 ## May
 
-In May, I continued incorporating narratives into my digital garden. As I did this, I began thinking deeper about my writing life. I read [[thoughts/diy mfa by pereira|DIY MFA]] by Gabriela Pereira. One of my most significant writing achievements this month was narrativizing [[uman/004]].
+In May, I continued incorporating narratives into my digital garden. As I did this, I began thinking deeper about my writing life. I read [[thoughts/diy mfa by pereira|DIY MFA]] by Gabriela Pereira. One of my most significant writing achievements this month was narrativizing [[essays/uman 2022-04]].
 
-As I progressed in writing, so did I in walking. I decided to improve my walking by increasing the time I spent outdoors in the afternoon. The more time I spend walking, the more chances I could have of catching something worth writing about. Extending my walking time led me to write longer, more beautiful field notes, which convinced me to relaunch [[Lilim]]. I published three issues of Lilim in May. It was during one of these walks that I serendipitously discovered the story of the [[in search of the internment camp in los baños|LB internment camp]], which I wrote about in [[lilim/030]]. After reading about the story at the UPLB library, I spent an entire afternoon tracing the possible boundaries of the camp. During this walk, the draft of the poem [[poems/baker hall]] came to me.
+As I progressed in writing, so did I in walking. I decided to improve my walking by increasing the time I spent outdoors in the afternoon. The more time I spend walking, the more chances I could have of catching something worth writing about. Extending my walking time led me to write longer, more beautiful field notes, which convinced me to relaunch [[thoughts/lilim]]. I published three issues of Lilim in May. It was during one of these walks that I serendipitously discovered the story of the [[in search of the internment camp in los baños|LB internment camp]], which I wrote about in [[essays/grass turned crimson]]. After reading about the story at the UPLB library, I spent an entire afternoon tracing the possible boundaries of the camp. During this walk, the draft of the poem [[poems/baker hall]] came to me.
 
 The other walks I did this month were a walk at Lopez Quezon, around town, in one of the fishponds at Sta. Teresa, and at Santino's Farmville. I also had my second Makiling hike this month.
 
@@ -122,7 +122,7 @@ The other walks I did this month were a walk at Lopez Quezon, around town, in on
 
 ## June
 
-In June, I walked from Los Baños to San Pablo, passing by the towns of Bay and Calauan along the way. It was my first multi-day walk; the second day I spent going around Sampaloc lake and visiting Bunot lake. While walking towards San Pablo, the difficulty of the walk, which I think owes more to rookie mistakes than the trail itself, made me ponder why I was doing the walk in the first place. I did the walk early this month, so I considered a lot about my motivations for walking the entire month. I journaled about it, thought about it on my next walks, and wrote a whole Lilim article on it ([[lilim/029]]).
+In June, I walked from Los Baños to San Pablo, passing by the towns of Bay and Calauan along the way. It was my first multi-day walk; the second day I spent going around Sampaloc lake and visiting Bunot lake. While walking towards San Pablo, the difficulty of the walk, which I think owes more to rookie mistakes than the trail itself, made me ponder why I was doing the walk in the first place. I did the walk early this month, so I considered a lot about my motivations for walking the entire month. I journaled about it, thought about it on my next walks, and wrote a whole Lilim article on it ([[essays/why walk]]).
 
 The walk also encouraged me to return to photography. I wanted to take good photos and edit them better during the walk, so I decided to improve my photography skills. This education extended even after the walk. I created a systematic, custom-made photography learning roadmap to organize my learning.
 

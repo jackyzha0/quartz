@@ -68,7 +68,7 @@ I have two archived newsletters both of which are now integrated in T*he Long Wa
 
 _Lilim_, which means "shade" or "shadow," used to be a bi-weekly newsletter about walking in Laguna, Pangasinan, and elsewhere in the Philippines. My walk narratives are now integrated with *The Long Walk* and are only published when available.
 
-Read the archives [[lilim|here]].
+Read the archives [[thoughts/lilim|here]].
 
 ## Uman
 

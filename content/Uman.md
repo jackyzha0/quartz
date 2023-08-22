@@ -16,12 +16,12 @@ Here is [[How to prepare an issue of Uman]], and here are all the Uman issues so
 
 ## 2022
 
-- [[uman/001]]
-- [[uman/002]]
-- [[uman/003]]
-- [[uman/004]]
-- [[uman/005]]
-- [[uman/006]]
-- [[uman/007]]
-- [[uman/008]]
+- [[essays/uman 2022-01]]
+- [[essays/uman 2022-02]]
+- [[essays/uman 2022-03]]
+- [[essays/uman 2022-04]]
+- [[essays/uman 2022-05]]
+- [[essays/uman 2022-06]]
+- [[essays/uman 2022-07]]
+- [[essays/uman 2022-08]]
 

@@ -35,4 +35,4 @@ Being in nature not only makes me feel better but also reminds me of what man is
 
 # Related
 
-- [[lilim/029]]
+- [[essays/why walk]]

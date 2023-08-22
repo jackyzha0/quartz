@@ -9,7 +9,7 @@ sr-interval: 2
 sr-ease: 230
 ---
 
-Kissa by Kissa is not a page-turner. It elicits the same feeling I get when reading [[thoughts/craig mod]]'s newsletter, which I have adopted in [[Lilim]] and [[Uman]], primarily because of the use of photos as breaks to texts. There are no captions in these photos. They speak for themselves, although many of these photos have subjects that are talked about by the nearby text.
+Kissa by Kissa is not a page-turner. It elicits the same feeling I get when reading [[thoughts/craig mod]]'s newsletter, which I have adopted in [[thoughts/lilim]] and [[Uman]], primarily because of the use of photos as breaks to texts. There are no captions in these photos. They speak for themselves, although many of these photos have subjects that are talked about by the nearby text.
 
 Kissa by Kissa has a larger narrative, which could be connected to another larger narrative once Craig finishes his series of books on walking Japan. One gets this narrative in the foreword: Craig's history of being adopted, relocating to Japan, his intention for doing the walk, why kissas, and why pizza toast. With that out of the way, the book is all but a collection of vignettes, shorter than those in [[desert solitaire — abbey]]. Most of these vigettes are about the kissas that he discovered along his long walk. In these vignettes, the interplay between [[Thought and experience]], between being and meaning-making, are once again highlighted. This long walk narrated in the book may have simply been scratching an itch to do something interesting, but it is his interpretation of the walk that shows his growth as a person.
 

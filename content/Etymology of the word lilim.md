@@ -27,4 +27,4 @@ A _lilim_ is where I am allowed to slow down, shift my walk from the dirt road t
 
 ## References
 
-[[lilim/001]]
+[[essays/lilim intro]]

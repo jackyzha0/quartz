@@ -72,7 +72,7 @@ frigate tuna (*Auxis thazard*)
 Ayon sa Wikipedia, ang totoong mga mackerels ay mula sa pamilyang Scombridae at tribong scombrini.
 
 To do
-- Create a new note integrating [[lilim/022]].
+- Create a new note integrating [[essays/kaliskis na ulap]].
 
 # Related
 

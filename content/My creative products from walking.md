@@ -13,7 +13,7 @@ The product that I sought to create out of this embodied inquiry through walking
 
 ## References
 
-[[lilim/001]]
+[[essays/lilim intro]]
 
 >This newsletter is my last attempt to bring to you the insights, observations, and stories, paired with photographs, that I have gathered and continue to gather throughout the years.
 >

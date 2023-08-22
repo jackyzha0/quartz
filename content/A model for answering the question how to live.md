@@ -9,7 +9,7 @@ sr-interval: 4
 sr-ease: 276
 ---
 
-The process I'm suggesting on how to answer the question "[[thoughts/how to live?]]" is a process that does not need to be tied to the discipline of [[thoughts/philosophy]].
+The process I'm suggesting on how to answer the question "[[thoughts/how to live]]" is a process that does not need to be tied to the discipline of [[thoughts/philosophy]].
 
 The process involves the following steps:
 1. Answer: How do you know what you know?

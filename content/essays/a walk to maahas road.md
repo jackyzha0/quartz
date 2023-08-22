@@ -37,7 +37,7 @@ One of the things I've experienced several times in walking especially during lo
 
 In two different compounds a but far from each other on Maahas Road, two different families—groups of children—were doing the same thing: playing soaked in their inflatable pools.
 
-At the end of Maahas Road is IPB Road, the road that separates IRRI from the rest of UPLB. Parallel the IPB Road is a railroad. Around 7:00 pm, you will hear the train approaching. This afternoon, there might not be a train coming. It's Maundy Thursday. When there is no train, the tracks are filled with people and trolleys, which reminded me of Lopez, Quezon (cf. [[lilim/031]]).
+At the end of Maahas Road is IPB Road, the road that separates IRRI from the rest of UPLB. Parallel the IPB Road is a railroad. Around 7:00 pm, you will hear the train approaching. This afternoon, there might not be a train coming. It's Maundy Thursday. When there is no train, the tracks are filled with people and trolleys, which reminded me of Lopez, Quezon (cf. [[essays/walking lopez 1]]).
 
 I peek inside the fences of IRRI and see the mountains from afar. I crossed the road to where a few joggers and walkers are resting. A dog approached a woman at her seat, its owner following behind it. The shitzu had no leash. It was free.
 

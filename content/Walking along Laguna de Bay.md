@@ -20,4 +20,4 @@ It did not just isolate us from each other. It isolated us from the planet, from
 
 ## References
 
-[[lilim/002]]
+[[essays/beauty is always around you]]

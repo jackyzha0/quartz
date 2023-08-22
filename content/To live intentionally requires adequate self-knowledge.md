@@ -9,7 +9,7 @@ sr-interval: 1852
 sr-ease: 292
 ---
 
-Because the answer to the question [[thoughts/how should I live?]] or [[thoughts/how to live?]] is always subjective, to live intentionally requires one to be familiar with one’s inclinations.
+Because the answer to the question [[thoughts/how should I live?]] or [[thoughts/how to live]] is always subjective, to live intentionally requires one to be familiar with one’s inclinations.
 
 Inclinations are the complexity that was created out of the contents of the mind. From these contents arise feelings.
 
