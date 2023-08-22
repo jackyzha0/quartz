@@ -2,8 +2,10 @@
 title: "Lyrical Philosophy, or How to Sing with Mind — Epstein"
 date: "2022-07-22"
 tags:
-- "notes"
 - "seedlings"
+sr-due: 2023-08-25
+sr-interval: 3
+sr-ease: 250
 ---
 
 [[Feelings, when involved with universals, can also be philosophical]]
