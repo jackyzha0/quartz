@@ -1,7 +1,5 @@
 ---
-author: [[Noam Chomsky,
-Ian Roberts
-Jeffrey Watumull]]
+author: [[Noam Chomsky,Ian Roberts,Jeffrey Watumull]]
 title: "Noam Chomsky: The False Promise of ChatGPT"
 tags: 
 - articles
