@@ -17,6 +17,9 @@
     "test": "tsx ./quartz/util/path.test.ts",
     "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1"
   },
+  "engines": {
+    "node": ">=18.14"
+  },
   "keywords": [
     "site generator",
     "ssg",
@@ -32,6 +35,7 @@
     "@clack/prompts": "^0.6.3",
     "@floating-ui/dom": "^1.4.0",
     "@napi-rs/simple-git": "^0.1.8",
+    "async-mutex": "^0.4.0",
     "chalk": "^4.1.2",
     "chokidar": "^3.5.3",
     "cli-spinner": "^0.2.10",

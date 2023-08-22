@@ -7,25 +7,27 @@ document.addEventListener("nav", () => {
   const els = document.getElementsByTagName("pre")
   for (let i = 0; i < els.length; i++) {
     const codeBlock = els[i].getElementsByTagName("code")[0]
-    const source = codeBlock.innerText.replace(/\n\n/g, "\n")
-    const button = document.createElement("button")
-    button.className = "clipboard-button"
-    button.type = "button"
-    button.innerHTML = svgCopy
-    button.ariaLabel = "Copy source"
-    button.addEventListener("click", () => {
-      navigator.clipboard.writeText(source).then(
-        () => {
-          button.blur()
-          button.innerHTML = svgCheck
-          setTimeout(() => {
-            button.innerHTML = svgCopy
-            button.style.borderColor = ""
-          }, 2000)
-        },
-        (error) => console.error(error),
-      )
-    })
-    els[i].prepend(button)
+    if (codeBlock) {
+      const source = codeBlock.innerText.replace(/\n\n/g, "\n")
+      const button = document.createElement("button")
+      button.className = "clipboard-button"
+      button.type = "button"
+      button.innerHTML = svgCopy
+      button.ariaLabel = "Copy source"
+      button.addEventListener("click", () => {
+        navigator.clipboard.writeText(source).then(
+          () => {
+            button.blur()
+            button.innerHTML = svgCheck
+            setTimeout(() => {
+              button.innerHTML = svgCopy
+              button.style.borderColor = ""
+            }, 2000)
+          },
+          (error) => console.error(error),
+        )
+      })
+      els[i].prepend(button)
+    }
   }
 })

@@ -16,6 +16,7 @@ import { Argv, BuildCtx } from "./util/ctx"
 import { glob, toPosixPath } from "./util/glob"
 import { trace } from "./util/trace"
 import { options } from "./util/sourcemap"
+import { Mutex } from "async-mutex"
 
 async function buildQuartz(argv: Argv, clientRefresh: () => void) {
   const ctx: BuildCtx = {
@@ -77,10 +78,11 @@ async function startServing(
   }
 
   const initialSlugs = ctx.allSlugs
-  let timeoutIds: Set<ReturnType<typeof setTimeout>> = new Set()
-  let toRebuild: Set<FilePath> = new Set()
-  let toRemove: Set<FilePath> = new Set()
-  let trackedAssets: Set<FilePath> = new Set()
+  const buildMutex = new Mutex()
+  const timeoutIds: Set<ReturnType<typeof setTimeout>> = new Set()
+  const toRebuild: Set<FilePath> = new Set()
+  const toRemove: Set<FilePath> = new Set()
+  const trackedAssets: Set<FilePath> = new Set()
   async function rebuild(fp: string, action: "add" | "change" | "delete") {
     // don't do anything for gitignored files
     if (ignored(fp)) {
@@ -106,11 +108,13 @@ async function startServing(
       toRemove.add(filePath)
     }
 
-    timeoutIds.forEach((id) => clearTimeout(id))
-
     // debounce rebuilds every 250ms
     timeoutIds.add(
       setTimeout(async () => {
+        const release = await buildMutex.acquire()
+        timeoutIds.forEach((id) => clearTimeout(id))
+        timeoutIds.clear()
+
         const perf = new PerfTimer()
         console.log(chalk.yellow("Detected change, rebuilding..."))
         try {
@@ -131,6 +135,8 @@ async function startServing(
             contentMap.delete(fp)
           }
 
+          // TODO: we can probably traverse the link graph to figure out what's safe to delete here
+          // instead of just deleting everything
           await rimraf(argv.output)
           const parsedFiles = [...contentMap.values()]
           const filteredContent = filterContent(ctx, parsedFiles)
@@ -143,6 +149,7 @@ async function startServing(
         clientRefresh()
         toRebuild.clear()
         toRemove.clear()
+        release()
       }, 250),
     )
   }
