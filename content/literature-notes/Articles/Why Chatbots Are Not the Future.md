@@ -1,5 +1,5 @@
 ---
-author: [[.]]
+author: [[Watten Berger]]
 title: "Why Chatbots Are Not the Future"
 tags: 
 - articles
@@ -10,7 +10,7 @@ tags:
 ![rw-book-cover](https://wattenberger.com/thoughts/favicon.png)
 
 ## Metadata
-- Author: [[.]]
+- Author: [[Watten Berger]]
 - Full Title: Why Chatbots Are Not the Future
 - Category: #articles
 - URL: https://wattenberger.com/thoughts/boo-chatbots
