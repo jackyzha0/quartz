@@ -219,7 +219,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       )
     }
 
-    // get a prefered link resolution strategy
+    // get a preferred link resolution strategy
     const linkResolutionStrategy = exitIfCancel(
       await select({
         message: `Choose how Quartz should resolve links in your content. You can change this later in \`quartz.config.ts\`.`,
