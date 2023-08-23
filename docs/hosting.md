@@ -116,3 +116,53 @@ See the [GitHub documentation](https://docs.github.com/en/pages/configuring-a-cu
 > There could be many different reasons why your changes aren't showing up but the most likely reason is that you forgot to push your changes to GitHub.
 >
 > Make sure you save your changes to Git and sync it to GitHub by doing `npx quartz sync`. This will also make sure to pull any updates you may have made from other devices so you have them locally.
+
+## Vercel
+
+### Fix URLs
+
+Before deploying to Vercel, a `vercel.json` file is required at the root of the project directory. It needs to contain the following configuration so that URLs don't require the `.html` extension:
+
+```json title="vercel.json"
+{
+  "cleanUrls": true
+}
+```
+
+### Deploy to Vercel
+
+1. Log in to the [Vercel Dashboard](https://vercel.com/dashboard) and click "Add New..." > Project
+2. Import the Git repository containing your Quartz project.
+3. Give the project a name (lowercase characters and hyphens only)
+4. Check that these configuration options are set:
+
+| Configuration option                      | Value              |
+| ----------------------------------------- | ------------------ |
+| Framework Preset                          | `Other`            |
+| Root Directory                            | `./`               |
+| Build and Output Settings > Build Command | `npx quartz build` |
+
+5. Press Deploy. Once it's live, you'll have 2 `*.vercel.app` URLs to view the page.
+
+### Custom Domain
+
+> [!note]
+> If there is something already hosted on the domain, these steps will not work without replacing the previous content. As a workaround, you could use Next.js rewrites or use the next section to create a subdomain.
+
+1. Update the `baseUrl` in `quartz.config.js` if necessary.
+2. Go to the [Domains - Dashboard](https://vercel.com/dashboard/domains) page in Vercel.
+3. Connect the domain to Vercel
+4. Press "Add" to connect a custom domain to Vercel.
+5. Select your Quartz repository and press Continue.
+6. Enter the domain you want to connect it to.
+7. Follow the instructions to update your DNS records until you see "Valid Configuration"
+
+### Use a Subdomain
+
+Using `docs.example.com` is an example of a subdomain. They're a simple way of connecting multiple deployments to one domain.
+
+1. Update the `baseUrl` in `quartz.config.js` if necessary.
+2. Ensure your domain has been added to the [Domains - Dashboard](https://vercel.com/dashboard/domains) page in Vercel.
+3. Go to the [Vercel Dashboard](https://vercel.com/dashboard) and select your Quartz project.
+4. Go to the Settings tab and then click Domains in the sidebar
+5. Enter your subdomain into the field and press Add
