@@ -34,7 +34,7 @@
   "dependencies": {
     "@clack/prompts": "^0.6.3",
     "@floating-ui/dom": "^1.4.0",
-    "@napi-rs/simple-git": "^0.1.8",
+    "@napi-rs/simple-git": "0.1.9",
     "async-mutex": "^0.4.0",
     "chalk": "^4.1.2",
     "chokidar": "^3.5.3",
@@ -97,7 +97,7 @@
     "@types/workerpool": "^6.4.0",
     "@types/ws": "^8.5.5",
     "@types/yargs": "^17.0.24",
-    "esbuild": "^0.19.1",
+    "esbuild": "0.19.2",
     "prettier": "^3.0.0",
     "tsx": "^3.12.7",
     "typescript": "^5.0.4"
