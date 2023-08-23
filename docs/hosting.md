@@ -142,7 +142,7 @@ Before deploying to Vercel, a `vercel.json` file is required at the root of the 
 | Root Directory            | `./`                 |
 | Build and Output Settings > Build Command | `npx quartz build`    |
 
-5. Press Deploy. Once it's live, you'll have 2 *.vercel.app URLs to view the page.
+5. Press Deploy. Once it's live, you'll have 2 `*.vercel.app` URLs to view the page.
 
 ### Custom Domain
 
