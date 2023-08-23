@@ -1,16 +1,16 @@
 ---
 title: "Have You Listened to Yourself Lately?"
 date: "2019-05-05"
-slug: "have-you-listened-to-yourself-lately"
+aliases:
+- "have-you-listened-to-yourself-lately"
 tags:
-  - "essays"
-  - "seedlings"
+- "seedlings"
 sr-due: 2022-08-20
 sr-interval: 3
 sr-ease: 250
 ---
 
-![Cloudy Skies and a Path](golden-road.jpg)
+![Cloudy Skies and a Path](essays/images/golden-road.jpg)
 
 Most of the major questions you will ever ask in your life will be questions about how to live.
 

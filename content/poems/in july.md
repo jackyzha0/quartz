@@ -1,6 +1,6 @@
 ---
 title: "In July"
-date: "2023-08-10, Thursday, 10:08:34 am"
+date: "2023-08-10"
 aliases:
 - "tlw/015"
 tags:

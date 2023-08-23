@@ -1,6 +1,6 @@
 ---
 title: "I write personal essays"
-date: "2023-08-04, Friday, 11:19:14 am"
+date: "2023-08-04"
 tags:
 - "seedlings"
 sr-due: 2023-08-07
@@ -25,3 +25,19 @@ Having said that, I actually want to try different genres. I don’t want to be 
 Also, I want to write about my life, but I want to do it not in this “I am perfect” way, but in a discreet, honest, and imperfect way.
 
 Another way of articulating the kind of writing I want to do is writing about the inner world and outer world—terms I first encountered from [[Pico Iyer]].
+
+# Update this with new insights
+
+I am committing to writing [[thoughts/lyric essay|lyric essays]] that are philosophical in nature, specifically [[thoughts/existentialism|existential]] in nature (i.e., [[thoughts/lyrical philosophy|lyrical philosophy]]), which are generated through walking.
+
+This commitment should focus my reading.
+
+Methodology: walking
+Subject: existentialism
+Form: hybrid lyric essay with photography
+
+My reading list should include the following:
+- walking literature
+- existential literature
+- lyric essays
+- hybrid essays (with photographs)
