@@ -393,10 +393,16 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     })
 
     const buildMutex = new Mutex()
-    const timeoutIds = new Set()
+    let lastBuildMs = 0
     let cleanupBuild = null
     const build = async (clientRefresh) => {
+      const buildStart = new Date().getTime()
+      lastBuildMs = buildStart
       const release = await buildMutex.acquire()
+      if (lastBuildMs > buildStart) {
+        release()
+        return
+      }
 
       if (cleanupBuild) {
         await cleanupBuild()
@@ -426,12 +432,6 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       const { default: buildQuartz } = await import(cacheFile + `?update=${randomUUID()}`)
       cleanupBuild = await buildQuartz(argv, buildMutex, clientRefresh)
       clientRefresh()
-    }
-
-    const rebuild = (clientRefresh) => {
-      timeoutIds.forEach((id) => clearTimeout(id))
-      timeoutIds.clear()
-      timeoutIds.add(setTimeout(() => build(clientRefresh), 250))
     }
 
     if (argv.serve) {
@@ -539,7 +539,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
           ignoreInitial: true,
         })
         .on("all", async () => {
-          rebuild(clientRefresh)
+          build(clientRefresh)
         })
     } else {
       await build(() => {})
