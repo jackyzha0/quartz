@@ -394,12 +394,12 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
 
     const buildMutex = new Mutex()
     const timeoutIds = new Set()
-    let firstBuild = true
+    let cleanupBuild = null
     const build = async (clientRefresh) => {
       const release = await buildMutex.acquire()
-      if (firstBuild) {
-        firstBuild = false
-      } else {
+
+      if (cleanupBuild) {
+        await cleanupBuild()
         console.log(chalk.yellow("Detected a source code change, doing a hard rebuild..."))
       }
 
@@ -408,6 +408,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
         console.log(`Reason: ${chalk.grey(err)}`)
         process.exit(1)
       })
+      release()
 
       if (argv.bundleInfo) {
         const outputFileName = "quartz/.quartz-cache/transpiled-build.mjs"
@@ -423,9 +424,8 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       // bypass module cache
       // https://github.com/nodejs/modules/issues/307
       const { default: buildQuartz } = await import(cacheFile + `?update=${randomUUID()}`)
-      await buildQuartz(argv, clientRefresh)
+      cleanupBuild = await buildQuartz(argv, buildMutex, clientRefresh)
       clientRefresh()
-      release()
     }
 
     const rebuild = (clientRefresh) => {
