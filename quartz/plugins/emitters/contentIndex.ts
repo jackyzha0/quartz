@@ -22,7 +22,7 @@ interface Options {
 const defaultOptions: Options = {
   enableSiteMap: true,
   enableRSS: true,
-  includeEmptyFiles: false,
+  includeEmptyFiles: true,
 }
 
 function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndex): string {
