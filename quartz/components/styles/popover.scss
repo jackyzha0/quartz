@@ -43,7 +43,9 @@
 
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 
   @media all and (max-width: $mobileBreakpoint) {
     display: none !important;
