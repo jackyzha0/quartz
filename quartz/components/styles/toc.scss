@@ -42,7 +42,9 @@ button#toc {
     & > li > a {
       color: var(--dark);
       opacity: 0.35;
-      transition: 0.5s ease opacity, 0.3s ease color;
+      transition:
+        0.5s ease opacity,
+        0.3s ease color;
       &.in-view {
         opacity: 0.75;
       }
