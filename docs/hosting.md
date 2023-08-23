@@ -124,8 +124,8 @@ See the [GitHub documentation](https://docs.github.com/en/pages/configuring-a-cu
 Before deploying to Vercel, a `vercel.json` file is required at the root of the project directory. It needs to contain the following configuration so that URLs don't require the `.html` extension:
 
 ```json title="vercel.json"
-{  
-    "cleanUrls": true
+{
+  "cleanUrls": true
 }
 ```
 
@@ -136,18 +136,18 @@ Before deploying to Vercel, a `vercel.json` file is required at the root of the 
 3. Give the project a name (lowercase characters and hyphens only)
 4. Check that these configuration options are set:
 
-| Configuration option      | Value              |
-| ------------------------- | ------------------ |
-| Framework Preset          | `Other`              |
-| Root Directory            | `./`                 |
-| Build and Output Settings > Build Command | `npx quartz build`    |
+| Configuration option                      | Value              |
+| ----------------------------------------- | ------------------ |
+| Framework Preset                          | `Other`            |
+| Root Directory                            | `./`               |
+| Build and Output Settings > Build Command | `npx quartz build` |
 
 5. Press Deploy. Once it's live, you'll have 2 `*.vercel.app` URLs to view the page.
 
 ### Custom Domain
 
->[!note]
->If there is something already hosted on the domain, these steps will not work without replacing the previous content. As a workaround, you could use Next.js rewrites or use the next section to create a subdomain.
+> [!note]
+> If there is something already hosted on the domain, these steps will not work without replacing the previous content. As a workaround, you could use Next.js rewrites or use the next section to create a subdomain.
 
 1. Update the `baseUrl` in `quartz.config.js` if necessary.
 2. Go to the [Domains - Dashboard](https://vercel.com/dashboard/domains) page in Vercel.
