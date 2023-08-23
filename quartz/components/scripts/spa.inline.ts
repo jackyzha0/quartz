@@ -79,7 +79,9 @@ async function navigate(url: URL, isBack: boolean = false) {
 
   // delay setting the url until now
   // at this point everything is loaded so changing the url should resolve to the correct addresses
-  history.pushState({}, "", url)
+  if (!isBack) {
+    history.pushState({}, "", url)
+  }
   notifyNav(getFullSlug(window))
   delete announcer.dataset.persist
 }
