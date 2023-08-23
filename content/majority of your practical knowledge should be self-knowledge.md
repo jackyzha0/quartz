@@ -1,5 +1,5 @@
 ---
-title: "99% of your practical knowledge should be self-knowledge"
+title: "Majority of your practical knowledge should be self-knowledge"
 date: "2018-10-27"
 tags:
 - "notes"
