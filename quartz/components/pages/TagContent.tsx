@@ -37,7 +37,9 @@ function TagContent(props: QuartzComponentProps) {
 
     return (
       <div class="popover-hint">
-        <article>{content}</article>
+        <article>
+          <p>{content}</p>
+        </article>
         <p>Found {tags.length} total tags.</p>
         <div>
           {tags.map((tag) => {
