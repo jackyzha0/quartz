@@ -41,7 +41,7 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
             }
 
             // slug them all!!
-            data.tags = data.tags?.map((tag: string) => slugTag(tag)) ?? []
+            data.tags = [...new Set(data.tags?.map((tag: string) => slugTag(tag)))] ?? []
 
             // fill in frontmatter
             file.data.frontmatter = {
