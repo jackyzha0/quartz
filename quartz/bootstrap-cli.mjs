@@ -162,7 +162,6 @@ yargs(hideBin(process.argv))
             label: "Symlink an existing folder",
             hint: "don't select this unless you know what you are doing!",
           },
-          { value: "keep", label: "Keep the existing files" },
         ],
       }),
     )
@@ -176,6 +175,7 @@ yargs(hideBin(process.argv))
       }
     }
 
+    await fs.promises.unlink(path.join(contentFolder, ".gitkeep"))
     if (setupStrategy === "copy" || setupStrategy === "symlink") {
       const originalFolder = escapePath(
         exitIfCancel(
@@ -205,8 +205,6 @@ yargs(hideBin(process.argv))
         await fs.promises.symlink(originalFolder, contentFolder, "dir")
       }
     } else if (setupStrategy === "new") {
-      await rmContentFolder()
-      await fs.promises.mkdir(contentFolder)
       await fs.promises.writeFile(
         path.join(contentFolder, "index.md"),
         `---
