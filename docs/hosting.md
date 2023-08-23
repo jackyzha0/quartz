@@ -123,7 +123,7 @@ See the [GitHub documentation](https://docs.github.com/en/pages/configuring-a-cu
 
 Before deploying to Vercel, a `vercel.json` file is required at the root of the project directory. It needs to contain the following configuration so that URLs don't require the `.html` extension:
 
-```
+```json title="vercel.json"
 {  
     "cleanUrls": true
 }
