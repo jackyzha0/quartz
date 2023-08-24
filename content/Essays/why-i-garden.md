@@ -1,5 +1,6 @@
 ---
 title: Why I Garden
+tags: ["incomplete", "cloud", "essay"]
 ---
 ### Short answer: fun.
 
