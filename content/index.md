@@ -5,6 +5,8 @@ tags: ["toc"]
 # Welcome!
 You're on a site called a [[Misc/what-is-a-garden|Digital Garden]]. Here's some info on [[Essays/why-i-garden|Why I Garden]].
 
+Feel free to subscribe to [this site's RSS feed](/index.xml) for the latest updates whenever I post.
+
 # What can I see here?
 I [[about-me|(me, myself)]] write about:
 - [[Projects/home|Projects]] I've undertaken
