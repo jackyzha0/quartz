@@ -1,4 +1,4 @@
 ---
 title: "Obsidian: LiveSync"
-tags: [“cloud”]
+tags: ["cloud"]
 ---
