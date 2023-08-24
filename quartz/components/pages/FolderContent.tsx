@@ -33,7 +33,9 @@ function FolderContent(props: QuartzComponentProps) {
 
   return (
     <div class="popover-hint">
-      <article>{content}</article>
+      <article>
+        <p>{content}</p>
+      </article>
       <p>{allPagesInFolder.length} items under this folder.</p>
       <div>
         <PageList {...listProps} />
