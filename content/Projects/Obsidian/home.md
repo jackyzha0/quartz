@@ -1,6 +1,6 @@
 ---
 title: "Projects: Obsidian"
-tags: [“project”, “productivity”, “cloud”, “notes”]
+tags: ["project", "productivity", "cloud", "notes"]
 ---
 Hoo boy. This project needs its entire own folder structure because of the sheer amount of components I have going.
 

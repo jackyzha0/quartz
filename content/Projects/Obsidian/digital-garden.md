@@ -1,6 +1,6 @@
 ---
 title: "Obsidian: Digital Gardening with Quartz"
-tags: [“meta”, “webdev”]
+tags: ["meta", "webdev"]
 ---
 ...It's this website.
 
