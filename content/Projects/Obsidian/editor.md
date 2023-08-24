@@ -1,5 +1,6 @@
 ---
 title: "Obsidian: Editor"
+tags: [“editor”, “notes”]
 ---
 Where the hell do I start with this. It's almost as convoluted and fine-tuned as my [[Programs I Like/code-editors|Code Editors]]. This is by no means a complete or current list, I just want to highlight some of the things I've done that have improved Obsidian's usefulness to me.
 
