@@ -64,7 +64,7 @@ async function navigate(url: URL, isBack: boolean = false) {
   // scroll into place and add history
   if (!isBack) {
     if (url.hash) {
-      const el = document.getElementById(url.hash.substring(1))
+      const el = document.getElementById(decodeURIComponent(url.hash.substring(1)))
       el?.scrollIntoView()
     } else {
       window.scrollTo({ top: 0 })
@@ -79,7 +79,9 @@ async function navigate(url: URL, isBack: boolean = false) {
 
   // delay setting the url until now
   // at this point everything is loaded so changing the url should resolve to the correct addresses
-  history.pushState({}, "", url)
+  if (!isBack) {
+    history.pushState({}, "", url)
+  }
   notifyNav(getFullSlug(window))
   delete announcer.dataset.persist
 }

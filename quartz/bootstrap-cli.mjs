@@ -162,7 +162,6 @@ yargs(hideBin(process.argv))
             label: "Symlink an existing folder",
             hint: "don't select this unless you know what you are doing!",
           },
-          { value: "keep", label: "Keep the existing files" },
         ],
       }),
     )
@@ -176,6 +175,7 @@ yargs(hideBin(process.argv))
       }
     }
 
+    await fs.promises.unlink(path.join(contentFolder, ".gitkeep"))
     if (setupStrategy === "copy" || setupStrategy === "symlink") {
       const originalFolder = escapePath(
         exitIfCancel(
@@ -205,8 +205,6 @@ yargs(hideBin(process.argv))
         await fs.promises.symlink(originalFolder, contentFolder, "dir")
       }
     } else if (setupStrategy === "new") {
-      await rmContentFolder()
-      await fs.promises.mkdir(contentFolder)
       await fs.promises.writeFile(
         path.join(contentFolder, "index.md"),
         `---
@@ -393,13 +391,19 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     })
 
     const buildMutex = new Mutex()
-    const timeoutIds = new Set()
-    let firstBuild = true
+    let lastBuildMs = 0
+    let cleanupBuild = null
     const build = async (clientRefresh) => {
+      const buildStart = new Date().getTime()
+      lastBuildMs = buildStart
       const release = await buildMutex.acquire()
-      if (firstBuild) {
-        firstBuild = false
-      } else {
+      if (lastBuildMs > buildStart) {
+        release()
+        return
+      }
+
+      if (cleanupBuild) {
+        await cleanupBuild()
         console.log(chalk.yellow("Detected a source code change, doing a hard rebuild..."))
       }
 
@@ -408,6 +412,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
         console.log(`Reason: ${chalk.grey(err)}`)
         process.exit(1)
       })
+      release()
 
       if (argv.bundleInfo) {
         const outputFileName = "quartz/.quartz-cache/transpiled-build.mjs"
@@ -423,15 +428,8 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       // bypass module cache
       // https://github.com/nodejs/modules/issues/307
       const { default: buildQuartz } = await import(cacheFile + `?update=${randomUUID()}`)
-      await buildQuartz(argv, clientRefresh)
+      cleanupBuild = await buildQuartz(argv, buildMutex, clientRefresh)
       clientRefresh()
-      release()
-    }
-
-    const rebuild = (clientRefresh) => {
-      timeoutIds.forEach((id) => clearTimeout(id))
-      timeoutIds.clear()
-      timeoutIds.add(setTimeout(() => build(clientRefresh), 250))
     }
 
     if (argv.serve) {
@@ -539,7 +537,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
           ignoreInitial: true,
         })
         .on("all", async () => {
-          rebuild(clientRefresh)
+          build(clientRefresh)
         })
     } else {
       await build(() => {})
