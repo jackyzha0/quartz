@@ -1,6 +1,6 @@
 ---
 title: "Projects"
-tags: ["toc"]
+tags: ["toc", “project”]
 ---
 ## Productivity
 - Anything hosted on [[Projects/my-cloud|My Cloud]].
