@@ -41,13 +41,13 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex): string {
   const base = cfg.baseUrl ?? ""
   const root = `https://${base}`
 
-  const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => `<items>
+  const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => `<item>
     <title>${content.title}</title>
     <link>${root}/${slug}</link>
     <guid>${root}/${slug}</guid>
     <description>${content.description}</description>
     <pubDate>${content.date?.toUTCString()}</pubDate>
-  </items>`
+  </item>`
 
   const items = Array.from(idx)
     .map(([slug, content]) => createURLEntry(simplifySlug(slug), content))
