@@ -45,7 +45,7 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex): string {
     <title>${content.title}</title>
     <link>${root}/${slug}</link>
     <guid>${root}/${slug}</guid>
-    <description>${content.description} Read more at ${root}/${slug}</description>
+    <description>${content.description} Read more at &lt;a href="${root}/${slug}"$gt;be-far.com&lt;/a&gt;</description>
     <pubDate>${content.date?.toUTCString()}</pubDate>
   </item>`
 
