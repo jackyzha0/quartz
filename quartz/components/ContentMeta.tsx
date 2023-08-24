@@ -17,7 +17,7 @@ export default (() => {
         segments.push(`Updated: ${formatDate(fileData.dates.modified)}`)
       }
 
-      segments.push(`Reading Time: ${timeTaken}`)
+      segments.push(timeTaken)
       return <p class="content-meta">{segments.join(" | ")}</p>
     } else {
       return null
