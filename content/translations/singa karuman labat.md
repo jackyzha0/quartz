@@ -1,19 +1,20 @@
 ---
-title: "singa karuman labat"
+title: "Singa karuman labat"
 date: "2022-12-28"
+aliases:
+- "singa karuman labat"
 tags:
-- "translations"
 - "seedlings"
-sr-due: 2023-01-01
-sr-interval: 4
-sr-ease: 270
+sr-due: 2026-02-10
+sr-interval: 901
+sr-ease: 290
 ---
 
 "Singa karuman labat"  
 so maparanay tayon ibabaga  
-no maminpinsan taon manenengnengan  
+no maminpinsan tayon manenengnengan  
 lapud dakel so gagaween  
-na bilay ed sikatayo:  
+na bilay ed sikatayo:
 
 manbibiyahe, natatrapik,  
 onluloob ed trabaho,  
@@ -21,7 +22,7 @@ onsusuweldo, ondadalan
 so taon, bulan, agew  
 ya agtayo naamtaan  
 ya marunong ira manayan  
-ontikyab.  
+ontikyab.
 
 Tan no ondapo man ed sikatayo  
 so anggan sakey o duwaran oras,  
@@ -29,4 +30,4 @@ onyurong tayon mandem,
 maniistoryaan, maneelekan:  
 rosas tan kumpapey ed hardin  
 no iner manabet  
-so natan tan andi-anggaan.  
+so natan tan andi-anggaan.

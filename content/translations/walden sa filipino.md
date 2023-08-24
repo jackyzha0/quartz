@@ -1,11 +1,12 @@
 ---
 title: "Walden sa Filipino"
 date: "2022-07-15"
+aliases:
+- "Walden sa Filipino"
 tags:
-- "translations"
 - "seedlings"
-sr-due: 2022-08-21
-sr-interval: 3
+sr-due: 2024-12-04
+sr-interval: 468
 sr-ease: 250
 ---
 

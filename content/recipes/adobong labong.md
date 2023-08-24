@@ -1,8 +1,9 @@
 ---
 title: "Adobong labong"
 date: "2022-05-07"
+aliases:
+- "Adobong labong"
 tags:
-- "recipes"
 - "evergreens"
 ---
 

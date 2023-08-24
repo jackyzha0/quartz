@@ -1,11 +1,12 @@
 ---
 title: "Paano Maging Miserableng Artist"
 date: "2023-05-22"
+aliases:
+- "Paano Maging Miserableng Artist"
 tags:
-- "translations"
 - "seedlings"
-sr-due: 2023-05-25
-sr-interval: 3
+sr-due: 2023-12-23
+sr-interval: 121
 sr-ease: 250
 ---
 
@@ -20,6 +21,6 @@ sr-ease: 250
 9. Ito ang panata mo habangbuhay (maski sa kabilangbuhay): "Lahat ng sinasabi ng client, customer, gallery owner, patron, o investor ay parating tama. Pagbibigyan ko lahat ng hihilingin nila."
 10. Magtakda ng napakalaki't imposibleng mga layuning na kailangang makamit bukas ng umaga.
 
-## References
+# References
 
 Smith, K. (2010, February 5). How to feel miserable as an artist. _Keri Smith_. [https://www.kerismith.com/blog/how-to-feel-miserable-as-an-artist/](https://www.kerismith.com/blog/how-to-feel-miserable-as-an-artist/)

@@ -1,8 +1,9 @@
 ---
 title: "Kapag lumalabas ako — Thoreau"
 date: "2022-07-11"
+aliases:
+- "Kapag lumalabas ako — Thoreau"
 tags:
-- "translations"
 - "evergreens"
 ---
 

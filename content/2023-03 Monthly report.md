@@ -22,7 +22,7 @@ Wrote:
 
 ## Writing
 
-- Revisited my translation for the Rios poem [[Isang Tahanang Tatawagin Nating “Bukas”]].
+- Revisited my translation for the Rios poem [[translations/isang tahanang tatawagin nating bukas]].
 
 ## Photography
 

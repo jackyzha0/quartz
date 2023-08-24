@@ -1,12 +1,13 @@
 ---
 title: "Sinigang na Bangus"
 date: "2022-05-13"
+aliases:
+- "Sinigang na Bangus"
 tags:
-- "recipes"
 - "evergreens"
 ---
 
-## Ingredients
+# Ingredients
 
 -   2 lbs. bangus milkfish, cleaned and sliced
 -   1 40g pack Knorr Sinigang sa Sampaloc Mix (Original)
@@ -20,7 +21,7 @@ tags:
 -   ¼ teaspoon ground black pepper
 -   8 cups water
 
-## Instructions
+# Instructions
 
 1. Heat a cooking pot. Pour water into it.
 2. Add tomato and anion. Let boil.

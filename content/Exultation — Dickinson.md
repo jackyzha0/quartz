@@ -13,6 +13,6 @@ Into deep eternity —
 
 ~ Emily Dickinson
 
-Translation: [[Pagbubunyi — Dickinson]]
+Translation: [[translations/pagbubunyi dickinson]]
 
 # References

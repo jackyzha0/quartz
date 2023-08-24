@@ -1,12 +1,13 @@
 ---
 title: "Sinigang na Baboy"
 date: "2022-06-03"
+aliases:
+- "Sinigang na Baboy"
 tags:
-- "recipes"
 - "evergreens"
 ---
 
-## Ingredients
+# Ingredients
 
 -   2 lbs. pork belly sliced into cubes
 -   2 to 3 cups kangkong leaves
@@ -22,7 +23,7 @@ tags:
 -   3 tablespoons fish sauce patis
 -   ¼ teaspoon ground black pepper
 
-## Instructions
+# Instructions
 
 1. Pour water into a cooking pot. Let boil.
 2. Add onion and tomato. Boil for 5 to 8 minutes.
@@ -34,7 +35,7 @@ tags:
 8. Add the kangkong. Cover the cooking pot and turn off the heat. Let it stay covered for 5 minutes.
 9. Transfer to as serving bowl. Serve with a small bowl with patis and spicy chili.
 
-## Notes
+# Notes
 
 - Use any cut of pork that you prefer.Beef can also be used for this recipe.
 -  If using it, add more cooking time to ensure that the beef gets tender.

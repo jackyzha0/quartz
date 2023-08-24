@@ -12,6 +12,6 @@ tags:
 
 ***
 
-Translation: [[Ang putong ng buhay ay ang hindi pag-alis sa kinaroroonan]]
+Translation: [[translations/ang putong ng buhay]]
 
 # References

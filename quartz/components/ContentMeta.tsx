@@ -8,12 +8,17 @@ export default (() => {
     if (text) {
       const segments: string[] = []
       const { text: timeTaken, words: _words } = readingTime(text)
+
       if (fileData.dates?.created) {
-        segments.push(formatDate(fileData.dates.created))
+        segments.push(`Created: ${formatDate(fileData.dates.created)}`)
       }
 
-      segments.push(timeTaken)
-      return <p class="content-meta">Created: {segments.join(", ")}</p>
+      if (fileData.dates?.modified) {
+        segments.push(`Updated: ${formatDate(fileData.dates.modified)}`)
+      }
+
+      segments.push(`Reading Time: ${timeTaken}`)
+      return <p class="content-meta">{segments.join(" | ")}</p>
     } else {
       return null
     }

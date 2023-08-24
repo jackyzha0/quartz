@@ -1,12 +1,10 @@
 ---
-title: "Sino ang nasasabik sa iisang sentimo?"
+title: "Sino ang nasasabik sa iisang sentimo? — Dillard"
 date: "2022-05-03"
 tags:
-- "notes"
 - "seedlings"
-- "translations"
-sr-due: 2022-05-06
-sr-interval: 3
+sr-due: 2025-04-16
+sr-interval: 601
 sr-ease: 250
 ---
 
