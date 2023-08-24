@@ -21,21 +21,21 @@ That's the [Graph View](https://help.obsidian.md/Plugins/Graph+view). It's an [[
 The Backlinks pane is a list of all pages that link to this site in content. Because you’re on the homepage, it’s empty. On content pages, it’ll be more substantial and serve as a convenient navigation tool. 
 
 # What else do I need to know?
-#### Rough sitemap 
+### Rough sitemap 
 This should be a mostly complete textual site listing in case, like me, you find the aforementioned [[#What the hell is that spiderweb thing?|Graph View]] a bit too un-navigable for practical use.
 - [[Projects/home|Projects I've worked on]]
 - [[Programs I Like/home|Programs that I like]]
 - [[Misc/home|Miscellaneous writings]]
 
-#### Epistemological disclosure
+### Epistemological disclosure
 Please accept that I reserve the right to be wrong on this website. I don’t claim to be an expert on any of the subject matter within. As this site reflects a learning process, I’m also liable to change my mind if I research an issue further. I’ll document if this happens. 
 
 If you don’t like how I’ve done something, feel free to write a piece in your own garden for it. I’d love to read it! It’s no secret that a lot of this garden comprises my gripes with various things. 
 
-#### Disclaimer
+### Disclaimer
 It goes without saying that anything herein constitutes my own opinion and not the opinion of any affiliated person or entity. Nothing on this website is legal advice either. 
 
-#### Attribution
+### Attribution
 Feel free to properly reference any of the content within in your own gardens or work. Don’t plagiarize. 
 
 **Do not input my work into a generative AI for any purpose, including to train or update the model, explore alternate positions to mine, or to converse with the work.** Keep the moles out of the garden. 
