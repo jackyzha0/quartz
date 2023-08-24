@@ -52,15 +52,15 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex): string {
   const items = Array.from(idx)
     .map(([slug, content]) => createURLEntry(simplifySlug(slug), content))
     .join("")
-  return `<rss xmlns:atom="http://www.w3.org/2005/atom" version="2.0">
+  return `<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
     <channel>
       <title>${cfg.pageTitle}</title>
       <link>${root}</link>
       <description>Recent content on ${cfg.pageTitle}</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
-      <atom:link href="${root}/index.xml" rel="self" type="application/rss+xml"/>
+      ${items}
     </channel>
-    ${items}
   </rss>`
 }
 
