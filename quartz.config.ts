@@ -11,7 +11,7 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates"],
     theme: {
       typography: {
-        header: "Overpass Mono",
+        header: "Lora",
         body: "Inter",
         code: "Fira Code",
       },
