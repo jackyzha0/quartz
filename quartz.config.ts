@@ -11,6 +11,7 @@ const config: QuartzConfig = {
     },
     baseUrl: "vinceimbat.com",
     ignorePatterns: ["daily notes", "inbox", "private", "projects", "projects someday", "templates"],
+    defaultDateType: "created",
     theme: {
       typography: {
         header: "Newsreader",
