@@ -24,7 +24,7 @@ Alas! I can't use it to save cases. All resources on the internet tell me that Z
 ### Turns out Zotero's compatibility is an open source project with inbuilt development tools.
 Why is Zotero's compatibility an open source project with inbuilt development tools? I don't care, but I love it.
 
-Work starts right away on a [Zotero Translator](https://github.com/zotero/translators) for my database of choice, Lexis's newest iteration called Lexis+. One or two hyperfixations later, I [drop a PR](https://github.com/zotero/translators/pull/3038) and call it a day. 
+Work starts right away on a [Zotero Translator](https://github.com/zotero/translators) for my database of choice, Lexis's newest iteration called Lexis+. One or two hyperfixations later, I [drop a PR](https://github.com/zotero/translators/pull/3012) and call it a day. 
 
 This was my first medium-term back-and-forth with an open source project contribution. Zotero's development APIs have lackluster documentation, but their maintainers have high standards. Through a team effort, I made it to merge, and could claim victory! Victory over the internet, the legal community, the Zotero project, and the walled-garden ([[Essays/why-i-garden|I hate those]]) legal research databases that dared catch my ire.
 
@@ -36,3 +36,10 @@ Now, the process looks like this:
 
 Unfortunately, the folks at my journal have been resistant to change thus far, and the only time I've saved has been my own.
 #### Worth it.
+
+#### P.S.
+I had a small hiccup that I discovered through subsequent use for another journal article.
+
+https://github.com/zotero/translators/pull/3038
+
+There, fixed it. All better.
