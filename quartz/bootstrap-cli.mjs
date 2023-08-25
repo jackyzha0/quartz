@@ -457,6 +457,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
         req.url = req.url?.slice(argv.baseDir.length)
 
         const serve = async () => {
+          const release = await buildMutex.acquire()
           await serveHandler(req, res, {
             public: argv.output,
             directoryListing: false,
@@ -471,6 +472,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
           const statusString =
             status >= 200 && status < 300 ? chalk.green(`[${status}]`) : chalk.red(`[${status}]`)
           console.log(statusString + chalk.grey(` ${argv.baseDir}${req.url}`))
+          release()
         }
 
         const redirect = (newFp) => {

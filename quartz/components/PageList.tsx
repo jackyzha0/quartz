@@ -1,7 +1,8 @@
 import { FullSlug, resolveRelative } from "../util/path"
 import { QuartzPluginData } from "../plugins/vfile"
-import { Date } from "./Date"
+import { Date, getDate } from "./Date"
 import { QuartzComponentProps } from "./types"
+import { GlobalConfiguration } from "../cfg"
 
 export function byDateAndAlphabetical(f1: QuartzPluginData, f2: QuartzPluginData): number {
   if (f1.dates && f2.dates) {
@@ -13,19 +14,14 @@ export function byDateAndAlphabetical(f1: QuartzPluginData, f2: QuartzPluginData
   } else if (!f1.dates && f2.dates) {
     return 1
   }
-
-  // otherwise, sort lexographically by title
-  const f1Title = f1.frontmatter?.title.toLowerCase() ?? ""
-  const f2Title = f2.frontmatter?.title.toLowerCase() ?? ""
-  return f1Title.localeCompare(f2Title)
 }
 
 type Props = {
   limit?: number
 } & QuartzComponentProps
 
-export function PageList({ fileData, allFiles, limit }: Props) {
-  let list = allFiles.sort(byDateAndAlphabetical)
+export function PageList({ cfg, fileData, allFiles, limit }: Props) {
+  let list = allFiles.sort(byDateAndAlphabetical(cfg))
   if (limit) {
     list = list.slice(0, limit)
   }
