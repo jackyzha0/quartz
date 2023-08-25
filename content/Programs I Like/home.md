@@ -8,8 +8,9 @@ Generally, I adore any tool with a community-based ecosystem that has some compo
 
 ## Anything self-hosted.
 - [[on-self-hosted-software|On Self-Hosted Software]]
-## [[on-linux|Linux]].
-'nuff said.
+## Linux.
+- 'nuff said.
+- [[on-linux|On Linux]]
 ## Suckless software
 - https://suckless.org/ is a wonderful resource for in-depth explanations of why a certain piece of software [sucks](https://suckless.org/sucks/) or [rocks](https://suckless.org/rocks/). However, it's limited to a very specific set of programs. 
 - This category typically includes highly flexible pieces of software that I affectionately refer to as "configuration hell." If you're not breaking your entire install every time you want to view a new filetype, you're doing it wrong.
