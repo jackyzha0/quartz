@@ -1,7 +1,18 @@
+---
+title: "Gramlee"
+date: "2023-08-25"
+tags:
+- "seedlings"
+sr-due: 2023-08-28
+sr-interval: 3
+sr-ease: 250
+---
+
 Website: https://www.gramlee.com/
 Jobs: https://www.gramlee.com/jobs.html
 
-## Services
+# Services
+
 - Dissertation editing services
 - Copy editing services
 - Proofreading services
@@ -41,6 +52,7 @@ Dissertation editing services
 -   American English vs. British English (we can edit for either)
 -   Overall flow and readability of the dissertation
 
-## Requirements
+# Requirements
+
 - Proofreading (grammar, spelling, and punctuation).
 - Copy editing (grammar + language mechanics and clarity)

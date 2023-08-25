@@ -32,7 +32,7 @@ For many of you, this is our second week walking together. The outdoors is waiti
 
 ## October 10, Monday
 
-Have I told you about [[thoughts/henry bugbee]]? Oh, you must know about Henry Bugbee. We both share a love of [[thoughts/henry david thoreau]], and among all the candidates for being Thoreau's heir, I think he is the closest, at least in terms of resonance. [[Annie Dillard]] could be the closest modern Thoreau in terms of writing style (she's the only one I've read who could really pull it off!). But Bugbee's life is closer to Thoreau, and for me, that is more important.
+Have I told you about [[thoughts/henry bugbee]]? Oh, you must know about Henry Bugbee. We both share a love of [[thoughts/henry david thoreau]], and among all the candidates for being Thoreau's heir, I think he is the closest, at least in terms of resonance. [[thoughts/annie dillard]] could be the closest modern Thoreau in terms of writing style (she's the only one I've read who could really pull it off!). But Bugbee's life is closer to Thoreau, and for me, that is more important.
 
 Bugbee, like Thoreau, was committed to a philosophical-spiritual life. He is a "professional philosopher" trained in the academe (unlike Thoreau, who was largely self-taught). And yet he saw philosophy like Thoreau did. To him, philosophy was not an impersonal discipline preoccupied with arguments and opinions. He saw philosophy as an exploration of his life in the context of other lives and sentient beings in nature.
 

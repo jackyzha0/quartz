@@ -1,15 +1,17 @@
 ---
 title: "A Pilgrim at Tinker Creek - Dillard"
 date: "2022-05-07"
+aliases:
+- "a pilgrim at tinker creek - dillard"
 tags:
-- "notes"
 - "seedlings"
 sr-due: 2023-09-16
 sr-interval: 256
 sr-ease: 250
 ---
 
-Style
+# Style
+
 - She uses lots of metaphor.
 - She provides geographical context (p. 4).
 - She drops anecdotes and symbolic stories without explaining them (p. 5).
@@ -31,19 +33,23 @@ Style
 - She states an axiom. Then suddenly tells a story (p. 20)
 - Chapter three is a narrative on an afternoon of walking up until coming home. But within the narratvie are science trivias and writing, that extends the narrative.
 .
-Learnings
+# Learnings
+
 - Collect lots of observations. Stay longer outdoors. Give more time for fieldwork.
 
-Metaphors
+# Metaphors
+
 - She used the tomcat as a metaphor of her curiosity.
 - Mountains are her home; Creeks are the world where stimulus come from.
 - When describing how the wind creates ripples on the surface of the water: "it crumples the water's skin." I saw the word crumple used by Craig Mod to describe mountain.
 
-Phrases
+# Phrases
+
 - "my spread lungs roared"
 - mutely alive
 
-Vocabulary
+# Vocabulary
+
 1. Ex nihilo
 2. Bivouac
 3. Searing
@@ -70,8 +76,10 @@ Vocabulary
 24. Unkeeled
 25. Allayed
 
-Questions
+# Questions
 
 Is it possible to channel this sense of wonder? Everyday? Is it possible to be an existence where this wonder is not lost, but cultivated and transmitted to other and in one's work?
 
 # References
+
+Dillard, A. (2013). _Pilgrim at Tinker Creek_. Harper Perennial Modern Classics.

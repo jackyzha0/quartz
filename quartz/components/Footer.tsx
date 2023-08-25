@@ -16,6 +16,10 @@ export default ((opts?: Options) => {
         <p>
         <a href="https://vinceimbat.com/newsletter">Subscribe</a> to <b>ᜇ The Long Walk</b>, my weekly newsletter on philosophy, walking, and writing.
         </p>
+        <div class="ml-form-embed"
+          data-account="1148816:k4u1i6w0z0"
+          data-form="5959582:j5y3k7">
+        </div>
         <p>
           Follow all changes in the forest garden via <a href="https://vinceimbat.com/index.xml">RSS.</a>
         </p>

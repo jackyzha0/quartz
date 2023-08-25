@@ -9,7 +9,7 @@ sr-interval: 4
 sr-ease: 271
 ---
 
-[[thoughts/henry david thoreau]] prioritized content over style, and this is why even if he was a good writer, he can be difficult to read especially in his public works (same as [[Annie Dillard]]). This is perhaps an intentional choice. He didn't want to get lost in the technicalities of skillful writing ([[The technicalities of your craft could cloud your real purpose]]). He was focused on the truth, the quality of the children of his mind, and most importantly, living itself.
+[[thoughts/henry david thoreau]] prioritized content over style, and this is why even if he was a good writer, he can be difficult to read especially in his public works (same as [[thoughts/annie dillard]]). This is perhaps an intentional choice. He didn't want to get lost in the technicalities of skillful writing ([[The technicalities of your craft could cloud your real purpose]]). He was focused on the truth, the quality of the children of his mind, and most importantly, living itself.
 
 When he said that he wanted to be a writer, the kind of writing he was referring to was primarily writing in his journal, that is, making sense of his thoughts and experience. This is why [[The magnum opus of Thoreau is his journal]].
 

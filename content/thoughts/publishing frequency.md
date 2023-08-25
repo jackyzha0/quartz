@@ -31,7 +31,7 @@ Perhaps, pop-up newsletters also fall into this category.
 Pros: No pressure to produce work, avoid sharing half-baked ideas.
 Cons: People can forget you if you don’t compensate with microblogging.
 
-Examples: [[Roman Krznaric]], [[Andy Matuschak]], [[Ben Hewitt]], [[Steve Patterson]]
+Examples: [[Roman Krznaric]], [[Andy Matuschak]], [[thoughts/ben hewitt]], [[Steve Patterson]]
 
 # Roundup weekly updates integral to a weekly review
 

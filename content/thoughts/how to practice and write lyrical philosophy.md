@@ -47,7 +47,7 @@ This is where walking can be integrated into philosophy. Use everything around y
 
 See [[thoughts/my thinking while walking strategy]].
 
-Bunzl produced analytical philosophy. I want to produce beautiful words that delve into existence and foundational issues. How do I pull this of? Only [[Annie Dillard]] comes to mind.
+Bunzl produced analytical philosophy. I want to produce beautiful words that delve into existence and foundational issues. How do I pull this of? Only [[thoughts/annie dillard]] comes to mind.
 
 Raise the most profound questions but refuse to provide satisfying answers.
 

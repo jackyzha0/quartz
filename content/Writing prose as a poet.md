@@ -8,7 +8,7 @@ tags:
 
 But how then does poetry seep into prose? How to write prose like a poet? Is it about the arrangement of sentences? Scenes? Letting go of clear transitions?
 
-With [[Ocean Vuong]] in [[On Earth We're Briefly Gorgeous by Vuong]], I noticed the following:
+With [[thoughts/ocean vuong]] in [[On Earth We're Briefly Gorgeous by Vuong]], I noticed the following:
 - He puts paragraph together like a collage.
 - He intersperses two images in one paragraph or one sentence (e.g., describes a beautiful day with his mom then suddenly drops an image of her mom hurting him)
 

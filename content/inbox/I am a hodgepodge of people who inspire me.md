@@ -8,5 +8,5 @@ I share [[Steve Patterson]]'s dedication for honesty and truth.
 
 Even if I want to focus on generating good ideas, [[Austin Kleon]] breaks my monotony and reminds me to integrate play and creative freedom into my workflow.
 
-I also am influenced by the writing styles, simplicity, and connection to nature of [[thoughts/henry david thoreau]] and [[Ben Hewitt]].
+I also am influenced by the writing styles, simplicity, and connection to nature of [[thoughts/henry david thoreau]] and [[thoughts/ben hewitt]].
 

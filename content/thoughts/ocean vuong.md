@@ -1,9 +1,13 @@
 ---
 title: "Ocean Vuong"
 date: "2023-05-11"
+aliases:
+- "Ocean Vuong"
 tags:
-- "notes"
 - "seedlings"
+sr-due: 2023-08-27
+sr-interval: 2
+sr-ease: 249
 ---
 
 - [[A life in letters]]
@@ -23,10 +27,10 @@ He starts with a base narrative. In *Night Sky with Exit Wounds*, many of his po
 
 Ocean assembles certain scenes then sprinkles images around. I could highlight the worlds that describe the main story with a different color and the images and metaphor with another. Obviously, he didn't write his prose or novel like this. 
 
-## Related
+# Related
 
 - [[Writing prose as a poet]]
 
-## References
+# References
 
 Vuong, O. (2016). _Night Sky with Exit Wounds_ (Later Printing edition). Copper Canyon Press.
