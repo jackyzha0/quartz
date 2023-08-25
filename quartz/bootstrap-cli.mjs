@@ -41,6 +41,16 @@ const CommonArgv = {
     default: false,
     describe: "print out extra logging information",
   },
+  content: {
+    string: true,
+    alias: ["c"],
+    describe: "how to initialize content folder [allows 'empty', 'existing' or 'symlink']"
+  },
+  links: {
+    string: true,
+    alias: ["l"],
+    describe: "strategy to resolve links [allows 'absolute', 'shortest' or 'relative']"
+  }
 }
 
 const SyncArgv = {
