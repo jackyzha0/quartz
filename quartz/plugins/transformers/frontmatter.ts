@@ -7,7 +7,7 @@ import { slugTag } from "../../util/path"
 
 export interface Options {
   delims: string | string[]
-  language: string | string[]
+  language: "yaml" | "toml"
 }
 
 const defaultOptions: Options = {
