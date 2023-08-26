@@ -40,7 +40,7 @@ const CommonArgv = {
     alias: ["v"],
     default: false,
     describe: "print out extra logging information",
-  }
+  },
 }
 
 const CreateArgv = {
@@ -185,7 +185,13 @@ yargs(hideBin(process.argv))
         if (!sourceDirectory) {
           outro(
             chalk.red(
-              `Setup strategies (arg '${chalk.yellow(`-${CreateArgv.strategy.alias[0]}`)}') other than '${chalk.yellow("new")}' require content folder argument ('${chalk.yellow(`-${CreateArgv.source.alias[0]}`)}') to be set`,
+              `Setup strategies (arg '${chalk.yellow(
+                `-${CreateArgv.strategy.alias[0]}`,
+              )}') other than '${chalk.yellow(
+                "new",
+              )}' require content folder argument ('${chalk.yellow(
+                `-${CreateArgv.source.alias[0]}`,
+              )}') to be set`,
             ),
           )
           process.exit(1)
@@ -193,14 +199,18 @@ yargs(hideBin(process.argv))
           if (!fs.existsSync(sourceDirectory)) {
             outro(
               chalk.red(
-                `Input directory to copy/symlink 'content' from not found ('${chalk.yellow(sourceDirectory)}', invalid argument "${chalk.yellow(`-${CreateArgv.source.alias[0]}`)})`,
+                `Input directory to copy/symlink 'content' from not found ('${chalk.yellow(
+                  sourceDirectory,
+                )}', invalid argument "${chalk.yellow(`-${CreateArgv.source.alias[0]}`)})`,
               ),
             )
             process.exit(1)
           } else if (!fs.lstatSync(sourceDirectory).isDirectory()) {
             outro(
               chalk.red(
-                `Source directory to copy/symlink 'content' from is not a directory (found file at '${chalk.yellow(sourceDirectory)}', invalid argument ${chalk.yellow(`-${CreateArgv.source.alias[0]}`)}")`,
+                `Source directory to copy/symlink 'content' from is not a directory (found file at '${chalk.yellow(
+                  sourceDirectory,
+                )}', invalid argument ${chalk.yellow(`-${CreateArgv.source.alias[0]}`)}")`,
               ),
             )
             process.exit(1)
