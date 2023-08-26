@@ -190,7 +190,7 @@ yargs(hideBin(process.argv))
                 "') to be set",
             ),
           )
-          return 1
+          process.exit(1)
         } else {
           if (!fs.existsSync(inDirectory)) {
             outro(
@@ -202,7 +202,7 @@ yargs(hideBin(process.argv))
                   ")",
               ),
             )
-            return 1
+            process.exit(1)
           } else if (!fs.lstatSync(inDirectory).isDirectory()) {
             outro(
               chalk.red(
@@ -213,7 +213,7 @@ yargs(hideBin(process.argv))
                   ")",
               ),
             )
-            return 1
+            process.exit(1)
           }
         }
       }
