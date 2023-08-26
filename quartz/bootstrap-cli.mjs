@@ -194,7 +194,6 @@ yargs(hideBin(process.argv))
       }
 
       hasAllCmdArgs = true;
-      return;
     }
 
     // Use cli process if cmd args werent provided
@@ -226,23 +225,28 @@ yargs(hideBin(process.argv))
 
     await fs.promises.unlink(path.join(contentFolder, ".gitkeep"))
     if (setupStrategy === "copy" || setupStrategy === "symlink") {
-      const originalFolder = escapePath(
-        exitIfCancel(
-          await text({
-            message: "Enter the full path to existing content folder",
-            placeholder:
-              "On most terminal emulators, you can drag and drop a folder into the window and it will paste the full path",
-            validate(fp) {
-              const fullPath = escapePath(fp)
-              if (!fs.existsSync(fullPath)) {
-                return "The given path doesn't exist"
-              } else if (!fs.lstatSync(fullPath).isDirectory()) {
-                return "The given path is not a folder"
-              }
-            },
-          }),
-        ),
-      )
+      let originalFolder = inDirectory;
+
+      // If input directory was not passed, use cli
+      if (!inDirectory) {
+        originalFolder = escapePath(
+          exitIfCancel(
+            await text({
+              message: "Enter the full path to existing content folder",
+              placeholder:
+                "On most terminal emulators, you can drag and drop a folder into the window and it will paste the full path",
+              validate(fp) {
+                const fullPath = escapePath(fp)
+                if (!fs.existsSync(fullPath)) {
+                  return "The given path doesn't exist"
+                } else if (!fs.lstatSync(fullPath).isDirectory()) {
+                  return "The given path is not a folder"
+                }
+              },
+            }),
+          ),
+        )
+      }
 
       await rmContentFolder()
       if (setupStrategy === "copy") {
