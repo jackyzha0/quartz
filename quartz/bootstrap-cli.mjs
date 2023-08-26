@@ -170,13 +170,13 @@ yargs(hideBin(process.argv))
     // If all cmd arguments were provided, check if theyre valid
     if (contentFolder && setupStrategy && linkResolutionStrategy) {
       if (!validSetupStrategies.includes(setupStrategy)) {
-        outro("Invalid setup strategy (argument '-c', provided: " + setupStrategy + ", expected: [" + validSetupStrategies.join(" | ") + "])");
-        return;
+        outro(chalk.red("Invalid setup strategy (argument " + chalk.yellow('-c') + ", provided: " + chalk.yellow(setupStrategy) + ", expected: [" + chalk.yellow(validSetupStrategies.join(" | ")) + "])"));
+        process.exit(1);
       }
 
       if (!validResolutionStrategies.includes(linkResolutionStrategy)) {
-        outro("Invalid link resolution strategy (argument '-l', provided: " + linkResolutionStrategy + ", expected: [" + validResolutionStrategies.join(" | ") + "])");
-        return;
+        outro(chalk.red("Invalid link resolution strategy (argument " + chalk.yellow('-l') + ", provided: " + chalk.yellow(linkResolutionStrategy) + ", expected: [" + chalk.yellow(validResolutionStrategies.join(" | ")) + "])"));
+        process.exit(1);
       }
 
       hasAllCmdArgs = true;
