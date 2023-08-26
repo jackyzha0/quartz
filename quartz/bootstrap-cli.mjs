@@ -45,14 +45,14 @@ const CommonArgv = {
 
 const CreateArgv = {
   ...CommonArgv,
-  "in-directory": {
-    string: true,
-    alias: ["i"],
-    describe: "what directory to copy/create symlink from",
-  },
-  setup: {
+  source: {
     string: true,
     alias: ["s"],
+    describe: "source directory to copy/create symlink from",
+  },
+  strategy: {
+    string: true,
+    alias: ["X"],
     choices: ["new", "copy", "symlink"],
     describe: "strategy for content folder setup",
   },
@@ -172,49 +172,35 @@ yargs(hideBin(process.argv))
     console.log()
     intro(chalk.bgGreen.black(` Quartz v${version} `))
     const contentFolder = path.join(cwd, argv.directory)
-    let setupStrategy = argv.setup?.toLowerCase()
+    let setupStrategy = argv.strategy?.toLowerCase()
     let linkResolutionStrategy = argv.links?.toLowerCase()
-    const inDirectory = argv["in-directory"]
+    const sourceDirectory = argv.source
     let hasAllCmdArgs = false
 
     // If all cmd arguments were provided, check if theyre valid
     if (setupStrategy && linkResolutionStrategy) {
-      // If setup isn't, "new", --in-directory argument is required
+      // If setup isn't, "new", source argument is required
       if (setupStrategy !== "new") {
         // Error handling
-        if (!inDirectory) {
+        if (!sourceDirectory) {
           outro(
             chalk.red(
-              "Setup strategies (arg '" +
-                chalk.yellow("-" + CommonArgv.setup.alias[0]) +
-                "') other than '" +
-                chalk.yellow("new") +
-                "' require content folder argument ('" +
-                chalk.yellow("-" + CommonArgv["in-directory"].alias[0]) +
-                "') to be set",
+              `Setup strategies (arg '${chalk.yellow(`-${CreateArgv.strategy.alias[0]}`)}') other than '${chalk.yellow("new")}' require content folder argument ('${chalk.yellow(`-${CreateArgv.source.alias[0]}`)}') to be set`,
             ),
           )
           process.exit(1)
         } else {
-          if (!fs.existsSync(inDirectory)) {
+          if (!fs.existsSync(sourceDirectory)) {
             outro(
               chalk.red(
-                "Input directory to copy/symlink 'content' from not found ('" +
-                  chalk.yellow(inDirectory) +
-                  "', invalid argument " +
-                  chalk.yellow("-" + CommonArgv["in-directory"].alias[0]) +
-                  ")",
+                `Input directory to copy/symlink 'content' from not found ('${chalk.yellow(sourceDirectory)}', invalid argument "${chalk.yellow(`-${CreateArgv.source.alias[0]}`)})`,
               ),
             )
             process.exit(1)
-          } else if (!fs.lstatSync(inDirectory).isDirectory()) {
+          } else if (!fs.lstatSync(sourceDirectory).isDirectory()) {
             outro(
               chalk.red(
-                "Input directory to copy/symlink 'content' from is not a directory (found file at '" +
-                  chalk.yellow(inDirectory) +
-                  "', invalid argument " +
-                  chalk.yellow("-" + CommonArgv["in-directory"].alias[0]) +
-                  ")",
+                `Source directory to copy/symlink 'content' from is not a directory (found file at '${chalk.yellow(sourceDirectory)}', invalid argument ${chalk.yellow(`-${CreateArgv.source.alias[0]}`)}")`,
               ),
             )
             process.exit(1)
@@ -254,10 +240,10 @@ yargs(hideBin(process.argv))
 
     await fs.promises.unlink(path.join(contentFolder, ".gitkeep"))
     if (setupStrategy === "copy" || setupStrategy === "symlink") {
-      let originalFolder = inDirectory
+      let originalFolder = sourceDirectory
 
       // If input directory was not passed, use cli
-      if (!inDirectory) {
+      if (!sourceDirectory) {
         originalFolder = escapePath(
           exitIfCancel(
             await text({
