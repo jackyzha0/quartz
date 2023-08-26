@@ -40,7 +40,11 @@ const CommonArgv = {
     alias: ["v"],
     default: false,
     describe: "print out extra logging information",
-  },
+  }
+}
+
+const CreateArgv = {
+  ...CommonArgv,
   "in-directory": {
     string: true,
     alias: ["i"],
@@ -164,7 +168,7 @@ yargs(hideBin(process.argv))
   .scriptName("quartz")
   .version(version)
   .usage("$0 <cmd> [args]")
-  .command("create", "Initialize Quartz", CommonArgv, async (argv) => {
+  .command("create", "Initialize Quartz", CreateArgv, async (argv) => {
     console.log()
     intro(chalk.bgGreen.black(` Quartz v${version} `))
     const contentFolder = path.join(cwd, argv.directory)
