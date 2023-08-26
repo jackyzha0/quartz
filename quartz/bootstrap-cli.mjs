@@ -41,11 +41,16 @@ const CommonArgv = {
     default: false,
     describe: "print out extra logging information",
   },
-  content: {
+  "in-directory": {
     string: true,
-    alias: ["c"],
+    alias: ["i"],
+    describe: "what directory to copy/create symlink from"
+  },
+  setup: {
+    string: true,
+    alias: ["s"],
     choices: ["new", "copy", "symlink"],
-    describe: "strategy to initialize content folder"
+    describe: "strategy for content folder setup"
   },
   links: {
     string: true,
@@ -163,17 +168,29 @@ yargs(hideBin(process.argv))
     console.log()
     intro(chalk.bgGreen.black(` Quartz v${version} `))
     const contentFolder = path.join(cwd, argv.directory)
-    let setupStrategy = argv.content?.toLowerCase();
+    let setupStrategy = argv.setup?.toLowerCase();
     let linkResolutionStrategy = argv.links?.toLowerCase();
+    const inDirectory = argv["in-directory"];
     let hasAllCmdArgs = false;
 
     // If all cmd arguments were provided, check if theyre valid
     if (setupStrategy && linkResolutionStrategy) {
 
-      // If setup isn't, "new", content argument is required (argv.directory defaults to 'content')
-      if (setupStrategy !== "new" && argv.directory === "content") {
-        outro(chalk.red("Setup strategies (arg '" + chalk.yellow("-c") + "') other than '" + chalk.yellow("new") + "' require content folder argument ('" + chalk.yellow('-d') + "') to be set"));
-        return 1;
+      // If setup isn't, "new", --in-directory argument is required
+      if (setupStrategy !== "new") {
+        // Error handling
+        if (!inDirectory) {
+          outro(chalk.red("Setup strategies (arg '" + chalk.yellow('-' + CommonArgv.setup.alias[0]) + "') other than '" + chalk.yellow("new") + "' require content folder argument ('" + chalk.yellow('-' + CommonArgv["in-directory"].alias[0]) + "') to be set"));
+          return 1;
+        } else {
+          if (!fs.existsSync(inDirectory)) {
+            outro(chalk.red("Input directory to copy/symlink 'content' from not found ('" + chalk.yellow(inDirectory) + "', invalid argument " + chalk.yellow('-' + CommonArgv["in-directory"].alias[0]) + ")" ));
+            return 1;
+          } else if (!fs.lstatSync(inDirectory).isDirectory()) {
+            outro(chalk.red("Input directory to copy/symlink 'content' from is not a directory (found file at '" + chalk.yellow(inDirectory) + "', invalid argument " + chalk.yellow('-' + CommonArgv["in-directory"].alias[0]) + ")" ));
+            return 1;
+          }
+        }
       }
 
       hasAllCmdArgs = true;
