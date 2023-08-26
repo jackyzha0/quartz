@@ -44,12 +44,14 @@ const CommonArgv = {
   content: {
     string: true,
     alias: ["c"],
-    describe: "how to initialize content folder [allows 'new', 'copy' or 'symlink']"
+    choices: ["new", "copy", "symlink"],
+    describe: "strategy to initialize content folder"
   },
   links: {
     string: true,
     alias: ["l"],
-    describe: "strategy to resolve links [allows 'absolute', 'shortest' or 'relative']"
+    choices: ["absolute", "shortest", "relative"],
+    describe: "strategy to resolve links"
   }
 }
 
@@ -163,20 +165,15 @@ yargs(hideBin(process.argv))
     const contentFolder = path.join(cwd, argv.directory)
     let setupStrategy = argv.content?.toLowerCase();
     let linkResolutionStrategy = argv.links?.toLowerCase();
-    const validSetupStrategies = ["new", "copy", "symlink"];
-    const validResolutionStrategies = ["absolute", "shortest", "relative"];
     let hasAllCmdArgs = false;
 
     // If all cmd arguments were provided, check if theyre valid
-    if (contentFolder && setupStrategy && linkResolutionStrategy) {
-      if (!validSetupStrategies.includes(setupStrategy)) {
-        outro(chalk.red("Invalid setup strategy (argument " + chalk.yellow('-c') + ", provided: " + chalk.yellow(setupStrategy) + ", expected: [" + chalk.yellow(validSetupStrategies.join(" | ")) + "])"));
-        process.exit(1);
-      }
+    if (setupStrategy && linkResolutionStrategy) {
 
-      if (!validResolutionStrategies.includes(linkResolutionStrategy)) {
-        outro(chalk.red("Invalid link resolution strategy (argument " + chalk.yellow('-l') + ", provided: " + chalk.yellow(linkResolutionStrategy) + ", expected: [" + chalk.yellow(validResolutionStrategies.join(" | ")) + "])"));
-        process.exit(1);
+      // If setup isn't, "new", content argument is required (argv.directory defaults to 'content')
+      if (setupStrategy !== "new" && argv.directory === "content") {
+        outro(chalk.red("Setup strategies (arg '" + chalk.yellow("-c") + "') other than '" + chalk.yellow("new") + "' require content folder argument ('" + chalk.yellow('-d') + "') to be set"));
+        return 1;
       }
 
       hasAllCmdArgs = true;
