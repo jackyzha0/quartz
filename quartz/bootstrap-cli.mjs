@@ -44,7 +44,7 @@ const CommonArgv = {
   content: {
     string: true,
     alias: ["c"],
-    describe: "how to initialize content folder [allows 'empty', 'existing' or 'symlink']"
+    describe: "how to initialize content folder [allows 'new', 'copy' or 'symlink']"
   },
   links: {
     string: true,
@@ -161,7 +161,30 @@ yargs(hideBin(process.argv))
     console.log()
     intro(chalk.bgGreen.black(` Quartz v${version} `))
     const contentFolder = path.join(cwd, argv.directory)
-    const setupStrategy = exitIfCancel(
+    let setupStrategy = argv.content.toLowerCase();
+    let linkResolutionStrategy = argv.links.toLowerCase();
+    const validSetupStrategies = ["new", "copy", "symlink"];
+    const validResolutionStrategies = ["absolute", "shortest", "relative"];
+    let hasAllCmdArgs = false;
+
+    // If all cmd arguments were provided, check if theyre valid
+    if (contentFolder && setupStrategy && linkResolutionStrategy) {
+      if (!validSetupStrategies.includes(setupStrategy)) {
+        outro("Invalid setup strategy (argument '-c', provided: " + setupStrategy + ", expected: [" + validSetupStrategies.join(" | ") + "])");
+        return;
+      }
+
+      if (!validResolutionStrategies.includes(linkResolutionStrategy)) {
+        outro("Invalid link resolution strategy (argument '-l', provided: " + linkResolutionStrategy + ", expected: [" + validResolutionStrategies.join(" | ") + "])");
+        return;
+      }
+
+      hasAllCmdArgs = true;
+      outro("All args were found.");
+      return;
+    }
+
+    setupStrategy = exitIfCancel(
       await select({
         message: `Choose how to initialize the content in \`${contentFolder}\``,
         options: [
@@ -228,7 +251,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     }
 
     // get a preferred link resolution strategy
-    const linkResolutionStrategy = exitIfCancel(
+    linkResolutionStrategy = exitIfCancel(
       await select({
         message: `Choose how Quartz should resolve links in your content. You can change this later in \`quartz.config.ts\`.`,
         options: [
