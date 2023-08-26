@@ -175,7 +175,6 @@ yargs(hideBin(process.argv))
     let setupStrategy = argv.strategy?.toLowerCase()
     let linkResolutionStrategy = argv.links?.toLowerCase()
     const sourceDirectory = argv.source
-    let hasAllCmdArgs = false
 
     // If all cmd arguments were provided, check if theyre valid
     if (setupStrategy && linkResolutionStrategy) {
@@ -217,12 +216,10 @@ yargs(hideBin(process.argv))
           }
         }
       }
-
-      hasAllCmdArgs = true
     }
 
     // Use cli process if cmd args werent provided
-    if (!hasAllCmdArgs) {
+    if (!setupStrategy) {
       setupStrategy = exitIfCancel(
         await select({
           message: `Choose how to initialize the content in \`${contentFolder}\``,
