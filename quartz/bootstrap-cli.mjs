@@ -286,7 +286,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     }
 
     // Use cli process if cmd args werent provided
-    if (!hasAllCmdArgs) {
+    if (!linkResolutionStrategy) {
       // get a preferred link resolution strategy
       linkResolutionStrategy = exitIfCancel(
         await select({
