@@ -21,7 +21,7 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
     name: "FrontMatter",
     markdownPlugins() {
       return [
-        remarkFrontmatter,
+        [remarkFrontmatter, ["yaml", "toml"]],
         () => {
           return (_, file) => {
             const { data } = matter(file.value, {
