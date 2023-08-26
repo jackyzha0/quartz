@@ -161,8 +161,8 @@ yargs(hideBin(process.argv))
     console.log()
     intro(chalk.bgGreen.black(` Quartz v${version} `))
     const contentFolder = path.join(cwd, argv.directory)
-    let setupStrategy = argv.content.toLowerCase();
-    let linkResolutionStrategy = argv.links.toLowerCase();
+    let setupStrategy = argv.content?.toLowerCase();
+    let linkResolutionStrategy = argv.links?.toLowerCase();
     const validSetupStrategies = ["new", "copy", "symlink"];
     const validResolutionStrategies = ["absolute", "shortest", "relative"];
     let hasAllCmdArgs = false;
@@ -180,24 +180,26 @@ yargs(hideBin(process.argv))
       }
 
       hasAllCmdArgs = true;
-      outro("All args were found.");
       return;
     }
 
-    setupStrategy = exitIfCancel(
-      await select({
-        message: `Choose how to initialize the content in \`${contentFolder}\``,
-        options: [
-          { value: "new", label: "Empty Quartz" },
-          { value: "copy", label: "Copy an existing folder", hint: "overwrites `content`" },
-          {
-            value: "symlink",
-            label: "Symlink an existing folder",
-            hint: "don't select this unless you know what you are doing!",
-          },
-        ],
-      }),
-    )
+    // Use cli process if cmd args werent provided
+    if (!hasAllCmdArgs) {
+      setupStrategy = exitIfCancel(
+        await select({
+          message: `Choose how to initialize the content in \`${contentFolder}\``,
+          options: [
+            { value: "new", label: "Empty Quartz" },
+            { value: "copy", label: "Copy an existing folder", hint: "overwrites `content`" },
+            {
+              value: "symlink",
+              label: "Symlink an existing folder",
+              hint: "don't select this unless you know what you are doing!",
+            },
+          ],
+        }),
+      )
+    }
 
     async function rmContentFolder() {
       const contentStat = await fs.promises.lstat(contentFolder)
@@ -250,29 +252,32 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
       )
     }
 
-    // get a preferred link resolution strategy
-    linkResolutionStrategy = exitIfCancel(
-      await select({
-        message: `Choose how Quartz should resolve links in your content. You can change this later in \`quartz.config.ts\`.`,
-        options: [
-          {
-            value: "absolute",
-            label: "Treat links as absolute path",
-            hint: "for content made for Quartz 3 and Hugo",
-          },
-          {
-            value: "shortest",
-            label: "Treat links as shortest path",
-            hint: "for most Obsidian vaults",
-          },
-          {
-            value: "relative",
-            label: "Treat links as relative paths",
-            hint: "for just normal Markdown files",
-          },
-        ],
-      }),
-    )
+    // Use cli process if cmd args werent provided
+    if (!hasAllCmdArgs) {
+      // get a preferred link resolution strategy
+      linkResolutionStrategy = exitIfCancel(
+        await select({
+          message: `Choose how Quartz should resolve links in your content. You can change this later in \`quartz.config.ts\`.`,
+          options: [
+            {
+              value: "absolute",
+              label: "Treat links as absolute path",
+              hint: "for content made for Quartz 3 and Hugo",
+            },
+            {
+              value: "shortest",
+              label: "Treat links as shortest path",
+              hint: "for most Obsidian vaults",
+            },
+            {
+              value: "relative",
+              label: "Treat links as relative paths",
+              hint: "for just normal Markdown files",
+            },
+          ],
+        }),
+      )
+    }
 
     // now, do config changes
     const configFilePath = path.join(cwd, "quartz.config.ts")
