@@ -8,7 +8,7 @@ This question is best answered by tracing what happens when a user (you!) runs `
 
 ## On the server
 
-1. After running `npx quartz build`, npm will look at `package.json` to find the `bin` entry for `quartz` which points at `./quartz/cli/bootstrap-cli.mjs`.
+1. After running `npx quartz build`, npm will look at `package.json` to find the `bin` entry for `quartz` which points at `./quartz/bootstrap-cli.mjs`.
 2. This file has a [shebang](<https://en.wikipedia.org/wiki/Shebang_(Unix)>) line at the top which tells npm to execute it using Node.
 3. `bootstrap-cli.mjs` is responsible for a few things:
    1. Parsing the command-line arguments using [yargs](http://yargs.js.org/).

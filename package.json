@@ -30,7 +30,7 @@
     "quartz"
   ],
   "bin": {
-    "quartz": "./quartz/cli/bootstrap-cli.mjs"
+    "quartz": "./quartz/bootstrap-cli.mjs"
   },
   "dependencies": {
     "@clack/prompts": "^0.6.3",

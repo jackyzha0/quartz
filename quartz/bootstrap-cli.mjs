@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import yargs from "yargs"
 import { hideBin } from "yargs/helpers"
-import { handleBuild, handleCreate, handleUpdate, handleRestore, handleSync } from "./handlers.js"
-import { CommonArgv, BuildArgv, CreateArgv, SyncArgv } from "./args.js"
-import { version } from "./constants.js"
+import { handleBuild, handleCreate, handleUpdate, handleRestore, handleSync } from "./cli/handlers.js"
+import { CommonArgv, BuildArgv, CreateArgv, SyncArgv } from "./cli/args.js"
+import { version } from "./cli/constants.js"
 
 yargs(hideBin(process.argv))
   .scriptName("quartz")
