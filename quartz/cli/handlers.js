@@ -412,3 +412,21 @@ export async function handleBuild(argv) {
     ctx.dispose()
   }
 }
+
+export async function handleUpdate(argv) {
+  const contentFolder = path.join(cwd, argv.directory)
+  console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
+  console.log("Backing up your content")
+  execSync(
+    `git remote show upstream || git remote add upstream https://github.com/jackyzha0/quartz.git`,
+  )
+  await stashContentFolder(contentFolder)
+  console.log(
+    "Pulling updates... you may need to resolve some `git` conflicts if you've made changes to components or plugins.",
+  )
+  gitPull(UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH)
+  await popContentFolder(contentFolder)
+  console.log("Ensuring dependencies are up to date")
+  spawnSync("npm", ["i"], { stdio: "inherit" })
+  console.log(chalk.green("Done!"))
+}
