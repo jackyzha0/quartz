@@ -4,9 +4,11 @@ tags: ["productivity", "programming"]
 ---
 Below are my two favorite ways to write code. Let's start with the big one:
 ## Visual Studio Code
-WIP
-## [Neovim](https://neovim.io/)
-Sometimes, you just want to bang out a few lines of code, hit save, and go back to whatever you were doing before. This is [Neovim](https://neovim.io/).
+This little gem of a text editor ended up taking the world by storm because it delivered open-source compartmentalization and configuration in an enterprise package. 
+
+[VSCode](https://code.visualstudio.com/) arose out of a common hatred for 
+## Neovim
+Sometimes, the [[Misc/keys|most efficient solution]] only arises because it was technically necessary, yet when advancements make it no longer necessary, the initial route proves subpar. you just want to bang out a few lines of code, hit save, and go back to whatever you were doing before. This is [Neovim](https://neovim.io/).
 
 Based on the older `vim` text editor (which was in turn based on `vi`, the [[linux-isms#BSD|BSD]] Unix program), Neovim is designed to be as minimally intrusive as possible while remaining responsive to the needs of a developer. 
 

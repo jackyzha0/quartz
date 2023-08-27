@@ -4,6 +4,8 @@ tags: ["project", "productivity", "cloud", "notes"]
 ---
 Hoo boy. This project needs its entire own folder structure because of the sheer amount of components I have going.
 
+This homepage has no difficulty tag because each of the below is different.
+
 I think my use is divided into three easily separable parts:
 - [[editor|Editor]]: What I've done to the Obsidian application itself. 
 - [[livesync|LiveSync]]: My use of the `Obsidian-LiveSync` plugin to encrypt, obfuscate, and back up *all* of my notes to [[my-cloud|My Cloud]]. 
