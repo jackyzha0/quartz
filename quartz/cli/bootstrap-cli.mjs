@@ -17,7 +17,7 @@ import serveHandler from "serve-handler"
 import { WebSocketServer } from "ws"
 import { randomUUID } from "crypto"
 import { Mutex } from "async-mutex"
-import { handleBuild } from "./cli-handlers.js"
+import { handleBuild } from "./handlers.js"
 import { CommonArgv, BuildArgv, CreateArgv, SyncArgv } from "./args.js"
 
 const ORIGIN_NAME = "origin"
