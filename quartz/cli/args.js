@@ -1,4 +1,3 @@
-
 export const CommonArgv = {
   directory: {
     string: true,

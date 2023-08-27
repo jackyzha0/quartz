@@ -1,6 +1,6 @@
 import { intro, isCancel, outro, select, text } from "@clack/prompts"
 import chalk from "chalk"
-import {contentCacheFolder} from "./constants.js"
+import { contentCacheFolder } from "./constants.js"
 import { spawnSync } from "child_process"
 import fs from "fs"
 
