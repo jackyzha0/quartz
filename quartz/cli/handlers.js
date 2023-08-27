@@ -301,7 +301,9 @@ export async function handleBuild(argv) {
 
     // bypass module cache
     // https://github.com/nodejs/modules/issues/307
-    const { default: buildQuartz } = await import(cacheFile + `?update=${randomUUID()}`)
+    const { default: buildQuartz } = await import(`../../${cacheFile}?update=${randomUUID()}`)
+    // ^ this import is relative, so base "cacheFile" path can't be used
+
     cleanupBuild = await buildQuartz(argv, buildMutex, clientRefresh)
     clientRefresh()
   }
