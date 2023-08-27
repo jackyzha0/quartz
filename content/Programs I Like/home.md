@@ -8,6 +8,11 @@ Generally, I adore any tool with a community-based ecosystem that has some compo
 
 ## Anything self-hosted.
 - [[on-self-hosted-software|On Self-Hosted Software]]
+## Catppuccin.
+- [Catppuccin](https://github.com/catppuccin) is a coffee-flavored theme ecosystem for just about everything. 
+## The Hundred Rabbits ecosystem.
+- [[Programs I Like/hundred-rabbits|Hundred Rabbits]] is a collective that creates tools, games, and music while sailing around the world.
+- They've made several toy programs that I enjoy playing with as well as some neat minimal tools for their own personal computing system called [Uxn](https://100r.co/site/uxn.html).
 ## Linux.
 - 'nuff said.
 - [[on-linux|On Linux]]
