@@ -1,7 +1,13 @@
 #!/usr/bin/env node
 import yargs from "yargs"
 import { hideBin } from "yargs/helpers"
-import { handleBuild, handleCreate, handleUpdate, handleRestore, handleSync } from "./cli/handlers.js"
+import {
+  handleBuild,
+  handleCreate,
+  handleUpdate,
+  handleRestore,
+  handleSync,
+} from "./cli/handlers.js"
 import { CommonArgv, BuildArgv, CreateArgv, SyncArgv } from "./cli/args.js"
 import { version } from "./cli/constants.js"
 
