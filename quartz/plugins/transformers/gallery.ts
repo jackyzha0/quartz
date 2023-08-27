@@ -53,14 +53,14 @@ export const GalleryTransformer: QuartzTransformerPlugin<Partial<Options> | unde
                                 if (fs.existsSync(imageFolderPath) && fs.statSync(imageFolderPath).isDirectory()) {
                                     // Retrieve all image files
                                     const imagesPaths = fs.readdirSync(imageFolderPath).filter(isImageFile)
-    
+
                                     // Create a new Gallery Data item so we know where the block lives and can replace
                                     // it with images later.
                                     let currentGalleryIndex = (galleryData.push({
                                         blockIndex: index,
                                         images: new Array<Image>()
-                                    } as GalleryCodeNodeData))-1
-                                    
+                                    } as GalleryCodeNodeData)) - 1
+
                                     // Go through each image we find and store its data as an Image Node.
                                     imagesPaths.forEach(imagePath => {
                                         const url = slugifyFilePath(imagePath as FilePath)
@@ -75,8 +75,7 @@ export const GalleryTransformer: QuartzTransformerPlugin<Partial<Options> | unde
                     })
 
                     // If we didn't have any actual images, just leave now.
-                    if (galleryData.length === 0)
-                    {
+                    if (galleryData.length === 0) {
                         return
                     }
 
@@ -93,7 +92,7 @@ export const GalleryTransformer: QuartzTransformerPlugin<Partial<Options> | unde
 }
 
 // Determine if a file is an image based on its extension.  (This is not foolproof, but good enough...)
-function isImageFile(filePath: string) { 
+function isImageFile(filePath: string) {
     const ext: string = path.extname(filePath).toLowerCase();
     return [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg"].includes(ext);
- } 
+} 
