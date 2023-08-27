@@ -3,7 +3,7 @@ import yargs from "yargs"
 import { hideBin } from "yargs/helpers"
 import { handleBuild, handleCreate, handleUpdate, handleRestore, handleSync } from "./handlers.js"
 import { CommonArgv, BuildArgv, CreateArgv, SyncArgv } from "./args.js"
-import {version} from "./constants.js"
+import { version } from "./constants.js"
 
 yargs(hideBin(process.argv))
   .scriptName("quartz")
