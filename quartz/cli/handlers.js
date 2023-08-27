@@ -402,7 +402,7 @@ export async function handleBuild(argv) {
       return serve()
     })
     server.listen(argv.port)
-    const wss = new WebSocketServer({ port: 3001 })
+    const wss = new WebSocketServer({ port: argv.wsPort })
     wss.on("connection", (ws) => connections.push(ws))
     console.log(
       chalk.cyan(

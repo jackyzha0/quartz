@@ -76,6 +76,15 @@ export const BuildArgv = {
     default: 8080,
     describe: "port to serve Quartz on",
   },
+  wsPort: {
+    number: true,
+    default: 3001,
+    describe: "port to server Quartz develpmont reload on",
+  },
+  remoteDevHost: {
+    string: true,
+    default: "",
+  },
   bundleInfo: {
     boolean: true,
     default: false,
