@@ -75,8 +75,7 @@ yargs(hideBin(process.argv))
     "Try to restore your content folder from the cache",
     CommonArgv,
     async (argv) => {
-      const contentFolder = path.join(cwd, argv.directory)
-      await popContentFolder(contentFolder)
+
     },
   )
   .command("sync", "Sync your Quartz to and from GitHub.", SyncArgv, async (argv) => {

@@ -415,6 +415,10 @@ export async function handleBuild(argv) {
   }
 }
 
+/**
+ * Handles `npx quartz update`
+ * @param {*} argv arguments for `update`
+ */
 export async function handleUpdate(argv) {
   const contentFolder = path.join(cwd, argv.directory)
   console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
@@ -431,4 +435,13 @@ export async function handleUpdate(argv) {
   console.log("Ensuring dependencies are up to date")
   spawnSync("npm", ["i"], { stdio: "inherit" })
   console.log(chalk.green("Done!"))
+}
+
+/**
+ * Handles `npx quartz restore`
+ * @param {*} argv arguments for `restore`
+ */
+export async function handleRestore(argv) {
+  const contentFolder = path.join(cwd, argv.directory)
+  await popContentFolder(contentFolder)
 }
