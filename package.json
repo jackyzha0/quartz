@@ -16,7 +16,7 @@
     "check": "tsc --noEmit && npx prettier . --check",
     "format": "npx prettier . --write",
     "test": "tsx ./quartz/util/path.test.ts",
-    "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1"
+    "profile": "0x -D prof ./quartz/cli/bootstrap-cli.mjs build --concurrency=1"
   },
   "engines": {
     "node": ">=18.14"
@@ -30,7 +30,7 @@
     "quartz"
   ],
   "bin": {
-    "quartz": "./quartz/bootstrap-cli.mjs"
+    "quartz": "./quartz/cli/bootstrap-cli.mjs"
   },
   "dependencies": {
     "@clack/prompts": "^0.6.3",
