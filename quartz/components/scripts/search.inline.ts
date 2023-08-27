@@ -128,6 +128,7 @@ document.addEventListener("nav", async (e: unknown) => {
     button.addEventListener("click", () => {
       const targ = resolveRelative(currentSlug, slug)
       window.spaNavigate(new URL(targ, window.location.toString()))
+      hideSearch()
     })
     return button
   }
