@@ -114,14 +114,11 @@ const commentRegex = new RegExp(/%%(.+)%%/, "g")
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
 const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
 const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
-// (?:^| )                        -> non-capturing group, tag should start be separated by a space or be the start of the line
-// #                              -> tag itself is preceded by a hashtag
-// (\p{L}+                        -> followed by a string of (Unicode-aware) alpha-numeric characters
-// (?:[-_]\p{L}+)*)               -> an (optional) suffix string preceded by a hyphen "-" or underscore "_"
-const nestedTagRegex = new RegExp(
-  /(?:^| )#(\p{L}+(?:[-_]\p{L}+)*)(?:\/(\p{L}+(?:[-_]\p{L}+)*))?/,
-  "gu",
-)
+// (?:^| )              -> non-capturing group, tag should start be separated by a space or be the start of the line
+// #(...)               -> capturing group, tag itself must start with #
+// (?:[-_\p{L}])+       -> non-capturing group, non-empty string of (Unicode-aware) alpha-numeric characters, hyphens and/or underscores
+// (?:\/[-_\p{L}]+)*)   -> non-capturing group, matches an arbitrary number of tag strings separated by "/"
+const nestedTagRegex = new RegExp(/(?:^| )#((?:[-_\p{L}])+(?:\/[-_\p{L}]+)*)/, "gu")
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
@@ -387,10 +384,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         plugins.push(() => {
           return (tree: Root, file) => {
             const base = pathToRoot(file.data.slug!)
-            findAndReplace(tree, nestedTagRegex, (_value: string, ...capture: string[]) => {
-              const [top, nested] = capture
-              const tag = !nested ? top : `${top}/${nested}`
-
+            findAndReplace(tree, nestedTagRegex, (_value: string, tag: string) => {
               if (file.data.frontmatter && !file.data.frontmatter.tags.includes(tag)) {
                 file.data.frontmatter.tags.push(tag)
               }
