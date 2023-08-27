@@ -22,12 +22,15 @@ import {
   popContentFolder,
   stashContentFolder,
 } from "./helpers.js"
-import { UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH, ORIGIN_NAME } from "./constants.js"
-
-const { version } = JSON.parse(readFileSync("./package.json").toString())
-const fp = "./quartz/build.ts"
-const cacheFile = "../.quartz-cache/transpiled-build.mjs"
-const cwd = process.cwd()
+import {
+  UPSTREAM_NAME,
+  QUARTZ_SOURCE_BRANCH,
+  ORIGIN_NAME,
+  version,
+  fp,
+  cacheFile,
+  cwd,
+} from "./constants.js"
 
 /**
  * Handles `npx quartz create`
