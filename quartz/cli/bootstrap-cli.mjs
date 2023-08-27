@@ -17,7 +17,7 @@ import serveHandler from "serve-handler"
 import { WebSocketServer } from "ws"
 import { randomUUID } from "crypto"
 import { Mutex } from "async-mutex"
-import { handleBuild, handleCreate, handleUpdate } from "./handlers.js"
+import { handleBuild, handleCreate, handleUpdate, handleRestore, handleSync } from "./handlers.js"
 import { CommonArgv, BuildArgv, CreateArgv, SyncArgv } from "./args.js"
 
 const ORIGIN_NAME = "origin"
@@ -75,59 +75,11 @@ yargs(hideBin(process.argv))
     "Try to restore your content folder from the cache",
     CommonArgv,
     async (argv) => {
-
+      await handleRestore(argv)
     },
   )
   .command("sync", "Sync your Quartz to and from GitHub.", SyncArgv, async (argv) => {
-    const contentFolder = path.join(cwd, argv.directory)
-    console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
-    console.log("Backing up your content")
-
-    if (argv.commit) {
-      const contentStat = await fs.promises.lstat(contentFolder)
-      if (contentStat.isSymbolicLink()) {
-        const linkTarg = await fs.promises.readlink(contentFolder)
-        console.log(chalk.yellow("Detected symlink, trying to dereference before committing"))
-
-        // stash symlink file
-        await stashContentFolder(contentFolder)
-
-        // follow symlink and copy content
-        await fs.promises.cp(linkTarg, contentFolder, {
-          recursive: true,
-          preserveTimestamps: true,
-        })
-      }
-
-      const currentTimestamp = new Date().toLocaleString("en-US", {
-        dateStyle: "medium",
-        timeStyle: "short",
-      })
-      spawnSync("git", ["add", "."], { stdio: "inherit" })
-      spawnSync("git", ["commit", "-m", `Quartz sync: ${currentTimestamp}`], { stdio: "inherit" })
-
-      if (contentStat.isSymbolicLink()) {
-        // put symlink back
-        await popContentFolder(contentFolder)
-      }
-    }
-
-    await stashContentFolder(contentFolder)
-
-    if (argv.pull) {
-      console.log(
-        "Pulling updates from your repository. You may need to resolve some `git` conflicts if you've made changes to components or plugins.",
-      )
-      gitPull(ORIGIN_NAME, QUARTZ_SOURCE_BRANCH)
-    }
-
-    await popContentFolder(contentFolder)
-    if (argv.push) {
-      console.log("Pushing your changes")
-      spawnSync("git", ["push", "-f", ORIGIN_NAME, QUARTZ_SOURCE_BRANCH], { stdio: "inherit" })
-    }
-
-    console.log(chalk.green("Done!"))
+    await handleSync(argv)
   })
   .command("build", "Build Quartz into a bundle of static HTML files", BuildArgv, async (argv) => {
     await handleBuild(argv)
