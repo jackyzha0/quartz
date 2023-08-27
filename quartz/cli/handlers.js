@@ -211,7 +211,7 @@ export async function handleBuild(argv) {
   console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
   const ctx = await esbuild.context({
     entryPoints: [fp],
-    outfile: path.join("quartz", cacheFile),
+    outfile: cacheFile,
     bundle: true,
     keepNames: true,
     minifyWhitespace: true,
