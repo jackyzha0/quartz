@@ -7,4 +7,4 @@ title: Welcome to The Quantum Garden
 [[Rescuing DNG files]]
 
 # Tag Pages
-[[/tag/on/photography|Photography]]
+[[/tags/on/photography|Photography]]
