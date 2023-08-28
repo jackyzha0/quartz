@@ -6,7 +6,7 @@ tags:
 categories:
   - 3
 date: 2023-07-02
-aliases: 2023/08/24/tap-water-or-rust/
+aliases: "2023/08/24/tap-water-or-rust/"
 ---
 
 ↖️ [[Ontology of the Human Observer]]
