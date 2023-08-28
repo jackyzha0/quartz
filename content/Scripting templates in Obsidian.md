@@ -4,7 +4,6 @@ tags:
   - on/obsidian
   - on/scripting
 postId: 1722
-publication-date: 2023-08-02T00:00:00.000Z
 categories:
   - 5
 date: 2023-08-02
