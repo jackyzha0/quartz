@@ -1,11 +1,13 @@
 ---
+profileName: Quantum Gardener
+postId: 1726
+categories:
+  - 4
 tags:
   - output/blog
   - on/photography
   - on/digital-asset-management
 publication-date: 2023-08-13
-date: "2023-08-13"
-url: /articles/my-first-article.md
 ---
 This afternoon, as I was importing DNG files into [[Lightroom]], I found way too many that it won't import. There is some kind of corruption in the DNG file. Likely caused by something I've done in the past converting from one format to another (and quite possibly back again).
 
