@@ -1,4 +1,4 @@
 ---
-title: On/Photography
+title: on/photography
 ---
 Stuff about photography.
