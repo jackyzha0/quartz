@@ -4,7 +4,6 @@ postId: 1726
 categories:
   - 4
 tags:
-  - output/blog
   - on/photography
   - on/digital-asset-management
 publication-date: 2023-08-13
