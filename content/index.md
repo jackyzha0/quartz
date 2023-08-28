@@ -8,3 +8,7 @@ title: Welcome to The Quantum Garden
 
 # Tag Pages
 [[/tags/on/photography|Photography]]
+
+# Image Test
+![](https://live.staticflickr.com/65535/53138358874_f4cf6e505c_b.jpg)
+
