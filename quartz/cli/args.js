@@ -79,7 +79,7 @@ export const BuildArgv = {
   wsPort: {
     number: true,
     default: 3001,
-    describe: "port to server Quartz develpmont reload on",
+    describe: "port to use for WebSocket-based hot-reload notifications",
   },
   remoteDevHost: {
     string: true,
