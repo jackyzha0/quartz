@@ -3,7 +3,7 @@ import * as Plugin from "./quartz/plugins"
 
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "🪴 Quartz 4.0",
+    pageTitle: "Quantum Gardener",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
@@ -39,6 +39,11 @@ const config: QuartzConfig = {
           tertiary: "#84a59d",
           highlight: "rgba(143, 159, 169, 0.15)",
         },
+      },
+    },
+    permalinks: {
+      page: {
+        "/": "/:year/:month/:slug/"
       },
     },
   },
