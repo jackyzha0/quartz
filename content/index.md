@@ -1,9 +1,10 @@
 ---
-title: Welcome to Quartz
+title: Welcome to The Quantum Garden
 ---
 
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
 
 # Test Pages
 [[Rescuing DNG files]]
+
+# Tag Pages
+[[/tag/on/photography|Photography]]
