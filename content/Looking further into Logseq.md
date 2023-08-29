@@ -1,8 +1,8 @@
 ---
 tags:
-  - digital-gardening
   - on/logseq
   - on/pkm
+  - digital-gardening
 date: 2023-07-01
 ---
 The decision is made. For my personal digital garden at least, and likely work as well, I will be staying with [[Obsidian]] and not progressing further with [[Logseq]].
