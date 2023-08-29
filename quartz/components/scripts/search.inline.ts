@@ -8,6 +8,7 @@ interface Item {
   slug: FullSlug
   title: string
   content: string
+  tags: string
 }
 
 let index: Document<Item> | undefined = undefined
@@ -102,6 +103,11 @@ document.addEventListener("nav", async (e: unknown) => {
       e.preventDefault()
       const searchBarOpen = container?.classList.contains("active")
       searchBarOpen ? hideSearch() : showSearch()
+    } else if (e.shiftKey && (e.ctrlKey || e.metaKey) && e.key === "K") {
+      e.preventDefault()
+      console.log("open tag search")
+      const searchBarOpen = container?.classList.contains("active")
+      searchBarOpen ? hideSearch() : showSearch()
     } else if (e.key === "Enter") {
       const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
       if (anchor) {
@@ -117,10 +123,11 @@ document.addEventListener("nav", async (e: unknown) => {
       slug,
       title: highlight(term, data[slug].title ?? ""),
       content: highlight(term, data[slug].content ?? "", true),
+      tags: data[slug].tags
     }
   }
 
-  const resultToHTML = ({ slug, title, content }: Item) => {
+  const resultToHTML = ({ slug, title, content, tags }: Item) => {
     const button = document.createElement("button")
     button.classList.add("result-card")
     button.id = slug
@@ -156,7 +163,7 @@ document.addEventListener("nav", async (e: unknown) => {
     }
 
     // order titles ahead of content
-    const allIds: Set<number> = new Set([...getByField("title"), ...getByField("content")])
+    const allIds: Set<number> = new Set([...getByField("title"), ...getByField("content"), ...getByField("tags")])
     const finalResults = [...allIds].map((id) => formatForDisplay(term, id))
     displayResults(finalResults)
   }
@@ -182,14 +189,18 @@ document.addEventListener("nav", async (e: unknown) => {
       document: {
         id: "id",
         index: [
+          // {
+          //   field: "title",
+          //   tokenize: "reverse",
+          // },
+          // {
+          //   field: "content",
+          //   tokenize: "reverse",
+          // },
           {
-            field: "title",
-            tokenize: "reverse",
-          },
-          {
-            field: "content",
-            tokenize: "reverse",
-          },
+            field: "tags",
+            tokenize: "reverse"
+          }
         ],
       },
     })
@@ -201,6 +212,7 @@ document.addEventListener("nav", async (e: unknown) => {
         slug: slug as FullSlug,
         title: fileData.title,
         content: fileData.content,
+        tags: fileData.tags.join("")
       })
       id++
     }
