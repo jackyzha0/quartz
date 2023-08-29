@@ -55,7 +55,7 @@ export function PageList({ cfg, fileData, allFiles, limit }: Props) {
                     {title}
                   </a>
                 </h3>
-              </div><br/>
+              </div>
               <ul class="tags">
                 {tags.map((tag) => (
                   <li>
@@ -83,5 +83,6 @@ PageList.css = `
 
 .section > .tags {
   margin: 0;
+  font-size: smaller;
 }
 `
