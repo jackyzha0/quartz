@@ -231,7 +231,9 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     .attr("dy", (d) => -nodeRadius(d) + "px")
     .attr("text-anchor", "middle")
     .text(
-      (d) => data[d.id]?.title || (d.id.charAt(1).toUpperCase() + d.id.slice(2)).replace("-", " "),
+      (d) =>
+        data[d.id]?.title ||
+        (d.id.charAt(0).toUpperCase() + d.id.slice(1, d.id.length - 1)).replace("-", " "),
     )
     .style("opacity", (opacityScale - 1) / 3.75)
     .style("pointer-events", "none")
