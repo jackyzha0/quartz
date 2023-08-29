@@ -1,5 +1,5 @@
 ---
-title: "Landscape: Hobby Together"
+title: Hobby Together
 ---
 ↖️ [[Landscapes]]
 
