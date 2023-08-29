@@ -1,11 +1,7 @@
 ---
-profileName: Quantum Gardener
-postId: 1707
 tags:
   - letters
   - expand-your-way-of-being
-categories:
-  - 3
 date: 2023-07-02
 ---
 Hi Jason,

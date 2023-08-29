@@ -1,8 +1,4 @@
 ---
-profileName: Quantum Gardener
-postId: 1726
-categories:
-  - 4
 tags:
   - on/photography
   - on/digital-asset-management

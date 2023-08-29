@@ -1,13 +1,9 @@
 ---
-profileName: Quantum Gardener
 tags:
   - letters
   - on/conversation
   - on/habit
   - expand-your-way-of-being
-categories:
-  - 3
-postId: 1680
 date: 2023-06-17
 ---
 Hi Jason,

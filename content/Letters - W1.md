@@ -4,9 +4,6 @@ tags:
   - letters
   - on/conversation
   - expand-your-way-of-being
-categories:
-  - 3
-postId: 1664
 date: 2023-06-08
 ---
 

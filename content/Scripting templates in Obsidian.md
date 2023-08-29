@@ -2,6 +2,7 @@
 tags:
   - on/obsidian
   - on/scripting
+  - productive-laziness
 date: 2023-08-02
 ---
 > Here be some dragons. This is a quick post to explain how Javascript can be used eliminate the need to update multiple pages if the structure of your metadata changes. Using Javsscript comes with risks. Enter at your own peril.

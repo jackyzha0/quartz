@@ -1,14 +1,9 @@
 ---
-profileName: Quantum Gardener
-postId: 1712
 tags:
   - on/trust
-categories:
-  - 3
+  - expand-your-way-of-being
 date: 2023-07-02
-aliases: "2023/08/24/tap-water-or-rust/"
 ---
-
 ↖️ [[Ontology of the Human Observer]]
 
 Trust involves making a ongoing series of [[Assessment|Assessments]] that you will take action which takes care of me, including not taking action to harm me.

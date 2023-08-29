@@ -1,12 +1,8 @@
 ---
-profileName: Quantum Gardener
-postId: 1732
-categories:
-  - 2
-date: 2023-08-20
 tags:
   - on/photography
   - hobby-together
+date: 2023-08-20
 ---
 I am awake. For a little under 6 weeks now I've been sleeping with a CPAP machine every night and it has made a significant difference to my mental awareness. I felt the change the first morning and half way through the second week I was at work wondering why everyone was thinking so slowly!
 

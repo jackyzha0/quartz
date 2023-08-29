@@ -1,12 +1,8 @@
 ---
-profileName: Quantum Gardener
-postId: 1710
 tags:
   - letters
   - on/conversation
   - expand-your-way-of-being
-categories:
-  - 3
 date: 2023-07-02
 ---
 In 1988 I was an exchange student in Denmark. During my 12 months away I would have written and received over 150 letters in each direction, each penned by hand. Phone calls were expensive and had to be scheduled by letter in advance to cover off on the different timezone between Australia and Denmark.
