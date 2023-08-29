@@ -1,6 +1,5 @@
 ---
 tags:
-  - output/blog
   - hobby-together
 date: 2023-06-24
 ---
