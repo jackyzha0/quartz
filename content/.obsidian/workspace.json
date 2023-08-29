@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "1fe6fdc75cf02ea6",
+        "id": "788567be8bc336ef",
         "type": "tabs",
         "children": [
           {
-            "id": "061c94e7450bea4e",
+            "id": "82ac351fd53f6bfa",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "golang/goroutine vs thread.md",
+                "file": "postgres/postgresql scan.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "golang/goroutine vs thread.md",
+                "file": "postgres/postgresql scan.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "golang/goroutine vs thread.md",
+                "file": "postgres/postgresql scan.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "golang/goroutine vs thread.md"
+                "file": "postgres/postgresql scan.md"
               }
             }
           }
@@ -145,27 +145,29 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "061c94e7450bea4e",
+  "active": "82ac351fd53f6bfa",
   "lastOpenFiles": [
-    "golang/attachment/goroutine-sys-call.png",
-    "golang/attachment/goroutine.png",
+    "postgres/anomalies.md",
+    "postgres/postgresql scan.md",
+    "postgres/attachment/isolation-sumup.png",
+    "Pasted image 20230829115023 1.png",
+    "Pasted image 20230829115001.png",
+    "postgres/attachment/repeat-read.png",
+    "postgres/attachment/non-repeat-read.png",
+    "postgres/attachment/dirty-read.png",
+    "Pasted image 20230829114356.png",
+    "Pasted image 20230829114205.png",
+    "postgres/attachment/lost-update.png",
+    "postgres/attachment/bitmap-scan.png",
     "golang/goroutine vs thread.md",
     "home.md",
-    "Pasted image 20230819000741.png",
     "Pasted image 20230819000629.png.md",
-    "Pasted image 20230819000622.png",
-    "Pasted image 20230819000629.png",
-    "Pasted image 20230819000624.png",
-    "golang/attachment/request-thread.png",
     "es/elasticsearch autocomplete.md",
-    "postgres/attachment/bitmap-scan.png",
     "postgres/attachment",
-    "golang/attachment/thread-mapping.png",
     "golang/attachment",
     "tips/how to engineer kindness.md",
     "tips",
     "golang",
-    "postgres/postgresql scan.md",
     "es",
     "postgres",
     "aws/aws handbook.md",
@@ -189,7 +191,6 @@
     "mint/postgresql scan.md",
     "mint/how to engineer kindness.md",
     "mint/goroutine vs thread.md",
-    "mint/elasticsearch autocomplete.md",
-    "mint/aws handbook.md"
+    "mint/elasticsearch autocomplete.md"
   ]
 }
