@@ -1,6 +1,6 @@
 Standing on the edge of the garden you can see several intriguing landscapes spread out in front of you. Where shall we head first?
 
-Expand Your Way of Being — Your Way of Being is more than the behaviour you show. It’s the total sum of how you engage with the world, make meaning from your environment and take action. Expanding your Way of Being creates new possibilities.
+[[expand-your-way-of-being]]Expand Your Way of Being — Your Way of Being is more than the behaviour you show. It’s the total sum of how you engage with the world, make meaning from your environment and take action. Expanding your Way of Being creates new possibilities.
 
 [[tags/hobby-together|Hobby Together]] — I’m a gamer, a miniature painter, a role-player, a cross-stitcher and enjoyer of good movies and TV at home. Here’s where I share my progress on whatever project currently takes my fancy, plus any relevant discussion on supporting technologies.
 
