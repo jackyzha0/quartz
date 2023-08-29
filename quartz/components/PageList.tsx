@@ -58,7 +58,7 @@ export function PageList({ cfg, fileData, allFiles, limit }: Props) {
               </div>
               <ul class="tags">
                 {tags.map((tag) => (
-                  {fileData.slug!}.split("/").pop() != {tag} ?
+                  `{fileData.slug!}`.split("/").pop() != `{tag}` ?
                   (<li>{fileData.slug!}.split("/").pop() != {tag}
                     <a
                       class="internal tag-link"
