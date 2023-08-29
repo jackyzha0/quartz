@@ -1,3 +1,6 @@
+---
+title:
+---
 Standing on the edge of the garden you can see several intriguing landscapes spread out in front of you. Where shall we head first?
 
 [[expand-your-way-of-being|Expand Your Way of Being]] — Your Way of Being is more than the behaviour you show. It’s the total sum of how you engage with the world, make meaning from your environment and take action. Expanding your Way of Being creates new possibilities.
