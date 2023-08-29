@@ -7,7 +7,7 @@ date: 2023-08-02
 ---
 > Here be some dragons. This is a quick post to explain how Javascript can be used eliminate the need to update multiple pages if the structure of your metadata changes. Using Javsscript comes with risks. Enter at your own peril.
 
-Within [[Obsidian]], the combination of the [Dataview](https://github.com/blacksmithgu/obsidian-dataview) and [Templater](https://github.com/SilentVoid13/Templater)] plugins can make for a powerful way to access and organise your notes using metadata. However, as your [[Digital Garden]] develops, things will change and you might find a situation where you have:
+Within [[Obsidian]], the combination of the [Dataview](https://github.com/blacksmithgu/obsidian-dataview) and [Templater](https://github.com/SilentVoid13/Templater) plugins can make for a powerful way to access and organise your notes using metadata. However, as your [[Digital Garden]] develops, things will change and you might find a situation where you have:
 
 1. Added metadata to some notes
 2. Created a template to populate a summary note
