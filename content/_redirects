@@ -1,2 +1,3 @@
 /:year/:month/:day/*/ /blog/:splat 302
 /:year/:month/:day/* /blog/:splat 302
+/feed/ /index.xml
