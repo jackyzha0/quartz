@@ -124,13 +124,27 @@ document.addEventListener("nav", async (e: unknown) => {
     }
   }
 
+  function trimContent(content: string) {
+    // TODO: add heuristic to substring before splitting for better performance with big files
+    // Split words and splice at max words
+    const words = content.split(" ")
+    if (words.length > contextWindowWords) {
+      words.splice(contextWindowWords)
+
+      // Add trailing ... to indicate cutoff
+      words[words.length - 1] += "..."
+    }
+    return words.join(" ")
+  }
+
   const formatForDisplay = (term: string, id: number) => {
     const slug = idDataMap[id]
     return {
       id,
       slug,
       title: highlight(term, data[slug].title ?? ""),
-      content: highlight(term, data[slug].content ?? "", true),
+      // if searchType is tag, display context from start of file and trim, otherwise use regular highlight
+      content: searchType === "tags" ? trimContent(data[slug].content) : highlight(term, data[slug].content ?? "", true),
       tags: highlightTags(term, data[slug].tags),
     }
   }
