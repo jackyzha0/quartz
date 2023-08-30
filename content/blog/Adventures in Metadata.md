@@ -3,6 +3,8 @@ tags:
   - on/photography
   - hobby-together
 date: 2023-08-24
+aliases:
+  - adventures-in-metadata
 ---
 I've been wanting to document and share my photography workflow — from camera to archive — for a few weeks no. The introduction of Adobe [[Lightroom]] into my workflow recently has meant a delay which has ultimate turned out for the best. I've changed my workflow significantly several times over the last few weeks as I manage two applications that do similar, complementary, yet quite different functions.
 
