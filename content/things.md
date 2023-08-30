@@ -1,7 +1,0 @@
-stuff
-
-#cool
-
-content
-
-#example

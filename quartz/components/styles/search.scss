@@ -159,10 +159,10 @@
             padding: 0.03rem 0.4rem;
             margin: 0;
             color: var(--secondary);
-            opacity: 0.7;
+            opacity: 0.85;
           }
 
-          & > ul > li:first-of-type > p {
+          & > ul > li > .match-tag {
             color: var(--tertiary);
             font-weight: bold;
             opacity: 1;

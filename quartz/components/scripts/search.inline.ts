@@ -138,11 +138,15 @@ document.addEventListener("nav", async (e: unknown) => {
   function highlightTags(term: string, tags: string[]) {
     if (tags) {
       // Find matching tags
-      const matching = tags.filter(str => str.includes(term))
+      let matching = tags.filter(str => str.includes(term))
 
       // Substract matching from original tags, then push difference
       if (matching.length > 0) {
-        const difference = tags.filter(x => !matching.includes(x))
+        let difference = tags.filter(x => !matching.includes(x))
+
+        // Convert to html (cant be done later as matches/term dont get passed to `resultToHTML`)
+        matching = matching.map((tag) => `<li><p class="match-tag">#${tag}</p></li>`)
+        difference = difference.map((tag) => `<li><p>#${tag}</p></li>`)
         matching.push(...difference)
       }
 
@@ -151,8 +155,7 @@ document.addEventListener("nav", async (e: unknown) => {
         matching.splice(numTagResults)
       }
 
-      // Convert to html (cant be done later as matches/term dont get passed to `resultToHTML`)
-      return matching.map((tag) => `<li><p>##${tag}</p></li>`)
+      return matching;
     } else {
       return []
     }
