@@ -12,3 +12,5 @@ Standing on the edge of the garden you can see several intriguing landscapes spr
 [[digital-gardening|Digital Gardening]] — Seed and cultivate thoughts and ideas in public so that others can benefit from what’s there right then. You’re in a digital garden right now.
 
 [[the-garden-shed|The Garden Shed]] — Every garden needs a good shed, full of the right tools to make it flourish.
+
+![](https://live.staticflickr.com/65535/53135451197_44821b77ba_o.jpg)
