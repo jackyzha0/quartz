@@ -2,6 +2,7 @@
 tags:
   - on/obsidian
   - on/scripting
+  - digital-gardening
   - productive-laziness
 date: 2023-08-02
 ---

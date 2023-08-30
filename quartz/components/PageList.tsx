@@ -83,6 +83,5 @@ PageList.css = `
 
 .section > .tags {
   margin: 0;
-  font-size: smaller;
 }
 `
