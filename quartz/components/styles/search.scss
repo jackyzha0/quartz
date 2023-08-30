@@ -145,6 +145,8 @@
             gap: 0.4rem;
             margin: 0;
             margin-top: 0.45rem;
+            // Offset border radius
+            margin-left: -2px;
             overflow: hidden;
             background-clip: border-box;
           }

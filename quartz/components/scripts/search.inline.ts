@@ -22,6 +22,7 @@ let searchType: SearchType = "basic"
 
 const contextWindowWords = 30
 const numSearchResults = 5
+const numTagResults = 3
 function highlight(searchTerm: string, text: string, trim?: boolean) {
   // try to highlight longest tokens first
   const tokenizedTerms = searchTerm
@@ -130,22 +131,38 @@ document.addEventListener("nav", async (e: unknown) => {
       slug,
       title: highlight(term, data[slug].title ?? ""),
       content: highlight(term, data[slug].content ?? "", true),
-      tags: highlightTag(term, data[slug].tags),
+      tags: highlightTags(term, data[slug].tags),
     }
   }
 
-  function highlightTag(term: string, tags: string[]) {
-    const subArr = tags.filter(str => str.includes(term));
-    return tags;
+  function highlightTags(term: string, tags: string[]) {
+    if (tags) {
+      // Find matching tags
+      const matching = tags.filter(str => str.includes(term))
+
+      // Substract matching from original tags, then push difference
+      if (matching.length > 0) {
+        const difference = tags.filter(x => !matching.includes(x))
+        matching.push(...difference)
+      }
+
+      // Only allow max of `numTagResults` in preview
+      if (tags.length > numTagResults) {
+        matching.splice(numTagResults)
+      }
+
+      // Convert to html (cant be done later as matches/term dont get passed to `resultToHTML`)
+      return matching.map((tag) => `<li><p>##${tag}</p></li>`)
+    } else {
+      return []
+    }
   }
 
   const resultToHTML = ({ slug, title, content, tags }: Item) => {
-    console.log("tag length greater:", tags.length > 1)
-    const tagHtml = tags.map((tag) => `<li><p>#${tag}</p></li>`)
     const button = document.createElement("button")
     button.classList.add("result-card")
     button.id = slug
-    button.innerHTML = `<h3>${title}</h3><ul>${tagHtml.join("")}</ul><p>${content}</p>`
+    button.innerHTML = `<h3>${title}</h3><ul>${tags.join("")}</ul><p>${content}</p>`
     button.addEventListener("click", () => {
       const targ = resolveRelative(currentSlug, slug)
       window.spaNavigate(new URL(targ, window.location.toString()))
@@ -239,7 +256,7 @@ document.addEventListener("nav", async (e: unknown) => {
           {
               field: "tags",
               tokenize: "reverse",
-            },
+          },
         ],
       },
     })
