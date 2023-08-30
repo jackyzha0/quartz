@@ -2,6 +2,8 @@
 tags:
   - hobby-together
 date: 2023-06-24
+aliases:
+  - the-problem-behind-the-three-body-problem
 ---
 With notice that Netflix has made a series of [[The Three-Body Problem]] I'm revisiting the novel as an audiobook. Though I read it first only 18 months ago, I only have the barest memory of the story. 
 

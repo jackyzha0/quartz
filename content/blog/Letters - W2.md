@@ -5,7 +5,8 @@ tags:
   - on/habit
   - expand-your-way-of-being
 date: 2023-06-17
-aliases: "2023/06/17/letters-w2"
+aliases:
+  - letters-w2
 ---
 Hi Jason,
 

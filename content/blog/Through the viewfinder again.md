@@ -3,6 +3,8 @@ tags:
   - on/photography
   - hobby-together
 date: 2023-07-09
+aliases:
+  - through-the-viewfinder-again
 ---
 This week I pulled my [[Canon 400D]] DSLR out of the cupboard and clicked the shutter button a few times. I'm through my camera gear and familiarising myself with everything again.
 

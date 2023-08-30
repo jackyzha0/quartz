@@ -1,9 +1,9 @@
 ---
 tags:
   - the-garden-shed
-categories:
-  - 2
 date: 2023-06-09
+aliases:
+  - farewell-dvd-profiler
 ---
 For more years than I can remember I've used [DVD Profiler](http://www.invelos.com) to log my DVD, Bluray and 4K movies. Despite not being updated since 2017, it still works well and remains supported by a community who crowd-source data on latest releases.
 

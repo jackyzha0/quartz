@@ -5,6 +5,8 @@ tags:
   - on/obsidian
   - digital-gardening
 date: 2023-07-01
+aliases:
+  - looking-into-logseq
 ---
 [[Logseq]] has been appearing a lot in my Mastodon feed lately. Many sing its praises over [[Obsidian]] so with a slow afternoon at work yesterday I thought to take a look.
 

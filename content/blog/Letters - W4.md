@@ -3,6 +3,8 @@ tags:
   - letters
   - expand-your-way-of-being
 date: 2023-07-02
+aliases:
+  - letters-w4
 ---
 Hi Jason,
 
