@@ -9,9 +9,6 @@ aliases:
 ---
 > [!INFO] [[I’ll have my pen ready for September|September]] has come early and Jason Becker and I have started our letter writing back and forth. One letter per week across the month of June.
 
-> [!INFO] Witout link
-
-
 Hi Jason,
 
 Friday night, the TV's on in the background, and I'm wondering where to start. 
