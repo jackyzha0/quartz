@@ -3,6 +3,7 @@ tags:
   - on/health
   - the-garden-shed
 date: 2023-08-24
+slug: tap-water-or-rust
 ---
 Tomorrow I take delivery of my CPAP machine and have been researching what water I should use in the humidifier. The prevailing wisdom for CPAP machines is that one **must** use distilled water. From my research tonight I put this in the same category as "You **must** drink 2 litres of water a day". Sounds good, but is incorrect.
 
