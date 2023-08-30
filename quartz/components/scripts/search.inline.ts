@@ -1,4 +1,4 @@
-import { Document } from "flexsearch"
+import { Document, SimpleDocumentSearchResultSetUnit } from "flexsearch"
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
 import { registerEscapeHandler, removeAllChildren } from "./util"
 import { FullSlug, resolveRelative } from "../../util/path"
@@ -8,10 +8,17 @@ interface Item {
   slug: FullSlug
   title: string
   content: string
-  tags: string
+  tags: string[]
 }
 
+
 let index: Document<Item> | undefined = undefined
+// let tagIndex: Document<TagItem> | undefined = undefined
+
+// Can be expanded with things like "term" in the future
+type SearchType = "basic" | "tags"
+
+let searchType: SearchType = "basic"
 
 const contextWindowWords = 30
 const numSearchResults = 5
@@ -123,15 +130,22 @@ document.addEventListener("nav", async (e: unknown) => {
       slug,
       title: highlight(term, data[slug].title ?? ""),
       content: highlight(term, data[slug].content ?? "", true),
-      tags: data[slug].tags
+      tags: highlightTag(term, data[slug].tags),
     }
   }
 
+  function highlightTag(term: string, tags: string[]) {
+    const subArr = tags.filter(str => str.includes(term));
+    return tags;
+  }
+
   const resultToHTML = ({ slug, title, content, tags }: Item) => {
+    console.log("tag length greater:", tags.length > 1)
+    const tagHtml = tags.map((tag) => `<li><p>#${tag}</p></li>`)
     const button = document.createElement("button")
     button.classList.add("result-card")
     button.id = slug
-    button.innerHTML = `<h3>${title}</h3><ul><li><p>#tag</p></li><li><p>#tag2</p></li></ul><p>${content}</p>`
+    button.innerHTML = `<h3>${title}</h3><ul>${tagHtml.join("")}</ul><p>${content}</p>`
     button.addEventListener("click", () => {
       const targ = resolveRelative(currentSlug, slug)
       window.spaNavigate(new URL(targ, window.location.toString()))
@@ -155,15 +169,40 @@ document.addEventListener("nav", async (e: unknown) => {
   }
 
   async function onType(e: HTMLElementEventMap["input"]) {
-    const term = (e.target as HTMLInputElement).value
-    const searchResults = (await index?.searchAsync(term, numSearchResults)) ?? []
+    let term = (e.target as HTMLInputElement).value
+    let searchResults: SimpleDocumentSearchResultSetUnit[]
+
+    if (term.toLowerCase().startsWith("#")) {
+      searchType = "tags"
+    } else {
+      searchType = "basic"
+    }
+
+    switch (searchType) {
+      case "tags": {
+        term = term.substring(1)
+        console.log("tag switch")
+        searchResults = (await index?.searchAsync(term, numSearchResults)) ?? []
+        break
+      }
+      case "basic":
+      default: {
+        console.log("basic switch")
+        searchResults = (await index?.searchAsync(term, numSearchResults)) ?? []
+      }
+    }
+
     const getByField = (field: string): number[] => {
       const results = searchResults.filter((x) => x.field === field)
       return results.length === 0 ? [] : ([...results[0].result] as number[])
     }
 
     // order titles ahead of content
-    const allIds: Set<number> = new Set([...getByField("title"), ...getByField("content"), ...getByField("tags")])
+    const allIds: Set<number> = new Set([
+      ...getByField("title"),
+      ...getByField("content"),
+      ...getByField("tags"),
+    ])
     const finalResults = [...allIds].map((id) => formatForDisplay(term, id))
     displayResults(finalResults)
   }
@@ -198,9 +237,9 @@ document.addEventListener("nav", async (e: unknown) => {
           //   tokenize: "reverse",
           // },
           {
-            field: "tags",
-            tokenize: "reverse"
-          }
+              field: "tags",
+              tokenize: "reverse",
+            },
         ],
       },
     })
@@ -212,7 +251,7 @@ document.addEventListener("nav", async (e: unknown) => {
         slug: slug as FullSlug,
         title: fileData.title,
         content: fileData.content,
-        tags: fileData.tags.join("")
+        tags: fileData.tags,
       })
       id++
     }

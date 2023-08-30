@@ -1,7 +1,7 @@
 stuff
 
-#example
+#cool
 
 content
 
-#cool
+#example
