@@ -8,6 +8,8 @@ date: 2023-06-17
 aliases:
   - letters-w2
 ---
+↖️ [[Letters with Jason]]
+
 Hi Jason,
 
 Funny that you should say “You can’t dance with someone who walks on the floor with the purpose of making you look bad”. I think of conversation as a dance where both people have to be willing to move back and forth, even if there is a stumble from time to time. It’s also similar to something I’ve often said about trying out new things at work. “You can play by new rules if everyone insists on playing the old game.”

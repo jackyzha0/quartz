@@ -7,6 +7,8 @@ date: 2023-06-08
 aliases:
   - letters-w1
 ---
+↖️ [[Letters with Jason]]
+
 > [!INFO] [[I’ll have my pen ready for September|September]] has come early and Jason Becker and I have started our letter writing back and forth. One letter per week across the month of June.
 
 Hi Jason,

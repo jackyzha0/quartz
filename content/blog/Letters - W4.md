@@ -6,6 +6,8 @@ date: 2023-07-02
 aliases:
   - letters-w4
 ---
+↖️ [[Letters with Jason]]
+
 Hi Jason,
 
 I will likely get back into D&D soon. Once a few things settle down at work I'll have a bit more energy to play.

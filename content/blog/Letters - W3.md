@@ -8,6 +8,8 @@ date: 2023-06-22
 aliases:
   - letters-w3
 ---
+↖️ [[Letters with Jason]]
+
 Hi Jason,
 
 My gaming took the opposite track to you in the early days. Funnily enough, games then were 2 player at best and unlike the Internet multi-player games we have now - which I tend not to play. In the days of the Commodore 64 we'd sit around and take turns. There was also a large social aspect in "swapping games". 
