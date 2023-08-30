@@ -150,7 +150,7 @@ document.addEventListener("nav", async (e: unknown) => {
   }
 
   function highlightTags(term: string, tags: string[]) {
-    if (tags) {
+    if (tags && searchType === "tags") {
       // Find matching tags
       let matching = tags.filter(str => str.includes(term))
 
