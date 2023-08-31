@@ -107,15 +107,24 @@ document.addEventListener("nav", async (e: unknown) => {
   }
 
   function shortcutHandler(e: HTMLElementEventMap["keydown"]) {
-    if (e.key === "k" && (e.ctrlKey || e.metaKey)) {
+    if (e.key === "k" && (e.ctrlKey || e.metaKey) && !e.shiftKey) {
       e.preventDefault()
       const searchBarOpen = container?.classList.contains("active")
       searchBarOpen ? hideSearch() : showSearch()
-    } else if (e.shiftKey && (e.ctrlKey || e.metaKey) && e.key === "K") {
+    } else if (e.shiftKey && (e.ctrlKey || e.metaKey) && e.key === "k") {
+      // Hotkey to open tag search
       e.preventDefault()
-      console.log("open tag search")
       const searchBarOpen = container?.classList.contains("active")
-      searchBarOpen ? hideSearch() : showSearch()
+
+      // If searchBar should be opened, open and add "#" prefix for tag search
+      if (searchBarOpen) {
+        searchType = "basic"
+        hideSearch()
+      } else {
+        searchType = "tags"
+        showSearch()
+        if (searchBar) searchBar!.value = "#"
+      }
     } else if (e.key === "Enter") {
       const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
       if (anchor) {
@@ -125,7 +134,7 @@ document.addEventListener("nav", async (e: unknown) => {
   }
 
   function trimContent(content: string) {
-    // TODO: add heuristic to substring before splitting for better performance with big files
+    // TODO: could be optimized by adding heuristic to substring before splitting for better performance with big files
     // Split words and splice at max words
     const words = content.split(" ")
     if (words.length > contextWindowWords) {
