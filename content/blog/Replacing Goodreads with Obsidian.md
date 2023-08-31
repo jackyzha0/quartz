@@ -258,6 +258,5 @@ There is one feature I’m missing from Goodreads. The ability to create a list 
 [[I and Thou]]
 ```
 
----- 
 [^1]: I will post about this soon, I promise.
 [^2]: Yes, I’m moving away from storing data on Goodreads, but that doesn’t prevent me from linking to the useful information there.
