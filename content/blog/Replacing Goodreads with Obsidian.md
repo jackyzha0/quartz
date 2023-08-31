@@ -2,7 +2,11 @@
 tags:
   - on/reading
   - the-garden-shed
+  - on/obsidian
+  - on/scripting
 date: 2023-04-16
+aliases:
+  - replacing-goodreads-with-obsidian
 ---
 I have been a Goodreads user for many, many years. It has provided me the means to track my reading activity alongside a list of books I want to read. The past few years I’ve been an avid Kindle reader, topping 20,000 pages read each year. Goodreads integration with the Kindle has made it very easy to mark a book started and finished.
 
@@ -43,7 +47,7 @@ You will use this plugin to gather book metadata such as title, author, isbn, nu
 
 Instructions refer to version 0.5.9. Software changes over time, and there may be changes in your version.
 
-![](Screenshot%202023-04-11%20at%207.42.16%20pm.png)
+![](https://live.staticflickr.com/65535/53154715235_ce19c09799_c.jpg)
 
 **New file location** should be obvious. It’s the folder where you want your book notes stored. I use the Auto Note Mover plugin to then file notes into their rightful homes automatically. 
 
@@ -82,24 +86,17 @@ format: 
 ![cover|150]({{coverUrl}})
 
 ```dataview
-
 TABLE WITHOUT ID 
-
     status as Status,
-
     history.started as Started,
-
     history.finished as Finished, 
-
-series.name as Series, 
-
-series.sequence as "#"
-
+    series.name as Series, 
+    series.sequence as "#"
 from #source/book
-
 where title = this.title
-
 ```
+
+> [!HINT] I'm having trouble getting the code to display properly. Include a final ``` at the bottom of the code above.
 
 The differences are:
 
@@ -116,239 +113,151 @@ Here is the page for _Edgedancer_ by Brandon Sanderson.
 
 ```
 ---
-
 tag: source/book
-
 title: "Edgedancer"
-
 author: [Brandon Sanderson]
-
 publisher: Hachette UK
-
 publish: 2018-10-18
-
 duration:
-
   pages: 183
-
   minutes: 383
-
 isbn: 1473226597 9781473226593
-
 cover: http://books.google.com/books/content?id=caVnDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api
-
 status: read
-
 created: 2023-04-09 21:05:56
-
 updated: 2023-04-09 21:05:56
-
 series: 
-
   name: "[[The Stormlight Archive]]"
-
   sequence: 2.5
-
 history:
-
   reads: 1
-
   started: 2022-05-04
-
   finished: 2022-05-06
-
 format: [ebook, audiobook]
-
 ---
 
 ![cover|150](http://books.google.com/books/content?id=caVnDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api)
 
 ```dataview
-
 TABLE WITHOUT ID 
-
     status as Status,
-
     history.started as Started,
-
     history.finished as Finished, 
-
-series.name as Series, 
-
-series.sequence as "#"
-
+    series.name as Series, 
+    series.sequence as "#"
 from #source/book
-
 where title = this.title
-
-```
-```
 ```
 
+> [!HINT] I'm having trouble getting the code to display properly. Include a final ``` at the bottom of the code above.
 
-
-The only fields I need to fill in are _book.duration_, _series.x_, _history.x_ and _format_. In a few cases I replaced the _cover_ links with an alternative cover I found elsewhere [^2].
-
-  
+The only fields I need to fill in are _book.duration_, _series.x_, _history.x_ and _format_. In a few cases I replaced the _cover_ links with an alternative cover I found elsewhere [^2].  
 
 The Dataview section looks like this:
 
-![](Screenshot%202023-04-16%20at%207.43.57%20pm.png)
-
-  
+![](https://live.staticflickr.com/65535/53153706197_264157b846_c.jpg)
 
 This book I’ve read only once. For any books I’ve read multiple times, I write the date as `[2021-03-04, 2022-05-04]`. Later Dataview queries pull out the maximum date from the _history.started_ or _history.finished_ fields.
-
-  
 
 ## Author
 
 Every book has one or more authors so there will be a page for each.
 
-![](Screenshot%202023-04-16%20at%207.51.58%20pm.png)
+![](https://live.staticflickr.com/65535/53154775843_563e431612_c.jpg)
 
 There is a Templater file called _author_ that makes for quick creation of these pages.
 
 ```
 ---
-
 tags: person/author
-
 ---
 
 ```dataview
-
 TABLE WITHOUT ID
-
   file.link as Title,
-
   series.name as Series,
-
   publish as Published
-
-FROM #source/book 
-
+FROM #source/book
 where contains(author, this.file.name)
-
 sort publish
-
-```
-```
 ```
 
+> [!HINT] I'm having trouble getting the code to display properly. Include a final ``` at the bottom of the code above.
 
 ## Series
 
 Here’s what a linked series page looks like. I fill in the author’s name, and grab the Goodreads book series link.
 
-![](Screenshot%202023-04-16%20at%207.45.22%20pm.png)
+![](https://live.staticflickr.com/65535/53153706647_bd1f7821c9_c.jpg)
 
 And the code to generate it is stored in a Templater file called _book-series_.
 
 ```
 ---
-
 tags: atlas/series/books state/active
-
 goodreads: 
-
 ---
 
 A series of books by [[]] consisting of:
-
 ```dataview
-
 TABLE WITHOUT ID
-
   series.sequence as "Seq.",
-
   file.link as "Title",
-
   max(history.finished) as "Last Read",
-
   status as Status,
-
   history.reads as "Times Read"
-
 FROM #source/book 
-
 WHERE series.name = this.file.link and !contains(file.path, "Templates")
-
 SORT series.sequence
+```
 
-```
-```
-```
-  
+> [!HINT] I'm having trouble getting the code to display properly. Include a final ``` at the bottom of the code above.
+
 
 ## What else can you do?
 
 ### Make a list of all books
 
+```
 ```dataview
-
 TABLE WITHOUT ID
-
-"![|60](" + cover + ")" as Cover,
-
-file.link as Title,
-
-link(author) as Author,
-
-series.name as Series,
-
-join(list(history.finished)) as "Finished",
-
-status as Status
-
+   "![|60](" + cover + ")" as Cover,
+   file.link as Title,
+   link(author) as Author,
+   series.name as Series,
+   join(list(history.finished)) as "Finished",
+   status as Status
 FROM #source/book 
-
 WHERE !contains(file.path, "Templates")
-
 SORT status DESC, file.ctime ASC
 
 ```
 
+> [!HINT] I'm having trouble getting the code to display properly. Include a final ``` at the bottom of the code above.
+
 ### Make a list of all series
 
-```dataview
-
-TABLE WITHOUT ID
-
-  file.link as "Series",
-
-  goodreads as "Goodreads"
-
-from #atlas/series/books and #state/active 
-
-where !contains(file.path, "Templates")
-
-sort file.link
-
 ```
+```dataview
+TABLE WITHOUT ID
+  file.link as "Series",
+  goodreads as "Goodreads"
+from #atlas/series/books and #state/active 
+where !contains(file.path, "Templates")
+sort file.link
+```
+> [!HINT] I'm having trouble getting the code to display properly. Include a final ``` at the bottom of the code above.
 
   
-
 ## One more thing. The “Want to Read” wishlist.
 
 There is one feature I’m missing from Goodreads. The ability to create a list of books to read. Super easy, just create a list and as I purchase books, click through to create the page, then immediately use the Book Search plugin to pull in the details.
 
-  
-
+```
 [[The Divine Comedy]]
-
 [[I and Thou]]
+```
 
 ---- 
-
-  
-
-  
-
-  
-
 [^1]: I will post about this soon, I promise.
-
-  
-
 [^2]: Yes, I’m moving away from storing data on Goodreads, but that doesn’t prevent me from linking to the useful information there.
