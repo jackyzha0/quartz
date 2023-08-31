@@ -1,6 +1,7 @@
 ---
 tags:
   - expand-your-way-of-being
+  - hobby-together
 date: 2023-05-14
 aliases:
   - gaming-teaches-learn-from-others
