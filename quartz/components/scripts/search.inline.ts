@@ -188,10 +188,11 @@ document.addEventListener("nav", async (e: unknown) => {
   }
 
   const resultToHTML = ({ slug, title, content, tags }: Item) => {
+    const htmlTags = tags.length > 0 ? `<ul>${tags.join("")}</ul>` : ``
     const button = document.createElement("button")
     button.classList.add("result-card")
     button.id = slug
-    button.innerHTML = `<h3>${title}</h3><ul>${tags.join("")}</ul><p>${content}</p>`
+    button.innerHTML = `<h3>${title}</h3>${htmlTags}<p>${content}</p>`
     button.addEventListener("click", () => {
       const targ = resolveRelative(currentSlug, slug)
       window.spaNavigate(new URL(targ, window.location.toString()))
