@@ -11,13 +11,13 @@ interface Item {
   tags: string[]
 }
 
-
 let index: Document<Item> | undefined = undefined
 let tagIndex: Document<Item> | undefined = undefined
 
 // Can be expanded with things like "term" in the future
 type SearchType = "basic" | "tags"
 
+// Current searchType
 let searchType: SearchType = "basic"
 
 const contextWindowWords = 30
@@ -144,7 +144,10 @@ document.addEventListener("nav", async (e: unknown) => {
       slug,
       title: highlight(term, data[slug].title ?? ""),
       // if searchType is tag, display context from start of file and trim, otherwise use regular highlight
-      content: searchType === "tags" ? trimContent(data[slug].content) : highlight(term, data[slug].content ?? "", true),
+      content:
+        searchType === "tags"
+          ? trimContent(data[slug].content)
+          : highlight(term, data[slug].content ?? "", true),
       tags: highlightTags(term, data[slug].tags),
     }
   }
@@ -152,11 +155,11 @@ document.addEventListener("nav", async (e: unknown) => {
   function highlightTags(term: string, tags: string[]) {
     if (tags && searchType === "tags") {
       // Find matching tags
-      let matching = tags.filter(str => str.includes(term))
+      let matching = tags.filter((str) => str.includes(term))
 
       // Substract matching from original tags, then push difference
       if (matching.length > 0) {
-        let difference = tags.filter(x => !matching.includes(x))
+        let difference = tags.filter((x) => !matching.includes(x))
 
         // Convert to html (cant be done later as matches/term dont get passed to `resultToHTML`)
         matching = matching.map((tag) => `<li><p class="match-tag">#${tag}</p></li>`)
@@ -169,7 +172,7 @@ document.addEventListener("nav", async (e: unknown) => {
         matching.splice(numTagResults)
       }
 
-      return matching;
+      return matching
     } else {
       return []
     }
@@ -271,56 +274,52 @@ document.addEventListener("nav", async (e: unknown) => {
             tokenize: "reverse",
           },
           {
-              field: "tags",
-              tokenize: "reverse",
+            field: "tags",
+            tokenize: "reverse",
           },
         ],
       },
     })
 
-    let id = 0
-    for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
-      await index.addAsync(id, {
-        id,
-        slug: slug as FullSlug,
-        title: fileData.title,
-        content: fileData.content,
-        tags: fileData.tags,
-      })
-      id++
-    }
+    fillDocument(index, data)
   }
 
   if (!tagIndex) {
+    // Initialize tag index (only indexes "tags" field but filled with same data)
     tagIndex = new Document({
-      cache: true,
-      charset: "latin:extra",
-      optimize: true,
-      encode: encoder,
+      ...index,
       document: {
         id: "id",
         index: [
           {
-              field: "tags",
-              tokenize: "reverse",
+            field: "tags",
+            tokenize: "reverse",
           },
         ],
       },
     })
-
-    let id = 0
-    for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
-      await tagIndex.addAsync(id, {
-        id,
-        slug: slug as FullSlug,
-        title: fileData.title,
-        content: fileData.content,
-        tags: fileData.tags,
-      })
-      id++
-    }
+    fillDocument(tagIndex, data)
   }
 
   // register handlers
   registerEscapeHandler(container, hideSearch)
 })
+
+/**
+ * Fills flexsearch document with data
+ * @param index index to fill
+ * @param data data to fill index with
+ */
+async function fillDocument(index: Document<Item, false>, data: any) {
+  let id = 0
+  for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
+    await index.addAsync(id, {
+      id,
+      slug: slug as FullSlug,
+      title: fileData.title,
+      content: fileData.content,
+      tags: fileData.tags,
+    })
+    id++
+  }
+}
