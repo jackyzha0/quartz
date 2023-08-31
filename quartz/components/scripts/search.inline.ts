@@ -227,13 +227,11 @@ document.addEventListener("nav", async (e: unknown) => {
     switch (searchType) {
       case "tags": {
         term = term.substring(1)
-        console.log("tag switch")
         searchResults = (await tagIndex?.searchAsync(term, numSearchResults)) ?? []
         break
       }
       case "basic":
       default: {
-        console.log("basic switch")
         searchResults = (await index?.searchAsync(term, numSearchResults)) ?? []
       }
     }
