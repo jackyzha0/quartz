@@ -164,7 +164,8 @@ document.addEventListener("nav", async (e: unknown) => {
   function highlightTags(term: string, tags: string[]) {
     if (tags && searchType === "tags") {
       // Find matching tags
-      let matching = tags.filter((str) => str.includes(term))
+      const termLower = term.toLowerCase()
+      let matching = tags.filter((str) => str.includes(termLower))
 
       // Substract matching from original tags, then push difference
       if (matching.length > 0) {
