@@ -13,7 +13,7 @@ interface Item {
 
 
 let index: Document<Item> | undefined = undefined
-// let tagIndex: Document<TagItem> | undefined = undefined
+let tagIndex: Document<Item> | undefined = undefined
 
 // Can be expanded with things like "term" in the future
 type SearchType = "basic" | "tags"
@@ -216,7 +216,7 @@ document.addEventListener("nav", async (e: unknown) => {
       case "tags": {
         term = term.substring(1)
         console.log("tag switch")
-        searchResults = (await index?.searchAsync(term, numSearchResults)) ?? []
+        searchResults = (await tagIndex?.searchAsync(term, numSearchResults)) ?? []
         break
       }
       case "basic":
@@ -262,14 +262,14 @@ document.addEventListener("nav", async (e: unknown) => {
       document: {
         id: "id",
         index: [
-          // {
-          //   field: "title",
-          //   tokenize: "reverse",
-          // },
-          // {
-          //   field: "content",
-          //   tokenize: "reverse",
-          // },
+          {
+            field: "title",
+            tokenize: "reverse",
+          },
+          {
+            field: "content",
+            tokenize: "reverse",
+          },
           {
               field: "tags",
               tokenize: "reverse",
@@ -281,6 +281,36 @@ document.addEventListener("nav", async (e: unknown) => {
     let id = 0
     for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
       await index.addAsync(id, {
+        id,
+        slug: slug as FullSlug,
+        title: fileData.title,
+        content: fileData.content,
+        tags: fileData.tags,
+      })
+      id++
+    }
+  }
+
+  if (!tagIndex) {
+    tagIndex = new Document({
+      cache: true,
+      charset: "latin:extra",
+      optimize: true,
+      encode: encoder,
+      document: {
+        id: "id",
+        index: [
+          {
+              field: "tags",
+              tokenize: "reverse",
+          },
+        ],
+      },
+    })
+
+    let id = 0
+    for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
+      await tagIndex.addAsync(id, {
         id,
         slug: slug as FullSlug,
         title: fileData.title,
