@@ -131,16 +131,26 @@ document.addEventListener("nav", async (e: unknown) => {
   }
 
   function trimContent(content: string) {
-    // TODO: could be optimized by adding heuristic to substring before splitting for better performance with big files
-    // Split words and splice at max words
-    const words = content.split(" ")
-    if (words.length > contextWindowWords) {
-      words.splice(contextWindowWords)
+    // works without escaping html like in `description.ts`
+    const sentences = content.replace(/\s+/g, " ").split(".")
+    let finalDesc = ""
+    let sentenceIdx = 0
 
-      // Add trailing ... to indicate cutoff
-      words[words.length - 1] += "..."
+    // Roughly estimate characters by (words * 5). Matches description length in `description.ts`.
+    const len = contextWindowWords * 5
+    while (finalDesc.length < len) {
+      const sentence = sentences[sentenceIdx]
+      if (!sentence) break
+      finalDesc += sentence + "."
+      sentenceIdx++
     }
-    return words.join(" ")
+
+    // If more content would be available, indicate it by finishing with "..."
+    if (finalDesc.length < content.length) {
+      finalDesc += ".."
+    }
+
+    return finalDesc
   }
 
   const formatForDisplay = (term: string, id: number) => {
