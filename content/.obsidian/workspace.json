@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "788567be8bc336ef",
+        "id": "2a9899a238c13151",
         "type": "tabs",
         "children": [
           {
-            "id": "82ac351fd53f6bfa",
+            "id": "851313c5227f3622",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "postgres/postgresql scan.md",
+                "file": "postgres/tuple.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "postgres/postgresql scan.md",
+                "file": "postgres/tuple.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "postgres/postgresql scan.md",
+                "file": "postgres/tuple.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "postgres/postgresql scan.md"
+                "file": "postgres/tuple.md"
               }
             }
           }
@@ -145,10 +145,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "82ac351fd53f6bfa",
+  "active": "851313c5227f3622",
   "lastOpenFiles": [
-    "postgres/anomalies.md",
+    "postgres/tuple.md",
     "postgres/postgresql scan.md",
+    "postgres/anomalies.md",
     "postgres/attachment/isolation-sumup.png",
     "Pasted image 20230829115023 1.png",
     "Pasted image 20230829115001.png",
