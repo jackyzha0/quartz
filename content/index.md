@@ -1,5 +1,6 @@
 ---
 title: The stream of thought that waters the garden
+aliases: []
 ---
 Welcome to The Quantum Garden, a site where I share what interests me in the hope you'll find it interesting as well.
 

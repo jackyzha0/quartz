@@ -6,4 +6,4 @@ An [[Obsidian]] to website publishing system that allows me to publish directly 
 
 [Official site](https://quartz.jzhao.xyz).
 
-[[The Quantum Garden]] moved to Quartz in September 2023.
+[The Quantum Garden](https://quantumgardener.blog) moved to Quartz in September 2023.
