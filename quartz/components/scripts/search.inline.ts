@@ -96,9 +96,12 @@ document.addEventListener("nav", async (e: unknown) => {
     if (results) {
       removeAllChildren(results)
     }
+
+    searchType = "basic" // reset search type after closing
   }
 
-  function showSearch() {
+  function showSearch(searchTypeNew: SearchType) {
+    searchType = searchTypeNew
     if (sidebar) {
       sidebar.style.zIndex = "1"
     }
@@ -110,21 +113,15 @@ document.addEventListener("nav", async (e: unknown) => {
     if (e.key === "k" && (e.ctrlKey || e.metaKey) && !e.shiftKey) {
       e.preventDefault()
       const searchBarOpen = container?.classList.contains("active")
-      searchBarOpen ? hideSearch() : showSearch()
+      searchBarOpen ? hideSearch() : showSearch("basic")
     } else if (e.shiftKey && (e.ctrlKey || e.metaKey) && e.key === "k") {
       // Hotkey to open tag search
       e.preventDefault()
       const searchBarOpen = container?.classList.contains("active")
+      searchBarOpen ? hideSearch() : showSearch("tags")
 
-      // If searchBar should be opened, open and add "#" prefix for tag search
-      if (searchBarOpen) {
-        searchType = "basic"
-        hideSearch()
-      } else {
-        searchType = "tags"
-        showSearch()
-        if (searchBar) searchBar!.value = "#"
-      }
+      // add "#" prefix for tag search
+      if (searchBar) searchBar.value = "#"
     } else if (e.key === "Enter") {
       const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
       if (anchor) {
@@ -259,8 +256,8 @@ document.addEventListener("nav", async (e: unknown) => {
 
   document.addEventListener("keydown", shortcutHandler)
   prevShortcutHandler = shortcutHandler
-  searchIcon?.removeEventListener("click", showSearch)
-  searchIcon?.addEventListener("click", showSearch)
+  searchIcon?.removeEventListener("click", () => showSearch("basic"))
+  searchIcon?.addEventListener("click", () => showSearch("basic"))
   searchBar?.removeEventListener("input", onType)
   searchBar?.addEventListener("input", onType)
 
