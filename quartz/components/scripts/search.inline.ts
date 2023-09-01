@@ -114,7 +114,7 @@ document.addEventListener("nav", async (e: unknown) => {
       e.preventDefault()
       const searchBarOpen = container?.classList.contains("active")
       searchBarOpen ? hideSearch() : showSearch("basic")
-    } else if (e.shiftKey && (e.ctrlKey || e.metaKey) && e.key === "k") {
+    } else if (e.shiftKey && (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
       // Hotkey to open tag search
       e.preventDefault()
       const searchBarOpen = container?.classList.contains("active")
