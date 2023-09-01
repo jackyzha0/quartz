@@ -1,6 +1,4 @@
 ---
-aliases:
-  - about
 title: About
 ---
 My name is David Buchan and if you need to contact me, send a Mastodon message to [@dcbuchan@aus.social](https://@dcbuchan@aus.social).  I'd love to hear from you.
