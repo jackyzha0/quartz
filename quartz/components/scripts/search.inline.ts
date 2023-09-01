@@ -12,7 +12,6 @@ interface Item {
 }
 
 let index: Document<Item> | undefined = undefined
-let tagIndex: Document<Item> | undefined = undefined
 
 // Can be expanded with things like "term" in the future
 type SearchType = "basic" | "tags"
@@ -236,12 +235,19 @@ document.addEventListener("nav", async (e: unknown) => {
     switch (searchType) {
       case "tags": {
         term = term.substring(1)
-        searchResults = (await tagIndex?.searchAsync(term, numSearchResults)) ?? []
+        searchResults =
+          (await index?.searchAsync({ query: term, limit: numSearchResults, index: ["tags"] })) ??
+          []
         break
       }
       case "basic":
       default: {
-        searchResults = (await index?.searchAsync(term, numSearchResults)) ?? []
+        searchResults =
+          (await index?.searchAsync({
+            query: term,
+            limit: numSearchResults,
+            index: ["title", "content"],
+          })) ?? []
       }
     }
 
@@ -298,23 +304,6 @@ document.addEventListener("nav", async (e: unknown) => {
     })
 
     fillDocument(index, data)
-  }
-
-  if (!tagIndex) {
-    // Initialize tag index (only indexes "tags" field but filled with same data)
-    tagIndex = new Document({
-      ...index,
-      document: {
-        id: "id",
-        index: [
-          {
-            field: "tags",
-            tokenize: "reverse",
-          },
-        ],
-      },
-    })
-    fillDocument(tagIndex, data)
   }
 
   // register handlers
