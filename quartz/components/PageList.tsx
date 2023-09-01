@@ -57,7 +57,7 @@ export function PageList({ cfg, fileData, allFiles, limit }: Props) {
                 </h3>
               </div>
               <ul class="tags">
-                {tags.map((tag) => (
+                {tags.map((tag) => (                  
                   <li>
                     <a
                       class="internal tag-link"

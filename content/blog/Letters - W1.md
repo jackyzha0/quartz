@@ -9,7 +9,7 @@ aliases:
 ---
 ↖️ [[Letters with Jason]]
 
-> [!INFO] [[I’ll have my pen ready for September|September]] has come early and Jason Becker and I have started our letter writing back and forth. One letter per week across the month of June.
+> [!INFO] [[I’ll Have my Pen Ready for September|September]] has come early and Jason Becker and I have started our letter writing back and forth. One letter per week across the month of June.
 
 Hi Jason,
 

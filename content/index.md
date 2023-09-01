@@ -1,7 +1,11 @@
 ---
 title: The stream of thought that waters the garden
 ---
-Standing on the edge of the garden you can see several intriguing [[Landscapes|landscapes]] spread out in front of you. Where shall we head first?
+Welcome to The Quantum Garden, a site where I share what interests me in the hope you'll find it interesting as well.
+
+Time spent in the garden is all about cultivating possibilities in life. Often the possibility is already there and waiting to be seen.
+
+Standing on the edge of the garden you can see several intriguing [[Landscapes|landscapes]] spread out in front of you. Where do you want to head first? Visit a landscape or learn a little more [[About|about me]].
 
 - [[expand-your-way-of-being|Expand Your Way of Being]] — Your Way of Being is more than the behaviour you show. It’s the total sum of how you engage with the world, make meaning from your environment and take action. Expanding your Way of Being creates new possibilities.
 

@@ -12,12 +12,10 @@ Gaming teaches us the usefulness of chasing our perspective if what we are doing
 
 ## Assetto Corsa Competizione
 Below is the cockpit view of my BMW M4 in _Assetto Corsa  Competizione_, a sim racing game. It is the view that I have found easiest to race with even though you can see most of the view is blocked by the roof of the car or dashboard. 
-
 ![](https://live.staticflickr.com/65535/53154714830_5c151fa48c_c.jpg)
 _My ACC driving position._
 
 This view matches more closely what I would see if I were actually sitting in the car given where I sit and the distance and size of my TV in front of me. By default the cockpit view in ACC is about 56° wide.
-
 ![](https://live.staticflickr.com/65535/53154282991_0dd0c43fd8_c.jpg)
 _Default 56° field of view._
 
