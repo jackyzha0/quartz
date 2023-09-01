@@ -157,7 +157,7 @@ document.addEventListener("nav", async (e: unknown) => {
     return {
       id,
       slug,
-      title: highlight(term, data[slug].title ?? ""),
+      title: searchType === "tags" ? data[slug].title : highlight(term, data[slug].title ?? ""),
       // if searchType is tag, display context from start of file and trim, otherwise use regular highlight
       content:
         searchType === "tags"
