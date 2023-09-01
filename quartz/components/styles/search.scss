@@ -130,6 +130,44 @@
             margin: 0;
           }
 
+          & > ul > li {
+            margin: 0;
+            display: inline-block;
+            white-space: nowrap;
+            margin: 0;
+            overflow-wrap: normal;
+          }
+
+          & > ul {
+            list-style: none;
+            display: flex;
+            padding-left: 0;
+            gap: 0.4rem;
+            margin: 0;
+            margin-top: 0.45rem;
+            // Offset border radius
+            margin-left: -2px;
+            overflow: hidden;
+            background-clip: border-box;
+          }
+
+          & > ul > li > p {
+            border-radius: 8px;
+            background-color: var(--highlight);
+            overflow: hidden;
+            background-clip: border-box;
+            padding: 0.03rem 0.4rem;
+            margin: 0;
+            color: var(--secondary);
+            opacity: 0.85;
+          }
+
+          & > ul > li > .match-tag {
+            color: var(--tertiary);
+            font-weight: bold;
+            opacity: 1;
+          }
+
           & > p {
             margin-bottom: 0;
           }
