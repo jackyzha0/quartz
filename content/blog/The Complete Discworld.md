@@ -26,7 +26,7 @@ This is the Discworld publication release order. Any books in **bold** have been
 4. **Mort (1987)**
 5. **Sourcery (1988)**
 6. **Wyrd Sisters (1988)**
-7. Pyramids (1989)
+7. **Pyramids (1989)**
 8. **Guards! Guards! (1989)**
 9. **Eric (1990)**
 10. **Moving Pictures (1990)**
@@ -36,7 +36,7 @@ This is the Discworld publication release order. Any books in **bold** have been
 14. **Lords and Ladies (1992)**
 15. Men at Arms (1993)
 16. **Soul Music (1994)**
-17. **_Interesting Times (1994)_**
+17. **Interesting Times (1994)**
 18. Maskerade (1995)
 19. Feet of Clay (1996)
 20. Hogfather (1996)
