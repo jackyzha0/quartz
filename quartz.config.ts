@@ -1,10 +1,18 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import { OptionType } from "./quartz/plugins/types"
+
+var remark = Plugin.Remark42({ host: "https://be-far.com/comments", site_id: "remark", theme: "dark", no_footer: true })
+declare global {
+  var remark_config: OptionType
+}
+
+globalThis.remark_config = remark.options
 
 const config: QuartzConfig = {
   configuration: {
     pageTitle: "🌱 be-far",
-    enableSPA: true,
+    enableSPA: false,
     enablePopovers: true,
     analytics: null,
     baseUrl: "be-far.com",
@@ -52,6 +60,7 @@ const config: QuartzConfig = {
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Latex({ renderEngine: "katex" }),
       Plugin.Description(),
+      remark
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [

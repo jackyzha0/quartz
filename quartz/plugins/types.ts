@@ -4,6 +4,8 @@ import { ProcessedContent } from "./vfile"
 import { QuartzComponent } from "../components/types"
 import { FilePath, FullSlug } from "../util/path"
 import { BuildCtx } from "../util/ctx"
+import { Options } from "vfile"
+import { IOptions } from "reading-time"
 
 export interface PluginTypes {
   transformers: QuartzTransformerPluginInstance[]
@@ -11,12 +13,13 @@ export interface PluginTypes {
   emitters: QuartzEmitterPluginInstance[]
 }
 
-type OptionType = object | undefined
+export type OptionType = object | undefined
 export type QuartzTransformerPlugin<Options extends OptionType = undefined> = (
   opts?: Options,
 ) => QuartzTransformerPluginInstance
 export type QuartzTransformerPluginInstance = {
   name: string
+  options?: OptionType
   textTransform?: (ctx: BuildCtx, src: string | Buffer) => string | Buffer
   markdownPlugins?: (ctx: BuildCtx) => PluggableList
   htmlPlugins?: (ctx: BuildCtx) => PluggableList
