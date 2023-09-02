@@ -1,0 +1,4 @@
+node_modules
+public
+.quartz-cache
+.DS_Store
