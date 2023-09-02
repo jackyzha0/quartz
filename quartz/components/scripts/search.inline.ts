@@ -133,26 +133,20 @@ document.addEventListener("nav", async (e: unknown) => {
       }
     } else if (e.key === "ArrowDown") {
       e.preventDefault()
+      // If there are are more elements, select next one
       if (currentResultIndex < resultCards.length - 1) {
-        let el: HTMLElement
+        // Starts at -1, so only try to get element if index is higher
         if (currentResultIndex >= 0) {
-          el = resultCards[currentResultIndex] as HTMLElement
-          el.classList.remove("selected")
+          resultCards[currentResultIndex].classList.remove("selected")
         }
-        currentResultIndex++
-        el = resultCards[currentResultIndex] as HTMLElement
-        el.classList.add("selected")
+        // Increment index and add "selected" class
+        resultCards[++currentResultIndex].classList.add("selected")
       }
     } else if (e.key === "ArrowUp") {
       e.preventDefault()
-      console.log("index: ", currentResultIndex)
       if (currentResultIndex > 0) {
-        let el: HTMLElement
-        el = resultCards[currentResultIndex] as HTMLElement
-        el.classList.remove("selected")
-        currentResultIndex--
-        el = resultCards[currentResultIndex] as HTMLElement
-        el.classList.add("selected")
+        resultCards[currentResultIndex].classList.remove("selected")
+        resultCards[--currentResultIndex].classList.add("selected")
       }
     }
   }
