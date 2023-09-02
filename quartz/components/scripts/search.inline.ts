@@ -125,7 +125,9 @@ document.addEventListener("nav", async (e: unknown) => {
       // add "#" prefix for tag search
       if (searchBar) searchBar.value = "#"
     } else if (e.key === "Enter") {
-      const anchor = document.getElementsByClassName("result-card")[currentResultIndex < 0 ? 0 : currentResultIndex] as HTMLInputElement | null
+      const anchor = document.getElementsByClassName("result-card")[
+        currentResultIndex < 0 ? 0 : currentResultIndex
+      ] as HTMLInputElement | null
       if (anchor) {
         anchor.click()
       }
