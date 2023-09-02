@@ -17,6 +17,7 @@ Many people will run Quartz out of the root of their Obsidian notes, but I run t
 - Sidebar: this makes link autocomplete weird. 
 	- My subfolder is called Garden, and I can't autocomplete an internal reference such as `[[Essays/productivity|Increase your Productivity]]` because if I hit tab, it'll turn into `[[Garden/Essays/productivity|Increase your Productivity]]`. 
 	- Since `Garden` doesn't exist as a folder in the install, and Quartz looks at links as shortest-path, that link will 404 until I catch that I made an error. 
+	- Case in point, the link to Catppuccin from [[editor#Appearance#Theme|the editor project page]] was borked for like a month.
 	- Not a big deal but it's worth mentioning.
 
 I could have self-hosted the site, but I opted to use Quartz's built-in functionality for automatically deploying to GitHub Pages and just proxying through to it from my domain. It's simpler, even though it does result in Microsoft having their grubby mitts on my work.
