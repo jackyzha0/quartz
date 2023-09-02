@@ -19,6 +19,4 @@ What works for us in gaming can work against us in conversation. “Muscle memor
 
 In your next conversation, instead of thinking what to say next, divert that part of your brain to observing what is happening within you and how little control you are exhibiting. That will show you the lever to change.
 
----- 
-
 [^1]:	If you’re not familiar with a controller console for a Playstation 5 or Xbox, you can view the _Elden Ring_ button mapping at [https://eldenring.wiki.fextralife.com/Controls](https://eldenring.wiki.fextralife.com/Controls)

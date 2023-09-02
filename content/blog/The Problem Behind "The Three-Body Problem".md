@@ -1,5 +1,6 @@
 ---
 tags:
+  - on/distinctions
   - hobby-together
 date: 2023-06-24
 aliases:
