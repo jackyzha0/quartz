@@ -107,12 +107,18 @@ function addGlobalPageResources(
         document.dispatchEvent(event)`)
   }
 
+  let wsUrl = `ws://localhost:${ctx.argv.wsPort}`
+
+  if (ctx.argv.remoteDevHost) {
+    wsUrl = `wss://${ctx.argv.remoteDevHost}:${ctx.argv.wsPort}`
+  }
+
   if (reloadScript) {
     staticResources.js.push({
       loadTime: "afterDOMReady",
       contentType: "inline",
       script: `
-          const socket = new WebSocket('ws://localhost:3001')
+          const socket = new WebSocket('${wsUrl}')
           socket.addEventListener('message', () => document.location.reload())
         `,
     })
