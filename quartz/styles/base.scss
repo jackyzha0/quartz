@@ -27,6 +27,11 @@ section {
   border-radius: 5px;
 }
 
+::selection {
+  background: color-mix(in srgb, var(--tertiary) 75%, transparent);
+  color: var(--darkgray);
+}
+
 p,
 ul,
 text,

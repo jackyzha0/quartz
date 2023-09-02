@@ -34,7 +34,7 @@ Some common frontmatter fields that are natively supported by Quartz:
 
 ## Syncing your Content
 
-When you're Quartz is at a point you're happy with, you can save your changes to GitHub by doing `npx quartz sync`.
+When your Quartz is at a point you're happy with, you can save your changes to GitHub by doing `npx quartz sync`.
 
 > [!hint] Flags and options
 > For full help options, you can run `npx quartz sync --help`.

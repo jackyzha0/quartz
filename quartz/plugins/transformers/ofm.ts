@@ -109,14 +109,16 @@ const capitalize = (s: string): string => {
 // (#[^\[\]\|\#]+)? -> # then one or more non-special characters (heading link)
 // (|[^\[\]\|\#]+)? -> | then one or more non-special characters (alias)
 const wikilinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)?(#[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/, "g")
-const highlightRegex = new RegExp(/==(.+)==/, "g")
+const highlightRegex = new RegExp(/==([^=]+)==/, "g")
 const commentRegex = new RegExp(/%%(.+)%%/, "g")
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
 const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
 const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
-// (?:^| )   -> non-capturing group, tag should start be separated by a space or be the start of the line
-// #(\w+)    -> tag itself is # followed by a string of alpha-numeric characters
-const tagRegex = new RegExp(/(?:^| )#(\p{L}+)/, "gu")
+// (?:^| )              -> non-capturing group, tag should start be separated by a space or be the start of the line
+// #(...)               -> capturing group, tag itself must start with #
+// (?:[-_\p{L}])+       -> non-capturing group, non-empty string of (Unicode-aware) alpha-numeric characters, hyphens and/or underscores
+// (?:\/[-_\p{L}]+)*)   -> non-capturing group, matches an arbitrary number of tag strings separated by "/"
+const tagRegex = new RegExp(/(?:^| )#((?:[-_\p{L}\d])+(?:\/[-_\p{L}\d]+)*)/, "gu")
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
@@ -320,7 +322,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
                 const titleHtml: HTML = {
                   type: "html",
-                  value: `<div 
+                  value: `<div
                   class="callout-title"
                 >
                   <div class="callout-icon">${callouts[calloutType]}</div>
@@ -383,13 +385,14 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           return (tree: Root, file) => {
             const base = pathToRoot(file.data.slug!)
             findAndReplace(tree, tagRegex, (_value: string, tag: string) => {
+              tag = slugTag(tag)
               if (file.data.frontmatter && !file.data.frontmatter.tags.includes(tag)) {
                 file.data.frontmatter.tags.push(tag)
               }
 
               return {
                 type: "link",
-                url: base + `/tags/${slugTag(tag)}`,
+                url: base + `/tags/${tag}`,
                 data: {
                   hProperties: {
                     className: ["tag-link"],
@@ -428,7 +431,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           script: `
           import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
           const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
-          mermaid.initialize({ 
+          mermaid.initialize({
             startOnLoad: false,
             securityLevel: 'loose',
             theme: darkMode ? 'dark' : 'default'
