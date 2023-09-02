@@ -353,5 +353,3 @@ async function fillDocument(index: Document<Item, false>, data: any) {
     id++
   }
 }
-
-// function highlightResultHandler(results: any, )
