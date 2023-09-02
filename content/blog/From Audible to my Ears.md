@@ -1,6 +1,6 @@
 ---
 tags:
-  - on/readiing
+  - on/reading
   - on/audiobooks
   - the-garden-shed
 date: 2022-10-01
