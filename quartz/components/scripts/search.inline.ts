@@ -73,6 +73,7 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
 
 const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
 let prevShortcutHandler: ((e: HTMLElementEventMap["keydown"]) => void) | undefined = undefined
+let currentResultIndex = -1
 document.addEventListener("nav", async (e: unknown) => {
   const currentSlug = (e as CustomEventMap["nav"]).detail.url
 
@@ -82,6 +83,7 @@ document.addEventListener("nav", async (e: unknown) => {
   const searchIcon = document.getElementById("search-icon")
   const searchBar = document.getElementById("search-bar") as HTMLInputElement | null
   const results = document.getElementById("results-container")
+  const resultCards = document.getElementsByClassName("result-card")
   const idDataMap = Object.keys(data) as FullSlug[]
 
   function hideSearch() {
@@ -97,6 +99,7 @@ document.addEventListener("nav", async (e: unknown) => {
     }
 
     searchType = "basic" // reset search type after closing
+    currentResultIndex = -1
   }
 
   function showSearch(searchTypeNew: SearchType) {
@@ -122,9 +125,32 @@ document.addEventListener("nav", async (e: unknown) => {
       // add "#" prefix for tag search
       if (searchBar) searchBar.value = "#"
     } else if (e.key === "Enter") {
-      const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
+      const anchor = document.getElementsByClassName("result-card")[currentResultIndex < 0 ? 0 : currentResultIndex] as HTMLInputElement | null
       if (anchor) {
         anchor.click()
+      }
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault()
+      if (currentResultIndex < resultCards.length - 1) {
+        let el: HTMLElement
+        if (currentResultIndex >= 0) {
+          el = resultCards[currentResultIndex] as HTMLElement
+          el.classList.remove("selected")
+        }
+        currentResultIndex++
+        el = resultCards[currentResultIndex] as HTMLElement
+        el.classList.add("selected")
+      }
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault()
+      console.log("index: ", currentResultIndex)
+      if (currentResultIndex > 0) {
+        let el: HTMLElement
+        el = resultCards[currentResultIndex] as HTMLElement
+        el.classList.remove("selected")
+        currentResultIndex--
+        el = resultCards[currentResultIndex] as HTMLElement
+        el.classList.add("selected")
       }
     }
   }
@@ -225,6 +251,9 @@ document.addEventListener("nav", async (e: unknown) => {
   async function onType(e: HTMLElementEventMap["input"]) {
     let term = (e.target as HTMLInputElement).value
     let searchResults: SimpleDocumentSearchResultSetUnit[]
+
+    // Reset result selection
+    currentResultIndex = -1
 
     if (term.toLowerCase().startsWith("#")) {
       searchType = "tags"
@@ -328,3 +357,5 @@ async function fillDocument(index: Document<Item, false>, data: any) {
     id++
   }
 }
+
+// function highlightResultHandler(results: any, )
