@@ -11,6 +11,7 @@ globalThis.remark_config = remark.options
 
 const config: QuartzConfig = {
   configuration: {
+    defaultDateType: "published",
     pageTitle: "🌱 be-far",
     enableSPA: false,
     enablePopovers: true,

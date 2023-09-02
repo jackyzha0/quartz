@@ -1,6 +1,10 @@
 ---
 title: My Cloud
-tags: ["moderate", "cloud", "essay", "incomplete"]
+tags:
+  - cloud
+  - essay
+  - incomplete
+  - difficulty-moderate
 ---
 A list of things that I do with cloud servers.
 

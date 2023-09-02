@@ -1,6 +1,10 @@
 ---
-title: "The Tale of Lexis+.js"
-tags: ["programming", "productivity", "project", "moderate"]
+title: The Tale of Lexis+.js
+tags:
+  - programming
+  - productivity
+  - project
+  - difficulty-moderate
 ---
 This is one of the first open source contributions I made that I felt proud of. I think it genuinely solves a problem that I and hundreds of others have.
 ## I am faced with a problem:

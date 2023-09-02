@@ -1,6 +1,10 @@
 ---
 title: "Project: Memos"
-tags: ["project", "cloud", "productivity", "moderate"]
+tags:
+  - project
+  - cloud
+  - productivity
+  - difficulty-moderate
 ---
 [usememos/memos](https://github.com/usememos/memos) is another knowledge collection-oriented project, albeit with a slightly different audience to [[Programs I Like/obsidian|Obsidian]].
 

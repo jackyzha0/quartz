@@ -25,6 +25,7 @@ The Backlinks pane is a list of all pages that link to this site in content. Bec
 This should be a mostly complete textual site listing in case, like me, you find the aforementioned [[#What the hell is that spiderweb thing?|Graph View]] a bit too un-navigable for practical use.
 - [[Projects/home|Projects I've worked on]]
 - [[Programs I Like/home|Programs that I like]]
+- [[Essays/home|Long-form, source-citing articles]]
 - [[Misc/home|Miscellaneous writings]]
 
 ### Epistemological disclosure
@@ -39,3 +40,10 @@ It goes without saying that anything herein constitutes my own opinion and not t
 Feel free to properly reference any of the content within in your own gardens or work. Don’t plagiarize. 
 
 **Do not input my work into a generative AI for any purpose, including to train or update the model, explore alternate positions to mine, or to converse with the work.** Keep the moles out of the garden. 
+
+### Privacy/Terms of Use
+- I don't run analytics of any kind on this site.
+- I don't share any of my content with third parties, nor do I consent to third party use of my content which I retain a copyright in.
+	- The sole exception to this policy is that third parties are permitted to link to this webpage in their own content.
+- Comments
+	- The time of posting, username, and comment content are all public facing and stored on the server for the sole purpose of providing a comment service. These are not shared with any third parties except to the extent that someone may access that public facing data through this site.

@@ -1,6 +1,9 @@
 ---
 title: My Computer
-tags: ["productivity", "linux", "moderate"]
+tags:
+  - productivity
+  - linux
+  - difficulty-moderate
 ---
 I run Fedora Linux with the GNOME desktop environment.
 
