@@ -9,7 +9,7 @@ Where the hell do I start with this. It's almost as convoluted and fine-tuned as
 
 ## Appearance
 ### Theme
-Anuppuccin: I already like the [[Garden/Programs I Like/home#Catppuccin|Catppuccin]] ecosystem, and this theme adds interop with a few different plugins as well as major customization potential through [[#Style Settings]]. 
+Anuppuccin: I already like the [[Programs I Like/home#Catppuccin|Catppuccin]] ecosystem, and this theme adds interop with a few different plugins as well as major customization potential through [[#Style Settings]]. 
 ## Plugins
 These are the edits I found worth noting. All can be found through Obsidian's community plugin browser.
 #### Self-hosted LiveSync
