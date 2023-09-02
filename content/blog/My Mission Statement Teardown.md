@@ -1,7 +1,7 @@
 ---
 tags:
   - expand-your-way-of-being
-date: 2022-02-16
+date: 2023-02-16
 aliases:
   - my-mission-statement-teardown
 ---
@@ -29,7 +29,7 @@ My personal version of the [Golden Rule](https://en.wikipedia.org/wiki/Golden_Ru
 
 > I draw on an internal well of fortitude to give strength to myself and others in time of need. 
 
-I use this as a reminder not to give up easily. Sometimes, [as occurred recently](https://quantumgardener.blog/2023/02/12/the-indicators-of-my-impending-burnout/), I can go to far and tap that well dry. Fortitude does not mean I do everything myself. When I need help and it’s hard to ask for, I draw from the well to make the request.
+I use this as a reminder not to give up easily. Sometimes, [[The Indicators of my Impending Burnout|as occurred recently]], I can go to far and tap that well dry. Fortitude does not mean I do everything myself. When I need help and it’s hard to ask for, I draw from the well to make the request.
 
 > I inspire and lead through example.
 
