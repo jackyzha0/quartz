@@ -1,6 +1,9 @@
 ---
 title: "Obsidian: Digital Gardening with Quartz"
-tags: ["meta", "webdev", "moderate"]
+tags:
+  - meta
+  - webdev
+  - difficulty-moderate
 ---
 ...It's this website.
 
@@ -12,3 +15,5 @@ I'll elaborate at some point.
 This was a time and a half to set up RSS for. It used some bastardized form of Atom but with RSS syntax and so neither spec could parse it.
 
 On the bright side, [one PR later](https://github.com/jackyzha0/quartz/pull/407) and Quartz is the only project in the Obsidian ecosystem with an RSS feed. 
+
+[[Projects/Obsidian/quartz-comments|Adding comments to the site]] was enough of a hassle that I consider it a separate project. Work in progress.

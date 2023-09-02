@@ -1,4 +1,6 @@
 ---
 title: "Obsidian: LiveSync"
-tags: ["cloud", "advanced"]
+tags:
+  - cloud
+  - difficulty-advanced
 ---
