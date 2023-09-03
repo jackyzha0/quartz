@@ -3,6 +3,8 @@ import modernStyle from "./styles/explorer.scss"
 
 // @ts-ignore
 import script from "./scripts/explorer.inline"
+import { Data } from "vfile"
+import { ExplorerNode, FileNode } from "./ExplorerNode"
 
 interface Options {
   layout: "modern" | "legacy"
@@ -12,11 +14,21 @@ const defaultOptions: Options = {
   layout: "modern",
 }
 
-function Explorer({ fileData, displayClass }: QuartzComponentProps) {
+function Explorer({ fileData, allFiles, tree }: QuartzComponentProps) {
+  const fileTree = new FileNode("")
+  console.time("Tree")
+  allFiles.forEach(
+    (p) => fileTree.add(p, 1),
+    // p.filePath!.split("/").reduce((o: any, k: string) => (o[k] = o[k] || {}), result),
+  )
+  console.timeEnd("Tree")
+  console.log("---")
+  fileTree.print()
+
   return (
-    <div class={`toc ${displayClass}`}>
-      <button type="button" id="toc">
-        <h3>Table of Contents</h3>
+    <div class={`toc`}>
+      <button type="button" id="explorer">
+        <h3>Explorer</h3>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -34,15 +46,7 @@ function Explorer({ fileData, displayClass }: QuartzComponentProps) {
       </button>
       <div id="toc-content">
         <ul class="overflow">
-          <li class={`depth-1`}>
-            <a href={`#test`}>Test</a>
-          </li>
-          <li class={`depth-1`}>
-            <a href={`#test`}>Test2</a>
-          </li>
-          <li class={`depth-2`}>
-            <a href={`#test`}>Test3</a>
-          </li>
+          <ExplorerNode node={fileTree} />
         </ul>
       </div>
     </div>
@@ -51,30 +55,6 @@ function Explorer({ fileData, displayClass }: QuartzComponentProps) {
 Explorer.css = modernStyle
 Explorer.afterDOMLoaded = script
 
-function LegacyTableOfContents({ fileData }: QuartzComponentProps) {
-  if (!fileData.toc) {
-    return null
-  }
-
-  return (
-    <details id="toc" open>
-      <summary>
-        <h3>Table of Contents</h3>
-      </summary>
-      <ul>
-        {fileData.toc.map((tocEntry) => (
-          <li key={tocEntry.slug} class={`depth-${tocEntry.depth}`}>
-            <a href={`#${tocEntry.slug}`} data-for={tocEntry.slug}>
-              {tocEntry.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </details>
-  )
-}
-
 export default ((opts?: Partial<Options>) => {
-  const layout = opts?.layout ?? defaultOptions.layout
-  return layout === "modern" ? Explorer : LegacyTableOfContents
+  return Explorer
 }) satisfies QuartzComponentConstructor
