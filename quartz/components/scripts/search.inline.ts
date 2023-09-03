@@ -151,7 +151,7 @@ document.addEventListener("nav", async (e: unknown) => {
     } else if (e.key === "ArrowUp") {
       e.preventDefault()
       if (results?.contains(document.activeElement)) {
-        // If an element in results-container already has focus, focus next one
+        // If an element in results-container already has focus, focus previous one
         const prevResult = document.activeElement?.previousElementSibling as HTMLInputElement | null
         if (prevResult) {
           prevResult.focus()
