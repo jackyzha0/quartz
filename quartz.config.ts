@@ -1,13 +1,5 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
-import { OptionType } from "./quartz/plugins/types"
-
-var remark = Plugin.Remark42({ host: "https://be-far.com/comments", site_id: "remark", theme: "dark", no_footer: true })
-declare global {
-  var remark_config: OptionType
-}
-
-globalThis.remark_config = remark.options
 
 const config: QuartzConfig = {
   configuration: {
@@ -17,7 +9,7 @@ const config: QuartzConfig = {
     enablePopovers: true,
     analytics: null,
     baseUrl: "be-far.com",
-    ignorePatterns: ["private", "templates"],
+    ignorePatterns: ["private", "**/templates"],
     theme: {
       typography: {
         header: "Lora",
@@ -26,23 +18,23 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
+          light: "#eff1f5",
+          lightgray: "#dce0e8",
+          gray: "#8c8fa1",
+          darkgray: "#4c4f69",
+          dark: "#4f4f7f",
+          secondary: "#40a02b",
+          tertiary: "#209fb5",
           highlight: "rgba(143, 159, 169, 0.15)",
         },
         darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
+          light: "#1e1e2e",
+          lightgray: "#6c7086",
+          gray: "#a6adc8",
+          darkgray: "#cdd6f4",
+          dark: "#cdd6f4",
+          secondary: "#a6e3a1",
+          tertiary: "#89dceb",
           highlight: "rgba(143, 159, 169, 0.15)",
         },
       },
@@ -61,7 +53,7 @@ const config: QuartzConfig = {
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Latex({ renderEngine: "katex" }),
       Plugin.Description(),
-      remark
+      Plugin.Remark42({ host: "https://be-far.com/comments", site_id: "remark", theme: "dark", no_footer: true }),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
