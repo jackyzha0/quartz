@@ -123,9 +123,15 @@ document.addEventListener("nav", async (e: unknown) => {
       // add "#" prefix for tag search
       if (searchBar) searchBar.value = "#"
     } else if (e.key === "Enter") {
-      const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
-      if (anchor) {
-        anchor.click()
+      // If result has focus, navigate to that one, otherwise pick first result
+      if (results?.contains(document.activeElement)) {
+        const active = document.activeElement as HTMLInputElement
+        active.click()
+      } else {
+        const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
+        if (anchor) {
+          anchor.click()
+        }
       }
     } else if (e.key === "ArrowDown") {
       e.preventDefault()
