@@ -23,6 +23,7 @@ function Explorer({ fileData, allFiles, tree }: QuartzComponentProps) {
   )
   console.timeEnd("Tree")
   console.log("---")
+  fileTree.sort()
   fileTree.print()
 
   return (

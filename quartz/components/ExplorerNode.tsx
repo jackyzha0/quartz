@@ -40,8 +40,25 @@ export class FileNode {
   }
 
   print(depth: number = 0) {
-    console.log("-".repeat(depth), this.name)
+    let folderChar = ""
+    if (!this.file) folderChar = "|"
+    console.log("-".repeat(depth), folderChar, this.name)
     this.children.forEach((e) => e.print(depth + 1))
+  }
+
+  sort() {
+    this.children = this.children.sort((a, b) => {
+      if ((!a.file && !b.file) || (a.file && b.file)) {
+        return a.name.localeCompare(b.name)
+      }
+      if (a.file && !b.file) {
+        return 1
+      } else {
+        return -1
+      }
+    })
+
+    this.children.forEach((e) => e.sort())
   }
 }
 
