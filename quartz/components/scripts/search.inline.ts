@@ -73,7 +73,6 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
 
 const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
 let prevShortcutHandler: ((e: HTMLElementEventMap["keydown"]) => void) | undefined = undefined
-let currentResultIndex = -1
 document.addEventListener("nav", async (e: unknown) => {
   const currentSlug = (e as CustomEventMap["nav"]).detail.url
 
@@ -99,7 +98,6 @@ document.addEventListener("nav", async (e: unknown) => {
     }
 
     searchType = "basic" // reset search type after closing
-    currentResultIndex = -1
   }
 
   function showSearch(searchTypeNew: SearchType) {
@@ -125,28 +123,33 @@ document.addEventListener("nav", async (e: unknown) => {
       // add "#" prefix for tag search
       if (searchBar) searchBar.value = "#"
     } else if (e.key === "Enter") {
-      const anchor = document.getElementsByClassName("result-card")[
-        currentResultIndex < 0 ? 0 : currentResultIndex
-      ] as HTMLInputElement | null
+      const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
       if (anchor) {
         anchor.click()
       }
     } else if (e.key === "ArrowDown") {
       e.preventDefault()
-      // If there are are more elements, select next one
-      if (currentResultIndex < resultCards.length - 1) {
-        // Starts at -1, so only try to get element if index is higher
-        if (currentResultIndex >= 0) {
-          resultCards[currentResultIndex].classList.remove("selected")
+      // When first pressing ArrowDown, results wont contain the active element, so focus first element
+      if (!results?.contains(document.activeElement)) {
+        const firstResult = resultCards[0] as HTMLInputElement | null
+        if (firstResult) {
+          firstResult.focus()
         }
-        // Increment index and add "selected" class
-        resultCards[++currentResultIndex].classList.add("selected")
+      } else {
+        // If an element in results-container already has focus, focus next one
+        const nextResult = document.activeElement?.nextElementSibling as HTMLInputElement | null
+        if (nextResult) {
+          nextResult.focus()
+        }
       }
     } else if (e.key === "ArrowUp") {
       e.preventDefault()
-      if (currentResultIndex > 0) {
-        resultCards[currentResultIndex].classList.remove("selected")
-        resultCards[--currentResultIndex].classList.add("selected")
+      if (results?.contains(document.activeElement)) {
+        // If an element in results-container already has focus, focus next one
+        const prevResult = document.activeElement?.previousElementSibling as HTMLInputElement | null
+        if (prevResult) {
+          prevResult.focus()
+        }
       }
     }
   }
@@ -247,9 +250,6 @@ document.addEventListener("nav", async (e: unknown) => {
   async function onType(e: HTMLElementEventMap["input"]) {
     let term = (e.target as HTMLInputElement).value
     let searchResults: SimpleDocumentSearchResultSetUnit[]
-
-    // Reset result selection
-    currentResultIndex = -1
 
     if (term.toLowerCase().startsWith("#")) {
       searchType = "tags"
