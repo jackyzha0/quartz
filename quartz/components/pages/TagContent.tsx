@@ -60,7 +60,7 @@ function TagContent(props: QuartzComponentProps) {
                 </h2>
                 {content && <p>{content}</p>}
                 <p>
-                  {pages.length} items with this tag.{" "}
+                  {pages.length} item{pages.length == 1 ? "" :"s"} with this tag.{" "}
                   {pages.length > numPages && `Showing first ${numPages}.`}
                 </p>
                 <PageList limit={numPages} {...listProps} />
@@ -80,7 +80,7 @@ function TagContent(props: QuartzComponentProps) {
     return (
       <div class="popover-hint">
         <article>{content}</article>
-        <p>{pages.length} items with this tag.</p>
+        <p>{pages.length} item{pages.length == 1 ? "" :"s"} with this tag.</p>
         <div>
           <PageList {...listProps} />
         </div>
