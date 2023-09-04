@@ -10,9 +10,9 @@ This is enabled as a part of [[Obsidian compatibility]] and can be configured an
 
 ## Syntax
 
-- `[[Path to file]]`: produces a link to `Path to file` with the text `Path to file`
-- `[[Path to file | Here's the title override]]`: produces a link to `Path to file` with the text `Here's the title override`
-- `[[Path to file#Anchor]]`: produces a link to the anchor `Anchor` in the file `Path to file`
+- `[[Path to file]]`: produces a link to `Path to file.md` (or `Path-to-file.md`) with the text `Path to file`
+- `[[Path to file | Here's the title override]]`: produces a link to `Path to file.md` with the text `Here's the title override`
+- `[[Path to file#Anchor]]`: produces a link to the anchor `Anchor` in the file `Path to file.md`
 
 > [!warning]
 > Currently, Quartz does not support block references or note embed syntax.
