@@ -1,3 +1,5 @@
+// @ts-ignore
+import script from "./scripts/explorerNode.inline"
 import { Data } from "vfile"
 
 type DataWrapper = {
@@ -93,7 +95,7 @@ export function ExplorerNode({ node }: ExplorerNodeProps) {
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="fold-button"
+                class="folder-button"
               >
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
