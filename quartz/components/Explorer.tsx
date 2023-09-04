@@ -5,7 +5,7 @@ import explorerStyle from "./styles/explorer.scss"
 import script from "./scripts/explorer.inline"
 import { ExplorerNode, FileNode } from "./ExplorerNode"
 
-function Explorer({ allFiles }: QuartzComponentProps) {
+function Explorer({ allFiles, displayClass }: QuartzComponentProps) {
   // Construct tree from allFiles
   const fileTree = new FileNode("")
   allFiles.forEach((file) => fileTree.add(file, 1))
@@ -14,7 +14,7 @@ function Explorer({ allFiles }: QuartzComponentProps) {
   fileTree.sort()
 
   return (
-    <div class={`toc`}>
+    <div class={`explorer ${displayClass}`}>
       <button type="button" id="explorer">
         <h3>Explorer</h3>
         <svg

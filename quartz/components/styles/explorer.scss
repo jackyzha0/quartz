@@ -53,10 +53,10 @@ ul.overflow::after {
       opacity: 0.75;
     }
   }
+}
 
-  @for $i from 0 through 6 {
-    & .depth-#{$i} {
-      padding-left: calc(1rem * #{$i});
-    }
-  }
+.folder-container {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
 }

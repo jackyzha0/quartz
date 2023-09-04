@@ -5,6 +5,7 @@ type DataWrapper = {
   path: string[]
 }
 
+// Structure to add all files into a tree
 export class FileNode {
   children: FileNode[]
   name: string
@@ -35,10 +36,12 @@ export class FileNode {
     }
   }
 
+  // Add new file to tree
   add(file: Data, splice: number = 0) {
     this.insert({ file, path: file.filePath!.split("/").splice(splice) })
   }
 
+  // Print tree structure (for debugging)
   print(depth: number = 0) {
     let folderChar = ""
     if (!this.file) folderChar = "|"
@@ -46,6 +49,7 @@ export class FileNode {
     this.children.forEach((e) => e.print(depth + 1))
   }
 
+  // Sort order: folders first, then files. Sort folders and files alphabetically
   sort() {
     this.children = this.children.sort((a, b) => {
       if ((!a.file && !b.file) || (a.file && b.file)) {
@@ -76,9 +80,9 @@ export function ExplorerNode({ node }: ExplorerNodeProps) {
           </a>
         </li>
       ) : (
-        <div style={{ flexDirection: "column", display: "flex", alignItems: "left" }}>
+        <div>
           {node.name !== "" && (
-            <div style={{ flexDirection: "row", display: "flex", alignItems: "center" }}>
+            <div class="folder-container">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
