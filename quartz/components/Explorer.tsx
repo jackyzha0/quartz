@@ -45,7 +45,7 @@ function Explorer({ fileData, allFiles, tree }: QuartzComponentProps) {
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </button>
-      <div id="toc-content">
+      <div id="explorer-content">
         <ul class="overflow">
           <ExplorerNode node={fileTree} />
         </ul>

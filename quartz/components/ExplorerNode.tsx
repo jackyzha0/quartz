@@ -64,10 +64,9 @@ export class FileNode {
 
 type ExplorerNodeProps = {
   node: FileNode
-  props?: any
 }
 
-export function ExplorerNode({ node, ...props }: ExplorerNodeProps) {
+export function ExplorerNode({ node }: ExplorerNodeProps) {
   return (
     <>
       {node.file ? (

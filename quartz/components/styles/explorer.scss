@@ -25,11 +25,16 @@ button#explorer {
   }
 }
 
-#toc-content {
+ul.overflow::after {
+  background: none;
+}
+
+#explorer-content {
   list-style: none;
   overflow: hidden;
   max-height: none;
-  transition: max-height 0.5s ease;
+  transition: max-height 0.35s ease;
+  margin-top: 0.5rem;
 
   &.collapsed > .overflow::after {
     opacity: 0;
@@ -37,17 +42,11 @@ button#explorer {
 
   & ul {
     list-style: none;
-    margin: 0.5rem 0;
+    margin: 0.08rem 0;
     padding: 0;
     & > li > a {
       color: var(--dark);
-      opacity: 0.35;
-      transition:
-        0.5s ease opacity,
-        0.3s ease color;
-      &.in-view {
-        opacity: 0.75;
-      }
+      opacity: 0.75;
     }
   }
 
