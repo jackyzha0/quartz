@@ -1,30 +1,17 @@
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
-import modernStyle from "./styles/explorer.scss"
+import explorerStyle from "./styles/explorer.scss"
 
 // @ts-ignore
 import script from "./scripts/explorer.inline"
-import { Data } from "vfile"
 import { ExplorerNode, FileNode } from "./ExplorerNode"
 
-interface Options {
-  layout: "modern" | "legacy"
-}
-
-const defaultOptions: Options = {
-  layout: "modern",
-}
-
-function Explorer({ fileData, allFiles, tree }: QuartzComponentProps) {
+function Explorer({ allFiles }: QuartzComponentProps) {
+  // Construct tree from allFiles
   const fileTree = new FileNode("")
-  console.time("Tree")
-  allFiles.forEach(
-    (p) => fileTree.add(p, 1),
-    // p.filePath!.split("/").reduce((o: any, k: string) => (o[k] = o[k] || {}), result),
-  )
-  console.timeEnd("Tree")
-  console.log("---")
+  allFiles.forEach((file) => fileTree.add(file, 1))
+
+  // Sort tree (folders first, then files (alphabetic))
   fileTree.sort()
-  fileTree.print()
 
   return (
     <div class={`toc`}>
@@ -53,9 +40,7 @@ function Explorer({ fileData, allFiles, tree }: QuartzComponentProps) {
     </div>
   )
 }
-Explorer.css = modernStyle
+Explorer.css = explorerStyle
 Explorer.afterDOMLoaded = script
 
-export default ((opts?: Partial<Options>) => {
-  return Explorer
-}) satisfies QuartzComponentConstructor
+export default (() => Explorer) satisfies QuartzComponentConstructor

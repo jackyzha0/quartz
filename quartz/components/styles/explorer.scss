@@ -25,6 +25,10 @@ button#explorer {
   }
 }
 
+#explorer-content > ul.overflow {
+  height: 400;
+}
+
 ul.overflow::after {
   background: none;
 }

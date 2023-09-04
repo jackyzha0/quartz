@@ -446,7 +446,10 @@ video {
 
 ul.overflow,
 ol.overflow {
-  height: 300px;
+  max-height: 300;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
   overflow-y: auto;
 
   // clearfix
