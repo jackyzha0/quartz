@@ -1,5 +1,4 @@
 // @ts-ignore
-import script from "./scripts/explorerNode.inline"
 import { Data } from "vfile"
 
 type DataWrapper = {
