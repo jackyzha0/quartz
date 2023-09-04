@@ -60,3 +60,13 @@ ul.overflow::after {
   display: flex;
   align-items: center;
 }
+
+.fold-button {
+  color: var(--secondary);
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.fold-button:hover {
+  color: var(--tertiary);
+}
