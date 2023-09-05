@@ -58,6 +58,14 @@ ul.overflow::after {
   }
 }
 
+svg {
+  pointer-events: all;
+}
+
+svg > polyline {
+  pointer-events: none;
+}
+
 .folder-container {
   flex-direction: row;
   display: flex;
