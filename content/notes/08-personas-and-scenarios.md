@@ -6,6 +6,9 @@ sr-ease: 250
 tags: 
 - info203 
 - lecture
+sr-due: 2025-08-26
+sr-interval: 739
+sr-ease: 250
 ---
 
 - [personas-and-scenarios](notes/personas-and-scenarios.md)

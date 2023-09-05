@@ -1,0 +1,3 @@
+[[accelerometer]]
+[[magnetometer]]
+[[gyroscope]]

@@ -1,10 +1,9 @@
 ---
 title: "filter-based-sensor-fusion"
-aliases: filter based sensor fusion
+aliases: filter-based sensor fusion
 tags: HCI, CV
 ---
 
-<% tp.file.cursor(2) %>
 **High pass**
 - remove lower frequencies
 

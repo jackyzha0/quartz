@@ -1,0 +1,6 @@
+---
+title: "Mum"
+aliases: 
+tags: 
+---
+

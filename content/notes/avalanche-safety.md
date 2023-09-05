@@ -1,3 +1,4 @@
+
 ---
 title: "avalanche-safety"
 tags: 
@@ -6,3 +7,7 @@ tags:
 [[avalanche-video-notes]]
 
 [[avalanche-basics]]
+
+## Staying alive in avalanche terrain
+[[avalanche-terrain-management]]
+[[avalance-weather]]

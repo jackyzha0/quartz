@@ -10,14 +10,14 @@ A a form of [[human-computer-interaction]] using a [[virtuality|virtual]] enviro
 | features of XR   |                                                                                |
 | ---------------- | ------------------------------------------------------------------------------ |
 | immersion        | senses                                                                         |
-| [[presence-immersion]]     | spatial/social/co/involvement/realism                                          |
+| [[presence-immersion]]     | spatial/social/co/involvement/realism                                |
 | [[telepresence]] | user can interact with remote environment and feels present in the environment |
 
 | elements of XR     |                                                                   |
 | ------------------ | ----------------------------------------------------------------- |
 | sense augmentation | what information we provide to the senses of the user             |
 | display            | display used to provide these augmentations                       |
-| [[HCI]]                | how can users interaction with  this information in a natural way |
+| [[HCI]]            | how can users interaction with  this information in a natural way |
 | tracking           | tracking location of user                                         |
 
 

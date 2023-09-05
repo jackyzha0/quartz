@@ -11,3 +11,5 @@ Makes use of [[optical-see-through|OST]] and [[video-see-through|VST]] [[head-mo
 - embedded in real environment
 - spatially aligned VR
 - _impression of one single environment_
+
+also should be interactive

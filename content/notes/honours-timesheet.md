@@ -1,5 +1,5 @@
 ---
-title: "hones-timesheet"
+title: "honours-timesheet"
 tags: 
 ---
 
@@ -16,5 +16,20 @@ tags:
 08/08 1000-1159 meeting + install spinnaker + lab setup
 09/08 0700-0845 start OpenCV project
 09/08 1300-1534  HCI meeting + stream video to OpenCV
-11/08 0815-09:30 get files from Jonathan + open cameras in python
-14/08 1120-11:50 light field reading from textbook
+09/08 2100-2140 Meeting with Jonathan
+11/08 0815-0930 get files from Jonathan + open cameras in python
+14/08 1120-1150 light field reading from textbook
+15/08 0930-1130 meeting
+16/08 1019-1050 start calibration in python
+18/09 1608-1825 write (stereo) calibration in CPP\
+22/08 0930-1220 meeting and calibration
+22/08 1312-1541 calibration
+
+-- 27.5 -- 742
+
+23/08 1930-2100 intrinsic calibration working
+05/09 1000-1030 meeting
+
+
+ 
+

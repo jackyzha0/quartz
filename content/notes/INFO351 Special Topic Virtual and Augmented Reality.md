@@ -9,6 +9,8 @@ tags: course, HCI, XR, info351
 # Lectures
 https://hci.otago.ac.nz/ARIVE2020.html
 
+[[pervasive-AR-ethics]]
+
 # Materials
 https://presence-thoughts.blogspot.com
 the world in miniature

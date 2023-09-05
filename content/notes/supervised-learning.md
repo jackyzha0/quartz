@@ -5,7 +5,7 @@ tags: AI
 ---
 
 
-[[machine-learning|machine learning]] where the agent learning a function from inputs to outputs.
+[[machine-learning|machine learning]] where the agent learning a function from inputs to outputs. We choose a hypothesis, and a machine learns the parameters to make the best prediction from that hypothesis.
 
 - a sample of labelled data is given
 - a model mapping input to outputs is chosen
@@ -48,6 +48,6 @@ there is a tradeoff between consistency and **simplicity**. More simple solution
 
 ## classification vs regression 
 From the modelling point of view, there are two important distinctions of the learning tasks: 
-- **classification** – those that involve the model to output a *discrete* values from a finite set of choices (related to decision making) For example: Given images of two faces – are the individuals related or not? 
+- **[[classification]]** – those that involve the model to output *discrete* values from a finite set of choices.
 	- [[decision-tree]]
-- **regression** – those that involve the model to output a *continuous* (real number) value For example: Given images of two faces – what is the genetic distance between two individuals?
+- **[[regression]]** – those that involves the model to output a *continuous* (real number) value

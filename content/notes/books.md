@@ -1,0 +1,49 @@
+# Books
+- 2022
+	- The diamond age
+	- [The Story of Man](notes/the-story-of-man.md)
+	- [The Art of War](notes/the-art-of-war.md)
+	- [The Friar and the Cipher](notes/The-Friar-and-the-Cipher)
+	- The Island of sea women, lisa see
+	- Reminiscences of a stock operator
+	- Out of the flames, lawrence and nancy goldstone
+	- Talking to strangers, malcolm gladwell
+	- The overstory, richard powers
+	- Ligeia, edgar allan poe
+	- The stranger, albert camus
+	- What if?, randall monroe
+	- The age of reason - jean paul Sartre
+	- Jane Eyre, charlotte bronte
+	- a midsummer nights dream, shakespeare
+	- the amazing maurice and his educated rodents, terry pratchet
+	- the ocean at the end of the lane
+	- the curious case of the dog in the night time
+	- cryptonomicon, neal stephenson
+	- the secret history of joan of arc
+	- thinking fast and slow
+	- a checklist manifesto
+	- the book of tea
+	- norwegian wood
+	- the life of a stupid man, rashomon
+	- nocturnes
+	- the fall
+	- star
+	- A psalm for the wild built
+	- a prayer for the crown shy
+	- convenience store woman
+	- 
+- current
+	- the life of pi
+	- the worm forgives the plough
+	- kimono
+	- 
+- future
+	- the second sex, simone de beauvoir
+	- actual air david berman
+	- woman in the dunes
+	- sophies world
+	- on the trail of genghis khan
+	- the magic mountain
+	- the one straw revolution
+- author 
+- 

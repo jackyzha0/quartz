@@ -64,3 +64,5 @@ creating FS demo
 - `# mount -o loop /dev/loop0 /loop`
 - `# mount | grep loop`
 
+
+

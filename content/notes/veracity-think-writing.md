@@ -3,7 +3,6 @@ title: "think-writing"
 tags: 
 ---
 
-
 - [[veracity-week01]]
 - [[veracity-week02]]
 - [[veracity-week03]]

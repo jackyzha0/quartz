@@ -5,9 +5,12 @@ tags: meeting, hci, hons
 ---
 
 Questions:
-- can i uninstall old versions of visual studio
-- any ideas why I cant log in my student account?
-- how can i free up some disk space
+- [x] can i uninstall old versions of visual studio
+	- [ ] not sure. not realy any reason to though
+- [x] any ideas why I cant log in my student account?
+	- [ ] computer not connected to uni network
+- [x] how can i free up some disk space. 
+	- [ ] get new hard drive/new computer
 
 
 some python thing to view cameras

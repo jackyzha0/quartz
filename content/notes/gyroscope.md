@@ -13,5 +13,4 @@ tags: sensor, CV, HCI, hardware
 - "orientation can be computed from the angular rate that is detected by the gyroscope, expressed in rad/s [deg/s] on 3 axis"
 
 ![[gyroscope-MEMS]]
-
 ![[gyroscope-drift]]

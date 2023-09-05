@@ -9,4 +9,3 @@ A law of software [[project-management]]. States that adding more people to a ta
 “When schedule slippage is recognized, the (natural and traditional) response is to add manpower. Like dousing a fire with gasoline, this makes matters worse, much worse. More fire requires more gasoline, and thus begins a regenerative cycle which ends in disaster.” (Brooks)
 
 **Adding manpower to a late software project will make it later**
-

@@ -5,6 +5,18 @@ supervisor: tobias langlotz
 project-name:
 ---
 
+## Plan
+- Try to record some data from the cameras
+- Initial approach: Light field with no neural network
+	- Unity route vs Non Unity route
+		- Using textures (?) Jacobs way of doing it was best
+		- Why use unity
+		- Need to do both at some point anyway (?)
+	- Live-stream vs Recorded
+		- Recorded for PoC
+	- Calibration
+		- 
+
 ## Meetings
 [[hons-meet-1107]]
 [[arno-meet-1707]]
@@ -16,7 +28,7 @@ project-name:
 [[NeRFs]]
 [[SIREN]]
 [[ChromaGlasses]]
-[[Eye-Perspective View Management for OSTHMDs]]'
+[[Eye-Perspective View Management for OSTHMDs]]
 [[light-field]]
 
 ## Time

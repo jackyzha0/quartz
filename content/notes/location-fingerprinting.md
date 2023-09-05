@@ -1,4 +1,4 @@
-- method of mapping wifi APs to geographic/topological locations
+- method of mapping wifi APs to [[geographic-location]]s/[[topological-location]]s
 
 **method**
 - first phase: radio map creation example
