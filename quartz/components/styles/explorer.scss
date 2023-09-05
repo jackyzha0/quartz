@@ -48,9 +48,10 @@ ul.overflow::after {
     list-style: none;
     margin: 0.08rem 0;
     padding: 0;
-    transition: transform 0.35s ease;
-    transition: opacity 0.35s ease;
-    transition: max-height 0.35s ease;
+    transition:
+      max-height 0.35s ease,
+      transform 0.35s ease,
+      opacity 0.2s ease;
     & > li > a {
       color: var(--dark);
       opacity: 0.75;
@@ -110,4 +111,8 @@ svg > polyline {
 
 .folder-icon:hover {
   color: var(--tertiary);
+}
+
+.no-pointer {
+  pointer-events: none !important;
 }

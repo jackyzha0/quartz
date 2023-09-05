@@ -32,9 +32,18 @@ function toggleFolder(evt: any) {
 
   // Collapse folder container
   const isCollapsed = folderContainer.style.maxHeight === "0px"
-  console.log(isCollapsed)
+  // FolderContainer: UL
   folderContainer.style.opacity = isCollapsed ? "1" : "0"
   folderContainer.style.maxHeight = isCollapsed ? folderContainer.scrollHeight + "px" : "0px"
+  folderContainer.classList.toggle("no-pointer")
+
+  // Set no-pointer for all child items recursively
+  Array.prototype.forEach.call(
+    folderContainer.getElementsByClassName("clickable"),
+    function (item) {
+      item.classList.toggle("no-pointer")
+    },
+  )
 }
 
 function setupExplorer() {

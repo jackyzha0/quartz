@@ -3,7 +3,6 @@ import { Data } from "vfile"
 
 export interface Options {
   title: string
-  collapseFoldersDefault: boolean
   folderBehavior: "collapse" | "link"
 }
 
@@ -102,7 +101,7 @@ export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="folder-icon"
+                class="folder-icon clickable"
               >
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -112,7 +111,7 @@ export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
                     {node.name}
                   </a>
                 ) : (
-                  <button class="folder-button">
+                  <button class="folder-button clickable">
                     <h3>{node.name}</h3>
                   </button>
                 )}

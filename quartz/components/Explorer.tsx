@@ -9,7 +9,6 @@ import { GlobalConfiguration } from "../cfg"
 // Options interface defined in `ExplorerNode` to avoid circular dependency
 const defaultOptions = (cfg: GlobalConfiguration): Options => ({
   title: "Explorer",
-  collapseFoldersDefault: true,
   folderBehavior: "collapse",
 })
 export default ((userOpts?: Partial<Options>) => {
@@ -26,12 +25,7 @@ export default ((userOpts?: Partial<Options>) => {
 
     return (
       <div class={`explorer ${displayClass}`}>
-        <button
-          type="button"
-          id="explorer"
-          data-collapse={opts.collapseFoldersDefault}
-          data-behavior={opts.folderBehavior}
-        >
+        <button type="button" id="explorer" data-behavior={opts.folderBehavior}>
           <h3>{opts.title}</h3>
           <svg
             xmlns="http://www.w3.org/2000/svg"
