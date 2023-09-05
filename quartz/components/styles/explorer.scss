@@ -47,10 +47,10 @@ ul.overflow::after {
   & ul {
     list-style: none;
     margin: 0.08rem 0;
+    padding: 0;
     transition: transform 0.35s ease;
     transition: opacity 0.35s ease;
     transition: max-height 0.35s ease;
-    padding: 0;
     & > li > a {
       color: var(--dark);
       opacity: 0.75;
@@ -78,8 +78,6 @@ svg > polyline {
   cursor: pointer;
   transition: transform 0.3s ease;
   backface-visibility: visible;
-  width: 18;
-  height: 18;
 }
 
 .collapsed-folder {
