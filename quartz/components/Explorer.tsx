@@ -3,20 +3,19 @@ import explorerStyle from "./styles/explorer.scss"
 
 // @ts-ignore
 import script from "./scripts/explorer.inline"
-import { ExplorerNode, FileNode } from "./ExplorerNode"
+import { ExplorerNode, FileNode, Options } from "./ExplorerNode"
 import { GlobalConfiguration } from "../cfg"
 
-interface Options {
-  title: string
-}
-
+// Options interface defined in `ExplorerNode` to avoid circular dependency
 const defaultOptions = (cfg: GlobalConfiguration): Options => ({
   title: "Explorer",
+  collapseFoldersDefault: true,
+  folderBehavior: "collapse",
 })
 export default ((userOpts?: Partial<Options>) => {
   function Explorer({ allFiles, displayClass, cfg }: QuartzComponentProps) {
     // Parse config
-    const opts = { ...defaultOptions(cfg), ...userOpts }
+    const opts: Options = { ...defaultOptions(cfg), ...userOpts }
 
     // Construct tree from allFiles
     const fileTree = new FileNode("")
@@ -27,7 +26,12 @@ export default ((userOpts?: Partial<Options>) => {
 
     return (
       <div class={`explorer ${displayClass}`}>
-        <button type="button" id="explorer">
+        <button
+          type="button"
+          id="explorer"
+          data-collapse={opts.collapseFoldersDefault}
+          data-behavior={opts.folderBehavior}
+        >
           <h3>{opts.title}</h3>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +50,7 @@ export default ((userOpts?: Partial<Options>) => {
         </button>
         <div id="explorer-content">
           <ul class="overflow">
-            <ExplorerNode node={fileTree} />
+            <ExplorerNode node={fileTree} opts={opts} />
           </ul>
         </div>
       </div>
