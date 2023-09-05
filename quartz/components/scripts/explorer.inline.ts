@@ -60,6 +60,7 @@ function setupExplorer() {
   if (explorer) {
     // Get config
     const collapseBehavior = explorer.dataset.behavior
+    const shouldCollapseFolders = explorer.dataset.collapsed === "collapsed"
     // If behavior is collapse, set up click handlers on folder
     if (collapseBehavior === "collapse") {
       Array.prototype.forEach.call(

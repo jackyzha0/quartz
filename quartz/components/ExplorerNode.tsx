@@ -3,7 +3,8 @@ import { Data } from "vfile"
 
 export interface Options {
   title: string
-  folderBehavior: "collapse" | "link"
+  folderDefaultState: "collapsed" | "open"
+  folderClickBehavior: "collapse" | "link"
 }
 
 type DataWrapper = {
@@ -18,6 +19,7 @@ export class FileNode {
   file: Data | null
 
   constructor(name: string, file?: Data) {
+    // TODO: add depth
     this.children = []
     this.name = name
     this.file = file ?? null
@@ -78,7 +80,8 @@ type ExplorerNodeProps = {
 }
 
 export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
-  const folderBehavior = opts.folderBehavior
+  const folderBehavior = opts.folderClickBehavior
+  const collapseFolders = opts.folderDefaultState === "collapsed"
   return (
     <>
       {node.file ? (
@@ -101,7 +104,7 @@ export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="folder-icon clickable"
+                class={`${collapseFolders && "collapsed-folder"} folder-icon clickable`}
               >
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -118,7 +121,12 @@ export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
               </li>
             </div>
           )}
-          <ul style={{ paddingLeft: node.name !== "" ? "1.4rem" : "0" }} class="content">
+          <ul
+            style={{
+              paddingLeft: node.name !== "" ? "1.4rem" : "0",
+            }}
+            class="content"
+          >
             {node.children.map((childNode, i) => (
               <ExplorerNode node={childNode} key={i} opts={opts} />
             ))}

@@ -9,7 +9,8 @@ import { GlobalConfiguration } from "../cfg"
 // Options interface defined in `ExplorerNode` to avoid circular dependency
 const defaultOptions = (cfg: GlobalConfiguration): Options => ({
   title: "Explorer",
-  folderBehavior: "collapse",
+  folderClickBehavior: "collapse",
+  folderDefaultState: "collapsed",
 })
 export default ((userOpts?: Partial<Options>) => {
   function Explorer({ allFiles, displayClass, cfg }: QuartzComponentProps) {
@@ -22,10 +23,16 @@ export default ((userOpts?: Partial<Options>) => {
 
     // Sort tree (folders first, then files (alphabetic))
     fileTree.sort()
+    // fileTree.print()
 
     return (
       <div class={`explorer ${displayClass}`}>
-        <button type="button" id="explorer" data-behavior={opts.folderBehavior}>
+        <button
+          type="button"
+          id="explorer"
+          data-behavior={opts.folderClickBehavior}
+          data-collapsed={opts.folderDefaultState}
+        >
           <h3>{opts.title}</h3>
           <svg
             xmlns="http://www.w3.org/2000/svg"
