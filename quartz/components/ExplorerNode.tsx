@@ -118,7 +118,7 @@ export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
               </li>
             </div>
           )}
-          <ul style={{ paddingLeft: node.name !== "" ? "1.4rem" : "0" }}>
+          <ul style={{ paddingLeft: node.name !== "" ? "1.4rem" : "0" }} class="content">
             {node.children.map((childNode, i) => (
               <ExplorerNode node={childNode} key={i} opts={opts} />
             ))}

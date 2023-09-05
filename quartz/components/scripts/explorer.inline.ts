@@ -32,9 +32,16 @@ function toggleFolder(evt: any) {
 
   // Collapse folder container
   const isCollapsed = folderContainer.style.maxHeight === "0px"
-  // FolderContainer: UL
+
+  // Calculate total height (height of content managed by event + height of all children)
+  let totalHeight = folderContainer.scrollHeight
+  Array.prototype.forEach.call(folderContainer.getElementsByClassName("content"), function (item) {
+    totalHeight += item.scrollHeight
+  })
+
+  // FolderContainer: <ul>
   folderContainer.style.opacity = isCollapsed ? "1" : "0"
-  folderContainer.style.maxHeight = isCollapsed ? folderContainer.scrollHeight + "px" : "0px"
+  folderContainer.style.maxHeight = isCollapsed ? totalHeight + "px" : "0px"
   folderContainer.classList.toggle("no-pointer")
 
   // Set no-pointer for all child items recursively
