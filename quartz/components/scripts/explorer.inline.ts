@@ -1,3 +1,9 @@
+import { FileNode } from "../ExplorerNode"
+
+// Current filetree
+// TODO: fix type (should be folder structure)
+let fileTree: FileNode
+
 function toggleExplorer(this: HTMLElement) {
   // Toggle collapsed state of entire explorer
   this.classList.toggle("collapsed")
@@ -13,6 +19,7 @@ function toggleFolder(evt: any) {
   // Check if target was svg icon or button
   const isSvg = target.nodeName === "svg"
 
+  // TODO: merge all if (svg) paths
   if (isSvg) {
     // If icon was pressed, rotate icon
     target.classList.toggle("collapsed-folder")
@@ -20,33 +27,40 @@ function toggleFolder(evt: any) {
     target.parentElement?.previousElementSibling?.classList.toggle("collapsed-folder")
   }
 
-  let folderContainer: HTMLElement
+  let childFolderContainer: HTMLElement
 
   // Get correct relative container
   if (isSvg) {
-    folderContainer = target.parentElement?.nextSibling as HTMLElement
+    childFolderContainer = target.parentElement?.nextSibling as HTMLElement
   } else {
-    folderContainer = target.parentElement?.parentElement?.nextElementSibling as HTMLElement
+    childFolderContainer = target.parentElement?.parentElement?.nextElementSibling as HTMLElement
   }
-  if (!folderContainer) return
+  if (!childFolderContainer) return
+
+  // const after = getDeepValue(fileTree, clickFolderPath.substring(1))
+  // console.log("After: ", after)
 
   // Collapse folder container
-  const isCollapsed = folderContainer.style.maxHeight === "0px"
+  const isCollapsed = childFolderContainer.style.maxHeight === "0px"
 
   // Calculate total height (height of content managed by event + height of all children)
-  let totalHeight = folderContainer.scrollHeight
-  Array.prototype.forEach.call(folderContainer.getElementsByClassName("content"), function (item) {
-    totalHeight += item.scrollHeight
-  })
+  // TODO: figure out max height issue for outer
+  let totalHeight = childFolderContainer.scrollHeight
+  Array.prototype.forEach.call(
+    childFolderContainer.getElementsByClassName("content"),
+    function (item) {
+      totalHeight += item.scrollHeight
+    },
+  )
 
   // FolderContainer: <ul>
-  folderContainer.style.opacity = isCollapsed ? "1" : "0"
-  folderContainer.style.maxHeight = isCollapsed ? totalHeight + "px" : "0px"
-  folderContainer.classList.toggle("no-pointer")
+  childFolderContainer.style.opacity = isCollapsed ? "1" : "0"
+  childFolderContainer.style.maxHeight = isCollapsed ? totalHeight + "px" : "0px"
+  childFolderContainer.classList.toggle("no-pointer")
 
   // Set no-pointer for all child items recursively
   Array.prototype.forEach.call(
-    folderContainer.getElementsByClassName("clickable"),
+    childFolderContainer.getElementsByClassName("clickable"),
     function (item) {
       if (isCollapsed) {
         item.classList.remove("no-pointer")
@@ -55,17 +69,40 @@ function toggleFolder(evt: any) {
       }
     },
   )
+
+  // Extract folderName by going to parent and grabbing first with class "folder-title" (if you dont go to parent, you only target sub folders)
+  // const folderName =
+  //   childFolderContainer.parentElement?.getElementsByClassName("folder-title")[0].textContent
+  // console.log("Folder container: ", folderName)
+  let currentFolderParent: HTMLElement
+  if (isSvg) {
+    currentFolderParent = target.nextElementSibling as HTMLElement
+  } else {
+    currentFolderParent = target.parentElement as HTMLElement
+  }
+  const clickFolderPath = currentFolderParent.dataset.folderpath as string
+
+  // Remove leading "/"
+  const fullFolderPath = clickFolderPath.substring(1)
+  toggleVisibility(fileTree, fullFolderPath)
+
+  const stringifiedFileTree = JSON.stringify(fileTree)
+  localStorage.setItem("fileTree", stringifiedFileTree)
 }
 
 function setupExplorer() {
   // Set click handler for collapsing entire explorer
   const explorer = document.getElementById("explorer")
 
+  const storageTree = localStorage.getItem("fileTree")
+
+  console.log("Storage tree: ", storageTree)
+
   if (explorer) {
     // Get config
     const collapseBehavior = explorer.dataset.behavior
-    const shouldCollapseFolders = explorer.dataset.collapsed === "collapsed"
-    // If behavior is collapse, set up click handlers on folder
+    fileTree = JSON.parse(explorer.dataset.tree as string)
+
     if (collapseBehavior === "collapse") {
       Array.prototype.forEach.call(
         document.getElementsByClassName("folder-button"),
@@ -90,3 +127,25 @@ window.addEventListener("resize", setupExplorer)
 document.addEventListener("nav", () => {
   setupExplorer()
 })
+
+const getDeepValue = (obj: any, path: string) => path.split("/").reduce((a, v) => a[v], obj)
+
+/**
+ * Toggles visibility of a folder
+ * @param obj tree of folders (generated from `FileNode.getFolders()`)
+ * @param path path to folder (e.g. 'advanced/more/more2')
+ */
+const toggleVisibility = (obj: any, path: string) => {
+  const keys = path.split("/")
+  const lastKey = keys.pop() as string
+
+  let currentObj = obj
+  for (const key of keys) {
+    if (!currentObj[key]) {
+      currentObj[key] = {}
+    }
+    currentObj = currentObj[key]
+  }
+
+  currentObj[lastKey].collapsed = !currentObj[lastKey].collapsed
+}

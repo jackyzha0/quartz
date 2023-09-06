@@ -59,6 +59,25 @@ export class FileNode {
     this.children.forEach((e) => e.print(depth + 1))
   }
 
+  /**
+   * Convert tree to new tree containing the same structure,
+   * but having the folder name as key and the "collapsed" prop
+   * @param isCollapsed wether the folders should be collapsed by default or not
+   * @returns object containing folder structure with collapsed state
+   */
+  getFolders(isCollapsed: boolean): object {
+    const folders: any = {}
+
+    for (const child of this.children) {
+      if (!child.file) {
+        folders[child.name] = child.getFolders(isCollapsed)
+        folders[child.name].collapsed = isCollapsed
+      }
+    }
+
+    return folders
+  }
+
   // Sort order: folders first, then files. Sort folders and files alphabetically
   sort() {
     this.children = this.children.sort((a, b) => {
@@ -134,18 +153,18 @@ export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
               {/* render <a> tag if folderBehavior is "link", otherwise render <button> with collapse click event */}
-              <li key={node.name} class="no-pointer">
+              <li key={node.name} class="no-pointer" data-folderpath={folderPath}>
                 {folderBehavior === "link" ? (
                   <a
                     href={`${folderPath}`}
                     data-for={node.name}
-                    class={`clickable ${isInvisInner ? "no-pointer" : ""}`}
+                    class={`clickable folder-title ${isInvisInner ? "no-pointer" : ""}`}
                   >
                     {node.name}
                   </a>
                 ) : (
                   <button class={`folder-button clickable ${isInvisInner ? "no-pointer" : ""}`}>
-                    <h3>{node.name}</h3>
+                    <h3 class="folder-title">{node.name}</h3>
                   </button>
                 )}
               </li>
@@ -159,7 +178,7 @@ export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
             style={{
               paddingLeft: node.name !== "" ? "1.4rem" : "0",
               opacity: isInvisOuter ? "0" : "1",
-              maxHeight: isInvisOuter ? "0" : "inherit",
+              maxHeight: node.name !== "" && isInvisOuter ? "0" : "none",
             }}
             class="content"
           >
