@@ -94,14 +94,17 @@ export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
     folderPath = `${pathOld}/${node.name}`
   }
 
+  const isInvisInner = node.depth > 1 && collapseFolders
+  const isInvisOuter = node.depth > 0 && collapseFolders
+
   return (
-    <div class={`${node.depth > 0 ? "no-pointer" : ""}`}>
+    <div class={`${isInvisOuter ? "no-pointer" : ""}`}>
       {node.file ? (
         <li key={node.file.slug} class="no-pointer">
           <a
             href={`/${node.file.slug}`}
             data-for={node.file.slug}
-            class={`clickable ${node.depth > 1 ? "no-pointer" : ""}`}
+            class={`clickable ${isInvisInner ? "no-pointer" : ""}`}
           >
             {node.file.frontmatter?.title}
           </a>
@@ -109,7 +112,7 @@ export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
       ) : (
         <div>
           {node.name !== "" && (
-            <div class={`folder-container ${node.depth > 1 ? "no-pointer" : ""}`}>
+            <div class={`folder-container ${isInvisInner ? "no-pointer" : ""}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -121,7 +124,7 @@ export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class={`${collapseFolders && "collapsed-folder"} folder-icon clickable ${
-                  node.depth > 1 ? "no-pointer" : ""
+                  isInvisInner ? "no-pointer" : ""
                 }`}
               >
                 <polyline points="6 9 12 15 18 9"></polyline>
@@ -131,12 +134,12 @@ export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
                   <a
                     href={`${folderPath}`}
                     data-for={node.name}
-                    class={`clickable ${node.depth > 1 ? "no-pointer" : ""}`}
+                    class={`clickable ${isInvisInner ? "no-pointer" : ""}`}
                   >
                     {node.name}
                   </a>
                 ) : (
-                  <button class={`folder-button clickable ${node.depth > 1 ? "no-pointer" : ""}`}>
+                  <button class={`folder-button clickable ${isInvisInner ? "no-pointer" : ""}`}>
                     <h3>{node.name}</h3>
                   </button>
                 )}
@@ -146,8 +149,8 @@ export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
           <ul
             style={{
               paddingLeft: node.name !== "" ? "1.4rem" : "0",
-              opacity: node.depth > 0 && collapseFolders ? "0" : "1",
-              maxHeight: node.depth > 0 && collapseFolders ? "0" : "inherit",
+              opacity: isInvisOuter ? "0" : "1",
+              maxHeight: isInvisOuter ? "0" : "inherit",
             }}
             class="content"
           >
