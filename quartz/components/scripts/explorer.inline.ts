@@ -48,7 +48,11 @@ function toggleFolder(evt: any) {
   Array.prototype.forEach.call(
     folderContainer.getElementsByClassName("clickable"),
     function (item) {
-      item.classList.toggle("no-pointer")
+      if (isCollapsed) {
+        item.classList.remove("no-pointer")
+      } else {
+        item.classList.add("no-pointer")
+      }
     },
   )
 }

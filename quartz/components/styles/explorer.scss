@@ -52,9 +52,11 @@ ul.overflow::after {
       max-height 0.35s ease,
       transform 0.35s ease,
       opacity 0.2s ease;
-    & > li > a {
+    & div > li > a,
+    & li > a {
       color: var(--dark);
       opacity: 0.75;
+      pointer-events: all;
     }
   }
 }
@@ -73,7 +75,8 @@ svg > polyline {
   align-items: center;
   user-select: none;
 
-  & > li > button {
+  & li > button,
+  & li {
     color: var(--dark);
     background-color: transparent;
     border: none;
@@ -85,8 +88,9 @@ svg > polyline {
     align-items: center;
     pointer-events: all;
 
-    & > h3 {
-      font-size: 0.9rem;
+    & h3,
+    a {
+      font-size: 0.95rem;
       display: inline-block;
       color: var(--secondary);
       font-weight: 600;

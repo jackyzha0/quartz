@@ -83,19 +83,23 @@ type ExplorerNodeProps = {
 
 export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
   const folderBehavior = opts.folderClickBehavior
-  const collapseFolders = opts.folderDefaultState === "collapsed"
+  const collapseFolders = opts.folderDefaultState !== "collapsed"
   return (
-    <>
+    <div class={`${node.depth > 0 ? "no-pointer" : ""}`}>
       {node.file ? (
-        <li key={node.file.slug}>
-          <a href={`/${node.file.slug}`} data-for={node.file.slug}>
+        <li key={node.file.slug} class="no-pointer">
+          <a
+            href={`/${node.file.slug}`}
+            data-for={node.file.slug}
+            class={`clickable ${node.depth > 1 ? "no-pointer" : ""}`}
+          >
             {node.file.frontmatter?.title}
           </a>
         </li>
       ) : (
         <div>
           {node.name !== "" && (
-            <div class="folder-container">
+            <div class={`folder-container ${node.depth > 1 ? "no-pointer" : ""}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -106,17 +110,19 @@ export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class={`${collapseFolders && "collapsed-folder"} folder-icon clickable`}
+                class={`${collapseFolders && "collapsed-folder"} folder-icon clickable ${
+                  node.depth > 1 ? "no-pointer" : ""
+                }`}
               >
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
-              <li key={node.name}>
+              <li key={node.name} class="no-pointer">
                 {folderBehavior === "link" ? (
                   <a href={`/${node.name}`} data-for={node.name}>
                     {node.name}
                   </a>
                 ) : (
-                  <button class="folder-button clickable">
+                  <button class={`folder-button clickable ${node.depth > 1 ? "no-pointer" : ""}`}>
                     <h3>{node.name}</h3>
                   </button>
                 )}
@@ -126,6 +132,8 @@ export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
           <ul
             style={{
               paddingLeft: node.name !== "" ? "1.4rem" : "0",
+              opacity: node.depth > 0 && !collapseFolders ? "0" : "1",
+              maxHeight: node.depth > 0 && !collapseFolders ? "0" : "inherit",
             }}
             class="content"
           >
@@ -135,6 +143,6 @@ export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
           </ul>
         </div>
       )}
-    </>
+    </div>
   )
 }
