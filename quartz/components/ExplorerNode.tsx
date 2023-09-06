@@ -17,43 +17,45 @@ export class FileNode {
   children: FileNode[]
   name: string
   file: Data | null
+  depth: number
 
-  constructor(name: string, file?: Data) {
-    // TODO: add depth
+  constructor(name: string, file?: Data, depth?: number) {
     this.children = []
     this.name = name
     this.file = file ?? null
+    this.depth = depth ?? 0
   }
 
-  private insert(file: DataWrapper) {
+  private insert(file: DataWrapper, depth: number) {
+    this.depth = ++depth
     if (file.path.length === 1) {
-      this.children.push(new FileNode(file.file.frontmatter!.title, file.file))
+      this.children.push(new FileNode(file.file.frontmatter!.title, file.file, this.depth + 1))
     } else {
       const next = file.path[0]
       file.path = file.path.splice(1)
       for (const child of this.children) {
         if (child.name === next) {
-          child.insert(file)
+          child.insert(file, this.depth)
           return
         }
       }
 
       const newChild = new FileNode(next)
-      newChild.insert(file)
+      newChild.insert(file, this.depth)
       this.children.push(newChild)
     }
   }
 
   // Add new file to tree
   add(file: Data, splice: number = 0) {
-    this.insert({ file, path: file.filePath!.split("/").splice(splice) })
+    this.insert({ file, path: file.filePath!.split("/").splice(splice) }, -1)
   }
 
   // Print tree structure (for debugging)
   print(depth: number = 0) {
     let folderChar = ""
     if (!this.file) folderChar = "|"
-    console.log("-".repeat(depth), folderChar, this.name)
+    console.log("-".repeat(depth), folderChar, this.name, this.depth)
     this.children.forEach((e) => e.print(depth + 1))
   }
 
