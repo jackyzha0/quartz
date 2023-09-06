@@ -52,8 +52,7 @@ ul.overflow::after {
       max-height 0.35s ease,
       transform 0.35s ease,
       opacity 0.2s ease;
-    & div > li > a,
-    & li > a {
+    & div > li > a {
       color: var(--dark);
       opacity: 0.75;
       pointer-events: all;
@@ -75,8 +74,19 @@ svg > polyline {
   align-items: center;
   user-select: none;
 
-  & li > button,
-  & li {
+  & li > a {
+    // other selector is more specific, needs important
+    color: var(--secondary) !important;
+    opacity: 1 !important;
+    font-size: 1.05rem !important;
+  }
+
+  & li > a:hover {
+    // other selector is more specific, needs important
+    color: var(--tertiary) !important;
+  }
+
+  & li > button {
     color: var(--dark);
     background-color: transparent;
     border: none;
@@ -88,8 +98,7 @@ svg > polyline {
     align-items: center;
     pointer-events: all;
 
-    & h3,
-    a {
+    & h3 {
       font-size: 0.95rem;
       display: inline-block;
       color: var(--secondary);

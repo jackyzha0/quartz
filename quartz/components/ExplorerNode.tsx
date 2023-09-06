@@ -118,7 +118,11 @@ export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
               </svg>
               <li key={node.name} class="no-pointer">
                 {folderBehavior === "link" ? (
-                  <a href={`/${node.name}`} data-for={node.name}>
+                  <a
+                    href={`/${node.name}`}
+                    data-for={node.name}
+                    class={`clickable ${node.depth > 1 ? "no-pointer" : ""}`}
+                  >
                     {node.name}
                   </a>
                 ) : (
