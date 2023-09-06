@@ -79,11 +79,21 @@ export class FileNode {
 type ExplorerNodeProps = {
   node: FileNode
   opts: Options
+  fullPath?: string
 }
 
-export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
+export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
+  // Get options
   const folderBehavior = opts.folderClickBehavior
   const collapseFolders = opts.folderDefaultState === "collapsed"
+
+  // Calculate current folderPath
+  let pathOld = fullPath ? fullPath : ""
+  let folderPath = ""
+  if (node.name !== "") {
+    folderPath = `${pathOld}/${node.name}`
+  }
+
   return (
     <div class={`${node.depth > 0 ? "no-pointer" : ""}`}>
       {node.file ? (
@@ -119,7 +129,7 @@ export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
               <li key={node.name} class="no-pointer">
                 {folderBehavior === "link" ? (
                   <a
-                    href={`/${node.name}`}
+                    href={`${folderPath}`}
                     data-for={node.name}
                     class={`clickable ${node.depth > 1 ? "no-pointer" : ""}`}
                   >
@@ -142,7 +152,7 @@ export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
             class="content"
           >
             {node.children.map((childNode, i) => (
-              <ExplorerNode node={childNode} key={i} opts={opts} />
+              <ExplorerNode node={childNode} key={i} opts={opts} fullPath={folderPath} />
             ))}
           </ul>
         </div>
