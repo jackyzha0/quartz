@@ -83,7 +83,7 @@ type ExplorerNodeProps = {
 
 export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
   const folderBehavior = opts.folderClickBehavior
-  const collapseFolders = opts.folderDefaultState !== "collapsed"
+  const collapseFolders = opts.folderDefaultState === "collapsed"
   return (
     <div class={`${node.depth > 0 ? "no-pointer" : ""}`}>
       {node.file ? (
@@ -132,8 +132,8 @@ export function ExplorerNode({ node, opts }: ExplorerNodeProps) {
           <ul
             style={{
               paddingLeft: node.name !== "" ? "1.4rem" : "0",
-              opacity: node.depth > 0 && !collapseFolders ? "0" : "1",
-              maxHeight: node.depth > 0 && !collapseFolders ? "0" : "inherit",
+              opacity: node.depth > 0 && collapseFolders ? "0" : "1",
+              maxHeight: node.depth > 0 && collapseFolders ? "0" : "inherit",
             }}
             class="content"
           >
