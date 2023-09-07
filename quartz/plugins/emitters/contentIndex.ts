@@ -29,7 +29,7 @@ const defaultOptions: Options = {
 function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndex): string {
   const base = cfg.baseUrl ?? ""
   const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => `<url>
-    <loc>https://${base}/${slug}</loc>
+    <loc>https://${base}/${encodeURIComponent(slug)}</loc>
     <lastmod>${content.date?.toISOString()}</lastmod>
   </url>`
   const urls = Array.from(idx)
@@ -44,8 +44,8 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex): string {
 
   const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => `<item>
     <title>${content.title}</title>
-    <link>${root}/${slug}</link>
-    <guid>${root}/${slug}</guid>
+    <link>${root}/${encodeURIComponent(slug)}</link>
+    <guid>${root}/${encodeURIComponent(slug)}</guid>
     <description>${content.description}</description>
     <pubDate>${content.date?.toUTCString()}</pubDate>
   </item>`
