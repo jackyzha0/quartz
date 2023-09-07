@@ -5,7 +5,6 @@ import {
   SimpleSlug,
   TransformOptions,
   _stripSlashes,
-  joinSegments,
   simplifySlug,
   splitAnchor,
   transformLink,
