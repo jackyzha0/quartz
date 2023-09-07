@@ -1,8 +1,8 @@
-import { FileNode } from "../ExplorerNode"
+import { FolderState } from "../ExplorerNode"
 
 // Current filetree
 // TODO: fix type (should be folder structure)
-let fileTree: FileNode
+let fileTree: FolderState[]
 
 function toggleExplorer(this: HTMLElement) {
   // Toggle collapsed state of entire explorer
@@ -84,7 +84,7 @@ function toggleFolder(evt: any) {
 
   // Remove leading "/"
   const fullFolderPath = clickFolderPath.substring(1)
-  toggleVisibility(fileTree, fullFolderPath)
+  toggleCollapsedByPath(fileTree, fullFolderPath)
 
   const stringifiedFileTree = JSON.stringify(fileTree)
   localStorage.setItem("fileTree", stringifiedFileTree)
@@ -94,14 +94,25 @@ function setupExplorer() {
   // Set click handler for collapsing entire explorer
   const explorer = document.getElementById("explorer")
 
+  // Get folder state from local storage
   const storageTree = localStorage.getItem("fileTree")
-
-  console.log("Storage tree: ", storageTree)
 
   if (explorer) {
     // Get config
     const collapseBehavior = explorer.dataset.behavior
-    fileTree = JSON.parse(explorer.dataset.tree as string)
+    if (storageTree) {
+      fileTree = JSON.parse(storageTree)
+      console.log("tree storage: ", fileTree)
+
+      // console.log("First entry: ", fileTree[0])
+      const el = document.querySelector(`[data-folderpath='/${fileTree[0].path}']`)
+      console.log("Got elemenet: ", el)
+
+      // TODO: set appropriate state for each folder from storage
+    } else {
+      fileTree = JSON.parse(explorer.dataset.tree as string)
+      console.log("tree raw: ", fileTree)
+    }
 
     if (collapseBehavior === "collapse") {
       Array.prototype.forEach.call(
@@ -130,6 +141,8 @@ document.addEventListener("nav", () => {
 
 const getDeepValue = (obj: any, path: string) => path.split("/").reduce((a, v) => a[v], obj)
 
+function setFolderState(folder: HTMLElement, collapsed: boolean) {}
+
 /**
  * Toggles visibility of a folder
  * @param obj tree of folders (generated from `FileNode.getFolders()`)
@@ -148,4 +161,17 @@ const toggleVisibility = (obj: any, path: string) => {
   }
 
   currentObj[lastKey].collapsed = !currentObj[lastKey].collapsed
+}
+
+// TODO: optimize getFolders to include leading "/"
+/**
+ * Toggles visibility of a folder
+ * @param array array of FolderState (`fileTree`, either get from local storage or data attribute)
+ * @param path path to folder (e.g. 'advanced/more/more2')
+ */
+function toggleCollapsedByPath(array: FolderState[], path: string) {
+  const entry = array.find((item) => item.path === path)
+  if (entry) {
+    entry.collapsed = !entry.collapsed
+  }
 }

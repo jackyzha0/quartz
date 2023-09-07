@@ -12,6 +12,11 @@ type DataWrapper = {
   path: string[]
 }
 
+export type FolderState = {
+  path: string
+  collapsed: boolean
+}
+
 // Structure to add all files into a tree
 export class FileNode {
   children: FileNode[]
@@ -59,6 +64,7 @@ export class FileNode {
     this.children.forEach((e) => e.print(depth + 1))
   }
 
+  // TODO: remove getFolders
   /**
    * Convert tree to new tree containing the same structure,
    * but having the folder name as key and the "collapsed" prop
@@ -76,6 +82,30 @@ export class FileNode {
     }
 
     return folders
+  }
+
+  /**
+   * Get folder representation with state of tree.
+   * Intended to only be called on root node before changes to the tree are made
+   * @param collapsed default state of folders (collapsed by default or not)
+   * @returns array containing folder state for tree
+   */
+  getFolderPaths(collapsed: boolean): FolderState[] {
+    const folderPaths: FolderState[] = []
+
+    const traverse = (node: FileNode, currentPath: string) => {
+      if (!node.file) {
+        const folderPath = currentPath + (currentPath ? "/" : "") + node.name
+        if (folderPath !== "") {
+          folderPaths.push({ path: folderPath, collapsed })
+        }
+        node.children.forEach((child) => traverse(child, folderPath))
+      }
+    }
+
+    traverse(this, "")
+
+    return folderPaths
   }
 
   // Sort order: folders first, then files. Sort folders and files alphabetically

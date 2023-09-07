@@ -23,7 +23,14 @@ export default ((userOpts?: Partial<Options>) => {
 
     // Sort tree (folders first, then files (alphabetic))
     fileTree.sort()
-    // fileTree.print()
+
+    // Get all folders of tree. Initialize with collapsed state
+    const folders = fileTree.getFolderPaths(opts.folderDefaultState === "collapsed")
+    // console.log("=====")
+    // console.log("Folders: ", folders)
+
+    // Stringify to pass json tree as data attribute ([data-tree])
+    const jsonTree = JSON.stringify(folders)
 
     return (
       <div class={`explorer ${displayClass}`}>
@@ -32,6 +39,7 @@ export default ((userOpts?: Partial<Options>) => {
           id="explorer"
           data-behavior={opts.folderClickBehavior}
           data-collapsed={opts.folderDefaultState}
+          data-tree={jsonTree}
         >
           <h3>{opts.title}</h3>
           <svg
