@@ -131,6 +131,12 @@ function setupExplorer() {
     folderState.map((folder) => {
       // grab <li> element for matching folder path
       const folderLI = document.querySelector(`[data-folderpath='/${folder.path}']`) as HTMLElement
+      const folderIcon = folderLI.previousElementSibling as HTMLElement
+      if (folder.collapsed) {
+        folderIcon.classList.add("collapsed-folder")
+      } else {
+        folderIcon.classList.remove("collapsed-folder")
+      }
 
       // Get corresponding content <ul> tag and set state
       const folderUL = folderLI.parentElement?.nextElementSibling as HTMLElement
