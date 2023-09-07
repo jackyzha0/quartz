@@ -8,7 +8,7 @@ There may be some notes you want to avoid publishing as a website. Quartz suppor
 
 ## Filter Plugins
 
-[[making plugins#Filters|Filter plugins]] are plugins that filter out content based off of certain criteria. By default, Quartz uses the `Plugin.RemoveDrafts` plugin which filters out any note that has `drafts: true` in the frontmatter.
+[[making plugins#Filters|Filter plugins]] are plugins that filter out content based off of certain criteria. By default, Quartz uses the `Plugin.RemoveDrafts` plugin which filters out any note that has `draft: true` in the frontmatter.
 
 If you'd like to only publish a select number of notes, you can instead use `Plugin.ExplicitPublish` which will filter out all notes except for any that have `publish: true` in the frontmatter.
 
