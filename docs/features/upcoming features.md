@@ -4,15 +4,14 @@ draft: true
 
 ## high priority backlog
 
+- static dead link detection
 - block links: https://help.obsidian.md/Linking+notes+and+files/Internal+links#Link+to+a+block+in+a+note
 - note/header/block transcludes: https://help.obsidian.md/Linking+notes+and+files/Embedding+files
-- static dead link detection
 - docker support
 
 ## misc backlog
 
 - breadcrumbs component
-- filetree component
 - cursor chat extension
 - https://giscus.app/ extension
 - sidenotes? https://github.com/capnfabs/paperesque
