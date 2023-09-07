@@ -211,6 +211,7 @@ export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
               maxHeight: node.name !== "" && isInvisOuter ? "0" : "none",
             }}
             class="content"
+            data-folderul={folderPath}
           >
             {node.children.map((childNode, i) => (
               <ExplorerNode node={childNode} key={i} opts={opts} fullPath={folderPath} />

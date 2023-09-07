@@ -2,7 +2,7 @@ import { FolderState } from "../ExplorerNode"
 
 // Current filetree
 // TODO: fix type (should be folder structure)
-let fileTree: FolderState[]
+let folderState: FolderState[]
 
 function toggleExplorer(this: HTMLElement) {
   // Toggle collapsed state of entire explorer
@@ -42,38 +42,41 @@ function toggleFolder(evt: any) {
 
   // Collapse folder container
   const isCollapsed = childFolderContainer.style.maxHeight === "0px"
+  setFolderState(childFolderContainer, !isCollapsed)
 
-  // Calculate total height (height of content managed by event + height of all children)
-  // TODO: figure out max height issue for outer
-  let totalHeight = childFolderContainer.scrollHeight
-  Array.prototype.forEach.call(
-    childFolderContainer.getElementsByClassName("content"),
-    function (item) {
-      totalHeight += item.scrollHeight
-    },
-  )
+  // // Calculate total height (height of content managed by event + height of all children)
+  // // TODO: figure out max height issue for outer
+  // let totalHeight = childFolderContainer.scrollHeight
+  // Array.prototype.forEach.call(
+  //   childFolderContainer.getElementsByClassName("content"),
+  //   function (item) {
+  //     totalHeight += item.scrollHeight
+  //   },
+  // )
 
-  // FolderContainer: <ul>
-  childFolderContainer.style.opacity = isCollapsed ? "1" : "0"
-  childFolderContainer.style.maxHeight = isCollapsed ? totalHeight + "px" : "0px"
-  childFolderContainer.classList.toggle("no-pointer")
+  // // FolderContainer: <ul>
+  // childFolderContainer.style.opacity = isCollapsed ? "1" : "0"
+  // childFolderContainer.style.maxHeight = isCollapsed ? totalHeight + "px" : "0px"
+  // childFolderContainer.classList.toggle("no-pointer")
 
-  // Set no-pointer for all child items recursively
-  Array.prototype.forEach.call(
-    childFolderContainer.getElementsByClassName("clickable"),
-    function (item) {
-      if (isCollapsed) {
-        item.classList.remove("no-pointer")
-      } else {
-        item.classList.add("no-pointer")
-      }
-    },
-  )
+  // // Set no-pointer for all child items recursively
+  // Array.prototype.forEach.call(
+  //   childFolderContainer.getElementsByClassName("clickable"),
+  //   function (item) {
+  //     if (isCollapsed) {
+  //       item.classList.remove("no-pointer")
+  //     } else {
+  //       item.classList.add("no-pointer")
+  //     }
+  //   },
+  // )
 
   // Extract folderName by going to parent and grabbing first with class "folder-title" (if you dont go to parent, you only target sub folders)
   // const folderName =
   //   childFolderContainer.parentElement?.getElementsByClassName("folder-title")[0].textContent
   // console.log("Folder container: ", folderName)
+
+  // Save folder state to localStorage
   let currentFolderParent: HTMLElement
   if (isSvg) {
     currentFolderParent = target.nextElementSibling as HTMLElement
@@ -84,9 +87,9 @@ function toggleFolder(evt: any) {
 
   // Remove leading "/"
   const fullFolderPath = clickFolderPath.substring(1)
-  toggleCollapsedByPath(fileTree, fullFolderPath)
+  toggleCollapsedByPath(folderState, fullFolderPath)
 
-  const stringifiedFileTree = JSON.stringify(fileTree)
+  const stringifiedFileTree = JSON.stringify(folderState)
   localStorage.setItem("fileTree", stringifiedFileTree)
 }
 
@@ -100,19 +103,6 @@ function setupExplorer() {
   if (explorer) {
     // Get config
     const collapseBehavior = explorer.dataset.behavior
-    if (storageTree) {
-      fileTree = JSON.parse(storageTree)
-      console.log("tree storage: ", fileTree)
-
-      // console.log("First entry: ", fileTree[0])
-      const el = document.querySelector(`[data-folderpath='/${fileTree[0].path}']`)
-      console.log("Got elemenet: ", el)
-
-      // TODO: set appropriate state for each folder from storage
-    } else {
-      fileTree = JSON.parse(explorer.dataset.tree as string)
-      console.log("tree raw: ", fileTree)
-    }
 
     if (collapseBehavior === "collapse") {
       Array.prototype.forEach.call(
@@ -132,6 +122,27 @@ function setupExplorer() {
     item.removeEventListener("click", toggleFolder)
     item.addEventListener("click", toggleFolder)
   })
+
+  if (storageTree) {
+    folderState = JSON.parse(storageTree)
+    console.log("tree storage: ", folderState)
+
+    // console.log("First entry: ", fileTree[0])
+    folderState.map((folder) => {
+      // grab <li> element for matching folder path
+      const folderLI = document.querySelector(`[data-folderpath='/${folder.path}']`) as HTMLElement
+
+      // Get corresponding content <ul> tag and set state
+      const folderUL = folderLI.parentElement?.nextElementSibling as HTMLElement
+      console.log("Folder path: ", folder.path)
+      console.log("Folder <ul>: ", folderUL.dataset.folderul)
+      console.log("===")
+      setFolderState(folderUL, folder.collapsed)
+    })
+  } else {
+    folderState = JSON.parse(explorer!.dataset.tree as string)
+    console.log("tree raw: ", folderState)
+  }
 }
 
 window.addEventListener("resize", setupExplorer)
@@ -141,7 +152,32 @@ document.addEventListener("nav", () => {
 
 const getDeepValue = (obj: any, path: string) => path.split("/").reduce((a, v) => a[v], obj)
 
-function setFolderState(folder: HTMLElement, collapsed: boolean) {}
+function setFolderState(folderUL: HTMLElement, collapsed: boolean) {
+  // Grab corresponding <ul> content element of folder
+
+  // TODO: set correct folder icon orientation
+
+  // Calculate total height (height of content managed by event + height of all children)
+  // TODO: figure out max height issue for outer
+  let totalHeight = folderUL.scrollHeight
+  Array.prototype.forEach.call(folderUL.getElementsByClassName("content"), function (item) {
+    totalHeight += item.scrollHeight
+  })
+
+  // FolderContainer: <ul>
+  folderUL.style.opacity = collapsed ? "0" : "1"
+  folderUL.style.maxHeight = collapsed ? "0px" : totalHeight + "px"
+  folderUL.classList.toggle("no-pointer")
+
+  // Set no-pointer for all child items recursively
+  Array.prototype.forEach.call(folderUL.getElementsByClassName("clickable"), function (item) {
+    if (collapsed) {
+      item.classList.add("no-pointer")
+    } else {
+      item.classList.remove("no-pointer")
+    }
+  })
+}
 
 /**
  * Toggles visibility of a folder
