@@ -1,6 +1,4 @@
 ---
 title: On Self-Hosted Software
 ---
-## What is Self-Hosted Software?
-
-## Why do I like Self-Hosted Software so much?
+This page should really just be a redirect to [[Projects/my-cloud|My Cloud]]. I have a whole essay on the subject there.
