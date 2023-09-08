@@ -8,6 +8,7 @@ Generally, I adore any tool with a community-based ecosystem that has some compo
 
 ## Anything self-hosted.
 - [[on-self-hosted-software|On Self-Hosted Software]]
+- [[Programs I Like/on-the-fediverse|On the Fediverse]]
 ## Catppuccin.
 - [Catppuccin](https://github.com/catppuccin) is a coffee-flavored theme ecosystem for just about everything. 
 ## The Hundred Rabbits ecosystem.
