@@ -11,6 +11,11 @@ const defaultOptions: Options = {
   priority: ["frontmatter", "git", "filesystem"],
 }
 
+function coerceDate(d: any): Date {
+  const dt = new Date(d)
+  return isNaN(dt.getTime()) ? new Date() : dt
+}
+
 type MaybeDate = undefined | string | number
 export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
@@ -49,9 +54,9 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | und
             }
 
             file.data.dates = {
-              created: created ? new Date(created) : new Date(),
-              modified: modified ? new Date(modified) : new Date(),
-              published: published ? new Date(published) : new Date(),
+              created: coerceDate(created),
+              modified: coerceDate(modified),
+              published: coerceDate(published),
             }
           }
         },
