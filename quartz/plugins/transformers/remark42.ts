@@ -29,6 +29,10 @@ export const Remark42: QuartzTransformerPlugin<Options> = (opts?: Options) => {
   configAsString += "}"
   scripts.push({script:configAsString, loadTime: "afterDOMReady", contentType: "inline"})
   
+  // Modify the config based on the client sided theme
+  const dynamicTheme : string = `remark_config.theme = document.documentElement.getAttribute('saved-theme')`
+  scripts.push({script:dynamicTheme, loadTime: "afterDOMReady", contentType: "inline"})
+
   // Put the embeddable components into window scope
   function getComment(e : Array<String>) {
     for (var o = 0; o < e.length; o++)
@@ -38,6 +42,26 @@ export const Remark42: QuartzTransformerPlugin<Options> = (opts?: Options) => {
     }
   }
   getComment(opts?.components || ["embed"])
+  
+  // Allow SPA mode
+  const spaRouting : string = `
+document.addEventListener("nav", () => {
+    ;(function () {
+  var host = // Your remark42 host
+  var components = ['embed'] // Your choice of remark42 components
+
+  ;(function(c) {
+    for (let i = 0; i < c.length; i++) {
+      const d = document
+      const s = d.createElement('script')
+      s.src = remark_config.host + '/web/' + c[i] + '.js'
+      s.defer = true
+      ;(d.head || d.body).appendChild(s)
+    }
+  })(components)
+})
+  })`
+
   return {
     name: "Remark42",
     options: opts,
