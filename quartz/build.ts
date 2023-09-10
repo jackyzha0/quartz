@@ -84,7 +84,7 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   }
 
   writeFileSync(process.cwd() + "/public/manifest.json", JSON.stringify(manifest))
-  execSync("npx workbox generateSW workbox-config.ts")
+  execSync("npx workbox generateSW workbox.config.ts")
   console.log("Made Quartz offline aviable")
 
   if (argv.serve) {
