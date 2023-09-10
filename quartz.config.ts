@@ -3,7 +3,7 @@ import * as Plugin from "./quartz/plugins"
 
 const config: QuartzConfig = {
   configuration: {
-    defaultDateType: "published",
+    defaultDateType: "created",
     pageTitle: "🌱 be-far",
     enableSPA: true,
     enablePopovers: true,
