@@ -72,15 +72,15 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
       {
         src: "static/icon.svg",
         sizes: "any",
-        purpose: "maskable"
+        purpose: "maskable",
       },
       {
         src: "static/icon.svg",
         sizes: "any",
-        purpose: "any"
-      }
+        purpose: "any",
+      },
     ],
-    start_url: "/"
+    start_url: "/",
   }
 
   writeFileSync(process.cwd() + "/public/manifest.json", JSON.stringify(manifest))

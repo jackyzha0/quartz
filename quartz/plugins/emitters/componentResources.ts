@@ -115,7 +115,7 @@ function addGlobalPageResources(
         const event = new CustomEvent("nav", { detail: { url: document.body.dataset.slug } })
         document.dispatchEvent(event)`)
   }
-  
+
   componentResources.afterDOMLoaded.push(`
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js');

@@ -88,6 +88,6 @@ transformers: [
 In the `workbox.config.ts` you can adjust how caching behaves. This describes what Quartz should save on the persons computer.
 
 The `globPatterns` property defines what kind of files should be cached using Regex.
-Further documentation about this file can be found [here](https://developer.chrome.com/docs/workbox/reference/workbox-build/#type-GenerateSWOptions) 
+Further documentation about this file can be found [here](https://developer.chrome.com/docs/workbox/reference/workbox-build/#type-GenerateSWOptions)
 
 If you'd like to make your own plugins, read the guide on [[making plugins]] for more information.
