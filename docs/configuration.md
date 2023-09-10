@@ -2,7 +2,7 @@
 title: Configuration
 ---
 
-Quartz is meant to be extremely configurable, even if you don't know any coding. Most of the configuration you should need can be done by just editing `quartz.config.ts` or changing [[layout|the layout]] in `quartz.layout.ts`.
+Quartz is meant to be extremely configurable, even if you don't know any coding. Most of the configuration you should need can be done by just editing `quartz.config.ts`, changing [[layout|the layout]] in `quartz.layout.ts` or adjusting cachine in `workbox.config.ts`.
 
 > [!tip]
 > If you edit Quartz configuration using a text-editor that has TypeScript language support like VSCode, it will warn you when you you've made an error in your configuration, helping you avoid configuration mistakes!
@@ -21,6 +21,7 @@ const config: QuartzConfig = {
 This part of the configuration concerns anything that can affect the whole site. The following is a list breaking down all the things you can configure:
 
 - `pageTitle`: title of the site. This is also used when generating the [[RSS Feed]] for your site.
+- `description`: description of the site. This will be used when someone installs your site as an App.
 - `enableSPA`: whether to enable [[SPA Routing]] on your site.
 - `enablePopovers`: whether to enable [[popover previews]] on your site.
 - `analytics`: what to use for analytics on your site. Values can be
@@ -78,5 +79,14 @@ transformers: [
   Plugin.Latex({ renderEngine: "katex" }), // specify some options
 ]
 ```
+
+## Caching
+
+<!-- I'm not sure how to explain it in an easy way, this would do for the beginning? -->
+
+In the `workbox.config.ts` you can adjust how caching behaves. This describes what Quartz should save on the persons computer.
+
+The `globPatterns` property defines what kind of files should be cached using Regex.
+Further documentation about this file can be found [here](https://developer.chrome.com/docs/workbox/reference/workbox-build/#type-GenerateSWOptions) 
 
 If you'd like to make your own plugins, read the guide on [[making plugins]] for more information.
