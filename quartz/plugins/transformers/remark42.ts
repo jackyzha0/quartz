@@ -45,22 +45,21 @@ export const Remark42: QuartzTransformerPlugin<Options> = (opts?: Options) => {
   
   // Allow SPA mode
   const spaRouting : string = `
-document.addEventListener("nav", () => {
-    ;(function () {
-  var host = // Your remark42 host
-  var components = ['embed'] // Your choice of remark42 components
+  function initRemark42() {
+    if (window.REMARK42) {
+      if (this.remark42Instance) {
+        this.remark42Instance.destroy()
+      }
 
-  ;(function(c) {
-    for (let i = 0; i < c.length; i++) {
-      const d = document
-      const s = d.createElement('script')
-      s.src = remark_config.host + '/web/' + c[i] + '.js'
-      s.defer = true
-      ;(d.head || d.body).appendChild(s)
+      this.remark42Instance = window.REMARK42.createInstance(remark_config)
     }
-  })(components)
-})
-  })`
+  }
+
+  document.addEventListener('nav', () => {
+    this.initRemark42()
+  })
+`
+  scripts.push({script:spaRouting, loadTime:"afterDOMReady", contentType:"inline"})
 
   return {
     name: "Remark42",

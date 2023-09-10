@@ -5,7 +5,7 @@ const config: QuartzConfig = {
   configuration: {
     defaultDateType: "published",
     pageTitle: "🌱 be-far",
-    enableSPA: false,
+    enableSPA: true,
     enablePopovers: true,
     analytics: null,
     baseUrl: "be-far.com",
