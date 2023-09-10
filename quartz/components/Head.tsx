@@ -21,7 +21,9 @@ export default (() => {
         {cfg.baseUrl && <meta property="og:image" content={ogImagePath} />}
         <meta property="og:width" content="1200" />
         <meta property="og:height" content="675" />
+        <meta name="theme-color" content="#faf8f8"/>
         <link rel="icon" href={iconPath} />
+        <link rel="manifest" href="manifest.json" />
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

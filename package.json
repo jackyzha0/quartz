@@ -102,6 +102,7 @@
     "esbuild": "0.19.2",
     "prettier": "^3.0.0",
     "tsx": "^3.12.7",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "workbox-cli": "^7.0.0"
   }
 }
