@@ -1,9 +1,9 @@
 import { QuartzTransformerPlugin } from "../types"
 import remarkBreaks from "remark-breaks"
 
-export const LineBreaks: QuartzTransformerPlugin = () => {
+export const HardLineBreaks: QuartzTransformerPlugin = () => {
   return {
-    name: "LineBreaks",
+    name: "HardLineBreaks",
     markdownPlugins() {
       return [remarkBreaks]
     },
