@@ -1,6 +1,10 @@
 ---
 title: My Computer
-tags: ["productivity", "linux", "difficulty-moderate"]
+tags:
+  - productivity
+  - linux
+  - difficulty-moderate
+date: 9-08-23
 ---
 ## Hardware
 First off, I don’t believe in having more than one personal computer, as I think it’s wasteful, especially when your profession will provide you with an e-waste work laptop whether you like it or not. As such, I’m an eGPU apologist! My setup consists of a laptop connected to a Thunderbolt dock on one tb4 controller and an NVIDIA eGPU on the other. Speaking of…

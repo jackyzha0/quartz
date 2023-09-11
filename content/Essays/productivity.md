@@ -1,6 +1,10 @@
 ---
 title: How You can Increase your Productivity
-tags: ["productivity", "incomplete", "essay"]
+tags:
+  - productivity
+  - incomplete
+  - essay
+date: 9-08-23
 ---
 This article is split into four sections: 
 - [[#General Advice]], psychological or other hacks that I've experienced success with.

@@ -1,6 +1,8 @@
 ---
 title: be-far's Digital Garden
-tags: ["toc"]
+tags:
+  - toc
+date: 9-08-23
 ---
 # Welcome!
 You're on a site called a [[Misc/what-is-a-garden|Digital Garden]]. Here's some info on [[Essays/why-i-garden|Why I Garden]].

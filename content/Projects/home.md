@@ -1,6 +1,9 @@
 ---
-title: "Projects"
-tags: ["toc", "project"]
+title: Projects
+tags:
+  - toc
+  - project
+date: 9-08-23
 ---
 I assign each project a difficulty level out of the following list:
 - #difficulty-easy

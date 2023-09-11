@@ -1,6 +1,9 @@
 ---
 title: Code Editors
-tags: ["productivity", "programming"]
+tags:
+  - productivity
+  - programming
+date: 9-07-23
 ---
 Below are my two favorite ways to write code. Let's start with the big one:
 ## Visual Studio Code

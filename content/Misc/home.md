@@ -1,6 +1,9 @@
 ---
 title: Miscellaneous Articles
-tags: ["toc", "misc"]
+tags:
+  - toc
+  - misc
+date: 9-08-23
 ---
 Things which I didn't really have a category for.
 

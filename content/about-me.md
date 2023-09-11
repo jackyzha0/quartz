@@ -1,5 +1,6 @@
 ---
 title: About Me
+date: 9-08-23
 ---
 First of all, I am an enthusiast for all things DIY. Mainly, that involves digital projects such as this one.
 

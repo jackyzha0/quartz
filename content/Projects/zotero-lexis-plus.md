@@ -5,6 +5,7 @@ tags:
   - productivity
   - project
   - difficulty-moderate
+date: 9-08-23
 ---
 This is one of the first open source contributions I made that I felt proud of. I think it genuinely solves a problem that I and hundreds of others have.
 ## I am faced with a problem:

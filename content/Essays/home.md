@@ -1,6 +1,8 @@
 ---
 title: Essays
-tags: ["toc"]
+tags:
+  - toc
+date: 9-08-23
 ---
 Below is a collection of long-form content I've authored.
 

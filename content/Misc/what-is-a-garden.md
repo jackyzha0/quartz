@@ -1,6 +1,9 @@
 ---
 title: What is a Garden?
-tags: ["glossary", "misc"]
+tags:
+  - glossary
+  - misc
+date: 9-08-23
 ---
 # Definitions
 > A digital garden is an online space at the intersection of a notebook and a blog, where digital gardeners share seeds of thoughts to be cultivated in public.
