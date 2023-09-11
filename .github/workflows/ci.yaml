@@ -43,5 +43,5 @@ jobs:
       - name: Test
         run: npm test
 
-      - name: Ensure Quartz builds
-        run: npx quartz build
+      - name: Ensure Quartz builds, check bundle info
+        run: npx quartz build --bundleInfo
