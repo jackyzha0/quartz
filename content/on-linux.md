@@ -1,6 +1,11 @@
 ---
 title: On Linux
-tags: ["linux", "cloud", "advanced", "incomplete"]
+tags:
+  - linux
+  - cloud
+  - advanced
+  - incomplete
+date: 9-08-23
 ---
 This page documents my many adventures with Linux and why I enjoy it.
 

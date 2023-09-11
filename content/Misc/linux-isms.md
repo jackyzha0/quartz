@@ -1,6 +1,10 @@
 ---
 title: Linux-isms
-tags: ["linux", "glossary", "misc"]
+tags:
+  - linux
+  - glossary
+  - misc
+date: 9-08-23
 ---
 This article is somewhat of a glossary for all the words/phrases that I use that originate with Linux or related projects like GNU.
 

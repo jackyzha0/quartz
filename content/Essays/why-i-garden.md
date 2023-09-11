@@ -1,6 +1,10 @@
 ---
 title: Why I Garden
-tags: ["incomplete", "cloud", "essay"]
+tags:
+  - incomplete
+  - cloud
+  - essay
+date: 9-08-23
 ---
 ## Short answer: fun.
 

@@ -5,6 +5,7 @@ tags:
   - cloud
   - productivity
   - difficulty-moderate
+date: 9-08-23
 ---
 [usememos/memos](https://github.com/usememos/memos) is another knowledge collection-oriented project, albeit with a slightly different audience to [[Programs I Like/obsidian|Obsidian]].
 

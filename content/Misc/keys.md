@@ -1,6 +1,9 @@
 ---
 title: Key Layouts
-tags: ["misc", "keyboard"]
+tags:
+  - misc
+  - keyboard
+date: 9-08-23
 ---
 
 Take a look at this typewriter:
