@@ -11,9 +11,9 @@ module.exports = {
     {
       // Images
       urlPattern: /.*\.(?:png|jpg|jpeg|svg|gif)$/,
-      handler: 'CacheFirst',
+      handler: "CacheFirst",
       options: {
-        cacheName: 'images',
+        cacheName: "images",
         expiration: {
           maxEntries: 50,
           maxAgeSeconds: MONTH,
@@ -23,9 +23,9 @@ module.exports = {
     {
       // Documents
       urlPattern: /.*\.(?:html)$/,
-      handler: 'NetworkFirst',
+      handler: "NetworkFirst",
       options: {
-        cacheName: 'documents',
+        cacheName: "documents",
         expiration: {
           maxEntries: 70,
           maxAgeSeconds: 14 * DAY,
@@ -35,9 +35,9 @@ module.exports = {
     {
       // Styles
       urlPattern: /.*\.(?:css)$/,
-      handler: 'StaleWhileRevalidate',
+      handler: "StaleWhileRevalidate",
       options: {
-        cacheName: 'styles',
+        cacheName: "styles",
         expiration: {
           maxEntries: 50,
           maxAgeSeconds: 14 * DAY,
@@ -47,9 +47,9 @@ module.exports = {
     {
       // Metadata
       urlPattern: /.*\.(?:xml,json)$/,
-      handler: 'StaleWhileRevalidate',
+      handler: "StaleWhileRevalidate",
       options: {
-        cacheName: 'metadata',
+        cacheName: "metadata",
         expiration: {
           maxEntries: 50,
           maxAgeSeconds: MONTH,
@@ -59,9 +59,9 @@ module.exports = {
     {
       // Scrips
       urlPattern: /.*\.(?:js)$/,
-      handler: 'CacheFirst',
+      handler: "CacheFirst",
       options: {
-        cacheName: 'scripts',
+        cacheName: "scripts",
         expiration: {
           maxEntries: 50,
           maxAgeSeconds: DAY,
