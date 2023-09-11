@@ -67,9 +67,9 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       const localTags = details.tags
         .filter((tag) => !removeTags.includes(tag))
         .map((tag) => simplifySlug(("tags/" + tag) as FullSlug))
-      
+
       tags.push(...localTags.filter((tag) => !tags.includes(tag)))
-      
+
       for (const tag of localTags) {
         links.push({ source, target: tag })
       }
@@ -149,7 +149,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     const isCurrent = d.id === slug
     if (isCurrent) {
       return "var(--secondary)"
-    } else if (visited.has(d.id) || d.id.startsWith("tags/"))  {
+    } else if (visited.has(d.id) || d.id.startsWith("tags/")) {
       return "var(--tertiary)"
     } else {
       return "var(--gray)"
