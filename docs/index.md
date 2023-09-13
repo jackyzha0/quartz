@@ -4,6 +4,12 @@ title: Welcome to Quartz 4
 
 Quartz is a fast, batteries-included static-site generator that transforms Markdown content into fully functional websites. Thousands of students, developers, and teachers are [[showcase|already using Quartz]] to publish personal notes, wikis, and [digital gardens](https://jzhao.xyz/posts/networked-thought) to the web.
 
+![[wikilinks#^fd2fbb]]
+
+![[wikilinks#^894ff6]]
+
+![[wikilinks#^92cc68]]
+
 ## 🪴 Get Started
 
 Quartz requires **at least [Node](https://nodejs.org/) v18.14** to function correctly. Ensure you have this installed on your machine before continuing.
