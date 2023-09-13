@@ -14,25 +14,30 @@ function toggleExplorer(this: HTMLElement) {
 function toggleFolder(evt: MouseEvent) {
   evt.stopPropagation()
 
+  // Element that was clicked
   const target = evt.target as HTMLElement
+
   // Check if target was svg icon or button
   const isSvg = target.nodeName === "svg"
 
-  // TODO: merge all if (svg) paths
+  // corresponding <ul> element relative to clicked button/folder
+  let childFolderContainer: HTMLElement
+
+  // <li> element of folder (stores folder-path dataset)
+  let currentFolderParent: HTMLElement
+
+  // Get correct relative container and toggle collapsed class
   if (isSvg) {
     // If icon was pressed, rotate icon
     target.classList.toggle("collapsed-folder")
+
+    childFolderContainer = target.parentElement?.nextSibling as HTMLElement
+    currentFolderParent = target.nextElementSibling as HTMLElement
   } else {
     target.parentElement?.previousElementSibling?.classList.toggle("collapsed-folder")
-  }
 
-  let childFolderContainer: HTMLElement
-
-  // Get correct relative container
-  if (isSvg) {
-    childFolderContainer = target.parentElement?.nextSibling as HTMLElement
-  } else {
     childFolderContainer = target.parentElement?.parentElement?.nextElementSibling as HTMLElement
+    currentFolderParent = target.parentElement as HTMLElement
   }
   if (!childFolderContainer) return
 
@@ -41,12 +46,6 @@ function toggleFolder(evt: MouseEvent) {
   setFolderState(childFolderContainer, !isCollapsed)
 
   // Save folder state to localStorage
-  let currentFolderParent: HTMLElement
-  if (isSvg) {
-    currentFolderParent = target.nextElementSibling as HTMLElement
-  } else {
-    currentFolderParent = target.parentElement as HTMLElement
-  }
   const clickFolderPath = currentFolderParent.dataset.folderpath as string
 
   // Remove leading "/"
@@ -92,9 +91,6 @@ function setupExplorer() {
 
   if (storageTree && useSavedFolderState) {
     folderState = JSON.parse(storageTree)
-    console.log("tree storage: ", folderState)
-
-    // console.log("First entry: ", fileTree[0])
     folderState.map((folder) => {
       // grab <li> element for matching folder path
       const folderLI = document.querySelector(`[data-folderpath='/${folder.path}']`) as HTMLElement
@@ -107,14 +103,11 @@ function setupExplorer() {
 
       // Get corresponding content <ul> tag and set state
       const folderUL = folderLI.parentElement?.nextElementSibling as HTMLElement
-      console.log("Folder path: ", folder.path)
-      console.log("Folder <ul>: ", folderUL.dataset.folderul)
-      console.log("===")
       setFolderState(folderUL, folder.collapsed)
     })
   } else {
+    // If tree is not in localStorage or config is disabled, use tree passed from Explorer as dataset
     folderState = JSON.parse(explorer?.dataset.tree as string)
-    console.log("tree raw: ", folderState)
   }
 }
 
@@ -124,8 +117,6 @@ document.addEventListener("nav", () => {
 })
 
 function setFolderState(folderUL: HTMLElement, collapsed: boolean) {
-  // Grab corresponding <ul> content element of folder
-
   // Calculate total height (height of content managed by event + height of all children)
   let totalHeight = folderUL.scrollHeight
   Array.prototype.forEach.call(folderUL.getElementsByClassName("content"), function (item) {
