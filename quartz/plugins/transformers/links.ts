@@ -72,6 +72,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                     simplifySlug(destCanonical as FullSlug),
                   ) as SimpleSlug
                   outgoing.add(simple)
+                  node.properties["data-slug"] = simple
                 }
 
                 // rewrite link internals if prettylinks is on
