@@ -1,7 +1,7 @@
 import { FolderState } from "../ExplorerNode"
 
 // Current state of folders
-let folderState: FolderState[]
+let explorerState: FolderState[]
 
 function toggleExplorer(this: HTMLElement) {
   // Toggle collapsed state of entire explorer
@@ -50,9 +50,9 @@ function toggleFolder(evt: MouseEvent) {
 
   // Remove leading "/"
   const fullFolderPath = clickFolderPath.substring(1)
-  toggleCollapsedByPath(folderState, fullFolderPath)
+  toggleCollapsedByPath(explorerState, fullFolderPath)
 
-  const stringifiedFileTree = JSON.stringify(folderState)
+  const stringifiedFileTree = JSON.stringify(explorerState)
   localStorage.setItem("fileTree", stringifiedFileTree)
 }
 
@@ -70,6 +70,7 @@ function setupExplorer() {
     // Get config
     const collapseBehavior = explorer.dataset.behavior
 
+    // Add click handlers for all folders (click handler on folder "label")
     if (collapseBehavior === "collapse") {
       Array.prototype.forEach.call(
         document.getElementsByClassName("folder-button"),
@@ -79,19 +80,22 @@ function setupExplorer() {
         },
       )
     }
+
+    // Add click handler to main explorer
     explorer.removeEventListener("click", toggleExplorer)
     explorer.addEventListener("click", toggleExplorer)
   }
 
-  // Set up click handlers for each folder
+  // Set up click handlers for each folder (click handler on folder "icon")
   Array.prototype.forEach.call(document.getElementsByClassName("folder-icon"), function (item) {
     item.removeEventListener("click", toggleFolder)
     item.addEventListener("click", toggleFolder)
   })
 
   if (storageTree && useSavedFolderState) {
-    folderState = JSON.parse(storageTree)
-    folderState.map((folder) => {
+    // Get state from localStorage and set folder state
+    explorerState = JSON.parse(storageTree)
+    explorerState.map((folder) => {
       // grab <li> element for matching folder path
       const folderLI = document.querySelector(`[data-folderpath='/${folder.path}']`) as HTMLElement
       const folderIcon = folderLI.previousElementSibling as HTMLElement
@@ -107,7 +111,7 @@ function setupExplorer() {
     })
   } else {
     // If tree is not in localStorage or config is disabled, use tree passed from Explorer as dataset
-    folderState = JSON.parse(explorer?.dataset.tree as string)
+    explorerState = JSON.parse(explorer?.dataset.tree as string)
   }
 }
 

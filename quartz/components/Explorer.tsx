@@ -27,8 +27,6 @@ export default ((userOpts?: Partial<Options>) => {
 
     // Get all folders of tree. Initialize with collapsed state
     const folders = fileTree.getFolderPaths(opts.folderDefaultState === "collapsed")
-    // console.log("=====")
-    // console.log("Folders: ", folders)
 
     // Stringify to pass json tree as data attribute ([data-tree])
     const jsonTree = JSON.stringify(folders)

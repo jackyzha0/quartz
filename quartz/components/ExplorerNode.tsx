@@ -65,26 +65,6 @@ export class FileNode {
     this.children.forEach((e) => e.print(depth + 1))
   }
 
-  // TODO: remove getFolders
-  /**
-   * Convert tree to new tree containing the same structure,
-   * but having the folder name as key and the "collapsed" prop
-   * @param isCollapsed wether the folders should be collapsed by default or not
-   * @returns object containing folder structure with collapsed state
-   */
-  getFolders(isCollapsed: boolean): object {
-    const folders: any = {}
-
-    for (const child of this.children) {
-      if (!child.file) {
-        folders[child.name] = child.getFolders(isCollapsed)
-        folders[child.name].collapsed = isCollapsed
-      }
-    }
-
-    return folders
-  }
-
   /**
    * Get folder representation with state of tree.
    * Intended to only be called on root node before changes to the tree are made
