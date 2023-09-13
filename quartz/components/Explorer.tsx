@@ -11,6 +11,7 @@ const defaultOptions = (cfg: GlobalConfiguration): Options => ({
   title: "Explorer",
   folderClickBehavior: "collapse",
   folderDefaultState: "collapsed",
+  useSavedState: true,
 })
 export default ((userOpts?: Partial<Options>) => {
   function Explorer({ allFiles, displayClass, cfg }: QuartzComponentProps) {
@@ -39,6 +40,7 @@ export default ((userOpts?: Partial<Options>) => {
           id="explorer"
           data-behavior={opts.folderClickBehavior}
           data-collapsed={opts.folderDefaultState}
+          data-savestate={opts.useSavedState}
           data-tree={jsonTree}
         >
           <h3>{opts.title}</h3>

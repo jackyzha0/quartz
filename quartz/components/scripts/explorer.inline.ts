@@ -100,6 +100,9 @@ function setupExplorer() {
   // Get folder state from local storage
   const storageTree = localStorage.getItem("fileTree")
 
+  // Convert to bool
+  const useSavedFolderState = explorer?.dataset.savestate === "true"
+
   if (explorer) {
     // Get config
     const collapseBehavior = explorer.dataset.behavior
@@ -123,7 +126,7 @@ function setupExplorer() {
     item.addEventListener("click", toggleFolder)
   })
 
-  if (storageTree) {
+  if (storageTree && useSavedFolderState) {
     folderState = JSON.parse(storageTree)
     console.log("tree storage: ", folderState)
 
@@ -160,8 +163,6 @@ const getDeepValue = (obj: any, path: string) => path.split("/").reduce((a, v) =
 
 function setFolderState(folderUL: HTMLElement, collapsed: boolean) {
   // Grab corresponding <ul> content element of folder
-
-  // TODO: set correct folder icon orientation
 
   // Calculate total height (height of content managed by event + height of all children)
   // TODO: figure out max height issue for outer
