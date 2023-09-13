@@ -13,6 +13,7 @@ export type ContentDetails = {
   links: SimpleSlug[]
   tags: string[]
   content: string
+  richContent?: string
   date?: Date
   description?: string
 }
@@ -53,7 +54,7 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex, limit?: nu
     <title>${escapeHTML(content.title)}</title>
     <link>${root}/${encodeURI(slug)}</link>
     <guid>${root}/${encodeURI(slug)}</guid>
-    <description>${content.content}</description>
+    <description>${content.richContent ?? content.description}</description>
     <pubDate>${content.date?.toUTCString()}</pubDate>
   </item>`
 
@@ -92,9 +93,10 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
             title: file.data.frontmatter?.title!,
             links: file.data.links ?? [],
             tags: file.data.frontmatter?.tags ?? [],
-            content: opts?.rssFullHtml
+            content: file.data.text ?? "",
+            richContent: opts?.rssFullHtml
               ? escapeHTML(toHtml(tree as Root, { allowDangerousHtml: true }))
-              : file.data.description ?? "",
+              : undefined,
             date: date,
             description: file.data.description ?? "",
           })
