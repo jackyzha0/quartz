@@ -65,21 +65,24 @@ export function renderPage(
         const blockRef = node.properties!.dataBlock as string
 
         // TODO: avoid this expensive find operation and construct an index ahead of time
-        const blockNode = componentData.allFiles.find((f) => f.slug === blockSlug)?.blocks?.[
-          blockRef
-        ]
-
+        let blockNode = componentData.allFiles.find((f) => f.slug === blockSlug)?.blocks?.[blockRef]
         if (blockNode) {
+          if (blockNode.tagName === "li") {
+            blockNode = {
+              type: "element",
+              tagName: "ul",
+              children: [blockNode],
+            }
+          }
+
           node.children = [
             blockNode,
             {
               type: "element",
               tagName: "a",
               properties: { href: inner.properties?.href, class: ["internal"] },
-              children: [
-                { type: 'text', value: `Link to original` }
-              ]
-            }
+              children: [{ type: "text", value: `Link to original` }],
+            },
           ]
         }
       }

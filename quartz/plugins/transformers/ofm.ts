@@ -243,7 +243,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   return {
                     type: "html",
                     data: { hProperties: { transclude: true } },
-                    value: `<blockquote class="transclude" data-url="${url}" data-block="${block}"><a href="${url + anchor}" class="transclude-inner">Transclude of block ${block}</a></blockquote>`,
+                    value: `<blockquote class="transclude" data-url="${url}" data-block="${block}"><a href="${
+                      url + anchor
+                    }" class="transclude-inner">Transclude of block ${block}</a></blockquote>`,
                   }
                 }
 
@@ -429,22 +431,47 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
       if (opts.parseBlockReferences) {
         plugins.push(() => {
+          const inlineTagTypes = new Set(["p", "li"])
+          const blockTagTypes = new Set(["blockquote"])
           return (tree, file) => {
             file.data.blocks = {}
-            const validTagTypes = new Set(["p", "li"])
-            visit(tree, "element", (node, _index, _parent) => {
-              if (validTagTypes.has(node.tagName)) {
+
+            visit(tree, "element", (node, index, parent) => {
+              if (blockTagTypes.has(node.tagName)) {
+                const nextChild = parent?.children.at(index! + 2) as Element
+                if (nextChild && nextChild.tagName === "p") {
+                  const text = nextChild.children.at(0) as Literal
+                  if (text && text.value && text.type === "text") {
+                    const matches = text.value.match(blockReferenceRegex)
+                    if (matches && matches.length >= 1) {
+                      parent!.children.splice(index! + 2, 1)
+                      const block = matches[0].slice(1)
+
+                      if (!Object.keys(file.data.blocks!).includes(block)) {
+                        node.properties = {
+                          ...node.properties,
+                          id: block,
+                        }
+                        file.data.blocks![block] = node
+                      }
+                    }
+                  }
+                }
+              } else if (inlineTagTypes.has(node.tagName)) {
                 const last = node.children.at(-1) as Literal
                 if (last && last.value && typeof last.value === "string") {
                   const matches = last.value.match(blockReferenceRegex)
                   if (matches && matches.length >= 1) {
                     last.value = last.value.slice(0, -matches[0].length)
                     const block = matches[0].slice(1)
-                    node.properties = {
-                      ...node.properties,
-                      id: block,
+
+                    if (!Object.keys(file.data.blocks!).includes(block)) {
+                      node.properties = {
+                        ...node.properties,
+                        id: block,
+                      }
+                      file.data.blocks![block] = node
                     }
-                    file.data.blocks![block] = node
                   }
                 }
               }
