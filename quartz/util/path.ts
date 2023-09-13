@@ -123,7 +123,10 @@ export function slugTag(tag: string) {
 }
 
 export function joinSegments(...args: string[]): string {
-  return args.filter((segment) => segment !== "").join("/")
+  return args
+    .filter((segment) => segment !== "")
+    .join("/")
+    .replace(/\/\/+/g, "/")
 }
 
 export function getAllSegmentPrefixes(tags: string): string[] {

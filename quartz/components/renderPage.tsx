@@ -3,7 +3,7 @@ import { QuartzComponent, QuartzComponentProps } from "./types"
 import HeaderConstructor from "./Header"
 import BodyConstructor from "./Body"
 import { JSResourceToScriptElement, StaticResources } from "../util/resources"
-import { FullSlug, joinSegments, pathToRoot } from "../util/path"
+import { FullSlug, RelativeURL, joinSegments } from "../util/path"
 
 interface RenderComponents {
   head: QuartzComponent
@@ -15,9 +15,10 @@ interface RenderComponents {
   footer: QuartzComponent
 }
 
-export function pageResources(slug: FullSlug, staticResources: StaticResources): StaticResources {
-  const baseDir = pathToRoot(slug)
-
+export function pageResources(
+  baseDir: FullSlug | RelativeURL,
+  staticResources: StaticResources,
+): StaticResources {
   const contentIndexPath = joinSegments(baseDir, "static/contentIndex.json")
   const contentIndexScript = `const fetchData = fetch(\`${contentIndexPath}\`).then(data => data.json())`
 
