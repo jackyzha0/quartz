@@ -1,8 +1,10 @@
+import { Root } from "hast"
 import { GlobalConfiguration } from "../../cfg"
 import { getDate } from "../../components/Date"
 import { escapeHTML } from "../../util/escape"
 import { FilePath, FullSlug, SimpleSlug, simplifySlug } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
+import { toHtml } from "hast-util-to-html"
 import path from "path"
 
 export type ContentIndex = Map<FullSlug, ContentDetails>
@@ -19,6 +21,7 @@ interface Options {
   enableSiteMap: boolean
   enableRSS: boolean
   rssLimit?: number
+  rssFullHtml: boolean
   includeEmptyFiles: boolean
 }
 
@@ -26,6 +29,7 @@ const defaultOptions: Options = {
   enableSiteMap: true,
   enableRSS: true,
   rssLimit: 10,
+  rssFullHtml: false,
   includeEmptyFiles: true,
 }
 
@@ -49,7 +53,7 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex, limit?: nu
     <title>${escapeHTML(content.title)}</title>
     <link>${root}/${encodeURI(slug)}</link>
     <guid>${root}/${encodeURI(slug)}</guid>
-    <description>${content.description}</description>
+    <description>${content.content}</description>
     <pubDate>${content.date?.toUTCString()}</pubDate>
   </item>`
 
@@ -80,7 +84,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       const cfg = ctx.cfg.configuration
       const emitted: FilePath[] = []
       const linkIndex: ContentIndex = new Map()
-      for (const [_tree, file] of content) {
+      for (const [tree, file] of content) {
         const slug = file.data.slug!
         const date = getDate(ctx.cfg.configuration, file.data) ?? new Date()
         if (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) {
@@ -88,7 +92,9 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
             title: file.data.frontmatter?.title!,
             links: file.data.links ?? [],
             tags: file.data.frontmatter?.tags ?? [],
-            content: file.data.text ?? "",
+            content: opts?.rssFullHtml
+              ? escapeHTML(toHtml(tree as Root, { allowDangerousHtml: true }))
+              : file.data.description ?? "",
             date: date,
             description: file.data.description ?? "",
           })
