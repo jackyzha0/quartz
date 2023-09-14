@@ -133,8 +133,8 @@ svg > polyline {
   backface-visibility: visible;
 }
 
-.collapsed-folder {
-  transform: rotateZ(-90deg);
+div:has(> .folder-outer:not(.open)) > .folder-container > svg {
+  transform: rotate(-90deg);
 }
 
 .folder-icon:hover {

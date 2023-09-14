@@ -28,16 +28,11 @@ function toggleFolder(evt: MouseEvent) {
 
   // Get correct relative container and toggle collapsed class
   if (isSvg) {
-    // If icon was pressed, rotate icon
-    target.classList.toggle("collapsed-folder")
-
     childFolderContainer = target.parentElement?.nextSibling as HTMLElement
     currentFolderParent = target.nextElementSibling as HTMLElement
 
     childFolderContainer.classList.toggle("open")
   } else {
-    target.parentElement?.previousElementSibling?.classList.toggle("collapsed-folder")
-
     childFolderContainer = target.parentElement?.parentElement?.nextElementSibling as HTMLElement
     currentFolderParent = target.parentElement as HTMLElement
 
@@ -102,12 +97,6 @@ function setupExplorer() {
     explorerState.map((folder) => {
       // grab <li> element for matching folder path
       const folderLI = document.querySelector(`[data-folderpath='/${folder.path}']`) as HTMLElement
-      const folderIcon = folderLI.previousElementSibling as HTMLElement
-      if (folder.collapsed) {
-        folderIcon.classList.add("collapsed-folder")
-      } else {
-        folderIcon.classList.remove("collapsed-folder")
-      }
 
       // Get corresponding content <ul> tag and set state
       const folderUL = folderLI.parentElement?.nextElementSibling as HTMLElement
