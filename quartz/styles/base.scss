@@ -446,7 +446,7 @@ video {
 
 ul.overflow,
 ol.overflow {
-  height: 300px;
+  max-height: 300px;
   overflow-y: auto;
 
   // clearfix
@@ -454,17 +454,17 @@ ol.overflow {
   clear: both;
 
   & > li:last-of-type {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 
   &:after {
     pointer-events: none;
     content: "";
     width: 100%;
-    height: 50px;
+    height: 30px;
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: 30px;
     opacity: 1;
     transition: opacity 0.3s ease;
     background: linear-gradient(transparent 0px, var(--light));
