@@ -13,7 +13,7 @@ const defaultOptions = (): Options => ({
   useSavedState: true,
 })
 export default ((userOpts?: Partial<Options>) => {
-  function Explorer({ allFiles, displayClass }: QuartzComponentProps) {
+  function Explorer({ allFiles, displayClass, fileData }: QuartzComponentProps) {
     // Parse config
     const opts: Options = { ...defaultOptions(), ...userOpts }
 
@@ -58,7 +58,7 @@ export default ((userOpts?: Partial<Options>) => {
         </button>
         <div id="explorer-content">
           <ul class="overflow">
-            <ExplorerNode node={fileTree} opts={opts} />
+            <ExplorerNode node={fileTree} opts={opts} fileData={fileData} />
           </ul>
         </div>
       </div>

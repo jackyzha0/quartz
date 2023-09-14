@@ -1,5 +1,7 @@
 // @ts-ignore
 import { Data } from "vfile"
+import { resolveRelative } from "../util/path"
+import { QuartzPluginData } from "../plugins/vfile"
 
 export interface Options {
   title: string
@@ -108,13 +110,13 @@ export class FileNode {
 type ExplorerNodeProps = {
   node: FileNode
   opts: Options
+  fileData: QuartzPluginData
   fullPath?: string
 }
 
-export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
+export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodeProps) {
   // Get options
   const folderBehavior = opts.folderClickBehavior
-  const collapseFolders = opts.folderDefaultState === "collapsed"
 
   // Calculate current folderPath
   let pathOld = fullPath ? fullPath : ""
@@ -128,7 +130,7 @@ export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
       {node.file ? (
         // Single file node
         <li key={node.file.slug}>
-          <a href={`/${node.file.slug}`} data-for={node.file.slug}>
+          <a href={resolveRelative(fileData.slug!, node.file.slug!)} data-for={node.file.slug}>
             {node.file.frontmatter?.title}
           </a>
         </li>
@@ -177,7 +179,13 @@ export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
               data-folderul={folderPath}
             >
               {node.children.map((childNode, i) => (
-                <ExplorerNode node={childNode} key={i} opts={opts} fullPath={folderPath} />
+                <ExplorerNode
+                  node={childNode}
+                  key={i}
+                  opts={opts}
+                  fullPath={folderPath}
+                  fileData={fileData}
+                />
               ))}
             </ul>
           </div>
