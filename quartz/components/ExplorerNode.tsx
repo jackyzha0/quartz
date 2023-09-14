@@ -1,7 +1,6 @@
 // @ts-ignore
 import { Data } from "vfile"
 import { resolveRelative } from "../util/path"
-import { QuartzPluginData } from "../plugins/vfile"
 
 export interface Options {
   title: string
@@ -110,7 +109,7 @@ export class FileNode {
 type ExplorerNodeProps = {
   node: FileNode
   opts: Options
-  fileData: QuartzPluginData
+  fileData: Data
   fullPath?: string
 }
 

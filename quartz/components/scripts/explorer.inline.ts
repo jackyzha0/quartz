@@ -94,13 +94,15 @@ function setupExplorer() {
   if (storageTree && useSavedFolderState) {
     // Get state from localStorage and set folder state
     explorerState = JSON.parse(storageTree)
-    explorerState.map((folder) => {
+    explorerState.map((folderUl) => {
       // grab <li> element for matching folder path
-      const folderLI = document.querySelector(`[data-folderpath='/${folder.path}']`) as HTMLElement
+      const folderLi = document.querySelector(
+        `[data-folderpath='/${folderUl.path}']`,
+      ) as HTMLElement
 
       // Get corresponding content <ul> tag and set state
-      const folderUL = folderLI.parentElement?.nextElementSibling as HTMLElement
-      setFolderState(folderUL, folder.collapsed)
+      const folderUL = folderLi.parentElement?.nextElementSibling as HTMLElement
+      setFolderState(folderUL, folderUl.collapsed)
     })
   } else {
     // If tree is not in localStorage or config is disabled, use tree passed from Explorer as dataset
