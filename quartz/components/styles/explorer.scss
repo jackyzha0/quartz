@@ -36,7 +36,7 @@ ul.overflow::after {
 .folder-outer {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.5s ease-in-out;
+  transition: grid-template-rows 0.3s ease-in-out;
 }
 
 .folder-outer.open {

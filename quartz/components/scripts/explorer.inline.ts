@@ -33,11 +33,15 @@ function toggleFolder(evt: MouseEvent) {
 
     childFolderContainer = target.parentElement?.nextSibling as HTMLElement
     currentFolderParent = target.nextElementSibling as HTMLElement
+
+    childFolderContainer.classList.toggle("open")
   } else {
     target.parentElement?.previousElementSibling?.classList.toggle("collapsed-folder")
 
     childFolderContainer = target.parentElement?.parentElement?.nextElementSibling as HTMLElement
     currentFolderParent = target.parentElement as HTMLElement
+
+    childFolderContainer.classList.toggle("open")
   }
   if (!childFolderContainer) return
 
