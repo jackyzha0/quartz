@@ -123,20 +123,12 @@ export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
     folderPath = `${pathOld}/${node.name}`
   }
 
-  // Helpers to disable pointer-events and opacity for all appropriate elements
-  const isInvisInner = node.depth > 1 && collapseFolders
-  const isInvisOuter = node.depth > 0 && collapseFolders
-
   return (
-    <div class={`${isInvisOuter ? "no-pointer" : ""}`}>
+    <div>
       {node.file ? (
         // Single file node
-        <li key={node.file.slug} class="no-pointer">
-          <a
-            href={`/${node.file.slug}`}
-            data-for={node.file.slug}
-            class={`clickable ${isInvisInner ? "no-pointer" : ""}`}
-          >
+        <li key={node.file.slug}>
+          <a href={`/${node.file.slug}`} data-for={node.file.slug}>
             {node.file.frontmatter?.title}
           </a>
         </li>
@@ -145,7 +137,7 @@ export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
           {node.name !== "" && (
             // Node with entire folder
             // Render svg button + folder name, then children
-            <div class={`folder-container ${isInvisInner ? "no-pointer" : ""}`}>
+            <div class="folder-container">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -156,24 +148,18 @@ export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class={`${collapseFolders && "collapsed-folder"} folder-icon clickable ${
-                  isInvisInner ? "no-pointer" : ""
-                }`}
+                class={`${collapseFolders && "collapsed-folder"} folder-icon`}
               >
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
               {/* render <a> tag if folderBehavior is "link", otherwise render <button> with collapse click event */}
-              <li key={node.name} class="no-pointer" data-folderpath={folderPath}>
+              <li key={node.name} data-folderpath={folderPath}>
                 {folderBehavior === "link" ? (
-                  <a
-                    href={`${folderPath}`}
-                    data-for={node.name}
-                    class={`clickable folder-title ${isInvisInner ? "no-pointer" : ""}`}
-                  >
+                  <a href={`${folderPath}`} data-for={node.name} class="folder-title">
                     {node.name}
                   </a>
                 ) : (
-                  <button class={`folder-button clickable ${isInvisInner ? "no-pointer" : ""}`}>
+                  <button class="folder-button">
                     <h3 class="folder-title">{node.name}</h3>
                   </button>
                 )}
@@ -183,13 +169,9 @@ export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
           {/* Recursively render children of folder */}
           <div class={`folder-outer ${node.depth === 0 ? "open" : ""}`}>
             <ul
-              // Needs inline styling for options
-              // padding: only add padding if node is not root node
-              // opacity + maxHeight: set to 0 if folders should be collapsed by default
+              // Inline style for left folder paddings
               style={{
                 paddingLeft: node.name !== "" ? "1.4rem" : "0",
-                // opacity: isInvisOuter ? "0" : "1",
-                // maxHeight: node.name !== "" && isInvisOuter ? "0" : "none",
               }}
               class="content"
               data-folderul={folderPath}

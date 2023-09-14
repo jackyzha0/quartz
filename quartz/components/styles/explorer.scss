@@ -47,10 +47,6 @@ ul.overflow::after {
   overflow: hidden;
 }
 
-.no-height {
-  flex: 0;
-}
-
 #explorer-content {
   list-style: none;
   overflow: hidden;
@@ -142,8 +138,4 @@ svg > polyline {
 
 .folder-icon:hover {
   color: var(--tertiary);
-}
-
-.no-pointer {
-  pointer-events: none !important;
 }

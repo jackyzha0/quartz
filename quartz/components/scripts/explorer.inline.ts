@@ -46,7 +46,7 @@ function toggleFolder(evt: MouseEvent) {
   if (!childFolderContainer) return
 
   // Collapse folder container
-  const isCollapsed = childFolderContainer.style.maxHeight === "0px"
+  const isCollapsed = childFolderContainer.classList.contains("open")
   setFolderState(childFolderContainer, !isCollapsed)
 
   // Save folder state to localStorage
@@ -124,27 +124,17 @@ document.addEventListener("nav", () => {
   setupExplorer()
 })
 
-function setFolderState(folderUL: HTMLElement, collapsed: boolean) {
-  // Calculate total height (height of content managed by event + height of all children)
-  let totalHeight = folderUL.scrollHeight
-  Array.prototype.forEach.call(folderUL.getElementsByClassName("content"), function (item) {
-    totalHeight += item.scrollHeight
-  })
-
-  // FolderContainer: <ul>
-  // folderUL.style.opacity = collapsed ? "0" : "1"
-  // folderUL.style.maxHeight = collapsed ? "0px" : totalHeight + "px"
-  folderUL.classList.toggle("no-height")
-  folderUL.classList.toggle("no-pointer")
-
-  // Set no-pointer for all child items recursively
-  Array.prototype.forEach.call(folderUL.getElementsByClassName("clickable"), function (item) {
-    if (collapsed) {
-      item.classList.add("no-pointer")
-    } else {
-      item.classList.remove("no-pointer")
-    }
-  })
+/**
+ * Toggles the state of a given folder
+ * @param folderElement <div class="folder-outer"> Element of folder (parent)
+ * @param collapsed if folder should be set to collapsed or not
+ */
+function setFolderState(folderElement: HTMLElement, collapsed: boolean) {
+  if (collapsed) {
+    folderElement?.classList.remove("open")
+  } else {
+    folderElement?.classList.add("open")
+  }
 }
 
 /**
