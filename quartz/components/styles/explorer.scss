@@ -25,14 +25,6 @@ button#explorer {
   }
 }
 
-#explorer-content > ul.overflow {
-  height: 400;
-}
-
-ul.overflow::after {
-  background: none;
-}
-
 .folder-outer {
   display: grid;
   grid-template-rows: 0fr;
