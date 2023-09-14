@@ -4,19 +4,18 @@ import explorerStyle from "./styles/explorer.scss"
 // @ts-ignore
 import script from "./scripts/explorer.inline"
 import { ExplorerNode, FileNode, Options } from "./ExplorerNode"
-import { GlobalConfiguration } from "../cfg"
 
 // Options interface defined in `ExplorerNode` to avoid circular dependency
-const defaultOptions = (cfg: GlobalConfiguration): Options => ({
+const defaultOptions = (): Options => ({
   title: "Explorer",
   folderClickBehavior: "collapse",
   folderDefaultState: "collapsed",
   useSavedState: true,
 })
 export default ((userOpts?: Partial<Options>) => {
-  function Explorer({ allFiles, displayClass, cfg }: QuartzComponentProps) {
+  function Explorer({ allFiles, displayClass }: QuartzComponentProps) {
     // Parse config
-    const opts: Options = { ...defaultOptions(cfg), ...userOpts }
+    const opts: Options = { ...defaultOptions(), ...userOpts }
 
     // Construct tree from allFiles
     const fileTree = new FileNode("")
@@ -44,9 +43,9 @@ export default ((userOpts?: Partial<Options>) => {
           <h3>{opts.title}</h3>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
+            width="14"
+            height="14"
+            viewBox="5 8 14 8"
             fill="none"
             stroke="currentColor"
             stroke-width="2"
