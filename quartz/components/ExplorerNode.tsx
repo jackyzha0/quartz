@@ -117,6 +117,7 @@ type ExplorerNodeProps = {
 export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodeProps) {
   // Get options
   const folderBehavior = opts.folderClickBehavior
+  const isDefaultOpen = opts.folderDefaultState === "open"
 
   // Calculate current folderPath
   let pathOld = fullPath ? fullPath : ""
@@ -169,7 +170,7 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
             </div>
           )}
           {/* Recursively render children of folder */}
-          <div class={`folder-outer ${node.depth === 0 ? "open" : ""}`}>
+          <div class={`folder-outer ${node.depth === 0 || isDefaultOpen ? "open" : ""}`}>
             <ul
               // Inline style for left folder paddings
               style={{
