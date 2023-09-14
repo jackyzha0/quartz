@@ -32,8 +32,7 @@ export class FileNode {
     this.depth = depth ?? 0
   }
 
-  private insert(file: DataWrapper, depth: number) {
-    this.depth = ++depth
+  private insert(file: DataWrapper) {
     if (file.path.length === 1) {
       this.children.push(new FileNode(file.file.frontmatter!.title, file.file, this.depth + 1))
     } else {
@@ -41,20 +40,20 @@ export class FileNode {
       file.path = file.path.splice(1)
       for (const child of this.children) {
         if (child.name === next) {
-          child.insert(file, this.depth)
+          child.insert(file)
           return
         }
       }
 
-      const newChild = new FileNode(next)
-      newChild.insert(file, this.depth)
+      const newChild = new FileNode(next, undefined, this.depth + 1)
+      newChild.insert(file)
       this.children.push(newChild)
     }
   }
 
   // Add new file to tree
   add(file: Data, splice: number = 0) {
-    this.insert({ file, path: file.filePath!.split("/").splice(splice) }, -1)
+    this.insert({ file, path: file.filePath!.split("/").splice(splice) })
   }
 
   // Print tree structure (for debugging)
