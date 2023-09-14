@@ -76,10 +76,10 @@ ul.overflow::after {
 
 svg {
   pointer-events: all;
-}
 
-svg > polyline {
-  pointer-events: none;
+  & > polyline {
+    pointer-events: none;
+  }
 }
 
 .folder-container {
@@ -110,7 +110,6 @@ svg > polyline {
     padding-right: 0;
     display: flex;
     align-items: center;
-    pointer-events: all;
 
     & h3 {
       font-size: 0.95rem;
