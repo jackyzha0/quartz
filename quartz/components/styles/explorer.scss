@@ -33,6 +33,24 @@ ul.overflow::after {
   background: none;
 }
 
+.folder-outer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s ease-in-out;
+}
+
+.folder-outer.open {
+  grid-template-rows: 1fr;
+}
+
+.folder-outer > ul {
+  overflow: hidden;
+}
+
+.no-height {
+  flex: 0;
+}
+
 #explorer-content {
   list-style: none;
   overflow: hidden;

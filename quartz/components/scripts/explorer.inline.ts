@@ -128,8 +128,9 @@ function setFolderState(folderUL: HTMLElement, collapsed: boolean) {
   })
 
   // FolderContainer: <ul>
-  folderUL.style.opacity = collapsed ? "0" : "1"
-  folderUL.style.maxHeight = collapsed ? "0px" : totalHeight + "px"
+  // folderUL.style.opacity = collapsed ? "0" : "1"
+  // folderUL.style.maxHeight = collapsed ? "0px" : totalHeight + "px"
+  folderUL.classList.toggle("no-height")
   folderUL.classList.toggle("no-pointer")
 
   // Set no-pointer for all child items recursively

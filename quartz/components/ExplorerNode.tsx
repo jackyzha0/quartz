@@ -182,22 +182,24 @@ export function ExplorerNode({ node, opts, fullPath }: ExplorerNodeProps) {
             </div>
           )}
           {/* Recursively render children of folder */}
-          <ul
-            // Needs inline styling for options
-            // padding: only add padding if node is not root node
-            // opacity + maxHeight: set to 0 if folders should be collapsed by default
-            style={{
-              paddingLeft: node.name !== "" ? "1.4rem" : "0",
-              opacity: isInvisOuter ? "0" : "1",
-              maxHeight: node.name !== "" && isInvisOuter ? "0" : "none",
-            }}
-            class="content"
-            data-folderul={folderPath}
-          >
-            {node.children.map((childNode, i) => (
-              <ExplorerNode node={childNode} key={i} opts={opts} fullPath={folderPath} />
-            ))}
-          </ul>
+          <div class={`folder-outer ${node.depth === 0 ? "open" : ""}`}>
+            <ul
+              // Needs inline styling for options
+              // padding: only add padding if node is not root node
+              // opacity + maxHeight: set to 0 if folders should be collapsed by default
+              style={{
+                paddingLeft: node.name !== "" ? "1.4rem" : "0",
+                // opacity: isInvisOuter ? "0" : "1",
+                // maxHeight: node.name !== "" && isInvisOuter ? "0" : "none",
+              }}
+              class="content"
+              data-folderul={folderPath}
+            >
+              {node.children.map((childNode, i) => (
+                <ExplorerNode node={childNode} key={i} opts={opts} fullPath={folderPath} />
+              ))}
+            </ul>
+          </div>
         </div>
       )}
     </div>
