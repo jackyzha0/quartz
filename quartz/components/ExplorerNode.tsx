@@ -1,5 +1,5 @@
 // @ts-ignore
-import { Data } from "vfile"
+import { QuartzPluginData } from "vfile"
 import { resolveRelative } from "../util/path"
 
 export interface Options {
@@ -10,7 +10,7 @@ export interface Options {
 }
 
 type DataWrapper = {
-  file: Data
+  file: QuartzPluginData
   path: string[]
 }
 
@@ -23,10 +23,10 @@ export type FolderState = {
 export class FileNode {
   children: FileNode[]
   name: string
-  file: Data | null
+  file: QuartzPluginData | null
   depth: number
 
-  constructor(name: string, file?: Data, depth?: number) {
+  constructor(name: string, file?: QuartzPluginData, depth?: number) {
     this.children = []
     this.name = name
     this.file = file ?? null
@@ -53,7 +53,7 @@ export class FileNode {
   }
 
   // Add new file to tree
-  add(file: Data, splice: number = 0) {
+  add(file: QuartzPluginData, splice: number = 0) {
     this.insert({ file, path: file.filePath!.split("/").splice(splice) })
   }
 
@@ -109,7 +109,7 @@ export class FileNode {
 type ExplorerNodeProps = {
   node: FileNode
   opts: Options
-  fileData: Data
+  fileData: QuartzPluginData
   fullPath?: string
 }
 
