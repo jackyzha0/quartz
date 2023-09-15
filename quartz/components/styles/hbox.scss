@@ -8,15 +8,20 @@
 	// box-sizing: border-box;
 	// padding: 0;
 	align-items: baseline;
-	// min-width: max-content;
+	// width: fit-content;
+	height: min-content;
 	
 	& > * {
 		flex: 1;
+		height: min-content;
+		margin: 5px;
 		// flex-basis: 100%;
 
 	}
 	& > .darkmode {
-		// flex-basis: 0;
 		flex: 0;
+		flex-basis: 20px;
+		width: 20px;
+		height: 20px;
 	}
 }
