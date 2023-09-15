@@ -4,4 +4,4 @@ updates:
   - package-ecosystem: gitsubmodule
     schedule:
         interval: "daily"
-    directory: /content/
+    directory: /
