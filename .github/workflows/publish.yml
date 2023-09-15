@@ -27,6 +27,8 @@ jobs:
           node-version: 18.14
       - name: Install Dependencies
         run: npm ci
+      - name: Initialize Submodules
+        run: git submodule update --init --recursive
       - name: Build Quartz
         run: npx quartz build
       - name: Upload artifact
