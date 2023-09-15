@@ -17,12 +17,13 @@ export const sharedPageComponents: SharedLayout = {
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [Component.ArticleTitle(), Component.ContentMeta(), Component.TagList()],
   left: [
-    Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
     Component.HBox([
-      Component.Search(),
+      Component.PageTitle(),
+      // Component.MobileOnly(Component.Spacer()),
       Component.Darkmode(),
     ]),
+    Component.Search(),
+    Component.DesktopOnly(Component.Explorer()),
     Component.DesktopOnly(Component.RecentNotes()),
   ],
   right: [
@@ -36,12 +37,14 @@ export const defaultContentPageLayout: PageLayout = {
 export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.ArticleTitle()],
   left: [
-    Component.PageTitle(),
     Component.HBox([
-      Component.MobileOnly(Component.Spacer()),
+      Component.PageTitle(),
+      // Component.MobileOnly(Component.S1pacer()),
       Component.Darkmode(),
     ]),
     Component.Search(),
+    Component.Explorer(),
+    Component.DesktopOnly(Component.RecentNotes()),
   ],
   right: [
   ],

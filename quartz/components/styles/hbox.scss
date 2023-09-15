@@ -5,14 +5,14 @@
 	display: flex;
 	flex-direction: row;
 	// gap: 2rem;
-	box-sizing: border-box;
+	// box-sizing: border-box;
 	// padding: 0;
-	align-items: center;
+	align-items: baseline;
 	// min-width: max-content;
 	
 	& > * {
 		flex: 1;
-		flex-basis: 100%;
+		// flex-basis: 100%;
 
 	}
 	& > .darkmode {

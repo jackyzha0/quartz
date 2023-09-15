@@ -5,6 +5,8 @@ import darkmodeScript from "./scripts/darkmode.inline"
 import styles from "./styles/hbox.scss"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types";
 
+const style = "display: flex; flex-direction: row"
+
 export default ((components?: QuartzComponent[]) => {
 	if (components && components.length > 0) {
 		function HBox(props: QuartzComponentProps) {
@@ -12,7 +14,7 @@ export default ((components?: QuartzComponent[]) => {
 			// could be undefined even though we already checked
 			if (!components) return null
 			return (
-				<div class="hbox" {...props} >
+				<div class="hbox" >
 					{components.map((Component) => (
 						<Component {...props} />
 					))}
