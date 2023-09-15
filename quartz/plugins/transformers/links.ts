@@ -5,7 +5,6 @@ import {
   SimpleSlug,
   TransformOptions,
   _stripSlashes,
-  joinSegments,
   simplifySlug,
   splitAnchor,
   transformLink,
@@ -54,7 +53,8 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                 node.properties.className.push(isAbsoluteUrl(dest) ? "external" : "internal")
 
                 // don't process external links or intra-document anchors
-                if (!(isAbsoluteUrl(dest) || dest.startsWith("#"))) {
+                const isInternal = !(isAbsoluteUrl(dest) || dest.startsWith("#"))
+                if (isInternal) {
                   dest = node.properties.href = transformLink(
                     file.data.slug!,
                     dest,
@@ -72,11 +72,13 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                     simplifySlug(destCanonical as FullSlug),
                   ) as SimpleSlug
                   outgoing.add(simple)
+                  node.properties["data-slug"] = simple
                 }
 
                 // rewrite link internals if prettylinks is on
                 if (
                   opts.prettyLinks &&
+                  isInternal &&
                   node.children.length === 1 &&
                   node.children[0].type === "text" &&
                   !node.children[0].value.startsWith("#")

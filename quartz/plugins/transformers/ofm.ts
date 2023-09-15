@@ -1,6 +1,7 @@
 import { PluggableList } from "unified"
 import { QuartzTransformerPlugin } from "../types"
 import { Root, HTML, BlockContent, DefinitionContent, Code, Paragraph } from "mdast"
+import { Element, Literal } from "hast"
 import { Replace, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { slug as slugAnchor } from "github-slugger"
 import rehypeRaw from "rehype-raw"
@@ -21,6 +22,7 @@ export interface Options {
   callouts: boolean
   mermaid: boolean
   parseTags: boolean
+  parseBlockReferences: boolean
   enableInHtmlEmbed: boolean
 }
 
@@ -31,6 +33,7 @@ const defaultOptions: Options = {
   callouts: true,
   mermaid: true,
   parseTags: true,
+  parseBlockReferences: true,
   enableInHtmlEmbed: false,
 }
 
@@ -69,6 +72,8 @@ const callouts = {
 const calloutMapping: Record<string, keyof typeof callouts> = {
   note: "note",
   abstract: "abstract",
+  summary: "abstract",
+  tldr: "abstract",
   info: "info",
   todo: "todo",
   tip: "tip",
@@ -96,7 +101,7 @@ const calloutMapping: Record<string, keyof typeof callouts> = {
 
 function canonicalizeCallout(calloutName: string): keyof typeof callouts {
   let callout = calloutName.toLowerCase() as keyof typeof calloutMapping
-  return calloutMapping[callout] ?? calloutName
+  return calloutMapping[callout] ?? "note"
 }
 
 const capitalize = (s: string): string => {
@@ -119,6 +124,7 @@ const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
 // (?:[-_\p{L}])+       -> non-capturing group, non-empty string of (Unicode-aware) alpha-numeric characters, hyphens and/or underscores
 // (?:\/[-_\p{L}]+)*)   -> non-capturing group, matches an arbitrary number of tag strings separated by "/"
 const tagRegex = new RegExp(/(?:^| )#((?:[-_\p{L}\d])+(?:\/[-_\p{L}\d]+)*)/, "gu")
+const blockReferenceRegex = new RegExp(/\^([A-Za-z0-9]+)$/, "g")
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
@@ -129,6 +135,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
     const hast = toHast(ast, { allowDangerousHtml: true })!
     return toHtml(hast, { allowDangerousHtml: true })
   }
+
   const findAndReplace = opts.enableInHtmlEmbed
     ? (tree: Root, regex: RegExp, replace?: Replace | null | undefined) => {
         if (replace) {
@@ -232,8 +239,16 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     value: `<iframe src="${url}"></iframe>`,
                   }
                 } else if (ext === "") {
-                  // TODO: note embed
+                  const block = anchor.slice(1)
+                  return {
+                    type: "html",
+                    data: { hProperties: { transclude: true } },
+                    value: `<blockquote class="transclude" data-url="${url}" data-block="${block}"><a href="${
+                      url + anchor
+                    }" class="transclude-inner">Transclude of block ${block}</a></blockquote>`,
+                  }
                 }
+
                 // otherwise, fall through to regular link
               }
 
@@ -409,11 +424,63 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           }
         })
       }
-
       return plugins
     },
     htmlPlugins() {
-      return [rehypeRaw]
+      const plugins = [rehypeRaw]
+
+      if (opts.parseBlockReferences) {
+        plugins.push(() => {
+          const inlineTagTypes = new Set(["p", "li"])
+          const blockTagTypes = new Set(["blockquote"])
+          return (tree, file) => {
+            file.data.blocks = {}
+
+            visit(tree, "element", (node, index, parent) => {
+              if (blockTagTypes.has(node.tagName)) {
+                const nextChild = parent?.children.at(index! + 2) as Element
+                if (nextChild && nextChild.tagName === "p") {
+                  const text = nextChild.children.at(0) as Literal
+                  if (text && text.value && text.type === "text") {
+                    const matches = text.value.match(blockReferenceRegex)
+                    if (matches && matches.length >= 1) {
+                      parent!.children.splice(index! + 2, 1)
+                      const block = matches[0].slice(1)
+
+                      if (!Object.keys(file.data.blocks!).includes(block)) {
+                        node.properties = {
+                          ...node.properties,
+                          id: block,
+                        }
+                        file.data.blocks![block] = node
+                      }
+                    }
+                  }
+                }
+              } else if (inlineTagTypes.has(node.tagName)) {
+                const last = node.children.at(-1) as Literal
+                if (last && last.value && typeof last.value === "string") {
+                  const matches = last.value.match(blockReferenceRegex)
+                  if (matches && matches.length >= 1) {
+                    last.value = last.value.slice(0, -matches[0].length)
+                    const block = matches[0].slice(1)
+
+                    if (!Object.keys(file.data.blocks!).includes(block)) {
+                      node.properties = {
+                        ...node.properties,
+                        id: block,
+                      }
+                      file.data.blocks![block] = node
+                    }
+                  }
+                }
+              }
+            })
+          }
+        })
+      }
+
+      return plugins
     },
     externalResources() {
       const js: JSResource[] = []
@@ -450,5 +517,11 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
       return { js }
     },
+  }
+}
+
+declare module "vfile" {
+  interface DataMap {
+    blocks: Record<string, Element>
   }
 }
