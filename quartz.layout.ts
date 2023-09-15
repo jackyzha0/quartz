@@ -39,7 +39,7 @@ export const defaultListPageLayout: PageLayout = {
   left: [
     Component.HBox([
       Component.PageTitle(),
-      // Component.MobileOnly(Component.S1pacer()),
+      // Component.MobileOnly(Component.Spacer()),
       Component.Darkmode(),
     ]),
     Component.Search(),
