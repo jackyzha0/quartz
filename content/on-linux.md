@@ -26,3 +26,6 @@ The response I got was amazing! Everyone in the organization was extremely grate
 
 Unfortunately, the cabinet was scrapped earlier this year due to space requirements and a shifting purpose for the room, but it did end up being used actively for a few years, so I don't regret the project at all.
 ## Bare Metal
+
+### Kernel
+For the love of god, don't ever use the default kernel when daily driving. A custom kernel will squeeze every ounce of performance out of your hardware the way Windows would. I recommend the [CachyOS Kernel](https://github.com/CachyOS/linux-cachyos).
