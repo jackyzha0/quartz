@@ -7,8 +7,8 @@ export const sharedPageComponents: SharedLayout = {
   header: [],
   footer: Component.Footer({
     links: {
-      GitHub: "https://github.com/jackyzha0/quartz",
-      "Discord Community": "https://discord.gg/cRFFHYye7t",
+      GitHub: "https://github.com/gaylor-wiki/gaylor-vault",
+      // "Discord Community": "https://discord.gg/cRFFHYye7t",
     },
   }),
 }
@@ -19,13 +19,15 @@ export const defaultContentPageLayout: PageLayout = {
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
-    Component.Search(),
-    Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
+    Component.HBox([
+      Component.Search(),
+      Component.Darkmode(),
+    ]),
+    Component.DesktopOnly(Component.RecentNotes()),
   ],
   right: [
-    Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
+    Component.Graph(), 
     Component.Backlinks(),
   ],
 }
@@ -35,9 +37,12 @@ export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.ArticleTitle()],
   left: [
     Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
+    Component.HBox([
+      Component.MobileOnly(Component.Spacer()),
+      Component.Darkmode(),
+    ]),
     Component.Search(),
-    Component.Darkmode(),
   ],
-  right: [],
+  right: [
+  ],
 }

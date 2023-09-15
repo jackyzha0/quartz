@@ -1,0 +1,3 @@
+[submodule "content"]
+	path = content
+	url = https://github.com/gaylor-wiki/gaylor-vault.git
