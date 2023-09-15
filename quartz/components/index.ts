@@ -17,6 +17,7 @@ import Footer from "./Footer"
 import DesktopOnly from "./DesktopOnly"
 import MobileOnly from "./MobileOnly"
 import RecentNotes from "./RecentNotes"
+import HBox from "./HBox"
 
 export {
   ArticleTitle,
@@ -38,4 +39,5 @@ export {
   MobileOnly,
   RecentNotes,
   NotFound,
+  HBox,
 }
