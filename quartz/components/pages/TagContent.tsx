@@ -6,6 +6,7 @@ import { PageList } from "../PageList"
 import { FullSlug, getAllSegmentPrefixes, simplifySlug } from "../../util/path"
 import { QuartzPluginData } from "../../plugins/vfile"
 import { Root } from "hast"
+import { pluralize } from "../../util/lang"
 
 const numPages = 10
 function TagContent(props: QuartzComponentProps) {
@@ -60,7 +61,7 @@ function TagContent(props: QuartzComponentProps) {
                 </h2>
                 {content && <p>{content}</p>}
                 <p>
-                  {pages.length} items with this tag.{" "}
+                  {pluralize(pages.length, "item")} with this tag.{" "}
                   {pages.length > numPages && `Showing first ${numPages}.`}
                 </p>
                 <PageList limit={numPages} {...listProps} />
@@ -80,7 +81,7 @@ function TagContent(props: QuartzComponentProps) {
     return (
       <div class="popover-hint">
         <article>{content}</article>
-        <p>{pages.length} items with this tag.</p>
+        <p>{pluralize(pages.length, "item")} with this tag.</p>
         <div>
           <PageList {...listProps} />
         </div>

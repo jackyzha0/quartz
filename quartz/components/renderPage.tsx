@@ -3,7 +3,9 @@ import { QuartzComponent, QuartzComponentProps } from "./types"
 import HeaderConstructor from "./Header"
 import BodyConstructor from "./Body"
 import { JSResourceToScriptElement, StaticResources } from "../util/resources"
-import { FullSlug, joinSegments, pathToRoot } from "../util/path"
+import { FullSlug, RelativeURL, joinSegments } from "../util/path"
+import { visit } from "unist-util-visit"
+import { Root, Element } from "hast"
 
 interface RenderComponents {
   head: QuartzComponent
@@ -15,9 +17,10 @@ interface RenderComponents {
   footer: QuartzComponent
 }
 
-export function pageResources(slug: FullSlug, staticResources: StaticResources): StaticResources {
-  const baseDir = pathToRoot(slug)
-
+export function pageResources(
+  baseDir: FullSlug | RelativeURL,
+  staticResources: StaticResources,
+): StaticResources {
   const contentIndexPath = joinSegments(baseDir, "static/contentIndex.json")
   const contentIndexScript = `const fetchData = fetch(\`${contentIndexPath}\`).then(data => data.json())`
 
@@ -52,6 +55,40 @@ export function renderPage(
   components: RenderComponents,
   pageResources: StaticResources,
 ): string {
+  // process transcludes in componentData
+  visit(componentData.tree as Root, "element", (node, _index, _parent) => {
+    if (node.tagName === "blockquote") {
+      const classNames = (node.properties?.className ?? []) as string[]
+      if (classNames.includes("transclude")) {
+        const inner = node.children[0] as Element
+        const blockSlug = inner.properties?.["data-slug"] as FullSlug
+        const blockRef = node.properties!.dataBlock as string
+
+        // TODO: avoid this expensive find operation and construct an index ahead of time
+        let blockNode = componentData.allFiles.find((f) => f.slug === blockSlug)?.blocks?.[blockRef]
+        if (blockNode) {
+          if (blockNode.tagName === "li") {
+            blockNode = {
+              type: "element",
+              tagName: "ul",
+              children: [blockNode],
+            }
+          }
+
+          node.children = [
+            blockNode,
+            {
+              type: "element",
+              tagName: "a",
+              properties: { href: inner.properties?.href, class: ["internal"] },
+              children: [{ type: "text", value: `Link to original` }],
+            },
+          ]
+        }
+      }
+    }
+  })
+
   const {
     head: Head,
     header,

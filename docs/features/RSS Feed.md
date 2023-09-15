@@ -3,3 +3,5 @@ Quartz creates an RSS feed for all the content on your site by generating an `in
 ## Configuration
 
 - Remove RSS feed: set the `enableRSS` field of `Plugin.ContentIndex` in `quartz.config.ts` to be `false`.
+- Change number of entries: set the `rssLimit` field of `Plugin.ContentIndex` to be the desired value. It defaults to latest 10 items.
+- Use rich HTML output in RSS: set `rssFullHtml` field of `Plugin.ContentIndex` to be `true`.
