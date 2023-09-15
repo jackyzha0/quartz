@@ -1,6 +1,7 @@
 name: Deploy Quartz site to GitHub Pages
  
 on:
+  workflow_dispatch:
   push:
     branches:
       - vault
