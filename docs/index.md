@@ -30,7 +30,7 @@ This will guide you through initializing your Quartz with content. Once you've d
 
 ## 🔧 Features
 
-- [[Obsidian compatibility]], [[full-text search]], [[graph view]], [[wikilinks]], [[backlinks]], [[Latex]], [[syntax highlighting]], [[popover previews]], and [many more](./features) right out of the box
+- [[Obsidian compatibility]], [[full-text search]], [[graph view]], note transclusion, [[wikilinks]], [[backlinks]], [[Latex]], [[syntax highlighting]], [[popover previews]], and [many more](./features) right out of the box
 - Hot-reload for both configuration and content
 - Simple JSX layouts and [[creating components|page components]]
 - [[SPA Routing|Ridiculously fast page loads]] and tiny bundle sizes

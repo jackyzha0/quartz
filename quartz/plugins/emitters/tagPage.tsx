@@ -5,7 +5,13 @@ import BodyConstructor from "../../components/Body"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { ProcessedContent, defaultProcessedContent } from "../vfile"
 import { FullPageLayout } from "../../cfg"
-import { FilePath, FullSlug, getAllSegmentPrefixes, joinSegments } from "../../util/path"
+import {
+  FilePath,
+  FullSlug,
+  getAllSegmentPrefixes,
+  joinSegments,
+  pathToRoot,
+} from "../../util/path"
 import { defaultListPageLayout, sharedPageComponents } from "../../../quartz.layout"
 import { TagContent } from "../../components"
 
@@ -62,7 +68,7 @@ export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (userOpts) => {
 
       for (const tag of tags) {
         const slug = joinSegments("tags", tag) as FullSlug
-        const externalResources = pageResources(slug, resources)
+        const externalResources = pageResources(pathToRoot(slug), resources)
         const [tree, file] = tagDescriptions[tag]
         const componentData: QuartzComponentProps = {
           fileData: file.data,

@@ -142,6 +142,7 @@ async function startServing(
 
       const parsedFiles = [...contentMap.values()]
       const filteredContent = filterContent(ctx, parsedFiles)
+
       // TODO: we can probably traverse the link graph to figure out what's safe to delete here
       // instead of just deleting everything
       await rimraf(argv.output)

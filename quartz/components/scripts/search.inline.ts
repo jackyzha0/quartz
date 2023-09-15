@@ -82,6 +82,7 @@ document.addEventListener("nav", async (e: unknown) => {
   const searchIcon = document.getElementById("search-icon")
   const searchBar = document.getElementById("search-bar") as HTMLInputElement | null
   const results = document.getElementById("results-container")
+  const resultCards = document.getElementsByClassName("result-card")
   const idDataMap = Object.keys(data) as FullSlug[]
 
   function hideSearch() {
@@ -122,9 +123,31 @@ document.addEventListener("nav", async (e: unknown) => {
       // add "#" prefix for tag search
       if (searchBar) searchBar.value = "#"
     } else if (e.key === "Enter") {
-      const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
-      if (anchor) {
-        anchor.click()
+      // If result has focus, navigate to that one, otherwise pick first result
+      if (results?.contains(document.activeElement)) {
+        const active = document.activeElement as HTMLInputElement
+        active.click()
+      } else {
+        const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
+        anchor?.click()
+      }
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault()
+      // When first pressing ArrowDown, results wont contain the active element, so focus first element
+      if (!results?.contains(document.activeElement)) {
+        const firstResult = resultCards[0] as HTMLInputElement | null
+        firstResult?.focus()
+      } else {
+        // If an element in results-container already has focus, focus next one
+        const nextResult = document.activeElement?.nextElementSibling as HTMLInputElement | null
+        nextResult?.focus()
+      }
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault()
+      if (results?.contains(document.activeElement)) {
+        // If an element in results-container already has focus, focus previous one
+        const prevResult = document.activeElement?.previousElementSibling as HTMLInputElement | null
+        prevResult?.focus()
       }
     }
   }
@@ -157,7 +180,7 @@ document.addEventListener("nav", async (e: unknown) => {
     return {
       id,
       slug,
-      title: highlight(term, data[slug].title ?? ""),
+      title: searchType === "tags" ? data[slug].title : highlight(term, data[slug].title ?? ""),
       // if searchType is tag, display context from start of file and trim, otherwise use regular highlight
       content:
         searchType === "tags"
