@@ -32,7 +32,7 @@ export class FileNode {
   constructor(name: string, file?: QuartzPluginData, depth?: number) {
     this.children = []
     this.name = name
-    this.file = file ?? null
+    this.file = file ? structuredClone(file) : null
     this.depth = depth ?? 0
   }
 
