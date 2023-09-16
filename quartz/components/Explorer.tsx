@@ -35,6 +35,11 @@ export default ((userOpts?: Partial<Options>) => {
     // Sort tree (folders first, then files (alphabetic))
     fileTree.sort(opts.sortFn!)
 
+    // If provided, apply filter function to fileTree
+    if (opts.filterFn) {
+      fileTree.filter(opts.filterFn)
+    }
+
     // Get all folders of tree. Initialize with collapsed state
     const folders = fileTree.getFolderPaths(opts.folderDefaultState === "collapsed")
 

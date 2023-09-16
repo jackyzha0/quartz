@@ -8,6 +8,7 @@ export interface Options {
   folderClickBehavior: "collapse" | "link"
   useSavedState: boolean
   sortFn: (a: FileNode, b: FileNode) => number
+  filterFn?: (node: FileNode) => boolean
 }
 
 type DataWrapper = {
@@ -66,6 +67,10 @@ export class FileNode {
     this.children.forEach((e) => e.print(depth + 1))
   }
 
+  /**
+   * Filter FileNode tree. Behaves similar to `Array.prototype.filter()`, but modifies tree in place
+   * @param filterFn function to filter tree with
+   */
   filter(filterFn: (node: FileNode) => boolean) {
     const filteredNodes: FileNode[] = []
 
