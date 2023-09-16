@@ -40,6 +40,11 @@ export default ((userOpts?: Partial<Options>) => {
       fileTree.filter(opts.filterFn)
     }
 
+    // If provided, apply map function to fileTree
+    if (opts.mapFn) {
+      fileTree.map(opts.mapFn)
+    }
+
     // Get all folders of tree. Initialize with collapsed state
     const folders = fileTree.getFolderPaths(opts.folderDefaultState === "collapsed")
 
