@@ -57,7 +57,7 @@ export default ((userOpts?: Partial<Options>) => {
           </svg>
         </button>
         <div id="explorer-content">
-          <ul class="overflow">
+          <ul class="overflow" id="explorer-ul">
             <ExplorerNode node={fileTree} opts={opts} fileData={fileData} />
           </ul>
         </div>
