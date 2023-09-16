@@ -66,6 +66,21 @@ export class FileNode {
     this.children.forEach((e) => e.print(depth + 1))
   }
 
+  filter(filterFn: (node: FileNode) => boolean) {
+    const filteredNodes: FileNode[] = []
+
+    const traverse = (node: FileNode) => {
+      if (filterFn(node)) {
+        filteredNodes.push(node)
+      }
+      node.children.forEach(traverse)
+    }
+
+    traverse(this)
+
+    this.children = filteredNodes
+  }
+
   /**
    * Get folder representation with state of tree.
    * Intended to only be called on root node before changes to the tree are made
