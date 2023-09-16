@@ -1,5 +1,5 @@
 // @ts-ignore
-import { QuartzPluginData } from "vfile"
+import { QuartzPluginData } from "../plugins/vfile"
 import { resolveRelative } from "../util/path"
 
 export interface Options {
