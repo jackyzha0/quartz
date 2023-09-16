@@ -11,6 +11,17 @@ const defaultOptions = (): Options => ({
   folderClickBehavior: "collapse",
   folderDefaultState: "collapsed",
   useSavedState: true,
+  // Sort order: folders first, then files. Sort folders and files alphabetically
+  sortFn: (a, b) => {
+    if ((!a.file && !b.file) || (a.file && b.file)) {
+      return a.name.localeCompare(b.name)
+    }
+    if (a.file && !b.file) {
+      return 1
+    } else {
+      return -1
+    }
+  },
 })
 export default ((userOpts?: Partial<Options>) => {
   function Explorer({ allFiles, displayClass, fileData }: QuartzComponentProps) {
@@ -22,7 +33,7 @@ export default ((userOpts?: Partial<Options>) => {
     allFiles.forEach((file) => fileTree.add(file, 1))
 
     // Sort tree (folders first, then files (alphabetic))
-    fileTree.sort()
+    fileTree.sort(opts.sortFn!)
 
     // Get all folders of tree. Initialize with collapsed state
     const folders = fileTree.getFolderPaths(opts.folderDefaultState === "collapsed")
