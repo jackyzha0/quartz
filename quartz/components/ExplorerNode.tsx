@@ -9,6 +9,7 @@ export interface Options {
   useSavedState: boolean
   sortFn: (a: FileNode, b: FileNode) => number
   filterFn?: (node: FileNode) => boolean
+  mapFn?: (node: FileNode) => void
 }
 
 type DataWrapper = {
@@ -84,6 +85,16 @@ export class FileNode {
     traverse(this)
 
     this.children = filteredNodes
+  }
+
+  /**
+   * Filter FileNode tree. Behaves similar to `Array.prototype.map()`, but modifies tree in place
+   * @param mapFn function to filter tree with
+   */
+  map(mapFn: (node: FileNode) => void) {
+    mapFn(this)
+
+    this.children.forEach((child) => child.map(mapFn))
   }
 
   /**
