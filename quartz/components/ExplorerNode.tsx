@@ -2,6 +2,8 @@
 import { QuartzPluginData } from "../plugins/vfile"
 import { resolveRelative } from "../util/path"
 
+type OrderEntries = "sort" | "filter" | "map"
+
 export interface Options {
   title: string
   folderDefaultState: "collapsed" | "open"
@@ -10,6 +12,7 @@ export interface Options {
   sortFn: (a: FileNode, b: FileNode) => number
   filterFn?: (node: FileNode) => boolean
   mapFn?: (node: FileNode) => void
+  order?: OrderEntries[]
 }
 
 type DataWrapper = {
