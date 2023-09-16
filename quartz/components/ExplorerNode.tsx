@@ -7,6 +7,7 @@ export interface Options {
   folderDefaultState: "collapsed" | "open"
   folderClickBehavior: "collapse" | "link"
   useSavedState: boolean
+  sortFn: (a: FileNode, b: FileNode) => number
 }
 
 type DataWrapper = {
@@ -90,19 +91,13 @@ export class FileNode {
   }
 
   // Sort order: folders first, then files. Sort folders and files alphabetically
-  sort() {
-    this.children = this.children.sort((a, b) => {
-      if ((!a.file && !b.file) || (a.file && b.file)) {
-        return a.name.localeCompare(b.name)
-      }
-      if (a.file && !b.file) {
-        return 1
-      } else {
-        return -1
-      }
-    })
-
-    this.children.forEach((e) => e.sort())
+  /**
+   * Sorts tree according to sort/compare function
+   * @param sortFn compare function used for `.sort()`, also used recursively for children
+   */
+  sort(sortFn: (a: FileNode, b: FileNode) => number) {
+    this.children = this.children.sort(sortFn)
+    this.children.forEach((e) => e.sort(sortFn))
   }
 }
 
