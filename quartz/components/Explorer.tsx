@@ -59,6 +59,7 @@ export default ((userOpts?: Partial<Options>) => {
         <div id="explorer-content">
           <ul class="overflow" id="explorer-ul">
             <ExplorerNode node={fileTree} opts={opts} fileData={fileData} />
+            <div id="explorer-end" />
           </ul>
         </div>
       </div>

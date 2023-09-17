@@ -129,8 +129,8 @@ document.addEventListener("nav", () => {
   setupExplorer()
 
   const explorerContent = document.getElementById("explorer-ul")
-  // select last item in explorer (folder or item)
-  const lastItem = explorerContent?.firstChild?.firstChild?.firstChild?.firstChild?.lastChild
+  // select pseudo element at end of list
+  const lastItem = document.getElementById("explorer-end")
 
   observer.disconnect()
   observer.observe(lastItem as Element)
