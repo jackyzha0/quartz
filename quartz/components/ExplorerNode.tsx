@@ -76,18 +76,8 @@ export class FileNode {
    * @param filterFn function to filter tree with
    */
   filter(filterFn: (node: FileNode) => boolean) {
-    const filteredNodes: FileNode[] = []
-
-    const traverse = (node: FileNode) => {
-      if (filterFn(node)) {
-        filteredNodes.push(node)
-      }
-      node.children.forEach(traverse)
-    }
-
-    traverse(this)
-
-    this.children = filteredNodes
+    this.children = this.children.filter(filterFn)
+    this.children.forEach((child) => child.filter(filterFn))
   }
 
   /**
