@@ -82,7 +82,7 @@ export class FileNode {
 
   /**
    * Filter FileNode tree. Behaves similar to `Array.prototype.map()`, but modifies tree in place
-   * @param mapFn function to filter tree with
+   * @param mapFn function to use for mapping over tree
    */
   map(mapFn: (node: FileNode) => void) {
     mapFn(this)
