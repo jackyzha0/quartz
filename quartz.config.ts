@@ -10,8 +10,8 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     baseUrl: "gaylor-wiki.github.io",
-    ignorePatterns: ["private", "templates", ".obsidian"],
-    defaultDateType: "modified",
+    ignorePatterns: [".obsidian", ".github", "_**/**"],
+    defaultDateType: "created",
     theme: {
       typography: {
         header: "Schibsted Grotesk",
@@ -52,7 +52,7 @@ const config: QuartzConfig = {
       Plugin.SyntaxHighlighting(),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
-      Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
+      Plugin.CrawlLinks({ markdownLinkResolution: "absolute" }),
       Plugin.Latex({ renderEngine: "katex" }),
       Plugin.Description(),
     ],
