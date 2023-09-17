@@ -42,7 +42,7 @@ Want to customize it even more?
 
 - Removing table of contents: remove `Component.Explorer()` from `quartz.layout.ts`
   - (optional): After removing the explorer component, you can move the [[table of contents | Table of Contents]] component back to the `left` part of the layout
-- Changing `sort`, `filter` and `map` behavior: explained in [[explorer#Advanced customization]]
+- Changing `sort`, `filter` and `map` behavior: explained in [[#Advanced customization]]
 - Component:
   - Wrapper (Outer component, generates file tree, etc): `quartz/components/Explorer.tsx`
   - Explorer node (recursive, either a folder or a file): `quartz/components/ExplorerNode.tsx`
@@ -85,7 +85,7 @@ Component.Explorer({
 
 ---
 
-You can pass your own functions for `sortFn`, `filterFn` and `mapFn`. All functions will be executed in the order provided by the `order` option (see [[explorer#Customization]]). These functions behave similarly to their `Array.prototype` counterpart, except they modify the entire `FileNode` tree in place instead of returning a new one.
+You can pass your own functions for `sortFn`, `filterFn` and `mapFn`. All functions will be executed in the order provided by the `order` option (see [[#Customization]]). These functions behave similarly to their `Array.prototype` counterpart, except they modify the entire `FileNode` tree in place instead of returning a new one.
 
 For more information on how to use `sort`, `filter` and `map`, you can check [Array.prototype.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map).
 
@@ -189,7 +189,7 @@ Component.Explorer({
 
 ### Putting it all together
 
-In this example, we're going to customize the explorer by using functions from examples above to [[explorer#Add emoji prefix | add emoji prefixes]], [[explorer#remove-list-of-elements-filter| filter out some folders]] and [[explorer#use-sort-to-put-files-first | sort with files above folders]].
+In this example, we're going to customize the explorer by using functions from examples above to [[#Add emoji prefix | add emoji prefixes]], [[#remove-list-of-elements-filter| filter out some folders]] and [[#use-sort-to-put-files-first | sort with files above folders]].
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
