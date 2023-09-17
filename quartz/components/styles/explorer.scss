@@ -131,3 +131,12 @@ div:has(> .folder-outer:not(.open)) > .folder-container > svg {
 .folder-icon:hover {
   color: var(--tertiary);
 }
+
+.no-background::after {
+  background: none !important;
+}
+
+#explorer-end {
+  // needs height so IntersectionObserver gets triggered
+  height: 1px;
+}
