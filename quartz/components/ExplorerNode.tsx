@@ -1,12 +1,18 @@
 // @ts-ignore
-import { QuartzPluginData } from "vfile"
+import { QuartzPluginData } from "../plugins/vfile"
 import { resolveRelative } from "../util/path"
+
+type OrderEntries = "sort" | "filter" | "map"
 
 export interface Options {
   title: string
   folderDefaultState: "collapsed" | "open"
   folderClickBehavior: "collapse" | "link"
   useSavedState: boolean
+  sortFn: (a: FileNode, b: FileNode) => number
+  filterFn?: (node: FileNode) => boolean
+  mapFn?: (node: FileNode) => void
+  order?: OrderEntries[]
 }
 
 type DataWrapper = {
@@ -29,7 +35,7 @@ export class FileNode {
   constructor(name: string, file?: QuartzPluginData, depth?: number) {
     this.children = []
     this.name = name
-    this.file = file ?? null
+    this.file = file ? structuredClone(file) : null
     this.depth = depth ?? 0
   }
 
@@ -66,6 +72,25 @@ export class FileNode {
   }
 
   /**
+   * Filter FileNode tree. Behaves similar to `Array.prototype.filter()`, but modifies tree in place
+   * @param filterFn function to filter tree with
+   */
+  filter(filterFn: (node: FileNode) => boolean) {
+    this.children = this.children.filter(filterFn)
+    this.children.forEach((child) => child.filter(filterFn))
+  }
+
+  /**
+   * Filter FileNode tree. Behaves similar to `Array.prototype.map()`, but modifies tree in place
+   * @param mapFn function to use for mapping over tree
+   */
+  map(mapFn: (node: FileNode) => void) {
+    mapFn(this)
+
+    this.children.forEach((child) => child.map(mapFn))
+  }
+
+  /**
    * Get folder representation with state of tree.
    * Intended to only be called on root node before changes to the tree are made
    * @param collapsed default state of folders (collapsed by default or not)
@@ -90,19 +115,13 @@ export class FileNode {
   }
 
   // Sort order: folders first, then files. Sort folders and files alphabetically
-  sort() {
-    this.children = this.children.sort((a, b) => {
-      if ((!a.file && !b.file) || (a.file && b.file)) {
-        return a.name.localeCompare(b.name)
-      }
-      if (a.file && !b.file) {
-        return 1
-      } else {
-        return -1
-      }
-    })
-
-    this.children.forEach((e) => e.sort())
+  /**
+   * Sorts tree according to sort/compare function
+   * @param sortFn compare function used for `.sort()`, also used recursively for children
+   */
+  sort(sortFn: (a: FileNode, b: FileNode) => number) {
+    this.children = this.children.sort(sortFn)
+    this.children.forEach((e) => e.sort(sortFn))
   }
 }
 
@@ -131,7 +150,7 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
         // Single file node
         <li key={node.file.slug}>
           <a href={resolveRelative(fileData.slug!, node.file.slug!)} data-for={node.file.slug}>
-            {node.file.frontmatter?.title}
+            {node.name}
           </a>
         </li>
       ) : (
