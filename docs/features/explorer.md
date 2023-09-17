@@ -145,25 +145,19 @@ Component.Explorer({
 
 ### Remove list of elements (`filter`)
 
-Using this example, you can remove elements from your explorer by providing a list of folders/files using the `list` array.
+Using this example, you can remove elements from your explorer by providing an array of folders/files using the `omit` set.
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
   filterFn: (node) => {
-    // list containing names of everything you want to filter out
-    const list = ["authoring content", "building your", "tags", "hosting"]
-
-    for (let listNodeName of list) {
-      if (listNodeName.toLowerCase() === node.name.toLowerCase()) {
-        return false // Found a match, so return false to filter out the node
-      }
-    }
-    return true // No match found, so return true to keep the node
+    // set containing names of everything you want to filter out
+    const omit = new Set(["authoring content", "tags", "hosting"])
+    return omit.has(node.name.toLowerCase())
   },
 })
 ```
 
-You can customize this by changing the entries of the `list` array. Simply add all folder or file names you want to remove to the array (case insensitive).
+You can customize this by changing the entries of the `omit` set. Simply add all folder or file names you want to remove.
 
 ## Advanced examples
 
@@ -224,7 +218,7 @@ To fix this, we just changed around the order and apply the `sort` function befo
 > You can then import them like this:
 >
 > ```ts title="quartz.layout.ts"
-> import { mapFn, filterFn, sortFn } from "./path/to/your/functions"
+> import { mapFn, filterFn, sortFn } from "./functions.ts"
 > Component.Explorer({
 >   mapFn: mapFn,
 >   filterFn: filterFn,
