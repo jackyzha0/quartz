@@ -19,6 +19,7 @@ import { options } from "./util/sourcemap"
 import { Mutex } from "async-mutex"
 import { execSync } from "child_process"
 import { writeFileSync } from "fs"
+import {copyFileSync} from "node:fs";
 
 async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   const ctx: BuildCtx = {
@@ -60,32 +61,6 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   await emitContent(ctx, filteredContent)
   console.log(chalk.green(`Done processing ${fps.length} files in ${perf.timeSince()}`))
   release()
-
-  const manifest = {
-    short_name: cfg.configuration.pageTitle,
-    name: cfg.configuration.pageTitle,
-    description: cfg.configuration.description,
-    background_color: cfg.configuration.theme.colors.lightMode.light,
-    theme_color: cfg.configuration.theme.colors.lightMode.light,
-    display: "minimal-ui",
-    icons: [
-      {
-        src: "static/icon.svg",
-        sizes: "any",
-        purpose: "maskable",
-      },
-      {
-        src: "static/icon.svg",
-        sizes: "any",
-        purpose: "any",
-      },
-    ],
-    start_url: "/",
-  }
-
-  writeFileSync(process.cwd() + "/public/manifest.json", JSON.stringify(manifest))
-  execSync("npx workbox generateSW workbox.config.ts")
-  console.log("Made Quartz offline aviable")
 
   if (argv.serve) {
     return startServing(ctx, mut, parsedFiles, clientRefresh)
