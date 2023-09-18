@@ -152,7 +152,7 @@ Component.Explorer({
   filterFn: (node) => {
     // set containing names of everything you want to filter out
     const omit = new Set(["authoring content", "tags", "hosting"])
-    return omit.has(node.name.toLowerCase())
+    return !omit.has(node.name.toLowerCase())
   },
 })
 ```
