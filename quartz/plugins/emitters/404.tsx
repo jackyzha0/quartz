@@ -28,7 +28,10 @@ export const NotFoundPage: QuartzEmitterPlugin = () => {
     async emit(ctx, _content, resources, emit): Promise<FilePath[]> {
       const cfg = ctx.cfg.configuration
       const slug = "404" as FullSlug
-      const externalResources = pageResources(slug, resources)
+
+      const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`)
+      const path = url.pathname as FullSlug
+      const externalResources = pageResources(path, resources)
       const [tree, vfile] = defaultProcessedContent({
         slug,
         text: "Not Found",
