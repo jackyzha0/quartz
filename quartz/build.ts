@@ -17,9 +17,6 @@ import { glob, toPosixPath } from "./util/glob"
 import { trace } from "./util/trace"
 import { options } from "./util/sourcemap"
 import { Mutex } from "async-mutex"
-import { execSync } from "child_process"
-import { writeFileSync } from "fs"
-import { copyFileSync } from "node:fs"
 
 async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   const ctx: BuildCtx = {

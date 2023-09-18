@@ -1,11 +1,10 @@
 import { QuartzEmitterPlugin } from "../types"
 import { FilePath, FullSlug } from "../../util/path"
 import path from "path"
-import { readFileSync } from "node:fs"
 
 export const Offline: QuartzEmitterPlugin = () => {
   return {
-    name: "Offline",
+    name: "OfflineSupport",
     getQuartzComponents() {
       return []
     },
@@ -37,18 +36,18 @@ export const Offline: QuartzEmitterPlugin = () => {
         "const {pageCache, imageCache, staticResourceCache, googleFontsCache, offlineFallback} = workbox.recipes;" +
         "pageCache(); googleFontsCache(); staticResourceCache(); imageCache();offlineFallback();"
 
-      return [
-        await emit({
+      return Promise.all([
+        emit({
           content: JSON.stringify(manifest),
           slug: path.join("manifest") as FullSlug,
           ext: ".json",
         }),
-        await emit({
+        emit({
           content: serviceWorker,
           slug: path.join("sw") as FullSlug,
           ext: ".js",
         }),
-      ]
+      ])
     },
   }
 }
