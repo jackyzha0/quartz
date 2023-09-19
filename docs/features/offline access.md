@@ -12,7 +12,7 @@ Whenever you visit a page it gets cached for offline use. Depending on the kind 
 
 - **Pages** (HTML, your converted Markdown files): Quartz first tries to get them over the Network. If that fails, your browser attempts to fetch it from the cache.
 - **Static Resources** (Fonts, CSS Styling, JavaScript): Quartz uses cached resources by default and updates the cache over the network in the background.
-- **Images**: Those are getting saved once and then served from Cache. The amount of images is limited to 60 Images and are valid for 30 Days
+- **Images**: Images are saved once and then served from cache. Quartz uses a limited cache of 60 images and images remain in the cache for 30 days
 
 You can edit the fallback page by changing the `offline.md` file in the root of your `content` directory
 
