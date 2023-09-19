@@ -13,8 +13,7 @@ export default ((opts?: Options) => {
     return (
       <footer>
         <hr />
-        <p>
-          Created with <a href="https://quartz.jzhao.xyz/">Quartz v{version}</a>, © {year}
+        <p>© {year} Miguel Pimentel · Created with <a href="https://quartz.jzhao.xyz/">Quartz</a>.
         </p>
         <ul>
           {Object.entries(links).map(([text, link]) => (
@@ -28,5 +27,6 @@ export default ((opts?: Options) => {
   }
 
   Footer.css = style
+
   return Footer
 }) satisfies QuartzComponentConstructor
