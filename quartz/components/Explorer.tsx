@@ -6,7 +6,7 @@ import script from "./scripts/explorer.inline"
 import { ExplorerNode, FileNode, Options } from "./ExplorerNode"
 
 // Options interface defined in `ExplorerNode` to avoid circular dependency
-const defaultOptions = (): Options => ({
+const defaultOptions = {
   title: "Explorer",
   folderClickBehavior: "collapse",
   folderDefaultState: "collapsed",
@@ -23,11 +23,12 @@ const defaultOptions = (): Options => ({
     }
   },
   order: ["filter", "map", "sort"],
-})
+} satisfies Options
+
 export default ((userOpts?: Partial<Options>) => {
   function Explorer({ allFiles, displayClass, fileData }: QuartzComponentProps) {
     // Parse config
-    const opts: Options = { ...defaultOptions(), ...userOpts }
+    const opts: Options = { ...defaultOptions, ...userOpts }
 
     // Construct tree from allFiles
     const fileTree = new FileNode("")
