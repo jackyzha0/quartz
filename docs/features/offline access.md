@@ -16,7 +16,7 @@ Whenever you visit a page it gets cached for offline use. Depending on the kind 
 
 You can edit the fallback page by changing the `offline.md` file in the root of your `content` directory
 
-## App
+## Progressive Web App (PWA)
 
 Progressive Web Apps can have [many properties](https://developer.mozilla.org/en-US/docs/Web/Manifest). We're only going to mention the ones Quartz supports by default, however you can edit the offline plugins file to add more in case required.
 
