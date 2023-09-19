@@ -20,7 +20,6 @@ You can edit the fallback page by changing the `offline.md` file in the root of 
 
 Progressive Web Apps can have [many properties](https://developer.mozilla.org/en-US/docs/Web/Manifest). We're only going to mention the ones Quartz supports by default, however you can edit the offline plugins file to add more in case required.
 
-
 - **icons**: the `icon.svg` file in the `quartz/static` directory is used for all the icons. This makes it easier to scale the image since you don't need to provide an png for every size
 - **name**, **short_name**: Uses the `pageTitle` configured in `quartz.config.ts`
 - **description**: Uses the `description` configured in `quartz.config.ts`
