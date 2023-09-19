@@ -23,7 +23,7 @@ Progressive Web Apps can have [many properties](https://developer.mozilla.org/en
 
 - **icons**: the `icon.svg` file in the `quartz/static` directory is used for all the icons. This makes it easier to scale the image since you don't need to provide an png for every size
 - **name** and **short_name**: For this we use the `pageTitle` you configured in `quartz.config.ts`
-- **description**: For this we use the `description` you configured in `quartz.config.ts`
+- **description**: Uses the `description` configured in `quartz.config.ts`
 - **background_color**, **theme_color**: Uses the `lightMode.light` color configured in `quartz.config.ts`.
 - **start_url**: Uses the `baseUrl` configured in `quartz.config.ts`
 
