@@ -8,17 +8,19 @@
 
 # Forgetful Notes
 
-This repo holds the source code for my digital garden.
+Source code for Forgetful Notes—my digital garden of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 
-- Based on [Quartz](https://github.com/jackyzha0/quartz/)
-- [Documentation](https://quartz.jzhao.xyz/)
-- [Join the Discord Community](https://discord.gg/cRFFHYye7t)
+- Created with [Quartz](https://github.com/jackyzha0/quartz/)
+- Read the [Documentation](https://quartz.jzhao.xyz/)
+- Join the [Discord Community](https://discord.gg/cRFFHYye7t)
 
 ## Useful Commands
 
-- `npm i`
-- `npx quartz update`
-- `npx quartz build --serve`
-- `npx quartz sync`
-- `npx quartz build`
-- `npx quartz sync --help`
+| Command                    | Description                |
+| -------------------------- | -------------------------- |
+| `npm i`                    | Install Dependencies       |
+| `npx quartz update`        | Update Quartz (core)       |
+| `npx quartz build --serve` | Build and Serve Locally    |
+| `npx quartz sync`          | Save Local Changes to Repo |
+| `npx quartz build`         | Build without Serving      |
+| `npx quartz sync --help`   | Find Help                  |
