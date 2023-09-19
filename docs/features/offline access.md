@@ -1,4 +1,5 @@
 ---
+title: "Offline Access (PWA)"
 tags:
   - plugin/emitter
 ---
