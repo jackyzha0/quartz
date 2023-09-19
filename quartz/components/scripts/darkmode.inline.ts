@@ -22,11 +22,11 @@ document.addEventListener("nav", () => {
   }
 
   // Listen for changes in prefers-color-scheme
-  const colorSchemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const colorSchemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
   colorSchemeMediaQuery.addEventListener("change", (e) => {
-    const newTheme = e.matches ? "dark" : "light";
-    document.documentElement.setAttribute("saved-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-    toggleSwitch.checked = e.matches;
+    const newTheme = e.matches ? "dark" : "light"
+    document.documentElement.setAttribute("saved-theme", newTheme)
+    localStorage.setItem("theme", newTheme)
+    toggleSwitch.checked = e.matches
   })
 })
