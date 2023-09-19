@@ -121,14 +121,9 @@ const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
 const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
 // (?:^| )              -> non-capturing group, tag should start be separated by a space or be the start of the line
 // #(...)               -> capturing group, tag itself must start with #
-// (?:[-_\p{L}\d])*     -> non-capturing group, arbitrary number of (Unicode-aware) alpha-numeric characters, hyphens and/or underscores
-// (?:[-_\p{L}])+       -> non-capturing group, non-empty string of (Unicode-aware) letters, hyphens and/or underscores
-// (?:[-_\p{L}\d])*     -> non-capturing group, arbitrary number of (Unicode-aware) alpha-numeric characters, hyphens and/or underscores
+// (?:[-_\p{L}])+       -> non-capturing group, non-empty string of (Unicode-aware) alpha-numeric characters, hyphens and/or underscores
 // (?:\/[-_\p{L}]+)*)   -> non-capturing group, matches an arbitrary number of tag strings separated by "/"
-const tagRegex = new RegExp(
-  /(?:^| )#((?:[-_\p{L}\d])*(?:[-_\p{L}])+(?:[-_\p{L}\d])*(?:\/[-_\p{L}\d]+)*)/,
-  "gu",
-)
+const tagRegex = new RegExp(/(?:^| )#((?:[-_\p{L}\d])+(?:\/[-_\p{L}\d]+)*)/, "gu")
 const blockReferenceRegex = new RegExp(/\^([A-Za-z0-9]+)$/, "g")
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
@@ -405,6 +400,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           return (tree: Root, file) => {
             const base = pathToRoot(file.data.slug!)
             findAndReplace(tree, tagRegex, (_value: string, tag: string) => {
+              // Check if the tag only includes numbers
+              if (/^\d+$/.test(tag)) {
+                return false
+              }
               tag = slugTag(tag)
               if (file.data.frontmatter && !file.data.frontmatter.tags.includes(tag)) {
                 file.data.frontmatter.tags.push(tag)
