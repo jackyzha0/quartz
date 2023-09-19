@@ -39,7 +39,7 @@ export const Offline: QuartzEmitterPlugin = () => {
       return Promise.all([
         emit({
           content: JSON.stringify(manifest),
-          slug: path.join("manifest") as FullSlug,
+          slug: "manifest" as FullSlug,
           ext: ".json",
         }),
         emit({
