@@ -25,7 +25,7 @@ Progressive Web Apps can have [many properties](https://developer.mozilla.org/en
 - **name** and **short_name**: For this we use the `pageTitle` you configured in `quartz.config.ts`
 - **description**: For this we use the `description` you configured in `quartz.config.ts`
 - **background_color** and **theme_color**: For this we use the `lightMode.light` color you configured in `quartz.config.ts`. However many browsers don't use that functionality
-- **start_url**: For this we use the `baseUrl` you configured in `quartz.config.ts`
+- **start_url**: Uses the `baseUrl` configured in `quartz.config.ts`
 
 ### Default values
 
