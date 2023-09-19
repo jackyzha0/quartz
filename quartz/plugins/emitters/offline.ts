@@ -1,6 +1,5 @@
 import { QuartzEmitterPlugin } from "../types"
 import { FilePath, FullSlug } from "../../util/path"
-import path from "path"
 
 export const Offline: QuartzEmitterPlugin = () => {
   return {
