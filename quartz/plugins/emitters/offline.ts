@@ -1,8 +1,8 @@
 import { QuartzEmitterPlugin } from "../types"
 import { FilePath, FullSlug } from "../../util/path"
 import { FullPageLayout } from "../../cfg"
-import {sharedPageComponents} from "../../../quartz.layout";
-import OfflineFallbackPage from "../../components/pages/OfflineFallbackPage";
+import { sharedPageComponents } from "../../../quartz.layout"
+import OfflineFallbackPage from "../../components/pages/OfflineFallbackPage"
 import BodyConstructor from "../../components/Body"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { defaultProcessedContent } from "../vfile"
