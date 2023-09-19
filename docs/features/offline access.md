@@ -4,7 +4,7 @@ tags:
   - plugin/emitter
 ---
 
-This allows your Website to be accesible offline and be installed as an app. You can use it by adding `Plugin.Offline(),` to the `emitters` in `quartz.config.ts`
+This plugin allows your website to be accessible offline and be installed as an app. You can use it by adding `Plugin.Offline(),` to the `emitters` in `quartz.config.ts`
 
 ## Offline Capability
 
