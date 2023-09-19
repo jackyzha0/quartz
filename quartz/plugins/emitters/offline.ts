@@ -44,7 +44,7 @@ export const Offline: QuartzEmitterPlugin = () => {
         }),
         emit({
           content: serviceWorker,
-          slug: path.join("sw") as FullSlug,
+          slug: "sw" as FullSlug,
           ext: ".js",
         }),
       ])
