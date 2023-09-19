@@ -1,6 +1,8 @@
 ---
-title: Forgetful Notes
+title: Home
 description: A digital garden of knowledge. A platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
+compartir: true
+lastmod: 2023-09-19
 ---
 Hey there! I'm Miguel, and you have come across **Forgetful Notes**—my [[Digital Garden|digital garden]] of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 
