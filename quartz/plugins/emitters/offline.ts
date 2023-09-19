@@ -27,7 +27,8 @@ export const Offline: QuartzEmitterPlugin = () => {
             purpose: "any",
           },
         ],
-        start_url: cfg.configuration.baseUrl == undefined ? "/" : `https://${cfg.configuration.baseUrl}/`,
+        start_url:
+          cfg.configuration.baseUrl == undefined ? "/" : `https://${cfg.configuration.baseUrl}/`,
       }
 
       const serviceWorker =
