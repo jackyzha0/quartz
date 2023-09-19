@@ -11,7 +11,7 @@ This plugin allows your website to be accessible offline and be installed as an 
 Whenever you visit a page it gets cached for offline use. Depending on the kind of content, the process for caching is diffent:
 
 - **Pages** (HTML, your converted Markdown files): Quartz first tries to get them over the Network. If that fails, your browser attempts to fetch it from the cache.
-- **Static Resources** (Fonts, CSS Styling, JavaScript): Quartz gets them from cache and updates the cache over the Network in the background. Next time the page loads this new cache is being used
+- **Static Resources** (Fonts, CSS Styling, JavaScript): Quartz uses cached resources by default and updates the cache over the network in the background.
 - **Images**: Those are getting saved once and then served from Cache. The amount of images is limited to 60 Images and are valid for 30 Days
 
 You can edit the fallback page by changing the `offline.md` file in the root of your `content` directory
