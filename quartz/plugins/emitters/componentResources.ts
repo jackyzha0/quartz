@@ -116,11 +116,6 @@ function addGlobalPageResources(
         document.dispatchEvent(event)`)
   }
 
-  componentResources.afterDOMLoaded.push(`
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
-  }`)
-
   let wsUrl = `ws://localhost:${ctx.argv.wsPort}`
 
   if (ctx.argv.remoteDevHost) {
