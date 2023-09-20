@@ -26,7 +26,6 @@ const defaultOptions = {
   order: ["filter", "map", "sort"],
 } satisfies Options
 
-
 export default ((userOpts?: Partial<Options>) => {
   // Parse config
   const opts: Options = { ...defaultOptions, ...userOpts }
@@ -75,7 +74,6 @@ export default ((userOpts?: Partial<Options>) => {
 
       // Stringify to pass json tree as data attribute ([data-tree])
       jsonTree = JSON.stringify(folders)
-
     }
   }
 
