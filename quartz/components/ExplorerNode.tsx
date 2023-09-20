@@ -145,7 +145,7 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
   }
 
   return (
-    <div>
+    <li>
       {node.file ? (
         // Single file node
         <li key={node.file.slug}>
@@ -174,17 +174,17 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
               {/* render <a> tag if folderBehavior is "link", otherwise render <button> with collapse click event */}
-              <li key={node.name} data-folderpath={folderPath}>
+              <div key={node.name} data-folderpath={folderPath}>
                 {folderBehavior === "link" ? (
                   <a href={`${folderPath}`} data-for={node.name} class="folder-title">
                     {node.name}
                   </a>
                 ) : (
                   <button class="folder-button">
-                    <h3 class="folder-title">{node.name}</h3>
+                    <p class="folder-title">{node.name}</p>
                   </button>
                 )}
-              </li>
+              </div>
             </div>
           )}
           {/* Recursively render children of folder */}
@@ -210,6 +210,6 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
           </div>
         </div>
       )}
-    </div>
+    </li>
   )
 }
