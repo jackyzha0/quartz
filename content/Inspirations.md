@@ -1,10 +1,13 @@
 ---
 title: What Inspires Me
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-09-20
 tags:
   - list
 ---
+
+
+*These are people and projects that have resonated with me.*
 
 ## People Who Inspire Me
 

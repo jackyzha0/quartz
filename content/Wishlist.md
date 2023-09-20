@@ -3,9 +3,12 @@ title: Wishlist
 tags:
   - list
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-09-20
 description: These are items I want to and plan on buying later.
 ---
+
+
+_A collection of items I would like to buy later._
 
 ## Personal Items
 

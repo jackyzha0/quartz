@@ -3,7 +3,7 @@ title: Learning Meditation
 tags:
   - learning
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-09-20
 enableToc: true
 ---
 
@@ -11,19 +11,11 @@ enableToc: true
 
 ### A Brief Explanation of the Practice
 
-How do you learn to meditate? In mindfulness meditation, we're learning how to pay attention to the breath as it goes in and out, and notice when the mind wanders from this task. This practice of returning to the breath builds the muscles of attention and [mindfulness](https://www.mindful.org/what-is-mindfulness/).
+In mindfulness meditation, we're learning how to pay attention to the breath as it goes in and out, and notice when the mind wanders from this task. This practice of returning to the breath builds the muscles of attention and mindfulness.
 
 When we pay attention to our breath, we are learning how to return to, and remain in, the present moment—to anchor ourselves in the here and now on purpose, without judgement.
 
-The idea behind mindfulness seems simple—the practice takes patience. Indeed, renowned meditation teacher [Sharon Salzberg](https://www.mindful.org/author/sharon-salzberg/) recounts that her first experience with meditation showed her how quickly the mind gets caught up in other tasks. "I thought, okay, what will it be, like, 800 breaths before my mind starts to wander? And to my absolute amazement, it was one breath, and I'd be gone," says Salzberg.
-
 ## Why Learn to Meditate?
-
-### A Selection of Benefits That Are Associated with Meditating
-
-While meditation isn't a cure-all, it can certainly provide some much-needed space in your life. Sometimes, that's all we need to make better choices for ourselves, our families, and our communities. And the most important tools you can bring with you to your meditation practice are a little patience, some kindness for yourself, and a comfortable place to sit.
-
-When we meditate, we inject far-reaching and long-lasting benefits into our lives. And bonus: you don't need any extra gear or an expensive membership.
 
 ### Here Are Five Reasons to Meditate
 
@@ -64,25 +56,7 @@ Recent research from neuroscientist Amishi Jha discovered that [12 minutes of me
 
 ### Meditation Tips and Techniques
 
-We've gone over the basic breath meditation so far, but there are other mindfulness techniques that use different focal points than the breath to anchor our attention—external objects like a sound in the room, or something broader, such as noticing spontaneous things that come into your awareness during an [aimless wandering practice](https://www.mindful.org/aimless-wandering-mindfulness-practice-video/). But all of these practices have one thing in common: We notice that our minds ARE running the show a lot of the time. It's true. We think thoughts, typically, and then we act. But here are some helpful strategies to change that up:
-
-### How to Make Mindfulness a Habit
-
-It's estimated that 95% of our behavior runs on autopilot. That's because neural networks underlie all of our habits, reducing our millions of sensory inputs per second into manageable shortcuts so we can function in this crazy world. These default brain signals are so efficient that they often cause us to relapse into old behaviors before we remember what we meant to do instead. 
-
-Mindfulness is the exact opposite of these default processes. It's executive control rather than autopilot, and enables intentional actions, willpower, and decisions. But that takes _practice_. The more we activate the intentional brain, the stronger it gets. Every time we do something deliberate and new, we stimulate neuroplasticity, activating our grey matter, which is full of newly sprouted neurons that have not yet been groomed for "autopilot" brain. 
-
-But here's the problem. While our intentional brain knows what is best for us, our autopilot brain causes us to shortcut our way through life. So how can we trigger ourselves to be mindful when we need it most? This is where the notion of "behavior design" comes in. It's a way to put your intentional brain in the driver's seat. There are two ways to do that—first, slowing down the autopilot brain by putting obstacles in its way, and second, removing obstacles in the path of the intentional brain, so it can gain control. 
-
-Shifting the balance to give your intentional brain more power takes some work, though. Here are some ways to get started. 
-
-* **Put meditation reminders around you.** If you intend to do some yoga or to meditate, put your yoga mat or your meditation cushion in the middle of your floor so you can't miss it as you walk by. 
-* **Refresh your reminders regularly.** Say you decide to use sticky notes to remind yourself of a new intention. That might work for about a week, but then your autopilot brain and old habits take over again. Try writing new notes to yourself; add variety or make them funny. That way they'll stick with you longer. 
-* **Create new patterns.** You could try a series of "If this, then that" messages to create easy reminders to shift into the intentional brain. For instance, you might come up with, "If office door, then deep breath," as a way to shift into mindfulness as you are about to start your workday. Or, "If phone rings, take a breath before answering." Each intentional action to shift into mindfulness will strengthen your intentional brain.
-
-## Some Basic Meditations
-
-### These Are Some Meditation Practices to Get You Going
+We've gone over the basic breath meditation so far, but there are other mindfulness techniques that use different focal points than the breath to anchor our attention—external objects like a sound in the room, or something broader, such as noticing spontaneous things that come into your awareness during an [aimless wandering practice](https://www.mindful.org/aimless-wandering-mindfulness-practice-video/). But all of these practices have one thing in common: We notice that our minds ARE running the show a lot of the time. It's true. We think thoughts, typically, and then we act.
 
 ## A Basic Meditation for Beginners
 
@@ -171,72 +145,3 @@ This loving-kindness practice involves silently repeating phrases that offer goo
 4. **Each time you notice your attention has wandered, be kind to yourself** and let go of the distraction. Come back to repeating the phrases without judging or disparaging yourself.
 5. **After some time, visualize yourself in the center of a circle** composed of those who have been kind to you, or have inspired you because of their love. Perhaps you've met them, or read about them; perhaps they live now, or have existed historically or even mythically. That is the circle. As you visualize yourself in the center of it, experience yourself as the recipient of their love and attention. Keep gently repeating the phrases of loving-kindness for yourself.
 6. **To close the session, let go of the visualization**, and simply keep repeating the phrases for a few more minutes. Each time you do so, you are transforming your old, hurtful relationship to yourself, and are moving forward, sustained by the force of kindness.
-
-### Beyond the Beginning
-
-#### What to Know and Where to Go When You've Started
-
-### Frequently Asked Questions About Mindfulness Meditation, Answered
-
-When you're new to meditation, it's natural for questions to pop up often. These answers may ease your mind.
-
-1. If I have an itch, can I scratch it?
-Yes—however, first try scratching it with your mind before using your fingers.
-2. Should I breathe fast or slow or in between?
-Only worry if you've stopped breathing. Otherwise, you're doing fine. Breath in whatever way feels comfortable to you.
-3. Should my eyes be open or closed?
-No hard-and-fast rules. Try both. If open, not too wide, and with a soft, slightly downward gaze, not focusing on anything in particular. If closed, not too hard, and not imagining anything in particular in your mind's eye.
-4. Is it possible I'm someone who just CANNOT meditate?
-When you find yourself asking that question, your meditation has officially begun. Everyone wonders that. Notice it. Escort your attention back to your object of focus (the breath). When you're lost and questioning again, come back to the breathe again. That's the practice. There's no limit to the number of times you can be distracted and come back to the breath. Meditating is not a race to perfection—It's returning again and again to the breath.
-5. Is it better to practice in a group or by myself?
-Both are great! It's enormously supportive to meditate with others. And, practicing on your own builds discipline.
-6. What's the best time of day to meditate?
-Whatever works. Consider your circumstances: children, pets, work. Experiment. But watch out. If you always choose the most convenient time, it will usually be tomorrow.
-7. What if I get sexually (and physically) aroused by thoughts in my head?
-No big deal. Meditation stokes the imagination. In time, every thought and sensation will pop up (so to speak). And come back. Same old story. Release the thought, bring awareness and receptivity to body sensations, bring attention back to your chosen object (the breath, in this case). Repeat.
-8. Do you have any tips on integrating pets into meditation practice?
-While meditating, we don't have to fight off distractions like a knight slaying dragons. If your dog or cat comes into the room and barks and meows and brushes up against you or settles down on a part of your cushion, no big deal. Let it be. What works less well is to interrupt your session to relate to them. If that's what's going to happen, try to find a way to avoid their interrupting your practice.
-
-#### More Guided Meditation Practices
-
-### The RAIN Meditation with Tara Brach
-
-A practice for difficult emotions, RAIN is an acronym for Recognition of what is going on; Acceptance of the experience, just as it is; Interest in what is happening; and Nurture with loving presence.
-
-#### A Mindfulness Practice to Foster Forgiveness
-
-Explore this practice to let go of the tendency to add to our suffering during challenging situations.
-
-#### Additional Resources & Articles
-
-Mindful has many resources to help you live a more mindful life and tap into the best of who you are:
-
-* [Getting Started](https://www.mindful.org/meditation/mindfulness-getting-started/)
-* [Guided Meditation](https://www.mindful.org/category/meditation/guided-meditation/)
-* [Meditation for Anxiety](https://www.mindful.org/mindfulness-meditation-anxiety/)
-* [Sign up for Mindful Newsletters](https://www.mindful.org/mindfulnewsletters/)
-* [Mindful Magazine Subscription](https://subscribe.pcspublink.com/sub/subscribe.aspx?guid=1e26c2c6-2a0b-48f0-a4e2-86cc9a400cee)
-* [Special Edition Guides](https://mindful-magazine.myshopify.com/collections/special-editions)
-* [Mindful Online Learning](https://learning.mindful.org/)
-
-## Unorganized Research
-
-The VA has developed [a bunch of mental health apps](https://mobile.va.gov/appstore/mental-health) that are free to the general public. Some were designed with veterans as the target audience, but some were designed to be used by anyone.
-
-[Reddit post](https://www.reddit.com/r/YouShouldKnow/comments/ln2fyy/ysk_if_you_cant_afford_to_pay_for_mindfulness/?utm_source=share&utm_medium=mweb3x)
-
-Some highlights are:
-
-* [Mindfulness Coach](https://mobile.va.gov/app/mindfulness-coach), which offers a self-guided mindfulness course and some recorded mindfulness exercises similar to what you can find on Headspace
-* [Insomnia Coach](https://mobile.va.gov/app/insomnia-coach), which walks you through a treatment program for insomnia and has features like guided imagery recordings
-* [MOVE Coach](https://mobile.va.gov/app/move-coach) which can help with weight loss and exercise in a guided program
-* As a last resort - [One Mind Psyber Guide](https://onemindpsyberguide.org/)
-
-Others:
-* Insight timer: "Tons of free guided meditation, meditation timer for your own sessions, groups, livestreams with meditation teachers, groups etc."
-* Waking Up by Sam Harris: "the most comprehensive, thoughtful, and exceptionally managed mediation app on the market, in my opinion"
-* Balance: "also has a free year subscription!! I love their immersive meditations and Singles. I think they'll have an Android version out in March so everyone can get a free year."
-* Woebot: "It runs through Facebook Messenger or as a separate app on your phone and guides you through cognitive behavioral therapy exercises."
-* Smiling Mind: "Smiling mind is amazing! Their sleep meditations help me nod off every single night now, and for those who need some background sounds to fall asleep to, the optional music on each meditation is perfect."
-* Medito: "Highly recommend Medito that has a pledge to keep their app free for all."
-* The Portland VA worked with The DOD on another one called [Virtual Hope Box](https://apps.apple.com/us/app/virtual-hope-box/id825099621) that was designed around suicide prevention. My wife was pet of the study around efficacy, and I have used it myself. Great app and definitely should be included in this topic.

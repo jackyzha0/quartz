@@ -3,14 +3,10 @@ title: Bookmark Collections
 tags:
   - collection
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-09-20
 ---
 
-## Raindrop.io
-
-In Raindrop.io I collect bookmarks. A subsection of these is curated and published to my Raindrop [public page](https://raindrop.io/SemanticData).
-
-Currently, I have these named public collections available:
+I collect bookmarks in [Raindrop.io](https://raindrop.io/). A subsection of these is curated and published to my Raindrop [public page](https://raindrop.io/SemanticData). Currently, I have these public collections available:
 
 * Articles
 * Firefox Addons (ones made by myself)

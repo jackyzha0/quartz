@@ -4,9 +4,11 @@ source: https://www.deanbokhari.com/life-lessons/
 tags:
   - list
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-09-20
 ---
 
+
+*Here are some "tips" I often forget.*
 
 1. Live a life true to yourself.
 2. Express your emotions.

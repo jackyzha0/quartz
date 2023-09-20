@@ -5,7 +5,7 @@ date: 2023-07-12
 tags:
   - archived
 compartir: true
-lastmod: 2023-09-14
+lastmod: 2023-09-20
 ---
 
 
@@ -34,7 +34,7 @@ lastmod: 2023-09-14
 
 Viewing the aurora depends on four important factors.
 
-### Geomagnetic Activity
+### 1. Geomagnetic Activity
 
 If the geomagnetic field is active, then the aurora will be brighter and further from the poles. Geomagnetic activity is driven by solar activity and solar coronal holes and thus it waxes and wanes with time. The level of geomagnetic activity is indicated by the planetary K index or Kp. The Kp index ranges from 0 to 9.
 
@@ -47,15 +47,15 @@ It should be noted that the relationship between Kp and auroral latitude are app
 
 There is an approximate relationship between Kp and the equatorward extent of the auroral oval. This relationship holds true in geomagnetic latitude, not geographic. At Kp = 0, the equator ward edge of the auroral oval is approximately 66 degrees. And it moves equatorward about 2 degrees for each level of Kp. So for Kp = 1, the aurora would move down to 64 degrees, for Kp=2, it would move to 62 degrees, etc… until reaching Kp of 9 at 48 degrees magnetic latitude.
 
-### Location
+### 2. Location
 
 Go towards the magnetic poles. The north magnetic pole is currently about 400 km (250 miles) from the geographic pole and is located in the islands of north east Canada. Find a place where you can see to the north ( or south if you are in the southern hemisphere). Given the right vantage point, say for example on top of a hill in the northern hemisphere with an unobstructed view toward the north, a person can see aurora even when it is 1000 km (600 miles) further north. It should be noted that if you are in the right place under the aurora, you can see very nice auroral displays even with low geomagnetic activity (Kp = 3 or 4).
 
-### It Must Be Dark
+### 3. It Must Be Dark
 
 Go out at night. Get away from city lights. The full moon will also diminish the apparent brightness of the aurora (not the actual brightness). One caveat that people often neglect to think of is that the high latitudes where aurora occur are also latitudes where it doesn't get dark in the summer. So combining a summer vacation to the arctic with aurora watching usually doesn't work. The aurora may still be there but it is only visible when it is dark.
 
-### Timing
+### 4. Timing
 
 Best aurora is usually within an hour or two of midnight (between 10 PM and 2 AM local time). These hours of active aurora expand towards evening and morning as the level of geomagnetic activity increases. There may be aurora in the evening and morning but it is usually not as active and therefore, not as visually appealing.
 
@@ -63,16 +63,21 @@ The best Seasons for aurora watching are around the spring and fall equinoxes. D
 
 Below are maps showing the most southern extent of where aurora might be observable for different levels of the geomagnetic Kp index (and the NOAA G scale). It should be noted that the aurora can often be observed hundreds of kilometers (miles) equatorward of the actual aurora so these figures do not indicate where the aurora may be but rather the point from which it may be observed.
 
-## How Far South Can Aurora Be Observed?
+## Aurora Forecast
 
-[NOAA Space Weather Prediction Center - G-Kp](https://www.swpc.noaa.gov/sites/default/files/images/u2/Aurora_Kp_MapNorthAm.png)
-* G is NOAA Geomagnetic Storm Index (0–5)
-* Kp is Planetary K Index (0–9)
+### July 12th, 2023
 
 ![NOAA Space Weather Prediction Center - G-Kp](https://www.swpc.noaa.gov/sites/default/files/images/u2/Aurora_Kp_MapNorthAm.png)
+G is NOAA Geomagnetic Storm Index (0–5)  
+Kp is Planetary K Index (0–9)
 
-### Additional Resources
+### September 18th, 2023
 
+![aurora forecast for 2023-09-18](https://raw.githubusercontent.com/semanticdata/public-test/main/JPEG/aurora-2.jpg)
+
+## Additional Resources
+
+* [Aurora Forecast](https://www.gi.alaska.edu/monitors/aurora-forecast)
 * [Aurora Dashboard](https://www.swpc.noaa.gov/content/aurora-dashboard-experimental)
-* [Dive Deeper Into the Science of the Aurora](https://www.swpc.noaa.gov/content/aurora-tutorial)
 * [Space Weather Phenomena](https://www.swpc.noaa.gov/phenomena)
+* [Dive Deeper Into the Science of the Aurora](https://www.swpc.noaa.gov/content/aurora-tutorial)

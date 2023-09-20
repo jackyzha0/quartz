@@ -3,8 +3,11 @@ title: Newsletters I Read
 tags:
   - list
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-09-20
 ---
+
+
+This is a list of Newsletters I am subscribed to.
 
 * [The Daily Dip](https://www.thedailydip.co/) – Daily News.
 * [8bit News](https://8bitnews.io/) – Collected, curated, 8bit news.

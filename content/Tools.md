@@ -3,8 +3,11 @@ title: Tools I Use
 tags:
   - list
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-09-20
 ---
+
+
+A non-comprehensive list of the hardware and software I use on a day-to-day basis.
 
 ## Hardware
 
@@ -41,3 +44,11 @@ lastmod: 2023-09-18
 * [ShellCommands](https://github.com/Taitava/obsidian-shellcommands) – Execute Shell commands from within Obsidian.
 * [DoubleShift](https://github.com/Qwyntex/doubleshift) – Provides shortcuts for `shift + shift` and `ctrl + ctrl`.
 * [Contextual Typography](https://github.com/mgmeyers/obsidian-contextual-typography) – Allows for custom insertion of code at the block level.
+
+### Notable Windows Programs
+
+* [QuickLook](https://github.com/QL-Win/QuickLook) – Bring macOS "Quick Look" feature to Windows.
+* [PDFsam](https://github.com/torakiki/pdfsam) – PDFsam, a desktop application to split, merge, mix, rotate PDF files and extract pages.
+* [PowerToys](https://github.com/microsoft/PowerToys) – Windows system utilities to maximize productivity.
+* [Everything](https://www.voidtools.com/) – Locate files and folders by name instantly.
+* [QuickLook](https://github.com/QL-Win/QuickLook) – Bring macOS "Quick Look" feature to Windows.
