@@ -29,19 +29,25 @@ export type FolderState = {
 export class FileNode {
   children: FileNode[]
   name: string
+  displayName: string
   file: QuartzPluginData | null
   depth: number
 
   constructor(name: string, file?: QuartzPluginData, depth?: number) {
     this.children = []
     this.name = name
+    this.displayName = name
     this.file = file ? structuredClone(file) : null
     this.depth = depth ?? 0
   }
 
   private insert(file: DataWrapper) {
     if (file.path.length === 1) {
-      this.children.push(new FileNode(file.file.frontmatter!.title, file.file, this.depth + 1))
+      if (file.path[0] !== "index.md") {
+        this.children.push(new FileNode(file.file.frontmatter!.title, file.file, this.depth + 1))
+      } else {
+        this.displayName = file.file.frontmatter!.title
+      }
     } else {
       const next = file.path[0]
       file.path = file.path.splice(1)
@@ -150,7 +156,7 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
         // Single file node
         <li key={node.file.slug}>
           <a href={resolveRelative(fileData.slug!, node.file.slug!)} data-for={node.file.slug}>
-            {node.name}
+            {node.displayName}
           </a>
         </li>
       ) : (
@@ -177,11 +183,11 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
               <div key={node.name} data-folderpath={folderPath}>
                 {folderBehavior === "link" ? (
                   <a href={`${folderPath}`} data-for={node.name} class="folder-title">
-                    {node.name}
+                    {node.displayName}
                   </a>
                 ) : (
                   <button class="folder-button">
-                    <p class="folder-title">{node.name}</p>
+                    <p class="folder-title">{node.displayName}</p>
                   </button>
                 )}
               </div>

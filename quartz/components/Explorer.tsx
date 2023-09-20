@@ -11,10 +11,10 @@ const defaultOptions = {
   folderClickBehavior: "collapse",
   folderDefaultState: "collapsed",
   useSavedState: true,
-  // Sort order: folders first, then files. Sort folders and files alphabetically
   sortFn: (a, b) => {
+    // Sort order: folders first, then files. Sort folders and files alphabetically
     if ((!a.file && !b.file) || (a.file && b.file)) {
-      return a.name.localeCompare(b.name)
+      return a.displayName.localeCompare(b.displayName)
     }
     if (a.file && !b.file) {
       return 1
@@ -22,6 +22,7 @@ const defaultOptions = {
       return -1
     }
   },
+  filterFn: (node) => node.name !== "tags",
   order: ["filter", "map", "sort"],
 } satisfies Options
 
