@@ -400,6 +400,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           return (tree: Root, file) => {
             const base = pathToRoot(file.data.slug!)
             findAndReplace(tree, tagRegex, (_value: string, tag: string) => {
+              // Check if the tag only includes numbers
+              if (/^\d+$/.test(tag)) {
+                return false
+              }
               tag = slugTag(tag)
               if (file.data.frontmatter && !file.data.frontmatter.tags.includes(tag)) {
                 file.data.frontmatter.tags.push(tag)
