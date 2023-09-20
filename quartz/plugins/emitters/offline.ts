@@ -62,7 +62,7 @@ export const Offline: QuartzEmitterPlugin = () => {
       const [tree, vfile] = defaultProcessedContent({
         slug,
         text: "Offline",
-        description: "This page isn't offline available yet.",
+        description: "You're offline and this page hasn't been cached yet.",
         frontmatter: { title: "Offline", tags: [] },
       })
 

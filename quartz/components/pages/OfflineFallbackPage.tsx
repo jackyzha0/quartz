@@ -4,7 +4,7 @@ function OfflineFallbackPage() {
   return (
     <article class="popover-hint">
       <h1>Offline</h1>
-      <p>This page isn't offline available yet.</p>
+      <p>You're offline and this page hasn't been cached yet.</p>
     </article>
   )
 }
