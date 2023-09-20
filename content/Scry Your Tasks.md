@@ -14,7 +14,3 @@ Don't confuse mission-critical items and time saving tasks. Mission-critical Ite
 You are _probably_ doing life wrong if you consistently get to the bottom of your to-do list. Let me elaborate, if your to-do list is empty, something about your life _is_ wrong. You are not being ambitious enough.
 
 This note was inspired by [Cortex](https://www.relay.fm/cortex) [Episode 142](https://www.relay.fm/cortex/142) on scrying your task lists.
-
-> [!warning]
-> 
-> This note is a [[Stub]]. The information has yet to be curated or processed yet.

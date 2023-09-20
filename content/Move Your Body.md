@@ -11,7 +11,3 @@ Move your body every day. Benefits include:
 * Reduced anxiety
 
 The "every day" part is important, because [[Consistency]] is key to most things worth doing.
-
-> [!warning]
-> 
-> This note is a [[Stub]]. The information has yet to be curated or processed yet.

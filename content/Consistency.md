@@ -1,10 +1,10 @@
 ---
 title: Consistency is Key
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-09-20
 ---
-Show up. Do the work. Be consistent.
+**Show up.**
 
-> [!warning]
-> 
-> This note is a [[Stub]]. The information has yet to be curated or processed yet.
+**Do the work.**
+
+**Be consistent.**
