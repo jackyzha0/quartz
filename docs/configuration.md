@@ -21,10 +21,12 @@ const config: QuartzConfig = {
 This part of the configuration concerns anything that can affect the whole site. The following is a list breaking down all the things you can configure:
 
 - `pageTitle`: title of the site. This is also used when generating the [[RSS Feed]] for your site.
+- `description`: description of the site. This will be used when someone installs your site as an App.
 - `enableSPA`: whether to enable [[SPA Routing]] on your site.
 - `enablePopovers`: whether to enable [[popover previews]] on your site.
 - `analytics`: what to use for analytics on your site. Values can be
   - `null`: don't use analytics;
+  - `{ provider: "umami", websiteId: <your-umami-id> }`: easy, privacy-friendly, open source, GDPR Compliant analytics;
   - `{ provider: 'plausible' }`: use [Plausible](https://plausible.io/), a privacy-friendly alternative to Google Analytics; or
   - `{ provider: 'google', tagId: <your-google-tag> }`: use Google Analytics
 - `baseUrl`: this is used for sitemaps and RSS feeds that require an absolute URL to know where the canonical 'home' of your site lives. This is normally the deployed URL of your site (e.g. `quartz.jzhao.xyz` for this site). Do not include the protocol (i.e. `https://`) or any leading or trailing slashes.
