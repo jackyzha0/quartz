@@ -79,7 +79,7 @@ export default ((userOpts?: Partial<Options>) => {
           data-savestate={opts.useSavedState}
           data-tree={jsonTree}
         >
-          <h3>{opts.title}</h3>
+          <h1>{opts.title}</h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="14"
@@ -98,7 +98,7 @@ export default ((userOpts?: Partial<Options>) => {
         <div id="explorer-content">
           <ul class="overflow" id="explorer-ul">
             <ExplorerNode node={fileTree} opts={opts} fileData={fileData} />
-            <div id="explorer-end" />
+            <li id="explorer-end" />
           </ul>
         </div>
       </div>

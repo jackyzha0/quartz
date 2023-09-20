@@ -1,4 +1,5 @@
 button#explorer {
+  all: unset;
   background-color: transparent;
   border: none;
   text-align: left;
@@ -8,7 +9,7 @@ button#explorer {
   display: flex;
   align-items: center;
 
-  & h3 {
+  & h1 {
     font-size: 1rem;
     display: inline-block;
     margin: 0;
@@ -58,7 +59,7 @@ button#explorer {
       max-height 0.35s ease,
       transform 0.35s ease,
       opacity 0.2s ease;
-    & div > li > a {
+    & li > a {
       color: var(--dark);
       opacity: 0.75;
       pointer-events: all;
@@ -92,7 +93,7 @@ svg {
     color: var(--tertiary) !important;
   }
 
-  & li > button {
+  & div > button {
     color: var(--dark);
     background-color: transparent;
     border: none;
@@ -103,7 +104,7 @@ svg {
     display: flex;
     align-items: center;
 
-    & h3 {
+    & p {
       font-size: 0.95rem;
       display: inline-block;
       color: var(--secondary);
@@ -138,5 +139,7 @@ div:has(> .folder-outer:not(.open)) > .folder-container > svg {
 
 #explorer-end {
   // needs height so IntersectionObserver gets triggered
-  height: 1px;
+  height: 4px;
+  // remove default margin from li
+  margin: 0;
 }

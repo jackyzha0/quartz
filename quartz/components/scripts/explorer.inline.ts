@@ -113,9 +113,11 @@ function setupExplorer() {
       ) as HTMLElement
 
       // Get corresponding content <ul> tag and set state
-      const folderUL = folderLi.parentElement?.nextElementSibling
-      if (folderUL) {
-        setFolderState(folderUL as HTMLElement, folderUl.collapsed)
+      if (folderLi) {
+        const folderUL = folderLi.parentElement?.nextElementSibling
+        if (folderUL) {
+          setFolderState(folderUL as HTMLElement, folderUl.collapsed)
+        }
       }
     })
   } else {
