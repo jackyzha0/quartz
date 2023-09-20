@@ -57,7 +57,8 @@ All functions you can pass work with the `FileNode` class, which has the followi
 ```ts title="quartz/components/ExplorerNode.tsx" {2-5}
 export class FileNode {
   children: FileNode[]  // children of current node
-  name: string  // name of node (only useful for folders)
+  name: string  // last part of slug
+  displayName: string // what actually should be displayed in the explorer
   file: QuartzPluginData | null // set if node is a file, see `QuartzPluginData` for more detail
   depth: number // depth of current node
 
@@ -72,7 +73,7 @@ Every function you can pass is optional. By default, only a `sort` function will
 Component.Explorer({
   sortFn: (a, b) => {
     if ((!a.file && !b.file) || (a.file && b.file)) {
-      return a.name.localeCompare(b.name)
+      return a.displayName.localeCompare(b.displayName)
     }
     if (a.file && !b.file) {
       return 1
@@ -120,7 +121,7 @@ Using this example, the explorer will alphabetically sort everything, but put al
 Component.Explorer({
   sortFn: (a, b) => {
     if ((!a.file && !b.file) || (a.file && b.file)) {
-      return a.name.localeCompare(b.name)
+      return a.displayName.localeCompare(b.displayName)
     }
     if (a.file && !b.file) {
       return -1
@@ -138,7 +139,7 @@ Using this example, the display names of all `FileNodes` (folders + files) will 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
   mapFn: (node) => {
-    node.name = node.name.toUpperCase()
+    node.displayName = node.displayName.toUpperCase()
   },
 })
 ```
@@ -172,9 +173,9 @@ Component.Explorer({
     if (node.depth > 0) {
       // set emoji for file/folder
       if (node.file) {
-        node.name = "📄 " + node.name
+        node.displayName = "📄 " + node.displayName
       } else {
-        node.name = "📁 " + node.name
+        node.displayName = "📁 " + node.displayName
       }
     }
   },
