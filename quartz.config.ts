@@ -4,7 +4,6 @@ import * as Plugin from "./quartz/plugins"
 const config: QuartzConfig = {
   configuration: {
     pageTitle: "🪴 Quartz 4.0",
-    description: "Quartz Documentation Page and Demo",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
