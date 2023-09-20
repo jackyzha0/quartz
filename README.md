@@ -20,7 +20,7 @@ Source code for Forgetful Notes—my digital garden of knowledge. It serves as a
 | -------------------------- | -------------------------- |
 | `npm i`                    | Install Dependencies       |
 | `npx quartz update`        | Update Quartz (core)       |
+| `npx quartz build`         | Build without Serving      |
 | `npx quartz build --serve` | Build and Serve Locally    |
 | `npx quartz sync`          | Save Local Changes to Repo |
-| `npx quartz build`         | Build without Serving      |
 | `npx quartz sync --help`   | Find Help                  |
