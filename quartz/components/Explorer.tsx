@@ -31,8 +31,8 @@ export default ((userOpts?: Partial<Options>) => {
   const opts: Options = { ...defaultOptions, ...userOpts }
 
   // memoized
-  var fileTree: FileNode
-  var jsonTree: string
+  let fileTree: FileNode
+  let jsonTree: string
 
   function constructFileTree(allFiles: QuartzPluginData[]) {
     if (!fileTree) {
