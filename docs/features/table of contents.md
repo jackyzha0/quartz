@@ -8,6 +8,7 @@ tags:
 Quartz can automatically generate a table of contents from a list of headings on each page. It will also show you your current scroll position on the site by marking headings you've scrolled through with a different colour.
 
 By default, it will show all headers from H1 (`# Title`) all the way to H3 (`### Title`) and will only show the table of contents if there is more than 1 header on the page.
+You can also hide the table of contents on a page by adding `showToc: false` to the frontmatter for that page.
 
 > [!info]
 > This feature requires both `Plugin.TableOfContents` in your `quartz.config.ts` and `Component.TableOfContents` in your `quartz.layout.ts` to function correctly.
