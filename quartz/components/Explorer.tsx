@@ -14,7 +14,7 @@ const defaultOptions = {
   sortFn: (a, b) => {
     // Sort order: folders first, then files. Sort folders and files alphabetically
     if ((!a.file && !b.file) || (a.file && b.file)) {
-      return a.name.localeCompare(b.name)
+      return a.displayName.localeCompare(b.displayName)
     }
     if (a.file && !b.file) {
       return 1
