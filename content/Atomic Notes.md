@@ -2,7 +2,6 @@
 title: Atomic Notes
 tags:
   - digital-gardening
-  - definition
 compartir: true
 lastmod: 2023-09-18
 ---

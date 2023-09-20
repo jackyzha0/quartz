@@ -9,4 +9,4 @@ Chuckwallas are stocky, wide-bodied lizards with flattened midsections and promi
 
 ## Iguanidae (lizard family)
 
-<img alt="iguanidae lizarf family" src="https://raw.githubusercontent.com/semanticdata/public-test/main/PNG/aurora-forecast.png" />
+<img alt="iguanidae lizarf family" src="https://raw.githubusercontent.com/semanticdata/public-test/main/PNG/iguanidae-lizard-family.png" />

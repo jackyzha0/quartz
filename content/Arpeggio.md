@@ -2,7 +2,6 @@
 title: Arpeggio
 tags:
   - music
-  - definition
 compartir: true
 lastmod: 2023-09-18
 ---

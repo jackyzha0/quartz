@@ -32,7 +32,7 @@ The [source code](https://github.com/semanticdata/forgetful-dev) is hosted in [G
 
 ### Font Families
 
-* Default Sans Serif:
+* Default Sans Serif:  
 	`-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif`
 * Default Monospace:  
 	`ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace`
