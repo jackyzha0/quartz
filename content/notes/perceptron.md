@@ -14,10 +14,22 @@ At the beginning of AI this model was used and a base for a function. E.g., the 
 Each unit has a bias and many inputs, and each input has an associated weight. The inputs are multiplied by the weights, and summed. The *activation function* defines a threshold for when the neuron should fire, based on the weighted sum of inputs. 
 ![|400](https://i.imgur.com/ZVqcxBm.png)
 
+perceptrons can also perform [[multi-class-classification]]
+
 ## Geometric interpretation
 Geometrically speaking, a single-neuron perceptron splits an input space into two regions. In one region the perceptron outputs 1, for the other region the perceptron outputs 0. If bias is 0, the splits is always through the origin.
 
 ![|300](https://i.imgur.com/Or2zipS.png)![|300](https://i.imgur.com/Atap3J6.png)
+
+
+## Activation Functions
+By changing the activation function we can create different outputs. 
+
+With a simple hard limiting function we can ouput 0 or 1 to classify
+
+With a linear activation function we can model [[regression-as-a-perceptron]]
+
+With a Sigmoid function we can 
 
 ## Learning Rule
 given a set of training data pairs $(x,y)$, where $x \in R^d$ and $y in {0,1}$, and assuming a small value learning parameter $0\lt \alpha \lt 1$
@@ -31,10 +43,12 @@ do
 		$b := b + \alpha e$
 while $e$ is not zero for all $(x,y)$
 
+If we represent [[regression-as-a-perceptron]] we can use this learning rule search for parameters for regression functions
 
-### Conditions
+Conditions:
 - Learning parameter must be small enough
 - Data must be *linearly separable*
+- This is only applies to the hard limiting neuron. For [[logistic-regression]] and [[regression#Linear regression]] we can use the [[steepest-gradient-descent]]. we cannot use [[SGD]]] for hard limiting becuase it requires continuous functions
 
 ## Training regimes
 
@@ -42,17 +56,13 @@ the $\alpha$ parameter controls the *learning rate* . The larger the rate the fa
 
 A set of updates to after exposure to the dataset is referred to as the training *epoch*.
 
-### Online learning
+**Online learning**
 One update per training sample, $N$ updates per epoch
 
-### Batch learning
+**Batch learning**
 Average updates from all training samples, One update per epoch
 
-### Mini-batch
+**Mini-batch**
 Divide data into fixed size batches, averaging updates over mini-batch and shuffling the data assignment to mini-batches between the epochs.
 
-## Multi-class classification
-For multi-class problems with $K$ classes we can use $K$ neurons and train each to separate one class from all others.
 
-![|300](https://i.imgur.com/eB6G7hk.png)
-![|300](https://i.imgur.com/7fqB8dH.png)

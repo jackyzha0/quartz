@@ -72,8 +72,8 @@
 		{"type":"file","file":"notes/context-controllers.md","id":"4d6fc588130695bc","x":1289,"y":739,"width":368,"height":200},
 		{"type":"file","file":"notes/mobile-computing.md","id":"db810a08a68ead2a","x":1077,"y":-1389,"width":333,"height":216},
 		{"type":"file","file":"notes/kalman-filtering.md","id":"ef2bb56b9a420ce9","x":-2070,"y":-2383,"width":332,"height":654},
-		{"id":"1eb90f03fa1119c1","x":-1648,"y":302,"width":296,"height":154,"type":"file","file":"notes/location-classes.md"},
-		{"id":"f85a4cefd111365b","x":-1761,"y":-983,"width":248,"height":181,"type":"file","file":"notes/orientation-sensors 1.md"}
+		{"id":"1eb90f03fa1119c1","type":"file","file":"notes/location-classes.md","x":-1648,"y":302,"width":296,"height":154},
+		{"id":"f85a4cefd111365b","type":"file","file":"notes/orientation-sensors 1.md","x":-1761,"y":-983,"width":248,"height":181}
 	],
 	"edges":[
 		{"id":"0d4600b7256bdcf0","fromNode":"075a4e17c7ec3563","fromSide":"left","toNode":"047a22641b4d99a1","toSide":"right"},

@@ -12,7 +12,7 @@ tags:
 
 
 # 1 Overview
-[[notes/heap]]
+[[heap (data structure)]]
 
 # 2 Operations
 ## 2.1 Add element

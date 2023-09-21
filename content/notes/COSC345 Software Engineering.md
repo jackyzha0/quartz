@@ -6,6 +6,7 @@ tags: course, seng
 
 [[tutorial talk 3]]
 [[codelingo-talk|codelingo]]
+[[tabula]]
 
 ```dataview
 table

@@ -10,4 +10,6 @@ tags: HCI, group, XR
 https://hci.otago.ac.nz/ARIVE2020.html
 
 ## Lectures
-- [[]]
+- [[pervasive-AR-ethics]]
+- [[voxels-holger]]
+- [[visual computing stef]]

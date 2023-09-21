@@ -25,10 +25,17 @@ tags:
 22/08 0930-1220 meeting and calibration
 22/08 1312-1541 calibration
 
--- 27.5 -- 742
+-- 27.5 -- 742 paid x2 $1449.23
+date    start-end  hrs   activity
+23/08 1930-2100 1.5 | intrinsic calibration working
+05/09 1000-1030 0.5 | meeting
+19/09 1000-1730 7.5 | meeting, extrinsic calibration working
+20/09 1400-1500 1.0 | HCI meeting, helping with Stu and Kierian project
+21/09 0730
 
-23/08 1930-2100 intrinsic calibration working
-05/09 1000-1030 meeting
+
+
+
 
 
  

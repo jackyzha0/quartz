@@ -1,7 +1,7 @@
 ---
 title: "presence"
 aliases: 
-tags: AI
+tags: XR
 ---
 
 

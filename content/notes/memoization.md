@@ -1,6 +1,6 @@
 ---
 title: "memoization"
-aliases: caching
+aliases: 
 tags: 
 - cosc201
 - paradigm

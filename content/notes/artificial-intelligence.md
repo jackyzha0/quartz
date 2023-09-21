@@ -8,7 +8,7 @@ Computerised [[intelligence]] as [[agent-model|agent]]
 
 [[ai-foundations]]
 [[ai-history]]
-
+[[ai-ethics]]
 [[computer-vision]]
 
 

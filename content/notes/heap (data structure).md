@@ -32,7 +32,7 @@ How deep is the tree?
 - So any algorithm that 'walk along a branch' in while or in part will have Ο(n) complexity (assuming constant time work at each node)
 
 # 1 Overview
-[[notes/heap]]
+[[heap (data structure)]]
 
 # 2 Operations
 ## 2.1 Add element

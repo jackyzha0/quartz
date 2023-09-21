@@ -12,7 +12,7 @@ When a tree is being used only occainsonally, we can afford to simply rebalance 
 long branches are a problem
 the performance bounds for all BST operations are linear of the length of the longest branch of the tree
 
-ideal shape is a similar to a [heap](notes/heap.md) (wide and shallow).
+ideal shape is a similar to a [heap (data structure)](heap%20(data%20structure).md) (wide and shallow).
 
 we want the longest branch to be $\theta(lg\ n)$ 
 

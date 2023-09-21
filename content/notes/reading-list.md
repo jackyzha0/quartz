@@ -14,4 +14,5 @@ tags: list
 - steve krug - dont make me think (usability)
 - don norman - the design of everyday things
 - jon bentley - programming pearls
+- http://rodneybrooks.com/the-seven-deadly-sins-of-predicting-the-future-of-ai/
 

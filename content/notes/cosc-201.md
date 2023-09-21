@@ -28,7 +28,7 @@ tags:
 - [dynamic-linear-datatype](notes/dynamic-linear-datatype.md)
 	- [Stack](notes/dynamic-linear-datatype.md#Stack)
 	- [Queue](notes/dynamic-linear-datatype.md#Queue)
-- [heap](notes/heap.md)
+- [heap (data structure)](heap%20(data%20structure).md)
 - [treap](notes/treap.md)
 - [hash-map](notes/hash-map.md)
 	- [linear-probing](notes/linear-probing.md)

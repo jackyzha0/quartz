@@ -39,7 +39,7 @@ This is often called ROM (read only memory)
 	- source of one of the operands
 	- destination of the result
 - status flags
-	- individaul bits store information about results of operations
-		- result of last instruction was negative, zero, or postive
+	- individual bits store information about results of operations
+		- result of last instruction was negative, zero, or positive
 		- carry from most recent arithmetic operation
 		- overflow occurred during the last instruction

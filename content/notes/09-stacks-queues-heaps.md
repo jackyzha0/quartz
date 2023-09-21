@@ -12,4 +12,4 @@ sr-ease: 210
 	- [Stack](notes/dynamic-linear-datatype.md#Stack)
 	- [Queue](notes/dynamic-linear-datatype.md#Queue)
 - [priority-queue](notes/priority-queue.md)
-- [heap](notes/heap.md)
+- [heap (data structure)](heap%20(data%20structure).md)
