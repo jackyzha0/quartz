@@ -40,18 +40,16 @@ export default ((userOpts?: Partial<Options>) => {
     if (!fileTree) {
       // Construct tree from allFiles
       fileTree = new FileNode("")
-	  for(const file of allFiles) {
+      for (const file of allFiles) {
         const slug = file.slug!
 
-        let ignore = false;
-        for(const ignorePattern of cfg.unlistedPatterns)
-        if(slug.startsWith(ignorePattern))
-          ignore = true
-        if(ignore)
-          continue;
+        let ignore = false
+        for (const ignorePattern of cfg.unlistedPatterns)
+          if (slug.startsWith(ignorePattern)) ignore = true
+        if (ignore) continue
 
-        fileTree.add(file, 1);
-	  }
+        fileTree.add(file, 1)
+      }
 
       /**
        * Keys of this object must match corresponding function name of `FileNode`,
@@ -91,7 +89,7 @@ export default ((userOpts?: Partial<Options>) => {
   }
 
   function Explorer({ allFiles, displayClass, fileData, cfg }: QuartzComponentProps) {
-    constructFileTree(cfg, allFiles);
+    constructFileTree(cfg, allFiles)
     return (
       <div class={`explorer ${displayClass}`}>
         <button
