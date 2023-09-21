@@ -8,6 +8,8 @@ Quartz features an explorer that allows you to navigate all files and folders on
 
 By default, it shows all folders and files on your page. To display the explorer in a different spot, you can edit the [[layout]].
 
+Display names for folders get determined by the `title` frontmatter field in `folder/index.md` (more detail in [[Authoring Content]]). If this file does not exist or does not contain frontmatter, the local folder name will be used instead.
+
 > [!info]
 > The explorer uses local storage by default to save the state of your explorer. This is done to ensure a smooth experience when navigating to different pages.
 >
