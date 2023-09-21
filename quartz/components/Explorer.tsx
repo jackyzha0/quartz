@@ -41,9 +41,11 @@ export default ((userOpts?: Partial<Options>) => {
       // Construct tree from allFiles
       fileTree = new FileNode("")
 	  for(const file of allFiles) {
+        const slug = file.slug!
+
         let ignore = false;
         for(const ignorePattern of cfg.unlistedPatterns)
-        if(file.slug.startsWith(ignorePattern))
+        if(slug.startsWith(ignorePattern))
           ignore = true
         if(ignore)
           continue;
