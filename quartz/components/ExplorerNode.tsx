@@ -46,7 +46,10 @@ export class FileNode {
       if (file.path[0] !== "index.md") {
         this.children.push(new FileNode(file.file.frontmatter!.title, file.file, this.depth + 1))
       } else {
-        this.displayName = file.file.frontmatter!.title
+        const title = file.file.frontmatter?.title
+        if (title && title !== "index" && file.path[0] === "index.md") {
+          this.displayName = title
+        }
       }
     } else {
       const next = file.path[0]
