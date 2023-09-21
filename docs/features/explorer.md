@@ -29,7 +29,7 @@ Component.Explorer({
   sortFn: (a, b) => {
     ... // default implementation shown later
   },
-  filterFn: undefined,
+  filterFn: filterFn: (node) => node.name !== "tags", // filters out 'tags' folder
   mapFn: undefined,
   // what order to apply functions in
   order: ["filter", "map", "sort"],
@@ -159,6 +159,16 @@ Component.Explorer({
 ```
 
 You can customize this by changing the entries of the `omit` set. Simply add all folder or file names you want to remove.
+
+### Show every element in explorer
+
+To override the default filter function that removes the `tags` folder from the explorer, you can set the filter function to `undefined`.
+
+```ts title="quartz.layout.ts"
+Component.Explorer({
+  filterFn: undefined, // apply no filter function, every file and folder will visible
+})
+```
 
 ## Advanced examples
 
