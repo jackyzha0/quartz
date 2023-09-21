@@ -3,6 +3,18 @@ import { FolderState } from "../ExplorerNode"
 // Current state of folders
 let explorerState: FolderState[]
 
+const observer = new IntersectionObserver((entries) => {
+  // If last element is observed, remove gradient of "overflow" class so element is visible
+  const explorer = document.getElementById("explorer-ul")
+  for (const entry of entries) {
+    if (entry.isIntersecting) {
+      explorer?.classList.add("no-background")
+    } else {
+      explorer?.classList.remove("no-background")
+    }
+  }
+})
+
 function toggleExplorer(this: HTMLElement) {
   // Toggle collapsed state of entire explorer
   this.classList.toggle("collapsed")
@@ -101,8 +113,12 @@ function setupExplorer() {
       ) as HTMLElement
 
       // Get corresponding content <ul> tag and set state
-      const folderUL = folderLi.parentElement?.nextElementSibling as HTMLElement
-      setFolderState(folderUL, folderUl.collapsed)
+      if (folderLi) {
+        const folderUL = folderLi.parentElement?.nextElementSibling
+        if (folderUL) {
+          setFolderState(folderUL as HTMLElement, folderUl.collapsed)
+        }
+      }
     })
   } else {
     // If tree is not in localStorage or config is disabled, use tree passed from Explorer as dataset
@@ -113,6 +129,13 @@ function setupExplorer() {
 window.addEventListener("resize", setupExplorer)
 document.addEventListener("nav", () => {
   setupExplorer()
+
+  const explorerContent = document.getElementById("explorer-ul")
+  // select pseudo element at end of list
+  const lastItem = document.getElementById("explorer-end")
+
+  observer.disconnect()
+  observer.observe(lastItem as Element)
 })
 
 /**

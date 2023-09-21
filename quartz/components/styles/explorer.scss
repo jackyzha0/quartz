@@ -1,4 +1,5 @@
 button#explorer {
+  all: unset;
   background-color: transparent;
   border: none;
   text-align: left;
@@ -8,7 +9,7 @@ button#explorer {
   display: flex;
   align-items: center;
 
-  & h3 {
+  & h1 {
     font-size: 1rem;
     display: inline-block;
     margin: 0;
@@ -58,7 +59,7 @@ button#explorer {
       max-height 0.35s ease,
       transform 0.35s ease,
       opacity 0.2s ease;
-    & div > li > a {
+    & li > a {
       color: var(--dark);
       opacity: 0.75;
       pointer-events: all;
@@ -80,19 +81,20 @@ svg {
   align-items: center;
   user-select: none;
 
-  & li > a {
-    // other selector is more specific, needs important
-    color: var(--secondary) !important;
-    opacity: 1 !important;
-    font-size: 1.05rem !important;
+  & div > a {
+    color: var(--secondary);
+    font-family: var(--headerFont);
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    display: inline-block;
   }
 
-  & li > a:hover {
-    // other selector is more specific, needs important
-    color: var(--tertiary) !important;
+  & div > a:hover {
+    color: var(--tertiary);
   }
 
-  & li > button {
+  & div > button {
     color: var(--dark);
     background-color: transparent;
     border: none;
@@ -102,15 +104,15 @@ svg {
     padding-right: 0;
     display: flex;
     align-items: center;
+    font-family: var(--headerFont);
 
-    & h3 {
+    & p {
       font-size: 0.95rem;
       display: inline-block;
       color: var(--secondary);
       font-weight: 600;
       margin: 0;
       line-height: 1.5rem;
-      font-weight: bold;
       pointer-events: none;
     }
   }
@@ -130,4 +132,15 @@ div:has(> .folder-outer:not(.open)) > .folder-container > svg {
 
 .folder-icon:hover {
   color: var(--tertiary);
+}
+
+.no-background::after {
+  background: none !important;
+}
+
+#explorer-end {
+  // needs height so IntersectionObserver gets triggered
+  height: 4px;
+  // remove default margin from li
+  margin: 0;
 }

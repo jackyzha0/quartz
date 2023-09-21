@@ -1,12 +1,18 @@
 // @ts-ignore
-import { QuartzPluginData } from "vfile"
+import { QuartzPluginData } from "../plugins/vfile"
 import { resolveRelative } from "../util/path"
+
+type OrderEntries = "sort" | "filter" | "map"
 
 export interface Options {
   title: string
   folderDefaultState: "collapsed" | "open"
   folderClickBehavior: "collapse" | "link"
   useSavedState: boolean
+  sortFn: (a: FileNode, b: FileNode) => number
+  filterFn?: (node: FileNode) => boolean
+  mapFn?: (node: FileNode) => void
+  order?: OrderEntries[]
 }
 
 type DataWrapper = {
@@ -23,19 +29,28 @@ export type FolderState = {
 export class FileNode {
   children: FileNode[]
   name: string
+  displayName: string
   file: QuartzPluginData | null
   depth: number
 
   constructor(name: string, file?: QuartzPluginData, depth?: number) {
     this.children = []
     this.name = name
-    this.file = file ?? null
+    this.displayName = name
+    this.file = file ? structuredClone(file) : null
     this.depth = depth ?? 0
   }
 
   private insert(file: DataWrapper) {
     if (file.path.length === 1) {
-      this.children.push(new FileNode(file.file.frontmatter!.title, file.file, this.depth + 1))
+      if (file.path[0] !== "index.md") {
+        this.children.push(new FileNode(file.file.frontmatter!.title, file.file, this.depth + 1))
+      } else {
+        const title = file.file.frontmatter?.title
+        if (title && title !== "index" && file.path[0] === "index.md") {
+          this.displayName = title
+        }
+      }
     } else {
       const next = file.path[0]
       file.path = file.path.splice(1)
@@ -66,6 +81,25 @@ export class FileNode {
   }
 
   /**
+   * Filter FileNode tree. Behaves similar to `Array.prototype.filter()`, but modifies tree in place
+   * @param filterFn function to filter tree with
+   */
+  filter(filterFn: (node: FileNode) => boolean) {
+    this.children = this.children.filter(filterFn)
+    this.children.forEach((child) => child.filter(filterFn))
+  }
+
+  /**
+   * Filter FileNode tree. Behaves similar to `Array.prototype.map()`, but modifies tree in place
+   * @param mapFn function to use for mapping over tree
+   */
+  map(mapFn: (node: FileNode) => void) {
+    mapFn(this)
+
+    this.children.forEach((child) => child.map(mapFn))
+  }
+
+  /**
    * Get folder representation with state of tree.
    * Intended to only be called on root node before changes to the tree are made
    * @param collapsed default state of folders (collapsed by default or not)
@@ -90,19 +124,13 @@ export class FileNode {
   }
 
   // Sort order: folders first, then files. Sort folders and files alphabetically
-  sort() {
-    this.children = this.children.sort((a, b) => {
-      if ((!a.file && !b.file) || (a.file && b.file)) {
-        return a.name.localeCompare(b.name)
-      }
-      if (a.file && !b.file) {
-        return 1
-      } else {
-        return -1
-      }
-    })
-
-    this.children.forEach((e) => e.sort())
+  /**
+   * Sorts tree according to sort/compare function
+   * @param sortFn compare function used for `.sort()`, also used recursively for children
+   */
+  sort(sortFn: (a: FileNode, b: FileNode) => number) {
+    this.children = this.children.sort(sortFn)
+    this.children.forEach((e) => e.sort(sortFn))
   }
 }
 
@@ -126,12 +154,12 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
   }
 
   return (
-    <div>
+    <li>
       {node.file ? (
         // Single file node
         <li key={node.file.slug}>
           <a href={resolveRelative(fileData.slug!, node.file.slug!)} data-for={node.file.slug}>
-            {node.file.frontmatter?.title}
+            {node.displayName}
           </a>
         </li>
       ) : (
@@ -155,17 +183,17 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
               {/* render <a> tag if folderBehavior is "link", otherwise render <button> with collapse click event */}
-              <li key={node.name} data-folderpath={folderPath}>
+              <div key={node.name} data-folderpath={folderPath}>
                 {folderBehavior === "link" ? (
                   <a href={`${folderPath}`} data-for={node.name} class="folder-title">
-                    {node.name}
+                    {node.displayName}
                   </a>
                 ) : (
                   <button class="folder-button">
-                    <h3 class="folder-title">{node.name}</h3>
+                    <p class="folder-title">{node.displayName}</p>
                   </button>
                 )}
-              </li>
+              </div>
             </div>
           )}
           {/* Recursively render children of folder */}
@@ -191,6 +219,6 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
           </div>
         </div>
       )}
-    </div>
+    </li>
   )
 }
