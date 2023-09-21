@@ -81,16 +81,17 @@ svg {
   align-items: center;
   user-select: none;
 
-  & li > a {
-    // other selector is more specific, needs important
-    color: var(--secondary) !important;
-    opacity: 1 !important;
-    font-size: 1.05rem !important;
+  & div > a {
+    color: var(--secondary);
+    font-family: var(--headerFont);
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    display: inline-block;
   }
 
-  & li > a:hover {
-    // other selector is more specific, needs important
-    color: var(--tertiary) !important;
+  & div > a:hover {
+    color: var(--tertiary);
   }
 
   & div > button {
@@ -103,6 +104,7 @@ svg {
     padding-right: 0;
     display: flex;
     align-items: center;
+    font-family: var(--headerFont);
 
     & p {
       font-size: 0.95rem;
@@ -111,7 +113,6 @@ svg {
       font-weight: 600;
       margin: 0;
       line-height: 1.5rem;
-      font-weight: bold;
       pointer-events: none;
     }
   }
