@@ -3,11 +3,13 @@ title: Public Journal
 description: This new section will explore the concept of maintaining a Public Journal. It takes inspiration from The Journal of an Enigmatic Mind.
 compartir: true
 enableToc: true
-lastmod: 2023-09-18
+lastmod: 2023-09-21
 ---
 
 > This section explores the concept of maintaining a Public Journal.
 > It takes inspiration from the [Journal of an Enigmatic Mind](https://speyllsite.pages.dev/journal/).
+
+> The journal is currently undergoing a rewrite. Apologies.
 
 ## 2023-09-12
 

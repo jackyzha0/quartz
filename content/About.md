@@ -1,7 +1,7 @@
 ---
 title: About
 compartir: true
-lastmod: 2023-09-20
+lastmod: 2023-09-21
 ---
 ## Hi! I'm Miguel 👋🏼
 
@@ -12,9 +12,9 @@ I think a lot, work a lot, have existential crises, and know just enough about m
 ### As of September 2023, I am…
 
 … tending to my [digital garden](https://forgetful.dev/).  
-… making simple browser [extensions](https://addons.mozilla.org/en-US/firefox/user/17772574/).  
+… making simple Firefox [extensions](https://addons.mozilla.org/en-US/firefox/user/17772574/).  
 … collecting bookmarks with [Raindrop](https://raindrop.io/SemanticData).  
-… learning about [Vim](https://www.vim.org/), [NeoVim](https://neovim.io/), and [Emacs](https://www.gnu.org/software/emacs/).  
+… learning about [Vim](https://www.vim.org/), [NeoVim](https://neovim.io/), [Emacs](https://www.gnu.org/software/emacs/), and [Helix](https://github.com/helix-editor/helix).  
 … slowly teaching myself game development with [LÖVE](https://love2d.org/).  
 
 ### Reaching Out
