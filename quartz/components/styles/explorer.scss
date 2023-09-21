@@ -82,7 +82,6 @@ svg {
   user-select: none;
 
   & div > a {
-    // other selector is more specific, needs important
     color: var(--secondary);
     font-family: var(--headerFont);
     font-size: 0.95rem;
