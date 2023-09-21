@@ -14,8 +14,6 @@ export default (() => {
 
     const iconPath = joinSegments(baseDir, "static/icon.png")
     const ogImagePath = `https://${cfg.baseUrl}/static/og-image.png`
-    const manifest =
-      cfg.baseUrl == undefined ? "/manifest.json" : `https://${cfg.baseUrl}/manifest.json`
 
     return (
       <head>
@@ -27,9 +25,7 @@ export default (() => {
         {cfg.baseUrl && <meta property="og:image" content={ogImagePath} />}
         <meta property="og:width" content="1200" />
         <meta property="og:height" content="675" />
-        <meta name="theme-color" content="#faf8f8" />
         <link rel="icon" href={iconPath} />
-        <link rel="manifest" href={manifest} />
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

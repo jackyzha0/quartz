@@ -8,6 +8,8 @@ Quartz features an explorer that allows you to navigate all files and folders on
 
 By default, it shows all folders and files on your page. To display the explorer in a different spot, you can edit the [[layout]].
 
+Display names for folders get determined by the `title` frontmatter field in `folder/index.md` (more detail in [[authoring content | Authoring Content]]). If this file does not exist or does not contain frontmatter, the local folder name will be used instead.
+
 > [!info]
 > The explorer uses local storage by default to save the state of your explorer. This is done to ensure a smooth experience when navigating to different pages.
 >
@@ -29,7 +31,7 @@ Component.Explorer({
   sortFn: (a, b) => {
     ... // default implementation shown later
   },
-  filterFn: undefined,
+  filterFn: filterFn: (node) => node.name !== "tags", // filters out 'tags' folder
   mapFn: undefined,
   // what order to apply functions in
   order: ["filter", "map", "sort"],
@@ -57,7 +59,8 @@ All functions you can pass work with the `FileNode` class, which has the followi
 ```ts title="quartz/components/ExplorerNode.tsx" {2-5}
 export class FileNode {
   children: FileNode[]  // children of current node
-  name: string  // name of node (only useful for folders)
+  name: string  // last part of slug
+  displayName: string // what actually should be displayed in the explorer
   file: QuartzPluginData | null // set if node is a file, see `QuartzPluginData` for more detail
   depth: number // depth of current node
 
@@ -72,7 +75,7 @@ Every function you can pass is optional. By default, only a `sort` function will
 Component.Explorer({
   sortFn: (a, b) => {
     if ((!a.file && !b.file) || (a.file && b.file)) {
-      return a.name.localeCompare(b.name)
+      return a.displayName.localeCompare(b.displayName)
     }
     if (a.file && !b.file) {
       return 1
@@ -120,7 +123,7 @@ Using this example, the explorer will alphabetically sort everything, but put al
 Component.Explorer({
   sortFn: (a, b) => {
     if ((!a.file && !b.file) || (a.file && b.file)) {
-      return a.name.localeCompare(b.name)
+      return a.displayName.localeCompare(b.displayName)
     }
     if (a.file && !b.file) {
       return -1
@@ -138,7 +141,7 @@ Using this example, the display names of all `FileNodes` (folders + files) will 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
   mapFn: (node) => {
-    node.name = node.name.toUpperCase()
+    node.displayName = node.displayName.toUpperCase()
   },
 })
 ```
@@ -159,6 +162,16 @@ Component.Explorer({
 
 You can customize this by changing the entries of the `omit` set. Simply add all folder or file names you want to remove.
 
+### Show every element in explorer
+
+To override the default filter function that removes the `tags` folder from the explorer, you can set the filter function to `undefined`.
+
+```ts title="quartz.layout.ts"
+Component.Explorer({
+  filterFn: undefined, // apply no filter function, every file and folder will visible
+})
+```
+
 ## Advanced examples
 
 ### Add emoji prefix
@@ -172,9 +185,9 @@ Component.Explorer({
     if (node.depth > 0) {
       // set emoji for file/folder
       if (node.file) {
-        node.name = "📄 " + node.name
+        node.displayName = "📄 " + node.displayName
       } else {
-        node.name = "📁 " + node.name
+        node.displayName = "📁 " + node.displayName
       }
     }
   },
