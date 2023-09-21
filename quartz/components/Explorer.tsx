@@ -1,4 +1,5 @@
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { GlobalConfiguration } from "../cfg"
 import explorerStyle from "./styles/explorer.scss"
 
 // @ts-ignore
@@ -35,11 +36,20 @@ export default ((userOpts?: Partial<Options>) => {
   let fileTree: FileNode
   let jsonTree: string
 
-  function constructFileTree(allFiles: QuartzPluginData[]) {
+  function constructFileTree(cfg: GlobalConfiguration, allFiles: QuartzPluginData[]) {
     if (!fileTree) {
       // Construct tree from allFiles
       fileTree = new FileNode("")
-      allFiles.forEach((file) => fileTree.add(file, 1))
+	  for(const file of allFiles) {
+        let ignore = false;
+        for(const ignorePattern of cfg.unlistedPatterns)
+        if(file.slug.startsWith(ignorePattern))
+          ignore = true
+        if(ignore)
+          continue;
+
+        fileTree.add(file, 1);
+	  }
 
       /**
        * Keys of this object must match corresponding function name of `FileNode`,
@@ -78,8 +88,8 @@ export default ((userOpts?: Partial<Options>) => {
     }
   }
 
-  function Explorer({ allFiles, displayClass, fileData }: QuartzComponentProps) {
-    constructFileTree(allFiles)
+  function Explorer({ allFiles, displayClass, fileData, cfg }: QuartzComponentProps) {
+    constructFileTree(cfg, allFiles);
     return (
       <div class={`explorer ${displayClass}`}>
         <button
