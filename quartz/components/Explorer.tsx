@@ -4,17 +4,18 @@ import explorerStyle from "./styles/explorer.scss"
 // @ts-ignore
 import script from "./scripts/explorer.inline"
 import { ExplorerNode, FileNode, Options } from "./ExplorerNode"
+import { QuartzPluginData } from "../plugins/vfile"
 
 // Options interface defined in `ExplorerNode` to avoid circular dependency
-const defaultOptions = (): Options => ({
+const defaultOptions = {
   title: "Explorer",
   folderClickBehavior: "collapse",
   folderDefaultState: "collapsed",
   useSavedState: true,
-  // Sort order: folders first, then files. Sort folders and files alphabetically
   sortFn: (a, b) => {
+    // Sort order: folders first, then files. Sort folders and files alphabetically
     if ((!a.file && !b.file) || (a.file && b.file)) {
-      return a.name.localeCompare(b.name)
+      return a.displayName.localeCompare(b.displayName)
     }
     if (a.file && !b.file) {
       return 1
@@ -22,52 +23,63 @@ const defaultOptions = (): Options => ({
       return -1
     }
   },
+  filterFn: (node) => node.name !== "tags",
   order: ["filter", "map", "sort"],
-})
+} satisfies Options
+
 export default ((userOpts?: Partial<Options>) => {
-  function Explorer({ allFiles, displayClass, fileData }: QuartzComponentProps) {
-    // Parse config
-    const opts: Options = { ...defaultOptions(), ...userOpts }
+  // Parse config
+  const opts: Options = { ...defaultOptions, ...userOpts }
 
-    // Construct tree from allFiles
-    const fileTree = new FileNode("")
-    allFiles.forEach((file) => fileTree.add(file, 1))
+  // memoized
+  let fileTree: FileNode
+  let jsonTree: string
 
-    /**
-     * Keys of this object must match corresponding function name of `FileNode`,
-     * while values must be the argument that will be passed to the function.
-     *
-     * e.g. entry for FileNode.sort: `sort: opts.sortFn` (value is sort function from options)
-     */
-    const functions = {
-      map: opts.mapFn,
-      sort: opts.sortFn,
-      filter: opts.filterFn,
-    }
+  function constructFileTree(allFiles: QuartzPluginData[]) {
+    if (!fileTree) {
+      // Construct tree from allFiles
+      fileTree = new FileNode("")
+      allFiles.forEach((file) => fileTree.add(file, 1))
 
-    // Execute all functions (sort, filter, map) that were provided (if none were provided, only default "sort" is applied)
-    if (opts.order) {
-      // Order is important, use loop with index instead of order.map()
-      for (let i = 0; i < opts.order.length; i++) {
-        const functionName = opts.order[i]
-        if (functions[functionName]) {
-          // for every entry in order, call matching function in FileNode and pass matching argument
-          // e.g. i = 0; functionName = "filter"
-          // converted to: (if opts.filterFn) => fileTree.filter(opts.filterFn)
+      /**
+       * Keys of this object must match corresponding function name of `FileNode`,
+       * while values must be the argument that will be passed to the function.
+       *
+       * e.g. entry for FileNode.sort: `sort: opts.sortFn` (value is sort function from options)
+       */
+      const functions = {
+        map: opts.mapFn,
+        sort: opts.sortFn,
+        filter: opts.filterFn,
+      }
 
-          // @ts-ignore
-          // typescript cant statically check these dynamic references, so manually make sure reference is valid and ignore warning
-          fileTree[functionName].call(fileTree, functions[functionName])
+      // Execute all functions (sort, filter, map) that were provided (if none were provided, only default "sort" is applied)
+      if (opts.order) {
+        // Order is important, use loop with index instead of order.map()
+        for (let i = 0; i < opts.order.length; i++) {
+          const functionName = opts.order[i]
+          if (functions[functionName]) {
+            // for every entry in order, call matching function in FileNode and pass matching argument
+            // e.g. i = 0; functionName = "filter"
+            // converted to: (if opts.filterFn) => fileTree.filter(opts.filterFn)
+
+            // @ts-ignore
+            // typescript cant statically check these dynamic references, so manually make sure reference is valid and ignore warning
+            fileTree[functionName].call(fileTree, functions[functionName])
+          }
         }
       }
+
+      // Get all folders of tree. Initialize with collapsed state
+      const folders = fileTree.getFolderPaths(opts.folderDefaultState === "collapsed")
+
+      // Stringify to pass json tree as data attribute ([data-tree])
+      jsonTree = JSON.stringify(folders)
     }
+  }
 
-    // Get all folders of tree. Initialize with collapsed state
-    const folders = fileTree.getFolderPaths(opts.folderDefaultState === "collapsed")
-
-    // Stringify to pass json tree as data attribute ([data-tree])
-    const jsonTree = JSON.stringify(folders)
-
+  function Explorer({ allFiles, displayClass, fileData }: QuartzComponentProps) {
+    constructFileTree(allFiles)
     return (
       <div class={`explorer ${displayClass}`}>
         <button
@@ -78,7 +90,7 @@ export default ((userOpts?: Partial<Options>) => {
           data-savestate={opts.useSavedState}
           data-tree={jsonTree}
         >
-          <h3>{opts.title}</h3>
+          <h1>{opts.title}</h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="14"
@@ -97,7 +109,7 @@ export default ((userOpts?: Partial<Options>) => {
         <div id="explorer-content">
           <ul class="overflow" id="explorer-ul">
             <ExplorerNode node={fileTree} opts={opts} fileData={fileData} />
-            <div id="explorer-end" />
+            <li id="explorer-end" />
           </ul>
         </div>
       </div>
