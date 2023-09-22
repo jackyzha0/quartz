@@ -20,4 +20,4 @@ lastmod: 2023-09-18
 11. Eat the Frog. Identify one challenging task (the frong), and complete it first thing in the morning (thus eating it).
 12. Fix and maintain a healthy sleep schedule.
 13. It doesn't need to be perfect, it does need to be started.
-14. Consistency is more important than intensity.
+14. [[Consistency]] is more important than intensity.

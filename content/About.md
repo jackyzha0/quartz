@@ -2,7 +2,9 @@
 title: About
 compartir: true
 lastmod: 2023-09-21
+tags: meta
 ---
+
 ## Hi! I'm Miguel 👋🏼
 
 Problem solver, hobby developer, music enjoyer, and public infrastructure enthusiast. I live in Minnesota, also known as the _"Land of 10,000 Lakes"_ for having over 14,000 bodies of fresh water.

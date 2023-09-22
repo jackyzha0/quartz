@@ -44,7 +44,7 @@ lastmod: 2023-09-21
 * Bumped `npm: katex` from `@0.15.1` to `@0.16.8` within `katex.html`. Updated its multiple sha384 checks.
 * Bumped `npm: mermaid` from `@9` to `@10.4.0` within `head.html` and `mermaid.html`.
 * Bumped `npm: flexsearch` from `@0.7.21` to `@0.7.31`. Updated integrity check from sha256 to sha384.
-* Moved `<style>` from within [[Digital Garden Colors]]. Added `.block` styling to `custom.scss`. Introduced `margin: auto;` to center the color blocks.
+* Moved `<style>` from within Digital Garden Colors. Added `.block` styling to `custom.scss`. Introduced `margin: auto;` to center the color blocks.
 
 > [Link Of The Day](https://en.wikipedia.org/wiki/Karen_Silkwood?useskin=vector)
 
@@ -98,7 +98,7 @@ lastmod: 2023-09-21
 **Digital Garden**
 * Compiled, and published a collection of [[Bookmarklets]].
 * Cleaned up and published [[Inspirations]].
-* Making the Garden more explorable by adding direct links to the [tags](tags/) page from the [_index](/).
+* Making the Garden more explorable by adding direct links to the [tags] page from the [_index](/).
 * Playing with the Garden's desktop layout. Temporarily moved right sidebar components to the left sidebar. Undone shortly after, as it messed with the total calculated width of the page and its two sidebar widths.
 
 > [Link Of The Day](https://en.wikipedia.org/wiki/Iceland_v_Iceland_Foods_Ltd)

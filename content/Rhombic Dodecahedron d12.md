@@ -2,7 +2,9 @@
 title: Rhombic Dodecahedron d12
 compartir: true
 lastmod: 2023-09-20
+tags: stub
 ---
+
 
 > "I've never seen a rhombic dodecahedron d12 before. They do exist after a quick search, but the much more common d12 is just a dodecahedron, with pentagonal faces."
 

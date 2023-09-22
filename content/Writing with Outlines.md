@@ -1,5 +1,5 @@
 ---
-title: Learning to Write with Outlines
+title: Write with Outlines
 summary: Learning how to write with brevity (short-form), how to write long-form, how to use gesticulation. Looking for ways to streamline producing written content.
 tags:
   - learning

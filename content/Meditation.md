@@ -1,5 +1,5 @@
 ---
-title: Learning Meditation
+title: Meditation
 tags:
   - learning
 compartir: true

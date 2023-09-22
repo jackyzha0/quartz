@@ -1,5 +1,5 @@
 ---
-title: Learning Guitar
+title: Guitar
 tags:
   - learning
   - music

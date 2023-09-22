@@ -3,7 +3,9 @@ title: Meta (how this site was made)
 description: How the site was made.
 compartir: true
 lastmod: 2023-09-20
+tags: meta
 ---
+
 
 > [!summary]
 > 

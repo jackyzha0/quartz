@@ -20,7 +20,7 @@ Possible replacement for the blog.
 
 ### Dotfiles
 
-Nvim, GitHub, Obsidian configuration files.  
+[[NeoVim|Nvim]], GitHub, Obsidian configuration files.  
 [Source](https://github.com/semanticdata/dotfiles)
 
 ### Obsidian Test Vault

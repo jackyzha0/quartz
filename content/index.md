@@ -1,8 +1,8 @@
 ---
 title: Home
-description: A digital garden of knowledge. A platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
+description: "Forgetful Notes—A digital garden of knowledge. A platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to."
 compartir: true
-lastmod: 2023-09-20
+lastmod: 2023-09-21
 ---
 Hey there! I'm Miguel, and you have come across **Forgetful Notes**—my [[Digital Garden|digital garden]] of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 
@@ -12,5 +12,6 @@ Forgetful Notes embraces the inherent [[Rhizomatic Learning|rhizomatic learning]
 
 That said, I do not let perfectionism get in the way. That means what you read here is not authoritative or complete, and is not representative of my best work. Please keep that in mind as you navigate around the garden. Needless to say, I'm glad you are here.
 
-* Want to learn more about me? Check out [[About]].
-* Want to learn more about the site? Check out [[Meta]].
+* Want to learn more about me? Check out the [[About]] page.
+* Want to learn more about the site? Check out the [[Meta]] page.
+* Want to read more of my material? Check out my [Blog](https://miguelpimentel.do/).
