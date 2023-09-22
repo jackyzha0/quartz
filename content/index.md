@@ -15,7 +15,8 @@ This site changes often. Check [[Updates]] for a monthly list of changes.
 I [[about-me|(me, myself)]] write about:
 - Projects I've undertaken and programs that I've used
 - The intersection of social issues and technology, often with a privacy-first spin
-- Anything else that you can find in the [Explorer](https://quartz.jzhao.xyz/features/explorer) on this page
+- Anything else that you can find in the [Explorer](https://quartz.jzhao.xyz/features/explorer) on your left
+	- If you're on mobile, visit the [[Sitemap]].
 
 # What the hell is that spiderweb thing?
 That's the [Graph View](https://help.obsidian.md/Plugins/Graph+view). It's an [[Programs I Like/obsidian|Obsidian]] feature which acts as a map of what pages link to each other. Click on it for a map of the entire site and how it interconnects. It doesn't use Obsidian's implementation directly, but since the site generator I use is heavily inspired by Obsidian and [Obsidian Publish]( https://obsidian.md/publish ), it remains.

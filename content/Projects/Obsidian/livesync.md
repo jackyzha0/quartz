@@ -12,4 +12,4 @@ Repo is [here](https://github.com/vrtmrz/obsidian-livesync) for those interested
 
 Once I had the database the guide specified up and running (simple because docker), I routed it through nginx and tried to set up the editor plugin. However, the docs fail to mention that **you have to create an empty table inside CouchDB** and point the plugin to that, so I was causing all sorts of issues and getting errors I didn't know how to fix until I tried that on a whim. Now it works perfectly and will handle my documents without issue!
 
-I also recommend setting up a keyboard shortcut for the `Replicate Now` command in Obsidian, I use `ctrl+shift+S`.
+I also recommend setting up a keyboard shortcut for the `Replicate Now` command in Obsidian. I use `ctrl+shift+S`.
