@@ -13,30 +13,21 @@ This site changes often. Check [[Updates]] for a monthly list of changes.
 
 # What can I see here?
 I [[about-me|(me, myself)]] write about:
-- [[Projects/home|Projects]] I've undertaken
-- Technical mishaps I've experienced
-- [[Programs I Like/home|Programs that rock]], even if I haven't personally used them
-- The intersection of social issues and technology
+- Projects I've undertaken and programs that I've used
+- The intersection of social issues and technology, often with a privacy-first spin
+- Anything else that you can find in the [Explorer](https://quartz.jzhao.xyz/features/explorer) on this page
 
 # What the hell is that spiderweb thing?
-That's the [Graph View](https://help.obsidian.md/Plugins/Graph+view). It's an [[Programs I Like/obsidian|Obsidian]] feature which acts as a map of the entire site and how it interconnects. It doesn't use Obsidian's implementation directly, but since the site generator I use is heavily inspired by Obsidian and [Obsidian Publish]( https://obsidian.md/publish ), it remains.
+That's the [Graph View](https://help.obsidian.md/Plugins/Graph+view). It's an [[Programs I Like/obsidian|Obsidian]] feature which acts as a map of what pages link to each other. Click on it for a map of the entire site and how it interconnects. It doesn't use Obsidian's implementation directly, but since the site generator I use is heavily inspired by Obsidian and [Obsidian Publish]( https://obsidian.md/publish ), it remains.
 
 # What’s a Backlink?
 The Backlinks pane is a list of all pages that link to this site in content. Because you’re on the homepage, it’s empty. On content pages, it’ll be more substantial and serve as a convenient navigation tool. 
 
 # What else do I need to know?
-### Rough sitemap 
-This should be a mostly complete textual site listing in case, like me, you find the aforementioned [[#What the hell is that spiderweb thing?|Graph View]] a bit too un-navigable for practical use.
-- [[Projects/home|Projects I've worked on]]
-- [[Programs I Like/home|Programs that I like]]
-- [[Essays/home|Long-form, source-citing articles]]
-- [[Misc/home|Miscellaneous writings]]
-
 ### Epistemological disclosure
 Please accept that I reserve the right to be wrong on this website. I don’t claim to be an expert on any of the subject matter within. As this site reflects a learning process, I’m also liable to change my mind if I research an issue further. I’ll document if this happens. 
 
 If you don’t like how I’ve done something, feel free to write a piece in your own garden for it. I’d love to read it! It’s no secret that a lot of this garden comprises my gripes with various things. 
-
 ### Disclaimer
 It goes without saying that anything herein constitutes my own opinion and not the opinion of any affiliated person or entity. Nothing on this website is legal advice either. 
 

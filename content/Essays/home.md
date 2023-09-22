@@ -1,5 +1,5 @@
 ---
-title: Essays
+title: Essays - Home
 tags:
   - toc
 date: 9-08-23

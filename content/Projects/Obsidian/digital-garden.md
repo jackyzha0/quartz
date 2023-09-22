@@ -1,5 +1,5 @@
 ---
-title: "Obsidian: Digital Gardening with Quartz"
+title: Digital Gardening with Quartz
 tags:
   - meta
   - webdev

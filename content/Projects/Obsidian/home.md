@@ -1,5 +1,5 @@
 ---
-title: "Projects: Obsidian"
+title: Project Obsidian - Home
 tags:
   - project
   - productivity
