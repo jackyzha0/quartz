@@ -21,6 +21,7 @@ async function generateSocialImage(
   fileName: string,
   fontName: string,
   cfg: GlobalConfiguration,
+  colorScheme: "lightMode" | "darkMode",
 ) {
   const font = (await getTtfFromGfont(fontName)) as ArrayBuffer
   const svg = await satori(
@@ -41,14 +42,14 @@ async function generateSocialImage(
           justifyContent: "center",
           height: "100%",
           width: "100%",
-          backgroundColor: cfg.theme.colors.lightMode.light,
+          backgroundColor: cfg.theme.colors[colorScheme].light,
           flexDirection: "column",
           gap: "2.5rem",
         }}
       >
         <div
           style={{
-            color: cfg.theme.colors.lightMode.dark,
+            color: cfg.theme.colors[colorScheme].dark,
             fontSize: 80,
           }}
         >
@@ -56,7 +57,7 @@ async function generateSocialImage(
         </div>
         <div
           style={{
-            color: cfg.theme.colors.lightMode.dark,
+            color: cfg.theme.colors[colorScheme].dark,
             fontSize: 42,
             marginLeft: "10rem",
             marginRight: "10rem",
@@ -71,7 +72,8 @@ async function generateSocialImage(
           height: "100%",
           width: "2vw",
           position: "absolute",
-          backgroundColor: cfg.theme.colors.lightMode.tertiary,
+          backgroundColor: cfg.theme.colors[colorScheme].secondary,
+          opacity: 0.85,
         }}
       />
     </div>,
@@ -118,7 +120,14 @@ export default (() => {
     const title = fileData.frontmatter?.title ?? "Untitled"
     const description = fileData.description?.trim() ?? "No description provided"
 
-    generateSocialImage(title, description, filePath as string, cfg.theme.typography.header, cfg)
+    generateSocialImage(
+      title,
+      description,
+      filePath as string,
+      cfg.theme.typography.header,
+      cfg,
+      "lightMode",
+    )
 
     if (!fs.existsSync(imageDir)) {
       fs.mkdirSync(imageDir, { recursive: true })
@@ -132,7 +141,10 @@ export default (() => {
     const iconPath = joinSegments(baseDir, "static/icon.png")
     // TODO: use default image if undefined
     const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
-    const ogImagePath = `https://${cfg.baseUrl}/static/${filePath}.${extension}`
+    const ogImagePath = `https://${cfg.baseUrl}/${imageDir.replace(
+      "public/",
+      "",
+    )}/${filePath}.${extension}`
 
     return (
       <head>
