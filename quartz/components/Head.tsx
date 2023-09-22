@@ -3,7 +3,7 @@ import { JSResourceToScriptElement } from "../util/resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import satori from "satori"
 import * as fs from "fs"
-import { getTtfFromGfont } from "../util/fonts"
+import { getSatoriFont } from "../util/fonts"
 import { GlobalConfiguration } from "../cfg"
 import sharp from "sharp"
 
@@ -12,20 +12,22 @@ import sharp from "sharp"
  * @param title what title to use
  * @param description what description to use
  * @param fileName what fileName to use when writing to disk
- * @param fontName name of font to use (must be google font)
+ * @param headerFontName name of font to use for header (must be google font)
+ * @param bodyFontName name of font to use for body (must be google font)
  * @param cfg `GlobalConfiguration` of quartz
  */
 async function generateSocialImage(
   title: string,
   description: string,
   fileName: string,
-  fontName: string,
+  headerFontName: string,
+  bodyFontName: string,
   cfg: GlobalConfiguration,
   colorScheme: "lightMode" | "darkMode",
 ) {
-  const font = (await getTtfFromGfont(fontName)) as ArrayBuffer
+  const fonts = await getSatoriFont(headerFontName, bodyFontName)
   // How many characters are allowed before switching to smaller font
-  const fontBreakPoint = 26
+  const fontBreakPoint = 22
   const useSmallerFont = title.length > fontBreakPoint
   const svg = await satori(
     <div
@@ -52,28 +54,30 @@ async function generateSocialImage(
           paddingBottom: "2rem",
         }}
       >
-        <div
+        <p
           style={{
             color: cfg.theme.colors[colorScheme].dark,
-            fontSize: useSmallerFont ? 70 : 80,
+            fontSize: useSmallerFont ? 70 : 82,
             marginLeft: "4rem",
             textAlign: "center",
             marginRight: "4rem",
+            fontFamily: fonts[0].name,
           }}
         >
           {title}
-        </div>
-        <div
+        </p>
+        <p
           style={{
             color: cfg.theme.colors[colorScheme].dark,
             fontSize: 44,
             marginLeft: "8rem",
             marginRight: "8rem",
             lineClamp: 3,
+            fontFamily: fonts[1].name,
           }}
         >
           {description}
-        </div>
+        </p>
       </div>
       <div
         style={{
@@ -88,20 +92,7 @@ async function generateSocialImage(
     {
       width: ogHeight,
       height: ogWidth,
-      fonts: [
-        {
-          name: fontName,
-          data: font,
-          weight: 800,
-          style: "normal",
-        },
-        {
-          name: fontName,
-          data: font,
-          weight: 400,
-          style: "normal",
-        },
-      ],
+      fonts: fonts,
     },
   )
 
@@ -121,7 +112,7 @@ export default (() => {
   let font: Promise<ArrayBuffer | undefined>
   function Head({ cfg, fileData, externalResources }: QuartzComponentProps) {
     if (!font) {
-      font = getTtfFromGfont(cfg.theme.typography.header)
+      // font = getSatoriFont(cfg.theme.typography.header)
     }
     const slug = fileData.filePath
     const filePath = slug?.replaceAll("/", "-")
@@ -133,6 +124,7 @@ export default (() => {
       description,
       filePath as string,
       cfg.theme.typography.header,
+      cfg.theme.typography.body,
       cfg,
       "lightMode",
     )
