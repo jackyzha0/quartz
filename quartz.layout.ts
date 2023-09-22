@@ -7,10 +7,10 @@ export const sharedPageComponents: SharedLayout = {
   header: [],
   footer: Component.Footer({
     links: {
-      About: "https://miguelpimentel.do/",
-      Blog: "https://miguelpimentel.do/posts",
+      About: "/About",
+      Blog: "https://miguelpimentel.do/",
       Meta: "/Meta",
-      GitHub: "https://github.com/semanticdata/forgetful-notes/",
+      GitHub: "https://github.com/semanticdata/",
       Tags: "/tags",
     },
   }),

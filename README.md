@@ -3,7 +3,7 @@
   <img src="https://img.shields.io/github/repo-size/semanticdata/forgetful-notes" />
   <img src="https://img.shields.io/github/commit-activity/t/semanticdata/forgetful-notes" />
   <img src="https://img.shields.io/github/last-commit/semanticdata/forgetful-notes" />
-  <img src="https://img.shields.io/website/https/forgetful.dev.svg" />
+  <img src="https://img.shields.io/website/https/forgetfulnotes.com.svg" />
 </p>
 
 # Forgetful Notes
@@ -19,6 +19,7 @@ Source code for Forgetful Notes—my digital garden of knowledge. It serves as a
 | Command                    | Description                |
 | -------------------------- | -------------------------- |
 | `npm i`                    | Install Dependencies       |
+| `npm update`               | Update Dependencies        |
 | `npx quartz update`        | Update Quartz (core)       |
 | `npx quartz build`         | Build without Serving      |
 | `npx quartz build --serve` | Build and Serve Locally    |
