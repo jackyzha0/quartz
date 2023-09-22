@@ -1,7 +1,7 @@
 import { FullSlug, _stripSlashes, joinSegments, pathToRoot } from "../util/path"
 import { JSResourceToScriptElement } from "../util/resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
-import satori from "satori"
+import satori, { SatoriOptions } from "satori"
 import * as fs from "fs"
 import { getSatoriFont } from "../util/fonts"
 import { GlobalConfiguration } from "../cfg"
@@ -20,12 +20,12 @@ async function generateSocialImage(
   title: string,
   description: string,
   fileName: string,
-  headerFontName: string,
-  bodyFontName: string,
+  fontsPromise: Promise<SatoriOptions["fonts"]>,
   cfg: GlobalConfiguration,
   colorScheme: "lightMode" | "darkMode",
 ) {
-  const fonts = await getSatoriFont(headerFontName, bodyFontName)
+  const fonts = await fontsPromise
+
   // How many characters are allowed before switching to smaller font
   const fontBreakPoint = 22
   const useSmallerFont = title.length > fontBreakPoint
@@ -109,25 +109,17 @@ const extension = "webp"
 
 const imageDir = "public/static/social-images"
 export default (() => {
-  let font: Promise<ArrayBuffer | undefined>
+  let fontsPromise: Promise<SatoriOptions["fonts"]>
   function Head({ cfg, fileData, externalResources }: QuartzComponentProps) {
-    if (!font) {
-      // font = getSatoriFont(cfg.theme.typography.header)
+    if (!fontsPromise) {
+      fontsPromise = getSatoriFont(cfg.theme.typography.header, cfg.theme.typography.body)
     }
     const slug = fileData.filePath
     const filePath = slug?.replaceAll("/", "-")
     const title = fileData.frontmatter?.title ?? "Untitled"
     const description = fileData.description?.trim() ?? "No description provided"
 
-    generateSocialImage(
-      title,
-      description,
-      filePath as string,
-      cfg.theme.typography.header,
-      cfg.theme.typography.body,
-      cfg,
-      "lightMode",
-    )
+    generateSocialImage(title, description, filePath as string, fontsPromise, cfg, "lightMode")
 
     if (!fs.existsSync(imageDir)) {
       fs.mkdirSync(imageDir, { recursive: true })
