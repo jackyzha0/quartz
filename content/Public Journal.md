@@ -8,7 +8,7 @@ lastmod: 2023-09-22
 
 > [!info] Acknowledgements
 > 
-> This page takes inspiration from the [Journal of an Enigmatic Mind](https://speyllsite.pages.dev/journal/).
+> This page takes inspiration from the [Journal of an Enigmatic Mind](https://speyllsite.pages.dev/journal/). It explores the concept of keeping a public journal, something I haven't done before. Anything that encourages me to write more is a positive in my opinion.
 
 ---
 
@@ -18,6 +18,9 @@ lastmod: 2023-09-22
 * Many days worth of changes reported on this entry.
 * Started looking at modal editors more seriously. I intend to slowly learn Vim key bindings.
 	* I have been reading and watching videos about [Vim](https://www.vim.org/), [NeoVim](https://neovim.io/), [Emacs](https://www.gnu.org/software/emacs/), and [Helix](https://github.com/helix-editor/helix).
+
+**Blog**
+* Testing [Zola Tale](https://github.com/semanticdata/zola-tale) as possible replacement for the blog. It emphasises the writing, only providing an About page for the curious. This has become a more popular idea in my mind. In the past, I have tried to merge my Blog and my digital garden without success. I'm leaning on that. Only articles and an 'About' page will be enough to accomplish the goal I have with the blog. On the other hand, this encourages more people to visit my digital garden, as I plan to write about it on the blog.
 
 **GitHub**
 * Many changes made to the [Obsidian Starter Vault](https://github.com/semanticdata/obsidian-starter-vault). Added two new plugins, and updated the README.
@@ -29,9 +32,9 @@ lastmod: 2023-09-22
 	* [Silicon Dioxide](https://github.com/semanticdata/silicon-dioxide)
 
 **Digital Garden**
+* It has changed domains. Currently being hosted on [forgetfulnotes.com](https://forgetfulnotes.com/).
 * After experimenting with the idea of keeping my code base in Quartz v3.3, using Hugo as the base, I felt the amount of effort was unjustified. For now, I have settled on using the latest version of [Quartz](https://github.com/jackyzha0/quartz) as the base for my [[Digital Garden|digital garden]].
 * You can find its source code in [Forgetful Notes](https://github.com/semanticdata/forgetful-notes).
-* It has changed domains. Currently being hosted on [forgetfulnotes.com](https://forgetfulnotes.com/).
 
 > [Link Of The Day](https://en.wikipedia.org/wiki/Cornfield_Bomber?useskin=vector)
 
@@ -95,7 +98,8 @@ lastmod: 2023-09-22
 * Submitted Forgetful.dev into the [512KB Club](https://512kb.club/).
 
 **Digital Garden**
-* Started this new **Public Journal**.
-* Upgraded the Garden backend from `Quartz v4-Alpha` to the official `Quartz v4` release.
+* Started my new **Public Journal**.
+* About a week ago I upgraded my [[Digital Garden|digital garden]] from `Quartz v3.3` to `Quartz v4-Alpha`.
+* Today I upgraded the Garden backend from `Quartz v4-Alpha` to the official `Quartz v4` release.
 
 > [Link Of The Day](https://en.m.wikipedia.org/wiki/Bus_factor)

@@ -12,9 +12,15 @@ Problem solver, hobby developer, music enjoyer, and public infrastructure enthus
 
 I think a lot, work a lot, have existential crises, and know just enough about making websites to make me dangerous. I enjoy writing, reading, coding, listening to music, and love having a problem to solve.
 
+If you are aching for more:
+
+* Find out what [[Inspirations|inspires]] me.
+* Check out what [[tools]] I use.
+* Go ahead and read my [[Public Journal|public journal]].
+
 ### As of September 2023, I am…
 
-… tending to my [digital garden](https://forgetful.dev/).  
+… tending to my [digital garden](https://forgetfullnotes.com/).  
 … making simple Firefox [extensions](https://addons.mozilla.org/en-US/firefox/user/17772574/).  
 … collecting bookmarks with [Raindrop](https://raindrop.io/SemanticData).  
 … learning about [Vim](https://www.vim.org/), [NeoVim](https://neovim.io/), [Emacs](https://www.gnu.org/software/emacs/), and [Helix](https://github.com/helix-editor/helix).  

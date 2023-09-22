@@ -15,9 +15,13 @@ You will find within a wide range of topics, expanding and exploring ideas acros
 
 Like me, all notes contained within should be considered work-in-progress. Expect changes at all content levels. That said, I do not let perfectionism get in the way. That means what you read here is not authoritative or complete, and is not representative of my best work. Please keep that in mind as you navigate around the garden. I'm glad you are here. Enjoy your visit!
 
-* Want to learn more _about me_? Check out the [[About]] page.
-* Want to learn more _about the site_? Check out the [[Meta]] page.
-* Want to read more of my material? Check out my [Blog](https://miguelpimentel.do/).
-* Want to explore the garden but don't know where to start? Check out the [[Guide]].
+* Want to learn more _about me_?  
+	Check out the [[About]] page.
+* Want to learn more _about the site_?  
+	Check out the [[Meta]] page.
+* Want to read more of my material?  
+	Check out my [Blog](https://miguelpimentel.do/).
+* Want to explore the garden but don't know where to start?  
+	Check out the [[Guide]].
 
 Thank you for stopping by. Please tell your dog I said Hi! 🐶
