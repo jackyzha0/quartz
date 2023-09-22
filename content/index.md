@@ -25,6 +25,13 @@ That's the [Graph View](https://help.obsidian.md/Plugins/Graph+view). It's an [[
 The Backlinks pane is a list of all pages that link to this site in content. Because you’re on the homepage, it’s empty. On content pages, it’ll be more substantial and serve as a convenient navigation tool. 
 
 # What else do I need to know?
+### Rough sitemap 
+This should be a mostly complete textual site listing in case, like me, you find the aforementioned [[#What the hell is that spiderweb thing?|Graph View]] a bit too un-navigable for practical use.
+- [[Projects/home|Projects I've worked on]]
+- [[Programs I Like/home|Programs that I like]]
+- [[Essays/home|Long-form, source-citing articles]]
+- [[Misc/home|Miscellaneous writings]]
+
 ### Epistemological disclosure
 Please accept that I reserve the right to be wrong on this website. I don’t claim to be an expert on any of the subject matter within. As this site reflects a learning process, I’m also liable to change my mind if I research an issue further. I’ll document if this happens. 
 
