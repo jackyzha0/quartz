@@ -3,7 +3,7 @@ title: Quotes Collection
 tags:
   - collection
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-09-22
 enableToc: true
 ---
 
@@ -43,10 +43,6 @@ enableToc: true
 
 > "I only wrote that poem to test my printer!"
 
-### Dean Bokhari
-
-> "Be regular and orderly in your life, so that you may be violent and original in your work."
-
 ### Donny Osmond
 
 > "I never smile unless I mean it."
@@ -59,7 +55,11 @@ enableToc: true
 
 > It is really not so repulsive to see the poor asking for money as to see the rich asking for more money. And advertisement is the rich asking for more money. A man would be annoyed if he found himself in a mob of millionaires, all holding out their silk hats for a penny; or all shouting with one voice, "Give me money." Yet advertisement does really assault the eye very much as such a shout would assault the ear. "Budge's Boots are the Best" simply means "Give me money"; "Use Seraphic Soap" simply means "Give me money." It is a complete mistake to suppose that common people make our towns commonplace, with unsightly things like advertisements. Most of those whose wares are thus placarded everywhere are very wealthy gentlemen with coronets and country seats, men who are probably very particular about the artistic adornment of their own homes. They disfigure their towns in order to decorate their houses.
 
-### Gustave Flaubert
+### Dean Bokhari (unconfirmed)
+
+> "Be regular and orderly in your life, so that you may be violent and original in your work."
+
+### Gustave Flaubert (unconfirmed)
 
 > "Be regular and orderly in your life, so that you may be violent and original in your work."
 

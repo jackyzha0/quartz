@@ -10,6 +10,9 @@ aliases:
   - Vim
 ---
 
+
+Vim-fork focused on extensibility and usability.
+
 [Dotfiles](https://github.com/semanticdata/dotfiles) – [Website](https://neovim.io/) – [Documentation](https://neovim.io/doc/)
 
 **Sync from CLI** → `nvim --headless "+Lazy! sync" +qa`
