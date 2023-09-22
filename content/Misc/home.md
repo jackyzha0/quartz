@@ -1,5 +1,5 @@
 ---
-title: Miscellaneous Articles
+title: Misc - Home
 tags:
   - toc
   - misc

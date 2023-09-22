@@ -1,5 +1,5 @@
 ---
-title: "Obsidian: Editor"
+title: Editor
 tags:
   - editor
   - notes
