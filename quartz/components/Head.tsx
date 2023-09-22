@@ -5,16 +5,20 @@ import satori from "satori"
 import * as fs from "fs"
 import { getTtfFromGfont } from "../util/fonts"
 import { GlobalConfiguration } from "../cfg"
-import { Resvg } from "@resvg/resvg-js"
+import sharp from "sharp"
 
-// const robotoData = await (
-//   await fetch("https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Me5Q.ttf")
-// ).arrayBuffer()
-
-async function generateSvg(
+/**
+ * Generates social image (OG/twitter standard) and saves it as `.web` inside the public folder
+ * @param title what title to use
+ * @param description what description to use
+ * @param fileName what fileName to use when writing to disk
+ * @param fontName name of font to use (must be google font)
+ * @param cfg `GlobalConfiguration` of quartz
+ */
+async function generateSocialImage(
   title: string,
   description: string,
-  filePath: string,
+  fileName: string,
   fontName: string,
   cfg: GlobalConfiguration,
 ) {
@@ -68,7 +72,6 @@ async function generateSvg(
           width: "2vw",
           position: "absolute",
           backgroundColor: cfg.theme.colors.lightMode.tertiary,
-          opacity: 0.8,
         }}
       />
     </div>,
@@ -91,33 +94,34 @@ async function generateSvg(
       ],
     },
   )
-  const resvg = new Resvg(svg)
-  const pngData = resvg.render()
-  const pngBuffer = pngData.asPng()
-  fs.writeFileSync(`public/static/${filePath}.png`, pngBuffer)
+
+  // Convert svg directly to webp (with additional compression)
+  const compressed = await sharp(Buffer.from(svg)).webp({ quality: 40 }).toBuffer()
+
+  // Write to file system
+  fs.writeFileSync(`${imageDir}/${fileName}.${extension}`, compressed)
 }
 
 const ogHeight = 1200
 const ogWidth = 676
+const extension = "webp"
 
+const imageDir = "public/static/social-images"
 export default (() => {
   let font: Promise<ArrayBuffer | undefined>
   function Head({ cfg, fileData, externalResources }: QuartzComponentProps) {
     if (!font) {
       font = getTtfFromGfont(cfg.theme.typography.header)
     }
-    const dir = "public/static"
     const slug = fileData.filePath
     const filePath = slug?.replaceAll("/", "-")
-    const ogArr = slug?.split("/")
     const title = fileData.frontmatter?.title ?? "Untitled"
     const description = fileData.description?.trim() ?? "No description provided"
 
-    generateSvg(title, description, filePath as string, cfg.theme.typography.header, cfg)
-    // }
+    generateSocialImage(title, description, filePath as string, cfg.theme.typography.header, cfg)
 
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir)
+    if (!fs.existsSync(imageDir)) {
+      fs.mkdirSync(imageDir, { recursive: true })
     }
     const { css, js } = externalResources
 
@@ -126,8 +130,9 @@ export default (() => {
     const baseDir = fileData.slug === "404" ? path : pathToRoot(fileData.slug!)
 
     const iconPath = joinSegments(baseDir, "static/icon.png")
-    const ogImagePath = `https://${cfg.baseUrl}/static/og-image.png`
-    const ogImagePathNew = `https://${cfg.baseUrl}/static/${filePath}.png`
+    // TODO: use default image if undefined
+    const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
+    const ogImagePath = `https://${cfg.baseUrl}/static/${filePath}.${extension}`
 
     return (
       <head>
@@ -139,18 +144,18 @@ export default (() => {
         <meta property="og:title" content={title} />
         <meta property="og:type" content="website" />
         <meta property="og:description" content={description} />
-        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:type" content={`image/${extension}`} />
         <meta property="og:image:alt" content={fileData.description} />
         <meta property="og:image:width" content={"" + ogWidth} />
         <meta property="og:image:height" content={"" + ogHeight} />
-        <meta property="og:image:url" content={ogImagePathNew} />
+        <meta property="og:image:url" content={ogImagePath} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta property="twitter:url" content={`https://${cfg.baseUrl}/${fileData.slug}`}></meta>
         <meta property="twitter:domain" content={cfg.baseUrl}></meta>
-        {cfg.baseUrl && <meta name="twitter:image" content={ogImagePathNew} />}
-        {cfg.baseUrl && <meta property="og:image" content={ogImagePathNew} />}
+        {cfg.baseUrl && <meta name="twitter:image" content={ogImagePath} />}
+        {cfg.baseUrl && <meta property="og:image" content={ogImagePath} />}
         <meta property="og:width" content="1200" />
         <meta property="og:height" content="675" />
         <link rel="icon" href={iconPath} />
