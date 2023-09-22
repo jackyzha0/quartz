@@ -17,7 +17,8 @@ There'll also be a small blog component to it.
 - I fiddled with the [[index|homepage]] a bit.
 - I added comments with Remark42, and documented it [[Projects/Obsidian/quartz-comments|here]].
 - I started fleshing out [[Projects/my-computer|My Computer]].
-- I'm researching and angling towards fully writing through the essay on [[Essays/why-i-garden|Why I Garden]].
+- I'm researching and angling to fully write through the essay on [[Essays/why-i-garden|Why I Garden]].
+- I'm working towards writing an essay on law school and its problems as an institution. 
 ## Status Updates
 - I finally got around to looking into Mastodon and the Fediverse more broadly. The ideas are *insanely* cool. Expect pages and maybe projects on it in future.
 - I swapped from a custom compiled Zen kernel to the CachyOS-Bore-EEVDF kernel available in the Copr repos, and holy crap, the performance is night and day. All of the options in games that would lock my CPU-bound EGPU setup to less than 60 frames are now open to me, and graphical fidelity is better than ever.
