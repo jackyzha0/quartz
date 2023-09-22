@@ -3,65 +3,119 @@ import { JSResourceToScriptElement } from "../util/resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import satori from "satori"
 import * as fs from "fs"
+import { getTtfFromGfont } from "../util/fonts"
+import { GlobalConfiguration } from "../cfg"
+import { Resvg } from "@resvg/resvg-js"
 
-const robotoData = await (
-  await fetch("https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Me5Q.ttf")
-).arrayBuffer()
+// const robotoData = await (
+//   await fetch("https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Me5Q.ttf")
+// ).arrayBuffer()
 
-async function generateSvg(title: string, filePath: string) {
+async function generateSvg(
+  title: string,
+  description: string,
+  filePath: string,
+  fontName: string,
+  cfg: GlobalConfiguration,
+) {
+  const font = (await getTtfFromGfont(fontName)) as ArrayBuffer
   const svg = await satori(
     <div
       style={{
-        color: "black",
-        backgroundColor: "green",
-        width: "100%",
-        height: "100%",
         display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-start",
         alignItems: "center",
-        justifyContent: "center",
-        fontSize: 64,
+        height: "100%",
+        width: "100%",
       }}
     >
-      {title}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100%",
+          width: "100%",
+          backgroundColor: cfg.theme.colors.lightMode.light,
+          flexDirection: "column",
+          gap: "2.5rem",
+        }}
+      >
+        <div
+          style={{
+            color: cfg.theme.colors.lightMode.dark,
+            fontSize: 80,
+          }}
+        >
+          {title}
+        </div>
+        <div
+          style={{
+            color: cfg.theme.colors.lightMode.dark,
+            fontSize: 42,
+            marginLeft: "10rem",
+            marginRight: "10rem",
+            lineClamp: 3,
+          }}
+        >
+          {description}
+        </div>
+      </div>
+      <div
+        style={{
+          height: "100%",
+          width: "2vw",
+          position: "absolute",
+          backgroundColor: cfg.theme.colors.lightMode.tertiary,
+          opacity: 0.8,
+        }}
+      />
     </div>,
     {
       width: 1200,
       height: 675,
       fonts: [
         {
-          name: "Roboto",
-          // Use `fs` (Node.js only) or `fetch` to read the font as Buffer/ArrayBuffer and provide `data` here.
-          data: robotoData,
+          name: fontName,
+          data: font,
+          weight: 800,
+          style: "normal",
+        },
+        {
+          name: fontName,
+          data: font,
           weight: 400,
           style: "normal",
         },
       ],
     },
   )
-
-  fs.writeFileSync(`public/static/${filePath}.svg`, svg)
+  const resvg = new Resvg(svg)
+  const pngData = resvg.render()
+  const pngBuffer = pngData.asPng()
+  fs.writeFileSync(`public/static/${filePath}.png`, pngBuffer)
 }
 
 export default (() => {
+  let font: Promise<ArrayBuffer | undefined>
   function Head({ cfg, fileData, externalResources }: QuartzComponentProps) {
+    if (!font) {
+      font = getTtfFromGfont(cfg.theme.typography.header)
+    }
     const dir = "public/static"
     const slug = fileData.filePath
     const filePath = slug?.replaceAll("/", "-")
     const ogArr = slug?.split("/")
-    const ogTitle = fileData.frontmatter?.title ?? "Untitled"
+    const title = fileData.frontmatter?.title ?? "Untitled"
+    const description = fileData.description?.trim() ?? "No description provided"
 
-    // const title = fileData?.fron
-    // console.log("filePath: ", filePath)
-    // if (ogTitle && filePath) {
-    console.log("OG title: ", ogTitle)
-    generateSvg(ogTitle as string, filePath as string)
+    generateSvg(title, description, filePath as string, cfg.theme.typography.header, cfg)
     // }
 
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir)
     }
-    const title = fileData.frontmatter?.title ?? "Untitled"
-    const description = fileData.description?.trim() ?? "No description provided"
     const { css, js } = externalResources
 
     const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`)
@@ -70,15 +124,23 @@ export default (() => {
 
     const iconPath = joinSegments(baseDir, "static/icon.png")
     const ogImagePath = `https://${cfg.baseUrl}/static/og-image.png`
-    const ogImagePathNew = `https://${cfg.baseUrl}/static/${filePath}.svg`
+    const ogImagePathNew = `https://${cfg.baseUrl}/static/${filePath}.png`
 
     return (
       <head>
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="og:site_name" content={cfg.pageTitle}></meta>
+        <meta property="og:url" content={`https://${cfg.baseUrl}/${fileData.slug}`}></meta>
         <meta property="og:title" content={title} />
+        <meta property="og:type" content="website" />
         <meta property="og:description" content={description} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta property="twitter:url" content={`https://${cfg.baseUrl}/${fileData.slug}`}></meta>
+        <meta property="twitter:domain" content={cfg.baseUrl}></meta>
+        {cfg.baseUrl && <meta name="twitter:image" content={ogImagePathNew} />}
         {cfg.baseUrl && <meta property="og:image" content={ogImagePathNew} />}
         <meta property="og:width" content="1200" />
         <meta property="og:height" content="675" />

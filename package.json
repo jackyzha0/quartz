@@ -36,6 +36,7 @@
     "@clack/prompts": "^0.6.3",
     "@floating-ui/dom": "^1.4.0",
     "@napi-rs/simple-git": "0.1.9",
+    "@resvg/resvg-js": "^2.4.1",
     "async-mutex": "^0.4.0",
     "chalk": "^4.1.2",
     "chokidar": "^3.5.3",
