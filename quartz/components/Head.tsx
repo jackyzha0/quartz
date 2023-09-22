@@ -24,6 +24,9 @@ async function generateSocialImage(
   colorScheme: "lightMode" | "darkMode",
 ) {
   const font = (await getTtfFromGfont(fontName)) as ArrayBuffer
+  // How many characters are allowed before switching to smaller font
+  const fontBreakPoint = 26
+  const useSmallerFont = title.length > fontBreakPoint
   const svg = await satori(
     <div
       style={{
@@ -45,12 +48,17 @@ async function generateSocialImage(
           backgroundColor: cfg.theme.colors[colorScheme].light,
           flexDirection: "column",
           gap: "2.5rem",
+          paddingTop: "2rem",
+          paddingBottom: "2rem",
         }}
       >
         <div
           style={{
             color: cfg.theme.colors[colorScheme].dark,
-            fontSize: 80,
+            fontSize: useSmallerFont ? 70 : 80,
+            marginLeft: "4rem",
+            textAlign: "center",
+            marginRight: "4rem",
           }}
         >
           {title}
@@ -58,9 +66,9 @@ async function generateSocialImage(
         <div
           style={{
             color: cfg.theme.colors[colorScheme].dark,
-            fontSize: 42,
-            marginLeft: "10rem",
-            marginRight: "10rem",
+            fontSize: 44,
+            marginLeft: "8rem",
+            marginRight: "8rem",
             lineClamp: 3,
           }}
         >
@@ -72,7 +80,7 @@ async function generateSocialImage(
           height: "100%",
           width: "2vw",
           position: "absolute",
-          backgroundColor: cfg.theme.colors[colorScheme].secondary,
+          backgroundColor: cfg.theme.colors[colorScheme].tertiary,
           opacity: 0.85,
         }}
       />
