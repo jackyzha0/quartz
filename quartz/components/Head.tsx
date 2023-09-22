@@ -73,8 +73,8 @@ async function generateSvg(
       />
     </div>,
     {
-      width: 1200,
-      height: 675,
+      width: ogHeight,
+      height: ogWidth,
       fonts: [
         {
           name: fontName,
@@ -96,6 +96,9 @@ async function generateSvg(
   const pngBuffer = pngData.asPng()
   fs.writeFileSync(`public/static/${filePath}.png`, pngBuffer)
 }
+
+const ogHeight = 1200
+const ogWidth = 676
 
 export default (() => {
   let font: Promise<ArrayBuffer | undefined>
@@ -136,6 +139,12 @@ export default (() => {
         <meta property="og:title" content={title} />
         <meta property="og:type" content="website" />
         <meta property="og:description" content={description} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:alt" content={fileData.description} />
+        <meta property="og:image:width" content={"" + ogWidth} />
+        <meta property="og:image:height" content={"" + ogHeight} />
+        <meta property="og:image:url" content={ogImagePathNew} />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta property="twitter:url" content={`https://${cfg.baseUrl}/${fileData.slug}`}></meta>
