@@ -12,3 +12,5 @@ I obsess over minimizing my digital footprint with respect to services where the
 
 ## By...Hobby
 I enjoy rock climbing, building & flying FPV drones, reading, and baking.
+
+I can be found in your local cafe, sipping something more dessert than coffee and typing furiously into a legal document or class outline.

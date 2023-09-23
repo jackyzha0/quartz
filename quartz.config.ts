@@ -4,7 +4,7 @@ import * as Plugin from "./quartz/plugins"
 const config: QuartzConfig = {
   configuration: {
     defaultDateType: "modified",
-    pageTitle: "🌱 be-far",
+    pageTitle: "🌱 Projects & Privacy",
     enableSPA: true,
     enablePopovers: true,
     analytics: null,
@@ -18,23 +18,23 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#eff1f5",
-          lightgray: "#dce0e8",
-          gray: "#8c8fa1",
-          darkgray: "#4c4f69",
-          dark: "#4f4f7f",
-          secondary: "#40a02b",
-          tertiary: "#209fb5",
+          light: "#dce0e8", // Backg
+          lightgray: "#bcc0cc", // Code Backg
+          gray: "#8c8fa1", // Unread nodes and subtitles
+          darkgray: "#4c4f69", // Text
+          dark: "#4c4f69", // Code text
+          secondary: "#40a02b", // Links, title, and current node
+          tertiary: "#209fb5", // Visited nodes
           highlight: "rgba(143, 159, 169, 0.15)",
         },
         darkMode: {
-          light: "#1e1e2e",
-          lightgray: "#6c7086",
-          gray: "#a6adc8",
-          darkgray: "#cdd6f4",
-          dark: "#cdd6f4",
-          secondary: "#a6e3a1",
-          tertiary: "#89dceb",
+          light: "#292c3c",// Backg
+          lightgray: "#6c7086", // Code Backg
+          gray: "#a6adc8", // Unread nodes and subtitles
+          darkgray: "#cdd6f4", // Text
+          dark: "#cdd6f4", // Code text
+          secondary: "#a6e3a1", // Links, title, and current node
+          tertiary: "#89dceb", // Visited nodes
           highlight: "rgba(143, 159, 169, 0.15)",
         },
       },
@@ -45,7 +45,7 @@ const config: QuartzConfig = {
       Plugin.FrontMatter(),
       Plugin.TableOfContents(),
       Plugin.CreatedModifiedDate({
-        priority: ["git", "frontmatter", "filesystem"], // you can add 'git' here for last modified from Git but this makes the build slower
+        priority: ["frontmatter", "git", "filesystem"], // you can add 'git' here for last modified from Git but this makes the build slower
       }),
       Plugin.SyntaxHighlighting(),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),

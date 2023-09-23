@@ -3,8 +3,8 @@ title: My Cloud
 tags:
   - cloud
   - essay
-  - incomplete
   - difficulty-moderate
+  - seedling
 date: 9-08-23
 ---
 A list of things that I do with cloud servers.

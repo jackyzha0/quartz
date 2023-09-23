@@ -1,8 +1,8 @@
 ---
 title: Obsidian
 tags:
-  - incomplete
   - productivity
+  - seedling
 date: 9-08-23
 ---
 > Obsidian is the private and flexible note‑taking app that adapts to the way you think.

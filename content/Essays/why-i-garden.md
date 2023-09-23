@@ -1,9 +1,9 @@
 ---
 title: Why I Garden
 tags:
-  - incomplete
   - cloud
   - essay
+  - seedling
 date: 9-08-23
 ---
 ## Short answer: fun.

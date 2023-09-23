@@ -2,7 +2,7 @@
 title: On Law School
 tags:
   - essay
-  - incomplete
+  - seedling
 date: 2023-09-20
 draft: true
 ---
