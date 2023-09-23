@@ -4,7 +4,7 @@ tags:
   - cloud
   - difficulty-advanced
   - webdev
-  - incomplete
+  - seedling
 date: 9-08-23
 ---
 I recently added [Remark42](https://remark42.com/) for comments. It's still a work in progress, and I plan to update quite a few things about it in future.
@@ -22,4 +22,3 @@ At present, you can choose to leave an anonymous comment or link it to your GitH
 	- Requires setting up an SMTP server. Ugh...
 	- Yet another service on my poor cloud VM. And this isn't even one I can selfhost.
 - Style the comment box to align with the styles on the site.
-	- On that note, I need to just style the site in general. It's pretty basic atm. 

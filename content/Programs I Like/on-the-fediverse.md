@@ -4,7 +4,7 @@ aliases:
   - fediverse
 tags:
   - social
-  - incomplete
+  - seedling
 date: 2023-09-08
 ---
 I recently started looking into the ideology behind the fediverse. Long story short, I like what I see, and will be looking into a project with it soon.

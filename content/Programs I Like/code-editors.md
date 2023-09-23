@@ -3,13 +3,18 @@ title: Code Editors
 tags:
   - productivity
   - programming
-date: 9-07-23
+  - seedling
+date: 2023-09-07
 ---
-Below are my two favorite ways to write code. Let's start with the big one:
+CBelow are my two favorite ways to write code. Let's start with the big one:
 ## Visual Studio Code
 This little gem of a text editor ended up taking the world by storm because it delivered open-source compartmentalization and configuration in an enterprise package. 
 
-[VSCode](https://code.visualstudio.com/) arose out of a common hatred for 
+[VSCode](https://code.visualstudio.com/) arose out of a common hatred for the Visual Studio IDE, which follows the Windows design philosophy and, as a result, is a bloated and unusable mess.
+
+Instead of the "workload", where Visual Studio installs everything needed to develop a certain kind of application, VSCode offers the "extension": all the IDE features and syntax highlighting needed to develop in a language, but leaves language servers and compilers to the rest of your system. As such, it's extremely lightweight, not to mention cross-platform thanks to its use of the Electron framework. 
+
+Another of the features that I like is cosmetic customization. VSCode has a massive 
 ## Neovim
 Sometimes, the [[Misc/keys|most efficient solution]] only arises because it was technically necessary, yet when advancements make it no longer necessary, the initial route proves subpar. you just want to bang out a few lines of code, hit save, and go back to whatever you were doing before. This is [Neovim](https://neovim.io/).
 

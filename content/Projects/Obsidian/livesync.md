@@ -3,7 +3,7 @@ title: LiveSync
 tags:
   - cloud
   - difficulty-advanced
-  - incomplete
+  - seedling
 date: 9-08-23
 ---
 Setting up LiveSync was pretty tumultuous. Obsidian has a paid feature called [Obsidian Sync](https://obsidian.md/sync), which accomplishes the same thing, but I have a webserver and determination!
