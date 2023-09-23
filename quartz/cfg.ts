@@ -1,4 +1,5 @@
 import { ValidDateType } from "./components/Date"
+import { SocialImageOptions } from "./components/Head"
 import { QuartzComponent } from "./components/types"
 import { PluginTypes } from "./plugins/types"
 import { Theme } from "./util/theme"
@@ -33,6 +34,10 @@ export interface GlobalConfiguration {
    *   Quartz will avoid using this as much as possible and use relative URLs most of the time
    */
   baseUrl?: string
+  /**
+   * Wether to generate and use social images (Open Graph and Twitter standard) for link previews
+   */
+  generateSocialImages: boolean | SocialImageOptions
   theme: Theme
 }
 
