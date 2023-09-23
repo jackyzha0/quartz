@@ -131,12 +131,14 @@ export default (() => {
     const baseDir = fileData.slug === "404" ? path : pathToRoot(fileData.slug!)
 
     const iconPath = joinSegments(baseDir, "static/icon.png")
-    // TODO: use default image if undefined
+    const useDefaultOgImage = filePath === undefined
     const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
-    const ogImagePath = `https://${cfg.baseUrl}/${imageDir.replace(
+    const ogImageGeneratedPath = `https://${cfg.baseUrl}/${imageDir.replace(
       "public/",
       "",
     )}/${filePath}.${extension}`
+
+    const ogImagePath = useDefaultOgImage ? ogImageDefaultPath : ogImageGeneratedPath
 
     return (
       <head>
