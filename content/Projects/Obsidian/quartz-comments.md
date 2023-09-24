@@ -13,8 +13,9 @@ I run the service from Docker on [[Projects/my-cloud|my cloud]], exposed at a su
 
 I really enjoy how easy it is to bring-up my backend nowadays because everything is a docker container.
 ## Frontend
-I've created a [Transformer Plugin](https://quartz.jzhao.xyz/advanced/making-plugins#transformers) for Quartz that adds the necessary scripts to the page, and put the comment element on the footer of the page. Make sure to disable [SPA Mode](https://quartz.jzhao.xyz/features/SPA-Routing) to get it to work.
-- Sidebar: R42 apparently does have a method of working with SPAs, but I don't know near enough about webdev to mess with how Quartz handles its routes and enable that functionality.
+I've created a [Transformer Plugin](https://quartz.jzhao.xyz/advanced/making-plugins#transformers) for Quartz that adds the necessary scripts to the page, and put the comment element on the footer of the page. 
+
+Now works with SPA mode! Unfortunately, I’m waiting on an update that fires an event I can listen for when the theme changes so that I can also tell it to reload on theme change. For now, refresh the page if it looks glitched. 
 
 At present, you can choose to leave an anonymous comment or link it to your GitHub account.
 ## Todo

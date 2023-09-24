@@ -6,7 +6,7 @@ tags:
   - seedling
 date: 2023-09-07
 ---
-CBelow are my two favorite ways to write code. Let's start with the big one:
+Below are my two favorite ways to write code. Let's start with the big one:
 ## Visual Studio Code
 This little gem of a text editor ended up taking the world by storm because it delivered open-source compartmentalization and configuration in an enterprise package. 
 
