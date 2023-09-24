@@ -3,7 +3,7 @@ import { JSResourceToScriptElement } from "../util/resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import satori, { SatoriOptions } from "satori"
 import * as fs from "fs"
-import { getSatoriFont } from "../util/fonts"
+import { getSatoriFont } from "../util/imageHelper"
 import { GlobalConfiguration } from "../cfg"
 import sharp from "sharp"
 
@@ -19,8 +19,7 @@ export type SocialImageOptions = {
  * @param title what title to use
  * @param description what description to use
  * @param fileName what fileName to use when writing to disk
- * @param headerFontName name of font to use for header (must be google font)
- * @param bodyFontName name of font to use for body (must be google font)
+ * @param fontsPromise header + body font to be used when generating satori image (as promise to work around sync in component)
  * @param cfg `GlobalConfiguration` of quartz
  */
 async function generateSocialImage(
