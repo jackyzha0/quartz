@@ -19,5 +19,6 @@ Want to see what Quartz can do? Here are some cool community gardens:
 - [Pelayo Arbues' Notes](https://pelayoarbues.github.io/)
 - [Vince Imbat's Talahardin](https://vinceimbat.com/)
 - [🧠🌳 Chad's Mind Garden](https://www.chadly.net/)
+- [📒 卢东东のOB笔记](https:/ob.ldd.cc/)
 
 If you want to see your own on here, submit a [Pull Request adding yourself to this file](https://github.com/jackyzha0/quartz/blob/v4/docs/showcase.md)!
