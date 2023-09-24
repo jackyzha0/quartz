@@ -7,7 +7,11 @@ date: 9-08-23
 > [!tip] 
 > You will own **nothing**, and you will be **happy**.
 
-Projects and free, open innovation are the backbone of the internet. The modern internet, dominated by intrusive web applications and closed-source programs, is antithetical to that idea. **I believe in keeping your learning public, but your data private**. These are just a few of the reasons that I decided to start this website. 
+Repair is dead. I have to pay half the cost of my phone when the battery dies because the components are hardware paired. 
+
+Projects and free, open innovation are the backbone of the internet. The modern web, dominated by intrusive analytics and closed-source programs (not to mention the internet of shit), is antithetical to that idea. 
+
+These are just a few of the reasons that I decided to start this website. 
 # Welcome!
 You're on a site called a [[Misc/what-is-a-garden|Digital Garden]]. Here's some info on [[Essays/why-i-garden|Why I Garden]].
 
