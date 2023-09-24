@@ -35,10 +35,15 @@ yargs(hideBin(process.argv))
   .command("build", "Build Quartz into a bundle of static HTML files", BuildArgv, async (argv) => {
     await handleBuild(argv)
   })
-  .command("serve", "Server your Quartz locally (alias for `npx quartz build --serve`)", BuildArgv, async (argv) => {
-    argv.serve = true
-    await handleBuild(argv)
-  })
+  .command(
+    "serve",
+    "Server your Quartz locally (alias for `npx quartz build --serve`)",
+    BuildArgv,
+    async (argv) => {
+      argv.serve = true
+      await handleBuild(argv)
+    },
+  )
   .showHelpOnFail(false)
   .help()
   .strict()
