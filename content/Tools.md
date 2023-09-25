@@ -51,4 +51,3 @@ A non-comprehensive list of the hardware and software I use on a day-to-day basi
 * [PDFsam](https://github.com/torakiki/pdfsam) – PDFsam, a desktop application to split, merge, mix, rotate PDF files and extract pages.
 * [PowerToys](https://github.com/microsoft/PowerToys) – Windows system utilities to maximize productivity.
 * [Everything](https://www.voidtools.com/) – Locate files and folders by name instantly.
-* [QuickLook](https://github.com/QL-Win/QuickLook) – Bring macOS "Quick Look" feature to Windows.

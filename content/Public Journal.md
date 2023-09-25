@@ -18,6 +18,7 @@ lastmod: 2023-09-22
 * Many days worth of changes reported on this entry.
 * Started looking at modal editors more seriously. I intend to slowly learn Vim key bindings.
 	* I have been reading and watching videos about [Vim](https://www.vim.org/), [NeoVim](https://neovim.io/), [Emacs](https://www.gnu.org/software/emacs/), and [Helix](https://github.com/helix-editor/helix).
+* Updated [[Projects Overview]].
 
 **Blog**
 * Testing [Zola Tale](https://github.com/semanticdata/zola-tale) as possible replacement for the blog. It emphasises the writing, only providing an About page for the curious. This has become a more popular idea in my mind. In the past, I have tried to merge my Blog and my digital garden without success. I'm leaning on that. Only articles and an 'About' page will be enough to accomplish the goal I have with the blog. On the other hand, this encourages more people to visit my digital garden, as I plan to write about it on the blog.
