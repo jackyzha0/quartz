@@ -7,11 +7,13 @@ date: 9-08-23
 > [!tip] 
 > You will own **nothing**, and you will be **happy**.
 
-Repair is dead. I have to pay half the cost of my phone when the battery dies because the components are hardware paired. 
+Repair is dead, and our own economy brought about its downfall. 
 
-Projects and free, open innovation are the backbone of the internet. The modern web, dominated by intrusive analytics and closed-source programs (not to mention the internet of shit), is antithetical to that idea. 
+The modern web is dominated by closed-source programs. 
 
-These are just a few of the reasons that I decided to start this website. 
+Intrusive analytics and the internet of shit are inextricably present in our daily life. 
+
+On my little corner of the internet, I fight back against all of the above by sharing what I know about computers. This is Projects & Privacy. 
 # Welcome!
 You're on a site called a [[Misc/what-is-a-garden|Digital Garden]]. Here's some info on [[Essays/why-i-garden|Why I Garden]].
 
