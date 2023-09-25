@@ -2,6 +2,7 @@ import { SatoriOptions } from "satori/wasm"
 import { GlobalConfiguration } from "../cfg"
 import { SocialImageOptions } from "./imageHelper"
 
+// TODO: proper typing
 export const defaultImage = (
   cfg: GlobalConfiguration,
   title: string,

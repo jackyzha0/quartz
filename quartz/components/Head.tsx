@@ -37,11 +37,13 @@ async function generateSocialImage(opts: ImageOptions) {
   fs.writeFileSync(`${imageDir}/${fileName}.${extension}`, compressed)
 }
 
+// TODO: add to config and use in generateSocialImage
+// Social image defaults
 const ogHeight = 1200
 const ogWidth = 676
 const extension = "webp"
-
 const imageDir = "public/static/social-images"
+
 export default (() => {
   let fontsPromise: Promise<SatoriOptions["fonts"]>
   function Head({ cfg, fileData, externalResources }: QuartzComponentProps) {
