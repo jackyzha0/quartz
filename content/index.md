@@ -1,16 +1,15 @@
 ---
-title: Welcome!
-description: Forgetful Notes—A digital garden of knowledge. A platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
+title: "Welcome!"
+description: "Forgetful Notes—A digital garden of knowledge. A platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to."
 compartir: true
-tags:
-  - meta
 lastmod: 2023-09-25
 ---
 
+![saplings from above](https://raw.githubusercontent.com/semanticdata/public-test/main/PNG/leaflets-dithered.png)
 
 I'm Miguel, and you have come across **Forgetful Notes**—my [[Digital Garden|digital garden]] of knowledge. Come on in and make yourself comfortable.
 
-> "I felt the music wash over me. It had me, right then and there."
+> _"I felt the music wash over me. It had me, right then and there."_
 
 This site serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to. It is part of my effort to organize my own theories, concepts, and ideas in a more public setting.
 
@@ -29,6 +28,6 @@ Like me, all notes contained within should be considered work-in-progress. Expec
 * Want to explore the garden but don't know where to start?  
 	Check out the [[Guide]].
 
-> "The problem with your sink is that I have no idea how to fix it."
+> _"The problem with your sink is that I have no idea how to fix it."_
 
 Thank you for stopping by. Please tell your dog I said Hi! 🐶
