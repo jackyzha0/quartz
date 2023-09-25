@@ -3,60 +3,10 @@ import { JSResourceToScriptElement } from "../util/resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import satori, { SatoriOptions } from "satori"
 import * as fs from "fs"
-import { getSatoriFont } from "../util/imageHelper"
-import { GlobalConfiguration } from "../cfg"
+import { ImageOptions, getSatoriFont } from "../util/imageHelper"
 import sharp from "sharp"
-
-export type SocialImageOptions = {
-  /**
-   * What color scheme to use for image generation (uses colors from config theme)
-   */
-  colorScheme?: "lightMode" | "darkMode"
-}
-
-type ImageOptions = {
-  /**
-   * what title to use as header in image
-   */
-  title: string
-  /**
-   * what description to use as body in image
-   */
-  description: string
-  /**
-   * what fileName to use when writing to disk
-   */
-  fileName: string
-  /**
-   * what directory to store image in
-   */
-  fileDir: string
-  /**
-   * what file extension to use (should be `webp` unless you also change sharp conversion)
-   */
-  fileExt: string
-  /**
-   * What height to generate image with (in px)
-   */
-  imgHeight: number
-  /**
-   * What width to generate image with (in px)
-   */
-  imgWidth: number
-  /**
-   * header + body font to be used when generating satori image (as promise to work around sync in component)
-   */
-  fontsPromise: Promise<SatoriOptions["fonts"]>
-  /**
-   * `GlobalConfiguration` of quartz (used for theme/typography)
-   */
-  cfg: GlobalConfiguration
-  imageHtml?: (
-    cfg: GlobalConfiguration,
-    title: string,
-    description: string,
-  ) => Parameters<typeof satori>["0"]
-}
+import { defaultImage } from "../util/defaultImage"
+import { JSXInternal } from "preact/src/jsx"
 
 /**
  * Generates social image (OG/twitter standard) and saves it as `.web` inside the public folder
@@ -66,81 +16,19 @@ async function generateSocialImage(opts: ImageOptions) {
   const { cfg, description, fileName, fontsPromise, title, imageHtml } = opts
   const fonts = await fontsPromise
 
-  // How many characters are allowed before switching to smaller font
-  const fontBreakPoint = 22
-  const useSmallerFont = title.length > fontBreakPoint
+  const defaultImg = defaultImage(cfg, title, description, fonts)
 
-  // Get color scheme preference from config (use lightMode by default)
-  let colorScheme: SocialImageOptions["colorScheme"] = "lightMode"
-  if (typeof cfg.generateSocialImages !== "boolean" && cfg.generateSocialImages.colorScheme) {
-    colorScheme = cfg.generateSocialImages.colorScheme
+  // If imageHtml was passed, use it. otherwise, use default image element
+  let imageElement: JSXInternal.Element = defaultImg
+  if (imageHtml) {
+    imageElement = imageHtml(cfg, title, description, fonts)
   }
-  const svg = await satori(
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        height: "100%",
-        width: "100%",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100%",
-          width: "100%",
-          backgroundColor: cfg.theme.colors[colorScheme].light,
-          flexDirection: "column",
-          gap: "2.5rem",
-          paddingTop: "2rem",
-          paddingBottom: "2rem",
-        }}
-      >
-        <p
-          style={{
-            color: cfg.theme.colors[colorScheme].dark,
-            fontSize: useSmallerFont ? 70 : 82,
-            marginLeft: "4rem",
-            textAlign: "center",
-            marginRight: "4rem",
-            fontFamily: fonts[0].name,
-          }}
-        >
-          {title}
-        </p>
-        <p
-          style={{
-            color: cfg.theme.colors[colorScheme].dark,
-            fontSize: 44,
-            marginLeft: "8rem",
-            marginRight: "8rem",
-            lineClamp: 3,
-            fontFamily: fonts[1].name,
-          }}
-        >
-          {description}
-        </p>
-      </div>
-      <div
-        style={{
-          height: "100%",
-          width: "2vw",
-          position: "absolute",
-          backgroundColor: cfg.theme.colors[colorScheme].tertiary,
-          opacity: 0.85,
-        }}
-      />
-    </div>,
-    {
-      width: ogHeight,
-      height: ogWidth,
-      fonts: fonts,
-    },
-  )
+
+  const svg = await satori(imageElement, {
+    width: ogHeight,
+    height: ogWidth,
+    fonts: fonts,
+  })
 
   // Convert svg directly to webp (with additional compression)
   const compressed = await sharp(Buffer.from(svg)).webp({ quality: 40 }).toBuffer()

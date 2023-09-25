@@ -1,4 +1,6 @@
-import { FontWeight, SatoriOptions } from "satori/wasm"
+import satori, { FontWeight, SatoriOptions } from "satori/wasm"
+import { GlobalConfiguration } from "../cfg"
+import { JSXInternal } from "preact/src/jsx"
 
 /**
  * Get an array of `FontOptions` (for satori) given google font names
@@ -46,4 +48,56 @@ function fetchTtf(fontName: string, weight: FontWeight): Promise<ArrayBuffer> {
       reject("Could not fetch font")
     }
   })
+}
+
+export type SocialImageOptions = {
+  /**
+   * What color scheme to use for image generation (uses colors from config theme)
+   */
+  colorScheme?: "lightMode" | "darkMode"
+}
+
+export type ImageOptions = {
+  /**
+   * what title to use as header in image
+   */
+  title: string
+  /**
+   * what description to use as body in image
+   */
+  description: string
+  /**
+   * what fileName to use when writing to disk
+   */
+  fileName: string
+  /**
+   * what directory to store image in
+   */
+  fileDir: string
+  /**
+   * what file extension to use (should be `webp` unless you also change sharp conversion)
+   */
+  fileExt: string
+  /**
+   * What height to generate image with (in px)
+   */
+  imgHeight: number
+  /**
+   * What width to generate image with (in px)
+   */
+  imgWidth: number
+  /**
+   * header + body font to be used when generating satori image (as promise to work around sync in component)
+   */
+  fontsPromise: Promise<SatoriOptions["fonts"]>
+  /**
+   * `GlobalConfiguration` of quartz (used for theme/typography)
+   */
+  cfg: GlobalConfiguration
+  imageHtml?: (
+    cfg: GlobalConfiguration,
+    title: string,
+    description: string,
+    fonts: SatoriOptions["fonts"],
+  ) => JSXInternal.Element
 }

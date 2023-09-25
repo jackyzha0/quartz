@@ -1,7 +1,7 @@
 import { ValidDateType } from "./components/Date"
-import { SocialImageOptions } from "./components/Head"
 import { QuartzComponent } from "./components/types"
 import { PluginTypes } from "./plugins/types"
+import { SocialImageOptions } from "./util/imageHelper"
 import { Theme } from "./util/theme"
 
 export type Analytics =
