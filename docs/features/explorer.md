@@ -75,7 +75,11 @@ Every function you can pass is optional. By default, only a `sort` function will
 Component.Explorer({
   sortFn: (a, b) => {
     if ((!a.file && !b.file) || (a.file && b.file)) {
-      return a.displayName.localeCompare(b.displayName)
+      if (!a.displayName) {
+        return 0
+      } else {
+        return a.displayName.localeCompare(b.displayName)
+      }
     }
     if (a.file && !b.file) {
       return 1
