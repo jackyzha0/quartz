@@ -3,6 +3,7 @@
   padding: 0;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 
@@ -17,8 +18,4 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-
-  a {
-    line-break: strict;
-  }
 }
