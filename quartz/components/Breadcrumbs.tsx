@@ -22,12 +22,17 @@ interface BreadcrumbOptions {
    * wether to look up frontmatter title for folders (could cause performance problems with big vaults)
    */
   resolveFrontmatterTitle: boolean
+  /**
+   * Wether to display breadcrumbs on root `index.md`
+   */
+  hideOnRoot: boolean
 }
 
 const defaultOptions: BreadcrumbOptions = {
   spacerSymbol: ">",
   rootName: "Home",
   resolveFrontmatterTitle: false,
+  hideOnRoot: true,
 }
 
 function formatCrumb(displayName: string, baseSlug: FullSlug, currentSlug: SimpleSlug): CrumbData {
@@ -53,6 +58,12 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
   const options: BreadcrumbOptions = { ...defaultOptions, ...opts }
 
   function Breadcrumbs({ fileData, allFiles }: QuartzComponentProps) {
+    // Hide crumbs on root if enabled
+    if (options.hideOnRoot) {
+      if (fileData.slug === "index") {
+        return <></>
+      }
+    }
     // Format entry for root element
     const firstEntry = formatCrumb(options.rootName, fileData.slug!, "/" as SimpleSlug)
     const crumbs: CrumbData[] = [firstEntry]
