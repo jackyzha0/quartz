@@ -8,26 +8,35 @@ type CrumbData = {
   path: string
 }
 
+function formatCrumb(displayName: string, baseSlug: FullSlug, currentSlug: SimpleSlug): CrumbData {
+  return { displayName, path: resolveRelative(baseSlug, currentSlug) }
+}
+
 export default (() => {
   function Breadcrumbs({ fileData, allFiles }: QuartzComponentProps) {
-    const crumbs: CrumbData[] = [
-      { displayName: "Home", path: resolveRelative(fileData.slug!, "/" as SimpleSlug) },
-    ]
+    // Format entry for root element
+    const firstEntry = formatCrumb("Home", fileData.slug!, "/" as SimpleSlug)
+    const crumbs: CrumbData[] = [firstEntry]
+
+    // Get parts of filePath (every folder)
     const parts = fileData.filePath?.split("/")?.splice(1)
     if (parts) {
       // full path until current part
       let current = ""
       for (let i = 0; i < parts.length - 1; i++) {
+        // Add current path to full path
         current += parts[i] + "/"
-        crumbs.push({
-          displayName: capitalize(parts[i]),
-          path: resolveRelative(fileData.slug!, current as SimpleSlug),
-        })
+
+        // Format and add current crumb
+        const crumb = formatCrumb(capitalize(parts[i]), fileData.slug!, current as SimpleSlug)
+        crumbs.push(crumb)
       }
+
+      // Add current file to crumb (can directly use frontmatter title)
       if (parts.length > 0) {
         crumbs.push({
           displayName: fileData.frontmatter!.title,
-          path: resolveRelative(fileData.slug!, fileData.slug as FullSlug),
+          path: "",
         })
       }
     }
