@@ -37,6 +37,11 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
               data.tags = data.tag
             }
 
+            // coerce title to string
+            if (data.title) {
+              data.title = data.title.toString()
+            }
+
             if (data.tags && !Array.isArray(data.tags)) {
               data.tags = data.tags
                 .toString()
