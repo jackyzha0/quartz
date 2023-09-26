@@ -1,18 +1,15 @@
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import breadcrumbsStyle from "./styles/breadcrumbs.scss"
 import { FullSlug, SimpleSlug, resolveRelative } from "../util/path"
+import { capitalize } from "../util/lang"
 
 type CrumbData = {
   displayName: string
   path: string
 }
 
-const capitalize = (s: string): string => {
-  return s.substring(0, 1).toUpperCase() + s.substring(1)
-}
-
 export default (() => {
-  function Breadcrumbs({ fileData }: QuartzComponentProps) {
+  function Breadcrumbs({ fileData, allFiles }: QuartzComponentProps) {
     const crumbs: CrumbData[] = [
       { displayName: "Home", path: resolveRelative(fileData.slug!, "/" as SimpleSlug) },
     ]
