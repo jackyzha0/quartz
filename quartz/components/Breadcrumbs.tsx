@@ -39,13 +39,14 @@ function formatCrumb(displayName: string, baseSlug: FullSlug, currentSlug: Simpl
   return { displayName, path: resolveRelative(baseSlug, currentSlug) }
 }
 
-function findCurrent(allFiles: QuartzPluginData[], currentName: string) {
+// given a folderName (e.g. "features"), search for the corresponding `index.md` file
+function findCurrentFile(allFiles: QuartzPluginData[], folderName: string) {
   return allFiles.find((file) => {
     if (file.slug?.endsWith("index")) {
       const folderParts = file.filePath?.split("/")
       if (folderParts) {
         const name = folderParts[folderParts?.length - 2]
-        if (name === currentName) {
+        if (name === folderName) {
           return true
         }
       }
@@ -80,7 +81,7 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
         // Try to resolve frontmatter folder title
         if (options?.resolveFrontmatterTitle) {
           // try to find file for current path
-          const currentFile = findCurrent(allFiles, folderName)
+          const currentFile = findCurrentFile(allFiles, folderName)
           if (currentFile) {
             currentTitle = currentFile.frontmatter!.title
           }
