@@ -65,7 +65,7 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
       }
     }
     // Format entry for root element
-    const firstEntry = formatCrumb(options.rootName, fileData.slug!, "/" as SimpleSlug)
+    const firstEntry = formatCrumb(capitalize(options.rootName), fileData.slug!, "/" as SimpleSlug)
     const crumbs: CrumbData[] = [firstEntry]
 
     // Get parts of filePath (every folder)
@@ -96,7 +96,7 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
       // Add current file to crumb (can directly use frontmatter title)
       if (parts.length > 0) {
         crumbs.push({
-          displayName: fileData.frontmatter!.title,
+          displayName: capitalize(fileData.frontmatter!.title),
           path: "",
         })
       }
