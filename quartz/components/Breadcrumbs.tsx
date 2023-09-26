@@ -2,6 +2,7 @@ import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import breadcrumbsStyle from "./styles/breadcrumbs.scss"
 import { FullSlug, SimpleSlug, resolveRelative } from "../util/path"
 import { capitalize } from "../util/lang"
+import { QuartzPluginData } from "../plugins/vfile"
 
 type CrumbData = {
   displayName: string
@@ -9,8 +10,17 @@ type CrumbData = {
 }
 
 interface BreadcrumbOptions {
+  /**
+   * Symbol between crumbs
+   */
   spacerSymbol: string
+  /**
+   * Name of first crumb
+   */
   rootName: string
+  /**
+   * wether to look up frontmatter title for folders (could cause performance problems with big vaults)
+   */
   resolveFrontmatterTitle: boolean
 }
 
@@ -24,9 +34,25 @@ function formatCrumb(displayName: string, baseSlug: FullSlug, currentSlug: Simpl
   return { displayName, path: resolveRelative(baseSlug, currentSlug) }
 }
 
+function findCurrent(allFiles: QuartzPluginData[], currentName: string) {
+  return allFiles.find((file) => {
+    if (file.slug?.endsWith("index")) {
+      const folderParts = file.filePath?.split("/")
+      if (folderParts) {
+        const name = folderParts[folderParts?.length - 2]
+        if (name === currentName) {
+          return true
+        }
+      }
+    }
+  })
+}
+
 export default ((opts?: Partial<BreadcrumbOptions>) => {
+  // Merge options with defaults
   const options: BreadcrumbOptions = { ...defaultOptions, ...opts }
-  function Breadcrumbs({ fileData }: QuartzComponentProps) {
+
+  function Breadcrumbs({ fileData, allFiles }: QuartzComponentProps) {
     // Format entry for root element
     const firstEntry = formatCrumb(options.rootName, fileData.slug!, "/" as SimpleSlug)
     const crumbs: CrumbData[] = [firstEntry]
@@ -37,11 +63,22 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
       // full path until current part
       let current = ""
       for (let i = 0; i < parts.length - 1; i++) {
+        const folderName = parts[i]
+        let currentTitle = folderName
+
+        // Try to resolve frontmatter folder title
+        if (options?.resolveFrontmatterTitle) {
+          // try to find file for current path
+          const currentFile = findCurrent(allFiles, folderName)
+          if (currentFile) {
+            currentTitle = currentFile.frontmatter!.title
+          }
+        }
         // Add current path to full path
-        current += parts[i] + "/"
+        current += folderName + "/"
 
         // Format and add current crumb
-        const crumb = formatCrumb(capitalize(parts[i]), fileData.slug!, current as SimpleSlug)
+        const crumb = formatCrumb(capitalize(currentTitle), fileData.slug!, current as SimpleSlug)
         crumbs.push(crumb)
       }
 
