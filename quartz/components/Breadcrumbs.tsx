@@ -8,14 +8,27 @@ type CrumbData = {
   path: string
 }
 
+interface BreadcrumbOptions {
+  spacerSymbol: string
+  rootName: string
+  resolveFrontmatterTitle: boolean
+}
+
+const defaultOptions: BreadcrumbOptions = {
+  spacerSymbol: ">",
+  rootName: "Home",
+  resolveFrontmatterTitle: false,
+}
+
 function formatCrumb(displayName: string, baseSlug: FullSlug, currentSlug: SimpleSlug): CrumbData {
   return { displayName, path: resolveRelative(baseSlug, currentSlug) }
 }
 
-export default (() => {
-  function Breadcrumbs({ fileData, allFiles }: QuartzComponentProps) {
+export default ((opts?: Partial<BreadcrumbOptions>) => {
+  const options: BreadcrumbOptions = { ...defaultOptions, ...opts }
+  function Breadcrumbs({ fileData }: QuartzComponentProps) {
     // Format entry for root element
-    const firstEntry = formatCrumb("Home", fileData.slug!, "/" as SimpleSlug)
+    const firstEntry = formatCrumb(options.rootName, fileData.slug!, "/" as SimpleSlug)
     const crumbs: CrumbData[] = [firstEntry]
 
     // Get parts of filePath (every folder)
@@ -41,11 +54,11 @@ export default (() => {
       }
     }
     return (
-      <div class={`breadcrumb-container`}>
+      <div class="breadcrumb-container">
         {crumbs.map((crumb, index) => (
           <div class="breadcrumb-element">
             <a href={crumb.path}>{crumb.displayName}</a>
-            {index !== crumbs.length - 1 && <p>{" > "}</p>}
+            {index !== crumbs.length - 1 && <p>{` ${options.spacerSymbol} `}</p>}
           </div>
         ))}
       </div>
