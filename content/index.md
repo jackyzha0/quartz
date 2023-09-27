@@ -2,10 +2,10 @@
 title: "Welcome!"
 description: "Forgetful Notes—A digital garden of knowledge. A platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to."
 compartir: true
-lastmod: 2023-09-25
+lastmod: 2023-09-27
 ---
 
-![saplings from above](https://raw.githubusercontent.com/semanticdata/public-test/main/PNG/leaflets-dithered.png)
+<!-- ![saplings from above](https://raw.githubusercontent.com/semanticdata/public-test/main/PNG/leaflets-dithered.png) -->
 
 I'm Miguel, and you have come across **Forgetful Notes**—my [[Digital Garden|digital garden]] of knowledge. Come on in and make yourself comfortable.
 

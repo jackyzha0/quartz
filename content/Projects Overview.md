@@ -1,7 +1,7 @@
 ---
 title: Projects
 compartir: true
-lastmod: 2023-09-22
+lastmod: 2023-09-27
 ---
 A few of my projects.
 
@@ -33,9 +33,16 @@ Possible replacement for my current blog.
 
 ---
 
+### Obsidian Sample Theme
+
+Personal Obsidian theme.  
+[Source](https://github.com/semanticdata/obsidian-sample-theme)
+
+---
+
 ### Obsidian Starter Vault
 
-Opinionated Obsidian Starter.  
+Opinionated Obsidian starter.  
 [Source](https://github.com/semanticdata/obsidian-test-vault)
 
 ---
@@ -47,7 +54,7 @@ A Firefox Extension that removes all states starting with "M" except Minnesota w
 
 ---
 
-### Tabspace (Firefox)
+### Tabspace (Browser extensions)
 
 Port of Chrome extension Tabspace to Firefox.  
 [Source](https://github.com/semanticdata/tabspace)
@@ -72,7 +79,7 @@ A simple Firefox Theme featuring minimal dark mode colors, background pattern, a
 
 ---
 
-### Prose Poetry
+### Prose Poetry (Jekyll Website)
 
-"Prose Poetry" is my old Blog in Spanish. All articles contained herein were written in the first half of 2010.
+"Prose Poetry" is my old blog in Spanish. All articles contained herein were written in the first half of 2010.
 [Source](https://github.com/semanticdata/prose-poetry)

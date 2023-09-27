@@ -1,10 +1,16 @@
 ---
 title: Markdown Demo
 tags:
+  - markdown
   - reference
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-09-26
 ---
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu feugiat sapien. Aenean ligula nunc, laoreet id sem in, interdum bibendum felis.
+
+<!-- more -->
 
 # H1 Heading 1
 
@@ -24,19 +30,14 @@ Text can be **bold**, _italic_, or ~~strikethrough~~.
 
 You can [link](https://example.dom/) to external pages. and other internal [[Markdown|links]].
 
-## Lists
+## Blockquotes
 
-* Item 1
-* Item 2
-	* Nested item
-* Item 3
+### Example 1
 
-1. Line item
-2. Line item
-	1. Nested item
-3. Line item
+> This is a blockquote
+> with several lines
 
-## Blockquote
+### Example 2
 
 > ## This is a header.
 > 1. This is the first list item.
@@ -45,6 +46,26 @@ You can [link](https://example.dom/) to external pages. and other internal [[Mar
 > Here's some example code:
 > 
 >     Markdown.generate();
+
+## Lists
+
+### Ordered List
+
+1. First item
+2. Second item
+3. Third item
+
+### Unordered List
+
+* List item
+* Another item
+* And another item
+
+### Nested List
+
+* Item
+	1. First Sub-item
+	2. Second Sub-item
 
 ## Code
 
@@ -82,11 +103,17 @@ var fun = function lang(l) {
 ## Tables
 
 |head one|head two|head three|
-|---|---|---|
+|---|:---:|---:|
 |ok|good swedish fish|nice|
 |out of stock|good and plenty|nice|
 |ok|good `oreos`|hmm|
 |ok|good `zoute` drop|yumm|
+
+## Inline Markdown Within Tables
+
+| Inline&nbsp;&nbsp;&nbsp;     | Markdown&nbsp;&nbsp;&nbsp;  | In&nbsp;&nbsp;&nbsp;                | Table      |
+| ---------- | --------- | ----------------- | ---------- |
+| _italics_  | **bold**  | ~~strikethrough~~&nbsp;&nbsp;&nbsp; | `code`     |
 
 ## Horizontal Rule
 
@@ -107,3 +134,15 @@ var fun = function lang(l) {
 ## Images
 
 ![image](https://just-the-docs.com/assets/images/small-image.jpg)
+
+## Other Elements — Abbr, Sub, Sup, Kbd, Mark
+
+<abbr title="Graphics Interchange Format">GIF</abbr> is a bitmap image format.
+
+H<sub>2</sub>O
+
+X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
+
+Press <kbd><kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Delete</kbd></kbd> to end the session.
+
+Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.

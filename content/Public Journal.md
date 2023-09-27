@@ -3,14 +3,28 @@ title: Public Journal
 description: This new section will explore the concept of maintaining a Public Journal. It takes inspiration from The Journal of an Enigmatic Mind.
 compartir: true
 enableToc: true
-lastmod: 2023-09-22
+lastmod: 2023-09-27
 ---
 
 > [!info] Acknowledgements
 > 
 > This page takes inspiration from the [Journal of an Enigmatic Mind](https://speyllsite.pages.dev/journal/). It explores the concept of keeping a public journal, something I haven't done before. Anything that encourages me to write more is a positive in my opinion.
 
----
+## 2023-09-27
+
+**Notes**
+* Continue testing on [Zola Tale]. Implemented a new, from the grounds up, dark mode.
+* Revisited a few text editors I have been watching for a bit. Looked at [Lapce](https://github.com/lapce/lapce), [Lite XL](https://github.com/lite-xl/lite-xl), and [ecode](https://github.com/SpartanJ/ecode). They are looking good, but they are not a point in where I want to dig deeper into using them.
+
+**GitHub**
+* Created a new repo [Obsidian Sample Theme](https://github.com/semanticdata/obsidian-sample-theme) with the aim to contain my newest project, a Obsidian theme. I have put together some basic CSS properties I'm playing around with.
+
+**Digital Garden**
+* Synchronized the forked repo with it's base.
+* Updated dependencies and _package-lock_.
+* Updated the [[Guide|Garden Exploration Guide]]. Added additional links.
+
+> [Link Of The Day](https://en.wikipedia.org/wiki/Aaron_Swartz?useskin=vector)
 
 ## 2023-09-22
 
