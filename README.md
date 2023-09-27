@@ -21,7 +21,11 @@ Source code for Forgetful Notes—my digital garden of knowledge. It serves as a
 | `npm i`                    | Install Dependencies       |
 | `npm update`               | Update Dependencies        |
 | `npx quartz update`        | Update Quartz (core)       |
-| `npx quartz build`         | Build without Serving      |
-| `npx quartz build --serve` | Build and Serve Locally    |
+| `npx quartz build`         | Build only                 |
+| `npx quartz build --serve` | Build and Serve            |
 | `npx quartz sync`          | Save Local Changes to Repo |
 | `npx quartz sync --help`   | Find Help                  |
+
+## License
+
+Source code is available under [MIT](LICENSE).
