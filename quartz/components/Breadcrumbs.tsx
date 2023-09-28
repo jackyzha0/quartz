@@ -60,11 +60,10 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
 
   function Breadcrumbs({ fileData, allFiles }: QuartzComponentProps) {
     // Hide crumbs on root if enabled
-    if (options.hideOnRoot) {
-      if (fileData.slug === "index") {
-        return <></>
-      }
+    if (options.hideOnRoot && fileData.slug === "index") {
+      return <></>
     }
+
     // Format entry for root element
     const firstEntry = formatCrumb(capitalize(options.rootName), fileData.slug!, "/" as SimpleSlug)
     const crumbs: CrumbData[] = [firstEntry]
