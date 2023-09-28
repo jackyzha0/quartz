@@ -77,6 +77,7 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
         const folderName = parts[i]
         let currentTitle = folderName
 
+        // TODO: performance optimizations/memoizing
         // Try to resolve frontmatter folder title
         if (options?.resolveFrontmatterTitle) {
           // try to find file for current path
