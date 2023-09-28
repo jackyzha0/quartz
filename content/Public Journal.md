@@ -14,25 +14,31 @@ lastmod: 2023-09-28
 
 ### Notes
 
-* Made massive changes to [Zola-Tale](https://github.com/semanticdata/zola-tale). Namely the README.
+* Made massive changes to [Zola-Tale]. Namely the README.
 * Implemented and deployed a new [dark mode] switch. This was only possible after refactoring all styles.
+
+### GitHub
+
+* Renamed [Obsidian Sample Theme] to [Anodyne](https://github.com/semanticdata/anodyne).
 
 > [Link Of The Day](https://en.wikipedia.org/wiki/Karen_Silkwood?useskin=vector)
 
+---
+
 ## 2023-09-27
-
-### Zola Tale
-
-* Continue testing on [Zola Tale]. Implemented a new, from the grounds up, dark mode.
-* Fully refactored all stylesheets.
 
 ### Notes
 
 * Revisited a few text editors I have been watching for a bit. Looked at [Lapce](https://github.com/lapce/lapce), [Lite XL](https://github.com/lite-xl/lite-xl), and [ecode](https://github.com/SpartanJ/ecode). They are looking good, but they are not a point in where I want to dig deeper into using them.
 
+### Zola Tale
+
+* Continue testing. Implemented a new, from the grounds up, dark mode.
+* Fully refactored all stylesheets.
+
 ### GitHub
 
-* Created a new repo [Obsidian Sample Theme](https://github.com/semanticdata/obsidian-sample-theme) with the aim to contain my newest project, a Obsidian theme. I have put together some basic CSS properties I'm playing around with.
+* Created a new repo [Obsidian Sample Theme] with the aim to contain my newest project, a Obsidian theme. I have put together some basic CSS properties I'm playing around with.
 
 ### Digital Garden
 
@@ -42,22 +48,24 @@ lastmod: 2023-09-28
 
 > [Link Of The Day](https://en.wikipedia.org/wiki/Aaron_Swartz?useskin=vector)
 
+---
+
 ## 2023-09-22
 
 ### Notes
 
 * Many days worth of changes reported on this entry.
+* Updated [[Projects Overview]].
 * Started looking at modal editors more seriously. I intend to slowly learn Vim key bindings.
 	* I have been reading and watching videos about [Vim](https://www.vim.org/), [NeoVim](https://neovim.io/), [Emacs](https://www.gnu.org/software/emacs/), and [Helix](https://github.com/helix-editor/helix).
-* Updated [[Projects Overview]].
 
 ### Blog
 
-* Testing [Zola Tale](https://github.com/semanticdata/zola-tale) as possible replacement for the blog. It emphasises the writing, only providing an About page for the curious. This has become a more popular idea in my mind. In the past, I have tried to merge my Blog and my digital garden without success. I'm leaning on that. Only articles and an 'About' page will be enough to accomplish the goal I have with the blog. On the other hand, this encourages more people to visit my digital garden, as I plan to write about it on the blog.
+* Testing [Zola Tale] as possible replacement for the blog. It emphasises the writing, only providing an About page for the curious. This has become a more popular idea in my mind. In the past, I have tried to merge my Blog and my digital garden without success. I'm leaning on that. Only articles and an 'About' page will be enough to accomplish the goal I have with the blog. On the other hand, this encourages more people to visit my digital garden, as I plan to write about it on the blog.
 
 ### GitHub
 
-* Many changes made to the [Obsidian Starter Vault](https://github.com/semanticdata/obsidian-starter-vault). Added two new plugins, and updated the README.
+* Many changes made to the [Obsidian Starter Vault]. Added two new plugins, and updated the README.
 * Contributed [PR #8](https://github.com/zbrox/anpu-zola-theme/pull/8) to add dark mode toggle to the [Anpu](https://github.com/semanticdata/anpu-zola-theme) Zola theme.
 * Placed the following projects in _"stand-by"_:
 	* [Stressed-dev](https://github.com/semanticdata/stressed-dev)
@@ -144,7 +152,7 @@ lastmod: 2023-09-28
 ### Digital Garden
 
 * Started my new **Public Journal**.
-* About a week ago I upgraded my [[Digital Garden|digital garden]] from `Quartz v3.3` to `Quartz v4-Alpha`.
-* Today I upgraded the Garden backend from `Quartz v4-Alpha` to the official `Quartz v4` release.
+* About a week ago I upgraded my [[Digital Garden|digital garden]] from [Quartz v3.3] to [Quartz v4-Alpha].
+* Today I upgraded the Garden backend from [Quartz v4-Alpha] to the official [Quartz v4] release.
 
 > [Link Of The Day](https://en.m.wikipedia.org/wiki/Bus_factor)
