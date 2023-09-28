@@ -37,6 +37,7 @@ async function generateSocialImage(opts: ImageOptions) {
   fs.writeFileSync(`${imageDir}/${fileName}.${extension}`, compressed)
 }
 
+// TODO: remove html from description
 // TODO: add to config and use in generateSocialImage
 // Social image defaults
 const ogHeight = 1200
@@ -123,11 +124,16 @@ export default (() => {
         <meta property="og:description" content={description} />
         <meta property="og:image:type" content={`image/${extension}`} />
         <meta property="og:image:alt" content={description} />
-        <meta property="og:image:width" content={ogWidth.toString()} />
-        <meta property="og:image:height" content={ogHeight.toString()} />
+        {/* Dont set width and height if unknown (when using custom frontmatter image) */}
+        {!frontmatterImgUrl && (
+          <>
+            <meta property="og:image:width" content={ogWidth.toString()} />
+            <meta property="og:image:height" content={ogHeight.toString()} />
+            <meta property="og:width" content={ogWidth.toString()} />
+            <meta property="og:height" content={ogHeight.toString()} />
+          </>
+        )}
         <meta property="og:image:url" content={ogImagePath} />
-        <meta property="og:width" content={ogWidth.toString()} />
-        <meta property="og:height" content={ogHeight.toString()} />
         {cfg.baseUrl && (
           <>
             <meta name="twitter:image" content={ogImagePath} />
