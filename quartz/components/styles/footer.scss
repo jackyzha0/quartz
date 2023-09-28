@@ -1,15 +1,26 @@
 footer {
-  text-align: left;
+  text-align: center;
   margin-bottom: 4rem;
   opacity: 0.7;
-
+  
   & ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     gap: 1rem;
-    margin-top: -1rem;
+    margin-top: 0rem;
+    vertical-align: middle;
+  }
+  & div {
+    text-align: center;
+    position: relative;
+  }
+  & img {
+    float: left;
+    margin-top: 0;
+    width: 20px;
+    height: 20px;
   }
 }

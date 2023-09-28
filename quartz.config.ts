@@ -3,13 +3,13 @@ import * as Plugin from "./quartz/plugins"
 
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "🪴 Quartz 4.0",
+    pageTitle: "🪴 瑞雪兆丰年纳",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
       provider: "plausible",
     },
-    baseUrl: "quartz.jzhao.xyz",
+    baseUrl: "arenadruid.top",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
     theme: {
