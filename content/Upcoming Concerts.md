@@ -30,7 +30,7 @@ tags:
 * 2023-09-14 – [Eric Clapton](https://seatgeek.com/eric-clapton-tickets/saint-paul-minnesota-xcel-energy-center-8-2023-09-14-7-30-pm/concert/5981512)❌
 * 2023-09-17 – [Queens of the Stone Age](https://seatgeek.com/queens-of-the-stone-age-tickets/minneapolis-minnesota-the-armory-minneapolis-2023-09-17-7-pm/concert/6046669)❌
 * 2023-09-14 – [Three Days Grace, Chevelle with Loathe](https://seatgeek.com/three-days-grace-and-chevelle-with-loathe-tickets/prior-lake-minnesota-mystic-lake-casino-hotel-2023-09-17-6-pm/concert/6038876)❌
-* 2023-09-22 – [Tiesto](https://seatgeek.com/tiesto-18-tickets/minneapolis-minnesota-the-armory-minneapolis-2023-09-22-8-pm/concert/6002643)
+* 2023-09-22 – [Tiesto](https://seatgeek.com/tiesto-18-tickets/minneapolis-minnesota-the-armory-minneapolis-2023-09-22-8-pm/concert/6002643)❌
 
 ### October
 

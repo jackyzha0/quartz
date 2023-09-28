@@ -1,9 +1,11 @@
 ---
 title: Projects
 compartir: true
-lastmod: 2023-09-27
+lastmod: 2023-09-28
 ---
 A few of my projects.
+
+## Active
 
 ### MiguelPimentel.do
 
@@ -26,13 +28,6 @@ Possible replacement for my current blog.
 
 ---
 
-### Dotfiles
-
-[[NeoVim|Nvim]], GitHub, Obsidian configuration files.  
-[Source](https://github.com/semanticdata/dotfiles)
-
----
-
 ### Obsidian Sample Theme
 
 Personal Obsidian theme.  
@@ -44,6 +39,13 @@ Personal Obsidian theme.
 
 Opinionated Obsidian starter.  
 [Source](https://github.com/semanticdata/obsidian-test-vault)
+
+## On Stand-By
+
+### Dotfiles
+
+[[NeoVim|Nvim]], GitHub, Obsidian configuration files.  
+[Source](https://github.com/semanticdata/dotfiles)
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: About
 compartir: true
-lastmod: 2023-09-22
+lastmod: 2023-09-28
 tags:
   - meta
 ---
@@ -20,11 +20,10 @@ If you are aching for more:
 
 ### As of September 2023, I am…
 
-… tending to my [digital garden](https://forgetfullnotes.com/).  
-… making simple Firefox [extensions](https://addons.mozilla.org/en-US/firefox/user/17772574/).  
+… tending to my [digital garden](https://forgetfulnotes.com/).  
+… making simple browser [extensions](https://addons.mozilla.org/en-US/firefox/user/17772574/).  
 … collecting bookmarks with [Raindrop](https://raindrop.io/SemanticData).  
-… learning about [Vim](https://www.vim.org/), [NeoVim](https://neovim.io/), [Emacs](https://www.gnu.org/software/emacs/), and [Helix](https://github.com/helix-editor/helix).  
-… slowly teaching myself game development with [LÖVE](https://love2d.org/).  
+… developing both a [theme](https://github.com/semanticdata/obsidian-sample-theme), and a [starter vault](https://github.com/semanticdata/obsidian-starter-vault) for [Obsidian](https://obsidian.md/).  
 
 ### Reaching Out
 
