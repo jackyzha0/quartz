@@ -16,22 +16,32 @@ lastmod: 2023-09-29
 
 * It's my birthday! 🎉
 * Released version 1.1.0 of my Obsidian starter vault.
-* Found and added an amazing CSS Layout Hack. Added to both Brave and Firefox bookmarks, and to [[Bookmarklets]]. [Source](https://gist.github.com/growthboot/5c189cf854c6609d3113355c75527c1c)
+* Found an amazing CSS Layout Hack. Added to both Brave and Firefox bookmarks, and to [[Bookmarklets]].  
+[Source](https://gist.github.com/growthboot/5c189cf854c6609d3113355c75527c1c)
 
 ### GitHub
 
-* Renamed [Zola Tale] to [Mabuya](https://github.com/semanticdata/mabuya).
 * Backed up all my current active repositories.
+* Renamed [Zola Tale] to [Mabuya](https://github.com/semanticdata/mabuya).
+
+### Blog
+
 * Emptying [miguel-pimentel-do] to upload new blog.
-* Deployed the new blog using [Mabuya].
+* Deployed the new blog using [Mabuya] to [miguel-pimentel-do].
 
 ### Zola Tale
 
-* Added navigation items to the footer. Styled it for both small width screen and full width screens.
 * Preparing for rename and redeployment as [MiguelPimentel.do](https://miguelpimentel.do). Finally replacing my old Hugo blog that was really hard to modify.
 * Decided to go for [Mabuya](https://en.wikipedia.org/wiki/Mabuya_hispaniolae?useskin=vector) as the name. References the Hispaniolan two-lined skink (Mabuya hispaniolae). A species of _skink_ _endemic_ to the Dominican Republic.
 
+### Mabuya
+
+* Renamed from Zola Tale. Prepared as Zola theme.
+* Added navigation items to the footer. Styled it for both small width screen and full width screens.
+
 > [Link Of The Day](https://en.wikipedia.org/wiki/Pheasant_Island)
+
+---
 
 ## 2023-09-28
 
@@ -67,7 +77,7 @@ lastmod: 2023-09-29
 
 * Synchronized the forked repo with it's base.
 * Updated dependencies and _package-lock_.
-* Updated the [[Guide|Garden Exploration Guide]]. Added additional links.
+* Updated the [[Explore the Garden|Garden Exploration Guide]]. Added additional links.
 
 > [Link Of The Day](https://en.wikipedia.org/wiki/Aaron_Swartz?useskin=vector)
 

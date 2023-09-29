@@ -3,7 +3,7 @@ title: Tools I Use
 tags:
   - list
 compartir: true
-lastmod: 2023-09-20
+lastmod: 2023-09-29
 ---
 
 
@@ -41,7 +41,6 @@ A non-comprehensive list of the hardware and software I use on a day-to-day basi
 * [Natural Language Dates](https://github.com/argenos/nldates-obsidian) – Adds `@today` format to dates.
 * [Linter](https://github.com/platers/obsidian-linter) – Customizable Markdown Linter similar to Prettier.
 * [Editor Shortcuts](https://github.com/timhor/obsidian-editor-shortcuts) – Adds shortcuts usually found in Code Editors.
-* [ShellCommands](https://github.com/Taitava/obsidian-shellcommands) – Execute Shell commands from within Obsidian.
 * [DoubleShift](https://github.com/Qwyntex/doubleshift) – Provides shortcuts for `shift + shift` and `ctrl + ctrl`.
 * [Contextual Typography](https://github.com/mgmeyers/obsidian-contextual-typography) – Allows for custom insertion of code at the block level.
 

@@ -1,43 +1,43 @@
 ---
 title: Projects
 compartir: true
-lastmod: 2023-09-28
+lastmod: 2023-09-29
 ---
-A few of my projects.
+A few of my recent projects.
 
 ## Active
 
 ### MiguelPimentel.do
 
-Personal blog and landing page.  
+Personal **blog**.  
 [Website](https://miguelpimentel.do/) • [Source](https://github.com/semanticdata/miguel-pimentel-do)
 
 ---
 
 ### Forgetful Notes
 
-My digital garden of knowledge.  
+**Digital Garden** of knowledge.  
 [Website](https://forgetfulnotes.com/) • [Source](https://github.com/semanticdata/forgetful-notes)
 
 ---
 
-### Zola Tale
+### Mabuya
 
-Possible replacement for my current blog.  
-[Website](https://semanticdata.github.io/zola-tale/) • [Source](https://github.com/semanticdata/zola-tale)
+Mabuya is a minimal **Zola theme** with the goal of helping you build a light and SEO-ready blog.  
+[Website](https://semanticdata.github.io/mabuya/) • [Source](https://github.com/semanticdata/mabuya)
 
 ---
 
-### Obsidian Sample Theme
+### Anodyne
 
-Personal Obsidian theme.  
+Obsidian theme currently under development.  
 [Source](https://github.com/semanticdata/obsidian-sample-theme)
 
 ---
 
 ### Obsidian Starter Vault
 
-Opinionated Obsidian starter.  
+Opinionated Obsidian starter vault and configuration.  
 [Source](https://github.com/semanticdata/obsidian-test-vault)
 
 ## On Stand-By
@@ -53,17 +53,6 @@ Opinionated Obsidian starter.
 
 A Firefox Extension that removes all states starting with "M" except Minnesota within most dropdown menus. This allows you to press "M" in your keyboard and go directly to it, instead of any other state options.  
 [Source](https://github.com/semanticdata/firefox-sorry-minnesota-only)
-
----
-
-### Tabspace (Browser extensions)
-
-Port of Chrome extension Tabspace to Firefox.  
-[Source](https://github.com/semanticdata/tabspace)
-
-* https://github.com/jackyzha0/tabspace
-* https://extensionworkshop.com/documentation/develop/porting-a-google-chrome-extension/
-* https://www.extensiontest.com/
 
 ---
 

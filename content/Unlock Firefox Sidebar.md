@@ -3,8 +3,10 @@ title: Unlock the Sidebar Width in Firefox
 tags:
   - guide
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-09-29
 ---
+
+This post will guide you through unlocking the sidebar width in Firefox. It will let you resize it beyond what is possible by default. We will be setting both the maximum, and the minimum width. You will have a chance to customize these values once at the right step.
 
 ## Why Would Anyone Want to Do This?
 
