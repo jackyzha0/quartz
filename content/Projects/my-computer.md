@@ -32,7 +32,7 @@ So yeah, it’s pretty cool. Here are my peripherals:
 ## OS/Configuration
 I run Fedora Linux with the GNOME desktop environment. I was a longtime Windows 10 user, and dabbled in Linux a bit, but eventually got fed up enough with Windows that I swapped for good.
 
-Previously, I’ve also daily driven Linux Mint. You can read more about my history with Linux on [[on-linux|its dedicated page]].
+Previously, I’ve also daily driven Linux Mint. You can read more about my history with Linux on [[Essays/on-linux|its dedicated page]].
 ### On User Interface
 I’ve daily driven XFCE, Budgie, Unity, and KDE before. No DE really caught my eye in a way that feels both intuitive and productive until GNOME. The overview is such a neat concept that’s performant, useful for rapid task switching, and pretty. I recommend the Blur My Shell extension for best results, as well as an extension that gives you trackpad gestures for your windowing system. 
 - Little tip for productivity: if you use gestures, throw each new window on a different workspace and swipe instead of alt-tabbing. 
