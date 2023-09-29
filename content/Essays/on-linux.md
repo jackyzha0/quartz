@@ -43,7 +43,7 @@ I tried my best to make do with the WSL for my actual Linux needs after that. An
 
 Having to deal with subpar systems after my taste of how convenient Linux made things resulted in a growing distaste for Windows. Once I'd made enough progress on my dealbreaker issues to have a working system that I could replicate, I shrank my Windows partition as small as I could comfortably take it and installed Fedora! I've been happily driving it ever since. 
 
-$\downarrow$ Here's how that's going: { WIP }
+$\downarrow$ **Here's how that's going**: { WIP }
 ### Kernel
 For the love of god, don't ever use the default kernel when daily driving. A custom kernel will squeeze every ounce of performance out of your hardware the way Windows would. I recommend the [CachyOS Kernel](https://github.com/CachyOS/linux-cachyos).
 - Fedora has a copr, and it's available on basically every Arch distro. Sorry debian/ubuntu users.
