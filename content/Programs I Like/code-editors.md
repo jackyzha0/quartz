@@ -3,7 +3,6 @@ title: Code Editors
 tags:
   - productivity
   - programming
-  - seedling
 date: 2023-09-07
 ---
 Below are my two favorite ways to write code. Let's start with the big one:

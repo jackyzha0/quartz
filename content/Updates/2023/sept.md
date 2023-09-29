@@ -16,6 +16,7 @@ There'll also be a small blog component to it.
 ![[Attachments/vegan-cheese.jpg]]
 ## Pages
 - I added comments with Remark42, and documented it [[Projects/Obsidian/quartz-comments|here]].
+- Finished [[Programs I Like/code-editors|Code Editors]].
 - I fiddled with the [[index|homepage]] a bit.
 - I started fleshing out [[Projects/my-computer|My Computer]].
 - More content [[Essays/on-linux|on Linux]]!
