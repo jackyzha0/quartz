@@ -32,6 +32,7 @@ Quartz by default doesn't understand `org-roam` files as they aren't Markdown. Y
   - `replaceFigureWithMdImg`: Whether to replace `<figure/>` with `![]()`
 - Formatting
   - `removeHugoShortcode`: Whether to remove hugo shortcode syntax (`{{}}`)
+  - `replaceOrgLatex`: Whether to replace org-mode formatting for latex fragments with what `Plugin.Latex` supports.
 
 > [!warning]
 >
