@@ -17,7 +17,7 @@ async function generateSocialImage(opts: ImageOptions, userOpts: SocialImageOpti
   const { cfg, description, fileName, fontsPromise, title, imageHtml } = opts
   const fonts = await fontsPromise
 
-  const defaultImg = defaultImage(cfg, title, description, fonts)
+  const defaultImg = defaultImage(cfg, userOpts, title, description, fonts)
 
   // If imageHtml was passed, use it. otherwise, use default image element
   let imageElement: JSXInternal.Element = defaultImg

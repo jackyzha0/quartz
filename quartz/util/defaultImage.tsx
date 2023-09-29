@@ -5,6 +5,7 @@ import { SocialImageOptions } from "./imageHelper"
 // TODO: proper typing
 export const defaultImage = (
   cfg: GlobalConfiguration,
+  userOpts: SocialImageOptions,
   title: string,
   description: string,
   fonts: SatoriOptions["fonts"],
@@ -13,11 +14,7 @@ export const defaultImage = (
   const fontBreakPoint = 22
   const useSmallerFont = title.length > fontBreakPoint
 
-  // Get color scheme preference from config (use lightMode by default)
-  let colorScheme: SocialImageOptions["colorScheme"] = "lightMode"
-  if (typeof cfg.generateSocialImages !== "boolean" && cfg.generateSocialImages.colorScheme) {
-    colorScheme = cfg.generateSocialImages.colorScheme
-  }
+  const { colorScheme } = userOpts
   return (
     <div
       style={{
