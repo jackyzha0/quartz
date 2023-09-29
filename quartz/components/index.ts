@@ -18,6 +18,7 @@ import Footer from "./Footer"
 import DesktopOnly from "./DesktopOnly"
 import MobileOnly from "./MobileOnly"
 import RecentNotes from "./RecentNotes"
+import Breadcrumbs from "./Breadcrumbs"
 
 export {
   ArticleTitle,
@@ -40,4 +41,5 @@ export {
   MobileOnly,
   RecentNotes,
   NotFound,
+  Breadcrumbs,
 }
