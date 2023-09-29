@@ -1,3 +1,9 @@
+.explorer,
+.desktop-only {
+  position: relative;
+  top: -60px;
+}
+
 button#explorer {
   all: unset;
   background-color: transparent;

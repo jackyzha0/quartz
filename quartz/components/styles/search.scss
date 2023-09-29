@@ -2,12 +2,11 @@
 
 .search {
   min-width: fit-content;
-  // max-width: 14rem;
+  min-width: auto;
   max-width: 18px;
   flex-grow: 0.3;
 
   & > #search-icon {
-    // background-color: var(--lightgray);
     background-color: transparent;
     border-radius: 4px;
     height: 2rem;
