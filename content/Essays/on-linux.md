@@ -8,7 +8,8 @@ tags:
   - essay
 date: 9-08-23
 ---
-This page documents my many adventures with Linux and why I enjoy it.
+> [!hint]  This page documents my many adventures with Linux and why I enjoy it.
+> If you're looking to get involved with Linux, feel free to browse the [[Resources/learning-linux|resources for that purpose]] that I've compiled.
 
 ## Virtualization
 Virtualization is a great way to get acquainted with Linux. If you're a student, check if your university has VMware (also see [[for-students|Resources for Students]] in general). 
@@ -21,12 +22,26 @@ The problem: Everything was broken, and nobody could fix it. It ran Ubuntu 16 an
 
 As such, I took it upon myself to troubleshoot and fix the cab so that everyone could enjoy it. A few driver updates and fixed file paths later, it could run games again!
 
-It did need some special setup to run RetroArch, so I created a script and left a text file tutorial on the desktop to make sure that people could run it in future.
+It did need some special setup to run RetroArch, so I created a script and left a text file tutorial on the desktop to make sure that people could run it in future. Also had a signature in it, so I got some happy random messages on Discord a few times in the future.
 
 The response I got was amazing! Everyone in the organization was extremely grateful, and I'm so happy I undertook that project.
 
 Unfortunately, the cabinet was scrapped earlier this year due to space requirements and a shifting purpose for the room, but it did end up being used actively for a few years, so I don't regret the project at all.
 ## Bare Metal
+This has been my favorite part of my journey. Unrestrained, Linux is...surprisingly good, actually. 
 
+First, I decided that I wanted a low-distractions notetaker and coding machine for my last year of undergrad. Linux Mint worked great for that task! Due to my issues with Cinnamon before, I decided to go with XFCE.
+- Sidebar: Dear lord, that was an awful choice. It was low-overhead, but it looked horrible even when themed and its scaling was nightmarish. I'm on a Framework; 1x was unbearable and 2x was gigantic. I would not go anywhere near it for something different than a 1080p or 4K screen now. Even then, why? 
+To my surprise, I started using it as much more than a notetaker, and almost all of my projects and computing time were spent on this Mint install!
+
+Unfortunately, I had to abandon this, as the kernel and drivers weren't in a state that they could support my eGPU with yet. I still really like the wallpaper I made for it:
+
+![[Attachments/MCM.png]]
+
+I tried my best to make do with the WSL for my actual Linux needs after that. Any productivity tasks were relegated to PowerShell, which is...lacking, to say the least.
+- This was broken up by a few attempts to get my eGPU working in external-drive installs of Fedora and Endeavour. Eventually, one worked.
+
+Having to deal with subpar systems after my taste of how convenient Linux made things resulted in a growing distaste for Windows. Once I'd made enough progress on my dealbreaker issues to have a working system that I could replicate, I shrank my Windows partition as small as I could comfortably take it and installed Fedora! I've been happily driving it ever since. $\downarrow$ Here's how that's going: { WIP }
 ### Kernel
 For the love of god, don't ever use the default kernel when daily driving. A custom kernel will squeeze every ounce of performance out of your hardware the way Windows would. I recommend the [CachyOS Kernel](https://github.com/CachyOS/linux-cachyos).
+- Fedora has a copr, and it's available on basically every Arch distro. Sorry debian/ubuntu users.
