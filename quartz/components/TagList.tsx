@@ -28,7 +28,8 @@ function TagList({ fileData }: QuartzComponentProps) {
 TagList.css = `
 .tags {
   list-style: none;
-  display: flex;
+  display:flex;
+  flex-wrap: wrap;
   padding-left: 0;
   gap: 0.4rem;
   margin: 1rem 0;
@@ -46,10 +47,6 @@ a.tag-link {
   background-color: var(--highlight);
   padding: 0.2rem 0.4rem;
   margin: 0 0.1rem;
-}
-
-.tags {
-  flex-wrap: wrap;
 }
 `
 
