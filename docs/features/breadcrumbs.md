@@ -4,7 +4,7 @@ tags:
   - component
 ---
 
-Breadcrumbs are a list of links that help visualize the location of a pages within a sites hierarchical structure, it allows navigation up to any of the ancestors.
+Breadcrumbs provide a way to navigate a hierarchy of pages within your site using a list of its parent folders.
 
 By default, the element at the very top of your page is the breadcrumb navigation bar (can also be seen at the top on this page!).
 
