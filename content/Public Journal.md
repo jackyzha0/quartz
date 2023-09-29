@@ -3,12 +3,35 @@ title: Public Journal
 description: This new section will explore the concept of maintaining a Public Journal. It takes inspiration from The Journal of an Enigmatic Mind.
 compartir: true
 enableToc: true
-lastmod: 2023-09-28
+lastmod: 2023-09-29
 ---
 
 > [!info] Acknowledgements
 > 
 > This page takes inspiration from the [Journal of an Enigmatic Mind](https://speyllsite.pages.dev/journal/). It explores the concept of keeping a public journal, something I haven't done before.
+
+## 2023-09-29
+
+### Notes
+
+* It's my birthday! 🎉
+* Released version 1.1.0 of my Obsidian starter vault.
+* Found and added an amazing CSS Layout Hack. Added to both Brave and Firefox bookmarks, and to [[Bookmarklets]]. [Source](https://gist.github.com/growthboot/5c189cf854c6609d3113355c75527c1c)
+
+### GitHub
+
+* Renamed [Zola Tale] to [Mabuya](https://github.com/semanticdata/mabuya).
+* Backed up all my current active repositories.
+* Emptying [miguel-pimentel-do] to upload new blog.
+* Deployed the new blog using [Mabuya].
+
+### Zola Tale
+
+* Added navigation items to the footer. Styled it for both small width screen and full width screens.
+* Preparing for rename and redeployment as [MiguelPimentel.do](https://miguelpimentel.do). Finally replacing my old Hugo blog that was really hard to modify.
+* Decided to go for [Mabuya](https://en.wikipedia.org/wiki/Mabuya_hispaniolae?useskin=vector) as the name. References the Hispaniolan two-lined skink (Mabuya hispaniolae). A species of _skink_ _endemic_ to the Dominican Republic.
+
+> [Link Of The Day](https://en.wikipedia.org/wiki/Pheasant_Island)
 
 ## 2023-09-28
 
@@ -62,9 +85,6 @@ lastmod: 2023-09-28
 ### Blog
 
 * Testing [Zola Tale] as possible replacement for the blog. It emphasises the writing, only providing an About page for the curious. This has become a more popular idea in my mind. In the past, I have tried to merge my Blog and my digital garden without success. I'm leaning on that. Only articles and an 'About' page will be enough to accomplish the goal I have with the blog. On the other hand, this encourages more people to visit my digital garden, as I plan to write about it on the blog.
-
-### GitHub
-
 * Many changes made to the [Obsidian Starter Vault]. Added two new plugins, and updated the README.
 * Contributed [PR #8](https://github.com/zbrox/anpu-zola-theme/pull/8) to add dark mode toggle to the [Anpu](https://github.com/semanticdata/anpu-zola-theme) Zola theme.
 * Placed the following projects in _"stand-by"_:
@@ -134,7 +154,7 @@ lastmod: 2023-09-28
 
 * Compiled, and published a collection of [[Bookmarklets]].
 * Cleaned up and published [[Inspirations]].
-* Making the Garden more explorable by adding direct links to the [tags] page from the [_index](/).
+* Making the Garden more explorable by adding direct links to the [tags] page from the [Homepage].
 * Playing with the Garden's desktop layout. Temporarily moved right sidebar components to the left sidebar. Undone shortly after, as it messed with the total calculated width of the page and its two sidebar widths.
 
 > [Link Of The Day](https://en.wikipedia.org/wiki/Iceland_v_Iceland_Foods_Ltd)
