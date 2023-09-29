@@ -54,7 +54,15 @@ export type SocialImageOptions = {
   /**
    * What color scheme to use for image generation (uses colors from config theme)
    */
-  colorScheme?: "lightMode" | "darkMode"
+  colorScheme: "lightMode" | "darkMode"
+  /**
+   * Height to generate image with in pixels (should be around 630px)
+   */
+  height: number
+  /**
+   * Width to generate image with in pixels (should be around 1200px)
+   */
+  width: number
 }
 
 export type ImageOptions = {
@@ -78,14 +86,6 @@ export type ImageOptions = {
    * what file extension to use (should be `webp` unless you also change sharp conversion)
    */
   fileExt: string
-  /**
-   * What height to generate image with (in px)
-   */
-  imgHeight: number
-  /**
-   * What width to generate image with (in px)
-   */
-  imgWidth: number
   /**
    * header + body font to be used when generating satori image (as promise to work around sync in component)
    */

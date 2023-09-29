@@ -3,7 +3,7 @@ import { JSResourceToScriptElement } from "../util/resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import satori, { SatoriOptions } from "satori"
 import * as fs from "fs"
-import { ImageOptions, getSatoriFont } from "../util/imageHelper"
+import { ImageOptions, SocialImageOptions, getSatoriFont } from "../util/imageHelper"
 import sharp from "sharp"
 import { defaultImage } from "../util/defaultImage"
 import { JSXInternal } from "preact/src/jsx"
@@ -13,7 +13,7 @@ import { unescapeHTML } from "../util/escape"
  * Generates social image (OG/twitter standard) and saves it as `.web` inside the public folder
  * @param opts options for generating image
  */
-async function generateSocialImage(opts: ImageOptions) {
+async function generateSocialImage(opts: ImageOptions, userOpts: SocialImageOptions) {
   const { cfg, description, fileName, fontsPromise, title, imageHtml } = opts
   const fonts = await fontsPromise
 
@@ -26,8 +26,8 @@ async function generateSocialImage(opts: ImageOptions) {
   }
 
   const svg = await satori(imageElement, {
-    width: ogHeight,
-    height: ogWidth,
+    width: userOpts.width,
+    height: userOpts.height,
     fonts: fonts,
   })
 
@@ -39,19 +39,34 @@ async function generateSocialImage(opts: ImageOptions) {
 }
 
 // TODO: mention `description` plugin in docs for max length
-// TODO: add to config and use in generateSocialImage
-// Social image defaults
-const ogHeight = 1200
-const ogWidth = 676
 const extension = "webp"
 const imageDir = "public/static/social-images"
 
+const defaultOptions: SocialImageOptions = {
+  colorScheme: "lightMode",
+  width: 1200,
+  height: 676,
+}
+
 export default (() => {
   let fontsPromise: Promise<SatoriOptions["fonts"]>
+
+  let fullOptions: SocialImageOptions
   function Head({ cfg, fileData, externalResources }: QuartzComponentProps) {
+    // Initialize options if not set
+    if (!fullOptions) {
+      if (typeof cfg.generateSocialImages !== "boolean") {
+        fullOptions = { ...defaultOptions, ...cfg.generateSocialImages }
+      } else {
+        fullOptions = defaultOptions
+      }
+    }
+
+    // Memoize google fonts
     if (!fontsPromise) {
       fontsPromise = getSatoriFont(cfg.theme.typography.header, cfg.theme.typography.body)
     }
+
     const slug = fileData.filePath
     // since "/" is not a valid character in file names, replace with "-"
     const fileName = slug?.replaceAll("/", "-")
@@ -75,17 +90,18 @@ export default (() => {
 
       if (fileName) {
         // Generate social image (happens async)
-        generateSocialImage({
-          title,
-          description,
-          fileName,
-          fileDir: imageDir,
-          imgHeight: ogHeight,
-          imgWidth: ogWidth,
-          fileExt: extension,
-          fontsPromise,
-          cfg,
-        })
+        generateSocialImage(
+          {
+            title,
+            description,
+            fileName,
+            fileDir: imageDir,
+            fileExt: extension,
+            fontsPromise,
+            cfg,
+          },
+          fullOptions,
+        )
       }
     }
 
@@ -132,10 +148,10 @@ export default (() => {
         {/* Dont set width and height if unknown (when using custom frontmatter image) */}
         {!frontmatterImgUrl && (
           <>
-            <meta property="og:image:width" content={ogWidth.toString()} />
-            <meta property="og:image:height" content={ogHeight.toString()} />
-            <meta property="og:width" content={ogWidth.toString()} />
-            <meta property="og:height" content={ogHeight.toString()} />
+            <meta property="og:image:width" content={fullOptions.width.toString()} />
+            <meta property="og:image:height" content={fullOptions.height.toString()} />
+            <meta property="og:width" content={fullOptions.width.toString()} />
+            <meta property="og:height" content={fullOptions.height.toString()} />
           </>
         )}
         <meta property="og:image:url" content={ogImagePath} />
