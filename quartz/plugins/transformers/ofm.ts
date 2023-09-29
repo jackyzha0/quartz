@@ -14,6 +14,7 @@ import { FilePath, pathToRoot, slugTag, slugifyFilePath } from "../../util/path"
 import { toHast } from "mdast-util-to-hast"
 import { toHtml } from "hast-util-to-html"
 import { PhrasingContent } from "mdast-util-find-and-replace/lib"
+import { capitalize } from "../../util/lang"
 
 export interface Options {
   comments: boolean
@@ -102,10 +103,6 @@ const calloutMapping: Record<string, keyof typeof callouts> = {
 function canonicalizeCallout(calloutName: string): keyof typeof callouts {
   let callout = calloutName.toLowerCase() as keyof typeof calloutMapping
   return calloutMapping[callout] ?? "note"
-}
-
-const capitalize = (s: string): string => {
-  return s.substring(0, 1).toUpperCase() + s.substring(1)
 }
 
 // !?               -> optional embedding
