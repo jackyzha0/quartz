@@ -7,6 +7,7 @@ import { ImageOptions, getSatoriFont } from "../util/imageHelper"
 import sharp from "sharp"
 import { defaultImage } from "../util/defaultImage"
 import { JSXInternal } from "preact/src/jsx"
+import { unescapeHTML } from "../util/escape"
 
 /**
  * Generates social image (OG/twitter standard) and saves it as `.web` inside the public folder
@@ -37,7 +38,7 @@ async function generateSocialImage(opts: ImageOptions) {
   fs.writeFileSync(`${imageDir}/${fileName}.${extension}`, compressed)
 }
 
-// TODO: remove html from description
+// TODO: mention `description` plugin in docs for max length
 // TODO: add to config and use in generateSocialImage
 // Social image defaults
 const ogHeight = 1200
@@ -57,7 +58,11 @@ export default (() => {
     const title = fileData.frontmatter?.title ?? "Untitled"
 
     // Get file description (priority: frontmatter > fileData > default)
-    let description = fileData.description?.trim() ?? "No description provided"
+    const fdDescription = fileData.description?.trim()
+    let description = ""
+    if (fdDescription) {
+      description = unescapeHTML(fdDescription)
+    }
     if (fileData.frontmatter?.socialDescription) {
       description = fileData.frontmatter.socialDescription
     }
