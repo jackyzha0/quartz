@@ -8,8 +8,8 @@ export default (() => {
     return (
       <div class="search">
         <div id="search-icon">
-          <p>Search</p>
-          <div></div>
+          {/* <p>Search</p>
+          <div></div> */}
           <svg
             tabIndex={0}
             aria-labelledby="title desc"
