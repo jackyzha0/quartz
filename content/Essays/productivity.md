@@ -9,7 +9,7 @@ date: 9-08-23
 This article is split into four sections: 
 - [[#General Advice]], psychological or other hacks that I've experienced success with.
 - [[#Easy Tools]], pieces of software or other tools that aren't the *best* option strictly, but they take very little time to set up.
-- [[#Medium Tools]], something that anyone who's willing to invest a little time learning [[on-linux|Linux]] or some other foreign computer concept can do.
+- [[#Medium Tools]], something that anyone who's willing to invest a little time learning [[Essays/on-linux|learning Linux]] or some other foreign computer concept can do.
 - [[#Tools for Hackers]], which are for power-user use and not for the faint of heart. Expect to configure until 3am, or to create your entire own ecosystem along a few guidelines I give you.
 
 You'll notice that the more performance has a direct relationship to price, and complexity has an inverse relationship to price. Something that you set up that's highly complex is likely to be free, but easy and user-friendly tools may be paid, with price increasing the more performant and feature-rich they are.

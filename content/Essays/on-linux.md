@@ -5,6 +5,7 @@ tags:
   - cloud
   - advanced
   - seedling
+  - essay
 date: 9-08-23
 ---
 This page documents my many adventures with Linux and why I enjoy it.
