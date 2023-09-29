@@ -14,16 +14,11 @@ import { unescapeHTML } from "../util/escape"
  * @param opts options for generating image
  */
 async function generateSocialImage(opts: ImageOptions, userOpts: SocialImageOptions) {
-  const { cfg, description, fileName, fontsPromise, title, imageHtml } = opts
+  const { cfg, description, fileName, fontsPromise, title } = opts
   const fonts = await fontsPromise
 
-  const defaultImg = defaultImage(cfg, userOpts, title, description, fonts)
-
-  // If imageHtml was passed, use it. otherwise, use default image element
-  let imageElement: JSXInternal.Element = defaultImg
-  if (imageHtml) {
-    imageElement = imageHtml(cfg, title, description, fonts)
-  }
+  // JSX that will be used to generate satori svg
+  const imageElement = userOpts.imageStructure(cfg, userOpts, title, description, fonts)
 
   const svg = await satori(imageElement, {
     width: userOpts.width,
@@ -46,6 +41,7 @@ const defaultOptions: SocialImageOptions = {
   colorScheme: "lightMode",
   width: 1200,
   height: 676,
+  imageStructure: defaultImage,
 }
 
 export default (() => {

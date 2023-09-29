@@ -63,6 +63,22 @@ export type SocialImageOptions = {
    * Width to generate image with in pixels (should be around 1200px)
    */
   width: number
+  /**
+   * JSX to use for generating image. See satori docs for more info (https://github.com/vercel/satori)
+   * @param cfg global quartz config
+   * @param userOpts options that can be set by user
+   * @param title title of current page
+   * @param description description of current page
+   * @param fonts global font that can be used for styling
+   * @returns prepared jsx to be used for generating image
+   */
+  imageStructure: (
+    cfg: GlobalConfiguration,
+    userOpts: SocialImageOptions,
+    title: string,
+    description: string,
+    fonts: SatoriOptions["fonts"],
+  ) => JSXInternal.Element
 }
 
 export type ImageOptions = {
@@ -94,10 +110,4 @@ export type ImageOptions = {
    * `GlobalConfiguration` of quartz (used for theme/typography)
    */
   cfg: GlobalConfiguration
-  imageHtml?: (
-    cfg: GlobalConfiguration,
-    title: string,
-    description: string,
-    fonts: SatoriOptions["fonts"],
-  ) => JSXInternal.Element
 }

@@ -37,7 +37,7 @@ export interface GlobalConfiguration {
   /**
    * Wether to generate and use social images (Open Graph and Twitter standard) for link previews
    */
-  generateSocialImages: boolean | SocialImageOptions
+  generateSocialImages: boolean | Partial<SocialImageOptions>
   theme: Theme
 }
 
