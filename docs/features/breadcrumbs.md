@@ -29,7 +29,7 @@ You can also adjust where the breadcrumbs will be displayed by adjusting the [[l
 
 Want to customize it even more?
 
-- Removing graph view: delete all usages of `Component.Breadcrumbs()` from `quartz.layout.ts`.
+- Removing breadcrumbs: delete all usages of `Component.Breadcrumbs()` from `quartz.layout.ts`.
 - Component: `quartz/components/Breadcrumbs.tsx`
 - Style: `quartz/components/styles/breadcrumbs.scss`
 - Script: inline at `quartz/components/Breadcrumbs.tsx`
