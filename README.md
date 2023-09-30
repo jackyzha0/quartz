@@ -26,6 +26,70 @@ Source code for Forgetful Notes—my digital garden of knowledge. It serves as a
 | `npx quartz sync`          | Save Local Changes to Repo |
 | `npx quartz sync --help`   | Find Help                  |
 
+## Style
+
+
+
+### Fonts
+
+
+| Use    | Font              |
+| ------ | ----------------- |
+| Header | Schibsted Grotesk |
+| Body   | Source Sans Pro   |
+| Code   | IBM Plex Mono     |
+
+
+- Header: Schibsted Grotesk
+- Body: Source Sans Pro
+- Code IBM Plex Mono
+
+### Light Mode
+
+
+| Variable  | Color      |
+| --------- | ---------- |
+| Light     | \#faf8f8   |
+| Lightgray | \#e5e5e5   |
+| Gray      | \#b8b8b8   |
+| Darkgray  | \#4e4e4e   |
+| Dark      | \#2b2b2b   |
+| Secondary | \#284b63   |
+| Terciary  | \#84a59d   |
+| Highlight | \#8f9fa926 |
+
+
+- Light: \#faf8f8
+- Lightgray: \#e5e5e5
+- Gray: \#b8b8b8
+- Darkgray: \#4e4e4e
+- Dark: \#2b2b2b
+- Secondary: \#284b63
+- Tertiary: \#84a59d
+- Highlight: \#8f9fa926
+
+### Dark Mode
+
+| Variable  | Color      |
+| --------- | ---------- |
+| Light     | \#1e1e2e   |
+| Lightgray | \#6c7086   |
+| Gray      | \#a6adc8   |
+| Darkgray  | \#cdd6f4   |
+| Dark      | \#cdd6f4   |
+| Secondary | \#a6e3a1   |
+| Terciary  | \#89dceb   |
+| Highlight | \#8f9fa926 |
+
+- Light: \#1e1e2e
+- Lightgray: \#6c7086
+- Gray: \#a6adc8
+- Darkgray: \#cdd6f4
+- Dark: \#cdd6f4
+- Secondary: \#a6e3a1
+- Tertiary: \#89dceb
+- Highlight: \#8f9fa926
+
 ## License
 
 Source code is available under [MIT](LICENSE).

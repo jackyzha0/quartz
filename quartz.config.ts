@@ -14,20 +14,20 @@ const config: QuartzConfig = {
     defaultDateType: "created",
     theme: {
       typography: {
-        header: "Lora",
-        body: "Inter",
-        code: "Fira Code",
+        header: "Schibsted Grotesk",
+        body: "Source Sans Pro",
+        code: "IBM Plex Mono",
       },
       colors: {
         lightMode: {
-          light: "#eff1f5",
-          lightgray: "#dce0e8",
-          gray: "#8c8fa1",
-          darkgray: "#4c4f69",
-          dark: "#4f4f7f",
-          secondary: "#40a02b",
-          tertiary: "#209fb5",
-          highlight: "rgba(143, 159, 169, 0.15)",
+          light: "#faf8f8",
+          lightgray: "#e5e5e5",
+          gray: "#b8b8b8",
+          darkgray: "#4e4e4e",
+          dark: "#2b2b2b",
+          secondary: "#284b63",
+          tertiary: "#84a59d",
+          highlight: "#8f9fa926",
         },
         darkMode: {
           light: "#1e1e2e",
@@ -46,9 +46,7 @@ const config: QuartzConfig = {
     transformers: [
       Plugin.FrontMatter(),
       Plugin.TableOfContents(),
-      Plugin.CreatedModifiedDate({
-        priority: ["frontmatter", "filesystem"], // you can add 'git' here for last modified from Git but this makes the build slower
-      }),
+      // Plugin.CreatedModifiedDate({ priority: ["frontmatter", "filesystem"], }),
       Plugin.SyntaxHighlighting(),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
