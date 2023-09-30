@@ -5,7 +5,7 @@ import satori, { SatoriOptions } from "satori"
 import * as fs from "fs"
 import { ImageOptions, SocialImageOptions, getSatoriFont } from "../util/imageHelper"
 import sharp from "sharp"
-import { defaultImage } from "../util/defaultImage"
+import { defaultImage } from "../util/socialImage"
 import { JSXInternal } from "preact/src/jsx"
 import { unescapeHTML } from "../util/escape"
 
@@ -33,7 +33,6 @@ async function generateSocialImage(opts: ImageOptions, userOpts: SocialImageOpti
   fs.writeFileSync(`${imageDir}/${fileName}.${extension}`, compressed)
 }
 
-// TODO: mention `description` plugin in docs for max length
 const extension = "webp"
 const imageDir = "public/static/social-images"
 
