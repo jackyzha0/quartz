@@ -1,7 +1,5 @@
 .darkmode {
-  left: 2rem;
-  top: -59px;
-  padding-left: 0.5rem;
+
   position: relative;
   width: 20px;
   height: 20px;
@@ -47,5 +45,21 @@
   }
   & > #nightIcon {
     opacity: 0;
+  }
+}
+
+@media (max-width: 1510px) {
+  .darkmode {
+    // left: 2rem;
+    // top: -59px;
+    padding-left: 0.5rem;
+  }
+}
+
+@media (min-width: 1511px) {
+  .darkmode {
+    left: 2rem;
+    top: -59px;
+    padding-left: 0.5rem;
   }
 }
