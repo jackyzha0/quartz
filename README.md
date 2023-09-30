@@ -8,41 +8,33 @@
 
 # Forgetful Notes
 
-Source code for Forgetful Notes—my digital garden of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
+Source code for [Forgetful Notes](https://forgetfulnotes.com)—my digital garden of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 
-- Created with [Quartz](https://github.com/jackyzha0/quartz/)
-- Read the [Documentation](https://quartz.jzhao.xyz/)
-- Join the [Discord Community](https://discord.gg/cRFFHYye7t)
+- Powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](https://obsidian.md).
+- Read the [Documentation](https://quartz.jzhao.xyz/).
+- Join the [Discord Community](https://discord.gg/cRFFHYye7t).
 
 ## Useful Commands
 
-| Command                    | Description                |
+| Description                | Command                    |
 | -------------------------- | -------------------------- |
-| `npm i`                    | Install Dependencies       |
-| `npm update`               | Update Dependencies        |
-| `npx quartz update`        | Update Quartz (core)       |
-| `npx quartz build`         | Build only                 |
-| `npx quartz build --serve` | Build and Serve            |
-| `npx quartz sync`          | Save Local Changes to Repo |
-| `npx quartz sync --help`   | Find Help                  |
+| Install Dependencies       | `npm i`                    |
+| Update Dependencies        | `npm update`               |
+| Update Quartz (core)       | `npx quartz update`        |
+| Build only                 | `npx quartz build`         |
+| Build and Serve            | `npx quartz build --serve` |
+| Save Local Changes to Repo | `npx quartz sync`          |
+| Find Help                  | `npx quartz sync --help`   |
 
 ## Style
 
-
-
 ### Fonts
-
 
 | Use    | Font              |
 | ------ | ----------------- |
 | Header | Schibsted Grotesk |
 | Body   | Source Sans Pro   |
 | Code   | IBM Plex Mono     |
-
-
-- Header: Schibsted Grotesk
-- Body: Source Sans Pro
-- Code IBM Plex Mono
 
 ### Light Mode
 
@@ -58,16 +50,6 @@ Source code for Forgetful Notes—my digital garden of knowledge. It serves as a
 | Terciary  | \#84a59d   |
 | Highlight | \#8f9fa926 |
 
-
-- Light: \#faf8f8
-- Lightgray: \#e5e5e5
-- Gray: \#b8b8b8
-- Darkgray: \#4e4e4e
-- Dark: \#2b2b2b
-- Secondary: \#284b63
-- Tertiary: \#84a59d
-- Highlight: \#8f9fa926
-
 ### Dark Mode
 
 | Variable  | Color      |
@@ -80,15 +62,6 @@ Source code for Forgetful Notes—my digital garden of knowledge. It serves as a
 | Secondary | \#a6e3a1   |
 | Terciary  | \#89dceb   |
 | Highlight | \#8f9fa926 |
-
-- Light: \#1e1e2e
-- Lightgray: \#6c7086
-- Gray: \#a6adc8
-- Darkgray: \#cdd6f4
-- Dark: \#cdd6f4
-- Secondary: \#a6e3a1
-- Tertiary: \#89dceb
-- Highlight: \#8f9fa926
 
 ## License
 
