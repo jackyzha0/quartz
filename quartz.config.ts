@@ -4,7 +4,7 @@ import * as Plugin from "./quartz/plugins"
 const config: QuartzConfig = {
   configuration: {
     defaultDateType: "modified",
-    pageTitle: "🌱 Projects and Privacy",
+    pageTitle: "🌱 Projects & Privacy",
     enableSPA: true,
     enablePopovers: true,
     analytics: null,
