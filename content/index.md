@@ -17,7 +17,7 @@ On my little corner of the internet, I fight back against all of the above by sh
 # Welcome!
 You're on a site called a [[Misc/what-is-a-garden|Digital Garden]]. Here's some info on [[Essays/why-i-garden|Why I Garden]].
 
-This site changes often. Feel free to subscribe to [this site's RSS feed](/index.xml) for a ping every time I make a new entry. You can also check [[Updates]] for a monthly list of changes.
+This site changes often. Feel free to subscribe to [this site's RSS feed](/index.xml) for a ping every time I make a new entry. You can also check [Updates](/Updates) for a monthly list of changes.
 > [!question] What can I see here?
 > I [[about-me|(me, myself)]] write about:
 > - Projects I've undertaken and programs that I've used
