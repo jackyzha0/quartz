@@ -1,6 +1,6 @@
 ---
 title: Summary of Changes for September 2023
-draft: true
+draft: false
 tags:
   - "#update"
 date: 2023-09-30
