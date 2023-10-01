@@ -17,7 +17,7 @@ There'll also be a small blog component to it.
 ## Pages
 - I added comments with Remark42, and documented it [[Projects/Obsidian/quartz-comments|here]].
 - Finished [[Programs I Like/code-editors|Code Editors]].
-- I fiddled with the [[index|homepage]] a bit.
+- I fiddled with the [[Garden/index|homepage]] a bit.
 - I started fleshing out [[Projects/my-computer|My Computer]].
 - More content [[Essays/on-linux|on Linux]]!
 - I'm researching and angling to fully write through the essay on [[Essays/why-i-garden|Why I Garden]].
