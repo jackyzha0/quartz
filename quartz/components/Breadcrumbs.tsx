@@ -69,12 +69,14 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
     const crumbs: CrumbData[] = [firstEntry]
 
     // Get parts of filePath (every folder)
-    const parts = fileData.filePath?.split("/")?.splice(1)
-    if (parts) {
+    const pathParts = fileData.filePath?.split("/")?.splice(1)
+    // No need to slice, since slugs dont contain initial "content" folder like pathParts
+    const slugParts = fileData.slug?.split("/")
+    if (pathParts && slugParts) {
       // full path until current part
       let current = ""
-      for (let i = 0; i < parts.length - 1; i++) {
-        const folderName = parts[i]
+      for (let i = 0; i < pathParts.length - 1; i++) {
+        const folderName = pathParts[i]
         let currentTitle = folderName
 
         // TODO: performance optimizations/memoizing
@@ -86,8 +88,8 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
             currentTitle = currentFile.frontmatter!.title
           }
         }
-        // Add current path to full path
-        current += folderName + "/"
+        // Add current slug to full path
+        current += slugParts[i] + "/"
 
         // Format and add current crumb
         const crumb = formatCrumb(capitalize(currentTitle), fileData.slug!, current as SimpleSlug)
@@ -95,7 +97,7 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
       }
 
       // Add current file to crumb (can directly use frontmatter title)
-      if (parts.length > 0) {
+      if (pathParts.length > 0) {
         crumbs.push({
           displayName: capitalize(fileData.frontmatter!.title),
           path: "",
