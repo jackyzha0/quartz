@@ -2,7 +2,8 @@
 title: Static Site Generator
 tags:
   - markdown
-lastmod: 2023-09-27
+  - webdev
+lastmod: 2023-10-02
 compartir: true
 category: 🌱 Seedlings
 ---

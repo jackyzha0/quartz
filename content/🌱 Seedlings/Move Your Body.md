@@ -1,8 +1,9 @@
 ---
 title: Move Your Body
 compartir: true
-lastmod: 2023-09-18
-tags: stub
+lastmod: 2023-10-02
+tags:
+  - stub
 category: 🌱 Seedlings
 ---
 

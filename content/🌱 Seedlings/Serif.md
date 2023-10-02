@@ -3,7 +3,7 @@ title: Serif
 tags:
   - typography
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-10-02
 category: 🌱 Seedlings
 ---
 

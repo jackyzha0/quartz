@@ -2,6 +2,7 @@
 title: Chuckwalla
 lastmod: 2023-10-02
 compartir: true
+category: 🌿 Budding
 ---
 Chuckwallas are lizards found primarily in arid regions of the southwestern United States and northern Mexico. Some are found on coastal islands. The five species of chuckwallas are all placed within the genus _Sauromalus_; they are part of the iguanid family, _Iguanidae_—composed of iguanas, chuckwallas, and their prehistoric relatives.
 

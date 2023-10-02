@@ -1,8 +1,9 @@
 ---
 title: Rhombic Dodecahedron d12
 compartir: true
-lastmod: 2023-09-20
-tags: stub
+lastmod: 2023-10-02
+tags:
+  - stub
 ---
 
 

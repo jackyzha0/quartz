@@ -1,6 +1,6 @@
 ---
 title: The Moon (Earth)
-lastmod: 2023-09-27
+lastmod: 2023-10-02
 tags:
   - wip
 compartir: true

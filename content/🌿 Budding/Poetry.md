@@ -6,9 +6,9 @@ tags:
   - learning
   - writing
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-10-02
 enableToc: true
-category: 🌱 Seedlings
+category: 🌿 Budding
 ---
 
 Poetry is a broad literary category that covers everything from bawdy limericks to unforgettable song lyrics to the sentimental couplets inside greeting cards. A **poem** is a singular piece of poetry.

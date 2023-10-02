@@ -1,7 +1,7 @@
 ---
 title: About
 compartir: true
-lastmod: 2023-09-28
+lastmod: 2023-10-02
 tags:
   - meta
 ---
@@ -14,11 +14,10 @@ I think a lot, work a lot, have existential crises, and know just enough about m
 
 If you are aching for more:
 
-* Find out what [[Inspirations|inspires]] me.
-* Check out what [[tools]] I use.
-* Go ahead and read my [[Public Journal|public journal]].
+* Check out what [[tools]] I use daily.
+* Read my [[Public Journal|public journal]].
 
-### As of September 2023, I am…
+### As of October 2023, I am…
 
 … tending to my [digital garden](https://forgetfulnotes.com/).  
 … making simple browser [extensions](https://addons.mozilla.org/en-US/firefox/user/17772574/).  

@@ -1,13 +1,14 @@
 ---
 title: NeoVim
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-10-02
 tags:
   - reference
 enableToc: true
 aliases:
   - Nvim
   - Vim
+category: 🌿 Budding
 ---
 
 
