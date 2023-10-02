@@ -17,3 +17,29 @@
 //     padding-left: 0.5rem;
 //   }
 // }
+
+div[data-folderpath="/Archive"] p[class="folder-title"]::before {
+  content: "📚 ";
+}
+div[data-folderpath="/Seedlings"] p[class="folder-title"]::before {
+  content: "🌱 ";
+}
+div[data-folderpath="/Evergreen"] p[class="folder-title"]::before {
+  content: "🌳";
+}
+div[data-folderpath="/Budding"] p[class="folder-title"]::before {
+  content: "🌿";
+}
+
+// div[data-folderpath="/Archive"] button[class="folder-button"]::before {
+//   content: "📚 ";
+// }
+// div[data-folderpath="/Seedlings"] button[class="folder-button"]::before {
+//   content: "🌱 ";
+// }
+// div[data-folderpath="/Evergreen"] button[class="folder-button"]::before {
+//   content: "🌳";
+// }
+// div[data-folderpath="/Budding"] button[class="folder-button"]::before {
+//   content: "🌿";
+// }
