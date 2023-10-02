@@ -1,7 +1,6 @@
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import breadcrumbsStyle from "./styles/breadcrumbs.scss"
 import { FullSlug, SimpleSlug, resolveRelative } from "../util/path"
-import { capitalize } from "../util/lang"
 import { QuartzPluginData } from "../plugins/vfile"
 
 type CrumbData = {
@@ -68,7 +67,7 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
     }
 
     // Format entry for root element
-    const firstEntry = formatCrumb(capitalize(options.rootName), fileData.slug!, "/" as SimpleSlug)
+    const firstEntry = formatCrumb(options.rootName, fileData.slug!, "/" as SimpleSlug)
     const crumbs: CrumbData[] = [firstEntry]
 
     // Split slug into hierarchy/parts
@@ -92,17 +91,13 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
         currentPath += slugParts[i] + "/"
 
         // Format and add current crumb
-        const crumb = formatCrumb(
-          capitalize(currentTitle),
-          fileData.slug!,
-          currentPath as SimpleSlug,
-        )
+        const crumb = formatCrumb(currentTitle, fileData.slug!, currentPath as SimpleSlug)
         crumbs.push(crumb)
       }
 
       // Add current file to crumb (can directly use frontmatter title)
       crumbs.push({
-        displayName: capitalize(fileData.frontmatter!.title),
+        displayName: fileData.frontmatter!.title,
         path: "",
       })
     }
