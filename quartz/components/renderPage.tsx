@@ -132,7 +132,8 @@ export function renderPage(
                   ))}
                 </Header>
                 <div class="popover-hint">
-                  {beforeBody.map((BodyComponent) => (
+                  {/* implement https://discord.com/channels/927628110009098281/1157949033592139866 */}
+                {slug !== "index" && beforeBody.map((BodyComponent) => (
                     <BodyComponent {...componentData} />
                   ))}
                 </div>
