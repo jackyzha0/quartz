@@ -1,0 +1,12 @@
+div[data-folderpath="/Archive"] p[class="folder-title"]::before {
+  content: "📚 ";
+}
+div[data-folderpath="/Seedlings"] p[class="folder-title"]::before {
+  content: "🌱 ";
+}
+div[data-folderpath="/Evergreen"] p[class="folder-title"]::before {
+  content: "🌳 ";
+}
+div[data-folderpath="/Budding"] p[class="folder-title"]::before {
+  content: "🌿 ";
+}
