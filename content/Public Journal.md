@@ -17,6 +17,13 @@ lastmod: 2023-10-02
 * I applied and was accepted into the [GitHub Sponsors](https://github.com/sponsors) program. Added my info and added FUNDING.yml to a few projects.
 * After some testing, I have put together a GitHub Action to build and/or deploy Zola sites without the need of a second branch.
 
+### Digital Garden
+
+* Introducing the concept of _Seedlings_, _Budding_, and _Evergreen_ notes.
+	* 🌱 _Seedlings_ for very rough and early ideas
+	* 🌿 _Budding_ for work I've cleaned up and clarified
+	* 🌳 _Evergreen_ for work that is reasonably complete (though I still tend these over time).
+
 ### Zola Docs
 
 * Ran the site via Lighthouse. Identified and applied a few small improvements. Raised the performance and SEO scores.

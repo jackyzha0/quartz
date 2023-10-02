@@ -3,7 +3,8 @@ title: Unlock the Sidebar Width in Firefox
 tags:
   - guide
 compartir: true
-lastmod: 2023-09-29
+lastmod: 2023-10-02
+category: 🌳 Evergreen
 ---
 
 This post will guide you through unlocking the sidebar width in Firefox. It will let you resize it beyond what is possible by default. We will be setting both the maximum, and the minimum width. You will have a chance to customize these values once at the right step.
@@ -30,8 +31,8 @@ This post will guide you through unlocking the sidebar width in Firefox. It will
 }
 ```
 
-7. Finally, in a new tab, navigate to `about:config` and search for `toolkit.legacyUserProfileCustomizations.stylesheets` and change it to `true`.
-8. Restart Firefox and test it out!
+1. Finally, in a new tab, navigate to `about:config` and search for `toolkit.legacyUserProfileCustomizations.stylesheets` and change it to `true`.
+2. Restart Firefox and test it out!
 
 [^1]: `%appdata%` is equivalent to `C:\Users\{username}\AppData\Roaming`
 [^2]: After Firefox 107, `#sidebar` was deprecated, and `#sidebar-box` was introduced.

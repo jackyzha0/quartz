@@ -3,7 +3,7 @@ title: Digital Garden
 tags:
   - digital-gardening
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-10-02
 ---
 
 ## What is a Digital Garden
@@ -15,3 +15,9 @@ The phrase _"digital garden"_ comes up often while browsing these notes. Surely 
 ## How is Content Curated
 
 Digital Gardens are explorable rather than structured as a strictly linear stream of posts. They grow slowly over time, rather than created as _"finished"_ work that is to never be touched again. A place where little changes accumulate and transform thoughts and ideas. As you [[Continuous Care|continuously care]] for your garden, you **revise**, **update**, and **change** your ideas as they develop.
+
+## Kinds of Notes
+
+* 🌱 _Seedlings_ for very rough and early ideas
+* 🌿 _Budding_ for work I've cleaned up and clarified
+* 🌳 _Evergreen_ for work that is reasonably complete (though I still tend these over time).

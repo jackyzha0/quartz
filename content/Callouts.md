@@ -5,7 +5,6 @@ tags:
   - obsidian
 compartir: true
 lastmod: 2023-10-02
-categories: Obsidian
 ---
 
 
