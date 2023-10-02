@@ -14,7 +14,7 @@ export default (() => {
       }
 
       segments.push(timeTaken)
-      return <p class={`content-meta ${displayClass}`}>{segments.join(", ")}</p>
+      return <p class={`content-meta ${displayClass ?? ""}`}>{segments.join(", ")}</p>
     } else {
       return null
     }

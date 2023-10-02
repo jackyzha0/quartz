@@ -6,7 +6,7 @@ import script from "./scripts/search.inline"
 export default (() => {
   function Search({ displayClass }: QuartzComponentProps) {
     return (
-      <div class={`search ${displayClass}`}>
+      <div class={`search ${displayClass ?? ""}`}>
         <div id="search-icon">
           <p>Search</p>
           <div></div>
