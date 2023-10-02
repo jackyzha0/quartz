@@ -3,12 +3,29 @@ title: Public Journal
 description: This new section will explore the concept of maintaining a Public Journal. It takes inspiration from The Journal of an Enigmatic Mind.
 compartir: true
 enableToc: true
-lastmod: 2023-09-29
+lastmod: 2023-10-02
 ---
 
 > [!info] Acknowledgements
 > 
 > This page takes inspiration from the [Journal of an Enigmatic Mind](https://speyllsite.pages.dev/journal/). It explores the concept of keeping a public journal, something I haven't done before.
+
+## 2023-10-02
+
+### GitHub
+
+* I applied and was accepted into the [GitHub Sponsors](https://github.com/sponsors) program. Added my info and added FUNDING.yml to a few projects.
+* After some testing, I have put together a GitHub Action to build and/or deploy Zola sites without the need of a second branch.
+
+### Zola Docs
+
+* Ran the site via Lighthouse. Identified and applied a few small improvements. Raised the performance and SEO scores.
+* Fixed heading anchor icons. Previously broken icon.
+* Refactored styles slightly. Working on code accessibility.
+* Introduced new container, and container classes to style the site with a maximum width, instead of allowing it to overflow the entire browser width. It is currently working for Desktop, but it needs work to make it fit in the Mobile layout.
+* Replaced copyrighted icons the original theme used. Introduced icons from [UX Wing](https://uxwing.com/).
+
+> [Link Of The Day](https://en.wikipedia.org/wiki/Rubber_duck_debugging?useskin=vector)
 
 ## 2023-09-29
 
@@ -23,11 +40,25 @@ lastmod: 2023-09-29
 
 * Backed up all my current active repositories.
 * Renamed [Zola Tale] to [Mabuya](https://github.com/semanticdata/mabuya).
+* Created new repository [Zola Docs](https://github.com/semanticdata/zola-docs). It will be used to create my own zola Documentation theme I can use.
+
+### Digital Garden
+
+* Trying out color schemes from the [Quartz](https://github.com/jackyzha0/quartz/) [Discord Community](https://discord.gg/cRFFHYye7t).
+* Extended README to include information about fonts and colors used.
 
 ### Blog
 
 * Emptying [miguel-pimentel-do] to upload new blog.
 * Deployed the new blog using [Mabuya] to [miguel-pimentel-do].
+
+### Zola Docs
+
+* Configured the site with my information.
+* Formatted all documents.
+* Converted all TOML frontmatter to YAML. (personal preference)
+* Added netlify.toml to make it easier to deploy the site.
+* Added theme package including: gitignore, gitattributes, code of conduct, contributing, github workflow, and issue, pr, feature-request templates.
 
 ### Zola Tale
 
