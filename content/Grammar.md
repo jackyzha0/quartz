@@ -1,9 +1,10 @@
 ---
 title: Grammar
 compartir: true
-lastmod: 2023-09-18
+lastmod: 2023-10-02
 enableToc: true
-tags: learning
+tags:
+  - learning
 ---
 
 ## Singular Pluralities
