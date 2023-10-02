@@ -1,9 +1,10 @@
 ---
-title: "Welcome!"
+title: "Forgetful Notes"
 description: "Forgetful Notes—A digital garden of knowledge. A platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to."
 compartir: true
-lastmod: 2023-09-29
+lastmod: 2023-10-02
 ---
+# Welcome!
 
 I'm Miguel, and you have come across **Forgetful Notes**—my [[Digital Garden|digital garden]] of knowledge. Come on in and make yourself comfortable.
 
@@ -23,8 +24,6 @@ Like me, all notes contained within should be considered work-in-progress. Expec
 	Check out my [Blog](https://miguelpimentel.do/).
 * Want to learn more _about the site_?  
 	Check out the [[Meta]] page.
-* Want to explore the garden but don't know where to start?  
-	Go and [[Explore the Garden]].
 
 > _"The problem with your sink is that I have no idea how to fix it."_
 
