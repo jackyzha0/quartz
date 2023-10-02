@@ -36,7 +36,10 @@ const defaultOptions: BreadcrumbOptions = {
 }
 
 function formatCrumb(displayName: string, baseSlug: FullSlug, currentSlug: SimpleSlug): CrumbData {
-  return { displayName, path: resolveRelative(baseSlug, currentSlug) }
+  return {
+    displayName: displayName.replaceAll("-", " "),
+    path: resolveRelative(baseSlug, currentSlug),
+  }
 }
 
 // given a folderName (e.g. "features"), search for the corresponding `index.md` file
@@ -68,41 +71,40 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
     const firstEntry = formatCrumb(capitalize(options.rootName), fileData.slug!, "/" as SimpleSlug)
     const crumbs: CrumbData[] = [firstEntry]
 
-    // Get parts of filePath (every folder)
-    const pathParts = fileData.filePath?.split("/")?.splice(1)
-    // No need to slice, since slugs dont contain initial "content" folder like pathParts
+    // Split slug into hierarchy/parts
     const slugParts = fileData.slug?.split("/")
-    if (pathParts && slugParts) {
+    if (slugParts) {
       // full path until current part
-      let current = ""
-      for (let i = 0; i < pathParts.length - 1; i++) {
-        const folderName = pathParts[i]
-        let currentTitle = folderName
+      let currentPath = ""
+      for (let i = 0; i < slugParts.length - 1; i++) {
+        let currentTitle = slugParts[i]
 
         // TODO: performance optimizations/memoizing
         // Try to resolve frontmatter folder title
         if (options?.resolveFrontmatterTitle) {
           // try to find file for current path
-          const currentFile = findCurrentFile(allFiles, folderName)
+          const currentFile = findCurrentFile(allFiles, currentTitle)
           if (currentFile) {
             currentTitle = currentFile.frontmatter!.title
           }
         }
         // Add current slug to full path
-        current += slugParts[i] + "/"
+        currentPath += slugParts[i] + "/"
 
         // Format and add current crumb
-        const crumb = formatCrumb(capitalize(currentTitle), fileData.slug!, current as SimpleSlug)
+        const crumb = formatCrumb(
+          capitalize(currentTitle),
+          fileData.slug!,
+          currentPath as SimpleSlug,
+        )
         crumbs.push(crumb)
       }
 
       // Add current file to crumb (can directly use frontmatter title)
-      if (pathParts.length > 0) {
-        crumbs.push({
-          displayName: capitalize(fileData.frontmatter!.title),
-          path: "",
-        })
-      }
+      crumbs.push({
+        displayName: capitalize(fileData.frontmatter!.title),
+        path: "",
+      })
     }
     return (
       <nav class="breadcrumb-container" aria-label="breadcrumbs">
