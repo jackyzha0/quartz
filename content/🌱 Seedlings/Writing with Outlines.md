@@ -7,6 +7,7 @@ tags:
 compartir: true
 lastmod: 2023-09-18
 enableToc: true
+category: 🌱 Seedlings
 ---
 
 Learning how to write with brevity (short-form), how to write long-form, how to use gesticulation. Looking for ways to streamline producing written content.

@@ -3,6 +3,7 @@ title: Rhizomatic Learning
 compartir: true
 lastmod: 2023-09-18
 tags: stub
+category: 🌱 Seedlings
 ---
 
 Rhizomatic learning is a variety of pedagogical practices informed by the work of Gilles Deleuze and Félix Guattari. It takes it's name from the rhizome.

@@ -8,6 +8,7 @@ tags:
 compartir: true
 lastmod: 2023-09-18
 enableToc: true
+category: 🌱 Seedlings
 ---
 
 Poetry is a broad literary category that covers everything from bawdy limericks to unforgettable song lyrics to the sentimental couplets inside greeting cards. A **poem** is a singular piece of poetry.

@@ -4,6 +4,7 @@ tags:
   - digital-gardening
 compartir: true
 lastmod: 2023-10-02
+category: 🌿 Budding
 ---
 
 ## What is a Digital Garden

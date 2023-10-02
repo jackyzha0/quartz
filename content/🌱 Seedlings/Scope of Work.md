@@ -2,6 +2,7 @@
 title: Scope of Work
 compartir: true
 lastmod: 2023-09-18
+category: 🌱 Seedlings
 ---
 A scope of work or SOW, is a descriptive document or working agreement that contains all information regarding the size of a project, the goals a team should accomplish by the end of the project and steps required to complete the project.
 

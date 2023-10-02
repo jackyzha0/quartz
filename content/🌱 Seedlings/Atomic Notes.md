@@ -4,6 +4,7 @@ tags:
   - digital-gardening
 compartir: true
 lastmod: 2023-09-18
+category: 🌱 Seedlings
 ---
 
 Atomic notes are single, self-contained notes that capture a single idea or piece of information. They are meant to be read and understood without needing to refer to anything more.

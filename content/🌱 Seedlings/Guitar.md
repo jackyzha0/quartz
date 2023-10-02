@@ -6,6 +6,7 @@ tags:
 compartir: true
 lastmod: 2023-09-18
 enableToc: true
+category: 🌱 Seedlings
 ---
 
 ## Guitar Tabs
