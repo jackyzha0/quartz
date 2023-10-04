@@ -1,7 +1,7 @@
 ---
 title: About
 compartir: true
-lastmod: 2023-10-03
+lastmod: 2023-10-04
 tags: [meta]
 ---
 ## Hi! I'm Miguel 👋🏼
@@ -26,6 +26,4 @@ If you are aching for more:
 
 Here are some places you can find me on the web. You'll probably be able to find me in other places too, provided you look hard enough.
 
-* [GitHub](https://github.com/semanticdata)
-* [Instagram](https://instagram.com/miguelapv)
-* [LinkedIn](https://www.linkedin.com/in/miguelpimentel29/)
+[GitHub](https://github.com/semanticdata) • [Instagram](https://instagram.com/miguelapv) • [LinkedIn](https://www.linkedin.com/in/miguelpimentel29/)
