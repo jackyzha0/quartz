@@ -3,13 +3,13 @@ import * as Plugin from "./quartz/plugins"
 
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "vrakonor",
+    pageTitle: "⚡ vrakonor ⚡",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
       provider: "plausible",
     },
-    baseUrl: "quartz.jzhao.xyz",
+    baseUrl: "vrak.konor.fr",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
     theme: {
@@ -20,23 +20,23 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
+          light: "#f6fcf8",
+          lightgray: "#f0f0f0",
+          gray: "#acacac",
           darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
+          dark: "#094648",
+          secondary: "#0F6B5F",
+          tertiary: "#FF8847",
           highlight: "rgba(143, 159, 169, 0.15)",
         },
         darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
+          light: "#094648",
+          lightgray: "#052D2D",
+          gray: "#418C76",
           darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
+          dark: "#dcfae6",
+          secondary: "#D1F2C4",
+          tertiary: "#FF8847",
           highlight: "rgba(143, 159, 169, 0.15)",
         },
       },
