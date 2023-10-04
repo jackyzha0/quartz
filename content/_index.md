@@ -16,6 +16,7 @@ Pour l'instant, il y a du contenu à propos de [maths](tags/maths), d' [informat
 > - [ ] Organiser les notes dans des dossiers
 > - [ ] Refaire le `footer` avec des icônes
 > - [ ] Corriger les éventuels bugs de visualisation
+>      - [ ] Bug d'affichage du titre avec les emojis
 
 ## 📑 Utilisation du site
 
