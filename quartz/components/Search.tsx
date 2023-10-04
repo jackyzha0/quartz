@@ -17,8 +17,8 @@ export default (() => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 19.9 19.7"
           >
-            <title id="title">Search</title>
-            <desc id="desc">Search</desc>
+            <title id="title">Rechercher</title>
+            <desc id="desc">Rechercher</desc>
             <g class="search-path" fill="none">
               <path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4" />
               <circle cx="8" cy="8" r="7" />
@@ -32,8 +32,8 @@ export default (() => {
               id="search-bar"
               name="search"
               type="text"
-              aria-label="Search for something"
-              placeholder="Search for something"
+              aria-label="Rechercher quelque chose"
+              placeholder="Rechercher quelque chose"
             />
             <div id="results-container"></div>
           </div>
