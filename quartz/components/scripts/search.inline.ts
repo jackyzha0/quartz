@@ -66,9 +66,8 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
     })
     .join(" ")
 
-  return `${startIndex === 0 ? "" : "..."}${slice}${
-    endIndex === tokenizedText.length - 1 ? "" : "..."
-  }`
+  return `${startIndex === 0 ? "" : "..."}${slice}${endIndex === tokenizedText.length - 1 ? "" : "..."
+    }`
 }
 
 const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
@@ -237,8 +236,8 @@ document.addEventListener("nav", async (e: unknown) => {
     removeAllChildren(results)
     if (finalResults.length === 0) {
       results.innerHTML = `<button class="result-card">
-                    <h3>No results.</h3>
-                    <p>Try another search term?</p>
+                    <h3>Pas de résultats.</h3>
+                    <p>Essayez autre chose..?</p>
                 </button>`
     } else {
       results.append(...finalResults.map(resultToHTML))

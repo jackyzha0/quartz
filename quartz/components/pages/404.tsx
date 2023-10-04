@@ -1,10 +1,10 @@
-import { QuartzComponentConstructor } from "../types"
+import { QuartzComponentConstructor, QuartzComponentProps } from "../types"
 
-function NotFound() {
+function NotFound({ cfg }: QuartzComponentProps) {
   return (
     <article class="popover-hint">
-      <h1>404</h1>
-      <p>Either this page is private or doesn't exist.</p>
+      <h1>Erreur 404</h1>
+      <p>Cette page est privée, ou alors elle n'existe pas. On te ramène à l'<a href="/">accueil</a > ?</p>
     </article>
   )
 }

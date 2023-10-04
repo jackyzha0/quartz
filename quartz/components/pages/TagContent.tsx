@@ -27,7 +27,7 @@ function TagContent(props: QuartzComponentProps) {
     (tree as Root).children.length === 0
       ? fileData.description
       : // @ts-ignore
-        toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: "html" })
+      toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: "html" })
 
   if (tag === "") {
     const tags = [...new Set(allFiles.flatMap((data) => data.frontmatter?.tags ?? []))]
@@ -41,7 +41,7 @@ function TagContent(props: QuartzComponentProps) {
         <article>
           <p>{content}</p>
         </article>
-        <p>Found {tags.length} total tags.</p>
+        <p>{tags.length} tags trouvés.</p>
         <div>
           {tags.map((tag) => {
             const pages = tagItemMap.get(tag)!
@@ -61,8 +61,8 @@ function TagContent(props: QuartzComponentProps) {
                 </h2>
                 {content && <p>{content}</p>}
                 <p>
-                  {pluralize(pages.length, "item")} with this tag.{" "}
-                  {pages.length > numPages && `Showing first ${numPages}.`}
+                  {pluralize(pages.length, "item")} avec ce tag.{" "}
+                  {pages.length > numPages && `Affiche les ${numPages} premiers.`}
                 </p>
                 <PageList limit={numPages} {...listProps} />
               </div>
@@ -81,7 +81,7 @@ function TagContent(props: QuartzComponentProps) {
     return (
       <div class="popover-hint">
         <article>{content}</article>
-        <p>{pluralize(pages.length, "item")} with this tag.</p>
+        <p>{pluralize(pages.length, "item")} avec ce tag.</p>
         <div>
           <PageList {...listProps} />
         </div>

@@ -30,14 +30,14 @@ function FolderContent(props: QuartzComponentProps) {
     (tree as Root).children.length === 0
       ? fileData.description
       : // @ts-ignore
-        toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: "html" })
+      toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: "html" })
 
   return (
     <div class="popover-hint">
       <article>
         <p>{content}</p>
       </article>
-      <p>{pluralize(allPagesInFolder.length, "item")} under this folder.</p>
+      <p>{pluralize(allPagesInFolder.length, "item")} dans ce dossier.</p>
       <div>
         <PageList {...listProps} />
       </div>
