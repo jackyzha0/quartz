@@ -1,12 +1,10 @@
 ---
 title: Digital Garden
-tags:
-  - digital-gardening
+tags: [digital-gardening]
 compartir: true
 lastmod: 2023-10-02
 category: Budding
 ---
-
 ## What is a Digital Garden
 
 A digital garden is a combination of an **online notebook** and a **personal wiki**, where digital gardeners write in small, unfinished pieces, also known as [[Atomic Notes|atomic notes]], and share these seeds of thought to be cultivated in public. Digital gardens are curated and evolve over time, sometimes growing wildly and sometimes getting pruned.
@@ -19,6 +17,6 @@ Digital Gardens are explorable rather than structured as a strictly linear strea
 
 ## Kinds of Notes
 
-* 🌱 _Seedlings_ for very rough and early ideas
-* 🌿 _Budding_ for work I've cleaned up and clarified
-* 🌳 _Evergreen_ for work that is reasonably complete (though I still tend these over time).
+* 🌱 _[[Seedlings|Seedlings]]_ for very rough and early ideas
+* 🌿 _[[Budding|Budding]]_ for work I've cleaned up and clarified
+* 🌳 _[[Evergreen|Evergreen]]_ for work that is reasonably complete (though I still tend these over time).

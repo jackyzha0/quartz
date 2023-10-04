@@ -1,14 +1,11 @@
 ---
-title: Markdown Demo
-tags:
-  - markdown
-  - reference
+title: Markdown Showcase
+tags: [markdown, reference]
 compartir: true
-lastmod: 2023-09-26
+lastmod: 2023-10-03
 ---
 
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu feugiat sapien. Aenean ligula nunc, laoreet id sem in, interdum bibendum felis.
+This is intended as a quick reference and showcase.
 
 <!-- more -->
 
@@ -146,3 +143,53 @@ X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
 Press <kbd><kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Delete</kbd></kbd> to end the session.
 
 Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
+
+## Callouts
+
+> [!EXAMPLE] Examples
+> 
+> Aliases: example
+
+> [!note] Notes
+> 
+> Aliases: note
+
+> [!abstract] Summaries
+> 
+> Aliases: abstract, summary, tldr
+
+> [!info] Info
+> 
+> Aliases: info, todo
+
+> [!tip] Hint
+> 
+> Aliases: tip, hint, important
+
+> [!success] Success
+> 
+> Aliases: success, check, done
+
+> [!question] Question
+> 
+> Aliases: question, help, faq
+
+> [!warning] Warning
+> 
+> Aliases: warning, caution, attention
+
+> [!failure] Failure
+> 
+> Aliases: failure, fail, missing
+
+> [!danger] Error
+> 
+> Aliases: danger, error
+
+> [!bug] Bug
+> 
+> Aliases: bug
+
+> [!quote] Quote
+> 
+> Aliases: quote, cite
