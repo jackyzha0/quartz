@@ -3,14 +3,14 @@ title: Public Journal
 description: This new section will explore the concept of maintaining a Public Journal. It takes inspiration from The Journal of an Enigmatic Mind.
 compartir: true
 enableToc: true
-lastmod: 2023-10-04
+lastmod: 2023-10-05
 ---
 
 > [!info] Acknowledgements
 > 
 > This page takes inspiration from the [Journal of an Enigmatic Mind](https://speyllsite.pages.dev/journal/). It explores the concept of keeping a public journal, something I haven't done before.
 
-## 2023-10-04
+## 2023-10-05
 
 ### GitHub
 
@@ -22,6 +22,12 @@ lastmod: 2023-10-04
 
 * Changed certain colors to improve accessibility of the site.
 * New dark mode matches closer to what the Digital Garden looks like.
+
+### Firefox
+
+* Updated the description on my Firefox extensions. Fixed a link to the tutorial for unlocking Firefox sidebar's width.
+* Took the opportunity and updated missing logos with UXWing's collection.
+* Added an Acknowledgements section to the description attributing the icons to UXWing.
 
 > [Link Of The Day](https://en.m.wikipedia.org/wiki/Pareto_principle)
 
