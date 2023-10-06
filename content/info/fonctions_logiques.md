@@ -6,7 +6,6 @@ tags:
 - maths
 - logique
 ---
-
 # Variables et fonctions logiques
 On parle de circuits **numériques** / **logiques** (en opposition avec les circuits **analogiques** qui sont convertis en grandeurs numériques) ⇒ **2 états** possibles, par exemple :
 - contact ouvert ou fermé

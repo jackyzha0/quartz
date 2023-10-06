@@ -1,5 +1,5 @@
 ---
-title: "vrakonor"
+title: Accueil
 enableToc: false
 ---
 
@@ -13,10 +13,12 @@ Pour l'instant, il y a du contenu à propos de [maths](tags/maths), d' [informat
 > Ce site est actuellement en cours de mise à jour vers la version 4 de Quartz. Il peut donc y avoir quelques petits bugs.
 > Ce qu'il me reste à faire :
 >
-> - [ ] Organiser les notes dans des dossiers
+> - [x] Organiser les notes dans des dossiers
 > - [ ] Refaire le `footer` avec des icônes
 > - [ ] Corriger les éventuels bugs de visualisation
 >      - [ ] Bug d'affichage du titre avec les emojis
+>      - [ ] Changer les polices
+>  - [ ] Afficher la table des matières en vue mobile et PC
 
 ## 📑 Utilisation du site
 
@@ -28,4 +30,4 @@ S'il y a un problème sur le site, ou que tu souhaites faire part d'un commentai
 
 ## 👨‍💻 Qui-suis je ?
 
-Je suis Conor, 23 ans, actuellement en licence d'informatique. J'aime bien faire des projets que je commence et je finis jamais, j'espère que ce sera pas le cas pour celui-là. Si tu veux en savoir plus sur moi, je te dirige vers ma [présentation plus complète](notes/about.md).
+Je suis Conor, 23 ans, actuellement en licence d'informatique. J'aime bien faire des projets que je commence et je finis jamais, j'espère que ce sera pas le cas pour celui-là. Si tu veux en savoir plus sur moi, je te dirige vers ma [présentation plus complète](about.md).
