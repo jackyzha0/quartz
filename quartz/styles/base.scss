@@ -97,6 +97,8 @@ a {
   }
 
   & article {
+    position: relative;
+
     & > h1 {
       font-size: 2rem;
     }
@@ -330,7 +332,6 @@ pre {
 
   &:has(> code.mermaid) {
     border: none;
-    position: relative;
   }
 
   & > code {
