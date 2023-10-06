@@ -96,7 +96,10 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
           const slug = file.data.slug!
 
           const date = getDate(ctx.cfg.configuration, file.data) ?? new Date()
-          if ((opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) && (slug.startsWith(feed) || feed == "index")) {
+          if (
+            (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) &&
+            (slug.startsWith(feed) || feed == "index")
+          ) {
             linkIndex.set(slug, {
               title: file.data.frontmatter?.title!,
               links: file.data.links ?? [],
@@ -136,7 +139,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
 
       const fp = path.join("static", "contentIndex") as FullSlug
       const simplifiedIndex = Object.fromEntries(
-        Array.from(feedIndices.get("index") ?? [] ).map(([slug, content]) => {
+        Array.from(feedIndices.get("index") ?? []).map(([slug, content]) => {
           // remove description and from content index as nothing downstream
           // actually uses it. we only keep it in the index as we need it
           // for the RSS feed
