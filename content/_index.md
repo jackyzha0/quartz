@@ -16,9 +16,9 @@ Pour l'instant, il y a du contenu à propos de [maths](tags/maths), d' [informat
 > - [x] Organiser les notes dans des dossiers
 > - [ ] Refaire le `footer` avec des icônes
 > - [ ] Corriger les éventuels bugs de visualisation
->      - [ ] Bug d'affichage du titre avec les emojis
->      - [ ] Changer les polices
->  - [ ] Afficher la table des matières en vue mobile et PC
+>   - [ ] Bug d'affichage du titre avec les emojis sur mobile
+>   - [ ] Changer les polices
+> - [x] Afficher la table des matières en vue mobile et PC
 
 ## 📑 Utilisation du site
 
