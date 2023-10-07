@@ -27,3 +27,5 @@ There'll also be a small blog component to it.
 ## Status Updates
 - I finally got around to looking into Mastodon and the Fediverse more broadly. The ideas are *insanely* cool. Expect pages and maybe projects on it in future.
 - I swapped from a custom compiled Zen kernel to the CachyOS-Bore-EEVDF kernel available in the Copr repos, and holy crap, the performance is night and day. All of the options in games that would lock my CPU-bound eGPU setup to less than 60 frames are now open to me, and graphical fidelity is better than ever.
+
+See you in October!
