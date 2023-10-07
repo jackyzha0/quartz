@@ -3,7 +3,8 @@ title: Summary of Changes for September 2023
 draft: false
 tags:
   - "#update"
-date: 2023-09-30
+date: 2023-09-01
+lastmod: 2023-09-30
 ---
 ## Housekeeping
 Happy spooky season! I'm going to start tracking lists of changes that happen during the previous month. This should provide a nice little bump to the RSS feed since I edit pages post-creation a lot.
