@@ -1,5 +1,6 @@
 ---
 title: "Latex Cheatsheet"
+date: 2023-03-16
 tags:
 - info
 - latex
@@ -8,7 +9,7 @@ tags:
 ---
 
 > [!hint] Information
-> 
+>
 > La plupart des symboles LaTeX peuvent être trouvés sur le site [Detexify](https://detexify.kirelabs.org/classify.html), mais cette cheatsheet présente ceux que j'utilise le plus souvent
 
 # Texte
@@ -36,6 +37,7 @@ $$
 3x+2=5
 \end{cases}
 $$
+
 ```latex
 \begin{cases}
 2x+1=3 \\
@@ -44,6 +46,7 @@ $$
 ```
 
 ### Matrice
+
 #### Crochets
 
 $$
@@ -51,6 +54,7 @@ $$
 1&2&3 \\ 4&5&6 \\ 7&8&9
 \end{bmatrix}
 $$
+
 ```latex
 \begin{bmatrix}
 1&2&3 \\ 4&5&6 \\ 7&8&9
@@ -58,11 +62,13 @@ $$
 ```
 
 #### Parenthèses
+
 $$
 \begin{pmatrix}
 1&2&3 \\ 4&5&6 \\ 7&8&9
 \end{pmatrix}
 $$
+
 ```latex
 \begin{pmatrix}
 1&2&3 \\ 4&5&6 \\ 7&8&9
@@ -70,11 +76,13 @@ $$
 ```
 
 #### Barres verticales
+
 $$
 \begin{vmatrix}
 1&2&3 \\ 4&5&6 \\ 7&8&9
 \end{vmatrix}
 $$
+
 ```latex
 \begin{vmatrix}
 1&2&3 \\ 4&5&6 \\ 7&8&9
@@ -82,11 +90,13 @@ $$
 ```
 
 #### Accolades
+
 $$
 \begin{Bmatrix}
 1&2&3 \\ 4&5&6 \\ 7&8&9
 \end{Bmatrix}
 $$
+
 ```latex
 \begin{Bmatrix}
 1&2&3 \\ 4&5&6 \\ 7&8&9
@@ -94,11 +104,13 @@ $$
 ```
 
 #### Sans délimiteurs
+
 $$
 \begin{matrix}
 1&2&3 \\ 4&5&6 \\ 7&8&9
 \end{matrix}
 $$
+
 ```latex
 \begin{matrix}
 1&2&3 \\ 4&5&6 \\ 7&8&9
@@ -110,14 +122,17 @@ $$
 $$
 \lim_{n\to\infty}u_n-1
 $$
+
 ```latex
 \lim_{n\to\infty}u_n-1
 ```
 
 ### Intégrales
+
 $$
 \int_{0}^{1}x^{2}dx
 $$
+
 ```latex
 \int_{0}^{1}x^{2}dx
 ```
@@ -127,6 +142,7 @@ $$
 $$
 \sum_{k=0}^{n} k
 $$
+
 ```latex
 \sum_{k=0}^{n} k
 ```
@@ -134,6 +150,7 @@ $$
 $$
 \prod_{k=0}^{n} k
 $$
+
 ```latex
 \prod_{k=0}^{n} k
 ```
@@ -171,9 +188,10 @@ $$
 | inclus dans / contient                 | `\subseteq` / `\supseteq`     | $\subseteq$ / $\supseteq$     |
 | vecteur                                | `\overrightarrow{AB}`         | $\overrightarrow{AB}$         |
 
-
 # Lettres grecques
+
 ## Minuscules
+
 | Lettre           | Commande      | Résultat      |
 | ---------------- | ------------- | ------------- |
 | alpha            | `\alpha`      | $\alpha$      |
@@ -203,7 +221,6 @@ $$
 | psi              | `\psi`        | $\psi$        |
 | omega            | `\omega`      | $\omega$              |
 
-
 ## Majuscules
 
 | Lettre  | Commande   | Résultat   |
@@ -218,4 +235,4 @@ $$
 | upsilon | `\Upsilon` | $\Upsilon$ |
 | phi     | `\Phi`     | $\Phi$     |
 | psi     | `\Psi`     | $\Psi$     |
-| omega   | `\Omega`   | $\Omega$   | 
+| omega   | `\Omega`   | $\Omega$   |

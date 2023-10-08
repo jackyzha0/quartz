@@ -1,5 +1,6 @@
 ---
 title: "Fonctions logiques élémentaires, algèbre de Boole"
+date: 2023-01-31
 tags:
 - info
 - algèbre
@@ -7,7 +8,9 @@ tags:
 - logique
 ---
 # Variables et fonctions logiques
+
 On parle de circuits **numériques** / **logiques** (en opposition avec les circuits **analogiques** qui sont convertis en grandeurs numériques) ⇒ **2 états** possibles, par exemple :
+
 - contact ouvert ou fermé
 - transistor bloqué ou saturé
 
@@ -17,8 +20,9 @@ Ces circuits sont facilités par l'utilisation de l'**algèbre de Boole** ⇒ ma
 
 > [!info] Définitions
 > Une **variable logique** est une grandeur qui ne peut prendre qu'un nombre fini d'états discrets
-> 
+>
 > **L'algèbre de Boole** est l'étude du comportement :
+>
 > - des variables prenant leurs valeurs dans l'ensemble (0,1)
 > - des **fonctions** de ces variables prenant leurs valeurs dans le même ensemble
 
@@ -26,11 +30,12 @@ Donc, pour $n$ variables binaires indépendantes $x_{1},x_{2},x_{n}$, une foncti
 
 > [!example] Fonction à 3 variables
 > Par exemple pour une fonction $f(x_{1},x_{2},x_{3})$, elle peut prendre la forme suivante :
+>
 > - $f(0,0,0)=1$
 > - $f(0,0,1)=0$
 > - $f(1,1,1)=0$
 > - etc.
-> 
+>
 > Il y a **$2^{3}$ combinaisons binaires** possibles pour les 3 variables donc **8 combinaisons**
 
 # Portes `OU`, `ET`, `NON`
@@ -38,6 +43,7 @@ Donc, pour $n$ variables binaires indépendantes $x_{1},x_{2},x_{n}$, une foncti
 L'algèbre booléenne est plus facile à manimuler que l'algèbre ordinaire parce qu'il n'y a que **2 valeurs possibles** ⇒ pas de fraction, de partie décimale, de nombre négatif, de racine carrée...
 
 > [!important] 3 opérations élémentaires
+>
 > - Addition logique : `OU` $+$
 > - Multiplication logique : `ET` ‧
 > - Inversion : `NON` $-$ *(barre de surlignement)*
@@ -58,6 +64,7 @@ Deux symboles possibles pour `OU` :
 ![](images/Pasted%20image%2020230119144147.png)
 
 > [!info] Propriétés
+>
 > - Associativité : $(A+B)+C=A+B+C$
 > - Commutativité : $A+B=B+A$
 > - Idempotence : $A+A=A$
@@ -66,15 +73,17 @@ Deux symboles possibles pour `OU` :
 > - $A+1=1$
 
 ### Exemple d'utilisation du `OU`
+
 Dans certains systèmes de régulation industriels, on veut que la fonction de sortie se mette en marche quand une des valeurs entrées dépasse un seuil. Par exemple, dans un procédé chimique, l'alarme doit se déclencher **quand la température dépasse une valeur maximale OU quand la pression dépasse une certaine limite**.
 
 On aura alors le montage suivant :
 
 ![](images/Pasted%20image%2020230119144752.png)
 
-Dans ce système, la sortie des comparateurs passe à un niveau logique 1 quand la température atteint la température maximale (idem pour la pression P). 
+Dans ce système, la sortie des comparateurs passe à un niveau logique 1 quand la température atteint la température maximale (idem pour la pression P).
 
-Composants : les constructeurs de circuits intégrés proposent les boîtiers suivants : 
+Composants : les constructeurs de circuits intégrés proposent les boîtiers suivants :
+
 - 4 portes OU à 2 entrées : CI 7432
 - 6 portes OU à 2 entrées : CI 74832
 
@@ -96,6 +105,7 @@ Table de vérité :
 ![](images/Pasted%20image%2020230119145043.png)
 
 > [!info] Propriétés
+>
 > - Associativité : $(A\cdot B)\cdot C=A\cdot B\cdot C$
 > - Commutativité : $A\cdot B=B\cdot A$
 > - Idempotence : $A\cdot A=A$
@@ -120,10 +130,11 @@ Opération avec **une seule entrée** et **une seule sortie**. Le `NON` prend l'
 
 > [!info] Vocabulaire
 > On peut dire :
+>
 > - NON A
 > - inverse de A
 > - complément de A
-> 
+>
 > Donc l'opération s'appelle aussi **l'inversion** ou la **complémentation**
 
 Table de vérité
@@ -137,14 +148,15 @@ Symboles possibles :
 
 ![](images/Pasted%20image%2020230119145915.png)
 
-
 > [!info] Propriétés
+>
 > - $\overline{\overline{A}}=A$
 > - $A+\overline{A}=1$
 > - $A\cdot\overline{A}=0$
 > - $A+\overline{A}\cdot B=A+B$ que l'on peut écrire aussi $\overline{A}+AB=\overline{A}+B$ ou encore $\overline{(B+C)}+(B+C)X=\overline{(B+C)}+X$
 
 # Théorèmes de De Morgan
+
 Deux théorèmes importants :
 
 $$
@@ -155,9 +167,9 @@ $$
 $$
 
 Ces théorèmes permettent de simplifier des expressions :
+
 1. une fonction `ET` peut être fabriquée à partir de `OU` et `NON`
 2. une fonction `OU` peut être fabriquée à partir de `ET` et `NON`
-
 
 1. On peut écrire avec la première forme : $A\cdot B=\overline{\overline{A\cdot B}}=\overline{\overline{A}+\overline{B}}$
 
@@ -170,7 +182,7 @@ Ces théorèmes permettent de simplifier des expressions :
 ## Démonstration de $A+\overline{A}\cdot B=A+B$
 
 $A+\overline{A}B = \overline{\overline{A+\overline{A}B}}$
-En appliquant le théorème : $A+\overline{A}B=\overline{\overline{A}\cdot\overline{\overline{A}B}}=\overline{\overline{A}\cdot(A+\overline{B})}$ 
+En appliquant le théorème : $A+\overline{A}B=\overline{\overline{A}\cdot\overline{\overline{A}B}}=\overline{\overline{A}\cdot(A+\overline{B})}$
 Et : $\overline{\overline{A}\cdot(A+\overline{B})}=\overline{\overline{A}A+\overline{A}\cdot\overline{B}}=\overline{\overline{A}\cdot\overline{B}}= A+B$
 
 # Fonctions logiques `NON ET`, `NON OU`, `OU EXCLUSIF`
@@ -216,6 +228,7 @@ Doit réaliser un circuit dont l'expression est $X=A\cdot B+C\cdot D$
 **Contraintes :** il doit utiliser le moins de circuits intégrés (CI) possible
 
 **Hypothèses :** CI disponibles suivants :
+
 - 1 boîtier 7400 (4portes `NAND` 2 entrées)
 - 1 boîtier 7408 (4portes `ET` 2 entrées)
 - 1 boîtier 7432 (4portes `OU` 2 entrées)
@@ -291,6 +304,7 @@ La sortie d'une fonction OU EXCLUSIF (XOR) à deux entrées est dans l'état 1 s
 ![](images/Pasted%20image%2020230126141258.png)
 
 > [!info] Propriétés
+>
 > - Associativité
 > - Commutativité
 > - $A\oplus 0=A$
@@ -311,6 +325,7 @@ Ses symboles sont :
 ![](images/Pasted%20image%2020230126141756.png)
 
 # Exercices d'applications
+
 ## Exercice 1
 
 *Complétez les théorèmes de Boole suivants. X représente une variable binaire prenant soit la valeur 0, soit la valeur 1*

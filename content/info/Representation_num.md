@@ -1,5 +1,6 @@
 ---
 title: "Numération : représentation des nombres"
+date: 2023-01-09
 tags :
  - info
  - codage
@@ -7,6 +8,7 @@ tags :
 ---
 
 ## I Système de numération
+
 ### I.1 - Introduction
 
 Un entier naturel N dans une base b, peut se décomposer tel que :
@@ -42,13 +44,12 @@ Les poids sont des puissances de 10 positives : $10^{i}$
 >
 > 7 est dit le **poids faible** (nombre tout à droite)
 
-
 > [!danger] Attention dans la décomposition
 >
 > décalage d'indice entre la position et le poids (dans l'exemple précédent, 9 est à la troisième position mais avec un poids de 2)
 
-
 #### Partie fractionnaire (après la virgule)
+
 Donc $i<0$ et $n_{10} = \sum_{p}^{i-1}\alpha_{i}10^{i}$
 
 Même chose que précédemment mais les puissances de 10 sont négatives (car $i<0$)
@@ -58,6 +59,7 @@ Même chose que précédemment mais les puissances de 10 sont négatives (car $i
 > $25,308 = 8\times 10^{-3} + 0\times 10^{-2} + 3\times 10^{-1} + 5\times 10^{0} + 2\times 10^{1}$
 
 ### I.3 - nombres binaires (base 2)
+
 Base la + utlisée en informatique : a deux valeur (0 ou 1), que l'on peut aussi noter (Vrai/Faux)
 
 Les symboles utilisés dans la base binaires = **bits** (binary digit)
@@ -110,6 +112,7 @@ $$N_{(2)}\sum_{i=0}^{p} \alpha_{i}16^{i} = \alpha_{0}16^{0} +...+ \alpha_{p}16^{
 > $AF,D8_{(16)}=8\times 16^{-2} + D\times 16^{-1} + F\times 16^{0} +A\times 16^{1}$
 
 ## II Conversions (transcodage)
+
 On cherche les opérations pour changer de base. Plus la base est petite, plus le nombre de symboles équivalent en sortie de conversion est grand.
 
 ### II.1 - Conversion d'un nombre en base b (2 ou 16) à un nombre en base 10
@@ -132,6 +135,7 @@ De même avec la base 16 :
 ### II.2 - Conversion d'un nombre en base 10 à un nombre en base b (2 ou 16)
 
 Méthode un peu plus complexe que dans l'autre sens. Il existe 2 méthodes :
+
 - par soustraction
 - par division
 
@@ -170,7 +174,6 @@ $$2^{k-1}<N_{(10)}<2^{k}$$
 >
 > Donc on a $95_{(10)}=1011111_{(2)}$
 
-
 > [!example] Convertir 95<sub>(10)</sub> en base 16
 >
 > - $95 - 5\times16 = 15$
@@ -178,15 +181,13 @@ $$2^{k-1}<N_{(10)}<2^{k}$$
 >
 > Donc $95_{(10)}=5F_{(16)}$
 
-
 #### Méthode par divisions euclidiennes successives par b
-##### Partie entière
 
+##### Partie entière
 
 > [!danger] Attention
 >
 > Lecture de bas en haut pour cette méthode contrairement à la méthode précédente qui se fait de haut en bas
-
 
 > [!example] Convertir 95<sub>(10)</sub> en base 2
 >
@@ -260,7 +261,6 @@ $$2^{k-1}<N_{(10)}<2^{k}$$
 >
 > Donc on obtient le nombre (**lecture de bas en haut des restes**) : $1011111_{(2)}$
 
-
 > [!example] Convertir 95<sub>(10)</sub> en base 2
 >
 > $$
@@ -284,8 +284,6 @@ $$2^{k-1}<N_{(10)}<2^{k}$$
 >
 > Donc les restes sont $5$ et $15$ donc le nombre est $5F_{(16)}$
 
-
-
 > [!hint] Petites astuces
 >
 > - Les multiples de b se terminent par 0 :
@@ -304,13 +302,12 @@ $$2^{k-1}<N_{(10)}<2^{k}$$
 > | ---------------- | ------ | ------- | ---------- | ----------------- |
 > | Plage de valeurs | 0 à 15 | 0 à 255 | 0 à 65 535 | 0 à 4 294 672 296 |
 
-
 ##### Partie fractionnaire
+
 On peut utiliser la [Méthode par soustraction](#Méthode%20par%20soustraction) pour la partie fractionnaire
 
 La méthode de division successive ne fonctionne pas donc on utilise la méthode de **multiplication successives par b**
-	=> Le calcul peut être infini pour la partie fractionnaire
-
+ => Le calcul peut être infini pour la partie fractionnaire
 
 > [!example] Convertir 0,375<sub>(10)</sub> en base 2
 >
@@ -340,26 +337,25 @@ Base binaire = 2<sup>2</sup>
 Base hexadécimale = 2<sup>4</sup>
 Donc la conversion est assez rapide car on peut faire des paquets de bits
 
-
 > [!info] **Hexadécimal vers binaire**
 >
 > Chaque symbole est remplacé par 4 bits
 
 > [!info] **Binaire vers hexadécimal**
+>
 > - 1 paquet de 4 bits = 1 symbole
 > - Séparation de la partie entière et de la partie fractionnaire
-> 	- **Partie entière** : de la droite vers la gauche
-> 	- **Partie fractionnaire** : de la gauche vers la droite
+>   - **Partie entière** : de la droite vers la gauche
+>   - **Partie fractionnaire** : de la gauche vers la droite
 > - **Rajouter des 0 si besoin**
 
-
 > [!example] Convertir FA,8<sub>(16)</sub> en base 2
+>
 > - F en binaire : 1111<sub>(2)</sub> (on peut passer par l'intermédiaire de la base 10, où F vaut 15 si besoin)
 > - A en binaire : 1010<sub>(2)</sub>
 > - 8 en binaire : 1000 (car $8=2^{3}$)
 >
 > Donc : $F1,8_{(16)}=1111\ 1010, 1000_{(2)}$
-
 
 > [!example] Convertir 10111,01<sub>(2)</sub> en base 16
 >
@@ -367,23 +363,24 @@ Donc la conversion est assez rapide car on peut faire des paquets de bits
    <mark style="background: #FFF3A3A6;">001</mark> 0111, 01<mark style="background: #FFF3A3A6;">00</mark>
 >
 > Donc :
+>
 > - 0001<sub>(2)</sub> = 1<sub>(16)</sub>
 > - 0111<sub>(2)</sub> = 7<sub>(16)</sub>
 > - 0100<sub>(2)</sub> = 4<sub>(16)</sub>
 >
 > Soit :  0001 0111,0100<sub>(2)</sub> = 17,4<sub>(16)</sub>
 
-
 ## III Opérations
+
 ### Additions
+
 Comme en décimal (indiquer les retenues)
 
-
 > [!info] Règles en base 2
+>
 > - 1<sub>(2)</sub> + 1<sub>(2)</sub> = 10<sub>(2)</sub>
 > - 1<sub>(2)</sub> + 0<sub>(2)</sub> = 1<sub>(2)</sub>
 > - 1<sub>(2)</sub> + 1<sub>(2)</sub> + 1<sub>(2)</sub> = 11<sub>(2)</sub>
-
 
 > [!example] 111<sub>(2)</sub> + 011<sub>(2)</sub>
 >
@@ -399,12 +396,12 @@ Comme en décimal (indiquer les retenues)
 > \end{aligned}
 > $$
 
-
 > [!tip] Astuce pour la base 16
 >
 > On complète pour arriver à 10<sub>(16)</sub>
 >
 > *Exemples*
+>
 > - A<sub>(16)</sub> + <mark style="background: #FF5582A6;">8<sub>(16)</sub></mark>
 >   = A<sub>(16)</sub> + <mark style="background: #FF5582A6;">6<sub>(16)</sub> +2<sub>(16)</sub></mark> car A+6 = 16
 >
@@ -412,31 +409,27 @@ Comme en décimal (indiquer les retenues)
 >
 > - C<sub>(16)</sub> + <mark style="background: #FFB86CA6;">8<sub>(16)</sub></mark> = C<sub>(16)</sub> + <mark style="background: #FFB86CA6;">4<sub>(16)</sub> + 4<sub>(16)</sub></mark> = 14<sub>(16)</sub>
 
-
 > [!example] 68<sub>(16)</sub> + 3A<sub>(16)</sub>
 >
 > $$
 > \begin{aligned}
 > \begin{array}{rl}
->   & ① & \\
->  & 6 & 8 \\
+> & ① & \\
+> & 6 & 8 \\
 > \text{+}   & 3 & A \\
->  & - & - \\
->  & A &  2
+> & - & - \\
+> & A &  2
 > \end{array}
 > \end{aligned}
 > $$
 
 ### Soustractions
 
-
 > [!info] Règles pour la base 2
 >
 > 1<sub>(2)</sub> - 1<sub>(2)</sub> = 0
 >
 > 10<sub>(2)</sub> - 1<sub>(2)</sub> = 1
-
-
 
 > [!example] Exemples en base 2
 >
@@ -468,8 +461,6 @@ Comme en décimal (indiquer les retenues)
 >
 > Car 0 - (1 + 1) = 0 - 10 --> on doit rajouter une unité
 
-
-
 > [!example] Exemple en base 16
 >
 > 68<sub>(16)</sub> - 3A<sub>(16)</sub>
@@ -477,17 +468,17 @@ Comme en décimal (indiquer les retenues)
 > $$
 > \begin{aligned}
 > \begin{array}{rl}
->  & 6 & _{①}8 \\
->  \text{-} & _{+①}3 & A \\
->  & - & - \\
->  & 2 &  E
+> & 6 & _{①}8 \\
+> \text{-} & _{+①}3 & A \\
+> & - & - \\
+> & 2 &  E
 > \end{array}
 > \end{aligned}
 > $$
 
 > [!tip] Astuces en base 16
 >
-> Pour faire 18 - A, de la même manière que pour l'[addition](#Additions) on complète à 10<sub>(16)</sub>. Comme A = 8+2, on a :
+> Pour faire 18 - A, de la même manière que pour l'[addition](#additions) on complète à 10<sub>(16)</sub>. Comme A = 8+2, on a :
 > 18<sub>(16)</sub> - A<sub>(16)</sub> = 18<sub>(16)</sub> - 8<sub>(16)</sub> - 2<sub>(16)</sub> = 10<sub>(16)</sub> - 2<sub>(16)</sub> = E<sub>(16)</sub>
 >
 > Autre exemple :
@@ -499,4 +490,5 @@ Comme en décimal (indiquer les retenues)
 > (car on a en base 16 : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, <mark style="background: #FF5582A6;">D</mark>, E, F, <mark style="background: #FFF3A3A6;">10</mark>, 11, 12 ... 1A, 1B ... etc.)
 
 # Conclusion
+
 On a vu les différentes manières de coder un nombre dans différentes bases. Les nombres ne sont pas directement codés en binaire, ou en hexadécimal, il existe des **formats** pour les  [coder en machine](Systemes_num.md).

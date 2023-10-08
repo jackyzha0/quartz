@@ -1,5 +1,6 @@
 ---
 title: "Equations linéaires"
+date: 2023-01-27
 tags:
 - maths
 - algèbre
@@ -12,18 +13,21 @@ tags:
 Pour résoudre un système linéaire de ce type ⇒ utilisation d'un **algorithme**
 
 Dans le cas d'une intersection de droites (2 inconnues), les solutions peuvent être :
+
 - **infinies** : les droites sont confondues
 - **uniques** : un point d'intersection
 - **pas de solution** : les droites ne se croisent pas.
 
 Dans le cas d'une intersection de plans (3 inconnues), les solutions peuvent être :
-- **infinies** : 
-	- une droite
-	- un plan
+
+- **infinies** :
+  - une droite
+  - un plan
 - **uniques** : un point d'intersection
 - **pas de solutions.**
 
 > [!info] Opérations possibles sur un système
+>
 > - Échanger 2 lignes
 > - Multiplier (ou diviser) par un réel **non nul**
 > - Ajouter à une équation un multiple d'une autre équation ($L_{2}\leftarrow L_{2}-L_{1}$ qui correspond à soustraire la première ligne à la seconde)
@@ -41,10 +45,11 @@ Il s'agit d'une matrice $3\times 4$ car elle a **3 lignes** et **4 colonnes**.
 
 > [!info] Matrices
 > On note une matrice $A$ de dimension $n\times m$ une matrice avec $n$ lignes et $m$ colonnes.
+>
 > - L'élement $a_{ij}$ de la matrice $A$ correspond à l'élément situé à la $i_{ème}$ ligne et la $j_{ème}$ colonne
 > - Deux matrices $A = [a_{ij}]$ et $B = [b_{ij}]$ sont égales si elles ont la même taille et tous les coefficients sont égaux
-> - Une matrice $A = [a_{ij}]$  de taille $n\times m$ est une matrice carrée si elle a autant de lignes que de colonnes. Les coefficients $a_{11}, a_{22},...,a_{nn}$ constituent la diagonale de A. 
-> - Une matrice carrée de taille $n\times n$ est dite diagonale si les coefficients au-dessus et en dessous de la diagonale sont nuls, c’est-à-dire $a_{ij} = 0$ quand$i \neq j$ 
+> - Une matrice $A = [a_{ij}]$  de taille $n\times m$ est une matrice carrée si elle a autant de lignes que de colonnes. Les coefficients $a_{11}, a_{22},...,a_{nn}$ constituent la diagonale de A.
+> - Une matrice carrée de taille $n\times n$ est dite diagonale si les coefficients au-dessus et en dessous de la diagonale sont nuls, c’est-à-dire $a_{ij} = 0$ quand$i \neq j$
 > - Une matrice carrée de taille $n\times n$ est dite triangulaire supérieure si les coefficients au-dessous de la diagonale sont nuls, c’est-à-dire  $a_{ij} = 0$ quand $i > j$.
 
 ## Matrice augmentée
@@ -94,6 +99,7 @@ Cet algorithme permet de résoudre les systèmes linéaires :
 
 > [!info] Définition de la Frel
 > Une matrice est une Frel si :
+>
 > - Si une ligne a un coefficient $\neq 0$, alors son premier coefficient $\neq 0$ (en partant de la gauche), appelé **pivot** est **égal à 1**
 > - Dans la colonne d'un pivot, les **autres coefficients sont égaux à 0**
 > - Si une ligne a un pivot, alors toutes les autres lignes au-dessus ont un pivot à **gauche** de celui-ci
@@ -113,10 +119,11 @@ est une Frel, avec les <mark style="background: #FF5582A6;">pivots</mark> corres
 
 > [!important] Nombre de solutions d'un système linéaire
 > On note $A$ la matrice des coefficients du système et $B$ sa matrice augmentée
+>
 > - Un système est **inconsistant** $\Leftrightarrow Frel(B)$ contient la ligne $\begin{bmatrix}0&0&0&|&1\end{bmatrix}$, qui représente l'équation $0=1$
 > - Si un système est **consistant**, alors il a soit :
-> 	- exactement **une solution**, quand $Frel(A)$ a un pivot par colonne
-> 	- une **infinité de solutions** quand une colonne de $Frel(A)$ ne contient pas de pivot. Les variables correspondant à une colonne sans pivots sont appelées **libres**
+>   - exactement **une solution**, quand $Frel(A)$ a un pivot par colonne
+>   - une **infinité de solutions** quand une colonne de $Frel(A)$ ne contient pas de pivot. Les variables correspondant à une colonne sans pivots sont appelées **libres**
 
 # Rang d'une matrice
 
@@ -125,7 +132,7 @@ est une Frel, avec les <mark style="background: #FF5582A6;">pivots</mark> corres
 
 > [!important] Théorème sur le rang
 > On note $A$ la matrice des coefficients d'un système, de taille $n\times m$
-> 
+>
  > 1. On a **toujours** $\text{Rang}(A)\leq n$ et $\text{Rang}(A)\leq m$
 > 2. Si $\text{Rang}(A)=n$, alors le système est **consistant**.
 > 3. Si $\text{Rang}(A)=m$, alors le système a **au plus une solution.**
@@ -135,11 +142,11 @@ La propriété **4** revient à dire que l'on a moins d'1 pivot par colonne. Don
 
 > [!important] Théorème avec un système ayant moins d'équations que d'inconnues
 > Un tel système a soit :
+>
 > - pas de solutions
 > - une infinité de solutions
->   
+>
 > Car on n'aura forcément pas assez de pivots pour chaque colonne donc des variables libres
-
 
 Un système linéaire avec $n$ équations et $n$ lignes (donc avec une matrice des coefficients de taille $n\times n$) admet une unique solution si $\text{Rang}(M)=n$. La matrice des coefficients obtenue est la matrice **identité**, qui est une matrice diagonale avec uniquement des 1 comme coefficients :
 $$
@@ -160,7 +167,7 @@ $$
 
 On cherche alors à exprimer les coefficients **sans paramètres** et sous forme de Frel.
 
-Par exemple, on peut faire : 
+Par exemple, on peut faire :
 $$
 \begin{cases}
 L_{2}\leftarrow L_{2}-L_1 \\ L_{3}\leftarrow L_{3}-L_{1}
@@ -201,15 +208,16 @@ $$
 > $$
 > \begin{bmatrix}
 > \overrightarrow{V_{1}}&\overrightarrow{V_{2}}&...&\overrightarrow{V_{m}}
-> \end{bmatrix} \cdot 
+> \end{bmatrix} \cdot
 > \begin{bmatrix}
 > x_{1}  \\ x_{2} \\ . \\ . \\ x_{m}
 > \end{bmatrix} =x_{1}\overrightarrow{V_{1}}+=x_{2}\overrightarrow{V_{2}}+...+=x_{m}\overrightarrow{V_{m}}
 > $$
 
-Le produit d'une matrice par un vecteur donne une **combinaison linéaire** : expression construite à partir d'un ensemble de termes en multipliant chaque terme par une constante et en ajoutant le résultat. Par exemple, une combinaison linéaire de _x_ et _y_ serait une expression de la forme _ax + by_, où _a_ et _b_ sont des constantes.
+Le produit d'une matrice par un vecteur donne une **combinaison linéaire** : expression construite à partir d'un ensemble de termes en multipliant chaque terme par une constante et en ajoutant le résultat. Par exemple, une combinaison linéaire de *x* et *y* serait une expression de la forme *ax + by*, où *a* et *b* sont des constantes.
 
 > [!important] Propriétés sur les opérations de matrices
+>
 > - Associativité : $(A+B)+C=A+(B+C)$ et $(\alpha\beta)A=\alpha(\beta A)$
 
 # Relation entre vecteurs et systèmes
@@ -217,7 +225,7 @@ Le produit d'une matrice par un vecteur donne une **combinaison linéaire** : e
 $$
 \begin{cases} 3x_{1}+x_{2}=7 \\
 x_{1}+2x_{2}=4
-\end{cases} \rightarrow 
+\end{cases} \rightarrow
 \begin{bmatrix} 3x_{1}+x_{2} \\ x_{1}+2x_{2}
 \end{bmatrix} =
 \begin{bmatrix} 7 \\ 4

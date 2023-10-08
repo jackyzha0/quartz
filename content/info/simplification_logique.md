@@ -1,5 +1,6 @@
 ---
 title: "Représentation et Simplification des fonctions logiques"
+date: 2023-01-31
 tags:
 - info
 - logique
@@ -8,34 +9,38 @@ tags:
 ---
 
 Réaliser un dispositif logique comporte plusieurs étapes :
+
 1. Analyser le cahier des charges
 2. Représenter le fonctionnement logique du système ⇒ utilisation des équations logiques booléennes (peut être utile de les **simplifier**)
 3. Simplifier pour diminuer le nombre de circuits nécessaires
 4. Réaliser le dispositif
 
 Une fonction logique est représentable par :
+
 - une **table de vérité**
 - une/des **expressions/s logiques**
 - une **liste de nombres**.
 
 et elle peut être simplifiée par :
+
 - la méthode **algébrique**
 - la méthode de **Karnaugh**
 
 # Représentation des fonctions logiques
+
 ## Par la table de vérité
 
 Pour une fonction qui dépend de $n$ entrées, la table de vérité comporte $2^{n}$ lignes
 
 > [!example] Exemple d'une table de vérité
-> 
+>
 > A partir de l'énoncé de ce problème : *l’alarme se met en marche si la Pression est supérieure au seuil P<sub>0</sub> (condition P=1) ou si la pression est inférieure au seuil (condition P=0) et que la température est plus élevée que T<sub>0</sub> (condition T=1).*
-> 
+>
 > | P   | T   | Alarme |
 > | --- | --- | ------ |
 > | 0   | 0   | 0      |
 > | 0   | 1   | 1      |
-> | 1   | 0   | 1      | 
+> | 1   | 0   | 1      |
 > | 1   | 1   | 1      |
 
 ## Par une expression logique
@@ -43,7 +48,7 @@ Pour une fonction qui dépend de $n$ entrées, la table de vérité comporte $2^
 A partir de la table de vérité, il faut considérer les combinaisons d'entrées pour lesquelles **la sortie vaut 1**
 
 > [!example] Exemple précédent
-> On a 3 combinaisons possibles, et cela correspond à la table de vérité du `ET` 
+> On a 3 combinaisons possibles, et cela correspond à la table de vérité du `ET`
 > Donc la représentation par expression logique est $P\times T$
 
 ### Somme de produits
@@ -62,14 +67,17 @@ $\overline{P}T+P\overline{T}+PT = \overline{\overline{\overline{P}T+P\overline{T
 Les formes **Somme de produit** et **Produit de sommes** sont appelées les formes canoniques.
 
 Pour la **somme de produit** (`OU` entre des `ET`) :
+
 - Chaque produit logique doit contenir toutes les variables logiques, sous forme normale ou complémentée
 - Cette forme de représentation permet assez directement de réaliser la fonction avec uniquement des portes `NAND`
 
 Pour le **produit de sommes** (`ET` entre des `OU`) :
+
 - Chaque somme logique doit contenir toutes les variables logiques, sous forme normale ou complémentée
 - Cette forme de représentation permet assez directement de réaliser la fonction avec uniquement des portes `NOR`
 
 #### Construire un produit de somme
+
 1. Construire toutes les sommes logiques qui existent avec les variables dont dépend notre fonction
 2. Faire le produit des sommes pour lesquelles la fonction vaut 0 (dans la table de vérité)
 
@@ -82,7 +90,7 @@ Donc dans l'exemple de l'alarme, le seul cas est pour $\overline{P}\times\overli
 Aussi appelée représentation par des **équivalents décimaux**
 Surtout utilisé quand le nombre de variables devient important
 
--  Définition d'un poids pour les variables (puissances de 2, en général le poids faibles et attribué à la variable la plus à droite) 
+- Définition d'un poids pour les variables (puissances de 2, en général le poids faibles et attribué à la variable la plus à droite)
 - On remplace chaque produit logique par son équivalent décimal en utilisant le poids des variables
 - La fonction est représentée par la liste des poids des produits qui sont présents dans la représentation **somme de produits**
 
@@ -90,9 +98,10 @@ Surtout utilisé quand le nombre de variables devient important
 > Une fonction $F(a,b,c,d)$ avec par exemple $2^{3}$ pour a, $2^2$ pour b, $2^1$ pour c et $2^0$ pour d
 > Le poids d'un produit est donc la somme des poids des variables à 1 dans le produit : $\overline{a}b\overline{c}d=2^{2}+2^{0}=4+1=5$ et donc $\overline{abcd}=0$
 > Au lieu de dire que la fonction F vaut 1 pour les combinaisons (par exemple) abcd=0101 et abcd=1000 et abcd=1001 et abcd=1110, on peut écrire :
+>
 > - F=1 pour (5, 8, 9, 14) ou encore
 > - F=(5, 8, 9, 14)
-> 
+>
 > Donc l'écriture est **plus concise**
 
 ### Exercice d'application
@@ -105,6 +114,7 @@ Forme somme de produit : $ab\overline{c}+a\overline{b}c+a\overline{b}\overline{c
 
 Poids : $a=4$, $b=2$,$c=1$
 Donc $F_{1}$ vaut 1 pour :
+
 - $001=1$
 - $010=2$
 - $011=3$
@@ -118,6 +128,7 @@ Forme somme de produits : $xyz\overline{t}+x\overline{y}zt+x\overline{y}z\overli
 
 Poids : $x=2^{3}=8$, $y=2^{2}=4$, $z=2$, $t=1$
 Donc $F_{2}$ vaut 1 pour :
+
 - 0001 = 1
 - 0100 = 4
 - 0101 = 5

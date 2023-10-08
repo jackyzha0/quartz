@@ -1,5 +1,6 @@
 ---
 title: "La notation O()"
+date: 2023-01-01
 tags:
 - maths
 - info
@@ -21,7 +22,7 @@ $O(g(N))$ est l'ensemble des fonctions dominées[^1] par $g(N)$
 3. $O(f(N)+g(N))=O(f(N))$, si $g$ est dominée par $f$
 
 > [!tip] Remarques
-> 
+>
 > - $O(c\cdot f(N))=O(f(N))$ permet de s'abstraire des spécificités de la machine, du langage, etc.
 > - $O(f(N)+c)=O(f(N))$ permet de négliger les opérations réalisées un nombre constant de fois dans l'algorithme : initialisation etc.
 
@@ -33,10 +34,11 @@ $O(g(N))$ est l'ensemble des fonctions dominées[^1] par $g(N)$
 # Ecriture de la complexité avec $O(N)$
 
 Les fonctions dominantes utilisées en complexité (pour un pire cas) :
+
 - O(1) : complexité constante
 - O($log_{2}(N)$) : logarithmique
 - O(N) : linéaire
--  O(N$\cdot log_{2}(N)$) : linéarithmique
+- O(N$\cdot log_{2}(N)$) : linéarithmique
 - O($N^2$) : quadratique
 - O($N^3$) : cubique
 - O($N^k$) : polynomiale (avec $k$ constante)

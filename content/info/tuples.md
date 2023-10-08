@@ -1,5 +1,6 @@
 ---
 title: "Tuples et types algébriques"
+date: 2023-01-30
 tags:
 - info
 - scala
@@ -11,12 +12,13 @@ tags:
 val stuff = (1,"Hello", true) //un exemple de tuple
 ```
 
-- une structure de données **très simple** 
-- paquet d’un nombre fixe de données manipulées comme un tout 
-- **l’ordre** dans lequel on place les données **est important** 
+- une structure de données **très simple**
+- paquet d’un nombre fixe de données manipulées comme un tout
+- **l’ordre** dans lequel on place les données **est important**
 
 > [!bug] Différences avec les tableaux
-> - ils peuvent contenir des données de types différents 
+>
+> - ils peuvent contenir des données de types différents
 > - ils sont immutables
 
 La **syntaxe** est de séparer les types par des virgules, le tout dans une parenthèse.
@@ -26,6 +28,7 @@ La **syntaxe** est de séparer les types par des virgules, le tout dans une pare
 ```
 
 > [!warning] La taille d'un tuple est contrainte par son type
+>
 > ```scala
 > var doublet : (Int, Int) = (1, 3) 
 > doublet = (4, 5, 6) // <-- interdit: types incompatibles
@@ -41,6 +44,7 @@ var zo: (Char, (Int, Double)) = ('a', (42, 3.2))
 ### Accéder aux composantes
 
 On utilise la syntaxe `._i`
+
 ```scala
 val foo: (String, Int, Int) = ("Wow", 1, 2) 
 println(foo._1) // affiche "Wow" en console 
@@ -58,15 +62,16 @@ Syntaxe :
 
 ```scala
 expr match { 
-	case (... , ... , ...) => ... 
-	case (... , ... , ...) => ... 
-	... 
-	case (... , ... , ...) => ... 
+ case (... , ... , ...) => ... 
+ case (... , ... , ...) => ... 
+ ... 
+ case (... , ... , ...) => ... 
 }
 ```
 
 > [!check] Motif valide de tuple
-> - La bonne taille : autant de composantes que le tuple `expr` sinon, erreur de compilation! 
+>
+> - La bonne taille : autant de composantes que le tuple `expr` sinon, erreur de compilation!
 > - motifs des composantes : doivent représenter des valeurs du bon type
 
 ### Immutabilité des tuples
@@ -86,6 +91,7 @@ var blob: (String, Int) = ("Yo", 5) blob = ("Hey", 3)
 ```
 
 > [!warning] Même dans une `var`, un tuple reste immutable
+>
 > ```scala
 > var blob: (String, Int) = ("Yo", 5) blob = ("Hey", 3) 
 > // blob._1 = "Hey" <-- ne compile toujours pas ! (immutabilité)
@@ -96,6 +102,7 @@ var blob: (String, Int) = ("Yo", 5) blob = ("Hey", 3)
 Le pattern-matching inspecte la valeur d'une expression mais surtout sa **structure**, sa "forme".
 
 De nouveaux motifs peuvent être utilisés pour le patter-matching :
+
 - tuples
 - imbriqués
 - variables
@@ -106,25 +113,29 @@ De nouveaux motifs peuvent être utilisés pour le patter-matching :
 Motif **universel** ⇒ il correspond à n'importe quoi du bon type, comme `_`, mais il permet de **nommer** ce n'importe quoi (→ plus joli que `._1` par exemple)
 
 Syntaxe : identifiant quelconque, commençant par une minuscule
+
 ```scala
 val truc : (Int, String) = ... 
 truc match { 
-	case (_, nom) => println(nom) //présence d'un motif universel `_`et d'un motif variable `nom` 
+ case (_, nom) => println(nom) //présence d'un motif universel `_`et d'un motif variable `nom` 
 }
 ```
 
 L'identifiant choisi (`nom` dans l'exemple) devient une `val` :
+
 - qui n'est utilisable que dans la branche du motif
 - et dont la valeur n'est déterminée qu'à l'exécution.
 
 > [!bug] Le motif variable peut masquer une `val` déclarée plus haut
+>
 > ```scala
 > val ok : String = "OK"
 > val x: (Int, String) = (3, "Blah")
 > x match {
-> 	case(_,ok) => println(ok) //Affiche "Blah" et non "OK", ce n'est pas la même variable
+>  case(_,ok) => println(ok) //Affiche "Blah" et non "OK", ce n'est pas la même variable
 > }
 > ```
+>
 > La portée de la variable `ok` dans le `match` est **locale à la branche**, et est donc prioritaire
 
 ### Motifs imbriqués
@@ -146,10 +157,10 @@ val user2: UserInfo = ("nlambert", "aeNg9aip", true)
   */ 
 
 def unameOfAdmin(user: UserInfo): String = { 
-	user match { 
-		case (uname, _, true) => uname 
-		case _ => "Not an admin" 
-	}
+ user match { 
+  case (uname, _, true) => uname 
+  case _ => "Not an admin" 
+ }
 }
 ```
 
@@ -158,8 +169,10 @@ Cela permet d'analyser la structure d'une valeur de façon "profonde" en imbriqu
 ## Types algébriques
 
 Les tuples :
+
 - utiles pour regrouper plusieurs données en une seule
 - `type` **alias** pour les tuples : améliore la lisibilité
+
 ```scala
 type Data = (Int,Int,Int) //jour, mois, année
 ```
@@ -168,11 +181,13 @@ type Data = (Int,Int,Int) //jour, mois, année
 > Un alias est juste un **autre nom**, pas un **nouveau type**
 
 > [!warning] Limitations des tuples
+>
 > - Accès aux composantes `._i` : sujet à erreur (par exemple date en FR et ENG) ⇒ solution (partielle) → le pattern-matching et les motifs variables
 > - Type sans alternatives : taille fixe ⇒ un $n$-tuple aura **toujours** $n$ composantes
 
-Les **types algébriques** permettent de 
-- définir un **nouveau** type de données, composite 
+Les **types algébriques** permettent de
+
+- définir un **nouveau** type de données, composite
 - nommer les composantes du type
 - autoriser les alternatives
 
@@ -197,6 +212,7 @@ Date(25,12,2018)
 > `Date` est le nom du type **et** du constructeur
 
 Pour accéder aux composantes, on utilise leur nom (notation pointée) :
+
 ```scala
 val d: Date = Date(10, 11, 2012) 
 println(d.jour + "-" + d.mois + "-" + d.an) // 10-11-2012
@@ -210,7 +226,7 @@ Les `case class` sont **immutables**, on doit donc renvoyer de **nouvelles valeu
  * @return le début de mois pour la date d 
  */ 
 def debutMois(d: Date): Date = { 
-	Date(1, d.mois, d.an)
+ Date(1, d.mois, d.an)
 }
 ```
 
@@ -222,25 +238,27 @@ Pour le pattern-matching, `Date` peut aussi être un **motif** :
  * @return une chaîne décrivant la date 
  */ 
 def description(d: Date): String = { 
-	d match { 
-		case Date(25, 12, _) => "Noël" 
-		case Date(31, 10, _) => "Halloween" 
-		case Date(14, 2, _) => "St Valentin" 
-		case _ => "" 
-	} 
+ d match { 
+  case Date(25, 12, _) => "Noël" 
+  case Date(31, 10, _) => "Halloween" 
+  case Date(14, 2, _) => "St Valentin" 
+  case _ => "" 
+ } 
 }
 ```
 
 ### `sealed trait` et `extends`
 
-Une image peut être : 
-- soit un rectangle : défini par sa longueur et sa largeur 
-- soit un cercle : défini par son rayon 
+Une image peut être :
+
+- soit un rectangle : défini par sa longueur et sa largeur
+- soit un cercle : défini par son rayon
 - soit plus compliquée : celle contenue dans un fichier
 
 ⇒ Création de type qui réunissent des types créés avec `case class`
 
 **Nommage du nouveau type par `sealed trait Type`**
+
 ```scala
 sealed trait Image 
 case class Rectangle(w: Float, h: Float) extends Image 
@@ -253,19 +271,22 @@ Le mot-clé `sealed` : ces variantes (les `case class` de ce fichier) sont les *
 
 ==On peut donc créer des types de tailles **diverses** et **hétérogènes** dans leurs types==
 
-On a le choix pour le type **déclaré** ⇒ cela détermine la validité des accès aux composantes. 
+On a le choix pour le type **déclaré** ⇒ cela détermine la validité des accès aux composantes.
+
 ```scala
 val r1: Rectangle = Rectangle(1, 3) // r1 de type Rectangle 
 println("Aire de r1 = " + (r1.h * r1.w)) // accès composantes OK 
 val r2: Image = Rectangle(2, 4) // r2 de type Image 
 println("Aire de r2 = " + ???) // r2.h et r2.w n'existent pas 
 ```
+
 Le type de la variante, ici `Rectangle`, est plus précis. Souvent, en programmation, il vaut mieux, quand c’est possible, réfléchir de manière générale, sur le type algébrique global, ici `Image`.
 
-Les types algébriques simples sont immutables ⇒ composés de `case class` 
+Les types algébriques simples sont immutables ⇒ composés de `case class`
 
-Pattern-matching : 
-- motifs des constructeurs: traiter tous les cas possibles 
+Pattern-matching :
+
+- motifs des constructeurs: traiter tous les cas possibles
 - motifs des composantes: accéder à leur contenu
 
 ```scala
@@ -274,11 +295,11 @@ Pattern-matching :
 * @return i est un cercle de manière certaine 
 * */ 
 def estUnCercle(i: Image): Boolean = { 
-	i match { 
-		case Circle(_) => true 
-		case Rectangle(_, _) => false 
-		case FromFile(_) => false 
-	} 
+ i match { 
+  case Circle(_) => true 
+  case Rectangle(_, _) => false 
+  case FromFile(_) => false 
+ } 
 }
 ```
 
@@ -287,6 +308,7 @@ def estUnCercle(i: Image): Boolean = {
 On souhaite calculer l'aire d'une image, on peut pour un cercle, pour un rectangle, mais pas pour un fichier (d'après les `case class` définis précédemment)
 
 On peut définir un **nouveau** type algébrique représentant qu'un résultat n'existe pas toujours :
+
 ```scala
 sealed trait Result 
 case class Ok(r: Double) extends Result 
@@ -294,21 +316,22 @@ case object Undef extends Result
 ```
 
 > [!bug] Remarque
-> Une `case class` sans composante se note `case object` 
+> Une `case class` sans composante se note `case object`
 
 Puis on peut utiliser ce type pour définir notre fonction :
 
 ```scala
 def aire(i: Image): Result = { 
-	i match { 
-		case Circle(r) => Ok(math.Pi * r * r) 
-		case Rectangle(h, w) => Ok(h * w) 
-		case FromFile(_) => Undef 
-	} 
+ i match { 
+  case Circle(r) => Ok(math.Pi * r * r) 
+  case Rectangle(h, w) => Ok(h * w) 
+  case FromFile(_) => Undef 
+ } 
 }
 ```
 
 Un type prédéfini joue le rôle du type `Result` : le type `Option[T]` où `T` est un type quelconque (`Double` dans l'exemple) avec 2 alternatives :
+
 - `Some` : 1 composante de type `T`
 - `None` : pas de composante.
 
@@ -318,21 +341,23 @@ Un type prédéfini joue le rôle du type `Result` : le type `Option[T]` où `T`
 * @return l'aire de l'image i, si on peut la calculer sans effet 
 * */ 
 def aire(i: Image) : Option[Double] = { 
-	i match { 
-		case Circle(r) => Some(math.Pi * r * r) 
-		case Rectangle(h, w) => Some(h * w) 
-		case FromFile(_) => None 
-	} 
+ i match { 
+  case Circle(r) => Some(math.Pi * r * r) 
+  case Rectangle(h, w) => Some(h * w) 
+  case FromFile(_) => None 
+ } 
 }
 ```
 
 ## Bilan
 
 Types de données composites :
+
 - tuples et types algébriques
 - modéliser des données composites, agrégeant plusieurs informations
 
 Pattern-matching :
-- motif tuples, variables, imbriqués, et constructeur 
-- motifs: contraintes sur les valeurs possibles 
+
+- motif tuples, variables, imbriqués, et constructeur
+- motifs: contraintes sur les valeurs possibles
 - moyen d’accéder au **contenu effectif** des composantes de la valeur composite

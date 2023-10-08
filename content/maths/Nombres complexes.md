@@ -1,10 +1,12 @@
 ---
 title: "Nombres complexes"
+date: 2023-01-27
 tags:
 - maths
 ---
 
 ## Formes des nombres complexes
+
 - **Forme algébrique :** $z = a+bi$
 - **Forme trigonométrique :** $z= |z| \times (\cos{\theta}+i\sin{\theta})$
 - **Forme exponentielle :** $z = |z|\times e^{i\theta}$
@@ -12,14 +14,18 @@ tags:
 Pour passer de la forme algébrique à une autre, il faut calculer le module et l'argument.
 
 ## Propriétés du module
+
 **Définition du module :** $|z| =\sqrt{a^2+b^2}$
+
 - $|z| = 0 \iff z=0$
 - $|z|=|\overline{z}|= |-\overline{z}|=|-z|$
 - $z\cdot \overline{z} = |z|^2$
 - $|z\cdot \overline{z}| = |z|\cdot|\overline{z}|$ et donc $\left|\frac{z}{\overline{z}} \right|= \frac{|z|}{|\overline{z}|}$  
 - $\forall n \in \mathbb{N}, |z^n|=|z|^{n}$  
-- **Inégalité triangulaire :** $|z+z'| \leq |z|+|z'|$    
+- **Inégalité triangulaire :** $|z+z'| \leq |z|+|z'|$
+
 ## Propriétés de l'argument
+
 **Définition de l'argument :**
 $$
 \begin{equation*}
@@ -38,27 +44,30 @@ $$
 - $\forall n \in \mathbb{N}, arg(z^{n})=n\cdot arg(z)(mod~2\pi)$
 
 ## Trigonométrie
+
 ![Cercle trigonométrique](images/cercle_trigo.png)
 
-
 ### Formules de trigonométrie
+
 **Additions et soustractions :**
+
 - $\sin(a+b) = \sin{a}\cos{b} + \sin{b}\cos{a}$ et $\sin(a-b)=\sin{a}\cos{b}-\sin{b}\cos{a}$
 - $\cos(a+b)=\cos{a}\cos{b}-\sin{a}\sin{b}$ et $\cos(a-b)=\cos{a}\cos{b}+\sin{a}\sin{b}$
 - $\cos(a)\cos(b)=\frac{1}{2}(\cos(a+b)+\cos(a-b))$
 - $\sin(a)\sin(b)=\frac{1}{2}(\cos(a-b)-\cos(a+b))$
 - $\sin(a)\cos(b)=\frac{1}{2}(\sin(a+b)+\sin(a-b))$
 
-
 **Autres formules**
 $$
 \cos^{2}a+ \sin^{2}a= 1
 $$
 D'où les formules suivantes :
+
 - $\cos(2a)=\cos^2a-\sin^{2}a=2\cos^2a-1=1-2\sin^2a$
 - $\sin(2a)=2\sin{a}\cos{a}$
 
 **Tangente** : $\tan\theta =\frac{\sin\theta}{\cos\theta}$
+
 - $\tan(a+b)=\frac{\tan{a}+\tan{b}}{1-\tan{a}\tan{b}}$
 - $\tan(a-b)=\frac{\tan{a}-\tan{b}}{1+\tan{a}\tan{b}}$
 
@@ -97,7 +106,6 @@ On peut aussi utiliser les formules de trigonométrie usuelles pour linéariser.
 >
 > - Si la fonction à linéariser est paire, on obtiendra au final que des cosinus (car cos est paire)  
 > - Si la fonction à linéariser est impaire, on aura au final que des sinus (car sin est impaire)
-
 
 ### Racines d'un nombre complexe
 #### Trouver les racines d'un nombre complexe

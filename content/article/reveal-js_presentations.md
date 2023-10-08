@@ -1,5 +1,6 @@
 ---
 title: "Présentations avec reveal-js"
+date: 2023-02-08
 tags:
 - info
 - tips
@@ -9,7 +10,9 @@ tags:
 Un petit article où je détaille mon utilisation de [reveal.js](https://revealjs.com), qui framework de présentations (type Powerpoint), et ce que j'ai utilisé pour pouvoir facilement héberger mes présentations et pouvoir y accéder partout.
 
 # `reveal.js` : outil de présentations
+
 ## On my way to `reveal.js`
+
 Je suis tombé sur cet outil en utilisant [HedgeDoc](https://hedgedoc.org) (un outil collaboratif uniquement en markdown), qui intègre ce framework pour faire des *slides*, qui sont ensuite facilement diffusables, en partageant un lien de présentation du type `https://[instance hedgedoc]/p/[identifiant de la présentation]/`.
 
 Mais le petit problème que j'ai trouvé en utilisant `reveal.js` par le biais de Hedgedoc, c'est que le paramétrage d'options un peu plus poussées est vite compliqué et encombrant, donc pas très simple d'utilisation. Il semble aussi que toutes les fonctionnalités de `reveal.js` ne soient pas implémentées.
@@ -18,13 +21,14 @@ Donc, je me suis dit qu'il serait plus pratique d'utiliser directement `reveal.j
 
 ## Fonctionnalités de `reveal.js`
 
-Je vous invite à aller voir la [documentation](https://revealjs.com/) qui est très fournie et permet de facilement prendre en main l'outil. 
+Je vous invite à aller voir la [documentation](https://revealjs.com/) qui est très fournie et permet de facilement prendre en main l'outil.
 
 Un petit exemple simpliste de présentation :
 
 <p align="center"><iframe src="https://me.konor.fr/presentationtest/" width=600 height=400></iframe></p>
 
 Mais rapidement, ce framework permet :
+
 - de faire des présentations type Powerpoint, uniquement avec du HTML (ou markdown)
 - donc bénéficier de tous les avantages du HTML comme par exemple la possibilité de mettre des `iframe`
 - d'avoir différents thèmes
@@ -44,7 +48,7 @@ Le seul truc qui me manquait par rapport à Hedgedoc, c'était la possibilité d
 D'abord, je me suis demandé si quelqu'un avait déjà pensé à la même chose que moi. Je suis tombé sur [cet article](https://marcus-baw.medium.com/using-reveal-js-a74b30e4065b), et je m'en suis un peu inspiré. Je vais donc expliquer comment j'ai procédé.
 
 > [!tip] Outils nécessaires
-> 
+>
 > - Un compte GitHub/GitLab/Bitbucket
 > - Un compte Vercel connecté au compte GitHub/GitLab/Bitbucket
 > - Un nom de domaine (optionnel)
@@ -60,7 +64,7 @@ Dans l'exemple que je vais utiliser ici (que je vous ai présenté plus haut), j
 ```html {title="presentationtest/index.html"}
 <div class="slides">
 <!-- Pour utiliser un fichier "markdown.md" afin de définir le contenu de notre présentation !-->
-	<section data-markdown="markdown.md" data-separator="---"></section>
+ <section data-markdown="markdown.md" data-separator="---"></section>
  </div>
 ```
 
@@ -123,7 +127,7 @@ D'abord j'ai créé un nouveau repo privé, que j'ai appelé `config-vercel`, o�
 
 Cela nous permettra de bien avoir : `domaine.com/presentationtest`
 
-Pour que cela soit possible, il faut importer le repo `config-vercel` dans Vercel, le déployer, et lui ajouter notre domaine : 
+Pour que cela soit possible, il faut importer le repo `config-vercel` dans Vercel, le déployer, et lui ajouter notre domaine :
 
 ![capture d'écran montrant qu'il faut cliquer sur "view domains" dans le projet "config-vercel"](images/Pasted%20image%2020230208155356.png)
 
