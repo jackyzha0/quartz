@@ -2,13 +2,11 @@
 title: Aurora Borealis Sighting
 description: Wednesday, July 12th, 2023, was supposed to feature high solar activity, allowing for an incredibly large area of the northern United States to witness the Auroras as long as the light pollution was low. Unfortunately, this forecast did not come to pass. The solar activity remained within normal levels, meaning only Alaska and a few other places were able to see them. Thus cancelling these plans. But I liked the idea of presenting things like this in an Archive format.
 date: 2023-07-12
-tags:
-  - archived
 compartir: true
-lastmod: 2023-09-20
+updated: 2023-09-20
 category: Archive
+tags: [archived]
 ---
-
 
 > Wednesday, July 12th, 2023, was supposed to feature high solar activity, allowing for an incredibly large area of the northern United States to witness the Auroras as long as the light pollution was low.
 > 

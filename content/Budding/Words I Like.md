@@ -1,13 +1,11 @@
 ---
 title: Words I Like
-tags:
-  - collection
+tags: [collection]
 compartir: true
-lastmod: 2023-10-02
+updated: 2023-10-02
 enableToc: true
 category: Budding
 ---
-
 ### Anodyne (adjectives)
 
 1. Capable of soothing or eliminating pain.

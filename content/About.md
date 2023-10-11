@@ -1,7 +1,7 @@
 ---
 title: About
 compartir: true
-lastmod: 2023-10-04
+updated: 2023-10-04
 tags: [meta]
 ---
 ## Hi! I'm Miguel 👋🏼
@@ -12,8 +12,8 @@ I think a lot, work a lot, have existential crises, and know just enough about m
 
 If you are aching for more:
 
-* Check out what [[Tools|tools]] I use daily.
-* Read my [[Public Journal|public journal]].
+* Check out what [[./Budding/Tools|tools]] I use daily.
+* Read my [[./Public Journal|public journal]].
 
 ### As of October 2023, I am…
 

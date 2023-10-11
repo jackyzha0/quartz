@@ -1,12 +1,10 @@
 ---
 title: Rhizomatic Learning
 compartir: true
-lastmod: 2023-10-02
-tags:
-  - stub
+updated: 2023-10-02
+tags: [stub]
 category: Seedlings
 ---
-
 Rhizomatic learning is a variety of pedagogical practices informed by the work of Gilles Deleuze and Félix Guattari. It takes it's name from the rhizome.
 
 Explored initially as an application of post-structural thought to education, it has more recently been identified as methodology for net-enabled education. In contrast to goal-directed and hierarchical theories of learning, it posits that learning is most effective when it allows participants to react to evolving circumstances, preserving lines of flight that allow a fluid and continually evolving redefinition of the task at hand. In such a structure, "the community is the curriculum", subverting traditional notions of instructional design where objectives pre-exist student involvement.

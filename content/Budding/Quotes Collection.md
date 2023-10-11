@@ -1,13 +1,15 @@
 ---
 title: Quotes Collection
-tags:
-  - collection
+tags: [collection]
 compartir: true
-lastmod: 2023-10-02
+updated: 2023-10-05
 enableToc: true
 category: Budding
 ---
 
+> [!quote]
+> 
+> "Always demand a deadline. A deadline weeds out the extraneous and the ordinary. It prevents you from trying to make it perfect, so you have to make it different. Different is better."
 
 > [!quote]
 > 

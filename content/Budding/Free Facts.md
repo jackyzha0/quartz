@@ -1,13 +1,11 @@
 ---
 title: Free Facts
-tags:
-  - collection
+tags: [collection]
 compartir: true
-lastmod: 2023-10-02
+updated: 2023-10-02
 enableToc: true
 category: Budding
 ---
-
 ### Dumping Chemical Weapons Directly into the Ocean
 
 After World War II, it is claimed that scientist did not know how to destroy the massive arsenals of chemical weapons. Russia, the UK, and the US opted for what seemed the safest and cheapest method of disposal at the time: dumping chemical weapons directly into the ocean.

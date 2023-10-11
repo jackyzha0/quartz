@@ -1,12 +1,10 @@
 ---
 title: Move Your Body
 compartir: true
-lastmod: 2023-10-02
-tags:
-  - stub
+updated: 2023-10-02
+tags: [stub]
 category: Seedlings
 ---
-
 Move your body every day. Benefits include:
 
 * Improved sleep quality
@@ -14,4 +12,4 @@ Move your body every day. Benefits include:
 * Increased productivity
 * Reduced anxiety
 
-The "every day" part is important, because [[Consistency]] is key to most things worth doing.
+The "every day" part is important, because [[./Consistency|Consistency]] is key to most things worth doing.

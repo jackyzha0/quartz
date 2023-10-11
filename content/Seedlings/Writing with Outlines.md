@@ -1,15 +1,12 @@
 ---
 title: Write with Outlines
-summary: Learning how to write with brevity (short-form), how to write long-form, how to use gesticulation. Looking for ways to streamline producing written content.
-tags:
-  - learning
-  - writing
+summary: "Learning how to write with brevity (short-form), how to write long-form, how to use gesticulation. Looking for ways to streamline producing written content."
+tags: [learning, writing]
 compartir: true
-lastmod: 2023-10-02
+updated: 2023-10-02
 enableToc: true
 category: Seedlings
 ---
-
 Learning how to write with brevity (short-form), how to write long-form, how to use gesticulation. Looking for ways to streamline producing written content.
 
 ## Questions to Be Answered by Post

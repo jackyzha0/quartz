@@ -1,12 +1,10 @@
 ---
 title: Tools I Use
-tags:
-  - list
+tags: [list]
 compartir: true
-lastmod: 2023-10-02
+updated: 2023-10-02
 category: Budding
 ---
-
 
 A non-comprehensive list of the hardware and software I use on a day-to-day basis.
 

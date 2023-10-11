@@ -3,25 +3,30 @@ title: Public Journal
 description: This new section will explore the concept of maintaining a Public Journal. It takes inspiration from The Journal of an Enigmatic Mind.
 compartir: true
 enableToc: true
-lastmod: 2023-10-05
+updated: 2023-10-11
 ---
 
 > [!info] Acknowledgements
 > 
 > This page takes inspiration from the [Journal of an Enigmatic Mind](https://speyllsite.pages.dev/journal/). It explores the concept of keeping a public journal, something I haven't done before.
 
-## 2023-10-05
+## 2023-10-06
 
 ### GitHub
 
-* Renamed Zola Test to Zola Dinkleberg. Makes it easy not find now that I'm done testing workflows with it.
+* Renamed [Zola Test] to [Zola Dinkleberg](https://github.com/semanticdata/zola-dinkleberg). Makes it easy not find now that I'm done testing workflows with it.
 * Updated GitHub workflows for [Mabuya].
-* Created new repo [Zola TailwindCSS](https://github.com/semanticdata/zola-tailwindcss). Trying / Learning TailwindCSS.
+* Created new repo [Zola TailwindCSS](https://github.com/semanticdata/zola-tailwindcss). Trying / Learning [TailwindCSS](https://tailwindcss.com/).
+* Created new repo [Zola Minima](https://github.com/semanticdata/zola-minima). Reviving a long abandoned project.
 
 ### Blog
 
 * Changed certain colors to improve accessibility of the site.
 * New dark mode matches closer to what the Digital Garden looks like.
+
+### Digital Garden
+
+* Fixed a dependencies problem I created earlier by performing `npm i --force`.
 
 ### Firefox
 
@@ -61,7 +66,7 @@ lastmod: 2023-10-05
 
 * It's my birthday! 🎉
 * Released version 1.1.0 of my Obsidian starter vault.
-* Found an amazing CSS Layout Hack. Added to both Brave and Firefox bookmarks, and to [[Bookmarklets|Bookmarklets]].  
+* Found an amazing CSS Layout Hack. Added to both Brave and Firefox bookmarks, and to [[../Bookmarklets|Bookmarklets]].  
 [Source](https://gist.github.com/growthboot/5c189cf854c6609d3113355c75527c1c)
 
 ### GitHub
@@ -147,7 +152,6 @@ lastmod: 2023-10-05
 ### Notes
 
 * Many days worth of changes reported on this entry.
-* Updated [[Projects Overview|Projects Overview]].
 * Started looking at modal editors more seriously. I intend to slowly learn Vim key bindings.
 	* I have been reading and watching videos about [Vim](https://www.vim.org/), [NeoVim](https://neovim.io/), [Emacs](https://www.gnu.org/software/emacs/), and [Helix](https://github.com/helix-editor/helix).
 
@@ -165,7 +169,7 @@ lastmod: 2023-10-05
 ### Digital Garden
 
 * It has changed domains. Currently being hosted on [forgetfulnotes.com](https://forgetfulnotes.com/).
-* After experimenting with the idea of keeping my code base in Quartz v3.3, using Hugo as the base, I felt the amount of effort was unjustified. For now, I have settled on using the latest version of [Quartz](https://github.com/jackyzha0/quartz) as the base for my [[Digital Garden|digital garden]].
+* After experimenting with the idea of keeping my code base in Quartz v3.3, using Hugo as the base, I felt the amount of effort was unjustified. For now, I have settled on using the latest version of [Quartz](https://github.com/jackyzha0/quartz) as the base for my [[./Digital Garden|digital garden]].
 * You can find its source code in [Forgetful Notes](https://github.com/semanticdata/forgetful-notes).
 
 > [Link Of The Day](https://en.wikipedia.org/wiki/Cornfield_Bomber?useskin=vector)
@@ -216,13 +220,13 @@ lastmod: 2023-10-05
 
 ### Blog
 
-* Published (again) the guide to [[Unlock Firefox Sidebar|Unlock Firefox Sidebar]] after reading a comment in [Hacker News](https://news.ycombinator.com/) asking for exactly that. I responded with a link to the article on [Dev.to](https://dev.to/semanticdata/unlock-the-sidebar-width-in-firefox-22p0). Originally, I removed the guide from my [blog](https://miguelpimentel.do) because I didn't think it fit with the content at the time.
+* Published (again) the guide to [[./Evergreen/Unlock Firefox Sidebar|Unlock Firefox Sidebar]] after reading a comment in [Hacker News](https://news.ycombinator.com/) asking for exactly that. I responded with a link to the article on [Dev.to](https://dev.to/semanticdata/unlock-the-sidebar-width-in-firefox-22p0). Originally, I removed the guide from my [blog](https://miguelpimentel.do) because I didn't think it fit with the content at the time.
 * Overhauled Taxonomies (Categories and Tags) within the [blog](https://miguelpimentel.do). Created specific pages to format the titles, and define how the taxonomy pages are displayed/organized.
 
 ### Digital Garden
 
-* Compiled, and published a collection of [[Bookmarklets|Bookmarklets]].
-* Cleaned up and published [[Inspirations|Inspirations]].
+* Compiled, and published a collection of [[../Bookmarklets|Bookmarklets]].
+* Cleaned up and published [[../Inspirations|Inspirations]].
 * Making the Garden more explorable by adding direct links to the [tags] page from the [Homepage].
 * Playing with the Garden's desktop layout. Temporarily moved right sidebar components to the left sidebar. Undone shortly after, as it messed with the total calculated width of the page and its two sidebar widths.
 
@@ -241,7 +245,7 @@ lastmod: 2023-10-05
 ### Digital Garden
 
 * Started my new **Public Journal**.
-* About a week ago I upgraded my [[Digital Garden|digital garden]] from [Quartz v3.3] to [Quartz v4-Alpha].
+* About a week ago I upgraded my [[./Digital Garden|digital garden]] from [Quartz v3.3] to [Quartz v4-Alpha].
 * Today I upgraded the Garden backend from [Quartz v4-Alpha] to the official [Quartz v4] release.
 
 > [Link Of The Day](https://en.m.wikipedia.org/wiki/Bus_factor)

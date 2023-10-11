@@ -1,13 +1,12 @@
 ---
-title: SSD / NVMe Comparison
-description: This page was originally published on July 28, 2023 to aid in selecting SSD, NVMe drives to take advantage of an current Micro Center sale.
-tags:
-  - archived
+title: "SSD / NVMe Comparison"
+description: "This page was originally published on July 28, 2023 to aid in selecting SSD, NVMe drives to take advantage of an current Micro Center sale."
 compartir: true
-lastmod: 2023-10-02
+updated: 2023-10-11
+# date: 2023-07-28
 category: Archive
+tags: [archived]
 ---
-
 
 > This page was originally published on July 28, 2023. Its main goal was to aid in selecting SSD, and NVMe drives during a Micro Center sale.
 

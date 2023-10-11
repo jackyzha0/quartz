@@ -1,21 +1,18 @@
 ---
 title: Guitar
-tags:
-  - learning
-  - music
+tags: [learning, music]
 compartir: true
-lastmod: 2023-10-02
+updated: 2023-10-02
 enableToc: true
 category: Seedlings
 ---
-
 ## Tabs for the Guitar
 
 When you are looking at a tab, you will see six horizontal lines. These lines represent the strings of the guitar. The bottom line is the 6th string (the thickest string on your guitar, low e) and the top line is the thinnest string (the first string, high e).
 
 ### Arpeggio
 
-An [[Arpeggio|arpeggio]] is a type of [[Chords|broken chord]] in which the notes that compose a chord are individually sounded in a progressive rising or descending order. Arpeggios on keyboard instruments may be called _rolled chords_.
+An [[../Evergreen/Arpeggio|arpeggio]] is a type of [[../Evergreen/Chords|broken chord]] in which the notes that compose a chord are individually sounded in a progressive rising or descending order. Arpeggios on keyboard instruments may be called _rolled chords_.
 
 ```md
 e|--------2-----------------|

@@ -2,15 +2,12 @@
 title: Poetry
 description: Poetry is a broad literary category that covers everything from bawdy limericks to unforgettable song lyrics to the sentimental couplets inside greeting cards. A poem is a singular piece of poetry.
 source: https://www.fromwhisperstoroars.com/blog-1/2019/4/3/writing-poetry-for-beginners
-tags:
-  - learning
-  - writing
+tags: [learning, writing]
 compartir: true
-lastmod: 2023-10-02
+updated: 2023-10-02
 enableToc: true
 category: Budding
 ---
-
 Poetry is a broad literary category that covers everything from bawdy limericks to unforgettable song lyrics to the sentimental couplets inside greeting cards. A **poem** is a singular piece of poetry.
 
 * Show, don't tell. The goal is to provoke an emotion in the reader.
