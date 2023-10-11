@@ -92,7 +92,7 @@ function createRouter() {
   if (typeof window !== "undefined") {
     window.addEventListener("click", async (event) => {
       const { url } = getOpts(event) ?? {}
-      if (!url) return
+      if (!url || event.ctrlKey || event.metaKey) return
       event.preventDefault()
       try {
         navigate(url, false)
