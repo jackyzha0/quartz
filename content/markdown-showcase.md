@@ -49,7 +49,7 @@ You can [link](https://example.dom/) to external pages. and other internal [[./S
 
 ### Simple Example
 
-> This is a blockquote
+> This is a blockquote  
 > with several lines
 
 ### Formatted Example
@@ -101,7 +101,7 @@ Let us use some `inline code` and check out how it `looks`. Here's some `more`.
 
 ```html
 <html>
-	<head>
+  <head>
 		<div style="background-color: #333;">
 			<a href="https://example.com/">Example</a>
 		</div>
