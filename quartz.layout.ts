@@ -7,9 +7,10 @@ export const sharedPageComponents: SharedLayout = {
   header: [],
   footer: Component.Footer({
     links: {
-      GitHub: "https://github.com/hzkonor/quartz",
-      "Mastodon": "https://biscuit.town/@hzk",
-      "Mail": "mailto:vrak@konor.fr",
+      "nf nf-fa-github_alt": "https://github.com/hzkonor/quartz",
+      "nf nf-md-mastodon": "https://biscuit.town/@hzk",
+      "nf nf-fa-envelope": "mailto:vrak@konor.fr",
+      "nf nf-oct-link": "https://me.konor.fr",
     },
   }),
 }
