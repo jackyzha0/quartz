@@ -6,7 +6,7 @@ enableToc: false
 # 👋 Bienvenue
 
 Ce site est un recueil de prises de notes, fiches de cours... je ne sais pas vraiment tout ce que je vais y mettre pour le moment.
-Pour l'instant, il y a du contenu à propos de [maths](tags/maths), d' [informatique](tags/info) et quelques petits [tips](tags/tips).
+Pour l'instant, il y a du contenu à propos de [maths](maths), d' [informatique](info) et quelques petits [articles](artcile).
 
 > [!warning] En cours de mise à jour
 >
@@ -14,15 +14,15 @@ Pour l'instant, il y a du contenu à propos de [maths](tags/maths), d' [informat
 > Ce qu'il me reste à faire :
 >
 > - [x] Organiser les notes dans des dossiers
-> - [ ] Refaire le `footer` avec des icônes
+> - [x] Refaire le `footer` avec des icônes
 > - [ ] Corriger les éventuels bugs de visualisation
 >   - [ ] Bug d'affichage du titre avec les emojis sur mobile
->   - [ ] Changer les polices
+>   - [x] Changer les polices
 > - [x] Afficher la table des matières en vue mobile et PC
 
 ## 📑 Utilisation du site
 
-Le but de ce site basé sur [Quartz](https://quartz.jzhao.xyz/) est d'avoir une vue interactive, avec des liens entre les différentes notes. Pour voir ces liens, il y a un petit graph en bas de page, tu peux cliquer sur les différents noeuds pour accéder aux notes correspondantes. Il est aussi possible de retrouver les notes par leur tags, la liste des tags est disponible [ici](/tags), et en cliquant sur <a href="/tags"><i class="fa-solid fa-tags" style="color: --secondary"></i></a> en haut de page.
+Le but de ce site basé sur [Quartz](https://quartz.jzhao.xyz/) est d'avoir une vue interactive, avec des liens entre les différentes notes. Pour voir ces liens, il y a un petit graph en bas de page, tu peux cliquer sur les différents noeuds pour accéder aux notes correspondantes. Il est aussi possible de retrouver les notes par leur tags, la liste des tags est disponible [ici](/tags), et en cliquant sur <a href="/tags"><i class="nf nf-md-tag_multiple"></i></a> en haut de page ou dans le menu de gauche, selon la taille de votre écran.
 
 Ce site utilise un outil de recherche accessible par la barre de recherche en haut de page, et également par la commande `Ctrl + K`.
 

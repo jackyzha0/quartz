@@ -151,9 +151,17 @@ a {
 
     & .sidebar.left {
       left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
+      flex-wrap:wrap;
+      flex-direction: row;
       @media all and (max-width: $fullPageWidth) {
         gap: 0;
         align-items: center;
+      }
+      .search{
+        width:100%;
+      }
+      .left-inline{
+        width:1%
       }
     }
 
