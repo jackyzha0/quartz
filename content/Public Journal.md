@@ -1,9 +1,9 @@
 ---
 title: Public Journal
-description: This new section will explore the concept of maintaining a Public Journal. It takes inspiration from The Journal of an Enigmatic Mind.
+description: This new section will explore the concept of maintaining a Public Journal.
 compartir: true
 enableToc: true
-updated: 2023-10-11
+updated: 2023-10-16
 ---
 
 > [!info] Acknowledgements
@@ -220,7 +220,7 @@ updated: 2023-10-11
 
 ### Blog
 
-* Published (again) the guide to [[./Evergreen/Unlock Firefox Sidebar|Unlock Firefox Sidebar]] after reading a comment in [Hacker News](https://news.ycombinator.com/) asking for exactly that. I responded with a link to the article on [Dev.to](https://dev.to/semanticdata/unlock-the-sidebar-width-in-firefox-22p0). Originally, I removed the guide from my [blog](https://miguelpimentel.do) because I didn't think it fit with the content at the time.
+* Published (again) the guide to [[Unlock Firefox Sidebar]] after reading a comment in [Hacker News](https://news.ycombinator.com/) asking for exactly that. I responded with a link to the article on [Dev.to](https://dev.to/semanticdata/unlock-the-sidebar-width-in-firefox-22p0). Originally, I removed the guide from my [blog](https://miguelpimentel.do) because I didn't think it fit with the content at the time.
 * Overhauled Taxonomies (Categories and Tags) within the [blog](https://miguelpimentel.do). Created specific pages to format the titles, and define how the taxonomy pages are displayed/organized.
 
 ### Digital Garden
