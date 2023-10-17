@@ -70,6 +70,21 @@ a {
     padding: 0 0.1rem;
     border-radius: 5px;
   }
+
+  &.missing-link {
+    color: var(--error);
+    font-weight: normal;
+    &:hover {
+      color: color-mix(in srgb, var(--error) 65%, transparent) !important;
+    }
+  }
+
+  &.removed-link {
+    pointer-events: none; /* trick to disable Popover Previews */
+    background-color: unset;
+    font-weight: unset;
+    color: unset;
+  }
 }
 
 .desktop-only {

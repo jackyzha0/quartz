@@ -18,11 +18,14 @@ interface Options {
   markdownLinkResolution: TransformOptions["strategy"]
   /** Strips folders from a link so that it looks nice */
   prettyLinks: boolean
+  /** Hide links to missing pages (404) */
+  hideMissingLinks: boolean
 }
 
 const defaultOptions: Options = {
   markdownLinkResolution: "absolute",
   prettyLinks: true,
+  hideMissingLinks: false, // disabled by default
 }
 
 export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
@@ -73,6 +76,17 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                   ) as SimpleSlug
                   outgoing.add(simple)
                   node.properties["data-slug"] = simple
+
+                  const isMissing = !transformOptions.allSlugs.includes(
+                    decodeURIComponent(destCanonical.substring(1)) as FullSlug,
+                  )
+
+                  // add a css class to internal links if missing (or hide links if configured so)
+                  if (isMissing && !simple.startsWith("tags/")) {
+                    node.properties.className.push(
+                      opts.hideMissingLinks ? "removed-link" : "missing-link",
+                    )
+                  }
                 }
 
                 // rewrite link internals if prettylinks is on
