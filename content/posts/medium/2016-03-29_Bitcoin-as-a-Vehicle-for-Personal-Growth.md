@@ -1,22 +1,20 @@
 ---
 title: Bitcoin as a Vehicle for Personal Growth
-description: >-
-  Note: This is a copy-over from our website’s blog, which we are transfering
-  over to this platform. It was originally published 7 months…
-date: '2016-03-29T00:15:22.545Z'
-categories: []
-keywords: []
+description: Often times when talking with people about Bitcoin, I get a lot of questions about safety and security. This usually leads to a discussion culminating with the questioner’s realization of their own ignorance of how money actually works. This bothers me. Why does society know so little about something that literally affects almost every aspect of their life?
+date: 2016-03-29T00:15:22.545Z
+tags:
+  - bitcoin
 slug: /@corpetty/bitcoin-as-a-vehicle-for-personal-growth-ee0f3ebbed43
 ---
 
-Note: This is a copy-over from our website’s blog, which we are transfering over to this platform. It was originally published 7 months ago, and hosted on [http://thebitcoinpodcast.com/bitcoin-as-a-vehicle-for-personal-growth/](http://thebitcoinpodcast.com/bitcoin-as-a-vehicle-for-personal-growth/)
+> [!NOTE] Note: This is a copy-over from our website’s blog, which we are transfering over to this platform. It was originally published 7 months ago, and hosted on [http://thebitcoinpodcast.com/bitcoin-as-a-vehicle-for-personal-growth/](http://thebitcoinpodcast.com/bitcoin-as-a-vehicle-for-personal-growth/)
 
 **There seems to be a problem here**  
 Often times when talking with people about Bitcoin, I get a lot of questions about safety and security. This usually leads to a discussion culminating with the questioner’s realization of their own ignorance of how money actually works. This bothers me. Why does society know so little about something that literally affects almost every aspect of their life? Whatever your dream is, whatever you’re trying to accomplish in life, it probably involves money. The current infrastructure of money could be the most deeply-rooted part of our society and, simultaneously, the most misunderstood. People are quick to criticize and question the validity of a new currency or transaction system — while blindly trusting the system they currently use — even though they know almost nothing about it. Sometimes, people can even be hostile towards anything that challenges this system.
 
 This reoccurring situation of blissful ignorance has lead to a lot of thought on my part, and as I’ve dug deeper and deeper, it seems to stem from a common desire to offload personal responsibility. We aren’t attempting to solve problems, or even understand problems; we simply leave it to someone else to think about. We assume that someone else is better equipped to handle the issue and, subsequently, don’t think about it at all. The only time it becomes front page news is when it turns bad and is likely to cause a negative effect on one’s life. We aren’t worried about out debt until we can’t afford to make minimum payments, so we rack it up until then. When it comes to that point, it is often asked, “_why didn’t anyone tell me that this would happen?_” Maybe even a “_how has a system like this been put into place that takes advantage of people like me?_” This has led me to question our core fundamental behaviors and what motivates them. Does the current infrastructure of money, how we fundamentally transact value on a daily basis, reinforce the behavior of offloading personal responsibility, or is this just a symptom of natural human behavior?
 
-![](images/medium/0__KKYeLrGaEQ3c4ZJD.)
+![](images/medium/0__KKYeLrGaEQ3c4ZJD.jpg)
 
 **We don’t need to worry about that, someone else is doing it for us**  
 I think, deep down, I am attracted to Bitcoin because it puts the onus for financial responsibility squarely in the hands of the individual. This idea, taking personal responsibility for oneself, is something I find to be extremely valuable in personal development. With Bitcoin, if you lose your password, you’ve lost your bitcoin. If you don’t secure your bitcoin, and someone hacks you and steals them, you’ve lost your bitcoin. There isn’t someone you can complain to to get it back. It is your fault, and you have to deal with that. This seems scary and a potential downside to most people. Why? Because most have never had to worry about taking responsibility for their own personal wealth, they’ve offloaded it to others and trust that is secure. It has always been someone else’s job to fix whatever mistake they’ve made with their money. I think that by changing the very basis of how we transact value (i.e. Bitcoin), we can bring back a bit of that natural education towards securing yourself from threats outside.
@@ -43,7 +41,7 @@ Now, humor me that it is possible that our money system influences the way we in
 **It isn’t what you thought it was**  
 Fast forward to modern times where there are major differences. Our society is not aware of the consequences of the current system _because they think money behaves in much the same way as the medieval example_. Our views are outdated. In these imaginary “olden days,” there were tangible goods that represented personal wealth, which could be taken or used whenever desired. Today, if everyone wants to actually take their money out of the bank, everything would fall apart. Banks aren’t holding all of the physical money; they’re holding an IOU, which is not actually tied to anything physical anymore. It is simply a digital number recorded and maintained by someone else. I’ll write more on this later (this thing is long already!), but just google fractional-reserve banking, and then start crying. If you want to watch something, [this](https://theendofmoneyasweknowit.wordpress.com/) is a great documentary. But trust me, things probably aren’t working they way you think they are.
 
-![](/images/medium/0__fYa4yRlAcGeofulm.)
+![](images/medium/0__fYa4yRlAcGeofulm.jpg)
 
 **Why Bitcoin then?**  
 Because the Bitcoin network, with its digital cash-esque vibe, puts the responsibility directly in your hands and thereby cultivates a more self-aware financial picture/landscape for the individual. It, ironically, puts the financial system closer to we as people think about money. Our pouches of money are our cell phones, our vault at home is a paper wallet we have stored offline, our banks are ourselves or some trusted online wallet with advanced security practices. Now, with Bitcoin, the technology is concurrent with the times. In a world where cryptocurrencies are the norm, personal asset security is commonplace. It HAS to be. The idea of knowing where your money is and how it is secured is a thought process that MUST occur. The responsibility is back in our own hands, and not left up to others who will misuse it. A child raised with these ideals hammered into him from his surroundings grows up taking responsibility for his own wealth. Maybe because of this, his ideals towards personal responsibility in general are improved.
