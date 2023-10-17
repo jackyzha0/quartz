@@ -49,22 +49,3 @@ root/
 └── quartz.layout.ts
 └── package.json
 ```
-
-```markdown-tree
-root
-  .github
-    workflows/
-  content
-    About.md
-    Digital Garden.md
-    Meta.md
-    Public Journal.md
-  docs/
-  quartz
-    components/
-    plugins/
-    styles/
-  quartz.config.ts
-  quartz.layout.ts
-  package.json
-```
