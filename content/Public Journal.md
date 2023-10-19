@@ -5,16 +5,18 @@ compartir: true
 enableToc: true
 updated: 2023-10-19
 ---
-## 2023-10-18
+## 2023-10-19
 
 ### Notes
 
 * Created new CSS snippets for Obsidian. Changes appearance of list items in menus, and reduces font size for the [BMO Chabot](https://github.com/longy2k/obsidian-bmo-chatbot).
+* Updated my [dotfiles](https://github.com/semanticdata/dotfiles) in GitHub. Added some new ones I have been using.
 
 ### Digital Garden
 
 * Fixed stylesheet loop. Quartz changed how to address stylesheet order in sass. This broke my previous implementation adding custom and explorer stylesheets. It's all good now. The website looks as it should again.
 * Removed categories from all notes eliminating the folders that were created for Budding, Evergreen, and Seedlings. The Archive remains.
+* Removed the Garden from the 512kb Club. It is now hosted on a different URL, and the size has surpassed 512kb.
 
 > [Link Of The Day](https://en.wikipedia.org/wiki/Lake_Chad)
 
@@ -23,6 +25,11 @@ updated: 2023-10-19
 ### Notes
 
 * Attended a Boys Like Girls concert at The Fillmore in Minneapolis. Had a blast! The line-up was very good. LØLØ opened the night, followed by The Summer Set, continued by State Champs and of course, ended with Boys Like Girls. We arrived at 5:20PM, doors opened at 5:30PM, show started at 6:30PM, We were out by 10:45PM.
+
+### Blog
+
+* Updated my [About](https://miguelpimentel.do/about/) page. Now matches what's on the Garden.
+* Updated the Blog's [GTmetrix](https://gtmetrix.com/reports/miguelpimentel.do/hSnfOuWH/) results within the [512kb Club Repo](https://github.com/semanticdata/512kb.club/edit/main/_data/sites.yml).
 
 > [Link Of The Day](https://en.m.wikipedia.org/wiki/Mirabal_sisters)
 
