@@ -2,10 +2,13 @@
 title: Free Facts
 tags: [collection]
 compartir: true
-updated: 2023-10-02
+updated: 2023-10-19
 enableToc: true
-category: Budding
 ---
+### Disney Aladdin
+
+There is a [Willhelm scream](https://en.wikipedia.org/wiki/Wilhelm_scream) in the movie Aladdin.
+
 ### Dumping Chemical Weapons Directly into the Ocean
 
 After World War II, it is claimed that scientist did not know how to destroy the massive arsenals of chemical weapons. Russia, the UK, and the US opted for what seemed the safest and cheapest method of disposal at the time: dumping chemical weapons directly into the ocean.

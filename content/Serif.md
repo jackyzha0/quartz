@@ -3,7 +3,6 @@ title: Serif
 tags: [typography]
 compartir: true
 updated: 2023-10-02
-category: Seedlings
 ---
 In typography, a serif (/ˈsɛrɪf/) is a small line or stroke regularly attached to the end of a larger stroke in a letter or symbol within a particular font or family of fonts.
 

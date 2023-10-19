@@ -4,7 +4,6 @@ tags: [collection]
 compartir: true
 updated: 2023-10-05
 enableToc: true
-category: Budding
 ---
 
 > [!quote]

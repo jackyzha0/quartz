@@ -3,7 +3,6 @@ title: Move Your Body
 compartir: true
 updated: 2023-10-02
 tags: [stub]
-category: Seedlings
 ---
 Move your body every day. Benefits include:
 

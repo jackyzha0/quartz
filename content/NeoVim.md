@@ -5,7 +5,6 @@ updated: 2023-10-02
 tags: [reference]
 enableToc: true
 aliases: [Nvim, Vim]
-category: Budding
 ---
 
 Vim-fork focused on extensibility and usability.

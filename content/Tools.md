@@ -2,8 +2,7 @@
 title: Tools I Use
 tags: [list]
 compartir: true
-updated: 2023-10-02
-category: Budding
+updated: 2023-10-19
 ---
 
 A non-comprehensive list of the hardware and software I use on a day-to-day basis.
@@ -35,7 +34,6 @@ A non-comprehensive list of the hardware and software I use on a day-to-day basi
 ### Notable Obsidian Extensions
 
 * [Omnisearch](https://github.com/scambier/obsidian-omnisearch) – Better Search Engine.
-* [Kanban](https://github.com/mgmeyers/obsidian-kanban) – Kanban Boards for Obsidian.
 * [Obsidian Git](https://github.com/denolehov/obsidian-git) – Run Git commands from Obsidian.
 * [Natural Language Dates](https://github.com/argenos/nldates-obsidian) – Adds `@today` format to dates.
 * [Linter](https://github.com/platers/obsidian-linter) – Customizable Markdown Linter similar to Prettier.

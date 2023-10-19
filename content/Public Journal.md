@@ -3,12 +3,28 @@ title: Public Journal
 description: This new section will explore the concept of maintaining a Public Journal.
 compartir: true
 enableToc: true
-updated: 2023-10-16
+updated: 2023-10-19
 ---
+## 2023-10-18
 
-> [!info] Acknowledgements
-> 
-> This page takes inspiration from the [Journal of an Enigmatic Mind](https://speyllsite.pages.dev/journal/). It explores the concept of keeping a public journal, something I haven't done before.
+### Notes
+
+* Created new CSS snippets for Obsidian. Changes appearance of list items in menus, and reduces font size for the [BMO Chabot](https://github.com/longy2k/obsidian-bmo-chatbot).
+
+### Digital Garden
+
+* Fixed stylesheet loop. Quartz changed how to address stylesheet order in sass. This broke my previous implementation adding custom and explorer stylesheets. It's all good now. The website looks as it should again.
+* Removed categories from all notes eliminating the folders that were created for Budding, Evergreen, and Seedlings. The Archive remains.
+
+> [Link Of The Day](https://en.wikipedia.org/wiki/Lake_Chad)
+
+## 2023-10-16
+
+### Notes
+
+* Attended a Boys Like Girls concert at The Fillmore in Minneapolis. Had a blast! The line-up was very good. LØLØ opened the night, followed by The Summer Set, continued by State Champs and of course, ended with Boys Like Girls. We arrived at 5:20PM, doors opened at 5:30PM, show started at 6:30PM, We were out by 10:45PM.
+
+> [Link Of The Day](https://en.m.wikipedia.org/wiki/Mirabal_sisters)
 
 ## 2023-10-06
 
@@ -249,3 +265,9 @@ updated: 2023-10-16
 * Today I upgraded the Garden backend from [Quartz v4-Alpha] to the official [Quartz v4] release.
 
 > [Link Of The Day](https://en.m.wikipedia.org/wiki/Bus_factor)
+
+## Acknowledgements
+
+> [!info] Acknowledgements
+> 
+> This page takes inspiration from the [Journal of an Enigmatic Mind](https://speyllsite.pages.dev/journal/). It explores the concept of keeping a public journal, something I haven't done before.
