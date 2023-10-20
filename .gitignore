@@ -10,4 +10,3 @@ quartz/.quartz-cache
 private/
 .replit
 replit.nix
-package-lock.json
