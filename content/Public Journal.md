@@ -3,14 +3,21 @@ title: Public Journal
 description: This new section will explore the concept of maintaining a Public Journal.
 compartir: true
 enableToc: true
-updated: 2023-10-19
+updated: 2023-10-20
 ---
-## 2023-10-19
+## 2023-10-20
 
 ### Notes
 
 * Created new CSS snippets for Obsidian. Changes appearance of list items in menus, and reduces font size for the [BMO Chabot](https://github.com/longy2k/obsidian-bmo-chatbot).
 * Updated my [dotfiles](https://github.com/semanticdata/dotfiles) in GitHub. Added some new ones I have been using.
+
+### GitHub
+
+* Created new repo [javascript-practice](https://github.com/semanticdata/javascript-practice). Contains many small JavaScript apps that I'm using to learn.
+* Created new repo [music-player](https://github.com/semanticdata/music-player). Derived from [javascript-practice].
+* Created new repo [type-test](https://github.com/semanticdata/type-test). Derived from [javascript-practice].
+* Created new repo [zola-testing](https://github.com/semanticdata/zola-testing). Initialized Zola site with the purpose of building and testing new web related content.
 
 ### Digital Garden
 

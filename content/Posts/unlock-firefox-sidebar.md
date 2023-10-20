@@ -33,5 +33,5 @@ This post will guide you through unlocking the sidebar width in Firefox. It will
 }
 ```
 
-1. Finally, in a new tab, navigate to `about:config`, search for `toolkit.legacyUserProfileCustomizations.stylesheets`, and change its value to `true`.
-2. Restart Firefox and test it out!
+7. Finally, in a new tab, navigate to `about:config`, search for `toolkit.legacyUserProfileCustomizations.stylesheets`, and change its value to `true`.
+8. Restart Firefox and test it out!
