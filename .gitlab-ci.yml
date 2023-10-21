@@ -1,0 +1,36 @@
+stages:
+  - build_and_test
+  - deploy
+
+variables:
+  NODE_VERSION: 18
+
+build_and_test:
+  stage: build_and_test
+  before_script:
+    - apt-get update -q && apt-get install -y nodejs npm
+    - npm install -g n
+    - n $NODE_VERSION
+    - npm ci
+  script:
+    - npx prettier --write .
+    - npm run check
+    - npm test
+    - npx quartz build
+  artifacts:
+    paths:
+      - public
+  cache:
+    paths:
+      - ~/.npm/
+    key: "${CI_COMMIT_REF_SLUG}-node-${CI_COMMIT_REF_NAME}"
+  tags:
+    - docker
+
+pages:
+  stage: deploy
+  script:
+    - echo "Deploying to GitLab Pages..."
+  artifacts:
+    paths:
+      - public
