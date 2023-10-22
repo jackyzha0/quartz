@@ -164,7 +164,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
 
       addGlobalPageResources(ctx, resources, componentResources)
 
-      const stylesheet = joinStyles(ctx.cfg.configuration.theme, styles, ...componentResources.css)
+      const stylesheet = joinStyles(ctx.cfg.configuration.theme, ...componentResources.css, styles)
       const prescript = joinScripts(componentResources.beforeDOMLoaded)
       const postscript = joinScripts(componentResources.afterDOMLoaded)
       const fps = await Promise.all([
