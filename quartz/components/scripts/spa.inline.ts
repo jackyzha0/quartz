@@ -20,6 +20,7 @@ const isLocalUrl = (href: string) => {
 
 const getOpts = ({ target }: Event): { url: URL; scroll?: boolean } | undefined => {
   if (!isElement(target)) return
+  if (target.attributes.getNamedItem("target")?.value === "_blank") return
   const a = target.closest("a")
   if (!a) return
   if ("routerIgnore" in a.dataset) return
