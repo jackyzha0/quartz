@@ -3,8 +3,20 @@ title: Public Journal
 description: This new section will explore the concept of maintaining a Public Journal.
 compartir: true
 enableToc: true
-updated: 2023-10-20
+updated: 2023-10-24
 ---
+## 2023-10-24
+
+### GitHub
+
+* Created new repo [upload-pages-artifact](https://github.com/semanticdata/upload-pages-artifact). Forked to bump `node16` to `node20`, as the former was deprecated by GitHub.
+* Created new repo [upload-artifact](https://github.com/semanticdata/upload-artifact). Forked to bump `node16` to `node20`, as the former was deprecated by GitHub.
+* Created new repo [deploy-pages](https://github.com/semanticdata/deploy-pages). Forked to bump `node16` to `node20`, as the former was deprecated by GitHub.
+* With the three new GitHub actions, I can craft new workflows that use my own actions instead of the ones that have not been updated.
+* Renamed [zola-minima] to Agouta. Inspired by the Hispaniolan solenodon.
+
+> [Link Of The Day](https://en.wikipedia.org/wiki/False_friend)
+
 ## 2023-10-20
 
 ### Notes
