@@ -1,0 +1,5 @@
+- En el año 381
+- Una vez declarada la divinidad de cristo, decían que era un cuerpo aparente.
+- Ahora se agrega que también era verdaderamente humana
+- Si él no hubiera asumido la totalidad de la naturaleza humana, no nos hubiera salvado.
+	- Lo que no es asumido, no es salvado

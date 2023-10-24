@@ -1,0 +1,6 @@
+-   Qué es un árbol n-ario de búsqueda?↓
+      ![<https://remnote-user-data.s3.amazonaws.com/94h6Kr6NirchSCsuTmxbg7IlzwZvKhQ7EABkPebcKmqhXWr1qLeXhQ6D5sDoro9DuI8OWefM3IFdjtRsoJoNGo64x-eHBJAB5y92ZPI2syds4DydPYTdbqqpgevZzii0.png>](<https://remnote-user-data.s3.amazonaws.com/94h6Kr6NirchSCsuTmxbg7IlzwZvKhQ7EABkPebcKmqhXWr1qLeXhQ6D5sDoro9DuI8OWefM3IFdjtRsoJoNGo64x-eHBJAB5y92ZPI2syds4DydPYTdbqqpgevZzii0.png>)
+-   Qué característica tiene un árbol B de búsqueda?↓
+
+      ![<https://remnote-user-data.s3.amazonaws.com/JeMUGiBos_lG_EFaBDzRg2sX2YA4H15x9Ol2DKvKUe55gGwC_fzxAZu8JP9QyISQpmaCc-ujRP8TJYPk5gDVLV2yqkuqeIatS6fiLBfEfWz-afo_xDd230t3xfNR5FMP.png>](<https://remnote-user-data.s3.amazonaws.com/JeMUGiBos_lG_EFaBDzRg2sX2YA4H15x9Ol2DKvKUe55gGwC_fzxAZu8JP9QyISQpmaCc-ujRP8TJYPk5gDVLV2yqkuqeIatS6fiLBfEfWz-afo_xDd230t3xfNR5FMP.png>)
+      ![<https://remnote-user-data.s3.amazonaws.com/Yf0koPyrPZA9qwsX-tb0rgQsu6de-h6k6g9sfmR-mMpgaBd5EDfQXK-LtAdMdwywAVvnnFD6rmRrjsRX-SavHmdPL9jwAunGEYniPsqBn-GB6siiHTGc-F6fAHFSI5v_.png>](<https://remnote-user-data.s3.amazonaws.com/Yf0koPyrPZA9qwsX-tb0rgQsu6de-h6k6g9sfmR-mMpgaBd5EDfQXK-LtAdMdwywAVvnnFD6rmRrjsRX-SavHmdPL9jwAunGEYniPsqBn-GB6siiHTGc-F6fAHFSI5v_.png>)

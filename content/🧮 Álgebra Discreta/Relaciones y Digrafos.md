@@ -1,0 +1,10 @@
+Course: [[Álgebra Discreta]]
+
+[[Teoría de relaciones]]
+[[Digrafos]]
+[[Composición de relaciones]]
+[[Propiedades de las relaciones]]
+[[Relaciones de equivalencia]]
+[[Diagramas de Hasse]]
+[[Relaciones de Orden]]
+[[Elementos extremos]]

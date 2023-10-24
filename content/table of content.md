@@ -1,0 +1,26 @@
+## To-do
+- [ ] Primer año
+	- [ ] [[Algebra I]]
+	- [ ] Algebra 2
+	- [ ] Física 2
+	- [x] Análisis matemático 1
+	- [ ] Programación 1
+- [ ] Segundo año
+	- [ ] Análisis matemático 2
+	- [ ] Física 2
+	- [ ] Programación 2
+	- [x] Estructuras de datos 1
+	- [ ] Estructuras de datos 2
+	- [ ] Algebra discreta
+- [ ] Tercer año
+	- [x] Electrónica básica
+	- [x] Probabilidad y estadística
+	- [x] Programación 3
+	- [x] Comunicación de datos
+	- [ ] Métodos numéricos
+	- [ ] Teoría de sistemas y modelos
+	- [ ] Arquitectura de computadores 1
+	- [ ] Base de datos 
+	- [ ] Informática Teórica
+	- [x] Formación Humanística 3
+	- [x] Investigación operativa

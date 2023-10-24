@@ -1,0 +1,4 @@
+![[Regresión exponencial]]
+
+
+![[Regresión potencial]]

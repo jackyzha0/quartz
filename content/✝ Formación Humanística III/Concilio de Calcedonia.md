@@ -1,0 +1,1 @@
+- La segunda persona de [[La Santísima Trinidad]], Dios hijo se hace verdaderamente hombre, sin dejar de ser verdaderamente Dios.
