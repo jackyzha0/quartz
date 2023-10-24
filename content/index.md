@@ -1,6 +1,7 @@
 # My Second Brain 🧠 
 
 
+Start here!! 👉 [[table of content]] 
 ## Introduction
 
 Welcome to my digital knowledge repository, a second brain meticulously crafted during my journey through college. In this project, I've gathered a treasure trove of insights, lessons, and experiences from my time studying software engineering. This is not just a collection of notes; it's a testament to my dedication to mastering the world of code and technology.
@@ -26,7 +27,7 @@ Here's a glimpse of what you'll discover in this repository:
 
 To make the most of this resource, consider the following:
 
-- Use the table of contents to explore specific topics or courses.
+- Use the [[table of content]] to explore specific topics or courses.
 - Feel free to use the search feature to find keywords, topics, or specific notes.
 - I've linked related notes for easy cross-referencing and understanding.
 
@@ -37,9 +38,3 @@ I believe that knowledge grows when shared. If you'd like to contribute, collabo
 ## Conclusion
 
 This project is a testament to my passion for software engineering. It's a reflection of my dedication, curiosity, and the exciting journey I've embarked upon. I hope it serves you well in your quest for knowledge and growth in this fascinating field.
-
----
-
-Q1: How did you organize your notes within Obsidian for easy navigation and reference?
-Q2: Are there any specific software engineering topics or courses that you found particularly challenging or interesting during your college studies?
-Q3: Could you share some of the key programming languages and technologies you've encountered and noted in your repository?
