@@ -3,12 +3,6 @@
 
 Inicia por aquí!! 👉 [[table of content]] 
 
->[!info] Support 
->Si el proyecto te sirvió, considera apoyarlo! 
->
->[![Invitame un café en cafecito.app | 150](https://cdn.cafecito.app/imgs/buttons/button_6.svg)](https://cafecito.app/valenottaviano)
-
-
 
 ¡Bienvenido a mi repositorio digital de apuntes construido durante mi recorrido por la universidad! En este proyecto, he reunido un tesoro de perspicacias, lecciones y experiencias de mi tiempo estudiando ingeniería en informática. 
 
@@ -31,6 +25,11 @@ Para aprovechar al máximo este recurso, considera lo siguiente:
 
 ### Contribución
 Creo que el conocimiento crece cuando se comparte. Si deseas contribuir, colaborar o compartir tus propias perspicacias, no dudes en contactar.
+
+>[!info] Support 
+>Si el proyecto te sirvió, considera apoyarlo! 
+>
+>[![Invitame un café en cafecito.app | 150](https://cdn.cafecito.app/imgs/buttons/button_6.svg)](https://cafecito.app/valenottaviano)
 
 ## Conclusión
 Este proyecto es un testimonio de mi pasión por la ingeniería de software. Es un reflejo de mi dedicación, curiosidad y el emocionante viaje en el que me embarqué. Espero que te sea útil en tu búsqueda de conocimiento y crecimiento en este fascinante campo.
