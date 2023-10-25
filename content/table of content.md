@@ -14,7 +14,7 @@ Work in Progress 👨‍🏭
 	- [ ] [[Estructuras de Datos I]]
 	- [ ] [[Estructuras de Datos II]]
 	- [ ] [[Álgebra Discreta]]
-	- [ ] [[Formación Humanística II]] (n/a)
+	- [ ] [[Formación Humanística II]]
 - [ ] Tercer año
 	- [ ] [[Electrónica Básica]]
 	- [ ] [[Probabilidad y Estadística]]
