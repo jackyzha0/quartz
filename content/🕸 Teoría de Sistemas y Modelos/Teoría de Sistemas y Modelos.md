@@ -1,9 +1,30 @@
-# 0 - Teoría de Sistemas y Modelos - Content
+>[!important] 
+>Para ver el contenido de la asignatura accede a la sección: `backlinks` !
 
-Course: [[Teoría de sistemas y modelos]]
+# Teoría de Sistemas y Modelos 
 
-```dataview
-table Date, file.inlinks
-from "🕸 Teoría de Sistemas y Modelos" and #main_page 
-sort Date asc
-```
+- [[El enfoque sistémico]]
+	- [[Aplicación de la Teoría General de Sistemas]]
+	- [[Características Básicas del enfoque Sistémico]]
+	- [[Importancia del enfoque sistémico]]
+	- [[Que es un sistema]]
+- [[Introducción a la teoría de sistemas]]
+- [[Que es un sistema]]
+	- [[Clasificación General de los Sistemas]]
+	- [[Complejidad de los sistemas]]
+	- [[Componentes de los sistemas]]
+	- [[Comportamiento de los sistemas complejos]]
+- [[Teoría General de Sistemas]]
+	- [[Clasificación Arbitraria de los sistemas]]
+	- [[Concepto de Caja Negra]]
+	- [[Concepto de Sistemas]]
+	- [[Parámetros de los sistemas]]
+	- [[Tipos de Sistemas]]
+- [[Modelado Y Simulación]]
+	- [[Clasificación de los modelos]]
+	- [[Diagrama de Flujo de Datos]]
+	- [[Diagramas de Forrester]]
+	- [[Finalidad de los Modelos]]
+	- [[Representación de los sistemas]]
+- [[Dinámica de Sistemas]]
+	- [[Diagramas de Causalidad]]

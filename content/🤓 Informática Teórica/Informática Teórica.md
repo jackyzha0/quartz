@@ -1,9 +1,24 @@
-# Informática Teórica - Content
+# Informática Teórica
 
 Course: [[Informática Teórica]]
 
-```dataview
-table Date, file.inlinks
-from "🤓 Informática Teórica" and #main_page 
-sort Date asc
-```
+- [[Alfabeto y Cadenas de Caracteres]]
+	- [[Lenguajes y lenguajes formales]]
+	- [[Operaciones entre alfabetos]]
+	- [[Operaciones entre palabras]]
+	- [[Operaciones entre Lenguajes]]
+- [[Introducción a Informática Teórica]]
+	- [[Alfabeto y Cadenas de Caracteres]]
+- [[La Gramática]]
+	- [[Expresiones Regulares]]
+	- [[Producción o reglas gramaticales]]
+	- [[Tipos de Gramáticas]]
+- [[Lenguajes y lenguajes formales]]
+	- [[Automatas Finitos]]
+	- [[Operaciones entre Lenguajes]]
+- [[Gramáticas Libres de Contexto]]
+	- [[Simplificación de Gramáticas Independientes]]
+- [[Maquinas de Estado]]
+	- [[Mapas de Karnaugh (info teo)]]
+- [[Autómatas con pilas]]
+- [[Máquina de Turing]]

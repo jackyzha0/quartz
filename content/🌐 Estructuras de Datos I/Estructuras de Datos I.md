@@ -1,11 +1,15 @@
-# 0 - Estructura de Datos I - Content
+>[!important] 
+>Para ver el contenido de la asignatura accede a la sección: `backlinks` !
+>
 
-Course: [[]]
+# Estructura de Datos I 
 
-```dataview
-table  file.inlinks
-from  #main_page 
-where contains(Course, [[Estructuras de Datos I]])
-sort file.name asc
-```
-
+- [[Administración Dinámica de Memoria]]
+- [[Algoritmos y Arreglos]]
+	- [[Teoría de arreglos]]
+	- [[Conceptos básicos de algoritmos]]
+- [[Grafos y Árboles]]
+	- [[Árboles]]
+	- [[Grafos]]
+- [[Listas Encadenadas]]
+- [[Pilas y Colas]]

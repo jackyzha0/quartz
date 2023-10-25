@@ -18,3 +18,5 @@ Source:: [[La Santísima Trinidad]]
 - El papa Francisco plantea en su postura (reforma) papal: "La comunión no es un premio para los que se portan bien, sino que es para todos." 
 	- Plantea el paradigma de Jesus. No tenés que ser bueno para tener el amor de Dios.
 
+- El Cristo de la fe es lo que la primera comunidad cristiana (y todas las otras comunidades) interpretan de lo que Cristo fue
+	- La presencia más fuerte de Jesús es él resucitado

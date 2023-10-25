@@ -1,11 +1,16 @@
-# 0 - Estructuras de Datos II - Content
+>[!important] 
+>Para ver el contenido de la asignatura accede a la sección: `backlinks` !
 
-Course: [[]]
+# Estructuras de Datos II 
 
-```dataview
-table Date, file.inlinks
-from  #main_page 
-where contains(Course, [[Estructuras de Datos II]])
-sort file.name asc
-```
-
+- [[Archivos]]
+	- [[Organización de los archivos]]
+	- [[Estructura de los archivos]]
+	- [[Características de los archivos]]
+- [[Complejidad de los algoritmos]]
+- [[Introducción a la Algoritmia]]
+- [[Métodos de Búsqueda]]
+- [[Métodos de Ordenamiento]]
+	- [[Métodos de Ordenación Externa]]
+	- [[Métodos de Ordenamiento Recursivos]]
+	- [[Métodos de Ordenamiento Iterativos]]
