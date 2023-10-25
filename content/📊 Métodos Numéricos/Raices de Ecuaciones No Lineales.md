@@ -29,13 +29,12 @@ Sea _f(x)_ una función continua en el intervalo cerrado $[a, b]$ tal que _
 
 # Métodos Cerrados
 
-## ![[Método de Bisección]]
+## [[Método de Bisección]]
 
-
-## ![[Método de Falsa Posición]]
+## [[Método de Falsa Posición]]
 
 
 # Métodos Abiertos
-## ![[Método de Newton Raphson]]
+## [[Método de Newton Raphson]]
 
-## ![[Método de la Secante]]
+## [[Método de la Secante]]

@@ -21,9 +21,9 @@ Source:: [[U3 - MN]]
 - La aproximación, por otro lado, es un método de estimación de una función desconocida en un conjunto de puntos conocidos, donde la función aproximante no necesariamente pasa por cada uno de los puntos conocidos. Es decir, la aproximación busca encontrar una función que se ajuste de manera aproximada a los datos conocidos. La precisión de la aproximación depende del número de puntos conocidos y del grado del polinomio utilizado para la aproximación.
 
 
-## ![[Polinomio de Taylor]]
-## ![[Polinomio de Newton]]
-![[Polinomio de Lagrange]]
+## [[Polinomio de Taylor]]
+## [[Polinomio de Newton]]
+[[Polinomio de Lagrange]]
 
 
 ## Ventajas y desventajas de los métodos anteriores

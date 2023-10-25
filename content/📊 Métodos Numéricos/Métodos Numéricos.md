@@ -1,2 +1,17 @@
 >[!important] 
 >Para ver el contenido de la asignatura accede a la sección: `backlinks` !
+
+- [[U1 - MN]]
+	- [[Error]]
+	- [[Apunte Teórico - El error.pdf]]
+- [[U2 - MN]]
+	- [[Raices de Ecuaciones No Lineales]]
+- [[U3 - MN]]
+	- [[Interpolación Polinomial]]
+- [[U4 - MN]]
+	- [[Diferenciación Numérica]]
+	- [[Integración Numérica]]
+- [[U5 - MN]]
+	- [[Problemas de Valor Inicial]]
+- [[U6 - MN]]
+	- [[Métodos para sistemas de ecuaciones lineales]]
