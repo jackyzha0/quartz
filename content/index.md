@@ -2,6 +2,12 @@
 
 
 Start here!! 👉 [[table of content]] 
+
+>[!info] Support 
+>Si el proyecto te sirvió, considera apoyarlo! 
+>
+>[![Invitame un café en cafecito.app | 150](https://cdn.cafecito.app/imgs/buttons/button_6.svg)](https://cafecito.app/valenottaviano)
+
 ## Introduction
 
 Welcome to my digital knowledge repository, a second brain meticulously crafted during my journey through college. In this project, I've gathered a treasure trove of insights, lessons, and experiences from my time studying software engineering. This is not just a collection of notes; it's a testament to my dedication to mastering the world of code and technology.
