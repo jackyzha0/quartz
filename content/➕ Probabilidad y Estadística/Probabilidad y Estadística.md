@@ -7,3 +7,4 @@ table Date, file.inlinks
 from "➕ Probabilidad y Estadística" and #main_page 
 sort Date asc
 ```
+

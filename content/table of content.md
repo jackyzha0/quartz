@@ -3,9 +3,9 @@ Work in Progress
 - [ ] Primer año
 	- [ ] [[Algebra I]]
 	- [ ] [[Algebra II]]
-	- [ ] [[Física II]]
+	- [x] [[Física I]]
 	- [x] [[Análisis matemático I]]
-	- [ ] [[Programación I]]
+	- [x] [[Programación I]]
 - [ ] Segundo año
 	- [ ] [[Análisis matemático II]]
 	- [ ] [[Física II]]
@@ -14,11 +14,11 @@ Work in Progress
 	- [ ] [[Estructuras de Datos II]]
 	- [ ] [[Álgebra Discreta]]
 - [ ] Tercer año
-	- [x] [[Electronica Básica]]
+	- [x] [[Electrónica Básica]]
 	- [x] [[Probabilidad y Estadística]]
 	- [x] [[Programación III]]
 	- [x] [[Comunicación de Datos]]
-	- [ ] [[Métodos Numéricos]]
+	- [x] [[Métodos Numéricos]]
 	- [x] [[Teoría de Sistemas y Modelos]]
 	- [ ] [[Arquitectura de Computadores I]]
 	- [ ] [[Bases de datos]]
