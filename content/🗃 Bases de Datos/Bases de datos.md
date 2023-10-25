@@ -1,4 +1,4 @@
-# Bases de datos - Content
+# Bases de datos
 
 Course: [[Bases de Datos]]
 
