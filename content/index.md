@@ -4,7 +4,7 @@
 Inicia por aquí!! 👉 [[table of content]] 
 
 
-¡Bienvenido a mi repositorio digital de apuntes construido durante mi recorrido por la universidad! En este proyecto, he reunido un tesoro de perspicacias, lecciones y experiencias de mi tiempo estudiando ingeniería en informática. 
+¡Bienvenido a mi repositorio digital de apuntes construido durante mi recorrido por la universidad! En este proyecto, he reunido lecciones y experiencias de mi tiempo estudiando ingeniería en informática. 
 
 ### Propósito
 El objetivo principal de este proyecto es:
