@@ -2,7 +2,7 @@
 
 - Date:: [[]]
 - Course:: [[Estructuras de Datos II]]
-- Source:: [[3 - Métodos de Ordenamiento]]
+- Source:: [[Métodos de Ordenamiento]]
 
 
 ## Métodos de Ordenamiento

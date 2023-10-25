@@ -2,7 +2,7 @@
 
 - Date:: [[]]
 - Course:: [[Estructuras de Datos II]]
-- Source:: [[4 - Archivos]]
+- Source:: [[Archivos]]
 
 
 ## Estructura de los Registros

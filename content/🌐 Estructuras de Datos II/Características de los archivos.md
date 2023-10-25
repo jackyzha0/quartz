@@ -2,7 +2,7 @@
 
 - Date:: [[]]
 - Course:: [[Estructuras de Datos II]]
-- Source:: [[4 - Archivos]]
+- Source:: [[Archivos]]
 
 ### Componentes físicos de un sistema de computación
 

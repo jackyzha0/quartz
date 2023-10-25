@@ -2,7 +2,7 @@
 
 - Date:: [[]]
 - Course:: [[Estructuras de Datos II]]
-- Source:: [[3 - Métodos de Ordenamiento]]
+- Source:: [[Métodos de Ordenamiento]]
 
 - En qué consisten los métodos de ordenamiento recursivos?
     - Estos métodos son aún mas complejos, requieren de mayor atención y conocimiento para ser entendidos.
