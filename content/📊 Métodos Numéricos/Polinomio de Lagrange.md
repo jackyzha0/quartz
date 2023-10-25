@@ -38,5 +38,3 @@ $$
 Por lo tanto, la aproximación de f(0.5) utilizando un polinomio de Lagrange de grado 2 y los puntos (-1, 1), (0, 0) y (1, 1) es 0.25.
 
 3. Si se desea, se pueden repetir los pasos anteriores para aproximar la función en otros puntos de interés o con un polinomio de mayor grado para obtener una mayor precisión en la aproximación.
-
-En resumen, para aproximar una función utilizando polinomios de Lagrange con tres pares de puntos conocidos, se debe escribir la fórmula general del polinomio de Lagrange para la función y los puntos conocidos, evaluar cada término del polinomio en el punto de interés, y sumar los términos evaluados para obtener la aproximación de la función en el punto de interés.

@@ -4,8 +4,9 @@
 [[Resistores en CA]]
 [[Capacitor en CA]]
 [[Inductor en CA]]
-# Vector Poynting
+
 [[Circuito RLC]]
+[[Vector Poynting]]
 
 
 [[Física II]] [[Electronica Básica]]

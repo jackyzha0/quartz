@@ -22,7 +22,8 @@ Source:: [[U3 - MN]]
 
 
 ## [[Polinomio de Taylor]]
-## [[Polinomio de Newton]]
+
+[[Polinomio de Newton]]
 [[Polinomio de Lagrange]]
 
 

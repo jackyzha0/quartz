@@ -103,3 +103,47 @@ $$\begin{cases} x_3=3 \\ 4x_2=8 \\ 2x_1+x_2+x_3=5 \end{cases}$$
 Por lo tanto, la solución del sistema de ecuaciones es:
 
 $$\begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} -3 \\ 2 \\ 9 \end{pmatrix}$$
+## Método de la matriz inversa
+
+El método de la inversa es una técnica para resolver sistemas de ecuaciones lineales utilizando la matriz inversa. La matriz inversa es una matriz que, multiplicada por la matriz de coeficientes del sistema, produce la matriz identidad. Si la matriz de coeficientes es invertible, entonces se puede utilizar la matriz inversa para resolver el sistema de ecuaciones.
+
+A continuación se describen los pasos del método de la inversa para resolver un sistema de ecuaciones lineales:
+
+1. Escribir el sistema de ecuaciones en forma matricial, donde A es la matriz de coeficientes, x es el vector de incógnitas y b es el vector de términos independientes:
+
+$$Ax=b$$
+
+2. Verificar si la matriz de coeficientes A es invertible. Una matriz es invertible si su determinante es distinto de cero:
+
+$$\det(A) \neq 0$$
+
+3. Si la matriz A es invertible, calcular su matriz inversa A^-1:
+
+$$A^{-1}A=AA^{-1}=I$$
+
+4. Multiplicar ambos lados de la ecuación Ax=b por la matriz inversa A^-1:
+
+$$A^{-1}Ax=A^{-1}b$$
+
+5. Simplificar la expresión utilizando la propiedad de la matriz identidad:
+
+$$Ix=A^{-1}b$$
+
+6. Resolver la ecuación para obtener el vector de incógnitas x:
+
+$$x=A^{-1}b$$
+
+A continuación se muestra un ejemplo de aplicación del método de la inversa para resolver un sistema de ecuaciones lineales:
+
+$$\begin{cases} 2x+y-z=8 \\ -3x-y+2z=-11 \\ -2x+y+2z=-3 \end{cases}$$
+
+1. Escribir el sistema de ecuaciones en forma matricial:
+
+$$\left[\begin{array}{ccc} 2 & 1 & -1 \\ -3 & -1 & 2 \\ -2 & 1 & 2 \end{array}\right]\left[\begin{array}{c} x \\ y \\ z \end{array}\right]=\left[\begin{array}{c} 8 \\ -11 \\ -3 \end{array}\right]$$
+
+2. Verificar si la matriz de coeficientes A es invertible. Calcular su determinante:
+
+$$\det(A)=\left|\begin{array}{ccc} 2 & 1 & -1 \\ -3 & -1 & 2 \\ -2 & 1 & 2 \end{array}\right|=0$$
+
+Como el determinante es cero, la matriz A no es invertible y el sistema de ecuaciones no tiene solución única.
+

@@ -1,4 +1,4 @@
-Work in Progress 
+Work in Progress 👨‍🏭
 ## Content
 - [ ] Primer año
 	- [ ] [[Algebra I]]
@@ -6,6 +6,7 @@ Work in Progress
 	- [ ] [[Física I]] 
 	- [ ] [[Análisis matemático I]] 
 	- [ ] [[Programación I]]
+	- [ ] [[Formación Humanística I]] (n/a)
 - [ ] Segundo año
 	- [ ] [[Análisis matemático II]]
 	- [ ] [[Física II]]
@@ -13,6 +14,7 @@ Work in Progress
 	- [ ] [[Estructuras de Datos I]]
 	- [ ] [[Estructuras de Datos II]]
 	- [ ] [[Álgebra Discreta]]
+	- [ ] [[Formación Humanística II]] (n/a)
 - [ ] Tercer año
 	- [ ] [[Electrónica Básica]]
 	- [ ] [[Probabilidad y Estadística]]
