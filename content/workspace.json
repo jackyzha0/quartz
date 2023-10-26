@@ -1,0 +1,181 @@
+{
+  "main": {
+    "id": "56855efdee895c08",
+    "type": "split",
+    "children": [
+      {
+        "id": "85e25da597d67df2",
+        "type": "tabs",
+        "dimension": 54.34782608695652,
+        "children": [
+          {
+            "id": "bba1b79b16be204a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Home.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "156c8edb5e7f8992",
+        "type": "tabs",
+        "dimension": 45.65217391304348,
+        "children": [
+          {
+            "id": "87f9346620830bcb",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "graph",
+              "state": {},
+              "pinned": true
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "73a918f876a54bb5",
+    "type": "split",
+    "children": [
+      {
+        "id": "079afe88d0bfac33",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d23bd26d7d46b41b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "byCreatedTimeReverse"
+              }
+            }
+          },
+          {
+            "id": "6d2a96ffc5838af0",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "ea2b9f14cf83f690",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "6b3e6590210aac3a",
+    "type": "split",
+    "children": [
+      {
+        "id": "f2f665a5f50aae88",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "eb9ad4d1aad42fb3",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "d75e359e1ab2fa5d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "720c6665bc9e5a4b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "03cf76341597e341",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Schnellauswahl öffnen": false,
+      "graph:Graphen-Ansicht öffnen": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Heutige Notiz öffnen": false,
+      "templates:Vorlage einfügen": false,
+      "command-palette:Befehlspalette öffnen": false
+    }
+  },
+  "active": "87f9346620830bcb",
+  "lastOpenFiles": [
+    "Home.md",
+    "Datenbanken.md",
+    "Netzwerktechnik.md",
+    "Betriebssysteme.md",
+    "MySQL.md",
+    "Programmierung.md",
+    "Datenbank.md",
+    "Schule/Database.md",
+    "Schule/Programmieren.md",
+    "Unbenannt.canvas",
+    "Unbenannt 1.canvas",
+    "2023-04-14.md",
+    "Unbenannt 1",
+    "Unbenannt",
+    "Schule"
+  ]
+}
