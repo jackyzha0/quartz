@@ -303,7 +303,6 @@ document.addEventListener("nav", async (e: unknown) => {
   // setup index if it hasn't been already
   if (!index) {
     index = new Document({
-      cache: true,
       charset: "latin:extra",
       optimize: true,
       encode: encoder,
