@@ -1,3 +1,5 @@
+# Forgetful Notes
+
 <p align="right">
   <img src="https://img.shields.io/github/languages/code-size/semanticdata/forgetful-notes" />
   <img src="https://img.shields.io/github/repo-size/semanticdata/forgetful-notes" />
@@ -6,13 +8,9 @@
   <img src="https://img.shields.io/website/https/forgetfulnotes.com.svg" />
 </p>
 
-# Forgetful Notes
+This is the source code for [Forgetful Notes](https://forgetfulnotes.com)—my digital garden of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 
-Source code for [Forgetful Notes](https://forgetfulnotes.com)—my digital garden of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
-
-- Powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](https://obsidian.md).
-- Read the [Documentation](https://quartz.jzhao.xyz/).
-- Join the [Discord Community](https://discord.gg/cRFFHYye7t).
+It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](https://obsidian.md). You can read the [Documentation](https://quartz.jzhao.xyz/), and join the [Discord Community](https://discord.gg/cRFFHYye7t).
 
 ## Useful Commands
 
@@ -36,8 +34,19 @@ Source code for [Forgetful Notes](https://forgetfulnotes.com)—my digital garde
 | Body   | Source Sans Pro   |
 | Code   | IBM Plex Mono     |
 
-### Light Mode
+### Colors (format test)
 
+<div style="color:">
+
+| Variable  | Color      |
+| --------- | ---------- |
+| red       | <span style="background:red;">red</span>   |
+| blue      | <span style="background:blue;">blue</span> |
+
+</div>
+
+<!-- 
+### Light Mode
 
 | Variable  | Color      |
 | --------- | ---------- |
@@ -62,6 +71,7 @@ Source code for [Forgetful Notes](https://forgetfulnotes.com)—my digital garde
 | Secondary | \#a6e3a1   |
 | Terciary  | \#89dceb   |
 | Highlight | \#8f9fa926 |
+-->
 
 ## License
 
