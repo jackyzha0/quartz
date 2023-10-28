@@ -2,7 +2,7 @@
 title: "Forgetful Notes"
 description: "Forgetful Notes—A digital garden of knowledge. A platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to."
 compartir: true
-updated: 2023-10-02
+updated: 2023-10-28
 ---
 # Welcome!
 
@@ -12,7 +12,7 @@ I'm Miguel, and you have come across **Forgetful Notes**—my [[./Digital Garden
 
 This site serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to. It is part of my effort to organize my own theories, concepts, and ideas in a more public setting.
 
-You will find within a wide range of topics, expanding and exploring ideas across multiple disciplines. In a way, you could say the [[./Budding/Scope of Work|scope of work]] for the website is not only allowed to, but expected to grow. Forgetful Notes embraces the inherent [[./Seedlings/Rhizomatic Learning|rhizomatic learning]] and web-like nature of our thinking. It is a living document designed for an audience of one, myself.
+You will find within a wide range of topics, expanding and exploring ideas across multiple disciplines. In a way, you could say the [[./Scope of Work|scope of work]] for the website is not only allowed to, but expected to grow. Forgetful Notes embraces the inherent [[./Rhizomatic Learning|rhizomatic learning]] and web-like nature of our thinking. It is a living document designed for an audience of one, myself.
 
 > _"I only wrote that poem to test my printer!"_
 

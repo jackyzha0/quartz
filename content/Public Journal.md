@@ -3,7 +3,7 @@ title: Public Journal
 description: This new section will explore the concept of maintaining a Public Journal.
 compartir: true
 enableToc: true
-updated: 2023-10-24
+updated: 2023-10-25
 ---
 ## 2023-10-24
 
@@ -108,7 +108,7 @@ updated: 2023-10-24
 
 * It's my birthday! 🎉
 * Released version 1.1.0 of my Obsidian starter vault.
-* Found an amazing CSS Layout Hack. Added to both Brave and Firefox bookmarks, and to [[../Bookmarklets|Bookmarklets]].  
+* Found an amazing CSS Layout Hack. Added to both Brave and Firefox bookmarks, and to [[Bookmarklets|Bookmarklets]].  
 [Source](https://gist.github.com/growthboot/5c189cf854c6609d3113355c75527c1c)
 
 ### GitHub
@@ -267,8 +267,8 @@ updated: 2023-10-24
 
 ### Digital Garden
 
-* Compiled, and published a collection of [[../Bookmarklets|Bookmarklets]].
-* Cleaned up and published [[../Inspirations|Inspirations]].
+* Compiled, and published a collection of [[Bookmarklets|Bookmarklets]].
+* Cleaned up and published [[./Inspirations|Inspirations]].
 * Making the Garden more explorable by adding direct links to the [tags] page from the [Homepage].
 * Playing with the Garden's desktop layout. Temporarily moved right sidebar components to the left sidebar. Undone shortly after, as it messed with the total calculated width of the page and its two sidebar widths.
 
