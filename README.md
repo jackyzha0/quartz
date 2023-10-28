@@ -1,5 +1,3 @@
-# Forgetful Notes
-
 <p align="right">
   <img src="https://img.shields.io/github/languages/code-size/semanticdata/forgetful-notes" />
   <img src="https://img.shields.io/github/repo-size/semanticdata/forgetful-notes" />
@@ -7,6 +5,8 @@
   <img src="https://img.shields.io/github/last-commit/semanticdata/forgetful-notes" />
   <img src="https://img.shields.io/website/https/forgetfulnotes.com.svg" />
 </p>
+
+# Forgetful Notes
 
 This is the source code for [Forgetful Notes](https://forgetfulnotes.com)—my digital garden of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 
@@ -36,16 +36,16 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 
 ### Colors (format test)
 
+<!-- 
 <div style="color:">
 
 | Variable  | Color      |
 | --------- | ---------- |
-| red       | <span style="background:red;">red</span>   |
+| red       | <span style="color:red;">red</span>   |
 | blue      | <span style="background:blue;">blue</span> |
 
 </div>
 
-<!-- 
 ### Light Mode
 
 | Variable  | Color      |
