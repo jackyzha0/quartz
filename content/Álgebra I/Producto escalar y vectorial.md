@@ -1,9 +1,5 @@
 Course: [[Algebra I]]
 
-Date: February 12, 2023 5:18 PM
-Status: Done
-Year: 2021
-
 - Definición de **producto escalar en R^2**
     El producto escalar en $\mathbb{R}^2$ es una operación que se realiza entre dos vectores de dos dimensiones y que produce un número real como resultado. Formalmente, si $\vec{u} = \begin{pmatrix} u_1 \\ u_2 \end{pmatrix}$ y $\vec{v} = \begin{pmatrix} v_1 \\ v_2 \end{pmatrix}$ son dos vectores en $\mathbb{R}^2$, entonces el producto escalar de $\vec{u}$ y $\vec{v}$, denotado por $\vec{u} \cdot \vec{v}$, se calcula como sigue:
 
@@ -46,23 +42,13 @@ $$\vec{u} \cdot \vec{v} = u_1 v_1 + u_2 v_2$$
 - Demostración de las propiedades del producto vectorial    ![Untitled](Images/Producto%20escalar%20y%20vectorial/Untitled%2013.png)![Untitled](Images/Producto%20escalar%20y%20vectorial/Untitled%2014.png)![Untitled | 300](Images/Producto%20escalar%20y%20vectorial/Untitled%2015.png)
 
 - Definición de producto mixto
-    
-    ![Untitled](Images/Producto%20escalar%20y%20vectorial/Untitled%2017.png)
-    
-- Propiedades del producto mixto + demostración
-    
-    ![Untitled](Images/Producto%20escalar%20y%20vectorial/Untitled%2018.png)
-    
-    ![Untitled](Images/Producto%20escalar%20y%20vectorial/Untitled%2019.png)
-    
+    El producto mixto es una operación que se realiza entre tres vectores en $\mathbb{R}^3$ y que produce un escalar. Formalmente, si $\vec{u}$, $\vec{v}$ y $\vec{w}$ son tres vectores en $\mathbb{R}^3$, entonces el producto mixto de $\vec{u}$, $\vec{v}$ y $\vec{w}$, denotado por $[\vec{u},\vec{v},\vec{w}]$, se calcula como sigue:$$[\vec{u},\vec{v},\vec{w}] = \vec{u} \cdot (\vec{v} \times \vec{w})$$
+
+
 - Propiedad geométrica del producto mixto
-    
-    ![Untitled](Images/Producto%20escalar%20y%20vectorial/Untitled%2020.png)
-    
+    La propiedad geométrica más importante del producto mixto es que su valor absoluto es igual al volumen del paralelepípedo que forman los tres vectores. Es decir, si $\vec{u}$, $\vec{v}$ y $\vec{w}$ son tres vectores en $\mathbb{R}^3$, entonces el valor absoluto del producto mixto $|\vec{u} \cdot (\vec{v} \times \vec{w})|$ es igual al volumen del paralelepípedo que forman los tres vectores.
+
 - Definición de proyección vectorial ortogonal
-    
-    ![Untitled](Images/Producto%20escalar%20y%20vectorial/Untitled%2021.png)
-    
-- Definición de proyección escalar
-    
-    ![Untitled](Images/Producto%20escalar%20y%20vectorial/Untitled%2022.png)
+    La proyección vectorial ortogonal es una operación que se realiza entre dos vectores en $\mathbb{R}^n$ y que produce un tercer vector que es una proyección del primer vector sobre el segundo vector, de manera que la proyección es ortogonal al segundo vector. Formalmente, si $\vec{u}$ y $\vec{v}$ son dos vectores en $\mathbb{R}^n$, entonces la proyección vectorial ortogonal de $\vec{u}$ sobre $\vec{v}$, denotada por $\operatorname{proj}_{\vec{v}} \vec{u}$, se calcula como sigue:$$\operatorname{proj}_{\vec{v}} \vec{u} = \frac{\vec{u} \cdot \vec{v}}{\|\vec{v}\|^2} \vec{v}$$
+
+- Definición de proyección escalar$$||\operatorname{proj}_{\vec{v}} \vec{u} ||= \frac{|\vec{u} \cdot \vec{v}|}{\|\vec{v}\|} $$
