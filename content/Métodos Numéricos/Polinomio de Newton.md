@@ -19,7 +19,11 @@ Los polinomios de Newton son útiles porque permiten aproximar funciones en un c
 En resumen, los polinomios de Newton son una herramienta matemática utilizada para aproximar una función en un conjunto de puntos conocidos mediante una serie de términos polinómicos. La fórmula general para el polinomio de Newton de una función f(x) en un conjunto de puntos x0, x1, ..., xn se puede expresar como:
 
 $$
-P_n(x) = f[x_0] + f[x_0,x_1](x-x_0) + f[x_0,x_1,x_2](x-x_0)(x-x_1) + \cdots + f[x_0,x_1,\ldots,x_n](x-x_0)(x-x_1)\cdots(x-x_{n-1})
+\begin{aligned}
+P_n(x) &= f[x_0] + f[x_0,x_1](x-x_0) \\
+&+ f[x_0,x_1,x_2](x-x_0)(x-x_1) 
++ \cdots \\ &+ f[x_0,x_1,\ldots,x_n](x-x_0)(x-x_1)\cdots(x-x_{n-1})
+\end{aligned}
 $$
 
 ## Aproximación por polinomio de Newton
