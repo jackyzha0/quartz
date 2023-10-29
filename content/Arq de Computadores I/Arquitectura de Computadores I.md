@@ -1,5 +1,5 @@
 # Arquitectura de Computadores I
-
+[[Arquitectura de Computadores I - Temas examen]]
 Course: [[Arquitectura de Computadores I]]
 
 - [[Que es una computadora]]

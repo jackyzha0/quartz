@@ -42,10 +42,10 @@ $$
 
 donde f\[xi,xi+1,...,xi+k] representa la k-ésima diferencia dividida de la función entre los puntos xi, xi+1, ..., xi+k.
 
-3. Escribir la fórmula general del polinomio de Newton para la función y el conjunto de puntos conocidos seleccionados:
+3. Escribir la fórmula general del polinomio de Newton para la función y. el conjunto de puntos conocidos seleccionados:
 
 $$
-P_n(x) = f[x_0] + f[x_0,x_1](x-x_0) + f[x_0,x_1,x_2](x-x_0)(x-x_1) + \cdots + f[x_0,x_1,\ldots,x_n](x-x_0)(x-x_1)\cdots(x-x_{n-1})
+P_n(x) = f[x_0] + f[x_0,x_1](x-x_0)  + \cdots + f[x_0,x_1,\ldots,x_n](x-x_0)(x-x_1)\cdots(x-x_{n-1})
 $$
 
 4. Evaluar cada término del polinomio de Newton en el punto de interés x.
