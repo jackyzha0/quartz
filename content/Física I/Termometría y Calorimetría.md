@@ -3,7 +3,6 @@ Course: [[Física I]]
 [[Termometría]]
 [[Calorimetría]]
 
-
 - Indique las fórmulas de dilatación (lineal, superficial y volumétrica)![Untitled](Images/Termometría%20y%20Calorimetría/Untitled.png)
 
 - Indique la fórmula de cálculo del calor![Untitled](Images/Termometría%20y%20Calorimetría/Untitled%201.png)

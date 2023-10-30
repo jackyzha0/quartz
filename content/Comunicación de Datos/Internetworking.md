@@ -6,7 +6,6 @@ Course:: [[Comunicación de Datos]]
 Source:: [[]]
 %%
 
-
 El internetworking, también conocido como interconexión de redes, se refiere al proceso de conectar diferentes redes de computadoras entre sí para permitir la comunicación y el intercambio de datos de manera efectiva. Este concepto es fundamental en el mundo de las tecnologías de la información y las comunicaciones, ya que las redes informáticas suelen estar diseñadas y administradas de manera independiente. El internetworking facilita la comunicación entre estas redes heterogéneas. Aquí tienes una explicación más detallada:
 
 1. **Conexión de redes:** El internetworking implica conectar redes locales (LAN), redes de área extensa (WAN), redes metropolitanas (MAN) o incluso redes globales (como Internet) para que puedan comunicarse entre sí. Esto se logra mediante dispositivos y protocolos que permiten el enrutamiento de datos de una red a otra.
@@ -22,4 +21,4 @@ El internetworking, también conocido como interconexión de redes, se refiere a
 
 Continuación:
 [[Modelo de referencia OSI]]
-
+[[Topología ethernet]]
