@@ -12,6 +12,10 @@ This is the source code for [Forgetful Notes](https://forgetfulnotes.com)—my d
 
 It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](https://obsidian.md). You can read the [Documentation](https://quartz.jzhao.xyz/), and join the [Discord Community](https://discord.gg/cRFFHYye7t).
 
+## Screenshots
+
+<img alt="Website Screenshot" src="screenshot.png" width="720px" />
+
 ## Useful Commands
 
 | Description                | Command                    |
@@ -21,7 +25,7 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 | Update Quartz (core)       | `npx quartz update`        |
 | Build only                 | `npx quartz build`         |
 | Build and Serve            | `npx quartz build --serve` |
-| Save Local Changes to Repo | `npx quartz sync`          |
+| Sync Local Changes         | `npx quartz sync`          |
 | Find Help                  | `npx quartz sync --help`   |
 
 ## Style
@@ -30,13 +34,13 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 
 | Use    | Font              |
 | ------ | ----------------- |
-| Header | Schibsted Grotesk |
-| Body   | Source Sans Pro   |
-| Code   | IBM Plex Mono     |
+| Header | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
+| Body   | [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3)   |
+| Code   | [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono)     |
 
+<!--
 ### Colors (format test)
 
-<!-- 
 <div style="color:">
 
 | Variable  | Color      |
@@ -75,4 +79,4 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 
 ## License
 
-Source code is available under [MIT](LICENSE).
+Source code in this repository is available under the [MIT](LICENSE) license. You are free to use this code however you see fit. That said, some acknowledgement would be well received.
