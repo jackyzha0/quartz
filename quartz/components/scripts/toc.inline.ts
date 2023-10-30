@@ -27,11 +27,11 @@ function setupToc() {
     const content = toc.nextElementSibling as HTMLElement
     content.style.maxHeight = content.scrollHeight + "px"
     toc.removeEventListener("click", toggleToc)
-    toc.addEventListener("click", toggleToc)
+    toc.addEventListener("click", toggleToc, {passive: true})
   }
 }
 
-window.addEventListener("resize", setupToc)
+window.addEventListener("resize", setupToc, {passive: true})
 document.addEventListener("nav", () => {
   setupToc()
 

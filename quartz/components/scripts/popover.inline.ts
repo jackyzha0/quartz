@@ -78,6 +78,6 @@ document.addEventListener("nav", () => {
   const links = [...document.getElementsByClassName("internal")] as HTMLLinkElement[]
   for (const link of links) {
     link.removeEventListener("mouseenter", mouseEnterHandler)
-    link.addEventListener("mouseenter", mouseEnterHandler)
+    link.addEventListener("mouseenter", mouseEnterHandler, {passive: true})
   }
 }, {passive: true})

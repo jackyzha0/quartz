@@ -16,7 +16,7 @@ document.addEventListener("nav", () => {
   // Darkmode toggle
   const toggleSwitch = document.querySelector("#darkmode-toggle") as HTMLInputElement
   toggleSwitch.removeEventListener("change", switchTheme)
-  toggleSwitch.addEventListener("change", switchTheme)
+  toggleSwitch.addEventListener("change", switchTheme, {passive: true})
   if (currentTheme === "dark") {
     toggleSwitch.checked = true
   }
@@ -28,5 +28,5 @@ document.addEventListener("nav", () => {
     document.documentElement.setAttribute("saved-theme", newTheme)
     localStorage.setItem("theme", newTheme)
     toggleSwitch.checked = e.matches
-  })
+  }, {passive: true})
 }, {passive: true})

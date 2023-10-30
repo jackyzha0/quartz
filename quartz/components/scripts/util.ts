@@ -13,7 +13,7 @@ export function registerEscapeHandler(outsideContainer: HTMLElement | null, cb: 
   }
 
   outsideContainer?.removeEventListener("click", click)
-  outsideContainer?.addEventListener("click", click)
+  outsideContainer?.addEventListener("click", click, {passive: true})
   document.removeEventListener("keydown", esc)
   document.addEventListener("keydown", esc, {passive: true})
 }

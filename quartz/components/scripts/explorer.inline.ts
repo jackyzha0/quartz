@@ -87,20 +87,20 @@ function setupExplorer() {
         document.getElementsByClassName("folder-button"),
         function (item) {
           item.removeEventListener("click", toggleFolder)
-          item.addEventListener("click", toggleFolder)
+          item.addEventListener("click", toggleFolder, {passive: true})
         },
       )
     }
 
     // Add click handler to main explorer
     explorer.removeEventListener("click", toggleExplorer)
-    explorer.addEventListener("click", toggleExplorer)
+    explorer.addEventListener("click", toggleExplorer, {passive: true})
   }
 
   // Set up click handlers for each folder (click handler on folder "icon")
   Array.prototype.forEach.call(document.getElementsByClassName("folder-icon"), function (item) {
     item.removeEventListener("click", toggleFolder)
-    item.addEventListener("click", toggleFolder)
+    item.addEventListener("click", toggleFolder, {passive: true})
   })
 
   if (storageTree && useSavedFolderState) {
@@ -126,7 +126,7 @@ function setupExplorer() {
   }
 }
 
-window.addEventListener("resize", setupExplorer)
+window.addEventListener("resize", setupExplorer, {passive: true})
 document.addEventListener("nav", () => {
   setupExplorer()
 

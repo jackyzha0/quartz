@@ -227,7 +227,7 @@ document.addEventListener("nav", async (e: unknown) => {
       const targ = resolveRelative(currentSlug, slug)
       window.spaNavigate(new URL(targ, window.location.toString()))
       hideSearch()
-    })
+    }, {passive: true})
     return button
   }
 
@@ -296,9 +296,9 @@ document.addEventListener("nav", async (e: unknown) => {
   document.addEventListener("keydown", shortcutHandler, {passive: true})
   prevShortcutHandler = shortcutHandler
   searchIcon?.removeEventListener("click", () => showSearch("basic"))
-  searchIcon?.addEventListener("click", () => showSearch("basic"))
+  searchIcon?.addEventListener("click", () => showSearch("basic"), {passive: true})
   searchBar?.removeEventListener("input", onType)
-  searchBar?.addEventListener("input", onType)
+  searchBar?.addEventListener("input", onType, {passive: true})
 
   // setup index if it hasn't been already
   if (!index) {
