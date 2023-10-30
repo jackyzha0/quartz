@@ -40,5 +40,5 @@ function setupCallout() {
   }
 }
 
-document.addEventListener(`nav`, setupCallout)
+document.addEventListener(`nav`, setupCallout, {passive: true})
 window.addEventListener(`resize`, setupCallout)

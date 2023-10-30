@@ -80,4 +80,4 @@ document.addEventListener("nav", () => {
     link.removeEventListener("mouseenter", mouseEnterHandler)
     link.addEventListener("mouseenter", mouseEnterHandler)
   }
-})
+}, {passive: true})

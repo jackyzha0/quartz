@@ -136,7 +136,7 @@ document.addEventListener("nav", () => {
 
   observer.disconnect()
   observer.observe(lastItem as Element)
-})
+}, {passive: true})
 
 /**
  * Toggles the state of a given folder

@@ -30,4 +30,4 @@ document.addEventListener("nav", () => {
       els[i].prepend(button)
     }
   }
-})
+}, {passive: true})

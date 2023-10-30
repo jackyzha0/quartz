@@ -29,4 +29,4 @@ document.addEventListener("nav", () => {
     localStorage.setItem("theme", newTheme)
     toggleSwitch.checked = e.matches
   })
-})
+}, {passive: true})

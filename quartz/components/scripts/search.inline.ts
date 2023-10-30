@@ -293,7 +293,7 @@ document.addEventListener("nav", async (e: unknown) => {
     document.removeEventListener("keydown", prevShortcutHandler)
   }
 
-  document.addEventListener("keydown", shortcutHandler)
+  document.addEventListener("keydown", shortcutHandler, {passive: true})
   prevShortcutHandler = shortcutHandler
   searchIcon?.removeEventListener("click", () => showSearch("basic"))
   searchIcon?.addEventListener("click", () => showSearch("basic"))
@@ -330,7 +330,7 @@ document.addEventListener("nav", async (e: unknown) => {
 
   // register handlers
   registerEscapeHandler(container, hideSearch)
-})
+}, {passive: true})
 
 /**
  * Fills flexsearch document with data
