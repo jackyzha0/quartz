@@ -18,38 +18,39 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 
 ## Useful Commands
 
-| Description                | Command                    |
-| -------------------------- | -------------------------- |
-| Install Dependencies       | `npm i`                    |
-| Update Dependencies        | `npm update`               |
-| Update Quartz (core)       | `npx quartz update`        |
-| Build only                 | `npx quartz build`         |
-| Build and Serve            | `npx quartz build --serve` |
-| Sync Local Changes         | `npx quartz sync`          |
-| Find Help                  | `npx quartz sync --help`   |
+| Description          | Command                    |
+| -------------------- | -------------------------- |
+| Install Dependencies | `npm i`                    |
+| Update Dependencies  | `npm update`               |
+| Update Quartz (core) | `npx quartz update`        |
+| Build only           | `npx quartz build`         |
+| Build and Serve      | `npx quartz build --serve` |
+| Sync Local Changes   | `npx quartz sync`          |
+| Find Help            | `npx quartz sync --help`   |
 
 ## Style
 
 ### Fonts
 
-| Use    | Font              |
-| ------ | ----------------- |
-| Header | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
-| Body   | [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3)   |
-| Code   | [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono)     |
+| Used in: | Font Family                                                              |
+| -------- | ------------------------------------------------------------------------ |
+| Header   | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
+| Body     | [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3)       |
+| Code     | [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono)         |
 
-<!--
+
 ### Colors (format test)
 
-<div style="color:">
+<div style="background:aqua;">
 
-| Variable  | Color      |
-| --------- | ---------- |
-| red       | <span style="color:red;">red</span>   |
-| blue      | <span style="background:blue;">blue</span> |
+| Variable | Color                                      |
+| -------- | ------------------------------------------ |
+| red      | <span style="color:red;">red</span>        |
+| blue     | <span style="background:blue;">blue</span> |
 
 </div>
 
+<!--
 ### Light Mode
 
 | Variable  | Color      |
@@ -62,7 +63,8 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 | Secondary | \#284b63   |
 | Terciary  | \#84a59d   |
 | Highlight | \#8f9fa926 |
-
+-->
+<!--
 ### Dark Mode
 
 | Variable  | Color      |
