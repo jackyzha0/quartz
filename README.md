@@ -38,47 +38,6 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 | Body     | [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3)       |
 | Code     | [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono)         |
 
-
-### Colors (format test)
-
-<div style="background:aqua;">
-
-| Variable | Color                                      |
-| -------- | ------------------------------------------ |
-| red      | <span style="color:red;">red</span>        |
-| blue     | <span style="background:blue;">blue</span> |
-
-</div>
-
-<!--
-### Light Mode
-
-| Variable  | Color      |
-| --------- | ---------- |
-| Light     | \#faf8f8   |
-| Lightgray | \#e5e5e5   |
-| Gray      | \#b8b8b8   |
-| Darkgray  | \#4e4e4e   |
-| Dark      | \#2b2b2b   |
-| Secondary | \#284b63   |
-| Terciary  | \#84a59d   |
-| Highlight | \#8f9fa926 |
--->
-<!--
-### Dark Mode
-
-| Variable  | Color      |
-| --------- | ---------- |
-| Light     | \#1e1e2e   |
-| Lightgray | \#6c7086   |
-| Gray      | \#a6adc8   |
-| Darkgray  | \#cdd6f4   |
-| Dark      | \#cdd6f4   |
-| Secondary | \#a6e3a1   |
-| Terciary  | \#89dceb   |
-| Highlight | \#8f9fa926 |
--->
-
 ## License
 
 Source code in this repository is available under the [MIT](LICENSE) license. You are free to use this code however you see fit. That said, some acknowledgement would be well received.
