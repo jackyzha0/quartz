@@ -14,7 +14,10 @@ If you'd like to only publish a select number of notes, you can instead use `Plu
 
 ## `ignorePatterns`
 
-This is a field in `quartz.config.ts` under the main [[configuration]] which allows you to specify a list of patterns to effectively exclude from parsing all together. Any valid [glob](https://github.com/mrmlnc/fast-glob#pattern-syntax) pattern works here.
+This is a field in `quartz.config.ts` under the main [[configuration]] which allows you to specify a list of patterns to effectively exclude from parsing all together. Any valid [fast-glob](https://github.com/mrmlnc/fast-glob#pattern-syntax) pattern works here. 
+
+> [!note]
+> Bash's glob syntax is slightly different from fast-glob's and using bash's syntax may lead to unexpected results.
 
 Common examples include:
 
