@@ -1,0 +1,11 @@
+- Similar a [[Modelo VUCA - VICA]], nos sirve para saber dónde estoy parado.
+	- A partir de esto, podré saber qué acciones ejecutar.
+
+![[Pasted image 20231031124126.png]]
+
+1. **Claro (Clear):** En este dominio, los problemas son simples y bien entendidos. Las soluciones son evidentes y se pueden aplicar de manera consistente. Aquí, se sigue un enfoque de "mejores prácticas" porque existe claridad en la relación causa-efecto. Por ejemplo, las tareas rutinarias y repetitivas se encuentran en este dominio.
+2. **Complicado (Complicated):** En este dominio, los problemas son más complejos que en el dominio claro. Requieren experiencia o conocimientos especializados para comprenderlos y resolverlos. No hay una única respuesta correcta, pero existen expertos y métodos que pueden ayudar a encontrar soluciones efectivas. Ejemplos de problemas complicados incluyen el diseño de sistemas tecnológicos avanzados o proyectos de ingeniería.
+3. **Complejo (Complex):** Los problemas en este dominio son inherentemente inciertos y pueden involucrar múltiples factores interconectados. No existe una solución predefinida, y las causas y efectos a menudo solo son claros en retrospectiva. En lugar de buscar respuestas definitivas, enfoques como la experimentación y la adaptación son más adecuados para resolver problemas complejos. Ejemplos de problemas complejos incluyen la gestión del cambio organizacional y la resolución de conflictos en equipos multidisciplinarios.
+4. **Caótico (Chaotic):** En este dominio, la situación es caótica y confusa. No hay tiempo para el análisis o la planificación cuidadosa. En lugar de buscar soluciones, el enfoque aquí es estabilizar la situación lo antes posible. Una vez que se ha restablecido cierto grado de orden, se puede pasar a uno de los otros dominios para abordar el problema de manera más efectiva.
+    
+5. **Desorden (Disorder):** Este dominio representa la falta de comprensión de la naturaleza del problema en un momento dado. La primera tarea en este dominio es determinar en cuál de los otros dominios se encuentra el problema y luego actuar en consecuencia.
