@@ -1,0 +1,29 @@
+Work in Progress 👨‍🏭
+## Content
+- [ ] Primer año
+	- [x] [[Algebra I]]
+	- [x] [[Algebra II]]
+	- [ ] [[Física I]] 
+	- [ ] [[Análisis matemático I]] 
+	- [ ] [[Programación I]]
+	- [ ] [[Formación Humanística I]] (n/a)
+- [ ] Segundo año
+	- [ ] [[Análisis matemático II]]
+	- [ ] [[Física II]]
+	- [ ] [[Programación II]]
+	- [ ] [[Estructuras de Datos I]]
+	- [ ] [[Estructuras de Datos II]]
+	- [ ] [[Álgebra Discreta]]
+	- [x] [[Formación Humanística II]]
+- [ ] Tercer año
+	- [x] [[Electrónica Básica]]
+	- [x] [[Probabilidad y Estadística]]
+	- [x] [[Programación III]]
+	- [x] [[Comunicación de Datos]]
+	- [x] [[Métodos Numéricos]]
+	- [x] [[Teoría de Sistemas y Modelos]]
+	- [x] [[Arquitectura de Computadores I]]
+	- [x] [[Bases de datos]]
+	- [x] [[Informática Teórica]]
+	- [x] [[Formación Humanística 3]]
+	- [x] [[Investigación Operativa]]

@@ -1,7 +1,7 @@
 >[!important] 
 >Para ver el contenido de la asignatura accede a la sección: `backlinks` !
 
-- [[Programación III/Introducción|Introducción]]
+- [[Programación/Programación III/Introducción|Introducción]]
 - [[Sentencias Básicas de SQL Server]]
 	- [[Modificadores Básicos de SQL Server]]
 	- [[Estructuras de Control]]

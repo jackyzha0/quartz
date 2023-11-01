@@ -1,0 +1,4 @@
+- [Desarrollo de Software](https://seo.unsta.edu.ar/course/view.php?id=1143) #TDCS
+- [Desarrollo de Interfaces Complejas](https://seo.unsta.edu.ar/course/view.php?id=1166) #DMultimedial
+- [Curso de Metodologías Ágiles](https://seo.unsta.edu.ar/course/view.php?id=2652) 
+- [Desarrollo de aplicaciones web](https://seo.unsta.edu.ar/course/view.php?id=2831) #TDCS 

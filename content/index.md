@@ -1,3 +1,7 @@
+---
+title: Second Brain
+---
+
 # ¡Bienvenido! 
 
 
