@@ -17,4 +17,4 @@
 - [[Design Thinking]]
 	- [[Design Sprint]]
 - [[Scrum vs Kanban y Lean]]
-- [[Product Management]]
+- [[Product Management]]o

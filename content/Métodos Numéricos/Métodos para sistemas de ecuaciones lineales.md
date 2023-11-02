@@ -8,3 +8,4 @@ Source:: [[U6 - MN]]
 
 
 [[Métodos directos para resolución de ecuaciones lineales]]
+[[Métodos iterativos para resolución de ecuaciones lineales]]
