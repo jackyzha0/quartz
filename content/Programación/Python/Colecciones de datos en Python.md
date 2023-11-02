@@ -47,3 +47,7 @@ mi_conjunto = {1, 2, 3, 3, 4}  # Los duplicados se eliminan automáticamente
  ```python
  mi_lista.append(5)  # Agregar el valor 5 al final de la lista
  ```
+
+
+Continuación: 
+[[Funciones y Módulos en Python]]

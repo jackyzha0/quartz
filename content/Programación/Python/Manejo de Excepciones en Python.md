@@ -37,3 +37,7 @@ print("¡División por cero!")
 if x < 0:
  raise ValueError("El valor no puede ser negativo")
 ```
+
+
+Continuación: 
+[[Programación Orientada a Objetos en Python]]

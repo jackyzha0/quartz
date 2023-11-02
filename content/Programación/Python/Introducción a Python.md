@@ -31,3 +31,6 @@ Python es un lenguaje de programación de alto nivel, versátil y de código abi
  # Esto es un comentario
  ```
 
+
+Continuación: 
+[[Fundamentos de Python]]

@@ -8,9 +8,11 @@ Curso intensivo que abarca los fundamentos esenciales de la programación en Pyt
     
 3. **[[Colecciones de datos en Python]]** Se exploran listas, tuplas, diccionarios y conjuntos, junto con operaciones comunes en estas estructuras.
     
-4. **[[Funciones y Módulos en Python]]** Se enseña a definir y llamar funciones, así como a crear y utilizar módulos para organizar el código de manera eficiente.
-    
+4. **[[Funciones y Módulos en Python]]** Se enseña a definir y llamar funciones, así como a crear y utilizar módulos para organizar el código de manera eficiente. 
+    - [[NumPy]], [[Pandas]], [[Matplotlib y Seaborn]].
+      
 5. **[[Manejo de Excepciones en Python]]** Los participantes aprenden a gestionar y controlar situaciones inesperadas o errores en el código mediante el manejo de excepciones.
     
 6. **[[Programación Orientada a Objetos en Python]]** Se introduce la Programación Orientada a Objetos, incluyendo la definición de clases, creación de objetos, atributos, métodos, herencia y polimorfismo.
+
 

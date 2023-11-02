@@ -36,3 +36,6 @@ area = (base * altura) / 2
 print("El área del triángulo es:", area)
 ```
 
+
+Continuación: 
+[[Colecciones de datos en Python]]
