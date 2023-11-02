@@ -16,5 +16,6 @@
 	- [[Kaizen Method]]
 - [[Design Thinking]]
 	- [[Design Sprint]]
-- [[Scrum vs Kanban y Lean]]
+- [[Frameworks ágiles]]
+	- [[Scrum]]
 - [[Product Management]]o
