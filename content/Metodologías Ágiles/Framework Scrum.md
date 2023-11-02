@@ -44,6 +44,7 @@ El método Scrum es una metodología ágil que se utiliza en el desarrollo de pr
 
 ## Flujo de eventos en Scrum
 Eventos = reuniones que se van a realizar
+Stakeholders = cualquier persona interesada y que tiene impacto en nuestro proyecto.
 ![[Pasted image 20231102114314.png]]
 1. **Planificación del Sprint:** En este evento, el equipo selecciona los elementos del Product Backlog que se comprometen a completar durante el próximo Sprint. Define cómo se abordarán estos elementos y establece un objetivo claro para el Sprint.
     

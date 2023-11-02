@@ -1,13 +1,13 @@
 # Data Science Road-map
 
 1. **Fundamentos de Matemáticas y Estadísticas**
-	- [[Algebra I]], [[Algebra II]]
-	-  [[Análisis matemático I]], [[Análisis matemático II]]
+	- [[Algebra I]] - [[Algebra II]]
+	- [[Análisis matemático I]] - [[Análisis matemático II]]
 	- [[Probabilidad y Estadística]]
 
 2. **Programación**
-	- Python
-	- NumPy, Pandas, Matplotlib y Seaborn.
+	- [[Python]]
+	- [[NumPy]], [[Pandas]], [[Matplotlib y Seaborn]].
 
 **Paso 3: Fundamentos de Data Science**
 - Comprende los conceptos básicos de Data Science y sus aplicaciones.

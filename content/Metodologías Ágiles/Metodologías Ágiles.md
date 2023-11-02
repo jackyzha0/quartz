@@ -17,5 +17,5 @@
 - [[Design Thinking]]
 	- [[Design Sprint]]
 - [[Frameworks ágiles]]
-	- [[Scrum]]
+	- [[Framework Scrum]]
 - [[Product Management]]o

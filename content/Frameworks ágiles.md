@@ -1,3 +1,0 @@
-## Metodologías
-- [[Scrum]]
-- 
