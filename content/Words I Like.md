@@ -2,9 +2,11 @@
 title: Words I Like
 tags: [collection]
 compartir: true
-updated: 2023-10-02
+updated: 2023-10-31
 enableToc: true
 ---
+[Good Source](https://wordwarriors.wayne.edu/list)
+
 ### Anodyne (adjectives)
 
 1. Capable of soothing or eliminating pain.
