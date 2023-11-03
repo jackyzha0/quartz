@@ -142,7 +142,7 @@ Here's another example where a map is used to define the order of the **folders*
 ```ts title="quartz.layout.ts"
 Component.Explorer({
   sortFn: (a, b) => {
-    const nameOrderMap: Record <string, number> = {
+    const nameOrderMap: Record<string, number> = {
       "poetry-folder": 1,
       "essay-folder": 2,
       "📑Research Paper File": 3,
