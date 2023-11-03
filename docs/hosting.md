@@ -173,7 +173,7 @@ You can configure GitLab CI to build and deploy a Quartz 4 project.
 
 In your local Quartz, create a new file `.gitlab-ci.yaml`.
 
-```yaml title="quartz/.gitlab-ci.yaml"
+```yaml title=".gitlab-ci.yaml"
 stages:
   - build_and_test
   - deploy
