@@ -2,7 +2,7 @@
 
 %%
 Date:: [[2023-04-19]]
-Course:: [[Formación Humanística 3]]
+Course:: [[Formación Humanística III]]
 Source:: [[La Biblia]]
 #hum3 
 %%

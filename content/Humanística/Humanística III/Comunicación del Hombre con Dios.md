@@ -1,7 +1,7 @@
 # Comunicación del Hombre con Dios
 
 - Date:: [[2023-03-22]]
-- Course:: [[Formación Humanística 3]]
+- Course:: [[Formación Humanística III]]
 - Source:: [[El Catecismo de la Iglesia Católica]]
 
 #main_page 

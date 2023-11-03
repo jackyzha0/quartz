@@ -1,7 +1,7 @@
 # Espiritualidad en la Actualidad
 
 - Date:: [[2023-03-29]]
-- Course:: [[Formación Humanística 3]]
+- Course:: [[Formación Humanística III]]
 - Source:: [[]]
 
 #main_page 

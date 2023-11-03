@@ -18,4 +18,5 @@
 	- [[Design Sprint]]
 - [[Frameworks ágiles]]
 	- [[Framework Scrum]]
-- [[Product Management]]o
+	- [[Workflow Kanban]]
+- [[Product Management]]

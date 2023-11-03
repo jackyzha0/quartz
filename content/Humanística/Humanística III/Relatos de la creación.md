@@ -2,7 +2,7 @@
 
 %%
 Date:: [[2023-05-03]]
-Course:: [[Formación Humanística 3]]
+Course:: [[Formación Humanística III]]
 Source:: [[La Fe]]
 #hum3 
 %%

@@ -2,7 +2,7 @@
 
 %%
 Date:: [[2023-09-13]]
-Course:: [[Formación Humanística 3]]
+Course:: [[Formación Humanística III]]
 Source:: [[Dogma de la encarnación]]
 %%
 

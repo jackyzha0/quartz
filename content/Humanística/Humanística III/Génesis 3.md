@@ -2,7 +2,7 @@
 
 %%
 Date:: [[2023-08-16]]
-Course:: [[Formación Humanística 3]]
+Course:: [[Formación Humanística III]]
 Source:: [[Pecado Original]]
 %%
 

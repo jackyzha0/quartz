@@ -1,7 +1,7 @@
 # La Biblia
 
 - Date:: [[2023-04-05]]
-- Course:: [[Formación Humanística 3]]
+- Course:: [[Formación Humanística III]]
 - Source:: [[Historia de la Salvación]]
 #main_page 
 #hum3 

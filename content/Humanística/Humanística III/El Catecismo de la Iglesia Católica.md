@@ -1,7 +1,7 @@
 # El Catecismo de la Iglesia Católica
 
 - Date:: [[2023-03-22]]
-- Course:: [[Formación Humanística 3]]
+- Course:: [[Formación Humanística III]]
 - Source:: [[]]
 
 ## Partes del catecismo

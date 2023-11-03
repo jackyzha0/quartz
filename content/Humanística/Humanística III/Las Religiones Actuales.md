@@ -1,7 +1,7 @@
 # Las Religiones Actuales
 
 - Date:: [[2023-03-22]]
-- Course:: [[Formación Humanística 3]]
+- Course:: [[Formación Humanística III]]
 - Source:: [[]]
 
 #main_page 

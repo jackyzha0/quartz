@@ -1,7 +1,7 @@
 # Revelación
 
 - Date:: [[2023-03-29]]
-- Course:: [[Formación Humanística 3]]
+- Course:: [[Formación Humanística III]]
 - Source:: [[Historia de la Salvación]]
 
 

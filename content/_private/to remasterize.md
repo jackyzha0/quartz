@@ -25,5 +25,5 @@ Work in Progress 👨‍🏭
 	- [x] [[Arquitectura de Computadores I]]
 	- [x] [[Bases de datos]]
 	- [x] [[Informática Teórica]]
-	- [x] [[Formación Humanística 3]]
+	- [x] [[Formación Humanística III]]
 	- [x] [[Investigación Operativa]]

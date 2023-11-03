@@ -9,9 +9,11 @@
 	- [[Python]]
 	- [[NumPy]], [[Pandas]], [[Matplotlib y Seaborn]].
 
-**Paso 3: Fundamentos de Data Science**
-- Comprende los conceptos básicos de Data Science y sus aplicaciones.
-- Aprende sobre la manipulación y limpieza de datos.
+3. **Fundamentos de Data Science**
+	- [[Introducción a Data Science]]
+	- [[Exploratory Data Analysis]]
+	- [[Data Manipulation in Data Science]]
+		- [[Normalización de variables]]
 
 **Paso 4: Machine Learning**
 - Estudia algoritmos de Machine Learning, como regresión, clasificación, clustering, y más.

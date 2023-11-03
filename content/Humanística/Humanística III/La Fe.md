@@ -2,7 +2,7 @@
 
 %%
 Date:: [[2023-04-26]]
-Course:: [[Formación Humanística 3]]
+Course:: [[Formación Humanística III]]
 Source:: [[]]
 #main_page 
 #hum3 

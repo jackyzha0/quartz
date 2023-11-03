@@ -2,7 +2,7 @@
 
 %%
 Date:: [[2023-08-30]]
-Course:: [[Formación Humanística 3]]
+Course:: [[Formación Humanística III]]
 Source:: [[La Santísima Trinidad]]
 %%
 

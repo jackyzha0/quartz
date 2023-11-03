@@ -1,7 +1,7 @@
 # Las vías de Santo Tomás
 
 - Date:: [[2023-04-05]]
-- Course:: [[Formación Humanística 3]]
+- Course:: [[Formación Humanística III]]
 - Source:: [[Revelación]]
 
 #main_page 

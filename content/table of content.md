@@ -1,29 +1,26 @@
 Work in Progress 👨‍🏭
-## Content
-- [ ] Primer año
-	- [ ] [[Algebra I]]
-	- [ ] [[Algebra II]]
-	- [ ] [[Física I]] 
-	- [ ] [[Análisis matemático I]] 
-	- [ ] [[Programación I]]
-	- [ ] [[Formación Humanística I]] (n/a)
-- [ ] Segundo año
-	- [ ] [[Análisis matemático II]]
-	- [ ] [[Física II]]
-	- [ ] [[Programación II]]
-	- [ ] [[Estructuras de Datos I]]
-	- [ ] [[Estructuras de Datos II]]
-	- [ ] [[Álgebra Discreta]]
-	- [ ] [[Formación Humanística II]]
-- [ ] Tercer año
-	- [ ] [[Electrónica Básica]]
-	- [ ] [[Probabilidad y Estadística]]
-	- [ ] [[Programación III]]
-	- [ ] [[Comunicación de Datos]]
-	- [ ] [[Métodos Numéricos]]
-	- [ ] [[Teoría de Sistemas y Modelos]]
-	- [ ] [[Arquitectura de Computadores I]]
-	- [ ] [[Bases de datos]]
-	- [ ] [[Informática Teórica]]
-	- [ ] [[Formación Humanística 3]]
-	- [ ] [[Investigación Operativa]]
+
+## Matemáticas
+[[Algebra I]] - [[Algebra II]] - [[Álgebra Discreta]]
+[[Análisis matemático I]] - [[Análisis matemático II]]
+[[Probabilidad y Estadística]]
+[[Métodos Numéricos]]
+## Física
+[[Física I]] - [[Física II]] 
+[[Electrónica Básica]]
+## Teoría de la Informática
+[[Estructuras de Datos I]] - [[Estructuras de Datos II]]
+[[Teoría de Sistemas y Modelos]]
+[[Informática Teórica]]
+[[Comunicación de Datos]]
+[[Arquitectura de Computadores I]]
+[[Investigación Operativa]]
+## Programación
+[[Programación I]] - [[Programación II]] - [[Programación III]]
+[[Bases de datos]]
+## Cursos
+[[Python]]
+[[Metodologías Ágiles]]
+## Humanidades
+[[Formación Humanística I]] - [[Formación Humanística II]] - [[Formación Humanística III]]
+
