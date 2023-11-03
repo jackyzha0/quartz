@@ -138,6 +138,25 @@ Component.Explorer({
   },
 })
 ```
+Here's another example where a map is used to define the order of the **folders** and **files** in the explorer.
+```ts title="quartz.layout.ts"
+Component.Explorer({
+  sortFn: (a, b) => {
+    const nameOrderMap: Record <string, number> = {
+      "poetry-folder": 1,
+      "essay-folder": 2,
+      "📑Research Paper File": 3,
+      "other-folder": 4,
+    }
+    // Depending on your situation, you might have to use .displayName instead of .name
+    // You might also have to add if clauses, to handle files and folders differently
+    const orderA = nameOrderMap[a.name] || 0
+    const orderB = nameOrderMap[b.name] || 0
+
+    return orderA - orderB
+  },
+})
+```
 
 ### Change display names (`map`)
 
