@@ -175,14 +175,14 @@ In your local Quartz, create a new file `.gitlab-ci.yaml`.
 
 ```yaml title=".gitlab-ci.yaml"
 stages:
-  - build_and_test
+  - build
   - deploy
 
 variables:
   NODE_VERSION: '18.14'
 
-build_and_test:
-  stage: build_and_test
+build:
+  stage: build
   rules:
     - if: '$CI_COMMIT_REF_NAME == "v4"'
   before_script:
@@ -194,7 +194,6 @@ build_and_test:
   script:
     - npx prettier --write .
     - npm run check
-    - npm test
     - npx quartz build
   artifacts:
     paths:
