@@ -151,9 +151,6 @@ Component.Explorer({
       "other-folder": 4,
     }
 
-    // Depending on your situation, you might have to use .displayName instead of .name
-    // You might also have to add if clauses, to handle files and folders differently
-
     let orderA = 0
     let orderB = 0
 
@@ -168,9 +165,17 @@ Component.Explorer({
     } else if (b.name) {
       orderB = nameOrderMap[b.name] || 0
     }
+
+    return orderA - orderB
   },
 })
 ```
+
+Depending on your situation, you might have to use `.name`, `.displayName` or `.name.slug`
+
+- `.name` = The default file/folder name in the explorer
+- `.displayName` = The new name you mapped a file/folder name to inside of the explorer
+- `.name.slug` = The raw file/folder name
 
 ### Change display names (`map`)
 
