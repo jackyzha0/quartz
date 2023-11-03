@@ -138,7 +138,9 @@ Component.Explorer({
   },
 })
 ```
+
 Here's another example where a map is used to define the order of the **folders** and **files** in the explorer.
+
 ```ts title="quartz.layout.ts"
 Component.Explorer({
   sortFn: (a, b) => {
