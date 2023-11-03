@@ -147,15 +147,27 @@ Component.Explorer({
     const nameOrderMap: Record<string, number> = {
       "poetry-folder": 1,
       "essay-folder": 2,
-      "📑Research Paper File": 3,
+      "research-Paper-file": 3,
       "other-folder": 4,
     }
+
     // Depending on your situation, you might have to use .displayName instead of .name
     // You might also have to add if clauses, to handle files and folders differently
-    const orderA = nameOrderMap[a.name] || 0
-    const orderB = nameOrderMap[b.name] || 0
 
-    return orderA - orderB
+    let orderA = 0
+    let orderB = 0
+
+    if (a.file && a.file.slug) {
+      orderA = nameOrderMap[a.file.slug] || 0
+    } else if (a.name) {
+      orderA = nameOrderMap[a.name] || 0
+    }
+
+    if (b.file && b.file.slug) {
+      orderB = nameOrderMap[b.file.slug] || 0
+    } else if (b.name) {
+      orderB = nameOrderMap[b.name] || 0
+    }
   },
 })
 ```
