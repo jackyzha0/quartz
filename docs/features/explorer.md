@@ -196,7 +196,7 @@ Component.Explorer({
       }
     }
   },
-}})
+})
 ```
 
 ### Putting it all together

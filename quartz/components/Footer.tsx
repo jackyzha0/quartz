@@ -14,7 +14,7 @@ export default ((opts?: Optionss) => {
     const year = new Date().getFullYear()
     const links = opts?.links ?? []
     return (
-      <footer>
+      <footer class={`${displayClass ?? ""}`}>
         <hr />
         <p style="margin-bottom:4px;font-weight:bold;font-size:2em;">
           Share your thoughts with <a class="internal" href="/Projects/Obsidian/quartz-comments">Remark42</a>
