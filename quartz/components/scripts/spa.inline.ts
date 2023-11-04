@@ -20,6 +20,7 @@ const isLocalUrl = (href: string) => {
 
 const getOpts = ({ target }: Event): { url: URL; scroll?: boolean } | undefined => {
   if (!isElement(target)) return
+  if (target.attributes.getNamedItem("target")?.value === "_blank") return
   const a = target.closest("a")
   if (!a) return
   if ("routerIgnore" in a.dataset) return
@@ -92,7 +93,7 @@ function createRouter() {
   if (typeof window !== "undefined") {
     window.addEventListener("click", async (event) => {
       const { url } = getOpts(event) ?? {}
-      if (!url) return
+      if (!url || event.ctrlKey || event.metaKey) return
       event.preventDefault()
       try {
         navigate(url, false)
