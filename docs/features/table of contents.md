@@ -18,6 +18,7 @@ You can also hide the table of contents on a page by adding `showToc: false` to 
 - Removing table of contents: remove all instances of `Plugin.TableOfContents()` from `quartz.config.ts`. and `Component.TableOfContents()` from `quartz.layout.ts`
 - Changing the max depth: pass in a parameter to `Plugin.TableOfContents({ maxDepth: 4 })`
 - Changing the minimum number of entries in the Table of Contents before it renders: pass in a parameter to `Plugin.TableOfContents({ minEntries: 3 })`
+- Collapse the table of content by default: pass in a parameter to `Plugin.TableOfContents({ collapseByDefault: true })`
 - Component: `quartz/components/TableOfContents.tsx`
 - Style:
   - Modern (default): `quartz/components/styles/toc.scss`
