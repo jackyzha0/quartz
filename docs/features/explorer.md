@@ -175,7 +175,7 @@ Depending on your situation, you might have to use `.name`, `.displayName` or `.
 
 - `.name` = The default file/folder name in the explorer
 - `.displayName` = The new name you mapped a file/folder name to inside of the explorer
-- `.name.slug` = The raw file/folder name
+- `.file.slug` = The raw file/folder name
 
 ### Change display names (`map`)
 
