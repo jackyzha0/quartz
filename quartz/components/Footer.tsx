@@ -1,4 +1,4 @@
-import { QuartzComponentConstructor } from "./types"
+import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { OptionType } from "../plugins/types"
 import style from "./styles/footer.scss"
 import { version } from "../../package.json"
@@ -7,10 +7,8 @@ interface Optionss {
   links: Record<string, string>
 }
 
-console.log(globalThis.remark_config)
-
 export default ((opts?: Optionss) => {
-  function Footer() {
+  function Footer({ displayClass }: QuartzComponentProps) {
     const year = new Date().getFullYear()
     const links = opts?.links ?? []
     return (
@@ -25,7 +23,7 @@ export default ((opts?: Optionss) => {
           © be-far {year}. Powered by <a href="https://quartz.jzhao.xyz/">Quartz</a>.
         </p>
         <p>
-        not legal advice 🤟
+          not legal advice 🤟
         </p>
         <ul>
           {Object.entries(links).map(([text, link]) => (
