@@ -228,7 +228,7 @@ export type QuartzEmitterPluginInstance = {
 
 An emitter plugin must define a `name` field an `emit` function and a `getQuartzComponents` function. `emit` is responsible for looking at all the parsed and filtered content and then appropriately creating files and returning a list of paths to files the plugin created.
 
-Creating new files can be done via regular Node [fs module](https://nodejs.org/api/fs.html) (i.e. `fs.cp` or `fs.writeFile`) or via the `emitCallback` if you are creating files that contain text. The `emitCallback` function is the 4th argument of the emit function. It's interface looks something like this:
+Creating new files can be done via regular Node [fs module](https://nodejs.org/api/fs.html) (i.e. `fs.cp` or `fs.writeFile`) or via the `emitCallback` if you are creating files that contain text. The `emitCallback` function is the 4th argument of the emit function. Its interface looks something like this:
 
 ```ts
 export type EmitCallback = (data: {
