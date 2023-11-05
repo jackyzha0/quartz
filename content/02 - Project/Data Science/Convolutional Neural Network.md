@@ -57,7 +57,7 @@ G (2nd Channel) -> Conv Filter 1 [x: x: 2]    => Sum => Output
 											/
 B (3rd Channel) -> Conv Filter 1 [x: x: 3] /
 ```
-It can be visualized in the GIF above (3D to 2D). In each **convolutional layer**, we perform this operation for each filter. Each convolution operation results in a **feature map**. Therefore, it makes sense that for a input $(C, H, W)$ undergoing a convolutional layer with 64 filters, will result in  54 feature maps. The layer can be denoted with shape $(64, H_\text{new}, W_\text{new})$ , where $H_\text{new}$ and $W_\text{new}$ depend on the **kernel size**. We look at this next.
+It can be visualized in the GIF above (3D to 2D). In each **convolutional layer**, we perform this operation for each filter. Each convolution operation results in a **feature map**. Therefore, it makes sense that for a input $(C, H, W)$ undergoing a convolutional layer with 64 filters, will result in  64 feature maps. The layer can be denoted with shape $(64, H_\text{new}, W_\text{new})$ , where $H_\text{new}$ and $W_\text{new}$ depend on the **kernel size**. We look at this next.
 
 **Calculating Convolution Output**
 
@@ -354,7 +354,7 @@ A good visualization of the overall process
 - 👎 However, the "clustering" step for proposing regions (region proposal algorithm) is an external algorithm that was not optimized for object detection, is considerably slow and can be considered the bottleneck.
 
 **Architecture**
-![[Pasted image 20231103192151.png | center | 500 ]]
+![[Pasted image 20231103192151.png | center ]]
 In R-CNN, we see that we first perform selective search, then individually pass each region of interest (up to 2000) to the CNN network for feature extraction and then classification. What if we can do this in a single pass? Below, we propose the theoretical model architecture.
 
 
@@ -369,7 +369,7 @@ The paper tests three different backbone CNN models, AlexNet, VGG_CNN, and VGG16
 1. First, the last max pooling layer is replaced by ROI pooling, where $H\times W$ must be compatible with the network's fully connected layers.
 2. Remove and replace the final output layer with 2 fully connected layers, representing the classification and bounding box regression.
 3. Inputs are modified to take two data inputs, a list of images and list of ground truth bounding boxes.
-![[Pasted image 20231104125324.png | center | 500 ]]
+![[Pasted image 20231104125324.png | center  ]]
 **Training**
 Training can be split into four parts.
 1. Mini-batch of 2, is run through the backbone CNN
@@ -401,12 +401,9 @@ Essentially use anchor boxes that slides across each each pixel. The $1\times 1,
 The loss function is defined as, which combines the loss for classification and regression (modification of the anchor box to cover the object).
 - Trouble of imbalanced dataset 
 
-- Structure of RPN Layer
-- Multiple Anchor Boxes
-
 **Training**
 Remember that the fully connected layers at the end are responsible for the final prediction, and the result depends on the RPN module that proposes possible regions (compared to the external, selective search algorithms in the previous two iterations of R-CNN which gave set region proposals). Compared to the unchanging selective search algorithm, RPN should be learned instead. However, at first, the RPN layer cannot give us a accurate decision of the proposed regions. Thus, the authors proposed that training is to be performed in two steps, using two separate networks different networks at first. 
-![[Pasted image 20231104184947.png | center | 500]]
+![[Pasted image 20231104184947.png | center ]]
 **Step 1: Training RPN**
 Initialize the backbone VGG (or so another model) using ImageNet weights and train the RPN model to have a "firm" decision. However, this causes the backbone portion to be trained (and therefore changed as well), to classify whether there is an object or not. During this training, the backbone might forget features that are useful for classification.
 **Step 2: Training R-CNN**
@@ -416,7 +413,7 @@ Freeze the backbone layers and only train RPN module.
 **Step 4: Fine Tune FC Layers**
 Freeze the backbone layers and  RPM. Only train the FC layers.
 
-Certainly, here are the steps split into two tables:
+To summarize, here are the steps split into two tables:
 
 | Step 1                                  | Step 2                                  |
 | -------------------------------------- | -------------------------------------- |
@@ -427,10 +424,10 @@ Certainly, here are the steps split into two tables:
 | ![[Pasted image 20231104185223.png]]   | ![[Pasted image 20231104185322.png]]   |
 ### Mask R-CNN (2017)
 ## VGG16 (2014)
-**Paper**: Simonyan & Zisserman 2015. Very deep convolutional networks for large-scale image recognition
+**Paper**: [Simonyan & Zisserman 2015. Very deep convolutional networks for large-scale image recognition](https://arxiv.org/abs/1409.1556)
 **Total Parameters**: ~138 Million
 **Importance**: Uses the concepts of blocks.
-https://www.kaggle.com/code/blurredmachine/vggnet-16-architecture-a-complete-guide
+**Iterations**: VGG19 (2014).
 ![[Pasted image 20230927153125.png | center | 400]]
 
 **Analyzing VGG16 Architecture**
@@ -469,12 +466,14 @@ Using Pytorch's VGG model, we can see that our calculations are indeed correct.
 | ![[Pasted image 20231025184839.png]]             |     ![[Pasted image 20231025184938.png]]                   |   ![[Pasted image 20231025185022.png]]         |
 
 
-
-**Iterations**: VGG19 (2014).
 ## GoogleNet V1 (2014)
+### Background
 **Paper**: [Szegedy et. al., 2014, Going deeper with convolutions](https://arxiv.org/abs/1409.4842)
 **Total Parameters:** ~6 Million
 **Importance**: Introduction of inception modules, auxiliary classifiers, depth wise concatenation. Also titled the  **Inception Network** or Inception V1.
+**Iterations**: GoogleNet V2 (Inception V2, 2015), GoogleNet V3 (Inception V3, 2015) [Szegedy et. al., 2015, Rethinking the Inception Architecture for Computer Vision](https://arxiv.org/pdf/1512.00567v3.pdf), GoogleNet V4 (Inception V4 2016), Inception-ResNet (2016) [Szegedy et. al., 2016, Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning](https://arxiv.org/pdf/1512.00567v3.pdf)
+
+### GoogleNet V1 (2014)
 
 ![[Pasted image 20231024152516.png | center ]]
 
@@ -510,7 +509,7 @@ The depth wise convolution channel concatenation is as expected, but we notice a
 - Fusion of features at different scales
 - Depth wise convolutions reduce the number of parameters and save a lot of computation cost while keeping the network running
 
-**Iterations**: GoogleNet V2 (Inception V2, 2015), GoogleNet V3 (Inception V3, 2015) [Szegedy et. al., 2015, Rethinking the Inception Architecture for Computer Vision](https://arxiv.org/pdf/1512.00567v3.pdf), GoogleNet V4 (Inception V4 2016), Inception-ResNet (2016) [Szegedy et. al., 2016, Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning](https://arxiv.org/pdf/1512.00567v3.pdf)
+### GoogleNet V2 ()
 
 **Sources:**
 - Understanding the different variations of GoogleNet https://towardsdatascience.com/a-simple-guide-to-the-versions-of-the-inception-network-7fc52b863202
@@ -568,9 +567,9 @@ The **Style Matrix** is essential a Gram Matrix.
 **Importance**: Using $1\times 1$ convolutions instead of FC layers for sliding windows in object detection/localization.Uses stride to implement sliding windows. This method does it in one forward pass. This is opposed to running one portion of the image each time, where each portion requires a forward pass.
 
 Let's review how dense FC can be turned into convolutional FC layers. In the image below, both the top and bottom networks essentially give you the same results.
-![[Pasted image 20230923150912.png | center | 500]] 
+![[Pasted image 20230923150912.png | center ]] 
 So let's visualize how this can be applied to the sliding window detection.
-![[Pasted image 20230923151042.png | center | 500]]
+![[Pasted image 20230923151042.png | center]]
 In the image above, the $\text{\color{red}red}$, $\text{\color{green}green}$, $\text{\color{orange}orange}$, $\text{\color{purple}purple}$ boxes represent $14\times 14\times 3$ "cropped windows" that would have been passed through the neural network **one by one** if using the brute force sliding window algorithm (four subsets of the input image independently). However, we can realize the computation done by these four forward passes is highly duplicative (overlapping area = same calculations). To solve this, we use "stride" to simulate a slide step. In the first FC convolutional layer, we see that instead of a $1\times 1\times 400$ layer, it is now $2\times2\times400$. And the output is a $2\times 2 \times 4$. Where each corner represents the output of the four corners of the original image. This combines all four subsets into one form of computation, reducing computation on regions that are shared between them. 
 
 Thus, this improved model essentially can make predictions on all regions of the original image through one forward pass.
@@ -583,12 +582,13 @@ Thus, this improved model essentially can make predictions on all regions of the
 ### Architecture
 
 ## ResNets (2015)
+### Background
 **Paper** [He et al. 2015. Deep residual networks for image recognition](https://arxiv.org/abs/1512.03385)
 **Total Parameters**: ~23 Million
 **Importance**: Introducing the [[Residual Network]], which utilize skip / shortcut connections to solve the problem of vanishing gradients (and therefore no learning capability) and lose generalization capability in deeper layer networks. 
-
 **Iterations**: ResNet-18, ResNet-34, ResNet-50, ResNet-101, ResNet-110, ResNet-152, ResNet-1202 etc.
 
+### ResNet18
 **Analyzing ResNet18 Architecture**
 The ResNet architecture begins with a standard convolutional layer (convolution, batch normalization, and max pooling). Here is a quick overview.
 ![[Pasted image 20231024182312.png | center ]]
@@ -646,6 +646,7 @@ Introduced the concepts
 ###  Yolo V2 (2016)
 - K-means algorithm to automat
 ### Yolo V3 (2018)
+
 ### Yolo V4 (2020)
 ### Yolo V5 (2020)
 
@@ -655,7 +656,6 @@ Introduced the concepts
 **Importance**: Combined ResNets with Inception Network Techniques
 ## SENet (2017)
 **Paper:** [Hu et. al., 2017, Squeeze-and-Excitation Networks](https://arxiv.org/abs/1709.01507)
-**Parameters:**
 **Importance:** Introduction of the **squeeze** and **excitation** operations in the Squeeze-and-Excitation block, uses is it within a ResNet architecture.
 
 
@@ -668,7 +668,7 @@ A SENet CNN is a neural network architecture that employs squeeze and excitation
 | ----- | ------- |
 | ![[Pasted image 20231025221150.png]]      |  ![[Pasted image 20231027210230.png]]       |
 
-This can be described as a **SE-ResNet** module using the **Standard SE block**. In a lot of implementations found online, FC layers are implemented with convolution layers (does FC mean convolutions instead of linear layers?). Let's compare it to the models proposed by the author of the paper:
+This can be described as a **SE-ResNet** module using the **Standard SE block**. In a lot of implementations found online, FC layers are implemented with convolution layers. Let's compare it to the models proposed by the author of the paper:
 ![[Pasted image 20231025222138.png | center ]]
 ***What is the purpose of Squeeze and Excitation Block?*** Refer to the resources below for in-depth description. Below is a take on the **intuition** behind SE networks.
 
@@ -688,13 +688,11 @@ SE blocks have been used in various CNN architectures to achieve state-of-the-ar
 - SE-ResNet-18, SE-ResNet-50, SE-ResNet-101, SE-ResNet-152, SE-ResNeXt-50, SE-ResNeXt-101, Inception-ResNet, MobileNetV1, and ShuffleNetV1
 
 **Sources**
-- https://paperswithcode.com/method/senet
-- https://paperswithcode.com/method/squeeze-and-excitation-block
 - https://amaarora.github.io/posts/2020-07-24-SeNet.html
 - https://towardsdatascience.com/squeeze-and-excitation-networks-9ef5e71eacd7
 - Example using Linear layers in FC https://blog.csdn.net/zahidzqj/article/details/105974539
 - Implementations by paper in caffe https://github.com/hujie-frank/SENet
-- Third party implementations in pytorch https://github.com/moskomule/senet.pytorch
+- Third party implementations in PyTorch https://github.com/moskomule/senet.pytorch
 - Math behind https://youtu.be/BSZqvObJVMg?feature=shared
 - Intuitive Explanation https://www.youtube.com/watch?v=3b7kMvrPZX8
 
