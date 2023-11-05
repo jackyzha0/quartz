@@ -6,7 +6,7 @@ Course:: [[Arquitectura de Computadores I]]
 Source:: [[Dispositivos Externos]]
 %%
 
-## Evoución del funcionamiento de las ES
+## Evolución del funcionamiento de las ES
 1. **Control Directo por la CPU:**
    - La CPU controla directamente los periféricos.
    - Usado en dispositivos simples controlados por microprocesadores.

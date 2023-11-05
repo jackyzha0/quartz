@@ -62,22 +62,24 @@
 
 **Capítulo 1: Introducción**
 - Funcionamiento de Máquina de Von Neumann
+	- [[Arquitectura de Von Neumann]]
 
 **Capítulo 7: Entrada/Salida**
-- Módulos de E/S
-   - Funciones de un módulo
-   - Estructura de un módulo de E/S
-- E/S programada
-   - Resumen de la E/S programada
-   - Órdenes de E/S
-   - Instrucciones de E/S
-- Entrada/Salida mediante interrupciones
+- Módulos de E/S (7.2)
+	-  [[Funciones de un módulo ES#Principales funciones de un módulo]]
+	- [[Funciones de un módulo ES#Estructura de un módulo de E/S]]
+- E/S programada (7.3)
+	- [[ES Programadas#Resumen de la E/S Programada]]
+	- [[ES Programadas#Órdenes de E/S]]
+	- [[ES Programadas#Instrucciones de E/S]]
+- Entrada/Salida mediante interrupciones (7.4)
+	- [[ES con Interrupciones]]
    - Procesamiento de la interrupción
    - Cuestiones de diseño
-- Acceso directo a memoria
+- Acceso directo a memoria (7.5)
    - Inconvenientes de la E/S programada y con interrupciones
    - Funcionamiento del DMA
-- Canales y procesadores de E/S
+- Canales y procesadores de E/S (7.6)
    - La evolución del funcionamiento de las E/S
    - Características de los canales de E/S
 

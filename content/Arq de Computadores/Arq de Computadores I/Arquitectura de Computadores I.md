@@ -1,5 +1,5 @@
 # Arquitectura de Computadores I
-[[Arquitectura de Computadores I - Temas examen]]
+[[Arq de Comp I - Temas examen]]
 Course: [[Arquitectura de Computadores I]]
 
 - [[Que es una computadora]]
@@ -35,9 +35,11 @@ Course: [[Arquitectura de Computadores I]]
 	- [[Diseño de un Bus]]
 - [[Dispositivos Externos]]
 	- [[Canales y Procesadores de ES]]
+	- [[ES Programadas]]
 	- [[DMA]]
 	- [[Funciones de un módulo ES]]
 	- [[Procesos en dispositivos de ES]]
+	- [[ES con Interrupciones]]
 - [[Repertorio de instrucciones]]
 	- [[Formato de instrucciones]]
 	- [[Metodos de direccionamiento]]

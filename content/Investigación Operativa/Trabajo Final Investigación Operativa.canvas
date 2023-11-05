@@ -1,0 +1,16 @@
+{
+	"nodes":[
+		{"id":"0304f104fc274976","x":220,"y":-480,"width":480,"height":320,"type":"text","text":"### Aplicación web que escanee códigos QRs\n- [ ] Desarrollar un scanner que utilice la cámara del teléfono\n\n- [ ] Hacer un front-end de la página explicando el proyecto y mostrando toda la documentación\n"},
+		{"id":"059de7c89c2df807","type":"text","text":"### Lograr identificar cuáles son los campos claves de los QR, y hacer whitelist\n- [ ] Validar que el QR que se está mostrando pertenece a un alumno\n- [ ] Hacer un sonido o una alerta si está OK o no","x":220,"y":-100,"width":480,"height":280},
+		{"id":"38cc19ddf9159de8","type":"text","text":"### Dataset dummy sobre autos en el estacionamiento\n- [ ] Generar dataset de cantidad de autos que hay en un momento determinado (Valen)","x":220,"y":260,"width":480,"height":200},
+		{"id":"e4de4b880fa1fe6e","type":"text","text":"### Research\n- [ ] Investigación","x":189,"y":633,"width":480,"height":280},
+		{"id":"d497733021130ff1","x":-440,"y":863,"width":440,"height":100,"color":"2","type":"text","text":"## Sistema de reconocimiento de vehículos estacionados en sitios no habilitados"},
+		{"id":"9496b7edb22277f9","x":-565,"y":337,"width":385,"height":63,"type":"text","text":"Fecha de entrega: 13 diciembre"},
+		{"id":"dec92eb50b2e7527","x":-400,"y":-37,"width":440,"height":155,"color":"2","type":"text","text":"\n## Sistema de seguridad para el reconocimiento y la limitación de autos que ingresan al campus UNSTA\n(2 semanas)\n"}
+	],
+	"edges":[
+		{"id":"21e848caf08bbd71","fromNode":"dec92eb50b2e7527","fromSide":"right","toNode":"0304f104fc274976","toSide":"left"},
+		{"id":"ce99925f7cca3fab","fromNode":"dec92eb50b2e7527","fromSide":"right","toNode":"059de7c89c2df807","toSide":"left"},
+		{"id":"006d65c91212a1c2","fromNode":"dec92eb50b2e7527","fromSide":"right","toNode":"38cc19ddf9159de8","toSide":"left"}
+	]
+}

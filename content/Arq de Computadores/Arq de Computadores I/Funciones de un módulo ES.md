@@ -28,6 +28,7 @@ Source:: [[Dispositivos Externos]]
 
 
 
+
 ## Secuencia de pasos de transferencia con el procesador
 1. El procesador interroga al módulo de E/S para comprobar el estado del dispositivo conectado al mismo.
 2. El módulo de E/S devuelve el estado del dispositivo.
@@ -37,7 +38,11 @@ Source:: [[Dispositivos Externos]]
 
 
 
-## Diagrama de un módulo de E/S
+## Estructura de un módulo de E/S
 ![[Pasted image 20230810165737.png]]
-Error!!!! No es interfaz al bus del sistema, es al bus de expansión o al bus de alta prestación.
-
+- El módulo se conecta al resto del computador a través de un conjunto de líneas (por ejemplo, el bus de sistema)
+	- Los datos que se transfieren se almacenan temporalmente en uno o más registros de datos
+	- Además, puede haber registros de estado que proporcionan información del estado presente.
+- La lógica que hay en el módulo interactúa con el procesador a través de una serie de líneas de control, y son las que proporcionan las órdenes al módulo de E/S
+- El módulo también reconoce y genera direcciones asociadas a los dispositivos que controla. Cada módulo de E/S tiene una dirección única (si controla más de un dispositivo, tendrá varias)
+- El módulo posee la lógica específica para la interfaz con cada uno de los dispositivos que controla.

@@ -1,6 +1,7 @@
 https://drive.google.com/file/d/1uLBBYrYSOcBY3R8EXa_scrUFFN4EvQHZ/view
 [[Metodologías Ágiles]]
 
+
 # Kanban
 
 Kanban es una metodología ágil que se utiliza para gestionar y mejorar el flujo de trabajo en un proceso. Se basa en los principios de la gestión visual y la optimización continua. 
@@ -38,4 +39,10 @@ Kanban es una metodología ágil que se utiliza para gestionar y mejorar el fluj
 Perspectivas y soluciones múltiples:
 - Algunas organizaciones utilizan Kanban en combinación con otras metodologías ágiles, como Scrum, para adaptar su enfoque a sus necesidades específicas.
 - Kanban se puede utilizar tanto en equipos pequeños como en grandes empresas, lo que lo hace versátil.
+
+## Ejemplos de Tableros 
+- Tableros personales
+![[Pasted image 20231103121740.png]]
+- Para equipos
+![[Pasted image 20231103121647.png]]
 

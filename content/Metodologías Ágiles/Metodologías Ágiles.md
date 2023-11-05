@@ -20,3 +20,5 @@
 	- [[Framework Scrum]]
 	- [[Workflow Kanban]]
 - [[Product Management]]
+	- [[Lean Inception]]
+	- [[User Stories]]
