@@ -73,15 +73,15 @@
 	- [[ES Programadas#Órdenes de E/S]]
 	- [[ES Programadas#Instrucciones de E/S]]
 - Entrada/Salida mediante interrupciones (7.4)
-	- [[ES con Interrupciones]]
-   - Procesamiento de la interrupción
-   - Cuestiones de diseño
-- Acceso directo a memoria (7.5)
-   - Inconvenientes de la E/S programada y con interrupciones
-   - Funcionamiento del DMA
+	- [[ES con Interrupciones#ES mediante interrupciones]]
+	- [[ES con Interrupciones#Procesamiento de la Interrupción]]
+	- [[ES con Interrupciones#Cuestiones de diseño]]
+- Acceso directo a memoria (7.5) 
+	- [[DMA#Inconvenientes de la ES Programadas y ES con Interrupciones]]
+	- [[DMA#Funcionamiento del DMA]]
 - Canales y procesadores de E/S (7.6)
-   - La evolución del funcionamiento de las E/S
-   - Características de los canales de E/S
+   - [[Canales y Procesadores de ES#Evolución del funcionamiento de las ES]]
+   - [[Canales y Procesadores de ES#Características de los canales de E/S]]
 
 **Capítulo 8: Aritmética de la Computadora**
 - La Unidad Aritmético – lógica
