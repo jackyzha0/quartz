@@ -6,7 +6,7 @@ tags: "#笔记"
 banner_y: 0.4705
 ---
 # Neural Networks
-## 01 Background
+# 01 Background
 **Sources**
 1. [Neural Network Playground](https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.54266&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false)
 2. [Mathematics of Back-propagation](https://www.3blue1brown.com/lessons/neural-networks) by 3blue1brown. The youtube version can be found [here](https://www.youtube.com/watch?v=tIeHLnjs5U8). It is the recommended go-to video by [PyTorch](https://pytorch.org/tutorials/beginner/basics/optimization_tutorial.html) documentation! Notes about it can be found here at [[Backpropagation]]
@@ -18,14 +18,14 @@ banner_y: 0.4705
 - ❓What is dropout?
 - ❓What is FLOPS?
 - ❓Initialization Methods?
-## 02 神经网络类型 Neural Network Types
+# 02 神经网络类型 Neural Network Types
 ### Mind Map of Neural Networks
 ![[Pasted image 20231012212658.png | center ]]
 ### Indexing Neural Network Notes
 - [[Convolutional Neural Network]]
 - [[Recurrent Neural Network]]
 - [[Transformers]]
-## 03 核心技术 Core Concepts Neural Network
+# 03 核心技术 Core Concepts Neural Network
 ### What is a Neural Network?
 Here we introduce the most basic neural network, a simple feed forward neural network. 
 **Remark:** Review [[Backpropagation|backpropagation]]. 
@@ -250,3 +250,9 @@ Here, we summarize the general ways to improve neural networks. It is important 
 | Improvement Technique | What does it do? | Downsides |
 | --------------------- | ---------------- | --------- |
 |                       |                  |           |
+|                       |                  |           |
+
+# 04 Famous NN Developments
+
+## Neural Architecture Search 
+**Paper:** [Barret Zoph and Quoc V. Le, 2016, Neural Architecture Search with Reinforcement Learning](https://arxiv.org/abs/1611.01578)

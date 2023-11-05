@@ -12,8 +12,9 @@ banner_y: 0.4705
 **Resources**
 1. CNN Explorer https://poloclub.github.io/cnn-explainer/ 
 2. Convolution https://betterexplained.com/articles/intuitive-convolution/ 
-3. Springer https://link.springer.com/video/10.1007/978-1-4842-5648-0
+3. Introduction to Convolutional Neural Networks by Springer https://link.springer.com/video/10.1007/978-1-4842-5648-0
 4. Summary of Recent CNN's [Alfredo Canziani et. al., 2017, An Analysis of Deep Neural Network Models for Practical Applications](https://arxiv.org/pdf/1605.07678.pdf)
+5. [Multi-Modal Data Annotation Tool](https://github.com/HumanSignal/labelImg)
 
 #TODO 
 - 🖊 Analyze: MobileNet, EfficientNet, ShuffleNet, R-CNN
@@ -300,7 +301,7 @@ Here we summarize famous CNN developments.
 - 👎 Since extracted region proposal (warped region in image below) must be fixed for the SVM classifier model, all extracted regions are warped in size, possible loss in original features.
 
 **Architecture**
-![[Pasted image 20231103182743.png | center | 500]]
+![[Pasted image 20231103182743.png | center]]
 Step 2 is explained in [[#What is Selective Search Algorithm?]]. Essentially, we select ~2000 image proposals from each image using selective search. Below we explain step 3 and 4. 
 **Feature Extraction**
 Authors of the paper use AlexNet to perform CNN feature extraction. However, the original AlexNet was performed on ImageNet. Thus, the AlexNet was fine tuned on the VOC dataset. There are two steps:
@@ -334,7 +335,7 @@ In practice, there will be many ground truth (positive) instances, to make the d
 
 **Bounding Box Regressor**
 The bounding box regressor is a component used to fine-tune and refine the predicted bounding box coordinates of the region proposals (and make it closer to the ground truth box) in attempt to reduce localization errors. The neural network for the bounding box regressor is a one-layer network, its input being the max pooling layer of the fine-tuned AlexNet described above. 
-![[Pasted image 20231104111843.png | center | 500 ]]
+![[Pasted image 20231104111843.png | center ]]
 In order to train the bounding box, we use data points that contain an $\text{IOU}$ greater than some threshold with the ground truth boxes, for example, $\text{IOU} \ge 0.6$
 ![[Pasted image 20231104112126.png]]
 We then perform a transformation to get $t_{x}, t_{y}, t_{w},t_{h}$
@@ -347,7 +348,7 @@ Then, the region proposals that had a $\text{IOU} \geq 0.6$ are passed through t
 ![[Pasted image 20231104112816.png | center ]]
 
 A good visualization of the overall process
-![[Pasted image 20231104120607.png | center | 300 ]]
+![[Pasted image 20231104120607.png | center ]]
 
 ### Fast R-CNN (2015)
 - 👍 Propose regions with selective search. Uses a single forward pass of the entire image (along side with the region proposals) through the CNN to extract feature maps. The **Region of Interest** (RoI) Pooling Layer resizes and pools the features from each region proposal into a fixed sized feature map which is used for classification and bounding box regression
@@ -380,12 +381,9 @@ Training can be split into four parts.
 
 **Inference**
 The paper also introduce a method to speed up inference using Truncated SVD.
-
-
 ### Faster R-CNN (2016)
 - 👍 Use convolutional network to propose regions instead of the traditional segmentation algorithms. Much faster than Fast R-CNN. 
 - 👎 But most implementations are still slower than Yolo.
-
 
 **Architecture**
 Out of a 2.3 second inference time for Fast R-CNN, 2 seconds is required for selective region proposal algorithm. Thus, this model removes the selective search algorithm that occurs before the RoI pooling later and replaces it with a Regional Proposal Network (RPN) layer. It also introduces a new multi-task loss function.
@@ -472,7 +470,6 @@ Using Pytorch's VGG model, we can see that our calculations are indeed correct.
 **Total Parameters:** ~6 Million
 **Importance**: Introduction of inception modules, auxiliary classifiers, depth wise concatenation. Also titled the  **Inception Network** or Inception V1.
 **Iterations**: GoogleNet V2 (Inception V2, 2015), GoogleNet V3 (Inception V3, 2015) [Szegedy et. al., 2015, Rethinking the Inception Architecture for Computer Vision](https://arxiv.org/pdf/1512.00567v3.pdf), GoogleNet V4 (Inception V4 2016), Inception-ResNet (2016) [Szegedy et. al., 2016, Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning](https://arxiv.org/pdf/1512.00567v3.pdf)
-
 ### GoogleNet V1 (2014)
 
 ![[Pasted image 20231024152516.png | center ]]
@@ -509,7 +506,9 @@ The depth wise convolution channel concatenation is as expected, but we notice a
 - Fusion of features at different scales
 - Depth wise convolutions reduce the number of parameters and save a lot of computation cost while keeping the network running
 
-### GoogleNet V2 ()
+### GoogleNet V2 (2015)
+
+### GoogleNet V3 (2015)
 
 **Sources:**
 - Understanding the different variations of GoogleNet https://towardsdatascience.com/a-simple-guide-to-the-versions-of-the-inception-network-7fc52b863202
@@ -634,7 +633,7 @@ Output is $h\times w \times n_{classes}$ tells you how likely a pixel is to come
 
 ### Yolo V1 (2015)
 Take an image and place a "grid" on the image. For each grid, perform image classification and localization algorithm. In other words, for each grid cell, we have a training label. In the example below, we have a $100\times100$ input image with a $3\times 3$ grid for easy visualization, but in actual implementation, this is usually finer, for example $19\times 19$. 
-![[Pasted image 20230923145349.png | center  | 500 ]]
+![[Pasted image 20230923145349.png | center ]]
 The $\text{\color{green}green}$ and $\text{\color{orange}orange}$ grid cells contain an object. But the $\text{\color{purple}purple}$ do not. It is important to note that $b_{x},b_{y}$ of an object is relative to the grid cell that they are in. So if a grid cell had a height and with of 1, $b_{x},b_{y}$ are between 0 and 1. On the other hand, $b_{h},b_{w}$ are not restricted (as an object may cross into other grid cells), and the size of bounding box can be greater than 1.
 
 The output volume is a $3 \times 3 \times 8$, and the goal is to train the model so that it can accurately map any input image to this type of volume. In other words, map the object's midpoint to a specific grid cell. This is a convolutional implementation.
@@ -670,7 +669,10 @@ A SENet CNN is a neural network architecture that employs squeeze and excitation
 
 This can be described as a **SE-ResNet** module using the **Standard SE block**. In a lot of implementations found online, FC layers are implemented with convolution layers. Let's compare it to the models proposed by the author of the paper:
 ![[Pasted image 20231025222138.png | center ]]
-***What is the purpose of Squeeze and Excitation Block?*** Refer to the resources below for in-depth description. Below is a take on the **intuition** behind SE networks.
+
+
+**What is the intuition behind of Squeeze and Excitation Blocks?**
+Refer to the resources below for in-depth description. Below is a take on the **intuition** behind SE networks.
 
 The Squeeze-and-Excitation (SE) block is a building block used in deep convolutional neural networks to enhance the modeling of channel-wise relationships in feature maps. It was introduced as a mechanism to adaptively recalibrate the importance of different channels in a convolutional layer. This helps the network to focus on more informative channels and improve overall feature representation. 
 
@@ -682,9 +684,9 @@ The final step is to multiply each channel of the original feature map by its re
 
 The SE block is a general mechanism that can be inserted into a convolutional neural network at different positions to improve its performance. By learning channel-wise relationships, the network becomes more capable of focusing on relevant information and suppressing irrelevant noise in the feature maps, which can lead to improved accuracy in tasks such as image classification and object recognition.
 
-SE blocks have been used in various CNN architectures to achieve state-of-the-art results on a range of computer vision tasks, demonstrating their effectiveness in modeling and leveraging channel-wise relationships within deep networks.
+**Remark:** In a nutshell, it is an attention mechanism that points out the channel we points out the channel that we need to pay attention for certain input.
 
-**Remark:** The concept of SE blocks (variants) are seen in many neural networks.
+**Remark:** The concept of SE blocks (variants) are seen in many modern CNNs:
 - SE-ResNet-18, SE-ResNet-50, SE-ResNet-101, SE-ResNet-152, SE-ResNeXt-50, SE-ResNeXt-101, Inception-ResNet, MobileNetV1, and ShuffleNetV1
 
 **Sources**
@@ -698,53 +700,77 @@ SE blocks have been used in various CNN architectures to achieve state-of-the-ar
 
 ## MobileNetV1 (2017)
 ### Background
-**Paper**: [Howard et al. 2017, MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications]()
-**Importance**: Deploy neural network architectures that work even in low compute devices. Introduced **depth-wise separable convolutions**.
+**Paper**: [Howard et al. 2017, MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/abs/1704.04861)
+**Importance**: Deploy neural network architectures that work even in low compute edge devices. Introduced **depth-wise separable convolutions**.
+- Developed to find balance between accuracy and performance.
 **Iterations:** MobileNetV1 (2017) [Howard et al. 2017, MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications](https://arxiv.org/abs/1704.04861), MobileNetV2 (2019) [Sandler et al. 2019, MobileNetV2: Inverted Residuals and Linear Bottlenecks](https://arxiv.org/abs/1801.04381), MobileNetV3 [Howard et. al., 2019, Searching for MobileNetV3](https://arxiv.org/abs/1905.02244v5)
 
 ### MobileNet V1 (2017)
 **Depth-wise Separable Convolution** 
 Before we look into the architecture, we must first understand depth-wise separable convolutions, which comprises of two parts (1) **depth-wise convolution** (2) **point-wise convolution**.  Compared to 2D convolutions, where convolutions are performed over all/multiple input channels, in depth wise convolution, each channel is kept separate. The layers are then stacked together. Another term for this is spatial filtering.
-![[Pasted image 20230922113018.png | center | 300]]
+![[Pasted image 20230922113018.png | center ]]
 Then, the stacked layers undergo a point-wise convolution (which we see is simply a $1\times1$ convolution). It projects the channel outputs by the depth-wise convolution into a new channel space, producing new features (feature generation). Below, we see a visualization of 1 point-wise convolution. Projecting three channels into an output tensor of 1 channel.
 ![[Pointwise.png | center]]
+
 **Remark:** Depth-wise separable convolutions are computationally efficient, often denoted "bottleneck blocks". Let's perform a simple calculation to see how. 
 
-**Analyzing MobileNet Architecture**
+**Width Multiplier $\alpha$ For Thinner Models
+
+
+**Resolution Multiplier $\rho$ For Reduced Representation
+
+
+**Analyzing Architecture**
+The MobileNetV1 architecture has a total of 28 layers? 13 of which are depth-wise convolutions and 13 are point-wise.
 ![[Pasted image 20231104234729.png | center ]]
 
-### MobileNetV2 (2019)
+![[Pasted image 20231105154838.png]]
+
+### MobileNet V2 (2019)
 This version enhanced the structure of the MobileNet with residual connections and expansion filters. Let's first explain the introduction of the "BottleNeck" block that contains the expansion.
 
 ![[Pasted image 20230922114314.png | center ]]
 ![[Pasted image 20230922114510.png | center ]]
 
 In the images above, we see that $1\times 1$ convolution that will help change dimensionality from small dimensions (channel) to larger channel. This is known as the expansion. Then a depth wise convolution is performed. After the output, another $1\times 1$ convolution is performed to reduce the dimensionality. Then the residual from before the expansion is added to the output. This process is represented as 
-![[Pasted image 20231105003804.png | center | 400]]
+![[Pasted image 20231105003804.png | center ]]
 where $t$ is the expansion factor.
 
 The computational cost can be calculated as .
 
 **Remark:** So why is it called Inverted Residuals? Previously, residual connections went from bigger to bigger channels. But here, residuals go from one bottle neck to another bottle neck (small to small channels).
 
-**Remark:** The expansion operation increases size of representation, allows NN to learn richer function, but pointwise operation helps it project back down smaller memory. 
+**Remark:** The expansion operation increases size of representation, allows NN to learn richer function, but point-wise operation helps it project back down smaller memory. 
 
 The paper also introduces a new activation function, $ReLU6$, which essentially caps the ReLU activation, preventing the activation from becoming too big.
 ![[Pasted image 20231105004012.png | center | 300]]
 
-**Architecture**
-The MobileNetV2 has X layers.
+**Overall Architecture**
+The MobileNetV2 has 53 total layers (not including the avgpool and conv2d layers)
 
 | Architecture | Bottle Neck Blocks |
 | ------------ | ------------------ |
 | ![[Pasted image 20231105004257.png]]             |           ![[Pasted image 20231105004304.png]]         |
-**Findings**
-![[Pasted image 20231105004632.png | center | 500]]
-### MobileNet V3 (2019)
+Where $t$ is the expansion factor, $c$ is the number of output channels, $n$ represents repeating number, $s$ is stride. $3\times 3$ kernels are used for spatial convolution.
+- Why no ReLU in the third convolution? The researchers found that to much information is being lost.
 
+❗ Now width multiplier $\alpha$ and resolution $\rho$  can be greater than one, meaning that you could increase or decrease the network. 
+
+**Findings**
+![[Pasted image 20231105004632.png | center ]]
+### MobileNet V3 (2019)
+- 👍 MobileNetV1 introduced depth-wise convolution, MobileNetV2 introduced expansion-filtering-compression. This third one implements squeeze and extraction layers (as introduced in [[#SENet (2017)]|SENet]]). Introduction of h-swish non-linearity activation algorithm (in deeper layers) to reduce computation cost as well as significantly improve accuracy.
+- 👍 Use of [[Neural Networks#Neural Architecture Search|Neural Architecture Search (NAS)]] to optimize to get best accuracy and low latency
+- 👍 Use of [[#NetAdapt (2018)|NetAdapt]] to fine tune model based on empirical measurements from mobile device, aside from latency, perhaps energy.
+
+The paper defines two structures. (1) MobileNetV3-Large (2) MobileNetV3-Small
+
+**Findings**
+- MobileNetV3 is now used as the backbone of Object Detection ([PyTorch](https://pytorch.org/vision/main/models/generated/torchvision.models.detection.fasterrcnn_mobilenet_v3_large_fpn.html))
 
 **Resources**:
 - [An Overview on MobileNet: An Efficient Mobile Vision CNN](https://medium.com/@godeep48/an-overview-on-mobilenet-an-efficient-mobile-vision-cnn-f301141db94d)
+- [Everything you need to know about MobileNetV3](https://towardsdatascience.com/everything-you-need-to-know-about-mobilenetv3-and-its-comparison-with-previous-versions-a5d5e5a6eeaa)
 ## ShuffleNet V1 (2017)
 ### Background
 **Paper:** [Zhang et. al., 2017, ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices](https://arxiv.org/abs/1707.01083)
@@ -757,13 +783,47 @@ ShuffleNet V1 address two key problems (1) Point-wise convolutions are most comp
 **Resources:**
 - https://github.com/megvii-model/ShuffleNet-Series
 
-## EfficientNetV1 (2019)
-**Paper** [Tan and Le, 2019, EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://arxiv.org/abs/1905.11946
-**Importance**: How to automatically scale up/down neural networks for different devices with different memory constraints.
+## MnasNet (2018)
+**Paper:** [Mingxing Tan et. al., 2018, MnasNet: Platform-Aware Neural Architecture Search for Mobile](https://arxiv.org/abs/1807.11626)
 
+### NetAdapt (2018)
+**Paper:** [Tien-Ju Yang et. al., Platform-Aware Neural Network Adaption for Mobile Applications](https://arxiv.org/abs/1804.03230)
+## EfficientNetV1 (2019)
+### Background
+**Paper** [Tan and Le, 2019, EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://arxiv.org/abs/1905.11946
+**Importance**: How to automatically scale up/down neural networks for different devices with different constraints to balance accuracy and latency. Uses a lot of ideas from the MobileNet Series
 **Iterations:** EfficientNetV1, EfficientNetV2 (2021) [Tan et. al., 2021, EfficientNetV2: Smaller Models and FasterTraining](https://arxiv.org/pdf/2104.00298.pdf)
 
+### EfficientNetV1 (2019)
+**Motivation**
+Previously, increasing accuracy was achieved through scaling.
+![[Pasted image 20231105180922.png]]
+- a) baseline
+- b) more kernels means more features 
+- c) much more stronger representations of features that we got already
+- d)more resolution in our images (more information)
+The authors of the paper found that improvements through only one of the scaling methods (single dimension scaling), (a) (b) or (c) resulted in quick accuracy saturation. Accuracy does improve, but accuracy gains diminish with bigger models.
+
+**Goal**
+Basically shows that compound scaling, balancing these three scaling methods, will produce better results. However, doing this by trial and error is extremely time consuming and often unsuccessful. "Is there a principled method to scale up ConvNets that can achieve better accuracy and efficiency."
+
+**Implementation**
+- Use of RMSProp
+- Use of SILU activation function
+- Use of 0.256 learning rate
+- Use of AutoAugment
+- Use of Stochastic Depth
+- Use of Dropout
+
 **Analyzing EfficientNetV1 Architecture**
-EfficientNet is a family of convolutional neural network architectures that are designed to achieve better performance while being computationally efficient. The model variants in the EfficientNet family are labeled as B0 (EfficientNet-B0), B1, B2, B3, B4, B5, B6, and B7. These represent models of increasing complexity and computational requirements.
+EfficientNet is a family of convolutional neural network architectures that are designed to achieve better performance while being computationally efficient. The model variants in the EfficientNet family are labeled as B0 (EfficientNet-B0), B1, B2, B3, B4, B5, B6, and B7. These represent models of increasing complexity and computational requirements (balance of depth, width, and resolution). 
+
+Here's a review of the previous bottleneck layers from the MobileNetVX series.
+![[Pasted image 20231105184253.png | enter ]]
+
 
 Below, we will discuss the architecture of EfficientNet-B1
+
+**Sources**
+- [EfficientNet: Paper Walkthrough & PyTorch Implementation](https://www.youtube.com/watch?v=eFMmqjDbcvw)
+- 
