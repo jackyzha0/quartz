@@ -7,17 +7,11 @@ date: 9-08-23
 > [!tip] 
 > You will own **nothing**, and you will be **happy**.
 
-Repair is dead, and our own economy brought about its downfall. 
-
-The modern web is dominated by closed-source programs. 
-
-Intrusive analytics and the internet of shit are inextricably present in our daily life. 
-
-On my little corner of the internet, I fight back against all of the above by sharing what I know about computers. This is Projects & Privacy. 
+On my little corner of the internet, I document my adventures in tech and complain about the internet of shit. This is Projects & Privacy. 
 # Welcome!
 You're on a site called a [[Misc/what-is-a-garden|Digital Garden]]. Here's some info on [[Essays/why-i-garden|Why I Garden]].
 
-This site changes often. Feel free to subscribe to [this site's RSS feed](/index.xml) for a ping every time I make a new entry. You can also check [Updates](/Updates) for a monthly list of changes.
+This site changes often. Feel free to subscribe to [the RSS feed](/index.xml) for a ping every time I make a new entry. You can also check [Updates](/Updates) for a monthly list of changes.
 > [!question] What can I see here?
 > I [[about-me|(me, myself)]] write about:
 > - Projects I've undertaken and programs that I've used
