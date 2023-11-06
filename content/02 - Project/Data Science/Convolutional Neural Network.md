@@ -130,12 +130,14 @@ May not do anything for 2D x 2D convolution. But it works for volumes.
 - Allows you to increase, keep, or shrink number of channels.
 - Reduce the number of parameters
 
+### What is Receptive Field?
+- Understood its relationship to human receptive fields.
+- Explain how it transfers to the receptive field of 
 ### What is the difference between NHWC and NCHW?
 
 ## Visualizing CNN, what are Deep CNN's Learning?
-- Saliency Maps?
-	- https://medium.datadriveninvestor.com/visualizing-neural-networks-using-saliency-maps-in-pytorch-289d8e244ab4
-	- 
+- Saliency Maps? https://medium.datadriveninvestor.com/visualizing-neural-networks-using-saliency-maps-in-pytorch-289d8e244ab4
+- Class Activation Maps?
 - https://jithinjk.github.io/blog/nn_visualized.md.html
 - https://www.youtube.com/watch?v=pj9-rr1wDhM 6.10
 - https://datahacker.rs/028-visualization-and-understanding-of-convolutional-neural-networks-in-pytorch/
@@ -164,13 +166,17 @@ Object detection algorithms can be classified as either **one-stage detector** o
 **Naive Force Sliding Window Detection Algorithm**
 Slide a window across the original image. The window represents a cropped portion which is passed to a trained convolutional neural network which can classify the cropped image. You continue to do so until you have slid the window across every image.
 
-![[sliding_window.gif | center | 300 ]]
+![[sliding_window.gif | center  ]]
 
 Then you repeat it with different sized windows. If you continue to do so, the hope is that eventually the convolutional neural network will classify the object in one of the cropped images or windows. This algorithm is very computationally expensive, because you have to pass cropped image one by one into the CNN. Higher the "stride" (how much sliding window shifts each time), less computationally expensive, but at the cost of localization accuracy.
 
 **Convolutional Sliding Window Detection Algorithm** 
 ![[Pasted image 20231102184400.png | center ]]
-Discussed in [[#OverFeat (2014)|OverFeat]] paper. Way more computationally efficient than the brute force, but still has the problem of not being able to output the best bounding boxes.
+Discussed in [[#OverFeat (2014)|OverFeat]] paper. Way more computationally efficient than the naive method by making all predictions for all "windows" in one forward pass, but still has the problem of not being able to output the best bounding boxes (will miss objects that don't fit in the sliding window).
+
+There are a couple other problems that this method has
+1. 
+
 
 **Region Proposals**
 Understanding that the length of the output layer is variable, not constant, a naive method would to take different **regions of interest** (RoI) from the image, and then use a CNN to classify the presence of the object within that region. The problem with this approach is that objects of interest may have a variety of spatial locations and aspect ratios within an image. In turn, a huge selection of regions would be extremely computationally expensive. This led to a development of [[#R-CNN (2013)|R-CNN]] models, which uses ideas of **selective search** [Uijlings et. al, 2012, Selective Search for Object Recognition](http://www.huppelen.nl/publications/selectiveSearchDraft.pdf) to find these regions extremely quickly. 
@@ -184,7 +190,7 @@ Other region proposals methods include:
 - Randomized Prim
 
 **One Stage Object Detection**
-The previous examples all required two stages to complete the object detection process. Algorithms like [[#YOLO (2015)|Yolo]] do it in one.
+The R-CNN methods helped in improving the accuracy over the sliding window method. However, these examples all required two stages to complete the object detection process. Algorithms like [[#YOLO (2015)|Yolo]]  and SSD do it in one.
 
 ### What is Intersection over Union?
 Helps measure the performance of localization prediction compared to ground truth.
@@ -207,7 +213,7 @@ A  four step process.
 
 ### What are anchor boxes?
 Help solve the problem of detecting overlapping objects in object classification + localization. For example, in the following, we introduced 2 anchor boxes. Now, instead of only assigning each object in a training image to a grid cell, we assign it to a grid cell that contains the objects midpoint *and* an anchor box for the grid cell with the highest IoU.
-![[Pasted image 20230925163935.png | center.| 400 ]]
+![[Pasted image 20230925163935.png | center ]]
 In other words, overlap the predicted bounding box with both anchor box 1 (overlap centers) and anchor box 2. In the example above, the predicted bounding box for the person would have a bigger IoU with anchor box 1. 
 
 This doesn't work well if you have two anchor boxes and three objects, or two objects that match with the same anchor box in the same block.
@@ -266,8 +272,9 @@ Generate new images in the artwork of another.
 Here we summarize famous CNN developments.
 ![[Pasted image 20231101150829.png | center ]]
 ## LeNet-5 (1998) 
-**Paper**: LeCun et al., 1998. Gradient-based learning applied to document learning
+**Paper**: [LeCun et al., 1998. Gradient-based learning applied to document recognition](https://ieeexplore.ieee.org/document/726791)
 **Total Parameters**: ~60,000 
+**Importance:**
 **Deep Analysis**: https://www.kaggle.com/code/blurredmachine/lenet-architecture-a-complete-guide
 
 ![[Pasted image 20230922103032.png]]
@@ -562,16 +569,57 @@ The **Style Matrix** is essential a Gram Matrix.
 ![[Pasted image 20230927125724.png | center | 400 ]]
 
 ## OverFeat (2014)
+### Background
 **Paper**: [Sermanet et al., 2014, OverFeat: Integrated recognition, localization and detection using convolutional networks.](<[Sermanet et al., 2014, OverFeat: Integrated recognition, localization and detection using convolutional networks](https://arxiv.org/abs/1312.6229).>)
-**Importance**: Using $1\times 1$ convolutions instead of FC layers for sliding windows in object detection/localization.Uses stride to implement sliding windows. This method does it in one forward pass. This is opposed to running one portion of the image each time, where each portion requires a forward pass.
+**Importance**: Introduces a lot of interesting concepts. It uses $1\times 1$ convolutions instead of FC dense layers for sliding windows in object detection/localization. Uses stride to implement sliding windows. This method does it in one forward pass. This is a huge improvement compared to the naive sliding window algorithm.
 
-Let's review how dense FC can be turned into convolutional FC layers. In the image below, both the top and bottom networks essentially give you the same results.
+### Intuition
+The overall operating principle of OverFeat model is similar to the R-CNN. A feature map is extracted from feature extractor, and the classifier and bounding box receive input and return the class, confidence score, and bounding box coordinates, respectively. However, there is a different approach to learning and reasoning. 
+
+**Multi-scale input**
+The OverFeat model receives **multi-scale** images as input during detection. If the detection model receives an image at various sizes, it becomes possible to more easily capture objects of various sizes that exist in the image. As scale of image increases, it is possible to detect smaller objects. This is different from the existing CNN models that receives a fixed-size image (single-scale) as input. For example, AlexNet receives $277\times277$ and VGG receives $224\times224$. The R-CNN model also warps the regions of the region proposals extracted through selective search to a size of $227\times227$ to input them into the fine tuned AlexNet (or other backbone architectures). **The reason why the CNN model receives images of a fixed size is because of the fully connected layer must receive a feature vector of a fixed size**. 
+
+![[Pasted image 20231106121158.png | center ]]
+Wen the scale of the image changes, the size of the feature vector input to the fully connected layer must also change, so a general CNN model cannot receive images of various sizes at input. However, if you replace the fully connected layer with a convolution layer, you can receive images of various sizes. **The OverFeat model replaces the fc layer of the model with a convolution layer**. However, this also causes the output to have variable size depending on the image scale. *What does this mean for object detection?*
+
+**Spatial Outputs**
+The author of the paper considers the case where if the size of the output map (output of final prediction fu layer) is $1\times 1 \times k$, where $k$ is number of classes, it is a **non-spatial** output. On the other hand, during detection OverFeat model produces output maps of various sizes such as $2\times 3, 3\times 5, 5\times7, 6\times 7$ and $7\times10$ through a convolutional layer depending on the scale of the input image. These are called the **spatial outputs**.
+![[Pasted image 20231106122458.png | center ]]
+In the image above, there are two images of different scales $4\times4$, $8\times 8$. Both go through a pooling layer twice, and result in outputs of difference sizes. An image of size $4\times4$ has an output map (non-spatial output) of size $1\times 1$. In other words, the $1\times1$ output map encodes information about a $4\times 4$ sized image. The field encoded by a $1\times 1$ is also called the **receptive field**. An image of size $8\times8$, however, has an output map (spatial output) of size $2\times2$. *So what does each pixel represent?* The upper left $\text{\color{darkred}red}$ box of the $2\times2$ spatial map encodes a receptive field as large as the $4\times4$ upper left corner of the original $8\times8$ image.
+![[Pasted image 20231106123036.png | center ]]
+In other words, **one element of the partial output produced by the model** can be seen as encoding information about a specific receptive field of the original image. And depending on the learning method, this information can be the confidence score of a specific class or the coordinates of the bounding box. In the picture above, each element of the spatial output can be seen as implying information about the area of the image that matches the color.
+![[Pasted image 20231106123230.png | center ]]
+
+Looking at the image above, there are spatial outputs of different sizes obtained by inputting images at 6 different scales into the model. It shows which area of the original image each element encodes. Intuitively, each element of a spatial map is  like a compressed bounding box (or containing information about a region). In fact, a spatial output of $2\times3$ means the total of 6 objects can be detected within the image.
+
+**ConvNets Sliding Window Efficiency**
+The process of applying a convolutional filter to a feature map and traversing the entire feature map is similar to a sliding window. However, the author of the paper implements effects of sliding window more effectively by replacing the fc layer with a convolutional layer. Let's review how dense FC can be turned into convolutional FC layers. In the image below, both the top and bottom networks essentially give you the same results.
 ![[Pasted image 20230923150912.png | center ]] 
 So let's visualize how this can be applied to the sliding window detection.
 ![[Pasted image 20230923151042.png | center]]
-In the image above, the $\text{\color{red}red}$, $\text{\color{green}green}$, $\text{\color{orange}orange}$, $\text{\color{purple}purple}$ boxes represent $14\times 14\times 3$ "cropped windows" that would have been passed through the neural network **one by one** if using the brute force sliding window algorithm (four subsets of the input image independently). However, we can realize the computation done by these four forward passes is highly duplicative (overlapping area = same calculations). To solve this, we use "stride" to simulate a slide step. In the first FC convolutional layer, we see that instead of a $1\times 1\times 400$ layer, it is now $2\times2\times400$. And the output is a $2\times 2 \times 4$. Where each corner represents the output of the four corners of the original image. This combines all four subsets into one form of computation, reducing computation on regions that are shared between them. 
+In the image above, the $\text{\color{red}red}$, $\text{\color{green}green}$, $\text{\color{orange}orange}$, $\text{\color{purple}purple}$ boxes represent $14\times 14\times 3$ "cropped windows" that would have been passed through the neural network **one by one** if using the naive sliding window algorithm (four subsets of the input image independently). However, we can realize the computation done by these four forward passes is highly duplicative (overlapping area = same calculations). To solve this, we use "stride" to simulate a slide step. In the first FC convolutional layer, we see that instead of a $1\times 1\times 400$ layer, it is now $2\times2\times400$. And the output is a $2\times 2 \times 4$. Where each corner represents the output of the four corners of the original image. This combines all four subsets into one form of computation, reducing computation on regions that are shared between them. 
+![[Pasted image 20231106123734.png | center ]]
+Looking at the picture above, as a result of applying a 3x3 convolutional  filter to the yellow and blue areas, the information in the overlapping area, green, is the same. This means that redundant operations on overlapping areas in the convolutional layer can be avoided. On the other hand, if an image area cropped to the size of the window is input through the naive sliding window method, unnecessary calculations may occur because each window is independent.
+### Architecture
+![[Pasted image 20231106124135.png | center ]]
+The OverFeat composes of the following steps.
+1. 6-Scale image is input
+2. Feature map is obtained from a learned feature extractor (AlexNet)
+3. Input the feature map into classifier and bounding box regressor to output a spatial map
+4. The Greedy Merge algorithm is applied to the predicted bounding box to output the predicted bounding box
 
-Thus, this improved model essentially can make predictions on all regions of the original image through one forward pass.
+The feature extractor portion is the same concept of "backbone" introduced in RCNN. 
+
+**Training**
+- Classification
+- Localization/Detection
+
+**Inference**
+- Resolution Augmentation
+
+
+### Resources
+- [Overfeat Intuition](https://www.youtube.com/watch?v=t5PHp8uSMKo&list=PL1GQaVhO4f_jLxOokW7CS5kY_J1t1T17S&index=53)
 
 ## SPPnet (2014)
 ### Background
@@ -627,9 +675,9 @@ Input is $h \times w \times 3$
 Output is $h\times w \times n_{classes}$ tells you how likely a pixel is to come from one of these classes.
 ## YOLO (2015)
 ### Background
-**Paper**: [Redmond et al.,2015, You Only Look Once: Unified real-time object detection]()
-**Importance**: Solve sliding window inability to accurately set bounding boxes (determined by window and stride).  Efficient enough for real time use cases.
-**Iterations:** Yolo V1 (2015) [Redmond et al.,2015, You Only Look Once: Unified real-time object detection](), Yolo V2 (2016) [Redmond et. al., 2016, YOLO9000: Better, Faster, Stronger](https://arxiv.org/abs/1612.08242), Yolo V3 (2018) [Redmond et. al., 2018, YOLOv3: An Incremental Improvement](https://arxiv.org/abs/1804.02767), Yolo V4 (2020) [Bochkovskiy et. al., 2020, YOLOv4: Optimal Speed and Accuracy of Object Detection](https://arxiv.org/abs/2004.10934) Yolo V5 (2020), Yolo V6 (2022), Yolo V7 (2022), Yolo V8 (2023).
+📃 **Paper**: [Redmond et al.,2015, You Only Look Once: Unified real-time object detection]()
+💡**Importance**: Solve sliding window inability to accurately set bounding boxes (determined by window and stride). Compared to R-CNN methods, boxes and class probabilities are predicted in a single pass. Efficient enough for real time use cases.
+📈 **Iterations:** Yolo V1 (2015) [Redmond et al.,2015, You Only Look Once: Unified real-time object detection](), Yolo V2 (2016) [Redmond et. al., 2016, YOLO9000: Better, Faster, Stronger](https://arxiv.org/abs/1612.08242), Yolo V3 (2018) [Redmond et. al., 2018, YOLOv3: An Incremental Improvement](https://arxiv.org/abs/1804.02767), Yolo V4 (2020) [Bochkovskiy et. al., 2020, YOLOv4: Optimal Speed and Accuracy of Object Detection](https://arxiv.org/abs/2004.10934) Yolo V5 (2020), Yolo V6 (2022), Yolo V7 (2022), Yolo V8 (2023).
 
 ### Yolo V1 (2015)
 Take an image and place a "grid" on the image. For each grid, perform image classification and localization algorithm. In other words, for each grid cell, we have a training label. In the example below, we have a $100\times100$ input image with a $3\times 3$ grid for easy visualization, but in actual implementation, this is usually finer, for example $19\times 19$. 
@@ -642,6 +690,8 @@ Introduced the concepts
 - [[#What is Intersection over Union?|intersection over union]] - evaluate the performance of object localization results
 - [[#What is non-max suppression?|non-max supression]] - solve the problem of multiple grid cells being mapped the center of the same object
 - [[#What are anchor boxes?|anchor boxes]] - solve the problem of overlapping objects, allows detection of multiple class objects within one grid cell, but this should be fairly rare (smaller grid cells less likely), but allows algorithm to specialize better (some outputs units detect different shape anchor boxes). Anchor boxes for V1 were chosen by hand.
+
+
 ###  Yolo V2 (2016)
 - K-means algorithm to automat
 ### Yolo V3 (2018)
@@ -710,18 +760,24 @@ The SE block is a general mechanism that can be inserted into a convolutional ne
 Before we look into the architecture, we must first understand depth-wise separable convolutions, which comprises of two parts (1) **depth-wise convolution** (2) **point-wise convolution**.  Compared to 2D convolutions, where convolutions are performed over all/multiple input channels, in depth wise convolution, each channel is kept separate. The layers are then stacked together. Another term for this is spatial filtering.
 ![[Pasted image 20230922113018.png | center ]]
 Then, the stacked layers undergo a point-wise convolution (which we see is simply a $1\times1$ convolution). It projects the channel outputs by the depth-wise convolution into a new channel space, producing new features (feature generation). Below, we see a visualization of 1 point-wise convolution. Projecting three channels into an output tensor of 1 channel.
-![[Pointwise.png | center]]
-
-**Remark:** Depth-wise separable convolutions are computationally efficient, often denoted "bottleneck blocks". Let's perform a simple calculation to see how. 
-
-**Width Multiplier $\alpha$ For Thinner Models
+![[Pasted image 20231106102641.png]]
+**Remark:** Depth-wise separable convolutions are computationally efficient, often denoted "bottleneck blocks". Below, we show the cost function in comparison the standard convolution.
 
 
-**Resolution Multiplier $\rho$ For Reduced Representation
+Two other important concepts (important for later generations of CNN such as [[#MobileNet V2 (2019) |MobileNetV2]], [[#MobileNet V3|MobileNetV3]], [[#EfficientNetV1 (2019)|EfficientNetV1]]) are **width multiplier** and **resolution multiplier.** They are additional hyper-parameters that allow for more granular control on the size and computational complexity. This also builds on the drive behind MobileNets, making an architecture suitable for various end devices with different computing resources.
 
+**Width Multiplier $\alpha$ For Thinner Models**
+The width multiplier is a value $\alpha\in(0,1]$ to control the number of channels or channel depth. In this version, it is known as a shrinking hyper parameter. Reducing the number of channels reduces the number of computations and therefore increases efficiency. The paper states that "the role of the width multiplier $\alpha$ is to thin a network uniformly at each layer". A better name or this, perhaps is depth multiplier.
+
+Essentially, within each convolutional layer, the number of channels $M$ is mutiplied with $\alpha$, so output channels is just $\alpha M$. When $\alpha = 1$, we get the baseline MobileNet V1. 
+
+**Resolution Multiplier $\rho$ For Reduced Representation**
+The resolution multiplier is a value $\rho\in(0,1]$ to control the input resolution of the network.
+
+Essentially changes the image input quality.
 
 **Analyzing Architecture**
-The MobileNetV1 architecture has a total of 28 layers? 13 of which are depth-wise convolutions and 13 are point-wise.
+The MobileNetV1 architecture has a total of 28 layers. 13 of which are depth-wise convolutions and 13 are point-wise.
 ![[Pasted image 20231104234729.png | center ]]
 
 ![[Pasted image 20231105154838.png]]
@@ -768,7 +824,7 @@ The paper defines two structures. (1) MobileNetV3-Large (2) MobileNetV3-Small
 **Findings**
 - MobileNetV3 is now used as the backbone of Object Detection ([PyTorch](https://pytorch.org/vision/main/models/generated/torchvision.models.detection.fasterrcnn_mobilenet_v3_large_fpn.html))
 
-**Resources**:
+### Resources:
 - [An Overview on MobileNet: An Efficient Mobile Vision CNN](https://medium.com/@godeep48/an-overview-on-mobilenet-an-efficient-mobile-vision-cnn-f301141db94d)
 - [Everything you need to know about MobileNetV3](https://towardsdatascience.com/everything-you-need-to-know-about-mobilenetv3-and-its-comparison-with-previous-versions-a5d5e5a6eeaa)
 ## ShuffleNet V1 (2017)
@@ -780,7 +836,7 @@ The paper defines two structures. (1) MobileNetV3-Large (2) MobileNetV3-Small
 **Analyzing ShuffleNet Architecture**
 ShuffleNet V1 address two key problems (1) Point-wise convolutions are most computationally heavy operations (2) stacked groups prevents information flow between channel groups.
 
-**Resources:**
+### Resources
 - https://github.com/megvii-model/ShuffleNet-Series
 
 ## MnasNet (2018)
@@ -790,9 +846,9 @@ ShuffleNet V1 address two key problems (1) Point-wise convolutions are most comp
 **Paper:** [Tien-Ju Yang et. al., Platform-Aware Neural Network Adaption for Mobile Applications](https://arxiv.org/abs/1804.03230)
 ## EfficientNetV1 (2019)
 ### Background
-**Paper** [Tan and Le, 2019, EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://arxiv.org/abs/1905.11946
+**Paper** [Tan and Le, 2019, EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://arxiv.org/abs/1905.11946)
 **Importance**: How to automatically scale up/down neural networks for different devices with different constraints to balance accuracy and latency. Uses a lot of ideas from the MobileNet Series
-**Iterations:** EfficientNetV1, EfficientNetV2 (2021) [Tan et. al., 2021, EfficientNetV2: Smaller Models and FasterTraining](https://arxiv.org/pdf/2104.00298.pdf)
+**Iterations:** EfficientNetV1 [Tan and Le, 2019, EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://arxiv.org/abs/1905.11946), EfficientNetV2 (2021) [Tan et. al., 2021, EfficientNetV2: Smaller Models and FasterTraining](https://arxiv.org/pdf/2104.00298.pdf)
 
 ### EfficientNetV1 (2019)
 **Motivation**
@@ -816,7 +872,7 @@ Basically shows that compound scaling, balancing these three scaling methods, wi
 - Use of Dropout
 
 **Analyzing EfficientNetV1 Architecture**
-EfficientNet is a family of convolutional neural network architectures that are designed to achieve better performance while being computationally efficient. The model variants in the EfficientNet family are labeled as B0 (EfficientNet-B0), B1, B2, B3, B4, B5, B6, and B7. These represent models of increasing complexity and computational requirements (balance of depth, width, and resolution). 
+EfficientNet is a family of convolutional neural network architectures that are designed to achieve better performance while being computationally efficient. The model variants in the EfficientNet family are labeled as B0 (EfficientNet-B0), B1, B2, B3, B4, B5, B6, and B7. These represent models of increasing complexity and computational requirements (balance of depth, width, and resolution). They show that with the right scaling method, there will be continue to be gains. Refer to the paper for the 
 
 Here's a review of the previous bottleneck layers from the MobileNetVX series.
 ![[Pasted image 20231105184253.png | enter ]]
@@ -824,6 +880,6 @@ Here's a review of the previous bottleneck layers from the MobileNetVX series.
 
 Below, we will discuss the architecture of EfficientNet-B1
 
-**Sources**
+### Resources
 - [EfficientNet: Paper Walkthrough & PyTorch Implementation](https://www.youtube.com/watch?v=eFMmqjDbcvw)
 - 

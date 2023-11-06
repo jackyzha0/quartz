@@ -80,7 +80,7 @@ This is my data science journey.
 		- Exhaustive Grid Search - model tuning for variables like c in [[Support Vector Machines]], [[K-Nearest Neighbor]], and Number of layers in Neural Networks
 	- #TODO:  Analyze U-Net,
 - [[Neural Networks]]
-	- **Architectures**: [[Convolutional Neural Network]], [[Recurrent Neural Network]] (GRU, Simple RNN, Sequence to Vector RNN, Sequence to Sequence RNN, LSTMs), [[Transformers]]
+	- **Architectures**: [[Convolutional Neural Network]], [[Recurrent Neural Network]] (GRU, Simple RNN, Sequence to Vector RNN, Sequence to Sequence RNN, LSTMs), [[Transformers]], [[Generative Adversarial Networks]], 
 	- **Core Concepts**: Input/Output Shape, Loss Functions, Optimizers, Activation Functions, Mini-batch Gradient Descent, Convergence, Callbacks/Early Stopping, [[Data Augmentation]], Dropout, Vanishing/Exploding Gradients,
 - Excel, Pivot tables, VLookup, HLookup, 
 

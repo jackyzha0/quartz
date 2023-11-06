@@ -11,6 +11,8 @@ banner_y: 0.4705
 1. [Neural Network Playground](https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.54266&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false)
 2. [Mathematics of Back-propagation](https://www.3blue1brown.com/lessons/neural-networks) by 3blue1brown. The youtube version can be found [here](https://www.youtube.com/watch?v=tIeHLnjs5U8). It is the recommended go-to video by [PyTorch](https://pytorch.org/tutorials/beginner/basics/optimization_tutorial.html) documentation! Notes about it can be found here at [[Backpropagation]]
 3. [Tools to Design or Visualize Architecture of Neural Network](https://github.com/ashishpatel26/Tools-to-Design-or-Visualize-Architecture-of-Neural-Network)
+4. Papers with Code
+5. Blogs: [Herbwood](https://herbwood.tistory.com/), 
 
 #TODO
 - 🖊 Summarize: How to deal with overfitting? How to deal with under-fitting?
@@ -25,6 +27,7 @@ banner_y: 0.4705
 - [[Convolutional Neural Network]]
 - [[Recurrent Neural Network]]
 - [[Transformers]]
+- [[Generative Adversarial Networks]]
 # 03 核心技术 Core Concepts Neural Network
 ### What is a Neural Network?
 Here we introduce the most basic neural network, a simple feed forward neural network. 
