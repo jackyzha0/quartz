@@ -44,12 +44,13 @@ export const defaultContentPageLayout: PageLayout = {
         },
       }
       )),
-      // Component.DesktopOnly(Component.TableOfContents()),
+      Component.DesktopOnly(Component.TableOfContents()),
       // Component.RecentNotes(),
     ],
   right: [
     Component.Graph(),
-    Component.DesktopOnly(Component.TableOfContents()),
+    // Component.DesktopOnly(Component.Backlinks()),
+    // Component.MobileOnly(Component.Backlinks()),
     Component.Backlinks(),
   ],
 }
