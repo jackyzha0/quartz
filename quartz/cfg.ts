@@ -20,6 +20,8 @@ export type Analytics =
 export interface GlobalConfiguration {
   pageTitle: string
   /** Whether to enable single-page-app style rendering. this prevents flashes of unstyled content and improves smoothness of Quartz */
+  favIcon: string
+  /** The filename of the favicon to use. Must be placed in the quartz/static folder. */
   enableSPA: boolean
   /** Whether to display Wikipedia-style popovers when hovering over links */
   enablePopovers: boolean
