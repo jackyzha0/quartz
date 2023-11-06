@@ -21,8 +21,9 @@ export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
     Component.Breadcrumbs(),
     Component.ArticleTitle(),
+    Component.MobileOnly(Component.TableOfContents()),
     // Component.ContentMeta(),
-    // Component.TagList()
+    // Component.TagList(),
   ],
   left: [
     Component.PageTitle(),
@@ -42,13 +43,13 @@ export const defaultContentPageLayout: PageLayout = {
           }
         },
       }
-    )),
-    Component.DesktopOnly(Component.TableOfContents()),
-    // Component.RecentNotes(),
-  ],
+      )),
+      // Component.DesktopOnly(Component.TableOfContents()),
+      // Component.RecentNotes(),
+    ],
   right: [
     Component.Graph(),
-    // Component.DesktopOnly(Component.TableOfContents()),
+    Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
   ],
 }
