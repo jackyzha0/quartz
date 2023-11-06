@@ -9,7 +9,6 @@ Want to see what Quartz can do? Here are some cool community gardens:
 - [Brandon Boswell's Garden](https://brandonkboswell.com)
 - [Scaling Synthesis - A hypertext research notebook](https://scalingsynthesis.com/)
 - [AWAGMI Intern Notes](https://notes.awagmi.xyz/)
-- [Course notes for Information Technology Advanced Theory](https://a2itnotes.github.io/quartz/)
 - [Data Dictionary 🧠](https://glossary.airbyte.com/)
 - [sspaeti.com's Second Brain](https://brain.sspaeti.com/)
 - [oldwinter の数字花园](https://garden.oldwinter.top/)
@@ -20,5 +19,6 @@ Want to see what Quartz can do? Here are some cool community gardens:
 - [Vince Imbat's Talahardin](https://vinceimbat.com/)
 - [🧠🌳 Chad's Mind Garden](https://www.chadly.net/)
 - [Pedro MC Fernandes's Topo da Mente](https://www.pmcf.xyz/topo-da-mente/)
+- [Mau Camargo's Notkesto](https://notes.camargomau.com/)
 
 If you want to see your own on here, submit a [Pull Request adding yourself to this file](https://github.com/jackyzha0/quartz/blob/v4/docs/showcase.md)!
