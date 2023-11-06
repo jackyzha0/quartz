@@ -17,7 +17,7 @@ button#toc {
   & .fold {
     margin-left: 0.5rem;
     transition: transform 0.3s ease;
-    opacity: 0.8;
+    // opacity: 0.8;
   }
 
   &.collapsed .fold {
@@ -41,12 +41,12 @@ button#toc {
     padding: 0;
     & > li > a {
       color: var(--dark);
-      opacity: 0.35;
+      opacity: 0.7; // 0.35
       transition:
         0.5s ease opacity,
         0.3s ease color;
       &.in-view {
-        opacity: 0.75;
+        opacity: 0.95; //0.75
       }
     }
   }
