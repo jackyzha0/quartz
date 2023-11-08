@@ -67,11 +67,11 @@
 **Capítulo 7: Entrada/Salida**
 - Módulos de E/S (7.2)
 	-  [[Funciones de un módulo ES#Principales funciones de un módulo]]
-	- [[Funciones de un módulo ES#Estructura de un módulo de E/S]]
+	- [[Funciones de un módulo ES#Estructura de un módulo de ES]]
 - E/S programada (7.3)
-	- [[ES Programadas#Resumen de la E/S Programada]]
-	- [[ES Programadas#Órdenes de E/S]]
-	- [[ES Programadas#Instrucciones de E/S]]
+	- [[ES Programadas#Resumen de la ES Programada]]
+	- [[ES Programadas#Órdenes de ES]]
+	- [[ES Programadas#Instrucciones de ES]]
 - Entrada/Salida mediante interrupciones (7.4)
 	- [[ES con Interrupciones#ES mediante interrupciones]]
 	- [[ES con Interrupciones#Procesamiento de la Interrupción]]
@@ -81,7 +81,7 @@
 	- [[DMA#Funcionamiento del DMA]]
 - Canales y procesadores de E/S (7.6)
    - [[Canales y Procesadores de ES#Evolución del funcionamiento de las ES]]
-   - [[Canales y Procesadores de ES#Características de los canales de E/S]]
+   - [[Canales y Procesadores de ES#Características de los canales de ES]]
 
 **Capítulo 8: Aritmética de la Computadora**
 - [[Unidad Aritmética Lógica#ALU]]
@@ -119,42 +119,35 @@
 
 **Capítulo 11: Estructura y funcionamiento del procesador**
 - [[Organización del Procesador#Organización del procesador]]
-- Organización de los registros
-   - Registros visibles por el usuario
-   - Registros de control y de estado
-   - Ejemplos de organizaciones de registros de microprocesadores
-- Ciclo de instrucción
-   - El ciclo indirecto
-   - Flujo de datos
-- Segmentación de Instrucciones
-   - Estrategia de segmentación
+- [[Organización de los registros]]
+- [[Ciclo de Instrucción]]
+   - [[Ciclo de Instrucción#Subciclos de una instrucción]]
+   - [[Ciclo de Instrucción#Flujo de datos]]
+- [[Segmentación]]
 
 **Capítulo 12: Computadoras de repertorio reducido de Instrucciones (RISC)**
-- Característica de la ejecución de instrucciones
-   - Operaciones
-   - Operandos
-   - Llamadas a procedimientos
-   - Consecuencias
-- Utilización de un amplio espectro de registros
-   - Ventanas de registros
-   - Variables globales
-   - Un amplio banco de registros frente a una caché
-- Optimización de registros basada en el compilador
-- Arquitectura de repertorio reducido de instrucciones
-   - ¿Por qué CISC?
-   - Características de las arquitecturas RISC
-   - Características de CISC frente a RISC
-- Segmentación en RISC
-   - Segmentación con instrucciones regulares
-   - Optimización de la segmentación
+- [[Características de ejecución de las instrucciones RISC]]
+   - [[Características de ejecución de las instrucciones RISC#Operaciones]]
+   - [[Características de ejecución de las instrucciones RISC#Operandos]]
+   - [[Características de ejecución de las instrucciones RISC#Características de ejecución de las instrucciones RISC#Llamadas a procedimientos]]
+- [[Utilización de un amplio banco de registros]]
+   - [[Utilización de un amplio banco de registros#Ventanas de Registros]]
+   - [[Utilización de un amplio banco de registros#Variables Globales]]
+   - [[Utilización de un amplio banco de registros#Banco de registros vs Caché]]
+- [[Optimización de registros basada en el compilador]]
+- [[Arquitectura RISC]]
+   - [[Arquitectura RISC#Arquitectura RISC]]
+   - [[Arquitectura RISC#Características de las arquitecturas RISC]]
+   - [[Arquitectura RISC#RISC VS CISC]]
+- [[Segmentación en RISC]]
 
 **Capítulo 13: Funcionamiento de la unidad de control**
-- Microoperaciones
-   - Ciclo de búsqueda
-   - El ciclo indirecto
-   - El ciclo de interrupción
-   - El ciclo de ejecución
-   - El ciclo de instrucción
+- [[Microoperaciones]]
+   - [[Microoperaciones#El ciclo de captación]]
+   - [[Microoperaciones#El ciclo indirecto]]
+   - [[Microoperaciones#El ciclo de interrupción]]
+   - [[Microoperaciones#El ciclo de ejecución]]
+   - [[Microoperaciones#El ciclo de instrucción]]
 - Control del procesador
    - Requisitos fundamentales
    - Señales de control

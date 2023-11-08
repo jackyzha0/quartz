@@ -32,7 +32,7 @@ Source:: [[Dispositivos Externos]]
    - Procesador de E/S maneja tareas de control de terminales.
 
 
-## Características de los canales de E/S
+## Características de los canales de ES
 - **Ampliación del Concepto de DMA:**
   - Canal de E/S es una expansión del concepto de DMA (Acceso Directo a Memoria).
   - Puede ejecutar instrucciones de E/S, control completo sobre operaciones de E/S.

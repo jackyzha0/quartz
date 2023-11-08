@@ -1,4 +1,4 @@
 ## Metodologías
 - [[Framework Scrum]]
-- [[Kanban]]
+- [[Workflow Kanban]]
 - [[Lean]]

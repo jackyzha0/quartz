@@ -38,7 +38,7 @@ Source:: [[Dispositivos Externos]]
 
 
 
-## Estructura de un módulo de E/S
+## Estructura de un módulo de ES
 ![[Pasted image 20230810165737.png]]
 - El módulo se conecta al resto del computador a través de un conjunto de líneas (por ejemplo, el bus de sistema)
 	- Los datos que se transfieren se almacenan temporalmente en uno o más registros de datos

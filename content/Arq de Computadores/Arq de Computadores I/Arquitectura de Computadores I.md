@@ -1,6 +1,7 @@
 # Arquitectura de Computadores I
-[[Arq de Comp I - Temas examen]]
-Course: [[Arquitectura de Computadores I]]
+
+- [[Arq de Comp I - Temas examen]]
+- Course: [[Arquitectura de Computadores I]]
 
 - [[Que es una computadora]]
 	- [[Arquitectura y organización de los computadores]]
@@ -54,9 +55,11 @@ Course: [[Arquitectura de Computadores I]]
 - [[RAID]]
 - [[Organización del Procesador]]
 	- [[Segmentación]]
+	- [[Organización de los registros]]
 - [[Repertorio de Instrucciones simple (RISC)]] 
 	- [[Características de ejecución de las instrucciones RISC]]
 	- [[Utilización de un amplio banco de registros]]
 	- [[Optimización de registros basada en el compilador]]
 	- [[Arquitectura RISC]]
 	- [[Segmentación en RISC]]
+- [[Microoperaciones]]

@@ -6,12 +6,12 @@ Course:: [[Arquitectura de Computadores I]]
 Source:: [[Dispositivos Externos]]
 %%
 
-## Resumen de la E/S Programada
+## Resumen de la ES Programada
 - Cuando el procesador está ejecutando un programa y encuentra una instrucción relacionada con una E/S, ejecuta dicha instrucción mandando una orden al módulo de E/S apropiado
 	- El módulo realizará la acción solicitada, y después activará los bits apropiado en el registro de estado de E/S
 	- El módulo no realiza ninguna otra acción para avisar al procesador, por lo que el procesador es el responsable de comprobar periódicamente el estado del módulo.
 
-## Órdenes de E/S
+## Órdenes de ES
 - Existen 4 tipos de órdenes de E/S que puede recibir un módulo
 	- Control
 		- Se utiliza para activar el periférico e indicarle que hacer
@@ -24,7 +24,7 @@ Source:: [[Dispositivos Externos]]
 	- Escritura
 		- Hace que el módulo de E/S capte un dato del bus de datos y posteriormente lo transmita al periférico
 
-## Instrucciones de E/S
+## Instrucciones de ES
 - Muchas veces existe una correspondencia 1-1 con las órdenes del módulo de E/S y las instrucciones del procesador.
  - Cuando el procesador envía una orden de E/S, la orden contiene la dirección del dispositivo. Así el módulo de E/S debe interpretar las líneas de dirección para determinar si la orden es para él.
  - Cuando el procesador, la memoria principal, y las E/S comparten un bus común, son posibles dos modos de direccionamiento

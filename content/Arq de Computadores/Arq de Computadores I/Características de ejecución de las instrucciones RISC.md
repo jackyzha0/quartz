@@ -18,3 +18,15 @@ Source:: [[Repertorio de Instrucciones simple (RISC)]]
 	- Mejora la eficiencia en la ejecución -> Las secuencias complejas CISC necesitan micro-código más complejo
 	- Los soportes de lenguajes de alto nivel son más complejos y sofisticados.
 - Tener registros más simples, por un lado nos hace más eficientes, pero por otro lado necesito más accesos a memoria, contrarrestando la eficiencia conseguida.
+
+## Operaciones
+Frecuencia de aparición de distintas operaciones en lenguajes de alto nivel
+![[Pasted image 20231107150820.png]]
+
+## Operandos
+Frecuencia de aparición de tipos de operandos
+![[Pasted image 20231107150852.png | center | 400]]
+
+## Llamadas a procedimientos
+Cantidad de argumentos promedios en las llamadas a procedimientos
+![[Pasted image 20231107150937.png]]
