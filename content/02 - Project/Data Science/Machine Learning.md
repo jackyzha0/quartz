@@ -8,22 +8,19 @@ banner_y: 0.09673
 
 # Machine Learning
 
-- [[#01 Background|01 Background]]
-	- [[#01 Background#Mind Map of ML Universe|Mind Map of ML Universe]]
-	- [[#01 Background#Indexing ML Notes|Indexing ML Notes]]
-- [[#02 ML Concepts|02 ML Concepts]]
-	- [[#02 ML Concepts#The importance of Statistics in Machine Learning|The importance of Statistics in Machine Learning]]
-	- [[#02 ML Concepts#What is Generalization, Overfitting and Under-fitting?|What is Generalization, Overfitting and Under-fitting?]]
-	- [[#02 ML Concepts#What is Bias and Variance?|What is Bias and Variance?]]
-	- [[#02 ML Concepts#What is the difference between Inference and Predictions?|What is the difference between Inference and Predictions?]]
-	- [[#02 ML Concepts#What is Regularization?|What is Regularization?]]
-	- [[#02 ML Concepts#What are Word Sequences Word Embeddings?|What are Word Sequences Word Embeddings?]]
-	- [[#02 ML Concepts#What is Multi-Modal Machine Learning?|What is Multi-Modal Machine Learning?]]
-	- [[#02 ML Concepts#What are some good ML strategies to improve your models?***|What are some good ML strategies to improve your models?***]]
-- [[#04 Case Studies and Applications|04 Case Studies and Applications]]
-
 ## 01 Background
 >[!quote] "*If you can build a simple rule-based system that doesn't require machine learning, do that*" - Number 1 rule of Google's Machine Learning Handbook
+
+**Resources**
+- [ML Cheatsheet](https://ml-cheatsheet.readthedocs.io/en/latest/index.html)
+
+#TODO 
+- 🖊 Improve on how "Strategies to Improve ML Models"
+- ❓ What is gradient boosting?
+- ❓ What is ensembling?
+- ❓ What is cross validation?
+- ❓ What is gradient boosting?
+
 ### Mind Map of ML Universe
 ![[Pasted image 20231012211315.png]]
 ### Indexing ML Notes
@@ -38,19 +35,12 @@ banner_y: 0.09673
 	- [[Recurrent Neural Network]]
 	- [[Graph Neural Networks]]
 	- [[Transformers]]
+	- [[Generative Adversarial Networks]]
 ## 02 ML Concepts
 These are some important key concepts in machine learning. 
 
-#TODO **Questions to be answered**
-- ***What is gradient boosting?***
-- ***What is receptive field***?
-- ***What are residuals?***
-- ***What is cross validation?***
-- ***What is ensembling?***
-
 ### The importance of Statistics in Machine Learning
-It is important to study the math and [[Statistics]] behind many classic machine learning approaches. 
-Heavily inspired by Machine Learning, A Probabilistic Approach
+It is important to study the math and [[Statistics]] behind many classic machine learning approaches. Heavily inspired by Machine Learning, A Probabilistic Approach
 - [[Linear Models for Classification]]
 ### What is Generalization, Overfitting and Under-fitting?
 If a model is able to make accurate predictions on unseen data, we say that it is able to **generalize**  from the training set to the test set. This is important if the training and test data are not similar. 
@@ -102,7 +92,8 @@ Human Error & Optimal Bayes Error are standards that determine whether train set
 Data augmentation is the process of artificially increasing diversity to your training data. In the case of image data, this means applying different transformation to the image. 
 
 ### What is Regularization?
-Regularization methods add a penalty term to the model's loss function to discourage it from learning overly complex patterns that may not generalize well (prevent overfitting, reduce variance).  Take the following regression example below.
+[[Regularization]] 
+**Intuition:** Regularization methods add a penalty term to the model's loss function to discourage it from learning overly complex patterns that may not generalize well (prevent overfitting, reduce variance).  Take the following regression example below.
 ![[Pasted image 20230918161249.png]]
 Our goal is to shift from overfit to balanced fit. So how do we do that? We should try to make $\theta_3$ and $\theta_4$ approach 0 to get a better prediction. Remember that when starting a regression model, we calculate mean squared error
 $$ \text{MSE} = \frac{1}{n}\sum_{i=1}^{n}{(y_i - y_{predicted})^2} $$
@@ -117,7 +108,6 @@ where $\lambda$ is the **regularization paramter**, or a turning nob. In this ca
 Types of Regularization
 - Ridge (L2) Regression
 - Lasso (L1) Regression
-
 
 ### Understanding Softmax Loss, Categorical Cross-Entropy Loss, Binary Cross-Entropy Loss, Logistic Loss
 Softmax Loss should not be confused with Softmax activation. Instead. it is softmax activation + cross entropy loss.
@@ -157,14 +147,9 @@ Here, we discuss some word embeddings / word representations types.
 An embedding matrix is a list of all words and their corresponding embeddings. In order to get the embedding vector for a specific word. We can the embedding matrix and multiply it by  the one-hot representation.
 
 The algorithms to learn Word Embeddings in NLP tasks are discussed more in [[Recurrent Neural Network]].
-
-
-
-
-
 ### What is Multi-Modal Machine Learning?
 
-### What are some good ML strategies to improve your models?
+### Strategies to Improve Neural Network Models
 There are many ways to select and improve a models performance. Here we talk about general methods to do so. For neural networks specifically, refer to [[Neural Networks#How to iteratively tune your model? | how to iteratively tune your model?]] 
 
 - Chain of Assumptions in ML

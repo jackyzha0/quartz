@@ -669,7 +669,7 @@ Here is the code for ResNet50 in Pytorch. Notice the downsample as well.
 **Paper**: [Ronneberger et al. 2015, U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/abs/1505.04597)
 **Importance**: Use of **transpose convolution**. 
 
-![[Pasted image 20230925173124.png | center |500 ]]
+![[Pasted image 20230925173124.png | center ]]
 The width of bars represent channels/filters. The height represents height, width is not shown. 
 Input is $h \times w \times 3$
 Output is $h\times w \times n_{classes}$ tells you how likely a pixel is to come from one of these classes.
@@ -698,6 +698,7 @@ Introduced the concepts
 
 ### Yolo V4 (2020)
 ### Yolo V5 (2020)
+Can detect images hidden in the back.
 
 
 ## ResNeXt (2016)

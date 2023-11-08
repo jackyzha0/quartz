@@ -20,24 +20,28 @@ banner_y: 0.4705
 - ❓What is dropout?
 - ❓What is FLOPS?
 - ❓Initialization Methods?
+- ❓What are AutoEncoders?
+- ❓What is 对抗训练 Adversarial Training?
 # 02 神经网络类型 Neural Network Types
 ### Mind Map of Neural Networks
 ![[Pasted image 20231012212658.png | center ]]
-### Indexing Neural Network Notes
+### Indexing Neural Network 
 - [[Convolutional Neural Network]]
 - [[Recurrent Neural Network]]
 - [[Transformers]]
 - [[Generative Adversarial Networks]]
+- [[Graph Neural Networks]]
+- [[Auto Encoders]]
 # 03 核心技术 Core Concepts Neural Network
-### What is a Neural Network?
+## What is a Neural Network?
 Here we introduce the most basic neural network, a simple feed forward neural network. 
 **Remark:** Review [[Backpropagation|backpropagation]]. 
-### What are hyper-parameters? 
+## What are Hyper-parameters? 
 They are values that we (as machine learning engineers and data scientists) can tune to improve the performance of the neural network. This is different from parameters of a model learned by gradient descent. Hyper-parameters include:
-- Structure: # of hidden layers, hidden layer size, 
+- Structure: # of hidden layers, hidden layer size 
 - learning rate - adaptive learning rate
 - Iterations (Epochs)
-- Activation Functions: (1) Softmax (2) Relu (3) Sigmoid (4) Tanh
+- Activation Functions: (1) Softmax (2) Relu (3) Sigmoid (4) Tanh 
 - Momentum Term
 - Batch / Mini-Batch Size
 - Regularization 
@@ -56,17 +60,11 @@ They are values that we (as machine learning engineers and data scientists) can 
 [[Loss Functions]]
 ### What are Activation Functions?
 [[Activation Functions]]
-##### What is Standardization (normalization)? 
+### What is Standardization (normalization)? 
 A normalization method that helps gradient descent learning to converge more quickly (optimizes the cost function), however, it does not make the original dataset normally distributed. Standardization shifts the mean of each feature so that it is centered at zero and each feature has a standard deviation of 1.
 - *Why does it help?* This helps when features are on totally different scales. 
-##### What are vanishing/exploding gradients?
-When training a deep neural network, gradients can become very big or very small.
-- A partial solution is to consider weight initializing. This may help (1) speed up the convergence of gradient descent (2) increase the odds of gradient descent converging to a lower training (and generalization) error.
-
-
-##### What is Regularization in Neural Networks?
+### What is Regularization in Neural Networks?
 - Aims to solve overfitting, high variance problem. 
-- 
 - Regularization Methods
 	- L1 Regularization
 	- L2 Regularization or "Weight Decay", more used than 
@@ -83,21 +81,24 @@ Regularization parameter: $\lambda$
 
 *What is L2 Regularization?*
 #TODO
-##### What is Dropout? 
-***Why does dropout work?***
-- Can't rely on any one feature, becomes less sensitive to the activation of *one* other specific neuron, because that other neuron might shut down at any time.
-- Harder to define cost function
-- First introduced in CNN, not necessary good for all applications
-- Dropout should only be used during training. Don't use dropout during test time.
-- It should be applied to both forward and backward propagation.
-##### What is Mini-batch Gradient Descent?
+
+### What is Gradient Descent?
+批量梯度算法 Batch Gradient Descent
+随机梯度算法 Stochastic Gradient Descent
+小批量梯度算法 Minibatch Gradient Descent?
+#### What is Mini-batch Gradient Descent?
 Batch gradient descent: Processing all training examples at the same time. Let's say we have a training set 
-$$ x_{(n,m)} = \begin{bmatrix} x^{(1)} & x^{(2)} & \cdots & x^{(m)}\end{bmatrix}$$
+$$ 
+x_{(n,m)} = \begin{bmatrix} x^{(1)} & x^{(2)} & \cdots & x^{(m)}\end{bmatrix}
+$$
 Where $m$ is 5,000,000. In gradient descent, we would run through all 5,000,000 for each step of a gradient descent. This is computational expensive and slow. Instead, can split up into "mini-batches", perhaps, batches of size 1,000.
 
-$$ x_{(n,m)} = \underbrace{\begin{bmatrix} x^{(1)} & x^{(2)} & \cdots & x^{(1000)}\end{bmatrix}}_{x^{\{1\}}_{(n, 1000)}} | \underbrace{\begin{bmatrix} x^{(1001)} & x^{(1002)} & \cdots & x^{(2000)}\end{bmatrix}}_{x^{\{2\}}}| \cdots \underbrace{\begin{bmatrix}\cdots & x^{(m)}\end{bmatrix}}_{x^{\{m\}}}  $$
-
-$$ y_{(1,m)} = \underbrace{\begin{bmatrix} y^{(1)} & y^{(2)} & \cdots & y^{(1000)}\end{bmatrix}}_{y^{\{1\}}} | \underbrace{\begin{bmatrix} y^{(1001)} & y^{(1002)} & \cdots & y^{(2000)}\end{bmatrix}}_{y^{\{2\}}}| \cdots \underbrace{\begin{bmatrix}\cdots & y^{(m)}\end{bmatrix}}_{y^{\{m\}}}  $$
+$$ 
+x_{(n,m)} = \underbrace{\begin{bmatrix} x^{(1)} & x^{(2)} & \cdots & x^{(1000)}\end{bmatrix}}_{x^{\{1\}}_{(n, 1000)}} | \underbrace{\begin{bmatrix} x^{(1001)} & x^{(1002)} & \cdots & x^{(2000)}\end{bmatrix}}_{x^{\{2\}}}| \cdots \underbrace{\begin{bmatrix}\cdots & x^{(m)}\end{bmatrix}}_{x^{\{m\}}}  
+$$
+$$ 
+y_{(1,m)} = \underbrace{\begin{bmatrix} y^{(1)} & y^{(2)} & \cdots & y^{(1000)}\end{bmatrix}}_{y^{\{1\}}} | \underbrace{\begin{bmatrix} y^{(1001)} & y^{(1002)} & \cdots & y^{(2000)}\end{bmatrix}}_{y^{\{2\}}}| \cdots \underbrace{\begin{bmatrix}\cdots & y^{(m)}\end{bmatrix}}_{y^{\{m\}}}  
+$$
 We use the superscript {} to denote mini batch numbers. Now we can take 1 step of gradient descent using $x^{\{t\}}, y^{\{t\}}$. Basically, we preform forward propagation $\text{for} \space t=1,\cdots, 5000$ or each mini batch. Is also known as one **epoch** or a single pass through the training set. 
 - In Batch gradient descent, one epoch could only take one gradient descent step, in mini batch, now can take multiple.
 - Mini-batch gradient descent is more noisy (cost does not decrease every mini-batch), while Batch always decreases every iteration.
@@ -107,23 +108,26 @@ How to select mini-batch size?
 - If mini-batch size is 1, **stochastic gradient descent** -> lose all speed-up from vectorization, processing only a single example at a time.
 - In practice, somewhere in between 1 and $m$, size typically in powers of 2
 
-##### What is Exponentially Weighted Averages?
+
+
+
+
+### Optimization Methods
+#### What is Exponentially Weighted Averages?
 #TODO Review the math behind exponential weighted average and how it works.
-##### What is Gradient Descent with Momentum?
+#### What is Gradient Descent with Momentum?
 A step to improve gradient descent algorithm. Let's take the example below.
-![[Pasted image 20231009230838.png | center | 500 ]]
+![[Pasted image 20231009230838.png | center  ]]
 The $\color{blue} \text{blue line}$ gradient descent is taking too many steps, oscillating slowly toward the minimum. The $\color{purple} \text{purple line}$ is using a large learning rate, but may overshoot. Through GD with momentum, we can take large steps in the correct direction, as shown by the $\color{red} \text{red line}$. 
 
 > Because mini-batch gradient descent makes a parameter update after seeing just a subset of examples, the direction of the update has some variance, and so the path taken by mini-batch gradient descent will "oscillate" toward convergence. Using momentum can reduce these oscillations.
 > Momentum takes into account the past gradients to smooth out the update. The 'direction' of the previous gradients is stored in the variable 𝑣. Formally, this will be the **exponentially weighted average** of the gradient on previous steps. You can also think of 𝑣. as the "velocity" of a ball rolling downhill, building up speed (and momentum) according to the direction of the gradient/slope of the hill.
 
-
-![[Pasted image 20231010131820.png | center | 300 ]]
+![[Pasted image 20231010131820.png | center ]]
 
 Aim's to help smooth out gradient descent through moving average. 
 > Allows the search to build inertia in a direction in the search space and overcome the oscillations of noisy gradients and coast across flat spots of a search space.
-
-##### What is RMSprop?
+#### What is RMSprop?
 Damp out the directions in which there are oscillations.
 
 On iteration t:
@@ -134,18 +138,24 @@ On iteration t:
 	$b \gets b - \alpha \frac{db}{\sqrt{S_{db}}}$   
 
 The $\color{purple} dW^{2}$ is element-wise squaring operation. Keeping an exponential weighted average of the squares of the derivatives. The same for $S_{db}$. 
-
-##### What is Adam Optimization Algorithm? 
+#### What is Adam Optimization Algorithm? 
 Stands for Adaptive moment estimation. It is a combination of **Momentum** and **RMSprop** techniques that works for various architectures.
-![[Pasted image 20231010131231.png | center | 500]]
+![[Pasted image 20231010131231.png | center ]]
 dw -> moment, dw^2 -> second moment
-![[Pasted image 20231010131314.png | center | 300]]
+![[Pasted image 20231010131314.png | center ]]
 
 ***Tips***
 - Relatively low memory requirements (though higher than GD and GD with M)
 - Usually works well even with the little tuning of hyper parameters
 
-##### What is Learning Rate Decay?
+### What is Dropout? 
+***Why does dropout work?***
+- Can't rely on any one feature, becomes less sensitive to the activation of *one* other specific neuron, because that other neuron might shut down at any time.
+- Harder to define cost function
+- First introduced in CNN, not necessary good for all applications
+- Dropout should only be used during training. Don't use dropout during test time.
+- It should be applied to both forward and backward propagation.
+### What is Learning Rate Decay?
 Slowly reduce learning rate over number epochs. Intuition is to take large steps in the beginning and small steps when approaching convergence. Helps speed up training!
 
 The formula for learning rate decay $\alpha$ is 
@@ -157,7 +167,7 @@ Other formulas include
 
 Usually not the first thing to tune. Declaring a good $\alpha$ is usually enough.
 
-##### What is Batch Normalization?
+### What is Batch Normalization?
 This was introduced in [Sergey loffe et al. 2015, Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/abs/1502.03167)
 
 Previously in **normalization**, we see how normalizing input features can help learning. Batch normalization applies the same process to values even deep in the hidden layers. 
@@ -188,9 +198,9 @@ Reviewing **covariant shift**: when the changing of data distribution forces you
 - For example, in a broad sense, in a cats vs not cats classifier, a model that was previously only trained on images with black cats, it would fail when applying to images of cats with different colors. Although the ground truth function (cats vs not cats classifier) remains the same, the distribution of data changes.
 
 Take the following NN.
-![[Pasted image 20231010204122.png | center |300 ]]
+![[Pasted image 20231010204122.png | center  ]]
 Let's look at it with the perspective of the third hidden layer. If we "cover up" the layers/nodes on the left. It gets some values 
-![[Pasted image 20231010204831.png |center | 400 ]]
+![[Pasted image 20231010204831.png | center ]]
 However, to the third hidden layer. These might as well just be features. Thus, batch normalization reduces the amount that the distribution that these values from the previous hidden layers changes.  
 
 It limits the amount to which updating the parameters in the earlier layers can affect the distribution of values that the third layer now sees.
@@ -211,16 +221,12 @@ We can use exponentially weighted averages for those parameters, or keep track o
 - In programming frameworks, this is often implemented for you. 
 - It makes weights in deeper in the NN more robust to changes to weights in earlier layers of the NN.
 - Helps speeding up learning. 
-##### What are auto-encoders? 
 
+## What are vanishing/exploding gradients?
+When training a deep neural network, gradients can become very big or very small.
+- A partial solution is to consider weight initializing. This may help (1) speed up the convergence of gradient descent (2) increase the odds of gradient descent converging to a lower training (and generalization) error.
 
-
-
-
-
-
-
-### How to Iteratively Tune your Model?
+## How to Iteratively Tune your Model?
 There are so many hyper-parameters! How do we choose to solve either the **under-fitting** or **overfitting problems**?
 ***Tuning Process?***
 - ❗Learning rate $\alpha$ is the most important.
@@ -259,3 +265,4 @@ Here, we summarize the general ways to improve neural networks. It is important 
 
 ## Neural Architecture Search 
 **Paper:** [Barret Zoph and Quoc V. Le, 2016, Neural Architecture Search with Reinforcement Learning](https://arxiv.org/abs/1611.01578)
+
