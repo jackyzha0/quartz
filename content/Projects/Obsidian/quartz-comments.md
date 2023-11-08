@@ -17,9 +17,6 @@ I've created a [Transformer Plugin](https://quartz.jzhao.xyz/advanced/making-plu
 
 Now works with SPA mode! Unfortunately, I’m waiting on an update that fires an event I can listen for when the theme changes so that I can also tell it to reload on theme change. For now, refresh the page if it looks glitched. 
 
-At present, you can choose to leave an anonymous comment or link it to your GitHub account.
+At present, you can choose to leave an anonymous comment or link it to your GitHub account. Alternatively, you can use use email confirmation for notifications when someone replies to your comments!
 ## Todo
-- Configure [email](https://remark42.com/docs/configuration/email/) features like sign-in and notifications
-	- Requires setting up an SMTP server. Ugh...
-	- Yet another service on my poor cloud VM. And this isn't even one I can selfhost.
 - Style the comment box to align with the styles on the site.
