@@ -10,5 +10,7 @@ It's birthday month! My hosting service is surprising me with random shutoffs fo
 
 ## Pages
 - Added a reference to how I block bots on this website: [[Projects/Obsidian/digital-garden|Digital Garden]]
+- Updated [[Projects/Obsidian/quartz-comments|Remark42 Comments]], check [[#Status Updates]] for more info
 ## Status Updates
-- Finally created a Mastodon account! [@be_far:treehouse.systems](https://social.treehouse.systems/@be_far), go follow me.
+- Finally created a Mastodon account! [@be_far@treehouse.systems](https://social.treehouse.systems/@be_far), go follow me.
+- Got email working for comments!! Go check it out and use the fancy new sign in.
