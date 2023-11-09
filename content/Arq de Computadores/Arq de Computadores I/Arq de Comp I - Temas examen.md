@@ -59,6 +59,7 @@
 12. Memoria principal semiconductora (Organización / DRAM y SRAM / Tipos de ROM / Lógica del chip / Encapsulado de los chips / Organización de los módulos).
 
 # Segundo Parcial
+[[Arq de Comp I - Preguntas]]
 
 **Capítulo 1: Introducción**
 - Funcionamiento de Máquina de Von Neumann
