@@ -59,6 +59,11 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex, limit?: nu
   </item>`
 
   const items = Array.from(idx)
+    .sort(([slugA, contentA], [slugB, contentB]) => {
+      const dateA = contentA.date ?? new Date(0)
+      const dateB = contentB.date ?? new Date(0)
+      return dateB.getTime() - dateA.getTime()
+    })
     .map(([slug, content]) => createURLEntry(simplifySlug(slug), content))
     .slice(0, limit ?? idx.size)
     .join("")
