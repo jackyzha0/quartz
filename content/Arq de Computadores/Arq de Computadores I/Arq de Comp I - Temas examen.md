@@ -142,31 +142,13 @@
    - [[Arquitectura RISC#RISC VS CISC]]
 - [[Segmentación en RISC]]
 
-**Capítulo 13: Funcionamiento de la unidad de control**
+---
+
+%% **Capítulo 13: Funcionamiento de la unidad de control**
 - [[Microoperaciones]]
    - [[Microoperaciones#El ciclo de captación]]
    - [[Microoperaciones#El ciclo indirecto]]
    - [[Microoperaciones#El ciclo de interrupción]]
    - [[Microoperaciones#El ciclo de ejecución]]
-   - [[Microoperaciones#El ciclo de instrucción]]
-- Control del procesador
-   - Requisitos fundamentales
-   - Señales de control
-   - Un ejemplo de señales de control
-   - Organización interna del procesador
-- Implementación cableada
-   - Entradas de la unidad de control
-   - Lógica de la unidad de control
-
-**Capítulo 14: Control microprogramado**
-- Conceptos básicos
-   - Microinstrucciones
-   - Unidad de control microprogramada
-- Secuenciamiento de microinstrucciones
-   - Consideraciones respecto al diseño
-   - Técnicas de secuenciamiento
-   - Generación de direcciones
-- Ejecución de microinstrucciones
-   - Una taxonomía de las microinstrucciones
-   - Codificación de las microinstrucciones
+   - [[Microoperaciones#El ciclo de instrucción]] %%
 
