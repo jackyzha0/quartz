@@ -3,14 +3,14 @@ import * as Plugin from "./quartz/plugins"
 
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "🪴 Quartz 4.0",
-    enableSPA: true,
+    pageTitle: "🌼 Gaylor Vault",
+    enableSPA: false,
     enablePopovers: true,
     analytics: {
       provider: "plausible",
     },
-    baseUrl: "quartz.jzhao.xyz",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    baseUrl: "gaylor-wiki.github.io",
+    ignorePatterns: [".obsidian", ".github", "_**/**"],
     defaultDateType: "created",
     theme: {
       typography: {
@@ -52,7 +52,7 @@ const config: QuartzConfig = {
       Plugin.SyntaxHighlighting(),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
-      Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
+      Plugin.CrawlLinks({ markdownLinkResolution: "absolute" }),
       Plugin.Latex({ renderEngine: "katex" }),
       Plugin.Description(),
     ],
