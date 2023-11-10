@@ -58,6 +58,7 @@ This is my data science journey.
 
 📹 Lectures
 📖 Books
+
 ## 05 Important Concepts and Questions
 - [[Data Science Reports]]
 - Data Science Pipeline
@@ -67,6 +68,7 @@ This is my data science journey.
 - Data Visualization
 	- Core Concepts - 
 	- Plots - Residual Plots, Distribution Plots,  Line Plots, Waffle Charts, Area Plots, Histogram, Scatter Plots Box Plot, Bar Charts, Pie Charts, Heatmaps, Area Plots, Geospatial Maps (Forium) w/ GeoJson File, Count Plot, Bubble Plot, **PairPlot**, Scatter Plot fit Lines with Confidence Intervals
+	- **Tools**: Python, R, Tabeau, Power BI, Microsoft Excel
 - [[Machine Learning]]
 	- **Tasks:** [[Linear Regression]], [[Classification]], [[Clustering]], Association, Anomaly Detection, Sequence Mining, Dimension Reduction, Recommendation Systems
 	- **Algorithms**: [[Linear Regression]], [[Logistic Regression]], [[Support Vector Machines]], [[K-Means]], K-Modes K-Nearest Neighbor, Random Forest, XGBoost, Naive Bayes
@@ -76,6 +78,7 @@ This is my data science journey.
 		- Natural Language Processing: (1) Machine Translation (2) Semantic Analysis (3)
 		- Automated Speech Recognition: (1) Trigger Word Detection
 		- Time Series
+		- Recommendation Systems
 	- **Core Concepts**: Bias/Variance, Normalization, Train/Dev/Test Sets
 		- Exhaustive Grid Search - model tuning for variables like c in [[Support Vector Machines]], [[K-Nearest Neighbor]], and Number of layers in Neural Networks
 	- #TODO:  Analyze U-Net,
@@ -84,9 +87,9 @@ This is my data science journey.
 	- **Core Concepts**: Input/Output Shape, Loss Functions, Optimizers, Activation Functions, Mini-batch Gradient Descent, Convergence, Callbacks/Early Stopping, [[Data Augmentation]], Dropout, Vanishing/Exploding Gradients,
 - Excel, Pivot tables, VLookup, HLookup, 
 
-***What is the difference between Algorithms, Machine Learning, Artificial Intelligence, Neural Networks, and Deep Learning?*
+### What is the difference between Algorithms, Machine Learning, Artificial Intelligence, Neural Networks, and Deep Learning?
 
-***Data Engineer vs Data Analyst vs Data Scientist vs Business Intelligence**
+### Data Engineer vs Data Analyst vs Data Scientist vs Business Intelligence
 The roles of Data Analyst and Data Scientists are extremely similar.
 
 Let's see how IBM differentiates the two through their IBM Data Science Professional Certificate Course and IBM Data Analytics Professional Course. 
@@ -115,10 +118,6 @@ For example, in-sample training accuracy is the percentage of correct prediction
 
 Out-of-sample accuracy!
 
-***What is Generalization Error?***
-- A lot of data gives an accurate, but precision is low.
-- A low amount of data gives high precision, but low accuracy. 
-This can be solved with **Cross Validation**
 
 ***Predictive vs Descriptive Models?***  
 *Predictive models* find causality, relationships between explanatory variables and dependent variables. 
@@ -126,6 +125,7 @@ This can be solved with **Cross Validation**
 *Descriptive models* find clusters of data elements with similar characteristics
 -  Might examine, if a person did this, then they're like to prefer that
 
+### Full Stack Architecture of AI
 [![AI系统全栈架构图](https://chenzomi12.github.io/_images/AIsystem01.png)
 
 ## 06 Interview Preparation
@@ -234,42 +234,5 @@ Stands for Statistical Process for Social Sciences
 - popularly used for advanced analytics, text analytics, trend analysis, validation of assumptions, and translation of business problems into data science solutions
 
 ***Data visualization tools***
-- Tableau
-- Power BI
-- Python
-- R
-- Microsoft Excel
+- 
 
-
-***Data Analyst Specialist Roles***
-- Associate Data Analyst
-- Data Analyst
-- Senior Data Analyst
-- Lead Analyst
-- Principle Analyst
-Domain Analyst
-- HR Analyst
-- Marketing Analyst
-Analytics Enabled Job Roles
-- Project Managers
-- Marketing Managers
-- HR Managers
-
-***Spreadsheet Tools*** 
-- Microsoft Excel
-- Google Sheets
-
-
-***Microsoft Excel***
-Absolute, Relative, and Mix References
-
-***5 Good Traits of Data***
-Accuracy
-Completeness
-Reliability
-Relevance
-Timeliness
-
-
-***What is Cognos Analytics***
-Mode 1 and Mode 2 type of analysis?

@@ -5,7 +5,6 @@ banner_icon: "🌞"
 tags: "#笔记"
 banner_y: 0.4705
 ---
-****
 # Convolutional Neural Network
 
 # 01 Background
@@ -16,8 +15,13 @@ banner_y: 0.4705
 4. Summary of Recent CNN's [Alfredo Canziani et. al., 2017, An Analysis of Deep Neural Network Models for Practical Applications](https://arxiv.org/pdf/1605.07678.pdf)
 5. [Multi-Modal Data Annotation Tool](https://github.com/HumanSignal/labelImg)
 
+Datasets: 
+- [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/)
+- [MS COCO](https://cocodataset.org/#home) 
+- [Roboflow](https://universe.roboflow.com) - the world's largest collection of open source computer vision datasets and APIs.
+
 #TODO 
-- 🖊 Analyze: MobileNet, EfficientNet, ShuffleNet, R-CNN
+- 🖊 Analyze: ShuffleNet
 - 🖊 Create illustrations showing history timelines, performance graphs, mindmaps of famous CNN architectures
 - 🖊 Visualizing CNNs
 - ❓What is the difference between NHWC and NCHW?
@@ -25,7 +29,6 @@ banner_y: 0.4705
 - ❓What is subsampling?
 - ❓What is cross correlation?
 - ❓Object Classification, Object Localization, Object Recognition, Semantic Segmentation, Instance Segmentation, Keypoint Detection
-- ❓What is Selective Search Algorithm?
 # 02 Core CNN Concepts
 ## What are Convolutions?
 The concept is similar to the mathematical concept [[Convolution]]. 
@@ -134,6 +137,13 @@ May not do anything for 2D x 2D convolution. But it works for volumes.
 - Understood its relationship to human receptive fields.
 - Explain how it transfers to the receptive field of 
 ### What is the difference between NHWC and NCHW?
+These represent the shape of the feature maps, which determines how multi-dimensional data, like images and point. clouds, are stored in memory.
+- NHWC with shape (batch_size, height, width, channel)
+- NCHW with shape (batch_size, channel, height, width)
+
+The choice between NHWH and NCHW depend on a number of factors.
+- https://medium.com/@deepika_writes/nhwc-vs-nchw-a-memory-access-perspective-on-gpus-4e79bd3b1b54
+- https://forums.developer.nvidia.com/t/nhwc-vs-nchw-convolution/111065
 
 ## Visualizing CNN, what are Deep CNN's Learning?
 - Saliency Maps? https://medium.datadriveninvestor.com/visualizing-neural-networks-using-saliency-maps-in-pytorch-289d8e244ab4
@@ -144,8 +154,6 @@ May not do anything for 2D x 2D convolution. But it works for volumes.
 - https://www.youtube.com/watch?v=ghEmQSxT6tw 13.23
 - https://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
 - **Paper** Zeiler and Fergus., 2013, Visualizing and understanding convolutional networks.
-
-
 
 ## What is Object Detection?
 Algorithms like [[#LeNet-5 (1998)|LeNet]], [[#AlexNet (2012)|AlexNet]], [[#GoogleNet V1 (2014) |InceptionNet]], [[#VGG16 (2014)|VGGNet]], [[#ResNets (2015)|ResNet]], are examples of classification models, but what else can we do with CNN's? Here we introduce **object localization**, **object recognition** / **object detection**, **semantic segmentation**, **instance segmentation**, **keypoint detection**. 
@@ -198,7 +206,7 @@ Helps measure the performance of localization prediction compared to ground trut
 ![[Pasted image 20231102200141.png | center ]]
 
 Usually an IoU $\ge 0.5$ is considered standard. Sometimes this threshold is raised.
-### What is non-max suppression?
+### What is non-max suppression (NMS)?
 Solves the problem of detecting the same objects multiple times in different grid cells. This algorithm aims to keep only one of those. For example, many bounding boxes may "detect" the same car as shown in step 1.
 
 | Step 1 | Step 2 |
@@ -251,6 +259,9 @@ In practice, the are many layers considered. And as larger segments are formed, 
 - [Faster R-CNN: Faster than Fast R-CNN](https://www.youtube.com/watch?v=auHkGHM-x_M)
 - [Selective Search for Object Detection](https://learnopencv.com/selective-search-for-object-detection-cpp-python/)
 - 
+
+
+### What is Mean Average Precision?
 
 ## What is one-shot learning?
 Learning from one example. In face recognition for example, you need to be able to recognize a person given just one single image/example of the person in a database. Two problems arise from just using a normal CNN. First, little examples, second, if a new member is added, the CNN will have to be retrained?
@@ -673,13 +684,16 @@ Here is the code for ResNet50 in Pytorch. Notice the downsample as well.
 The width of bars represent channels/filters. The height represents height, width is not shown. 
 Input is $h \times w \times 3$
 Output is $h\times w \times n_{classes}$ tells you how likely a pixel is to come from one of these classes.
+
 ## YOLO (2015)
 ### Background
-📃 **Paper**: [Redmond et al.,2015, You Only Look Once: Unified real-time object detection]()
+📃 **Paper**: [Redmond et al.,2015, You Only Look Once: Unified real-time object detection](https://arxiv.org/abs/1506.02640)
 💡**Importance**: Solve sliding window inability to accurately set bounding boxes (determined by window and stride). Compared to R-CNN methods, boxes and class probabilities are predicted in a single pass. Efficient enough for real time use cases.
-📈 **Iterations:** Yolo V1 (2015) [Redmond et al.,2015, You Only Look Once: Unified real-time object detection](), Yolo V2 (2016) [Redmond et. al., 2016, YOLO9000: Better, Faster, Stronger](https://arxiv.org/abs/1612.08242), Yolo V3 (2018) [Redmond et. al., 2018, YOLOv3: An Incremental Improvement](https://arxiv.org/abs/1804.02767), Yolo V4 (2020) [Bochkovskiy et. al., 2020, YOLOv4: Optimal Speed and Accuracy of Object Detection](https://arxiv.org/abs/2004.10934) Yolo V5 (2020), Yolo V6 (2022), Yolo V7 (2022), Yolo V8 (2023).
+📈 **Iterations:** Yolo V1 (2015) [Redmond et al.,2015, You Only Look Once: Unified real-time object detection](https://arxiv.org/abs/1506.02640), Yolo V2 (2016) [Redmond et. al., 2016, YOLO9000: Better, Faster, Stronger](https://arxiv.org/abs/1612.08242), Yolo V3 (2018) [Redmond et. al., 2018, YOLOv3: An Incremental Improvement](https://arxiv.org/abs/1804.02767), Yolo V4 (2020) [Bochkovskiy et. al., 2020, YOLOv4: Optimal Speed and Accuracy of Object Detection](https://arxiv.org/abs/2004.10934) Yolo V5 (2020) https://docs.ultralytics.com/yolov5/, Yolo V6 (2022) [Chuyi Li et. al., 2022, YOLOv6: A Single-Stage Object Detection Framework for Industrial Applications](https://arxiv.org/abs/2209.02976), Yolo V7 (2022) [Chien-Yao Wang et. al., 20222, YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors](https://arxiv.org/abs/2207.02696) , Yolo V8 (2023) https://github.com/ultralytics/ultralytics.
 
-### Yolo V1 (2015)
+#TODO Temporary Individual Note Page [[YOLO]]
+### Yolo V1 (2015) 
+**Intuition**
 Take an image and place a "grid" on the image. For each grid, perform image classification and localization algorithm. In other words, for each grid cell, we have a training label. In the example below, we have a $100\times100$ input image with a $3\times 3$ grid for easy visualization, but in actual implementation, this is usually finer, for example $19\times 19$. 
 ![[Pasted image 20230923145349.png | center ]]
 The $\text{\color{green}green}$ and $\text{\color{orange}orange}$ grid cells contain an object. But the $\text{\color{purple}purple}$ do not. It is important to note that $b_{x},b_{y}$ of an object is relative to the grid cell that they are in. So if a grid cell had a height and with of 1, $b_{x},b_{y}$ are between 0 and 1. On the other hand, $b_{h},b_{w}$ are not restricted (as an object may cross into other grid cells), and the size of bounding box can be greater than 1.
@@ -691,15 +705,33 @@ Introduced the concepts
 - [[#What is non-max suppression?|non-max supression]] - solve the problem of multiple grid cells being mapped the center of the same object
 - [[#What are anchor boxes?|anchor boxes]] - solve the problem of overlapping objects, allows detection of multiple class objects within one grid cell, but this should be fairly rare (smaller grid cells less likely), but allows algorithm to specialize better (some outputs units detect different shape anchor boxes). Anchor boxes for V1 were chosen by hand.
 
+**Architecture**
 
 ###  Yolo V2 (2016)
-- K-means algorithm to automat
+- DarkNet-19作为特征提取网络
+- 在每层卷积层的后面加入BN后，mAP提升了2%
+- 更高分辨率的分类网路，mAP提升了4%，每次戴几次都会改变图片尺寸（32的倍数），最小$320\times320$ ，最大$608\times608$，网路回自动改变尺寸
+- 用卷积层代替全连接层
+- 借鉴FasterRCNN，YOLO v2采用先验框，来覆盖整个图像的不同位置和多种尺度，增加了侯选区域数量，提高了召回率
+- 对训练集中标注的边框进行K-mean聚类分析，以寻找匹配样本的合适边框尺度
+- 不存在残差结构，类似VGG
+- Fine-Grained Features (passthrough层检测细粒度特征）
+- 为检测一些比较下的物体，输出的特征$26\times26\times512$ 需要保留一些更细节的信息
+- 在最后pooling之前，特征图1拆4，直接传递（passthrough)，然后与pooling后(并且又经过一组卷积）的特征高图叠加，作为输出的特征图。
 ### Yolo V3 (2018)
 
 ### Yolo V4 (2020)
+- 算法输入采用mosiac数据增强，backnone上采用了CSPDarknet53，Mish激活函数，Dropblock正则化等方式，Neck中采用了SPP，FPN+PAN的结构
+- YOLOv4算法输入输出端
 ### Yolo V5 (2020)
-Can detect images hidden in the back.
 
+
+### Yolo V6 ()
+### YoloV7
+
+## SSD (2015)
+Single Shot MultiBox Detector
+[Wei Liu et al., 2015, SSD: Single Shot MultiBox Detector](https://arxiv.org/abs/1512.02325)
 
 ## ResNeXt (2016)
 **Paper**: [Saining et. al., 2016, Aggregated Residual Transformers for Deep Neural Networks](https://arxiv.org/abs/1611.05431v2)

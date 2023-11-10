@@ -7,3 +7,5 @@ banner_y: 0.4705
 ---
 
 # Loss Functions
+
+## Categorical Cross Entropy

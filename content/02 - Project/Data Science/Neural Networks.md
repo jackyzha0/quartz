@@ -57,7 +57,8 @@ They are values that we (as machine learning engineers and data scientists) can 
 	- Root Mean Square Prop (RMSprop)
 	- Adam Optimization = Momentum + RMSprop
 ### What are Loss Functions?
-[[Loss Functions]]
+[[Loss Functions]] 
+[Aryan Jadon et al., 2022, A Comprehensive Survey of Regression Based Losses for Time Series](https://arxiv.org/pdf/2211.02989.pdf)
 ### What are Activation Functions?
 [[Activation Functions]]
 ### What is Standardization (normalization)? 

@@ -8,10 +8,10 @@ banner_y: 0.41476
 
 # Classification
 
-## 01 Background 
+# 01 Background 
 ***What is classification?*** Take a unlabeled test case, a $D$ dimensional input $x$ (a vector of features), and assign it to one of $K$ discrete (in most cases) classes $C_k$. When $K=1$, it is denoted as binary classification, and when $K > 1$, it is multi-class classification.
 
-***What are key classification algorithms?***
+**What are key classification algorithms?**
 - [[Logistic Regression]] 
 - Softmax Regression
 - [[Support Vector Machines]]
@@ -21,13 +21,14 @@ banner_y: 0.41476
 - Classification Ensemble
 	- Bagging, AdaBoost, Stacking, Cascading, Random Forest
 
-***What are common classification tasks?***
+**What are common classification tasks?**
 - Spam vs Not Spam Email Classification
 - [ImageNet Image Classification](https://paperswithcode.com/sota/image-classification-on-imagenet)
 
+**Multi-label Classification**
 
-## 02 Core Concepts
-##### What is Precision, Recall, and Accuracy?
+# 02 Core Concepts
+### What is Precision, Recall, and Accuracy?
 What is True Positive, True Negative, False Positive, False Negative? Positive and Negative simply represent two different outcomes. For example, Spam/Not Spam for Emails. Let's set Spam to be Positive, Not Spam to be Negative. 
 - TP would mean "correctly identifying email as Spam when the email is indeed Spam".
 - FP would mean "incorrectly identifying email as Spam when the email is indeed Not Spam" （misclassifies a legitimate email)
@@ -87,12 +88,7 @@ We can see that **FPR** is $1-\text{Specificity}$. Some graphs may label as $1-\
 - Jaccard Index
 - Log Loss
 
-
-
-
-
-
-##### What is Softmax Layer?
+### Multi-class Classification with Softmax
 In a multi-class classification task. The last layer is $n$ dimensional vector, where $n$ is the number of classes. The last layer should contain probabilities that an input is of a each class. These probabilities should add to one.
 
 For example, recognizing cats, dogs, baby chicks and others. The last layer should contain something like. where $x$ is the input.
@@ -111,5 +107,7 @@ $$ \sum^{4}_{j=1}{t_{j}}= 176.3 $$
 - Called "soft max" in contrast to "hard max"
 - If $C=2$, soft-max reduces to logistic regression. 
 
+Loss function is [[Loss Functions#Categorical Cross Entropy|Categorical Cross Entropy]]
 
-**W**
+### Multi-label Classification with Sigmoid
+Also known is independent logistic classifiers. For example sigmoid classifier.
