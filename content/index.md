@@ -1,5 +1,5 @@
 ---
-title: Welcome to Quartz
+title: Welcome to Corey's Stuff
 ---
 
 This is a blank Quartz installation.
