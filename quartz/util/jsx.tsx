@@ -1,4 +1,4 @@
-import { Components, toJsxRuntime } from "hast-util-to-jsx-runtime"
+import { Components, Jsx, toJsxRuntime } from "hast-util-to-jsx-runtime"
 import { QuartzPluginData } from "../plugins/vfile"
 import { Node, Root } from "hast"
 import { Fragment, jsx, jsxs } from "preact/jsx-runtime"
@@ -15,11 +15,10 @@ const customComponents: Components = {
 
 export function htmlToJsx(fp: FilePath, tree: Node<QuartzPluginData>) {
   try {
-    // @ts-ignore (preact makes it angry)
     return toJsxRuntime(tree as Root, {
       Fragment,
-      jsx,
-      jsxs,
+      jsx: jsx as Jsx,
+      jsxs: jsxs as Jsx,
       elementAttributeNameCase: "html",
       components: customComponents,
     })
