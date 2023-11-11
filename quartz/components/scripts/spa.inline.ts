@@ -18,6 +18,12 @@ const isLocalUrl = (href: string) => {
   return false
 }
 
+const isSamePage = (url: URL): boolean => {
+  const sameOrigin = url.origin === window.location.origin
+  const samePath = url.pathname === window.location.pathname
+  return sameOrigin && samePath
+}
+
 const getOpts = ({ target }: Event): { url: URL; scroll?: boolean } | undefined => {
   if (!isElement(target)) return
   if (target.attributes.getNamedItem("target")?.value === "_blank") return
@@ -93,8 +99,16 @@ function createRouter() {
   if (typeof window !== "undefined") {
     window.addEventListener("click", async (event) => {
       const { url } = getOpts(event) ?? {}
+      // dont hijack behaviour, just let browser act normally
       if (!url || event.ctrlKey || event.metaKey) return
       event.preventDefault()
+
+      if (isSamePage(url) && url.hash) {
+        const el = document.getElementById(decodeURIComponent(url.hash.substring(1)))
+        el?.scrollIntoView()
+        return
+      }
+
       try {
         navigate(url, false)
       } catch (e) {
