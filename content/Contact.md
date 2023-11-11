@@ -1,6 +1,6 @@
 ## Email
 
-The best way to get in touch with me is by my email, which is `jahinzee[at]duck.com`[^1]. I usually check my inbox somewhat frequently between 10am and 9pm (Australia/Sydney time).
+The best way to get in touch with me is by my email, which is `jahinzee[at]duck.com`[^1]. I usually check my inbox somewhat frequently between 10:00 and 21:00 (Australia/Sydney time).
 
 ## Mastodon
 
