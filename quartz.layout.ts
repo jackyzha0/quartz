@@ -23,11 +23,11 @@ export const defaultContentPageLayout: PageLayout = {
   ],
   left: [
     Component.MobileOnly(Component.Spacer()),
+    Component.DesktopOnly(Component.Backlinks()),
     // Component.Darkmode(),
   ],
   right: [
     Component.DesktopOnly(Component.TableOfContents()),
-    Component.DesktopOnly(Component.Backlinks())
   ],
 }
 
