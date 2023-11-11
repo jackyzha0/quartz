@@ -117,8 +117,10 @@ We see the removal of two fully connect layers, Then another modification is mad
 YOLOv2 has $13\times13$ grid.
 
 **Pass-through Layer**
-
-
+As feature maps pass through more convolutional layers, feature maps reduce in size. In order to obtain higher resolution localization information, we use outputs of previous layers which contain engrained spatial features.
+![[Pasted image 20231110140724.png]]
+![[Pasted image 20231110141055.png]]
+ 
 **Bounding Box Problem**
 - YOLOv1 can only predict two bounding boxes per cell. This means a total of $7*7*2=98$
 - With $13\times13$ output grid, we can get $13*13*2=338$. But this is still far less than the other models at the time (Faster-RCNN and SSD). 
