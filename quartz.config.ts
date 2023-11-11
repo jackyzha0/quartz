@@ -1,44 +1,39 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 
+// adapted from:
+// https://github.com/catppuccin/catppuccin#-palette
+const mocha = {
+  light:     "#11111b", // Mocha/Crust
+  lightgray: "#1e1e2e", // Mocha/Base
+  gray:      "#585b70", // Mocha/Surface2
+  darkgray:  "#a6adc8", // Mocha/Subtext0
+  dark:      "#cdd6f4", // Mocha/Text
+  secondary: "#f5e0dc", // Mocha/Flamingo
+  tertiary:  "#f5e0dc", // Mocha/Rosewater
+  highlight: "#313244", // Mocha/Surface0
+};
+
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "🪴 Quartz 4.0",
-    enableSPA: true,
+    pageTitle: "jahinzee",
+    enableSPA: false,
     enablePopovers: true,
     analytics: {
       provider: "plausible",
     },
-    baseUrl: "quartz.jzhao.xyz",
+    baseUrl: "jahinzee.github.io",
     ignorePatterns: ["private", "templates", ".obsidian"],
-    defaultDateType: "created",
+    defaultDateType: "published",
     theme: {
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
-        code: "IBM Plex Mono",
+        header: "Fira Sans Medium",
+        body: "Fira Sans",
+        code: "Fira Mono",
       },
       colors: {
-        lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-        },
-        darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-        },
+        lightMode: mocha,
+        darkMode: mocha
       },
     },
   },
@@ -54,7 +49,7 @@ const config: QuartzConfig = {
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Latex({ renderEngine: "katex" }),
-      Plugin.Description(),
+      // Plugin.Description(),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
