@@ -1,5 +1,6 @@
 import micromorph from "micromorph"
 import { FullSlug, RelativeURL, getFullSlug } from "../../util/path"
+import { normalizeRelativeURLs } from "./popover.inline"
 
 // adapted from `micromorph`
 // https://github.com/natemoo-re/micromorph
@@ -52,6 +53,8 @@ async function navigate(url: URL, isBack: boolean = false) {
   if (!contents) return
 
   const html = p.parseFromString(contents, "text/html")
+  normalizeRelativeURLs(html, url)
+
   let title = html.querySelector("title")?.textContent
   if (title) {
     document.title = title
@@ -154,6 +157,7 @@ if (!customElements.get("route-announcer")) {
     style:
       "position: absolute; left: 0; top: 0; clip: rect(0 0 0 0); clip-path: inset(50%); overflow: hidden; white-space: nowrap; width: 1px; height: 1px",
   }
+  
   customElements.define(
     "route-announcer",
     class RouteAnnouncer extends HTMLElement {
