@@ -1,0 +1,5 @@
+- De alguna forma podemos detectar cuántas veces entra o sale una persona en el estacionamiento
+	- Podemos reconocer los usuarios y detectar casos de anomalías
+	- Vamos guardando las entradas y salidas e cada auto
+- Encuesta que se realizó 
+- base de datos con transacciones
