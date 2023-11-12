@@ -64,7 +64,7 @@ a {
     color: var(--tertiary) !important;
   }
 
-  &.internal:not(:has(img)) {
+  &.internal:not(:has(> img)) {
     text-decoration: none;
     background-color: var(--highlight);
     padding: 0 0.1rem;
