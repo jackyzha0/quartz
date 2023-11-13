@@ -251,7 +251,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
               // internal link
               const url = fp + anchor
-              return {
+              const linkObject = {
                 type: "link",
                 url,
                 children: [
@@ -261,6 +261,15 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   },
                 ],
               }
+              if (alias) {
+                linkObject.data = {
+                  hProperties: {
+                    class: "alias",
+                  },
+                }
+              }
+              
+              return linkObject
             })
           }
         })
