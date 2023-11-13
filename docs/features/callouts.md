@@ -33,7 +33,7 @@ See [documentation on supported types and syntax here](https://help.obsidian.md
 
 > [!question]+ Can callouts be nested?
 >
-> > [!todo]- Yes!, they can.
+> > [!todo]- Yes!, they can. And collapsed!
 > >
 > > > [!example] You can even use multiple layers of nesting.
 
