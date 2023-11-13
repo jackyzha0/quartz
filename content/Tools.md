@@ -2,7 +2,7 @@
 title: Tools I Use
 tags: [list]
 compartir: true
-updated: 2023-10-19
+updated: 2023-11-13
 ---
 
 A non-comprehensive list of the hardware and software I use on a day-to-day basis.
@@ -15,10 +15,9 @@ A non-comprehensive list of the hardware and software I use on a day-to-day basi
 
 ## Software
 
-* [TickTick](https://ticktick.com/) – Task Manager
-* [Raindrop](https://raindrop.io/) – Bookmarks Manager
 * [Obsidian](https://obsidian.md/) – Markdown Text Editor
 * [Visual Studio Code](https://code.visualstudio.com/) – Code Editor
+* [Raindrop](https://raindrop.io/) – Bookmarks Manager
 
 ### Notable Visual Studio Code Extensions
 

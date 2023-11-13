@@ -2,7 +2,7 @@
 title: Words I Like
 tags: [collection]
 compartir: true
-updated: 2023-10-31
+updated: 2023-11-06
 enableToc: true
 ---
 [Good Source](https://wordwarriors.wayne.edu/list)
@@ -121,6 +121,12 @@ Also used as a _noun_ to describe something that soothes, calms, or comforts.
 ### Logy (slang)
 
 1. Characterised by lethargy; sluggish.
+
+### Lozenge (noun)
+
+1. A small, medicated candy intended to be dissolved slowly in the mouth to lubricate and soothe irritated tissues of the throat.
+2. A four-sided planar figure with a diamondlike shape; a rhombus that is not a square.
+3. Something having this shape, especially a heraldic device.
 
 ### Palliate (verb)
 
