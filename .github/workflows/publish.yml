@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - vault
+      - v4
  
 permissions:
   contents: read
