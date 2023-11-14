@@ -4,4 +4,4 @@ This is my main website, written with the help of [Obsidian](https://obsidian.md
 
 ## Content License
 
-All files within the 'content' subdirectory is owned by `jahinzee` (Jahin Z.), and is licensed under the CC BY-SA 4.0 license. All other files are under the original upstream license.
+All files within the `content` subdirectory, and the file `quartz/static/icon.jpg`, are owned by `jahinzee` (Jahin Z.), and is licensed under the CC BY-SA 4.0 license. All other files are under the original upstream license.
