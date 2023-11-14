@@ -1,4 +1,3 @@
-Source: https://drive.google.com/file/d/1WuQk61nUojGiiWH1EnTG3OEpSc67ACzT/view
 
 # The Improvement Kata Pattern
 

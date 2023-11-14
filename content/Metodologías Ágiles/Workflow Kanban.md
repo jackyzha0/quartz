@@ -1,4 +1,3 @@
-https://drive.google.com/file/d/1uLBBYrYSOcBY3R8EXa_scrUFFN4EvQHZ/view
 [[Metodologías Ágiles]]
 
 

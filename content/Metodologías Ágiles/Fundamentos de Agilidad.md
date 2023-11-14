@@ -1,6 +1,4 @@
-Source: 
-https://drive.google.com/file/d/1oxWfnskiv1KY6iK5wyUZggFW4r36IiH_/view
-https://drive.google.com/file/d/1JUEvpNo8_sF209oMPmrDvoLsr9hMaW2Y/view
+
 
 >[!quote] Agile
 **Buenas prácticas** que le sirvieron a alguien ordenarlas de esa manera, y las compartió al mundo -> Métodos y Frameworks agile
