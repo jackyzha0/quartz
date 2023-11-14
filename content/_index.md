@@ -1,23 +1,24 @@
 ---
-aliases: index
+aliases:
+  - index
 title: Home
 ---
+Hi!
 
-Hi, I'm Jahin[^1].
+I'm Jahin[^1], a Python programmer, hobbyist graphics designer, and Linux enthusiast based in Sydney.
 
-I'm a software programmer, mainly writing Python these days, and a hobbyist graphics designer. My most recent project is a [small app that bothers you on the hour, every hour](https://github.com/jahinzee/benzi).
+My bread-and-butter is writing small, over-engineered scripts that do one (most likely pointless) thing, such as [a small app that annoys you; on the hour, every hour](https://github.com/jahinzee/benzi).
 
-I'm also a huge hackathon junkie, with my most recent soiree being [GovHack 2023](https://govhack.org/) (the largest one I've ever been to date!), where my team and I had a lot of fun brainstorming and creating ideas.
+I also like attending hackathons, such as [GovHack 2023](https://govhack.org/), where I worked on [a system for assigning liveability scores for postcodes](https://github.com/ctrl-alt-elit3/habitasis), for which we were placed first in the *Cost of Living Pressure NSW* category.
 
-In my spare time, I enjoy video essays and documentaries, [[Transportation|transportation]], worldbuilding and conlanging, potatoes, and the occasional [[Photos|photography]].
+In my spare time, I enjoy video essays and documentaries, transportation, worldbuilding and conlanging, potatoes, and the occasional [[Photos|photography]].
 
 Catch me on [Mastodon](https://mastodon.online/@jahinzee), or reach out to me [[Contact|here]] if you have any questions!
 
 ---
 
-- 🚄　Articles about [[Transportation]]
-- 🎞　Articles about [[Media]]
-- 📸　[[Photos]] I've taken
+- 🗃️　[[Projects]]
+- 📸　[[Photos]]
 - 📠　[[Contact]]
 
-[^1]: pronounced /d͡ʒʌ'hɪn/,  .
+[^1]: pronounced /d͡ʒʌ'hɪn/, rhymes with "the bin".
