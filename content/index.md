@@ -1,7 +1,7 @@
 ---
 title: Second Brain
 ---
-# ¡Bienvenido! 
+%% # ¡Bienvenido! 
 
 Inicia por aquí!! 👉 [[table of content]] 
 
@@ -32,4 +32,6 @@ Para aprovechar al máximo este recurso, considera lo siguiente:
 Creo que el conocimiento crece cuando se comparte. Si deseas contribuir, colaborar o compartir tus propias perspicacias, no dudes en contactar.
 
 ## Conclusión
-Este proyecto es un testimonio de mi pasión por la ingeniería de software. Es un reflejo de mi dedicación, curiosidad y el emocionante viaje en el que me embarqué. Espero que te sea útil en tu búsqueda de conocimiento y crecimiento en este fascinante campo.
+Este proyecto es un testimonio de mi pasión por la ingeniería de software. Es un reflejo de mi dedicación, curiosidad y el emocionante viaje en el que me embarqué. Espero que te sea útil en tu búsqueda de conocimiento y crecimiento en este fascinante campo. %%
+
+Out of service
