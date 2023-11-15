@@ -1,12 +1,14 @@
-<p align="right">
-  <img src="https://img.shields.io/github/languages/code-size/semanticdata/forgetful-notes" />
-  <img src="https://img.shields.io/github/repo-size/semanticdata/forgetful-notes" />
-  <img src="https://img.shields.io/github/commit-activity/t/semanticdata/forgetful-notes" />
-  <img src="https://img.shields.io/github/last-commit/semanticdata/forgetful-notes" />
-  <img src="https://img.shields.io/website/https/forgetfulnotes.com.svg" />
+<h1 align=center>🌱 Forgetful Notes</h1>
+
+<p align="center">
+  <img alt="code size" src="https://img.shields.io/github/languages/code-size/semanticdata/forgetful-notes" />
+  <img alt="repository size" src="https://img.shields.io/github/repo-size/semanticdata/forgetful-notes" />
+  <img alt="commits" src="https://img.shields.io/github/commit-activity/t/semanticdata/forgetful-notes" />
+  <img alt="last commit" src="https://img.shields.io/github/last-commit/semanticdata/forgetful-notes" />
+  <img alt="is website up?" src="https://img.shields.io/website/https/forgetfulnotes.com.svg" />
 </p>
 
-# Forgetful Notes
+## Introduction
 
 This is the source code for [Forgetful Notes](https://forgetfulnotes.com)—my digital garden of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 
