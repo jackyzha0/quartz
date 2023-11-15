@@ -1,4 +1,4 @@
-import { FilePath, QUARTZ, joinSegments } from "../../util/path"
+import { FilePath, joinSegments } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 import fs from "fs"
 
@@ -13,7 +13,7 @@ export const CNAME: QuartzEmitterPlugin = () => ({
     return []
   },
   async emit({ argv, cfg }, _content, _resources, _emit): Promise<FilePath[]> {
-    if(!cfg.configuration.baseUrl) {
+    if (!cfg.configuration.baseUrl) {
       console.warn("No baseUrl set while CNAME emitter enabled.")
       return []
     }
