@@ -436,7 +436,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           const blockTagTypes = new Set(["blockquote"])
           return (tree, file) => {
             file.data.blocks = {}
-            file.data.htmlAst = tree
 
             visit(tree, "element", (node, index, parent) => {
               if (blockTagTypes.has(node.tagName)) {
@@ -478,6 +477,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 }
               }
             })
+
+            file.data.htmlAst = tree
           }
         })
       }
