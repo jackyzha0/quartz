@@ -1,7 +1,7 @@
 import { PluggableList } from "unified"
 import { QuartzTransformerPlugin } from "../types"
 import { Root, HTML, BlockContent, DefinitionContent, Code, Paragraph } from "mdast"
-import { Element, Literal } from "hast"
+import { Element, Literal, Root as HtmlRoot } from "hast"
 import { Replace, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { slug as slugAnchor } from "github-slugger"
 import rehypeRaw from "rehype-raw"
@@ -236,13 +236,13 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     value: `<iframe src="${url}"></iframe>`,
                   }
                 } else if (ext === "") {
-                  const block = anchor.slice(1)
+                  const block = anchor
                   return {
                     type: "html",
                     data: { hProperties: { transclude: true } },
                     value: `<blockquote class="transclude" data-url="${url}" data-block="${block}"><a href="${
                       url + anchor
-                    }" class="transclude-inner">Transclude of block ${block}</a></blockquote>`,
+                    }" class="transclude-inner">Transclude of ${url}${block}</a></blockquote>`,
                   }
                 }
 
@@ -477,6 +477,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 }
               }
             })
+
+            file.data.htmlAst = tree
           }
         })
       }
@@ -524,5 +526,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 declare module "vfile" {
   interface DataMap {
     blocks: Record<string, Element>
+    htmlAst: HtmlRoot
   }
 }

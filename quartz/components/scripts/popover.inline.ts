@@ -28,8 +28,11 @@ async function mouseEnterHandler(
     })
   }
 
+  const hasAlreadyBeenFetched = () =>
+    [...link.children].some((child) => child.classList.contains("popover"))
+
   // dont refetch if there's already a popover
-  if ([...link.children].some((child) => child.classList.contains("popover"))) {
+  if (hasAlreadyBeenFetched()) {
     return setPosition(link.lastChild as HTMLElement)
   }
 
@@ -48,6 +51,11 @@ async function mouseEnterHandler(
     .catch((err) => {
       console.error(err)
     })
+
+  // bailout if another popover exists
+  if (hasAlreadyBeenFetched()) {
+    return
+  }
 
   if (!contents) return
   const html = p.parseFromString(contents, "text/html")
