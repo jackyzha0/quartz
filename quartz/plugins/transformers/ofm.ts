@@ -110,7 +110,10 @@ function canonicalizeCallout(calloutName: string): keyof typeof callouts {
 // ([^\[\]\|\#]+)   -> one or more non-special characters ([,],|, or #) (name)
 // (#[^\[\]\|\#]+)? -> # then one or more non-special characters (heading link)
 // (|[^\[\]\|\#]+)? -> | then one or more non-special characters (alias)
-const wikilinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)?(#[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/, "g")
+export const wikilinkRegex = new RegExp(
+  /!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/,
+  "g",
+)
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
 const commentRegex = new RegExp(/%%(.+)%%/, "g")
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
@@ -178,9 +181,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         src = src.replaceAll(wikilinkRegex, (value, ...capture) => {
           const [rawFp, rawHeader, rawAlias] = capture
           const fp = rawFp ?? ""
-          const anchor = rawHeader?.trim().slice(1)
+          const anchor = rawHeader?.trim().replace(/^#+/, "")
           const displayAnchor = anchor ? `#${slugAnchor(anchor)}` : ""
-          const displayAlias = rawAlias ?? rawHeader?.replace("#", "|") ?? ""
+          const displayAlias = rawAlias ?? anchor ?? ""
           const embedDisplay = value.startsWith("!") ? "!" : ""
           return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`
         })
