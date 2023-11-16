@@ -20,7 +20,7 @@ Datasets:
 - [MS COCO](https://cocodataset.org/#home) 
 - [Roboflow](https://universe.roboflow.com) - the world's largest collection of open source computer vision datasets and APIs.
 
-#TODO 
+#todo
 - 🖊 Analyze: ShuffleNet
 - 🖊 Create illustrations showing history timelines, performance graphs, mindmaps of famous CNN architectures
 - 🖊 Visualizing CNNs

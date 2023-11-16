@@ -8,7 +8,7 @@ banner_lock: true
 
 >[!quote] Work harder
 
-## 任务 TASKS 
+## 📆 任务 TASKS 
 ```tasks
 not done
 due after 5 days ago
@@ -17,7 +17,7 @@ sort by priority
 sort by due
 sort by path
 ```
-## 最近修改 RECENTLY MODIFIED
+## 🪓 最近修改 RECENTLY MODIFIED
 ```dataview
 
 TABLE WITHOUT ID
@@ -30,7 +30,7 @@ SORT file.mtime desc
 LIMIT 5
 ```
 
-## 想法 THOUGHTS
+## 🧠 想法 THOUGHTS
 ```dataviewjs
 function isThisFile(file) {
 	// dv.paragraph(file.name)
@@ -63,7 +63,7 @@ Promise.all(arr).then(values => {
     dv.table(["文件", "想法"], exists)
 })
 ```
-## 日记 DAILY NOTES (list of daily notes)
+## 📔 日记 DAILY NOTES (list of daily notes)
 ```dataview
 TABLE WITHOUT ID
 	link(file.name) as "日期",
@@ -78,7 +78,7 @@ TABLE WITHOUT ID
 	SORT file.name DESC
 	LIMIT 7
 ```
-## 热图 HEATMAPS
+## 🔥 热图 HEATMAPS
 
 ```dataviewjs
 dv.span("** 🏀 锻炼 Exercise 💪 **") /* optional ⏹️💤⚡⚠🧩↑↓⏳📔💾📁📝🔄📝🔀⌨️🕸️📅🔍✨ */ 
@@ -153,7 +153,20 @@ for (let page of dv.pages('"Journal"').where(p => p.reading)) {
 renderHeatmapCalendar(this.container, calendarData) 
 ```
 
-## OBSIDIAN ACTIVITY
+## 📑 Literature Notes
+```dataview  
+TABLE  
+title as Title,  
+FirstAuthor as "First Author",  
+Year as Year,  
+Citekey as Citekey,  
+Contribution as Contribution  
+FROM "04 - Obsidian/Literature"  
+```
+
+
+
+## 🪨 OBSIDIAN ACTIVITY
 ```dataviewjs
 
 let ftMd = dv.pages("").file.sort(t => t.cday)[0]
@@ -169,10 +182,10 @@ dv.span(totalDays+totalMd+"、"+totalTag+"、"+totalTask)
 
 ```
 
-## Main Pages
+## 🔑 Main Pages
 [[Bookmarks]]
 [[Thoughts]]
-## TAGS
+## 📛 TAGS
 本Vault所有的TAGs
 ```dataviewjs
 
@@ -192,8 +205,12 @@ dv.span(tagsString)
 - #任务 - 实现 tasks 插件功能
 - #工作 - 赚钱/工作有关的笔记
 - #想法 - 有一些特别的想法，在 [[Thoughts]]显示所有的想法
-- #TODO - 一些笔记任务
 - #笔记 - 普通/学习有关的笔记
 - #日记 - 日记 Daily Note 笔记
 - #生活 - 生活有关的笔记（旅行计划，学习/工作计划， 等等）
+- #todo
 
+
+
+
+[@redmonYouOnlyLook2015a]

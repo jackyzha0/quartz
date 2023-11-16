@@ -8,33 +8,19 @@ banner_x: 0.51902
 ---
 
 # Recurrent Neural Network
-- [[#01 Background|01 Background]]
-- [[#02 Core Concepts|02 Core Concepts]]
-	- [[#02 Core Concepts#Simple Unidirectional RNN|Simple Unidirectional RNN]]
-	- [[#02 Core Concepts#What is a Gated Recurrent Unit (GRU)?|What is a Gated Recurrent Unit (GRU)?]]
-	- [[#02 Core Concepts#What is a Long Short Term Memory Unit (LSTM Unit)?|What is a Long Short Term Memory Unit (LSTM Unit)?]]
-	- [[#02 Core Concepts#What is Bidirectional RNNs?|What is Bidirectional RNNs?]]
-	- [[#02 Core Concepts#What is Gradient Clipping?|What is Gradient Clipping?]]
-	- [[#02 Core Concepts#Word Embeddings in NLP|Word Embeddings in NLP]]
-	- [[#02 Core Concepts#What is Language Modeling?|What is Language Modeling?]]
-	- [[#02 Core Concepts#What are Sequence to Sequence Models?|What are Sequence to Sequence Models?]]
-	- [[#02 Core Concepts#What is the Attention Model?|What is the Attention Model?]]
-	- [[#02 Core Concepts#Speech Recognition Problem|Speech Recognition Problem]]
-	- [[#02 Core Concepts#Trigger Word Detection|Trigger Word Detection]]
-	- [[#02 Core Concepts#Transformers?|Transformers?]]
 
-## 01 Background
+# 01 Background
 We first look at the architecture of RNN and the basic intuition behind it. Then we discuss word embeddings in NLP, and word embeddings can be used in various applications that utilize RNNs.
 
-***Resources***
+**Resources**
 - https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-recurrent-neural-networks
-- 
-***Why not use a standard neural network?*** 
+# 02 Core Concepts
+## Architectures
+**Why not use a standard neural network?**
 - Inputs/outputs can be different lengths in different examples
 - Doesn't share features learned across different positions of text
 
-***Architecture types?*** Many-to-many, many-to-one, one-to-many, one-to-one
-
+**Types of RNN Architectures**
 ![003 RNN - Architectural Types of Different Recurrent Neural Networks](https://media5.datahacker.rs/2020/09/54-1024x547.jpg)
 
 The last many-to-many architecture can be split into two parts. The **encoder** and **decoder**
@@ -47,10 +33,8 @@ Example applications of each architecture:
 - Many-to-many (Encoder-Decoder): (1) Machine Translation
 
 Though it is important to note that different architectures can be used to solve the same application.
-## 02 Core Concepts
-Let's start off with the definition of a simple RNN.
 ### Simple Unidirectional RNN
-Let's review the architecture of a basic recurrent neural network. Let's suppose we are building a RNN to determine what words in a sentence are names. This is known as **Name Entity Recognition**.
+Let's start off with the definition of a simple RNN. Let's review the architecture of a basic recurrent neural network. Let's suppose we are building a RNN to determine what words in a sentence are names. This is known as **Name Entity Recognition**.
 ![[Pasted image 20231011163651.png | center ]]
 
 Suppose reading a word from left to right. At timestamp 1, the first word $x^{\left<1\right>}$ is fed into the first neural network layer. The neural network may predict output $\hat{y}^{\left<1\right>}$ . For example, it may give the probability of whether a word is a name.  $x^{\left<1\right>}$ is a representation of a word, perhaps **1-hot representation** or **featured representation**
@@ -68,8 +52,7 @@ This notation is often simplified as
 $$ a^{\left<t\right>} = g\left(W_a\left[a^{\left<t-1\right>}, x^{\left<t\right>}\right] + b_a\right)$$
 **Remark:** The weight matrices are shared by all LSTM units.
 
-***How does back propagation work in a RNN?***
-
+### Backpropagation in RNN
 Let's define a loss function, that gives a loss associated with a single prediction at a single time stamp $t$
 $$ L^{\left<t\right>}\left(\hat{y}^{\left<t\right>}, y^{\left<t\right>}\right) = y^{\left<t\right>} \log\hat{y}^{\left<t\right>} - (1-y^{\left<t\right>})\log(1-\hat{y}^{\left<t\right>})$$
 To get the overall loss for the entire sequence , simply perform a summation over all the individual time stamps.
@@ -146,8 +129,7 @@ Let's try to visualize a multi-layer LSTM architecture.
 ![[Pasted image 20231018122329.png | center | 500]]
 This feeds an embedding layer output into an LSTM network..
 
-***What do each of the gates do?***
-#TODO
+### Summary of Gates
 
 Summary?
 - An LSTM is similar to an RNN in that they both use hidden states to pass along information, but an LSTM also uses a cell state, which is like a long-term memory, to help deal with the issue of vanishing gradients
@@ -167,108 +149,21 @@ Summary?
 - Historically more used than GRU, but GRU is simpler and perhaps more scalable.
 - It is relative easy for values stored in memory cell $c^{\left< t\right>}$ be passed down to later values.
 
-### What is Bidirectional RNNs?
+### What are Bidirectional RNNs?
 #TODO
 Getting information from the future in addition to information from the past.
 ![[Pasted image 20231011215601.png | center | 500 ]]
 - Commonly use BRNN with LSTM Blocks.
 
+
+
+
+
+## Optimizations
 ### What is Gradient Clipping?
 This process helps prevent **exploding gradients**. This is done before updating the parameters.
 
-### Word Embeddings in NLP
-#TODO Move this to ML File.
-Discussing word embeddings
-- Transfer learning and word embeddings 
-	- Learn word embeddings from large text corpus (1-100B words), or download pre-trained embeddings
-	- Transfer embedding to new tasks with smaller training set.
-	- Word embeddings tend to make the biggest difference when the task you're trying to carry out has a relatively smaller training set.
-	- Good for Name Entity Recognition, Text Summarization, Co-Reference Resolution, Parsing
-	- Bad for Language Modeling, Machine Translation
--  Properties of Word Embeddings
-	- Analogies [Mikolov et. al, 2013. Linguistic regularities in continuous space word representations]
-- Learning Word Embeddings (Embedding Matrix)
-	- Neural Language Model method [Bengio et. al., 2003, A neural probabilistic language model]
-	- Other context/target pairs, **Word2Vec**, **Negative Sampling**, **GloVe**
-	- Cannot guarantee that individual components of embeddings are interpretable.
-	- Debiasing Word Embeddings
-
-**What is Word2Vec?**
-Compared to a neural language model,, the Word2Vec algorithm is a simpler and comfortably more efficient way to learn embeddings. There are two variants of Word2Vec -- skip-gram and CBOW.
-
-**What Skip-gram?**
-Introduced in [Mikolov et. al., 2013, Efficient estimation of word representations in vector space].
-
-Let's assume the you are given the following sentence:
-$$\text{I want a glass of orange juice to go along with my cereal}$$
-We come up with a few context to target pairs. Rather than having the context simply be the next $n$ words or previous $n$ words around the target, instead, we randomly pick a word to be the context word. For example, let's say the target word is $\text{orange}$. Then *randomly* pick a target word within a certain window, perhaps $\pm 5$ words. You could choose:
-
-| Context | Target |
-| ------- | ------ |
-| orange  | juice  |
-| orange  | glass  |
-| orange  | my       |
-
-A supervised learning model, where given the context word, you are asked to predict what is a randomly chosen word within that window. In other words, learn the mapping from some context $c$ to a target $t$.
-
-Let's define the model
-$$ \text{Softmax: }\space \space p(t\mid c) = \frac{e^{\theta_t^T}e_{c}}{\sum^{10,000}_{j=1}e^{\theta^{T}_j}e_c}$$
-- Uses softmax classification
-- Different classifiers - Hierarchical Softmax
-- Softmax calculation is computationally expensive.
-
-**What is CBOW?**
-
-**What is Negative Sampling?**
-Modified skip-gram to improve efficiency. Introduced in [Mikolov et. al., 2013, Distributed representation of words and phrases and their compositionality]
-
-Using the same example above, we create a new supervised learning model that uses the a context, word, and target?. Context and word are chosen as in context and target in skip-gram. It is then associated to target?, which defines whether or not something is a context pair, and labels it either positive (1) or negative (0). For example
-
-| Context (c) | Word (t)  | Target? (y) |
-| ------- | ----- | ------- |
-| orange  | juice | 1       |
-| orange  | king  | 0       |
-| orange  | book  | 0       |
-| orange  | the   | 0       |
-| orange  | of    | 0        |
-
-The positive and negative examples are generated through sampling words in a window. Here, only the first line is the positive example. The rest $k$ examples are negative. The new supervised model takes the context and word as the features, and has to predict target?.
-
-The problem is really, given a pair of words like $\text{orange}$ and $\text{juice}$, do they appear together? Did we get these two words by sampling two words close to each other? Or do you think I got them as one word from the text and one word chosen at random from the dictionary. Our goal is to try to distinguish between these two types of distributions.
-
-Let's define the model.
-
-$$ P(y=1 \mid c,t) = \sigma\left(\theta_{t}^{T}e_c\right)$$
-Our goal is to use this formula to estimate the probability that $y=1$. For every positive example, there are $k$ negative examples. In essence, we train a logistic regression model. Let's visualize as a neural network.
-
-10K possible logistic regression classification problems. One of these will be a classifier corresponding to the correct target word $\text{juice}$, as well as other words. 
-
-Think of it as having. a 10,000 binary logistic classifier. But instead of training all 10K on every iteration, we only train $1+k$ of them, 1 positive and $k$ negatives. This is much cheaper than updating a 10,000 way softmax in **Skip-Gram**.
-
-How are negative examples sampled? 
-- Sample according to empirical frequency, but this results in high probability of words like "the, of, and". 
-- Sample uniformly random, but this is not very representative o a language.
-- Instead, take a heuristic value.
-
-**What is GloVe?**
-Introduced in [Pennington et. al., 2014, GloVe: Global vectors for word representation]. Let's define key term.
-$$ X_{ij} = \text{ of times}\space j \space\text{appears in context of} \space i$$
-Or in other words, how many times $t$ appears in the context of $c$. Now let's define the model as 
-
-$$\text{minimize}\sum\limits^{10,000}_{i=1}\sum\limits^{10,000}_{j=1}f(X_{ij})(\theta_{i}^{T}e_{j}+b_{i}+b'_j-\log{X_{ij}})^2$$
-In plain text, we want to minimize the difference between $\theta_{i}^{T}e_{j}$ and $\log{X_{ij}}$. We want to know how related these two terms are.
-
-Our goal is to use gradient descent to solve for $\theta$ and $e$.
-
-More details can be found [here](https://nlp.stanford.edu/projects/glove/#:~:text=GloVe%20is%20an%20unsupervised%20learning,of%20the%20word%20vector%20space.)
-
-**How to solve bias in word embeddings?**
-Word embeddings can reflect gender, ethnicity, age, sexual orientation, and other biases of the text used to train the model. For example
-$$\text{Man:Woman as King:Queen}$$
-$$\text{Man:ComputerProgrammer as Woman:Homemaker} $$
-1. Identify bias direction
-2. Neutralize: For every word that is not definitional, project to get rid of bias.
-3. Equalize pairs
+## Applications
 ### What is Language Modeling? 
 A language model is a probabilistic model over natural language that can generate probabilities of a series of words, based on a (or many) text corpora. Let's talk about **language modeling** and its role in **sequence generation**.
 
@@ -313,13 +208,17 @@ Let's try to understand sequence to sequence models through machine translation.
 **Machine Translation** 
 - Introduced in [Cho et. al., 2014, Learning phrase representations using RNN encoder-decoder for statistical machine translation]
 Let's say we want to translate the French sentence
-$$ \begin{align} \overset{x^{\left<1\right>}}{\text{Jane}} \space \overset{x^{\left<2\right>}}{\text{visite}}  \space \overset{x^{\left<3\right>}}{\text{l'Afrique}} \space \overset{x^{\left<4\right>}}{\text{en}} \space 
-\overset{x^{\left<5\right>}}{\text{septembre}} \end{align}$$
+$$ 
+\begin{align} \overset{x^{\left<1\right>}}{\text{Jane}} \space \overset{x^{\left<2\right>}}{\text{visite}}  \space \overset{x^{\left<3\right>}}{\text{l'Afrique}} \space \overset{x^{\left<4\right>}}{\text{en}} \space 
+\overset{x^{\left<5\right>}}{\text{septembre}} \end{align}
+$$
 to the English translation
-$$ \begin{align} \overset{y^{\left<1\right>}}{\text{Jane}} \space \overset{y^{\left<2\right>}}{\text{is}}  \space \overset{y^{\left<3\right>}}{\text{visiting}} \space \overset{y^{\left<4\right>}}{\text{Africa}} \space 
-\overset{y^{\left<5\right>}}{\text{in}} \space \overset{y^{\left<6\right>}}{\text{September}} \end{align}$$
+$$ 
+\begin{align} \overset{y^{\left<1\right>}}{\text{Jane}} \space \overset{y^{\left<2\right>}}{\text{is}}  \space \overset{y^{\left<3\right>}}{\text{visiting}} \space \overset{y^{\left<4\right>}}{\text{Africa}} \space 
+\overset{y^{\left<5\right>}}{\text{in}} \space \overset{y^{\left<6\right>}}{\text{September}} \end{align}
+$$
 We can use a encoder-decoder network designed like this
-![[Pasted image 20231018121049.png | center | 500]]
+![[Pasted image 20231018121049.png]]
 Where the first half is the encoder which produces a vector to represent the sentence, and the second part is a decoder, which does the translation.
 
 **Conditional Language Modeling**
@@ -349,7 +248,9 @@ As you run beam search you see a lot of sentences with length equal 1, length 
 $$ \arg \max$$
 
 Then you look at all output sentences and compute a score using the following objective equation.
-$$ \sum\limits^{T_Y}_{t=1}\log P\left( y^{\langle t \rangle} \mid x,y^{\langle 1 \rangle},\dots,y^{\langle t-1\rangle}  \right)$$
+$$ 
+\sum\limits^{T_Y}_{t=1}\log P\left( y^{\langle t \rangle} \mid x,y^{\langle 1 \rangle},\dots,y^{\langle t-1\rangle}  \right)
+$$
 And pick the one that achieves the highest of this normalized, log probability objective function.
 
 It is important to note that Beam Search is not guaranteed to find the max. It is known as a **heuristic search algorithm** or **approximate search algorithm**. 
@@ -358,7 +259,8 @@ It is important to note that Beam Search is not guaranteed to find the max. It i
 The model contains two parts. the Beam Search algorithm and the RNN. Our goal is to attribute the error to one of these two, so we know which one to tune. 
 
 Remember that RNN simply computes $P(y\mid x)$ . We can compute $P(y^{*} \mid x)$ and $P(\hat{y} \mid x)$ . Where $y^{*}$ is the correct translation and the $\hat{y}$ is the translation given by the model. We can there compare the two to ascribe the error to either the search algorithm or module.
-$$ \begin{cases} P(y^{*} \mid x) > P(\hat{y} \mid x) & \text{Beam search is at fault}\\ P(y^{*} \mid x) \leq P(\hat{y} \mid x) & \text{RNN model is at fault}
+$$ 
+\begin{cases} P(y^{*} \mid x) > P(\hat{y} \mid x) & \text{Beam search is at fault}\\ P(y^{*} \mid x) \leq P(\hat{y} \mid x) & \text{RNN model is at fault}
  \\ \end{cases}
 $$
 This ignores some complications*. But in the error analysis process, we go through translations, and try to see whether Beam search or model is at fault. This gives us what fraction of errors are "due to" beam search vs RNN model.
@@ -369,12 +271,10 @@ For machine translation as shown above, we've been using a encoder-decoder archi
 The above graph shows how attention can allow translations to work for even long sentences.
 **Implementation**
 In essence, the attention mechanism tells the sequence to sequence model where it should pay attention to at any step.
-![[Pasted image 20231019150715.png | center ]]
+![[Pasted image 20231019150715.png ]]
 
 Not, in this example, we are only using a basic RNN. Below is a more detailed look in how the activation architecture fits into the neural network.
-![[Pasted image 20231019191433.png | center]]
-
-
+![[Pasted image 20231019191433.png ]]
 
 The attention model was introduced in [Bahdanau et. al., 2014, Neural machine translation by jointly learning to align and translate]
 
@@ -397,7 +297,7 @@ An audio sampled at 44100 Hertz means that the microphone gives us 44,100 number
 
 We can use a **spectrogram** to help our sequence model detect whether or not a trigger word was said. The spectrogram tells us how much different frequencies are present in an audio clip. Refer to [[Signal Processing]] for more details.
 
-![[Pasted image 20231019221334.png | center ]]
+![[Pasted image 20231019221334.png ]]
 
 ### Transformers?
 There are many limitations of RNN, including
