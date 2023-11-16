@@ -5,7 +5,7 @@ title: Home
 ---
 Hi!
 
-I'm Jahin[^1], a Python programmer, hobbyist graphics designer, and Linux enthusiast based in Sydney.
+I'm Jahin[^1], a Python programmer, hobbyist [[Portfolio|graphics designer]], and Linux enthusiast based in Sydney.
 
 My bread-and-butter is writing small, over-engineered scripts that do one (most likely pointless) thing, such as [a small app that annoys you; on the hour, every hour](https://github.com/jahinzee/benzi).
 
@@ -17,7 +17,7 @@ Catch me on [Mastodon](https://mastodon.online/@jahinzee), or reach out to me [[
 
 ---
 
-- 🗃️　[[Projects]]
+- 🖼️　[[Portfolio]]
 - 📸　[[Photos]]
 - 📠　[[Contact]]
 
