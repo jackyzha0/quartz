@@ -6,5 +6,4 @@ The data for this map was based on the current Phase 1 plans from the [DMCTL web
 
 ![[Unofficial Dhaka Metro Rail Map.png]]
 
-*Also available as [[Unofficial Dhaka Metro Rail Map.pdf|PDF]] and [[Unofficial Dhaka Metro Rail Map.svg|SVG]].*
 *This graphic is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).*
