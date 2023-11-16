@@ -2,14 +2,18 @@ import { computePosition, flip, inline, shift } from "@floating-ui/dom"
 
 // from micromorph/src/utils.ts
 // https://github.com/natemoo-re/micromorph/blob/main/src/utils.ts#L5
-export function normalizeRelativeURLs(el: Element | Document, base: string | URL) {
-  const update = (el: Element, attr: string, base: string | URL) => {
-    el.setAttribute(attr, new URL(el.getAttribute(attr)!, base).pathname)
+export function normalizeRelativeURLs(el: Element | Document, destination: string | URL) {
+  const rebase = (el: Element, attr: string, newBase: string | URL) => {
+    const rebased = new URL(el.getAttribute(attr)!, newBase)
+    el.setAttribute(attr, rebased.pathname + rebased.hash)
   }
 
-  el.querySelectorAll('[href^="./"], [href^="../"]').forEach((item) => update(item, "href", base))
-
-  el.querySelectorAll('[src^="./"], [src^="../"]').forEach((item) => update(item, "src", base))
+  el.querySelectorAll('[href^="./"], [href^="../"]').forEach((item) =>
+    rebase(item, "href", destination),
+  )
+  el.querySelectorAll('[src^="./"], [src^="../"]').forEach((item) =>
+    rebase(item, "src", destination),
+  )
 }
 
 const p = new DOMParser()
