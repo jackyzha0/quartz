@@ -110,7 +110,10 @@ function canonicalizeCallout(calloutName: string): keyof typeof callouts {
 // ([^\[\]\|\#]+)   -> one or more non-special characters ([,],|, or #) (name)
 // (#[^\[\]\|\#]+)? -> # then one or more non-special characters (heading link)
 // (|[^\[\]\|\#]+)? -> | then one or more non-special characters (alias)
-const wikilinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/, "g")
+export const wikilinkRegex = new RegExp(
+  /!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/,
+  "g",
+)
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
 const commentRegex = new RegExp(/%%(.+)%%/, "g")
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
