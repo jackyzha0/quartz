@@ -67,7 +67,7 @@
 
 **Capítulo 7: Entrada/Salida**
 - Módulos de E/S (7.2)
-	-  [[Funciones de un módulo ES#Principales funciones de un módulo]]
+	- [[Funciones de un módulo ES#Principales funciones de un módulo]]
 	- [[Funciones de un módulo ES#Estructura de un módulo de ES]]
 - E/S programada (7.3)
 	- [[ES Programadas#Resumen de la ES Programada]]

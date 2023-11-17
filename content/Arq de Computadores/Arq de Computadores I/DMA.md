@@ -11,7 +11,6 @@ Source:: [[Dispositivos Externos]]
 2. **Uso del Procesador:** En ambos casos, el procesador debe dedicar recursos a la gestión de las transferencias de E/S. Cada transferencia de E/S implica la ejecución de un número de instrucciones, lo que puede afectar la capacidad del procesador para llevar a cabo otras tareas.
 
 ## Funcionamiento del DMA
-**Resumen:**
 
 El funcionamiento del DMA (Acceso Directo a Memoria) implica la presencia de un controlador de DMA en el bus del sistema. Este controlador puede imitar al procesador y asumir el control del sistema cuando sea necesario para transferir datos entre la memoria y los dispositivos de E/S.
 
