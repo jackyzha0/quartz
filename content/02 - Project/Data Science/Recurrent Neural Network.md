@@ -37,7 +37,7 @@ Though it is important to note that different architectures can be used to solve
 Let's start off with the definition of a simple RNN. Let's review the architecture of a basic recurrent neural network. Let's suppose we are building a RNN to determine what words in a sentence are names. This is known as **Name Entity Recognition**.
 ![[Pasted image 20231011163651.png | center ]]
 
-Suppose reading a word from left to right. At timestamp 1, the first word $x^{\left<1\right>}$ is fed into the first neural network layer. The neural network may predict output $\hat{y}^{\left<1\right>}$ . For example, it may give the probability of whether a word is a name.  $x^{\left<1\right>}$ is a representation of a word, perhaps **1-hot representation** or **featured representation**
+Suppose reading a word from left to right. At timestamp 1, the first word $x^{\left<1\right>}$ is fed into the first neural network layer. The neural network may predict output $\hat{y}^{\left<1\right>}$ . For example, it may give the probability of whether a word in a sequence is in fact a name.  $x^{\left<1\right>}$ is a representation of a word, perhaps **1-hot representation** or **featured representation**
 
 Then when the second word is read. Instead of only predicting $\hat{y}^{\left<2\right>}$ using the current word $x^{\left<2\right>}$ , it also gets some information computed at timestamp 1. The activation function from timestamp 1 $a^{\left<1\right>}$ is passed. This is repeated until the final timestamp. The initial activation function is sometimes set as a vector of zeros. A "rolled" diagram may be presented as shown on the left. But it might be more intuitive to "unroll" it as shown on right.
 
@@ -46,43 +46,56 @@ The parameters (governing the connection from input $x$ to hidden layers) it use
 The calculations are 
 $$ a^{\left<0\right>}= \vec{0}, \space a^{\left<1\right>} = g\left(W_{aa}a^{\left< 0 \right>} + W_{ax}x^{\left<1\right>} + b_{a}\right) \tag{1}$$
 $$ y^{\left<1\right>} = g\left(W_{ya}a^{\left<1\right>} + b_{y}\right)\tag{2}$$
-Equations $(1)$ and $(2)$ can easily be generalized for timestamp $t$.
-
-This notation is often simplified as 
-$$ a^{\left<t\right>} = g\left(W_a\left[a^{\left<t-1\right>}, x^{\left<t\right>}\right] + b_a\right)$$
+Equations $(1)$ and $(2)$ can easily be generalized for timestamp $t$. This notation is often simplified as 
+$$ 
+a^{\left<t\right>} = g\left(W_a\left[a^{\left<t-1\right>}, x^{\left<t\right>}\right] + b_a\right)
+$$
 **Remark:** The weight matrices are shared by all LSTM units.
 
 ### Backpropagation in RNN
 Let's define a loss function, that gives a loss associated with a single prediction at a single time stamp $t$
-$$ L^{\left<t\right>}\left(\hat{y}^{\left<t\right>}, y^{\left<t\right>}\right) = y^{\left<t\right>} \log\hat{y}^{\left<t\right>} - (1-y^{\left<t\right>})\log(1-\hat{y}^{\left<t\right>})$$
+$$ 
+L^{\left<t\right>}\left(\hat{y}^{\left<t\right>}, y^{\left<t\right>}\right) = y^{\left<t\right>} \log\hat{y}^{\left<t\right>} - (1-y^{\left<t\right>})\log(1-\hat{y}^{\left<t\right>})
+$$
 To get the overall loss for the entire sequence , simply perform a summation over all the individual time stamps.
-$$ \sum\limits ^{T_y}_{t=1} L^{\left<t\right>}\left(\hat{y}^{\left<t\right>}, y^{\left<t\right>}\right) $$
+$$ 
+\sum\limits ^{T_y}_{t=1} L^{\left<t\right>}\left(\hat{y}^{\left<t\right>}, y^{\left<t\right>}\right) 
+$$
 The back-propagation is defined by red.
-![[Pasted image 20231011182621.png | center | 500 ]]
+![[Pasted image 20231011182621.png]]
 
 ***Tips***
 - This is a "many to many" architecture.
 - One weakness about this simple model is that it does not use any information from words later on in the sentence. Ex. "Teddy Roosevelt was a great President" vs "Teddy bears are on sales!". The next word after "Teddy" is not impacted by words further down. Thus, "Teddy Roosevelt" and "Teddy Bears" may equally be likely.
 - This runs into a **vanishing gradient** problem. Ex. "The $\color{blue}\text{cat}$ , which already ate .... $\color{blue}\text{was}$ full" vs "The $\color{blue}\text{cat}$ , which already ate .... $\color{blue}\text{were}$ full" . Thus, languages may have long-term dependencies where a word much earlier can affect what needs to come much later. The model above has no "memorization" of the plural vs singular version of cat (its information is lost)
+- **Exploding gradients**  can also occur.
 ### What is a Gated Recurrent Unit (GRU)? 
 The goal is solve the vanishing gradient problem with a new type of RNN unit architecture. Remember the activation function for a RNN is 
-$$ a^{\left<t\right>} = g\left(W_a\left[a^{\left<t-1\right>}, x^{\left<t\right>}\right] + b_a\right)$$
-This (regular unit) can be visualized as a **unit** shown below.
+$$ 
+a^{\left<t\right>} = g\left(W_a\left[a^{\left<t-1\right>}, x^{\left<t\right>}\right] + b_a\right)
+$$
+This can be visualized as a **unit** shown below.
 
 | Visualization 1 | Visualization 2 |
 | --------------- | --------------- |
 |         ![[Pasted image 20231011214352.png]]        |      ![[Pasted image 20231012160441.png]]           |
 
 With many units, 
-![[Pasted image 20231012161412.png | center | 700]]
+![[Pasted image 20231012161412.png]]
 
 The GRU unit, however, will have a new variable $c$ or memory cell. It will provide a bit of memory to remember information from earlier on. Let's looked at a **simplified** version of GRU. So at time $t$
-$$ c^{\left<t\right>} =  a^{\left<t\right>}$$
+$$ 
+c^{\left<t\right>} =  a^{\left<t\right>}
+$$
 The GRU unit will output an activation value  $a^{\left<t\right>}$ that is equal to $c^{\left<t\right>}$ . At every time stamp, we will consider overwriting the memory cell with a value $\tilde{c}^{\left<t\right>}$, so this is a **candidate** for replacing $c^{\left<t\right>}$. 
-$$ \tilde{c}^{\left<t\right>} = \tanh{\left(w_c\left[ c^{\left<t-1\right>},x^{\left<t\right>}\right]\right) + b_{c}}\tag{1}$$
+$$ 
+\tilde{c}^{\left<t\right>} = \tanh{\left(w_c\left[ c^{\left<t-1\right>},x^{\left<t\right>}\right]\right) + b_{c}}\tag{1}
+$$
 
 We will have a gate $\Gamma_u$ (where $u$ stands for update, update gate). A value between 0 and 1. 
-$$ \Gamma_{u} =  \sigma\left(w_c\left[ c^{\left<t-1\right>},x^{\left<t\right>}\right]\right) + b_{c} \tag{2}$$
+$$ 
+\Gamma_{u} =  \sigma\left(w_c\left[ c^{\left<t-1\right>},x^{\left<t\right>}\right]\right) + b_{c} \tag{2}
+$$
 But either 0 or 1 most of the time. In short, we have a candidate way of updating $c^{\left<t\right>}$ using $\tilde{c}^{\left<t\right>}$, but the gate will actually decide whether or not we update it. The specific function can be written as.
 $$  c^{\left<t\right>} = \Gamma_{u} \times \tilde{c}^{\left<t\right>}+ \left(1-\Gamma_{u}\right)\times c^{\left<t\right>}$$
 In general. if the update value is equal to 1, set the new value of $c^{\left<t\right>}$ to $\tilde{c}^{\left<t\right>}$, otherwise, keep it.  Thus, let's take the following sequence.
@@ -108,17 +121,17 @@ Is a slightly more powerful and more general version of GRU.
 | --------- | ------------- |
 |   ![[Pasted image 20231011213622.png]]        |   ![[Pasted image 20231011213713.png]]            |
 
-![[Pasted image 20231012163844.png | center | 700 ]]
+![[Pasted image 20231012163844.png ]]
 Some things to notice right away.
 - No longer have the case that $a^{\left<t\right>}$is equal to $a^{\left<t\right>}$
 - New gates - forget gate $\Gamma_f$ , and output gate $\Gamma_o$
 
 Let's visualize a Recurrent Neural Network that uses multiple LSTM units.
 
-![[Pasted image 20231012180211.png | center ]]
+![[Pasted image 20231012180211.png]]
 
 A simplified version might look like this
-![[Pasted image 20231024082845.png | center ]]
+![[Pasted image 20231024082845.png ]]
 - $X = (x^{\langle 1 \rangle}, x^{\langle 2 \rangle}, \cdots, x^{\langle T_x \rangle})$ is a window of size $T_x$ scanned over the input corpus
 * Each $x^{\langle t \rangle}$ is an index corresponding to a value.
 * $\hat{y}^{\langle t \rangle}$ is the prediction for the next value.
@@ -165,23 +178,29 @@ This process helps prevent **exploding gradients**. This is done before updating
 
 ## Applications
 ### What is Language Modeling? 
-A language model is a probabilistic model over natural language that can generate probabilities of a series of words, based on a (or many) text corpora. Let's talk about **language modeling** and its role in **sequence generation**.
+A language model is a probabilistic model over natural language that can generate probabilities of a series of words, based on a (or many) text corpora. Let's talk about **language modeling** and its role in **sequence generation**. Let's generate word sequences (or character sequences) through **Sampling Novel Sequences**.
 
-Let's generate word sequences (or character sequences) through **Sampling Novel Sequences**.
+>[!note] Sampling Novel Sequences
 
-***Sample Novel Sequences***
 Our goal is to generate a randomly chosen sentence from our RNN language model. 
-A sequence model models the probability of any particular sequence of words. Our goal is to sample from this distribution to generate **novel sequences.*
-
-So the network was trained using the following structure.
-![[Pasted image 20231011190319.png | center | 250]]
-It would give us the model $P\left(y^{\left<1\right>}, \dots, y^{\left<t\right>}\right)$.  But to sample, we first sample what the first word you want your model to generate. 
-
-The first time stamp would output softmax probabilities over possible outputs. Then, we  randomly sample according to the soft max distribution. This distribution tells us "what is the probability that the word is X".
+A sequence model models the probability of any particular sequence of words. Our goal is to sample from this distribution to generate **novel sequences.** Novel means new, unique, unseen. Let's say our RNN has the following structure.
+![[Pasted image 20231011190319.png]]
+It would give us the model $P\left(y^{\left<1\right>}, \dots, y^{\left<t\right>}\right)$.  But in order to sample, we first sample what the first word you want your model to generate. The first time stamp would output softmax probabilities over possible outputs. Then, we  randomly sample according to the soft max distribution. This distribution tells us "what is the probability that the word is X".
 
 In the second time stamp, it 
 
-- Word Level vs Character Level
+This is also called **auto-regressive** (AR), a specific manner in which the RNN generates predictions or outputs over time in a sequential manner, where predictions at each step depend on the model's previous predictions.
+
+> [!note] Text Generation
+
+Examples:
+- https://www.kaggle.com/code/purvasingh/text-generation-via-rnn-and-lstms-pytorch
+
+
+> [!note] Character Generation
+
+What is the difference between word generation and character generation?
+
 
 ***Speech Recognition***
 For example, in speech recognition, we want the probability of a sentence.
@@ -205,14 +224,14 @@ Sequence to Sequence models, aka, Seq2Seq models, aims to convert from one seque
 
 Let's try to understand sequence to sequence models through machine translation.
 
-**Machine Translation** 
-- Introduced in [Cho et. al., 2014, Learning phrase representations using RNN encoder-decoder for statistical machine translation]
-Let's say we want to translate the French sentence
+> [!note] Machine Translation
+
+Introduced in [Cho et. al., 2014, Learning phrase representations using RNN encoder-decoder for statistical machine translation]. Let's say we want to translate the French sentence
 $$ 
 \begin{align} \overset{x^{\left<1\right>}}{\text{Jane}} \space \overset{x^{\left<2\right>}}{\text{visite}}  \space \overset{x^{\left<3\right>}}{\text{l'Afrique}} \space \overset{x^{\left<4\right>}}{\text{en}} \space 
 \overset{x^{\left<5\right>}}{\text{septembre}} \end{align}
 $$
-to the English translation
+to the English.
 $$ 
 \begin{align} \overset{y^{\left<1\right>}}{\text{Jane}} \space \overset{y^{\left<2\right>}}{\text{is}}  \space \overset{y^{\left<3\right>}}{\text{visiting}} \space \overset{y^{\left<4\right>}}{\text{Africa}} \space 
 \overset{y^{\left<5\right>}}{\text{in}} \space \overset{y^{\left<6\right>}}{\text{September}} \end{align}
@@ -277,6 +296,7 @@ Not, in this example, we are only using a basic RNN. Below is a more detailed lo
 ![[Pasted image 20231019191433.png ]]
 
 The attention model was introduced in [Bahdanau et. al., 2014, Neural machine translation by jointly learning to align and translate]
+
 
 **Image Captioning**
 Seq2Seq models can even be used for image related tasks. 

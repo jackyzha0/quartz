@@ -7,7 +7,7 @@ banner_y: 0.4705
 ---
 
 # Data Science
-This is my data science journey.  
+This is my data science journey. Here we index Machine Learning, Neural Networks, Statistics, Database, and other notes/resources.
 
 ## 01 Introduction to Data Science
 ***What is Data Science?*** 
@@ -18,9 +18,6 @@ This is my data science journey.
 1. Platforms: (1) Kaggle
 2. Datasets: (1) Human Development Reports https://hdr.undp.org 
 
-***What are some good websites for Data Science?***
-1. Communications of ACM [Author Guidelines](https://cacm.acm.org/system/assets/0003/8233/082520_Author_Guidelines_CACM.pdf) [Website](https://cacm.acm.org)
-
 ***What are some core Data Science Technologies?***
 - [[PyTorch]]
 - [[R Programming]]
@@ -28,12 +25,11 @@ This is my data science journey.
 ## 02 Math
 ***What is the importance of math in data analytics, data science, and deep learning?***
 [[Statistics]]
-📖 Great Books
-- Introduction to Mathematical Statistics
+Resources
+- 📖 Introduction to Mathematical Statistics
 	- Topics skipped: Transformations, Moment Generating Functions, Multivariate Normal Distribution, t- and F-Distributions, Mixture Distributions,
-- The Elements of Statistical Learning
-- Machine Learning: A Probabilistic Perspective
-- 
+- 📖 The Elements of Statistical Learning
+- 📖 Machine Learning: A Probabilistic Perspective
 ## 03 Database
 ***What is the importance of database and data in data science?***
 [[Database]]
@@ -51,6 +47,7 @@ This is my data science journey.
 11. 📹 Machine Learning Specialization, DeeplearningAI with Andrew NG on [Youtube](https://www.youtube.com/watch?v=vStJoetOxJg&list=PLkDaE6sCZn6FNC6YRfRQc_FbeQrF8BwGI) 🔴
 12. 📖 Machine Learning with Pytorch and Scikit 🟡
 13. 📖 Introduction to Mathematical Statistics 🟡
+14. 🌐 [Deep Learning](https://engineering.purdue.edu/DeepLearn/pdf-kak/) by Purdue Spring 2024
 
 🟢 Completed
 🟡 Working On
@@ -58,6 +55,7 @@ This is my data science journey.
 
 📹 Lectures
 📖 Books
+🌐 Online PDFs, Articles
 
 ## 05 Important Concepts and Questions
 - [[Data Science Reports]]
@@ -67,7 +65,7 @@ This is my data science journey.
 	- [[Explanatory Statistics]]: Mean Squared Error, Coefficient of Determinism, Pearson Coefficient, F1 Score, Precision, Accuracy, Sensitivity, Specificity
 - Data Visualization
 	- Core Concepts - 
-	- Plots - Residual Plots, Distribution Plots,  Line Plots, Waffle Charts, Area Plots, Histogram, Scatter Plots Box Plot, Bar Charts, Pie Charts, Heatmaps, Area Plots, Geospatial Maps (Forium) w/ GeoJson File, Count Plot, Bubble Plot, **PairPlot**, Scatter Plot fit Lines with Confidence Intervals
+	- **Plots** - Residual Plots, Distribution Plots,  Line Plots, Waffle Charts, Area Plots, Histogram, Scatter Plots Box Plot, Bar Charts, Pie Charts, Heatmaps, Area Plots, Geospatial Maps (Forium) w/ GeoJson File, Count Plot, Bubble Plot, **PairPlot**, Scatter Plot fit Lines with Confidence Intervals
 	- **Tools**: Python, R, Tabeau, Power BI, Microsoft Excel
 - [[Machine Learning]]
 	- **Tasks:** [[Linear Regression]], [[Classification]], [[Clustering]], Association, Anomaly Detection, Sequence Mining, Dimension Reduction, Recommendation Systems

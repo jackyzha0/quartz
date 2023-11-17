@@ -7,23 +7,16 @@ banner_y: 0.4705
 ---
 
 # Reinforcement Learning
-
+> [!Cite] "Software agent will learn from the environment by interactive with it and then receiving rewards for performing actions".
 # 01 Background
 **Sources**
-- https://gymnasium.farama.org/ - an API standard for reinforcement learning with a diverse collection of reference environments
-- https://pettingzoo.farama.org -  an API standard for multi-agent reinforcement learning
-- https://minigrid.farama.org - contains simple and easily configurable grid world environments to conduct Reinforcement Learning research
-- https://griddly.readthedocs.io/en/latest/about/introduction.html - all-encompassing platform for grid-world based research
+- 🧰 https://gymnasium.farama.org/ - an API standard for reinforcement learning with a diverse collection of reference environments
+- 🧰 https://pettingzoo.farama.org -  an API standard for multi-agent reinforcement learning
+- 🧰 https://minigrid.farama.org - contains simple and easily configurable grid world environments to conduct Reinforcement Learning research
+- 🌐 https://engineering.purdue.edu/DeepLearn/pdf-kak/Reinforcement.pdf
+- 📹 [Stanford CS234: Reinforcement Learning | Winter 2019](https://www.youtube.com/playlist?list=PLoROMvodv4rOSOPzutgyCTapiGlY2Nd8u)
 
-"Software agent will learn from the environment by interactive with it and then receiving rewards for performing actions".
-
-https://www.mathworks.com/help/reinforcement-learning/ug/train-3-agents-for-area-coverage.html?s_eid=PSM_15028
-
-Q-Learning: 
-- value based approach based on the so called Q-Table
-- calculates the maximum expected future reward for each action at each state.
-- q-learning algorithm
-
+#todo 
 Key Terms
 - model-free learning
 - monte-carlo policy evaluation
@@ -34,11 +27,23 @@ Key Terms
 	- Deep Q Networks (DQN)
 	- Proximal Policy Optimization
 ## 02 Important Concepts
- ![[Pasted image 20231116103223.png]]
 
-Episodes
+>[!note] Terminology
+
+![[Pasted image 20231116103223.png]]
+Let's review some of the terminology.
+- action, agent, award, environment, episode, goal, penalty, reward, state, state transition
+
+**Markov Decision Process and Markov Reward Process**
+- Stochastic vs Deterministic (Fixed) Policy
+- 
+
+
+
+**Episodes vs Steps**
 - One **episode** = one a sequence of states, actions and rewards, which ends with terminal state. For example, playing an entire game can be considered as one episode, the terminal state being reached when one player loses/wins/draws. Sometime, one may prefer to define one episode as several games ([example](http://karpathy.github.io/2016/05/31/rl/): "each episode is a few dozen games, because the games go up to score of 21 for either player").
-- Every **cycle** of state-action-reward is called a step. The reinforcement learning system continues to iterate through cycles until it reaches the desired state or a maximum number of steps are expired. This series of steps is called an episode. At the beginning of each episode, the environment is set to an initial state and the agent’s reward is reset to zero.
+- Every **cycle** of state-action-reward is called a **step**. The reinforcement learning system continues to iterate through cycles until it reaches the desired state or a maximum number of steps are expired. This series of steps is called an episode. At the beginning of each episode, the environment is set to an initial state and the agent’s reward is reset to zero.
+
 
 **Policy-based vs Value-based**
 
@@ -47,6 +52,8 @@ Episodes
 
 **State-Value Estimation (V) and Action-Value Estimation (Q)**
 
+
+
 **Montecarlo Learning vs Temporal Difference (TD) Learning**
 - Repeated random sampling to obtain numeric results.
 
@@ -54,10 +61,21 @@ Updates the values of each state based on the prediction of the final return.
 
 TD learning take an action, update the value of the previous action based on the value of the current action. Updating values on more recent trends in order to capture more of the effect of the certain state. Lower variance on Monte-Carlo.
 
-
 **ASE, ACE**
 - Associative search element (ASE)
 - Adaptive critic element (ACE)
+
+**Continuous Space to Discrete Space**
+https://github.com/anubhavshrimal/Reinforcement-Learning/blob/master/RL-in-Continuous-Space/Discretization.ipynb
+
+Here are different types:
+1. Uniform Discretization
+2. Adaptive Discretization
+3. Tile Coding
+4. Radial Basis Function (RBF)
+
+**Policy Gradients**
+
 # 03 Famous Developments
 ## Q-Learning (1989)
 ### Background
@@ -72,12 +90,14 @@ Below, we explain the Q-Learning algorithm along with the Frozen Lake environmen
 
 ![[frozen_lake.gif]]
 
-**Q-Table**
+> [!note] **Q-Table**
+
 An agent maintains a lookup table called a **Q-Table**, structured with **states** as rows and **actions** as columns. The entries are known as **Q-values**, or the expected utility/value of taking a given action in a given states. For rational agents, The goal is to choose actions of high utility.
 
 These states are initially arbitrary, such as all zero. The Q-table for the frozen lake game would have 16 states (one for each square of 4x4 grid) and four actions (up, down, left, right).
 
-**Q-Function**
+> [!note] **Q-Function**
+
 In Q-learning, we want to obtain a function that predicts the best action $a$ in state $s$ in order to maximize a **cumulative reward**. This function iteratively updates using the **Bellman Equation**. We update the Q-value...
 $$
 \colorbox{lightgreen}{$Q(S_{t},A_{t})$}\gets\colorbox{lightblue}{$Q(S_{t},A_{t})$} +\colorbox{lightred}{$\alpha$} [\colorbox{orange}{$R_{t+1}$} + \colorbox{magenta}{$\lambda\max_{a}Q(S_{t+1},a)$}-\colorbox{lightblue}{$Q(S_{t},A_{t})$}]
@@ -86,10 +106,10 @@ where
 - $t$ is the current step
 - $Q(S_{t},A_{t})$ is the former Q-value estimation
 - $\lambda\max_{a}Q(S_{t+1},a)$ is the **future reward**
-- $\lambda$ is the **discount factor**, which determines the importance of future rewards, A high value  $\lambda$ prioritizes long term rewards, while a low value $\lambda$ prioritizes short-term.
+- $\lambda$ is the **discount factor**, which determines the importance of future rewards, A high value  $\lambda$ prioritizes long term rewards (long term awards just as beneficial as short term reward) , while a low value $\lambda$ prioritizes short-term.
 - $R_{t+1}$ is the **immediate reward** received after taking action $a$ in state $S$
 
-For a given time $t$, we take a action $A_t$ from a state $S_t$. We move to another state $S_{t+1}$.
+Let's break down the formula. For a given time $t$, we take a action $A_t$ from a state $S_t$. We move to another state $S_{t+1}$.
 $$
 \max_{a}Q(S_{t+1},a) \tag{1}
 $$
@@ -99,7 +119,7 @@ Q_{\text{target}}(S_{t},A_{t}) =\colorbox{orange}{$R_{t+1}$} + \colorbox{magenta
 $$
 TD Error (Temporal Difference Error)
 $$
-TD_{\text{error}} = Q_\text{target}(S_{t},A_{t})-Q(S_{t},A_{t})
+TD_{\text{error}} = Q_\text{target}(S_{t},A_{t})-Q(S_{t},A_{t}) \tag{3}
 $$
 This measures how much the Q-value estimate needs to be adjusted in order to be closer to the desired target value.
 
@@ -108,7 +128,9 @@ The q-function, however, is a fixed algorithm.
 
 This creates the **exploration** vs **exploitation** dilemma, wether an AI should trust the learned values of Q enough to select actions based on it or try other actions hoping that might give it a better reward.
 
-**Entire Algorithm**
+> [!note] Entire Algorithm
+
+Below, we show the entire algorithm.
 ![[Pasted image 20231115192255.png]]
 
 Bellman Equation
