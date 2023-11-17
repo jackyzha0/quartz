@@ -5,7 +5,7 @@ import BodyConstructor from "./Body"
 import { JSResourceToScriptElement, StaticResources } from "../util/resources"
 import { FullSlug, RelativeURL, joinSegments } from "../util/path"
 import { visit } from "unist-util-visit"
-import { Root, Element } from "hast"
+import { Root, Element, ElementContent } from "hast"
 
 interface RenderComponents {
   head: QuartzComponent
@@ -61,22 +61,81 @@ export function renderPage(
       const classNames = (node.properties?.className ?? []) as string[]
       if (classNames.includes("transclude")) {
         const inner = node.children[0] as Element
-        const blockSlug = inner.properties?.["data-slug"] as FullSlug
-        const blockRef = node.properties!.dataBlock as string
+        const transcludeTarget = inner.properties?.["data-slug"] as FullSlug
 
         // TODO: avoid this expensive find operation and construct an index ahead of time
-        let blockNode = componentData.allFiles.find((f) => f.slug === blockSlug)?.blocks?.[blockRef]
-        if (blockNode) {
-          if (blockNode.tagName === "li") {
-            blockNode = {
-              type: "element",
-              tagName: "ul",
-              children: [blockNode],
+        const page = componentData.allFiles.find((f) => f.slug === transcludeTarget)
+        if (!page) {
+          return
+        }
+
+        let blockRef = node.properties?.dataBlock as string | undefined
+        if (blockRef?.startsWith("^")) {
+          // block transclude
+          blockRef = blockRef.slice(1)
+          let blockNode = page.blocks?.[blockRef]
+          if (blockNode) {
+            if (blockNode.tagName === "li") {
+              blockNode = {
+                type: "element",
+                tagName: "ul",
+                children: [blockNode],
+              }
+            }
+
+            node.children = [
+              blockNode,
+              {
+                type: "element",
+                tagName: "a",
+                properties: { href: inner.properties?.href, class: ["internal"] },
+                children: [{ type: "text", value: `Link to original` }],
+              },
+            ]
+          }
+        } else if (blockRef?.startsWith("#") && page.htmlAst) {
+          // header transclude
+          blockRef = blockRef.slice(1)
+          let startIdx = undefined
+          let endIdx = undefined
+          for (const [i, el] of page.htmlAst.children.entries()) {
+            if (el.type === "element" && el.tagName.match(/h[1-6]/)) {
+              if (endIdx) {
+                break
+              }
+
+              if (startIdx) {
+                endIdx = i
+              } else if (el.properties?.id === blockRef) {
+                startIdx = i
+              }
             }
           }
 
+          if (!startIdx) {
+            return
+          }
+
           node.children = [
-            blockNode,
+            ...(page.htmlAst.children.slice(startIdx, endIdx) as ElementContent[]),
+            {
+              type: "element",
+              tagName: "a",
+              properties: { href: inner.properties?.href, class: ["internal"] },
+              children: [{ type: "text", value: `Link to original` }],
+            },
+          ]
+        } else if (page.htmlAst) {
+          // page transclude
+          node.children = [
+            {
+              type: "element",
+              tagName: "h1",
+              children: [
+                { type: "text", value: page.frontmatter?.title ?? `Transclude of ${page.slug}` },
+              ],
+            },
+            ...(page.htmlAst.children as ElementContent[]),
             {
               type: "element",
               tagName: "a",
