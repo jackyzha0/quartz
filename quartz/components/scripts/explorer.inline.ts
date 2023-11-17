@@ -120,9 +120,9 @@ function setupExplorer() {
         }
       }
     })
-  } else {
+  } else if (explorer?.dataset.tree) {
     // If tree is not in localStorage or config is disabled, use tree passed from Explorer as dataset
-    explorerState = JSON.parse(explorer?.dataset.tree as string)
+    explorerState = JSON.parse(explorer.dataset.tree)
   }
 }
 
@@ -130,12 +130,13 @@ window.addEventListener("resize", setupExplorer)
 document.addEventListener("nav", () => {
   setupExplorer()
 
-  const explorerContent = document.getElementById("explorer-ul")
+  observer.disconnect()
+
   // select pseudo element at end of list
   const lastItem = document.getElementById("explorer-end")
-
-  observer.disconnect()
-  observer.observe(lastItem as Element)
+  if (lastItem) {
+    observer.observe(lastItem)
+  }
 })
 
 /**
