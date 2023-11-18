@@ -26,4 +26,3 @@ En una arquitectura de computadora, las instrucciones máquina operan con difere
    - Este enfoque permite representar información booleana o binaria, como verdadero (1) o falso (0). También se utiliza en operaciones de bits, como desplazamientos, máscaras y operaciones lógicas.
 
 En el contexto de lenguajes de alto nivel, los datos se manejan de manera más abstracta y los programadores no siempre tienen que preocuparse por los detalles de representación de datos en la arquitectura subyacente. Sin embargo, en lenguajes máquina, los programadores deben tener un conocimiento más profundo de cómo se representan y manipulan estos diferentes tipos de datos en la memoria y en las instrucciones máquina.
-
