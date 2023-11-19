@@ -104,7 +104,7 @@ export function renderPage(
                 break
               }
 
-              if (startIdx) {
+              if (startIdx !== undefined) {
                 endIdx = i
               } else if (el.properties?.id === blockRef) {
                 startIdx = i
@@ -112,7 +112,7 @@ export function renderPage(
             }
           }
 
-          if (!startIdx) {
+          if (startIdx === undefined) {
             return
           }
 
