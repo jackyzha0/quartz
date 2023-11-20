@@ -101,8 +101,6 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
 
       // Add current file to crumb (can directly use frontmatter title)
       if (options.showCurrentPage) {
-        console.log("Show current page in breadcrumbs is set to: " + options.showCurrentPage)
-        console.log("Adding cumb: " + fileData.frontmatter!.title)
         crumbs.push({
           displayName: fileData.frontmatter!.title,
           path: "",
