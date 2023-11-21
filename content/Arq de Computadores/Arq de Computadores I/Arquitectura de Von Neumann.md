@@ -33,7 +33,7 @@ Qué es la arquitectura de von Neumann?
 	- Para saber la próxima instrucción utiliza el <mark style="background: #FFF3A3A6;">Program Counter (PC)</mark>, que tiene la dirección de la próxima instrucción a buscar.
 	- Luego de buscar la instrucción, incrementa el contenido de PC (para buscar la próxima secuencia)
 - La instrucción buscada se carga dentro de un registro de la CPU, el <mark style="background: #FFF3A3A6;">Instruction Register (IR)</mark>
-	- La instrucción se encuentra en código binario, que especifica las acciones que realizará la CPU
+	- La instrucción se en cuentra en código binario, que especifica las acciones que realizará la CPU
 	- Luego de interpretarla, la ejecuta.
 
 

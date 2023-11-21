@@ -21,6 +21,8 @@ Source:: [[Unidad Aritmética Lógica]]
 ## Representaciones en complemento a dos
 - Utiliza el bit más significativo como bit de signo.
 - Difiere a la representación signo-magnitud en la forma de representar los bits restantes ![[Pasted image 20231106135037.png]]
+	- Cuando prefijamos la cantidad de dígitos a un número n, el complemento a la base de un número N actúa como -N, ya que N + C(N) = 0
+	- https://www.youtube.com/watch?v=UTVuROxztuQ
 
 ## Conversión entre longitudes de bits diferentes
 - A veces se desea tomar un entero de $n$ bits y almacenarlo en $m$ bits, siendo $m>n$. Esto se resuelve con la notación signo-magnitud, trasladando el bit de signo a la posición de más a la izquierda.
