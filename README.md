@@ -14,7 +14,7 @@ This is the source code for [Forgetful Notes](https://forgetfulnotes.com)—my d
 
 It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](https://obsidian.md). You can read the [Documentation](https://quartz.jzhao.xyz/), and join the [Discord Community](https://discord.gg/cRFFHYye7t).
 
-## Screenshots
+## Screenshots (outdated)
 
 <img alt="Website Screenshot" src="screenshot.png" width="720px" />
 
@@ -32,11 +32,11 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 
 ## Style
 
-### Fonts
+### Fonts (outdated)
 
 | Used in: | Font Family                                                              |
 | -------- | ------------------------------------------------------------------------ |
-| Header   | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
+| Headers   | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
 | Body     | [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3)       |
 | Code     | [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono)         |
 
