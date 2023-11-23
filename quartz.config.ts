@@ -15,7 +15,7 @@ const config: QuartzConfig = {
     theme: {
       typography: {
         header: "Bitter", // Schibsted Grotesk
-        body: "Poppins", // Source Sans Pro
+        body: "Bitter", // Source Sans Pro, Poppins
         code: "Fira Mono", // IBM Plex Mono
       },
       colors: {
@@ -23,13 +23,11 @@ const config: QuartzConfig = {
           light: "#faf8f8",
           lightgray: "#e5e5e5",
           gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          // darkgray: "#2e2e2e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          // secondary: "#152733",
-          tertiary: "#84a59d",
-          highlight: "#8f9fa926",
+          darkgray: "#2e2e2e", // #4e4e4e
+          dark: "#1c1c1c", // #2b2b2b
+          secondary: "#091217", // #2844b63, #152733
+          tertiary: "#242e3b", // #84a59d
+          highlight: "rgba(143, 159, 169, 0.15)", // #8f9fa926
         },
         darkMode: {
           light: "#1e1e2e",
@@ -37,9 +35,9 @@ const config: QuartzConfig = {
           gray: "#a6adc8",
           darkgray: "#cdd6f4",
           dark: "#cdd6f4",
-          secondary: "#a6e3a1",
-          tertiary: "#89dceb",
-          highlight: "rgba(143, 159, 169, 0.15)",
+          secondary: "#9be895", // #a6e3a1
+          tertiary: "#d62edf", // #89dceb, #c072c4
+          highlight: "rgba(143, 159, 169, 0.1)", // rgba(143, 159, 169, 0.15)
         },
       },
     },
