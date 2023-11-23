@@ -1,4 +1,6 @@
 button#toc {
+  margin-top: 2rem;
+  all: unset;
   background-color: transparent;
   border: none;
   text-align: left;
@@ -17,7 +19,7 @@ button#toc {
   & .fold {
     margin-left: 0.5rem;
     transition: transform 0.3s ease;
-    // opacity: 0.8;
+    opacity: 0.8;
   }
 
   &.collapsed .fold {

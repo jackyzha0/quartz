@@ -90,7 +90,7 @@ svg {
   & div > a {
     color: var(--secondary);
     font-family: var(--headerFont);
-    font-size: 0.95rem;
+    font-size: 0.95rem; // 0.95
     font-weight: 600;
     line-height: 1.5rem;
     display: inline-block;
@@ -113,7 +113,7 @@ svg {
     font-family: var(--headerFont);
 
     & p {
-      font-size: 0.95rem;
+      font-size: 1.1rem; // 0.95
       display: inline-block;
       color: var(--secondary);
       font-weight: 600;

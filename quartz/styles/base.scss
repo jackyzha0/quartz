@@ -45,7 +45,7 @@ ul,
 .math {
   color: var(--darkgray);
   fill: var(--darkgray);
-  // overflow-wrap: anywhere;
+  overflow-wrap: anywhere;
   hyphens: auto;
 }
 
@@ -157,9 +157,12 @@ a {
         align-items: center;
       }
     }
-
+    
     & .sidebar.right {
       right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
+      @media all and (max-width: $fullPageWidth) {
+        flex-direction: column;
+      }
       & > * {
         @media all and (max-width: $fullPageWidth) {
           flex: 1;
@@ -459,8 +462,9 @@ video {
 
 ul.overflow,
 ol.overflow {
-  max-height: 400;
+  max-height: 500; // 400
   overflow-y: auto;
+  scrollbar-width: thin;
 
   // clearfix
   content: "";
@@ -479,8 +483,9 @@ ol.overflow {
     left: 0;
     bottom: 0;
     opacity: 1;
-    transition: opacity 0.3s ease;
-    background: linear-gradient(transparent 0px, var(--light));
+    // Removes opacity fade
+    // transition: opacity 0.3s ease;
+    // background: linear-gradient(transparent 0px, var(--light));
   }
 }
 
