@@ -84,6 +84,22 @@ export function transformInternalLink(link: string): RelativeURL {
   return res
 }
 
+// from micromorph/src/utils.ts
+// https://github.com/natemoo-re/micromorph/blob/main/src/utils.ts#L5
+export function normalizeRelativeURLs(el: Element | Document, destination: string | URL) {
+  const rebase = (el: Element, attr: string, newBase: string | URL) => {
+    const rebased = new URL(el.getAttribute(attr)!, newBase)
+    el.setAttribute(attr, rebased.pathname + rebased.hash)
+  }
+
+  el.querySelectorAll('[href^="./"], [href^="../"]').forEach((item) =>
+    rebase(item, "href", destination),
+  )
+  el.querySelectorAll('[src^="./"], [src^="../"]').forEach((item) =>
+    rebase(item, "src", destination),
+  )
+}
+
 // resolve /a/b/c to ../..
 export function pathToRoot(slug: FullSlug): RelativeURL {
   let rootPath = slug
