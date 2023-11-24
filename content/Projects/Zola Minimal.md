@@ -1,20 +1,11 @@
 ---
-title: Zola Minimal
+title: "📚 Minimal"
 date: 2023-11-11
 updated: 2023-11-24
 source: "https://github.com/semanticdata/zola-minimal"
 compartir: true
 category: Projects
 ---
-<h1 align=center>📚 Minimal</h1>
-
-<p align="center">
-  <img src="https://img.shields.io/github/languages/code-size/semanticdata/zola-minimal" />
-  <img src="https://img.shields.io/github/repo-size/semanticdata/zola-minimal" />
-  <img src="https://img.shields.io/github/commit-activity/t/semanticdata/zola-minimal" />
-  <img src="https://img.shields.io/github/last-commit/semanticdata/zola-minimal" />
-  <img src="https://img.shields.io/website/https/semanticdata.github.io/zola-minimal.svg" />
-</p>
 
 ## Introduction
 

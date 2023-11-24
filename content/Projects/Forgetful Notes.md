@@ -1,21 +1,11 @@
 ---
-title: Forgetful Notes
+title: "🌱 Forgetful Notes"
 date: 2023-09-19
 updated: 2023-11-24
 source: "https://github.com/semanticdata/forgetful-notes"
 compartir: true
 category: Projects
 ---
-
-<h1 align=center>🌱 Forgetful Notes</h1>
-
-<p align="center">
-  <img alt="code size" src="https://img.shields.io/github/languages/code-size/semanticdata/forgetful-notes" />
-  <img alt="repository size" src="https://img.shields.io/github/repo-size/semanticdata/forgetful-notes" />
-  <img alt="commits" src="https://img.shields.io/github/commit-activity/t/semanticdata/forgetful-notes" />
-  <img alt="last commit" src="https://img.shields.io/github/last-commit/semanticdata/forgetful-notes" />
-  <img alt="is website up?" src="https://img.shields.io/website/https/forgetfulnotes.com.svg" />
-</p>
 
 ## Introduction
 

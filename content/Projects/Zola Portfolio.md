@@ -1,21 +1,11 @@
 ---
-title: Zola Portfolio
+title: "💼 Portfolio"
 date: 2023-11-13
 updated: 2023-11-24
 source: "https://github.com/semanticdata/zola-portfolio"
 compartir: true
 category: Projects
 ---
-
-<h1 align=center>💼 Portfolio</h1>
-
-<p align="center">
-  <img src="https://img.shields.io/github/languages/code-size/semanticdata/zola-portfolio" />
-  <img src="https://img.shields.io/github/repo-size/semanticdata/zola-portfolio" />
-  <img src="https://img.shields.io/github/commit-activity/t/semanticdata/zola-portfolio" />
-  <img src="https://img.shields.io/github/last-commit/semanticdata/zola-portfolio" />
-  <img src="https://img.shields.io/website/https/semanticdata.github.io/zola-portfolio.svg" />
-</p>
 
 ## Introduction
 

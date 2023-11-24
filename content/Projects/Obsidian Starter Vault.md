@@ -1,5 +1,5 @@
 ---
-title: Obsidian Starter Vault
+title: "🔮 Obsidian Starter Vault"
 date: 2023-08-26
 updated: 2023-11-24
 source: "https://github.com/semanticdata/obsidian-starter-vault"
@@ -7,14 +7,7 @@ compartir: true
 category: Projects
 ---
 
-<h1 align=center>Obsidian Starter Vault</h1>
-
-<p align="center">
-	<img src="https://img.shields.io/github/languages/code-size/semanticdata/obsidian-test-vault" />
-	<img src="https://img.shields.io/github/repo-size/semanticdata/obsidian-test-vault" />
-	<img src="https://img.shields.io/github/commit-activity/t/semanticdata/obsidian-test-vault" />
-	<img src="https://img.shields.io/github/last-commit/semanticdata/obsidian-test-vault" />
-</p>
+## Introduction
 
 An opinionated [Obsidian](https://obsidian.md/) starter. It holds a compilation of extensions and settings to help you learn and start exploring Obsidian.
 

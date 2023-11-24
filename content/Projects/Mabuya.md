@@ -1,21 +1,11 @@
 ---
-title: Mabuya
+title: "🦎 Mabuya"
 date: 2023-09-20
 updated: 2023-11-24
 source: "https://github.com/semanticdata/mabuya"
 compartir: true
 category: Projects
 ---
-
-<h1 align=center>🦎 Mabuya</h1>
-
-<p align="center">
-  <img alt="code size" src="https://img.shields.io/github/languages/code-size/semanticdata/mabuya" />
-  <img alt="repository size" src="https://img.shields.io/github/repo-size/semanticdata/mabuya" />
-  <img alt="commits" src="https://img.shields.io/github/commit-activity/t/semanticdata/mabuya" />
-  <img alt="last commit" src="https://img.shields.io/github/last-commit/semanticdata/mabuya" />
-  <img alt="is website up?" src="https://img.shields.io/website/https/forgetfulnotes.com.svg" />
-</p>
 
 ## Introduction
 
