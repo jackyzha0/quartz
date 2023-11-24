@@ -6,26 +6,11 @@ source: "https://github.com/semanticdata/zola-minimal"
 compartir: true
 category: Projects
 ---
-
 ## Introduction
 
 Minimal is a [Zola](https://www.getzola.org) theme with the goal of helping you build a light, fast, and SEO ready website. It's based on the [Minimal](https://github.com/pages-themes/minimal) theme for [Jekyll](https://jekyllrb.com/).
 
-Check out the live [Demo](https://miguelpimentel.do/zola-minimal/).
-
-## Features
-
-* Placeholder
-
-<!--
-
-## Screenshots
-
-|                           Desktop                            |                          Mobile                          |
-| :----------------------------------------------------------: | :------------------------------------------------------: |
-| ![website screenshot](screenshots/screenshot-index-dark.png) | ![website screenshot](screenshots/screenshot-mobile.png) |
-
--->
+[Demo](https://miguelpimentel.do/zola-minimal/) | [Source](https://github.com/semanticdata/zola-minimal)
 
 ## Requirements
 

@@ -6,10 +6,11 @@ source: "https://github.com/semanticdata/obsidian-starter-vault"
 compartir: true
 category: Projects
 ---
-
 ## Introduction
 
 An opinionated [Obsidian](https://obsidian.md/) starter. It holds a compilation of extensions and settings to help you learn and start exploring Obsidian.
+
+[Source](https://github.com/semanticdata/obsidian-starter-vault)
 
 ## Getting Started
 

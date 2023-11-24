@@ -6,16 +6,17 @@ source: "https://github.com/semanticdata/forgetful-notes"
 compartir: true
 category: Projects
 ---
-
 ## Introduction
 
 This is the source code for [Forgetful Notes](https://forgetfulnotes.com)—my digital garden of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 
 It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](https://obsidian.md). You can read the [Documentation](https://quartz.jzhao.xyz/), and join the [Discord Community](https://discord.gg/cRFFHYye7t).
 
+[Demo](https://forgetfulnotes.com/) | [Source](https://github.com/semanticdata/forgetful-notes)
+
 ## Screenshots (outdated)
 
-<img alt="Website Screenshot" src="screenshot.png" width="720px" />
+<img alt="Website Screenshot" src="https://raw.githubusercontent.com/semanticdata/forgetful-notes/main/screenshot.png" width="720px" />
 
 ## Useful Commands
 
@@ -31,13 +32,13 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 
 ## Style
 
-### Fonts (outdated)
+### Fonts
 
-| Used in: | Font Family                                                              |
-| -------- | ------------------------------------------------------------------------ |
-| Headers   | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
-| Body     | [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3)       |
-| Code     | [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono)         |
+| Used in: |                       Font Family                        |                              Previous Used                               |
+| -------- |:--------------------------------------------------------:|:------------------------------------------------------------------------:|
+| Headers  |    [Bitter](https://fonts.google.com/specimen/Bitter)    | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
+| Body     |    [Bitter](https://fonts.google.com/specimen/Bitter)    |    [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3)    |
+| Code     | [Fira Mono](https://fonts.google.com/specimen/Fira+Mono) |     [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono)     |
 
 ## License
 

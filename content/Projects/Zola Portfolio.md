@@ -6,26 +6,11 @@ source: "https://github.com/semanticdata/zola-portfolio"
 compartir: true
 category: Projects
 ---
-
 ## Introduction
 
 Portfolio is a [Zola](https://www.getzola.org) theme. It's based on the [Portfolio](https://github.com/jamigibbs/portfolio) theme for [Jekyll](https://jekyllrb.com/). The theme is not yet finished.
 
-Check out the live [Demo](https://miguelpimentel.do/zola-portfolio/).
-
-## Features
-
-Placeholder for future feature list.
-
-<!--
-
-## Screenshots
-
-|                           Desktop                            |                          Mobile                          |
-| :----------------------------------------------------------: | :------------------------------------------------------: |
-| ![website screenshot](screenshots/screenshot-index-dark.png) | ![website screenshot](screenshots/screenshot-mobile.png) |
-
--->
+[Demo](https://miguelpimentel.do/zola-portfolio/) | [Source](https://github.com/semanticdata/zola-portfolio)
 
 ## Requirements
 
