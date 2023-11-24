@@ -1,4 +1,4 @@
 ---
-title: gnosis
+title: Gnosis
 ---
-Gnosis is the general knowledge that englobes scientific knowledge, technical knowledge, mathematical knowledge
+Gnosis is the general knowledge which englobes [[scientific knowledge]] and [[mathematical knowledge]].

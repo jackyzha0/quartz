@@ -1,4 +1,4 @@
 ---
 title: Wisdom
 ---
-Wisdom is the central base of knowledge that unifies [[theoretical knowledge]] and practical knowledge.
+Wisdom is the supreme base of knowledge which unifies [[theoretical knowledge]] and [[practical knowledge]].

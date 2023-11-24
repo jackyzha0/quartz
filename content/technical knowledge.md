@@ -1,4 +1,4 @@
 ---
-title: techne
+title: Techne
 ---
-Techne is the knowledge 
+Techne is the knowledge of technology.
