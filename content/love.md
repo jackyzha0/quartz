@@ -1,4 +1,4 @@
 ---
 title: Love
 ---
-Love is 
+Love is a profound affection.
