@@ -1,5 +1,7 @@
 ---
 title: Wisdom
 ---
-> [!info]
-> Wisdom is the supreme base of [[knowledge]] which unifies [[theoretical knowledge]] and [[practical knowledge]].
+> [!Concept]
+> Wisdom is the supreme base of [[knowledge]] which unifies both [[theoretical knowledge]] and [[practical knowledge]].
+
+
