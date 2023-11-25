@@ -3,4 +3,4 @@ title: Techne
 aliases:
   - technical knowledge
 ---
-Techne is the [[knowledge]] of technology.
+Techne is the [[cognitio]] of technology.

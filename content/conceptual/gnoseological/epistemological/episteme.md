@@ -3,4 +3,4 @@ title: Episteme
 aliases:
   - scientific knowledge
 ---
-Episteme is the [[knowledge]] of science.
+Episteme is the [[cognitio]] of science.

@@ -3,4 +3,4 @@ title: Gnosis
 aliases:
   - theoretical knowledge
 ---
-Gnosis is the general [[knowledge]] which encompass [[episteme]] and [[mathema]].
+Gnosis is the general [[cognitio]] which encompass [[episteme]] and [[mathema]].
