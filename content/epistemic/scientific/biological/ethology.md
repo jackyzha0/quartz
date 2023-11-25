@@ -1,4 +1,4 @@
 ---
 title: Ethology
 ---
-Ethology is the study of behaviour.
+Ethology is the biological science of behaviour.

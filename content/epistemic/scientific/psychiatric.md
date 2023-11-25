@@ -1,4 +1,4 @@
 ---
 title: Psychiatric
 ---
-Psychiatric is the science 
+Psychiatric is the science of mental diseases.

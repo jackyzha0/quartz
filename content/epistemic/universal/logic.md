@@ -1,4 +1,4 @@
 ---
 title: Logic
 ---
-Logic is the universal study of true and false propositions.
+Logic is the universal inquiry of true and false propositions.
