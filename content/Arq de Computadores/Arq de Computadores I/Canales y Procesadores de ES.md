@@ -53,4 +53,6 @@ Source:: [[Dispositivos Externos]]
     - Para dispositivos de velocidad reducida.
     - Multiplexor de byte acepta/transmite caracteres rápidamente a varios dispositivos.
 
+
+![[Pasted image 20231125101608.png]]
 ![[Pasted image 20230824171719.png]]

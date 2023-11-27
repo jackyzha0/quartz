@@ -70,7 +70,7 @@ El diseño del repertorio de instrucciones de una computadora es un aspecto cruc
    - El diseño del repertorio debe definir los tipos de datos que pueden ser manipulados por las instrucciones. Esto incluye enteros, números en coma flotante, caracteres, etc.
    - La capacidad para realizar operaciones en distintos tipos de datos es esencial para la versatilidad del procesador.
 
-3. Formatos de Instrucciones:
+3. **Formatos de Instrucciones:**
    - Los formatos de instrucciones determinan la estructura de las instrucciones en términos de su longitud en bits, el número de direcciones, el tamaño de los campos, entre otros aspectos.
    - Un diseño eficiente de los formatos de instrucciones puede influir en la compacidad del código y la eficiencia de la ejecución de programas.
 
