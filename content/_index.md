@@ -17,6 +17,7 @@ Catch me on [Mastodon](https://mastodon.online/@jahinzee), or reach out to me [[
 
 ---
 
+- 📰　[[Long-Form Writ]]
 - 🖼️　[[Portfolio]]
 - 📸　[[Photos]]
 - 📠　[[Contact]]

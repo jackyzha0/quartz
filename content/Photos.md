@@ -7,7 +7,9 @@ All photos on this page are licensed under the Creative Commons [Attribution-Sha
 
 - [[A Road to a Place]]
 - [[Blue]]
+- [[Gold Rays]]
 - [[Merino]]
 - [[Regatta]]
+- [[Skysegment]]
 - [[Summer Lake]]
 - [[Urban Swans]]
