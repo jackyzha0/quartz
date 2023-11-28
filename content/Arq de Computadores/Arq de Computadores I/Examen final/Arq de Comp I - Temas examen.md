@@ -153,4 +153,3 @@
    - [[Microoperaciones#El ciclo de instrucción]] %%
 
 
-  - Qué es la paridad? Afirmativa y negativa.
