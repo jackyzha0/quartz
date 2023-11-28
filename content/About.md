@@ -1,9 +1,11 @@
 ---
 title: About
 compartir: true
-updated: 2023-11-13
-tags: [meta]
+updated: 2023-11-25
+tags:
+  - meta
 ---
+
 ## Hi! I'm Miguel 👋🏼
 
 Problem solver, hobby developer, music enjoyer, and public infrastructure enthusiast. I live in Minnesota, also known as the _"Land of 10,000 Lakes"_ for having over 14,000 bodies of fresh water.
@@ -24,4 +26,4 @@ If you are aching for more, check out what [[./Tools|tools]] I use daily, or rea
 
 Here are some places you can find me on the web. You'll probably be able to find me in other places too, provided you look hard enough.
 
-[GitHub](https://github.com/semanticdata) • [Instagram](https://instagram.com/miguelapv) • [LinkedIn](https://www.linkedin.com/in/miguelpimentel29/)
+[GitHub](https://github.com/semanticdata/) • [Instagram](https://instagram.com/miguelapv) • [LinkedIn](https://www.linkedin.com/in/miguelpimentel29/)

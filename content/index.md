@@ -1,9 +1,10 @@
 ---
-title: "Forgetful Notes"
-description: "Forgetful Notes—A digital garden of knowledge. A platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to."
+title: Forgetful Notes
+description: Forgetful Notes—A digital garden of knowledge. A platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 compartir: true
 updated: 2023-10-28
 ---
+
 # Welcome!
 
 I'm Miguel, and you have come across **Forgetful Notes**—my [[./Digital Garden|digital garden]] of knowledge. Come on in and make yourself comfortable.

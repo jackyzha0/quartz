@@ -2,8 +2,10 @@
 title: What Inspires Me
 compartir: true
 updated: 2023-10-28
-tags: [list]
+tags:
+  - list
 ---
+
 
 _These are people and projects that have resonated with me._
 

@@ -1,10 +1,12 @@
 ---
 title: Words I Like
-tags: [collection]
+tags:
+  - collection
 compartir: true
-updated: 2023-11-06
+updated: 2023-11-20
 enableToc: true
 ---
+
 [Good Source](https://wordwarriors.wayne.edu/list)
 
 ### Anodyne (adjectives)
@@ -18,6 +20,11 @@ Also used as a _noun_ to describe something that soothes, calms, or comforts.
 1. Virtue, excellence.
 2. Concept in ancient Greek thought that, in its most basic sense, refers to 'excellence' of any kind—especially a person or thing's "full realization of potential or inherent function." The term may also refer to excellence in "moral virtue."
 3. AKA **ἀρετή**.
+
+### Asunder (adverb)
+
+1. Into separate parts or pieces.
+2. Apart from each other wither in position or in direction.
 
 ### Axiom (noun)
 
@@ -137,6 +144,12 @@ Also used as a _noun_ to describe something that soothes, calms, or comforts.
 ### Paratelic (adjective)
 
 1. Applied to the mental orientation of a person who has a fun loving attitude to a situation and seeks excitement. A paratelic state of mind is activity orientated and pleasure seeking. See also reversal theory. Compare telic.
+
+### Risible (adjective)
+
+1. Relating to laughter or used in eliciting laughter.
+2. Eliciting laughter, ludicrous.
+3. Capable of laughing or inclined to laugh.
 
 ### Rue (noun)
 

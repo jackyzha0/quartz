@@ -3,8 +3,10 @@ title: Meta (how this site was made)
 description: How the site was made.
 compartir: true
 updated: 2023-10-28
-tags: [meta]
+tags:
+  - meta
 ---
+
 
 > [!summary]
 > 
