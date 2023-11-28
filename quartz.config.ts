@@ -14,6 +14,17 @@ const mocha = {
   highlight: "#313244", // Mocha/Surface0
 };
 
+const neo = {
+  light:     "#0E0E10",
+  lightgray: "#363638",
+  gray:      "#363638",
+  darkgray:  "#ffffff",
+  dark:      "#ffffff",
+  secondary: "#73C2FB",
+  tertiary:  "#416885",
+  highlight: "#1f2c37"
+}
+
 const config: QuartzConfig = {
   configuration: {
     pageTitle: "jahinzee",
@@ -32,8 +43,8 @@ const config: QuartzConfig = {
         code: "Fira Mono",
       },
       colors: {
-        lightMode: mocha,
-        darkMode: mocha
+        lightMode: neo,
+        darkMode: neo
       },
     },
   },
