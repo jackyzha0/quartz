@@ -1,4 +1,4 @@
-Published on **2023-11-27**. Text and photos licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/).
+*Published on **2023-11-27** (edited 2023-11-28). Text and photos licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/).*
 
 For those unaware, Sydney is currently embarking on some radical changes to its public transport network, one of which being extending the Sydney Metro North-West line from Chatswood to Sydenham, via a new underground railway corridor and some new stations and upgrades to existing stations. One of these new stations is named **Barangaroo**, and is located in – shockingly – Barangaroo. The station is already had much of its construction work done, and is scheduled to be open for services in early 2024.
 
@@ -42,7 +42,7 @@ At the conclusion of our self-guided tour, we got some tote bags with some reall
 
 Overall, I really liked Barangaroo station. I love how spacious, modern, and generally pleasing it is to wait for a train here, and I think it would be a fantastic addition to this fresh part of the Sydney CBD.
 
-*I took some more photos in Barangaroo on the day of my visit, available on my [[Photos]] page.*
+*I took some more photos in Barangaroo on the day of my visit: [[Skysegment]] and [[Gold Rays]].*
 
 [^1]: I understand it's called Westpac Walk now, but frankly that name sounds pretentious, up there with Adelaide Parklands Terminal (formerly Keswick Terminal).
 [^2]: Sector 2 is generally defined as all the City Circle lines, those being the T2, T4 and T8.
