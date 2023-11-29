@@ -30,6 +30,7 @@ button#toc {
   overflow: hidden;
   max-height: none;
   transition: max-height 0.5s ease;
+  position: relative;
 
   &.collapsed > .overflow::after {
     opacity: 0;
