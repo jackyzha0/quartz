@@ -34,3 +34,13 @@ En el lenguaje cristiano, la palabra “Iglesia” designa no sólo la asamblea 
 ## Cuándo comienza a ser perseguida la iglesia
 - Primero, por los propios judíos que mataron a Jesús.
 - Los primeros tres siglos, la Iglesia cristiana fue perseguida hasta el año 313 gracias al edicto de Milano.
+
+## Flashcards
+- ¿Qué es la Iglesia?
+	- La Iglesia es una comunidad, un grupo llamado a pertenecer de manera divina.
+	- La fuerza no está en la persona sola, sino que en la comunidad.
+- ¿Quién es la cabeza de la Iglesia?
+	- Jesús quería dale el verdadero sentido a la religión Judía.
+- ¿Qué relación hay entre la historia de la Iglesia y la historia de Jesus?
+	- ![[Jesús_e_Iglesia.excalidraw | center | 800]]
+- 

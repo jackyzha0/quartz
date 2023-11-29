@@ -30,5 +30,11 @@
 ## Temas para segundo parcial
 - [[Pecado Original]]
 - [[La Santísima Trinidad]]
+	- [[Jesus Histórico y de la fe]]
+	- [[Concilio de Nicea]]
+	- [[Concilio de Calcedonia]]
+	- [[Concilio de Constantinopla]]
+- [[Jesucristo]]
 - [[Espiritu santo]]
 - [[La Iglesia]]
+	- [[Miembros de la Iglesia]]

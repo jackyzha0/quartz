@@ -21,7 +21,5 @@ Donde:
 
 La aproximación por mínimos cuadrados es un método utilizado para encontrar la mejor función que se ajuste a un conjunto de datos conocidos, minimizando la suma de los cuadrados de las diferencias entre los valores reales y los valores predichos por la función. Este método es ampliamente utilizado en estadística y análisis numérico para aproximar funciones en casos donde no se puede utilizar una función interpolante exacta.
 
-![[Ajuste de una recta por mínimos cuadrados]]
-
-
-![[Coeficiente de correlación]]
+- [[Ajuste de una recta por mínimos cuadrados]]
+- [[Coeficiente de correlación]]

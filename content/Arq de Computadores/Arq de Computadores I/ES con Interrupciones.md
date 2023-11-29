@@ -35,9 +35,9 @@ Cuando el procesador carga el contador de programa y transfiere el control al pr
 El diseño de la gestión de E/S mediante interrupciones plantea dos cuestiones clave: cómo el procesador identifica el dispositivo que generó la interrupción y cómo decide cuál de varias interrupciones atender. Se emplean cuatro técnicas comunes para abordar estas cuestiones:
 
 1. **Múltiples Líneas de Interrupción:** Se proporcionan varias líneas de interrupción entre el procesador y los módulos de E/S. Sin embargo, no es práctico dedicar muchas líneas del bus a interrupciones, por lo que se conectan varios módulos de E/S a cada línea.
-    
+
 2. **Consulta Software (Software Poll):** Cuando se detecta una interrupción, el procesador desencadena una rutina de servicio de interrupción que consulta cada módulo de E/S para identificar el que generó la interrupción. Puede realizarse mediante una línea específica o leyendo registros de estado en cada módulo.
-    
+   
 3. **Conexión en Cadena (Daisy Chain):** Todos los módulos de E/S comparten una línea para solicitar interrupciones, y la línea de reconocimiento de interrupción se conecta en cadena a través de los módulos. Cuando el procesador recibe una interrupción, la señal se propaga hasta que alcanza el módulo que la solicitó, que responde con un vector que apunta a la rutina de servicio específica para ese dispositivo.
-    
+   
 4. **Arbitraje de Bus (Vectorizada):** Antes de activar la línea de petición de interrupción, un módulo de E/S debe obtener el control del bus. Solo un módulo puede activar la línea de petición a la vez. Cuando el procesador detecta la interrupción, el módulo que la solicitó coloca su vector en las líneas de datos, que actúa como un puntero a la rutina de servicio del dispositivo.

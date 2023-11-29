@@ -20,3 +20,11 @@ Source:: [[La Santísima Trinidad]]
 
 - El Cristo de la fe es lo que la primera comunidad cristiana (y todas las otras comunidades) interpretan de lo que Cristo fue
 	- La presencia más fuerte de Jesús es él resucitado
+
+
+## Flashcards
+- ¿Cuál es la diferencia entre el jesucristo histórico y el de la fe?
+	- El Jesús histórico se lo veía como una persona corriente, que sí tenía una personalidad especial
+	- Pero el Cristo de la fe fue las interpretaciones que hizo la Biblia del Jesús histórico
+	- El Cristo de la fe es lo que la primera comunidad cristiana (y todas las otras comunidades) interpretan de lo que Cristo fue
+		- La presencia más fuerte de Jesús es él resucitado

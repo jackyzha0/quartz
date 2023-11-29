@@ -16,14 +16,14 @@ Qué es la arquitectura de von Neumann?
 ?
 - La arquitectura de von Neumann es un diseño que usa una memoria para almacenar instrucciones y datos. Es la implementación de una **máquina de Turing** y la visión de una arquitectura secuencial en lugar de paralela.
 - <mark style="background: #FFF3A3A6;">Surge el concepto de programa almacenado.</mark>
-- ![[Pasted image 20230403151604.png | center | 300]]
+- ![[Pasted image 20230403151604.png | center ]]
 - En el ENIAC era muy complejo modificar los programas
 	- Busca representar los programas en una forma adecuada para ser guardado en memoria junto con los datos.
 	- El computador podría conseguir sus instrucciones leyéndolas de la memoria, y se podría modificar un programa colocando los valores en una zona en memoria
 
 ## Cómo es el ciclo de instrucción y las instrucciones en la máquina de von Neumann?
 ?
-- La función de una computadora es la ejecución de programas (localizados en memoria y <mark style="background: #FFF3A3A6;">consisten en instrucciones</mark>)
+- La función de una computadora es la ejecución de programas (localizados en memoria y consisten en instrucciones)
 	- Las instrucciones consisten en secuencias binarias llamadas código máquina.
 - La CPU es quien se encarga de ejecutar dichas instrucciones a través del denominado ciclo de instrucciones.
 ![[Pasted image 20230330090936.png | center | 200]]

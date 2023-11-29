@@ -31,3 +31,14 @@ En los puntos 687 a 701 del Catecismo de la Iglesia Católica, se destaca la tra
 
 La presencia del Espíritu Santo en la Iglesia es celebrada en la fiesta de Pentecostés, y su acción se manifiesta en la enseñanza de la Iglesia y en el discernimiento de la verdad. Los dones que concede capacitan a los creyentes para testimoniar su fe, servir a los demás y comprender las Escrituras. En última instancia, los fieles están llamados a vivir en comunión con el Espíritu Santo, permitiendo que Él los transforme y los conduzca hacia la santidad, formando así un solo cuerpo en Cristo en la Iglesia. La doctrina resumida en estos puntos subraya la centralidad del Espíritu Santo en la fe y práctica católicas.
 
+
+## Flashcards
+- ¿Qué es el Espíritu Santo?
+	- Es la tercera persona de la Santísima Trinidad.
+	- Se manifiesta en la Biblia como una paloma en el bautismo de Jesús, y como lenguas se fuego en Pentecostés.
+	- El [[Espiritu santo]] nos lleva a poder tener relación con Dios, y ser parte de él.
+- ¿Cómo se relaciona el Espíritu Santo con la Iglesia?
+	- Le otorga dones espirituales a los fieles, como la sabiduría, el entendimiento y el consejo, para fortalecer su fe y guiarlos en la vida cristiana.
+	- Él la guía, la santifica y le da unidad a través de sus dones y carismas.
+- ¿Qué se celebra en Pentecostés?
+	- La Iglesia celebra la fiesta de Pentecostés para recordar la venida del Espíritu Santo sobre los apóstoles y el inicio de la misión de la Iglesia en el mundo.

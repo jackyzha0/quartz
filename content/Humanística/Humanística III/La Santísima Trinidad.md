@@ -40,3 +40,13 @@ Credo extenso: Antes del número 185
 - Las personas divinas son distintas entre sí y tienen relaciones de origen: el Padre engendra, el Hijo es engendrado y el Espíritu Santo procede.
 - Las relaciones entre las Personas divinas son fundamentales, ya que <mark style="background: #FFF3A3A6;">la distinción reside en sus relaciones mutuas y no en una división de la unidad divina.</mark>
 - San Gregorio Nacianceno resalta la profesión de fe en la Trinidad como un depósito esencial, describiendo la relación entre la unidad y la Trinidad como una comunión infinita y connatural.
+
+
+## Flashcards
+- ¿Qué es la Santísima Trinidad?
+	- Es el misterio más grande y más importante de los cristianos![[Pasted image 20230823144029.png | center | 400]]
+	- Inmediatamente que ocurre el hecho del pecado original, Dios hace un anuncio de salvación y se reencarna en jesucristo.  <mark style="background: #FFF3A3A6;">Dios se hace hombre sin dejar de ser Dios</mark>
+	- En la santísima trinidad, no es que cada persona tiene una parte de la sustancia divina, sino que todos son Dios.
+- ¿Jesucristo, cuándo comienza a ser Jesucristo?
+	- Todos los dogmas de la Iglesia, son primero vividos (no se les ocurre a un obispo). Son celebrados antes por la comunidad.
+	- Jesucristo es la segunda persona de la santísima trinidad, y existe antes de ser encarnado. 

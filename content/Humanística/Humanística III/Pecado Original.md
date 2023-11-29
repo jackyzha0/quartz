@@ -53,3 +53,27 @@ El número 404 subraya que el pecado original también tiene una dimensión soci
 
 ## 410: La Redención de Cristo 
 En este número, se destaca la obra redentora de Jesucristo como la solución divina al pecado original y sus consecuencias. Jesús, como Salvador, vino a restaurar la comunión entre Dios y la humanidad que se había roto debido al pecado. A través de su vida, muerte y resurrección, Jesucristo ofrece la gracia de la redención y la posibilidad de una relación renovada con Dios. Su sacrificio proporciona el camino para superar las limitaciones del pecado original y vivir en la esperanza de la vida eterna.
+
+
+## Flashcards
+- ¿A qué nos referimos cuando hablamos de pecado original?
+	- Es un dogma y una verdad de fe
+	- Es el pecado mediante el cual se rompe nuestra relación con Dios y los ángeles.
+	- El mal rompe toda la estructura que Dios quería para nosotros, porque no lo puedo manejar, me viene hacia mi.
+		- El mal muchas veces no te permite ser parte de las cosas buenas.![[Pasted image 20230809143149.png | center | 300]]
+- ¿Cómo podemos restablecer esta ruptura originada por el pecado original?
+	- Jesucristo, verdadero Dios y verdadero hombre es capaz de restablecer la relación que el pecado original rompió. Cuando aparece el pecado original, aparece el evangelio/anuncio de la salvación.
+- ¿Es el pecado original un pecado cometido?
+	- No, el pecado original es un pecado contraído, por lo que no es un acto.
+		- Es un estado
+- ¿Cómo es el proceso de reconciliación con Jesucristo?
+	- En este proceso, Él es el mediador y la plenitud de la revelación
+	- A través del plan de la salvación y la revelación, nos comunica que el amor de Dios es incondicional. 
+- ¿Cuáles son los 3 lados antropológicos por los que accede el mal?
+	- Tener | Poder | Placer
+- ¿Cuáles son las consecuencias del pecado original?
+	- Desorden en lo que antes teníamos un orden establecido.
+		- El ser humano quiere ser Dios sin Dios, y se convierte en esclavo de las cosas.
+	- Concupiscencia o Inclinación al mal
+		- La naturaleza humana está herida. No tengo una fortaleza para enfrentarme por mi cuenta al mal.
+	- Es un pecado contraído, no cometido
