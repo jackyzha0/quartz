@@ -32,8 +32,6 @@ async function mouseEnterHandler(
   const hash = targetUrl.hash
   targetUrl.hash = ""
   targetUrl.search = ""
-  // prevent hover of the same page
-  if (thisUrl.toString() === targetUrl.toString()) return
 
   const contents = await fetch(`${targetUrl}`)
     .then((res) => res.text())
