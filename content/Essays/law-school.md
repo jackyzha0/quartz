@@ -6,6 +6,9 @@ tags:
 date: 2023-09-20
 draft: true
 ---
+>[!warning]
+>CW: Mental health, references to US politics. TLDR law school bad.
+
 I have a lot of thoughts about law school, both as an institution and the type of culture it creates in the workforce. These include my experiences as a student and as an observer. Places and names will be altered to preserve anonymity as well as the school that I'm attending. [[#Homework/Further Reading|Prospective law students, click here]].
 
 > [!hint]  Law school as a process usually looks like this:
@@ -15,7 +18,7 @@ I have a lot of thoughts about law school, both as an institution and the type o
 ## Applying
 I was one of the lucky ones that knew I wanted to be a lawyer right out of the gate. 
 
-With law school, a substantial minority of applicants are on their second career ("nontraditional students"), or view law school as a backup plan after job prospects from their recent degree didn't pan out. Teachers and aspiring history professors are plentiful in this degree.
+With law school, a substantial minority of applicants are on their second career ("nontraditional students"), or view law school as a backup plan after job prospects from their recent degree didn't pan out. Teachers and former aspiring history professors are plentiful in this degree.
 - Sidebar: I will say, teachers being present makes study sessions very helpful, and icebreaker parties significantly more fun!
 
 There are a lot of equitable concerns and shady dealings with law school applications, as well as a lot of conflicting opinions. 
@@ -33,7 +36,16 @@ As you can see, it's a lot more about gaming the system and obtaining leverage t
 ## Your First Year
 
 ### Detour: Constitutional Law
+There are a few subjects in particular that foster a very toxic classroom environment, and I think con law has the biggest penchant for this out of the first year classes. Nearly every law student I've talked to absolutely resents the way they felt in this class because of how it was taught.
 
+The aforementioned Socratic method and its derivatives are primarily at fault for this. Most professors will teach the course chronologically\*, which means you talk through all the obsolete cases Socratically until you get to current law, so that you can see how the doctrine developed. In con law, Socratic discourse means the professor splitting the class into sides\* of the issue over each case and putting sides in conversation with each other. This method of pitting student-on-student tends to make the class very heated, especially when you have a very smart bunch of students that realize the importance of these old cases to new doctrine.
+- \*: Oversimplification
+
+I'll refrain from discussing con law final exams because I think they're an area where you do kind of have to suck it up and write what you know, despite how it makes you feel to put the words on paper if you're asked to make arguments for both sides.
+
+Con law is a depressing course to watch the evolution of different doctrines through, especially today. I can say for certain that I came out of it with a much more cynical view of judicial politics due to recent developments in state power, reproductive justice, and economic and regulatory judicial policy. Even looking back at historical cases, it's always disheartening to discuss a Justice's motivations for ruling a certain way when the class knows full well that they flipped their entire jurisprudence in order to rule along political lines.
+
+Thankfully, there are ways to teach con law with respect to the first point that lessen the emotional toll on students. I'm a big fan of my professor's approach: *he*'s the one that plays devil's advocate, rather than the students. When he asks a student on one side of the room a question, he'll immediately rebut their answer with an argument resonating with another. Repeat for every side of the room. That way, you don't end up fostering resentment between students for their opposing views on cases. It takes a very skilled and humble professor to be able to completely conceal their own opinions AND know the cases well enough to swap arguments at the drop of a hat several dozen times throughout a class period. 
 ## Job Prospects
 ### "Big Law"
 
