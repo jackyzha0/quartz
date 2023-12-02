@@ -14,4 +14,8 @@ Here are my [scientific publications](/pubs).
 
 Here are some [projects I'd love built](/future-projects) that I don't have time to do myself.
 
+[Contact me](/contact.md) if you have a question/comment/concern. 
+
+I'll write a [disclosure page](/disclosures/md) later.
+
 Not sure? you can search with `ctrl + k`.
