@@ -12,4 +12,6 @@ Here is a blurb [about me](/about).
 
 Here are my [scientific publications](/pubs).
 
+Here are some [projects I'd love built](/future-projects) that I don't have time to do myself.
+
 Not sure? you can search with `ctrl + k`.
