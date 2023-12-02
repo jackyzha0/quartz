@@ -6,6 +6,9 @@ tags:
   - seedling
 date: 9-08-23
 ---
+> [!hint]
+> This page discloses some instructions that I thought would have been helpful when I was setting up this project.
+
 Setting up LiveSync was pretty tumultuous. Obsidian has a paid feature called [Obsidian Sync](https://obsidian.md/sync), which accomplishes the same thing, but I have a webserver and determination!
 
 Repo is [here](https://github.com/vrtmrz/obsidian-livesync) for those interested.

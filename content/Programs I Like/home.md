@@ -24,3 +24,5 @@ Generally, I adore any tool with a community-based ecosystem that has some compo
 - This category typically includes highly flexible pieces of software that I affectionately refer to as "configuration hell." If you're not breaking your entire install every time you want to view a new filetype, you're doing it wrong.
 - Here are some strictly software projects, as well as my quick thoughts on each (with a more in-depth explanation sometimes available):
 	- [[Programs I Like/code-editors#Neovim|Neovim]], the blazingly fast and highly-configurable terminal text editor. 
+## Programming languages?
+- [[functional-programming|Functional programming]] is my favorite paradigm.

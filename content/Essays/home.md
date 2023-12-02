@@ -10,3 +10,4 @@ Below is a collection of long-form content I've authored.
 - [[Essays/productivity|Increasing your productivity]] through all the means that have helped me
 - [[Essays/why-i-garden|Why I cultivate a digital garden]]
 - [[Projects/my-cloud|Why I'm so concerned with minimizing my digital footprint]]
+- [[Essays/on-linux|My Linux experience]]

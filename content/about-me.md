@@ -13,4 +13,4 @@ I obsess over minimizing my digital footprint with respect to services where the
 ## By...Hobby
 I enjoy rock climbing, building & flying FPV drones, reading, and baking. Hobby electronics repair was previously one of my interests, but modern devices are unfortunately no longer repairable to the extent that I’m able to do so. 
 
-I can be found in your local cafe, sipping something more dessert than coffee and typing furiously into a legal document or class outline.
+I can be found in your local cafe, sipping something more dessert than coffee and typing furiously into a legal document or class outline. If I'm procrastinating, I'll probably be debugging some selfhost service or writing a toy program in Haskell.
