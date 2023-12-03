@@ -81,14 +81,16 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                   // WHATWG equivalent https://nodejs.dev/en/api/v18/url/#urlresolvefrom-to
                   const url = new URL(dest, `https://base.com/${curSlug}`)
                   const canonicalDest = url.pathname
-                  const [destCanonical, _destAnchor] = splitAnchor(canonicalDest)
+                  let [destCanonical, _destAnchor] = splitAnchor(canonicalDest)
+                  if (destCanonical.endsWith("/")) {
+                    destCanonical += "index"
+                  }
 
                   // need to decodeURIComponent here as WHATWG URL percent-encodes everything
-                  const simple = decodeURIComponent(
-                    simplifySlug(destCanonical as FullSlug),
-                  ) as SimpleSlug
+                  const full = decodeURIComponent(_stripSlashes(destCanonical, true)) as FullSlug
+                  const simple = simplifySlug(full)
                   outgoing.add(simple)
-                  node.properties["data-slug"] = simple
+                  node.properties["data-slug"] = full
                 }
 
                 // rewrite link internals if prettylinks is on

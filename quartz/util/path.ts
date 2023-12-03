@@ -1,4 +1,5 @@
 import { slug } from "github-slugger"
+import type { ElementContent, Element as HastElement } from "hast"
 // this file must be isomorphic so it can't use node libs (e.g. path)
 
 export const QUARTZ = "quartz"
@@ -65,7 +66,8 @@ export function slugifyFilePath(fp: FilePath, excludeExt?: boolean): FullSlug {
 }
 
 export function simplifySlug(fp: FullSlug): SimpleSlug {
-  return _stripSlashes(_trimSuffix(fp, "index"), true) as SimpleSlug
+  const res = _stripSlashes(_trimSuffix(fp, "index"), true)
+  return (res.length === 0 ? "/" : res) as SimpleSlug
 }
 
 export function transformInternalLink(link: string): RelativeURL {
@@ -86,18 +88,45 @@ export function transformInternalLink(link: string): RelativeURL {
 
 // from micromorph/src/utils.ts
 // https://github.com/natemoo-re/micromorph/blob/main/src/utils.ts#L5
+const _rebaseHtmlElement = (el: Element, attr: string, newBase: string | URL) => {
+  const rebased = new URL(el.getAttribute(attr)!, newBase)
+  el.setAttribute(attr, rebased.pathname + rebased.hash)
+}
 export function normalizeRelativeURLs(el: Element | Document, destination: string | URL) {
-  const rebase = (el: Element, attr: string, newBase: string | URL) => {
-    const rebased = new URL(el.getAttribute(attr)!, newBase)
-    el.setAttribute(attr, rebased.pathname + rebased.hash)
-  }
-
   el.querySelectorAll('[href^="./"], [href^="../"]').forEach((item) =>
-    rebase(item, "href", destination),
+    _rebaseHtmlElement(item, "href", destination),
   )
   el.querySelectorAll('[src^="./"], [src^="../"]').forEach((item) =>
-    rebase(item, "src", destination),
+    _rebaseHtmlElement(item, "src", destination),
   )
+}
+
+const _rebaseHastElement = (
+  el: HastElement,
+  attr: string,
+  curBase: FullSlug,
+  newBase: FullSlug,
+) => {
+  if (el.properties?.[attr]) {
+    if (!isRelativeURL(String(el.properties[attr]))) {
+      return
+    }
+
+    const rel = joinSegments(resolveRelative(curBase, newBase), "..", el.properties[attr] as string)
+    el.properties[attr] = rel
+  }
+}
+
+export function normalizeHastElement(el: HastElement, curBase: FullSlug, newBase: FullSlug) {
+  _rebaseHastElement(el, "src", curBase, newBase)
+  _rebaseHastElement(el, "href", curBase, newBase)
+  if (el.children) {
+    el.children = el.children.map((child) =>
+      normalizeHastElement(child as HastElement, curBase, newBase),
+    )
+  }
+
+  return el
 }
 
 // resolve /a/b/c to ../..
