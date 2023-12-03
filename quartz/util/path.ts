@@ -1,5 +1,5 @@
 import { slug } from "github-slugger"
-import type {  Element as HastElement } from "hast"
+import type { Element as HastElement } from "hast"
 // this file must be isomorphic so it can't use node libs (e.g. path)
 
 export const QUARTZ = "quartz"
