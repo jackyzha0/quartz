@@ -1,5 +1,5 @@
 import { slug } from "github-slugger"
-import type { ElementContent, Element as HastElement } from "hast"
+import type {  Element as HastElement } from "hast"
 // this file must be isomorphic so it can't use node libs (e.g. path)
 
 export const QUARTZ = "quartz"
@@ -25,7 +25,7 @@ export function isFullSlug(s: string): s is FullSlug {
 /** Shouldn't be a relative path and shouldn't have `/index` as an ending or a file extension. It _can_ however have a trailing slash to indicate a folder path. */
 export type SimpleSlug = SlugLike<"simple">
 export function isSimpleSlug(s: string): s is SimpleSlug {
-  const validStart = !(s.startsWith(".") || s.startsWith("/"))
+  const validStart = !(s.startsWith(".") || (s.length > 1 && s.startsWith("/")))
   const validEnding = !(s.endsWith("/index") || s === "index")
   return validStart && !_containsForbiddenCharacters(s) && validEnding && !_hasFileExtension(s)
 }
