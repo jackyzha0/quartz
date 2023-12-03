@@ -10,7 +10,7 @@ export default (() => {
       const { text: timeTaken, words: _words } = readingTime(text)
 
       if (fileData.dates) {
-        segments.push(formatDate(getDate(cfg, fileData)!))
+        segments.push(formatDate(getDate(cfg, fileData)!, cfg))
       }
 
       segments.push(timeTaken)
