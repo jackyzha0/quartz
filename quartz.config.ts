@@ -12,6 +12,11 @@ const config: QuartzConfig = {
     baseUrl: "quartz.jzhao.xyz",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
+    dateFormat: {locales: 'en-US', options: {
+      day: 'numeric',
+      month: 'short',
+      year: '2-digit'
+    }},
     theme: {
       typography: {
         header: "Schibsted Grotesk",
