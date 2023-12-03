@@ -14,9 +14,19 @@ This is the source code for [Forgetful Notes](https://forgetfulnotes.com)—my d
 
 It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](https://obsidian.md). You can read the [Documentation](https://quartz.jzhao.xyz/), and join the [Discord Community](https://discord.gg/cRFFHYye7t).
 
-## Screenshots (outdated)
+## Screenshots
 
-<img alt="Website Screenshot" src="screenshot.png" width="720px" />
+### Full Width
+
+<img alt="Website Screenshot" src="screenshot-full.png" width="720px" />
+
+### Slim (light)
+
+<img alt="Website Screenshot" src="screenshot-light.png" width="360px" />
+
+### Slim (dark)
+
+<img alt="Website Screenshot" src="screenshot-dark.png" width="360px" />
 
 ## Useful Commands
 
@@ -32,13 +42,13 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 
 ## Style
 
-### Fonts (outdated)
+### Fonts
 
-| Used in: | Font Family                                                              |
-| -------- | ------------------------------------------------------------------------ |
-| Headers   | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
-| Body     | [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3)       |
-| Code     | [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono)         |
+| Used in: | Font Family     | Previous Font |
+| -------- | :-----------------: | :---: |
+| Headers   | [Bitter](https://fonts.google.com/specimen/Bitter) | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
+| Body     | [Bitter](https://fonts.google.com/specimen/Bitter)       | [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3) |
+| Code     | [Fira Mono](https://fonts.google.com/specimen/Fira+Mono)         | [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono) |
 
 ## License
 
