@@ -196,6 +196,11 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
   )
   await fs.promises.writeFile(configFilePath, configContent)
 
+  // setup remote
+  execSync(
+    `git remote show upstream || git remote add upstream https://github.com/jackyzha0/quartz.git`,
+  )
+
   outro(`You're all set! Not sure what to do next? Try:
   • Customizing Quartz a bit more by editing \`quartz.config.ts\`
   • Running \`npx quartz build --serve\` to preview your Quartz locally
