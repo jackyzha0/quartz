@@ -15,13 +15,13 @@ My Second Brain is continuously growing, and while I have some essential Map of 
 
 | Item               | Description                   |
 |--------------------|-------------------------------|
-| `AI&DATA`          | Artificial Intelligence and Data-related content. |
-| `Article&Books`    | Articles and books related to the topic.          |
-| `Cloud`            | Content related to cloud computing.               |
-| `Devops&DevSecOps` | Topics covering DevOps and DevSecOps practices.   |
+| [`AI&DATA`](./AI&DATA)          | Artificial Intelligence and Data-related content. |
+| [`Article&Books`](./Article&Books)    | Articles and books related to the topic.          |
+| [`Cloud`](./Cloud)            | Content related to cloud computing.               |
+| [`Devops&DevSecOps`](./Devops&DevSecOps) | Topics covering DevOps and DevSecOps practices.   |
 | `imgs`             | Directory for storing images.                      |
 | `index.md`         | Main content file for this section.  (You are here !)        |
-| `SoftwareEngineering` | Content related to software engineering.        |
+| [`SoftwareEngineering`](./SoftwareEngineering) | Content related to software engineering.        |
 
 
 *If you’re interested in diving deeper into data engineering, visit the Data Glossary, a digital garden I’ve built focusing on data and data engineering concepts.
