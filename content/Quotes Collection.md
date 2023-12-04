@@ -1,25 +1,27 @@
 ---
 title: Quotes Collection
-tags: [collection]
+tags:
+  - collection
 compartir: true
-updated: 2023-10-05
+updated: 2023-12-04
 enableToc: true
 ---
 
+
 > [!quote]
-> 
+>
 > "Always demand a deadline. A deadline weeds out the extraneous and the ordinary. It prevents you from trying to make it perfect, so you have to make it different. Different is better."
 
 > [!quote]
-> 
+>
 > "Better done than perfect." Perfectionism is nothing but _fear_. Conquer it.
 
 > [!quote]
-> 
+>
 > "Clarity requires thinking. Thinking requires writing."
 
 > [!quote]
-> 
+>
 > "Action is not just the _effect_ of motivation, but also the _cause_ of motivation."
 
 ### Ajahn Chah
@@ -80,9 +82,9 @@ enableToc: true
 ### u/kaidomac On ADHD
 
 > "I wish I had the ability to instantly internalize this comic for neuro-typical people. "Just try harder" doesn't fully illuminate the ridiculous, daily, momentary inner struggle we fight ALL the time. And it also helps SO MUCH to explain it to ourselves this way!
-> 
+>
 > I was visiting an elderly family member the other day and they were like, "Well I definitely don't have ADHD, when I decide to focus on something, I can just do it!" I definitely had a momentary inner twinge that that's not the norm for me…simply deciding to do it & not having the "Mentos & Coke" effect of mental diffusion kick in to over-think the task & then feel all of the other things I have to do start swirling around, and then feel the emotional barriers of the weight of the task & the mental energy loss from the pre-requisite requirements like having to clean up or find stuff kick in…things that aren't on anybody's normal radar at all!
-> 
+>
 > It's a silly, nonsensical situation to deal with in life…I'm very grateful towards this artist for illustration the reality of the situation!"
 
 ### Pascal
@@ -124,9 +126,9 @@ enableToc: true
 ### Waymond Wang
 
 > "When I choose to see the good side of things, I'm not being naïve. It is strategic and necessary. It's how I've learned to survive through everything.
-> 
+>
 > I don't know. The only thing I do know… is that we have to be kind.
-> 
+>
 > Please. Be kind… especially when we don't know what's going on.
 > I know you see yourself as a fighter. Well, I see myself as one too. This is how I fight."
 
@@ -137,11 +139,11 @@ enableToc: true
 ### XKCD Book
 
 > [!quote] From XKCD Book
-> 
+>
 > **Throwing is hard.**
-> 
+>
 > "In order to deliver a baseball to a batter, a pitcher has to release the ball at exactly the right point in the throw. A timing error of half a millisecond in either direction is enough to cause the ball to miss the strike zone.
-> 
+>
 > To put that in perspective, it takes about five milliseconds for the fastest nerve impulse to travel the length of the arm. That means that when your arm is still rotating toward the correct position, the signal to release the ball is already at your wrist.
-> 
+>
 > In terms of timing, this is like a drummer dropping a drumstick from the tenth story and hitting a drum on the ground on the correct beat."

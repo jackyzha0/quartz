@@ -1,10 +1,13 @@
 ---
 title: Guitar
-tags: [learning, music]
+tags:
+  - learning
+  - music
 compartir: true
-updated: 2023-10-02
+updated: 2023-12-04
 enableToc: true
 ---
+
 ## Tabs for the Guitar
 
 When you are looking at a tab, you will see six horizontal lines. These lines represent the strings of the guitar. The bottom line is the 6th string (the thickest string on your guitar, low e) and the top line is the thinnest string (the first string, high e).
@@ -41,5 +44,5 @@ You can then finish out the riff by grabbing the 6th fret on the 6th string with
 
 ## Sources
 
-* [ultimate-guitar.com](https://tabs.ultimate-guitar.com/tab/metallica/enter-sandman-tabs-8595  )
-* [guitarlessons.org](https://www.guitarlessons.org/lessons/read-guitar-tabs/)
+- [ultimate-guitar.com](https://tabs.ultimate-guitar.com/tab/metallica/enter-sandman-tabs-8595  )
+- [guitarlessons.org](https://www.guitarlessons.org/lessons/read-guitar-tabs/)

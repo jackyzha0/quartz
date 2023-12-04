@@ -3,9 +3,10 @@ title: Words I Like
 tags:
   - collection
 compartir: true
-updated: 2023-11-20
+updated: 2023-12-04
 enableToc: true
 ---
+
 
 [Good Source](https://wordwarriors.wayne.edu/list)
 
@@ -61,7 +62,7 @@ Also used as a _noun_ to describe something that soothes, calms, or comforts.
 
 ### Dogfooding (slang)
 
-* _From [Wikipedia](https://en.wikipedia.org/wiki/Eating_your_own_dog_food)_: Eating your own dog food or "_dogfooding_" is the practice of using one's own products or services.
+- _From [Wikipedia](https://en.wikipedia.org/wiki/Eating_your_own_dog_food)_: Eating your own dog food or "_dogfooding_" is the practice of using one's own products or services.
 
 ### Excoriate (verb)
 
@@ -127,7 +128,7 @@ Also used as a _noun_ to describe something that soothes, calms, or comforts.
 
 ### Logy (slang)
 
-1. Characterised by lethargy; sluggish.
+1. Characterized by lethargy; sluggish.
 
 ### Lozenge (noun)
 

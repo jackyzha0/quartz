@@ -1,10 +1,13 @@
 ---
 title: Free Facts
-tags: [collection]
+tags:
+  - collection
 compartir: true
-updated: 2023-10-19
+updated: 2023-12-04
 enableToc: true
 ---
+
+
 They are not fun, but they are free.
 
 ### Disney Aladdin

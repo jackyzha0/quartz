@@ -2,14 +2,14 @@
 title: Meta (how this site was made)
 description: How the site was made.
 compartir: true
-updated: 2023-10-28
+updated: 2023-12-04
 tags:
   - meta
 ---
 
 
 > [!summary]
-> 
+>
 > **Forgetful Notes** is created using [Quartz](https://github.com/jackyzha0/quartz), hosted on [GitHub](https://github.com/), deployed with [GitHub Pages](https://pages.github.com/), and facilitated by the GitHub [Publisher](https://github.com/ObsidianPublisher) plugin for [Obsidian](https://obsidian.md/). If interested, you can browse the [source](https://github.com/semanticdata/forgetful-notes) code.
 
 ### Background
@@ -26,12 +26,12 @@ The [source code](https://github.com/semanticdata/forgetful-notes) is hosted in 
 
 ### Features
 
-* Fast Natural-Language Search
-* Bidirectional Backlinks
-* Floating Link Previews
-* Admonition-style Callouts
-* Markdown Links and Wikilinks Support
-* Latex Support
+- Fast Natural-Language Search
+- Bidirectional Backlinks
+- Floating Link Previews
+- Admonition-style Callouts
+- Markdown Links and Wikilinks Support
+- Latex Support
 
 ### File Structure
 

@@ -3,7 +3,7 @@ title: Digital Garden
 tags:
   - digital-gardening
 compartir: true
-updated: 2023-10-28
+updated: 2023-12-04
 ---
 
 ## What is a Digital Garden
@@ -18,6 +18,6 @@ Digital Gardens are explorable rather than structured as a strictly linear strea
 
 ## Kinds of Notes
 
-* 🌱 _Seedlings_ for very rough and early ideas.
-* 🌿 _Budding_ for work I've cleaned up and clarified.
-* 🌳 _Evergreen_ for work that is reasonably complete (though I still tend these over time).
+- 🌱 _Seedlings_ for very rough and early ideas.
+- 🌿 _Budding_ for work I've cleaned up and clarified.
+- 🌳 _Evergreen_ for work that is reasonably complete (though I still tend these over time).

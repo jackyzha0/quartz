@@ -1,11 +1,15 @@
 ---
 title: NeoVim
 compartir: true
-updated: 2023-10-02
-tags: [reference]
+updated: 2023-12-04
+tags:
+  - reference
 enableToc: true
-aliases: [Nvim, Vim]
+aliases:
+  - Nvim
+  - Vim
 ---
+
 
 Vim-fork focused on extensibility and usability.
 

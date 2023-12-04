@@ -1,7 +1,7 @@
 ---
 title: About
 compartir: true
-updated: 2023-11-25
+updated: 2023-12-04
 tags:
   - meta
 ---
@@ -14,7 +14,7 @@ I think a lot, work a lot, have existential crises, and know just enough about m
 
 If you are aching for more, check out what [[./Tools|tools]] I use daily, or read my [[./Public Journal|public journal]].
 
-### As of November 2023, I am…
+### As of December 2023, I am…
 
 … learning about web dev with [Zola](https://www.getzola.org).  
 … making simple browser [extensions](https://addons.mozilla.org/en-US/firefox/user/17772574/).  

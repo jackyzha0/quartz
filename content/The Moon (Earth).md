@@ -1,8 +1,9 @@
 ---
-title: "The Moon (Earth)"
-updated: 2023-10-11
+title: The Moon (Earth)
+updated: 2023-12-04
 compartir: true
 ---
+
 
 Earth's only natural satellite. Orbits around the Earth at an average distance of 384,400 km (238,900 mi).
 
