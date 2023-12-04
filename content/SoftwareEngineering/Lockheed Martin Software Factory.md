@@ -1,3 +1,10 @@
+---
+tags:
+  - softwarefactory
+  - software-engineering
+---
+#software-engineering
+
 ![[Screenshot from 2023-03-14 15-53-57.png]]
 
 **Software Dojos: Iterative Learning**

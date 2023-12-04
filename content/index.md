@@ -1,3 +1,17 @@
+---
+tags:
+  - index
+  - todos
+  - software-engineering
+  - programinglang
+  - devops
+  - devsecops
+  - cyber
+  - cloud
+  - books
+  - article
+---
+-
 # Erdem's Second Brain 🧠
 
 Welcome to my public Second Brain! This is a space where I store my notes, ideas, insights, and connections I’ve made throughout my life. Organized as a Zettelkasten (or a Digital Garden), you can explore the various topics that interest me, learn from the content I’ve gathered, and see how everything is connected.
