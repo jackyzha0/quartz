@@ -16,6 +16,6 @@ Here are some [projects I'd love built](/future-projects) that I don't have time
 
 [Contact me](/contact.md) if you have a question/comment/concern. 
 
-I'll write a [disclosure page](/disclosures/md) later.
+Personal [disclosure page](/disclosures.md) here. Thanks to Kevin Sekniqi for format and copy as a template.
 
 Not sure? you can search with `ctrl + k`.
