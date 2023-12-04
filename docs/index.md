@@ -8,6 +8,11 @@ Quartz is a fast, batteries-included static-site generator that transforms Markd
 
 Quartz requires **at least [Node](https://nodejs.org/) v18.14** and `npm` v9.3.1 to function correctly. Ensure you have this installed on your machine before continuing.
 
+>[!info]- For Your Information - Junior Developers!
+>Before starting with the following commands below. The suggested workflow is to fork this repository to your own github account and then clone that forked repository locally.
+>
+>Replacing the url of the first `git clone` command with clone url of your forked repo.
+
 Then, in your terminal of choice, enter the following commands line by line:
 
 ```shell
