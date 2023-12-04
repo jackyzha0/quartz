@@ -1,6 +1,7 @@
 
 ## # What are the 4 Vs of Big Data?
  There are generally four characteristics that must be part of a dataset to qualify it as big data—volume, velocity, variety and veracity [link](https://bernardmarr.com/what-are-the-4-vs-of-big-data/#:~:text=There%20are%20generally%20four%20characteristics,%2C%20velocity%2C%20variety%20and%20veracity.)
+#etl
 
 ### What is ETL
 
@@ -10,8 +11,8 @@ ETL provides the foundation for data analytics and machine learning workstreams.
 - Cleanse the data to improve data quality and establish consistency
 - Load data into a target database
 
-
-### Apache Beam
+#apachebeam
+### Apache Beam 
 Apache Beam is an open-source, unified programming model and set of tools for building batch and streaming data processing pipelines. It provides a way to express data processing pipelines that can run on various distributed processing backends, such as Apache Spark, Apache Flink, Google Cloud Dataflow, and others. Apache Beam offers a high-level API that abstracts away the complexities of distributed data processing and allows developers to write pipeline code in a language-agnostic manner.
 
 The key concept in Apache Beam is the data processing pipeline, which consists of a series of transforms that are applied to input data to produce an output. A transform represents a specific operation on the data, such as filtering, mapping, aggregating, or joining. Apache Beam provides a rich set of built-in transforms, as well as the ability to create custom transforms to suit specific processing needs.
