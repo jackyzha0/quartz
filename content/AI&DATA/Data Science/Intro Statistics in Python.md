@@ -420,3 +420,35 @@ print(f"CDF at x = {x}: {cdf_value:.4f}")
 ```
 
 In this example, we define a uniform distribution with a lower bound of 0 and an upper bound of 10 (resulting in a range of 10 - 0 = 10). We then calculate the CDF at `x = 5`, which gives us the cumulative probability that a random variable following this uniform distribution is less than or equal to 5. The result will be printed to the console.
+
+#`uniform.rvs()`
+
+Here's a more specific explanation:
+
+- **`uniform.rvs()` Function**: This function is part of the SciPy library and is used to generate random variates (samples) from a uniform distribution.
+
+- **Uniform Distribution**: A uniform distribution is a probability distribution where all values within a specified interval have equal probability. In other words, if you were to plot the probability density function (PDF) of a uniform distribution, it would look like a flat line within the specified interval, indicating that all values in that interval are equally likely to occur.
+
+- **Random Variates**: "Random variates" are simply random values or samples drawn from a probability distribution. When you use `uniform.rvs()`, you are generating random values that follow the pattern of a uniform distribution.
+
+- **Uniformity**: The term "uniform" in this context emphasizes that the distribution of random values is even or consistent across the specified interval, with no particular values being favored over others.
+
+Here's an example using `uniform.rvs()` to generate random variates from a uniform distribution:
+
+```python
+from scipy.stats import uniform
+
+# Define the parameters of the uniform distribution
+lower_bound = 0  # Lower bound of the interval
+upper_bound = 10  # Upper bound of the interval
+
+# Generate a random sample of size 5 from the uniform distribution
+random_sample = uniform.rvs(loc=lower_bound, scale=upper_bound - lower_bound, size=5)
+
+# Print the generated random sample
+print(random_sample)
+```
+
+In this example, `uniform.rvs()` is used to generate random variates within the interval [0, 10] (inclusive of 0 and 10), and each value within that interval has an equal chance of being selected, reflecting the uniform distribution.
+
+#  binomial distribution
