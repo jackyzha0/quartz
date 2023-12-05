@@ -30,7 +30,7 @@ En el estudio de los métodos numéricos, se busca lograr aproximaciones con la 
 	- Las cifras significativas son una medida que indica la confiabilidad de los dígitos de un número. Determinan cuántos dígitos de un número son realmente informativos y contribuyen a su precisión. Los errores de redondeo surgen cuando debemos truncar un número con infinitas cifras a un número finito de dígitos.
 - Exactitud y Precisión
 	- La exactitud se refiere a qué tan cerca está una aproximación del valor verdadero. Por otro lado, la precisión se relaciona con la coherencia entre diferentes aproximaciones realizadas. Es importante notar que un resultado puede ser preciso pero no exacto, o viceversa.
-
+![[Pasted image 20231204154350.png]]
 ## Error teórico
 $$x_v=x_a+e_t \Rightarrow e_t = x_v - x_a$$
 Donde
@@ -41,7 +41,7 @@ También podemos representarlo como error teórico relativo
 $$E=\dfrac{e_t}{x_v}$$
 En las situaciones reales no se cuenta con el error verdadero de una medida. En esos casos, para normalizar el error es utilizar la mejor estimación posible. Se normaliza el error a un valor aproximado.
 $$\varepsilon_a = \dfrac{e_a}{x_a}$$
-### Errores en métodos iterativos
+## Errores en métodos numéricos iterativos
 - Los métodos numéricos son iterativos, por lo que vamos teniendo sucesiones de valores aproximados que tienden al valor verdadero. En tales casos, el error se calcula $$\varepsilon_a = \dfrac{x_i-x_{i-1}}{x_1}$$
 ## Errores de los métodos numéricos
 - Se generan con el uso de aproximaciones para representar las cantidades y operaciones matemáticas.
@@ -72,28 +72,5 @@ $$E_{n+1}=\dfrac{f^{(n+1)}(\xi)}{(n+1)!}(h)^{n+1}$$
 - $h^{n+1}$ está explícitamente presente
 - $\xi$ generalemente depende de h
 
-
-%%## Propagación del Error
-En el proceso de operar con números que tienen errores asociados, es crucial comprender cómo estos errores se propagan a través de las operaciones. Las series de Taylor son una herramienta fundamental para aproximaciones numéricas y permiten modelar funciones en términos de sus derivadas en un punto.
-
-## Estabilidad y Condición
-Un cálculo numérico se considera inestable si los errores de entrada se amplifican significativamente a través del método numérico utilizado. El número de condición de un problema proporciona información sobre cómo los errores en los datos de entrada afectan el resultado final.
-
-## Error Numérico Total
-El error numérico total en una aproximación resulta de la combinación de los errores de redondeo y truncamiento. Reducir el error de redondeo puede llevar a aumentar el número de cifras significativas, lo que a su vez puede aumentar el error de truncamiento, que proviene de la aproximación de operaciones matemáticas.
-
-## Control del Error
-No existe un enfoque universal para controlar el error en todos los contextos numéricos. Sin embargo, algunas estrategias generales incluyen evitar restar números casi iguales, trabajar primero con los valores más pequeños al sumar o restar y utilizar métodos diferentes para corroborar los resultados.
-
-## Confiabilidad de los Datos
-La precisión y exactitud de los resultados numéricos pueden verse afectadas por diversos factores. Los errores por equivocación en los cálculos, los errores de formulación al definir un problema y la incertidumbre en relación a las variables relevantes son aspectos que deben considerarse.
-
-## Error Absoluto y Relativo
-El error absoluto se refiere a la diferencia entre el valor verdadero y la aproximación realizada. El error relativo, por su parte, es el cociente entre el error absoluto y el valor verdadero, y proporciona una medida relativa de la precisión de la aproximación.
-
-## Punto Flotante
-La representación en punto flotante es una técnica para expresar números fraccionarios en una computadora. Se divide en dos componentes: la mantisa, que contiene la información significativa del número, y el exponente, que determina el orden de magnitud del número en relación con una base específica.
-
-Con un entendimiento sólido de estos conceptos y técnicas, los métodos numéricos nos brindan las herramientas para abordar problemas matemáticos de manera eficiente y precisa en entornos computacionales.%%
 
 [[Trabajo Practico 1 - MN]]

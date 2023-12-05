@@ -6,6 +6,7 @@ Course:: [[Formación Humanística III]]
 Source:: [[La Santísima Trinidad]]
 %%
 
+
 - Es la centralidad de la religión cristiana. Es el centro, cumbre y mediador de la plenitud.
 - Todo lo que hizo dios padre de la [[La Santísima Trinidad]] tiene que ver con Jesucristo
 - El padre "putativo" (adoptivo) de Jesus fue José
