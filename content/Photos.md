@@ -6,10 +6,13 @@ All photos on this page are licensed under the Creative Commons [Attribution-Sha
 ---
 
 - [[A Road to a Place]]
+- [[Ashore Again]]
+- [[Avionic Dreams]]
 - [[Blue]]
 - [[Gold Rays]]
 - [[Merino]]
 - [[Regatta]]
 - [[Skysegment]]
 - [[Summer Lake]]
+- [[Sundown]]
 - [[Urban Swans]]
