@@ -384,3 +384,39 @@ print(np.quantile(food_consumption['co2_emission'], [0, 0.25, 0.5, 0.75, 1]))
 
 ```
 
+#uniformcdf
+
+The `uniform.cdf()` function is typically associated with a probability distribution called the uniform distribution. In probability theory and statistics, the uniform distribution is a continuous probability distribution that describes a random variable with equal probability of taking any value within a specified range. The `uniform.cdf()` function is used to calculate the cumulative distribution function (CDF) of a uniform distribution.
+
+Here's an explanation of the terms and concepts involved:
+
+1. **Uniform Distribution**: In a uniform distribution, all values within a given range have the same probability of occurring. The probability density function (PDF) of the uniform distribution is flat within the specified range and zero outside that range.
+
+2. **Cumulative Distribution Function (CDF)**: The CDF of a random variable is a function that gives the probability that the random variable takes on a value less than or equal to a specified value. In the case of the uniform distribution, the CDF represents the cumulative probability that a random variable falls within a certain interval.
+
+The `uniform.cdf(x, loc, scale)` function takes three parameters:
+
+- `x`: The value at which you want to calculate the CDF.
+- `loc`: The lower bound of the uniform distribution (the minimum possible value). Default is 0.
+- `scale`: The range of the uniform distribution (the difference between the upper bound and lower bound). Default is 1.
+
+The `uniform.cdf(x, loc, scale)` function returns the cumulative probability that a random variable following a uniform distribution is less than or equal to `x`.
+
+Here's an example in Python using the SciPy library:
+
+```python
+from scipy.stats import uniform
+
+# Define parameters of the uniform distribution
+lower_bound = 0
+upper_bound = 10
+scale = upper_bound - lower_bound
+
+# Calculate the CDF at x = 5
+x = 5
+cdf_value = uniform.cdf(x, loc=lower_bound, scale=scale)
+
+print(f"CDF at x = {x}: {cdf_value:.4f}")
+```
+
+In this example, we define a uniform distribution with a lower bound of 0 and an upper bound of 10 (resulting in a range of 10 - 0 = 10). We then calculate the CDF at `x = 5`, which gives us the cumulative probability that a random variable following this uniform distribution is less than or equal to 5. The result will be printed to the console.
