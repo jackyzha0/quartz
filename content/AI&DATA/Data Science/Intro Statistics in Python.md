@@ -452,3 +452,51 @@ print(random_sample)
 In this example, `uniform.rvs()` is used to generate random variates within the interval [0, 10] (inclusive of 0 and 10), and each value within that interval has an equal chance of being selected, reflecting the uniform distribution.
 
 #  binomial distribution
+
+# The normal distribution
+
+#normcdf
+
+The `norm.cdf()` function is part of the SciPy library and is used to calculate the cumulative distribution function (CDF) of a normal (Gaussian) distribution. The normal distribution is a continuous probability distribution that is often used in statistics due to its prevalence in various natural phenomena. The CDF of a normal distribution gives the probability that a random variable following that distribution is less than or equal to a specified value.
+
+Here's an explanation of the terms and concepts involved:
+
+1. **Normal Distribution (Gaussian Distribution)**:
+   - The normal distribution is a symmetric, bell-shaped probability distribution characterized by two parameters: mean (μ) and standard deviation (σ).
+   - The probability density function (PDF) of the normal distribution is given by the famous bell curve formula.
+
+2. **Cumulative Distribution Function (CDF)**:
+   - The CDF of a probability distribution is a function that gives the cumulative probability of a random variable being less than or equal to a specified value.
+   - For the normal distribution, the CDF is calculated by integrating the PDF from negative infinity to the specified value.
+
+3. **`norm.cdf(x, loc, scale)`**:
+   - The `norm.cdf()` function takes three parameters:
+     - `x`: The value at which you want to calculate the CDF.
+     - `loc` (optional): The mean (μ) of the normal distribution. Default is 0.
+     - `scale` (optional): The standard deviation (σ) of the normal distribution. Default is 1.
+   - It returns the cumulative probability that a random variable following a normal distribution with the specified mean and standard deviation is less than or equal to `x`.
+
+Here's an example of how to use `norm.cdf()` in Python:
+
+```python
+from scipy.stats import norm
+
+# Define parameters of the normal distribution
+mean = 0  # Mean (μ)
+std_dev = 1  # Standard deviation (σ)
+
+# Calculate the CDF at x = 1
+x = 1
+cdf_value = norm.cdf(x, loc=mean, scale=std_dev)
+
+print(f"CDF at x = {x}: {cdf_value:.4f}")
+```
+
+In this example:
+
+- We import the `norm` module from the SciPy library.
+- We define the parameters of the normal distribution, including the mean (`loc`) and standard deviation (`scale`).
+- We use `norm.cdf()` to calculate the cumulative probability that a random variable from this normal distribution is less than or equal to `x = 1`.
+
+The result represents the probability that a random variable from the specified normal distribution is less than or equal to 1.
+
