@@ -1,7 +1,7 @@
 import { PluggableList } from "unified"
 import { QuartzTransformerPlugin } from "../types"
 import { Root, HTML, BlockContent, DefinitionContent, Code, Paragraph } from "mdast"
-import { Element, Literal } from "hast"
+import { Element, Literal, Root as HtmlRoot } from "hast"
 import { Replace, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { slug as slugAnchor } from "github-slugger"
 import rehypeRaw from "rehype-raw"
@@ -110,7 +110,10 @@ function canonicalizeCallout(calloutName: string): keyof typeof callouts {
 // ([^\[\]\|\#]+)   -> one or more non-special characters ([,],|, or #) (name)
 // (#[^\[\]\|\#]+)? -> # then one or more non-special characters (heading link)
 // (|[^\[\]\|\#]+)? -> | then one or more non-special characters (alias)
-const wikilinkRegex = new RegExp(/!?\[\[([^\[\]\|\#]+)?(#[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/, "g")
+export const wikilinkRegex = new RegExp(
+  /!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/,
+  "g",
+)
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
 const commentRegex = new RegExp(/%%(.+)%%/, "g")
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
@@ -178,8 +181,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         src = src.replaceAll(wikilinkRegex, (value, ...capture) => {
           const [rawFp, rawHeader, rawAlias] = capture
           const fp = rawFp ?? ""
-          const anchor = rawHeader?.trim().slice(1)
-          const displayAnchor = anchor ? `#${slugAnchor(anchor)}` : ""
+          const anchor = rawHeader?.trim().replace(/^#+/, "")
+          const blockRef = Boolean(anchor?.startsWith("^")) ? "^" : ""
+          const displayAnchor = anchor ? `#${blockRef}${slugAnchor(anchor)}` : ""
           const displayAlias = rawAlias ?? rawHeader?.replace("#", "|") ?? ""
           const embedDisplay = value.startsWith("!") ? "!" : ""
           return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`
@@ -236,13 +240,13 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     value: `<iframe src="${url}"></iframe>`,
                   }
                 } else if (ext === "") {
-                  const block = anchor.slice(1)
+                  const block = anchor
                   return {
                     type: "html",
                     data: { hProperties: { transclude: true } },
                     value: `<blockquote class="transclude" data-url="${url}" data-block="${block}"><a href="${
                       url + anchor
-                    }" class="transclude-inner">Transclude of block ${block}</a></blockquote>`,
+                    }" class="transclude-inner">Transclude of ${url}${block}</a></blockquote>`,
                   }
                 }
 
@@ -477,6 +481,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 }
               }
             })
+
+            file.data.htmlAst = tree
           }
         })
       }
@@ -524,5 +530,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 declare module "vfile" {
   interface DataMap {
     blocks: Record<string, Element>
+    htmlAst: HtmlRoot
   }
 }

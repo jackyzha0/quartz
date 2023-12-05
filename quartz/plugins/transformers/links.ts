@@ -54,6 +54,16 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                 node.properties.className ??= []
                 node.properties.className.push(isAbsoluteUrl(dest) ? "external" : "internal")
 
+                // Check if the link has alias text
+                if (
+                  node.children.length === 1 &&
+                  node.children[0].type === "text" &&
+                  node.children[0].value !== dest
+                ) {
+                  // Add the 'alias' class if the text content is not the same as the href
+                  node.properties.className.push("alias")
+                }
+
                 if (opts.openLinksInNewTab) {
                   node.properties.target = "_blank"
                 }
@@ -71,14 +81,16 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                   // WHATWG equivalent https://nodejs.dev/en/api/v18/url/#urlresolvefrom-to
                   const url = new URL(dest, `https://base.com/${curSlug}`)
                   const canonicalDest = url.pathname
-                  const [destCanonical, _destAnchor] = splitAnchor(canonicalDest)
+                  let [destCanonical, _destAnchor] = splitAnchor(canonicalDest)
+                  if (destCanonical.endsWith("/")) {
+                    destCanonical += "index"
+                  }
 
                   // need to decodeURIComponent here as WHATWG URL percent-encodes everything
-                  const simple = decodeURIComponent(
-                    simplifySlug(destCanonical as FullSlug),
-                  ) as SimpleSlug
+                  const full = decodeURIComponent(_stripSlashes(destCanonical, true)) as FullSlug
+                  const simple = simplifySlug(full)
                   outgoing.add(simple)
-                  node.properties["data-slug"] = simple
+                  node.properties["data-slug"] = full
                 }
 
                 // rewrite link internals if prettylinks is on

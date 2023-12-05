@@ -64,7 +64,7 @@ a {
     color: var(--tertiary) !important;
   }
 
-  &.internal {
+  &.internal:not(:has(> img)) {
     text-decoration: none;
     background-color: var(--highlight);
     padding: 0 0.1rem;
@@ -390,23 +390,33 @@ p {
   line-height: 1.6rem;
 }
 
-table {
-  margin: 1rem;
-  padding: 1.5rem;
-  border-collapse: collapse;
-  & > * {
-    line-height: 2rem;
+.table-container {
+  overflow-x: auto;
+
+  & > table {
+    margin: 1rem;
+    padding: 1.5rem;
+    border-collapse: collapse;
+
+    th,
+    td {
+      min-width: 75px;
+    }
+
+    & > * {
+      line-height: 2rem;
+    }
   }
 }
 
 th {
   text-align: left;
-  padding: 0.4rem 1rem;
+  padding: 0.4rem 0.7rem;
   border-bottom: 2px solid var(--gray);
 }
 
 td {
-  padding: 0.2rem 1rem;
+  padding: 0.2rem 0.7rem;
 }
 
 tr {

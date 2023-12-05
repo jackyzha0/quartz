@@ -196,6 +196,11 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
   )
   await fs.promises.writeFile(configFilePath, configContent)
 
+  // setup remote
+  execSync(
+    `git remote show upstream || git remote add upstream https://github.com/jackyzha0/quartz.git`,
+  )
+
   outro(`You're all set! Not sure what to do next? Try:
   • Customizing Quartz a bit more by editing \`quartz.config.ts\`
   • Running \`npx quartz build --serve\` to preview your Quartz locally
@@ -483,8 +488,9 @@ export async function handleSync(argv) {
       dateStyle: "medium",
       timeStyle: "short",
     })
+    const commitMessage = argv.message ?? `Quartz sync: ${currentTimestamp}`
     spawnSync("git", ["add", "."], { stdio: "inherit" })
-    spawnSync("git", ["commit", "-m", `Quartz sync: ${currentTimestamp}`], { stdio: "inherit" })
+    spawnSync("git", ["commit", "-m", commitMessage], { stdio: "inherit" })
 
     if (contentStat.isSymbolicLink()) {
       // put symlink back
