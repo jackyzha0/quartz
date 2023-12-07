@@ -1,4 +1,4 @@
-import { FullSlug, _stripSlashes, joinSegments, pathToRoot } from "../util/path"
+import { FullSlug, _stripSlashes, joinSegments, pathToRoot, simplifySlug } from "../util/path"
 import { JSResourceToScriptElement } from "../util/resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
@@ -8,10 +8,14 @@ export default (() => {
     const description = fileData.description?.trim() ?? "No description provided"
     const { css, js } = externalResources
 
-    const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`)
-    const path = url.pathname as FullSlug
-    const baseDir = fileData.slug === "404" ? path : pathToRoot(fileData.slug!)
+    const slug = fileData.slug!
 
+    const rootUrl = new URL(`https://${cfg.baseUrl ?? "example.com"}`)
+    const path = rootUrl.pathname as FullSlug
+    const baseDir = fileData.slug === "404" ? path : pathToRoot(slug)
+
+    const canonicalSlug = simplifySlug(slug)
+    const canonicalUrl = cfg.baseUrl ? `https://${joinSegments(cfg.baseUrl, canonicalSlug)}` : null
     const iconPath = joinSegments(baseDir, "static/icon.png")
     const ogImagePath = `https://${cfg.baseUrl}/static/og-image.png`
 
@@ -20,6 +24,7 @@ export default (() => {
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         {cfg.baseUrl && <meta property="og:image" content={ogImagePath} />}
