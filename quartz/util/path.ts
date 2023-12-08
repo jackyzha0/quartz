@@ -86,6 +86,12 @@ export function transformInternalLink(link: string): RelativeURL {
   return res
 }
 
+export function canonicalURL(baseUrl: string | undefined, slug: FullSlug): string {
+  const base = baseUrl ?? ''
+  const simpleSlug = simplifySlug(slug)
+  return `https://${joinSegments(base, encodeURI(simpleSlug))}`
+}
+
 // from micromorph/src/utils.ts
 // https://github.com/natemoo-re/micromorph/blob/main/src/utils.ts#L5
 const _rebaseHtmlElement = (el: Element, attr: string, newBase: string | URL) => {

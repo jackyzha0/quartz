@@ -154,6 +154,22 @@ describe("transforms", () => {
       path.isRelativeURL,
     )
   })
+
+  test("canonicalURL", () => {
+    asserts(
+      [
+        ["", "https://example.com/subdir/"],
+        ["index", "https://example.com/subdir/"],
+        ["abc", "https://example.com/subdir/abc"],
+        ["abc/index", "https://example.com/subdir/abc/"],
+        ["abc/def", "https://example.com/subdir/abc/def"],
+        ["abc-def", "https://example.com/subdir/abc-def"],
+      ],
+      slug => path.canonicalURL("example.com/subdir", slug),
+      path.isFullSlug,
+      (_x: string): _x is string => true,
+    )
+  })
 })
 
 describe("link strategies", () => {
