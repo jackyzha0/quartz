@@ -37,16 +37,16 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
             })
 
             // tag is an alias for tags
-            if (data.tag) {
-              data.tags = data.tag
+            if (data.tag !== null) {
+              data.tags = data.tag.toString()
             }
 
             // coerce title to string
-            if (data.title) {
+            if (data.title !== null) {
               data.title = data.title.toString()
             }
 
-            if (data.tags && !Array.isArray(data.tags)) {
+            if (data.tags !== null && !Array.isArray(data.tags)) {
               data.tags = data.tags
                 .toString()
                 .split(oneLineTagDelim)
