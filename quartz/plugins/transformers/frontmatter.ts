@@ -4,6 +4,7 @@ import { QuartzTransformerPlugin } from "../types"
 import yaml from "js-yaml"
 import toml from "toml"
 import { slugTag } from "../../util/path"
+import { QuartzPluginData } from "../vfile"
 
 export interface Options {
   delims: string | string[]
@@ -37,16 +38,18 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
             })
 
             // tag is an alias for tags
-            if (data.tag !== null) {
-              data.tags = data.tag.toString()
+            if (data.tag) {
+              data.tags = data.tag
             }
 
             // coerce title to string
-            if (data.title !== null) {
+            if (data.title) {
               data.title = data.title.toString()
+            } else if (data.title === null || data.title === undefined) {
+              data.title = file.stem ?? "Untitled"
             }
 
-            if (data.tags !== null && !Array.isArray(data.tags)) {
+            if (data.tags && !Array.isArray(data.tags)) {
               data.tags = data.tags
                 .toString()
                 .split(oneLineTagDelim)
@@ -57,11 +60,7 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
             data.tags = [...new Set(data.tags?.map((tag: string) => slugTag(tag)))] ?? []
 
             // fill in frontmatter
-            file.data.frontmatter = {
-              title: file.stem ?? "Untitled",
-              tags: [],
-              ...data,
-            }
+            file.data.frontmatter = data as QuartzPluginData["frontmatter"]
           }
         },
       ]
