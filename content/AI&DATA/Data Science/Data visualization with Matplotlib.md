@@ -4,7 +4,7 @@ https://matplotlib.org/stable/plot_types/basic/index.html
 
 # Introduction to Data Visualization with Matplotlib
 
-[pdf](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/matplot1.pdf)
+[See PDF link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/matplot1.pdf)
 
 1. **Pyplot Interface Introduction**:
    ```python
@@ -64,7 +64,7 @@ https://matplotlib.org/stable/plot_types/basic/index.html
 # Time-series Data with Matplotlib
 
 #timeseries
-[pdf](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/matplot2.pdf)
+[See PDF link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/matplot2.pdf)
 
 
 To create a DataFrame for `climate_change`, you can follow a structure similar to this:
@@ -147,7 +147,8 @@ Each section provides practical instructions and code snippets for effectively v
 
 # Quantitative Comparisons: Bar-Charts
 
-![[chapter3 (3).pdf]]
+[See PDF link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/matplot3.pdf)
+
 1. **Olympic Medals Data**: Presents a dataset on Olympic medals and demonstrates basic bar chart plotting.
 2. **Rotating Tick Labels**: Shows how to rotate axis labels for clarity.
 3. **Visualizing Multiple Medal Types**: Explains stacking bars for different medal types (Gold, Silver, Bronze).
@@ -200,3 +201,55 @@ Here are example codes for each key point from "Quantitative Comparisons: Bar-Ch
    ```
 
 These examples provide a basic structure for each type of plot, which you can adapt and expand upon based on your specific data and visualization needs.
+
+
+
+# Preparing Your Figures to Share with Others
+
+[See PDF link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/matplot4.pdf)
+
+The document "Preparing Your Figures to Share with Others" discusses various aspects of refining and saving Matplotlib figures for presentation and sharing. Here are the key points with corresponding Python code examples:
+
+1. **Changing Plot Style**:
+   ```python
+   plt.style.use("ggplot")
+   ```
+
+2. **Choosing a Style**:
+   ```python
+   plt.style.use("seaborn-colorblind")
+   ```
+
+3. **Saving the Figure to File**:
+   ```python
+   fig.savefig("my_figure.png")
+   ```
+
+4. **Different File Formats**:
+   - Saving as JPEG:
+     ```python
+     fig.savefig("my_figure.jpg")
+     ```
+   - Saving as SVG:
+     ```python
+     fig.savefig("my_figure.svg")
+     ```
+
+5. **Resolution**:
+   ```python
+   fig.savefig("my_figure.png", dpi=300)
+   ```
+
+6. **Size**:
+   ```python
+   fig.set_size_inches([5, 3])
+   ```
+
+7. **Automating Figures from Data**:
+   ```python
+   for sport in sports:
+       sport_df = df[df["Sport"] == sport]
+       ax.bar(sport, sport_df["Height"].mean(), yerr=sport_df["Height"].std())
+   ```
+
+Each section provides guidelines and examples for effectively preparing and customizing figures in Matplotlib to enhance their communicative power and suitability for various sharing formats.
