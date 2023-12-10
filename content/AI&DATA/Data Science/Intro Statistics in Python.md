@@ -13,6 +13,13 @@ tags:
 # What is statistics?
 The field of statistics - the practice and study of collecting and analyzing data A summary statistic - a fact about or summary of some data
 
+
+
+[See PDF 1 link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/stat1pdf)
+[See PDF 2 link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/stat2pdf)
+[See PDF 3 link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/stat3pdf)
+[See PDF 4 link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/stat4pdf)
+
 # Types of statistics
 
 * Descriptive statistics
