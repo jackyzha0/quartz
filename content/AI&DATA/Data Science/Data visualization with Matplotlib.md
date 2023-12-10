@@ -4,6 +4,8 @@ https://matplotlib.org/stable/plot_types/basic/index.html
 
 # Introduction to Data Visualization with Matplotlib
 
+[pdf](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/matplot1.pdf)
+
 1. **Pyplot Interface Introduction**:
    ```python
    import matplotlib.pyplot as plt
@@ -62,6 +64,8 @@ https://matplotlib.org/stable/plot_types/basic/index.html
 # Time-series Data with Matplotlib
 
 #timeseries
+[pdf](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/matplot2.pdf)
+
 
 To create a DataFrame for `climate_change`, you can follow a structure similar to this:
 
@@ -143,6 +147,7 @@ Each section provides practical instructions and code snippets for effectively v
 
 # Quantitative Comparisons: Bar-Charts
 
+![[chapter3 (3).pdf]]
 1. **Olympic Medals Data**: Presents a dataset on Olympic medals and demonstrates basic bar chart plotting.
 2. **Rotating Tick Labels**: Shows how to rotate axis labels for clarity.
 3. **Visualizing Multiple Medal Types**: Explains stacking bars for different medal types (Gold, Silver, Bronze).
