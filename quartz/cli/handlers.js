@@ -443,11 +443,23 @@ export async function handleUpdate(argv) {
   console.log(
     "Pulling updates... you may need to resolve some `git` conflicts if you've made changes to components or plugins.",
   )
-  gitPull(UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH)
+
+  try {
+    gitPull(UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH)
+  } catch {
+    console.log(chalk.red("An error occured above while pulling updates."))
+    await popContentFolder(contentFolder)
+    return
+  }
+
   await popContentFolder(contentFolder)
   console.log("Ensuring dependencies are up to date")
-  spawnSync("npm", ["i"], { stdio: "inherit" })
-  console.log(chalk.green("Done!"))
+  const res = spawnSync("npm", ["i"], { stdio: "inherit" })
+  if (res.status === 0) {
+    console.log(chalk.green("Done!"))
+  } else {
+    console.log(chalk.red("An error occurred above while installing dependencies."))
+  }
 }
 
 /**
@@ -504,13 +516,25 @@ export async function handleSync(argv) {
     console.log(
       "Pulling updates from your repository. You may need to resolve some `git` conflicts if you've made changes to components or plugins.",
     )
-    gitPull(ORIGIN_NAME, QUARTZ_SOURCE_BRANCH)
+    try {
+      gitPull(ORIGIN_NAME, QUARTZ_SOURCE_BRANCH)
+    } catch {
+      console.log(chalk.red("An error occured above while pulling updates."))
+      await popContentFolder(contentFolder)
+      return
+    }
   }
 
   await popContentFolder(contentFolder)
   if (argv.push) {
     console.log("Pushing your changes")
-    spawnSync("git", ["push", "-f", ORIGIN_NAME, QUARTZ_SOURCE_BRANCH], { stdio: "inherit" })
+    const res = spawnSync("git", ["push", "-f", ORIGIN_NAME, QUARTZ_SOURCE_BRANCH], {
+      stdio: "inherit",
+    })
+    if (res.status !== 0) {
+      console.log(chalk.red(`An error occurred above while pushing to remote ${ORIGIN_NAME}.`))
+      return
+    }
   }
 
   console.log(chalk.green("Done!"))
