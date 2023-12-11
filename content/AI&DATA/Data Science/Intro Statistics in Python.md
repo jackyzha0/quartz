@@ -15,10 +15,11 @@ The field of statistics - the practice and study of collecting and analyzing dat
 
 
 
-[See PDF 1 link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/stat1pdf)
-[See PDF 2 link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/stat2pdf)
-[See PDF 3 link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/stat3pdf)
-[See PDF 4 link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/stat4pdf)
+[See PDF 1 link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/stat1.pdf)
+[See PDF 2 link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/stat2.pdf)
+[See PDF 3 link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/stat3.pdf)
+[See PDF 4 link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/stat4.pdf)
+
 
 # Types of statistics
 
