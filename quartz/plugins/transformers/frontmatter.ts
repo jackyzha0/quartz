@@ -4,15 +4,18 @@ import { QuartzTransformerPlugin } from "../types"
 import yaml from "js-yaml"
 import toml from "toml"
 import { slugTag } from "../../util/path"
+import { QuartzPluginData } from "../vfile"
 
 export interface Options {
   delims: string | string[]
   language: "yaml" | "toml"
+  oneLineTagDelim: string
 }
 
 const defaultOptions: Options = {
   delims: "---",
   language: "yaml",
+  oneLineTagDelim: ",",
 }
 
 export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
@@ -20,6 +23,8 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
   return {
     name: "FrontMatter",
     markdownPlugins() {
+      const { oneLineTagDelim } = opts
+
       return [
         [remarkFrontmatter, ["yaml", "toml"]],
         () => {
@@ -40,12 +45,14 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
             // coerce title to string
             if (data.title) {
               data.title = data.title.toString()
+            } else if (data.title === null || data.title === undefined) {
+              data.title = file.stem ?? "Untitled"
             }
 
             if (data.tags && !Array.isArray(data.tags)) {
               data.tags = data.tags
                 .toString()
-                .split(",")
+                .split(oneLineTagDelim)
                 .map((tag: string) => tag.trim())
             }
 
@@ -53,11 +60,7 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
             data.tags = [...new Set(data.tags?.map((tag: string) => slugTag(tag)))] ?? []
 
             // fill in frontmatter
-            file.data.frontmatter = {
-              title: file.stem ?? "Untitled",
-              tags: [],
-              ...data,
-            }
+            file.data.frontmatter = data as QuartzPluginData["frontmatter"]
           }
         },
       ]
