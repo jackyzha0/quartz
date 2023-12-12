@@ -1,6 +1,7 @@
 @use "variables" as *;
 @use "syntax";
 @use "callouts";
+// @use "explorer";
 
 * {
   scrollbar-width: thin;
@@ -31,8 +32,8 @@ section {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--tertiary) 75%, transparent);
-  color: var(--darkgray);
+  background: color-mix(in srgb, var(--tertiary) 25%, transparent); // 75%
+  // color: var(--darkgray);
 }
 
 p,
@@ -60,16 +61,13 @@ ul,
 
 a {
   font-weight: 600;
-  text-decoration: underline 0.2rem transparent; // none
+  text-decoration: none;
+  // transition: color 0.5s ease; // 0.2s
   color: var(--secondary);
-  // transition: color 0.2s ease;
-  transition: text-decoration-color 0.5s ease-in-out;
 
-  &:hover {
-    // color: var(--tertiary) !important;
-    text-decoration-color: var(--tertiary);
-    // text-underline-offset: 0.4em;
-  }
+  // &:hover {
+  //   color: var(--tertiary) !important;
+  // }
 
   &.internal:not(:has(> img)) {
     text-decoration: none;
@@ -163,7 +161,7 @@ a {
         align-items: center;
       }
     }
-
+    
     & .sidebar.right {
       right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
       @media all and (max-width: $fullPageWidth) {
@@ -469,7 +467,7 @@ video {
 ul.overflow,
 ol.overflow {
   max-height: 450; // 400
-  overflow-y: auto;
+  overflow-y: auto; // auto, scroll
 
   // clearfix
   content: "";
@@ -489,7 +487,7 @@ ol.overflow {
     bottom: 0;
     opacity: 1;
     // Removes opacity fade
-    transition: opacity 0.3s ease;
+    // transition: opacity 0.3s ease;
     // background: linear-gradient(transparent 0px, var(--light));
   }
 }
