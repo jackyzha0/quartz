@@ -1,7 +1,7 @@
 @use "variables" as *;
 @use "syntax";
 @use "callouts";
-// @use "explorer";
+// @use "custom";
 
 * {
   scrollbar-width: thin;
@@ -64,10 +64,14 @@ a {
   text-decoration: none;
   // transition: color 0.5s ease; // 0.2s
   color: var(--secondary);
+  text-decoration: underline 0.2rem transparent;
+  transition: text-decoration-color 0.5s;
 
-  // &:hover {
-  //   color: var(--tertiary) !important;
-  // }
+  &:hover {
+    // color: var(--tertiary) !important;
+    text-decoration-color: var(--tertiary);
+    // text-underline-offset: 0.4em;
+  }
 
   &.internal:not(:has(> img)) {
     text-decoration: none;

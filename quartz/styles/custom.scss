@@ -1,44 +1,15 @@
 @use "./base.scss";
 
-// put your custom CSS here!
-
-// a {
-//   display: inline-block;
-//   position: relative;
-//   // color: #0087ca;
+// Explorer
+// div[data-folderpath="/Archive"] p[class="folder-title"]::before {
+//   content: "📚 ";
 // }
-
-// a::after {
-//   content: '';
-//   position: absolute;
-//   width: 100%;
-//   transform: scaleX(0);
-//   height: 2px;
-//   bottom: 0;
-//   left: 0;
-//   background-color: #0087ca;
-//   transform-origin: bottom right;
-//   transition: transform 0.25s ease-out;
+// div[data-folderpath="/Seedlings"] p[class="folder-title"]::before {
+//   content: "🌱 ";
 // }
-
-// a:hover::after {
-//   transform: scaleX(1);
-//   transform-origin: bottom left;
+// div[data-folderpath="/Evergreen"] p[class="folder-title"]::before {
+//   content: "🌳 ";
 // }
-
-// a.article-title {
-  
+// div[data-folderpath="/Budding"] p[class="folder-title"]::before {
+//   content: "🌿 ";
 // }
-
-a {
-  // text-decoration: underline 0.15em rgba(0, 0, 0, 1);
-  // text-underline-offset: 0.2em;
-  // transition: text-decoration-color 0.3s, text-underline-offset 0.3s;
-  text-decoration: underline 0.2rem transparent;
-  transition: text-decoration-color 0.5s;
-}
-
-a:hover {
-  text-decoration-color: var(--tertiary);
-  // text-underline-offset: 0.4em;
-}
