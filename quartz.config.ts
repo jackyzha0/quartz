@@ -11,6 +11,7 @@ const config: QuartzConfig = {
     },
     baseUrl: "plasticlabs.ai",
     ignorePatterns: ["private", "templates"],
+    defaultDateType: "created",
     theme: {
       typography: {
         header: "Spectral",
