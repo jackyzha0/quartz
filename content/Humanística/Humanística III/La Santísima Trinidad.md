@@ -14,7 +14,7 @@ Source:: [[]] #main_page
 	- Todos los dogmas de la Iglesia, son primero vividos (no se les ocurre a un obispo). Son celebrados antes por la comunidad.
 	- Jesucristo es la segunda persona de la santísima trinidad, y existe antes de ser encarnado. 
 
-![[Pasted image 20230823144029.png | center | 400]]
+![[Pasted image 20230823144029.png  | 400]]
 
 # El misterio de La Santísima Trinidad
 - En Dios no hay tiempo, hay eternidad.
