@@ -20,24 +20,24 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#2e2e2e", // #4e4e4e
-          dark: "#1c1c1c", // #2b2b2b
-          secondary: "#091217", // #2844b63, #152733
-          tertiary: "#242e3b", // #84a59d
-          highlight: "rgba(143, 159, 169, 0.15)", // #8f9fa926
+          light: "#faf8f8", // background
+          lightgray: "#e5e5e5", // borders
+          gray: "#b8b8b8", // graph links, heavy borders
+          darkgray: "#2e2e2e", // body text
+          dark: "#1c1c1c", // header text, icons
+          secondary: "#091217", // links, nodes
+          tertiary: "#242e3b", // hover states, visited
+          highlight: "rgba(143, 159, 169, 0.15)", // internal link background
         },
         darkMode: {
-          light: "#1e1e2e",
-          lightgray: "#6c7086",
-          gray: "#a6adc8",
-          darkgray: "#cdd6f4",
-          dark: "#cdd6f4",
-          secondary: "#9be895", // #a6e3a1
-          tertiary: "#d62edf", // #89dceb, #c072c4
-          highlight: "rgba(143, 159, 169, 0.1)", // rgba(143, 159, 169, 0.15)
+          light: "#1e1e2e", // background
+          lightgray: "#6c7086", // borders
+          gray: "#a6adc8", // graph links, heavy borders
+          darkgray: "#cdd6f4", // body text
+          dark: "#cdd6f4", // header text, icons
+          secondary: "#9be895", // links, nodes
+          tertiary: "#c072c4", // hover states, visited
+          highlight: "rgba(143, 159, 169, 0.1)", // internal link background
         },
       },
     },
