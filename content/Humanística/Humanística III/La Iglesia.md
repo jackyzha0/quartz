@@ -19,7 +19,7 @@ Source:: [[]] #main_page
 	- Logran condenarlo y crucificarlo
 - Jesús es bautizado en el río jordán, y a partir de allí comienza a proclamar la nueva religión.
 
-![[Jesús_e_Iglesia.excalidraw | center | 700]]
+![[Jesús_e_Iglesia.excalidraw | 700]]
 
 - Saulo (Pablo) era perseguidor de los cristianos. Se cayó de un caballo, quedó ciego, y ahí se hace bautizar para ser cristiano.
 	- Pedro: Todas aquellas personas que quisieran ser cristiano, debían seguir la ley de moises (circunsidarse)
@@ -40,5 +40,5 @@ En el lenguaje cristiano, la palabra “Iglesia” designa no sólo la asamblea 
 	- La Iglesia es una comunidad, un grupo llamado a pertenecer de manera divina.
 	- La fuerza no está en la persona sola, sino que en la comunidad.
 - ¿Qué relación hay entre la historia de la Iglesia y la historia de Jesus?
-	- ![[Jesús_e_Iglesia.excalidraw | center | 800]]
+	- ![[Jesús_e_Iglesia.excalidraw | 800]]
 - 

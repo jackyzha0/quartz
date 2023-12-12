@@ -61,7 +61,7 @@ Cómo es el parámetro del procesamiento de un sistema?
 
 En qué consiste el concepto de proceso?
 ?
-- Tres factores que se encuentran interrelacionados entre sí![[Pasted image 20230427193301.png | center | 400]]- <mark style="background: #FFF3A3A6;">La calidad final de un sistema será la del peor proceso que tenga.</mark>
+- Tres factores que se encuentran interrelacionados entre sí![[Pasted image 20230427193301.png | 400]]- <mark style="background: #FFF3A3A6;">La calidad final de un sistema será la del peor proceso que tenga.</mark>
 <!--SR:!2023-05-09,3,250-->
 
 Cómo es el parámetro de la retroalimentación de un sistema?

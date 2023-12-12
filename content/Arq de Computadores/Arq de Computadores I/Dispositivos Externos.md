@@ -22,7 +22,7 @@ Utilizamos una jerarquía de buses para poder jerarquizar aquellos dispositivos 
 	- Comunicación: con dispositivos remotos.
 
 ## Diagrama de un dispositivo externo
-![[Pasted image 20230810162402.png | center | 400]]
+![[Pasted image 20230810162402.png | 400]]
 - Interactúa a través del bus del control con el módulo de E/S
 - Las entradas son señales de control, y lo que devuelve son estados.
 	- Recibe órdenes, y devuelve respuestas sobre el estado de las cosas que realizó.

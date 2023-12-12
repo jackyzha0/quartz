@@ -19,7 +19,7 @@
 ?
 - Si $A_1, A_2, \dots, A_n$ representan una partición del espacio muestral $S$, con $P(A_i)\neq 0$ para todo $i=1,2,3,\dots,n$ entonces para cualquier evento $B$
 $$ P(B)=\sum_{i=1}^n P(A_i)P(B|A_i)$$
-![[Pasted image 20230405202923.png | center | 400]]
+![[Pasted image 20230405202923.png | 400]]
 
 Caracterice la utilidad del Teorema de la probabilidad TOTAL
 ?

@@ -7,7 +7,7 @@ Source:: [[]]
 %%
 
 ## Subciclos de una instrucción
-![[Pasted image 20231012160826.png | center | 400]]
+![[Pasted image 20231012160826.png | 400]]
 - Captación: Llevar la siguiente instrucción de la memoria al procesador.
 - Ejecución: Interpretar el código de operación y llevar a cabo la operación indicada.
 - Interrupción: Si las interrupciones están habilitadas y han ocurrido una interrupción, guardar el estado del proceso actual y entender la interrupción 

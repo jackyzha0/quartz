@@ -7,7 +7,7 @@ Course: [[Algebra II]]
 - Ecuación continua de la recta en R3 (ojo con la división)    ![Untitled](Images/Rectas%20en%20R3/Untitled%201.png)
 
 - Distancia de un punto a una recta en R3
-    ![Untitled | center | 300](Images/Rectas%20en%20R3/Untitled%202.png)
+    ![Untitled | 300](Images/Rectas%20en%20R3/Untitled%202.png)
 
 - Posiciones relativas de las rectas
     - Paralelas

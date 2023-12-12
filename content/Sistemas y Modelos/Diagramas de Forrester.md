@@ -28,7 +28,7 @@ Source:: [[Modelado Y Simulación]]
 
 # Elementos del diagrama de Forrester (no va al examen)
 
-![[Pasted image 20230602120503.png | center | 400]]
+![[Pasted image 20230602120503.png | 400]]
 
 - **Fuente o Sumidero**
 	- Emite o recibe el material que fluye por el sistema

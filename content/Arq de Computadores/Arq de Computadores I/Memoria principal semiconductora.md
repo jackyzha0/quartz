@@ -11,7 +11,7 @@ Source:: [[Memorias]]
 	- Presentan dos estados estables (o semiestables), que pueden emplearse para representar el 1 o 0 binarios 
 	- Puede escribirse en ellas para fijar su estado 
 	- Pueden leerse para detectar su estado
-	- ![[Pasted image 20230602171947.png | center | 400]]
+	- ![[Pasted image 20230602171947.png | 400]]
 
 
 ## Tipos de ram

@@ -23,7 +23,7 @@ Source:: [[]]
 	- Especifico el símbolo con el cual ese elemento que ingreso, lo<mark style="background: #FFF3A3A6;"> ingreso en la pila</mark>
 	- Elemento que voy a tomar <mark style="background: #FFF3A3A6;">para sacar de la pila</mark>
 Si no saco o meto nada, entonces uso el símbolo de la palabra vacía $\lambda$
-![[Pasted image 20230601171700.png | center | 400]]
+![[Pasted image 20230601171700.png | 400]]
 
 
 

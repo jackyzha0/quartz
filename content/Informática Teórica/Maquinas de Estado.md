@@ -53,14 +53,14 @@ Qué es la máquina de Moore?
 ?
 - Máquina de Moore
 	- Cada estado posee un valor de salida específico (cada símbolo de salida estará asociado a un **alfabeto de salida**) 
-	- ![[Pasted image 20230503142723.png | center | 400]]Q
+	- ![[Pasted image 20230503142723.png | 400]]Q
 	- $$\omega:Q\rightarrow \Gamma$$
 
 Qué es la máquina de Mealy?
 ?
 - Maquina de Mealy
 	- Cada transición tiene asociada un valor de salida (cada símbolo de salida estará asociado a un **alfabeto de salida**)
-	- ![[Pasted image 20230503142821.png | center | 400]]
+	- ![[Pasted image 20230503142821.png | 400]]
 	- $$\omega: Q\times \Sigma \rightarrow \Gamma$$
 
 Cómo se caracteriza la máquina de estados de Moore?
@@ -68,7 +68,7 @@ Cómo se caracteriza la máquina de estados de Moore?
 - La lógica de pasaje de un estado a otro se llama lógica combinacional. 
 - La salida solo depende de los estados.
 - Su cambio sólo estará determinado por la señal del reloj.
-![[Pasted image 20230504170412.png | center | 400]]
+![[Pasted image 20230504170412.png | 400]]
 
 
 
@@ -79,8 +79,8 @@ Diferencias entre la máquina de Mealy y la máquina de Moore.
 Cómo se definen las equivalencias de  Moore-Mealy?
 ?
 - Estos dos tipos de máquinas poseen sus equivalencias entre sí.
-![[Pasted image 20230504170041.png | center | 500]]
-![[Pasted image 20230504170116.png | center | 500]]
+![[Pasted image 20230504170041.png | 500]]
+![[Pasted image 20230504170116.png | 500]]
 - La equivalencia Moore-Mealy es mucho más sencilla que la de Mealy-Moore.
 
 

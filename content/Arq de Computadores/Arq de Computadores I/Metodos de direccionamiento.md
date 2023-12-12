@@ -49,4 +49,4 @@ En el contexto de la arquitectura de computadores, los modos de direccionamiento
    - Se usa comúnmente en la administración de llamadas a funciones y gestión de registros de activación.
    - Ejemplo: `PUSH R10` (apila el contenido de R10) o `POP R11` (desapila el valor superior en R11).
 
-![[Pasted image 20230914173549.png | center | 400]]
+![[Pasted image 20230914173549.png | 400]]

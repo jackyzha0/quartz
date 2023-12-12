@@ -15,7 +15,7 @@ Las microoperaciones son la operaciones funcionales, o atómicas, de un procesad
 	-  *Registro intermedio de memoria (Memory Buffer Register, MBR):* está conectado a las líneas de datos del bus del sistema. Contiene el valor a almacenar en memoria o el último valor leído de memoria.
 	- *Contador de programa (Program Counter, PC):* contiene la dirección de la siguiente instrucción a captar.
 	- *Registro de instrucción (Instruction Register, IR):* contiene la última instrucción captada.
-- El ciclo de captación consta realmente de tres pasos y cuatro microoperaciones. Cada microoperación implica la transferencia de datos hacia dentro o hacia fuera de un registro.![[Pasted image 20231107152737.png | center | 300]]
+- El ciclo de captación consta realmente de tres pasos y cuatro microoperaciones. Cada microoperación implica la transferencia de datos hacia dentro o hacia fuera de un registro.![[Pasted image 20231107152737.png | 300]]
 	1. Transferir el contenido de PC a MAR
 	2. Transferir el contenido de la posición de memoria especificada por MAR a MBR. Incrementar en I el contenido de PC
 	3. Transferir el contenido de MBR a IR
@@ -24,7 +24,7 @@ Las microoperaciones son la operaciones funcionales, o atómicas, de un procesad
 ## El ciclo indirecto
 - Una vez que se capta una instrucción, el siguiente paso es captar los operandos fuente.
 - Si la instrucción especifica una dirección indirecta, un ciclo indirecto ha de preceder al ciclo de instrucción
-- El campo de dirección en la instrucción se transfiere a MAR. Este se usa después para captar la dirección del operando. Por último, el campo de dirección de IR se actualiza con el contenido de MBR, de modo que contenga una dirección directa en lugar de una indirecta. ![[Pasted image 20231107152931.png | center | 400]]
+- El campo de dirección en la instrucción se transfiere a MAR. Este se usa después para captar la dirección del operando. Por último, el campo de dirección de IR se actualiza con el contenido de MBR, de modo que contenga una dirección directa en lugar de una indirecta. ![[Pasted image 20231107152931.png | 400]]
 - IR ahora está listo para la ejecución. 
 ## El ciclo de interrupción
 - Cuando termina el ciclo de ejecución, se realiza una comprobación para determinar si ha ocurrido alguna interrupción habilitada. Si es así, tiene lugar la interrupción.

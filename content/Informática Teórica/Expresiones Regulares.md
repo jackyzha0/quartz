@@ -21,12 +21,12 @@
 
 **De qué depende que un lenguaje sea regular?**
 ?
-![[Pasted image 20230413174954.png | center | 400]]
+![[Pasted image 20230413174954.png | 400]]
 
 
 **Qué es un pozo o sumidero?**
 ?
-- Cuando se ingresa un símbolo terminal que no está contemplado en la transición, irá a un pozo o sumidero![[Pasted image 20230413175444.png | center | 400]]
+- Cuando se ingresa un símbolo terminal que no está contemplado en la transición, irá a un pozo o sumidero![[Pasted image 20230413175444.png | 400]]
 
 **Cuáles son las reglas que me permiten obtener la expresión regular a partir de un autómata?**
 ?

@@ -17,7 +17,7 @@ La E/S con interrupciones es más eficiente que la E/S programada, ya que elimin
 
 
 ## Procesamiento de la Interrupción
-![[Pasted image 20231105122750.png | center | 400]]
+![[Pasted image 20231105122750.png | 400]]
 Cuando se produce una interrupción en un sistema, se desencadenan una serie de eventos en el procesador, tanto a nivel de hardware como de software. Secuencia típica de estos eventos:
 1. El dispositivo de E/S finaliza una operación y envía una señal de interrupción al procesador.
 2. El procesador completa la ejecución de la instrucción actual antes de responder a la interrupción.

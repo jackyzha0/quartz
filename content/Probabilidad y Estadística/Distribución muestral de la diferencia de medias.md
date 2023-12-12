@@ -16,7 +16,7 @@ Se tienen dos poblaciones, la primera con media $\mu_1$ y varianza $\sigma_1^2$ 
 De aquí que $$Z=\dfrac{\bar{X_1}-\bar{X_2}-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$$
 es aproximadamente una variable normal estándar siempre y cuando $n_1\geq 30$ y $n_2\geq 30$ o las dos poblaciones de las que se extraen son aproximadamente normal (de forma gráfica por ejemplo).
 
-![[Pasted image 20230510202113.png | center | 500]]
+![[Pasted image 20230510202113.png | 500]]
 
 
 

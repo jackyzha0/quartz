@@ -10,7 +10,7 @@ Source:: [[Internetworking]]
    - En una topología de estrella, todos los dispositivos están conectados a un concentrador o switch central. Cada dispositivo tiene su propio cable de conexión directa al concentrador.
    - Este enfoque facilita la administración de la red y permite identificar fácilmente problemas en dispositivos individuales. Si un dispositivo falla, los demás siguen funcionando.
    - Sin embargo, si el concentrador central falla, toda la red podría quedar inactiva. Además, se requiere una mayor cantidad de cableado.
-	   ![[Pasted image 20231030172741.png | center | 400]]
+	   ![[Pasted image 20231030172741.png | 400]]
 
 2. **Topología de Bus:**
    - En una topología de bus, todos los dispositivos están conectados a un solo cable central. Cualquier dispositivo puede enviar datos a través del cable compartido.

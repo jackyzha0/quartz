@@ -14,7 +14,7 @@
 - Es un elemento no lineal, deja pasar los electrones en un sentido y los bloquea en el otro.
 - En el caso de que se llegue a polariza en el otro sentido, no hay paso de electrones en dicho sentido (idealmente)
 
-![Untitled | center | 300 ](Images/Diodo%20semiconductor/Untitled.png)
+![Untitled | 300 ](Images/Diodo%20semiconductor/Untitled.png)
 
 - Está compuesto por un material semiconductor dopado por otros elementos que hacen que el diodo tenga una mayoría de carga positiva hacia un lado, y una mayoria de carga negativa hacia el otro.
 

@@ -12,7 +12,7 @@
 - Puede aguantar una tensión inversa más estable que un diodo común.
 - Los diodos zener, zener diodo o simplemente zener, son diodos que están diseñados para mantener un voltaje constante en su terminales, llamado Voltaje o Tensión Zener ($V_z$) cuando se polarizan inversamente, es decir cuando está el cátodo con una tensión positiva y el ánodo negativa.
 
-![Untitled | center | 400](Images/Diodo%20Zenner/Untitled.png)
+![Untitled | 400](Images/Diodo%20Zenner/Untitled.png)
 
 - Un zener en conexión con polarización inversa siempre tiene la misma
 tensión en sus extremos (tensión zener).
@@ -26,7 +26,7 @@ tensión en sus extremos (tensión zener).
 
 - En todos los ejercicios, el objetivo suele ser el cálculo de la resistencia de polarización del Zener
 
-![Untitled | center | 400](Images/Diodo%20Zenner/Untitled%201.png)
+![Untitled | 400](Images/Diodo%20Zenner/Untitled%201.png)
 
 $$
 I_{R_{pz}}=I_z

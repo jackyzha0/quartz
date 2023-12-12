@@ -29,7 +29,7 @@ Donde $S(x)$ es la función spline, $S_i(x)$ es el polinomio que aproxima la cur
 
 ## Tipos de spline
 
-![[Pasted image 20230913162640.png | center | 400]]
+![[Pasted image 20230913162640.png | 400]]
 
 - El tipo de polinomio viene dado por el polinomio de mayor grado, y por las condiciones de regularidad.
 
@@ -74,4 +74,4 @@ Donde $S'_{i-1}(x)$ es la primera derivada del polinomio cúbico que aproxima la
 $$S''_{i-1}(x_i) = S''_i(x_i)$$
 Donde $S''_{i-1}(x)$ es la segunda derivada del polinomio cúbico que aproxima la curva en el segmento anterior al segmento $i$, y $S''_i(x)$ es la segunda derivada del polinomio cúbico que aproxima la curva en el segmento $i$.
 
-![[Pasted image 20230913170605.png | center | 600]]
+![[Pasted image 20230913170605.png | 600]]

@@ -15,7 +15,7 @@ Source:: [[]] #main_page
 ![[Pasted image 20230907152202.png]]
 
 ## Organización de los datos
-![[Pasted image 20230907152656.png | center | 400]]
+![[Pasted image 20230907152656.png | 400]]
 
 ![[Pasted image 20230907154301.png]]
 

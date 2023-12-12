@@ -12,7 +12,7 @@ Source:: [[]]
 	- Como redes de acceso inalámbricas donde los terminales se comunican con un punto de acceso a través del cual pueden acceder a redes externas.
 
 ## Velocidades de WLAN
-![[Pasted image 20231002165458.png | center | 400]]
+![[Pasted image 20231002165458.png | 400]]
 
 ## Estructura y elementos
 ![[Pasted image 20231002170718.png]]

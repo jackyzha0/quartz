@@ -9,7 +9,7 @@ Source:: [[U2 - IO]]
 
 
 ## Definición de Grafo
-- Colección de vértices (nodos) y aristas (conexiones) entre estos vértices![[Pasted image 20230930192528.png | center | 300]]
+- Colección de vértices (nodos) y aristas (conexiones) entre estos vértices![[Pasted image 20230930192528.png | 300]]
 	- Nodos o vértices -> Los elementos individuales de un grafo
 	- Aristas -> Las conexiones entre vértices
 - Grado de un nodo
@@ -25,7 +25,7 @@ El Problema del Camino Mínimo busca determinar la trayectoria óptima entre un 
 
  Ejemplo
  - Necesito ir a la universidad pasando por una librería y un cafetería. El siguiente grafo representa las distancias y las rutas que puedo tomar. Cuál es el camino que minimiza las distancias?
-![[Pasted image 20230930193417.png | center | 300]]
+![[Pasted image 20230930193417.png | 300]]
 
 - Variables de decisión
 	- $x_{ij}=1$ si se toma el camio entre $i$ y $j$ está presente, y $x_{ij}=0$ en caso contrario.

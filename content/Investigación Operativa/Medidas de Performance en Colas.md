@@ -7,7 +7,7 @@ Source:: [[U3 - IO]] [[Teoría de Colas]]
 %%
 
 ### Medidas de performance
-![[Pasted image 20231024112728.png | center | 300]]
+![[Pasted image 20231024112728.png | 300]]
 
 $$\lambda: \text{Cantidad de gente por hora} $$
 $$\mu: \text{Tiempo para atender a cada persona}$$

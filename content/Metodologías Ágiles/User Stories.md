@@ -1,6 +1,6 @@
 ## Alcance, tiempo y costo 
 
-![[Pasted image 20231103125419.png | center | 300]]
+![[Pasted image 20231103125419.png | 300]]
 
 - Las características del producto son **variables**. por lo que vamos a tener que jugar con el tiempo, el costo y la calidad para poder adaptarnos a dichos cambios.
 
@@ -18,7 +18,7 @@
 
 ## Ciclo de vida de una User Story
 
-![[Pasted image 20231103125946.png | center | 400]]
+![[Pasted image 20231103125946.png | 400]]
 
 ![[Pasted image 20231103130924.png]]
 ![[Pasted image 20231103132021.png]]

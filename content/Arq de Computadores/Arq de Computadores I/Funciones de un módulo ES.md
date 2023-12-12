@@ -17,7 +17,7 @@ Source:: [[Dispositivos Externos]]
 		- Datos: el procesador y el módulo de E/S intercambian datos a través del bus de datos.
 		- Información de Estado: es importante conocer el estado del módulo de E/S (suelen ser bobos)
 		- Reconocimiento de direcciones: Cada dispositivo de E/S tiene una dirección única.
-- **Comunicación con los dispositivos**![[Pasted image 20230810164451.png | center | 500]]
+- **Comunicación con los dispositivos**![[Pasted image 20230810164451.png | 500]]
 - **Almacenamiento temporal de datos**
 	- Buffer. Para temporizar la realización de las tareas.
 	- Mientras que la velocidad de transferencia desde, y hacia, la memoria principal o el procesador es bastante alta, dicha velocidad puede ser varios órdenes de magnitud menor para la mayoría de los dispositivos periféricos. Los datos provenientes de la memoria se envían al módulo de E/S en ráfagas rápidas. Los datos se almacenan temporalmente en el módulo de E/S y después se envían al periférico a la velocidad de este. En el sentido contrario, los datos se almacenan para no mantener a la memoria ocupada en una operación de transferencia lenta. Así, el módulo de E/S debe ser capaz de operar a las velocidades tanto del dispositivo como de la memoria. Igualmente, si el dispositivo de E/S trabaja a una velocidad mayor que la memoria, el módulo de E/S se encarga del almacenamiento temporal necesario.

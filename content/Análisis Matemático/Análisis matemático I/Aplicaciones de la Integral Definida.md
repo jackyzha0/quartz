@@ -1,7 +1,7 @@
 Course: [[Análisis matemático I]]
 ### Area de la región entre dos curvas
 
-- Area de la region entre dos curvas ![Untitled | center | 200](Images/Aplicaciones%20de%20la%20Integral%20Definida/Untitled.png)
+- Area de la region entre dos curvas ![Untitled | 200](Images/Aplicaciones%20de%20la%20Integral%20Definida/Untitled.png)
 	- $$\int_a^b[f(x)-g(x)]dx$$
 
 ### Método de los Discos

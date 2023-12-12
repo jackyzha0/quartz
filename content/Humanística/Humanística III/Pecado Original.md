@@ -12,7 +12,7 @@ Source:: [[]] #main_page
 		- El mal muchas veces no te permite ser parte de las cosas buenas.
 - La Iglesia acerca del mal
 	- Hay un orden primordial
-		![[Pasted image 20230809143149.png | center | 500]]
+		![[Pasted image 20230809143149.png | 500]]
 		Jesucristo, verdadero Dios y verdadero hombre es capaz de restablecer la relación que el pecado original rompió. Cuando aparece el pecado original, aparece el evangelio/anuncio de la salvación.
 	- <mark style="background: #FFF3A3A6;">El pecado original es una vedad de fe</mark>
 		- Es un dogma y una verdad de fe
@@ -60,7 +60,7 @@ En este número, se destaca la obra redentora de Jesucristo como la solución di
 	- Es un dogma y una verdad de fe
 	- Es el pecado mediante el cual se rompe nuestra relación con Dios y los ángeles.
 	- El mal rompe toda la estructura que Dios quería para nosotros, porque no lo puedo manejar, me viene hacia mi.
-		- El mal muchas veces no te permite ser parte de las cosas buenas.![[Pasted image 20230809143149.png | center | 300]]
+		- El mal muchas veces no te permite ser parte de las cosas buenas.![[Pasted image 20230809143149.png | 300]]
 - ¿Cómo podemos restablecer esta ruptura originada por el pecado original?
 	- Jesucristo, verdadero Dios y verdadero hombre es capaz de restablecer la relación que el pecado original rompió. Cuando aparece el pecado original, aparece el evangelio/anuncio de la salvación.
 - ¿Es el pecado original un pecado cometido?

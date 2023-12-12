@@ -26,7 +26,7 @@ Qué es la arquitectura de von Neumann?
 - La función de una computadora es la ejecución de programas (localizados en memoria y consisten en instrucciones)
 	- Las instrucciones consisten en secuencias binarias llamadas código máquina.
 - La CPU es quien se encarga de ejecutar dichas instrucciones a través del denominado ciclo de instrucciones.
-![[Pasted image 20230330090936.png | center | 200]]
+![[Pasted image 20230330090936.png | 200]]
 1. Leer (fetch) instrucción de memoria
 2. Ejecutar (execute) instrucción
 - Al comienzo de cada ciclo, la CPU busca una instrucción en memoria

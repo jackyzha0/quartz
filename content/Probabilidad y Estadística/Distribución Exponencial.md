@@ -7,7 +7,7 @@ Source:: [[Distribución de probabilidad]]
 #estadistica/distribuciones_probabilidad 
 %%
 
-![[Pasted image 20230426183854.png | center | 400]]
+![[Pasted image 20230426183854.png | 400]]
 - Se utiliza para modelar el tiempo de espera entre dos eventos que ocurren de forma independiente .
 
 Cómo se define la distribución exponencial?

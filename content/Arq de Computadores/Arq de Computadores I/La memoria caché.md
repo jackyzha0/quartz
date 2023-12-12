@@ -9,7 +9,7 @@ Source:: [[Memorias]]
 ## Funcionamiento de la memoria caché
 - El objetivo es lograr que la velocidad de la memoria sea lo más rápida posible, consiguiendo al mismo tiempo un tamaño grande al precio de memorias semiconductoras menos costosas.
 - Hay una memoria principal relativamente grande y más lenta, junto con la caché que es más pequeña y precisa.
-	- ![[Pasted image 20230522181527.png | center | 350]]
+	- ![[Pasted image 20230522181527.png | 350]]
 	- La caché contiene una copia de partes de la memoria principal.
 	- Cuando el procesador quiere leer algo de memoria principal, se lee si está de la caché. Si es así, la entrega, si no, un bloque de memoria principal se transfiere a la caché y después la palabra se la entrega al procesador
 	- ![[Pasted image 20230522181539.png]]
@@ -24,7 +24,7 @@ Source:: [[Memorias]]
 - El procesador genera la dirección (RA) de una palabra a leer
 	- Si está en caché se la entrega
 	- Si no, se carga el bloque que la contiene en la caché, y se la lleva al procesador.
-![[Pasted image 20230522182445.png | center | 500]]
+![[Pasted image 20230522182445.png | 500]]
 
 
 
@@ -32,7 +32,7 @@ Source:: [[Memorias]]
 - La caché conecta con el procesador mediante líneas de datos, de control y de direcciones
 - Las líneas de datos y de direcciones se conectan también con buffers de datos y de direcciones con un bus del sistema, a través del cual se accede a la memoria principal.
 	- El buffer lo que hace es amortiguar los cambios de velocidades entre la caché y la memoria principal.
-![[Pasted image 20230522184010.png | center | 400]]
+![[Pasted image 20230522184010.png | 400]]
 
 
 ## Elementos de diseño de una memoria caché

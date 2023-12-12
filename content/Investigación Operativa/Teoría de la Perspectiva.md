@@ -6,7 +6,7 @@ Course:: [[Investigación Operativa]]
 Source:: [[U3 - IO]]
 %%
 
-![[Pasted image 20231024114250.png | center | 400]]
+![[Pasted image 20231024114250.png | 400]]
 
 La Teoría de la Perspectiva, en el ámbito de la psicología y la economía, es una teoría que se centra en cómo las personas toman decisiones y evalúan las opciones en situaciones de incertidumbre. Esta teoría fue desarrollada por los psicólogos Daniel Kahneman y Amos Tversky en la década de 1970 y ha tenido un impacto significativo en campos como la economía del comportamiento y la toma de decisiones.
 

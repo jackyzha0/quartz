@@ -25,7 +25,7 @@
 - La estabilidad dinámica resulta de la combinación del reajuste de numerosos equilibrios alcanzados y mantenidos por el sistema.
 - Un **equilibrio de fuerzas** es un equilibrio estático y resulta de la  anulación en un mismo punto de dos o varias fuerzas iguales y opuestas.  
 - Un **equilibrio de flujos (o equilibrio dinámico)** resulta del ajuste de las velocidades de   dos o varios flujos que atraviesan un aparato de medida. Hay equilibrio cuando las velocidades de los flujos son iguales y de direcciones opuestas. Un equilibrio de flujos es un equilibrio dinámico. Puede adaptarse, modificarse y modularse permanentemente gracias a reajustes a veces imperceptibles, en función de las perturbaciones o de las circunstancias.
-	 ![[Pasted image 20230330200818.png | center | 200]]
+	 ![[Pasted image 20230330200818.png | 200]]
 - Los sistemas no tienen equilibrios estáticos
 <!--SR:!2023-05-08,2,248-->
 

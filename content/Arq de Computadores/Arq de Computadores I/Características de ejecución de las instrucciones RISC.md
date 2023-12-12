@@ -25,7 +25,7 @@ Frecuencia de aparición de distintas operaciones en lenguajes de alto nivel
 
 ## Operandos
 Frecuencia de aparición de tipos de operandos
-![[Pasted image 20231107150852.png | center | 400]]
+![[Pasted image 20231107150852.png | 400]]
 
 ## Llamadas a procedimientos
 Cantidad de argumentos promedios en las llamadas a procedimientos

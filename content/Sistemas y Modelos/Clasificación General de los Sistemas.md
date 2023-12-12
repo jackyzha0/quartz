@@ -10,7 +10,7 @@ Según los límites establecidos, y los intercambios de materia, energía e info
 ## Qué características tienen los sistemas abiertos?
 ?
 - **Sistemas abiertos**
-	- ![[Pasted image 20230323193254.png | center | 400]]
+	- ![[Pasted image 20230323193254.png | 400]]
 	- Los más comunes y que nos rodean en la naturaleza, y pueden dialogar reciprocamente con el entorno que lo rodea
 	- A través de sus límites, constante interacción entre éste y su entorno, modificandose continuamente 
 	- <mark style="background: #FFF3A3A6;">Entradas (inputs) y salidas (outputs) de materia, energía e información</mark>

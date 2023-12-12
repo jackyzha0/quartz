@@ -14,7 +14,7 @@ Cuál es la diferencia entre estructura y funcionamiento de un computador?
 ## Funcionamiento
 
 Vision funcional de un computador?
-![[Pasted image 20230611112327.png | center | 400]]
+![[Pasted image 20230611112327.png | 400]]
 
 Cuáles son las funciones básicas de un computador?
 - **Procesamiento de datos**
@@ -33,10 +33,10 @@ Cuáles son las funciones básicas de un computador?
 
 
 
-![[Pasted image 20230327172922.png | center | 400]]
-![[Pasted image 20230327172953.png | center | 400]]
-![[Pasted image 20230327173019.png | center | 400]]
-![[Pasted image 20230327173041.png | center | 400]]
+![[Pasted image 20230327172922.png | 400]]
+![[Pasted image 20230327172953.png | 400]]
+![[Pasted image 20230327173019.png | 400]]
+![[Pasted image 20230327173041.png | 400]]
 
 
 

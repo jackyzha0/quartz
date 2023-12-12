@@ -1,6 +1,6 @@
 # Lean Inception
 https://pdfdrive.to/dl/the-lean-startup-1
-![[Pasted image 20231103124009.png | center | 400]]
+![[Pasted image 20231103124009.png | 400]]
 - Cuando hablamos de "lean" es algo que le debe servir al cliente. Son pequeños productos que nos permiten ir validando una idea.
 - Cada entregable nos permite un aprendizaje para el siguiente entregable.
 

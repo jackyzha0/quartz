@@ -13,21 +13,21 @@ Cuáles son las operaciones básicas del algebra booleana?
 ## Operaciones del algebra booleana
 - Operación OR (+) $Q=A + B$
 	- Si una de las entradas es 1, entonces la salida es 1.
-	- Compuerta OR![[Pasted image 20230410172112.png | center | 400]]
+	- Compuerta OR![[Pasted image 20230410172112.png | 400]]
 - Operación AND (.) $Q=A\cdot B$
 	- Si una de las entradas es 0, entonces la salida es 0.
-	- Compuerta AND ![[Pasted image 20230410172205.png | center | 400]]
+	- Compuerta AND ![[Pasted image 20230410172205.png | 400]]
 - Operación NOT ($\bar{x}$) $Q=\bar{Q}$
 	- La salida es la negación de la entrada
-	- Compuerta NOT ![[Pasted image 20230410172328.png | center | 400]]
+	- Compuerta NOT ![[Pasted image 20230410172328.png | 400]]
 - Compuesta NAND $Q=\bar{AB}$
-	- Cuando las dos entradas estén en estado alto la salida estará en estado bajo. Como resultado de la negación de una AND.![[Pasted image 20230410181954.png | center | 400]]
+	- Cuando las dos entradas estén en estado alto la salida estará en estado bajo. Como resultado de la negación de una AND.![[Pasted image 20230410181954.png | 400]]
 - Compuerta NOR $Q=\bar{A+B}$
-	- cuando las dos entradas estén estado bajo la salida estará en estado alto. Esencialmente una OR negada.![[Pasted image 20230410182022.png | center | 400]]
+	- cuando las dos entradas estén estado bajo la salida estará en estado alto. Esencialmente una OR negada.![[Pasted image 20230410182022.png | 400]]
 - Compuesta XOR $Q=A \bigoplus B$
-	- Cuando una de las dos entradas se encuentre en estado alto. Igualmente, la salida de una XOR negada.![[Pasted image 20230410182117.png | center | 400]]
+	- Cuando una de las dos entradas se encuentre en estado alto. Igualmente, la salida de una XOR negada.![[Pasted image 20230410182117.png | 400]]
 - Compuerta XNOR (nor exclusivo)
-	- cuando una de las dos entradas se encuentre en estado alto. Igualmente, la salida de una XOR negada. ![[Pasted image 20230410183057.png | center | 400]]
+	- cuando una de las dos entradas se encuentre en estado alto. Igualmente, la salida de una XOR negada. ![[Pasted image 20230410183057.png | 400]]
 ## Postulados de identidad
 - $0+x=x$
 - $1\times x = x$

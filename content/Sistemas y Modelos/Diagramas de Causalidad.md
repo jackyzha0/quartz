@@ -16,15 +16,15 @@ Source:: [[Dinámica de Sistemas]]
 
 ## Tipos básicos de estructuras causales
 - Diagrama causal simple
-	- Se indica solamente la influencia de una variable sobre otra. ![[Pasted image 20230601212809.png | center | 200]]
+	- Se indica solamente la influencia de una variable sobre otra. ![[Pasted image 20230601212809.png | 200]]
 - Diagrama causal complejo
 	- Establece cadenas cerradas de relaciones causales. 
-	- Se pueden distinguir bucles re-alimentados (cadena cerrada de relaciones causales) ![[Pasted image 20230601213300.png | center | 350]]
+	- Se pueden distinguir bucles re-alimentados (cadena cerrada de relaciones causales) ![[Pasted image 20230601213300.png | 350]]
 	- Pueden existir dos tipos de bucles re-alimentados
 		- **Bucles de re-alimentación positiva**
-			- Aquellos en los que loa variación de un elemento se propaga a lo largo del bucle de manera que se refuerza la variación inicial. ![[Pasted image 20230602114521.png | center | 200]]
+			- Aquellos en los que loa variación de un elemento se propaga a lo largo del bucle de manera que se refuerza la variación inicial. ![[Pasted image 20230602114521.png | 200]]
 		- **Bucles de re-alimentación negativa**
-			- La variación de un elemento se transmite a lo largo del bucle de manera que determina una variación de signo contrario en el mismo elemento. ![[Pasted image 20230602114622.png | center | 200]]
+			- La variación de un elemento se transmite a lo largo del bucle de manera que determina una variación de signo contrario en el mismo elemento. ![[Pasted image 20230602114622.png | 200]]
 
 
 ## Reglas para realizar diagramas causales

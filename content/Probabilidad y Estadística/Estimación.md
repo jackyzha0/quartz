@@ -19,8 +19,8 @@ Source:: [[Concepto de estimación]]
 - Una estimación está acompañada de una posible medida de error de esa estimación. Esto se puede hacer indicando el error estándar del estimador o dando un intervalo que incluya el verdadero valor del parámetro con un cierto nivel de confianza.
 - El procedimiento que permite calcular los límites superior e inferior del intervalo antedicho se conoce como: **estimación por intervalo** y al intervalo obtenido: **Intervalo de Confianza.**
 
-![[Pasted image 20230531182007.png | center | 450]]
-![[Pasted image 20230531182043.png | center | 450]]
+![[Pasted image 20230531182007.png | 450]]
+![[Pasted image 20230531182043.png | 450]]
 
 >[!important] Definición por intervalo
 >Una estimación por intervalo de un parámetro poblacional $\theta$ es un intervalo aleatorio construido de tal manera que la probabilidad de contener al parámetro sea de $1 - \alpha$, es decir $P(LI\leq \theta \leq LS)= 1-\alpha$, para $0<\alpha<1$
@@ -36,22 +36,22 @@ Source:: [[Concepto de estimación]]
 	- $P(q_1\leq g(\theta,\hat\theta) \leq q_2 = 1-\alpha$
 	- Una vez determinado q1 y q2, los límites LI y LS surgen despejando $\theta$ a partir de $g(\theta,\hat\theta)$
 
-![[Pasted image 20230531184820.png | center | 450]]
-![[Pasted image 20230531184834.png | center | 450]]
-![[Pasted image 20230531184852.png | center | 450]]
+![[Pasted image 20230531184820.png | 450]]
+![[Pasted image 20230531184834.png | 450]]
+![[Pasted image 20230531184852.png | 450]]
 
 
 
 ## Estimación por IC de la media si no se conoce $\sigma^2$
 
-![[Pasted image 20230531201012.png | center | 450]]
-![[Pasted image 20230531201107.png | center | 450]]
+![[Pasted image 20230531201012.png | 450]]
+![[Pasted image 20230531201107.png | 450]]
 
 ## Estimación de la diferencia entre medias si se conocen las varianzas
 
-![[Pasted image 20230531203517.png | center | 450]]
-![[Pasted image 20230531203533.png | center | 450]]
-![[Pasted image 20230531203547.png | center | 450]]
+![[Pasted image 20230531203517.png | 450]]
+![[Pasted image 20230531203533.png | 450]]
+![[Pasted image 20230531203547.png | 450]]
 
 
 

@@ -6,7 +6,7 @@ Course:: [[Arquitectura de Computadores I]]
 Source:: [[Utilización de un amplio banco de registros]] [[Repertorio de Instrucciones simple (RISC)]]
 %%
 
-![[Pasted image 20231026155719.png | center | 500]]
+![[Pasted image 20231026155719.png | 500]]
 
 
 ### Optimización del uso de registros en una máquina RISC con un número limitado de registros (por ejemplo, 16-32). 

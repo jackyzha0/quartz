@@ -48,7 +48,7 @@ Source:: [[Lenguajes y lenguajes formales]]
 
 **Cómo se relaciona una tabla de transición con una representación en grafo?**
 ?
-![[Pasted image 20230413173731.png | center | 400]]
+![[Pasted image 20230413173731.png | 400]]
 
 
 ___

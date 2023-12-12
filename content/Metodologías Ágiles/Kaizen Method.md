@@ -1,4 +1,4 @@
-![[Pasted image 20231101122936.png | center | 400 ]]
+![[Pasted image 20231101122936.png | 400 ]]
 
 1. **Establecer objetivos claros (1er paso)**: El primer paso en el proceso Kaizen es definir claramente los objetivos de mejora. Estos objetivos deben ser específicos, medibles, alcanzables, relevantes y con un horizonte de tiempo definido (conocidos como objetivos SMART). Establecer metas claras proporciona dirección y enfoque para la mejora.
     

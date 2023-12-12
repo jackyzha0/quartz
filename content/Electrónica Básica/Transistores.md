@@ -17,9 +17,9 @@ y N respectivamente. La figura-1, muestra la estructura interna del transistor. 
 se le conoce también como diodo.
     - Normalmente la corriente ingresa por el colector, y sale por el emisor
 
-![Untitled | center | 300](Images/Transistores/Untitled.png)
+![Untitled | 300](Images/Transistores/Untitled.png)
 
-![Untitled | center | 300](Images/Transistores/Untitled%201.png)
+![Untitled | 300](Images/Transistores/Untitled%201.png)
 
 - Se lo puede usar como amplificador (electrónica analógica) y como interruptor (electrónica digital)
 
@@ -119,6 +119,6 @@ $$
 \alpha = \dfrac{1_C}{I_E} \approx 1 
 $$
 
-![Untitled | center | 400](Images/Transistores/Untitled%209.png)
+![Untitled | 400](Images/Transistores/Untitled%209.png)
 
 ![Untitled](Images/Transistores/Untitled%2010.png)

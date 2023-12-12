@@ -24,14 +24,14 @@ Qué tipos de interacciones pueden haber en un sistema? ;; débiles o fuertes
 - Los efectos de las interacciones pueden ser <mark style="background: #FFF3A3A6;">lineales</mark>, en las que las variabels son incrementadas o decrementadas en cantidad constante.
 - El valor de las variables permanece constante a lo largo del tiempo, o se ve incrementada por los mismos valores
 - Las relaciones lineales son típicas de los sistemas simples (no complejos)
-![[Pasted image 20230315091334.png | center | 300]]
+![[Pasted image 20230315091334.png | 300]]
 
 ### Cómo son las Interacciones fuertes, exponenciales o no lineales
 ?
 - Son interacciones más dificultosas, de comprender y representar.
 - Cuando se trata de interacciones no lineales, las variables se multiplican o dividen por coeficientes (que a su vez pueden ser funciones de otras variables).
 
-![[Pasted image 20230315091453.png | center | 200]]
+![[Pasted image 20230315091453.png | 200]]
 
 
 >[!info] Summary

@@ -26,9 +26,9 @@ Cómo se define la distribución gamma?
 ?
 La variable aleatoria $X$ tiene una distribución gamma con parámetros $\alpha$ y $\beta$ si su función de densidad está dada por 
 >[!quote] Distribución gamma
->![[Pasted image 20230426183309.png | center | 400]] donde $\alpha > 0$ y $\beta > 0$
+>![[Pasted image 20230426183309.png | 400]] donde $\alpha > 0$ y $\beta > 0$
   
-![[Pasted image 20230426183941.png | center | 400]]
+![[Pasted image 20230426183941.png | 400]]
 
 Cómo es la media y la varianza de la distribución gamma?
 ?

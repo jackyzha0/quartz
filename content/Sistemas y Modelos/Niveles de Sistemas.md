@@ -9,7 +9,7 @@ Source:: [[Teoría General de Sistemas]]
 #teosistemas/sistemas 
 
 [[Trabajo Práctico 1 - TGDS]]
-![[Pasted image 20230413203405.png | center | 500]]
+![[Pasted image 20230413203405.png | 500]]
 
 En qué consisten los niveles de los sistemas?
 ?

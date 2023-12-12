@@ -41,7 +41,7 @@ Cuando se diseña la máquina, se determina con cuál se va a utilizar
 		- Va a realizar tooooda la comunicación con el módulo de E/S
 		- El módulo sigue siendo el que administra la interfaz con el dispositivo, el DMA no lo puentea. 
 
-![[Pasted image 20230824165021.png | center | 400]]
+![[Pasted image 20230824165021.png | 400]]
 
 
 ## Secuenciamiento de ejecución

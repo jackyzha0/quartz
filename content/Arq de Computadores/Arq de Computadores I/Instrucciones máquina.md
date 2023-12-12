@@ -28,7 +28,7 @@ Cómo las instrucciones máquina se encuentran en binario, se utilizan represent
 - DIV (Dividir)
 - LOAD (Cargar datos de memoria)
 - STOR (Almacenar datos en memoria)
-![[Pasted image 20231106141558.png  | center | 400]]
+![[Pasted image 20231106141558.png  | 400]]
 
 
 ## Tipos de instrucciones de una computadora

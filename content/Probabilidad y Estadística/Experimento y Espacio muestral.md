@@ -28,7 +28,7 @@
 # Diagrama de árbol para representar espacios muestrales
 ?
 - Cuando resulta muy difícil listar cada uno de los elementos de $S$, utilizamos diagramas de árboles.
-![[Pasted image 20230324133511.png | center | 400]]
+![[Pasted image 20230324133511.png | 400]]
 
 
 ## Flashcards

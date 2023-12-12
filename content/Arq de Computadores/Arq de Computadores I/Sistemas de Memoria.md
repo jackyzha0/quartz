@@ -72,7 +72,7 @@ Source:: [[Memorias]]
 	- A menor tiempo de acceso, mayor coste por bit.
 	- A mayor capacidad, menor coste por bit.
 	- A mayor capacidad, mayor tiempo de acceso.
-![[Pasted image 20230614192718.png | center | 400]]
+![[Pasted image 20230614192718.png | 400]]
 - Cuando se desciende por la pirámide ocurre que
 	- Disminuye el coste por bit (a)
 	- Aumenta la capacidad (b)

@@ -16,7 +16,7 @@ Qué valores deben estar en un resumen de cinco números? ;; Mín, max, Q1, moda
 ## Box plots
 Cómo se realiza un diagrama de box-plot?
 ?
-- ![[Pasted image 20230322202355.png | center | 300]]![[Pasted image 20230322202426.png | 500]]
+- ![[Pasted image 20230322202355.png | 300]]![[Pasted image 20230322202426.png | 500]]
 	Se consideran alejados a los valores que son menores que (1) o mayores que (2) y muy alejados a aquellos que son menores que (3) o mayores que (4).
 	A los valores alejados, los denotamos como circulos
 	A los valores muy alejados, con *

@@ -33,7 +33,7 @@ Las metodologías ágiles **no solo se buscaron para que las personas sean felic
 - El foco de las metodologías ágiles es el "delivery". Aquello que se entrega debe proveer valor a quien lo recible.
 - Podemos aplicar cualquier framework, siempre y cuando tomemos las bases del [[Manifiesto Agile]]
 
-![[Pasted image 20231031130825.png | center | 300 ]]
+![[Pasted image 20231031130825.png | 300 ]]
 - No significa que no exista un plan. Sino que este plan contempla cambios, y adaptaciones.
 - La agilidad no es gratis, pero mientras se acepte el costo que implica, nos vuelve más eficientes.
 

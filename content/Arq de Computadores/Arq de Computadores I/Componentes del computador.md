@@ -12,7 +12,7 @@ Cuál es la diferencia entre un programa cableado (hardwired program) y un softw
 - La alternativa de von Newman
 	- La configuración es de uso general.
 	- Realiza diferentes cálculos según las señales de control aplicadas.
-		![[Pasted image 20230508165849.png | center | 400]]
+		![[Pasted image 20230508165849.png | 400]]
 
 
 Qué son las señales de control? Cómo las suministra?
@@ -23,7 +23,7 @@ Qué son las señales de control? Cómo las suministra?
 
 
 Cómo es una perspectiva de alto nivel del funcionamiento e interconexiones del computador?
-![[Pasted image 20230508170458.png | center | 500]]
+![[Pasted image 20230508170458.png | 500]]
 
 ___
 ## Flashcards

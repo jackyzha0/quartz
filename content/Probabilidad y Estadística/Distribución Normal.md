@@ -7,7 +7,7 @@ Source:: [[Distribución de probabilidad]]
 #estadistica/distribuciones_probabilidad 
 %%
 
-![[Pasted image 20230419194753.png | center | 400]]
+![[Pasted image 20230419194753.png | 400]]
 - También conocida con el nombre de distribución "gaussiana" o "campana de Gauss"
 
 Cómo se define una distribución normal?

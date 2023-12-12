@@ -44,7 +44,7 @@ Credo extenso: Antes del número 185
 
 ## Flashcards
 - ¿Qué es la Santísima Trinidad?
-	- Es el misterio más grande y más importante de los cristianos![[Pasted image 20230823144029.png | center | 400]]
+	- Es el misterio más grande y más importante de los cristianos![[Pasted image 20230823144029.png | 400]]
 	- Inmediatamente que ocurre el hecho del pecado original, Dios hace un anuncio de salvación y se reencarna en jesucristo.  <mark style="background: #FFF3A3A6;">Dios se hace hombre sin dejar de ser Dios</mark>
 	- En la santísima trinidad, no es que cada persona tiene una parte de la sustancia divina, sino que todos son Dios.
 - ¿Jesucristo, cuándo comienza a ser Jesucristo?
