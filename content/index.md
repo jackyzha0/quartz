@@ -1,5 +1,6 @@
 ---
-title: Forgetful Notes
+# title: Forgetful Notes
+title: Home
 description: Forgetful Notes—A digital garden of knowledge. A platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 compartir: true
 updated: 2023-12-12
