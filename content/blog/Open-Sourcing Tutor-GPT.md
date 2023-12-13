@@ -1,6 +1,5 @@
 ---
 title: "Open-Sourcing Tutor-GPT"
-enableToc: false
 ---
 
 ![[assets/human_machine_learning.jpeg]]
@@ -39,7 +38,7 @@ Bloom was built and prompted to elicit this specific type of teaching behavior. 
 
 ![[assets/bloombot langchain diagram.png]]
 
-It consists of two “chain” objects from [LangChain](https://python.langchain.com/en/latest/index.html) —a *thought* and *response* chain. The _thought_ chain exists to prompt the model to generate a pedagogical thought about the student’s input—e.g. a student’s mental state, learning goals, preferences for the conversation, quality of reasoning, knowledge of the text, etc. The *response*chain takes that _thought_ and generates a response.
+It consists of two “chain” objects from [LangChain](https://python.langchain.com/en/latest/index.html) —a _thought_ and _response_ chain. The _thought_ chain exists to prompt the model to generate a pedagogical thought about the student’s input—e.g. a student’s mental state, learning goals, preferences for the conversation, quality of reasoning, knowledge of the text, etc. The *response*chain takes that _thought_ and generates a response.
 
 Each chain has a `ConversationSummaryBufferMemory` object summarizing the respective “conversations.” The _thought_ chain summarizes the thoughts into a rank-ordered academic needs list that gains specificity and gets reprioritized with each student input. The _response_ chain summarizes the dialogue in an attempt to avoid circular conversations and record learning progress.
 

@@ -86,6 +86,7 @@ links:
 ```
 
 ### Code Block Titles
+
 To add code block titles with Quartz:
 
 1. Ensure that code block titles are enabled in Quartz's configuration:

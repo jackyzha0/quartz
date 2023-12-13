@@ -1,7 +1,5 @@
-
 ---
 title: "Theory-of-Mind Is All You Need"
-enableToc: false
 ---
 
 ## TL;DR
