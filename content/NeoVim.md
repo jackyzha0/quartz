@@ -1,7 +1,7 @@
 ---
 title: NeoVim
 compartir: true
-updated: 2023-12-04
+updated: 2023-12-12
 tags:
   - reference
 enableToc: true
@@ -11,9 +11,13 @@ aliases:
 ---
 
 
-Vim-fork focused on extensibility and usability.
+NeoVim is a Vim-fork focused on extensibility and usability. This is my short reference guide as I learn to use it.
+
+## Links
 
 [Dotfiles](https://github.com/semanticdata/dotfiles) – [Website](https://neovim.io/) – [Documentation](https://neovim.io/doc/)
+
+## Useful Commands
 
 **Sync from CLI** → `nvim --headless "+Lazy! sync" +qa`
 

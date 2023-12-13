@@ -1,14 +1,14 @@
 ---
 title: About
 compartir: true
-updated: 2023-12-04
+updated: 2023-12-12
 tags:
   - meta
 ---
 
 ## Hi! I'm Miguel 👋🏼
 
-Problem solver, hobby developer, music enjoyer, and public infrastructure enthusiast. I live in Minnesota, also known as the _"Land of 10,000 Lakes"_ for having over 14,000 bodies of fresh water.
+I am a problem solver, hobby developer, music enjoyer, and public infrastructure enthusiast. I live in Minnesota, also known as the _"Land of 10,000 Lakes"_ for having over 14,000 bodies of fresh water.
 
 I think a lot, work a lot, have existential crises, and know just enough about making websites to make me dangerous. I enjoy writing, reading, coding, listening to music, and love having a problem to solve.
 
@@ -21,6 +21,14 @@ If you are aching for more, check out what [[./Tools|tools]] I use daily, or rea
 … collecting bookmarks with [Raindrop](https://raindrop.io/SemanticData).  
 … compiling [configuration files](https://github.com/semanticdata/dotfiles) in [GitHub](https://github.com/).  
 … developing a [theme](https://github.com/semanticdata/obsidian-sample-theme) for [Obsidian](https://obsidian.md/).
+
+### These Are Things I…
+
+| … Like               | … Love               | … am Passionate About |
+| -------------------- | -------------------- | --------------------- |
+| Writing / Journaling | Listening to Music   | Firefighting          |
+| Photography          | Computer Programming | Public Infrastructure |
+| Video Games          | Motorcycles          | Open-source Software  |
 
 ### Reach Out
 
