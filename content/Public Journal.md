@@ -17,10 +17,13 @@ updated: 2023-12-12
 
 - Created a new Firefox extension to hold [ChatGPT in the Sidebar](https://github.com/semanticdata/firefox-chatgpt-in-sidebar).
 - Started learning [Svelte](https://svelte.dev/) with the aim to create a Milkdown markdown editor web app.
-- Started learning [Bulma](https://bulma.io/). I would like to use it in conjunction with [Zola](https://www.getzola.org/) to create better looking websites.
+- Started learning [[./Bulma|Bulma]] I would like to use it in conjunction with [[./Zola|Zola]] to create better looking websites.
 - I intend to restart using [Espanso](https://espanso.org/) to help with repetitive work phrases, addresses, contractors, etc.
 
 ### November
 
 - Created a new Firefox extension, [WhatsApp Pinned](https://github.com/semanticdata/firefox-ticktick-pinned), and [TickTick Pinned](https://github.com/semanticdata/firefox-ticktick-pinned) which toggle their respective web apps in a pinned tab.
 - Ported the Chrome extension [Text Revealer](https://github.com/jamigibbs/text-revealer-chrome-extension) to Firefox. [Source](https://github.com/semanticdata/text-revealer-firefox-extension)
+
+> [!notice]
+> The more technical aspect of the Public Journal have been extracted into the new [[./Dev Journal|Dev Journal]]. Which I ttotally intend to keep updated. 🙄
