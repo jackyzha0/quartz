@@ -16,7 +16,7 @@ updated: 2023-12-12
 ### December
 
 - Created a new Firefox extension to hold [ChatGPT in the Sidebar](https://github.com/semanticdata/firefox-chatgpt-in-sidebar).
-- Started learning [Svelte](https://svelte.dev/) with the aim to create a Milkdown markdown editor web app.
+- Started learning [[./Svelte|Svelte]] with the aim to create a Milkdown markdown editor web app.
 - Started learning [[./Bulma|Bulma]] I would like to use it in conjunction with [[./Zola|Zola]] to create better looking websites.
 - I intend to restart using [Espanso](https://espanso.org/) to help with repetitive work phrases, addresses, contractors, etc.
 
