@@ -1,5 +1,5 @@
 ---
-title: Plastic Labs 🥽
+title: Welcome!
 enableToc: false
 ---
 
