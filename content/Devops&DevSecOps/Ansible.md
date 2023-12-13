@@ -1,5 +1,9 @@
 [Ansible PDF Link](https://github.com/ErdemOzgen/brain/blob/v4/docs/pdfs/ansible1.pdf)
 
+[Lab Env ](https://github.com/ErdemOzgen/ansibleDockerLab)
+
+
+
 ![[Pasted image 20231213081951.png]]
 
 Control node
