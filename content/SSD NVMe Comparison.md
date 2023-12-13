@@ -2,8 +2,7 @@
 title: SSD / NVMe Comparison
 description: This page was originally published on July 28, 2023 to aid in selecting SSD, NVMe drives to take advantage of an current Micro Center sale.
 compartir: true
-updated: 2023-10-11
-category: Archive
+updated: 2023-12-12
 tags:
   - archived
 ---
@@ -15,23 +14,23 @@ tags:
 
 ### 3D NAND
 
-* The most basic of modern SSD technologies. Great for throwing on cheap systems, home servers, anything non-critical really.
-* It is not recommended to host your Operating System on 3D NAND, or QLC.
+- The most basic of modern SSD technologies. Great for throwing on cheap systems, home servers, anything non-critical really.
+- It is not recommended to host your Operating System on 3D NAND, or QLC.
 
 ### Quad Level Cell (QLC)
 
-* QLC (Quad Level Cell) is cheaper to manufacture than TLC (Triple Level Cell).
-* QLC is much slower and less durable to constant writing than TLC.
-* It is not recommended to host your Operating System on 3D NAND, or QLC.
+- QLC (Quad Level Cell) is cheaper to manufacture than TLC (Triple Level Cell).
+- QLC is much slower and less durable to constant writing than TLC.
+- It is not recommended to host your Operating System on 3D NAND, or QLC.
 
 ### Triple Level Cell (TLC)
 
-* TLC is more reliable when compared to QLC.
-* MLC is a Triple Level Cell based Samsung technology.
+- TLC is more reliable when compared to QLC.
+- MLC is a Triple Level Cell based Samsung technology.
 
 ### Multi Level Cell (MLC)
 
-* MLC is a Triple Level Cell based Samsung technology.
+- MLC is a Triple Level Cell based Samsung technology.
 
 Let's break it down:
 
@@ -45,23 +44,23 @@ Let's break it down:
 
 ### Storage
 
-* 1 point per GB
-	* Less accurate the bigger the SSD
-	* 3 TB and higher drives scale exp/log instead of linearly.
+- 1 point per GB
+	- Less accurate the bigger the SSD
+	- 3 TB and higher drives scale exp/log instead of linearly.
 
 ### Price
 
 Based on price per $1.
 Selected $0.10 as the baseline after averaging some calculations.
 
-* 1 point for every $0.01 / GB below $0.10
+- 1 point for every $0.01 / GB below $0.10
 
 ### Technology Coefficient
 
-* 3D NAND Coefficient = 0.5 (Big Penalty)
-* QLC Coefficient = 0.75 (Small Penalty)
-* TLC Coefficient = 1.0 (No Change)
-* MLC V-NAND coefficient = 1.25 (Small Advantage)
+- 3D NAND Coefficient = 0.5 (Big Penalty)
+- QLC Coefficient = 0.75 (Small Penalty)
+- TLC Coefficient = 1.0 (No Change)
+- MLC V-NAND coefficient = 1.25 (Small Advantage)
 
 ## NVMe M.2 2280 M Key
 
@@ -137,7 +136,7 @@ _Higher is better._
 
 ## Conclusions
 
-* Cheap system? Get **any** of these.
-* Secondary drive? Get any **QLC** or better.
-* OS Drive? Get any **TLC** or better.
-* Extra cash? Premium for reliability? Get any **Samsung** from the list.
+- Cheap system? Get **any** of these.
+- Secondary drive? Get any **QLC** or better.
+- OS Drive? Get any **TLC** or better.
+- Extra cash? Premium for reliability? Get any **Samsung** from the list.

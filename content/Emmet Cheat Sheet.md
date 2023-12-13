@@ -1,15 +1,14 @@
 ---
 title: Emmet Cheat Sheet
-updated: 2023-10-19
-category: Archive
+updated: 2023-12-12
 tags:
   - archived
 compartir: true
 ---
 
 
-* [Documentation](https://docs.emmet.io/)
-* [Documentation](https://code.visualstudio.com/docs/editor/emmet) for Emmet in VS Code
+- [Documentation](https://docs.emmet.io/)
+- [Documentation](https://code.visualstudio.com/docs/editor/emmet) for Emmet in VS Code
 
 ## Notes on Abbreviation Formatting
 
@@ -17,8 +16,8 @@ When you get familiar with Emmet's abbreviations syntax, you may want to use som
 
 This is why Emmet needs some indicators (like spaces) where it should stop parsing to not expand anything that you don't need. If you're still thinking that such formatting is required for complex abbreviations to make them more readable:
 
-* Abbreviations are not a template language, they don't have to be "readable", they have to be "quickly expandable and removable".
-* You don't really need to write complex abbreviations. Stop thinking that "typing" is the slowest process in web-development. You'll quickly find out that constructing a single complex abbreviation is much slower and error-prone than constructing and typing a few short ones.
+- Abbreviations are not a template language, they don't have to be "readable", they have to be "quickly expandable and removable".
+- You don't really need to write complex abbreviations. Stop thinking that "typing" is the slowest process in web-development. You'll quickly find out that constructing a single complex abbreviation is much slower and error-prone than constructing and typing a few short ones.
 
 ## HTML + CSS Emmet Short Guide
 

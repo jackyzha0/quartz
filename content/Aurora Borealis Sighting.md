@@ -3,15 +3,14 @@ title: Aurora Borealis Sighting
 description: Wednesday, July 12th, 2023, was supposed to feature high solar activity, allowing for an incredibly large area of the northern United States to witness the Auroras as long as the light pollution was low. Unfortunately, this forecast did not come to pass. The solar activity remained within normal levels, meaning only Alaska and a few other places were able to see them. Thus cancelling these plans. But I liked the idea of presenting things like this in an Archive format.
 date: 2023-07-12
 compartir: true
-updated: 2023-09-20
-category: Archive
+updated: 2023-12-12
 tags:
   - archived
 ---
 
 
 > Wednesday, July 12th, 2023, was supposed to feature high solar activity, allowing for an incredibly large area of the northern United States to witness the Auroras as long as the light pollution was low.
-> 
+>
 > Unfortunately, this forecast did not come to pass. The solar activity remained within normal levels, meaning only Alaska and a few other places were able to see them. Thus cancelling these plans. But I liked the idea of presenting things like this in an Archive format.
 
 ## Light Pollution Table
@@ -39,10 +38,10 @@ Viewing the aurora depends on four important factors.
 
 If the geomagnetic field is active, then the aurora will be brighter and further from the poles. Geomagnetic activity is driven by solar activity and solar coronal holes and thus it waxes and wanes with time. The level of geomagnetic activity is indicated by the planetary K index or Kp. The Kp index ranges from 0 to 9.
 
-* For Kp in the range 0 to 2, the aurora will be far north, quite dim in intensity, and not very active.
-* For Kp in the range of 3 to 5, the aurora will move further from the poles, it will become brighter and there will be more auroral activity (motion and formations). If you are in the right place, these aurora can be quite pleasing to look at.
-* For Kp in the range 6 to 7, the aurora will move even further from the poles and will become quite bright and active. At this geomagnetic activity level, it might be possible to see the aurora from the northern edge of the United States.
-* For Kp in the range 8 to 9, the aurora will move even further towards the equator and it will become very bright and very active. These are the events that create the best aurora and the extended auroral oval will be observable by the most people. At these levels, aurora may be seen directly overhead from the northern states of the USA.
+- For Kp in the range 0 to 2, the aurora will be far north, quite dim in intensity, and not very active.
+- For Kp in the range of 3 to 5, the aurora will move further from the poles, it will become brighter and there will be more auroral activity (motion and formations). If you are in the right place, these aurora can be quite pleasing to look at.
+- For Kp in the range 6 to 7, the aurora will move even further from the poles and will become quite bright and active. At this geomagnetic activity level, it might be possible to see the aurora from the northern edge of the United States.
+- For Kp in the range 8 to 9, the aurora will move even further towards the equator and it will become very bright and very active. These are the events that create the best aurora and the extended auroral oval will be observable by the most people. At these levels, aurora may be seen directly overhead from the northern states of the USA.
 
 It should be noted that the relationship between Kp and auroral latitude are approximate and represent averages. There will be times when these relationships do not hold up exactly.
 
@@ -78,7 +77,7 @@ Kp is Planetary K Index (0–9)
 
 ## Additional Resources
 
-* [Aurora Forecast](https://www.gi.alaska.edu/monitors/aurora-forecast)
-* [Aurora Dashboard](https://www.swpc.noaa.gov/content/aurora-dashboard-experimental)
-* [Space Weather Phenomena](https://www.swpc.noaa.gov/phenomena)
-* [Dive Deeper Into the Science of the Aurora](https://www.swpc.noaa.gov/content/aurora-tutorial)
+- [Aurora Forecast](https://www.gi.alaska.edu/monitors/aurora-forecast)
+- [Aurora Dashboard](https://www.swpc.noaa.gov/content/aurora-dashboard-experimental)
+- [Space Weather Phenomena](https://www.swpc.noaa.gov/phenomena)
+- [Dive Deeper Into the Science of the Aurora](https://www.swpc.noaa.gov/content/aurora-tutorial)
