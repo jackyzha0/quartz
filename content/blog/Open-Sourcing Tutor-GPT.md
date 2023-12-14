@@ -1,5 +1,6 @@
 ---
 title: "Open-Sourcing Tutor-GPT"
+date: "Jun 2, 2023"
 ---
 
 ![[assets/human_machine_learning.jpeg]]
