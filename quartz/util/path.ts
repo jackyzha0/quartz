@@ -87,7 +87,7 @@ export function transformInternalLink(link: string): RelativeURL {
 }
 
 export function canonicalURL(baseUrl: string | undefined, slug: FullSlug): string {
-  const base = baseUrl ?? ''
+  const base = baseUrl ?? ""
   const simpleSlug = simplifySlug(slug)
   return `https://${joinSegments(base, encodeURI(simpleSlug))}`
 }

@@ -165,7 +165,7 @@ describe("transforms", () => {
         ["abc/def", "https://example.com/subdir/abc/def"],
         ["abc-def", "https://example.com/subdir/abc-def"],
       ],
-      slug => path.canonicalURL("example.com/subdir", slug),
+      (slug) => path.canonicalURL("example.com/subdir", slug),
       path.isFullSlug,
       (_x: string): _x is string => true,
     )

@@ -79,10 +79,10 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex, limit?: nu
 <rss version="2.0">
     <channel>
       <title>${escapeHTML(cfg.pageTitle)}</title>
-      <link>${canonicalURL(base, '' as FullSlug)}</link>
+      <link>${canonicalURL(base, "" as FullSlug)}</link>
       <description>${!!limit ? `Last ${limit} notes` : "Recent notes"} on ${escapeHTML(
-    cfg.pageTitle,
-  )}</description>
+        cfg.pageTitle,
+      )}</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       ${items}
     </channel>
