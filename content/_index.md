@@ -1,13 +1,13 @@
 ---
-title: Welcome!
+title: Home
 enableToc: false
 ---
 
-We're a research and development group working at the intersection of human and machine learning.  
+Welcome to our collaborative second brain. We're a research and development company working at the intersection of human and machine learning.
 
-Most recently, we built [Bloom](https://bloombot.ai) -- a *subversive learning companion*.
+Our first product was [Bloom](https://bloombot.ai) -- a *subversive learning companion*. On this journey, we realized AI tools need a framework for securely and privately handling the intimate data required to unlock deeply personalized, autonomous agents.  
 
-On this journey we realized that AI tools need a framework for securely and privately handling the intimate data required to unlock deeply personalized, autonomous agents. It’s our mission to realize this future. 
+It’s our mission to realize this future.
 
 ## Blog
 
