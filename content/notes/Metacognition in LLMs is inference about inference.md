@@ -1,0 +1,3 @@
+For wetware, metacognition is typically defined as "thinking about thinking" or often a catch-all for any "higher-order" cognition. In some more specific domains, it's an introspective process, focused on thinking about your own thinking.
+
+In large language models, the synthetic corollary of cognition is inference. So we can reasonably call a metacognitive process in an LLM as any that runs inference on the result of prior inference. That is, inference itself is used as context. It might be instantly funneled into the next prompt, stored for later use, or leveraged by another model. Experiments here will be critical to overcome the machine learning community's fixation of task completion (see [[The machine learning industry is too focused on general task performance]]).

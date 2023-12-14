@@ -9,6 +9,7 @@ export const sharedPageComponents: SharedLayout = {
     links: {
       GitHub: "https://github.com/plastic-labs/blog",
       "Discord Community": "https://discord.gg/plasticlabs",
+      "plasticlabs.ai": "https://plasticlabs.ai"
     },
   }),
 }
