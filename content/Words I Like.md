@@ -3,7 +3,7 @@ title: Words I Like
 tags:
   - collection
 compartir: true
-updated: 2023-12-13
+updated: 2023-12-14
 enableToc: true
 ---
 
@@ -79,6 +79,10 @@ Also used as a _noun_ to describe something that soothes, calms, or comforts.
 1. Appropriateness to the purpose at hand.
 2. Adherence to self-serving means.
 
+### Flotsam (noun)
+
+1. The wreckage of a ship or its cargo found floating on or washed up by the sea.
+
 ### Forestall (noun)
 
 1. To delay, hinder, or prevent (an event, for example) by taking action beforehand: synonym: prevent.
@@ -129,6 +133,10 @@ Also used as a _noun_ to describe something that soothes, calms, or comforts.
 ### Jaunt (noun)
 
 1. A short trip or excursion, usually for pleasure; an outing.
+
+### Jetsam (noun)
+
+1. Unwanted material or goods that have been thrown overboard from a ship and washed ashore, especially material that has been discarded to lighten the vessel.
 
 ### Logy (slang)
 
