@@ -11,6 +11,7 @@ export const sharedPageComponents: SharedLayout = {
       Blog: "https://miguelpimentel.do/",
       Meta: "/Meta",
       GitHub: "https://github.com/semanticdata/",
+      Source: "https://github.com/semanticdata/forgetful-notes/",
       // Tags: "/tags",
     },
   }),
@@ -19,7 +20,7 @@ export const sharedPageComponents: SharedLayout = {
 // components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
-    Component.Breadcrumbs(),
+    // Component.Breadcrumbs(),
     Component.ArticleTitle(),
     // Component.ContentMeta(),
     // Component.TagList(),
