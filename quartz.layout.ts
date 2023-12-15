@@ -23,34 +23,26 @@ export const defaultContentPageLayout: PageLayout = {
     // Component.Breadcrumbs(),
     Component.ArticleTitle(),
     Component.ContentMeta(),
-    Component.TagList(),
+    // Component.TagList(),
     Component.MobileOnly(Component.TableOfContents()),
+    Component.MobileOnly(Component.Spacer()),
   ],
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer(
-      // {
-      //   mapFn: (node) => {
-      //     // dont change name of root node
-      //     if (node.depth > 0) {
-      //       // set emoji for file/folder
-      //       if (node.file) {
-      //         node.displayName = "📄 " + node.displayName
-      //       }
-      //       else { node.displayName = "📁 " + node.displayName }
-      //     }
-      //   },
-      // }
-    )),
+    Component.DesktopOnly(Component.Explorer()),
+    Component.DesktopOnly(Component.Spacer()),
     Component.DesktopOnly(Component.Backlinks()),
   ],
   right: [
     Component.Graph(),
-    Component.MobileOnly(Component.Backlinks()),
+    Component.DesktopOnly(Component.Spacer()),
     Component.DesktopOnly(Component.TableOfContents()),
+    Component.MobileOnly(Component.Backlinks()),
+    Component.MobileOnly(Component.Spacer()),
+    Component.MobileOnly(Component.Explorer()),
   ],
 }
 
@@ -62,6 +54,8 @@ export const defaultListPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer({ folderClickBehavior: "link", }))],
-  right: [],
+    Component.DesktopOnly(Component.Explorer())],
+  right: [
+    Component.MobileOnly(Component.Spacer()),
+    Component.MobileOnly(Component.Explorer()),],
 }
