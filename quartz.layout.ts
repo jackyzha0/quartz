@@ -22,8 +22,8 @@ export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
     // Component.Breadcrumbs(),
     Component.ArticleTitle(),
-    // Component.ContentMeta(),
-    // Component.TagList(),
+    Component.ContentMeta(),
+    Component.TagList(),
     Component.MobileOnly(Component.TableOfContents()),
   ],
   left: [
@@ -44,13 +44,13 @@ export const defaultContentPageLayout: PageLayout = {
       //     }
       //   },
       // }
-      )),
-      Component.DesktopOnly(Component.Backlinks()),
-    ],
-    right: [
-      Component.Graph(),
-      Component.MobileOnly(Component.Backlinks()),
-      Component.DesktopOnly(Component.TableOfContents()),
+    )),
+    Component.DesktopOnly(Component.Backlinks()),
+  ],
+  right: [
+    Component.Graph(),
+    Component.MobileOnly(Component.Backlinks()),
+    Component.DesktopOnly(Component.TableOfContents()),
   ],
 }
 
@@ -62,6 +62,6 @@ export const defaultListPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer({ folderClickBehavior: "link",  }))],
+    Component.DesktopOnly(Component.Explorer({ folderClickBehavior: "link", }))],
   right: [],
 }

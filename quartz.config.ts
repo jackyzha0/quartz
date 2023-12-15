@@ -20,14 +20,14 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#faf8f8", // background
+          light: "#faf8f8", // bg
           lightgray: "#e5e5e5", // borders
           gray: "#b8b8b8", // graph links, heavy borders
           darkgray: "#2e2e2e", // body text
           dark: "#1c1c1c", // header text, icons
           secondary: "#091217", // links, nodes
           tertiary: "rebeccapurple", // hover states, visited
-          highlight: "rgba(143, 159, 169, 0.2)", // internal link background
+          highlight: "rgba(143, 159, 169, 0.2)", // internal link bg
         },
         darkMode: {
           light: "#1e1e2e", // background
@@ -46,12 +46,12 @@ const config: QuartzConfig = {
     transformers: [
       Plugin.FrontMatter(),
       Plugin.TableOfContents({ collapseByDefault: true }),
-      // Plugin.CreatedModifiedDate({ priority: ["frontmatter", "filesystem"], }),
+      Plugin.CreatedModifiedDate({ priority: ["frontmatter", "filesystem"], }),
       Plugin.SyntaxHighlighting(),
-      Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
+      Plugin.ObsidianFlavoredMarkdown(),
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
-      // Plugin.Latex({ renderEngine: "katex" }),
+      Plugin.Latex({ renderEngine: "katex" }),
       Plugin.Description(),
     ],
     filters: [Plugin.RemoveDrafts()],
