@@ -12,10 +12,14 @@ At the top of your repository on GitHub.com's Quick Setup page, click the clipb
 
 ![[github-quick-setup.png]]
 
-In your terminal of choice, navigate to the root of your Quartz folder. Then, run the following command, replacing `REMOTE-URL` with the URL you just copied from the previous step.
+In your terminal of choice, navigate to the root of your Quartz folder. Then, run the following commands, replacing `REMOTE-URL` with the URL you just copied from the previous step.
 
 ```bash
+# add your repository
 git remote add origin REMOTE-URL
+
+# track the main quartz repository for updates
+git remote add upstream https://github.com/jackyzha0/quartz.git
 ```
 
 To verify that you set the remote URL correctly, run the following command.
