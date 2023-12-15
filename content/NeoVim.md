@@ -1,17 +1,17 @@
 ---
 title: NeoVim
 compartir: true
-updated: 2023-12-12
+updated: 2023-12-15
 tags:
   - reference
-enableToc: true
 aliases:
   - Nvim
   - Vim
 ---
 
+## Introduction
 
-NeoVim is a Vim-fork focused on extensibility and usability. This is my short reference guide as I learn to use it.
+NeoVim is a fork of Vim focused on extensibility and usability. This is my short reference guide as I learn to use it.
 
 ## Links
 

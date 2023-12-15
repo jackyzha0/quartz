@@ -1,9 +1,10 @@
 ---
 title: Dominican Republic
 compartir: true
-updated: 2023-12-12
+updated: 2023-12-15
 ---
 
+## Introduction
 
 _República Dominicana_ is a country located on the island of Hispaniola in the Caribbean. It occupies approximately 60% of the island, which it shares with Haiti.
 

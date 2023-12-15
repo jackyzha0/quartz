@@ -4,7 +4,6 @@ tags:
   - collection
 compartir: true
 updated: 2023-12-14
-enableToc: true
 ---
 
 

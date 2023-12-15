@@ -1,9 +1,11 @@
 ---
 title: Past Titles and Roles
 compartir: true
-updated: 2023-12-12
+updated: 2023-12-15
 ---
 
+
+Titles and roles I have held at any point in time.
 
 | Title                                  | Description                                                                                         |
 | :------------------------------------- | :-------------------------------------------------------------------------------------------------- |

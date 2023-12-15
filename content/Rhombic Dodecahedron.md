@@ -1,9 +1,12 @@
 ---
 title: Rhombic Dodecahedron
 compartir: true
-updated: 2023-10-19
-tags: [stub]
+updated: 2023-12-15
+tags:
+  - stub
 ---
+
+## Introduction
 
 In geometry, the rhombic dodecahedron is a convex polyhedron with 12 congruent rhombic faces. It has 24 edges, and 14 vertices of 2 types. It is a Catalan solid, and the dual polyhedron of the cuboctahedron.
 
