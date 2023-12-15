@@ -15,7 +15,7 @@ const config: QuartzConfig = {
     theme: {
       typography: {
         header: "Bitter", // Schibsted Grotesk
-        body: "Bitter", // Source Sans Pro, Poppins
+        body: "Poppins", // Source Sans Pro, Poppins
         code: "Fira Mono", // IBM Plex Mono
       },
       colors: {
@@ -26,8 +26,8 @@ const config: QuartzConfig = {
           darkgray: "#2e2e2e", // body text
           dark: "#1c1c1c", // header text, icons
           secondary: "#091217", // links, nodes
-          tertiary: "#242e3b", // hover states, visited
-          highlight: "rgba(143, 159, 169, 0.15)", // internal link background
+          tertiary: "rebeccapurple", // hover states, visited
+          highlight: "rgba(143, 159, 169, 0.2)", // internal link background
         },
         darkMode: {
           light: "#1e1e2e", // background
@@ -37,7 +37,7 @@ const config: QuartzConfig = {
           dark: "#cdd6f4", // header text, icons
           secondary: "#9be895", // links, nodes
           tertiary: "#c072c4", // hover states, visited
-          highlight: "rgba(143, 159, 169, 0.1)", // internal link background
+          highlight: "rgba(143, 159, 169, 0.2)", // internal link background
         },
       },
     },

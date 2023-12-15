@@ -32,8 +32,8 @@ section {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--tertiary) 25%, transparent); // 75%
-  // color: var(--darkgray);
+  background: color-mix(in srgb, var(--tertiary) 50%, transparent); // 75%
+  color: var(--darkgray);
 }
 
 p,
@@ -62,14 +62,13 @@ ul,
 a {
   font-weight: 600;
   text-decoration: none;
-  // transition: color 0.5s ease; // 0.2s
   color: var(--secondary);
   text-decoration: underline 0.2rem transparent;
-  transition: text-decoration-color 0.5s;
+  transition: all 0.5s ease;
 
   &:hover {
-    // color: var(--tertiary) !important;
-    text-decoration-color: var(--tertiary);
+    color: var(--tertiary) !important;
+    text-decoration-color: var(--tertiary) !important;
     // text-underline-offset: 0.4em;
   }
 
@@ -474,7 +473,7 @@ video {
 
 ul.overflow,
 ol.overflow {
-  max-height: 450; // 400
+  max-height: 400; // 400
   overflow-y: auto; // auto, scroll
 
   // clearfix
