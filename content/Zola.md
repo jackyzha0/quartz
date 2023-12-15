@@ -1,10 +1,11 @@
 ---
 title: Zola
 description: Zola is a fast static site generator in a single binary with everything built-in.
-updated: 2023-12-12
+updated: 2023-12-15
 compartir: true
 ---
 
+## Introduction
 
 [Zola](https:) is a fast [[./Static Site Generators|static site generator]] (SSG) contained in a single binary with everything built-in, it has no other dependencies. It is _by far_ my preferred way to build static websites.
 

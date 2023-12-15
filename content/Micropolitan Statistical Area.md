@@ -1,11 +1,12 @@
 ---
 title: Micropolitan Statistical Area
 compartir: true
-updated: 2023-12-04
+updated: 2023-12-15
 tags:
   - statistics
 ---
 
+## Definition
 
 Micropolitan Statistical Areas are labor market and statistical areas in the United States centered on an urban cluster with a population of at least 10,000 but fewer than 50,000 people.
 
