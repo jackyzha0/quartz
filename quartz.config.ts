@@ -11,7 +11,7 @@ const config: QuartzConfig = {
     },
     baseUrl: "forgetfulnotes.com",
     ignorePatterns: ["private", "templates"],
-    defaultDateType: "created",
+    defaultDateType: "modified",
     theme: {
       typography: {
         header: "Bitter", // Schibsted Grotesk
