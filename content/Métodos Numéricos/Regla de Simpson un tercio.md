@@ -9,4 +9,4 @@ Donde $a$ y $b$ son los extremos del intervalo de integración, y $f(x)$ es la f
 
 $$E_s = -\frac{1}{90}f^{(4)}(\xi)\frac{(b-a)^5}{16}$$
 
-Donde $f^{(4)}(\xi)$ es la cuarta derivada de la función a integrar evaluada en algún punto $\xi$ dentro del intervalo de integración $[a,b]$. El error de truncamiento de la regla de Simpson 1/3 es proporcional a la quinta potencia del tamaño del intervalo de integración, y es inversamente proporcional a la cuarta derivada de la función a integrar. Por lo tanto, el error se puede reducir al disminuir el tamaño del intervalo de integración o al utilizar una función con una cuarta derivada pequeña. [1][2][3]
+Donde $f^{(4)}(\xi)$ es la cuarta derivada de la función a integrar evaluada en algún punto $\xi$ dentro del intervalo de integración $[a,b]$. El error de truncamiento de la regla de Simpson 1/3 es proporcional a la quinta potencia del tamaño del intervalo de integración, y es inversamente proporcional a la cuarta derivada de la función a integrar. Por lo tanto, el error se puede reducir al disminuir el tamaño del intervalo de integración o al utilizar una función con una cuarta derivada pequeña. 

@@ -11,7 +11,6 @@
 
 
 ## Flashcards to-do (Examen Final)
-- [ ] Buscar modelo de examen que mostró en clase
 - [x] [[Error]]
 - [x] [[Raices de Ecuaciones No Lineales]]
 	- [x] [[Método de Bisección]]
