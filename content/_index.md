@@ -3,19 +3,15 @@ aliases:
   - index
 title: Home
 ---
-Hello! I'm Jahin[^1], a Python programmer, hobbyist [[Graphics Showcase|graphics designer]], and Linux enthusiast based in Sydney.
 
-My bread-and-butter is writing small, over-engineered scripts that do one (most likely pointless) thing, such as [a small app that annoys you; on the hour, every hour](https://github.com/jahinzee/benzi).
+Hi! I'm Jahin, and welcome to my website/digital garden. For now, this serves mainly as an organised tip for my writings, photos, and other miscellaneous stuff.
 
-I also like attending hackathons, such as [GovHack 2023](https://govhack.org/), where I worked on [a system for assigning liveability scores for postcodes](https://github.com/ctrl-alt-elit3/habitasis), for which we were placed first in the *Cost of Living Pressure NSW* category.
-
-In my spare time, I enjoy video essays and documentaries, transportation, worldbuilding and conlanging, potatoes, and the occasional [[Photos|photography]].
+Before you go, catch me on [Mastodon](http://mastodon.online/@jahinzee) – I usually post things here more frequently.
 
 ---
 
-- [[Long-Form Writ]]
-- [[Graphics Showcase]]
-- [[Photos]]
-- [[Contact]]
-
-[^1]: pronounced /d͡ʒʌ'hɪn/, rhymes with "the bin".
+- **[[About Me]]**<br>but *who*?
+- **[[Long-Form Writ]]**<br>written content that's too long for micro-blogging.
+- **[[Graphics Showcase]]**<br>concept art and other stuff I've made over the years.
+- **[[Photos]]**<br>shots snapped since 2018, all under Creative Commons.
+- **[[Contact]]**<br>email! Mastodon! carrier pigeons!
