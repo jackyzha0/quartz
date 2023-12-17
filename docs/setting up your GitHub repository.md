@@ -31,7 +31,7 @@ git remote -v
 Then, you can sync the content to upload it to your repository.
 
 ```bash
-npx quartz sync
+npx quartz sync --no-pull
 ```
 
 > [!hint]
