@@ -1,10 +1,11 @@
-FROM alpine:3.16
+FROM node:20-slim as builder
+WORKDIR /usr/src/app
+COPY package.json .
+COPY package-lock.json* .
+RUN npm ci
 
-RUN apk add --no-cache go hugo git make perl
-RUN go install github.com/jackyzha0/hugo-obsidian@latest
-ENV PATH="/root/go/bin:$PATH"
-RUN git clone https://github.com/jackyzha0/quartz.git /quartz
-
-WORKDIR /quartz
-
-CMD ["make", "serve"]
+FROM node:20-slim
+WORKDIR /usr/src/app
+COPY --from=builder /usr/src/app/ /usr/src/app/
+COPY . .
+CMD ["npx", "quartz", "build", "--serve"]
