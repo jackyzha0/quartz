@@ -159,6 +159,8 @@
   },
   "active": "699ae9dcd2d15e68",
   "lastOpenFiles": [
+    "public/404.html",
+    "public/index.xml",
     "tsconfig.json",
     "quartz/worker.ts",
     "quartz/util/trace.ts",
@@ -168,8 +170,6 @@
     "quartz/util/perf.ts",
     "quartz/util/path.ts",
     "quartz/util/path.test.ts",
-    "quartz/util/log.ts",
-    "quartz/util/lang.ts",
     "quartz/static/og-image.png",
     "quartz/static/icon.png",
     "docs/upgrading.md",

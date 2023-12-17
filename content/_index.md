@@ -3,19 +3,14 @@ title: Atem Aguer
 enableToc: false
 ---
 
-Hi! I’m Atem Aguer, an undergraduate studying computer science at Stanford.  
-  
-Welcome to my blog where I hope to explore my curiosities, document my learnings, and practice my writing. I’ve broad and varied interests spanning technology and startups, product development, physics, football(soccer), machine learning and artificial intelligence, and crypto/blockchains, among many other things.  
-  
-In the past, I’ve built marketplace applications and infrastructure for a startup during my gap year after high school, was an early intern at Alchemy during DeFi summer, researched NLP and information retrieval systems at Stanford Future Data Systems under the guidance of Omar Khattab and Matei Zaharia, and worked on distributed storage infrastructure at DoorDash during the summer of my junior year.  
-  
-In my spare time, I hack on open-source projects, play football, watch movies and tv shows, and hike trails.  
-  
-Presently, I’m exploring startup opportunities at the intersection of personalized AI, and education. I believe education is one of the sectors that will undergo radical transformation from AI and I hope to be part of those bringing that transformation. 
+Hi! I’m Atem Aguer, a student studying computer science at Stanford.
 
-When not hacking, I’m designing methods and systems to leverage information retrieval in the service of  large anguage models at Stanford Future Data Systems.  
-  
-You can get in touch with me through email or twitter.  
-  
-Also, my past technical work can be found here.
+Welcome to my blog where I hope to explore my curiosities, document my learnings, and practice my writing. I’ve broad and varied interests spanning technology and startups, physics, football(soccer), AI, among many other things.
 
+In the past, I’ve built marketplace applications and infrastructure for a startup during my gap year after high school, was an early intern at [Alchemy](https://alchemy.com) during [DeFi summer](https://wiki.rugdoc.io/docs/defi-summer-definition/), researched NLP and information retrieval systems at [Stanford Future Data Systems](http://www.futuredata.io.s3-website-us-west-2.amazonaws.com/) under the guidance of [Omar Khattab](https://omarkhattab.com/), [Keshav Santhanam](https://cs.stanford.edu/~keshav2/) and [Matei Zaharia](https://people.eecs.berkeley.edu/~matei/), and worked on distributed storage infrastructure at DoorDash.
+
+In my spare time, I hack on open-source projects, play football, light weights, and hike.
+
+You can get in touch with me through [email](mailto:atemjohn@stanford.edu) or [twitter](https://x.com/leithnyang).
+
+Also, my past technical work can be found [here](https://github.com/atemaguer).
