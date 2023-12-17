@@ -1,4 +1,4 @@
-import { slug } from "github-slugger"
+import { slug as slugAnchor } from "github-slugger"
 import type { Element as HastElement } from "hast"
 // this file must be isomorphic so it can't use node libs (e.g. path)
 
@@ -43,6 +43,14 @@ export function getFullSlug(window: Window): FullSlug {
   return res
 }
 
+function sluggify(s: string): string {
+  return s
+    .split("/")
+    .map((segment) => segment.replace(/\s/g, "-").replace(/%/g, "-percent").replace(/\?/g, "-q")) // slugify all segments
+    .join("/") // always use / as sep
+    .replace(/\/$/, "")
+}
+
 export function slugifyFilePath(fp: FilePath, excludeExt?: boolean): FullSlug {
   fp = _stripSlashes(fp) as FilePath
   let ext = _getFileExtension(fp)
@@ -51,11 +59,7 @@ export function slugifyFilePath(fp: FilePath, excludeExt?: boolean): FullSlug {
     ext = ""
   }
 
-  let slug = withoutFileExt
-    .split("/")
-    .map((segment) => segment.replace(/\s/g, "-").replace(/%/g, "-percent").replace(/\?/g, "-q")) // slugify all segments
-    .join("/") // always use / as sep
-    .replace(/\/$/, "") // remove trailing slash
+  let slug = sluggify(withoutFileExt)
 
   // treat _index as index
   if (_endsWith(slug, "_index")) {
@@ -156,14 +160,10 @@ export function splitAnchor(link: string): [string, string] {
   return [fp, anchor]
 }
 
-export function slugAnchor(anchor: string) {
-  return slug(anchor)
-}
-
 export function slugTag(tag: string) {
   return tag
     .split("/")
-    .map((tagSegment) => slug(tagSegment))
+    .map((tagSegment) => sluggify(tagSegment))
     .join("/")
 }
 
