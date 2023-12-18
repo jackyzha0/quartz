@@ -90,8 +90,8 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@types/cli-spinner": "^0.2.1",
-    "@types/d3": "^7.4.0",
+    "@types/cli-spinner": "^0.2.3",
+    "@types/d3": "^7.4.3",
     "@types/flexsearch": "^0.7.3",
     "@types/hast": "^2.3.4",
     "@types/js-yaml": "^4.0.5",
