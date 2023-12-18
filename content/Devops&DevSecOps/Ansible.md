@@ -229,3 +229,59 @@ role_name/
 - **Ansible Galaxy**: You can share and reuse roles via Ansible Galaxy, a hub for finding, reusing, and sharing Ansible content.
 
 Roles are essential for scaling and managing larger, more complex Ansible configurations, allowing for cleaner code, easier maintenance, and better organization.
+
+
+# Docs
+
+# Difference Between task and play
+
+In Ansible, "play" and "task" are fundamental concepts that are part of its automation and orchestration framework. Understanding the difference between these two is crucial for effectively using Ansible.
+
+1. **Play**:
+   - A "play" is a collection of tasks. It's essentially a set of instructions that you want to execute on a particular set of hosts or groups defined in your inventory.
+   - Each play is defined within a playbook. A playbook can contain one or more plays.
+   - A play allows you to define the target machines (hosts), variables, tasks, and handlers that should be applied to those hosts.
+   - It's the top-level component in an Ansible playbook, making it possible to orchestrate multi-machine deployments, where different sets of tasks might be applied to different sets of machines.
+
+2. **Task**:
+   - A "task" is a single action that you want to perform. It's the smallest unit of work in Ansible.
+   - Tasks are executed sequentially, one after the other, within a play.
+   - A task generally represents calling an Ansible module, like installing a package, copying a file, executing a script, etc.
+   - Each task should ideally represent a single idempotent action that makes a small change to the system or checks a specific piece of system state.
+
+To illustrate, consider an Ansible playbook (which is a YAML file):
+
+```yaml
+- name: Play 1 - Configure Web Servers
+  hosts: webservers
+  tasks:
+    - name: Install Apache
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+
+    - name: Start Apache
+      ansible.builtin.service:
+        name: httpd
+        state: started
+
+- name: Play 2 - Configure Database Servers
+  hosts: databases
+  tasks:
+    - name: Install MySQL
+      ansible.builtin.yum:
+        name: mysql-server
+        state: present
+
+    - name: Start MySQL
+      ansible.builtin.service:
+        name: mysqld
+        state: started
+```
+
+In this playbook:
+- There are two plays, each targeting different sets of hosts (`webservers` and `databases`).
+- Each play contains multiple tasks, such as installing and starting services.
+
+The playbook orchestrates the entire workflow across different sets of servers, with each play and its tasks focused on a specific aspect of the overall configuration.
+
