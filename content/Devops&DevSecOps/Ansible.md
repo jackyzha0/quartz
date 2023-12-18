@@ -2,6 +2,30 @@
 
 [Lab Env ](https://github.com/ErdemOzgen/ansibleDockerLab)
 
+#ansibleBook 
+https://bjpcjp.github.io/2022/07/07/ansible.html
+
+
+
+[TOC](https://bjpcjp.github.io/pdfs/devops/ansible-toc.pdf)  
+[adhoc commands](https://bjpcjp.github.io/pdfs/devops/ansible-local-adhoc-commands.pdf)  
+[best practices](https://bjpcjp.github.io/pdfs/devops/ansible-best-practices.pdf)  
+[certificates](https://bjpcjp.github.io/pdfs/devops/ansible-certificates.pdf)  
+[cookbooks](https://bjpcjp.github.io/pdfs/devops/ansible-cookbooks.pdf)  
+[deployment](https://bjpcjp.github.io/pdfs/devops/ansible-deployment.pdf)  
+[docker](https://bjpcjp.github.io/pdfs/devops/ansible-docker.pdf)  
+[getting started](https://bjpcjp.github.io/pdfs/devops/ansible-getting-started.pdf)  
+[inventories](https://bjpcjp.github.io/pdfs/devops/ansible-inventories.pdf)  
+[kubernetes](https://bjpcjp.github.io/pdfs/devops/ansible-kubernetes.pdf)  
+[local devt](https://bjpcjp.github.io/pdfs/devops/ansible-local-dev.pdf)  
+[on Windows](https://bjpcjp.github.io/pdfs/devops/ansible-windows.pdf)  
+[playbook pt2](https://bjpcjp.github.io/pdfs/devops/ansible-playbooks-pt2.pdf)  
+[playbooks](https://bjpcjp.github.io/pdfs/devops/ansible-playbooks.pdf)  
+[playbooks-org](https://bjpcjp.github.io/pdfs/devops/ansible-playbooks-org.pdf)  
+[server security](https://bjpcjp.github.io/pdfs/devops/ansible-server-security.pdf)  
+[tower CI/CD](https://bjpcjp.github.io/pdfs/devops/ansible-tower-cicd.pdf)
+
+
 
 
 ![[Pasted image 20231213081951.png]]
@@ -313,4 +337,51 @@ Even if you do not define any groups in your inventory file, Ansible creates two
 
 #parentchildansible
 https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#grouping-groups-parent-child-group-relationships
+
+
+
+#ansibleBook
+
+https://bjpcjp.github.io/2022/07/07/ansible.html
+
+
+
+#adhoccommand
+
+An ad-hoc command in Ansible is a one-time command used to perform a task quickly, without writing a full playbook. These commands are very useful for tasks that you need to execute only once or infrequently, and they allow you to take immediate action without the overhead of playbook creation.
+
+Key characteristics of ad-hoc commands include:
+
+1. **Simplicity**: They are simple and straightforward to use, often consisting of just a single line in the terminal.
+
+2. **Quick Execution**: Ideal for tasks that need to be executed quickly and don't require the complex coordination and orchestration that playbooks provide.
+
+3. **Modules**: Ad-hoc commands use Ansible modules, similar to tasks in a playbook. You specify the module and its arguments directly in the command line.
+
+4. **Inventory**: Like playbooks, ad-hoc commands operate on the hosts specified in Ansible's inventory file. You can target specific groups or individual hosts.
+
+5. **No Reusability**: Unlike playbooks, ad-hoc commands are not saved for later reuse (unless you manually record them).
+
+6. **Limitations**: They are not meant for complex operations. While you can execute any module, you cannot use the more advanced features of Ansible like roles, templates, or handlers.
+
+An example of an ad-hoc command in Ansible could be checking the uptime of all servers in a group:
+
+```bash
+ansible webservers -m command -a "uptime"
+```
+
+In this example:
+- `ansible` is the Ansible command-line tool.
+- `webservers` is the group of hosts in the Ansible inventory on which the command will be executed.
+- `-m command` specifies the use of the `command` module.
+- `-a "uptime"` provides the argument to the module, which is the command `uptime` in this case.
+
+This command will connect to all hosts in the `webservers` group and execute the `uptime` command, returning the results to your console.
+
+
+# Ansible roles
+https://medium.com/edureka/ansible-roles-78d48578aca1
+
+https://bjpcjp.github.io/pdfs/devops/ansible-playbooks-org.pdf
+
 
