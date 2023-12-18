@@ -152,10 +152,10 @@ async function startServing(
       console.log(chalk.yellow(`Rebuild failed. Waiting on a change to fix the error...`))
     }
 
+    release()
     clientRefresh()
     toRebuild.clear()
     toRemove.clear()
-    release()
   }
 
   const watcher = chokidar.watch(".", {

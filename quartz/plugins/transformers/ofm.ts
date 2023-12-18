@@ -121,8 +121,8 @@ const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
 const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
 // (?:^| )              -> non-capturing group, tag should start be separated by a space or be the start of the line
 // #(...)               -> capturing group, tag itself must start with #
-// (?:[-_\p{L}])+       -> non-capturing group, non-empty string of (Unicode-aware) alpha-numeric characters, hyphens and/or underscores
-// (?:\/[-_\p{L}]+)*)   -> non-capturing group, matches an arbitrary number of tag strings separated by "/"
+// (?:[-_\p{L}\d\p{Z}])+       -> non-capturing group, non-empty string of (Unicode-aware) alpha-numeric characters and symbols, hyphens and/or underscores
+// (?:\/[-_\p{L}\d\p{Z}]+)*)   -> non-capturing group, matches an arbitrary number of tag strings separated by "/"
 const tagRegex = new RegExp(/(?:^| )#((?:[-_\p{L}\d])+(?:\/[-_\p{L}\d]+)*)/, "gu")
 const blockReferenceRegex = new RegExp(/\^([A-Za-z0-9]+)$/, "g")
 
@@ -405,6 +405,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               if (/^\d+$/.test(tag)) {
                 return false
               }
+
               tag = slugTag(tag)
               if (file.data.frontmatter && !file.data.frontmatter.tags.includes(tag)) {
                 file.data.frontmatter.tags.push(tag)

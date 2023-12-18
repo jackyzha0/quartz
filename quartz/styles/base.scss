@@ -64,11 +64,17 @@ a {
     color: var(--tertiary) !important;
   }
 
-  &.internal:not(:has(> img)) {
+  &.internal {
     text-decoration: none;
     background-color: var(--highlight);
     padding: 0 0.1rem;
     border-radius: 5px;
+
+    &:has(> img) {
+      background-color: none;
+      border-radius: 0;
+      padding: 0;
+    }
   }
 }
 
@@ -94,8 +100,6 @@ a {
   }
 
   & article {
-    position: relative;
-
     & > h1 {
       font-size: 2rem;
     }
