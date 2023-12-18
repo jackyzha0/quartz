@@ -74,13 +74,13 @@ export function renderPage(
       const classNames = (node.properties?.className ?? []) as string[]
       if (classNames.includes("transclude")) {
         const inner = node.children[0] as Element
-        const transcludeTarget = inner.properties?.["data-slug"] as FullSlug
+        const transcludeTarget = inner.properties["data-slug"] as FullSlug
         const page = getOrComputeFileIndex(componentData.allFiles).get(transcludeTarget)
         if (!page) {
           return
         }
 
-        let blockRef = node.properties?.dataBlock as string | undefined
+        let blockRef = node.properties.dataBlock as string | undefined
         if (blockRef?.startsWith("#^")) {
           // block transclude
           blockRef = blockRef.slice("#^".length)
@@ -90,6 +90,7 @@ export function renderPage(
               blockNode = {
                 type: "element",
                 tagName: "ul",
+                properties: {},
                 children: [blockNode],
               }
             }
@@ -144,6 +145,7 @@ export function renderPage(
             {
               type: "element",
               tagName: "h1",
+              properties: {},
               children: [
                 { type: "text", value: page.frontmatter?.title ?? `Transclude of ${page.slug}` },
               ],

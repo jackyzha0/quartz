@@ -1,8 +1,7 @@
-import { PluggableList } from "unified"
 import { QuartzTransformerPlugin } from "../types"
-import { Root, HTML, BlockContent, DefinitionContent, Code, Paragraph } from "mdast"
+import { Root, Html, BlockContent, DefinitionContent, Code, Paragraph } from "mdast"
 import { Element, Literal, Root as HtmlRoot } from "hast"
-import { Replace, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
+import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { slug as slugAnchor } from "github-slugger"
 import rehypeRaw from "rehype-raw"
 import { visit } from "unist-util-visit"
@@ -15,6 +14,7 @@ import { toHast } from "mdast-util-to-hast"
 import { toHtml } from "hast-util-to-html"
 import { PhrasingContent } from "mdast-util-find-and-replace/lib"
 import { capitalize } from "../../util/lang"
+import { PluggableList } from "unified"
 
 export interface Options {
   comments: boolean
@@ -136,39 +136,15 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
     return toHtml(hast, { allowDangerousHtml: true })
   }
 
-  const findAndReplace = opts.enableInHtmlEmbed
-    ? (tree: Root, regex: RegExp, replace?: Replace | null | undefined) => {
-        if (replace) {
-          visit(tree, "html", (node: HTML) => {
-            if (typeof replace === "string") {
-              node.value = node.value.replace(regex, replace)
-            } else {
-              node.value = node.value.replaceAll(regex, (substring: string, ...args) => {
-                const replaceValue = replace(substring, ...args)
-                if (typeof replaceValue === "string") {
-                  return replaceValue
-                } else if (Array.isArray(replaceValue)) {
-                  return replaceValue.map(mdastToHtml).join("")
-                } else if (typeof replaceValue === "object" && replaceValue !== null) {
-                  return mdastToHtml(replaceValue)
-                } else {
-                  return substring
-                }
-              })
-            }
-          })
-        }
-
-        mdastFindReplace(tree, regex, replace)
-      }
-    : mdastFindReplace
-
   return {
     name: "ObsidianFlavoredMarkdown",
     textTransform(_ctx, src) {
       // pre-transform blockquotes
       if (opts.callouts) {
-        src = src.toString()
+        if (src instanceof Buffer) {
+          src = src.toString()
+        }
+
         src = src.replaceAll(calloutLineRegex, (value) => {
           // force newline after title of callout
           return value + "\n> "
@@ -177,7 +153,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
       // pre-transform wikilinks (fix anchors to things that may contain illegal syntax e.g. codeblocks, latex)
       if (opts.wikilinks) {
-        src = src.toString()
+        if (src instanceof Buffer) {
+          src = src.toString()
+        }
+
         src = src.replaceAll(wikilinkRegex, (value, ...capture) => {
           const [rawFp, rawHeader, rawAlias] = capture
           const fp = rawFp ?? ""
@@ -194,108 +173,172 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
     },
     markdownPlugins() {
       const plugins: PluggableList = []
-      if (opts.wikilinks) {
-        plugins.push(() => {
-          return (tree: Root, _file) => {
-            findAndReplace(tree, wikilinkRegex, (value: string, ...capture: string[]) => {
-              let [rawFp, rawHeader, rawAlias] = capture
-              const fp = rawFp?.trim() ?? ""
-              const anchor = rawHeader?.trim() ?? ""
-              const alias = rawAlias?.slice(1).trim()
 
-              // embed cases
-              if (value.startsWith("!")) {
-                const ext: string = path.extname(fp).toLowerCase()
-                const url = slugifyFilePath(fp as FilePath)
-                if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg"].includes(ext)) {
-                  const dims = alias ?? ""
-                  let [width, height] = dims.split("x", 2)
-                  width ||= "auto"
-                  height ||= "auto"
-                  return {
-                    type: "image",
-                    url,
-                    data: {
-                      hProperties: {
-                        width,
-                        height,
+      // regex replacements
+      plugins.push(() => {
+        return (tree: Root, file) => {
+          const replacements: [RegExp, string | ReplaceFunction][] = []
+          const base = pathToRoot(file.data.slug!)
+
+          if (opts.wikilinks) {
+            replacements.push([
+              wikilinkRegex,
+              (value: string, ...capture: string[]) => {
+                let [rawFp, rawHeader, rawAlias] = capture
+                const fp = rawFp?.trim() ?? ""
+                const anchor = rawHeader?.trim() ?? ""
+                const alias = rawAlias?.slice(1).trim()
+
+                // embed cases
+                if (value.startsWith("!")) {
+                  const ext: string = path.extname(fp).toLowerCase()
+                  const url = slugifyFilePath(fp as FilePath)
+                  if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg"].includes(ext)) {
+                    const dims = alias ?? ""
+                    let [width, height] = dims.split("x", 2)
+                    width ||= "auto"
+                    height ||= "auto"
+                    return {
+                      type: "image",
+                      url,
+                      data: {
+                        hProperties: {
+                          width,
+                          height,
+                        },
                       },
-                    },
+                    }
+                  } else if ([".mp4", ".webm", ".ogv", ".mov", ".mkv"].includes(ext)) {
+                    return {
+                      type: "html",
+                      value: `<video src="${url}" controls></video>`,
+                    }
+                  } else if (
+                    [".mp3", ".webm", ".wav", ".m4a", ".ogg", ".3gp", ".flac"].includes(ext)
+                  ) {
+                    return {
+                      type: "html",
+                      value: `<audio src="${url}" controls></audio>`,
+                    }
+                  } else if ([".pdf"].includes(ext)) {
+                    return {
+                      type: "html",
+                      value: `<iframe src="${url}"></iframe>`,
+                    }
+                  } else if (ext === "") {
+                    const block = anchor
+                    return {
+                      type: "html",
+                      data: { hProperties: { transclude: true } },
+                      value: `<blockquote class="transclude" data-url="${url}" data-block="${block}"><a href="${
+                        url + anchor
+                      }" class="transclude-inner">Transclude of ${url}${block}</a></blockquote>`,
+                    }
                   }
-                } else if ([".mp4", ".webm", ".ogv", ".mov", ".mkv"].includes(ext)) {
-                  return {
-                    type: "html",
-                    value: `<video src="${url}" controls></video>`,
-                  }
-                } else if (
-                  [".mp3", ".webm", ".wav", ".m4a", ".ogg", ".3gp", ".flac"].includes(ext)
-                ) {
-                  return {
-                    type: "html",
-                    value: `<audio src="${url}" controls></audio>`,
-                  }
-                } else if ([".pdf"].includes(ext)) {
-                  return {
-                    type: "html",
-                    value: `<iframe src="${url}"></iframe>`,
-                  }
-                } else if (ext === "") {
-                  const block = anchor
-                  return {
-                    type: "html",
-                    data: { hProperties: { transclude: true } },
-                    value: `<blockquote class="transclude" data-url="${url}" data-block="${block}"><a href="${
-                      url + anchor
-                    }" class="transclude-inner">Transclude of ${url}${block}</a></blockquote>`,
-                  }
+
+                  // otherwise, fall through to regular link
                 }
 
-                // otherwise, fall through to regular link
-              }
+                // internal link
+                const url = fp + anchor
+                return {
+                  type: "link",
+                  url,
+                  children: [
+                    {
+                      type: "text",
+                      value: alias ?? fp,
+                    },
+                  ],
+                }
+              },
+            ])
+          }
 
-              // internal link
-              const url = fp + anchor
-              return {
-                type: "link",
-                url,
-                children: [
-                  {
-                    type: "text",
-                    value: alias ?? fp,
+          if (opts.highlight) {
+            replacements.push([
+              highlightRegex,
+              (_value: string, ...capture: string[]) => {
+                const [inner] = capture
+                return {
+                  type: "html",
+                  value: `<span class="text-highlight">${inner}</span>`,
+                }
+              },
+            ])
+          }
+
+          if (opts.comments) {
+            replacements.push([
+              commentRegex,
+              (_value: string, ..._capture: string[]) => {
+                return {
+                  type: "text",
+                  value: "",
+                }
+              },
+            ])
+          }
+
+          if (opts.parseTags) {
+            replacements.push([
+              tagRegex,
+              (_value: string, tag: string) => {
+                // Check if the tag only includes numbers
+                if (/^\d+$/.test(tag)) {
+                  return false
+                }
+
+                tag = slugTag(tag)
+                if (file.data.frontmatter && !file.data.frontmatter.tags.includes(tag)) {
+                  file.data.frontmatter.tags.push(tag)
+                }
+
+                return {
+                  type: "link",
+                  url: base + `/tags/${tag}`,
+                  data: {
+                    hProperties: {
+                      className: ["tag-link"],
+                    },
                   },
-                ],
-              }
-            })
+                  children: [
+                    {
+                      type: "text",
+                      value: `#${tag}`,
+                    },
+                  ],
+                }
+              },
+            ])
           }
-        })
-      }
 
-      if (opts.highlight) {
-        plugins.push(() => {
-          return (tree: Root, _file) => {
-            findAndReplace(tree, highlightRegex, (_value: string, ...capture: string[]) => {
-              const [inner] = capture
-              return {
-                type: "html",
-                value: `<span class="text-highlight">${inner}</span>`,
+          if (opts.enableInHtmlEmbed) {
+            visit(tree, "html", (node: Html) => {
+              for (const [regex, replace] of replacements) {
+                if (typeof replace === "string") {
+                  node.value = node.value.replace(regex, replace)
+                } else {
+                  node.value = node.value.replaceAll(regex, (substring: string, ...args) => {
+                    const replaceValue = replace(substring, ...args)
+                    if (typeof replaceValue === "string") {
+                      return replaceValue
+                    } else if (Array.isArray(replaceValue)) {
+                      return replaceValue.map(mdastToHtml).join("")
+                    } else if (typeof replaceValue === "object" && replaceValue !== null) {
+                      return mdastToHtml(replaceValue)
+                    } else {
+                      return substring
+                    }
+                  })
+                }
               }
             })
           }
-        })
-      }
 
-      if (opts.comments) {
-        plugins.push(() => {
-          return (tree: Root, _file) => {
-            findAndReplace(tree, commentRegex, (_value: string, ..._capture: string[]) => {
-              return {
-                type: "text",
-                value: "",
-              }
-            })
-          }
-        })
-      }
+          mdastFindReplace(tree, replacements)
+        }
+      })
 
       if (opts.callouts) {
         plugins.push(() => {
@@ -336,7 +379,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>`
 
-                const titleHtml: HTML = {
+                const titleHtml: Html = {
                   type: "html",
                   value: `<div
                   class="callout-title"
@@ -396,45 +439,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         })
       }
 
-      if (opts.parseTags) {
-        plugins.push(() => {
-          return (tree: Root, file) => {
-            const base = pathToRoot(file.data.slug!)
-            findAndReplace(tree, tagRegex, (_value: string, tag: string) => {
-              // Check if the tag only includes numbers
-              if (/^\d+$/.test(tag)) {
-                return false
-              }
-
-              tag = slugTag(tag)
-              if (file.data.frontmatter && !file.data.frontmatter.tags.includes(tag)) {
-                file.data.frontmatter.tags.push(tag)
-              }
-
-              return {
-                type: "link",
-                url: base + `/tags/${tag}`,
-                data: {
-                  hProperties: {
-                    className: ["tag-link"],
-                  },
-                },
-                children: [
-                  {
-                    type: "text",
-                    value: `#${tag}`,
-                  },
-                ],
-              }
-            })
-          }
-        })
-      }
       return plugins
     },
     htmlPlugins() {
-      const plugins = [rehypeRaw]
-
+      const plugins: PluggableList = [rehypeRaw]
       if (opts.parseBlockReferences) {
         plugins.push(() => {
           const inlineTagTypes = new Set(["p", "li"])
