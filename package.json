@@ -85,7 +85,7 @@
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.2",
     "vfile": "^5.3.7",
-    "workerpool": "^6.4.0",
+    "workerpool": "^8.0.0",
     "ws": "^8.15.1",
     "yargs": "^17.7.2"
   },
