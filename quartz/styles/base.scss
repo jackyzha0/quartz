@@ -333,7 +333,7 @@ pre {
   overflow-x: auto;
   border: 1px solid var(--lightgray);
 
-  &:has(> code.mermaid) {
+  &.mermaid {
     border: none;
   }
 
