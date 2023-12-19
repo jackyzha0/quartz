@@ -23,7 +23,7 @@ export function pageResources(
   staticResources: StaticResources,
 ): StaticResources {
   const contentIndexPath = joinSegments(baseDir, "static/contentIndex.json")
-  const contentIndexScript = `const fetchData = fetch(\`${contentIndexPath}\`).then(data => data.json())`
+  const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`
 
   return {
     css: [joinSegments(baseDir, "index.css"), ...staticResources.css],
