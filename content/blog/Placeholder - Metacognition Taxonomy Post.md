@@ -5,6 +5,8 @@ date: Dec 19, 2023
 (meme)
 ## TL;DR
 
+## Defining Terms
+
 ## Background and Related Work
 
 (Def wanna give this a more creative name)
@@ -16,3 +18,9 @@ date: Dec 19, 2023
 - high performance on these datasets demonstrates incredible *general* abilities
 	- and in fact their performance on these diverse datasets proves their capabilities are probably much more vast than we think they are
 - but they're not given the opportunity to query these diverse capabilities in current user-facing systems
+
+## How We've Explored It
+
+## Selective Metacog Taxonomy
+
+## The Future/Potential/Importance
