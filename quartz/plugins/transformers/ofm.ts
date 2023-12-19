@@ -105,6 +105,8 @@ function canonicalizeCallout(calloutName: string): keyof typeof callouts {
   return calloutMapping[callout] ?? "note"
 }
 
+export const externalLinkRegex = /^https?:\/\//i
+
 // !?               -> optional embedding
 // \[\[             -> open brace
 // ([^\[\]\|\#]+)   -> one or more non-special characters ([,],|, or #) (name)
@@ -158,13 +160,19 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         }
 
         src = src.replaceAll(wikilinkRegex, (value, ...capture) => {
-          const [rawFp, rawHeader, rawAlias] = capture
+          const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
+
           const fp = rawFp ?? ""
           const anchor = rawHeader?.trim().replace(/^#+/, "")
           const blockRef = Boolean(anchor?.startsWith("^")) ? "^" : ""
           const displayAnchor = anchor ? `#${blockRef}${slugAnchor(anchor)}` : ""
           const displayAlias = rawAlias ?? rawHeader?.replace("#", "|") ?? ""
           const embedDisplay = value.startsWith("!") ? "!" : ""
+
+          if (rawFp?.match(externalLinkRegex)) {
+            return `${embedDisplay}[${displayAlias.replace(/^\|/, "")}](${rawFp})`
+          }
+
           return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`
         })
       }
