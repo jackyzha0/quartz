@@ -41,6 +41,11 @@ export const SyncArgv = {
     default: true,
     describe: "create a git commit for your unsaved changes",
   },
+  message: {
+    string: true,
+    alias: ["m"],
+    describe: "option to override the default Quartz commit message",
+  },
   push: {
     boolean: true,
     default: true,

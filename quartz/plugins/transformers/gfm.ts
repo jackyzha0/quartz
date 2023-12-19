@@ -31,6 +31,11 @@ export const GitHubFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | 
             rehypeAutolinkHeadings,
             {
               behavior: "append",
+              properties: {
+                ariaHidden: true,
+                tabIndex: -1,
+                "data-no-popover": true,
+              },
               content: {
                 type: "text",
                 value: " §",

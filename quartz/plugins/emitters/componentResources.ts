@@ -85,11 +85,11 @@ function addGlobalPageResources(
     componentResources.afterDOMLoaded.push(`
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
-      gtag(\`js\`, new Date());
-      gtag(\`config\`, \`${tagId}\`, { send_page_view: false });
+      gtag("js", new Date());
+      gtag("config", "${tagId}", { send_page_view: false });
   
-      document.addEventListener(\`nav\`, () => {
-        gtag(\`event\`, \`page_view\`, {
+      document.addEventListener("nav", () => {
+        gtag("event", "page_view", {
           page_title: document.title,
           page_location: location.href,
         });

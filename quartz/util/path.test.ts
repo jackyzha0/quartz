@@ -83,7 +83,7 @@ describe("transforms", () => {
   test("simplifySlug", () => {
     asserts(
       [
-        ["index", ""],
+        ["index", "/"],
         ["abc", "abc"],
         ["abc/index", "abc/"],
         ["abc/def", "abc/def"],

@@ -1,4 +1,4 @@
-import { FilePath, FullSlug, resolveRelative, simplifySlug } from "../../util/path"
+import { FilePath, FullSlug, joinSegments, resolveRelative, simplifySlug } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 import path from "path"
 
@@ -25,7 +25,12 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
         slugs.push(permalink as FullSlug)
       }
 
-      for (const slug of slugs) {
+      for (let slug of slugs) {
+        // fix any slugs that have trailing slash
+        if (slug.endsWith("/")) {
+          slug = joinSegments(slug, "index") as FullSlug
+        }
+
         const redirUrl = resolveRelative(slug, file.data.slug!)
         const fp = await emit({
           content: `

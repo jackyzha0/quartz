@@ -40,12 +40,13 @@ export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (userOpts) => {
       const tags: Set<string> = new Set(
         allFiles.flatMap((data) => data.frontmatter?.tags ?? []).flatMap(getAllSegmentPrefixes),
       )
+
       // add base tag
       tags.add("index")
 
       const tagDescriptions: Record<string, ProcessedContent> = Object.fromEntries(
         [...tags].map((tag) => {
-          const title = tag === "" ? "Tag Index" : `Tag: #${tag}`
+          const title = tag === "index" ? "Tag Index" : `Tag: #${tag}`
           return [
             tag,
             defaultProcessedContent({
