@@ -328,12 +328,13 @@ figure[data-rehype-pretty-code-figure] {
 
 pre {
   font-family: var(--codeFont);
-  padding: 0.5rem;
+  padding: 0 0.5rem;
   border-radius: 5px;
   overflow-x: auto;
   border: 1px solid var(--lightgray);
+  position: relative;
 
-  &.mermaid {
+  &:has(> code.mermaid) {
     border: none;
   }
 

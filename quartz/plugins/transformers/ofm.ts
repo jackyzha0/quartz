@@ -1,5 +1,5 @@
 import { QuartzTransformerPlugin } from "../types"
-import { Root, Html, BlockContent, DefinitionContent, Paragraph } from "mdast"
+import { Root, Html, BlockContent, DefinitionContent, Paragraph, Code } from "mdast"
 import { Element, Literal, Root as HtmlRoot } from "hast"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { slug as slugAnchor } from "github-slugger"
@@ -423,31 +423,26 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         })
       }
 
-      return plugins
-    },
-    htmlPlugins() {
-      const plugins: PluggableList = [rehypeRaw]
-
       if (opts.mermaid) {
         plugins.push(() => {
-          return (tree: HtmlRoot, _file) => {
-            visit(tree, "element", (node) => {
-              if (node.tagName === "pre") {
-                const firstChild = node.children[0]
-                if (firstChild && firstChild.type === "element" && firstChild.tagName === "code") {
-                  const code = firstChild
-                  const isMermaidBlock =
-                    (code.properties["className"] as Array<string>)?.[0] === "language-mermaid"
-                  if (isMermaidBlock) {
-                    node.children = code.children
-                    node.properties.className = ["mermaid"]
-                  }
+          return (tree: Root, _file) => {
+            visit(tree, "code", (node: Code) => {
+              if (node.lang === "mermaid") {
+                node.data = {
+                  hProperties: {
+                    className: ["mermaid"],
+                  },
                 }
               }
             })
           }
         })
       }
+
+      return plugins
+    },
+    htmlPlugins() {
+      const plugins: PluggableList = [rehypeRaw]
 
       if (opts.parseBlockReferences) {
         plugins.push(() => {
