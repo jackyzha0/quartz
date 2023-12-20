@@ -15,9 +15,4 @@ tags:
 #dl
 #math
 #datascience
-#dataeng
-
-# Index
-
-* [Data Enginnering](./Data%20Engineering/)
-* [Generative AI](./GenerativeAI/)
+#dataeng 
