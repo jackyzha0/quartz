@@ -154,7 +154,7 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
   }
 
   return (
-    <li>
+    <>
       {node.file ? (
         // Single file node
         <li key={node.file.slug}>
@@ -219,6 +219,6 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
           </div>
         </div>
       )}
-    </li>
+    </>
   )
 }
