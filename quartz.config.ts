@@ -11,6 +11,7 @@ const config: QuartzConfig = {
     },
     baseUrl: "quartz.jzhao.xyz",
     ignorePatterns: ["private", "templates", ".obsidian"],
+    unlistedPatterns: ["secret"],
     defaultDateType: "created",
     theme: {
       typography: {

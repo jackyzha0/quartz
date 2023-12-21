@@ -98,6 +98,13 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       const linkIndex: ContentIndex = new Map()
       for (const [tree, file] of content) {
         const slug = file.data.slug!
+
+        let ignore = false
+        for (const ignorePattern of cfg.unlistedPatterns)
+          if (slug.startsWith(ignorePattern)) ignore = true
+
+        if (ignore) continue
+
         const date = getDate(ctx.cfg.configuration, file.data) ?? new Date()
         if (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) {
           linkIndex.set(slug, {
