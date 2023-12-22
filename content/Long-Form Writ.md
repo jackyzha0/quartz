@@ -4,6 +4,10 @@ For shorter form stuff, check out my [Mastodon](https://mastodon.online/@jahinze
 
 ---
 
+## Specs and Stuff
+
+- [[BANNotation]] – notation for Minecraft banner designs
+
 ## Articles
 
 - [[Barangaroo Metro Station – My first impressions]]
