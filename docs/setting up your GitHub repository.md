@@ -31,5 +31,9 @@ git remote -v
 Then, you can sync the content to upload it to your repository.
 
 ```bash
-npx quartz sync
+npx quartz sync --no-pull
 ```
+
+> [!hint]
+> If `npx quartz sync` fails with `fatal: --[no-]autostash option is only valid with --rebase`, you
+> may have an outdated version of `git`. Updating `git` should fix this issue.

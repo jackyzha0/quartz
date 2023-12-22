@@ -8,7 +8,11 @@ export const SyntaxHighlighting: QuartzTransformerPlugin = () => ({
       [
         rehypePrettyCode,
         {
-          theme: "css-variables",
+          keepBackground: false,
+          theme: {
+            dark: "github-dark",
+            light: "github-light",
+          },
         } satisfies Partial<CodeOptions>,
       ],
     ]

@@ -51,7 +51,6 @@ const config: QuartzConfig = {
       Plugin.ObsidianFlavoredMarkdown(),
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
-      Plugin.Latex({ renderEngine: "katex" }),
       Plugin.Description(),
     ],
     filters: [Plugin.RemoveDrafts()],

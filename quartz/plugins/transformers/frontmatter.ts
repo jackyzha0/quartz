@@ -29,7 +29,7 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
         [remarkFrontmatter, ["yaml", "toml"]],
         () => {
           return (_, file) => {
-            const { data } = matter(file.value, {
+            const { data } = matter(Buffer.from(file.value), {
               ...opts,
               engines: {
                 yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object,
@@ -57,7 +57,7 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
             }
 
             // slug them all!!
-            data.tags = [...new Set(data.tags?.map((tag: string) => slugTag(tag)))] ?? []
+            data.tags = [...new Set(data.tags?.map((tag: string) => slugTag(tag)))]
 
             // fill in frontmatter
             file.data.frontmatter = data as QuartzPluginData["frontmatter"]
