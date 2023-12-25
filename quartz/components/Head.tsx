@@ -21,7 +21,8 @@ export default (() => {
     const path = rootUrl.pathname as FullSlug
     const baseDir = fileData.slug === "404" ? path : pathToRoot(slug)
 
-    const absoluteUrl = cfg.includeRelCanonical && cfg.baseUrl && canonicalURL(cfg.baseUrl, slug) || null;
+    const absoluteUrl =
+      (cfg.includeRelCanonical && cfg.baseUrl && canonicalURL(cfg.baseUrl, slug)) || null
 
     const iconPath = joinSegments(baseDir, "static/icon.png")
     const ogImagePath = `https://${cfg.baseUrl}/static/og-image.png`
