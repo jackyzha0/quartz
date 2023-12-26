@@ -778,3 +778,53 @@ class PublishedManager(models.Manager):
 ![[Screenshot from 2023-12-26 09-49-01.png]]
 
 
+in views.py
+```python
+from django.shortcuts import render, get_object_or_404
+from .models import Post
+
+
+def post_list(request):
+    posts = Post.published.all()
+    return render(request,
+                 'blog/post/list.html',
+                 {'posts': posts})
+
+
+def post_detail(request, id):
+    post = get_object_or_404(Post,
+                             id=id,
+                             status=Post.Status.PUBLISHED)
+    return render(request,
+                  'blog/post/detail.html',
+                  {'post': post})
+```
+see code in [here](https://github.com/PacktPublishing/Django-4-by-example/blob/main/Chapter01/mysite/blog/views.py)
+
+in urls.py
+
+```python
+from django.urls import path
+from . import views
+
+app_name = 'blog'
+
+urlpatterns = [
+    # post views
+    path('', views.post_list, name='post_list'),
+    path('<int:id>/', views.post_detail, name='post_detail'),
+]
+```
+
+Also add in main application
+
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('blog/', include('blog.urls', namespace='blog')),
+]
+```
+
