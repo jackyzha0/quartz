@@ -593,3 +593,54 @@ In this example, `class Meta` is used to set a custom table name, define a defau
 The use of `class Meta` is a powerful feature that lets you control various aspects of your Django model's behavior in a declarative and centralized way.
 
 
+## Adding a database index
+
+`
+```python
+class Meta:
+	ordering = ['-publish']
+	indexes = [ models.Index(fields=['-publish']), ]
+```
+
+
+## Activating the application
+
+
+```python
+INSTALLED_APPS = [
+
+'django.contrib.admin',
+
+'django.contrib.auth',
+
+'django.contrib.contenttypes',
+
+'django.contrib.sessions',
+
+'django.contrib.messages',
+
+'django.contrib.staticfiles',
+
+'blog.apps.BlogConfig' # blog app see apps.py
+
+]
+```
+
+
+```python
+    class Status(models.TextChoices):
+        DRAFT = 'DF', 'Draft'
+        PUBLISHED = 'PB', 'Published'
+
+# later you can use with this
+    status = models.CharField(max_length=2,
+                              choices=Status.choices,
+                              default=Status.DRAFT)
+# in class
+
+```
+
+Here, a subclass named `Status` is defined within the `Post` class, using `models.TextChoices` to create a set of choices that can be used for a field later. `DRAFT` and `PUBLISHED` are two possible states for a blog post, with corresponding database values of 'DF' and 'PB', and human-readable names 'Draft' and 'Published'.
+
+![[Screenshot from 2023-12-26 09-24-44.png]]
+
