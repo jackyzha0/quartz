@@ -644,3 +644,137 @@ Here, a subclass named `Status` is defined within the `Post` class, using `model
 
 ![[Screenshot from 2023-12-26 09-24-44.png]]
 
+
+# Add user
+
+```python
+from django.db import models
+
+from django.utils import timezone
+
+from django.contrib.auth.models import User
+
+  
+  
+
+class PublishedManager(models.Manager):
+
+def get_queryset(self):
+
+return super().get_queryset()\
+
+.filter(status=Post.Status.PUBLISHED)
+
+  
+  
+
+class Post(models.Model):
+
+  
+
+class Status(models.TextChoices):
+
+DRAFT = 'DF', 'Draft'
+
+PUBLISHED = 'PB', 'Published'
+
+  
+
+title = models.CharField(max_length=250)
+
+slug = models.SlugField(max_length=250)
+
+author = models.ForeignKey(User, # from django.contrib.auth.models import User
+
+		on_delete=models.CASCADE,
+
+		related_name='blog_posts')
+
+body = models.TextField()
+
+publish = models.DateTimeField(default=timezone.now)
+
+created = models.DateTimeField(auto_now_add=True)
+
+updated = models.DateTimeField(auto_now=True)
+
+status = models.CharField(max_length=2,
+
+	choices=Status.choices,
+
+	default=Status.DRAFT)
+
+  
+
+objects = models.Manager() # The default manager.
+
+published = PublishedManager() # Our custom manager.
+
+  
+
+class Meta:
+
+ordering = ['-publish']
+
+indexes = [
+
+models.Index(fields=['-publish']),
+
+]
+
+  
+
+def __str__(self):
+
+return self.title
+```
+
+![[Screenshot from 2023-12-26 09-29-22.png]]
+
+### Create admin for site
+
+python manage.py createsuperuser
+
+Adding models to the administration site Let’s add your blog models to the administration site. Edit the admin.py file of the blog application and make it look like this. The new lines are highlighted in bold: 
+'''
+from django.contrib import admin
+from .models import Post admin.site.register(Post)
+'''
+Now reload the administration site in your browser. You should see your Post model on the site.
+
+### Customizing how models are displayed
+
+in admin.py
+
+```python
+from django.contrib import admin 
+from .models import Post @admin.register(Post) 
+class PostAdmin(admin.ModelAdmin): 
+	list_display = ['title', 'slug', 'author', 'publish', 'status']
+```
+
+
+# Django ORM Cheatsheet
+
+https://djangocentral.com/django-orm-cheatsheet/
+
+## Creating model managers
+
+The default manager for every model is the objects manager. This manager retrieves all the objects in the database. However, we can define custom managers for models.
+
+Edit the models.py file of your blog application to add the custom manager as follows. The new lines are highlighted in bold:
+
+class PublishedManager(models.Manager):
+	def get_queryset(self): return super().get_queryset()\ .filter(status=Post.Status.PUBLISHED)
+	
+  class Post(models.Model): 
+		# model fields # ... 
+	   objects = models.Manager() # The default manager.
+	   published = PublishedManager() # Our custom manager.
+
+>>> from blog.models import Post
+>>> Post.published.filter(title__startswith='Who')
+
+![[Screenshot from 2023-12-26 09-49-01.png]]
+
+
