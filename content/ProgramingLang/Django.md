@@ -828,3 +828,104 @@ urlpatterns = [
 ]
 ```
 
+## Creating templates for your views
+
+Inside template folder
+
+```
+.
+└── blog
+    ├── base.html
+    └── post
+        ├── detail.html
+        └── list.html
+
+2 directories, 3 files
+```
+
+• Template tags control the rendering of the template and look like {% tag %} 
+• Template variables get replaced with values when the template is rendered and look like {{ variable }}
+• Template filters allow you to modify variables for display and look like {{ variable|filter }}
+
+The provided code is a Jinja2 template, which is very similar to Django's templating language. Jinja2 is a popular template engine for Python web frameworks. This specific template appears to be for a blog application, and it's using several common Jinja2 features:
+
+1. **Template Inheritance (`{% extends %}`)**:
+   ```jinja
+   {% extends "blog/base.html" %}
+   ```
+   This tells Jinja that the current template should extend `blog/base.html`, which means it will inherit the structure from `base.html` and can override specific blocks defined in it.
+
+2. **Blocks (`{% block %}` and `{% endblock %}`)**:
+   ```jinja
+   {% block title %}My Blog{% endblock %}
+   ```
+   This defines a block named `title`. Blocks are placeholders in the base template that can be overridden by child templates. Here, the `title` block is set to display "My Blog".
+
+   ```jinja
+   {% block content %}
+   ...
+   {% endblock %}
+   ```
+   This defines a larger block named `content`, where the main body of the page will be inserted.
+
+3. **Loops (`{% for %}` and `{% endfor %}`)**:
+   ```jinja
+   {% for post in posts %}
+   ...
+   {% endfor %}
+   ```
+   This loop iterates over a collection named `posts`, which is presumably passed to the template from the view. For each item in the collection, it repeats the enclosed HTML and template code.
+
+4. **Variables (`{{ }}`)**:
+   ```jinja
+   {{ post.title }}
+   ```
+   This outputs the `title` property of the current `post` object within the loop.
+
+5. **URLs (`{% url %}`)**:
+   ```jinja
+   <a href="{% url 'blog:post_detail' post.id %}">
+   ```
+   This generates a URL to the `post_detail` view, passing `post.id` as an argument. In Django, the `url` template tag is used to avoid hard-coding URLs in templates.
+
+6. **Filters (`|`)**:
+   ```jinja
+   {{ post.body|truncatewords:30|linebreaks }}
+   ```
+   Here, the `body` text of the post is being passed through two filters:
+   - `truncatewords:30` cuts off the text after 30 words and appends an ellipsis.
+   - `linebreaks` converts line breaks in plain text into `<p>` and `<br>` tags for HTML.
+
+The whole template, when rendered, would show the title "My Blog" in the title block and a list of blog posts in the content block. Each post would be displayed with a linked title, publication date, author, and a truncated version of the body text.
+
+Here's a complete example of how the rendered HTML might look for one post:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Blog</title>
+    <!-- Additional head content inherited from base.html -->
+</head>
+<body>
+    <!-- Additional body content inherited from base.html -->
+    <h1>My Blog</h1>
+    <h2>
+    <a href="/blog/post-detail/1">
+        Sample Post Title
+    </a>
+    </h2>
+    <p class="date">
+    Published January 1, 2023 by John Doe
+    </p>
+    <p>This is the beginning of a blog post body text...</p>
+    <!-- More posts ... -->
+    <!-- Additional body content inherited from base.html -->
+</body>
+</html>
+```
+
+In this example, the `post_detail` view corresponding to the post with `id` 1 would be at the URL `/blog/post-detail/1`, the title of the post is "Sample Post Title", and it was published by "John Doe" on "January 1, 2023". Only the first 30 words of the post body are shown, followed by an ellipsis.
+
+
+
