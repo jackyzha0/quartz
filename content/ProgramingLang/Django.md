@@ -102,36 +102,6 @@ python manage.py startapp APPNAME
 
 • views.py: The logic of your application goes here; each view receives an HTTP request, processes it, and returns a response.
 
-
-```python
-from django.db import models
-
-  
-
-# Create your models here.
-
-from django.db import models
-
-class Post(models.Model):
-
-	title = models.CharField(max_length=250)
-
-	slug = models.SlugField(max_length=250)
-
-	body = models.TextField()
-
-	def __str__(self):
-
-		return self.title
-```
-
-We have also added a __str__() method to the model class. This is the default Python method to return a string with the human-readable representation of the object. Django will use this method to display the name of the object in many places, such as the Django administration site.
-
-![[Screenshot from 2023-12-22 11-33-17.png]]
-
-
-By default, Django adds an auto-incrementing primary key field to each model. The field type for this field is specified in each application configuration or globally in the DEFAULT_AUTO_FIELD setting. When creating an application with the startapp command, the default value for DEFAULT_AUTO_FIELD is BigAutoField. This is a 64-bit integer that automatically increments according to available IDs. If you don’t specify a primary key for your model, Django adds this field automatically. You can also define one of the model fields to be the primary key by setting primary_key=True on it.
-
 # Django Meta Class
 
 In Django models, the `Meta` class is a special inner class that you define within a model class to provide metadata about the model. This metadata can affect how the model behaves, how it's interpreted by Django's ORM (Object-Relational Mapping), and how it interacts with the database.
@@ -523,5 +493,103 @@ In Django, a `SlugField` is a field in a model used to store and generate these 
 
 In summary, a `SlugField` in Django is used to store the slug of a model instance, which is a URL-friendly string derived from another field, like a title. It enhances the readability and SEO of URLs in web applications.
 
+
+```python
+from django.db import models
+
+  
+
+# Create your models here.
+
+from django.db import models
+
+class Post(models.Model):
+
+	title = models.CharField(max_length=250)
+
+	slug = models.SlugField(max_length=250)
+
+	body = models.TextField()
+
+	def __str__(self):
+
+		return self.title
+```
+
+We have also added a __str__() method to the model class. This is the default Python method to return a string with the human-readable representation of the object. Django will use this method to display the name of the object in many places, such as the Django administration site.
+
+![[Screenshot from 2023-12-22 11-33-17.png]]
+
+
+By default, Django adds an auto-incrementing primary key field to each model. The field type for this field is specified in each application configuration or globally in the DEFAULT_AUTO_FIELD setting. When creating an application with the startapp command, the default value for DEFAULT_AUTO_FIELD is BigAutoField. This is a 64-bit integer that automatically increments according to available IDs. If you don’t specify a primary key for your model, Django adds this field automatically. You can also define one of the model fields to be the primary key by setting primary_key=True on it.
+
+
+## Add time in models
+
+![[Screenshot from 2023-12-26 08-57-14.png]]
+
+
+## What is class Meta in django ?
+
+In Django, a `class Meta` inside a model class is a special inner class that holds configuration metadata for the model. It's a way to tell Django about various options and preferences for how the model should behave. Here's what you can do with `class Meta`:
+
+### Options for `class Meta`:
+
+1. **Naming and Ordering**:
+   - `db_table`: Specify the name of the database table to use for the model. If not given, Django will use a default name based on the app and model names.
+   - `ordering`: Define the default ordering for query results from the model. It's a list or tuple of field names; prefixing a field name with `-` indicates descending order.
+
+2. **Permissions**:
+   - `permissions`: A list of permission tuples that define custom permissions for the model. Useful for extending Django's built-in permissions system.
+   - `default_permissions`: Define which default permissions (add, change, delete, view) Django should create for the model.
+
+3. **Abstract Base Classes**:
+   - `abstract`: If `True`, the model is an abstract base class. Django won't create a database table for abstract models. They're a way to put common information into a number of other models.
+
+4. **Field Options**:
+   - `verbose_name` and `verbose_name_plural`: Define human-readable singular and plural names for the model. If not specified, Django will generate default verbose names.
+
+5. **Field Restrictions**:
+   - `unique_together`: This is a list of lists of fields that must be unique when considered together.
+   - `index_together`: Similar to `unique_together`, but specifies columns that should be indexed together.
+
+6. **Relationships**:
+   - `get_latest_by`: Specify the default field to use in the `latest()` method of the model's manager.
+   - `constraints`: A list of database constraints to apply to the model's table.
+
+7. **Model Inheritance**:
+   - `proxy`: If `True`, the model is a proxy model. It will not create a new database table but will create a new proxy interface to the original model.
+
+8. **Managed Option**:
+   - `managed`: Determines whether Django will handle the creation, migration, and deletion of the database table. Defaults to `True`. If `False`, Django won't manage the database table's lifecycle.
+
+9. **App Label**:
+   - `app_label`: Define the app label for models not in an application listed in `INSTALLED_APPS`.
+
+10. **Other Options**:
+    - `default_related_name`: Provide a default reverse name for related objects.
+
+Here's an example of using `class Meta` in a Django model:
+
+```python
+from django.db import models
+
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+
+    class Meta:
+        db_table = 'author_details'
+        ordering = ['name']
+        verbose_name = 'Author'
+        verbose_name_plural = 'Authors'
+        permissions = (
+            ('can_email_author', 'Can Email Authors'),
+        )
+```
+
+In this example, `class Meta` is used to set a custom table name, define a default ordering by name, set a verbose name for the admin interface, and define a custom permission.
+
+The use of `class Meta` is a powerful feature that lets you control various aspects of your Django model's behavior in a declarative and centralized way.
 
 
