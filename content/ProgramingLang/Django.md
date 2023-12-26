@@ -1019,3 +1019,194 @@ In this setup, the `publish` field would typically store the date and time when 
 
 ![[Screenshot from 2023-12-26 10-34-49.png]]
 
+![[Screenshot from 2023-12-26 10-35-42.png]]
+
+
+# Adding pagination
+
+## Adding pagination to the post list view
+
+```python
+from django.shortcuts import render, get_object_or_404 
+from .models import Post 
+from django.core.paginator import Paginator 
+def post_list(request): 
+	post_list = Post.published.all() 
+# Pagination with 3 posts per page
+
+	paginator = Paginator(post_list, 3)
+	page_number = request.GET.get('page', 1)
+	posts = paginator.page(page_number)
+
+	return render(request, 'blog/post/list.html', {'posts': posts})
+```
+
+
+#chapter3
+
+```bash
+docker run --name docker_postgres -e POSTGRES_PASSWORD=123456 -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres
+```
+
+docker-compose.yaml
+```yaml
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    container_name: docker_postgres
+    environment:
+      POSTGRES_PASSWORD: "123456"
+    ports:
+      - "5432:5432"
+    volumes:
+      - $HOME/docker/volumes/postgres:/var/lib/postgresql/data
+    restart: always
+
+```
+
+
+#chapter4
+
+# Using the Django authentication framework
+
+When we create a new Django project using the startproject command, the authentication framework is included in the default settings of our project. It consists of the django.contrib.auth application and the following two middleware classes found in the MIDDLEWARE setting of our project:
+• AuthenticationMiddleware: Associates users with requests using sessions 
+• SessionMiddleware: Handles the current session across requests
+
+The provided text describes the process of creating a basic user login functionality in Django. Here's a summary highlighting the important points and code:
+
+### Key Points:
+
+1. **Creation of `LoginForm` in `forms.py`**:
+   - A `LoginForm` class is defined, inheriting from `forms.Form`.
+   - It has two fields: `username` (a `CharField`) and `password` (a `CharField` with `PasswordInput` widget).
+   - `PasswordInput` widget renders the field as a password input in HTML, hiding the entered characters.
+
+   **Code**:
+   ```python
+   from django import forms
+
+   class LoginForm(forms.Form):
+       username = forms.CharField()
+       password = forms.CharField(widget=forms.PasswordInput)
+   ```
+
+2. **User Login View in `views.py`**:
+   - The view `user_login` handles both GET and POST requests.
+   - On a GET request, it instantiates a new `LoginForm` and passes it to the template.
+   - On a POST request, the form is instantiated with submitted data.
+   - The form is validated; if invalid, form errors will be shown.
+   - If valid, it attempts to authenticate the user using `authenticate()`.
+   - If authentication succeeds, it checks if the user is active.
+   - If the user is active, they are logged in using `login()`, and a success message is displayed.
+
+   **Code**:
+   ```python
+   from django.http import HttpResponse
+   from django.shortcuts import render
+   from django.contrib.auth import authenticate, login
+   from .forms import LoginForm
+
+   def user_login(request):
+       if request.method == 'POST':
+           form = LoginForm(request.POST)
+           if form.is_valid():
+               cd = form.cleaned_data
+               user = authenticate(request, username=cd['username'], password=cd['password'])
+               if user is not None:
+                   if user.is_active:
+                       login(request, user)
+                       return HttpResponse('Authenticated successfully')
+                   else:
+                       return HttpResponse('Disabled account')
+               else:
+                   return HttpResponse('Invalid login')
+       else:
+           form = LoginForm()
+       return render(request, 'account/login.html', {'form': form})
+   ```
+
+### Additional Notes:
+
+- **Difference between `authenticate()` and `login()`**:
+  - `authenticate()`: Checks user credentials and returns a `User` object if they are correct.
+  - `login()`: Sets the authenticated user in the current session.
+
+This setup is a basic implementation of a login system in Django, using Django's built-in authentication system and forms. The `authenticate()` method is used for verifying the username and password, while the `login()` method manages the user's session.
+
+
+
+`csrf_token` in Django is used for protection against Cross-Site Request Forgery (CSRF) attacks. CSRF is a type of security vulnerability that occurs when a malicious website causes a user's browser to perform an unwanted action on a trusted site where the user is authenticated. 
+
+### How CSRF Works:
+In a CSRF attack, a malicious site can send a request to a more trusted site where the user is already authenticated. Without proper safeguards, the trusted site might execute actions as if the request was legitimate, potentially leading to unauthorized actions being performed on behalf of the authenticated user.
+
+### Django's CSRF Protection:
+
+1. **CSRF Token**:
+   - Django's built-in CSRF protection mechanism uses a unique token to prevent CSRF attacks. This token is a random value that is unique to each user session.
+   - The token is generated by Django and sent to the client as part of the rendering process for forms.
+
+2. **Using csrf_token in Templates**:
+   - When rendering forms in your HTML templates, you include the `{% csrf_token %}` template tag within the `<form>` tag.
+   - Django then populates this with a hidden input field containing the token value.
+   - Example:
+     ```html
+     <form method="post">
+         {% csrf_token %}
+         <!-- Your form fields here -->
+     </form>
+     ```
+
+3. **Token Validation**:
+   - When a form is submitted, Django checks for the CSRF token in the POST data. It compares the token in the form data against the one stored in the user's session.
+   - If the tokens match, Django processes the form submission as normal.
+   - If the token is missing or incorrect, Django rejects the request, thereby preventing potential CSRF attacks.
+
+4. **Ajax Requests**:
+   - For Ajax requests, you need to ensure the CSRF token is included in the request headers. Django provides a way to get the CSRF token from the cookie and include it in the headers of the Ajax request.
+
+### Importance:
+CSRF tokens are crucial for web application security. By ensuring that each post request comes with a unique token that matches the user's session, Django effectively blocks external sites from being able to submit requests on behalf of a user without their knowledge. This is an essential defense against a common and potentially harmful web attack vector.
+
+Django includes a set of class-based views in `django.contrib.auth.views` to handle user authentication, password changes, and password resets. These views provide a standard way to implement common authentication-related functionalities. Here's a summary of these views:
+
+### Authentication Views:
+
+1. **LoginView**:
+   - Manages a login form and logs in a user.
+
+2. **LogoutView**:
+   - Logs out a user.
+
+### Password Change Views:
+
+1. **PasswordChangeView**:
+   - Handles a form to change the user's password.
+
+2. **PasswordChangeDoneView**:
+   - A success view that users are redirected to after successfully changing their password.
+
+### Password Reset Views:
+
+1. **PasswordResetView**:
+   - Allows users to initiate a password reset. It generates a one-time-use link with a token and sends it to the user's email.
+
+2. **PasswordResetDoneView**:
+   - Informs users that an email with a password reset link has been sent.
+
+3. **PasswordResetConfirmView**:
+   - Enables users to set a new password using the token provided in the email.
+
+4. **PasswordResetCompleteView**:
+   - A success view that users are redirected to after successfully resetting their password.
+
+These views simplify the implementation of common authentication tasks, like logging in and out, changing passwords, and resetting forgotten passwords. They can be easily integrated into Django applications and customized as needed.
+
+
+#decorator
+
+https://docs.djangoproject.com/en/5.0/topics/auth/default/
+
