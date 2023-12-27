@@ -1,6 +1,13 @@
 // @ts-ignore
 import { QuartzPluginData } from "../plugins/vfile"
-import { joinSegments, resolveRelative, clone, simplifySlug, SimpleSlug } from "../util/path"
+import {
+  joinSegments,
+  resolveRelative,
+  clone,
+  simplifySlug,
+  SimpleSlug,
+  FilePath,
+} from "../util/path"
 
 type OrderEntries = "sort" | "filter" | "map"
 
@@ -25,6 +32,14 @@ export type FolderState = {
   collapsed: boolean
 }
 
+function getPathSegment(fp: FilePath | undefined, idx: number): string | undefined {
+  if (!fp) {
+    return undefined
+  }
+
+  return fp.split("/").at(idx + 1)
+}
+
 // Structure to add all files into a tree
 export class FileNode {
   children: Array<FileNode>
@@ -33,10 +48,10 @@ export class FileNode {
   file: QuartzPluginData | null
   depth: number
 
-  constructor(slugSegment: string, file?: QuartzPluginData, depth?: number) {
+  constructor(slugSegment: string, displayName?: string, file?: QuartzPluginData, depth?: number) {
     this.children = []
     this.name = slugSegment
-    this.displayName = file?.frontmatter?.title ?? slugSegment
+    this.displayName = displayName ?? file?.frontmatter?.title ?? slugSegment
     this.file = file ? clone(file) : null
     this.depth = depth ?? 0
   }
@@ -58,7 +73,7 @@ export class FileNode {
         }
       } else {
         // direct child
-        this.children.push(new FileNode(nextSegment, fileData.file, this.depth + 1))
+        this.children.push(new FileNode(nextSegment, undefined, fileData.file, this.depth + 1))
       }
 
       return
@@ -72,7 +87,12 @@ export class FileNode {
       return
     }
 
-    const newChild = new FileNode(nextSegment, undefined, this.depth + 1)
+    const newChild = new FileNode(
+      nextSegment,
+      getPathSegment(fileData.file.filePath, this.depth),
+      undefined,
+      this.depth + 1,
+    )
     newChild.insert(fileData)
     this.children.push(newChild)
   }
