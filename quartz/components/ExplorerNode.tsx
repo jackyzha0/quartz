@@ -37,7 +37,7 @@ function getPathSegment(fp: FilePath | undefined, idx: number): string | undefin
     return undefined
   }
 
-  return fp.split("/").at(idx + 1)
+  return fp.split("/").at(idx)
 }
 
 // Structure to add all files into a tree
@@ -89,7 +89,7 @@ export class FileNode {
 
     const newChild = new FileNode(
       nextSegment,
-      getPathSegment(fileData.file.filePath, this.depth),
+      getPathSegment(fileData.file.relativePath, this.depth),
       undefined,
       this.depth + 1,
     )

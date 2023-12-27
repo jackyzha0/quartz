@@ -68,8 +68,9 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
       // construct the index for the first time
       for (const file of allFiles) {
         if (file.slug?.endsWith("index")) {
-          const folderParts = file.filePath?.split("/")
+          const folderParts = file.slug?.split("/")
           if (folderParts) {
+            // 2nd last to exclude the /index
             const folderName = folderParts[folderParts?.length - 2]
             folderIndex.set(folderName, file)
           }
