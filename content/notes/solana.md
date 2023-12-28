@@ -23,7 +23,7 @@ The tl;dr of this is that a chain of hashes is done. When something of note happ
 
 ![Table 1 from the Solana whitepaper](image.png)
 
-This process can be done in parallel (separate computing threads) and then mixed such that individual threads can stamp the output of other threads in a way that ties them together in a deterministic way. 
+This process can be done in parallel (separate computing threads) and then mixed such that individual threads can stamp the output of other threads in a way that ties them together in a deterministic way. I expect this is the core of the "hardware can scale the demand" claim. 
 
 > [!QUESTION] I see this as similar to what Kadena did with PoW chains. I'd be curious if the Solana implementation took note from the graph theory optimizations that Kadena did with their PoW chain implementation
 
