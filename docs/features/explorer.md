@@ -198,8 +198,6 @@ other-folder
     index.md
 ```
 
-As you can see `nameOrderMap` is using the raw file/folder name (without file extensions). If you would rather use the frontmatter name of the file/folder, then ... **(ToDo: how does one modify the code so the `nameOrderMap` can be filled with the frontmatter name?)**
-
 ### Change display names (`map`)
 
 Using this example, the display names of all `FileNodes` (folders + files) will be converted to full upper case.
