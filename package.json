@@ -57,7 +57,6 @@
     "mdast-util-to-hast": "^13.0.2",
     "mdast-util-to-string": "^4.0.0",
     "micromorph": "^0.4.5",
-    "plausible-tracker": "^0.3.8",
     "preact": "^10.19.3",
     "preact-render-to-string": "^6.3.1",
     "pretty-bytes": "^6.1.1",
