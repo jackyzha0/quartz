@@ -174,7 +174,7 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
   }
 
   return (
-    <li>
+    <>
       {node.file ? (
         // Single file node
         <li key={node.file.slug}>
@@ -183,7 +183,7 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
           </a>
         </li>
       ) : (
-        <div>
+        <li>
           {node.name !== "" && (
             // Node with entire folder
             // Render svg button + folder name, then children
@@ -214,7 +214,7 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
                   </a>
                 ) : (
                   <button class="folder-button">
-                    <p class="folder-title">{node.displayName}</p>
+                    <span class="folder-title">{node.displayName}</span>
                   </button>
                 )}
               </div>
@@ -241,8 +241,8 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
               ))}
             </ul>
           </div>
-        </div>
+        </li>
       )}
-    </li>
+    </>
   )
 }
