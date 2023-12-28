@@ -89,7 +89,10 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
         // Try to resolve frontmatter folder title
         const currentFile = folderIndex?.get(curPathSegment)
         if (currentFile) {
-          curPathSegment = currentFile.frontmatter!.title
+          const title = currentFile.frontmatter!.title
+          if (title !== "index") {
+            curPathSegment = title
+          }
         }
 
         // Add current slug to full path
