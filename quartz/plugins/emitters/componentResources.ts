@@ -4,8 +4,6 @@ import { QuartzEmitterPlugin } from "../types"
 // @ts-ignore
 import spaRouterScript from "../../components/scripts/spa.inline"
 // @ts-ignore
-import plausibleScript from "../../components/scripts/plausible.inline"
-// @ts-ignore
 import popoverScript from "../../components/scripts/popover.inline"
 import styles from "../../styles/custom.scss"
 import popoverStyle from "../../components/styles/popover.scss"
@@ -103,7 +101,20 @@ function addGlobalPageResources(
         });
       });`)
   } else if (cfg.analytics?.provider === "plausible") {
-    componentResources.afterDOMLoaded.push(plausibleScript)
+    const plausibleHost = cfg.analytics.host ?? "https://plausible.io"
+    componentResources.afterDOMLoaded.push(`
+      const plausibleScript = document.createElement("script")
+      plausibleScript.src = "${plausibleHost}/js/script.manual.js"
+      plausibleScript.setAttribute("data-domain", location.hostname)
+      plausibleScript.defer = true
+      document.head.appendChild(plausibleScript)
+
+      window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }
+
+      document.addEventListener("nav", () => {
+        plausible("pageview")
+      })
+    `)
   } else if (cfg.analytics?.provider === "umami") {
     componentResources.afterDOMLoaded.push(`
       const umamiScript = document.createElement("script")
