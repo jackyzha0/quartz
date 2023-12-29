@@ -12,6 +12,7 @@ Want to see what Quartz can do? Here are some cool community gardens:
 - [Data Dictionary 🧠](https://glossary.airbyte.com/)
 - [sspaeti.com's Second Brain](https://brain.sspaeti.com/)
 - [oldwinter の数字花园](https://garden.oldwinter.top/)
+- [The Abandoned Zone - notes on digital space preservation](https://abandoned.zone/)
 - [Abhijeet's Math Wiki](https://abhmul.github.io/quartz/Math-Wiki/)
 - [Mike's AI Garden 🤖🪴](https://mwalton.me/)
 - [Matt Dunn's Second Brain](https://mattdunn.info/)
