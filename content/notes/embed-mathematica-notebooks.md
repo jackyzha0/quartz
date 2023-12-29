@@ -40,5 +40,9 @@ So what you're seeing here is a plot of the minimum energy path that a (constrai
 
 One of the obvious issues is how slow it reacts to moving the bar. Locally, it is a smooth transition from one state tot he next which allows for a cool visualization of molecular dynamics, which helps provide some intuition that isn't available when you have to do it slowly frame by frame. I'd expect you'd have to make a notebook specific for this purpose, which outputs a rendered graphic of the plot, and maybe something I'll play with later. 
 
+Also, there seems to be an open source project that may help with the smoothness of the cloud upload, but would have to look into it and see how it works and what problem it's exactly solving. I'll put it here for another day:
+
+https://mathematica.stackexchange.com/questions/172905/clouddeploy-manipulate-plot
+
 ## Thoughts
 An alternative to this would be using something like [Observable](https://observablehq.com) as then (JS) notebook platform and embed that, or work on optimizations of the notebook to output a smooth graphic that can be walked through. 
