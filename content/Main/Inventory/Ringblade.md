@@ -1,0 +1,3 @@
+A simple ring of black metal. A small 'x' has been carved on the inside of the band. 
+When slipped onto the finger, the ring grows into a knife, shortsword, or longsword, depending on the user's preference. The sword is the same black metal as the ring, and a low hum seems to emanate from the blade. Unless the ring is taken from their finger, the user cannot be disarmed. 
+This ring once belonged to a well-known royal who had a history of moonlighting as an equally well-known highwayman. He would wear this ring on a necklace during the day, and spill blood with it by night. However, the royal rogue was killed when an operation went wrong, and his belongings were auctioned by his shamed family.

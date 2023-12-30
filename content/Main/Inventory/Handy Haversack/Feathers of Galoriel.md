@@ -1,0 +1,3 @@
+Feathers of Galoriel - A bundle of long white feathers, tied with black yarn.
+Anyone holding this bundle of feathers feels like they are committing a great sin.
+These feathers belonged to an angel named Galoriel, who was killed by fighting a terrible demon. The demon tore out Galoriel's feathers and scattered them all over the world, preventing the angel from regaining his power. Rumor says that if all Galoriel's feathers can be found, the angel can return to heaven.
