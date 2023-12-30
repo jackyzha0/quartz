@@ -12,6 +12,7 @@ import {
 import path from "path"
 import { visit } from "unist-util-visit"
 import isAbsoluteUrl from "is-absolute-url"
+import { Root } from "hast"
 
 interface Options {
   /** How to resolve Markdown paths */
@@ -19,12 +20,14 @@ interface Options {
   /** Strips folders from a link so that it looks nice */
   prettyLinks: boolean
   openLinksInNewTab: boolean
+  lazyLoad: boolean
 }
 
 const defaultOptions: Options = {
   markdownLinkResolution: "absolute",
   prettyLinks: true,
   openLinksInNewTab: false,
+  lazyLoad: false,
 }
 
 export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
@@ -34,7 +37,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
     htmlPlugins(ctx) {
       return [
         () => {
-          return (tree, file) => {
+          return (tree: Root, file) => {
             const curSlug = simplifySlug(file.data.slug!)
             const outgoing: Set<SimpleSlug> = new Set()
 
@@ -51,8 +54,8 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                 typeof node.properties.href === "string"
               ) {
                 let dest = node.properties.href as RelativeURL
-                node.properties.className ??= []
-                node.properties.className.push(isAbsoluteUrl(dest) ? "external" : "internal")
+                const classes = (node.properties.className ?? []) as string[]
+                classes.push(isAbsoluteUrl(dest) ? "external" : "internal")
 
                 // Check if the link has alias text
                 if (
@@ -61,8 +64,9 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                   node.children[0].value !== dest
                 ) {
                   // Add the 'alias' class if the text content is not the same as the href
-                  node.properties.className.push("alias")
+                  classes.push("alias")
                 }
+                node.properties.className = classes
 
                 if (opts.openLinksInNewTab) {
                   node.properties.target = "_blank"
@@ -111,6 +115,10 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                 node.properties &&
                 typeof node.properties.src === "string"
               ) {
+                if (opts.lazyLoad) {
+                  node.properties.loading = "lazy"
+                }
+
                 if (!isAbsoluteUrl(node.properties.src)) {
                   let dest = node.properties.src as RelativeURL
                   dest = node.properties.src = transformLink(

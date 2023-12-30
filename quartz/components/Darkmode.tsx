@@ -18,7 +18,7 @@ function Darkmode({ displayClass }: QuartzComponentProps) {
           x="0px"
           y="0px"
           viewBox="0 0 35 35"
-          style="enable-background:new 0 0 35 35;"
+          style="enable-background:new 0 0 35 35"
           xmlSpace="preserve"
         >
           <title>Light mode</title>
@@ -34,7 +34,7 @@ function Darkmode({ displayClass }: QuartzComponentProps) {
           x="0px"
           y="0px"
           viewBox="0 0 100 100"
-          style="enable-background='new 0 0 100 100'"
+          style="enable-background:new 0 0 100 100"
           xmlSpace="preserve"
         >
           <title>Dark mode</title>
