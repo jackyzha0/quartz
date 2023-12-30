@@ -5,7 +5,7 @@ tags:
   - glossary
 date: 2023-09-21
 ---
-The Law School Admissions Test ("LSAT") is a timed multiple-choice and written test administered by the Law School Admissions Counsel ("LSAC"). It's designed to provide some indicator of performance in law school, and it's bad at its job. An applicant's score on the LSAT (between 120 and 180) is the primary metric that law schools examine when determining whether to extend them an offer of admissions
+The Law School Admissions Test ("LSAT") is a timed multiple-choice and written test administered by the Law School Admissions Counsel ("LSAC"). It's designed to provide some indicator of performance in law school, and it's bad at its job. An applicant's score on the LSAT (between 120 and 180) is the primary metric that law schools examine when determining whether to extend them an offer of admissions.
 
 It consists of three types of multiple choice sections:
 - Analytical Reasoning (aka "Logic Games")
