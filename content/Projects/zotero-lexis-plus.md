@@ -36,6 +36,12 @@ Alas! I can't use it to save cases. All resources on the internet tell me that Z
 Why is Zotero's compatibility an open source project with inbuilt development tools? I don't care, but I love it.
 
 Work starts right away on a [Zotero Translator](https://github.com/zotero/translators) for my database of choice, Lexis's newest iteration called Lexis+. One or two hyperfixations later, I [drop a PR](https://github.com/zotero/translators/pull/3012) and call it a day. 
+- The way Zotero translators work is pretty simple conceptually, it activates on regex match for URL and then based on site content you can choose what to scrape for and the category of your eventual entry.
+- My translator works like this:
+	- First, it uses regex to find the hallmarks of a case or statute, since those seem to be the most commonly encountered page types, and then takes the elements on the page that fit into the Case or Statute categories on Zotero and plugs them into the resulting object that gets saved when you click the Zotero button. 
+	- Then, it saves the entire webpage as an offline HTML snapshot and attaches it to the object. 
+	- Any supplemental info that I think is necessary but doesn't really fit into the given fields is attached as a note.
+- For best results, download the PDF scan manually and attach it to the Zotero entry.
 
 This was my first medium-term back-and-forth with an open source project contribution. Zotero's development APIs have lackluster documentation, but their maintainers have high standards. Through a team effort, I made it to merge, and could claim victory! Victory over the internet, the legal community, the Zotero project, and the walled-garden ([[Essays/why-i-garden|I hate those]]) legal research databases that dared catch my ire.
 

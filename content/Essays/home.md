@@ -11,3 +11,4 @@ Below is a collection of long-form content I've authored.
 - [[Essays/why-i-garden|Why I cultivate a digital garden]]
 - [[Projects/my-cloud|Why I'm so concerned with minimizing my digital footprint]]
 - [[Essays/on-linux|My Linux experience]]
+- [[Essays/law-school|Law school as an institution]]

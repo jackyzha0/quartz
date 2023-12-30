@@ -25,10 +25,11 @@ So yeah, it’s pretty cool. Here are my peripherals:
 ### eGPU
 - ADT-Link R43SG-TB3
     - It was smaller than a core x chroma
-- Dell DA-2
+- Dell DA-2 x2
     - eBay’s finest
-- GTX1650
-    - Upgrade Soon(tm), it’s really not good. I’ll probably go to the power limit of the DA-2, so like a 3060ti or so
+    - Had to buy a second one to power the 3060ti. There's a paperclip jammed between two pins and the other ones are connected to the 8pin power slot directly.
+- GTX3060Ti
+    - Rated max power is 220W, but one DA-2 isn't enough because they're too old
 ## OS/Configuration
 I run Fedora Linux with the GNOME desktop environment. I was a longtime Windows 10 user, and dabbled in Linux a bit, but eventually got fed up enough with Windows that I swapped for good.
 
@@ -43,18 +44,14 @@ I use a [bare git repository](https://www.atlassian.com/git/tutorials/dotfiles) 
 - There are a lot of little tweaks I do to software to make it fully useful to me, which is the one argument I’ve ever raised *against* compartmentalizing through Flatpak, Snap, etc. 
     - I have a bunch of Flatpak programs with absolutely no settings sync or remotely near the capability to sync, so what do I do when I want to migrate?
 - Hey kids wanna see a dead husk of a man? Come find me three hours after I update my Neovim install. Dear lord, that thing breaks OFTEN. 
+### Future?
+Upgrades are inevitable with any piece of hardware. Now that my GPU is up to a 3060ti from a 1650s, I'm looking to upgrade my cpu. I'll follow through on that when linux figures out thread scheduling on newer cpu die layouts (p-core e-core is still rough at the moment).
 ## Software
 Any software that's actually of note can be found in [[Programs I Like/home|Programs I Like]]. Here, I'll just go over some tenets I've noticed when dealing with my computer as a tool for my work, my projects, and my personal life.
-### Resistance
-To me, "resistance" is the subjective difficulty involved with installing new tools. In simpler terms, it's how much of a fight your computer puts up. I believe that your computer should adapt to you, rather than the other way around, which is a major part of the reason why I use linux.
 
-For example, Windows is very high-resistance in general: finding an executable for the tool (hopefully portable, otherwise it's an installer which is even more resistance), putting it in the correct place, and potentially dealing with UAC to authorize where you put it or to allow it to run properly.
-
-It goes without saying that package managers alleviate resistance significantly. A single source for no-nonsense installs of almost everything you need!
+I value low-[[Misc/resistance|resistance]], low-[[Misc/friction|friction]] software. It's what led me to pursue linux, Obsidian, and this website in general. If something is fast to use, I'll use it more often.
 #### Immutable Distros
 Something that's gaining popularity is the immutable operating system, where the underlying filesystem is intentionally resistant to change. I don't see this as overly resistant in my sense, mainly because providers like VanillaOS and Fedora Silverblue recognize that this resistance is present and provide alternative routes to install software. It's more of a compromise.
-### Friction
-I define "friction" in a computer as the subjective mental or physical effort required to access a tool that you already have. This is less tied to OS than resistance, and can vary by tool or environment.
 
-If something is low-friction, it gets used, and used often. As a matter of fact, the reason I've swapped around so much for my notes solution is because I've been trying to find something low-friction. [[Projects/Obsidian/digital-garden|Quartz]] appealed to me for this website simply because it was low friction and I could author content right out of my notetaker. 
-- For example, [[Programs I Like/obsidian|Obsidian]] is more feature rich than the alternatives while being more accessible.
+### Software future
+I'll probably hop to Arch next since Fedora is going to drop X11 soon. Tiling wms like River and Hyprland look interesting, and I've played around with them on my 1tb Arch expansion card to mixed results. If I get frustrated with tiling, there's always arch gnome...
