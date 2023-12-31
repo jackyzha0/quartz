@@ -57,10 +57,17 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | und
                 published ||= file.data.frontmatter.publishDate
               } else if (source === "git") {
                 if (!repo) {
-                  repo = new Repository(file.cwd)
+                  // Get a reference to the main git repo.
+                  // It's either the same as the workdir,
+                  // or 1+ level higher in case of a submodule/subtree setup
+                  repo = Repository.discover(file.cwd)
                 }
 
-                modified ||= await repo.getFileLatestModifiedDateAsync(file.data.filePath!)
+                try {
+                  modified ||= await repo.getFileLatestModifiedDateAsync(file.data.filePath!)
+                } catch {
+                  // ignore
+                }
               }
             }
 
