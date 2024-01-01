@@ -113,7 +113,7 @@ export async function handleCreate(argv) {
     }
   }
 
-  await fs.promises.unlink(path.join(contentFolder, ".gitkeep"))
+  await fs.promises.unlink(path.join(contentFolder, ".gitkeep")).catch((err) => {})
   if (setupStrategy === "copy" || setupStrategy === "symlink") {
     let originalFolder = sourceDirectory
 
