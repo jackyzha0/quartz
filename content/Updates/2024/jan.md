@@ -1,9 +1,9 @@
 ---
-title: MM/YY - Summary of Changes
+title: 01/24 - Summary of Changes
 draft: true
 tags:
   - "#update"
-date: <% tp.date.now("yyyy-MM-DD") %>
+date: 2024-01-01
 ---
 ## Housekeeping
 
