@@ -1,6 +1,6 @@
 ---
 title: Summary of Changes for December 2023
-draft: true
+draft: false
 tags:
   - "#update"
 date: 2023-12-13
@@ -8,7 +8,7 @@ date: 2023-12-13
 ## Housekeeping
 Happy holidays! Dropbox has begun opting their customers in by default to allowing the company to train AI on your stored documents in the cloud. I feel validated in my [[Projects/Obsidian/livesync||Obsidian LiveSync]] goals.
 
-Literally the second I finished finals I started attacking the essays I have unpublished. Expect them released soon, I’ll parade it about my mastodon as well. 
+Literally the second I finished finals I started attacking the essays I have unpublished. Expect one released soon, I’ll parade it about my mastodon as well. 
 ## Pages
 - The aforementioned unpublished essays are being worked on. Primarily the law school one, which I want to have out as soon as possible.
 - Oops, [[Programs I Like/hundred-rabbits|Hundred Rabbits]] isn't a seedling anymore.
