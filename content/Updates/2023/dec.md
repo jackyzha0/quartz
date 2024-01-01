@@ -6,7 +6,7 @@ tags:
 date: 2023-12-13
 ---
 ## Housekeeping
-Happy holidays! Dropbox has begun opting their customers in by default to allowing the company to train AI on your stored documents in the cloud. I feel validated in my [[Projects/Obsidian/livesync||Obsidian LiveSync]] goals.
+Happy holidays! Dropbox has begun opting their customers in by default to allowing the company to train AI on your stored documents in the cloud. I feel validated in my [[Projects/Obsidian/livesync|Obsidian LiveSync]] goals.
 
 Literally the second I finished finals I started attacking the essays I have unpublished. Expect one released soon, I’ll parade it about my mastodon as well. 
 ## Pages
