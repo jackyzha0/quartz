@@ -1,6 +1,13 @@
 // @ts-ignore
 import { QuartzPluginData } from "../plugins/vfile"
-import { resolveRelative } from "../util/path"
+import {
+  joinSegments,
+  resolveRelative,
+  clone,
+  simplifySlug,
+  SimpleSlug,
+  FilePath,
+} from "../util/path"
 
 type OrderEntries = "sort" | "filter" | "map"
 
@@ -10,9 +17,9 @@ export interface Options {
   folderClickBehavior: "collapse" | "link"
   useSavedState: boolean
   sortFn: (a: FileNode, b: FileNode) => number
-  filterFn?: (node: FileNode) => boolean
-  mapFn?: (node: FileNode) => void
-  order?: OrderEntries[]
+  filterFn: (node: FileNode) => boolean
+  mapFn: (node: FileNode) => void
+  order: OrderEntries[]
 }
 
 type DataWrapper = {
@@ -25,59 +32,74 @@ export type FolderState = {
   collapsed: boolean
 }
 
+function getPathSegment(fp: FilePath | undefined, idx: number): string | undefined {
+  if (!fp) {
+    return undefined
+  }
+
+  return fp.split("/").at(idx)
+}
+
 // Structure to add all files into a tree
 export class FileNode {
-  children: FileNode[]
-  name: string
+  children: Array<FileNode>
+  name: string // this is the slug segment
   displayName: string
   file: QuartzPluginData | null
   depth: number
 
-  constructor(name: string, file?: QuartzPluginData, depth?: number) {
+  constructor(slugSegment: string, displayName?: string, file?: QuartzPluginData, depth?: number) {
     this.children = []
-    this.name = name
-    this.displayName = name
-    this.file = file ? structuredClone(file) : null
+    this.name = slugSegment
+    this.displayName = displayName ?? file?.frontmatter?.title ?? slugSegment
+    this.file = file ? clone(file) : null
     this.depth = depth ?? 0
   }
 
-  private insert(file: DataWrapper) {
-    if (file.path.length === 1) {
-      if (file.path[0] !== "index.md") {
-        this.children.push(new FileNode(file.file.frontmatter!.title, file.file, this.depth + 1))
-      } else {
-        const title = file.file.frontmatter?.title
-        if (title && title !== "index" && file.path[0] === "index.md") {
+  private insert(fileData: DataWrapper) {
+    if (fileData.path.length === 0) {
+      return
+    }
+
+    const nextSegment = fileData.path[0]
+
+    // base case, insert here
+    if (fileData.path.length === 1) {
+      if (nextSegment === "") {
+        // index case (we are the root and we just found index.md), set our data appropriately
+        const title = fileData.file.frontmatter?.title
+        if (title && title !== "index") {
           this.displayName = title
         }
-      }
-    } else {
-      const next = file.path[0]
-      file.path = file.path.splice(1)
-      for (const child of this.children) {
-        if (child.name === next) {
-          child.insert(file)
-          return
-        }
+      } else {
+        // direct child
+        this.children.push(new FileNode(nextSegment, undefined, fileData.file, this.depth + 1))
       }
 
-      const newChild = new FileNode(next, undefined, this.depth + 1)
-      newChild.insert(file)
-      this.children.push(newChild)
+      return
     }
+
+    // find the right child to insert into
+    fileData.path = fileData.path.splice(1)
+    const child = this.children.find((c) => c.name === nextSegment)
+    if (child) {
+      child.insert(fileData)
+      return
+    }
+
+    const newChild = new FileNode(
+      nextSegment,
+      getPathSegment(fileData.file.relativePath, this.depth),
+      undefined,
+      this.depth + 1,
+    )
+    newChild.insert(fileData)
+    this.children.push(newChild)
   }
 
   // Add new file to tree
-  add(file: QuartzPluginData, splice: number = 0) {
-    this.insert({ file, path: file.filePath!.split("/").splice(splice) })
-  }
-
-  // Print tree structure (for debugging)
-  print(depth: number = 0) {
-    let folderChar = ""
-    if (!this.file) folderChar = "|"
-    console.log("-".repeat(depth), folderChar, this.name, this.depth)
-    this.children.forEach((e) => e.print(depth + 1))
+  add(file: QuartzPluginData) {
+    this.insert({ file: file, path: simplifySlug(file.slug!).split("/") })
   }
 
   /**
@@ -95,7 +117,6 @@ export class FileNode {
    */
   map(mapFn: (node: FileNode) => void) {
     mapFn(this)
-
     this.children.forEach((child) => child.map(mapFn))
   }
 
@@ -110,16 +131,16 @@ export class FileNode {
 
     const traverse = (node: FileNode, currentPath: string) => {
       if (!node.file) {
-        const folderPath = currentPath + (currentPath ? "/" : "") + node.name
+        const folderPath = joinSegments(currentPath, node.name)
         if (folderPath !== "") {
           folderPaths.push({ path: folderPath, collapsed })
         }
+
         node.children.forEach((child) => traverse(child, folderPath))
       }
     }
 
     traverse(this, "")
-
     return folderPaths
   }
 
@@ -147,14 +168,13 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
   const isDefaultOpen = opts.folderDefaultState === "open"
 
   // Calculate current folderPath
-  let pathOld = fullPath ? fullPath : ""
   let folderPath = ""
   if (node.name !== "") {
-    folderPath = `${pathOld}/${node.name}`
+    folderPath = joinSegments(fullPath ?? "", node.name)
   }
 
   return (
-    <li>
+    <>
       {node.file ? (
         // Single file node
         <li key={node.file.slug}>
@@ -163,7 +183,7 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
           </a>
         </li>
       ) : (
-        <div>
+        <li>
           {node.name !== "" && (
             // Node with entire folder
             // Render svg button + folder name, then children
@@ -185,12 +205,16 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
               {/* render <a> tag if folderBehavior is "link", otherwise render <button> with collapse click event */}
               <div key={node.name} data-folderpath={folderPath}>
                 {folderBehavior === "link" ? (
-                  <a href={`${folderPath}`} data-for={node.name} class="folder-title">
+                  <a
+                    href={resolveRelative(fileData.slug!, folderPath as SimpleSlug)}
+                    data-for={node.name}
+                    class="folder-title"
+                  >
                     {node.displayName}
                   </a>
                 ) : (
                   <button class="folder-button">
-                    <p class="folder-title">{node.displayName}</p>
+                    <span class="folder-title">{node.displayName}</span>
                   </button>
                 )}
               </div>
@@ -217,8 +241,8 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
               ))}
             </ul>
           </div>
-        </div>
+        </li>
       )}
-    </li>
+    </>
   )
 }
