@@ -129,8 +129,7 @@ const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
 // (?:\/[-_\p{L}\d\p{Z}]+)*)   -> non-capturing group, matches an arbitrary number of tag strings separated by "/"
 const tagRegex = new RegExp(/(?:^| )#((?:[-_\p{L}\p{Emoji}\d])+(?:\/[-_\p{L}\p{Emoji}\d]+)*)/, "gu")
 const blockReferenceRegex = new RegExp(/\^([A-Za-z0-9]+)$/, "g")
-const ytLinkRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/i
-const ytVideoIdRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+const ytLinkRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
@@ -348,28 +347,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             })
           }
 
-          if (opts.enableYouTubeEmbed) {
-            visit(tree, "image", (node: any) => {
-              if (ytLinkRegex.test(node.url)) {
-                const match = node.url.match(ytVideoIdRegex)
-                const videoId = match && match[2].length == 11 ? match[2] : null
-                if (videoId) {
-                  return Object.assign(node, {
-                    type: "html",
-                    value: `<iframe
-                      class="external-embed"
-                      allow="fullscreen"
-                      frameborder="0"
-                      width="600px"
-                      height="350px"
-                      src="https://www.youtube.com/embed/${videoId}"
-                      ></iframe>`,
-                  })
-                }
-              }
-            })
-          }
-
           mdastFindReplace(tree, replacements)
         }
       })
@@ -527,6 +504,30 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             })
 
             file.data.htmlAst = tree
+          }
+        })
+      }
+
+      if (opts.enableYouTubeEmbed) {
+        plugins.push(() => {
+          return (tree: HtmlRoot) => {
+            visit(tree, "element", (node) => {
+              if (node.tagName === "img" && typeof node.properties.src === "string") {
+                const match = node.properties.src.match(ytLinkRegex)
+                const videoId = match && match[2].length == 11 ? match[2] : null
+                if (videoId) {
+                  node.tagName = "iframe"
+                  node.properties = {
+                    class: "external-embed",
+                    allow: "fullscreen",
+                    frameborder: 0,
+                    width: "600px",
+                    height: "350px",
+                    src: `https://www.youtube.com/embed/${videoId}`,
+                  }
+                }
+              }
+            })
           }
         })
       }
