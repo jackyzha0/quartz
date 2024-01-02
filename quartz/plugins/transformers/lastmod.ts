@@ -68,7 +68,7 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | und
                 } catch {
                   console.log(
                     chalk.yellow(
-                      `Warning: ${file.data
+                      `\nWarning: ${file.data
                         .filePath!} isn't yet tracked by git, last modification date is not available for this file`,
                     ),
                   )
