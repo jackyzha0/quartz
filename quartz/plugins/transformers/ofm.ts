@@ -25,6 +25,7 @@ export interface Options {
   parseTags: boolean
   parseBlockReferences: boolean
   enableInHtmlEmbed: boolean
+  enableYouTubeEmbed: boolean
 }
 
 const defaultOptions: Options = {
@@ -36,6 +37,7 @@ const defaultOptions: Options = {
   parseTags: true,
   parseBlockReferences: true,
   enableInHtmlEmbed: false,
+  enableYouTubeEmbed: false,
 }
 
 const icons = {
@@ -127,6 +129,8 @@ const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
 // (?:\/[-_\p{L}\d\p{Z}]+)*)   -> non-capturing group, matches an arbitrary number of tag strings separated by "/"
 const tagRegex = new RegExp(/(?:^| )#((?:[-_\p{L}\p{Emoji}\d])+(?:\/[-_\p{L}\p{Emoji}\d]+)*)/, "gu")
 const blockReferenceRegex = new RegExp(/\^([A-Za-z0-9]+)$/, "g")
+const ytLinkRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/i
+const ytVideoIdRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
@@ -338,6 +342,28 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     } else {
                       return substring
                     }
+                  })
+                }
+              }
+            })
+          }
+
+          if (opts.enableYouTubeEmbed) {
+            visit(tree, "image", (node: any) => {
+              if (ytLinkRegex.test(node.url)) {
+                const match = node.url.match(ytVideoIdRegex)
+                const videoId = match && match[2].length == 11 ? match[2] : null
+                if (videoId) {
+                  return Object.assign(node, {
+                    type: "html",
+                    value: `<iframe
+                      class="external-embed"
+                      allow="fullscreen"
+                      frameborder="0"
+                      width="600px"
+                      height="350px"
+                      src="https://www.youtube.com/embed/${videoId}"
+                      ></iframe>`,
                   })
                 }
               }
