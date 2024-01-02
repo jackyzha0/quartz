@@ -66,7 +66,12 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | und
                 try {
                   modified ||= await repo.getFileLatestModifiedDateAsync(file.data.filePath!)
                 } catch {
-                  console.log(chalk.yellow(`Warning: ${file.data.filePath!} isn't yet tracked by git, last modification date is not available for this file`))
+                  console.log(
+                    chalk.yellow(
+                      `Warning: ${file.data
+                        .filePath!} isn't yet tracked by git, last modification date is not available for this file`,
+                    ),
+                  )
                 }
               }
             }
