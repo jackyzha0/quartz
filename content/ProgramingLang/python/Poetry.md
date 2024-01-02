@@ -149,3 +149,84 @@ For detailed usage and examples of each command, you can refer to the [Poetry CL
 
 
 
+## Pyenv and Conda
+
+
+[LINK](https://stackoverflow.com/posts/58045893/timeline)
+
+Personal recommendation: Don't use `pyenv` to install Anaconda or Miniconda.
+
+Both `pyenv` and `conda` are able to manage different python environments. The `anaconda` installed by `pyenv` should only **serves as a Python interpreter**. Python environment creation from anaconda installed by `pyenv` is still handled by `pyenv virtualenv` but not `conda env create`.
+
+I've been using these two tools together. It turns out the best solution is to install `conda`, `pyenv` separately, and manage their virtual environments separately as well.
+
+1. alway initialize `pyenv`
+2. only expose command `conda` but don't activate any environment
+
+### Detail
+
+Install `pyenv`.
+
+Install Anaconda or Miniconda normally, NOT by `pyenv install`.
+
+Make sure the `pyenv` and `conda` commands are available in an interactive shell.
+
+Initialize `pyenv` by putting following content into shell init file (`.bashrc` for Bash, `.zshrc` for ZSH).
+
+```bash
+# Put the content into ~/.bashrc or ~/.bash_profile for Bash,
+# .zshrc for ZSH
+
+# you may need to add dir of command `pyenv` into PATH,
+# if command pyenv is not available yet
+
+if command -v pyenv &>/dev/null; then
+    eval "$(pyenv init -)"
+fi
+if command -v pyenv-virtualenv &>/dev/null; then
+    eval "$(pyenv virtualenv-init -)"
+fi
+```
+
+Expose command `conda` but don't activate any environment, even the `base` environment. Execute the following commands in your shell.
+
+```bash
+# Run the content in the shell
+
+# init conda, the following command write scripts into your shell init file automatically
+conda init
+
+# disable init of env "base"
+conda config --set auto_activate_base false
+```
+
+Note: After this setup, the default python is the one set by `pyenv global`. Use `pyenv` and `conda` to manage environments separately.
+
+Examples of managing virtual environments.
+
+```bash
+# virtual environments from pyenv
+pyenv install 3.6.9
+pyenv virtualenv 3.6.9 new-env
+pyenv activate new-env
+pyenv deactive
+# You can also use `pyenv local`
+
+
+# virtual environments from conda
+conda env create new-env python=3.6
+conda env list
+conda activate new-env
+conda deactivate
+```
+
+Default env location for `pyenv` is `~/.pyenv/versions`.
+
+Default env location for `conda`, check output from `conda info`.
+
+### References
+
+- [pyenv installation](https://github.com/pyenv/pyenv#installation)
+- [pyenv virtualenv installatoin](https://github.com/pyenv/pyenv-virtualenv#installation)
+- [How do I prevent Conda from activating the base environment by default?](https://stackoverflow.com/a/57974390/5101148)
+
