@@ -104,7 +104,7 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
       }
 
       // Add current file to crumb (can directly use frontmatter title)
-      if (options.showCurrentPage) {
+      if (options.showCurrentPage && slugParts.at(-1) === "") {
         crumbs.push({
           displayName: fileData.frontmatter!.title,
           path: "",

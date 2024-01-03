@@ -25,6 +25,7 @@ export interface Options {
   parseTags: boolean
   parseBlockReferences: boolean
   enableInHtmlEmbed: boolean
+  enableYouTubeEmbed: boolean
 }
 
 const defaultOptions: Options = {
@@ -36,6 +37,7 @@ const defaultOptions: Options = {
   parseTags: true,
   parseBlockReferences: true,
   enableInHtmlEmbed: false,
+  enableYouTubeEmbed: false,
 }
 
 const icons = {
@@ -125,8 +127,9 @@ const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
 // #(...)               -> capturing group, tag itself must start with #
 // (?:[-_\p{L}\d\p{Z}])+       -> non-capturing group, non-empty string of (Unicode-aware) alpha-numeric characters and symbols, hyphens and/or underscores
 // (?:\/[-_\p{L}\d\p{Z}]+)*)   -> non-capturing group, matches an arbitrary number of tag strings separated by "/"
-const tagRegex = new RegExp(/(?:^| )#((?:[-_\p{L}\d])+(?:\/[-_\p{L}\d]+)*)/, "gu")
+const tagRegex = new RegExp(/(?:^| )#((?:[-_\p{L}\p{Emoji}\d])+(?:\/[-_\p{L}\p{Emoji}\d]+)*)/, "gu")
 const blockReferenceRegex = new RegExp(/\^([A-Za-z0-9]+)$/, "g")
+const ytLinkRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
@@ -201,7 +204,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 if (value.startsWith("!")) {
                   const ext: string = path.extname(fp).toLowerCase()
                   const url = slugifyFilePath(fp as FilePath)
-                  if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg"].includes(ext)) {
+                  if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg", ".webp"].includes(ext)) {
                     const dims = alias ?? ""
                     let [width, height] = dims.split("x", 2)
                     width ||= "auto"
@@ -501,6 +504,30 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             })
 
             file.data.htmlAst = tree
+          }
+        })
+      }
+
+      if (opts.enableYouTubeEmbed) {
+        plugins.push(() => {
+          return (tree: HtmlRoot) => {
+            visit(tree, "element", (node) => {
+              if (node.tagName === "img" && typeof node.properties.src === "string") {
+                const match = node.properties.src.match(ytLinkRegex)
+                const videoId = match && match[2].length == 11 ? match[2] : null
+                if (videoId) {
+                  node.tagName = "iframe"
+                  node.properties = {
+                    class: "external-embed",
+                    allow: "fullscreen",
+                    frameborder: 0,
+                    width: "600px",
+                    height: "350px",
+                    src: `https://www.youtube.com/embed/${videoId}`,
+                  }
+                }
+              }
+            })
           }
         })
       }
