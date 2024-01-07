@@ -9,6 +9,8 @@ import path from "path"
 import { JSResource } from "../../util/resources"
 // @ts-ignore
 import calloutScript from "../../components/scripts/callout.inline.ts"
+// @ts-ignore
+import checkboxScript from "../../components/scripts/checkbox.inline.ts"
 import { FilePath, pathToRoot, slugTag, slugifyFilePath } from "../../util/path"
 import { toHast } from "mdast-util-to-hast"
 import { toHtml } from "hast-util-to-html"
@@ -26,6 +28,7 @@ export interface Options {
   parseBlockReferences: boolean
   enableInHtmlEmbed: boolean
   enableYouTubeEmbed: boolean
+  enableCheckbox: boolean
 }
 
 const defaultOptions: Options = {
@@ -38,6 +41,7 @@ const defaultOptions: Options = {
   parseBlockReferences: true,
   enableInHtmlEmbed: false,
   enableYouTubeEmbed: false,
+  enableCheckbox: true
 }
 
 const icons = {
@@ -532,6 +536,23 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         })
       }
 
+      if (opts.enableCheckbox) {
+        plugins.push(() => {
+          return (tree: HtmlRoot) => {
+            visit(tree, "element", (node) => {
+              console.log("nodeeee", JSON.stringify(node))
+              if (node.tagName === "input") {
+                const isChecked = node.properties?.checked ?? false;    
+                node.properties = {
+                  type:"checkbox",
+                  disabled:false,
+                  checked: isChecked
+                }
+              }
+            })
+          }
+        })
+    }
       return plugins
     },
     externalResources() {
@@ -563,6 +584,14 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           `,
           loadTime: "afterDOMReady",
           moduleType: "module",
+          contentType: "inline",
+        })
+      }
+
+      if(opts.enableCheckbox) {
+        js.push({
+          script: checkboxScript,
+          loadTime: "afterDOMReady",
           contentType: "inline",
         })
       }
