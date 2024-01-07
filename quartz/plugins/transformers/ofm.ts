@@ -41,7 +41,7 @@ const defaultOptions: Options = {
   parseBlockReferences: true,
   enableInHtmlEmbed: false,
   enableYouTubeEmbed: false,
-  enableCheckbox: true
+  enableCheckbox: true,
 }
 
 const icons = {
@@ -541,17 +541,17 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           return (tree: HtmlRoot) => {
             visit(tree, "element", (node) => {
               if (node.tagName === "input") {
-                const isChecked = node.properties?.checked ?? false;    
+                const isChecked = node.properties?.checked ?? false
                 node.properties = {
-                  type:"checkbox",
-                  disabled:false,
-                  checked: isChecked
+                  type: "checkbox",
+                  disabled: false,
+                  checked: isChecked,
                 }
               }
             })
           }
         })
-    }
+      }
       return plugins
     },
     externalResources() {
@@ -587,7 +587,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         })
       }
 
-      if(opts.enableCheckbox) {
+      if (opts.enableCheckbox) {
         js.push({
           script: checkboxScript,
           loadTime: "afterDOMReady",
