@@ -540,7 +540,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         plugins.push(() => {
           return (tree: HtmlRoot) => {
             visit(tree, "element", (node) => {
-              console.log("nodeeee", JSON.stringify(node))
               if (node.tagName === "input") {
                 const isChecked = node.properties?.checked ?? false;    
                 node.properties = {
