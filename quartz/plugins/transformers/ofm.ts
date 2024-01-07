@@ -12,8 +12,6 @@ import calloutScript from "../../components/scripts/callout.inline.ts"
 // @ts-ignore
 import checkboxScript from "../../components/scripts/checkbox.inline.ts"
 
-import { randomUUID } from "crypto"
-
 import { FilePath, pathToRoot, slugTag, slugifyFilePath } from "../../util/path"
 import { toHast } from "mdast-util-to-hast"
 import { toHtml } from "hast-util-to-html"
@@ -545,12 +543,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             visit(tree, "element", (node) => {
               if (node.tagName === "input" && node.properties.type === "checkbox") {
                 const isChecked = node.properties?.checked ?? false
-                const id = randomUUID()
                 node.properties = {
                   type: "checkbox",
                   disabled: false,
                   checked: isChecked,
-                  id: id,
                 }
               }
             })
