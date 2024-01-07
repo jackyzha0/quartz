@@ -1,3 +1,5 @@
+import { getFullSlug } from "../../util/path"
+
 document.addEventListener("nav", () => {
   document.querySelectorAll(".task-list-item").forEach(addToggleHandler)
 })
@@ -27,6 +29,6 @@ function extractCheckbox(listItem: Element) {
 }
 
 function createCheckboxId(index: number) {
-  const title: string = document.title
-  return `is-${title}-checkbox-${index}-enabled`
+  const dataSlug = getFullSlug(window)
+  return `is-${dataSlug}-checkbox-${index}-enabled`
 }
