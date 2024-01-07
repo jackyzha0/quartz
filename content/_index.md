@@ -4,7 +4,9 @@ aliases:
 title: Home
 ---
 
-Hi! I'm Jahin, and welcome to my website/digital garden. For now, this serves mainly as an organised tip for my writings, photos, and other miscellaneous stuff.
+<h1>Hi! I'm Jahin!</h1>
+
+Welcome to my website/digital garden. For now, this serves mainly as an organised tip for my writings, photos, and other miscellaneous stuff.
 
 Before you go, catch me on [Mastodon](http://mastodon.online/@jahinzee) – I usually post things here more frequently.
 
