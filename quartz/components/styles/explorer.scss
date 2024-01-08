@@ -126,7 +126,7 @@ svg {
   backface-visibility: visible;
 }
 
-div:has(> .folder-outer:not(.open)) > .folder-container > svg {
+li:has(> .folder-outer:not(.open)) > .folder-container > svg {
   transform: rotate(-90deg);
 }
 
