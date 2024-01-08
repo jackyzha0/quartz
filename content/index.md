@@ -1,6 +1,5 @@
 ---
-title: Welcome to Quartz
+title: The Dungeon of Jing!
 ---
 
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
+This is the demo wiki for the Dungeon of Jing game. Please explore the sidebar.
