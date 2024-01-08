@@ -64,4 +64,161 @@ For helper functions, it's a good idea to accept a `testing.TB` which is an inte
 [[Property Based Testing]]
 
 
-[[examples in golang]]
+[[examples in golang]] ==> can help you with test
+
+
+# Benchmarking
+
+https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/iteration#benchmarking
+
+
+run with test ==> `go test -bench=.`
+
+Go's built-in testing toolkit features a [coverage tool](https://blog.golang.org/cover). Whilst striving for 100% coverage should not be your end goal, the coverage tool can help identify areas of your code not covered by tests. If you have been strict with TDD, it's quite likely you'll have close to 100% coverage anyway.
+
+Try running
+
+`go test -cover`
+
+You should see
+
+PASS
+
+coverage: 100.0% of statements
+
+
+Go does not let you use equality operators with slices. You _could_ write a function to iterate over each `got` and `want` slice and check their values but for convenience sake, we can use [`reflect.DeepEqual`](https://golang.org/pkg/reflect/#DeepEqual) which is useful for seeing if _any_ two variables are the same.
+
+
+
+In Go, slices cannot be compared directly using the equality operator (`==`). This is because slices are reference types in Go, and comparing them directly would compare the references (addresses in memory), not the content of the slices. To compare the contents of two slices, you need to iterate over the elements and compare them individually, or use a convenience function like `reflect.DeepEqual` from the `reflect` package.
+
+### Using `reflect.DeepEqual`
+
+`reflect.DeepEqual` is a function that checks if two variables are deeply equal. It's a part of the `reflect` package in Go, which provides run-time reflection, allowing you to inspect and manipulate objects at run time. `reflect.DeepEqual` is useful for comparing complex types like slices, maps, structs, etc., where a simple `==` comparison is not possible or sufficient.
+
+Here's an example of how you can use `reflect.DeepEqual` to compare two slices:
+
+```go
+package main
+
+import (
+    "fmt"
+    "reflect"
+)
+
+func main() {
+    slice1 := []int{1, 2, 3}
+    slice2 := []int{1, 2, 3}
+    slice3 := []int{4, 5, 6}
+
+    fmt.Println("slice1 == slice2:", reflect.DeepEqual(slice1, slice2)) // true
+    fmt.Println("slice1 == slice3:", reflect.DeepEqual(slice1, slice3)) // false
+}
+```
+
+In this example, `reflect.DeepEqual` is used to compare `slice1` with `slice2` and `slice3`. It returns `true` when comparing `slice1` and `slice2` because their contents are identical, and `false` when comparing `slice1` and `slice3` as their contents differ.
+
+### Writing Your Own Comparison Function
+
+If you prefer not to use `reflect.DeepEqual` (for example, for performance reasons, as `reflect.DeepEqual` can be slower and more memory-intensive), you can write your own function to compare slices:
+
+```go
+package main
+
+import "fmt"
+
+func slicesEqual(a, b []int) bool {
+    if len(a) != len(b) {
+        return false
+    }
+    for i := range a {
+        if a[i] != b[i] {
+            return false
+        }
+    }
+    return true
+}
+
+func main() {
+    slice1 := []int{1, 2, 3}
+    slice2 := []int{1, 2, 3}
+    slice3 := []int{4, 5, 6}
+
+    fmt.Println("slice1 == slice2:", slicesEqual(slice1, slice2)) // true
+    fmt.Println("slice1 == slice3:", slicesEqual(slice1, slice3)) // false
+}
+```
+
+This `slicesEqual` function first checks if the slices have the same length. If not, it returns `false`. Then it iterates over the slices, comparing each element. If any elements are different, it returns `false`. If all elements are the same, it returns `true`.
+
+Using `reflect.DeepEqual` is more convenient and less error-prone, especially for complex types or deeply nested data structures. However, for simple cases or when performance is a concern, a custom comparison function may be more efficient.
+
+## Table Driven Test in golang
+
+Table-driven testing is a popular testing pattern in Go (Golang), particularly well-suited for scenarios where you want to run the same test logic across different inputs and expected outputs. This approach is efficient, readable, and makes it easy to add new test cases.
+
+### Concept
+
+In table-driven testing, you define a table (slice) of test cases. Each test case in the table is a struct that includes the input data for the test and the expected result. You then iterate over this slice, running the same test logic for each case.
+
+This approach is especially useful for:
+
+- Reducing code duplication.
+- Making it easier to add new test cases.
+- Improving test readability and maintenance.
+
+### Example
+
+Let's consider an example where we want to test a function `Add` that adds two integers.
+
+```go
+package main
+
+import "testing"
+
+// Add returns the sum of two integers
+func Add(a, b int) int {
+    return a + b
+}
+
+// TestAdd is a table-driven test for the Add function
+func TestAdd(t *testing.T) {
+    tests := []struct {
+        name string
+        a, b int
+        want int
+    }{
+        {"add two positive numbers", 2, 3, 5},
+        {"add positive and negative", 1, -1, 0},
+        {"add two negative numbers", -1, -2, -3},
+        // add more test cases here
+    }
+
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            got := Add(tt.a, tt.b)
+            if got != tt.want {
+                t.Errorf("Add(%d, %d) = %d; want %d", tt.a, tt.b, got, tt.want)
+            }
+        })
+    }
+}
+```
+
+### Explanation
+
+- **Test Table**: The `tests` slice contains multiple test cases. Each case is defined by a struct with fields for inputs (`a` and `b`), the expected output (`want`), and a name (`name`) for the test case.
+- **Iteration**: The `for _, tt := range tests` loop iterates over each test case.
+- **Running the Test**: Inside the loop, `t.Run` is used to execute a subtest for each case. This allows each test case to be run independently, and it provides clearer test output, showing which cases pass or fail.
+- **Assertions**: The actual function call (`Add(tt.a, tt.b)`) and the assertion (`if got != tt.want`) are inside the loop. If the function's output doesn't match the expected output, an error is reported with `t.Errorf`.
+
+By using table-driven tests, you can easily see the different scenarios being tested and add new test cases by simply adding new entries to the `tests` slice. This pattern makes your tests more organized and easier to extend and maintain.
+
+
+[[Dependency Injection]]
+[[Mocking]]
+[[Concurrency Testing in Golang]]
+
+https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/dependency-injection
+https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/mocking
