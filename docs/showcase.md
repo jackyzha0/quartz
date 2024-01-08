@@ -22,5 +22,6 @@ Want to see what Quartz can do? Here are some cool community gardens:
 - [Mau Camargo's Notkesto](https://notes.camargomau.com/)
 - [Caicai's Novels](https://imoko.cc/blog/caicai/)
 - [🌊 Collapsed Wave](https://collapsedwave.com/)
+- [Aaron Pham's Garden](https://aarnphm.xyz/)
 
 If you want to see your own on here, submit a [Pull Request adding yourself to this file](https://github.com/jackyzha0/quartz/blob/v4/docs/showcase.md)!
