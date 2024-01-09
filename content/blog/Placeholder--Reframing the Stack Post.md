@@ -10,3 +10,9 @@ mtg notes
 -machine learning over fixation of llm performance  
 -toys v tools  
 -research v product
+
+next mtg notes
+-ran up against the problem of completing the task for a specific person 
+-entire space has been fixated on tasks
+-story we told to investors over and over 
+-llm uniquely positioned to do this
