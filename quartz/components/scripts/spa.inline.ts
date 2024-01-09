@@ -45,6 +45,7 @@ async function navigate(url: URL, isBack: boolean = false) {
   const contents = await fetch(`${url}`)
     .then((res) => {
       const contentType = res.headers.get("content-type")
+
       if (contentType?.startsWith("text/html")) {
         return res.text()
       } else {
@@ -58,9 +59,11 @@ async function navigate(url: URL, isBack: boolean = false) {
   if (!contents) return
 
   const html = p.parseFromString(contents, "text/html")
+
   normalizeRelativeURLs(html, url)
 
   let title = html.querySelector("title")?.textContent
+
   if (title) {
     document.title = title
   } else {
@@ -91,6 +94,13 @@ async function navigate(url: URL, isBack: boolean = false) {
   elementsToRemove.forEach((el) => el.remove())
   const elementsToAdd = html.head.querySelectorAll(":not([spa-preserve])")
   elementsToAdd.forEach((el) => document.head.appendChild(el))
+
+  //patch checkboxes
+  const checkboxesToRemove = document.querySelectorAll(".task-list-item")
+  checkboxesToRemove.forEach((el) => el.remove())
+  const newCheckboxes = html.querySelectorAll(".task-list-item")
+  const taskListToPath = document.querySelector(".contains-task-list")
+  newCheckboxes.forEach((el) => taskListToPath?.appendChild(el))
 
   // delay setting the url until now
   // at this point everything is loaded so changing the url should resolve to the correct addresses
