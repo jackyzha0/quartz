@@ -26,9 +26,12 @@ export function JSResourceToScriptElement(resource: JSResource, preserve?: boole
   } else {
     const content = resource.script
     return (
-      <script key={randomUUID()} type={scriptType} spa-preserve={spaPreserve}>
-        {content}
-      </script>
+      <script
+        key={randomUUID()}
+        type={scriptType}
+        spa-preserve={spaPreserve}
+        dangerouslySetInnerHTML={{ __html: content }}
+      ></script>
     )
   }
 }
