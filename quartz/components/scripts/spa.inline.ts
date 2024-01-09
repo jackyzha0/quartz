@@ -100,13 +100,13 @@ async function navigate(url: URL, isBack: boolean = false) {
   const taskListsToAdd = html.querySelectorAll(".contains-task-list")
 
   taskListsToPatch.forEach((taskList, index) => {
-    const checkboxesToRemove = taskList.querySelectorAll(".task-list-item")
-    checkboxesToRemove.forEach((el) => el.remove())
-    const newCheckboxes = taskListsToAdd[index]?.querySelectorAll(".task-list-item")
-    newCheckboxes.forEach((el) => taskList.appendChild(el))
+    const newTaskList = taskListsToAdd[index]
+    if (newTaskList) {
+      taskList.replaceChildren(...newTaskList.children)
+    }
   })
 
-  // delay setting the url until now
+  // delay setting the url until nowin
   // at this point everything is loaded so changing the url should resolve to the correct addresses
   if (!isBack) {
     history.pushState({}, "", url)
