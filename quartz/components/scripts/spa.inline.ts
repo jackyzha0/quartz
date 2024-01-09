@@ -96,11 +96,15 @@ async function navigate(url: URL, isBack: boolean = false) {
   elementsToAdd.forEach((el) => document.head.appendChild(el))
 
   //patch checkboxes
-  const checkboxesToRemove = document.querySelectorAll(".task-list-item")
-  checkboxesToRemove.forEach((el) => el.remove())
-  const newCheckboxes = html.querySelectorAll(".task-list-item")
-  const taskListToPath = document.querySelector(".contains-task-list")
-  newCheckboxes.forEach((el) => taskListToPath?.appendChild(el))
+  const taskListsToPatch = document.querySelectorAll(".contains-task-list")
+  const taskListsToAdd = html.querySelectorAll(".contains-task-list")
+
+  taskListsToPatch.forEach((taskList, index) => {
+    const checkboxesToRemove = taskList.querySelectorAll(".task-list-item")
+    checkboxesToRemove.forEach((el) => el.remove())
+    const newCheckboxes = taskListsToAdd[index]?.querySelectorAll(".task-list-item")
+    newCheckboxes.forEach((el) => taskList.appendChild(el))
+  })
 
   // delay setting the url until now
   // at this point everything is loaded so changing the url should resolve to the correct addresses
