@@ -101,9 +101,7 @@ async function navigate(url: URL, isBack: boolean = false) {
 
   taskListsToPatch.forEach((taskList, index) => {
     const newTaskList = taskListsToAdd[index]
-    if (newTaskList) {
-      taskList.replaceChildren(...newTaskList.children)
-    }
+    if (newTaskList) taskList.replaceChildren(...newTaskList.children)
   })
 
   // delay setting the url until nowin
