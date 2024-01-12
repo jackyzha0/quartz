@@ -227,7 +227,7 @@ document.addEventListener("nav", async (e: unknown) => {
       const targ = resolveRelative(currentSlug, slug)
       window.spaNavigate(new URL(targ, window.location.toString()))
       hideSearch()
-    }, {passive: true})
+    })
     return button
   }
 
@@ -293,12 +293,12 @@ document.addEventListener("nav", async (e: unknown) => {
     document.removeEventListener("keydown", prevShortcutHandler)
   }
 
-  document.addEventListener("keydown", shortcutHandler, {passive: true})
+  document.addEventListener("keydown", shortcutHandler)
   prevShortcutHandler = shortcutHandler
   searchIcon?.removeEventListener("click", () => showSearch("basic"))
-  searchIcon?.addEventListener("click", () => showSearch("basic"), {passive: true})
+  searchIcon?.addEventListener("click", () => showSearch("basic"))
   searchBar?.removeEventListener("input", onType)
-  searchBar?.addEventListener("input", onType, {passive: true})
+  searchBar?.addEventListener("input", onType)
 
   // setup index if it hasn't been already
   if (!index) {
@@ -330,7 +330,7 @@ document.addEventListener("nav", async (e: unknown) => {
 
   // register handlers
   registerEscapeHandler(container, hideSearch)
-}, {passive: true})
+})
 
 /**
  * Fills flexsearch document with data
