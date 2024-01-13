@@ -18,7 +18,7 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#DFE3EA", // Backg
+          light: "#EEEFFF", // Backg
           lightgray: "#bcc0cc", // Code Backg
           gray: "#8c8fa1", // Unread nodes and subtitles
           darkgray: "#45485f", // Text
