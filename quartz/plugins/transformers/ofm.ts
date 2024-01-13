@@ -150,7 +150,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           src = src.toString()
         }
 
-        src = src.replaceAll(calloutLineRegex, (value) => {
+        src = src.replace(calloutLineRegex, (value) => {
           // force newline after title of callout
           return value + "\n> "
         })
@@ -162,7 +162,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           src = src.toString()
         }
 
-        src = src.replaceAll(wikilinkRegex, (value, ...capture) => {
+        src = src.replace(wikilinkRegex, (value, ...capture) => {
           const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
 
           const fp = rawFp ?? ""
@@ -236,7 +236,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                       type: "html",
                       value: `<iframe src="${url}"></iframe>`,
                     }
-                  } else if (ext === "") {
+                  } else {
                     const block = anchor
                     return {
                       type: "html",
@@ -330,7 +330,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 if (typeof replace === "string") {
                   node.value = node.value.replace(regex, replace)
                 } else {
-                  node.value = node.value.replaceAll(regex, (substring: string, ...args) => {
+                  node.value = node.value.replace(regex, (substring: string, ...args) => {
                     const replaceValue = replace(substring, ...args)
                     if (typeof replaceValue === "string") {
                       return replaceValue
