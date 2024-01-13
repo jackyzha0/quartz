@@ -104,7 +104,7 @@ async function navigate(url: URL, isBack: boolean = false) {
     if (newTaskList) taskList.replaceChildren(...newTaskList.children)
   })
 
-  // delay setting the url until nowin
+  // delay setting the url until now
   // at this point everything is loaded so changing the url should resolve to the correct addresses
   if (!isBack) {
     history.pushState({}, "", url)
