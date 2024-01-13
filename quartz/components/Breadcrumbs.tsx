@@ -18,15 +18,15 @@ interface BreadcrumbOptions {
    */
   rootName: string
   /**
-   * wether to look up frontmatter title for folders (could cause performance problems with big vaults)
+   * Whether to look up frontmatter title for folders (could cause performance problems with big vaults)
    */
   resolveFrontmatterTitle: boolean
   /**
-   * Wether to display breadcrumbs on root `index.md`
+   * Whether to display breadcrumbs on root `index.md`
    */
   hideOnRoot: boolean
   /**
-   * Wether to display the current page in the breadcrumbs.
+   * Whether to display the current page in the breadcrumbs.
    */
   showCurrentPage: boolean
 }

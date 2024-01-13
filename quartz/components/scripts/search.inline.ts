@@ -35,12 +35,12 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
   if (trim) {
     const includesCheck = (tok: string) =>
       tokenizedTerms.some((term) => tok.toLowerCase().startsWith(term.toLowerCase()))
-    const occurencesIndices = tokenizedText.map(includesCheck)
+    const occurrencesIndices = tokenizedText.map(includesCheck)
 
     let bestSum = 0
     let bestIndex = 0
     for (let i = 0; i < Math.max(tokenizedText.length - contextWindowWords, 0); i++) {
-      const window = occurencesIndices.slice(i, i + contextWindowWords)
+      const window = occurrencesIndices.slice(i, i + contextWindowWords)
       const windowSum = window.reduce((total, cur) => total + (cur ? 1 : 0), 0)
       if (windowSum >= bestSum) {
         bestSum = windowSum
@@ -196,7 +196,7 @@ document.addEventListener("nav", async (e: unknown) => {
       const termLower = term.toLowerCase()
       let matching = tags.filter((str) => str.includes(termLower))
 
-      // Substract matching from original tags, then push difference
+      // Subtract matching from original tags, then push difference
       if (matching.length > 0) {
         let difference = tags.filter((x) => !matching.includes(x))
 
