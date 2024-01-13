@@ -68,8 +68,9 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
       // construct the index for the first time
       for (const file of allFiles) {
         if (file.slug?.endsWith("index")) {
-          const folderParts = file.filePath?.split("/")
+          const folderParts = file.slug?.split("/")
           if (folderParts) {
+            // 2nd last to exclude the /index
             const folderName = folderParts[folderParts?.length - 2]
             folderIndex.set(folderName, file)
           }
@@ -88,7 +89,10 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
         // Try to resolve frontmatter folder title
         const currentFile = folderIndex?.get(curPathSegment)
         if (currentFile) {
-          curPathSegment = currentFile.frontmatter!.title
+          const title = currentFile.frontmatter!.title
+          if (title !== "index") {
+            curPathSegment = title
+          }
         }
 
         // Add current slug to full path
@@ -100,7 +104,7 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
       }
 
       // Add current file to crumb (can directly use frontmatter title)
-      if (options.showCurrentPage) {
+      if (options.showCurrentPage && slugParts.at(-1) === "") {
         crumbs.push({
           displayName: fileData.frontmatter!.title,
           path: "",

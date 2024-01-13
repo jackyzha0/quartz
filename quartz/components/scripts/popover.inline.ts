@@ -7,6 +7,10 @@ async function mouseEnterHandler(
   { clientX, clientY }: { clientX: number; clientY: number },
 ) {
   const link = this
+  if (link.dataset.noPopover === "true") {
+    return
+  }
+
   async function setPosition(popoverElement: HTMLElement) {
     const { x, y } = await computePosition(link, popoverElement, {
       middleware: [inline({ x: clientX, y: clientY }), shift(), flip()],
@@ -32,8 +36,6 @@ async function mouseEnterHandler(
   const hash = targetUrl.hash
   targetUrl.hash = ""
   targetUrl.search = ""
-  // prevent hover of the same page
-  if (thisUrl.toString() === targetUrl.toString()) return
 
   const contents = await fetch(`${targetUrl}`)
     .then((res) => res.text())
