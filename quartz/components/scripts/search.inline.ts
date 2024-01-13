@@ -110,7 +110,6 @@ document.addEventListener("nav", async (e: unknown) => {
   }
 
   function shortcutHandler(e: HTMLElementEventMap["keydown"]) {
-    if (!container?.classList.contains("active")) return
     if (e.key === "k" && (e.ctrlKey || e.metaKey) && !e.shiftKey) {
       e.preventDefault()
       const searchBarOpen = container?.classList.contains("active")
@@ -123,7 +122,10 @@ document.addEventListener("nav", async (e: unknown) => {
 
       // add "#" prefix for tag search
       if (searchBar) searchBar.value = "#"
-    } else if (e.key === "Enter") {
+    }
+
+    if (!container?.classList.contains("active")) return
+    else if (e.key === "Enter") {
       // If result has focus, navigate to that one, otherwise pick first result
       if (results?.contains(document.activeElement)) {
         const active = document.activeElement as HTMLInputElement
