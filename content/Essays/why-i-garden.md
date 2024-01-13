@@ -4,7 +4,7 @@ tags:
   - cloud
   - essay
   - seedling
-date: 9-08-23
+date: 2023-08-23
 ---
 ## Short answer: fun.
 
@@ -21,7 +21,6 @@ The kind of experience I want to be a part of has some basis in the early intern
 ## References
 ##### 1. 
 [Maggie Appleton - A Brief History and Ethos of the Digital Garden](https://maggieappleton.com/garden-history)
-##### 2.
 
 ---
 ## Further Reading
