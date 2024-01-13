@@ -48,12 +48,11 @@ function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndex): string {
 
 function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex, limit?: number): string {
   const base = cfg.baseUrl ?? ""
-  const root = `https://${base}`
 
   const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => `<item>
     <title>${escapeHTML(content.title)}</title>
-    <link>${joinSegments(root, encodeURI(slug))}</link>
-    <guid>${joinSegments(root, encodeURI(slug))}</guid>
+    <link>https://${joinSegments(base, encodeURI(slug))}</link>
+    <guid>https://${joinSegments(base, encodeURI(slug))}</guid>
     <description>${content.richContent ?? content.description}</description>
     <pubDate>${content.date?.toUTCString()}</pubDate>
   </item>`
@@ -78,7 +77,7 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex, limit?: nu
 <rss version="2.0">
     <channel>
       <title>${escapeHTML(cfg.pageTitle)}</title>
-      <link>${root}</link>
+      <link>https://${base}</link>
       <description>${!!limit ? `Last ${limit} notes` : "Recent notes"} on ${escapeHTML(
         cfg.pageTitle,
       )}</description>
