@@ -110,6 +110,7 @@ document.addEventListener("nav", async (e: unknown) => {
   }
 
   function shortcutHandler(e: HTMLElementEventMap["keydown"]) {
+    if (!container?.classList.contains("active")) return
     if (e.key === "k" && (e.ctrlKey || e.metaKey) && !e.shiftKey) {
       e.preventDefault()
       const searchBarOpen = container?.classList.contains("active")
