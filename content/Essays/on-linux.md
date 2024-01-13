@@ -1,12 +1,12 @@
 ---
-title: On Linux
+title: The Linux Experience
 tags:
   - linux
   - cloud
   - advanced
   - seedling
   - essay
-date: 9-08-23
+date: 2023-08-23
 ---
 > [!hint]  This page documents my many adventures with Linux and why I enjoy it.
 > If you're looking to get involved with Linux, feel free to browse the [[Resources/learning-linux|resources for that purpose]] that I've compiled.

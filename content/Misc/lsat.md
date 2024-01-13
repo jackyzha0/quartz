@@ -3,6 +3,7 @@ title: LSAT
 tags:
   - misc
   - glossary
+  - legal
 date: 2023-09-21
 ---
 The Law School Admissions Test ("LSAT") is a timed multiple-choice and written test administered by the Law School Admissions Counsel ("LSAC"). It's designed to provide some indicator of performance in law school, and it's bad at its job. An applicant's score on the LSAT (between 120 and 180) is the primary metric that law schools examine when determining whether to extend them an offer of admissions.
@@ -30,3 +31,5 @@ The number of each of these sections has fluctuated somewhat.
 - LSAC then moved to a fully remote four-section system, tacking on an experimental section to the LSAT Flex with the same ordering and disclosure notes. LSAC has since begun administering this four-section test in person as well.
 
 There's also a required Writing section which law schools don't look at as closely. It's just an essay, and many schools will require separate essays which they'll actually examine rather than the Writing section. It's also only required once, and if you have a valid LSAT Writing score but retake the main exam, you won't be required to write another essay.
+
+More information on the LSAT can be found on the [Law School Admission Council website](https://lsac.org).
