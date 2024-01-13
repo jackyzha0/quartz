@@ -105,6 +105,8 @@ describe("transforms", () => {
         ["index.md", "index"],
         ["test.mp4", "test.mp4"],
         ["note with spaces.md", "note-with-spaces"],
+        ["test/special chars?.md", "test/special-chars-q"],
+        ["test/special chars #3.md", "test/special-chars-3"],
       ],
       path.slugifyFilePath,
       path.isFilePath,
