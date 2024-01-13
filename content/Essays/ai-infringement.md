@@ -4,6 +4,8 @@ tags:
   - essay
   - seedling
   - ai
+  - legal
+  - copyright
 date: 2023-11-04
 draft: true
 ---
@@ -38,5 +40,12 @@ This section invalidates a lot of different arguments, but some have other nuanc
 WIP
 ## Putting your work "out there" on the internet
 WIP
+### Detour: plagiarism
+There's also the problem of correctly sourcing information used in forming an opinion.
+
+One proposed "solution" to AI use of copyrighted works is interestingly to attribute that those works were used in the first place.
 ## The enforcement problem
 WIP
+
+## Mini-arguments
+A list of little statements that would cast doubt on the 
