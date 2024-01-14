@@ -1,6 +1,6 @@
 ---
 title: 01/24 - Summary of Changes
-draft: false
+draft: true
 tags:
   - "#update"
 date: 2024-01-03
