@@ -24,12 +24,13 @@ body::before {
 }
 body[data-slug="index"] img {
   float: left;
-  margin-left: initial;
-  width: 30%;
+  margin: 1.5em 2em -4em 2em;
+  height: 15em;
   filter: invert(0%);
 }
 
 body[data-slug="index"] blockquote[class="callout"][data-callout="tip"] {
-  margin: 5em 3em;
+  margin: 5em 2em;
   display: inline-block;
+  width: 50%;
 }
