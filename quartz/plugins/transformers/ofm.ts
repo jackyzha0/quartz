@@ -156,7 +156,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           src = src.toString()
         }
 
-        src = src.replace(calloutLineRegex, (value) => {
+        src = src.replaceAll(calloutLineRegex, (value) => {
           // force newline after title of callout
           return value + "\n> "
         })
@@ -168,7 +168,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           src = src.toString()
         }
 
-        src = src.replace(wikilinkRegex, (value, ...capture) => {
+        src = src.replaceAll(wikilinkRegex, (value, ...capture) => {
           const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
 
           const fp = rawFp ?? ""
