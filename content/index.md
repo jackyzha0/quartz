@@ -2,12 +2,17 @@
 title: be-far's Digital Garden
 tags:
   - toc
-date: 9-08-23
+date: 2023-08-23
 ---
+![](moon-light.png)
+
 > [!tip] 
 > You will own **nothing**, and you will be **happy**.
 
-On my little corner of the internet, I document my adventures in tech and complain about the internet of shit. This is Projects & Privacy. 
+
+
+On my little corner of the internet, I document my adventures in tech and complain about the internet of shit. This is **Projects & Privacy**.
+
 # Welcome!
 You're on a site called a [[Misc/what-is-a-garden|Digital Garden]]. Here's some info on [[Essays/why-i-garden|Why I Garden]].
 
