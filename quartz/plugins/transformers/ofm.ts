@@ -16,6 +16,7 @@ import { PhrasingContent } from "mdast-util-find-and-replace/lib"
 import { capitalize } from "../../util/lang"
 import { PluggableList } from "unified"
 
+
 export interface Options {
   comments: boolean
   highlight: boolean
@@ -26,6 +27,7 @@ export interface Options {
   parseBlockReferences: boolean
   enableInHtmlEmbed: boolean
   enableYouTubeEmbed: boolean
+  enableVideoEmbed: boolean
 }
 
 const defaultOptions: Options = {
@@ -37,7 +39,8 @@ const defaultOptions: Options = {
   parseTags: true,
   parseBlockReferences: true,
   enableInHtmlEmbed: false,
-  enableYouTubeEmbed: false,
+  enableYouTubeEmbed: true,
+  enableVideoEmbed: false,
 }
 
 const icons = {
@@ -130,6 +133,8 @@ const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
 const tagRegex = new RegExp(/(?:^| )#((?:[-_\p{L}\p{Emoji}\d])+(?:\/[-_\p{L}\p{Emoji}\d]+)*)/, "gu")
 const blockReferenceRegex = new RegExp(/\^([A-Za-z0-9]+)$/, "g")
 const ytLinkRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+const videoExtensionRegex = new RegExp(/\.(mp4|webm|ogg|avi|mov|flv|wmv|mkv|mpg|mpeg|3gp|m4v)\b/, "g")
+
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
@@ -149,19 +154,17 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         if (src instanceof Buffer) {
           src = src.toString()
         }
-
         src = src.replaceAll(calloutLineRegex, (value) => {
           // force newline after title of callout
           return value + "\n> "
         })
       }
 
-      // pre-transform wikilinks (fix anchors to things that may contain illegal syntax e.g. codeblocks, latex)
-      if (opts.wikilinks) {
+        // pre-transform wikilinks (fix anchors to things that may contain illegal syntax e.g. codeblocks, latex)
+        if (opts.wikilinks) {
         if (src instanceof Buffer) {
           src = src.toString()
         }
-
         src = src.replaceAll(wikilinkRegex, (value, ...capture) => {
           const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
 
@@ -265,6 +268,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               },
             ])
           }
+          
+          
 
           if (opts.highlight) {
             replacements.push([
@@ -346,10 +351,32 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               }
             })
           }
-
           mdastFindReplace(tree, replacements)
         }
       })
+
+      //go through mdast, find img nodes with video extension, convert them to html nodes
+      if (opts.enableVideoEmbed) {
+        plugins.push(() => {
+          return (tree: Root, _file) => {
+            visit(tree, "image", (node, index, parent) => {
+              const match = node.url.match(videoExtensionRegex)
+              if (match && parent) {
+                const htmlNode: PhrasingContent = {
+                  type: "html",
+                  value: `<video controls autoplay src="${node.url}" controls></video>`
+                }
+                if (typeof index === 'number') {
+                  parent.children.splice(index, 1, htmlNode);
+                } else {
+                  console.log("Error: index is not a number")
+                }
+              }
+            })
+          }
+        })
+      }
+      
 
       if (opts.callouts) {
         plugins.push(() => {
@@ -507,7 +534,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           }
         })
       }
-
+      
       if (opts.enableYouTubeEmbed) {
         plugins.push(() => {
           return (tree: HtmlRoot) => {
@@ -578,3 +605,4 @@ declare module "vfile" {
     htmlAst: HtmlRoot
   }
 }
+
