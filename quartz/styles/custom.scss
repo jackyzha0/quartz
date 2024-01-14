@@ -5,19 +5,14 @@ $backg: "/static/moon-light.png";
 
 [saved-theme="dark"] body::before {
   filter: invert(100%);
-  opacity: 0.05;
 }
 
 body::before {
   filter: invert(0%);
-  content: "";
+  content: url("/static/moon-light.png");
   position: absolute;
   top: 0px;
-  right: 0px;
-  bottom: 0px;
   left: 0px;
-  background-image: url("/static/moon-light.png");
-  background-size: 125%;
-  opacity: 0.1;
-  background-repeat: no-repeat;
+  opacity: 0.03;
+  overflow: auto;
 }
