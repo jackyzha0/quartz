@@ -16,7 +16,6 @@ import { PhrasingContent } from "mdast-util-find-and-replace/lib"
 import { capitalize } from "../../util/lang"
 import { PluggableList } from "unified"
 
-
 export interface Options {
   comments: boolean
   highlight: boolean
@@ -133,8 +132,10 @@ const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
 const tagRegex = new RegExp(/(?:^| )#((?:[-_\p{L}\p{Emoji}\d])+(?:\/[-_\p{L}\p{Emoji}\d]+)*)/, "gu")
 const blockReferenceRegex = new RegExp(/\^([A-Za-z0-9]+)$/, "g")
 const ytLinkRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
-const videoExtensionRegex = new RegExp(/\.(mp4|webm|ogg|avi|mov|flv|wmv|mkv|mpg|mpeg|3gp|m4v)\b/, "g")
-
+const videoExtensionRegex = new RegExp(
+  /\.(mp4|webm|ogg|avi|mov|flv|wmv|mkv|mpg|mpeg|3gp|m4v)\b/,
+  "g",
+)
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
@@ -161,12 +162,12 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         })
       }
 
-        // pre-transform wikilinks (fix anchors to things that may contain illegal syntax e.g. codeblocks, latex)
-        if (opts.wikilinks) {
+      // pre-transform wikilinks (fix anchors to things that may contain illegal syntax e.g. codeblocks, latex)
+      if (opts.wikilinks) {
         if (src instanceof Buffer) {
           src = src.toString()
         }
-        
+
         src = src.replace(wikilinkRegex, (value, ...capture) => {
           const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
 
@@ -270,8 +271,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               },
             ])
           }
-          
-          
 
           if (opts.highlight) {
             replacements.push([
@@ -366,10 +365,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               if (match && parent) {
                 const htmlNode: PhrasingContent = {
                   type: "html",
-                  value: `<video controls autoplay src="${node.url}" controls></video>`
+                  value: `<video controls autoplay src="${node.url}" controls></video>`,
                 }
-                if (typeof index === 'number') {
-                  parent.children.splice(index, 1, htmlNode);
+                if (typeof index === "number") {
+                  parent.children.splice(index, 1, htmlNode)
                 } else {
                   console.log("Error: index is not a number")
                 }
@@ -378,7 +377,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           }
         })
       }
-      
 
       if (opts.callouts) {
         plugins.push(() => {
@@ -536,7 +534,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           }
         })
       }
-      
+
       if (opts.enableYouTubeEmbed) {
         plugins.push(() => {
           return (tree: HtmlRoot) => {
@@ -607,4 +605,3 @@ declare module "vfile" {
     htmlAst: HtmlRoot
   }
 }
-
