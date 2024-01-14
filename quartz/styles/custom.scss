@@ -1,18 +1,35 @@
 @use "./base.scss";
 
-// put your custom CSS here!
-$backg: "/static/moon-light.png";
-
+// Pseudo-element for the transparent background cover moon
 [saved-theme="dark"] body::before {
   filter: invert(100%);
+  opacity: 0.03;
+}
+body::before {
+  pointer-events: none;
+  filter: invert(0%);
+  content: url("/moon-light.png");
+  position: fixed;
+  top: -400px;
+  left: -300px;
+  transform: scale(0.67);
+  // content: "";
+  // background-image: url("/static/moon-light.png");
+  opacity: 0.04;
 }
 
-body::before {
+// Specifically the first part of the index page with the moon
+[saved-theme="dark"] body[data-slug="index"] img[src="./moon-light.png"] {
+  filter: invert(100%);
+}
+body[data-slug="index"] img {
+  float: left;
+  margin-left: initial;
+  width: 30%;
   filter: invert(0%);
-  content: url("/static/moon-light.png");
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  opacity: 0.03;
-  overflow: auto;
+}
+
+body[data-slug="index"] blockquote[class="callout"][data-callout="tip"] {
+  margin: 5em 3em;
+  display: inline-block;
 }

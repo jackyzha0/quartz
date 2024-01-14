@@ -3,7 +3,8 @@ title: 01/24 - Summary of Changes
 draft: false
 tags:
   - "#update"
-date: 2024-01-01
+date: 2024-01-03
+lastmod: 2024-01-31
 ---
 ## Housekeeping
 I feel like I finally have a handle on the feel of this site. Front page looks very polished now, and I got around to drawing a great-looking and really symbolic logo:
