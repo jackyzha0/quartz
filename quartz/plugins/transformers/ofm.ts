@@ -366,7 +366,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               }
 
               const text = firstChild.children[0].value
-              const restChildren = firstChild.children.slice(1)
+              const restOfTitle = firstChild.children.slice(1)
               const [firstLine, ...remainingLines] = text.split("\n")
               const remainingText = remainingLines.join("\n")
 
@@ -382,7 +382,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   match.input.slice(calloutDirective.length).trim() || capitalize(calloutType)
                 const titleNode: Paragraph = {
                   type: "paragraph",
-                  children: [{ type: "text", value: titleContent + " " }, ...restChildren],
+                  children:
+                    restOfTitle.length === 0
+                      ? [{ type: "text", value: titleContent + " " }]
+                      : restOfTitle,
                 }
                 const title = mdastToHtml(titleNode)
 
