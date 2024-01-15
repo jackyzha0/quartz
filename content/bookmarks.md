@@ -5,6 +5,7 @@ tags:
   - misc
   - seedling
 date: 2024-01-13
+lastmod: 2024-01-14
 ---
 One of the core philosophies of digital gardening is that one should document their learning process when trying new things. As such, here's my very disorganized to-dos and to-reads in the form of a public bookmark list. This page will change very often.
 
@@ -15,3 +16,4 @@ One of the core philosophies of digital gardening is that one should document th
 - [Shantea Controls' Ceylon Custom DJ Turntable](https://shanteacontrols.com/2015/02/24/building-ceylon/)
 - [A Simple Frequency-To-Voltage Converter](https://www.mathscinotes.com/2014/03/a-simple-frequency-to-voltage-converter/)
 - [Bakugan for Adults (yes, really)](https://d-shoot.net/bakugan/01_intro.html)
+- [The Palm phone](https://palm.com/pages/product)
