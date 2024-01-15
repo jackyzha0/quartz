@@ -380,9 +380,13 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 const defaultState = collapseChar === "-" ? "collapsed" : "expanded"
                 const titleContent =
                   match.input.slice(calloutDirective.length).trim() || capitalize(calloutType)
+                const hasTitle =
+                  restChildren.length > 0 ? restChildren[0].children[0]?.type === "text" : false
                 const titleNode: Paragraph = {
                   type: "paragraph",
-                  children: [{ type: "text", value: titleContent + " " }, ...restChildren],
+                  children: hasTitle
+                    ? [...restChildren]
+                    : [{ type: "text", value: titleContent + " " }, ...restChildren],
                 }
                 const title = mdastToHtml(titleNode)
 
