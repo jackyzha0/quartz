@@ -2,6 +2,7 @@ import sourceMapSupport from "source-map-support"
 sourceMapSupport.install(options)
 import path from "path"
 import { PerfTimer } from "./util/perf"
+import { rimraf } from "rimraf"
 import { isGitIgnored } from "globby"
 import chalk from "chalk"
 import { parseMarkdown } from "./processors/parse"
@@ -12,7 +13,6 @@ import { FilePath, joinSegments, slugifyFilePath } from "./util/path"
 import chokidar from "chokidar"
 import { ProcessedContent } from "./plugins/vfile"
 import { Argv, BuildCtx } from "./util/ctx"
-import { rmrf } from "./util/fs"
 import { glob, toPosixPath } from "./util/glob"
 import { trace } from "./util/trace"
 import { options } from "./util/sourcemap"
@@ -40,7 +40,7 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
 
   const release = await mut.acquire()
   perf.addEvent("clean")
-  await rmrf(output)
+  await rimraf(output)
   console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince("clean")}`)
 
   perf.addEvent("glob")
@@ -145,7 +145,7 @@ async function startServing(
 
       // TODO: we can probably traverse the link graph to figure out what's safe to delete here
       // instead of just deleting everything
-      await rmrf(argv.output)
+      await rimraf(argv.output)
       await emitContent(ctx, filteredContent)
       console.log(chalk.green(`Done rebuilding in ${perf.timeSince()}`))
     } catch (err) {
