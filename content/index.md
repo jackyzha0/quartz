@@ -29,7 +29,7 @@ This site changes often. Feel free to subscribe to [the RSS feed](/index.xml) fo
 > That's the [Graph View](https://help.obsidian.md/Plugins/Graph+view). It's an [[Programs I Like/obsidian|Obsidian]] feature which acts as a map of what pages link to each other. Click on it for a map of the entire site and how it interconnects. It doesn't use Obsidian's implementation directly, but since [[Projects/Obsidian/digital-garden|the site generator I use]] is heavily inspired by Obsidian and [Obsidian Publish]( https://obsidian.md/publish ), it remains.
 
 > [!question] -> What’s a Backlink?
-> The Backlinks pane is a list of all pages that link to this site in content. Because you’re on the homepage, it’s empty. On content pages, it’ll be more substantial and serve as a convenient navigation tool. 
+> The Backlinks pane is a list of all pages on the site that link to the current one. Because you’re on the homepage, it’s empty. On content pages, it’ll be more substantial and serve as a convenient navigation tool. 
 ## Epistemological disclosure
 Please accept that I reserve the right to be wrong on this website. I don’t claim to be an expert on any of the subject matter within. As this site reflects a learning process, I’m also liable to change my mind if I research an issue further. I’ll document if this happens. 
 
