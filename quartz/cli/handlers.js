@@ -5,7 +5,6 @@ import chalk from "chalk"
 import { sassPlugin } from "esbuild-sass-plugin"
 import fs from "fs"
 import { intro, outro, select, text } from "@clack/prompts"
-import { rimraf } from "rimraf"
 import chokidar from "chokidar"
 import prettyBytes from "pretty-bytes"
 import { execSync, spawnSync } from "child_process"
@@ -21,6 +20,7 @@ import {
   gitPull,
   popContentFolder,
   stashContentFolder,
+  rmrf,
 } from "./helpers.js"
 import {
   UPSTREAM_NAME,
@@ -109,7 +109,7 @@ export async function handleCreate(argv) {
     if (contentStat.isSymbolicLink()) {
       await fs.promises.unlink(contentFolder)
     } else {
-      await rimraf(contentFolder)
+      await rmrf(contentFolder)
     }
   }
 
