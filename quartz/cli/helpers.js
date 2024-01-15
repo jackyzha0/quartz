@@ -3,7 +3,6 @@ import chalk from "chalk"
 import { contentCacheFolder } from "./constants.js"
 import { spawnSync } from "child_process"
 import fs from "fs"
-import { rimraf } from "rimraf"
 
 export function escapePath(fp) {
   return fp
@@ -52,12 +51,4 @@ export async function popContentFolder(contentFolder) {
     preserveTimestamps: true,
   })
   await fs.promises.rm(contentCacheFolder, { force: true, recursive: true })
-}
-
-export async function rmrf(path) {
-  if (os.platform() == "win32") {
-    return rimraf.windows(path)
-  } else {
-    return rimraf(path)
-  }
 }
