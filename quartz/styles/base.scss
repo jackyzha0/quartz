@@ -79,9 +79,9 @@ a {
   }
 
   &.external .external-icon {
-    text-align: bottom;
+    vertical-align: bottom;
     height: 1ex;
-    margin-left: 0.15em;
+    margin: 0 0.15em;
 
     > path {
       fill: var(--dark);
