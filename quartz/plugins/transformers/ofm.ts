@@ -365,7 +365,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               if (match && parent) {
                 const htmlNode: PhrasingContent = {
                   type: "html",
-                  value: `<video controls autoplay src="${node.url}" controls></video>`,
+                  value: `<video controls src="${node.url}" controls></video>`,
                 }
                 if (typeof index === "number") {
                   parent.children.splice(index, 1, htmlNode)
