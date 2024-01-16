@@ -361,7 +361,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           return (tree: Root, _file) => {
             visit(tree, "image", (node, index, parent) => {
               const match = node.url.match(videoExtensionRegex)
-              if (match && parent) {
+              if (parent && match) {
                 const htmlNode: PhrasingContent = {
                   type: "html",
                   value: `<video controls src="${node.url}" controls></video>`,
