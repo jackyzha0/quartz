@@ -356,7 +356,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         }
       })
 
-      //go through mdast, find img nodes with video extension, convert them to html nodes
       if (opts.enableVideoEmbed) {
         plugins.push(() => {
           return (tree: Root, _file) => {
