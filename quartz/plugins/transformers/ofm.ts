@@ -366,10 +366,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   type: "html",
                   value: `<video controls src="${node.url}" controls></video>`,
                 }
-                if (typeof index === "number") {
+                if (index && (index >= 0 && index < parent.children.length)) {
                   parent.children.splice(index, 1, htmlNode)
                 } else {
-                  console.log("Error: index is not a number")
+                  console.warn("Warning: Invalid index, htmlNode not added");
                 }
               }
             })
