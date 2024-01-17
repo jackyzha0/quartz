@@ -358,7 +358,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           return (tree: Root, _file) => {
             visit(tree, "image", (node, index, parent) => {
               if (parent && index != undefined && videoExtensionRegex.test(node.url)) {
-                console.log("replacin")
                 const newNode: Html = {
                   type: "html",
                   value: `<video controls src="${node.url}"></video>`,
