@@ -26,6 +26,7 @@ export interface Options {
   parseBlockReferences: boolean
   enableInHtmlEmbed: boolean
   enableYouTubeEmbed: boolean
+  enableVideoEmbed: boolean
 }
 
 const defaultOptions: Options = {
@@ -37,7 +38,8 @@ const defaultOptions: Options = {
   parseTags: true,
   parseBlockReferences: true,
   enableInHtmlEmbed: false,
-  enableYouTubeEmbed: false,
+  enableYouTubeEmbed: true,
+  enableVideoEmbed: false,
 }
 
 const icons = {
@@ -130,6 +132,7 @@ const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
 const tagRegex = new RegExp(/(?:^| )#((?:[-_\p{L}\p{Emoji}\d])+(?:\/[-_\p{L}\p{Emoji}\d]+)*)/, "gu")
 const blockReferenceRegex = new RegExp(/\^([A-Za-z0-9]+)$/, "g")
 const ytLinkRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+const videoExtensionRegex = new RegExp(/\.(mp4|webm|ogg|avi|mov|flv|wmv|mkv|mpg|mpeg|3gp|m4v)$/)
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
@@ -346,10 +349,30 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               }
             })
           }
-
           mdastFindReplace(tree, replacements)
         }
       })
+
+      if (opts.enableVideoEmbed) {
+        plugins.push(() => {
+          return (tree: Root, _file) => {
+            visit(tree, "image", (node, index, parent) => {
+              const match = node.url.match(videoExtensionRegex)
+              if (parent && match) {
+                const htmlNode: PhrasingContent = {
+                  type: "html",
+                  value: `<video controls src="${node.url}" controls></video>`,
+                }
+                if (index && index >= 0 && index < parent.children.length) {
+                  parent.children.splice(index, 1, htmlNode)
+                } else {
+                  console.warn("Warning: Invalid index, htmlNode not added")
+                }
+              }
+            })
+          }
+        })
+      }
 
       if (opts.callouts) {
         plugins.push(() => {
