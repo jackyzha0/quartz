@@ -1,10 +1,10 @@
 import { QuartzTransformerPlugin } from "../types"
-import { Root, Html, BlockContent, DefinitionContent, Paragraph, Code } from "mdast"
+import { Root, Html, Image, BlockContent, DefinitionContent, Paragraph, Code } from "mdast"
 import { Element, Literal, Root as HtmlRoot } from "hast"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { slug as slugAnchor } from "github-slugger"
 import rehypeRaw from "rehype-raw"
-import { visit } from "unist-util-visit"
+import { SKIP, visit } from "unist-util-visit"
 import path from "path"
 import { JSResource } from "../../util/resources"
 // @ts-ignore
@@ -39,7 +39,7 @@ const defaultOptions: Options = {
   parseBlockReferences: true,
   enableInHtmlEmbed: false,
   enableYouTubeEmbed: true,
-  enableVideoEmbed: false,
+  enableVideoEmbed: true,
 }
 
 const icons = {
@@ -357,17 +357,15 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         plugins.push(() => {
           return (tree: Root, _file) => {
             visit(tree, "image", (node, index, parent) => {
-              const match = node.url.match(videoExtensionRegex)
-              if (parent && match) {
-                const htmlNode: PhrasingContent = {
+              if (parent && index != undefined && videoExtensionRegex.test(node.url)) {
+                console.log("replacin")
+                const newNode: Html = {
                   type: "html",
-                  value: `<video controls src="${node.url}" controls></video>`,
+                  value: `<video controls src="${node.url}"></video>`,
                 }
-                if (index && index >= 0 && index < parent.children.length) {
-                  parent.children.splice(index, 1, htmlNode)
-                } else {
-                  console.warn("Warning: Invalid index, htmlNode not added")
-                }
+
+                parent.children.splice(index, 1, newNode)
+                return SKIP
               }
             })
           }
