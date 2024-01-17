@@ -39,9 +39,3 @@ export type QuartzEmitterPluginInstance = {
   emit(ctx: BuildCtx, content: ProcessedContent[], resources: StaticResources): Promise<FilePath[]>
   getQuartzComponents(ctx: BuildCtx): QuartzComponent[]
 }
-
-// export type EmitReturn = {
-//   destinationFps: Promise<FilePath[]>
-//   // source file -> emitted file(s)
-//   dependencyGraph: { [key: FilePath]: FilePath[] }
-// }
