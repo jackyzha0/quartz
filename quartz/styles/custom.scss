@@ -1,3 +1,22 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+
+// captions!
+img + em {
+  display: block;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+// center all images by default
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tweet-wrapper {
+  display: flex;
+  justify-content: center;
+}
