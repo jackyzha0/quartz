@@ -6,11 +6,11 @@ interface ContentMetaOptions {
   /**
    * Whether to display reading time
    */
-  hideReadingTime: boolean
+  showReadingTime: boolean
 }
 
 const defaultOptions: ContentMetaOptions = {
-  hideReadingTime: false,
+  showReadingTime: true,
 }
 
 export default ((opts?: Partial<ContentMetaOptions>) => {
@@ -27,8 +27,8 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
         segments.push(formatDate(getDate(cfg, fileData)!))
       }
 
-      // Hide reading time if enabled
-      if (options.hideReadingTime == false) {
+      // Display reading time if enabled
+      if (options.showReadingTime == true) {
         const { text: timeTaken, words: _words } = readingTime(text)
         segments.push(timeTaken)
       }
