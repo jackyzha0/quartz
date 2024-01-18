@@ -13,7 +13,7 @@ export const CNAME: QuartzEmitterPlugin = () => ({
   getQuartzComponents() {
     return []
   },
-  async emit({ argv, cfg }, _content, _resources, _emit): Promise<FilePath[]> {
+  async emit({ argv, cfg }, _content, _resources): Promise<FilePath[]> {
     if (!cfg.configuration.baseUrl) {
       console.warn(chalk.yellow("CNAME emitter requires `baseUrl` to be set in your configuration"))
       return []
