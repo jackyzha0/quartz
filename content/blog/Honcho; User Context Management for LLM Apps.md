@@ -59,7 +59,6 @@ Prediction algorithms have become phenomenal at hacking attention using tabular 
 Every day human brains do incredibly sophisticated things with sorta-pejoratively labelled 'soft' insights about others. But social cognition is part of the same evolutionarily optimized framework we use to model the rest of the world.
 
 We run continuous active inference on wetware to refine our internal world models. This helps us make better predictions about the world by minimizing the difference between our expectation and reality. That's more or less what learning is. And we use the same set of mechanisms to model other humans, i.e. get to know them.
-
 In LLMs we have remarkable predictive reasoning engines with which we can begin to build the foundations of social cognition and therefore model users with much more nuance and granularity. Not just their logged behavior, but reasoning between the lines about its motivation and grounding in the full account of their identity.
 
 Late last year we published a [pre-print of research on this topic](https://arxiv.org/abs/2310.06983), and we've shown that these kinds of biologically-inspired frameworks can construct models of users that improve an LLM's ability to reason and make predictions about that individual user:
@@ -83,7 +82,7 @@ This is the kind of future we can build when we put users at the center of our a
 
 So today we're releasing the first iteration of [[Honcho name lore|Honcho]], our project to re-define LLM application development through user context management. At this nascent stage, you can think of it as an open-source version of the OpenAI Assistants API.
 
-Honcho is a REST API that defines a storage schema to seamlessly manage your application's data on a per-user basis. It ships with a Python SDK which you can read more about how to use here.
+Honcho is a REST API that defines a storage schema to seamlessly manage your application's data on a per-user basis. It ships with a Python SDK which you can read more about how to use here (README LINK).
 
 ![[honcho basic user context management blog post diagram.png]]
 
