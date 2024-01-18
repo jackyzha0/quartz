@@ -4,9 +4,10 @@ enableToc: true
 date: Jan 18, 2024
 ---
 ![[missing_piece.png]]
+*The missing piece of the stack*
 ## TL;DR
 
-Today we drop the first release of a project called [*Honcho*](https://github.com/plastic-labs/honcho/tree/main), an open-source version of the OpenAI Assistants API. Honcho manages your AI app data on a per-user basis, allowing for multiple concurrent identities. Glaringly absent from the existing stack, Honcho will, at full maturity, usher the advent of atomic, disposable agents that are user-first by default.
+Today we drop the first release of a project called [*Honcho*](https://github.com/plastic-labs/honcho/tree/main), an open-source version of the OpenAI Assistants API. Honcho manages your AI app data on a per-user basis, allowing for multiple concurrent sessions. Glaringly absent from the existing stack, Honcho will, at full maturity, usher the advent of atomic, disposable agents that are user-first by default.
 
 ## Plastic Lore
 
@@ -41,7 +42,6 @@ To date, machine learning has been [[The machine learning industry is too focuse
 The real magic of 1:1 instruction isn't subject matter expertise. Bloom and the foundation models it leveraged had plenty of that (despite what clickbait media would have you believe about hallucination in LLMs). Instead, it's personal context. Good teachers and tutors get to know their charges--their history, beliefs, values, aesthetics, knowledge, preferences, hopes, fears, interests, etc. They compress all that and generate customized instruction, emergent effects of which are the relationships and culture necessary for positive feedback loops.
 
 <div class="tweet-wrapper"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Human intelligent agency depends more on the intricate sphere of ideas and the cultural intellect that we have grown over thousands of years than on the quirks of our biological brains. The minds of modern humans have more in common with chatGPT than with humans 10000 years ago.</p>&mdash; Joscha Bach (@Plinz) <a href="https://twitter.com/Plinz/status/1735427295937020177?ref_src=twsrc%5Etfw">December 14, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
-
 
 Large language models can be good at this too. With similar compression and generation abilities, they're uniquely suited (among existing technology) to get to know you. We really can have shared culture and relationships with LLMs, absent (if we like) any cringy anthropomorphism.
 
@@ -82,7 +82,7 @@ This is the kind of future we can build when we put users at the center of our a
 
 So today we're releasing the first iteration of [[Honcho name lore|Honcho]], our project to re-define LLM application development through user context management. At this nascent stage, you can think of it as an open-source version of the OpenAI Assistants API.
 
-Honcho is a REST API that defines a storage schema to seamlessly manage your application's data on a per-user basis. It ships with a Python SDK which you can read more about how to use here (README LINK).
+Honcho is a REST API that defines a storage schema to seamlessly manage your application's data on a per-user basis. It ships with a Python SDK which [you can read more about how to use here](https://github.com/plastic-labs/honcho/blob/main/README.md).
 
 ![[honcho basic user context management blog post diagram.png]]
 
