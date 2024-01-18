@@ -1,6 +1,12 @@
+---
+title: "Honcho: User Context Management for LLM Apps"
+enableToc: true
+date: Jan 18, 2024
+---
+![[missing_piece.png]]
 ## TL;DR
 
-Today we drop the first release of a project called *[Honcho](https://github.com/plastic-labs/honcho)*. An open-source version of the OpenAI Assistants API. Honcho manages your AI app data on a per-user basis, allowing for multiple concurrent sessions to speedrun prototype to production. Glaringly absent from the existing stack, Honcho will, at full maturity, usher the advent of atomic, disposable agents that are user-first by default.
+Today we drop the first release of a project called [*Honcho*](https://github.com/plastic-labs/honcho/tree/main), an open-source version of the OpenAI Assistants API. Honcho manages your AI app data on a per-user basis, allowing for multiple concurrent identities. Glaringly absent from the existing stack, Honcho will, at full maturity, usher the advent of atomic, disposable agents that are user-first by default.
 
 ## Plastic Lore
 
@@ -78,6 +84,8 @@ This is the kind of future we can build when we put users at the center of our a
 So today we're releasing the first iteration of [[Honcho name lore|Honcho]], our project to re-define LLM application development through user context management. At this nascent stage, you can think of it as an open-source version of the OpenAI Assistants API.
 
 Honcho is a REST API that defines a storage schema to seamlessly manage your application's data on a per-user basis. It ships with a Python SDK which you can read more about how to use here.
+
+![[honcho basic user context management blog post diagram.png]]
 
 We spent lots of time building the infrastructure to support multiple concurrent users with Bloom, and too often we see developers running into the same problem: building a fantastic demo, sharing it with the world, then inevitably having to take it down due to infrastructure/scaling issues.
 
