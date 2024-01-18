@@ -9,7 +9,7 @@ Today we drop the first release of a project called *Honcho* (LINK). An open-sou
 As a team with with backgrounds spanning machine learning and education, we found the prevailing narratives overestimating short-term capabilities and under-imagining longterm potential. Fundamentally, LLMs were and are still 1-to-many instructors. Yes, they herald the beginning of a revolution of personal access not to be discounted, but every student is still ultimately getting the same experience. And homogenized educational paradigms are by definition under-performant on an individual level. If we stop here, we're selling ourselves short.
 
 ![[zombie_tutor_prompt.jpg]]
-*A well intentioned but monstrously deterministic [tutor prompt](https://www.oneusefulthing.org/p/assigning-ai-seven-ways-of-using)*.
+*A well intentioned but monstrously deterministic [tutor prompt](https://www.oneusefulthing.org/p/assigning-ai-seven-ways-of-using).*
 
 Most edtech projects we saw emerging actually made foundation models worse by adding gratuitous lobotomization and coercing deterministic behavior. The former stemmed from the typical misalignments plaguing edtech, like the separation of user and payer. The latter seemed to originate with deep misunderstandings around what LLMs are and translates to a huge missed opportunity.
 
@@ -34,7 +34,8 @@ To date, machine learning has been [[The machine learning industry is too focuse
 
 The real magic of 1:1 instruction isn't subject matter expertise. Bloom and the foundation models it leveraged had plenty of that (despite what clickbait media would have you believe about hallucination in LLMs). Instead, it's personal context. Good teachers and tutors get to know their charges--their history, beliefs, values, aesthetics, knowledge, preferences, hopes, fears, interests, etc. They compress all that and generate customized instruction, emergent effects of which are the relationships and culture necessary for positive feedback loops.
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Human intelligent agency depends more on the intricate sphere of ideas and the cultural intellect that we have grown over thousands of years than on the quirks of our biological brains. The minds of modern humans have more in common with chatGPT than with humans 10000 years ago.</p>&mdash; Joscha Bach (@Plinz) <a href="https://twitter.com/Plinz/status/1735427295937020177?ref_src=twsrc%5Etfw">December 14, 2023</a></blockquote> 
+<div class="tweet-wrapper"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Human intelligent agency depends more on the intricate sphere of ideas and the cultural intellect that we have grown over thousands of years than on the quirks of our biological brains. The minds of modern humans have more in common with chatGPT than with humans 10000 years ago.</p>&mdash; Joscha Bach (@Plinz) <a href="https://twitter.com/Plinz/status/1735427295937020177?ref_src=twsrc%5Etfw">December 14, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+
 
 Large language models can be good at this too. With similar compression and generation abilities, they're uniquely suited (among existing technology) to get to know you. We really can have shared culture and relationships with LLMs, absent (if we like) any cringy anthropomorphism.
 
