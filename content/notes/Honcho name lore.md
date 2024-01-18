@@ -1,4 +1,4 @@
-Earlier this year I was reading *Rainbows End*, [Vernor Vinge's](https://en.wikipedia.org/wiki/Vernor_Vinge) [seminal augmented reality novel](https://en.wikipedia.org/wiki/Rainbows_End_(novel)), when I came across the term "Local Honcho[^1]":
+Earlier this year [Courtland](https://x.com/courtlandleer) was reading *Rainbows End*, [Vernor Vinge's](https://en.wikipedia.org/wiki/Vernor_Vinge) [seminal augmented reality novel](https://en.wikipedia.org/wiki/Rainbows_End_(novel)), when he came across the term "Local Honcho[^1]":
 
 >We simply put our own agent nearby, in a well-planned position with essentially zero latencies. What the Americans call a Local Honcho.
 
@@ -10,10 +10,10 @@ Highlighting this, a major narrative arc in the novel involves intelligence agen
 
 >Altogether it was not as secure as Vaz’s milnet, but it would suffice for most regions of the contingency tree. Alfred tweaked the box, and now he was getting Parker’s video direct. At last, he was truly a Local Honcho.
 
-Plastic had been deep into the weeds on how to harvest, retrieve, and leverage user context with large language models for months. First to enhance the UX of our AI tutor (Bloom), then in thinking about how to solve this horizontally for all vertical-specific AI applications. It struck me that we faced similar challenges to the characters in _Rainbows End_ and were converging on a similar solution.
+For months, Plastic had been deep into the weeds around harvesting, retrieving, & leveraging user context with LLMs. First to enhance the UX of our AI tutor (Bloom), then in thinking about how to solve this horizontally for all vertical-specific AI applications. It struck us that we faced similar challenges to the characters in _Rainbows End_ and were converging on a similar solution.
 
 As you interface with the entire constellation of AI applications, you shouldn't have to redundantly provide context and oversight for every interaction. You need a single source of truth that can do this for you. You need a Local Honcho.
 
 But as we've discovered, LLMs are remarkable at theory of mind tasks, and thus at reasoning about user need. So unlike in the book, this administration can be offloaded to an AI. And your Honcho can orchestrate the relevant context and identities on your behalf, whatever the operation.
 
-[^1]: American English, from [Japanese](https://en.wikipedia.org/wiki/Japanese_language)_[班長](https://en.wiktionary.org/wiki/%E7%8F%AD%E9%95%B7#Japanese)_ (hanchō, “squad leader”), from 19th c. [Mandarin](https://en.wikipedia.org/wiki/Mandarin_Chinese)[班長](https://en.wiktionary.org/wiki/%E7%8F%AD%E9%95%B7#Chinese) (_bānzhǎng_, “team leader”). Probably entered English during World War II: many apocryphal stories describe American soldiers hearing Japanese prisoners-of-war refer to their lieutenants as _[hanchō](https://en.wiktionary.org/wiki/hanch%C5%8D#Japanese)_. ([Wiktionary](https://en.wiktionary.org/wiki/honcho))
+[^1]: American English, from [Japanese](https://en.wikipedia.org/wiki/Japanese_language)_[班長](https://en.wiktionary.org/wiki/%E7%8F%AD%E9%95%B7#Japanese)_ (hanchō, “squad leader”)...probably entered English during World War II: many apocryphal stories describe American soldiers hearing Japanese prisoners-of-war refer to their lieutenants as _[hanchō](https://en.wiktionary.org/wiki/hanch%C5%8D#Japanese)_. ([Wiktionary](https://en.wiktionary.org/wiki/honcho))
