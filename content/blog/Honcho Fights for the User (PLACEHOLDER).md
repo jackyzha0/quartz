@@ -1,6 +1,6 @@
 ## TL;DR
 
-Today we drop the first release of a project called *Honcho* (LINK). An open-source version of the OpenAI Assistants API. Honcho manages your AI app data on a per-user basis, allowing for multiple concurrent sessions to speedrun prototype to production. Glaringly absent from the existing stack, Honcho will, at full maturity, usher the advent of atomic, disposable agents that are user-first by default.
+Today we drop the first release of a project called *[Honcho](https://github.com/plastic-labs/honcho)*. An open-source version of the OpenAI Assistants API. Honcho manages your AI app data on a per-user basis, allowing for multiple concurrent sessions to speedrun prototype to production. Glaringly absent from the existing stack, Honcho will, at full maturity, usher the advent of atomic, disposable agents that are user-first by default.
 
 ## Plastic Lore
 
@@ -91,4 +91,4 @@ Managing app data on a per-user basis is the first small step in improving how d
 
 We're excited to see builders experiment with what we're releasing today and with Honcho as it continues to evolve.
 
-Check out the GitHub repo (LINK) to get started and join our [Discord](https://discord.gg/plasticlabs) to stay up to date 🫡.
+Check out the [GitHub repo](https://github.com/plastic-labs/honcho) to get started and join our [Discord](https://discord.gg/plasticlabs) to stay up to date 🫡.
