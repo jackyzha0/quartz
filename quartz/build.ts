@@ -24,8 +24,6 @@ type BuildData = {
   mut: Mutex
   initialSlugs: FullSlug[]
   contentMap: Map<FilePath, ProcessedContent>
-  toRebuild: Set<FilePath>
-  toRemove: Set<FilePath>
   trackedAssets: Set<FilePath>
   lastBuildMs: number
 }
@@ -97,8 +95,6 @@ async function startServing(
     contentMap,
     ignored: await isGitIgnored(),
     initialSlugs: ctx.allSlugs,
-    toRebuild: new Set<FilePath>(),
-    toRemove: new Set<FilePath>(),
     trackedAssets: new Set<FilePath>(),
     lastBuildMs: 0,
   }
@@ -125,19 +121,12 @@ async function rebuild(
   clientRefresh: () => void,
   buildData: BuildData, // note: this function mutates buildData
 ) {
-  const {
-    ctx,
-    ignored,
-    mut,
-    initialSlugs,
-    contentMap,
-    toRebuild,
-    toRemove,
-    trackedAssets,
-    lastBuildMs,
-  } = buildData
+  const { ctx, ignored, mut, initialSlugs, contentMap, trackedAssets, lastBuildMs } = buildData
 
   const { argv } = ctx
+
+  const toRebuild = new Set<FilePath>()
+  const toRemove = new Set<FilePath>()
 
   // don't do anything for gitignored files
   if (ignored(fp)) {
@@ -210,8 +199,6 @@ async function rebuild(
 
   release()
   clientRefresh()
-  toRebuild.clear()
-  toRemove.clear()
 }
 
 export default async (argv: Argv, mut: Mutex, clientRefresh: () => void) => {
