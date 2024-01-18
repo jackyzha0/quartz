@@ -55,7 +55,6 @@ To this end, it is worthwhile to consider everything in "crypto" as a high-risk 
 
 > Only invest what you can afford to lose. Nothing is promised in this ecosystem but a LOT of people will try and sell you promises. Do your own research. Don't trust, verify. 
 
-
 ### It's all a mater of risk
 Now that that's out of the way, you can now further break up assets within crypto along their relative risk category: low, medium, high. Now we can think about diversifying our crypto portfolio appropriate to our risk appetite and what we're wanting to get out of it. In short, a token's risk is directly correlated to the amount of people that dedicate their careers and business to it and depend on it working as intended. 
 
