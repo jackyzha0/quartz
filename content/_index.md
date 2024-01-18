@@ -11,6 +11,7 @@ It’s our mission to realize this future.
 
 ## Blog
 
+[[Honcho Fights for the User (PLACEHOLDER)]]  
 [[blog/Theory-of-Mind Is All You Need]]  
 [[blog/Open-Sourcing Tutor-GPT]]
 
