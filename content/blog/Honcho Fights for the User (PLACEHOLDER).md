@@ -1,6 +1,6 @@
 ## TL;DR
 
-Today we drop the first release of a project called *Honcho* (LINK). An open-source version of the OpenAI Assistants API. Honcho manages your AI app data on a per-user basis, allowing for multiple concurrent identities. Glaringly absent from the existing stack, Honcho will, at full maturity, usher the advent of atomic, disposable agents that are user-first by default.
+Today we drop the first release of a project called *Honcho* (LINK). An open-source version of the OpenAI Assistants API. Honcho manages your AI app data on a per-user basis, allowing for multiple concurrent sessions to speedrun prototype to production. Glaringly absent from the existing stack, Honcho will, at full maturity, usher the advent of atomic, disposable agents that are user-first by default.
 
 ## Plastic Lore
 
@@ -15,7 +15,7 @@ Most edtech projects we saw emerging actually made foundation models worse by ad
 
 So we set out to build a non-skeuomorphic, AI-native tutor that put users first. The same indeterminism so often viewed as LLMs' greatest liability is in fact their greatest strength. Really, it's what they _are_. When great teachers deliver effective personalized instruction, they don't consult some M.Ed flowchart, they leverage the internal personal context they have on the student and reason (consciously or basally) about the best pedagogical intervention. LLMs are the beginning of this kind of high-touch learning companion being _synthetically_ possible.
 
-![[teacher_shoggot.png]]
+![[teacher_shoggoth.png]]
 *We're not so different after all* ([@anthrupad](https://twitter.com/anthrupad))_._
 
 Our [[Open-Sourcing Tutor-GPT|experimental tutor]], Bloom, [[Theory-of-Mind Is All You Need|was remarkably effective]]--for thousands of users during the 9 months we hosted it for free--precisely because we built [cognitive architectures](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/) that mimic the theory-of-mind expertise of highly efficacious 1:1 instructors.
@@ -83,7 +83,7 @@ We spent lots of time building the infrastructure to support multiple concurrent
 
 Honcho allows you to deploy an application with a single command that can automatically handle concurrent users. Going from prototype to production is now only limited by the amount of spend you can handle, not tedious infrastructure setup.
 
-Managing app data on a per-user basis is the first small step in improving how devs build LLM apps. (And this framework in its full maturity will push the boundaries of what’s possible.) Once you define a data management schema on a per-user basis, a lots of new possibilities emerge around what you can do intra-user message, intra-user sessions, and even intra-user sessions across agents.
+Managing app data on a per-user basis is the first small step in improving how devs build LLM apps. Once you define a data management schema on a per-user basis, a lots of new possibilities emerge around what you can do intra-user message, intra-user sessions, and even intra-user sessions across agents.
 
 ![[tron_bike.gif]]
 
