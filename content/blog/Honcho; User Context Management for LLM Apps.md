@@ -22,7 +22,7 @@ Most edtech projects we saw emerging actually made foundation models worse by ad
 So we set out to build a non-skeuomorphic, AI-native tutor that put users first. The same indeterminism so often viewed as LLMs' greatest liability is in fact their greatest strength. Really, it's what they _are_. When great teachers deliver effective personalized instruction, they don't consult some M.Ed flowchart, they leverage the internal personal context they have on the student and reason (consciously or basally) about the best pedagogical intervention. LLMs are the beginning of this kind of high-touch learning companion being _synthetically_ possible.
 
 ![[teacher_shoggoth.png]]
-*We're not so different after all* ([@anthrupad](https://twitter.com/anthrupad))_._
+*We're not so different after all ([@anthrupad](https://twitter.com/anthrupad)).*
 
 Our [[Open-Sourcing Tutor-GPT|experimental tutor]], Bloom, [[Theory-of-Mind Is All You Need|was remarkably effective]]--for thousands of users during the 9 months we hosted it for free--precisely because we built [cognitive architectures](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/) that mimic the theory-of-mind expertise of highly efficacious 1:1 instructors.
 
@@ -65,7 +65,7 @@ In LLMs we have remarkable predictive reasoning engines with which we can begin 
 Late last year we published a [pre-print of research on this topic](https://arxiv.org/abs/2310.06983), and we've shown that these kinds of biologically-inspired frameworks can construct models of users that improve an LLM's ability to reason and make predictions about that individual user:
 
 ![[honcho_powered_bloom_paper_fig.png]]
-*A [predictive coding inspired metacognitive architecture_](https://youtu.be/PbuzqCdY0hg?feature=shared) from our research.*
+*A [predictive coding inspired metacognitive architecture](https://youtu.be/PbuzqCdY0hg?feature=shared) from our research.*
 
 We added it to Bloom and found the missing piece to overcoming the failure mode of user context. Our tutor could now learn about the student and use that knowledge effectively to produce better learning outcomes.
 
@@ -93,10 +93,10 @@ Honcho allows you to deploy an application with a single command that can automa
 
 Managing app data on a per-user basis is the first small step in improving how devs build LLM apps. Once you define a data management schema on a per-user basis, a lots of new possibilities emerge around what you can do intra-user message, intra-user sessions, and even intra-user sessions across agents.
 
-![[tron_bike.gif]]
-
 ## Get Involved
 
 We're excited to see builders experiment with what we're releasing today and with Honcho as it continues to evolve.
 
 Check out the [GitHub repo](https://github.com/plastic-labs/honcho) to get started and join our [Discord](https://discord.gg/plasticlabs) to stay up to date 🫡.
+
+![[tron_bike.gif]]
