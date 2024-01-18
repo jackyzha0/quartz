@@ -2,7 +2,6 @@ import { formatDate, getDate } from "./Date"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import readingTime from "reading-time"
 
-
 interface ContentMetaOptions {
   /**
    * Whether to display reading time
