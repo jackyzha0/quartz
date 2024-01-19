@@ -10,7 +10,7 @@ export const Assets: QuartzEmitterPlugin = () => {
     getQuartzComponents() {
       return []
     },
-    async emit({ argv, cfg }, _content, _resources, _emit): Promise<FilePath[]> {
+    async emit({ argv, cfg }, _content, _resources): Promise<FilePath[]> {
       // glob all non MD/MDX/HTML files in content folder and copy it over
       const assetsPath = argv.output
       const fps = await glob("**", argv.directory, ["**/*.md", ...cfg.configuration.ignorePatterns])

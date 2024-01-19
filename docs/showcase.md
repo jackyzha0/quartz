@@ -23,5 +23,6 @@ Want to see what Quartz can do? Here are some cool community gardens:
 - [Caicai's Novels](https://imoko.cc/blog/caicai/)
 - [🌊 Collapsed Wave](https://collapsedwave.com/)
 - [Aaron Pham's Garden](https://aarnphm.xyz/)
+- [Sideny's 3D Artist's Handbook](https://sidney-eliot.github.io/3d-artists-handbook/)
 
 If you want to see your own on here, submit a [Pull Request adding yourself to this file](https://github.com/jackyzha0/quartz/blob/v4/docs/showcase.md)!
