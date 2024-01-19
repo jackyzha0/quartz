@@ -60,10 +60,12 @@ pattern = "Sb"
         | "Cg"
         | "Cp"
 
-base_note = colour, "."
-          | colour, "+", colour, "-Gx." (* combined gradient base *)
+solid = colour, "."
+gradient = colour, "+", colour, "-Gx."
+base = solid | gradient
 
-pattern_note = colour, "+", pattern, "."
+pattern_set = pattern, { "+", pattern }
+layer = colour, "-", pattern_set, "."
 
-banner = base_note, [{" ", pattern_note}]
+banner = base, { " ", layer }
 ```

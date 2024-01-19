@@ -29,7 +29,7 @@ The standard banner colours, and their notated forms, are defined in this table:
 
 ## Patterns
 
-The standard banner patterns (as displayed in-game on *Minecraft: Java Edition*[^1]), and their notated forms, are defined in this table, along with their expanded meanings.
+The standard banner patterns (as displayed in-game on *Minecraft: Java Edition*[^2]), and their notated forms, are defined in this table, along with their expanded meanings.
 
 | Pattern                         | Notated | Meaning                  |
 | ------------------------------- | ------- | ------------------------ |
@@ -166,8 +166,6 @@ Going left-to-right, then top-to-bottom:
 	- Cyan Base
 16. **Pi.**
 	- Pink Base
-
----
 
 [^1]: "algebraic", as in [Algebraic Notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)) in chess.
 [^2]: This is a crucial point, as there are some naming conflicts between Bedrock and Java Edition, mainly in the Per Bends.

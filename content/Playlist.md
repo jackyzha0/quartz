@@ -1,0 +1,32 @@
+The essence of my music tastes can be boiled down to two categories: electronic, and "anything-playing-in-the-background-of-a-YouTube-video".
+
+This playlist only contains full albums I enjoy, both because it's a nice arbitrary cutting-off point, and also because purchasing albums is the best way to support your favourite artists :)
+
+---
+- **Intermix - Intermix (1992)**
+	- Links: [Discogs](https://www.discogs.com/release/74109-InterMix-Intermix), [YouTube (unofficial)](https://www.youtube.com/watch?v=zBCwzu1bRjU)
+	- Favourite tracks: *Anguish*, *Voices*
+---
+- **Windows96 - Dated New Aesthetic (2024)**
+	- Links: [Bandcamp](https://windows96.bandcamp.com/album/dated-new-aesthetic), [YouTube](https://www.youtube.com/watch?v=fjiQX74gqpk)
+	- Favourite tracks: *Nome da Musica*, *Lightsleeper*, *I should probably start looking*
+---
+- **Windows96 - Reflections (2017)**
+	- Links: [Bandcamp](https://windows96.bandcamp.com/album/reflections), [YouTube](https://www.youtube.com/watch?v=NzTzGWWKevA)
+	- Favourite tracks: *Are you sad enough?*, *Drive Slow*, *Sharpest Knives*, *Crystal Clear*
+---
+- **Windows96 - Gradient Horizont (2017)**
+	- Links: [Bandcamp](https://windows96.bandcamp.com/album/gradient-horizont), [YouTube (unofficial)](https://www.youtube.com/watch?v=b2Iq6AE_Bko)
+	- Favourite tracks: *Earthbound*
+---
+- **Patricia Taxxon - Wavetable (2019)**
+	- Links: [Bandcamp](https://patriciataxxon.bandcamp.com/album/wavetable), [YouTube (unofficial)](https://www.youtube.com/watch?v=szsvBK3_-As)
+	- Favourite tracks: *Ordeal Day*, *Nothing is Lost*
+---
+- **Lifeformed - Fastfall (*Dustforce* OST, 2012)**
+	- Links: [Bandcamp](https://lifeformed.bandcamp.com/album/fastfall), [YouTube (playlist)](https://www.youtube.com/playlist?list=PLBB4108C5CB4E1DD6), [*Dustforce* on Steam](https://store.steampowered.com/app/65300/Dustforce_DX/)
+	- Favourite tracks: *Cider Time*, *Swimming While It Rains*
+---
+- **Zanzlanz - Vintage Powered (2016)**
+	- Links: [Bandcamp](https://zanzlanz.bandcamp.com/album/vintage-powered), [YouTube](https://www.youtube.com/watch?v=_Fo1lsNhrAk)
+	- Favourite tracks: *Car Horn*, *The Vault*, *Vintage Powered*, *Trinketmonger*
