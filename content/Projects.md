@@ -1,7 +1,7 @@
 ---
 title: Projects
 compartir: true
-updated: 2023-12-14
+updated: 2024-01-19
 ---
 
 
@@ -9,25 +9,25 @@ A compilation of my projects.
 
 ## Personal Projects
 
-### Mabuya
+### 🦎 Mabuya
 
 Minimal Zola theme focused on helping you build an elegant, fast, lightweight, and SEO-ready blog.
 
-[Repo](https://github.com/semanticdata/mabuya) [Demo](https://miguelpimentel.do/mabuya/)
+[Source](https://github.com/semanticdata/mabuya) [Demo](https://miguelpimentel.do/mabuya/)
 
-### Forgetful Notes
+### 🌱 Forgetful Notes
 
 My digital garden of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 
-[Repo](https://github.com/semanticdata/forgetful-notes) [Demo](https://forgetfulnotes.com/)
+[Source](https://github.com/semanticdata/forgetful-notes) [Demo](https://forgetfulnotes.com/)
 
-### Obsidian Starter Vault
+### 🔮 Obsidian Starter Vault
 
 Opinionated compilation of extensions and settings to help you learn and start exploring Obsidian.
 
-[Repo](https://github.com/semanticdata/obsidian-starter-vault)
+[Source](https://github.com/semanticdata/obsidian-starter-vault)
 
-## Firefox Extensions
+## 🦊 Firefox Extensions
 
 ### Brave Search
 
@@ -98,12 +98,3 @@ Firefox extension to open WhatsApp Web within the Firefox sidebar. This extensio
 Firefox extension to open or toggle WhatsApp Web within a pinned tab. This extension adds a keyboard shortcut, and a toggle button within the toolbar.
 
 [Addon](https://addons.mozilla.org/en-US/firefox/addon/whatsapp-pinned/)
-
-## Zola Themes (WIP)
-
-- Book
-- Bulma
-- Dinkleberg
-- Minimal
-- Portfolio
-- Testing

@@ -3,7 +3,7 @@ title: Words I Like
 tags:
   - collection
 compartir: true
-updated: 2023-12-14
+updated: 2023-12-27
 ---
 
 
@@ -109,6 +109,11 @@ Also used as a _noun_ to describe something that soothes, calms, or comforts.
 1. To understand intuitively or by empathy, to establish rapport with.
 2. To empathize or communicate sympathetically (with); also, to experience enjoyment.
 3. [Neologism](https://en.wikipedia.org/wiki/Neologism "Neologism") coined by American writer [Robert A. Heinlein](https://en.wikipedia.org/wiki/Robert_A._Heinlein "Robert A. Heinlein") for his 1961 [science fiction](https://en.wikipedia.org/wiki/Science_fiction "Science fiction") novel _[Stranger in a Strange Land](https://en.wikipedia.org/wiki/Stranger_in_a_Strange_Land "Stranger in a Strange Land")_.
+
+### Halcyon (noun)
+
+1. A kingfisher, especially one of the genus Halcyon.
+2. A fabled bird, identified with the kingfisher, that was supposed to have had the power to calm the wind and the waves while it nested on the sea during the winter solstice.
 
 ### Humdinger (noun)
 
