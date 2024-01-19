@@ -26,8 +26,8 @@ document.addEventListener("nav", () => {
           },
           (error) => console.error(error),
         )
-      }, {passive: true})
+      })
       els[i].prepend(button)
     }
   }
-}, {passive: true})
+})

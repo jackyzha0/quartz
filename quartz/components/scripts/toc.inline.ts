@@ -28,11 +28,11 @@ function setupToc() {
     const content = toc.nextElementSibling as HTMLElement
     content.style.maxHeight = collapsed ? "0px" : content.scrollHeight + "px"
     toc.removeEventListener("click", toggleToc)
-    toc.addEventListener("click", toggleToc, {passive: true})
+    toc.addEventListener("click", toggleToc)
   }
 }
 
-window.addEventListener("resize", setupToc, {passive: true})
+window.addEventListener("resize", setupToc)
 document.addEventListener("nav", () => {
   setupToc()
 
@@ -40,4 +40,4 @@ document.addEventListener("nav", () => {
   observer.disconnect()
   const headers = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]")
   headers.forEach((header) => observer.observe(header))
-}, {passive: true})
+})

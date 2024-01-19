@@ -326,5 +326,5 @@ document.addEventListener("nav", async (e: unknown) => {
 
   const containerIcon = document.getElementById("global-graph-icon")
   containerIcon?.removeEventListener("click", renderGlobalGraph)
-  containerIcon?.addEventListener("click", renderGlobalGraph, {passive: true})
-}, {passive: true})
+  containerIcon?.addEventListener("click", renderGlobalGraph)
+})

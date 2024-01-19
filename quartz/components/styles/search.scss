@@ -2,12 +2,13 @@
 
 .search {
   min-width: fit-content;
-  min-width: auto;
-  max-width: 18px;
+  // min-width: auto;
+  max-width: 18px; // 14rem
   flex-grow: 0.3;
   padding-right: 1rem;
 
   & > #search-icon {
+    // background-color: var(--lightgray);
     background-color: transparent;
     border-radius: 4px;
     height: 2rem;

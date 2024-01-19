@@ -194,7 +194,7 @@ export function renderPage(
   )
 
   const doc = (
-    <html lang="en-US">
+    <html>
       <Head {...componentData} />
       <body data-slug={slug}>
         <div id="quartz-root" class="page">
@@ -208,8 +208,7 @@ export function renderPage(
                   ))}
                 </Header>
                 <div class="popover-hint">
-                  {/* implement https://discord.com/channels/927628110009098281/1157949033592139866 */}
-                {slug !== "index" && beforeBody.map((BodyComponent) => (
+                  {beforeBody.map((BodyComponent) => (
                     <BodyComponent {...componentData} />
                   ))}
                 </div>

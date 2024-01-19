@@ -1,9 +1,3 @@
-.explorer,
-.desktop-only {
-  position: relative;
-  top: -60px;
-}
-
 button#explorer {
   all: unset;
   background-color: transparent;
@@ -90,7 +84,7 @@ svg {
   & div > a {
     color: var(--secondary);
     font-family: var(--headerFont);
-    font-size: 0.95rem; // 0.95
+    font-size: 0.95rem;
     font-weight: 600;
     line-height: 1.5rem;
     display: inline-block;
@@ -112,8 +106,8 @@ svg {
     align-items: center;
     font-family: var(--headerFont);
 
-    & p {
-      font-size: 1.1rem; // 0.95
+    & span {
+      font-size: 0.95rem;
       display: inline-block;
       color: var(--secondary);
       font-weight: 600;

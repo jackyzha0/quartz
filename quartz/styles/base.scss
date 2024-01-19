@@ -1,12 +1,11 @@
-@use "variables" as *;
-@use "syntax";
-@use "callouts";
+@use "./variables.scss" as *;
+@use "./syntax.scss";
+@use "./callouts.scss";
 // @use "custom";
 
 * {
   scrollbar-width: thin;
 }
-
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: none;
@@ -32,7 +31,7 @@ section {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--tertiary) 50%, transparent); // 75%
+  background: color-mix(in srgb, var(--tertiary) 75%, transparent);
   color: var(--darkgray);
 }
 
@@ -62,14 +61,12 @@ ul,
 a {
   font-weight: 600;
   text-decoration: none;
+  transition: color 0.2s ease;
   color: var(--secondary);
-  text-decoration: underline 0.2rem transparent;
-  transition: all 0.5s ease;
+  display: inline-block;
 
   &:hover {
     color: var(--tertiary) !important;
-    text-decoration-color: var(--tertiary) !important;
-    // text-underline-offset: 0.4em;
   }
 
   &.internal {
@@ -98,7 +95,6 @@ a {
 
 .desktop-only {
   display: initial;
-
   @media all and (max-width: $fullPageWidth) {
     display: none;
   }
@@ -178,12 +174,9 @@ a {
         align-items: center;
       }
     }
-    
+
     & .sidebar.right {
       right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
-      @media all and (max-width: $fullPageWidth) {
-        flex-direction: column;
-      }
       & > * {
         @media all and (max-width: $fullPageWidth) {
           flex: 1;
@@ -487,8 +480,8 @@ video {
 
 ul.overflow,
 ol.overflow {
-  max-height: 400; // 400
-  overflow-y: auto; // auto, scroll
+  max-height: 400;
+  overflow-y: auto;
 
   // clearfix
   content: "";
@@ -507,9 +500,8 @@ ol.overflow {
     left: 0;
     bottom: 0;
     opacity: 1;
-    // Removes opacity fade
-    // transition: opacity 0.3s ease;
-    // background: linear-gradient(transparent 0px, var(--light));
+    transition: opacity 0.3s ease;
+    background: linear-gradient(transparent 0px, var(--light));
   }
 }
 

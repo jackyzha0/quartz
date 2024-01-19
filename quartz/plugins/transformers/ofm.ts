@@ -582,7 +582,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             await mermaid.run({
               querySelector: '.mermaid'
             })
-          }, {passive: true});
+          });
           `,
           loadTime: "afterDOMReady",
           moduleType: "module",

@@ -86,20 +86,20 @@ function setupExplorer() {
         document.getElementsByClassName("folder-button"),
         function (item) {
           item.removeEventListener("click", toggleFolder)
-          item.addEventListener("click", toggleFolder, {passive: true})
+          item.addEventListener("click", toggleFolder)
         },
       )
     }
 
     // Add click handler to main explorer
     explorer.removeEventListener("click", toggleExplorer)
-    explorer.addEventListener("click", toggleExplorer, {passive: true})
+    explorer.addEventListener("click", toggleExplorer)
   }
 
   // Set up click handlers for each folder (click handler on folder "icon")
   Array.prototype.forEach.call(document.getElementsByClassName("folder-icon"), function (item) {
     item.removeEventListener("click", toggleFolder)
-    item.addEventListener("click", toggleFolder, {passive: true})
+    item.addEventListener("click", toggleFolder)
   })
 
   if (storageTree && useSavedFolderState) {
@@ -123,7 +123,7 @@ function setupExplorer() {
   }
 }
 
-window.addEventListener("resize", setupExplorer, {passive: true})
+window.addEventListener("resize", setupExplorer)
 document.addEventListener("nav", () => {
   setupExplorer()
 
@@ -131,10 +131,10 @@ document.addEventListener("nav", () => {
 
   // select pseudo element at end of list
   const lastItem = document.getElementById("explorer-end")
-
-  observer.disconnect()
-  observer.observe(lastItem as Element)
-}, {passive: true})
+  if (lastItem) {
+    observer.observe(lastItem)
+  }
+})
 
 /**
  * Toggles the state of a given folder

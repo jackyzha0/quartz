@@ -21,14 +21,17 @@ export function JSResourceToScriptElement(resource: JSResource, preserve?: boole
   const spaPreserve = preserve ?? resource.spaPreserve
   if (resource.contentType === "external") {
     return (
-      <script defer key={resource.src} src={resource.src} type={scriptType} spa-preserve={spaPreserve} />
+      <script key={resource.src} src={resource.src} type={scriptType} spa-preserve={spaPreserve} />
     )
   } else {
     const content = resource.script
     return (
-      <script defer key={randomUUID()} type={scriptType} spa-preserve={spaPreserve}>
-        {content}
-      </script>
+      <script
+        key={randomUUID()}
+        type={scriptType}
+        spa-preserve={spaPreserve}
+        dangerouslySetInnerHTML={{ __html: content }}
+      ></script>
     )
   }
 }

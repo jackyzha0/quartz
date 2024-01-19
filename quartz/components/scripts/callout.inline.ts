@@ -31,7 +31,7 @@ function setupCallout() {
 
     if (title) {
       title.removeEventListener(`click`, toggleCallout)
-      title.addEventListener(`click`, toggleCallout, {passive: true})
+      title.addEventListener(`click`, toggleCallout)
 
       const collapsed = div.classList.contains(`is-collapsed`)
       const height = collapsed ? title.scrollHeight : div.scrollHeight
@@ -40,5 +40,5 @@ function setupCallout() {
   }
 }
 
-document.addEventListener(`nav`, setupCallout, {passive: true})
-window.addEventListener(`resize`, setupCallout, {passive: true})
+document.addEventListener(`nav`, setupCallout)
+window.addEventListener(`resize`, setupCallout)

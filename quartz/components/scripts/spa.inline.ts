@@ -123,7 +123,7 @@ function createRouter() {
       } catch (e) {
         window.location.assign(url)
       }
-    }, {passive: true})
+    })
 
     window.addEventListener("popstate", (event) => {
       const { url } = getOpts(event) ?? {}
@@ -134,7 +134,7 @@ function createRouter() {
         window.location.reload()
       }
       return
-    }, {passive: true})
+    })
   }
 
   return new (class Router {
