@@ -13,6 +13,7 @@ import { QuartzComponent } from "../../components/types"
 import { googleFontHref, joinStyles } from "../../util/theme"
 import { Features, transform } from "lightningcss"
 import { transform as transpile } from "esbuild"
+import { write } from "./helpers"
 
 type ComponentResources = {
   css: string[]
@@ -93,7 +94,7 @@ function addGlobalPageResources(
       function gtag() { dataLayer.push(arguments); }
       gtag("js", new Date());
       gtag("config", "${tagId}", { send_page_view: false });
-  
+
       document.addEventListener("nav", () => {
         gtag("event", "page_view", {
           page_title: document.title,
@@ -121,7 +122,7 @@ function addGlobalPageResources(
       umamiScript.src = "https://analytics.umami.is/script.js"
       umamiScript.setAttribute("data-website-id", "${cfg.analytics.websiteId}")
       umamiScript.async = true
-  
+
       document.head.appendChild(umamiScript)
     `)
   }
@@ -168,7 +169,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
     getQuartzComponents() {
       return []
     },
-    async emit(ctx, _content, resources, emit): Promise<FilePath[]> {
+    async emit(ctx, _content, resources): Promise<FilePath[]> {
       // component specific scripts and styles
       const componentResources = getComponentResources(ctx)
       // important that this goes *after* component scripts
@@ -190,7 +191,8 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
       ])
 
       const fps = await Promise.all([
-        emit({
+        write({
+          ctx,
           slug: "index" as FullSlug,
           ext: ".css",
           content: transform({
@@ -207,12 +209,14 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
             include: Features.MediaQueries,
           }).code.toString(),
         }),
-        emit({
+        write({
+          ctx,
           slug: "prescript" as FullSlug,
           ext: ".js",
           content: prescript,
         }),
-        emit({
+        write({
+          ctx,
           slug: "postscript" as FullSlug,
           ext: ".js",
           content: postscript,

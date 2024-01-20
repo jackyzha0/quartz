@@ -59,6 +59,7 @@ a {
   text-decoration: none;
   transition: color 0.2s ease;
   color: var(--secondary);
+  display: inline-block;
 
   &:hover {
     color: var(--tertiary) !important;
@@ -69,11 +70,21 @@ a {
     background-color: var(--highlight);
     padding: 0 0.1rem;
     border-radius: 5px;
+    line-height: 1.4rem;
 
     &:has(> img) {
       background-color: none;
       border-radius: 0;
       padding: 0;
+    }
+  }
+
+  &.external .external-icon {
+    height: 1ex;
+    margin: 0 0.15em;
+
+    > path {
+      fill: var(--dark);
     }
   }
 }

@@ -14,6 +14,7 @@ import {
 } from "../../util/path"
 import { defaultListPageLayout, sharedPageComponents } from "../../../quartz.layout"
 import { TagContent } from "../../components"
+import { write } from "./helpers"
 
 export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (userOpts) => {
   const opts: FullPageLayout = {
@@ -32,7 +33,7 @@ export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (userOpts) => {
     getQuartzComponents() {
       return [Head, Header, Body, ...header, ...beforeBody, pageBody, ...left, ...right, Footer]
     },
-    async emit(ctx, content, resources, emit): Promise<FilePath[]> {
+    async emit(ctx, content, resources): Promise<FilePath[]> {
       const fps: FilePath[] = []
       const allFiles = content.map((c) => c[1].data)
       const cfg = ctx.cfg.configuration
@@ -81,7 +82,8 @@ export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (userOpts) => {
         }
 
         const content = renderPage(slug, componentData, opts, externalResources)
-        const fp = await emit({
+        const fp = await write({
+          ctx,
           content,
           slug: file.data.slug!,
           ext: ".html",

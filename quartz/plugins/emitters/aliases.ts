@@ -1,13 +1,15 @@
 import { FilePath, FullSlug, joinSegments, resolveRelative, simplifySlug } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 import path from "path"
+import { write } from "./helpers"
 
 export const AliasRedirects: QuartzEmitterPlugin = () => ({
   name: "AliasRedirects",
   getQuartzComponents() {
     return []
   },
-  async emit({ argv }, content, _resources, emit): Promise<FilePath[]> {
+  async emit(ctx, content, _resources): Promise<FilePath[]> {
+    const { argv } = ctx
     const fps: FilePath[] = []
 
     for (const [_tree, file] of content) {
@@ -32,7 +34,8 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
         }
 
         const redirUrl = resolveRelative(slug, file.data.slug!)
-        const fp = await emit({
+        const fp = await write({
+          ctx,
           content: `
             <!DOCTYPE html>
             <html lang="en-us">
