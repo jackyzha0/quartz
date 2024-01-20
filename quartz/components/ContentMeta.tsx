@@ -28,7 +28,7 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
       }
 
       // Display reading time if enabled
-      if (options.showReadingTime == true) {
+      if (options.showReadingTime) {
         const { text: timeTaken, words: _words } = readingTime(text)
         segments.push(timeTaken)
       }
