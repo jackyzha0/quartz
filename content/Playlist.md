@@ -30,3 +30,6 @@ This playlist only contains full albums I enjoy, both because it's a nice arbitr
 - **Zanzlanz - Vintage Powered (2016)**
 	- Links: [Bandcamp](https://zanzlanz.bandcamp.com/album/vintage-powered), [YouTube](https://www.youtube.com/watch?v=_Fo1lsNhrAk)
 	- Favourite tracks: *Car Horn*, *The Vault*, *Vintage Powered*, *Trinketmonger*
+---
+- **Webinar™ - w w w . d e e p d i v e . c o m (2023)**
+	- Links: [Bandcamp](https://fullmetalrecords.bandcamp.com/album/w-w-w-d-e-e-p-d-i-v-e-c-o-m), [YouTube](https://www.youtube.com/watch?v=rw392gowFu4)
