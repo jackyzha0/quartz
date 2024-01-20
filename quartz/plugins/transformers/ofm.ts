@@ -304,7 +304,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               (_value: string, ..._capture: string[]) => {
                 return {
                   type: "html",
-                  value: `<span>&#10230;</span>`,
+                  value: `<span>&rarr;</span>`,
                 }
               },
             ])
