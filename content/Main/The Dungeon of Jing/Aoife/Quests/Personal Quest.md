@@ -1,0 +1,1 @@
+Chalice of Ozem - it WAS in the "Tomb of the Dead God" and then it moved
