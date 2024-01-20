@@ -15,5 +15,5 @@ Not much progress on the more lengthy articles since I'm currently in term paper
 - Added page on [[Programs I Like/functional-programming|functional programming]], I'll rant about Monads and Arrows some other time
 - Updated the [[Programs I Like/hundred-rabbits|Hundred Rabbits Ecosystem]] (here's their [Nov Update](https://100r.co/site/log.html#nov2023))
 ## Status Updates
-- Finally created a Mastodon account! [@be_far@treehouse.systems](https://social.treehouse.systems/@be_far), go follow me.
+- Finally created a Mastodon account! <a rel=“me” href=“https://social.treehouse.systems/@be_far”>@be_far@treehouse.systems</a> go follow me.
 - Got email working for comments!! Go check it out and use the fancy new sign in.

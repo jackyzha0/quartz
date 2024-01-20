@@ -3,6 +3,8 @@ title: About Me
 date: 2023-08-23
 ---
 I’m an enthusiast for all things DIY. Hardware or software, if there’s a project to be had I will travel far down the rabbit hole to see it completed. 
+
+I can be reached in the comments here or on Mastodon <a rel=“me” href=“https://social.treehouse.systems/@be_far”>@be_far@treehouse.systems</a>.
 ## By Day
 I'm a law student aiming to practice in intellectual property litigation. At a high level, this sort of work primarily involves pointing a lot of fingers and trying to force money to change hands. I enjoy the lower levels the most, where attorneys can really sink their teeth into the kind of technical issues that fascinate me. 
 ## By Night

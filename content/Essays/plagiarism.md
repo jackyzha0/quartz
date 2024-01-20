@@ -24,6 +24,8 @@ And when using my work, I request:
 - That you **never** use my work to train an LLM because its output is then plagiarizing my work (and post-hoc attribution will not remedy that use in this specific case)
 
 However, note that much of the entries here are my personal perspective on the subject matter, so much of this website falls under "my source is I made it up" and needs no attribution.
+
+Others have much more elaborate views on creative or entertaining works, so I will touch on the artist's perspective, but that side of plagiarism is outside of my personal knowledge.
 ## Where My Views Originate
 There are two institutions in my life that have most certainly contributed to my broader position on attribution.
 
@@ -31,14 +33,16 @@ Coming from academia, my culture is very much "show your work." It was always be
 
 The legal field is even more source-mandatory due to the system of precedent, that judges *must* follow the rules set by prior decisions binding on their court. The onus is almost entirely on the advocates to inform the judge what they must do (while arguing what they *should* do). The profession places very little value on original statements as a result. The expression inherent in how you arrange the statements of others, combined with your ability to find favorable statements, is what determines your skill level as an attorney.
 
-There's definitely a gap in my knowlege/views that broadens the more creative or traditionally-considered-artistic the subject matter gets. Copyright absolutely extends to the arts, but what place does attribution have when the purpose is to entertain? One can hardly document one's creative experience when working on a novel, a script, a painting, in the same way a legal brief can be. I do believe in the necessity of personal attribution for those who directly contributed to an artistic work (think the credits section of a movie) for professional reasons, but beyond that, I'm uncertain.
+As mentioned above, there's definitely a gap in my knowlege/views that broadens the more creative or traditionally-considered-artistic the subject matter gets. Copyright absolutely extends to the arts, but what place does attribution have when the purpose is to entertain? One can hardly document one's creative experience when working on a novel, a script, a painting, in the same way a legal brief can be. I do believe in the necessity of personal attribution for those who directly contributed to an artistic work (think the credits section of a movie) for professional reasons, but beyond that, I'm uncertain.
 ## Digital Gardening and Plagiarism
 For digital gardening in particular, attribution is integral to the concept. [[Misc/what-is-a-garden|A digital garden]] is a network, and the culture of the digital garden is to provide paths out of the current webpage to others on the same site or even to other websites. These associations between webpages make up a comprehensive experience that differs from modern web use (Google search, click, close the tab) and looks more like Wikipedia spelunking. 
 
-Thus, the true value of attribution in a digital garden is mostly in the link itself rather than the substance of the current page or the linked page.
+Thus, the true value of attribution in a digital garden is mostly in the link itself rather than the substance of the current page or the linked page. This does not discount the importance of linking to those resources, though.
 ## To-be-written
 I want to address piece-by-piece [an argument by Brian Frye](https://www.techdirt.com/2024/01/09/plagiarism-is-fine/) supporting plagiarism in general. He's a prolific IP scholar, so I'll probably look through his academic works as well (*Against Creativity*, 11 N.Y.U. J.L. & Liberty 426 (2017), looks pretty interesting). To be clear, I don't want to get into the absolute witch hunt that inspired the linked article, but in the article he reiterates his greater conclusions about attribution to say that ALL plagiarism accusations are silly, which are what I want to respond to.
 - Planned topics: granularity, necessity, nature of the work/merit, nature of the work/type of content.
+
+I also want to discuss disrespect of creators’ intent for their works and what to label that practice. This applies both to my AI essay and plagiarism talking points. 
 
 Anyone who identifies as a "proud plagiarist," this is your notice that I may respond to your opinions, and I will properly attribute you when doing so.
 - Readers: **Don't harass anyone I cite, please**. We disagree on the topic, and since all it really bears on is respect and authoritative nature until it goes into copyright infringement territory, there aren't any high stakes.

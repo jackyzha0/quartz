@@ -16,7 +16,7 @@ On my little corner of the internet, I document my adventures in tech and compla
 # Welcome!
 You're on a site called a [[Misc/what-is-a-garden|Digital Garden]]. Here's some info on [[Essays/why-i-garden|Why I Garden]].
 
-This site changes often. Feel free to subscribe to [the RSS feed](/index.xml) for a ping every time I make a new entry. You can also check [Updates](/Updates) for a monthly list of changes.
+This site changes often. Feel free to subscribe to [the RSS feed](/index.xml) for a ping every time I make a new entry. You can also check [Updates](/Updates) for a monthly list of changes. I can also be found on <a rel="me" href="https://social.treehouse.systems/@be_far">Mastodon</a>.
 > [!question] What can I see here?
 > I [[about-me|(me, myself)]] write about:
 > - Projects I've undertaken and programs that I've used
