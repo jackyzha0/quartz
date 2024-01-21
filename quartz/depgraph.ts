@@ -48,7 +48,9 @@ export default class DepGraph {
   }
 
   removeNode(node: string): void {
-    this.graph.dropNode(node)
+    if (this.graph.hasNode(node)) {
+      this.graph.dropNode(node)
+    }
   }
 
   getDownstreamLeafNodes(node: string): Set<string> {
