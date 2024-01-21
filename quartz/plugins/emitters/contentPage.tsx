@@ -4,11 +4,12 @@ import HeaderConstructor from "../../components/Header"
 import BodyConstructor from "../../components/Body"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { FullPageLayout } from "../../cfg"
-import { FilePath, pathToRoot } from "../../util/path"
+import { FilePath, joinSegments, pathToRoot } from "../../util/path"
 import { defaultContentPageLayout, sharedPageComponents } from "../../../quartz.layout"
 import { Content } from "../../components"
 import chalk from "chalk"
 import { write } from "./helpers"
+import DepGraph from "../../depgraph"
 
 export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) => {
   const opts: FullPageLayout = {
@@ -26,6 +27,18 @@ export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOp
     name: "ContentPage",
     getQuartzComponents() {
       return [Head, Header, Body, ...header, ...beforeBody, pageBody, ...left, ...right, Footer]
+    },
+    async getDependencyGraph(ctx, content, _resources) {
+      // TODO handle transclusions
+      const graph = new DepGraph()
+
+      for (const [_tree, file] of content) {
+        const sourcePath = file.data.filePath!
+        const slug = file.data.slug!
+        graph.addEdge(sourcePath, joinSegments(ctx.argv.output, slug + ".html") as FilePath)
+      }
+
+      return graph
     },
     async emit(ctx, content, resources): Promise<FilePath[]> {
       const cfg = ctx.cfg.configuration
