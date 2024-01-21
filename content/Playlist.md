@@ -33,3 +33,7 @@ This playlist only contains full albums I enjoy, both because it's a nice arbitr
 ---
 - **Webinar™ - w w w . d e e p d i v e . c o m (2023)**
 	- Links: [Bandcamp](https://fullmetalrecords.bandcamp.com/album/w-w-w-d-e-e-p-d-i-v-e-c-o-m), [YouTube](https://www.youtube.com/watch?v=rw392gowFu4)
+---
+- **Gavriel - In The Worlde (2020)**
+  - Links: [Bandcamp](https://windows96.bandcamp.com/album/in-the-worlde), [YouTube](https://www.youtube.com/watch?v=jGN0cjQNgJc)
+	- Favourite tracks: *2000*, *Heals*
