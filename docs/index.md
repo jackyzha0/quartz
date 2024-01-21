@@ -25,9 +25,6 @@ This will guide you through initializing your Quartz with content. Once you've d
 4. [[build|Build and preview]] Quartz
 5. [[hosting|Host]] Quartz online
 
-> [!info]
-> Coming from Quartz 3? See the [[migrating from Quartz 3|migration guide]] for the differences between Quartz 3 and Quartz 4 and how to migrate.
-
 ## 🔧 Features
 
 - [[Obsidian compatibility]], [[full-text search]], [[graph view]], note transclusion, [[wikilinks]], [[backlinks]], [[Latex]], [[syntax highlighting]], [[popover previews]], [[Docker Support]], and [many more](./features) right out of the box
