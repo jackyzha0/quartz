@@ -229,8 +229,6 @@ document.addEventListener("nav", async (e: unknown) => {
     itemTile.innerHTML = `<h3>${title}</h3>${htmlTags}<p>${content}</p>`
     itemTile.addEventListener("click", (event) => {
       if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
-      const targ = resolveRelative(currentSlug, slug)
-      window.spaNavigate(new URL(targ, window.location.toString()))
       hideSearch()
     })
     return itemTile
