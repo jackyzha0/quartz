@@ -123,3 +123,6 @@ https://www.youtube.com/watch?v=Yp8Vfwa2oHc&list=PL1hmZln4PWNWjy-7aCYrdr6yo3NDOv
 
 ![[Screenshot from 2024-01-22 13-27-04.png]]
 
+![[Screenshot from 2024-01-22 13-28-51.png]]
+
+
