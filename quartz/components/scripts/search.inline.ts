@@ -222,20 +222,20 @@ document.addEventListener("nav", async (e: unknown) => {
 
   const resultToHTML = ({ slug, title, content, tags }: Item) => {
     const htmlTags = tags.length > 0 ? `<ul>${tags.join("")}</ul>` : ``
-    const button = document.createElement("button")
-    button.classList.add("result-card")
-    button.id = slug
-    button.innerHTML = `<h3><a href="${new URL(
+    const itemTile = document.createElement("a")
+    itemTile.classList.add("result-card")
+    itemTile.id = slug
+    itemTile.innerHTML = `<h3><a href="${new URL(
       resolveRelative(currentSlug, slug),
       location.toString(),
     )}">${title}</a></h3>${htmlTags}<p>${content}</p>`
-    button.addEventListener("click", (event) => {
+    itemTile.addEventListener("click", (event) => {
       if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
       const targ = resolveRelative(currentSlug, slug)
       window.spaNavigate(new URL(targ, window.location.toString()))
       hideSearch()
     })
-    return button
+    return itemTile
   }
 
   function displayResults(finalResults: Item[]) {
