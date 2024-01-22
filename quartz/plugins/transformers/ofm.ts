@@ -1,5 +1,5 @@
 import { QuartzTransformerPlugin } from "../types"
-import { Root, Html, Image, BlockContent, DefinitionContent, Paragraph, Code } from "mdast"
+import { Root, Html, BlockContent, DefinitionContent, Paragraph, Code } from "mdast"
 import { Element, Literal, Root as HtmlRoot } from "hast"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { slug as slugAnchor } from "github-slugger"
@@ -125,7 +125,7 @@ export const wikilinkRegex = new RegExp(
   "g",
 )
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
-const commentRegex = new RegExp(/%%(.+)%%/, "g")
+const commentRegex = new RegExp(/%%[\s\S]*?%%/, "g")
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
 const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
 const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
@@ -151,6 +151,15 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
   return {
     name: "ObsidianFlavoredMarkdown",
     textTransform(_ctx, src) {
+      // do comments at text level
+      if (opts.comments) {
+        if (src instanceof Buffer) {
+          src = src.toString()
+        }
+
+        src = src.replace(commentRegex, "")
+      }
+
       // pre-transform blockquotes
       if (opts.callouts) {
         if (src instanceof Buffer) {
@@ -161,14 +170,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           // force newline after title of callout
           return value + "\n> "
         })
-      }
-
-      // do comments at text level
-      if (opts.comments) {
-        if (src instanceof Buffer) {
-          src = src.toString()
-        }
-        src.replace(commentRegex, "")
       }
 
       // pre-transform wikilinks (fix anchors to things that may contain illegal syntax e.g. codeblocks, latex)
