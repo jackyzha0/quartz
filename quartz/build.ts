@@ -23,10 +23,11 @@ type BuildData = {
   ignored: GlobbyFilterFunction
   mut: Mutex
   initialSlugs: FullSlug[]
+  // TODO merge contentMap and trackedAssets
   contentMap: Map<FilePath, ProcessedContent>
+  trackedAssets: Set<FilePath>
   toRebuild: Set<FilePath>
   toRemove: Set<FilePath>
-  trackedAssets: Set<FilePath>
   lastBuildMs: number
 }
 
@@ -110,16 +111,16 @@ async function startServing(
   })
 
   watcher
-    .on("add", (fp) => rebuild(fp, "add", clientRefresh, buildData))
-    .on("change", (fp) => rebuild(fp, "change", clientRefresh, buildData))
-    .on("unlink", (fp) => rebuild(fp, "delete", clientRefresh, buildData))
+    .on("add", (fp) => rebuildFromEntrypoint(fp, "add", clientRefresh, buildData))
+    .on("change", (fp) => rebuildFromEntrypoint(fp, "change", clientRefresh, buildData))
+    .on("unlink", (fp) => rebuildFromEntrypoint(fp, "delete", clientRefresh, buildData))
 
   return async () => {
     await watcher.close()
   }
 }
 
-async function rebuild(
+async function rebuildFromEntrypoint(
   fp: string,
   action: "add" | "change" | "delete",
   clientRefresh: () => void,
