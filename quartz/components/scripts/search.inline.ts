@@ -134,7 +134,14 @@ document.addEventListener("nav", async (e: unknown) => {
         const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
         anchor?.click()
       }
-    } else if (e.key === "ArrowDown") {
+    } else if (e.key === "ArrowUp" || (e.shiftKey && e.key === "Tab")) {
+      e.preventDefault()
+      if (results?.contains(document.activeElement)) {
+        // If an element in results-container already has focus, focus previous one
+        const prevResult = document.activeElement?.previousElementSibling as HTMLInputElement | null
+        prevResult?.focus()
+      }
+    } else if (e.key === "ArrowDown" || e.key === "Tab") {
       e.preventDefault()
       // When first pressing ArrowDown, results wont contain the active element, so focus first element
       if (!results?.contains(document.activeElement)) {
@@ -144,13 +151,6 @@ document.addEventListener("nav", async (e: unknown) => {
         // If an element in results-container already has focus, focus next one
         const nextResult = document.activeElement?.nextElementSibling as HTMLInputElement | null
         nextResult?.focus()
-      }
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault()
-      if (results?.contains(document.activeElement)) {
-        // If an element in results-container already has focus, focus previous one
-        const prevResult = document.activeElement?.previousElementSibling as HTMLInputElement | null
-        prevResult?.focus()
       }
     }
   }
