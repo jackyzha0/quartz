@@ -66,9 +66,8 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
     })
     .join(" ")
 
-  return `${startIndex === 0 ? "" : "..."}${slice}${
-    endIndex === tokenizedText.length - 1 ? "" : "..."
-  }`
+  return `${startIndex === 0 ? "" : "..."}${slice}${endIndex === tokenizedText.length - 1 ? "" : "..."
+    }`
 }
 
 const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
@@ -225,8 +224,12 @@ document.addEventListener("nav", async (e: unknown) => {
     const button = document.createElement("button")
     button.classList.add("result-card")
     button.id = slug
-    button.innerHTML = `<h3>${title}</h3>${htmlTags}<p>${content}</p>`
-    button.addEventListener("click", () => {
+    button.innerHTML = `<h3><a href="${new URL(
+      resolveRelative(currentSlug, slug),
+      location.toString(),
+    )}">${title}</a></h3>${htmlTags}<p>${content}</p>`
+    button.addEventListener("click", (event) => {
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
       const targ = resolveRelative(currentSlug, slug)
       window.spaNavigate(new URL(targ, window.location.toString()))
       hideSearch()
