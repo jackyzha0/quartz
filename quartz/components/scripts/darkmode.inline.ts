@@ -3,8 +3,8 @@ const currentTheme = localStorage.getItem("theme") ?? userPref
 document.documentElement.setAttribute("saved-theme", currentTheme)
 
 const emitThemeChangeEvent = (theme: "light" | "dark") => {
-  const event = new CustomEvent("themechange", {
-    detail: { url: document.body.dataset.slug, theme: theme },
+  const event: CustomEventMap["themechange"] = new CustomEvent("themechange", {
+    detail: { theme },
   })
   document.dispatchEvent(event)
 }
