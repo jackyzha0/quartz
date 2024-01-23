@@ -239,10 +239,10 @@ document.addEventListener("nav", async (e: unknown) => {
 
     removeAllChildren(results)
     if (finalResults.length === 0) {
-      results.innerHTML = `<button class="result-card">
+      results.innerHTML = `<a class="result-card">
                     <h3>No results.</h3>
                     <p>Try another search term?</p>
-                </button>`
+                </a>`
     } else {
       results.append(...finalResults.map(resultToHTML))
     }
