@@ -59,7 +59,6 @@ a {
   text-decoration: none;
   transition: color 0.2s ease;
   color: var(--secondary);
-  display: inline-block;
 
   &:hover {
     color: var(--tertiary) !important;
