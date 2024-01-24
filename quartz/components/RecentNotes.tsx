@@ -47,7 +47,7 @@ export default ((userOpts?: Partial<Options>) => {
                   </div>
                   {page.dates && (
                     <p class="meta">
-                      <Date date={getDate(cfg, page)!} />
+                      <Date date={getDate(cfg, page)!} config={cfg} />
                     </p>
                   )}
                   <ul class="tags">
