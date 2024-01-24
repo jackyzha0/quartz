@@ -95,6 +95,7 @@
           border-bottom: none;
           width: 100%;
           display: block;
+          box-sizing: border-box;
 
           // normalize card props
           font-family: inherit;
