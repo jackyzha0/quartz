@@ -96,12 +96,11 @@
           height: calc(75vh - 20em);
           background: none;
           border-radius: 5px;
+          border: 1px solid var(--lightgray); // Border to define the box
         }
 
         & > #preview-container {
-          flex-basis: 60%;
-          border: 1px solid var(--lightgray); // Border to define the box
-          border-radius: 5px;
+          flex-basis: 70%;
           display: block;
           box-sizing: border-box;
           overflow: hidden;
@@ -125,14 +124,12 @@
         }
 
         & > #results-container {
-          flex-basis: 40%;
+          flex-basis: 30%;
 
           & .result-card {
             padding: 1em;
             cursor: pointer;
             transition: background 0.2s ease;
-            border: 1px solid var(--lightgray);
-            border-bottom: none;
             width: 100%;
             display: block;
             box-sizing: border-box;
@@ -156,17 +153,6 @@
             &:hover,
             &:focus {
               background: var(--lightgray);
-            }
-
-            &:first-of-type {
-              border-top-left-radius: 5px;
-              border-top-right-radius: 5px;
-            }
-
-            &:last-of-type {
-              border-bottom-left-radius: 5px;
-              border-bottom-right-radius: 5px;
-              border-bottom: 1px solid var(--lightgray);
             }
 
             & > h3 {
