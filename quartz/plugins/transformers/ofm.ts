@@ -108,7 +108,7 @@ const calloutMapping: Record<string, keyof typeof callouts> = {
 
 function canonicalizeCallout(calloutName: string): keyof typeof callouts {
   let callout = calloutName.toLowerCase() as keyof typeof calloutMapping
-  //if callout is not recognized, make it a custom one
+  // if callout is not recognized, make it a custom one
   return calloutMapping[callout] ?? calloutName
 }
 
