@@ -62,11 +62,11 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 
 ### Fonts
 
-| Used in: | Font Family     | Previous Font |
-| -------- | :-----------------: | :---: |
-| Headers   | [Bitter](https://fonts.google.com/specimen/Bitter) | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
-| Body     | [Bitter](https://fonts.google.com/specimen/Bitter)       | [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3) |
-| Code     | [Fira Mono](https://fonts.google.com/specimen/Fira+Mono)         | [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono) |
+| Used in: |                       Font Family                        |                              Previous Font                               |
+| -------- | :------------------------------------------------------: | :----------------------------------------------------------------------: |
+| Headers  |    [Bitter](https://fonts.google.com/specimen/Bitter)    | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
+| Body     |    [Bitter](https://fonts.google.com/specimen/Bitter)    |    [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3)    |
+| Code     | [Fira Mono](https://fonts.google.com/specimen/Fira+Mono) |     [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono)     |
 
 ## License
 
