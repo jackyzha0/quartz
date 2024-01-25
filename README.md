@@ -8,7 +8,7 @@
   <img alt="is website up?" src="https://img.shields.io/website/https/forgetfulnotes.com.svg" />
 </p>
 
-## Introduction
+## Overview
 
 This is the source code for [Forgetful Notes](https://forgetfulnotes.com)—my digital garden of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 
