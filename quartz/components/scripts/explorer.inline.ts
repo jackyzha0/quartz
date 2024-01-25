@@ -3,6 +3,9 @@ import { FolderState } from "../ExplorerNode"
 // Current state of folders
 let explorerState: FolderState[]
 
+// Name of localStorage entry that stores hash for explorer
+const localStorageHashName = "explorer-hash"
+
 const observer = new IntersectionObserver((entries) => {
   // If last element is observed, remove gradient of "overflow" class so element is visible
   const explorer = document.getElementById("explorer-ul")
@@ -66,7 +69,7 @@ function toggleFolder(evt: MouseEvent) {
   localStorage.setItem("fileTree", stringifiedFileTree)
 }
 
-function setupExplorer() {
+async function setupExplorer() {
   // Set click handler for collapsing entire explorer
   const explorer = document.getElementById("explorer")
 
@@ -121,6 +124,26 @@ function setupExplorer() {
     // If tree is not in localStorage or config is disabled, use tree passed from Explorer as dataset
     explorerState = JSON.parse(explorer.dataset.tree)
   }
+
+  // Check if localStorage fileTree structure needs to be cleared
+
+  if (!localStorage.getItem("fileTree") || !explorer?.dataset.tree) return
+  // Get non localStorage explorer state and pick out paths
+  const realState: FolderState[] = JSON.parse(explorer.dataset.tree)
+  const explorerPaths = realState.map((entry) => entry.path)
+
+  // Create hash from stringified explorer state
+  const hash = await hashString(JSON.stringify(explorerPaths))
+
+  const storageHash = localStorage.getItem(localStorageHashName)
+
+  // Update localStorage if it needs updating (hash + fileTree state)
+  if (!storageHash) {
+    localStorage.setItem(localStorageHashName, hash)
+  } else if (storageHash !== hash) {
+    localStorage.setItem(localStorageHashName, hash)
+    localStorage.setItem("fileTree", JSON.stringify(realState))
+  }
 }
 
 window.addEventListener("resize", setupExplorer)
@@ -159,4 +182,17 @@ function toggleCollapsedByPath(array: FolderState[], path: string) {
   if (entry) {
     entry.collapsed = !entry.collapsed
   }
+}
+
+/**
+ * Generates hash from string
+ * @param input string to hash
+ * @returns hashed string
+ */
+async function hashString(input: string) {
+  const utf8 = new TextEncoder().encode(input)
+  const hashBuffer = await crypto.subtle.digest("SHA-256", utf8)
+  const hashArray = Array.from(new Uint8Array(hashBuffer))
+  const hashHex = hashArray.map((bytes) => bytes.toString(16).padStart(2, "0")).join("")
+  return hashHex
 }
