@@ -1,7 +1,7 @@
 import { Document, SimpleDocumentSearchResultSetUnit } from "flexsearch"
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
 import { registerEscapeHandler, removeAllChildren } from "./util"
-import { FullSlug, resolveRelative } from "../../util/path"
+import { FullSlug, normalizeRelativeURLs, resolveRelative } from "../../util/path"
 
 interface Item {
   id: number
@@ -71,6 +71,7 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
   }`
 }
 
+const p = new DOMParser()
 const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
 let prevShortcutHandler: ((e: HTMLElementEventMap["keydown"]) => void) | undefined = undefined
 document.addEventListener("nav", async (e: unknown) => {
@@ -82,6 +83,7 @@ document.addEventListener("nav", async (e: unknown) => {
   const searchIcon = document.getElementById("search-icon")
   const searchBar = document.getElementById("search-bar") as HTMLInputElement | null
   const results = document.getElementById("results-container")
+  const preview = document.getElementById("preview-container")
   const resultCards = document.getElementsByClassName("result-card")
   const idDataMap = Object.keys(data) as FullSlug[]
 
@@ -96,6 +98,9 @@ document.addEventListener("nav", async (e: unknown) => {
     if (results) {
       removeAllChildren(results)
     }
+    if (preview) {
+      removeAllChildren(preview)
+    }
 
     searchType = "basic" // reset search type after closing
   }
@@ -109,7 +114,7 @@ document.addEventListener("nav", async (e: unknown) => {
     searchBar?.focus()
   }
 
-  function shortcutHandler(e: HTMLElementEventMap["keydown"]) {
+  async function shortcutHandler(e: HTMLElementEventMap["keydown"]) {
     if (e.key === "k" && (e.ctrlKey || e.metaKey) && !e.shiftKey) {
       e.preventDefault()
       const searchBarOpen = container?.classList.contains("active")
@@ -139,6 +144,9 @@ document.addEventListener("nav", async (e: unknown) => {
       if (results?.contains(document.activeElement)) {
         // If an element in results-container already has focus, focus previous one
         const prevResult = document.activeElement?.previousElementSibling as HTMLInputElement | null
+        if (prevResult?.id) {
+          await displayPreview(prevResult?.id as FullSlug)
+        }
         prevResult?.focus()
       }
     } else if (e.key === "ArrowDown" || e.key === "Tab") {
@@ -146,10 +154,16 @@ document.addEventListener("nav", async (e: unknown) => {
       // When first pressing ArrowDown, results wont contain the active element, so focus first element
       if (!results?.contains(document.activeElement)) {
         const firstResult = resultCards[0] as HTMLInputElement | null
+        if (firstResult?.id) {
+          await displayPreview(firstResult?.id as FullSlug)
+        }
         firstResult?.focus()
       } else {
         // If an element in results-container already has focus, focus next one
         const nextResult = document.activeElement?.nextElementSibling as HTMLInputElement | null
+        if (nextResult?.id) {
+          await displayPreview(nextResult?.id as FullSlug)
+        }
         nextResult?.focus()
       }
     }
@@ -220,13 +234,17 @@ document.addEventListener("nav", async (e: unknown) => {
     }
   }
 
+  function resolveUrl(slug: FullSlug): string {
+    return new URL(resolveRelative(currentSlug, slug), location.toString()).toString()
+  }
+
   const resultToHTML = ({ slug, title, content, tags }: Item) => {
     const htmlTags = tags.length > 0 ? `<ul>${tags.join("")}</ul>` : ``
     const itemTile = document.createElement("a")
     itemTile.classList.add("result-card")
     itemTile.id = slug
-    itemTile.href = new URL(resolveRelative(currentSlug, slug), location.toString()).toString()
-    itemTile.innerHTML = `<h3>${title}</h3>${htmlTags}<p>${content}</p>`
+    itemTile.href = resolveUrl(slug)
+    itemTile.innerHTML = `<h3>${title}</h3>${htmlTags}`
     itemTile.addEventListener("click", (event) => {
       if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
       hideSearch()
@@ -245,6 +263,34 @@ document.addEventListener("nav", async (e: unknown) => {
                 </a>`
     } else {
       results.append(...finalResults.map(resultToHTML))
+    }
+  }
+
+  async function fetchContent(slug: FullSlug) {
+    const targetUrl = new URL(resolveUrl(slug))
+    const contents = await fetch(targetUrl.toString())
+      .then((res) => res.text())
+      .catch((err) => {
+        console.error(err)
+      })
+    const html = p.parseFromString(contents ?? "", "text/html")
+    normalizeRelativeURLs(html, targetUrl)
+    return [...html.getElementsByClassName("popover-hint")]
+  }
+
+  async function displayPreview(slug: FullSlug) {
+    if (!preview) return
+
+    removeAllChildren(preview)
+    const contentDetails = await fetchContent(slug)
+    if (!contentDetails) {
+      if (!preview) return
+      preview.innerHTML = `<p>Could not load preview.</p>`
+    } else {
+      const previewInner = document.createElement("div")
+      previewInner.classList.add("preview-inner")
+      preview.appendChild(previewInner)
+      contentDetails.forEach((elt) => previewInner.appendChild(elt))
     }
   }
 
