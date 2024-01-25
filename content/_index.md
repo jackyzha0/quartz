@@ -11,7 +11,8 @@ It’s our mission to realize this future.
 
 ## Blog
 
-[[Honcho; User Context Management for LLM Apps|Honcho: User Context Management for LLM Apps]]
+[[Extrusion 01.24]]  
+[[Honcho; User Context Management for LLM Apps|Honcho: User Context Management for LLM Apps]]  
 [[blog/Theory-of-Mind Is All You Need]]  
 [[blog/Open-Sourcing Tutor-GPT]]
 
