@@ -222,7 +222,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   const ext: string = path.extname(fp).toLowerCase()
                   const url = slugifyFilePath(fp as FilePath)
                   if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg", ".webp"].includes(ext)) {
-                    const dims = alias ?? ""
+                    const dims = alias?.match(/^\d+(x\d+)?|\|\d+(x\d+)/) ? alias.match(/^\d+(x\d+)?|\|\d+(x\d+)/)![0] : ""
+                    const alt = alias?.replace(dims, "")?.trim()
+
                     let [width, height] = dims.split("x", 2)
                     width ||= "auto"
                     height ||= "auto"
@@ -233,6 +235,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                         hProperties: {
                           width,
                           height,
+                          alt
                         },
                       },
                     }
@@ -432,7 +435,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   value: `<div
                   class="callout-title"
                 >
-                  <div class="callout-icon">${callouts[calloutType] ?? callouts.note}</div> 
+                  <div class="callout-icon">${callouts[calloutType] ?? callouts.note}</div>
                   <div class="callout-title-inner">${title}</div>
                   ${collapse ? toggleIcon : ""}
                 </div>`,
