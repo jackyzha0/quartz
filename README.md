@@ -14,6 +14,24 @@ This is the source code for [Forgetful Notes](https://forgetfulnotes.com)—my d
 
 It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](https://obsidian.md). You can read the [Documentation](https://quartz.jzhao.xyz/), and join the [Discord Community](https://discord.gg/cRFFHYye7t).
 
+## Table of Contents
+
+<details>
+<summary>Show/Hide</summary>
+
+- [Overview](#overview)
+- [Table of Contents](#table-of-contents)
+- [Screenshots](#screenshots)
+  - [Full Width](#full-width)
+  - [Slim (light)](#slim-light)
+  - [Slim (dark)](#slim-dark)
+- [Useful Commands](#useful-commands)
+- [Style](#style)
+  - [Fonts](#fonts)
+- [License](#license)
+
+</details>
+
 ## Screenshots
 
 ### Full Width
