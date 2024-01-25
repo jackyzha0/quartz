@@ -1,8 +1,12 @@
-Welcome to the inaugural edition of Plastic Labs' "Extrusions," a monthly prose-form synthesis of what we've been chewing on. No one needs another curation newsletter, so expect these to be densely linked glimpses into the thought-space of our organization. And if you like, [you can engage with the ideas directly](https://github.com/plastic-labs/blog).
+Welcome to the inaugural edition of Plastic Labs' "Extrusions," a monthly prose-form synthesis of what we've been chewing on. 
+
+This first one will be a standard new year recap/roadmap to get everyone up to speed, but after that, we'll try to eschew traditional formats. 
+
+No one needs another newsletter, so we'll work to make these worthwhile. Expect them to be densely linked glimpses into the thought-space of our organization. And if you like, [you can engage with the ideas directly](https://github.com/plastic-labs/blog) on GitHub.
 
 ## 2023 Recap
 
-Last year was wild. We started as an edtech company and ended as anything but. There's a deep dive on some of the conceptual lore in last week's "[[Honcho; User Context Management for LLM Apps]]":
+Last year was wild. We started as an edtech company and ended as anything but. There's a deep dive on some of the conceptual lore in last week's blog post, "[[Honcho; User Context Management for LLM Apps]]":
 
 >[Plastic Labs](https://plasticlabs.ai) was conceived as a research group exploring the intersection of education and emerging technology...with the advent of ChatGPT...we shifted our focus to large language models...we set out to build a non-skeuomorphic, AI-native tutor that put users first...our [[Open-Sourcing Tutor-GPT|experimental tutor]], Bloom, [[Theory-of-Mind Is All You Need|was remarkably effective]]--for thousands of users during the 9 months we hosted it for free...
 
@@ -20,7 +24,7 @@ Then it was back to building.
 
 ## 2024 Roadmap
 
-2024 will be the year of Honcho. Check out the new site we're launching today.
+2024 will be the year of Honcho.
 
 ![[honcho logo and text.png]]
 
@@ -30,11 +34,11 @@ Last week [[Honcho; User Context Management for LLM Apps|we released]] the...
 
 And coming up, you can expect a lot more:
 
-- Next we'll drop a fresh paradigm for constructing agent cognitive architectures with users at the center, replete with cookbooks, integrations, and examples
+- Next we'll drop a fresh paradigm for constructing agent cognitive architectures with users at the center, replete with cookbooks, integrations, and examples  
 
-- After that, we've got some dev viz tooling in the works that allows anyone to quickly grok all the inferences and context at play in a conversation, compare sessions, and visualize and manipulate entire architectures--as well as swap and compare the performance of custom architectures across the landscape of models
+- After that, we've got some dev viz tooling in the works to allow quick grokking of all the inferences and context at play in a conversation, and visualization and manipulation of entire agent architectures--as well as swap and compare the performance of custom cognition across the landscape of models  
 
-- Finally, we'll bundle the most useful of all this into an offering of managed, hosted services
+- Finally, we'll bundle the most useful of all this into an opinionated offering of managed, hosted services  
 
 ## Keep in Touch
 
