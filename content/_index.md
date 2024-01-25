@@ -3,9 +3,9 @@ title: Home
 enableToc: false
 ---
 
-Welcome to our collaborative second brain. We're a research and development company working at the intersection of human and machine learning.
+Welcome to our collaborative second brain. Here you'll find our blog posts, "Extrusions" newsletter, and evergreen notes. And if you like, [you can engage with the ideas directly](https://github.com/plastic-labs/blog) on GitHub.
 
-Our first product was [Bloom](https://bloombot.ai) -- a *subversive learning companion*. On this journey, we realized AI tools need a framework for securely and privately handling the intimate data required to unlock deeply personalized, autonomous agents.  
+Plastic Labs is a research-driven company working at the intersection of human and machine learning. Our current project is [Honcho](https://github.com/plastic-labs/honcho), a user context management solution for AI-powered applications. We believe that by re-centering LLM app development around the user we can unlock a rich landscape of deeply personalized, autonomous agents.
 
 It’s our mission to realize this future.
 
