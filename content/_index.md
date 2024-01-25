@@ -11,10 +11,18 @@ It’s our mission to realize this future.
 
 ## Blog
 
-[[Extrusion 01.24]]  
 [[Honcho; User Context Management for LLM Apps|Honcho: User Context Management for LLM Apps]]  
 [[blog/Theory-of-Mind Is All You Need]]  
 [[blog/Open-Sourcing Tutor-GPT]]
+
+## Extrusions
+
+[[extrusions/Extrusion 01.24|Extrusion 01.24]]  
+## Notes
+
+[[Honcho name lore]]  
+[[Metacognition in LLMs is inference about inference]]  
+[[The machine learning industry is too focused on general task performance]]  
 
 ## Research
 

@@ -2,7 +2,7 @@ Welcome to the inaugural edition of Plastic Labs' "Extrusions," a monthly prose-
 
 ## 2023 Recap
 
-Last year was wild. We started as an edtech company and ended as anything but. There's a deep dive on some of the conceptual lore in last week's "[[Honcho; User Context Management for LLM Apps]]":
+Last year was wild. We started as an edtech company and ended as anything but. There's a deep dive on some of the conceptual lore in last week's "[[Honcho; User Context Management for LLM Apps|Honcho: User Context Management for LLM Apps]]":
 
 >[Plastic Labs](https://plasticlabs.ai) was conceived as a research group exploring the intersection of education and emerging technology...with the advent of ChatGPT...we shifted our focus to large language models...we set out to build a non-skeuomorphic, AI-native tutor that put users first...our [[Open-Sourcing Tutor-GPT|experimental tutor]], Bloom, [[Theory-of-Mind Is All You Need|was remarkably effective]]--for thousands of users during the 9 months we hosted it for free...
 
