@@ -16,7 +16,7 @@ import { defaultListPageLayout, sharedPageComponents } from "../../../quartz.lay
 import { TagContent } from "../../components"
 import { write } from "./helpers"
 
-export const TagPage: QuartzEmitterPlugin<FullPageLayout> = (userOpts) => {
+export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) => {
   const opts: FullPageLayout = {
     ...sharedPageComponents,
     ...defaultListPageLayout,
