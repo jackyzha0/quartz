@@ -44,56 +44,42 @@ const defaultOptions: Options = {
   enableVideoEmbed: true,
 }
 
-const callouts = {
-  note: "note",
-  abstract: "abstract",
-  info: "info",
-  todo: "todo",
-  tip: "tip",
-  success: "success",
-  question: "question",
-  warning: "warning",
-  failure: "failure",
-  danger: "danger",
-  bug: "bug",
-  example: "example",
-  quote: "quote",
+enum callouts {
+  note = "note",
+  abstract = "abstract",
+  summary = "abstract",
+  tldr = "abstract",
+  info = "info",
+  todo = "todo",
+  tip = "tip",
+  hint = "tip",
+  important = "tip",
+  success = "success",
+  check = "success",
+  done = "success",
+  question = "question",
+  help = "question",
+  faq = "question",
+  warning = "warning",
+  attention = "warning",
+  caution = "warning",
+  failure = "failure",
+  missing = "failure",
+  fail = "failure",
+  danger = "danger",
+  error = "danger",
+  bug = "bug",
+  example = "example",
+  quote = "quote",
+  cite = "quote",
 }
 
-const calloutMapping: Record<string, keyof typeof callouts> = {
-  note: "note",
-  abstract: "abstract",
-  summary: "abstract",
-  tldr: "abstract",
-  info: "info",
-  todo: "todo",
-  tip: "tip",
-  hint: "tip",
-  important: "tip",
-  success: "success",
-  check: "success",
-  done: "success",
-  question: "question",
-  help: "question",
-  faq: "question",
-  warning: "warning",
-  attention: "warning",
-  caution: "warning",
-  failure: "failure",
-  missing: "failure",
-  fail: "failure",
-  danger: "danger",
-  error: "danger",
-  bug: "bug",
-  example: "example",
-  quote: "quote",
-  cite: "quote",
-}
+type calloutMapping = `${callouts}`
 
 function canonicalizeCallout(calloutName: string): keyof typeof callouts {
-  let callout = calloutName.toLowerCase() as keyof typeof calloutMapping
+  let callout = calloutName.toLowerCase() as calloutMapping
   // if callout is not recognized, make it a custom one
-  return calloutMapping[callout] ?? calloutName
+  return callout ?? calloutName
 }
 
 export const externalLinkRegex = /^https?:\/\//i
@@ -400,9 +386,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               const match = firstLine.match(calloutRegex)
               if (match && match.input) {
                 const [calloutDirective, typeString, collapseChar] = match
-                const calloutType = canonicalizeCallout(
-                  typeString.toLowerCase() as keyof typeof calloutMapping,
-                )
+                const calloutType = canonicalizeCallout(typeString.toLowerCase() as calloutMapping)
                 const collapse = collapseChar === "+" || collapseChar === "-"
                 const defaultState = collapseChar === "-" ? "collapsed" : "expanded"
                 const titleContent =
