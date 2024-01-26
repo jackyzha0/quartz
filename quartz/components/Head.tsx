@@ -120,7 +120,11 @@ export default (() => {
     let ogImagePath = useDefaultOgImage ? ogImageDefaultPath : ogImageGeneratedPath
 
     // TODO: could be improved to support external images in the future
-    const frontmatterImgUrl = fileData.frontmatter?.socialImage
+    // Handle aliases (socialImage, image and cover are supported to ensure obsidian publish support)
+    const frontmatterImgUrl =
+      fileData.frontmatter?.socialImage ??
+      fileData.frontmatter?.image ??
+      fileData.frontmatter?.cover
     if (frontmatterImgUrl) {
       ogImagePath = `https://${cfg.baseUrl}/static/${frontmatterImgUrl}`
     }
