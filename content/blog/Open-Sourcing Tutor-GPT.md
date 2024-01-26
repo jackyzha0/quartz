@@ -2,14 +2,13 @@
 title: "Open-Sourcing Tutor-GPT"
 date: "Jun 2, 2023"
 ---
-
 ![[assets/human_machine_learning.jpeg]]
 
 ## TL;DR
 
 Today we’re [open-sourcing](https://github.com/plastic-labs/tutor-gpt) Bloom, our digital [Aristotelian](https://erikhoel.substack.com/p/why-we-stopped-making-einsteins) learning companion.
 
-What makes [Bloom](https://bloombot.ai/) compelling is its ability to _reason pedagogically_ about the learner. That is, it uses dialogue to posit the most educationally-optimal tutoring behavior. Eliciting this from the [capability overhang](https://jack-clark.net/2023/03/21/import-ai-321-open-source-gpt3-giving-away-democracy-to-agi-companies-gpt-4-is-a-political-artifact/) involves multiple chains of [metaprompting](https://arxiv.org/pdf/2102.07350.pdf) enabling Bloom to construct a nascent academic [theory of mind](https://arxiv.org/pdf/2304.11490.pdf) for each student.
+What makes [Bloom](https://bloombot.ai/) compelling is its ability to _reason pedagogically_ about the learner. That is, it uses dialogue to posit the most educationally-optimal tutoring behavior. Eliciting this from the [capability overhang](https://jack-clark.net/2023/03/21/import-ai-321-open-source-gpt3-giving-away-democracy-to-agi-companies-gpt-4-is-a-political-artifact/) involves multiple chains of [metaprompting](https://arxiv.org/pdf/2102.07350.pdf,) enabling Bloom to construct a nascent, academic [theory of mind](https://arxiv.org/pdf/2304.11490.pdf) for each student.
 
 We’re not seeing this in the explosion of ‘chat-over-content’ tools, most of which fail to capitalize on the enormous latent abilities of LLMs. Even the impressive out-of-the-box capabilities of contemporary models don’t achieve the necessary user intimacy. Infrastructure for that doesn’t exist yet 👀.
 
@@ -27,23 +26,23 @@ Current compute suggests we can do high-grade 1:1 for two orders of magnitude ch
 
 ![[assets/2 orders magnitude reduced cost.png]]
 
-It's clear generative AI stands a good chance of democratizing this kind of access and attention, but what's less clear are the specifics. It's tough to be an effective teacher that students actually want to learn from. Harder still to let the student guide the experience yet maintain an elevated discourse.
+It's clear generative AI stands a good chance of democratizing this kind of access and attention, but what's less clear are the specifics. It's tough to be an effective teacher that students actually want to learn from. Harder still to let the student guide the experience, yet maintain an elevated discourse.
 
-So how do we create successful learning agents that students will eagerly use without coercion? We think this ability lies latent in base models, but the key is eliciting it.
+So how do we create successful learning agents that students will eagerly use without coercion? We think this ability lies latent in foundation models, but the key is eliciting it.
 
 ## Eliciting Pedagogical Reasoning
 
 The machine learning community has long sought to uncover the full range of tasks that large language models can be prompted to accomplish on general pre-training alone (the capability overhang). We believe we have discovered one such task: pedagogical reasoning.
 
-Bloom was built and prompted to elicit this specific type of teaching behavior. (The kind laborious for new teachers, but that adept ones learn to do unconsciously.) After each input it revises a user’s real-time academic needs, considers all the information at its disposal, and suggests to itself a framework for constructing the ideal response.
+Bloom was built and prompted to elicit this specific type of teaching behavior. (The kind laborious for new teachers, but that adept ones learn to do unconsciously.) After each input it revises a user’s real-time academic needs, considers all the information at its disposal, and suggests to itself a framework for constructing the ideal response. ^285105
 
 ![[assets/bloombot langchain diagram.png]]
 
-It consists of two “chain” objects from [LangChain](https://python.langchain.com/en/latest/index.html) —a _thought_ and _response_ chain. The _thought_ chain exists to prompt the model to generate a pedagogical thought about the student’s input—e.g. a student’s mental state, learning goals, preferences for the conversation, quality of reasoning, knowledge of the text, etc. The *response*chain takes that _thought_ and generates a response.
+It consists of two “chain” objects from [LangChain](https://python.langchain.com/en/latest/index.html) —a _thought_ and _response_ chain. The _thought_ chain exists to prompt the model to generate a pedagogical thought about the student’s input—e.g. a student’s mental state, learning goals, preferences for the conversation, quality of reasoning, knowledge of the text, etc. The *response* chain takes that _thought_ and generates a response. ^1e01f2
 
-Each chain has a `ConversationSummaryBufferMemory` object summarizing the respective “conversations.” The _thought_ chain summarizes the thoughts into a rank-ordered academic needs list that gains specificity and gets reprioritized with each student input. The _response_ chain summarizes the dialogue in an attempt to avoid circular conversations and record learning progress.
+Each chain has a `ConversationSummaryBufferMemory` object summarizing the respective “conversations.” The _thought_ chain summarizes the thoughts into a rank-ordered academic needs list that gains specificity and gets reprioritized with each student input. The _response_ chain summarizes the dialogue in an attempt to avoid circular conversations and record learning progress. ^b1794d
 
-We’re eliciting this behavior from [prompting alone](https://arxiv.org/pdf/2102.07350.pdf). Two of Plastic’s co-founders have extensive experience in education, both in private tutoring and the classroom. They employed this to craft strong example dialogues that sufficiently [demonstrated](https://github.com/plastic-labs/tutor-gpt/tree/main/data) how to respond across a range of situations.
+We’re eliciting this behavior from [prompting alone](https://arxiv.org/pdf/2102.07350.pdf). Two of Plastic’s co-founders have extensive experience in education, both in private tutoring and the classroom. They crafted strong example dialogues that sufficiently [demonstrated](https://github.com/plastic-labs/tutor-gpt/tree/main/data) how to respond across a range of situations.
 
 Take for example a situation where the student asks directly for an answer. Here is Bloom’s response compared to [Khanmigo’s](https://www.khanacademy.org/khan-labs):
 
@@ -58,19 +57,19 @@ And Bloom is dynamic, even when given no excerpted context and asked about non-t
 
 ![[assets/bloom_courtland.png]]
 
-and its accompanying thoughts:
+And its accompanying thoughts:
 
 ![[assets/bloom_courtland_thoughts.png]]
 
-Notice how Bloom reasons it should indulge the topic, validate the student, and point toward (but not supply) possible answers. Then the resultant responses are ones that do this and more, gently guiding toward a fuller comprehension and higher-fidelity understanding of the music.
+Notice how Bloom reasons it should indulge the topic, validate the student, and point toward (but not supply) possible answers. Then the resultant responses do this and more, gently guiding toward a fuller comprehension and higher-fidelity understanding of the music.
 
-Aside from these edgier cases, Bloom shines helping students understand difficult passages (from syntactic to conceptual levels) and giving writing feedback (especially competent at thesis construction). [Take it for a spin.](https://discord.gg/udtxycbh)
+Aside from these edgier cases, Bloom shines helping students understand difficult passages (from syntactic to conceptual levels) and giving writing feedback (especially competent at thesis construction). [Take it for a spin](https://discord.gg/udtxycbh).
 
-Ultimately, we hope [open-sourcing Bloom](https://github.com/plastic-labs/tutor-gpt#readme) will allow anyone to run with these elicitations and prompt to expand its utility to support other domains. We’ll be doing work here too.
+Ultimately, we hope [open-sourcing Bloom](https://github.com/plastic-labs/tutor-gpt#readme) will allow anyone to run with these elicitations and prompt to expand utility and support multiple domains. We’ll be doing work here too.
 
 ## Bloom & Agentic AI
 
-This constitutes the beginning of an approach far superior to just slapping a chatbot UI over a content library that's probably already in a base model's pre-training.
+This constitutes the beginning of an approach far superior to just slapping a chatbot UI over a content library that's probably already in the foundation model's pre-training.
 
 After all, if it were just about content delivery, MOOCs would've solved education. We need more than that to reliably grow rare minds. And we're already seeing Bloom excel at promoting synthesis and creative interpretation within its narrow utility.
 

@@ -2,10 +2,9 @@
 title: "Theory-of-Mind Is All You Need"
 date: "Jun 12, 2023"
 ---
-
 ## TL;DR
 
-Today we’re releasing a major upgrade to [Bloom](https://discord.gg/bloombot.ai) (& the open-source codebase, [Tutor-GPT](https://github.com/plastic-labs/tutor-gpt)).
+Today we’re releasing a major upgrade to [Bloom](https://discord.gg/bloombot.ai) (& the open-source codebase, [tutor-gpt](https://github.com/plastic-labs/tutor-gpt)).
 
 We gave our tutor even more autonomy to reason about the psychology of the user, and—using GPT-4 to dynamically _rewrite its own_ system prompts—we’re able to dramatically expand the scope of what Bloom can do _and_ massively reduce our prompting architecture.
 
@@ -23,7 +22,7 @@ Explaining all this to a tutor (synthetic or biological) upfront, is laborious a
 
 ![[assets/ToM meme.jpeg]]
 
-What a expert educators will do is gather more information throughout the completion of the task, resolving on a more precise objective along the way; keeping the flow natural, and leaving the door open to compelling tangents and pivots.
+What expert educators will do is gather more information throughout the completion of the task, resolving on a more precise objective along the way; keeping the flow natural, and leaving the door open to compelling tangents and pivots.
 
 The key here is they don’t have all the information—they _don’t know_ what the objective is precisely—but being good at tutoring means turning that into an advantage, figuring it out along the way is _optimal_. The effective human tutor dynamically iterates on a set of internal models about student psychology and session objectives. So how do we recreate this in Bloom?
 
@@ -35,13 +34,11 @@ What if we treated Bloom with some intellectual respect?
 
 The solution here is scary simple. The results are scary good.
 
-[Here’s a description](https://plasticlabs.ai/blog/Open-Sourcing-Tutor-GPT/) of the previous version’s architecture:
+[[Open-Sourcing Tutor-GPT#^285105|Here’s a description]] of the previous version’s architecture:
 
-> Bloom was built and prompted to elicit \[pedagogical reasoning\]…After each input it revises a user’s real-time academic needs, considers all the information at its disposal, and suggests to itself a framework for constructing the ideal response.
-> 
-> It consists of two “chain” objects from [LangChain](https://python.langchain.com/en/latest/index.html) —a _thought_ and _response_ chain. The _thought_ chain exists to prompt the model to generate a pedagogical thought about the student’s input—e.g. a student’s mental state, learning goals, preferences for the conversation, quality of reasoning, knowledge of the text, etc. The _response_ chain takes that _thought_ and generates a response.
-> 
-> Each chain has a `ConversationSummaryBufferMemory` object summarizing the respective “conversations.” The _thought_ chain summarizes the thoughts into a rank-ordered academic needs list that gains specificity and gets reprioritized with each student input. The _response_ chain summarizes the dialogue in an attempt to avoid circular conversations and record learning progress.
+![[Open-Sourcing Tutor-GPT#^285105]]
+![[Open-Sourcing Tutor-GPT#^1e01f2]]
+![[Open-Sourcing Tutor-GPT#^b1794d]]
 
 Instead, we’ve now repurposed the ***thought*** chain to do two things:
 
