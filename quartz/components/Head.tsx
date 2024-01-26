@@ -6,7 +6,6 @@ import * as fs from "fs"
 import { ImageOptions, SocialImageOptions, getSatoriFont } from "../util/imageHelper"
 import sharp from "sharp"
 import { defaultImage } from "../util/socialImage"
-import { JSXInternal } from "preact/src/jsx"
 import { unescapeHTML } from "../util/escape"
 
 /**
@@ -120,7 +119,8 @@ export default (() => {
     // Path to og/social image (priority: frontmatter > generated image (if enabled) > default image)
     let ogImagePath = useDefaultOgImage ? ogImageDefaultPath : ogImageGeneratedPath
 
-    const frontmatterImgUrl = fileData.frontmatter?.socialImageUrl
+    // TODO: could be improved to support external images in the future
+    const frontmatterImgUrl = fileData.frontmatter?.socialImage
     if (frontmatterImgUrl) {
       ogImagePath = `https://${cfg.baseUrl}/static/${frontmatterImgUrl}`
     }
