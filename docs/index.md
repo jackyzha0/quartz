@@ -26,7 +26,7 @@ This will guide you through initializing your Quartz with content. Once you've d
 5. [[hosting|Host]] Quartz online
 
 If you prefer instructions in a video format you can try following Nicole van der Hoeven's
-[video guide on how set up Quartz!](https://www.youtube.com/watch?v=6s6DT1yN4dw&t=227s)
+[video guide on how to set up Quartz!](https://www.youtube.com/watch?v=6s6DT1yN4dw&t=227s)
 
 ## 🔧 Features
 
