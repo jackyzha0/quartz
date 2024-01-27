@@ -41,8 +41,8 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   }
 
   i18next.init({
-    lng: ctx.cfg.configuration.locale || "en",
-    fallbackLng: "en",
+    lng: ctx.cfg.configuration.locale || "en-US",
+    fallbackLng: "en-US",
     resources,
     returnNull: false,
   })
