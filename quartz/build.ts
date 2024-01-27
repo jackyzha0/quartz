@@ -17,6 +17,8 @@ import { glob, toPosixPath } from "./util/glob"
 import { trace } from "./util/trace"
 import { options } from "./util/sourcemap"
 import { Mutex } from "async-mutex"
+import i18next from "i18next"
+import { resources } from "./i18n/i18next"
 
 type BuildData = {
   ctx: BuildCtx
@@ -37,6 +39,13 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
     cfg,
     allSlugs: [],
   }
+
+  i18next.init({
+    lng: ctx.cfg.configuration.locale || "en",
+    fallbackLng: "en",
+    resources,
+    returnNull: false,
+  })
 
   const perf = new PerfTimer()
   const output = argv.output

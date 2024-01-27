@@ -35,6 +35,7 @@ export interface GlobalConfiguration {
    */
   baseUrl?: string
   theme: Theme
+  locale?: "en" | "fr"
 }
 
 export interface QuartzConfig {
