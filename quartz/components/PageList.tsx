@@ -46,7 +46,7 @@ export function PageList({ cfg, fileData, allFiles, limit }: Props) {
             <div class="section">
               {page.dates && (
                 <p class="meta">
-                  <Date date={getDate(cfg, page)!} />
+                  <Date date={getDate(cfg, page)!} locale={cfg.dateLocale ?? "en-US"} />
                 </p>
               )}
               <div class="desc">
