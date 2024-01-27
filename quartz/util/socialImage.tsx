@@ -1,10 +1,10 @@
 import { SatoriOptions } from "satori/wasm"
 import { GlobalConfiguration } from "../cfg"
-import { SocialImageOptions } from "./imageHelper"
+import { SocialImageOptions, UserOpts } from "./imageHelper"
 
 export const defaultImage: SocialImageOptions["imageStructure"] = (
   cfg: GlobalConfiguration,
-  userOpts: SocialImageOptions,
+  userOpts: UserOpts,
   title: string,
   description: string,
   fonts: SatoriOptions["fonts"],

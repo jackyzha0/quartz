@@ -74,12 +74,14 @@ export type SocialImageOptions = {
    */
   imageStructure: (
     cfg: GlobalConfiguration,
-    userOpts: SocialImageOptions,
+    userOpts: UserOpts,
     title: string,
     description: string,
     fonts: SatoriOptions["fonts"],
   ) => JSXInternal.Element
 }
+
+export type UserOpts = Omit<SocialImageOptions, "imageStructure">
 
 export type ImageOptions = {
   /**

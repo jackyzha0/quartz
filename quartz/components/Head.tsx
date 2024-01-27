@@ -72,8 +72,11 @@ export default (() => {
     if (fdDescription) {
       description = unescapeHTML(fdDescription)
     }
+
     if (fileData.frontmatter?.socialDescription) {
       description = fileData.frontmatter.socialDescription
+    } else if (fileData.frontmatter?.description) {
+      description = fileData.frontmatter?.description
     }
 
     if (cfg.generateSocialImages) {
