@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: 18.14
       - name: Install Dependencies
-        run: npm i # was npm ci
+        run: npm ci # was npm i
       - name: Build Quartz
         run: npx quartz build
       - name: Upload artifact
