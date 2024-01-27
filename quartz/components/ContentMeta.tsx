@@ -24,7 +24,7 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
       const segments: string[] = []
 
       if (fileData.dates) {
-        segments.push(formatDate(getDate(cfg, fileData)!, cfg.dateLocale ?? "en-US"))
+        segments.push(formatDate(getDate(cfg, fileData)!, cfg.locale ?? "en-US"))
       }
 
       // Display reading time if enabled
