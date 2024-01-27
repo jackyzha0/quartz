@@ -99,6 +99,22 @@
           border: 1px solid var(--lightgray); // Border to define the box
         }
 
+        @media all and (max-width: $mobileBreakpoint) {
+          display: block;
+          & > * {
+            border: none !important;
+          }
+
+          & > *:not(#results-container) {
+            display: none !important;
+          }
+
+          & > #results-container {
+            width: 100%;
+            height: auto;
+          }
+        }
+
         & > #preview-container {
           flex-basis: 70%;
           display: block;
