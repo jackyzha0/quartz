@@ -36,7 +36,10 @@ function FolderContent(props: QuartzComponentProps) {
       <article>
         <p>{content}</p>
       </article>
-      <p>{pluralize(allPagesInFolder.length, i18next.t("common.item"))} {i18next.t("folderContent.underThisFolder")}.</p>
+      <p>
+        {pluralize(allPagesInFolder.length, i18next.t("common.item"))}{" "}
+        {i18next.t("folderContent.underThisFolder")}.
+      </p>
       <div>
         <PageList {...listProps} />
       </div>

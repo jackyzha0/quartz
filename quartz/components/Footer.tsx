@@ -15,7 +15,8 @@ export default ((opts?: Options) => {
       <footer class={`${displayClass ?? ""}`}>
         <hr />
         <p>
-          {i18next.t("footer.createdWith")} <a href="https://quartz.jzhao.xyz/">Quartz v{version}</a>, © {year}
+          {i18next.t("footer.createdWith")}{" "}
+          <a href="https://quartz.jzhao.xyz/">Quartz v{version}</a>, © {year}
         </p>
         <ul>
           {Object.entries(links).map(([text, link]) => (
