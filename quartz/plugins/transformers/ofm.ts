@@ -225,8 +225,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     const regexImage= new RegExp(/^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/);
                     const match = regexImage.exec(alias ?? "");
                     const alt = match?.groups?.alt ?? "";
-                    const width = match?.groups?.width ?? "";
-                    const height = match?.groups?.height ?? "";
+                    const width = match?.groups?.width ?? "auto";
+                    const height = match?.groups?.height ?? "auto";
                     return {
                       type: "image",
                       url,
