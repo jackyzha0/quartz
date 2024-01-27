@@ -25,6 +25,9 @@ This will guide you through initializing your Quartz with content. Once you've d
 4. [[build|Build and preview]] Quartz
 5. [[hosting|Host]] Quartz online
 
+If you prefer instructions in a video format you can try following Nicole van der Hoeven's
+[video guide on how to set up Quartz!](https://www.youtube.com/watch?v=6s6DT1yN4dw&t=227s)
+
 ## 🔧 Features
 
 - [[Obsidian compatibility]], [[full-text search]], [[graph view]], note transclusion, [[wikilinks]], [[backlinks]], [[Latex]], [[syntax highlighting]], [[popover previews]], [[Docker Support]], and [many more](./features) right out of the box
