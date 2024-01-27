@@ -7,6 +7,7 @@ import { _stripSlashes, simplifySlug } from "../../util/path"
 import { Root } from "hast"
 import { pluralize } from "../../util/lang"
 import { htmlToJsx } from "../../util/jsx"
+import i18next from "i18next"
 
 function FolderContent(props: QuartzComponentProps) {
   const { tree, fileData, allFiles } = props
@@ -35,7 +36,7 @@ function FolderContent(props: QuartzComponentProps) {
       <article>
         <p>{content}</p>
       </article>
-      <p>{pluralize(allPagesInFolder.length, "item")} under this folder.</p>
+      <p>{pluralize(allPagesInFolder.length, i18next.t("common.item"))} {i18next.t("folderContent.underThisFolder")}.</p>
       <div>
         <PageList {...listProps} />
       </div>

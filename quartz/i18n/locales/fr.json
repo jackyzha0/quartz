@@ -1,9 +1,37 @@
 {
-  "backlink": {
-    "notFound": "Aucun rétrolien trouvé",
-    "title": "Rétroliens"
+  "404": "Soit cette page est privée, soit elle n'existe pas.",
+  "backlinks": {
+    "backlinks": "Rétroliens",
+    "noBlacklinksFound": "Aucun rétrolien trouvé"
+  },
+  "common": {
+    "item": "fichier"
+  },
+  "darkmode": {
+    "darkmode": "Thème sombre",
+    "lightMode": "Thème clair"
+  },
+  "folderContent": {
+    "underThisFolder": "dans ce dossier"
+  },
+  "footer": {
+    "createdWith": "Créé avec"
   },
   "graph": {
-    "title": "Vue Graphique"
+    "graphView": "Vue Graphique"
+  },
+  "head": {
+    "noDescriptionProvided": "Aucune description n'a été fournie",
+    "untitled": "Sans titre"
+  },
+  "recentNote": {
+    "seeRemainingMore": "Voir {{- remaining}} more"
+  },
+  "search": "Rechercher",
+  "tableOfContent": "Table des Matières",
+  "tagContent": {
+    "showingFirst": "Afficher en premier",
+    "totalTags": "tags totaux",
+    "withThisTag": "avec ce tag"
   }
 }

@@ -2,13 +2,14 @@ import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import style from "./styles/search.scss"
 // @ts-ignore
 import script from "./scripts/search.inline"
+import i18next from "i18next"
 
 export default (() => {
   function Search({ displayClass }: QuartzComponentProps) {
     return (
       <div class={`search ${displayClass ?? ""}`}>
         <div id="search-icon">
-          <p>Search</p>
+          <p>{i18next.t("search")}</p>
           <div></div>
           <svg
             tabIndex={0}

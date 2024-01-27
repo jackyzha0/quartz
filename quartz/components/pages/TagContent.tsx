@@ -6,6 +6,7 @@ import { QuartzPluginData } from "../../plugins/vfile"
 import { Root } from "hast"
 import { pluralize } from "../../util/lang"
 import { htmlToJsx } from "../../util/jsx"
+import i18next from "i18next"
 
 const numPages = 10
 function TagContent(props: QuartzComponentProps) {
@@ -43,7 +44,7 @@ function TagContent(props: QuartzComponentProps) {
         <article>
           <p>{content}</p>
         </article>
-        <p>Found {tags.length} total tags.</p>
+        <p>Found {tags.length} {i18next.t("tagContent.totalTags")}.</p>
         <div>
           {tags.map((tag) => {
             const pages = tagItemMap.get(tag)!
@@ -63,8 +64,8 @@ function TagContent(props: QuartzComponentProps) {
                 </h2>
                 {content && <p>{content}</p>}
                 <p>
-                  {pluralize(pages.length, "item")} with this tag.{" "}
-                  {pages.length > numPages && `Showing first ${numPages}.`}
+                  {pluralize(pages.length, i18next.t("common.item"))} {i18next.t("tagContent.withThisTag")}.{" "}
+                  {pages.length > numPages && `${i18next.t("tagContent.showingFirst")} ${numPages}.`}
                 </p>
                 <PageList limit={numPages} {...listProps} />
               </div>
@@ -83,7 +84,7 @@ function TagContent(props: QuartzComponentProps) {
     return (
       <div class="popover-hint">
         <article>{content}</article>
-        <p>{pluralize(pages.length, "item")} with this tag.</p>
+        <p>{pluralize(pages.length, i18next.t("common.item"))} {i18next.t("tagContent.withThisTag")}.</p>
         <div>
           <PageList {...listProps} />
         </div>
