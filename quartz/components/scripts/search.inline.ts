@@ -35,12 +35,12 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
   if (trim) {
     const includesCheck = (tok: string) =>
       tokenizedTerms.some((term) => tok.toLowerCase().startsWith(term.toLowerCase()))
-    const occurencesIndices = tokenizedText.map(includesCheck)
+    const occurrencesIndices = tokenizedText.map(includesCheck)
 
     let bestSum = 0
     let bestIndex = 0
     for (let i = 0; i < Math.max(tokenizedText.length - contextWindowWords, 0); i++) {
-      const window = occurencesIndices.slice(i, i + contextWindowWords)
+      const window = occurrencesIndices.slice(i, i + contextWindowWords)
       const windowSum = window.reduce((total, cur) => total + (cur ? 1 : 0), 0)
       if (windowSum >= bestSum) {
         bestSum = windowSum
@@ -122,7 +122,10 @@ document.addEventListener("nav", async (e: unknown) => {
 
       // add "#" prefix for tag search
       if (searchBar) searchBar.value = "#"
-    } else if (e.key === "Enter") {
+    }
+
+    if (!container?.classList.contains("active")) return
+    else if (e.key === "Enter") {
       // If result has focus, navigate to that one, otherwise pick first result
       if (results?.contains(document.activeElement)) {
         const active = document.activeElement as HTMLInputElement
@@ -131,7 +134,14 @@ document.addEventListener("nav", async (e: unknown) => {
         const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
         anchor?.click()
       }
-    } else if (e.key === "ArrowDown") {
+    } else if (e.key === "ArrowUp" || (e.shiftKey && e.key === "Tab")) {
+      e.preventDefault()
+      if (results?.contains(document.activeElement)) {
+        // If an element in results-container already has focus, focus previous one
+        const prevResult = document.activeElement?.previousElementSibling as HTMLInputElement | null
+        prevResult?.focus()
+      }
+    } else if (e.key === "ArrowDown" || e.key === "Tab") {
       e.preventDefault()
       // When first pressing ArrowDown, results wont contain the active element, so focus first element
       if (!results?.contains(document.activeElement)) {
@@ -141,13 +151,6 @@ document.addEventListener("nav", async (e: unknown) => {
         // If an element in results-container already has focus, focus next one
         const nextResult = document.activeElement?.nextElementSibling as HTMLInputElement | null
         nextResult?.focus()
-      }
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault()
-      if (results?.contains(document.activeElement)) {
-        // If an element in results-container already has focus, focus previous one
-        const prevResult = document.activeElement?.previousElementSibling as HTMLInputElement | null
-        prevResult?.focus()
       }
     }
   }
@@ -196,7 +199,7 @@ document.addEventListener("nav", async (e: unknown) => {
       const termLower = term.toLowerCase()
       let matching = tags.filter((str) => str.includes(termLower))
 
-      // Substract matching from original tags, then push difference
+      // Subtract matching from original tags, then push difference
       if (matching.length > 0) {
         let difference = tags.filter((x) => !matching.includes(x))
 
@@ -219,16 +222,16 @@ document.addEventListener("nav", async (e: unknown) => {
 
   const resultToHTML = ({ slug, title, content, tags }: Item) => {
     const htmlTags = tags.length > 0 ? `<ul>${tags.join("")}</ul>` : ``
-    const button = document.createElement("button")
-    button.classList.add("result-card")
-    button.id = slug
-    button.innerHTML = `<h3>${title}</h3>${htmlTags}<p>${content}</p>`
-    button.addEventListener("click", () => {
-      const targ = resolveRelative(currentSlug, slug)
-      window.spaNavigate(new URL(targ, window.location.toString()))
+    const itemTile = document.createElement("a")
+    itemTile.classList.add("result-card")
+    itemTile.id = slug
+    itemTile.href = new URL(resolveRelative(currentSlug, slug), location.toString()).toString()
+    itemTile.innerHTML = `<h3>${title}</h3>${htmlTags}<p>${content}</p>`
+    itemTile.addEventListener("click", (event) => {
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
       hideSearch()
     })
-    return button
+    return itemTile
   }
 
   function displayResults(finalResults: Item[]) {
@@ -236,10 +239,10 @@ document.addEventListener("nav", async (e: unknown) => {
 
     removeAllChildren(results)
     if (finalResults.length === 0) {
-      results.innerHTML = `<button class="result-card">
+      results.innerHTML = `<a class="result-card">
                     <h3>No results.</h3>
                     <p>Try another search term?</p>
-                </button>`
+                </a>`
     } else {
       results.append(...finalResults.map(resultToHTML))
     }
@@ -303,7 +306,6 @@ document.addEventListener("nav", async (e: unknown) => {
   // setup index if it hasn't been already
   if (!index) {
     index = new Document({
-      cache: true,
       charset: "latin:extra",
       optimize: true,
       encode: encoder,

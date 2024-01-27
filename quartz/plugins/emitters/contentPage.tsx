@@ -7,6 +7,8 @@ import { FullPageLayout } from "../../cfg"
 import { FilePath, pathToRoot } from "../../util/path"
 import { defaultContentPageLayout, sharedPageComponents } from "../../../quartz.layout"
 import { Content } from "../../components"
+import chalk from "chalk"
+import { write } from "./helpers"
 
 export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) => {
   const opts: FullPageLayout = {
@@ -25,12 +27,18 @@ export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOp
     getQuartzComponents() {
       return [Head, Header, Body, ...header, ...beforeBody, pageBody, ...left, ...right, Footer]
     },
-    async emit(ctx, content, resources, emit): Promise<FilePath[]> {
+    async emit(ctx, content, resources): Promise<FilePath[]> {
       const cfg = ctx.cfg.configuration
       const fps: FilePath[] = []
       const allFiles = content.map((c) => c[1].data)
+
+      let containsIndex = false
       for (const [tree, file] of content) {
         const slug = file.data.slug!
+        if (slug === "index") {
+          containsIndex = true
+        }
+
         const externalResources = pageResources(pathToRoot(slug), resources)
         const componentData: QuartzComponentProps = {
           fileData: file.data,
@@ -42,7 +50,8 @@ export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOp
         }
 
         const content = renderPage(slug, componentData, opts, externalResources)
-        const fp = await emit({
+        const fp = await write({
+          ctx,
           content,
           slug,
           ext: ".html",
@@ -50,6 +59,15 @@ export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOp
 
         fps.push(fp)
       }
+
+      if (!containsIndex) {
+        console.log(
+          chalk.yellow(
+            `\nWarning: you seem to be missing an \`index.md\` home page file at the root of your \`${ctx.argv.directory}\` folder. This may cause errors when deploying.`,
+          ),
+        )
+      }
+
       return fps
     },
   }

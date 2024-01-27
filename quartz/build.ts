@@ -3,13 +3,13 @@ sourceMapSupport.install(options)
 import path from "path"
 import { PerfTimer } from "./util/perf"
 import { rimraf } from "rimraf"
-import { isGitIgnored } from "globby"
+import { GlobbyFilterFunction, isGitIgnored } from "globby"
 import chalk from "chalk"
 import { parseMarkdown } from "./processors/parse"
 import { filterContent } from "./processors/filter"
 import { emitContent } from "./processors/emit"
 import cfg from "../quartz.config"
-import { FilePath, joinSegments, slugifyFilePath } from "./util/path"
+import { FilePath, FullSlug, joinSegments, slugifyFilePath } from "./util/path"
 import chokidar from "chokidar"
 import { ProcessedContent } from "./plugins/vfile"
 import { Argv, BuildCtx } from "./util/ctx"
@@ -17,6 +17,19 @@ import { glob, toPosixPath } from "./util/glob"
 import { trace } from "./util/trace"
 import { options } from "./util/sourcemap"
 import { Mutex } from "async-mutex"
+
+type BuildData = {
+  ctx: BuildCtx
+  ignored: GlobbyFilterFunction
+  mut: Mutex
+  initialSlugs: FullSlug[]
+  // TODO merge contentMap and trackedAssets
+  contentMap: Map<FilePath, ProcessedContent>
+  trackedAssets: Set<FilePath>
+  toRebuild: Set<FilePath>
+  toRemove: Set<FilePath>
+  lastBuildMs: number
+}
 
 async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   const ctx: BuildCtx = {
@@ -73,89 +86,22 @@ async function startServing(
 ) {
   const { argv } = ctx
 
-  const ignored = await isGitIgnored()
   const contentMap = new Map<FilePath, ProcessedContent>()
   for (const content of initialContent) {
     const [_tree, vfile] = content
     contentMap.set(vfile.data.filePath!, content)
   }
 
-  const initialSlugs = ctx.allSlugs
-  let lastBuildMs = 0
-  const toRebuild: Set<FilePath> = new Set()
-  const toRemove: Set<FilePath> = new Set()
-  const trackedAssets: Set<FilePath> = new Set()
-  async function rebuild(fp: string, action: "add" | "change" | "delete") {
-    // don't do anything for gitignored files
-    if (ignored(fp)) {
-      return
-    }
-
-    // dont bother rebuilding for non-content files, just track and refresh
-    fp = toPosixPath(fp)
-    const filePath = joinSegments(argv.directory, fp) as FilePath
-    if (path.extname(fp) !== ".md") {
-      if (action === "add" || action === "change") {
-        trackedAssets.add(filePath)
-      } else if (action === "delete") {
-        trackedAssets.delete(filePath)
-      }
-      clientRefresh()
-      return
-    }
-
-    if (action === "add" || action === "change") {
-      toRebuild.add(filePath)
-    } else if (action === "delete") {
-      toRemove.add(filePath)
-    }
-
-    // debounce rebuilds every 250ms
-
-    const buildStart = new Date().getTime()
-    lastBuildMs = buildStart
-    const release = await mut.acquire()
-    if (lastBuildMs > buildStart) {
-      release()
-      return
-    }
-
-    const perf = new PerfTimer()
-    console.log(chalk.yellow("Detected change, rebuilding..."))
-    try {
-      const filesToRebuild = [...toRebuild].filter((fp) => !toRemove.has(fp))
-
-      const trackedSlugs = [...new Set([...contentMap.keys(), ...toRebuild, ...trackedAssets])]
-        .filter((fp) => !toRemove.has(fp))
-        .map((fp) => slugifyFilePath(path.posix.relative(argv.directory, fp) as FilePath))
-
-      ctx.allSlugs = [...new Set([...initialSlugs, ...trackedSlugs])]
-      const parsedContent = await parseMarkdown(ctx, filesToRebuild)
-      for (const content of parsedContent) {
-        const [_tree, vfile] = content
-        contentMap.set(vfile.data.filePath!, content)
-      }
-
-      for (const fp of toRemove) {
-        contentMap.delete(fp)
-      }
-
-      const parsedFiles = [...contentMap.values()]
-      const filteredContent = filterContent(ctx, parsedFiles)
-
-      // TODO: we can probably traverse the link graph to figure out what's safe to delete here
-      // instead of just deleting everything
-      await rimraf(argv.output)
-      await emitContent(ctx, filteredContent)
-      console.log(chalk.green(`Done rebuilding in ${perf.timeSince()}`))
-    } catch {
-      console.log(chalk.yellow(`Rebuild failed. Waiting on a change to fix the error...`))
-    }
-
-    clientRefresh()
-    toRebuild.clear()
-    toRemove.clear()
-    release()
+  const buildData: BuildData = {
+    ctx,
+    mut,
+    contentMap,
+    ignored: await isGitIgnored(),
+    initialSlugs: ctx.allSlugs,
+    toRebuild: new Set<FilePath>(),
+    toRemove: new Set<FilePath>(),
+    trackedAssets: new Set<FilePath>(),
+    lastBuildMs: 0,
   }
 
   const watcher = chokidar.watch(".", {
@@ -165,13 +111,108 @@ async function startServing(
   })
 
   watcher
-    .on("add", (fp) => rebuild(fp, "add"))
-    .on("change", (fp) => rebuild(fp, "change"))
-    .on("unlink", (fp) => rebuild(fp, "delete"))
+    .on("add", (fp) => rebuildFromEntrypoint(fp, "add", clientRefresh, buildData))
+    .on("change", (fp) => rebuildFromEntrypoint(fp, "change", clientRefresh, buildData))
+    .on("unlink", (fp) => rebuildFromEntrypoint(fp, "delete", clientRefresh, buildData))
 
   return async () => {
     await watcher.close()
   }
+}
+
+async function rebuildFromEntrypoint(
+  fp: string,
+  action: "add" | "change" | "delete",
+  clientRefresh: () => void,
+  buildData: BuildData, // note: this function mutates buildData
+) {
+  const {
+    ctx,
+    ignored,
+    mut,
+    initialSlugs,
+    contentMap,
+    toRebuild,
+    toRemove,
+    trackedAssets,
+    lastBuildMs,
+  } = buildData
+
+  const { argv } = ctx
+
+  // don't do anything for gitignored files
+  if (ignored(fp)) {
+    return
+  }
+
+  // dont bother rebuilding for non-content files, just track and refresh
+  fp = toPosixPath(fp)
+  const filePath = joinSegments(argv.directory, fp) as FilePath
+  if (path.extname(fp) !== ".md") {
+    if (action === "add" || action === "change") {
+      trackedAssets.add(filePath)
+    } else if (action === "delete") {
+      trackedAssets.delete(filePath)
+    }
+    clientRefresh()
+    return
+  }
+
+  if (action === "add" || action === "change") {
+    toRebuild.add(filePath)
+  } else if (action === "delete") {
+    toRemove.add(filePath)
+  }
+
+  // debounce rebuilds every 250ms
+
+  const buildStart = new Date().getTime()
+  buildData.lastBuildMs = buildStart
+  const release = await mut.acquire()
+  if (lastBuildMs > buildStart) {
+    release()
+    return
+  }
+
+  const perf = new PerfTimer()
+  console.log(chalk.yellow("Detected change, rebuilding..."))
+  try {
+    const filesToRebuild = [...toRebuild].filter((fp) => !toRemove.has(fp))
+
+    const trackedSlugs = [...new Set([...contentMap.keys(), ...toRebuild, ...trackedAssets])]
+      .filter((fp) => !toRemove.has(fp))
+      .map((fp) => slugifyFilePath(path.posix.relative(argv.directory, fp) as FilePath))
+
+    ctx.allSlugs = [...new Set([...initialSlugs, ...trackedSlugs])]
+    const parsedContent = await parseMarkdown(ctx, filesToRebuild)
+    for (const content of parsedContent) {
+      const [_tree, vfile] = content
+      contentMap.set(vfile.data.filePath!, content)
+    }
+
+    for (const fp of toRemove) {
+      contentMap.delete(fp)
+    }
+
+    const parsedFiles = [...contentMap.values()]
+    const filteredContent = filterContent(ctx, parsedFiles)
+
+    // TODO: we can probably traverse the link graph to figure out what's safe to delete here
+    // instead of just deleting everything
+    await rimraf(argv.output)
+    await emitContent(ctx, filteredContent)
+    console.log(chalk.green(`Done rebuilding in ${perf.timeSince()}`))
+  } catch (err) {
+    console.log(chalk.yellow(`Rebuild failed. Waiting on a change to fix the error...`))
+    if (argv.verbose) {
+      console.log(chalk.red(err))
+    }
+  }
+
+  release()
+  clientRefresh()
+  toRebuild.clear()
+  toRemove.clear()
 }
 
 export default async (argv: Argv, mut: Mutex, clientRefresh: () => void) => {

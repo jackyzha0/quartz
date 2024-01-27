@@ -8,6 +8,7 @@ export type Analytics =
   | null
   | {
       provider: "plausible"
+      host?: string
     }
   | {
       provider: "google"

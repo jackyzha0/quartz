@@ -25,7 +25,9 @@ Finally, Quartz also provides `Plugin.CrawlLinks` which allows you to customize 
     - `callouts`: whether to enable [[callouts]]. Defaults to `true`
     - `mermaid`: whether to enable [[Mermaid diagrams]]. Defaults to `true`
     - `parseTags`: whether to try and parse tags in the content body. Defaults to `true`
+    - `parseArrows`: whether to try and parse arrows in the content body. Defaults to `true`.
     - `enableInHtmlEmbed`: whether to try and parse Obsidian flavoured markdown in raw HTML. Defaults to `false`
+    - `enableYouTubeEmbed`: whether to enable embedded YouTube videos using external image Markdown syntax. Defaults to `false`
 - Link resolution behaviour:
   - Disabling: remove all instances of `Plugin.CrawlLinks()` from `quartz.config.ts`
   - Changing link resolution preference: set `markdownLinkResolution` to one of `absolute`, `relative` or `shortest`

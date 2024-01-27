@@ -94,8 +94,10 @@
           border: 1px solid var(--lightgray);
           border-bottom: none;
           width: 100%;
+          display: block;
+          box-sizing: border-box;
 
-          // normalize button props
+          // normalize card props
           font-family: inherit;
           font-size: 100%;
           line-height: 1.15;
@@ -104,6 +106,7 @@
           text-align: left;
           background: var(--light);
           outline: none;
+          font-weight: inherit;
 
           & .highlight {
             color: var(--secondary);

@@ -106,7 +106,7 @@ svg {
     align-items: center;
     font-family: var(--headerFont);
 
-    & p {
+    & span {
       font-size: 0.95rem;
       display: inline-block;
       color: var(--secondary);
@@ -126,7 +126,7 @@ svg {
   backface-visibility: visible;
 }
 
-div:has(> .folder-outer:not(.open)) > .folder-container > svg {
+li:has(> .folder-outer:not(.open)) > .folder-container > svg {
   transform: rotate(-90deg);
 }
 

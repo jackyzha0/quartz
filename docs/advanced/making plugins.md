@@ -216,22 +216,19 @@ export type QuartzEmitterPlugin<Options extends OptionType = undefined> = (
 
 export type QuartzEmitterPluginInstance = {
   name: string
-  emit(
-    ctx: BuildCtx,
-    content: ProcessedContent[],
-    resources: StaticResources,
-    emitCallback: EmitCallback,
-  ): Promise<FilePath[]>
+  emit(ctx: BuildCtx, content: ProcessedContent[], resources: StaticResources): Promise<FilePath[]>
   getQuartzComponents(ctx: BuildCtx): QuartzComponent[]
 }
 ```
 
-An emitter plugin must define a `name` field an `emit` function and a `getQuartzComponents` function. `emit` is responsible for looking at all the parsed and filtered content and then appropriately creating files and returning a list of paths to files the plugin created.
+An emitter plugin must define a `name` field, an `emit` function, and a `getQuartzComponents` function. `emit` is responsible for looking at all the parsed and filtered content and then appropriately creating files and returning a list of paths to files the plugin created.
 
-Creating new files can be done via regular Node [fs module](https://nodejs.org/api/fs.html) (i.e. `fs.cp` or `fs.writeFile`) or via the `emitCallback` if you are creating files that contain text. The `emitCallback` function is the 4th argument of the emit function. It's interface looks something like this:
+Creating new files can be done via regular Node [fs module](https://nodejs.org/api/fs.html) (i.e. `fs.cp` or `fs.writeFile`) or via the `write` function in `quartz/plugins/emitters/helpers.ts` if you are creating files that contain text. `write` has the following signature:
 
 ```ts
-export type EmitCallback = (data: {
+export type WriteOptions = (data: {
+  // the build context
+  ctx: BuildCtx
   // the name of the file to emit (not including the file extension)
   slug: ServerSlug
   // the file extension
@@ -247,7 +244,7 @@ If you are creating an emitter plugin that needs to render components, there are
 
 - Your component should use `getQuartzComponents` to declare a list of `QuartzComponents` that it uses to construct the page. See the page on [[creating components]] for more information.
 - You can use the `renderPage` function defined in `quartz/components/renderPage.tsx` to render Quartz components into HTML.
-- If you need to render an HTML AST to JSX, you can use the `toJsxRuntime` function from `hast-util-to-jsx-runtime` library. An example of this can be found in `quartz/components/pages/Content.tsx`.
+- If you need to render an HTML AST to JSX, you can use the `htmlToJsx` function from `quartz/util/jsx.ts`. An example of this can be found in `quartz/components/pages/Content.tsx`.
 
 For example, the following is a simplified version of the content page plugin that renders every single page.
 

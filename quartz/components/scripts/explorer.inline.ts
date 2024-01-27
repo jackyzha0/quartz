@@ -59,8 +59,7 @@ function toggleFolder(evt: MouseEvent) {
   // Save folder state to localStorage
   const clickFolderPath = currentFolderParent.dataset.folderpath as string
 
-  // Remove leading "/"
-  const fullFolderPath = clickFolderPath.substring(1)
+  const fullFolderPath = clickFolderPath
   toggleCollapsedByPath(explorerState, fullFolderPath)
 
   const stringifiedFileTree = JSON.stringify(explorerState)
@@ -108,9 +107,7 @@ function setupExplorer() {
     explorerState = JSON.parse(storageTree)
     explorerState.map((folderUl) => {
       // grab <li> element for matching folder path
-      const folderLi = document.querySelector(
-        `[data-folderpath='/${folderUl.path}']`,
-      ) as HTMLElement
+      const folderLi = document.querySelector(`[data-folderpath='${folderUl.path}']`) as HTMLElement
 
       // Get corresponding content <ul> tag and set state
       if (folderLi) {
@@ -120,9 +117,9 @@ function setupExplorer() {
         }
       }
     })
-  } else {
+  } else if (explorer?.dataset.tree) {
     // If tree is not in localStorage or config is disabled, use tree passed from Explorer as dataset
-    explorerState = JSON.parse(explorer?.dataset.tree as string)
+    explorerState = JSON.parse(explorer.dataset.tree)
   }
 }
 
@@ -130,12 +127,13 @@ window.addEventListener("resize", setupExplorer)
 document.addEventListener("nav", () => {
   setupExplorer()
 
-  const explorerContent = document.getElementById("explorer-ul")
+  observer.disconnect()
+
   // select pseudo element at end of list
   const lastItem = document.getElementById("explorer-end")
-
-  observer.disconnect()
-  observer.observe(lastItem as Element)
+  if (lastItem) {
+    observer.observe(lastItem)
+  }
 })
 
 /**

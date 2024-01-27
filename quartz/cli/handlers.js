@@ -1,4 +1,4 @@
-import { promises, readFileSync } from "fs"
+import { promises } from "fs"
 import path from "path"
 import esbuild from "esbuild"
 import chalk from "chalk"
@@ -113,7 +113,10 @@ export async function handleCreate(argv) {
     }
   }
 
-  await fs.promises.unlink(path.join(contentFolder, ".gitkeep"))
+  const gitkeepPath = path.join(contentFolder, ".gitkeep")
+  if (fs.existsSync(gitkeepPath)) {
+    await fs.promises.unlink(gitkeepPath)
+  }
   if (setupStrategy === "copy" || setupStrategy === "symlink") {
     let originalFolder = sourceDirectory
 
@@ -195,6 +198,11 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     `markdownLinkResolution: '${linkResolutionStrategy}'`,
   )
   await fs.promises.writeFile(configFilePath, configContent)
+
+  // setup remote
+  execSync(
+    `git remote show upstream || git remote add upstream https://github.com/jackyzha0/quartz.git`,
+  )
 
   outro(`You're all set! Not sure what to do next? Try:
   • Customizing Quartz a bit more by editing \`quartz.config.ts\`
@@ -447,11 +455,23 @@ export async function handleUpdate(argv) {
   console.log(
     "Pulling updates... you may need to resolve some `git` conflicts if you've made changes to components or plugins.",
   )
-  gitPull(UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH)
+
+  try {
+    gitPull(UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH)
+  } catch {
+    console.log(chalk.red("An error occurred above while pulling updates."))
+    await popContentFolder(contentFolder)
+    return
+  }
+
   await popContentFolder(contentFolder)
   console.log("Ensuring dependencies are up to date")
-  spawnSync("npm", ["i"], { stdio: "inherit" })
-  console.log(chalk.green("Done!"))
+  const res = spawnSync("npm", ["i"], { stdio: "inherit" })
+  if (res.status === 0) {
+    console.log(chalk.green("Done!"))
+  } else {
+    console.log(chalk.red("An error occurred above while installing dependencies."))
+  }
 }
 
 /**
@@ -492,8 +512,9 @@ export async function handleSync(argv) {
       dateStyle: "medium",
       timeStyle: "short",
     })
+    const commitMessage = argv.message ?? `Quartz sync: ${currentTimestamp}`
     spawnSync("git", ["add", "."], { stdio: "inherit" })
-    spawnSync("git", ["commit", "-m", `Quartz sync: ${currentTimestamp}`], { stdio: "inherit" })
+    spawnSync("git", ["commit", "-m", commitMessage], { stdio: "inherit" })
 
     if (contentStat.isSymbolicLink()) {
       // put symlink back
@@ -507,13 +528,25 @@ export async function handleSync(argv) {
     console.log(
       "Pulling updates from your repository. You may need to resolve some `git` conflicts if you've made changes to components or plugins.",
     )
-    gitPull(ORIGIN_NAME, QUARTZ_SOURCE_BRANCH)
+    try {
+      gitPull(ORIGIN_NAME, QUARTZ_SOURCE_BRANCH)
+    } catch {
+      console.log(chalk.red("An error occurred above while pulling updates."))
+      await popContentFolder(contentFolder)
+      return
+    }
   }
 
   await popContentFolder(contentFolder)
   if (argv.push) {
     console.log("Pushing your changes")
-    spawnSync("git", ["push", "-f", ORIGIN_NAME, QUARTZ_SOURCE_BRANCH], { stdio: "inherit" })
+    const res = spawnSync("git", ["push", "-uf", ORIGIN_NAME, QUARTZ_SOURCE_BRANCH], {
+      stdio: "inherit",
+    })
+    if (res.status !== 0) {
+      console.log(chalk.red(`An error occurred above while pushing to remote ${ORIGIN_NAME}.`))
+      return
+    }
   }
 
   console.log(chalk.green("Done!"))
