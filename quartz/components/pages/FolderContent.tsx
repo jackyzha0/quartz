@@ -20,7 +20,6 @@ const defaultOptions: FolderContentOptions = {
 }
 
 export default ((opts?: Partial<FolderContentOptions>) => {
-  // Merge options with defaults
   const options: FolderContentOptions = { ...defaultOptions, ...opts }
 
   function FolderContent(props: QuartzComponentProps) {
@@ -50,7 +49,9 @@ export default ((opts?: Partial<FolderContentOptions>) => {
         <article>
           <p>{content}</p>
         </article>
-        {options.showFolderCount && <p>{pluralize(allPagesInFolder.length, "item")} under this folder.</p>}
+        {options.showFolderCount && (
+          <p>{pluralize(allPagesInFolder.length, "item")} under this folder.</p>
+        )}
         <div>
           <PageList {...listProps} />
         </div>
