@@ -318,7 +318,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 }
 
                 tag = slugTag(tag)
-                if (file.data.frontmatter && !file.data.frontmatter.tags.includes(tag)) {
+                if (file.data.frontmatter?.tags?.includes(tag)) {
                   file.data.frontmatter.tags.push(tag)
                 }
 
