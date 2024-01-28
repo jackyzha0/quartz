@@ -52,7 +52,10 @@ export default ((opts?: Partial<FolderContentOptions>) => {
           <p>{content}</p>
         </article>
         {options.showFolderCount && (
-          <p>{pluralize(allPagesInFolder.length, "item")} {i18n(locale, "folderContent.underThisFolder")}.</p>
+          <p>
+            {pluralize(allPagesInFolder.length, "item")}{" "}
+            {i18n(locale, "folderContent.underThisFolder")}.
+          </p>
         )}
         <div>
           <PageList {...listProps} />
