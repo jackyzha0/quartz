@@ -1,0 +1,25 @@
+{
+	"i18n-ally.localesPaths": [
+		"quartz/i18n",
+		"quartz/i18n/locales"
+	],
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		".idea": true,
+		".vscode/**": false,
+		".vscode/settings.json": true,
+		"**/.idea": true,
+		"**/.vscode": true,
+		"**/dist": true,
+		"**/node_modules": true,
+		"dist": true,
+		"node_modules": true,
+		"settings.json": true
+	},
+	"explorerExclude.backup": {}
+}
