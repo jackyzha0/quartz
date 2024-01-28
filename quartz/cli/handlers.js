@@ -258,6 +258,7 @@ export async function handleBuild(argv) {
               },
               write: false,
               bundle: true,
+              minify: true,
               platform: "browser",
               format: "esm",
             })
