@@ -74,6 +74,9 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
 const p = new DOMParser()
 const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
 let prevShortcutHandler: ((e: HTMLElementEventMap["keydown"]) => void) | undefined = undefined
+
+let fetchContentCache: Record<string, Element[] | undefined> = {}
+
 document.addEventListener("nav", async (e: unknown) => {
   const currentSlug = (e as CustomEventMap["nav"]).detail.url
 
@@ -82,10 +85,29 @@ document.addEventListener("nav", async (e: unknown) => {
   const sidebar = container?.closest(".sidebar") as HTMLElement
   const searchIcon = document.getElementById("search-icon")
   const searchBar = document.getElementById("search-bar") as HTMLInputElement | null
-  const results = document.getElementById("results-container")
-  const preview = document.getElementById("preview-container")
+  const searchLayout = document.getElementById("search-layout")
   const resultCards = document.getElementsByClassName("result-card")
   const idDataMap = Object.keys(data) as FullSlug[]
+
+  const enablePreview = searchLayout?.getAttribute("data-preview") === "true"
+  let preview: HTMLDivElement | undefined = undefined
+  const results = document.createElement("div")
+  results.id = "results-container"
+  if (searchLayout?.querySelector(`#${results.id}`) === null) {
+    searchLayout?.appendChild(results)
+  }
+  results.style.flexBasis = enablePreview ? "30%" : "100%"
+
+  preview = document.createElement("div")
+  preview.id = "preview-container"
+  preview.style.flexBasis = "70%"
+
+  if (!enablePreview) {
+    preview.style.display = "none"
+  }
+  if (searchLayout?.querySelector(`#${preview.id}`) === null) {
+    searchLayout?.appendChild(preview)
+  }
 
   function hideSearch() {
     container?.classList.remove("active")
@@ -144,7 +166,7 @@ document.addEventListener("nav", async (e: unknown) => {
       if (results?.contains(document.activeElement)) {
         // If an element in results-container already has focus, focus previous one
         const prevResult = document.activeElement?.previousElementSibling as HTMLInputElement | null
-        if (prevResult?.id) {
+        if (enablePreview && prevResult?.id) {
           await displayPreview(prevResult?.id as FullSlug)
         }
         prevResult?.focus()
@@ -154,14 +176,14 @@ document.addEventListener("nav", async (e: unknown) => {
       // When first pressing ArrowDown, results wont contain the active element, so focus first element
       if (!results?.contains(document.activeElement)) {
         const firstResult = resultCards[0] as HTMLInputElement | null
-        if (firstResult?.id) {
+        if (enablePreview && firstResult?.id) {
           await displayPreview(firstResult?.id as FullSlug)
         }
         firstResult?.focus()
       } else {
         // If an element in results-container already has focus, focus next one
         const nextResult = document.activeElement?.nextElementSibling as HTMLInputElement | null
-        if (nextResult?.id) {
+        if (enablePreview && nextResult?.id) {
           await displayPreview(nextResult?.id as FullSlug)
         }
         nextResult?.focus()
@@ -243,8 +265,8 @@ document.addEventListener("nav", async (e: unknown) => {
     const itemTile = document.createElement("a")
     itemTile.classList.add("result-card")
     itemTile.id = slug
-    itemTile.href = resolveUrl(slug)
-    itemTile.innerHTML = `<h3>${title}</h3>${htmlTags}`
+    itemTile.href = resolveUrl(slug).toString()
+    itemTile.innerHTML = `<h3>${title}</h3>${htmlTags}${enablePreview ? "" : `<p>${content}</p>`}`
     itemTile.addEventListener("click", (event) => {
       if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
       hideSearch()
@@ -266,32 +288,40 @@ document.addEventListener("nav", async (e: unknown) => {
     }
   }
 
-  async function fetchContent(slug: FullSlug) {
-    const targetUrl = new URL(resolveUrl(slug))
+  async function fetchContent(slug: FullSlug): Promise<Element[] | undefined> {
+    if (fetchContentCache[slug]) {
+      return fetchContentCache[slug]
+    }
+
+    const targetUrl = resolveUrl(slug)
     const contents = await fetch(targetUrl.toString())
       .then((res) => res.text())
+      .then((contents) => {
+        if (contents === undefined) {
+          throw new Error(`Could not fetch ${targetUrl}`)
+        }
+        const html = p.parseFromString(contents ?? "", "text/html")
+        normalizeRelativeURLs(html, targetUrl)
+        return [...html.getElementsByClassName("popover-hint")]
+      })
       .catch((err) => {
         console.error(err)
+        throw new Error(`Could not fetch ${targetUrl}`)
       })
-    const html = p.parseFromString(contents ?? "", "text/html")
-    normalizeRelativeURLs(html, targetUrl)
-    return [...html.getElementsByClassName("popover-hint")]
+
+    fetchContentCache[slug] = contents
+    return contents
   }
-
   async function displayPreview(slug: FullSlug) {
-    if (!preview) return
+    if (!searchLayout || !enablePreview) return
 
-    removeAllChildren(preview)
+    removeAllChildren(preview as HTMLElement)
     const contentDetails = await fetchContent(slug)
-    if (!contentDetails) {
-      if (!preview) return
-      preview.innerHTML = `<p>Could not load preview.</p>`
-    } else {
-      const previewInner = document.createElement("div")
-      previewInner.classList.add("preview-inner")
-      preview.appendChild(previewInner)
-      contentDetails.forEach((elt) => previewInner.appendChild(elt))
-    }
+
+    const previewInner = document.createElement("div")
+    previewInner.classList.add("preview-inner")
+    preview?.appendChild(previewInner)
+    contentDetails?.forEach((elt) => previewInner.appendChild(elt))
   }
 
   async function onType(e: HTMLElementEventMap["input"]) {

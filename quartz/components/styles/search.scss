@@ -38,7 +38,6 @@
   }
 
   & > #search-container {
-    flex-grow: 0;
     position: fixed;
     contain: layout;
     z-index: 999;
@@ -116,7 +115,6 @@
         }
 
         & > #preview-container {
-          flex-basis: 70%;
           display: block;
           box-sizing: border-box;
           overflow: hidden;
@@ -140,7 +138,6 @@
         }
 
         & > #results-container {
-          flex-basis: 30%;
           overflow-y: auto;
 
           & .result-card {
@@ -191,8 +188,7 @@
               gap: 0.4rem;
               margin: 0;
               margin-top: 0.45rem;
-              // Offset border radius
-              margin-left: -2px;
+              box-sizing: border-box;
               overflow: hidden;
               background-clip: border-box;
             }
