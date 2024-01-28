@@ -49,11 +49,13 @@ export default ((opts?: Partial<FolderContentOptions>) => {
         <article>
           <p>{content}</p>
         </article>
-        {options.showFolderCount && (
-          <p>{pluralize(allPagesInFolder.length, "item")} under this folder.</p>
-        )}
-        <div>
-          <PageList {...listProps} />
+        <div class="folder-content-hint">
+          {options.showFolderCount && (
+            <p>{pluralize(allPagesInFolder.length, "item")} under this folder.</p>
+          )}
+          <div>
+            <PageList {...listProps} />
+          </div>
         </div>
       </div>
     )
