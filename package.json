@@ -79,7 +79,7 @@
     "rfdc": "^1.3.0",
     "rimraf": "^5.0.5",
     "serve-handler": "^6.1.5",
-    "shikiji": "^0.9.9",
+    "shikiji": "^0.10.2",
     "source-map-support": "^0.5.21",
     "to-vfile": "^8.0.0",
     "toml": "^3.0.0",
