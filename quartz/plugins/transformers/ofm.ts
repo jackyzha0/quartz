@@ -116,13 +116,13 @@ export const externalLinkRegex = /^https?:\/\//i
 
 export const arrowRegex = new RegExp(/-{1,2}>/, "g")
 
-// !?               -> optional embedding
-// \[\[             -> open brace
-// ([^\[\]\|\#]+)   -> one or more non-special characters ([,],|, or #) (name)
-// (#[^\[\]\|\#]+)? -> # then one or more non-special characters (heading link)
-// (|[^\[\]\|\#]+)? -> | then one or more non-special characters (alias)
+// !?                -> optional embedding
+// \[\[              -> open brace
+// ([^\[\]\|\#]+)    -> one or more non-special characters ([,],|, or #) (name)
+// (#[^\[\]\|\#]+)?  -> # then one or more non-special characters (heading link)
+// (\|[^\[\]\#]+)? -> | then one or more non-special characters (alias)
 export const wikilinkRegex = new RegExp(
-  /!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/,
+  /!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\#]+)?\]\]/,
   "g",
 )
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
@@ -222,7 +222,15 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   const ext: string = path.extname(fp).toLowerCase()
                   const url = slugifyFilePath(fp as FilePath)
                   if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg", ".webp"].includes(ext)) {
-                    const dims = alias ?? ""
+                    // either |alt|dims or |dims
+                    let [alt, dims] = (alias ?? "").split("|")
+
+                    // |dims case, treat first alt slot as dims
+                    if (dims === undefined) {
+                      dims = alt
+                      alt = ""
+                    }
+
                     let [width, height] = dims.split("x", 2)
                     width ||= "auto"
                     height ||= "auto"
@@ -233,6 +241,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                         hProperties: {
                           width,
                           height,
+                          alt,
                         },
                       },
                     }
