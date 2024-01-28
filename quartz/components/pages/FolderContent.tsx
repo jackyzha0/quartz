@@ -34,7 +34,6 @@ export default ((opts?: Partial<FolderContentOptions>) => {
       return prefixed && isDirectChild
     })
     const cssClasses: string[] = fileData.frontmatter?.cssclasses ?? []
-    
 
     const listProps = {
       ...props,
