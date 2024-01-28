@@ -40,11 +40,6 @@ export default ((opts?: Partial<FolderContentOptions>) => {
       allFiles: allPagesInFolder,
     }
 
-    let pageCount
-    if (options.showFolderCount) {
-      pageCount = pluralize(allPagesInFolder.length, "item") + " under this folder."
-    }
-
     const content =
       (tree as Root).children.length === 0
         ? fileData.description
@@ -55,7 +50,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
         <article>
           <p>{content}</p>
         </article>
-        <p>{pageCount}</p>
+        {options.showFolderCount && <p>{pluralize(allPagesInFolder.length, "item")} under this folder.</p>}
         <div>
           <PageList {...listProps} />
         </div>
