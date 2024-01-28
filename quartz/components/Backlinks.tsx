@@ -5,7 +5,7 @@ import { i18n } from "../i18n/i18next"
 
 function Backlinks({ fileData, allFiles, displayClass, cfg }: QuartzComponentProps) {
   const slug = simplifySlug(fileData.slug!)
-  const locale = cfg.locale ?? "en-US";
+  const locale = cfg.locale ?? "en-US"
   const backlinkFiles = allFiles.filter((file) => file.links?.includes(slug))
   return (
     <div class={`backlinks ${displayClass ?? ""}`}>

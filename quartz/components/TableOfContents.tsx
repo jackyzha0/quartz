@@ -6,7 +6,6 @@ import modernStyle from "./styles/toc.scss"
 import script from "./scripts/toc.inline"
 import { i18n } from "../i18n/i18next"
 
-
 interface Options {
   layout: "modern" | "legacy"
 }
@@ -19,7 +18,7 @@ function TableOfContents({ fileData, displayClass, cfg }: QuartzComponentProps) 
   if (!fileData.toc) {
     return null
   }
-  const locale = cfg.locale ?? "en-US";
+  const locale = cfg.locale ?? "en-US"
 
   return (
     <div class={`toc ${displayClass ?? ""}`}>
@@ -61,7 +60,7 @@ function LegacyTableOfContents({ fileData, cfg }: QuartzComponentProps) {
   if (!fileData.toc) {
     return null
   }
-  const locale = cfg.locale ?? "en-US";
+  const locale = cfg.locale ?? "en-US"
   return (
     <details id="toc" open={!fileData.collapseToc}>
       <summary>

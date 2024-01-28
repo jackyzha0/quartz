@@ -12,7 +12,7 @@ const numPages = 10
 function TagContent(props: QuartzComponentProps) {
   const { tree, fileData, allFiles, cfg } = props
   const slug = fileData.slug
-  const locale = cfg.locale ?? "en-US";
+  const locale = cfg.locale ?? "en-US"
 
   if (!(slug?.startsWith("tags/") || slug === "tags")) {
     throw new Error(`Component "TagContent" tried to render a non-tag page: ${slug}`)
@@ -90,7 +90,8 @@ function TagContent(props: QuartzComponentProps) {
       <div class="popover-hint">
         <article>{content}</article>
         <p>
-          {pluralize(pages.length, i18n(locale, "common.item"))} {i18n(locale, "tagContent.withThisTag")}.
+          {pluralize(pages.length, i18n(locale, "common.item"))}{" "}
+          {i18n(locale, "tagContent.withThisTag")}.
         </p>
         <div>
           <PageList {...listProps} />

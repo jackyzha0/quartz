@@ -56,7 +56,7 @@ export default ((opts?: GraphOptions) => {
   function Graph({ displayClass, cfg }: QuartzComponentProps) {
     const localGraph = { ...defaultOptions.localGraph, ...opts?.localGraph }
     const globalGraph = { ...defaultOptions.globalGraph, ...opts?.globalGraph }
-    const locale = cfg.locale ?? "en-US";
+    const locale = cfg.locale ?? "en-US"
     return (
       <div class={`graph ${displayClass ?? ""}`}>
         <h3>{i18n(locale, "graph.graphView")}</h3>

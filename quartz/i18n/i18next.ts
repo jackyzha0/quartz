@@ -18,18 +18,19 @@ type TranslationOptions = {
 }
 
 export const i18n = (lang: Locale, key: string, options?: TranslationOptions) => {
-  const getTranslation = (key: string) =>{
+  const getTranslation = (key: string) => {
     const keys = key.split(".")
-    let translationString: string | Record<string, unknown> = TRANSLATION[lang as keyof typeof TRANSLATION]
-    keys.forEach(key => {
+    let translationString: string | Record<string, unknown> =
+      TRANSLATION[lang as keyof typeof TRANSLATION]
+    keys.forEach((key) => {
       // @ts-ignore
       translationString = translationString[key]
     })
     return translationString
   }
   if (options) {
-    let translationString = getTranslation(key).toString() 
-    Object.keys(options).forEach(key => {
+    let translationString = getTranslation(key).toString()
+    Object.keys(options).forEach((key) => {
       translationString = translationString.replace(`{{${key}}}`, options[key])
     })
     return translationString

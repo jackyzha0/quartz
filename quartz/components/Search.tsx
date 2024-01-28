@@ -2,12 +2,11 @@ import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import style from "./styles/search.scss"
 // @ts-ignore
 import script from "./scripts/search.inline"
-import {i18n } from "../i18n/i18next"
-
+import { i18n } from "../i18n/i18next"
 
 export default (() => {
   function Search({ displayClass, cfg }: QuartzComponentProps) {
-    const locale = cfg.locale ?? "en-US";
+    const locale = cfg.locale ?? "en-US"
     return (
       <div class={`search ${displayClass ?? ""}`}>
         <div id="search-icon">

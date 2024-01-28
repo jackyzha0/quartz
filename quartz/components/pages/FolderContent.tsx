@@ -9,7 +9,6 @@ import { pluralize } from "../../util/lang"
 import { htmlToJsx } from "../../util/jsx"
 import { i18n } from "../../i18n/i18next"
 
-
 function FolderContent(props: QuartzComponentProps) {
   const { tree, fileData, allFiles, cfg } = props
   const folderSlug = _stripSlashes(simplifySlug(fileData.slug!))
@@ -32,7 +31,7 @@ function FolderContent(props: QuartzComponentProps) {
       ? fileData.description
       : htmlToJsx(fileData.filePath!, tree)
 
-  const locale = cfg.locale ?? "en-US";    
+  const locale = cfg.locale ?? "en-US"
   return (
     <div class="popover-hint">
       <article>

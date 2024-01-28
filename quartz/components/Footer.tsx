@@ -3,7 +3,6 @@ import style from "./styles/footer.scss"
 import { version } from "../../package.json"
 import { i18n } from "../i18n/i18next"
 
-
 interface Options {
   links: Record<string, string>
 }
@@ -11,7 +10,7 @@ interface Options {
 export default ((opts?: Options) => {
   function Footer({ displayClass, cfg }: QuartzComponentProps) {
     const year = new Date().getFullYear()
-    const locale = cfg.locale ?? "en-US";
+    const locale = cfg.locale ?? "en-US"
     const links = opts?.links ?? []
     return (
       <footer class={`${displayClass ?? ""}`}>

@@ -7,7 +7,7 @@ import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { i18n } from "../i18n/i18next"
 
 function Darkmode({ displayClass, cfg }: QuartzComponentProps) {
-  const locale = cfg.locale ?? "en-US";
+  const locale = cfg.locale ?? "en-US"
   return (
     <div class={`darkmode ${displayClass ?? ""}`}>
       <input class="toggle" id="darkmode-toggle" type="checkbox" tabIndex={-1} />
