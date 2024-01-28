@@ -74,7 +74,7 @@ export default (() => {
     }
 
     if (fileData.frontmatter?.socialDescription) {
-      description = fileData.frontmatter.socialDescription
+      description = fileData.frontmatter?.socialDescription as string
     } else if (fileData.frontmatter?.description) {
       description = fileData.frontmatter?.description
     }
