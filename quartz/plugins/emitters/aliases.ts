@@ -15,12 +15,7 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
     for (const [_tree, file] of content) {
       const ogSlug = simplifySlug(file.data.slug!)
       const dir = path.posix.relative(argv.directory, path.dirname(file.data.filePath!))
-
-      let aliases: FullSlug[] = file.data.frontmatter?.aliases ?? file.data.frontmatter?.alias ?? []
-      if (typeof aliases === "string") {
-        aliases = [aliases]
-      }
-
+      const aliases = file.data.frontmatter?.aliases ?? []
       const slugs: FullSlug[] = aliases.map((alias) => path.posix.join(dir, alias) as FullSlug)
       const permalink = file.data.frontmatter?.permalink
       if (typeof permalink === "string") {
