@@ -256,8 +256,8 @@ document.addEventListener("nav", async (e: unknown) => {
     }
   }
 
-  function resolveUrl(slug: FullSlug): string {
-    return new URL(resolveRelative(currentSlug, slug), location.toString()).toString()
+  function resolveUrl(slug: FullSlug): URL {
+    return new URL(resolveRelative(currentSlug, slug), location.toString())
   }
 
   const resultToHTML = ({ slug, title, content, tags }: Item) => {
@@ -293,8 +293,8 @@ document.addEventListener("nav", async (e: unknown) => {
       return fetchContentCache[slug]
     }
 
-    const targetUrl = resolveUrl(slug)
-    const contents = await fetch(targetUrl.toString())
+    const targetUrl = resolveUrl(slug).toString()
+    const contents = await fetch(targetUrl)
       .then((res) => res.text())
       .then((contents) => {
         if (contents === undefined) {
