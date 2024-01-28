@@ -129,11 +129,10 @@
   flex: 0 0 18px;
   padding-top: 4px;
 
-  //Handling icons
+  // icon support
   background-size: 18px 18px;
   background-position: center;
   background-color: var(--color);
-  -webkit-mask-image: var(--callout-icon);
   mask-image: var(--callout-icon);
   mask-size: 18px 18px;
   mask-position: center;
