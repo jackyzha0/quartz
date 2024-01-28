@@ -74,12 +74,13 @@ enum callouts {
   cite = "quote",
 }
 
-type calloutMapping = `${callouts}`
-
-function canonicalizeCallout(calloutName: string): keyof typeof callouts {
-  let callout = calloutName.toLowerCase() as calloutMapping
+function canonicalizeCallout(calloutName: string): string {
+  const normalizedCalloutName = calloutName.toLowerCase()
+  if (normalizedCalloutName in callouts) {
+    return (callouts as Record<string, string>)[normalizedCalloutName]
+  }
   // if callout is not recognized, make it a custom one
-  return callout ?? calloutName
+  return calloutName
 }
 
 export const externalLinkRegex = /^https?:\/\//i
@@ -386,7 +387,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               const match = firstLine.match(calloutRegex)
               if (match && match.input) {
                 const [calloutDirective, typeString, collapseChar] = match
-                const calloutType = canonicalizeCallout(typeString.toLowerCase() as calloutMapping)
+                const calloutType = canonicalizeCallout(typeString.toLowerCase())
                 const collapse = collapseChar === "+" || collapseChar === "-"
                 const defaultState = collapseChar === "-" ? "collapsed" : "expanded"
                 const titleContent =
