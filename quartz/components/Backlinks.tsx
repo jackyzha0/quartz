@@ -1,14 +1,15 @@
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import style from "./styles/backlinks.scss"
 import { resolveRelative, simplifySlug } from "../util/path"
-import i18next from "i18next"
+import { i18n } from "../i18n/i18next"
 
-function Backlinks({ fileData, allFiles, displayClass }: QuartzComponentProps) {
+function Backlinks({ fileData, allFiles, displayClass, cfg }: QuartzComponentProps) {
   const slug = simplifySlug(fileData.slug!)
+  const locale = cfg.locale ?? "en-US";
   const backlinkFiles = allFiles.filter((file) => file.links?.includes(slug))
   return (
     <div class={`backlinks ${displayClass ?? ""}`}>
-      <h3>{i18next.t("backlinks.backlinks")}</h3>
+      <h3>{i18n(locale, "backlinks.backlinks")}</h3>
       <ul class="overflow">
         {backlinkFiles.length > 0 ? (
           backlinkFiles.map((f) => (
@@ -19,7 +20,7 @@ function Backlinks({ fileData, allFiles, displayClass }: QuartzComponentProps) {
             </li>
           ))
         ) : (
-          <li>{i18next.t("backlinks.noBlacklinksFound")}</li>
+          <li>{i18n(locale, "backlinks.noBlacklinksFound")}</li>
         )}
       </ul>
     </div>

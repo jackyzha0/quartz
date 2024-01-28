@@ -23,14 +23,15 @@
     "noDescriptionProvided": "No description provided",
     "untitled": "Untitled"
   },
-  "recentNote": {
-    "seeRemainingMore": "See {{- remaining}} more"
+  "recentNotes": {
+    "seeRemainingMore": "See {{remaining}} more"
   },
   "search": "Search",
   "tableOfContent": "Table of Contents",
   "tagContent": {
     "showingFirst": "Showing first",
     "totalTags": "total tags",
-    "withThisTag": "with this tag"
+    "withThisTag": "with this tag",
+    "found" : "Found"
   }
 }

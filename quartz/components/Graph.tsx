@@ -2,7 +2,7 @@ import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 // @ts-ignore
 import script from "./scripts/graph.inline"
 import style from "./styles/graph.scss"
-import i18next from "i18next"
+import { i18n } from "../i18n/i18next"
 
 export interface D3Config {
   drag: boolean
@@ -53,12 +53,13 @@ const defaultOptions: GraphOptions = {
 }
 
 export default ((opts?: GraphOptions) => {
-  function Graph({ displayClass }: QuartzComponentProps) {
+  function Graph({ displayClass, cfg }: QuartzComponentProps) {
     const localGraph = { ...defaultOptions.localGraph, ...opts?.localGraph }
     const globalGraph = { ...defaultOptions.globalGraph, ...opts?.globalGraph }
+    const locale = cfg.locale ?? "en-US";
     return (
       <div class={`graph ${displayClass ?? ""}`}>
-        <h3>{i18next.t("graph.graphView")}</h3>
+        <h3>{i18n(locale, "graph.graphView")}</h3>
         <div class="graph-outer">
           <div id="graph-container" data-cfg={JSON.stringify(localGraph)}></div>
           <svg

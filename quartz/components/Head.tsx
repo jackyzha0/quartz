@@ -1,12 +1,13 @@
-import i18next from "i18next"
+import { i18n } from "../i18n/i18next"
 import { FullSlug, _stripSlashes, joinSegments, pathToRoot } from "../util/path"
 import { JSResourceToScriptElement } from "../util/resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
 export default (() => {
   function Head({ cfg, fileData, externalResources }: QuartzComponentProps) {
-    const title = fileData.frontmatter?.title ?? i18next.t("head.untitled")
-    const description = fileData.description?.trim() ?? i18next.t("head.noDescriptionProvided")
+    const locale = cfg.locale ?? "en-US";
+    const title = fileData.frontmatter?.title ?? i18n(locale, "head.untitled")
+    const description = fileData.description?.trim() ?? i18n(locale, "head.noDescriptionProvided")
     const { css, js } = externalResources
 
     const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`)

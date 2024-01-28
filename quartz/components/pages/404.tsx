@@ -1,11 +1,12 @@
-import i18next from "i18next"
-import { QuartzComponentConstructor } from "../types"
+import { Locale, i18n } from "../../i18n/i18next"
+import { QuartzComponentConstructor, QuartzComponentProps } from "../types"
 
-function NotFound() {
+function NotFound({cfg}: QuartzComponentProps) {
+  const locale = cfg.locale ?? "en-US";
   return (
     <article class="popover-hint">
       <h1>404</h1>
-      <p>{i18next.t("404")}</p>
+      <p>{i18n(locale, "404")}</p>
     </article>
   )
 }

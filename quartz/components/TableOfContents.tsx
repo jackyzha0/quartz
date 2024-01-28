@@ -4,7 +4,8 @@ import modernStyle from "./styles/toc.scss"
 
 // @ts-ignore
 import script from "./scripts/toc.inline"
-import i18next from "i18next"
+import { i18n } from "../i18n/i18next"
+
 
 interface Options {
   layout: "modern" | "legacy"
@@ -14,15 +15,16 @@ const defaultOptions: Options = {
   layout: "modern",
 }
 
-function TableOfContents({ fileData, displayClass }: QuartzComponentProps) {
+function TableOfContents({ fileData, displayClass, cfg }: QuartzComponentProps) {
   if (!fileData.toc) {
     return null
   }
+  const locale = cfg.locale ?? "en-US";
 
   return (
     <div class={`toc ${displayClass ?? ""}`}>
       <button type="button" id="toc" class={fileData.collapseToc ? "collapsed" : ""}>
-        <h3>{i18next.t("tableOfContent")}</h3>
+        <h3>{i18n(locale, "tableOfContent")}</h3>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -55,15 +57,15 @@ function TableOfContents({ fileData, displayClass }: QuartzComponentProps) {
 TableOfContents.css = modernStyle
 TableOfContents.afterDOMLoaded = script
 
-function LegacyTableOfContents({ fileData }: QuartzComponentProps) {
+function LegacyTableOfContents({ fileData, cfg }: QuartzComponentProps) {
   if (!fileData.toc) {
     return null
   }
-
+  const locale = cfg.locale ?? "en-US";
   return (
     <details id="toc" open={!fileData.collapseToc}>
       <summary>
-        <h3>{i18next.t("tableOfContent")}</h3>
+        <h3>{i18n(locale, "tableOfContent")}</h3>
       </summary>
       <ul>
         {fileData.toc.map((tocEntry) => (

@@ -1,5 +1,6 @@
 import { ValidDateType } from "./components/Date"
 import { QuartzComponent } from "./components/types"
+import { Locale } from "./i18n/i18next"
 import { PluginTypes } from "./plugins/types"
 import { Theme } from "./util/theme"
 
@@ -35,7 +36,7 @@ export interface GlobalConfiguration {
    */
   baseUrl?: string
   theme: Theme
-  locale?: string
+  locale?: Locale
 }
 
 export interface QuartzConfig {

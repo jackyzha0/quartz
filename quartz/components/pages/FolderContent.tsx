@@ -7,10 +7,11 @@ import { _stripSlashes, simplifySlug } from "../../util/path"
 import { Root } from "hast"
 import { pluralize } from "../../util/lang"
 import { htmlToJsx } from "../../util/jsx"
-import i18next from "i18next"
+import { i18n } from "../../i18n/i18next"
+
 
 function FolderContent(props: QuartzComponentProps) {
-  const { tree, fileData, allFiles } = props
+  const { tree, fileData, allFiles, cfg } = props
   const folderSlug = _stripSlashes(simplifySlug(fileData.slug!))
   const allPagesInFolder = allFiles.filter((file) => {
     const fileSlug = _stripSlashes(simplifySlug(file.slug!))
@@ -31,14 +32,15 @@ function FolderContent(props: QuartzComponentProps) {
       ? fileData.description
       : htmlToJsx(fileData.filePath!, tree)
 
+  const locale = cfg.locale ?? "en-US";    
   return (
     <div class="popover-hint">
       <article>
         <p>{content}</p>
       </article>
       <p>
-        {pluralize(allPagesInFolder.length, i18next.t("common.item"))}{" "}
-        {i18next.t("folderContent.underThisFolder")}.
+        {pluralize(allPagesInFolder.length, i18n(locale, "common.item"))}{" "}
+        {i18n(locale, "folderContent.underThisFolder")}.
       </p>
       <div>
         <PageList {...listProps} />
