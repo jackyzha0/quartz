@@ -33,6 +33,8 @@ export default ((opts?: Partial<FolderContentOptions>) => {
       const isDirectChild = fileParts.length === folderParts.length + 1
       return prefixed && isDirectChild
     })
+    const cssClasses: string[] = fileData.frontmatter?.cssclasses ?? []
+    
 
     const listProps = {
       ...props,
@@ -46,7 +48,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
 
     return (
       <div class="popover-hint">
-        <article>
+        <article class={cssClasses.join(" ")}>
           <p>{content}</p>
         </article>
         {options.showFolderCount && (
