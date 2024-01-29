@@ -89,7 +89,7 @@ document.addEventListener("nav", async (e: unknown) => {
   const resultCards = document.getElementsByClassName("result-card")
   const idDataMap = Object.keys(data) as FullSlug[]
 
-  const enablePreview = searchLayout?.getAttribute("data-preview") === "true"
+  const enablePreview = searchLayout?.dataset?.preview === "true"
   let preview: HTMLDivElement | undefined = undefined
   const results = document.createElement("div")
   results.id = "results-container"
