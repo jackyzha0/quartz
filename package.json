@@ -98,7 +98,6 @@
     "@types/node": "^20.1.2",
     "@types/pretty-time": "^1.1.5",
     "@types/source-map-support": "^0.5.10",
-    "@types/workerpool": "^6.4.7",
     "@types/ws": "^8.5.10",
     "@types/yargs": "^17.0.32",
     "esbuild": "^0.19.9",
