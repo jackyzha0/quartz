@@ -106,15 +106,22 @@
 
 .callout-title {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
   gap: 5px;
   padding: 1rem 0;
   color: var(--color);
 
+  --icon-size: 18px;
+
   & .fold {
-    margin-left: 0.5rem;
-    transition: transform 0.3s ease;
+    transition: transform 0.15s ease;
     opacity: 0.8;
     cursor: pointer;
+    width: var(--icon-size);
+    height: var(--icon-size);
   }
 
   & > .callout-title-inner > p {
@@ -124,17 +131,16 @@
 }
 
 .callout-icon {
-  width: 18px;
-  height: 18px;
-  flex: 0 0 18px;
-  padding-top: 4px;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  //flex: 0 0 18px;
 
   // icon support
-  background-size: 18px 18px;
+  background-size: var(--icon-size) var(--icon-size);
   background-position: center;
   background-color: var(--color);
   mask-image: var(--callout-icon);
-  mask-size: 18px 18px;
+  mask-size: var(--icon-size) var(--icon-size);
   mask-position: center;
   mask-repeat: no-repeat;
 }
