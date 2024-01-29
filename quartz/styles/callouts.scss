@@ -49,6 +49,10 @@
     --callout-icon: var(--callout-icon-info);
   }
 
+  &[data-callout="todo"] {
+    --callout-icon: var(--callout-icon-todo);
+  }
+
   &[data-callout="tip"] {
     --color: #00bfa5;
     --border: #00bfa544;
@@ -84,6 +88,14 @@
     --border: #db424244;
     --bg: #db424210;
     --callout-icon: var(--callout-icon-failure);
+  }
+
+  &[data-callout="bug"] {
+    --callout-icon: var(--callout-icon-bug);
+  }
+
+  &[data-callout="danger"] {
+    --callout-icon: var(--callout-icon-danger);
   }
 
   &[data-callout="example"] {
