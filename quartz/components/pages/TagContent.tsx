@@ -62,11 +62,13 @@ function TagContent(props: QuartzComponentProps) {
                   </a>
                 </h2>
                 {content && <p>{content}</p>}
-                <p>
-                  {pluralize(pages.length, "item")} with this tag.{" "}
-                  {pages.length > numPages && `Showing first ${numPages}.`}
-                </p>
-                <PageList limit={numPages} {...listProps} />
+                <div class="page-listing">
+                  <p>
+                    {pluralize(pages.length, "item")} with this tag.{" "}
+                    {pages.length > numPages && `Showing first ${numPages}.`}
+                  </p>
+                  <PageList limit={numPages} {...listProps} />
+                </div>
               </div>
             )
           })}
@@ -83,9 +85,11 @@ function TagContent(props: QuartzComponentProps) {
     return (
       <div class={classes}>
         <article>{content}</article>
-        <p>{pluralize(pages.length, "item")} with this tag.</p>
-        <div>
-          <PageList {...listProps} />
+        <div class="page-listing">
+          <p>{pluralize(pages.length, "item")} with this tag.</p>
+          <div>
+            <PageList {...listProps} />
+          </div>
         </div>
       </div>
     )
