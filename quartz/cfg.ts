@@ -35,6 +35,12 @@ export interface GlobalConfiguration {
    */
   baseUrl?: string
   theme: Theme
+  /**
+   * The locale to use for date formatting. Default to "en-US"
+   * Allow to translate the date in the language of your choice.
+   * Need to be formated following the IETF language tag format (https://en.wikipedia.org/wiki/IETF_language_tag)
+   */
+  locale?: string
 }
 
 export interface QuartzConfig {

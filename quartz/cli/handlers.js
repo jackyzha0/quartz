@@ -347,7 +347,7 @@ export async function handleBuild(argv) {
           directoryListing: false,
           headers: [
             {
-              source: "**/*.html",
+              source: "**/*.*",
               headers: [{ key: "Content-Disposition", value: "inline" }],
             },
           ],
