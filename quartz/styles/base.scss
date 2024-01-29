@@ -30,6 +30,10 @@ section {
   color: var(--darkgray);
 }
 
+svg {
+  stroke-linecap: butt;
+}
+
 p,
 ul,
 text,
