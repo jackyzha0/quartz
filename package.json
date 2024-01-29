@@ -86,7 +86,7 @@
     "unified": "^11.0.4",
     "unist-util-visit": "^5.0.0",
     "vfile": "^6.0.1",
-    "workerpool": "^8.0.0",
+    "workerpool": "^9.1.0",
     "ws": "^8.15.1",
     "yargs": "^17.7.2"
   },
@@ -98,7 +98,6 @@
     "@types/node": "^20.1.2",
     "@types/pretty-time": "^1.1.5",
     "@types/source-map-support": "^0.5.10",
-    "@types/workerpool": "^6.4.7",
     "@types/ws": "^8.5.10",
     "@types/yargs": "^17.0.32",
     "esbuild": "^0.19.9",
