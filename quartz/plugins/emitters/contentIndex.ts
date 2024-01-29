@@ -6,6 +6,7 @@ import { FilePath, FullSlug, SimpleSlug, joinSegments, simplifySlug } from "../.
 import { QuartzEmitterPlugin } from "../types"
 import { toHtml } from "hast-util-to-html"
 import path from "path"
+import chalk from "chalk"
 import { write } from "./helpers"
 
 export type ContentIndex = Map<FullSlug, ContentDetails>
@@ -50,7 +51,15 @@ function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndex): string {
 }
 
 function generateRobotsTxt(cfg: GlobalConfiguration): string {
-  const base = cfg.baseUrl ?? ""
+  const base = cfg.baseUrl
+  if (base === undefined) {
+    console.log(
+      chalk.yellow(
+        `\nWarning: baseUrl is not set in configuration. Skipping robots.txt generation.`,
+      ),
+    )
+    return ""
+  }
   return `# *
 User-agent: *
 Allow: /
