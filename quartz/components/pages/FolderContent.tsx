@@ -49,7 +49,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
         <article>
           <p>{content}</p>
         </article>
-        <div class="folder-content-hint">
+        <div class="page-listing">
           {options.showFolderCount && (
             <p>{pluralize(allPagesInFolder.length, "item")} under this folder.</p>
           )}
