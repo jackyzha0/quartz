@@ -47,3 +47,59 @@ export const defaultListPageLayout: PageLayout = {
   ],
   right: [],
 }
+
+/** Example of a valid layout for mobile, allowing burger menu 
+export const sharedMobilePageLayout: SharedLayout = {
+  head: Component.Head(),
+  header: [
+    Component.MobileOnly(
+      Component.ExplorerBurger({
+        folderDefaultState: "open",
+        folderClickBehavior: "link",
+      }),
+    ),
+    Component.MobileOnly(Component.Spacer()),
+    Component.MobileOnly(Component.PageTitle()),
+    Component.Search(),
+    Component.Darkmode(),
+  ],
+  footer: Component.Footer({
+    links: {
+      Github: "https://github.com/Lisandra-dev",
+      Twitter: "https://vxtwitter.com/Mara__Li",
+      Discord: "Mara__Li"
+    },
+  }),
+}
+
+export const defaultMobileContentPageLayout: PageLayout = {
+  beforeBody: [
+    Component.Breadcrumbs(),
+    Component.ArticleTitle(),
+    Component.ContentMeta({ showReadingTime: false }),
+    Component.TagList(),
+  ],
+  left: [
+    Component.DesktopOnly(Component.PageTitle()),
+    Component.DesktopOnly(
+      Component.ExplorerBurger({
+        folderClickBehavior: "link",
+        folderDefaultState: "collapsed",
+        useSavedState: true,
+        title: ""
+      }),
+    ),
+  ],
+  right: [
+    Component.DesktopOnly(Component.Graph()),
+    Component.TableOfContents(),
+    Component.DesktopOnly(Component.Backlinks()),
+  ],
+}
+
+export const defaultMobileListPageLayout: PageLayout = {
+  beforeBody: defaultContentPageLayout.beforeBody,
+  left: defaultContentPageLayout.left,
+  right: [],
+}
+*/
