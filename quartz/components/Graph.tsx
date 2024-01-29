@@ -56,10 +56,9 @@ export default ((opts?: GraphOptions) => {
   function Graph({ displayClass, cfg }: QuartzComponentProps) {
     const localGraph = { ...defaultOptions.localGraph, ...opts?.localGraph }
     const globalGraph = { ...defaultOptions.globalGraph, ...opts?.globalGraph }
-    const locale = cfg.locale ?? "en-US"
     return (
       <div class={`graph ${displayClass ?? ""}`}>
-        <h3>{i18n(locale, "graph.graphView")}</h3>
+        <h3>{i18n(cfg.locale, "graph.graphView")}</h3>
         <div class="graph-outer">
           <div id="graph-container" data-cfg={JSON.stringify(localGraph)}></div>
           <svg

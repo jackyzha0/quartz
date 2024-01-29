@@ -1,7 +1,6 @@
 import en from "./locales/en.json"
 import fr from "./locales/fr.json"
 
-export type Locale = "en-US" | "fr-FR"
 const TRANSLATION = {
   "en-US": en,
   "fr-FR": fr,
@@ -11,11 +10,16 @@ type TranslationOptions = {
   [key: string]: string
 }
 
-export const i18n = (lang: Locale, key: string, options?: TranslationOptions) => {
+export const i18n = (lang = "en-US", key: string, options?: TranslationOptions) => {
+  const locale =
+    Object.keys(TRANSLATION).find(
+      (key) =>
+        key.toLowerCase() === lang.toLowerCase() || key.toLowerCase().includes(lang.toLowerCase()),
+    ) ?? "en-US"
   const getTranslation = (key: string) => {
     const keys = key.split(".")
     let translationString: string | Record<string, unknown> =
-      TRANSLATION[lang as keyof typeof TRANSLATION]
+      TRANSLATION[locale as keyof typeof TRANSLATION]
     keys.forEach((key) => {
       // @ts-ignore
       translationString = translationString[key]

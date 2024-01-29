@@ -18,12 +18,11 @@ function TableOfContents({ fileData, displayClass, cfg }: QuartzComponentProps) 
   if (!fileData.toc) {
     return null
   }
-  const locale = cfg.locale ?? "en-US"
 
   return (
     <div class={`toc ${displayClass ?? ""}`}>
       <button type="button" id="toc" class={fileData.collapseToc ? "collapsed" : ""}>
-        <h3>{i18n(locale, "tableOfContent")}</h3>
+        <h3>{i18n(cfg.locale, "tableOfContent")}</h3>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -60,11 +59,10 @@ function LegacyTableOfContents({ fileData, cfg }: QuartzComponentProps) {
   if (!fileData.toc) {
     return null
   }
-  const locale = cfg.locale ?? "en-US"
   return (
     <details id="toc" open={!fileData.collapseToc}>
       <summary>
-        <h3>{i18n(locale, "tableOfContent")}</h3>
+        <h3>{i18n(cfg.locale, "tableOfContent")}</h3>
       </summary>
       <ul>
         {fileData.toc.map((tocEntry) => (

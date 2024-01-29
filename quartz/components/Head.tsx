@@ -5,9 +5,9 @@ import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
 export default (() => {
   function Head({ cfg, fileData, externalResources }: QuartzComponentProps) {
-    const locale = cfg.locale ?? "en-US"
-    const title = fileData.frontmatter?.title ?? i18n(locale, "head.untitled")
-    const description = fileData.description?.trim() ?? i18n(locale, "head.noDescriptionProvided")
+    const title = fileData.frontmatter?.title ?? i18n(cfg.locale, "head.untitled")
+    const description =
+      fileData.description?.trim() ?? i18n(cfg.locale, "head.noDescriptionProvided")
     const { css, js } = externalResources
 
     const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`)

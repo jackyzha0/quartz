@@ -54,7 +54,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
         {options.showFolderCount && (
           <p>
             {pluralize(allPagesInFolder.length, "item")}{" "}
-            {i18n(locale, "folderContent.underThisFolder")}.
+            {i18n(cfg.locale, "folderContent.underThisFolder")}.
           </p>
         )}
         <div>

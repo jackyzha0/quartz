@@ -6,11 +6,10 @@ import { i18n } from "../i18n/i18next"
 
 export default (() => {
   function Search({ displayClass, cfg }: QuartzComponentProps) {
-    const locale = cfg.locale ?? "en-US"
     return (
       <div class={`search ${displayClass ?? ""}`}>
         <div id="search-icon">
-          <p>{i18n(locale, "search")}</p>
+          <p>{i18n(cfg.locale, "search")}</p>
           <div></div>
           <svg
             tabIndex={0}

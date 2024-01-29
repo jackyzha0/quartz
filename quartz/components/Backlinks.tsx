@@ -5,11 +5,10 @@ import { i18n } from "../i18n/i18next"
 
 function Backlinks({ fileData, allFiles, displayClass, cfg }: QuartzComponentProps) {
   const slug = simplifySlug(fileData.slug!)
-  const locale = cfg.locale ?? "en-US"
   const backlinkFiles = allFiles.filter((file) => file.links?.includes(slug))
   return (
     <div class={`backlinks ${displayClass ?? ""}`}>
-      <h3>{i18n(locale, "backlinks.backlinks")}</h3>
+      <h3>{i18n(cfg.locale, "backlinks.backlinks")}</h3>
       <ul class="overflow">
         {backlinkFiles.length > 0 ? (
           backlinkFiles.map((f) => (
@@ -20,7 +19,7 @@ function Backlinks({ fileData, allFiles, displayClass, cfg }: QuartzComponentPro
             </li>
           ))
         ) : (
-          <li>{i18n(locale, "backlinks.noBlacklinksFound")}</li>
+          <li>{i18n(cfg.locale, "backlinks.noBlacklinksFound")}</li>
         )}
       </ul>
     </div>

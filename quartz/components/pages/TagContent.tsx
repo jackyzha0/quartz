@@ -46,7 +46,8 @@ function TagContent(props: QuartzComponentProps) {
           <p>{content}</p>
         </article>
         <p>
-          {i18n(locale, "tagContent.found")} {tags.length} {i18n(locale, "tagContent.totalTags")}.
+          {i18n(cfg.locale, "tagContent.found")} {tags.length}{" "}
+          {i18n(cfg.locale, "tagContent.totalTags")}.
         </p>
         <div>
           {tags.map((tag) => {
@@ -67,10 +68,10 @@ function TagContent(props: QuartzComponentProps) {
                 </h2>
                 {content && <p>{content}</p>}
                 <p>
-                  {pluralize(pages.length, i18n(locale, "common.item"))}{" "}
-                  {i18n(locale, "tagContent.withThisTag")}.{" "}
+                  {pluralize(pages.length, i18n(cfg.locale, "common.item"))}{" "}
+                  {i18n(cfg.locale, "tagContent.withThisTag")}.{" "}
                   {pages.length > numPages &&
-                    `${i18n(locale, "tagContent.showingFirst")} ${numPages}.`}
+                    `${i18n(cfg.locale, "tagContent.showingFirst")} ${numPages}.`}
                 </p>
                 <PageList limit={numPages} {...listProps} />
               </div>
@@ -90,8 +91,8 @@ function TagContent(props: QuartzComponentProps) {
       <div class="popover-hint">
         <article>{content}</article>
         <p>
-          {pluralize(pages.length, i18n(locale, "common.item"))}{" "}
-          {i18n(locale, "tagContent.withThisTag")}.
+          {pluralize(pages.length, i18n(cfg.locale, "common.item"))}{" "}
+          {i18n(cfg.locale, "tagContent.withThisTag")}.
         </p>
         <div>
           <PageList {...listProps} />

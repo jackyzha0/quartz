@@ -10,13 +10,12 @@ interface Options {
 export default ((opts?: Options) => {
   function Footer({ displayClass, cfg }: QuartzComponentProps) {
     const year = new Date().getFullYear()
-    const locale = cfg.locale ?? "en-US"
     const links = opts?.links ?? []
     return (
       <footer class={`${displayClass ?? ""}`}>
         <hr />
         <p>
-          {i18n(locale, "footer.createdWith")}{" "}
+          {i18n(cfg.locale, "footer.createdWith")}{" "}
           <a href="https://quartz.jzhao.xyz/">Quartz v{version}</a>, © {year}
         </p>
         <ul>

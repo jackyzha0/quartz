@@ -1,6 +1,5 @@
 import { ValidDateType } from "./components/Date"
 import { QuartzComponent } from "./components/types"
-import { Locale } from "./i18n/i18next"
 import { PluginTypes } from "./plugins/types"
 import { Theme } from "./util/theme"
 
@@ -36,7 +35,12 @@ export interface GlobalConfiguration {
    */
   baseUrl?: string
   theme: Theme
-  locale?: Locale
+  /**
+   * The locale to use for date formatting. Default to "en-US"
+   * Also used for UI translation
+   * Need to be formated following the IETF language tag format (https://en.wikipedia.org/wiki/IETF_language_tag)
+   */
+  locale?: string
 }
 
 export interface QuartzConfig {
