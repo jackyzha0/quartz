@@ -34,7 +34,8 @@ export default ((opts?: Partial<FolderContentOptions>) => {
       const isDirectChild = fileParts.length === folderParts.length + 1
       return prefixed && isDirectChild
     })
-
+    const cssClasses: string[] = fileData.frontmatter?.cssclasses ?? []
+    const classes = ["popover-hint", ...cssClasses].join(" ")
     const listProps = {
       ...props,
       allFiles: allPagesInFolder,
@@ -46,7 +47,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
         : htmlToJsx(fileData.filePath!, tree)
 
     return (
-      <div class="popover-hint">
+      <div class={classes}>
         <article>
           <p>{content}</p>
         </article>
