@@ -111,7 +111,6 @@ function setupExplorer() {
       explorer.removeEventListener("click", toggleExplorer)
       explorer.addEventListener("click", toggleExplorer)
     }
-    
 
     // Set up click handlers for each folder (click handler on folder "icon")
     Array.prototype.forEach.call(document.getElementsByClassName("folder-icon"), function (item) {
@@ -124,7 +123,9 @@ function setupExplorer() {
       explorerState = JSON.parse(storageTree)
       explorerState.map((folderUl) => {
         // grab <li> element for matching folder path
-        const folderLi = document.querySelector(`[data-folderpath='${folderUl.path}']`) as HTMLElement
+        const folderLi = document.querySelector(
+          `[data-folderpath='${folderUl.path}']`,
+        ) as HTMLElement
 
         // Get corresponding content <ul> tag and set state
         if (folderLi) {
