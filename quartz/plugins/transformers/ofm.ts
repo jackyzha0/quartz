@@ -44,40 +44,40 @@ const defaultOptions: Options = {
   enableVideoEmbed: true,
 }
 
-enum callouts {
-  note = "note",
-  abstract = "abstract",
-  summary = "abstract",
-  tldr = "abstract",
-  info = "info",
-  todo = "todo",
-  tip = "tip",
-  hint = "tip",
-  important = "tip",
-  success = "success",
-  check = "success",
-  done = "success",
-  question = "question",
-  help = "question",
-  faq = "question",
-  warning = "warning",
-  attention = "warning",
-  caution = "warning",
-  failure = "failure",
-  missing = "failure",
-  fail = "failure",
-  danger = "danger",
-  error = "danger",
-  bug = "bug",
-  example = "example",
-  quote = "quote",
-  cite = "quote",
+const calloutMapping: Record<string, string> = {
+  note: "note",
+  abstract: "abstract",
+  summary: "abstract",
+  tldr: "abstract",
+  info: "info",
+  todo: "todo",
+  tip: "tip",
+  hint: "tip",
+  important: "tip",
+  success: "success",
+  check: "success",
+  done: "success",
+  question: "question",
+  help: "question",
+  faq: "question",
+  warning: "warning",
+  attention: "warning",
+  caution: "warning",
+  failure: "failure",
+  missing: "failure",
+  fail: "failure",
+  danger: "danger",
+  error: "danger",
+  bug: "bug",
+  example: "example",
+  quote: "quote",
+  cite: "quote",
 }
 
-function canonicalizeCallout(calloutName: string): string {
+function canonicalizeCallout(calloutName: string): keyof typeof calloutMapping {
   const normalizedCalloutName = calloutName.toLowerCase()
-  if (normalizedCalloutName in callouts) {
-    return (callouts as Record<string, string>)[normalizedCalloutName]
+  if (normalizedCalloutName in calloutMapping) {
+    return calloutMapping[normalizedCalloutName]
   }
   // if callout is not recognized, make it a custom one
   return calloutName
