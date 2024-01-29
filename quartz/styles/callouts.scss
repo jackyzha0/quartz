@@ -135,7 +135,7 @@
     cursor: pointer;
     width: var(--icon-size);
     height: var(--icon-size);
-    --callout-icon: var(--callout-icon-fold)
+    --callout-icon: var(--callout-icon-fold);
   }
 
   & > .callout-title-inner > p {

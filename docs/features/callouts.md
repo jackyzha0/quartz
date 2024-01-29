@@ -30,17 +30,15 @@ See [documentation on supported types and syntax here](https://help.obsidian.md
 
 By default, custom callouts are handled by applying the `note` style. To make fancy ones, you have to add these lines to `custom.scss`.
 
-```scss title="`quartz/styles/custom.scss"  
-.callout {  
- &[data-callout="custom"] {  
- --color: #customcolor;  
- --border: #custombordercolor;  
- --bg: #custombg;  
+```scss title="quartz/styles/custom.scss"
+.callout {
+ &[data-callout="custom"] {
+ --color: #customcolor;
+ --border: #custombordercolor;
+ --bg: #custombg;
  --callout-icon: url('data:image/svg+xml; utf8, <custom formatted svg>'); //SVG icon code
 }
-
 ```
-
 
 > [!warning]
 > Don't forget to parse SVG code for url. You can use tools like [this one](https://yoksel.github.io/url-encoder/) F
@@ -103,4 +101,3 @@ By default, custom callouts are handled by applying the `note` style. To make fa
 > [!quote] Quote
 >
 > Aliases: quote, cite
-```
