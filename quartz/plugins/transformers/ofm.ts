@@ -401,9 +401,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 }
                 const title = mdastToHtml(titleNode)
 
-                const toggleIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>`
+                const toggleIcon = `<div class="fold"></div>`
 
                 const titleHtml: Html = {
                   type: "html",
