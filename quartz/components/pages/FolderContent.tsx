@@ -25,7 +25,6 @@ export default ((opts?: Partial<FolderContentOptions>) => {
 
   function FolderContent(props: QuartzComponentProps) {
     const { tree, fileData, allFiles, cfg } = props
-    const locale = cfg.locale ?? "en-US"
     const folderSlug = _stripSlashes(simplifySlug(fileData.slug!))
     const allPagesInFolder = allFiles.filter((file) => {
       const fileSlug = _stripSlashes(simplifySlug(file.slug!))
@@ -53,7 +52,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
         </article>
         {options.showFolderCount && (
           <p>
-            {pluralize(allPagesInFolder.length, "item")}{" "}
+            {pluralize(allPagesInFolder.length, i18n(cfg.locale, "common.item"))}{" "}
             {i18n(cfg.locale, "folderContent.underThisFolder")}.
           </p>
         )}
