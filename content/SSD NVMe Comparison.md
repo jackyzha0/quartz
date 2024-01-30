@@ -2,7 +2,7 @@
 title: SSD / NVMe Comparison
 description: This page was originally published on July 28, 2023 to aid in selecting SSD, NVMe drives to take advantage of an current Micro Center sale.
 compartir: true
-updated: 2023-12-12
+updated: 2024-01-30
 tags:
   - archived
 ---
@@ -100,7 +100,7 @@ Selected $0.10 as the baseline after averaging some calculations.
 
 ### NVMe
 
-| NVMe | $ / GB | 1pt per $0.01 | 1 per GB | Coefficient | Score |
+| Description | $ / GB | per $0.01 | per GB | Coef | Score |
 | ------------------------ |:------:|:-------------:|:--------:|:-----------:|:-----:|
 | 970 500 GB $35 MLC       | 0.070  |     3.00      |   500    |    1.25     |  629  |
 | 970 2 TB $100 MLC | 0.050 | 5.00 | 2000 | 1.25 | 2506 |
@@ -116,11 +116,11 @@ Selected $0.10 as the baseline after averaging some calculations.
 | Performance 1 TB $55 TLC | 0.055 | 4.50 | 1000 | 1 | 1005 |
 | Prime 500 GB $30 TLC     | 0.060  |     4.00      |   500    |      1      |  504  |
 | Prime 1 TB $50 TLC | 0.050 | 5.00 | 1000 | 1 | 1005 |
-_Higher is better._
+\*_Higher is better._
 
 ### SSD
 
-| SSD | $ / GB | 1 per cent | 1 per GB | Coefficient | Score |
+| Description | $ / GB | 1 per cent | 1 per GB | Coefficient | Score |
 | ------------------------- |:------:|:----------:|:--------:|:-----------:|:-----:|
 | Inland 1TB $50 TLC | 0.050 | 5 | 1000 | 1 | 1005 |
 | Inland 512GB $25 TLC      | 0.049  |    5.1     |   512    |      1      |  517  |
@@ -132,7 +132,7 @@ _Higher is better._
 | 870 EVO 4TB $220 MLC      | 0.055  |    4.5     |   4000   |    1.25     | 5006  |
 | 870 EVO 500GB $40 MLC | 0.020 | 8 | 500 | 1.25 | 635 |
 | 870 QVO 1TB $70 QLC | 0.070 | 3 | 1000 | 0.75 | 753 |
-_Higher is better._
+\*_Higher is better._
 
 ## Conclusions
 

@@ -14,7 +14,7 @@ When you are looking at a tab, you will see six horizontal lines. These lines re
 
 ### Arpeggio
 
-An [[./Arpeggio|arpeggio]] is a type of [[./Chords|broken chord]] in which the notes that compose a chord are individually sounded in a progressive rising or descending order. Arpeggios on keyboard instruments may be called _rolled chords_.
+An [[Arpeggio|arpeggio]] is a type of [[Chords|broken chord]] in which the notes that compose a chord are individually sounded in a progressive rising or descending order. Arpeggios on keyboard instruments may be called _rolled chords_.
 
 ```md
 e|--------2-----------------|
