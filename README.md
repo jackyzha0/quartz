@@ -26,6 +26,12 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
   - [Slim (light)](#slim-light)
   - [Slim (dark)](#slim-dark)
 - [Useful Commands](#useful-commands)
+  - [Install Dependencies](#install-dependencies)
+  - [Start Local Server](#start-local-server)
+  - [Update Quartz](#update-quartz)
+  - [Sync the Repo](#sync-the-repo)
+  - [Build Only](#build-only)
+  - [Find Help](#find-help)
 - [Style](#style)
   - [Fonts](#fonts)
 - [License](#license)
@@ -57,6 +63,49 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 | Build and Serve      | `npx quartz build --serve` |
 | Sync Local Changes   | `npx quartz sync`          |
 | Find Help            | `npx quartz sync --help`   |
+
+### Install Dependencies
+
+```bash
+npm i
+npm install
+```
+
+### Start Local Server
+
+```bash
+npm start
+npm run start
+npx quartz build --serve
+```
+
+### Update Quartz
+
+```bash
+npm run update
+npx quartz update
+```
+
+### Sync the Repo
+
+```bash
+npm run sync
+npx quartz sync
+```
+
+### Build Only
+
+```bash
+npm run build
+npx quartz build
+```
+
+### Find Help
+
+```bash
+npx quartz --help
+npx quartz <command> --help
+```
 
 ## Style
 
