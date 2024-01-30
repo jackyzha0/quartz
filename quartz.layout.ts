@@ -67,7 +67,7 @@ export const sharedPageComponents: SharedLayout = {
     links: {
       Github: "https://github.com/Lisandra-dev",
       Twitter: "https://vxtwitter.com/Mara__Li",
-      Discord: "Mara__Li"
+      Discord: "Mara__Li",
     },
   }),
 }
@@ -86,7 +86,7 @@ export const defaultContentPageLayout: PageLayout = {
         folderClickBehavior: "link",
         folderDefaultState: "collapsed",
         useSavedState: true,
-        title: ""
+        title: "",
       }),
     ),
   ],
