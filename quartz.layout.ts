@@ -2,7 +2,7 @@ import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 
 // components shared across all pages
-export const sharedPageComponents: SharedLayout = {
+/* export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
   footer: Component.Footer({
@@ -46,10 +46,10 @@ export const defaultListPageLayout: PageLayout = {
     Component.DesktopOnly(Component.Explorer()),
   ],
   right: [],
-}
+} */
 
-/** Example of a valid layout for mobile, allowing burger menu 
-export const sharedMobilePageLayout: SharedLayout = {
+/** Example of a valid layout for mobile, allowing burger menu */
+export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [
     Component.MobileOnly(
@@ -72,7 +72,7 @@ export const sharedMobilePageLayout: SharedLayout = {
   }),
 }
 
-export const defaultMobileContentPageLayout: PageLayout = {
+export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
     Component.Breadcrumbs(),
     Component.ArticleTitle(),
@@ -97,9 +97,8 @@ export const defaultMobileContentPageLayout: PageLayout = {
   ],
 }
 
-export const defaultMobileListPageLayout: PageLayout = {
+export const defaultListPageLayout: PageLayout = {
   beforeBody: defaultContentPageLayout.beforeBody,
   left: defaultContentPageLayout.left,
   right: [],
 }
-*/

@@ -20,20 +20,20 @@ function toggleExplorer(this: HTMLElement) {
   // Toggle collapsed state of entire explorer
   this.classList.toggle("collapsed")
   const content = this.nextElementSibling as HTMLElement
+  if (!content) return
   content.classList.toggle("collapsed")
   content.style.maxHeight = content.style.maxHeight === "0px" ? content.scrollHeight + "px" : "0px"
+  console.log(this.dataset)
   //prevent scroll under
-  const mobileOnly = document.querySelector(".mobile-only")
-  if (mobileOnly && window.getComputedStyle(mobileOnly).display !== "none") {
-    const article = document.querySelectorAll(".popover-hint")
-    const header = document.querySelector(".page .page-header")
-    if (article)
-      article.forEach((element) => {
+  if (this.dataset.mobileonly === "true" && document.querySelector(".mobile-only #explorer")) {
+    console.log("mobile only")
+    const queries = [".popover-hint", "footer", "#progress", ".backlinks", ".graph", ".toc"]
+    queries.map((query) => {
+      document.querySelectorAll(query)?.forEach((element) => {
+        console.log(element)
         element.classList.toggle("no-scroll")
       })
-    if (header) header.classList.toggle("fixed")
-    const footer = document.querySelector("footer")
-    if (footer) footer.classList.toggle("no-scroll")
+    })
   }
 }
 
@@ -82,35 +82,34 @@ function toggleFolder(evt: MouseEvent) {
 
 function setupExplorer() {
   // Set click handler for collapsing entire explorer
-  const allExplorers = document.querySelectorAll("#explorer")
-  for (const explorer of allExplorers) {
-    const explorerHTML = explorer as HTMLElement
+  for (const explorer of document.querySelectorAll("#explorer") as NodeListOf<HTMLElement>) {
+    const isMobileOnly = explorer.dataset.mobileonly === "true"
+    if (isMobileOnly) {
+      explorer.classList.add("collapsed")
+      const content = explorer.nextElementSibling as HTMLElement
+      content.classList.add("collapsed")
+      content.style.maxHeight = "0px"
+    }
+    if (explorer.dataset.behavior === "collapse") {
+      for (const item of document.getElementsByClassName(
+        "folder-button",
+      ) as HTMLCollectionOf<HTMLElement>) {
+        item.removeEventListener("click", toggleFolder)
+        item.addEventListener("click", toggleFolder)
+      }
+    }
+    explorer.removeEventListener("click", toggleExplorer)
+    explorer.addEventListener("click", toggleExplorer)
 
     // Get folder state from local storage
     const storageTree = localStorage.getItem("fileTree")
 
     // Convert to bool
-    const useSavedFolderState = explorerHTML?.dataset.savestate === "true"
+    const useSavedFolderState = explorer?.dataset.savestate === "true"
 
-    if (explorerHTML) {
-      // Get config
-      const collapseBehavior = explorerHTML.dataset.behavior
-
-      // Add click handlers for all folders (click handler on folder "label")
-      if (collapseBehavior === "collapse") {
-        Array.prototype.forEach.call(
-          document.getElementsByClassName("folder-button"),
-          function (item) {
-            item.removeEventListener("click", toggleFolder)
-            item.addEventListener("click", toggleFolder)
-          },
-        )
-      }
-
-      // Add click handler to main explorer
-      explorer.removeEventListener("click", toggleExplorer)
-      explorer.addEventListener("click", toggleExplorer)
-    }
+    // Add click handler to main explorer
+    explorer.removeEventListener("click", toggleExplorer)
+    explorer.addEventListener("click", toggleExplorer)
 
     // Set up click handlers for each folder (click handler on folder "icon")
     Array.prototype.forEach.call(document.getElementsByClassName("folder-icon"), function (item) {
@@ -135,9 +134,9 @@ function setupExplorer() {
           }
         }
       })
-    } else if (explorerHTML?.dataset.tree) {
+    } else if (explorer?.dataset.tree) {
       // If tree is not in localStorage or config is disabled, use tree passed from Explorer as dataset
-      explorerState = JSON.parse(explorerHTML.dataset.tree)
+      explorerState = JSON.parse(explorer.dataset.tree)
     }
   }
 }
