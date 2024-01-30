@@ -112,7 +112,7 @@
     --callout-icon: var(--callout-icon-quote);
   }
 
-  &.is-collapsed > .callout-title > .fold {
+  &.is-collapsed > .callout-title > .fold-callout-icon {
     transform: rotateZ(-90deg);
   }
 }
@@ -129,7 +129,7 @@
 
   --icon-size: 18px;
 
-  & .fold {
+  & .fold-callout-icon {
     transition: transform 0.15s ease;
     opacity: 0.8;
     cursor: pointer;
@@ -144,10 +144,9 @@
   }
 
   .callout-icon,
-  & .fold {
+  & .fold-callout-icon {
     width: var(--icon-size);
     height: var(--icon-size);
-    //flex: 0 0 18px;
 
     // icon support
     background-size: var(--icon-size) var(--icon-size);

@@ -44,7 +44,7 @@ const defaultOptions: Options = {
   enableVideoEmbed: true,
 }
 
-const calloutMapping: Record<string, string> = {
+const calloutMapping = {
   note: "note",
   abstract: "abstract",
   summary: "abstract",
@@ -72,15 +72,11 @@ const calloutMapping: Record<string, string> = {
   example: "example",
   quote: "quote",
   cite: "quote",
-}
+} as const
 
 function canonicalizeCallout(calloutName: string): keyof typeof calloutMapping {
-  const normalizedCalloutName = calloutName.toLowerCase()
-  if (normalizedCalloutName in calloutMapping) {
-    return calloutMapping[normalizedCalloutName]
-  }
-  // if callout is not recognized, make it a custom one
-  return calloutName
+  const normalizedCallout = calloutName.toLowerCase() as keyof typeof calloutMapping
+  return calloutMapping[normalizedCallout] ?? calloutName
 }
 
 export const externalLinkRegex = /^https?:\/\//i
