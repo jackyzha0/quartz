@@ -63,7 +63,7 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 
 ## Useful Commands
 
-Commands on each lines within codeblocks represents others wihtin the same codeblock. This means that you can use either `npm i` or `npm install` when installing dependencies.
+Each line within codeblocks represents different ways to achieve the same result. This means that you can, for example, use either `npm i` or `npm install` when installing dependencies.
 
 ### Install Dependencies
 
