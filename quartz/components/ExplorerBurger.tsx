@@ -121,7 +121,7 @@ export default ((userOpts?: Partial<Options>) => {
           data-collapsed={opts.folderDefaultState}
           data-savestate={opts.useSavedState}
           data-tree={jsonTree}
-          data-mobileonly="false"
+          data-mobileonly={false}
         >
           <h1>{opts.title}</h1>
           <svg
