@@ -117,7 +117,6 @@ function addGlobalPageResources(
       })
     `)
   } else if (cfg.analytics?.provider === "umami") {
-    const umamiHost = cfg.analytics.host ?? "https://analytics.umami.is/script.js"
     componentResources.afterDOMLoaded.push(`
       const umamiScript = document.createElement("script")
       umamiScript.src = "${umamiHost}"
