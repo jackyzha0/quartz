@@ -2,11 +2,12 @@ import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import style from "./styles/search.scss"
 // @ts-ignore
 import script from "./scripts/search.inline"
+import { classNames } from "../util/lang"
 
 export default (() => {
   function Search({ displayClass }: QuartzComponentProps) {
     return (
-      <div class={`search ${displayClass ?? ""}`}>
+      <div class={classNames(displayClass, "search")}>
         <div id="search-icon">
           <p>Search</p>
           <div></div>
