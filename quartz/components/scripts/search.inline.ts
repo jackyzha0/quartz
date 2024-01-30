@@ -77,8 +77,8 @@ let prevShortcutHandler: ((e: HTMLElementEventMap["keydown"]) => void) | undefin
 
 let fetchContentCache: Record<string, Element[] | undefined> = {}
 
-document.addEventListener("nav", async (e: unknown) => {
-  const currentSlug = (e as CustomEventMap["nav"]).detail.url
+document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
+  const currentSlug = e.detail.url
 
   const data = await fetchData
   const container = document.getElementById("search-container")
