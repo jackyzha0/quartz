@@ -1,8 +1,6 @@
 ---
-title: "Eleventy Garden"
+title: "Forgetful Notes"
 description: Forgotten Notes—A digital garden of knowledge. A platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
-compartir: true
-updated: 2024-01-19
 ---
 
 You've come across **Forgotten Notes**—a [[Digital Garden|digital garden]] of knowledge. Come in and make yourself comfortable.
