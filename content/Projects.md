@@ -4,7 +4,6 @@ compartir: true
 updated: 2024-01-19
 ---
 
-
 A compilation of my projects.
 
 ## Personal Projects

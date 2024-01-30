@@ -24,7 +24,3 @@ CommonMark is a standardized version of Markdown that aims to create a consisten
 ### GitHub Flavored Markdown
 
 GitHub Flavored Markdown, also known as GFM, is a Markdown flavor used by GitHub. It extends the basic Markdown syntax by adding some additional features. These include task lists, tables, user mentions, and code syntax highlighting. GFM is commonly used in GitHub repositories for documentation and README files.
-
-## Markdown Showcase
-
-Check out the [[./Markdown Showcase|Markdown Showcase]] to see what Markdown can do.
