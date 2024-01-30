@@ -175,7 +175,7 @@ a {
       & > * {
         @media all and (max-width: $fullPageWidth) {
           flex: 1;
-          min-width: 150px;
+          min-width: 140px;
         }
       }
     }
