@@ -401,7 +401,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 }
                 const title = mdastToHtml(titleNode)
 
-                const toggleIcon = `<div class="fold"></div>`
+                const toggleIcon = `<div class="fold-callout-icon"></div>`
 
                 const titleHtml: Html = {
                   type: "html",
