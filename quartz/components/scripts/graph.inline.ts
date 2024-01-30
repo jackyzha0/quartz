@@ -319,8 +319,8 @@ function renderGlobalGraph() {
   registerEscapeHandler(container, hideGlobalGraph)
 }
 
-document.addEventListener("nav", async (e: unknown) => {
-  const slug = (e as CustomEventMap["nav"]).detail.url
+document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
+  const slug = e.detail.url
   addToVisited(slug)
   await renderGraph("graph-container", slug)
 
