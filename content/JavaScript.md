@@ -13,4 +13,4 @@ updated: 2023-12-15
 
 ## JavaScript Frameworks
 
-JavaScript frameworks are pre-written and reusable code libraries that simplify and speed up web development. They provide tools, functions, and structure to build dynamic and interactive websites or applications. Frameworks like React, Vue, [[./Svelte|Svelte]], and Angular make it easier to handle complex logic and create engaging user interfaces.
+JavaScript frameworks are pre-written and reusable code libraries that simplify and speed up web development. They provide tools, functions, and structure to build dynamic and interactive websites or applications. Frameworks like React, Vue, [[Svelte|Svelte]], and Angular make it easier to handle complex logic and create engaging user interfaces.

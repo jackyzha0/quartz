@@ -1,7 +1,7 @@
 ---
 title: About
 compartir: true
-updated: 2023-12-12
+updated: 2024-01-30
 tags:
   - meta
 ---
@@ -12,11 +12,11 @@ I am a problem solver, hobby developer, music enjoyer, and public infrastructure
 
 I think a lot, work a lot, have existential crises, and know just enough about making websites to make me dangerous. I enjoy writing, reading, coding, listening to music, and love having a problem to solve.
 
-If you are aching for more, check out what [[./Tools|tools]] I use daily, or read my [[./Public Journal|public journal]].
+If you are aching for more, check out what [[Tools|tools]] I use daily, or read my [[Public Journal|public journal]].
 
-### As of December 2023, I am…
+### As of January 2024, I am…
 
-… learning about web dev with [[./Zola|Zola]].  
+… learning about web dev with [[Zola|Zola]].  
 … making simple browser [extensions](https://addons.mozilla.org/en-US/firefox/user/17772574/).  
 … collecting bookmarks with [Raindrop](https://raindrop.io/SemanticData).  
 … compiling [configuration files](https://github.com/semanticdata/dotfiles) in [GitHub](https://github.com/).  
