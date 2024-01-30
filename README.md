@@ -63,11 +63,13 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 
 ## Useful Commands
 
+Commands on each lines within codeblocks represents others wihtin the same codeblock. This means that you can use either `npm i` or `npm install` when installing dependencies.
+
 ### Install Dependencies
 
 ```bash
 npm i
-npm install
+# npm install
 ```
 
 ### Update Dependencies
@@ -80,36 +82,36 @@ npm update
 
 ```bash
 npm start
-npm run start
-npx quartz build --serve
+# npm run start
+# npx quartz build --serve
 ```
 
 ### Update Quartz
 
 ```bash
 npm run update
-npx quartz update
+# npx quartz update
 ```
 
 ### Sync the Repo
 
 ```bash
 npm run sync
-npx quartz sync
+# npx quartz sync
 ```
 
 ### Build Only
 
 ```bash
 npm run build
-npx quartz build
+# npx quartz build
 ```
 
 ### Find Help
 
 ```bash
 npx quartz --help
-npx quartz <command> --help
+# npx quartz <command> --help
 ```
 
 ## Customization
