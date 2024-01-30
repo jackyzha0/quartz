@@ -26,11 +26,9 @@ function toggleExplorer(this: HTMLElement) {
   console.log(this.dataset)
   //prevent scroll under
   if (this.dataset.mobileonly === "true" && document.querySelector(".mobile-only #explorer")) {
-    console.log("mobile only")
     const queries = [".popover-hint", "footer", "#progress", ".backlinks", ".graph", ".toc"]
     queries.map((query) => {
       document.querySelectorAll(query)?.forEach((element) => {
-        console.log(element)
         element.classList.toggle("no-scroll")
       })
     })
