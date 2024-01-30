@@ -133,7 +133,7 @@ You can add custom CSS code within `/quartz/styles/custom.scss`. You will then n
 <details>
 <summary>Show/Hide</summary>
 
-```md
+```plaintext
 .
 ├── .github/
 │   └── workflows/
