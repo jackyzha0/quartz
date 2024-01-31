@@ -8,6 +8,8 @@ import {
   SimpleSlug,
   FilePath,
 } from "../util/path"
+import * as fs from "fs"
+import * as path from "path"
 
 type OrderEntries = "sort" | "filter" | "map"
 
@@ -185,6 +187,17 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
     iconType = opts.defaultFolderIcon
   }
   const iconPath = hasIcon ? `${opts.iconFolderPath}/${iconType}.svg` : ""
+  let iconAsSVG: string | null = null
+  if (hasIcon) {
+    try {
+      iconAsSVG = fs.readFileSync(path.join(process.cwd(), iconPath), "utf8")
+    } catch (e) {
+      iconAsSVG = fs.readFileSync(
+        path.join(process.cwd(), `${opts.iconFolderPath}/${opts.defaultFolderIcon}.svg`),
+        "utf8",
+      )
+    }
+  }
   return (
     <>
       {node.file ? (
@@ -196,6 +209,7 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
             data-hasicon={hasIcon}
             data-icon={iconPath}
           >
+            {iconAsSVG && <div class="file-icon" dangerouslySetInnerHTML={{ __html: iconAsSVG }} />}
             {node.displayName}
           </a>
         </li>
@@ -229,6 +243,9 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
                     data-hasicon={hasIcon}
                     data-icon={iconPath}
                   >
+                    {iconAsSVG && (
+                      <div class="folder-icon" dangerouslySetInnerHTML={{ __html: iconAsSVG }} />
+                    )}
                     {node.displayName}
                   </a>
                 ) : (

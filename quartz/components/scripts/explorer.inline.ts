@@ -96,31 +96,6 @@ function setupExplorer() {
       setFolderState(folderUl, folderState.collapsed)
     }
   })
-  const allFileWithIcon = document.querySelectorAll("li a[data-hasicon='true']")
-  for (const fileWithIcon of allFileWithIcon) {
-    const fileIcon = fileWithIcon.getAttribute("data-icon")
-    const location = window.location.origin
-    const iconFullPath = `${location}/${fileIcon}`
-    const readSVG = async (path: string) => {
-      try {
-        const response = await fetch(path)
-        return await response.text()
-      } catch (err) {
-        return null
-      }
-    }
-    const iconClass = fileWithIcon.classList.contains("folder-title")
-      ? "folder-title-icon"
-      : "file-title-icon"
-    const svg = readSVG(iconFullPath)
-    svg.then((svg) => {
-      if (!svg?.startsWith("<svg")) return
-      svg = svg.replace(/<svg/g, `<svg class="${iconClass}"`)
-      //don't insert if the adjacent element is already an svg
-      if (fileWithIcon.firstChild?.nodeName === "svg") return
-      fileWithIcon.insertAdjacentHTML("afterbegin", svg)
-    })
-  }
 }
 
 window.addEventListener("resize", setupExplorer)

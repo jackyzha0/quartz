@@ -1,16 +1,16 @@
 import { pathToRoot } from "../util/path"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { classNames } from "../util/lang"
+import * as fs from "fs"
+import * as path from "path"
 
 interface Options {
-  /* Default folder where icons are stored */
   iconFolderPath: string
-  /* Default icon in case of there is no frontmatter icon key */
   defaultIcon?: string
 }
 
 const defaultOpts: Options = {
-  iconFolderPath: "", //disable icons by default
+  iconFolderPath: "",
 }
 
 export default ((userOpts?: Partial<Options>) => {
@@ -26,13 +26,25 @@ export default ((userOpts?: Partial<Options>) => {
         </h1>
       )
     }
-    const iconFullPath = `${opts.iconFolderPath}/${iconType}.svg`
+    const iconFullPath = `${opts.iconFolderPath}/${iconType || opts.defaultIcon}.svg`
+    let iconAsSVG = ""
+    try {
+      iconAsSVG = fs.readFileSync(path.join(process.cwd(), iconFullPath), "utf8")
+    } catch (e) {
+      iconAsSVG = fs.readFileSync(
+        path.join(process.cwd(), `${opts.iconFolderPath}/${opts.defaultIcon}.svg`),
+        "utf8",
+      )
+    }
     return (
       <div
         class={classNames(displayClass, "page-title")}
         data-icon={iconFullPath}
         data-hasIcon={true}
       >
+        {iconAsSVG && (
+          <div class="page-title-icon" dangerouslySetInnerHTML={{ __html: iconAsSVG }} />
+        )}
         <h1>
           <a href={baseDir}>{title}</a>
         </h1>
@@ -53,30 +65,7 @@ export default ((userOpts?: Partial<Options>) => {
     }
     .page-title[data-hasicon="true"] > h1 {
       margin: 0;
-    } 
-  `
-
-  PageTitle.afterDOMLoaded = `
-    document.addEventListener("nav", () => {
-      const articleTitle = document.querySelector(".page-title[data-hasicon='true']")
-      if (articleTitle) {
-        const iconPath = articleTitle.getAttribute("data-icon")
-        const location = window.location.origin
-        const iconFullPath = location + "/" + iconPath
-        const readSVG = async (path) => {
-          const response = await fetch(path)
-          const text = await response.text()
-          return text
-        }
-        const svg = readSVG(iconFullPath)
-        //add the svg to the article title
-        svg.then((data) => {
-          if (data.includes("<!DOCTYPE html>")) return;
-          data = data.replace(/<svg/g, '<svg class="article-title-icon"')
-          articleTitle.insertAdjacentHTML("afterbegin", data)
-        })
-      }
-    })
+    }
   `
   return PageTitle
 }) satisfies QuartzComponentConstructor

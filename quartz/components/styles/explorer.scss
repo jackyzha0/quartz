@@ -144,3 +144,27 @@ li:has(> .folder-outer:not(.open)) > .folder-container > svg {
   // remove default margin from li
   margin: 0;
 }
+
+#explorer-content ul li > a[data-hasicon="true"],
+.folder-container div > a[data-hasicon="true"] {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.folder-title-icon > svg {
+  margin-right: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  backface-visibility: visible;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+}
+
+.file-title-icon > svg {
+  width: 1em;
+  height: 1em;
+  margin-right: 5px;
+  vertical-align: middle;
+}
