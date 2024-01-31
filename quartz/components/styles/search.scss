@@ -55,7 +55,7 @@
 
     & > #search-space {
       width: 50%;
-      margin-top: 15vh;
+      margin-top: 12vh;
       margin-left: auto;
       margin-right: auto;
 
@@ -86,93 +86,130 @@
         }
       }
 
-      & > #results-container {
-        & .result-card {
-          padding: 1em;
-          cursor: pointer;
-          transition: background 0.2s ease;
-          border: 1px solid var(--lightgray);
-          border-bottom: none;
-          width: 100%;
+      & > #search-layout {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        opacity: 0;
+
+        & > * {
+          height: calc(75vh - 20em);
+          background: none;
+          border-radius: 5px;
+          border: 1px solid var(--lightgray); // Border to define the box
+        }
+
+        @media all and (max-width: $mobileBreakpoint) {
+          display: block;
+          & > *:not(#results-container) {
+            display: none !important;
+          }
+
+          & > #results-container {
+            width: 100%;
+            height: auto;
+          }
+        }
+
+        & > #preview-container {
           display: block;
           box-sizing: border-box;
+          overflow: hidden;
 
-          // normalize card props
-          font-family: inherit;
-          font-size: 100%;
-          line-height: 1.15;
-          margin: 0;
-          text-transform: none;
-          text-align: left;
-          background: var(--light);
-          outline: none;
-          font-weight: inherit;
-
-          & .highlight {
-            color: var(--secondary);
-            font-weight: 700;
+          & .preview-inner {
+            padding: 1em;
+            height: 100%;
+            box-sizing: border-box;
+            overflow-y: auto;
+            font-family: inherit;
+            font-size: 1.1em;
+            color: var(--dark);
+            line-height: 1.5em;
+            font-weight: 400;
+            background: var(--light);
+            border-radius: 5px;
+            box-shadow:
+              0 14px 50px rgba(27, 33, 48, 0.12),
+              0 10px 30px rgba(27, 33, 48, 0.16);
           }
+        }
 
-          &:hover,
-          &:focus {
-            background: var(--lightgray);
-          }
+        & > #results-container {
+          overflow-y: auto;
 
-          &:first-of-type {
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-          }
+          & .result-card {
+            padding: 1em;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            width: 100%;
+            display: block;
+            box-sizing: border-box;
 
-          &:last-of-type {
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
-            border-bottom: 1px solid var(--lightgray);
-          }
-
-          & > h3 {
+            // normalize card props
+            font-family: inherit;
+            font-size: 100%;
+            line-height: 1.15;
             margin: 0;
-          }
+            text-transform: none;
+            text-align: left;
+            background: var(--light);
+            outline: none;
+            font-weight: inherit;
 
-          & > ul > li {
-            margin: 0;
-            display: inline-block;
-            white-space: nowrap;
-            margin: 0;
-            overflow-wrap: normal;
-          }
+            & .highlight {
+              color: var(--secondary);
+              font-weight: 700;
+            }
 
-          & > ul {
-            list-style: none;
-            display: flex;
-            padding-left: 0;
-            gap: 0.4rem;
-            margin: 0;
-            margin-top: 0.45rem;
-            // Offset border radius
-            margin-left: -2px;
-            overflow: hidden;
-            background-clip: border-box;
-          }
+            &:hover,
+            &:focus {
+              background: var(--lightgray);
+            }
 
-          & > ul > li > p {
-            border-radius: 8px;
-            background-color: var(--highlight);
-            overflow: hidden;
-            background-clip: border-box;
-            padding: 0.03rem 0.4rem;
-            margin: 0;
-            color: var(--secondary);
-            opacity: 0.85;
-          }
+            & > h3 {
+              margin: 0;
+            }
 
-          & > ul > li > .match-tag {
-            color: var(--tertiary);
-            font-weight: bold;
-            opacity: 1;
-          }
+            & > ul > li {
+              margin: 0;
+              display: inline-block;
+              white-space: nowrap;
+              margin: 0;
+              overflow-wrap: normal;
+            }
 
-          & > p {
-            margin-bottom: 0;
+            & > ul {
+              list-style: none;
+              display: flex;
+              padding-left: 0;
+              gap: 0.4rem;
+              margin: 0;
+              margin-top: 0.45rem;
+              box-sizing: border-box;
+              overflow: hidden;
+              background-clip: border-box;
+            }
+
+            & > ul > li > p {
+              border-radius: 8px;
+              background-color: var(--highlight);
+              overflow: hidden;
+              background-clip: border-box;
+              padding: 0.03rem 0.4rem;
+              margin: 0;
+              color: var(--secondary);
+              opacity: 0.85;
+            }
+
+            & > ul > li > .match-tag {
+              color: var(--tertiary);
+              font-weight: bold;
+              opacity: 1;
+            }
+
+            & > p {
+              margin-bottom: 0;
+            }
           }
         }
       }
