@@ -150,6 +150,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       if (searchBar) searchBar.value = "#"
     }
 
+    const resultCards = document.getElementsByClassName("result-card")
+
     // If search is active, then we will render the first result and display accordingly
     if (!container?.classList.contains("active")) return
     else if (results?.contains(document.activeElement)) {
@@ -159,7 +161,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
         active.click()
       }
     } else {
-      const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
+      const anchor = resultCards[0] as HTMLInputElement | null
       await displayPreview(anchor)
       if (e.key === "Enter") {
         anchor?.click()
@@ -170,8 +172,9 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       e.preventDefault()
       if (results?.contains(document.activeElement)) {
         // If an element in results-container already has focus, focus previous one
-        const prevResult = document.activeElement?.previousElementSibling as HTMLInputElement | null
-        document.activeElement?.classList.remove("focus")
+        const currentResult = document.activeElement as HTMLInputElement | null
+        const prevResult = currentResult?.previousElementSibling as HTMLInputElement | null
+        currentResult?.classList.remove("focus")
         await displayPreview(prevResult)
         prevResult?.focus()
       }
@@ -180,19 +183,17 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       // The results should already been focused, so we need to find the next one.
       // The activeElement is the search bar, so we need to find the first result and focus it.
       if (!results?.contains(document.activeElement)) {
-        const secondResult = document.getElementsByClassName(
-          "result-card",
-        )[1] as HTMLInputElement | null
-        secondResult?.previousElementSibling?.classList.remove("focus")
+        const firstResult = resultCards[0] as HTMLInputElement | null
+        const secondResult = firstResult?.nextElementSibling as HTMLInputElement | null
+        firstResult?.classList.remove("focus")
         await displayPreview(secondResult)
         secondResult?.focus()
       } else {
         // If an element in results-container already has focus, focus next one
-        const nextResult = document.activeElement?.nextElementSibling as HTMLInputElement | null
-        document.activeElement?.classList.remove("focus")
-        if (enablePreview && nextResult?.id) {
-          await displayPreview(nextResult)
-        }
+        const active = document.activeElement as HTMLInputElement | null
+        active?.classList.remove("focus")
+        const nextResult = active?.nextElementSibling as HTMLInputElement | null
+        await displayPreview(nextResult)
         nextResult?.focus()
       }
     }
@@ -280,7 +281,12 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     })
 
     async function onMouseEnter(ev: MouseEvent) {
+      // When search is active, the first element is in focus, so we need to remove focus if given target is not the first element
+      const firstEl = document.getElementsByClassName("result-card")[0] as HTMLAnchorElement | null
       const target = ev.target as HTMLAnchorElement
+      if (firstEl !== target) {
+        firstEl?.classList.remove("focus")
+      }
       target.classList.add("focus")
       await displayPreview(target)
     }
@@ -322,7 +328,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     // focus on first result, then also dispatch preview immediately
     if (results?.firstElementChild) {
       results?.firstElementChild?.classList.add("focus")
-      await displayPreview(results?.firstElementChild)
+      await displayPreview(results?.firstElementChild as HTMLElement)
     }
   }
 
@@ -347,7 +353,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     return contents
   }
 
-  async function displayPreview(el: Element | null) {
+  async function displayPreview(el: HTMLElement | null) {
     if (!searchLayout || !enablePreview || !el) return
 
     const slug = el.id as FullSlug
