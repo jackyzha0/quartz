@@ -357,7 +357,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     if (!searchLayout || !enablePreview || !el) return
 
     const slug = el.id as FullSlug
-    if (!el.classList.contains("focus")) el.classList.add("focus")
+    el.classList.add("focus")
 
     removeAllChildren(preview as HTMLElement)
     const contentDetails = await fetchContent(slug)
