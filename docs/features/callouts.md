@@ -41,7 +41,7 @@ By default, custom callouts are handled by applying the `note` style. To make fa
 ```
 
 > [!warning]
-> Don't forget to ensure that the SVG is URL encoded before putting it in the CSS. You can use tools like [this one](https://yoksel.github.io/url-encoder/)
+> Don't forget to ensure that the SVG is URL encoded before putting it in the CSS. You can use tools like [this one](https://yoksel.github.io/url-encoder/) to help you do that.
 
 ## Showcase
 
