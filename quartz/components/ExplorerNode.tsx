@@ -10,6 +10,7 @@ import {
 } from "../util/path"
 import * as fs from "fs"
 import * as path from "path"
+import { IconFolderOptions } from "./types"
 
 type OrderEntries = "sort" | "filter" | "map"
 
@@ -18,19 +19,7 @@ export interface Options {
   folderDefaultState: "collapsed" | "open"
   folderClickBehavior: "collapse" | "link"
   useSavedState: boolean
-  /** Folder where icons are stored as svg, from root, ie "quartz/static/icons"
-   * if undefined, disable frontmatter icon functionality
-   */
-  iconFolderPath?: string
-  /** Default icon for folder, without the iconFolderPath.
-   *  ie: "default/folder" (that will give you "quartz/static/icons/default/file.svg")
-   * if undefined, file won't have a default icon (but use the icon set in frontmatter) */
-  defaultFolderIcon?: string
-  /** Default icon for file, without the iconFolderPath.
-   * ie: "default/file" (that will give you "quartz/static/icons/default/file.svg")
-   * if undefined, file won't have a default icon (but use the icon set in frontmatter for index file)
-   */
-  defaultFileIcon?: string
+  iconSettings?: IconFolderOptions
   sortFn: (a: FileNode, b: FileNode) => number
   filterFn: (node: FileNode) => boolean
   mapFn: (node: FileNode) => void
@@ -197,33 +186,34 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
   }
   let hasIcon = false
   let iconType = ""
-  let defaultIcon = node.file ? opts.defaultFileIcon : opts.defaultFolderIcon
-  if (opts.iconFolderPath) {
+  const iconSettings = opts.iconSettings
+  const defaultIcon = node.file ? iconSettings?.default.file : iconSettings?.default.folder
+  if (iconSettings) {
     if (node.icon) {
       hasIcon = true
       iconType = node.icon
-    } else if (opts.defaultFileIcon && node.file) {
+    } else if (iconSettings?.default.file && node.file) {
       hasIcon = true
-      iconType = opts.defaultFileIcon
-    } else if (opts.defaultFolderIcon && !node.file) {
+      iconType = iconSettings?.default.file
+    } else if (iconSettings?.default.folder && !node.file) {
       hasIcon = true
-      iconType = opts.defaultFolderIcon
-      defaultIcon = opts.defaultFolderIcon
+      iconType = iconSettings?.default.folder
     }
   }
-
-  const iconPath = hasIcon ? `${opts.iconFolderPath}/${iconType}.svg` : ""
+  const iconPath =
+    hasIcon && iconSettings?.rootIconFolder ? `${iconSettings.rootIconFolder}/${iconType}.svg` : ""
   let iconAsSVG: string | null = null
-  if (hasIcon) {
+  if (hasIcon && iconSettings?.rootIconFolder) {
     try {
       iconAsSVG = fs.readFileSync(path.join(process.cwd(), iconPath), "utf8")
     } catch (e) {
       iconAsSVG = defaultIcon
         ? fs.readFileSync(
-            path.join(process.cwd(), `${opts.iconFolderPath}/${defaultIcon}.svg`),
+            path.join(process.cwd(), `${iconSettings.rootIconFolder}/${defaultIcon}.svg`),
             "utf8",
           )
         : null
+      hasIcon = defaultIcon ? true : false
     }
   }
 

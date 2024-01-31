@@ -1,33 +1,24 @@
-import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { IconFolderOptions, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { classNames } from "../util/lang"
 import * as fs from "fs"
 import * as path from "path"
 
-interface Options {
-  iconFolderPath: string
-  defaultIcon?: string
-}
-
-const defaultOpts: Options = {
-  iconFolderPath: "",
-}
-
-export default ((userOpts?: Partial<Options>) => {
-  const opts = { ...defaultOpts, ...userOpts }
-  function ArticleTitle({ fileData, displayClass, cfg }: QuartzComponentProps) {
+export default ((userOpts?: Partial<IconFolderOptions>) => {
+  const opts = { ...userOpts }
+  function ArticleTitle({ fileData, displayClass }: QuartzComponentProps) {
     const title = fileData.frontmatter?.title
-    const iconType = fileData.frontmatter?.icon
+    const iconType = fileData.frontmatter?.icon || opts.default?.file
     if (title) {
-      if (opts.iconFolderPath.trim().length === 0 || (!iconType && !opts.defaultIcon)) {
+      if (!opts.rootIconFolder || !iconType) {
         return <h1 class={classNames(displayClass, "article-title")}>{title}</h1>
       }
-      const iconFullPath = `${opts.iconFolderPath}/${iconType || opts.defaultIcon}.svg`
+      const iconFullPath = `${opts.rootIconFolder}/${iconType}.svg`
       let iconAsSVG = ""
       try {
         iconAsSVG = fs.readFileSync(path.join(process.cwd(), iconFullPath), "utf8")
       } catch (e) {
         iconAsSVG = fs.readFileSync(
-          path.join(process.cwd(), `${opts.iconFolderPath}/${opts.defaultIcon}.svg`),
+          path.join(process.cwd(), `${opts.rootIconFolder}/${opts.default?.file}.svg`),
           "utf8",
         )
       }

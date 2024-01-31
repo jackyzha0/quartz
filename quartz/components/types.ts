@@ -25,3 +25,24 @@ export type QuartzComponent = ComponentType<QuartzComponentProps> & {
 export type QuartzComponentConstructor<Options extends object | undefined = undefined> = (
   opts: Options,
 ) => QuartzComponent
+
+export type IconFolderOptions = {
+  /** Icon root folder, ie `quartz/static/icon`
+   * Set to `undefined` to disable (default)
+   */
+  rootIconFolder?: string
+  /** Default icon if needed */
+  default: {
+    /** Default icon for file, used in ArticleTitle for example, without root rootIconFolder string
+     * e.g. `file`
+     * set disable to only use the frontmatter icon
+     */
+    file?: string
+    /** Default icon for folder, used in Explorer, without root rootIconFolder string
+     * e.g. `folder`
+     * set disable to don't use folder icon before title
+     * For index, they will use the frontmatter icon if exists
+     */
+    folder?: string
+  }
+}
