@@ -16,6 +16,7 @@ export type Analytics =
   | {
       provider: "umami"
       websiteId: string
+      host?: string
     }
 
 export interface GlobalConfiguration {

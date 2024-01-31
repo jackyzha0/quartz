@@ -171,9 +171,11 @@ a {
 
     & .sidebar.right {
       right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
+      flex-wrap: wrap;
       & > * {
         @media all and (max-width: $fullPageWidth) {
           flex: 1;
+          min-width: 140px;
         }
       }
     }
@@ -276,7 +278,6 @@ h6 {
     opacity: 0;
     transition: opacity 0.2s ease;
     transform: translateY(-0.1rem);
-    display: inline-block;
     font-family: var(--codeFont);
     user-select: none;
   }
