@@ -281,12 +281,15 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     })
 
     async function onMouseEnter(ev: MouseEvent) {
-      // When search is active, the first element is in focus, so we need to remove focus if given target is not the first element
-      const firstEl = document.getElementsByClassName("result-card")[0] as HTMLAnchorElement | null
+      // Actually when we hover, we need to clean all highlights within the result childs
+      const resultCards = Object.values(
+        document.getElementsByClassName("result-card"),
+      ) as HTMLElement[]
+      resultCards.map((el) => {
+        el.classList.remove("focus")
+        el?.blur()
+      })
       const target = ev.target as HTMLAnchorElement
-      if (firstEl !== target) {
-        firstEl?.classList.remove("focus")
-      }
       target.classList.add("focus")
       await displayPreview(target)
     }
@@ -357,7 +360,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     if (!searchLayout || !enablePreview || !el) return
 
     const slug = el.id as FullSlug
-    el.classList.add("focus")
+    if (!el.classList.contains("focus")) el.classList.add("focus")
 
     removeAllChildren(preview as HTMLElement)
     const contentDetails = await fetchContent(slug)
