@@ -387,10 +387,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   match.input.slice(calloutDirective.length).trim() || capitalize(calloutType)
                 const titleNode: Paragraph = {
                   type: "paragraph",
-                  children:
-                    restOfTitle.length === 0
-                      ? [{ type: "text", value: titleContent + " " }]
-                      : restOfTitle,
+                  children: [{ type: "text", value: titleContent + " " }, ...restOfTitle],
                 }
                 const title = mdastToHtml(titleNode)
 
