@@ -20,8 +20,8 @@ type SearchType = "basic" | "tags"
 let searchType: SearchType = "basic"
 
 const contextWindowWords = 30
-const numSearchResults = 5
-const numTagResults = 3
+const numSearchResults = 8
+const numTagResults = 5
 function highlight(searchTerm: string, text: string, trim?: boolean) {
   // try to highlight longest tokens first
   const tokenizedTerms = searchTerm
@@ -86,7 +86,6 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   const searchIcon = document.getElementById("search-icon")
   const searchBar = document.getElementById("search-bar") as HTMLInputElement | null
   const searchLayout = document.getElementById("search-layout")
-  const resultCards = document.getElementsByClassName("result-card")
   const idDataMap = Object.keys(data) as FullSlug[]
 
   const appendLayout = (el: HTMLElement) => {
@@ -151,41 +150,50 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       if (searchBar) searchBar.value = "#"
     }
 
+    const resultCards = document.getElementsByClassName("result-card")
+
+    // If search is active, then we will render the first result and display accordingly
     if (!container?.classList.contains("active")) return
-    else if (e.key === "Enter") {
-      // If result has focus, navigate to that one, otherwise pick first result
-      if (results?.contains(document.activeElement)) {
-        const active = document.activeElement as HTMLInputElement
+    else if (results?.contains(document.activeElement)) {
+      const active = document.activeElement as HTMLInputElement
+      await displayPreview(active)
+      if (e.key === "Enter") {
         active.click()
-      } else {
-        const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
+      }
+    } else {
+      const anchor = resultCards[0] as HTMLInputElement | null
+      await displayPreview(anchor)
+      if (e.key === "Enter") {
         anchor?.click()
       }
-    } else if (e.key === "ArrowUp" || (e.shiftKey && e.key === "Tab")) {
+    }
+
+    if (e.key === "ArrowUp" || (e.shiftKey && e.key === "Tab")) {
       e.preventDefault()
       if (results?.contains(document.activeElement)) {
         // If an element in results-container already has focus, focus previous one
-        const prevResult = document.activeElement?.previousElementSibling as HTMLInputElement | null
-        if (enablePreview && prevResult?.id) {
-          await displayPreview(prevResult?.id as FullSlug)
-        }
+        const currentResult = document.activeElement as HTMLInputElement | null
+        const prevResult = currentResult?.previousElementSibling as HTMLInputElement | null
+        currentResult?.classList.remove("focus")
+        await displayPreview(prevResult)
         prevResult?.focus()
       }
     } else if (e.key === "ArrowDown" || e.key === "Tab") {
       e.preventDefault()
-      // When first pressing ArrowDown, results wont contain the active element, so focus first element
+      // The results should already been focused, so we need to find the next one.
+      // The activeElement is the search bar, so we need to find the first result and focus it.
       if (!results?.contains(document.activeElement)) {
         const firstResult = resultCards[0] as HTMLInputElement | null
-        if (enablePreview && firstResult?.id) {
-          await displayPreview(firstResult?.id as FullSlug)
-        }
-        firstResult?.focus()
+        const secondResult = firstResult?.nextElementSibling as HTMLInputElement | null
+        firstResult?.classList.remove("focus")
+        await displayPreview(secondResult)
+        secondResult?.focus()
       } else {
         // If an element in results-container already has focus, focus next one
-        const nextResult = document.activeElement?.nextElementSibling as HTMLInputElement | null
-        if (enablePreview && nextResult?.id) {
-          await displayPreview(nextResult?.id as FullSlug)
-        }
+        const active = document.activeElement as HTMLInputElement | null
+        active?.classList.remove("focus")
+        const nextResult = active?.nextElementSibling as HTMLInputElement | null
+        await displayPreview(nextResult)
         nextResult?.focus()
       }
     }
@@ -262,6 +270,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
   const resultToHTML = ({ slug, title, content, tags }: Item) => {
     const htmlTags = tags.length > 0 ? `<ul>${tags.join("")}</ul>` : ``
+    const resultContent = enablePreview && window.innerWidth > 600 ? "" : `<p>${content}</p>`
+
     const itemTile = document.createElement("a")
     itemTile.classList.add("result-card")
     itemTile.id = slug
@@ -273,10 +283,43 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
       hideSearch()
     })
+
+    async function onMouseEnter(ev: MouseEvent) {
+      // Actually when we hover, we need to clean all highlights within the result childs
+      for (const el of document.getElementsByClassName(
+        "result-card",
+      ) as HTMLCollectionOf<HTMLElement>) {
+        el.classList.remove("focus")
+        el.blur()
+      }
+      const target = ev.target as HTMLAnchorElement
+      target.classList.add("focus")
+      await displayPreview(target)
+    }
+
+    async function onMouseLeave(ev: MouseEvent) {
+      const target = ev.target as HTMLAnchorElement
+      target.classList.remove("focus")
+    }
+
+    const events = [
+      ["mouseenter", onMouseEnter],
+      ["mouseleave", onMouseLeave],
+      [
+        "click",
+        (event: MouseEvent) => {
+          if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
+          hideSearch()
+        },
+      ],
+    ] as [keyof HTMLElementEventMap, (this: HTMLElement) => void][]
+
+    events.forEach(([event, handler]) => itemTile.addEventListener(event, handler))
+
     return itemTile
   }
 
-  function displayResults(finalResults: Item[]) {
+  async function displayResults(finalResults: Item[]) {
     if (!results) return
 
     removeAllChildren(results)
@@ -287,6 +330,11 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
                 </a>`
     } else {
       results.append(...finalResults.map(resultToHTML))
+    }
+    // focus on first result, then also dispatch preview immediately
+    if (results?.firstElementChild) {
+      results?.firstElementChild?.classList.add("focus")
+      await displayPreview(results?.firstElementChild as HTMLElement)
     }
   }
 
@@ -311,8 +359,11 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     return contents
   }
 
-  async function displayPreview(slug: FullSlug) {
-    if (!searchLayout || !enablePreview) return
+  async function displayPreview(el: HTMLElement | null) {
+    if (!searchLayout || !enablePreview || !el) return
+
+    const slug = el.id as FullSlug
+    el.classList.add("focus")
 
     removeAllChildren(preview as HTMLElement)
     const contentDetails = await fetchContent(slug)
@@ -368,7 +419,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       ...getByField("tags"),
     ])
     const finalResults = [...allIds].map((id) => formatForDisplay(term, id))
-    displayResults(finalResults)
+    await displayResults(finalResults)
   }
 
   if (prevShortcutHandler) {

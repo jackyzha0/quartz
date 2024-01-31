@@ -32,11 +32,12 @@ By default, custom callouts are handled by applying the `note` style. To make fa
 
 ```scss title="quartz/styles/custom.scss"
 .callout {
- &[data-callout="custom"] {
- --color: #customcolor;
- --border: #custombordercolor;
- --bg: #custombg;
- --callout-icon: url('data:image/svg+xml; utf8, <custom formatted svg>'); //SVG icon code
+  &[data-callout="custom"] {
+    --color: #customcolor;
+    --border: #custombordercolor;
+    --bg: #custombg;
+    --callout-icon: url("data:image/svg+xml; utf8, <custom formatted svg>"); //SVG icon code
+  }
 }
 ```
 
@@ -48,7 +49,7 @@ By default, custom callouts are handled by applying the `note` style. To make fa
 > [!info]
 > Default title
 
-> [!question]+ Can callouts be nested?
+> [!question]+ Can callouts be _nested_?
 >
 > > [!todo]- Yes!, they can. And collapsed!
 > >
