@@ -54,7 +54,7 @@
     "js-yaml": "^4.1.0",
     "lightningcss": "^1.23.0",
     "mdast-util-find-and-replace": "^3.0.1",
-    "mdast-util-to-hast": "^13.0.2",
+    "mdast-util-to-hast": "^13.1.0",
     "mdast-util-to-string": "^4.0.0",
     "micromorph": "^0.4.5",
     "preact": "^10.19.3",
