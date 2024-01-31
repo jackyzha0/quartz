@@ -75,7 +75,7 @@ const p = new DOMParser()
 const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
 let prevShortcutHandler: ((e: HTMLElementEventMap["keydown"]) => void) | undefined = undefined
 
-let fetchContentCache: Record<string, Element[] | undefined> = {}
+const fetchContentCache: Map<FullSlug, Element[]> = new Map()
 
 document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   const currentSlug = e.detail.url
@@ -288,7 +288,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     }
   }
 
-  async function fetchContent(slug: FullSlug): Promise<Element[] | undefined> {
+  async function fetchContent(slug: FullSlug): Promise<Element[]> {
     if (fetchContentCache[slug]) {
       return fetchContentCache[slug]
     }
