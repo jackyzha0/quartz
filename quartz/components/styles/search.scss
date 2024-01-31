@@ -162,7 +162,8 @@
             }
 
             &:hover,
-            &:focus {
+            &:focus,
+            &.focus {
               background: var(--lightgray);
             }
 
