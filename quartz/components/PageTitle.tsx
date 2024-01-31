@@ -10,33 +10,37 @@ interface Options {
 }
 
 const defaultOpts: Options = {
-  iconFolderPath: "" //disable icons by default
+  iconFolderPath: "", //disable icons by default
 }
 
 export default ((userOpts?: Partial<Options>) => {
   const opts = { ...defaultOpts, ...userOpts }
-function PageTitle({ fileData, cfg, displayClass }: QuartzComponentProps) {
-  const title = cfg?.pageTitle ?? "Untitled Quartz"
-  const iconType = fileData.frontmatter?.icon ?? opts.defaultIcon
-  const baseDir = pathToRoot(fileData.slug!)
-  if (opts.iconFolderPath.trim().length === 0 || !iconType) {
+  function PageTitle({ fileData, cfg, displayClass }: QuartzComponentProps) {
+    const title = cfg?.pageTitle ?? "Untitled Quartz"
+    const iconType = fileData.frontmatter?.icon ?? opts.defaultIcon
+    const baseDir = pathToRoot(fileData.slug!)
+    if (opts.iconFolderPath.trim().length === 0 || !iconType) {
+      return (
+        <h1 class={classNames(displayClass, "page-title")}>
+          <a href={baseDir}>{title}</a>
+        </h1>
+      )
+    }
+    const iconFullPath = `${opts.iconFolderPath}/${iconType}.svg`
     return (
-      <h1 class={classNames(displayClass, "page-title")}>
-        <a href={baseDir}>{title}</a>
-      </h1>
+      <div
+        class={classNames(displayClass, "page-title")}
+        data-icon={iconFullPath}
+        data-hasIcon={true}
+      >
+        <h1>
+          <a href={baseDir}>{title}</a>
+        </h1>
+      </div>
     )
   }
-  const iconFullPath = `${opts.iconFolderPath}/${iconType}.svg`
-  return (
-    <div class={classNames(displayClass, "page-title")} data-icon={iconFullPath} data-hasIcon={true}>
-    <h1>
-        <a href={baseDir}>{title}</a>
-      </h1>
-    </div>  
-  )
-}
 
-PageTitle.css = `
+  PageTitle.css = `
 .page-title {
   margin: 0;
 }
@@ -52,7 +56,7 @@ PageTitle.css = `
 }
 `
 
-PageTitle.afterDOMLoaded = `
+  PageTitle.afterDOMLoaded = `
 const articleTitle = document.querySelector(".page-title[data-hasicon='true']")
 if (articleTitle) {
   const iconPath = articleTitle.getAttribute("data-icon")

@@ -1,7 +1,6 @@
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { classNames } from "../util/lang"
 
-
 interface Options {
   /** Default folder where icons are stored */
   iconFolderPath: string
@@ -10,7 +9,7 @@ interface Options {
 }
 
 const defaultOpts: Options = {
-  iconFolderPath: "" //disable icons by default
+  iconFolderPath: "", //disable icons by default
 }
 
 export default ((userOpts?: Partial<Options>) => {
@@ -19,15 +18,19 @@ export default ((userOpts?: Partial<Options>) => {
     const title = fileData.frontmatter?.title
     const iconType = fileData.frontmatter?.icon
     if (title) {
-      if (opts.iconFolderPath.trim().length === 0 || !iconType && !opts.defaultIcon) {
+      if (opts.iconFolderPath.trim().length === 0 || (!iconType && !opts.defaultIcon)) {
         return <h1 class={classNames(displayClass, "article-title")}>{title}</h1>
       }
       const iconFullPath = `${opts.iconFolderPath}/${iconType || opts.defaultIcon}.svg`
       return (
-        <div class={classNames(displayClass, "article-title")} data-icon={iconFullPath} data-hasIcon={true}>
+        <div
+          class={classNames(displayClass, "article-title")}
+          data-icon={iconFullPath}
+          data-hasIcon={true}
+        >
           <h1>{title}</h1>
         </div>
-      )    
+      )
     } else {
       return null
     }
@@ -70,4 +73,3 @@ export default ((userOpts?: Partial<Options>) => {
   `
   return ArticleTitle
 }) satisfies QuartzComponentConstructor
-
