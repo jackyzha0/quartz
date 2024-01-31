@@ -41,39 +41,42 @@ export default ((userOpts?: Partial<Options>) => {
   }
 
   PageTitle.css = `
-.page-title {
-  margin: 0;
-}
-.page-title[data-hasicon="true"] {
-  display: flex;
-  align-items: center;
-}
-.page-title-icon {
-  margin-right: 1rem;
-}
-.page-title[data-hasicon="true"] > h1 {
-  margin: 0;
-}
-`
+    .page-title {
+      margin: 0;
+    }
+    .page-title[data-hasicon="true"] {
+      display: flex;
+      align-items: center;
+    }
+    .page-title-icon {
+      margin-right: 1rem;
+    }
+    .page-title[data-hasicon="true"] > h1 {
+      margin: 0;
+    } 
+  `
 
   PageTitle.afterDOMLoaded = `
-const articleTitle = document.querySelector(".page-title[data-hasicon='true']")
-if (articleTitle) {
-  const iconPath = articleTitle.getAttribute("data-icon")
-  const location = window.location.origin
-  const iconFullPath = location + "/" + iconPath
-  const readSVG = async (path) => {
-    const response = await fetch(path)
-    const text = await response.text()
-    return text
-  }
-  const svg = readSVG(iconFullPath)
-  //add the svg to the article title
-  svg.then((data) => {
-    data = data.replace(/<svg/g, '<svg class="article-title-icon"')
-    articleTitle.insertAdjacentHTML("afterbegin", data)
-  })
-}
-`
+    document.addEventListener("nav", () => {
+      const articleTitle = document.querySelector(".page-title[data-hasicon='true']")
+      if (articleTitle) {
+        const iconPath = articleTitle.getAttribute("data-icon")
+        const location = window.location.origin
+        const iconFullPath = location + "/" + iconPath
+        const readSVG = async (path) => {
+          const response = await fetch(path)
+          const text = await response.text()
+          return text
+        }
+        const svg = readSVG(iconFullPath)
+        //add the svg to the article title
+        svg.then((data) => {
+          if (data.includes("<!DOCTYPE html>")) return;
+          data = data.replace(/<svg/g, '<svg class="article-title-icon"')
+          articleTitle.insertAdjacentHTML("afterbegin", data)
+        })
+      }
+    })
+  `
   return PageTitle
 }) satisfies QuartzComponentConstructor
