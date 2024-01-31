@@ -55,13 +55,15 @@ export class FileNode {
   displayName: string
   file: QuartzPluginData | null
   depth: number
+  icon: string
 
-  constructor(slugSegment: string, displayName?: string, file?: QuartzPluginData, depth?: number) {
+  constructor(slugSegment: string, displayName?: string, file?: QuartzPluginData, depth?: number, icon?: string) {
     this.children = []
     this.name = slugSegment
     this.displayName = displayName ?? file?.frontmatter?.title ?? slugSegment
     this.file = file ? clone(file) : null
     this.depth = depth ?? 0
+    this.icon = icon ?? file?.frontmatter?.icon as string ?? ""
   }
 
   private insert(fileData: DataWrapper) {
@@ -180,24 +182,32 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
   if (node.name !== "") {
     folderPath = joinSegments(fullPath ?? "", node.name)
   }
-  let hasIcon = node.file?.frontmatter?.icon !== undefined || opts.defaultFileIcon !== undefined
-  let iconType = node.file?.frontmatter?.icon ?? opts.defaultFileIcon
-  if (!node.file) {
-    hasIcon = opts.defaultFolderIcon !== undefined
+  let hasIcon = false
+  let iconType = ""
+  let defaultIcon = node.file ? opts.defaultFileIcon : opts.defaultFolderIcon;
+  if (node.icon) {
+    hasIcon = true
+    iconType = node.icon
+  } else if (opts.defaultFileIcon && node.file) {
+    hasIcon = true
+    iconType = opts.defaultFileIcon
+  } else if (opts.defaultFolderIcon && !node.file) {
+    hasIcon = true
     iconType = opts.defaultFolderIcon
+    defaultIcon = opts.defaultFolderIcon
   }
+
+
   const iconPath = hasIcon ? `${opts.iconFolderPath}/${iconType}.svg` : ""
-  let iconAsSVG: string | null = null
-  if (hasIcon) {
+  let iconAsSVG : string | null = null
+  if (hasIcon){
     try {
       iconAsSVG = fs.readFileSync(path.join(process.cwd(), iconPath), "utf8")
     } catch (e) {
-      iconAsSVG = fs.readFileSync(
-        path.join(process.cwd(), `${opts.iconFolderPath}/${opts.defaultFolderIcon}.svg`),
-        "utf8",
-      )
+      iconAsSVG = defaultIcon ? fs.readFileSync(path.join(process.cwd(), `${opts.iconFolderPath}/${defaultIcon}.svg`), "utf8") : null;
     }
   }
+  
   return (
     <>
       {node.file ? (
