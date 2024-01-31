@@ -89,24 +89,24 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   const resultCards = document.getElementsByClassName("result-card")
   const idDataMap = Object.keys(data) as FullSlug[]
 
+  const appendLayout = (el: HTMLElement) => {
+    if (searchLayout?.querySelector(`#${el.id}`) === null) {
+      searchLayout?.appendChild(el)
+    }
+  }
+
   const enablePreview = searchLayout?.dataset?.preview === "true"
   let preview: HTMLDivElement | undefined = undefined
   const results = document.createElement("div")
   results.id = "results-container"
-  if (searchLayout?.querySelector(`#${results.id}`) === null) {
-    searchLayout?.appendChild(results)
-  }
   results.style.flexBasis = enablePreview ? "30%" : "100%"
+  appendLayout(results)
 
-  preview = document.createElement("div")
-  preview.id = "preview-container"
-  preview.style.flexBasis = "70%"
-
-  if (!enablePreview) {
-    preview.style.display = "none"
-  }
-  if (searchLayout?.querySelector(`#${preview.id}`) === null) {
-    searchLayout?.appendChild(preview)
+  if (enablePreview) {
+    preview = document.createElement("div")
+    preview.id = "preview-container"
+    preview.style.flexBasis = "70%"
+    appendLayout(preview)
   }
 
   function hideSearch() {
@@ -289,8 +289,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   }
 
   async function fetchContent(slug: FullSlug): Promise<Element[]> {
-    if (fetchContentCache[slug]) {
-      return fetchContentCache[slug]
+    if (fetchContentCache.has(slug)) {
+      return fetchContentCache.get(slug) as Element[]
     }
 
     const targetUrl = resolveUrl(slug).toString()
@@ -304,14 +304,11 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
         normalizeRelativeURLs(html, targetUrl)
         return [...html.getElementsByClassName("popover-hint")]
       })
-      .catch((err) => {
-        console.error(err)
-        throw new Error(`Could not fetch ${targetUrl}`)
-      })
 
-    fetchContentCache[slug] = contents
+    fetchContentCache.set(slug, contents)
     return contents
   }
+
   async function displayPreview(slug: FullSlug) {
     if (!searchLayout || !enablePreview) return
 

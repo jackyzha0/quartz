@@ -100,10 +100,6 @@
 
         @media all and (max-width: $mobileBreakpoint) {
           display: block;
-          & > * {
-            border: none !important;
-          }
-
           & > *:not(#results-container) {
             display: none !important;
           }
