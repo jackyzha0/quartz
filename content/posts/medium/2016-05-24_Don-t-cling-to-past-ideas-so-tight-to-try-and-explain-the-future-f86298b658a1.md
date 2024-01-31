@@ -4,8 +4,8 @@ description: >-
   If what you do transcends the archetypes of its predecessors, then it can
   become something not explainable by them.
 date: '2016-05-24T22:24:00.162Z'
-categories: []
-keywords: []
+tags:
+- Medium Comment
 slug: >-
   /@corpetty/if-what-you-do-transcends-the-archetypes-of-its-predecessors-then-yes-you-can-f86298b658a1
 ---

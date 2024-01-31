@@ -4,14 +4,15 @@ description: >-
   Jesus H. Christ folks. I’ve put off doing this one a little bit, in part
   because I’m a bit depressed/disappointed/confused/? in the…
 date: '2017-06-06T01:35:25.855Z'
-categories: []
-keywords: []
+tags:
+- ICO Analysis
+- BAT
 slug: /@corpetty/a-look-at-the-bat-token-distribution-bb3bcb92748f
 ---
 
 Jesus H. Christ folks. I’ve put off doing this one a little bit, in part because I’m a bit depressed/disappointed/confused/? in the direction this is headed. As always, I’ll leave my opinions until the end, so those of you who are strictly reading for the data herein can click “close” when I start ranting.
 
-The [Basic Attention Token](https://basicattentiontoken.org/index.html) ICO, lead by Brendan Eich, is an attempt to tokenize human attention on the internet. The ICO was certainly highly anticipated by the community, which I believe exacerbated the trends we’ve been seeing from the ICO space, as shown by my previous articles covering the [Gnosis](https://keepingstock.net/a-look-at-the-gnosis-dutch-auction-distribution-25c2ccac2d9d), [TokenCard](https://medium.com/the-bitcoin-podcast-blog/a-look-at-the-tokencard-ico-investor-distribution-cddeb6f534f9), and [Aragon](https://medium.com/blockchannel/a-look-at-the-aragon-ico-investment-distribution-a78f601229d8) ICOs. Go read them, this one will cover that same information, and a bit more.
+The [Basic Attention Token](https://basicattentiontoken.org/index.html) ICO, lead by Brendan Eich, is an attempt to tokenize human attention on the internet. The ICO was certainly highly anticipated by the community, which I believe exacerbated the trends we’ve been seeing from the ICO space, as shown by my previous articles covering the [Gnosis](./2017-04-24_A-Look-at-the-Gnosis-Dutch-Auction-Distribution-25c2ccac2d9d.md), [TokenCard](./2017-05-02_A-Look-at-the-TokenCard-ICO-Investor-Distribution-cddeb6f534f9.md), and [Aragon](./2017-05-18_A-Look-at-the-Aragon-ICO-Investment-Distribution-a78f601229d8.md) ICOs. Go read them, this one will cover that same information, and a bit more.
 
 Here is the summary on the ICO specifics:
 
@@ -91,7 +92,7 @@ I do this because I’m curious, and feel this type of information is lacking. W
 
 As always, come listen to The Bitcoin Podcast and [BlockChannel](https://medium.com/u/211d5b924366) to hear me talk to people in the space about what they’re doing. Our slacks ([TBP](https://thebitcoinpodcast.signup.team/) and [BlockChannel](https://blockchannel.signup.team/)) are always welcome to the community as well. I’m always present in them to talk.
 
-If you don’t like slack, hit me up on twitter at `@corpetty` or email me at petty.btc@gmail.com
+If you don’t like slack, hit me up on twitter at `@corpetty` or email me at petty _dot_ btc _at_ gmail _dot_ com
 
 Throw me some duckets of you like what I’m doing, and have some to spare. The donations definitely help me stay motivated to do these:
 

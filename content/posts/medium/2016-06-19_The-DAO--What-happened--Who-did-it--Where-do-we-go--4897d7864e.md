@@ -117,5 +117,5 @@ He holds a PhD in computational chemical physics and currently does research in 
 As a hobby, he studies data science techniques and how they can be applied to the blockchain, specifically for visualizing complex information to help people understand what’s really going on.
 
 TheDAO slack: @petty   
-email: petty.btc@gmail.com  
+email: petty _dot_ btc _at_ gmail _dot_ com  
 reddit: /u/pettyhoe

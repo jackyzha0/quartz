@@ -4,8 +4,10 @@ description: >-
   If you’ve been around the cryptocurrency community for long, then you’ve
   definitely heard people preach sayings such as, “Always remember…
 date: '2018-12-28T18:13:29.328Z'
-categories: []
-keywords: []
+tags:
+- private keys
+- security
+- cryptocurrency
 slug: >-
   /@corpetty/reframing-how-you-think-about-the-concept-of-managing-your-private-keys-fdf95060728a
 ---

@@ -4,8 +4,9 @@ description: >-
   So I get hit up quite frequently about various coins and whether or not
   they’re worth looking into, are a scam, are legit, etc. So I’ve…
 date: '2017-12-22T01:54:31.261Z'
-categories: []
-keywords: []
+tags:
+- Cardano
+- Cryptocurrency
 slug: /@corpetty/a-petty-crypto-review-cardano-a2c99fd413af
 ---
 
@@ -21,7 +22,7 @@ Here’s some quick pros vs cons that come to mind as I peruse their material.
 
 **Pros:**
 
-*   They are based out of I[OHK](https://iohk.io/) which is a resource I’ve often looked to for thinking about how blockchains should work and the formal breakdown of the algorithms that underpin things. The project was built from a mindset I use myself, from first principles. Start from the axiomatic truths you expect at the ground layer, and then formally build from there.
+*   They are based out of [IOHK](https://iohk.io/) which is a resource I’ve often looked to for thinking about how blockchains should work and the formal breakdown of the algorithms that underpin things. The project was built from a mindset I use myself, from first principles. Start from the axiomatic truths you expect at the ground layer, and then formally build from there.
 *   [Ouroboros](https://iohk.io/research/papers/#XJ6MHFXX) is something I’ve research and am quite excited about as a Proof of Stake consensus mechanism, and am curious to see it in action. I think that this is probably the best competing research with Ethereum’s Casper that currently exists, and I’ve read all (probably) of their papers.
 *   On the same development note, the [Github](https://github.com/input-output-hk/cardano-sl) has been active for a long time, with constant substantial code contribution. This is indicative of actual development, and not promise of future development. It is clear that work has been underway for a substantial amount of time, and not thrown together at the last minute like you would expect from a pump and dump.
 *   It is substantially novel in its approach to form “blockchain technology” (See the corresponding con as well). This means that it isn’t just a carbon copy of the networks we see today, with one difference to make it try and stand out. Blockchain technology has serious roadblocks in scale and effectiveness if we extrapolate to the usability we think this technology should handle. For a good outline on what those are, check out [Preethi Kasireddy](https://medium.com/u/d446dafbe292)’s recent blog posts. She does an excellent job explaining them in a manner that’s approachable to all. She also was [on our podcast](https://thebitcoinpodcast.com/episode-172/) to discuss these issues and more.

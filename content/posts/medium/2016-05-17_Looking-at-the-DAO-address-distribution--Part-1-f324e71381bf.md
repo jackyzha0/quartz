@@ -2,8 +2,8 @@
 title: 'Looking at the DAO address distribution: Part 1'
 description: What?!
 date: '2016-05-17T14:35:59.535Z'
-categories: []
-keywords: []
+tags:
+- TheDAO
 slug: /@corpetty/looking-at-the-dao-address-distribution-part-1-f324e71381bf
 ---
 
@@ -21,9 +21,11 @@ All data was retrieved from [EtherScan.io](http://www.EtherScan.io) APIs, using 
 
 Ok, so the first period is over, and in this timeframe, we’ve sourced quite a bit of chedda’:
 
-ETH     10,264,539.20657231   
-BTC        256,613.48016431  
-USD    117,079,900.32496539
+| Coin |     amount |
+| ---- | ---- |
+| ETH |     10,264,539.20657231 |  
+| BTC |       256,613.48016431  |
+| USD |   117,079,900.32496539  |
 
 What is important to note is that this amount will only be constant in its ETH evaluation, which means if the price goes up with either ETH/BTC or BTC/USD, so will the (layman) evaluation of The DAO.
 

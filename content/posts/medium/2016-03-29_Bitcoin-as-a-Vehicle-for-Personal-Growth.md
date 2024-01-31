@@ -3,7 +3,7 @@ title: Bitcoin as a Vehicle for Personal Growth
 description: Often times when talking with people about Bitcoin, I get a lot of questions about safety and security. This usually leads to a discussion culminating with the questioner’s realization of their own ignorance of how money actually works. This bothers me. Why does society know so little about something that literally affects almost every aspect of their life?
 date: 2016-03-29T00:15:22.545Z
 tags:
-  - bitcoin
+  - Bitcoin
 slug: /@corpetty/bitcoin-as-a-vehicle-for-personal-growth-ee0f3ebbed43
 ---
 

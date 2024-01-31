@@ -1,11 +1,11 @@
 ---
 title: 'Ethereum: Bringing Trust Back into the Equation'
 description: '“Blockchain” is all the rage, but why?'
-date: ''
-categories: []
-keywords: []
-draft: true
-slug: ''
+date: '2016-05-10'
+tags:
+- Ethereum
+- Medium
+draft: false
 ---
 
 > “Blockchain” is all the rage, but why? 

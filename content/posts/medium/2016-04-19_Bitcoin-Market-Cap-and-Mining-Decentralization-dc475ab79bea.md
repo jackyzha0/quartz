@@ -4,8 +4,8 @@ description: >-
   We got an interesting question on one of our latest episodes on the topic of
   mining and how the market cap could effect it.
 date: '2016-04-19T17:20:00.619Z'
-categories: []
-keywords: []
+tags:
+- Bitcoin
 slug: >-
   /@corpetty/we-got-an-interesting-question-on-one-of-our-latest-episodes-on-the-topic-of-mining-and-how-the-dc475ab79bea
 ---

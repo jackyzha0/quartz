@@ -4,8 +4,10 @@ description: >-
   This is another look at the distribution of an ICO in the Ethereum space,
   because I think its important to see the overall trends of how…
 date: '2017-05-02T22:44:57.830Z'
-categories: []
-keywords: []
+lastmod: 2024-01-31
+tags:
+- ICO Analysis
+- TokenCard
 slug: /@corpetty/a-look-at-the-tokencard-ico-investor-distribution-cddeb6f534f9
 ---
 
@@ -23,7 +25,8 @@ TokenCard ICO contract address: [0x49edf201c1e139282643d5e7c6fb0c7219ad1db7](htt
 
 I used my [python bindings to Etherscan.io API](https://etherscan.io/apis#misc), together with Pandas DataFrames, [plotly](https://medium.com/u/5fdd6522cd45)’s API, and [Project Jupyter](https://medium.com/u/9cdd90635810) notebooks to create this information.
 
-I’ll send you the notebook upon request.
+~~I’ll send you the notebook upon request.~~
+The notebook is located with the rest of the #ico-analysis article notebooks in [Github](https://gitub.com/corpetty/ICO_analysis).
 
 I looked at the ICO address given above, and pulled all external transactions using into a Pandas Dataframe. These transactions can be viewed online if you click the Etherscan.io link provided above.
 

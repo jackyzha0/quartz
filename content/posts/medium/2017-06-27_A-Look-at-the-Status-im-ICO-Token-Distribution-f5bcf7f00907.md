@@ -4,8 +4,9 @@ description: >-
   NOTE UP FRONT: I express my opinions here (at least at the end of the
   article). If you don’t like them and don’t have evidence to support…
 date: '2017-06-27T03:47:04.662Z'
-categories: []
-keywords: []
+tags:
+- ICO Analysis
+- Status
 slug: /@corpetty/a-look-at-the-status-im-ico-token-distribution-f5bcf7f00907
 ---
 
@@ -136,7 +137,7 @@ I do this because I’m curious, and feel this type of information is lacking. W
 
 As always, come listen to The Bitcoin Podcast and [BlockChannel](https://medium.com/u/211d5b924366) to hear me talk to people in the space about what they’re doing. Our slacks ([TBP](https://thebitcoinpodcast.signup.team/) and [BlockChannel](https://blockchannel.signup.team/)) are always welcome to the community as well. I’m always present in them to talk.
 
-If you don’t like slack, hit me up on twitter at `@corpetty` or email me at petty.btc@gmail.com
+If you don’t like slack, hit me up on twitter at `@corpetty` or email me at petty _dot_ btc _at_ gmail _dot_ com
 
 Throw me some duckets of you like what I’m doing, and have some to spare. The donations definitely help me stay motivated to do these:
 

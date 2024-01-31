@@ -6,8 +6,10 @@ description: >-
   When reading about Bitcoin, Ethereum, Blockchain, other alt coins, etc… (I’ll
   use capital B — Blockchain here to encompass them all) I hear…
 date: '2017-11-11T20:55:31.537Z'
-categories: []
-keywords: []
+tags:
+- Quantum Mechanics
+- Cryptocurrency
+- Philosophy
 slug: >-
   /@corpetty/getting-past-the-golden-hammer-with-a-quantum-mechanics-example-a-valuable-lesson-for-blockchain-f254c289dad0
 ---

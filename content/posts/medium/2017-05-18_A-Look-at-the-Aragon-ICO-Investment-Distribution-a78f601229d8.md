@@ -4,8 +4,9 @@ description: >-
   Another ERC20 Initial Coin Offering (ICO), another ridiculous amount of money,
   in another ridiculously short period of time. This time…
 date: '2017-05-18T17:45:33.765Z'
-categories: []
-keywords: []
+tags:
+- ICO Analysis
+- Aragon
 slug: /@corpetty/a-look-at-the-aragon-ico-investment-distribution-a78f601229d8
 ---
 
@@ -41,9 +42,10 @@ Ok, from the dataset, we have the following:
 
 No need to do a token breakdown, because they only accepted ETH. Other tokens were pushed through [ShapeShift.io](https://medium.com/u/5ee4b8323e7a) first if someone desired to use them. In fact, there were two addresses that showed an abnormally high number of zero value transactions calling the `transfer` function of the Aragon contract, listed below:
 
-**address:**                                      **num\_txs:**  
-0x5e575279bf9f4acf0a130c186861454247394c06    139  
-0xfbb1b73c4f0bda4f67dca266ce6ef42f520fbb98    134 (Bittrex)
+| address  | num txs |
+| -------- | ------- | 
+| 0x5e575279bf9f4acf0a130c186861454247394c06  |  139 |  
+| 0xfbb1b73c4f0bda4f67dca266ce6ef42f520fbb98   | 134 (Bittrex) |
 
 The second address listed is the Bittrex exchange, and the first isn’t listed on Etherscan. It is plausible to assign this address to another exchange, my bet would be Shapeshift. A more detailed analysis would show what portion of people invested through these two addresses, I didn’t look much further than what you see here.
 
@@ -61,8 +63,9 @@ and as always, here is the bar chart plot of the same data:
 
 Ok, here we go again. The trend of very few controlling the vast majority of tokens. I feel like we can eliminate these large address as being exchanges as well, due to one of the two large tx volume addresses being linked to Bittrex as discussed earlier. Furthermore, the [largest token holder](https://etherscan.io/address/0x83f04b8fd774a6474592e8670b9928a1344bbe38):
 
-**address                                      ETH        num\_txs**  
-0x83f04b8fd774a6474592e8670b9928a1344bbe38   30000.0    2
+| address | ETH | num txs |
+| ------  | --- | ------- |
+|0x83f04b8fd774a6474592e8670b9928a1344bbe38 |  30000.0  |  2 |
 
 has no association to anything public. I believe we have organizations buying up DRASTIC amounts of ICO tokens for various reasons. Your speculation is as good as mine (maybe better).
 
@@ -78,7 +81,7 @@ I do this because I’m curious, and feel this type of information is lacking. W
 
 As always, come listen to [The Bitcoin Podcast](http://www.thebitcoinpodcast.com) and [BlockChannel](https://medium.com/u/211d5b924366) to hear me talk to people in the space about what they’re doing. Our slacks ([TBP](https://thebitcoinpodcast.signup.team/) and [BlockChannel](https://blockchannel.signup.team/)) are always welcome to the community as well. I’m always present in them to talk.
 
-I’ll also be at Consensus 2017 and the Token Summit next week. Email me at petty.btc@gmail.com, or contact me on Twitter at @Corpetty to grab a beer. I drink a lot.
+I’ll also be at Consensus 2017 and the Token Summit next week. Email me at petty _dot_ btc _at_ gmail _dot_ com, or contact me on Twitter at @Corpetty to grab a beer. I drink a lot.
 
 Quick shout out to [MyEtherWallet](https://medium.com/u/a9af0d538df5) for the donation on the last article. I greatly appreciate your donation, and even more so, appreciate all the wonderful work you do for our community. Please continue being bad ass. Also, you get a lot of love from Nick Johnson on the next The Bitcoin Podcast episode. ;)
 

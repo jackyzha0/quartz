@@ -4,8 +4,9 @@ description: >-
   Edit: I changed Gnosis’ front page $300 extrapolated number to 250k ETH at
   $50/ETH = $12.5 Mil for clarity and self containment.
 date: '2017-04-24T20:33:57.391Z'
-categories: []
-keywords: []
+tags:
+- ICO Analysis
+- Gnosis
 slug: /@corpetty/a-look-at-the-gnosis-dutch-auction-distribution-25c2ccac2d9d
 ---
 

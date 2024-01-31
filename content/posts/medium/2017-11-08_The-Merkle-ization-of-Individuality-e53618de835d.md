@@ -4,8 +4,9 @@ description: >-
   Unlike most of my posts or writings, this is not a technical one. It borrows
   from the technical world a bit, but its purpose is more of a…
 date: '2017-11-08T23:03:33.725Z'
-categories: []
-keywords: []
+tags:
+- Philosophy
+- Individualism
 slug: /@corpetty/the-merkle-ization-of-individuality-e53618de835d
 ---
 

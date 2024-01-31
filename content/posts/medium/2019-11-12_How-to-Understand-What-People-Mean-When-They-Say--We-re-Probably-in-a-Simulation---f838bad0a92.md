@@ -6,8 +6,9 @@ description: >-
   I recently listened to an episode of Joe Rogan where Nick Bostrom tried to
   explain the concept of simulation theory. Although the…
 date: '2019-11-12T03:42:57.784Z'
-categories: []
-keywords: []
+tags:
+- Simulation Theory
+- Joe Rogan
 slug: >-
   /@corpetty/how-to-understand-what-people-mean-when-they-say-were-probably-in-a-simulation-f838bad0a92
 ---

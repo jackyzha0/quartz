@@ -4,8 +4,11 @@ description: >-
   I hear people throw shade at idea of Proof of Stake (PoS) protocols quite
   often. I think that most of these comments are founded in false…
 date: '2018-04-16T23:06:54.837Z'
-categories: []
-keywords: []
+tags: 
+- Cryptocurrency
+- Randomness
+- PoW
+- PoS
 slug: /@corpetty/the-role-of-randomness-in-proof-of-work-mining-3827a809f745
 ---
 

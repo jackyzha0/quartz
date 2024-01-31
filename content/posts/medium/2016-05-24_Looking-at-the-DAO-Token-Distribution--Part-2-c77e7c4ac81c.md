@@ -2,8 +2,8 @@
 title: 'Looking at the DAO Token Distribution: Part 2'
 description: 'WTF, Mate?!'
 date: '2016-05-24T02:16:21.032Z'
-categories: []
-keywords: []
+tags:
+- TheDAO
 slug: /@corpetty/looking-at-the-dao-token-distribution-part-2-c77e7c4ac81c
 ---
 
@@ -19,11 +19,11 @@ Because we don’t know all of the exchanges’ wallet addresses (at least I don
 
 I have found tagged exchange addresses on EtherScan.io, cross referenced them against the DAO transactions, and they give the following information:
 
-Exchange          Ether invested    Number of transactions    
-\----------------------------------------------------------   
-Kraken             35522.70303            275  
-Gatecoin          194191.10361            843  
-Poloniex          697929.88320           5826
+| Exchange | Ether invested | Number of transactions |    
+|----------|----------------|------------------------|
+Kraken    |         35522.70303       |     275  |
+Gatecoin   |       194191.10361       |    843  |
+Poloniex    |      697929.88320       |  5826  |
 
 Ok, so it’s clear that Poloniex has the majority of DAO purchases, and they’re all associated with one address (that I know of). But other exchanges that I found in the data run quite a range. Considering these numbers, I tagged any address that had over 30k Ether invested and over 100 transactions as an “exchange.” This led to the following table of “exchanges” :
 
