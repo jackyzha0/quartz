@@ -57,13 +57,19 @@ export class FileNode {
   depth: number
   icon: string
 
-  constructor(slugSegment: string, displayName?: string, file?: QuartzPluginData, depth?: number, icon?: string) {
+  constructor(
+    slugSegment: string,
+    displayName?: string,
+    file?: QuartzPluginData,
+    depth?: number,
+    icon?: string,
+  ) {
     this.children = []
     this.name = slugSegment
     this.displayName = displayName ?? file?.frontmatter?.title ?? slugSegment
     this.file = file ? clone(file) : null
     this.depth = depth ?? 0
-    this.icon = icon ?? file?.frontmatter?.icon as string ?? ""
+    this.icon = icon ?? (file?.frontmatter?.icon as string) ?? ""
   }
 
   private insert(fileData: DataWrapper) {
@@ -184,7 +190,7 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
   }
   let hasIcon = false
   let iconType = ""
-  let defaultIcon = node.file ? opts.defaultFileIcon : opts.defaultFolderIcon;
+  let defaultIcon = node.file ? opts.defaultFileIcon : opts.defaultFolderIcon
   if (node.icon) {
     hasIcon = true
     iconType = node.icon
@@ -197,17 +203,21 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
     defaultIcon = opts.defaultFolderIcon
   }
 
-
   const iconPath = hasIcon ? `${opts.iconFolderPath}/${iconType}.svg` : ""
-  let iconAsSVG : string | null = null
-  if (hasIcon){
+  let iconAsSVG: string | null = null
+  if (hasIcon) {
     try {
       iconAsSVG = fs.readFileSync(path.join(process.cwd(), iconPath), "utf8")
     } catch (e) {
-      iconAsSVG = defaultIcon ? fs.readFileSync(path.join(process.cwd(), `${opts.iconFolderPath}/${defaultIcon}.svg`), "utf8") : null;
+      iconAsSVG = defaultIcon
+        ? fs.readFileSync(
+            path.join(process.cwd(), `${opts.iconFolderPath}/${defaultIcon}.svg`),
+            "utf8",
+          )
+        : null
     }
   }
-  
+
   return (
     <>
       {node.file ? (
