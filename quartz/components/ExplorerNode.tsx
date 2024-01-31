@@ -18,11 +18,18 @@ export interface Options {
   folderDefaultState: "collapsed" | "open"
   folderClickBehavior: "collapse" | "link"
   useSavedState: boolean
-  /** Folder where icons are stored as svg */
-  iconFolderPath: string
-  /** Default icon for folder, without the iconFolderPath. */
+  /** Folder where icons are stored as svg, from root, ie "quartz/static/icons"
+   * if undefined, disable frontmatter icon functionality
+   */
+  iconFolderPath?: string
+  /** Default icon for folder, without the iconFolderPath.
+   *  ie: "default/folder" (that will give you "quartz/static/icons/default/file.svg")
+   * if undefined, file won't have a default icon (but use the icon set in frontmatter) */
   defaultFolderIcon?: string
-  /** Default icon for file, without the iconFolderPath */
+  /** Default icon for file, without the iconFolderPath.
+   * ie: "default/file" (that will give you "quartz/static/icons/default/file.svg")
+   * if undefined, file won't have a default icon (but use the icon set in frontmatter for index file)
+   */
   defaultFileIcon?: string
   sortFn: (a: FileNode, b: FileNode) => number
   filterFn: (node: FileNode) => boolean
@@ -191,16 +198,18 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
   let hasIcon = false
   let iconType = ""
   let defaultIcon = node.file ? opts.defaultFileIcon : opts.defaultFolderIcon
-  if (node.icon) {
-    hasIcon = true
-    iconType = node.icon
-  } else if (opts.defaultFileIcon && node.file) {
-    hasIcon = true
-    iconType = opts.defaultFileIcon
-  } else if (opts.defaultFolderIcon && !node.file) {
-    hasIcon = true
-    iconType = opts.defaultFolderIcon
-    defaultIcon = opts.defaultFolderIcon
+  if (opts.iconFolderPath) {
+    if (node.icon) {
+      hasIcon = true
+      iconType = node.icon
+    } else if (opts.defaultFileIcon && node.file) {
+      hasIcon = true
+      iconType = opts.defaultFileIcon
+    } else if (opts.defaultFolderIcon && !node.file) {
+      hasIcon = true
+      iconType = opts.defaultFolderIcon
+      defaultIcon = opts.defaultFolderIcon
+    }
   }
 
   const iconPath = hasIcon ? `${opts.iconFolderPath}/${iconType}.svg` : ""
