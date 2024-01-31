@@ -126,16 +126,8 @@ async function rebuildFromEntrypoint(
   clientRefresh: () => void,
   buildData: BuildData, // note: this function mutates buildData
 ) {
-  const {
-    ctx,
-    ignored,
-    mut,
-    initialSlugs,
-    contentMap,
-    toRebuild,
-    toRemove,
-    trackedAssets,
-  } = buildData
+  const { ctx, ignored, mut, initialSlugs, contentMap, toRebuild, toRemove, trackedAssets } =
+    buildData
 
   const { argv } = ctx
 
