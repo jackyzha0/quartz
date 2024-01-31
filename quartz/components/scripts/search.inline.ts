@@ -282,7 +282,9 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
     async function onMouseEnter(ev: MouseEvent) {
       // Actually when we hover, we need to clean all highlights within the result childs
-      for (const el of document.getElementsByClassName("result-card")) {
+      for (const el of document.getElementsByClassName(
+        "result-card",
+      ) as HTMLCollectionOf<HTMLElement>) {
         el.classList.remove("focus")
         el.blur()
       }
