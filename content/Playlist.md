@@ -1,4 +1,4 @@
-The essence of my music tastes can be boiled down to two categories: electronic, and "anything-playing-in-the-background-of-a-YouTube-video".
+The essence of my music tastes can be boiled down to two categories: electronic, and "anything-playing-in-the-background-of-a-YouTube-video". There are, of course, exceptions to this.
 
 This playlist only contains full albums I enjoy, both because it's a nice arbitrary cutting-off point, and also because purchasing albums is the best way to support your favourite artists :)
 
@@ -37,3 +37,7 @@ This playlist only contains full albums I enjoy, both because it's a nice arbitr
 - **Gavriel - In The Worlde (2020)**
   - Links: [Bandcamp](https://windows96.bandcamp.com/album/in-the-worlde), [YouTube](https://www.youtube.com/watch?v=jGN0cjQNgJc)
 	- Favourite tracks: *2000*, *Heals*
+---
+ - **Paban Das Baul & Sam Mills - Real Sugar (1997)**
+	- Links: [YouTube (playlist)](https://www.youtube.com/playlist?list=OLAK5uy_nVU78MyzX6ZHPjff9-ZPTcm_ToeHd7uyM)
+	- Favourite tracks: *Dil Ki Doya*, *Boshondharar Buke*
