@@ -20,8 +20,8 @@ type SearchType = "basic" | "tags"
 let searchType: SearchType = "basic"
 
 const contextWindowWords = 30
-const numSearchResults = 5
-const numTagResults = 3
+const numSearchResults = 8
+const numTagResults = 5
 function highlight(searchTerm: string, text: string, trim?: boolean) {
   // try to highlight longest tokens first
   const tokenizedTerms = searchTerm
