@@ -91,12 +91,22 @@
         flex-direction: row;
         justify-content: space-between;
         opacity: 0;
+        border: 1px solid var(--lightgray);
 
-        & > * {
+        & > div {
           height: calc(75vh - 20em);
           background: none;
-          border-radius: 5px;
-          border: 1px solid var(--lightgray); // Border to define the box
+
+          &:first-child {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-right: 1px solid var(--lightgray);
+          }
+
+          &:last-child {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+          }
         }
 
         @media all and (max-width: $mobileBreakpoint) {
@@ -122,7 +132,6 @@
             box-sizing: border-box;
             overflow-y: auto;
             font-family: inherit;
-            font-size: 1.1em;
             color: var(--dark);
             line-height: 1.5em;
             font-weight: 400;
@@ -141,6 +150,7 @@
             padding: 1em;
             cursor: pointer;
             transition: background 0.2s ease;
+            border-bottom: 1px solid var(--lightgray);
             width: 100%;
             display: block;
             box-sizing: border-box;
@@ -162,7 +172,8 @@
             }
 
             &:hover,
-            &:focus {
+            &:focus,
+            &.focus {
               background: var(--lightgray);
             }
 
