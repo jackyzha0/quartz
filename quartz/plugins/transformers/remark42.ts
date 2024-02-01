@@ -1,5 +1,5 @@
 // Remark42 comments for Quartz
-// v1.1
+// v1.2
 
 import { QuartzTransformerPlugin } from "../types"
 
@@ -61,6 +61,18 @@ export const Remark42: QuartzTransformerPlugin<Options> = (opts?: Options) => {
   })
 `
   scripts.push({ script: spaRouting, loadTime: "afterDOMReady", contentType: "inline" })
+
+
+  // @plodibre: Listen for theme changes and sync r42 if it changes
+  const buttonListener: string = `
+  document.querySelector('#darkmode-toggle').addEventListener('click', (_e) => {
+    let currentTheme = document.documentElement.getAttribute('saved-theme')
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark'
+    if(window.REMARK42)
+      window.REMARK42.changeTheme(currentTheme)
+  })
+`
+  scripts.push({ script: buttonListener, loadTime: "afterDOMReady", contentType: "inline" })
 
   return {
     name: "Remark42",

@@ -18,19 +18,23 @@ body::before {
   opacity: 0.04;
 }
 
+.head-card {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 3em 0em;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 // Specifically the first part of the index page with the moon
 [saved-theme="dark"] body[data-slug="index"] img[src="./moon-light.png"] {
   filter: invert(100%);
 }
 body[data-slug="index"] img {
-  float: left;
-  margin: 1.5em 2em -4em 2em;
   height: 15em;
   filter: invert(0%);
 }
 
 body[data-slug="index"] blockquote[class="callout"][data-callout="tip"] {
-  margin: 5em 2em;
-  display: inline-block;
   width: 50%;
 }

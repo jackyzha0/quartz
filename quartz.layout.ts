@@ -30,8 +30,8 @@ export const defaultContentPageLayout: PageLayout = {
     Component.DesktopOnly(Component.Explorer({
       sortFn: (a, b) => {
         // Sort order: folders first, then files. Sort folders and files alphabetically
-        if (a.name.match(/Home$/)) { console.log(a.displayName); return -1 }
-        if (b.name.match(/Home$/)) { console.log(b.displayName); return 1 }
+        if (a.name.match(/Home$/)) { return -1 }
+        if (b.name.match(/Home$/)) { return 1 }
         if ((!a.file && !b.file) || (a.file && b.file)) {
           // numeric: true: Whether numeric collation should be used, such that "1" < "2" < "10"
           // sensitivity: "base": Only strings that differ in base letters compare as unequal. Examples: a ≠ b, a = á, a = A

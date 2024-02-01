@@ -1,11 +1,11 @@
 ---
-title: Project Obsidian - Home
+title: 🏠 Project Obsidian - Home
 tags:
   - project
   - productivity
   - cloud
   - notes
-date: 9-08-23
+date: 2023-08-23
 ---
 Hoo boy. This project needs its entire own folder structure because of the sheer amount of components I have going.
 

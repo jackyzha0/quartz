@@ -9,6 +9,7 @@ lastmod: 2024-01-14
 ---
 One of the core philosophies of digital gardening is that one should document their learning process when trying new things. As such, here's my very disorganized to-dos and to-reads in the form of a public bookmark list. This page will change very often.
 
+- https://www.shuttle.rs/
 - [lazy.nvim plugin spec](https://github.com/folke/lazy.nvim#-plugin-spec)
 - [3D printer troubleshooting](https://www.simplify3d.com/resources/print-quality-troubleshooting/)
 - [List of attorneys on Mastodon](https://www.lawstodon.org/)

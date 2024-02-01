@@ -1,9 +1,9 @@
 ---
-title: Misc - Home
+title: 🏠 Misc - Home
 tags:
   - toc
   - misc
-date: 9-08-23
+date: 2023-08-23
 ---
 Things which I didn't really have a category for.
 

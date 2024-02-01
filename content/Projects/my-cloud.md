@@ -68,6 +68,12 @@ The below is an excerpt from a document obtained through a Freedom of Informatio
 
 ![[Attachments/fbi-foia.png]]
 
+**2024 update:** I hate being proven right. 
+
+> NSA does buy and use commercially available netflow (i.e., non-content) data related wholly to domestic internet communications and internet communications where one side of the communication is a U.S. Internet Protocol address and the other is located abroad.
+>
+> [NSA response to Sen. Wyden Letter](https://www.wyden.senate.gov/news/press-releases/wyden-releases-documents-confirming-the-nsa-buys-americans-internet-browsing-records-calls-on-intelligence-community-to-stop-buying-us-data-obtained-unlawfully-from-data-brokers-violating-recent-ftc-order)
+
 **The average citizen has nothing to hide**: why would the US government be purchasing everyone's data? Surely, they have some non-commercial mechanism of determining who high-profile potential threat actors are that would warrant surveillance. It's not like they're trying to find such actors through these purchases, that would be a needle in a haystack. It's much easier and cheaper to find that kind of person through searches on social media sites and pay for everything about them later. That kind of surveillance, I agree with. This wholesale monitoring of the average citizen through commercially available channels? Unacceptable.
 
 It's true that the very fact these commercial avenues for obtaining wholesale data exist is undesirable, and there's an argument that the government is just using every avenue legally available to them. But still: **to what end?**

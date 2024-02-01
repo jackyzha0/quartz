@@ -4,7 +4,8 @@ tags:
   - meta
   - webdev
   - difficulty-moderate
-date: 9-08-23
+date: 2023-08-23
+lastmod: 2024-01-20
 ---
 ...It's this website.
 
@@ -26,10 +27,25 @@ I could have self-hosted the site, but I opted to use Quartz's built-in function
 This was a time and a half to set up RSS for. It used some bastardized form of Atom but with RSS syntax and so neither spec could parse it.
 - On the bright side, [one PR later](https://github.com/jackyzha0/quartz/pull/407) and Quartz is the only project in the Obsidian ecosystem with an RSS feed. 
 
-**Important for any website:** Block the bot traffic! You don't want bad spiders/crawlers poking around on your site to try to find vulnerabilities or archiving your content for training AI without your consent. I like the Nginx project [Ultimate Bad Bot Blocker](https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker): 
+**And important for any website:** 
+## Block the bot traffic! 
+You don't want bad spiders/crawlers poking around on your site to try to find vulnerabilities or archiving your content for training AI without your consent. I like the Nginx project [Ultimate Bad Bot Blocker](https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker): 
 - Still lets sites like Google and Bing crawl your site for search results, but blocks infinitely many other agents, referrers, and the like. 
 - Customizable with allowlists and denylists that you can use to override the defaults. 
 - Did I mention it gets updated every hour? 
 - Search for `444` in your nginx access logs after it's installed for a few laughs. It's mind blowing how many spiders are trying to find files that contain hosting access tokens (AWS, etc) for random sites.
 
 [[Projects/Obsidian/quartz-comments|Adding comments to the site]] was enough of a hassle that I consider it a separate project. Work in progress.
+
+## Using this Site
+- [Explorer](https://quartz.jzhao.xyz/features/explorer) 
+	- \[Desktop\] on your left: jump to any page on the site.
+	- \[Mobile\] visit the [[sitemap|Sitemap]].
+- [Graph View](https://help.obsidian.md/Plugins/Graph+view) 
+	- An [[Programs I Like/obsidian|Obsidian]] feature which acts as a map of what pages link to each other. Click on it for a map of the entire site and how it interconnects. It doesn't use Obsidian's implementation directly, but since [[Projects/Obsidian/digital-garden|the site generator I use]] is heavily inspired by Obsidian and [Obsidian Publish]( https://obsidian.md/publish ), it remains.
+	- \[Desktop\]: right pane
+	- \[Mobile\]: below content and comments
+- Backlinks
+	- A list of all pages on the site that link to the current one.
+	- \[Desktop\]: right pane
+	- \[Mobile\]: below content and comments

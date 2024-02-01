@@ -1,8 +1,8 @@
 ---
-title: Programs I Like - Home
+title: 🏠 Programs I Like - Home
 tags:
   - toc
-date: 9-08-23
+date: 2023-08-23
 ---
 This is a list of programs which I may or may not have experience with, and why I have a positive regard for them. 
 
