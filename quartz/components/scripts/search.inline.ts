@@ -170,9 +170,9 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
         active.click()
       } else {
         const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
-        if (anchor?.classList.contains("no-match")) return
+        if (!anchor || anchor?.classList.contains("no-match")) return
         await displayPreview(anchor)
-        anchor?.click()
+        anchor.click()
       }
     } else if (e.key === "ArrowUp" || (e.shiftKey && e.key === "Tab")) {
       e.preventDefault()
