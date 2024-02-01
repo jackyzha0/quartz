@@ -121,6 +121,11 @@
           }
         }
 
+        & .highlight {
+          color: var(--secondary);
+          font-weight: 700;
+        }
+
         & > #preview-container {
           display: block;
           box-sizing: border-box;
@@ -165,11 +170,6 @@
             background: var(--light);
             outline: none;
             font-weight: inherit;
-
-            & .highlight {
-              color: var(--secondary);
-              font-weight: 700;
-            }
 
             &:hover,
             &:focus,

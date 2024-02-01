@@ -11,23 +11,29 @@ interface Item {
   tags: string[]
 }
 
-let index: FlexSearch.Document<Item> | undefined = undefined
-
 // Can be expanded with things like "term" in the future
 type SearchType = "basic" | "tags"
 
 // Current searchType
 let searchType: SearchType = "basic"
+// Current search term // TODO: exact match
+let currentSearchTerm: string = ""
+// index for search
+let index: FlexSearch.Document<Item> | undefined = undefined
 
 const contextWindowWords = 30
 const numSearchResults = 8
 const numTagResults = 5
-function highlight(searchTerm: string, text: string, trim?: boolean) {
-  // try to highlight longest tokens first
-  const tokenizedTerms = searchTerm
+
+const tokenizeTerm = (term: string) =>
+  term
     .split(/\s+/)
     .filter((t) => t !== "")
     .sort((a, b) => b.length - a.length)
+
+function highlight(searchTerm: string, text: string, trim?: boolean) {
+  // try to highlight longest tokens first
+  const tokenizedTerms = tokenizeTerm(searchTerm)
   let tokenizedText = text.split(/\s+/).filter((t) => t !== "")
 
   let startIndex = 0
@@ -64,11 +70,58 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
       }
       return tok
     })
+    .slice(startIndex, endIndex + 1)
     .join(" ")
 
   return `${startIndex === 0 ? "" : "..."}${slice}${
     endIndex === tokenizedText.length - 1 ? "" : "..."
   }`
+}
+
+function highlightHTML(searchTerm: string, el: HTMLElement) {
+  // try to highlight longest tokens first
+  const p = new DOMParser()
+  const tokenizedTerms = tokenizeTerm(searchTerm)
+  const html = p.parseFromString(el.innerHTML, "text/html")
+
+  const createHighlightSpan = (text: string) => {
+    const span = document.createElement("span")
+    span.className = "highlight"
+    span.textContent = text
+    return span
+  }
+
+  const highlightTextNodes = (node: Node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      let nodeText = node.nodeValue || ""
+      tokenizedTerms.forEach((term) => {
+        const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") // Escape special characters
+        const regex = new RegExp(escapedTerm, "gi")
+        if (regex.test(nodeText)) {
+          const matches = nodeText.match(regex)
+          if (matches) {
+            const spanContainer = document.createElement("span")
+            let lastIndex = 0
+            matches.forEach((match) => {
+              const matchIndex = nodeText.indexOf(match, lastIndex)
+              spanContainer.appendChild(
+                document.createTextNode(nodeText.slice(lastIndex, matchIndex)),
+              )
+              spanContainer.appendChild(createHighlightSpan(match))
+              lastIndex = matchIndex + match.length
+            })
+            spanContainer.appendChild(document.createTextNode(nodeText.slice(lastIndex)))
+            node.parentNode?.replaceChild(spanContainer, node)
+          }
+        }
+      })
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      Array.from(node.childNodes).forEach(highlightTextNodes)
+    }
+  }
+
+  highlightTextNodes(html.body)
+  return html.body
 }
 
 const p = new DOMParser()
@@ -96,6 +149,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
   const enablePreview = searchLayout?.dataset?.preview === "true"
   let preview: HTMLDivElement | undefined = undefined
+  let previewInner: HTMLDivElement | undefined = undefined
   const results = document.createElement("div")
   results.id = "results-container"
   results.style.flexBasis = enablePreview ? "30%" : "100%"
@@ -384,17 +438,21 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     el.classList.add("focus")
 
     removeAllChildren(preview as HTMLElement)
-    const contentDetails = await fetchContent(slug)
 
-    const previewInner = document.createElement("div")
+    previewInner = document.createElement("div")
     previewInner.classList.add("preview-inner")
     preview?.appendChild(previewInner)
-    contentDetails?.forEach((elt) => previewInner.appendChild(elt))
+
+    const innerDiv = await fetchContent(slug).then((contents) =>
+      contents.map((el) => highlightHTML(currentSearchTerm, el as HTMLElement)),
+    )
+    previewInner.append(...innerDiv)
   }
 
   async function onType(e: HTMLElementEventMap["input"]) {
     let term = (e.target as HTMLInputElement).value
     let searchResults: FlexSearch.SimpleDocumentSearchResultSetUnit[]
+    currentSearchTerm = (e.target as HTMLInputElement).value
 
     if (searchLayout) {
       searchLayout.style.opacity = "1"
@@ -438,6 +496,19 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     ])
     const finalResults = [...allIds].map((id) => formatForDisplay(term, id))
     await displayResults(finalResults)
+
+    if (!preview || !enablePreview) return
+    removeAllChildren(preview as HTMLElement)
+    // focus on first result, then also dispatch preview immediately
+    if (results?.firstElementChild) {
+      const firstChild = results.firstElementChild as HTMLElement
+      if (firstChild.classList.contains("no-match")) {
+        removeAllChildren(preview as HTMLElement)
+      } else {
+        firstChild.classList.add("focus")
+        await displayPreview(firstChild)
+      }
+    }
   }
 
   if (prevShortcutHandler) {
