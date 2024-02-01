@@ -59,8 +59,8 @@
       margin-left: auto;
       margin-right: auto;
 
-      @media all and (max-width: $fullPageWidth) {
-        width: 90%;
+      @media all and (min-width: $fullPageWidth) {
+        width: 75%;
       }
 
       & > * {
@@ -94,7 +94,8 @@
         border: 1px solid var(--lightgray);
 
         & > div {
-          height: calc(75vh - 20em);
+          // vh - #search-space.margin-top
+          max-height: calc(75vh - 12vh);
           background: none;
 
           &:first-child {
@@ -140,6 +141,10 @@
             box-shadow:
               0 14px 50px rgba(27, 33, 48, 0.12),
               0 10px 30px rgba(27, 33, 48, 0.16);
+          }
+
+          a.internal {
+            background-color: none;
           }
         }
 
