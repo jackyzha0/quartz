@@ -293,7 +293,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       innerHTML: `<h3>${title}</h3>${htmlTags}${resultContent}`,
     })
 
-    const resultsMouseEnter = async (ev: MouseEvent) => {
+    async function onMouseEnter(ev: MouseEvent) {
       // Actually when we hover, we need to clean all highlights within the result childs
       if (!ev.target) return
       for (const el of document.getElementsByClassName(
@@ -309,14 +309,14 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       currentHover.classList.remove("focus")
     }
 
-    const resultsMouseLeave = async (ev: MouseEvent) => {
+    async function onMouseLeave(ev: MouseEvent) {
       const target = ev.target as HTMLAnchorElement
       target.classList.remove("focus", "mouse")
     }
 
     const events = [
-      ["mouseenter", resultsMouseEnter],
-      ["mouseleave", resultsMouseLeave],
+      ["mouseenter", onMouseEnter],
+      ["mouseleave", onMouseLeave],
       [
         "click",
         (event: MouseEvent) => {
