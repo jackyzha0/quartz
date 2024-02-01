@@ -5,6 +5,7 @@ import explorerStyle from "./styles/explorer.scss"
 import script from "./scripts/explorer.inline"
 import { ExplorerNode, FileNode, Options } from "./ExplorerNode"
 import { QuartzPluginData } from "../plugins/vfile"
+import { classNames } from "../util/lang"
 
 // Options interface defined in `ExplorerNode` to avoid circular dependency
 const defaultOptions = {
@@ -69,16 +70,15 @@ export default ((userOpts?: Partial<Options>) => {
     }
 
     // Get all folders of tree. Initialize with collapsed state
-    const folders = fileTree.getFolderPaths(opts.folderDefaultState === "collapsed")
-
     // Stringify to pass json tree as data attribute ([data-tree])
+    const folders = fileTree.getFolderPaths(opts.folderDefaultState === "collapsed")
     jsonTree = JSON.stringify(folders)
   }
 
   function Explorer({ allFiles, displayClass, fileData }: QuartzComponentProps) {
     constructFileTree(allFiles)
     return (
-      <div class={`explorer ${displayClass ?? ""}`}>
+      <div class={classNames(displayClass, "explorer")}>
         <button
           type="button"
           id="explorer"
