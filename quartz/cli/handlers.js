@@ -168,22 +168,20 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
     // get a preferred link resolution strategy
     linkResolutionStrategy = exitIfCancel(
       await select({
-        message: `Choose how Quartz should resolve links in your content. You can change this later in \`quartz.config.ts\`.`,
+        message: `Choose how Quartz should resolve links in your content. This should match Obsidian's link format. You can change this later in \`quartz.config.ts\`.`,
         options: [
-          {
-            value: "absolute",
-            label: "Treat links as absolute path",
-            hint: "for content made for Quartz 3 and Hugo",
-          },
           {
             value: "shortest",
             label: "Treat links as shortest path",
-            hint: "for most Obsidian vaults",
+            hint: "(default)",
+          },
+          {
+            value: "absolute",
+            label: "Treat links as absolute path",
           },
           {
             value: "relative",
             label: "Treat links as relative paths",
-            hint: "for just normal Markdown files",
           },
         ],
       }),
@@ -202,6 +200,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
   // setup remote
   execSync(
     `git remote show upstream || git remote add upstream https://github.com/jackyzha0/quartz.git`,
+    { stdio: "ignore" },
   )
 
   outro(`You're all set! Not sure what to do next? Try:
@@ -258,6 +257,7 @@ export async function handleBuild(argv) {
               },
               write: false,
               bundle: true,
+              minify: true,
               platform: "browser",
               format: "esm",
             })
@@ -347,7 +347,7 @@ export async function handleBuild(argv) {
           directoryListing: false,
           headers: [
             {
-              source: "**/*.html",
+              source: "**/*.*",
               headers: [{ key: "Content-Disposition", value: "inline" }],
             },
           ],
@@ -450,7 +450,7 @@ export async function handleUpdate(argv) {
   try {
     gitPull(UPSTREAM_NAME, QUARTZ_SOURCE_BRANCH)
   } catch {
-    console.log(chalk.red("An error occured above while pulling updates."))
+    console.log(chalk.red("An error occurred above while pulling updates."))
     await popContentFolder(contentFolder)
     return
   }
@@ -522,7 +522,7 @@ export async function handleSync(argv) {
     try {
       gitPull(ORIGIN_NAME, QUARTZ_SOURCE_BRANCH)
     } catch {
-      console.log(chalk.red("An error occured above while pulling updates."))
+      console.log(chalk.red("An error occurred above while pulling updates."))
       await popContentFolder(contentFolder)
       return
     }

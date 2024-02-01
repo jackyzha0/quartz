@@ -9,13 +9,34 @@ import { QuartzPluginData } from "../vfile"
 export interface Options {
   delims: string | string[]
   language: "yaml" | "toml"
-  oneLineTagDelim: string
 }
 
 const defaultOptions: Options = {
   delims: "---",
   language: "yaml",
-  oneLineTagDelim: ",",
+}
+
+function coalesceAliases(data: { [key: string]: any }, aliases: string[]) {
+  for (const alias of aliases) {
+    if (data[alias] !== undefined && data[alias] !== null) return data[alias]
+  }
+}
+
+function coerceToArray(input: string | string[]): string[] | undefined {
+  if (input === undefined || input === null) return undefined
+
+  // coerce to array
+  if (!Array.isArray(input)) {
+    input = input
+      .toString()
+      .split(",")
+      .map((tag: string) => tag.trim())
+  }
+
+  // remove all non-strings
+  return input
+    .filter((tag: unknown) => typeof tag === "string" || typeof tag === "number")
+    .map((tag: string | number) => tag.toString())
 }
 
 export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
@@ -23,8 +44,6 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
   return {
     name: "FrontMatter",
     markdownPlugins() {
-      const { oneLineTagDelim } = opts
-
       return [
         [remarkFrontmatter, ["yaml", "toml"]],
         () => {
@@ -37,35 +56,19 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
               },
             })
 
-            // tag is an alias for tags
-            if (data.tag) {
-              data.tags = data.tag
-            }
-
-            // coerce title to string
             if (data.title) {
               data.title = data.title.toString()
             } else if (data.title === null || data.title === undefined) {
               data.title = file.stem ?? "Untitled"
             }
 
-            if (data.tags) {
-              // coerce to array
-              if (!Array.isArray(data.tags)) {
-                data.tags = data.tags
-                  .toString()
-                  .split(oneLineTagDelim)
-                  .map((tag: string) => tag.trim())
-              }
+            const tags = coerceToArray(coalesceAliases(data, ["tags", "tag"]))
+            if (tags) data.tags = [...new Set(tags.map((tag: string) => slugTag(tag)))]
 
-              // remove all non-string tags
-              data.tags = data.tags
-                .filter((tag: unknown) => typeof tag === "string" || typeof tag === "number")
-                .map((tag: string | number) => tag.toString())
-            }
-
-            // slug them all!!
-            data.tags = [...new Set(data.tags?.map((tag: string) => slugTag(tag)))]
+            const aliases = coerceToArray(coalesceAliases(data, ["aliases", "alias"]))
+            if (aliases) data.aliases = aliases
+            const cssclasses = coerceToArray(coalesceAliases(data, ["cssclasses", "cssclass"]))
+            if (cssclasses) data.cssclasses = cssclasses
 
             // fill in frontmatter
             file.data.frontmatter = data as QuartzPluginData["frontmatter"]
@@ -78,9 +81,16 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
 
 declare module "vfile" {
   interface DataMap {
-    frontmatter: { [key: string]: any } & {
+    frontmatter: { [key: string]: unknown } & {
       title: string
-      tags: string[]
-    }
+    } & Partial<{
+        tags: string[]
+        aliases: string[]
+        description: string
+        publish: boolean
+        draft: boolean
+        enableToc: string
+        cssclasses: string[]
+      }>
   }
 }

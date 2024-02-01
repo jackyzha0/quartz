@@ -4,7 +4,7 @@ import { Element, Literal, Root as HtmlRoot } from "hast"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { slug as slugAnchor } from "github-slugger"
 import rehypeRaw from "rehype-raw"
-import { visit } from "unist-util-visit"
+import { SKIP, visit } from "unist-util-visit"
 import path from "path"
 import { JSResource } from "../../util/resources"
 // @ts-ignore
@@ -23,9 +23,11 @@ export interface Options {
   callouts: boolean
   mermaid: boolean
   parseTags: boolean
+  parseArrows: boolean
   parseBlockReferences: boolean
   enableInHtmlEmbed: boolean
   enableYouTubeEmbed: boolean
+  enableVideoEmbed: boolean
 }
 
 const defaultOptions: Options = {
@@ -35,44 +37,14 @@ const defaultOptions: Options = {
   callouts: true,
   mermaid: true,
   parseTags: true,
+  parseArrows: true,
   parseBlockReferences: true,
   enableInHtmlEmbed: false,
-  enableYouTubeEmbed: false,
+  enableYouTubeEmbed: true,
+  enableVideoEmbed: true,
 }
 
-const icons = {
-  infoIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`,
-  pencilIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="2" x2="22" y2="6"></line><path d="M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z"></path></svg>`,
-  clipboardListIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>`,
-  checkCircleIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="m9 12 2 2 4-4"></path></svg>`,
-  flameIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>`,
-  checkIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`,
-  helpCircleIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`,
-  alertTriangleIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`,
-  xIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`,
-  zapIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`,
-  bugIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="14" x="8" y="6" rx="4"></rect><path d="m19 7-3 2"></path><path d="m5 7 3 2"></path><path d="m19 19-3-2"></path><path d="m5 19 3-2"></path><path d="M20 13h-4"></path><path d="M4 13h4"></path><path d="m10 4 1 2"></path><path d="m14 4-1 2"></path></svg>`,
-  listIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>`,
-  quoteIcon: `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg>`,
-}
-
-const callouts = {
-  note: icons.pencilIcon,
-  abstract: icons.clipboardListIcon,
-  info: icons.infoIcon,
-  todo: icons.checkCircleIcon,
-  tip: icons.flameIcon,
-  success: icons.checkIcon,
-  question: icons.helpCircleIcon,
-  warning: icons.alertTriangleIcon,
-  failure: icons.xIcon,
-  danger: icons.zapIcon,
-  bug: icons.bugIcon,
-  example: icons.listIcon,
-  quote: icons.quoteIcon,
-}
-
-const calloutMapping: Record<string, keyof typeof callouts> = {
+const calloutMapping = {
   note: "note",
   abstract: "abstract",
   summary: "abstract",
@@ -100,26 +72,29 @@ const calloutMapping: Record<string, keyof typeof callouts> = {
   example: "example",
   quote: "quote",
   cite: "quote",
-}
+} as const
 
-function canonicalizeCallout(calloutName: string): keyof typeof callouts {
-  let callout = calloutName.toLowerCase() as keyof typeof calloutMapping
-  return calloutMapping[callout] ?? "note"
+function canonicalizeCallout(calloutName: string): keyof typeof calloutMapping {
+  const normalizedCallout = calloutName.toLowerCase() as keyof typeof calloutMapping
+  // if callout is not recognized, make it a custom one
+  return calloutMapping[normalizedCallout] ?? calloutName
 }
 
 export const externalLinkRegex = /^https?:\/\//i
 
-// !?               -> optional embedding
-// \[\[             -> open brace
-// ([^\[\]\|\#]+)   -> one or more non-special characters ([,],|, or #) (name)
-// (#[^\[\]\|\#]+)? -> # then one or more non-special characters (heading link)
-// (|[^\[\]\|\#]+)? -> | then one or more non-special characters (alias)
+export const arrowRegex = new RegExp(/-{1,2}>/, "g")
+
+// !?                -> optional embedding
+// \[\[              -> open brace
+// ([^\[\]\|\#]+)    -> one or more non-special characters ([,],|, or #) (name)
+// (#[^\[\]\|\#]+)?  -> # then one or more non-special characters (heading link)
+// (\|[^\[\]\#]+)? -> | then one or more non-special characters (alias)
 export const wikilinkRegex = new RegExp(
-  /!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\|\#]+)?\]\]/,
+  /!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\#]+)?\]\]/,
   "g",
 )
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
-const commentRegex = new RegExp(/%%(.+)%%/, "g")
+const commentRegex = new RegExp(/%%[\s\S]*?%%/, "g")
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
 const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
 const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
@@ -128,8 +103,12 @@ const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
 // (?:[-_\p{L}\d\p{Z}])+       -> non-capturing group, non-empty string of (Unicode-aware) alpha-numeric characters and symbols, hyphens and/or underscores
 // (?:\/[-_\p{L}\d\p{Z}]+)*)   -> non-capturing group, matches an arbitrary number of tag strings separated by "/"
 const tagRegex = new RegExp(/(?:^| )#((?:[-_\p{L}\p{Emoji}\d])+(?:\/[-_\p{L}\p{Emoji}\d]+)*)/, "gu")
-const blockReferenceRegex = new RegExp(/\^([A-Za-z0-9]+)$/, "g")
+const blockReferenceRegex = new RegExp(/\^([-_A-Za-z0-9]+)$/, "g")
 const ytLinkRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+const videoExtensionRegex = new RegExp(/\.(mp4|webm|ogg|avi|mov|flv|wmv|mkv|mpg|mpeg|3gp|m4v)$/)
+const wikilinkImageEmbedRegex = new RegExp(
+  /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/,
+)
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
@@ -144,13 +123,22 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
   return {
     name: "ObsidianFlavoredMarkdown",
     textTransform(_ctx, src) {
+      // do comments at text level
+      if (opts.comments) {
+        if (src instanceof Buffer) {
+          src = src.toString()
+        }
+
+        src = src.replace(commentRegex, "")
+      }
+
       // pre-transform blockquotes
       if (opts.callouts) {
         if (src instanceof Buffer) {
           src = src.toString()
         }
 
-        src = src.replaceAll(calloutLineRegex, (value) => {
+        src = src.replace(calloutLineRegex, (value) => {
           // force newline after title of callout
           return value + "\n> "
         })
@@ -162,7 +150,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           src = src.toString()
         }
 
-        src = src.replaceAll(wikilinkRegex, (value, ...capture) => {
+        src = src.replace(wikilinkRegex, (value, ...capture) => {
           const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
 
           const fp = rawFp ?? ""
@@ -205,10 +193,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   const ext: string = path.extname(fp).toLowerCase()
                   const url = slugifyFilePath(fp as FilePath)
                   if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg", ".webp"].includes(ext)) {
-                    const dims = alias ?? ""
-                    let [width, height] = dims.split("x", 2)
-                    width ||= "auto"
-                    height ||= "auto"
+                    const match = wikilinkImageEmbedRegex.exec(alias ?? "")
+                    const alt = match?.groups?.alt ?? ""
+                    const width = match?.groups?.width ?? "auto"
+                    const height = match?.groups?.height ?? "auto"
                     return {
                       type: "image",
                       url,
@@ -216,6 +204,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                         hProperties: {
                           width,
                           height,
+                          alt,
                         },
                       },
                     }
@@ -236,7 +225,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                       type: "html",
                       value: `<iframe src="${url}"></iframe>`,
                     }
-                  } else if (ext === "") {
+                  } else {
                     const block = anchor
                     return {
                       type: "html",
@@ -279,13 +268,13 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             ])
           }
 
-          if (opts.comments) {
+          if (opts.parseArrows) {
             replacements.push([
-              commentRegex,
+              arrowRegex,
               (_value: string, ..._capture: string[]) => {
                 return {
-                  type: "text",
-                  value: "",
+                  type: "html",
+                  value: `<span>&rarr;</span>`,
                 }
               },
             ])
@@ -301,8 +290,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 }
 
                 tag = slugTag(tag)
-                if (file.data.frontmatter && !file.data.frontmatter.tags.includes(tag)) {
-                  file.data.frontmatter.tags.push(tag)
+                if (file.data.frontmatter) {
+                  const noteTags = file.data.frontmatter.tags ?? []
+                  file.data.frontmatter.tags = [...new Set([...noteTags, tag])]
                 }
 
                 return {
@@ -330,7 +320,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 if (typeof replace === "string") {
                   node.value = node.value.replace(regex, replace)
                 } else {
-                  node.value = node.value.replaceAll(regex, (substring: string, ...args) => {
+                  node.value = node.value.replace(regex, (substring: string, ...args) => {
                     const replaceValue = replace(substring, ...args)
                     if (typeof replaceValue === "string") {
                       return replaceValue
@@ -346,10 +336,27 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               }
             })
           }
-
           mdastFindReplace(tree, replacements)
         }
       })
+
+      if (opts.enableVideoEmbed) {
+        plugins.push(() => {
+          return (tree: Root, _file) => {
+            visit(tree, "image", (node, index, parent) => {
+              if (parent && index != undefined && videoExtensionRegex.test(node.url)) {
+                const newNode: Html = {
+                  type: "html",
+                  value: `<video controls src="${node.url}"></video>`,
+                }
+
+                parent.children.splice(index, 1, newNode)
+                return SKIP
+              }
+            })
+          }
+        })
+      }
 
       if (opts.callouts) {
         plugins.push(() => {
@@ -366,36 +373,38 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               }
 
               const text = firstChild.children[0].value
-              const restChildren = firstChild.children.slice(1)
+              const restOfTitle = firstChild.children.slice(1)
               const [firstLine, ...remainingLines] = text.split("\n")
               const remainingText = remainingLines.join("\n")
 
               const match = firstLine.match(calloutRegex)
               if (match && match.input) {
                 const [calloutDirective, typeString, collapseChar] = match
-                const calloutType = canonicalizeCallout(
-                  typeString.toLowerCase() as keyof typeof calloutMapping,
-                )
+                const calloutType = canonicalizeCallout(typeString.toLowerCase())
                 const collapse = collapseChar === "+" || collapseChar === "-"
                 const defaultState = collapseChar === "-" ? "collapsed" : "expanded"
-                const titleContent =
-                  match.input.slice(calloutDirective.length).trim() || capitalize(calloutType)
+                const titleContent = match.input.slice(calloutDirective.length).trim()
+                const useDefaultTitle = titleContent === "" && restOfTitle.length === 0
                 const titleNode: Paragraph = {
                   type: "paragraph",
-                  children: [{ type: "text", value: titleContent + " " }, ...restChildren],
+                  children: [
+                    {
+                      type: "text",
+                      value: useDefaultTitle ? capitalize(calloutType) : titleContent + " ",
+                    },
+                    ...restOfTitle,
+                  ],
                 }
                 const title = mdastToHtml(titleNode)
 
-                const toggleIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>`
+                const toggleIcon = `<div class="fold-callout-icon"></div>`
 
                 const titleHtml: Html = {
                   type: "html",
                   value: `<div
                   class="callout-title"
                 >
-                  <div class="callout-icon">${callouts[calloutType]}</div>
+                  <div class="callout-icon"></div>
                   <div class="callout-title-inner">${title}</div>
                   ${collapse ? toggleIcon : ""}
                 </div>`,
@@ -421,7 +430,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 node.data = {
                   hProperties: {
                     ...(node.data?.hProperties ?? {}),
-                    className: `callout ${collapse ? "is-collapsible" : ""} ${
+                    className: `callout ${calloutType} ${collapse ? "is-collapsible" : ""} ${
                       defaultState === "collapsed" ? "is-collapsed" : ""
                     }`,
                     "data-callout": calloutType,
