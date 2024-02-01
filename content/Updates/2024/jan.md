@@ -6,7 +6,7 @@ tags:
 date: 2024-01-03
 lastmod: 2024-01-31
 ---
-This is being talked about nowhere, but I think it deserves publicity. A New Hampshire cafe that had its Instagram account deleted just won a breach-of-contract action against Facebook over their Section 230 defense! ![Seacoast Online coverage](https://www.seacoastonline.com/story/news/2024/01/26/teatotaller-cafe-owner-wins-instagram-case-nh-supreme-court/72345276007/)
+This is being talked about nowhere, but I think it deserves publicity. A New Hampshire cafe that had its Instagram account deleted just won a breach-of-contract action against Facebook over their Section 230 defense! [Seacoast Online coverage](https://www.seacoastonline.com/story/news/2024/01/26/teatotaller-cafe-owner-wins-instagram-case-nh-supreme-court/72345276007/)
 
 Neat coincidence that Section 230 features quite heavily in one of my newest essays. Happy 2024, all. 
 ## Housekeeping
