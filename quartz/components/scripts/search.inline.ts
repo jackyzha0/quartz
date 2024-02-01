@@ -165,10 +165,12 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       // If result has focus, navigate to that one, otherwise pick first result
       if (results?.contains(document.activeElement)) {
         const active = document.activeElement as HTMLInputElement
+        if (active.classList.contains("no-match")) return
         await displayPreview(active)
         active.click()
       } else {
         const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
+        if (anchor?.classList.contains("no-match")) return
         await displayPreview(anchor)
         anchor?.click()
       }
