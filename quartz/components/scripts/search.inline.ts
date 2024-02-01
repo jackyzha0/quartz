@@ -122,6 +122,9 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     if (preview) {
       removeAllChildren(preview)
     }
+    if (searchLayout) {
+      searchLayout.style.opacity = "0"
+    }
 
     searchType = "basic" // reset search type after closing
   }
@@ -134,6 +137,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     container?.classList.add("active")
     searchBar?.focus()
   }
+
+  let currentHover: HTMLInputElement | null = null
 
   async function shortcutHandler(e: HTMLElementEventMap["keydown"]) {
     if (e.key === "k" && (e.ctrlKey || e.metaKey) && !e.shiftKey) {
@@ -150,51 +155,61 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       if (searchBar) searchBar.value = "#"
     }
 
-    const resultCards = document.getElementsByClassName("result-card")
+    if (currentHover) {
+      currentHover.classList.remove("focus")
+    }
 
     // If search is active, then we will render the first result and display accordingly
     if (!container?.classList.contains("active")) return
-    else if (results?.contains(document.activeElement)) {
-      const active = document.activeElement as HTMLInputElement
-      await displayPreview(active)
-      if (e.key === "Enter") {
+    else if (e.key === "Enter") {
+      // If result has focus, navigate to that one, otherwise pick first result
+      if (results?.contains(document.activeElement)) {
+        const active = document.activeElement as HTMLInputElement
+        if (active.classList.contains("no-match")) return
+        await displayPreview(active)
         active.click()
+      } else {
+        const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
+        if (!anchor || anchor?.classList.contains("no-match")) return
+        await displayPreview(anchor)
+        anchor.click()
       }
-    } else {
-      const anchor = resultCards[0] as HTMLInputElement | null
-      await displayPreview(anchor)
-      if (e.key === "Enter") {
-        anchor?.click()
-      }
-    }
-
-    if (e.key === "ArrowUp" || (e.shiftKey && e.key === "Tab")) {
+    } else if (e.key === "ArrowUp" || (e.shiftKey && e.key === "Tab")) {
       e.preventDefault()
       if (results?.contains(document.activeElement)) {
         // If an element in results-container already has focus, focus previous one
-        const currentResult = document.activeElement as HTMLInputElement | null
+        const currentResult = currentHover
+          ? currentHover
+          : (document.activeElement as HTMLInputElement | null)
         const prevResult = currentResult?.previousElementSibling as HTMLInputElement | null
         currentResult?.classList.remove("focus")
         await displayPreview(prevResult)
         prevResult?.focus()
+        currentHover = prevResult
       }
     } else if (e.key === "ArrowDown" || e.key === "Tab") {
       e.preventDefault()
       // The results should already been focused, so we need to find the next one.
       // The activeElement is the search bar, so we need to find the first result and focus it.
       if (!results?.contains(document.activeElement)) {
-        const firstResult = resultCards[0] as HTMLInputElement | null
+        const firstResult = currentHover
+          ? currentHover
+          : (document.getElementsByClassName("result-card")[0] as HTMLInputElement | null)
         const secondResult = firstResult?.nextElementSibling as HTMLInputElement | null
         firstResult?.classList.remove("focus")
         await displayPreview(secondResult)
         secondResult?.focus()
+        currentHover = secondResult
       } else {
         // If an element in results-container already has focus, focus next one
-        const active = document.activeElement as HTMLInputElement | null
+        const active = currentHover
+          ? currentHover
+          : (document.activeElement as HTMLInputElement | null)
         active?.classList.remove("focus")
         const nextResult = active?.nextElementSibling as HTMLInputElement | null
         await displayPreview(nextResult)
         nextResult?.focus()
+        currentHover = nextResult
       }
     }
   }
@@ -282,15 +297,17 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
     async function onMouseEnter(ev: MouseEvent) {
       // Actually when we hover, we need to clean all highlights within the result childs
+      if (!ev.target) return
       for (const el of document.getElementsByClassName(
         "result-card",
       ) as HTMLCollectionOf<HTMLElement>) {
         el.classList.remove("focus")
         el.blur()
       }
-      const target = ev.target as HTMLAnchorElement
-      target.classList.add("focus")
+      const target = ev.target as HTMLInputElement
       await displayPreview(target)
+      currentHover = target
+      currentHover.classList.remove("focus")
     }
 
     async function onMouseLeave(ev: MouseEvent) {
@@ -320,7 +337,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
     removeAllChildren(results)
     if (finalResults.length === 0) {
-      results.innerHTML = `<a class="result-card">
+      results.innerHTML = `<a class="result-card no-match">
                     <h3>No results.</h3>
                     <p>Try another search term?</p>
                 </a>`
@@ -329,8 +346,13 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     }
     // focus on first result, then also dispatch preview immediately
     if (results?.firstElementChild) {
-      results?.firstElementChild?.classList.add("focus")
-      await displayPreview(results?.firstElementChild as HTMLElement)
+      const firstChild = results.firstElementChild as HTMLElement
+      if (firstChild.classList.contains("no-match")) {
+        removeAllChildren(preview as HTMLElement)
+      } else {
+        firstChild.classList.add("focus")
+        await displayPreview(firstChild)
+      }
     }
   }
 
