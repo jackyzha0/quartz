@@ -91,7 +91,7 @@
 
         & > div {
           // vh - #search-space.margin-top
-          max-height: calc(75vh - 12vh);
+          height: calc(75vh - 12vh);
           background: none;
 
           &:first-child {
