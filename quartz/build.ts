@@ -128,9 +128,9 @@ async function startServing(
 
   if (argv.fastRebuild) {
     watcher
-      .on("add", (fp) => partialRebuild(fp, "add", clientRefresh, buildData))
-      .on("change", (fp) => partialRebuild(fp, "change", clientRefresh, buildData))
-      .on("unlink", (fp) => partialRebuild(fp, "delete", clientRefresh, buildData))
+      .on("add", (fp) => partialRebuildFromEntrypoint(fp, "add", clientRefresh, buildData))
+      .on("change", (fp) => partialRebuildFromEntrypoint(fp, "change", clientRefresh, buildData))
+      .on("unlink", (fp) => partialRebuildFromEntrypoint(fp, "delete", clientRefresh, buildData))
   } else {
     watcher
       .on("add", (fp) => rebuildFromEntrypoint(fp, "add", clientRefresh, buildData))
@@ -143,18 +143,26 @@ async function startServing(
   }
 }
 
-async function partialRebuild(
+async function partialRebuildFromEntrypoint(
   filepath: string,
   action: FileEvent,
   clientRefresh: () => void,
   buildData: BuildData, // note: this function mutates buildData
 ) {
-  const { ctx, ignored, depGraphs, contentMap } = buildData
+  const { ctx, ignored, depGraphs, contentMap, mut } = buildData
   const { argv, cfg } = ctx
   const toRemove = new Set<FilePath>()
 
   // don't do anything for gitignored files
   if (ignored(filepath)) {
+    return
+  }
+
+  const buildStart = new Date().getTime()
+  buildData.lastBuildMs = buildStart
+  const release = await mut.acquire()
+  if (buildData.lastBuildMs > buildStart) {
+    release()
     return
   }
 
@@ -226,7 +234,7 @@ async function partialRebuild(
       // and supply [a.md, b.md] to the emitter
       const upstreams = [...depGraph.getLeafNodeAncestors(fp)] as FilePath[]
 
-      if (action == "delete" && upstreams.length === 1) {
+      if (action === "delete" && upstreams.length === 1) {
         // if there's only one upstream, the destination is solely dependent on this file
         destinationsToDelete.add(upstreams[0])
       }
@@ -262,6 +270,7 @@ async function partialRebuild(
     Object.values(depGraphs).forEach((depGraph) => depGraph.removeNode(file))
   }
 
+  release()
   clientRefresh()
 }
 
