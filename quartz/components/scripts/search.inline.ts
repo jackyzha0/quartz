@@ -188,7 +188,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       removeAllChildren(preview)
     }
     if (searchLayout) {
-      searchLayout.style.visibility = "hidden"
+      searchLayout.classList.remove("display-results")
     }
 
     searchType = "basic" // reset search type after closing
@@ -424,7 +424,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   async function onType(e: HTMLElementEventMap["input"]) {
     if (!searchLayout || !index) return
     currentSearchTerm = (e.target as HTMLInputElement).value
-    searchLayout.style.visibility = currentSearchTerm === "" ? "hidden" : "visible"
+    searchLayout.classList.toggle("display-results", currentSearchTerm !== "")
     searchType = currentSearchTerm.startsWith("#") ? "tags" : "basic"
 
     let searchResults: FlexSearch.SimpleDocumentSearchResultSetUnit[]

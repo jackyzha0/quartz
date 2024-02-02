@@ -83,10 +83,13 @@
       }
 
       & > #search-layout {
-        display: flex;
+        display: none;
         flex-direction: row;
-        visibility: hidden;
         border: 1px solid var(--lightgray);
+
+        &.display-results {
+          display: flex;
+        }
 
         @media all and (min-width: $tabletBreakpoint) {
           &[data-preview] {
