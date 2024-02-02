@@ -134,24 +134,20 @@
           display: block;
           box-sizing: border-box;
           overflow: hidden;
+          box-sizing: border-box;
+          font-family: inherit;
+          color: var(--dark);
+          line-height: 1.5em;
+          font-weight: 400;
+          background: var(--light);
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+          overflow-y: auto;
+          padding: 1rem;
 
           & .preview-inner {
             margin: 0 auto;
-            padding: 1em;
-            height: 100%;
-            width: 100%;
-            box-sizing: border-box;
-            overflow-y: auto;
-            font-family: inherit;
-            color: var(--dark);
-            line-height: 1.5em;
-            font-weight: 400;
-            background: var(--light);
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 5px;
-            box-shadow:
-              0 14px 50px rgba(27, 33, 48, 0.12),
-              0 10px 30px rgba(27, 33, 48, 0.16);
+            width: min($pageWidth, 100%);
           }
 
           a.internal {
