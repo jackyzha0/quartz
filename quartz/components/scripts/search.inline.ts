@@ -81,10 +81,10 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
   }`
 }
 
-function highlightHTML(searchTerm: string, innerHTML: string) {
+function highlightHTML(searchTerm: string, el: HTMLElement) {
   const p = new DOMParser()
   const tokenizedTerms = tokenizeTerm(searchTerm)
-  const html = p.parseFromString(innerHTML, "text/html")
+  const html = p.parseFromString(el.innerHTML, "text/html")
 
   const createHighlightSpan = (text: string) => {
     const span = document.createElement("span")
@@ -389,7 +389,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     previewInner = document.createElement("div")
     previewInner.classList.add("preview-inner")
     const innerDiv = await fetchContent(slug).then((contents) =>
-      contents.map((el) => highlightHTML(currentSearchTerm, el.innerHTML)),
+      contents.flatMap((el) => [...highlightHTML(currentSearchTerm, el as HTMLElement).children]),
     )
     previewInner.append(...innerDiv)
     preview.replaceChildren(previewInner)
