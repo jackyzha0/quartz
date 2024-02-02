@@ -85,7 +85,7 @@
       & > #search-layout {
         display: flex;
         flex-direction: row;
-        opacity: 0;
+        visibility: hidden;
         border: 1px solid var(--lightgray);
 
         & > div {

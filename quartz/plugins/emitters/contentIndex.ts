@@ -5,7 +5,6 @@ import { escapeHTML } from "../../util/escape"
 import { FilePath, FullSlug, SimpleSlug, joinSegments, simplifySlug } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 import { toHtml } from "hast-util-to-html"
-import path from "path"
 import { write } from "./helpers"
 
 export type ContentIndex = Map<FullSlug, ContentDetails>

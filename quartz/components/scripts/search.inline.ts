@@ -128,6 +128,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
   const data = await fetchData
   const container = document.getElementById("search-container")
+  const searchSpace = document.getElementById("search-space")
   const sidebar = container?.closest(".sidebar") as HTMLElement
   const searchIcon = document.getElementById("search-icon")
   const searchBar = document.getElementById("search-bar") as HTMLInputElement | null
@@ -170,7 +171,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       removeAllChildren(preview)
     }
     if (searchLayout) {
-      searchLayout.style.opacity = "0"
+      searchLayout.style.visibility = "hidden"
     }
 
     searchType = "basic" // reset search type after closing
@@ -449,11 +450,11 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     currentSearchTerm = (e.target as HTMLInputElement).value
 
     if (searchLayout) {
-      searchLayout.style.opacity = "1"
+      searchLayout.style.visibility = "visible"
     }
 
     if (term === "" && searchLayout) {
-      searchLayout.style.opacity = "0"
+      searchLayout.style.visibility = "hidden"
     }
 
     if (term.toLowerCase().startsWith("#")) {
@@ -503,35 +504,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   searchBar?.addEventListener("input", onType)
   window.addCleanup(() => searchBar?.removeEventListener("input", onType))
 
-  // setup index if it hasn't been already
-  if (!index) {
-    index = new FlexSearch.Document({
-      charset: "latin:extra",
-      encode: encoder,
-      document: {
-        id: "id",
-        index: [
-          {
-            field: "title",
-            tokenize: "forward",
-          },
-          {
-            field: "content",
-            tokenize: "forward",
-          },
-          {
-            field: "tags",
-            tokenize: "forward",
-          },
-        ],
-      },
-    })
-
-    fillDocument(index, data)
-  }
-
-  // register handlers
-  registerEscapeHandler(container, hideSearch)
+  index ??= await fillDocument(data)
+  registerEscapeHandler(searchSpace, hideSearch)
 })
 
 /**
@@ -539,7 +513,28 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
  * @param index index to fill
  * @param data data to fill index with
  */
-async function fillDocument(index: FlexSearch.Document<Item, false>, data: any) {
+async function fillDocument(data: { [key: FullSlug]: ContentDetails }) {
+  const index = new FlexSearch.Document<Item>({
+    charset: "latin:extra",
+    encode: encoder,
+    document: {
+      id: "id",
+      index: [
+        {
+          field: "title",
+          tokenize: "forward",
+        },
+        {
+          field: "content",
+          tokenize: "forward",
+        },
+        {
+          field: "tags",
+          tokenize: "forward",
+        },
+      ],
+    },
+  })
   let id = 0
   for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
     await index.addAsync(id++, {
@@ -550,4 +545,6 @@ async function fillDocument(index: FlexSearch.Document<Item, false>, data: any) 
       tags: fileData.tags,
     })
   }
+
+  return index
 }
