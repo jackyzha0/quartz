@@ -26,7 +26,7 @@ section {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--tertiary) 75%, transparent);
+  background: color-mix(in srgb, var(--tertiary) 60%, transparent);
   color: var(--darkgray);
 }
 

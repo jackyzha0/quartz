@@ -24,14 +24,20 @@ const contextWindowWords = 30
 const numSearchResults = 8
 const numTagResults = 5
 
-const tokenizeTerm = (term: string) =>
-  term
-    .split(/\s+/)
-    .filter((t) => t !== "")
-    .sort((a, b) => b.length - a.length)
+const tokenizeTerm = (term: string) => {
+  const tokens = term.split(/\s+/).filter((t) => t.trim() !== "")
+
+  const tokenLen = tokens.length
+  if (tokenLen > 1) {
+    for (let i = 1; i < tokenLen; i++) {
+      tokens.push(tokens.slice(0, i + 1).join(" "))
+    }
+  }
+
+  return tokens.sort((a, b) => b.length - a.length) // always highlight longest terms first
+}
 
 function highlight(searchTerm: string, text: string, trim?: boolean) {
-  // try to highlight longest tokens first
   const tokenizedTerms = tokenizeTerm(searchTerm)
   let tokenizedText = text.split(/\s+/).filter((t) => t !== "")
 
@@ -69,7 +75,6 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
       }
       return tok
     })
-    .slice(startIndex, endIndex + 1)
     .join(" ")
 
   return `${startIndex === 0 ? "" : "..."}${slice}${
@@ -89,29 +94,32 @@ function highlightHTML(searchTerm: string, el: HTMLElement) {
     return span
   }
 
-  const highlightTextNodes = (node: Node) => {
+  const highlightTextNodes = (node: Node, term: string) => {
     if (node.nodeType === Node.TEXT_NODE) {
-      let nodeText = node.nodeValue || ""
-      tokenizedTerms.forEach((term) => {
-        const regex = new RegExp(term.toLowerCase(), "gi")
-        const matches = nodeText.match(regex)
-        const spanContainer = document.createElement("span")
-        let lastIndex = 0
-        matches?.forEach((match) => {
-          const matchIndex = nodeText.indexOf(match, lastIndex)
-          spanContainer.appendChild(document.createTextNode(nodeText.slice(lastIndex, matchIndex)))
-          spanContainer.appendChild(createHighlightSpan(match))
-          lastIndex = matchIndex + match.length
-        })
-        spanContainer.appendChild(document.createTextNode(nodeText.slice(lastIndex)))
-        node.parentNode?.replaceChild(spanContainer, node)
-      })
+      const nodeText = node.nodeValue ?? ""
+      const regex = new RegExp(term.toLowerCase(), "gi")
+      const matches = nodeText.match(regex)
+      if (!matches || matches.length === 0) return
+      const spanContainer = document.createElement("span")
+      let lastIndex = 0
+      for (const match of matches) {
+        const matchIndex = nodeText.indexOf(match, lastIndex)
+        spanContainer.appendChild(document.createTextNode(nodeText.slice(lastIndex, matchIndex)))
+        spanContainer.appendChild(createHighlightSpan(match))
+        lastIndex = matchIndex + match.length
+      }
+      spanContainer.appendChild(document.createTextNode(nodeText.slice(lastIndex)))
+      node.parentNode?.replaceChild(spanContainer, node)
     } else if (node.nodeType === Node.ELEMENT_NODE) {
-      Array.from(node.childNodes).forEach(highlightTextNodes)
+      if ((node as HTMLElement).classList.contains("highlight")) return
+      Array.from(node.childNodes).forEach((child) => highlightTextNodes(child, term))
     }
   }
 
-  highlightTextNodes(html.body)
+  for (const term of tokenizedTerms) {
+    highlightTextNodes(html.body, term)
+  }
+
   return html.body
 }
 
@@ -137,13 +145,13 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   let previewInner: HTMLDivElement | undefined = undefined
   const results = document.createElement("div")
   results.id = "results-container"
-  results.style.flexBasis = enablePreview ? "30%" : "100%"
+  results.style.flexBasis = enablePreview ? "min(30%, 450px)" : "100%"
   appendLayout(results)
 
   if (enablePreview) {
     preview = document.createElement("div")
     preview.id = "preview-container"
-    preview.style.flexBasis = "70%"
+    preview.style.flexBasis = "100%"
     appendLayout(preview)
   }
 
