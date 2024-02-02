@@ -451,6 +451,10 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       searchLayout.style.opacity = "1"
     }
 
+    if (term === "" && searchLayout) {
+      searchLayout.style.opacity = "0"
+    }
+
     if (term.toLowerCase().startsWith("#")) {
       searchType = "tags"
     } else {
