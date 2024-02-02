@@ -1,5 +1,5 @@
 ---
-title: "Social media link previews"
+title: "Social Media Preview Cards"
 ---
 
 A lot of social media platforms can display a rich preview for your website when sharing a link (most notably, a cover image, a title and a description). Quartz automatically handles most of this for you with reasonable defaults, but for more control, you can customize these by setting [[#Properties | Frontmatter Properties]].
@@ -69,7 +69,7 @@ It is recommended to write your own image components in `quartz/util/socialImage
 
 > [!tip] Hint
 >
-> Satori only supports a subset of css, all supported properties can be found in their [docs](https://github.com/vercel/satori#css).
+> Satori only supports a subset of all valid CSS properties. All supported properties can be found in their [documentation](https://github.com/vercel/satori#css).
 
 Your custom image component should have the `SocialImageOptions["imageStructure"]` type, to make development easier for you. Using a component of this type, you will be passed the following variables:
 
@@ -91,7 +91,7 @@ Now, you can let your creativity flow and design your own image component! For r
 >
 > - Get a theme color
 >
->   `cfg.theme.colors[colorScheme].<colorName>`, where `<colorName>` can be replaced by any prop in `quartz.config.ts/theme.colors.lightMode/darkMode`
+>   `cfg.theme.colors[colorScheme].<colorName>`, where `<colorName>` corresponds to a key in `ColorScheme` (defined at the top of `quartz/util/theme.ts`)
 >
 > - Use the page title/description
 >
@@ -103,9 +103,9 @@ Now, you can let your creativity flow and design your own image component! For r
 
 ---
 
-#### Fonts
+### Fonts
 
-You will also be passed an array containing a header and a body font (where the first entry is header and the second is body). The fonts matches `theme.typography.header`/`body` from `quartz.config.ts` and will be passed in the format required by satori. To use them in css, use the `.name` property (e.g. `fontFamily: fonts[1].name` to use the "body" font family).
+You will also be passed an array containing a header and a body font (where the first entry is header and the second is body). The fonts matches the ones selected in `theme.typography.header` and `theme.typography.body` from `quartz.config.ts` and will be passed in the format required by [`satori`](https://github.com/vercel/satori). To use them in CSS, use the `.name` property (e.g. `fontFamily: fonts[1].name` to use the "body" font family).
 
 An example of a component using the header font could look like this:
 
@@ -123,8 +123,6 @@ If you have `generateSocialImages` enabled, you can check out all generated imag
 
 ## Technical info
 
-Images will be generated as `.webp` files, which helps to keep images small. They are also compressed further using [sharp](https://sharp.pixelplumbing.com/). To generate those images, [satori](https://github.com/vercel/satori) is used.
-
-This results in really small file sizes, cover images generated for the entire docs folder only take up 960KB, with an average of just 19KB per image.
+Images will be generated as `.webp` files, which helps to keep images small (the average image takes ~`19kB`). They are also compressed further using [sharp](https://sharp.pixelplumbing.com/).
 
 When using images, the appropriate [Open Graph](https://ogp.me/) and [Twitter](https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started) meta tags will be set to ensure they work and look as expected.
