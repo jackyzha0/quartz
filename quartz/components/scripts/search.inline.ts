@@ -224,7 +224,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
     if (currentHover) {
       currentHover.classList.remove("focus")
-      currentHover.blur()
+      if (!currentHover.classList.contains("result-card")) currentHover.blur()
     }
 
     // If search is active, then we will render the first result and display accordingly
