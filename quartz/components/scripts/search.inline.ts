@@ -224,6 +224,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
     if (currentHover) {
       currentHover.classList.remove("focus")
+      currentHover.blur()
     }
 
     // If search is active, then we will render the first result and display accordingly
@@ -250,9 +251,9 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
           : (document.activeElement as HTMLInputElement | null)
         const prevResult = currentResult?.previousElementSibling as HTMLInputElement | null
         currentResult?.classList.remove("focus")
-        await displayPreview(prevResult)
         prevResult?.focus()
         currentHover = prevResult
+        await displayPreview(prevResult)
       }
     } else if (e.key === "ArrowDown" || e.key === "Tab") {
       e.preventDefault()
@@ -264,9 +265,9 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
           : (document.getElementsByClassName("result-card")[0] as HTMLInputElement | null)
         const secondResult = firstResult?.nextElementSibling as HTMLInputElement | null
         firstResult?.classList.remove("focus")
-        await displayPreview(secondResult)
         secondResult?.focus()
         currentHover = secondResult
+        await displayPreview(secondResult)
       } else {
         // If an element in results-container already has focus, focus next one
         const active = currentHover
@@ -274,9 +275,9 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
           : (document.activeElement as HTMLInputElement | null)
         active?.classList.remove("focus")
         const nextResult = active?.nextElementSibling as HTMLInputElement | null
-        await displayPreview(nextResult)
         nextResult?.focus()
         currentHover = nextResult
+        await displayPreview(nextResult)
       }
     }
   }
@@ -325,9 +326,9 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       currentHover?.classList.remove("focus")
       currentHover?.blur()
       const target = ev.target as HTMLInputElement
-      await displayPreview(target)
       currentHover = target
       currentHover.classList.add("focus")
+      await displayPreview(target)
     }
 
     async function onMouseLeave(ev: MouseEvent) {
@@ -405,12 +406,11 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   async function displayPreview(el: HTMLElement | null) {
     if (!searchLayout || !enablePreview || !el || !preview) return
     const slug = el.id as FullSlug
-    el.classList.add("focus")
-    previewInner = document.createElement("div")
-    previewInner.classList.add("preview-inner")
     const innerDiv = await fetchContent(slug).then((contents) =>
       contents.flatMap((el) => [...highlightHTML(currentSearchTerm, el as HTMLElement).children]),
     )
+    previewInner = document.createElement("div")
+    previewInner.classList.add("preview-inner")
     previewInner.append(...innerDiv)
     preview.replaceChildren(previewInner)
 
@@ -418,7 +418,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     const highlights = [...preview.querySelectorAll(".highlight")].sort(
       (a, b) => b.innerHTML.length - a.innerHTML.length,
     )
-    highlights[0]?.scrollIntoView()
+    highlights[0]?.scrollIntoView({ block: "start" })
   }
 
   async function onType(e: HTMLElementEventMap["input"]) {

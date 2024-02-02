@@ -131,6 +131,7 @@
         & .highlight {
           background: color-mix(in srgb, var(--tertiary) 60%, transparent);
           border-radius: 5px;
+          scroll-margin-top: 2rem;
         }
 
         & > #preview-container {
