@@ -7,6 +7,8 @@ html {
   text-size-adjust: none;
   overflow-x: hidden;
   width: 100vw;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body,
