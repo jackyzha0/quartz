@@ -117,7 +117,8 @@
         }
 
         @media all and (max-width: $tabletBreakpoint) {
-          display: block;
+          display: block !important;
+
           & > *:not(#results-container) {
             display: none !important;
           }
