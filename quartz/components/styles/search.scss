@@ -138,7 +138,7 @@
           font-family: inherit;
           color: var(--dark);
           line-height: 1.5em;
-          font-weight: 400;
+          font-weight: $normalWeight;
           background: var(--light);
           border-top-right-radius: 5px;
           border-bottom-right-radius: 5px;
@@ -198,7 +198,7 @@
               padding: 0.2rem 0.4rem;
               margin: 0 0.1rem;
               line-height: 1.4rem;
-              font-weight: bold;
+              font-weight: $boldWeight;
               color: var(--secondary);
 
               &.match-tag {
