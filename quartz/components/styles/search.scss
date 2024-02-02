@@ -54,14 +54,10 @@
     }
 
     & > #search-space {
-      width: 50%;
+      width: 75%;
       margin-top: 12vh;
       margin-left: auto;
       margin-right: auto;
-
-      @media all and (min-width: $fullPageWidth) {
-        width: 75%;
-      }
 
       & > * {
         width: 100%;
