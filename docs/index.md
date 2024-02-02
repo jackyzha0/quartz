@@ -2,7 +2,7 @@
 title: Welcome to Quartz 4
 ---
 
-Quartz is a fast, batteries-included static-site generator that transforms Markdown content into fully functional websites. Thousands of students, developers, and teachers are [[showcase|already using Quartz]] to publish personal notes, wikis, and [digital gardens](https://jzhao.xyz/posts/networked-thought) to the web.
+Quartz is a fast, batteries-included static-site generator that transforms Markdown content into fully functional websites. Thousands of students, developers, and teachers are [[showcase|already using Quartz]] to publish personal notes, websites, and [digital gardens](https://jzhao.xyz/posts/networked-thought) to the web.
 
 ## 🪴 Get Started
 
@@ -19,14 +19,15 @@ npx quartz create
 
 This will guide you through initializing your Quartz with content. Once you've done so, see how to:
 
-1. [[authoring content|Author content]] in Quartz
+1. [[authoring content|Writing content]] in Quartz
 2. [[configuration|Configure]] Quartz's behaviour
 3. Change Quartz's [[layout]]
 4. [[build|Build and preview]] Quartz
-5. [[hosting|Host]] Quartz online
+5. Sync your changes with [[setting up your GitHub repository|GitHub]]
+6. [[hosting|Host]] Quartz online
 
-> [!info]
-> Coming from Quartz 3? See the [[migrating from Quartz 3|migration guide]] for the differences between Quartz 3 and Quartz 4 and how to migrate.
+If you prefer instructions in a video format you can try following Nicole van der Hoeven's
+[video guide on how to set up Quartz!](https://www.youtube.com/watch?v=6s6DT1yN4dw&t=227s)
 
 ## 🔧 Features
 

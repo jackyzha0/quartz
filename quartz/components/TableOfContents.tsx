@@ -1,6 +1,7 @@
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import legacyStyle from "./styles/legacyToc.scss"
 import modernStyle from "./styles/toc.scss"
+import { classNames } from "../util/lang"
 
 // @ts-ignore
 import script from "./scripts/toc.inline"
@@ -60,7 +61,7 @@ function LegacyTableOfContents({ fileData }: QuartzComponentProps) {
   }
 
   return (
-    <details id="toc" open>
+    <details id="toc" open={!fileData.collapseToc}>
       <summary>
         <h3>Table of Contents</h3>
       </summary>

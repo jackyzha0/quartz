@@ -4,7 +4,6 @@
 
 html {
   scroll-behavior: smooth;
-  -webkit-text-size-adjust: none;
   text-size-adjust: none;
   overflow-x: hidden;
   width: 100vw;
@@ -27,7 +26,7 @@ section {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--tertiary) 75%, transparent);
+  background: color-mix(in srgb, var(--tertiary) 60%, transparent);
   color: var(--darkgray);
 }
 
@@ -55,7 +54,7 @@ ul,
 }
 
 a {
-  font-weight: 600;
+  font-weight: $boldWeight;
   text-decoration: none;
   transition: color 0.2s ease;
   color: var(--secondary);
@@ -69,6 +68,22 @@ a {
     background-color: var(--highlight);
     padding: 0 0.1rem;
     border-radius: 5px;
+    line-height: 1.4rem;
+
+    &:has(> img) {
+      background-color: none;
+      border-radius: 0;
+      padding: 0;
+    }
+  }
+
+  &.external .external-icon {
+    height: 1ex;
+    margin: 0 0.15em;
+
+    > path {
+      fill: var(--dark);
+    }
   }
 }
 
@@ -94,8 +109,6 @@ a {
   }
 
   & article {
-    position: relative;
-
     & > h1 {
       font-size: 2rem;
     }
@@ -158,9 +171,11 @@ a {
 
     & .sidebar.right {
       right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
+      flex-wrap: wrap;
       & > * {
         @media all and (max-width: $fullPageWidth) {
           flex: 1;
+          min-width: 140px;
         }
       }
     }
@@ -263,7 +278,6 @@ h6 {
     opacity: 0;
     transition: opacity 0.2s ease;
     transform: translateY(-0.1rem);
-    display: inline-block;
     font-family: var(--codeFont);
     user-select: none;
   }
@@ -300,11 +314,13 @@ h6 {
   margin-bottom: 1rem;
 }
 
-div[data-rehype-pretty-code-fragment] {
+figure[data-rehype-pretty-code-figure] {
+  margin: 0;
+  position: relative;
   line-height: 1.6rem;
   position: relative;
 
-  & > div[data-rehype-pretty-code-title] {
+  & > [data-rehype-pretty-code-title] {
     font-family: var(--codeFont);
     font-size: 0.9rem;
     padding: 0.1rem 0.5rem;
@@ -316,16 +332,17 @@ div[data-rehype-pretty-code-fragment] {
   }
 
   & > pre {
-    padding: 0.5rem 0;
+    padding: 0;
   }
 }
 
 pre {
   font-family: var(--codeFont);
-  padding: 0.5rem;
+  padding: 0 0.5rem;
   border-radius: 5px;
   overflow-x: auto;
   border: 1px solid var(--lightgray);
+  position: relative;
 
   &:has(> code.mermaid) {
     border: none;
@@ -338,6 +355,8 @@ pre {
     counter-reset: line;
     counter-increment: line 0;
     display: grid;
+    padding: 0.5rem 0;
+    overflow-x: scroll;
 
     & [data-highlighted-chars] {
       background-color: var(--highlight);
@@ -390,23 +409,33 @@ p {
   line-height: 1.6rem;
 }
 
-table {
-  margin: 1rem;
-  padding: 1.5rem;
-  border-collapse: collapse;
-  & > * {
-    line-height: 2rem;
+.table-container {
+  overflow-x: auto;
+
+  & > table {
+    margin: 1rem;
+    padding: 1.5rem;
+    border-collapse: collapse;
+
+    th,
+    td {
+      min-width: 75px;
+    }
+
+    & > * {
+      line-height: 2rem;
+    }
   }
 }
 
 th {
   text-align: left;
-  padding: 0.4rem 1rem;
+  padding: 0.4rem 0.7rem;
   border-bottom: 2px solid var(--gray);
 }
 
 td {
-  padding: 0.2rem 1rem;
+  padding: 0.2rem 0.7rem;
 }
 
 tr {
