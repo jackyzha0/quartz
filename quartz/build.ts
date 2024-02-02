@@ -126,17 +126,8 @@ async function rebuildFromEntrypoint(
   clientRefresh: () => void,
   buildData: BuildData, // note: this function mutates buildData
 ) {
-  const {
-    ctx,
-    ignored,
-    mut,
-    initialSlugs,
-    contentMap,
-    toRebuild,
-    toRemove,
-    trackedAssets,
-    lastBuildMs,
-  } = buildData
+  const { ctx, ignored, mut, initialSlugs, contentMap, toRebuild, toRemove, trackedAssets } =
+    buildData
 
   const { argv } = ctx
 
@@ -164,12 +155,12 @@ async function rebuildFromEntrypoint(
     toRemove.add(filePath)
   }
 
-  // debounce rebuilds every 250ms
-
   const buildStart = new Date().getTime()
   buildData.lastBuildMs = buildStart
   const release = await mut.acquire()
-  if (lastBuildMs > buildStart) {
+
+  // there's another build after us, release and let them do it
+  if (buildData.lastBuildMs > buildStart) {
     release()
     return
   }

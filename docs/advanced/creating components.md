@@ -161,7 +161,8 @@ document.addEventListener("nav", () => {
 })
 ```
 
-It is best practice to also unmount any existing event handlers to prevent memory leaks.
+It is best practice to track any event handlers via `window.addCleanup` to prevent memory leaks.
+This will get called on page navigation.
 
 #### Importing Code
 

@@ -57,14 +57,10 @@
     }
 
     & > #search-space {
-      width: 50%;
-      margin-top: 15vh;
+      width: 65%;
+      margin-top: 12vh;
       margin-left: auto;
       margin-right: auto;
-
-      @media all and (max-width: $fullPageWidth) {
-        width: 90%;
-      }
 
       & > * {
         width: 100%;
@@ -89,93 +85,133 @@
         }
       }
 
-      & > #results-container {
-        & .result-card {
-          padding: 1em;
-          cursor: pointer;
-          transition: background 0.2s ease;
-          border: 1px solid var(--lightgray);
-          border-bottom: none;
-          width: 100%;
+      & > #search-layout {
+        display: none;
+        flex-direction: row;
+        border: 1px solid var(--lightgray);
+
+        &.display-results {
+          display: flex;
+        }
+
+        @media all and (min-width: $tabletBreakpoint) {
+          &[data-preview] {
+            & .result-card > p.preview {
+              display: none;
+            }
+          }
+        }
+
+        & > div {
+          // vh - #search-space.margin-top
+          height: calc(75vh - 12vh);
+          background: none;
+
+          &:first-child {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-right: 1px solid var(--lightgray);
+          }
+
+          &:last-child {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+          }
+        }
+
+        @media all and (max-width: $tabletBreakpoint) {
+          display: block;
+          & > *:not(#results-container) {
+            display: none !important;
+          }
+
+          & > #results-container {
+            width: 100%;
+            height: auto;
+          }
+        }
+
+        & .highlight {
+          background: color-mix(in srgb, var(--tertiary) 60%, transparent);
+          border-radius: 5px;
+          scroll-margin-top: 2rem;
+        }
+
+        & > #preview-container {
           display: block;
           box-sizing: border-box;
-
-          // normalize card props
+          overflow: hidden;
+          box-sizing: border-box;
           font-family: inherit;
-          font-size: 100%;
-          line-height: 1.15;
-          margin: 0;
-          text-transform: none;
-          text-align: left;
+          color: var(--dark);
+          line-height: 1.5em;
+          font-weight: $normalWeight;
           background: var(--light);
-          outline: none;
-          font-weight: inherit;
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+          overflow-y: auto;
+          padding: 1rem;
 
-          & .highlight {
-            color: var(--secondary);
-            font-weight: 700;
+          & .preview-inner {
+            margin: 0 auto;
+            width: min($pageWidth, 100%);
           }
+        }
 
-          &:hover,
-          &:focus {
-            background: var(--lightgray);
-          }
+        & > #results-container {
+          overflow-y: auto;
 
-          &:first-of-type {
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-          }
-
-          &:last-of-type {
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
+          & .result-card {
+            padding: 1em;
+            cursor: pointer;
+            transition: background 0.2s ease;
             border-bottom: 1px solid var(--lightgray);
-          }
+            width: 100%;
+            display: block;
+            box-sizing: border-box;
 
-          & > h3 {
+            // normalize card props
+            font-family: inherit;
+            font-size: 100%;
+            line-height: 1.15;
             margin: 0;
-          }
+            text-transform: none;
+            text-align: left;
+            background: var(--light);
+            outline: none;
+            font-weight: inherit;
 
-          & > ul > li {
-            margin: 0;
-            display: inline-block;
-            white-space: nowrap;
-            margin: 0;
-            overflow-wrap: normal;
-          }
+            &:focus,
+            &.focus {
+              background: var(--lightgray);
+            }
 
-          & > ul {
-            list-style: none;
-            display: flex;
-            padding-left: 0;
-            gap: 0.4rem;
-            margin: 0;
-            margin-top: 0.45rem;
-            // Offset border radius
-            margin-left: -2px;
-            overflow: hidden;
-            background-clip: border-box;
-          }
+            & > h3 {
+              margin: 0;
+            }
 
-          & > ul > li > p {
-            border-radius: 8px;
-            background-color: var(--highlight);
-            overflow: hidden;
-            background-clip: border-box;
-            padding: 0.03rem 0.4rem;
-            margin: 0;
-            color: var(--secondary);
-            opacity: 0.85;
-          }
+            & > ul.tags {
+              margin-top: 0.45rem;
+              margin-bottom: 0;
+            }
 
-          & > ul > li > .match-tag {
-            color: var(--tertiary);
-            font-weight: bold;
-            opacity: 1;
-          }
+            & > ul > li > p {
+              border-radius: 8px;
+              background-color: var(--highlight);
+              padding: 0.2rem 0.4rem;
+              margin: 0 0.1rem;
+              line-height: 1.4rem;
+              font-weight: $boldWeight;
+              color: var(--secondary);
 
-          & > p {
-            margin-bottom: 0;
+              &.match-tag {
+                color: var(--tertiary);
+              }
+            }
+
+            & > p {
+              margin-bottom: 0;
+            }
           }
         }
       }
