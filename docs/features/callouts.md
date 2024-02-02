@@ -24,14 +24,32 @@ See [documentation on supported types and syntax here](https://help.obsidian.md
 ## Customization
 
 - Disable callouts: simply pass `callouts: false` to the plugin: `Plugin.ObsidianFlavoredMarkdown({ callouts: false })`
-- Editing icons: `quartz/plugins/transformers/ofm.ts`
+- Editing icons: `quartz/styles/callouts.scss`
+
+### Add custom callouts
+
+By default, custom callouts are handled by applying the `note` style. To make fancy ones, you have to add these lines to `custom.scss`.
+
+```scss title="quartz/styles/custom.scss"
+.callout {
+  &[data-callout="custom"] {
+    --color: #customcolor;
+    --border: #custombordercolor;
+    --bg: #custombg;
+    --callout-icon: url("data:image/svg+xml; utf8, <custom formatted svg>"); //SVG icon code
+  }
+}
+```
+
+> [!warning]
+> Don't forget to ensure that the SVG is URL encoded before putting it in the CSS. You can use tools like [this one](https://yoksel.github.io/url-encoder/) to help you do that.
 
 ## Showcase
 
 > [!info]
 > Default title
 
-> [!question]+ Can callouts be nested?
+> [!question]+ Can callouts be _nested_?
 >
 > > [!todo]- Yes!, they can. And collapsed!
 > >

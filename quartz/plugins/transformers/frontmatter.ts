@@ -5,7 +5,6 @@ import yaml from "js-yaml"
 import toml from "toml"
 import { slugTag } from "../../util/path"
 import { QuartzPluginData } from "../vfile"
-import chalk from "chalk"
 
 export interface Options {
   delims: string | string[]
@@ -15,23 +14,6 @@ export interface Options {
 const defaultOptions: Options = {
   delims: "---",
   language: "yaml",
-}
-
-function coerceDate(fp: string, d: unknown): Date | undefined {
-  if (d === undefined || d === null) return undefined
-  const dt = new Date(d as string | number)
-  const invalidDate = isNaN(dt.getTime()) || dt.getTime() === 0
-  if (invalidDate) {
-    console.log(
-      chalk.yellow(
-        `\nWarning: found invalid date "${d}" in \`${fp}\`. Supported formats: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#date_time_string_format`,
-      ),
-    )
-
-    return undefined
-  }
-
-  return dt
 }
 
 function coalesceAliases(data: { [key: string]: any }, aliases: string[]) {
@@ -66,7 +48,6 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
         [remarkFrontmatter, ["yaml", "toml"]],
         () => {
           return (_, file) => {
-            const fp = file.data.filePath!
             const { data } = matter(Buffer.from(file.value), {
               ...opts,
               engines: {
@@ -88,16 +69,6 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
             if (aliases) data.aliases = aliases
             const cssclasses = coerceToArray(coalesceAliases(data, ["cssclasses", "cssclass"]))
             if (cssclasses) data.cssclasses = cssclasses
-            const created = coerceDate(fp, coalesceAliases(data, ["created", "date"]))
-
-            if (created) data.created = created
-            const modified = coerceDate(
-              fp,
-              coalesceAliases(data, ["modified", "lastmod", "updated", "last-modified"]),
-            )
-            if (modified) data.modified = modified
-            const published = coerceDate(fp, coalesceAliases(data, ["published", "publishDate"]))
-            if (published) data.published = published
 
             // fill in frontmatter
             file.data.frontmatter = data as QuartzPluginData["frontmatter"]
@@ -120,9 +91,6 @@ declare module "vfile" {
         draft: boolean
         enableToc: string
         cssclasses: string[]
-        created: Date
-        modified: Date
-        published: Date
       }>
   }
 }
