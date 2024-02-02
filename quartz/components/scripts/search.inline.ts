@@ -238,7 +238,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       e.preventDefault()
       // The results should already been focused, so we need to find the next one.
       // The activeElement is the search bar, so we need to find the first result and focus it.
-      if (!results?.contains(document.activeElement)) {
+      if (document.activeElement === searchBar || currentHover !== null) {
         const firstResult = currentHover
           ? currentHover
           : (document.getElementsByClassName("result-card")[0] as HTMLInputElement | null)
@@ -398,6 +398,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
         removeAllChildren(preview as HTMLElement)
       } else {
         firstChild.classList.add("focus")
+        currentHover = firstChild as HTMLInputElement
         await displayPreview(firstChild)
       }
     }
