@@ -13,14 +13,13 @@ interface Item {
 
 // Can be expanded with things like "term" in the future
 type SearchType = "basic" | "tags"
-
-// Current searchType
 let searchType: SearchType = "basic"
-// Current search term // TODO: exact match
 let currentSearchTerm: string = ""
-// index for search
 let index: FlexSearch.Document<Item> | undefined = undefined
+const p = new DOMParser()
+const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
 
+const fetchContentCache: Map<FullSlug, Element[]> = new Map()
 const contextWindowWords = 30
 const numSearchResults = 8
 const numTagResults = 5
@@ -79,7 +78,6 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
 }
 
 function highlightHTML(searchTerm: string, el: HTMLElement) {
-  // try to highlight longest tokens first
   const p = new DOMParser()
   const tokenizedTerms = tokenizeTerm(searchTerm)
   const html = p.parseFromString(el.innerHTML, "text/html")
@@ -116,12 +114,6 @@ function highlightHTML(searchTerm: string, el: HTMLElement) {
   highlightTextNodes(html.body)
   return html.body
 }
-
-const p = new DOMParser()
-const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
-let prevShortcutHandler: ((e: HTMLElementEventMap["keydown"]) => void) | undefined = undefined
-
-const fetchContentCache: Map<FullSlug, Element[]> = new Map()
 
 document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   const currentSlug = e.detail.url
@@ -496,16 +488,12 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     await displayResults(finalResults)
   }
 
-  if (prevShortcutHandler) {
-    document.removeEventListener("keydown", prevShortcutHandler)
-  }
-
   document.addEventListener("keydown", shortcutHandler)
-  prevShortcutHandler = shortcutHandler
-  searchIcon?.removeEventListener("click", () => showSearch("basic"))
+  window.addCleanup(() => document.removeEventListener("keydown", shortcutHandler))
   searchIcon?.addEventListener("click", () => showSearch("basic"))
-  searchBar?.removeEventListener("input", onType)
+  window.addCleanup(() => searchIcon?.removeEventListener("click", () => showSearch("basic")))
   searchBar?.addEventListener("input", onType)
+  window.addCleanup(() => searchBar?.removeEventListener("input", onType))
 
   // setup index if it hasn't been already
   if (!index) {
@@ -546,13 +534,12 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 async function fillDocument(index: FlexSearch.Document<Item, false>, data: any) {
   let id = 0
   for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
-    await index.addAsync(id, {
+    await index.addAsync(id++, {
       id,
       slug: slug as FullSlug,
       title: fileData.title,
       content: fileData.content,
       tags: fileData.tags,
     })
-    id++
   }
 }
