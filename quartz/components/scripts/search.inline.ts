@@ -310,38 +310,12 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     itemTile.href = resolveUrl(slug).toString()
     itemTile.innerHTML = `<h3>${title}</h3>${htmlTags}<p class="preview">${content}</p>`
 
-    async function onMouseEnter(ev: MouseEvent) {
-      if (!ev.target) return
-      currentHover?.classList.remove("focus")
-      currentHover?.blur()
-      const target = ev.target as HTMLInputElement
-      currentHover = target
-      currentHover.classList.add("focus")
-      await displayPreview(target)
+    const handler = (event: MouseEvent) => {
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
+      hideSearch()
     }
-
-    async function onMouseLeave(ev: MouseEvent) {
-      if (!ev.target) return
-      const target = ev.target as HTMLElement
-      target.classList.remove("focus")
-    }
-
-    const events = [
-      ["mouseenter", onMouseEnter],
-      ["mouseleave", onMouseLeave],
-      [
-        "click",
-        (event: MouseEvent) => {
-          if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
-          hideSearch()
-        },
-      ],
-    ] as const
-
-    events.forEach(([event, handler]) => {
-      itemTile.addEventListener(event, handler)
-      window.addCleanup(() => itemTile.removeEventListener(event, handler))
-    })
+    itemTile.addEventListener("click", handler)
+    window.addCleanup(() => itemTile.removeEventListener("click", handler))
 
     return itemTile
   }
