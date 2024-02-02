@@ -88,6 +88,14 @@
         visibility: hidden;
         border: 1px solid var(--lightgray);
 
+        @media all and (min-width: $tabletBreakpoint) {
+          &[data-preview] {
+            & .result-card > p.preview {
+              display: none;
+            }
+          }
+        }
+
         & > div {
           // vh - #search-space.margin-top
           height: calc(75vh - 12vh);
@@ -174,7 +182,6 @@
             outline: none;
             font-weight: inherit;
 
-            &:hover,
             &:focus,
             &.focus {
               background: var(--lightgray);
@@ -184,41 +191,23 @@
               margin: 0;
             }
 
-            & > ul > li {
-              margin: 0;
-              display: inline-block;
-              white-space: nowrap;
-              margin: 0;
-              overflow-wrap: normal;
-            }
-
-            & > ul {
-              list-style: none;
-              display: flex;
-              padding-left: 0;
-              gap: 0.4rem;
-              margin: 0;
+            & > ul.tags {
               margin-top: 0.45rem;
-              box-sizing: border-box;
-              overflow: hidden;
-              background-clip: border-box;
+              margin-bottom: 0;
             }
 
             & > ul > li > p {
               border-radius: 8px;
               background-color: var(--highlight);
-              overflow: hidden;
-              background-clip: border-box;
-              padding: 0.03rem 0.4rem;
-              margin: 0;
-              color: var(--secondary);
-              opacity: 0.85;
-            }
-
-            & > ul > li > .match-tag {
-              color: var(--tertiary);
+              padding: 0.2rem 0.4rem;
+              margin: 0 0.1rem;
+              line-height: 1.4rem;
               font-weight: bold;
-              opacity: 1;
+              color: var(--secondary);
+              
+              &.match-tag {
+                color: var(--tertiary);
+              }
             }
 
             & > p {

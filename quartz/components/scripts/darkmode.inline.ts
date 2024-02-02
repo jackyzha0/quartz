@@ -10,10 +10,18 @@ const emitThemeChangeEvent = (theme: "light" | "dark") => {
 }
 
 document.addEventListener("nav", () => {
-  const switchTheme = (e: any) => {
-    const newTheme = e.target.checked ? "dark" : "light"
+  const switchTheme = (e: Event) => {
+    const newTheme = (e.target as HTMLInputElement)?.checked ? "dark" : "light"
     document.documentElement.setAttribute("saved-theme", newTheme)
     localStorage.setItem("theme", newTheme)
+    emitThemeChangeEvent(newTheme)
+  }
+
+  const themeChange = (e: MediaQueryListEvent) => {
+    const newTheme = e.matches ? "dark" : "light"
+    document.documentElement.setAttribute("saved-theme", newTheme)
+    localStorage.setItem("theme", newTheme)
+    toggleSwitch.checked = e.matches
     emitThemeChangeEvent(newTheme)
   }
 
@@ -27,11 +35,6 @@ document.addEventListener("nav", () => {
 
   // Listen for changes in prefers-color-scheme
   const colorSchemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
-  colorSchemeMediaQuery.addEventListener("change", (e) => {
-    const newTheme = e.matches ? "dark" : "light"
-    document.documentElement.setAttribute("saved-theme", newTheme)
-    localStorage.setItem("theme", newTheme)
-    toggleSwitch.checked = e.matches
-    emitThemeChangeEvent(newTheme)
-  })
+  colorSchemeMediaQuery.addEventListener("change", themeChange)
+  window.addCleanup(() => colorSchemeMediaQuery.removeEventListener("change", themeChange))
 })

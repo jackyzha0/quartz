@@ -26,7 +26,6 @@ const numTagResults = 5
 
 const tokenizeTerm = (term: string) => {
   const tokens = term.split(/\s+/).filter((t) => t.trim() !== "")
-
   const tokenLen = tokens.length
   if (tokenLen > 1) {
     for (let i = 1; i < tokenLen; i++) {
@@ -77,15 +76,14 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
     })
     .join(" ")
 
-  return `${startIndex === 0 ? "" : "..."}${slice}${
-    endIndex === tokenizedText.length - 1 ? "" : "..."
-  }`
+  return `${startIndex === 0 ? "" : "..."}${slice}${endIndex === tokenizedText.length - 1 ? "" : "..."
+    }`
 }
 
-function highlightHTML(searchTerm: string, el: HTMLElement) {
+function highlightHTML(searchTerm: string, innerHTML: string) {
   const p = new DOMParser()
   const tokenizedTerms = tokenizeTerm(searchTerm)
-  const html = p.parseFromString(el.innerHTML, "text/html")
+  const html = p.parseFromString(innerHTML, "text/html")
 
   const createHighlightSpan = (text: string) => {
     const span = document.createElement("span")
@@ -125,10 +123,8 @@ function highlightHTML(searchTerm: string, el: HTMLElement) {
 
 document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   const currentSlug = e.detail.url
-
   const data = await fetchData
   const container = document.getElementById("search-container")
-  const searchSpace = document.getElementById("search-space")
   const sidebar = container?.closest(".sidebar") as HTMLElement
   const searchIcon = document.getElementById("search-icon")
   const searchBar = document.getElementById("search-bar") as HTMLInputElement | null
@@ -193,6 +189,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       e.preventDefault()
       const searchBarOpen = container?.classList.contains("active")
       searchBarOpen ? hideSearch() : showSearch("basic")
+      return
     } else if (e.shiftKey && (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
       // Hotkey to open tag search
       e.preventDefault()
@@ -201,6 +198,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
       // add "#" prefix for tag search
       if (searchBar) searchBar.value = "#"
+      return
     }
 
     if (currentHover) {
@@ -262,69 +260,29 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     }
   }
 
-  function trimContent(content: string) {
-    // works without escaping html like in `description.ts`
-    const sentences = content.replace(/\s+/g, " ").split(".")
-    let finalDesc = ""
-    let sentenceIdx = 0
-
-    // Roughly estimate characters by (words * 5). Matches description length in `description.ts`.
-    const len = contextWindowWords * 5
-    while (finalDesc.length < len) {
-      const sentence = sentences[sentenceIdx]
-      if (!sentence) break
-      finalDesc += sentence + "."
-      sentenceIdx++
-    }
-
-    // If more content would be available, indicate it by finishing with "..."
-    if (finalDesc.length < content.length) {
-      finalDesc += ".."
-    }
-
-    return finalDesc
-  }
-
   const formatForDisplay = (term: string, id: number) => {
     const slug = idDataMap[id]
     return {
       id,
       slug,
       title: searchType === "tags" ? data[slug].title : highlight(term, data[slug].title ?? ""),
-      // if searchType is tag, display context from start of file and trim, otherwise use regular highlight
-      content:
-        searchType === "tags"
-          ? trimContent(data[slug].content)
-          : highlight(term, data[slug].content ?? "", true),
-      tags: highlightTags(term, data[slug].tags),
+      content: highlight(term, data[slug].content ?? "", true),
+      tags: highlightTags(term.substring(1), data[slug].tags),
     }
   }
 
   function highlightTags(term: string, tags: string[]) {
-    if (tags && searchType === "tags") {
-      // Find matching tags
-      const termLower = term.toLowerCase()
-      let matching = tags.filter((str) => str.includes(termLower))
-
-      // Subtract matching from original tags, then push difference
-      if (matching.length > 0) {
-        let difference = tags.filter((x) => !matching.includes(x))
-
-        // Convert to html (cant be done later as matches/term dont get passed to `resultToHTML`)
-        matching = matching.map((tag) => `<li><p class="match-tag">#${tag}</p></li>`)
-        difference = difference.map((tag) => `<li><p>#${tag}</p></li>`)
-        matching.push(...difference)
-      }
-
-      // Only allow max of `numTagResults` in preview
-      if (tags.length > numTagResults) {
-        matching.splice(numTagResults)
-      }
-
-      return matching
-    } else {
+    if (!tags || searchType !== "tags") {
       return []
     }
+
+    return tags.map(tag => {
+      if (tag.toLowerCase().includes(term.toLowerCase())) {
+        return `<li><p class="match-tag">#${tag}</p></li>`
+      } else {
+        return `<li><p>#${tag}</p></li>`
+      }
+    }).slice(0, numTagResults)
   }
 
   function resolveUrl(slug: FullSlug): URL {
@@ -332,34 +290,26 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   }
 
   const resultToHTML = ({ slug, title, content, tags }: Item) => {
-    const htmlTags = tags.length > 0 ? `<ul>${tags.join("")}</ul>` : ``
-    const resultContent = enablePreview && window.innerWidth > 600 ? "" : `<p>${content}</p>`
-
+    const htmlTags = tags.length > 0 ? `<ul class="tags">${tags.join("")}</ul>` : ``
     const itemTile = document.createElement("a")
     itemTile.classList.add("result-card")
-    Object.assign(itemTile, {
-      id: slug,
-      href: resolveUrl(slug).toString(),
-      innerHTML: `<h3>${title}</h3>${htmlTags}${resultContent}`,
-    })
+    itemTile.id = slug
+    itemTile.href = resolveUrl(slug).toString()
+    itemTile.innerHTML = `<h3>${title}</h3>${htmlTags}<p class="preview">${content}</p>`
 
     async function onMouseEnter(ev: MouseEvent) {
-      // Actually when we hover, we need to clean all highlights within the result childs
       if (!ev.target) return
-      for (const el of document.getElementsByClassName(
-        "result-card",
-      ) as HTMLCollectionOf<HTMLElement>) {
-        el.classList.remove("focus")
-        el.blur()
-      }
+      currentHover?.classList.remove('focus')
+      currentHover?.blur()
       const target = ev.target as HTMLInputElement
       await displayPreview(target)
       currentHover = target
-      currentHover.classList.remove("focus")
+      currentHover.classList.add("focus")
     }
 
     async function onMouseLeave(ev: MouseEvent) {
-      const target = ev.target as HTMLAnchorElement
+      if (!ev.target) return
+      const target = ev.target as HTMLElement
       target.classList.remove("focus")
     }
 
@@ -373,9 +323,12 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
           hideSearch()
         },
       ],
-    ] as [keyof HTMLElementEventMap, (this: HTMLElement) => void][]
+    ] as const
 
-    events.forEach(([event, handler]) => itemTile.addEventListener(event, handler))
+    events.forEach(([event, handler]) => {
+      itemTile.addEventListener(event, handler)
+      window.addCleanup(() => itemTile.removeEventListener(event, handler))
+    })
 
     return itemTile
   }
@@ -386,22 +339,22 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     removeAllChildren(results)
     if (finalResults.length === 0) {
       results.innerHTML = `<a class="result-card no-match">
-                    <h3>No results.</h3>
-                    <p>Try another search term?</p>
-                </a>`
+          <h3>No results.</h3>
+          <p>Try another search term?</p>
+      </a>`
     } else {
       results.append(...finalResults.map(resultToHTML))
     }
-    // focus on first result, then also dispatch preview immediately
-    if (results?.firstElementChild) {
+
+    if (finalResults.length === 0 && preview) {
+      // no results, clear previous preview
+      removeAllChildren(preview)
+    } else {
+      // focus on first result, then also dispatch preview immediately
       const firstChild = results.firstElementChild as HTMLElement
-      if (firstChild.classList.contains("no-match")) {
-        removeAllChildren(preview as HTMLElement)
-      } else {
-        firstChild.classList.add("focus")
-        currentHover = firstChild as HTMLInputElement
-        await displayPreview(firstChild)
-      }
+      firstChild.classList.add("focus")
+      currentHover = firstChild as HTMLInputElement
+      await displayPreview(firstChild)
     }
   }
 
@@ -427,59 +380,41 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   }
 
   async function displayPreview(el: HTMLElement | null) {
-    if (!searchLayout || !enablePreview || !el) return
-
+    if (!searchLayout || !enablePreview || !el || !preview) return
     const slug = el.id as FullSlug
     el.classList.add("focus")
-
-    removeAllChildren(preview as HTMLElement)
-
     previewInner = document.createElement("div")
     previewInner.classList.add("preview-inner")
-    preview?.appendChild(previewInner)
-
     const innerDiv = await fetchContent(slug).then((contents) =>
-      contents.map((el) => highlightHTML(currentSearchTerm, el as HTMLElement)),
+      contents.map((el) => highlightHTML(currentSearchTerm, el.innerHTML)),
     )
     previewInner.append(...innerDiv)
+    preview.replaceChildren(previewInner)
+
+    // scroll to longest
+    const highlights = [...preview.querySelectorAll(".highlight")].sort((a, b) => b.innerHTML.length - a.innerHTML.length)
+    highlights[0]?.scrollIntoView()
   }
 
   async function onType(e: HTMLElementEventMap["input"]) {
-    let term = (e.target as HTMLInputElement).value
-    let searchResults: FlexSearch.SimpleDocumentSearchResultSetUnit[]
+    if (!searchLayout || !index) return
     currentSearchTerm = (e.target as HTMLInputElement).value
+    searchLayout.style.visibility = currentSearchTerm === "" ? "hidden" : "visible"
+    searchType = currentSearchTerm.startsWith("#") ? "tags" : "basic"
 
-    if (searchLayout) {
-      searchLayout.style.visibility = "visible"
-    }
-
-    if (term === "" && searchLayout) {
-      searchLayout.style.visibility = "hidden"
-    }
-
-    if (term.toLowerCase().startsWith("#")) {
-      searchType = "tags"
-    } else {
-      searchType = "basic"
-    }
-
-    switch (searchType) {
-      case "tags": {
-        term = term.substring(1)
-        searchResults =
-          (await index?.searchAsync({ query: term, limit: numSearchResults, index: ["tags"] })) ??
-          []
-        break
-      }
-      case "basic":
-      default: {
-        searchResults =
-          (await index?.searchAsync({
-            query: term,
-            limit: numSearchResults,
-            index: ["title", "content"],
-          })) ?? []
-      }
+    let searchResults: FlexSearch.SimpleDocumentSearchResultSetUnit[]
+    if (searchType === "tags") {
+      searchResults = await index.searchAsync({
+        query: currentSearchTerm.substring(1),
+        limit: numSearchResults,
+        index: ["tags"],
+      })
+    } else if (searchType === "basic") {
+      searchResults = await index.searchAsync({
+        query: currentSearchTerm,
+        limit: numSearchResults,
+        index: ["title", "content"],
+      })
     }
 
     const getByField = (field: string): number[] => {
@@ -493,7 +428,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       ...getByField("content"),
       ...getByField("tags"),
     ])
-    const finalResults = [...allIds].map((id) => formatForDisplay(term, id))
+    const finalResults = [...allIds].map((id) => formatForDisplay(currentSearchTerm, id))
     await displayResults(finalResults)
   }
 
@@ -505,7 +440,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   window.addCleanup(() => searchBar?.removeEventListener("input", onType))
 
   index ??= await fillDocument(data)
-  registerEscapeHandler(searchSpace, hideSearch)
+  registerEscapeHandler(container, hideSearch)
 })
 
 /**
