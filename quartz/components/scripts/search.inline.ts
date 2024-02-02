@@ -15,10 +15,30 @@ interface Item {
 type SearchType = "basic" | "tags"
 let searchType: SearchType = "basic"
 let currentSearchTerm: string = ""
-let index: FlexSearch.Document<Item> | undefined = undefined
-const p = new DOMParser()
 const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
+let index = new FlexSearch.Document<Item>({
+  charset: "latin:extra",
+  encode: encoder,
+  document: {
+    id: "id",
+    index: [
+      {
+        field: "title",
+        tokenize: "forward",
+      },
+      {
+        field: "content",
+        tokenize: "forward",
+      },
+      {
+        field: "tags",
+        tokenize: "forward",
+      },
+    ],
+  },
+})
 
+const p = new DOMParser()
 const fetchContentCache: Map<FullSlug, Element[]> = new Map()
 const contextWindowWords = 30
 const numSearchResults = 8
@@ -444,7 +464,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   searchBar?.addEventListener("input", onType)
   window.addCleanup(() => searchBar?.removeEventListener("input", onType))
 
-  index ??= await fillDocument(data)
+  await fillDocument(data)
   registerEscapeHandler(container, hideSearch)
 })
 
@@ -454,27 +474,6 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
  * @param data data to fill index with
  */
 async function fillDocument(data: { [key: FullSlug]: ContentDetails }) {
-  const index = new FlexSearch.Document<Item>({
-    charset: "latin:extra",
-    encode: encoder,
-    document: {
-      id: "id",
-      index: [
-        {
-          field: "title",
-          tokenize: "forward",
-        },
-        {
-          field: "content",
-          tokenize: "forward",
-        },
-        {
-          field: "tags",
-          tokenize: "forward",
-        },
-      ],
-    },
-  })
   let id = 0
   for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
     await index.addAsync(id++, {
@@ -485,6 +484,4 @@ async function fillDocument(data: { [key: FullSlug]: ContentDetails }) {
       tags: fileData.tags,
     })
   }
-
-  return index
 }
