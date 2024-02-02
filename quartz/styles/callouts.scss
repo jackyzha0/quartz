@@ -1,3 +1,4 @@
+@use "./variables.scss" as *;
 @use "sass:color";
 
 .callout {
@@ -119,7 +120,7 @@
 
 .callout-title {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 5px;
   padding: 1rem 0;
   color: var(--color);
@@ -130,8 +131,6 @@
     transition: transform 0.15s ease;
     opacity: 0.8;
     cursor: pointer;
-    width: var(--icon-size);
-    height: var(--icon-size);
     --callout-icon: var(--callout-icon-fold);
   }
 
@@ -144,6 +143,7 @@
   & .fold-callout-icon {
     width: var(--icon-size);
     height: var(--icon-size);
+    flex: 0 0 var(--icon-size);
 
     // icon support
     background-size: var(--icon-size) var(--icon-size);
@@ -153,9 +153,10 @@
     mask-size: var(--icon-size) var(--icon-size);
     mask-position: center;
     mask-repeat: no-repeat;
+    padding: 0.2rem 0;
   }
 
   .callout-title-inner {
-    font-weight: 700;
+    font-weight: $boldWeight;
   }
 }

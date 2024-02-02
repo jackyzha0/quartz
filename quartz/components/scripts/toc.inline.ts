@@ -29,8 +29,8 @@ function setupToc() {
     const content = toc.nextElementSibling as HTMLElement | undefined
     if (!content) return
     content.style.maxHeight = collapsed ? "0px" : content.scrollHeight + "px"
-    toc.removeEventListener("click", toggleToc)
     toc.addEventListener("click", toggleToc)
+    window.addCleanup(() => toc.removeEventListener("click", toggleToc))
   }
 }
 

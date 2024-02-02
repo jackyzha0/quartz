@@ -26,7 +26,7 @@ section {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--tertiary) 75%, transparent);
+  background: color-mix(in srgb, var(--tertiary) 60%, rgba(255, 255, 255, 0));
   color: var(--darkgray);
 }
 
@@ -54,7 +54,7 @@ ul,
 }
 
 a {
-  font-weight: 600;
+  font-weight: $boldWeight;
   text-decoration: none;
   transition: color 0.2s ease;
   color: var(--secondary);
