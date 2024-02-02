@@ -224,12 +224,11 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
     if (currentHover) {
       currentHover.classList.remove("focus")
-      currentHover.blur()
     }
 
     // If search is active, then we will render the first result and display accordingly
     if (!container?.classList.contains("active")) return
-    else if (e.key === "Enter") {
+    if (e.key === "Enter") {
       // If result has focus, navigate to that one, otherwise pick first result
       if (results?.contains(document.activeElement)) {
         const active = document.activeElement as HTMLInputElement
@@ -252,7 +251,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
         const prevResult = currentResult?.previousElementSibling as HTMLInputElement | null
         currentResult?.classList.remove("focus")
         prevResult?.focus()
-        currentHover = prevResult
+        if (prevResult) currentHover = prevResult
         await displayPreview(prevResult)
       }
     } else if (e.key === "ArrowDown" || e.key === "Tab") {
@@ -266,18 +265,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
         const secondResult = firstResult?.nextElementSibling as HTMLInputElement | null
         firstResult?.classList.remove("focus")
         secondResult?.focus()
-        currentHover = secondResult
+        if (secondResult) currentHover = secondResult
         await displayPreview(secondResult)
-      } else {
-        // If an element in results-container already has focus, focus next one
-        const active = currentHover
-          ? currentHover
-          : (document.activeElement as HTMLInputElement | null)
-        active?.classList.remove("focus")
-        const nextResult = active?.nextElementSibling as HTMLInputElement | null
-        nextResult?.focus()
-        currentHover = nextResult
-        await displayPreview(nextResult)
       }
     }
   }
