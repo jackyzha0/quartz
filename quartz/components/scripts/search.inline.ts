@@ -464,8 +464,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   searchBar?.addEventListener("input", onType)
   window.addCleanup(() => searchBar?.removeEventListener("input", onType))
 
-  await fillDocument(data)
   registerEscapeHandler(container, hideSearch)
+  await fillDocument(data)
 })
 
 /**
@@ -475,13 +475,18 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
  */
 async function fillDocument(data: { [key: FullSlug]: ContentDetails }) {
   let id = 0
+  const promises: Array<Promise<unknown>> = []
   for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
-    await index.addAsync(id++, {
-      id,
-      slug: slug as FullSlug,
-      title: fileData.title,
-      content: fileData.content,
-      tags: fileData.tags,
-    })
+    promises.push(
+      index.addAsync(id++, {
+        id,
+        slug: slug as FullSlug,
+        title: fileData.title,
+        content: fileData.content,
+        tags: fileData.tags,
+      }),
+    )
   }
+
+  return await Promise.all(promises)
 }
