@@ -163,13 +163,11 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   let previewInner: HTMLDivElement | undefined = undefined
   const results = document.createElement("div")
   results.id = "results-container"
-  results.style.flexBasis = enablePreview ? "min(30%, 450px)" : "100%"
   appendLayout(results)
 
   if (enablePreview) {
     preview = document.createElement("div")
     preview.id = "preview-container"
-    preview.style.flexBasis = "100%"
     appendLayout(preview)
   }
 
