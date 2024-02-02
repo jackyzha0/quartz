@@ -30,7 +30,7 @@ export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOp
     },
     async getDependencyGraph(ctx, content, _resources) {
       // TODO handle transclusions
-      const graph = new DepGraph()
+      const graph = new DepGraph<string>()
 
       for (const [_tree, file] of content) {
         const sourcePath = file.data.filePath!

@@ -31,7 +31,7 @@ type BuildData = {
   toRebuild: Set<FilePath>
   toRemove: Set<FilePath>
   lastBuildMs: number
-  depGraphs: Record<string, DepGraph>
+  depGraphs: Record<string, DepGraph<string>>
 }
 
 type FileEvent = "add" | "change" | "delete"
@@ -74,7 +74,7 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   const parsedFiles = await parseMarkdown(ctx, filePaths)
   const filteredContent = filterContent(ctx, parsedFiles)
 
-  const depGraphs: Record<string, DepGraph> = {}
+  const depGraphs: Record<string, DepGraph<string>> = {}
   const staticResources = getStaticResourcesFromPlugins(ctx)
   for (const emitter of cfg.plugins.emitters) {
     const emitterGraph = await emitter.getDependencyGraph(ctx, filteredContent, staticResources)
@@ -96,7 +96,7 @@ async function startServing(
   mut: Mutex,
   initialContent: ProcessedContent[],
   clientRefresh: () => void,
-  depGraphs: Record<string, DepGraph>, // emitter name: dep graph
+  depGraphs: Record<string, DepGraph<string>>, // emitter name: dep graph
 ) {
   const { argv } = ctx
 
@@ -224,7 +224,7 @@ async function partialRebuild(
       //
       // if a.md changes, we need to re-emit contentIndex.json,
       // and supply [a.md, b.md] to the emitter
-      const upstreams = [...depGraph.getUpstreamsOfDownstreamLeafNodes(fp)] as FilePath[]
+      const upstreams = [...depGraph.getLeafNodeAncestors(fp)] as FilePath[]
 
       if (action == "delete" && upstreams.length === 1) {
         // if there's only one upstream, the destination is solely dependent on this file

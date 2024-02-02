@@ -11,7 +11,7 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
   },
   async getDependencyGraph(_ctx, _content, _resources) {
     // TODO implement
-    return new DepGraph()
+    return new DepGraph<string>()
   },
   async emit(ctx, content, _resources): Promise<FilePath[]> {
     const { argv } = ctx

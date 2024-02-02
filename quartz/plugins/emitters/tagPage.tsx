@@ -37,7 +37,7 @@ export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) 
     },
     async getDependencyGraph(ctx, _content, _resources) {
       // TODO implement
-      return new DepGraph()
+      return new DepGraph<string>()
     },
     async emit(ctx, content, resources): Promise<FilePath[]> {
       const fps: FilePath[] = []

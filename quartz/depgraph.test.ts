@@ -3,37 +3,37 @@ import DepGraph from "./depgraph"
 import assert from "node:assert"
 
 describe("DepGraph", () => {
-  test("getDownstreamLeafNodes", () => {
-    const graph = new DepGraph()
+  test("getLeafNodes", () => {
+    const graph = new DepGraph<string>()
     graph.addEdge("A", "B")
     graph.addEdge("B", "C")
     graph.addEdge("D", "C")
-    assert.deepStrictEqual(graph.getDownstreamLeafNodes("A"), new Set(["C"]))
-    assert.deepStrictEqual(graph.getDownstreamLeafNodes("B"), new Set(["C"]))
-    assert.deepStrictEqual(graph.getDownstreamLeafNodes("C"), new Set(["C"]))
-    assert.deepStrictEqual(graph.getDownstreamLeafNodes("D"), new Set(["C"]))
+    assert.deepStrictEqual(graph.getLeafNodes("A"), new Set(["C"]))
+    assert.deepStrictEqual(graph.getLeafNodes("B"), new Set(["C"]))
+    assert.deepStrictEqual(graph.getLeafNodes("C"), new Set(["C"]))
+    assert.deepStrictEqual(graph.getLeafNodes("D"), new Set(["C"]))
   })
 
-  test("getUpstreamsOfDownstreamLeafNodes", () => {
-    const graph = new DepGraph()
+  test("getLeafNodeAncestors", () => {
+    const graph = new DepGraph<string>()
     graph.addEdge("A", "B")
     graph.addEdge("B", "C")
     graph.addEdge("D", "B")
-    assert.deepStrictEqual(graph.getUpstreamsOfDownstreamLeafNodes("A"), new Set(["A", "B", "D"]))
-    assert.deepStrictEqual(graph.getUpstreamsOfDownstreamLeafNodes("B"), new Set(["A", "B", "D"]))
-    assert.deepStrictEqual(graph.getUpstreamsOfDownstreamLeafNodes("C"), new Set(["A", "B", "D"]))
-    assert.deepStrictEqual(graph.getUpstreamsOfDownstreamLeafNodes("D"), new Set(["A", "B", "D"]))
+    assert.deepStrictEqual(graph.getLeafNodeAncestors("A"), new Set(["A", "B", "D"]))
+    assert.deepStrictEqual(graph.getLeafNodeAncestors("B"), new Set(["A", "B", "D"]))
+    assert.deepStrictEqual(graph.getLeafNodeAncestors("C"), new Set(["A", "B", "D"]))
+    assert.deepStrictEqual(graph.getLeafNodeAncestors("D"), new Set(["A", "B", "D"]))
   })
 
   describe("mergeEdgesForNode", () => {
     test("merges when node exists", () => {
       // A -> B -> C
-      const graph = new DepGraph()
+      const graph = new DepGraph<string>()
       graph.addEdge("A", "B")
       graph.addEdge("B", "C")
 
       // B -> D
-      const other = new DepGraph()
+      const other = new DepGraph<string>()
       other.addEdge("B", "D")
 
       // B -> C removed, B -> D added
@@ -41,41 +41,39 @@ describe("DepGraph", () => {
       graph.mergeEdgesForNode(other, "B")
 
       const expected = {
-        options: { type: "directed", multi: false, allowSelfLoops: false },
-        attributes: {},
-        nodes: [{ key: "A" }, { key: "B" }, { key: "C" }, { key: "D" }],
+        nodes: ["A", "B", "C", "D"],
         edges: [
-          { key: "A -> B", source: "A", target: "B" },
-          { key: "B -> D", source: "B", target: "D" },
+          ["A", "B"],
+          ["B", "D"],
         ],
       }
 
-      assert.deepStrictEqual(graph.graph.toJSON(), expected)
+      console.log(graph.export())
+
+      assert.deepStrictEqual(graph.export(), expected)
     })
 
     test("adds node if it does not exist", () => {
       // A -> B
-      const graph = new DepGraph()
+      const graph = new DepGraph<string>()
       graph.addEdge("A", "B")
 
       // C -> D
-      const other = new DepGraph()
+      const other = new DepGraph<string>()
       other.addEdge("C", "D")
 
       // A -> B, C -> D
       graph.mergeEdgesForNode(other, "C")
 
       const expected = {
-        options: { type: "directed", multi: false, allowSelfLoops: false },
-        attributes: {},
-        nodes: [{ key: "A" }, { key: "B" }, { key: "C" }, { key: "D" }],
+        nodes: ["A", "B", "C", "D"],
         edges: [
-          { key: "A -> B", source: "A", target: "B" },
-          { key: "C -> D", source: "C", target: "D" },
+          ["A", "B"],
+          ["C", "D"],
         ],
       }
 
-      assert.deepStrictEqual(graph.graph.toJSON(), expected)
+      assert.deepStrictEqual(graph.export(), expected)
     })
   })
 })

@@ -94,7 +94,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
   return {
     name: "ContentIndex",
     async getDependencyGraph(ctx, content, _resources) {
-      const graph = new DepGraph()
+      const graph = new DepGraph<string>()
 
       for (const [_tree, file] of content) {
         const sourcePath = file.data.filePath!

@@ -43,5 +43,5 @@ export type QuartzEmitterPluginInstance = {
     ctx: BuildCtx,
     content: ProcessedContent[],
     resources: StaticResources,
-  ): Promise<DepGraph>
+  ): Promise<DepGraph<string>>
 }

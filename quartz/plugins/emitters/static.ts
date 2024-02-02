@@ -10,7 +10,7 @@ export const Static: QuartzEmitterPlugin = () => ({
     return []
   },
   async getDependencyGraph({ argv, cfg }, _content, _resources) {
-    const graph = new DepGraph()
+    const graph = new DepGraph<string>()
 
     const staticPath = joinSegments(QUARTZ, "static")
     const fps = await glob("**", staticPath, cfg.configuration.ignorePatterns)

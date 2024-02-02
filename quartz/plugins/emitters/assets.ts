@@ -13,7 +13,7 @@ export const Assets: QuartzEmitterPlugin = () => {
     },
     async getDependencyGraph(ctx, _content, _resources) {
       const { argv, cfg } = ctx
-      const graph = new DepGraph()
+      const graph = new DepGraph<string>()
 
       const fps = await glob("**", argv.directory, ["**/*.md", ...cfg.configuration.ignorePatterns])
 
