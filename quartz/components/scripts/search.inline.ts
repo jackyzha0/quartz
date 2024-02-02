@@ -76,8 +76,9 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
     })
     .join(" ")
 
-  return `${startIndex === 0 ? "" : "..."}${slice}${endIndex === tokenizedText.length - 1 ? "" : "..."
-    }`
+  return `${startIndex === 0 ? "" : "..."}${slice}${
+    endIndex === tokenizedText.length - 1 ? "" : "..."
+  }`
 }
 
 function highlightHTML(searchTerm: string, innerHTML: string) {
@@ -276,13 +277,15 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       return []
     }
 
-    return tags.map(tag => {
-      if (tag.toLowerCase().includes(term.toLowerCase())) {
-        return `<li><p class="match-tag">#${tag}</p></li>`
-      } else {
-        return `<li><p>#${tag}</p></li>`
-      }
-    }).slice(0, numTagResults)
+    return tags
+      .map((tag) => {
+        if (tag.toLowerCase().includes(term.toLowerCase())) {
+          return `<li><p class="match-tag">#${tag}</p></li>`
+        } else {
+          return `<li><p>#${tag}</p></li>`
+        }
+      })
+      .slice(0, numTagResults)
   }
 
   function resolveUrl(slug: FullSlug): URL {
@@ -299,7 +302,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
     async function onMouseEnter(ev: MouseEvent) {
       if (!ev.target) return
-      currentHover?.classList.remove('focus')
+      currentHover?.classList.remove("focus")
       currentHover?.blur()
       const target = ev.target as HTMLInputElement
       await displayPreview(target)
@@ -392,7 +395,9 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     preview.replaceChildren(previewInner)
 
     // scroll to longest
-    const highlights = [...preview.querySelectorAll(".highlight")].sort((a, b) => b.innerHTML.length - a.innerHTML.length)
+    const highlights = [...preview.querySelectorAll(".highlight")].sort(
+      (a, b) => b.innerHTML.length - a.innerHTML.length,
+    )
     highlights[0]?.scrollIntoView()
   }
 
