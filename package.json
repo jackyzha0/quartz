@@ -2,7 +2,7 @@
   "name": "@jackyzha0/quartz",
   "description": "🌱 publish your digital garden and notes as a website",
   "private": true,
-  "version": "4.2.0",
+  "version": "4.2.1",
   "type": "module",
   "author": "jackyzha0 <j.zhao2k19@gmail.com>",
   "license": "MIT",
