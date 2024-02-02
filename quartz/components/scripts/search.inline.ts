@@ -314,6 +314,15 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
       hideSearch()
     }
+
+    async function onMouseEnter(ev: MouseEvent) {
+      if (!ev.target) return
+      const target = ev.target as HTMLInputElement
+      await displayPreview(target)
+    }
+
+    itemTile.addEventListener("mouseenter", onMouseEnter)
+    window.addCleanup(() => itemTile.removeEventListener("mouseenter", onMouseEnter))
     itemTile.addEventListener("click", handler)
     window.addCleanup(() => itemTile.removeEventListener("click", handler))
 
