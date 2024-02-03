@@ -59,6 +59,10 @@
       margin-left: auto;
       margin-right: auto;
 
+      @media all and (max-width: $tabletBreakpoint) {
+        width: 80%;
+      }
+
       & > * {
         width: 100%;
         border-radius: 7px;
@@ -150,10 +154,10 @@
           font-weight: $normalWeight;
           overflow-y: auto;
           padding: 0 2rem;
+          width: min($pageWidth, 100%);
 
           & .preview-inner {
             margin: 0 auto;
-            width: min($pageWidth, 100%);
           }
         }
 
