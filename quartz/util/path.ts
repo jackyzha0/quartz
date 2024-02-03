@@ -225,7 +225,7 @@ export function transformLink(src: FullSlug, target: string, opts: TransformOpti
   }
 }
 
-export function slugToFileName (slug: SimpleSlug | string | FullSlug){
+export function slugToFileName(slug: SimpleSlug | string | FullSlug) {
   return slug.split("/").at(-1)!
 }
 
