@@ -7,6 +7,7 @@ import {
   simplifySlug,
   SimpleSlug,
   FilePath,
+  slugToFileName
 } from "../util/path"
 
 type OrderEntries = "sort" | "filter" | "map"
@@ -14,7 +15,11 @@ type OrderEntries = "sort" | "filter" | "map"
 export interface Options {
   title: string
   folderDefaultState: "collapsed" | "open"
-  folderClickBehavior: "collapse" | "link"
+  /**"Explorer" component's folders behaviour when clicked
+   * @param collapse close folder
+   * @param link open "Folder Page" plugin
+   * @param folderNote open "folderNote" = note inside folder matching a regex (matched group will be removed by displayed name)*/
+  folderClickBehavior: "collapse" | "link" | ["folderNote", reg: RegExp]
   useSavedState: boolean
   sortFn: (a: FileNode, b: FileNode) => number
   filterFn: (node: FileNode) => boolean
@@ -164,7 +169,10 @@ type ExplorerNodeProps = {
 
 export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodeProps) {
   // Get options
-  const folderBehavior = opts.folderClickBehavior
+  const folderBehavior = opts.folderClickBehavior[0] //folderClickBehavior name
+  const folderNoteRegex = Array.isArray(opts.folderClickBehavior) && folderBehavior === "folderNote" //extract regex if in "folderNote" mode
+  ? opts.folderClickBehavior[1]
+  : undefined;
   const isDefaultOpen = opts.folderDefaultState === "open"
 
   // Calculate current folderPath
@@ -173,16 +181,37 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
     folderPath = joinSegments(fullPath ?? "", node.name)
   }
 
+  /** 
+ * @var mainChild file to open when clicking on folder (if in "folderNote" mode)*/
+  let mainChild = null
+  if (folderBehavior === "folderNote" && !node.file) {
+    //search mainChild inside folder by matching their fileName with regex
+    for (const child of node.children) {
+      let childName = slugToFileName(child.name)
+      if (folderNoteRegex!.test(childName) && child.depth<=node.depth+1 && child.file ){
+        //remove matching regex group from mainChild displayname
+        if(folderNoteRegex!.test(child.displayName)){
+          const flags = child.displayName.match(folderNoteRegex!)!.slice(1)! //shift to remove first result = entire child.displayname
+          flags.forEach(flag => {
+            child.displayName = child.displayName.replace(flag, "")
+          })
+        }
+        mainChild = child
+        break
+    }}
+  }
+
   return (
     <>
-      {node.file ? (
-        // Single file node
-        <li key={node.file.slug}>
-          <a href={resolveRelative(fileData.slug!, node.file.slug!)} data-for={node.file.slug}>
-            {node.displayName}
-          </a>
-        </li>
-      ) : (
+      {node.file ? ( // Single file node
+        folderBehavior !== "folderNote" || !folderNoteRegex!.test(slugToFileName(node.name)) ? (   // include file in tree IF it's NOT the mainChild
+          <li key={node.file.slug}>
+            <a href={resolveRelative(fileData.slug!, node.file.slug!)} data-for={node.file.slug}>
+              {node.displayName}
+            </a>
+          </li>
+        ) : ("")  // include nothing IF node = folderNote (foldeNote hidden from tree as i will be displayed thx to folder)
+      ) : (       // folder node case
         <li>
           {node.name !== "" && (
             // Node with entire folder
@@ -202,7 +231,6 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
               >
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
-              {/* render <a> tag if folderBehavior is "link", otherwise render <button> with collapse click event */}
               <div key={node.name} data-folderpath={folderPath}>
                 {folderBehavior === "link" ? (
                   <a
@@ -212,7 +240,15 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
                   >
                     {node.displayName}
                   </a>
-                ) : (
+                ) : folderBehavior === "folderNote" && mainChild ? (
+                  <a
+                    href={resolveRelative(fileData.slug!, mainChild.file?.slug!)}
+                    data-for={mainChild.file!.slug}
+                    class="folder-title"
+                  >
+                    <u>{mainChild.displayName}</u>
+                  </a>
+                ) : ( // default case = "collapse"
                   <button class="folder-button">
                     <span class="folder-title">{node.displayName}</span>
                   </button>

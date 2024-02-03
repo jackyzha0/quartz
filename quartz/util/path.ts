@@ -225,6 +225,10 @@ export function transformLink(src: FullSlug, target: string, opts: TransformOpti
   }
 }
 
+export function slugToFileName (slug: SimpleSlug | string | FullSlug){
+  return slug.split("/").at(-1)!
+}
+
 function _isFolderPath(fplike: string): boolean {
   return (
     fplike.endsWith("/") ||
