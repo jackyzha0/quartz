@@ -8,7 +8,8 @@
     "item": "item"
   },
   "darkmode": {
-    "lightMode": "Light mode"
+    "lightMode": "Light mode",
+    "darkMode": "Dark mode"
   },
   "folderContent": {
     "underThisFolder": "under this folder"
