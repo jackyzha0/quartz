@@ -2,7 +2,7 @@
   "404": "Soit cette page est privée, soit elle n'existe pas.",
   "backlinks": {
     "backlinks": "Rétroliens",
-    "noBlacklinksFound": "Aucun rétrolien trouvé"
+    "noBacklinksFound": "Aucun rétrolien trouvé"
   },
   "common": {
     "item": "fichier"
