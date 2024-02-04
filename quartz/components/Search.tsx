@@ -20,7 +20,7 @@ export default ((userOpts?: Partial<SearchOptions>) => {
     return (
       <div class={classNames(displayClass, "search")}>
         <div id="search-icon">
-          <p>{i18n(cfg.locale, "search")}</p>
+          <p>{i18n(cfg.locale, "search.default")}</p>
           <div></div>
           <svg
             tabIndex={0}
@@ -29,8 +29,8 @@ export default ((userOpts?: Partial<SearchOptions>) => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 19.9 19.7"
           >
-            <title id="title">Search</title>
-            <desc id="desc">Search</desc>
+            <title id="title">{i18n(cfg.locale, "search.default")}</title>
+            <desc id="desc">{i18n(cfg.locale, "search.default")}</desc>
             <g class="search-path" fill="none">
               <path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4" />
               <circle cx="8" cy="8" r="7" />
@@ -44,8 +44,8 @@ export default ((userOpts?: Partial<SearchOptions>) => {
               id="search-bar"
               name="search"
               type="text"
-              aria-label="Search for something"
-              placeholder="Search for something"
+              aria-label={i18n(cfg.locale, "search.placeholder")}
+              placeholder={i18n(cfg.locale, "search.placeholder")}
             />
             <div id="search-layout" data-preview={opts.enablePreview}></div>
           </div>
