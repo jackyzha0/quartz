@@ -75,14 +75,14 @@ const calloutMapping = {
 } as const
 
 const arrowMapping: Record<string, string> = {
-  "->": "&#8594;",
-  "-->": "&#10230;",
-  "=>": "&#8658;",
-  "==>": "&#10233;",
-  "<-": "&#8592;",
-  "<--": "&#10229;",
-  "<=": "&#8656;",
-  "<==": "&#10232;",
+  "->": "&rarr;",
+  "-->": "&rArr;",
+  "=>": "&rArr;",
+  "==>": "&rArr;",
+  "<-": "&larr;",
+  "<--": "&lArr;",
+  "<=": "&lArr;",
+  "<==": "&lArr;",
 }
 
 function canonicalizeCallout(calloutName: string): keyof typeof calloutMapping {
@@ -93,7 +93,7 @@ function canonicalizeCallout(calloutName: string): keyof typeof calloutMapping {
 
 export const externalLinkRegex = /^https?:\/\//i
 
-export const arrowRegex = new RegExp(/(?:-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/, "g")
+export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/, "g")
 
 // !?                -> optional embedding
 // \[\[              -> open brace
