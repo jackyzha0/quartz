@@ -283,9 +283,11 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             replacements.push([
               arrowRegex,
               (value: string, ..._capture: string[]) => {
+                const maybeArrow = arrowMapping[value]
+                if (maybeArrow === undefined) return SKIP
                 return {
                   type: "html",
-                  value: `<span>${arrowMapping[value] || value}</span>`,
+                  value: `<span>${maybeArrow}</span>`,
                 }
               },
             ])
