@@ -5,7 +5,7 @@ import { classNames } from "../util/lang"
 
 // @ts-ignore
 import script from "./scripts/toc.inline"
-import { i18n } from "../i18n/i18next"
+import { i18n } from "../i18n"
 
 interface Options {
   layout: "modern" | "legacy"

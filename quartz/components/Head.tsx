@@ -1,4 +1,4 @@
-import { i18n } from "../i18n/i18next"
+import { i18n } from "../i18n"
 import { FullSlug, _stripSlashes, joinSegments, pathToRoot } from "../util/path"
 import { JSResourceToScriptElement } from "../util/resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"

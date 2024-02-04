@@ -3,7 +3,7 @@ import style from "./styles/search.scss"
 // @ts-ignore
 import script from "./scripts/search.inline"
 import { classNames } from "../util/lang"
-import { i18n } from "../i18n/i18next"
+import { i18n } from "../i18n"
 
 export interface SearchOptions {
   enablePreview: boolean

@@ -4,7 +4,7 @@
 import darkmodeScript from "./scripts/darkmode.inline"
 import styles from "./styles/darkmode.scss"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
-import { i18n } from "../i18n/i18next"
+import { i18n } from "../i18n"
 import { classNames } from "../util/lang"
 
 function Darkmode({ displayClass, cfg }: QuartzComponentProps) {

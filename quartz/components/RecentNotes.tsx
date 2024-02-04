@@ -5,7 +5,7 @@ import { byDateAndAlphabetical } from "./PageList"
 import style from "./styles/recentNotes.scss"
 import { Date, getDate } from "./Date"
 import { GlobalConfiguration } from "../cfg"
-import { i18n } from "../i18n/i18next"
+import { i18n } from "../i18n"
 import { classNames } from "../util/lang"
 
 interface Options {

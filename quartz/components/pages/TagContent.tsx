@@ -4,9 +4,8 @@ import { PageList } from "../PageList"
 import { FullSlug, getAllSegmentPrefixes, simplifySlug } from "../../util/path"
 import { QuartzPluginData } from "../../plugins/vfile"
 import { Root } from "hast"
-import { pluralize } from "../../util/lang"
 import { htmlToJsx } from "../../util/jsx"
-import { i18n } from "../../i18n/i18next"
+import { i18n } from "../../i18n"
 
 const numPages = 10
 function TagContent(props: QuartzComponentProps) {
@@ -45,8 +44,7 @@ function TagContent(props: QuartzComponentProps) {
           <p>{content}</p>
         </article>
         <p>
-          {i18n(cfg.locale, "tagContent.found")} {tags.length}{" "}
-          {i18n(cfg.locale, "tagContent.totalTags")}.
+          {i18n(cfg.locale, "pages.tagContent.totalTags", {count: })}.
         </p>
         <div>
           {tags.map((tag) => {
