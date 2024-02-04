@@ -2,6 +2,9 @@
 title: Making your own plugins
 ---
 
+> [!tip] `quartz-plugin`
+> There's a new tool for fetching community plugins. [[#quartz-plugin|Author your plugin for quartz-plugin]] and push repository for others to download!
+
 > [!warning]
 > This part of the documentation will assume you have working knowledge in TypeScript and will include code snippets that describe the interface of what Quartz plugins should look like.
 
@@ -297,3 +300,39 @@ Note that it takes in a `FullPageLayout` as the options. It's made by combining 
 
 > [!hint]
 > Look in `quartz/plugins` for more examples of plugins in Quartz as reference for your own plugins!
+
+## quartz-plugin
+
+A plugin for use with quartz-plugin needs two things: a `plugin_name.ts` file and a `plugin.json`.
+
+The `plugin_name.ts` file will export a type that implements `QuartzTransformerPlugin`, `QuartzEmitterPlugin`, or `QuartzFilterPlugin` like explained above.
+
+`plugin.json` is the bridge between `plugin_name.ts` and the rest of Quartz. Here's an example `plugin.json` file:
+```json
+{
+  "name": "PluginName",
+  "type": "transformer",
+  "version": "v1.0",
+  "head": "plugin_name.ts",
+  "default_config_ts": "{ required_parameter: 'REQUIRED', ... }"
+}
+```
+
+### JSON reference
+| Key                              | Value                                                                                                                  |
+|----------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| `name`                           | The type that your plugin file exports. It implements one of the `Quartz{Transformer,Filter,Emitter}Plugin<T>` types.  |
+| `type`                           | Whether your plugin is a `transformer`, `filter`, or `emitter`. determines what directory the plugin exists in.        |
+| `version`                        | Your own versioning scheme. For humans, not for quartz-plugin.                                                         |
+| `head`                           | The file your plugin type `name` is exported from.                                                                     |
+| <nobr>`default_config_ts`</nobr> | a string containing a `Partial<YourOptionType>` that you'd like to be the default config of your plugin.               |
+
+### Making it public
+Host a repository containing your `head` file and `plugin.json` on your service of choice.
+
+### (Optional) Best Practices
+- `default_config_ts`: If you mirror how the system plugins are architected, this could look something like your `defaultOptions` constant.
+- Host your repository on GitHub to allow users to make use of the shorthand `author/name`.
+- Title your repository with the suffix `.quartz`.
+- Create a `docs/` folder in your repository with Markdown docs in Quartz format.
+- Share your plugin in the `#community-plugins` channel on the Discord!
