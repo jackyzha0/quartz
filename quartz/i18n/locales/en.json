@@ -2,7 +2,7 @@
   "404": "Either this page is private or doesn't exist.",
   "backlinks": {
     "backlinks": "Backlinks",
-    "noBlacklinksFound": "No backlinks found"
+    "noBacklinksFound": "No backlinks found"
   },
   "common": {
     "item": "item"

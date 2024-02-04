@@ -20,7 +20,7 @@ function Backlinks({ fileData, allFiles, displayClass, cfg }: QuartzComponentPro
             </li>
           ))
         ) : (
-          <li>{i18n(cfg.locale, "backlinks.noBlacklinksFound")}</li>
+          <li>{i18n(cfg.locale, "backlinks.noBacklinksFound")}</li>
         )}
       </ul>
     </div>
