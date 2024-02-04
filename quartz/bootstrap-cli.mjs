@@ -7,8 +7,9 @@ import {
   handleUpdate,
   handleRestore,
   handleSync,
+  handlePlugin,
 } from "./cli/handlers.js"
-import { CommonArgv, BuildArgv, CreateArgv, SyncArgv } from "./cli/args.js"
+import { CommonArgv, BuildArgv, CreateArgv, SyncArgv, PluginArgv } from "./cli/args.js"
 import { version } from "./cli/constants.js"
 
 yargs(hideBin(process.argv))
@@ -35,6 +36,14 @@ yargs(hideBin(process.argv))
   .command("build", "Build Quartz into a bundle of static HTML files", BuildArgv, async (argv) => {
     await handleBuild(argv)
   })
+  .command(
+    "plugin <command> [url]",
+    "Manage the community plugins enabled for your Quartz.",
+    PluginArgv,
+    async (argv) => {
+      await handlePlugin(argv)
+    },
+  )
   .showHelpOnFail(false)
   .help()
   .strict()

@@ -2,6 +2,7 @@ import { promises } from "fs"
 import path from "path"
 import esbuild from "esbuild"
 import chalk from "chalk"
+import replace from 'replace-in-file'
 import { sassPlugin } from "esbuild-sass-plugin"
 import fs from "fs"
 import { intro, outro, select, text } from "@clack/prompts"
@@ -19,6 +20,8 @@ import {
   exitIfCancel,
   escapePath,
   gitPull,
+  gitSubmoduleAdd,
+  validatePluginURL,
   popContentFolder,
   stashContentFolder,
 } from "./helpers.js"
@@ -541,4 +544,57 @@ export async function handleSync(argv) {
   }
 
   console.log(chalk.green("Done!"))
+}
+
+/**
+ * Handles `npx quartz plugin {...}`
+ * @param {*} argv arguments for plugin command
+ */
+export async function handlePlugin(argv) {
+  const usage = "Usage: quartz plugin {add|remove|enable|toggle|disable|update} [url]"
+  // Check command type
+  if (argv.command === "add") {
+    if (argv.url && validatePluginURL(argv.url)) {
+      console.log(`adding ${argv.url}`)
+      // TODO duplicate check by inspecting `quartz.plugins.ts`
+
+      // Clone into root plugins dir
+      let dest = `plugins/${argv.url.match(/\/(\S+)$/)[1]}`
+      gitSubmoduleAdd(argv.url, dest) 
+
+      // What would be inspection and codegen if I didn't get lazy
+      var config = JSON.parse(fs.readFileSync(`${dest}/plugin.json`))
+      const plugin_config = `Plugin.${config.name}(${config.default_config_ts})`
+      
+      // Add generated config to quartz.plugins.ts
+      const new_plugin =`
+    {
+      url: \'${argv.url}\',
+      enabled: true,
+      cfg: ${plugin_config},
+    },`
+      const add_to_community_plugins = {
+        files: 'quartz.plugins.ts',
+        from: /(?:\r\n|\r|\n)[\t\s]*\],[\s\S]*$/,
+        to: `${new_plugin}\n  ],\n}\n\nexport default communityPlugins`
+      }
+
+      // Filesystem modifications now that the config is done
+      let plugin_path = `quartz/plugins/${config.type}s`
+      await replace(add_to_community_plugins)
+      fs.appendFile(`${plugin_path}/index.ts`, 
+                    `export { ${config.name} } from \'./${config.head.match(/(.*)\.ts/)[1]}\'`, 
+                    (e) => { if(e) throw e })
+      fs.symlink(`../../../${dest}/${config.head}`, // Symlink is 3 levels down from the root of the repo
+                 `${plugin_path}/${config.head}`,
+                 (e) => { if(e && e.code !== 'EEXIST') throw e })
+    }
+    else {
+      throw new Error(chalk.red, `Error: no URL given matching https or shorthand.\n\t${usage}`)
+    }
+  }
+
+  // enable/toggle/disable: change enabled state
+  // remove: delete symlink, config, and repo
+  // update: fetch & pull all, or optionally the plugin name/url/shorthand specified
 }

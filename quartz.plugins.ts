@@ -7,12 +7,11 @@ const communityPlugins: PluginStore = {
   available: [
     // Example
     // {
-    //   url: "ocdkirby/remark42",
+    //   url: 'OCDkirby/remark42',
     //   enabled: true,
-    //   cfg: Plugin.Remark42({ host: "https://comments.my-host.com", site_id: "remark", theme: "light", no_footer: true }),
+    //   cfg: Plugin.Remark42({ host: 'https://comments.my-host.com', site_id: 'remark', theme: 'light', no_footer: true }),
     // },
   ],
 }
 
-// Using old syntax so I have a regex target
 export default communityPlugins
