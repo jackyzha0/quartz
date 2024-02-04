@@ -37,8 +37,8 @@ export interface GlobalConfiguration {
   baseUrl?: string
   theme: Theme
   /**
-   * The locale to use for date formatting. Default to "en-US"
    * Allow to translate the date in the language of your choice.
+   * Also used for UI translation (default: en-US)
    * Need to be formated following the IETF language tag format (https://en.wikipedia.org/wiki/IETF_language_tag)
    */
   locale?: string

@@ -1,0 +1,37 @@
+{
+  "404": "Either this page is private or doesn't exist.",
+  "backlinks": {
+    "backlinks": "Backlinks",
+    "noBlacklinksFound": "No backlinks found"
+  },
+  "common": {
+    "item": "item"
+  },
+  "darkmode": {
+    "lightMode": "Light mode"
+  },
+  "folderContent": {
+    "underThisFolder": "under this folder"
+  },
+  "footer": {
+    "createdWith": "Created with"
+  },
+  "graph": {
+    "graphView": "Graph View"
+  },
+  "head": {
+    "noDescriptionProvided": "No description provided",
+    "untitled": "Untitled"
+  },
+  "recentNotes": {
+    "seeRemainingMore": "See {{remaining}} more"
+  },
+  "search": "Search",
+  "tableOfContent": "Table of Contents",
+  "tagContent": {
+    "showingFirst": "Showing first",
+    "totalTags": "total tags",
+    "withThisTag": "with this tag",
+    "found": "Found"
+  }
+}

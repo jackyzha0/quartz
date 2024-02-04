@@ -3,6 +3,7 @@ import style from "./styles/search.scss"
 // @ts-ignore
 import script from "./scripts/search.inline"
 import { classNames } from "../util/lang"
+import { i18n } from "../i18n/i18next"
 
 export interface SearchOptions {
   enablePreview: boolean
@@ -13,13 +14,13 @@ const defaultOptions: SearchOptions = {
 }
 
 export default ((userOpts?: Partial<SearchOptions>) => {
-  function Search({ displayClass }: QuartzComponentProps) {
+  function Search({ displayClass, cfg }: QuartzComponentProps) {
     const opts = { ...defaultOptions, ...userOpts }
 
     return (
       <div class={classNames(displayClass, "search")}>
         <div id="search-icon">
-          <p>Search</p>
+          <p>{i18n(cfg.locale, "search")}</p>
           <div></div>
           <svg
             tabIndex={0}
