@@ -278,7 +278,7 @@ export const ContentPage: QuartzEmitterPlugin = () => {
           allFiles,
         }
 
-        const content = renderPage(slug, componentData, opts, externalResources)
+        const content = renderPage(cfg, slug, componentData, opts, externalResources)
         const fp = await emit({
           content,
           slug: file.data.slug!,

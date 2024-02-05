@@ -15,6 +15,7 @@ import {
 import { defaultListPageLayout, sharedPageComponents } from "../../../quartz.layout"
 import { TagContent } from "../../components"
 import { write } from "./helpers"
+import { i18n } from "../../i18n"
 
 export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) => {
   const opts: FullPageLayout = {
@@ -47,7 +48,10 @@ export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) 
 
       const tagDescriptions: Record<string, ProcessedContent> = Object.fromEntries(
         [...tags].map((tag) => {
-          const title = tag === "index" ? "Tag Index" : `Tag: #${tag}`
+          const title =
+            tag === "index"
+              ? i18n(cfg.locale).pages.tagContent.tagIndex
+              : `${i18n(cfg.locale).pages.tagContent.tag}: #${tag}`
           return [
             tag,
             defaultProcessedContent({
@@ -81,7 +85,7 @@ export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) 
           allFiles,
         }
 
-        const content = renderPage(slug, componentData, opts, externalResources)
+        const content = renderPage(cfg, slug, componentData, opts, externalResources)
         const fp = await write({
           ctx,
           content,

@@ -18,6 +18,7 @@ import {
 import { defaultListPageLayout, sharedPageComponents } from "../../../quartz.layout"
 import { FolderContent } from "../../components"
 import { write } from "./helpers"
+import { i18n } from "../../i18n"
 
 export const FolderPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) => {
   const opts: FullPageLayout = {
@@ -57,7 +58,10 @@ export const FolderPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpt
           folder,
           defaultProcessedContent({
             slug: joinSegments(folder, "index") as FullSlug,
-            frontmatter: { title: `Folder: ${folder}`, tags: [] },
+            frontmatter: {
+              title: `${i18n(cfg.locale).pages.folderContent.folder}: ${folder}`,
+              tags: [],
+            },
           }),
         ]),
       )
@@ -82,7 +86,7 @@ export const FolderPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpt
           allFiles,
         }
 
-        const content = renderPage(slug, componentData, opts, externalResources)
+        const content = renderPage(cfg, slug, componentData, opts, externalResources)
         const fp = await write({
           ctx,
           content,

@@ -2,7 +2,7 @@ import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 // @ts-ignore
 import script from "./scripts/graph.inline"
 import style from "./styles/graph.scss"
-import { i18n } from "../i18n/i18next"
+import { i18n } from "../i18n"
 import { classNames } from "../util/lang"
 
 export interface D3Config {
@@ -59,7 +59,7 @@ export default ((opts?: GraphOptions) => {
     const globalGraph = { ...defaultOptions.globalGraph, ...opts?.globalGraph }
     return (
       <div class={classNames(displayClass, "graph")}>
-        <h3>{i18n(cfg.locale, "graph.graphView")}</h3>
+        <h3>{i18n(cfg.locale).components.graph.title}</h3>
         <div class="graph-outer">
           <div id="graph-container" data-cfg={JSON.stringify(localGraph)}></div>
           <svg
