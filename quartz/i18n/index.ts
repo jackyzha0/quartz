@@ -13,5 +13,5 @@ export const TRANSLATIONS = {
   "nl-NL": nl,
 } as const
 
-export const i18n = (locale: ValidLocale): Translation => TRANSLATIONS[locale]
+export const i18n = (locale: ValidLocale): Translation => TRANSLATIONS[locale ?? "en-US"]
 export type ValidLocale = keyof typeof TRANSLATIONS
