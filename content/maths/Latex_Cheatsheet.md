@@ -25,9 +25,39 @@ tags:
 | gros espace | `\;` |
 | espace négatif qui rapproche | `\!` |
 
+
+
 # Mathématiques
 
 ## Expressions
+
+### Equations
+
+#### Aligner une équation
+
+Utiliser `&` et `\begin{align}` tel que :
+
+```latex
+\begin{align}
+\mid trop\mid &=  1+\mid rop\mid \\ 
+&=1+1+\mid op\mid\\
+&= 1+1+1+\mid p\mid \\
+&= 1+1+1+1+\mid \varepsilon\mid \\
+&= 1+1+1+1+0 \\
+&=4
+\end{align}
+```
+
+$$
+\begin{align}
+\mid trop\mid &=  1+\mid rop\mid \\ 
+&=1+1+\mid op\mid\\
+&= 1+1+1+\mid p\mid \\
+&= 1+1+1+1+\mid \varepsilon\mid \\
+&= 1+1+1+1+0 \\
+&=4
+\end{align}
+$$
 
 ### Système
 
@@ -155,6 +185,16 @@ $$
 \prod_{k=0}^{n} k
 ```
 
+### Coefficient binomial
+
+*Aussi nommé "$k$ combinaison $n$*
+
+```latex
+\dbinom{n}{k}
+```
+
+$$\dbinom{n}{k}$$
+
 ### Racines n-ièmes
 
 $$
@@ -164,6 +204,19 @@ $$
 ```latex
 \sqrt[n]{2x-5}
 ```
+
+## Ensembles de nombres
+
+Utiliser l'environnement `\mathbb` tel que : 
+
+```latex
+\mathbb{N} \mathbb{R} \mathbb{Q} \mathbb{C}
+```
+
+$$
+\mathbb{N} \mathbb{R} \mathbb{Q} \mathbb{C}
+$$
+
 
 ## Symboles
 
@@ -180,10 +233,11 @@ $$
 | infini                                 | `\infty`                      | $\infty$                      |
 | implication droite                     | `\Rightarrow`                 | $\Rightarrow$                 |
 | implication gauche                     | `\Leftarrow`                  | $\Leftarrow$                  |
-| conjugué (barre supérieur)             | `\overline{z}`                | $\overline{z}$                |
+| conjugué/complémentaire/distance algébrique            | `\overline{z}`                | $\overline{z}$                |
 | environ                                | `\approx`                     | $\approx$                     |
 | grandes parenthèses (ou autre symbole) | `\left( \frac{1}{2} \right )` | $\left( \frac{1}{2} \right )$ |
 | flèches                                | `\rightarrow` et `\leftarrow` | $\rightarrow$ et $\leftarrow$ |
+| flèches avec texte en dessous et au dessus                                | `\xrightarrow[dessous]{dessus}` et `\xleftarrow` | $\xrightarrow[dessous]{dessus}$ et $\xlefttarrow[dessous]{dessus}$ |
 | flèche qui associe                     | `\mapsto`                     | $\mapsto$                     |
 | inclus dans / contient                 | `\subseteq` / `\supseteq`     | $\subseteq$ / $\supseteq$     |
 | vecteur                                | `\overrightarrow{AB}`         | $\overrightarrow{AB}$         |
