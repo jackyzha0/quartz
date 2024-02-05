@@ -163,9 +163,17 @@ a {
 
     & .sidebar.left {
       left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
+      flex-wrap:wrap;
+      flex-direction: row;
       @media all and (max-width: $fullPageWidth) {
         gap: 0;
         align-items: center;
+      }
+      .search{
+        width:100%;
+      }
+      .left-inline{
+        width:1%
       }
     }
 
@@ -177,6 +185,9 @@ a {
           flex: 1;
           min-width: 140px;
         }
+      }
+      @media only screen and (max-width: 800px) {
+        flex-direction: column;
       }
     }
   }
@@ -497,7 +508,8 @@ ol.overflow {
     bottom: 0;
     opacity: 1;
     transition: opacity 0.3s ease;
-    background: linear-gradient(transparent 0px, var(--light));
+    //correct bug with a trailing gradient on pages
+    // background: linear-gradient(transparent 0px, var(--light));
   }
 }
 

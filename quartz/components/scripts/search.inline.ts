@@ -96,9 +96,8 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
     })
     .join(" ")
 
-  return `${startIndex === 0 ? "" : "..."}${slice}${
-    endIndex === tokenizedText.length - 1 ? "" : "..."
-  }`
+  return `${startIndex === 0 ? "" : "..."}${slice}${endIndex === tokenizedText.length - 1 ? "" : "..."
+    }`
 }
 
 function highlightHTML(searchTerm: string, el: HTMLElement) {
@@ -306,9 +305,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     itemTile.classList.add("result-card")
     itemTile.id = slug
     itemTile.href = resolveUrl(slug).toString()
-    itemTile.innerHTML = `<h3>${title}</h3>${htmlTags}${
-      enablePreview && window.innerWidth > 600 ? "" : `<p>${content}</p>`
-    }`
+    itemTile.innerHTML = `<h3>${title}</h3>${htmlTags}${enablePreview && window.innerWidth > 600 ? "" : `<p>${content}</p>`
+      }`
     itemTile.addEventListener("click", (event) => {
       if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
       hideSearch()
@@ -338,10 +336,10 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
     removeAllChildren(results)
     if (finalResults.length === 0) {
-      results.innerHTML = `<a class="result-card no-match">
-          <h3>No results.</h3>
-          <p>Try another search term?</p>
-      </a>`
+      results.innerHTML = `<button class="result-card">
+                    <h3>Pas de résultats.</h3>
+                    <p>Essayez autre chose..?</p>
+                </button>`
     } else {
       results.append(...finalResults.map(resultToHTML))
     }

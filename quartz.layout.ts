@@ -7,8 +7,10 @@ export const sharedPageComponents: SharedLayout = {
   header: [],
   footer: Component.Footer({
     links: {
-      GitHub: "https://github.com/jackyzha0/quartz",
-      "Discord Community": "https://discord.gg/cRFFHYye7t",
+      "nf nf-fa-github_alt": "https://github.com/hzkonor/quartz",
+      "nf nf-md-mastodon": "https://biscuit.town/@hzk",
+      "nf nf-fa-envelope": "mailto:vrak@konor.fr",
+      "nf nf-oct-link": "https://me.konor.fr",
     },
   }),
 }
@@ -20,11 +22,13 @@ export const defaultContentPageLayout: PageLayout = {
     Component.ArticleTitle(),
     Component.ContentMeta(),
     Component.TagList(),
+    Component.MobileOnly(Component.TableOfContents()),
   ],
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
+    Component.Tags(),
     Component.Darkmode(),
     Component.DesktopOnly(Component.Explorer()),
   ],
@@ -32,6 +36,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
+    Component.MobileOnly(Component.Explorer()),
   ],
 }
 
@@ -42,6 +47,7 @@ export const defaultListPageLayout: PageLayout = {
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
+    Component.Tags(),
     Component.Darkmode(),
     Component.DesktopOnly(Component.Explorer()),
   ],

@@ -14,14 +14,14 @@ export default ((opts?: Options) => {
     return (
       <footer class={`${displayClass ?? ""}`}>
         <hr />
+
         <p>
-          {i18n(cfg.locale).components.footer.createdWith}{" "}
-          <a href="https://quartz.jzhao.xyz/">Quartz v{version}</a> © {year}
+          Fait avec 💛 par <a href="https://me.konor.fr">Conor</a> en utilisant <a href="https://quartz.jzhao.xyz/">Quartz v{version}</a>, © {year}
         </p>
         <ul>
           {Object.entries(links).map(([text, link]) => (
             <li>
-              <a href={link}>{text}</a>
+              <a href={link}><i class={text}></i></a>
             </li>
           ))}
         </ul>
