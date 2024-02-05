@@ -10,5 +10,6 @@ function NotFound({ cfg }: QuartzComponentProps) {
       </article>
     )
   }
+}
 
-  export default (() => NotFound) satisfies QuartzComponentConstructor
+export default (() => NotFound) satisfies QuartzComponentConstructor
