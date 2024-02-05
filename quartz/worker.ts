@@ -17,14 +17,14 @@ export async function parseFiles(argv: Argv, fps: FilePath[], allSlugs: FullSlug
     let merged: BuildCtx = {
       cfg: {
         configuration: config.configuration,
-        plugins: { 
+        plugins: {
           transformers: config.plugins.transformers.concat(community.transformers),
           filters: config.plugins.filters.concat(community.filters),
-          emitters: config.plugins.emitters.concat(community.emitters)
-        }
+          emitters: config.plugins.emitters.concat(community.emitters),
+        },
       },
       argv: argv,
-      allSlugs: allSlugs
+      allSlugs: allSlugs,
     }
 
     console.log(merged)

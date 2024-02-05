@@ -2,7 +2,7 @@ import { promises } from "fs"
 import path from "path"
 import esbuild from "esbuild"
 import chalk from "chalk"
-import replace from 'replace-in-file'
+import replace from "replace-in-file"
 import { sassPlugin } from "esbuild-sass-plugin"
 import fs from "fs"
 import { intro, outro, select, text } from "@clack/prompts"
@@ -560,36 +560,43 @@ export async function handlePlugin(argv) {
 
       // Clone into root plugins dir
       let dest = `plugins/${argv.url.match(/\/(\S+)$/)[1]}`
-      gitSubmoduleAdd(argv.url, dest) 
+      gitSubmoduleAdd(argv.url, dest)
 
       // What would be inspection and codegen if I didn't get lazy
       var config = JSON.parse(fs.readFileSync(`${dest}/plugin.json`))
       const plugin_config = `Plugin.${config.name}(${config.default_config_ts})`
-      
+
       // Add generated config to quartz.plugins.ts
-      const new_plugin =`
+      const new_plugin = `
     {
       url: \'${argv.url}\',
       enabled: true,
       cfg: ${plugin_config},
     },`
       const add_to_community_plugins = {
-        files: 'quartz.plugins.ts',
+        files: "quartz.plugins.ts",
         from: /(?:\r\n|\r|\n)[\t\s]*\],[\s\S]*$/,
-        to: `${new_plugin}\n  ],\n}\n\nexport default communityPlugins`
+        to: `${new_plugin}\n  ],\n}\n\nexport default communityPlugins`,
       }
 
       // Filesystem modifications now that the config is done
       let plugin_path = `quartz/plugins/${config.type}s`
       await replace(add_to_community_plugins)
-      fs.appendFile(`${plugin_path}/index.ts`, 
-                    `export { ${config.name} } from \'./${config.head.match(/(.*)\.ts/)[1]}\'`, 
-                    (e) => { if(e) throw e })
-      fs.symlink(`../../../${dest}/${config.head}`, // Symlink is 3 levels down from the root of the repo
-                 `${plugin_path}/${config.head}`,
-                 (e) => { if(e && e.code !== 'EEXIST') throw e })
-    }
-    else {
+      fs.appendFile(
+        `${plugin_path}/index.ts`,
+        `export { ${config.name} } from \'./${config.head.match(/(.*)\.ts/)[1]}\'`,
+        (e) => {
+          if (e) throw e
+        },
+      )
+      fs.symlink(
+        `../../../${dest}/${config.head}`, // Symlink is 3 levels down from the root of the repo
+        `${plugin_path}/${config.head}`,
+        (e) => {
+          if (e && e.code !== "EEXIST") throw e
+        },
+      )
+    } else {
       throw new Error(chalk.red, `Error: no URL given matching https or shorthand.\n\t${usage}`)
     }
   }

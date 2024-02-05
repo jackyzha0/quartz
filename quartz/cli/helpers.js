@@ -61,17 +61,19 @@ export function gitSubmoduleAdd(url, dest) {
    */
 
   const flags = []
-  var out, validation = validatePluginURL(url)
-  if (validation == 1) { 
+  var out,
+    validation = validatePluginURL(url)
+  if (validation == 1) {
     // TODO broken bc of submodule auth, figure out how to make work with both ssh and gh-auth
     out = spawnSync("git", ["submodule", "add", ...flags, url, dest], { stdio: "inherit" })
-  }
-  else if (validation == 2) {
+  } else if (validation == 2) {
     // Ex: "ocdkirby/remark42"
 
     // Use relative path to avoid an authentication req
     // Assumes that Quartz is hosted on GitHub too
-    out = spawnSync("git", ["submodule", "add", ...flags, `../../${url}`, dest], { stdio: "inherit" })
+    out = spawnSync("git", ["submodule", "add", ...flags, `../../${url}`, dest], {
+      stdio: "inherit",
+    })
   } else {
     throw new Error(chalk.red(`Error cloning repo: ${url} is not a valid link or shorthand`))
   }

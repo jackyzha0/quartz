@@ -40,16 +40,16 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   let community = pluginConfigurations(communityPlugins)
 
   const ctx: BuildCtx = {
-      cfg: {
-        configuration: config.configuration,
-        plugins: { 
-          transformers: config.plugins.transformers.concat(community.transformers),
-          filters: config.plugins.filters.concat(community.filters),
-          emitters: config.plugins.emitters.concat(community.emitters)
-        }
+    cfg: {
+      configuration: config.configuration,
+      plugins: {
+        transformers: config.plugins.transformers.concat(community.transformers),
+        filters: config.plugins.filters.concat(community.filters),
+        emitters: config.plugins.emitters.concat(community.emitters),
       },
-      argv: argv,
-      allSlugs: []
+    },
+    argv: argv,
+    allSlugs: [],
   }
 
   const perf = new PerfTimer()

@@ -308,6 +308,7 @@ A plugin for use with quartz-plugin needs two things: a `plugin_name.ts` file an
 The `plugin_name.ts` file will export a type that implements `QuartzTransformerPlugin`, `QuartzEmitterPlugin`, or `QuartzFilterPlugin` like explained above.
 
 `plugin.json` is the bridge between `plugin_name.ts` and the rest of Quartz. Here's an example `plugin.json` file:
+
 ```json
 {
   "name": "PluginName",
@@ -319,18 +320,21 @@ The `plugin_name.ts` file will export a type that implements `QuartzTransformerP
 ```
 
 ### JSON reference
-| Key                              | Value                                                                                                                  |
-|----------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| `name`                           | The type that your plugin file exports. It implements one of the `Quartz{Transformer,Filter,Emitter}Plugin<T>` types.  |
-| `type`                           | Whether your plugin is a `transformer`, `filter`, or `emitter`. determines what directory the plugin exists in.        |
-| `version`                        | Your own versioning scheme. For humans, not for quartz-plugin.                                                         |
-| `head`                           | The file your plugin type `name` is exported from.                                                                     |
-| <nobr>`default_config_ts`</nobr> | a string containing a `Partial<YourOptionType>` that you'd like to be the default config of your plugin.               |
+
+| Key                              | Value                                                                                                                 |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `name`                           | The type that your plugin file exports. It implements one of the `Quartz{Transformer,Filter,Emitter}Plugin<T>` types. |
+| `type`                           | Whether your plugin is a `transformer`, `filter`, or `emitter`. determines what directory the plugin exists in.       |
+| `version`                        | Your own versioning scheme. For humans, not for quartz-plugin.                                                        |
+| `head`                           | The file your plugin type `name` is exported from.                                                                    |
+| <nobr>`default_config_ts`</nobr> | a string containing a `Partial<YourOptionType>` that you'd like to be the default config of your plugin.              |
 
 ### Making it public
+
 Host a repository containing your `head` file and `plugin.json` on your service of choice.
 
 ### (Optional) Best Practices
+
 - `default_config_ts`: If you mirror how the system plugins are architected, this could look something like your `defaultOptions` constant.
 - Host your repository on GitHub to allow users to make use of the shorthand `author/name`.
 - Title your repository with the suffix `.quartz`.
