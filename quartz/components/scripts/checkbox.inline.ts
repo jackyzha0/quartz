@@ -14,12 +14,6 @@ document.addEventListener("nav", () => {
       localStorage.setItem(elId, newCheckboxState)
     }
 
-    const changeState = (e: MediaQueryListEvent) => {
-      const newCheckboxState = e.matches ? "true" : "false"
-      localStorage.setItem(elId, newCheckboxState)
-      el.checked = e.matches
-    }
-
     el.addEventListener("change", switchState)
     window.addCleanup(() => el.removeEventListener("change", switchState))
     if (localStorage.getItem(elId) === "true") {
