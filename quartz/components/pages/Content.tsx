@@ -1,11 +1,11 @@
+import { htmlToJsx } from "../../util/jsx"
 import { QuartzComponentConstructor, QuartzComponentProps } from "../types"
-import { Fragment, jsx, jsxs } from "preact/jsx-runtime"
-import { toJsxRuntime } from "hast-util-to-jsx-runtime"
 
-function Content({ tree }: QuartzComponentProps) {
-  // @ts-ignore (preact makes it angry)
-  const content = toJsxRuntime(tree, { Fragment, jsx, jsxs, elementAttributeNameCase: "html" })
-  return <article class="popover-hint">{content}</article>
+function Content({ fileData, tree }: QuartzComponentProps) {
+  const content = htmlToJsx(fileData.filePath!, tree)
+  const classes: string[] = fileData.frontmatter?.cssclasses ?? []
+  const classString = ["popover-hint", ...classes].join(" ")
+  return <article class={classString}>{content}</article>
 }
 
 export default (() => Content) satisfies QuartzComponentConstructor

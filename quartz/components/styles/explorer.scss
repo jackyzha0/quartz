@@ -1,3 +1,5 @@
+@use "../../styles/variables.scss" as *;
+
 button#explorer {
   all: unset;
   background-color: transparent;
@@ -85,7 +87,7 @@ svg {
     color: var(--secondary);
     font-family: var(--headerFont);
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: $boldWeight;
     line-height: 1.5rem;
     display: inline-block;
   }
@@ -106,11 +108,11 @@ svg {
     align-items: center;
     font-family: var(--headerFont);
 
-    & p {
+    & span {
       font-size: 0.95rem;
       display: inline-block;
       color: var(--secondary);
-      font-weight: 600;
+      font-weight: $boldWeight;
       margin: 0;
       line-height: 1.5rem;
       pointer-events: none;
@@ -126,7 +128,7 @@ svg {
   backface-visibility: visible;
 }
 
-div:has(> .folder-outer:not(.open)) > .folder-container > svg {
+li:has(> .folder-outer:not(.open)) > .folder-container > svg {
   transform: rotate(-90deg);
 }
 
