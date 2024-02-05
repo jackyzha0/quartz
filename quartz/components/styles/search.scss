@@ -59,6 +59,10 @@
       margin-left: auto;
       margin-right: auto;
 
+      @media all and (max-width: $fullPageWidth) {
+        width: 90%;
+      }
+
       & > * {
         width: 100%;
         border-radius: 7px;
