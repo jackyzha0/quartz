@@ -33,7 +33,7 @@ export default {
     },
     search: {
       title: "Recherche",
-      searchBarPlaceholder: "Rechercher quelque chose"
+      searchBarPlaceholder: "Rechercher quelque chose",
     },
     tableOfContents: {
       title: "Table des Matières",

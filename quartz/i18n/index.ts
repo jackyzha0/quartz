@@ -1,6 +1,6 @@
 import { Translation } from "./locales/definition"
-import en from "./locales/en"
-import fr from "./locales/fr"
+import en from "./locales/en-US"
+import fr from "./locales/fr-FR"
 
 export const TRANSLATIONS = {
   "en-US": en,

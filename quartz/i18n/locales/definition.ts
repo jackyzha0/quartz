@@ -32,8 +32,8 @@ export interface Translation {
       linkToOriginal: string
     }
     search: {
-      title: string,
-      searchBarPlaceholder: string,
+      title: string
+      searchBarPlaceholder: string
     }
     tableOfContents: {
       title: string
