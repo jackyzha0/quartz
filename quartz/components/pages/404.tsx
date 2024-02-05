@@ -5,7 +5,7 @@ function NotFound({ cfg }: QuartzComponentProps) {
   return (
     <article class="popover-hint">
       <h1>404</h1>
-      <p>{i18n(cfg.locale, "pages.404.notFoundMessage")}</p>
+      <p>{i18n(cfg.locale).pages.error.notFound}</p>
     </article>
   )
 }

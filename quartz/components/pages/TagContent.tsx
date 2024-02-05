@@ -43,9 +43,7 @@ function TagContent(props: QuartzComponentProps) {
         <article>
           <p>{content}</p>
         </article>
-        <p>
-          {i18n(cfg.locale, "pages.tagContent.totalTags", {count: })}.
-        </p>
+        <p>{i18n(cfg.locale).pages.tagContent.totalTags({ count: tags.length })}</p>
         <div>
           {tags.map((tag) => {
             const pages = tagItemMap.get(tag)!
@@ -66,10 +64,12 @@ function TagContent(props: QuartzComponentProps) {
                 {content && <p>{content}</p>}
                 <div class="page-listing">
                   <p>
-                    {pluralize(pages.length, i18n(cfg.locale, "common.item"))}{" "}
-                    {i18n(cfg.locale, "tagContent.withThisTag")}.{" "}
-                    {pages.length > numPages &&
-                      `${i18n(cfg.locale, "tagContent.showingFirst")} ${numPages}.`}
+                    {i18n(cfg.locale).pages.tagContent.itemsUnderTag({ count: pages.length })}
+                    {pages.length > numPages && (
+                      <span>
+                        {i18n(cfg.locale).pages.tagContent.showingFirst({ count: numPages })}
+                      </span>
+                    )}
                   </p>
                   <PageList limit={numPages} {...listProps} />
                 </div>
@@ -90,10 +90,7 @@ function TagContent(props: QuartzComponentProps) {
       <div class={classes}>
         <article>{content}</article>
         <div class="page-listing">
-          <p>
-            {pluralize(pages.length, i18n(cfg.locale, "common.item"))}{" "}
-            {i18n(cfg.locale, "tagContent.withThisTag")}.
-          </p>
+          <p>{i18n(cfg.locale).pages.tagContent.itemsUnderTag({ count: pages.length })}</p>
           <div>
             <PageList {...listProps} />
           </div>
