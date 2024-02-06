@@ -600,17 +600,22 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
       if (opts.mermaid) {
         js.push({
           script: `
-          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
-          const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
-          mermaid.initialize({
-            startOnLoad: false,
-            securityLevel: 'loose',
-            theme: darkMode ? 'dark' : 'default'
-          });
+          let mermaidImport = undefined
           document.addEventListener('nav', async () => {
-            await mermaid.run({
-              querySelector: '.mermaid'
-            })
+            if (document.querySelector("code.mermaid")) {
+              mermaidImport ||= await import('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs')
+              const mermaid = mermaidImport.default
+              const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
+              mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                theme: darkMode ? 'dark' : 'default'
+              })
+
+              await mermaid.run({
+                querySelector: '.mermaid'
+              })
+            }
           });
           `,
           loadTime: "afterDOMReady",
