@@ -183,7 +183,6 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
       if (fontOrigin === "local") {
         // let the user do it themselves in css
       } else if (fontOrigin === "googleFonts") {
-        resources.css.push(googleFontHref(ctx.cfg.configuration.theme))
         let match
         const bufferPromise: Promise<string>[] = []
         const fontMapping: any[] = []
