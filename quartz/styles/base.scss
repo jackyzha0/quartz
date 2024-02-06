@@ -261,7 +261,8 @@ thead {
 
   article > & > a {
     color: var(--dark);
-    &.internal {
+
+    &[data-icon] {
       background-color: transparent;
     }
   }
