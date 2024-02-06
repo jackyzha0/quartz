@@ -104,7 +104,9 @@ export function renderPage(
                 type: "element",
                 tagName: "a",
                 properties: { href: inner.properties?.href, class: ["internal"] },
-                children: [{ type: "text", value: `Link to original` }],
+                children: [
+                  { type: "text", value: i18n(cfg.locale).components.transcludes.linkToOriginal },
+                ],
               },
             ]
           }
