@@ -1,4 +1,4 @@
-import { FilePath, FullSlug } from "../../util/path"
+import { FilePath, FullSlug, SimpleSlug, joinSegments } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 
 // @ts-ignore
@@ -172,58 +172,113 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
       return []
     },
     async emit(ctx, _content, resources): Promise<FilePath[]> {
+      const promises: Promise<FilePath>[] = []
       // component specific scripts and styles
       const componentResources = getComponentResources(ctx)
       // important that this goes *after* component scripts
       // as the "nav" event gets triggered here and we should make sure
       // that everyone else had the chance to register a listener for it
 
-      if (fontOrigin === "googleFonts") {
-        resources.css.push(googleFontHref(ctx.cfg.configuration.theme))
-      } else if (fontOrigin === "local") {
+      let googleFonts = null
+      if (fontOrigin === "local") {
         // let the user do it themselves in css
+      } else if (fontOrigin === "googleFonts") {
+        resources.css.push(googleFontHref(ctx.cfg.configuration.theme))
+        let match
+        const bufferPromise: Promise<string>[] = []
+        const fontMapping: any[] = []
+
+        // capture font-family, and the url
+        const regex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.ttf)\)/g
+
+        googleFonts = await fetch(googleFontHref(ctx.cfg.configuration.theme)).then((res) =>
+          res.text(),
+        )
+
+        while ((match = regex.exec(googleFonts)) !== null) {
+          // match[0] is the `url(path)`, match[1] is the `path`
+          const url = match[1]
+          // the static name of this file.
+          const filename = url.split("/").pop()!.split(".")[0]
+
+          bufferPromise.push(
+            fetch(url)
+              .then((res) => {
+                if (!res.ok) {
+                  throw new Error(`Failed to fetch font`)
+                }
+                return res.arrayBuffer()
+              })
+              .then((buf) => Buffer.from(buf).toString()),
+          )
+          fontMapping.push({ url, filename })
+        }
+
+        const fontBuffers = await Promise.all(bufferPromise)
+
+        for (const [index, buf] of fontBuffers.entries()) {
+          const { url, filename } = fontMapping[index]
+          promises.push(
+            write({
+              ctx,
+              slug: joinSegments("fonts", filename) as FullSlug,
+              ext: ".ttf",
+              content: buf,
+            }),
+          )
+          googleFonts = googleFonts.replace(url, `/fonts/${filename}.ttf`)
+        }
       }
 
       addGlobalPageResources(ctx, resources, componentResources)
 
-      const stylesheet = joinStyles(ctx.cfg.configuration.theme, ...componentResources.css, styles)
+      const stylesheet = joinStyles(
+        ctx.cfg.configuration.theme,
+        ...componentResources.css,
+        googleFonts ?? "",
+        styles,
+      )
       const [prescript, postscript] = await Promise.all([
         joinScripts(componentResources.beforeDOMLoaded),
         joinScripts(componentResources.afterDOMLoaded),
       ])
 
-      const fps = await Promise.all([
-        write({
-          ctx,
-          slug: "index" as FullSlug,
-          ext: ".css",
-          content: transform({
-            filename: "index.css",
-            code: Buffer.from(stylesheet),
-            minify: true,
-            targets: {
-              safari: (15 << 16) | (6 << 8), // 15.6
-              ios_saf: (15 << 16) | (6 << 8), // 15.6
-              edge: 115 << 16,
-              firefox: 102 << 16,
-              chrome: 109 << 16,
-            },
-            include: Features.MediaQueries,
-          }).code.toString(),
-        }),
-        write({
-          ctx,
-          slug: "prescript" as FullSlug,
-          ext: ".js",
-          content: prescript,
-        }),
-        write({
-          ctx,
-          slug: "postscript" as FullSlug,
-          ext: ".js",
-          content: postscript,
-        }),
-      ])
+      promises.push(
+        ...[
+          write({
+            ctx,
+            slug: "index" as FullSlug,
+            ext: ".css",
+            content: transform({
+              filename: "index.css",
+              code: Buffer.from(stylesheet),
+              minify: true,
+              targets: {
+                safari: (15 << 16) | (6 << 8), // 15.6
+                ios_saf: (15 << 16) | (6 << 8), // 15.6
+                edge: 115 << 16,
+                firefox: 102 << 16,
+                chrome: 109 << 16,
+              },
+              include: Features.MediaQueries,
+            }).code.toString(),
+          }),
+          write({
+            ctx,
+            slug: "prescript" as FullSlug,
+            ext: ".js",
+            content: prescript,
+          }),
+          write({
+            ctx,
+            slug: "postscript" as FullSlug,
+            ext: ".js",
+            content: postscript,
+          }),
+        ],
+      )
+
+      const fps = await Promise.all(promises)
       return fps
     },
   }
