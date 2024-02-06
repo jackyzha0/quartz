@@ -159,6 +159,10 @@
             margin: 0 auto;
             width: min($pageWidth, 100%);
           }
+
+          & [data-icon] {
+            background-color: transparent;
+          }
         }
 
         & > #results-container {
