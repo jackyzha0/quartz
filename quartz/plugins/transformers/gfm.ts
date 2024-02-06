@@ -36,7 +36,6 @@ export const GitHubFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | 
                 ariaHidden: true,
                 tabIndex: -1,
                 "data-no-popover": true,
-                "data-icon": true,
               },
               content: {
                 type: "element",

@@ -160,7 +160,7 @@
             width: min($pageWidth, 100%);
           }
 
-          & [data-icon] {
+          a[role="anchor"] {
             background-color: transparent;
           }
         }
