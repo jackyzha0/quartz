@@ -7,7 +7,7 @@ type WriteOptions = {
   ctx: BuildCtx
   slug: FullSlug
   ext: `.${string}` | ""
-  content: string
+  content: string | Buffer
 }
 
 export const write = async ({ ctx, slug, ext, content }: WriteOptions): Promise<FilePath> => {

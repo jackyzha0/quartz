@@ -164,6 +164,13 @@ const defaultOptions: Options = {
   fontOrigin: "googleFonts",
 }
 
+interface FontContent {
+  url: string
+  filename: string
+  ext: string
+  buf: Buffer
+}
+
 export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<Options>) => {
   const { fontOrigin } = { ...defaultOptions, ...opts }
   return {
@@ -184,10 +191,10 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
         // let the user do it themselves in css
       } else if (fontOrigin === "googleFonts") {
         let match
-        const bufferPromise: Promise<string>[] = []
+        const bufferPromise: Promise<FontContent>[] = []
         const fontMapping: any[] = []
 
-        const regex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.wolff2)\)/g
+        const regex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
 
         googleFonts = await fetch(googleFontHref(ctx.cfg.configuration.theme)).then((res) =>
           res.text(),
@@ -197,7 +204,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
           // match[0] is the `url(path)`, match[1] is the `path`
           const url = match[1]
           // the static name of this file.
-          const filename = url.split("/").pop()!.split(".")[0]
+          const [filename, ext] = url.split("/").pop()!.split(".")
 
           bufferPromise.push(
             fetch(url)
@@ -207,20 +214,19 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
                 }
                 return res.arrayBuffer()
               })
-              .then((buf) => Buffer.from(buf).toString()),
+              .then((buf) => ({ url, filename, ext, buf: Buffer.from(buf) })),
           )
-          fontMapping.push({ url, filename })
         }
 
         const fontBuffers = await Promise.all(bufferPromise)
 
-        for (const [index, buf] of fontBuffers.entries()) {
-          const { url, filename } = fontMapping[index]
+        for (const fontBuffer of fontBuffers) {
+          const { url, filename, ext, buf } = fontBuffer
           promises.push(
             write({
               ctx,
               slug: joinSegments("fonts", filename) as FullSlug,
-              ext: ".ttf",
+              ext: `.${ext}`,
               content: buf,
             }),
           )
