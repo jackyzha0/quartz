@@ -262,7 +262,7 @@ thead {
   article > & > a {
     color: var(--dark);
 
-    &[data-icon] {
+    &[role="anchor"] {
       background-color: transparent;
     }
   }
