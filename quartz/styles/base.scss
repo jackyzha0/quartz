@@ -259,12 +259,9 @@ thead {
   font-weight: revert;
   margin-bottom: 0;
 
-  article > & > a {
+  article > & > a[role="anchor"] {
     color: var(--dark);
-
-    &[role="anchor"] {
-      background-color: transparent;
-    }
+    background-color: transparent;
   }
 }
 
