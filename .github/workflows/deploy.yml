@@ -1,20 +1,20 @@
 name: Build and Deploy to GitHub Pages
- 
+
 on:
   workflow_dispatch:
   # push:
   #   branches:
   #     - main
- 
+
 permissions:
   contents: read
   pages: write
   id-token: write
- 
+
 concurrency:
   group: "pages"
   cancel-in-progress: false
- 
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           path: public
- 
+
   deploy:
     needs: build
     environment:

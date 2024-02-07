@@ -21,18 +21,18 @@ Non-inclusive list of books I've read.
 
 ### Stephanie Plum Series
 
-1. _[One for the Money](https://en.wikipedia.org/wiki/One_for_the_Money_(novel) "One for the Money (novel)")_ (1994)
+1. _[One for the Money](https://en.wikipedia.org/wiki/One_for_the_Money_(novel) "One for the Money (novel)")\_ (1994)
 2. _[Two for the Dough](https://en.wikipedia.org/wiki/Two_for_the_Dough "Two for the Dough")_ (1996)
 3. _[Three to Get Deadly](https://en.wikipedia.org/wiki/Three_to_Get_Deadly "Three to Get Deadly")_ (1997)
-4. _[Four to Score](https://en.wikipedia.org/wiki/Four_to_Score_(novel) "Four to Score (novel)")_ (1998)
-5. _[High Five](https://en.wikipedia.org/wiki/High_Five_(novel))_ (1999)
+4. _[Four to Score](https://en.wikipedia.org/wiki/Four_to_Score_(novel) "Four to Score (novel)")\_ (1998)
+5. _[High Five](https://en.wikipedia.org/wiki/High_Five_(novel))\_ (1999)
 6. _[Hot Six](https://en.wikipedia.org/wiki/Hot_Six "Hot Six")_ (2000)
-7. _[Seven Up](https://en.wikipedia.org/wiki/Seven_Up_(novel) "Seven Up (novel)")_ (2001)
-8. _[Hard Eight](https://en.wikipedia.org/wiki/Hard_Eight_(novel) "Hard Eight (novel)")_ (2002)
-9. _[To the Nines](https://en.wikipedia.org/wiki/To_the_Nines_(novel) "To the Nines (novel)")_ (2003)
-10. _[Ten Big Ones](https://en.wikipedia.org/wiki/Ten_Big_Ones_(novel) "Ten Big Ones (novel)")_ (2004)
-11. _[Eleven on Top](https://en.wikipedia.org/wiki/Eleven_on_Top_(novel) "Eleven on Top (novel)")_ (2005)
-12. _[Twelve Sharp](https://en.wikipedia.org/wiki/Twelve_Sharp_(novel) "Twelve Sharp (novel)")_ (2006)
+7. _[Seven Up](https://en.wikipedia.org/wiki/Seven_Up_(novel) "Seven Up (novel)")\_ (2001)
+8. _[Hard Eight](https://en.wikipedia.org/wiki/Hard_Eight_(novel) "Hard Eight (novel)")\_ (2002)
+9. _[To the Nines](https://en.wikipedia.org/wiki/To_the_Nines_(novel) "To the Nines (novel)")\_ (2003)
+10. _[Ten Big Ones](https://en.wikipedia.org/wiki/Ten_Big_Ones_(novel) "Ten Big Ones (novel)")\_ (2004)
+11. _[Eleven on Top](https://en.wikipedia.org/wiki/Eleven_on_Top_(novel) "Eleven on Top (novel)")\_ (2005)
+12. _[Twelve Sharp](https://en.wikipedia.org/wiki/Twelve_Sharp_(novel) "Twelve Sharp (novel)")\_ (2006)
 13. _[Lean Mean Thirteen](https://en.wikipedia.org/wiki/Lean_Mean_Thirteen "Lean Mean Thirteen")_ (2007)
 14. _[Fearless Fourteen](https://en.wikipedia.org/wiki/Fearless_Fourteen "Fearless Fourteen")_ (2008)
 15. _[Finger Lickin' Fifteen](https://en.wikipedia.org/wiki/Finger_Lickin%27_Fifteen "Finger Lickin' Fifteen")_ (2009)
@@ -54,7 +54,7 @@ Non-inclusive list of books I've read.
 
 ## Jerry Spinelli
 
-1. [Stargirl](https://en.wikipedia.org/wiki/Stargirl_(novel))
+1. [Stargirl](<https://en.wikipedia.org/wiki/Stargirl_(novel)>)
 2. [Love, Stargirl](https://en.wikipedia.org/wiki/Love,_Stargirl)
 
 ## Robert Pinsky

@@ -7,7 +7,6 @@ tags:
   - archived
 ---
 
-
 > This page was originally published on July 28, 2023. Its main goal was to aid in selecting SSD, and NVMe drives during a Micro Center sale.
 
 ## Storage Technologies
@@ -45,8 +44,8 @@ Let's break it down:
 ### Storage
 
 - 1 point per GB
-	- Less accurate the bigger the SSD
-	- 3 TB and higher drives scale exp/log instead of linearly.
+  - Less accurate the bigger the SSD
+  - 3 TB and higher drives scale exp/log instead of linearly.
 
 ### Price
 
@@ -65,7 +64,7 @@ Selected $0.10 as the baseline after averaging some calculations.
 ## NVMe M.2 2280 M Key
 
 | Brand        | Storage | Price | Notes      |
-| ------------ |:-------:|:-----:| ---------- |
+| ------------ | :-----: | :---: | ---------- |
 | 970 EVO Plus | 500 GB  |  $35  | MLC V-NAND |
 | 970 EVO Plus |  2 TB   | $100  | MLC V-NAND |
 | 970 EVO Plus |  1 TB   |  $50  | V-NAND     |
@@ -84,7 +83,7 @@ Selected $0.10 as the baseline after averaging some calculations.
 ## SSD
 
 | Brand        | Storage | Price | Notes      |
-| ------------ |:-------:|:-----:| ---------- |
+| ------------ | :-----: | :---: | ---------- |
 | Inland       |  1 TB   |  $50  | TLC        |
 | Inland       | 512 GB  |  $25  | TLC        |
 | Platinum     |  2 TB   |  $80  | TLC        |
@@ -100,38 +99,40 @@ Selected $0.10 as the baseline after averaging some calculations.
 
 ### NVMe
 
-| Description | $ / GB | per $0.01 | per GB | Coef | Score |
-| ------------------------ |:------:|:-------------:|:--------:|:-----------:|:-----:|
-| 970 500 GB $35 MLC       | 0.070  |     3.00      |   500    |    1.25     |  629  |
-| 970 2 TB $100 MLC | 0.050 | 5.00 | 2000 | 1.25 | 2506 |
-| 970 1 TB $100 MLC        | 0.103  |     0.00      |   1000   |    1.25     | 1250  |
-| 980 1 TB $50 V | 0.050 | 5.00 | 1000 | 1 | 1005 |
-| 980P 2 TB $120 MLC       | 0.060  |     4.00      |   2000   |    1.25     | 2505  |
-| 980P 1 TB $70 V | 0.070 | 3.00 | 1000 | 1 | 1003 |
-| 990P 1 TB $80 MLC        | 0.080  |     2.00      |   1000   |    1.25     | 1253  |
-| Crucial 1 TB $40 3D | 0.040 | 6.00 | 1000 | 0.5 | 503 |
-| Inland 500 GB $23 QLC    | 0.046  |     5.40      |   500    |    0.75     |  379  |
-| Inland 1 TB $40 QLC | 0.040 | 6.00 | 1000 | 0.75 | 755 |
-| Inland 2 TB $70 QLC      | 0.035  |     6.50      |   2000   |    0.75     | 1505  |
-| Performance 1 TB $55 TLC | 0.055 | 4.50 | 1000 | 1 | 1005 |
-| Prime 500 GB $30 TLC     | 0.060  |     4.00      |   500    |      1      |  504  |
-| Prime 1 TB $50 TLC | 0.050 | 5.00 | 1000 | 1 | 1005 |
+| Description              | $ / GB | per $0.01 | per GB | Coef | Score |
+| ------------------------ | :----: | :-------: | :----: | :--: | :---: |
+| 970 500 GB $35 MLC       | 0.070  |   3.00    |  500   | 1.25 |  629  |
+| 970 2 TB $100 MLC        | 0.050  |   5.00    |  2000  | 1.25 | 2506  |
+| 970 1 TB $100 MLC        | 0.103  |   0.00    |  1000  | 1.25 | 1250  |
+| 980 1 TB $50 V           | 0.050  |   5.00    |  1000  |  1   | 1005  |
+| 980P 2 TB $120 MLC       | 0.060  |   4.00    |  2000  | 1.25 | 2505  |
+| 980P 1 TB $70 V          | 0.070  |   3.00    |  1000  |  1   | 1003  |
+| 990P 1 TB $80 MLC        | 0.080  |   2.00    |  1000  | 1.25 | 1253  |
+| Crucial 1 TB $40 3D      | 0.040  |   6.00    |  1000  | 0.5  |  503  |
+| Inland 500 GB $23 QLC    | 0.046  |   5.40    |  500   | 0.75 |  379  |
+| Inland 1 TB $40 QLC      | 0.040  |   6.00    |  1000  | 0.75 |  755  |
+| Inland 2 TB $70 QLC      | 0.035  |   6.50    |  2000  | 0.75 | 1505  |
+| Performance 1 TB $55 TLC | 0.055  |   4.50    |  1000  |  1   | 1005  |
+| Prime 500 GB $30 TLC     | 0.060  |   4.00    |  500   |  1   |  504  |
+| Prime 1 TB $50 TLC       | 0.050  |   5.00    |  1000  |  1   | 1005  |
+
 \*_Higher is better._
 
 ### SSD
 
-| Description | $ / GB | 1 per cent | 1 per GB | Coefficient | Score |
-| ------------------------- |:------:|:----------:|:--------:|:-----------:|:-----:|
-| Inland 1TB $50 TLC | 0.050 | 5 | 1000 | 1 | 1005 |
+| Description               | $ / GB | 1 per cent | 1 per GB | Coefficient | Score |
+| ------------------------- | :----: | :--------: | :------: | :---------: | :---: |
+| Inland 1TB $50 TLC        | 0.050  |     5      |   1000   |      1      | 1005  |
 | Inland 512GB $25 TLC      | 0.049  |    5.1     |   512    |      1      |  517  |
-| Platinum 2TB $80 TLC | 0.040 | 6 | 2000 | 1 | 2006 |
+| Platinum 2TB $80 TLC      | 0.040  |     6      |   2000   |      1      | 2006  |
 | Platinum 1TB $43 TLC      | 0.043  |    5.7     |   1000   |      1      | 1006  |
-| Professional 256GB $20 3D | 0.078 | 2.2 | 256 | 0.5 | 129 |
+| Professional 256GB $20 3D | 0.078  |    2.2     |   256    |     0.5     |  129  |
 | Professional 125GB $15 3D | 0.120  |     0      |   125    |     0.5     |  63   |
-| 870 EVO 1TB $50 MLC | 0.050 | 5 | 1000 | 1.25 | 1256 |
+| 870 EVO 1TB $50 MLC       | 0.050  |     5      |   1000   |    1.25     | 1256  |
 | 870 EVO 4TB $220 MLC      | 0.055  |    4.5     |   4000   |    1.25     | 5006  |
-| 870 EVO 500GB $40 MLC | 0.020 | 8 | 500 | 1.25 | 635 |
-| 870 QVO 1TB $70 QLC | 0.070 | 3 | 1000 | 0.75 | 753 |
+| 870 EVO 500GB $40 MLC     | 0.020  |     8      |   500    |    1.25     |  635  |
+| 870 QVO 1TB $70 QLC       | 0.070  |     3      |   1000   |    0.75     |  753  |
+
 \*_Higher is better._
 
 ## Conclusions

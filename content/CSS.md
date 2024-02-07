@@ -33,9 +33,9 @@ All _mobile-first-designs_ media queries and 1 _desktop-first-design_ media quer
 ```scss
 @mixin screen-min($min) {
   @media (min-width: $min) {
-    @content
+    @content;
   }
-};
+}
 ```
 
 ### Anything Below a Certain Screen Width (_desktop-first-design_)
@@ -43,19 +43,19 @@ All _mobile-first-designs_ media queries and 1 _desktop-first-design_ media quer
 ```scss
 @mixin screen-max($max) {
   @media (max-width: $max - 1) {
-    @content
+    @content;
   }
-};
+}
 ```
 
 ### Anything In-between Two Values (_hybrid_)
 
 ```scss
-@mixin screen-minmax($min, $max){
-  @media (min-width: $min) and (max-width: $max - 1){
-    @content
+@mixin screen-minmax($min, $max) {
+  @media (min-width: $min) and (max-width: $max - 1) {
+    @content;
   }
-};
+}
 ```
 
 ```scss
@@ -67,10 +67,20 @@ All _mobile-first-designs_ media queries and 1 _desktop-first-design_ media quer
 .container {
   margin: 0 auto;
   width: 100%;
-  @include screen-min(768px){max-width: 750px;}
-  @include screen-min(992px){max-width: 970px;}
-  @include screen-min(1200px){max-width: 1170px;}
-  @include screen-min(1400px){max-width: 1370px;}
-  @include screen-min(1600px){max-width: 1570px;}
+  @include screen-min(768px) {
+    max-width: 750px;
+  }
+  @include screen-min(992px) {
+    max-width: 970px;
+  }
+  @include screen-min(1200px) {
+    max-width: 1170px;
+  }
+  @include screen-min(1400px) {
+    max-width: 1370px;
+  }
+  @include screen-min(1600px) {
+    max-width: 1570px;
+  }
 }
 ```

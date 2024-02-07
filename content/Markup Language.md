@@ -4,7 +4,6 @@ compartir: true
 updated: 2023-12-12
 ---
 
-
 A markup language is a system for annotating text to define the structure, formatting, and presentation of documents on the internet. It uses tags or codes to indicate the purpose or function of different elements within the document, such as headings, paragraphs, links, and images. Markup languages, like HTML (Hypertext Markup Language), provide a standardized way to structure and display content across various platforms and web browsers.
 
 Examples of markup languages include:

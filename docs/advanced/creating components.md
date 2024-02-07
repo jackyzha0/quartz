@@ -157,7 +157,7 @@ document.addEventListener("nav", () => {
   // e.g. attach event listeners
   const toggleSwitch = document.querySelector("#switch") as HTMLInputElement
   toggleSwitch.removeEventListener("change", switchTheme)
-  toggleSwitch.addEventListener("change", switchTheme, {passive: true})
+  toggleSwitch.addEventListener("change", switchTheme, { passive: true })
 })
 ```
 

@@ -7,7 +7,6 @@ compartir: true
 updated: 2023-12-04
 ---
 
-
 > [!EXAMPLE] Examples
 >
 > Aliases: example

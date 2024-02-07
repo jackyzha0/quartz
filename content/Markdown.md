@@ -15,7 +15,7 @@ Markdown is a lightweight [[Markup Language|Markup Language]] that you can use t
 
 ## Markdown Flavors
 
- There are several popular flavors of Markdown that add extra features and extensions to the original syntax. Two of the most popular ones include:
+There are several popular flavors of Markdown that add extra features and extensions to the original syntax. Two of the most popular ones include:
 
 ### CommonMark
 

@@ -9,6 +9,7 @@ const config: QuartzConfig = {
     analytics: {
       provider: "plausible",
     },
+    locale: "en-US",
     baseUrl: "forgetfulnotes.com",
     ignorePatterns: ["private", "templates"],
     defaultDateType: "modified",
@@ -45,8 +46,7 @@ const config: QuartzConfig = {
   plugins: {
     transformers: [
       Plugin.FrontMatter(),
-      Plugin.TableOfContents({ collapseByDefault: true }),
-      Plugin.CreatedModifiedDate({ priority: ["frontmatter", "filesystem"], }),
+      Plugin.CreatedModifiedDate({ priority: ["frontmatter", "filesystem"] }),
       Plugin.SyntaxHighlighting(),
       Plugin.ObsidianFlavoredMarkdown(),
       Plugin.GitHubFlavoredMarkdown(),

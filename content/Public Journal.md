@@ -6,7 +6,6 @@ enableToc: true
 updated: 2023-12-12
 ---
 
-
 > [!info] Acknowledgements
 >
 > This page takes inspiration from the [Journal of an Enigmatic Mind](https://speyllsite.pages.dev/journal/). It explores the concept of keeping a public journal, something I haven't done before.

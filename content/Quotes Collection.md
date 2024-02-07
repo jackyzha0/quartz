@@ -8,7 +8,7 @@ updated: 2024-01-24
 
 ## Random
 
->"Always demand a deadline. A deadline weeds out the extraneous and the ordinary. It prevents you from trying to make it perfect, so you have to make it different. Different is better."
+> "Always demand a deadline. A deadline weeds out the extraneous and the ordinary. It prevents you from trying to make it perfect, so you have to make it different. Different is better."
 
 > [!quote]
 >
