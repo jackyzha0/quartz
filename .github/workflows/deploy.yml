@@ -1,4 +1,4 @@
-name: Build and Deploy to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -25,8 +25,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.14
+      - name: PNPM Install
+        uses: ./.github/actions/pnpm-install
       - name: Install Dependencies
-        run: npm ci # was npm i
+        run: pnpm i # was npm i
       - name: Build Quartz
         run: npx quartz build
       - name: Upload artifact
