@@ -23,11 +23,11 @@ const config: QuartzConfig = {
         lightMode: {
           light: "#faf8f8", // bg
           lightgray: "#e5e5e5", // borders
-          gray: "#b8b8b8", // graph links, heavy borders
+          gray: "#949494", // graph links, heavy borders
           darkgray: "#2e2e2e", // body text
           dark: "#1c1c1c", // header text, icons
           secondary: "#091217", // links, nodes
-          tertiary: "rebeccapurple", // hover states, visited
+          tertiary: "#AA336A", // hover states, visited
           highlight: "rgba(143, 159, 169, 0.2)", // internal link bg
         },
         darkMode: {
