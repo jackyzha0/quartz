@@ -1,4 +1,4 @@
-import { FilePath, FullSlug, SimpleSlug, joinSegments } from "../../util/path"
+import { FilePath, FullSlug, joinSegments } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 
 // @ts-ignore
@@ -192,7 +192,6 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
       } else if (fontOrigin === "googleFonts") {
         let match
         const bufferPromise: Promise<FontContent>[] = []
-        const fontMapping: any[] = []
 
         const regex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
 
