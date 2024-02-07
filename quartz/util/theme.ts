@@ -15,6 +15,7 @@ export interface Theme {
     body: string
     code: string
   }
+  cdnCaching: boolean
   colors: {
     lightMode: ColorScheme
     darkMode: ColorScheme

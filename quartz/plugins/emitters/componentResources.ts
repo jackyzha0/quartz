@@ -180,6 +180,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
     },
     async emit(ctx, _content, resources): Promise<FilePath[]> {
       const promises: Promise<FilePath>[] = []
+      const cfg = ctx.cfg.configuration
       // component specific scripts and styles
       const componentResources = getComponentResources(ctx)
       // important that this goes *after* component scripts
@@ -190,46 +191,50 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
       if (fontOrigin === "local") {
         // let the user do it themselves in css
       } else if (fontOrigin === "googleFonts") {
-        let match
-        const bufferPromise: Promise<FontContent>[] = []
+        if (cfg.theme.cdnCaching) {
+          resources.css.push(googleFontHref(cfg.theme))
+        } else {
+          let match
+          const bufferPromise: Promise<FontContent>[] = []
 
-        const regex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
+          const regex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
 
-        googleFonts = await fetch(googleFontHref(ctx.cfg.configuration.theme)).then((res) =>
-          res.text(),
-        )
-
-        while ((match = regex.exec(googleFonts)) !== null) {
-          // match[0] is the `url(path)`, match[1] is the `path`
-          const url = match[1]
-          // the static name of this file.
-          const [filename, ext] = url.split("/").pop()!.split(".")
-
-          bufferPromise.push(
-            fetch(url)
-              .then((res) => {
-                if (!res.ok) {
-                  throw new Error(`Failed to fetch font`)
-                }
-                return res.arrayBuffer()
-              })
-              .then((buf) => ({ url, filename, ext, buf: Buffer.from(buf) })),
+          googleFonts = await fetch(googleFontHref(ctx.cfg.configuration.theme)).then((res) =>
+            res.text(),
           )
-        }
 
-        const fontBuffers = await Promise.all(bufferPromise)
+          while ((match = regex.exec(googleFonts)) !== null) {
+            // match[0] is the `url(path)`, match[1] is the `path`
+            const url = match[1]
+            // the static name of this file.
+            const [filename, ext] = url.split("/").pop()!.split(".")
 
-        for (const fontBuffer of fontBuffers) {
-          const { url, filename, ext, buf } = fontBuffer
-          promises.push(
-            write({
-              ctx,
-              slug: joinSegments("fonts", filename) as FullSlug,
-              ext: `.${ext}`,
-              content: buf,
-            }),
-          )
-          googleFonts = googleFonts.replace(url, `/fonts/${filename}.ttf`)
+            bufferPromise.push(
+              fetch(url)
+                .then((res) => {
+                  if (!res.ok) {
+                    throw new Error(`Failed to fetch font`)
+                  }
+                  return res.arrayBuffer()
+                })
+                .then((buf) => ({ url, filename, ext, buf: Buffer.from(buf) })),
+            )
+          }
+
+          const fontBuffers = await Promise.all(bufferPromise)
+
+          for (const fontBuffer of fontBuffers) {
+            const { url, filename, ext, buf } = fontBuffer
+            promises.push(
+              write({
+                ctx,
+                slug: joinSegments("fonts", filename) as FullSlug,
+                ext: `.${ext}`,
+                content: buf,
+              }),
+            )
+            googleFonts = googleFonts.replace(url, `/fonts/${filename}.ttf`)
+          }
         }
       }
 
@@ -281,8 +286,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
         ],
       )
 
-      const fps = await Promise.all(promises)
-      return fps
+      return await Promise.all(promises)
     },
   }
 }

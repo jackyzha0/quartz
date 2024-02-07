@@ -14,6 +14,7 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
     theme: {
+      cdnCaching: true,
       typography: {
         header: "Schibsted Grotesk",
         body: "Source Sans Pro",
