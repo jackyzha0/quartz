@@ -4,6 +4,7 @@ import fr from "./locales/fr-FR"
 import ja from "./locales/ja-JP"
 import de from "./locales/de-DE"
 import nl from "./locales/nl-NL"
+import ro from "./locales/ro-RO"
 
 export const TRANSLATIONS = {
   "en-US": en,
@@ -11,6 +12,7 @@ export const TRANSLATIONS = {
   "ja-JP": ja,
   "de-DE": de,
   "nl-NL": nl,
+  "ro-RO": ro,
 } as const
 
 export const i18n = (locale: ValidLocale): Translation => TRANSLATIONS[locale ?? "en-US"]
