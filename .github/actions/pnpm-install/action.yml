@@ -18,22 +18,21 @@
 #   - 1.1.0 - 15-07-2023 - Add project custom directory support.                       #
 ########################################################################################
 
-
-name: 'PNPM install'
-description: 'Run pnpm install with cache enabled'
+name: "PNPM install"
+description: "Run pnpm install with cache enabled"
 
 inputs:
   enable-corepack:
-    description: 'Enable corepack'
+    description: "Enable corepack"
     required: false
-    default: 'false'
+    default: "false"
   cwd:
     description: "Changes node's process.cwd() if the project is not located on the root. Default to process.cwd()"
     required: false
-    default: '.'
+    default: "."
 
 runs:
-  using: 'composite'
+  using: "composite"
 
   steps:
     - name: ⚙️ Enable Corepack
@@ -42,7 +41,7 @@ runs:
       working-directory: ${{ inputs.cwd }}
       run: |
         corepack enable
-        echo "corepack enabled" 
+        echo "corepack enabled"
 
     - uses: pnpm/action-setup@v2.2.4
       if: ${{ inputs.enable-corepack == 'false' }}
@@ -84,4 +83,4 @@ runs:
       run: pnpm install --frozen-lockfile --prefer-offline
       env:
         # Other environment variables
-        HUSKY: '0' # By default do not run HUSKY install
+        HUSKY: "0" # By default do not run HUSKY install
