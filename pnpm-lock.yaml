@@ -9,13 +9,13 @@ dependencies:
     specifier: ^0.7.0
     version: 0.7.0
   '@floating-ui/dom':
-    specifier: ^1.5.3
+    specifier: ^1.6.1
     version: 1.6.1
   '@napi-rs/simple-git':
     specifier: 0.1.14
     version: 0.1.14
   async-mutex:
-    specifier: ^0.4.0
+    specifier: ^0.4.1
     version: 0.4.1
   chalk:
     specifier: ^5.3.0
@@ -60,13 +60,13 @@ dependencies:
     specifier: ^4.1.0
     version: 4.1.0
   lightningcss:
-    specifier: ^1.22.1
+    specifier: ^1.23.0
     version: 1.23.0
   mdast-util-find-and-replace:
     specifier: ^3.0.1
     version: 3.0.1
   mdast-util-to-hast:
-    specifier: ^13.0.2
+    specifier: ^13.1.0
     version: 13.1.0
   mdast-util-to-string:
     specifier: ^4.0.0
@@ -179,13 +179,13 @@ devDependencies:
     specifier: ^7.4.3
     version: 7.4.3
   '@types/hast':
-    specifier: ^3.0.3
+    specifier: ^3.0.4
     version: 3.0.4
   '@types/js-yaml':
     specifier: ^4.0.9
     version: 4.0.9
   '@types/node':
-    specifier: ^20.1.2
+    specifier: ^20.11.14
     version: 20.11.16
   '@types/pretty-time':
     specifier: ^1.1.5
@@ -203,7 +203,7 @@ devDependencies:
     specifier: ^0.19.9
     version: 0.19.12
   prettier:
-    specifier: ^3.1.1
+    specifier: ^3.2.4
     version: 3.2.4
   tsx:
     specifier: ^4.7.0
