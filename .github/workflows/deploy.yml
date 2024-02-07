@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0 # Fetch all history for git info
       - uses: actions/setup-node@v3 # v3
         with:
-          node-version: 18.14
+          node-version: 20.11.0 # 18.14
       - name: PNPM Install
         uses: ./.github/actions/pnpm-install
       - name: Install Dependencies
