@@ -210,7 +210,7 @@ export function renderPage(
   )
 
   const doc = (
-    <html>
+    <html lang="en">
       <Head {...componentData} />
       <body data-slug={slug}>
         <div id="quartz-root" class="page">

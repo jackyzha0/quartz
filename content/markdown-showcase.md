@@ -104,7 +104,7 @@ Let us use some `inline code` and check out how it `looks`. Here's some `more`.
 ### Code Blocks
 
 ```html
-<html>
+<html lang="en">
   <head>
     <div style="background-color: #333;">
       <a href="https://example.com/">Example</a>
