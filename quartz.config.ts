@@ -23,7 +23,7 @@ const config: QuartzConfig = {
         lightMode: {
           light: "#faf8f8", // bg
           lightgray: "#e5e5e5", // borders
-          gray: "#949494", // graph links, heavy borders
+          gray: "#8f8f8f", // graph links, heavy borders
           darkgray: "#2e2e2e", // body text
           dark: "#1c1c1c", // header text, icons
           secondary: "#091217", // links, nodes
