@@ -9,6 +9,8 @@ import path from "path"
 import { JSResource } from "../../util/resources"
 // @ts-ignore
 import calloutScript from "../../components/scripts/callout.inline.ts"
+// @ts-ignore
+import checkboxScript from "../../components/scripts/checkbox.inline.ts"
 import { FilePath, pathToRoot, slugTag, slugifyFilePath } from "../../util/path"
 import { toHast } from "mdast-util-to-hast"
 import { toHtml } from "hast-util-to-html"
@@ -28,6 +30,7 @@ export interface Options {
   enableInHtmlEmbed: boolean
   enableYouTubeEmbed: boolean
   enableVideoEmbed: boolean
+  enableCheckbox: boolean
 }
 
 const defaultOptions: Options = {
@@ -42,6 +45,7 @@ const defaultOptions: Options = {
   enableInHtmlEmbed: false,
   enableYouTubeEmbed: true,
   enableVideoEmbed: true,
+  enableCheckbox: false,
 }
 
 const calloutMapping = {
@@ -74,6 +78,17 @@ const calloutMapping = {
   cite: "quote",
 } as const
 
+const arrowMapping: Record<string, string> = {
+  "->": "&rarr;",
+  "-->": "&rArr;",
+  "=>": "&rArr;",
+  "==>": "&rArr;",
+  "<-": "&larr;",
+  "<--": "&lArr;",
+  "<=": "&lArr;",
+  "<==": "&lArr;",
+}
+
 function canonicalizeCallout(calloutName: string): keyof typeof calloutMapping {
   const normalizedCallout = calloutName.toLowerCase() as keyof typeof calloutMapping
   // if callout is not recognized, make it a custom one
@@ -82,7 +97,7 @@ function canonicalizeCallout(calloutName: string): keyof typeof calloutMapping {
 
 export const externalLinkRegex = /^https?:\/\//i
 
-export const arrowRegex = new RegExp(/-{1,2}>/, "g")
+export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/, "g")
 
 // !?                -> optional embedding
 // \[\[              -> open brace
@@ -271,10 +286,12 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           if (opts.parseArrows) {
             replacements.push([
               arrowRegex,
-              (_value: string, ..._capture: string[]) => {
+              (value: string, ..._capture: string[]) => {
+                const maybeArrow = arrowMapping[value]
+                if (maybeArrow === undefined) return SKIP
                 return {
                   type: "html",
-                  value: `<span>&rarr;</span>`,
+                  value: `<span>${maybeArrow}</span>`,
                 }
               },
             ])
@@ -541,10 +558,36 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         })
       }
 
+      if (opts.enableCheckbox) {
+        plugins.push(() => {
+          return (tree: HtmlRoot, _file) => {
+            visit(tree, "element", (node) => {
+              if (node.tagName === "input" && node.properties.type === "checkbox") {
+                const isChecked = node.properties?.checked ?? false
+                node.properties = {
+                  type: "checkbox",
+                  disabled: false,
+                  checked: isChecked,
+                  class: "checkbox-toggle",
+                }
+              }
+            })
+          }
+        })
+      }
+
       return plugins
     },
     externalResources() {
       const js: JSResource[] = []
+
+      if (opts.enableCheckbox) {
+        js.push({
+          script: checkboxScript,
+          loadTime: "afterDOMReady",
+          contentType: "inline",
+        })
+      }
 
       if (opts.callouts) {
         js.push({
@@ -557,17 +600,22 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
       if (opts.mermaid) {
         js.push({
           script: `
-          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
-          const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
-          mermaid.initialize({
-            startOnLoad: false,
-            securityLevel: 'loose',
-            theme: darkMode ? 'dark' : 'default'
-          });
+          let mermaidImport = undefined
           document.addEventListener('nav', async () => {
-            await mermaid.run({
-              querySelector: '.mermaid'
-            })
+            if (document.querySelector("code.mermaid")) {
+              mermaidImport ||= await import('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs')
+              const mermaid = mermaidImport.default
+              const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
+              mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                theme: darkMode ? 'dark' : 'default'
+              })
+
+              await mermaid.run({
+                querySelector: '.mermaid'
+              })
+            }
           });
           `,
           loadTime: "afterDOMReady",

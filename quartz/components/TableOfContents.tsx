@@ -5,6 +5,7 @@ import { classNames } from "../util/lang"
 
 // @ts-ignore
 import script from "./scripts/toc.inline"
+import { i18n } from "../i18n"
 
 interface Options {
   layout: "modern" | "legacy"
@@ -14,7 +15,7 @@ const defaultOptions: Options = {
   layout: "modern",
 }
 
-function TableOfContents({ fileData, displayClass }: QuartzComponentProps) {
+function TableOfContents({ fileData, displayClass, cfg }: QuartzComponentProps) {
   if (!fileData.toc) {
     return null
   }
@@ -22,7 +23,7 @@ function TableOfContents({ fileData, displayClass }: QuartzComponentProps) {
   return (
     <div class={classNames(displayClass, "toc")}>
       <button type="button" id="toc" class={fileData.collapseToc ? "collapsed" : ""}>
-        <h3>Table of Contents</h3>
+        <h3>{i18n(cfg.locale).components.tableOfContents.title}</h3>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -55,15 +56,14 @@ function TableOfContents({ fileData, displayClass }: QuartzComponentProps) {
 TableOfContents.css = modernStyle
 TableOfContents.afterDOMLoaded = script
 
-function LegacyTableOfContents({ fileData }: QuartzComponentProps) {
+function LegacyTableOfContents({ fileData, cfg }: QuartzComponentProps) {
   if (!fileData.toc) {
     return null
   }
-
   return (
     <details id="toc" open={!fileData.collapseToc}>
       <summary>
-        <h3>Table of Contents</h3>
+        <h3>{i18n(cfg.locale).components.tableOfContents.title}</h3>
       </summary>
       <ul>
         {fileData.toc.map((tocEntry) => (

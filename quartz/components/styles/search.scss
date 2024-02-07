@@ -62,6 +62,10 @@
       margin-left: auto;
       margin-right: auto;
 
+      @media all and (max-width: $fullPageWidth) {
+        width: 90%;
+      }
+
       & > * {
         width: 100%;
         border-radius: 7px;
@@ -157,6 +161,10 @@
           & .preview-inner {
             margin: 0 auto;
             width: min($pageWidth, 100%);
+          }
+
+          a[role="anchor"] {
+            background-color: transparent;
           }
         }
 

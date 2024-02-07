@@ -8,6 +8,7 @@ import { sharedPageComponents } from "../../../quartz.layout"
 import { NotFound } from "../../components"
 import { defaultProcessedContent } from "../vfile"
 import { write } from "./helpers"
+import { i18n } from "../../i18n"
 
 export const NotFoundPage: QuartzEmitterPlugin = () => {
   const opts: FullPageLayout = {
@@ -33,11 +34,12 @@ export const NotFoundPage: QuartzEmitterPlugin = () => {
       const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`)
       const path = url.pathname as FullSlug
       const externalResources = pageResources(path, resources)
+      const notFound = i18n(cfg.locale).pages.error.title
       const [tree, vfile] = defaultProcessedContent({
         slug,
-        text: "Not Found",
-        description: "Not Found",
-        frontmatter: { title: "Not Found", tags: [] },
+        text: notFound,
+        description: notFound,
+        frontmatter: { title: notFound, tags: [] },
       })
       const componentData: QuartzComponentProps = {
         fileData: vfile.data,
@@ -51,7 +53,7 @@ export const NotFoundPage: QuartzEmitterPlugin = () => {
       return [
         await write({
           ctx,
-          content: renderPage(slug, componentData, opts, externalResources),
+          content: renderPage(cfg, slug, componentData, opts, externalResources),
           slug,
           ext: ".html",
         }),

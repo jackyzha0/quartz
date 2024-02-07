@@ -6,10 +6,10 @@ import script from "./scripts/explorer.inline"
 import { ExplorerNode, FileNode, Options } from "./ExplorerNode"
 import { QuartzPluginData } from "../plugins/vfile"
 import { classNames } from "../util/lang"
+import { i18n } from "../i18n"
 
 // Options interface defined in `ExplorerNode` to avoid circular dependency
 const defaultOptions = {
-  title: "Explorer",
   folderClickBehavior: "collapse",
   folderDefaultState: "collapsed",
   useSavedState: true,
@@ -75,7 +75,7 @@ export default ((userOpts?: Partial<Options>) => {
     jsonTree = JSON.stringify(folders)
   }
 
-  function Explorer({ allFiles, displayClass, fileData }: QuartzComponentProps) {
+  function Explorer({ cfg, allFiles, displayClass, fileData }: QuartzComponentProps) {
     constructFileTree(allFiles)
     return (
       <div class={classNames(displayClass, "explorer")}>
@@ -87,7 +87,7 @@ export default ((userOpts?: Partial<Options>) => {
           data-savestate={opts.useSavedState}
           data-tree={jsonTree}
         >
-          <h1>{opts.title}</h1>
+          <h1>{opts.title ?? i18n(cfg.locale).components.explorer.title}</h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="14"
