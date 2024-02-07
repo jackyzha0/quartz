@@ -209,6 +209,8 @@ export function renderPage(
     </div>
   )
 
+  const lang = componentData.frontmatter?.lang ?? cfg.locale.split("-")[0]
+
   const doc = (
     <html lang="en">
       <Head {...componentData} />
