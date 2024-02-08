@@ -8,7 +8,7 @@ import chalk from "chalk"
 import { parseMarkdown } from "./processors/parse"
 import { filterContent } from "./processors/filter"
 import { emitContent } from "./processors/emit"
-import cfg from "../quartz.config"
+import config from "../quartz.config"
 import { FilePath, FullSlug, joinSegments, slugifyFilePath } from "./util/path"
 import chokidar from "chokidar"
 import { ProcessedContent } from "./plugins/vfile"
@@ -17,6 +17,8 @@ import { glob, toPosixPath } from "./util/glob"
 import { trace } from "./util/trace"
 import { options } from "./util/sourcemap"
 import { Mutex } from "async-mutex"
+import { pluginConfigurations } from "./plugin-store"
+import communityPlugins from "../quartz.plugins"
 
 type BuildData = {
   ctx: BuildCtx
@@ -32,18 +34,30 @@ type BuildData = {
 }
 
 async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
+  // TODO (OCDkirby) check for new manually added plugins in here and run codegen if so
+
+  // OCDkirby: pull community plugin configs in from `quartz.plugins.ts`
+  let community = pluginConfigurations(communityPlugins)
+
   const ctx: BuildCtx = {
-    argv,
-    cfg,
+    cfg: {
+      configuration: config.configuration,
+      plugins: {
+        transformers: config.plugins.transformers.concat(community.transformers),
+        filters: config.plugins.filters.concat(community.filters),
+        emitters: config.plugins.emitters.concat(community.emitters),
+      },
+    },
+    argv: argv,
     allSlugs: [],
   }
 
   const perf = new PerfTimer()
   const output = argv.output
 
-  const pluginCount = Object.values(cfg.plugins).flat().length
+  const pluginCount = Object.values(config.plugins).flat().length
   const pluginNames = (key: "transformers" | "filters" | "emitters") =>
-    cfg.plugins[key].map((plugin) => plugin.name)
+    config.plugins[key].map((plugin) => plugin.name)
   if (argv.verbose) {
     console.log(`Loaded ${pluginCount} plugins`)
     console.log(`  Transformers: ${pluginNames("transformers").join(", ")}`)
@@ -57,7 +71,7 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince("clean")}`)
 
   perf.addEvent("glob")
-  const allFiles = await glob("**/*.*", argv.directory, cfg.configuration.ignorePatterns)
+  const allFiles = await glob("**/*.*", argv.directory, config.configuration.ignorePatterns)
   const fps = allFiles.filter((fp) => fp.endsWith(".md")).sort()
   console.log(
     `Found ${fps.length} input files from \`${argv.directory}\` in ${perf.timeSince("glob")}`,

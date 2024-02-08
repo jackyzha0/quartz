@@ -58,6 +58,11 @@ export const SyncArgv = {
   },
 }
 
+export const PluginArgv = {
+  ...CommonArgv,
+  // TODO allow more fine-tuning
+}
+
 export const BuildArgv = {
   ...CommonArgv,
   output: {

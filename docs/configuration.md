@@ -51,15 +51,27 @@ This part of the configuration concerns anything that can affect the whole site.
 
 ## Plugins
 
-You can think of Quartz plugins as a series of transformations over content.
+You can think of Quartz plugins as a series of transformations over content. Many are built-in, but community members have also made their own plugins!
 
 ![[quartz transform pipeline.png]]
 
 ```ts
+// System plugins, quartz.config.ts
 plugins: {
   transformers: [...],
   filters: [...],
   emitters: [...],
+}
+
+// Community plugins, quartz.plugins.ts
+communityPlugins: {
+  available: [
+    {
+      url: ...,
+      enabled: true/false,
+      cfg: {...},
+    }
+  ]
 }
 ```
 
@@ -81,4 +93,18 @@ transformers: [
 ]
 ```
 
-If you'd like to make your own plugins, read the guide on [[making plugins]] for more information.
+### Community Plugins
+
+> [!tip]
+> Try using Quartz plugins from the community!
+
+You can download a community plugin from GitHub or another Git service by running a command in the repository directory.
+
+```sh
+~/quartz $ npx quartz plugin add author/plugin.quartz # adds from GitHub
+~/quartz $ npx quartz plugin add https://codeberg.org/author/plugin.quartz
+```
+
+For more information, see the documentation for [[quartz plugin|quartz-plugin]].
+
+If you'd like to make your own plugins, read the guide on [[making plugins]].
