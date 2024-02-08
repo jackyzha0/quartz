@@ -14,6 +14,7 @@ export const TRANSLATIONS = {
   "de-DE": de,
   "nl-NL": nl,
   "ro-RO": ro,
+  "ro-MD": ro,
   "es-ES": es,
 } as const
 
