@@ -195,7 +195,6 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
           resources.css.push(googleFontHref(cfg.theme))
         } else {
           let match
-          const bufferPromise: Promise<FontContent>[] = []
 
           const regex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
 
