@@ -16,7 +16,7 @@ const defaultOptions: Options = {
   language: "yaml",
 }
 
-function propertyLinksToRegularMarkdown(obj: Object): string {
+function propertyLinksToRegularMarkdown(obj: {[key: string]: any}): string {
   // Parses wikilinks from FrontMatter properties and returns a string with all.
   let result = '';
   
