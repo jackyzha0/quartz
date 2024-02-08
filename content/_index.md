@@ -36,6 +36,7 @@ It’s our mission to realize this future.
 
 ## Release Notes 
 
-[[Release Notes 02.01.24]]
+[[Release Notes 02.08.24]]  
+[[Release Notes 02.01.24]]  
 
-([Subscribe](https://plasticlabs.typeform.com/honchoupdates)) 
+([Subscribe](https://plasticlabs.typeform.com/honchoupdates))  
