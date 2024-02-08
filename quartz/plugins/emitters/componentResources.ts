@@ -196,13 +196,13 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
         } else {
           let match
 
-          const regex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
+          const fontSourceRegex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
 
           googleFontsStyleSheet = await (
             await fetch(googleFontHref(ctx.cfg.configuration.theme))
           ).text()
 
-          while ((match = regex.exec(googleFontsStyleSheet)) !== null) {
+          while ((match = fontSourceRegex.exec(googleFontsStyleSheet)) !== null) {
             // match[0] is the `url(path)`, match[1] is the `path`
             const url = match[1]
             // the static name of this file.
@@ -218,14 +218,12 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
                   }
                   return res.arrayBuffer()
                 })
-                .then((buf) => {
-                  return write({
-                    ctx,
-                    slug: joinSegments("fonts", filename) as FullSlug,
-                    ext: `.${ext}`,
-                    content: Buffer.from(buf),
-                  })
-                }),
+                .then((buf) => write({
+                  ctx,
+                  slug: joinSegments("fonts", filename) as FullSlug,
+                  ext: `.${ext}`,
+                  content: Buffer.from(buf),
+                })),
             )
           }
         }
