@@ -199,15 +199,19 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
 
           const regex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
 
-          googleFonts = (await fetch(googleFontHref(ctx.cfg.configuration.theme))).text()
+          googleFontsStyleSheet = await (
+            await fetch(googleFontHref(ctx.cfg.configuration.theme))
+          ).text()
 
-          while ((match = regex.exec(googleFonts)) !== null) {
+          while ((match = regex.exec(googleFontsStyleSheet)) !== null) {
             // match[0] is the `url(path)`, match[1] is the `path`
             const url = match[1]
             // the static name of this file.
             const [filename, ext] = url.split("/").pop()!.split(".")
 
-            bufferPromise.push(
+            googleFontsStyleSheet = googleFontsStyleSheet.replace(url, `/fonts/${filename}.ttf`)
+
+            promises.push(
               fetch(url)
                 .then((res) => {
                   if (!res.ok) {
@@ -215,23 +219,15 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
                   }
                   return res.arrayBuffer()
                 })
-                .then((buf) => ({ url, filename, ext, buf: Buffer.from(buf) })),
+                .then((buf) => {
+                  return write({
+                    ctx,
+                    slug: joinSegments("fonts", filename) as FullSlug,
+                    ext: `.${ext}`,
+                    content: Buffer.from(buf),
+                  })
+                }),
             )
-          }
-
-          const fontBuffers = await Promise.all(bufferPromise)
-
-          for (const fontBuffer of fontBuffers) {
-            const { url, filename, ext, buf } = fontBuffer
-            promises.push(
-              write({
-                ctx,
-                slug: joinSegments("fonts", filename) as FullSlug,
-                ext: `.${ext}`,
-                content: buf,
-              }),
-            )
-            googleFonts = googleFonts.replace(url, `/fonts/${filename}.ttf`)
           }
         }
       }
@@ -241,7 +237,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
       const stylesheet = joinStyles(
         ctx.cfg.configuration.theme,
         ...componentResources.css,
-        googleFontsStylesheet,
+        googleFontsStyleSheet,
         styles,
       )
       const [prescript, postscript] = await Promise.all([
@@ -250,7 +246,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
       ])
 
       promises.push(
-      	write({
+        write({
           ctx,
           slug: "index" as FullSlug,
           ext: ".css",
@@ -279,7 +275,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
           slug: "postscript" as FullSlug,
           ext: ".js",
           content: postscript,
-        })
+        }),
       )
 
       return await Promise.all(promises)
