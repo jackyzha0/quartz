@@ -2,12 +2,6 @@
 title: Reverse Outlines
 updated: 2024-02-08
 compartir: true
-source: https://writing.wisc.edu/handbook/process/reverseoutlines/
----
----
-title: Reverse Outlines
-updated: 2024-02-08
-compartir: true
 source: "https://writing.wisc.edu/handbook/process/reverseoutlines/"
 ---
 

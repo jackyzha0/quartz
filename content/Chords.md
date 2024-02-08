@@ -2,13 +2,6 @@
 title: Chords (music)
 updated: 2024-02-08
 compartir: true
-tags:
-  - music
----
----
-title: Chords (music)
-updated: 2024-02-08
-compartir: true
 tags: [music]
 ---
 

@@ -1,13 +1,6 @@
 ---
 title: Tools
 updated: 2024-02-08
-alias:
-  - Uses
-compartir: true
----
----
-title: Tools
-updated: 2024-02-08
 alias: ["Uses"]
 compartir: true
 ---

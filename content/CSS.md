@@ -1,13 +1,6 @@
 ---
 title: Cascading Style Sheets
 updated: 2024-02-08
-aliases:
-  - CSS
-compartir: true
----
----
-title: Cascading Style Sheets
-updated: 2024-02-08
 aliases: [CSS]
 compartir: true
 ---

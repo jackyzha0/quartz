@@ -1,14 +1,6 @@
 ---
 title: JavaScript
 updated: 2024-02-08
-aliases:
-  - Javascript
-  - JS
-compartir: true
----
----
-title: JavaScript
-updated: 2024-02-08
 aliases: [Javascript, JS]
 compartir: true
 ---

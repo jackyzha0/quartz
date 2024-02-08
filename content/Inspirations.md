@@ -2,13 +2,6 @@
 title: Inspirations
 updated: 2024-02-08
 compartir: true
-tags:
-  - list
----
----
-title: Inspirations
-updated: 2024-02-08
-compartir: true
 tags: [list]
 ---
 

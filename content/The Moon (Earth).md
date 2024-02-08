@@ -1,9 +1,4 @@
 ---
-title: The Moon (Earth)
-updated: 2024-02-08
-compartir: true
----
----
 title: "The Moon (Earth)"
 updated: 2024-02-08
 compartir: true

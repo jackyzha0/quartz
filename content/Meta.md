@@ -3,14 +3,6 @@ title: Meta (how this site was made)
 description: How the site was made.
 updated: 2024-02-08
 compartir: true
-tags:
-  - meta
----
----
-title: Meta (how this site was made)
-description: How the site was made.
-updated: 2024-02-08
-compartir: true
 tags: [meta]
 ---
 

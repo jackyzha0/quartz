@@ -2,13 +2,6 @@
 title: Sans-serif
 updated: 2024-02-08
 compartir: true
-tags:
-  - typography
----
----
-title: Sans-serif
-updated: 2024-02-08
-compartir: true
 tags: [typography]
 ---
 

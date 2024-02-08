@@ -1,11 +1,5 @@
 ---
 title: Quotes
-description: Quotes that have resonated with me.
-updated: 2024-02-08
-compartir: true
----
----
-title: Quotes
 description: "Quotes that have resonated with me."
 updated: 2024-02-08
 compartir: true

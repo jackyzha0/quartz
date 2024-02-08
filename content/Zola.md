@@ -1,11 +1,5 @@
 ---
 title: Zola
-description: Zola is a fast static site generator in a single binary with everything built-in.
-updated: 2024-02-08
-compartir: true
----
----
-title: Zola
 description: "Zola is a fast static site generator in a single binary with everything built-in."
 updated: 2024-02-08
 compartir: true

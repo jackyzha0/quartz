@@ -2,13 +2,6 @@
 title: Rhombic Dodecahedron
 updated: 2024-02-08
 compartir: true
-tags:
-  - stub
----
----
-title: Rhombic Dodecahedron
-updated: 2024-02-08
-compartir: true
 tags: [stub]
 ---
 

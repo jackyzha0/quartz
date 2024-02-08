@@ -2,13 +2,6 @@
 title: Arpeggio
 updated: 2024-02-08
 compartir: true
-tags:
-  - music
----
----
-title: Arpeggio
-updated: 2024-02-08
-compartir: true
 tags: [music]
 ---
 

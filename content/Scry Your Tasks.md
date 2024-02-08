@@ -2,13 +2,6 @@
 title: Scry Your Tasks
 updated: 2024-02-08
 compartir: true
-tags:
-  - stub
----
----
-title: Scry Your Tasks
-updated: 2024-02-08
-compartir: true
 tags: [stub]
 ---
 

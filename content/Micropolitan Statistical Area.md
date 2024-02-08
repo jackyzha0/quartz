@@ -2,13 +2,6 @@
 title: Micropolitan Statistical Area
 updated: 2024-02-08
 compartir: true
-tags:
-  - statistics
----
----
-title: Micropolitan Statistical Area
-updated: 2024-02-08
-compartir: true
 tags: [statistics]
 ---
 

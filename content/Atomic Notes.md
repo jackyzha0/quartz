@@ -2,13 +2,6 @@
 title: Atomic Notes
 updated: 2024-02-08
 compartir: true
-tags:
-  - digital-gardening
----
----
-title: Atomic Notes
-updated: 2024-02-08
-compartir: true
 tags: [digital-gardening]
 ---
 

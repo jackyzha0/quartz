@@ -1,14 +1,5 @@
 ---
 title: Guitar
-tags:
-  - learning
-  - music
-compartir: true
-updated: 2023-12-04
-enableToc: true
----
----
-title: Guitar
 tags: [learning, music]
 compartir: true
 updated: 2023-12-04

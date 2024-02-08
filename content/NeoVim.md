@@ -1,16 +1,6 @@
 ---
 title: NeoVim
 updated: 2024-02-08
-aliases:
-  - Nvim
-  - Vim
-compartir: true
-tags:
-  - reference
----
----
-title: NeoVim
-updated: 2024-02-08
 aliases: [Nvim, Vim]
 compartir: true
 tags: [reference]

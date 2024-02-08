@@ -2,13 +2,6 @@
 title: Move Your Body
 updated: 2024-02-08
 compartir: true
-tags:
-  - stub
----
----
-title: Move Your Body
-updated: 2024-02-08
-compartir: true
 tags: [stub]
 ---
 

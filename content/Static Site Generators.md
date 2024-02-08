@@ -1,11 +1,4 @@
 ---
-title: Static Site Generator
-updated: 2024-02-08
-compartir: true
-tags:
-  - markdown
----
----
 title: "Static Site Generator"
 updated: 2024-02-08
 compartir: true

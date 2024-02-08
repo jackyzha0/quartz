@@ -1,15 +1,5 @@
 ---
 title: Markdown Showcase
-description: This is intended as a quick reference and showcase of Markdown's synthax.
-tags:
-  - markdown
-  - reference
-compartir: true
-date: 2022-12-31
-updated: 2023-10-11
----
----
-title: Markdown Showcase
 description: "This is intended as a quick reference and showcase of Markdown's synthax."
 tags: [markdown, reference]
 compartir: true

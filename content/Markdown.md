@@ -2,13 +2,6 @@
 title: Markdown
 updated: 2024-02-08
 compartir: true
-tags:
-  - stub
----
----
-title: Markdown
-updated: 2024-02-08
-compartir: true
 tags: [stub]
 ---
 

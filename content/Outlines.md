@@ -1,14 +1,5 @@
 ---
 title: Outlines
-description: Learning how to write with brevity (short-form), how to write long-form, how to use gesticulation. Looking for ways to streamline producing written content.
-updated: 2024-02-08
-compartir: true
-tags:
-  - learning
-  - writing
----
----
-title: Outlines
 description: "Learning how to write with brevity (short-form), how to write long-form, how to use gesticulation. Looking for ways to streamline producing written content."
 updated: 2024-02-08
 compartir: true

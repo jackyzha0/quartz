@@ -2,13 +2,6 @@
 title: Digital Garden
 updated: 2024-02-08
 compartir: true
-tags:
-  - digital-gardening
----
----
-title: Digital Garden
-updated: 2024-02-08
-compartir: true
 tags: [digital-gardening]
 ---
 

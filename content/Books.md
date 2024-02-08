@@ -1,11 +1,5 @@
 ---
 title: Books
-description: Books I've read.
-updated: 2024-02-08
-compartir: true
----
----
-title: Books
 description: "Books I've read."
 updated: 2024-02-08
 compartir: true

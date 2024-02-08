@@ -1,13 +1,5 @@
 ---
 title: Sweep Your Mind
-description: These notes make it possible to offload a massive amount of information while demonstrating perfect recall when needed. The goal of a mind sweep is to identify everything that requires your attention or has the possibility of seeping into and affecting other parts of your life.
-updated: 2024-02-08
-compartir: true
-tags:
-  - digital-gardening
----
----
-title: Sweep Your Mind
 description: "These notes make it possible to offload a massive amount of information while demonstrating perfect recall when needed. The goal of a mind sweep is to identify everything that requires your attention or has the possibility of seeping into and affecting other parts of your life."
 updated: 2024-02-08
 compartir: true
