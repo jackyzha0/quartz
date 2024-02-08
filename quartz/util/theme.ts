@@ -27,9 +27,7 @@ const DEFAULT_SANS_SERIF =
 const DEFAULT_MONO = "ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace"
 
 export function googleFontHref(theme: Theme) {
-  const { code, header, body } = Object.fromEntries(
-    Object.entries(theme.typography).map(([key, value]) => [key, value.replace(/ /g, "+")]),
-  )
+  const { code, header, body } = theme.typography
   return `https://fonts.googleapis.com/css2?family=${code}&family=${header}:wght@400;700&family=${body}:ital,wght@0,400;0,600;1,400;1,600&display=swap`
 }
 
