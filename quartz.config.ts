@@ -14,6 +14,7 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates"],
     defaultDateType: "modified",
     theme: {
+      cdnCaching: true,
       typography: {
         header: "Bitter", // Schibsted Grotesk
         body: "Poppins", // Source Sans Pro, Poppins

@@ -34,6 +34,7 @@ This part of the configuration concerns anything that can affect the whole site.
 - `ignorePatterns`: a list of [glob](<https://en.wikipedia.org/wiki/Glob_(programming)>) patterns that Quartz should ignore and not search through when looking for files inside the `content` folder. See [[private pages]] for more details.
 - `defaultDateType`: whether to use created, modified, or published as the default date to display on pages and page listings.
 - `theme`: configure how the site looks.
+  - `cdnCaching`: Whether to use Google CDN to cache the fonts (generally will be faster). Disable this if you want Quartz to be self-contained. Default to `true`
   - `typography`: what fonts to use. Any font available on [Google Fonts](https://fonts.google.com/) works here.
     - `header`: Font to use for headers
     - `code`: Font for inline and block quotes.
