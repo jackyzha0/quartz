@@ -75,10 +75,17 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   const filteredContent = filterContent(ctx, parsedFiles)
 
   const depGraphs: Record<string, DepGraph<FilePath>> = {}
-  const staticResources = getStaticResourcesFromPlugins(ctx)
-  for (const emitter of cfg.plugins.emitters) {
-    const emitterGraph = await emitter.getDependencyGraph(ctx, filteredContent, staticResources)
-    depGraphs[emitter.name] = emitterGraph
+
+  // Only build dependency graphs if we're doing a fast rebuild
+  if (argv.fastRebuild) {
+    const staticResources = getStaticResourcesFromPlugins(ctx)
+    for (const emitter of cfg.plugins.emitters) {
+      depGraphs[emitter.name] = await emitter.getDependencyGraph(
+        ctx,
+        filteredContent,
+        staticResources,
+      )
+    }
   }
 
   await emitContent(ctx, filteredContent)
@@ -126,17 +133,11 @@ async function startServing(
     ignoreInitial: true,
   })
 
-  if (argv.fastRebuild) {
-    watcher
-      .on("add", (fp) => partialRebuildFromEntrypoint(fp, "add", clientRefresh, buildData))
-      .on("change", (fp) => partialRebuildFromEntrypoint(fp, "change", clientRefresh, buildData))
-      .on("unlink", (fp) => partialRebuildFromEntrypoint(fp, "delete", clientRefresh, buildData))
-  } else {
-    watcher
-      .on("add", (fp) => rebuildFromEntrypoint(fp, "add", clientRefresh, buildData))
-      .on("change", (fp) => rebuildFromEntrypoint(fp, "change", clientRefresh, buildData))
-      .on("unlink", (fp) => rebuildFromEntrypoint(fp, "delete", clientRefresh, buildData))
-  }
+  const buildFromEntry = argv.fastRebuild ? partialRebuildFromEntrypoint : rebuildFromEntrypoint
+  watcher
+    .on("add", (fp) => buildFromEntry(fp, "add", clientRefresh, buildData))
+    .on("change", (fp) => buildFromEntry(fp, "change", clientRefresh, buildData))
+    .on("unlink", (fp) => buildFromEntry(fp, "delete", clientRefresh, buildData))
 
   return async () => {
     await watcher.close()
@@ -149,9 +150,8 @@ async function partialRebuildFromEntrypoint(
   clientRefresh: () => void,
   buildData: BuildData, // note: this function mutates buildData
 ) {
-  const { ctx, ignored, depGraphs, contentMap, mut } = buildData
+  const { ctx, ignored, depGraphs, contentMap, mut, toRemove } = buildData
   const { argv, cfg } = ctx
-  const toRemove = new Set<FilePath>()
 
   // don't do anything for gitignored files
   if (ignored(filepath)) {
@@ -261,15 +261,16 @@ async function partialRebuildFromEntrypoint(
   console.log(`Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince("rebuild")}`)
 
   // CLEANUP
+  // delete files that are solely dependent on this file
+  await rimraf([...destinationsToDelete])
   for (const file of toRemove) {
-    // delete files that are solely dependent on this file
-    await rimraf([...destinationsToDelete])
     // remove from cache
     contentMap.delete(file)
     // remove the node from dependency graphs
     Object.values(depGraphs).forEach((depGraph) => depGraph.removeNode(file))
   }
 
+  toRemove.clear()
   release()
   clientRefresh()
 }
