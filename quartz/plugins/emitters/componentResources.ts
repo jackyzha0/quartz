@@ -187,7 +187,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
       // as the "nav" event gets triggered here and we should make sure
       // that everyone else had the chance to register a listener for it
 
-      let googleFonts = null
+      let googleFontsStyleSheet = ""
       if (fontOrigin === "local") {
         // let the user do it themselves in css
       } else if (fontOrigin === "googleFonts") {
@@ -199,9 +199,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
 
           const regex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
 
-          googleFonts = await fetch(googleFontHref(ctx.cfg.configuration.theme)).then((res) =>
-            res.text(),
-          )
+          googleFonts = (await fetch(googleFontHref(ctx.cfg.configuration.theme))).text()
 
           while ((match = regex.exec(googleFonts)) !== null) {
             // match[0] is the `url(path)`, match[1] is the `path`
@@ -243,7 +241,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
       const stylesheet = joinStyles(
         ctx.cfg.configuration.theme,
         ...componentResources.css,
-        googleFonts ?? "",
+        googleFontsStylesheet,
         styles,
       )
       const [prescript, postscript] = await Promise.all([
@@ -252,38 +250,36 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
       ])
 
       promises.push(
-        ...[
-          write({
-            ctx,
-            slug: "index" as FullSlug,
-            ext: ".css",
-            content: transform({
-              filename: "index.css",
-              code: Buffer.from(stylesheet),
-              minify: true,
-              targets: {
-                safari: (15 << 16) | (6 << 8), // 15.6
-                ios_saf: (15 << 16) | (6 << 8), // 15.6
-                edge: 115 << 16,
-                firefox: 102 << 16,
-                chrome: 109 << 16,
-              },
-              include: Features.MediaQueries,
-            }).code.toString(),
-          }),
-          write({
-            ctx,
-            slug: "prescript" as FullSlug,
-            ext: ".js",
-            content: prescript,
-          }),
-          write({
-            ctx,
-            slug: "postscript" as FullSlug,
-            ext: ".js",
-            content: postscript,
-          }),
-        ],
+      	write({
+          ctx,
+          slug: "index" as FullSlug,
+          ext: ".css",
+          content: transform({
+            filename: "index.css",
+            code: Buffer.from(stylesheet),
+            minify: true,
+            targets: {
+              safari: (15 << 16) | (6 << 8), // 15.6
+              ios_saf: (15 << 16) | (6 << 8), // 15.6
+              edge: 115 << 16,
+              firefox: 102 << 16,
+              chrome: 109 << 16,
+            },
+            include: Features.MediaQueries,
+          }).code.toString(),
+        }),
+        write({
+          ctx,
+          slug: "prescript" as FullSlug,
+          ext: ".js",
+          content: prescript,
+        }),
+        write({
+          ctx,
+          slug: "postscript" as FullSlug,
+          ext: ".js",
+          content: postscript,
+        })
       )
 
       return await Promise.all(promises)
