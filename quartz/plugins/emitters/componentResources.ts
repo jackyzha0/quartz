@@ -164,13 +164,6 @@ const defaultOptions: Options = {
   fontOrigin: "googleFonts",
 }
 
-interface FontContent {
-  url: string
-  filename: string
-  ext: string
-  buf: Buffer
-}
-
 export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<Options>) => {
   const { fontOrigin } = { ...defaultOptions, ...opts }
   return {
@@ -218,12 +211,14 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
                   }
                   return res.arrayBuffer()
                 })
-                .then((buf) => write({
-                  ctx,
-                  slug: joinSegments("fonts", filename) as FullSlug,
-                  ext: `.${ext}`,
-                  content: Buffer.from(buf),
-                })),
+                .then((buf) =>
+                  write({
+                    ctx,
+                    slug: joinSegments("fonts", filename) as FullSlug,
+                    ext: `.${ext}`,
+                    content: Buffer.from(buf),
+                  }),
+                ),
             )
           }
         }
