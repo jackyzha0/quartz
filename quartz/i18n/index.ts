@@ -23,7 +23,6 @@ export const TRANSLATIONS = {
   "ar-KW": ar,
   "ar-OM": ar,
   "ar-YE": ar,
-  "ar-IR": ar,
   "ar-SY": ar,
   "ar-IQ": ar,
   "ar-JO": ar,
