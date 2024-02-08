@@ -31,7 +31,7 @@ type BuildData = {
   toRebuild: Set<FilePath>
   toRemove: Set<FilePath>
   lastBuildMs: number
-  depGraphs: Record<string, DepGraph<string>>
+  depGraphs: Record<string, DepGraph<FilePath>>
 }
 
 type FileEvent = "add" | "change" | "delete"
@@ -74,7 +74,7 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   const parsedFiles = await parseMarkdown(ctx, filePaths)
   const filteredContent = filterContent(ctx, parsedFiles)
 
-  const depGraphs: Record<string, DepGraph<string>> = {}
+  const depGraphs: Record<string, DepGraph<FilePath>> = {}
   const staticResources = getStaticResourcesFromPlugins(ctx)
   for (const emitter of cfg.plugins.emitters) {
     const emitterGraph = await emitter.getDependencyGraph(ctx, filteredContent, staticResources)
@@ -96,7 +96,7 @@ async function startServing(
   mut: Mutex,
   initialContent: ProcessedContent[],
   clientRefresh: () => void,
-  depGraphs: Record<string, DepGraph<string>>, // emitter name: dep graph
+  depGraphs: Record<string, DepGraph<FilePath>>, // emitter name: dep graph
 ) {
   const { argv } = ctx
 

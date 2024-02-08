@@ -15,7 +15,7 @@ export const CNAME: QuartzEmitterPlugin = () => ({
     return []
   },
   async getDependencyGraph(_ctx, _content, _resources) {
-    return new DepGraph<string>()
+    return new DepGraph<FilePath>()
   },
   async emit({ argv, cfg }, _content, _resources): Promise<FilePath[]> {
     if (!cfg.configuration.baseUrl) {

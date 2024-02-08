@@ -43,7 +43,7 @@ export const FolderPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpt
       // nested/file.md --> nested/file.html
       //          \-------> nested/index.html
       // TODO implement
-      return new DepGraph<string>()
+      return new DepGraph<FilePath>()
     },
     async emit(ctx, content, resources): Promise<FilePath[]> {
       const fps: FilePath[] = []

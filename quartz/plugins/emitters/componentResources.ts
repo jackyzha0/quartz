@@ -181,7 +181,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
       // ContentPage emitter while creating the final html page. In order for
       // the reload logic to be included, and so for partial rebuilds to work,
       // we need to run this emitter for all markdown files.
-      const graph = new DepGraph<string>()
+      const graph = new DepGraph<FilePath>()
 
       for (const [_tree, file] of content) {
         const sourcePath = file.data.filePath!
