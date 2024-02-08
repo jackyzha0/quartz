@@ -184,7 +184,7 @@ async function partialRebuildFromEntrypoint(
       // update the dep graph by asking all emitters whether they depend on this file
       for (const emitter of cfg.plugins.emitters) {
         const emitterGraph = await emitter.getDependencyGraph(ctx, processedFiles, staticResources)
-        depGraphs[emitter.name].mergeEdgesForNode(emitterGraph, fp)
+        depGraphs[emitter.name].updateIncomingEdgesForNode(emitterGraph, fp)
       }
       break
     case "change":
@@ -202,7 +202,7 @@ async function partialRebuildFromEntrypoint(
             staticResources,
           )
           // merge the new dependencies into the dep graph
-          depGraphs[emitter.name].mergeEdgesForNode(emitterGraph, fp)
+          depGraphs[emitter.name].updateIncomingEdgesForNode(emitterGraph, fp)
         }
       }
       break

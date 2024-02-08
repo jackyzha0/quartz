@@ -25,11 +25,7 @@ export default class DepGraph<T> {
 
   get edges(): [T, T][] {
     let edges: [T, T][] = []
-    for (const [node, { outgoing }] of this._graph.entries()) {
-      outgoing.forEach((target) => {
-        edges.push([node, target])
-      })
-    }
+    this.forEachEdge((edge) => edges.push(edge))
     return edges
   }
 
@@ -50,7 +46,7 @@ export default class DepGraph<T> {
   }
 
   hasEdge(from: T, to: T): boolean {
-    return this._graph.has(from) && this._graph.get(from)!.outgoing.has(to)
+    return Boolean(this._graph.get(from)?.outgoing.has(to))
   }
 
   addEdge(from: T, to: T): void {
@@ -85,10 +81,10 @@ export default class DepGraph<T> {
   }
 
   forEachEdge(callback: (edge: [T, T]) => void): void {
-    for (const [node, { outgoing }] of this._graph.entries()) {
-      outgoing.forEach((target) => {
-        callback([node, target])
-      })
+    for (const [source, { outgoing }] of this._graph.entries()) {
+      for (const target of outgoing) {
+        callback([source, target])
+      }
     }
   }
 
@@ -96,19 +92,19 @@ export default class DepGraph<T> {
 
   // For the node provided:
   // If node does not exist, add it
-  // If an edge was added in other, it is added in this graph
-  // If an edge was deleted in other, it is deleted in this graph
-  mergeEdgesForNode(other: DepGraph<T>, node: T): void {
+  // If an incoming edge was added in other, it is added in this graph
+  // If an incoming edge was deleted in other, it is deleted in this graph
+  updateIncomingEdgesForNode(other: DepGraph<T>, node: T): void {
     this.addNode(node)
 
     // Add edge if it is present in other
-    other.forEachEdge(([source, target]) => {
-      this.addEdge(source, target)
+    other.forEachInNeighbor(node, (neighbor) => {
+      this.addEdge(neighbor, node)
     })
 
-    // For node provided, remove edge if it is absent in other
+    // For node provided, remove incoming edge if it is absent in other
     this.forEachEdge(([source, target]) => {
-      if (source === node && !other.hasEdge(source, target)) {
+      if (target === node && !other.hasEdge(source, target)) {
         this.removeEdge(source, target)
       }
     })
