@@ -20,6 +20,8 @@ import { Mutex } from "async-mutex"
 import DepGraph from "./depgraph"
 import { getStaticResourcesFromPlugins } from "./plugins"
 
+type Dependencies = Record<string, DepGraph<FilePath> | null>
+
 type BuildData = {
   ctx: BuildCtx
   ignored: GlobbyFilterFunction
@@ -31,7 +33,7 @@ type BuildData = {
   toRebuild: Set<FilePath>
   toRemove: Set<FilePath>
   lastBuildMs: number
-  depGraphs: Record<string, DepGraph<FilePath>>
+  dependencies: Dependencies
 }
 
 type FileEvent = "add" | "change" | "delete"
@@ -74,17 +76,14 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   const parsedFiles = await parseMarkdown(ctx, filePaths)
   const filteredContent = filterContent(ctx, parsedFiles)
 
-  const depGraphs: Record<string, DepGraph<FilePath>> = {}
+  const dependencies: Record<string, DepGraph<FilePath> | null> = {}
 
   // Only build dependency graphs if we're doing a fast rebuild
   if (argv.fastRebuild) {
     const staticResources = getStaticResourcesFromPlugins(ctx)
     for (const emitter of cfg.plugins.emitters) {
-      depGraphs[emitter.name] = await emitter.getDependencyGraph(
-        ctx,
-        filteredContent,
-        staticResources,
-      )
+      dependencies[emitter.name] =
+        (await emitter.getDependencyGraph?.(ctx, filteredContent, staticResources)) ?? null
     }
   }
 
@@ -93,7 +92,7 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   release()
 
   if (argv.serve) {
-    return startServing(ctx, mut, parsedFiles, clientRefresh, depGraphs)
+    return startServing(ctx, mut, parsedFiles, clientRefresh, dependencies)
   }
 }
 
@@ -103,7 +102,7 @@ async function startServing(
   mut: Mutex,
   initialContent: ProcessedContent[],
   clientRefresh: () => void,
-  depGraphs: Record<string, DepGraph<FilePath>>, // emitter name: dep graph
+  dependencies: Dependencies, // emitter name: dep graph
 ) {
   const { argv } = ctx
 
@@ -117,7 +116,7 @@ async function startServing(
   const buildData: BuildData = {
     ctx,
     mut,
-    depGraphs,
+    dependencies,
     contentMap,
     ignored: await isGitIgnored(),
     initialSlugs: ctx.allSlugs,
@@ -150,7 +149,7 @@ async function partialRebuildFromEntrypoint(
   clientRefresh: () => void,
   buildData: BuildData, // note: this function mutates buildData
 ) {
-  const { ctx, ignored, depGraphs, contentMap, mut, toRemove } = buildData
+  const { ctx, ignored, dependencies, contentMap, mut, toRemove } = buildData
   const { argv, cfg } = ctx
 
   // don't do anything for gitignored files
@@ -183,8 +182,13 @@ async function partialRebuildFromEntrypoint(
 
       // update the dep graph by asking all emitters whether they depend on this file
       for (const emitter of cfg.plugins.emitters) {
-        const emitterGraph = await emitter.getDependencyGraph(ctx, processedFiles, staticResources)
-        depGraphs[emitter.name].updateIncomingEdgesForNode(emitterGraph, fp)
+        const emitterGraph =
+          (await emitter.getDependencyGraph?.(ctx, processedFiles, staticResources)) ?? null
+
+        // emmiter may not define a dependency graph. nothing to update if so
+        if (emitterGraph) {
+          dependencies[emitter.name]?.updateIncomingEdgesForNode(emitterGraph, fp)
+        }
       }
       break
     case "change":
@@ -196,13 +200,14 @@ async function partialRebuildFromEntrypoint(
       if (path.extname(fp) === ".md") {
         for (const emitter of cfg.plugins.emitters) {
           // get new dependencies from all emitters for this file
-          const emitterGraph = await emitter.getDependencyGraph(
-            ctx,
-            processedFiles,
-            staticResources,
-          )
-          // merge the new dependencies into the dep graph
-          depGraphs[emitter.name].updateIncomingEdgesForNode(emitterGraph, fp)
+          const emitterGraph =
+            (await emitter.getDependencyGraph?.(ctx, processedFiles, staticResources)) ?? null
+
+          // emmiter may not define a dependency graph. nothing to update if so
+          if (emitterGraph) {
+            // merge the new dependencies into the dep graph
+            dependencies[emitter.name]?.updateIncomingEdgesForNode(emitterGraph, fp)
+          }
         }
       }
       break
@@ -221,7 +226,31 @@ async function partialRebuildFromEntrypoint(
   const destinationsToDelete = new Set<FilePath>()
 
   for (const emitter of cfg.plugins.emitters) {
-    const depGraph = depGraphs[emitter.name]
+    const depGraph = dependencies[emitter.name]
+
+    // emitter hasn't defined a dependency graph. call it with all processed files
+    if (depGraph === null) {
+      if (argv.verbose) {
+        console.log(
+          `Emitter ${emitter.name} doesn't define a dependency graph. Calling it with all files...`,
+        )
+      }
+
+      const files = [...contentMap.values()].filter(
+        ([_node, vfile]) => !toRemove.has(vfile.data.filePath!),
+      )
+
+      const emittedFps = await emitter.emit(ctx, files, staticResources)
+
+      if (ctx.argv.verbose) {
+        for (const file of emittedFps) {
+          console.log(`[emit:${emitter.name}] ${file}`)
+        }
+      }
+
+      emittedFiles += emittedFps.length
+      continue
+    }
 
     // only call the emitter if it uses this file
     if (depGraph.hasNode(fp)) {
@@ -267,7 +296,7 @@ async function partialRebuildFromEntrypoint(
     // remove from cache
     contentMap.delete(file)
     // remove the node from dependency graphs
-    Object.values(depGraphs).forEach((depGraph) => depGraph.removeNode(file))
+    Object.values(dependencies).forEach((depGraph) => depGraph?.removeNode(file))
   }
 
   toRemove.clear()

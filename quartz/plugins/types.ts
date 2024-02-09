@@ -39,7 +39,7 @@ export type QuartzEmitterPluginInstance = {
   name: string
   emit(ctx: BuildCtx, content: ProcessedContent[], resources: StaticResources): Promise<FilePath[]>
   getQuartzComponents(ctx: BuildCtx): QuartzComponent[]
-  getDependencyGraph(
+  getDependencyGraph?(
     ctx: BuildCtx,
     content: ProcessedContent[],
     resources: StaticResources,
