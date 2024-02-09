@@ -2,11 +2,16 @@ import { FilePath, FullSlug, joinSegments, resolveRelative, simplifySlug } from 
 import { QuartzEmitterPlugin } from "../types"
 import path from "path"
 import { write } from "./helpers"
+import DepGraph from "../../depgraph"
 
 export const AliasRedirects: QuartzEmitterPlugin = () => ({
   name: "AliasRedirects",
   getQuartzComponents() {
     return []
+  },
+  async getDependencyGraph(_ctx, _content, _resources) {
+    // TODO implement
+    return new DepGraph<FilePath>()
   },
   async emit(ctx, content, _resources): Promise<FilePath[]> {
     const { argv } = ctx
