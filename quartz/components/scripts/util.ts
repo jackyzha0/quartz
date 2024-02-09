@@ -12,10 +12,10 @@ export function registerEscapeHandler(outsideContainer: HTMLElement | null, cb: 
     cb()
   }
 
-  outsideContainer?.removeEventListener("click", click)
   outsideContainer?.addEventListener("click", click)
-  document.removeEventListener("keydown", esc)
+  window.addCleanup(() => outsideContainer?.removeEventListener("click", click))
   document.addEventListener("keydown", esc)
+  window.addCleanup(() => document.removeEventListener("keydown", esc))
 }
 
 export function removeAllChildren(node: HTMLElement) {

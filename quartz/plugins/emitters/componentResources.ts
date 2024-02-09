@@ -1,4 +1,4 @@
-import { FilePath, FullSlug } from "../../util/path"
+import { FilePath, FullSlug, joinSegments } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 
 // @ts-ignore
@@ -119,7 +119,7 @@ function addGlobalPageResources(
   } else if (cfg.analytics?.provider === "umami") {
     componentResources.afterDOMLoaded.push(`
       const umamiScript = document.createElement("script")
-      umamiScript.src = "https://analytics.umami.is/script.js"
+      umamiScript.src = ${cfg.analytics.host} ?? "https://analytics.umami.is/script.js"
       umamiScript.setAttribute("data-website-id", "${cfg.analytics.websiteId}")
       umamiScript.async = true
 
@@ -131,9 +131,11 @@ function addGlobalPageResources(
     componentResources.afterDOMLoaded.push(spaRouterScript)
   } else {
     componentResources.afterDOMLoaded.push(`
-        window.spaNavigate = (url, _) => window.location.assign(url)
-        const event = new CustomEvent("nav", { detail: { url: document.body.dataset.slug } })
-        document.dispatchEvent(event)`)
+      window.spaNavigate = (url, _) => window.location.assign(url)
+      window.addCleanup = () => {}
+      const event = new CustomEvent("nav", { detail: { url: document.body.dataset.slug } })
+      document.dispatchEvent(event)
+    `)
   }
 
   let wsUrl = `ws://localhost:${ctx.argv.wsPort}`
@@ -147,9 +149,9 @@ function addGlobalPageResources(
       loadTime: "afterDOMReady",
       contentType: "inline",
       script: `
-          const socket = new WebSocket('${wsUrl}')
-          socket.addEventListener('message', () => document.location.reload())
-        `,
+        const socket = new WebSocket('${wsUrl}')
+        socket.addEventListener('message', () => document.location.reload())
+      `,
     })
   }
 }
@@ -170,27 +172,72 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
       return []
     },
     async emit(ctx, _content, resources): Promise<FilePath[]> {
+      const promises: Promise<FilePath>[] = []
+      const cfg = ctx.cfg.configuration
       // component specific scripts and styles
       const componentResources = getComponentResources(ctx)
       // important that this goes *after* component scripts
       // as the "nav" event gets triggered here and we should make sure
       // that everyone else had the chance to register a listener for it
 
-      if (fontOrigin === "googleFonts") {
-        resources.css.push(googleFontHref(ctx.cfg.configuration.theme))
-      } else if (fontOrigin === "local") {
+      let googleFontsStyleSheet = ""
+      if (fontOrigin === "local") {
         // let the user do it themselves in css
+      } else if (fontOrigin === "googleFonts") {
+        if (cfg.theme.cdnCaching) {
+          resources.css.push(googleFontHref(cfg.theme))
+        } else {
+          let match
+
+          const fontSourceRegex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
+
+          googleFontsStyleSheet = await (
+            await fetch(googleFontHref(ctx.cfg.configuration.theme))
+          ).text()
+
+          while ((match = fontSourceRegex.exec(googleFontsStyleSheet)) !== null) {
+            // match[0] is the `url(path)`, match[1] is the `path`
+            const url = match[1]
+            // the static name of this file.
+            const [filename, ext] = url.split("/").pop()!.split(".")
+
+            googleFontsStyleSheet = googleFontsStyleSheet.replace(url, `/fonts/${filename}.ttf`)
+
+            promises.push(
+              fetch(url)
+                .then((res) => {
+                  if (!res.ok) {
+                    throw new Error(`Failed to fetch font`)
+                  }
+                  return res.arrayBuffer()
+                })
+                .then((buf) =>
+                  write({
+                    ctx,
+                    slug: joinSegments("fonts", filename) as FullSlug,
+                    ext: `.${ext}`,
+                    content: Buffer.from(buf),
+                  }),
+                ),
+            )
+          }
+        }
       }
 
       addGlobalPageResources(ctx, resources, componentResources)
 
-      const stylesheet = joinStyles(ctx.cfg.configuration.theme, ...componentResources.css, styles)
+      const stylesheet = joinStyles(
+        ctx.cfg.configuration.theme,
+        ...componentResources.css,
+        googleFontsStyleSheet,
+        styles,
+      )
       const [prescript, postscript] = await Promise.all([
         joinScripts(componentResources.beforeDOMLoaded),
         joinScripts(componentResources.afterDOMLoaded),
       ])
 
-      const fps = await Promise.all([
+      promises.push(
         write({
           ctx,
           slug: "index" as FullSlug,
@@ -221,8 +268,9 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
           ext: ".js",
           content: postscript,
         }),
-      ])
-      return fps
+      )
+
+      return await Promise.all(promises)
     },
   }
 }

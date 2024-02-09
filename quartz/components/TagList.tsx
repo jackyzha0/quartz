@@ -1,12 +1,13 @@
 import { pathToRoot, slugTag } from "../util/path"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { classNames } from "../util/lang"
 
 function TagList({ fileData, displayClass }: QuartzComponentProps) {
   const tags = fileData.frontmatter?.tags
   const baseDir = pathToRoot(fileData.slug!)
   if (tags && tags.length > 0) {
     return (
-      <ul class={`tags ${displayClass ?? ""}`}>
+      <ul class={classNames(displayClass, "tags")}>
         {tags.map((tag) => {
           const display = `#${tag}`
           const linkDest = baseDir + `/tags/${slugTag(tag)}`

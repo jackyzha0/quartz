@@ -51,7 +51,12 @@ function sluggify(s: string): string {
   return s
     .split("/")
     .map((segment) =>
-      segment.replace(/\s/g, "-").replace(/%/g, "-percent").replace(/\?/g, "-q").replace(/#/g, ""),
+      segment
+        .replace(/\s/g, "-")
+        .replace(/&/g, "-and-")
+        .replace(/%/g, "-percent")
+        .replace(/\?/g, "")
+        .replace(/#/g, ""),
     )
     .join("/") // always use / as sep
     .replace(/\/$/, "")
