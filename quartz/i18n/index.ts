@@ -7,6 +7,8 @@ import nl from "./locales/nl-NL"
 import ro from "./locales/ro-RO"
 import es from "./locales/es-ES"
 import ar from "./locales/ar-SA"
+import uk from "./locales/uk-UA"
+
 
 export const TRANSLATIONS = {
   "en-US": en,
@@ -15,6 +17,7 @@ export const TRANSLATIONS = {
   "de-DE": de,
   "nl-NL": nl,
   "ro-RO": ro,
+  "ro-MD": ro,
   "es-ES": es,
   "ar-SA": ar,
   "ar-AE": ar,
@@ -36,7 +39,9 @@ export const TRANSLATIONS = {
   "ar-TN": ar,
   "ar-DZ": ar,
   "ar-MR": ar,
+  "uk-UA": uk,
 } as const
 
-export const i18n = (locale: ValidLocale): Translation => TRANSLATIONS[locale ?? "en-US"]
+export const defaultTranslation = "en-US"
+export const i18n = (locale: ValidLocale): Translation => TRANSLATIONS[locale ?? defaultTranslation]
 export type ValidLocale = keyof typeof TRANSLATIONS
