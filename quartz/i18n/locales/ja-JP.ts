@@ -1,6 +1,21 @@
 import { Translation } from "./definition"
 
 export default {
+  callout: {
+    note: "ノート",
+    abstract: "抄録",
+    info: "情報",
+    todo: "やるべきこと",
+    tip: "ヒント",
+    success: "成功",
+    question: "質問",
+    warning: "警告",
+    failure: "失敗",
+    danger: "危険",
+    bug: "バグ",
+    example: "例",
+    quote: "引用",
+  },
   propertyDefaults: {
     title: "無題",
     description: "説明なし",

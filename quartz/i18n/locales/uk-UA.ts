@@ -1,6 +1,21 @@
 import { Translation } from "./definition"
 
 export default {
+  callout: {
+    note: "Примітка",
+    abstract: "Абстракт",
+    info: "Інформація",
+    todo: "Завдання",
+    tip: "Порада",
+    success: "Успіх",
+    question: "Питання",
+    warning: "Попередження",
+    failure: "Невдача",
+    danger: "Небезпека",
+    bug: "Баг",
+    example: "Приклад",
+    quote: "Цитата",
+  },
   propertyDefaults: {
     title: "Без назви",
     description: "Опис не надано",
