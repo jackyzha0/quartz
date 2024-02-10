@@ -6,6 +6,21 @@ export default {
     description: "لم يتم تقديم أي وصف",
   },
   components: {
+    callout: {
+      note: "ملاحظة",
+      abstract: "ملخص",
+      info: "معلومات",
+      todo: "للقيام",
+      tip: "نصيحة",
+      success: "نجاح",
+      question: "سؤال",
+      warning: "تحذير",
+      failure: "فشل",
+      danger: "خطر",
+      bug: "خلل",
+      example: "مثال",
+      quote: "اقتباس",
+    },
     backlinks: {
       title: "وصلات العودة",
       noBacklinksFound: "لا يوجد وصلات عودة",
