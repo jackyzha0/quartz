@@ -1,26 +1,26 @@
 import { Translation } from "./definition"
 
 export default {
-  callout: {
-    note: "Hinweis",
-    abstract: "Zusammenfassung",
-    info: "Info",
-    todo: "Zu erledigen",
-    tip: "Tipp",
-    success: "Erfolg",
-    question: "Frage",
-    warning: "Warnung",
-    failure: "Misserfolg",
-    danger: "Gefahr",
-    bug: "Fehler",
-    example: "Beispiel",
-    quote: "Zitat",
-  },
   propertyDefaults: {
     title: "Unbenannt",
     description: "Keine Beschreibung angegeben",
   },
   components: {
+    callout: {
+      note: "Hinweis",
+      abstract: "Zusammenfassung",
+      info: "Info",
+      todo: "Zu erledigen",
+      tip: "Tipp",
+      success: "Erfolg",
+      question: "Frage",
+      warning: "Warnung",
+      failure: "Misserfolg",
+      danger: "Gefahr",
+      bug: "Fehler",
+      example: "Beispiel",
+      quote: "Zitat",
+    },
     backlinks: {
       title: "Backlinks",
       noBacklinksFound: "Keine Backlinks gefunden",

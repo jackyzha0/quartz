@@ -1,26 +1,26 @@
 import { Translation } from "./definition"
 
 export default {
-  callout: {
-    note: "Notă",
-    abstract: "Rezumat",
-    info: "Informație",
-    todo: "De făcut",
-    tip: "Sfat",
-    success: "Succes",
-    question: "Întrebare",
-    warning: "Avertisment",
-    failure: "Eșec",
-    danger: "Pericol",
-    bug: "Bug",
-    example: "Exemplu",
-    quote: "Citat",
-  },
   propertyDefaults: {
     title: "Fără titlu",
     description: "Nici o descriere furnizată",
   },
   components: {
+    callout: {
+      note: "Notă",
+      abstract: "Rezumat",
+      info: "Informație",
+      todo: "De făcut",
+      tip: "Sfat",
+      success: "Succes",
+      question: "Întrebare",
+      warning: "Avertisment",
+      failure: "Eșec",
+      danger: "Pericol",
+      bug: "Bug",
+      example: "Exemplu",
+      quote: "Citat",
+    },
     backlinks: {
       title: "Legături înapoi",
       noBacklinksFound: "Nu s-au găsit legături înapoi",

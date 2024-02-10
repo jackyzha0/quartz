@@ -17,12 +17,12 @@ export interface CalloutTranslation {
 }
 
 export interface Translation {
-  callout: CalloutTranslation
   propertyDefaults: {
     title: string
     description: string
   }
   components: {
+    callout: CalloutTranslation
     backlinks: {
       title: string
       noBacklinksFound: string

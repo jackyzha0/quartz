@@ -1,26 +1,26 @@
 import { Translation } from "./definition"
 
 export default {
-  callout: {
-    note: "Notitie",
-    abstract: "Samenvatting",
-    info: "Info",
-    todo: "Te doen",
-    tip: "Tip",
-    success: "Succes",
-    question: "Vraag",
-    warning: "Waarschuwing",
-    failure: "Mislukking",
-    danger: "Gevaar",
-    bug: "Bug",
-    example: "Voorbeeld",
-    quote: "Citaat",
-  },
   propertyDefaults: {
     title: "Naamloos",
     description: "Geen beschrijving gegeven.",
   },
   components: {
+    callout: {
+      note: "Notitie",
+      abstract: "Samenvatting",
+      info: "Info",
+      todo: "Te doen",
+      tip: "Tip",
+      success: "Succes",
+      question: "Vraag",
+      warning: "Waarschuwing",
+      failure: "Mislukking",
+      danger: "Gevaar",
+      bug: "Bug",
+      example: "Voorbeeld",
+      quote: "Citaat",
+    },
     backlinks: {
       title: "Backlinks",
       noBacklinksFound: "Geen backlinks gevonden",
