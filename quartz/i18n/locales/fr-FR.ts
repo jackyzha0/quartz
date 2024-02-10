@@ -6,6 +6,21 @@ export default {
     description: "Aucune description fournie",
   },
   components: {
+    callout: {
+      note: "Note",
+      abstract: "Résumé",
+      info: "Info",
+      todo: "À faire",
+      tip: "Conseil",
+      success: "Succès",
+      question: "Question",
+      warning: "Avertissement",
+      failure: "Échec",
+      danger: "Danger",
+      bug: "Bogue",
+      example: "Exemple",
+      quote: "Citation",
+    },
     backlinks: {
       title: "Liens retour",
       noBacklinksFound: "Aucun lien retour trouvé",

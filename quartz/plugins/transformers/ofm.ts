@@ -1,5 +1,5 @@
 import { QuartzTransformerPlugin } from "../types"
-import { Root, Html, BlockContent, DefinitionContent, Paragraph, Code } from "mdast"
+import { Blockquote, Root, Html, BlockContent, DefinitionContent, Paragraph, Code } from "mdast"
 import { Element, Literal, Root as HtmlRoot } from "hast"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { slug as slugAnchor } from "github-slugger"
@@ -17,6 +17,7 @@ import { toHtml } from "hast-util-to-html"
 import { PhrasingContent } from "mdast-util-find-and-replace/lib"
 import { capitalize } from "../../util/lang"
 import { PluggableList } from "unified"
+import { ValidCallout, i18n } from "../../i18n"
 
 export interface Options {
   comments: boolean
@@ -185,8 +186,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
       return src
     },
-    markdownPlugins() {
+    markdownPlugins(ctx) {
       const plugins: PluggableList = []
+      const cfg = ctx.cfg.configuration
 
       // regex replacements
       plugins.push(() => {
@@ -407,7 +409,12 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   children: [
                     {
                       type: "text",
-                      value: useDefaultTitle ? capitalize(calloutType) : titleContent + " ",
+                      value: useDefaultTitle
+                        ? capitalize(
+                            i18n(cfg.locale).components.callout[calloutType as ValidCallout] ??
+                              calloutType,
+                          )
+                        : titleContent + " ",
                     },
                     ...restOfTitle,
                   ],
