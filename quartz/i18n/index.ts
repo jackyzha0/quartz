@@ -6,6 +6,7 @@ import de from "./locales/de-DE"
 import nl from "./locales/nl-NL"
 import ro from "./locales/ro-RO"
 import es from "./locales/es-ES"
+import ar from "./locales/ar-SA"
 import uk from "./locales/uk-UA"
 
 export const TRANSLATIONS = {
@@ -17,6 +18,26 @@ export const TRANSLATIONS = {
   "ro-RO": ro,
   "ro-MD": ro,
   "es-ES": es,
+  "ar-SA": ar,
+  "ar-AE": ar,
+  "ar-QA": ar,
+  "ar-BH": ar,
+  "ar-KW": ar,
+  "ar-OM": ar,
+  "ar-YE": ar,
+  "ar-IR": ar,
+  "ar-SY": ar,
+  "ar-IQ": ar,
+  "ar-JO": ar,
+  "ar-PL": ar,
+  "ar-LB": ar,
+  "ar-EG": ar,
+  "ar-SD": ar,
+  "ar-LY": ar,
+  "ar-MA": ar,
+  "ar-TN": ar,
+  "ar-DZ": ar,
+  "ar-MR": ar,
   "uk-UA": uk,
 } as const
 
