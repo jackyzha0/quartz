@@ -411,7 +411,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                       type: "text",
                       value: useDefaultTitle
                         ? capitalize(
-                            i18n(cfg.locale).callout[calloutType as ValidCallout] ?? calloutType,
+                            i18n(cfg.locale).components.callout[calloutType as ValidCallout] ??
+                              calloutType,
                           )
                         : titleContent + " ",
                     },
