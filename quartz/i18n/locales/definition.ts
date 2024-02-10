@@ -37,7 +37,7 @@ export interface Translation {
     }
     tableOfContents: {
       title: string
-    }, 
+    }
     contentMeta: {
       readingTime: (variables: { minutes: number }) => string
     }
