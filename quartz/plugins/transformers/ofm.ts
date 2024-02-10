@@ -450,13 +450,19 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 // replace first line of blockquote with title and rest of the paragraph text
                 node.children.splice(0, 1, ...blockquoteContent)
 
+                const classNames = ["callout", calloutType]
+                if (collapse) {
+                  classNames.push("is-collapsible")
+                }
+                if (defaultState === "collapsed") {
+                  classNames.push("is-collapsed")
+                }
+
                 // add properties to base blockquote
                 node.data = {
                   hProperties: {
                     ...(node.data?.hProperties ?? {}),
-                    className: `callout ${calloutType} ${collapse ? "is-collapsible" : ""} ${
-                      defaultState === "collapsed" ? "is-collapsed" : ""
-                    }`,
+                    className: classNames.join(" "),
                     "data-callout": calloutType,
                     "data-callout-fold": collapse,
                   },
