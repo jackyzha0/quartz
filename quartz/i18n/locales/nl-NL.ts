@@ -38,6 +38,9 @@ export default {
     tableOfContents: {
       title: "Inhoudsopgave",
     },
+    contentMeta: {
+      readingTime: ({ minutes }) => `${minutes} min read`,
+    },
   },
   pages: {
     rss: {
