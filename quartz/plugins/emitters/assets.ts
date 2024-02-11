@@ -4,8 +4,10 @@ import path from "path"
 import fs from "fs"
 import { glob } from "../../util/glob"
 import DepGraph from "../../depgraph"
+import { Argv } from "../../util/ctx"
+import { QuartzConfig } from "../../cfg"
 
-const filesToCopy = async (argv: any, cfg: any) => {
+const filesToCopy = async (argv: Argv, cfg: QuartzConfig) => {
   // glob all non MD files in content folder and copy it over
   return await glob("**", argv.directory, ["**/*.md", ...cfg.configuration.ignorePatterns])
 }
