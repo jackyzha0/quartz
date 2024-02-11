@@ -2,6 +2,7 @@ import { formatDate, getDate } from "./Date"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import readingTime from "reading-time"
 import { classNames } from "../util/lang"
+import { i18n } from "../i18n"
 
 interface ContentMetaOptions {
   /**
@@ -30,8 +31,11 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
 
       // Display reading time if enabled
       if (options.showReadingTime) {
-        const { text: timeTaken, words: _words } = readingTime(text)
-        segments.push(timeTaken)
+        const { minutes, words: _words } = readingTime(text)
+        const displayedTime = i18n(cfg.locale).components.contentMeta.readingTime({
+          minutes: Math.ceil(minutes),
+        })
+        segments.push(displayedTime)
       }
 
       return <p class={classNames(displayClass, "content-meta")}>{segments.join(", ")}</p>

@@ -53,6 +53,9 @@ export default {
     tableOfContents: {
       title: "目次",
     },
+    contentMeta: {
+      readingTime: ({ minutes }) => `${minutes} min read`,
+    },
   },
   pages: {
     rss: {
