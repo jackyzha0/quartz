@@ -371,6 +371,11 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
           throw new Error(`Could not fetch ${targetUrl}`)
         }
         const html = p.parseFromString(contents ?? "", "text/html")
+        if (html.body.dataset.enablePreview === "false") {
+          const noPreview = document.createElement("div")
+          noPreview.innerHTML = `<p>Preview is disabled for this page.</p>`
+          return [noPreview]
+        }
         normalizeRelativeURLs(html, targetUrl)
         return [...html.getElementsByClassName("popover-hint")]
       })

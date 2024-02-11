@@ -51,7 +51,13 @@ async function mouseEnterHandler(
   if (!contents) return
   const html = p.parseFromString(contents, "text/html")
   normalizeRelativeURLs(html, targetUrl)
-  const elts = [...html.getElementsByClassName("popover-hint")]
+  let elts: Element[]
+  if (html.body.dataset.enablePreview === "false") {
+    const noPreview = document.createElement("div")
+    noPreview.innerHTML = `<p>Preview is disabled for this page.</p>`
+    elts = [noPreview]
+  } else elts = [...html.getElementsByClassName("popover-hint")]
+
   if (elts.length === 0) return
 
   const popoverElement = document.createElement("div")
