@@ -1,5 +1,5 @@
 ---
-title: FWelcome!
+title: Welcome!
 description: Forgetful Notes—A digital garden of knowledge. A platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 updated: 2024-02-08
 compartir: true
