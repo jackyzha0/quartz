@@ -203,8 +203,9 @@ async function partialRebuildFromEntrypoint(
           const emitterGraph =
             (await emitter.getDependencyGraph?.(ctx, processedFiles, staticResources)) ?? null
 
-          // emmiter may not define a dependency graph. nothing to update if so
-          if (emitterGraph) {
+          // only update the graph if the emitter plugin uses the changed file
+          // eg. Assets plugin ignores md files, so we skip updating the graph
+          if (emitterGraph?.hasNode(fp)) {
             // merge the new dependencies into the dep graph
             dependencies[emitter.name]?.updateIncomingEdgesForNode(emitterGraph, fp)
           }
