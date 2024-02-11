@@ -42,7 +42,7 @@
     "chokidar": "^3.5.3",
     "cli-spinner": "^0.2.10",
     "d3": "^7.8.5",
-    "esbuild-sass-plugin": "^2.16.0",
+    "esbuild-sass-plugin": "^2.16.1",
     "flexsearch": "0.7.43",
     "github-slugger": "^2.0.0",
     "globby": "^14.0.0",
