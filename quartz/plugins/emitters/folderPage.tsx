@@ -10,7 +10,7 @@ import {
   FilePath,
   FullSlug,
   SimpleSlug,
-  _stripSlashes,
+  stripSlashes,
   joinSegments,
   pathToRoot,
   simplifySlug,
@@ -38,7 +38,7 @@ export const FolderPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpt
     getQuartzComponents() {
       return [Head, Header, Body, ...header, ...beforeBody, pageBody, ...left, ...right, Footer]
     },
-    async getDependencyGraph(ctx, content, _resources) {
+    async getDependencyGraph(_ctx, _content, _resources) {
       // Example graph:
       // nested/file.md --> nested/file.html
       //          \-------> nested/index.html
@@ -75,7 +75,7 @@ export const FolderPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpt
       )
 
       for (const [tree, file] of content) {
-        const slug = _stripSlashes(simplifySlug(file.data.slug!)) as SimpleSlug
+        const slug = stripSlashes(simplifySlug(file.data.slug!)) as SimpleSlug
         if (folders.has(slug)) {
           folderDescriptions[slug] = [tree, file]
         }

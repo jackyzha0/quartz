@@ -4,7 +4,7 @@ import {
   RelativeURL,
   SimpleSlug,
   TransformOptions,
-  _stripSlashes,
+  stripSlashes,
   simplifySlug,
   splitAnchor,
   transformLink,
@@ -115,7 +115,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                   }
 
                   // need to decodeURIComponent here as WHATWG URL percent-encodes everything
-                  const full = decodeURIComponent(_stripSlashes(destCanonical, true)) as FullSlug
+                  const full = decodeURIComponent(stripSlashes(destCanonical, true)) as FullSlug
                   const simple = simplifySlug(full)
                   outgoing.add(simple)
                   node.properties["data-slug"] = full
