@@ -8,6 +8,7 @@ import HeaderConstructor from "../../components/Header"
 import BodyConstructor from "../../components/Body"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { FullPageLayout } from "../../cfg"
+import { Argv } from "../../util/ctx"
 import { FilePath, isRelativeURL, joinSegments, pathToRoot } from "../../util/path"
 import { defaultContentPageLayout, sharedPageComponents } from "../../../quartz.layout"
 import { Content } from "../../components"
@@ -17,13 +18,16 @@ import DepGraph from "../../depgraph"
 
 // get all the dependencies for the markdown file
 // eg. images, scripts, stylesheets, transclusions
-const parseDependencies = (hast: Root, file: VFile): string[] => {
+const parseDependencies = (argv: Argv, hast: Root, file: VFile): string[] => {
   const dependencies: string[] = []
 
   visit(hast, "element", (elem): void => {
     let ref: string | null = null
 
-    if (["img", "script"].includes(elem.tagName) && elem?.properties?.src) {
+    if (
+      ["script", "img", "audio", "video", "source", "iframe"].includes(elem.tagName) &&
+      elem?.properties?.src
+    ) {
       ref = elem.properties.src.toString()
     } else if (["a", "link"].includes(elem.tagName) && elem?.properties?.href) {
       // transclusions will create a tags with relative hrefs
@@ -36,7 +40,7 @@ const parseDependencies = (hast: Root, file: VFile): string[] => {
       return
     }
 
-    let fp = path.join(file.data.filePath!, "..", ref).replace(/\\/g, "/")
+    let fp = path.join(file.data.filePath!, path.relative(argv.directory, ref)).replace(/\\/g, "/")
     // markdown files have the .md extension stripped in hrefs, add it back here
     if (!fp.split("/").pop()?.includes(".")) {
       fp += ".md"
@@ -72,7 +76,7 @@ export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOp
         const slug = file.data.slug!
         graph.addEdge(sourcePath, joinSegments(ctx.argv.output, slug + ".html") as FilePath)
 
-        parseDependencies(tree as Root, file).forEach((dep) => {
+        parseDependencies(ctx.argv, tree as Root, file).forEach((dep) => {
           graph.addEdge(dep as FilePath, sourcePath)
         })
       }
