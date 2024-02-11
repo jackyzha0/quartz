@@ -17,6 +17,7 @@ Title: Atomic Note: Importance of Exercise
 Tags: #exercise #health #wellness
 
 Regular exercise confers numerous health benefits, including:
+
 - Improved cardiovascular health
 - Increased strength and flexibility
 - Weight management

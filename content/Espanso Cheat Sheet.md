@@ -73,11 +73,11 @@ Visit the [Documentation](https://espanso.org/docs/get-started/).
 ### Run CLI Command
 
 ```yaml
-  - name: getip
-    type: shell
-    params:
-      cmd: "curl ifconfig.me"
-      shell: cmd
+- name: getip
+  type: shell
+  params:
+    cmd: "curl ifconfig.me"
+    shell: cmd
 ```
 
 ## Global Variables

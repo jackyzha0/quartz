@@ -12,18 +12,18 @@ Unfortunately, this forecast did not come to pass. The solar activity remained w
 
 ## Light Pollution Table
 
-| Location | Distance | Travel Time | Rank\* |
-| :--- | :---: | :---: | :---: |
-| Minneapolis | 16 miles | 25 minutes | 0 |
-| Bloomington | 2 miles | 5 minutes | 1 |
-| Chaska | 15 miles | 20 minutes | 2 |
-| Farmington | 24 miles | 35 minutes | 3 |
-| Jordan | 22 miles | 25 minutes | 4 |
-| Norwood | 35 miles | 40 minutes | 5 |
-| Gaylord | 55 miles | 60 minutes | 6 |
-| Rapidan | 75 miles | 75 minutes | 7 |
-| Chengwatana | 95 miles | 90 minutes | 8 |
-| Sacred Heart | 105 miles | 120 minutes | 9 |
+| Location     | Distance  | Travel Time | Rank\* |
+| :----------- | :-------: | :---------: | :----: |
+| Minneapolis  | 16 miles  | 25 minutes  |   0    |
+| Bloomington  |  2 miles  |  5 minutes  |   1    |
+| Chaska       | 15 miles  | 20 minutes  |   2    |
+| Farmington   | 24 miles  | 35 minutes  |   3    |
+| Jordan       | 22 miles  | 25 minutes  |   4    |
+| Norwood      | 35 miles  | 40 minutes  |   5    |
+| Gaylord      | 55 miles  | 60 minutes  |   6    |
+| Rapidan      | 75 miles  | 75 minutes  |   7    |
+| Chengwatana  | 95 miles  | 90 minutes  |   8    |
+| Sacred Heart | 105 miles | 120 minutes |   9    |
 
 **\*** Higher Rank is considered better.
 

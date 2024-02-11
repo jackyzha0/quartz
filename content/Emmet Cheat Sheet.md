@@ -9,7 +9,7 @@ compartir: true
 
 ## Notes on Abbreviation Formatting
 
-When you get familiar with Emmet's abbreviations syntax, you may want to use some formatting to make your abbreviations more readable. But it won't work, because space is a _stop symbol,_ where Emmet stops abbreviation parsing. Many users mistakenly think that each abbreviation should be written in a new line, but they are wrong: you can type and expand the abbreviation anywhere in the text.
+When you get familiar with Emmet's abbreviations syntax, you may want to use some formatting to make your abbreviations more readable. But it won't work, because space is a *stop symbol,* where Emmet stops abbreviation parsing. Many users mistakenly think that each abbreviation should be written in a new line, but they are wrong: you can type and expand the abbreviation anywhere in the text.
 
 This is why Emmet needs some indicators (like spaces) where it should stop parsing to not expand anything that you don't need. If you're still thinking that such formatting is required for complex abbreviations to make them more readable:
 
@@ -28,9 +28,9 @@ div>ul>li
 
 ```html
 <div>
-    <ul>
-        <li></li>
-    </ul>
+  <ul>
+    <li></li>
+  </ul>
 </div>
 ```
 
@@ -76,7 +76,7 @@ div+div>p>span+em^^^bq
 ```html
 <div></div>
 <div>
-    <p><span></span><em></em></p>
+  <p><span></span><em></em></p>
 </div>
 <blockquote></blockquote>
 ```
@@ -89,11 +89,11 @@ ul>li*5
 
 ```html
 <ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
 </ul>
 ```
 
@@ -105,15 +105,15 @@ div>(header>ul>li*2>a)+footer>p
 
 ```html
 <div>
-    <header>
-        <ul>
-            <li><a href=""></a></li>
-            <li><a href=""></a></li>
-        </ul>
-    </header>
-    <footer>
-        <p></p>
-    </footer>
+  <header>
+    <ul>
+      <li><a href=""></a></li>
+      <li><a href=""></a></li>
+    </ul>
+  </header>
+  <footer>
+    <p></p>
+  </footer>
 </div>
 ```
 
@@ -123,17 +123,17 @@ div>(header>ul>li*2>a)+footer>p
 
 ```html
 <div>
-    <dl>
-        <dt></dt>
-        <dd></dd>
-        <dt></dt>
-        <dd></dd>
-        <dt></dt>
-        <dd></dd>
-    </dl>
+  <dl>
+    <dt></dt>
+    <dd></dd>
+    <dt></dt>
+    <dd></dd>
+    <dt></dt>
+    <dd></dd>
+  </dl>
 </div>
 <footer>
-    <p></p>
+  <p></p>
 </footer>
 ```
 
@@ -167,11 +167,11 @@ ul>li.item$*5
 
 ```html
 <ul>
-    <li class="item1"></li>
-    <li class="item2"></li>
-    <li class="item3"></li>
-    <li class="item4"></li>
-    <li class="item5"></li>
+  <li class="item1"></li>
+  <li class="item2"></li>
+  <li class="item3"></li>
+  <li class="item4"></li>
+  <li class="item5"></li>
 </ul>
 ```
 
@@ -181,11 +181,11 @@ ul>li.item$$$*5
 
 ```html
 <ul>
-    <li class="item001"></li>
-    <li class="item002"></li>
-    <li class="item003"></li>
-    <li class="item004"></li>
-    <li class="item005"></li>
+  <li class="item001"></li>
+  <li class="item002"></li>
+  <li class="item003"></li>
+  <li class="item004"></li>
+  <li class="item005"></li>
 </ul>
 ```
 
@@ -223,11 +223,11 @@ ul>li.item$@-3*5
 
 ```html
 <ul>
-    <li class="item7"></li>
-    <li class="item6"></li>
-    <li class="item5"></li>
-    <li class="item4"></li>
-    <li class="item3"></li>
+  <li class="item7"></li>
+  <li class="item6"></li>
+  <li class="item5"></li>
+  <li class="item4"></li>
+  <li class="item3"></li>
 </ul>
 ```
 
@@ -270,6 +270,6 @@ p{Click }+a{here}+{ to continue}
 ```
 
 ```html
-<p>Click </p>
+<p>Click</p>
 <a href="">here</a> to continue
 ```
