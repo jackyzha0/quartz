@@ -14,6 +14,7 @@ import { googleFontHref, joinStyles } from "../../util/theme"
 import { Features, transform } from "lightningcss"
 import { transform as transpile } from "esbuild"
 import { write } from "./helpers"
+import DepGraph from "../../depgraph"
 
 type ComponentResources = {
   css: string[]
@@ -149,9 +150,10 @@ function addGlobalPageResources(
       loadTime: "afterDOMReady",
       contentType: "inline",
       script: `
-        const socket = new WebSocket('${wsUrl}')
-        socket.addEventListener('message', () => document.location.reload())
-      `,
+          const socket = new WebSocket('${wsUrl}')
+          // reload(true) ensures resources like images and scripts are fetched again in firefox
+          socket.addEventListener('message', () => document.location.reload(true))
+        `,
     })
   }
 }
@@ -170,6 +172,24 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
     name: "ComponentResources",
     getQuartzComponents() {
       return []
+    },
+    async getDependencyGraph(ctx, content, _resources) {
+      // This emitter adds static resources to the `resources` parameter. One
+      // important resource this emitter adds is the code to start a websocket
+      // connection and listen to rebuild messages, which triggers a page reload.
+      // The resources parameter with the reload logic is later used by the
+      // ContentPage emitter while creating the final html page. In order for
+      // the reload logic to be included, and so for partial rebuilds to work,
+      // we need to run this emitter for all markdown files.
+      const graph = new DepGraph<FilePath>()
+
+      for (const [_tree, file] of content) {
+        const sourcePath = file.data.filePath!
+        const slug = file.data.slug!
+        graph.addEdge(sourcePath, joinSegments(ctx.argv.output, slug + ".html") as FilePath)
+      }
+
+      return graph
     },
     async emit(ctx, _content, resources): Promise<FilePath[]> {
       const promises: Promise<FilePath>[] = []
@@ -201,7 +221,10 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
             // the static name of this file.
             const [filename, ext] = url.split("/").pop()!.split(".")
 
-            googleFontsStyleSheet = googleFontsStyleSheet.replace(url, `/fonts/${filename}.ttf`)
+            googleFontsStyleSheet = googleFontsStyleSheet.replace(
+              url,
+              `/static/fonts/${filename}.ttf`,
+            )
 
             promises.push(
               fetch(url)
@@ -214,7 +237,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
                 .then((buf) =>
                   write({
                     ctx,
-                    slug: joinSegments("fonts", filename) as FullSlug,
+                    slug: joinSegments("static", "fonts", filename) as FullSlug,
                     ext: `.${ext}`,
                     content: Buffer.from(buf),
                   }),

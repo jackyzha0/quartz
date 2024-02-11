@@ -17,6 +17,6 @@ Digital Gardens are explorable rather than structured as a strictly linear strea
 
 ## Kinds of Notes
 
-- 🌱 _Seedlings_ for very rough and early ideas.
-- 🌿 _Budding_ for work I've cleaned up and clarified.
-- 🌳 _Evergreen_ for work that is reasonably complete (though I still tend these over time).
+- 🌱 *Seedlings* for very rough and early ideas.
+- 🌿 *Budding* for work I've cleaned up and clarified.
+- 🌳 *Evergreen* for work that is reasonably complete (though I still tend these over time).

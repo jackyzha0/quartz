@@ -16,7 +16,7 @@ Chuckwallas have a robust build with wide bodies and flattened midsections. Thei
 mindmap
   root((Iguanidae))
 	    Iguana
-	    Sauromalus 
+	    Sauromalus
 	    Ctenosaura
 	    Conolophus
 	    Dipsosaurus

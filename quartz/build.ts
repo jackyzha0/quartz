@@ -17,6 +17,10 @@ import { glob, toPosixPath } from "./util/glob"
 import { trace } from "./util/trace"
 import { options } from "./util/sourcemap"
 import { Mutex } from "async-mutex"
+import DepGraph from "./depgraph"
+import { getStaticResourcesFromPlugins } from "./plugins"
+
+type Dependencies = Record<string, DepGraph<FilePath> | null>
 
 type BuildData = {
   ctx: BuildCtx
@@ -29,7 +33,10 @@ type BuildData = {
   toRebuild: Set<FilePath>
   toRemove: Set<FilePath>
   lastBuildMs: number
+  dependencies: Dependencies
 }
+
+type FileEvent = "add" | "change" | "delete"
 
 async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   const ctx: BuildCtx = {
@@ -68,12 +75,24 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
 
   const parsedFiles = await parseMarkdown(ctx, filePaths)
   const filteredContent = filterContent(ctx, parsedFiles)
+
+  const dependencies: Record<string, DepGraph<FilePath> | null> = {}
+
+  // Only build dependency graphs if we're doing a fast rebuild
+  if (argv.fastRebuild) {
+    const staticResources = getStaticResourcesFromPlugins(ctx)
+    for (const emitter of cfg.plugins.emitters) {
+      dependencies[emitter.name] =
+        (await emitter.getDependencyGraph?.(ctx, filteredContent, staticResources)) ?? null
+    }
+  }
+
   await emitContent(ctx, filteredContent)
   console.log(chalk.green(`Done processing ${fps.length} files in ${perf.timeSince()}`))
   release()
 
   if (argv.serve) {
-    return startServing(ctx, mut, parsedFiles, clientRefresh)
+    return startServing(ctx, mut, parsedFiles, clientRefresh, dependencies)
   }
 }
 
@@ -83,9 +102,11 @@ async function startServing(
   mut: Mutex,
   initialContent: ProcessedContent[],
   clientRefresh: () => void,
+  dependencies: Dependencies, // emitter name: dep graph
 ) {
   const { argv } = ctx
 
+  // cache file parse results
   const contentMap = new Map<FilePath, ProcessedContent>()
   for (const content of initialContent) {
     const [_tree, vfile] = content
@@ -95,6 +116,7 @@ async function startServing(
   const buildData: BuildData = {
     ctx,
     mut,
+    dependencies,
     contentMap,
     ignored: await isGitIgnored(),
     initialSlugs: ctx.allSlugs,
@@ -110,19 +132,181 @@ async function startServing(
     ignoreInitial: true,
   })
 
+  const buildFromEntry = argv.fastRebuild ? partialRebuildFromEntrypoint : rebuildFromEntrypoint
   watcher
-    .on("add", (fp) => rebuildFromEntrypoint(fp, "add", clientRefresh, buildData))
-    .on("change", (fp) => rebuildFromEntrypoint(fp, "change", clientRefresh, buildData))
-    .on("unlink", (fp) => rebuildFromEntrypoint(fp, "delete", clientRefresh, buildData))
+    .on("add", (fp) => buildFromEntry(fp, "add", clientRefresh, buildData))
+    .on("change", (fp) => buildFromEntry(fp, "change", clientRefresh, buildData))
+    .on("unlink", (fp) => buildFromEntry(fp, "delete", clientRefresh, buildData))
 
   return async () => {
     await watcher.close()
   }
 }
 
+async function partialRebuildFromEntrypoint(
+  filepath: string,
+  action: FileEvent,
+  clientRefresh: () => void,
+  buildData: BuildData, // note: this function mutates buildData
+) {
+  const { ctx, ignored, dependencies, contentMap, mut, toRemove } = buildData
+  const { argv, cfg } = ctx
+
+  // don't do anything for gitignored files
+  if (ignored(filepath)) {
+    return
+  }
+
+  const buildStart = new Date().getTime()
+  buildData.lastBuildMs = buildStart
+  const release = await mut.acquire()
+  if (buildData.lastBuildMs > buildStart) {
+    release()
+    return
+  }
+
+  const perf = new PerfTimer()
+  console.log(chalk.yellow("Detected change, rebuilding..."))
+
+  // UPDATE DEP GRAPH
+  const fp = joinSegments(argv.directory, toPosixPath(filepath)) as FilePath
+
+  const staticResources = getStaticResourcesFromPlugins(ctx)
+  let processedFiles: ProcessedContent[] = []
+
+  switch (action) {
+    case "add":
+      // add to cache when new file is added
+      processedFiles = await parseMarkdown(ctx, [fp])
+      processedFiles.forEach(([tree, vfile]) => contentMap.set(vfile.data.filePath!, [tree, vfile]))
+
+      // update the dep graph by asking all emitters whether they depend on this file
+      for (const emitter of cfg.plugins.emitters) {
+        const emitterGraph =
+          (await emitter.getDependencyGraph?.(ctx, processedFiles, staticResources)) ?? null
+
+        // emmiter may not define a dependency graph. nothing to update if so
+        if (emitterGraph) {
+          dependencies[emitter.name]?.updateIncomingEdgesForNode(emitterGraph, fp)
+        }
+      }
+      break
+    case "change":
+      // invalidate cache when file is changed
+      processedFiles = await parseMarkdown(ctx, [fp])
+      processedFiles.forEach(([tree, vfile]) => contentMap.set(vfile.data.filePath!, [tree, vfile]))
+
+      // only content files can have added/removed dependencies because of transclusions
+      if (path.extname(fp) === ".md") {
+        for (const emitter of cfg.plugins.emitters) {
+          // get new dependencies from all emitters for this file
+          const emitterGraph =
+            (await emitter.getDependencyGraph?.(ctx, processedFiles, staticResources)) ?? null
+
+          // emmiter may not define a dependency graph. nothing to update if so
+          if (emitterGraph) {
+            // merge the new dependencies into the dep graph
+            dependencies[emitter.name]?.updateIncomingEdgesForNode(emitterGraph, fp)
+          }
+        }
+      }
+      break
+    case "delete":
+      toRemove.add(fp)
+      break
+  }
+
+  if (argv.verbose) {
+    console.log(`Updated dependency graphs in ${perf.timeSince()}`)
+  }
+
+  // EMIT
+  perf.addEvent("rebuild")
+  let emittedFiles = 0
+  const destinationsToDelete = new Set<FilePath>()
+
+  for (const emitter of cfg.plugins.emitters) {
+    const depGraph = dependencies[emitter.name]
+
+    // emitter hasn't defined a dependency graph. call it with all processed files
+    if (depGraph === null) {
+      if (argv.verbose) {
+        console.log(
+          `Emitter ${emitter.name} doesn't define a dependency graph. Calling it with all files...`,
+        )
+      }
+
+      const files = [...contentMap.values()].filter(
+        ([_node, vfile]) => !toRemove.has(vfile.data.filePath!),
+      )
+
+      const emittedFps = await emitter.emit(ctx, files, staticResources)
+
+      if (ctx.argv.verbose) {
+        for (const file of emittedFps) {
+          console.log(`[emit:${emitter.name}] ${file}`)
+        }
+      }
+
+      emittedFiles += emittedFps.length
+      continue
+    }
+
+    // only call the emitter if it uses this file
+    if (depGraph.hasNode(fp)) {
+      // re-emit using all files that are needed for the downstream of this file
+      // eg. for ContentIndex, the dep graph could be:
+      // a.md --> contentIndex.json
+      // b.md ------^
+      //
+      // if a.md changes, we need to re-emit contentIndex.json,
+      // and supply [a.md, b.md] to the emitter
+      const upstreams = [...depGraph.getLeafNodeAncestors(fp)] as FilePath[]
+
+      if (action === "delete" && upstreams.length === 1) {
+        // if there's only one upstream, the destination is solely dependent on this file
+        destinationsToDelete.add(upstreams[0])
+      }
+
+      const upstreamContent = upstreams
+        // filter out non-markdown files
+        .filter((file) => contentMap.has(file))
+        // if file was deleted, don't give it to the emitter
+        .filter((file) => !toRemove.has(file))
+        .map((file) => contentMap.get(file)!)
+
+      const emittedFps = await emitter.emit(ctx, upstreamContent, staticResources)
+
+      if (ctx.argv.verbose) {
+        for (const file of emittedFps) {
+          console.log(`[emit:${emitter.name}] ${file}`)
+        }
+      }
+
+      emittedFiles += emittedFps.length
+    }
+  }
+
+  console.log(`Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince("rebuild")}`)
+
+  // CLEANUP
+  // delete files that are solely dependent on this file
+  await rimraf([...destinationsToDelete])
+  for (const file of toRemove) {
+    // remove from cache
+    contentMap.delete(file)
+    // remove the node from dependency graphs
+    Object.values(dependencies).forEach((depGraph) => depGraph?.removeNode(file))
+  }
+
+  toRemove.clear()
+  release()
+  clientRefresh()
+}
+
 async function rebuildFromEntrypoint(
   fp: string,
-  action: "add" | "change" | "delete",
+  action: FileEvent,
   clientRefresh: () => void,
   buildData: BuildData, // note: this function mutates buildData
 ) {
