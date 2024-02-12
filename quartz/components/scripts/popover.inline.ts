@@ -48,7 +48,7 @@ async function mouseEnterHandler(
 
   if (!response) return
   const contentType = response.headers.get("Content-Type")
-  
+
   const popoverElement = document.createElement("div")
   popoverElement.classList.add("popover")
   const popoverInner = document.createElement("div")
@@ -61,11 +61,11 @@ async function mouseEnterHandler(
 
     response.blob().then((blob) => {
       img.src = URL.createObjectURL(blob)
-    });
+    })
     img.alt = targetUrl.pathname
 
     popoverInner.appendChild(img)
-    
+
     img.style.margin = "0"
     img.style.verticalAlign = "bottom"
     img.style.display = "block"
