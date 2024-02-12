@@ -15,6 +15,7 @@ export const TRANSLATIONS = {
   "ja-JP": ja,
   "de-DE": de,
   "nl-NL": nl,
+  "nl-BE": nl,
   "ro-RO": ro,
   "ro-MD": ro,
   "es-ES": es,
