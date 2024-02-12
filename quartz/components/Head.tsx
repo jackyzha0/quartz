@@ -16,8 +16,8 @@ export default (() => {
 
     const iconPath = joinSegments(baseDir, "static/icon.png")
     let ogImagePath = `https://${cfg.baseUrl}/static/og-image.png`
-    if (cfg.contentDir) {
-      const contentDir = `https://${cfg.baseUrl}/${cfg.contentDir}/`
+    if (cfg.ogImageDir) {
+      const contentDir = `https://${cfg.baseUrl}/${cfg.ogImageDir}/`
       ogImagePath = fileData?.frontmatter?.image
         ? sluggify(`${contentDir}${(fileData.frontmatter.image as string).trim()}`)
         : `https://${cfg.baseUrl}/static/og-image.png`
