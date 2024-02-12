@@ -1,0 +1,435 @@
+@use "../variables.scss" as *;
+
+.callout-content {
+  p {
+    margin-bottom: 0;
+  }
+}
+.callout[data-callout="reply"] {
+  .callout-title {
+    display: none;
+  }
+  & > .callout-title {
+    & + .callout-content {
+      border-top: 0 !important;
+    }
+  }
+}
+
+div {
+  &.callout[data-callout="table"] {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  &.el-div[data-callout="table"] {
+    padding-top: 0;
+    padding-bottom: 0;
+    & + * {
+      & > div {
+        &.callout[data-callout="table"] {
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.callout[data-callout="table"] {
+  background-color: var(--background-primary);
+  border-left: 0;
+  background-color: var(--background-primary);
+  padding: 0;
+  margin-right: 0;
+  margin-left: 0;
+  border-left: 0;
+  .callout-title {
+    display: none;
+  }
+}
+/*--Callout Types--*/
+body {
+  --kbn-radius: 3px;
+  --co-radius: 7px;
+}
+
+/* Minimalist Style */
+.alt-co {
+  .callout {
+    background: rgba(var(--callout-color), 0.1);
+    border: 0;
+    margin-left: 40px;
+    margin-right: 40px;
+    border-radius: var(--radius, var(--co-radius));
+    box-shadow: 1px 1px 0 rgba(var(--callout-color), 0.2);
+    p {
+      &:first-child {
+        margin-block-start: 5px;
+      }
+    }
+  }
+}
+
+.alt-co .callout:not(.is-collapsed) .callout-title,
+.callout[data-callout-metadata~="alt-co"]:not(.is-collapsed) .callout-title {
+  padding-bottom: 0;
+}
+.alt-co .callout .callout-title,
+.callout[data-callout-metadata~="alt-co"] .callout-title {
+  background: transparent;
+}
+
+.callout[data-callout-metadata~="alt-line"] {
+  border: 0;
+
+  .callout-title {
+    background: transparent;
+    border-bottom: 2px solid var(--table, var(--background-modifier-border));
+    padding: 5px 0;
+  }
+
+  .callout-fold {
+    color: rgb(var(--callout-color));
+  }
+
+  & {
+    border-bottom: 1px solid rgba(var(--callout-color), 0.5);
+  }
+}
+
+.callout[data-callout-metadata~="dim"].is-collapsed:not(:hover) {
+  opacity: 30%;
+  transition: opacity 300ms;
+}
+
+.co-ttl-ctr {
+  .callout-title {
+    justify-content: center;
+  }
+  .callout-title-inner {
+    display: block;
+    flex: unset;
+  }
+}
+
+/** ---- WIKI & INFOBOX ---- **/
+
+.callout[data-callout~="wiki"],
+.callout[data-callout~="infobox"] {
+  --callout-color: var(--interactive-accent-rgb);
+  background: var(--note, var(--background-primary));
+  border: 0;
+  box-shadow: none;
+  margin: 0;
+  margin: 0 8px;
+  width: 30vh;
+  float: left;
+  padding: 1px;
+  border: 1px solid var(--table, var(--background-modifier-border));
+  border-radius: var(--radius, var(--co-radius));
+
+  table {
+    width: 100%;
+    td {
+      white-space: pre-wrap;
+      word-wrap: normal;
+      word-break: normal;
+    }
+  }
+
+  .callout-title:has(:not(.callout-title-inner)) {
+    display: none;
+  }
+
+  p,
+  table {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    padding: 2px;
+    color: var(--text-normal);
+    background-color: rgba(var(--callout-color), 0.3);
+  }
+
+  img {
+    margin: auto;
+    padding: auto;
+    text-align: center;
+    border-radius: 0% !important;
+  }
+
+  &[data-callout-metadata~="left"] {
+    margin-right: 15px;
+    .markdown-reading-view & {
+      margin-right: 40px;
+    }
+  }
+
+  .wiki-right & {
+    float: right;
+  }
+
+  .is-collapsed {
+    .callout-fold {
+      border: 1px solid var(--hr, var(--background-modifier-border));
+      padding: 5px 10px;
+    }
+  }
+
+  &:not(:hover):not(.is-collapsed) .callout-title,
+  .callout-title :is(.callout-icon, .callout-title-inner) {
+    display: none;
+    background-color: transparent !important;
+  }
+
+  &[data-callout~="title"] {
+    &:not(:hover):not(.is-collapsed) .callout-title,
+    .is-collapsed .callout-title {
+      border: 1px solid var(--hr, var(--background-modifier-border));
+      display: flex;
+    }
+
+    .callout-fold,
+    .callout-title .callout-title-inner {
+      display: unset;
+      align-items: center;
+      align-content: center;
+      padding: 5px 10px;
+    }
+
+    &.is-collapsed .callout-fold {
+      border: 0;
+    }
+  }
+  @media all and (max-width: $mobileBreakpoint) {
+    width: 100% !important;
+    float: none !important;
+    display: block !important;
+    position: relative;
+    left: -0.2rem;
+  }
+}
+
+/** Specific WIKI callouts **/
+
+.callout[data-callout~="wiki"] {
+  table thead tr {
+    display: none;
+  }
+
+  table td {
+    border-left: none;
+    border-right: none;
+  }
+
+  table tbody tr:first-child td {
+    border-top: none;
+  }
+
+  table td:first-child {
+    font-weight: bold;
+  }
+
+  table {
+    font-family: "Ubuntu", var(--font-interface);
+  }
+}
+
+/** Image Grid **/
+
+.callout[data-callout="grid"] {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  box-shadow: none;
+
+  & {
+    display: block;
+    width: 100%;
+    box-shadow: unset;
+    padding: 0;
+    border: none !important;
+
+    .callout-title {
+      display: none;
+    }
+
+    p:not(.callout-title) {
+      display: flex;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      justify-content: center;
+    }
+
+    img {
+      display: table-cell;
+      vertical-align: middle;
+      padding: 1px;
+      max-height: 35vh;
+
+      &[alt="wfull"] {
+        max-height: unset;
+      }
+    }
+
+    &[data-callout-metadata~="masonry"] {
+      p {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(0, auto));
+        grid-gap: 2px;
+        margin: 0;
+        margin-top: 5px;
+      }
+
+      img {
+        display: flex;
+        flex: 1;
+        align-self: stretch;
+        object-fit: cover;
+        max-height: unset;
+      }
+    }
+  }
+}
+
+/*Captions*/
+.callout[data-callout~="caption"] {
+  background: transparent;
+  text-align: center;
+  box-shadow: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  margin-top: -10px;
+  max-width: 30vh;
+
+  .callout-title {
+    display: none;
+  }
+
+  p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    color: var(--text-faint);
+  }
+}
+
+/* Metadata */
+.callout[data-callout~="Metadata" i] {
+  --callout-icon: layers;
+  --callout-color: 82, 139, 212;
+  --callout-border-width: 2px;
+  --callout-title-padding: 5px;
+  --callout-content-padding: 0px 10px 10px;
+  box-shadow: 0px 0px 0px 1px var(--outline);
+
+  .callout-title {
+    background-color: transparent;
+    justify-content: center;
+
+    .callout-title-inner {
+      flex: unset;
+      color: rgb(var(--callout-color));
+    }
+  }
+
+  &:not([data-callout-metadata~="no-strong"], [data-callout-metadata~="no-str"]) {
+    strong {
+      color: rgb(var(--callout-color));
+    }
+  }
+
+  .dataview.inline-field-key {
+    background: rgb(var(--callout-color));
+    color: var(--text-on-accent);
+    font-weight: 900;
+  }
+
+  .dataview.inline-field-value {
+    font-weight: unset;
+    background: transparent;
+  }
+
+  table {
+    th {
+      background-color: var(--aside-bg, rgba(var(--callout-color), 0.5));
+    }
+
+    --tbl-td-h: 0;
+    --tbl-td-w: 5px;
+    white-space: nowrap;
+    margin: 0;
+    width: 100%;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  p:first-child {
+    margin-top: 0;
+  }
+
+  &,
+  ul {
+    margin: 0;
+  }
+
+  &[data-callout-metadata~="i-at"] {
+    background: var(--outer-bar, var(--background-secondary-alt));
+    border: 0;
+    text-align: center;
+    padding: 0;
+
+    &.is-collapsible:not(.is-collapsed) {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    &:not(.is-collapsible) {
+      .callout-title,
+      .callout-title-inner,
+      &:not(.is-collapsed) .callout-icon {
+        display: none;
+      }
+
+      .callout-fold {
+        display: flex;
+        align-content: center;
+        align-items: center;
+
+        svg {
+          margin-bottom: unset;
+        }
+      }
+    }
+
+    padding: 0px;
+    margin: auto;
+    overflow-y: hidden;
+
+    &:is([data-callout-metadata~="tbl-cln"], [data-callout-metadata~="table-clean"]) {
+      table :is(td, tr, th) {
+        background-color: transparent;
+        border-color: transparent;
+      }
+    }
+  }
+}
+
+.grid .callout {
+  display: table-cell;
+  width: 50%;
+}

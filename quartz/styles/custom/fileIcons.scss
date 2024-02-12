@@ -1,0 +1,11 @@
+.article-title[data-hasicon="true"] {
+  display: flex;
+  align-items: center;
+  margin: 0 !important;
+}
+.article-title-icon {
+  margin-right: 1rem;
+}
+.article-title[data-hasicon="true"] > h1 {
+  margin: 0;
+}

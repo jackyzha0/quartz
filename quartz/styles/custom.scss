@@ -1,3 +1,122 @@
 @use "./base.scss";
+@use "./custom/callouts.scss";
+@use "./custom/image_grid_float.scss";
+@use "./custom/grid_callouts.scss";
+@use "./custom/fileIcons.scss";
+@use "./variables.scss" as *;
 
-// put your custom CSS here!
+// Put your custom CSS here!
+
+header {
+  gap: 1vw;
+}
+
+ul.overflow,
+ol.overflow {
+  max-height: 80dvh;
+}
+
+.page .page-header {
+  padding: 1px;
+  width: auto;
+}
+
+@media all and (max-width: $fullPageWidth) {
+  .page-title.mobile-only {
+    max-width: fit-content;
+    a {
+      font-size: 4dvw;
+    }
+  }
+}
+
+@media all and (max-width: $mobileBreakpoint) {
+  .page .page-header {
+    width: 96dvw;
+  }
+}
+
+@media all and (min-width: $tabletBreakpoint) {
+  .page-title.mobile-only a {
+    font-size: 2.5vw;
+    vertical-align: middle;
+  }
+}
+
+.page .page-header {
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid var(--lightgray);
+  background-color: var(--light);
+  z-index: 100;
+  margin-top: 0 !important;
+
+  &.fixed {
+    border-bottom: 0;
+  }
+}
+
+hr {
+  width: auto !important;
+
+  .hr-title & {
+    margin: 0;
+    margin-top: -0.3em;
+  }
+}
+
+.rside-10 img[alt*="+rside"] {
+  width: 10em;
+}
+
+.wiki-right .callout.wiki h1,
+.wiki-right .callout.wiki h3 {
+  background-color: var(--lightgray);
+}
+
+.avatar img[alt="+rside"] {
+  width: auto;
+}
+
+footer {
+  & p {
+    font-size: small;
+    margin: 0;
+  }
+  & hr {
+    border: 1px dashed;
+    margin: 0;
+    margin-top: 5px;
+    background-color: transparent;
+    height: 0;
+  }
+  & ul {
+    font-size: small;
+    margin: -0.5rem 0 0;
+  }
+}
+
+.page-listing {
+  hr {
+    border: 1px double;
+    margin: 0;
+    background-color: transparent;
+    height: 0;
+  }
+  p {
+    font-size: smaller;
+    text-align: right;
+  }
+  .no-folder-list & {
+    display: none;
+  }
+}
+
+.page-header .spacer.mobile-only {
+  max-width: 1vw;
+}
+
+ul.overflow:after,
+ol.overflow:after {
+  background: none;
+}

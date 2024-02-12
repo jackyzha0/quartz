@@ -1,0 +1,235 @@
+@use "../variables.scss" as *;
+
+/* Core Flags */
+img {
+  /*side */
+  &[alt*="+side"],
+  &[alt*="+rside"] {
+    width: 20em;
+    min-width: $minwidth;
+    float: right;
+    margin: 0;
+    margin-left: $coremarg;
+
+    @media screen and (max-width: $mobileBreakpoint) {
+      width: 12.5em;
+    }
+  }
+
+  &[alt*="+rside"] {
+    float: left;
+    margin-right: $coremarg;
+  }
+
+  .image-embed[alt*="+"],
+  .image-embed[alt*="-"] {
+    contain: revert !important;
+  }
+
+  /*tape */
+  &[alt*="+tape"],
+  &[alt*="+pin"] {
+    position: relative;
+    float: right;
+    width: $defaultwidth;
+    min-width: $minwidth;
+    margin: auto;
+    margin-left: $coremarg;
+    transform: rotate(2deg);
+
+    &::before {
+      content: "";
+      position: absolute;
+      margin: auto;
+      width: 30%;
+      height: 14%;
+      top: -7%;
+      left: 35%;
+      background: rgba(255, 234, 118, 0.377);
+      clip-path: polygon(
+        50% 0%,
+        100% 0%,
+        98% 10%,
+        100% 20%,
+        98% 30%,
+        100% 40%,
+        98% 50%,
+        100% 60%,
+        98% 70%,
+        100% 80%,
+        98% 90%,
+        100% 100%,
+        0% 100%,
+        2% 90%,
+        0% 80%,
+        2% 70%,
+        0% 60%,
+        2% 50%,
+        0% 40%,
+        2% 30%,
+        0% 20%,
+        2% 10%,
+        0% 0%
+      );
+    }
+  }
+  &[alt*="+pin"]::before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #4588cc;
+    top: -3%;
+    left: 50%;
+    border: solid #336699 8px;
+    border-radius: 50%;
+    box-shadow: #274d74 -5px 3px 1px;
+  }
+  &[alt*="+portrait"] {
+    float: right;
+    position: relative;
+    width: calc($defaultwidth / 1.5);
+    min-width: $minwidth;
+    vertical-align: top;
+    border: solid 5px;
+    background-color: black;
+    clip-path: ellipse(40% 45% at 50% 50%);
+  }
+  &[alt*="+landscape"] {
+    position: relative;
+    width: $defaultwidth;
+    min-width: $minwidth;
+    float: right;
+    border: solid 3px;
+    background-color: black;
+    clip-path: ellipse(45% 35% at 50% 50%);
+  }
+  &[alt*="+banner"],
+  &[alt*="+hr"] {
+    display: block;
+    height: 100px;
+    overflow: hidden;
+  }
+  &[alt*="+banner"] > img {
+    margin-top: -130px;
+  }
+  &[alt*="+hr"] > img {
+    margin-top: -200px;
+  }
+  &[alt*="+right"] {
+    position: relative;
+    left: 50%;
+  }
+  &[alt*="+block"] {
+    display: block;
+  }
+
+  /* Orientation and position */
+  &[alt*="-left"],
+  &[alt*="-right"] {
+    float: left;
+    margin: 0px;
+    margin-right: $extramarg;
+  }
+
+  &[alt*="-right"] {
+    float: right;
+    margin-left: $extramarg;
+  }
+
+  &[alt*="-fix"] {
+    position: fixed;
+  }
+
+  &[alt*="-abs"] {
+    position: absolute;
+  }
+
+  /* Size */
+  &[alt*="-thumb"] {
+    width: 6rem;
+  }
+
+  &[alt*="-sm"] {
+    width: 13rem;
+  }
+
+  &[alt*="-med"] {
+    width: 18rem;
+  }
+
+  &[alt*="-lg"] {
+    width: 27rem;
+  }
+
+  &[alt*="-huge"] {
+    width: 37rem;
+  }
+
+  &[alt*="-cwidth"] {
+    float: none;
+    margin-left: -10%;
+    width: 67rem;
+  }
+
+  /* Borders */
+  &[alt*="-border1"] {
+    border: solid black 3px;
+  }
+
+  &[alt*="-border2"] {
+    border: solid white 3px;
+  }
+
+  &[alt*="-bradius1"] {
+    border-radius: 5px;
+  }
+
+  &[alt*="-bradius2"] {
+    border-radius: 20px;
+  }
+
+  &[alt*="-bradiustl"] {
+    border-top-left-radius: 20px;
+  }
+
+  &[alt*="-bradiusbr"] {
+    border-bottom-right-radius: 20px;
+  }
+
+  &[alt*="-bradiustr"] {
+    border-top-right-radius: 20px;
+  }
+
+  &[alt*="-bradiusbl"] {
+    border-bottom-left-radius: 20px;
+  }
+
+  &[alt*="-bthick"] {
+    border-width: 5px;
+  }
+
+  &[alt*="-bthin"] {
+    border-width: 1px;
+  }
+
+  /* Shadows */
+  &[alt*="-shadow1"] > img {
+    box-shadow: darkgrey -2px 2px 2px;
+  }
+
+  &[alt*="-glow"] {
+    box-shadow: darkgrey 0px 0px 20px;
+  }
+
+  &[alt*="-nofloat"] {
+    display: inline-block;
+    float: none;
+  }
+
+  /* zoom and reverse rotate on hover */
+  &[alt*="+tape"]:not(:active):hover,
+  &[alt*="+pin"]:not(:active):hover {
+    transform: scale(1.5) rotate(-2deg);
+  }
+}

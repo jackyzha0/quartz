@@ -46,8 +46,10 @@ button#explorer {
   list-style: none;
   overflow: hidden;
   max-height: none;
-  transition: max-height 0.35s ease;
-  margin-top: 0.5rem;
+  :not(.explorer-burger-menu) & {
+    transition: max-height 0.35s ease;
+    margin-top: 0.5rem;
+  }
 
   &.collapsed > .overflow::after {
     opacity: 0;
@@ -126,6 +128,12 @@ svg {
   cursor: pointer;
   transition: transform 0.3s ease;
   backface-visibility: visible;
+  &[data-hasicon="true"] {
+    opacity: 0;
+    left: -0.2rem;
+    position: relative;
+    width: 1em;
+  }
 }
 
 li:has(> .folder-outer:not(.open)) > .folder-container > svg {
@@ -145,4 +153,33 @@ li:has(> .folder-outer:not(.open)) > .folder-container > svg {
   height: 4px;
   // remove default margin from li
   margin: 0;
+}
+
+#explorer-content ul li > a[data-hasicon="true"],
+.folder-container div > a[data-hasicon="true"] {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.folder-title-icon > svg {
+  margin-right: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  backface-visibility: visible;
+  width: 1em;
+  height: 1em;
+  vertical-align: -2px;
+  color: var(--secondary);
+}
+
+.file-title-icon > svg {
+  width: 1em;
+  height: 1em;
+  margin-right: 5px;
+  vertical-align: -2px;
+}
+
+.folder-title-icon {
+  margin-left: -1.5rem;
 }
