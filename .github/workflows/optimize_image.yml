@@ -1,0 +1,23 @@
+name: Optimize images
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  optimize-images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: optimize
+        uses: calibreapp/image-actions@main
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN}}
+          ignorePaths: "content/img/avatar_index.gif,quartz/static/**"
+          compressOnly: true
+      - name: "Commit & push"
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          message: "[CI] Optimize images"
