@@ -53,6 +53,9 @@ export default {
     tableOfContents: {
       title: "Table des Matières",
     },
+    contentMeta: {
+      readingTime: ({ minutes }) => `${minutes} min read`,
+    },
   },
   pages: {
     rss: {
