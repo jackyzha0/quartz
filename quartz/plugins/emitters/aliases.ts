@@ -9,9 +9,30 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
   getQuartzComponents() {
     return []
   },
-  async getDependencyGraph(_ctx, _content, _resources) {
-    // TODO implement
-    return new DepGraph<FilePath>()
+  async getDependencyGraph(ctx, content, _resources) {
+    const graph = new DepGraph<FilePath>()
+
+    const { argv } = ctx
+    for (const [_tree, file] of content) {
+      const dir = path.posix.relative(argv.directory, path.dirname(file.data.filePath!))
+      const aliases = file.data.frontmatter?.aliases ?? []
+      const slugs = aliases.map((alias) => path.posix.join(dir, alias) as FullSlug)
+      const permalink = file.data.frontmatter?.permalink
+      if (typeof permalink === "string") {
+        slugs.push(permalink as FullSlug)
+      }
+
+      for (let slug of slugs) {
+        // fix any slugs that have trailing slash
+        if (slug.endsWith("/")) {
+          slug = joinSegments(slug, "index") as FullSlug
+        }
+
+        graph.addEdge(file.data.filePath!, joinSegments(argv.output, slug + ".html") as FilePath)
+      }
+    }
+
+    return graph
   },
   async emit(ctx, content, _resources): Promise<FilePath[]> {
     const { argv } = ctx
