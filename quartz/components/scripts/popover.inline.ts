@@ -55,30 +55,28 @@ async function mouseEnterHandler(
   popoverInner.classList.add("popover-inner")
   popoverElement.appendChild(popoverInner)
 
-  if (contentType && contentType.includes("image")) {
-    // const imgSrc = targetUrl.href
-    const img = document.createElement("img")
+  const contentTypeCategory = contentType?.split("/")[0] ?? "text"
+  switch (contentTypeCategory) {
+    case "image":
+      const img = document.createElement("img")
 
-    response.blob().then((blob) => {
-      img.src = URL.createObjectURL(blob)
-    })
-    img.alt = targetUrl.pathname
+      response.blob().then((blob) => {
+        img.src = URL.createObjectURL(blob)
+      })
+      img.alt = targetUrl.pathname
 
-    popoverInner.appendChild(img)
+      popoverInner.appendChild(img)
+      popoverInner.classList.add("popover-inner-img")
+      break
+    case "text":
+    default:
+      const contents = await response.text()
+      const html = p.parseFromString(contents, "text/html")
+      normalizeRelativeURLs(html, targetUrl)
+      const elts = [...html.getElementsByClassName("popover-hint")]
+      if (elts.length === 0) return
 
-    img.style.margin = "0"
-    img.style.verticalAlign = "bottom"
-    img.style.display = "block"
-    popoverInner.style.padding = "0"
-    popoverInner.style.maxHeight = "100%"
-  } else {
-    const contents = await response.text()
-    const html = p.parseFromString(contents, "text/html")
-    normalizeRelativeURLs(html, targetUrl)
-    const elts = [...html.getElementsByClassName("popover-hint")]
-    if (elts.length === 0) return
-
-    elts.forEach((elt) => popoverInner.appendChild(elt))
+      elts.forEach((elt) => popoverInner.appendChild(elt))
   }
 
   setPosition(popoverElement)
