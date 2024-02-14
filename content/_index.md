@@ -18,4 +18,4 @@ S'il y a un problème sur le site, ou que tu souhaites faire part d'un commentai
 
 ## 👨‍💻 Qui-suis je ?
 
-Je suis Conor, 23 ans, actuellement en licence d'informatique. J'aime bien faire des petits projets persos et ce site en fais partie ! Si tu veux en savoir plus sur moi, je te dirige vers ma [présentation plus complète](about.md).
+Je suis Conor, 23 ans, actuellement en licence d'informatique. J'aime bien faire des petits projets persos et ce site en fait partie ! Si tu veux en savoir plus sur moi, je te dirige vers ma [présentation plus complète](about.md).
