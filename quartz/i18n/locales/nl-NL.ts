@@ -6,6 +6,21 @@ export default {
     description: "Geen beschrijving gegeven.",
   },
   components: {
+    callout: {
+      note: "Notitie",
+      abstract: "Samenvatting",
+      info: "Info",
+      todo: "Te doen",
+      tip: "Tip",
+      success: "Succes",
+      question: "Vraag",
+      warning: "Waarschuwing",
+      failure: "Mislukking",
+      danger: "Gevaar",
+      bug: "Bug",
+      example: "Voorbeeld",
+      quote: "Citaat",
+    },
     backlinks: {
       title: "Backlinks",
       noBacklinksFound: "Geen backlinks gevonden",
@@ -37,6 +52,10 @@ export default {
     },
     tableOfContents: {
       title: "Inhoudsopgave",
+    },
+    contentMeta: {
+      readingTime: ({ minutes }) =>
+        minutes === 1 ? "1 minuut leestijd" : `${minutes} minuten leestijd`,
     },
   },
   pages: {

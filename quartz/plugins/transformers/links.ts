@@ -4,10 +4,11 @@ import {
   RelativeURL,
   SimpleSlug,
   TransformOptions,
-  _stripSlashes,
+  stripSlashes,
   simplifySlug,
   splitAnchor,
   transformLink,
+  joinSegments,
 } from "../../util/path"
 import path from "path"
 import { visit } from "unist-util-visit"
@@ -107,7 +108,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
 
                   // url.resolve is considered legacy
                   // WHATWG equivalent https://nodejs.dev/en/api/v18/url/#urlresolvefrom-to
-                  const url = new URL(dest, `https://base.com/${curSlug}`)
+                  const url = new URL(dest, "https://base.com/" + stripSlashes(curSlug, true))
                   const canonicalDest = url.pathname
                   let [destCanonical, _destAnchor] = splitAnchor(canonicalDest)
                   if (destCanonical.endsWith("/")) {
@@ -115,7 +116,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                   }
 
                   // need to decodeURIComponent here as WHATWG URL percent-encodes everything
-                  const full = decodeURIComponent(_stripSlashes(destCanonical, true)) as FullSlug
+                  const full = decodeURIComponent(stripSlashes(destCanonical, true)) as FullSlug
                   const simple = simplifySlug(full)
                   outgoing.add(simple)
                   node.properties["data-slug"] = full

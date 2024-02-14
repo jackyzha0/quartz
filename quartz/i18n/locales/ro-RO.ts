@@ -6,6 +6,21 @@ export default {
     description: "Nici o descriere furnizată",
   },
   components: {
+    callout: {
+      note: "Notă",
+      abstract: "Rezumat",
+      info: "Informație",
+      todo: "De făcut",
+      tip: "Sfat",
+      success: "Succes",
+      question: "Întrebare",
+      warning: "Avertisment",
+      failure: "Eșec",
+      danger: "Pericol",
+      bug: "Bug",
+      example: "Exemplu",
+      quote: "Citat",
+    },
     backlinks: {
       title: "Legături înapoi",
       noBacklinksFound: "Nu s-au găsit legături înapoi",
@@ -37,6 +52,10 @@ export default {
     },
     tableOfContents: {
       title: "Cuprins",
+    },
+    contentMeta: {
+      readingTime: ({ minutes }) =>
+        minutes == 1 ? `lectură de 1 minut` : `lectură de ${minutes} minute`,
     },
   },
   pages: {

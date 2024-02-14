@@ -6,6 +6,21 @@ export default {
     description: "Sin descripción",
   },
   components: {
+    callout: {
+      note: "Nota",
+      abstract: "Resumen",
+      info: "Información",
+      todo: "Por hacer",
+      tip: "Consejo",
+      success: "Éxito",
+      question: "Pregunta",
+      warning: "Advertencia",
+      failure: "Fallo",
+      danger: "Peligro",
+      bug: "Error",
+      example: "Ejemplo",
+      quote: "Cita",
+    },
     backlinks: {
       title: "Enlaces de Retroceso",
       noBacklinksFound: "No se han encontrado enlaces traseros",
@@ -37,6 +52,9 @@ export default {
     },
     tableOfContents: {
       title: "Tabla de Contenidos",
+    },
+    contentMeta: {
+      readingTime: ({ minutes }) => `${minutes} min read`,
     },
   },
   pages: {

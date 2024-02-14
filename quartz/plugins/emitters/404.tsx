@@ -9,6 +9,7 @@ import { NotFound } from "../../components"
 import { defaultProcessedContent } from "../vfile"
 import { write } from "./helpers"
 import { i18n } from "../../i18n"
+import DepGraph from "../../depgraph"
 
 export const NotFoundPage: QuartzEmitterPlugin = () => {
   const opts: FullPageLayout = {
@@ -26,6 +27,9 @@ export const NotFoundPage: QuartzEmitterPlugin = () => {
     name: "404Page",
     getQuartzComponents() {
       return [Head, Body, pageBody, Footer]
+    },
+    async getDependencyGraph(_ctx, _content, _resources) {
+      return new DepGraph<FilePath>()
     },
     async emit(ctx, _content, resources): Promise<FilePath[]> {
       const cfg = ctx.cfg.configuration

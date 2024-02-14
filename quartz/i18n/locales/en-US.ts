@@ -6,6 +6,21 @@ export default {
     description: "No description provided",
   },
   components: {
+    callout: {
+      note: "Note",
+      abstract: "Abstract",
+      info: "Info",
+      todo: "Todo",
+      tip: "Tip",
+      success: "Success",
+      question: "Question",
+      warning: "Warning",
+      failure: "Failure",
+      danger: "Danger",
+      bug: "Bug",
+      example: "Example",
+      quote: "Quote",
+    },
     backlinks: {
       title: "Backlinks",
       noBacklinksFound: "No backlinks found",
@@ -37,6 +52,9 @@ export default {
     },
     tableOfContents: {
       title: "Table of Contents",
+    },
+    contentMeta: {
+      readingTime: ({ minutes }) => `${minutes} min read`,
     },
   },
   pages: {

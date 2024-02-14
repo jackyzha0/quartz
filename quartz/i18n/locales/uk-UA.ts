@@ -6,6 +6,21 @@ export default {
     description: "Опис не надано",
   },
   components: {
+    callout: {
+      note: "Примітка",
+      abstract: "Абстракт",
+      info: "Інформація",
+      todo: "Завдання",
+      tip: "Порада",
+      success: "Успіх",
+      question: "Питання",
+      warning: "Попередження",
+      failure: "Невдача",
+      danger: "Небезпека",
+      bug: "Баг",
+      example: "Приклад",
+      quote: "Цитата",
+    },
     backlinks: {
       title: "Зворотні посилання",
       noBacklinksFound: "Зворотних посилань не знайдено",
@@ -37,6 +52,9 @@ export default {
     },
     tableOfContents: {
       title: "Зміст",
+    },
+    contentMeta: {
+      readingTime: ({ minutes }) => `${minutes} min read`,
     },
   },
   pages: {
