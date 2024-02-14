@@ -120,13 +120,15 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
     },
     async emit(ctx, content, _resources) {
       // If we're missing an index file, don't bother with sitemap/RSS gen
-      if (!(opts?.bypassIndexCheck || "index" in content.map(c => c[1].data.slug!))) {
-        console.warn(chalk.yellow(`Warning: contentIndex: 
+      if (!(opts?.bypassIndexCheck || "index" in content.map((c) => c[1].data.slug!))) {
+        console.warn(
+          chalk.yellow(`Warning: contentIndex: 
   content/ folder is missing an index.md. RSS feeds and sitemap will not be generated.
   If you still wish to generate these files, add:
     bypassIndexCheck: true,
   to your configuration for Plugin.ContentIndex({...}) in quartz.config.ts.
-  Don't do this unless you know what you're doing!`))
+  Don't do this unless you know what you're doing!`),
+        )
         return []
       }
 
@@ -176,13 +178,15 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
 
       if (opts?.enableRSS) {
         opts.feedDirectories!.map((feed) => {
-          emitted.push(write({
-            ctx,
-            // bfahrenfort: we just generated a feedIndices entry for every directories entry, guaranteed non-null
-            content: generateRSSFeed(cfg, feedIndices.get(feed)!, opts?.rssLimit),
-            slug: feed as FullSlug,
-            ext: ".xml",
-          }))
+          emitted.push(
+            write({
+              ctx,
+              // bfahrenfort: we just generated a feedIndices entry for every directories entry, guaranteed non-null
+              content: generateRSSFeed(cfg, feedIndices.get(feed)!, opts?.rssLimit),
+              slug: feed as FullSlug,
+              ext: ".xml",
+            }),
+          )
         })
       }
 
