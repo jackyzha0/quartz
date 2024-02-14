@@ -50,7 +50,7 @@ function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndex): string {
   return `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${urls}</urlset>`
 }
 
-function generateRSSFeed(cfg: GlobalConfiguration, idx?: ContentIndex, limit?: number): string {
+function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex, limit?: number): string {
   if (idx == undefined) {
     return ""
   }
@@ -94,7 +94,7 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx?: ContentIndex, limit?: n
   </rss>`
 }
 
-export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
+export const ContentIndex: QuartzEmitterPlugin<Options> = (opts) => {
   opts = { ...defaultOptions, ...opts }
   return {
     name: "ContentIndex",
@@ -122,7 +122,12 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       const cfg = ctx.cfg.configuration
       const emitted: FilePath[] = []
       const feedIndices: Map<String, ContentIndex> = new Map()
-      for (const feed of opts?.feedDirectories) {
+
+      // bfahrenfort: ts can't see the expansion of opts above that guarantees a non-null feedDirectories
+      const directories =
+        opts?.feedDirectories == null ? defaultOptions.feedDirectories : opts.feedDirectories
+
+      for (const feed of directories) {
         const linkIndex: ContentIndex = new Map()
         for (const [tree, file] of content) {
           const slug = file.data.slug!
@@ -152,7 +157,9 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
         emitted.push(
           await write({
             ctx,
-            content: generateSiteMap(cfg, feedIndices.get("index")),
+            // bfahrenfort: "index" is guaranteed non-null
+            // see directories instantiation and feedIndices.set iterating over directories
+            content: generateSiteMap(cfg, feedIndices.get("index")!),
             slug: "sitemap" as FullSlug,
             ext: ".xml",
           }),
@@ -160,10 +167,11 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       }
 
       if (opts?.enableRSS) {
-        opts?.feedDirectories?.map(async (feed) => {
+        directories.map(async (feed) => {
           const emittedFeed = await write({
             ctx,
-            content: generateRSSFeed(cfg, feedIndices.get(feed), opts?.rssLimit),
+            // bfahrenfort: we just generated a feedIndices entry for every directories entry, guaranteed non-null
+            content: generateRSSFeed(cfg, feedIndices.get(feed)!, opts?.rssLimit),
             slug: feed as FullSlug,
             ext: ".xml",
           })
