@@ -1,7 +1,8 @@
 import { FolderState } from "../ExplorerNode"
 
 // Current state of folders
-let explorerState: FolderState[]
+type MaybeHTMLElement = HTMLElement | undefined
+let currentExplorerState: FolderState[]
 
 function escapeCharacters(str: string) {
   return str.replace(/'/g, "\\'").replace(/"/g, '\\"')
@@ -22,9 +23,11 @@ const observer = new IntersectionObserver((entries) => {
 function toggleExplorer(this: HTMLElement) {
   // Toggle collapsed state of entire explorer
   this.classList.toggle("collapsed")
-  const content = this.nextElementSibling as HTMLElement
+  const content = this.nextElementSibling as MaybeHTMLElement
+  if (!content) return;
   content.classList.toggle("collapsed")
   content.style.maxHeight = content.style.maxHeight === "0px" ? content.scrollHeight + "px" : "0px"
+
   //prevent scroll under
   if (this.dataset.mobile === "true" && document.querySelector(".mobile-only #explorer")) {
     const article = document.querySelectorAll(
@@ -43,42 +46,33 @@ function toggleFolder(evt: MouseEvent) {
   evt.stopPropagation()
 
   // Element that was clicked
-  const target = evt.target as HTMLElement
+  const target = evt.target as MaybeHTMLElement
+  if (!target) return
 
   // Check if target was svg icon or button
   const isSvg = target.nodeName === "svg"
 
   // corresponding <ul> element relative to clicked button/folder
-  let childFolderContainer: HTMLElement
-
+  const childFolderContainer = (
+    isSvg
+      ? target.parentElement?.nextSibling
+      : target.parentElement?.parentElement?.nextElementSibling
+  ) as MaybeHTMLElement
+  const currentFolderParent = (
+    isSvg ? target.nextElementSibling : target.parentElement
+  ) as MaybeHTMLElement
+  if (!(childFolderContainer && currentFolderParent)) return
   // <li> element of folder (stores folder-path dataset)
-  let currentFolderParent: HTMLElement
-
-  // Get correct relative container and toggle collapsed class
-  if (isSvg) {
-    childFolderContainer = target.parentElement?.nextSibling as HTMLElement
-    currentFolderParent = target.nextElementSibling as HTMLElement
-
-    childFolderContainer.classList.toggle("open")
-  } else {
-    childFolderContainer = target.parentElement?.parentElement?.nextElementSibling as HTMLElement
-    currentFolderParent = target.parentElement as HTMLElement
-
-    childFolderContainer.classList.toggle("open")
-  }
-  if (!childFolderContainer) return
+  childFolderContainer.classList.toggle("open")
 
   // Collapse folder container
   const isCollapsed = childFolderContainer.classList.contains("open")
   setFolderState(childFolderContainer, !isCollapsed)
 
   // Save folder state to localStorage
-  const clickFolderPath = currentFolderParent.dataset.folderpath as string
-
-  const fullFolderPath = clickFolderPath
-  toggleCollapsedByPath(explorerState, fullFolderPath)
-
-  const stringifiedFileTree = JSON.stringify(explorerState)
+  const fullFolderPath = currentFolderParent.dataset.folderpath as string
+  toggleCollapsedByPath(currentExplorerState, fullFolderPath)
+  const stringifiedFileTree = JSON.stringify(currentExplorerState)
   localStorage.setItem("fileTree", stringifiedFileTree)
 }
 
@@ -113,32 +107,34 @@ function setupExplorer() {
     }
 
     // Set up click handlers for each folder (click handler on folder "icon")
-    Array.prototype.forEach.call(document.getElementsByClassName("folder-icon"), function (item) {
-      item.removeEventListener("click", toggleFolder)
-      item.addEventListener("click", toggleFolder)
-    })
+  for (const item of document.getElementsByClassName(
+    "folder-icon",
+  ) as HTMLCollectionOf<HTMLElement>) {
+    item.addEventListener("click", toggleFolder)
+    window.addCleanup(() => item.removeEventListener("click", toggleFolder))
+  }
+  // Get folder state from local storage
+  const oldExplorerState: FolderState[] =
+    storageTree && useSavedFolderState ? JSON.parse(storageTree) : []
+  const oldIndex = new Map(oldExplorerState.map((entry) => [entry.path, entry.collapsed]))
+  const newExplorerState: FolderState[] = explorer.dataset.tree
+    ? JSON.parse(explorer.dataset.tree)
+    : []
+  currentExplorerState = []
+  for (const { path, collapsed } of newExplorerState) {
+    currentExplorerState.push({ path, collapsed: oldIndex.get(path) ?? collapsed })
+  }
 
-    if (storageTree && useSavedFolderState) {
-      // Get state from localStorage and set folder state
-      explorerState = JSON.parse(storageTree)
-      explorerState.map((folderUl) => {
-        // grab <li> element for matching folder path
-        const folderLi = document.querySelector(
-          `[data-folderpath='${folderUl.path.replace("'", "-")}']`,
-        ) as HTMLElement
-
-        // Get corresponding content <ul> tag and set state
-        if (folderLi) {
-          const folderUL = folderLi.parentElement?.nextElementSibling
-          if (folderUL) {
-            setFolderState(folderUL as HTMLElement, folderUl.collapsed)
-          }
-        }
-      })
-    } else if (explorer?.dataset.tree) {
-      // If tree is not in localStorage or config is disabled, use tree passed from Explorer as dataset
-      explorerState = JSON.parse(explorer.dataset.tree)
+  currentExplorerState.map((folderState) => {
+    const folderLi = document.querySelector(
+      `[data-folderpath='${folderState.path.replace("'", "-")}']`,
+    ) as MaybeHTMLElement
+    const folderUl = folderLi?.parentElement?.nextElementSibling as MaybeHTMLElement
+    if (folderUl) {
+      setFolderState(folderUl, folderState.collapsed)
     }
+  })
+    
   }
 }
 
@@ -180,11 +176,7 @@ document.addEventListener("nav", () => {
  * @param collapsed if folder should be set to collapsed or not
  */
 function setFolderState(folderElement: HTMLElement, collapsed: boolean) {
-  if (collapsed) {
-    folderElement?.classList.remove("open")
-  } else {
-    folderElement?.classList.add("open")
-  }
+  return collapsed ? folderElement.classList.remove("open") : folderElement.classList.add("open")
 }
 
 /**
