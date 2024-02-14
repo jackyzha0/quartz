@@ -51,9 +51,6 @@ function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndex): string {
 }
 
 function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex, limit?: number): string {
-  if (idx == undefined) {
-    return ""
-  }
   const base = cfg.baseUrl ?? ""
 
   const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => `<item>
@@ -121,13 +118,9 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
     async emit(ctx, content, _resources) {
       const cfg = ctx.cfg.configuration
       const emitted: FilePath[] = []
-      const feedIndices: Map<String, ContentIndex> = new Map()
+      const feedIndices: Map<string, ContentIndex> = new Map()
 
-      // bfahrenfort: ts can't see the expansion of opts above that guarantees a non-null feedDirectories
-      const directories =
-        opts?.feedDirectories == null ? defaultOptions.feedDirectories : opts.feedDirectories
-
-      for (const feed of directories) {
+      for (const feed of opts?.feedDirectories!) {
         const linkIndex: ContentIndex = new Map()
         for (const [tree, file] of content) {
           const slug = file.data.slug!
@@ -153,13 +146,14 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
         feedIndices.set(feed, linkIndex)
       }
 
+      const siteFeed = feedIndices.get("index")!
       if (opts?.enableSiteMap) {
         emitted.push(
           await write({
             ctx,
             // bfahrenfort: "index" is guaranteed non-null
             // see directories instantiation and feedIndices.set iterating over directories
-            content: generateSiteMap(cfg, feedIndices.get("index")!),
+            content: generateSiteMap(cfg, siteFeed),
             slug: "sitemap" as FullSlug,
             ext: ".xml",
           }),
@@ -167,16 +161,19 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       }
 
       if (opts?.enableRSS) {
-        directories.map(async (feed) => {
-          const emittedFeed = await write({
-            ctx,
-            // bfahrenfort: we just generated a feedIndices entry for every directories entry, guaranteed non-null
-            content: generateRSSFeed(cfg, feedIndices.get(feed)!, opts?.rssLimit),
-            slug: feed as FullSlug,
-            ext: ".xml",
-          })
-          emitted.push(emittedFeed)
+        var feedPromises: Promise<FilePath>[] = []
+        opts.feedDirectories!.map((feed) => {
+          feedPromises.push(
+            write({
+              ctx,
+              // bfahrenfort: we just generated a feedIndices entry for every directories entry, guaranteed non-null
+              content: generateRSSFeed(cfg, feedIndices.get(feed)!, opts?.rssLimit),
+              slug: feed as FullSlug,
+              ext: ".xml",
+            }),
+          )
         })
+        emitted.push(...(await Promise.all(feedPromises)))
       }
 
       const fp = joinSegments("static", "contentIndex") as FullSlug
