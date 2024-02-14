@@ -1,4 +1,4 @@
-import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { classNames } from "../util/lang"
 import { IconFolderOptions } from "../plugins/components/FileIcons"
 import { FileTitleIcon } from "../plugins/components/FileIcons"

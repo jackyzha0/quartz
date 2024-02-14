@@ -1,4 +1,4 @@
-import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import legacyStyle from "./styles/legacyToc.scss"
 import modernStyle from "./styles/toc.scss"
 import { classNames } from "../util/lang"
@@ -15,7 +15,11 @@ const defaultOptions: Options = {
   layout: "modern",
 }
 
-function TableOfContents({ fileData, displayClass, cfg }: QuartzComponentProps) {
+const TableOfContents: QuartzComponent = ({
+  fileData,
+  displayClass,
+  cfg,
+}: QuartzComponentProps) => {
   if (!fileData.toc) {
     return null
   }
@@ -56,7 +60,7 @@ function TableOfContents({ fileData, displayClass, cfg }: QuartzComponentProps) 
 TableOfContents.css = modernStyle
 TableOfContents.afterDOMLoaded = script
 
-function LegacyTableOfContents({ fileData, cfg }: QuartzComponentProps) {
+const LegacyTableOfContents: QuartzComponent = ({ fileData, cfg }: QuartzComponentProps) => {
   if (!fileData.toc) {
     return null
   }

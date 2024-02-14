@@ -111,7 +111,7 @@ export default ((userOpts?: Partial<Options>) => {
           </svg>
         </button>
       )
-    } else if (opts.title.trim().length > 0) {
+    } else if (opts.title && opts.title.trim().length > 0) {
       collapseExplorer = (
         <button
           type="button"
