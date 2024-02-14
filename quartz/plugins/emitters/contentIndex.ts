@@ -26,6 +26,7 @@ interface Options {
   rssLimit?: number
   rssFullHtml: boolean
   includeEmptyFiles: boolean
+  feedDirectories: string[]
 }
 
 const defaultOptions: Options = {
@@ -34,6 +35,7 @@ const defaultOptions: Options = {
   rssLimit: 10,
   rssFullHtml: false,
   includeEmptyFiles: true,
+  feedDirectories: ["index"],
 }
 
 function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndex): string {
@@ -49,6 +51,9 @@ function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndex): string {
 }
 
 function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex, limit?: number): string {
+  if (idx == undefined) {
+    return ""
+  }
   const base = cfg.baseUrl ?? ""
 
   const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => `<item>
@@ -116,30 +121,45 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
     async emit(ctx, content, _resources) {
       const cfg = ctx.cfg.configuration
       const emitted: FilePath[] = []
-      const linkIndex: ContentIndex = new Map()
-      for (const [tree, file] of content) {
-        const slug = file.data.slug!
-        const date = getDate(ctx.cfg.configuration, file.data) ?? new Date()
-        if (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) {
-          linkIndex.set(slug, {
-            title: file.data.frontmatter?.title!,
-            links: file.data.links ?? [],
-            tags: file.data.frontmatter?.tags ?? [],
-            content: file.data.text ?? "",
-            richContent: opts?.rssFullHtml
-              ? escapeHTML(toHtml(tree as Root, { allowDangerousHtml: true }))
-              : undefined,
-            date: date,
-            description: file.data.description ?? "",
-          })
+      const feedIndices: Map<String, ContentIndex> = new Map()
+
+      // bfahrenfort: ts can't see the expansion of opts above that guarantees a non-null feedDirectories
+      const directories =
+        opts?.feedDirectories == null ? defaultOptions.feedDirectories : opts.feedDirectories
+
+      for (const feed of directories) {
+        const linkIndex: ContentIndex = new Map()
+        for (const [tree, file] of content) {
+          const slug = file.data.slug!
+
+          const date = getDate(ctx.cfg.configuration, file.data) ?? new Date()
+          if (
+            (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) &&
+            (slug.startsWith(feed) || feed == "index")
+          ) {
+            linkIndex.set(slug, {
+              title: file.data.frontmatter?.title!,
+              links: file.data.links ?? [],
+              tags: file.data.frontmatter?.tags ?? [],
+              content: file.data.text ?? "",
+              richContent: opts?.rssFullHtml
+                ? escapeHTML(toHtml(tree as Root, { allowDangerousHtml: true }))
+                : undefined,
+              date: date,
+              description: file.data.description ?? "",
+            })
+          }
         }
+        feedIndices.set(feed, linkIndex)
       }
 
       if (opts?.enableSiteMap) {
         emitted.push(
           await write({
             ctx,
-            content: generateSiteMap(cfg, linkIndex),
+            // bfahrenfort: "index" is guaranteed non-null
+            // see directories instantiation and feedIndices.set iterating over directories
+            content: generateSiteMap(cfg, feedIndices.get("index")!),
             slug: "sitemap" as FullSlug,
             ext: ".xml",
           }),
@@ -147,19 +167,21 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       }
 
       if (opts?.enableRSS) {
-        emitted.push(
-          await write({
+        directories.map(async (feed) => {
+          const emittedFeed = await write({
             ctx,
-            content: generateRSSFeed(cfg, linkIndex, opts.rssLimit),
-            slug: "index" as FullSlug,
+            // bfahrenfort: we just generated a feedIndices entry for every directories entry, guaranteed non-null
+            content: generateRSSFeed(cfg, feedIndices.get(feed)!, opts?.rssLimit),
+            slug: feed as FullSlug,
             ext: ".xml",
-          }),
-        )
+          })
+          emitted.push(emittedFeed)
+        })
       }
 
       const fp = joinSegments("static", "contentIndex") as FullSlug
       const simplifiedIndex = Object.fromEntries(
-        Array.from(linkIndex).map(([slug, content]) => {
+        Array.from(feedIndices.get("index") ?? []).map(([slug, content]) => {
           // remove description and from content index as nothing downstream
           // actually uses it. we only keep it in the index as we need it
           // for the RSS feed
