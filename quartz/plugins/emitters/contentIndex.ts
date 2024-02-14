@@ -120,12 +120,13 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
     },
     async emit(ctx, content, _resources) {
       // If we're missing an index file, don't bother with sitemap/RSS gen
-      if (!(opts?.bypassIndexCheck || "index" in content.filter(c => c[1].data.slug!))) {
+      if (!(opts?.bypassIndexCheck || "index" in content.map(c => c[1].data.slug!))) {
         console.warn(chalk.yellow(`Warning: contentIndex: 
   content/ folder is missing an index.md. RSS feeds and sitemap will not be generated.
   If you still wish to generate these files, add:
     bypassIndexCheck: true,
-  to your configuration for Plugin.ContentIndex({...}) in quartz.config.ts`))
+  to your configuration for Plugin.ContentIndex({...}) in quartz.config.ts.
+  Don't do this unless you know what you're doing!`))
         return []
       }
 
