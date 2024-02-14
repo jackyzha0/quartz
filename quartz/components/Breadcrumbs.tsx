@@ -1,4 +1,4 @@
-import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import breadcrumbsStyle from "./styles/breadcrumbs.scss"
 import { FullSlug, SimpleSlug, resolveRelative } from "../util/path"
 import { QuartzPluginData } from "../plugins/vfile"
@@ -54,7 +54,11 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
   // computed index of folder name to its associated file data
   let folderIndex: Map<string, QuartzPluginData> | undefined
 
-  function Breadcrumbs({ fileData, allFiles, displayClass }: QuartzComponentProps) {
+  const Breadcrumbs: QuartzComponent = ({
+    fileData,
+    allFiles,
+    displayClass,
+  }: QuartzComponentProps) => {
     // Hide crumbs on root if enabled
     if (options.hideOnRoot && fileData.slug === "index") {
       return <></>
@@ -121,5 +125,6 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
     )
   }
   Breadcrumbs.css = breadcrumbsStyle
+
   return Breadcrumbs
 }) satisfies QuartzComponentConstructor
