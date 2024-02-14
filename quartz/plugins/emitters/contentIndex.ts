@@ -51,9 +51,9 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex, limit?: nu
 
   const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => `<item>
     <title>${content.title}</title>
-    <link>${root}/${slug}</link>
-    <guid>${root}/${slug}</guid>
-    <description>${content.description} Read more at &lt;a href=&quot;${root}/${slug}&quot;&gt;be-far.com&lt;/a&gt;</description>
+    <link>${base}/${slug}</link>
+    <guid>${base}/${slug}</guid>
+    <description>${content.description} Read more at &lt;a href=&quot;${base}/${slug}&quot;&gt;be-far.com&lt;/a&gt;</description>
     <pubDate>${content.date?.toUTCString()}</pubDate>
   </item>`
 
@@ -77,7 +77,7 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex, limit?: nu
 <rss version="2.0">
     <channel>
       <title>${escapeHTML(cfg.pageTitle)}</title>
-      <link>${root}</link>
+      <link>${base}</link>
       <description>${!!limit ? `Last ${limit} notes` : "Recent notes"} on ${
         escapeHTML(cfg.pageTitle)
       }</description>
