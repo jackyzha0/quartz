@@ -37,29 +37,47 @@ async function mouseEnterHandler(
   targetUrl.hash = ""
   targetUrl.search = ""
 
-  const contents = await fetch(`${targetUrl}`)
-    .then((res) => res.text())
-    .catch((err) => {
-      console.error(err)
-    })
+  const response = await fetch(`${targetUrl}`).catch((err) => {
+    console.error(err)
+  })
 
   // bailout if another popover exists
   if (hasAlreadyBeenFetched()) {
     return
   }
 
-  if (!contents) return
-  const html = p.parseFromString(contents, "text/html")
-  normalizeRelativeURLs(html, targetUrl)
-  const elts = [...html.getElementsByClassName("popover-hint")]
-  if (elts.length === 0) return
+  if (!response) return
+  const contentType = response.headers.get("Content-Type")
+  const contentTypeCategory = contentType?.split("/")[0] ?? "text"
 
   const popoverElement = document.createElement("div")
   popoverElement.classList.add("popover")
   const popoverInner = document.createElement("div")
   popoverInner.classList.add("popover-inner")
   popoverElement.appendChild(popoverInner)
-  elts.forEach((elt) => popoverInner.appendChild(elt))
+
+  popoverInner.dataset.contentType = contentTypeCategory
+
+  switch (contentTypeCategory) {
+    case "image":
+      const img = document.createElement("img")
+
+      response.blob().then((blob) => {
+        img.src = URL.createObjectURL(blob)
+      })
+      img.alt = targetUrl.pathname
+
+      popoverInner.appendChild(img)
+      break
+    default:
+      const contents = await response.text()
+      const html = p.parseFromString(contents, "text/html")
+      normalizeRelativeURLs(html, targetUrl)
+      const elts = [...html.getElementsByClassName("popover-hint")]
+      if (elts.length === 0) return
+
+      elts.forEach((elt) => popoverInner.appendChild(elt))
+  }
 
   setPosition(popoverElement)
   link.appendChild(popoverElement)
