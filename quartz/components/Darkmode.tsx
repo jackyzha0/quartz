@@ -3,11 +3,11 @@
 // see: https://v8.dev/features/modules#defer
 import darkmodeScript from "./scripts/darkmode.inline"
 import styles from "./styles/darkmode.scss"
-import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { i18n } from "../i18n"
 import { classNames } from "../util/lang"
 
-function Darkmode({ displayClass, cfg }: QuartzComponentProps) {
+const Darkmode: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) => {
   return (
     <div class={classNames(displayClass, "darkmode")}>
       <input class="toggle" id="darkmode-toggle" type="checkbox" tabIndex={-1} />
