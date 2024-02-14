@@ -15,6 +15,8 @@ import {
 import { defaultListPageLayout, sharedPageComponents } from "../../../quartz.layout"
 import { TagContent } from "../../components"
 import { write } from "./helpers"
+import { i18n } from "../../i18n"
+import DepGraph from "../../depgraph"
 
 export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) => {
   const opts: FullPageLayout = {
@@ -33,6 +35,10 @@ export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) 
     getQuartzComponents() {
       return [Head, Header, Body, ...header, ...beforeBody, pageBody, ...left, ...right, Footer]
     },
+    async getDependencyGraph(ctx, _content, _resources) {
+      // TODO implement
+      return new DepGraph<FilePath>()
+    },
     async emit(ctx, content, resources): Promise<FilePath[]> {
       const fps: FilePath[] = []
       const allFiles = content.map((c) => c[1].data)
@@ -47,7 +53,10 @@ export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) 
 
       const tagDescriptions: Record<string, ProcessedContent> = Object.fromEntries(
         [...tags].map((tag) => {
-          const title = tag === "index" ? "Tag Index" : `Tag: #${tag}`
+          const title =
+            tag === "index"
+              ? i18n(cfg.locale).pages.tagContent.tagIndex
+              : `${i18n(cfg.locale).pages.tagContent.tag}: #${tag}`
           return [
             tag,
             defaultProcessedContent({
@@ -81,7 +90,7 @@ export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) 
           allFiles,
         }
 
-        const content = renderPage(slug, componentData, opts, externalResources)
+        const content = renderPage(cfg, slug, componentData, opts, externalResources)
         const fp = await write({
           ctx,
           content,

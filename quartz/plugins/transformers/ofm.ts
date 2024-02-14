@@ -1,5 +1,5 @@
 import { QuartzTransformerPlugin } from "../types"
-import { Root, Html, BlockContent, DefinitionContent, Paragraph, Code } from "mdast"
+import { Blockquote, Root, Html, BlockContent, DefinitionContent, Paragraph, Code } from "mdast"
 import { Element, Literal, Root as HtmlRoot } from "hast"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { slug as slugAnchor } from "github-slugger"
@@ -9,12 +9,15 @@ import path from "path"
 import { JSResource } from "../../util/resources"
 // @ts-ignore
 import calloutScript from "../../components/scripts/callout.inline.ts"
+// @ts-ignore
+import checkboxScript from "../../components/scripts/checkbox.inline.ts"
 import { FilePath, pathToRoot, slugTag, slugifyFilePath } from "../../util/path"
 import { toHast } from "mdast-util-to-hast"
 import { toHtml } from "hast-util-to-html"
 import { PhrasingContent } from "mdast-util-find-and-replace/lib"
 import { capitalize } from "../../util/lang"
 import { PluggableList } from "unified"
+import { ValidCallout, i18n } from "../../i18n"
 
 export interface Options {
   comments: boolean
@@ -28,6 +31,7 @@ export interface Options {
   enableInHtmlEmbed: boolean
   enableYouTubeEmbed: boolean
   enableVideoEmbed: boolean
+  enableCheckbox: boolean
 }
 
 const defaultOptions: Options = {
@@ -42,6 +46,7 @@ const defaultOptions: Options = {
   enableInHtmlEmbed: false,
   enableYouTubeEmbed: true,
   enableVideoEmbed: true,
+  enableCheckbox: false,
 }
 
 const calloutMapping = {
@@ -74,6 +79,17 @@ const calloutMapping = {
   cite: "quote",
 } as const
 
+const arrowMapping: Record<string, string> = {
+  "->": "&rarr;",
+  "-->": "&rArr;",
+  "=>": "&rArr;",
+  "==>": "&rArr;",
+  "<-": "&larr;",
+  "<--": "&lArr;",
+  "<=": "&lArr;",
+  "<==": "&lArr;",
+}
+
 function canonicalizeCallout(calloutName: string): keyof typeof calloutMapping {
   const normalizedCallout = calloutName.toLowerCase() as keyof typeof calloutMapping
   // if callout is not recognized, make it a custom one
@@ -82,7 +98,7 @@ function canonicalizeCallout(calloutName: string): keyof typeof calloutMapping {
 
 export const externalLinkRegex = /^https?:\/\//i
 
-export const arrowRegex = new RegExp(/-{1,2}>/, "g")
+export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/, "g")
 
 // !?                -> optional embedding
 // \[\[              -> open brace
@@ -102,7 +118,10 @@ const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
 // #(...)               -> capturing group, tag itself must start with #
 // (?:[-_\p{L}\d\p{Z}])+       -> non-capturing group, non-empty string of (Unicode-aware) alpha-numeric characters and symbols, hyphens and/or underscores
 // (?:\/[-_\p{L}\d\p{Z}]+)*)   -> non-capturing group, matches an arbitrary number of tag strings separated by "/"
-const tagRegex = new RegExp(/(?:^| )#((?:[-_\p{L}\p{Emoji}\d])+(?:\/[-_\p{L}\p{Emoji}\d]+)*)/, "gu")
+const tagRegex = new RegExp(
+  /(?:^| )#((?:[-_\p{L}\p{Emoji}\p{M}\d])+(?:\/[-_\p{L}\p{Emoji}\p{M}\d]+)*)/,
+  "gu",
+)
 const blockReferenceRegex = new RegExp(/\^([-_A-Za-z0-9]+)$/, "g")
 const ytLinkRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
 const videoExtensionRegex = new RegExp(/\.(mp4|webm|ogg|avi|mov|flv|wmv|mkv|mpg|mpeg|3gp|m4v)$/)
@@ -170,8 +189,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
       return src
     },
-    markdownPlugins() {
+    markdownPlugins(ctx) {
       const plugins: PluggableList = []
+      const cfg = ctx.cfg.configuration
 
       // regex replacements
       plugins.push(() => {
@@ -271,10 +291,12 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           if (opts.parseArrows) {
             replacements.push([
               arrowRegex,
-              (_value: string, ..._capture: string[]) => {
+              (value: string, ..._capture: string[]) => {
+                const maybeArrow = arrowMapping[value]
+                if (maybeArrow === undefined) return SKIP
                 return {
                   type: "html",
-                  value: `<span>&rarr;</span>`,
+                  value: `<span>${maybeArrow}</span>`,
                 }
               },
             ])
@@ -390,7 +412,12 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   children: [
                     {
                       type: "text",
-                      value: useDefaultTitle ? capitalize(calloutType) : titleContent + " ",
+                      value: useDefaultTitle
+                        ? capitalize(
+                            i18n(cfg.locale).components.callout[calloutType as ValidCallout] ??
+                              calloutType,
+                          )
+                        : titleContent + " ",
                     },
                     ...restOfTitle,
                   ],
@@ -426,13 +453,19 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 // replace first line of blockquote with title and rest of the paragraph text
                 node.children.splice(0, 1, ...blockquoteContent)
 
+                const classNames = ["callout", calloutType]
+                if (collapse) {
+                  classNames.push("is-collapsible")
+                }
+                if (defaultState === "collapsed") {
+                  classNames.push("is-collapsed")
+                }
+
                 // add properties to base blockquote
                 node.data = {
                   hProperties: {
                     ...(node.data?.hProperties ?? {}),
-                    className: `callout ${calloutType} ${collapse ? "is-collapsible" : ""} ${
-                      defaultState === "collapsed" ? "is-collapsed" : ""
-                    }`,
+                    className: classNames.join(" "),
                     "data-callout": calloutType,
                     "data-callout-fold": collapse,
                   },
@@ -541,10 +574,36 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         })
       }
 
+      if (opts.enableCheckbox) {
+        plugins.push(() => {
+          return (tree: HtmlRoot, _file) => {
+            visit(tree, "element", (node) => {
+              if (node.tagName === "input" && node.properties.type === "checkbox") {
+                const isChecked = node.properties?.checked ?? false
+                node.properties = {
+                  type: "checkbox",
+                  disabled: false,
+                  checked: isChecked,
+                  class: "checkbox-toggle",
+                }
+              }
+            })
+          }
+        })
+      }
+
       return plugins
     },
     externalResources() {
       const js: JSResource[] = []
+
+      if (opts.enableCheckbox) {
+        js.push({
+          script: checkboxScript,
+          loadTime: "afterDOMReady",
+          contentType: "inline",
+        })
+      }
 
       if (opts.callouts) {
         js.push({
@@ -557,17 +616,22 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
       if (opts.mermaid) {
         js.push({
           script: `
-          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
-          const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
-          mermaid.initialize({
-            startOnLoad: false,
-            securityLevel: 'loose',
-            theme: darkMode ? 'dark' : 'default'
-          });
+          let mermaidImport = undefined
           document.addEventListener('nav', async () => {
-            await mermaid.run({
-              querySelector: '.mermaid'
-            })
+            if (document.querySelector("code.mermaid")) {
+              mermaidImport ||= await import('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs')
+              const mermaid = mermaidImport.default
+              const darkMode = document.documentElement.getAttribute('saved-theme') === 'dark'
+              mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                theme: darkMode ? 'dark' : 'default'
+              })
+
+              await mermaid.run({
+                querySelector: '.mermaid'
+              })
+            }
           });
           `,
           loadTime: "afterDOMReady",

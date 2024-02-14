@@ -25,14 +25,17 @@ This part of the configuration concerns anything that can affect the whole site.
 - `enablePopovers`: whether to enable [[popover previews]] on your site.
 - `analytics`: what to use for analytics on your site. Values can be
   - `null`: don't use analytics;
-  - `{ provider: 'plausible' }`: use [Plausible](https://plausible.io/), a privacy-friendly alternative to Google Analytics; or
-  - `{ provider: 'google', tagId: <your-google-tag> }`: use Google Analytics
+  - `{ provider: 'google', tagId: '<your-google-tag>' }`: use Google Analytics;
+  - `{ provider: 'plausible' }` (managed) or `{ provider: 'plausible', host: '<your-plausible-host>' }` (self-hosted): use [Plausible](https://plausible.io/);
+  - `{ provider: 'umami', host: '<your-umami-host>', websiteId: '<your-umami-website-id>' }`: use [Umami](https://umami.is/);
+- `locale`: used for [[i18n]] and date formatting
 - `baseUrl`: this is used for sitemaps and RSS feeds that require an absolute URL to know where the canonical 'home' of your site lives. This is normally the deployed URL of your site (e.g. `quartz.jzhao.xyz` for this site). Do not include the protocol (i.e. `https://`) or any leading or trailing slashes.
   - This should also include the subpath if you are [[hosting]] on GitHub pages without a custom domain. For example, if my repository is `jackyzha0/quartz`, GitHub pages would deploy to `https://jackyzha0.github.io/quartz` and the `baseUrl` would be `jackyzha0.github.io/quartz`
   - Note that Quartz 4 will avoid using this as much as possible and use relative URLs whenever it can to make sure your site works no matter _where_ you end up actually deploying it.
 - `ignorePatterns`: a list of [glob](<https://en.wikipedia.org/wiki/Glob_(programming)>) patterns that Quartz should ignore and not search through when looking for files inside the `content` folder. See [[private pages]] for more details.
 - `defaultDateType`: whether to use created, modified, or published as the default date to display on pages and page listings.
 - `theme`: configure how the site looks.
+  - `cdnCaching`: Whether to use Google CDN to cache the fonts (generally will be faster). Disable this if you want Quartz to be self-contained. Default to `true`
   - `typography`: what fonts to use. Any font available on [Google Fonts](https://fonts.google.com/) works here.
     - `header`: Font to use for headers
     - `code`: Font for inline and block quotes.

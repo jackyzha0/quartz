@@ -2,6 +2,7 @@ import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { OptionType } from "../plugins/types"
 import style from "./styles/footer.scss"
 import { version } from "../../package.json"
+import { i18n } from "../i18n"
 
 interface Optionss {
   links: Record<string, string>
