@@ -48,6 +48,7 @@ async function mouseEnterHandler(
 
   if (!response) return
   const contentType = response.headers.get("Content-Type")
+  const contentTypeCategory = contentType?.split("/")[0] ?? "text"
 
   const popoverElement = document.createElement("div")
   popoverElement.classList.add("popover")
@@ -55,7 +56,8 @@ async function mouseEnterHandler(
   popoverInner.classList.add("popover-inner")
   popoverElement.appendChild(popoverInner)
 
-  const contentTypeCategory = contentType?.split("/")[0] ?? "text"
+  popoverInner.dataset.contentType = contentTypeCategory
+
   switch (contentTypeCategory) {
     case "image":
       const img = document.createElement("img")
@@ -66,9 +68,7 @@ async function mouseEnterHandler(
       img.alt = targetUrl.pathname
 
       popoverInner.appendChild(img)
-      popoverInner.classList.add("popover-inner-img")
       break
-    case "text":
     default:
       const contents = await response.text()
       const html = p.parseFromString(contents, "text/html")

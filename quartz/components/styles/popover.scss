@@ -38,7 +38,7 @@
     white-space: normal;
   }
 
-  & > .popover-inner-img {
+  & > .popover-inner[data-content-type="image"] {
     padding: 0;
     max-height: 100%;
 

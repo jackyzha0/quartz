@@ -8,7 +8,7 @@ By default, Quartz only fetches previews for pages inside your vault due to [COR
 
 When [[creating components|creating your own components]], you can include this `popover-hint` class to also include it in the popover.
 
-Like in Obsidian, [[quartz layout.png|images referenced using wikilinks]] can also be viewed as popups.
+Similar to Obsidian, [[quartz layout.png|images referenced using wikilinks]] can also be viewed as popups.
 
 ## Configuration
 
