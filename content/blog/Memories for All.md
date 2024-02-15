@@ -42,7 +42,8 @@ As it stands today the space is mostly focused on the (albeit generative) [[The 
 
 Every agent interaction can be generated just in time for every person, informed by relevant personal context more substantive than human-to-human sessions. User context will enable disposable agents on the fly across verticals for lower marginal cost than 1:many software paradigms.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/tTE3xiHw4Js?si=uzUzcSHFfZdjFduX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tTE3xiHw4Js?si=uzUzcSHFfZdjFduX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>  
+
 (*Here's our co-founder [Vince](https://twitter.com/vintrotweets) talking more about some of those possibilities*)
 
 ## "Open vs Closed"
@@ -79,8 +80,10 @@ Today we're releasing a naive adaptation of [research we published late last yea
 
 There's a ton we plan to unpack and implement there, but the key insight we're highlighting today is affording LLMs the freedom and autonomy to decide what's important.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/PbuzqCdY0hg?si=9Ylj3XfY5TF_Jrr3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PbuzqCdY0hg?si=9Ylj3XfY5TF_Jrr3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>  
+
 (*If you want to go deeper into the research, [this webinar we did with LangChain](https://www.youtube.com/watch?v=PbuzqCdY0hg&list=PLuFHBYNxPuzrkVP88FxYH1k7ZL5s7WTC8) is a great place to start, as is [the "Violation of Expectations" chain they implemented](https://js.langchain.com/docs/use_cases/agent_simulations/violation_of_expectations_chain)*)
+
 
 This release allows you to experiment with all these ideas. We feed messages into an inference asking the model to derive facts about the user, we store those insights for later use, then we ask the model to retrieve this context to augment some later generation.
 
