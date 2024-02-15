@@ -8,7 +8,7 @@ No one needs another newsletter, so we'll work to make these worthwhile. Expect 
 
 Last year was wild. We started as an edtech company and ended as anything but. There's a deep dive on some of the conceptual lore in last week's "[[Honcho; User Context Management for LLM Apps#^09f185|Honcho: User Context Management for LLM Apps]]:"
 
->[Plastic Labs](https://plasticlabs.ai) was conceived as a research group exploring the intersection of education and emerging technology...with the advent of ChatGPT...we shifted our focus to large language models...we set out to build a non-skeuomorphic, AI-native tutor that put users first...our [[Open-Sourcing Tutor-GPT|experimental tutor]], Bloom, [[Theory-of-Mind Is All You Need|was remarkably effective]]--for thousands of users during the 9 months we hosted it for free...
+>[Plastic Labs](https://plasticlabs.ai) was conceived as a research group exploring the intersection of education and emerging technology...with the advent of ChatGPT...we shifted our focus to large language models...we set out to build a non-skeuomorphic, AI-native tutor that put users first...our [[Open Sourcing Tutor-GPT|experimental tutor]], Bloom, [[Theory of Mind Is All You Need|was remarkably effective]]--for thousands of users during the 9 months we hosted it for free...
 
 Building a production-grade, user-centric AI application, then giving it nascent [theory of mind](https://arxiv.org/pdf/2304.11490.pdf) and [[Metacognition in LLMs is inference about inference|metacognition]], made it glaringly obvious to us that social cognition in LLMs was both under-explored and under-leveraged.
 
