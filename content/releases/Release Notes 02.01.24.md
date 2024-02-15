@@ -4,7 +4,7 @@ We talked to a ton of agent developers beginning to build with Honcho over the p
   
 [We'd love to hear what you're building](https://discord.gg/plasticlabs).  
   
-## Announcements
+## News
 
 - [Honcho website](https://honcho.dev) drop!  
 	

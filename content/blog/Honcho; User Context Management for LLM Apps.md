@@ -25,7 +25,7 @@ So we set out to build a non-skeuomorphic, AI-native tutor that put users first.
 ![[teacher_shoggoth.png]]
 *We're not so different after all ([@anthrupad](https://twitter.com/anthrupad)).*
 
-Our [[Open-Sourcing Tutor-GPT|experimental tutor]], Bloom, [[Theory-of-Mind Is All You Need|was remarkably effective]]--for thousands of users during the 9 months we hosted it for free--precisely because we built [cognitive architectures](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/) that mimic the theory-of-mind expertise of highly efficacious 1:1 instructors.
+Our [[Open Sourcing Tutor-GPT|experimental tutor]], Bloom, [[Theory of Mind Is All You Need|was remarkably effective]]--for thousands of users during the 9 months we hosted it for free--precisely because we built [cognitive architectures](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/) that mimic the theory-of-mind expertise of highly efficacious 1:1 instructors.
 
 ## Context Failure Mode
 

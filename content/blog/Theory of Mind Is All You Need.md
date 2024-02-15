@@ -28,17 +28,17 @@ The key here is they don’t have all the information—they _don’t know_ what
 
 Well we know that (1) foundation models are [shockingly good](https://arxiv.org/abs/2304.11490) at [theory of mind](https://en.wikipedia.org/wiki/Theory_of_mind), (2) Bloom already excels at [pedagogical reasoning](https://twitter.com/courtlandleer/status/1664673210007449605?s=20), and (3) [autonomous agents](https://twitter.com/yoheinakajima/status/1642881722495954945?s=20) are [having early success](https://twitter.com/Auto_GPT/status/1649370049688354816?s=20), so what if we stopped trying to deterministically prescribe an indeterminant intelligence?
 
-What if we treated Bloom with some intellectual respect?
+What if we treated Bloom with some intellectual respect? ^67d75d
 
 ## Autonomous Prompting
 
 The solution here is scary simple. The results are scary good.
 
-[[Open-Sourcing Tutor-GPT#^285105|Here’s a description]] of the previous version’s architecture:
+[[Open Sourcing Tutor-GPT#^285105|Here’s a description]] of the previous version’s architecture:
 
-![[Open-Sourcing Tutor-GPT#^285105]]
-![[Open-Sourcing Tutor-GPT#^1e01f2]]
-![[Open-Sourcing Tutor-GPT#^b1794d]]
+![[Open Sourcing Tutor-GPT#^285105]]
+![[Open Sourcing Tutor-GPT#^1e01f2]]
+![[Open Sourcing Tutor-GPT#^b1794d]]
 
 Instead, we’ve now repurposed the ***thought*** chain to do two things:
 

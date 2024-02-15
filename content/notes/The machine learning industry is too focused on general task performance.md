@@ -1,4 +1,4 @@
-The machine learning industry has traditionally adopted an academic approach, focusing primarily on performance across a range of tasks. LLMs like GPT-4 are a testament to this, having been scaled up to demonstrate impressive & diverse task capability. This scaling has also led to [[Theory-of-Mind Is All You Need|emergent abilities]], debates about the true nature of which rage on.
+The machine learning industry has traditionally adopted an academic approach, focusing primarily on performance across a range of tasks. LLMs like GPT-4 are a testament to this, having been scaled up to demonstrate impressive & diverse task capability. This scaling has also led to [[Theory of Mind Is All You Need|emergent abilities]], debates about the true nature of which rage on.
 
 However, general capability doesn't necessarily translate to completing tasks as an individual user would prefer. This is a failure mode that anyone building agents will inevitably encounter. The focus, therefore, needs to shift from how language models perform tasks in a general sense to how they perform tasks on a user-specific basis.
 
