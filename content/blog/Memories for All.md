@@ -43,7 +43,7 @@ As it stands today the space is mostly focused on the (albeit generative) [[The 
 Every agent interaction can be generated just in time for every person, informed by relevant personal context more substantive than human-to-human sessions. User context will enable disposable agents on the fly across verticals for lower marginal cost than 1:many software paradigms.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/tTE3xiHw4Js?si=uzUzcSHFfZdjFduX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-*(Here's our co-founder [Vince](https://twitter.com/vintrotweets) talking more about some of those possibilities)
+*(Here's our co-founder [Vince](https://twitter.com/vintrotweets) talking more about some of those possibilities)*
 
 ## "Open vs Closed"
 
