@@ -41,17 +41,17 @@ export function getIconAsSVG(opts: Partial<IconFolderOptions>, iconType?: string
 export function getIconForNodes(node: FileNode, iconSettings?: IconFolderOptions) {
   let hasIcon = false
   let iconType = ""
-  const defaultIcon = node.file ? iconSettings?.default.file : iconSettings?.default.folder
+  const defaultIcon = node.file ? iconSettings?.default?.file : iconSettings?.default?.folder
   if (iconSettings) {
     if (node.icon) {
       hasIcon = true
       iconType = node.icon
-    } else if (iconSettings?.default.file && node.file) {
+    } else if (iconSettings?.default?.file && node.file) {
       hasIcon = true
-      iconType = iconSettings?.default.file
-    } else if (iconSettings?.default.folder && !node.file) {
+      iconType = iconSettings?.default?.file
+    } else if (iconSettings?.default?.folder && !node.file) {
       hasIcon = true
-      iconType = iconSettings?.default.folder
+      iconType = iconSettings?.default?.folder
     }
   }
   const iconPath =
