@@ -14,7 +14,7 @@ It’s our mission to realize this future.
 
 ## Blog
 
-[[Memories for All]]
+[[Memories for All]]  
 [[Honcho; User Context Management for LLM Apps|Honcho: User Context Management for LLM Apps]]  
 [[Theory of Mind Is All You Need]]  
 [[Open Sourcing Tutor-GPT]]
@@ -37,7 +37,7 @@ It’s our mission to realize this future.
 
 ## Release Notes 
 
-[[Release Notes 02.15.24]]
+[[Release Notes 02.15.24]]  
 [[Release Notes 02.08.24]]  
 [[Release Notes 02.01.24]]  
 
