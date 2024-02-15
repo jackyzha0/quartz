@@ -9,6 +9,12 @@ img + em {
   font-size: 0.9em;
 }
 
+iframe + p {
+  display: block;
+  text-align: center;
+  font-size: 0.9em;
+}
+
 // center all images by default
 img {
   display: block;
