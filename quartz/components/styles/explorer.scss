@@ -128,12 +128,10 @@ svg {
   cursor: pointer;
   transition: transform 0.3s ease;
   backface-visibility: visible;
-  &[data-hasicon="true"] {
-    opacity: 0;
-    left: -0.2rem;
-    position: relative;
-    width: 1em;
-  }
+  opacity: 0.5;
+  // left: -0.2rem;
+  // position: relative;
+  // width: 1em;
 }
 
 li:has(> .folder-outer:not(.open)) > .folder-container > svg {
@@ -176,10 +174,10 @@ li:has(> .folder-outer:not(.open)) > .folder-container > svg {
 .file-title-icon > svg {
   width: 1em;
   height: 1em;
-  margin-right: 5px;
-  vertical-align: -2px;
+  // margin-right: 5px;
+  // vertical-align: -2px;
 }
 
-.folder-title-icon {
-  margin-left: -1.5rem;
-}
+// .folder-title-icon {
+//   margin-left: -1.5rem;
+// }
