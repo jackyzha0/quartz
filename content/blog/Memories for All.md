@@ -60,11 +60,11 @@ The same applies to social cognition in LLMs and the key to this is leaning abou
 
 We've been saying for while now that major walled gardens and their franchises--e.g. OAI's GPTs, Assistants API, and ChatGPT (+Microsoft?); Meta's social apps; Google's workspace suite; etc--will have myriad ecosystem-native agents all with shared access to your user profile. 
 
-The problem here is twofold: (1) independent apps are left out in the cold wrt user context and personalization capabilities, and (2) users are left with a privacy situation little better under web2 business models (or potentially [way worse](https://arxiv.org/abs/2310.07298)).
+The problem here is twofold: (1) independent apps are left out in the cold wrt user context and personalization capabilities, and (2) users are left with a privacy situation little better than under web2 business models (or potentially [way worse](https://arxiv.org/abs/2310.07298)).
 
-Those profiles are gated and proprietary to each climate controlled garden. Step outside and UX plummets. If the independent and open communities want to compete, they need personal beer-production superpowers.
+Those profiles are gated and proprietary to each climate controlled garden. Step outside and UX plummets. If the independent and open product communities want to compete, they need individual taste bud-mapping superpowers for their beer production.
 
-And user fare little better, presented with yet another set of pre-packaged pseudo-choices about privacy to manage, none of which gives them any real control. More paternalism is not the path to individually aligned agents.
+And users fare little better, presented with yet another set of pre-packaged pseudo-choices about privacy to manage, none of which give them any real control. More paternalism is not the path to individually aligned agents.
 
 Shouldn't we be able to experiment with all this without platform lock-in, allowing projects to collectively leverage user data for positive sum experiences? Shouldn't users own their AI modeled profiles and be able to carry them between independent agents who respect their policies?
 
@@ -85,11 +85,11 @@ There's a ton we plan to unpack and implement there, but the key insight we're h
 (*If you want to go deeper into the research, [this webinar we did with LangChain](https://www.youtube.com/watch?v=PbuzqCdY0hg&list=PLuFHBYNxPuzrkVP88FxYH1k7ZL5s7WTC8) is a great place to start, as is [the "Violation of Expectations" chain they implemented](https://js.langchain.com/docs/use_cases/agent_simulations/violation_of_expectations_chain)*)
 
 
-This release allows you to experiment with all these ideas. We feed messages into an inference asking the model to derive facts about the user, we store those insights for later use, then we ask the model to retrieve this context to augment some later generation.
+This release allows you to experiment with several ideas. We feed messages into an inference asking the model to derive facts about the user, we store those insights for later use, then we ask the model to retrieve this context to augment some later generation.
 
-Check out the [LangChain implementation](https://docs.honcho.dev/how-to/personal-memory/simple-user-memory) and [Discord bot demo](https://discord.gg/plasticlabs).
+Check out our [LangChain implementation](https://docs.honcho.dev/how-to/personal-memory/simple-user-memory) and [Discord bot demo](https://discord.gg/plasticlabs).
 
-Where things get powerful is in the aggregate. What tends to resolve is a highly insightful picture of who your users are and what they need--key context to personalize their experiences. 
+Where things get powerful is in the aggregate. What resolves is a highly insightful picture of who your users are and what they need--a key context reservoir to improve the qualitative and quantitative experience. 
 
 N.b. you can certainly direct the model with as much verbosity as you like, but we've found during extensive experimentation that [[Theory of Mind Is All You Need|the more you trust the model]] the better and more useful the results.
 
