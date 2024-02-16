@@ -128,10 +128,13 @@ svg {
   cursor: pointer;
   transition: transform 0.3s ease;
   backface-visibility: visible;
-  opacity: 0.5;
-  // left: -0.2rem;
-  // position: relative;
-  // width: 1em;
+  &[data-hasicon="true"] {
+    opacity: 0;
+    left: -0.2rem;
+    position: relative;
+    width: 1em;
+    z-index: 99;
+  }
 }
 
 li:has(> .folder-outer:not(.open)) > .folder-container > svg {
@@ -181,3 +184,11 @@ li:has(> .folder-outer:not(.open)) > .folder-container > svg {
 // .folder-title-icon {
 //   margin-left: -1.5rem;
 // }
+
+.folder-container[data-haschildren="true"] .folder-title[data-hasicon="true"] {
+  margin-left: -1.5rem;
+}
+
+.folder-container[data-haschildren="false"] {
+  margin-left: -0.2rem;
+}

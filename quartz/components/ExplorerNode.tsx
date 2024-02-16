@@ -228,7 +228,6 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
                   <polyline points="6 9 12 15 18 9" />
                 </svg>
               ) : null}
-              <NodesIcons iconAsSVG={iconAsSVG} hasIcon={hasIcon} nodeType="folder" />
               {/* render <a> tag if folderBehavior is "link", otherwise render <button> with collapse click event */}
               <div key={node.name} data-folderpath={folderPath}>
                 {folderBehavior === "link" ? (
@@ -239,6 +238,7 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
                     data-icon={iconPath}
                     class="folder-title"
                   >
+                    <NodesIcons iconAsSVG={iconAsSVG} hasIcon={hasIcon} nodeType="folder" />
                     {node.displayName}
                   </a>
                 ) : (
