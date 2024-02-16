@@ -20,18 +20,15 @@ const defaultOptions: Options = {
   keepBackground: false,
 }
 
-export const SyntaxHighlighting: QuartzTransformerPlugin<Options> = (userOpts?: Partial<Options>) => {
+export const SyntaxHighlighting: QuartzTransformerPlugin<Options> = (
+  userOpts?: Partial<Options>,
+) => {
   const opts = { ...defaultOptions, ...userOpts }
 
   return {
     name: "SyntaxHighlighting",
     htmlPlugins() {
-      return [
-        [
-          rehypePrettyCode,
-					opts as Partial<CodeOptions>,
-        ],
-      ]
+      return [[rehypePrettyCode, opts as Partial<CodeOptions>]]
     },
   }
 }
