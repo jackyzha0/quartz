@@ -20,9 +20,8 @@ const defaultOptions: Options = {
   keepBackground: false,
 }
 
-export const SyntaxHighlighting: QuartzTransformerPlugin<Options> = (opts?: Partial<Options>) => {
-  const { theme = defaultOptions.theme || {}, keepBackground } = { ...defaultOptions, ...opts }
-  const { light = defaultOptions.theme?.light, dark = defaultOptions.theme?.dark } = theme
+export const SyntaxHighlighting: QuartzTransformerPlugin<Options> = (userOpts?: Partial<Options>) => {
+  const opts = { ...defaultOptions, ...userOpts }
 
   return {
     name: "SyntaxHighlighting",
@@ -30,10 +29,7 @@ export const SyntaxHighlighting: QuartzTransformerPlugin<Options> = (opts?: Part
       return [
         [
           rehypePrettyCode,
-          {
-            theme: { light, dark },
-            keepBackground,
-          } as Partial<CodeOptions>,
+					opts as Partial<CodeOptions>,
         ],
       ]
     },
