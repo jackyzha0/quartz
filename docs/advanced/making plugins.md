@@ -87,7 +87,7 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
           css: ["https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"],
           js: [
             {
-              src: "https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/copy-tex.min.js",
+              src: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/copy-tex.min.js",
               loadTime: "afterDOMReady",
               contentType: "external",
             },
