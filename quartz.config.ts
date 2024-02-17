@@ -7,7 +7,7 @@ const config: QuartzConfig = {
     enableSPA: true,
     enablePopovers: true,
     analytics: {
-      provider: "plausible",
+      provider: "postHog",
     },
     baseUrl: "plasticlabs.ai",
     ignorePatterns: ["private", "templates"],

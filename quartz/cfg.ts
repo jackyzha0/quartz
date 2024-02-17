@@ -6,16 +6,20 @@ import { Theme } from "./util/theme"
 export type Analytics =
   | null
   | {
-      provider: "plausible"
-    }
+    provider: "plausible"
+  }
   | {
-      provider: "google"
-      tagId: string
-    }
+    provider: "google"
+    tagId: string
+  }
   | {
-      provider: "umami"
-      websiteId: string
-    }
+    provider: "umami"
+    websiteId: string
+  }
+  | {
+    provider: "postHog"
+  }
+
 
 export interface GlobalConfiguration {
   pageTitle: string
