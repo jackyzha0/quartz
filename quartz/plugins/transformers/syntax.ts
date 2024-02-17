@@ -1,10 +1,9 @@
 import { QuartzTransformerPlugin } from "../types"
-import rehypePrettyCode, { Options as CodeOptions } from "rehype-pretty-code"
-import { BuiltinTheme } from "shikiji"
+import rehypePrettyCode, { Options as CodeOptions, Theme as CodeTheme } from "rehype-pretty-code"
 
-interface Theme {
-  light?: BuiltinTheme
-  dark?: BuiltinTheme
+interface Theme extends Record<string, CodeTheme> {
+  light: CodeTheme
+  dark: CodeTheme
 }
 
 interface Options {
