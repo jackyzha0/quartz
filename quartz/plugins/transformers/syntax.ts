@@ -23,12 +23,12 @@ const defaultOptions: Options = {
 export const SyntaxHighlighting: QuartzTransformerPlugin<Options> = (
   userOpts?: Partial<Options>,
 ) => {
-  const opts = { ...defaultOptions, ...userOpts }
+  const opts: Partial<CodeOptions> = { ...defaultOptions, ...userOpts }
 
   return {
     name: "SyntaxHighlighting",
     htmlPlugins() {
-      return [[rehypePrettyCode, opts as Partial<CodeOptions>]]
+      return [[rehypePrettyCode, opts]]
     },
   }
 }
