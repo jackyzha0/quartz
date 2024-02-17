@@ -1,5 +1,6 @@
 @use "../../styles/variables.scss" as *;
 
+
 button#explorer {
   all: unset;
   background-color: transparent;
@@ -48,6 +49,8 @@ button#explorer {
   max-height: none;
   transition: max-height 0.35s ease;
   margin-top: 0.5rem;
+  // 스크롤바 생성
+  //overflow-y: auto;
 
   &.collapsed > .overflow::after {
     opacity: 0;

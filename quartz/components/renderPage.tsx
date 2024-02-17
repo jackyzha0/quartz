@@ -8,6 +8,8 @@ import { visit } from "unist-util-visit"
 import { Root, Element, ElementContent } from "hast"
 import { GlobalConfiguration } from "../cfg"
 import { i18n } from "../i18n"
+import { QuartzPluginData } from "../plugins/vfile"
+
 
 interface RenderComponents {
   head: QuartzComponent
@@ -49,6 +51,19 @@ export function pageResources(
       },
     ],
   }
+}
+
+let pageIndex: Map<FullSlug, QuartzPluginData> | undefined = undefined
+
+function getOrComputeFileIndex(allFiles: QuartzPluginData[]): Map<FullSlug, QuartzPluginData> {
+  if (!pageIndex) {
+    pageIndex = new Map()
+    for (const file of allFiles) {
+      pageIndex.set(file.slug!, file)
+    }
+  }
+
+  return pageIndex
 }
 
 export function renderPage(
@@ -203,37 +218,40 @@ export function renderPage(
     </div>
   )
 
+
   const lang = componentData.frontmatter?.lang ?? cfg.locale?.split("-")[0] ?? "en"
   const doc = (
     <html lang={lang}>
-      <Head {...componentData} />
-      <body data-slug={slug}>
-        <div id="quartz-root" class="page">
-          <Body {...componentData}>
-            {LeftComponent}
-            <div class="center">
-              <div class="page-header">
-                <Header {...componentData}>
-                  {header.map((HeaderComponent) => (
-                    <HeaderComponent {...componentData} />
-                  ))}
-                </Header>
-                <div class="popover-hint">
-                  {beforeBody.map((BodyComponent) => (
-                    <BodyComponent {...componentData} />
-                  ))}
-                </div>
-              </div>
-              <Content {...componentData} />
+    <Head {...componentData} />
+    <body data-slug={slug}>
+    {/*{slug !== "project" && (*/}
+
+    <div id="quartz-root" className="page">
+      <Body {...componentData}>
+        {/*{LeftComponent}*/}
+        <div className="center">
+          <div className="page-header">
+            <Header {...componentData}>
+              {header.map((HeaderComponent) => (
+                <HeaderComponent {...componentData} />
+              ))}
+            </Header>
+            <div className="popover-hint">
+              {beforeBody.map((BodyComponent) => (
+                <BodyComponent {...componentData} />
+              ))}
             </div>
-            {RightComponent}
-          </Body>
-          <Footer {...componentData} />
+          </div>
+          <Content {...componentData} />
         </div>
-      </body>
-      {pageResources.js
-        .filter((resource) => resource.loadTime === "afterDOMReady")
-        .map((res) => JSResourceToScriptElement(res))}
+        {RightComponent}
+      </Body>
+      <Footer {...componentData} />
+    </div>
+    </body>
+    {pageResources.js
+      .filter((resource) => resource.loadTime === "afterDOMReady")
+      .map((res) => JSResourceToScriptElement(res))}
     </html>
   )
 

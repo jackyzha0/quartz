@@ -1,0 +1,65 @@
+@use "../../styles/variables.scss" as *;
+
+header {
+  display: block;
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--lightgray);
+
+    .page-title {
+      margin: 0;
+
+      a {
+        color: #f6bb43;
+      }
+    }
+
+    .desktop {
+      display: block;
+
+      ul {
+        display: flex;
+        justify-content: end;
+        gap: 15px;
+        list-style: none;
+        margin: 0;
+
+        @media all and (max-width: $fullPageWidth) {
+          flex: 10;
+        }
+
+
+        li a {
+          font-size: 1.2rem;
+          @media all and (max-width: $fullPageWidth) {
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      @media all and (max-width: $fullPageWidth) {
+        display: none;
+      }
+    }
+
+    .mobile {
+      display: none;
+
+      .search {
+        width: 100%;
+      }
+
+      @media all and (max-width: $fullPageWidth) {
+        display: flex;
+        flex: 1;
+        justify-content: end;
+        gap: 5px;
+        align-items: center;
+      }
+    }
+  }
+}
