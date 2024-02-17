@@ -1,6 +1,5 @@
-import { PageLayout, SharedLayout } from "../blog/quartz/cfg"
-import * as Component from "../blog/quartz/components"
-import { NavBar, Header } from "../blog/quartz/components"
+import { PageLayout, SharedLayout } from "./quartz/cfg"
+import * as Component from "./quartz/components"
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -24,9 +23,7 @@ export const defaultContentPageLayout: PageLayout = {
   ],
   left: [],
   right: [
-    // Component.Darkmode(),
-    // Component.Search(),
-    Component.DesktopOnly(Component.Search()),
+    Component.Search(),
     Component.DesktopOnly(Component.Darkmode()),
     Component.DesktopOnly(Component.Explorer()),
     Component.Graph(),
@@ -43,7 +40,7 @@ export const defaultListPageLayout: PageLayout = {
   left: [],
   right: [
     // Component.MobileOnly(Component.Spacer()),
-    Component.DesktopOnly(Component.Search()),
+    Component.Search(),
     Component.DesktopOnly(Component.Darkmode()),
     Component.DesktopOnly(Component.Explorer()),
     Component.Graph(),

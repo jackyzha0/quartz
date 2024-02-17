@@ -27,7 +27,7 @@ const NavBar: QuartzComponent = (props: QuartzComponentProps) => {
       </div>
 
       <div class={"mobile"}>
-        <Search {...props} />
+        {/*<Search {...props} />*/}
         <Darkmode {...props} />
       </div>
     </nav>
