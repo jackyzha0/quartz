@@ -73,7 +73,7 @@ By adding, removing, and reordering plugins from the `tranformers`, `filters`, a
 > [!note]
 > Each node is modified by every transformer _in order_. Some transformers are position-sensitive so you may need to take special note of whether it needs come before or after any other particular plugins.
 
-Additionally, plugins may also have their own configuration settings that you can pass in. For example, the [[Latex]] plugin allows you to pass in a field specifying the `renderEngine` to choose between Katex and MathJax.
+Additionally, plugins may also have their own configuration settings that you can pass in. For example, the [[Latex]] plugin allows you to pass in a field specifying the `renderEngine` to choose between Katex and MathJax. If you do not pass in a configuration, the plugin will use its default settings.
 
 ```ts
 transformers: [
@@ -83,3 +83,88 @@ transformers: [
 ```
 
 If you'd like to make your own plugins, read the guide on [[making plugins]] for more information.
+
+By default, Quartz is configured to use the following plugins:
+
+```ts
+transformers: [
+  Plugin.FrontMatter(...),
+  Plugin.CreatedModifiedDate(...),
+  Plugin.Latex(...),
+  Plugin.SyntaxHighlighting(...),
+  Plugin.ObsidianFlavoredMarkdown(...),
+  Plugin.GitHubFlavoredMarkdown(),
+  Plugin.TableOfContents(),
+  Plugin.CrawlLinks(...),
+  Plugin.Description(),
+]
+
+filters: [
+  Plugin.RemoveDrafts()
+]
+
+emitters: [
+  Plugin.AliasRedirects(),
+  Plugin.ComponentResources(...),
+  Plugin.ContentPage(),
+  Plugin.FolderPage(),
+  Plugin.TagPage(),
+  Plugin.ContentIndex(...),
+  Plugin.Assets(),
+  Plugin.Static(),
+  Plugin.NotFoundPage(),
+]
+```
+
+There are a few more that you can add to the `transformers`, `filters`, and `emitters`:
+
+```ts
+transformers: [
+  Plugin.HardLineBreaks(),
+  Plugin.OxHugoFlavouredMarkdown(),
+]
+
+filters: [
+  Plugin.ExplicitPublish(),
+]
+
+emitters: [
+  Plugin.CNAME(),
+]
+```
+
+### Plugin.FrontMatter
+
+This plugin uses [gray-matter](https://github.com/jonschlinkert/gray-matter) to parse the frontmatter of the file for the metadata fields `title`, `tags`, `aliases` and `cssclasses`.  See [[authoring content#Syntax]] for a description of what Quartz does with the content of these fields.
+
+Options:
+
+- `delimiters`: the delimiters to use for the frontmatter. Can have one value (e.g. `"---"`) or separate values for opening and closing delimiters (e.g. `["---", "~~~"]`). Defaults to `"---"`.
+- `language`: the language to use for parsing the frontmatter. Can be `yaml` (default) or `toml`.
+
+### Plugin.CreatedModifiedDate
+
+This plugin determines the created, modified, and published dates for a file using three potential data sources: front matter metadata, Git history, and the filesystem.
+
+If it encounters invalid date formats, it defaults to the current date.
+
+Options:
+
+- `priority`: the data sources to consult for date information. Highest priority first. Possible values are `"frontmatter"`, `"git"`, and `"filesystem"`. Defaults to `"frontmatter", "git", "filesystem"]`.
+
+### Plugin.Latex
+
+This plugin adds LaTeX rendering support. See [[Latex]] for more details.
+
+Options:
+
+- `renderEngine`: the engine to use to render LaTeX equations. Can be `"katex"` for KaTeX or `"mathjax"` for MathJax. Defaults to KaTeX.
+
+### Plugin.SyntaxHighlighting
+
+This plugin adds syntax highlighting for code blocks. See [[syntax highlighting]] for more information.
+
+#### Options
+
+- `theme`: a separate id of one of the [themes bundled with Shikiji](https://shikiji.netlify.app/themes). One for light mode and one for dark mode. Defaults to `theme: { light: "github-light", dark: "github-dark" }`.
+- `keepBackground`: If set to `true`, the background of the Shikiji theme will be used. With `false` (default) the Quartz theme color for background will be used instead.
