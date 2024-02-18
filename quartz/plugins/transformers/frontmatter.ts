@@ -8,7 +8,7 @@ import { QuartzPluginData } from "../vfile"
 import { i18n } from "../../i18n"
 
 export interface Options {
-  delimiters: string | [string, string] | undefined
+  delimiters: string | [string, string]
   language: "yaml" | "toml"
 }
 
