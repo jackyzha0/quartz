@@ -1,0 +1,48 @@
+@use "../../styles/variables.scss" as *;
+
+header > nav {
+  width: 65%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--lightgray);
+
+  @media all and (max-width: $fullPageWidth) {
+    border: 0
+  }
+
+  .page-title {
+    margin: 0;
+
+    a {
+      color: #f6bb43;
+    }
+  }
+
+  ul {
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+    list-style: none;
+    margin: 0;
+
+    @media all and (max-width: $fullPageWidth) {
+      display: none;
+    }
+
+    li a {
+      font-size: 1.2rem;
+    }
+  }
+
+  .darkmode {
+    display: none;
+    @media all and (max-width: $fullPageWidth) {
+      display: block;
+    }
+    @media all and (max-width: 285px) {
+      display: none;
+    }
+  }
+}

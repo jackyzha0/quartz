@@ -19,6 +19,7 @@ const defaultOptions: FolderContentOptions = {
   showFolderCount: true,
 }
 
+// 인덱스 페이지
 export default ((opts?: Partial<FolderContentOptions>) => {
   const options: FolderContentOptions = { ...defaultOptions, ...opts }
 

@@ -20,6 +20,9 @@ import MobileOnly from "./MobileOnly"
 import RecentNotes from "./RecentNotes"
 import Breadcrumbs from "./Breadcrumbs"
 
+// 만든거
+import NavBar from "./NavBar"
+
 export {
   ArticleTitle,
   Content,
@@ -42,4 +45,7 @@ export {
   RecentNotes,
   NotFound,
   Breadcrumbs,
+
+  // 추가
+  NavBar,
 }

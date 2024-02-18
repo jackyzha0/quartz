@@ -75,7 +75,7 @@ a {
     line-height: 1.4rem;
 
     &:has(> img) {
-      background-color: none;
+      //background-color: none;
       border-radius: 0;
       padding: 0;
     }
@@ -105,10 +105,14 @@ a {
   }
 }
 
+// custom CSS
 .page {
+  width: 1200px;
+  margin: 0 auto;
+
   @media all and (max-width: $fullPageWidth) {
-    margin: 0 auto;
     padding: 0 1rem;
+    width: initial;
     max-width: $pageWidth;
   }
 
@@ -145,6 +149,7 @@ a {
       flex-direction: column;
     }
 
+
     & .sidebar {
       flex: 1;
       display: flex;
@@ -154,8 +159,10 @@ a {
       width: $sidePanelWidth;
       margin-top: $topSpacing;
       box-sizing: border-box;
+      //padding: 0 0 0 4rem;
       padding: 0 4rem;
-      position: fixed;
+      position: static; // static
+      min-height: 500px;
       @media all and (max-width: $fullPageWidth) {
         position: initial;
         flex-direction: row;
@@ -165,28 +172,34 @@ a {
       }
     }
 
-    & .sidebar.left {
-      left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
-      @media all and (max-width: $fullPageWidth) {
-        gap: 0;
-        align-items: center;
-      }
-    }
+    //& .sidebar.left {
+    //  left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
+    //  @media all and (max-width: $fullPageWidth) {
+    //    gap: 0;
+    //    align-items: center;
+    //  }
+    //}
 
     & .sidebar.right {
       right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
       flex-wrap: wrap;
+
       & > * {
         @media all and (max-width: $fullPageWidth) {
           flex: 1;
           min-width: 140px;
         }
       }
+
+      //& > .search {
+      //  @media all and (max-width: $fullPageWidth){
+      //    flex-basis: 100% !important;
+      //  }
+      //}
     }
   }
 
   & .page-header {
-    width: $pageWidth;
     margin: $topSpacing auto 0 auto;
     @media all and (max-width: $fullPageWidth) {
       width: initial;
@@ -194,11 +207,20 @@ a {
     }
   }
 
-  & .center,
+  & .center {
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+    @media all and (max-width: $fullPageWidth) {
+      width: initial;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
   & footer {
     margin-left: auto;
     margin-right: auto;
-    width: $pageWidth;
     @media all and (max-width: $fullPageWidth) {
       width: initial;
       margin-left: 0;
@@ -442,6 +464,7 @@ td {
 
 tr {
   border-bottom: 1px solid var(--lightgray);
+
   &:last-child {
     border-bottom: none;
   }
@@ -478,7 +501,7 @@ video {
 
 ul.overflow,
 ol.overflow {
-  max-height: 400;
+  max-height: 400px;
   overflow-y: auto;
 
   // clearfix
@@ -499,7 +522,7 @@ ol.overflow {
     bottom: 0;
     opacity: 1;
     transition: opacity 0.3s ease;
-    background: linear-gradient(transparent 0px, var(--light));
+    //background: linear-gradient(transparent 0px, var(--light));
   }
 }
 
