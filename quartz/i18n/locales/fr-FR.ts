@@ -33,6 +33,7 @@ export default {
       title: "Explorateur",
     },
     footer: {
+      poweredBy: "Powered by",
       createdWith: "Créé avec",
     },
     graph: {

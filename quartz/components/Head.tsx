@@ -27,6 +27,7 @@ export default (() => {
             <link rel="preconnect" href="https://fonts.gstatic.com" />
           </>
         )}
+        <meta name="naver-site-verification" content="7e7588d7de984f2fb2f623e7b666cc6a8548f54b" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
