@@ -8,7 +8,6 @@ import ro from "./locales/ro-RO"
 import es from "./locales/es-ES"
 import ar from "./locales/ar-SA"
 import uk from "./locales/uk-UA"
-import ko from "./locales/ko-KR"
 
 export const TRANSLATIONS = {
   "en-US": en,
