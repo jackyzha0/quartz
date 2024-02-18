@@ -10,7 +10,7 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     locale: "ko-KR",
-    baseUrl: "github.com/JongDeug/blog",
+    baseUrl: "jongdeug.github.io/blog",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
     theme: {
