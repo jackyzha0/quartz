@@ -1,4 +1,4 @@
-import {Translation} from "./definition"
+import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
@@ -68,7 +68,7 @@ export default {
     },
     folderContent: {
       folder: "폴더",
-      itemsUnderFolder: ({ count }) => `${count}건의 페이지`
+      itemsUnderFolder: ({ count }) => `${count}건의 페이지`,
     },
     tagContent: {
       tag: "태그",
