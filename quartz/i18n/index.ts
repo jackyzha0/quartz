@@ -8,6 +8,7 @@ import ro from "./locales/ro-RO"
 import es from "./locales/es-ES"
 import ar from "./locales/ar-SA"
 import uk from "./locales/uk-UA"
+import ko from "./locales/ko-KR"
 import ru from "./locales/ru-RU"
 
 export const TRANSLATIONS = {
@@ -41,6 +42,7 @@ export const TRANSLATIONS = {
   "ar-DZ": ar,
   "ar-MR": ar,
   "uk-UA": uk,
+  "ko-KR": ko,
   "ru-RU": ru,
 } as const
 
