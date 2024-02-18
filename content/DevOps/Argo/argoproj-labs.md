@@ -13,8 +13,8 @@ aliases: []
 
 # #예시 
 실험적 프로젝트, 보조 프로젝트 모음
-	- [[argocd-image-updater|argoproj-labs/argocd-image-updater]]: [[Argo CD]]로 배포한 이미지의 태그 갱신 에드온 
-	- [[Hera|argoproj-labs/hera]]: Python에서 [[Argo Workflows]]를 사용하기 위한 SDK
+- [[argocd-image-updater|argoproj-labs/argocd-image-updater]]: [[Argo CD]]로 배포한 이미지의 태그 갱신 에드온 
+- [[Hera|argoproj-labs/hera]]: Python에서 [[Argo Workflows]]를 사용하기 위한 SDK
 
 
 
