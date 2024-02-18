@@ -41,7 +41,6 @@ export const TRANSLATIONS = {
   "ar-DZ": ar,
   "ar-MR": ar,
   "uk-UA": uk,
-  "ko-KR": ko,
 } as const
 
 export const defaultTranslation = "ko-KR"
