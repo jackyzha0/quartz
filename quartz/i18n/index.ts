@@ -9,6 +9,7 @@ import es from "./locales/es-ES"
 import ar from "./locales/ar-SA"
 import uk from "./locales/uk-UA"
 import ko from "./locales/ko-KR"
+import ru from "./locales/ru-RU"
 
 export const TRANSLATIONS = {
   "en-US": en,
@@ -42,6 +43,7 @@ export const TRANSLATIONS = {
   "ar-MR": ar,
   "uk-UA": uk,
   "ko-KR": ko,
+  "ru-RU": ru,
 } as const
 
 export const defaultTranslation = "en-US"
