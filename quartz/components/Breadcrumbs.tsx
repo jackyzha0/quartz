@@ -1,6 +1,6 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import breadcrumbsStyle from "./styles/breadcrumbs.scss"
-import { FullSlug, SimpleSlug, resolveRelative } from "../util/path"
+import { FullSlug, SimpleSlug, joinSegments, resolveRelative } from "../util/path"
 import { QuartzPluginData } from "../plugins/vfile"
 import { classNames } from "../util/lang"
 
@@ -82,8 +82,12 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
     // Split slug into hierarchy/parts
     const slugParts = fileData.slug?.split("/")
     if (slugParts) {
+      // is tag breadcrumb?
+      const isTagPath = slugParts[0] === "tags"
+
       // full path until current part
       let currentPath = ""
+
       for (let i = 0; i < slugParts.length - 1; i++) {
         let curPathSegment = slugParts[i]
 
@@ -97,10 +101,15 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
         }
 
         // Add current slug to full path
-        currentPath += slugParts[i] + "/"
+        currentPath = joinSegments(currentPath, slugParts[i])
+        const includeTrailingSlash = !isTagPath || i < 1
 
         // Format and add current crumb
-        const crumb = formatCrumb(curPathSegment, fileData.slug!, currentPath as SimpleSlug)
+        const crumb = formatCrumb(
+          curPathSegment,
+          fileData.slug!,
+          (currentPath + (includeTrailingSlash ? "/" : "")) as SimpleSlug,
+        )
         crumbs.push(crumb)
       }
 
