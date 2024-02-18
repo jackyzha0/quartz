@@ -41,8 +41,10 @@ export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) 
       for (const [_tree, file] of content) {
         const sourcePath = file.data.filePath!
         const tags = (file.data.frontmatter?.tags ?? []).flatMap(getAllSegmentPrefixes)
-        // all files are used for the index tag page
-        tags.push("index")
+        // if the file has at least one tag, it is used in the tag index page
+        if (tags.length > 0) {
+          tags.push("index")
+        }
 
         for (const tag of tags) {
           graph.addEdge(
