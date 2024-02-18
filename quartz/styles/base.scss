@@ -159,6 +159,7 @@ a {
       width: $sidePanelWidth;
       margin-top: $topSpacing;
       box-sizing: border-box;
+      //padding: 0 0 0 4rem;
       padding: 0 4rem;
       position: static; // static
       min-height: 500px;
@@ -189,6 +190,12 @@ a {
           min-width: 140px;
         }
       }
+
+      //& > .search {
+      //  @media all and (max-width: $fullPageWidth){
+      //    flex-basis: 100% !important;
+      //  }
+      //}
     }
   }
 

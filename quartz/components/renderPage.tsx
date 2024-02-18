@@ -224,18 +224,20 @@ export function renderPage(
     <html lang={lang}>
     <Head {...componentData} />
     <body data-slug={slug}>
-    {/*{slug !== "project" && (*/}
 
     <div id="quartz-root" className="page">
+      {/*<div className="header">header</div>*/}
+      <Header {...componentData}>
+        {header.map((HeaderComponent) => (
+          <HeaderComponent {...componentData} />
+        ))}
+      </Header>
+
       <Body {...componentData}>
         {/*{LeftComponent}*/}
         <div className="center">
           <div className="page-header">
-            <Header {...componentData}>
-              {header.map((HeaderComponent) => (
-                <HeaderComponent {...componentData} />
-              ))}
-            </Header>
+
             <div className="popover-hint">
               {beforeBody.map((BodyComponent) => (
                 <BodyComponent {...componentData} />

@@ -45,6 +45,7 @@ button#explorer {
 
 #explorer-content {
   list-style: none;
+  //overflow: auto;
   overflow: hidden;
   max-height: none;
   transition: max-height 0.35s ease;
