@@ -1,6 +1,4 @@
 ---
-tags:
-  - plugin/transformer
 ---
 
 Quartz uses [Katex](https://katex.org/) by default to typeset both inline and block math expressions at build time.
@@ -59,8 +57,4 @@ In `quartz.config.ts`, you can configure Quartz to use [MathJax SVG rendering](h
 
 ## Customization
 
-Syntax highlighting is a functionality of the `Latex` plugin. The plugin is defined in `quartz/plugins/transformers/latex.ts`.
-
-- To remove Latex support, delete all usages of `Plugin.Latex()` from `quartz.config.ts`.
-- To customize Latex support, use the configuration options of the plugin:
-	- `renderEngine`: the engine to use to render LaTeX equations. Can be `"katex"` for KaTeX or `"mathjax"` for MathJax. Defaults to KaTeX.
+Latex parsing is a functionality of the [[plugins/Latex|Latex]] plugin. See the plugin page for customization options.

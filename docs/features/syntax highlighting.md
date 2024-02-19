@@ -1,7 +1,5 @@
 ---
 title: Syntax Highlighting
-tags:
-  - plugin/transformer
 ---
 
 Syntax highlighting in Quartz is completely done at build-time. This means that Quartz only ships pre-calculated CSS to highlight the right words so there is no heavy client-side bundle that does the syntax highlighting.
@@ -130,10 +128,4 @@ const [name, setName] = useState('Taylor');
 
 ## Customization
 
-Syntax highlighting is a functionality of the `SyntaxHighlighting` plugin. The plugin is defined in `quartz/plugins/transformers/syntax.ts`.
-
-- To remove syntax highlighting, delete all usages of `Plugin.SyntaxHighlighting()` from `quartz.config.ts`.
-- To customize syntax highlighting, use the configuration options of the plugin:
-	- `theme`: a separate id of one of the [themes bundled with Shikiji](https://shikiji.netlify.app/themes). One for light mode and one for dark mode. Defaults to `theme: { light: "github-light", dark: "github-dark" }`.
-	- `keepBackground`: If set to `true`, the background of the Shikiji theme will be used. With `false` (default) the Quartz theme color for background will be used instead.
-- In addition, you can further override the colours in the `quartz/styles/syntax.scss` file.
+Syntax highlighting is a functionality of the [[SyntaxHighlighting]] plugin. See the plugin page for customization options.
