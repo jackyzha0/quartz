@@ -10,13 +10,13 @@ import { i18n } from "../../i18n"
 export interface Options {
   delimiters: string | [string, string]
   language: "yaml" | "toml"
-  titleTag: string
+  titleKey: string
 }
 
 const defaultOptions: Options = {
   delimiters: "---",
   language: "yaml",
-  titleTag: "title",
+  titleKey: "title",
 }
 
 function coalesceAliases(data: { [key: string]: any }, aliases: string[]) {
@@ -59,8 +59,8 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
               },
             })
 
-            if (data[opts.titleTag] !== undefined && data[opts.titleTag] !== null) {
-              data.title = data[opts.titleTag].toString()
+            if (data[opts.titleKey] !== undefined && data[opts.titleKey] !== null) {
+              data.title = data[opts.titleKey].toString()
             } else {
               data.title = file.stem ?? i18n(cfg.configuration.locale).propertyDefaults.title
             }
