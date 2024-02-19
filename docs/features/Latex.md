@@ -59,5 +59,8 @@ In `quartz.config.ts`, you can configure Quartz to use [MathJax SVG rendering](h
 
 ## Customization
 
-- Removing Latex support: remove all instances of `Plugin.Latex()` from `quartz.config.ts`.
-- Plugin: `quartz/plugins/transformers/latex.ts`
+Syntax highlighting is a functionality of the `Latex` plugin. The plugin is defined in `quartz/plugins/transformers/latex.ts`.
+
+- To remove Latex support, delete all usages of `Plugin.Latex()` from `quartz.config.ts`.
+- To customize Latex support, use the configuration options of the plugin:
+	- `renderEngine`: the engine to use to render LaTeX equations. Can be `"katex"` for KaTeX or `"mathjax"` for MathJax. Defaults to KaTeX.
