@@ -84,4 +84,4 @@ transformers: [
 
 The current default plugins can be found [here](https://github.com/jackyzha0/quartz/blob/v4/quartz.config.ts). For a list of all plugins and the available configuration options, visit the [[plugin]] tag overview.
 
-If you'd like to make your own plugins, read the guide on [[making plugins]] for more information.
+If you'd like to make your own plugins, read the guide on [[making plugins|making custom plugins]] for more information.
