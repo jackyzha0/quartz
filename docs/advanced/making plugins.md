@@ -58,7 +58,7 @@ A good example of a transformer plugin that borrows from the `remark` and `rehyp
 ```ts title="quartz/plugins/transformers/latex.ts"
 import remarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
-import rehypeMathjax from "rehype-mathjax/svg.js"
+import rehypeMathjax from "rehype-mathjax/svg"
 import { QuartzTransformerPlugin } from "../types"
 
 interface Options {
@@ -74,8 +74,6 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
     },
     htmlPlugins() {
       if (engine === "katex") {
-        // if you need to pass options into a plugin, you
-        // can use a tuple of [plugin, options]
         return [[rehypeKatex, { output: "html" }]]
       } else {
         return [rehypeMathjax]
@@ -84,10 +82,14 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
     externalResources() {
       if (engine === "katex") {
         return {
-          css: ["https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"],
+          css: [
+            // base css
+            "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css",
+          ],
           js: [
             {
-              src: "https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/copy-tex.min.js",
+              // fix copy behaviour: https://github.com/KaTeX/KaTeX/blob/main/contrib/copy-tex/README.md
+              src: "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js",
               loadTime: "afterDOMReady",
               contentType: "external",
             },
