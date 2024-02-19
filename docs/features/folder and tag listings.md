@@ -1,7 +1,5 @@
 ---
 title: Folder and Tag Listings
-tags:
-  - plugin/emitter
 ---
 
 Quartz creates listing pages for any folders and tags you have.

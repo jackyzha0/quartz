@@ -1,6 +1,4 @@
 ---
-tags:
-  - plugin/transformer
 ---
 
 Quartz was originally designed as a tool to publish Obsidian vaults as websites. Even as the scope of Quartz has widened over time, it hasn't lost the ability to seamlessly interoperate with Obsidian.
