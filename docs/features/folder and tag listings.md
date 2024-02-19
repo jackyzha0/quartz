@@ -1,5 +1,7 @@
 ---
 title: Folder and Tag Listings
+tags:
+  - features/emitter
 ---
 
 Quartz creates listing pages for any folders and tags you have.
