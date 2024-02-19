@@ -1,5 +1,5 @@
 ---
-title: "Plugin.CreatedModifiedDate()"
+title: "CreatedModifiedDate"
 tags:
   - plugin/transformer
 ---
@@ -10,7 +10,7 @@ If it encounters invalid date formats, it defaults to the current date.
 
 - To remove dates from all pages, delete all usages of `Plugin.CreatedModifiedDate()` from `quartz.config.ts`.
 - To customize date parsing, use the configuration options of the plugin:
-	- `priority`: the data sources to consult for date information. Highest priority first. Possible values are `"frontmatter"`, `"git"`, and `"filesystem"`. Defaults to `"frontmatter", "git", "filesystem"]`.
+  - `priority`: the data sources to consult for date information. Highest priority first. Possible values are `"frontmatter"`, `"git"`, and `"filesystem"`. Defaults to `"frontmatter", "git", "filesystem"]`.
 
 The source of this plugin can be found in [`quartz/plugins/transformers/lastmod.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/lastmod.ts).
 
