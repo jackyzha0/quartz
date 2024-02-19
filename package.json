@@ -45,7 +45,7 @@
     "esbuild-sass-plugin": "^2.16.1",
     "flexsearch": "0.7.43",
     "github-slugger": "^2.0.0",
-    "globby": "^14.0.0",
+    "globby": "^14.0.1",
     "gray-matter": "^4.0.3",
     "hast-util-to-html": "^9.0.0",
     "hast-util-to-jsx-runtime": "^2.3.0",
