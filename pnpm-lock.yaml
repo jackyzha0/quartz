@@ -9,8 +9,8 @@ dependencies:
     specifier: ^0.7.0
     version: 0.7.0
   "@floating-ui/dom":
-    specifier: ^1.6.1
-    version: 1.6.1
+    specifier: ^1.6.3
+    version: 1.6.3
   "@napi-rs/simple-git":
     specifier: 0.1.16
     version: 0.1.16
@@ -39,8 +39,8 @@ dependencies:
     specifier: ^2.0.0
     version: 2.0.0
   globby:
-    specifier: ^14.0.0
-    version: 14.0.0
+    specifier: ^14.0.1
+    version: 14.0.1
   gray-matter:
     specifier: ^4.0.3
     version: 4.0.3
@@ -75,11 +75,11 @@ dependencies:
     specifier: ^0.4.5
     version: 0.4.5
   preact:
-    specifier: ^10.19.4
-    version: 10.19.4
+    specifier: ^10.19.5
+    version: 10.19.5
   preact-render-to-string:
     specifier: ^6.3.1
-    version: 6.3.1(preact@10.19.4)
+    version: 6.3.1(preact@10.19.5)
   pretty-bytes:
     specifier: ^6.1.1
     version: 6.1.1
@@ -185,8 +185,8 @@ devDependencies:
     specifier: ^4.0.9
     version: 4.0.9
   "@types/node":
-    specifier: ^20.11.17
-    version: 20.11.17
+    specifier: ^20.11.19
+    version: 20.11.19
   "@types/pretty-time":
     specifier: ^1.1.5
     version: 1.1.5
@@ -509,10 +509,10 @@ packages:
       "@floating-ui/utils": 0.2.1
     dev: false
 
-  /@floating-ui/dom@1.6.1:
+  /@floating-ui/dom@1.6.3:
     resolution:
       {
-        integrity: sha512-iA8qE43/H5iGozC3W0YSnVSW42Vh522yyM1gj+BqRwVsTNOyr231PsXDaV04yT39PsO0QL2QpbI/M0ZaLUQgRQ==,
+        integrity: sha512-RnDthu3mzPlQ31Ss/BTwQ1zjzIhr3lk1gZB1OC56h/1vEtaXkESrOqL5fQVMfXpwGtRwX+YsZBdyHtJMQnkArw==,
       }
     dependencies:
       "@floating-ui/core": 1.6.0
@@ -733,10 +733,10 @@ packages:
     dev: false
     optional: true
 
-  /@sindresorhus/merge-streams@1.0.0:
+  /@sindresorhus/merge-streams@2.3.0:
     resolution:
       {
-        integrity: sha512-rUV5WyJrJLoloD4NDN1V1+LDMDWOa4OTsT4yYJwQNpTU6FWxkxHpL7eu4w+DmiH8x/EAM1otkPE1+LaspIbplw==,
+        integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==,
       }
     engines: { node: ">=18" }
     dev: false
@@ -747,7 +747,7 @@ packages:
         integrity: sha512-TMO6mWltW0lCu1de8DMRq9+59OP/tEjghS+rs8ZEQ2EgYP5yV3bGw0tS14TMyJGqFaoVChNvhkVzv9RC1UgX+w==,
       }
     dependencies:
-      "@types/node": 20.11.17
+      "@types/node": 20.11.19
     dev: true
 
   /@types/d3-array@3.2.1:
@@ -1108,10 +1108,10 @@ packages:
       "@types/unist": 2.0.10
     dev: false
 
-  /@types/node@20.11.17:
+  /@types/node@20.11.19:
     resolution:
       {
-        integrity: sha512-QmgQZGWu1Yw9TDyAP9ZzpFJKynYNeOvwMJmaxABfieQoVoiVOS6MN1WSpqpRcbeA5+RW82kraAVxCCJg+780Qw==,
+        integrity: sha512-7xMnVEcZFu0DikYjWOlRq7NTPETrm7teqUT2WkQjrTIkEgUyyGdWsj/Zg8bEJt5TNklzbPD1X3fqfsHw3SpapQ==,
       }
     dependencies:
       undici-types: 5.26.5
@@ -1152,7 +1152,7 @@ packages:
         integrity: sha512-vmQSUcfalpIq0R9q7uTo2lXs6eGIpt9wtnLdMv9LVpIjCA/+ufZRozlVoVelIYixx1ugCBKDhn89vnsEGOCx9A==,
       }
     dependencies:
-      "@types/node": 20.11.17
+      "@types/node": 20.11.19
     dev: true
 
   /@types/yargs-parser@21.0.3:
@@ -2001,7 +2001,7 @@ packages:
     dependencies:
       esbuild: 0.19.12
       resolve: 1.22.8
-      sass: 1.70.0
+      sass: 1.71.0
     dev: false
 
   /esbuild@0.19.12:
@@ -2249,14 +2249,14 @@ packages:
       path-scurry: 1.10.1
     dev: false
 
-  /globby@14.0.0:
+  /globby@14.0.1:
     resolution:
       {
-        integrity: sha512-/1WM/LNHRAOH9lZta77uGbq0dAEQM+XjNesWwhlERDVenqothRbnzTrL3/LrIoEPPjeUHC3vrS6TwoyxeHs7MQ==,
+        integrity: sha512-jOMLD2Z7MAhyG8aJpNOpmziMOP4rPLcc95oQPKXBazW82z+CEgPFBQvEpRUa1KeIMUJo4Wsm+q6uzO/Q/4BksQ==,
       }
     engines: { node: ">=18" }
     dependencies:
-      "@sindresorhus/merge-streams": 1.0.0
+      "@sindresorhus/merge-streams": 2.3.0
       fast-glob: 3.3.2
       ignore: 5.3.1
       path-type: 5.0.0
@@ -2277,10 +2277,10 @@ packages:
       strip-bom-string: 1.0.0
     dev: false
 
-  /hasown@2.0.0:
+  /hasown@2.0.1:
     resolution:
       {
-        integrity: sha512-vUptKVTpIJhcczKBbgnS+RtcuYMB8+oNzPK2/Hp3hanz8JmpATdmmgLgSaadVREkDm+e2giHwY3ZRkyjSIDDFA==,
+        integrity: sha512-1/th4MHjnwncwXsIW6QMzlvYL9kG5e/CpVvLRZe4XPa8TOUNbCELqmvhDmnkNsAjwaG4+I8gJJL0JBvTTLO9qA==,
       }
     engines: { node: ">= 0.4" }
     dependencies:
@@ -2508,10 +2508,10 @@ packages:
       }
     dev: false
 
-  /http-proxy-agent@7.0.0:
+  /http-proxy-agent@7.0.2:
     resolution:
       {
-        integrity: sha512-+ZT+iBxVUQ1asugqnD6oWoRiS25AkjNfG085dKJGtGxkdwLQrMKU5wJr2bOOFAXzKcTuqq+7fZlTMgG3SRfIYQ==,
+        integrity: sha512-T1gkAiYYDWYx3V5Bmyu7HcfcvL7mUrTWiM6yOfa3PIphViJ/gFPbvidQ+veqSOHci/PxBcDabeUNCzpOODJZig==,
       }
     engines: { node: ">= 14" }
     dependencies:
@@ -2521,10 +2521,10 @@ packages:
       - supports-color
     dev: false
 
-  /https-proxy-agent@7.0.2:
+  /https-proxy-agent@7.0.4:
     resolution:
       {
-        integrity: sha512-NmLNjm6ucYwtcUmL7JQC1ZQ57LmHP4lT15FQ8D61nak1rO6DH+fz5qNK2Ap5UN4ZapYICE3/0KodcLYSPsPbaA==,
+        integrity: sha512-wlwpilI7YdjSkWaQ/7omYBMTliDcmCN8OLihO6I9B86g06lMyAoqgoDpV0XqoaPOKj+0DIdAvnsWfyAAhmimcg==,
       }
     engines: { node: ">= 14" }
     dependencies:
@@ -2623,7 +2623,7 @@ packages:
         integrity: sha512-hHrIjvZsftOsvKSn2TRYl63zvxsgE0K+0mYMoH6gD4omR5IWB2KynivBQczo3+wF1cCkjzvptnI9Q0sPU66ilw==,
       }
     dependencies:
-      hasown: 2.0.0
+      hasown: 2.0.1
     dev: false
 
   /is-decimal@2.0.1:
@@ -2755,8 +2755,8 @@ packages:
       decimal.js: 10.4.3
       form-data: 4.0.0
       html-encoding-sniffer: 4.0.0
-      http-proxy-agent: 7.0.0
-      https-proxy-agent: 7.0.2
+      http-proxy-agent: 7.0.2
+      https-proxy-agent: 7.0.4
       is-potential-custom-element-name: 1.0.1
       parse5: 7.1.2
       rrweb-cssom: 0.6.0
@@ -3825,7 +3825,7 @@ packages:
     engines: { node: ">=8.6" }
     dev: false
 
-  /preact-render-to-string@6.3.1(preact@10.19.4):
+  /preact-render-to-string@6.3.1(preact@10.19.5):
     resolution:
       {
         integrity: sha512-NQ28WrjLtWY6lKDlTxnFpKHZdpjfF+oE6V4tZ0rTrunHrtZp6Dm0oFrcJalt/5PNeqJz4j1DuZDS0Y6rCBoqDA==,
@@ -3833,14 +3833,14 @@ packages:
     peerDependencies:
       preact: ">=10"
     dependencies:
-      preact: 10.19.4
+      preact: 10.19.5
       pretty-format: 3.8.0
     dev: false
 
-  /preact@10.19.4:
+  /preact@10.19.5:
     resolution:
       {
-        integrity: sha512-dwaX5jAh0Ga8uENBX1hSOujmKWgx9RtL80KaKUFLc6jb4vCEAc3EeZ0rnQO/FO4VgjfPMfoLFWnNG8bHuZ9VLw==,
+        integrity: sha512-OPELkDmSVbKjbFqF9tgvOowiiQ9TmsJljIzXRyNE8nGiis94pwv1siF78rQkAP1Q1738Ce6pellRg/Ns/CtHqQ==,
       }
     dev: false
 
@@ -4318,10 +4318,10 @@ packages:
       }
     dev: false
 
-  /sass@1.70.0:
+  /sass@1.71.0:
     resolution:
       {
-        integrity: sha512-uUxNQ3zAHeAx5nRFskBnrWzDUJrrvpCPD5FNAoRvTi0WwremlheES3tg+56PaVtCs5QDRX5CBLxxKMDJMEa1WQ==,
+        integrity: sha512-HKKIKf49Vkxlrav3F/w6qRuPcmImGVbIXJ2I3Kg0VMA+3Bav+8yE9G5XmP5lMj6nl4OlqbPftGAscNaNu28b8w==,
       }
     engines: { node: ">=14.0.0" }
     hasBin: true
