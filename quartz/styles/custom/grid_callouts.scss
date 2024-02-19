@@ -115,7 +115,7 @@ body {
 
 /** ---- WIKI & INFOBOX ---- **/
 
-.callout[data-callout~="wiki"],
+.callout[data-callout$="wiki"],
 .callout[data-callout~="infobox"] {
   --callout-color: var(--interactive-accent-rgb);
   background: var(--note, var(--background-primary));
@@ -224,7 +224,11 @@ body {
 
 /** Specific WIKI callouts **/
 
-.callout[data-callout~="wiki"] {
+.callout[data-callout="lwiki"] {
+  float: left !important;
+}
+
+.callout[data-callout$="wiki"] {
   table thead tr {
     display: none;
   }
