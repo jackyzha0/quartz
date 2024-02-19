@@ -8,12 +8,12 @@ import { QuartzPluginData } from "../vfile"
 import { i18n } from "../../i18n"
 
 export interface Options {
-  delims: string | string[]
+  delimiters: string | [string, string]
   language: "yaml" | "toml"
 }
 
 const defaultOptions: Options = {
-  delims: "---",
+  delimiters: "---",
   language: "yaml",
 }
 
