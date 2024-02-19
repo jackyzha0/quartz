@@ -38,6 +38,17 @@
     white-space: normal;
   }
 
+  & > .popover-inner[data-content-type="image"] {
+    padding: 0;
+    max-height: 100%;
+
+    img {
+      margin: 0;
+      border-radius: 0;
+      display: block;
+    }
+  }
+
   h1 {
     font-size: 1.5rem;
   }
