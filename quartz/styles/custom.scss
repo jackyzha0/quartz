@@ -69,8 +69,8 @@ hr {
   width: 10em;
 }
 
-.wiki-right .callout.wiki h1,
-.wiki-right .callout.wiki h3 {
+.wiki-right .callout[data-callout$="wiki"] h1,
+.wiki-right .callout[data-callout$="wiki"] h3 {
   background-color: var(--lightgray);
 }
 

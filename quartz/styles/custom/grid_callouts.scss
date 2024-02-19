@@ -228,6 +228,10 @@ body {
   float: left !important;
 }
 
+.callout[data-callout*="border"] {
+  border: 1px solid var(--lightgray);
+}
+
 .callout[data-callout$="wiki"] {
   table thead tr {
     display: none;
