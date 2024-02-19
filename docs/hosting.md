@@ -230,9 +230,11 @@ When `.gitlab-ci.yaml` is committed, GitLab will build and deploy the website as
 By default, the page is private and only visible when logged in to a GitLab account with access to the repository but can be opened in the settings under `Deploy` -> `Pages`.
 
 ## Self-Hosting
+
 Copy the `public` directory to your web server and configure it to serve the files. You can use any web server to host your site. Since Quartz generates links that do not include the `.html` extension, you need to let your web server know how to deal with it.
 
 ### Using Nginx
+
 Here's an example of how to do this with Nginx:
 
 ```nginx title="nginx.conf"
@@ -241,7 +243,7 @@ server {
     server_name example.com;
     root /path/to/quartz/public;
     index index.html;
-    error_page 404 /404.html;    
+    error_page 404 /404.html;
 
     location / {
         try_files $uri $uri.html $uri/ =404;
