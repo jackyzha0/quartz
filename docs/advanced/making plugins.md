@@ -74,6 +74,8 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
     },
     htmlPlugins() {
       if (engine === "katex") {
+        // if you need to pass options into a plugin, you
+        // can use a tuple of [plugin, options]
         return [[rehypeKatex, { output: "html" }]]
       } else {
         return [rehypeMathjax]
@@ -84,12 +86,12 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
         return {
           css: [
             // base css
-            "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css",
+            "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css",
           ],
           js: [
             {
               // fix copy behaviour: https://github.com/KaTeX/KaTeX/blob/main/contrib/copy-tex/README.md
-              src: "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js",
+              src: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js",
               loadTime: "afterDOMReady",
               contentType: "external",
             },
