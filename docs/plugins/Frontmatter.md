@@ -4,6 +4,8 @@ tags:
   - plugin/transformer
 ---
 
+This plugin parses the frontmatter of the page using the [gray-matter](https://github.com/jonschlinkert/gray-matter) library.
+
 - This plugin (`Plugin.Frontmatter()`) should not be removed from `quartz.config.ts`, otherwise Quartz will break.
 - To customize frontmatter parsing, use the configuration options of the plugin:
   - `delimiters`: the delimiters to use for the frontmatter. Can have one value (e.g. `"---"`) or separate values for opening and closing delimiters (e.g. `["---", "~~~"]`). Defaults to `"---"`.
