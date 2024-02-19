@@ -9,4 +9,4 @@ export { OxHugoFlavouredMarkdown } from "./oxhugofm"
 export { SyntaxHighlighting } from "./syntax"
 export { TableOfContents } from "./toc"
 export { HardLineBreaks } from "./linebreaks"
-export { RemoveFirstHeading } from './heading'
+export { RemoveFirstHeading } from "./heading"
