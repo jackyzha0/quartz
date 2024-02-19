@@ -50,6 +50,11 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
             }
 
             visit(tree, "element", (node, _index, _parent) => {
+              // disable popovers if specified in frontmatter
+              if (file.data.frontmatter?.disablePopovers) {
+                node.properties["data-no-popover"] = true
+              }
+
               // rewrite all links
               if (
                 node.tagName === "a" &&

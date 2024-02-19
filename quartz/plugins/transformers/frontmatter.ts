@@ -92,6 +92,7 @@ declare module "vfile" {
         draft: boolean
         enableToc: string
         cssclasses: string[]
+        disablePopovers: boolean
       }>
   }
 }
