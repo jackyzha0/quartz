@@ -56,7 +56,7 @@ You can think of Quartz plugins as a series of transformations over content.
 
 ![[quartz transform pipeline.png]]
 
-```ts
+```ts title="quartz.config.ts"
 plugins: {
   transformers: [...],
   filters: [...],
@@ -64,24 +64,40 @@ plugins: {
 }
 ```
 
-- [[making plugins#Transformers|Transformers]] **map** over content (e.g. parsing frontmatter, generating a description)
-- [[making plugins#Filters|Filters]] **filter** content (e.g. filtering out drafts)
-- [[making plugins#Emitters|Emitters]] **reduce** over content (e.g. creating an RSS feed or pages that list all files with a specific tag)
+- [[tags/plugin/transformer|Transformers]] **map** over content (e.g. parsing frontmatter, generating a description)
+- [[tags/plugin/filter|Filters]] **filter** content (e.g. filtering out drafts)
+- [[tags/plugin/emitter|Emitters]] **reduce** over content (e.g. creating an RSS feed or pages that list all files with a specific tag)
 
-By adding, removing, and reordering plugins from the `tranformers`, `filters`, and `emitters` fields, you can customize the behaviour of Quartz.
+You can customise the behaviour of Quartz by adding, removing and reordering plugins in the `transformers`, `filters` and `emitters` fields.
 
 > [!note]
-> Each node is modified by every transformer _in order_. Some transformers are position-sensitive so you may need to take special note of whether it needs come before or after any other particular plugins.
+> Each node is modified by every transformer _in order_. Some transformers are position sensitive, so you may need to pay particular attention to whether they need to come before or after certain other plugins.
 
-Additionally, plugins may also have their own configuration settings that you can pass in. For example, the [[plugins/Latex|Latex]] plugin allows you to pass in a field specifying the `renderEngine` to choose between Katex and MathJax. If you do not pass in a configuration, the plugin will use its default settings.
+To add a plugin, you insert a line with its function call, followed by a semicolon in the appropriate category. For example, to add the [[ExplicitPublish]] plugin (a [[tags/plugin/transformer|Transformer]], you would add the following line:
 
-```ts
+```ts title="quartz.config.ts"
 transformers: [
-  Plugin.FrontMatter(), // uses default options
-  Plugin.Latex({ renderEngine: "katex" }), // specify some options
+  ...
+  Plugin.ExplicitPublish(),
+  ...
+],
+```
+
+To remove a plugin, you remove all occurrences of it in the `quartz.config.ts`.
+
+In addition, plugins may also have their own configuration settings that you can pass in. If you do not pass in a configuration, the plugin will use its default settings.
+
+For example, the [[plugins/Latex|Latex]] plugin allows you to pass in a field specifying the `renderEngine` to choose between Katex and MathJax. 
+
+```ts title="quartz.config.ts"
+transformers: [
+  Plugin.FrontMatter(), // use default options
+  Plugin.Latex({ renderEngine: "katex" }), // set some custom options
 ]
 ```
 
-The current default plugins can be found [here](https://github.com/jackyzha0/quartz/blob/v4/quartz.config.ts). For a list of all plugins and the available configuration options, visit the [[plugin]] tag overview.
+Some plugins are included by default in the[ `quartz.config.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz.config.ts), but there are more available.
 
-If you'd like to make your own plugins, read the guide on [[making plugins|making custom plugins]] for more information.
+You can see a list of all plugins and their configuration options [[tags/plugin|here]].
+
+If you'd like to make your own plugins, see the [[making plugins|making custom plugins]] guide.
