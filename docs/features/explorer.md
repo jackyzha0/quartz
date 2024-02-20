@@ -26,6 +26,7 @@ Component.Explorer({
   title: "Explorer", // title of the explorer component
   folderClickBehavior: "collapse", // what happens when you click a folder ("link" to navigate to folder page on click or "collapse" to collapse folder on click)
   folderDefaultState: "collapsed", // default state of folders ("collapsed" or "open")
+  content: "files", // populate the explorer tree by the file hierarchy
   useSavedState: true, // whether to use local storage to save "state" (which folders are opened) of explorer
   // Sort order: folders first, then files. Sort folders and files alphabetically
   sortFn: (a, b) => {
@@ -45,6 +46,7 @@ Want to customize it even more?
 - Removing table of contents: remove `Component.Explorer()` from `quartz.layout.ts`
   - (optional): After removing the explorer component, you can move the [[table of contents | Table of Contents]] component back to the `left` part of the layout
 - Changing `sort`, `filter` and `map` behavior: explained in [[#Advanced customization]]
+- Change the content of the Explorer: by default it is populated by the file hierarchy (`files`), but it can also be populated by tags (`tags`).
 - Component:
   - Wrapper (Outer component, generates file tree, etc): `quartz/components/Explorer.tsx`
   - Explorer node (recursive, either a folder or a file): `quartz/components/ExplorerNode.tsx`
