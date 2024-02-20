@@ -20,7 +20,7 @@ This plugin accepts the following configuration options:
 > [!warning]
 > Removing this plugin is _not_ recommended and will likely break the page.
 
-## Technical Details
+## API
 
 - Category: Transformer
 - Function name: `Plugin.CrawlLinks()`.

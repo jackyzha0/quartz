@@ -16,7 +16,7 @@ This plugin accepts the following configuration options:
 - `enableSmartyPants`: When true, enables typographic enhancements. Default is true.
 - `linkHeadings`: When true, automatically adds links to headings. Default is true.
 
-## Technical Details
+## API
 
 - Category: Transformer
 - Function name: `Plugin.GitHubFlavoredMarkdown()`.

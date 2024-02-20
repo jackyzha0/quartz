@@ -13,7 +13,7 @@ This plugin has no configuration options.
 
 The pages are displayed using the `defaultListPageLayout` in `quartz.layouts.ts`. For the content, the `TagContent` component is used. If you want to modify the layout, you must edit it directly (`quartz/components/pages/TagContent.tsx`).
 
-## Technical Details
+## API
 
 - Category: Emitter
 - Function name: `Plugin.AliasRedirects()`.

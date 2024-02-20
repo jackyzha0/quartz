@@ -19,7 +19,7 @@ This plugin accepts the following configuration options:
 > [!warning]
 > This plugin needs the `Component.TableOfContents` component in `quartz.layout.ts` to determine where to display the TOC. Without it, nothing will be displayed. They should always be added or removed together.
 
-## Technical Details
+## API
 
 - Category: Transformer
 - Function name: `Plugin.TableOfContents()`.

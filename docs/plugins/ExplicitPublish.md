@@ -11,7 +11,7 @@ This plugin filters content based on an explicit `publish` flag in the frontmatt
 
 This plugin has no configuration options.
 
-## Technical Details
+## API
 
 - Category: Emitter
 - Function name: `Plugin.ExplicitPublish()`.

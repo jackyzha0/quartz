@@ -4,14 +4,14 @@ tags:
   - plugin/emitter
 ---
 
-This plugin is designed to generate a custom 404 (Not Found) page for the website to handle broken or non-existent URLs.
+This plugin emits a 404 (Not Found) page for broken or non-existent URLs.
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
 
 This plugin has no configuration options.
 
-## Technical Details
+## API
 
 - Category: Emitter
 - Function name: `Plugin.NotFoundPage()`.

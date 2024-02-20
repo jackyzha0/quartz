@@ -17,7 +17,7 @@ This plugin accepts the following configuration options:
 - `rssFullHtml`: When `true`, the RSS feed includes full HTML content. Otherwise it includes just summaries.
 - `includeEmptyFiles`: When `true` (default), content files with no body text are included in the generated index and resources.
 
-## Technical Details
+## API
 
 - Category: Emitter
 - Function name: `Plugin.ContentIndex()`.

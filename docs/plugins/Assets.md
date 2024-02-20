@@ -13,7 +13,7 @@ Note that all static assets will then be accessible through its path on your gen
 
 This plugin has no configuration options.
 
-## Technical Details
+## API
 
 - Category: Emitter
 - Function name: `Plugin.Assets()`.

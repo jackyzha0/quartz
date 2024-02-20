@@ -11,8 +11,8 @@ For example, A `foo.md` has the following frontmatter
 ```md title="foo.md"
 ---
 title: "Foo"
-alias: 
- - "bar"
+alias:
+  - "bar"
 ---
 ```
 
@@ -25,13 +25,12 @@ The emitter supports the following aliases:
 - `aliases`
 - `alias`
 
-
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
 
 This plugin has no configuration options.
 
-## Technical Details
+## API
 
 - Category: Emitter
 - Function name: `Plugin.AliasRedirects()`.

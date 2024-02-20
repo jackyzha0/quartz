@@ -16,7 +16,7 @@ This plugin accepts the following configuration options:
 > [!warning]
 > If you rely on git for dates, ensure `defaultDateType` is set to `modified` in `quartz.config.ts`.
 
-## Technical Details
+## API
 
 - Category: Transformer
 - Function name: `Plugin.CreatedModifiedDate()`.

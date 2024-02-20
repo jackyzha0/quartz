@@ -11,7 +11,7 @@ This plugin automatically converts single line breaks in Markdown text into hard
 
 This plugin has no configuration options.
 
-## Technical Details
+## API
 
 - Category: Transformer
 - Function name: `Plugin.HardLineBreaks()`.

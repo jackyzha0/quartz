@@ -4,7 +4,7 @@ tags:
   - plugin/emitter
 ---
 
-This plugin emits a `CNAME` record that points your subdomain to the default domain of your site. 
+This plugin emits a `CNAME` record that points your subdomain to the default domain of your site.
 
 If you want to use a custom domain name `quartz.example.com` for the site, then this is needed.
 
@@ -15,7 +15,7 @@ See [[Hosting]] for more information.
 
 This plugin has no configuration options.
 
-## Technical Details
+## API
 
 - Category: Emitter
 - Function name: `Plugin.CNAME()`.

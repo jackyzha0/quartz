@@ -17,7 +17,7 @@ This plugin accepts the following configuration options:
 > [!warning]
 > This plugin must not be removed, otherwise Quartz will break.
 
-## Technical Details
+## API
 
 - Category: Transformer
 - Function name: `Plugin.Frontmatter()`.

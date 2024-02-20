@@ -16,7 +16,7 @@ This plugin accepts the following configuration options:
 
 In addition, you can further override the colours in the `quartz/styles/syntax.scss` file.
 
-## Technical Details
+## API
 
 - Category: Transformer
 - Function name: `Plugin.SyntaxHighlighting()`.

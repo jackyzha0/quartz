@@ -11,7 +11,7 @@ This plugin is a core component of the Quartz framework. It generates the HTML p
 
 This plugin has no configuration options.
 
-## Technical Details
+## API
 
 - Category: Emitter
 - Function name: `Plugin.ContentPage()`.

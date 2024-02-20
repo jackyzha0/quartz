@@ -13,7 +13,7 @@ This plugin accepts the following configuration options:
 
 - `renderEngine`: the engine to use to render LaTeX equations. Can be `"katex"` for KaTeX or `"mathjax"` for [MathJax SVG rendering](https://docs.mathjax.org/en/latest/output/svg.html). Defaults to KaTeX.
 
-## Technical Details
+## API
 
 - Category: Transformer
 - Function name: `Plugin.Latex()`.

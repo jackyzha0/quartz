@@ -4,7 +4,7 @@ tags:
   - plugin/transformer
 ---
 
-This plugin extends Markdown processing to include features commonly used in Obsidian, such as enhanced link handling, callouts, mermaid diagrams, checkboxes, and more. See [[Obsidian compatibility]], [[wikilinks]], [[Mermaid diagrams]] and [[callouts]] for more information.
+This plugin provides support for [[Obsidian compatibility]].
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
@@ -27,7 +27,7 @@ This plugin accepts the following configuration options:
 > [!warning]
 > Don't remove this plugin if you're using [[Obsidian compatibility|Obsidian]] to author the content!
 
-## Technical Details
+## API
 
 - Category: Transformer
 - Function name: `Plugin.ObsidianFlavoredMarkdown()`.

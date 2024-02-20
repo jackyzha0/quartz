@@ -14,7 +14,7 @@ This plugin emits all static resources required by Quartz.
 
 This plugin has no configuration options.
 
-## Technical Details
+## API
 
 - Category: Emitter
 - Function name: `Plugin.Static()`.

@@ -11,7 +11,7 @@ This plugin manages and emits the static resources required for the Quartz frame
 
 This plugin has no configuration options.
 
-## Technical Details
+## API
 
 - Category: Emitter
 - Function name: `Plugin.ComponentResources()`.
