@@ -54,10 +54,6 @@ For example:
 - Incorrect: `I have $1 and you have $2` produces I have $1 and you have $2
 - Correct: `I have \$1 and you have \$2` produces I have \$1 and you have \$2
 
-## MathJax
-
-In `quartz.config.ts`, you can configure Quartz to use [MathJax SVG rendering](https://docs.mathjax.org/en/latest/output/svg.html) by replacing `Plugin.Latex({ renderEngine: 'katex' })` with `Plugin.Latex({ renderEngine: 'mathjax' })`
-
 ## Customization
 
 Latex parsing is a functionality of the [[plugins/Latex|Latex]] plugin. See the plugin page for customization options.

@@ -17,7 +17,7 @@ This plugin accepts the following configuration options:
 - `collapseByDefault`: If `true`, the TOC will start in a collapsed state. Default is `false`.
 
 > [!warning]
-> This plugin needs the `Component.TableOfContents` component in `quartz.layout.ts` to determine where to display the TOC. Without it, nothing will be displayed.
+> This plugin needs the `Component.TableOfContents` component in `quartz.layout.ts` to determine where to display the TOC. Without it, nothing will be displayed. They should always be added or removed together.
 
 ## Technical Details
 

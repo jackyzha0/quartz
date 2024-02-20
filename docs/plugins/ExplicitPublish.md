@@ -4,7 +4,7 @@ tags:
   - plugin/filter
 ---
 
-This plugin filters content based on an explicit `publish` flag in the frontmatter, allowing only content that is explicitly marked for publication (set to `true`) to pass through. It's kind of the opposite of [[RemoveDrafts]].
+This plugin filters content based on an explicit `publish` flag in the frontmatter, allowing only content that is explicitly marked for publication to pass through. It's the opt-in version of [[RemoveDrafts]]. See [[private pages]] for more information.
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.

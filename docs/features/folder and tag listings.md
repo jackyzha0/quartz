@@ -26,7 +26,4 @@ Like folder listings, you can also provide a description and title for a tag pag
 
 ## Customization
 
-The layout for both the folder and content pages can be customized. By default, they use the `defaultListPageLayout` in `quartz.layouts.ts`. If you'd like to make more involved changes to the layout and don't mind editing some [[creating components|Quartz components]], you can take a look at `quartz/components/pages/FolderContent.tsx` and `quartz/components/pages/TagContent.tsx` respectively.
-
-- Removing folder listings: remove `Plugin.FolderPage()` from `emitters` in `quartz.config.ts`
-- Removing tag listings: remove `Plugin.TagPage()` from `emitters` in `quartz.config.ts`
+The folder listings are a functionality of the [[FolderPage]] plugin, the tag listings of the [[TagPage]] plugin. See the plugin pages for customization options.

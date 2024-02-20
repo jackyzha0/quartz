@@ -4,7 +4,7 @@ tags:
   - plugin/transformer
 ---
 
-This plugin parses links and processes them to point to the right places. It is also needed for embedded links (like images).
+This plugin parses links and processes them to point to the right places. It is also needed for embedded links (like images). See [[Obsidian compatibility]] for more information.
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.

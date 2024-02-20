@@ -4,7 +4,7 @@ tags:
   - plugin/emitter
 ---
 
-This plugin generates index pages for folders, creating a listing page for each folder that contains multiple content files. 
+This plugin generates index pages for folders, creating a listing page for each folder that contains multiple content files. See [[folder and tag listings]] for more information.
 
 Example: [[folder/advanced]]
 
@@ -12,6 +12,8 @@ Example: [[folder/advanced]]
 > For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
 
 This plugin has no configuration options.
+
+The pages are displayed using the `defaultListPageLayout` in `quartz.layouts.ts`. For the content, the `FolderContent` component is used.  If you want to modify the layout, you must edit it directly (`quartz/components/pages/FolderContent.tsx`).
 
 ## Technical Details
 
