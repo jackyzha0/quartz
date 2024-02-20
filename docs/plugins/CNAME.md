@@ -4,7 +4,11 @@ tags:
   - plugin/emitter
 ---
 
-This plugin generates a `CNAME` file as part of the site's output. This is needed for configuring custom domain names on platforms like GitHub Pages. The domain name is extracted from the site's base URL, which is then written to a `CNAME` file in the root of the output directory.
+This plugin emits a `CNAME` record that points your subdomain to the default domain of your site. 
+
+If you want to use a custom domain name `quartz.example.com` for the site, then this is needed.
+
+See [[Hosting]] for more information.
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
