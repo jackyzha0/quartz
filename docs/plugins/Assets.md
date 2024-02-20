@@ -4,7 +4,9 @@ tags:
   - plugin/emitter
 ---
 
-This plugin manages and emits non-Markdown assets (like images, scripts, stylesheets, etc.) from the content directory to the output directory. It ensures that all required static assets are available in the generated site.
+This plugin emits all non-Markdown static assets (like images, scripts, stylesheets, etc.) from your vault content under the directory `content`.
+
+Note that all static assets will then be accessible through its path on your generated site, i.e: `host.me/path/to/static.pdf`
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
