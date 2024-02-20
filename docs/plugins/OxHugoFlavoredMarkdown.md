@@ -23,10 +23,8 @@ This plugin accepts the following configuration options:
 > [!warning]
 > If you use toml frontmatter, make sure to configure the [[Frontmatter]] plugin accordingly. See [[OxHugo compatibility]] for an example.
 
-
 ## Technical Details
 
 - Category: Transformer
 - Function name: `Plugin.OxHugoFlavoredMarkdown()`.
 - Source: [`quartz/plugins/transformers/oxhugofm.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/oxhugofm.ts).
-

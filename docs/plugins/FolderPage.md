@@ -13,7 +13,7 @@ Example: [[folder/advanced]]
 
 This plugin has no configuration options.
 
-The pages are displayed using the `defaultListPageLayout` in `quartz.layouts.ts`. For the content, the `FolderContent` component is used.  If you want to modify the layout, you must edit it directly (`quartz/components/pages/FolderContent.tsx`).
+The pages are displayed using the `defaultListPageLayout` in `quartz.layouts.ts`. For the content, the `FolderContent` component is used. If you want to modify the layout, you must edit it directly (`quartz/components/pages/FolderContent.tsx`).
 
 ## Technical Details
 

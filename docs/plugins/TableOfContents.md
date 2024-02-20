@@ -24,4 +24,3 @@ This plugin accepts the following configuration options:
 - Category: Transformer
 - Function name: `Plugin.TableOfContents()`.
 - Source: [`quartz/plugins/transformers/toc.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/toc.ts).
-

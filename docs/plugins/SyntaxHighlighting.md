@@ -21,4 +21,3 @@ In addition, you can further override the colours in the `quartz/styles/syntax.s
 - Category: Transformer
 - Function name: `Plugin.SyntaxHighlighting()`.
 - Source: [`quartz/plugins/transformers/syntax.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/syntax.ts).
-

@@ -11,7 +11,7 @@ This plugin extends Markdown processing to include features commonly used in Obs
 
 This plugin accepts the following configuration options:
 
-- `comments`: If `true` (default), enables parsing of  `%%` style Obsidian comment blocks.
+- `comments`: If `true` (default), enables parsing of `%%` style Obsidian comment blocks.
 - `highlight`: If `true` (default), enables parsing of `==` style highlights within content.
 - `wikilinks`:If `true` (default), turns [[wikilinks]] into regular links.
 - `callouts`: If `true` (default), adds support for [[callouts|callout]] blocks for emphasizing content.
@@ -32,4 +32,3 @@ This plugin accepts the following configuration options:
 - Category: Transformer
 - Function name: `Plugin.ObsidianFlavoredMarkdown()`.
 - Source: [`quartz/plugins/transformers/toc.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/toc.ts).
-

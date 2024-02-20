@@ -25,4 +25,3 @@ This plugin accepts the following configuration options:
 - Category: Transformer
 - Function name: `Plugin.CrawlLinks()`.
 - Source: [`quartz/plugins/transformers/links.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/links.ts).
-
