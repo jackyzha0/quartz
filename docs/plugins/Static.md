@@ -4,7 +4,10 @@ tags:
   - plugin/emitter
 ---
 
-This plugin handles the static assets. It ensures that all necessary static files, such as images, scripts, and stylesheets, are included in the final build, ready for deployment.
+This plugin emits all static resources required by Quartz.
+
+> [!important]
+> This is different from [[Assets]], as these static resources is located under `quartz/static`. Whereas [[Assets]] renders all static resources under `content`.
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
