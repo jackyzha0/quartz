@@ -69,13 +69,13 @@ export default {
     folderContent: {
       folder: "Cartella",
       itemsUnderFolder: ({ count }) =>
-        count === 1 ? "1 oggetto in questa cartella" : `${count} oggetti in questa cartella.`,
+        count === 1 ? "1 oggetto in questa cartella." : `${count} oggetti in questa cartella.`,
     },
     tagContent: {
       tag: "Etichetta",
       tagIndex: "Indice etichette",
       itemsUnderTag: ({ count }) =>
-        count === 1 ? "1 oggetto con questa etichetta" : `${count} oggetti con questa etichetta.`,
+        count === 1 ? "1 oggetto con questa etichetta." : `${count} oggetti con questa etichetta.`,
       showingFirst: ({ count }) => `Prime ${count} etichette.`,
       totalTags: ({ count }) => `Trovate ${count} etichette totali.`,
     },
