@@ -6,4 +6,13 @@ tags:
 
 This plugin automatically converts single line breaks in Markdown text into hard line breaks in the HTML output. This plugin is not enabled by default.
 
-- To add this functionality, add `Plugin.HardLineBreaks()` to the `transformers` section of `quartz.config.ts`.
+> [!note]
+> For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
+
+This plugin has no configuration options.
+
+## Technical Details
+
+- Category: Transformer
+- Function name: `Plugin.HardLineBreaks()`.
+- Source: [`quartz/plugins/transformers/linebreaks.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/linebreaks.ts).

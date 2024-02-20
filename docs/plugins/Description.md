@@ -12,6 +12,19 @@ This plugin generates descriptions that are used in various places:
 
 If the frontmatter contains a `description` property, it is used (see [[authoring content#Syntax]]). Otherwise, the full text of the file is used. 
 
-- To remove descriptions, delete all usages of `Plugin.Description()` from `quartz.config.ts`.
-- To customize description generation, use the configuration options of the plugin:
-  - `descriptionLength`: the maximum length of the generated description. Default is 150 characters. The cut off happens after the first _sentence_ that ends after the given length.
+> [!note]
+> For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
+
+This plugin accepts the following configuration options:
+
+- `descriptionLength`: the maximum length of the generated description. Default is 150 characters. The cut off happens after the first _sentence_ that ends after the given length.
+
+> [!warning]
+> This plugin needs the `Component.TableOfContents` component in `quartz.layout.ts` to determine where to display the TOC. Without it, nothing will be displayed.
+
+## Technical Details
+
+- Category: Transformer
+- Function name: `Plugin.Description()`.
+- Source: [`quartz/plugins/transformers/description.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/description.ts).
+
