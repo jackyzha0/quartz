@@ -3,7 +3,7 @@ import explorerStyle from "./styles/explorer.scss"
 
 // @ts-ignore
 import script from "./scripts/explorer.inline"
-import { ExplorerNode, FileNode, Options } from "./ExplorerNode"
+import { ExplorerNode, FileNode, TagNode, Options } from "./ExplorerNode"
 import { QuartzPluginData } from "../plugins/vfile"
 import { classNames } from "../util/lang"
 import { i18n } from "../i18n"
@@ -12,6 +12,7 @@ import { i18n } from "../i18n"
 const defaultOptions = {
   folderClickBehavior: "collapse",
   folderDefaultState: "collapsed",
+  content: "files",
   useSavedState: true,
   mapFn: (node) => {
     return node
@@ -50,8 +51,10 @@ export default ((userOpts?: Partial<Options>) => {
       return
     }
 
-    // Construct tree from allFiles
-    fileTree = new FileNode("")
+    // Construct tree from allFiles.
+    // By default (opts.content === "files") make the tree out of the file hierarchy.
+    // If opts.content is "tags", make the tree out of the tag hierarchy.
+    fileTree = (opts.content === "files") ? new FileNode("") : new TagNode("");
     allFiles.forEach((file) => fileTree.add(file))
 
     // Execute all functions (sort, filter, map) that were provided (if none were provided, only default "sort" is applied)

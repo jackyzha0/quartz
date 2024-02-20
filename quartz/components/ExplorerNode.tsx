@@ -15,6 +15,7 @@ export interface Options {
   title?: string
   folderDefaultState: "collapsed" | "open"
   folderClickBehavior: "collapse" | "link"
+  content: "files" | "tags"
   useSavedState: boolean
   sortFn: (a: FileNode, b: FileNode) => number
   filterFn: (node: FileNode) => boolean
@@ -154,6 +155,73 @@ export class FileNode {
     this.children.forEach((e) => e.sort(sortFn))
   }
 }
+
+// Class to build the explorer tree based on tags instead of the file hierarchy.
+export class TagNode extends FileNode {
+
+  // Overwrite the insert function of FileNode with a custom one.
+  // The first section is the same.
+  private insert(fileData: DataWrapper) {
+    if (fileData.path.length === 0) {
+      return
+    }
+
+    const nextSegment = fileData.path[0]
+
+    // base case, insert here
+    if (fileData.path.length === 1) {
+      if (nextSegment === "") {
+        // index case (we are the root and we just found index.md), set our data appropriately
+        const title = fileData.file.frontmatter?.title
+        if (title && title !== "index") {
+          this.displayName = title
+        }
+      } else {
+        // direct child
+	// Tagnode instead of FileNode
+        this.children.push(new TagNode(nextSegment, undefined, fileData.file, this.depth + 1))
+      }
+
+      return
+    }
+
+    // find the right child to insert into
+    fileData.path = fileData.path.splice(1)
+    const child = this.children.find((c) => c.name === nextSegment)
+    if (child) {
+      child.insert(fileData)
+      return
+    }
+
+    // TagNode instead of FileNode
+    const newChild = new TagNode(
+      nextSegment,
+      // Here tagpath is used instead of the relative file path.
+      // tagpath is built in the "add" function.
+      getPathSegment(fileData.tagpath, this.depth),
+      undefined,
+      this.depth + 1,
+    )
+    newChild.insert(fileData)
+    this.children.push(newChild)
+  }
+
+  // Add new file to tree
+  add(file: QuartzPluginData) {
+    // Loop all the tags in the added file.
+    file.frontmatter.tags?.forEach((tag) => {
+      // Build a path based on the tag.
+      // Eg if the tag is "Tag/Subtag", tagpath will be "Tag/Subtag/filename.md"
+      let tagpath = tag.concat("/", file.slug!.split('/').pop());
+      // Insert the data into the tree.
+      this.insert({
+	file: file,
+	path: simplifySlug(tagpath).split("/"),
+	tagpath: tagpath});
+    })
+  }
+}
+
 
 type ExplorerNodeProps = {
   node: FileNode
