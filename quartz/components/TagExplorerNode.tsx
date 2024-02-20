@@ -105,12 +105,13 @@ export class TagNode {
     file.frontmatter?.tags?.forEach((tag) => {
       // Build a path based on the tag.
       // Eg if the tag is "Tag/Subtag", tagpath will be "Tag/Subtag/filename.md"
-      let tagpath = tag.concat("/", file.slug!.split('/').pop()!) as FilePath;
+      let tagpath = tag.concat("/", file.slug!.split("/").pop()!) as FilePath
       // Insert the data into the tree.
       this.insert({
-	file: file,
-	path: simplifySlug(slugifyFilePath(tagpath)).split("/"),
-	tagpath: tagpath});
+        file: file,
+        path: simplifySlug(slugifyFilePath(tagpath)).split("/"),
+        tagpath: tagpath,
+      })
     })
   }
 
