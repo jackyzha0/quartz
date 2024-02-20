@@ -20,9 +20,6 @@ This plugin accepts the following configuration options:
 
 - `descriptionLength`: the maximum length of the generated description. Default is 150 characters. The cut off happens after the first _sentence_ that ends after the given length.
 
-> [!warning]
-> This plugin needs the `Component.TableOfContents` component in `quartz.layout.ts` to determine where to display the TOC. Without it, nothing will be displayed.
-
 ## Technical Details
 
 - Category: Transformer

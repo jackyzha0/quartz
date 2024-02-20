@@ -14,7 +14,7 @@ This plugin accepts the following configuration options:
 - `priority`: The data sources to consult for date information. Highest priority first. Possible values are `"frontmatter"`, `"git"`, and `"filesystem"`. Defaults to `"frontmatter", "git", "filesystem"]`.
 
 > [!warning]
-> This plugin needs the `Component.TableOfContents` component in `quartz.layout.ts` to determine where to display the TOC. Without it, nothing will be displayed.
+> If you rely on git for dates, ensure `defaultDateType` is set to `modified` in `quartz.config.ts`.
 
 ## Technical Details
 

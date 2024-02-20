@@ -25,7 +25,7 @@ This plugin accepts the following configuration options:
 - `enableCheckbox`: If `true`, adds support for interactive checkboxes in content. Defaults to `false`.
 
 > [!warning]
-> Don't remove this plugin if you're using Obsidian to author the content!
+> Don't remove this plugin if you're using [[Obsidian compatibility|Obsidian]] to author the content!
 
 ## Technical Details
 
