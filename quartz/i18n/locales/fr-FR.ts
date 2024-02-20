@@ -69,13 +69,13 @@ export default {
     folderContent: {
       folder: "Dossier",
       itemsUnderFolder: ({ count }) =>
-        count === 1 ? "1 élément sous ce dossier" : `${count} éléments sous ce dossier.`,
+        count === 1 ? "1 élément sous ce dossier." : `${count} éléments sous ce dossier.`,
     },
     tagContent: {
       tag: "Étiquette",
       tagIndex: "Index des étiquettes",
       itemsUnderTag: ({ count }) =>
-        count === 1 ? "1 élément avec cette étiquette" : `${count} éléments avec cette étiquette.`,
+        count === 1 ? "1 élément avec cette étiquette." : `${count} éléments avec cette étiquette.`,
       showingFirst: ({ count }) => `Affichage des premières ${count} étiquettes.`,
       totalTags: ({ count }) => `Trouvé ${count} étiquettes au total.`,
     },

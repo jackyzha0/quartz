@@ -66,9 +66,12 @@ function TagContent(props: QuartzComponentProps) {
                   <p>
                     {i18n(cfg.locale).pages.tagContent.itemsUnderTag({ count: pages.length })}
                     {pages.length > numPages && (
-                      <span>
-                        {i18n(cfg.locale).pages.tagContent.showingFirst({ count: numPages })}
-                      </span>
+                      <>
+                        {" "}
+                        <span>
+                          {i18n(cfg.locale).pages.tagContent.showingFirst({ count: numPages })}
+                        </span>
+                      </>
                     )}
                   </p>
                   <PageList limit={numPages} {...listProps} />
