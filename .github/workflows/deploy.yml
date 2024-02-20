@@ -1,9 +1,12 @@
 name: Deploy Quartz site to GitHub Pages
 
 on:
+  push:
+    branches:
+      - main
   repository_dispatch:
     types: [build]
-  workflow_dispatch:  
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -22,7 +25,7 @@ jobs:
         with:
           token: ${{ secrets.GH_PAT }}
           fetch-depth: 0 # Fetch all history for git info
-          submodules: 'recursive'
+          submodules: "recursive"
       - uses: actions/setup-node@v4
         with:
           node-version: 18.14
