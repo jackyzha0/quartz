@@ -1,9 +1,9 @@
 name: Deploy Quartz site to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
+  repository_dispatch:
+    types: [build]
+  workflow_dispatch:  
 
 permissions:
   contents: read
