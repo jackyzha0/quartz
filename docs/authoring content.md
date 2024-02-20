@@ -41,4 +41,4 @@ First, make sure you've [[setting up your GitHub repository|already setup your G
 
 ## Customization
 
-Frontmatter parsing for `title`, `tags`, `aliases` and `cssclasses` is a functionality of the [[Frontmatter]] plugin. Frontmatter parsing for `date` is a functionality of the [[CreatedModifiedDate]] plugin. See the plugin pages for customization options.
+Frontmatter parsing for `title`, `tags`, `aliases` and `cssclasses` is a functionality of the [[Frontmatter]] plugin, `date` is handled by the [[CreatedModifiedDate]] plugin and `description` by the [[Description]] plugin. See the plugin pages for customization options.
