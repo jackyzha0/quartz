@@ -27,10 +27,10 @@ jobs:
           node-version: 18.14
       - name: Fetch submodules
         run: |
-          git submodule update --init --recursive --checkout -f --remote -- "${{github.event.client_payload.module}}"
+          git submodule update --init --recursive --checkout -f --remote -- "content"
           git config --global user.name "GitHub Action"
           git config --global user.email "noreply@github.com"
-          git commit -am "chore (update): ${{github.event.client_payload.module}} - ${{github.event.client_payload.sha}}"
+          git commit -am "chore (update): fetch submodule"
           git push
       - name: Install Dependencies
         run: npm ci
