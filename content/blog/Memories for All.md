@@ -38,7 +38,7 @@ Right now, the vast majority of software UX is a 1-to-many experience. What you 
 
 AI apps can deal *generatively* with each user on an individual basis, that is, an experience can be produced ad hoc for every user upon every interaction. From 1:many to 1:1 without prohibitive sacrifices in efficiency. But we're still underestimating the full scope of possibility here.
 
-As it stands today the space is mostly focused on the (albeit generative) [[The machine learning industry is too focused on general task performance|1:many tasks LLMs can perform]]. The apps remain more or less stateless with regard to the user. To reach 1:1 nirvana, we need more [[Honcho; User Context Management for LLM Apps|user-centric agent design]]. We need frameworks, mechanisms, services, models dedicated to deep coherence with user identity.
+As it stands today the space is mostly focused on the (albeit generative) [[Machine learning is fixated on task performance|1:many tasks LLMs can perform]]. The apps remain more or less stateless with regard to the user. To reach 1:1 nirvana, we need more [[Honcho; User Context Management for LLM Apps|user-centric agent design]]. We need frameworks, mechanisms, services, models dedicated to deep coherence with user identity.
 
 Every agent interaction can be generated just in time for every person, informed by relevant personal context more substantive than human-to-human sessions. User context will enable disposable agents on the fly across verticals for lower marginal cost than 1:many software paradigms.
 
