@@ -8,7 +8,7 @@ We know that in humans, we can strongly [correlate reading with improved theory 
 
 The experience of such natural language narration *is itself a simulation* where you practice and hone your theory of mind abilities. Even if, say, your English or Psychology teacher was foisting the text on you with other training intentions. Or even if you ran the simulation without coercion to escape at the beach.
 
-It's not such a stretch to imagine that in optimizing for other tasks LLMs acquire emergent abilities not intentionally trained.[^3] It may even be that in order to learn natural language prediction, these systems need theory of mind abilities or that learning language involves specifically involves them--that's certainly the case with human wetware systems and theory of mind skills do seem to improve with model size and language generation efficacy.
+It's not such a stretch to imagine that in optimizing for other tasks LLMs acquire emergent abilities not intentionally trained.[^3] It may even be that in order to learn natural language prediction, these systems need theory of mind abilities or that learning language specifically involves them--that's certainly the case with human wetware systems and theory of mind skills do seem to improve with model size and language generation efficacy.
 
 ---
 

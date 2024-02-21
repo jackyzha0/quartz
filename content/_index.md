@@ -28,7 +28,7 @@ It’s our mission to realize this future.
 [[LLMs excel at theory of mind because they read]]  
 [[Loose theory of mind imputations are superior to verbatim response predictions]]  
 [[Honcho name lore]]  
-[[Human-AI chat paradigm hamstrings the space of possibility]]. 
+[[Human-AI chat paradigm hamstrings the space of possibility]]  
 [[LLM Metacognition is inference about inference]]  
 [[Machine learning is fixated on task performance]]  
 
