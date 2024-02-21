@@ -10,7 +10,7 @@ Last year was wild. We started as an edtech company and ended as anything but. T
 
 >[Plastic Labs](https://plasticlabs.ai) was conceived as a research group exploring the intersection of education and emerging technology...with the advent of ChatGPT...we shifted our focus to large language models...we set out to build a non-skeuomorphic, AI-native tutor that put users first...our [[Open Sourcing Tutor-GPT|experimental tutor]], Bloom, [[Theory of Mind Is All You Need|was remarkably effective]]--for thousands of users during the 9 months we hosted it for free...
 
-Building a production-grade, user-centric AI application, then giving it nascent [theory of mind](https://arxiv.org/pdf/2304.11490.pdf) and [[Metacognition in LLMs is inference about inference|metacognition]], made it glaringly obvious to us that social cognition in LLMs was both under-explored and under-leveraged.
+Building a production-grade, user-centric AI application, then giving it nascent [theory of mind](https://arxiv.org/pdf/2304.11490.pdf) and [[LLM Metacognition is inference about inference|metacognition]], made it glaringly obvious to us that social cognition in LLMs was both under-explored and under-leveraged.
 
 We pivoted to address this hole in the stack and build the user context management solution agent developers need to truly give their users superpowers. Plastic applied and was accepted to [Betaworks'](https://www.betaworks.com/) [*AI Camp: Augment*](https://techcrunch.com/2023/08/30/betaworks-goes-all-in-on-augmentative-ai-in-latest-camp-cohort-were-rabidly-interested/?guccounter=1):
 

@@ -25,9 +25,12 @@ It’s our mission to realize this future.
 
 ## Evergreen Notes
 
+[[LLMs excel at theory of mind because they read]]  
+[[Loose theory of mind imputations are superior to verbatim response predictions]]  
 [[Honcho name lore]]  
-[[Metacognition in LLMs is inference about inference]]  
-[[The machine learning industry is too focused on general task performance]]  
+[[Human-AI chat paradigm hamstrings the space of possibility]]. 
+[[LLM Metacognition is inference about inference]]  
+[[Machine learning is fixated on task performance]]  
 
 ## Extrusions
 
