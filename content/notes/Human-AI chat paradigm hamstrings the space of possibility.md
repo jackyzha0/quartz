@@ -8,7 +8,7 @@ Here's a limited list of things *besides* a direct response we routinely want to
 - A list of items to search over storage
 - A 'plan' for how to approach a problem
 - A mock user response
-- A [[LLM Metacognition is inference about inference|metacogntive step]] to consider the product of prior inference
+- A [[LLM Metacognition is inference about inference|metacognitive step]] to consider the product of prior inference
 
 In contrast, the current state of inference is akin to immediately blurting out the first thing that comes into your mind--something that humans with practiced aptitude in social cognition rarely do. But this is very hard given the fact that those types of responses don't ever come after the special AI message token. Not very flexible.
 
