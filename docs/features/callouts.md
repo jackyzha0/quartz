@@ -55,50 +55,41 @@ By default, custom callouts are handled by applying the `note` style. To make fa
 > >
 > > > [!example] You can even use multiple layers of nesting.
 
-> [!EXAMPLE] Examples
->
-> Aliases: example
+> [!note]
+> Aliases: "note"
 
-> [!note] Notes
->
-> Aliases: note
+> [!abstract]
+> Aliases: "abstract", "summary", "tldr"
 
-> [!abstract] Summaries
->
-> Aliases: abstract, summary, tldr
+> [!info]
+> Aliases: "info"
 
-> [!info] Info
->
-> Aliases: info, todo
+> [!todo]
+> Aliases: "todo"
 
-> [!tip] Hint
->
-> Aliases: tip, hint, important
+> [!tip]
+> Aliases: "tip", "hint", "important"
 
-> [!success] Success
->
-> Aliases: success, check, done
+> [!success]
+> Aliases: "success", "check", "done"
 
-> [!question] Question
->
-> Aliases: question, help, faq
+> [!question]
+> Aliases: "question", "help", "faq"
 
-> [!warning] Warning
->
-> Aliases: warning, caution, attention
+> [!warning]
+> Aliases: "warning", "attention", "caution"
 
-> [!failure] Failure
->
-> Aliases: failure, fail, missing
+> [!failure]
+> Aliases: "failure", "missing", "fail"
 
-> [!danger] Error
->
-> Aliases: danger, error
+> [!danger]
+> Aliases: "danger", "error"
 
-> [!bug] Bug
->
-> Aliases: bug
+> [!bug]
+> Aliases: "bug"
 
-> [!quote] Quote
->
-> Aliases: quote, cite
+> [!example]
+> Aliases: "example"
+
+> [!quote]
+> Aliases: "quote", "cite"
