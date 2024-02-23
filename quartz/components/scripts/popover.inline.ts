@@ -47,9 +47,8 @@ async function mouseEnterHandler(
   }
 
   if (!response) return
-  const contentType = response.headers.get("Content-Type")
+  const [contentType] = response.headers.get("Content-Type")!.split(";")
   const [contentTypeCategory, typeInfo] = contentType?.split("/") ?? ["text", "html"]
-  const appType = typeInfo.split(";")[0] ?? "html"
 
   const popoverElement = document.createElement("div")
   popoverElement.classList.add("popover")
@@ -71,7 +70,7 @@ async function mouseEnterHandler(
       popoverInner.appendChild(img)
       break
     case "application":
-      switch (appType) {
+      switch (typeInfo) {
         case "pdf":
           const pdf = document.createElement("iframe")
           pdf.src = targetUrl.toString()
