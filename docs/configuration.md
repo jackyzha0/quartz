@@ -85,7 +85,7 @@ transformers: [
 
 To remove a plugin, you should remove all occurrences of it in the `quartz.config.ts`.
 
-In addition, plugins may also have their own configuration settings that you can pass in. If you do not pass in a configuration, the plugin will use its default settings.
+To customize plugins further, some plugins may also have their own configuration settings that you can pass in. If you do not pass in a configuration, the plugin will use its default settings.
 
 For example, the [[plugins/Latex|Latex]] plugin allows you to pass in a field specifying the `renderEngine` to choose between Katex and MathJax.
 
