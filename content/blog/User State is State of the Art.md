@@ -3,7 +3,7 @@ LLM apps can embrace the complexity and plasticity of human identity to deliver 
 
 We're introducing a framework for modeling your users automatically and dynamically.
 
-All of us adopt different personas in different contexts--with [Honcho](https://honcho.dev) you can learn these `user_states` so your app can better meet user need in every moment.
+All of us adopt different personas in different contexts--with [Honcho](https://honcho.dev) you can learn these user *states* so your app can better meet user need in every moment.
 
 ## Fleet of Theseus
 
@@ -70,7 +70,7 @@ We can (and should) even allow them the agency to decide what elements of our id
 
 ## A DSPy Demo for Honcho
 
-OK but what sorts of `user_states` are we talking about?
+OK but what sorts of user states are we talking about?
 
 
 

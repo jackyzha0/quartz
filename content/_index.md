@@ -14,7 +14,7 @@ It’s our mission to realize this future.
 
 ## Blog
 
-[[user_state is State of the Art]]
+[[User State is State of the Art]]  
 [[Memories for All]]  
 [[Honcho; User Context Management for LLM Apps|Honcho: User Context Management for LLM Apps]]  
 [[Theory of Mind Is All You Need]]  
