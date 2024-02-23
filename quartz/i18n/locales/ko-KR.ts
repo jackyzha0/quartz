@@ -68,12 +68,12 @@ export default {
     },
     folderContent: {
       folder: "폴더",
-      itemsUnderFolder: ({ count }) => `${count}건의 페이지`,
+      itemsUnderFolder: ({ count }) => `${count}건의 항목`,
     },
     tagContent: {
       tag: "태그",
       tagIndex: "태그 목록",
-      itemsUnderTag: ({ count }) => `${count}건의 페이지`,
+      itemsUnderTag: ({ count }) => `${count}건의 항목`,
       showingFirst: ({ count }) => `처음 ${count}개의 태그`,
       totalTags: ({ count }) => `총 ${count}개의 태그를 찾았습니다.`,
     },
