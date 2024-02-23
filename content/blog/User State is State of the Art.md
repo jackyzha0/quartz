@@ -71,7 +71,9 @@ We can (and should) even allow our AI apps the agency to decide what elements of
 
 ## A DSPy Demo for Honcho
 
-Today we're releasing a demo to be used with Honcho that begins to tease out some technical, concrete approaches to all these heady concepts. With enough message and session data stored with Honcho, we can start to learn and optimize for common states your users are in while using your app or agent. Is Alice in research mode? Is Bob looking for some companionship? Maybe today, Carol just wants to get shit done, or Charlie needs delicate treatment because he's pissed.
+Today we're releasing a demo to be used with Honcho that begins to tease out some technical, concrete approaches to all these heady concepts--first steps at imbuing our tools with the right meta-methods. 
+
+With enough message and session data stored with Honcho, we can start to learn and optimize for common states your users are in while using your app or agent. Is Alice in research mode? Is Bob looking for some companionship? Maybe today, Carol just wants to get shit done, or Charlie needs delicate treatment because he's pissed.
 
 Recently, the DSPy framework has been [catching on](https://x.com/lateinteraction/status/1758734906648375633?s=20), garnering a ton of attention. It's helped people improve RAG performance, reduce costs, and [_generally feel better_](https://x.com/lateinteraction/status/1757190669196755259?s=20) about building LLM applications. It aims to emulate [PyTorch](https://x.com/lateinteraction/status/1758952248124776925?s=20) in its design philosophy, making LLM application development much more like _programming_ as opposed to manipulating free-form text strings (prompting). There are built-in optimizers for _learning_ the optimal prompt given a metric.
 
