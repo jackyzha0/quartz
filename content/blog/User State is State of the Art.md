@@ -26,7 +26,7 @@ The knee jerk reaction to this level of understanding is to assume the problem i
 Besides, surely mapping the full breadth of user identity requires much more compute and storage even than the massive AI hardware buildouts now getting underway. We're drifting into absurd [Borges-like territory](https://en.wikipedia.org/wiki/On_Exactitude_in_Science) imagining maps the size of the land they seek to represent. And didn't [Laplace (eventually) show us](https://en.wikipedia.org/wiki/Laplace%27s_demon) that demons like this are hopelessly naive?
 
 ![[escher_honcho.png]]
-([*Escher](https://en.wikipedia.org/wiki/Hand_with_Reflecting_Sphere) gets it*...)
+*[Escher](https://en.wikipedia.org/wiki/Hand_with_Reflecting_Sphere) gets it*...
 ## Matryoshka Representation
 
 So is representing user identity for LLM apps a problem of [computational irreducibility](https://en.wikipedia.org/wiki/Computational_irreducibility)--no shortcuts, full simulation required?
@@ -66,7 +66,7 @@ Because LLMs are [simulators](https://generative.ink/posts/simulators/), they ca
 We can (and should) even allow them the agency to decide what elements of our identities and typical states to model and how to auto-optimize around them. We don't need full brain scans here, we just need to give them the right meta-methods.
 
 ![[honcho_shoggoth.png]]
-(*We don't want one [shoggoth](https://x.com/TetraspaceWest/status/1625264347122466819?s=20) mask per app, or one per user, but as many as each human's identity is complex*)
+*We don't want one [shoggoth](https://x.com/TetraspaceWest/status/1625264347122466819?s=20) mask per app, or one per user, but as many as each human's identity is complex*
 
 ## A DSPy Demo for Honcho
 
