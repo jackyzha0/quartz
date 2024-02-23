@@ -1,3 +1,4 @@
+import type { HTMLAttributes } from "preact/compat"
 import { ValidDateType } from "./components/Date"
 import { QuartzComponent } from "./components/types"
 import { ValidLocale } from "./i18n"
@@ -46,6 +47,11 @@ export interface GlobalConfiguration {
    * Region Codes: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
    */
   locale: ValidLocale
+  /**
+   * Allow to add custom HTML metas such as Google site verification code in page.
+   * More information about HTML meta: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+   */
+  customHTMLMetas?: HTMLAttributes<HTMLMetaElement>[]
 }
 
 export interface QuartzConfig {
