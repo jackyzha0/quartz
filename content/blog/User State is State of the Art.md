@@ -26,7 +26,7 @@ The knee jerk reaction to this level of understanding is to assume the problem i
 Besides, surely mapping the full breadth of user identity requires much more compute and storage even than the massive AI hardware buildouts now getting underway. We're drifting into absurd [Borges-like territory](https://en.wikipedia.org/wiki/On_Exactitude_in_Science) imagining maps the size of the land they seek to represent. And didn't [Laplace (eventually) show us](https://en.wikipedia.org/wiki/Laplace%27s_demon) that demons like this are hopelessly naive?
 
 ![[escher_honcho.png]]
-*[Escher](https://en.wikipedia.org/wiki/Hand_with_Reflecting_Sphere) gets it*...
+*[Escher](https://en.wikipedia.org/wiki/Hand_with_Reflecting_Sphere) gets it...*
 ## Matryoshka Representation
 
 So is representing user identity for LLM apps a problem of [computational irreducibility](https://en.wikipedia.org/wiki/Computational_irreducibility)--no shortcuts, full simulation required?
