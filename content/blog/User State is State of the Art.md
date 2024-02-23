@@ -81,7 +81,7 @@ The first step in building a DSPy program is defining a task. And we want to rem
 
 Given an arbitrary task, we define our metric as whether or not the response quality is good given that state. Once we've accrued enough examples (through Discord reactions), it triggers an optimizer to look for few-shot examples to include in the prompts that increase performance on the metric. You can then store this optimized module in a Honcho `User` object and use that for inference!
 
-[Check it out here.]([https://github.com/plastic-labs/honcho/tree/main/example/discord/honcho-dspy-personas](https://github.com/plastic-labs/honcho/tree/main/example/discord/honcho-dspy-personas "https://github.com/plastic-labs/honcho/tree/main/example/discord/honcho-dspy-personas"))
+[Check it out here.](https://github.com/plastic-labs/honcho/tree/main/example/discord/honcho-dspy-personas](https://github.com/plastic-labs/honcho/tree/main/example/discord/honcho-dspy-personas "https://github.com/plastic-labs/honcho/tree/main/example/discord/honcho-dspy-personas")
 
 ![[dspy_persona_ttg.png]]
 
