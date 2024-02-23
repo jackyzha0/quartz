@@ -13,8 +13,10 @@ import { unescapeHTML } from "../util/escape"
  * Generates social image (OG/twitter standard) and saves it as `.webp` inside the public folder
  * @param opts options for generating image
  */
-async function generateSocialImage(opts: ImageOptions, userOpts: SocialImageOptions) {
-  const { cfg, description, fileName, fontsPromise, title } = opts
+async function generateSocialImage(
+  { cfg, description, fileName, fontsPromise, title }: ImageOptions,
+  userOpts: SocialImageOptions,
+) {
   const fonts = await fontsPromise
 
   // JSX that will be used to generate satori svg
