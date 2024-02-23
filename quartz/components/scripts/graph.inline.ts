@@ -325,6 +325,6 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   await renderGraph("graph-container", slug)
 
   const containerIcon = document.getElementById("global-graph-icon")
-  containerIcon?.removeEventListener("click", renderGlobalGraph)
   containerIcon?.addEventListener("click", renderGlobalGraph)
+  window.addCleanup(() => containerIcon?.removeEventListener("click", renderGlobalGraph))
 })

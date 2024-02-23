@@ -38,3 +38,7 @@ Some common frontmatter fields that are natively supported by Quartz:
 
 When your Quartz is at a point you're happy with, you can save your changes to GitHub.
 First, make sure you've [[setting up your GitHub repository|already setup your GitHub repository]] and then do `npx quartz sync`.
+
+## Customization
+
+Frontmatter parsing for `title`, `tags`, `aliases` and `cssclasses` is a functionality of the [[Frontmatter]] plugin, `date` is handled by the [[CreatedModifiedDate]] plugin and `description` by the [[Description]] plugin. See the plugin pages for customization options.
