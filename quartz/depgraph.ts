@@ -92,6 +92,15 @@ export default class DepGraph<T> {
 
   // DEPENDENCY ALGORITHMS
 
+  // Add all nodes and edges from other graph to this graph
+  addGraph(other: DepGraph<T>): void {
+    other.forEachEdge(([source, target]) => {
+      this.addNode(source)
+      this.addNode(target)
+      this.addEdge(source, target)
+    })
+  }
+
   // For the node provided:
   // If node does not exist, add it
   // If an incoming edge was added in other, it is added in this graph

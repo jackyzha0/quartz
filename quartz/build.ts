@@ -185,9 +185,14 @@ async function partialRebuildFromEntrypoint(
         const emitterGraph =
           (await emitter.getDependencyGraph?.(ctx, processedFiles, staticResources)) ?? null
 
-        // emmiter may not define a dependency graph. nothing to update if so
         if (emitterGraph) {
-          dependencies[emitter.name]?.updateIncomingEdgesForNode(emitterGraph, fp)
+          const existingGraph = dependencies[emitter.name]
+          if (existingGraph !== null) {
+            existingGraph.addGraph(emitterGraph)
+          } else {
+            // might be the first time we're adding a mardown file
+            dependencies[emitter.name] = emitterGraph
+          }
         }
       }
       break
