@@ -71,6 +71,11 @@ export const BuildArgv = {
     default: false,
     describe: "run a local server to live-preview your Quartz",
   },
+  fastRebuild: {
+    boolean: true,
+    default: false,
+    describe: "[experimental] rebuild only the changed files",
+  },
   baseDir: {
     string: true,
     default: "",

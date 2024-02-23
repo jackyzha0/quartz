@@ -57,20 +57,20 @@ function setupExplorer() {
     for (const item of document.getElementsByClassName(
       "folder-button",
     ) as HTMLCollectionOf<HTMLElement>) {
-      item.removeEventListener("click", toggleFolder)
       item.addEventListener("click", toggleFolder)
+      window.addCleanup(() => item.removeEventListener("click", toggleFolder))
     }
   }
 
-  explorer.removeEventListener("click", toggleExplorer)
   explorer.addEventListener("click", toggleExplorer)
+  window.addCleanup(() => explorer.removeEventListener("click", toggleExplorer))
 
   // Set up click handlers for each folder (click handler on folder "icon")
   for (const item of document.getElementsByClassName(
     "folder-icon",
   ) as HTMLCollectionOf<HTMLElement>) {
-    item.removeEventListener("click", toggleFolder)
     item.addEventListener("click", toggleFolder)
+    window.addCleanup(() => item.removeEventListener("click", toggleFolder))
   }
 
   // Get folder state from local storage

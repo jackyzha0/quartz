@@ -43,7 +43,7 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | und
             let published: MaybeDate = undefined
 
             const fp = file.data.filePath!
-            const fullFp = path.posix.join(file.cwd, fp)
+            const fullFp = path.isAbsolute(fp) ? fp : path.posix.join(file.cwd, fp)
             for (const source of opts.priority) {
               if (source === "filesystem") {
                 const st = await fs.promises.stat(fullFp)
