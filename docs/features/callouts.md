@@ -1,7 +1,7 @@
 ---
 title: Callouts
 tags:
-  - plugin/transformer
+  - feature/transformer
 ---
 
 Quartz supports the same Admonition-callout syntax as Obsidian.
@@ -19,12 +19,13 @@ This includes
 See [documentation on supported types and syntax here](https://help.obsidian.md/Editing+and+formatting/Callouts).
 
 > [!warning]
-> Wondering why callouts may not be showing up even if you have them enabled? You may need to reorder your plugins so that `Plugin.ObsidianFlavoredMarkdown()` is _after_ `Plugin.SyntaxHighlighting()`.
+> Wondering why callouts may not be showing up even if you have them enabled? You may need to reorder your plugins so that [[ObsidianFlavoredMarkdown]] is _after_ [[SyntaxHighlighting]].
 
 ## Customization
 
-- Disable callouts: simply pass `callouts: false` to the plugin: `Plugin.ObsidianFlavoredMarkdown({ callouts: false })`
-- Editing icons: `quartz/styles/callouts.scss`
+The callouts are a functionality of the [[ObsidianFlavoredMarkdown]] plugin. See the plugin page for how to enable or disable them.
+
+You can edit the icons by customizing `quartz/styles/callouts.scss`.
 
 ### Add custom callouts
 

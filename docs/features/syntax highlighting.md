@@ -1,7 +1,7 @@
 ---
 title: Syntax Highlighting
 tags:
-  - plugin/transformer
+  - feature/transformer
 ---
 
 Syntax highlighting in Quartz is completely done at build-time. This means that Quartz only ships pre-calculated CSS to highlight the right words so there is no heavy client-side bundle that does the syntax highlighting.
@@ -130,6 +130,4 @@ const [name, setName] = useState('Taylor');
 
 ## Customization
 
-- Removing syntax highlighting: delete all usages of `Plugin.SyntaxHighlighting()` from `quartz.config.ts`.
-- Style: By default, Quartz uses derivatives of the GitHub light and dark themes. You can customize the colours in the `quartz/styles/syntax.scss` file.
-- Plugin: `quartz/plugins/transformers/syntax.ts`
+Syntax highlighting is a functionality of the [[SyntaxHighlighting]] plugin. See the plugin page for customization options.

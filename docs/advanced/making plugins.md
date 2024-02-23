@@ -53,12 +53,12 @@ All transformer plugins must define at least a `name` field to register the plug
 
 Normally for both `remark` and `rehype`, you can find existing plugins that you can use to . If you'd like to create your own `remark` or `rehype` plugin, checkout the [guide to creating a plugin](https://unifiedjs.com/learn/guide/create-a-plugin/) using `unified` (the underlying AST parser and transformer library).
 
-A good example of a transformer plugin that borrows from the `remark` and `rehype` ecosystems is the [[Latex]] plugin:
+A good example of a transformer plugin that borrows from the `remark` and `rehype` ecosystems is the [[plugins/Latex|Latex]] plugin:
 
 ```ts title="quartz/plugins/transformers/latex.ts"
 import remarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
-import rehypeMathjax from "rehype-mathjax/svg.js"
+import rehypeMathjax from "rehype-mathjax/svg"
 import { QuartzTransformerPlugin } from "../types"
 
 interface Options {
@@ -84,10 +84,14 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
     externalResources() {
       if (engine === "katex") {
         return {
-          css: ["https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css"],
+          css: [
+            // base css
+            "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css",
+          ],
           js: [
             {
-              src: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/copy-tex.min.js",
+              // fix copy behaviour: https://github.com/KaTeX/KaTeX/blob/main/contrib/copy-tex/README.md
+              src: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js",
               loadTime: "afterDOMReady",
               contentType: "external",
             },
