@@ -12,7 +12,7 @@ This plugin emits all static resources needed by Quartz. This is used, for examp
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
 
-This plugin has no configuration options. 
+This plugin has no configuration options.
 
 ## API
 

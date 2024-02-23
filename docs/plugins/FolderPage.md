@@ -6,7 +6,7 @@ tags:
 
 This plugin generates index pages for folders, creating a listing page for each folder that contains multiple content files. See [[folder and tag listings]] for more information.
 
-Example: [[folder/advanced]]
+Example: [[advanced/|Advanced]]
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.

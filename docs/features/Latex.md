@@ -39,6 +39,9 @@ a & b & c
 \end{bmatrix}
 $$
 
+> [!warn]
+> Due to limitations in the [underlying parsing library](https://github.com/remarkjs/remark-math), block math in Quartz requires the `$$` delimiters to be on newlines like above.
+
 ### Inline Math
 
 Similarly, inline math can be rendered by delimiting math expression with a single `$`. For example, `$e^{i\pi} = -1$` produces $e^{i\pi} = -1$

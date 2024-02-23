@@ -4,7 +4,7 @@ tags:
   - plugin/emitter
 ---
 
-This plugin emits all non-Markdown static assets in your content folder (like images, videos, HTML, etc).
+This plugin emits all non-Markdown static assets in your content folder (like images, videos, HTML, etc). The plugin respects the `ignorePatterns` in the global [[configuration]].
 
 Note that all static assets will then be accessible through its path on your generated site, i.e: `host.me/path/to/static.pdf`
 

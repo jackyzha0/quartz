@@ -11,11 +11,11 @@ This plugin provides support for [ox-hugo](https://github.com/kaushalmodi/ox-hug
 
 This plugin accepts the following configuration options:
 
-- `wikilinks`: When `true` (default), converts Hugo `{{ relref }}` shortcodes to Quartz [[wikilinks]].
-- `removePredefinedAnchor`: When `true` (default), strips predefined anchors from headings.
-- `removeHugoShortcode`: When `true` (default), removes Hugo shortcode syntax (`{{}}`) from the content.
-- `replaceFigureWithMdImg`: When `true` (default), replaces `<figure/>` with `![]()`.
-- `replaceOrgLatex`: When `true` (default), converts Org-mode [[features/Latex|Latex]] fragments to Quartz-compatible LaTeX wrapped in `$` (for inline) and `$$` (for block equations).
+- `wikilinks`: If `true` (default), converts Hugo `{{ relref }}` shortcodes to Quartz [[wikilinks]].
+- `removePredefinedAnchor`: If `true` (default), strips predefined anchors from headings.
+- `removeHugoShortcode`: If `true` (default), removes Hugo shortcode syntax (`{{}}`) from the content.
+- `replaceFigureWithMdImg`: If `true` (default), replaces `<figure/>` with `![]()`.
+- `replaceOrgLatex`: If `true` (default), converts Org-mode [[features/Latex|Latex]] fragments to Quartz-compatible LaTeX wrapped in `$` (for inline) and `$$` (for block equations).
 
 > [!warning]
 > While you can use this together with [[ObsidianFlavoredMarkdown]], it's not recommended because it might mutate the file in unexpected ways. Use with caution.
