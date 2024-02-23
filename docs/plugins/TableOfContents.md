@@ -4,7 +4,7 @@ tags:
   - plugin/transformer
 ---
 
-This plugin generates a table of contents (TOC) for Markdown documents. By default it is displayed in the right sidebar. See [[table of contents]] for more information.
+This plugin generates a table of contents (TOC) for Markdown documents. See [[table of contents]] for more information.
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
