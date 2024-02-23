@@ -12,7 +12,7 @@ type NodeData = {
 type LinkData = {
   source: SimpleSlug
   target: SimpleSlug
-}
+} & d3.SimulationNodeDatum
 
 const localStorageKey = "graph-visited"
 function getVisited(): Set<SimpleSlug> {
