@@ -2,11 +2,11 @@
 
 *Big* stuff today.
 
-- A DSPy demo for Honcho!  
+- [A DSPy demo for Honcho](https://github.com/plastic-labs/honcho/tree/main/example/discord/honcho-dspy-personas)!  
     
-- Honcho v0.0.4  
+- [Honcho v0.0.4](https://github.com/plastic-labs/honcho/tree/v0.0.4)  
     
-- A blog post exploring a new paradigm for user identity  
+- [[User State is State of the Art|A blog post exploring a new paradigm for user identity]]  
 
 
 We're spinning up lots of direct channels for teams building with Honcho. [Join our Discord](https://mc.sendgrid.com/single-sends/f6b4e9ec-d1b9-11ee-a861-2a442512d272/editor/modules?moduleId=3132ac4a-0e6a-41d6-a023-b4348211294b.2), and let's build together 🦾.
