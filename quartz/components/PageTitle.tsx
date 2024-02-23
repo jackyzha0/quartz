@@ -1,9 +1,10 @@
 import { pathToRoot } from "../util/path"
-import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { classNames } from "../util/lang"
+import { i18n } from "../i18n"
 
-function PageTitle({ fileData, cfg, displayClass }: QuartzComponentProps) {
-  const title = cfg?.pageTitle ?? "Untitled Quartz"
+const PageTitle: QuartzComponent = ({ fileData, cfg, displayClass }: QuartzComponentProps) => {
+  const title = cfg?.pageTitle ?? i18n(cfg.locale).propertyDefaults.title
   const baseDir = pathToRoot(fileData.slug!)
   return (
     <h1 class={classNames(displayClass, "page-title")}>

@@ -163,13 +163,11 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   let previewInner: HTMLDivElement | undefined = undefined
   const results = document.createElement("div")
   results.id = "results-container"
-  results.style.flexBasis = enablePreview ? "min(30%, 450px)" : "100%"
   appendLayout(results)
 
   if (enablePreview) {
     preview = document.createElement("div")
     preview.id = "preview-container"
-    preview.style.flexBasis = "100%"
     appendLayout(preview)
   }
 
@@ -224,12 +222,11 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
     if (currentHover) {
       currentHover.classList.remove("focus")
-      currentHover.blur()
     }
 
     // If search is active, then we will render the first result and display accordingly
     if (!container?.classList.contains("active")) return
-    else if (e.key === "Enter") {
+    if (e.key === "Enter") {
       // If result has focus, navigate to that one, otherwise pick first result
       if (results?.contains(document.activeElement)) {
         const active = document.activeElement as HTMLInputElement
@@ -252,7 +249,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
         const prevResult = currentResult?.previousElementSibling as HTMLInputElement | null
         currentResult?.classList.remove("focus")
         prevResult?.focus()
-        currentHover = prevResult
+        if (prevResult) currentHover = prevResult
         await displayPreview(prevResult)
       }
     } else if (e.key === "ArrowDown" || e.key === "Tab") {
@@ -266,18 +263,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
         const secondResult = firstResult?.nextElementSibling as HTMLInputElement | null
         firstResult?.classList.remove("focus")
         secondResult?.focus()
-        currentHover = secondResult
+        if (secondResult) currentHover = secondResult
         await displayPreview(secondResult)
-      } else {
-        // If an element in results-container already has focus, focus next one
-        const active = currentHover
-          ? currentHover
-          : (document.activeElement as HTMLInputElement | null)
-        active?.classList.remove("focus")
-        const nextResult = active?.nextElementSibling as HTMLInputElement | null
-        nextResult?.focus()
-        currentHover = nextResult
-        await displayPreview(nextResult)
       }
     }
   }
@@ -319,40 +306,29 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     itemTile.classList.add("result-card")
     itemTile.id = slug
     itemTile.href = resolveUrl(slug).toString()
-    itemTile.innerHTML = `<h3>${title}</h3>${htmlTags}<p class="preview">${content}</p>`
+    itemTile.innerHTML = `<h3>${title}</h3>${htmlTags}${
+      enablePreview && window.innerWidth > 600 ? "" : `<p>${content}</p>`
+    }`
+    itemTile.addEventListener("click", (event) => {
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
+      hideSearch()
+    })
+
+    const handler = (event: MouseEvent) => {
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
+      hideSearch()
+    }
 
     async function onMouseEnter(ev: MouseEvent) {
       if (!ev.target) return
-      currentHover?.classList.remove("focus")
-      currentHover?.blur()
       const target = ev.target as HTMLInputElement
-      currentHover = target
-      currentHover.classList.add("focus")
       await displayPreview(target)
     }
 
-    async function onMouseLeave(ev: MouseEvent) {
-      if (!ev.target) return
-      const target = ev.target as HTMLElement
-      target.classList.remove("focus")
-    }
-
-    const events = [
-      ["mouseenter", onMouseEnter],
-      ["mouseleave", onMouseLeave],
-      [
-        "click",
-        (event: MouseEvent) => {
-          if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
-          hideSearch()
-        },
-      ],
-    ] as const
-
-    events.forEach(([event, handler]) => {
-      itemTile.addEventListener(event, handler)
-      window.addCleanup(() => itemTile.removeEventListener(event, handler))
-    })
+    itemTile.addEventListener("mouseenter", onMouseEnter)
+    window.addCleanup(() => itemTile.removeEventListener("mouseenter", onMouseEnter))
+    itemTile.addEventListener("click", handler)
+    window.addCleanup(() => itemTile.removeEventListener("click", handler))
 
     return itemTile
   }

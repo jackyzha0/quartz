@@ -38,6 +38,28 @@
     white-space: normal;
   }
 
+  & > .popover-inner[data-content-type] {
+    &[data-content-type*="pdf"],
+    &[data-content-type*="image"] {
+      padding: 0;
+      max-height: 100%;
+    }
+
+    &[data-content-type*="image"] {
+      img {
+        margin: 0;
+        border-radius: 0;
+        display: block;
+      }
+    }
+
+    &[data-content-type*="pdf"] {
+      iframe {
+        width: 100%;
+      }
+    }
+  }
+
   h1 {
     font-size: 1.5rem;
   }

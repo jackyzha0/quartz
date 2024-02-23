@@ -26,7 +26,7 @@ section {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--tertiary) 60%, transparent);
+  background: color-mix(in srgb, var(--tertiary) 60%, rgba(255, 255, 255, 0));
   color: var(--darkgray);
 }
 
@@ -53,8 +53,12 @@ ul,
   }
 }
 
+strong {
+  font-weight: $semiBoldWeight;
+}
+
 a {
-  font-weight: $boldWeight;
+  font-weight: $semiBoldWeight;
   text-decoration: none;
   transition: color 0.2s ease;
   color: var(--secondary);
@@ -259,11 +263,9 @@ thead {
   font-weight: revert;
   margin-bottom: 0;
 
-  article > & > a {
+  article > & > a[role="anchor"] {
     color: var(--dark);
-    &.internal {
-      background-color: transparent;
-    }
+    background-color: transparent;
   }
 }
 

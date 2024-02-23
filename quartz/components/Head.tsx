@@ -1,4 +1,5 @@
-import { FullSlug, _stripSlashes, joinSegments, pathToRoot } from "../util/path"
+import { i18n } from "../i18n"
+import { FullSlug, joinSegments, pathToRoot } from "../util/path"
 import { JSResourceToScriptElement } from "../util/resources"
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import satori, { SatoriOptions } from "satori"
@@ -64,10 +65,12 @@ export default (() => {
     const slug = fileData.filePath
     // since "/" is not a valid character in file names, replace with "-"
     const fileName = slug?.replaceAll("/", "-")
-    const title = fileData.frontmatter?.title ?? "Untitled"
+    const title =
+      fileData.frontmatter?.title ?? i18n(cfg.locale).propertyDefaults.title ?? "Untitled"
 
     // Get file description (priority: frontmatter > fileData > default)
-    const fdDescription = fileData.description?.trim()
+    const fdDescription =
+      fileData.description?.trim() ?? i18n(cfg.locale).propertyDefaults.description
     let description = ""
     if (fdDescription) {
       description = unescapeHTML(fdDescription)
@@ -137,6 +140,12 @@ export default (() => {
       <head>
         <title>{title}</title>
         <meta charSet="utf-8" />
+        {cfg.theme.cdnCaching && (
+          <>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+          </>
+        )}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {/* OG/Twitter meta tags */}
         <meta name="og:site_name" content={cfg.pageTitle}></meta>
@@ -170,8 +179,6 @@ export default (() => {
         <link rel="icon" href={iconPath} />
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
         {css.map((href) => (
           <link key={href} href={href} rel="stylesheet" type="text/css" spa-preserve />
         ))}
