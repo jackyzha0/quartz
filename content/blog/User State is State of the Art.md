@@ -1,9 +1,9 @@
 ## TL;DR
 LLM apps can embrace the complexity and plasticity of human identity to deliver unparalleled personalization.
 
-We're introducing a framework for modeling your users automatically and dynamically.
+We're introducing a framework for modeling your users automatically and dynamically. And today we have a DSPy demo to illustrate a nascent version of this paradigm.
 
-All of us adopt different personas in different contexts--with [Honcho](https://honcho.dev) you can learn these user *states* so your app can better meet user need in every moment.
+All of us adopt different personas in different contexts--with [Honcho](https://honcho.dev) you can begin to learn these user *states* so your app can better meet user need in every moment.
 
 ## Fleet of Theseus
 
@@ -62,27 +62,36 @@ Do you notice the similarity? Is the language model a fundamentally different *k
 
 Leaving aside the physics and biology, at this *computational and philosophical* level, again, we think not. At least not in a way that would limit the project of capturing the complexity of human identity with an LLM. In fact, the similarities mean precisely that it is possible. [Sora](https://openai.com/research/video-generation-models-as-world-simulators) doesn't need a physics engine, [NeRF](https://en.wikipedia.org/wiki/Neural_radiance_field) doesn't need a Borgean map. Much of the LLM training corpus [[LLMs excel at theory of mind because they read|includes narration]] about human identity, we're a social species, after all...our synthetic progeny can be social too.
 
-Because LLMs are [simulators](https://generative.ink/posts/simulators/), they can wear many masks. They have something like [world models](https://arxiv.org/abs/2310.02207) *and* [theory of mind](https://arxiv.org/abs/2302.02083). Hell, they're perfectly suited to the task of modeling and predicting the intricacies of human identity.
+Because LLMs are [simulators](https://generative.ink/posts/simulators/), they can wear many masks. They have something like [world models](https://arxiv.org/abs/2310.02207) *and* [theory of mind](https://arxiv.org/abs/2302.02083). Hell, they're perfectly suited to the task of modeling and predicting the intricacies of human identity. Armed with these representations, LLMs can run generation to reliably improve UX at a [mirror neuron](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3510904/) level, cohering to the user first.
 
-We can (and should) even allow them the agency to decide what elements of our identities and typical states to model and how to auto-optimize around them. We don't need full brain scans here, we just need to give them the right meta-methods.
+We can (and should) even allow our AI apps the agency to decide what elements of our identities and typical states to model and how to auto-optimize around them. We don't need full brain scans here, we just need to give them the right meta-methods.
 
 ![[honcho_shoggoth.png]]
 *We don't want one [shoggoth](https://x.com/TetraspaceWest/status/1625264347122466819?s=20) mask per app, or one per user, but as many as each human's identity is complex*
 
 ## A DSPy Demo for Honcho
 
-OK but what sorts of user states are we talking about?
+Today we're releasing a demo to be used with Honcho that begins to tease out some technical, concrete approaches to all these heady concepts. With enough message and session data stored with Honcho, we can start to learn and optimize for common states your users are in while using your app or agent. Is Alice in research mode? Is Bob looking for some companionship? Maybe today, Carol just wants to get shit done, or Charlie needs delicate treatment because he's pissed.
+
+Recently, the DSPy framework has been [catching on](https://x.com/lateinteraction/status/1758734906648375633?s=20), garnering a ton of attention. It's helped people improve RAG performance, reduce costs, and [_generally feel better_](https://x.com/lateinteraction/status/1757190669196755259?s=20) about building LLM applications. It aims to emulate [PyTorch](https://x.com/lateinteraction/status/1758952248124776925?s=20) in its design philosophy, making LLM application development much more like _programming_ as opposed to manipulating free-form text strings (prompting). There are built-in optimizers for _learning_ the optimal prompt given a metric.
+
+Having been around the block building with tools like LangChain (which are great btw), we asked ourselves what we sort of symbioses we could find with Honcho and a framework like this. Naturally (if you know us), the first thing that came to mind was: can we optimize pipelines on _an individual user basis_?
+
+The first step in building a DSPy program is defining a task. And we want to remain flexible in this definition since the goal is to optimize pipelines for each user. So, we have a few LangChain prompts that exist to classify each user's "state." This essentially offloads determining the task to the language model!
+
+Given an arbitrary task, we define our metric as whether or not the response quality is good given that state. Once we've accrued enough examples (through Discord reactions), it triggers an optimizer to look for few-shot examples to include in the prompts that increase performance on the metric. You can then store this optimized module in a Honcho `User` object and use that for inference!
+
+[Check it out here.]([https://github.com/plastic-labs/honcho/tree/main/example/discord/honcho-dspy-personas](https://github.com/plastic-labs/honcho/tree/main/example/discord/honcho-dspy-personas "https://github.com/plastic-labs/honcho/tree/main/example/discord/honcho-dspy-personas"))
+
+### How Honcho Helps
+
+One of the biggest problems we see in the AI space is the disconnect that exists between tasks as they're defined in a general machine learning sense versus tasks that humans _actually_ find useful. 
+
+![[Machine learning is fixated on task performance#^0005ac]]
+ 
+The reason is because language models generate responses by sampling from a distribution of how _any one person could_ respond, not _exactly how you would_ want them to.
+
+Honcho is laying the groundwork for this latter future. The solution here is to manage data on a per-user basis. The primitives we've designed in Honcho allow for persistent user context to be stored in a convenient `User` object that exists at an application level. Our goal with these data structures is to make it trivially easy to manage data in your application logic so you can spend more time figuring out how to excel at your task in both a general and personalized sense.
 
 
-
-## 
-
-why
-
-mirror neurons
-use cases
-improved UX
-
-
----
 [^1]: Sutton. ["The Bitter Lesson."](http://www.incompleteideas.net/IncIdeas/BitterLesson.html) 2019.
