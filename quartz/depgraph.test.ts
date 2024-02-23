@@ -39,7 +39,7 @@ describe("DepGraph", () => {
     })
   })
 
-  describe("addGraph", () => {
+  describe("mergeGraph", () => {
     test("merges two graphs", () => {
       const graph = new DepGraph<string>()
       graph.addEdge("A.md", "A.html")
@@ -47,7 +47,7 @@ describe("DepGraph", () => {
       const other = new DepGraph<string>()
       other.addEdge("B.md", "B.html")
 
-      graph.addGraph(other)
+      graph.mergeGraph(other)
 
       const expected = {
         nodes: ["A.md", "A.html", "B.md", "B.html"],

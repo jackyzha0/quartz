@@ -188,7 +188,7 @@ async function partialRebuildFromEntrypoint(
         if (emitterGraph) {
           const existingGraph = dependencies[emitter.name]
           if (existingGraph !== null) {
-            existingGraph.addGraph(emitterGraph)
+            existingGraph.mergeGraph(emitterGraph)
           } else {
             // might be the first time we're adding a mardown file
             dependencies[emitter.name] = emitterGraph
