@@ -83,6 +83,8 @@ Given an arbitrary task, we define our metric as whether or not the response qua
 
 [Check it out here.]([https://github.com/plastic-labs/honcho/tree/main/example/discord/honcho-dspy-personas](https://github.com/plastic-labs/honcho/tree/main/example/discord/honcho-dspy-personas "https://github.com/plastic-labs/honcho/tree/main/example/discord/honcho-dspy-personas"))
 
+![[dspy_persona_ttg.png]]
+
 ### How Honcho Helps
 
 One of the biggest problems we see in the AI space is the disconnect that exists between tasks as they're defined in a general machine learning sense versus tasks that humans _actually_ find useful. 
