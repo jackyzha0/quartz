@@ -46,8 +46,14 @@ jobs:
       - name: Ensure Quartz builds, check bundle info
         run: npx quartz build --bundleInfo
 
+      - name: Get package version
+        run: node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
+
       - name: Create release tag
-        uses: phish108/autotag-action@v1.1.55
+        uses: pkgdeps/git-tag-action@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN}}
-          with-v: "true"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_repo: ${{ github.repository }}
+          version: ${{ env.PACKAGE_VERSION }}
+          git_commit_sha: ${{ github.sha }}
+          git_tag_prefix: "v"
