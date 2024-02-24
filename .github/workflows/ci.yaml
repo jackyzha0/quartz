@@ -48,7 +48,7 @@ jobs:
 
   publish-tag:
     if: ${{ github.repository == 'jackyzha0/quartz' }}
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
