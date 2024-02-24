@@ -8,12 +8,12 @@ import { QuartzPluginData } from "../vfile"
 import { i18n } from "../../i18n"
 
 export interface Options {
-  delims: string | string[]
+  delimiters: string | [string, string]
   language: "yaml" | "toml"
 }
 
 const defaultOptions: Options = {
-  delims: "---",
+  delimiters: "---",
   language: "yaml",
 }
 
@@ -57,9 +57,9 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> 
               },
             })
 
-            if (data.title) {
+            if (data.title != null && data.title.toString() !== "") {
               data.title = data.title.toString()
-            } else if (data.title === null || data.title === undefined) {
+            } else {
               data.title = file.stem ?? i18n(cfg.configuration.locale).propertyDefaults.title
             }
 
