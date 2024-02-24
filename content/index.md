@@ -2,6 +2,7 @@
 slug: index  
 shortRepo: ash  
 publish-ash: true  
+title: Home  
 ---  
 Hello how is this  
   
@@ -10,4 +11,5 @@ haha get it
   
 ...cool  
   
+[[Ash In the Snow/People/Zilver|Zilver]]  
  
