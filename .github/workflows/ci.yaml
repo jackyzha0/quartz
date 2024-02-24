@@ -47,7 +47,7 @@ jobs:
         run: npx quartz build --bundleInfo
 
       - name: Create release tag
-        uses: Klemensas/action-autotag@stable
+        uses: phish108/autotag-action@v1.1.55
         with:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          tag_prefix: "v"
+          github-token: ${{ secrets.GITHUB_TOKEN}}
+          with-v: "true"
