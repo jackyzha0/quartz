@@ -39,9 +39,23 @@ export default class DepGraph<T> {
     }
   }
 
+  // Remove node and all edges connected to it
   removeNode(node: T): void {
     if (this._graph.has(node)) {
+      // first remove all edges so other nodes don't have references to this node
+      for (const target of this._graph.get(node)!.outgoing) {
+        this.removeEdge(node, target)
+      }
+      for (const source of this._graph.get(node)!.incoming) {
+        this.removeEdge(source, node)
+      }
       this._graph.delete(node)
+    }
+  }
+
+  forEachNode(callback: (node: T) => void): void {
+    for (const node of this._graph.keys()) {
+      callback(node)
     }
   }
 
@@ -92,6 +106,15 @@ export default class DepGraph<T> {
 
   // DEPENDENCY ALGORITHMS
 
+  // Add all nodes and edges from other graph to this graph
+  mergeGraph(other: DepGraph<T>): void {
+    other.forEachEdge(([source, target]) => {
+      this.addNode(source)
+      this.addNode(target)
+      this.addEdge(source, target)
+    })
+  }
+
   // For the node provided:
   // If node does not exist, add it
   // If an incoming edge was added in other, it is added in this graph
@@ -110,6 +133,24 @@ export default class DepGraph<T> {
         this.removeEdge(source, target)
       }
     })
+  }
+
+  // Remove all nodes that do not have any incoming or outgoing edges
+  // A node may be orphaned if the only node pointing to it was removed
+  removeOrphanNodes(): Set<T> {
+    let orphanNodes = new Set<T>()
+
+    this.forEachNode((node) => {
+      if (this.inDegree(node) === 0 && this.outDegree(node) === 0) {
+        orphanNodes.add(node)
+      }
+    })
+
+    orphanNodes.forEach((node) => {
+      this.removeNode(node)
+    })
+
+    return orphanNodes
   }
 
   // Get all leaf nodes (i.e. destination paths) reachable from the node provided

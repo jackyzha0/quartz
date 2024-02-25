@@ -3,10 +3,9 @@ import { QuartzComponent, QuartzComponentProps } from "./types"
 import HeaderConstructor from "./Header"
 import BodyConstructor from "./Body"
 import { JSResourceToScriptElement, StaticResources } from "../util/resources"
-import { FullSlug, RelativeURL, joinSegments, normalizeHastElement } from "../util/path"
+import { clone, FullSlug, RelativeURL, joinSegments, normalizeHastElement } from "../util/path"
 import { visit } from "unist-util-visit"
 import { Root, Element, ElementContent } from "hast"
-import { QuartzPluginData } from "../plugins/vfile"
 import { GlobalConfiguration } from "../cfg"
 import { i18n } from "../i18n"
 
@@ -52,18 +51,6 @@ export function pageResources(
   }
 }
 
-let pageIndex: Map<FullSlug, QuartzPluginData> | undefined = undefined
-function getOrComputeFileIndex(allFiles: QuartzPluginData[]): Map<FullSlug, QuartzPluginData> {
-  if (!pageIndex) {
-    pageIndex = new Map()
-    for (const file of allFiles) {
-      pageIndex.set(file.slug!, file)
-    }
-  }
-
-  return pageIndex
-}
-
 export function renderPage(
   cfg: GlobalConfiguration,
   slug: FullSlug,
@@ -71,14 +58,18 @@ export function renderPage(
   components: RenderComponents,
   pageResources: StaticResources,
 ): string {
+  // make a deep copy of the tree so we don't remove the transclusion references
+  // for the file cached in contentMap in build.ts
+  const root = clone(componentData.tree) as Root
+
   // process transcludes in componentData
-  visit(componentData.tree as Root, "element", (node, _index, _parent) => {
+  visit(root, "element", (node, _index, _parent) => {
     if (node.tagName === "blockquote") {
       const classNames = (node.properties?.className ?? []) as string[]
       if (classNames.includes("transclude")) {
         const inner = node.children[0] as Element
         const transcludeTarget = inner.properties["data-slug"] as FullSlug
-        const page = getOrComputeFileIndex(componentData.allFiles).get(transcludeTarget)
+        const page = componentData.allFiles.find((f) => f.slug === transcludeTarget)
         if (!page) {
           return
         }
@@ -180,6 +171,9 @@ export function renderPage(
       }
     }
   })
+
+  // set componentData.tree to the edited html that has transclusions rendered
+  componentData.tree = root
 
   const {
     head: Head,

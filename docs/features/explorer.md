@@ -42,7 +42,7 @@ When passing in your own options, you can omit any or all of these fields if you
 
 Want to customize it even more?
 
-- Removing table of contents: remove `Component.Explorer()` from `quartz.layout.ts`
+- Removing explorer: remove `Component.Explorer()` from `quartz.layout.ts`
   - (optional): After removing the explorer component, you can move the [[table of contents | Table of Contents]] component back to the `left` part of the layout
 - Changing `sort`, `filter` and `map` behavior: explained in [[#Advanced customization]]
 - Component:

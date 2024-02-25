@@ -38,12 +38,21 @@ export const FolderPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpt
     getQuartzComponents() {
       return [Head, Header, Body, ...header, ...beforeBody, pageBody, ...left, ...right, Footer]
     },
-    async getDependencyGraph(_ctx, _content, _resources) {
+    async getDependencyGraph(_ctx, content, _resources) {
       // Example graph:
-      // nested/file.md --> nested/file.html
-      //          \-------> nested/index.html
-      // TODO implement
-      return new DepGraph<FilePath>()
+      // nested/file.md --> nested/index.html
+      // nested/file2.md ------^
+      const graph = new DepGraph<FilePath>()
+
+      content.map(([_tree, vfile]) => {
+        const slug = vfile.data.slug
+        const folderName = path.dirname(slug ?? "") as SimpleSlug
+        if (slug && folderName !== "." && folderName !== "tags") {
+          graph.addEdge(vfile.data.filePath!, joinSegments(folderName, "index.html") as FilePath)
+        }
+      })
+
+      return graph
     },
     async emit(ctx, content, resources): Promise<FilePath[]> {
       const fps: FilePath[] = []
@@ -86,6 +95,7 @@ export const FolderPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpt
         const externalResources = pageResources(pathToRoot(slug), resources)
         const [tree, file] = folderDescriptions[folder]
         const componentData: QuartzComponentProps = {
+          ctx,
           fileData: file.data,
           externalResources,
           cfg,
