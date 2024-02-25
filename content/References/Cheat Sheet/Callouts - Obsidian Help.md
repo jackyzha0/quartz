@@ -8,7 +8,7 @@ tags:
   - alerts
 public: true
 created: 2024-02-03
-updated: 2024-02-11
+updated: 2024-02-25
 ---
 %%
 [[Obsidian|Obsidian]]
@@ -18,7 +18,7 @@ Use callouts to include additional content without breaking the flow of your not
 
 To create a callout, add `[!info]` to the first line of a blockquote, where `info` is the *type identifier*. The type identifier determines how the callout looks and feels. To see all available types, refer to [Supported types](https://help.obsidian.md/Editing+and+formatting/Callouts#Supported%20types).
 
-```
+```markdown
 > [!info]
 > Here's a callout block.
 > It supports **Markdown**, [[Internal link|Wikilinks]], and [[Embed files|embeds]]!
@@ -35,7 +35,7 @@ If you're also using the Admonitions plugin, you should update it to at least ve
 
 By default, the title of the callout is its type identifier in title case. You can change it by adding text after the type identifier:
 
-```
+```markdown
 > [!tip] Callouts can have custom titles
 > Like this one.
 ```
@@ -48,7 +48,7 @@ Like this one.
 
 You can even omit the body to create title-only callouts:
 
-```
+```markdown
 > [!tip] Title-only callout
 ```
 
@@ -60,7 +60,7 @@ You can make a callout foldable by adding a plus (+) or a minus (-) directly aft
 
 A plus sign expands the callout by default, and a minus sign collapses it instead.
 
-```
+```markdown
 > [!faq]- Are callouts foldable?
 > Yes! In a foldable callout, the contents are hidden when the callout is collapsed.
 ```
@@ -72,7 +72,7 @@ A plus sign expands the callout by default, and a minus sign collapses it instea
 
 You can nest callouts in multiple levels.
 
-```
+```markdown
 > [!question] Can callouts be nested?
 > > [!todo] Yes!, they can.
 > > > [!example]  You can even use multiple layers of nesting.
@@ -84,7 +84,7 @@ You can even use multiple layers of nesting.
 
 To define a custom callout, create the following CSS block:
 
-```
+```css
 .callout[data-callout="custom-question-type"] {
     --callout-color: 0, 0, 0;
     --callout-icon: lucide-alert-circle;
@@ -98,7 +98,7 @@ The value of the `data-callout` attribute is the type identifier you want to use
 
 Instead of using a Lucide icon, you can also use a SVG element as the callout icon.
 
-```
+```css
 --callout-icon: '<svg>...custom svg...</svg>';
 ```
 
@@ -113,7 +113,7 @@ ___
 > [!note]
 > Lorem ipsum dolor sit amet
 
-```
+```markdown
 > [!note]
 > Lorem ipsum dolor sit amet
 ```
@@ -121,7 +121,7 @@ ___
 > [!abstract]
 > Lorem ipsum dolor sit amet
 
-```
+```markdown
 > [!abstract]
 > Lorem ipsum dolor sit amet
 ```
@@ -130,7 +130,7 @@ ___
 > [!info]
 > Lorem ipsum dolor sit amet
 
-```
+```markdown
 > [!info]
 > Lorem ipsum dolor sit amet
 ```
@@ -138,7 +138,7 @@ ___
 > [!todo]
 > Lorem ipsum dolor sit amet
 
-```
+```markdown
 > [!todo]
 > Lorem ipsum dolor sit amet
 ```
@@ -146,7 +146,7 @@ ___
 > [!tip]
 > Lorem ipsum dolor sit amet
 
-```
+```markdown
 > [!tip]
 > Lorem ipsum dolor sit amet
 ```
@@ -155,7 +155,7 @@ ___
 > [!success]
 > Lorem ipsum dolor sit amet
 
-```
+```markdown
 > [!success]
 > Lorem ipsum dolor sit amet
 ```
@@ -164,7 +164,7 @@ ___
 > [!question]
 > Lorem ipsum dolor sit amet
 
-```
+```markdown
 > [!question]
 > Lorem ipsum dolor sit amet
 ```
@@ -173,7 +173,7 @@ ___
 > [!warning]
 > Lorem ipsum dolor sit amet
 
-```
+```markdown
 > [!warning]
 > Lorem ipsum dolor sit amet
 ```
@@ -183,7 +183,7 @@ ___
 > [!failure]
 > Lorem ipsum dolor sit amet
 
-```
+```markdown
 > [!failure]
 > Lorem ipsum dolor sit amet
 ```
@@ -192,7 +192,7 @@ ___
 > [!danger]
 > Lorem ipsum dolor sit amet
 
-```
+```markdown
 > [!danger]
 > Lorem ipsum dolor sit amet
 ```
@@ -201,7 +201,7 @@ ___
 > [!bug]
 > Lorem ipsum dolor sit amet
 
-```
+```markdown
 > [!bug]
 > Lorem ipsum dolor sit amet
 ```
@@ -209,14 +209,14 @@ ___
 > [!example]
 > Lorem ipsum dolor sit amet
 
-```
+```markdown
 > [!example]
 > Lorem ipsum dolor sit amet
 ```
 ___
 > [!quote]
 > Lorem ipsum dolor sit amet
-```
+```markdown
 > [!quote]
 > Lorem ipsum dolor sit amet
 ```
