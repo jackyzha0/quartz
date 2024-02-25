@@ -12,7 +12,6 @@ updated: 2024-02-25
 - [[References/Cheat Sheet/Obsidian Footnotes.md|Obsidian Footnotes]]
 - [[References/Marvel Snap.md|Marvel Snap]]
 - [[References/Project Zomboid.md|Project Zomboid]]
-- [[References/Think Tank/BCE is Dumb.md|BCE is Dumb]]
 - [[References/Think Tank/Pacemaker Software.md|Pacemaker Software]]
 - [[References/Think Tank/Timelessness.md|Timelessness]]
 - [[References/Tutorial/How to extend C drive to claim unallocated space.md|How to extend C drive to claim unallocated space]]
