@@ -16,5 +16,5 @@ The pages are displayed using the `defaultListPageLayout` in `quartz.layouts.ts`
 ## API
 
 - Category: Emitter
-- Function name: `Plugin.AliasRedirects()`.
+- Function name: `Plugin.TagPage()`.
 - Source: [`quartz/plugins/emitters/tagPage.tsx`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/tagPage.tsx).
