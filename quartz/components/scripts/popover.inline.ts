@@ -47,8 +47,8 @@ async function mouseEnterHandler(
   }
 
   if (!response) return
-  const contentType = response.headers.get("Content-Type")
-  const contentTypeCategory = contentType?.split("/")[0] ?? "text"
+  const [contentType] = response.headers.get("Content-Type")!.split(";")
+  const [contentTypeCategory, typeInfo] = contentType.split("/")
 
   const popoverElement = document.createElement("div")
   popoverElement.classList.add("popover")
@@ -56,18 +56,26 @@ async function mouseEnterHandler(
   popoverInner.classList.add("popover-inner")
   popoverElement.appendChild(popoverInner)
 
-  popoverInner.dataset.contentType = contentTypeCategory
+  popoverInner.dataset.contentType = contentType ?? undefined
 
   switch (contentTypeCategory) {
     case "image":
       const img = document.createElement("img")
-
-      response.blob().then((blob) => {
-        img.src = URL.createObjectURL(blob)
-      })
+      img.src = targetUrl.toString()
       img.alt = targetUrl.pathname
 
       popoverInner.appendChild(img)
+      break
+    case "application":
+      switch (typeInfo) {
+        case "pdf":
+          const pdf = document.createElement("iframe")
+          pdf.src = targetUrl.toString()
+          popoverInner.appendChild(pdf)
+          break
+        default:
+          break
+      }
       break
     default:
       const contents = await response.text()
