@@ -3,11 +3,11 @@ tags:
   - person/pc  
 shortRepo: ash  
 publish-ash: true  
-STR: 0  
+STR: 1  
 dex: 0  
 INT: 0  
-WIS: 0  
-CHA: 0  
+WIS: 1  
+CHA: 2  
 birthday: 2024-02-21  
 test: testtttt  
 test2:  
@@ -24,16 +24,16 @@ A brilliant scholar from [[Bur-Vusamyr|Bur-Vusamyr]]. Travelling with [[Ash In t
   
 | Name | Stat                           | Con                                         |  
 | ---- | ------------------------------ | ------------------------------------------- |  
-| STR  |                    |   |  
+| STR  | 1                   |   |  
 | DEX  |                   |   |  
 | INT  |   |   |  
-| WIS  |  |   |  
-| CHA  |  |   |  
+| WIS  | 1 |   |  
+| CHA  | 2 |   |  
   
 2024-02-21T00:00:00.000-06:00  
 testtttt  
 this is a test,another,test,yes  
 another  
 2024-02-15T17:09:00.000-06:00  
-  
+1  
  
