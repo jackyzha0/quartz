@@ -1,7 +1,7 @@
 import { i18n } from "../../i18n"
-import { QuartzComponentConstructor, QuartzComponentProps } from "../types"
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "../types"
 
-function NotFound({ cfg }: QuartzComponentProps) {
+const NotFound: QuartzComponent = ({ cfg }: QuartzComponentProps) => {
   return (
     <article class="popover-hint">
       <h1>404</h1>

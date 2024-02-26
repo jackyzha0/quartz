@@ -39,6 +39,28 @@ describe("DepGraph", () => {
     })
   })
 
+  describe("mergeGraph", () => {
+    test("merges two graphs", () => {
+      const graph = new DepGraph<string>()
+      graph.addEdge("A.md", "A.html")
+
+      const other = new DepGraph<string>()
+      other.addEdge("B.md", "B.html")
+
+      graph.mergeGraph(other)
+
+      const expected = {
+        nodes: ["A.md", "A.html", "B.md", "B.html"],
+        edges: [
+          ["A.md", "A.html"],
+          ["B.md", "B.html"],
+        ],
+      }
+
+      assert.deepStrictEqual(graph.export(), expected)
+    })
+  })
+
   describe("updateIncomingEdgesForNode", () => {
     test("merges when node exists", () => {
       // A.md -> B.md -> B.html
