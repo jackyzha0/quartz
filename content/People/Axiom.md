@@ -4,7 +4,7 @@ tags:
 shortRepo: ash  
 publish-ash: true  
 STR: 0  
-DEX: 0  
+dex: 0  
 INT: 0  
 WIS: 0  
 CHA: 0  
@@ -16,7 +16,7 @@ A brilliant scholar from [[Bur-Vusamyr|Bur-Vusamyr]]. Travelling with [[Ash In t
 | Name | Stat                           | Con                                         |  
 | ---- | ------------------------------ | ------------------------------------------- |  
 | STR  |                    |   |  
-| DEX  |  |   |  
+| DEX  |                   |   |  
 | INT  |   |   |  
 | WIS  |  |   |  
 | CHA  |  |   |  
