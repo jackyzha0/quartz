@@ -16,8 +16,7 @@ If you get a dead link or something just isn't working correctly you can email m
 In this dropdown menu is a list of my last **50** notes modified by [[Adam|me]]
 
 > [!example]- &nbsp;Latest Notes
->  - [[index.md|index]]
-> - [[References/Cheat Sheet/Callouts - Obsidian Help.md|Callouts - Obsidian Help]]
+>  - [[References/Cheat Sheet/Callouts - Obsidian Help.md|Callouts - Obsidian Help]]
 > - [[References/Cheat Sheet/Coding/Flutter/Data Class Example.md|Data Class Example]]
 > - [[References/Cheat Sheet/Coding/Flutter/Fix shared_preferences bug Flutter - XCode.md|Fix shared_preferences bug Flutter - XCode]]
 > - [[References/Cheat Sheet/Coding/TMUX.md|TMUX]]
@@ -35,5 +34,4 @@ In this dropdown menu is a list of my last **50** notes modified by [[Adam|me]]
 > - [[References/Tutorial/Keep Script Running in Background.md|Keep Script Running in Background]]
 > - [[References/Tutorial/Metadata From Other File.md|Metadata From Other File]]
 > - [[References/Tutorial/Setting Up SSL - Cloudflare.md|Setting Up SSL - Cloudflare]]
-> - [[_Inbox/Changelog.md|Changelog]]
 > 
