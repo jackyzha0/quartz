@@ -15,7 +15,7 @@ A brilliant scholar from [[Bur-Vusamyr|Bur-Vusamyr]]. Travelling with [[Ash In t
   
 | Name | Stat                           | Con                                         |  
 | ---- | ------------------------------ | ------------------------------------------- |  
-| STR  |   |   |  
+| STR  |                    |   |  
 | DEX  |  |   |  
 | INT  |   |   |  
 | WIS  |  |   |  
