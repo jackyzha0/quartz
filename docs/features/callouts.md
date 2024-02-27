@@ -1,7 +1,7 @@
 ---
 title: Callouts
 tags:
-  - plugin/transformer
+  - feature/transformer
 ---
 
 Quartz supports the same Admonition-callout syntax as Obsidian.
@@ -19,12 +19,13 @@ This includes
 See [documentation on supported types and syntax here](https://help.obsidian.md/Editing+and+formatting/Callouts).
 
 > [!warning]
-> Wondering why callouts may not be showing up even if you have them enabled? You may need to reorder your plugins so that `Plugin.ObsidianFlavoredMarkdown()` is _after_ `Plugin.SyntaxHighlighting()`.
+> Wondering why callouts may not be showing up even if you have them enabled? You may need to reorder your plugins so that [[ObsidianFlavoredMarkdown]] is _after_ [[SyntaxHighlighting]].
 
 ## Customization
 
-- Disable callouts: simply pass `callouts: false` to the plugin: `Plugin.ObsidianFlavoredMarkdown({ callouts: false })`
-- Editing icons: `quartz/styles/callouts.scss`
+The callouts are a functionality of the [[ObsidianFlavoredMarkdown]] plugin. See the plugin page for how to enable or disable them.
+
+You can edit the icons by customizing `quartz/styles/callouts.scss`.
 
 ### Add custom callouts
 
@@ -55,50 +56,41 @@ By default, custom callouts are handled by applying the `note` style. To make fa
 > >
 > > > [!example] You can even use multiple layers of nesting.
 
-> [!EXAMPLE] Examples
->
-> Aliases: example
+> [!note]
+> Aliases: "note"
 
-> [!note] Notes
->
-> Aliases: note
+> [!abstract]
+> Aliases: "abstract", "summary", "tldr"
 
-> [!abstract] Summaries
->
-> Aliases: abstract, summary, tldr
+> [!info]
+> Aliases: "info"
 
-> [!info] Info
->
-> Aliases: info, todo
+> [!todo]
+> Aliases: "todo"
 
-> [!tip] Hint
->
-> Aliases: tip, hint, important
+> [!tip]
+> Aliases: "tip", "hint", "important"
 
-> [!success] Success
->
-> Aliases: success, check, done
+> [!success]
+> Aliases: "success", "check", "done"
 
-> [!question] Question
->
-> Aliases: question, help, faq
+> [!question]
+> Aliases: "question", "help", "faq"
 
-> [!warning] Warning
->
-> Aliases: warning, caution, attention
+> [!warning]
+> Aliases: "warning", "attention", "caution"
 
-> [!failure] Failure
->
-> Aliases: failure, fail, missing
+> [!failure]
+> Aliases: "failure", "missing", "fail"
 
-> [!danger] Error
->
-> Aliases: danger, error
+> [!danger]
+> Aliases: "danger", "error"
 
-> [!bug] Bug
->
-> Aliases: bug
+> [!bug]
+> Aliases: "bug"
 
-> [!quote] Quote
->
-> Aliases: quote, cite
+> [!example]
+> Aliases: "example"
+
+> [!quote]
+> Aliases: "quote", "cite"
