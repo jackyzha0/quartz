@@ -8,7 +8,7 @@ tags:
 
 # Theorem you need know
 
-* [🧷Resonant circuit](Physics/Electromagnetism/Resonant_circuit.md)
+* [🧷Resonant circuit](physics/Electromagnetism/Resonant_circuit.md)
 
 # What is antenna
 
@@ -117,11 +117,11 @@ radiation要考虑两个方面，一方面激发电场那边提供的电子的�
 > pulse就像你丢了一颗石头下去，弦波就像你按照周期去丢
  
 > [!hint] 
-> 根据[Maxwell's equations](Physics/Electromagnetism/Maxwells_equation.md)
+> 根据[Maxwell's equations](physics/Electromagnetism/Maxwells_equation.md)
 > 
 > 当电磁波在导线中存在的时候，它是需要时变的电流或者说是加减速的电荷来support。在传输线里，需要source才能有场；
 > 
-> 但是在解[Maxwell's equations](Physics/Electromagnetism/Maxwells_equation.md)的时候，是有一组homogeneous的解，这组解指的是，你不需要source的存在的场，这个场指的是free-space wave；
+> 但是在解[Maxwell's equations](physics/Electromagnetism/Maxwells_equation.md)的时候，是有一组homogeneous的解，这组解指的是，你不需要source的存在的场，这个场指的是free-space wave；
 > 
 > 所以，天线本质上就是一个interface，将导线内需要source的场，变成不需要source的场，也就是free-space wave
 

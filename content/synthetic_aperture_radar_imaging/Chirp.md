@@ -96,7 +96,7 @@ $$
 
 ## Hyperbolic
 
-双曲线线性调频用于雷达应用，因为它们在被多普勒效应([Doppler Effect](Physics/Wave/Doppler_Effect.md))扭曲后显示出最大的匹配滤波器([Matched filter](https://en.wikipedia.org/wiki/Matched_filter))响应。
+双曲线线性调频用于雷达应用，因为它们在被多普勒效应([Doppler Effect](physics/Wave/Doppler_Effect.md))扭曲后显示出最大的匹配滤波器([Matched filter](https://en.wikipedia.org/wiki/Matched_filter))响应。
 
 signal frequency:
 

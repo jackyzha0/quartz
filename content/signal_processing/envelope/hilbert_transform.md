@@ -75,7 +75,7 @@ $$
 ![](signal_processing/envelope/attachments/Pasted%20image%2020240102150350.png)
 
 
-The Hilbert transform is given by the [Cauchy principal value](Math/real_analysis/cauchy_principal_value.md) of the convolution with the function $1/(\pi t)$.
+The Hilbert transform is given by the [Cauchy principal value](math/real_analysis/cauchy_principal_value.md) of the convolution with the function $1/(\pi t)$.
 
 ## Geometrical meaning of HT
 
