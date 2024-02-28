@@ -11,5 +11,5 @@ private/
 replit.nix
 
 .idea/
-!content/.gitkeep
 content/
+!content/.gitkeep
