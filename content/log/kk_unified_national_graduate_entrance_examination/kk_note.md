@@ -30,3 +30,13 @@ tags:
 
 
 ![](log/kk_unified_national_graduate_entrance_examination/attachments/Pasted%20image%2020240225142025.png)
+
+
+## 2023.02.27
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/db79dadfffc65eb0f4c80195d92f5aa.jpg)
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/80de94d625273fa3b0c393d70e10b18.jpg)
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/ece14a615a96dddff3a74270d475afc.jpg)
+
