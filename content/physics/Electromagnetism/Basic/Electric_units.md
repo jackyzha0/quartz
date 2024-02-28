@@ -18,7 +18,7 @@ $$
 * $X_L$  = inductive reactance
 * $X_C$  = capacitive reactance
 
-![](physics/Electromagnetism/Basic/attachments/Pasted%20image%2020230330163734.png)
+![](physics/electromagnetism/Basic/attachments/Pasted%20image%2020230330163734.png)
 
 **阻抗**是电路中电阻、电感、电容对交流电的阻碍作用的统称。阻抗是一个复数，实部称为**电阻**，虚部称为**电抗**；其中电容在电路中对交流电所起的阻碍作用称为**容抗**，电感在电路中对交流电所起的阻碍作用称为**感抗**，容抗和感抗合称为**电抗**。
 

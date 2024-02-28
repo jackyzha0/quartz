@@ -21,7 +21,7 @@ tags:
 # What is MTF Curve
 
 
-调制传递函数 (MTF) 曲线是一种信息密集型指标(information-dense metric)，反映了镜头如何*将对比度再现为空间频率（分辨率）的函数*。MTF Curve在一组设定好的基础参数下，提供一个composite view，关于光学像差([**optical aberrations**](physics/Optical/optical_abberation.md))如何影响镜头性能。
+调制传递函数 (MTF) 曲线是一种信息密集型指标(information-dense metric)，反映了镜头如何*将对比度再现为空间频率（分辨率）的函数*。MTF Curve在一组设定好的基础参数下，提供一个composite view，关于光学像差([**optical aberrations**](physics/optical/optical_abberation.md))如何影响镜头性能。
 
 通过MTF图，我们可以知道
 
@@ -41,11 +41,11 @@ tags:
 
 大家应该知道，一个镜头的中心比边缘成像能力要好很多，因此只测试镜头的中心或边缘，是不能代表镜头的好坏的，所以厂家会从中心到边缘，选取多个点进行测试。如下图，尼康的全画幅机器，选取了距离中心5毫米，10mm，15mm，20mm的点测试。如果是APS-C画幅，因为感光元件小，会选取3mm，6mm，9mm，12mm等，不同厂家可能不一样。
 
-![](photography/Basic/attachments/Pasted%20image%2020230424143258.png)
+![](photography/basic/attachments/Pasted%20image%2020230424143258.png)
 
 测试方法一般使用白色背景、黑色直线
 
-![](photography/Basic/attachments/Pasted%20image%2020230424143425.png)
+![](photography/basic/attachments/Pasted%20image%2020230424143425.png)
 
 * **粗线**用来测试**对比度**，粗度为 10 lines/mm
 * **细线**用来测试**分辨率**，粗度为 30 lines/mm
@@ -53,11 +53,11 @@ tags:
 
 下图的成像质量是越来越差：
 
-![](photography/Basic/attachments/Pasted%20image%2020230424143543.png)
+![](photography/basic/attachments/Pasted%20image%2020230424143543.png)
 
 # How to read MTF curve
 
-![](photography/Basic/attachments/Pasted%20image%2020230424143711.png)
+![](photography/basic/attachments/Pasted%20image%2020230424143711.png)
 
 横坐标代表了到镜头中心的距离，纵坐标代表了对比度和分辨率的值。
 
@@ -67,7 +67,7 @@ tags:
 
 蓝线是通过**细线**测试得到的，代表**分辨率**。
 
-![](photography/Basic/attachments/Pasted%20image%2020230424143940.png)
+![](photography/basic/attachments/Pasted%20image%2020230424143940.png)
 
 普通的镜头的曲线应该是下面这样的(红线代表对比度，蓝线代表分辨率)，在中心点，镜头的对比度和分辨率最好，越往边缘越差。
 
@@ -77,11 +77,11 @@ tags:
 
 有波浪就代表有像场弯曲，越大就越严重，实际情况一般问题不大。
 
-![](photography/Basic/attachments/Pasted%20image%2020230424144046.png)
+![](photography/basic/attachments/Pasted%20image%2020230424144046.png)
 
 最常见的MTF曲线如图：
 
-![](photography/Basic/attachments/Pasted%20image%2020230424144112.png)
+![](photography/basic/attachments/Pasted%20image%2020230424144112.png)
 
 1. 红线，10lines/mm，也就是上面测试时说的粗线，用来测对比度的，从镜头中心到边缘，数值逐渐降低，表明镜头的对比度从镜头到边缘，逐渐降低。
 2. 分辨率，从中心到边缘逐渐降低

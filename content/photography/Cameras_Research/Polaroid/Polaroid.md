@@ -9,7 +9,7 @@ tags:
 
 # Polaroid Background
 
-![](photography/Cameras_Research/Polaroid/attachments/Pasted%20image%2020230330195031.png)
+![](photography/cameras_Research/Polaroid/attachments/Pasted%20image%2020230330195031.png)
 
 Polaroid是一家成立于1937年的美国相机及照片制造公司，该公司曾经是即时相机市场的领导者。Polaroid公司在20世纪50年代推出了第一台即时相机，并在随后的几十年里不断推出各种型号的即时相机和胶片，成为了全球广泛使用的品牌。
 
@@ -21,5 +21,5 @@ Polaroid最著名的特点之一是它的“即时影像”技术，这种技术
 
 # Polaroid Camera Review
 
-* [Polaroid one600](photography/Cameras_Research/Polaroid/Polaroid_one600.md)
-* [Polaroid Integral 600 Series](photography/Cameras_Research/Polaroid/Polaroid_600.md)
+* [Polaroid one600](photography/cameras_Research/Polaroid/Polaroid_one600.md)
+* [Polaroid Integral 600 Series](photography/cameras_Research/Polaroid/Polaroid_600.md)

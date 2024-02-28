@@ -6,4 +6,4 @@ tags:
 - MOC
 ---
 
-* [🖼How to show Polaroid photo in a great way](photography/Aesthetic/Polaroid/Polaroid_showcase.md)
+* [🖼How to show Polaroid photo in a great way](photography/aesthetic/Polaroid/Polaroid_showcase.md)

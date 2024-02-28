@@ -14,7 +14,7 @@ tags:
 
 要解释像差如何使图像模糊，首先要解释一下：什么是混淆圈？ 当来自目标的光点到达镜头，然后会聚在传感器上时，它会很清晰。 否则，如果它在传感器之前或之后会聚，则传感器上的光分布会更广。 这可以在图 1 中看到，其中可以看到点光源会聚在传感器上，但随着传感器位置的变化，沿传感器散布的光量也会发生变化。
 
-![](physics/Optical/attachments/Fig_1_Circles_of_confusion.gif)
+![](physics/optical/attachments/Fig_1_Circles_of_confusion.gif)
 
 光线越分散，图像的焦点就越少。 除非光圈很小，否则图像中彼此距离较大的目标通常会使背景或前景失焦。 这是因为会聚在前景中的光与来自背景中较远目标的光会聚在不同的点。
 
@@ -25,7 +25,7 @@ tags:
 
 彗形像差，又称彗星像差，此种像差的分布形状以类似于彗星的拖尾而得名。
 
-![](physics/Optical/attachments/Pasted%20image%2020230424110844.png)
+![](physics/optical/attachments/Pasted%20image%2020230424110844.png)
 
 这是一些透镜固有的或是光学设计造成的缺点，导致离开光轴的点光源，例如恒星，产生变形。特别是，彗形像差被定义为偏离入射光孔的放大变异。在折射或衍射的光学系统，特别是在宽光谱范围的影像中，彗形像差是波长的函数。
 
@@ -35,7 +35,7 @@ tags:
 
 这可以在图 3 中看到，其中两个焦点由红色水平面和蓝色垂直面表示。 图像中的最佳清晰度点将在这两个点之间，其中任一平面的混淆圈都不太宽。
 
-![](physics/Optical/attachments/Pasted%20image%2020230424111226.png)
+![](physics/optical/attachments/Pasted%20image%2020230424111226.png)
 
 当光学器件未对准时，散光会导致图像的侧面和边缘失真。 它通常被描述为在查看图像中的线条时缺乏清晰度。
 
@@ -47,7 +47,7 @@ tags:
 
 场曲是图像平面由于多个焦点而变得不平坦的结果。
 
-![](physics/Optical/attachments/Pasted%20image%2020230424112159.png)
+![](physics/optical/attachments/Pasted%20image%2020230424112159.png)
 
 相机镜头已在很大程度上纠正了这一点，但在许多镜头上可能会发现一些场曲。 一些传感器制造商实际上正在研究可以校正弯曲焦点区域的弯曲传感器。 这种设计将允许传感器校正像差，而不需要以这种精度生产昂贵的镜头设计。 通过实施这种类型的传感器，可以使用更便宜的镜头来产生高质量的结果。 这方面的真实例子可以在开普勒太空天文台看到，那里使用弯曲的传感器阵列来校正望远镜的大型球面光学元件。
 
@@ -59,7 +59,7 @@ tags:
 
 具有桶形失真的图像的边缘和侧面远离中心弯曲。 这在视觉上看起来像是图像中有一个凸起，因为它捕获了弯曲视场 (FoV, field of view) 的外观。 例如，当在高层建筑的高处使用较低焦距的镜头（也称为广角镜头）时，可以捕捉到更宽的 FoV。 如图 5 所示，使用产生非常扭曲和宽 FoV 的鱼眼镜头时，这种情况最为夸张。在此图像中，网格线用于帮助说明失真效果如何在靠近侧面的地方向外产生更拉伸的图像， 边缘。
 
-![](physics/Optical/attachments/Pasted%20image%2020230424113453.png)
+![](physics/optical/attachments/Pasted%20image%2020230424113453.png)
 
 
 ### Pincushion distortion （枕型畸变）
@@ -68,7 +68,7 @@ tags:
 
 这种形式的像差最常见于焦距较长的远摄镜头。
 
-![](physics/Optical/attachments/Pasted%20image%2020230424113838.png)
+![](physics/optical/attachments/Pasted%20image%2020230424113838.png)
 
 ### Mustache distortion
 
@@ -81,13 +81,13 @@ tags:
 
 光的颜色代表特定波长的光。 由于折射，彩色图像将有多个波长进入镜头并聚焦在不同的点。 纵向或轴向色差是由不同波长聚焦在沿光轴的不同点引起的。 波长越短，其焦点将离镜头越近，而波长越远，则反之，离镜头越远，如图 8 所示。通过引入较小的孔径，进入的光仍可能聚焦在不同的位置 点，但“混淆圈”的宽度（直径）会小得多，导致不那么剧烈的模糊。
 
-![](physics/Optical/attachments/Fig_8_Chromatic_abberation_animation.gif)
+![](physics/optical/attachments/Fig_8_Chromatic_abberation_animation.gif)
 
 ### Transverse / lateral aberration
 
 导致不同波长沿图像平面分布的离轴光是横向或横向色差。 这会导致图像中主体边缘出现彩色边纹。 这比纵向色差更难校正。
 
-![](physics/Optical/attachments/Fig_9_Chromatic_aberration_lateral.gif)
+![](physics/optical/attachments/Fig_9_Chromatic_aberration_lateral.gif)
 
 它可以使用引入不同折射率的消色差双合透镜来固定。 通过将可见光谱的两端置于一个焦点上，可以消除色边。 对于横向和纵向色差，减小光圈的大小也有帮助。 此外，在高对比度环境（即具有非常亮的背景的图像）中不成像目标可能是有益的。 在显微镜中，镜头可能使用复消色差透镜 (APO) 而不是消色差透镜，消色差透镜使用三个透镜元件来校正入射光的所有波长。 当颜色最重要时，确保减轻色差将产生最佳效果。
 

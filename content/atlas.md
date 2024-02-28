@@ -15,9 +15,9 @@ tags:
 
 * [Data Structure and Algorithm MOC](computer_sci/data_structure_and_algorithm/MOC.md)
 
-* [Hardware](computer_sci/Hardware/Hardware_MOC.md)
+* [Hardware](computer_sci/hardware/hardware_MOC.md)
 
-* [Physics](physics/Physics_MOC.md)
+* [Physics](physics/physics_MOC.md)
 
 * [Signal Processing](signal_processing/signal_processing_MOC.md)
 
@@ -41,7 +41,7 @@ tags:
 
 🛶 Also, he learn some knowledge about his hobbies:
 
-* [📷 Photography](photography/Photography_MOC.md)
+* [📷 Photography](photography/photography_MOC.md)
 
 * [📮文学](文学/文学_MOC.md)
 

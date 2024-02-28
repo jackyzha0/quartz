@@ -7,5 +7,5 @@ tags:
 - MOC
 ---
 
-* [🌸Flower & Girl](photography/Aesthetic/Portrait/Flower_and_Girl.md)
-* [👧🇰🇷Cute Portrait from Korean MV <Today's Mood>](photography/Aesthetic/Portrait/From%20Korean%20MV%20Todays_Mod.md)
+* [🌸Flower & Girl](photography/aesthetic/Portrait/Flower_and_Girl.md)
+* [👧🇰🇷Cute Portrait from Korean MV <Today's Mood>](photography/aesthetic/Portrait/From%20Korean%20MV%20Todays_Mod.md)

@@ -7,5 +7,5 @@ tags:
 - MOC
 ---
 
-* [🌅Warmth - Nguan](photography/Aesthetic/Style/Warmth_by_Nguan.md)
-* [📗 Grainy Green](photography/Aesthetic/Style/Grainy_Green.md)
+* [🌅Warmth - Nguan](photography/aesthetic/Style/Warmth_by_Nguan.md)
+* [📗 Grainy Green](photography/aesthetic/Style/Grainy_Green.md)

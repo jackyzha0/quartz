@@ -6,22 +6,22 @@ tags:
 - photography
 ---
 
-![](photography/Aesthetic/Landscape/Sea/attachments/Pasted%20image%2020230420014349.png)
+![](photography/aesthetic/Landscape/Sea/attachments/Pasted%20image%2020230420014349.png)
 
 
-![](photography/Aesthetic/Landscape/Sea/attachments/Pasted%20image%2020230420014354.png)
+![](photography/aesthetic/Landscape/Sea/attachments/Pasted%20image%2020230420014354.png)
 
 
-![](photography/Aesthetic/Landscape/Sea/attachments/Pasted%20image%2020230420014401.png)
+![](photography/aesthetic/Landscape/Sea/attachments/Pasted%20image%2020230420014401.png)
 
 
-![](photography/Aesthetic/Landscape/Sea/attachments/Pasted%20image%2020230420014613.png)
+![](photography/aesthetic/Landscape/Sea/attachments/Pasted%20image%2020230420014613.png)
 
 
-![](photography/Aesthetic/Landscape/Sea/attachments/Pasted%20image%2020230420014622.png)
+![](photography/aesthetic/Landscape/Sea/attachments/Pasted%20image%2020230420014622.png)
 
 
-![](photography/Aesthetic/Landscape/Sea/attachments/Pasted%20image%2020230420014634.png)
+![](photography/aesthetic/Landscape/Sea/attachments/Pasted%20image%2020230420014634.png)
 
 # Reference
 

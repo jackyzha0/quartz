@@ -8,7 +8,7 @@ tags:
 ---
 
 
-![](photography/Cameras_Research/Polaroid/attachments/Pasted%20image%2020230330195707.png)
+![](photography/cameras_Research/Polaroid/attachments/Pasted%20image%2020230330195707.png)
 
 # Specifications
 

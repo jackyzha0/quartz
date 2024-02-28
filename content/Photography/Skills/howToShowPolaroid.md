@@ -6,4 +6,4 @@ tags:
  - skill
 ---
 
-* [宝丽来翻拍9宫格](photography/Aesthetic/Polaroid/Polaroid_showcase.md)
+* [宝丽来翻拍9宫格](photography/aesthetic/Polaroid/Polaroid_showcase.md)
