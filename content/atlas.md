@@ -6,7 +6,7 @@ tags:
 
 🚧 There are notebooks about his research career:
 
-* [Deep Learning & Machine Learning](computer_sci/deep_learning_and_machine_learning/Deep%20_Learning_MOC.md)
+* [Deep Learning & Machine Learning](computer_sci/deep_learning_and_machine_learning/deep_learning_MOC.md)
 
 * [[synthetic_aperture_radar_imaging/SAR_MOC| Synthetic Aperture Radar(SAR) Imaging]]
 
