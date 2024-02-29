@@ -18,7 +18,7 @@ Besides just being better at it, letting the model leverage what it knows to mak
 	- Theory of mind predictions are often replete with assessments of emotion, desire, belief, value, aesthetic, preference, knowledge, etc. That means they seek to capture a range within a distribution. A slice of user identity.
 	- This is much richer than trying (& likely failing) to generate a single point estimate (like in verbatim prediction) and includes more variance. Therefore there's a higher probability you identify something useful by trusting the model to flex its emergent strengths.  
 
-2. **Learning**
+2. **Learning** ^555815
 	- That high variance means there's more to be wrong (& right) about. More content = more claims, which means more opportunity to learn. 
 	- Being wrong here is a feature, not a bug; comparing those prediction errors with reality are how you know what you need to understand about the user in the future to get to ground truth.  
 
