@@ -7,20 +7,6 @@ tag:
 - music
 ---
 
-  <style>
-    p {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-
-    a {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-  </style>
-
-Music links usually link to apple music
-
 > [!quote] 
 > From a video talking about 坂本龙一 by [HOPICO](https://www.bilibili.com/video/BV1pa4y1T7v2/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=c47136abc78922800b17d6ce79d6e19f) 
 > 

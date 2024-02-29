@@ -7,19 +7,6 @@ tags:
 - feeling
 ---
 
-  <style>
-    p {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-
-    a {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-  </style>
-
-
 > [!quote] 
 >  From [余华](https://www.bilibili.com/video/BV15c411Q7Mb/?spm_id_from=333.999.0.0&vd_source=c47136abc78922800b17d6ce79d6e19f)
 >  

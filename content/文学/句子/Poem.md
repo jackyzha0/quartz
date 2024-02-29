@@ -6,19 +6,6 @@ tags:
 - poem
 ---
 
-  <style>
-    p {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-
-    a {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-  </style>
-
-
 > [!quote] 
 > 李白《清平乐》<br>
 > 画堂晨起，来报雪花坠。高卷帘栊看佳瑞，皓色远迷庭砌。  <br>

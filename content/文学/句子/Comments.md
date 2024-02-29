@@ -6,18 +6,6 @@ tags:
 - commets
 ---
 
-  <style>
-    p {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-
-    a {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-  </style>
-
 > [!quote] 
 >  From comments
 >  

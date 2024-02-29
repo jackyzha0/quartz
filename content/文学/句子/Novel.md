@@ -6,19 +6,6 @@ tag:
 - 摘抄
 ---
 
-  <style>
-    p {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-
-    a {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-  </style>
-
-
 > [!quote] 
 > From CC98, credits to someone 
 > 

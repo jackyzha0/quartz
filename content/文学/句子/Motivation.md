@@ -6,20 +6,6 @@ tags:
 - motivation
 ---
 
-  <style>
-    p {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-
-    a {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-  </style>
-
-
-
 > [!quote] 
 > From [火柴钰's Comment ](https://www.bilibili.com/video/BV1634y1N78j/?spm_id_from=333.337.search-card.all.click) 
 > 

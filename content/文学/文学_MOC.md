@@ -5,18 +5,6 @@ tags:
 - 文学
 ---
 
-  <style>
-    p {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-
-    a {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-  </style>
-
 In this MOC, it shows you the path to what I record for some interesting sentences, including Chinese and English, even Japanese.
 
 [🌌句子](文学/句子/句子.md)

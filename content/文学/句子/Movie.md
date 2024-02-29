@@ -6,18 +6,6 @@ tags:
 - 摘抄
 ---
 
-  <style>
-    p {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-
-    a {
-        font-family: Source Sans Pro, SimSun;
-        font-variant-east-asian: traditional;
-    }
-  </style>
-
 > [!quote] 
 >  铃芽之旅
 >  
