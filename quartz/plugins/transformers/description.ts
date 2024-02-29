@@ -21,17 +21,17 @@ export const Description: QuartzTransformerPlugin<Partial<Options> | undefined> 
       return [
         () => {
           return async (tree: HTMLRoot, file) => {
-            const frontMatterDescription = file.data.frontmatter?.description
-            const text = escapeHTML(toString(tree))
+            let frontMatterDescription = file.data.frontmatter?.description
+            let text = escapeHTML(toString(tree))
 
             if (opts.replaceExternalLinks) {
-              frontMatterDescription?.replace(
-                /(?:https?:\/\/)?([\da-z\.-]+)\.(?:[a-z\.]{2,6})(?::\d+)?(?:[\/\w\.-]*)/g,
-                "$1",
+              frontMatterDescription = frontMatterDescription?.replace(
+                /(https?:\/\/)?(?<domain>[\da-z\.-]+)\.([a-z\.]{2,6})(:\d+)?([\/\w\.-]*)/g,
+                "$<domain>",
               )
-              text.replace(
-                /(?:https?:\/\/)?([\da-z\.-]+)\.(?:[a-z\.]{2,6})(?::\d+)?(?:[\/\w\.-]*)/g,
-                "$1",
+              text = text.replace(
+                /(https?:\/\/)?(?<domain>[\da-z\.-]+)\.([a-z\.]{2,6})(:\d+)?([\/\w\.-]*)/g,
+                "$<domain>",
               )
             }
 
@@ -54,7 +54,7 @@ export const Description: QuartzTransformerPlugin<Partial<Options> | undefined> 
               while (finalDesc.length < len) {
                 const sentence = sentences[sentenceIdx]
                 if (!sentence) break
-                finalDesc += sentence + "."
+                finalDesc += sentence.endsWith(".") ? sentence : sentence + "."
                 sentenceIdx++
               }
             }
