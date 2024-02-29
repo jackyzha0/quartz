@@ -8,17 +8,17 @@ public: true
 created: 2024-02-03
 updated: 2024-02-28
 ---
-tmux is a terminal multiplexer for Unix-like operating systems. It allows multiple terminal sessions to be accessed simultaneously in a single window. It is useful for running more than one command-line program at the same time.
+tmux is a terminal multiplexer for Unix-like operating systems. It allows multiple terminal sessions to be accessed simultaneously in a single window. It is useful for running more than one [[Command Line|comand-line]] program at the same time.
 ___
 # How to Install TMUX
 
-## Install TMUX on Ubuntu and Debian
+## Install TMUX on [[Ubuntu|Ubuntu]] and [[Debian|Debian]]
 
 ```shell
 sudo apt-get install tmux
 ```
 
-## Install TMUX on RedHat and CentOS
+## Install TMUX on [[RedHat|RedHat]] and [[CentOS|CentOS]]
 
 ```shell
 sudo yum install tmux
