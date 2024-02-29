@@ -1,5 +1,5 @@
 ---
-page-title: Callouts - Obsidian Help
+page-title: ZCallouts - Obsidian Help
 url: https://help.obsidian.md/Editing+and+formatting/Callouts
 date: 2023-07-06 18:28:59
 tags:
@@ -8,7 +8,7 @@ tags:
   - alerts
 public: true
 created: 2024-02-03
-updated: 2024-02-25
+updated: 2024-02-28
 ---
 %%
 [[Obsidian|Obsidian]]
