@@ -23,15 +23,27 @@ export const Description: QuartzTransformerPlugin<Partial<Options> | undefined> 
             const text = escapeHTML(toString(tree))
 
             const desc = frontMatterDescription ?? text
-            const sentences = desc.replace(/\s+/g, " ").split(".")
+            const sentences = desc.replace(/\s+/g, " ").split(/\.\s/)
             let finalDesc = ""
             let sentenceIdx = 0
             const len = opts.descriptionLength
-            while (finalDesc.length < len) {
-              const sentence = sentences[sentenceIdx]
-              if (!sentence) break
-              finalDesc += sentence + "."
-              sentenceIdx++
+
+            if (sentences[0].length >= len) {
+              const firstSentence = sentences[0].split(" ")
+              while (finalDesc.length < len) {
+                const sentence = firstSentence[sentenceIdx]
+                if (!sentence) break
+                finalDesc += sentence + " "
+                sentenceIdx++
+              }
+              finalDesc = finalDesc.trimEnd() + "..."
+            } else {
+              while (finalDesc.length < len) {
+                const sentence = sentences[sentenceIdx]
+                if (!sentence) break
+                finalDesc += sentence + "."
+                sentenceIdx++
+              }
             }
 
             file.data.description = finalDesc
