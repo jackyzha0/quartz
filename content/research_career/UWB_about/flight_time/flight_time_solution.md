@@ -4,12 +4,18 @@ tags:
   - UWB
   - signal-processing
   - VNA
+date: 2024-02-29
 ---
 
 
-# 
+https://github.com/PinkR1ver/UWB_echo_signal_stimulation_by_VNA
 
+I solve this problem, see above.
 
-# Reference
+$$
+t_2 = t_1 + t_0
+$$
+* $t_2$ Peak appearing time
+* $t_1$ Flight time
+* $t_0$ System delay
 
-* [KG, Rohde &. Schwarz GmbH &. Co. _Accurately Measure Your UWB Device’s Time of Flight_. https://www.rohde-schwarz.com/cz/applications/accurately-measure-your-uwb-device-s-time-of-flight-application-card_56279-1250689.html. Accessed 13 Dec. 2023.](https://www.rohde-schwarz.com/cz/applications/accurately-measure-your-uwb-device-s-time-of-flight-application-card_56279-1250689.html)
