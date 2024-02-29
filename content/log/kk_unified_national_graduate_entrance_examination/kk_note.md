@@ -40,3 +40,17 @@ tags:
 
 ![](log/kk_unified_national_graduate_entrance_examination/attachments/ece14a615a96dddff3a74270d475afc.jpg)
 
+## 2023.02.28
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/f5bfb6b49b88ebb0ca3c778158ff2c1.jpg)
+
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/12195d2cb4e248047ec7468c61e5411.jpg)
+
+
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/595a9afc67475b1743f783b538085ba.jpg)
+
+
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/679017b7d2d26502640fc20527a4002.jpg)
