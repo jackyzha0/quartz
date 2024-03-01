@@ -1,3 +1,42 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+$external-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='0.9em' height='0.9em' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23dc976e' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 2a14.5 14.5 0 0 0 0 20a14.5 14.5 0 0 0 0-20M2 12h20'/%3E%3C/g%3E%3C/svg%3E");
+
+$internal-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='0.8em' height='0.8em' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%238897ca' stroke-linecap='round' stroke-linejoin='round' stroke-width='3'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'/%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'/%3E%3C/g%3E%3C/svg%3E");
+
+p a.internal, li a.internal{
+    background-color: transparent;
+    border-radius: 0;
+    border-bottom: 2px solid var(--secondary);
+}
+
+p a.internal:hover, li a.internal:hover{
+    border-bottom: 3px solid var(--tertiary);
+    transition: border-bottom 100ms ease-in-out;
+}
+p a.internal::before, li a.internal::before{
+    content: $internal-icon;
+    color: var(--secondary);
+    margin-right: 0.2rem;
+}
+
+
+p a.external, li a.external{
+    background-color: transparent;
+    border-radius: 0;
+    border-bottom: 2px solid var(--secondary);
+}
+
+p a.external:hover, li a.external:hover{
+    border-bottom: 3px solid var(--tertiary);
+    transition: border-bottom 100ms ease-in-out;
+}
+p a.external::after, li a.external::after{
+    content: $external-icon;
+    margin-left: 0.2rem;
+}
+
+svg.external-icon{
+    display: none;
+}
+
