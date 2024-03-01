@@ -4,7 +4,7 @@ publish-ash: true
 Moves are where nearly all the mechanics in Chasing Adventure live in. Here are the basic ones.  
   
 You can find the moves for each playbook here:  
-[[Ash In the Snow/Meta/Moves/Cleric|Cleric]]  
+[[Meta/Moves/Cleric|Cleric]]  
 - [[Cleric Spells|Cleric Spells]]  
   
 ## Adventure Moves  

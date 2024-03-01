@@ -13,7 +13,7 @@ Pronouns: They/them
 ---  
 Pronouns: They/them  
   
-A supposed prince from [[Bur-Vusamyr|Bur-Vusamyr]]. [[Ash In the Snow/People/Axiom|Axiom]] and [[Ash In the Snow/People/Moonie|Moonie]] are their companions.  
+A supposed prince from [[Bur-Vusamyr|Bur-Vusamyr]]. [[People/Axiom|Axiom]] and [[People/Moonie|Moonie]] are their companions.  
 ## Stats  
 | Name | Stat                                   | Con                                           |  
 | ---- | -------------------------------------- | --------------------------------------------- |  

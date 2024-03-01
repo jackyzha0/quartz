@@ -7,7 +7,7 @@ title: Home
 This is a world of snow and warmth. A world of disconnection and unbreakable bonds. This is the story of Havenloft.   
   
 ## Important Links  
-[[Ash In the Snow/People/People Landing|People Landing]]  
+[[People/People Landing|People Landing]]  
 [[Moves Landing|Moves Landing]]  
   
 ### PCs  
