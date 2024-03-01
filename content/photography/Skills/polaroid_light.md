@@ -5,6 +5,7 @@ tags:
 - Polaroid
 - film
 - skill
+date: 2024-02-28
 ---
 
 The most thing you need to know is that, **the right exposure is in your head**.

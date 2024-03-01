@@ -2,6 +2,7 @@
 title: kk's Unified National Graduate Entrance Examination —— Study Plan
 tags:
   - log
+date: 2024-02-19
 ---
 
 # Plan 2.19 - 2.31

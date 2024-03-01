@@ -1,8 +1,9 @@
 ---
 title: Resume
 tags:
-- resume
-- readme
+  - resume
+  - readme
+date: 2023-03-16
 ---
 
 <div style="margin:auto;width: 50%; transform: translate(50%, 0);">

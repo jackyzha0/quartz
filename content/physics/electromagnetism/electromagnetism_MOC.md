@@ -4,6 +4,7 @@ tags:
 - physics
 - MOC
 - electromagnetism
+date: 2024-02-28
 ---
 
 # Basic

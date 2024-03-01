@@ -3,6 +3,7 @@ title: My Poem
 tags:
 - 文学
 - poem
+date: 2023-05-01
 ---
 
 * [2018](文学/poem/2018.md)

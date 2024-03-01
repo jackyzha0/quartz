@@ -2,6 +2,7 @@
 title: Decision Tree
 tags:
 - machine-learning
+date: 2024-02-28
 ---
 
 Only vedio here:

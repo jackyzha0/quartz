@@ -5,6 +5,7 @@ tags:
 - review
 - MOC
 - camera
+date: 2024-02-28
 ---
 
 # Rollei

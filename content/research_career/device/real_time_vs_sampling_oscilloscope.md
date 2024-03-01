@@ -4,4 +4,5 @@ tags:
   - devices
   - equipment
   - signal
+date: 2024-02-28
 ---

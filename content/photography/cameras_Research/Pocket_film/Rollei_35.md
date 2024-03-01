@@ -6,6 +6,7 @@ tags:
 - rollei
 - camera
 - review
+date: 2024-02-28
 ---
 
 

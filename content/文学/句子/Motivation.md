@@ -4,6 +4,7 @@ tags:
 - 文学
 - 摘抄
 - motivation
+date: 2023-05-01
 ---
 
 > [!quote] 

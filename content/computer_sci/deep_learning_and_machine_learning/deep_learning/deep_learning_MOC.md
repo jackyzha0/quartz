@@ -3,6 +3,7 @@ title: Deep Learning MOC
 tags:
   - Catalog
   - MOC
+date: 2024-02-28
 ---
 
 

@@ -5,6 +5,7 @@ tags:
   - signal
   - fourier-transform
   - math
+date: 2024-02-28
 ---
 # Fourier Transform Paris
 

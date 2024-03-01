@@ -3,6 +3,7 @@ title: Data science MOC
 tags:
 - data
 - statistics
+date: 2024-02-28
 ---
 
 # Basic Concept

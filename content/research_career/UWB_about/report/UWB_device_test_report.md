@@ -3,6 +3,7 @@ title: UWB Device Setup Test Report
 tags:
   - UWB
   - "#hardware"
+date: 2024-02-28
 ---
 
 # Voltage Test Table

@@ -5,6 +5,7 @@ tags:
 - photography
 - review
 - polaroid
+date: 2024-02-28
 ---
 
 

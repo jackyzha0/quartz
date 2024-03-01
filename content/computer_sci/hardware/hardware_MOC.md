@@ -4,6 +4,7 @@ tags:
 - MOC
 - hardware
 - chip
+date: 2024-02-28
 ---
 
 # Microcontroller unit (MCU)

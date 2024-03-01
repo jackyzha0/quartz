@@ -2,6 +2,7 @@
 title: kk's note
 tags:
   - log
+date: 2024-02-28
 ---
 
 ## 2023.02.19

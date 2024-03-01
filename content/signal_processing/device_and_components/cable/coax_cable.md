@@ -4,6 +4,7 @@ tags:
   - devices
   - equipment
   - cable
+date: 2024-02-28
 ---
 
 

@@ -1,8 +1,9 @@
 ---
-title: "Home"
+title: Home
 tags:
-- catalog
-- MOC
+  - catalog
+  - MOC
+date: 2023-09-13
 ---
 🕵️‍♂️ This is Jude Wang's vault about his notebook, his knowledge, his second brain. 
 

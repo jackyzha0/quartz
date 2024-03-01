@@ -1,7 +1,8 @@
 ---
 title: Atlas - Map of Maps
 tags:
-- MOC
+  - MOC
+date: 2023-03-16
 ---
 
 🚧 There are notebooks about his research career:

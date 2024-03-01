@@ -3,6 +3,7 @@ title: Photography Resume
 tags:
   - resume
   - photography
+date: 2024-02-28
 ---
 <div style="margin:auto;width: 50%; transform: translate(50%, 0);">
 <tr>

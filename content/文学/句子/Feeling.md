@@ -5,6 +5,7 @@ tags:
 - 摘抄
 - inspiration
 - feeling
+date: 2023-05-01
 ---
 
 > [!quote] 

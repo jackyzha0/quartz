@@ -5,6 +5,7 @@ tags:
   - equipment
   - devices
   - cable
+date: 2024-02-28
 ---
 
 # You should know:
