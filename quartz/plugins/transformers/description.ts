@@ -13,6 +13,11 @@ const defaultOptions: Options = {
   replaceExternalLinks: true,
 }
 
+const urlRegex = new RegExp(
+  /(https?:\/\/)?(?<domain>[\da-z\.-]+)\.([a-z\.]{2,6})(:\d+)?([\/\w\.-]*)/,
+  "g",
+)
+
 export const Description: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
   return {
@@ -25,14 +30,8 @@ export const Description: QuartzTransformerPlugin<Partial<Options> | undefined> 
             let text = escapeHTML(toString(tree))
 
             if (opts.replaceExternalLinks) {
-              frontMatterDescription = frontMatterDescription?.replace(
-                /(https?:\/\/)?(?<domain>[\da-z\.-]+)\.([a-z\.]{2,6})(:\d+)?([\/\w\.-]*)/g,
-                "$<domain>",
-              )
-              text = text.replace(
-                /(https?:\/\/)?(?<domain>[\da-z\.-]+)\.([a-z\.]{2,6})(:\d+)?([\/\w\.-]*)/g,
-                "$<domain>",
-              )
+              frontMatterDescription = frontMatterDescription?.replace(urlRegex, "$<domain>")
+              text = text.replace(urlRegex, "$<domain>")
             }
 
             const desc = frontMatterDescription ?? text
