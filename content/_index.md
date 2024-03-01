@@ -35,6 +35,7 @@ It’s our mission to realize this future.
 
 ## Extrusions
 
+[[Extrusion 02.24]]  
 [[extrusions/Extrusion 01.24|Extrusion 01.24]]  
 
 ([Subscribe](https://plasticlabs.typeform.com/extrusions))  

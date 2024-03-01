@@ -16,7 +16,7 @@ Today we drop the first release of a project called [*Honcho*](https://github.co
 As a team with with backgrounds in both machine learning and education, we found the prevailing narratives overestimating short-term capabilities and under-imagining longterm potential. Fundamentally, LLMs were and still are 1-to-many instructors. Yes, they herald the beginning of a revolution in personal access not to be discounted, but every student is still ultimately getting the same experience. And homogenized educational paradigms are by definition under-performant on an individual level. If we stop here, we're selling ourselves short.
 
 ![[zombie_tutor_prompt.jpg]]
-*A well intentioned but monstrously deterministic [tutor prompt](https://www.oneusefulthing.org/p/assigning-ai-seven-ways-of-using).*
+*A well intentioned but monstrously deterministic [tutor prompt](https://www.oneusefulthing.org/p/assigning-ai-seven-ways-of-using).* ^dfae31
 
 Most edtech projects we saw emerging actually made foundation models worse by adding gratuitous lobotomization and coercing deterministic behavior. The former stemmed from the typical misalignments plaguing edtech, like the separation of user and payer. The latter seemed to originate with deep misunderstandings around what LLMs are and continues to translate to a huge missed opportunities.
 

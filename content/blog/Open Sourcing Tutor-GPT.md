@@ -8,7 +8,7 @@ date: "Jun 2, 2023"
 
 Today we’re [open-sourcing](https://github.com/plastic-labs/tutor-gpt) Bloom, our digital [Aristotelian](https://erikhoel.substack.com/p/why-we-stopped-making-einsteins) learning companion.
 
-What makes [Bloom](https://bloombot.ai/) compelling is its ability to _reason pedagogically_ about the learner. That is, it uses dialogue to posit the most educationally-optimal tutoring behavior. Eliciting this from the [capability overhang](https://jack-clark.net/2023/03/21/import-ai-321-open-source-gpt3-giving-away-democracy-to-agi-companies-gpt-4-is-a-political-artifact/) involves multiple chains of [metaprompting](https://arxiv.org/pdf/2102.07350.pdf,) enabling Bloom to construct a nascent, academic [theory of mind](https://arxiv.org/pdf/2304.11490.pdf) for each student.
+What makes [Bloom](https://bloombot.ai/) compelling is its ability to _reason pedagogically_ about the learner. That is, it uses dialogue to posit the most educationally-optimal tutoring behavior. Eliciting this from the [capability overhang](https://jack-clark.net/2023/03/21/import-ai-321-open-source-gpt3-giving-away-democracy-to-agi-companies-gpt-4-is-a-political-artifact/) involves multiple chains of [metaprompting](https://arxiv.org/pdf/2102.07350.pdf,) enabling Bloom to construct a nascent, academic [theory of mind](https://arxiv.org/pdf/2304.11490.pdf) for each student. ^3498b7
 
 We’re not seeing this in the explosion of ‘chat-over-content’ tools, most of which fail to capitalize on the enormous latent abilities of LLMs. Even the impressive out-of-the-box capabilities of contemporary models don’t achieve the necessary user intimacy. Infrastructure for that doesn’t exist yet 👀.
 
@@ -32,7 +32,7 @@ So how do we create successful learning agents that students will eagerly use wi
 
 ## Eliciting Pedagogical Reasoning
 
-The machine learning community has long sought to uncover the full range of tasks that large language models can be prompted to accomplish on general pre-training alone (the capability overhang). We believe we have discovered one such task: pedagogical reasoning.
+The machine learning community has long sought to uncover the full range of tasks that large language models can be prompted to accomplish on general pre-training alone (the capability overhang). We believe we have discovered one such task: pedagogical reasoning. ^05bfd8
 
 Bloom was built and prompted to elicit this specific type of teaching behavior. (The kind laborious for new teachers, but that adept ones learn to do unconsciously.) After each input it revises a user’s real-time academic needs, considers all the information at its disposal, and suggests to itself a framework for constructing the ideal response. ^285105
 

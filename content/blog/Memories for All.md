@@ -34,7 +34,7 @@ At [Plastic Labs](https://plasticlabs.ai) our mission is to enable rich user mem
 
 ![[laser_eyes_user_soapbox.png]]
 
-Right now, the vast majority of software UX is a 1-to-many experience. What you get as a user is, for the most part, the same as everyone else. Mass production unlocked the remarkable ability to produce the exact same goods for every consumer, then software went further allowing a good to be produced once and consumed with consistent experience millions or billions of times.
+Right now, the vast majority of software UX is a 1-to-many experience. What you get as a user is, for the most part, the same as everyone else. Mass production unlocked the remarkable ability to produce the exact same goods for every consumer, then software went further allowing a good to be produced once and consumed with consistent experience millions or billions of times. ^0e869d
 
 AI apps can deal *generatively* with each user on an individual basis, that is, an experience can be produced ad hoc for every user upon every interaction. From 1:many to 1:1 without prohibitive sacrifices in efficiency. But we're still underestimating the full scope of possibility here.
 
