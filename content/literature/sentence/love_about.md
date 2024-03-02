@@ -8,7 +8,9 @@ tags:
 date: 2024-02-28
 ---
 
-  > [!quote] 
+
+
+> [!quote] 
 > [A poem](https://www.bilibili.com/video/BV1V24y1x7Nh/?buvid=YF4AFCFA7E0887094E329B9A6FADF98BF343&is_story_h5=false&mid=B1quk6Mlu6tnRY8zjwxWeg%3D%3D&p=1&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=4AD8E5F4-D617-499B-9C19-D5897A7EB825&share_source=QQ&share_tag=s_i&timestamp=1679378304&unique_k=tXa4xdJ&up_id=315154029&vd_source=c47136abc78922800b17d6ce79d6e19f) <br>
 > “至少有两次喜欢<br>
 > 一次发生在在一起之前，一次发生在之后，<br>
