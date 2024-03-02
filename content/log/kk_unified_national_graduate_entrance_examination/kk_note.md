@@ -2,7 +2,7 @@
 title: kk's note
 tags:
   - log
-date: 2024-02-28
+date: 2024-03-01
 ---
 
 ## 2023.02.19
@@ -55,3 +55,31 @@ date: 2024-02-28
 
 
 ![](log/kk_unified_national_graduate_entrance_examination/attachments/679017b7d2d26502640fc20527a4002.jpg)
+
+
+## 2023.02.29
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/Weixin%20Image_20240302172159.jpg)
+
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/Weixin%20Image_20240302172204.jpg)
+
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/Weixin%20Image_20240302172208.jpg)
+
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/Weixin%20Image_20240302172217.jpg)
+
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/Weixin%20Image_20240302172222.jpg)
+
+
+## 2023.03.01
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/Weixin%20Image_20240302172326.jpg)
+
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/Weixin%20Image_20240302172338.jpg)
+
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/Weixin%20Image_20240302172343.jpg)
