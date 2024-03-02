@@ -4,6 +4,7 @@ tags:
 - deep-learning
 - LLM
 - NLP
+date: 2024-02-28
 ---
 
 # Training

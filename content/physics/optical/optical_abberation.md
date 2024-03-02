@@ -4,6 +4,7 @@ tags:
 - optical
 - photography
 - basic
+date: 2024-02-28
 ---
 
 # What is optical aberration

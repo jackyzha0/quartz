@@ -3,6 +3,7 @@ title: Segment Tree
 tags:
   - data-structure
   - tree
+date: 2024-02-28
 ---
 # Overview
 

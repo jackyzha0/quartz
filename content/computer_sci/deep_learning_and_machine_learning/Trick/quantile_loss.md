@@ -4,6 +4,7 @@ tags:
 - loss-function
 - deep-learning
 - deep-learning-math
+date: 2024-02-28
 ---
 
 在大多数现实世界的预测问题中，我们的预测所带来的不确定性具有重要价值。相较于仅仅提供点估计，了解预测范围能够显著改善许多商业应用的决策过程。**Quantile loss**就是为例帮助我们了解预测范围的loss function。

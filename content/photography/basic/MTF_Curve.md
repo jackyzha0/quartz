@@ -4,6 +4,7 @@ tags:
 - photography
 - basic
 - lens
+date: 2024-02-28
 ---
 
 有很多因素影响lens performance：

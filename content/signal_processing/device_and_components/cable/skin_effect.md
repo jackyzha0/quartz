@@ -5,6 +5,7 @@ tags:
   - equipment
   - signal
   - signal-processing
+date: 2024-02-28
 ---
 # Simple review
 

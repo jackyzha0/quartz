@@ -4,6 +4,7 @@ tags:
 - metrics
 - time-series-dealing
 - evalution
+date: 2024-02-28
 ---
 
 ![](computer_sci/deep_learning_and_machine_learning/Trick/attachments/Pasted%20image%2020230526164724.png)

@@ -4,6 +4,7 @@ tags:
 - deep-learning
 - time-series-dealing
 - basic
+date: 2024-02-28
 ---
 
 > [!quote] 

@@ -3,6 +3,7 @@ title: Learn VNA in practical way
 tags:
   - devices
   - signal-processing
+date: 2024-02-28
 ---
 
 # Background

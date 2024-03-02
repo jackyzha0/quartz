@@ -3,6 +3,7 @@ title: 关于压疮（pressure injury）相关的文献阅读
 tags:
   - papers
   - pressure-injury
+date: 2024-02-28
 ---
 
 

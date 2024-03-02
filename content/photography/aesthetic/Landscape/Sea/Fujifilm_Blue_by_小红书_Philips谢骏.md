@@ -4,6 +4,7 @@ tags:
 - photography
 - landscape
 - photography
+date: 2024-02-28
 ---
 
 ![](photography/aesthetic/Landscape/Sea/attachments/Pasted%20image%2020230420014349.png)

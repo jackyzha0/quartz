@@ -5,6 +5,7 @@ tags:
   - math
   - stochastic-process
   - signal-processing
+date: 2024-02-28
 ---
 
 # Reference

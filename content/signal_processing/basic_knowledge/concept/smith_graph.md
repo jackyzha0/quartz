@@ -3,6 +3,7 @@ title: Smith Graph
 tags:
   - signal-processing
   - VNA
+date: 2024-02-28
 ---
 Smith图，又称为Smith圆图或史密斯图，是一种常用于射频（RF）和微波工程中的图形工具，用于可视化和分析电路、天线和传输线的阻抗匹配和传输线特性的工具。Smith图以19世纪初美国工程师Philip H. Smith的名字命名，他对电路匹配问题作出了重要贡献。
 

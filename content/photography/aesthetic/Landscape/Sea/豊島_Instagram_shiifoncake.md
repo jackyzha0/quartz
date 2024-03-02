@@ -5,6 +5,7 @@ tags:
  - sea
  - landscape
  - aesthetic
+date: 2024-02-28
 ---
 ![](photography/aesthetic/Landscape/Sea/attachments/shiifoncake_338949220_771246770941652_287141902256013940_n.jpg)
 

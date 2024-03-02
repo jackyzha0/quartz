@@ -3,6 +3,7 @@ title: Whisky L
 tags:
   - dream
   - exhibition
+date: 2024-02-28
 ---
 
 # What is whisky L

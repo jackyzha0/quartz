@@ -6,6 +6,7 @@ tags:
 - korean
 - cute
 - 摘抄
+date: 2024-02-28
 ---
 
 Credits to [MV - CHEEZE(치즈) _ Today's Mood(오늘의 기분)](https://www.youtube.com/watch?v=zRq_DlEzygk),

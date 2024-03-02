@@ -4,6 +4,7 @@ tags:
 - deep-learning
 - interpretability
 - algorithm
+date: 2024-02-28
 ---
 
 SHAP is the most popular model-agnostic technique that is used to explain predictions. SHAP stands for **SH**apley **A**dditive ex**P**lanations

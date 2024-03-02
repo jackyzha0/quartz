@@ -3,6 +3,7 @@ title: Spanning Tree
 tags:
   - graph
   - data-structure
+date: 2024-02-28
 ---
 
 # What is Spanning Tree?

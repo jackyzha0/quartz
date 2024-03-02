@@ -3,6 +3,7 @@ title: Cauchy Principal Value
 tags:
   - math
   - real-analysis
+date: 2024-02-28
 ---
 # Notation
 

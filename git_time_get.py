@@ -9,7 +9,7 @@ if __name__ == '__main__':
     for root, dirs, files in os.walk(content_path):
         for file in files:
             
-            if "." in root:
+            if '.' in root: 
                 continue
             
             # ignore bug and continue running
@@ -26,31 +26,41 @@ if __name__ == '__main__':
                     flag = False
                     
                     # open file and write date into it
-                    with open(os.path.join(root, file), 'r') as f:
+                    f = open(os.path.join(root, file), 'r', encoding="utf-8")
                         
-                        lines = f.readlines()
-                        if lines[0].startswith("---"):
-                            for i in range(1, len(lines)):
-                                if lines[i] == "---\n" and lines[i-1].startswith("date") == False:
-                                    flag = True
-                                    lines.insert(i, f"date: {str(commit.committed_datetime).split(' ')[0]}\n")
-                                    break
+                    lines = f.readlines()
+                    if lines[0].startswith("---"):
+                        for i in range(1, len(lines)):
+                            if lines[i] == "---\n" and lines[i-1].startswith("date") == False:
+                                flag = True
+                                lines.insert(i, f"date: {str(commit.committed_datetime).split(' ')[0]}\n")
+                                break
+                            if lines[i] == "---\n" and lines[i-1].startswith("date") == True:
+                                break
                                 
                     f.close()
                         
                     
                     if flag == True:
-                        with open(os.path.join(root, file), 'w') as f:         
-                            f.writelines(lines)
-                            print(f"{file_path} - {str(commit.committed_datetime).split(' ')[0]}")
+                        
+                        f = open(os.path.join(root, file), 'w', encoding="utf-8")     
+                        
+                        f.writelines(lines)
+                        print(f"{file_path} - {str(commit.committed_datetime).split(' ')[0]}")
                             
                         f.close()
                                 
                             
                     
             except:
+                # output error message
+                print(f"Error: {file_path}")
                 pass
                 continue
+    
+    print()        
+    print('--------------------------------------')
+    print
      
     try:
             
@@ -62,7 +72,7 @@ if __name__ == '__main__':
                 
                 if '.md' in file:    
                 
-                    with open(os.path.join(root, file), 'r') as f:
+                    with open(os.path.join(root, file), 'r', encoding='utf-8') as f:
                         lines = f.readlines()
                         if lines[0].startswith("---") == False:
                             print(f"{os.path.join(root, file)}")
@@ -70,4 +80,5 @@ if __name__ == '__main__':
                     f.close()
                 
     except:
+        print(f"Error: {os.path.join(root, file)}")
         pass

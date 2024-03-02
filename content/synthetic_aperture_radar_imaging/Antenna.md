@@ -4,6 +4,7 @@ tags:
 - SAR
 - physics
 - basic
+date: 2024-02-28
 ---
 
 # Theorem you need know

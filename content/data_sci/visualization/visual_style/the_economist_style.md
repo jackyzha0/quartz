@@ -3,6 +3,7 @@ title: The economist style graph
 tags:
   - data-visual
   - statistics
+date: 2024-02-28
 ---
 # Reference
 

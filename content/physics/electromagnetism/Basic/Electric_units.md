@@ -5,6 +5,7 @@ tags:
 - basic
 - physics
 - electric
+date: 2024-02-28
 ---
 # Electrical impedance
 

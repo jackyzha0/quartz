@@ -3,6 +3,7 @@ title: Synthetic Aperture Radar (SAR) Explained
 tags:
 - SAR
 - basic
+date: 2024-02-28
 ---
 
 # Radar Basic Concepts
@@ -35,7 +36,7 @@ The transmitter generates successive short bursts or pulses of microwave at regu
 
 * Radar can measure *amplitude* and *phase*
 * Radar can only measure part of echoes.
-* The strength of the reflected echo is the backscattering coefficient ([sigma nought](synthetic_aperture_radar_imaging/Radiometric_Calibration.md)）and is expressed in [decibels(dB)](signal_processing/basic_knowledge/concept/what_is_dB.md)
+* The strength of the reflected echo is the backscattering coefficient ([sigma nought](synthetic_aperture_radar_imaging/radiometric_calibration.md)）and is expressed in [decibels(dB)](signal_processing/basic_knowledge/concept/what_is_dB.md)
 
 ## Radar Resolution
 
@@ -46,7 +47,7 @@ The transmitter generates successive short bursts or pulses of microwave at regu
 
 side-looking的雷达被分为two types —— real aperture radar(*SLAR or SLR*, SL for side-looking)和synthetic aperture radar(SAR)
 
-如上图所示，雷达发出的pulse被[antenna聚焦](synthetic_aperture_radar_imaging/Antenna.md)在一个narrow的area里，然后scatter后在不同和的时间再被receiver接收
+如上图所示，雷达发出的pulse被[antenna聚焦](synthetic_aperture_radar_imaging/antenna.md)在一个narrow的area里，然后scatter后在不同和的时间再被receiver接收
 
 ### Resolution
 

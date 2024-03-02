@@ -3,6 +3,7 @@ title: Fourier Transform
 tags:
   - math
   - signal-processing
+date: 2024-02-28
 ---
 # Almost Fourier Transform
 

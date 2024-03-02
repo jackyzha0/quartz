@@ -3,6 +3,7 @@ title: Chebyshev Filter
 tags:
   - signal-processing
   - filter
+date: 2024-02-28
 ---
 
 # History

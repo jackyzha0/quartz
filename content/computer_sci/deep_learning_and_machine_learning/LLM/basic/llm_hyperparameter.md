@@ -5,6 +5,7 @@ tags:
 - LLM
 - deep-learning
 - basic
+date: 2024-02-28
 ---
 
 # LLM Temperature

@@ -5,6 +5,7 @@ tags:
 - photography
 - MOC
 - polaroid
+date: 2024-02-28
 ---
 
 # Polaroid Background

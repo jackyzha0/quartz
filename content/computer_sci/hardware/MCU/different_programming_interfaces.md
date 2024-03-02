@@ -2,6 +2,7 @@
 title: Different Programming Interfaces
 tags:
   - hardware
+date: 2024-02-28
 ---
 # What is programming interfaces in MCU
 

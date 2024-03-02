@@ -4,6 +4,7 @@ tags:
   - signal-processing
   - basic
   - system
+date: 2024-02-28
 ---
 # 离散系统稳定性判别（因果系统）
 

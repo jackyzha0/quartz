@@ -3,6 +3,7 @@ title: Independence & Correlation
 tags:
   - math
   - statistics
+date: 2024-02-28
 ---
 
 # Independent

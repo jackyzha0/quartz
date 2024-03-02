@@ -2,6 +2,7 @@
 title: Deep Neural Decision Forests
 tags:
 - deep-learning
+date: 2024-02-28
 ---
 
 # Background

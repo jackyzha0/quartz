@@ -4,6 +4,7 @@ tags:
   - math
   - optimize
   - optimization
+date: 2024-02-28
 ---
 
 # Why I write this note?

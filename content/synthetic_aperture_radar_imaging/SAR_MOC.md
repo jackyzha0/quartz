@@ -9,9 +9,9 @@ date: 2024-02-28
 
 # Antenna
 
-* [Antenna](synthetic_aperture_radar_imaging/Antenna.md)
+* [antenna](synthetic_aperture_radar_imaging/antenna.md)
 
 # SAR
 
-* [[synthetic_aperture_radar_imaging/SAR_Explained|SAR Explained]]
-* [SAR Imaging Algorithm review in 2022](synthetic_aperture_radar_imaging/SAR_Imaging_Algorithm.md)
+* [[synthetic_aperture_radar_imaging/SAR_explained|SAR Explained]]
+* [SAR Imaging Algorithm review in 2022](synthetic_aperture_radar_imaging/SAR_imaging_algorithm.md)

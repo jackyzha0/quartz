@@ -5,6 +5,7 @@ tags:
   - tableau
   - data-visual
   - data
+date: 2024-02-28
 ---
 
 # What is Tableau

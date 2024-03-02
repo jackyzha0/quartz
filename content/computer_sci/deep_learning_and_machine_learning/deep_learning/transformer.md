@@ -3,6 +3,7 @@ title: "Transformer"
 tags:
 - deep-learning
 - attention
+date: 2024-02-28
 ---
 
 > [!info] 
