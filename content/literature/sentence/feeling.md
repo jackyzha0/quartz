@@ -134,7 +134,7 @@ date: 2023-05-01
 
 --- 
 
-![](文学/句子/attachments/Pasted%20image%2020230905221135.png)
+![](literature/sentence/attachments/Pasted%20image%2020230905221135.png)
 
 > [!quote] 
 > From 先知少女<br>

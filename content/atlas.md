@@ -44,7 +44,7 @@ date: 2023-03-16
 
 * [📷 Photography](photography/photography_MOC.md)
 
-* [📮文学](文学/文学_MOC.md)
+* [📮文学](literature/literature_MOC.md)
 
 * [🥐Food](food/MOC.md)
 

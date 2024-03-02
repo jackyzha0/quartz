@@ -29,7 +29,7 @@ date: 2023-05-01
 > "I am too full of life to be half-loved"
 > 
 
-![400](文学/attachments/Pasted%20image%2020230321142115.png)
+![400](literature/attachments/Pasted%20image%2020230321142115.png)
 
 ---
 
@@ -48,7 +48,7 @@ date: 2023-05-01
 >  只属于他。”<br>
 >  <a href="https://space.bilibili.com/2009238634"><p style="text-align:right">——祺白石</p></a>
 
-![400](文学/attachments/Pasted%20image%2020230321143300.png)
+![400](literature/attachments/Pasted%20image%2020230321143300.png)
 
 --- 
 
@@ -66,7 +66,7 @@ date: 2023-05-01
 >  标准是对不喜欢的人设定的，只有你才是例外和偏爱
 
 
-![](文学/句子/attachments/Pasted%20image%2020230519160552.png)
+![](literature/sentence/attachments/Pasted%20image%2020230519160552.png)
 
 
 --- 

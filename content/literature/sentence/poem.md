@@ -58,7 +58,7 @@ date: 2023-05-01
 >  只属于他。”<br>
 >  <a href="https://space.bilibili.com/2009238634"><p style="text-align:right">——祺白石</p></a>
 
-![400](文学/attachments/Pasted%20image%2020230321143300.png)
+![400](literature/attachments/Pasted%20image%2020230321143300.png)
 
 --- 
 

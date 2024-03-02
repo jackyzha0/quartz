@@ -46,7 +46,7 @@ date: 2023-05-01
 > <p style="text-align: right">——HOPICO 评价 「<a href="https://music.apple.com/cn/album/ubi/1507014129?i=1507014136">ubi</a>」</p>
 > 
 
-![](文学/句子/attachments/Pasted%20image%2020230409171853.png)
+![](literature/sentence/attachments/Pasted%20image%2020230409171853.png)
 
 
 --- 
