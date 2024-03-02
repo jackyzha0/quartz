@@ -3,44 +3,42 @@ publish-ash: true
 ---  
 Moves are where nearly all the mechanics in Chasing Adventure live in. Here are the basic ones.  
   
-You can find the moves for each playbook here:   
+You can find the moves for each playbook here:  
 [[Meta/Moves/Cleric|Cleric]]  
-  
-- [[Meta/Moves/Cleric|Cleric]]  
-	- [[Cleric Spells|Cleric Spells]]  
+- [[Cleric Spells|Cleric Spells]]  
   
 ## Adventure Moves  
 ### Defy  
 When you act despite an imminent threat or obstacle, tell us how you  
 do it. Then roll...  
-- +STR if you endure or power through it.  
-- +DEX if you act with speed or finesse.  
-- +INT if you employ quick or out-of-the-box thinking.  
-- +WIS if you rely on mental fortitude or sharp senses.  
-- +CHA if you use charm, intrigue, or social grace.  
-On a 10+ the threat doesn’t come to bear.  
-On a 7-9 it only abates if you make a costly sacrifice or ugly choice,  
+- **+STR** if you endure or power through it.  
+- **+DEX** if you act with speed or finesse.  
+- **+INT** if you employ quick or out-of-the-box thinking.  
+- **+WIS** if you rely on mental fortitude or sharp senses.  
+- **+CHA** if you use charm, intrigue, or social grace.  
+On a **10+** the threat doesn’t come to bear.  
+On a **7-9** it only abates if you make a costly sacrifice or ugly choice,  
 the GM will tell you what.  
   
 ### Engage  
-When you openly fight an enemy up close, roll+STR.  
-On a 7-9 you and your enemy trade blows, usually inflicting a  
+When you openly fight an enemy up close, roll **+STR**.  
+On a **7-9** you and your enemy trade blows, usually inflicting a  
 condition on each other.  
-On a 10+ you trade blows, but choose one:  
+On a **10+** you trade blows, but **choose one:**  
 - Avoid or withstand their attack  
 - Inflict an extra condition  
 - Take something from them  
   
 ### Let Fly  
-When you attack a clear target from afar, roll+DEX.  
-On a 10+ your clean hit inflicts a condition.  
-On a 7-9 you inflict a condition but are either put in a dangerous  
+When you attack a clear target from afar, roll **+DEX.**  
+On a **10+** your clean hit inflicts a condition.  
+On a **7-9** you inflict a condition but are either put in a dangerous  
 position or gain Disadvantage Forward, your choice.  
 Ponder  
 When you consider what you know about a subject, ask the GM one  
-question about it, say how you might know the answer, and roll+INT.  
-On a 10+ the GM will tell you the detailed, useful truth.  
-On a 7-9 they will tell you a vague, twisted, or incomplete truth.  
+question about it, say how you might know the answer, and roll **+INT.**  
+On a **10+** the GM will tell you the detailed, useful truth.  
+On a **7-9** they will tell you a vague, twisted, or incomplete truth.  
 You and your allies have Advantage when first acting on this  
 information.  
 Here are some example questions:  
@@ -51,10 +49,10 @@ Here are some example questions:
   
 ### Examine  
 When you closely investigate a charged situation, ask the GM one  
-question about it and roll+WIS.  
-On a 10+ the GM answers your question and related followup  
+question about it and roll **+WIS**.  
+On a **10+** the GM answers your question and related followup  
 questions truthfully.  
-On a 7-9 the GM answers your question truthfully.  
+On a **7-9** the GM answers your question truthfully.  
 You and your allies roll with Advantage when first acting on this  
 information.  
 Here are some example questions:  
@@ -66,7 +64,7 @@ Here are some example questions:
 ### Scrutinize  
 When you have an intimate or prying conversation with someone,  
 roll+WIS.  
-On a 10+ gain 2 Insight. On a 7-9 gain 1 Insight.  
+On a **10+** gain 2 Insight. On a **7-9** gain 1 Insight.  
 Gain +1 Insight if they Favor you, even on a 6-.  
 During this conversation you can spend Insight 1-for-1 to ask their  
 player (including the GM) any question about this person’s thoughts,  
