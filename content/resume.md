@@ -3,7 +3,7 @@ title: Resume
 tags:
   - resume
   - readme
-date: 2023-03-16
+date: 2023-07-12
 ---
 
 <div style="margin:auto;width: 50%; transform: translate(50%, 0);">

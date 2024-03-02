@@ -4,7 +4,7 @@ tags:
 - physics
 - electromagnetism
 - nuclear-level-knowledge
-date: 2024-02-28
+date: 2023-04-19
 ---
 
 # Equation

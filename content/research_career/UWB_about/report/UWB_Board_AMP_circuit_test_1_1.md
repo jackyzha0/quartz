@@ -3,7 +3,7 @@ title: UWB Board OPA699 I/O Test 1.1
 tags:
   - hardware
   - UWB
-date: 2024-02-28
+date: 2024-01-25
 ---
 # OPA699 Pin Configuration
 

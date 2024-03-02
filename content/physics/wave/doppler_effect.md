@@ -4,7 +4,7 @@ tags:
 - physics
 - basic
 - wave
-date: 2024-02-28
+date: 2023-04-18
 ---
 
 多普勒效应（**Doppler effect**）是波源和观察者有相对运动时，观察者接受到波的频率与波源发出的频率并不相同的现象。

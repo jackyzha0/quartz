@@ -3,7 +3,7 @@ title: Resonant circuit
 tags:
 - physics
 - electric
-date: 2024-02-28
+date: 2023-06-30
 ---
 
 以RLC串联电路为例

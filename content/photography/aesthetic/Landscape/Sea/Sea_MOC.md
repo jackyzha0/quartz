@@ -5,7 +5,7 @@ tags:
  - sea
  - photography
  - aesthetic
-date: 2024-02-28
+date: 2023-04-22
 ---
 
 * [Fujifilm Blue🌊, 小红书-Philips谢骏](photography/aesthetic/Landscape/Sea/Fujifilm_Blue_by_小红书_Philips谢骏.md)

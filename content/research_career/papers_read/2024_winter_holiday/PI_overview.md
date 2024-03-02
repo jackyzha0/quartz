@@ -3,7 +3,7 @@ title: A systematic review of pressure injury 压疮综述
 tags:
   - pressure-injury
   - overview
-date: 2024-02-28
+date: 2024-02-20
 ---
 # A systematic review of pressure injury 压疮综述
 

@@ -2,7 +2,7 @@
 title: Common Issues in DSP Homework
 tags:
   - homework
-date: 2024-02-28
+date: 2023-11-20
 ---
 
 # Issue 1- Compute the unit-pulse response h[n]

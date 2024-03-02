@@ -3,7 +3,7 @@ title: Papers Read
 tags:
   - work-about
   - research-about
-date: 2024-02-28
+date: 2024-02-20
 ---
 
 * [Papers Read in 2023.10](research_career/papers_read/papers_2023_10.md)

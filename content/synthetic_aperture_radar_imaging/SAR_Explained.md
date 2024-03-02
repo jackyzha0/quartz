@@ -3,7 +3,7 @@ title: Synthetic Aperture Radar (SAR) Explained
 tags:
 - SAR
 - basic
-date: 2024-02-28
+date: 2023-11-30
 ---
 
 # Radar Basic Concepts

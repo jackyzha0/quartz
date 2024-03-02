@@ -4,7 +4,7 @@ tags:
 - 文学
 - 摘抄
 - MOC
-date: 2023-05-01
+date: 2023-11-30
 ---
 
 * [🌸Love about](literature/sentence/love_about.md)

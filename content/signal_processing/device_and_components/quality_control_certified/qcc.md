@@ -4,7 +4,7 @@ tags:
   - devices
   - equipment
   - protocols
-date: 2024-02-28
+date: 2023-12-05
 ---
 Quality Control Certified是指通过一系列认证和标准评估的质量控制体系，其中UL（Underwriters Laboratories）、TUV（Technischer Überwachungsverein）和ISO（International Organization for Standardization）是三个常见的认证和标准机构。下面是它们的简要介绍：
 

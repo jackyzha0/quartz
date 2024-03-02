@@ -3,7 +3,7 @@ title: AdaBoost
 tags:
 - deep-learning
 - ensemble-learning
-date: 2024-02-28
+date: 2023-09-07
 ---
 
 # Video you need to watch first

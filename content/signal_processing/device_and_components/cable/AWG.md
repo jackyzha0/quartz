@@ -3,7 +3,7 @@ title: American Wire Gauge
 tags:
   - cable
   - protocols
-date: 2024-02-28
+date: 2023-12-05
 ---
 AWG是American Wire Gauge的缩写，它是一种用于表示电线和电缆导线直径大小的标准。AWG标准是在美国制定的，常用于美国、加拿大和其他一些国家。
 

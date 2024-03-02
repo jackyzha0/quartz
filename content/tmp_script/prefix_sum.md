@@ -2,7 +2,7 @@
 title: Prefix Sum
 tags:
 - basic
-date: 2024-02-28
+date: 2023-07-12
 ---
 
 假设我们有一个长度为n的数组arr，**前缀和**数组prefixSum的定义如下：

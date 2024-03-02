@@ -3,5 +3,5 @@ title: InfiniiMax Probes
 tags:
   - devices
   - equipment
-date: 2024-02-28
+date: 2024-01-17
 ---

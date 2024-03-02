@@ -5,7 +5,7 @@ tags:
 - LLM
 - fine-tune
 - LLaMA
-date: 2024-02-28
+date: 2024-01-17
 ---
 
 ![](computer_sci/deep_learning_and_machine_learning/LLM/train/finr_tune/attachments/Pasted%20image%2020230627145954.png)

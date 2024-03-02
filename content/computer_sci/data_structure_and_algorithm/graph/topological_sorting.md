@@ -3,7 +3,7 @@ title: Topological Sorting
 tags:
   - data-structure
   - graph
-date: 2024-02-28
+date: 2023-09-14
 ---
 # What is Topological Sorting
 

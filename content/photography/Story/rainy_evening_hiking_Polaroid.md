@@ -5,7 +5,7 @@ tags:
 - Polaroid
 - story
 - film
-date: 2024-02-28
+date: 2024-02-27
 ---
 
 # Hiking

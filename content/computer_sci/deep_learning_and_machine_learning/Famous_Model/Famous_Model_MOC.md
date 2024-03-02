@@ -3,7 +3,7 @@ title: Famous Model MOC
 tags:
 - deep-learning
 - MOC
-date: 2024-02-28
+date: 2024-01-17
 ---
 
 # Time-series

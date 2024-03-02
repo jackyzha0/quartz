@@ -3,7 +3,7 @@ title: Recent note
 tags:
   - recent
   - readme
-date: 2023-12-03
+date: 2023-06-28
 ---
 
 ```dataview

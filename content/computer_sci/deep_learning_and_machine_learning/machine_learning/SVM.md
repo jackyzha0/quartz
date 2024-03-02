@@ -2,7 +2,7 @@
 title: Support Vector Machine
 tags:
   - machine-learning
-date: 2024-02-28
+date: 2024-02-27
 ---
 
 # Overview

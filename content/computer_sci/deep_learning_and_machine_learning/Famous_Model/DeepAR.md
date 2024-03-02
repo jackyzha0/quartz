@@ -4,7 +4,7 @@ tags:
 - deep-learning
 - model
 - time-series-dealing
-date: 2024-02-28
+date: 2024-01-17
 ---
 
 DeepAR, an autoregressive recurrent network developed by Amazon, is the first model that could natively work on multiple time-series. It's a milestone in time-series community.

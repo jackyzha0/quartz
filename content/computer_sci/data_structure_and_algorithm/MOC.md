@@ -4,7 +4,7 @@ tags:
 - MOC
 - algorithm
 - data-structure
-date: 2024-02-28
+date: 2023-09-15
 ---
 
 # Tree-like Structure

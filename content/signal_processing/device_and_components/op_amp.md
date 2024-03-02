@@ -2,7 +2,7 @@
 title: Operational Amplifier
 tags:
   - signal
-date: 2024-02-28
+date: 2023-11-02
 ---
 运算放大器
 

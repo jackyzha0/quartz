@@ -3,7 +3,7 @@ title: Random Signal Basic
 tags:
   - signal-processing
   - math
-date: 2024-02-28
+date: 2023-10-07
 ---
 
 # What is Random Signals

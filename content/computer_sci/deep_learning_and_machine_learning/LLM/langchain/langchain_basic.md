@@ -4,7 +4,7 @@ tags:
 - LLM
 - basic
 - langchain
-date: 2024-02-28
+date: 2024-01-17
 ---
 
 # What is LangChain

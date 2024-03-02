@@ -3,7 +3,7 @@ title: Delaunay Triangulation
 tags:
   - math
   - geometry
-date: 2024-02-28
+date: 2023-09-04
 ---
 # What is Delaunay Triangulation?
 

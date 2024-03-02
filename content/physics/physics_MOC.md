@@ -3,7 +3,7 @@ title: Physics MOC
 tags:
 - physics
 - MOC
-date: 2024-02-28
+date: 2023-04-18
 ---
 
 # Electromagnetism

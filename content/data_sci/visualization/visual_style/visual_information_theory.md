@@ -3,7 +3,7 @@ title: Visual Information Theory
 tags:
 - data
 - visualization-tech
-date: 2024-02-28
+date: 2023-12-18
 ---
 
 # Reference

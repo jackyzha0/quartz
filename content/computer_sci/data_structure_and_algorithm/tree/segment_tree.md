@@ -3,7 +3,7 @@ title: Segment Tree
 tags:
   - data-structure
   - tree
-date: 2024-02-28
+date: 2023-09-13
 ---
 # Overview
 

@@ -4,7 +4,7 @@ tags:
   - math
   - MOC
   - geometry
-date: 2024-02-28
+date: 2024-02-27
 ---
 
 # 3D Geometry Algorithm

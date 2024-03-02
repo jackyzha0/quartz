@@ -3,6 +3,6 @@ title: Gated Recurrent Unit
 tags:
 - deep-learning
 - time-series-dealing
-date: 2024-02-28
+date: 2023-09-07
 ---
 

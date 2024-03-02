@@ -3,7 +3,7 @@ title: Math MOC
 tags:
 - math
 - MOC
-date: 2024-02-28
+date: 2023-12-03
 ---
 
 # Statistics

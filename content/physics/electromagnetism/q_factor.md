@@ -5,7 +5,7 @@ tags:
 - electric
 - electromagnetism
 - basic
-date: 2024-02-28
+date: 2023-04-04
 ---
 
 # Explanation

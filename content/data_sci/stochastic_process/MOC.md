@@ -4,7 +4,7 @@ tags:
   - MOC
   - statistics
   - stochastic-process
-date: 2024-02-28
+date: 2023-09-19
 ---
 # Basic Concept
 

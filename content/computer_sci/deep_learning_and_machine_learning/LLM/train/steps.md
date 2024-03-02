@@ -3,7 +3,7 @@ title: LLM training steps
 tags:
 - LLM
 - deep-learning
-date: 2024-02-28
+date: 2023-09-04
 ---
 
 训练大型语言模型（LLM）的方法通常涉及以下步骤：
