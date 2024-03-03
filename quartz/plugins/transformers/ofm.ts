@@ -1,5 +1,5 @@
 import { QuartzTransformerPlugin } from "../types"
-import { Blockquote, Root, Html, BlockContent, DefinitionContent, Paragraph, Code } from "mdast"
+import { Root, Html, BlockContent, DefinitionContent, Paragraph, Code } from "mdast"
 import { Element, Literal, Root as HtmlRoot } from "hast"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { slug as slugAnchor } from "github-slugger"
@@ -17,7 +17,6 @@ import { toHtml } from "hast-util-to-html"
 import { PhrasingContent } from "mdast-util-find-and-replace/lib"
 import { capitalize } from "../../util/lang"
 import { PluggableList } from "unified"
-import { ValidCallout, i18n } from "../../i18n"
 
 export interface Options {
   comments: boolean
@@ -528,12 +527,35 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     last.value = last.value.slice(0, -matches[0].length)
                     const block = matches[0].slice(1)
 
-                    if (!Object.keys(file.data.blocks!).includes(block)) {
-                      node.properties = {
-                        ...node.properties,
-                        id: block,
+                    if (last.value === "") {
+                      // this is an inline block ref but the actual block
+                      // is the previous element above it
+                      let idx = (index ?? 1) - 1
+                      while (idx >= 0) {
+                        const element = parent?.children.at(idx)
+                        if (!element) break
+                        if (element.type !== "element") {
+                          idx -= 1
+                        } else {
+                          if (!Object.keys(file.data.blocks!).includes(block)) {
+                            element.properties = {
+                              ...element.properties,
+                              id: block,
+                            }
+                            file.data.blocks![block] = element
+                          }
+                          return
+                        }
                       }
-                      file.data.blocks![block] = node
+                    } else {
+                      // normal paragraph transclude
+                      if (!Object.keys(file.data.blocks!).includes(block)) {
+                        node.properties = {
+                          ...node.properties,
+                          id: block,
+                        }
+                        file.data.blocks![block] = node
+                      }
                     }
                   }
                 }
