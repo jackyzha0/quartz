@@ -5,18 +5,18 @@ Moves are where nearly all the mechanics in Chasing Adventure live in. Here are 
   
 You can find the moves for each playbook here:  
   
-[[Meta/Moves/Barbarian|Barbarian]]  
-[[Meta/Moves/Bard|Bard]]  
-[[Meta/Moves/Cleric|Cleric]]  
-- [[Cleric Spells|Cleric Spells]]  
-[[Meta/Moves/Druid|Druid]]  
-[[Meta/Moves/Fighter|Fighter]]  
-[[Immolator|Immolator]]  
-[[Meta/Moves/Paladin|Paladin]]  
-[[Meta/Moves/Ranger|Ranger]]  
-[[Thief|Thief]]  
-[[Meta/Moves/Wizard|Wizard]]  
-- [[Wizard Spells|Wizard Spells]]  
+- [[Meta/Moves/Barbarian|Barbarian]]  
+- [[Meta/Moves/Bard|Bard]]  
+- [[Meta/Moves/Cleric|Cleric]]  
+	- [[Cleric Spells|Cleric Spells]]  
+- [[Meta/Moves/Druid|Druid]]  
+- [[Meta/Moves/Fighter|Fighter]]  
+- [[Immolator|Immolator]]  
+- [[Meta/Moves/Paladin|Paladin]]  
+- [[Meta/Moves/Ranger|Ranger]]  
+- [[Thief|Thief]]  
+- [[Meta/Moves/Wizard|Wizard]]  
+	- [[Wizard Spells|Wizard Spells]]  
 ## Adventure Moves  
 ### Defy  
 <span class="move-trigger">When you act despite an imminent threat or obstacle,</span> tell us how you  
