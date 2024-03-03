@@ -235,7 +235,6 @@ export async function handleBuild(argv) {
       sassPlugin({
         type: "css-text",
         cssImports: true,
-        embedded: true,
       }),
       {
         name: "inline-script-loader",
