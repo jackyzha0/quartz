@@ -6,7 +6,7 @@ on Page 45 for details.
 Only one Ongoing invocation or spell can be maintained at a time.  
 The Risk of an Invocation usually only happens when you choose it on  
 a **7-9**, but something like it or worse may happen when the GM says  
-what happens on a 6-.  
+what happens on a **6-**.  
 An Invocation’s Greater effect only happens when certain Advanced  
 Moves unlock it.  
   
