@@ -235,6 +235,7 @@ export async function handleBuild(argv) {
       sassPlugin({
         type: "css-text",
         cssImports: true,
+        embedded: true,
       }),
       {
         name: "inline-script-loader",
@@ -313,6 +314,7 @@ export async function handleBuild(argv) {
     // ^ this import is relative, so base "cacheFile" path can't be used
 
     cleanupBuild = await buildQuartz(argv, buildMutex, clientRefresh)
+    console.log('test')
     clientRefresh()
   }
 
@@ -427,7 +429,7 @@ export async function handleBuild(argv) {
       })
   } else {
     await build(() => {})
-    ctx.dispose()
+    await ctx.dispose()
   }
 }
 
