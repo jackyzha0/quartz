@@ -314,7 +314,6 @@ export async function handleBuild(argv) {
     // ^ this import is relative, so base "cacheFile" path can't be used
 
     cleanupBuild = await buildQuartz(argv, buildMutex, clientRefresh)
-    console.log('test')
     clientRefresh()
   }
 
@@ -431,6 +430,7 @@ export async function handleBuild(argv) {
     await build(() => {})
     await ctx.dispose()
   }
+  await ctx.cancel()
 }
 
 /**
