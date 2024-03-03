@@ -40,7 +40,7 @@ export const Description: QuartzTransformerPlugin<Partial<Options> | undefined> 
             let sentenceIdx = 0
             const len = opts.descriptionLength
 
-            if (sentences[0].length >= len) {
+            if (sentences[0] !== undefined && sentences[0].length >= len) {
               const firstSentence = sentences[0].split(" ")
               while (finalDesc.length < len) {
                 const sentence = firstSentence[sentenceIdx]
