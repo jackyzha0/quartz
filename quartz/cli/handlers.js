@@ -430,7 +430,6 @@ export async function handleBuild(argv) {
     await build(() => {})
     await ctx.dispose()
   }
-  await ctx.cancel()
 }
 
 /**
