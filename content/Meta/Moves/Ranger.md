@@ -7,7 +7,7 @@ You have all of these.
 ### Citizen of the Wild  
 <span class="move-trigger">When you Track Down,</span> roll **+WIS** instead of **+nothing**, and make one fewer choice on any result.  
 ### Ready For Anything  
-You have 4 Prep. When you Settle In, reset your Prep to 4. You can spend Prep to use a Flashback or Honed Technique.  
+You have 4 Prep. <span class="move-trigger">When you Settle In,</span> reset your Prep to 4. You can spend Prep to use a Flashback or Honed Technique.  
 ### Flashback  
 <span class="move-trigger">When you retroactively declare how you prepared for something in advance,</span> spend Prep as determined by the GM using the guideline below. As a consequence during a flashback the GM may say  
 something costs extra Prep. If you spend more Prep than you have, take a condition for each remaining Prep.  
@@ -42,7 +42,7 @@ On a **10+** you find just what you need - heal them of 1 Condition (slow) as if
 ### Backup Plans  
 Your Prep resets to 6 instead of 4.  
 ### Big Game Hunter  
-There is always some creature or monster nearby that needs to be dealt with. Whenever you like, tell the GM there is a monster in the region. Then answer three of the questions below, and the GM will answer the remaining three questions in secret.  
+There is always some creature or monster nearby that needs to be dealt with. <span class="move-trigger">Whenever you like, tell the GM there is a monster in the region. Then answer three of the questions below,</span> and the GM will answer the remaining three questions in secret.  
 - How big is it?  
 - How many are there?  
 - Where is its lair?  
@@ -51,7 +51,7 @@ There is always some creature or monster nearby that needs to be dealt with. Whe
 - What valuables might it have?  
 <span class="move-trigger">When you show authorities proof that the threat is dealt with,</span> gain 3 Wealth.  
 ### Camouflaged  
-You have Advantage to Gain the Edge in the wilderness. When you move slowly, carefully, and calmly, you make no noise and leave no trace of your passage.  
+You have Advantage to Gain the Edge in the wilderness. <span class="move-trigger">When you move slowly, carefully, and calmly,</span> you make no noise and leave no trace of your passage.  
 ### Favored Quarry  
 <span class="move-trigger">When you declare a specific type of creature to be your Favored Quarry (goblins,</span> mages, ghosts, etc.), say how their kind wronged you and what you plan to do in return. Until you achieve it in full you cannot declare another Favored Quarry. Your Favored Quarry takes an extra condition from all of your attacks, can never surprise you, and is  
 always treated as a dangerous monster to you.  
@@ -65,7 +65,7 @@ miss, then treat a **6-** as a **7-9**, a **7-9** as a **10+**, or a **10+** as 
 ### Prepared For Battle  
 <span class="move-trigger">When you enter a battle,</span> gain 1 Prep.  
 ### Scholar of the Wilds  
-<span class="move-trigger">When you Ponder creatures,</span> monsters or the wild, you may roll with either **WIS** or **INT**. When you Examine a situation in the wilderness, you may roll with either **INT** or **WIS**.  
+<span class="move-trigger">When you Ponder creatures,</span> monsters or the wild, you may roll with either **WIS** or **INT**. <span class="move-trigger">When you Examine a situation in the wilderness,</span> you may roll with either **INT** or **WIS**.  
 ### Scout Ahead  
 <span class="move-trigger">When you go off on your own to explore a dangerous area,</span> roll **+DEX**.  
 On a 7 or higher you make it back safely; the GM will describe what you encountered. On a **10+** choose two. On a **7-9** choose one. On a  

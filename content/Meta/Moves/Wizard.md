@@ -9,7 +9,7 @@ come to pass. On a **7-9** the spell is still successful but choose one conseque
 - The spell’s Risk manifests as well.  
 - The spell’s magic drains you. You take -1 Ongoing to Evoke Spells until you next Settle In.  
 - Using it puts you in danger or draws unwanted attention, the GM will say how.  
-You start with 2 spells known. When you Level Up, you can choose to Learn a New Spell instead of another benefit.  
+You start with 2 spells known. <span class="move-trigger">When you Level Up,</span> you can choose to Learn a New Spell instead of another benefit.  
 ### Prestidigitation  
 You can easily invoke minor magical effects without issue. Slowly moving small objects, creating minor obvious illusions, generating mild  
 heat and sources of light, and other similar feats are all easily within your power without rolling.  

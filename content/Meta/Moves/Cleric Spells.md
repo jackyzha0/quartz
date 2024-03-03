@@ -72,7 +72,7 @@ deity can’t bear to be near it.
 A message you speak is instantly delivered to a person of your  
 choosing, no matter where they are.  
 **Risk:** It won’t be delivered instantly.  
-**Greater:** When they receive the message, they can also respond with  
+**Greater:** <span class="move-trigger">When they receive the message,</span> they can also respond with  
 a single message in kind to you.  
   
 ### Procure  
@@ -87,7 +87,7 @@ feature or quality.
 An ally either gains Advantage Ongoing to Defy or is protected from  
 something pertaining to your deity’s domains (you choose when this  
 is invoked).  
-**Risk:** When this effect ends, those affected must fulfill a demand of  
+**Risk:** <span class="move-trigger">When this effect ends,</span> those affected must fulfill a demand of  
 your deity or suffer a condition.  
 **Greater:** On a **12+** all your allies are affected.  
   
