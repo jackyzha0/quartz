@@ -36,7 +36,7 @@ on all rolls.
 Acquired Taste  
 Gain another Herculean Appetite.  
 ### Ancestral Visions  
-<span class="move-trigger">When you ritually sacrificial something significant (your call) in ritual to the spirits (or gods,</span> ancestors, totem, etc.), roll **+WIS**. On a **10+** choose three. On a **7-9** choose two.  
+<span class="move-trigger">When you ritually sacrificial something significant (your call) in ritual to the spirits (or gods, ancestors, totem, etc.),</span> roll **+WIS**. On a **10+** choose three. On a **7-9** choose two.  
 - Gain a boon, gift, or blessing proportional to the sacrifice you made, the GM will say what.  
 - Ask the GM one question about an enemy’s actions, location, or vulnerabilities and they will answer truthfully.  
 - Until you next Settle In, gain **+1** Armor. This Armor works against both physical harm and conditions from ignoring your appetites.  
