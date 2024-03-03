@@ -7,13 +7,12 @@ You have all of these.
 ### At One With The World  
 You can speak with animals and Scrutinize and Compel them. You also don’t require food or drink.  
 ### Attuned Creatures  
-You begin play with two Attuned Creatures of your choice. Each has a species name and an Instinct. When you Level Up, you may add two  
+You begin play with two Attuned Creatures of your choice. Each has a species name and an Instinct. <span class="move-trigger">When you Level Up,</span> you may add two  
 Attuned Creatures to your list instead of another benefit.  
 Instinct examples: smash and tear, fly free without care, prey upon the weak and isolated, consume and devour, skulk and ambush, weave webs  
 and victimize the foolish, assault and challenge the brave or strong.  
 ### Commune  
-<span class="move-trigger">When you spend some time in a place,</span> connecting with nearby creatures and spirits, roll **+WIS**. You will be granted a vision of significance to you, your allies, or the spirits around you, the GM will  
-describe it.  
+<span class="move-trigger">When you spend some time in a place,</span> connecting with nearby creatures and spirits, roll **+WIS**. You will be granted a vision of significance to you, your allies, or the spirits around you, the GM will describe it.  
 On a **10+** the vision will be clear and helpful.  
 On a **7-9** the vision is unclear and murky.  
 On a **6-** the vision is frightening or traumatic.  
@@ -21,7 +20,7 @@ On a **6-** the vision is frightening or traumatic.
 <span class="move-trigger">When you call upon the wilds to change your shape,</span> choose one of your attuned creatures to change into and roll **+WIS**.  
 On a **10+** you transform quickly and without issue.  
 On a **7-9** you still transform, but you are put in a spot or draw unwanted attention.  
-While in an animal shape, you gain any innate abilities and weaknesses of the form; claws, wings, gills, and so on. You also gain the Instinct of your new form. This primal urge is something innate to each creature and becomes a part of you while you are shifted.  
+<span class="move-trigger">While in an animal shape,</span> you gain any innate abilities and weaknesses of the form; claws, wings, gills, and so on. You also gain the Instinct of your new form. This primal urge is something innate to each creature and becomes a part of you while you are shifted.  
 ### Resist Instinct  
 <span class="move-trigger">When you try to change shape without having fulfilled your Instinct,</span> roll **+WIS**.  
 On a **10+** you succeed and are now able to transform. If you’re changing back to normal, you do so. If you’re changing into another creature, roll to Shapeshift.  
@@ -41,9 +40,9 @@ You may choose one when you Level Up.
 - They attack, or sabotage an enemy of nature.  
 ### Balance  
 <span class="move-trigger">When you inflict a condition,</span> gain 1 Balance.  
-<span class="move-trigger">When you touch someone and invoke healing spirits,</span> you may spend Balance. For each 2 Balance spent, heal 1 condition. When you Settle In, lose all Balance.  
+<span class="move-trigger">When you touch someone and invoke healing spirits,</span> you may spend Balance. For each 2 Balance spent, heal 1 condition. <span class="move-trigger">When you Settle In,</span> lose all Balance.  
 ### Barkskin  
-While your feet touch the ground, you have **+2** Armor against physical injuries.  
+<span class="move-trigger">While your feet touch the ground,</span> you have **+2** Armor against physical injuries.  
 ### Bridge Between Worlds  
 You see the patterns that make up the fabric of the world. You can now apply your At One With the World and Shapeshift Moves to inanimate natural objects (plants, rocks, etc.), as well as pure elements (fire, water, air, and earth). Add one such Attuned transformation now.  
 ### Call of the Wild  
@@ -53,7 +52,7 @@ You see the patterns that make up the fabric of the world. You can now apply you
 - They cause no collateral damage  
 - They continue to accompany you for a time after the current scene  
 ### Earthly Disciple  
-<span class="move-trigger">When you Compel an animal or spirit,</span> you may roll **+WIS** instead of **+CHA**. When you Ponder animals, nature, or the balance of life, you may roll **+WIS** instead of **+INT**.  
+<span class="move-trigger">When you Compel an animal or spirit,</span> you may roll **+WIS** instead of **+CHA**. <span class="move-trigger">When you Ponder animals, nature, or the balance of life,</span> you may roll **+WIS** instead of **+INT**.  
 ### Environmentalist  
 <span class="move-trigger">When you call upon nature to aid you against a foe,</span> name a natural feature of your surroundings (deep roots, rocky cliffs, flowing wind, etc.) and roll **+WIS**. On a 7+ your foe is temporarily hampered or trapped by the feature. On a **10+** it also inflicts a condition on your foe.  
 ### Eye of the Tiger  

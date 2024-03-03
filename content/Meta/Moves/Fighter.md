@@ -16,8 +16,7 @@ You can have a maximum of 5 Momentum. <span class="move-trigger">When you Settle
 ### Particular Set of Skills  
 <span class="move-trigger">When you Compel with threats of violence,</span> roll with Advantage.  
 ### Demolitionist  
-<span class="move-trigger">When you want to destroy an object,</span> be it a building, magical artifact, or obstacle, tell the GM what it is. It is always possible, but the GM  
-will give you 1 to 4 of the following requirements (separated by “ANDs” and “ORs”);  
+<span class="move-trigger">When you want to destroy an object,</span> be it a building, magical artifact, or obstacle, tell the GM what it is. It is always possible, but the GM will give you 1 to 4 of the following requirements (separated by “ANDs” and “ORs”);  
 - It’s going to take hours/days/weeks.  
 - First you must .  
 - You’ll need help from .  
@@ -25,18 +24,15 @@ will give you 1 to 4 of the following requirements (separated by “ANDs” and 
 - It will be easy/difficult to repair  
 - You and your allies will risk .  
 - You’ll have to use up/wear out .  
-You can use this to do things like start a cave-in, break down a wall, blow up a building, shatter a magical sword, or drop a magical ring into a  
-volcano.  
+You can use this to do things like start a cave-in, break down a wall, blow up a building, shatter a magical sword, or drop a magical ring into a volcano.  
 ### Signature Weapon  
-You don’t wield an ordinary weapon, but instead have an especially powerful or unusual one. See Assets on Page 29 for details on creating  
-your Signature Weapon.  
+You don’t wield an ordinary weapon, but instead have an especially powerful or unusual one. See Assets on Page 29 for details on creating your Signature Weapon.  
   
 ## Advanced Moves   
 You may choose one when you Level Up.  
   
 ### Basic Training  
-You’ve gotten used to the tireless marches, late nights, early mornings and backbreaking labor. You are unaffected by all but the most extreme forms of exhaustion. Gain **+1** Armor against fatigue or  
-exhaustion. <span class="move-trigger">When you Settle In,</span> you can stay up all night on watch without feeling tired.  
+You’ve gotten used to the tireless marches, late nights, early mornings and backbreaking labor. You are unaffected by all but the most extreme forms of exhaustion. Gain **+1** Armor against fatigue or exhaustion. <span class="move-trigger">When you Settle In,</span> you can stay up all night on watch without feeling tired.  
 ### Battleborn  
 <span class="move-trigger">When you Defy in battle,</span> you may spend 1 Momentum to roll with Advantage.  
 ### Charge  

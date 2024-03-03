@@ -5,12 +5,10 @@ publish-ash: true
 You have all of these  
   
 ### Storied Knowledge  
-<span class="move-trigger">When you first encounter someone or something that you’ve heard tales,</span> songs, or legends about (your call), tell the GM something interesting you’ve heard about it. The GM will tell you what else  
-you’ve heard that complicates things.  
+<span class="move-trigger">When you first encounter someone or something that you’ve heard tales,</span> songs, or legends about (your call), tell the GM something interesting you’ve heard about it. The GM will tell you what else you’ve heard that complicates things.  
 ### Expressive Conflict  
 You wield renowned artistic skill, (music, writing, painting, etc.) which can do more than just capture hearts and minds. Choose two expressions that you know:  
-- Wield your art like a weapon for the scene. When you Engage or  
-Let Fly using your art, you may roll with  **CHA** instead of  **STR** or  **DEX**.  
+- Wield your art like a weapon for the scene. When you Engage or Let Fly using your art, you may roll with  **CHA** instead of  **STR** or  **DEX**.  
 - Curse a foe, removing 2 of their unused Armor.  
 - Heal yourself or an ally of 1 condition.  
 - Distract, stun, or immobilize a foe  

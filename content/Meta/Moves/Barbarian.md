@@ -58,7 +58,7 @@ Armor one-for-one for any of the following effects:
 ### Khan of Khans  
 <span class="move-trigger">When a follower Assists you in pursuit of an appetite,</span> the GM will not invoke a Cost, and if you roll a **10+** they also Favor you.  
 ### More! Always More!  
-<span class="move-trigger">When you satiate an appetite to the extreme (destroy something precious,</span> gain enormous fame, mountains of riches, etc.), choose two:  
+<span class="move-trigger">When you satiate an appetite to the extreme (destroy something precious, gain enormous fame, mountains of riches, etc.),</span> choose two:  
 - Mark 1 XP.  
 - Heal yourself of an additional  
 condition.  
