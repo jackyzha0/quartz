@@ -73,10 +73,10 @@ You can customize the behaviour of Quartz by adding, removing and reordering plu
 > [!note]
 > Each node is modified by every transformer _in order_. Some transformers are position sensitive, so you may need to pay particular attention to whether they need to come before or after certain other plugins.
 
-You should take care to add the plugin to the right entry corresponding to its plugin type. For example, to add the [[ExplicitPublish]] plugin (a [[tags/plugin/transformer|Transformer]], you would add the following line:
+You should take care to add the plugin to the right entry corresponding to its plugin type. For example, to add the [[ExplicitPublish]] plugin (a [[tags/plugin/filter|Filter]]), you would add the following line:
 
 ```ts title="quartz.config.ts"
-transformers: [
+filters: [
   ...
   Plugin.ExplicitPublish(),
   ...
