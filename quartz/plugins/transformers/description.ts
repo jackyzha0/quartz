@@ -30,7 +30,10 @@ export const Description: QuartzTransformerPlugin<Partial<Options> | undefined> 
             let text = escapeHTML(toString(tree))
 
             if (opts.replaceExternalLinks) {
-              frontMatterDescription = frontMatterDescription?.replace(urlRegex, "$<domain>" + "$<path>")
+              frontMatterDescription = frontMatterDescription?.replace(
+                urlRegex,
+                "$<domain>" + "$<path>",
+              )
               text = text.replace(urlRegex, "$<domain>" + "$<path>")
             }
 
