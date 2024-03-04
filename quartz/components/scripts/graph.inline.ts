@@ -214,9 +214,14 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
         // fade out non-neighbour nodes
         connectedNodes = linkNodes.data().flatMap((d: any) => [d.source.id, d.target.id])
 
-        d3.selectAll<HTMLElement, NodeData>(".link").style("opacity", 0.2)
+        d3.selectAll<HTMLElement, NodeData>(".link")
+          .transition()
+          .duration(200)
+          .style("opacity", 0.2)
         d3.selectAll<HTMLElement, NodeData>(".node")
           .filter((d) => !connectedNodes.includes(d.id))
+          .transition()
+          .duration(200)
           .style("opacity", 0.2)
       }
 
@@ -238,8 +243,8 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     })
     .on("mouseleave", function (_, d) {
       if (focusOnHover) {
-        d3.selectAll<HTMLElement, NodeData>(".link").style("opacity", 1)
-        d3.selectAll<HTMLElement, NodeData>(".node").style("opacity", 1)
+        d3.selectAll<HTMLElement, NodeData>(".link").transition().duration(200).style("opacity", 1)
+        d3.selectAll<HTMLElement, NodeData>(".node").transition().duration(200).style("opacity", 1)
       }
       const currentId = d.id
       const linkNodes = d3
