@@ -14,7 +14,7 @@ const defaultOptions: Options = {
 }
 
 const urlRegex = new RegExp(
-  /(https?:\/\/)?(?<domain>[\da-z\.-]+)\.([a-z\.]{2,6})(:\d+)?([\/\w\.-]*)/,
+  /(https?:\/\/)?(?<domain>([\da-z\.-]+)\.([a-z\.]{2,6})(:\d+)?)(?<path>[\/\w\.-]*)(\?[\/\w\.=&;-]*)?/,
   "g",
 )
 
@@ -30,8 +30,8 @@ export const Description: QuartzTransformerPlugin<Partial<Options> | undefined> 
             let text = escapeHTML(toString(tree))
 
             if (opts.replaceExternalLinks) {
-              frontMatterDescription = frontMatterDescription?.replace(urlRegex, "$<domain>")
-              text = text.replace(urlRegex, "$<domain>")
+              frontMatterDescription = frontMatterDescription?.replace(urlRegex, "$<domain>" + "$<path>")
+              text = text.replace(urlRegex, "$<domain>" + "$<path>")
             }
 
             const desc = frontMatterDescription ?? text
