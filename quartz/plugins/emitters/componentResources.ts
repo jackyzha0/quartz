@@ -126,6 +126,14 @@ function addGlobalPageResources(
 
       document.head.appendChild(umamiScript)
     `)
+  } else if (cfg.analytics?.provider === "goatcounter") {
+    componentResources.afterDOMLoaded.push(`
+      const goatcounterScript = document.createElement("script")
+      goatcounterScript.src = "//gc.zgo.at/count.js"
+      goatcounterScript.async = true
+      goatcounterScript.setAttribute("data-goatcounter", "https://${cfg.analytics.websiteId}.goatcounter.com/count")
+      document.head.appendChild(goatcounterScript)
+    `)
   }
 
   if (cfg.enableSPA) {
