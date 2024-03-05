@@ -17,6 +17,7 @@ export interface D3Config {
   opacityScale: number
   removeTags: string[]
   showTags: boolean
+  focusOnHover?: boolean
 }
 
 interface GraphOptions {
@@ -37,6 +38,7 @@ const defaultOptions: GraphOptions = {
     opacityScale: 1,
     showTags: true,
     removeTags: [],
+    focusOnHover: false,
   },
   globalGraph: {
     drag: true,
@@ -50,6 +52,7 @@ const defaultOptions: GraphOptions = {
     opacityScale: 1,
     showTags: true,
     removeTags: [],
+    focusOnHover: true,
   },
 }
 
