@@ -7,16 +7,16 @@ title: Home
 This is a world of snow and warmth. A world of disconnection and unbreakable bonds. This is the story of Havenloft.   
   
 ## Important Links  
-[[Ash In the Snow/People/People Landing|People Landing]]  
-[[Moves Landing|Moves Landing]]  
+[[./People/People Landing|People Landing]]  
+[[./Meta/Moves/Moves Landing|Moves Landing]]  
   
 ### PCs  
-- [[Ash In the Snow/People/Varis.md|Varis]]  
-- [[Ash In the Snow/People/Corrick.md|Corrick]]  
-- [[Ash In the Snow/People/Zilver.md|Zilver]]  
-- [[Ash In the Snow/People/Moonie.md|Moonie]]  
-- [[Ash In the Snow/People/Dunn.md|Dunn]]  
-- [[Ash In the Snow/People/Axiom.md|Axiom]]  
+- [[./People/Zilver|Zilver]]  
+- [[./People/Varis|Varis]]  
+- [[./People/Moonie|Moonie]]  
+- [[./People/Dunn|Dunn]]  
+- [[./People/Corrick|Corrick]]  
+- [[./People/Axiom|Axiom]]  
   
   
 ## Geography  
@@ -44,12 +44,12 @@ Despite how cut off people are from one another, there are still many roads that
 There are *many* theories as to where the winter came from, everything from an Ice Witch, a figured called The Great Lich, the sins of humanity, nature, etc. Some say the world has always been this way, and anyone who claim otherwise are strange folk.  
   
 ## Flora, Fauna, and Faethings  
-- [[Ash In The Snow/Lore/Fallen Suns|Ash In The Snow/Lore/Fallen Suns]]  
+- [[./Lore/Fallen Suns|Ash In The Snow/Lore/Fallen Suns]]  
     - Mysterious orbs of light and warmth. They look like small suns, floating above the towns that formed around them, providing a protective shield from the cold outside. Bizarrely, if you attempt to move them too far from their initial location, they will immediately go out.  
     - Every four years they need to be recharged by harvesting energy from one of many locations where multiple leylines converge. However, since the leylines constantly shift, the only way to find them is through scrying.  
         - Some places pay handsomely, some places do it on principal.  
 - Common folk  
-    - There are many folk, [[Races Landing|the full list can be found here]] , but the most common are Plainsfolk, Rabbitfolk, Dwarves, Elves, & Dragonborn.   
+    - There are many folk, [[./Races/Races Landing|the full list can be found here]] , but the most common are Plainsfolk, Rabbitfolk, Dwarves, Elves, & Dragonborn.   
         - Also, *human* is a catch-all term for any "humanoid" race. So calling a Goblin a Human is correct. These are dungeon meshi rules!  
 - Arctic Foxes  
     - Intelligent foxes that can perfectly mimic human voices. While smart, they are still animals and only really use their mimicry to fool humans in order to steal their food. Some folk keep them as pets.  
