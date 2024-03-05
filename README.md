@@ -1,14 +1,12 @@
-<h1 align=center>🌱 Forgetful Notes</h1>
+# 🌱 Forgetful Notes
 
-<p align="center">
+<p align="">
   <img alt="code size" src="https://img.shields.io/github/languages/code-size/semanticdata/forgetful-notes" />
   <img alt="repository size" src="https://img.shields.io/github/repo-size/semanticdata/forgetful-notes" />
   <img alt="commits" src="https://img.shields.io/github/commit-activity/t/semanticdata/forgetful-notes" />
   <img alt="last commit" src="https://img.shields.io/github/last-commit/semanticdata/forgetful-notes" />
   <img alt="is website up?" src="https://img.shields.io/website/https/forgetfulnotes.com.svg" />
 </p>
-
-## Overview
 
 This repository holds the source code for [Forgetful Notes](https://forgetfulnotes.com)—my digital garden of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 
@@ -19,26 +17,26 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 <details>
 <summary>Show/Hide</summary>
 
-- [Overview](#overview)
-- [Table of Contents](#table-of-contents)
-- [Screenshots](#screenshots)
-  - [Full Width](#full-width)
-  - [Slim (light)](#slim-light)
-  - [Slim (dark)](#slim-dark)
-- [Useful Commands](#useful-commands)
-  - [Install Dependencies](#install-dependencies)
-  - [Update Dependencies](#update-dependencies)
-  - [Start Local Server](#start-local-server)
-  - [Update Quartz](#update-quartz)
-  - [Sync the Repo](#sync-the-repo)
-  - [Build Only](#build-only)
-  - [Find Help](#find-help)
-- [Customization](#customization)
-  - [Stylesheets](#stylesheets)
-  - [Fonts](#fonts)
-- [Folder Structure](#folder-structure)
-- [Acknowledgements and Attributions](#acknowledgements-and-attributions)
-- [License](#license)
+- [🌱 Forgetful Notes](#-forgetful-notes)
+  - [Table of Contents](#table-of-contents)
+  - [Screenshots](#screenshots)
+    - [Full Width](#full-width)
+    - [Slim (light)](#slim-light)
+    - [Slim (dark)](#slim-dark)
+  - [Useful Commands](#useful-commands)
+    - [Install Dependencies](#install-dependencies)
+    - [Update Dependencies](#update-dependencies)
+    - [Start Local Server](#start-local-server)
+    - [Update Quartz](#update-quartz)
+    - [Sync the Repo](#sync-the-repo)
+    - [Build Only](#build-only)
+    - [Find Help](#find-help)
+  - [Customization](#customization)
+    - [Stylesheets](#stylesheets)
+    - [Fonts](#fonts)
+  - [Folder Structure](#folder-structure)
+  - [Acknowledgements and Attributions](#acknowledgements-and-attributions)
+  - [License](#license)
 
 </details>
 
