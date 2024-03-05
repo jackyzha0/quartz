@@ -7,11 +7,11 @@ Starting Moves You have all of these.
 Ignore the Clumsy tag on armor you wear.  
 ### Devout Virtues  
 You adhere to a strict moral code that grants you power beyond that wielded by normal folk. Each virtue has a vow that must be kept and a boon it grants you. Choose two of the following virtues:  
-- **Courage:** Refuse to let those who have power abuse it. While you physically stand in defense of another, they will not be targeted or harmed.  
-- **Honor:** Never harm the helpless or unaware. When you Decree an enemy to surrender or repent, you can treat a **6-** as a **7-9**.  
-- **Justice:** Suffer not a crime unpunished. When you question a captive or friendly individual, you know if they’re lying.  
-- **Loyalty:** Remain true to your word and to your allies. When you speak the truth, none can doubt you. They might deny it out loud, but in their hearts they recognize your conviction.  
-- **Mercy:** Let no innocent creature suffer unaided in your presence. When you heal someone else, you are also healed of one condition.  
+- **Courage:** Refuse to let those who have power abuse it. <span class="move-trigger">While you physically stand in defense of another,</span> they will not be targeted or harmed.  
+- **Honor:** Never harm the helpless or unaware. <span class="move-trigger">When you Decree an enemy to surrender or repent,</span> you can treat a **6-** as a **7-9**.  
+- **Justice:** Suffer not a crime unpunished. <span class="move-trigger">When you question a captive or friendly individual,</span> you know if they’re lying.  
+- **Loyalty:** Remain true to your word and to your allies. <span class="move-trigger">When you speak the truth, none can doubt you. They might deny it out loud,</span> but in their hearts they recognize your conviction.  
+- **Mercy:** Let no innocent creature suffer unaided in your presence. <span class="move-trigger">When you heal someone else,</span> you are also healed of one condition.  
 - **Purity:** Abstain from mortal pleasures and finery. You are immune to all maladies, such as poisons, diseases, and curses.  
 ### Chains of Faith  
 <span class="move-trigger">Whenever you fail to act in accordance to one of your Devout Virtues,</span> depending on the severity of your actions, you may lose access to that vow and its associated benefits until you atone for your  
@@ -64,16 +64,16 @@ You can spend uses of Adventuring gear as if they were Supplies.
 ### Last Stand  
 <span class="move-trigger">When you mark your fourth condition,</span> immediately refresh all of your Armor.  
 ### Quest  
-<span class="move-trigger">When you dedicate yourself to a mission,</span> describe what the dedication looks like and state what you set out to do. The GM will give you an associated blessing. While you stay true to your goal, this  
+<span class="move-trigger">When you dedicate yourself to a mission,</span> describe what the dedication looks like and state what you set out to do. The GM will give you an associated blessing. <span class="move-trigger">While you stay true to your goal,</span> this  
 blessing remains yours. At the end of each session, gain 1 XP if you’ve made significant progress on your quest but haven’t completed it.  
 <span class="move-trigger">When you complete your Quest,</span> immediately lose your blessing and either gain 3 XP, heal 3 conditions, or heal a locked condition.  
 ### Robin  
-You have taken on a young Apprentice (Page 26). When your Apprentice Assists you in a task, on a **12+** you both heal 1 condition.  
-The Only Thing They Fear When you Engage or Let Fly, on a **12+** your foe also Fears you. When  
+You have taken on a young Apprentice (Page 26). <span class="move-trigger">When your Apprentice Assists you in a task,</span> on a **12+** you both heal 1 condition.  
+The Only Thing They Fear <span class="move-trigger">When you Engage or Let Fly,</span> on a **12+** your foe also Fears you. When  
 you Compel or Decree someone who Fears you, you can use up that Fear for a **+2** bonus to the roll.  
 ### There Are No Chains On Me  
 <span class="move-trigger">When you go out of your way to violate one of your Virtues,</span> instead of losing access to its benefit you alter the virtue to fit your action. It  
-is up to you how ‘virtuous’ the new vow is at all. When you change Playbooks, you can keep any and all altered Virtues if you wish. Once  
+is up to you how ‘virtuous’ the new vow is at all. <span class="move-trigger">When you change Playbooks,</span> you can keep any and all altered Virtues if you wish. Once  
 you have altered a Virtue you may no longer take any more paladin Advanced Moves when you Level Up.  
 ### Virtuous  
 Gain another Divine Virtue.  

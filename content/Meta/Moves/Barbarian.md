@@ -12,6 +12,7 @@ shield.
 - **Unstoppable Force:** You have Advantage to Defy a moving danger (traps, swinging weapons, etc.).  
 - **Eye for Weakness:** At any time you can ask the GM ‘Who or what here is weak or vulnerable?” and they will tell you honestly.  
 - **Walking Weapon:** Your limbs and body are as formidable as the sharpest sword or heaviest hammer. You can harm any opponent unarmed.  
+  
 <span class="move-trigger">When you level up,</span> you may gain another proficiency instead of a different benefit, up to a maximum of four proficiencies.  
 ### Herculean Appetites  
 Others may content themselves with just a taste of wine, or dominion over a servant or two, but you want more. Choose two:  
@@ -21,6 +22,7 @@ Others may content themselves with just a taste of wine, or dominion over a serv
 - Pure Destruction  
 - Power Over Others  
 - Riches and Property  
+  
 <span class="move-trigger">When you refuse a golden opportunity to sate an appetite,</span> take 1 condition.  
 <span class="move-trigger">When you sate an appetite,</span> heal yourself of 1 condition.  
 <span class="move-trigger">When you Push Yourself in pursuit of an appetite,</span> gain two sources of Advantage instead of one.  

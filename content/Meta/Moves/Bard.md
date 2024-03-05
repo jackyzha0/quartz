@@ -17,7 +17,7 @@ You have 3 Art. <span class="move-trigger">When you Settle In,</span> reset your
 ### Perform  
 <span class="move-trigger">When you practice or display your chosen art before an Intelligent audience,</span> roll **+CHA**.  
 On a **10+** gain 3 Awe. On a **7-9** gain 2 Awe.  
-During or shortly after your performance, you can spend each Awe to name an NPC in the audience and choose one below. You may choose the same NPC multiple times.  
+<span class="move-trigger">During or shortly after your performance, </span> you can spend each Awe to name an NPC in the audience and choose one below. You may choose the same NPC multiple times.  
 - This person must see me.  
 - This person must give me a gift.  
 - This person Favors me.  
@@ -58,8 +58,7 @@ Advantage and without bystander interference. On a **7-9** everyone stops to wat
 ### Slippery  
 <span class="move-trigger">When you Gain The Edge through dashing rogue-ish action,</span> roll with Advantage.  
 ### Throw Down the Gauntlet  
-<span class="move-trigger">When you demand a formal duel in response to an insult or trespass,</span> your opponent cannot decline, though they may use a substitute, propose conditions, or add complications. <span class="move-trigger">While you are in a formal duel,</span> you have **+1** Armor against your  
-opponent and your attacks Pierce their Armor.  
+<span class="move-trigger">When you demand a formal duel in response to an insult or trespass,</span> your opponent cannot decline, though they may use a substitute, propose conditions, or add complications. <span class="move-trigger">While you are in a formal duel,</span> you have **+1** Armor against your opponent and your attacks Pierce their Armor.  
 ### Unflinching  
 You have **+1** Armor against conditions caused by social situations, negative emotions, or mental strain.  
 ### Well-Traveled  
@@ -73,5 +72,4 @@ Enhance two known expressions:
 - <span class="move-trigger">When you distract, stun or immobilize a foe, you can spend an additional Art to make it last until you dismiss it,</span> but you cannot use an  
 expression again until then.  
 ### World Renowned (Requires Level **10+**)  
-Gain a Reputation as a master artist and adventurer (see Assets on Page 29). <span class="move-trigger">When you invoke your Reputation,</span> after you and the GM  
-have said what has been heard about you, you can speak again and add an additional thing they’ve heard.
+Gain a Reputation as a master artist and adventurer (see Assets on Page 29). <span class="move-trigger">When you invoke your Reputation,</span> after you and the GM have said what has been heard about you, you can speak again and add an additional thing they’ve heard.

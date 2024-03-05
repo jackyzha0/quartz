@@ -46,13 +46,13 @@ You or an ally you touch becomes invisible for the scene or until they attack.
  **Risk:** Either one creature can still see them clear as day, or anyone perceptive enough might notice a shimmer; the GM will say which.  
  **Greater:** The effect is Ongoing and persists after attacking. It still only lasts for the scene.  
 ### Magic Missile (Ongoing)  
-You send bolts of magical energy at your enemies (Near, Distinctive, Piercing). While this is Ongoing, you can Let Fly by rolling **+SPELL**  
+You send bolts of magical energy at your enemies (Near, Distinctive, Piercing). <span class="move-trigger">While this is Ongoing,</span> you can Let Fly by rolling **+SPELL**  
 instead of **+DEX**.  
  **Risk:** The missiles aren’t Piercing.  
  **Greater:** Your missiles gain the Far and Forceful tags.  
 ### Mind Meld  
 You form a telepathic bond with a creature you touch, allowing you to share thoughts and emotions across any distance. You can only have one bond at a time, and may dismiss it whenever you like.  
- **Risk:** When one of you suffers a condition that isn’t absorbed by Armor (other than from Pushing Yourself) so does the other, though they don’t have to be the same condition.  
+ **Risk:** <span class="move-trigger">When one of you suffers a condition that isn’t absorbed by Armor (other than from Pushing Yourself) so does the other,</span> though they don’t have to be the same condition.  
  **Greater:** You can also share vision and other senses through the link.  
 ### Mirror Image  
 You conjure two nearby illusory duplicates for the scene that mimic your actions and appearance. Each illusion counts as **+1** Armor against  

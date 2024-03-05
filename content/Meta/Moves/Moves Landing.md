@@ -5,17 +5,17 @@ Moves are where nearly all the mechanics in Chasing Adventure live in. Here are 
   
 You can find the moves for each playbook here:  
   
-- [[Meta/Moves/Barbarian|Barbarian]]  
-- [[Meta/Moves/Bard|Bard]]  
-- [[Meta/Moves/Cleric|Cleric]]  
+- [[Ash In the Snow/Meta/Moves/Barbarian|Barbarian]]  
+- [[Ash In the Snow/Meta/Moves/Bard|Bard]]  
+- [[Ash In the Snow/Meta/Moves/Cleric|Cleric]]  
 	- [[Cleric Spells|Cleric Spells]]  
-- [[Meta/Moves/Druid|Druid]]  
-- [[Meta/Moves/Fighter|Fighter]]  
+- [[Ash In the Snow/Meta/Moves/Druid|Druid]]  
+- [[Ash In the Snow/Meta/Moves/Fighter|Fighter]]  
 - [[Immolator|Immolator]]  
-- [[Meta/Moves/Paladin|Paladin]]  
-- [[Meta/Moves/Ranger|Ranger]]  
+- [[Ash In the Snow/Meta/Moves/Paladin|Paladin]]  
+- [[Ash In the Snow/Meta/Moves/Ranger|Ranger]]  
 - [[Thief|Thief]]  
-- [[Meta/Moves/Wizard|Wizard]]  
+- [[Ash In the Snow/Meta/Moves/Wizard|Wizard]]  
 	- [[Wizard Spells|Wizard Spells]]  
 ## Adventure Moves  
 ### Defy  
@@ -26,6 +26,7 @@ do it. Then roll...
 - **+INT** if you employ quick or out-of-the-box thinking.  
 - **+WIS** if you rely on mental fortitude or sharp senses.  
 - **+CHA** if you use charm, intrigue, or social grace.  
+  
 On a **10+** the threat doesn’t come to bear.  
 On a **7-9** it only abates if you make a costly sacrifice or ugly choice,  
 the GM will tell you what.  
@@ -124,8 +125,7 @@ your conditions and refresh your undamaged Armor.
   
 ### End of Session  
 At the end of each session, answer the following questions as a group:  
-- Did we discover something new and important about the world or  
-characters?  
+- Did we discover something new and important about the world or characters?  
 - Did we newly visit or significantly alter a memorable location?  
 - Did we overcome a notable obstacle, enemy, or challenge?  
 For each “yes” answer, everyone marks 1 XP.  
@@ -140,13 +140,10 @@ of the action for a while. Say how and choose one from the list below:
 through a Level Up. You still gain XP from rolling with it.  
 - Change to a new Playbook (see Page 81)  
 - Die  
-If you’re not dead, remove all conditions that aren’t Locked. The GM  
-will advance the Ominous Forces and say when you’re back in the  
-action.  
+If you’re not dead, remove all conditions that aren’t Locked. The GM will advance the Ominous Forces and say when you’re back in the action.  
   
 ### Epiphany  
-<span class="move-trigger">When you have a change of heart,</span> say what is behind it and write a  
-new Drive.  
+<span class="move-trigger">When you have a change of heart,</span> say what is behind it and write a new Drive.  
   
 ### Level Up  
 <span class="move-trigger">When you have 5 or more XP after Settling In,</span> reduce your XP by 5  
@@ -261,14 +258,9 @@ leads them, how to escape them now, etc.)
 - Inflict Disadvantage Forward on all PCs on an opposing side.  
   
 ### Avalanche  
-<span class="move-trigger">When you navigate an imminent environmental danger (ongoing trap,</span>  
-rockslide, wildfire, etc.), use the Chase Moves as normal but with the  
-following changes:  
-- When you Gain the Edge using knowledge or out-of-the-box  
-thinking, roll **+INT**.  
-- If the environment’s side loses the chase, it may not spend Edge to  
-Learn something of another side, but may spend Edge to inflict  
-1 Condition to all characters on another side, including PCs.  
+<span class="move-trigger">When you navigate an imminent environmental danger (ongoing trap,rockslide, wildfire, etc.),</span> use the Chase Moves as normal but with the following changes:  
+- When you Gain the Edge using knowledge or out-of-the-box thinking, roll **+INT**.  
+- If the environment’s side loses the chase, it may not spend Edge to Learn something of another side, but may spend Edge to inflict 1 Condition to all characters on another side, including PCs.  
 - Every PC on the losing side Crumbles.  
   
 ## Favor Moves  
