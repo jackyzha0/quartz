@@ -123,6 +123,7 @@ const tagRegex = new RegExp(
 )
 const blockReferenceRegex = new RegExp(/\^([-_A-Za-z0-9]+)$/, "g")
 const ytLinkRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+const ytPlaylistLinkRegex = /[?&]list=([^#?&]*)/
 const videoExtensionRegex = new RegExp(/\.(mp4|webm|ogg|avi|mov|flv|wmv|mkv|mpg|mpeg|3gp|m4v)$/)
 const wikilinkImageEmbedRegex = new RegExp(
   /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/,
@@ -574,7 +575,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               if (node.tagName === "img" && typeof node.properties.src === "string") {
                 const match = node.properties.src.match(ytLinkRegex)
                 const videoId = match && match[2].length == 11 ? match[2] : null
+                const playlistId = node.properties.src.match(ytPlaylistLinkRegex)?.[1]
                 if (videoId) {
+                  // YouTube video (with optional playlist)
                   node.tagName = "iframe"
                   node.properties = {
                     class: "external-embed",
@@ -582,7 +585,20 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     frameborder: 0,
                     width: "600px",
                     height: "350px",
-                    src: `https://www.youtube.com/embed/${videoId}`,
+                    src: playlistId
+                      ? `https://www.youtube.com/embed/${videoId}?list=${playlistId}`
+                      : `https://www.youtube.com/embed/${videoId}`,
+                  }
+                } else if (playlistId) {
+                  // YouTube playlist only.
+                  node.tagName = "iframe"
+                  node.properties = {
+                    class: "external-embed",
+                    allow: "fullscreen",
+                    frameborder: 0,
+                    width: "600px",
+                    height: "350px",
+                    src: `https://www.youtube.com/embed/videoseries?list=${playlistId}`,
                   }
                 }
               }
