@@ -2,7 +2,7 @@
 title: kk's note
 tags:
   - log
-date: 2024-03-01
+date: 2024-03-05
 ---
 
 ## 2023.02.19
@@ -83,3 +83,16 @@ date: 2024-03-01
 
 
 ![](log/kk_unified_national_graduate_entrance_examination/attachments/Weixin%20Image_20240302172343.jpg)
+
+
+## 2023.03.05
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/Weixin%20Image_20240306151321.jpg)
+
+
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/Weixin%20Image_20240306151330.jpg)
+
+
+
+![](log/kk_unified_national_graduate_entrance_examination/attachments/Weixin%20Image_20240306151341.jpg)
