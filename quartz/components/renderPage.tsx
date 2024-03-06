@@ -106,8 +106,9 @@ export function renderPage(
           blockRef = blockRef.slice(1)
           let startIdx = undefined
           let endIdx = undefined
+          let headerRegex = /h[1-6]/
           for (const [i, el] of page.htmlAst.children.entries()) {
-            if (el.type === "element" && el.tagName.match(/h[1-6]/)) {
+            if (el.type === "element" && el.tagName.match(headerRegex)) {
               if (endIdx) {
                 break
               }
@@ -116,6 +117,7 @@ export function renderPage(
                 endIdx = i
               } else if (el.properties?.id === blockRef) {
                 startIdx = i
+                headerRegex = new RegExp(`h[1-${el.tagName.slice(-1)}]`)
               }
             }
           }
