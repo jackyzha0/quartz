@@ -12,9 +12,9 @@ This repository holds the source code for [Forgetful Notes](https://forgetfulnot
 
 It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](https://obsidian.md). You can read the [Documentation](https://quartz.jzhao.xyz/), and join the [Discord Community](https://discord.gg/cRFFHYye7t).
 
-## Table of Contents
+## Contents
 
-<details>
+<details open>
 <summary>Show/Hide</summary>
 
 - [🌱 Forgetful Notes](#-forgetful-notes)
@@ -24,13 +24,6 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
     - [Slim (light)](#slim-light)
     - [Slim (dark)](#slim-dark)
   - [Useful Commands](#useful-commands)
-    - [Install Dependencies](#install-dependencies)
-    - [Update Dependencies](#update-dependencies)
-    - [Start Local Server](#start-local-server)
-    - [Update Quartz](#update-quartz)
-    - [Sync the Repo](#sync-the-repo)
-    - [Build Only](#build-only)
-    - [Find Help](#find-help)
   - [Customization](#customization)
     - [Stylesheets](#stylesheets)
     - [Fonts](#fonts)
@@ -61,55 +54,27 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 
 ## Useful Commands
 
-Each line within codeblocks represents different ways to achieve the same result. This means that you can, for example, use either `npm i` or `npm install` when installing dependencies.
+```sh
+# Install Dependencies
+npm install
 
-### Install Dependencies
-
-```bash
-npm i
-# npm install
-```
-
-### Update Dependencies
-
-```bash
+# Update Dependencies
 npm update
-```
 
-### Start Local Server
-
-```bash
+# Start Local Server
 npm start
-# npm run start
-# npx quartz build --serve
-```
 
-### Update Quartz
-
-```bash
+# Update Quartz
 npm run update
-# npx quartz update
-```
 
-### Sync the Repo
-
-```bash
+# Sync the Repo
 npm run sync
-# npx quartz sync
-```
 
-### Build Only
-
-```bash
+# Build Only
 npm run build
-# npx quartz build
-```
 
-### Find Help
-
-```bash
-npx quartz --help
-# npx quartz <command> --help
+# Find Help
+npx quartz <command> --help
 ```
 
 ## Customization
