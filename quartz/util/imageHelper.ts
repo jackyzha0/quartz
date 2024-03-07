@@ -1,6 +1,7 @@
-import satori, { FontWeight, SatoriOptions } from "satori/wasm"
+import { FontWeight, SatoriOptions } from "satori/wasm"
 import { GlobalConfiguration } from "../cfg"
 import { JSXInternal } from "preact/src/jsx"
+import { QuartzPluginData } from "../plugins/vfile"
 
 /**
  * Get an array of `FontOptions` (for satori) given google font names
@@ -70,6 +71,7 @@ export type SocialImageOptions = {
    * @param title title of current page
    * @param description description of current page
    * @param fonts global font that can be used for styling
+   * @param fileData full fileData of current page
    * @returns prepared jsx to be used for generating image
    */
   imageStructure: (
@@ -78,6 +80,7 @@ export type SocialImageOptions = {
     title: string,
     description: string,
     fonts: SatoriOptions["fonts"],
+    fileData: QuartzPluginData
   ) => JSXInternal.Element
 }
 
@@ -112,4 +115,8 @@ export type ImageOptions = {
    * `GlobalConfiguration` of quartz (used for theme/typography)
    */
   cfg: GlobalConfiguration
+  /**
+   * full file data of current page
+   */
+  fileData: QuartzPluginData
 }

@@ -1,6 +1,7 @@
 import { SatoriOptions } from "satori/wasm"
 import { GlobalConfiguration } from "../cfg"
 import { SocialImageOptions, UserOpts } from "./imageHelper"
+import { QuartzPluginData } from "../plugins/vfile"
 
 export const defaultImage: SocialImageOptions["imageStructure"] = (
   cfg: GlobalConfiguration,
@@ -8,6 +9,7 @@ export const defaultImage: SocialImageOptions["imageStructure"] = (
   title: string,
   description: string,
   fonts: SatoriOptions["fonts"],
+  fileData: QuartzPluginData
 ) => {
   // How many characters are allowed before switching to smaller font
   const fontBreakPoint = 22
