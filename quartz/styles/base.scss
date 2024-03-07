@@ -55,7 +55,7 @@ ul,
 
 strong {
   font-weight: $semiBoldWeight;
-  color: #F596AA;
+  color: #81C7D4;
 }
 
 a {
@@ -135,8 +135,13 @@ a {
     }
 
     p > strong {
-      color: #F596AA;
+      color: #81C7D4;
     }
+
+    p > em {
+      color: #0089A7;
+    }
+
   }
 
   & > #quartz-body {
