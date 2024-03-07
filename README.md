@@ -1,12 +1,10 @@
 # 🌱 Forgetful Notes
 
-<p align="">
-  <img alt="code size" src="https://img.shields.io/github/languages/code-size/semanticdata/forgetful-notes" />
-  <img alt="repository size" src="https://img.shields.io/github/repo-size/semanticdata/forgetful-notes" />
-  <img alt="commits" src="https://img.shields.io/github/commit-activity/t/semanticdata/forgetful-notes" />
-  <img alt="last commit" src="https://img.shields.io/github/last-commit/semanticdata/forgetful-notes" />
-  <img alt="is website up?" src="https://img.shields.io/website/https/forgetfulnotes.com.svg" />
-</p>
+![code size](https://img.shields.io/github/languages/code-size/semanticdata/forgetful-notes)
+![repository size](https://img.shields.io/github/repo-size/semanticdata/forgetful-notes)
+![commits](https://img.shields.io/github/commit-activity/t/semanticdata/forgetful-notes)
+![last commit](https://img.shields.io/github/last-commit/semanticdata/forgetful-notes)
+![is website up?](https://img.shields.io/website/https/forgetfulnotes.com.svg)
 
 This repository holds the source code for [Forgetful Notes](https://forgetfulnotes.com)—my digital garden of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 
@@ -24,15 +22,13 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
     - [Slim (light)](#slim-light)
     - [Slim (dark)](#slim-dark)
   - [Features](#features)
+  - [Background](#background)
+  - [Technology](#technology)
   - [Useful Commands](#useful-commands)
   - [Customization](#customization)
     - [Stylesheets](#stylesheets)
     - [Fonts](#fonts)
-  - [From Obsidian](#from-obsidian)
-  - [Background](#background)
-  - [Technology](#technology)
   - [Folder Structure](#folder-structure)
-  - [Attributions](#attributions)
   - [License](#license)
 
 </details>
@@ -64,6 +60,18 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 - Admonition-style Callouts
 - Markdown Links and Wikilinks Support
 - Latex Support
+
+## Background
+
+Forgetful Notes is created using [Quartz](https://github.com/jackyzha0/quartz), hosted on [GitHub](https://github.com/), deployed with [GitHub Pages](https://pages.github.com/), and facilitated by the GitHub [Publisher](https://github.com/ObsidianPublisher) plugin for [Obsidian](https://obsidian.md/).
+
+The website has gone through many changes. I have not been shy about moving from technology to technology as I learn new things. Coming across the world of _Static Site Generators_ was a game changer. I have ran my notes through [Jekyll](https://jekyllrb.com/), [Hugo](https://gohugo.io/), [MkDocs](https://squidfunk.github.io/mkdocs-material/), [Zola](https://www.getzola.org/), and most recently [11ty](https://11ty.dev).
+
+## Technology
+
+All content for the site is written in _Markdown_ within [Obsidian](https://obsidian.md/)—an extensible, flexible note-taking app. To export the notes from Obsidian, I rely on the [GitHub Publisher](https://github.com/ObsidianPublisher) plugin.
+
+The [source code](https://github.com/semanticdata/forgetful-notes) is hosted in [GitHub](https://github.com/). From here we use [GitHub Actions](https://github.com/features/actions) to build and deploy the site to [GitHub Pages](https://pages.github.com/).
 
 ## Useful Commands
 
@@ -103,22 +111,6 @@ You can add custom CSS code within `/quartz/styles/custom.scss`. You will then n
 | Headers  |    [Bitter](https://fonts.google.com/specimen/Bitter)    | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
 | Body     |    [Bitter](https://fonts.google.com/specimen/Bitter)    |    [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3)    |
 | Code     | [Fira Mono](https://fonts.google.com/specimen/Fira+Mono) |     [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono)     |
-
-## From Obsidian
-
-**Forgetful Notes** is created using [Quartz](https://github.com/jackyzha0/quartz), hosted on [GitHub](https://github.com/), deployed with [GitHub Pages](https://pages.github.com/), and facilitated by the GitHub [Publisher](https://github.com/ObsidianPublisher) plugin for [Obsidian](https://obsidian.md/). If interested, you can browse the [source](https://github.com/semanticdata/forgetful-notes) code.
-
-## Background
-
-Forgetful Notes has gone through many changes. I have not been shy about moving from technology to technology as I learn new things. Coming across the world of [[Static Site Generators]] was a game changer. I have ran my notes through [Jekyll](https://jekyllrb.com/), [Hugo](https://gohugo.io/), [MkDocs](https://squidfunk.github.io/mkdocs-material/), and most recently [Zola](https://www.getzola.org/).
-
-However, this site is not specifically built with any of the aforementioned. Instead I have opted to follow in the footsteps of [Jacky Zhao](https://github.com/jackyzha0) and created my [[Digital Garden]] using the new fully rewritten [Quartz](https://github.com/jackyzha0/quartz)—a set of tools that helps you publish your digital garden and notes as a website for free.
-
-## Technology
-
-All content for the site is written in [[Markdown]] within [Obsidian](https://obsidian.md/)—an extensible, flexible note-taking app. To export the notes from Obsidian, I rely on the [GitHub Publisher](https://github.com/ObsidianPublisher) plugin.
-
-The [source code](https://github.com/semanticdata/forgetful-notes) is hosted in [GitHub](https://github.com/). From here we use [GitHub Actions](https://github.com/features/actions) to build and deploy the site to [GitHub Pages](https://pages.github.com/).
 
 ## Folder Structure
 
@@ -200,10 +192,6 @@ The [source code](https://github.com/semanticdata/forgetful-notes) is hosted in 
 ```
 
 </details>
-
-## Attributions
-
-Forgetful Notes is based on [Quartz](https://github.com/jackyzha0/quartz).
 
 ## License
 
