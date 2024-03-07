@@ -80,7 +80,7 @@ export type SocialImageOptions = {
     title: string,
     description: string,
     fonts: SatoriOptions["fonts"],
-    fileData: QuartzPluginData
+    fileData: QuartzPluginData,
   ) => JSXInternal.Element
 }
 

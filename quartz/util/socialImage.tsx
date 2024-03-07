@@ -9,7 +9,7 @@ export const defaultImage: SocialImageOptions["imageStructure"] = (
   title: string,
   description: string,
   fonts: SatoriOptions["fonts"],
-  fileData: QuartzPluginData
+  fileData: QuartzPluginData,
 ) => {
   // How many characters are allowed before switching to smaller font
   const fontBreakPoint = 22

@@ -101,7 +101,7 @@ export default (() => {
             fileExt: extension,
             fontsPromise,
             cfg,
-            fileData
+            fileData,
           },
           fullOptions,
         )
