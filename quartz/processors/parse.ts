@@ -94,6 +94,7 @@ export function createFileParser(ctx: BuildCtx, fps: FilePath[]) {
         file.data.filePath = file.path as FilePath
         file.data.relativePath = path.posix.relative(argv.directory, file.path) as FilePath
         file.data.slug = slugifyFilePath(file.data.relativePath)
+        file.data.markdown = file.value as string
 
         const ast = processor.parse(file)
         const newAst = await processor.run(ast, file)
