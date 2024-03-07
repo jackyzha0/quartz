@@ -32,7 +32,8 @@ async function generateSocialImage(
   const compressed = await sharp(Buffer.from(svg)).webp({ quality: 40 }).toBuffer()
 
   // Write to file system
-  fs.writeFileSync(`${imageDir}/${fileName}.${extension}`, compressed)
+  const filePath = joinSegments(imageDir, `${fileName}.${extension}`)
+  fs.writeFileSync(filePath, compressed)
 }
 
 const extension = "webp"
