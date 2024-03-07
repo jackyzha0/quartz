@@ -16,28 +16,23 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  install:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        name: Checkout
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all history for git info
-      - uses: actions/setup-node@v4
-        name: Setup Node
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 18
-
-  build:
-    needs: install
-    runs-on: ubuntu-latest
-    steps:
       - name: Install Dependencies
         run: npm i
       - name: Build Quartz Site
         run: npx quartz build
-      - uses: actions/upload-pages-artifact@v3
-        name: Upload artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: public
 
