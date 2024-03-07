@@ -42,7 +42,7 @@ function fetchTtf(fontName: string, weight: FontWeight): Promise<ArrayBuffer> {
     const urlRegex = /url\((https:\/\/fonts.gstatic.com\/s\/.*?.ttf)\)/g
     const match = urlRegex.exec(css)
     if (match) {
-      // fontData is an ArrayBuffer containing the .ttf file data
+      // fontData is an ArrayBuffer containing the .ttf file data (get match[1] due to google fonts response format, always contains link twice, but second entry is the "raw" link)
       const fontData = await (await fetch(match[1])).arrayBuffer()
       resolve(fontData)
     } else {
