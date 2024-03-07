@@ -1,4 +1,4 @@
-name: Build only
+name: Quartz - Build only
 
 on:
   workflow_dispatch:
@@ -25,8 +25,8 @@ jobs:
           fetch-depth: 0 # Fetch all history for git info
       - uses: actions/setup-node@v4
         with:
-          node-version: 20.11.0 # 18
+          node-version: 18
       - name: Install Dependencies
-        run: npm i # was npm ci
+        run: npm i
       - name: Build Quartz
         run: npx quartz build
