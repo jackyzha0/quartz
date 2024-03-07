@@ -16,6 +16,7 @@ import { unescapeHTML } from "../util/escape"
 async function generateSocialImage(
   { cfg, description, fileName, fontsPromise, title, fileData }: ImageOptions,
   userOpts: SocialImageOptions,
+  imageDir: string,
 ) {
   const fonts = await fontsPromise
 
@@ -37,7 +38,6 @@ async function generateSocialImage(
 }
 
 const extension = "webp"
-const imageDir = "public/static/social-images"
 
 const defaultOptions: SocialImageOptions = {
   colorScheme: "lightMode",
@@ -50,7 +50,7 @@ export default (() => {
   let fontsPromise: Promise<SatoriOptions["fonts"]>
 
   let fullOptions: SocialImageOptions
-  function Head({ cfg, fileData, externalResources }: QuartzComponentProps) {
+  function Head({ cfg, fileData, externalResources, ctx }: QuartzComponentProps) {
     // Initialize options if not set
     if (!fullOptions) {
       if (typeof cfg.generateSocialImages !== "boolean") {
@@ -85,6 +85,7 @@ export default (() => {
       description = fileData.frontmatter?.description
     }
 
+    const imageDir = joinSegments(ctx.argv.output, "static", "social-images")
     if (cfg.generateSocialImages) {
       // Generate folders for social images (if they dont exist yet)
       if (!fs.existsSync(imageDir)) {
@@ -105,6 +106,7 @@ export default (() => {
             fileData,
           },
           fullOptions,
+          imageDir,
         )
       }
     }
@@ -120,7 +122,7 @@ export default (() => {
     const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
     // "static/social-images/filename.ext"
     const ogImageGeneratedPath = `https://${cfg.baseUrl}/${imageDir.replace(
-      "public/",
+      `${ctx.argv.output}/`,
       "",
     )}/${fileName}.${extension}`
 
