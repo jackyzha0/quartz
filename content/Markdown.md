@@ -26,4 +26,4 @@ GitHub Flavored Markdown, also known as GFM, is a Markdown flavor used by GitHub
 
 ## Markdown Showcase
 
-Check out the [[./markdown-showcase|markdown-showcase]] to see what Markdown can do.
+Check out the [[Markdown Showcase|markdown-showcase]] to see what Markdown can do.
