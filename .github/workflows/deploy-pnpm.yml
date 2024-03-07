@@ -1,4 +1,4 @@
-name: Quartz - Deploy to GitHub Pages (npm)
+name: Quartz - Deploy to GitHub Pages (pnpm)
 
 on:
   workflow_dispatch:
@@ -16,21 +16,28 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  install:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        name: Checkout
         with:
           fetch-depth: 0 # Fetch all history for git info
       - uses: actions/setup-node@v4
+        name: Setup Node
         with:
           node-version: 18
+
+  build:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
       - name: Install Dependencies
         run: npm i
-      - name: Build Quartz
+      - name: Build Quartz Site
         run: npx quartz build
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
+        name: Upload artifact
         with:
           path: public
 
@@ -42,5 +49,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
+        id: deployment
