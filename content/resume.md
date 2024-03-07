@@ -3,7 +3,7 @@ title: Resume
 tags:
   - resume
   - readme
-date: 2023-07-12
+date: 2024-07-03
 ---
 
 <div style="margin:auto;width: 50%; transform: translate(50%, 0);">
@@ -108,7 +108,7 @@ It was my first class project in college. It was a simple program based on an ol
 * Outdoor fans - cycling, hiking... - [My Strava Profile](https://www.strava.com/athletes/109116948)
 * Photography fans - [My Photo Gallery](https://pinkr1ver.notion.site/3cfdd332b9a94b20bca041f2aa2bdcd2?v=24e696e6ab754386a710bc8e83976357)
 * Loving films, dramas, books... - [My Watching List](https://pinkr1ver.notion.site/5e136466f3664ff1aaaa75b85446e5b4?v=a41efbce52a84f7aa89d8f649f4620f6)
-* PC Game fans, especially CS - [My Steam profile](https://steamcommunity.com/id/PinkCred1t)
+* PC Game fans, especially CS, Dota... - [My Steam profile](https://steamcommunity.com/id/PinkCred1t)
 * Chess fans - [Rank in chess.com](https://www.chess.com/member/yichongwang)
 
 # 📟 Contacts
