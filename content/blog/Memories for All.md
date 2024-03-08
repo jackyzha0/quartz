@@ -2,7 +2,8 @@
 
 Personalization is the next frontier. OpenAI gets it:
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">We’re testing ChatGPT&#39;s ability to remember things you discuss to make future chats more helpful. <br><br>This feature is being rolled out to a small portion of Free and Plus users, and it&#39;s easy to turn on or off. <a href="https://t.co/1Tv355oa7V">https://t.co/1Tv355oa7V</a> <a href="https://t.co/BsFinBSTbs">pic.twitter.com/BsFinBSTbs</a></p>&mdash; OpenAI (@OpenAI) <a href="https://twitter.com/OpenAI/status/1757469997742666052?ref_src=twsrc%5Etfw">February 13, 2024</a></blockquote>
+<div class="tweet-wrapper"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">We’re testing ChatGPT&#39;s ability to remember things you discuss to make future chats more helpful. <br><br>This feature is being rolled out to a small portion of Free and Plus users, and it&#39;s easy to turn on or off. <a href="https://t.co/1Tv355oa7V">https://t.co/1Tv355oa7V</a> <a href="https://t.co/BsFinBSTbs">pic.twitter.com/BsFinBSTbs</a></p>&mdash; OpenAI (@OpenAI) <a href="https://twitter.com/OpenAI/status/1757469997742666052?ref_src=twsrc%5Etfw">February 13, 2024</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
 
 Super exciting.
 
@@ -74,7 +75,8 @@ This is our vision for Honcho.
 
 ## Intellectual Respect
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">llms are remarkable empaths<br><br>if you’d read that much fiction, you would be too</p>&mdash; Courtland Leer (@courtlandleer) <a href="https://twitter.com/courtlandleer/status/1753480140850626759?ref_src=twsrc%5Etfw">February 2, 2024</a></blockquote>
+<div class="tweet-wrapper"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">llms are remarkable empaths<br><br>if you’d read that much fiction, you would be too</p>&mdash; Courtland Leer (@courtlandleer) <a href="https://twitter.com/courtlandleer/status/1753480140850626759?ref_src=twsrc%5Etfw">February 2, 2024</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
 
 Today we're releasing a naive adaptation of [research we published late last year](https://arxiv.org/abs/2310.06983).
 

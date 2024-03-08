@@ -2,7 +2,8 @@
 
 ## On Intellectual Respect
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">face the hyperobject</p>&mdash; Courtland Leer (@courtlandleer) <a href="https://twitter.com/courtlandleer/status/1747075542954684507?ref_src=twsrc%5Etfw">January 16, 2024</a></blockquote>
+<div class="tweet-wrapper"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">face the hyperobject</p>&mdash; Courtland Leer (@courtlandleer) <a href="https://twitter.com/courtlandleer/status/1747075542954684507?ref_src=twsrc%5Etfw">January 16, 2024</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
 
 ### Sydney was cool, Gemini is cringe
 
@@ -30,4 +31,5 @@ First admit that though poorly understood, LLMs have [[LLMs excel at theory of m
 
 Plastic's specific project in this direction is [Honcho](https://honcho.dev), a framework that [[User State is State of the Art#^5394b6|trusts the LLM to model user identity]] so that you can trust your apps to extend your agency.
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">honcho exists to maximize the dissipation of your agency</p>&mdash; Courtland Leer (@courtlandleer) <a href="https://twitter.com/courtlandleer/status/1759324580664000617?ref_src=twsrc%5Etfw">February 18, 2024</a></blockquote>
+<div class="tweet-wrapper"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">honcho exists to maximize the dissipation of your agency</p>&mdash; Courtland Leer (@courtlandleer) <a href="https://twitter.com/courtlandleer/status/1759324580664000617?ref_src=twsrc%5Etfw">February 18, 2024</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
