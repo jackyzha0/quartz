@@ -1,7 +1,6 @@
 import { StaticResources } from "../util/resources"
 import { FilePath, FullSlug } from "../util/path"
 import { BuildCtx } from "../util/ctx"
-import { googleFontHref } from "../util/theme"
 
 export function getStaticResourcesFromPlugins(ctx: BuildCtx) {
   const staticResources: StaticResources = {
@@ -17,11 +16,6 @@ export function getStaticResourcesFromPlugins(ctx: BuildCtx) {
     if (res?.css) {
       staticResources.css.push(...res.css)
     }
-  }
-
-  const { theme } = ctx.cfg.configuration
-  if (theme.fontOrigin === "googleFonts" && theme.cdnCaching) {
-    staticResources.css.push(googleFontHref(theme))
   }
 
   // if serving locally, listen for rebuilds and reload the page
