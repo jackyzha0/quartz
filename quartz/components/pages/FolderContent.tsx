@@ -45,7 +45,13 @@ export default ((opts?: Partial<FolderContentOptions>) => {
         ? fileData.description
         : htmlToJsx(fileData.filePath!, tree)
 
-    return <span></span>;
+    return (
+      <div class={classes}>
+        <article>
+          <p>{content}</p>
+        </article>
+      </div>
+    )
     /*
     return (
       <div class={classes}>
