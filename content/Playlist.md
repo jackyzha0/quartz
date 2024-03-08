@@ -3,6 +3,10 @@ The essence of my music tastes can be boiled down to two categories: electronic,
 This playlist only contains full albums I enjoy, both because it's a nice arbitrary cutting-off point, and also because purchasing albums is the best way to support your favourite artists :)
 
 ---
+ - **Delerium - Chimera (2003)**
+	- Links: [YouTube (playlist)](https://www.youtube.com/playlist?list=OLAK5uy_nOZNbwoL9pskYM-cy2_AXniDJdqYfYPdo), [Bandcamp](https://delerium-official.bandcamp.com/album/chimera)
+	- Favourite tracks: *Just A Dream*
+---
 - **Intermix - Intermix (1992)**
 	- Links: [Discogs](https://www.discogs.com/release/74109-InterMix-Intermix), [YouTube (unofficial)](https://www.youtube.com/watch?v=zBCwzu1bRjU)
 	- Favourite tracks: *Anguish*, *Voices*
