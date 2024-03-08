@@ -26,12 +26,13 @@ banner_y: 0.4705
 ### Mind Map of Neural Networks
 ![[Pasted image 20231012212658.png | center ]]
 ### Indexing Neural Network 
-- [[Convolutional Neural Network]]
+- [[Convolutional Neural Network]], [[3D Convolutional Neural Networks]]
 - [[Recurrent Neural Network]]
 - [[Transformers]]
 - [[Generative Adversarial Networks]]
 - [[Graph Neural Networks]]
 - [[Auto Encoders]]
+- 
 # 03 核心技术 Core Concepts Neural Network
 ## What is a Neural Network?
 Here we introduce the most basic neural network, a simple feed forward neural network. 
@@ -108,10 +109,6 @@ How to select mini-batch size?
 - If mini-batch size is $m$, **batch gradient descent** -> takes too long per iteration
 - If mini-batch size is 1, **stochastic gradient descent** -> lose all speed-up from vectorization, processing only a single example at a time.
 - In practice, somewhere in between 1 and $m$, size typically in powers of 2
-
-
-
-
 
 ### Optimization Methods
 #### What is Exponentially Weighted Averages?

@@ -34,6 +34,15 @@ Resources
 ***What is the importance of database and data in data science?***
 [[Database]]
 ## 04 Online Courses and Books 
+**Key**
+🟢 Completed
+🟡 Working On
+🔴 Not Yet Started
+
+📹 Lectures
+📖 Books
+🌐 Online PDFs, Articles
+
 1. 📹 [[IBM Data Science Professional Certificate]]  by [Coursera](https://www.coursera.org/professional-certificates/ibm-data-science)  🟢
 2. 📹 [[IBM Data Analytics Professional Certificate]] by [Coursera](https://www.coursera.org/professional-certificates/ibm-data-analyst) 🟢
 3. 📹 Meta Backend Development by Coursera 🟢
@@ -43,19 +52,21 @@ Resources
 7. 📹 IBM Data Engineering by Coursera  🔴
 8. 📹 Deep Learning Specialization  🟢
 9. 📹 [Generative AI with Large Language Models](https://www.coursera.org/learn/generative-ai-with-llms) 🔴
-10. 📹 Stanford CS229: Machine Learning Course,  Andrew Ng (Autumn 2018)  on [Youtube](https://www.youtube.com/watch?v=jGwO_UgTS7I&list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU) 🔴
 11. 📹 Machine Learning Specialization, DeeplearningAI with Andrew NG on [Youtube](https://www.youtube.com/watch?v=vStJoetOxJg&list=PLkDaE6sCZn6FNC6YRfRQc_FbeQrF8BwGI) 🔴
 12. 📖 Machine Learning with Pytorch and Scikit 🟡
 13. 📖 Introduction to Mathematical Statistics 🟡
 14. 🌐 [Deep Learning](https://engineering.purdue.edu/DeepLearn/pdf-kak/) by Purdue Spring 2024
 
-🟢 Completed
-🟡 Working On
-🔴 Not Yet Started
 
-📹 Lectures
-📖 Books
-🌐 Online PDFs, Articles
+> [!note] Coursera
+
+
+
+> [!note] Youtube
+
+- 📹 (2023) MIT 6.S191: Introduction to Deep Learning on [Youtube](https://www.youtube.com/playlist?list=PLtBw6njQRU-rwp5__7C0oIVt26ZgjG9NI) 
+- 📹 (2018) Stanford CS229: Machine Learning Course on [Youtube](https://www.youtube.com/watch?v=jGwO_UgTS7I&list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU)
+
 
 ## 05 Important Concepts and Questions
 - [[Data Science Reports]]
@@ -72,8 +83,8 @@ Resources
 	- **Algorithms**: [[Linear Regression]], [[Logistic Regression]], [[Support Vector Machines]], [[K-Means]], K-Modes K-Nearest Neighbor, Random Forest, XGBoost, Naive Bayes
 	- **Types of Learning:** Supervised, Unsupervised, Self-Supervised, Transfer Learning, Reinforcement Learning
 	- **Fields/Applications**: 
-		- Computer Vision: (1) Image classification (2) Object Detection (3) Semantic Segmentation (4) Image Segmentation 
-		- Natural Language Processing: (1) Machine Translation (2) Semantic Analysis (3)
+		- Computer Vision: (1) Image classification (2) Object Detection (3) Semantic Segmentation (4) Image Segmentation (5) [[Video Classification]]
+		- Natural Language Processing: (1) Machine Translation (2) Semantic Analysis (3) Named Entity Recognition
 		- Automated Speech Recognition: (1) Trigger Word Detection
 		- Time Series
 		- Recommendation Systems

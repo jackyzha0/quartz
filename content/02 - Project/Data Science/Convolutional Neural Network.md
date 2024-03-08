@@ -16,24 +16,29 @@ banner_y: 0.4705
 5. [Multi-Modal Data Annotation Tool](https://github.com/HumanSignal/labelImg)
 
 Datasets: 
-- [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/)
-- [MS COCO](https://cocodataset.org/#home) 
+- Famous Benchmark Datasets: [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/), [MS COCO](https://cocodataset.org/#home) 
 - [Roboflow](https://universe.roboflow.com) - the world's largest collection of open source computer vision datasets and APIs.
 
 #todo
 - 🖊 Analyze: ShuffleNet
 - 🖊 Create illustrations showing history timelines, performance graphs, mindmaps of famous CNN architectures
 - 🖊 Visualizing CNNs
-- ❓What is the difference between NHWC and NCHW?
 - ❓What are Point Clouds?
 - ❓What is subsampling?
 - ❓What is cross correlation?
-- ❓Object Classification, Object Localization, Object Recognition, Semantic Segmentation, Instance Segmentation, Keypoint Detection
+- ❓Semantic Segmentation, Instance Segmentation, Keypoint Detection
 # 02 Core CNN Concepts
 ## What are Convolutions?
 The concept is similar to the mathematical concept [[Convolution]]. 
 
-***What are the different types of convolutions?*** Simple Convolutions, 1x1 (Point-wise) Convolutions, Depth-wise Convolutions, Grouped Convolutions, Spatial and Cross-Chanel Convolutions.
+> [!note] Convolution Types
+
+- Simple Convolutions
+- 1x1 (Point-wise) Convolutions
+- Depth-wise Convolutions
+- Grouped Convolutions
+- Spatial and Cross-Chanel Convolutions. 
+- Dilated Convolutions introduced in [Yu et al, 2015, Multi-Scale Context Aggregation by Dilated Convolutions]
 
 **Simple Convolution**
 Let's look at 1D Filters.
@@ -63,16 +68,16 @@ B (3rd Channel) -> Conv Filter 1 [x: x: 3] /
 ```
 It can be visualized in the GIF above (3D to 2D). In each **convolutional layer**, we perform this operation for each filter. Each convolution operation results in a **feature map**. Therefore, it makes sense that for a input $(C, H, W)$ undergoing a convolutional layer with 64 filters, will result in  64 feature maps. The layer can be denoted with shape $(64, H_\text{new}, W_\text{new})$ , where $H_\text{new}$ and $W_\text{new}$ depend on the **kernel size**. We look at this next.
 
-**Calculating Convolution Output**
-
-$$ n_{out} = \left\lfloor \frac{n_{in}+2p - f}{s} + 1 \right\rfloor  $$
+> [!note] Computing Convolution Output Size
+$$ 
+n_{out} = \left\lfloor \frac{n_{in}+2p - f}{s} + 1 \right\rfloor  
+$$
 n-图像大小，f-滤波器大小，n_c-图像中通道数，p-是否使用填充，s- 使用的步幅，n_f-滤波器个数。
 
 With dilation, it is $\frac{(\text{Input Size} – ((\text{Filter Size} – 1)\cdot \text{Dilation Factor} + 1) + 2* \text{Padding})}{\text{Stride}} + 1$, or
-$$ n_{out} = \left\lfloor \frac{n_{in}+2p - (d(f-1) + 1)}{s} + 1 \right\rfloor $$
-
-***What are filters?***
-Filters are usually odd!
+$$ 
+n_{out} = \left\lfloor \frac{n_{in}+2p - (d(f-1) + 1)}{s} + 1 \right\rfloor 
+$$
 
 ***What is the point of padding?*** 
 Adding a border to a feature map. 
@@ -132,7 +137,6 @@ May not do anything for 2D x 2D convolution. But it works for volumes.
 - Also allows you to learn non-linearity. 
 - Allows you to increase, keep, or shrink number of channels.
 - Reduce the number of parameters
-
 ### What is Receptive Field?
 - Understood its relationship to human receptive fields.
 - Explain how it transfers to the receptive field of 
@@ -146,13 +150,23 @@ The choice between NHWH and NCHW depend on a number of factors.
 - https://forums.developer.nvidia.com/t/nhwc-vs-nchw-convolution/111065
 
 ## Visualizing CNN, what are Deep CNN's Learning?
+Here we explore methods to understand what an neural network is looking for / what the network was looking at when a prediction is made.
+
+![[Pasted image 20231122200032.png]]
+
+
+
+Types 
 - Saliency Maps? https://medium.datadriveninvestor.com/visualizing-neural-networks-using-saliency-maps-in-pytorch-289d8e244ab4
 - Class Activation Maps?
+
+How to visualize filters/feature maps in shallow vs deeper layers of CNN.
 - https://jithinjk.github.io/blog/nn_visualized.md.html
 - https://www.youtube.com/watch?v=pj9-rr1wDhM 6.10
 - https://datahacker.rs/028-visualization-and-understanding-of-convolutional-neural-networks-in-pytorch/
 - https://www.youtube.com/watch?v=ghEmQSxT6tw 13.23
 - https://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
+- https://machinelearningmastery.com/how-to-visualize-filters-and-feature-maps-in-convolutional-neural-networks/
 - **Paper** Zeiler and Fergus., 2013, Visualizing and understanding convolutional networks.
 
 ## What is Object Detection?
@@ -185,7 +199,6 @@ Discussed in [[#OverFeat (2014)|OverFeat]] paper. Way more computationally effic
 There are a couple other problems that this method has
 1. 
 
-
 **Region Proposals**
 Understanding that the length of the output layer is variable, not constant, a naive method would to take different **regions of interest** (RoI) from the image, and then use a CNN to classify the presence of the object within that region. The problem with this approach is that objects of interest may have a variety of spatial locations and aspect ratios within an image. In turn, a huge selection of regions would be extremely computationally expensive. This led to a development of [[#R-CNN (2013)|R-CNN]] models, which uses ideas of **selective search** [Uijlings et. al, 2012, Selective Search for Object Recognition](http://www.huppelen.nl/publications/selectiveSearchDraft.pdf) to find these regions extremely quickly. 
 
@@ -199,6 +212,22 @@ Other region proposals methods include:
 
 **One Stage Object Detection**
 The R-CNN methods helped in improving the accuracy over the sliding window method. However, these examples all required two stages to complete the object detection process. Algorithms like [[#YOLO (2015)|Yolo]]  and SSD do it in one.
+
+
+
+### What is Image Segmentation?
+Contours vs Masks. Outputs a collection of regions.
+### What is Semantic Segmentation?
+Assign labels to every pixel in the image.
+### What is Instance Segmentation?
+Object detection, but with additional mask/contour output. 
+
+Mask Band?
+Mask Proto?
+### What is Panoptic Segmentation?
+
+### What is Key-point Detection?
+Pose-detection, Landmark-detection, 
 
 ### What is Intersection over Union?
 Helps measure the performance of localization prediction compared to ground truth.
@@ -523,7 +552,6 @@ The depth wise convolution channel concatenation is as expected, but we notice a
 **Remark:** So why does this work?
 - Fusion of features at different scales
 - Depth wise convolutions reduce the number of parameters and save a lot of computation cost while keeping the network running
-
 ### GoogleNet V2 (2015)
 
 ### GoogleNet V3 (2015)
@@ -536,7 +564,7 @@ The depth wise convolution channel concatenation is as expected, but we notice a
 **Importance**: Use of Siamese network and one-hot encoding for human face recognition. Explores many ways to (1)  triplet loss (2) straight binary classification (2)
 
 Instead of using softmax at the last layer, keep the last layer as "encoding" of a photo. 
-![[Pasted image 20230926132035.png | center | 300]]
+![[Pasted image 20230926132035.png ]]
 Parameters of NN define an encoding $f\left(x^{(i)}\right)$ . We want to learn parameters such that
 $$ \text{if} \space x^{(i)}, y^{(j)} \space \text{are the same person}, \space \left|\left| f\left(x^{(i)}\right) - f\left(x^{(j)}\right) \right|\right|^{2} \text{ is small}$$
 $$ \text{if} \space x^{(i)}, y^{(j)} \space \text{are the different person}, \space \left|\left| f\left(x^{(i)}\right) - f\left(x^{(j)}\right) \right|\right|^{2} \text{ is large}$$
@@ -677,13 +705,24 @@ Here is the code for ResNet50 in Pytorch. Notice the downsample as well.
 - https://towardsdatascience.com/understanding-and-visualizing-resnets-442284831be8
 
 ## U-Net (2015)
+📃: [Zongwei Zhou et al., 2018, UNet++: A Nested U-Net Architecture for Medical Image Segmentation](https://arxiv.org/abs/1807.10165)
+💡:
+### Background
 **Paper**: [Ronneberger et al. 2015, U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/abs/1505.04597)
-**Importance**: Use of **transpose convolution**. 
+**Importance**: Use of **transpose convolution** and **skip connections** for image segmentation. The U-Net has a distinctive U-shaped architectures consitent of downsampling path and upsampling path. 
 
-![[Pasted image 20230925173124.png | center ]]
-The width of bars represent channels/filters. The height represents height, width is not shown. 
-Input is $h \times w \times 3$
-Output is $h\times w \times n_{classes}$ tells you how likely a pixel is to come from one of these classes.
+### Algorithm
+Segmentation Maps - Each pixel in the image is labeled as road, pedestrian, vehicle, traffic sign, etc.
+
+### Architecture
+![[Pasted image 20230925173124.png ]]
+The width of bars represent channels/filters. The height represents height, width is not shown. Input is $h \times w \times 3$. Output is $h\times w \times n_{classes}$ tells you how likely a pixel is to come from one of these classes.
+![[Pasted image 20231120155132.png]]
+
+
+### UNet++
+使用多个编码器（骨干）来喂输入图像生成强特征。
+
 
 ## YOLO (2015)
 ### Background
@@ -736,6 +775,9 @@ Single Shot MultiBox Detector
 ## ResNeXt (2016)
 **Paper**: [Saining et. al., 2016, Aggregated Residual Transformers for Deep Neural Networks](https://arxiv.org/abs/1611.05431v2)
 **Importance**: Combined ResNets with Inception Network Techniques
+
+## DenseNet (2017)
+**Paper**: [Gao Huang et al. 2017, ]
 ## SENet (2017)
 **Paper:** [Hu et. al., 2017, Squeeze-and-Excitation Networks](https://arxiv.org/abs/1709.01507)
 **Importance:** Introduction of the **squeeze** and **excitation** operations in the Squeeze-and-Excitation block, uses is it within a ResNet architecture.

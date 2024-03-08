@@ -211,6 +211,3 @@ dv.span(tagsString)
 - #todo
 
 
-
-
-[@redmonYouOnlyLook2015a]

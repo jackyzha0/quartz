@@ -9,18 +9,30 @@ banner_y: 0.4705
 # Transformers
 ## 01 Background
 **Famous Transformer Models**
-- BERT (Bidirectional Encoder Representations from Transformers) [Jacob Devlin et. al., 2018, BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805)
+- BERT (Bidirectional Encoder Representations from Transformers) 
 - RoBERTa (Robustly Optimized BERT approach) [Yinhan et. al., 2019, RoBERTa: A Robustly Optimized BERT Pretraining Approach](https://arxiv.org/abs/1907.11692)
-- T5 (Text-toText Transfer Transformer) [Colin Raffel et. al, 2019, Exploring the Limits of Transformer Learning with a Unified Text-to-Text Transformer](https://arxiv.org/abs/1910.10683)
+- T5 (Text-toText Transfer Transformer) 
+
+ **Transformer Types**
+ 1. Encoder Only  - Classification, BERT, RoBERTa
+ 2. Encoder Decoder Models - T5, BART
+ 3. Decoders Only - Generalize to most class, GPT, BLOOM, Llama, 
+
+Encoder only also called autoencoding models and are trained with **Masked Language Modeling** (MLM) with the object of reconstructing text ("denoising").
+- sentiment analysis, named entity recognition, classification
+
+Decoder only also autoregressive models and are trained with **Casual Language Modeling** (CLM) with the object of predicting the next text (can only see the tokens leading up to the tokens in context).
+
+Encoder-Decoder are sequence to sequence models, where pre-training objects vary from model to model.
+- T5, for example, uses **Span Corruption**
+- Good for translation, text summarization, question answering
 
 ## 02 Core Concepts
-### What is Transformer Network? 
-**Resources:** My notes are derived from
-- https://stats.stackexchange.com/questions/421935/what-exactly-are-keys-queries-and-values-in-attention-mechanisms
-- https://theaisummer.com/self-attention/
-- http://jalammar.github.io/illustrated-transformer/
+### Standard Transformer Network
+First, we will discuss the standard transformer network introduced in [Vaswani et al. 2017, Attention is All You Need]()
+
 **Intuition**
-As our models improved from RNN to GRU to LSTM, we also so increasing complexity. These models are sequential models, ingesting one word/token one at a time. Thus each unit acts like a bottleneck to the flow of information. Because to compute the output of this final unit, for example, you first have to compute the outputs of all of the units that come before.The transformer architecture allows us to run these computations for an entire sequence in parallel. Introduced in [Vaswani et al. 2017, Attention is All You Need]. The transform architecture combines attention based representations and a CNN convolutional neural network style of processing. 
+As our models improved from RNN to GRU to LSTM, we also so increasing complexity. These models are sequential models, ingesting one word/token one at a time. Thus each unit acts like a bottleneck to the flow of information. Because to compute the output of this final unit, for example, you first have to compute the outputs of all of the units that come before.The transformer architecture allows us to run these computations for an entire sequence in parallel. At the same time, this new architecture has the ability to learn the (strength of) relevance of each word to all other words in the sentence regardless of the location (wider context) of. that word. Introduced in [Vaswani et al. 2017, Attention is All You Need]. The transform architecture combines attention based representations and a CNN convolutional neural network style of processing. 
 
 Before discussing the transformer network, let's discuss two important components, **self-attention** and **multi-head attention** and important components such as 
 
@@ -32,7 +44,14 @@ Both papers played a pivotal role in transformer networks. Below, we will first 
 
 **1. High Level Look** 
 Let's begin with a high-level look at a transformer network in a machine translation application. This http://jalammar.github.io/illustrated-transformer/ does a good job at discussing transformers and the operations within a transformer network.
-
+- Encoder vs Decoder
+	- Encoder: encodes inputs with contextual understanding and produces one vector per input token
+	- Decoder: uses the encoders contextual understanding, accepts input tokens and generates new tokens, does this in a loop until end of token is generated.
+- Tokenization
+- Embedding
+- Positional Encoding
+- Feed Forward Network
+- Softmax Layer
 
 **2. Where does the query, key, value terms come from?**
 The concept comes from a database scheme. Probably familiar with a key-value lookup. A key-value lookup has three components.
@@ -55,7 +74,9 @@ Let's visualize a basic model of self-attention before breaking down the compone
 
 
 **3. What is $A^{\langle t \rangle}$, what is Self-Attention?**
-The goal behind self attention, is to look at its context (surrounding words) to try to find "how" we are talking about $A^{\langle t \rangle}$ in this sentence, and find the most accurate representation of it.  Above we saw how query and key play into this role. Now, we try to break down the full architecture, let's begin with the mathematical definition of attention. This is also known as **scaled dot-product attention**
+The goal behind self attention, is to look at its context (surrounding words) to try to find "how" we are talking about $A^{\langle t \rangle}$ in this sentence, and find the most accurate representation of it.
+
+Above we saw how query and key play into this role. Now, we try to break down the full architecture, let's begin with the mathematical definition of attention. This is also known as **scaled dot-product attention**
 $$\text{Attention(Q,K,V)} = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
 Or for the self-attention for one specific word.
 $$ A^{\langle 3\rangle} = A\left(q^{\langle3\rangle}, K, V\right)$$
@@ -110,8 +131,12 @@ As we see next, multi-headed attention uses multiple sets of Query/Key/Value wei
 **However**, notice the extra weight matrices $W^{Q}_{i},W^{K}_{i},W^{V}_{i}$ , what are these and how do they compare to the weights discussed in self attention? Let's look at the structure of multi-headed attention.
 ![[Pasted image 20231021164407.png | center | 500]]
 These weight matrices represent the linear layer. If we expand this out. For each attention head $i$,
-$$Q_i(x)=xW_{i}^{Q}, \space K_i(x)=xW_{i}^{K}, V_{i}(x)=xW_{i}^{V}$$
-$$\text{Attention}_{i(x)}= \text{softmax}\left(\frac{Q_{i}(x)K_{i}(x)^{T}}{\sqrt{d_k}}\right)V_i(x)$$
+$$
+Q_i(x)=xW_{i}^{Q}, \space K_i(x)=xW_{i}^{K}, V_{i}(x)=xW_{i}^{V}
+$$
+$$
+\text{Attention}_{i(x)}= \text{softmax}\left(\frac{Q_{i}(x)K_{i}(x)^{T}}{\sqrt{d_k}}\right)V_i(x)
+$$
 Thus, we can ignore the one's done in attention above (or else the calculations would be done twice). The last linear layer of multi-head attention is represented by $W^O$. These weights are learnable parameters.
 
 **Remark**: More sources understanding this layer.
@@ -127,10 +152,22 @@ A good visualization to summarize this process.
 ![[Pasted image 20231023170832.png | center]]
 
 **6. Understanding the Encoder**
-The word embeddings (after linear transformations values $Q,\space K, V$) are fed into an encoder block, which contains a multi-head attention layer. Remember the multi-headed attention produces a matrices which is then passed to a feed forward neural network. The encoder is repeated $N$ times. After passing through $N$ encoding blocks, the output is passed to a Decoder
+The word embeddings (after linear transformations values $Q,\space K, V$) are fed into an encoder block, which contains a multi-head attention layer. Remember the multi-headed attention produces a matrices which is then passed to a feed forward neural network. The encoder is repeated $N$ times. 
+
+After passing through $N$ encoding blocks, the output is passed to a Decoder.
+
+> At this point, the data that leaves the encoder is a deep representation of the structure and meaning of the input sequence. This representation is inserted into the middle of the decoder to influence the decoder's self-attention mechanism. Next, a start of sequence token is added to the input of the decoder and pass through decoder portion. This triggers the decoder to predict the next token, which it does based on the contextual understanding that it's being provided from the encoder.
+
+**Feed Forward Network**
+Temporary understanding....
+> Now that all of the attention weights have been applied to your input data, the output is processed through a fully-connected feed-forward network. The output of this layer is  a vector of logits proportional to the probability score for each and every token in the tokenizer dictionary. You can then pass these logits to a final softmax layer, where they are normalized into a probability score for each word. The output includes a probability for every single word in the vocabulary, so there's likely to be thousands of scores here. One single token will have a score higher than the rest. This is the most likely predicted 
+
+
 
 **7. Understanding the Decoder**
 The decoder also repeats $N$ times. The goal of the decoder block is to predict the next word.
+
+> Output of decoder is pushed through feed forward network of decoder. It passes through a softmax layer which predicts the next "token" (word). It continues the loop until a end of sequence token is predicted.
 
 **8. The Transformer Network**
 Let's visualize the entire network.
@@ -149,10 +186,10 @@ There are some extra parts to discuss.
 **9. Understanding**
 - Discuss what is being learned.
 
-
 #TODO **More things to break down in the future**
 - Why does dividing by $\sqrt{d_k}$ lead to more stable gradients?
 - Understanding the dimensions of inputs/outputs in greater detail.
+- What is an **attention-map?**
 
 #### Designing Transformers
 Other things to consider
@@ -160,8 +197,39 @@ Other things to consider
 - dimensions of query, value, and key vectors.
 
 **Architectures**
-- 
 
 
 
-## 03 Transformer Architectures
+
+
+
+### Multi-Model Transformers
+LLM Transformers vs Vision Transformers vs ...
+
+## 03 Famous Transformer Architectures
+
+### Transformer (2017)
+📄 Paper:
+💡 Innovation: Pay "attention" to input meaning, parallel process, scale efficiently.
+### BERT (2018)
+📄 Paper: [Jacob Devlin et. al., 2018, BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805)
+💡 Innovation: Introduced Bidirectional encoder Representations from Transformers
+### RoBERTa (2019)
+📄 Paper: 
+💡 Intuition
+
+### BART (2019)
+### T5 (2019)
+📄 Paper: [Colin Raffel et. al, 2019, Exploring the Limits of Transformer Learning with a Unified Text-to-Text Transformer](https://arxiv.org/abs/1910.10683)
+💡 Innovation: 
+
+### BLOOM (2022)
+📄 Paper: A 176B-Parameter Open-Access Multilingual Language Model
+💡 Innovation:
+
+### PaLM (2022)
+📄 Paper: PaLM: Scaling Language Modeling with Pathways
+💡 Innovation: 540B...
+
+### LLaMa (2023)
+:

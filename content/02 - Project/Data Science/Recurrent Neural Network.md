@@ -17,8 +17,9 @@ We first look at the architecture of RNN and the basic intuition behind it. Then
 # 02 Core Concepts
 ## Architectures
 **Why not use a standard neural network?**
-- Inputs/outputs can be different lengths in different examples
-- Doesn't share features learned across different positions of text
+- Handle lengths of variable sequences: inputs/outputs can be different lengths in different examples 
+- Track long term dependencies: standard NN don't share features learned across different positions of text (time steps)
+- 
 
 **Types of RNN Architectures**
 ![003 RNN - Architectural Types of Different Recurrent Neural Networks](https://media5.datahacker.rs/2020/09/54-1024x547.jpg)
@@ -32,25 +33,37 @@ Example applications of each architecture:
 - Many-to-many: (1) Name Entity Classification 
 - Many-to-many (Encoder-Decoder): (1) Machine Translation
 
+![[Pasted image 20231117164359.png]]
+
 Though it is important to note that different architectures can be used to solve the same application.
 ### Simple Unidirectional RNN
-Let's start off with the definition of a simple RNN. Let's review the architecture of a basic recurrent neural network. Let's suppose we are building a RNN to determine what words in a sentence are names. This is known as **Name Entity Recognition**.
+Let's start off with the definition of a simple RNN (aka Vanilla RNN). Suppose we are building a RNN to determine what words in a sentence are names. This is known as **Name Entity Recognition**. Here is the structure of the RNN.
 ![[Pasted image 20231011163651.png | center ]]
 
-Suppose reading a word from left to right. At timestamp 1, the first word $x^{\left<1\right>}$ is fed into the first neural network layer. The neural network may predict output $\hat{y}^{\left<1\right>}$ . For example, it may give the probability of whether a word in a sequence is in fact a name.  $x^{\left<1\right>}$ is a representation of a word, perhaps **1-hot representation** or **featured representation**
+Suppose reading a word from left to right. At timestamp 1, the first word $x^{\left<1\right>}$ is fed into the first neural network layer. The neural network may predict output $\hat{y}^{\left<1\right>}$ . For example, will give the probability of whether a word in a sequence is in fact a name.  $x^{\left<1\right>}$ is a representation of a word, perhaps **1-hot representation** or **featured representation**, aka, [[Machine Learning#What are Word Embeddings?|word embeddings]].
 
-Then when the second word is read. Instead of only predicting $\hat{y}^{\left<2\right>}$ using the current word $x^{\left<2\right>}$ , it also gets some information computed at timestamp 1. The activation function from timestamp 1 $a^{\left<1\right>}$ is passed. This is repeated until the final timestamp. The initial activation function is sometimes set as a vector of zeros. A "rolled" diagram may be presented as shown on the left. But it might be more intuitive to "unroll" it as shown on right.
+Then when the second word is read. Instead of only predicting $\hat{y}^{\left<2\right>}$ using the current word $x^{\left<2\right>}$ , it also gets some information computed at timestamp 1. The result of the activation function from timestamp 1, $a^{\left<1\right>}$, is also fed into the next time stamp. This is repeated until the final timestamp. The initial activation function is sometimes set as a vector of zeros. A **rolled diagram** may be presented as shown on the left. But it might be more intuitive to "unroll" it as shown on right.
 
-The parameters (governing the connection from input $x$ to hidden layers) it uses for each time stamp are shared. This is denoted as $w_x$. The same is for activation function $w_h$
+The parameters (governing the connection from input $x$ to hidden layers) the RNN uses for each time stamp are **shared**. This is denoted as $w_x$. The same is $w_h$
 
 The calculations are 
-$$ a^{\left<0\right>}= \vec{0}, \space a^{\left<1\right>} = g\left(W_{aa}a^{\left< 0 \right>} + W_{ax}x^{\left<1\right>} + b_{a}\right) \tag{1}$$
-$$ y^{\left<1\right>} = g\left(W_{ya}a^{\left<1\right>} + b_{y}\right)\tag{2}$$
-Equations $(1)$ and $(2)$ can easily be generalized for timestamp $t$. This notation is often simplified as 
 $$ 
-a^{\left<t\right>} = g\left(W_a\left[a^{\left<t-1\right>}, x^{\left<t\right>}\right] + b_a\right)
+h^{\left<0\right>}= \vec{0}, \space h^{\left<1\right>} = g\left(W_{hh}h^{\left< 0 \right>} + W_{hx}x^{\left<1\right>} + b_{h}\right) \tag{1}
 $$
-**Remark:** The weight matrices are shared by all LSTM units.
+$$ 
+y^{\left<1\right>} = g\left(W_{yh}h^{\left<1\right>} + b_{y}\right)\tag{2}
+$$
+Equations $(1)$ and $(2)$ can easily be generalized for timestamp $t$. This notation is sometimes simplified as
+$$ 
+h^{\left<t\right>} = g\left(W_h\left[h^{\left<t-1\right>}, x^{\left<t\right>}\right] + b_h\right)
+$$
+The value of $a^{\langle t\rangle}$ is often known as the hidden state. Therefore, in many notations, the formla is denoted as $h_{t}$.
+
+![[Pasted image 20231117185408.png]]
+
+> [!important] Remark: The weight matrices are shared
+
+![[Pasted image 20231117185751.png]]
 
 ### Backpropagation in RNN
 Let's define a loss function, that gives a loss associated with a single prediction at a single time stamp $t$
@@ -66,9 +79,17 @@ The back-propagation is defined by red.
 
 ***Tips***
 - This is a "many to many" architecture.
-- One weakness about this simple model is that it does not use any information from words later on in the sentence. Ex. "Teddy Roosevelt was a great President" vs "Teddy bears are on sales!". The next word after "Teddy" is not impacted by words further down. Thus, "Teddy Roosevelt" and "Teddy Bears" may equally be likely.
-- This runs into a **vanishing gradient** problem. Ex. "The $\color{blue}\text{cat}$ , which already ate .... $\color{blue}\text{was}$ full" vs "The $\color{blue}\text{cat}$ , which already ate .... $\color{blue}\text{were}$ full" . Thus, languages may have long-term dependencies where a word much earlier can affect what needs to come much later. The model above has no "memorization" of the plural vs singular version of cat (its information is lost)
-- **Exploding gradients**  can also occur.
+
+> [!notes] Unidirectional
+
+One weakness about this simple mode is that it does not use any information from words later on in the sentence.  Ex. "Teddy Roosevelt was a great President" vs "Teddy bears are on sales!". The next word after "Teddy" is not impacted by words further down. Thus, "Teddy Roosevelt" and "Teddy Bears" may equally be likely.
+
+> [!note] Vanishing Gradient
+
+Vanilla RNN's also run into the **vanishing gradient** problem. Ex. "The $\color{blue}\text{cat}$ , which already ate .... $\color{blue}\text{was}$ full" vs "The $\color{blue}\text{cat}$ , which already ate .... $\color{blue}\text{were}$ full" . Thus, languages may have long-term dependencies where a word much earlier can affect what needs to come much later. The model above has no "memorization" of the plural vs singular version of cat (its information is lost). This is also known as the **short-term memory problem**.
+
+The 
+
 ### What is a Gated Recurrent Unit (GRU)? 
 The goal is solve the vanishing gradient problem with a new type of RNN unit architecture. Remember the activation function for a RNN is 
 $$ 
@@ -87,7 +108,7 @@ The GRU unit, however, will have a new variable $c$ or memory cell. It will prov
 $$ 
 c^{\left<t\right>} =  a^{\left<t\right>}
 $$
-The GRU unit will output an activation value  $a^{\left<t\right>}$ that is equal to $c^{\left<t\right>}$ . At every time stamp, we will consider overwriting the memory cell with a value $\tilde{c}^{\left<t\right>}$, so this is a **candidate** for replacing $c^{\left<t\right>}$. 
+The GRU unit will output an activation value  $a^{\left<t\right>}$ that is equal to $c^{\left<t\right>}$ . At every time stamp, we will consider overwriting the memory cell with a value $\tilde{c}^{\left<t\right>}$, so this is a **candidate for replacing** $c^{\left<t\right>}$. 
 $$ 
 \tilde{c}^{\left<t\right>} = \tanh{\left(w_c\left[ c^{\left<t-1\right>},x^{\left<t\right>}\right]\right) + b_{c}}\tag{1}
 $$
@@ -176,9 +197,14 @@ Getting information from the future in addition to information from the past.
 ### What is Gradient Clipping?
 This process helps prevent **exploding gradients**. This is done before updating the parameters.
 
+### What are common metrics?
+Perplexity is a useful metric.
+
 ## Applications
 ### What is Language Modeling? 
-A language model is a probabilistic model over natural language that can generate probabilities of a series of words, based on a (or many) text corpora. Let's talk about **language modeling** and its role in **sequence generation**. Let's generate word sequences (or character sequences) through **Sampling Novel Sequences**.
+A language model is a probabilistic/statistical model over natural language that can generate **probabilities** of a series of words, based on a (or many) **text corpora**. For example, given the series of words "Basketball is my favorite {blank}". The goal of the language model is to generate not only the probability of this series of words, but also the probability of the next word {blank} given the previous words. For example, what is the probability of the next word being "sport". One way to build a language model is through RNN's.
+
+Let's talk about **language modeling** and its role in **sequence generation** or **sequence modeling**. Let's generate word sequences (or character sequences) through **Sampling Novel Sequences**.
 
 >[!note] Sampling Novel Sequences
 
@@ -189,18 +215,20 @@ It would give us the model $P\left(y^{\left<1\right>}, \dots, y^{\left<t\right>}
 
 In the second time stamp, it 
 
-This is also called **auto-regressive** (AR), a specific manner in which the RNN generates predictions or outputs over time in a sequential manner, where predictions at each step depend on the model's previous predictions.
+![[Pasted image 20231117182939.png]]
+
+This is also called **auto-regressive** (AR), a specific manner in which the RNN generates predictions or outputs over time in a sequential manner, where predictions at each step depend on the model's previous predictions. 
 
 > [!note] Text Generation
 
 Examples:
 - https://www.kaggle.com/code/purvasingh/text-generation-via-rnn-and-lstms-pytorch
 
+![[Pasted image 20231117182755.png]]
 
 > [!note] Character Generation
 
 What is the difference between word generation and character generation?
-
 
 ***Speech Recognition***
 For example, in speech recognition, we want the probability of a sentence.
@@ -254,9 +282,11 @@ In the second step, for each of the $B$ selected first words, choose the next wo
 ![[Pasted image 20231018161028.png | center | 300]]
 
 Our goal is to find the pair (first, second) that is the most likely. We want to maximize  $P(y^{\langle1\rangle},y^{\langle2\rangle}\mid x)$ The rules of conditional probability show us that. 
-$$P(y^{\langle1\rangle},y^{\langle2\rangle}\mid x) = P(y^{\langle1\rangle}\mid x)P(y^{\langle2\rangle}\mid x, y^{\langle1\rangle}) $$
+$$
+P(y^{\langle1\rangle},y^{\langle2\rangle}\mid x) = P(y^{\langle1\rangle}\mid x)P(y^{\langle2\rangle}\mid x, y^{\langle1\rangle})
+$$
 After doing this for each word selected in the first step, we choose the $B=3$ most likely pairs.
-![[Pasted image 20231018161447.png | center | 300 ]]
+![[Pasted image 20231018161447.png]]
 In the example above, although $\text{september}$ is no longer selected, we still have three pairs $\text{in september}$, $\text{jane is}$, and $\text{jane visits}$. At the same time, because $B=3$, at every step, we instantiate three copies of network. In the third step, the network allows us to evaluate the probability of the third word given that the first two words are X. The maximum is ...
 
 **Refinements to Beam Search**
@@ -319,9 +349,11 @@ We can use a **spectrogram** to help our sequence model detect whether or not a 
 
 ![[Pasted image 20231019221334.png ]]
 
-### Transformers?
-There are many limitations of RNN, including
-- Vanishing gradient problem
-- Lack of Parallelism
+## Transformers
+RNN's were powerful at their time... but there are a couple limitations.
+- Scaling predictions requires significantly scaling resources.
+	- Lack of parallelism
+- Can't see too far into the future (vanishing gradient problem) or too far into the past. This is troubling for language because words/phrases can have different meanings and different contexts. 
+
 Because of the limitations of RNN, [[Transformers]] is introduced.
 

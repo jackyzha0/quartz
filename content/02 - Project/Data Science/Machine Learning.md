@@ -13,6 +13,7 @@ banner_y: 0.09673
 
 **Resources**
 - [ML Cheatsheet](https://ml-cheatsheet.readthedocs.io/en/latest/index.html)
+- Dive Into Deep Learning https://d2l.ai
 
 #todo
 - 🖊 Improve on how "Strategies to Improve ML Models"
@@ -24,6 +25,10 @@ banner_y: 0.09673
 - ❓ What is multi-modal learning
 - ❓ What is data augmentation
 
+#任务 What is the difference between pretext tasks and downstream tasks? 
+- [ ] #任务 Example Task 🛫 2024-03-06 📅 2024-03-12 
+
+
 ### Mind Map of ML Universe
 ![[Pasted image 20231012211315.png]]
 ### Indexing ML Notes
@@ -32,6 +37,10 @@ banner_y: 0.09673
 	- [[Classification]]
 - Unsupervised Machine Learning
 	- [[Clustering]]
+- Semi-supervised Machine Learning
+	- 
+- Self-supervised Machine Learning
+	- [[Auto Encoders]]
 - [[Reinforcement Learning]]
 - [[Neural Networks]]
 	- [[Convolutional Neural Network]]
@@ -279,5 +288,10 @@ There are many ways to select and improve a models performance. Here we talk abo
 - End-to-End Deep Learning
 	- skip a task that usually requires a pipeline, replace with a DNN instead, but requires a large data set
 	- pros: don't force human perceptions, conceptions, less-hand designing of components
+
+## What is Self-supervised Learning?
+https://www.ibm.com/topics/self-supervised-learning
+
+
 
 # 03 Algorithms

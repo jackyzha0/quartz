@@ -1,5 +1,12 @@
 # Bookmarks
-A collection of good documentation on various subjects to read later
+A collection of good resources
+
+
+## Machine Learning, Deep Learning, and AI
+- 深度学习经典、新论文逐段精读 https://github.com/mli/paper-reading
+
+
+
 
 ## Newsletters
 - [Starter Story](https://www.starterstory.com)
