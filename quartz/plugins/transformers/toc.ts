@@ -6,7 +6,7 @@ import Slugger from "github-slugger"
 
 export interface Options {
   maxDepth: 1 | 2 | 3 | 4 | 5 | 6
-  minEntries: 1
+  minEntries: number
   showByDefault: boolean
   collapseByDefault: boolean
 }
@@ -24,6 +24,7 @@ interface TocEntry {
   slug: string // this is just the anchor (#some-slug), not the canonical slug
 }
 
+const slugAnchor = new Slugger()
 export const TableOfContents: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
 ) => {
@@ -36,7 +37,7 @@ export const TableOfContents: QuartzTransformerPlugin<Partial<Options> | undefin
           return async (tree: Root, file) => {
             const display = file.data.frontmatter?.enableToc ?? opts.showByDefault
             if (display) {
-              const slugAnchor = new Slugger()
+              slugAnchor.reset()
               const toc: TocEntry[] = []
               let highestDepth: number = opts.maxDepth
               visit(tree, "heading", (node) => {
@@ -51,7 +52,7 @@ export const TableOfContents: QuartzTransformerPlugin<Partial<Options> | undefin
                 }
               })
 
-              if (toc.length > opts.minEntries) {
+              if (toc.length > 0 && toc.length > opts.minEntries) {
                 file.data.toc = toc.map((entry) => ({
                   ...entry,
                   depth: entry.depth - highestDepth,

@@ -12,3 +12,12 @@ Quartz supports darkmode out of the box that respects the user's theme preferenc
 - Component: `quartz/components/Darkmode.tsx`
 - Style: `quartz/components/styles/darkmode.scss`
 - Script: `quartz/components/scripts/darkmode.inline.ts`
+
+You can also listen to the `themechange` event to perform any custom logic when the theme changes.
+
+```js
+document.addEventListener("themechange", (e) => {
+  console.log("Theme changed to " + e.detail.theme) // either "light" or "dark"
+  // your logic here
+})
+```
