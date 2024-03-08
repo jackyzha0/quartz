@@ -185,9 +185,14 @@ async function partialRebuildFromEntrypoint(
         const emitterGraph =
           (await emitter.getDependencyGraph?.(ctx, processedFiles, staticResources)) ?? null
 
-        // emmiter may not define a dependency graph. nothing to update if so
         if (emitterGraph) {
-          dependencies[emitter.name]?.updateIncomingEdgesForNode(emitterGraph, fp)
+          const existingGraph = dependencies[emitter.name]
+          if (existingGraph !== null) {
+            existingGraph.mergeGraph(emitterGraph)
+          } else {
+            // might be the first time we're adding a mardown file
+            dependencies[emitter.name] = emitterGraph
+          }
         }
       }
       break
@@ -224,7 +229,6 @@ async function partialRebuildFromEntrypoint(
   // EMIT
   perf.addEvent("rebuild")
   let emittedFiles = 0
-  const destinationsToDelete = new Set<FilePath>()
 
   for (const emitter of cfg.plugins.emitters) {
     const depGraph = dependencies[emitter.name]
@@ -264,11 +268,6 @@ async function partialRebuildFromEntrypoint(
       // and supply [a.md, b.md] to the emitter
       const upstreams = [...depGraph.getLeafNodeAncestors(fp)] as FilePath[]
 
-      if (action === "delete" && upstreams.length === 1) {
-        // if there's only one upstream, the destination is solely dependent on this file
-        destinationsToDelete.add(upstreams[0])
-      }
-
       const upstreamContent = upstreams
         // filter out non-markdown files
         .filter((file) => contentMap.has(file))
@@ -291,14 +290,24 @@ async function partialRebuildFromEntrypoint(
   console.log(`Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince("rebuild")}`)
 
   // CLEANUP
-  // delete files that are solely dependent on this file
-  await rimraf([...destinationsToDelete])
+  const destinationsToDelete = new Set<FilePath>()
   for (const file of toRemove) {
     // remove from cache
     contentMap.delete(file)
-    // remove the node from dependency graphs
-    Object.values(dependencies).forEach((depGraph) => depGraph?.removeNode(file))
+    Object.values(dependencies).forEach((depGraph) => {
+      // remove the node from dependency graphs
+      depGraph?.removeNode(file)
+      // remove any orphan nodes. eg if a.md is deleted, a.html is orphaned and should be removed
+      const orphanNodes = depGraph?.removeOrphanNodes()
+      orphanNodes?.forEach((node) => {
+        // only delete files that are in the output directory
+        if (node.startsWith(argv.output)) {
+          destinationsToDelete.add(node)
+        }
+      })
+    })
   }
+  await rimraf([...destinationsToDelete])
 
   toRemove.clear()
   release()

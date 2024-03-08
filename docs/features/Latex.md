@@ -57,6 +57,15 @@ For example:
 - Incorrect: `I have $1 and you have $2` produces I have $1 and you have $2
 - Correct: `I have \$1 and you have \$2` produces I have \$1 and you have \$2
 
+### Using mhchem
+
+Add the following import to the top of `quartz/plugins/transformers/latex.ts` (before all the other
+imports):
+
+```ts title="quartz/plugins/transformers/latex.ts"
+import "katex/contrib/mhchem"
+```
+
 ## Customization
 
 Latex parsing is a functionality of the [[plugins/Latex|Latex]] plugin. See the plugin page for customization options.

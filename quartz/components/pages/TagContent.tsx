@@ -1,4 +1,4 @@
-import { QuartzComponentConstructor, QuartzComponentProps } from "../types"
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "../types"
 import style from "../styles/listPage.scss"
 import { PageList } from "../PageList"
 import { FullSlug, getAllSegmentPrefixes, simplifySlug } from "../../util/path"
@@ -8,7 +8,7 @@ import { htmlToJsx } from "../../util/jsx"
 import { i18n } from "../../i18n"
 
 const numPages = 10
-function TagContent(props: QuartzComponentProps) {
+const TagContent: QuartzComponent = (props: QuartzComponentProps) => {
   const { tree, fileData, allFiles, cfg } = props
   const slug = fileData.slug
 
@@ -58,7 +58,7 @@ function TagContent(props: QuartzComponentProps) {
               <div>
                 <h2>
                   <a class="internal tag-link" href={`../tags/${tag}`}>
-                    #{tag}
+                    {tag}
                   </a>
                 </h2>
                 {content && <p>{content}</p>}
