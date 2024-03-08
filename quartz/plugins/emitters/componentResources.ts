@@ -228,7 +228,7 @@ export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<
 
             googleFontsStyleSheet = googleFontsStyleSheet.replace(
               url,
-              `/static/fonts/${filename}.ttf`,
+              `https://${cfg.baseUrl}/static/fonts/${filename}.ttf`,
             )
 
             promises.push(
