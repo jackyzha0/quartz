@@ -9,7 +9,7 @@ This playlist only contains full albums I enjoy, both because it's a nice arbitr
 ---
 - **Intermix - Intermix (1992)**
 	- Links: [Discogs](https://www.discogs.com/release/74109-InterMix-Intermix), [YouTube (unofficial)](https://www.youtube.com/watch?v=zBCwzu1bRjU)
-	- Favourite tracks: *Anguish*, *Voices*
+	- Favourite tracks: *Targeted*, *Requiem Dub*, *Dead Ladder*, *Soviet Low*, *Voices*
 ---
 - **Windows96 - Dated New Aesthetic (2024)**
 	- Links: [Bandcamp](https://windows96.bandcamp.com/album/dated-new-aesthetic), [YouTube](https://www.youtube.com/watch?v=fjiQX74gqpk)
