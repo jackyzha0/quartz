@@ -421,6 +421,9 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
         for (let searchResult of searchResults) {
           searchResult.result = searchResult.result.slice(0, numSearchResults)
         }
+        // set search type to basic and remove tag from term for proper highlightning and scroll
+        searchType = "basic"
+        currentSearchTerm = query
       } else {
         // default search by tags index
         searchResults = await index.searchAsync({
