@@ -162,47 +162,44 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
       let googleFontsStyleSheet = ""
       if (cfg.theme.fontOrigin === "local") {
         // let the user do it themselves in css
-      } else if (cfg.theme.fontOrigin === "googleFonts") {
-        // when cdnCaching is true, we add the google font link to resources.css
-        // this is done in getStaticResourcesFromPlugins
-        if (!cfg.theme.cdnCaching) {
-          let match
+      } else if (cfg.theme.fontOrigin === "googleFonts" && !cfg.theme.cdnCaching) {
+        // when cdnCaching is true, we link to google fonts in Head.tsx
+        let match
 
-          const fontSourceRegex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
+        const fontSourceRegex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
 
-          googleFontsStyleSheet = await (
-            await fetch(googleFontHref(ctx.cfg.configuration.theme))
-          ).text()
+        googleFontsStyleSheet = await (
+          await fetch(googleFontHref(ctx.cfg.configuration.theme))
+        ).text()
 
-          while ((match = fontSourceRegex.exec(googleFontsStyleSheet)) !== null) {
-            // match[0] is the `url(path)`, match[1] is the `path`
-            const url = match[1]
-            // the static name of this file.
-            const [filename, ext] = url.split("/").pop()!.split(".")
+        while ((match = fontSourceRegex.exec(googleFontsStyleSheet)) !== null) {
+          // match[0] is the `url(path)`, match[1] is the `path`
+          const url = match[1]
+          // the static name of this file.
+          const [filename, ext] = url.split("/").pop()!.split(".")
 
-            googleFontsStyleSheet = googleFontsStyleSheet.replace(
-              url,
-              `https://${cfg.baseUrl}/static/fonts/${filename}.ttf`,
-            )
+          googleFontsStyleSheet = googleFontsStyleSheet.replace(
+            url,
+            `https://${cfg.baseUrl}/static/fonts/${filename}.ttf`,
+          )
 
-            promises.push(
-              fetch(url)
-                .then((res) => {
-                  if (!res.ok) {
-                    throw new Error(`Failed to fetch font`)
-                  }
-                  return res.arrayBuffer()
-                })
-                .then((buf) =>
-                  write({
-                    ctx,
-                    slug: joinSegments("static", "fonts", filename) as FullSlug,
-                    ext: `.${ext}`,
-                    content: Buffer.from(buf),
-                  }),
-                ),
-            )
-          }
+          promises.push(
+            fetch(url)
+              .then((res) => {
+                if (!res.ok) {
+                  throw new Error(`Failed to fetch font`)
+                }
+                return res.arrayBuffer()
+              })
+              .then((buf) =>
+                write({
+                  ctx,
+                  slug: joinSegments("static", "fonts", filename) as FullSlug,
+                  ext: `.${ext}`,
+                  content: Buffer.from(buf),
+                }),
+              ),
+          )
         }
       }
 
