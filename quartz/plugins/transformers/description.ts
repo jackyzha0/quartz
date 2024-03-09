@@ -61,6 +61,7 @@ export const Description: QuartzTransformerPlugin<Partial<Options> | undefined> 
                 const currentSentence = sentence.endsWith(".") ? sentence : sentence + "."
                 finalDesc.push(currentSentence)
                 currentDescriptionLength += currentSentence.length
+                sentenceIdx++
               }
             }
 
