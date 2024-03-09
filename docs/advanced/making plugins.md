@@ -53,12 +53,12 @@ All transformer plugins must define at least a `name` field to register the plug
 
 Normally for both `remark` and `rehype`, you can find existing plugins that you can use to . If you'd like to create your own `remark` or `rehype` plugin, checkout the [guide to creating a plugin](https://unifiedjs.com/learn/guide/create-a-plugin/) using `unified` (the underlying AST parser and transformer library).
 
-A good example of a transformer plugin that borrows from the `remark` and `rehype` ecosystems is the [[Latex]] plugin:
+A good example of a transformer plugin that borrows from the `remark` and `rehype` ecosystems is the [[plugins/Latex|Latex]] plugin:
 
 ```ts title="quartz/plugins/transformers/latex.ts"
 import remarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
-import rehypeMathjax from "rehype-mathjax/svg.js"
+import rehypeMathjax from "rehype-mathjax/svg"
 import { QuartzTransformerPlugin } from "../types"
 
 interface Options {
@@ -84,10 +84,14 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
     externalResources() {
       if (engine === "katex") {
         return {
-          css: ["https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"],
+          css: [
+            // base css
+            "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css",
+          ],
           js: [
             {
-              src: "https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/copy-tex.min.js",
+              // fix copy behaviour: https://github.com/KaTeX/KaTeX/blob/main/contrib/copy-tex/README.md
+              src: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js",
               loadTime: "afterDOMReady",
               contentType: "external",
             },
@@ -216,22 +220,19 @@ export type QuartzEmitterPlugin<Options extends OptionType = undefined> = (
 
 export type QuartzEmitterPluginInstance = {
   name: string
-  emit(
-    ctx: BuildCtx,
-    content: ProcessedContent[],
-    resources: StaticResources,
-    emitCallback: EmitCallback,
-  ): Promise<FilePath[]>
+  emit(ctx: BuildCtx, content: ProcessedContent[], resources: StaticResources): Promise<FilePath[]>
   getQuartzComponents(ctx: BuildCtx): QuartzComponent[]
 }
 ```
 
-An emitter plugin must define a `name` field an `emit` function and a `getQuartzComponents` function. `emit` is responsible for looking at all the parsed and filtered content and then appropriately creating files and returning a list of paths to files the plugin created.
+An emitter plugin must define a `name` field, an `emit` function, and a `getQuartzComponents` function. `emit` is responsible for looking at all the parsed and filtered content and then appropriately creating files and returning a list of paths to files the plugin created.
 
-Creating new files can be done via regular Node [fs module](https://nodejs.org/api/fs.html) (i.e. `fs.cp` or `fs.writeFile`) or via the `emitCallback` if you are creating files that contain text. The `emitCallback` function is the 4th argument of the emit function. Its interface looks something like this:
+Creating new files can be done via regular Node [fs module](https://nodejs.org/api/fs.html) (i.e. `fs.cp` or `fs.writeFile`) or via the `write` function in `quartz/plugins/emitters/helpers.ts` if you are creating files that contain text. `write` has the following signature:
 
 ```ts
-export type EmitCallback = (data: {
+export type WriteOptions = (data: {
+  // the build context
+  ctx: BuildCtx
   // the name of the file to emit (not including the file extension)
   slug: ServerSlug
   // the file extension
@@ -281,7 +282,7 @@ export const ContentPage: QuartzEmitterPlugin = () => {
           allFiles,
         }
 
-        const content = renderPage(slug, componentData, opts, externalResources)
+        const content = renderPage(cfg, slug, componentData, opts, externalResources)
         const fp = await emit({
           content,
           slug: file.data.slug!,

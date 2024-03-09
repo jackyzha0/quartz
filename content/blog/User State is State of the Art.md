@@ -1,3 +1,7 @@
+---
+title: "User State is State of the Art"
+date: "Feb 23, 2024"
+---
 ## TL;DR
 LLM apps can embrace the complexity and plasticity of human identity to deliver unparalleled personalization.
 

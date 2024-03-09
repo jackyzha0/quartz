@@ -26,7 +26,7 @@ Component.Explorer({
   title: "Explorer", // title of the explorer component
   folderClickBehavior: "collapse", // what happens when you click a folder ("link" to navigate to folder page on click or "collapse" to collapse folder on click)
   folderDefaultState: "collapsed", // default state of folders ("collapsed" or "open")
-  useSavedState: true, // wether to use local storage to save "state" (which folders are opened) of explorer
+  useSavedState: true, // whether to use local storage to save "state" (which folders are opened) of explorer
   // Sort order: folders first, then files. Sort folders and files alphabetically
   sortFn: (a, b) => {
     ... // default implementation shown later
@@ -42,7 +42,7 @@ When passing in your own options, you can omit any or all of these fields if you
 
 Want to customize it even more?
 
-- Removing table of contents: remove `Component.Explorer()` from `quartz.layout.ts`
+- Removing explorer: remove `Component.Explorer()` from `quartz.layout.ts`
   - (optional): After removing the explorer component, you can move the [[table of contents | Table of Contents]] component back to the `left` part of the layout
 - Changing `sort`, `filter` and `map` behavior: explained in [[#Advanced customization]]
 - Component:
@@ -61,7 +61,7 @@ export class FileNode {
   children: FileNode[]  // children of current node
   name: string  // last part of slug
   displayName: string // what actually should be displayed in the explorer
-  file: QuartzPluginData | null // set if node is a file, see `QuartzPluginData` for more detail
+  file: QuartzPluginData | null // if node is a file, this is the file's metadata. See `QuartzPluginData` for more detail
   depth: number // depth of current node
 
   ... // rest of implementation
@@ -167,6 +167,19 @@ Component.Explorer({
 
 You can customize this by changing the entries of the `omit` set. Simply add all folder or file names you want to remove.
 
+### Remove files by tag
+
+You can access the frontmatter of a file by `node.file?.frontmatter?`. This allows you to filter out files based on their frontmatter, for example by their tags.
+
+```ts title="quartz.layout.ts"
+Component.Explorer({
+  filterFn: (node) => {
+    // exclude files with the tag "explorerexclude"
+    return node.file?.frontmatter?.tags?.includes("explorerexclude") !== true
+  },
+})
+```
+
 ### Show every element in explorer
 
 To override the default filter function that removes the `tags` folder from the explorer, you can set the filter function to `undefined`.
@@ -178,6 +191,34 @@ Component.Explorer({
 ```
 
 ## Advanced examples
+
+> [!tip]
+> When writing more complicated functions, the `layout` file can start to look very cramped.
+> You can fix this by defining your functions in another file.
+>
+> ```ts title="functions.ts"
+> import { Options } from "./quartz/components/ExplorerNode"
+> export const mapFn: Options["mapFn"] = (node) => {
+>   // implement your function here
+> }
+> export const filterFn: Options["filterFn"] = (node) => {
+>   // implement your function here
+> }
+> export const sortFn: Options["sortFn"] = (a, b) => {
+>   // implement your function here
+> }
+> ```
+>
+> You can then import them like this:
+>
+> ```ts title="quartz.layout.ts"
+> import { mapFn, filterFn, sortFn } from "./functions.ts"
+> Component.Explorer({
+>   mapFn: mapFn,
+>   filterFn: filterFn,
+>   sortFn: sortFn,
+> })
+> ```
 
 ### Add emoji prefix
 
@@ -216,30 +257,63 @@ Notice how we customized the `order` array here. This is done because the defaul
 
 To fix this, we just changed around the order and apply the `sort` function before changing the display names in the `map` function.
 
-> [!tip]
-> When writing more complicated functions, the `layout` file can start to look very cramped.
-> You can fix this by defining your functions in another file.
->
-> ```ts title="functions.ts"
-> import { Options } from "./quartz/components/ExplorerNode"
-> export const mapFn: Options["mapFn"] = (node) => {
->   // implement your function here
-> }
-> export const filterFn: Options["filterFn"] = (node) => {
->   // implement your function here
-> }
-> export const sortFn: Options["sortFn"] = (a, b) => {
->   // implement your function here
-> }
-> ```
->
-> You can then import them like this:
->
-> ```ts title="quartz.layout.ts"
-> import { mapFn, filterFn, sortFn } from "./functions.ts"
-> Component.Explorer({
->   mapFn: mapFn,
->   filterFn: filterFn,
->   sortFn: sortFn,
-> })
-> ```
+### Use `sort` with pre-defined sort order
+
+Here's another example where a map containing file/folder names (as slugs) is used to define the sort order of the explorer in quartz. All files/folders that aren't listed inside of `nameOrderMap` will appear at the top of that folders hierarchy level.
+
+It's also worth mentioning, that the smaller the number set in `nameOrderMap`, the higher up the entry will be in the explorer. Incrementing every folder/file by 100, makes ordering files in their folders a lot easier. Lastly, this example still allows you to use a `mapFn` or frontmatter titles to change display names, as it uses slugs for `nameOrderMap` (which is unaffected by display name changes).
+
+```ts title="quartz.layout.ts"
+Component.Explorer({
+  sortFn: (a, b) => {
+    const nameOrderMap: Record<string, number> = {
+      "poetry-folder": 100,
+      "essay-folder": 200,
+      "research-paper-file": 201,
+      "dinosaur-fossils-file": 300,
+      "other-folder": 400,
+    }
+
+    let orderA = 0
+    let orderB = 0
+
+    if (a.file && a.file.slug) {
+      orderA = nameOrderMap[a.file.slug] || 0
+    } else if (a.name) {
+      orderA = nameOrderMap[a.name] || 0
+    }
+
+    if (b.file && b.file.slug) {
+      orderB = nameOrderMap[b.file.slug] || 0
+    } else if (b.name) {
+      orderB = nameOrderMap[b.name] || 0
+    }
+
+    return orderA - orderB
+  },
+})
+```
+
+For reference, this is how the quartz explorer window would look like with that example:
+
+```
+📖 Poetry Folder
+📑 Essay Folder
+    ⚗️ Research Paper File
+🦴 Dinosaur Fossils File
+🔮 Other Folder
+```
+
+And this is how the file structure would look like:
+
+```
+index.md
+poetry-folder
+    index.md
+essay-folder
+    index.md
+    research-paper-file.md
+dinosaur-fossils-file.md
+other-folder
+    index.md
+```

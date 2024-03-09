@@ -1,29 +1,17 @@
-// npx convert-sh-theme https://raw.githubusercontent.com/shikijs/shiki/main/packages/shiki/themes/github-light.json
-:root {
-  --shiki-color-text: #24292e;
-  --shiki-color-background: #f8f8f8;
-  --shiki-token-constant: #005cc5;
-  --shiki-token-string: #032f62;
-  --shiki-token-comment: #6a737d;
-  --shiki-token-keyword: #d73a49;
-  --shiki-token-parameter: #24292e;
-  --shiki-token-function: #24292e;
-  --shiki-token-string-expression: #22863a;
-  --shiki-token-punctuation: #24292e;
-  --shiki-token-link: #24292e;
+code[data-theme*=" "] {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
 }
 
-// npx convert-sh-theme https://raw.githubusercontent.com/shikijs/shiki/main/packages/shiki/themes/github-dark.json
-[saved-theme="dark"] {
-  --shiki-color-text: #e1e4e8 !important;
-  --shiki-color-background: #24292e !important;
-  --shiki-token-constant: #79b8ff !important;
-  --shiki-token-string: #9ecbff !important;
-  --shiki-token-comment: #6a737d !important;
-  --shiki-token-keyword: #f97583 !important;
-  --shiki-token-parameter: #e1e4e8 !important;
-  --shiki-token-function: #e1e4e8 !important;
-  --shiki-token-string-expression: #85e89d !important;
-  --shiki-token-punctuation: #e1e4e8 !important;
-  --shiki-token-link: #e1e4e8 !important;
+code[data-theme*=" "] span {
+  color: var(--shiki-light);
+}
+
+[saved-theme="dark"] code[data-theme*=" "] {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
+
+[saved-theme="dark"] code[data-theme*=" "] span {
+  color: var(--shiki-dark);
 }

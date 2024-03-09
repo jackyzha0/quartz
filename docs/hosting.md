@@ -30,7 +30,7 @@ Press "Save and deploy" and Cloudflare should have a deployed version of your si
 To add a custom domain, check out [Cloudflare's documentation](https://developers.cloudflare.com/pages/platform/custom-domains/).
 
 > [!warning]
-> Cloudflare Pages only allows shallow `git` clones so if you rely on `git` for timestamps, it is recommended you either add dates to your frontmatter (see [[authoring content#Syntax]]) or use another hosting provider.
+> Cloudflare Pages performs a shallow clone by default, so if you rely on `git` for timestamps, it is recommended that you add `git fetch --unshallow &&` to the beginning of the build command (e.g., `git fetch --unshallow && npx quartz build`).
 
 ## GitHub Pages
 
@@ -225,6 +225,28 @@ pages:
       - public
 ```
 
-When `.gitlab-ci.yaml` is commited, GitLab will build and deploy the website as a GitLab Page. You can find the url under `Deploy > Pages` in the sidebar.
+When `.gitlab-ci.yaml` is committed, GitLab will build and deploy the website as a GitLab Page. You can find the url under `Deploy > Pages` in the sidebar.
 
 By default, the page is private and only visible when logged in to a GitLab account with access to the repository but can be opened in the settings under `Deploy` -> `Pages`.
+
+## Self-Hosting
+
+Copy the `public` directory to your web server and configure it to serve the files. You can use any web server to host your site. Since Quartz generates links that do not include the `.html` extension, you need to let your web server know how to deal with it.
+
+### Using Nginx
+
+Here's an example of how to do this with Nginx:
+
+```nginx title="nginx.conf"
+server {
+    listen 80;
+    server_name example.com;
+    root /path/to/quartz/public;
+    index index.html;
+    error_page 404 /404.html;
+
+    location / {
+        try_files $uri $uri.html $uri/ =404;
+    }
+}
+```

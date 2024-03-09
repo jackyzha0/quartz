@@ -3,13 +3,15 @@ import { StaticResources } from "../util/resources"
 import { QuartzPluginData } from "../plugins/vfile"
 import { GlobalConfiguration } from "../cfg"
 import { Node } from "hast"
+import { BuildCtx } from "../util/ctx"
 
 export type QuartzComponentProps = {
+  ctx: BuildCtx
   externalResources: StaticResources
   fileData: QuartzPluginData
   cfg: GlobalConfiguration
   children: (QuartzComponent | JSX.Element)[]
-  tree: Node<QuartzPluginData>
+  tree: Node
   allFiles: QuartzPluginData[]
   displayClass?: "mobile-only" | "desktop-only"
 } & JSX.IntrinsicAttributes & {

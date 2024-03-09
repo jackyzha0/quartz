@@ -1,7 +1,7 @@
 import { FullSlug, resolveRelative } from "../util/path"
 import { QuartzPluginData } from "../plugins/vfile"
 import { Date, getDate } from "./Date"
-import { QuartzComponentProps } from "./types"
+import { QuartzComponent, QuartzComponentProps } from "./types"
 import { GlobalConfiguration } from "../cfg"
 
 export function byDateAndAlphabetical(
@@ -29,7 +29,7 @@ type Props = {
   limit?: number
 } & QuartzComponentProps
 
-export function PageList({ cfg, fileData, allFiles, limit }: Props) {
+export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit }: Props) => {
   let list = allFiles.sort(byDateAndAlphabetical(cfg))
   if (limit) {
     list = list.slice(0, limit)
@@ -46,7 +46,7 @@ export function PageList({ cfg, fileData, allFiles, limit }: Props) {
             <div class="section">
               {page.dates && (
                 <p class="meta">
-                  <Date date={getDate(cfg, page)!} />
+                  <Date date={getDate(cfg, page)!} locale={cfg.locale} />
                 </p>
               )}
               <div class="desc">
@@ -63,7 +63,7 @@ export function PageList({ cfg, fileData, allFiles, limit }: Props) {
                       class="internal tag-link"
                       href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}
                     >
-                      #{tag}
+                      {tag}
                     </a>
                   </li>
                 ))}

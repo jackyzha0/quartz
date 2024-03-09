@@ -156,12 +156,13 @@ document.addEventListener("nav", () => {
   // do page specific logic here
   // e.g. attach event listeners
   const toggleSwitch = document.querySelector("#switch") as HTMLInputElement
-  toggleSwitch.removeEventListener("change", switchTheme)
   toggleSwitch.addEventListener("change", switchTheme)
+  window.addCleanup(() => toggleSwitch.removeEventListener("change", switchTheme))
 })
 ```
 
-It is best practice to also unmount any existing event handlers to prevent memory leaks.
+It is best practice to track any event handlers via `window.addCleanup` to prevent memory leaks.
+This will get called on page navigation.
 
 #### Importing Code
 

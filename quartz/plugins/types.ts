@@ -2,8 +2,9 @@ import { PluggableList } from "unified"
 import { StaticResources } from "../util/resources"
 import { ProcessedContent } from "./vfile"
 import { QuartzComponent } from "../components/types"
-import { FilePath, FullSlug } from "../util/path"
+import { FilePath } from "../util/path"
 import { BuildCtx } from "../util/ctx"
+import DepGraph from "../depgraph"
 
 export interface PluginTypes {
   transformers: QuartzTransformerPluginInstance[]
@@ -36,19 +37,11 @@ export type QuartzEmitterPlugin<Options extends OptionType = undefined> = (
 ) => QuartzEmitterPluginInstance
 export type QuartzEmitterPluginInstance = {
   name: string
-  emit(
+  emit(ctx: BuildCtx, content: ProcessedContent[], resources: StaticResources): Promise<FilePath[]>
+  getQuartzComponents(ctx: BuildCtx): QuartzComponent[]
+  getDependencyGraph?(
     ctx: BuildCtx,
     content: ProcessedContent[],
     resources: StaticResources,
-    emitCallback: EmitCallback,
-  ): Promise<FilePath[]>
-  getQuartzComponents(ctx: BuildCtx): QuartzComponent[]
+  ): Promise<DepGraph<FilePath>>
 }
-
-export interface EmitOptions {
-  slug: FullSlug
-  ext: `.${string}` | ""
-  content: string
-}
-
-export type EmitCallback = (data: EmitOptions) => Promise<FilePath>
