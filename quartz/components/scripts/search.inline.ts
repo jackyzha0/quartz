@@ -406,7 +406,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
     let searchResults: FlexSearch.SimpleDocumentSearchResultSetUnit[]
     if (searchType === "tags") {
-      currentSearchTerm = currentSearchTerm.substring(1)
+      currentSearchTerm = currentSearchTerm.substring(1).trim()
       const separatorIndex = currentSearchTerm.indexOf(" ")
       if (separatorIndex != -1) {
         // search by title and content index and then filter by tag (implemented in flexsearch)
