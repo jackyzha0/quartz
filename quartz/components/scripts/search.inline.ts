@@ -406,14 +406,15 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
     let searchResults: FlexSearch.SimpleDocumentSearchResultSetUnit[]
     if (searchType === "tags") {
-      let [tag, ...queries] = currentSearchTerm.substring(1).split(" ")
-      const query = queries.join(" ").trim()
-
-      if (query !== "") {
+      currentSearchTerm = currentSearchTerm.substring(1)
+      const separatorIndex = currentSearchTerm.indexOf(" ")
+      if (separatorIndex != -1) {
         // search by title and content index and then filter by tag (implemented in flexsearch)
+        const tag = currentSearchTerm.substring(0, separatorIndex)
+        const query = currentSearchTerm.substring(separatorIndex + 1).trim()
         searchResults = await index.searchAsync({
           query: query,
-          // search at least 100 documents, so it is enough to filter them by tag (not tags index)
+          // return at least 100 documents, so it is enough to filter them by tag (implemented in flexsearch)
           limit: Math.max(numSearchResults, 100),
           index: ["title", "content"],
           tag: tag,
@@ -427,7 +428,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       } else {
         // default search by tags index
         searchResults = await index.searchAsync({
-          query: tag,
+          query: currentSearchTerm,
           limit: numSearchResults,
           index: ["tags"],
         })
