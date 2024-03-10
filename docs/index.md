@@ -23,14 +23,15 @@ This will guide you through initializing your Quartz with content. Once you've d
 2. [[configuration|Configure]] Quartz's behaviour
 3. Change Quartz's [[layout]]
 4. [[build|Build and preview]] Quartz
-5. [[hosting|Host]] Quartz online
+5. Sync your changes with [[setting up your GitHub repository|GitHub]]
+6. [[hosting|Host]] Quartz online
 
-> [!info]
-> Coming from Quartz 3? See the [[migrating from Quartz 3|migration guide]] for the differences between Quartz 3 and Quartz 4 and how to migrate.
+If you prefer instructions in a video format you can try following Nicole van der Hoeven's
+[video guide on how to set up Quartz!](https://www.youtube.com/watch?v=6s6DT1yN4dw&t=227s)
 
 ## 🔧 Features
 
-- [[Obsidian compatibility]], [[full-text search]], [[graph view]], note transclusion, [[wikilinks]], [[backlinks]], [[Latex]], [[syntax highlighting]], [[popover previews]], [[Docker Support]], and [many more](./features) right out of the box
+- [[Obsidian compatibility]], [[full-text search]], [[graph view]], note transclusion, [[wikilinks]], [[backlinks]], [[features/Latex|Latex]], [[syntax highlighting]], [[popover previews]], [[Docker Support]], [[i18n|internationalization]] and [many more](./features) right out of the box
 - Hot-reload for both configuration and content
 - Simple JSX layouts and [[creating components|page components]]
 - [[SPA Routing|Ridiculously fast page loads]] and tiny bundle sizes

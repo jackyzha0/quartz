@@ -4,14 +4,16 @@ import {
   RelativeURL,
   SimpleSlug,
   TransformOptions,
-  _stripSlashes,
+  stripSlashes,
   simplifySlug,
   splitAnchor,
   transformLink,
+  joinSegments,
 } from "../../util/path"
 import path from "path"
 import { visit } from "unist-util-visit"
 import isAbsoluteUrl from "is-absolute-url"
+import { Root } from "hast"
 
 interface Options {
   /** How to resolve Markdown paths */
@@ -19,12 +21,16 @@ interface Options {
   /** Strips folders from a link so that it looks nice */
   prettyLinks: boolean
   openLinksInNewTab: boolean
+  lazyLoad: boolean
+  externalLinkIcon: boolean
 }
 
 const defaultOptions: Options = {
   markdownLinkResolution: "absolute",
   prettyLinks: true,
   openLinksInNewTab: false,
+  lazyLoad: false,
+  externalLinkIcon: true,
 }
 
 export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
@@ -34,7 +40,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
     htmlPlugins(ctx) {
       return [
         () => {
-          return (tree, file) => {
+          return (tree: Root, file) => {
             const curSlug = simplifySlug(file.data.slug!)
             const outgoing: Set<SimpleSlug> = new Set()
 
@@ -51,8 +57,30 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                 typeof node.properties.href === "string"
               ) {
                 let dest = node.properties.href as RelativeURL
-                node.properties.className ??= []
-                node.properties.className.push(isAbsoluteUrl(dest) ? "external" : "internal")
+                const classes = (node.properties.className ?? []) as string[]
+                const isExternal = isAbsoluteUrl(dest)
+                classes.push(isExternal ? "external" : "internal")
+
+                if (isExternal && opts.externalLinkIcon) {
+                  node.children.push({
+                    type: "element",
+                    tagName: "svg",
+                    properties: {
+                      class: "external-icon",
+                      viewBox: "0 0 512 512",
+                    },
+                    children: [
+                      {
+                        type: "element",
+                        tagName: "path",
+                        properties: {
+                          d: "M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z",
+                        },
+                        children: [],
+                      },
+                    ],
+                  })
+                }
 
                 // Check if the link has alias text
                 if (
@@ -61,8 +89,9 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                   node.children[0].value !== dest
                 ) {
                   // Add the 'alias' class if the text content is not the same as the href
-                  node.properties.className.push("alias")
+                  classes.push("alias")
                 }
+                node.properties.className = classes
 
                 if (opts.openLinksInNewTab) {
                   node.properties.target = "_blank"
@@ -79,7 +108,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
 
                   // url.resolve is considered legacy
                   // WHATWG equivalent https://nodejs.dev/en/api/v18/url/#urlresolvefrom-to
-                  const url = new URL(dest, `https://base.com/${curSlug}`)
+                  const url = new URL(dest, "https://base.com/" + stripSlashes(curSlug, true))
                   const canonicalDest = url.pathname
                   let [destCanonical, _destAnchor] = splitAnchor(canonicalDest)
                   if (destCanonical.endsWith("/")) {
@@ -87,7 +116,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                   }
 
                   // need to decodeURIComponent here as WHATWG URL percent-encodes everything
-                  const full = decodeURIComponent(_stripSlashes(destCanonical, true)) as FullSlug
+                  const full = decodeURIComponent(stripSlashes(destCanonical, true)) as FullSlug
                   const simple = simplifySlug(full)
                   outgoing.add(simple)
                   node.properties["data-slug"] = full
@@ -111,6 +140,10 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                 node.properties &&
                 typeof node.properties.src === "string"
               ) {
+                if (opts.lazyLoad) {
+                  node.properties.loading = "lazy"
+                }
+
                 if (!isAbsoluteUrl(node.properties.src)) {
                   let dest = node.properties.src as RelativeURL
                   dest = node.properties.src = transformLink(

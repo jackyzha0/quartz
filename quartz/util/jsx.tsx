@@ -1,5 +1,4 @@
 import { Components, Jsx, toJsxRuntime } from "hast-util-to-jsx-runtime"
-import { QuartzPluginData } from "../plugins/vfile"
 import { Node, Root } from "hast"
 import { Fragment, jsx, jsxs } from "preact/jsx-runtime"
 import { trace } from "./trace"
@@ -13,7 +12,7 @@ const customComponents: Components = {
   ),
 }
 
-export function htmlToJsx(fp: FilePath, tree: Node<QuartzPluginData>) {
+export function htmlToJsx(fp: FilePath, tree: Node) {
   try {
     return toJsxRuntime(tree as Root, {
       Fragment,
