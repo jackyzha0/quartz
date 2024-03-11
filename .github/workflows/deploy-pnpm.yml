@@ -2,9 +2,9 @@ name: Quartz - Deploy to GitHub Pages (pnpm)
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
 
 permissions:
   contents: read
