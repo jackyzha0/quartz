@@ -414,8 +414,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
         const query = currentSearchTerm.substring(separatorIndex + 1).trim()
         searchResults = await index.searchAsync({
           query: query,
-          // return at least 100 documents, so it is enough to filter them by tag (implemented in flexsearch)
-          limit: Math.max(numSearchResults, 100),
+          // return at least 10000 documents, so it is enough to filter them by tag (implemented in flexsearch)
+          limit: Math.max(numSearchResults, 10000),
           index: ["title", "content"],
           tag: tag,
         })
