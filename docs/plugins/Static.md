@@ -1,7 +1,7 @@
 ---
 title: Static
 tags:
-  - plugin/emitter
+    - plugin/emitter
 ---
 
 This plugin emits all static resources needed by Quartz. This is used, for example, for fonts and images that need a stable position, such as banners and icons. The plugin respects the `ignorePatterns` in the global [[configuration]].
@@ -16,6 +16,6 @@ This plugin has no configuration options.
 
 ## API
 
-- Category: Emitter
-- Function name: `Plugin.Static()`.
-- Source: [`quartz/plugins/emitters/static.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/static.ts).
+-   Category: Emitter
+-   Function name: `Plugin.Static()`.
+-   Source: [`quartz/plugins/emitters/static.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/static.ts).

@@ -1,7 +1,7 @@
 ---
 title: GitHubFlavoredMarkdown
 tags:
-  - plugin/transformer
+    - plugin/transformer
 ---
 
 This plugin enhances Markdown processing to support GitHub Flavored Markdown (GFM) which adds features like autolink literals, footnotes, strikethrough, tables and tasklists.
@@ -13,11 +13,11 @@ In addition, this plugin adds optional features for typographic refinement (such
 
 This plugin accepts the following configuration options:
 
-- `enableSmartyPants`: When true, enables typographic enhancements. Default is true.
-- `linkHeadings`: When true, automatically adds links to headings. Default is true.
+-   `enableSmartyPants`: When true, enables typographic enhancements. Default is true.
+-   `linkHeadings`: When true, automatically adds links to headings. Default is true.
 
 ## API
 
-- Category: Transformer
-- Function name: `Plugin.GitHubFlavoredMarkdown()`.
-- Source: [`quartz/plugins/transformers/gfm.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/gfm.ts).
+-   Category: Transformer
+-   Function name: `Plugin.GitHubFlavoredMarkdown()`.
+-   Source: [`quartz/plugins/transformers/gfm.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/gfm.ts).

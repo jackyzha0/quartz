@@ -10,9 +10,9 @@ enableToc: true
 
 Poetry is a broad literary category that covers everything from bawdy limericks to unforgettable song lyrics to the sentimental couplets inside greeting cards. A **poem** is a singular piece of poetry.
 
-- Show, don't tell. The goal is to provoke an emotion in the reader.
-- Less can be more. While it's perfectly acceptable to write long, flowery verse, using simple, concise language is also powerful. Word choice and poem length are up to you.
-- It's OK to break grammatical rules when doing so helps you express yourself.
+-   Show, don't tell. The goal is to provoke an emotion in the reader.
+-   Less can be more. While it's perfectly acceptable to write long, flowery verse, using simple, concise language is also powerful. Word choice and poem length are up to you.
+-   It's OK to break grammatical rules when doing so helps you express yourself.
 
 The key elements that distinguish poetry from other kinds of literature include sound, rhythm, rhyme, and format. One thing poetry has in common with other kinds of literature is its use of literary devices. Poems, like other kinds of creative writing, often make use of allegories and other kinds of figurative language to communicate themes.
 
@@ -70,15 +70,15 @@ A **stanza** is the poetic equivalent of a paragraph. It's a group of lines that
 
 ## Literary Devices
 
-- Figurative language
-- Juxtaposition
-- Onomatopoeia
-- Simile
-- Metaphor
-- Puns
-- Chiasmus
-- Imagery
-- Hyperbole
-- Mood
-- Motif
-- Personification
+-   Figurative language
+-   Juxtaposition
+-   Onomatopoeia
+-   Simile
+-   Metaphor
+-   Puns
+-   Chiasmus
+-   Imagery
+-   Hyperbole
+-   Mood
+-   Motif
+-   Personification

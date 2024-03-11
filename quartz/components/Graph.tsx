@@ -1,4 +1,8 @@
-import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import {
+    QuartzComponent,
+    QuartzComponentConstructor,
+    QuartzComponentProps,
+} from "./types"
 // @ts-ignore
 import script from "./scripts/graph.inline"
 import style from "./styles/graph.scss"
@@ -6,78 +10,87 @@ import { i18n } from "../i18n"
 import { classNames } from "../util/lang"
 
 export interface D3Config {
-  drag: boolean
-  zoom: boolean
-  depth: number
-  scale: number
-  repelForce: number
-  centerForce: number
-  linkDistance: number
-  fontSize: number
-  opacityScale: number
-  removeTags: string[]
-  showTags: boolean
-  focusOnHover?: boolean
+    drag: boolean
+    zoom: boolean
+    depth: number
+    scale: number
+    repelForce: number
+    centerForce: number
+    linkDistance: number
+    fontSize: number
+    opacityScale: number
+    removeTags: string[]
+    showTags: boolean
+    focusOnHover?: boolean
 }
 
 interface GraphOptions {
-  localGraph: Partial<D3Config> | undefined
-  globalGraph: Partial<D3Config> | undefined
+    localGraph: Partial<D3Config> | undefined
+    globalGraph: Partial<D3Config> | undefined
 }
 
 const defaultOptions: GraphOptions = {
-  localGraph: {
-    drag: true,
-    zoom: true,
-    depth: 1,
-    scale: 1.1,
-    repelForce: 0.5,
-    centerForce: 0.3,
-    linkDistance: 30,
-    fontSize: 0.6,
-    opacityScale: 1,
-    showTags: true,
-    removeTags: [],
-    focusOnHover: false,
-  },
-  globalGraph: {
-    drag: true,
-    zoom: true,
-    depth: -1,
-    scale: 0.9,
-    repelForce: 0.5,
-    centerForce: 0.3,
-    linkDistance: 30,
-    fontSize: 0.6,
-    opacityScale: 1,
-    showTags: true,
-    removeTags: [],
-    focusOnHover: true,
-  },
+    localGraph: {
+        drag: true,
+        zoom: true,
+        depth: 1,
+        scale: 1.1,
+        repelForce: 0.5,
+        centerForce: 0.3,
+        linkDistance: 30,
+        fontSize: 0.6,
+        opacityScale: 1,
+        showTags: true,
+        removeTags: [],
+        focusOnHover: false,
+    },
+    globalGraph: {
+        drag: true,
+        zoom: true,
+        depth: -1,
+        scale: 0.9,
+        repelForce: 0.5,
+        centerForce: 0.3,
+        linkDistance: 30,
+        fontSize: 0.6,
+        opacityScale: 1,
+        showTags: true,
+        removeTags: [],
+        focusOnHover: true,
+    },
 }
 
 export default ((opts?: GraphOptions) => {
-  const Graph: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) => {
-    const localGraph = { ...defaultOptions.localGraph, ...opts?.localGraph }
-    const globalGraph = { ...defaultOptions.globalGraph, ...opts?.globalGraph }
-    return (
-      <div class={classNames(displayClass, "graph")}>
-        <h2>{i18n(cfg.locale).components.graph.title}</h2>
-        <div class="graph-outer">
-          <div id="graph-container" data-cfg={JSON.stringify(localGraph)}></div>
-          <svg
-            version="1.1"
-            id="global-graph-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            x="0px"
-            y="0px"
-            viewBox="0 0 55 55"
-            fill="currentColor"
-            xmlSpace="preserve"
-          >
-            <path
-              d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+    const Graph: QuartzComponent = ({
+        displayClass,
+        cfg,
+    }: QuartzComponentProps) => {
+        const localGraph = { ...defaultOptions.localGraph, ...opts?.localGraph }
+        const globalGraph = {
+            ...defaultOptions.globalGraph,
+            ...opts?.globalGraph,
+        }
+        return (
+            <div class={classNames(displayClass, "graph")}>
+                <h2>{i18n(cfg.locale).components.graph.title}</h2>
+                <div class="graph-outer">
+                    <div
+                        id="graph-container"
+                        data-cfg={JSON.stringify(localGraph)}
+                    ></div>
+                    <svg
+                        version="1.1"
+                        id="global-graph-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlnsXlink="http://www.w3.org/1999/xlink"
+                        x="0px"
+                        y="0px"
+                        viewBox="0 0 55 55"
+                        fill="currentColor"
+                        xmlSpace="preserve"
+                    >
+                        <path
+                            d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
 	s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
 	c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
 	C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
@@ -88,18 +101,21 @@ export default ((opts?: GraphOptions) => {
 	S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
 	s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
 	s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"
-            />
-          </svg>
-        </div>
-        <div id="global-graph-outer">
-          <div id="global-graph-container" data-cfg={JSON.stringify(globalGraph)}></div>
-        </div>
-      </div>
-    )
-  }
+                        />
+                    </svg>
+                </div>
+                <div id="global-graph-outer">
+                    <div
+                        id="global-graph-container"
+                        data-cfg={JSON.stringify(globalGraph)}
+                    ></div>
+                </div>
+            </div>
+        )
+    }
 
-  Graph.css = style
-  Graph.afterDOMLoaded = script
+    Graph.css = style
+    Graph.afterDOMLoaded = script
 
-  return Graph
+    return Graph
 }) satisfies QuartzComponentConstructor

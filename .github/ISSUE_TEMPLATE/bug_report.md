@@ -30,11 +30,11 @@ You can help speed up fixing the problem by either
 
 **Desktop (please complete the following information):**
 
-- Quartz Version: [e.g. v4.1.2]
-- `node` Version: [e.g. v18.16]
-- `npm` version: [e.g. v10.1.0]
-- OS: [e.g. iOS]
-- Browser [e.g. chrome, safari]
+-   Quartz Version: [e.g. v4.1.2]
+-   `node` Version: [e.g. v18.16]
+-   `npm` version: [e.g. v10.1.0]
+-   OS: [e.g. iOS]
+-   Browser [e.g. chrome, safari]
 
 **Additional context**
 Add any other context about the problem here.

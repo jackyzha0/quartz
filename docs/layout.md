@@ -8,13 +8,13 @@ Each page is composed of multiple different sections which contain `QuartzCompon
 
 ```typescript title="quartz/cfg.ts"
 export interface FullPageLayout {
-  head: QuartzComponent // single component
-  header: QuartzComponent[] // laid out horizontally
-  beforeBody: QuartzComponent[] // laid out vertically
-  pageBody: QuartzComponent // single component
-  left: QuartzComponent[] // vertical on desktop, horizontal on mobile
-  right: QuartzComponent[] // vertical on desktop, horizontal on mobile
-  footer: QuartzComponent // single component
+    head: QuartzComponent // single component
+    header: QuartzComponent[] // laid out horizontally
+    beforeBody: QuartzComponent[] // laid out vertically
+    pageBody: QuartzComponent // single component
+    left: QuartzComponent[] // vertical on desktop, horizontal on mobile
+    right: QuartzComponent[] // vertical on desktop, horizontal on mobile
+    footer: QuartzComponent // single component
 }
 ```
 

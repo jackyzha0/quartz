@@ -63,7 +63,7 @@ compartir: true
 
 ### Dogfooding (slang)
 
-- _From [Wikipedia](https://en.wikipedia.org/wiki/Eating_your_own_dog_food)_: Eating your own dog food or "_dogfooding_" is the practice of using one's own products or services.
+-   _From [Wikipedia](https://en.wikipedia.org/wiki/Eating_your_own_dog_food)_: Eating your own dog food or "_dogfooding_" is the practice of using one's own products or services.
 
 ### Excoriate (verb)
 

@@ -15,21 +15,21 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 <details open>
 <summary>Show/Hide</summary>
 
-- [🌱 Forgetful Notes](#-forgetful-notes)
-  - [Contents](#contents)
-  - [Screenshots](#screenshots)
-    - [Full Width](#full-width)
-    - [Slim (light)](#slim-light)
-    - [Slim (dark)](#slim-dark)
-  - [Features](#features)
-  - [Background](#background)
-  - [Technology](#technology)
-  - [Useful Commands](#useful-commands)
-  - [Customization](#customization)
-    - [Stylesheets](#stylesheets)
-    - [Fonts](#fonts)
-  - [Folder Structure](#folder-structure)
-  - [License](#license)
+-   [🌱 Forgetful Notes](#-forgetful-notes)
+    -   [Contents](#contents)
+    -   [Screenshots](#screenshots)
+        -   [Full Width](#full-width)
+        -   [Slim (light)](#slim-light)
+        -   [Slim (dark)](#slim-dark)
+    -   [Features](#features)
+    -   [Background](#background)
+    -   [Technology](#technology)
+    -   [Useful Commands](#useful-commands)
+    -   [Customization](#customization)
+        -   [Stylesheets](#stylesheets)
+        -   [Fonts](#fonts)
+    -   [Folder Structure](#folder-structure)
+    -   [License](#license)
 
 </details>
 
@@ -54,12 +54,12 @@ It is powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](h
 
 ## Features
 
-- Fast Natural-Language Search
-- Bidirectional Backlinks
-- Floating Link Previews
-- Admonition-style Callouts
-- Markdown Links and Wikilinks Support
-- Latex Support
+-   Fast Natural-Language Search
+-   Bidirectional Backlinks
+-   Floating Link Previews
+-   Admonition-style Callouts
+-   Markdown Links and Wikilinks Support
+-   Latex Support
 
 ## Background
 

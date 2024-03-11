@@ -1,7 +1,7 @@
 ---
 title: Syntax Highlighting
 tags:
-  - feature/transformer
+    - feature/transformer
 ---
 
 Syntax highlighting in Quartz is completely done at build-time. This means that Quartz only ships pre-calculated CSS to highlight the right words so there is no heavy client-side bundle that does the syntax highlighting.
@@ -31,11 +31,11 @@ export function trimPathSuffix(fp: string): string {
 
 ```ts
 export function trimPathSuffix(fp: string): string {
-  fp = clientSideSlug(fp)
-  let [cleanPath, anchor] = fp.split("#", 2)
-  anchor = anchor === undefined ? "" : "#" + anchor
+    fp = clientSideSlug(fp)
+    let [cleanPath, anchor] = fp.split("#", 2)
+    anchor = anchor === undefined ? "" : "#" + anchor
 
-  return cleanPath + anchor
+    return cleanPath + anchor
 }
 ```
 
@@ -51,11 +51,11 @@ Add a file title to your code block, with text inside double quotes (`""`):
 
 ```ts title="quartz/path.ts"
 export function trimPathSuffix(fp: string): string {
-  fp = clientSideSlug(fp)
-  let [cleanPath, anchor] = fp.split("#", 2)
-  anchor = anchor === undefined ? "" : "#" + anchor
+    fp = clientSideSlug(fp)
+    let [cleanPath, anchor] = fp.split("#", 2)
+    anchor = anchor === undefined ? "" : "#" + anchor
 
-  return cleanPath + anchor
+    return cleanPath + anchor
 }
 ```
 
@@ -71,11 +71,11 @@ Place a numeric range inside `{}`.
 
 ```ts {2-3,6}
 export function trimPathSuffix(fp: string): string {
-  fp = clientSideSlug(fp)
-  let [cleanPath, anchor] = fp.split("#", 2)
-  anchor = anchor === undefined ? "" : "#" + anchor
+    fp = clientSideSlug(fp)
+    let [cleanPath, anchor] = fp.split("#", 2)
+    anchor = anchor === undefined ? "" : "#" + anchor
 
-  return cleanPath + anchor
+    return cleanPath + anchor
 }
 ```
 
@@ -107,11 +107,11 @@ Syntax highlighting has line numbers configured automatically. If you want to st
 
 ```ts showLineNumbers{20}
 export function trimPathSuffix(fp: string): string {
-  fp = clientSideSlug(fp)
-  let [cleanPath, anchor] = fp.split("#", 2)
-  anchor = anchor === undefined ? "" : "#" + anchor
+    fp = clientSideSlug(fp)
+    let [cleanPath, anchor] = fp.split("#", 2)
+    anchor = anchor === undefined ? "" : "#" + anchor
 
-  return cleanPath + anchor
+    return cleanPath + anchor
 }
 ```
 

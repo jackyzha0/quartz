@@ -1,7 +1,7 @@
 ---
 title: LaTeX
 tags:
-  - feature/transformer
+    - feature/transformer
 ---
 
 Quartz uses [Katex](https://katex.org/) by default to typeset both inline and block math expressions at build time.
@@ -54,8 +54,8 @@ To get around this, you can escape the dollar sign by doing `\$` instead.
 
 For example:
 
-- Incorrect: `I have $1 and you have $2` produces I have $1 and you have $2
-- Correct: `I have \$1 and you have \$2` produces I have \$1 and you have \$2
+-   Incorrect: `I have $1 and you have $2` produces I have $1 and you have $2
+-   Correct: `I have \$1 and you have \$2` produces I have \$1 and you have \$2
 
 ### Using mhchem
 

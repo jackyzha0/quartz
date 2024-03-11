@@ -12,21 +12,21 @@ Visit the [Documentation](https://espanso.org/docs/get-started/).
 
 ## Features
 
-- Works on **Windows**, **macOS** and **Linux**
-- Works with almost **any program**
-- Works with **Emojis** 😄
-- Works with **Images**
-- Includes a powerful **Search Bar** 🔎
-- **Date** expansion support
-- **Custom scripts** support
-- **Shell commands** support
-- **App-specific** configurations
-- Support [Forms](https://espanso.org/docs/matches/forms/)
-- Expandable with **packages**
-- Built-in **package manager** for [espanso hub](https://hub.espanso.org/)
-- File based configuration
-- Support Regex triggers
-- Experimental Wayland support
+-   Works on **Windows**, **macOS** and **Linux**
+-   Works with almost **any program**
+-   Works with **Emojis** 😄
+-   Works with **Images**
+-   Includes a powerful **Search Bar** 🔎
+-   **Date** expansion support
+-   **Custom scripts** support
+-   **Shell commands** support
+-   **App-specific** configurations
+-   Support [Forms](https://espanso.org/docs/matches/forms/)
+-   Expandable with **packages**
+-   Built-in **package manager** for [espanso hub](https://hub.espanso.org/)
+-   File based configuration
+-   Support Regex triggers
+-   Experimental Wayland support
 
 ## Static Matches
 
@@ -52,10 +52,10 @@ Visit the [Documentation](https://espanso.org/docs/get-started/).
 - trigger: "now"
   replace: "It's {{mytime}}"
   vars:
-    - name: mytime
-      type: date
-      params:
-        format: "%H:%M"
+      - name: mytime
+        type: date
+        params:
+            format: "%H:%M"
 ```
 
 ### Preconfigured Choices
@@ -76,8 +76,8 @@ Visit the [Documentation](https://espanso.org/docs/get-started/).
 - name: getip
   type: shell
   params:
-    cmd: "curl ifconfig.me"
-    shell: cmd
+      cmd: "curl ifconfig.me"
+      shell: cmd
 ```
 
 ## Global Variables
@@ -86,14 +86,14 @@ Visit the [Documentation](https://espanso.org/docs/get-started/).
 
 ```yml
 global_vars:
-  - name: "global1"
-    type: "shell"
-    params:
-      cmd: "echo global var"
-  - name: "greet"
-    type: "echo"
-    params:
-      echo: "Hey"
+    - name: "global1"
+      type: "shell"
+      params:
+          cmd: "echo global var"
+    - name: "greet"
+      type: "echo"
+      params:
+          echo: "Hey"
 ```
 
 ### Usage
@@ -122,9 +122,9 @@ global_vars:
     word: true
 ```
 
-- If you write `alh`, the match will be expanded to `although`.
-- If you write `Alh`, the match will be expanded to `Although`.
-- If you write `ALH`, the match will be expanded to `ALTHOUGH`.
+-   If you write `alh`, the match will be expanded to `although`.
+-   If you write `Alh`, the match will be expanded to `Although`.
+-   If you write `ALH`, the match will be expanded to `ALTHOUGH`.
 
 ## Cursor Hints
 

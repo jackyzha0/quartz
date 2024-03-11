@@ -1,7 +1,7 @@
 ---
 title: Assets
 tags:
-  - plugin/emitter
+    - plugin/emitter
 ---
 
 This plugin emits all non-Markdown static assets in your content folder (like images, videos, HTML, etc). The plugin respects the `ignorePatterns` in the global [[configuration]].
@@ -15,6 +15,6 @@ This plugin has no configuration options.
 
 ## API
 
-- Category: Emitter
-- Function name: `Plugin.Assets()`.
-- Source: [`quartz/plugins/emitters/assets.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/assets.ts).
+-   Category: Emitter
+-   Function name: `Plugin.Assets()`.
+-   Source: [`quartz/plugins/emitters/assets.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/assets.ts).

@@ -76,22 +76,22 @@ In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla e
 
 In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
 
-- List item
-- Another item
-- And another item
+-   List item
+-   Another item
+-   And another item
 
 ### Nested List
 
 In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
 
-- Item
-  1.  First Sub-item
-  2.  Second Sub-item
+-   Item
+    1.  First Sub-item
+    2.  Second Sub-item
 
 1. Numbered Item
 2. Another one
-   1. Sub-item
-   - Unordered again
+    1. Sub-item
+    - Unordered again
 
 ## Code
 
@@ -103,26 +103,26 @@ Let us use some `inline code` and check out how it `looks`. Here's some `more`.
 
 ```html
 <html>
-  <head>
-    <div style="background-color: #333;">
-      <a href="https://example.com/">Example</a>
-    </div>
-  </head>
+    <head>
+        <div style="background-color: #333;">
+            <a href="https://example.com/">Example</a>
+        </div>
+    </head>
 </html>
 ```
 
 ```css
 .niceClass {
-  color: blue;
-  background-color: #fff;
+    color: blue;
+    background-color: #fff;
 }
 ```
 
 ```js
 // Javascript code with syntax highlighting.
 var fun = function lang(l) {
-  dateformat.i18n = require("./lang/" + l)
-  return true
+    dateformat.i18n = require("./lang/" + l)
+    return true
 }
 ```
 
@@ -167,16 +167,16 @@ In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla e
 
 ## Tasks and Custom Todos
 
-- [ ] Pending Task
-- [x] Completed Task
+-   [ ] Pending Task
+-   [x] Completed Task
 
-* [-] Won't Do Task
-* [/] In Progress Task
-* [*] You are a star.
-* [!] Exclamation Mark!
-* [?] Question Mark?
-* [<] Scheduled Task
-* [>] Forwarded Task
+*   [-] Won't Do Task
+*   [/] In Progress Task
+*   [*] You are a star.
+*   [!] Exclamation Mark!
+*   [?] Question Mark?
+*   [<] Scheduled Task
+*   [>] Forwarded Task
 
 ## Images
 

@@ -1,7 +1,7 @@
 ---
 title: Folder and Tag Listings
 tags:
-  - feature/emitter
+    - feature/emitter
 ---
 
 Quartz emits listing pages for any folders and tags you have.

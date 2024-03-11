@@ -1,7 +1,7 @@
 ---
 title: Private Pages
 tags:
-  - feature/filter
+    - feature/filter
 ---
 
 There may be some notes you want to avoid publishing as a website. Quartz supports this through two mechanisms which can be used in conjunction:
@@ -26,10 +26,10 @@ This is a field in `quartz.config.ts` under the main [[configuration]] which all
 
 Common examples include:
 
-- `some/folder`: exclude the entire of `some/folder`
-- `*.md`: exclude all files with a `.md` extension
-- `!*.md` exclude all files that _don't_ have a `.md` extension
-- `**/private`: exclude any files or folders named `private` at any level of nesting
+-   `some/folder`: exclude the entire of `some/folder`
+-   `*.md`: exclude all files with a `.md` extension
+-   `!*.md` exclude all files that _don't_ have a `.md` extension
+-   `**/private`: exclude any files or folders named `private` at any level of nesting
 
 > [!warning]
 > Marking something as private via either a plugin or through the `ignorePatterns` pattern will only prevent a page from being included in the final built site. If your GitHub repository is public, also be sure to include an ignore for those in the `.gitignore` of your Quartz. See the `git` [documentation](https://git-scm.com/docs/gitignore#_pattern_format) for more information.

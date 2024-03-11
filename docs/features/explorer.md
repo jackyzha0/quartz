@@ -1,7 +1,7 @@
 ---
 title: "Explorer"
 tags:
-  - component
+    - component
 ---
 
 Quartz features an explorer that allows you to navigate all files and folders on your site. It supports nested folders and is highly customizable.
@@ -42,14 +42,14 @@ When passing in your own options, you can omit any or all of these fields if you
 
 Want to customize it even more?
 
-- Removing explorer: remove `Component.Explorer()` from `quartz.layout.ts`
-  - (optional): After removing the explorer component, you can move the [[table of contents | Table of Contents]] component back to the `left` part of the layout
-- Changing `sort`, `filter` and `map` behavior: explained in [[#Advanced customization]]
-- Component:
-  - Wrapper (Outer component, generates file tree, etc): `quartz/components/Explorer.tsx`
-  - Explorer node (recursive, either a folder or a file): `quartz/components/ExplorerNode.tsx`
-- Style: `quartz/components/styles/explorer.scss`
-- Script: `quartz/components/scripts/explorer.inline.ts`
+-   Removing explorer: remove `Component.Explorer()` from `quartz.layout.ts`
+    -   (optional): After removing the explorer component, you can move the [[table of contents | Table of Contents]] component back to the `left` part of the layout
+-   Changing `sort`, `filter` and `map` behavior: explained in [[#Advanced customization]]
+-   Component:
+    -   Wrapper (Outer component, generates file tree, etc): `quartz/components/Explorer.tsx`
+    -   Explorer node (recursive, either a folder or a file): `quartz/components/ExplorerNode.tsx`
+-   Style: `quartz/components/styles/explorer.scss`
+-   Script: `quartz/components/scripts/explorer.inline.ts`
 
 ## Advanced customization
 
@@ -73,21 +73,21 @@ Every function you can pass is optional. By default, only a `sort` function will
 ```ts title="Default sort function"
 // Sort order: folders first, then files. Sort folders and files alphabetically
 Component.Explorer({
-  sortFn: (a, b) => {
-    if ((!a.file && !b.file) || (a.file && b.file)) {
-      // sensitivity: "base": Only strings that differ in base letters compare as unequal. Examples: a ≠ b, a = á, a = A
-      // numeric: true: Whether numeric collation should be used, such that "1" < "2" < "10"
-      return a.displayName.localeCompare(b.displayName, undefined, {
-        numeric: true,
-        sensitivity: "base",
-      })
-    }
-    if (a.file && !b.file) {
-      return 1
-    } else {
-      return -1
-    }
-  },
+    sortFn: (a, b) => {
+        if ((!a.file && !b.file) || (a.file && b.file)) {
+            // sensitivity: "base": Only strings that differ in base letters compare as unequal. Examples: a ≠ b, a = á, a = A
+            // numeric: true: Whether numeric collation should be used, such that "1" < "2" < "10"
+            return a.displayName.localeCompare(b.displayName, undefined, {
+                numeric: true,
+                sensitivity: "base",
+            })
+        }
+        if (a.file && !b.file) {
+            return 1
+        } else {
+            return -1
+        }
+    },
 })
 ```
 
@@ -110,9 +110,9 @@ mapFn: (node: FileNode) => void
 >
 > ```ts
 > if (node.file) {
->   // node is a file
+>     // node is a file
 > } else {
->   // node is a folder
+>     // node is a folder
 > }
 > ```
 
@@ -126,16 +126,16 @@ Using this example, the explorer will alphabetically sort everything, but put al
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
-  sortFn: (a, b) => {
-    if ((!a.file && !b.file) || (a.file && b.file)) {
-      return a.displayName.localeCompare(b.displayName)
-    }
-    if (a.file && !b.file) {
-      return -1
-    } else {
-      return 1
-    }
-  },
+    sortFn: (a, b) => {
+        if ((!a.file && !b.file) || (a.file && b.file)) {
+            return a.displayName.localeCompare(b.displayName)
+        }
+        if (a.file && !b.file) {
+            return -1
+        } else {
+            return 1
+        }
+    },
 })
 ```
 
@@ -145,9 +145,9 @@ Using this example, the display names of all `FileNodes` (folders + files) will 
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
-  mapFn: (node) => {
-    node.displayName = node.displayName.toUpperCase()
-  },
+    mapFn: (node) => {
+        node.displayName = node.displayName.toUpperCase()
+    },
 })
 ```
 
@@ -157,11 +157,11 @@ Using this example, you can remove elements from your explorer by providing an a
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
-  filterFn: (node) => {
-    // set containing names of everything you want to filter out
-    const omit = new Set(["authoring content", "tags", "hosting"])
-    return !omit.has(node.name.toLowerCase())
-  },
+    filterFn: (node) => {
+        // set containing names of everything you want to filter out
+        const omit = new Set(["authoring content", "tags", "hosting"])
+        return !omit.has(node.name.toLowerCase())
+    },
 })
 ```
 
@@ -173,10 +173,12 @@ You can access the frontmatter of a file by `node.file?.frontmatter?`. This allo
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
-  filterFn: (node) => {
-    // exclude files with the tag "explorerexclude"
-    return node.file?.frontmatter?.tags?.includes("explorerexclude") !== true
-  },
+    filterFn: (node) => {
+        // exclude files with the tag "explorerexclude"
+        return (
+            node.file?.frontmatter?.tags?.includes("explorerexclude") !== true
+        )
+    },
 })
 ```
 
@@ -186,7 +188,7 @@ To override the default filter function that removes the `tags` folder from the 
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
-  filterFn: undefined, // apply no filter function, every file and folder will visible
+    filterFn: undefined, // apply no filter function, every file and folder will visible
 })
 ```
 
@@ -199,13 +201,13 @@ Component.Explorer({
 > ```ts title="functions.ts"
 > import { Options } from "./quartz/components/ExplorerNode"
 > export const mapFn: Options["mapFn"] = (node) => {
->   // implement your function here
+>     // implement your function here
 > }
 > export const filterFn: Options["filterFn"] = (node) => {
->   // implement your function here
+>     // implement your function here
 > }
 > export const sortFn: Options["sortFn"] = (a, b) => {
->   // implement your function here
+>     // implement your function here
 > }
 > ```
 >
@@ -214,9 +216,9 @@ Component.Explorer({
 > ```ts title="quartz.layout.ts"
 > import { mapFn, filterFn, sortFn } from "./functions.ts"
 > Component.Explorer({
->   mapFn: mapFn,
->   filterFn: filterFn,
->   sortFn: sortFn,
+>     mapFn: mapFn,
+>     filterFn: filterFn,
+>     sortFn: sortFn,
 > })
 > ```
 
@@ -226,17 +228,17 @@ To add emoji prefixes (📁 for folders, 📄 for files), you could use a map fu
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
-  mapFn: (node) => {
-    // dont change name of root node
-    if (node.depth > 0) {
-      // set emoji for file/folder
-      if (node.file) {
-        node.displayName = "📄 " + node.displayName
-      } else {
-        node.displayName = "📁 " + node.displayName
-      }
-    }
-  },
+    mapFn: (node) => {
+        // dont change name of root node
+        if (node.depth > 0) {
+            // set emoji for file/folder
+            if (node.file) {
+                node.displayName = "📄 " + node.displayName
+            } else {
+                node.displayName = "📁 " + node.displayName
+            }
+        }
+    },
 })
 ```
 
@@ -246,10 +248,10 @@ In this example, we're going to customize the explorer by using functions from e
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
-  filterFn: sampleFilterFn,
-  mapFn: sampleMapFn,
-  sortFn: sampleSortFn,
-  order: ["filter", "sort", "map"],
+    filterFn: sampleFilterFn,
+    mapFn: sampleMapFn,
+    sortFn: sampleSortFn,
+    order: ["filter", "sort", "map"],
 })
 ```
 
@@ -265,32 +267,32 @@ It's also worth mentioning, that the smaller the number set in `nameOrderMap`, t
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
-  sortFn: (a, b) => {
-    const nameOrderMap: Record<string, number> = {
-      "poetry-folder": 100,
-      "essay-folder": 200,
-      "research-paper-file": 201,
-      "dinosaur-fossils-file": 300,
-      "other-folder": 400,
-    }
+    sortFn: (a, b) => {
+        const nameOrderMap: Record<string, number> = {
+            "poetry-folder": 100,
+            "essay-folder": 200,
+            "research-paper-file": 201,
+            "dinosaur-fossils-file": 300,
+            "other-folder": 400,
+        }
 
-    let orderA = 0
-    let orderB = 0
+        let orderA = 0
+        let orderB = 0
 
-    if (a.file && a.file.slug) {
-      orderA = nameOrderMap[a.file.slug] || 0
-    } else if (a.name) {
-      orderA = nameOrderMap[a.name] || 0
-    }
+        if (a.file && a.file.slug) {
+            orderA = nameOrderMap[a.file.slug] || 0
+        } else if (a.name) {
+            orderA = nameOrderMap[a.name] || 0
+        }
 
-    if (b.file && b.file.slug) {
-      orderB = nameOrderMap[b.file.slug] || 0
-    } else if (b.name) {
-      orderB = nameOrderMap[b.name] || 0
-    }
+        if (b.file && b.file.slug) {
+            orderB = nameOrderMap[b.file.slug] || 0
+        } else if (b.name) {
+            orderB = nameOrderMap[b.name] || 0
+        }
 
-    return orderA - orderB
-  },
+        return orderA - orderB
+    },
 })
 ```
 

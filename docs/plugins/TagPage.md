@@ -1,7 +1,7 @@
 ---
 title: TagPage
 tags:
-  - plugin/emitter
+    - plugin/emitter
 ---
 
 This plugin emits dedicated pages for each tag used in the content. See [[folder and tag listings]] for more information.
@@ -15,6 +15,6 @@ The pages are displayed using the `defaultListPageLayout` in `quartz.layouts.ts`
 
 ## API
 
-- Category: Emitter
-- Function name: `Plugin.TagPage()`.
-- Source: [`quartz/plugins/emitters/tagPage.tsx`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/tagPage.tsx).
+-   Category: Emitter
+-   Function name: `Plugin.TagPage()`.
+-   Source: [`quartz/plugins/emitters/tagPage.tsx`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/tagPage.tsx).

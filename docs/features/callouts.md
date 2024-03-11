@@ -1,15 +1,15 @@
 ---
 title: Callouts
 tags:
-  - feature/transformer
+    - feature/transformer
 ---
 
 Quartz supports the same Admonition-callout syntax as Obsidian.
 
 This includes
 
-- 12 Distinct callout types (each with several aliases)
-- Collapsable callouts
+-   12 Distinct callout types (each with several aliases)
+-   Collapsable callouts
 
 ```
 > [!info] Title
@@ -33,12 +33,12 @@ By default, custom callouts are handled by applying the `note` style. To make fa
 
 ```scss title="quartz/styles/custom.scss"
 .callout {
-  &[data-callout="custom"] {
-    --color: #customcolor;
-    --border: #custombordercolor;
-    --bg: #custombg;
-    --callout-icon: url("data:image/svg+xml; utf8, <custom formatted svg>"); //SVG icon code
-  }
+    &[data-callout="custom"] {
+        --color: #customcolor;
+        --border: #custombordercolor;
+        --bg: #custombg;
+        --callout-icon: url("data:image/svg+xml; utf8, <custom formatted svg>"); //SVG icon code
+    }
 }
 ```
 

@@ -1,17 +1,17 @@
 code[data-theme*=" "] {
-  color: var(--shiki-light);
-  background-color: var(--shiki-light-bg);
+    color: var(--shiki-light);
+    background-color: var(--shiki-light-bg);
 }
 
 code[data-theme*=" "] span {
-  color: var(--shiki-light);
+    color: var(--shiki-light);
 }
 
 [saved-theme="dark"] code[data-theme*=" "] {
-  color: var(--shiki-dark);
-  background-color: var(--shiki-dark-bg);
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
 }
 
 [saved-theme="dark"] code[data-theme*=" "] span {
-  color: var(--shiki-dark);
+    color: var(--shiki-dark);
 }

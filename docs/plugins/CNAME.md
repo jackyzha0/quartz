@@ -1,7 +1,7 @@
 ---
 title: CNAME
 tags:
-  - plugin/emitter
+    - plugin/emitter
 ---
 
 This plugin emits a `CNAME` record that points your subdomain to the default domain of your site.
@@ -17,6 +17,6 @@ This plugin has no configuration options.
 
 ## API
 
-- Category: Emitter
-- Function name: `Plugin.CNAME()`.
-- Source: [`quartz/plugins/emitters/cname.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/cname.ts).
+-   Category: Emitter
+-   Function name: `Plugin.CNAME()`.
+-   Source: [`quartz/plugins/emitters/cname.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/cname.ts).

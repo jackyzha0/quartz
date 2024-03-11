@@ -1,7 +1,7 @@
 ---
 title: "Breadcrumbs"
 tags:
-  - component
+    - component
 ---
 
 Breadcrumbs provide a way to navigate a hierarchy of pages within your site using a list of its parent folders.
@@ -16,11 +16,11 @@ For example, here's what the default configuration looks like:
 
 ```typescript title="quartz.layout.ts"
 Component.Breadcrumbs({
-  spacerSymbol: "❯", // symbol between crumbs
-  rootName: "Home", // name of first/root element
-  resolveFrontmatterTitle: true, // whether to resolve folder names through frontmatter titles
-  hideOnRoot: true, // whether to hide breadcrumbs on root `index.md` page
-  showCurrentPage: true, // whether to display the current page in the breadcrumbs
+    spacerSymbol: "❯", // symbol between crumbs
+    rootName: "Home", // name of first/root element
+    resolveFrontmatterTitle: true, // whether to resolve folder names through frontmatter titles
+    hideOnRoot: true, // whether to hide breadcrumbs on root `index.md` page
+    showCurrentPage: true, // whether to display the current page in the breadcrumbs
 })
 ```
 
@@ -30,7 +30,7 @@ You can also adjust where the breadcrumbs will be displayed by adjusting the [[l
 
 Want to customize it even more?
 
-- Removing breadcrumbs: delete all usages of `Component.Breadcrumbs()` from `quartz.layout.ts`.
-- Component: `quartz/components/Breadcrumbs.tsx`
-- Style: `quartz/components/styles/breadcrumbs.scss`
-- Script: inline at `quartz/components/Breadcrumbs.tsx`
+-   Removing breadcrumbs: delete all usages of `Component.Breadcrumbs()` from `quartz.layout.ts`.
+-   Component: `quartz/components/Breadcrumbs.tsx`
+-   Style: `quartz/components/styles/breadcrumbs.scss`
+-   Script: inline at `quartz/components/Breadcrumbs.tsx`
