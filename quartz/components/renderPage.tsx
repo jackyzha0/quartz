@@ -106,6 +106,7 @@ export function renderPage(
 
         let blockRef = node.properties.dataBlock as string | undefined
         if (blockRef?.startsWith("#^")) {
+          // block transclude
           blockRef = blockRef.slice("#^".length)
           let blockNode = page.blocks?.[blockRef]
           if (blockNode) {
