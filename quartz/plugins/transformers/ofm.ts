@@ -103,10 +103,10 @@ export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/, "g")
 // \[\[              -> open brace
 // ([^\[\]\|\#]+)    -> one or more non-special characters ([,],|, or #) (name)
 // (#[^\[\]\|\#]+)?  -> # then one or more non-special characters (heading link)
-// (\|[^\[\]\#]+)? -> | then one or more non-special characters (alias)
+// (\|[^\[\]\#]+)? -> \| then one or more non-special characters (alias)
 export const wikilinkRegex = new RegExp(
-  /!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\#]+)?\]\]/,
-  "g",
+    /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]/,
+    "g",
 )
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
 const commentRegex = new RegExp(/%%[\s\S]*?%%/, "g")
@@ -176,14 +176,18 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           const anchor = rawHeader?.trim().replace(/^#+/, "")
           const blockRef = Boolean(anchor?.startsWith("^")) ? "^" : ""
           const displayAnchor = anchor ? `#${blockRef}${slugAnchor(anchor)}` : ""
-          const displayAlias = rawAlias ?? rawHeader?.replace("#", "|") ?? ""
+          let displayAlias = rawAlias ?? rawHeader?.replace("#", "|") ?? ""
           const embedDisplay = value.startsWith("!") ? "!" : ""
 
           if (rawFp?.match(externalLinkRegex)) {
             return `${embedDisplay}[${displayAlias.replace(/^\|/, "")}](${rawFp})`
           }
 
-          return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`
+          if(displayAlias && displayAlias.startsWith("|")){
+            displayAlias = `\\${displayAlias}`;
+          }
+
+          return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`;
         })
       }
 
