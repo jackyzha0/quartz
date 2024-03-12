@@ -105,8 +105,8 @@ export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/, "g")
 // (#[^\[\]\|\#]+)?  -> # then one or more non-special characters (heading link)
 // (\|[^\[\]\#]+)? -> \| then one or more non-special characters (alias)
 export const wikilinkRegex = new RegExp(
-    /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]/,
-    "g",
+  /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]/,
+  "g",
 )
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
 const commentRegex = new RegExp(/%%[\s\S]*?%%/, "g")
@@ -183,11 +183,11 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             return `${embedDisplay}[${displayAlias.replace(/^\|/, "")}](${rawFp})`
           }
 
-          if(displayAlias && displayAlias.startsWith("|")){
-            displayAlias = `\\${displayAlias}`;
+          if (displayAlias && displayAlias.startsWith("|")) {
+            displayAlias = `\\${displayAlias}`
           }
 
-          return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`;
+          return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`
         })
       }
 
