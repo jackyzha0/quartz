@@ -1,5 +1,6 @@
 import rehypeCitation from "rehype-citation"
-import rehypeRewrite from "rehype-rewrite"
+import { PluggableList } from "unified"
+import { visit } from "unist-util-visit"
 import { QuartzTransformerPlugin } from "../types"
 
 export interface Options {
@@ -21,29 +22,32 @@ export const Citations: QuartzTransformerPlugin<Partial<Options> | undefined> = 
   return {
     name: "Citations",
     htmlPlugins() {
-      return [
-        [
-          rehypeCitation,
-          {
-            bibliography: opts.bibliographyFile,
-            suppressBibliography: opts.suppressBibliography,
-            linkCitations: opts.linkCitations,
-          },
-        ],
-        // Transform the HTML of the citattions; add data-no-popover property to the citation links
-        // using https://github.com/jaywcjlove/rehype-rewrite as they're just anochor links
-        [
-          rehypeRewrite,
-          {
-            rewrite: (node: any) => {
-              // Add data-no-popover to all elements which have an ID that starts with "#bib"
-              if (node.tagName === "a" && node.properties.href?.startsWith("#bib")) {
-                node.properties["data-no-popover"] = true
-              }
-            },
-          },
-        ],
-      ]
+      const plugins: PluggableList = []
+
+      // Add rehype-citation to the list of plugins
+      plugins.push([
+        rehypeCitation,
+        {
+          bibliography: opts.bibliographyFile,
+          suppressBibliography: opts.suppressBibliography,
+          linkCitations: opts.linkCitations,
+        },
+      ])
+
+      // Transform the HTML of the citattions; add data-no-popover property to the citation links
+      // using https://github.com/syntax-tree/unist-util-visit as they're just anochor links
+      plugins.push(() => {
+        return (tree, _file) => {
+          visit(tree, "element", (node, index, parent) => {
+            console.log("node", node)
+            if (node.tagName === "a" && node.properties?.href?.startsWith("#bib")) {
+              node.properties["data-no-popover"] = true
+            }
+          })
+        }
+      })
+
+      return plugins
     },
   }
 }
