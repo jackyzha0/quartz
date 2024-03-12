@@ -52,20 +52,14 @@ export function pageResources(
   }
 }
 
-// TODO: proper typings
-// TODO: move to a utils file?
+// Check if an element has a property with a specific value
 function hasPropertyValue(obj: any, property: any, value: string) {
   for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
       if (typeof obj[key] === "object") {
-        if (obj[key].id === value) {
+        if (obj[key].id === value || hasPropertyValue(obj[key], property, value)) {
           return true
         }
-        if (hasPropertyValue(obj[key], property, value)) {
-          return true
-        }
-      } else if (key === property && obj[key].id === value) {
-        return true
       }
     }
   }
