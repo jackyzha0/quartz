@@ -19,6 +19,12 @@ export type Analytics =
       websiteId: string
       host?: string
     }
+  | {
+      provider: "goatcounter"
+      websiteId: string
+      host?: string
+      scriptSrc?: string
+    }
 
 export interface GlobalConfiguration {
   pageTitle: string
