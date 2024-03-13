@@ -39,7 +39,6 @@ export const Citations: QuartzTransformerPlugin<Partial<Options> | undefined> = 
       plugins.push(() => {
         return (tree, _file) => {
           visit(tree, "element", (node, index, parent) => {
-            console.log("node", node)
             if (node.tagName === "a" && node.properties?.href?.startsWith("#bib")) {
               node.properties["data-no-popover"] = true
             }
