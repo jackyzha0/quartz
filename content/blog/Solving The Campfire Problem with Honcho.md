@@ -4,7 +4,7 @@ date: March 14, 2024
 tags:
   - demos
   - philosophy
-  - machine_learning
+  - "#ml"
 ---
 ![[agent_campfire.webp]]
 ## TL;DR
