@@ -1,4 +1,4 @@
-import {PageLayout, SharedLayout} from "./quartz/cfg"
+import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 
 // components shared across all pages
@@ -20,25 +20,22 @@ export const sharedPageComponents: SharedLayout = {
 // components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
-    // Component.PageTitle(),
-    Component.Spacer(),
     Component.ArticleTitle(),
-    // Component.TableOfContents(),
     // Component.Breadcrumbs(),
-    // Component.ArticleTitle(),
     // Component.ContentMeta(),
     // Component.TagList(),
-    // Component.MobileOnly(Component.Spacer()),
   ],
   left: [
+    // Component.PageTitle(),
+    // Component.MobileOnly(Component.Spacer()),
     // Component.Search(),
     // Component.Darkmode(),
-    // Component.DesktopOnly(Component.Explorer()),
+    Component.DesktopOnly(Component.Explorer()),
   ],
   right: [
-    // Component.Graph(),
-    // Component.DesktopOnly(Component.TableOfContents()),
-    Component.MobileOnly(Component.Backlinks()),
+    Component.Graph(),
+    Component.DesktopOnly(Component.TableOfContents()),
+    Component.Backlinks(),
   ],
 }
 
@@ -47,13 +44,13 @@ export const defaultListPageLayout: PageLayout = {
   beforeBody: [
     Component.Breadcrumbs(),
     Component.ArticleTitle(),
-    Component.ContentMeta(),
+    // Component.ContentMeta()
   ],
   left: [
-    Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
-    Component.Search(),
-    Component.Darkmode(),
+    // Component.PageTitle(),
+    // Component.MobileOnly(Component.Spacer()),
+    // Component.Search(),
+    // Component.Darkmode(),
     Component.DesktopOnly(Component.Explorer()),
   ],
   right: [],
