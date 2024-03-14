@@ -4,9 +4,7 @@ description: Compilation of 'Free' Facts. They are not fun, but they are free.
 compartir: true
 ---
 
-## Introduction
-
-Compilation of "Free" Facts. They are not fun, but they are free.
+> Compilation of "Free" Facts. They are not fun, but they are free.
 
 ## Disney Aladdin
 

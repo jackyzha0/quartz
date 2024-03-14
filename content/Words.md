@@ -3,20 +3,20 @@ title: Words I Like
 compartir: true
 ---
 
-[Good Source](https://wordwarriors.wayne.edu/list)
+Compilation of Words I like. Visit the [source](https://wordwarriors.wayne.edu/list).
 
-### Acrimonious (adjective)
+## Acrimonious (adjective)
 
 1. Angry and bitter.
 2. Biting or rancorous especially in feeling, language, or manner.
 
-### Anodyne (adjective)
+## Anodyne (adjective)
 
 1. Capable of soothing or eliminating pain.
 2. Not likely to offend or arouse tensions.
    Also used as a _noun_ to describe something that soothes, calms, or comforts.
 
-### Arete (noun)
+## Arete (noun)
 
 1. Virtue, excellence.
 2. Concept in ancient Greek thought that, in its most basic sense, refers to 'excellence' of any kind—especially a person or thing's "full realization of potential or inherent function." The term may also refer to excellence in "moral virtue."

@@ -4,9 +4,7 @@ description: Books I've read.
 compartir: true
 ---
 
-## Introduction
-
-Non-inclusive, non-comprehensive list of books I've read.
+Collection of books I have read, would like to read, or would like to read.
 
 ## John Green
 
@@ -15,6 +13,15 @@ Non-inclusive, non-comprehensive list of books I've read.
 - [Paper Towns](https://www.librarything.com/work/5105584)
 - [The Fault in Our Stars](https://www.librarything.com/work/11456497)
 - [Will Grayson, Will Grayson](https://www.librarything.com/work/8463786)
+
+## Jerry Spinelli
+
+1. [Stargirl](<https://en.wikipedia.org/wiki/Stargirl_(novel)>)
+2. [Love, Stargirl](https://en.wikipedia.org/wiki/Love,_Stargirl)
+
+## Robert Pinsky
+
+- [The Sounds of Poetry: A Brief Guide](https://www.librarything.com/work/121193)
 
 ## Janet Evanovich
 
@@ -50,12 +57,3 @@ Non-inclusive, non-comprehensive list of books I've read.
 28. _Game On: Tempting Twenty-Eight_ (2021)
 29. _Going Rogue: Rise and Shine Twenty-Nine_ (2022)
 30. _Dirty Thirty_ (2023)
-
-## Jerry Spinelli
-
-1. [Stargirl](<https://en.wikipedia.org/wiki/Stargirl_(novel)>)
-2. [Love, Stargirl](https://en.wikipedia.org/wiki/Love,_Stargirl)
-
-## Robert Pinsky
-
-- [The Sounds of Poetry: A Brief Guide](https://www.librarything.com/work/121193)

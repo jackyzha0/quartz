@@ -39,7 +39,7 @@ Firefox extension that removes all states starting with "M" except Minnesota wit
 
 [Addon](https://addons.mozilla.org/en-US/firefox/addon/sorry-minnesota-only/)
 
-## Work Projects
+## Career Projects
 
 ### 🔔 Blue Line Intrusion Detection System
 
