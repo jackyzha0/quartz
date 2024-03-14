@@ -12,30 +12,16 @@ SSGs use dynamic templates to transform content into static HTML pages. Static s
 
 ## Useful Commands
 
-```bash
-zola build --base-url $DEPLOY_URL
-```
-
-```bash
-zola build --output-dir $DOCUMENT_ROOT
-```
-
-```bash
-zola --config config.staging.toml build
-```
-
-```bash
-zola --root /path/to/project build
-```
-
-```bash
+```sh
+# Initiate Zola project
 zola init
-```
 
-```bash
+# Serve Zola website
 zola serve
-```
 
-```bash
+# Build check
 zola check
+
+# Build w/ Options
+zola --root /path/to/project --config config.staging.toml build --base-url $DEPLOY_URL --output-dir $DOCUMENT_ROOT
 ```

@@ -10,20 +10,12 @@ Collection of quotes I like.
 
 > "Always demand a deadline. A deadline weeds out the extraneous and the ordinary. It prevents you from trying to make it perfect, so you have to make it different. Different is better."
 
-> [!quote]
->
 > "Always demand a deadline. A deadline weeds out the extraneous and the ordinary. It prevents you from trying to make it perfect, so you have to make it different. Different is better."
 
-> [!quote]
->
 > "Better done than perfect." Perfectionism is nothing but _fear_. Conquer it.
 
-> [!quote]
->
 > "Clarity requires thinking. Thinking requires writing."
 
-> [!quote]
->
 > "Action is not just the _effect_ of motivation, but also the _cause_ of motivation."
 
 ## Ajahn Chah
@@ -59,7 +51,11 @@ Collection of quotes I like.
 
 ## G. K. Chesterton
 
-> It is really not so repulsive to see the poor asking for money as to see the rich asking for more money. And advertisement is the rich asking for more money. A man would be annoyed if he found himself in a mob of millionaires, all holding out their silk hats for a penny; or all shouting with one voice, "Give me money." Yet advertisement does really assault the eye very much as such a shout would assault the ear. "Budge's Boots are the Best" simply means "Give me money"; "Use Seraphic Soap" simply means "Give me money." It is a complete mistake to suppose that common people make our towns commonplace, with unsightly things like advertisements. Most of those whose wares are thus placarded everywhere are very wealthy gentlemen with coronets and country seats, men who are probably very particular about the artistic adornment of their own homes. They disfigure their towns in order to decorate their houses.
+> It is really not so repulsive to see the poor asking for money as to see the rich asking for more money. And advertisement is the rich asking for more money.
+>
+> A man would be annoyed if he found himself in a mob of millionaires, all holding out their silk hats for a penny; or all shouting with one voice, "Give me money." Yet advertisement does really assault the eye very much as such a shout would assault the ear. "Budge's Boots are the Best" simply means "Give me money"; "Use Seraphic Soap" simply means "Give me money."
+>
+> It is a complete mistake to suppose that common people make our towns commonplace, with unsightly things like advertisements. Most of those whose wares are thus placarded everywhere are very wealthy gentlemen with coronets and country seats, men who are probably very particular about the artistic adornment of their own homes. They disfigure their towns in order to decorate their houses.
 
 ## Dean Bokhari (unconfirmed)
 
@@ -146,6 +142,14 @@ Collection of quotes I like.
 
 > [!quote] From XKCD Book
 >
+> **Throwing is hard.**
+>
+> "In order to deliver a baseball to a batter, a pitcher has to release the ball at exactly the right point in the throw. A timing error of half a millisecond in either direction is enough to cause the ball to miss the strike zone.
+>
+> To put that in perspective, it takes about five milliseconds for the fastest nerve impulse to travel the length of the arm. That means that when your arm is still rotating toward the correct position, the signal to release the ball is already at your wrist.
+>
+> In terms of timing, this is like a drummer dropping a drumstick from the tenth story and hitting a drum on the ground on the correct beat."
+
 > **Throwing is hard.**
 >
 > "In order to deliver a baseball to a batter, a pitcher has to release the ball at exactly the right point in the throw. A timing error of half a millisecond in either direction is enough to cause the ball to miss the strike zone.
