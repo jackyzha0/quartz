@@ -6,6 +6,7 @@ tags:
   - philosophy
   - machine_learning
 ---
+![[agent_campfire.webp]]
 ## TL;DR
 
 Today we're releasing the first demo utilizing Honcho's dialectic API.[^1] Your LLM app/agent can now converse freely with [Honcho](https://honcho.dev)(-as-agent) about a user in natural language: agent-to-agent chat over user context.
@@ -104,9 +105,9 @@ But now we must all build our own campfires.
 
 ### The Solution 
 
-![[Media-Filled Cityscape Scene.webp]]
-
 Generative AI certainly poses more cause for concern. Zero-marginal cost *generation* of info along with current zero barrier distro may be as disruptive as prior revolutions on this access (perhaps far more). Lots of that proposition is *incredibly* exciting. But we should also expect this to exacerbate The Campfire Problem.
+
+![[Media-Filled Cityscape Scene.webp]]
 
 There's a solution hidden in the latest irritant. It's not just media I can generate on demand, but soon *agents*.  Agents that can get to know me, agents that can curate for me, agents that can be my intellectual companion. 
 
@@ -115,8 +116,6 @@ Now your sense-making silo can be populated with good synthetic neighbors able t
 A critical component is a secure and reliable mechanism for this community of agents to get to know you. To reach the high quality UX of human companions sitting across the campfire.
 
 *Enter Honcho.*
-
-![[agent_campfire.webp]]
 
 
 [^1]: More on this & our private beta next week (!)
