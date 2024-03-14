@@ -71,7 +71,7 @@ If you're interested in building something adjacent to any of this, [hop in our 
 
 ## The Campfire Problem
 
-We wanted to highlight Honcho's utility in this vertical because it's one where  simultaneously we hear a lot of excitement and a lot of pain points. Clearly many are hungry for more social and better media consumption and digestion solutions, and optimists seem to share the intuition that AI has a role to play here.
+We wanted to highlight Honcho's utility in this vertical because it's one where  simultaneously we hear a lot of excitement and a lot of pain points. Clearly many are hungry for more social, better media consumption and digestion solutions, and optimists seem to share the intuition that AI has a role to play here.
 
 We think Honcho and the personal context solutions it provides are the key.
 
@@ -79,13 +79,13 @@ We think Honcho and the personal context solutions it provides are the key.
 
 For most of human history, groups, tribes, nations drank from the same informational tap. In fact, when we see changes in how information flows, we see dramatic corresponding historical effects. Alterations in distribution--writing, printing, browsing, disaster--have altered the balance of power, the minds of billions, the course of civilization.
 
-But the further step of processing that information and the shaping of it into *shared* narratives have played an equally enormous role. Narrative and meaning making are fundamentally social tasks. We still have to decide what to do with it, what it *means*, and we've generally done that with our neighbors.
+But the further step of processing that information and the shaping of it into *shared* narratives have played an equally enormous role. Narrative and meaning making are fundamentally social tasks. We still have to decide what to do with information, what it *means*, and we've generally done that with our neighbors.
 
 ![[agora_processing.webp]]
 
 Consider the campfires of hunter-gatherers, agoras of classical city-states, churches of medieval Europe, American town squares, national newspapers, mid-century network TV, office park water-coolers, internet forums, blogging sites, social media, *generative* media. 
 
-A majority of these social exercises deal in limited information and distribution. One or a few sources of truth to chew on with your family, friends, and colleagues. Agreed upon reality, collective processing, social instincts satisfied. You can talk to people about the world, it feels good.
+A majority of these social exercises deal in limited information and distribution. One or a few sources of truth to chew on with your family, friends, and colleagues. Agreed upon reality, collective processing--social instincts satisfied. You can talk to people about the world, it feels good.
 
 But at the end of that list, distribution becomes so radically democratized, that this model of collective processing start to change dramatically.
 
@@ -99,13 +99,13 @@ But we're left with a problem--many of us have gotten so siloed that we genuinel
 
 ![[DALL·E 1950s Living Room (1).webp]]
 
-This isn't a new phenomenon per se, but its scale is novel and undeniable. Having just a three network TV stations in the 50s might've lacked the rich diversity of today's informational landscape, but no doubt the collective campfire was burning bright, and you could talk to just about anyone to help you process the world.
+This isn't a new phenomenon per se, but its scale is novel and undeniable. Having just three network TV stations in the 50s might've lacked the rich diversity of today's informational landscape, but no doubt the collective campfire was burning bright, and you could talk to just about anyone to help you process the world.
 
 But now we must all build our own campfires.
 
 ### The Solution 
 
-Generative AI certainly poses more cause for concern. Zero-marginal cost *generation* of info along with current zero barrier distro may be as disruptive as prior revolutions on this access (perhaps far more). Lots of that proposition is *incredibly* exciting. But we should also expect this to exacerbate The Campfire Problem.
+Generative AI poses more cause for concern. Zero-marginal cost info *generation*  along with current zero barrier distro may be as disruptive as prior revolutions on this axis (perhaps far more). Lots of that proposition is *incredibly* exciting. But we should also expect this to exacerbate The Campfire Problem.
 
 ![[Media-Filled Cityscape Scene.webp]]
 
