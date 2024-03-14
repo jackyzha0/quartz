@@ -6,7 +6,7 @@ Went for it with this release:
   
 - ["Curation Buddy" Demo for Dialectic API](https://github.com/vintrocode/curation-buddy)
     
-- [[Solving The Campfire Problem with Honcho|Blog post on the demo & solving The Campfire Problem in the information age]]  
+- [[Solving The Campfire Problem with Honcho|Blog post on the demo & solving The Campfire Problem in the generative age]]  
   
 - [Honcho v0.0.5](https://github.com/plastic-labs/honcho/tree/v0.0.5)  
   
