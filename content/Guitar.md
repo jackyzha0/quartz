@@ -15,23 +15,13 @@ When you are looking at a tab, you will see six horizontal lines. These lines re
 An [[./Arpeggio|arpeggio]] is a type of [[./Chords|broken chord]] in which the notes that compose a chord are individually sounded in a progressive rising or descending order. Arpeggios on keyboard instruments may be called _rolled chords_.
 
 ```md
-e|--------2-----------------|
-B|------3---3---------------|
-G|----2-------2-------------|
-D|--0-----------------------|
-A|--------------------------|
-E|--------------------------|
+e|--------2-----------------| B|------3---3---------------| G|----2-------2-------------| D|--0-----------------------| A|--------------------------| E|--------------------------|
 ```
 
 ### Metallica – Enter the Sandman (Intro)
 
 ```md
-e|---------------------|------------------|---------------|--------------------|
-B|---------------------|------------------|---------------|--------------------|
-G|---------------------|------------------|---------------|--------------------|
-D|-------5-------------|----5-------------|----5----------|--------------------|
-A|----7-----------7----|-7-----------7----|-7-----------7-|--------------------|
-E|-0--------6--5-----0-|-------6--5-----0-|-------6--5----|--------------------|
+e|---------------------|------------------|---------------|--------------------| B|---------------------|------------------|---------------|--------------------| G|---------------------|------------------|---------------|--------------------| D|-------5-------------|----5-------------|----5----------|--------------------| A|----7-----------7----|-7-----------7----|-7-----------7-|--------------------| E|-0--------6--5-----0-|-------6--5-----0-|-------6--5----|--------------------|
 ```
 
 ### Pasted
@@ -42,5 +32,5 @@ You can then finish out the riff by grabbing the 6th fret on the 6th string with
 
 ## Sources
 
--   [ultimate-guitar.com](https://tabs.ultimate-guitar.com/tab/metallica/enter-sandman-tabs-8595)
--   [guitarlessons.org](https://www.guitarlessons.org/lessons/read-guitar-tabs/)
+- [ultimate-guitar.com](https://tabs.ultimate-guitar.com/tab/metallica/enter-sandman-tabs-8595)
+- [guitarlessons.org](https://www.guitarlessons.org/lessons/read-guitar-tabs/)

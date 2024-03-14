@@ -24,12 +24,12 @@ The [source code](https://github.com/semanticdata/forgetful-notes) is hosted in 
 
 ## Features
 
--   Fast Natural-Language Search
--   Bidirectional Backlinks
--   Floating Link Previews
--   Admonition-style Callouts
--   Markdown Links and Wikilinks Support
--   Latex Support
+- Fast Natural-Language Search
+- Bidirectional Backlinks
+- Floating Link Previews
+- Admonition-style Callouts
+- Markdown Links and Wikilinks Support
+- Latex Support
 
 ## File Structure
 

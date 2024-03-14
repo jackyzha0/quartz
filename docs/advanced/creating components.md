@@ -2,15 +2,14 @@
 title: Creating your own Quartz components
 ---
 
-> [!warning]
-> This guide assumes you have experience writing JavaScript and are familiar with TypeScript.
+> [!warning] This guide assumes you have experience writing JavaScript and are familiar with TypeScript.
 
 Normally on the web, we write layout code using HTML which looks something like the following:
 
 ```html
 <article>
-    <h1>An article header</h1>
-    <p>Some content</p>
+  <h1>An article header</h1>
+  <p>Some content</p>
 </article>
 ```
 
@@ -32,24 +31,24 @@ In your component, you can use the values from the configuration option to chang
 
 ```tsx {11-17}
 interface Options {
-    favouriteNumber: number
+  favouriteNumber: number
 }
 
 const defaultOptions: Options = {
-    favouriteNumber: 42,
+  favouriteNumber: 42,
 }
 
 export default ((userOpts?: Options) => {
-    const opts = { ...userOpts, ...defaultOpts }
-    function YourComponent(props: QuartzComponentProps) {
-        if (opts.favouriteNumber < 0) {
-            return null
-        }
-
-        return <p>My favourite number is {opts.favouriteNumber}</p>
+  const opts = {...userOpts, ...defaultOpts}
+  function YourComponent(props: QuartzComponentProps) {
+    if (opts.favouriteNumber < 0) {
+      return null
     }
 
-    return YourComponent
+    return <p>My favourite number is {opts.favouriteNumber}</p>
+  }
+
+  return YourComponent
 }) satisfies QuartzComponentConstructor
 ```
 
@@ -62,21 +61,21 @@ All Quartz components accept the same set of props:
 ```tsx title="quartz/components/types.ts"
 // simplified for sake of demonstration
 export type QuartzComponentProps = {
-    fileData: QuartzPluginData
-    cfg: GlobalConfiguration
-    tree: Node<QuartzPluginData>
-    allFiles: QuartzPluginData[]
-    displayClass?: "mobile-only" | "desktop-only"
+  fileData: QuartzPluginData
+  cfg: GlobalConfiguration
+  tree: Node<QuartzPluginData>
+  allFiles: QuartzPluginData[]
+  displayClass?: "mobile-only" | "desktop-only"
 }
 ```
 
--   `fileData`: Any metadata [[making plugins|plugins]] may have added to the current page.
-    -   `fileData.slug`: slug of the current page.
-    -   `fileData.frontmatter`: any frontmatter parsed.
--   `cfg`: The `configuration` field in `quartz.config.ts`.
--   `tree`: the resulting [HTML AST](https://github.com/syntax-tree/hast) after processing and transforming the file. This is useful if you'd like to render the content using [hast-util-to-jsx-runtime](https://github.com/syntax-tree/hast-util-to-jsx-runtime) (you can find an example of this in `quartz/components/pages/Content.tsx`).
--   `allFiles`: Metadata for all files that have been parsed. Useful for doing page listings or figuring out the overall site structure.
--   `displayClass`: a utility class that indicates a preference from the user about how to render it in a mobile or desktop setting. Helpful if you want to conditionally hide a component on mobile or desktop.
+- `fileData`: Any metadata [[making plugins|plugins]] may have added to the current page.
+  - `fileData.slug`: slug of the current page.
+  - `fileData.frontmatter`: any frontmatter parsed.
+- `cfg`: The `configuration` field in `quartz.config.ts`.
+- `tree`: the resulting [HTML AST](https://github.com/syntax-tree/hast) after processing and transforming the file. This is useful if you'd like to render the content using [hast-util-to-jsx-runtime](https://github.com/syntax-tree/hast-util-to-jsx-runtime) (you can find an example of this in `quartz/components/pages/Content.tsx`).
+- `allFiles`: Metadata for all files that have been parsed. Useful for doing page listings or figuring out the overall site structure.
+- `displayClass`: a utility class that indicates a preference from the user about how to render it in a mobile or desktop setting. Helpful if you want to conditionally hide a component on mobile or desktop.
 
 ### Styling
 
@@ -86,17 +85,17 @@ Note that inlined styles **must** be plain vanilla CSS:
 
 ```tsx {6-10} title="quartz/components/YourComponent.tsx"
 export default (() => {
-    function YourComponent() {
-        return <p class="red-text">Example Component</p>
-    }
+  function YourComponent() {
+    return <p class="red-text">Example Component</p>
+  }
 
-    YourComponent.css = `
+  YourComponent.css = `
   p.red-text {
     color: red;
   }
   `
 
-    return YourComponent
+  return YourComponent
 }) satisfies QuartzComponentConstructor
 ```
 
@@ -107,17 +106,16 @@ Imported styles, however, can be from SCSS files:
 import styles from "./styles/YourComponent.scss"
 
 export default (() => {
-    function YourComponent() {
-        return <p>Example Component</p>
-    }
+  function YourComponent() {
+    return <p>Example Component</p>
+  }
 
-    YourComponent.css = styles
-    return YourComponent
+  YourComponent.css = styles
+  return YourComponent
 }) satisfies QuartzComponentConstructor
 ```
 
-> [!warning]
-> Quartz does not use CSS modules so any styles you declare here apply _globally_. If you only want it to apply to your component, make sure you use specific class names and selectors.
+> [!warning] Quartz does not use CSS modules so any styles you declare here apply _globally_. If you only want it to apply to your component, make sure you use specific class names and selectors.
 
 ### Scripts and Interactivity
 
@@ -125,25 +123,24 @@ What about interactivity? Suppose you want to add an-click handler for example. 
 
 ```tsx title="quartz/components/YourComponent.tsx"
 export default (() => {
-    function YourComponent() {
-        return <button id="btn">Click me</button>
-    }
+  function YourComponent() {
+    return <button id="btn">Click me</button>
+  }
 
-    YourComponent.beforeDOM = `
+  YourComponent.beforeDOM = `
   console.log("hello from before the page loads!")
   `
 
-    YourComponent.afterDOM = `
+  YourComponent.afterDOM = `
   document.getElementById('btn').onclick = () => {
     alert('button clicked!')
   }
   `
-    return YourComponent
+  return YourComponent
 }) satisfies QuartzComponentConstructor
 ```
 
-> [!hint]
-> For those coming from React, Quartz components are different from React components in that it only uses JSX for templating and layout. Hooks like `useEffect`, `useState`, etc. are not rendered and other properties that accept functions like `onClick` handlers will not work. Instead, do it using a regular JS script that modifies the DOM element directly.
+> [!hint] For those coming from React, Quartz components are different from React components in that it only uses JSX for templating and layout. Hooks like `useEffect`, `useState`, etc. are not rendered and other properties that accept functions like `onClick` handlers will not work. Instead, do it using a regular JS script that modifies the DOM element directly.
 
 As the names suggest, the `.beforeDOMLoaded` scripts are executed _before_ the page is done loading so it doesn't have access to any elements on the page. This is mostly used to prefetch any critical data.
 
@@ -153,16 +150,15 @@ If you need to create an `afterDOMLoaded` script that depends on _page specific_
 
 ```ts
 document.addEventListener("nav", () => {
-    // do page specific logic here
-    // e.g. attach event listeners
-    const toggleSwitch = document.querySelector("#switch") as HTMLInputElement
-    toggleSwitch.removeEventListener("change", switchTheme)
-    toggleSwitch.addEventListener("change", switchTheme, { passive: true })
+  // do page specific logic here
+  // e.g. attach event listeners
+  const toggleSwitch = document.querySelector("#switch") as HTMLInputElement
+  toggleSwitch.removeEventListener("change", switchTheme)
+  toggleSwitch.addEventListener("change", switchTheme, {passive: true})
 })
 ```
 
-It is best practice to track any event handlers via `window.addCleanup` to prevent memory leaks.
-This will get called on page navigation.
+It is best practice to track any event handlers via `window.addCleanup` to prevent memory leaks. This will get called on page navigation.
 
 #### Importing Code
 
@@ -176,12 +172,12 @@ Quartz supports importing component code through `.inline.ts` files.
 import script from "./scripts/graph.inline"
 
 export default (() => {
-    function YourComponent() {
-        return <button id="btn">Click me</button>
-    }
+  function YourComponent() {
+    return <button id="btn">Click me</button>
+  }
 
-    YourComponent.afterDOM = script
-    return YourComponent
+  YourComponent.afterDOM = script
+  return YourComponent
 }) satisfies QuartzComponentConstructor
 ```
 
@@ -190,7 +186,7 @@ export default (() => {
 import * as d3 from "d3"
 
 document.getElementById("btn").onclick = () => {
-    alert("button clicked!")
+  alert("button clicked!")
 }
 ```
 
@@ -206,7 +202,7 @@ import Content from "./pages/Content"
 import Darkmode from "./Darkmode"
 import YourComponent from "./YourComponent"
 
-export { ArticleTitle, Content, Darkmode, YourComponent }
+export {ArticleTitle, Content, Darkmode, YourComponent}
 ```
 
 Then, you can use it like any other component in `quartz.layout.ts` via `Component.YourComponent()`. See the [[configuration#Layout|layout]] section for more details.
@@ -217,18 +213,17 @@ As Quartz components are just functions that return React components, you can co
 import YourComponent from "./YourComponent"
 
 export default (() => {
-    function AnotherComponent(props: QuartzComponentProps) {
-        return (
-            <div>
-                <p>It's nested!</p>
-                <YourComponent {...props} />
-            </div>
-        )
-    }
+  function AnotherComponent(props: QuartzComponentProps) {
+    return (
+      <div>
+        <p>It's nested!</p>
+        <YourComponent {...props} />
+      </div>
+    )
+  }
 
-    return AnotherComponent
+  return AnotherComponent
 }) satisfies QuartzComponentConstructor
 ```
 
-> [!hint]
-> Look in `quartz/components` for more examples of components in Quartz as reference for your own components!
+> [!hint] Look in `quartz/components` for more examples of components in Quartz as reference for your own components!

@@ -26,16 +26,15 @@ This will guide you through initializing your Quartz with content. Once you've d
 5. Sync your changes with [[setting up your GitHub repository|GitHub]]
 6. [[hosting|Host]] Quartz online
 
-If you prefer instructions in a video format you can try following Nicole van der Hoeven's
-[video guide on how to set up Quartz!](https://www.youtube.com/watch?v=6s6DT1yN4dw&t=227s)
+If you prefer instructions in a video format you can try following Nicole van der Hoeven's [video guide on how to set up Quartz!](https://www.youtube.com/watch?v=6s6DT1yN4dw&t=227s)
 
 ## 🔧 Features
 
--   [[Obsidian compatibility]], [[full-text search]], [[graph view]], note transclusion, [[wikilinks]], [[backlinks]], [[features/Latex|Latex]], [[syntax highlighting]], [[popover previews]], [[Docker Support]], [[i18n|internationalization]] and [many more](./features) right out of the box
--   Hot-reload for both configuration and content
--   Simple JSX layouts and [[creating components|page components]]
--   [[SPA Routing|Ridiculously fast page loads]] and tiny bundle sizes
--   Fully-customizable parsing, filtering, and page generation through [[making plugins|plugins]]
+- [[Obsidian compatibility]], [[full-text search]], [[graph view]], note transclusion, [[wikilinks]], [[backlinks]], [[features/Latex|Latex]], [[syntax highlighting]], [[popover previews]], [[Docker Support]], [[i18n|internationalization]] and [many more](./features) right out of the box
+- Hot-reload for both configuration and content
+- Simple JSX layouts and [[creating components|page components]]
+- [[SPA Routing|Ridiculously fast page loads]] and tiny bundle sizes
+- Fully-customizable parsing, filtering, and page generation through [[making plugins|plugins]]
 
 For a comprehensive list of features, visit the [features page](/features). You can read more about the _why_ behind these features on the [[philosophy]] page and a technical overview on the [[architecture]] page.
 

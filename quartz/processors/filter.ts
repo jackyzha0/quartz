@@ -1,31 +1,31 @@
-import { BuildCtx } from "../util/ctx"
-import { PerfTimer } from "../util/perf"
-import { ProcessedContent } from "../plugins/vfile"
+import {BuildCtx} from "../util/ctx"
+import {PerfTimer} from "../util/perf"
+import {ProcessedContent} from "../plugins/vfile"
 
 export function filterContent(
-    ctx: BuildCtx,
-    content: ProcessedContent[],
+  ctx: BuildCtx,
+  content: ProcessedContent[],
 ): ProcessedContent[] {
-    const { cfg, argv } = ctx
-    const perf = new PerfTimer()
-    const initialLength = content.length
-    for (const plugin of cfg.plugins.filters) {
-        const updatedContent = content.filter((item) =>
-            plugin.shouldPublish(ctx, item),
-        )
+  const {cfg, argv} = ctx
+  const perf = new PerfTimer()
+  const initialLength = content.length
+  for (const plugin of cfg.plugins.filters) {
+    const updatedContent = content.filter((item) =>
+      plugin.shouldPublish(ctx, item),
+    )
 
-        if (argv.verbose) {
-            const diff = content.filter((x) => !updatedContent.includes(x))
-            for (const file of diff) {
-                console.log(`[filter:${plugin.name}] ${file[1].data.slug}`)
-            }
-        }
-
-        content = updatedContent
+    if (argv.verbose) {
+      const diff = content.filter((x) => !updatedContent.includes(x))
+      for (const file of diff) {
+        console.log(`[filter:${plugin.name}] ${file[1].data.slug}`)
+      }
     }
 
-    console.log(
-        `Filtered out ${initialLength - content.length} files in ${perf.timeSince()}`,
-    )
-    return content
+    content = updatedContent
+  }
+
+  console.log(
+    `Filtered out ${initialLength - content.length} files in ${perf.timeSince()}`,
+  )
+  return content
 }

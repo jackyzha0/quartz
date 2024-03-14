@@ -11,11 +11,11 @@ Non-inclusive, non-comprehensive list of books I've read.
 
 ## John Green
 
--   [An Abundance of Katherines](https://www.librarything.com/work/2569212)
--   [Looking for Alaska](https://www.librarything.com/work/30329846)
--   [Paper Towns](https://www.librarything.com/work/5105584)
--   [The Fault in Our Stars](https://www.librarything.com/work/11456497)
--   [Will Grayson, Will Grayson](https://www.librarything.com/work/8463786)
+- [An Abundance of Katherines](https://www.librarything.com/work/2569212)
+- [Looking for Alaska](https://www.librarything.com/work/30329846)
+- [Paper Towns](https://www.librarything.com/work/5105584)
+- [The Fault in Our Stars](https://www.librarything.com/work/11456497)
+- [Will Grayson, Will Grayson](https://www.librarything.com/work/8463786)
 
 ## Janet Evanovich
 
@@ -59,4 +59,4 @@ Non-inclusive, non-comprehensive list of books I've read.
 
 ## Robert Pinsky
 
--   [The Sounds of Poetry: A Brief Guide](https://www.librarything.com/work/121193)
+- [The Sounds of Poetry: A Brief Guide](https://www.librarything.com/work/121193)

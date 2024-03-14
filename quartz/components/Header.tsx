@@ -1,11 +1,11 @@
 import {
-    QuartzComponent,
-    QuartzComponentConstructor,
-    QuartzComponentProps,
+  QuartzComponent,
+  QuartzComponentConstructor,
+  QuartzComponentProps,
 } from "./types"
 
-const Header: QuartzComponent = ({ children }: QuartzComponentProps) => {
-    return children.length > 0 ? <header>{children}</header> : null
+const Header: QuartzComponent = ({children}: QuartzComponentProps) => {
+  return children.length > 0 ? <header>{children}</header> : null
 }
 
 Header.css = `

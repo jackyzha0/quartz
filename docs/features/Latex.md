@@ -1,7 +1,7 @@
 ---
 title: LaTeX
 tags:
-    - feature/transformer
+  - feature/transformer
 ---
 
 Quartz uses [Katex](https://katex.org/) by default to typeset both inline and block math expressions at build time.
@@ -39,8 +39,7 @@ a & b & c
 \end{bmatrix}
 $$
 
-> [!warn]
-> Due to limitations in the [underlying parsing library](https://github.com/remarkjs/remark-math), block math in Quartz requires the `$$` delimiters to be on newlines like above.
+> [!warn] Due to limitations in the [underlying parsing library](https://github.com/remarkjs/remark-math), block math in Quartz requires the `$$` delimiters to be on newlines like above.
 
 ### Inline Math
 
@@ -54,13 +53,12 @@ To get around this, you can escape the dollar sign by doing `\$` instead.
 
 For example:
 
--   Incorrect: `I have $1 and you have $2` produces I have $1 and you have $2
--   Correct: `I have \$1 and you have \$2` produces I have \$1 and you have \$2
+- Incorrect: `I have $1 and you have $2` produces I have $1 and you have $2
+- Correct: `I have \$1 and you have \$2` produces I have \$1 and you have \$2
 
 ### Using mhchem
 
-Add the following import to the top of `quartz/plugins/transformers/latex.ts` (before all the other
-imports):
+Add the following import to the top of `quartz/plugins/transformers/latex.ts` (before all the other imports):
 
 ```ts title="quartz/plugins/transformers/latex.ts"
 import "katex/contrib/mhchem"

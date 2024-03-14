@@ -1,4 +1,4 @@
-import { Translation, CalloutTranslation } from "./locales/definition"
+import {Translation, CalloutTranslation} from "./locales/definition"
 import en from "./locales/en-US"
 import fr from "./locales/fr-FR"
 import it from "./locales/it-IT"
@@ -15,45 +15,45 @@ import zh from "./locales/zh-CN"
 import vi from "./locales/vi-VN"
 
 export const TRANSLATIONS = {
-    "en-US": en,
-    "fr-FR": fr,
-    "it-IT": it,
-    "ja-JP": ja,
-    "de-DE": de,
-    "nl-NL": nl,
-    "nl-BE": nl,
-    "ro-RO": ro,
-    "ro-MD": ro,
-    "es-ES": es,
-    "ar-SA": ar,
-    "ar-AE": ar,
-    "ar-QA": ar,
-    "ar-BH": ar,
-    "ar-KW": ar,
-    "ar-OM": ar,
-    "ar-YE": ar,
-    "ar-IR": ar,
-    "ar-SY": ar,
-    "ar-IQ": ar,
-    "ar-JO": ar,
-    "ar-PL": ar,
-    "ar-LB": ar,
-    "ar-EG": ar,
-    "ar-SD": ar,
-    "ar-LY": ar,
-    "ar-MA": ar,
-    "ar-TN": ar,
-    "ar-DZ": ar,
-    "ar-MR": ar,
-    "uk-UA": uk,
-    "ru-RU": ru,
-    "ko-KR": ko,
-    "zh-CN": zh,
-    "vi-VN": vi,
+  "en-US": en,
+  "fr-FR": fr,
+  "it-IT": it,
+  "ja-JP": ja,
+  "de-DE": de,
+  "nl-NL": nl,
+  "nl-BE": nl,
+  "ro-RO": ro,
+  "ro-MD": ro,
+  "es-ES": es,
+  "ar-SA": ar,
+  "ar-AE": ar,
+  "ar-QA": ar,
+  "ar-BH": ar,
+  "ar-KW": ar,
+  "ar-OM": ar,
+  "ar-YE": ar,
+  "ar-IR": ar,
+  "ar-SY": ar,
+  "ar-IQ": ar,
+  "ar-JO": ar,
+  "ar-PL": ar,
+  "ar-LB": ar,
+  "ar-EG": ar,
+  "ar-SD": ar,
+  "ar-LY": ar,
+  "ar-MA": ar,
+  "ar-TN": ar,
+  "ar-DZ": ar,
+  "ar-MR": ar,
+  "uk-UA": uk,
+  "ru-RU": ru,
+  "ko-KR": ko,
+  "zh-CN": zh,
+  "vi-VN": vi,
 } as const
 
 export const defaultTranslation = "en-US"
 export const i18n = (locale: ValidLocale): Translation =>
-    TRANSLATIONS[locale ?? defaultTranslation]
+  TRANSLATIONS[locale ?? defaultTranslation]
 export type ValidLocale = keyof typeof TRANSLATIONS
 export type ValidCallout = keyof CalloutTranslation
