@@ -1,7 +1,16 @@
 {
     "printWidth": 80,
-    "quoteProps": "as-needed",
     "trailingComma": "all",
-    "tabWidth": 4,
-    "semi": false
+    "tabWidth": 2,
+    "semi": false,
+    "useTabs": false,
+    "singleQuote": false,
+    "quoteProps": "consistent",
+    "bracketSpacing": false,
+    "bracketSameLine": true,
+    "arrowParens": "always",
+    "proseWrap": "never",
+    "endOfLine": "lf",
+    "embeddedLanguageFormatting": "auto",
+    "singleAttributePerLine": false
 }
