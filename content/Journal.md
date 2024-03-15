@@ -15,6 +15,7 @@ compartir: true
 - Currently using [Eleventy Vite](https://github.com/matthiasott/eleventy-plus-vite) to publish [MiguelPimente.do](https://miguelpimentel.do). The plan is to transition to a new starter I'm working on.
 - Refreshed all my notes within [Forgetful Notes](https://forgetfulnotes.com/). Revised the desktop layouts.
 - Learning [Nunjucks](https://mozilla.github.io/nunjucks/) to use it as templating engine within [Eleventy](https://www.11ty.dev/).
+- Revisited my [GitHub Stars](https://github.com/semanticdata/github-stars). Removed a lot of unused ones and added the interesting ones to my [Raindrop.io](https://rindrop.io) [public page](https://raindrop.io/SemanticData). The rest can be found in [this repository](https://github.com/semanticdata/github-stars).
 - Learning about [HTTP Headers](https://vercel.com/docs/edge-network/headers) and how to apply them via `vercel.json` in the repository root.
     - [Mozilla Observatory](https://observatory.mozilla.org/) is my choice to check headers and other security evaluations.
 - Took up the [One HTML Page Challenge](onehtmlpagechallenge.com). Find my source code [here](https://github.com/semanticdata/one-html-page-challenge).
@@ -71,4 +72,4 @@ compartir: true
     - Added dark theme and toggle to the [Anpu Zola](https://github.com/zbrox/anpu-zola-theme) theme.
 
 > [!note]
-> I'm still defining what exactly I should include in the journal. Making sure it's not _too_ technical, or difficult to read.
+> I'm still defining what exactly I should include in this journal. I'm currently making sure it's not _too_ technical, or difficult to read.
