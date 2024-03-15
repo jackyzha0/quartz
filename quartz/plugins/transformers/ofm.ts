@@ -114,9 +114,9 @@ export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/, "g")
 // \[\[              -> open brace
 // ([^\[\]\|\#]+)    -> one or more non-special characters ([,],|, or #) (name)
 // (#[^\[\]\|\#]+)?  -> # then one or more non-special characters (heading link)
-// (\|[^\[\]\#]+)? -> | then one or more non-special characters (alias)
+// (\|[^\[\]\#]+)? -> \| then one or more non-special characters (alias)
 export const wikilinkRegex = new RegExp(
-  /!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\#]+)?\]\]/,
+  /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]/,
   "g",
 )
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
@@ -197,6 +197,11 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<
 
           if (rawFp?.match(externalLinkRegex)) {
             return `${embedDisplay}[${displayAlias.replace(/^\|/, "")}](${rawFp})`
+          }
+
+          //transform `[[note#^block_ref|^block_ref]]` to `[[note#^block_ref\|^block_ref]]`, display correctly in table.
+          if (displayAlias && displayAlias.startsWith("|")) {
+            displayAlias = `\\${displayAlias}`
           }
 
           return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`
