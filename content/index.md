@@ -3,7 +3,7 @@ slug: index
 shortRepo: ash  
 publish-ash: true  
 title: Home  
-short-desc: This is a world of snow and warmth. A world of disconnection and unbreakable bonds. This is the story of Ash in the Snow.  
+description: This is a world of snow and warmth. A world of disconnection and unbreakable bonds. This is the story of Ash in the Snow.  
 ---  
 This is a world of snow and warmth. A world of disconnection and unbreakable bonds. This is the story of Ash in the Snow.  
   
