@@ -9,7 +9,7 @@ date: 2024-03-07
 <div style="margin:auto;width: 50%; transform: translate(50%, 0);">
 <tr>
             <td style="text-align:
-                center;"><img src="https://avatars.githubusercontent.com/u/50662650?v=4"
+                center;"><img src="https://pinktalk.online/assets/pic/me.jpg"
                     role="presentation" width="114" 
                     style="display: inline-block; max-width: 180px; border-radius: 25px;text-align: center;">
                 <h2 color="#000000"  style="margin: 0px; font-size: 20px; color: #3A4E48; font-weight: 1000;"><span>Jude</span><span>&nbsp;</span><span>Wang</span></h2>
