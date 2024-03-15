@@ -16,7 +16,7 @@ This plugin accepts the following configuration options:
 - `DONEComponent`: If `true` (default), converts Roam `{{[[DONE]]}}` shortcodes into checked html check boxes.
 - `videoComponent`: If `true` (default), converts Roam `{{[[video]]:URL}}` shortcodes into embeded HTML video.
 - `audioComponent`: If `true` (default), converts Roam `{{[[audio]]:URL}}` shortcodes into embeded HTML audio.
-- `pdfComponent`: If `true` (default), converts Roam `{{[[audio]]:URL}}` shortcodes into embeded HTML PDF viewer.
+- `pdfComponent`: If `true` (default), converts Roam `{{[[pdf]]:URL}}` shortcodes into embeded HTML PDF viewer.
 - `blockquoteComponent`: If `true` (default), converts Roam `{{[[>]]}}` shortcodes into quartz blockquotes.
 
 ## API
