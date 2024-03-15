@@ -3,20 +3,23 @@ slug: index
 shortRepo: ash  
 publish-ash: true  
 title: Home  
+short-desc: This is a world of snow and warmth. A world of disconnection and unbreakable bonds. This is the story of Ash in the Snow.  
 ---  
-This is a world of snow and warmth. A world of disconnection and unbreakable bonds. This is the story of Havenloft.   
+This is a world of snow and warmth. A world of disconnection and unbreakable bonds. This is the story of Ash in the Snow.  
+  
+*Embed Photo by <a href="https://unsplash.com/@michael75?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Michael</a> on <a href="https://unsplash.com/photos/snow-covered-pine-tree-under-cloudy-sky-S4lRLPNs_P0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>*  
   
 ## Important Links  
 [[./People/People Landing|People Landing]]  
 [[./Meta/Moves/Moves Landing|Moves Landing]]  
   
 ### PCs  
-- [[./People/Zilver|Zilver]]  
-- [[./People/Varis|Varis]]  
-- [[./People/Moonie|Moonie]]  
-- [[./People/Dunn|Dunn]]  
-- [[./People/Corrick|Corrick]]  
 - [[./People/Axiom|Axiom]]  
+- [[./People/Corrick|Corrick]]  
+- [[./People/Dunn|Dunn]]  
+- [[./People/Moonie|Moonie]]  
+- [[./People/Varis|Varis]]  
+- [[./People/Zilver|Zilver]]  
   
   
 ## Geography  
