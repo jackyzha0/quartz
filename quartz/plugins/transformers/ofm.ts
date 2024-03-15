@@ -194,9 +194,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
       return src
     },
-    markdownPlugins(ctx) {
+    markdownPlugins(_ctx) {
       const plugins: PluggableList = []
-      const cfg = ctx.cfg.configuration
 
       // regex replacements
       plugins.push(() => {
