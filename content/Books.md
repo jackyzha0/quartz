@@ -27,22 +27,22 @@ Collection of books I have read, would like to read, or would like to read.
 
 ### Stephanie Plum Series
 
-1. _[One for the Money](https://en.wikipedia.org/wiki/One_for_the_Money_(novel) "One for the Money (novel)") (1994)_
-2. _[Two for the Dough](https://en.wikipedia.org/wiki/Two_for_the_Dough 'Two for the Dough') (1996)_
-3. _[Three to Get Deadly](https://en.wikipedia.org/wiki/Three_to_Get_Deadly 'Three to Get Deadly') (1997)_
-4. _[Four to Score](https://en.wikipedia.org/wiki/Four_to_Score_(novel) "Four to Score (novel)") (1998)_
-5. _[High Five](https://en.wikipedia.org/wiki/High_Five_(novel)) (1999)_
-6. _[Hot Six](https://en.wikipedia.org/wiki/Hot_Six 'Hot Six') (2000)_
-7. _[Seven Up](https://en.wikipedia.org/wiki/Seven_Up_(novel) "Seven Up (novel)") (2001)_
-8. _[Hard Eight](https://en.wikipedia.org/wiki/Hard_Eight_(novel) "Hard Eight (novel)") (2002)_
-9. _[To the Nines](https://en.wikipedia.org/wiki/To_the_Nines_(novel) "To the Nines (novel)") (2003)_
-10. _[Ten Big Ones](https://en.wikipedia.org/wiki/Ten_Big_Ones_(novel) "Ten Big Ones (novel)") (2004)_
-11. _[Eleven on Top](https://en.wikipedia.org/wiki/Eleven_on_Top_(novel) "Eleven on Top (novel)") (2005)_
-12. _[Twelve Sharp](https://en.wikipedia.org/wiki/Twelve_Sharp_(novel) "Twelve Sharp (novel)") (2006)_
-13. _[Lean Mean Thirteen](https://en.wikipedia.org/wiki/Lean_Mean_Thirteen 'Lean Mean Thirteen') (2007)_
-14. _[Fearless Fourteen](https://en.wikipedia.org/wiki/Fearless_Fourteen 'Fearless Fourteen') (2008)_
+1. _[One for the Money](https://en.wikipedia.org/wiki/One_for_the_Money_(novel) "One for the Money (novel)") (1994)\_
+2. _[Two for the Dough](https://en.wikipedia.org/wiki/Two_for_the_Dough "Two for the Dough") (1996)_
+3. _[Three to Get Deadly](https://en.wikipedia.org/wiki/Three_to_Get_Deadly "Three to Get Deadly") (1997)_
+4. _[Four to Score](https://en.wikipedia.org/wiki/Four_to_Score_(novel) "Four to Score (novel)") (1998)\_
+5. _[High Five](https://en.wikipedia.org/wiki/High_Five_(novel)) (1999)\_
+6. _[Hot Six](https://en.wikipedia.org/wiki/Hot_Six "Hot Six") (2000)_
+7. _[Seven Up](https://en.wikipedia.org/wiki/Seven_Up_(novel) "Seven Up (novel)") (2001)\_
+8. _[Hard Eight](https://en.wikipedia.org/wiki/Hard_Eight_(novel) "Hard Eight (novel)") (2002)\_
+9. _[To the Nines](https://en.wikipedia.org/wiki/To_the_Nines_(novel) "To the Nines (novel)") (2003)\_
+10. _[Ten Big Ones](https://en.wikipedia.org/wiki/Ten_Big_Ones_(novel) "Ten Big Ones (novel)") (2004)\_
+11. _[Eleven on Top](https://en.wikipedia.org/wiki/Eleven_on_Top_(novel) "Eleven on Top (novel)") (2005)\_
+12. _[Twelve Sharp](https://en.wikipedia.org/wiki/Twelve_Sharp_(novel) "Twelve Sharp (novel)") (2006)\_
+13. _[Lean Mean Thirteen](https://en.wikipedia.org/wiki/Lean_Mean_Thirteen "Lean Mean Thirteen") (2007)_
+14. _[Fearless Fourteen](https://en.wikipedia.org/wiki/Fearless_Fourteen "Fearless Fourteen") (2008)_
 15. _[Finger Lickin' Fifteen](https://en.wikipedia.org/wiki/Finger_Lickin%27_Fifteen "Finger Lickin' Fifteen") (2009)_
-16. _[Sizzling Sixteen](https://en.wikipedia.org/wiki/Sizzling_Sixteen 'Sizzling Sixteen') (2010)_
+16. _[Sizzling Sixteen](https://en.wikipedia.org/wiki/Sizzling_Sixteen "Sizzling Sixteen") (2010)_
 17. _Smokin' Seventeen (2011)_
 18. _Explosive Eighteen (2011)_
 19. _Notorious Nineteen (2012)_

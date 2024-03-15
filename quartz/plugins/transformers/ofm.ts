@@ -192,7 +192,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<
           const displayAnchor = anchor
             ? `#${blockRef}${slugAnchor(anchor)}`
             : ""
-          const displayAlias = rawAlias ?? rawHeader?.replace("#", "|") ?? ""
+          let displayAlias = rawAlias ?? rawHeader?.replace("#", "|") ?? ""
           const embedDisplay = value.startsWith("!") ? "!" : ""
 
           if (rawFp?.match(externalLinkRegex)) {
@@ -290,11 +290,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<
                     const block = anchor
                     return {
                       type: "html",
-                      data: {
-                        hProperties: {
-                          transclude: true,
-                        },
-                      },
+                      data: {hProperties: {transclude: true}},
                       value: `<blockquote class="transclude" data-url="${url}" data-block="${block}"><a href="${
                         url + anchor
                       }" class="transclude-inner">Transclude of ${url}${block}</a></blockquote>`,

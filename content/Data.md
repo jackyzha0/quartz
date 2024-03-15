@@ -1,6 +1,7 @@
 ---
 compartir: true
 ---
+
 # Data
 
 ## Semantic

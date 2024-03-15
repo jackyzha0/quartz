@@ -4,8 +4,7 @@ description: This section explores the concept of maintaining a Public Journal.
 compartir: true
 ---
 
-> [!info]
-> This page takes inspiration from the [Journal of an Enigmatic Mind](https://speyllsite.pages.dev/journal/). It explores the concept of keeping a public journal, something I haven't done before.
+> [!info] This page takes inspiration from the [Journal of an Enigmatic Mind](https://speyllsite.pages.dev/journal/). It explores the concept of keeping a public journal, something I haven't done before.
 
 ## 2024
 
@@ -17,11 +16,11 @@ compartir: true
 - Learning [Nunjucks](https://mozilla.github.io/nunjucks/) to use it as templating engine within [Eleventy](https://www.11ty.dev/).
 - Revisited my [GitHub Stars](https://github.com/semanticdata/github-stars). Removed a lot of unused ones and added the interesting ones to my [Raindrop.io](https://rindrop.io) [public page](https://raindrop.io/SemanticData). The rest can be found in [this repository](https://github.com/semanticdata/github-stars).
 - Learning about [HTTP Headers](https://vercel.com/docs/edge-network/headers) and how to apply them via `vercel.json` in the repository root.
-    - [Mozilla Observatory](https://observatory.mozilla.org/) is my choice to check headers and other security evaluations.
+  - [Mozilla Observatory](https://observatory.mozilla.org/) is my choice to check headers and other security evaluations.
 - Took up the [One HTML Page Challenge](onehtmlpagechallenge.com). Find my source code [here](https://github.com/semanticdata/one-html-page-challenge).
-    - This is not a short term project. Planning to add things as I learn, etc.
+  - This is not a short term project. Planning to add things as I learn, etc.
 - I dropped [Bulma](https://bulma.io/) in favor of [TailwindCSS](https://tailwindcss.com/) to use in my current project.
-    - I'm also using [DaisyUI](daisyui.com/) that plays well with TailwindCSS.
+  - I'm also using [DaisyUI](daisyui.com/) that plays well with TailwindCSS.
 
 ### February
 
@@ -32,7 +31,7 @@ compartir: true
 - Added new CSS Snippets to my vault. I'll probably end up posting them later.
 - Republished my personal website using [Eleventy](https://www.11ty.dev/) and [elva](https://github.com/scottsweb/elva). Moved the site to `semanticdata.github.io`. It is currently deployed with Vercel. Will use a different starter and drop `elva` soon.
 - Contributions:
-    - Added Spanish translations for [Quartz](https://github.com/jackyzha0/quartz) in [PR #822](https://github.com/jackyzha0/quartz/pull/822).
+  - Added Spanish translations for [Quartz](https://github.com/jackyzha0/quartz) in [PR #822](https://github.com/jackyzha0/quartz/pull/822).
 
 ### January
 
@@ -54,11 +53,11 @@ compartir: true
 - Republished my [website](https://github.com/semanticdata/semanticdata.github.io) with [serene](https://github.com/isunjn/serene).
 - Renamed Zola Dinkleberg to [Zola Guava](https://github.com/semanticdata/zola-guava).
 - Published new Firefox extension:
-    - [ChatGPT in the Sidebar](https://github.com/semanticdata/firefox-chatgpt-in-sidebar)
-    - [New Tab Notes](https://github.com/semanticdata/firefox-new-tab-notes)
+  - [ChatGPT in the Sidebar](https://github.com/semanticdata/firefox-chatgpt-in-sidebar)
+  - [New Tab Notes](https://github.com/semanticdata/firefox-new-tab-notes)
 - Submitted new Zola Themes:
-    - [Mabuya](https://github.com/semanticdata/mabuya)
-    - [Zola Minimal](https://github.com/semanticdata/zola-minimal)
+  - [Mabuya](https://github.com/semanticdata/mabuya)
+  - [Zola Minimal](https://github.com/semanticdata/zola-minimal)
 
 ### November
 
@@ -66,10 +65,9 @@ compartir: true
 - Updated my [Obsidian Starter](https://github.com/semanticdata/obsidian-starter-vault) vault.
 - Playing around with [Svelte](https://svelte.dev/), and [Milkdown](https://milkdown.dev/).
 - Republished my old blog in Spanish: [Prose Poetry](https://github.com/semanticdata/prose-poetry).
-    - Recently found the canonical blog I wrote in 2010 and republished it.
+  - Recently found the canonical blog I wrote in 2010 and republished it.
 - Contributions:
-    - Fixed bug outlined in [Issue #18](https://github.com/getzola/book/issues/18) in [Zola Book](https://github.com/getzola/book).
-    - Added dark theme and toggle to the [Anpu Zola](https://github.com/zbrox/anpu-zola-theme) theme.
+  - Fixed bug outlined in [Issue #18](https://github.com/getzola/book/issues/18) in [Zola Book](https://github.com/getzola/book).
+  - Added dark theme and toggle to the [Anpu Zola](https://github.com/zbrox/anpu-zola-theme) theme.
 
-> [!note]
-> I'm still defining what exactly I should include in this journal. I'm currently making sure it's not _too_ technical, or difficult to read.
+> [!note] I'm still defining what exactly I should include in this journal. I'm currently making sure it's not _too_ technical, or difficult to read.

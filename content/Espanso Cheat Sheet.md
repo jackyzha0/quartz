@@ -32,14 +32,14 @@ Visit the [Documentation](https://espanso.org/docs/get-started/).
 ### Single-line Expansions
 
 ```yml
-- trigger: 'hello'
-  replace: 'world'
+- trigger: "hello"
+  replace: "world"
 ```
 
 ### Multi-line Expansions
 
 ```yml
-- trigger: 'hello'
+- trigger: "hello"
   replace: "line1\nline2"
 ```
 
@@ -48,13 +48,13 @@ Visit the [Documentation](https://espanso.org/docs/get-started/).
 ### Using Variables
 
 ```yml
-- trigger: 'now'
+- trigger: "now"
   replace: "It's {{mytime}}"
   vars:
     - name: mytime
       type: date
       params:
-        format: '%H:%M'
+        format: "%H:%M"
 ```
 
 ### Preconfigured Choices
@@ -75,7 +75,7 @@ Visit the [Documentation](https://espanso.org/docs/get-started/).
 - name: getip
   type: shell
   params:
-    cmd: 'curl ifconfig.me'
+    cmd: "curl ifconfig.me"
     shell: cmd
 ```
 
@@ -85,14 +85,14 @@ Visit the [Documentation](https://espanso.org/docs/get-started/).
 
 ```yml
 global_vars:
-  - name: 'global1'
-    type: 'shell'
+  - name: "global1"
+    type: "shell"
     params:
-      cmd: 'echo global var'
-  - name: 'greet'
-    type: 'echo'
+      cmd: "echo global var"
+  - name: "greet"
+    type: "echo"
     params:
-      echo: 'Hey'
+      echo: "Hey"
 ```
 
 ### Usage

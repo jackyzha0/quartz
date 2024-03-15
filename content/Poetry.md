@@ -23,10 +23,7 @@ Sometimes poetry is most impactful when it's listened to rather than read. Take 
 
 > [!quote] The Cold Wind Blows by Kelly Roper
 >
-> Who knows why the cold wind blows
-> Or where it goes, or what it knows.
-> It only flows in passionate throes
-> Until it finally slows and settles in repose.
+> Who knows why the cold wind blows Or where it goes, or what it knows. It only flows in passionate throes Until it finally slows and settles in repose.
 
 Poets create _sound_ in a variety of ways, like alliteration, assonance, and consonance.
 
@@ -42,15 +39,7 @@ Stressed and unstressed syllables aren't the only way you can create rhythm in y
 
 > [!quote] Still I Rise by Maya Angelou
 >
-> Leaving behind nights of terror and fear
-> I rise
-> Into a daybreak that's wondrously clear
-> I rise
-> Bringing the gifts that my ancestors gave,
-> I am the dream and the hope of the slave.
-> I rise
-> I rise
-> I rise.
+> Leaving behind nights of terror and fear I rise Into a daybreak that's wondrously clear I rise Bringing the gifts that my ancestors gave, I am the dream and the hope of the slave. I rise I rise I rise.
 
 ## Time to Rhyme
 
@@ -58,10 +47,7 @@ With poetry, rhythm and rhyme go hand in hand. Both create musicality in the poe
 
 > [!quote] Jabberwocky by Lewis Carrol
 >
-> One, two! One, two! And through and through
-> The vorpal blade went snicker-snack!
-> He left it dead, and with its head
-> He went galumphing back.
+> One, two! One, two! And through and through The vorpal blade went snicker-snack! He left it dead, and with its head He went galumphing back.
 
 ## Formatting
 

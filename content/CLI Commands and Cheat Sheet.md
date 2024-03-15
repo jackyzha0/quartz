@@ -100,7 +100,7 @@ tar # manipulate archives with .tar extension
 tar -v # get verbose output (e.g. tar -tvf)
 tar -cf archive.tar Y # create tar file name archive.tar containing Y
 tar -xf archive.tar # extract archive.tar
-tar -tf archive.tar # list contents of archive.tar 
+tar -tf archive.tar # list contents of archive.tar
 tar -czf archive.tar.gz Y # create gzip-compressed tar named archive.tag.gz containing Y
 tar -xzf archive.tar.gz # extract gzip-compressed tar named archive.tar.gz
 tar -cjf archive.tar.bz2 Y # extract bzip2-compressed tar named archive.tar.bz2 containing Y
@@ -158,7 +158,7 @@ chmod u+wx,g-x,o=rx testfile # simultaneously add write and execute permissions 
 | 2     | Write only                | =w         |
 | 3     | Write and Execute (2+1=3) | =wx        |
 | 4     | Read only                 | =r         |
-| 5     | Read and Execute  (4+1=5) | =rx        |
+| 5     | Read and Execute (4+1=5)  | =rx        |
 | 6     | Read and Write (4+2=6)    | =rw        |
 | 7     | All permissions (4+2+1=7) | =rwx       |
 
