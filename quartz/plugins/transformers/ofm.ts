@@ -99,13 +99,15 @@ export const externalLinkRegex = /^https?:\/\//i
 
 export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/, "g")
 
+// (\|[^\|\[\n]*)?   -> optional check if wikilink is inside a table cell
 // !?                -> optional embedding
 // \[\[              -> open brace
 // ([^\[\]\|\#]+)    -> one or more non-special characters ([,],|, or #) (name)
 // (#[^\[\]\|\#]+)?  -> # then one or more non-special characters (heading link)
-// (\|[^\[\]\#]+)? -> \| then one or more non-special characters (alias)
+// (\|[^\[\]\#]+)?   -> \| then one or more non-special characters (alias)
+// ([^\|\n]*\|)?     -> optional check if wikilink is inside a table cell
 export const wikilinkRegex = new RegExp(
-  /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]/,
+  /(\|[^\|\[\n]*)?!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]([^\|\n]*\|)?/,
   "g",
 )
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
@@ -170,7 +172,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         }
 
         src = src.replace(wikilinkRegex, (value, ...capture) => {
-          const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
+          const [rawTablePre, rawFp, rawHeader, rawAlias, rawTablePost]: (string | undefined)[] =
+            capture
 
           const fp = rawFp ?? ""
           const anchor = rawHeader?.trim().replace(/^#+/, "")
@@ -183,8 +186,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             return `${embedDisplay}[${displayAlias.replace(/^\|/, "")}](${rawFp})`
           }
 
-          //transform `[[note#^block_ref|^block_ref]]` to `[[note#^block_ref\|^block_ref]]`, display correctly in table.
-          if (displayAlias && displayAlias.startsWith("|")) {
+          // transform `[[note#^block_ref|^block_ref]]` to `[[note#^block_ref\|^block_ref]]`,
+          // when the wikilink with alias is inside a table.
+          if (displayAlias && displayAlias.startsWith("|") && rawTablePre && rawTablePost) {
             displayAlias = `\\${displayAlias}`
           }
 
@@ -207,7 +211,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             replacements.push([
               wikilinkRegex,
               (value: string, ...capture: string[]) => {
-                let [rawFp, rawHeader, rawAlias] = capture
+                let [_rawTablePre, rawFp, rawHeader, rawAlias, _rawTablePost] = capture
                 const fp = rawFp?.trim() ?? ""
                 const anchor = rawHeader?.trim() ?? ""
                 const alias = rawAlias?.slice(1).trim()
