@@ -99,13 +99,15 @@ export const externalLinkRegex = /^https?:\/\//i
 
 export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/, "g")
 
+// (\|[^\|\[\n]*)?   -> optional check if wikilink is inside a table cell
 // !?                -> optional embedding
 // \[\[              -> open brace
 // ([^\[\]\|\#]+)    -> one or more non-special characters ([,],|, or #) (name)
 // (#[^\[\]\|\#]+)?  -> # then one or more non-special characters (heading link)
-// (\|[^\[\]\#]+)? -> \| then one or more non-special characters (alias)
+// (\|[^\[\]\#]+)?   -> \| then one or more non-special characters (alias)
+// ([^\|\n]*\|)?     -> optional check if wikilink is inside a table cell
 export const wikilinkRegex = new RegExp(
-  /(\|[^\|\n]*)?!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]([^\|\n]*\|)?/,
+  /(\|[^\|\[\n]*)?!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]([^\|\n]*\|)?/,
   "g",
 )
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
@@ -184,8 +186,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             return `${embedDisplay}[${displayAlias.replace(/^\|/, "")}](${rawFp})`
           }
 
-          //transform `[[note#^block_ref|^block_ref]]` to `[[note#^block_ref\|^block_ref]]`,
-          //when the wikilink with alias is inside a table.
+          // transform `[[note#^block_ref|^block_ref]]` to `[[note#^block_ref\|^block_ref]]`,
+          // when the wikilink with alias is inside a table.
           if (displayAlias && displayAlias.startsWith("|") && rawTablePre && rawTablePost) {
             displayAlias = `\\${displayAlias}`
           }
