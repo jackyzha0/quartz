@@ -117,9 +117,8 @@ export const tableRegex = new RegExp(
   "gm",
 )
 
-// matches wikilinks with aliases
-// only used for escaping wikilinks inside tables
-export const aliasWikilinkRegex = new RegExp(/(!?\[\[[^\]]*?\]\])/g)
+// matches any wikilink, only used for escaping wikilinks inside tables
+export const tableWikilinkRegex = new RegExp(/(!?\[\[[^\]]*?\]\])/g)
 
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
 const commentRegex = new RegExp(/%%[\s\S]*?%%/, "g")
@@ -184,8 +183,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
         // replace all wikilinks inside a table first
         src = src.replace(tableRegex, (value) => {
-          // escape all wikilinks inside a table
-          return value.replace(aliasWikilinkRegex, (value, ...capture) => {
+          // escape all aliasses and headers in wikilinks inside a table
+          return value.replace(tableWikilinkRegex, (value, ...capture) => {
             const [raw]: (string | undefined)[] = capture
             let escaped = raw ?? ""
             escaped = escaped.replace(/\#/g, "\\#")
