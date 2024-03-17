@@ -180,7 +180,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
         // replace all wikilinks inside a table first
         src = src.replace(tableRegex, (value) => {
-
           // replace all wikilinks inside a table
           return value.replace(wikilinkRegex, (value, ...capture) => {
             const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
