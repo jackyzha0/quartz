@@ -117,6 +117,10 @@ export const tableRegex = new RegExp(
   "gm",
 )
 
+// matches wikilinks with aliases
+// only used for escaping wikilinks inside tables
+export const aliasWikilinkRegex = new RegExp(/(!?\[\[[^\[\]\|]*?\|[^\[\]\|]*?\]\])/g)
+
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
 const commentRegex = new RegExp(/%%[\s\S]*?%%/, "g")
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
@@ -180,29 +184,17 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
         // replace all wikilinks inside a table first
         src = src.replace(tableRegex, (value) => {
-          // replace all wikilinks inside a table
-          return value.replace(wikilinkRegex, (value, ...capture) => {
-            const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
-            const fp = rawFp ?? ""
-            const anchor = rawHeader?.trim().replace(/^#+/, "")
-            const blockRef = Boolean(anchor?.startsWith("^")) ? "^" : ""
-            const displayAnchor = anchor ? `#${blockRef}${slugAnchor(anchor)}` : ""
-            let displayAlias = rawAlias ?? rawHeader?.replace("#", "|") ?? ""
-            const embedDisplay = value.startsWith("!") ? "!" : ""
+          // escape all wikilinks inside a table
+          return value.replace(aliasWikilinkRegex, (value, ...capture) => {
+            const [raw]: (string | undefined)[] = capture
+            const fp = raw ?? ""
+            const [link, alias] = fp.split("|")
 
-            if (rawFp?.match(externalLinkRegex)) {
-              return `${embedDisplay}[${displayAlias.replace(/^\|/, "")}](${rawFp})`
-            }
-
-            // transform `[[note#^block_ref|^block_ref]]` to `[[note#^block_ref\|^block_ref]]`,
-            // when the wikilink with alias is inside a table.
-            if (displayAlias && displayAlias.startsWith("|")) {
-              displayAlias = `\\${displayAlias}`
-            }
-
-            return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`
+            return `${link}\\\|${alias}`
           })
         })
+
+        console.log(src)
 
         // replace all other wikilinks
         src = src.replace(wikilinkRegex, (value, ...capture) => {
