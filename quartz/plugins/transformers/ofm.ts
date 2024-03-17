@@ -99,11 +99,11 @@ export const externalLinkRegex = /^https?:\/\//i
 
 export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/, "g")
 
-// !?                -> optional embedding
-// \[\[              -> open brace
-// ([^\[\]\|\#]+)    -> one or more non-special characters ([,],|, or #) (name)
-// (#[^\[\]\|\#]+)?  -> # then one or more non-special characters (heading link)
-// (\|[^\[\]\#]+)? -> | then one or more non-special characters (alias)
+// !?                 -> optional embedding
+// \[\[               -> open brace
+// ([^\[\]\|\#]+)     -> one or more non-special characters ([,],|, or #) (name)
+// (#[^\[\]\|\#]+)?   -> # then one or more non-special characters (heading link)
+// (\\?\|[^\[\]\#]+)? -> optional escape \ then | then one or more non-special characters (alias)
 export const wikilinkRegex = new RegExp(
   /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]/,
   "g",
