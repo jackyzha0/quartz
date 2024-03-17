@@ -105,7 +105,7 @@ export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/, "g")
 // (#[^\[\]\|\#]+)?  -> # then one or more non-special characters (heading link)
 // (\|[^\[\]\#]+)? -> | then one or more non-special characters (alias)
 export const wikilinkRegex = new RegExp(
-  /!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\#]+)?\]\]/,
+  /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]/,
   "g",
 )
 
@@ -119,7 +119,7 @@ export const tableRegex = new RegExp(
 
 // matches wikilinks with aliases
 // only used for escaping wikilinks inside tables
-export const aliasWikilinkRegex = new RegExp(/(!?\[\[[^\[\]\|]*?\|[^\[\]\|]*?\]\])/g)
+export const aliasWikilinkRegex = new RegExp(/(!?\[\[[^\]]*?\]\])/g)
 
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
 const commentRegex = new RegExp(/%%[\s\S]*?%%/, "g")
@@ -187,10 +187,11 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           // escape all wikilinks inside a table
           return value.replace(aliasWikilinkRegex, (value, ...capture) => {
             const [raw]: (string | undefined)[] = capture
-            const fp = raw ?? ""
-            const [link, alias] = fp.split("|")
+            let escaped = raw ?? ""
+            escaped = escaped.replace(/\#/g, "\\#")
+            escaped = escaped.replace(/\|/g, "\\|")
 
-            return `${link}\\\|${alias}`
+            return escaped
           })
         })
 
