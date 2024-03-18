@@ -52,7 +52,7 @@
     "hast-util-to-string": "^3.0.0",
     "is-absolute-url": "^4.0.1",
     "js-yaml": "^4.1.0",
-    "lightningcss": "^1.24.0",
+    "lightningcss": "^1.24.1",
     "mdast-util-find-and-replace": "^3.0.1",
     "mdast-util-to-hast": "^13.1.0",
     "mdast-util-to-string": "^4.0.0",
