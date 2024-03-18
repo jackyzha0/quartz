@@ -75,11 +75,11 @@ dependencies:
     specifier: ^0.4.5
     version: 0.4.5
   preact:
-    specifier: ^10.19.6
-    version: 10.19.6
+    specifier: ^10.19.7
+    version: 10.19.7
   preact-render-to-string:
     specifier: ^6.4.0
-    version: 6.4.0(preact@10.19.6)
+    version: 6.4.0(preact@10.19.7)
   pretty-bytes:
     specifier: ^6.1.1
     version: 6.1.1
@@ -1193,7 +1193,7 @@ packages:
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
     dependencies:
       mdn-data: 2.0.30
-      source-map-js: 1.0.2
+      source-map-js: 1.1.0
     dev: false
 
   /cssstyle@4.0.1:
@@ -2908,17 +2908,17 @@ packages:
     engines: {node: '>=8.6'}
     dev: false
 
-  /preact-render-to-string@6.4.0(preact@10.19.6):
+  /preact-render-to-string@6.4.0(preact@10.19.7):
     resolution: {integrity: sha512-pzDwezZaLbK371OiJjXDsZJwVOALzFX5M1wEh2Kr0pEApq5AV6bRH/DFbA/zNA7Lck/duyREPQLLvzu2G6hEQQ==}
     peerDependencies:
       preact: '>=10'
     dependencies:
-      preact: 10.19.6
+      preact: 10.19.7
       pretty-format: 3.8.0
     dev: false
 
-  /preact@10.19.6:
-    resolution: {integrity: sha512-gympg+T2Z1fG1unB8NH29yHJwnEaCH37Z32diPDku316OTnRPeMbiRV9kTrfZpocXjdfnWuFUl/Mj4BHaf6gnw==}
+  /preact@10.19.7:
+    resolution: {integrity: sha512-IJOW6cQN1fwfC17HfNOqUtAGyB8wAYshuC+jG1JiL/1+sC4yVyuA3IcF0N9vdodMJjW/lbuEF5qFsJqGNcbHbw==}
     dev: false
 
   /prettier@3.2.5:
@@ -3285,7 +3285,7 @@ packages:
     dependencies:
       chokidar: 3.6.0
       immutable: 4.3.5
-      source-map-js: 1.0.2
+      source-map-js: 1.1.0
     dev: false
 
   /saxes@6.0.0:
@@ -3348,8 +3348,8 @@ packages:
     engines: {node: '>=14.16'}
     dev: false
 
-  /source-map-js@1.0.2:
-    resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
+  /source-map-js@1.1.0:
+    resolution: {integrity: sha512-9vC2SfsJzlej6MAaMPLu8HiBSHGdRAJ9hVFYN1ibZoNkeanmDmLUcIrj6G9DGL7XMJ54AKg/G75akXl1/izTOw==}
     engines: {node: '>=0.10.0'}
     dev: false
 
