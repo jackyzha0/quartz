@@ -8,9 +8,6 @@ import { SKIP, visit } from "unist-util-visit"
 import path from "path"
 import { JSResource } from "../../util/resources"
 // @ts-ignore
-
-
-
 import calloutScript from "../../components/scripts/callout.inline.ts"
 // @ts-ignore
 import checkboxScript from "../../components/scripts/checkbox.inline.ts"
