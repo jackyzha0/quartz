@@ -1,9 +1,9 @@
 ---
 title: Signal Processing - MOC
 tags:
-- MOC
-- signal-processing
-date: 2024-01-12
+  - MOC
+  - signal-processing
+date: 2024-03-18
 ---
 # Basic
 
@@ -30,7 +30,7 @@ date: 2024-01-12
 
 ## Curve similarity
 
-
+* [Curve Similarity - MOC](signal_processing/curve_similarity/curve_similarity.md)
 
 ## Filter
 
