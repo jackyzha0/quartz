@@ -4,7 +4,7 @@ tags:
   - basic
   - coding-language
   - MOC
-date: 2024-03-13
+date: 2024-03-18
 ---
 
 # Python
@@ -15,6 +15,8 @@ date: 2024-03-13
 * [Assert in Python](computer_sci/coding_knowledge/python/assert_in_python.md)
 * [Package in Python](computer_sci/coding_knowledge/python/package_in_python.md)
 * [Python Namespace Pollution](computer_sci/coding_knowledge/python/python_namespace_pollution.md)
+* [About Private and Public, Python as example](computer_sci/coding_knowledge/python/about_private_and_public.md)
+* [Python Import for different level folders](computer_sci/coding_knowledge/python/python_import_different_folder.md)
 # HTML
 
 * [HTML Double Curly Braces](computer_sci/coding_knowledge/web/html_double_curly_braces.md)
