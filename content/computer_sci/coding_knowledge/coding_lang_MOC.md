@@ -13,7 +13,8 @@ date: 2024-03-13
 * [Underline in python](computer_sci/coding_knowledge/python/underline_in_python.md)
 * [Python Decorator](computer_sci/coding_knowledge/python/python_decorator.md)
 * [Assert in Python](computer_sci/coding_knowledge/python/assert_in_python.md)
-
+* [Package in Python](computer_sci/coding_knowledge/python/package_in_python.md)
+* [Python Namespace Pollution](computer_sci/coding_knowledge/python/python_namespace_pollution.md)
 # HTML
 
 * [HTML Double Curly Braces](computer_sci/coding_knowledge/web/html_double_curly_braces.md)
