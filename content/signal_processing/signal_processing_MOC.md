@@ -28,6 +28,10 @@ date: 2024-01-12
 
 * [Hilbert Transform - Envelope](signal_processing/envelope/hilbert_transform.md)
 
+## Curve similarity
+
+
+
 ## Filter
 
 * [Chebyshev Filter](signal_processing/filter/chebyshev_filter.md)
