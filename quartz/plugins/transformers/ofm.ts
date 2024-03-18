@@ -183,7 +183,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
         // replace all wikilinks inside a table first
         src = src.replace(tableRegex, (value) => {
-          // escape all aliasses and headers in wikilinks inside a table
+          // escape all aliases and headers in wikilinks inside a table
           return value.replace(tableWikilinkRegex, (value, ...capture) => {
             const [raw]: (string | undefined)[] = capture
             let escaped = raw ?? ""
