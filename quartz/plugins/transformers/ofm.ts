@@ -118,7 +118,7 @@ export const tableRegex = new RegExp(
 )
 
 // matches any wikilink, only used for escaping wikilinks inside tables
-export const tableWikilinkRegex = new RegExp(/(!?\[\[[^\]]*?\]\])/g)
+export const tableWikilinkRegex = new RegExp(/(!?\[\[[^\]]*?\]\])/, "g")
 
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
 const commentRegex = new RegExp(/%%[\s\S]*?%%/, "g")
