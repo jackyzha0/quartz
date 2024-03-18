@@ -113,7 +113,7 @@ export const wikilinkRegex = new RegExp(
 // ( ?:?-{3,}:? ?\|)+  -> matches the header row separator
 // (\|([^\n])+\|\n)+   -> matches the body rows
 export const tableRegex = new RegExp(
-  /^\|([^\n])+\|\n(\|)( ?:?-{3,}:? ?\|)+\n(\|([^\n])+\|\n)+/,
+  /^\|([^\n])+\|\n(\|)( ?:?-{3,}:? ?\|)+\n(\|([^\n])+\|\n?)+/,
   "gm",
 )
 
