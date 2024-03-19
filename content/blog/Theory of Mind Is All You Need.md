@@ -1,6 +1,11 @@
 ---
-title: "Theory-of-Mind Is All You Need"
-date: "Jun 12, 2023"
+title: Theory-of-Mind Is All You Need
+date: 06.12.23
+tags:
+  - blog
+  - ml
+  - bloom
+  - pedagogy
 ---
 ## TL;DR
 

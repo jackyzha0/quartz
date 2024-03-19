@@ -1,3 +1,10 @@
+---
+title: Extrusion 01.24
+date: 01.30.24
+tags:
+  - extrusions
+  - announcements
+---
 Welcome to the inaugural edition of Plastic Labs' "Extrusions," a monthly prose-form synthesis of what we've been chewing on. 
 
 This first one will be a standard new year recap/roadmap to get everyone up to speed, but after that, we'll try to eschew traditional formats. 

@@ -1,6 +1,12 @@
 ---
-title: "Memories for All"
-date: "Feb 15, 2024"
+title: Memories for All
+date: 02.15.24
+tags:
+  - blog
+  - demos
+  - announcements
+  - philosophy
+  - ml
 ---
 ## TL;DR
 
