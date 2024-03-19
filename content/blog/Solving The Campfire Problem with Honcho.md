@@ -1,10 +1,11 @@
 ---
 title: Solving The Campfire Problem with Honcho
-date: March 14, 2024
+date: 04.14.24
 tags:
   - demos
   - philosophy
   - "#ml"
+  - blog
 ---
 ![[agent_campfire.webp]]
 ## TL;DR

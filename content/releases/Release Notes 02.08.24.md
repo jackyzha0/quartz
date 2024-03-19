@@ -1,3 +1,11 @@
+---
+title: Release Notes 02.08.24
+date: 02.08.24
+tags:
+  - releases
+  - honcho
+  - dev
+---
 Today we're releasing some much needed reliability and usability updates to Honcho.  
   
 This one's for the nerds...well, except for one *meta* feature 👀.  

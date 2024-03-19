@@ -1,3 +1,13 @@
+---
+title: Release Notes 02.15.24
+date: 02.15.24
+tags:
+  - releases
+  - dev
+  - honcho
+  - demos
+  - announcements
+---
 Today we've got Honcho v0.0.3, vectorDBs, open source OAI memory, demos, and a blog post.
   
 If you're building with or adjacent to [Honcho](https://honcho.dev), [join our Discord](https://discord.gg/plasticlabs), and let's jam on what we can build together 🤝.  

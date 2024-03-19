@@ -1,3 +1,12 @@
+---
+title: Release Notes 02.01.24
+date: 02.01.24
+tags:
+  - releases
+  - honcho
+  - announcements
+  - dev
+---
 Today we're shipping a new site, docs, & lots of improvements.  
   
 We talked to a ton of agent developers beginning to build with Honcho over the past two weeks.  

@@ -1,6 +1,12 @@
 ---
-title: "Open-Sourcing Tutor-GPT"
-date: "Jun 2, 2023"
+title: Open-Sourcing Tutor-GPT
+date: 06.02.23
+tags:
+  - blog
+  - bloom
+  - announcements
+  - pedagogy
+  - ml
 ---
 ![[assets/human_machine_learning.jpeg]]
 

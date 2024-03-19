@@ -1,3 +1,11 @@
+---
+title: Extrusion 02.24
+date: 02.29.24
+tags:
+  - extrusions
+  - philosophy
+  - ml
+---
 *Extrusions is a short, densely-linked synthesis of what we've been chewing on over the past month at Plastic Labs--you can [subscribe here](https://plasticlabs.typeform.com/extrusions)*
 
 ## On Intellectual Respect

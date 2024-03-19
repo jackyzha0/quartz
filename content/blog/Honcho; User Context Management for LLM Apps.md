@@ -1,7 +1,13 @@
 ---
 title: "Honcho: User Context Management for LLM Apps"
 enableToc: true
-date: Jan 18, 2024
+date: 01.18.24
+tags:
+  - blog
+  - honcho
+  - philosophy
+  - ml
+  - announcements
 ---
 ![[missing_piece.png]]
 *The missing piece of the stack*
