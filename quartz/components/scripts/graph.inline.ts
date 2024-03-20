@@ -224,13 +224,19 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
           .transition()
           .duration(200)
           .style("opacity", 0.2)
-        
+
         if (obsidianLikeFocusOnHover) {
           d3.selectAll<HTMLElement, NodeData>(".node")
             .filter((d) => !connectedNodes.includes(d.id))
             .nodes()
-            .map(it => d3.select(it.parentNode as HTMLElement).select("text"))
-            .forEach(it => it.transition().duration(200).attr("opacityOld", it.style("opacity")).style("opacity", 0.2))
+            .map((it) => d3.select(it.parentNode as HTMLElement).select("text"))
+            .forEach((it) =>
+              it
+                .transition()
+                .duration(200)
+                .attr("opacityOld", it.style("opacity"))
+                .style("opacity", 0.2),
+            )
         }
       }
 
@@ -259,8 +265,8 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
           d3.selectAll<HTMLElement, NodeData>(".node")
             .filter((d) => !connectedNodes.includes(d.id))
             .nodes()
-            .map(it => d3.select(it.parentNode as HTMLElement).select("text"))
-            .forEach(it => it.transition().duration(200).style("opacity", it.attr("opacityOld")))
+            .map((it) => d3.select(it.parentNode as HTMLElement).select("text"))
+            .forEach((it) => it.transition().duration(200).style("opacity", it.attr("opacityOld")))
         }
       }
       const currentId = d.id
