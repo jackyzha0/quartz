@@ -12,42 +12,33 @@ We believe that by re-centering LLM app development around the user we can unloc
 
 It’s our mission to realize this future.
 
-## Blog
+## Structure
 
-[[Solving The Campfire Problem with Honcho]]  
-[[User State is State of the Art]]  
-[[Memories for All]]  
-[[Honcho; User Context Management for LLM Apps|Honcho: User Context Management for LLM Apps]]  
-[[Theory of Mind Is All You Need]]  
-[[Open Sourcing Tutor-GPT]]
+The different sections of the blog and the different types of content we put out
 
-## Research
+[[blog | Blog]] — Detailed explorations of different ideas.  
+[[notes | Evergreen Notes]] — Evergreen ideas that will be continuously updated.  
+[[releases | Release Notes]] — Changelogs and details about new releases from
+[Plastic Labs](https://plasticlabs.ai).  
+[[extrusions | Extrusions]] — Short, densely-linked synthesis of what we’ve been chewing on over the past month   
+
+We also send out Extrusions and Release Notes as email newsletters.
+Subscribe to get updates directly to your inbox. 
+
+[Subscribe to Extrusions](https://plasticlabs.typeform.com/extrusions)  
+[Subscribe to Release Notes](https://plasticlabs.typeform.com/honchoupdates) 
+
+## Other Works
+
+Below are other projects and research that Plastic Labs is working on
+
+### Research
 
 [Violation of Expectation Reduces Theory-of-Mind Prediction Error in Large Language Models](https://arxiv.org/abs/2310.06983)
 
-## Evergreen Notes
+### Projects
 
-[[Humans like personalization]]  
-[[LLMs excel at theory of mind because they read]]  
-[[Loose theory of mind imputations are superior to verbatim response predictions]]  
-[[Honcho name lore]]  
-[[Human-AI chat paradigm hamstrings the space of possibility]]  
-[[LLM Metacognition is inference about inference]]  
-[[Machine learning is fixated on task performance]]  
-
-## Extrusions
-
-[[Extrusion 02.24]]  
-[[extrusions/Extrusion 01.24|Extrusion 01.24]]  
-
-([Subscribe](https://plasticlabs.typeform.com/extrusions))  
-
-## Release Notes 
-
-[[Release Notes 03.14.23]]  
-[[Release Notes 02.23.24]]  
-[[Release Notes 02.15.24]]  
-[[Release Notes 02.08.24]]  
-[[Release Notes 02.01.24]]  
-
-([Subscribe](https://plasticlabs.typeform.com/honchoupdates))  
+[Honcho](https://honcho.dev) — A user context management solution for AI-powered applications  
+[Bloom](https://bloombot.ai) — A theory-of-mind enabled AI learning assistant
+also known by the name of it's open source project
+[Tutor-GPT](https://github.com/plastic-labs/tutor-gpt)  
