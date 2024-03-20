@@ -228,13 +228,14 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
           .filter((d) => !connectedNodes.includes(d.id))
           .nodes()
           .map((it) => d3.select(it.parentNode as HTMLElement).select("text"))
-          .forEach((it) =>
+          .forEach((it) => {
+            let opacity = parseFloat(it.style("opacity"))
             it
               .transition()
               .duration(200)
-              .attr("opacityOld", it.style("opacity"))
-              .style("opacity", 0.2),
-          )
+              .attr("opacityOld", opacity)
+              .style("opacity", Math.min(opacity, 0.2))
+          })
       }
 
       // highlight links
