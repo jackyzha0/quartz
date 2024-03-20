@@ -27,6 +27,7 @@ It’s our mission to realize this future.
 
 ## Evergreen Notes
 
+[[Humans like personalization]]
 [[LLMs excel at theory of mind because they read]]  
 [[Loose theory of mind imputations are superior to verbatim response predictions]]  
 [[Honcho name lore]]  
