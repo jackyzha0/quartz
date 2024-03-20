@@ -230,8 +230,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
           .map((it) => d3.select(it.parentNode as HTMLElement).select("text"))
           .forEach((it) => {
             let opacity = parseFloat(it.style("opacity"))
-            it
-              .transition()
+            it.transition()
               .duration(200)
               .attr("opacityOld", opacity)
               .style("opacity", Math.min(opacity, 0.2))
