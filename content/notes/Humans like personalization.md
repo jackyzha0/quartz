@@ -16,6 +16,7 @@ The more we're missing that, the more we're typically in a principal-agent probl
 
 <iframe src="https://player.vimeo.com/video/868985592?h=deff771ffe&color=F6F5F2&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
   
+  
 But, right now, most AI applications are just toys and demos:
 
 ![[Honcho; User Context Management for LLM Apps#^18066b]]
