@@ -25,5 +25,9 @@ date: 2024-03-18
 
 # MATLAB
 
+* [Plot UI components for MATLAB](computer_sci/coding_knowledge/matlab/uicontrol.md)
+
 # JavaScript
+
+* 
 

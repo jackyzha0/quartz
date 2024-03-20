@@ -3,7 +3,7 @@ title: Resume
 tags:
   - resume
   - readme
-date: 2024-03-07
+date: 2024-03-20
 ---
 
 <div style="margin:auto;width: 50%; transform: translate(50%, 0);">
@@ -95,8 +95,9 @@ It was my first class project in college. It was a simple program based on an ol
 
 # 🏆 Honors
 
-* Excellent Graduate of Zhejiang University
-* Third Class Scholarship of Zhejiang University
+* Award of Honor for Graduate
+* [Excellent Graduate of Zhejiang University](assets/pic/outstanding_graduates_of_zhejiang_university.jpg)
+* [Third Class Scholarship of Zhejiang University](assets/pic/zhejiang_university_scholarship_third_prize.png)
 
 # 🎈 Clubs & Social Activities
 
