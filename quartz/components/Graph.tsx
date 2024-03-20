@@ -18,7 +18,6 @@ export interface D3Config {
   removeTags: string[]
   showTags: boolean
   focusOnHover?: boolean
-  obsidianLikeFocusOnHover?: boolean
 }
 
 interface GraphOptions {
