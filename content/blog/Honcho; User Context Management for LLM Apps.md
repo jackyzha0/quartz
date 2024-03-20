@@ -43,7 +43,7 @@ We're consistently blown away by how many people don't realize large language mo
 
 There are lots of developer tricks to give the illusion of state about the user, mostly injecting conversation history or some personal digital artifact into the context window. Another is running inference on that limited recent user context to derive new insights. This was the game changer for our tutor, and we still can't believe by how under-explored that solution space is (more on this soon 👀).
 
-To date, machine learning has been [[Machine learning is fixated on task performance|far more focused on]] optimizing for general task competition than personalization. This is natural, although many of these tasks are still probably better suited to deterministic code. It's also historically prestiged papers over products--research takes bit to morph into tangible utility. Put these together and you end up with a big blindspot over individual users and what they want.
+To date, machine learning has been [[Machine learning is fixated on task performance|far more focused on]] optimizing for general task competition than personalization. This is natural, although many of these tasks are still probably better suited to deterministic code. It's also historically prestiged papers over products--research takes bit to morph into tangible utility. Put these together and you end up with a big blindspot over individual users and what they want. ^18066b
 
 The real magic of 1:1 instruction isn't subject matter expertise. Bloom and the foundation models it leveraged had plenty of that (despite what clickbait media would have you believe about hallucination in LLMs). Instead, it's personal context. Good teachers and tutors get to know their charges--their history, beliefs, values, aesthetics, knowledge, preferences, hopes, fears, interests, etc. They compress all that and generate customized instruction, emergent effects of which are the relationships and culture necessary for positive feedback loops.
 
@@ -87,6 +87,8 @@ Imagine online stores generated just in time for the home improvement project yo
 This is the kind of future we can build when we put users at the center of our agent and LLM app production.
 
 ## Introducing Honcho
+
+^a9d0f8
 
 So today we're releasing the first iteration of [[Honcho name lore|Honcho]], our project to re-define LLM application development through user context management. At this nascent stage, you can think of it as an open-source version of the OpenAI Assistants API. ^8c982b
 
