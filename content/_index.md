@@ -15,20 +15,19 @@ It’s our mission to realize this future.
 ## Guide
 
 We post a few different types of content here:
+  
+- [[blog | Blog]] — Deep dives into the philosophy, cognitive science, & machine learning underpinning our work
 
-[[blog | Blog]] — Deep dives into the philosophy, cognitive science, & machine learning underpinning our work
+- [[notes | Evergreen Notes]] — Short form working notes on Plastic theses
 
-[[notes | Evergreen Notes]] — Short form working notes on Plastic theses
+- [[extrusions | Extrusions]] — Brief, densely-linked reflections synthesizing last month's conceptual work
 
-[[extrusions | Extrusions]] — Brief, densely-linked reflections synthesizing last month's conceptual work
+- [[releases | Release Notes]] — Weekly changelogs & details on new product features  
 
-[[releases | Release Notes]] — Weekly changelogs & details on new product features  
-
-[[research | Research]] - Formal published, preprint, or blog-style company research we've made public
+- [[research | Research]] - Formal published, preprint, or blog-style company research we've made public
   
   
-Extrusions and Release Notes are also available as email newsletters:
-
+*Extrusions and Release Notes are also available as email newsletters:*
 - [Subscribe to Extrusions](https://plasticlabs.typeform.com/extrusions)  
 - [Subscribe to Release Notes](https://plasticlabs.typeform.com/honchoupdates)  
 
