@@ -4,41 +4,38 @@ enableToc: false
 ---
 Welcome to our collaborative second brain. 
 
-Here you'll find our blog posts, ["Extrusions" newsletter](https://plasticlabs.typeform.com/extrusions), [Honcho release notes](https://plasticlabs.typeform.com/honchoupdates), evergreen notes, and public research. And if you like, [you can engage with the ideas directly](https://github.com/plastic-labs/blog) on GitHub.
+Here you'll find our blog, public notes, and research. [You can also engage with the ideas directly](https://github.com/plastic-labs/blog) on GitHub.
 
-Plastic Labs is a research-driven company working at the intersection of human and machine learning. Our current project is [Honcho](https://honcho.dev), a user context management solution for AI-powered applications. 
+[Plastic](https://plasticlabs.ai) is a research-driven company building at the intersection of human and machine learning. 
 
-We believe that by re-centering LLM app development around the user we can unlock a rich landscape of deeply personalized, autonomous agents.
+We believe re-centering LLM app development around the user will unlock a rich landscape of deeply personalized, autonomous agents.
 
 It’s our mission to realize this future.
 
-## Structure
+## Guide
 
-The different sections of the blog and the different types of content we put out
+We post a few different types of content here:
 
-[[blog | Blog]] — Detailed explorations of different ideas.  
-[[notes | Evergreen Notes]] — Evergreen ideas that will be continuously updated.  
-[[releases | Release Notes]] — Changelogs and details about new releases from
-[Plastic Labs](https://plasticlabs.ai).  
-[[extrusions | Extrusions]] — Short, densely-linked synthesis of what we’ve been chewing on over the past month   
+[[blog | Blog]] — Deep dives into the philosophy, cognitive science, & machine learning underpinning our work
 
-We also send out Extrusions and Release Notes as email newsletters.
-Subscribe to get updates directly to your inbox. 
+[[notes | Evergreen Notes]] — Short form working notes on Plastic theses
 
-[Subscribe to Extrusions](https://plasticlabs.typeform.com/extrusions)  
-[Subscribe to Release Notes](https://plasticlabs.typeform.com/honchoupdates) 
+[[extrusions | Extrusions]] — Brief, densely-linked reflections synthesizing last month's conceptual work
 
-## Other Works
+[[releases | Release Notes]] — Weekly changelogs & details on new product features  
 
-Below are other projects and research that Plastic Labs is working on
+[[research | Research]] - Formal published, preprint, or blog-style company research we've made public
+  
+  
+Extrusions and Release Notes are also available as email newsletters:
 
-### Research
+- [Subscribe to Extrusions](https://plasticlabs.typeform.com/extrusions)  
+- [Subscribe to Release Notes](https://plasticlabs.typeform.com/honchoupdates)  
 
-[Violation of Expectation Reduces Theory-of-Mind Prediction Error in Large Language Models](https://arxiv.org/abs/2310.06983)
+## Projects
 
-### Projects
+If you find the content here compelling, explore our active projects:
 
-[Honcho](https://honcho.dev) — A user context management solution for AI-powered applications  
-[Bloom](https://bloombot.ai) — A theory-of-mind enabled AI learning assistant
-also known by the name of it's open source project
-[Tutor-GPT](https://github.com/plastic-labs/tutor-gpt)  
+- [Honcho](https://honcho.dev) — A personalization platform for AI-powered applications, currently in [private beta](https://plasticlabs.typeform.com/honchobeta)  
+  
+- [Bloom](https://bloombot.ai) — A theory of mind-powered AI learning companion, open sourced as [Tutor-GPT](https://github.com/plastic-labs/tutor-gpt) (slated for relaunch soon...)  
