@@ -118,11 +118,12 @@ export function renderPage(
               // skip until we find the blockref that matches
               if (el.properties?.id === blockRef) {
                 startIdx = i
-                startDepth = Number(el.tagName.substring(1))
+                startDepth = depth
               }
             } else if (depth <= startDepth) {
               // looking for new header that is same level or higher
               endIdx = i
+              break
             }
           }
 
@@ -209,7 +210,7 @@ export function renderPage(
     </div>
   )
 
-  const lang = componentData.frontmatter?.lang ?? cfg.locale?.split("-")[0] ?? "en"
+  const lang = componentData.fileData.frontmatter?.lang ?? cfg.locale?.split("-")[0] ?? "en"
   const doc = (
     <html lang={lang}>
       <Head {...componentData} />
