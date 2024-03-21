@@ -10,5 +10,5 @@ tags:
   
 Or download here:
 
-![[Violation of Expectation via Metacognitive Prompting Reduces Theory of Mind Prediction Error in Large Language Models.pdf]]
+<iframe style="width: 100%;height: 50vh" src="https://arxiv.org/pdf/2310.06983.pdf"></iframe>
 
