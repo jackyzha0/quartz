@@ -32,6 +32,8 @@ date: 2024-02-28
 
 * [Code Framework Learn](computer_sci/code_frame_learn/MOC.md)
 
+* [Design](design/design_moc.md)
+
 🦺 I also need some tool to help me:
 
 * [Git](toolkit/git/git_MOC.md)
