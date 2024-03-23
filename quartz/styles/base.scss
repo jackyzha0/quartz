@@ -513,3 +513,11 @@ ol.overflow {
     padding-left: 1rem;
   }
 }
+
+.katex-display {
+  overflow-x: auto;
+}
+
+.katex .base, .katex .strut {
+  display: inline;
+}
