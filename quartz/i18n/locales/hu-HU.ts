@@ -68,14 +68,12 @@ export default {
     },
     folderContent: {
       folder: "Mappa",
-      itemsUnderFolder: ({ count }) =>
-        `Ebben a mappában ${count} elem található.`,
+      itemsUnderFolder: ({ count }) => `Ebben a mappában ${count} elem található.`,
     },
     tagContent: {
       tag: "Címke",
       tagIndex: "Címke index",
-      itemsUnderTag: ({ count }) =>
-        `${count} elem található ezzel a címkével.`,
+      itemsUnderTag: ({ count }) => `${count} elem található ezzel a címkével.`,
       showingFirst: ({ count }) => `Első ${count} címke megjelenítve.`,
       totalTags: ({ count }) => `Összesen ${count} címke található.`,
     },
