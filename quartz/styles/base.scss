@@ -517,7 +517,7 @@ ol.overflow {
 .katex-display {
   overflow-x: auto;
   overflow-y: visible;
-  .katex .katex-html {
+  & > .katex .katex-html {
     .base,
     .strut {
       display: inline;
