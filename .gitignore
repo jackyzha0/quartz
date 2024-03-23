@@ -4,7 +4,6 @@
 .quartz-cache
 .replit
 node_modules
-package-lock.json
 private/
 prof
 public
