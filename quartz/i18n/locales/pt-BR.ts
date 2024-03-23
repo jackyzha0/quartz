@@ -54,7 +54,7 @@ export default {
       title: "Sumário",
     },
     contentMeta: {
-      readingTime: ({ minutes }) => `$Leitura de ${minutes} min`,
+      readingTime: ({ minutes }) => `Leitura de ${minutes} min`,
     },
   },
   pages: {
