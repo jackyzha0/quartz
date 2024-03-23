@@ -13,7 +13,7 @@ import ru from "./locales/ru-RU"
 import ko from "./locales/ko-KR"
 import zh from "./locales/zh-CN"
 import vi from "./locales/vi-VN"
-import hu from "./locales/hu_HU"
+import hu from "./locales/hu-HU"
 
 export const TRANSLATIONS = {
   "en-US": en,
