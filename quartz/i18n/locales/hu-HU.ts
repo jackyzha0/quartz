@@ -22,7 +22,7 @@ export default {
       quote: "Idézet",
     },
     backlinks: {
-      title: "Visszautalás",
+      title: "Visszautalások",
       noBacklinksFound: "Nincs visszautalás",
     },
     themeToggle: {
@@ -30,7 +30,7 @@ export default {
       darkMode: "Sötét mód",
     },
     explorer: {
-      title: "Explorer",
+      title: "Fájlböngésző",
     },
     footer: {
       createdWith: "Készítve ezzel:",
