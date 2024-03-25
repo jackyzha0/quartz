@@ -1,0 +1,69 @@
+{
+  "peacock.color": "#322549",
+  "editor.wrappingIndent": "indent",
+  "editor.overviewRulerBorder": false,
+  // "workbench.colorTheme": "Default Dark Modern",
+  "[markdown]": {
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    }
+  },
+  "files.exclude": {
+    "**/node_modules": false
+  },
+  "files.watcherExclude": {
+    "**/node_modules": true
+  },
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#49366b",
+    "activityBar.background": "#49366b",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#000000",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "commandCenter.border": "#e7e7e799",
+    "sash.hoverBorder": "#49366b",
+    "statusBar.background": "#322549",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#49366b",
+    "statusBarItem.remoteBackground": "#322549",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#322549",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#32254999",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "file:///c%3A/Users/pimentma/GitHub/astro-naut/.github/workflows/deploy.yml"
+  },
+  "better-extension-manager.workspace": [
+    "ahgood.shift-shift",
+    "alefragnani.project-manager",
+    "bierner.markdown-preview-github-styles",
+    "christian-kohler.path-intellisense",
+    "codeium.codeium",
+    "davidanson.vscode-markdownlint",
+    "dracula-theme.theme-dracula",
+    "ecmel.vscode-html-css",
+    "emmanuelbeziat.vscode-great-icons",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-rename-tag",
+    "github.remotehub",
+    "gruntfuggly.todo-tree",
+    "ms-vscode-remote.remote-wsl",
+    "ms-vscode.live-server",
+    "ms-vscode.remote-repositories",
+    "oderwat.indent-rainbow",
+    "pkief.material-icon-theme",
+    "pranaygp.vscode-css-peek",
+    "redhat.vscode-yaml",
+    "sibiraj-s.vscode-scss-formatter",
+    "streetsidesoftware.code-spell-checker",
+    "takumii.markdowntable",
+    "usernamehw.errorlens",
+    "vsls-contrib.gistfs",
+    "yzhang.markdown-all-in-one"
+  ]
+}
