@@ -62,8 +62,8 @@
     "mdast-util-to-hast": "^13.1.0",
     "mdast-util-to-string": "^4.0.0",
     "micromorph": "^0.4.5",
-    "preact": "^10.19.7",
-    "preact-render-to-string": "^6.4.0",
+    "preact": "^10.20.1",
+    "preact-render-to-string": "^6.4.1",
     "pretty-bytes": "^6.1.1",
     "pretty-time": "^1.1.0",
     "reading-time": "^1.5.0",
@@ -101,7 +101,7 @@
     "@types/d3": "^7.4.3",
     "@types/hast": "^3.0.4",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^20.11.28",
+    "@types/node": "^20.11.30",
     "@types/pretty-time": "^1.1.5",
     "@types/source-map-support": "^0.5.10",
     "@types/ws": "^8.5.10",
@@ -109,6 +109,6 @@
     "esbuild": "^0.19.12",
     "prettier": "^3.2.5",
     "tsx": "^4.7.1",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.3"
   }
 }
