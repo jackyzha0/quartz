@@ -1,4 +1,4 @@
-import { Translation } from "./definition"
+import {Translation} from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "Notas recentes",
-      seeRemainingMore: ({ remaining }) => `Veja mais ${remaining} →`,
+      seeRemainingMore: ({remaining}) => `Veja mais ${remaining} →`,
     },
     transcludes: {
-      transcludeOf: ({ targetSlug }) => `Transcrever de ${targetSlug}`,
+      transcludeOf: ({targetSlug}) => `Transcrever de ${targetSlug}`,
       linkToOriginal: "Link ao original",
     },
     search: {
@@ -54,13 +54,13 @@ export default {
       title: "Sumário",
     },
     contentMeta: {
-      readingTime: ({ minutes }) => `Leitura de ${minutes} min`,
+      readingTime: ({minutes}) => `Leitura de ${minutes} min`,
     },
   },
   pages: {
     rss: {
       recentNotes: "Notas recentes",
-      lastFewNotes: ({ count }) => `Últimas ${count} notas`,
+      lastFewNotes: ({count}) => `Últimas ${count} notas`,
     },
     error: {
       title: "Não encontrado",
@@ -68,16 +68,18 @@ export default {
     },
     folderContent: {
       folder: "Arquivo",
-      itemsUnderFolder: ({ count }) =>
-        count === 1 ? "1 item mneste arquivo." : `${count} items neste arquivo.`,
+      itemsUnderFolder: ({count}) =>
+        count === 1
+          ? "1 item mneste arquivo."
+          : `${count} items neste arquivo.`,
     },
     tagContent: {
       tag: "Tag",
       tagIndex: "Sumário de Tags",
-      itemsUnderTag: ({ count }) =>
+      itemsUnderTag: ({count}) =>
         count === 1 ? "1 item com esta tag." : `${count} items com esta tag.`,
-      showingFirst: ({ count }) => `Mostrando as ${count} primeiras tags.`,
-      totalTags: ({ count }) => `Encontradas ${count} tags.`,
+      showingFirst: ({count}) => `Mostrando as ${count} primeiras tags.`,
+      totalTags: ({count}) => `Encontradas ${count} tags.`,
     },
   },
 } as const satisfies Translation

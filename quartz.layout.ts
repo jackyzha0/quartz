@@ -12,46 +12,23 @@ export const sharedPageComponents: SharedLayout = {
       Meta: "/Meta",
       GitHub: "https://github.com/semanticdata/",
       Source: "https://github.com/semanticdata/forgetful-notes/",
-      // Tags: "/tags",
     },
   }),
 }
 
 // components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
-  beforeBody: [
-    Component.ArticleTitle(),
-    // Component.Breadcrumbs(),
-    // Component.ContentMeta(),
-    // Component.TagList(),
-  ],
-  left: [
-    // Component.PageTitle(),
-    // Component.MobileOnly(Component.Spacer()),
-    // Component.Search(),
-    // Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
-  ],
+  beforeBody: [Component.ArticleTitle()],
+  left: [Component.MobileOnly(Component.Spacer())],
   right: [
-    Component.Graph(),
-    Component.DesktopOnly(Component.TableOfContents()),
-    Component.Backlinks(),
+    Component.MobileOnly(Component.Graph()),
+    Component.MobileOnly(Component.Backlinks()),
   ],
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
-  beforeBody: [
-    Component.Breadcrumbs(),
-    Component.ArticleTitle(),
-    // Component.ContentMeta()
-  ],
-  left: [
-    // Component.PageTitle(),
-    // Component.MobileOnly(Component.Spacer()),
-    // Component.Search(),
-    // Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
-  ],
-  right: [],
+  beforeBody: [Component.ArticleTitle()],
+  left: [Component.MobileOnly(Component.Spacer())],
+  right: [Component.MobileOnly(Component.Spacer())],
 }

@@ -167,7 +167,7 @@ a {
       position: fixed;
       @media all and (max-width: $fullPageWidth) {
         position: initial;
-        flex-direction: row;
+        flex-direction: column;
         padding: 0;
         width: initial;
         margin-top: 2rem;
