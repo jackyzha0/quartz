@@ -3,7 +3,7 @@ title: Resume
 tags:
   - resume
   - readme
-date: 2024-03-20
+date: 2024-03-26
 ---
 
 <div style="margin:auto;width: 50%; transform: translate(50%, 0);">
@@ -19,7 +19,7 @@ date: 2024-03-20
 # 📐 Education
 
 **Zhejiang University (ZJU)**,&nbsp;&nbsp;Zhejiang,&nbsp;&nbsp;China <span style="float: right; ">2022.09 - Now</span> <br>
-*M.Sc.* Major in Biomedical Engineering (BME)
+*M.Sc.* Major in Biomedical Engineering (BME), by Supervisor [Gangmin Ning](https://person.zju.edu.cn/en/0090078)
 
 **Exchange to National University of Singapore (NUS)**  <span style="float: right; ">2021.08-2022.05</span> <br>
 *Final Year Project* &nbsp;instructed by [Dan Wu](https://person.zju.edu.cn/en/danwu) and [Zhiwei Huang](https://cde.nus.edu.sg/bme/staff/dr-huang-zhiwei/)
@@ -107,8 +107,8 @@ It was my first class project in college. It was a simple program based on an ol
 # 🌺 Other Fun Facts
 
 * Outdoor fans - cycling, hiking... - [My Strava Profile](https://www.strava.com/athletes/109116948)
-* Photography fans - [My Photo Gallery](https://pinkr1ver.notion.site/3cfdd332b9a94b20bca041f2aa2bdcd2?v=24e696e6ab754386a710bc8e83976357)
-* Loving films, dramas, books... - [My Watching List](https://pinkr1ver.notion.site/5e136466f3664ff1aaaa75b85446e5b4?v=a41efbce52a84f7aa89d8f649f4620f6)
+* Photography fans - [My Photo Gallery](https://www.notion.so/pinkr1ver/3cfdd332b9a94b20bca041f2aa2bdcd2?v=24e696e6ab754386a710bc8e83976357)
+* Loving films, dramas, books... - [My Watching List](https://pinkr1ver.notion.site/5e136466f3664ff1aaaa75b85446e5b4?v=a41efbce52a84f7aa89d8f649f4620f6&pvs=4)
 * PC Game fans, especially CS, Dota... - [My Steam profile](https://steamcommunity.com/id/PinkCred1t)
 * Chess fans - [Rank in chess.com](https://www.chess.com/member/yichongwang)
 
