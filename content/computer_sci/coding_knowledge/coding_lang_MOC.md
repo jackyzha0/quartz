@@ -4,7 +4,7 @@ tags:
   - basic
   - coding-language
   - MOC
-date: 2024-03-18
+date: 2024-03-27
 ---
 
 # Python
@@ -27,7 +27,8 @@ date: 2024-03-18
 
 * [Plot UI components for MATLAB](computer_sci/coding_knowledge/matlab/uicontrol.md)
 
-# JavaScript
+# JavaScript & TypeScript
 
-* 
+* [DOM](computer_sci/coding_knowledge/js/DOM.md)
+* [TypeScript vs. JavaScript](computer_sci/coding_knowledge/js/TypeScript_vs_JavaScript.md)
 
