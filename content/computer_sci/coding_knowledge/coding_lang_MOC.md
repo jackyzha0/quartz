@@ -31,4 +31,5 @@ date: 2024-03-27
 
 * [DOM](computer_sci/coding_knowledge/js/DOM.md)
 * [TypeScript vs. JavaScript](computer_sci/coding_knowledge/js/TypeScript_vs_JavaScript.md)
+* [Proxy in JS](computer_sci/coding_knowledge/js/proxy_in_js.md)
 
