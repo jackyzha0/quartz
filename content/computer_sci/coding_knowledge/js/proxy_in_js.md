@@ -114,3 +114,25 @@ const proxy = new Proxy(user, handler);
 console.log(proxy.age); // 成功
 console.log(proxy.salary); // undefined
 ```
+
+
+## 日志记录
+
+```js
+const object = {
+  "num": 1,
+  "str": "Hello World",
+  "obj": {
+    "x": 5
+  }
+};
+
+const proxiedObject = new Proxy(object, {
+  get: (target, key) => {
+    console.log("Accessing", key);
+    return target[key];
+  }
+});
+
+proxiedObject.num; // 打印: Accessing num
+```
