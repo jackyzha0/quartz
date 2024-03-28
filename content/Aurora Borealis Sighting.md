@@ -63,7 +63,8 @@ Below are maps showing the most southern extent of where aurora might be observa
 
 ### July 12th, 2023
 
-![NOAA Space Weather Prediction Center - G-Kp](https://www.swpc.noaa.gov/sites/default/files/images/u2/Aurora_Kp_MapNorthAm.png) G is NOAA Geomagnetic Storm Index (0–5)  
+![NOAA Space Weather Prediction Center - G-Kp](https://www.swpc.noaa.gov/sites/default/files/images/u2/Aurora_Kp_MapNorthAm.png)
+G is NOAA Geomagnetic Storm Index (0–5)  
 Kp is Planetary K Index (0–9)
 
 ### September 18th, 2023

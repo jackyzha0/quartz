@@ -48,7 +48,8 @@ Let's break it down:
 
 ### Price
 
-Based on price per $1. Selected $0.10 as the baseline after averaging some calculations.
+Based on price per $1.
+Selected $0.10 as the baseline after averaging some calculations.
 
 - 1 point for every $0.01 / GB below $0.10
 

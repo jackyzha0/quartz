@@ -13,7 +13,8 @@ Compilation of Words I like. Visit the [source](https://wordwarriors.wayne.edu/l
 ## Anodyne (adjective)
 
 1. Capable of soothing or eliminating pain.
-2. Not likely to offend or arouse tensions. Also used as a _noun_ to describe something that soothes, calms, or comforts.
+2. Not likely to offend or arouse tensions.
+   Also used as a _noun_ to describe something that soothes, calms, or comforts.
 
 ## Arete (noun)
 
@@ -124,6 +125,15 @@ Compilation of Words I like. Visit the [source](https://wordwarriors.wayne.edu/l
 
 1. A striking or extraordinary person or thing.
 
+## Idiom (noun)
+
+1. An expression in the usage of a language that is peculiar to itself either in having a meaning that cannot be derived from the conjoined meanings of its elements (such as up in the air for "undecided") or in its grammatically atypical use of words (such as give way).
+
+## Idiomatic (adjective)
+
+1. Of, relating to, or conforming to idiom.
+2. Peculiar to a particular group, individual, or style.
+
 ## Innocuous (adjectives)
 
 1. Producing no injury, harmless.
@@ -166,6 +176,11 @@ Compilation of Words I like. Visit the [source](https://wordwarriors.wayne.edu/l
 ## Paratelic (adjective)
 
 1. Applied to the mental orientation of a person who has a fun loving attitude to a situation and seeks excitement. A paratelic state of mind is activity orientated and pleasure seeking. See also reversal theory. Compare telic.
+
+## Prehensile (adjective)
+
+1. Adapted for seizing or grasping especially by wrapping around. (prehensile tail)
+2. Gifted with mental grasp or moral or aesthetic perception.
 
 ## Risible (adjective)
 

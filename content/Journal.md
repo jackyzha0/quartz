@@ -4,13 +4,15 @@ description: This section explores the concept of maintaining a Public Journal.
 compartir: true
 ---
 
-> [!info] This page takes inspiration from the [Journal of an Enigmatic Mind](https://speyllsite.pages.dev/journal/). It explores the concept of keeping a public journal, something I haven't done before.
+> [!note]
+> I'm still defining what exactly I should include in this journal. I'm currently making sure it's not _too_ technical, or difficult to read.
+This page explores the concept of keeping a public journal, something I haven't done before. I'm still defining what exactly I should include in this journal. I'm currently making sure it's not too technical, or difficult to read.
 
 ## 2024
 
 ### March
 
-- Backed up my past personal websites inside [semanticdata.github.io](https://github.com/semanticdata/semanticdata.github.io) using different branches.
+- Backed up my past personal websites inside [semanticdata.github.io](https://github.com/semanticdata/semanticdata.github.io) using different branches. It now sits with a few other previous personal websites and blogs.
 - Currently using [Eleventy Vite](https://github.com/matthiasott/eleventy-plus-vite) to publish [MiguelPimente.do](https://miguelpimentel.do). The plan is to transition to a new starter I'm working on.
 - Refreshed all my notes within [Forgetful Notes](https://forgetfulnotes.com/). Revised the desktop layouts.
 - Learning [Nunjucks](https://mozilla.github.io/nunjucks/) to use it as templating engine within [Eleventy](https://www.11ty.dev/).
@@ -25,7 +27,7 @@ compartir: true
 ### February
 
 - Discovered NASA's [Astronomy Picture of the Day](https://apod.nasa.gov/apod/).
-- After checking out [Astro](https://astro.build/), I decided it wasn't time to jump into it. For now, using [Eleventy](https://www.11ty.dev/) feels adequate given my knowledge level. I will definitely give Astro another go, once I am more comfortable with [[./Svelte|Svelte]].
+- After checking out [Astro](https://astro.build/), I decided it wasn't time to jump into it. For now, using [Eleventy](https://www.11ty.dev/) feels adequate given my knowledge level. I will definitely give Astro another go, once I am more comfortable with [[Svelte|Svelte]].
 - Updated my [Obsidian Starter Vault](https://github.com/semanticdata/obsidian-starter-vault) project. Now includes more information about the CSS snippets, community plugins, and general workflows included in it.
 - Forked these [Obsidian](https://obsidian.md) [Minimal theme](https://github.com/kepano/obsidian-minimal) [CSS Snippets](https://github.com/replete/obsidian-minimal-theme-css-snippets).
 - Added new CSS Snippets to my vault. I'll probably end up posting them later.
@@ -69,5 +71,3 @@ compartir: true
 - Contributions:
   - Fixed bug outlined in [Issue #18](https://github.com/getzola/book/issues/18) in [Zola Book](https://github.com/getzola/book).
   - Added dark theme and toggle to the [Anpu Zola](https://github.com/zbrox/anpu-zola-theme) theme.
-
-> [!note] I'm still defining what exactly I should include in this journal. I'm currently making sure it's not _too_ technical, or difficult to read.
