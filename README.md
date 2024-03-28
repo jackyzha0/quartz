@@ -4,8 +4,7 @@
 
 [Forgetful Notes](https://forgetfulnotes.com) is my _digital garden_ of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 
-[![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://semanticdata.github.io/eleventy-notes/)
-[![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](https://eleventy-notes-chi.vercel.app)
+[![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://semanticdata.github.io/eleventy-notes/) [![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](https://eleventy-notes-chi.vercel.app)
 
 ## 📑 Table of Contents
 
@@ -107,11 +106,11 @@ You can add custom CSS code within `/quartz/styles/custom.scss`. You will then n
 
 ### Fonts
 
-| Used in: |                       Font Family                        |                              Previous Font                               |
-| -------- | :------------------------------------------------------: | :----------------------------------------------------------------------: |
-| Headers  |    [Bitter](https://fonts.google.com/specimen/Bitter)    | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
-| Body     |    [Bitter](https://fonts.google.com/specimen/Bitter)    |    [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3)    |
-| Code     | [Fira Mono](https://fonts.google.com/specimen/Fira+Mono) |     [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono)     |
+| Used in: | Font Family | Previous Font |
+| --- | :-: | :-: |
+| Headers | [Bitter](https://fonts.google.com/specimen/Bitter) | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
+| Body | [Bitter](https://fonts.google.com/specimen/Bitter) | [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3) |
+| Code | [Fira Mono](https://fonts.google.com/specimen/Fira+Mono) | [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono) |
 
 ## 📁 Folder Structure
 

@@ -4,9 +4,7 @@ description: This section explores the concept of maintaining a Public Journal.
 compartir: true
 ---
 
-> [!note]
-> I'm still defining what exactly I should include in this journal. I'm currently making sure it's not _too_ technical, or difficult to read.
-This page explores the concept of keeping a public journal, something I haven't done before. I'm still defining what exactly I should include in this journal. I'm currently making sure it's not too technical, or difficult to read.
+> [!note] I'm still defining what exactly I should include in this journal. I'm currently making sure it's not _too_ technical, or difficult to read. This page explores the concept of keeping a public journal, something I haven't done before. I'm still defining what exactly I should include in this journal. I'm currently making sure it's not too technical, or difficult to read.
 
 ## 2024
 

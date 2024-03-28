@@ -13,8 +13,7 @@ Compilation of Words I like. Visit the [source](https://wordwarriors.wayne.edu/l
 ## Anodyne (adjective)
 
 1. Capable of soothing or eliminating pain.
-2. Not likely to offend or arouse tensions.
-   Also used as a _noun_ to describe something that soothes, calms, or comforts.
+2. Not likely to offend or arouse tensions. Also used as a _noun_ to describe something that soothes, calms, or comforts.
 
 ## Arete (noun)
 
