@@ -48,3 +48,153 @@ svg.external-icon{
     display: none;
 }
 
+
+
+
+/* Style for ITS Wiki Infobox. */
+.callout.callout[data-callout~=infobox] {
+    --callout-color: var(--note, var(--background-primary)); 
+    background: var(--light); /* Background color */
+    border: 1px solid var(--lightgray); /* Border with customizable width and color */
+    box-shadow: none; 
+    width: 300px;
+    margin: 0 8px; /* Margin */
+    padding: 5px; /* Padding */
+    float: right; /* Float to right */
+    border-radius: 1px; /* Border radius */
+    font-size: 16px;
+    color: var(--dark);
+
+    /* Hides Callout Icon */
+    .callout-title {
+        .callout-icon {
+            display: none;
+        }
+    }
+
+    /* Styles for expanded callout - Honestly don't know what this does functionally,*/
+    /* but visually without it the box looks like garbage and I am over trying to figure out why */
+    &:not(.is-collapsed) > .callout-title {
+        padding: 0;
+    }
+    
+    /* Styles for callout title inner */
+    /* Hides the name of the callout box, in this case "Infobox" */
+    .callout-title .callout-title-inner {
+        display: none;
+    }
+    
+    /* Styles for callout content */
+    .callout-content {
+        margin: 0 !important; /* Add !important to ensure it overrides any existing styles */
+        padding: 0 !important; /* Add !important to ensure it overrides any existing styles */
+    }
+
+
+/* Styles for tables inside callout content */
+table {
+    width: 100%; /* Set table width to 100% */
+    max-width: 275px; /* Set maximum width for the table */
+    border-collapse: collapse; /* Collapse table borders */
+    margin: 0 auto; /* Center the table horizontally */
+
+    /* Set column widths and styles */
+    td {
+        /* Set styles for table data cells */
+        white-space: pre-wrap;
+        word-wrap: normal;
+        word-break: normal;
+        padding: 0;
+        padding-left: 7px;
+        
+        /* Styles for text in column 1 */
+        &:first-child {
+            font-weight: bold;
+        }
+        /* Set background transparency for odd and even columns */
+        &:nth-child(odd) {
+            background-color: rgba(255, 255, 255, 0.01); /* Adjust transparency as needed */
+        }
+        
+        &:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.03); /* Adjust transparency as needed */
+        }
+    }
+
+    /* Set row height and remove border from all rows */
+    tr {      
+        &:first-child {/* Set height for heading row */
+            height: 7px;
+        }
+        border: none; /* Remove border from all rows */
+    }
+
+    /* Alternate row colors */
+    tr:nth-child(odd) {
+        background-color: rgba(255, 255, 255, 0.1); /* Adjust transparency as needed */
+    }
+    
+    tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.2); /* Adjust transparency as needed */
+    }
+
+    /* Add hover effect */
+    tr:hover {
+        background-color: rgba(255, 191, 90, 0.5); /* Adjust color and transparency on hover */
+    }
+
+    /* Remove bottom border from table header row and empty header */
+    thead th {
+        border-bottom: none;
+        
+        /* Styles for column headings */
+        &:empty {
+            padding: 0;
+        }
+        
+        &:first-child {
+            background-color: var(--secondary); /* Background color for the first column header */
+        }
+        
+        &:nth-child(2) {
+            background-color: var(--secondary); /* Background color for the second column header */
+        }
+    }
+}
+
+    
+    /* Styles for paragraphs and tables */
+    :is(p, table) {
+        margin-block-start: 0;
+        margin-block-end: 0;
+        margin: 6px; /* this makes the table within the content box look centered.*/
+    }
+
+    /* Styles for heading elements */
+    .callout-content h1, 
+    h2, 
+    h3, 
+    h4, 
+    h5, 
+    h6 {
+        font-size: 20px; /* Set font size for headings */
+        text-align: center !important; /* Align headings to the center */
+        margin: 0;
+        padding: 5px; /* Add padding to headings */
+        color: var(--darkgray)!important; /* Color headings using secondary variable */
+        background: var(--highlight);
+    }
+
+
+    /* Styles for internal embeds and images */
+    .internal-embed, 
+    img {
+        display: block;
+        margin: auto;
+    /*  max-height: 225px; /* Set max height for images */
+        max-width: 275px; /* Ensure full width */
+    /*  object-fit: cover; /* Crop the image to cover the container */
+    /*  object-position: center top; /* Display the top of the image */
+        border-radius: 1px;
+    }
+}
