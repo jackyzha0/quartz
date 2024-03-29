@@ -9,15 +9,31 @@ INT: 0
 WIS: 0  
 CHA: 0  
 ---  
-Big tough gentle giant from [[Bur-Vusamyr|Bur-Vusamyr]]. Travelling with [[Ash In the Snow/People/Axiom|Axiom]] and [[Ash In the Snow/People/Zilver|Zilver]], with Zilver as their ward.  
-## Stats  
-| Name | Stat                                   | Con                                           |  
-| ---- | -------------------------------------- | --------------------------------------------- |  
-| STR  | 0 |   |  
-| DEX  | 0 |     |  
-| INT  | 0 |     |  
-| WIS  | 0 |     |  
-| CHA  | 0  |     |  
+> [!infobox]  
+> ###### Bio  
+> |                |                  |  
+> | -------------- | ---------------- |  
+> |**Aliases**     | -                |  
+> |**Pronouns**    |            |  
+> |**Race**        |             |  
+> |**Age**         |             |  
+> |**Occupation** |         |  
+> |**Hometown**||  
+>   
+> ##### Relations  
+> |                |                           |  
+> | -------------- | ------------------------- |  
+>   
+> ##### Stats  
+> | Name | Stat   | Condition      |  
+| ---- | -------- | --------- |  
+| **STR**  | 0 |   |  
+| **DEX**  | 0 |     |  
+| **INT**  | 0 |     |  
+| **WIS**  | 0 |     |  
+| **CHA**  | 0  |     |  
+  
+Big tough gentle giant from [[../Geography/Locations/Bur-Vusamyr|Bur-Vusamyr]]. Travelling with [[./Axiom|Axiom]] and [[./Zilver|Zilver]], with Zilver as their ward.  
   
   
  

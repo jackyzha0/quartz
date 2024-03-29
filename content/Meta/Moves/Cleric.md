@@ -1,7 +1,7 @@
 ---  
 publish-ash: true  
 ---  
-For spells, go [[Cleric Spells|here]]  
+For spells, go [[./Cleric Spells|here]]  
 ## Starting Moves   
 You have all of these.  
 ### Atonement  

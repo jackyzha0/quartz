@@ -5,18 +5,18 @@ Moves are where nearly all the mechanics in Chasing Adventure live in. Here are 
   
 You can find the moves for each playbook here:  
   
-- [[Ash In the Snow/Meta/Moves/Barbarian|Barbarian]]  
-- [[Ash In the Snow/Meta/Moves/Bard|Bard]]  
-- [[Ash In the Snow/Meta/Moves/Cleric|Cleric]]  
-	- [[Cleric Spells|Cleric Spells]]  
-- [[Ash In the Snow/Meta/Moves/Druid|Druid]]  
-- [[Ash In the Snow/Meta/Moves/Fighter|Fighter]]  
-- [[Immolator|Immolator]]  
-- [[Ash In the Snow/Meta/Moves/Paladin|Paladin]]  
-- [[Ash In the Snow/Meta/Moves/Ranger|Ranger]]  
-- [[Thief|Thief]]  
-- [[Ash In the Snow/Meta/Moves/Wizard|Wizard]]  
-	- [[Wizard Spells|Wizard Spells]]  
+- [[./Barbarian|Barbarian]]  
+- [[./Bard|Bard]]  
+- [[./Cleric|Cleric]]  
+	- [[./Cleric Spells|Cleric Spells]]  
+- [[./Druid|Druid]]  
+- [[./Fighter|Fighter]]  
+- [[./Immolator|Immolator]]  
+- [[./Paladin|Paladin]]  
+- [[./Ranger|Ranger]]  
+- [[./Thief|Thief]]  
+- [[./Wizard|Wizard]]  
+	- [[./Wizard Spells|Wizard Spells]]  
 ## Adventure Moves  
 ### Defy  
 <span class="move-trigger">When you act despite an imminent threat or obstacle,</span> tell us how you  
@@ -264,7 +264,7 @@ leads them, how to escape them now, etc.)
 - Every PC on the losing side Crumbles.  
   
 ## Favor Moves  
-[[Favor|Favor]]  
+[[../Favor|Favor]]  
   
 ### Gratify  
 <span class="move-trigger">When you accomplish a significant task for someone,</span> choose two if  
@@ -296,7 +296,7 @@ for them.
   
   
 ## Follower Moves   
-[[Followers|Followers]]  
+[[../Followers|Followers]]  
 ### Endeavor    
 <span class="move-trigger">When your Follower does a dangerous task alone,</span> they do it to the    
 best of their ability, but are taken out of the action (trapped, injured,    
