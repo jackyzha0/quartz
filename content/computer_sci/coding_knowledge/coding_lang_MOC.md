@@ -32,4 +32,7 @@ date: 2024-03-27
 * [DOM](computer_sci/coding_knowledge/js/DOM.md)
 * [TypeScript vs. JavaScript](computer_sci/coding_knowledge/js/TypeScript_vs_JavaScript.md)
 * [Proxy in JS](computer_sci/coding_knowledge/js/proxy_in_js.md)
+* [For Loop](computer_sci/coding_knowledge/js/for_loop.md)
+* [var, let, const](computer_sci/coding_knowledge/js/var_let_const.md)
+* [Rest Parameters, Argument Objects, Spread Syntax](computer_sci/coding_knowledge/js/rest_parameters_argument_objects_spread_syntax.md)
 
