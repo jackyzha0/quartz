@@ -80,6 +80,7 @@ const config: QuartzConfig = {
       Plugin.ContentIndex({
         enableSiteMap: true,
         enableRSS: true,
+        enableRobots: true,
       }),
       Plugin.Assets(),
       Plugin.Static(),

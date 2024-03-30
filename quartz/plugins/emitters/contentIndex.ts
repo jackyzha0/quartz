@@ -23,6 +23,7 @@ export type ContentDetails = {
 interface Options {
   enableSiteMap: boolean
   enableRSS: boolean
+  enableRobots: boolean
   rssLimit?: number
   rssFullHtml: boolean
   includeEmptyFiles: boolean
@@ -31,6 +32,7 @@ interface Options {
 const defaultOptions: Options = {
   enableSiteMap: true,
   enableRSS: true,
+  enableRobots: true,
   rssLimit: 10,
   rssFullHtml: false,
   includeEmptyFiles: true,
@@ -89,6 +91,14 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex, limit?: nu
   </rss>`
 }
 
+function generateRobots(cfg: GlobalConfiguration, includeSitemap: boolean): string {
+  const sitemap = cfg.baseUrl !== undefined ? `Sitemap: ${cfg.baseUrl}/sitemap.xml` : ""
+
+  return `User-agent: *
+Allow: /
+${includeSitemap ? sitemap : ""}`
+}
+
 export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
   opts = { ...defaultOptions, ...opts }
   return {
@@ -108,6 +118,9 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
         }
         if (opts?.enableRSS) {
           graph.addEdge(sourcePath, joinSegments(ctx.argv.output, "index.xml") as FilePath)
+        }
+        if (opts?.enableRobots) {
+          graph.addEdge(sourcePath, joinSegments(ctx.argv.output, "robots.txt") as FilePath)
         }
       }
 
@@ -153,6 +166,17 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
             content: generateRSSFeed(cfg, linkIndex, opts.rssLimit),
             slug: "index" as FullSlug,
             ext: ".xml",
+          }),
+        )
+      }
+
+      if (opts?.enableRobots) {
+        emitted.push(
+          await write({
+            ctx,
+            content: generateRobots(cfg, opts?.enableSiteMap ?? false),
+            slug: "robots" as FullSlug,
+            ext: ".txt",
           }),
         )
       }
