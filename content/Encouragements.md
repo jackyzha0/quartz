@@ -22,7 +22,7 @@ Notes that one way or another, encourage me to be better, to sit down for less t
 11. Eat the Frog. Identify one challenging task (the frong), and complete it first thing in the morning (thus eating it).
 12. Fix and maintain a healthy sleep schedule.
 13. It doesn't need to be perfect, it does need to be started.
-14. [[./Consistency|Consistency]] is more important than intensity.
+14. [[Consistency|Consistency]] is more important than intensity.
 
 ## Side Effects of Sitting Down
 
