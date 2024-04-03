@@ -8,6 +8,8 @@ date: 2023-12-18
 
 # Basic Concept
 
+# Curve Fitting
+
 
 # [Stochastic Process](data_sci/stochastic_process/MOC.md)
 
