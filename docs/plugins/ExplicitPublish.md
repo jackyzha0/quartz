@@ -13,6 +13,6 @@ This plugin has no configuration options.
 
 ## API
 
-- Category: Emitter
+- Category: Filter
 - Function name: `Plugin.ExplicitPublish()`.
 - Source: [`quartz/plugins/filters/explicit.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/filters/explicit.ts).

@@ -79,6 +79,11 @@ a {
       border-radius: 0;
       padding: 0;
     }
+    &.tag-link {
+      &::before {
+        content: "#";
+      }
+    }
   }
 
   &.external .external-icon {
@@ -507,4 +512,9 @@ ol.overflow {
   ul {
     padding-left: 1rem;
   }
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
 }
