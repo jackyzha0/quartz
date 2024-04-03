@@ -49,40 +49,16 @@ pnpm start
 
 ## 👨🏼‍💻 Useful Commands
 
-**Install dependencies**
-
-```sh
-npm install
-```
-
-**Update dependencies**
-
-```sh
-npm update
-```
-
-**Start local server**
-
-```sh
-npm start
-```
-
 **Update Quartz**
 
 ```sh
 npm run update
 ```
 
-**Sync the repo**
+**Sync changes**
 
 ```sh
 npm run sync
-```
-
-**Build only**
-
-```sh
-npm run build
 ```
 
 **Read about a command**
