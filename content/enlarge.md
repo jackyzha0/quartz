@@ -1,8 +1,0 @@
-
-## Heading  
-
-
-___
-
-##### Metadata
-Type: #💬/👥 

@@ -1,4 +1,0 @@
----
-enableTOC: false
-enableDate: false
----

@@ -1,1 +1,0 @@
-Look for that part in the new inquisition where he's talking about relativity of language like up and down for atrinauts and the size of a bugs leg to a bug vs a human. This will bring to light the non-realivity aspect of nibbana
