@@ -206,7 +206,7 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
               <div key={node.name} data-folderpath={folderPath}>
                 {folderBehavior === "link" ? (
                   <a
-                    href={resolveRelative(fileData.slug!, folderPath as SimpleSlug)}
+                    href={resolveRelative(fileData.slug!, folderPath as SimpleSlug, true)}
                     data-for={node.name}
                     class="folder-title"
                   >
