@@ -1,0 +1,36 @@
+- carageenen
+- Beta-glucans
+- Natural flavors
+- Leptins
+- Moltitol
+- Sucralose
+- Oleic acid
+- DHA
+- EPA
+- Gluten
+- Natural flavors
+- CoQ10
+- Vitamins
+- Nitrites and nitrates
+- MSG 
+- Organic
+- Egg whites
+- Amunoglobulens
+- Antibodies
+- Oxidation
+- Amino acids
+- Fitic acid
+- Iodine
+- OEA
+- Magnesium
+- Casisns
+- Starches
+- Acidic acid
+- Organic
+- Flavonoids
+- Antioxidants
+- Anthocyanins
+- Lactose
+- Vitamins and minerals mentioned in Cronometer
+- Sees oils
+- Sugar

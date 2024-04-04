@@ -1,0 +1,56 @@
+## Medicine Constellation
+
+### Medicine Notes
+
+- [[Modern medicine tends to target the pathology of an illness rather than preventing it]]
+- [[Metabolic syndrome is a complex multifactoral condition with multiple morbitities]]
+- [[Weight gain occurs after metabolic syndrome]]
+- [[You can still have metabolic syndrome even if your thin]]
+- [[There are overweight people without who are not sick]]
+- [[Most people at risk for diabetes cannot prevent it with diet and exercise]]
+- [[Relatively high LDL-C doesn't usually lead to a heart attack for most people]]
+- [[Low-fat diet and statins do not change LDL-C levels much]]
+- [[Low fat diet and statins do not prevent heart attack because they only lower levels of large boyant LDL-C]]
+- [[Refined carbohydrates and sugar increase levels of small dense LDL]]
+- [[Triglyceride levels are a better biomarker for heart disease than LDL-C]]
+- [[Insulin resistance inhibits sodium excretion by the kidney]]
+- [[Reducing sugar intake is a better way to fix high blood pressure than lowering salt]]
+- [[Diabetes]]
+- [[Medications for high blood glucose lead to increased mortality in type-2 diabetics]]
+- [[High insulin levels cause diabetes rather than high blood glucose itself]]
+- [[Insulin can be both good and bad for you]]
+- [[US medicine in the 19th century lacked standardization]]
+- [[Johns Hopkins medical school adopted the German educational structure in the late 19th century in an attempt to establish itself as a beacon of evidence-based medicine and science]]
+- [[Simon Flexner]]
+- [[Abraham Flexner]]
+- [[In the late 19th century, John D. Rockefeller's buisness advisor Fredrick Gates had him to open a medical research institute]]
+- [[The successful pharmaceutical industry esblished by Auschwitz nerve gas creator IG Farben motivated John D. Rockefeller to fund the restructuring of American medical school]]
+- [[Abraham Flexner was assigned to direct John D. Rockefellers restructering of American medical school]]
+- [[Flexner Report]]
+- [[Government and university medical research has been cut back in favor of Big Pharmas own research]]
+- [[Big Pharma's own research is often biased toward their own drug]]
+- [[Big Pharma influnces doctors by funding medical schools]]
+- [[Big Pharma uses their own medical symposiums or reps to bypass institutions co-opt prescribers directly]]
+- [[Ketones can help prevent neurodegenerative disease]]
+- [[Eugenics began with SIr Francis Galton's assumption that desirable traits could be selected for in humans by selectively breeding the population]]
+- [[Genetic theories of medical or mental conditions can enable people or society to absolve themselves from responsibility]]
+- [[Stress-related disease among the poor usually has more to do with feeling poor than actually being poor]]
+- [[Income inequality is a strong predictor of poor health because it is about being made to feel poor]]
+- [[Income inequality does not predict poor health as much in more egalitarian countries]]
+- [[If you adjust for absolute income, income inequality still predicts poor health]]
+- [[There is a steep rise in health from very poor to lower middle class, but it flattens out in the upper SES range]]
+- [[Societies with more income equality, both the poor and the wealthy are healthier than their counterparts in a less equal society with the same average income]]
+- [[The low social capital that comes with income inequality can lead to more stress and poor health]]
+- [[Dramatic income inequality gets rid of the possibility for there to be lots of social capital in a society, leading to more stress and poor health]]
+- [[More social capital in a society can improve the health of the society]]
+- [[To really address the poor health of the poor, we would have to uproot the stressors involved in low rank rather than give people more money]]
+- [[Unlike monkey's, humans who rank low in the hierarchy almost always have a disproportionate share of disease]]
+- [[Modern medical science has struggled to develop a solid definition for "health" and "illness"]]
+- [[Drug companies will alter existing drug compounds very slightly to extend patent life]]
+- [[Pharma raises revenue and extends patents by finding new markets for existing drugs]]
+
+___
+
+##### Metadata
+
+Status: #✨
