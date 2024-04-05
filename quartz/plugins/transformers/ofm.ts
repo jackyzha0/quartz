@@ -17,6 +17,7 @@ import { toHtml } from "hast-util-to-html"
 import { PhrasingContent } from "mdast-util-find-and-replace/lib"
 import { capitalize } from "../../util/lang"
 import { PluggableList } from "unified"
+import { ListItem } from "mdast-util-to-hast/lib/handlers/list-item"
 
 export interface Options {
   comments: boolean
@@ -97,37 +98,31 @@ function canonicalizeCallout(calloutName: string): keyof typeof calloutMapping {
 
 export const externalLinkRegex = /^https?:\/\//i
 
-export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/, "g")
+export const arrowRegex = /(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/g
 
 // !?                -> optional embedding
 // \[\[              -> open brace
 // ([^\[\]\|\#]+)    -> one or more non-special characters ([,],|, or #) (name)
 // (#[^\[\]\|\#]+)?  -> # then one or more non-special characters (heading link)
-// (\|[^\[\]\#]+)? -> | then one or more non-special characters (alias)
-export const wikilinkRegex = new RegExp(
-  /!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\#]+)?\]\]/,
-  "g",
-)
-const highlightRegex = new RegExp(/==([^=]+)==/, "g")
-const commentRegex = new RegExp(/%%[\s\S]*?%%/, "g")
+// (\|[^\[\]\#]+)?   -> | then one or more non-special characters (alias)
+export const wikilinkRegex = /!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\#]+)?\]\]/g
+const highlightRegex = /==([^=]+)==/g
+const commentRegex = /%%[\s\S]*?%%/g
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
-const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
-const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
-// (?:^| )              -> non-capturing group, tag should start be separated by a space or be the start of the line
-// #(...)               -> capturing group, tag itself must start with #
-// (?:[-_\p{L}\d\p{Z}])+       -> non-capturing group, non-empty string of (Unicode-aware) alpha-numeric characters and symbols, hyphens and/or underscores
-// (?:\/[-_\p{L}\d\p{Z}]+)*)   -> non-capturing group, matches an arbitrary number of tag strings separated by "/"
-const tagRegex = new RegExp(
-  /(?:^| )#((?:[-_\p{L}\p{Emoji}\p{M}\d])+(?:\/[-_\p{L}\p{Emoji}\p{M}\d]+)*)/,
-  "gu",
-)
-const blockReferenceRegex = new RegExp(/\^([-_A-Za-z0-9]+)$/, "g")
+const calloutRegex = /^\[\!(\w+)\]([+-]?)/
+const calloutLineRegex = /^> *\[\!\w+\][+-]?.*$/gm
+
+// (?:^| )                   -> non-capturing group, tag should start be separated by a space or be the start of the line
+// #(...)                    -> capturing group, tag itself must start with #
+// (?:[-_\p{L}\d\p{Z}])+     -> non-capturing group, non-empty string of (Unicode-aware) alpha-numeric characters and symbols, hyphens and/or underscores
+// (?:\/[-_\p{L}\d\p{Z}]+)*) -> non-capturing group, matches an arbitrary number of tag strings separated by "/"
+const tagRegex = /(?:^| )#((?:[-_\p{L}\p{Emoji}\p{M}\d])+(?:\/[-_\p{L}\p{Emoji}\p{M}\d]+)*)/gu
+const blockReferenceRegex = /\^([-_A-Za-z0-9]+)$/g
 const ytLinkRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
 const ytPlaylistLinkRegex = /[?&]list=([^#?&]*)/
-const videoExtensionRegex = new RegExp(/\.(mp4|webm|ogg|avi|mov|flv|wmv|mkv|mpg|mpeg|3gp|m4v)$/)
-const wikilinkImageEmbedRegex = new RegExp(
-  /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/,
-)
+const videoExtensionRegex = /\.(mp4|webm|ogg|avi|mov|flv|wmv|mkv|mpg|mpeg|3gp|m4v)$/
+const wikilinkImageEmbedRegex = /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/
+const extendedTaskItemRegex = /^\[([^\[\]])\] (.*)/gm;
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
@@ -487,8 +482,48 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         })
       }
 
-      return plugins
+      // TODO: add option for task status
+      if (true) {
+        plugins.push(() => {
+          return (tree: Root, _file) => {
+            visit(tree, "listItem", (node) => {
+              // we either have a GFM type checkbox (with a space or x), or a normal list item
+              if (typeof node.checked === "boolean") {
+                node.data = {
+                  ...node.data,
+                  hProperties: {
+                    dataTask: node.checked ? "x" : " ",
+                  },
+                }
+              } else {
+                const paragraph = node.children[0] as Paragraph;
+                if (paragraph?.type !== "paragraph") return;
+
+                const text = paragraph.children?.[0];
+                if (text.type !== 'text') return;
+
+                extendedTaskItemRegex.lastIndex = 0;
+                const result = extendedTaskItemRegex.exec(text.value);
+
+                if (result) {
+                  node.checked = true;
+                  node.data = {
+                    ...node.data,
+                    hProperties: {
+                      dataTask: result[1],
+                    },
+                  };
+                  text.value = result[2];
+                }
+              }
+            });
+          };
+        })
+      }
+
+      return plugins;
     },
+
     htmlPlugins() {
       const plugins: PluggableList = [rehypeRaw]
 
@@ -682,5 +717,10 @@ declare module "vfile" {
   interface DataMap {
     blocks: Record<string, Element>
     htmlAst: HtmlRoot
+  }
+}
+declare module "mdast" {
+  interface ListItem {
+    marker: string
   }
 }
