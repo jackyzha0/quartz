@@ -42,7 +42,7 @@
     "chokidar": "^3.6.0",
     "cli-spinner": "^0.2.10",
     "d3": "^7.9.0",
-    "esbuild-sass-plugin": "^2.16.1",
+    "esbuild-sass-plugin": "^3.0.0",
     "flexsearch": "0.7.43",
     "github-slugger": "^2.0.0",
     "globby": "^14.0.1",
@@ -101,7 +101,7 @@
     "@types/source-map-support": "^0.5.10",
     "@types/ws": "^8.5.10",
     "@types/yargs": "^17.0.32",
-    "esbuild": "^0.19.9",
+    "esbuild": "^0.20.2",
     "prettier": "^3.2.4",
     "tsx": "^4.7.1",
     "typescript": "^5.4.3"
