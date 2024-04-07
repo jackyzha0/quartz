@@ -4,12 +4,20 @@ import { ReplaceFunction } from "mdast-util-find-and-replace"
 import { FilePath, slugifyFilePath } from "../../../util/path"
 export const externalLinkRegex = /^https?:\/\//i
 
-// !?                -> optional embedding
-// \[\[              -> open brace
-// ([^\[\]\|\#]+)    -> one or more non-special characters ([,],|, or #) (name)
-// (#[^\[\]\|\#]+)?  -> # then one or more non-special characters (heading link)
-// (\|[^\[\]\#]+)?   -> | then one or more non-special characters (alias)
-export const wikilinkRegex = /!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\#]+)?\]\]/g
+// !?                 -> optional embedding
+// \[\[               -> open brace
+// ([^\[\]\|\#]+)     -> one or more non-special characters ([,],|, or #) (name)
+// (#[^\[\]\|\#]+)?   -> # then one or more non-special characters (heading link)
+// (\\?\|[^\[\]\#]+)? -> optional escape \ then | then one or more non-special characters (alias)
+export const wikilinkRegex = /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]/g
+
+// ^\|([^\n])+\|\n(\|) -> matches the header row
+// ( ?:?-{3,}:? ?\|)+  -> matches the header row separator
+// (\|([^\n])+\|\n)+   -> matches the body rows
+export const tableRegex = /^\|([^\n])+\|\n(\|)( ?:?-{3,}:? ?\|)+\n(\|([^\n])+\|\n?)+/gm
+
+// matches any wikilink, only used for escaping wikilinks inside tables
+export const tableWikilinkRegex = /(!?\[\[[^\]]*?\]\])/g
 
 const wikilinkImageEmbedRegex = /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/
 
@@ -19,6 +27,21 @@ export const wikilinkTextTransform = (src: string | Buffer) => {
     src = src.toString()
   }
 
+  // replace all wikilinks inside a table first
+  src = src.replace(tableRegex, (value) => {
+    // escape all aliases and headers in wikilinks inside a table
+    return value.replace(tableWikilinkRegex, (value, ...capture) => {
+      const [raw]: (string | undefined)[] = capture
+      let escaped = raw ?? ""
+      escaped = escaped.replace("#", "\\#")
+      // escape pipe characters if they are not already escaped
+      escaped = escaped.replace(/((^|[^\\])(\\\\)*)\|/g, "$1\\|")
+
+      return escaped
+    })
+  })
+
+  // replace all other wikilinks
   src = src.replace(wikilinkRegex, (value, ...capture) => {
     const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
 
