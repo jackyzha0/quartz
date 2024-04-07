@@ -121,9 +121,3 @@ declare module "vfile" {
     htmlAst: HtmlRoot
   }
 }
-
-declare module "mdast" {
-  interface ListItem {
-    marker: string
-  }
-}
