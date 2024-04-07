@@ -34,7 +34,7 @@ export interface Options {
   enableYouTubeEmbed: boolean
   enableVideoEmbed: boolean
   enableCheckbox: boolean
-  customTaskStatuses: boolean
+  taskStatusStyling: boolean
 }
 
 const defaultOptions: Options = {
@@ -50,7 +50,7 @@ const defaultOptions: Options = {
   enableYouTubeEmbed: true,
   enableVideoEmbed: true,
   enableCheckbox: false,
-  customTaskStatuses: true,
+  taskStatusStyling: true,
 }
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
@@ -88,7 +88,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
       if (opts.enableVideoEmbed) plugins.push(videoEmbedPlugin)
       if (opts.callouts) plugins.push(calloutPlugin)
       if (opts.mermaid) plugins.push(mermaidPlugin)
-      if (opts.customTaskStatuses) plugins.push(customTaskStatusPlugin)
+      if (opts.taskStatusStyling) plugins.push(customTaskStatusPlugin)
 
       return plugins;
     },
