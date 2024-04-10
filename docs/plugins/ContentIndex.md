@@ -9,7 +9,7 @@ This plugin emits both RSS and an XML sitemap for your site. The [[RSS Feed]] al
 This plugin emits a comprehensive index of the site's content, generating additional resources such as a sitemap, an RSS feed, and a
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
+> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
 
 This plugin accepts the following configuration options:
 

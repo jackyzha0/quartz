@@ -7,7 +7,7 @@ tags:
 This plugin determines the created, modified, and published dates for a document using three potential data sources: frontmatter metadata, Git history, and the filesystem. See [[authoring content#Syntax]] for more information.
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
+> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
 
 This plugin accepts the following configuration options:
 

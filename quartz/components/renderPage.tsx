@@ -118,11 +118,12 @@ export function renderPage(
               // skip until we find the blockref that matches
               if (el.properties?.id === blockRef) {
                 startIdx = i
-                startDepth = Number(el.tagName.substring(1))
+                startDepth = depth
               }
             } else if (depth <= startDepth) {
               // looking for new header that is same level or higher
               endIdx = i
+              break
             }
           }
 

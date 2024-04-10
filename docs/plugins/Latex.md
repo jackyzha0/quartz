@@ -7,7 +7,7 @@ tags:
 This plugin adds LaTeX support to Quartz. See [[features/Latex|Latex]] for more information.
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
+> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
 
 This plugin accepts the following configuration options:
 

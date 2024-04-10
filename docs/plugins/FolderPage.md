@@ -9,7 +9,7 @@ This plugin generates index pages for folders, creating a listing page for each 
 Example: [[advanced/|Advanced]]
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
+> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
 
 This plugin has no configuration options.
 

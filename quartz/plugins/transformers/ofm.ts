@@ -99,15 +99,27 @@ export const externalLinkRegex = /^https?:\/\//i
 
 export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/, "g")
 
-// !?                -> optional embedding
-// \[\[              -> open brace
-// ([^\[\]\|\#]+)    -> one or more non-special characters ([,],|, or #) (name)
-// (#[^\[\]\|\#]+)?  -> # then one or more non-special characters (heading link)
-// (\|[^\[\]\#]+)? -> | then one or more non-special characters (alias)
+// !?                 -> optional embedding
+// \[\[               -> open brace
+// ([^\[\]\|\#]+)     -> one or more non-special characters ([,],|, or #) (name)
+// (#[^\[\]\|\#]+)?   -> # then one or more non-special characters (heading link)
+// (\\?\|[^\[\]\#]+)? -> optional escape \ then | then one or more non-special characters (alias)
 export const wikilinkRegex = new RegExp(
-  /!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\#]+)?\]\]/,
+  /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]/,
   "g",
 )
+
+// ^\|([^\n])+\|\n(\|) -> matches the header row
+// ( ?:?-{3,}:? ?\|)+  -> matches the header row separator
+// (\|([^\n])+\|\n)+   -> matches the body rows
+export const tableRegex = new RegExp(
+  /^\|([^\n])+\|\n(\|)( ?:?-{3,}:? ?\|)+\n(\|([^\n])+\|\n?)+/,
+  "gm",
+)
+
+// matches any wikilink, only used for escaping wikilinks inside tables
+export const tableWikilinkRegex = new RegExp(/(!?\[\[[^\]]*?\]\])/, "g")
+
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
 const commentRegex = new RegExp(/%%[\s\S]*?%%/, "g")
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
@@ -169,6 +181,21 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           src = src.toString()
         }
 
+        // replace all wikilinks inside a table first
+        src = src.replace(tableRegex, (value) => {
+          // escape all aliases and headers in wikilinks inside a table
+          return value.replace(tableWikilinkRegex, (value, ...capture) => {
+            const [raw]: (string | undefined)[] = capture
+            let escaped = raw ?? ""
+            escaped = escaped.replace("#", "\\#")
+            // escape pipe characters if they are not already escaped
+            escaped = escaped.replace(/((^|[^\\])(\\\\)*)\|/g, "$1\\|")
+
+            return escaped
+          })
+        })
+
+        // replace all other wikilinks
         src = src.replace(wikilinkRegex, (value, ...capture) => {
           const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
 
@@ -189,9 +216,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
       return src
     },
-    markdownPlugins(ctx) {
+    markdownPlugins(_ctx) {
       const plugins: PluggableList = []
-      const cfg = ctx.cfg.configuration
 
       // regex replacements
       plugins.push(() => {

@@ -513,3 +513,8 @@ ol.overflow {
     padding-left: 1rem;
   }
 }
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
