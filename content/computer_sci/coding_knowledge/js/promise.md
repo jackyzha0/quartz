@@ -4,7 +4,7 @@ tags:
   - advanced
   - javascript
   - coding-language
-date: 2024-03-31
+date: 2024-04-09
 ---
 **Promise** 是 JavaScript 中用来处理异步操作的类。它提供了一种更简洁、更易于理解的方式来处理异步操作的结果。
 
@@ -190,12 +190,105 @@ setTimeout(() => {
 }, 1000)
 ```
 
+
+## 理解 async function return
+
+### Demo code
+
+```js
+async function example() {
+    try {
+        return new Promise((resolve, reject) => {
+            throw new Error('糟糕！');
+        });
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+example(); // 错误不会被捕获，它拒绝了 example 返回的 promise。
+
+async function example2() {
+    try {
+        return await new Promise((resolve, reject) => {
+            throw new Error('糟糕！');
+        });
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+example2(); // 错误被捕获，example2 返回的 promise 被解决。
+```
+
+* 在解决这个问题时，可能会派上用场的一个有趣事实是，在异步函数中，无论你是返回 `return new Promise()` 还是 `return await new Promise()`，行为通常是相同的。这是因为**异步函数始终将返回值包装在`Promise` 中**。然而，在某些情况下，如错误处理，使用 await 可能会有所不同。
+
+* `example()`函数中，`try`块不会捕获`promise`引发的错误，因为`promise` 在引发错误之前就已经返回了。在 `example2()` 中，`await` 会导致函数等待 `promise` 完成或抛出错误，因此它可以捕获 `promise` 引发的错误
+
+
 ## `Promise.all()`
 
 当需要同时执行多个异步操作并等待它们全部完成后，通常会使用 `Promise.all()` 方法。
 
+### Demo code
+
+```js
+var addTwoPromises = async function(promise1, promise2) {
+
+    const [val1, val2] = await Promise.all([promise1, promise2]);
+    return val1 + val2
+
+};
+```
+
+
+# `Promise` 链式调用
+
+Promise 链式编程是 JavaScript 中的一种技术，允许你按顺序执行多个异步操作，每个操作在前一个操作完成后启动。Promise 链的主要优点是，它允许你避免使用嵌套回调来处理异步代码时的 “回调地狱” 或 “回调金字塔”。相反，你可以编写几乎看起来像同步代码的异步代码，从而更容易理解和维护。**Promise 链中的每个 then 方法都会接收上一个 promise 解决的结果。此结果可以用来通知链中的下一个步骤。如果链中的 promise 被拒绝，后续的 then 方法将被跳过，直到找到 catch 方法来处理错误。**
+
+## Demo code
+
+```js
+let isLoading = true;
+
+fetch('https://api.example.com/data')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('网络响应不正常');
+    }
+    return response.json();
+  })
+  .then(data => console.log(data))
+  .catch(error => console.error('错误：', error))
+  .finally(() => {
+    isLoading = false;
+    console.log('获取操作完成');
+  });
+```
+
+
+
+# `Promise` and `setTimeout`
+
+## Demo code
+
+```js
+
+// sleep function 的实现
+
+async function sleep(milliseconds) {
+	await new Promise(res => setTimeout(res, milliseconds)); 
+}
+
+
+/** 
+ * let t = Date.now()
+ * sleep(100).then(() => console.log(Date.now() - t)) // 100
+ */
+```
 
 # Reference
 
 * https://www.youtube.com/watch?v=DHvZLI7Db8E&t=85s
 * https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Using_promises
+* https://leetcode.cn/problems/sleep/solutions/2506139/shui-mian-han-shu-by-leetcode-solution-vuse/?envType=study-plan-v2&envId=30-days-of-javascript
