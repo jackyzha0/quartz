@@ -15,21 +15,6 @@ date: 2024-01-02
 * CS major
 * Ti
 * VCT
-* 昨日的美食 第二季
-# Film
-
-* 燃烧
-* 偶然と想像
-* 激乐人心
-* 盲井
-* ~~~昆池岩~~~
-* 玻尔 Pearl
-
-# Book
-
-* 窄门
-* 沧浪之水
-* 跃动青春
 
 # Cuisine
 
@@ -42,6 +27,9 @@ date: 2024-01-02
 * 麻糍煎蛋
 * 肉沫炊饭
 
+## 韩国
+
+* [酱蟹](https://www.bilibili.com/video/BV1WJ4m177nH/?spm_id_from=333.1007.tianma.2-1-4.click&vd_source=c47136abc78922800b17d6ce79d6e19f)
 # Travel
 
 * 法罗群岛

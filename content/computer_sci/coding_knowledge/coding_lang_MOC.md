@@ -37,4 +37,5 @@ date: 2024-03-27
 * [Rest Parameters, Argument Objects, Spread Syntax](computer_sci/coding_knowledge/js/rest_parameters_argument_objects_spread_syntax.md)
 * [Memoization](computer_sci/coding_knowledge/js/memoization.md)
 * [Promise](computer_sci/coding_knowledge/js/promise.md)
-
+* [setTimeout](computer_sci/coding_knowledge/js/setTimeout.md)
+* [closure](computer_sci/coding_knowledge/js/closure.md)
