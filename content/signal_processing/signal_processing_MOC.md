@@ -41,3 +41,16 @@ date: 2024-03-18
 
 * [Gaussian Impulse Generating](signal_processing/impulse_generating/gaussian_impulse.md)
 
+
+## Autocorrelation
+
+* [Autocorrelation in Signal Processing](signal_processing/advanced_statistic/autocorrelation/autocorrelation.md)
+* [Autocorrelation to Detect Period](signal_processing/advanced_statistic/autocorrelation/period_detect.md)
+
+# Software
+
+## CST MWS
+
+* [CST MWS Basic](signal_processing/software/simulation/CST/basic.md)
+
+

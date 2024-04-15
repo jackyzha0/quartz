@@ -65,3 +65,5 @@ Let's see the vertical subsystem of the oscilloscope. The basic form of an analo
 # Reference
 
 * https://www.linkedin.com/pulse/working-principle-indicators-oscilloscope-1-na-wang-6pkmc/
+* https://zhuanlan.zhihu.com/p/672667254
+* https://zhuanlan.zhihu.com/p/393063086

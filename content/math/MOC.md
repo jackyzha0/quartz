@@ -8,9 +8,13 @@ date: 2023-12-03
 
 # Statistics
 
-## Basic concept
+## Basic Concept
 
 * [Quantile](math/Statistics/Basic/Quantile.md)
+
+## Significance Test
+
+* [Basic about significance test](math/Statistics/significance_test/whats_the_significance_test.md)
 
 # Discrete mathematics
 
