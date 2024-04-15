@@ -21,6 +21,7 @@ date: 2024-03-18
 
 * [✨Learn VNA in practical way](signal_processing/device_and_components/VNA_learn.md)
 * [Cable](signal_processing/device_and_components/cable/cable.md)
+* [oscilloscope](signal_processing/device_and_components/oscilloscope/oscilloscope.md)
 
 # Signal Algorithm about
 
