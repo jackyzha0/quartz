@@ -9,7 +9,7 @@ date: 2024-03-18
 
 * [Random Signal Basic](signal_processing/basic_knowledge/random_signal_basic.md)
 * [Fourier Transform](signal_processing/basic_knowledge/FT/fourier_transform.md)
-* [Power spectral density estimation](signal_processing/PSD_estimation/PSD_estimation.md)
+* [Power spectral density estimation](signal_processing/algorithm/PSD_estimation/PSD_estimation.md)
 * [FBW - Fractional Band Width](signal_processing/basic_knowledge/concept/FBW.md)
 
 ## Fourier Transform
@@ -27,25 +27,30 @@ date: 2024-03-18
 
 ## Envelope
 
-* [Hilbert Transform - Envelope](signal_processing/envelope/hilbert_transform.md)
+* [Hilbert Transform - Envelope](signal_processing/algorithm/envelope/hilbert_transform.md)
 
 ## Curve similarity
 
-* [Curve Similarity - MOC](signal_processing/curve_similarity/curve_similarity.md)
+* [Curve Similarity - MOC](signal_processing/algorithm/curve_similarity/curve_similarity.md)
 
 ## Filter
 
-* [Chebyshev Filter](signal_processing/filter/chebyshev_filter.md)
+* [Chebyshev Filter](signal_processing/algorithm/filter/chebyshev_filter.md)
 
 ## Generating Impulse
 
-* [Gaussian Impulse Generating](signal_processing/impulse_generating/gaussian_impulse.md)
-
+* [Gaussian Impulse Generating](signal_processing/algorithm/impulse_generating/gaussian_impulse.md)
 
 ## Autocorrelation
 
 * [Autocorrelation in Signal Processing](signal_processing/advanced_statistic/autocorrelation/autocorrelation.md)
 * [Period Detection by Autocorrelation](signal_processing/advanced_statistic/autocorrelation/period_detection.md)
+
+
+## Empirical Mode Decomposition
+
+
+
 # Software
 
 ## CST MWS

@@ -7,13 +7,13 @@ date: 2023-11-30
 ---
 # Almost Fourier Transform
 
-![](signal_processing/attachments/Pasted%20image%2020230919152200.png)
+![](signal_processing/basic_knowledge/attachments/Pasted%20image%2020230919152200.png)
 
 It is important to see there are 2 different frequencies here:
 1. The frequency of the original signal
 2. The frequency with which the **little rotating vector winds around the circle**
 
-![](signal_processing/attachments/Pasted%20image%2020230919152234.png)
+![](signal_processing/basic_knowledge/attachments/Pasted%20image%2020230919152234.png)
 
 Different patterns appear as we wind up this graph, but it is clear that the x-coordinate for the center of mass is important when the winding frequency is 3; The same number as the original signal
 
@@ -28,7 +28,7 @@ $$
 因为在Fourier transform中，convention way是顺时针旋转，所以使用$e^{-2\pi ift}$，那如何衡量center of mass呢，如下图：
 
 
-![](signal_processing/attachments/Pasted%20image%2020230919152357.png)
+![](signal_processing/basic_knowledge/attachments/Pasted%20image%2020230919152357.png)
 
 
 $$
@@ -43,7 +43,7 @@ $$
 
 这个就是Almost Fourier Transform, 但是实际情况上，Fourier transform倾向于得到scaled center mass，越长的time，旋转越多圈，其Fourier transform也会成倍放大
 
-![](signal_processing/attachments/Pasted%20image%2020230919152720.png)
+![](signal_processing/basic_knowledge/attachments/Pasted%20image%2020230919152720.png)
 
 
 # Fourier Transform (FT)
@@ -118,7 +118,7 @@ $$
 
 ## 复数形式推导
 
-![](signal_processing/attachments/Pasted%20image%2020230919153109.png)
+![](signal_processing/basic_knowledge/attachments/Pasted%20image%2020230919153109.png)
 
 
 ## 三角函数推导
@@ -184,7 +184,7 @@ $$
 
 **For $X[k]$, it means a $\cos$ wine like this:**
 
-![](signal_processing/attachments/Pasted%20image%2020230919153401.png)
+![](signal_processing/basic_knowledge/attachments/Pasted%20image%2020230919153401.png)
 
 # Fast Fourier transform(FFT)
 

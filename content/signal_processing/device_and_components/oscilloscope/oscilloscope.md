@@ -3,7 +3,7 @@ title: Oscilloscope basic knowledge
 tags:
   - signal-processing
   - devices
-date: 2024-11-04
+date: 2024-04-11
 ---
 # Classification
 

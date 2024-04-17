@@ -54,7 +54,7 @@ T_{n+1}(x) & = 2xT_n(x)-T_{n-1}(x)
 \end{split}
 \end{equation}
 $$
-![](signal_processing/filter/attachments/Pasted%20image%2020240108161455.png)
+![](signal_processing/algorithm/filter/attachments/Pasted%20image%2020240108161455.png)
 #### 第二类切比雪夫多项式
 
 $$
@@ -67,7 +67,7 @@ U_{n+1}(x) & = 2xU_n(x) - U_{n-1}(x)
 \end{equation}
 $$
 
-![](signal_processing/filter/attachments/Pasted%20image%2020240108161800.png)
+![](signal_processing/algorithm/filter/attachments/Pasted%20image%2020240108161800.png)
 
 ### 正交性
 

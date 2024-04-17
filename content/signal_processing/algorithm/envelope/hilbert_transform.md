@@ -9,7 +9,7 @@ date: 2024-01-12
 
 # Introduction
 
-![](signal_processing/envelope/attachments/Pasted%20image%2020240103160713.png)
+![](signal_processing/algorithm/envelope/attachments/Pasted%20image%2020240103160713.png)
 
 # Envelope Explanation
 ## Envelope and Fine Structure
@@ -36,7 +36,7 @@ date: 2024-01-12
 
 早期关于包络和瞬时相位的研究都是基于笛卡尔坐标系x-y
 
-![](signal_processing/envelope/attachments/Pasted%20image%2020240102155308.png)
+![](signal_processing/algorithm/envelope/attachments/Pasted%20image%2020240102155308.png)
 
 有关系：
 $$
@@ -73,7 +73,7 @@ $$
 H(\mu)(t) = \frac{1}{\pi} \text{p.v.} \int_{\infty}^{\infty} \frac{\mu(t)}{t-\tau}d\tau
 $$
 
-![](signal_processing/envelope/attachments/Pasted%20image%2020240102150350.png)
+![](signal_processing/algorithm/envelope/attachments/Pasted%20image%2020240102150350.png)
 
 
 The Hilbert transform is given by the [Cauchy principal value](math/real_analysis/cauchy_principal_value.md) of the convolution with the function $1/(\pi t)$.

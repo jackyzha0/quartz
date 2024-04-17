@@ -70,7 +70,7 @@ $$
 
 对于拥有Ergodicity的信号，可以用时间平均代替集合平均，即
 
-![](signal_processing/attachments/Screenshot_from_2022-10-18_10-53-17.png)
+![](signal_processing/basic_knowledge/attachments/Screenshot_from_2022-10-18_10-53-17.png)
   
 
 $$
