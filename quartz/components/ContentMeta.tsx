@@ -12,6 +12,10 @@ interface ContentMetaOptions {
    */
   showReadingTime: boolean
   showComma: boolean
+  frontmatter?: {
+    fieldName: string,
+    fieldPrefix?: string,
+  }[]
 }
 
 const defaultOptions: ContentMetaOptions = {
@@ -40,6 +44,20 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
           minutes: Math.ceil(minutes),
         })
         segments.push(displayedTime)
+      }
+
+      if (options.frontmatter && fileData.frontmatter) {
+        options.frontmatter.forEach((field) => {
+          if (fileData.frontmatter && field.fieldName in fileData.frontmatter && fileData.frontmatter[field.fieldName] !== null) {
+            const value = fileData.frontmatter[field.fieldName]
+            const prefix = field.fieldPrefix ? `${field.fieldPrefix}` : ""
+            if (prefix) {
+              segments.push(`${prefix} ${value}`)
+            } else {
+              segments.push(`${value}`)
+            }
+          }
+        })
       }
 
       const segmentsElements = segments.map((segment) => <span>{segment}</span>)
