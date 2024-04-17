@@ -31,9 +31,9 @@ cov(X, Y) & = \frac{\sum(x-\overline{x})(y-\overline{y})}{n-1} \\
 \end{split}
 \end{equation}
 $$
-![](signal_processing/advanced_statistic/attachments/Pasted%20image%2020240415171344.png)
+![](signal_processing/algorithm/advanced_statistic/autocorrelation/attachments/Pasted%20image%2020240415171344.png)
 
-![](signal_processing/advanced_statistic/attachments/Pasted%20image%2020240415171351.png)
+![](signal_processing/algorithm/advanced_statistic/autocorrelation/attachments/Pasted%20image%2020240415171351.png)
 
 
 Covariance is hard to **interpret** because it is sensitive to the **scale**
@@ -43,7 +43,7 @@ To solve the scale effect, here's the correlation:
 
 ## Correlation
 
-![](signal_processing/advanced_statistic/attachments/Pasted%20image%2020240415171510.png)
+![](signal_processing/algorithm/advanced_statistic/autocorrelation/attachments/Pasted%20image%2020240415171510.png)
 
 
 We can quantify the strength of the relationship with correlation (**Pearson’s correlation**)
@@ -61,13 +61,13 @@ $corr(X, Y)$ is between -1 to 1
 >  NOTE: When we’re talking about correlation, we’re only talking about using **straight line**
 
 
-![](signal_processing/advanced_statistic/attachments/Pasted%20image%2020240415171736.png)
+![](signal_processing/algorithm/advanced_statistic/autocorrelation/attachments/Pasted%20image%2020240415171736.png)
 
 For correlation, we usually use **p-value** to **quantify the confidence** of the straight line relationship. **The more samll p-value, the more confident we say they are straight line relationship**; Like the figure:
 
-![](signal_processing/advanced_statistic/autocorrelation/attachments/Pasted%20image%2020240415171834.png)
+![](signal_processing/algorithm/advanced_statistic/autocorrelation/attachments/Pasted%20image%2020240415171834.png)
 
-![](signal_processing/advanced_statistic/autocorrelation/attachments/Pasted%20image%2020240415171855.png)
+![](signal_processing/algorithm/advanced_statistic/autocorrelation/attachments/Pasted%20image%2020240415171855.png)
 
 
 About P-value, you have better know what's [significance test](math/Statistics/significance_test/whats_the_significance_test.md)
@@ -221,7 +221,7 @@ $$
 # Application
 
 
-* [Period Detection by Autocorrelation](signal_processing/advanced_statistic/autocorrelation/period_detection.md)
+* [Period Detection by Autocorrelation](signal_processing/algorithm/advanced_statistic/autocorrelation/period_detection.md)
 # Reference
 
 * https://pinkr1ver.notion.site/Autocorrelation-Analysis-Power-Spectral-Density-330755770347472989062c6b31f18a21?pvs=4

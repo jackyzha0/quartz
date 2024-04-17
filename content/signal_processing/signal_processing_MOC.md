@@ -43,8 +43,8 @@ date: 2024-03-18
 
 ## Autocorrelation
 
-* [Autocorrelation in Signal Processing](signal_processing/advanced_statistic/autocorrelation/autocorrelation.md)
-* [Period Detection by Autocorrelation](signal_processing/advanced_statistic/autocorrelation/period_detection.md)
+* [Autocorrelation in Signal Processing](signal_processing/algorithm/advanced_statistic/autocorrelation/autocorrelation.md)
+* [Period Detection by Autocorrelation](signal_processing/algorithm/advanced_statistic/autocorrelation/period_detection.md)
 
 
 ## Empirical Mode Decomposition
