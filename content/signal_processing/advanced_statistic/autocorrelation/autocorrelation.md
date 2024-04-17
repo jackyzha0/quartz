@@ -217,6 +217,11 @@ $$
 
 其傅里叶变换始终大于0
 
+
+# Application
+
+
+* [Period Detection by Autocorrelation](signal_processing/advanced_statistic/autocorrelation/period_detection.md)
 # Reference
 
 * https://pinkr1ver.notion.site/Autocorrelation-Analysis-Power-Spectral-Density-330755770347472989062c6b31f18a21?pvs=4
