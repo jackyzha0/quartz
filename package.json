@@ -12,16 +12,16 @@
     "url": "https://github.com/jackyzha0/quartz.git"
   },
   "scripts": {
-    "quartz": "./quartz/bootstrap-cli.mjs",
+    "start": "npx quartz build --serve",
     "docs": "npx quartz build --serve -d docs",
-    "check": "tsc --noEmit && npx prettier . --check",
-    "format": "npx prettier . --write",
-    "test": "tsx ./quartz/util/path.test.ts",
-    "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1",
     "update": "npx quartz update",
     "sync": "npx quartz sync",
-    "start": "npx quartz build --serve",
-    "build": "npx quartz build"
+    "build": "npx quartz build",
+    "quartz": "./quartz/bootstrap-cli.mjs",
+    "test": "tsx ./quartz/util/path.test.ts",
+    "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1",
+    "check": "tsc --noEmit && npx prettier . --check",
+    "format": "npx prettier . --write"
   },
   "engines": {
     "npm": ">=9.3.1",
