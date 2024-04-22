@@ -7,7 +7,6 @@
   "author": "jackyzha0 <j.zhao2k19@gmail.com>",
   "license": "MIT",
   "homepage": "https://quartz.jzhao.xyz",
-  "packageManager": "pnpm@8.15.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/jackyzha0/quartz.git"
