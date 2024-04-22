@@ -5,6 +5,7 @@ aliases:
   - JS
 compartir: true
 ---
+
 [JavaScript](https://en.wikipedia.org/wiki/JavaScript) is a versatile and powerful programming language used for building interactive and dynamic web applications. It runs on the client-side, enabling interactivity on web pages. JavaScript can manipulate HTML elements, handle events, perform calculations, and communicate with servers, making it a key technology in modern web development.
 
 ## JavaScript Frameworks

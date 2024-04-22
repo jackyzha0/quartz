@@ -2,6 +2,7 @@
 title: Callouts Showcase
 compartir: true
 ---
+
 > [!EXAMPLE] Examples
 >
 > Aliases: example

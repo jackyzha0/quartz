@@ -3,6 +3,7 @@ title: Welcome!
 description: Forgetful Notes—A digital garden of knowledge. A platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 compartir: true
 ---
+
 You've come across **Forgetful Notes**—a [[Digital Garden|digital garden]] of knowledge. Come in and make yourself comfortable.
 
 This website serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to. It is part of my effort to organize my own theories, concepts, and ideas in a more public setting.

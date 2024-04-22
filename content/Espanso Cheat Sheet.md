@@ -2,6 +2,7 @@
 title: Espanso Cheat Sheet
 compartir: true
 ---
+
 Cross-platform Text Expander written in Rust.
 
 Visit the [Documentation](https://espanso.org/docs/get-started/).

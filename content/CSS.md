@@ -4,6 +4,7 @@ aliases:
   - CSS
 compartir: true
 ---
+
 CSS (Cascading Style Sheets) is a language used to describe the visual appearance and formatting of HTML documents. It defines how elements are presented on web pages, including layout, color, typography, and more. It enhances the aesthetics and overall user experience of websites.
 
 ## CSS Frameworks

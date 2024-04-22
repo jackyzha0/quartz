@@ -2,6 +2,7 @@
 title: Grammar
 compartir: true
 ---
+
 ## Singular Pluralities
 
 ### Archives

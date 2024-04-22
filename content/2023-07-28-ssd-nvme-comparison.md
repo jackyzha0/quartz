@@ -4,6 +4,7 @@ description: This page was originally published on July 28, 2023 to aid in selec
 date: 2023-07-28
 compartir: true
 ---
+
 This page was originally published on July 28, 2023. Its main goal was to aid in selecting SSD, and NVMe drives during a Micro Center sale.
 
 ## Storage Technologies
@@ -46,8 +47,7 @@ Let's break it down:
 
 ### Price
 
-Based on price per $1.
-Selected $0.10 as the baseline after averaging some calculations.
+Based on price per $1. Selected $0.10 as the baseline after averaging some calculations.
 
 - 1 point for every $0.01 / GB below $0.10
 
@@ -96,39 +96,39 @@ Selected $0.10 as the baseline after averaging some calculations.
 
 ### NVMe
 
-| Description | $ / GB | Coef | Score |
+| Description              | $ / GB | Coef | Score |
 | ------------------------ | :----: | :--: | :---: |
-| 970 500 GB $35 MLC | 0.070 | 1.25 | 629 |
+| 970 500 GB $35 MLC       | 0.070  | 1.25 |  629  |
 | 970 2 TB $100 MLC        | 0.050  | 1.25 | 2506  |
-| 970 1 TB $100 MLC | 0.103 | 1.25 | 1250 |
+| 970 1 TB $100 MLC        | 0.103  | 1.25 | 1250  |
 | 980 1 TB $50 V           | 0.050  |  1   | 1005  |
-| 980P 2 TB $120 MLC | 0.060 | 1.25 | 2505 |
+| 980P 2 TB $120 MLC       | 0.060  | 1.25 | 2505  |
 | 980P 1 TB $70 V          | 0.070  |  1   | 1003  |
-| 990P 1 TB $80 MLC | 0.080 | 1.25 | 1253 |
+| 990P 1 TB $80 MLC        | 0.080  | 1.25 | 1253  |
 | Crucial 1 TB $40 3D      | 0.040  | 0.5  |  503  |
-| Inland 500 GB $23 QLC | 0.046 | 0.75 | 379 |
+| Inland 500 GB $23 QLC    | 0.046  | 0.75 |  379  |
 | Inland 1 TB $40 QLC      | 0.040  | 0.75 |  755  |
-| Inland 2 TB $70 QLC | 0.035 | 0.75 | 1505 |
+| Inland 2 TB $70 QLC      | 0.035  | 0.75 | 1505  |
 | Performance 1 TB $55 TLC | 0.055  |  1   | 1005  |
-| Prime 500 GB $30 TLC | 0.060 | 1 | 504 |
-| Prime 1 TB $50 TLC | 0.050 | 1 | 1005 |
+| Prime 500 GB $30 TLC     | 0.060  |  1   |  504  |
+| Prime 1 TB $50 TLC       | 0.050  |  1   | 1005  |
 
 \*_Higher is better._
 
 ### SSD
 
-| Description | $ / GB | Coef | Score |
+| Description               | $ / GB | Coef | Score |
 | ------------------------- | :----: | :--: | :---: |
-| Inland 1TB $50 TLC | 0.050 | 1 | 1005 |
+| Inland 1TB $50 TLC        | 0.050  |  1   | 1005  |
 | Inland 512GB $25 TLC      | 0.049  |  1   |  517  |
-| Platinum 2TB $80 TLC | 0.040 | 1 | 2006 |
+| Platinum 2TB $80 TLC      | 0.040  |  1   | 2006  |
 | Platinum 1TB $43 TLC      | 0.043  |  1   | 1006  |
-| Professional 256GB $20 3D | 0.078 | 0.5 | 129 |
+| Professional 256GB $20 3D | 0.078  | 0.5  |  129  |
 | Professional 125GB $15 3D | 0.120  | 0.5  |  63   |
-| 870 EVO 1TB $50 MLC | 0.050 | 1.25 | 1256 |
+| 870 EVO 1TB $50 MLC       | 0.050  | 1.25 | 1256  |
 | 870 EVO 4TB $220 MLC      | 0.055  | 1.25 | 5006  |
-| 870 EVO 500GB $40 MLC | 0.020 | 1.25 | 635 |
-| 870 QVO 1TB $70 QLC | 0.070 | 0.75 | 753 |
+| 870 EVO 500GB $40 MLC     | 0.020  | 1.25 |  635  |
+| 870 QVO 1TB $70 QLC       | 0.070  | 0.75 |  753  |
 
 \*_Higher is better._
 

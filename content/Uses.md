@@ -4,6 +4,7 @@ alias:
   - Uses
 compartir: true
 ---
+
 A non-comprehensive list of the hardware and software I use on a day-to-day basis.
 
 ## Hardware
