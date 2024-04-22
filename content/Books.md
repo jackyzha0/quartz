@@ -3,7 +3,6 @@ title: Books
 description: Books I've read.
 compartir: true
 ---
-
 Collection of books I have read, would like to read, or would like to read.
 
 ## John Green

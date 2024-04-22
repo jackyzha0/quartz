@@ -2,7 +2,6 @@
 title: Scry Your Tasks
 compartir: true
 ---
-
 To _scry_ is to see or predict the future by means of a crystal ball. It is also the ability to look at the top cards of your deck and rearrange them in Magic the Gathering. This note was inspired by [Cortex](https://www.relay.fm/cortex) [Episode 142](https://www.relay.fm/cortex/142) where Myke and Grey discuss scrying your task lists.
 
 In terms of organization, scrying your task list allows you to determine what is the order of 2 to 5 things that _need_ to happen.

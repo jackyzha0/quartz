@@ -3,8 +3,8 @@ title: Inspirations
 compartir: true
 tags:
   - list
+category: Lists
 ---
-
 These people and projects have resonated with me. Inspiring me to do things I would otherwise not do.
 
 ## People Who Inspire Me

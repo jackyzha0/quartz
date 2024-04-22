@@ -2,12 +2,10 @@
 title: Markdown
 compartir: true
 ---
+Markdown is a lightweight [[Markup Language|Markup Language]] that you can use to add formatting elements to plaintext text documents. Created by [John Gruber](https://daringfireball.net/projects/markdown/) in 2004, Markdown is now one of the world's most popular markup languages.
 
-## Introduction
-
-Markdown is a lightweight [[./Markup Language|Markup Language]] that you can use to add formatting elements to plaintext text documents. Created by [John Gruber](https://daringfireball.net/projects/markdown/) in 2004, Markdown is now one of the world's most popular markup languages.
-
-> [!Note] This website's content is exclusively written in Markdown.
+> [!Note]
+> This website's content is exclusively written in Markdown.
 
 ## Markdown Flavors
 

@@ -2,7 +2,6 @@
 title: Projects
 compartir: true
 ---
-
 # Projects
 
 A non-inclusive, non-exhaustive compilation of both my professional and personal projects.
@@ -53,7 +52,8 @@ _Approx. budget: $1,070,000_
 
 ### 🚨 MTPD Substation Rehab
 
-Rehabilitate previous public space into new Metro Transit Police Dept. Substation in downtown Saint Paul.  
+Rehabilitate previous public space into new Metro
+Transit Police Dept. Substation in downtown Saint Paul.  
 _Approx. budget: $880,000_
 
 ### 🚗 Pavement Management Program

@@ -4,7 +4,6 @@ description: Wednesday, July 12th, 2023, was supposed to feature high solar acti
 date: 2023-07-12
 compartir: true
 ---
-
 Wednesday, July 12th, 2023, was supposed to feature high solar activity, allowing for an incredibly large area of the northern United States to witness the Auroras as long as the light pollution was low.
 
 Unfortunately, this forecast did not come to pass. The solar activity remained within normal levels, meaning only Alaska and a few other places were able to see them. Thus cancelling these plans. But I liked the idea of presenting things like this in an Archive format.
@@ -63,7 +62,8 @@ Below are maps showing the most southern extent of where aurora might be observa
 
 ### July 12th, 2023
 
-![NOAA Space Weather Prediction Center - G-Kp](https://www.swpc.noaa.gov/sites/default/files/images/u2/Aurora_Kp_MapNorthAm.png) G is NOAA Geomagnetic Storm Index (0–5)  
+![NOAA Space Weather Prediction Center - G-Kp](https://www.swpc.noaa.gov/sites/default/files/images/u2/Aurora_Kp_MapNorthAm.png)
+G is NOAA Geomagnetic Storm Index (0–5)  
 Kp is Planetary K Index (0–9)
 
 ### September 18th, 2023

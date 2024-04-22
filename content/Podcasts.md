@@ -3,8 +3,8 @@ title: Podcasts
 tags:
   - list
 compartir: true
+category: Lists
 ---
-
 ## Regular Shows
 
 _These are the shows I listen to on release._

@@ -2,12 +2,10 @@
 title: Rhizomatic Learning
 compartir: true
 ---
-
-## Introduction
-
 Rhizomatic learning is a variety of pedagogical practices informed by the work of Gilles Deleuze and Félix Guattari. It takes it's name from the rhizome.
 
-> [!Rhizome] Underground stem in which various plants asexually reproduce via budding.
+> [!Rhizome]
+> Underground stem in which various plants asexually reproduce via budding.
 
 ## Background
 

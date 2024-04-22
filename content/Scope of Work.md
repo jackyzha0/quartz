@@ -2,7 +2,6 @@
 title: Scope of Work
 compartir: true
 ---
-
 A scope of work or SOW, is a descriptive document or working agreement that contains all information regarding the size of a project, the goals a team should accomplish by the end of the project and steps required to complete the project.
 
 You might create an SOW when multiple parties are working together on the project and there are certain requirements to meet. This document usually includes of an introduction, objective overview, an outline of the expected work and tasks, schedule for deliverables, adoption plan and conclusion or sign off.

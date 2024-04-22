@@ -5,9 +5,6 @@ aliases:
   - Vim
 compartir: true
 ---
-
-## Introduction
-
 NeoVim is a fork of Vim focused on extensibility and usability. This is my short reference guide as I learn to use it.
 
 ## Links
@@ -79,24 +76,24 @@ NeoVim is a fork of Vim focused on extensibility and usability. This is my short
 
 ## Plugins
 
-| Author/Plugin | Description |
-| --- | --- |
-| [akinsho/bufferline.nvim](https://github.com/akinsho/bufferline.nvim) | A snazzy bufferline for Neovim. |
-| [akinsho/toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | A neovim lua plugin to help easily manage multiple terminal windows. |
-| [ap/vim-css-color](https://github.com/ap/vim-css-color) | Preview colours in source code while editing. |
-| [editorconfig/editorconfig-vim](https://github.com/editorconfig/editorconfig-vim) | EditorConfig plugin for Vim. |
-| [folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim) | Theme |
-| [kyazdani42/nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) | A file explorer tree for neovim written in lua. |
-| [kyazdani42/nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) | Lua "fork" of vim-web-devicons for neovim. |
-| [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git integration for buffers. |
-| [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) | Indent guides for Neovim. |
-| [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim) | Smart and powerful comment plugin for neovim. |
-| [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim) | All the lua functions I [they] don't want to write twice. |
-| [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | neovim statusline plugin written in pure lua. |
-| [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Find, Filter, Preview, Pick. All lua, all the time. |
-| [nvim-treesitter/nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) | Syntax aware text-objects, select, move, swap, and peek support. |
-| [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Nvim Treesitter configurations and abstraction layer. |
-| [ThePrimeagen/vim-be-good](https://github.com/ThePrimeagen/vim-be-good) | Nvim plugin designed to make you better at Vim Movements. |
-| [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive) | A Git wrapper so awesome, it should be illegal. |
-| [vim-telescope/telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim) | Find, Filter, Preview, Pick. All lua, all the time. |
-| [wellle/targets.vim](https://github.com/wellle/targets.vim) | Vim plugin that provides additional text objects. |
+| Author/Plugin                                                                                                 | Description                                                          |
+| ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [akinsho/bufferline.nvim](https://github.com/akinsho/bufferline.nvim)                                         | A snazzy bufferline for Neovim.                                      |
+| [akinsho/toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)                                         | A neovim lua plugin to help easily manage multiple terminal windows. |
+| [ap/vim-css-color](https://github.com/ap/vim-css-color)                                                       | Preview colours in source code while editing.                        |
+| [editorconfig/editorconfig-vim](https://github.com/editorconfig/editorconfig-vim)                             | EditorConfig plugin for Vim.                                         |
+| [folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim)                                             | Theme                                                                |
+| [kyazdani42/nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua)                                       | A file explorer tree for neovim written in lua.                      |
+| [kyazdani42/nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)                               | Lua "fork" of vim-web-devicons for neovim.                           |
+| [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)                                         | Git integration for buffers.                                         |
+| [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)                 | Indent guides for Neovim.                                            |
+| [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim)                                             | Smart and powerful comment plugin for neovim.                        |
+| [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)                                             | All the lua functions I [they] don't want to write twice.            |
+| [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)                                     | neovim statusline plugin written in pure lua.                        |
+| [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)                             | Find, Filter, Preview, Pick. All lua, all the time.                  |
+| [nvim-treesitter/nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) | Syntax aware text-objects, select, move, swap, and peek support.     |
+| [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)                         | Nvim Treesitter configurations and abstraction layer.                |
+| [ThePrimeagen/vim-be-good](https://github.com/ThePrimeagen/vim-be-good)                                       | Nvim plugin designed to make you better at Vim Movements.            |
+| [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)                                                   | A Git wrapper so awesome, it should be illegal.                      |
+| [vim-telescope/telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)        | Find, Filter, Preview, Pick. All lua, all the time.                  |
+| [wellle/targets.vim](https://github.com/wellle/targets.vim)                                                   | Vim plugin that provides additional text objects.                    |

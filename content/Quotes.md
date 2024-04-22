@@ -3,7 +3,6 @@ title: Quotes
 description: Quotes that have resonated with me.
 compartir: true
 ---
-
 Collection of quotes I like.
 
 ## Random
@@ -32,7 +31,10 @@ Collection of quotes I like.
 
 ## Ashtavakra Gita
 
-> "The wise man knows the Self, And he plays the game of life. But the fool lives in the world Like a beast of burden."
+> "The wise man knows the Self,
+> And he plays the game of life.
+> But the fool lives in the world
+> Like a beast of burden."
 
 ## Big Mouth
 
@@ -128,7 +130,8 @@ Collection of quotes I like.
 >
 > I don't know. The only thing I do know… is that we have to be kind.
 >
-> Please. Be kind… especially when we don't know what's going on. I know you see yourself as a fighter. Well, I see myself as one too. This is how I fight."
+> Please. Be kind… especially when we don't know what's going on.
+> I know you see yourself as a fighter. Well, I see myself as one too. This is how I fight."
 
 ## Yuval Noah Harari
 

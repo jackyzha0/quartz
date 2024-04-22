@@ -2,7 +2,6 @@
 title: Emmet Cheat Sheet
 compartir: true
 ---
-
 - [Documentation](https://docs.emmet.io/)
 - [Documentation](https://code.visualstudio.com/docs/editor/emmet) for Emmet in VS Code
 

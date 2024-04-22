@@ -2,7 +2,6 @@
 title: Python Cheat Sheet
 compartir: true
 ---
-
 # Python Cheat Sheet
 
 - Python terminal: `python3` in cmd.

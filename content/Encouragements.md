@@ -2,7 +2,6 @@
 compartir: true
 title: Encouragements
 ---
-
 # Encouragements
 
 Notes that one way or another, encourage me to be better, to sit down for less time, to be more active, etc.

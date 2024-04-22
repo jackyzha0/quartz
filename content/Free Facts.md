@@ -3,7 +3,6 @@ title: Free Facts
 description: Compilation of 'Free' Facts. They are not fun, but they are free.
 compartir: true
 ---
-
 Compilation of "Free" Facts. They are not always fun, but they are free.
 
 ## Disney Aladdin
@@ -29,7 +28,8 @@ The MV Derbyshire was a British ore-bulk-oil combination carrier built in 1976. 
 
 ## Rogue Waves
 
-Rogue waves are unusually large, unpredictable, and suddenly appearing surface waves that can be extremely dangerous to ships, even to large ones. In oceanography, rogue waves are more precisely defined as waves whose height is more than twice the significant wave height (Hs or SWH), which is itself defined as the mean of the largest third of waves in a wave record. Therefore, rogue waves are not necessarily the biggest waves found on the water; they are, rather, unusually large waves for a given sea state.  
+Rogue waves are unusually large, unpredictable, and suddenly appearing surface waves that can be extremely dangerous to ships, even to large ones.
+In oceanography, rogue waves are more precisely defined as waves whose height is more than twice the significant wave height (Hs or SWH), which is itself defined as the mean of the largest third of waves in a wave record. Therefore, rogue waves are not necessarily the biggest waves found on the water; they are, rather, unusually large waves for a given sea state.  
 [Source](https://en.wikipedia.org/wiki/Rogue_wave)
 
 ## Sea Sickness

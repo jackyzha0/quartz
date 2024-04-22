@@ -2,8 +2,11 @@
 title: Words I Like
 compartir: true
 ---
-
 Compilation of Words I like. Visit the [source](https://wordwarriors.wayne.edu/list).
+
+## Abridged (adjective)
+
+1. Shortened or condensed especially by the omission of words or passages.
 
 ## Acrimonious (adjective)
 
@@ -13,7 +16,8 @@ Compilation of Words I like. Visit the [source](https://wordwarriors.wayne.edu/l
 ## Anodyne (adjective)
 
 1. Capable of soothing or eliminating pain.
-2. Not likely to offend or arouse tensions. Also used as a _noun_ to describe something that soothes, calms, or comforts.
+2. Not likely to offend or arouse tensions.
+   Also used as a _noun_ to describe something that soothes, calms, or comforts.
 
 ## Arete (noun)
 
@@ -41,10 +45,20 @@ Compilation of Words I like. Visit the [source](https://wordwarriors.wayne.edu/l
 1. The action of thinking deeply about something. Example: "Sorry, did I interrupt your cogitation?"
 2. The act of thinking very carefully about a subject, or the thoughts themselves.
 
+## Colophon (noun)
+
+1. An inscription at the end of a book or manuscript usually with facts about its production.
+2. An identifying mark used by a printer or a publisher.
+
 ## Contrivance (noun)
 
 1. The use of skill to bring something about or create something. Example: "The requirements of the system, by happy chance and some contrivance, can be summed up in an acronym."
 2. A device, especially in literary or artistic composition, which gives a sense of artificiality.
+
+## Defenestration (noun)
+
+1. A throwing of a person or thing out of a window.
+2. A usually swift dismissal or expulsion (as from a political party or office).
 
 ## Diacritic (noun)
 
@@ -113,7 +127,7 @@ Compilation of Words I like. Visit the [source](https://wordwarriors.wayne.edu/l
 
 1. To understand intuitively or by empathy, to establish rapport with.
 2. To empathize or communicate sympathetically (with); also, to experience enjoyment.
-3. [Neologism](https://en.wikipedia.org/wiki/Neologism "Neologism") coined by American writer [Robert A. Heinlein](https://en.wikipedia.org/wiki/Robert_A._Heinlein "Robert A. Heinlein") for his 1961 [science fiction](https://en.wikipedia.org/wiki/Science_fiction "Science fiction") novel *[Stranger in a Strange Land](https://en.wikipedia.org/wiki/Stranger_in_a_Strange_Land "Stranger in a Strange Land")*.
+3. [Neologism](https://en.wikipedia.org/wiki/Neologism "Neologism") coined by American writer [Robert A. Heinlein](https://en.wikipedia.org/wiki/Robert_A._Heinlein "Robert A. Heinlein") for his 1961 [science fiction](https://en.wikipedia.org/wiki/Science_fiction "Science fiction") novel _[Stranger in a Strange Land](https://en.wikipedia.org/wiki/Stranger_in_a_Strange_Land "Stranger in a Strange Land")_.
 
 ## Halcyon (noun)
 
