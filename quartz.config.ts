@@ -27,42 +27,24 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#faf8f8", // background
-          lightgray: "#e5e5e5", // borders
-          gray: "#8f8f8f", // graph links, heavy borders
-          darkgray: "#2e2e2e", // body text
-          dark: "#1c1c1c", // header text, icons
-          secondary: "#091217", // links, nodes
-          tertiary: "#AA336A", // hover states, visited
-          highlight: "rgba(143, 159, 169, 0.2)", // internal link background
-
-          // light: "#faf8f8",
-          // lightgray: "#e5e5e5",
-          // gray: "#b8b8b8",
-          // darkgray: "#4e4e4e",
-          // dark: "#2b2b2b",
-          // secondary: "#284b63",
-          // tertiary: "#84a59d",
-          // highlight: "rgba(143, 159, 169, 0.15)",
+          light: "#F8F8F8",
+          lightgray: "#E5E5E5",
+          gray: "#B8B8B8", // #8F8F8F
+          darkgray: "#4E4E4E", // #2E2E2E
+          dark: "#2B2B2B", // #1C1C1C
+          secondary: "#284B63", // #091217
+          tertiary: "#84A59D", // #AA336A
+          highlight: "#8F9FA925",
         },
         darkMode: {
-          light: "#1e1e2e", // background
-          lightgray: "#6c7086", // borders
-          gray: "#a6adc8", // graph links, heavy borders
-          darkgray: "#cdd6f4", // body text
-          dark: "#cdd6f4", // header text, icons
-          secondary: "#9be895", // links, nodes
-          tertiary: "#c072c4", // hover states, visited
-          highlight: "rgba(143, 159, 169, 0.2)", // internal link background
-
-          // light: "#161618",
-          // lightgray: "#393639",
-          // gray: "#646464",
-          // darkgray: "#d4d4d4",
-          // dark: "#ebebec",
-          // secondary: "#7b97aa",
-          // tertiary: "#84a59d",
-          // highlight: "rgba(143, 159, 169, 0.15)",
+          light: "#1E1E2E", // background // #161618
+          lightgray: "#6C7086", // borders // #393639
+          gray: "#A6ADC8", // graph links, heavy borders // #646464
+          darkgray: "#CDD6F4", // body text // #D4D4D4
+          dark: "#CDD6F4", // header text, icons // #EBEBEC
+          secondary: "#9BE895", // links, nodes // #7B97AA
+          tertiary: "#C072C4", // hover states, visited links // #84A59D
+          highlight: "#8F9FA925", // internal link background
         },
       },
     },
