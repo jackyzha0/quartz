@@ -1,9 +1,8 @@
-import {QuartzConfig} from "./quartz/cfg"
+import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 
 /**
  * Quartz 4.0 Configuration
- *
  * See https://quartz.jzhao.xyz/configuration for more information.
  */
 const config: QuartzConfig = {
@@ -16,26 +15,26 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     baseUrl: "forgetfulnotes.com",
-    ignorePatterns: ["private", "templates"],
+    ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
         header: "Bitter", // Schibsted Grotesk
-        body: "Poppins", // Source Sans Pro, Poppins
+        body: "Poppins", // Source Sans Pro
         code: "Fira Mono", // IBM Plex Mono
       },
       colors: {
         lightMode: {
-          light: "#faf8f8", // bg
+          light: "#faf8f8", // background
           lightgray: "#e5e5e5", // borders
           gray: "#8f8f8f", // graph links, heavy borders
           darkgray: "#2e2e2e", // body text
           dark: "#1c1c1c", // header text, icons
           secondary: "#091217", // links, nodes
           tertiary: "#AA336A", // hover states, visited
-          highlight: "rgba(143, 159, 169, 0.2)", // internal link bg
+          highlight: "rgba(143, 159, 169, 0.2)", // internal link background
         },
         darkMode: {
           light: "#1e1e2e", // background
@@ -60,7 +59,7 @@ const config: QuartzConfig = {
       Plugin.ObsidianFlavoredMarkdown(),
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents(),
-      Plugin.CrawlLinks({markdownLinkResolution: "shortest"}),
+      Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
     ],
     filters: [Plugin.RemoveDrafts()],
@@ -68,8 +67,8 @@ const config: QuartzConfig = {
       Plugin.AliasRedirects(),
       Plugin.ComponentResources(),
       Plugin.ContentPage(),
-      // Plugin.FolderPage(),
-      // Plugin.TagPage(),
+      Plugin.FolderPage(),
+      Plugin.TagPage(),
       Plugin.ContentIndex({
         enableSiteMap: true,
         enableRSS: true,

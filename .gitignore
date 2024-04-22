@@ -4,9 +4,8 @@
 .quartz-cache
 .replit
 node_modules
-private/
+private
 prof
 public
-quartz/.quartz-cache
 replit.nix
 tsconfig.tsbuildinfo
