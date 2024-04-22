@@ -1,5 +1,5 @@
 ---
-title: Public Journal
+title: Journal
 description: This section explores the concept of maintaining a Public Journal.
 compartir: true
 ---
