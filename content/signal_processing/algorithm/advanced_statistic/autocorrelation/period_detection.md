@@ -3,6 +3,7 @@ title: Period Detection by Autocorrelation
 tags:
   - signal
   - signal-processing
+date: 2024-04-17
 ---
 
 

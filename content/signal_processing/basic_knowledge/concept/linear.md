@@ -4,6 +4,7 @@ tags:
   - basic
   - signal
   - signal-processing
+date: 2024-04-17
 ---
 
 有一个系统$\mathcal{F}$,
