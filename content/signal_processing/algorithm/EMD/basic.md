@@ -7,7 +7,7 @@ tags:
   - signal
   - algorithm
   - math
-date: 2024-04-24
+date: 2024-04-23
 ---
 # Introduction
 
@@ -104,7 +104,7 @@ $$
 import numpy as np
 import numpy as np
 
-def EMD(signal, max_imf = 10, tolerance = 0.1):
+def EMD(signal, max_imf = 10, tolerance = 0.01):
     
     def __extrema(signal):
         
@@ -131,11 +131,17 @@ def EMD(signal, max_imf = 10, tolerance = 0.1):
     
     def __IMF(signal):
         
-        imf = signal - __mean_env(signal)
-        resdiual = signal - imf
+        resdiual = signal
+        
+        while True:
+        
+            imf = signal - __mean_env(resdiual)
+            resdiual = signal - imf
+            
+            if np.mean(imf) < tolerance:
+                break
         
         return imf, resdiual
-    
     
     # standardize the signal
     mean = np.mean(signal)
@@ -151,6 +157,11 @@ def EMD(signal, max_imf = 10, tolerance = 0.1):
         
         imfs.append(imf)
         
+        max_peaks, min_peaks = __extrema(residual)
+        
+        if len(max_peaks) < 2 or len(min_peaks) < 2:
+            break
+        
         if np.abs(np.std(residual)) < tolerance or max_imf == 0:
             break
         
@@ -161,7 +172,6 @@ def EMD(signal, max_imf = 10, tolerance = 0.1):
     residual = residual * std + mean
         
     return imfs, residual
-
 ```
 
 # Reference

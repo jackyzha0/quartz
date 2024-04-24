@@ -53,6 +53,7 @@ date: 2024-03-18
 ## Empirical Mode Decomposition
 
 * [EMD Basic](signal_processing/algorithm/EMD/basic.md)
+* [EEMD](signal_processing/algorithm/EMD/eemd.md)
 
 # Software
 
