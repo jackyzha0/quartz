@@ -5,12 +5,14 @@ tags:
 ---
 
 Quartz uses [Katex](https://katex.org/) by default to typeset both inline and block math expressions at build time.
+Quartz默认情况下支持[Katex](https://katex.org/)，在构建时对内联和块数学表达式进行类型设置。
 
-## Syntax
+## 语法
 
-### Block Math
+### 数学表达式块
 
-Block math can be rendered by delimiting math expression with `$$`.
+
+块数学可以通过用 `$$`分隔数学表达式来呈现。
 
 ```
 $$
@@ -51,32 +53,31 @@ Ef(x) &= -\frac{\hbar^2}{2m} [4k^2x^2f(x)-4kxf'(x) + f''(x)] + \frac{1}{2}m\omeg
 $$
 
 > [!warn]
-> Due to limitations in the [underlying parsing library](https://github.com/remarkjs/remark-math), block math in Quartz requires the `$$` delimiters to be on newlines like above.
+> 由于[基础解析库](https://github.com/remarkjs/remark-math)的限制，Quartz中的块数学要求`$$` 分隔符位于换行符上，如上所述。
 
-### Inline Math
+### 行内数学表达式
 
-Similarly, inline math can be rendered by delimiting math expression with a single `$`. For example, `$e^{i\pi} = -1$` produces $e^{i\pi} = -1$
+类似地，可以通过用单个`$`分隔数学表达式来呈现内联数学。例如，`$e^{i\pi} = -1$` 生成 $e^{i\pi} = -1$
 
-### Escaping symbols
+### 转义字符
 
-There will be cases where you may have more than one `$` in a paragraph at once which may accidentally trigger MathJax/Katex.
+在某些情况下，一个段落中可能同时包含多个`$`，这可能会意外触发MathJax/Katex。
 
-To get around this, you can escape the dollar sign by doing `\$` instead.
+为了避免这种情况，你可以通过做`\$` 来避开美元符号。
 
-For example:
+例如：
 
-- Incorrect: `I have $1 and you have $2` produces I have $1 and you have $2
-- Correct: `I have \$1 and you have \$2` produces I have \$1 and you have \$2
+- 不正确： `I have $1 and you have $2`产生 I have $1 and you have $2
+- 正确: `I have \$1 and you have \$2` 产生 I have \$1 and you have \$2
 
-### Using mhchem
+### 使用 mhchem
 
-Add the following import to the top of `quartz/plugins/transformers/latex.ts` (before all the other
-imports):
+将以下导入添加到`quartz/plugins/transformers/latex.ts` 的顶部（在所有其他导入之前）：
 
 ```ts title="quartz/plugins/transformers/latex.ts"
 import "katex/contrib/mhchem"
 ```
 
-## Customization
+## 自定义
 
-Latex parsing is a functionality of the [[plugins/Latex|Latex]] plugin. See the plugin page for customization options.
+Latex解析是[[plugins/Latex|Late]]插件的一个功能。有关自定义选项，请参阅插件页面。

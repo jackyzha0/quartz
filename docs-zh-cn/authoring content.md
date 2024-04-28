@@ -1,18 +1,17 @@
 ---
-title: Authoring Content
+title: 创作内容
 ---
 
-All of the content in your Quartz should go in the `/content` folder. The content for the home page of your Quartz lives in `content/index.md`. If you've [[index#🪴 Get Started|setup Quartz]] already, this folder should already be initialized. Any Markdown in this folder will get processed by Quartz.
+Quartz中的所有内容都应放在`/content`文件夹中。Quartz主页的内容位于`content/index.md`.中。如果你已经有[[index#🪴 快速上手|setup Quartz]]，该文件夹应该已经被初始化了。此文件夹中的任何Markdown都将由Quartz处理。
 
-It is recommended that you use [Obsidian](https://obsidian.md/) as a way to edit and maintain your Quartz. It comes with a nice editor and graphical interface to preview, edit, and link your local files and attachments.
+建议您使用[Obsidian](https://obsidian.md/)作为编辑和维护Quartz的一种方式。它提供了一个不错的编辑器和图形界面，用于预览、编辑和链接您的本地文件和附件。
 
-Got everything setup? Let's [[build]] and preview your Quartz locally!
+一切都安排好了吗？让我们[[build]]并在本地预览您的Quartz！
+## 语法
 
-## Syntax
+由于Quartz使用Markdown文件作为编写内容的主要方式，因此它完全支持Markdown语法。默认情况下，Quartz还附带了一些语法扩展，如[Github风格的Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)（脚注、删除线、表格、任务列表）和 [Obsidian风格的Markdown](https://help.obsidian.md/Editing+and+formatting/Obsidian+Flavored+Markdown) （[[callouts]], [[wikilinks]]）。
 
-As Quartz uses Markdown files as the main way of writing content, it fully supports Markdown syntax. By default, Quartz also ships with a few syntax extensions like [Github Flavored Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) (footnotes, strikethrough, tables, tasklists) and [Obsidian Flavored Markdown](https://help.obsidian.md/Editing+and+formatting/Obsidian+Flavored+Markdown) ([[callouts]], [[wikilinks]]).
-
-Additionally, Quartz also allows you to specify additional metadata in your notes called **frontmatter**.
+此外，Quartz还允许您在名为**frontmatter**的笔记中指定其他元数据。
 
 ```md title="content/note.md"
 ---
@@ -25,20 +24,20 @@ tags:
 The rest of your content lives here. You can use **Markdown** here :)
 ```
 
-Some common frontmatter fields that are natively supported by Quartz:
+一些常见的由Quartz原生支持的frontmatter字段：
 
-- `title`: Title of the page. If it isn't provided, Quartz will use the name of the file as the title.
-- `description`: Description of the page used for link previews.
-- `aliases`: Other names for this note. This is a list of strings.
-- `tags`: Tags for this note.
-- `draft`: Whether to publish the page or not. This is one way to make [[private pages|pages private]] in Quartz.
-- `date`: A string representing the day the note was published. Normally uses `YYYY-MM-DD` format.
+- `title`: 页面的标题。如果没有提供，Quartz将使用文件名作为标题。
+- `description`: 用于链接预览的说明。
+- `aliases`: 笔记的其他名称。为字符串列表。
+- `tags`: 笔记的标签。
+- `draft`: 是否发布页面。这是在Quartz中创建[[private pages|private pages]]的一种方法。
+- `date`: 表示发布日期的字符串。通常使用“YYYY-MM-DD”格式。
 
-## Syncing your Content
+## 同步您的内容
 
-When your Quartz is at a point you're happy with, you can save your changes to GitHub.
-First, make sure you've [[setting up your GitHub repository|already setup your GitHub repository]] and then do `npx quartz sync`.
+当你的Quartz达到你满意的程度时，你可以将你的更改保存到GitHub。
+首先，确保你已经[[setting up your GitHub repository|已经设置了你的GitHub存储库]]，然后执行`npx quartz sync`。
 
-## Customization
+## 自定义
 
-Frontmatter parsing for `title`, `tags`, `aliases` and `cssclasses` is a functionality of the [[Frontmatter]] plugin, `date` is handled by the [[CreatedModifiedDate]] plugin and `description` by the [[Description]] plugin. See the plugin pages for customization options.
+`title`、 `tags`、 `aliases` 和`cssclasses`的Frontmatter解析是[[Frontmatter]]插件的一项功能，`date`由[[CreatedModifiedDate]]插件处理，“description”由[[Description]]插件处理。有关自定义选项，请参阅插件页面。

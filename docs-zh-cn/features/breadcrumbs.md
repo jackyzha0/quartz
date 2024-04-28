@@ -1,18 +1,17 @@
 ---
-title: "Breadcrumbs"
+title: 面包屑导航
 tags:
   - component
 ---
+Breadcrumb提供了一种使用其父文件夹列表在网站内浏览页面层次结构的方法。
 
-Breadcrumbs provide a way to navigate a hierarchy of pages within your site using a list of its parent folders.
+默认情况下，页面最顶部的元素是面包屑导航栏（也可以在该页面的顶部看到！）。
 
-By default, the element at the very top of your page is the breadcrumb navigation bar (can also be seen at the top on this page!).
+## 自定义
 
-## Customization
+大多数配置都可以通过将选项传递给``Component.Breadcrumbs()``。
 
-Most configuration can be done by passing in options to `Component.Breadcrumbs()`.
-
-For example, here's what the default configuration looks like:
+例如，以下是默认配置的样子：
 
 ```typescript title="quartz.layout.ts"
 Component.Breadcrumbs({
@@ -24,13 +23,13 @@ Component.Breadcrumbs({
 })
 ```
 
-When passing in your own options, you can omit any or all of these fields if you'd like to keep the default value for that field.
+在传递自己的选项时，如果希望保留这些字段的默认值，则可以省略其中的任何或全部字段。
 
-You can also adjust where the breadcrumbs will be displayed by adjusting the [[layout]] (moving `Component.Breadcrumbs()` up or down)
+也可以通过调整[[layout]] （向上或向下移动`Component.Breadcrumbs()`）
 
-Want to customize it even more?
+想进一步定制吗？
 
-- Removing breadcrumbs: delete all usages of `Component.Breadcrumbs()` from `quartz.layout.ts`.
-- Component: `quartz/components/Breadcrumbs.tsx`
-- Style: `quartz/components/styles/breadcrumbs.scss`
-- Script: inline at `quartz/components/Breadcrumbs.tsx`
+- 删除面包屑：从`quarter.layout.ts`中删除`Component.Breadcrumbs()` 。
+- 组件: `quartz/components/Breadcrumbs.tsx`
+- 样式: `quartz/components/styles/breadcrumbs.scss`
+- 脚本: 内联在 `quartz/components/Breadcrumbs.tsx`

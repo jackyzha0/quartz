@@ -1,33 +1,33 @@
 ---
-title: Folder and Tag Listings
+title: 文件夹和标签列表
 tags:
   - feature/emitter
 ---
 
-Quartz emits listing pages for any folders and tags you have.
+Quartz会为您拥有的任何文件夹和标签生成列表页面。
 
-## Folder Listings
+## 文件夹列表
 
-Quartz will generate an index page for all the pages under that folder. This includes any content that is multiple levels deep.
+Quartz将为该文件夹下的所有页面生成一个索引页面。这包括多个层次的任何内容。
 
-Additionally, Quartz will also generate pages for subfolders. Say you have a note in a nested folder `content/abc/def/note.md`. Then Quartz would generate a page for all the notes under `abc` _and_ a page for all the notes under `abc/def`.
+此外，Quartz还将为子文件夹生成页面。假设您在嵌套文件夹`content/abc/def/note.md`中有一个笔记。然后Quartz将为`abc` 下的所有笔记生成一个页面，并为`abc/def`下的全部笔记生成一页。
 
-You can link to the folder listing by referencing its name, plus a trailing slash, like this: `[[advanced/]]` (results in [[advanced/]]).
+您可以通过引用文件夹列表的名称和尾部斜杠链接到该列表，如下所示：`[[advanced/]]`（结果为[[advanced/]]）。
 
-By default, Quartz will title the page `Folder: <folder name>` and no description. You can override this by creating an `index.md` file in the folder with the `title` [[authoring content#Syntax|frontmatter]] field. Any content you write in this file will also be used in the folder description.
+默认情况下，Quartz会将页面命名为`Folder: <folder name>` ，而没有说明。您可以通过在具有`title`的文件夹中创建一个`index.md` 文件来覆盖它[[authoring content#语法|元数据]]字段。您在此文件中写入的任何内容也将用于文件夹描述中。
 
-For example, for the folder `content/posts`, you can add another file `content/posts/index.md` to add a specific description for it.
+例如，对于文件夹`content/posts`，您可以添加另一个文件`content/posts/index.md` t来为其添加特定的描述。
 
-## Tag Listings
+## 标签列表
 
-Quartz will also create an index page for each unique tag in your vault and render a list of all notes with that tag.
+Quartz还将为您的vault中的每个唯一标签创建一个索引页面，并呈现带有该标签的所有笔记的列表。
 
-Quartz also supports tag hierarchies as well (e.g. `plugin/emitter`) and will also render a separate tag page for each level of the tag hierarchy. It will also create a default global tag index page at `/tags` that displays a list of all the tags in your Quartz.
+Quartz还支持标记层次结构（例如`plugin/emitter`），并且还将为标记层次结构的每个级别呈现单独的标记页面。它还将在`/tags`处创建一个默认的全局标记索引页面，显示Quartz中所有标记的列表。
 
-You can link to the tag listing by referencing its name with a `tag/` prefix, like this: `[[tags/plugin]]` (results in [[tags/plugin]]).
+您可以通过引用带有`tag/`前缀的标签列表来链接到该标签列表，如下所示：`[[tags/plugin]]`（结果为[[tags/plugin]]）。
 
-As with folder listings, you can also provide a description and title for a tag page by creating a file for each tag. For example, if you wanted to create a custom description for the #component tag, you would create a file at `content/tags/component.md` with a title and description.
+与文件夹列表一样，您也可以通过为每个标记创建一个文件来提供标记页面的描述和标题。例如，如果您想为 #component 标记创建一个自定义描述，您可以在`content/tags/component.md`中创建一个带有标题和描述的文件。
 
-## Customization
+## 自定义
 
-The folder listings are a functionality of the [[FolderPage]] plugin, the tag listings of the [[TagPage]] plugin. See the plugin pages for customization options.
+文件夹列表是[[FolderPage]]插件的一个功能，[[TagPage]]插件中的标记列表。有关自定义选项，请参阅插件页面。

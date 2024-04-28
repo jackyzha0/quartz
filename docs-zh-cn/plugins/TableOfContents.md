@@ -4,23 +4,23 @@ tags:
   - plugin/transformer
 ---
 
-This plugin generates a table of contents (TOC) for Markdown documents. See [[table of contents]] for more information.
+这个插件为Markdown文档生成一个目录（TOC）。参看[[table of contents]]了解更多信息。
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、删除或配置插件的信息，请参阅[[configuration#插件|配置]]页。
 
-This plugin accepts the following configuration options:
+此插件接受以下配置选项：
 
-- `maxDepth`: Limits the depth of headings included in the TOC, ranging from `1` (top level headings only) to `6` (all heading levels). Default is `3`.
-- `minEntries`: The minimum number of heading entries required for the TOC to be displayed. Default is `1`.
-- `showByDefault`: If `true` (default), the TOC should be displayed by default. Can be overridden by frontmatter settings.
-- `collapseByDefault`: If `true`, the TOC will start in a collapsed state. Default is `false`.
+- `maxDepth`: 限制目录中所列标题的深度，范围从`1`（仅限顶级标题）到`6`（所有标题级别）。默认值为`3`。
+- `minEntries`: 显示目录所需的最小标题条目数。默认值为`1。
+- `showByDefault`: 如果`true`（默认值），则默认情况下应显示TOC。可以被元数据设置覆盖。
+- `collapseByDefault`: 如果`true`，TOC将以折叠状态开始。默认值为`false`。
 
 > [!warning]
-> This plugin needs the `Component.TableOfContents` component in `quartz.layout.ts` to determine where to display the TOC. Without it, nothing will be displayed. They should always be added or removed together.
+> 此插件需要`Component.TableOfContents`组件，以确定在何处显示TOC。没有它，什么都不会显示。应始终将它们在一起添加或删除。
 
 ## API
 
-- Category: Transformer
-- Function name: `Plugin.TableOfContents()`.
-- Source: [`quartz/plugins/transformers/toc.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/toc.ts).
+- 分类: 转换器
+- 函数名: `Plugin.TableOfContents()`.
+- 源码: [`quartz/plugins/transformers/toc.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/toc.ts).

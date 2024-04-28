@@ -1,6 +1,10 @@
-Quartz comes shipped with a Docker image that will allow you to preview your Quartz locally without installing Node.
+---
+title: Docker 支持
+---
 
-You can run the below one-liner to run Quartz in Docker.
+Quartz附带了一个Docker镜像，可以让您在不安装Node的情况下在本地预览Quartz。
+
+您可以在Docker中运行下面的行来运行Quartz。
 
 ```sh
 docker run --rm -itp 8080:8080 $(docker build -q .)

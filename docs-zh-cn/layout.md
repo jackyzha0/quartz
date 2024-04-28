@@ -1,10 +1,10 @@
 ---
-title: Layout
+title: 布局
 ---
 
-Certain emitters may also output [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) files. To enable easy customization, these emitters allow you to fully rearrange the layout of the page. The default page layouts can be found in `quartz.layout.ts`.
+某些 emitters 也许会输出[HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) 文件。为了更简单的自定义，这些emitters允许你完全重新安排您的页面布局。页面布局可以在 `quartz.layout.ts` 文件进行配置。
 
-Each page is composed of multiple different sections which contain `QuartzComponents`. The following code snippet lists all of the valid sections that you can add components to:
+每个页面都是由许多包含`QuartzComponents`的部分组成。下面代码列出了可以在其中添加组件的。
 
 ```typescript title="quartz/cfg.ts"
 export interface FullPageLayout {
@@ -18,25 +18,25 @@ export interface FullPageLayout {
 }
 ```
 
-These correspond to following parts of the page:
+这些对应于页面的以下部分：
 
 ![[quartz layout.png|800]]
 
 > [!note]
-> There are two additional layout fields that are _not_ shown in the above diagram.
->
-> 1. `head` is a single component that renders the `<head>` [tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head) in the HTML. This doesn't appear visually on the page and is only is responsible for metadata about the document like the tab title, scripts, and styles.
-> 2. `header` is a set of components that are laid out horizontally and appears _before_ the `beforeBody` section. This enables you to replicate the old Quartz 3 header bar where the title, search bar, and dark mode toggle. By default, Quartz 4 doesn't place any components in the `header`.
+> 有两个额外的属性没有在上面的代码中展示。
+> 
+> 1. `head` 是在HTML中渲染 `<head>` [标签](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head) 的唯一的组件。这不会直观地显示在页面上，只负责文档的元数据，如选项卡标题、脚本和样式。
+> 2. `header`是一组水平排列的组件，出现在“beforeBody”部分之前。这使您能够复制旧的`Quartz 3`标题栏，其中包括标题、搜索栏和暗模式切换。默认情况下，`Quartz 4`不会在 `header`中放置任何组件。
 
-Quartz **components**, like plugins, can take in additional properties as configuration options. If you're familiar with React terminology, you can think of them as Higher-order Components.
+Quartz **组件**与插件一样，可以采用其他属性作为配置选项。如果您熟悉React术语，您可以将其视为高阶组件。
 
-See [a list of all the components](component.md) for all available components along with their configuration options. You can also checkout the guide on [[creating components]] if you're interested in further customizing the behaviour of Quartz.
+有关所有可用组件及其配置选项，请参见[所有组件的列表](component.md) 。如果您有兴趣进一步定制Quartz的行为，也可以查看[[创建组件]]指南。
 
-### Style
+### 样式
 
-Most meaningful style changes like colour scheme and font can be done simply through the [[configuration#General Configuration|general configuration]] options. However, if you'd like to make more involved style changes, you can do this by writing your own styles. Quartz 4, like Quartz 3, uses [Sass](https://sass-lang.com/guide/) for styling.
+大多数的样式更改，如配色方案和字体，都可以简单地通过[[configuration#General Configuration|常规配置]]选项来完成。然而，如果你想进行更多的风格改变，你可以通过编写自己的样式来做到这一点。Quartz 4和Quartz 3一样使用[Sass](https://sass-lang.com/guide/)编写样式。
 
-You can see the base style sheet in `quartz/styles/base.scss` and write your own in `quartz/styles/custom.scss`.
+您可以在 `quartz/styles/base.scss` 中看到基础的样式并且您可以在`quartz/styles/custom.scss` 中定义您自己的样式。
 
 > [!note]
-> Some components may provide their own styling as well! For example, `quartz/components/Darkmode.tsx` imports styles from `quartz/components/styles/darkmode.scss`. If you'd like to customize styling for a specific component, double check the component definition to see how its styles are defined.
+> 某些组件也可能提供自己的样式！例如，“quartery/components/Darkmode.tsx”从“quarter/components/styles/Darkmode.scss”导入样式。如果要自定义特定零部件的样式，请仔细检查零部件定义，查看其样式是如何定义的。

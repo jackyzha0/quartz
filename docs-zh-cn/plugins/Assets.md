@@ -4,17 +4,17 @@ tags:
   - plugin/emitter
 ---
 
-This plugin emits all non-Markdown static assets in your content folder (like images, videos, HTML, etc). The plugin respects the `ignorePatterns` in the global [[configuration]].
+这个插件会在您的内容文件夹中生成所有非Markdown静态资产（如图像、视频、HTML等）。该插件支持全局[[configuration]]中的`ignorePatterns`.
 
-Note that all static assets will then be accessible through its path on your generated site, i.e: `host.me/path/to/static.pdf`
+请注意，所有静态资产都可以通过其在您生成的网站上的路径访问，即：`host.me/path/to/static.pdf`
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、删除或配置插件的信息，请参阅[[configuration#Plugins|配置]]页。
 
-This plugin has no configuration options.
+此插件没有配置选项。
 
 ## API
 
-- Category: Emitter
-- Function name: `Plugin.Assets()`.
-- Source: [`quartz/plugins/emitters/assets.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/assets.ts).
+- 分类: 生成器
+- 函数名: `Plugin.Assets()`.
+- 源码: [`quartz/plugins/emitters/assets.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/assets.ts).

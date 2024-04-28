@@ -4,19 +4,20 @@ tags:
   - plugin/emitter
 ---
 
-This plugin emits a `CNAME` record that points your subdomain to the default domain of your site.
 
-If you want to use a custom domain name like `quartz.example.com` for the site, then this is needed.
+此插件生成一个“CNAME”记录，将您的子域指向网站的默认域。
 
-See [[hosting|Hosting]] for more information.
+如果你想为网站使用一个自定义域名，比如`quartz.example.com`，那么这是必要的。
+
+查看[[hosting]]了解更多信息。
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、删除或配置插件的信息，请参阅[[configuration#Plugins|配置]]页。
 
-This plugin has no configuration options.
+此插件没有配置选项。
 
 ## API
 
-- Category: Emitter
-- Function name: `Plugin.CNAME()`.
-- Source: [`quartz/plugins/emitters/cname.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/cname.ts).
+- 分类: 生成器
+- 函数名: `Plugin.CNAME()`.
+- 源码: [`quartz/plugins/emitters/cname.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/cname.ts).

@@ -1,19 +1,19 @@
 ---
-title: "Darkmode"
+title: 深色模式
 tags:
   - component
 ---
 
-Quartz supports darkmode out of the box that respects the user's theme preference. Any future manual toggles of the darkmode switch will be saved in the browser's local storage so it can be persisted across future page loads.
+Quartz支持开箱即用的深色模式，尊重用户的主题偏好。暗模式开关的任何未来手动切换都将保存在浏览器的本地存储中，以便在未来的页面加载中保持不变。
 
-## Customization
+## 自定义
 
-- Removing darkmode: delete all usages of `Component.Darkmode()` from `quartz.layout.ts`.
-- Component: `quartz/components/Darkmode.tsx`
-- Style: `quartz/components/styles/darkmode.scss`
-- Script: `quartz/components/scripts/darkmode.inline.ts`
+- 删除暗模式：从`quartery.layout.ts`中删除`Component.Darkmode()`。
+- 组件: `quartz/components/Darkmode.tsx`
+- 样式: `quartz/components/styles/darkmode.scss`
+- 脚本: `quartz/components/scripts/darkmode.inline.ts`
 
-You can also listen to the `themechange` event to perform any custom logic when the theme changes.
+您还可以收听`themechange`事件，以便在主题更改时执行任何自定义逻辑。
 
 ```js
 document.addEventListener("themechange", (e) => {

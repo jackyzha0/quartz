@@ -4,23 +4,24 @@ tags:
   - plugin/emitter
 ---
 
-This plugin emits both RSS and an XML sitemap for your site. The [[RSS Feed]] allows users to subscribe to content on your site and the sitemap allows search engines to better index your site. The plugin also emits a `contentIndex.json` file which is used by dynamic frontend components like search and graph.
+这个插件为您的站点同时发出RSS和XML站点地图。[[RSS订阅]] 允许用户订阅您网站上的内容，网站地图允许搜索引擎更好地为您的网站编制索引。该插件还发出一个`contentIndex.json` 文件，供搜索和图形等动态前端组件使用。
 
-This plugin emits a comprehensive index of the site's content, generating additional resources such as a sitemap, an RSS feed, and a
+这个插件生成网站内容的综合索引，生成额外的资源，如网站地图、RSS提要和
 
 > [!note]
 > For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、删除或配置插件的信息，请参阅[[configuration#插件|配置]]页。
 
-This plugin accepts the following configuration options:
+此插件接受以下配置选项：
 
-- `enableSiteMap`: If `true` (default), generates a sitemap XML file (`sitemap.xml`) listing all site URLs for search engines in content discovery.
-- `enableRSS`: If `true` (default), produces an RSS feed (`index.xml`) with recent content updates.
-- `rssLimit`: Defines the maximum number of entries to include in the RSS feed, helping to focus on the most recent or relevant content. Defaults to `10`.
-- `rssFullHtml`: If `true`, the RSS feed includes full HTML content. Otherwise it includes just summaries.
-- `includeEmptyFiles`: If `true` (default), content files with no body text are included in the generated index and resources.
+- `enableSiteMap`: 如果为`true` （默认值），则生成一个站点地图XML文件（`sitemap.xml`），列出内容发现中搜索引擎的所有站点URL。
+- `enableRSS`: 如果为`true` （默认值），则生成包含最新内容更新的RSS提要（`index.xml`）。
+- `rssLimit`: 定义RSS提要中包含的最大条目数，有助于关注最新或相关的内容。默认为“10”。
+- `rssFullHtml`: 如果为`true`，则RSS提要包含完整的HTML内容。否则，它只包括摘要。
+- `includeEmptyFiles`: 如果为`true`（默认值），则不包含正文的内容文件将包含在生成的索引和资源中。
 
 ## API
 
-- Category: Emitter
-- Function name: `Plugin.ContentIndex()`.
-- Source: [`quartz/plugins/emitters/contentIndex.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/contentIndex.ts).
+- 分类: 生成器
+- 函数名: `Plugin.ContentIndex()`.
+- 源码: [`quartz/plugins/emitters/contentIndex.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/contentIndex.ts).

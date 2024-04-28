@@ -1,18 +1,19 @@
 ---
-title: Setting up your GitHub repository
+title: 设置GitHub仓库
 ---
 
 First, make sure you have Quartz [[index#🪴 Get Started|cloned and setup locally]].
+首先，确保您有Quartz[[index#🪴 快速上手|克隆并在本地安装]]。
 
-Then, create a new repository on GitHub.com. Do **not** initialize the new repository with `README`, license, or `gitignore` files.
+然后，在GitHub.com上创建一个新的存储库。**不要**使用“README”、许可证或“gitignore”文件初始化新存储库。
 
 ![[github-init-repo-options.png]]
 
-At the top of your repository on GitHub.com's Quick Setup page, click the clipboard to copy the remote repository URL.
+在GitHub.com的“Quick Setup”页面上的存储库顶部，单击clipboard复制远程仓库地址。
 
 ![[github-quick-setup.png]]
 
-In your terminal of choice, navigate to the root of your Quartz folder. Then, run the following commands, replacing `REMOTE-URL` with the URL you just copied from the previous step.
+在您选择的终端中，导航到Quartz文件夹的根目录。然后，运行以下命令，将`REMOTE-URL`替换为您刚刚从上一步复制的URL。
 
 ```bash
 # list all the repositories that are tracked
@@ -25,24 +26,24 @@ git remote set-url origin REMOTE-URL
 git remote add upstream https://github.com/jackyzha0/quartz.git
 ```
 
-Then, you can sync the content to upload it to your repository. This is a helper command that will do the initial push of your content to your repository.
+然后，您可以同步内容以将其上传到仓库。这是一个助手命令，用于将内容初始推送到存储库。
 
 ```bash
 npx quartz sync --no-pull
 ```
 
 > [!warning]- `fatal: --[no-]autostash option is only valid with --rebase`
-> You may have an outdated version of `git`. Updating `git` should fix this issue.
+> 你可能有一个过时的`git`.版本。更新`git`.应该可以解决此问题。
 
-In future updates, you can simply run `npx quartz sync` every time you want to push updates to your repository.
+在未来的更新中，每次您想将更新推送到存储库时，只需运行 `npx quartz sync` 即可。
 
 > [!hint] Flags and options
-> For full help options, you can run `npx quartz sync --help`.
+> 有关完整帮助选项，您可以运行`npx-quarter-sync--help`。
+> 
+> 其中大多数都有合理的默认值，但如果您有自定义设置，则可以覆盖它们：
 >
-> Most of these have sensible defaults but you can override them if you have a custom setup:
->
-> - `-d` or `--directory`: the content folder. This is normally just `content`
-> - `-v` or `--verbose`: print out extra logging information
-> - `--commit` or `--no-commit`: whether to make a `git` commit for your changes
-> - `--push` or `--no-push`: whether to push updates to your GitHub fork of Quartz
-> - `--pull` or `--no-pull`: whether to try and pull in any updates from your GitHub fork (i.e. from other devices) before pushing
+> - `-d` or `--directory`:  `content`内容文件夹。默认是`content``
+> - `-v` or `--verbose`: 打印出额外的日志信息
+> - `--commit` or `--no-commit`: 是否对您的更改进行 `git` 提交
+> - `--push` or `--no-push`: 是否将更新推送到Quartz的GitHub分支
+> - `--pull` or `--no-pull`: 在推送之前，是否尝试从你的GitHub（即从其他设备）获取任何更新

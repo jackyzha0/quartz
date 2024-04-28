@@ -1,17 +1,17 @@
 ---
-title: Popover Previews
+title: 弹出式预览
 ---
 
-Like Wikipedia, when you hover over a link in Quartz, there is a popup of a page preview that you can scroll to see the entire content. Links to headers will also scroll the popup to show that specific header in view.
 
-By default, Quartz only fetches previews for pages inside your vault due to [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS). It does this by selecting all HTML elements with the `popover-hint` class. For most pages, this includes the page title, page metadata like words and time to read, tags, and the actual page content.
+就像维基百科一样，当你把鼠标悬停在Quartz中的一个链接上时，会弹出一个页面预览，你可以滚动查看整个内容。指向标题的链接也会滚动弹出窗口，在视图中显示特定的标题。
 
-When [[creating components|creating your own components]], you can include this `popover-hint` class to also include it in the popover.
+默认情况下，由于[CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).的原因，Quartz只获取vault内页面的预览。它通过使用`popover-hint` 类选择所有HTML元素来实现这一点。对于大多数页面，这包括页面标题、页面元数据（如单词和阅读时间）、标记和实际页面内容。
 
-Similar to Obsidian, [[quartz layout.png|images referenced using wikilinks]] can also be viewed as popups.
+当[[创建组件|自定义组件]]的时候，您可以将这个 `popover-hint`类包含在popover中。
 
-## Configuration
+与Obsidian类似，[[quartz layout.png|使用Wiki链接引用的图像]]也可以作为弹出窗口查看。
+## 配置
 
-- Remove popovers: set the `enablePopovers` field in `quartz.config.ts` to be `false`.
-- Style: `quartz/components/styles/popover.scss`
-- Script: `quartz/components/scripts/popover.inline.ts`
+- 删除popovers：将`quartz.config.ts`中的`enablePopovers` f字段设置为`false`.。
+- 样式: `quartz/components/styles/popover.scss`
+- 脚本: `quartz/components/scripts/popover.inline.ts`

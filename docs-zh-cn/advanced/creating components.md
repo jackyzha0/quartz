@@ -1,11 +1,11 @@
 ---
-title: Creating your own Quartz components
+title: 创建自己的 Quartz组件
 ---
 
 > [!warning]
-> This guide assumes you have experience writing JavaScript and are familiar with TypeScript.
+> 本指南假设您有编写JavaScript的经验，并且熟悉TypeScript。
 
-Normally on the web, we write layout code using HTML which looks something like the following:
+通常在网页上，我们使用HTML编写布局代码，如下所示：
 
 ```html
 <article>
@@ -14,21 +14,21 @@ Normally on the web, we write layout code using HTML which looks something like 
 </article>
 ```
 
-This piece of HTML represents an article with a leading header that says "An article header" and a paragraph that contains the text "Some content". This is combined with CSS to style the page and JavaScript to add interactivity.
+这段HTML表示一篇文章，其前导标题为“文章标题”，段落包含文本“某些内容”。这与CSS相结合来设计页面样式，与JavaScript相结合来增加交互性。
 
-However, HTML doesn't let you create reusable templates. If you wanted to create a new page, you would need to copy and paste the above snippet and edit the header and content yourself. This isn't great if we have a lot of content on our site that shares a lot of similar layout. The smart people who created React also had similar complaints and invented the concept of Components -- JavaScript functions that return JSX -- to solve the code duplication problem.
+然而，HTML不允许您创建可重复使用的模板。如果你想创建一个新页面，你需要复制并粘贴上面的片段，并自己编辑标题和内容。如果我们的网站上有很多内容共享很多类似的布局，那就不太好了。创建React的聪明人也有类似的抱怨，他们发明了组件的概念——返回JSX的JavaScript函数——来解决代码重复问题。
 
-In effect, components allow you to write a JavaScript function that takes some data and produces HTML as an output. **While Quartz doesn't use React, it uses the same component concept to allow you to easily express layout templates in your Quartz site.**
+实际上，组件允许您编写一个JavaScript函数，该函数接受一些数据并生成HTML作为输出**虽然Quartz不使用React，但它使用了相同的组件概念，允许您在Quartz网站中轻松表达布局模板**
 
-## An Example Component
+## 示例组件
 
 ### Constructor
 
-Component files are written in `.tsx` files that live in the `quartz/components` folder. These are re-exported in `quartz/components/index.ts` so you can use them in layouts and other components more easily.
+组件文件是在`quartz/components`文件夹中的`.tsx` 文件中编写的。这些内容以`quartz/components/index.ts` 的形式重新导出，因此您可以更容易地在布局和其他组件中使用它们。
 
-Each component file should have a default export that satisfies the `QuartzComponentConstructor` function signature. It's a function that takes in a single optional parameter `opts` and returns a Quartz Component. The type of the parameters `opts` is defined by the interface `Options` which you as the component creator also decide.
+每个组件文件都应有一个满足`QuartzComponentConstructor` 函数签名的默认导出。这是一个接受单个可选参数`opts`并返回Quartz组件的函数。参数`opts`的类型由接口`Options`定义，您作为组件创建者也可以自定义。
 
-In your component, you can use the values from the configuration option to change the rendering behaviour inside of your component. For example, the component in the code snippet below will not render if the `favouriteNumber` option is below 0.
+在组件中，可以使用配置选项中的值来更改组件内部的渲染行为。例如，如果`favouriteNumber`选项低于0，则不会呈现下面代码段中的组件。
 
 ```tsx {11-17}
 interface Options {
@@ -55,9 +55,9 @@ export default ((userOpts?: Options) => {
 
 ### Props
 
-The Quartz component itself (lines 11-17 highlighted above) looks like a React component. It takes in properties (sometimes called [props](https://react.dev/learn/passing-props-to-a-component)) and returns JSX.
+Quartz组件本身（上面突出显示的第11-17行）看起来像React组件。它接受属性（有时称为[props](https://react.dev/learn/passing-props-to-a-component))并返回JSX。
 
-All Quartz components accept the same set of props:
+所有Quartz组件都接受相同的props：
 
 ```tsx title="quartz/components/types.ts"
 // simplified for sake of demonstration
@@ -70,19 +70,19 @@ export type QuartzComponentProps = {
 }
 ```
 
-- `fileData`: Any metadata [[making plugins|plugins]] may have added to the current page.
-  - `fileData.slug`: slug of the current page.
-  - `fileData.frontmatter`: any frontmatter parsed.
-- `cfg`: The `configuration` field in `quartz.config.ts`.
-- `tree`: the resulting [HTML AST](https://github.com/syntax-tree/hast) after processing and transforming the file. This is useful if you'd like to render the content using [hast-util-to-jsx-runtime](https://github.com/syntax-tree/hast-util-to-jsx-runtime) (you can find an example of this in `quartz/components/pages/Content.tsx`).
-- `allFiles`: Metadata for all files that have been parsed. Useful for doing page listings or figuring out the overall site structure.
-- `displayClass`: a utility class that indicates a preference from the user about how to render it in a mobile or desktop setting. Helpful if you want to conditionally hide a component on mobile or desktop.
+- `fileData`: 任何元数据[[makeing plugins|插件]]都可能已添加到当前页面。
+  - `fileData.slug`: 当前页面的唯一标识。
+  - `fileData.frontmatter`: 任何已解析的模版（frontmatter）。
+- `cfg`: `quartz.config.ts`中的 `configuration` 字段。
+- `tree`: 在处理和转换文件之后的[HTML AST](https://github.com/syntax-tree/hast)结果。如果您想使用[hast-util-to-jsx-runtime](https://github.com/syntax-tree/hast-util-to-jsx-runtime) 来呈现内容，这将非常有用（您可以在`quarter/components/pages/Content.tsx`中找到一个例子）。
+- `allFiles`: 已分析的所有文件的元数据。用于列出页面或了解整个网站结构。
+- `displayClass`: 一个实用的class，指示用户关于如何在移动或桌面设置中渲染它的偏好。如果你想有条件地隐藏移动设备或桌面上的组件，这很有帮助。一个实用程序类，指示用户关于如何在移动或桌面设置中渲染它的偏好。如果你想有条件地隐藏移动设备或桌面上的组件，这很有帮助。
 
 ### Styling
 
-Quartz components can also define a `.css` property on the actual function component which will get picked up by Quartz. This is expected to be a CSS string which can either be inlined or imported from a `.scss` file.
+Quartz组件还可以在实际功能组件上定义一个`.css` 属性，该属性将由Quartz获取。这应该是一个CSS字符串，可以内联，也可以从`.scss` 文件导入。
 
-Note that inlined styles **must** be plain vanilla CSS:
+请注意，内联样式**必须**为普通CSS：
 
 ```tsx {6-10} title="quartz/components/YourComponent.tsx"
 export default (() => {
@@ -100,7 +100,7 @@ export default (() => {
 }) satisfies QuartzComponentConstructor
 ```
 
-Imported styles, however, can be from SCSS files:
+但是，导入的样式可以来自SCSS文件：
 
 ```tsx {1-2,9} title="quartz/components/YourComponent.tsx"
 // assuming your stylesheet is in quartz/components/styles/YourComponent.scss
@@ -117,11 +117,11 @@ export default (() => {
 ```
 
 > [!warning]
-> Quartz does not use CSS modules so any styles you declare here apply _globally_. If you only want it to apply to your component, make sure you use specific class names and selectors.
+> Quartz不使用CSS模块，所以您在这里声明的任何样式都应用于_全局_。如果您只希望它应用于您的组件，请确保使用特定的类名和选择器。
 
-### Scripts and Interactivity
+### Scripts 和交互
 
-What about interactivity? Suppose you want to add an-click handler for example. Like the `.css` property on the component, you can also declare `.beforeDOMLoaded` and `.afterDOMLoaded` properties that are strings that contain the script.
+互动性呢？例如，假设您想要添加一个点击处理程序。与组件上的`.css` 属性一样，您也可以声明 `.beforeDOMLoaded` 和 `.afterDOMLoaded` 属性，它们是包含脚本的字符串。
 
 ```tsx title="quartz/components/YourComponent.tsx"
 export default (() => {
@@ -143,13 +143,13 @@ export default (() => {
 ```
 
 > [!hint]
-> For those coming from React, Quartz components are different from React components in that it only uses JSX for templating and layout. Hooks like `useEffect`, `useState`, etc. are not rendered and other properties that accept functions like `onClick` handlers will not work. Instead, do it using a regular JS script that modifies the DOM element directly.
+> 对于来自React的组件，Quartz组件与React组件的不同之处在于，它只使用JSX进行模板和布局。 `useEffect`、 `useState`,等挂钩不会被呈现，接受`onClick` 处理程序等函数的其他属性也不会工作。相反，可以使用直接修改DOM元素的常规JS脚本来完成。
 
-As the names suggest, the `.beforeDOMLoaded` scripts are executed _before_ the page is done loading so it doesn't have access to any elements on the page. This is mostly used to prefetch any critical data.
+顾名思义，`.beforeDOMLoaded` 脚本是在页面加载完成之前执行的，因此它无法访问页面上的任何元素。这主要用于预取任何关键数据。
 
-The `.afterDOMLoaded` script executes once the page has been completely loaded. This is a good place to setup anything that should last for the duration of a site visit (e.g. getting something saved from local storage).
+页面完全加载后，将执行`.afterDOMLoaded`脚本。这是一个很好的地方，可以设置任何应该在访问期间持续存在的东西（例如，从本地存储中获得一些东西）。
 
-If you need to create an `afterDOMLoaded` script that depends on _page specific_ elements that may change when navigating to a new page, you can listen for the `"nav"` event that gets fired whenever a page loads (which may happen on navigation if [[SPA Routing]] is enabled).
+如果您需要创建一个`afterDOMLoaded` 脚本，该脚本依赖于导航到新页面时可能更改的特定元素，则可以侦听每当加载页面时触发的 `"nav"` 事件（如果启用了[[SPA Routing]]，则可能在导航时发生）。
 
 ```ts
 document.addEventListener("nav", () => {
@@ -161,14 +161,14 @@ document.addEventListener("nav", () => {
 })
 ```
 
-It is best practice to track any event handlers via `window.addCleanup` to prevent memory leaks.
-This will get called on page navigation.
+最佳做法是通过`window.addCleanup` 跟踪任何事件处理程序，以防止内存泄漏。
+这将在页面导航中调用。
 
-#### Importing Code
+#### 导入代码
 
-Of course, it isn't always practical (nor desired!) to write your code as a string literal in the component.
+当然，在组件中将代码写成字符串文字并不总是实用的（也不可取！）。
 
-Quartz supports importing component code through `.inline.ts` files.
+Quartz支持通过 `.inline.ts`文件导入组件代码。
 
 ```tsx title="quartz/components/YourComponent.tsx"
 // @ts-ignore: typescript doesn't know about our inline bundling system
@@ -194,11 +194,11 @@ document.getElementById("btn").onclick = () => {
 }
 ```
 
-Additionally, like what is shown in the example above, you can import packages in `.inline.ts` files. This will be bundled by Quartz and included in the actual script.
+此外，与上面的示例一样，您可以导入`.inline.ts'文件中的包。这将由Quartz绑定并包含在实际脚本中。
 
-### Using a Component
+### 使用组件
 
-After creating your custom component, re-export it in `quartz/components/index.ts`:
+创建自定义组件后，将其重新导出到 `quartz/components/index.ts`中：
 
 ```ts title="quartz/components/index.ts" {4,10}
 import ArticleTitle from "./ArticleTitle"
@@ -210,8 +210,9 @@ export { ArticleTitle, Content, Darkmode, YourComponent }
 ```
 
 Then, you can use it like any other component in `quartz.layout.ts` via `Component.YourComponent()`. See the [[configuration#Layout|layout]] section for more details.
+然后，您可以通过`Component.YourComponent()`像使用`quartz.layout.ts`中的任何其他组件一样使用它。请参阅[[configuration#常规配置|布局]]部分了解更多详细信息。
 
-As Quartz components are just functions that return React components, you can compositionally use them in other Quartz components.
+由于Quartz组件只是返回React组件的函数，您可以在其他Quartz部件中使用它们。
 
 ```tsx title="quartz/components/AnotherComponent.tsx"
 import YourComponent from "./YourComponent"
@@ -231,4 +232,4 @@ export default (() => {
 ```
 
 > [!hint]
-> Look in `quartz/components` for more examples of components in Quartz as reference for your own components!
+> 在 `quartz/components`中查找更多石英组件示例，作为您自己组件的参考！

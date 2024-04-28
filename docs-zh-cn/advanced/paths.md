@@ -1,14 +1,14 @@
 ---
-title: Paths in Quartz
+title: Quartz中的路径
 ---
 
-Paths are pretty complex to reason about because, especially for a static site generator, they can come from so many places.
+路径很难推理，因为特别是对于静态站点生成器来说，它们可能来自很多地方。
 
-A full file path to a piece of content? Also a path. What about a slug for a piece of content? Yet another path.
+一段内容的完整文件路径？也是一条路径。用slug代表一段内容怎么样？还有另一条路。
 
-It would be silly to type these all as `string` and call it a day as it's pretty common to accidentally mistake one type of path for another. Unfortunately, TypeScript does not have [nominal types](https://en.wikipedia.org/wiki/Nominal_type_system) for type aliases meaning even if you made custom types of a server-side slug or a client-slug slug, you can still accidentally assign one to another and TypeScript wouldn't catch it.
+把这些都键入`string` 并称之为一天是愚蠢的，因为不小心把一种类型的路径误认为另一种类型是很常见的。不幸的是，TypeScript对于类型别名没有[nominal types](https://en.wikipedia.org/wiki/Nominal_type_system) ，这意味着即使您自定义了服务器端slug或客户端slug的类型，您仍然可以意外地将其中一个分配给另一个，而TypeScript不会捕捉到它。
 
-Luckily, we can mimic nominal typing using [brands](https://www.typescriptlang.org/play#example/nominal-typing).
+幸运的是，我们可以使用[brands](https://www.typescriptlang.org/play#example/nominal-typing)模拟 `nominal typing `。
 
 ```typescript
 // instead of
@@ -21,11 +21,11 @@ type FullSlug = string & { __brand: "full" }
 const slug: FullSlug = "some random string"
 ```
 
-While this prevents most typing mistakes _within_ our nominal typing system (e.g. mistaking a server slug for a client slug), it doesn't prevent us from _accidentally_ mistaking a string for a client slug when we forcibly cast it.
+虽然这可以防止在我们的`nominal typing`系统中出现大多数输入错误（例如，将服务器slug误认为客户端slug），但这并不能防止我们在强制转换字符串时将字符串误认为客户端的slug。
 
-Thus, we still need to be careful when casting from a string to one of these nominal types in the 'entrypoints', illustrated with hexagon shapes in the diagram below.
+因此，当从在“entrypoints”中将字符串转换为这些`nominal types`之一时，我们仍然需要小心，如下图中的六边形所示。
 
-The following diagram draws the relationships between all the path sources, nominal path types, and what functions in `quartz/path.ts` convert between them.
+下图绘制了所有路径源、`nominal path types`之间的关系，以及`quartz/path.ts` 中它们之间转换的函数。
 
 ```mermaid
 graph LR
@@ -41,11 +41,11 @@ graph LR
     style FullSlug stroke-width:4px
 ```
 
-Here are the main types of slugs with a rough description of each type of path:
+以下是slugs的主要类型，并对每种类型的路径进行了粗略描述：
 
-- `FilePath`: a real file path to a file on disk. Cannot be relative and must have a file extension.
-- `FullSlug`: cannot be relative and may not have leading or trailing slashes. It can have `index` as it's last segment. Use this wherever possible is it's the most 'general' interpretation of a slug.
-- `SimpleSlug`: cannot be relative and shouldn't have `/index` as an ending or a file extension. It _can_ however have a trailing slash to indicate a folder path.
-- `RelativeURL`: must start with `.` or `..` to indicate it's a relative URL. Shouldn't have `/index` as an ending or a file extension but can contain a trailing slash.
+- `FilePath`: 磁盘上文件的真实文件路径。不能是相对的，并且必须具有文件扩展名。
+- `FullSlug`: 不能是相对的，并且不能有前导斜杠或尾随斜杠。它可以有`index`作为它的最后一个段。尽可能使用这个，因为这是对slug最“一般”的解释。
+- `SimpleSlug`：不能是相对的，并且不应将`/index` 作为结尾或文件扩展名。但是，它可以有一个尾部斜线来指示文件夹路径。
+- `RelativeURL`: 必须以`.`开头或表示它是一个相对URL。不应该以`/index`作为结尾或文件扩展名，但可以包含尾部斜杠。
 
-To get a clearer picture of how these relate to each other, take a look at the path tests in `quartz/path.test.ts`.
+为了更清楚地了解它们之间的关系，请查看`quartz/path.test.ts`中的路径测试。

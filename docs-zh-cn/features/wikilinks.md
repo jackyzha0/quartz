@@ -2,23 +2,23 @@
 title: Wikilinks
 ---
 
-Wikilinks were pioneered by earlier internet wikis to make it easier to write links across pages without needing to write Markdown or HTML links each time.
+Wikilinks是由早期的互联网Wiki开创的，它可以更容易地在页面之间编写链接，而无需每次都编写Markdown或HTML链接。
 
-Quartz supports Wikilinks by default and these links are resolved by Quartz using the [[CrawlLinks]] plugin. See the [Obsidian Help page on Internal Links](https://help.obsidian.md/Linking+notes+and+files/Internal+links) for more information on Wikilink syntax.
+Quartz默认支持Wikilinks，这些链接由Quartz使用[[CrawlLinks]]插件解析。请参阅[内部链接上的Obsidian帮助页面](https://help.obsidian.md/Linking+notes+和+files/Internal+links)，以获取有关Wikilink语法的更多信息。
 
-This is enabled as a part of [[Obsidian compatibility]] and can be configured and enabled/disabled from that plugin.
+这是作为[[Obsidian compatibility]] 的一部分并且可以从该插件进行配置和启用/禁用。
 
-## Syntax
+## 语法
 
-- `[[Path to file]]`: produces a link to `Path to file.md` (or `Path-to-file.md`) with the text `Path to file`
-- `[[Path to file | Here's the title override]]`: produces a link to `Path to file.md` with the text `Here's the title override`
-- `[[Path to file#Anchor]]`: produces a link to the anchor `Anchor` in the file `Path to file.md`
-- `[[Path to file#^block-ref]]`: produces a link to the specific block `block-ref` in the file `Path to file.md`
+- `[[Path to file]]`: 生成一个指向`Path to file.md`（或`Path-to-file.md`）的链接，其文本为`Path to file`
+- `[[Path to file | Here's the title override]]`: 生成一个指向`Path to file.md`的链接，其文本为`Here's the title override`
+- `[[Path to file#Anchor]]`: 生成指向文件`Path to file.md`中的锚点`Anchor`的链接
+- `[[Path to file#^block-ref]]`: 生成指向文件`Path to file.md`中特定块`block-ref`的链接
 
-### Embeds
+### 嵌入
 
-- `![[Path to image]]`: embeds an image into the page
-- `![[Path to image|100x145]]`: embeds an image into the page with dimensions 100px by 145px
-- `![[Path to file]]`: transclude an entire page
-- `![[Path to file#Anchor]]`: transclude everything under the header `Anchor`
-- `![[Path to file#^b15695]]`: transclude block with ID `^b15695`
+- `![[Path to image]]`: 将图像嵌入到页面中
+- `![[Path to image|100x145]]`: 将尺寸为100px * 145px的图像嵌入到页面中
+- `![[Path to file]]`: 覆盖整个页面
+- `![[Path to file#Anchor]]`: 嵌入标题`Anchor`下的所有内容
+- `![[Path to file#^b15695]]`: 嵌入包含ID为`^b15695`的块

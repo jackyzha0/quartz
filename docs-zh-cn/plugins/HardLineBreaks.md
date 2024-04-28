@@ -4,15 +4,15 @@ tags:
   - plugin/transformer
 ---
 
-This plugin automatically converts single line breaks in Markdown text into hard line breaks in the HTML output. This plugin is not enabled by default as this doesn't follow the semantics of actual Markdown but you may enable it if you'd like parity with [[Obsidian compatibility|Obsidian]].
+该插件自动将Markdown文本中的换行符转换为HTML输出中的硬换行符。默认情况下，此插件未启用，因为它不符合实际Markdown的语义，但如果您希望与[[Obsidian compatibility|Obsidian]] 一样，你可以将它开启。
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、删除或配置插件的信息，请参阅[[configuration#插件|配置]]页。
 
-This plugin has no configuration options.
+此插件没有配置选项。
 
 ## API
 
-- Category: Transformer
-- Function name: `Plugin.HardLineBreaks()`.
-- Source: [`quartz/plugins/transformers/linebreaks.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/linebreaks.ts).
+- 分类: 转换器
+- 函数名: `Plugin.HardLineBreaks()`.
+- 源码: [`quartz/plugins/transformers/linebreaks.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/linebreaks.ts).

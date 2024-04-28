@@ -1,25 +1,25 @@
 ---
-title: "Explorer"
+title: 资源管理器
 tags:
   - component
 ---
 
-Quartz features an explorer that allows you to navigate all files and folders on your site. It supports nested folders and is highly customizable.
+Quartz具有一个资源管理器，允许您浏览网站上的所有文件和文件夹。它支持嵌套文件夹，并且可高度自定义。
 
-By default, it shows all folders and files on your page. To display the explorer in a different spot, you can edit the [[layout]].
+默认情况下，它显示页面上的所有文件夹和文件。要在其他位置显示资源管理器，可以编辑[[layout]].
 
-Display names for folders get determined by the `title` frontmatter field in `folder/index.md` (more detail in [[authoring content | Authoring Content]]). If this file does not exist or does not contain frontmatter, the local folder name will be used instead.
+文件夹的显示名称由`folder/index.md` 中的元数据中的`title`字段确定（更多详细信息请参阅[[authoring content|authoring content]]）。如果此文件不存在或不包含元数据，则将使用本地文件夹名称。
 
 > [!info]
-> The explorer uses local storage by default to save the state of your explorer. This is done to ensure a smooth experience when navigating to different pages.
+> 资源管理器默认使用本地存储来保存资源管理器的状态。这样做是为了确保在导航到不同页面时获得流畅的体验。
 >
-> To clear/delete the explorer state from local storage, delete the `fileTree` entry (guide on how to delete a key from local storage in chromium based browsers can be found [here](https://docs.devolutions.net/kb/general-knowledge-base/clear-browser-local-storage/clear-chrome-local-storage/)). You can disable this by passing `useSavedState: false` as an argument.
+> 要从本地存储中清除/删除资源管理器状态，请删除`fileTree` 条目（有关如何在基于铬的浏览器中从本地存储删除密钥的指南，请参见[此处](https://docs.devolutions.net/kb/general-knowledge-base/clear-browser-local-storage/clear-chrome-local-storage/))。您可以通过传递`useSavedState: false` 作为参数来禁用此功能。
 
-## Customization
+## 自定义
 
-Most configuration can be done by passing in options to `Component.Explorer()`.
+大多数配置都可以通过将选项传递给`Component.Explorer()`。
 
-For example, here's what the default configuration looks like:
+例如，以下是默认配置的样子：
 
 ```typescript title="quartz.layout.ts"
 Component.Explorer({
@@ -38,23 +38,24 @@ Component.Explorer({
 })
 ```
 
-When passing in your own options, you can omit any or all of these fields if you'd like to keep the default value for that field.
+在传递自己的选项时，如果希望保留这些字段的默认值，则可以省略其中的任何或全部字段。
 
-Want to customize it even more?
+想进一步定制吗？
 
-- Removing explorer: remove `Component.Explorer()` from `quartz.layout.ts`
-  - (optional): After removing the explorer component, you can move the [[table of contents | Table of Contents]] component back to the `left` part of the layout
-- Changing `sort`, `filter` and `map` behavior: explained in [[#Advanced customization]]
-- Component:
-  - Wrapper (Outer component, generates file tree, etc): `quartz/components/Explorer.tsx`
-  - Explorer node (recursive, either a folder or a file): `quartz/components/ExplorerNode.tsx`
-- Style: `quartz/components/styles/explorer.scss`
-- Script: `quartz/components/scripts/explorer.inline.ts`
+- 删除资源管理器：从 `quartz.layout.ts` 中删除 `Component.Explorer()` 
+  - （可选）：删除资源管理器组件后，可以将[[table of contents|table of contents]]组件移回布局的“左”部分
+- 更改“排序”、“筛选”和“映射”行为：在[[#高级自定义]]中解释
+- 组件:
+  - 包装器（外部组件、生成文件树等）：`quarter/components/Explorer.tsx`
+  - 资源管理器节点（递归，文件夹或文件）：`quartz/components/ExplorerNode.tsx`
+- 样式: `quartz/components/styles/explorer.scss`
+- 脚本: `quartz/components/scripts/explorer.inline.ts`
 
-## Advanced customization
+## 高级自定义
 
-This component allows you to fully customize all of its behavior. You can pass a custom `sort`, `filter` and `map` function.
-All functions you can pass work with the `FileNode` class, which has the following properties:
+此组件允许您完全自定义其所有行为。您可以传递自定义的“排序”、“筛选”和“映射”函数。
+
+您可以传递的所有函数都使用`FileNode` 类，该类具有以下属性：
 
 ```ts title="quartz/components/ExplorerNode.tsx" {2-5}
 export class FileNode {
@@ -68,7 +69,7 @@ export class FileNode {
 }
 ```
 
-Every function you can pass is optional. By default, only a `sort` function will be used:
+您可以传递的每个函数都是可选的。默认情况下，只会使用“排序”功能：
 
 ```ts title="Default sort function"
 // Sort order: folders first, then files. Sort folders and files alphabetically
@@ -93,11 +94,11 @@ Component.Explorer({
 
 ---
 
-You can pass your own functions for `sortFn`, `filterFn` and `mapFn`. All functions will be executed in the order provided by the `order` option (see [[#Customization]]). These functions behave similarly to their `Array.prototype` counterpart, except they modify the entire `FileNode` tree in place instead of returning a new one.
+您可以为`sortFn`、 `filterFn` 和 `mapFn`传递自己的函数。所有功能将按照`order` 选项提供的顺序执行（请参见[[#自定义]]）。这些函数的行为与它们的 `Array.prototype` 对应函数类似，只是它们修改了整个`FileNode`树，而不是返回一个新的树。
 
-For more information on how to use `sort`, `filter` and `map`, you can check [Array.prototype.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map).
+有关如何使用`sort`、`filter` 和 `map`的更多信息，可以查看[Array.prototype.sort（）](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)，[Array.prototype.filter（）](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)和[Array.prototype.map（）](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)。
 
-Type definitions look like this:
+类型定义如下所示：
 
 ```ts
 sortFn: (a: FileNode, b: FileNode) => number
@@ -106,7 +107,7 @@ mapFn: (node: FileNode) => void
 ```
 
 > [!tip]
-> You can check if a `FileNode` is a folder or a file like this:
+> 您可以检查`FileNode` 是文件夹还是类似的文件：
 >
 > ```ts
 > if (node.file) {
@@ -116,13 +117,13 @@ mapFn: (node: FileNode) => void
 > }
 > ```
 
-## Basic examples
+## 基础示例
 
 These examples show the basic usage of `sort`, `map` and `filter`.
 
-### Use `sort` to put files first
+### 使用“`sort`将文件放在第一位
 
-Using this example, the explorer will alphabetically sort everything, but put all **files** above all **folders**.
+使用此示例，资源管理器将按字母顺序对所有内容进行排序，但将所有**文件**置于所有**文件夹**之上。
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
@@ -139,9 +140,9 @@ Component.Explorer({
 })
 ```
 
-### Change display names (`map`)
+### 更改显示名称（`map`）
 
-Using this example, the display names of all `FileNodes` (folders + files) will be converted to full upper case.
+使用此示例，所有`FileNodes` （文件夹+文件）的显示名称将转换为大写。
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
@@ -151,9 +152,9 @@ Component.Explorer({
 })
 ```
 
-### Remove list of elements (`filter`)
+### 删除元素列表（`filter`）
 
-Using this example, you can remove elements from your explorer by providing an array of folders/files using the `omit` set.
+使用此示例，您可以通过使用`omit` 集提供文件夹/文件的数组来从资源管理器中删除元素。
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
@@ -165,11 +166,11 @@ Component.Explorer({
 })
 ```
 
-You can customize this by changing the entries of the `omit` set. Simply add all folder or file names you want to remove.
+您可以通过更改`omit` 集合的条目来进行自定义。只需添加所有要删除的文件夹或文件名。
 
-### Remove files by tag
+### 按标记删除文件
 
-You can access the frontmatter of a file by `node.file?.frontmatter?`. This allows you to filter out files based on their frontmatter, for example by their tags.
+您可以通过`node.file?.frontmatter?`。这允许您根据文件的主题过滤掉文件，例如通过它们的标签。
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
@@ -180,9 +181,9 @@ Component.Explorer({
 })
 ```
 
-### Show every element in explorer
+### 在资源管理器中显示每个元素
 
-To override the default filter function that removes the `tags` folder from the explorer, you can set the filter function to `undefined`.
+要覆盖从资源管理器中删除`tags` 文件夹的默认筛选功能，可以将筛选功能设置为`undefined`.。
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
@@ -190,11 +191,11 @@ Component.Explorer({
 })
 ```
 
-## Advanced examples
+## 高级示例
 
 > [!tip]
-> When writing more complicated functions, the `layout` file can start to look very cramped.
-> You can fix this by defining your functions in another file.
+> 当编写更复杂的函数时，`layout`文件可能会开始显得非常局促。
+> 可以通过在另一个文件中定义函数来解决此问题。
 >
 > ```ts title="functions.ts"
 > import { Options } from "./quartz/components/ExplorerNode"
@@ -209,7 +210,7 @@ Component.Explorer({
 > }
 > ```
 >
-> You can then import them like this:
+> 然后可以像这样导入它们：
 >
 > ```ts title="quartz.layout.ts"
 > import { mapFn, filterFn, sortFn } from "./functions.ts"
@@ -220,9 +221,9 @@ Component.Explorer({
 > })
 > ```
 
-### Add emoji prefix
+### 添加表情符号前缀
 
-To add emoji prefixes (📁 for folders, 📄 for files), you could use a map function like this:
+添加表情符号前缀(📁 对于文件夹，📄 对于文件），您可以使用这样的映射函数：
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
@@ -240,9 +241,9 @@ Component.Explorer({
 })
 ```
 
-### Putting it all together
+### 把它们放在一起
 
-In this example, we're going to customize the explorer by using functions from examples above to [[#Add emoji prefix | add emoji prefixes]], [[#remove-list-of-elements-filter| filter out some folders]] and [[#use-sort-to-put-files-first | sort with files above folders]].
+在本例中，我们将使用上述示例中的函数来自定义资源管理器：[[#添加表情符号前缀]]、[[#删除元素列表（`filter`）]]和[[#使用“`sort`将文件放在第一位]]。
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
@@ -253,15 +254,16 @@ Component.Explorer({
 })
 ```
 
-Notice how we customized the `order` array here. This is done because the default order applies the `sort` function last. While this normally works well, it would cause unintended behavior here, since we changed the first characters of all display names. In our example, `sort` would be applied based off the emoji prefix instead of the first _real_ character.
+请注意我们是如何在此处自定义`order`数组的。这样做是因为默认顺序最后应用`order`函数。虽然这通常工作得很好，但由于我们更改了所有显示名称的第一个字符，因此会导致意外行为。在我们的示例中，将基于表情符号前缀而不是第一个_真实_字符来应用排序。
 
-To fix this, we just changed around the order and apply the `sort` function before changing the display names in the `map` function.
+为了解决这个问题，我们只是更改了顺序，并在更改`map` 函数中的显示名称之前应用了`sort` 函数。
 
-### Use `sort` with pre-defined sort order
+### 将`sort` 与预定义的排序顺序一起使用
 
-Here's another example where a map containing file/folder names (as slugs) is used to define the sort order of the explorer in quartz. All files/folders that aren't listed inside of `nameOrderMap` will appear at the top of that folders hierarchy level.
+这里是另一个例子，其中包含文件/文件夹名称（作为slugs）的映射用于在quartz中定义资源管理器的排序顺序。所有未在`nameOrderMap` 中列出的文件/文件夹都将显示在该文件夹层次结构级别的顶部。
 
 It's also worth mentioning, that the smaller the number set in `nameOrderMap`, the higher up the entry will be in the explorer. Incrementing every folder/file by 100, makes ordering files in their folders a lot easier. Lastly, this example still allows you to use a `mapFn` or frontmatter titles to change display names, as it uses slugs for `nameOrderMap` (which is unaffected by display name changes).
+还值得一提的是，`nameOrderMap`中设置的数字越小，资源管理器中的条目就越高。将每个文件夹/文件增加100，可以更容易地对文件夹中的文件进行排序。最后，此示例仍然允许您使用`mapFn`或元数据`title`来更改显示名称，因为它使用`nameOrderMap`的slugs（不受显示名称更改的影响）。
 
 ```ts title="quartz.layout.ts"
 Component.Explorer({
@@ -294,7 +296,7 @@ Component.Explorer({
 })
 ```
 
-For reference, this is how the quartz explorer window would look like with that example:
+作为参考，以下是quartz资源管理器窗口在该示例中的样子：
 
 ```
 📖 Poetry Folder
@@ -304,7 +306,7 @@ For reference, this is how the quartz explorer window would look like with that 
 🔮 Other Folder
 ```
 
-And this is how the file structure would look like:
+这就是文件结构的样子：
 
 ```
 index.md

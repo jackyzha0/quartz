@@ -1,19 +1,19 @@
 ---
-title: "Mermaid Diagrams"
+title: 图表
 tags:
   - feature/transformer
 ---
 
-Quartz supports Mermaid which allows you to add diagrams and charts to your notes. Mermaid supports a range of diagrams, such as [flow charts](https://mermaid.js.org/syntax/flowchart.html), [sequence diagrams](https://mermaid.js.org/syntax/sequenceDiagram.html), and [timelines](https://mermaid.js.org/syntax/timeline.html). This is enabled as a part of [[Obsidian compatibility]] and can be configured and enabled/disabled from that plugin.
+Quartz支持Mermaid，它允许您在笔记中添加图表。Mermaid支持一系列图表，如[流程图](https://mermaid.js.org/syntax/flowchart.html)，[序列图](https://mermaid.js.org/syntax/sequenceDiagram.html)，和[时间表](https://mermaid.js.org/syntax/timeline.html). 这是作为[[Obsidian compatibility]]的一部分启用的，可以从该插件进行配置和启用/禁用。
 
-By default, Quartz will render Mermaid diagrams to match the site theme.
+默认情况下，Quartz将渲染图表以匹配网站主题。
 
 > [!warning]
-> Wondering why Mermaid diagrams may not be showing up even if you have them enabled? You may need to reorder your plugins so that [[ObsidianFlavoredMarkdown]] is _after_ [[SyntaxHighlighting]].
+> 想知道为什么即使启用了Mermaid，它们也可能不会显示？您可能需要对插件进行重新排序，使[[ObsidianFlavoredMarkdown]]在[[SyntaxHighlighting]]之后。
 
-## Syntax
+## 语法
 
-To add a Mermaid diagram, create a mermaid code block.
+要添加Mermaid，请创建一个Mermaid代码块。
 
 ````
 ```mermaid

@@ -1,3 +1,3 @@
 ---
-title: Feature List
+title: 功能列表
 ---

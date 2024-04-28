@@ -3,16 +3,15 @@ title: NotFoundPage
 tags:
   - plugin/emitter
 ---
-
-This plugin emits a 404 (Not Found) page for broken or non-existent URLs.
+此插件为损坏或不存在的URL发出404（未找到）页面。
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、删除或配置插件的信息，请参阅[[configuration#插件|配置]]页。
 
-This plugin has no configuration options.
+此插件没有配置选项。
 
 ## API
 
-- Category: Emitter
-- Function name: `Plugin.NotFoundPage()`.
-- Source: [`quartz/plugins/emitters/404.tsx`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/404.tsx).
+- 分类: 生成器
+- 函数名 `Plugin.NotFoundPage()`.
+- 源码: [`quartz/plugins/emitters/404.tsx`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/404.tsx).

@@ -1,26 +1,28 @@
 ---
-title: "Graph View"
+title: 关系图谱
 tags:
   - component
 ---
 
 Quartz features a graph-view that can show both a local graph view and a global graph view.
+Quartz具有一个关系图谱，可以显示局部关系和全局关系。
 
-- The local graph view shows files that either link to the current file or are linked from the current file. In other words, it shows all notes that are _at most_ one hop away.
-- The global graph view can be toggled by clicking the graph icon on the top-right of the local graph view. It shows _all_ the notes in your graph and how they connect to each other.
+- 局部关系图谱显示链接到当前文件或从当前文件链接的文件。换言之，它显示了最多一跳的所有笔记。
+- 单击局部关系图谱右上角的图形图标可以切换全局图形视图。它显示了所有笔记以及它们是如何相互连接的。
 
-By default, the node radius is proportional to the total number of incoming and outgoing internal links from that file.
+默认情况下，笔记半径与该文件的传入和传出内部链接的总数成比例。
 
-Additionally, similar to how browsers highlight visited links a different colour, the graph view will also show nodes that you have visited in a different colour.
+此外，与浏览器以不同颜色突出显示访问过的链接类似，关系图谱也将以不同颜色显示您访问过的节点。
 
 > [!info]
-> Graph View requires the `ContentIndex` emitter plugin to be present in the [[configuration]].
+> 关系图谱要求`ContentIndex` 生成器插件存在于[[configuration]]中。
 
-## Customization
+## 自定义
 
 Most configuration can be done by passing in options to `Component.Graph()`.
+大多数配置都可以通过将选项传递给`Component.Graph()`。
 
-For example, here's what the default configuration looks like:
+例如，以下是默认配置的样子：
 
 ```typescript title="quartz.layout.ts"
 Component.Graph({
@@ -53,11 +55,11 @@ Component.Graph({
 })
 ```
 
-When passing in your own options, you can omit any or all of these fields if you'd like to keep the default value for that field.
+在传递自己的选项时，如果希望保留这些字段的默认值，则可以省略其中的任何或全部字段。
 
-Want to customize it even more?
+想进一步定制吗？
 
-- Removing graph view: delete all usages of `Component.Graph()` from `quartz.layout.ts`.
-- Component: `quartz/components/Graph.tsx`
-- Style: `quartz/components/styles/graph.scss`
-- Script: `quartz/components/scripts/graph.inline.ts`
+- 删除关系图谱：从`quartz.layout.ts`中删除`Component.Graph()` 。
+- 组件: `quartz/components/Graph.tsx`
+- 样式: `quartz/components/styles/graph.scss`
+- 脚本: `quartz/components/scripts/graph.inline.ts`

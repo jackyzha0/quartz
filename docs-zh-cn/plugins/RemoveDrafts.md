@@ -4,15 +4,15 @@ tags:
   - plugin/filter
 ---
 
-This plugin filters out content from your vault, so that only finalized content is made available. This prevents [[private pages]] from being published. By default, it filters out all pages with `draft: true` in the frontmatter and leaves all other pages intact.
+此插件从您的vault中筛选出内容，以便只提供最终确定的内容。这样可以防止[[private pages]]禁止发布。默认情况下，它会过滤掉标题中带有`draft: true` 的所有页面，并保留所有其他页面不变。
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、删除或配置插件的信息，请参阅[[configuration#插件|配置]]页。
 
-This plugin has no configuration options.
+此插件没有配置选项。
 
 ## API
 
-- Category: Filter
-- Function name: `Plugin.RemoveDrafts()`.
-- Source: [`quartz/plugins/filters/draft.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/filters/draft.ts).
+- 分类: 过滤器
+- 函数名: `Plugin.RemoveDrafts()`.
+- 源码: [`quartz/plugins/filters/draft.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/filters/draft.ts).

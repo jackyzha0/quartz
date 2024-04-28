@@ -1,14 +1,14 @@
 ---
-title: Backlinks
+title: 反向链接
 tags:
   - component
 ---
 
-A backlink for a note is a link from another note to that note. Links in the backlink pane also feature rich [[popover previews]] if you have that feature enabled.
+一个笔记的反向链接是从另一个笔记到该笔记的链接。如果启用了丰富的[[popover previews]] 功能，则反向链接窗格中的链接也具有该功能。
 
-## Customization
+## 自定义
 
-- Removing backlinks: delete all usages of `Component.Backlinks()` from `quartz.layout.ts`.
-- Component: `quartz/components/Backlinks.tsx`
-- Style: `quartz/components/styles/backlinks.scss`
-- Script: `quartz/components/scripts/search.inline.ts`
+- 删除反向链接：从`quartz.layout.ts`删除`Component.Backlinks()` 。
+- 组件: `quartz/components/Backlinks.tsx`
+- 样式: `quartz/components/styles/backlinks.scss`
+- 脚本: `quartz/components/scripts/search.inline.ts`

@@ -6,19 +6,21 @@ tags:
 
 This plugin parses the frontmatter of the page using the [gray-matter](https://github.com/jonschlinkert/gray-matter) library. See [[authoring content#Syntax]], [[Obsidian compatibility]] and [[OxHugo compatibility]] for more information.
 
+这个插件使用 [gray-matter](https://github.com/jonschlinkert/gray-matter) 库解析页面的元数据，[[Obsidian compatibility]] 和[[OxHugo compatibility]] 了解更多信息。
+
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、删除或配置插件的信息，请参阅[[configuration#插件|配置]]页。
 
-This plugin accepts the following configuration options:
+此插件接受以下配置选项：
 
-- `delimiters`: the delimiters to use for the frontmatter. Can have one value (e.g. `"---"`) or separate values for opening and closing delimiters (e.g. `["---", "~~~"]`). Defaults to `"---"`.
-- `language`: the language to use for parsing the frontmatter. Can be `yaml` (default) or `toml`.
+- `delimiters`: 用于标题的分隔符。可以有一个值（例如`"---"`），也可以有单独的值用于打开和关闭分隔符（例如`["---", "~~~"]`）。默认为`"---"`。
+- `language`: 用于解析元数据的语言。可以是`yaml` （默认值）或`toml`。
 
 > [!warning]
-> This plugin must not be removed, otherwise Quartz will break.
+> 此插件不得删除，否则Quartz将损坏。
 
 ## API
 
-- Category: Transformer
-- Function name: `Plugin.Frontmatter()`.
-- Source: [`quartz/plugins/transformers/frontmatter.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/frontmatter.ts).
+- 分类: 转换器
+- 函数名: `Plugin.Frontmatter()`.
+- 源码: [`quartz/plugins/transformers/frontmatter.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/frontmatter.ts).
