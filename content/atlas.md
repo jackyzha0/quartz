@@ -20,7 +20,7 @@ date: 2024-02-28
 
 * [Physics](physics/physics_MOC.md)
 
-* [Signal Processing](signal_processing/signal_processing_MOC.md)
+* [Signal Processing](signal/signal_processing/signal_processing_MOC.md)
 
 * [Data Science](data_sci/data_sci_MOC.md)
 
