@@ -69,7 +69,7 @@ export default {
     folderContent: {
       folder: "Arquivo",
       itemsUnderFolder: ({ count }) =>
-        count === 1 ? "1 item mneste arquivo." : `${count} items neste arquivo.`,
+        count === 1 ? "1 item neste arquivo." : `${count} items neste arquivo.`,
     },
     tagContent: {
       tag: "Tag",
