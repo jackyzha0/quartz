@@ -35,6 +35,8 @@ export interface GlobalConfiguration {
   /** Base URL to use for CNAME files, sitemaps, and RSS feeds that require an absolute URL.
    *   Quartz will avoid using this as much as possible and use relative URLs most of the time
    */
+  /**Display Data Type options!  */
+  displayDateType: string[]
   baseUrl?: string
   theme: Theme
   /**

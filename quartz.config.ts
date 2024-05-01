@@ -18,6 +18,7 @@ const config: QuartzConfig = {
     baseUrl: "ash-wiki.bluewitch.app",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
+    displayDateType:["created","modified"],
     theme: {
       cdnCaching: true,
       typography: {
