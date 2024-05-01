@@ -54,7 +54,7 @@ export default {
       title: "Table des Matières",
     },
     contentMeta: {
-      readingTime: ({ minutes }) => `${minutes} min read`,
+      readingTime: ({ minutes }) => `${minutes} min de lecture`,
     },
   },
   pages: {
@@ -63,7 +63,7 @@ export default {
       lastFewNotes: ({ count }) => `Les dernières ${count} notes`,
     },
     error: {
-      title: "Pas trouvé",
+      title: "Introuvable",
       notFound: "Cette page est soit privée, soit elle n'existe pas.",
     },
     folderContent: {

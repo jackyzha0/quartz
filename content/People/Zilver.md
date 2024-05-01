@@ -19,6 +19,7 @@ hometown: "[[Ash In The Snow/Locations/Tsurian Region/Ber-Vusamyr/Ber-Vusamyr|Be
 age:   
 relations:   
 ---  
+  
 > [!infobox]  
 > ###### Bio  
 > |                |                  |  
@@ -36,12 +37,12 @@ relations:
 >   
 > ##### Stats  
 > | Name | Stat   | Condition      |  
-| ---- | -------- | --------- |  
-| **STR**  | 0 |   |  
-| **DEX**  | 0 |     |  
-| **INT**  | 0 |     |  
-| **WIS**  | 0 |     |  
-| **CHA**  | 0  |     |  
+> | ---- | -------- | --------- |  
+> | **STR**  | 0 |   |  
+> | **DEX**  | 0 |     |  
+> | **INT**  | 0 |     |  
+> | **WIS**  | 0 |     |  
+> | **CHA**  | 0  |     |  
   
   
 A supposed prince from [[Bur-Vusamyr|Bur-Vusamyr]]. [[Ash In the Snow/People/Axiom|Axiom]] and [[Ash In the Snow/People/Moonie|Moonie]] are their companions.  

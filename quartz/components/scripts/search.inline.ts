@@ -21,6 +21,7 @@ let index = new FlexSearch.Document<Item>({
   encode: encoder,
   document: {
     id: "id",
+    tag: "tags",
     index: [
       {
         field: "title",
@@ -405,11 +406,33 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
     let searchResults: FlexSearch.SimpleDocumentSearchResultSetUnit[]
     if (searchType === "tags") {
-      searchResults = await index.searchAsync({
-        query: currentSearchTerm.substring(1),
-        limit: numSearchResults,
-        index: ["tags"],
-      })
+      currentSearchTerm = currentSearchTerm.substring(1).trim()
+      const separatorIndex = currentSearchTerm.indexOf(" ")
+      if (separatorIndex != -1) {
+        // search by title and content index and then filter by tag (implemented in flexsearch)
+        const tag = currentSearchTerm.substring(0, separatorIndex)
+        const query = currentSearchTerm.substring(separatorIndex + 1).trim()
+        searchResults = await index.searchAsync({
+          query: query,
+          // return at least 10000 documents, so it is enough to filter them by tag (implemented in flexsearch)
+          limit: Math.max(numSearchResults, 10000),
+          index: ["title", "content"],
+          tag: tag,
+        })
+        for (let searchResult of searchResults) {
+          searchResult.result = searchResult.result.slice(0, numSearchResults)
+        }
+        // set search type to basic and remove tag from term for proper highlightning and scroll
+        searchType = "basic"
+        currentSearchTerm = query
+      } else {
+        // default search by tags index
+        searchResults = await index.searchAsync({
+          query: currentSearchTerm,
+          limit: numSearchResults,
+          index: ["tags"],
+        })
+      }
     } else if (searchType === "basic") {
       searchResults = await index.searchAsync({
         query: currentSearchTerm,

@@ -20,7 +20,7 @@ This plugin accepts the following configuration options:
 - `parseArrows`: If `true` (default), transforms arrow symbols into their HTML character equivalents.
 - `parseBlockReferences`: If `true` (default), handles block references, linking to specific content blocks.
 - `enableInHtmlEmbed`: If `true`, allows embedding of content directly within HTML. Defaults to `false`.
-- `enableYouTubeEmbed`: If `true` (default), enables the embedding of YouTube videos using external image Markdown syntax.
+- `enableYouTubeEmbed`: If `true` (default), enables the embedding of YouTube videos and playlists using external image Markdown syntax.
 - `enableVideoEmbed`: If `true` (default), enables the embedding of video files.
 - `enableCheckbox`: If `true`, adds support for interactive checkboxes in content. Defaults to `false`.
 
