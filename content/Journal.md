@@ -4,9 +4,19 @@ description: This section explores the concept of maintaining a Public Journal.
 compartir: true
 ---
 
-> [!note] This page explores the concept of keeping a public journal, something I haven't done before. I'm still defining what exactly I should include in this journal. I'm currently making sure it's not too technical, or difficult to read.
+> [!note]
+> This page explores the concept of keeping a public journal, something I haven't done before. I'm still defining what exactly I should include in this journal. I'm currently making sure it's not too technical, or difficult to read.
 
 ## 2024
+
+### May
+
+- Contributing to the [Eleventy Notes](https://github.com/rothsandro/eleventy-notes) project. Put together a new workflow specific to the project and the changes were incorporated into the project. Here's the [publication](https://eleventy-notes.sandroroth.com/n/deployment/github-pages/).
+- Added a new sidebar companion toggled via shortcut and toolbar button to both [Firefox TabSpace](https://github.com/semanticdata/firefox-tabspace) and [Firefox New Tab Notes](https://github.com/semanticdata/firefox-new-tab-notes). I am reconsidering renaming the extension so it matches its features better. As it is no longer just about notes in your new tab, but also notes in the sidebar, I (at least) temporarily renamed it _"Just Notes"_.
+- Developed a new [GitHub Actions](https://github.com/features/actions) [workflow](https://github.com/semanticdata/firefox-new-tab-notes/blob/main/.github/workflows/web-ext-workflow.yml) to deploy Firefox extensions by creating a new release in the corresponding repository. It was originally tested on [Just Notes](https://github.com/semanticdata/firefox-new-tab-notes/blob/main/.github/workflows/web-ext-workflow.yml). The new workflow was later then added to all of my Firefox extensions to aid in new version releases.
+- Released 2 new Firefox extensions:
+ 	- [Gemini in Sidebar](https://github.com/semanticdata/firefox-gemini-in-sidebar)
+ 	- [Meta AI in Sidebar](https://github.com/semanticdata/firefox-metaai-in-sidebar)
 
 ### April
 
@@ -15,11 +25,11 @@ compartir: true
 - Took another go at designing a site with the help of [Eleventy Plus Vite](https://github.com/semanticdata/eleventy-plus-vite).
 - I am getting more involved with [Godot](https://godotengine.org/). Reading about it, checking out some simple guides.
 - Learning more about Git. I recently signed up for an account on [SourceHut](https://sr.ht).
-  - Practicing adding remotes, renaming them, pushing to multiple remote repositories simultaneously.
+ 	- Practicing adding remotes, renaming them, pushing to multiple remote repositories simultaneously.
 - Cleaned and prepared some repositories to learn game development with [LÖVE](https://love2d.org/).
-  - [Scrolling Shooter](https://github.com/semanticdata/love2d-scrolling-shooter)
-  - [Platformer](https://github.com/semanticdata/love2d-tutorial-platformer)
-  - [MMBN Combat Boilerplate](https://github.com/semanticdata/love2d-mmbn-combat-boilerplate)
+ 	- [Scrolling Shooter](https://github.com/semanticdata/love2d-scrolling-shooter)
+ 	- [Platformer](https://github.com/semanticdata/love2d-tutorial-platformer)
+ 	- [MMBN Combat Boilerplate](https://github.com/semanticdata/love2d-mmbn-combat-boilerplate)
 
 ### March
 
@@ -35,7 +45,7 @@ compartir: true
 ### February
 
 - Discovered NASA's [Astronomy Picture of the Day](https://apod.nasa.gov/apod/). 📷
-- After checking out [Astro](https://astro.build/), I decided it wasn't time to jump into it. For now, using [Eleventy](https://www.11ty.dev/) feels adequate given my knowledge level. I will definitely give Astro another go, once I am more comfortable with [[Svelte|Svelte]].
+- After checking out [Astro](https://astro.build/), I decided it wasn't time to jump into it. For now, using [Eleventy](https://www.11ty.dev/) feels adequate given my knowledge level. I will definitely give Astro another go, once I am more comfortable with [[Svelte]].
 - Updated my [Obsidian Starter Vault](https://github.com/semanticdata/obsidian-starter-vault) project. It now includes more information about the CSS snippets, community plugins, and general workflows included in it.
 - Forked these [Obsidian](https://obsidian.md) [Minimal theme](https://github.com/kepano/obsidian-minimal) [CSS Snippets](https://github.com/replete/obsidian-minimal-theme-css-snippets) for future reference.
 - Added new CSS snippets to my Obsidian vault. I'll probably end up posting them later.
@@ -61,7 +71,7 @@ compartir: true
 - Published new Firefox extensions [ChatGPT in the Sidebar](https://github.com/semanticdata/firefox-chatgpt-in-sidebar) and [New Tab Notes](https://github.com/semanticdata/firefox-new-tab-notes). This last one is helping me learn browser sync and storage management.
 - Republished my personal [website](https://github.com/semanticdata/semanticdata.github.io) with [serene](https://github.com/isunjn/serene).
 - Learned about [Bulma](https://bulma.io/). I'm taking a look at it as a CSS framework.
-- Submitted new [[Zola|Zola]] Themes [Mabuya](https://github.com/semanticdata/mabuya) and [Zola Minimal](https://github.com/semanticdata/zola-minimal).
+- Submitted new [[Zola]] Themes [Mabuya](https://github.com/semanticdata/mabuya) and [Zola Minimal](https://github.com/semanticdata/zola-minimal).
 - Renamed Zola Dinkleberg to [Zola Guava](https://github.com/semanticdata/zola-guava).
 
 ### November
@@ -71,5 +81,5 @@ compartir: true
 - Playing around with [Svelte](https://svelte.dev/), and [Milkdown](https://milkdown.dev/). I like the pair, but I paused working on this for now.
 - Republished my old blog in Spanish: [Prose Poetry](https://github.com/semanticdata/prose-poetry). I recently found the canonical blog I wrote in 2010 and republished it.
 - Contributions:
-  - Fixed bugs for [Zola Book](https://github.com/getzola/book) outlined in [Issue #18](https://github.com/getzola/book/issues/18).
-  - Submitted dark theme and toggle to the [Anpu Zola](https://github.com/zbrox/anpu-zola-theme) theme. My changes were merged.
+ 	- Fixed bugs for [Zola Book](https://github.com/getzola/book) outlined in [Issue #18](https://github.com/getzola/book/issues/18).
+ 	- Submitted dark theme and toggle to the [Anpu Zola](https://github.com/zbrox/anpu-zola-theme) theme. My changes were merged.
