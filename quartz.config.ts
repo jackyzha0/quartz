@@ -1,4 +1,4 @@
-import { QuartzConfig } from "./quartz/cfg"
+import {QuartzConfig} from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 
 /**
@@ -55,7 +55,7 @@ const config: QuartzConfig = {
       Plugin.CreatedModifiedDate({
         priority: ["frontmatter", "filesystem"],
       }),
-      Plugin.Latex({ renderEngine: "katex" }),
+      Plugin.Latex({renderEngine: "katex"}),
       Plugin.SyntaxHighlighting({
         theme: {
           light: "github-light",
@@ -63,10 +63,10 @@ const config: QuartzConfig = {
         },
         keepBackground: false,
       }),
-      Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
+      Plugin.ObsidianFlavoredMarkdown({enableInHtmlEmbed: false}),
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents(),
-      Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
+      Plugin.CrawlLinks({markdownLinkResolution: "shortest"}),
       Plugin.Description(),
     ],
     filters: [Plugin.RemoveDrafts()],

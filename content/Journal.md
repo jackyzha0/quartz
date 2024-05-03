@@ -4,8 +4,7 @@ description: This section explores the concept of maintaining a Public Journal.
 compartir: true
 ---
 
-> [!note]
-> This page explores the concept of keeping a public journal, something I haven't done before. I'm still defining what exactly I should include in this journal. I'm currently making sure it's not too technical, or difficult to read.
+> [!note] This page explores the concept of keeping a public journal, something I haven't done before. I'm still defining what exactly I should include in this journal. I'm currently making sure it's not too technical, or difficult to read.
 
 ## 2024
 
@@ -15,8 +14,8 @@ compartir: true
 - Added a new sidebar companion toggled via shortcut and toolbar button to both [Firefox TabSpace](https://github.com/semanticdata/firefox-tabspace) and [Firefox New Tab Notes](https://github.com/semanticdata/firefox-new-tab-notes). I am reconsidering renaming the extension so it matches its features better. As it is no longer just about notes in your new tab, but also notes in the sidebar, I (at least) temporarily renamed it _"Just Notes"_.
 - Developed a new [GitHub Actions](https://github.com/features/actions) [workflow](https://github.com/semanticdata/firefox-new-tab-notes/blob/main/.github/workflows/web-ext-workflow.yml) to deploy Firefox extensions by creating a new release in the corresponding repository. It was originally tested on [Just Notes](https://github.com/semanticdata/firefox-new-tab-notes/blob/main/.github/workflows/web-ext-workflow.yml). The new workflow was later then added to all of my Firefox extensions to aid in new version releases.
 - Released 2 new Firefox extensions:
- 	- [Gemini in Sidebar](https://github.com/semanticdata/firefox-gemini-in-sidebar)
- 	- [Meta AI in Sidebar](https://github.com/semanticdata/firefox-metaai-in-sidebar)
+  - [Gemini in Sidebar](https://github.com/semanticdata/firefox-gemini-in-sidebar)
+  - [Meta AI in Sidebar](https://github.com/semanticdata/firefox-metaai-in-sidebar)
 
 ### April
 
@@ -25,11 +24,11 @@ compartir: true
 - Took another go at designing a site with the help of [Eleventy Plus Vite](https://github.com/semanticdata/eleventy-plus-vite).
 - I am getting more involved with [Godot](https://godotengine.org/). Reading about it, checking out some simple guides.
 - Learning more about Git. I recently signed up for an account on [SourceHut](https://sr.ht).
- 	- Practicing adding remotes, renaming them, pushing to multiple remote repositories simultaneously.
+  - Practicing adding remotes, renaming them, pushing to multiple remote repositories simultaneously.
 - Cleaned and prepared some repositories to learn game development with [LÖVE](https://love2d.org/).
- 	- [Scrolling Shooter](https://github.com/semanticdata/love2d-scrolling-shooter)
- 	- [Platformer](https://github.com/semanticdata/love2d-tutorial-platformer)
- 	- [MMBN Combat Boilerplate](https://github.com/semanticdata/love2d-mmbn-combat-boilerplate)
+  - [Scrolling Shooter](https://github.com/semanticdata/love2d-scrolling-shooter)
+  - [Platformer](https://github.com/semanticdata/love2d-tutorial-platformer)
+  - [MMBN Combat Boilerplate](https://github.com/semanticdata/love2d-mmbn-combat-boilerplate)
 
 ### March
 
@@ -81,5 +80,5 @@ compartir: true
 - Playing around with [Svelte](https://svelte.dev/), and [Milkdown](https://milkdown.dev/). I like the pair, but I paused working on this for now.
 - Republished my old blog in Spanish: [Prose Poetry](https://github.com/semanticdata/prose-poetry). I recently found the canonical blog I wrote in 2010 and republished it.
 - Contributions:
- 	- Fixed bugs for [Zola Book](https://github.com/getzola/book) outlined in [Issue #18](https://github.com/getzola/book/issues/18).
- 	- Submitted dark theme and toggle to the [Anpu Zola](https://github.com/zbrox/anpu-zola-theme) theme. My changes were merged.
+  - Fixed bugs for [Zola Book](https://github.com/getzola/book) outlined in [Issue #18](https://github.com/getzola/book/issues/18).
+  - Submitted dark theme and toggle to the [Anpu Zola](https://github.com/zbrox/anpu-zola-theme) theme. My changes were merged.
