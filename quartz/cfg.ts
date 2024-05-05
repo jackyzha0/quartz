@@ -33,7 +33,7 @@ export type Analytics =
   | {
       provider: "tinylytics"
       siteId: string
-  }
+    }
 
 export interface GlobalConfiguration {
   pageTitle: string
