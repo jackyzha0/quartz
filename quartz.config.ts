@@ -14,6 +14,16 @@ const config: QuartzConfig = {
     analytics: {
       provider: "plausible",
     },
+    discussion: {
+      provider: "giscus",
+      configuration: {
+        dataRepo: "<data-repo>",
+        dataRepoId: "<data-repo-id>",
+        dataCategory: "<data-category>",
+        dataCategoryId: "<data-category-id>",
+      },
+    },
+
     locale: "en-US",
     baseUrl: "quartz.jzhao.xyz",
     ignorePatterns: ["private", "templates", ".obsidian"],

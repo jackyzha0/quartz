@@ -35,6 +35,28 @@ export type Analytics =
       siteId: string
     }
 
+export type GiscusConfiguration = {
+  src?: string
+  dataRepo: string
+  dataRepoId: string
+  dataCategory: string
+  dataCategoryId: string
+  dataMapping?: string
+  dataStrict?: string
+  dataReactionsEnabled?: string
+  dataEmitMetadata?: string
+  dataInputPosition?: string
+  dataTheme?: string
+  dataLang?: string
+  dataLoading?: string
+  crossorigin?: string
+}
+
+export type DiscussionSettings = null | {
+  provider: string
+  configuration: GiscusConfiguration
+}
+
 export interface GlobalConfiguration {
   pageTitle: string
   /** Whether to enable single-page-app style rendering. this prevents flashes of unstyled content and improves smoothness of Quartz */
@@ -61,6 +83,8 @@ export interface GlobalConfiguration {
    * Region Codes: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
    */
   locale: ValidLocale
+  /** Discussion settings **/
+  discussion?: DiscussionSettings
 }
 
 export interface QuartzConfig {

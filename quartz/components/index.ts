@@ -19,7 +19,7 @@ import DesktopOnly from "./DesktopOnly"
 import MobileOnly from "./MobileOnly"
 import RecentNotes from "./RecentNotes"
 import Breadcrumbs from "./Breadcrumbs"
-
+import Discussion from "./Discussion"
 export {
   ArticleTitle,
   Content,
@@ -42,4 +42,5 @@ export {
   RecentNotes,
   NotFound,
   Breadcrumbs,
+  Discussion,
 }
