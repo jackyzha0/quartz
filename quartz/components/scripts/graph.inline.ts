@@ -264,6 +264,12 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     // @ts-ignore
     .call(drag(simulation))
 
+  // make tags hollow circles
+  node.filter((d) => d.id.startsWith("tags/"))
+    .attr("stroke", color)
+    .attr("stroke-width", 2)
+    .attr("fill", "var(--light)")
+
   // draw labels
   const labels = graphNode
     .append("text")
