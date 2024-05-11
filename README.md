@@ -6,38 +6,6 @@
 
 [![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://forgetfulnotes.com/) [![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](https://forgetful-notes.vercel.app/)
 
-## 📑 Table of Contents
-
-- [🌱 Forgetful Notes](#-forgetful-notes)
-  - [📑 Table of Contents](#-table-of-contents)
-  - [⚡ Quick start](#-quick-start)
-  - [✨ Features](#-features)
-  - [👨🏼‍💻 Useful Commands](#-useful-commands)
-  - [🎨 Customization](#-customization)
-  - [📁 Folder Structure](#-folder-structure)
-  - [🛠️ Technology](#️-technology)
-  - [© License](#-license)
-
-## ⚡ Quick start
-
-**1. Clone repo**
-
-```bash
-git clone https://github.com/semanticdata/forgetful-notes.git
-```
-
-**2. Install dependencies**
-
-```sh
-pnpm install
-```
-
-**3. Run the project locally**
-
-```sh
-pnpm start
-```
-
 ## ✨ Features
 
 - Fast Natural-Language Search
@@ -47,21 +15,41 @@ pnpm start
 - Markdown Links and Wikilinks Support
 - Latex Support
 
+## ⚡ Quick start
+
+### 1. Clone repo
+
+```sh
+git clone https://github.com/semanticdata/forgetful-notes.git
+```
+
+### 2. Install dependencies
+
+```sh
+pnpm install
+```
+
+### 3. Run the project locally
+
+```sh
+pnpm start
+```
+
 ## 👨🏼‍💻 Useful Commands
 
-**Update Quartz**
+### Update Quartz
 
 ```sh
 npm run update
 ```
 
-**Sync changes**
+### Sync changes
 
 ```sh
 npm run sync
 ```
 
-**Read about a command**
+### Read about a command
 
 ```sh
 npx quartz <command> --help
@@ -69,11 +57,7 @@ npx quartz <command> --help
 
 ## 🎨 Customization
 
-### Stylesheets
-
 You can add custom CSS code within `/quartz/styles/custom.scss`. You will then need to uncomment line 4 of `/quartz/styles/base.scss` to have it take effect.
-
-### Fonts
 
 | Used in: | Font Family | Previous Font |
 | --- | :-: | :-: |
@@ -81,92 +65,9 @@ You can add custom CSS code within `/quartz/styles/custom.scss`. You will then n
 | Body | [Poppins](https://fonts.google.com/specimen/Poppins) | [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3) |
 | Code | [Fira Mono](https://fonts.google.com/specimen/Fira+Mono) | [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono) |
 
-## 📁 Folder Structure
-
-<details>
-<summary>Show/Hide</summary>
-
-```plaintext
-.
-├── .github/
-│   └── workflows/
-│       ├── build.yml
-│       └── deploy.yml
-├── content/
-│   ├── notes.md
-│   ├── pages.md
-│   └── ...
-├── docs/
-│   ├── documentation.md
-│   └── ...
-├── quartz/
-│   ├── cli/
-│   │   ├── args.js
-│   │   ├── constants.js
-│   │   ├── handlers.js
-│   │   └── helpers.js
-│   ├── components/
-│   │   ├── pages/
-│   │   ├── scripts/
-│   │   ├── styles/
-│   │   ├── Backlinks.tsx
-│   │   ├── Explorer.tsx
-│   │   └── ...
-│   ├── plugins/
-│   │   ├── emitters/
-│   │   ├── filters/
-│   │   ├── transformers/
-│   │   ├── index.ts
-│   │   ├── types.ts
-│   │   └── vfile.ts
-│   ├── processors/
-│   │   ├── emit.ts
-│   │   ├── filter.ts
-│   │   └── parse.ts
-│   ├── static/
-│   │   ├── favicon.ico
-│   │   ├── site.manifest
-│   │   └── ...
-│   ├── styles/
-│   │   ├── base.scss
-│   │   ├── callouts.scss
-│   │   ├── custom.scss
-│   │   ├── syntax.scss
-│   │   └── variables.scss
-│   ├── util/
-│   │   ├── theme.ts
-│   │   ├── jsx.tsx
-│   │   └── ...
-│   ├── bootstrp.cli.mjs
-│   ├── bootstrap-worker.njs
-│   ├── build.ts
-│   ├── cfg.ts
-│   └── worker.ts
-├── .gitattributes
-├── .gitignore
-├── .npmrc
-├── .prettierignore
-├── .prettierrc
-├── Dockerfile
-├── LICENSE
-├── README.md
-├── globals.d.ts
-├── index.d.ts
-├── package-lock.json
-├── package.json
-├── quartz.config.ts
-├── quartz.layout.ts
-├── screenshot.png
-└── tsconfig.json
-```
-
-</details>
-
 ## 🛠️ Technology
 
-The site uses various technologies cobbled together. It's powered by [Quartz](https://github.com/jackyzha0/quartz/) and [Obsidian](https://obsidian.md). You can read the [Documentation](https://quartz.jzhao.xyz/), and join the [Discord Community](https://discord.gg/cRFFHYye7t).
-
-Here's some of them:
+The site uses various technologies cobbled together. Here's a few of them:
 
 - [Quartz](https://github.com/jackyzha0/quartz): a fast, batteries-included static-site generator.
 - [Prettier](https://github.com/prettier/prettier): an opinionated code formatter.
@@ -174,8 +75,6 @@ Here's some of them:
 - [TypeScript](https://github.com/microsoft/TypeScript): superset of JavaScript that compiles to clean JavaScript output.
 
 All content for the site is written in _Markdown_ within [Obsidian](https://obsidian.md/)—an extensible, flexible note-taking app. To export the notes from Obsidian, I rely on the [GitHub Publisher](https://github.com/ObsidianPublisher) plugin.
-
-The website has gone through many changes. I have ran my notes through [Jekyll](https://jekyllrb.com/), [Hugo](https://gohugo.io/), [MkDocs](https://squidfunk.github.io/mkdocs-material/), [Zola](https://www.getzola.org/), and most recently [11ty](https://11ty.dev).
 
 ## © License
 
