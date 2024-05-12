@@ -1,9 +1,12 @@
 import { i18n } from "../../i18n"
-import { pathToRoot } from "../../util/path"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "../types"
 
-const NotFound: QuartzComponent = ({ fileData, cfg }: QuartzComponentProps) => {
-  const baseDir = pathToRoot(fileData.slug!)
+const NotFound: QuartzComponent = ({ cfg }: QuartzComponentProps) => {
+  // If baseUrl contains a pathname after the domain, use this as the home link
+  const baseDirFull = cfg.baseUrl ? cfg.baseUrl : "/"
+  const pathLoc = baseDirFull.indexOf("/")
+  const baseDir = pathLoc === -1 ? "/" : baseDirFull.substring(pathLoc)
+
   return (
     <article class="popover-hint">
       <h1>404</h1>
