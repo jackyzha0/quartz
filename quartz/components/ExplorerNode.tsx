@@ -47,13 +47,15 @@ export class FileNode {
   displayName: string
   file: QuartzPluginData | null
   depth: number
+  hidden: boolean
 
-  constructor(slugSegment: string, displayName?: string, file?: QuartzPluginData, depth?: number) {
+  constructor(slugSegment: string, displayName?: string, file?: QuartzPluginData, depth?: number, hidden?: boolean) {
     this.children = []
     this.name = slugSegment
     this.displayName = displayName ?? file?.frontmatter?.title ?? slugSegment
     this.file = file ? clone(file) : null
     this.depth = depth ?? 0
+    this.hidden = hidden ?? false
   }
 
   private insert(fileData: DataWrapper) {
@@ -71,6 +73,7 @@ export class FileNode {
         if (title && title !== "index") {
           this.displayName = title
         }
+        this.children.push(new FileNode("index", undefined, fileData.file, this.depth + 1, true))
       } else {
         // direct child
         this.children.push(new FileNode(nextSegment, undefined, fileData.file, this.depth + 1))
@@ -163,6 +166,9 @@ type ExplorerNodeProps = {
 }
 
 export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodeProps) {
+  if (node.hidden) {
+    return <></>
+  }  
   // Get options
   const folderBehavior = opts.folderClickBehavior
   const isDefaultOpen = opts.folderDefaultState === "open"
