@@ -8,4 +8,4 @@ date: 2023-12-03
 
 # Web Framework
 
-* [Flask](computer_sci/code_frame_learn/flask/MOC.md)
+* [Flask](computer_sci/code_frame_learn/web/flask/MOC.md)

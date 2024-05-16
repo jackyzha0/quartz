@@ -180,3 +180,4 @@ def EMD(signal, max_imf = 10, tolerance = 0.01):
 * https://www.youtube.com/watch?v=K-LhNvr-CSk
 * https://towardsdatascience.com/decomposing-signal-using-empirical-mode-decomposition-algorithm-explanation-for-dummy-93a93304c541⭐
 * https://en.wikipedia.org/wiki/Hilbert_spectrum
+* https://www.youtube.com/watch?v=BLUL8i0KzKg
