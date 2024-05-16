@@ -27,7 +27,7 @@ You can now access your dynamically built page at http://localhost:8080
 Build the site for deployment
 
 ```sh
-docker run --rm -it -p 8080:8080 -v ${PWD}/content:/usr/src/app/content -v ${PWD}/public:/usr/src/app/public --entrypoint sh ghcr.io/jackyzha0/quartz -c "cp content/quartz.*.ts .; npx quartz build; rm public/quartz.*.ts"
+docker run --rm -it -v ${PWD}/content:/usr/src/app/content -v ${PWD}/public:/usr/src/app/public --entrypoint sh ghcr.io/jackyzha0/quartz -c "cp content/quartz.*.ts .; npx quartz build; rm public/quartz.*.ts"
 ```
 
 This procedure from building a Quartz page from a content repository without a custom fork of the application could be enhanced by providing a custom entrypoint script.
