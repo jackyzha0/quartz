@@ -49,7 +49,13 @@ export class FileNode {
   depth: number
   hidden: boolean
 
-  constructor(slugSegment: string, displayName?: string, file?: QuartzPluginData, depth?: number, hidden?: boolean) {
+  constructor(
+    slugSegment: string,
+    displayName?: string,
+    file?: QuartzPluginData,
+    depth?: number,
+    hidden?: boolean,
+  ) {
     this.children = []
     this.name = slugSegment
     this.displayName = displayName ?? file?.frontmatter?.title ?? slugSegment
@@ -168,7 +174,7 @@ type ExplorerNodeProps = {
 export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodeProps) {
   if (node.hidden) {
     return <></>
-  }  
+  }
   // Get options
   const folderBehavior = opts.folderClickBehavior
   const isDefaultOpen = opts.folderDefaultState === "open"

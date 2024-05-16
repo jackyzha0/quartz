@@ -202,14 +202,14 @@ Component.Explorer({
     if (!node.file) {
       // the current node is a folder
       let indexFile = node.children.find((node) => node.name === "index")
-	  if (indexFile) {
-	    // a child node named index exists
-	    return indexFile?.file?.frontmatter?.tags?.includes("excluded") !== true
+      if (indexFile) {
+        // a child node named index exists
+        return indexFile?.file?.frontmatter?.tags?.includes("excluded") !== true
       }
     }
-    
+
     return true
-  },	
+  },
 })
 ```
 
@@ -222,8 +222,6 @@ Component.Explorer({
   filterFn: undefined, // apply no filter function, every file and folder will visible
 })
 ```
-
-
 
 ## Advanced examples
 
