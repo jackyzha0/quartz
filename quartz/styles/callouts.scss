@@ -4,7 +4,6 @@
 .callout {
   border: 1px solid var(--border);
   background-color: var(--bg);
-  border-radius: 5px;
   padding: 0 1rem;
   overflow-y: hidden;
   transition: max-height 0.3s ease;
@@ -159,4 +158,33 @@
   .callout-title-inner {
     font-weight: $boldWeight;
   }
+}
+
+.edges {
+  background-color: #cccccc;
+  position: relative;
+  border: 3px solid black;
+
+  & .callout-title {
+    & .callout-title-inner p {
+      color: black;
+      text-transform: uppercase;
+    }
+  }
+
+  &[data-callout] {
+    --color: black;
+    --callout-icon: var(--callout-icon-note);
+  }
+}
+
+// this is what creates the double border. it is set on this specific callout type but can be replicated for others by joining with a comma
+.edges::before {
+  content: " ";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 1px solid black;
 }

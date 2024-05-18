@@ -16,7 +16,7 @@ const config: QuartzConfig = {
     theme: {
       typography: {
         header: "Aladin",
-        body: "Afacad",
+        body: "Universalis",
         code: "IBM Plex Mono",
       },
       colors: {
@@ -60,6 +60,7 @@ const config: QuartzConfig = {
       Plugin.Description(),
     ],
     filters: [Plugin.ExplicitPublish()],
+    // filters: [],
     emitters: [
       Plugin.AliasRedirects(),
       Plugin.ComponentResources({ fontOrigin: "googleFonts" }),

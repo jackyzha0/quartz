@@ -1,12 +1,23 @@
 @use "./variables.scss" as *;
 @use "./syntax.scss";
 @use "./callouts.scss";
+@font-face {
+  font-family: 'Universalis';
+  src: url(../static/fonts/Universalis)
+}
 
 html {
   scroll-behavior: smooth;
   text-size-adjust: none;
   overflow-x: hidden;
   width: 100vw;
+}
+
+body {
+  background-image: url('../static/background.png');
+  background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 body,
@@ -137,21 +148,20 @@ a {
   & > #quartz-body {
     width: 100%;
     display: flex;
+    justify-content: space-between;
     @media all and (max-width: $fullPageWidth) {
       flex-direction: column;
     }
 
     & .sidebar {
-      flex: 1;
       display: flex;
       flex-direction: column;
       gap: 2rem;
       top: 0;
-      width: $sidePanelWidth;
       margin-top: $topSpacing;
       box-sizing: border-box;
       padding: 0 4rem;
-      position: fixed;
+      height: fit-content;
       @media all and (max-width: $fullPageWidth) {
         position: initial;
         flex-direction: row;
@@ -162,27 +172,14 @@ a {
     }
 
     & .sidebar.left {
-      left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
       @media all and (max-width: $fullPageWidth) {
         gap: 0;
         align-items: center;
       }
     }
-
-    & .sidebar.right {
-      right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
-      flex-wrap: wrap;
-      & > * {
-        @media all and (max-width: $fullPageWidth) {
-          flex: 1;
-          min-width: 140px;
-        }
-      }
-    }
   }
 
   & .page-header {
-    width: $pageWidth;
     margin: $topSpacing auto 0 auto;
     @media all and (max-width: $fullPageWidth) {
       width: initial;
@@ -192,13 +189,24 @@ a {
 
   & .center,
   & footer {
-    margin-left: auto;
-    margin-right: auto;
-    width: $pageWidth;
+    padding: 0 4rem 0 0;
     @media all and (max-width: $fullPageWidth) {
       width: initial;
       margin-left: 0;
       margin-right: 0;
+    }
+  }
+  
+  & .footer-component {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 3px solid black;
+    & div {
+      display: flex;
+      gap: 2rem;
+      & div {
+        flex: 1;
+      }
     }
   }
 }
@@ -417,6 +425,28 @@ p {
     margin: 1rem;
     padding: 1.5rem;
     border-collapse: collapse;
+
+    th {
+      font-family: 'Universalis';
+      background-color: black;
+      color: white;
+    }
+
+    th:not(:last-child) {
+      border-right: 1px solid white;
+    }
+
+    td:not(:last-child) {
+      border-right: 1px solid black;
+    }
+
+    tr:not(:last-child) {
+      border-bottom: 1px solid black;
+    }
+
+    tr:nth-child(2n) {
+      background-color: #cccccc;
+    }
 
     th,
     td {

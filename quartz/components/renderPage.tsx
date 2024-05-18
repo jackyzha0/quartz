@@ -1,12 +1,13 @@
+import { Element, ElementContent, Root } from "hast"
 import { render } from "preact-render-to-string"
-import { QuartzComponent, QuartzComponentProps } from "./types"
-import HeaderConstructor from "./Header"
-import BodyConstructor from "./Body"
-import { JSResourceToScriptElement, StaticResources } from "../util/resources"
-import { FullSlug, RelativeURL, joinSegments, normalizeHastElement } from "../util/path"
 import { visit } from "unist-util-visit"
-import { Root, Element, ElementContent } from "hast"
+
 import { QuartzPluginData } from "../plugins/vfile"
+import { FullSlug, RelativeURL, joinSegments, normalizeHastElement } from "../util/path"
+import { JSResourceToScriptElement, StaticResources } from "../util/resources"
+import BodyConstructor from "./Body"
+import HeaderConstructor from "./Header"
+import { QuartzComponent, QuartzComponentProps } from "./types"
 
 interface RenderComponents {
   head: QuartzComponent
@@ -186,7 +187,7 @@ export function renderPage(
   )
 
   const RightComponent = (
-    <div class="right sidebar">
+    <div>
       {right.map((BodyComponent) => (
         <BodyComponent {...componentData} />
       ))}
@@ -214,10 +215,10 @@ export function renderPage(
                 </div>
               </div>
               <Content {...componentData} />
+              <div class="footer-component">{RightComponent}</div>
             </div>
-            {RightComponent}
           </Body>
-          <Footer {...componentData} />
+          {/* <Footer {...componentData} /> */}
         </div>
       </body>
       {pageResources.js
