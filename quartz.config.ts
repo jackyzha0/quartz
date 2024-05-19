@@ -8,13 +8,13 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "🪴 Quartz 4.0",
+    pageTitle: "📝 Matrix Notes",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
       provider: "plausible",
     },
-    locale: "en-US",
+    locale: "en-IN",
     baseUrl: "notes.trixtertempdrive.eu.org",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
@@ -22,30 +22,30 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
-        code: "IBM Plex Mono",
+        header: "Montserrat",
+        body: "Karla",
+        code: "Fira Code",
       },
       colors: {
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
+          light: "#ebeef9",          // Background color
+          lightgray: "#aab7d5",      // Surface color
+          gray: "#a6adc1",           // Mid-tone gray for borders and dividers
+          darkgray: "#6e738a",       // Dark gray for text
+          dark: "#565c71",           // Near-black for highlights and important elements
+          secondary:"#7a5fb7",      // Slightly darker lavender for links and secondary actions
+          tertiary: "#78b0a0",       // Muted teal for tertiary elements
+          highlight: "rgba(122, 95, 183, 0.15)"// Lighter shade of secondary with transparency
         },
         darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
+          light: "#1d1f30",          // Background color
+          lightgray: "#333546",      // Surface color
+          gray: "#3f4254",           // Mid-tone gray for borders and dividers
+          darkgray: "#b0b2c3",       // Light gray for text
+          dark: "#e8eaf4",           // Near-white for highlights and important elements
+          secondary: "#4db8b6",      // Teal for links and secondary actions
+          tertiary: "#f3d250",       // Muted yellow for tertiary elements
+          highlight: "rgba(77, 184, 182, 0.15)" // Teal highlight with opacity
         },
       },
     },

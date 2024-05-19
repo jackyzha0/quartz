@@ -83,7 +83,7 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex, limit?: nu
       <description>${!!limit ? i18n(cfg.locale).pages.rss.lastFewNotes({ count: limit }) : i18n(cfg.locale).pages.rss.recentNotes} on ${escapeHTML(
         cfg.pageTitle,
       )}</description>
-      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <generator>Quartz -- notes.trixtertempdrive.eu.org</generator>
       ${items}
     </channel>
   </rss>`
