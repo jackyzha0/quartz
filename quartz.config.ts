@@ -14,7 +14,7 @@ const config: QuartzConfig = {
     analytics: {
       provider: "plausible",
     },
-    locale: "en-IN",
+    locale: "en-US",
     baseUrl: "notes.trixtertempdrive.eu.org",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
