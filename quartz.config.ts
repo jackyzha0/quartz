@@ -22,7 +22,7 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Montserrat",
+        header: "Orbitron",  // Montserrat
         body: "Karla",
         code: "Fira Code",
       },
