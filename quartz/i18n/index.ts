@@ -16,6 +16,7 @@ import vi from "./locales/vi-VN"
 import pt from "./locales/pt-BR"
 import hu from "./locales/hu-HU"
 import fa from "./locales/fa-IR"
+import pl from "./locales/pl-PL"
 
 export const TRANSLATIONS = {
   "en-US": en,
