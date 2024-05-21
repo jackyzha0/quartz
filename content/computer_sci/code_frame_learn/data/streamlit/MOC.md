@@ -1,5 +1,5 @@
 ---
-title: Steamlit - MOC
+title: Streamlit - MOC
 tags:
   - basic
   - data
