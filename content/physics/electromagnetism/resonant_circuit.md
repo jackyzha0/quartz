@@ -13,7 +13,7 @@ date: 2023-06-30
 电路中电容器$L$、电感器$C$两组件之能量相等，当能量由电路中某一电抗组件释出时，且另一电抗组件必吸收相同之能量，即此两电抗组件间会产生一能量脉动。
 
 # 两种简单的谐振电路
-![](synthetic_aperture_radar_imaging/attachments/Pasted%20image%2020230330160535.png)
+![](electrical_electronics/RF/algrothim/SAR/attachments/Pasted%20image%2020230330160535.png)
 
 
 以串联谐振为例

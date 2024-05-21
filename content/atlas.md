@@ -9,11 +9,6 @@ date: 2024-02-28
 
 * [Deep Learning & Machine Learning](computer_sci/deep_learning_and_machine_learning/deep_learning_MOC.md)
 
-* [[synthetic_aperture_radar_imaging/SAR_MOC| Synthetic Aperture Radar(SAR) Imaging]]
-
-
-💻 Also, his research needs some basic science to support
-
 * [Data Structure and Algorithm MOC](computer_sci/data_structure_and_algorithm/MOC.md)
 
 * [Hardware](computer_sci/hardware/hardware_MOC.md)
@@ -51,6 +46,8 @@ date: 2024-02-28
 * [🥐Food](food/MOC.md)
 
 * [🎬Watching List](https://pinkr1ver.notion.site/5e136466f3664ff1aaaa75b85446e5b4?v=a41efbce52a84f7aa89d8f649f4620f6&pvs=4)
+
+* [🖌️Art](art/art_MOC.md)
 
 ⭐ Here to find my recent study:
 

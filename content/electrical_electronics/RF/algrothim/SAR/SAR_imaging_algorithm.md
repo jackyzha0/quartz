@@ -54,9 +54,9 @@ SAR成像是对一个区域的散射特性进行成像，这个区域的地形�
 
 --- 
 
-![](synthetic_aperture_radar_imaging/attachments/Pasted%20image%2020230419111635.png)
+![](electrical_electronics/RF/algrothim/SAR/attachments/Pasted%20image%2020230419111635.png)
 
-![](synthetic_aperture_radar_imaging/attachments/Pasted%20image%2020230418165114.png)
+![](electrical_electronics/RF/algrothim/SAR/attachments/Pasted%20image%2020230418165114.png)
 
 如图，针对红点目标，SAR从A点开始照射到P点最接近目标，直到B点离开红点离开。
 
@@ -107,13 +107,13 @@ Range-Doppler Algorithm是SAR成像的第一个算法，在1970年代被develope
 
 步骤如下：
 
-![](synthetic_aperture_radar_imaging/attachments/Pasted%20image%2020230417110036.png)
+![](electrical_electronics/RF/algrothim/SAR/attachments/Pasted%20image%2020230417110036.png)
 
 ## Range Compression
 
-![](synthetic_aperture_radar_imaging/attachments/Pasted%20image%2020230418102226.png)
+![](electrical_electronics/RF/algrothim/SAR/attachments/Pasted%20image%2020230418102226.png)
 
-距离参考函数是一系列复数，表示天线发射的原始啁啾信号(original [chirp](synthetic_aperture_radar_imaging/Chirp.md))。
+距离参考函数是一系列复数，表示天线发射的原始啁啾信号(original [chirp](signal/signal_processing/basic_knowledge/concept/chirp.md))。
 
 天线发射的原始线性调频信号（**linear-frequency chirp**）是一种线性调频连续波信号，它的频率随着时间线性变化，形成一种锯齿状的波形。这种信号可以用数学公式表示为：
 
@@ -123,7 +123,7 @@ $$ s(t) = \cos\left(2\pi\left(f_c t + \frac{B}{T} t^2\right)\right) $$
 
 ## Azimuth Compression
 
-![](synthetic_aperture_radar_imaging/attachments/Pasted%20image%2020230418162216.png)
+![](electrical_electronics/RF/algrothim/SAR/attachments/Pasted%20image%2020230418162216.png)
 
 
 

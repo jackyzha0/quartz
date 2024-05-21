@@ -11,4 +11,4 @@ date: 2023-09-04
 
 ## Basic concepts
 
-* [different_programming_interfaces](computer_sci/hardware/MCU/different_programming_interfaces.md)
+* [different_programming_interfaces](eletrical_electronics/MCU/different_programming_interfaces.md)
