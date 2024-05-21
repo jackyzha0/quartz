@@ -1,0 +1,13 @@
+.banner {
+  --banner-height: 300px;
+  height: var(--banner-height);
+  width: 100%;
+  user-select: none;
+
+  img {
+    object-fit: cover;
+    max-width: none;
+    height: 100%;
+    width: 100%;
+  }
+}
