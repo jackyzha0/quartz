@@ -106,4 +106,4 @@ plt.imshow(reshaped_image)
 plt.show()
 
 # Opencv store image
-cv2.imwrite('C:/Users/BME51/Desktop/color8bit_style.jpg', reshaped_image_bgr)
+cv2.imwrite('./color8bit_style.jpg', reshaped_image_bgr)
