@@ -3,6 +3,7 @@ title: Art Style - Low-Poly
 tags:
   - art
   - art-style
+  - geometry
 date: 2024-05-21
 ---
 # From AIGC

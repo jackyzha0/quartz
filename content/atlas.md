@@ -7,35 +7,21 @@ date: 2024-02-28
 
 🚧 There are notebooks about his research career:
 
-* [Deep Learning & Machine Learning](computer_sci/deep_learning_and_machine_learning/deep_learning_MOC.md)
-
-* [Data Structure and Algorithm MOC](computer_sci/data_structure_and_algorithm/MOC.md)
-
-* [Hardware](computer_sci/hardware/hardware_MOC.md)
+* [💻Computer Science](computer_sci/MOC.md)
 
 * [Physics](physics/physics_MOC.md)
 
-* [Signal Processing](signal/signal_MOC.md)
+* [Signal](signal/signal_MOC.md)
 
 * [Data Science](data_sci/data_sci_MOC.md)
 
-* [About coding language design detail](computer_sci/coding_knowledge/coding_lang_MOC.md)
-
 * [Math](math/MOC.md)
-
-* [Computational Geometry](computer_sci/computational_geometry/MOC.md)
-
-* [Code Framework Learn](computer_sci/code_frame_learn/MOC.md)
-
-* [Design](design/design_moc.md)
-
-🦺 I also need some tool to help me:
-
-* [Git](toolkit/git/git_MOC.md)
 
 💻 Code Practice:
 
 * [💽Programing Problem Solution Record](https://github.com/PinkR1ver/JudeW-Problemset)
+
+* [Some sundry code](https://github.com/PinkR1ver/sundry)
 
 🛶 Also, he learn some knowledge about his hobbies:
 
@@ -51,12 +37,8 @@ date: 2024-02-28
 
 ⭐ Here to find my recent study:
 
-* [Recent notes (this function cannot be used on web)](recent.md)
 * [Papers Recently Read](research_career/papers_read.md)
 
 🎏 I also have some plans in my mind to do；
 
 * [Life List🚀](plan/life.md)
-
-☁️ I also have some daily thoughts:
-* [Logs](log/log_MOC.md)

@@ -15,7 +15,7 @@ date: 2024-04-26
 
 ### Overview
 
-![](computer_sci/multiThread_and_multiProcess/attachments/Pasted%20image%2020240426171635.png)
+![](computer_sci/multiProcessing/attachments/Pasted%20image%2020240426171635.png)
 
 ### Process
 
