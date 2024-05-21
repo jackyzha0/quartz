@@ -53,20 +53,20 @@ About what is VNA: [VNA Research](research_career/UWB_about/report/VNA_research.
 
 开路状态下，Smith Graph的标记点应该在电阻线的最右端，表明阻抗无限大，且表现出纯电阻性
 
-![](signal/signal_processing/device_and_components/attachments/Pasted%20image%2020231007162754.png)
+![](signal/hardware/attachments/Pasted%20image%2020231007162754.png)
 
 PORT1链接短路校准件，查看史密斯图标记点应该在史密斯图上电阻线的最左端(阻抗为0，并且表现纯电阻性)。
 
-![](signal/signal_processing/device_and_components/attachments/Pasted%20image%2020231007162817.png)
+![](signal/hardware/attachments/Pasted%20image%2020231007162817.png)
 
 PORT1链接50欧姆校准件，查看史密斯图标记点应该在史密斯图上电阻线的中心(阻抗为50欧姆，并且表现纯电阻性)。
 
-![](signal/signal_processing/device_and_components/attachments/Pasted%20image%2020231007162826.png)
+![](signal/hardware/attachments/Pasted%20image%2020231007162826.png)
 
 
 链接一根可以确认阻抗与谐振都正常的天线（可以把一根天线定位对照组并妥善保管），可以通过拨轮移动标记点至[驻波比](signal/signal_processing/basic_knowledge/concept/SWR.md)最低点，并同步观察该频率在史密斯图上的点是否在正中心（或者无限接近中心）。同时可以看屏幕最上面的参数，如图显示，我的这条对照天线最好的驻波比为1.021，此时对应的频率2.455GHz，史密斯图中阻抗为50.72Ω+j748mΩ
 
-![](signal/signal_processing/device_and_components/attachments/Pasted%20image%2020231007162914.png)
+![](signal/hardware/attachments/Pasted%20image%2020231007162914.png)
 
 ### 
 

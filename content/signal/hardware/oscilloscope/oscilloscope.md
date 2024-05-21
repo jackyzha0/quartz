@@ -18,7 +18,7 @@ An oscilloscope is a testing and measurement instrument that can display the dyn
 
 In analog oscilloscopes, the CRT is the main component. Like the figure:
 
-![](signal/signal_processing/device_and_components/oscilloscope/attachments/Pasted%20image%2020240412115407.png)
+![](signal/hardware/attachments/Pasted%20image%2020240412115407.png)
 
 The vertical system is responsible for sending the main image to the vertical deflection plate of the CRT. Vertical systems amplify or attenuate input signals. The horizontal system is responsible for the movement of the electron beam from left to right. Trigger the system determines when to draw the waveform on the CRT.
 
@@ -26,7 +26,7 @@ The Z-axis circuit below is in charge of brightness control of the electron beam
 
 Let's see the vertical subsystem of the oscilloscope. The basic form of an analog oscillsocpe consists of an attenuator, preamplifier, delay line, and main amplifier. Like the figure:
 
-![](signal/signal_processing/device_and_components/oscilloscope/attachments/Pasted%20image%2020240412115836.png)
+![](signal/hardware/attachments/Pasted%20image%2020240412115836.png)
 
 * **Attenuator**: attenuating the input signal and allows for AC or DC coupling.
 	* 直接输入的信号可能超过示波器屏幕显示范围，因此通过衰减器降低信号幅度；衰减器通过**Partial Attenuation(部分衰竭)** 来保持信号的细节和波形特征
@@ -42,12 +42,12 @@ Let's see the vertical subsystem of the oscilloscope. The basic form of an analo
 * **Horizontal subsystem** as figure:
 	* The horizontal signal system provides a **deflection voltage** to the horizontal plate to move the electron beam horizontally. For this purpose, the scanning generator circuit generates sawtooth (or ramp) signals to control the scanning rate of the beam. The sawtooth or ramp signal rises linearly and can measure the time between two events. The scanning generator is calibrated in a timely manner, hence it is also known as a **time base**.
 
-![](signal/signal_processing/device_and_components/oscilloscope/attachments/Pasted%20image%2020240412153613.png)
+![](signal/hardware/attachments/Pasted%20image%2020240412153613.png)
 
 * **Trigger system** as figure:
 	* The trigger system determines the time when the oscilloscope draws the waveform on the screen.
 
-![](signal/signal_processing/device_and_components/oscilloscope/attachments/Pasted%20image%2020240412154021.png)
+![](signal/hardware/attachments/Pasted%20image%2020240412154021.png)
 
 显像管屏幕内部涂有磷，因此当电子与之碰撞时，屏幕就会发光。水平系统负责将光束从左向右移动。当光束到达屏幕的最右侧时，它会迅速返回左侧，重新开始这个过程。这个过程称为扫描（或跟踪或扫描）。
 
@@ -58,7 +58,7 @@ Let's see the vertical subsystem of the oscilloscope. The basic form of an analo
 
 ## Principle
 
-![](signal/signal_processing/device_and_components/oscilloscope/attachments/Pasted%20image%2020240412154704.png)
+![](signal/hardware/attachments/Pasted%20image%2020240412154704.png)
 
 
 

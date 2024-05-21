@@ -8,7 +8,7 @@ date: 2023-12-05
 ---
 # Structure
 
-![](signal/signal_processing/device_and_components/attachments/Pasted%20image%2020231204110242.png)
+![](signal/hardware/attachments/Pasted%20image%2020231204110242.png)
 
 * Conductor is located at the center of the cable
 * Other layers is to protect
@@ -79,7 +79,7 @@ date: 2023-12-05
 
 Chinese translation: 实心导体和绞合导体
 
-![](signal/signal_processing/device_and_components/attachments/Pasted%20image%2020231204112611.png)
+![](signal/hardware/attachments/Pasted%20image%2020231204112611.png)
 <center><strong>Solid Conductor is in left, Stranded Conductor is in right</strong></center>
 
 
@@ -100,7 +100,7 @@ Chinese translation: 实心导体和绞合导体
 > [!hint] 
 >  根据前哥说的趋肤效应([Skin effect](https://zh.wikipedia.org/wiki/%E9%9B%86%E8%86%9A%E6%95%88%E6%87%89))，高频信号的电子喜欢在金属表面移动，因此实心导体可能已经被淘汰了。
 >  
->  [skin effect note](signal/signal_processing/device_and_components/cable/skin_effect.md)
+>  [skin effect note](signal/hardware/cable/skin_effect.md)
 
 ### Stranded Constructions
 
@@ -111,9 +111,9 @@ Chinese translation: 实心导体和绞合导体
 
 #### Bunched Stranded Conductor
 
-![](signal/signal_processing/device_and_components/attachments/Pasted%20image%2020231204114304.png)
+![](signal/hardware/attachments/Pasted%20image%2020231204114304.png)
 
-![](signal/signal_processing/device_and_components/attachments/Pasted%20image%2020231204114312.png)
+![](signal/hardware/attachments/Pasted%20image%2020231204114312.png)
 
 Bunched strands are simply gathered together without any specific arrangement.
 
@@ -121,7 +121,7 @@ Bunched strands are simply gathered together without any specific arrangement.
 
 #### Concentric Lay Stranded Conductor
 
-![](signal/signal_processing/device_and_components/attachments/Pasted%20image%2020231204130617.png)
+![](signal/hardware/attachments/Pasted%20image%2020231204130617.png)
 
 Concentric stranding (同心绞合)
 
@@ -146,17 +146,17 @@ In uni-lay stranding, every layer is twisted in the same direction.
 
 In a rope lay construction, the stranded conductors or strands are arranged in a spiral fashion to form a rope-like structure. This is a departure from the traditional uni-lay or multi-lay construction.
 
-![](signal/signal_processing/device_and_components/attachments/Pasted%20image%2020231204153959.png)
+![](signal/hardware/attachments/Pasted%20image%2020231204153959.png)
 
-![](signal/signal_processing/device_and_components/attachments/Pasted%20image%2020231204154015.png)
+![](signal/hardware/attachments/Pasted%20image%2020231204154015.png)
 
 
 
 # Cable Structure
 
-![](signal/signal_processing/device_and_components/attachments/Pasted%20image%2020231204160536.png)
+![](signal/hardware/attachments/Pasted%20image%2020231204160536.png)
 
-![](signal/signal_processing/device_and_components/attachments/Pasted%20image%2020231204165012.png)
+![](signal/hardware/attachments/Pasted%20image%2020231204165012.png)
 
 1. **Standard Conductor（标准导体）：**
     
@@ -238,11 +238,11 @@ In a rope lay construction, the stranded conductors or strands are arranged in a
 
 # Letters on Cable
 
-![](signal/signal_processing/device_and_components/attachments/Pasted%20image%2020231204160640.png)
+![](signal/hardware/attachments/Pasted%20image%2020231204160640.png)
 
 ## Size
 
-* AWG - [American Wire Gauge](signal/signal_processing/device_and_components/cable/AWG.md)
+* AWG - [American Wire Gauge](signal/hardware/cable/AWG.md)
 * $mm^2$ - Square millimeters
 * MCM - Thousand Circular Mils
 * KCMil - Thousand Circular Mils
@@ -272,7 +272,7 @@ In a rope lay construction, the stranded conductors or strands are arranged in a
 
 ## Quality Control Certified
 
-* [UL, TUV, ISO ... ...](signal/signal_processing/device_and_components/quality_control_certified/qcc.md)
+* [UL, TUV, ISO ... ...](signal/hardware/quality_control_certified/qcc.md)
 
 # Cable Properties - Especially for RF circuit
 
@@ -286,7 +286,7 @@ RF cables are quite different to audio cables. As in audio cables we can run cab
 * Frequency you're currently trying to transmit
 * The length of the cable
 
-RF circuits need to consider impedance matching, and the most likely to fluctuate in impedance is the cable. So the antenna cable we used for our radio systems is usually **[coax cable](signal/signal_processing/device_and_components/cable/coax_cable.md) with a nice BNC connector**.
+RF circuits need to consider impedance matching, and the most likely to fluctuate in impedance is the cable. So the antenna cable we used for our radio systems is usually **[coax cable](signal/hardware/cable/coax_cable.md) with a nice BNC connector**.
 
 
 

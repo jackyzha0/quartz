@@ -1,5 +1,5 @@
 ---
-title: Signal Processing - MOC
+title: Signal - MOC
 tags:
   - MOC
   - signal-processing
@@ -22,9 +22,10 @@ date: 2024-03-18
 * [Instantaneous Frequency](signal/signal_processing/basic_knowledge/instantaneous_frequency.md)
 # Devices and Components
 
-* [✨Learn VNA in practical way](signal/signal_processing/device_and_components/VNA_learn.md)
-* [Cable](signal/signal_processing/device_and_components/cable/cable.md)
-* [oscilloscope](signal/signal_processing/device_and_components/oscilloscope/oscilloscope.md)
+* [VNA](signal/hardware/VNA/MOC.md)
+* [Cable](signal/hardware/cable/cable.md)
+* [oscilloscope](signal/hardware/oscilloscope/MOC.md)
+* [SRD](signal/hardware/SRD/SRD.md)
 
 # Signal Algorithm about
 

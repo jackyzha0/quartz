@@ -56,7 +56,7 @@ Diodes:
 
 In this article, [Circularly Polarized Ultra-Wideband Radar System for Vital Signs Monitoring](https://ieeexplore.ieee.org/document/6491501), it uses AD9959 DDS to control UWB pulse repetition frequency (PRF). This DDS has the capability to generate sinusoids up to 250MHz at 0.1-Hz frequency tuning resolution. The DDS has four channels, one for transmitting pulse, one for storing reference pulse from receiver.
 
-The outputs from the DDS, the sinusoids will be amplified by [op-amps](signal/signal_processing/device_and_components/op_amp.md)(Texas Instruments Incorporated OPA699, in this article). After amplifying, the signal will be fed to [step recovery diode](signal/signal_processing/device_and_components/SRD.md)(SRD). 
+The outputs from the DDS, the sinusoids will be amplified by [op-amps](signal/hardware/device_and_components/op_amp.md)(Texas Instruments Incorporated OPA699, in this article). After amplifying, the signal will be fed to [step recovery diode](signal/hardware/SRD/SRD.md)(SRD). 
 
 The **cascaded shunt mode SRD** with **decreasing lifetime method** of pulse generation produces high amplitude pulses of 3 $V_{p-p}$ at low PRFs (megahertz range), thus the pulse generator can directly drive the antenna subsystem saving the need for expensive broadband power amplifiers
 

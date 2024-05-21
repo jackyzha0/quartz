@@ -28,4 +28,4 @@ date: 2023-11-02
 
 总之，阶跃恢复二极管（SRD）是一种特殊的二极管，它在高频、脉冲和微波应用中具有广泛的应用，因为它可以产生非常快速的电流和电压变化，适用于各种电子电路中的特殊应用。
 
-![](signal/signal_processing/device_and_components/attachments/Pasted%20image%2020231102154725.png)
+![](signal/hardware/attachments/Pasted%20image%2020231102154725.png)
