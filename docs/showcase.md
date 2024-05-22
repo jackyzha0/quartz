@@ -28,5 +28,6 @@ Want to see what Quartz can do? Here are some cool community gardens:
 - [🪴Aster's notebook](https://notes.asterhu.com)
 - [🥷🏻🌳🍃 Computer Science & Thinkering Garden](https://notes.yxy.ninja)
 - [A Pattern Language - Christopher Alexander (Architecture)](https://patternlanguage.cc/)
+- [🍍Neo Void's Digital Grimoire](https://neovoid.is-cool.dev/quartz/)
 
 If you want to see your own on here, submit a [Pull Request adding yourself to this file](https://github.com/jackyzha0/quartz/blob/v4/docs/showcase.md)!
