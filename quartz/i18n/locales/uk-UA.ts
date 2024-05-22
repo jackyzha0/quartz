@@ -65,6 +65,7 @@ export default {
     error: {
       title: "Не знайдено",
       notFound: "Ця сторінка або приватна, або не існує.",
+      home: "Повернутися на головну сторінку",
     },
     folderContent: {
       folder: "Папка",

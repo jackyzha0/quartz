@@ -65,6 +65,7 @@ export default {
     error: {
       title: "یافت نشد",
       notFound: "این صفحه یا خصوصی است یا وجود ندارد",
+      home: "بازگشت به صفحه اصلی",
     },
     folderContent: {
       folder: "پوشه",
