@@ -10,6 +10,7 @@ date: 2024-05-24
 
 # Differential
 
+* [Common Differential](math/calculus/differential/common_differential.md)
 * [Product Rule](math/calculus/differential/product_rule.md)
 # Integration
 
