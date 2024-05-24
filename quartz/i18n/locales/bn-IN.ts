@@ -1,4 +1,4 @@
-import { Translation } from "./definition"
+import { Translation } from "./definition";
 
 export default {
   propertyDefaults: {
@@ -69,15 +69,19 @@ export default {
     folderContent: {
       folder: "ফোল্ডার",
       itemsUnderFolder: ({ count }) =>
-        count === 1 ? "এই ফোল্ডার এ মাত্র একটি বস্তু আছে।" : `এই ফোল্ডার এ মোট ${count}-টি বস্তু আছে।`,
+        count === 1
+          ? "এই ফোল্ডার এ মাত্র একটি বস্তু আছে।"
+          : `এই ফোল্ডার এ মোট ${count}-টি বস্তু আছে।`,
     },
     tagContent: {
       tag: "ট্যাগ",
       tagIndex: "ট্যাগ ইনডেক্স",
       itemsUnderTag: ({ count }) =>
-        count === 1 ? "এই ট্যাগ এর নিয়ে মাত্র একটি জিনিস আছে।" : `এই ট্যাগতির নিয়ে মাত্র ${count}-টি জিনিস আছে।`,
+        count === 1
+          ? "এই ট্যাগ এর নিয়ে মাত্র একটি জিনিস আছে।"
+          : `এই ট্যাগতির নিয়ে মাত্র ${count}-টি জিনিস আছে।`,
       showingFirst: ({ count }) => `প্রথম ${count}-টি ট্যাগ দেখানো হচ্ছে।`,
       totalTags: ({ count }) => `মোট ${count}-টি ট্যাগ পাওয়া গেছে।`,
     },
   },
-} as const satisfies Translation
+} as const satisfies Translation;
