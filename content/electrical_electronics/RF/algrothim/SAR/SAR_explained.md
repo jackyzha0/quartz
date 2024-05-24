@@ -47,7 +47,7 @@ The transmitter generates successive short bursts or pulses of microwave at regu
 
 side-looking的雷达被分为two types —— real aperture radar(*SLAR or SLR*, SL for side-looking)和synthetic aperture radar(SAR)
 
-如上图所示，雷达发出的pulse被[antenna聚焦](electrical_electronics/RF/antenna.md)在一个narrow的area里，然后scatter后在不同和的时间再被receiver接收
+如上图所示，雷达发出的pulse被[antenna聚焦](electrical_electronics/RF/antenna/antenna.md)在一个narrow的area里，然后scatter后在不同和的时间再被receiver接收
 
 ### Resolution
 

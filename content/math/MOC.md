@@ -27,3 +27,8 @@ date: 2023-12-03
 
 
 * [Quadratic Programming](math/optimization_problem/Quadratic_Programming.md)
+
+
+# Calculus
+
+* [Calculus- Moc](math/calculus/calculus_moc.md)
