@@ -8,11 +8,11 @@ DEX: 0.1
 INT: 0  
 WIS: 0  
 CHA: 0  
-ash-class:   
+ash-class: "[[Loose Notes/old vault/10 - Ash In The Snow/12 - Resources/12.01 - SRD/Wizard|Wizard]] (Archivist)"  
 short-desc: A brilliant scholar from [[Bur-Vusamyr|Bur-Vusamyr]]. Travelling with [[Ash In the Snow/People/Axiom|Axiom]] and [[Ash In the Snow/People/Zilver|Zilver]], with Zilver as their ward.  
 pronouns:   
 race: Dragonborn  
-modified: 2024-03-29T16:49  
+modified: 2024-05-24T22:12:20-05:00  
 created: 2024-01-01T00:00  
 ---  
   

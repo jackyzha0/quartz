@@ -13,13 +13,13 @@ pronouns: He/They
 short-desc: A supposed prince from [[Bur-Vusamyr|Bur-Vusamyr]]. [[Ash In the Snow/People/Axiom|Axiom]] and [[Ash In the Snow/People/Moonie|Moonie]] are their companions.  
 ash-class: "[[Ash In the Snow/Meta/Moves/Wizard|Wizard]]"  
 ash-aliases:   
-race:   
+race: Human/Dragon(?)  
 occupation:   
 hometown: "[[Ash In The Snow/Locations/Tsurian Region/Ber-Vusamyr/Ber-Vusamyr|Ber-Vusamyr]]"  
 age:   
 relations: "[[Ash In the Snow/People/Axiom|Axiom]] and"  
 created: 2024-01-01T00:00  
-modified: 2024-03-29T16:49  
+modified: 2024-05-24T22:09:58-05:00  
 ---  
   
 > [!infobox]  
@@ -28,7 +28,7 @@ modified: 2024-03-29T16:49
 > | -------------- | ---------------- |  
 > |**Aliases**     |                 |  
 > |**Pronouns**    | He/They           |  
-> |**Race**        |             |  
+> |**Race**        | Human/Dragon(?)            |  
 > |**Age**         |             |  
 > |**Occupation**  |         |  
 > |**Hometown**|[[Ash In The Snow/Locations/Tsurian Region/Ber-Vusamyr/Ber-Vusamyr|Ber-Vusamyr]]|  

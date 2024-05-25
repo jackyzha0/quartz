@@ -8,6 +8,8 @@ DEX: 0
 INT: 0  
 WIS: 0  
 CHA: 0  
+race: Dragonborn  
+ash-class: "[[Ash In the Snow/Meta/Moves/Barbarian|Barbarian]]"  
 ---  
   
 > [!infobox]  
@@ -16,7 +18,7 @@ CHA: 0
 > | -------------- | ---------------- |  
 > |**Aliases**     |                 |  
 > |**Pronouns**    |            |  
-> |**Race**        |             |  
+> |**Race**        | Dragonborn            |  
 > |**Age**         |             |  
 > |**Occupation**  |         |  
 > |**Hometown**||  

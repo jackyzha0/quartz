@@ -9,10 +9,11 @@ INT: 0
 WIS: 0  
 CHA: 0  
 created: 2024-01-01T00:00  
-modified: 2024-04-22T11:18:38-05:00  
+modified: 2024-05-24T22:05:32-05:00  
 ash-class: "[[Ash In the Snow/Meta/Moves/Cleric|Cleric]]"  
 race: Human  
 pronouns: He/Him  
+age: late 20s  
 ---  
   
 > [!infobox]  
@@ -22,7 +23,7 @@ pronouns: He/Him
 > |**Aliases**     | -                |  
 > |**Pronouns**    | He/Him           |  
 > |**Race**        | Human            |  
-> |**Age**         |             |  
+> |**Age**         | late 20s            |  
 > |**Occupation** |         |  
 > |**Hometown**||  
 >   

@@ -21,6 +21,7 @@ This is a world of snow and warmth. A world of disconnection and unbreakable bon
 - [[./People/Corrick|Corrick]]  
 - [[./People/Dunn|Dunn]]  
 - [[./People/Elowyn|Elowyn]]  
+- [[./People/Iscin|Iscin]]  
 - [[./People/Moonie|Moonie]]  
 - [[./People/Varis|Varis]]  
 - [[./People/Zilver|Zilver]]  

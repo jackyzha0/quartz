@@ -9,7 +9,14 @@ INT: 0
 WIS: 0  
 CHA: 0  
 created: 2024-01-01T00:00  
-modified: 2024-03-29T16:49  
+modified: 2024-05-24T22:09:16-05:00  
+pronouns: He/Him  
+ash-class: "[[Ash In the Snow/Meta/Moves/Bard|Bard]]"  
+race: Elf/Tiefling  
+cssclasses:  
+  - page-white  
+age: "36"  
+occupation: Diplomatic Attaché of the City of Hillcrest  
 ---  
   
 > [!infobox]  
@@ -17,10 +24,10 @@ modified: 2024-03-29T16:49
 > |                |                  |  
 > | -------------- | ---------------- |  
 > |**Aliases**     |                 |  
-> |**Pronouns**    |            |  
-> |**Race**        |             |  
-> |**Age**         |             |  
-> |**Occupation**  |         |  
+> |**Pronouns**    | He/Him           |  
+> |**Race**        | Elf/Tiefling            |  
+> |**Age**         | 36            |  
+> |**Occupation**  | Diplomatic Attaché of the City of Hillcrest        |  
 > |**Hometown**||  
 >   
 > ##### Relations  

@@ -19,7 +19,9 @@ hometown:
 age:   
 relations:   
 created: 2024-04-22T11:00:00  
-modified: 2024-04-22T11:17:09-05:00  
+modified: 2024-05-24T22:03:27-05:00  
+cssclasses:  
+  - page-white  
 ---  
   
 > [!infobox]  
