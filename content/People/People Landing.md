@@ -8,8 +8,11 @@ publish-ash: true
 - [[./Corrick|Corrick]]:   
     - \-  
   
-- [[./Dunn|Dunn]]:   
+- [[./Dunn|Dunn]] [ He/Him [[../Meta/Moves/Cleric|Cleric]] ]:   
     - \-  
+  
+- [[./Elowyn|Elowyn]] [ She/Her [[../Meta/Moves/Druid|Druid]] ]:   
+    - A sweet little old rabbitfolk druid  
   
 - [[./Moonie|Moonie]]:   
     - \-  
@@ -24,5 +27,6 @@ publish-ash: true
   
 	  
 ## NPCs  
+  
   
  

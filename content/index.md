@@ -4,6 +4,8 @@ shortRepo: ash
 publish-ash: true  
 title: Home  
 description: This is a world of snow and warmth. A world of disconnection and unbreakable bonds. This is the story of Ash in the Snow.  
+cssclasses:  
+  - page-white  
 ---  
 This is a world of snow and warmth. A world of disconnection and unbreakable bonds. This is the story of Ash in the Snow.  
   
@@ -18,6 +20,7 @@ This is a world of snow and warmth. A world of disconnection and unbreakable bon
 - [[./People/Axiom|Axiom]]  
 - [[./People/Corrick|Corrick]]  
 - [[./People/Dunn|Dunn]]  
+- [[./People/Elowyn|Elowyn]]  
 - [[./People/Moonie|Moonie]]  
 - [[./People/Varis|Varis]]  
 - [[./People/Zilver|Zilver]]  

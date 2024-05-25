@@ -17,18 +17,20 @@ race:
 occupation:   
 hometown: "[[Ash In The Snow/Locations/Tsurian Region/Ber-Vusamyr/Ber-Vusamyr|Ber-Vusamyr]]"  
 age:   
-relations:   
+relations: "[[Ash In the Snow/People/Axiom|Axiom]] and"  
+created: 2024-01-01T00:00  
+modified: 2024-03-29T16:49  
 ---  
   
 > [!infobox]  
 > ###### Bio  
 > |                |                  |  
 > | -------------- | ---------------- |  
-> |**Aliases**     | -                |  
+> |**Aliases**     |                 |  
 > |**Pronouns**    | He/They           |  
 > |**Race**        |             |  
 > |**Age**         |             |  
-> |**Occupation** |         |  
+> |**Occupation**  |         |  
 > |**Hometown**|[[Ash In The Snow/Locations/Tsurian Region/Ber-Vusamyr/Ber-Vusamyr|Ber-Vusamyr]]|  
 >   
 > ##### Relations  
@@ -36,13 +38,13 @@ relations:
 > | -------------- | ------------------------- |  
 >   
 > ##### Stats  
-> | Name | Stat   | Condition      |  
-> | ---- | -------- | --------- |  
-> | **STR**  | 0 |   |  
-> | **DEX**  | 0 |     |  
-> | **INT**  | 0 |     |  
-> | **WIS**  | 0 |     |  
-> | **CHA**  | 0  |     |  
+> |      |      |  
+> | ---- | ---- |  
+> | **STR**  | 0     |  
+> | **DEX**  | 0     |  
+> | **INT**  | 0     |  
+> | **WIS**  | 0     |  
+> | **CHA**  | 0     |  
   
   
 A supposed prince from [[Bur-Vusamyr|Bur-Vusamyr]]. [[Ash In the Snow/People/Axiom|Axiom]] and [[Ash In the Snow/People/Moonie|Moonie]] are their companions.  

@@ -3,13 +3,23 @@ tags:
   - person/pc  
 shortRepo: ash  
 publish-ash: true  
+player: Clovr  
 STR: 0  
 DEX: 0  
 INT: 0  
 WIS: 0  
 CHA: 0  
-created: 2024-01-01T00:00  
-modified: 2024-03-29T16:49  
+pronouns: She/Her  
+short-desc: A sweet little old rabbitfolk druid  
+ash-class: "[[Ash In the Snow/Meta/Moves/Druid|Druid]]"  
+ash-aliases:   
+race: Rabbitfolk  
+occupation:   
+hometown:   
+age:   
+relations:   
+created: 2024-04-22T11:00:00  
+modified: 2024-04-22T11:17:09-05:00  
 ---  
   
 > [!infobox]  
@@ -17,8 +27,8 @@ modified: 2024-03-29T16:49
 > |                |                  |  
 > | -------------- | ---------------- |  
 > |**Aliases**     |                 |  
-> |**Pronouns**    |            |  
-> |**Race**        |             |  
+> |**Pronouns**    | She/Her           |  
+> |**Race**        | Rabbitfolk            |  
 > |**Age**         |             |  
 > |**Occupation**  |         |  
 > |**Hometown**||  
@@ -35,5 +45,9 @@ modified: 2024-03-29T16:49
 > | **INT**  | 0     |  
 > | **WIS**  | 0     |  
 > | **CHA**  | 0     |  
+  
+  
+A sweet little old rabbitfolk druid  
+  
   
  
