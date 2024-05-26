@@ -65,7 +65,6 @@ export default {
     error: {
       title: "উৎস অনুপস্থিত",
       notFound: "এই পৃষ্ঠা ব্যক্তিগত বা অস্তিত্বহীন।",
-      home: "হোমপেজে ফিরে যান",
     },
     folderContent: {
       folder: "ফোল্ডার",

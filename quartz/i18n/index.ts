@@ -1,23 +1,23 @@
-import { Translation, CalloutTranslation } from "./locales/definition"
-import en from "./locales/en-US"
-import fr from "./locales/fr-FR"
-import it from "./locales/it-IT"
-import ja from "./locales/ja-JP"
-import de from "./locales/de-DE"
-import nl from "./locales/nl-NL"
-import ro from "./locales/ro-RO"
-import es from "./locales/es-ES"
-import ar from "./locales/ar-SA"
-import uk from "./locales/uk-UA"
-import ru from "./locales/ru-RU"
-import ko from "./locales/ko-KR"
-import zh from "./locales/zh-CN"
-import vi from "./locales/vi-VN"
-import pt from "./locales/pt-BR"
-import hu from "./locales/hu-HU"
-import fa from "./locales/fa-IR"
-import pl from "./locales/pl-PL"
-import bn from "./locales/bn-IN"
+import { Translation, CalloutTranslation } from "./locales/definition";
+import en from "./locales/en-US";
+import fr from "./locales/fr-FR";
+import it from "./locales/it-IT";
+import ja from "./locales/ja-JP";
+import de from "./locales/de-DE";
+import nl from "./locales/nl-NL";
+import ro from "./locales/ro-RO";
+import es from "./locales/es-ES";
+import ar from "./locales/ar-SA";
+import uk from "./locales/uk-UA";
+import ru from "./locales/ru-RU";
+import ko from "./locales/ko-KR";
+import zh from "./locales/zh-CN";
+import vi from "./locales/vi-VN";
+import pt from "./locales/pt-BR";
+import hu from "./locales/hu-HU";
+import fa from "./locales/fa-IR";
+import pl from "./locales/pl-PL";
+import bn from "./locales/bn-IN";
 
 export const TRANSLATIONS = {
   "en-US": en,
@@ -60,9 +60,10 @@ export const TRANSLATIONS = {
   "fa-IR": fa,
   "pl-PL": pl,
   "bn-IN": bn,
-} as const
+} as const;
 
-export const defaultTranslation = "en-US"
-export const i18n = (locale: ValidLocale): Translation => TRANSLATIONS[locale ?? defaultTranslation]
-export type ValidLocale = keyof typeof TRANSLATIONS
-export type ValidCallout = keyof CalloutTranslation
+export const defaultTranslation = "en-US";
+export const i18n = (locale: ValidLocale): Translation =>
+  TRANSLATIONS[locale ?? defaultTranslation];
+export type ValidLocale = keyof typeof TRANSLATIONS;
+export type ValidCallout = keyof CalloutTranslation;
