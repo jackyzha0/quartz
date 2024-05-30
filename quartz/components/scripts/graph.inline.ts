@@ -265,7 +265,8 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     .call(drag(simulation))
 
   // make tags hollow circles
-  node.filter((d) => d.id.startsWith("tags/"))
+  node
+    .filter((d) => d.id.startsWith("tags/"))
     .attr("stroke", color)
     .attr("stroke-width", 2)
     .attr("fill", "var(--light)")
