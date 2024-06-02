@@ -15,7 +15,7 @@ const config: QuartzConfig = {
 			provider: "plausible",
 		},
 		locale: "en-US",
-		baseUrl: "",
+		baseUrl: "https:/ramimaalouf.me",
 		ignorePatterns: [
 			"private",
 			"templates",
