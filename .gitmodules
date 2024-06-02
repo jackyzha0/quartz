@@ -1,0 +1,3 @@
+[submodule "content"]
+	path = content
+	url = https://github.com/psycho-baller/my-universe-content
