@@ -8,7 +8,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "🪴 Quartz 4.0",
+    pageTitle: "Welcome To Rami's Universe",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
@@ -16,7 +16,7 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     baseUrl: "quartz.jzhao.xyz",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    ignorePatterns: ["private", "templates", ".obsidian", "Hidden", "My Calendar", "My Social Circle", "USV", "My Goals", "My Projects", "My Files", "My Input Collections", "My Kanbans", "My Views"],
     defaultDateType: "created",
     theme: {
       fontOrigin: "googleFonts",
