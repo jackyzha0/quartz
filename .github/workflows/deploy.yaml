@@ -24,10 +24,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.14
-      - name: Install pnpm
-        run: npm install -g pnpm
       - name: Install Dependencies
-        run: pnpm ci
+        run: npm ci
       - name: Build Quartz
         run: npx quartz build
       - name: Upload artifact
