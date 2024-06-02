@@ -15,7 +15,7 @@ const config: QuartzConfig = {
 			provider: "plausible",
 		},
 		locale: "en-US",
-		baseUrl: "https://ramimaalouf.me",
+		baseUrl: "https://psycho-baller.github.io",
 		ignorePatterns: [
 			"private",
 			"templates",
