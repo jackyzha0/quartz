@@ -65,6 +65,7 @@ export default {
     error: {
       title: "Nem található",
       notFound: "Ez a lap vagy privát vagy nem létezik.",
+      home: "Vissza a kezdőlapra",
     },
     folderContent: {
       folder: "Mappa",

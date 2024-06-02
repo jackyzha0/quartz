@@ -123,8 +123,8 @@ export const tableWikilinkRegex = new RegExp(/(!?\[\[[^\]]*?\]\])/, "g")
 const highlightRegex = new RegExp(/==([^=]+)==/, "g")
 const commentRegex = new RegExp(/%%[\s\S]*?%%/, "g")
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
-const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
-const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
+const calloutRegex = new RegExp(/^\[\!(\w+)\|?(.+?)?\]([+-]?)/)
+const calloutLineRegex = new RegExp(/^> *\[\!\w+\|?.*?\][+-]?.*$/, "gm")
 // (?:^| )              -> non-capturing group, tag should start be separated by a space or be the start of the line
 // #(...)               -> capturing group, tag itself must start with #
 // (?:[-_\p{L}\d\p{Z}])+       -> non-capturing group, non-empty string of (Unicode-aware) alpha-numeric characters and symbols, hyphens and/or underscores
@@ -427,7 +427,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
               const match = firstLine.match(calloutRegex)
               if (match && match.input) {
-                const [calloutDirective, typeString, collapseChar] = match
+                const [calloutDirective, typeString, calloutMetaData, collapseChar] = match
                 const calloutType = canonicalizeCallout(typeString.toLowerCase())
                 const collapse = collapseChar === "+" || collapseChar === "-"
                 const defaultState = collapseChar === "-" ? "collapsed" : "expanded"
@@ -489,6 +489,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     className: classNames.join(" "),
                     "data-callout": calloutType,
                     "data-callout-fold": collapse,
+                    "data-callout-metadata": calloutMetaData,
                   },
                 }
               }
