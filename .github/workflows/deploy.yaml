@@ -26,7 +26,7 @@ jobs:
 
       - name: Update Submodule
         run: |
-          git config --global url."https://${{ secrets.GH_PAT }}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+          git config url."https://${{ secrets.GH_PAT }}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
           git submodule update --remote --merge
           git add .
           git commit -m "Updated submodule content"
