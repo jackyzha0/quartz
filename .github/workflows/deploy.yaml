@@ -38,7 +38,7 @@ jobs:
           else
             git commit -m "Update submodule via GitHub Action"
             git push origin main
-fi
+          fi
       - uses: actions/setup-node@v3
         with:
           node-version: 18.14
