@@ -33,8 +33,12 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Update submodule via GitHub Action"
-          git push origin main
+          if git diff-index --quiet HEAD --; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update submodule via GitHub Action"
+            git push origin main
+fi
       - uses: actions/setup-node@v3
         with:
           node-version: 18.14
