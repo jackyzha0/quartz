@@ -1,5 +1,5 @@
 ---
-title: Exponential Distribution
+title: Poisson Distribution & Exponential Distribution
 tags:
   - basic
   - math
@@ -64,6 +64,7 @@ $$
 # Deduction
 
 ![](math/Statistics/basic_concepot/distribution/attachments/2bbb645362366906ace3296d35612625_720.jpg)
+
 # Reference
 
 * https://www.ruanyifeng.com/blog/2015/06/poisson-distribution.html
