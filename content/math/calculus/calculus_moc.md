@@ -16,3 +16,7 @@ date: 2024-05-24
 
 * [Common Integration](math/calculus/integration/common_integration.md)
 * [Integration by Parts](math/calculus/integration/integration_by_parts.md)
+
+# Series
+
+* 

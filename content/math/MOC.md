@@ -10,7 +10,7 @@ date: 2023-12-03
 
 ## Basic Concept
 
-* [Quantile](math/Statistics/Basic/Quantile.md)
+* [quantile_concept](math/Statistics/basic_concepot/quantile_concept.md)
 
 ## Significance Test
 

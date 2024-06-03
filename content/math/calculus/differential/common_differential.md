@@ -7,5 +7,6 @@ tags:
   - math
 date: 2024-05-24
 ---
-## cos(x)
+# Reference
 
+* https://www.youtube.com/watch?v=oBlHiX6vrQY
