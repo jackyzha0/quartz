@@ -28,10 +28,13 @@ jobs:
         run: |
           git config url."https://${{ secrets.GH_PAT }}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
           git submodule update --remote --merge
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Updated submodule content"
+          git commit -m "Update submodule via GitHub Action"
           git push origin main
-
       - uses: actions/setup-node@v3
         with:
           node-version: 18.14
