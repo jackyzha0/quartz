@@ -40,7 +40,7 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "Update submodule via GitHub Action"
-            git push origin main
+            git push
           fi
       - uses: actions/setup-node@v3
         with:
