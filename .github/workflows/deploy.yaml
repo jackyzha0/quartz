@@ -41,6 +41,7 @@ jobs:
           else
             git commit -m "Update submodule via GitHub Action"
             git push
+            exit 0
           fi
       - uses: actions/setup-node@v3
         with:
