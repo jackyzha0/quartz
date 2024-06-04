@@ -1,9 +1,12 @@
 name: Deploy Quartz site to GitHub Pages
  
 on:
+  schedule:
+    - cron: '0 15 * * *' # Runs every day at 10 AM EST
   push:
     branches:
       - v4
+  workflow_dispatch: # Allows manual triggering
  
 permissions:
   contents: read
