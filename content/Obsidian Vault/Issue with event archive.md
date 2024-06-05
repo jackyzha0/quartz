@@ -1,0 +1,1 @@
+The event archive volume can cause the server to not start up if the volume is deleted.
