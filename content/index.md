@@ -1,6 +1,11 @@
 ---
-title: Welcome to Quartz
+title: Welcome to VCS documentation
 ---
 
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
+To start adding documetation
+
+```bash
+git clone https://github.com/Acuity-vct/vcs-documentation
+```
+
+commit any documentation to `content/VCS-Documentation`
