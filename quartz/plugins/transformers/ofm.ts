@@ -492,6 +492,22 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     "data-callout-metadata": calloutMetaData,
                   },
                 }
+
+                // Add callout-content class to callout body if it has one.
+                if (node.children.length > 1) {
+                  const contentData = node.children[1]
+                  node.children[1] = {
+                    data: {
+                      hProperties: {
+                        ...(contentData.data?.hProperties ?? {}),
+                        className: "callout-content",
+                      },
+                      hName: "div",
+                    },
+                    type: "blockquote",
+                    children: [contentData],
+                  }
+                }
               }
             })
           }
