@@ -9,3 +9,5 @@ git clone https://github.com/Acuity-vct/vcs-documentation
 ```
 
 commit any documentation to `content/VCS-Documentation`
+
+Documentation for [[New install (single server)]]
