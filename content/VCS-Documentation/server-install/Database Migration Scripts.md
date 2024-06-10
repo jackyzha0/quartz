@@ -51,19 +51,19 @@ Run the `update_server_id.sh` script with the `ServerID` and the `PSQL_PATH` par
 Example of running the script with Docker instance of Postgres:
 
 ```bash
-./database_migration.sh 'server_id' 'docker exec -i artsentry-services-postgres-1 psql'
+./update_server_id.sh 'server_id' 'docker exec -i artsentry-services-postgres-1 psql'
 ```
 
 Example of running the script with local instance of Postgres:
 
 ```bash
-./database_migration.sh 'server_id' '/opt/homebrew/Cellar/postgresql@16/16.2_1/bin/psql'
+./update_server_id.sh 'server_id' '/opt/homebrew/Cellar/postgresql@16/16.2_1/bin/psql'
 ```
 
 If you want to redirect the output to a different file, use the following command:
 
 ```bash
-./database_migration.sh 'server_id' 'docker exec -i artsentry-services-postgres-1 psql' > migration.log
+./update_server_id.sh 'server_id' 'docker exec -i artsentry-services-postgres-1 psql' > migration.log
 ```
 
 #### Existing Server Upgrade
