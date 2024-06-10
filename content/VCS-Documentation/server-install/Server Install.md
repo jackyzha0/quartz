@@ -1,9 +1,10 @@
 
 # New server setup
-1. install vcs
-2. setup docker-compose/ configure postgres[[New install (single server)]]
-3. database migration TODO: link to document
+1. Install VCS Server as usual
+2. Setup docker-compose and configure PostgreSQL: [[Postgres Setup (single server)]]
+3. Execute migration-scripts: [[Database Migration Scripts]]
 
 # Existing server setup
-1. setup docker-compose / configure postgres [[New install (single server)]]
-2. database migration for existing server
+1. Upgrade VCS Server as usual (move content of /upgrade_package/brand to /usr/vcs)
+2. Setup docker-compose and configure PostgreSQL [[Postgres Setup (single server)]]
+4. Execute migration-scripts: [[Database Migration Scripts]]
