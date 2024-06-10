@@ -24,7 +24,7 @@ Add the `-Ddatabase.type=postgres` to the `OTHER_JVM_OPTIONS` variable to use po
 > `OTHER_JVM_OPTIONS` is not an environment variable. It is only read by `startvcs.sh`
 
 Also configure the following connection parameters:
->The `export` denotes that it is an environment variable
+> The `export` denotes that it is an environment variable
 ```shell
 OTHER_JVM_OPTS="-Ddatabase.type=postgres <other-vm-args>"
 #  datasource config postgres
@@ -53,7 +53,7 @@ The initialize script will install docker and the docker compose plugin. Navigat
 cd /usr/vcs
 ./initialize_docker.sh
 ```
- 
+
  After Running the script there should be a new folder `/usr/vcs/compose-cfg` that contains the configuration for the docker compose environment. Configure `.env` , `.env.local` and `proxyGatewayConfig.json` as specified bellow
 
 ### Configure the docker compose environment(.env)
@@ -117,8 +117,8 @@ NEXTAUTH_URL_INTERNAL = http://localhost:3000
 
 The gateway server configuration is located inside `/usr/vcs/compose-cfg/proxyGatewayConfig.json` This file contains a list of servers and their server-ids.
 
-This is an example of configuring the gateway for two servers. The only thing that should change in this file is the `servers` array. For a single server setup just define the ip of the single server in this json array. When the new ui is configured to go to `/gateway` this configuration will need to be correct in order to use multiserver in the new ui.
-
+This is an example of configuring the gateway for two servers.
+The only thing that should change in this file is the `servers` array. For a single server setup just define the ip of the single server in this json array. When the new ui is configured to go to `/gateway` this configuration will need to be correct in order to use multiserver in the new ui.
 ```json
 {  
   "servers": [  
