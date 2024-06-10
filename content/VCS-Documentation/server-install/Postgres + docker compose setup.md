@@ -1,8 +1,9 @@
 server 192.168.2.242
 vcs:Asdf370)
 
-*Required*
-- vcs already installed (can be existing or clean install) for an existing installation the migration scripts will need to be ran to insert the data in sqlite into the postgres database.
+>[!note]
+>*Required*
+>vcs already installed (can be existing or clean install) for an existing installation the migration scripts will need to be ran to insert the data in sqlite into the postgres database.
 
 To start the process of configuring postgres and setting up docker compose stop the vcs service using `systemctl stop vcs`
 
@@ -21,12 +22,14 @@ WebServerSSL="false"
 ```
 
 ## Configure env.sh to use postgres
-add the `-Ddatabase.type=postgres` to the `OTHER_JVM_OPTIONS` variable to use postgres as a database.  
+Add the `-Ddatabase.type=postgres` to the `OTHER_JVM_OPTIONS` variable to use postgres as a database.  Set the connection parameters for connecting to postgres as environment variables.
+
+> [!note]
 > `OTHER_JVM_OPTIONS` is not an environment variable. It is only read by `startvcs.sh`
+> The `export` denotes that it is an environment variable
 
-also configure the following connection parameters.
 
->The `export` denotes that it is an environment variable
+
 ```shell
 OTHER_JVM_OPTS="-Ddatabase.type=postgres <other-vm-args>"
 #  datasource config postgres
@@ -37,19 +40,16 @@ export DATABASE_PASSWORD=vcs
 export DATABASE_URL=jdbc:postgresql://localhost:5445/postgres
 ```
 
+> [!note]
 > NOTE: The `DATABASE_URL` should point to the postgres server. If Configuring multiple servers there will be a single database and the `localhost` should be replaced with the primary postgres servers ip when the postgres instance is not on the same machine as vcs.
 
 
-When not root add the user to the docker group `sudo usermod -aG docker $USER`
 
 
 # Running docker compose
 
-Configure the `.env` `.env.local` and `.proxyGatewayConfig.json`. Adjust the server ip in each to point to the correct server.
 
-## Configuration for compose
-
-### Initialize docker and docker compsoe
+### Initialize docker and docker compse
 The upgrade pack will contain a `docker.zip` and a `initialize_docker.sh` copy these two files to `/usr/vcs`
 ```bash
 cd /usr/vcs
@@ -58,7 +58,11 @@ cd /usr/vcs
 The initialize script will install docker and the docker compose plugin. After Running the script there should be a new folder `/usr/vcs/compose-cfg` that contains the configuration for the docker compose environment. Configure the files as specified bellow
 Configure the `.env` , `.env.local` and `proxyGatewayConfig.json`
 
-The initialize_docker.sh script will copy the configuration files to /usr/vcs/compose-cfg edit the configuration files as specified in the next section.
+The `initialize_docker.sh` script will copy the configuration files to `/usr/vcs/compose-cfg` edit the configuration files as specified in the next section.
+
+## Configuration for compose
+
+Configure the `.env` `.env.local` and `.proxyGatewayConfig.json`. Adjust the server ip in each to point to the correct server.
 
 ### .env configuration
 Change `VCS_SERVER_HTTP_URL=http://` to the vcs servers ip-address this should be the ip of the machine and also specify the port that vcs is listening on *(this should be an http url*).
@@ -136,6 +140,9 @@ the server will need to authenticate with the github package repo. Generate a jw
 docker login ghcr.io -u USERNAME 
 ````
 
+>[!tip]
+>When not root to add the user to the docker group `sudo usermod -aG docker $USER`
+
 change directories to `/usr/vcs/docker` make sure the .env file is located in `/usr/vcs/compose-cfg`
 The following command will startup all the services that vcs requires
 ```bash
@@ -151,6 +158,15 @@ since the `.env` file is not located next to the compose file it needs to be spe
 to remove all the docker images
 ```bash
 docker compose --env-file ../compose-cfg/.env down
+```
+
+verify that all the containers are running
+```bash
+docker ps
+```
+
+
+
 ```
 
 >NOTE: Make sure the vcs server is not running until all the services are running and the database is properly configured in the vcs `env.sh` file 
