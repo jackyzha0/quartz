@@ -141,6 +141,14 @@ function addGlobalPageResources(
       posthog.init('${cfg.analytics.apiKey}',{api_host:'${cfg.analytics.host ?? "https://app.posthog.com"}'})\`
       document.head.appendChild(posthogScript)
     `)
+  } else if (cfg.analytics?.provider === "tinylytics") {
+    const siteId = cfg.analytics.siteId
+    componentResources.afterDOMLoaded.push(`
+      const tinylyticsScript = document.createElement("script")
+      tinylyticsScript.src = "https://tinylytics.app/embed/${siteId}.js"
+      tinylyticsScript.defer = true
+      document.head.appendChild(tinylyticsScript)
+    `)
   }
 
   if (cfg.enableSPA) {

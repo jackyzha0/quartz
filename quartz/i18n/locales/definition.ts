@@ -67,6 +67,7 @@ export interface Translation {
     error: {
       title: string
       notFound: string
+      home: string
     }
     folderContent: {
       folder: string

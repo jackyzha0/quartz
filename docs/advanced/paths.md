@@ -48,4 +48,4 @@ Here are the main types of slugs with a rough description of each type of path:
 - `SimpleSlug`: cannot be relative and shouldn't have `/index` as an ending or a file extension. It _can_ however have a trailing slash to indicate a folder path.
 - `RelativeURL`: must start with `.` or `..` to indicate it's a relative URL. Shouldn't have `/index` as an ending or a file extension but can contain a trailing slash.
 
-To get a clearer picture of how these relate to each other, take a look at the path tests in `quartz/path.test.ts`.
+To get a clearer picture of how these relate to each other, take a look at the path tests in `quartz/util/path.test.ts`.
