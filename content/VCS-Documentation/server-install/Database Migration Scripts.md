@@ -3,9 +3,9 @@ This directory contains scripts for migrating an SQLite database to a PostgreSQL
 
 ## Prerequisites
 
-- Postgre installed and running
-- Liquibase installed
-- Execution of Liquibase scripts
+- Postgres installed and running
+- Liquibase installed (Automated with [[Postgres + docker compose setup]])
+- Execution of Liquibase scripts (Automated with [[Postgres + docker compose setup]])
 - SQLite database file(s) to be migrated(for upgrades only)
 
 ## Setup
@@ -42,7 +42,7 @@ ServerID - server id for the server
 PSQL_PATH - path to Postgres psql
 Example: `docker exec -i artsentry-services-postgres-1 psql`
 
-`artsentry-services-postgres-1` - name of the Docker container which can be found by running `docker ps`
+`artsentry-services-postgres-1` - name of the Docker container which can be found by running `docker ps` ([[running services.png]])
 
 #### New Server Install
 
@@ -87,6 +87,14 @@ If you want to redirect the output to a different file, use the following comman
 ```bash
 ./database_migration.sh 'docker exec -i artsentry-services-postgres-1 psql' > migration.log
 ```
+
+#### Start VCS Server 
+After completing the required steps in [[Postgres + docker compose setup]] and executing the script(s) above, start the VCS Server
+
+```bash
+systemctl start vcs
+```
+
 
 ## Scripts Description(FYI)
 

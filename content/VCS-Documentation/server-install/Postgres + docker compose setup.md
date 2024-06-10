@@ -174,7 +174,4 @@ docker compose --env-file ../compose-cfg/.env down
 
 To check all the running services see:  [[running services.png]]
 
-After the docker compose services are running start the VCS server
-```bash
-systemctl start vcs
-```
+After the docker compose services are running follow the [[Database Migration Scripts]] before starting the VCS Server
