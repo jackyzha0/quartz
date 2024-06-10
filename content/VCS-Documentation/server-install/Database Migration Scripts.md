@@ -3,9 +3,9 @@ This directory contains scripts for migrating an SQLite database to a PostgreSQL
 
 ## Prerequisites
 
-- Postgre installed and running
-- Liquibase installed
-- Execution of Liquibase scripts
+- Postgres installed and running
+- Liquibase installed (Automated with [[Postgres + docker compose setup]])
+- Execution of Liquibase scripts (Automated with [[Postgres + docker compose setup]])
 - SQLite database file(s) to be migrated(for upgrades only)
 
 ## Setup
@@ -42,7 +42,7 @@ ServerID - server id for the server
 PSQL_PATH - path to Postgres psql
 Example: `docker exec -i artsentry-services-postgres-1 psql`
 
-`artsentry-services-postgres-1` - name of the Docker container which can be found by running `docker ps`
+`artsentry-services-postgres-1` - name of the Docker container which can be found by running `docker ps` ([[running services.png]])
 
 #### New Server Install
 
@@ -51,19 +51,19 @@ Run the `update_server_id.sh` script with the `ServerID` and the `PSQL_PATH` par
 Example of running the script with Docker instance of Postgres:
 
 ```bash
-./database_migration.sh 'server_id' 'docker exec -i artsentry-services-postgres-1 psql'
+./update_server_id.sh 'server_id' 'docker exec -i artsentry-services-postgres-1 psql'
 ```
 
 Example of running the script with local instance of Postgres:
 
 ```bash
-./database_migration.sh 'server_id' '/opt/homebrew/Cellar/postgresql@16/16.2_1/bin/psql'
+./update_server_id.sh 'server_id' '/opt/homebrew/Cellar/postgresql@16/16.2_1/bin/psql'
 ```
 
 If you want to redirect the output to a different file, use the following command:
 
 ```bash
-./database_migration.sh 'server_id' 'docker exec -i artsentry-services-postgres-1 psql' > migration.log
+./update_server_id.sh 'server_id' 'docker exec -i artsentry-services-postgres-1 psql' > migration.log
 ```
 
 #### Existing Server Upgrade
@@ -87,6 +87,14 @@ If you want to redirect the output to a different file, use the following comman
 ```bash
 ./database_migration.sh 'docker exec -i artsentry-services-postgres-1 psql' > migration.log
 ```
+
+#### Start VCS Server 
+After completing the required steps in [[Postgres + docker compose setup]] and executing the script(s) above, start the VCS Server
+
+```bash
+systemctl start vcs
+```
+
 
 ## Scripts Description(FYI)
 
