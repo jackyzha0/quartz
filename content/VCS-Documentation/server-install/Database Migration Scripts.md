@@ -11,7 +11,7 @@ This directory contains scripts for migrating an SQLite database to a PostgreSQL
 ## Setup
 
 In `/usr/vcs/docker/migration-scripts` modify the `.pgpass` file in with the correct content: `hostname:port:database:username:password
-For example:	```
+For example:
 ```
 localhost:5432:postgres:vcs:vcs
 ```
