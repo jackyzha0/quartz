@@ -6,10 +6,20 @@ import chalk from "chalk"
 
 export interface Options {
   priority: ("frontmatter" | "git" | "filesystem")[]
+  properties?: {
+    created: string[]
+    modified: string[]
+    published: string[]
+  }
 }
 
 const defaultOptions: Options = {
   priority: ["frontmatter", "git", "filesystem"],
+  properties: {
+    created: ["date"],
+    modified: ["lastmod", "updated", "last-modified"],
+    published: ["publishDate"],
+  },
 }
 
 function coerceDate(fp: string, d: any): Date {
@@ -49,12 +59,16 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | und
                 const st = await fs.promises.stat(fullFp)
                 created ||= st.birthtimeMs
                 modified ||= st.mtimeMs
-              } else if (source === "frontmatter" && file.data.frontmatter) {
-                created ||= file.data.frontmatter.date as MaybeDate
-                modified ||= file.data.frontmatter.lastmod as MaybeDate
-                modified ||= file.data.frontmatter.updated as MaybeDate
-                modified ||= file.data.frontmatter["last-modified"] as MaybeDate
-                published ||= file.data.frontmatter.publishDate as MaybeDate
+              } else if (source === "frontmatter" && opts.properties && file.data.frontmatter) {
+                for (const createdProperty of opts.properties.created!) {
+                  created ||= file.data.frontmatter[createdProperty] as MaybeDate
+                }
+                for (const modifiedProperty of opts.properties.modified!) {
+                  modified ||= file.data.frontmatter[modifiedProperty] as MaybeDate
+                }
+                for (const publishedProperty of opts.properties.published!) {
+                  published ||= file.data.frontmatter[publishedProperty] as MaybeDate
+                }
               } else if (source === "git") {
                 if (!repo) {
                   // Get a reference to the main git repo.
