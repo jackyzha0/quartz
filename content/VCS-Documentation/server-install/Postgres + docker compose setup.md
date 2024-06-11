@@ -95,7 +95,7 @@ Example:
       - "10443:443"
 ```
 
-`NEXT_PUBLIC_API_SUB_PATH` should be left blank if configuring for single server otherwise it will need to be `/gateway` to have it route requests to the mutiserver gateway. For more information on the multi server setup see //TODO:
+`NEXT_PUBLIC_API_SUB_PATH` should be left blank if configuring for single server otherwise it will need to be `/gateway` to have it route requests to the mutiserver gateway. For more information on the multi server setup see [[Multi server config]]
 
 Replace `<server-ip>` inside `NEXTAUTH_URL` with the ip address of the server. Also replace the `<nginxprt-1080>` with the same port used for the `NEXT_PUBLIC_API_PORT`
 
