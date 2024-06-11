@@ -1,5 +1,6 @@
 .DS_Store
 .gitignore
+.idea
 node_modules
 public
 prof

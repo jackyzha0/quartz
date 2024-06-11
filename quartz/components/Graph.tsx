@@ -18,11 +18,13 @@ export interface D3Config {
   removeTags: string[]
   showTags: boolean
   focusOnHover?: boolean
+  alwaysShowLabels?: boolean
 }
 
 interface GraphOptions {
   localGraph: Partial<D3Config> | undefined
   globalGraph: Partial<D3Config> | undefined
+  useCanvas?: boolean
 }
 
 const defaultOptions: GraphOptions = {
@@ -58,8 +60,16 @@ const defaultOptions: GraphOptions = {
 
 export default ((opts?: GraphOptions) => {
   const Graph: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) => {
-    const localGraph = { ...defaultOptions.localGraph, ...opts?.localGraph }
-    const globalGraph = { ...defaultOptions.globalGraph, ...opts?.globalGraph }
+    const localGraph = {
+      ...defaultOptions.localGraph,
+      ...opts?.localGraph,
+      useCanvas: opts?.useCanvas,
+    }
+    const globalGraph = {
+      ...defaultOptions.globalGraph,
+      ...opts?.globalGraph,
+      useCanvas: opts?.useCanvas,
+    }
     return (
       <div class={classNames(displayClass, "graph")}>
         <h3>{i18n(cfg.locale).components.graph.title}</h3>
