@@ -361,7 +361,7 @@ function renderGlobalGraph() {
 
 document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   const slug = e.detail.url
-  addToVisited(slug)
+  addToVisited(simplifySlug(slug))
   await renderGraph("graph-container", slug)
 
   const containerIcon = document.getElementById("global-graph-icon")
