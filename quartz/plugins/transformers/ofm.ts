@@ -414,8 +414,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 return
               }
 
-              // find first line
-              const firstChild = node.children[0]
+              // find first line and callout content
+              const [firstChild, calloutContent] = node.children
               if (firstChild.type !== "paragraph" || firstChild.children[0]?.type !== "text") {
                 return
               }
@@ -424,8 +424,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               const restOfTitle = firstChild.children.slice(1)
               const [firstLine, ...remainingLines] = text.split("\n")
               const remainingText = remainingLines.join("\n")
-
-              const [_, calloutContent] = node.children
 
               const match = firstLine.match(calloutRegex)
               if (match && match.input) {
