@@ -425,7 +425,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               const [firstLine, ...remainingLines] = text.split("\n")
               const remainingText = remainingLines.join("\n")
 
-              const calloutContent = node.children.length > 1 ? node.children[1] : undefined
+              const [_, calloutContent] = node.children
 
               const match = firstLine.match(calloutRegex)
               if (match && match.input) {
@@ -496,14 +496,19 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 }
 
                 // Add callout-content class to callout body if it has one.
-                if (calloutContent !== undefined) {
-                  const calloutContentWrapped: BlockContent | DefinitionContent = {
-                    type: "html",
-                    value: `<div class="callout-content">
-                      ${toHtml(toHast(calloutContent, { allowDangerousHtml: true }), { allowDangerousHtml: true })}
-                    </div>`,
+                if (calloutContent) {
+                  const contentData: BlockContent | DefinitionContent = {
+                    data: {
+                      hProperties: {
+                        ...(calloutContent.data?.hProperties ?? {}),
+                        className: "callout-content",
+                      },
+                      hName: "div",
+                    },
+                    type: "blockquote",
+                    children: [calloutContent],
                   }
-                  node.children.splice(1, 1, ...[calloutContentWrapped])
+                  node.children.splice(1, 1, ...[contentData])
                 }
               }
             })
