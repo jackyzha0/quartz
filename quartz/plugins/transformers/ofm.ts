@@ -425,7 +425,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               const [firstLine, ...remainingLines] = text.split("\n")
               const remainingText = remainingLines.join("\n")
 
-              const calloutContent = node.children.length > 1 ? node.children[1] : undefined
+              const [_, calloutContent] = node.children.length
 
               const match = firstLine.match(calloutRegex)
               if (match && match.input) {
