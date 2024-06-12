@@ -1,3 +1,869 @@
 @use "./base.scss";
+@use "./variables.scss" as *;
 
-// put your custom CSS here!
+.page-title {
+    height: 200px;
+}
+
+#explorer-ul {
+    max-height: calc(100vh - 400px);
+}
+
+img:not(.Logo) {
+	cursor:zoom-in;}
+
+img:active:not(.Logo) {
+	cursor:zoom-out;
+	display:block;
+	z-index:100;
+	position:fixed;
+    max-height:100%;
+    max-width:100%;
+    height:100%;
+    width:100%;
+    object-fit: contain;
+    margin:0 auto;
+    text-align:center;
+    top: 50%;
+  	transform: translateY(-50%);
+    padding:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:var(--background-primary);
+}
+
+/*----Faux Grid Callouts----*/
+
+/*---float left---*/
+.callout[data-callout="gridfloatleft"] {
+  --color: rgba(44, 160, 223, 0.5);
+  --border: rgba(44, 160, 223, 0.5);
+  --bg: rgba(0, 0, 0, 0);
+  --callout-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLW5ld3NwYXBlciI+PHBhdGggZD0iTTQgMjJoMTZhMiAyIDAgMCAwIDItMlY0YTIgMiAwIDAgMC0yLTJIOGEyIDIgMCAwIDAtMiAydjE2YTIgMiAwIDAgMS0yIDJabTAgMGEyIDIgMCAwIDEtMi0ydi05YzAtMS4xLjktMiAyLTJoMiIvPjxwYXRoIGQ9Ik0xOCAxNGgtOCIvPjxwYXRoIGQ9Ik0xNSAxOGgtNSIvPjxwYXRoIGQ9Ik0xMCA2aDh2NGgtOFY2WiIvPjwvc3ZnPg==");
+  float: left;
+  width: 45%;
+  margin: auto;
+  clear: left;
+  margin-left: 20px;
+}
+
+/* mobile breakpoint */
+@media (max-width: 767px) {
+  .callout[data-callout="gridfloatleft"] {
+    width: 100%;
+    float: none;
+  }
+}
+
+
+/*---float right---*/
+.callout[data-callout="gridfloatright"] {
+  --color: rgba(44, 160, 223, 0.5);
+  --border: rgba(44, 160, 223, 0.5);
+  --bg: rgba(0, 0, 0, 0);
+  --callout-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLW5ld3NwYXBlciI+PHBhdGggZD0iTTQgMjJoMTZhMiAyIDAgMCAwIDItMlY0YTIgMiAwIDAgMC0yLTJIOGEyIDIgMCAwIDAtMiAydjE2YTIgMiAwIDAgMS0yIDJabTAgMGEyIDIgMCAwIDEtMi0ydi05YzAtMS4xLjktMiAyLTJoMiIvPjxwYXRoIGQ9Ik0xOCAxNGgtOCIvPjxwYXRoIGQ9Ik0xNSAxOGgtNSIvPjxwYXRoIGQ9Ik0xMCA2aDh2NGgtOFY2WiIvPjwvc3ZnPg==");
+  float: right;
+  width: 45%;
+  margin: auto;
+  clear: right;
+  margin-right: 20px;
+}
+
+/* mobile breakpoint */
+@media (max-width: 767px) {
+  .callout[data-callout="gridfloatright"] {
+    width: 100%;
+    float: none;
+  }
+}
+
+/*----Caption Callouts----*/
+
+/*---caption left callout---*/
+.callout[data-callout="caption_left"] {
+  --color: rgb(0, 176, 255);
+  --border: rgba(0, 176, 255, 0.44);
+  --bg: rgba(0, 176, 255, 0.1);
+  float: left;
+  max-width: 40%;
+  padding: 6px;
+  margin: 2px 12px 2px 0px;
+}
+
+.callout[data-callout="caption_left"] > .callout-title {
+  display: none;
+}
+
+.callout[data-callout="caption_left"] img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+}
+
+.callout[data-callout="caption_left"] p {
+  text-align: left;
+  padding: 2px;
+  margin: auto;
+  font-size: 0.875em;
+}
+
+/* mobile breakpoint */
+@media (max-width: 767px) {
+  .callout[data-callout="caption_left"] {
+    max-width: 50%;
+  }
+}
+
+/*---caption center callout---*/
+.callout[data-callout="caption"] {
+  --color: rgb(0, 176, 255);
+  --border: rgba(0, 0, 0, 0.0);
+  --bg: rgba(0, 0, 0, 0.0);
+  padding: 6px;
+  max-width: 80%;
+  margin: auto;
+}
+
+.callout[data-callout="caption"] > .callout-title {
+  display: none;
+}
+
+.callout[data-callout="caption"] img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  padding-bottom: 6px;
+}
+
+.callout[data-callout="caption"] p {
+  text-align: center;
+  padding: 2px;
+  margin: auto;
+  font-size: 0.875em;
+}
+
+/*---caption right callout---*/
+.callout[data-callout="caption_right"] {
+  --color: rgb(0, 176, 255);
+  --border: rgba(0, 176, 255, 0.44);
+  --bg: rgba(0, 176, 255, 0.1);
+  float: right;
+  max-width: 40%;
+  padding: 6px;
+  margin: 2px 0px 2px 12px;
+}
+
+.callout[data-callout="caption_right"] > .callout-title {
+  display: none;
+}
+
+.callout[data-callout="caption_right"] img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+}
+
+.callout[data-callout="caption_right"] p {
+  text-align: left;
+  padding: 2px;
+  margin: auto;
+  font-size: 0.875em;
+}
+
+/* mobile breakpoint */
+@media (max-width: 767px) {
+  .callout[data-callout="caption_right"] {
+    max-width: 50%;
+  }
+}
+
+/*----infobox callout----*/
+.callout[data-callout="infobox"] {
+  background-color: rgba(80, 120, 180, 0.1);
+  --callout-icon: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  float: right;
+  width: 300px;
+  margin: 0px 0px 10px 10px;
+  padding: 5px;
+}
+
+/* mobile breakpoint */
+@media (max-width: 767px) {
+  .callout[data-callout="infobox"] {
+    width: 100%;
+    float: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .callout[data-callout="infobox"] {
+    width:100%;
+    float: none;
+  }
+}
+
+/* stack infoboxes vertically with 'clear' */
+.callout[data-callout="infobox"] {
+  clear: right;
+}
+
+/* Remove Callout Title */
+.callout[data-callout="infobox"] .callout-title {
+  display: none;
+}
+
+
+/* H2 Title */
+.callout[data-callout="infobox"] h2 {
+  margin: auto;
+  max-width: 100%;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 4px;
+}
+
+/* H3 Title */
+.callout[data-callout="infobox"] h3 {
+  margin: auto;
+  max-width: 100%;
+  font-size: 17px;
+  text-align: center;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 4px;
+}
+
+/* Spacing */
+.callout[data-callout="infobox"] p {
+  margin-block-start: 10px;
+  margin-block-end: 0px;
+  width: 100%;
+}
+
+/* Image */
+.callout[data-callout="infobox"] img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+}
+
+/* Table */
+.callout[data-callout="infobox"] table {
+  margin: auto;
+  width: 100%;
+  font-size: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgb(30, 30, 30);
+}
+
+.callout[data-callout="infobox"] th {
+  padding-left: 12px; 
+  padding-right: 0px;
+  vertical-align: top;
+}
+
+.callout[data-callout="infobox"] td {
+ padding-left: 12px; 
+ padding-right: 0px;
+ vertical-align: top;
+}
+
+body {
+  --image-border-color: var(--background-modifier-border);
+  --image-border-width: 1px;
+  --image-border-padding: 8px;
+  --image-border-background: var(--td);
+}
+
+/*----Image Positions/Adjustments----*/
+body {
+  --micro: 70px;
+  --tiny: 100px;
+  --small: 200px;
+  --small-med: 300px;
+  --med-small: 400px;
+  --medium: 500px;
+  --med-tall: 600px;
+  --tall: 700px;
+}
+
+.popover.hover-popover {
+  --micro: 70px;
+  --tiny: 100px;
+  --small: 150px;
+  --small-med: 200px;
+  --med-small: 250px;
+  --medium: 300px;
+  --med-tall: 450px;
+  --tall: 500px;
+}
+
+/*----Mobile----*/
+@media (max-width: 500px) {
+  .theme-dark, .theme-light {
+    /*Mobile Sizes*/
+    --radius: 0px;
+    --micro: 70px;
+    --tiny: 100px;
+    --small: 150px;
+    --small-med: 200px;
+    --med-small: 250px;
+    --medium: 300px;
+    --med-tall: 450px;
+    --tall: 500px;
+  }
+}
+/*-Image Sizing-*/
+/*Fit image within bounds WITHOUT stretching*/
+img:is([alt*=cover], [alt*=cvr]),
+.image-embed:is([src*="#cover"], [src*="#cvr"]),
+span.image-embed:is([src*="#cover"], [src*="#cvr"]) img {
+  object-fit: cover;
+}
+
+img[alt][alt]:not([alt*=relative])[alt*=hmicro] {
+  height: var(--micro);
+}
+img[alt][alt]:not([alt*=relative])[alt*=htiny] {
+  height: var(--tiny);
+}
+img[alt][alt]:not([alt*=relative])[alt*=hsmall] {
+  height: var(--small);
+}
+img[alt][alt]:not([alt*=relative])[alt*=hs-med] {
+  height: var(--small-med);
+}
+img[alt][alt]:not([alt*=relative])[alt*=hm-sm] {
+  height: var(--med-small);
+}
+img[alt][alt]:not([alt*=relative])[alt*=hmed] {
+  height: var(--medium);
+}
+img[alt][alt]:not([alt*=relative])[alt*=hm-tl] {
+  height: var(--med-tall);
+}
+img[alt][alt]:not([alt*=relative])[alt*=htall] {
+  height: var(--tall);
+}
+img[alt][alt]:not([alt*=relative])[alt*=hfull] {
+  height: 100%;
+}
+img[alt][alt]:not([alt*=relative])[alt*=wmicro] {
+  width: var(--micro);
+}
+img[alt][alt]:not([alt*=relative])[alt*=wtiny] {
+  width: var(--tiny);
+}
+img[alt][alt]:not([alt*=relative])[alt*=wsmall] {
+  width: var(--small);
+}
+img[alt][alt]:not([alt*=relative])[alt*=ws-med] {
+  width: var(--small-med);
+}
+img[alt][alt]:not([alt*=relative])[alt*=wm-sm] {
+  width: var(--med-small);
+}
+img[alt][alt]:not([alt*=relative])[alt*=wmed] {
+  width: var(--medium);
+}
+img[alt][alt]:not([alt*=relative])[alt*=wm-tl] {
+  width: var(--med-tall);
+}
+img[alt][alt]:not([alt*=relative])[alt*=wtall] {
+  width: var(--tall);
+}
+img[alt][alt]:not([alt*=relative])[alt*=wfull] {
+  width: 100%;
+}
+
+.image-embed[alt][alt*=relative],
+div:not(.image-embed) > img[alt][alt*=relative] {
+  --micro: 10%;
+  --tiny: 20%;
+  --small: 30%;
+  --small-med: 40%;
+  --med-small: 50%;
+  --medium: 60%;
+  --med-tall: 70%;
+  --tall: 85%;
+}
+.image-embed[alt][alt*=relative][alt*=wmicro],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=wmicro] {
+  width: var(--micro);
+}
+.image-embed[alt][alt*=relative][alt*=wtiny],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=wtiny] {
+  width: var(--tiny);
+}
+.image-embed[alt][alt*=relative][alt*=wsmall],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=wsmall] {
+  width: var(--small);
+}
+.image-embed[alt][alt*=relative][alt*=ws-med],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=ws-med] {
+  width: var(--small-med);
+}
+.image-embed[alt][alt*=relative][alt*=wm-sm],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=wm-sm] {
+  width: var(--med-small);
+}
+.image-embed[alt][alt*=relative][alt*=wmed],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=wmed] {
+  width: var(--medium);
+}
+.image-embed[alt][alt*=relative][alt*=wm-tl],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=wm-tl] {
+  width: var(--med-tall);
+}
+.image-embed[alt][alt*=relative][alt*=wtall],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=wtall] {
+  width: var(--tall);
+}
+.image-embed[alt][alt*=relative][alt*=hmicro],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=hmicro] {
+  width: var(--micro);
+}
+.image-embed[alt][alt*=relative][alt*=htiny],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=htiny] {
+  width: var(--tiny);
+}
+.image-embed[alt][alt*=relative][alt*=hsmall],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=hsmall] {
+  width: var(--small);
+}
+.image-embed[alt][alt*=relative][alt*=hs-med],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=hs-med] {
+  width: var(--small-med);
+}
+.image-embed[alt][alt*=relative][alt*=hm-sm],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=hm-sm] {
+  width: var(--med-small);
+}
+.image-embed[alt][alt*=relative][alt*=hmed],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=hmed] {
+  width: var(--medium);
+}
+.image-embed[alt][alt*=relative][alt*=hm-tl],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=hm-tl] {
+  width: var(--med-tall);
+}
+.image-embed[alt][alt*=relative][alt*=htall],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=htall] {
+  width: var(--tall);
+}
+.image-embed[alt][alt*=relative][alt*=hfull],
+div:not(.image-embed) > img[alt][alt*=relative][alt*=hfull] {
+  width: 100%;
+}
+
+.image-embed[alt][alt*=relative],
+div:not(.image-embed) > img[alt][alt*=relative] {
+  display: block;
+  margin: auto;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+/*Height*/
+/*Image Locations*/
+/*Center Image*/
+.img-adj-center.img-adj-center img,
+img:is([alt*=ctr], [alt*=center]) {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img-adj-center.img-adj-center .is-live-preview img {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/*Left & Right*/
+:not(.markdown-rendered) img:is([alt*=left], [alt*=locl]), :not(.markdown-rendered) img[src*="#locl"] img,
+:not(.markdown-rendered) .image-embed:is([alt*=left], [alt*=locl]),
+:not(.markdown-rendered) .image-embed[src*="#locl"] img {
+  float: left;
+  margin-right: 2%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+:not(.markdown-rendered) img:is([alt*=right], [alt*=locr]), :not(.markdown-rendered) img[src*="#locr"] img,
+:not(.markdown-rendered) .image-embed:is([alt*=right], [alt*=locr]),
+:not(.markdown-rendered) .image-embed[src*="#locr"] img {
+  float: right;
+  margin-left: 2%;
+  margin-bottom: 0px;
+}
+
+/*--Image Position--*/
+img[alt*="p+"], .image-embed[src*="#p+"] img {
+  object-fit: cover;
+}
+
+/*Inner Image*/
+img[alt*="p+c"], .image-embed[src*="#p+c"] img {
+  object-position: center;
+}
+
+img[alt*="p+t"], .image-embed[src*="#p+t"] img {
+  object-position: top;
+}
+
+img[alt*="p+b"], .image-embed[src*="#p+b"] img {
+  object-position: bottom;
+}
+
+img[alt*="p+l"], .image-embed[src*="#p+l"] img {
+  object-position: left;
+}
+
+img[alt*="p+r"], .image-embed[src*="#p+r"] img {
+  object-position: right;
+}
+
+img[alt*="p+cl"], .image-embed[src*="#p+cl"] img {
+  object-position: 15%;
+}
+
+img[alt*="p+ccl"], .image-embed[src*="#p+ccl"] img {
+  object-position: 25%;
+}
+
+img[alt*="p+cr"], .image-embed[src*="#p+cr"] img {
+  object-position: 60%;
+}
+
+img[alt*="p+ccr"], .image-embed[src*="#p+ccr"] img {
+  object-position: 75%;
+}
+
+img[alt*="p+tc"], .image-embed[src*="#p+tc"] img {
+  object-position: 50% 10%;
+}
+
+img[alt*="p+tcc"], .image-embed[src*="#p+tcc"] img {
+  object-position: 50% 20%;
+}
+
+img[alt*="p+cct"], .image-embed[src*="#p+cct"] img {
+  object-position: 50% 30%;
+}
+
+img[alt*="p+ct"], .image-embed[src*="#p+ct"] img {
+  object-position: 50% 40%;
+}
+
+img[alt*="p+cb"], .image-embed[src*="#p+cb"] img {
+  object-position: 50% 60%;
+}
+
+img[alt*="p+ccb"], .image-embed[src*="#p+ccb"] img {
+  object-position: 50% 70%;
+}
+
+img[alt*="p+bc"], .image-embed[src*="#p+bc"] img {
+  object-position: 50% 80%;
+}
+
+img[alt*="p+bcc"], .image-embed[src*="#p+bcc"] img {
+  object-position: 50% 90%;
+}
+
+/*Invert Colors*/
+.theme-dark img[alt*=invertb], .theme-dark .image-embed[src*="#invertb"] {
+  filter: invert(1) hue-rotate(180deg);
+}
+.theme-dark img[alt*=invertbc],
+.theme-dark .image-embed[src*="#invertbc"] {
+  filter: invert(1) hue-rotate(180deg) contrast(1.5);
+}
+
+.theme-light img[alt*=invertw], .theme-light .image-embed[src*="#invertw"] {
+  filter: invert(1) hue-rotate(180deg);
+}
+.theme-light img[alt*=invertwc], .theme-light .image-embed[src*="#invertwc"] {
+  filter: invert(1) hue-rotate(180deg) contrast(1.45);
+}
+
+img:is([alt*=flip-x],
+[alt*=flip-horizontal]) {
+  transform: scale(-1, 1);
+}
+img:is([alt*=flip-y],
+[alt*=flip-vertical]) {
+  transform: scale(1, -1);
+}
+img:is([alt*=flip-xy],
+[alt*=flip-vertical-horizontal]) {
+  transform: scale(-1, -1);
+}
+
+/*Fit image within bounds WITHOUT stretching*/
+img[alt*=cover],
+img:is([alt*=cover], [alt*=cvr]),
+.image-embed:is([src*="#cover"], [src*="#cvr"]),
+span.image-embed:is([src*="#cover"], [src*="#cvr"]) img {
+  object-fit: cover;
+}
+
+/*Fix Float Issues*/
+:is(img, .image-embed)[alt*=clear],
+.image-embed[src*="#clear"] {
+  clear: both;
+}
+
+img[alt*=unclr],
+.image-embed[src*="#unclr"] {
+  clear: none !important;
+}
+
+:not(.lp-img-float) .is-live-preview img:is([alt*=right], [alt*=locr]), :not(.lp-img-float) .is-live-preview img:is([alt*=left], [alt*=locl]), :not(.lp-img-float) .is-live-preview .image-embed:is([alt*=right], [alt*=locr]), :not(.lp-img-float) .is-live-preview .image-embed:is([alt*=left], [alt*=locl]) {
+  float: unset;
+}
+
+img:is([alt~=lp], [alt~=live-preview]):is([alt*=right], [alt*=locr]),
+.image-embed:is([alt~=lp], [alt~=live-preview]):is([alt*=right], [alt*=locr]) {
+  float: right !important;
+}
+img:is([alt~=lp], [alt~=live-preview]):is([alt*=left], [alt*=locl]),
+.image-embed:is([alt~=lp], [alt~=live-preview]):is([alt*=left], [alt*=locl]) {
+  float: left !important;
+}
+
+.clear-hr {
+  --hr-width: 100%;
+}
+
+.clear-headings :is(h1, h2, h3, h4, h5, h6),
+.clear-heading-1 h1,
+.clear-heading-2 h2,
+.clear-heading-3 h3,
+.clear-heading-4 h4,
+.clear-heading-5 h5,
+.clear-heading-6 h6 {
+  clear: both;
+}
+
+/*Banners*/
+img[alt*=banner],
+.image-embed[alt*=banner] img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  margin-bottom: 0px;
+  clear: both;
+}
+
+img[alt~=banner],
+.image-embed[alt~=banner] img,
+.image-embed[src*="#banner"] {
+  height: var(--small);
+}
+
+img[alt~="banner+small"],
+.image-embed[alt~="banner+small"] img,
+.image-embed[src*="#banner+small"] {
+  height: var(--tiny);
+}
+
+img[alt~="banner+tall"],
+.image-embed[alt~="banner+tall"] img,
+.image-embed[src*="#banner+tall"] {
+  height: var(--medium);
+}
+
+:is(img, .internal-embed)[alt*=sban],
+:is(img, .internal-embed)[alt~=sban],
+.internal-embed[src*="#sban"] img {
+  object-fit: cover;
+  width: 100%;
+}
+
+/*Portait*/
+img[alt*=portrait],
+.image-embed[alt*=portrait] img {
+  object-fit: cover;
+}
+
+img[alt~=portrait],
+.image-embed[alt~=portrait] img,
+.image-embed[src~="#portrait"] {
+  height: var(--small-med);
+  width: 40%;
+}
+
+img[alt~="portrait+small"],
+.image-embed[alt~="portrait+small"] img,
+.image-embed[src~="#portrait+small"] {
+  height: var(--small);
+  width: 25%;
+}
+
+img[alt~="portrait+tall"],
+.image-embed[alt~="portrait+tall"] img,
+.image-embed[src~="#portrait+tall"] {
+  height: 500px;
+  width: 50%;
+}
+
+/*Profile*/
+img[alt*=profile],
+.image-embed[alt*=profile] img {
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+img[alt~=profile],
+.image-embed[alt~=profile] img,
+.image-embed[src*="#profile"] {
+  height: var(--tiny);
+  width: var(--tiny);
+}
+
+img[alt~="profile+medium"],
+.image-embed[alt~="profile+medium"] img,
+.image-embed[src*="#profile+medium"] {
+  height: var(--small);
+  width: var(--small);
+}
+
+img[alt~="profile+tall"],
+.image-embed[alt~="profile+tall"] img,
+.image-embed[src*="#profile+tall"] {
+  height: var(--medium);
+  width: var(--medium);
+}
+
+img[alt~=sprf] {
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+/*Image Shapes*/
+img[alt][alt*=circle] {
+  border-radius: 50%;
+}
+
+img[alt~=square],
+.image-embed[alt~=square] img {
+  border-radius: 0;
+}
+
+img[alt~=border],
+.internal-embed[alt~=border] img {
+  border: var(--image-border-width) solid var(--image-border-color);
+  padding: var(--image-border-padding);
+  background: var(--image-border-background);
+}
+
+.image-captions .image-embed::after,
+.image-embed[src*="#cap"]::after {
+  content: attr(alt);
+  color: var(--inactive, var(--faint-text));
+  display: block;
+  text-align: center;
+}
+
+.mobile-image-viewer img[alt][alt][alt] {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+/*Theme fixes*/
+.img-adj-list :is(ul, ol) {
+  display: flow-root;
+}
+
+/*---- kbd styling ----*/
+
+kbd {
+  font-family: Consolas, "Lucida Console", monospace;
+  display: inline-block;
+  border-radius: 3px;
+  padding: 0px 4px;
+  box-shadow: 1px 1px 1px #777;
+  margin: 2px;
+  font-size: small;
+  vertical-align: text-bottom;
+  background: #eee;
+  font-weight: 500;
+  color: #555;
+  /*cursor: pointer;*/
+  font-variant: small-caps;
+  font-weight: 600;
+  line-height: 1.1rem;
+
+  /* This two work */
+  /* letter-spacing: 0.5px; */
+  letter-spacing: 1px;
+
+
+  /* Prevent selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+kbd:hover, kbd:hover * {
+  color: black;
+  /* box-shadow: 1px 1px 1px #333; */
+}
+kbd:active, kbd:active * {
+  color: black;
+  box-shadow: 1px 1px 0px #ddd inset;
+}
+
+kbd kbd {
+  padding: 0px;
+  margin: 0 1px;
+  box-shadow: 0px 0px 0px black;
+  vertical-align: baseline;
+  background: none;
+}
+
+kbd kbd:hover {
+  box-shadow: 0px 0px 0px black;
+}
+
+kbd:active kbd {
+  box-shadow: 0px 0px 0px black;
+  background: none;
+}
+
+/*--- Maintenance Template ---*/
+.callout[data-callout="maintenance_template"] {
+  border: 1px solid #db894244;
+  background-color: #db894210;
+  padding: 2px;
+}
+
+.callout[data-callout="maintenance_template"] > .callout-title {
+  display: none;
+}
+
+.callout[data-callout="maintenance_template"] img {
+  float: left;
+  max-width: 30%;
+  margin: auto;
+  object-fit: contain;
+}
+
+.callout[data-callout="maintenance_template"] p {
+  font-size: 0.9rem;
+}
+
+.callout[data-callout="maintenance_template"] p strong {
+  font-size: 1rem;
+  color: #db8942;
+  text-align: center;
+}
