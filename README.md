@@ -1,10 +1,15 @@
 # 🌱 Forgetful Notes
 
-![code size](https://img.shields.io/github/languages/code-size/semanticdata/forgetful-notes) ![repository size](https://img.shields.io/github/repo-size/semanticdata/forgetful-notes) ![commits](https://img.shields.io/github/commit-activity/t/semanticdata/forgetful-notes) ![last commit](https://img.shields.io/github/last-commit/semanticdata/forgetful-notes) ![is website up?](https://img.shields.io/website/https/forgetfulnotes.com.svg)
+![code size](https://img.shields.io/github/languages/code-size/semanticdata/forgetful-notes)
+![repository size](https://img.shields.io/github/repo-size/semanticdata/forgetful-notes)
+![commits](https://img.shields.io/github/commit-activity/t/semanticdata/forgetful-notes)
+![last commit](https://img.shields.io/github/last-commit/semanticdata/forgetful-notes)
+![is website up?](https://img.shields.io/website/https/forgetfulnotes.com.svg)
 
 [Forgetful Notes](https://forgetfulnotes.com) is my _digital garden_ of knowledge. It serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 
-[![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://forgetfulnotes.com/) [![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](https://forgetful-notes.vercel.app/)
+[![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://forgetfulnotes.com/)
+[![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](https://forgetful-notes.vercel.app/)
 
 ## ✨ Features
 
@@ -60,7 +65,7 @@ npx quartz <command> --help
 You can add custom CSS code within `/quartz/styles/custom.scss`. You will then need to uncomment line 4 of `/quartz/styles/base.scss` to have it take effect.
 
 | Used in: | Font Family | Previous Font |
-| --- | :-: | :-: |
+| --- | :---: | :---: |
 | Headers | [Bitter](https://fonts.google.com/specimen/Bitter) | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
 | Body | [Poppins](https://fonts.google.com/specimen/Poppins) | [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3) |
 | Code | [Fira Mono](https://fonts.google.com/specimen/Fira+Mono) | [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono) |
@@ -75,6 +80,86 @@ The site uses various technologies cobbled together. Here's a few of them:
 - [TypeScript](https://github.com/microsoft/TypeScript): superset of JavaScript that compiles to clean JavaScript output.
 
 All content for the site is written in _Markdown_ within [Obsidian](https://obsidian.md/)—an extensible, flexible note-taking app. To export the notes from Obsidian, I rely on the [GitHub Publisher](https://github.com/ObsidianPublisher) plugin.
+
+## 🔀 Workflows
+
+### 🔨 Build only
+
+
+```yml
+# Using npm
+steps:
+  - uses: actions/checkout@v4
+    with:
+      fetch-depth: 0 # Fetch all history for git info
+  - uses: actions/setup-node@v4
+    with:
+      node-version: 18
+  - name: Install Dependencies
+    run: npm i
+  - name: Build Quartz
+    run: npx quartz build
+```
+
+### 🚀 Build and Deploy
+
+```yml
+# Using pnpm
+steps:
+  - name: Checkout
+    uses: actions/checkout@v4
+    with:
+      fetch-depth: 0 # Fetch all history for git info
+  - name: Setup Node
+    uses: actions/setup-node@v4
+    with:
+      node-version: 18
+  - name: Install Dependencies
+    run: npm i
+  - name: Build Quartz
+    run: npm run build
+  - name: Upload artifact
+    uses: actions/upload-pages-artifact@v3
+    with:
+      path: public
+  - name: Deploy to GitHub Pages
+    id: deployment
+    uses: actions/deploy-pages@v4
+```
+
+```yml
+steps:
+  - name: Checkout
+    uses: actions/checkout@v4
+    with:
+      fetch-depth: 0 # Fetch all history for git info
+  - name: Setup PNPM
+    uses: pnpm/action-setup@v3
+    with:
+      version: 8
+  - name: Get pnpm store directory
+    shell: bash
+    run: |
+      echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+  - name: Setup pnpm cache
+    uses: actions/cache@v4
+    with:
+      path: ${{ env.STORE_PATH }}
+      key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+      restore-keys: |
+        ${{ runner.os }}-pnpm-store-
+  - name: Install dependencies
+    run: pnpm install
+  - name: Build Quartz Site
+    run: pnpm run build
+  - name: Upload artifact
+    uses: actions/upload-pages-artifact@v3
+    with:
+      path: public
+  - name: Deploy to GitHub Pages
+    uses: actions/deploy-pages@v4
+    id: deployment
+```
 
 ## © License
 
