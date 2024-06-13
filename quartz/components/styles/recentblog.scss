@@ -1,6 +1,7 @@
 .preview {
     display: flex;
     flex-direction: row;
+    align-items: baseline;
     padding: 16px 16px;
     
     border-style: solid;
@@ -11,17 +12,19 @@
 
     & > .preview-image {
         margin: 0px 0px;
+        align-self: center;
     }
 
     & > .preview-content {
         margin: 0px 10px;
+        align-self: flex-start;
 
         & > .preview-title {
             display: flex;
             justify-content: space-between;
             margin-top: 6px;
 
-            & > a {
+            & > div a {
                 font-size: 20;
             }
         }
@@ -29,6 +32,17 @@
         & > p {
             margin: 0px 0px;
             margin-top: 4px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .preview {
+        & > .preview-content {
+            & > .preview-title {
+                flex-direction: column;
+                justify-content: unset;
+            }
         }
     }
 }

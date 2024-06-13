@@ -46,9 +46,12 @@ export default (() => {
                     <img class="preview-image" src="./Resources/crepuscular_rays_fake.png" width="150" height="150" />
                     <div class="preview-content">
                         <div class="preview-title">
-                            <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">
-                                {title}
-                            </a>
+                            <div>
+                                <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">
+                                    {title}
+                                </a>
+                            </div>
+
                             <i>{parseDate(page.dates?.published!)}</i>
                         </div>
 
