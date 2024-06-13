@@ -494,7 +494,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 }
 
                 // Add callout-content class to callout body if it has one.
-                if (calloutContent) {
+                if (calloutContent.length > 0) {
                   const contentData: BlockContent | DefinitionContent = {
                     data: {
                       hProperties: {
