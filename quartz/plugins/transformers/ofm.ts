@@ -414,8 +414,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 return
               }
 
-              // find first line
-              const firstChild = node.children[0]
+              // find first line and callout content
+              const [firstChild, ...calloutContent] = node.children
               if (firstChild.type !== "paragraph" || firstChild.children[0]?.type !== "text") {
                 return
               }
@@ -491,6 +491,21 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     "data-callout-fold": collapse,
                     "data-callout-metadata": calloutMetaData,
                   },
+                }
+
+                // Add callout-content class to callout body if it has one.
+                if (calloutContent.length > 0) {
+                  const contentData: BlockContent | DefinitionContent = {
+                    data: {
+                      hProperties: {
+                        className: "callout-content",
+                      },
+                      hName: "div",
+                    },
+                    type: "blockquote",
+                    children: [...calloutContent],
+                  }
+                  node.children = [node.children[0], contentData]
                 }
               }
             })
