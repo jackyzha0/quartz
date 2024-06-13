@@ -485,6 +485,7 @@ ul.overflow,
 ol.overflow {
   max-height: 400;
   overflow-y: auto;
+  position: relative;
 
   // clearfix
   content: "";
