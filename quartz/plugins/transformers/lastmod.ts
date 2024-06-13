@@ -6,11 +6,11 @@ import chalk from "chalk"
 
 export interface Options {
   priority: ("frontmatter" | "git" | "filesystem")[]
-  properties?: {
+  properties: Partial<{
     created: string[]
     modified: string[]
     published: string[]
-  }
+  }>
 }
 
 const defaultOptions: Options = {
@@ -40,7 +40,14 @@ type MaybeDate = undefined | string | number
 export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
 ) => {
-  const opts = { ...defaultOptions, ...userOpts }
+  const opts = {
+    ...defaultOptions,
+    ...userOpts,
+    properties: {
+      ...defaultOptions.properties,
+      ...userOpts?.properties,
+    },
+  }
   return {
     name: "CreatedModifiedDate",
     markdownPlugins() {
@@ -60,14 +67,20 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options> | und
                 created ||= st.birthtimeMs
                 modified ||= st.mtimeMs
               } else if (source === "frontmatter" && opts.properties && file.data.frontmatter) {
-                for (const createdProperty of opts.properties.created!) {
-                  created ||= file.data.frontmatter[createdProperty] as MaybeDate
+                if (opts.properties.created) {
+                  for (const createdProperty of opts.properties.created) {
+                    created ||= file.data.frontmatter[createdProperty] as MaybeDate
+                  }
                 }
-                for (const modifiedProperty of opts.properties.modified!) {
-                  modified ||= file.data.frontmatter[modifiedProperty] as MaybeDate
+                if (opts.properties.modified) {
+                  for (const modifiedProperty of opts.properties.modified) {
+                    modified ||= file.data.frontmatter[modifiedProperty] as MaybeDate
+                  }
                 }
-                for (const publishedProperty of opts.properties.published!) {
-                  published ||= file.data.frontmatter[publishedProperty] as MaybeDate
+                if (opts.properties.published) {
+                  for (const publishedProperty of opts.properties.published) {
+                    published ||= file.data.frontmatter[publishedProperty] as MaybeDate
+                  }
                 }
               } else if (source === "git") {
                 if (!repo) {
