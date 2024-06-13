@@ -33,6 +33,15 @@ img:active:not(.Logo) {
     background:var(--background-primary);
 }
 
+/*----Blog Callouts----*/
+
+.callout[data-callout="blog"] {
+  --color: #00bfa5;
+  --border: rgba(0, 0, 0, 0);
+  --bg: rgba(0, 0, 0, 0);
+  --callout-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLW5ld3NwYXBlciI+PHBhdGggZD0iTTQgMjJoMTZhMiAyIDAgMCAwIDItMlY0YTIgMiAwIDAgMC0yLTJIOGEyIDIgMCAwIDAtMiAydjE2YTIgMiAwIDAgMS0yIDJabTAgMGEyIDIgMCAwIDEtMi0ydi05YzAtMS4xLjktMiAyLTJoMiIvPjxwYXRoIGQ9Ik0xOCAxNGgtOCIvPjxwYXRoIGQ9Ik0xNSAxOGgtNSIvPjxwYXRoIGQ9Ik0xMCA2aDh2NGgtOFY2WiIvPjwvc3ZnPg==");
+}
+
 /*----Faux Grid Callouts----*/
 
 /*---float left---*/
@@ -42,10 +51,9 @@ img:active:not(.Logo) {
   --bg: rgba(0, 0, 0, 0);
   --callout-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLW5ld3NwYXBlciI+PHBhdGggZD0iTTQgMjJoMTZhMiAyIDAgMCAwIDItMlY0YTIgMiAwIDAgMC0yLTJIOGEyIDIgMCAwIDAtMiAydjE2YTIgMiAwIDAgMS0yIDJabTAgMGEyIDIgMCAwIDEtMi0ydi05YzAtMS4xLjktMiAyLTJoMiIvPjxwYXRoIGQ9Ik0xOCAxNGgtOCIvPjxwYXRoIGQ9Ik0xNSAxOGgtNSIvPjxwYXRoIGQ9Ik0xMCA2aDh2NGgtOFY2WiIvPjwvc3ZnPg==");
   float: left;
-  width: 45%;
-  margin: auto;
+  width: 48%;
+  margin: auto 1%;
   clear: left;
-  margin-left: 20px;
 }
 
 /* mobile breakpoint */
@@ -53,6 +61,7 @@ img:active:not(.Logo) {
   .callout[data-callout="gridfloatleft"] {
     width: 100%;
     float: none;
+    margin: 20px auto;
   }
 }
 
@@ -64,10 +73,9 @@ img:active:not(.Logo) {
   --bg: rgba(0, 0, 0, 0);
   --callout-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLW5ld3NwYXBlciI+PHBhdGggZD0iTTQgMjJoMTZhMiAyIDAgMCAwIDItMlY0YTIgMiAwIDAgMC0yLTJIOGEyIDIgMCAwIDAtMiAydjE2YTIgMiAwIDAgMS0yIDJabTAgMGEyIDIgMCAwIDEtMi0ydi05YzAtMS4xLjktMiAyLTJoMiIvPjxwYXRoIGQ9Ik0xOCAxNGgtOCIvPjxwYXRoIGQ9Ik0xNSAxOGgtNSIvPjxwYXRoIGQ9Ik0xMCA2aDh2NGgtOFY2WiIvPjwvc3ZnPg==");
   float: right;
-  width: 45%;
-  margin: auto;
+  width: 48%;
+  margin: auto 1%;
   clear: right;
-  margin-right: 20px;
 }
 
 /* mobile breakpoint */
@@ -75,6 +83,7 @@ img:active:not(.Logo) {
   .callout[data-callout="gridfloatright"] {
     width: 100%;
     float: none;
+    margin: 20px auto;
   }
 }
 

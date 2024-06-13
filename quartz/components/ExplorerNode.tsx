@@ -51,9 +51,13 @@ export class FileNode {
   constructor(slugSegment: string, displayName?: string, file?: QuartzPluginData, depth?: number) {
     this.children = []
     this.name = slugSegment
-    this.displayName = displayName ?? file?.frontmatter?.title ?? slugSegment
+    this.displayName = this.capitalize(displayName ?? file?.frontmatter?.title ?? slugSegment)
     this.file = file ? clone(file) : null
     this.depth = depth ?? 0
+  }
+
+  private capitalize(title: string) {
+    return title.charAt(0).toUpperCase() + title.slice(1);
   }
 
   private insert(fileData: DataWrapper) {

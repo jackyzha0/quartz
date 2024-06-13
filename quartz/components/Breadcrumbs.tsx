@@ -42,9 +42,13 @@ const defaultOptions: BreadcrumbOptions = {
 
 function formatCrumb(displayName: string, baseSlug: FullSlug, currentSlug: SimpleSlug): CrumbData {
   return {
-    displayName: displayName.replaceAll("-", " "),
+    displayName: capitalize(displayName.replaceAll("-", " ")),
     path: resolveRelative(baseSlug, currentSlug),
   }
+}
+
+function capitalize(title: string) {
+  return title.charAt(0).toUpperCase() + title.slice(1);
 }
 
 export default ((opts?: Partial<BreadcrumbOptions>) => {

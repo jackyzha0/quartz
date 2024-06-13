@@ -1,0 +1,34 @@
+.preview {
+    display: flex;
+    flex-direction: row;
+    padding: 16px 16px;
+    
+    border-style: solid;
+    border-color: #00bfa544;
+    border-width: 1px;
+    border-radius: 5px;
+    background: #00bfa510;
+
+    & > .preview-image {
+        margin: 0px 0px;
+    }
+
+    & > .preview-content {
+        margin: 0px 10px;
+
+        & > .preview-title {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 6px;
+
+            & > a {
+                font-size: 20;
+            }
+        }
+
+        & > p {
+            margin: 0px 0px;
+            margin-top: 4px;
+        }
+    }
+}

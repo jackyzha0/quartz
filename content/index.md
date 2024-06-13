@@ -2,9 +2,6 @@
 title: Carson's Blog
 ---
 
-> [!info] Latest Blog
-> [[01.god-rays|Screen Space God Rays]]
-
 A long time ago in a year known to many by 2003, I played my first "real" video game: **Pokémon Sapphire**. After encountering it in a Walmart in the great state of Maine, I quickly became enamored with the vaguely whale-shaped creature on the box art for the game. And so I began my scheming to acquire the game for myself.
 
 In about ~0.03 seconds I had formulated my plan. It was simple. Brilliant even. All I need do was ask my grandmother who was with me at that fated Walmart for it. The trick? My parents weren't with us to say no.
