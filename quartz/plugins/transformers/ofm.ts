@@ -415,7 +415,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               }
 
               // find first line and callout content
-              const [firstChild, calloutContent] = node.children
+              const [firstChild, ...calloutContent] = node.children
               if (firstChild.type !== "paragraph" || firstChild.children[0]?.type !== "text") {
                 return
               }
@@ -498,15 +498,14 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   const contentData: BlockContent | DefinitionContent = {
                     data: {
                       hProperties: {
-                        ...(calloutContent.data?.hProperties ?? {}),
                         className: "callout-content",
                       },
                       hName: "div",
                     },
                     type: "blockquote",
-                    children: [calloutContent],
+                    children: [...calloutContent],
                   }
-                  node.children.splice(1, 1, ...[contentData])
+                  node.children.splice(1, Infinity, ...[contentData])
                 }
               }
             })
