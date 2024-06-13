@@ -19,6 +19,6 @@ No blog posts yet.
 
 ## Graphics Blog
 
-> [!gridfloatleft] [[god-rays|God Rays]]
+> [!gridfloatleft] [[god-rays-01|God Rays]]
 > **Date**: *06/12/204*
 > ![[crepuscular_rays_fake.png]] 

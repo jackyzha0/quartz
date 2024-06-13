@@ -12,10 +12,9 @@ export default (() => {
     }: QuartzComponentProps) => {
 
         const page = allFiles.reduce((prev, curr) => {
-            console.log(fileData.filePath)
-            if (!curr.filePath?.startsWith("content/blogs/")) {
+            if (!curr.filePath?.startsWith("content/blogs/graphics/")) {
                 return prev
-            } else if (!prev.filePath?.startsWith("content/blogs/")) {
+            } else if (!prev.filePath?.startsWith("content/blogs/graphics/")) {
                 return curr
             }
 
@@ -32,7 +31,6 @@ export default (() => {
             return date.toLocaleDateString('en-US') //`${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`
         }
 
-
         return fileData.filePath?.startsWith("content/index") ? (
             <blockquote class="callout blog" data-callout="blog">
                 <div class="callout-title">
@@ -43,7 +41,7 @@ export default (() => {
                 </div>
 
                 <div class="preview">
-                    <img class="preview-image" src="./Resources/crepuscular_rays_fake.png" width="150" height="150" />
+                    <img class="preview-image" src={page.frontmatter?.previewImg!} width="150" height="150" />
                     <div class="preview-content">
                         <div class="preview-title">
                             <div>
