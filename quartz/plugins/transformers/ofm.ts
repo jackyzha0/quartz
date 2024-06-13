@@ -505,7 +505,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     type: "blockquote",
                     children: [...calloutContent],
                   }
-                  node.children.splice(1, Infinity, ...[contentData])
+                  node.children = [node.children[0], contentData]
                 }
               }
             })
