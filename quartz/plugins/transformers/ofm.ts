@@ -6,6 +6,7 @@ import { slug as slugAnchor } from "github-slugger"
 import rehypeRaw from "rehype-raw"
 import { SKIP, visit } from "unist-util-visit"
 import path from "path"
+import { splitAnchor } from "../../util/path"
 import { JSResource } from "../../util/resources"
 // @ts-ignore
 import calloutScript from "../../components/scripts/callout.inline.ts"
@@ -199,10 +200,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         src = src.replace(wikilinkRegex, (value, ...capture) => {
           const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
 
-          const fp = rawFp ?? ""
-          const anchor = rawHeader?.trim().replace(/^#+/, "")
+          const [fp, anchor] = splitAnchor(`${rawFp ?? ""}${rawHeader ?? ""}`)
           const blockRef = Boolean(anchor?.startsWith("^")) ? "^" : ""
-          const displayAnchor = anchor ? `#${blockRef}${slugAnchor(anchor)}` : ""
+          const displayAnchor = anchor ? `#${blockRef}${anchor.trim().replace(/^#+/, "")}` : ""
           const displayAlias = rawAlias ?? rawHeader?.replace("#", "|") ?? ""
           const embedDisplay = value.startsWith("!") ? "!" : ""
 
