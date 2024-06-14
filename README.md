@@ -87,7 +87,6 @@ All content for the site is written in _Markdown_ within [Obsidian](https://obsi
 
 
 ```yml
-# Using npm
 steps:
   - uses: actions/checkout@v4
     with:
@@ -104,7 +103,7 @@ steps:
 ### 🚀 Build and Deploy
 
 ```yml
-# Using pnpm
+# Using npm
 steps:
   - name: Checkout
     uses: actions/checkout@v4
@@ -128,6 +127,7 @@ steps:
 ```
 
 ```yml
+# Using pnpm
 steps:
   - name: Checkout
     uses: actions/checkout@v4
