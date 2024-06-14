@@ -26,6 +26,19 @@
 
             & > div a {
                 font-size: 20;
+                color: rgb(152, 173, 104);
+                background-color: rgba(157, 169, 143, 0.062);
+            }
+        }
+
+        & > .preview-tags {
+            margin: 0px 0px;
+            margin-top: 16px;
+
+            & > li a {
+                padding: 2px 8px;
+                color: rgb(104, 173, 162);
+                background-color: rgba(143, 169, 160, 0.062);
             }
         }
 
@@ -38,6 +51,12 @@
 
 @media (max-width: 767px) {
     .preview {
+        flex-direction: column;
+        
+        & > .preview-image {
+            display: none;
+        }
+
         & > .preview-content {
             & > .preview-title {
                 flex-direction: column;

@@ -1,7 +1,8 @@
 import style from "./styles/recentblog.scss"
 import { i18n } from "../i18n"
-import { resolveRelative } from "../util/path"
+import { FullSlug, resolveRelative } from "../util/path"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { Data } from "vfile"
 
 export default (() => {
 
@@ -12,9 +13,13 @@ export default (() => {
     }: QuartzComponentProps) => {
 
         const page = allFiles.reduce((prev, curr) => {
-            if (!curr.filePath?.startsWith("content/blogs/graphics/")) {
+            const isValid = (p: Data) => {
+                return p.filePath?.startsWith("content/blogs/graphics/") && !p.frontmatter?.draft
+            }
+
+            if (!isValid(curr)) {
                 return prev
-            } else if (!prev.filePath?.startsWith("content/blogs/graphics/")) {
+            } else if (!isValid(prev)) {
                 return curr
             }
 
@@ -27,6 +32,7 @@ export default (() => {
         }, allFiles[0])
 
         const title = page.frontmatter?.title ?? i18n(cfg.locale).propertyDefaults.title
+        const tags = page.frontmatter?.tags ?? []
         const parseDate = (date: Date) => {
             return date.toLocaleDateString('en-US') //`${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`
         }
@@ -52,6 +58,18 @@ export default (() => {
 
                             <i>{parseDate(page.dates?.published!)}</i>
                         </div>
+                        <ul class="preview-tags tags">
+                            {tags.map((tag) => (
+                                <li>
+                                    <a
+                                        class="internal tag-link"
+                                        href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}
+                                    >
+                                        {tag}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
 
                         <p>{page.description}</p>
                     </div>

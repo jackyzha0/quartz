@@ -7,7 +7,7 @@ created: 2024-06-12
 date: 2024-06-13
 aliases:
   - God Rays
-description: In this post we go over what are god rays and a couple different high-level approaches to them followed by my personal implementation.
+description: In this post we go over what are god rays and a couple different high-level approaches to them.
 previewImg: ./Resources/crepuscular_rays_fake.png
 ---
 
@@ -52,7 +52,7 @@ The approach seen [here](https://github.com/math-araujo/screen-space-godrays) by
 > ![[god-rays-occlusion-map.png]]
 > Occlusion Map [(Source)](https://raw.githubusercontent.com/math-araujo/screen-space-godrays/master/docs/images/first_pass.png)
 
-The occlusion map is a grayscale version of colored image where whiter colors show the sources of reflected light that reach the camera and the blacker colors represent anything that does not reflect light to the camera. This tells us which pixels on the screen has light coming towards our camera. 
+The occlusion map is an image that tells us which pixels are being **directly lit** and which pixels are being **indirectly lit**. The lighter regions of the screen show us where light sources are directly pointed at our camera and the dark regions show us where light is being unobserved or blocked.
 
 #### Default Scene
 > [!caption|center]
@@ -111,7 +111,7 @@ I will quickly go over the process here as this is likely the approach I will go
 #### Quads
 Okay so what's a quad? Well it's just a rectangle but in three-dimensional space but with some finagling it can become a ray from the heavens.
 
-The first step is to place our quads in our scene where we would like the rays to be and set them act as **billboards**. This means the quad will always face the camera regardless of how the camera moves. Then we use a [[shaders|vertex shader]] to stretch the upper parts of the quad towards our light source. This creates  the effect of a quadrilateral shape stretching from its base towards the sun.
+The first step is to place our quads in our scene where we would like the rays to be and set them to act as **billboards**. This means the quad will always face the camera regardless of how the camera moves. Then we use a [[shaders|vertex shader]] to stretch the upper parts of the quad towards our light source. This creates  the effect of a quadrilateral shape stretching from its base towards the sun.
 
 Then it's just a matter of shading the rays the color you want them, applying some noise and modulating the opacity of the rays based off of several factors including:
 - **How far the quads are from the camera**. We want rays close to the camera to fade away as to not interfere with our view of the scene.
