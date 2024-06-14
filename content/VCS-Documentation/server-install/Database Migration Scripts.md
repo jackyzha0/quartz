@@ -10,6 +10,13 @@ This directory contains scripts for migrating an SQLite database to a Postgres d
 - Liquibase installed (Automated with [[Postgres + docker compose setup]])
 - Execution of Liquibase scripts (Automated with [[Postgres + docker compose setup]])
 - SQLite database file(s) to be migrated(for existing server upgrades only)
+- sqlite3 installed (for existing server upgrades only)
+```
+sudo zypper refresh
+```
+```
+sudo zypper install sqlite3
+```
 
 ## Setup
 
@@ -24,9 +31,19 @@ chmod +x update_server_id.sh
 ```
 
 #### Existing Server Upgrade Only
-For single server grab the `vcs.db` file, and rename it `serverID.db`(use the actual server id of the server, in case of `vcs.db-wall` and `vcs.db-shm` rename those with the server id as well).
-For multi server gather all the `vcs.db` files and rename as mentioned in the single server step.
+For single server grab the `vcs.db` file, and rename it `serverID.db`(use the actual server id of the server, in case of `vcs.db-wal` and `vcs.db-shm` rename those with the server id as well).
+Example:
+```
+cp /usr/vcs/database/vcs.db './Test VM.db'
+```
+```
+cp /usr/vcs/database/vcs.db-shm './Test VM.db-shm'
+```
+```
+cp /usr/vcs/database/vcs.db-wal './Test VM.db-wal'                     
+```
 
+For multi server do the same with their own server id.
 Move the database file(s) to the scripts directory(`/usr/vcs/docker/migration-scripts`)
 
 ## Running the Migration
@@ -48,20 +65,21 @@ Example: `docker exec -i artsentry-services-postgres-1 psql -U vcs -d postgres
 
 Run the `update_server_id.sh` script with the `server_id` and the `docker_command` parameter:
 
-Example of running the script with Docker instance of Postgres:
+Example of running the script with Docker instance of Postgres(replace server_id, name of docker container, user, and database with the correct information):
 
-```bash
-./update_server_id.sh 'server_id' 'docker exec -i artsentry-services-postgres-1 psql' > migration.log
+```
+./update_server_id.sh 'server_id' docker exec -i artsentry-services-postgres-1 psql -U vcs -d postgres > migration.log
 ```
 #### Existing Server Upgrade
 
 To run the migration process, execute the `database_migration.sh` script with `docker_command` parameter:
 
-Example of running the script with Docker instance of Postgre:
+Example of running the script with Docker instance of Postgres(replace server_id, name of docker container, user, and database with the correct information):
 
-```bash
-./database_migration.sh 'docker exec -i artsentry-services-postgres-1 psql'
 ```
+./database_migration.sh docker exec -i artsentry-services-postgres-1 psql -U vcs -d postgres > migration.log
+```
+>This step takes some time to finish. If anything fails, failure will be shown in the console, otherwise messages are piped into migration.log
 
 #### Start VCS Server 
 After completing the required steps in [[Postgres + docker compose setup]] and executing the script(s) above, start the VCS Server

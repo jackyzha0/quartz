@@ -43,10 +43,10 @@ export DATABASE_URL=jdbc:postgresql://localhost:5445/postgres
 ### Initialize docker and docker compose
 
 **New Server Install**
-`docker.zip` and `initialize_docker.sh` will be extracted into `/usr/vcs`(or install dir) at installation of VCSServer
+`docker.zip` and `initialize_docker.sh` will be extracted into `/usr/vcs`(or install dir) at the installation of VCSServer
 
 **Existing Server Upgrade**
-Copy `docker.zip` and `initialize_docker.sh` to `/usr/vcs`(or install dir) from the the upgrade_package
+`docker.zip` and `initialize_docker.sh` should have been copied into `/usr/vcs`(or install dir) from the the upgrade_package (First step in [[Server Install]])
 
 The initialize script will install docker and the docker compose plugin. Navigate to `/usr/vcs` and run the `initialize_docker.sh` script
 ```bash
@@ -154,7 +154,7 @@ docker login ghcr.io -u USERNAME
 Change the directory to `/usr/vcs/docker`, make sure the `.env` file is located in `/usr/vcs/compose-cfg` and is configured as described above.
 
 To start all the services that VCS requires, run:
-```bash
+```
 docker compose --env-file ../compose-cfg/.env up -d
 ```
 
@@ -166,7 +166,7 @@ docker compose --env-file ../compose-cfg/.env stop
 Note: Since the `.env` file is not located next to the compose file it needs to be specified to each docker compose command.
 
 To remove all the docker images
-```bash
+```
 docker compose --env-file ../compose-cfg/.env down
 ```
 
