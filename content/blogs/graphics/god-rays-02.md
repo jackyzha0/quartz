@@ -4,10 +4,10 @@ title: God Rays - Part 2
 tags:
   - graphics
 created: 2024-06-14
-date: 2024-06-14
+publishDate: 2024-06-16
 aliases: 
 description: In this post I document my progress as I attempt my own implementation of god rays.
-previewImg: ./Resources/crepuscular_rays_fake.png
+previewImg: ./Resources/god-rays/god-rays-2-preview.png
 ---
 
 > [!warning] Disclaimer

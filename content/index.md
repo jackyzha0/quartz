@@ -17,8 +17,4 @@ So come join me in here in this blog where I will be attempting to document my p
 ## Dev Log
 No blog posts yet.
 
-## Graphics Blog
 
-> [!gridfloatleft] [[god-rays-01|God Rays]]
-> **Date**: *06/12/204*
-> ![[crepuscular_rays_fake.png]] 

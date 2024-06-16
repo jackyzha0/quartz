@@ -13,6 +13,7 @@ export default ((opts?: Options) => {
     const links = opts?.links ?? []
     return (
       <footer class={`${displayClass ?? ""}`}>
+        <hr />
         <div class="giscus" style={{ marginTop: "5rem" }}></div>
         <hr />
         <p>
@@ -26,7 +27,7 @@ export default ((opts?: Options) => {
             </li>
           ))}
         </ul>
-      </footer>
+      </footer >
     )
   }
 

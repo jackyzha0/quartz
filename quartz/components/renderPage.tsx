@@ -8,6 +8,7 @@ import { visit } from "unist-util-visit"
 import { Root, Element, ElementContent } from "hast"
 import { GlobalConfiguration } from "../cfg"
 import { i18n } from "../i18n"
+import GraphicsBlogs from "./GraphicsBlogs"
 
 interface RenderComponents {
   head: QuartzComponent
@@ -211,6 +212,8 @@ export function renderPage(
   )
 
   const lang = componentData.fileData.frontmatter?.lang ?? cfg.locale?.split("-")[0] ?? "en"
+  const BlogFeed = GraphicsBlogs()
+
   const doc = (
     <html lang={lang}>
       <Head {...componentData} />
@@ -232,6 +235,9 @@ export function renderPage(
                 </div>
               </div>
               <Content {...componentData} />
+              {componentData.fileData.filePath?.startsWith("content/index") && (
+                <BlogFeed {...componentData} />
+              )}
             </div>
             {RightComponent}
           </Body>

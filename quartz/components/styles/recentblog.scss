@@ -1,3 +1,7 @@
+.preview-graphics .preview {
+    margin: 20px 0px;
+}
+
 .preview {
     display: flex;
     flex-direction: row;
@@ -11,6 +15,7 @@
     background: #00bfa510;
 
     & > .preview-image {
+        object-fit: cover;
         margin: 0px 0px;
         align-self: center;
     }

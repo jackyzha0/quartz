@@ -4,7 +4,7 @@ title: God Rays - Part 1
 tags:
   - graphics
 created: 2024-06-12
-date: 2024-06-13
+publishDate: 2024-06-13
 aliases:
   - God Rays
 description: In this post we go over what are god rays and a couple different high-level approaches to them.
@@ -60,7 +60,6 @@ The occlusion map is an image that tells us which pixels are being **directly li
 > Default Scene [(Source)](https://raw.githubusercontent.com/math-araujo/screen-space-godrays/master/docs/images/first_pass.png)
 
 This is just the scene rendered normally. When rendering the scene as normal something called a [[shadow-map|Shadow Map]] is generated which is another image that just tells us what part of our scene is in shadow and what is illuminated. This will come in handy later when we want to composite our final image.
-
 > [!important]
 > It's important to note the distinction between the purpose of the shadow and occlusion map. The shadow map tells us **where shadows are** while the occlusion map tells us **what is blocking the light sources**. 
 

@@ -22,6 +22,7 @@ import Breadcrumbs from "./Breadcrumbs"
 
 import Comments from "./Comments"
 import RecentBlog from "./RecentBlog"
+import GraphicsBlogs from "./GraphicsBlogs"
 
 export {
   ArticleTitle,
@@ -47,5 +48,6 @@ export {
   Breadcrumbs,
 
   Comments,
-  RecentBlog
+  RecentBlog,
+  GraphicsBlogs
 }
