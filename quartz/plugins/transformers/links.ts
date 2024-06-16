@@ -93,7 +93,7 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
                 }
                 node.properties.className = classes
 
-                if (opts.openLinksInNewTab) {
+                if (isExternal && opts.openLinksInNewTab) {
                   node.properties.target = "_blank"
                 }
 
