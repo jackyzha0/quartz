@@ -36,7 +36,7 @@ To kick things off, I quickly threw together a basic scene to work with and add 
 Let's jump back to what I said last time. To quickly reiterate:
 > The first step is to place our quads in our scene where we would like the rays to be and set them to act as **billboards**. This means the quad will always face the camera regardless of how the camera moves.
 
-Sound like we need some squares. Let's place a few quads throughout the our scene and uhhh...
+Sound like we need some squares. Let's place a few quads throughout our scene and uhhh...
 
 > [!caption|center]
 > ![[god-rays-some_quads.png]]
@@ -70,7 +70,7 @@ Those quads certainly don't look like they're facing the camera. Let's try to re
 > ```
 > While this approach is quite readable I will likely elect to go for an approach with less matrix multiplications for the long run. There is an approach from the [Godot forums](https://forum.godotengine.org/t/how-to-do-i-make-a-shader-a-billboard-face-the-player/1980/2) that surgically manipulates the view matrix using its inverse to achieve the same effect.
 
-Applying the shader seems to have given us the billboard effect we we're looking for!
+Applying the shader seems to have given us the billboard effect that we were looking for!
 
 > [!caption|center]
 > ![[god-rays-billboard.mp4]]
@@ -122,7 +122,7 @@ With just a couple lines of code, our little quads are starting to look a bit mo
 #### Scene Depth
 The closer a ray is to an object, the less we want the ray to obscure that object. This can be accomplished using what's called a [[depth-buffer|depth buffer]]. Depth buffers are just images that store how far away each pixel is from the camera.
 
-We can take a look at how far away our ray is from the screen and then compare it against how far away the rest of the scene is. The **closer they are** together, the **smaller the alpha value** we want to for our ray so long as the ray is **in front of the scene.** 
+We can take a look at how far away our ray is from the screen and then compare it against how far away the rest of the scene is. The **closer they are** together, the **smaller the alpha value** we want so long as the ray is **in front of the scene.** 
 
 A lot of words here but basically: the closer our ray is to something, the less visible it should be.
 
@@ -190,9 +190,9 @@ The rays should then become more transparent the closer they get to the camera.
 
 #### Shadow Map
 
-I mentioned [[shadow-map|shadow maps]] in my last post but to reiterate, shadow maps allow us check if a position in the world is in shadow or not. I won't delve too far into how shadow maps are generated but suffice to say that they are incredibly useful for anything involving shadows as the name suggests.
+I mentioned [[shadow-map|shadow maps]] in my last post but to reiterate, shadow maps allow us to check if a position in the world is in shadow or not. I won't delve too far into how shadow maps are generated but suffice to say that they are incredibly useful for anything involving shadows as the name suggests.
 
- If a ray is in shadow, we want it to be invisible; we can use the shadow map of our sun to identify what parts of our ray are in shadows and change the transparency accordingly accordingly to achieve this. 
+ If a ray is in shadow, we want it to be invisible; we can use the shadow map of our sun to identify what parts of our ray are in shadows and change the transparency accordingly to achieve this. 
 
 > [!math]- Here There Be Math!
 >  > [!important] Disclaimer
@@ -267,8 +267,33 @@ Better yet, we can also move our sample up and down the noise texture to get the
 > ![[god-rays-stripes-move.mp4]]
 > Moving Stripes
 
-> [!math]- Here There Be Math!
-> TO-DO
+> [!math] Here There Be Math!
+> Let's first add some uniforms to control our stripes. We'll need a `sampler2D` that contains our noise texture and a `float` variable to control how fast our stripes move.
+> ```glsl
+> uniform sampler2D god_ray_stripe_noise : filter_nearest;
+> uniform float god_ray_stripe_speed = 0.2f;
+>```
+> Our noise texture is two-dimensional but we just want to sample along a line. We can do this by constructing a texture coordinate to sample where the **x** direction is varied and the **y** direction remains constant. 
+> ```glsl
+> texture(god_ray_stripe_noise, vec2(UV.x,  /* CONSTANT */ );
+>```
+> Now to actually get the stripes to move with time is a simple matter of replacing that constant with a value that changes with time. This has the effect of moving our line up and down the noise texture.
+> 
+> Putting it all together we get:
+> ```glsl
+> ...
+> 
+> uniform sampler2D god_ray_stripe_noise : filter_nearest;
+> uniform float god_ray_stripe_speed = 0.2f;
+> 
+> ...
+> 
+> void fragment() {
+> 	...
+> 	ALPHA *= texture(god_ray_stripe_noise, vec2(UV.x, TIME * god_ray_stripe_speed)).r;
+> 	...
+> }
+> ```
 
 Let's just quickly change the color of our quads to make our rays take on a more golden hue as well and that's looking pretty good! 
 
