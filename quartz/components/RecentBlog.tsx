@@ -23,8 +23,8 @@ export default (() => {
                 return curr
             }
 
-            const prevDate = prev.dates?.created ?? new Date(1970, 1, 1)
-            const currDate = curr.dates?.created ?? new Date(1970, 1, 1)
+            const prevDate = prev.dates?.published ?? new Date(1970, 1, 1)
+            const currDate = curr.dates?.published ?? new Date(1970, 1, 1)
             if (currDate > prevDate) {
                 return curr
             }
@@ -56,7 +56,7 @@ export default (() => {
                                 </a>
                             </div>
 
-                            <i>{parseDate(page.dates?.published!)}</i>
+                            <i>{page.frontmatter?.publishDate!}</i>
                         </div>
                         <ul class="preview-tags tags">
                             {tags.map((tag) => (
