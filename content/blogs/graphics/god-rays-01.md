@@ -8,7 +8,7 @@ date: 2024-06-13
 aliases:
   - God Rays
 description: In this post we go over what are god rays and a couple different high-level approaches to them.
-previewImg: ./Resources/crepuscular_rays_fake.png
+previewImg: ./Resources/god-rays/crepuscular_rays_fake.png
 ---
 
 > [!warning] Disclaimer
