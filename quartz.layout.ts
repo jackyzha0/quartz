@@ -25,7 +25,7 @@ export const defaultContentPageLayout: PageLayout = {
   //  Component.MobileOnly(Component.Graph()),
   // Component.MobileOnly(Component.Backlinks()),
     Component.Graph(),
-    Components.Backlinks()
+    Component.Backlinks()
   ],
 
   // beforeBody: [
