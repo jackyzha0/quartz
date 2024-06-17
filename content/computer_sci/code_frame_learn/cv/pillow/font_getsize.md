@@ -4,7 +4,7 @@ tags:
   - cv
   - python
   - PIL
-date: 2024-12-06
+date: 2024-06-12
 ---
 
 # Detail
