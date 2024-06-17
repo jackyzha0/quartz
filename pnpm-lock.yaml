@@ -7,16 +7,43 @@ settings:
 importers:
 
   .:
-    dependencies:
+    devDependencies:
       '@clack/prompts':
         specifier: ^0.7.0
         version: 0.7.0
       '@floating-ui/dom':
-        specifier: ^1.6.3
-        version: 1.6.3
+        specifier: ^1.6.5
+        version: 1.6.5
       '@napi-rs/simple-git':
         specifier: 0.1.16
         version: 0.1.16
+      '@types/cli-spinner':
+        specifier: ^0.2.3
+        version: 0.2.3
+      '@types/d3':
+        specifier: ^7.4.3
+        version: 7.4.3
+      '@types/hast':
+        specifier: ^3.0.4
+        version: 3.0.4
+      '@types/js-yaml':
+        specifier: ^4.0.9
+        version: 4.0.9
+      '@types/node':
+        specifier: ^20.12.7
+        version: 20.12.7
+      '@types/pretty-time':
+        specifier: ^1.1.5
+        version: 1.1.5
+      '@types/source-map-support':
+        specifier: ^0.5.10
+        version: 0.5.10
+      '@types/ws':
+        specifier: ^8.5.10
+        version: 8.5.10
+      '@types/yargs':
+        specifier: ^17.0.32
+        version: 17.0.32
       async-mutex:
         specifier: ^0.4.1
         version: 0.4.1
@@ -32,6 +59,9 @@ importers:
       d3:
         specifier: ^7.9.0
         version: 7.9.0
+      esbuild:
+        specifier: ^0.19.12
+        version: 0.19.12
       esbuild-sass-plugin:
         specifier: ^2.16.1
         version: 2.16.1(esbuild@0.19.12)
@@ -83,6 +113,9 @@ importers:
       preact-render-to-string:
         specifier: ^6.4.2
         version: 6.4.2(preact@10.20.2)
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
       pretty-bytes:
         specifier: ^6.1.1
         version: 6.1.1
@@ -141,8 +174,8 @@ importers:
         specifier: ^1.3.1
         version: 1.3.1
       rimraf:
-        specifier: ^5.0.5
-        version: 5.0.5
+        specifier: ^5.0.7
+        version: 5.0.7
       serve-handler:
         specifier: ^6.1.5
         version: 6.1.5
@@ -158,6 +191,12 @@ importers:
       toml:
         specifier: ^3.0.0
         version: 3.0.0
+      tsx:
+        specifier: ^4.7.2
+        version: 4.7.2
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
       unified:
         specifier: ^11.0.4
         version: 11.0.4
@@ -176,46 +215,6 @@ importers:
       yargs:
         specifier: ^17.7.2
         version: 17.7.2
-    devDependencies:
-      '@types/cli-spinner':
-        specifier: ^0.2.3
-        version: 0.2.3
-      '@types/d3':
-        specifier: ^7.4.3
-        version: 7.4.3
-      '@types/hast':
-        specifier: ^3.0.4
-        version: 3.0.4
-      '@types/js-yaml':
-        specifier: ^4.0.9
-        version: 4.0.9
-      '@types/node':
-        specifier: ^20.12.7
-        version: 20.12.7
-      '@types/pretty-time':
-        specifier: ^1.1.5
-        version: 1.1.5
-      '@types/source-map-support':
-        specifier: ^0.5.10
-        version: 0.5.10
-      '@types/ws':
-        specifier: ^8.5.10
-        version: 8.5.10
-      '@types/yargs':
-        specifier: ^17.0.32
-        version: 17.0.32
-      esbuild:
-        specifier: ^0.19.12
-        version: 0.19.12
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
-      tsx:
-        specifier: ^4.7.2
-        version: 4.7.2
-      typescript:
-        specifier: ^5.4.5
-        version: 5.4.5
 
 packages:
 
@@ -401,8 +400,8 @@ packages:
   '@floating-ui/core@1.6.0':
     resolution: {integrity: sha512-PcF++MykgmTj3CIyOQbKA/hDzOAiqI3mhuoN44WRCopIs1sgoDoU4oty4Jtqaj/y3oDU6fnVSm4QG0a3t5i0+g==}
 
-  '@floating-ui/dom@1.6.3':
-    resolution: {integrity: sha512-RnDthu3mzPlQ31Ss/BTwQ1zjzIhr3lk1gZB1OC56h/1vEtaXkESrOqL5fQVMfXpwGtRwX+YsZBdyHtJMQnkArw==}
+  '@floating-ui/dom@1.6.5':
+    resolution: {integrity: sha512-Nsdud2X65Dz+1RHjAIP0t8z5e2ff/IRbei6BqFrl1urT8sDVzM1HMQ+R0XcU5ceRfyO3I6ayeqIfh+6Wb8LGTw==}
 
   '@floating-ui/utils@0.2.1':
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
@@ -1752,9 +1751,9 @@ packages:
   rfdc@1.3.1:
     resolution: {integrity: sha512-r5a3l5HzYlIC68TpmYKlxWjmOP6wiPJ1vWv2HeLhNsRZMrCkxeqxiHlQ21oXmQ4F3SiryXBHhAD7JZqvOJjFmg==}
 
-  rimraf@5.0.5:
-    resolution: {integrity: sha512-CqDakW+hMe/Bz202FPEymy68P+G50RfMQK+Qo5YUqc9SPipvbGjCGKd0RSKEelbsfQuw3g5NZDSrlZZAJurH1A==}
-    engines: {node: '>=14'}
+  rimraf@5.0.7:
+    resolution: {integrity: sha512-nV6YcJo5wbLW77m+8KjH8aB/7/rxQy9SZ0HY5shnwULfS+9nmTtVXAJET5NdZmCzA4fPI/Hm1wo/Po/4mopOdg==}
+    engines: {node: '>=14.18'}
     hasBin: true
 
   robust-predicates@3.0.2:
@@ -2195,7 +2194,7 @@ snapshots:
     dependencies:
       '@floating-ui/utils': 0.2.1
 
-  '@floating-ui/dom@1.6.3':
+  '@floating-ui/dom@1.6.5':
     dependencies:
       '@floating-ui/core': 1.6.0
       '@floating-ui/utils': 0.2.1
@@ -3959,7 +3958,7 @@ snapshots:
 
   rfdc@1.3.1: {}
 
-  rimraf@5.0.5:
+  rimraf@5.0.7:
     dependencies:
       glob: 10.3.12
 
