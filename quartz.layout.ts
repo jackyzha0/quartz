@@ -11,7 +11,7 @@ export const sharedPageComponents: SharedLayout = {
       Blog: "https://miguelpimentel.do/",
       Meta: "/Meta",
       GitHub: "https://github.com/semanticdata/forgetful-notes/",
-      Journal: "/journal",
+      // Journal: "/journal",
       // Source: "https://github.com/semanticdata/forgetful-notes/",
     },
   }),
@@ -20,7 +20,8 @@ export const sharedPageComponents: SharedLayout = {
 // components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [Component.ArticleTitle()],
-  left: [Component.MobileOnly(Component.Spacer())],
+  left: [Component.MobileOnly(Component.Spacer()),
+        Component.DesktopOnly(Component.Explorer())],
   right: [
   //  Component.MobileOnly(Component.Graph()),
   // Component.MobileOnly(Component.Backlinks()),
