@@ -1,4 +1,4 @@
-import {PageLayout, SharedLayout} from "./quartz/cfg"
+,import {PageLayout, SharedLayout} from "./quartz/cfg"
 import * as Component from "./quartz/components"
 
 // components shared across all pages
@@ -23,7 +23,7 @@ export const defaultContentPageLayout: PageLayout = {
   beforeBody: [Component.ArticleTitle()],
   left: [Component.PageTitle(),
          Component.Search(),
-         Component.Darkmode()
+         Component.Darkmode(),
         Component.MobileOnly(Component.Spacer()),
         Component.DesktopOnly(Component.Explorer())],
   right: [
