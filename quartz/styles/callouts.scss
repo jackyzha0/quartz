@@ -10,7 +10,7 @@
   transition: max-height 0.3s ease;
   box-sizing: border-box;
 
-  & > *:nth-child(2) {
+  & > .callout-content > :first-child {
     margin-top: 0;
   }
 

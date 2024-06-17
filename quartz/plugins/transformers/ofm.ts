@@ -6,6 +6,7 @@ import { slug as slugAnchor } from "github-slugger"
 import rehypeRaw from "rehype-raw"
 import { SKIP, visit } from "unist-util-visit"
 import path from "path"
+import { splitAnchor } from "../../util/path"
 import { JSResource } from "../../util/resources"
 // @ts-ignore
 import calloutScript from "../../components/scripts/callout.inline.ts"
@@ -199,10 +200,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
         src = src.replace(wikilinkRegex, (value, ...capture) => {
           const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
 
-          const fp = rawFp ?? ""
-          const anchor = rawHeader?.trim().replace(/^#+/, "")
+          const [fp, anchor] = splitAnchor(`${rawFp ?? ""}${rawHeader ?? ""}`)
           const blockRef = Boolean(anchor?.startsWith("^")) ? "^" : ""
-          const displayAnchor = anchor ? `#${blockRef}${slugAnchor(anchor)}` : ""
+          const displayAnchor = anchor ? `#${blockRef}${anchor.trim().replace(/^#+/, "")}` : ""
           const displayAlias = rawAlias ?? rawHeader?.replace("#", "|") ?? ""
           const embedDisplay = value.startsWith("!") ? "!" : ""
 
@@ -414,8 +414,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 return
               }
 
-              // find first line
-              const firstChild = node.children[0]
+              // find first line and callout content
+              const [firstChild, ...calloutContent] = node.children
               if (firstChild.type !== "paragraph" || firstChild.children[0]?.type !== "text") {
                 return
               }
@@ -491,6 +491,21 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     "data-callout-fold": collapse,
                     "data-callout-metadata": calloutMetaData,
                   },
+                }
+
+                // Add callout-content class to callout body if it has one.
+                if (calloutContent.length > 0) {
+                  const contentData: BlockContent | DefinitionContent = {
+                    data: {
+                      hProperties: {
+                        className: "callout-content",
+                      },
+                      hName: "div",
+                    },
+                    type: "blockquote",
+                    children: [...calloutContent],
+                  }
+                  node.children = [node.children[0], contentData]
                 }
               }
             })
