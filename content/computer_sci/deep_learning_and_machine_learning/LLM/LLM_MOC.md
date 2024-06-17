@@ -24,3 +24,8 @@ How to evaluate a LLM performance?
 # Basic
 
 * [LLM Hyperparameter](computer_sci/deep_learning_and_machine_learning/LLM/basic/llm_hyperparameter.md)
+
+
+# Related Technologies
+
+

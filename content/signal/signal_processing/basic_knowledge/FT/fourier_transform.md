@@ -236,3 +236,4 @@ The unilateral or one-sided z-transform is very useful because we mostly deal wi
 * [The Discrete Fourier Transform (DFT)](https://www.youtube.com/watch?v=nl9TZanwbBk)
 * [The Fast Fourier Transform (FFT): Most Ingenious Algorithm Ever?](https://www.youtube.com/watch?v=h7apO7q16V0)
 * [Euler’s formula](https://www.notion.so/Euler-s-formula-d8e4462d5cda4e09a4ca4fcda7cd1392?pvs=21)
+* https://www.andreinc.net/2024/04/24/from-the-circle-to-epicycles
