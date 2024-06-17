@@ -22,8 +22,10 @@ export const defaultContentPageLayout: PageLayout = {
   beforeBody: [Component.ArticleTitle()],
   left: [Component.MobileOnly(Component.Spacer())],
   right: [
-    Component.MobileOnly(Component.Graph()),
-    Component.MobileOnly(Component.Backlinks()),
+  //  Component.MobileOnly(Component.Graph()),
+  // Component.MobileOnly(Component.Backlinks()),
+    Component.Graph(),
+    Components.Backlinks()
   ],
 
   // beforeBody: [
