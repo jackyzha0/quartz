@@ -103,7 +103,7 @@
     "@types/ws": "^8.5.10",
     "@types/yargs": "^17.0.32",
     "esbuild": "^0.19.9",
-    "prettier": "^3.2.4",
+    "prettier": "^3.3.2",
     "tsx": "^4.11.2",
     "typescript": "^5.4.5"
   }
