@@ -481,11 +481,14 @@ video {
   flex: 1 1 auto;
 }
 
+div:has(> .overflow) {
+  position: relative;
+}
+
 ul.overflow,
 ol.overflow {
   max-height: 400;
   overflow-y: auto;
-  position: relative;
 
   // clearfix
   content: "";
