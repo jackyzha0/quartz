@@ -144,6 +144,14 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
       tinylyticsScript.defer = true
       document.head.appendChild(tinylyticsScript)
     `)
+  } else if (cfg.analytics?.provider === "cabin") {
+    componentResources.afterDOMLoaded.push(`
+      const cabinScript = document.createElement("script")
+      cabinScript.src = "${cfg.analytics.host ?? "https://scripts.cabin.dev"}/cabin.js"
+      cabinScript.defer = true
+      cabinScript.async = true
+      document.head.appendChild(cabinScript)
+    `)
   }
 
   if (cfg.enableSPA) {
