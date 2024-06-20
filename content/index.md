@@ -1,5 +1,5 @@
 ---
-title: Carson's Blog
+title: Welcome to The Pixelated View
 ---
 
 A long time ago in a year known to many by 2003, I played my first "real" video game: **Pokémon Sapphire**. After encountering it in a Walmart in the great state of Maine, I quickly became enamored with the vaguely whale-shaped creature on the box art for the game. And so I began my scheming to acquire the game for myself.

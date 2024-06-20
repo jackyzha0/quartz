@@ -267,7 +267,7 @@ Better yet, we can also move our sample up and down the noise texture to get the
 > ![[god-rays-stripes-move.mp4]]
 > Moving Stripes
 
-> [!math] Here There Be Math!
+> [!math]- Here There Be Math!
 > Let's first add some uniforms to control our stripes. We'll need a `sampler2D` that contains our noise texture and a `float` variable to control how fast our stripes move.
 > ```glsl
 > uniform sampler2D god_ray_stripe_noise : filter_nearest;
