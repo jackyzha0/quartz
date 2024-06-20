@@ -11,7 +11,7 @@ li.section-li {
 
   & > .section {
     display: grid;
-    grid-template-columns: 6em 3fr 1fr;
+    grid-template-columns: fit-content(8em) 3fr 1fr;
 
     @media all and (max-width: $mobileBreakpoint) {
       & > .tags {
@@ -24,8 +24,7 @@ li.section-li {
     }
 
     & > .meta {
-      margin: 0;
-      flex-basis: 6em;
+      margin: 0 1em 0 0;
       opacity: 0.6;
     }
   }
@@ -33,7 +32,8 @@ li.section-li {
 
 // modifications in popover context
 .popover .section {
-  grid-template-columns: 6em 1fr !important;
+  grid-template-columns: fit-content(8em) 1fr !important;
+
   & > .tags {
     display: none;
   }

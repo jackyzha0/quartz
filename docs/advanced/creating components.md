@@ -129,11 +129,11 @@ export default (() => {
     return <button id="btn">Click me</button>
   }
 
-  YourComponent.beforeDOM = `
+  YourComponent.beforeDOMLoaded = `
   console.log("hello from before the page loads!")
   `
 
-  YourComponent.afterDOM = `
+  YourComponent.afterDOMLoaded = `
   document.getElementById('btn').onclick = () => {
     alert('button clicked!')
   }
@@ -180,7 +180,7 @@ export default (() => {
     return <button id="btn">Click me</button>
   }
 
-  YourComponent.afterDOM = script
+  YourComponent.afterDOMLoaded = script
   return YourComponent
 }) satisfies QuartzComponentConstructor
 ```

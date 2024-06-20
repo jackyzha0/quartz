@@ -59,7 +59,7 @@
     "mdast-util-to-string": "^4.0.0",
     "micromorph": "^0.4.5",
     "preact": "^10.22.0",
-    "preact-render-to-string": "^6.5.4",
+    "preact-render-to-string": "^6.5.5",
     "pretty-bytes": "^6.1.1",
     "pretty-time": "^1.1.0",
     "reading-time": "^1.5.0",
@@ -88,8 +88,8 @@
     "unified": "^11.0.4",
     "unist-util-visit": "^5.0.0",
     "vfile": "^6.0.1",
-    "workerpool": "^9.1.1",
-    "ws": "^8.17.0",
+    "workerpool": "^9.1.2",
+    "ws": "^8.17.1",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
@@ -103,7 +103,7 @@
     "@types/ws": "^8.5.10",
     "@types/yargs": "^17.0.32",
     "esbuild": "^0.19.9",
-    "prettier": "^3.2.4",
+    "prettier": "^3.3.2",
     "tsx": "^4.11.2",
     "typescript": "^5.4.5"
   }
