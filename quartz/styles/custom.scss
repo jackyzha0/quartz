@@ -1,9 +1,6 @@
 @use "./base.scss";
 @use "./variables.scss" as *;
 
-.page-title {
-    height: 200px;
-}
 
 #explorer-ul {
     max-height: calc(100vh - 400px);

@@ -33,9 +33,6 @@ export default (() => {
 
         const title = page.frontmatter?.title ?? i18n(cfg.locale).propertyDefaults.title
         const tags = page.frontmatter?.tags ?? []
-        const parseDate = (date: Date) => {
-            return date.toLocaleDateString('en-US') //`${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`
-        }
 
         return fileData.filePath?.startsWith("content/index") ? (
             <blockquote class="callout blog" data-callout="blog">

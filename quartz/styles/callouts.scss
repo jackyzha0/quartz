@@ -45,9 +45,9 @@
   }
 
   &[data-callout="math"] {
-    --color: #dba642;
+    --color: #c29e1d;
     --border: #dba64244;
-    --bg: #dba64210;
+    --bg: #c29e1d10;
     --callout-icon: var(--callout-icon-sigma);
   }
 
@@ -64,9 +64,9 @@
   }
 
   &[data-callout="tip"] {
-    --color: #00bfa5;
+    --color: #4fbf9e;
     --border: #00bfa544;
-    --bg: #00bfa510;
+    --bg: #2c8d9610;
     --callout-icon: var(--callout-icon-tip);
   }
 
@@ -85,9 +85,9 @@
   }
 
   &[data-callout="warning"] {
-    --color: #db8942;
+    --color: #f19155;
     --border: #db894244;
-    --bg: #db894210;
+    --bg: #ba4e3b10;
     --callout-icon: var(--callout-icon-warning);
   }
 

@@ -22,6 +22,16 @@ export default (() => {
                 return p.filePath?.startsWith("content/blogs/graphics/") && !p.frontmatter?.draft
             }
             return isValid(curr)
+        }).sort((a, b) => {
+            const aDate: Date = a.frontmatter?.publishDate as Date
+            const bDate: Date = b.frontmatter?.publishDate as Date
+
+            if (aDate < bDate) {
+                return 1;
+            } else if (aDate > bDate) {
+                return -1;
+            }
+            return 0;
         })
 
         const parseDate = (date: Date) => {
