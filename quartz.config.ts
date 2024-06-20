@@ -8,7 +8,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "🪴 Quartz 4.0",
+    pageTitle: "notes.justin.vc",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
@@ -38,14 +38,14 @@ const config: QuartzConfig = {
           highlight: "rgba(143, 159, 169, 0.15)",
         },
         darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
+          light: "#282a36", // background color
+          lightgray: "#44475a", // current line
+          gray: "#6272a4", // comment
+          darkgray: "#f8f8f2", // foreground text
+          dark: "#f8f8f2", // selection background
+          secondary: "#bd93f9", // purple
+          tertiary: "#ff79c6", // pink
+          highlight: "rgba(98, 114, 164, 0.15)", // subtle highlight
         },
       },
     },
