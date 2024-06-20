@@ -48,4 +48,5 @@ toolkit.legacyUserProfileCustomizations.stylesheets
 2. Restart Firefox and test it out!
 
 [^1]: In windows, `%appdata%` is equivalent to `C:\Users\{username}\AppData\Roaming`.
+
 [^2]: After Firefox 107, `#sidebar` was deprecated, and `#sidebar-box` was introduced as a replacement.

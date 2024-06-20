@@ -183,7 +183,8 @@ export function ExplorerNode({
   const isDefaultOpen = opts.folderDefaultState === "open"
 
   // Calculate current folderPath
-  const folderPath = node.name !== "" ? joinSegments(fullPath ?? "", node.name) : ""
+  const folderPath =
+    node.name !== "" ? joinSegments(fullPath ?? "", node.name) : ""
   const href = resolveRelative(fileData.slug!, folderPath as SimpleSlug) + "/"
 
   return (

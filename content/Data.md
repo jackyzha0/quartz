@@ -15,4 +15,5 @@ Relational data uses a structure and language consistent with first-order predic
 The purpose of the relational model is to provide a declarative method for specifying data and queries: users directly state what information the database contains and what information they want from it, and let the database management system software take care of describing data structures for storing the data and retrieval procedures for answering queries.
 
 [^1]: First-order logic—also known as first-order predicate calculus—is a collection of formal systems used in mathematics, philosophy, linguistics, and computer science.
+
 [^2]: In mathematics, a tuple is a finite sequence or ordered list of numbers or, more generally, mathematical objects, which are called the elements of the tuple.

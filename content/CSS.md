@@ -59,9 +59,9 @@ All _mobile-first-designs_ media queries and 1 _desktop-first-design_ media quer
 ------------------------------------------------------------------
 // USING THE MIXINS
 // Example - Writing a custom bootstrap-like container from scratch
-------------------------------------------------------------------
+---
 
-.container {
+--------------------------------------------------------------- .container {
   margin: 0 auto;
   width: 100%;
   @include screen-min(768px) {
