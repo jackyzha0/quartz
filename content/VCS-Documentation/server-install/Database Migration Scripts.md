@@ -28,6 +28,7 @@ chmod +x create_db_dump.sh
 chmod +x transform_db_dump.sh
 chmod +x consolidate.sh
 chmod +x update_server_id.sh
+chmod +x cleanup_failed_database_migration.sh
 ```
 
 #### Existing Server Upgrade Only
@@ -51,15 +52,15 @@ Move the database file(s) to the scripts directory(`/usr/vcs/docker/migration-sc
 **Required info:**
 - server_id - server id for the server
 - psql_path - path to Postgres psql 
->Example: `docker exec -i artsentry-services-postgres-1 psql`
->`artsentry-services-postgres-1` - name of the Docker container which can be found by
+>Example: `docker exec -i docker-postgres-1 psql`
+>`docker-postgres-1` - name of the Docker container which can be found by
 >running `docker ps` ([[running services.png]])
 - postgres_user
 >APP_USER="vcs" from docker compose environment(.env) of [[Postgres + docker compose setup]]
 - database_name
 >DB_NAME="postgres" from docker compose environment(.env) of [[Postgres + docker compose setup]]
 - docker_command - psql_path -U postgres_user -d database_name
-Example: `docker exec -i artsentry-services-postgres-1 psql -U vcs -d postgres
+Example: `docker exec -i docker-postgres-1 psql -U vcs -d postgres
 
 #### New Server Install
 
@@ -68,18 +69,30 @@ Run the `update_server_id.sh` script with the `server_id` and the `docker_comman
 Example of running the script with Docker instance of Postgres(replace server_id, name of docker container, user, and database with the correct information):
 
 ```
-./update_server_id.sh 'server_id' docker exec -i artsentry-services-postgres-1 psql -U vcs -d postgres > migration.log
+./update_server_id.sh 'server_id' docker exec -i docker-postgres-1 psql -U vcs -d postgres > migration.log
 ```
 #### Existing Server Upgrade
 
 To run the migration process, execute the `database_migration.sh` script with `docker_command` parameter:
 
-Example of running the script with Docker instance of Postgres(replace server_id, name of docker container, user, and database with the correct information):
+Example of running the script with Docker instance of Postgres(replace name of docker container, user, and database with the correct information):
 
 ```
-./database_migration.sh docker exec -i artsentry-services-postgres-1 psql -U vcs -d postgres > migration.log
+./database_migration.sh docker exec -i docker-postgres-1 psql -U vcs -d postgres > migration.log
 ```
 >This step takes some time to finish. If anything fails, failure will be shown in the console, otherwise messages are piped into migration.log
+
+##### In case of database migration failure
+
+If the migration process fails for any reason, execute `cleanup_failed_database_migration.sh` script with `docker_command` parameter:
+
+Example of running the script with Docker instance of Postgres(replace name of docker container, user, and database with the correct information):
+
+```
+./cleanup_failed_database_migration.sh docker exec -i docker-postgres-1 psql -U vcs -d postgres
+```
+
+Revert the database in `/usr/vcs/env.sh` to SQLite `OTHER_JVM_OPTS="-Ddatabase.type=postgres <other-vm-args>`
 
 #### Start VCS Server 
 After completing the required steps in [[Postgres + docker compose setup]] and executing the script(s) above, start the VCS Server
@@ -97,3 +110,4 @@ systemctl start vcs
 - **transform_db_dump.sh**: Transforms the SQLite dump to be compatible with Postgres
 - **consolidate.sh**: Consolidates the transformed dump into the PostgreSQL database
 - **update_server_id.sh**: Updates the server ID in the Postgres database after the migration or at new setup
+- **cleanup_failed_database_migration.sh**: Resets Postgres schema and tables to initial state and deletes files that were created during migration process
