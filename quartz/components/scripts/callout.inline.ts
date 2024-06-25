@@ -2,19 +2,18 @@ function toggleCallout(this: HTMLElement) {
   const outerBlock = this.parentElement!
   outerBlock.classList.toggle("is-collapsed")
   const collapsed = outerBlock.classList.contains("is-collapsed")
-  
+
   // Check if the block is not collapsed
   if (!collapsed) {
-    outerBlock.style.maxHeight = outerBlock.scrollHeight + "px";
+    outerBlock.style.maxHeight = outerBlock.scrollHeight + "px"
     setTimeout(() => {
-        outerBlock.style.maxHeight = "";
-    }, 150); 
+      outerBlock.style.maxHeight = ""
+    }, 150)
   } else {
     // If the block is already collapsed, reset the maxHeight based on current scroll height
-    outerBlock.style.maxHeight = outerBlock.scrollHeight + "px";
-    outerBlock.style.maxHeight = this.scrollHeight + "px";
+    outerBlock.style.maxHeight = outerBlock.scrollHeight + "px"
+    outerBlock.style.maxHeight = this.scrollHeight + "px"
   }
-
 }
 
 function setupCallout() {
