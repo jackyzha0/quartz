@@ -59,14 +59,18 @@ const config: QuartzConfig = {
       Plugin.SyntaxHighlighting({
         theme: {
           light: "github-light",
-          dark: "github-dark",
+          dark: "dracula",
         },
         keepBackground: false,
       }),
-      Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
+      Plugin.OxHugoFlavouredMarkdown(),
       Plugin.GitHubFlavoredMarkdown(),
-      Plugin.TableOfContents(),
-      Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
+      Plugin.TableOfContents({ showByDefault: true, collapseByDefault: false, maxDepth: 5 }),
+      Plugin.CrawlLinks({
+        markdownLinkResolution: "absolute",
+        openLinksInNewTab: true,
+        lazyLoad: true,
+      }),
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
     ],
