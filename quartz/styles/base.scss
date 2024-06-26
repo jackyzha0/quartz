@@ -128,7 +128,6 @@ a {
     }
 
     & li:has(> input[type="checkbox"]:checked) {
-      text-decoration: line-through;
       text-decoration-color: var(--gray);
       color: var(--gray);
     }
