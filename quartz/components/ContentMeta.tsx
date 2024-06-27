@@ -7,9 +7,6 @@ import { JSX } from "preact"
 import style from "./styles/contentMeta.scss"
 
 interface ContentMetaOptions {
-  /**
-   * Whether to display reading time
-   */
   showReadingTime: boolean
   showComma: boolean
 }
@@ -29,8 +26,17 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
     if (text) {
       const segments: (string | JSX.Element)[] = []
 
-      if (fileData.dates) {
-        segments.push(formatDate(getDate(cfg, fileData)!, cfg.locale))
+      let segment = ""
+
+      if (fileData.dates?.created) {
+        segment += `Created: ${formatDate(getDate(cfg, fileData)!, cfg.locale)}`
+        if (fileData.frontmatter?.lastmod) {
+          segment += ` ⮕ Modified: ${formatDate(getDate(cfg, fileData, "modified")!, cfg.locale)}`
+        }
+      }
+
+      if (segment) {
+        segments.push(segment)
       }
 
       // Display reading time if enabled

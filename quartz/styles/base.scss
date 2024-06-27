@@ -119,7 +119,7 @@ a {
 
   & article {
     & > h1 {
-      font-size: 2rem;
+      font-size: 1.75rem;
     }
 
     & li:has(> input[type="checkbox"]) {
@@ -295,7 +295,7 @@ h6 {
 
 // typography improvements
 h1 {
-  font-size: 1.75rem;
+  font-size: 1.65rem;
   margin-top: 2.25rem;
   margin-bottom: 1rem;
 }
