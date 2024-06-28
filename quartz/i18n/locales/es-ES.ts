@@ -54,7 +54,7 @@ export default {
       title: "Tabla de Contenidos",
     },
     contentMeta: {
-      readingTime: ({ minutes }) => `${minutes} min read`,
+      readingTime: ({ minutes }) => `Se lee en ${minutes} min`,
     },
   },
   pages: {
@@ -63,7 +63,7 @@ export default {
       lastFewNotes: ({ count }) => `Últimas ${count} notas`,
     },
     error: {
-      title: "No se encontró.",
+      title: "No se ha encontrado.",
       notFound: "Esta página es privada o no existe.",
       home: "Regresa a la página principal",
     },
@@ -78,7 +78,7 @@ export default {
       itemsUnderTag: ({ count }) =>
         count === 1 ? "1 artículo con esta etiqueta." : `${count} artículos con esta etiqueta.`,
       showingFirst: ({ count }) => `Mostrando las primeras ${count} etiquetas.`,
-      totalTags: ({ count }) => `Se encuentran ${count} etiquetas en total.`,
+      totalTags: ({ count }) => `Se han encontrado ${count} etiquetas en total.`,
     },
   },
 } as const satisfies Translation
