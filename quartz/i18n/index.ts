@@ -1,6 +1,5 @@
 import { Translation, CalloutTranslation } from "./locales/definition"
 import en from "./locales/en-US"
-import en from "./locales/en-GB"
 import fr from "./locales/fr-FR"
 import it from "./locales/it-IT"
 import ja from "./locales/ja-JP"
