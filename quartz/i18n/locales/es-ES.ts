@@ -65,7 +65,7 @@ export default {
     error: {
       title: "No se encontró.",
       notFound: "Esta página es privada o no existe.",
-      home: "Regresar a la página principal",
+      home: "Regresa a la página principal",
     },
     folderContent: {
       folder: "Carpeta",
