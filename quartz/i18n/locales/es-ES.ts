@@ -22,7 +22,7 @@ export default {
       quote: "Cita",
     },
     backlinks: {
-      title: "Enlaces de Retroceso",
+      title: "Retroenlace",
       noBacklinksFound: "No se han encontrado enlaces traseros",
     },
     themeToggle: {
@@ -60,7 +60,7 @@ export default {
   pages: {
     rss: {
       recentNotes: "Notas recientes",
-      lastFewNotes: ({ count }) => `Últimás ${count} notas`,
+      lastFewNotes: ({ count }) => `Últimas ${count} notas`,
     },
     error: {
       title: "No se encontró.",
@@ -78,7 +78,7 @@ export default {
       itemsUnderTag: ({ count }) =>
         count === 1 ? "1 artículo con esta etiqueta." : `${count} artículos con esta etiqueta.`,
       showingFirst: ({ count }) => `Mostrando las primeras ${count} etiquetas.`,
-      totalTags: ({ count }) => `Se encontraron ${count} etiquetas en total.`,
+      totalTags: ({ count }) => `Se encuentran ${count} etiquetas en total.`,
     },
   },
 } as const satisfies Translation
