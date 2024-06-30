@@ -27,10 +27,12 @@ export function byDateAndAlphabetical(
 
 type Props = {
   limit?: number
+  sort?: (f1: QuartzPluginData, f2: QuartzPluginData) => number
 } & QuartzComponentProps
 
-export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit }: Props) => {
-  let list = allFiles.sort(byDateAndAlphabetical(cfg))
+export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort }: Props) => {
+  const sorter = sort ?? byDateAndAlphabetical(cfg)
+  let list = allFiles.sort(sorter)
   if (limit) {
     list = list.slice(0, limit)
   }

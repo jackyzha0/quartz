@@ -3,7 +3,7 @@ import { QuartzComponentProps } from "../../components/types"
 import HeaderConstructor from "../../components/Header"
 import BodyConstructor from "../../components/Body"
 import { pageResources, renderPage } from "../../components/renderPage"
-import { ProcessedContent, defaultProcessedContent } from "../vfile"
+import { ProcessedContent, QuartzPluginData, defaultProcessedContent } from "../vfile"
 import { FullPageLayout } from "../../cfg"
 import path from "path"
 import {
@@ -21,11 +21,13 @@ import { write } from "./helpers"
 import { i18n } from "../../i18n"
 import DepGraph from "../../depgraph"
 
-export const FolderPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) => {
+export const FolderPage: QuartzEmitterPlugin<
+  Partial<FullPageLayout> & { sort?: (f1: QuartzPluginData, f2: QuartzPluginData) => number }
+> = (userOpts) => {
   const opts: FullPageLayout = {
     ...sharedPageComponents,
     ...defaultListPageLayout,
-    pageBody: FolderContent(),
+    pageBody: FolderContent({ sort: userOpts?.sort }),
     ...userOpts,
   }
 
