@@ -22,8 +22,8 @@ export default {
       quote: "Cita",
     },
     backlinks: {
-      title: "Retroenlace",
-      noBacklinksFound: "No se han encontrado enlaces traseros",
+      title: "Retroenlaces",
+      noBacklinksFound: "No se han encontrado retroenlaces",
     },
     themeToggle: {
       lightMode: "Modo claro",
