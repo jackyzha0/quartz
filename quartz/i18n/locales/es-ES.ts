@@ -22,8 +22,8 @@ export default {
       quote: "Cita",
     },
     backlinks: {
-      title: "Enlaces de Retroceso",
-      noBacklinksFound: "No se han encontrado enlaces traseros",
+      title: "Retroenlaces",
+      noBacklinksFound: "No se han encontrado retroenlaces",
     },
     themeToggle: {
       lightMode: "Modo claro",
@@ -63,9 +63,9 @@ export default {
       lastFewNotes: ({count}) => `Últimás ${count} notas`,
     },
     error: {
-      title: "No se encontró.",
+      title: "No se ha encontrado.",
       notFound: "Esta página es privada o no existe.",
-      home: "Regresar a la página principal",
+      home: "Regresa a la página principal",
     },
     folderContent: {
       folder: "Carpeta",
