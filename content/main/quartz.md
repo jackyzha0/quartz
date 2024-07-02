@@ -2,7 +2,7 @@
 title: "quartz (software)"
 author: ["Justin"]
 date: 2024-06-30T05:14:00-04:00
-lastmod: 2024-07-02T07:14:26-04:00
+lastmod: 2024-07-02T17:14:30-04:00
 draft: false
 ---
 
@@ -15,7 +15,7 @@ complement?
 Anyways I plan to use this for ideas / add-ons / goals wrt to my site too.
 
 
-## <span class="org-todo todo TODO">TODO</span> Quartz {#quartz}
+## Quartz {#quartz}
 
 -   [X] Figure out how plugins work
     -   ezpz
