@@ -16,7 +16,7 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     baseUrl: "notes.trixtertempdrive.eu.org",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    ignorePatterns: ["private", "templates", ".obsidian", "**/private"],
     defaultDateType: "created",
     theme: {
       fontOrigin: "googleFonts",
