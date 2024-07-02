@@ -3,6 +3,7 @@ import { Root } from "mdast"
 import { visit } from "unist-util-visit"
 import { toString } from "mdast-util-to-string"
 import Slugger from "github-slugger"
+import { Node } from "mdast"
 
 export interface Options {
   maxDepth: 1 | 2 | 3 | 4 | 5 | 6
@@ -42,7 +43,30 @@ export const TableOfContents: QuartzTransformerPlugin<Partial<Options> | undefin
               let highestDepth: number = opts.maxDepth
               visit(tree, "heading", (node) => {
                 if (node.depth <= opts.maxDepth) {
-                  const text = toString(node)
+                  let textContent = ""
+                  let htmlDepth = 0
+                  function handleNode(childNode: any) {
+                    //TODO: proper typing later, got annoyed
+                    if (childNode.type === "html") {
+                      if (childNode.value.includes("</")) {
+                        htmlDepth--
+                      } else if (childNode.value.includes("<")) {
+                        htmlDepth++
+                      }
+                    } else if (childNode.type === "text") {
+                      if (htmlDepth === 0) {
+                        textContent += childNode.value
+                      }
+                    } else if (childNode.type === "link" || childNode.type === "element") {
+                      childNode.children.forEach(handleNode)
+                    }
+                  }
+
+                  node.children.forEach(handleNode)
+
+                  const text = textContent.trim()
+
+                  // Adjust the depth calculations and TOC entry
                   highestDepth = Math.min(highestDepth, node.depth)
                   toc.push({
                     depth: node.depth,

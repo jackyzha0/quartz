@@ -3,6 +3,7 @@ import smartypants from "remark-smartypants"
 import { QuartzTransformerPlugin } from "../types"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
+import customRehypeSlugWrapper from "./customslug"
 
 export interface Options {
   enableSmartyPants: boolean
@@ -26,7 +27,7 @@ export const GitHubFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | 
     htmlPlugins() {
       if (opts.linkHeadings) {
         return [
-          rehypeSlug,
+          customRehypeSlugWrapper,
           [
             rehypeAutolinkHeadings,
             {

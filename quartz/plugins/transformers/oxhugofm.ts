@@ -9,9 +9,10 @@ export interface Options {
   removeHugoShortcode: boolean
   /** Replace <figure/> with ![]() */
   replaceFigureWithMdImg: boolean
-
   /** Replace org latex fragments with $ and $$ */
   replaceOrgLatex: boolean
+  /** Blah */
+  anchorTransformation: boolean
 }
 
 const defaultOptions: Options = {
@@ -20,6 +21,7 @@ const defaultOptions: Options = {
   removeHugoShortcode: true,
   replaceFigureWithMdImg: true,
   replaceOrgLatex: true,
+  anchorTransformation: false,
 }
 
 const relrefRegex = new RegExp(/\[([^\]]+)\]\(\{\{< relref "([^"]+)" >\}\}\)/, "g")
@@ -101,6 +103,19 @@ export const OxHugoFlavouredMarkdown: QuartzTransformerPlugin<Partial<Options> |
         src = src.replaceAll(quartzLatexRegex, (value) => {
           return value.replaceAll("\\_", "_")
         })
+      }
+
+      if (opts.anchorTransformation) {
+        const anchorRegex = /^(#{2,6})\s*(.+?)\s*\{#([\w-]+)\}\s*$/gm
+
+        src = src.toString()
+        src = src.replace(
+          anchorRegex,
+          (match: string, hashes: string, title: string, id: string) => {
+            const level = hashes.length
+            return `<h${level} id="${id}">${title}<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#${id}" class="internal">🔗</a></h${level}>`
+          },
+        )
       }
       return src
     },

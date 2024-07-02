@@ -8,14 +8,15 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "🌆 justin's 𝕟𝕠𝕥𝕖𝕤",
+    pageTitle: "🌆 𝕟𝕠𝕥𝕖𝕤",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
-      provider: "plausible",
+      // @ts-ignore
+      provider: "none",
     },
     locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
+    baseUrl: "notes.justin.vc",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
     theme: {
@@ -36,22 +37,33 @@ const config: QuartzConfig = {
           secondary: "#284b63",
           tertiary: "#84a59d",
           highlight: "rgba(143, 159, 169, 0.15)",
+          orgh2: "#c54f72" /* Darker shade of light pink */,
+          orgh3: "#d47c50" /* Darker shade of peach */,
+          orgh4: "#cf9f6d" /* Muted pale yellow */,
+          orgh5: "#77b28c" /* Darker shade of light green */,
+          orgh6: "#5691c8" /* Darker shade of sky blue */,
         },
         darkMode: {
-          light: "#282a36", // background color
-          lightgray: "#44475a", // current line
-          gray: "#6272a4", // comment
-          darkgray: "#f8f8f2", // foreground text
-          dark: "#f8f8f2", // selection background
-          secondary: "#bd93f9", // purple
-          tertiary: "#ff79c6", // pink
-          highlight: "rgba(98, 114, 164, 0.15)", // subtle highlight
+          light: "#1e1e2e", // background color (base)
+          lightgray: "#313244", // current line (surface0)
+          gray: "#6272a4", // comment (overlay0)
+          darkgray: "#f8f8f2", // foreground text (text)
+          dark: "#f8f8f2", // selection background (surface2)
+          secondary: "#cba6f7", // purple (mauve)
+          tertiary: "#f5c2e7", // pink (pink)
+          highlight: "rgba(108, 112, 134, 0.15)", // subtle highlight (based on overlay0)
+          orgh2: "#f38ba8" /* Light pink */,
+          orgh3: "#f4af84" /* Peach */,
+          orgh4: "#f9e2af" /* Pale yellow */,
+          orgh5: "#a6e3a1" /* Light green */,
+          orgh6: "#74c7ec" /* Sky blue */,
         },
       },
     },
   },
   plugins: {
     transformers: [
+      // Transformations
       Plugin.FrontMatter(),
       Plugin.CreatedModifiedDate({
         priority: ["frontmatter", "filesystem"],
@@ -63,19 +75,34 @@ const config: QuartzConfig = {
         },
         keepBackground: false,
       }),
-      Plugin.OxHugoFlavouredMarkdown(),
-      Plugin.GitHubFlavoredMarkdown(),
-      Plugin.TableOfContents({ showByDefault: true, collapseByDefault: false, maxDepth: 5 }),
+      Plugin.TableOfContents({
+        showByDefault: true,
+        collapseByDefault: false,
+        maxDepth: 6,
+        minEntries: 2,
+      }),
+      Plugin.OxHugoFlavouredMarkdown({
+        removePredefinedAnchor: true,
+        anchorTransformation: false,
+      }),
+      Plugin.ObsidianFlavoredMarkdown(),
+      Plugin.GitHubFlavoredMarkdown({
+        enableSmartyPants: true,
+        linkHeadings: true,
+      }),
       Plugin.CrawlLinks({
-        markdownLinkResolution: "absolute",
         openLinksInNewTab: true,
-        lazyLoad: true,
+        lazyLoad: false,
       }),
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
     ],
-    filters: [Plugin.RemoveDrafts()],
+    filters: [
+      // Filters
+      Plugin.RemoveDrafts(),
+    ],
     emitters: [
+      // Emitters
       Plugin.AliasRedirects(),
       Plugin.ComponentResources(),
       Plugin.ContentPage(),

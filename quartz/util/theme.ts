@@ -7,6 +7,11 @@ export interface ColorScheme {
   secondary: string
   tertiary: string
   highlight: string
+  orgh2: string
+  orgh3: string
+  orgh4: string
+  orgh5: string
+  orgh6: string
 }
 
 interface Colors {
@@ -53,6 +58,12 @@ ${stylesheet.join("\n\n")}
   --headerFont: "${theme.typography.header}", ${DEFAULT_SANS_SERIF};
   --bodyFont: "${theme.typography.body}", ${DEFAULT_SANS_SERIF};
   --codeFont: "${theme.typography.code}", ${DEFAULT_MONO};
+
+  --orgh2: ${theme.colors.lightMode.orgh2};
+  --orgh3: ${theme.colors.lightMode.orgh3};
+  --orgh4: ${theme.colors.lightMode.orgh4};
+  --orgh5: ${theme.colors.lightMode.orgh5};
+  --orgh6: ${theme.colors.lightMode.orgh6};
 }
 
 :root[saved-theme="dark"] {
@@ -64,6 +75,11 @@ ${stylesheet.join("\n\n")}
   --secondary: ${theme.colors.darkMode.secondary};
   --tertiary: ${theme.colors.darkMode.tertiary};
   --highlight: ${theme.colors.darkMode.highlight};
-}
+
+  --orgh2: ${theme.colors.darkMode.orgh2};
+  --orgh3: ${theme.colors.darkMode.orgh3};
+  --orgh4: ${theme.colors.darkMode.orgh4};
+  --orgh5: ${theme.colors.darkMode.orgh5};
+  --orgh6: ${theme.colors.darkMode.orgh6};
 `
 }

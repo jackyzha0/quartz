@@ -10,6 +10,8 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
