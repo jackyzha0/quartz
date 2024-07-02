@@ -57,18 +57,16 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all history for git info
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18.14
+      - uses: actions/setup-node@v4
       - name: Install Dependencies
         run: npm ci
       - name: Build Quartz
         run: npx quartz build
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: public
 
@@ -81,7 +79,7 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
 ```
 
 Then:
@@ -182,35 +180,31 @@ Using `docs.example.com` is an example of a subdomain. They're a simple way of c
 
 ## GitLab Pages
 
-In your local Quartz, create a new file `.gitlab-ci.yaml`.
+In your local Quartz, create a new file `.gitlab-ci.yml`.
 
-```yaml title=".gitlab-ci.yaml"
+```yaml title=".gitlab-ci.yml"
 stages:
   - build
   - deploy
 
-variables:
-  NODE_VERSION: "18.14"
+image: node:18
+cache: # Cache modules in between jobs
+  key: $CI_COMMIT_REF_SLUG
+  paths:
+    - .npm/
 
 build:
   stage: build
   rules:
     - if: '$CI_COMMIT_REF_NAME == "v4"'
   before_script:
-    - apt-get update -q && apt-get install -y nodejs npm
-    - npm install -g n
-    - n $NODE_VERSION
     - hash -r
-    - npm ci
+    - npm ci --cache .npm --prefer-offline
   script:
     - npx quartz build
   artifacts:
     paths:
       - public
-  cache:
-    paths:
-      - ~/.npm/
-    key: "${CI_COMMIT_REF_SLUG}-node-${CI_COMMIT_REF_NAME}"
   tags:
     - docker
 
