@@ -25,6 +25,7 @@ export interface Options {
   wikilinks: boolean
   callouts: boolean
   mermaid: boolean
+  quotebacks: boolean
   parseTags: boolean
   parseArrows: boolean
   parseBlockReferences: boolean
@@ -40,6 +41,7 @@ const defaultOptions: Options = {
   wikilinks: true,
   callouts: true,
   mermaid: true,
+  quotebacks: true,
   parseTags: true,
   parseArrows: true,
   parseBlockReferences: true,
@@ -706,6 +708,32 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               await mermaid.run({
                 querySelector: '.mermaid'
               })
+            }
+          });
+          `,
+          loadTime: "afterDOMReady",
+          moduleType: "module",
+          contentType: "inline",
+        })
+      }
+
+      if (opts.quotebacks) {
+        js.push({
+          script: `
+          document.addEventListener('nav', async () => {
+            if (document.querySelector("blockquote.quoteback")) {
+              if (!customElements.get('quoteback-component')) {
+                const script = document.createElement('script');
+                script.src = '/static/js/quoteback.js';
+                document.body.appendChild(script);
+                
+                script.onload = () => {
+                  // The script will automatically process quoteback elements when loaded
+                };
+              } else {
+                // Manually trigger the DOMContentLoaded event to process new quotebacks
+                document.dispatchEvent(new Event('DOMContentLoaded'));
+              }
             }
           });
           `,

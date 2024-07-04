@@ -4,13 +4,13 @@ title: Index
 
 <div style="display: flex; align-items: flex-start; justify-content: space-between; width: 100%;">
   <div style="flex: 4; min-width: 0; padding-right: 25px;">
-    <blockquote class="quoteback" darkmode="true" data-title="STUDY A GO!!GO!! 歌詞 GOLDEN GIRLS ふりがな付 - うたてん" data-author="@utaten" cite="https://soundcloud.com/softwarevibes/golden-boy-ost-ending">
+    <blockquote class="quoteback" data-title="STUDY A GO!!GO!! 歌詞 GOLDEN GIRLS ふりがな付 - うたてん" data-author="@utaten" cite="https://soundcloud.com/softwarevibes/golden-boy-ost-ending">
       袖そでまくり たすきがけ
       鉢巻はちまきしめて がんばって<br>
       疲つかれたら お茶ちゃにして
       少すこしずつ良よくなるよ お勉強べんきょう
       <footer>@utaten<cite> <a href="https://utaten.com/lyric/to16060309/">https://utaten.com/lyric/to16060309/</a></cite></footer>
-    </blockquote>
+    </blockquote><script note="" src="/static/js/quoteback.js"></script>
   </div>
   <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
     <p style="width: 100%; text-align: center; margin-bottom: 10px; font-weight: 1000;">Please don't strongly interpret the dot!</p>

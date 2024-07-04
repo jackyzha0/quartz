@@ -29,9 +29,15 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
       let segment = ""
 
       if (fileData.dates?.created) {
-        segment += `Created: ${formatDate(getDate(cfg, fileData)!, cfg.locale)}`
-        if (fileData.frontmatter?.lastmod) {
-          segment += ` ⮕ Modified: ${formatDate(getDate(cfg, fileData, "modified")!, cfg.locale)}`
+        const createdDate = formatDate(getDate(cfg, fileData)!, cfg.locale)
+        const modifiedDate = fileData.frontmatter?.lastmod
+          ? formatDate(getDate(cfg, fileData, "modified")!, cfg.locale)
+          : null
+
+        segment += `Created: ${createdDate}`
+
+        if (modifiedDate && createdDate !== modifiedDate) {
+          segment += ` ⮕ Modified: ${modifiedDate}`
         }
       }
 
