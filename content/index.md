@@ -10,7 +10,7 @@ title: Index
       疲つかれたら お茶ちゃにして
       少すこしずつ良よくなるよ お勉強べんきょう
       <footer>@utaten<cite> <a href="https://utaten.com/lyric/to16060309/">https://utaten.com/lyric/to16060309/</a></cite></footer>
-    </blockquote><script note="" src="/static/js/quoteback.js"></script>
+    </blockquote><script note="" src="https://cdn.jsdelivr.net/gh/brickfrog/notes.justin.vc@master/quartz/static/js/quoteback.js"></script>
   </div>
   <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
     <p style="width: 100%; text-align: center; margin-bottom: 10px; font-weight: 1000;">Please don't strongly interpret the dot!</p>

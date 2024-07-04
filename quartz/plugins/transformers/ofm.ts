@@ -39,7 +39,7 @@ const defaultOptions: Options = {
   comments: true,
   highlight: true,
   wikilinks: true,
-  callouts: true,
+  callouts: false,
   mermaid: true,
   quotebacks: true,
   parseTags: true,
@@ -720,11 +720,11 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
       if (opts.quotebacks) {
         js.push({
           script: `
-          document.addEventListener('nav', async () => {
+          function initializeQuotebacks() {
             if (document.querySelector("blockquote.quoteback")) {
               if (!customElements.get('quoteback-component')) {
                 const script = document.createElement('script');
-                script.src = '/static/js/quoteback.js';
+                script.src = 'https://cdn.jsdelivr.net/gh/brickfrog/notes.justin.vc@master/quartz/static/js/quoteback.js';
                 document.body.appendChild(script);
                 
                 script.onload = () => {
@@ -735,7 +735,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 document.dispatchEvent(new Event('DOMContentLoaded'));
               }
             }
-          });
+          }
+      
+          document.addEventListener('DOMContentLoaded', initializeQuotebacks);
+          document.addEventListener('nav', initializeQuotebacks);
           `,
           loadTime: "afterDOMReady",
           moduleType: "module",

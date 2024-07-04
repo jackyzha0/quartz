@@ -254,7 +254,6 @@ function applyQuotebackStyles() {
 
   for (var item = 0; item < index.length; item++) {
     // remove the footer element
-    console.log(index[item])
     index[item].removeChild(index[item].querySelector("footer"))
 
     var text = index[item].innerHTML
@@ -310,8 +309,6 @@ function applyQuotebackStyles() {
       }
 
       connectedCallback() {
-        console.info("connected")
-
         this.updateTheme()
         this.shadowRoot.querySelector(".quoteback-content").innerHTML = decodeURIComponent(
           this.getAttribute("text"),
