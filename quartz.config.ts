@@ -1,4 +1,4 @@
-import { QuartzConfig } from "./quartz/cfg";
+import type { QuartzConfig } from "./quartz/cfg";
 import * as Plugin from "./quartz/plugins";
 
 /**
@@ -66,9 +66,9 @@ const config: QuartzConfig = {
 	},
 	plugins: {
 		transformers: [
-			Plugin.FrontMatter(),
+			Plugin.FrontMatter({}),
 			Plugin.CreatedModifiedDate({
-				priority: ["frontmatter", "filesystem"],
+				priority: ["filesystem", "frontmatter"],
 			}),
 			Plugin.SyntaxHighlighting({
 				theme: {
