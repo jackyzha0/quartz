@@ -7,6 +7,8 @@ export const mapFn: Options["mapFn"] = (node) => {
     if (node.file) {
       if (node.file.relativePath?.includes("daily/")) {
         node.displayName = "🗓️ " + node.displayName
+      } else if (node.name == "movies") {
+        node.displayName = "🎬 " + node.displayName
       } else {
         node.displayName = "📄 " + node.displayName
       }

@@ -93,24 +93,35 @@ p.timestamp-wrapper {
 }
 
 /* Org Mode Header Vibes */
-
-
-/* General styling for outline containers within .jvc */
-.jvc div.jvc {
-  margin-left: 5px;
+/* Variables */
+:root {
+  --base-indent: 20px;
+  --heading-indent: 15px;
+  --base-font-size: 1em;
+  --base-margin: 10px;
+  --base-padding: 5px;
 }
 
-.jvc ul {
-  margin-top: 0;
-  margin-bottom: 0;
+/* Base styles */
+.jvc {
+  margin-left: var(--base-indent);
+}
+
+.jvc div.jvc {
+  margin-left: var(--base-padding);
+}
+
+/* Headings */
+.jvc h2, .jvc h3, .jvc h4, .jvc h5, .jvc h6 {
+  margin-top: var(--base-margin);
+  margin-bottom: var(--base-margin);
 }
 
 .jvc h2 {
   font-size: 1.5em;
-  padding-left: 0em;
+  margin-left: 0;
+  padding-left: 0;
   color: var(--orgh2);
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 .jvc h2::before {
   content: "○ ";
@@ -118,32 +129,39 @@ p.timestamp-wrapper {
 
 .jvc h3 {
   font-size: 1.4em;
-  padding-left: 1em;
+  margin-left: var(--heading-indent);
+  padding-left: 0;
   color: var(--orgh3);
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 .jvc h3::before {
   content: "◆ ";
 }
 
+/* Adjust content under h3 */
+.jvc h3 + * {
+  margin-left: calc(var(--heading-indent) * 2);
+}
+
 .jvc h4 {
   font-size: 1.3em;
-  padding-left: 1.25em;
+  margin-left: calc(var(--heading-indent) * 2);
+  padding-left: 0;
   color: var(--orgh4);
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 .jvc h4::before {
   content: "▲ ";
 }
 
+/* Adjust content under h4 */
+.jvc h4 + * {
+  margin-left: calc(var(--heading-indent) * 3);
+}
+
 .jvc h5 {
   font-size: 1.2em;
-  padding-left: 1.5em;
+  margin-left: calc(var(--heading-indent) * 3);
+  padding-left: 0;
   color: var(--orgh5);
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 .jvc h5::before {
   content: "■ ";
@@ -151,68 +169,73 @@ p.timestamp-wrapper {
 
 .jvc h6 {
   font-size: 1.1em;
-  padding-left: 2em;
+  margin-left: calc(var(--heading-indent) * 4);
+  padding-left: 0;
   color: var(--orgh6);
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
-
 .jvc h6::before {
   content: "● ";
 }
 
+/* Lists */
 .jvc ul, .jvc ol {
-  list-style-position: outside; 
-  margin-left: 0px; 
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding-left: var(--base-indent);
+  list-style-position: outside;
 }
 
-.jvc li > p {
-  margin-top: 5px;
-  margin-bottom: 5px;
+.jvc ul li, .jvc ol li {
+  margin-bottom: 0.3em;
 }
 
-.jvc li > ul {
-  margin-top: 5px;
-  margin-bottom: 5px;
+.jvc ul ul, .jvc ul ol, .jvc ol ul, .jvc ol ol {
+  padding-left: var(--heading-indent);
 }
 
-.jvc ul > li:first-child, .jvc ol > li:first-child {
-  margin-left: 15px; }
-
-.jvc ul.contains-task-list > li:first-child, 
-.jvc ol.contains-task-list > li:first-child {
-    margin-left: 0; /* Adjust as needed, maybe 0 or another value */
-  }
-
+/* Task lists */
 .jvc .contains-task-list {
-  margin-left: 15px;
+  padding-left: 0;
+  margin-left: calc(var(--heading-indent) * 2); /* Adjust this multiplier as needed */
 }
 
-.jvc ul ul {
-  margin-left: -40px;
+.jvc .contains-task-list .task-list-item {
+  position: relative;
+  padding-left: 1.5em; /* Space for checkbox */
+  margin-bottom: 0.5em;
 }
 
-.outline-5 ul, .outline-5 ol {
-  margin-left: -15px; }
+/* Nested task lists */
+.jvc .contains-task-list .contains-task-list {
+  margin-left: var(--heading-indent);
+}
 
+/* Paragraphs */
 .jvc > p {
-  padding-left: 2.25em;   
-  margin-top: 0.25em;
-  margin-bottom: 0.25em;
+  padding-left: var(--heading-indent);
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
-.jvc > li {
-  padding-left: 2em;
+.jvc > p::before {
+  content: "● ";
+  padding-right: 5px;
+  font-size: 12px;
 }
-
-.jvc p::before {
-  content: "● ";   padding-right: 5px; }
 
 .jvc li p::before {
-  content: ''; }
+  content: '';
+}
+
+/* Outline-5 specific styles */
+.outline-5 ul, .outline-5 ol {
+  margin-left: -15px;
+}
 
 .outline-5 p::before {
-  content: "◆ ";   padding-right: 5px;   font-size: 10px;
+  content: "◆ ";
+  padding-right: 5px;
+  font-size: 8px;
 }
 
 .outline-5 ul p::before,
@@ -220,22 +243,30 @@ p.timestamp-wrapper {
 .outline-5 ul ul ul p::before,
 .outline-5 ul ul ul ul p::before,
 .outline-5 ul ul ul ul ul p::before {
-  content: "◆ ";   font-size: 8px;
-  list-style-type: none; }
+  content: "◆ ";
+  font-size: 8px;
+}
 
 .outline-5 li {
-  list-style-type: none; }
+  list-style-type: none;
+}
 
-/* EOF */
+/* Superscript */
+sup {
+  margin-left: 2px;
+}
 
+/* EOF marker */
 article.popover-hint::after {
   content: "— EOF —";
-  font-family: 'Courier New', monospace; /* Ensures a monospace font for stylistic consistency */
+  font-family: 'Courier New', monospace;
   font-size: 0.9em;
   color: #666;
   margin-top: 1em;
   display: block;
   text-align: center;
   padding-top: 0.5em;
-  padding-bottom: 1em; /* Adds a little space below the EOF marker */
+  padding-bottom: 1em;
 }
+
+/* Quotebacks */

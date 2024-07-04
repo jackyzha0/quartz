@@ -8,7 +8,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "🌆 𝕟𝕠𝕥𝕖𝕤",
+    pageTitle: "𝕟𝕠𝕥𝕖𝕤| justin.vc",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
@@ -37,11 +37,11 @@ const config: QuartzConfig = {
           secondary: "#284b63",
           tertiary: "#84a59d",
           highlight: "rgba(143, 159, 169, 0.15)",
-          orgh2: "#c54f72" /* Darker shade of light pink */,
-          orgh3: "#d47c50" /* Darker shade of peach */,
-          orgh4: "#cf9f6d" /* Muted pale yellow */,
-          orgh5: "#77b28c" /* Darker shade of light green */,
-          orgh6: "#5691c8" /* Darker shade of sky blue */,
+          orgh2: "#4CAF50" /* Soft Green */,
+          orgh3: "#2196F3" /* Moderate Blue */,
+          orgh4: "#9C27B0" /* Medium Purple */,
+          orgh5: "#FF9800" /* Warm Orange */,
+          orgh6: "#795548" /* Soft Brown */,
         },
         darkMode: {
           light: "#1e1e2e", // background color (base)

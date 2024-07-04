@@ -2,7 +2,7 @@
 title: "quartz (software)"
 author: ["Justin"]
 date: 2024-06-30T05:14:00-04:00
-lastmod: 2024-07-02T17:14:30-04:00
+lastmod: 2024-07-02T17:17:08-04:00
 draft: false
 ---
 
@@ -25,7 +25,7 @@ Anyways I plan to use this for ideas / add-ons / goals wrt to my site too.
         doesn't exist on the quartz side
     -   [ ] Maybe some CSS header movement, make it look more org-like, bullets,
         etc. - give it my own vibe
--   [ ] The big issue with this is how do I stop remark from screwing with the html,
+-   The big issue with this is how do I stop remark from screwing with the html,
     it basically strips out half the stuff ox-hugo does.
 -   [X] Figure out why sort / emojis don't work inside folders
     -   Okay, that was me being dumb and not noticing it used two explorers,
