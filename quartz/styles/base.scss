@@ -1,11 +1,7 @@
 @use "./variables.scss" as *;
 @use "./syntax.scss";
 @use "./callouts.scss";
-// @use "custom";
 
-* {
-  scrollbar-width: thin;
-}
 html {
   scroll-behavior: smooth;
   text-size-adjust: none;
@@ -47,20 +43,8 @@ ul,
 .math {
   color: var(--darkgray);
   fill: var(--darkgray);
-  hyphens: auto;
-}
-
-p,
-ul,
-text,
-a,
-li,
-ol,
-ul,
-.katex,
-.math {
   overflow-wrap: anywhere;
-  /* tr and td removed from list of selectors for overflow-wrap, allowing them to use default 'normal' property value */
+  hyphens: auto;
 }
 
 .math {
@@ -69,12 +53,8 @@ ul,
   }
 }
 
-strong {
-  font-weight: $semiBoldWeight;
-}
-
 a {
-  font-weight: $semiBoldWeight;
+  font-weight: $boldWeight;
   text-decoration: none;
   transition: color 0.2s ease;
   color: var(--secondary);
@@ -94,11 +74,6 @@ a {
       background-color: none;
       border-radius: 0;
       padding: 0;
-    }
-    &.tag-link {
-      &::before {
-        content: "#";
-      }
     }
   }
 
@@ -179,7 +154,7 @@ a {
       position: fixed;
       @media all and (max-width: $fullPageWidth) {
         position: initial;
-        flex-direction: column;
+        flex-direction: row;
         padding: 0;
         width: initial;
         margin-top: 2rem;
@@ -284,9 +259,11 @@ thead {
   font-weight: revert;
   margin-bottom: 0;
 
-  article > & > a[role="anchor"] {
+  article > & > a {
     color: var(--dark);
-    background-color: transparent;
+    &.internal {
+      background-color: transparent;
+    }
   }
 }
 
@@ -497,10 +474,6 @@ video {
   flex: 1 1 auto;
 }
 
-div:has(> .overflow) {
-  position: relative;
-}
-
 ul.overflow,
 ol.overflow {
   max-height: 400;
@@ -532,9 +505,4 @@ ol.overflow {
   ul {
     padding-left: 1rem;
   }
-}
-
-.katex-display {
-  overflow-x: auto;
-  overflow-y: hidden;
 }
