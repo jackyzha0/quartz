@@ -1,5 +1,11 @@
 import { Options } from "./quartz/components/ExplorerNode"
 
+const toTitleCase = (str: string): string => {
+  return str.replace(/\w\S*/g, (txt: string): string => {
+    return txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()
+  })
+}
+
 export const mapFn: Options["mapFn"] = (node) => {
   node.displayName = node.displayName.toLowerCase()
 
@@ -13,7 +19,7 @@ export const mapFn: Options["mapFn"] = (node) => {
         node.displayName = "📄 " + node.displayName
       }
     } else {
-      node.displayName = "📁 " + node.displayName
+      node.displayName = "📁 " + toTitleCase(node.displayName)
     }
   }
 }

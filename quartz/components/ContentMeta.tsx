@@ -20,24 +20,51 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
   // Merge options with defaults
   const options: ContentMetaOptions = { ...defaultOptions, ...opts }
 
+  function getGithubLink(filePath: string): string {
+    const githubBaseUrl = "https://raw.githubusercontent.com/brickfrog/notes.justin.vc/v4/"
+    return `${githubBaseUrl}${filePath}`
+  }
+
   function ContentMetadata({ cfg, fileData, displayClass }: QuartzComponentProps) {
     const text = fileData.text
 
     if (text) {
       const segments: (string | JSX.Element)[] = []
 
-      let segment = ""
+      let segment: JSX.Element | null = null
 
       if (fileData.dates?.created) {
         const createdDate = formatDate(getDate(cfg, fileData)!, cfg.locale)
-        const modifiedDate = fileData.frontmatter?.lastmod
-          ? formatDate(getDate(cfg, fileData, "modified")!, cfg.locale)
-          : null
+        const githubLink = fileData.filePath ? getGithubLink(fileData.filePath) : "#"
 
-        segment += `Created: ${createdDate}`
+        const createdDateSegment = (
+          <a href={githubLink} title="This is the date the note was created.">
+            {createdDate}
+          </a>
+        )
 
-        if (modifiedDate && createdDate !== modifiedDate) {
-          segment += ` ⮕ Modified: ${modifiedDate}`
+        if (fileData.frontmatter?.lastmod) {
+          const modifiedDate = formatDate(getDate(cfg, fileData, "modified")!, cfg.locale)
+          if (createdDate !== modifiedDate) {
+            const createdDateSegment = (
+              <span title="This is the date the note was created.">{createdDate}</span>
+            )
+
+            const modifiedDateSegment = (
+              <a href={githubLink} title="The date of the last modification.">
+                {modifiedDate}
+              </a>
+            )
+            segment = (
+              <span>
+                {createdDateSegment}–{modifiedDateSegment}
+              </span>
+            )
+          } else {
+            segment = createdDateSegment
+          }
+        } else {
+          segment = createdDateSegment
         }
       }
 

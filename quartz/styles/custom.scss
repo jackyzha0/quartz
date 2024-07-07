@@ -113,75 +113,82 @@ p.timestamp-wrapper {
 
 /* Headings */
 .jvc h2, .jvc h3, .jvc h4, .jvc h5, .jvc h6 {
+  font-size: 1.0em;
   margin-top: var(--base-margin);
   margin-bottom: var(--base-margin);
 }
 
 .jvc h2 {
-  font-size: 1.5em;
   margin-left: 0;
   padding-left: 0;
   color: var(--orgh2);
 }
 .jvc h2::before {
-  content: "○ ";
+  content: "◉ ";
 }
 
 .jvc h3 {
-  font-size: 1.4em;
   margin-left: var(--heading-indent);
   padding-left: 0;
   color: var(--orgh3);
 }
 .jvc h3::before {
-  content: "◆ ";
+  content: "◎ ";
 }
 
+/* Adjust content under h2 */
+
+.jvc h2 + ul {
+  margin-left: calc(var(--heading-indent) * 1);
+}
+
+
 /* Adjust content under h3 */
-.jvc h3 + * {
+.jvc h3 + p {
+  margin-left: calc(var(--heading-indent) * 1);
+}
+
+.jvc h3 + ul {
   margin-left: calc(var(--heading-indent) * 2);
 }
 
+/* Adjust content under h4 */
 .jvc h4 {
-  font-size: 1.3em;
   margin-left: calc(var(--heading-indent) * 2);
   padding-left: 0;
   color: var(--orgh4);
 }
 .jvc h4::before {
-  content: "▲ ";
+  content: "◈ ";
 }
 
-/* Adjust content under h4 */
 .jvc h4 + * {
   margin-left: calc(var(--heading-indent) * 3);
 }
 
 .jvc h5 {
-  font-size: 1.2em;
   margin-left: calc(var(--heading-indent) * 3);
   padding-left: 0;
   color: var(--orgh5);
 }
 .jvc h5::before {
-  content: "■ ";
+  content: "❀ ";
 }
 
 .jvc h6 {
-  font-size: 1.1em;
   margin-left: calc(var(--heading-indent) * 4);
   padding-left: 0;
   color: var(--orgh6);
 }
 .jvc h6::before {
-  content: "● ";
+  content: "◇ ";
 }
 
 /* Lists */
 .jvc ul, .jvc ol {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  padding-left: var(--base-indent);
+  padding-left: calc(var(--base-indent) + 0px);
   list-style-position: outside;
 }
 
@@ -218,10 +225,11 @@ p.timestamp-wrapper {
 }
 
 .jvc > p::before {
-  content: "● ";
+  content: "► ";
   padding-right: 5px;
   font-size: 12px;
 }
+
 
 .jvc li p::before {
   content: '';
@@ -269,4 +277,10 @@ article.popover-hint::after {
   padding-bottom: 1em;
 }
 
-/* Quotebacks */
+/* Metadata */
+
+p.content-meta a {
+  /* your styles here */
+  color: var(--gray); /* example: change link color */
+  text-decoration: underline; /* example: underline on hover */
+}
