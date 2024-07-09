@@ -1,13 +1,15 @@
 .content-meta {
-  margin-top: 0;
+  font-weight: bold;
+  margin-top: 0.25em;
   color: var(--gray);
 
   &[show-comma="true"] {
     > span:not(:last-child) {
-      margin-right: 8px;
+      margin-right: 0.75em;
 
       &::after {
-        content: ",";
+        content: "·";
+        margin-left: 0.75em;
       }
     }
   }

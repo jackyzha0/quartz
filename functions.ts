@@ -1,8 +1,32 @@
 import { Options } from "./quartz/components/ExplorerNode"
 
 const toTitleCase = (str: string): string => {
-  return str.replace(/\w\S*/g, (txt: string): string => {
-    return txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()
+  const exceptions = [
+    "of",
+    "and",
+    "in",
+    "the",
+    "with",
+    "on",
+    "at",
+    "by",
+    "from",
+    "to",
+    "a",
+    "an",
+    "for",
+  ]
+
+  return str.replace(/\b\w+(-\w+)*\b/g, (txt: string): string => {
+    return txt
+      .split("-")
+      .map((word, index) => {
+        if (exceptions.includes(word.toLowerCase()) && index !== 0) {
+          return word.toLowerCase()
+        }
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      })
+      .join("-")
   })
 }
 
@@ -13,10 +37,14 @@ export const mapFn: Options["mapFn"] = (node) => {
     if (node.file) {
       if (node.file.relativePath?.includes("daily/")) {
         node.displayName = "🗓️ " + node.displayName
+      }
+      if (node.file.relativePath?.includes("references/")) {
+        const parts = node.file.frontmatter?.title?.split("::") ?? []
+        node.displayName = "📚 " + (parts.length > 1 ? parts[1].trim() : parts[0]?.trim() || "")
       } else if (node.name == "movies") {
-        node.displayName = "🎬 " + node.displayName
+        node.displayName = "🎬 " + node.file.frontmatter?.title
       } else {
-        node.displayName = "📄 " + node.displayName
+        node.displayName = "📄 " + node.file.frontmatter?.title
       }
     } else {
       node.displayName = "📁 " + toTitleCase(node.displayName)

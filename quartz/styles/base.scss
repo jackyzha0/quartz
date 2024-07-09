@@ -131,7 +131,7 @@ a {
 
   & article {
     & > h1 {
-      font-size: 1.75rem;
+      font-size: 1.65rem;
     }
 
     & li:has(> input[type="checkbox"]) {
@@ -413,7 +413,7 @@ pre {
 }
 
 code {
-  font-size: 0.9em;
+  font-size: 1.0em;
   color: var(--dark);
   font-family: var(--codeFont);
   border-radius: 5px;

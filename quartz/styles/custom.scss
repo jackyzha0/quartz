@@ -47,7 +47,7 @@
 
 .tag {
   float: right;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--theme);
 }
 
@@ -103,6 +103,7 @@ p.timestamp-wrapper {
 }
 
 /* Base styles */
+
 .jvc {
   margin-left: var(--base-indent);
 }
@@ -277,10 +278,72 @@ article.popover-hint::after {
   padding-bottom: 1em;
 }
 
-/* Metadata */
+/* Metadata + Title */
+
+.article-title {
+  font-size: 1.15em;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  }
 
 p.content-meta a {
-  /* your styles here */
-  color: var(--gray); /* example: change link color */
-  text-decoration: underline; /* example: underline on hover */
+  color: var(--gray); 
+  text-decoration: underline;
+}
+
+/* Explorer */
+
+#explorer-content {
+  font-size: 0.9em;
+}
+
+/* Details */
+
+details {
+  border: 1px solid var(--lightgray);
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: var(--light);
+  transition: all 0.3s ease-in-out;
+}
+
+/* style the summary element */
+summary {
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 0;
+  color: var(--darkgray);
+  outline: none;
+}
+
+/* add a transition effect for the summary element when focused */
+summary:focus {
+  color: var(--secondary);
+  outline: none;
+}
+
+/* add a hover effect for the summary element */
+summary:hover {
+  color: var(--secondary);
+}
+
+/* additional style for the details content */
+details[open] {
+  border-color: var(--secondary);
+  background-color: var(--highlight);
+}
+
+/* optional: add an icon before the summary text */
+summary::before {
+  content: "➕ ";
+  font-size: 0.8em;
+  margin-right: 5px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* rotate the icon when the details element is open */
+details[open] summary::before {
+  transform: rotate(45deg);
+  content: "➖ ";
 }

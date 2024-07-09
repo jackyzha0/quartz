@@ -25,7 +25,7 @@ const config: QuartzConfig = {
       typography: {
         header: "Open Sans",
         body: "Open Sans",
-        code: "Space Mono",
+        code: "Roboto Mono",
       },
       colors: {
         lightMode: {
@@ -70,10 +70,10 @@ const config: QuartzConfig = {
       }),
       Plugin.SyntaxHighlighting({
         theme: {
-          light: "github-light",
-          dark: "dracula",
+          light: "catppuccin-latte",
+          dark: "tokyo-night",
         },
-        keepBackground: false,
+        keepBackground: true,
       }),
       Plugin.TableOfContents({
         showByDefault: true,

@@ -28,3 +28,5 @@ Before this I was planning on doing some mass exports with a doomscript but I fo
 Most of these will be just random things I'm reading, I think. I still need to figure out a good way to do a slip-box. I have a org server extension I can send links to but I forget to do it. Same with pocket (non-open source reasons aside, the emacs package works well)
 
 - [Daily Notes](/daily/)
+- [Main](/main/)
+- [References](/references/)

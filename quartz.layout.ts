@@ -19,12 +19,18 @@ export const sharedPageComponents: SharedLayout = {
 // components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
-    Component.Breadcrumbs({ rootName: "Index" }),
+    Component.CollapsibleHeaders(),
+    Component.Breadcrumbs({
+      rootName: "Index",
+      showCurrentPage: false,
+    }),
     Component.ArticleTitle(),
+    Component.TagList(),
     Component.ContentMeta({
       showReadingTime: false,
+      showFootnoteLink: true,
+      showComma: true,
     }),
-    Component.TagList(),
   ],
   left: [
     Component.PageTitle(),
@@ -33,6 +39,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Darkmode(),
     Component.DesktopOnly(
       Component.Explorer({
+        title: "Notes",
         mapFn: mapFn,
         sortFn: sortFn,
       }),

@@ -8,11 +8,15 @@ import style from "./styles/contentMeta.scss"
 
 interface ContentMetaOptions {
   showReadingTime: boolean
+  showBacklinkLink: boolean
+  showFootnoteLink: boolean
   showComma: boolean
 }
 
 const defaultOptions: ContentMetaOptions = {
   showReadingTime: true,
+  showBacklinkLink: true,
+  showFootnoteLink: true,
   showComma: true,
 }
 
@@ -79,6 +83,26 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
           minutes: Math.ceil(minutes),
         })
         segments.push(displayedTime)
+      }
+
+      // Display link to footnotes if enabled
+      if (options.showFootnoteLink) {
+        const footnoteLinkSegment = (
+          <a href="#footnotes" title="Convenience link to the footnotes.">
+            footnotes
+          </a>
+        )
+        segments.push(footnoteLinkSegment)
+      }
+
+      // Display link to backlinks if enabled
+      if (options.showBacklinkLink) {
+        const backlinkSegment = (
+          <a href="#backlinks" title="Convenience link to the footnotes.">
+            backlinks
+          </a>
+        )
+        segments.push(backlinkSegment)
       }
 
       const segmentsElements = segments.map((segment) => <span>{segment}</span>)
