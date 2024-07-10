@@ -20,11 +20,10 @@ section {
 }
 
 .text-highlight {
-  background-color: #fff23688;
+  background-color: var(--textHighlight);
   padding: 0 0.1rem;
   border-radius: 5px;
 }
-
 ::selection {
   background: color-mix(in srgb, var(--tertiary) 60%, rgba(255, 255, 255, 0));
   color: var(--darkgray);
