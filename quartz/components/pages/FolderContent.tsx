@@ -2,19 +2,18 @@ import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } fro
 import path from "path"
 
 import style from "../styles/listPage.scss"
-import { PageList } from "../PageList"
+import { PageList, SortFn } from "../PageList"
 import { stripSlashes, simplifySlug } from "../../util/path"
 import { Root } from "hast"
 import { htmlToJsx } from "../../util/jsx"
 import { i18n } from "../../i18n"
-import { QuartzPluginData } from "../../plugins/vfile"
 
 interface FolderContentOptions {
   /**
    * Whether to display number of folders
    */
   showFolderCount: boolean
-  sort?: (f1: QuartzPluginData, f2: QuartzPluginData) => number
+  sort?: SortFn
 }
 
 const defaultOptions: FolderContentOptions = {

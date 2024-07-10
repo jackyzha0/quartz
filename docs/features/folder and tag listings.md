@@ -30,4 +30,4 @@ As with folder listings, you can also provide a description and title for a tag 
 
 ## Customization
 
-The folder listings are a functionality of the [[FolderPage]] plugin, the tag listings of the [[TagPage]] plugin. See the plugin pages for customization options.
+Quartz allows you to define a custom sort ordering for content on both page types. The folder listings are a functionality of the [[FolderPage]] plugin, the tag listings of the [[TagPage]] plugin. See the plugin pages for customization options.
