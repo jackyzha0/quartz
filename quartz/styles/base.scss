@@ -201,11 +201,19 @@ a {
     }
   }
 
-  & .page-header {
+  & .page-header,
+  & .page-footer {
     width: $pageWidth;
-    margin: $topSpacing auto 0 auto;
+    margin-top: 1rem;
+
     @media all and (max-width: $fullPageWidth) {
       width: initial;
+    }
+  }
+
+  & .page-header {
+    margin: $topSpacing auto 0 auto;
+    @media all and (max-width: $fullPageWidth) {
       margin-top: 2rem;
     }
   }

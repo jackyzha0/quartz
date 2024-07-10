@@ -6,6 +6,7 @@ import { mapFn, sortFn } from "./functions.ts"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
+  afterBody: [],
   footer: Component.Footer({
     links: {
       "justin.vc": "https://justin.vc",
