@@ -2,6 +2,7 @@
 draft: true
 ---
 
+<<<<<<< HEAD
 ## high priority backlog
 
 - static dead link detection
@@ -9,6 +10,8 @@ draft: true
 - note/header/block transcludes: https://help.obsidian.md/Linking+notes+and+files/Embedding+files
 - docker support
 
+=======
+>>>>>>> 4b407e7 (chore: format)
 ## misc backlog
 
 - breadcrumbs component
