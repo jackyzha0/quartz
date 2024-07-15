@@ -12,6 +12,7 @@ This plugin determines the created, modified, and published dates for a document
 This plugin accepts the following configuration options:
 
 - `priority`: The data sources to consult for date information. Highest priority first. Possible values are `"frontmatter"`, `"git"`, and `"filesystem"`. Defaults to `"frontmatter", "git", "filesystem"]`.
+- `properties`: An object specifying the frontmatter property names for `created`, `updated`, and `published` dates. Defaults to `{created: ["date"], updated: ["lastmod", "updated", "last-modified"], published: ["publishDate"],}`
 
 > [!warning]
 > If you rely on `git` for dates, make sure `defaultDateType` is set to `modified` in `quartz.config.ts`.
