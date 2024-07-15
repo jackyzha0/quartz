@@ -89,7 +89,7 @@
     "unist-util-visit": "^5.0.0",
     "vfile": "^6.0.1",
     "workerpool": "^9.1.2",
-    "ws": "^8.17.1",
+    "ws": "^8.18.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
@@ -100,7 +100,7 @@
     "@types/node": "^20.12.5",
     "@types/pretty-time": "^1.1.5",
     "@types/source-map-support": "^0.5.10",
-    "@types/ws": "^8.5.10",
+    "@types/ws": "^8.5.11",
     "@types/yargs": "^17.0.32",
     "esbuild": "^0.19.9",
     "prettier": "^3.3.2",
