@@ -1,0 +1,1 @@
+- one of the acolytes on Bayden and Kal's quest

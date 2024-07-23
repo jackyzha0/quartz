@@ -1,0 +1,1 @@
+- near [[./Hobgoblin Keep|Hobgoblin Keep]]

@@ -1,0 +1,10 @@
+- orphaned when he was young
+- orcs attacked his village
+- went to wizard school
+- ok wizard but didn't have a leg up in this world
+- no money
+- started from the bottom
+- didn't get anywhere in life
+- loved a woman named Rosie
+- orcs got her too
+- clove her in Twain

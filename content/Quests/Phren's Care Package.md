@@ -1,0 +1,8 @@
+- Get Items for [[../People/Phren|Phren]]
+	- [x] feather down bed, with pillows and a nice comforter ✅ 2024-02-02
+	- [x] literature to read, historical and drow-based literature ✅ 2024-02-02
+	- [x] magical stove which doesn't require a fuel source ✅ 2024-06-05
+		- transmuter should be able to make one
+		- maybe wizard's college in [[../Places/Bard's Gate/index|Bard's Gate]]
+	- [x] steady supply for underdark cuisine, mushrooms and deeproth ✅ 2024-07-05
+		- might be able to find some non-underdark substitutes

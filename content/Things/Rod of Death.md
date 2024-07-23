@@ -1,0 +1,4 @@
+- need to be a follower of [[../Gods/Nergal|Nergal]]
+- has power to raise the dead
+- maybe 50-100 at a time
+- bolsters strength of the raised

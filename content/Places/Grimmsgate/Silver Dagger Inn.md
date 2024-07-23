@@ -1,0 +1,2 @@
+- wooden sign out front
+- painted like a dagger

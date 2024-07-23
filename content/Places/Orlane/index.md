@@ -1,0 +1,5 @@
+- Along Stoneheart River
+- Doesn't seem as hospitable to visitors as we expected
+- Old lady sees us and closes shutters
+- [[../../People/Belba|Belba]] tells us many people disappear for a short time
+- Lots of abandoned houses

@@ -1,0 +1,5 @@
+- hyena-headed
+- 7-8 ft tall
+- enjoy rampaging and pillaging
+- strong
+- hunt in packs

@@ -1,0 +1,3 @@
+- Across the river from [[../Bostwick/index|Bostwick]]
+- Not much bigger than [[../Bostwick/index|Bostwick]]
+- [[../../People/Lord Kyle|Lord Kyle]]'s manor is not far from town

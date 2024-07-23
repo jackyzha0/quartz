@@ -1,0 +1,4 @@
+- related to dragons but don't breathe fire
+- don't get stung by their tail
+- full of poison
+- could lay low a troll if not a giant

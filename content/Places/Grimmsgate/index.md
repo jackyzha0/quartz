@@ -1,0 +1,2 @@
+- village surrounded by wooden palisades
+- 

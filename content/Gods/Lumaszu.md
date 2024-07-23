@@ -1,0 +1,3 @@
+- nightmares
+- bringer of disease, sickness, and death
+- associated with oozes

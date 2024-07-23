@@ -1,0 +1,4 @@
+- creature from shadowfield and feywild
+- use shadows to attack
+- can jump from shadow to shadow
+- sensitive to bright light

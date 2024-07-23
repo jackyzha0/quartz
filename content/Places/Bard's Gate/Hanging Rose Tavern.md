@@ -1,0 +1,4 @@
+- owned by [[Furster|Furster]]
+- popular with merchants and officials
+- served by 3 of the 9 daughters
+	- they're old enough to marry

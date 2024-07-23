@@ -1,0 +1,3 @@
+- Clean and well kept
+- 6 rooms on the upper floor
+- Dockside dining available during nice weather

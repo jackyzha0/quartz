@@ -1,0 +1,2 @@
+- sensitive to light
+- has mirror image

@@ -1,0 +1,12 @@
+- don't age as long as you're holding it
+- only 2 people have possessed
+- one is on a different plane of existence
+- story of the stone as told by [[../People/Brelyar|Brelyar]]'s legend lore
+	- [[../People/Abracadamus|Abracadamus]] forged the stone
+	- was tired of being hunted
+	- Stanley the star elf came upon it
+	- beat the traps of the mine
+	- was able to retrieve the stone
+	- Stanley the star elf ran afoul of [[../People/Larenkar|Larenkar]]
+	- now [[../People/Larenkar|Larenkar]] has the forever stone
+- probably hidden in the vault of Larenkar

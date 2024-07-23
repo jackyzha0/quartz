@@ -1,0 +1,3 @@
+- resistant to poison, acid
+- could could freeze
+- can try to envelop and drown you

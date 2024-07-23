@@ -1,0 +1,1 @@
+- book describing what to harvest from the inside and outside of various creatures

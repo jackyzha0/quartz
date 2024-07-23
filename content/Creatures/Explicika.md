@@ -1,0 +1,4 @@
+- Looks like snake with woman's head, similar to statue in basement of [[../Places/Orlane/Temple of Freya|Temple of Freya]]
+- Wants people and money
+- Can swim
+- is a Naga?

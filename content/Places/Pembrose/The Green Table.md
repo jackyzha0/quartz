@@ -1,0 +1,1 @@
+- had no rooms available

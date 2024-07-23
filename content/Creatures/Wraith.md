@@ -1,0 +1,2 @@
+- physical damage is less effective
+- immune to necrotic damage

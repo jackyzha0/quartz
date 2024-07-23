@@ -1,0 +1,4 @@
+- glyph on huts says
+	- seekers of knowledge are welcome
+	- seekers of wealth beware
+- skulls are on fenceposts that are actually spinal columns

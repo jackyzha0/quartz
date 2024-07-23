@@ -1,0 +1,2 @@
+- regenerates
+- acid or fire can stop regenerate

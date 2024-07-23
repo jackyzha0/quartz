@@ -1,0 +1,2 @@
+- Sorcerors and wizards only
+- 

@@ -1,0 +1,3 @@
+- 4 days North of [[./Bard's Gate/index|Bard's Gate]]
+- home to [[Lear Guard|Lear Guard]]
+- elaborate gate house with watch towers and ballastae
