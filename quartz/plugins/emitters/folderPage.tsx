@@ -76,12 +76,11 @@ export const FolderPage: QuartzEmitterPlugin<Partial<FolderPageOptions>> = (user
 
       const folders: Set<SimpleSlug> = new Set(
         allFiles.flatMap((data) => {
-          const slug = data.slug
-          const folderName = path.dirname(slug ?? "") as SimpleSlug
-          if (slug && folderName !== "." && folderName !== "tags") {
-            return [folderName]
-          }
-          return []
+          return data.slug
+            ? _getFolders(data.slug).filter(
+                (folderName) => folderName !== "." && folderName !== "tags",
+              )
+            : []
         }),
       )
 
@@ -132,4 +131,19 @@ export const FolderPage: QuartzEmitterPlugin<Partial<FolderPageOptions>> = (user
       return fps
     },
   }
+}
+
+function _getFolders(slug: FullSlug): SimpleSlug[] {
+  var folderName = _dirname(slug)
+  const parentFolderNames = [folderName]
+
+  while (folderName !== ".") {
+    folderName = _dirname(folderName)
+    parentFolderNames.push(folderName)
+  }
+  return parentFolderNames
+}
+
+function _dirname(slug: string | undefined): SimpleSlug {
+  return path.dirname(slug ?? "") as SimpleSlug
 }
