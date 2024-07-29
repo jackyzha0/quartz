@@ -19,8 +19,12 @@ function boolToStringBool(b: boolean): string {
 }
 
 export default ((opts: Options) => {
-  const Comments: QuartzComponent = (_props: QuartzComponentProps) => <div class="giscus"></div>
-  Comments.afterDOMLoaded = `
+  const Comments: QuartzComponent = (props: QuartzComponentProps) => {
+    props.externalResources.js.push({
+      loadTime: "afterDOMReady",
+      spaPreserve: true,
+      contentType: "inline",
+      script: `
       const giscusScript = document.createElement("script")
       giscusScript.src = "https://giscus.app/client.js"
       giscusScript.async = true
@@ -57,10 +61,21 @@ export default ((opts: Options) => {
       }
 
       document.addEventListener("nav", () => {
+        iframe.contentWindow.postMessage({
+          giscus: {
+            setConfig: {
+              term: window.document.body.dataset.slug
+            },
+          },
+        }, 'https://giscus.app')
+
         document.addEventListener("themechange", changeTheme)
         window.addCleanup(() => document.removeEventListener("themechange", changeTheme))
-      })
-  `
+      })`,
+    })
+
+    return <div class="giscus"></div>
+  }
 
   return Comments
 }) satisfies QuartzComponentConstructor<Options>
