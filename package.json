@@ -100,7 +100,7 @@
     "@types/node": "^20.14.11",
     "@types/pretty-time": "^1.1.5",
     "@types/source-map-support": "^0.5.10",
-    "@types/ws": "^8.5.11",
+    "@types/ws": "^8.5.12",
     "@types/yargs": "^17.0.32",
     "esbuild": "^0.19.9",
     "prettier": "^3.3.2",
