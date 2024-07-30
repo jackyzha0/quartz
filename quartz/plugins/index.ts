@@ -28,10 +28,10 @@ export function getStaticResourcesFromPlugins(ctx: BuildCtx) {
       loadTime: "afterDOMReady",
       contentType: "inline",
       script: `
-            const socket = new WebSocket('${wsUrl}')
-            // reload(true) ensures resources like images and scripts are fetched again in firefox
-            socket.addEventListener('message', () => document.location.reload(true))
-          `,
+        const socket = new WebSocket('${wsUrl}')
+        // reload(true) ensures resources like images and scripts are fetched again in firefox
+        socket.addEventListener('message', () => document.location.reload(true))
+      `,
     })
   }
 
