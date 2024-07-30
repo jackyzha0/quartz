@@ -6,9 +6,11 @@ import {
   TransformOptions,
   stripSlashes,
   simplifySlug,
+  slugifyFilePath,
   splitAnchor,
   transformLink,
   joinSegments,
+  FilePath,
 } from "../../util/path"
 import path from "path"
 import { visit } from "unist-util-visit"
@@ -23,6 +25,7 @@ interface Options {
   openLinksInNewTab: boolean
   lazyLoad: boolean
   externalLinkIcon: boolean
+  includeFrontmatterLinks: boolean
 }
 
 const defaultOptions: Options = {
@@ -31,6 +34,7 @@ const defaultOptions: Options = {
   openLinksInNewTab: false,
   lazyLoad: false,
   externalLinkIcon: true,
+  includeFrontmatterLinks: true,
 }
 
 export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
@@ -47,6 +51,18 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options> | undefined> =
             const transformOptions: TransformOptions = {
               strategy: opts.markdownLinkResolution,
               allSlugs: ctx.allSlugs,
+            }
+
+            // Add frontmatter links to outgoing links
+            if (opts.includeFrontmatterLinks && file.data.frontmatter) {
+              for (const [fmKey, fmValue] of Object.entries(file.data.frontmatter)) {
+                if (fmValue && typeof fmValue === "string") {
+                  const dest = fmValue.match(/\[\[(.*)\]\]/)?.[1] as FilePath ?? null
+                  if (dest) {
+                    outgoing.add(simplifySlug(slugifyFilePath(dest)))
+                  }
+                }
+              }
             }
 
             visit(tree, "element", (node, _index, _parent) => {
