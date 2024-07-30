@@ -1,4 +1,4 @@
-import type { ContentDetails, ContentIndex } from "../../plugins/emitters/contentIndex"
+import type { ContentDetails } from "../../plugins/emitters/contentIndex"
 import * as d3 from "d3"
 import { registerEscapeHandler, removeAllChildren } from "./util"
 import { FullSlug, SimpleSlug, getFullSlug, resolveRelative, simplifySlug } from "../../util/path"

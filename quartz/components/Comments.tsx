@@ -20,7 +20,26 @@ function boolToStringBool(b: boolean): string {
 
 export default ((opts: Options) => {
   const Comments: QuartzComponent = (_props: QuartzComponentProps) => <div class="giscus"></div>
+
   Comments.afterDOMLoaded = `
+    const changeTheme = (e) => {
+      const theme = e.detail.theme
+      const iframe = document.querySelector('iframe.giscus-frame')
+      if (!iframe) {
+        return
+      }
+
+      iframe.contentWindow.postMessage({
+        giscus: {
+          setConfig: {
+            theme: theme
+          }
+        }
+      }, 'https://giscus.app')
+    }
+
+    document.addEventListener("nav", () => {
+      const giscusContainer = document.querySelector(".giscus")
       const giscusScript = document.createElement("script")
       giscusScript.src = "https://giscus.app/client.js"
       giscusScript.async = true
@@ -38,29 +57,11 @@ export default ((opts: Options) => {
 
       const theme = document.documentElement.getAttribute("saved-theme")
       giscusScript.setAttribute("data-theme", theme)
-      document.head.appendChild(giscusScript)
+      giscusContainer.appendChild(giscusScript)
 
-      const changeTheme = (e) => {
-        const theme = e.detail.theme
-        const iframe = document.querySelector('iframe.giscus-frame')
-        if (!iframe) {
-          return
-        }
-
-        iframe.contentWindow.postMessage({
-          giscus: {
-            setConfig: {
-              theme: theme
-            }
-          }
-        }, 'https://giscus.app')
-      }
-
-      document.addEventListener("nav", () => {
-        document.addEventListener("themechange", changeTheme)
-        window.addCleanup(() => document.removeEventListener("themechange", changeTheme))
-      })
-  `
+      document.addEventListener("themechange", changeTheme)
+      window.addCleanup(() => document.removeEventListener("themechange", changeTheme))
+    })`
 
   return Comments
 }) satisfies QuartzComponentConstructor<Options>
