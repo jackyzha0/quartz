@@ -17,6 +17,10 @@ type Options = {
   }
 }
 
+function boolToStringBool(b: boolean): string {
+  return b ? "1" : "0"
+}
+
 export default ((opts: Options) => {
   const Comments: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) => {
     return (
@@ -27,8 +31,8 @@ export default ((opts: Options) => {
         data-category={opts.options.category}
         data-category-id={opts.options.categoryId}
         data-mapping={opts.options.mapping ?? "url"}
-        data-strict={opts.options.strict ?? true}
-        data-reactions-enabled={opts.options.reactionsEnabled ?? true}
+        data-strict={boolToStringBool(opts.options.strict ?? true)}
+        data-reactions-enabled={boolToStringBool(opts.options.reactionsEnabled ?? true)}
         data-input-position={opts.options.inputPosition ?? "bottom"}
       ></div>
     )

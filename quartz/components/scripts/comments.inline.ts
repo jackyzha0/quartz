@@ -32,8 +32,8 @@ type GiscusElement = Omit<HTMLElement, "dataset"> & {
     category: string
     categoryId: string
     mapping: "url" | "title" | "og:title" | "specific" | "number" | "pathname"
-    strict: boolean
-    reactionsEnabled: boolean
+    strict: string
+    reactionsEnabled: string
     inputPosition: "top" | "bottom"
   }
 }
@@ -55,11 +55,8 @@ document.addEventListener("nav", () => {
   giscusScript.setAttribute("data-category", giscusContainer.dataset.category)
   giscusScript.setAttribute("data-category-id", giscusContainer.dataset.categoryId)
   giscusScript.setAttribute("data-mapping", giscusContainer.dataset.mapping)
-  giscusScript.setAttribute("data-strict", boolToStringBool(giscusContainer.dataset.strict))
-  giscusScript.setAttribute(
-    "data-reactions-enabled",
-    boolToStringBool(giscusContainer.dataset.reactionsEnabled),
-  )
+  giscusScript.setAttribute("data-strict", giscusContainer.dataset.strict)
+  giscusScript.setAttribute("data-reactions-enabled", giscusContainer.dataset.reactionsEnabled)
   giscusScript.setAttribute("data-input-position", giscusContainer.dataset.inputPosition)
 
   const theme = document.documentElement.getAttribute("saved-theme")
