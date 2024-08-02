@@ -29,7 +29,7 @@ export async function stashContentFolder(contentFolder) {
     verbatimSymlinks: true,
     preserveTimestamps: true,
   })
-  await fs.promises.rm(contentFolder, { force: true, recursive: true })
+  // await fs.promises.rm(contentFolder, { force: true, recursive: true })
 }
 
 export function gitPull(origin, branch) {
