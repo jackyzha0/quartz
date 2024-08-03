@@ -153,7 +153,7 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
         crumbs.push(crumb)
       }
 
-      if (isTagPath) {
+      if (isTagPath && !options.showCurrentPage) {
         crumbs.push({ displayName: slugParts.at(-1) ?? "", path: "" })
       }
 
