@@ -1,5 +1,7 @@
 import type { ContentDetails } from "../../plugins/emitters/contentIndex"
 import * as d3 from "d3"
+import * as PIXI from "pixi.js"
+import * as TWEEN from "@tweenjs/tween.js"
 import { registerEscapeHandler, removeAllChildren } from "./util"
 import { FullSlug, SimpleSlug, getFullSlug, resolveRelative, simplifySlug } from "../../util/path"
 
@@ -7,12 +9,31 @@ type NodeData = {
   id: SimpleSlug
   text: string
   tags: string[]
+
+  label?: PIXI.Text
+
+  gfx?: PIXI.Graphics
+  alpha?: number
+
+  r?: number
+  active?: boolean
 } & d3.SimulationNodeDatum
 
 type LinkData = {
   source: SimpleSlug
   target: SimpleSlug
+
+  gfx?: PIXI.Graphics
+  alpha?: number
+  color?: string
+
+  active?: boolean
 }
+
+type LinkNodes = Omit<LinkData, "source" | "target"> & {
+  source: NodeData
+  target: NodeData
+} & d3.SimulationLinkDatum<NodeData>
 
 const localStorageKey = "graph-visited"
 function getVisited(): Set<SimpleSlug> {
@@ -24,6 +45,18 @@ function addToVisited(slug: SimpleSlug) {
   visited.add(slug)
   localStorage.setItem(localStorageKey, JSON.stringify([...visited]))
 }
+
+type TweenNode = {
+  update: (time: number) => void
+  stop: () => void
+}
+
+let tweens = new Map<string, TweenNode>()
+function animate(time: number) {
+  tweens.forEach((t) => t.update(time))
+  requestAnimationFrame(animate)
+}
+requestAnimationFrame(animate)
 
 async function renderGraph(container: string, fullSlug: FullSlug) {
   const slug = simplifySlug(fullSlug)
@@ -55,8 +88,10 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
   )
   const links: LinkData[] = []
   const tags: SimpleSlug[] = []
-
   const validLinks = new Set(data.keys())
+  const height = Math.max(graph.offsetHeight, 250)
+  const width = graph.offsetWidth
+
   for (const [source, details] of data.entries()) {
     const outgoing = details.links ?? []
 
@@ -100,7 +135,9 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     if (showTags) tags.forEach((tag) => neighbourhood.add(tag))
   }
 
-  const graphData: { nodes: NodeData[]; links: LinkData[] } = {
+  // XXX: How does links got morphed into LinkNodes here?
+  // links => LinkData[], where as links.filter(l => neighbourhood.has(l.source) && neighbourhood.has(l.target)) => LinkNodes[]
+  const graphData: { nodes: NodeData[]; links: LinkNodes[] } = {
     nodes: [...neighbourhood].map((url) => {
       const text = url.startsWith("tags/") ? "#" + url.substring(5) : (data.get(url)?.title ?? url)
       return {
@@ -109,80 +146,35 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
         tags: data.get(url)?.tags ?? [],
       }
     }),
-    links: links.filter((l) => neighbourhood.has(l.source) && neighbourhood.has(l.target)),
+    links: links.filter(
+      (l) => neighbourhood.has(l.source) && neighbourhood.has(l.target),
+    ) as unknown as LinkNodes[],
   }
 
-  const simulation: d3.Simulation<NodeData, LinkData> = d3
-    .forceSimulation(graphData.nodes)
-    .force("charge", d3.forceManyBody().strength(-100 * repelForce))
-    .force(
-      "link",
-      d3
-        .forceLink(graphData.links)
-        .id((d: any) => d.id)
-        .distance(linkDistance),
-    )
-    .force("center", d3.forceCenter().strength(centerForce))
-
-  const height = Math.max(graph.offsetHeight, 250)
-  const width = graph.offsetWidth
-
-  const svg = d3
-    .select<HTMLElement, NodeData>("#" + container)
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .attr("viewBox", [-width / 2 / scale, -height / 2 / scale, width / scale, height / scale])
-
-  // draw links between nodes
-  const link = svg
-    .append("g")
-    .selectAll("line")
-    .data(graphData.links)
-    .join("line")
-    .attr("class", "link")
-    .attr("stroke", "var(--lightgray)")
-    .attr("stroke-width", 1)
-
-  // svg groups
-  const graphNode = svg.append("g").selectAll("g").data(graphData.nodes).enter().append("g")
+  const computedStyleMap = new Map<string, string>()
+  for (let i of [
+    "--secondary",
+    "--tertiary",
+    "--gray",
+    "--light",
+    "--lightgray",
+    "--dark",
+    "--darkgray",
+    "--bodyFont",
+  ]) {
+    computedStyleMap.set(i, getComputedStyle(graph).getPropertyValue(i))
+  }
 
   // calculate color
   const color = (d: NodeData) => {
     const isCurrent = d.id === slug
     if (isCurrent) {
-      return "var(--secondary)"
+      return computedStyleMap.get("--secondary")
     } else if (visited.has(d.id) || d.id.startsWith("tags/")) {
-      return "var(--tertiary)"
+      return computedStyleMap.get("--tertiary")
     } else {
-      return "var(--gray)"
+      return computedStyleMap.get("--gray")
     }
-  }
-
-  const drag = (simulation: d3.Simulation<NodeData, LinkData>) => {
-    function dragstarted(event: any, d: NodeData) {
-      if (!event.active) simulation.alphaTarget(1).restart()
-      d.fx = d.x
-      d.fy = d.y
-    }
-
-    function dragged(event: any, d: NodeData) {
-      d.fx = event.x
-      d.fy = event.y
-    }
-
-    function dragended(event: any, d: NodeData) {
-      if (!event.active) simulation.alphaTarget(0)
-      d.fx = null
-      d.fy = null
-    }
-
-    const noop = () => {}
-    return d3
-      .drag<Element, NodeData>()
-      .on("start", enableDrag ? dragstarted : noop)
-      .on("drag", enableDrag ? dragged : noop)
-      .on("end", enableDrag ? dragended : noop)
   }
 
   function nodeRadius(d: NodeData) {
@@ -190,161 +182,356 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     return 2 + Math.sqrt(numLinks)
   }
 
-  let connectedNodes: SimpleSlug[] = []
+  function renderLinks(data: LinkNodes[]) {
+    tweens.get("link")?.stop()
+    const Group = new TWEEN.Group()
 
-  // draw individual nodes
-  const node = graphNode
-    .append("circle")
-    .attr("class", "node")
-    .attr("id", (d) => d.id)
-    .attr("r", nodeRadius)
-    .attr("fill", color)
-    .style("cursor", "pointer")
-    .on("click", (_, d) => {
-      const targ = resolveRelative(fullSlug, d.id)
-      window.spaNavigate(new URL(targ, window.location.toString()))
-    })
-    .on("mouseover", function (_, d) {
-      const currentId = d.id
-      const linkNodes = d3
-        .selectAll(".link")
-        .filter((d: any) => d.source.id === currentId || d.target.id === currentId)
-
-      if (focusOnHover) {
-        // fade out non-neighbour nodes
-        connectedNodes = linkNodes.data().flatMap((d: any) => [d.source.id, d.target.id])
-
-        d3.selectAll<HTMLElement, NodeData>(".link")
-          .transition()
-          .duration(200)
-          .style("opacity", 0.2)
-        d3.selectAll<HTMLElement, NodeData>(".node")
-          .filter((d) => !connectedNodes.includes(d.id))
-          .transition()
-          .duration(200)
-          .style("opacity", 0.2)
-
-        d3.selectAll<HTMLElement, NodeData>(".node")
-          .filter((d) => !connectedNodes.includes(d.id))
-          .nodes()
-          .map((it) => d3.select(it.parentNode as HTMLElement).select("text"))
-          .forEach((it) => {
-            let opacity = parseFloat(it.style("opacity"))
-            it.transition()
-              .duration(200)
-              .attr("opacityOld", opacity)
-              .style("opacity", Math.min(opacity, 0.2))
-          })
+    data.forEach((l) => {
+      let alpha = 1
+      if (currentNodeId) {
+        alpha = l.active ? 1 : 0.3
       }
-
-      // highlight links
-      linkNodes.transition().duration(200).attr("stroke", "var(--gray)").attr("stroke-width", 1)
-
-      const bigFont = fontSize * 1.5
-
-      // show text for self
-      const parent = this.parentNode as HTMLElement
-      d3.select<HTMLElement, NodeData>(parent)
-        .raise()
-        .select("text")
-        .transition()
-        .duration(200)
-        .attr("opacityOld", d3.select(parent).select("text").style("opacity"))
-        .style("opacity", 1)
-        .style("font-size", bigFont + "em")
+      l.color = l.active ? computedStyleMap.get("--gray") : computedStyleMap.get("--lightgray")
+      Group.add(new TWEEN.Tween<LinkNodes>(l).to({ alpha }, 200))
     })
-    .on("mouseleave", function (_, d) {
-      if (focusOnHover) {
-        d3.selectAll<HTMLElement, NodeData>(".link").transition().duration(200).style("opacity", 1)
-        d3.selectAll<HTMLElement, NodeData>(".node").transition().duration(200).style("opacity", 1)
 
-        d3.selectAll<HTMLElement, NodeData>(".node")
-          .filter((d) => !connectedNodes.includes(d.id))
-          .nodes()
-          .map((it) => d3.select(it.parentNode as HTMLElement).select("text"))
-          .forEach((it) => it.transition().duration(200).style("opacity", it.attr("opacityOld")))
+    Group.getAll().forEach((tw) => tw.start())
+    tweens.set("link", {
+      update: Group.update.bind(Group),
+      stop() {
+        Group.getAll().forEach((tw) => tw.stop())
+      },
+    })
+  }
+
+  function renderLabels(data: NodeData[]) {
+    tweens.get("label")?.stop()
+    const Group = new TWEEN.Group()
+
+    data.forEach((n) => {
+      if (!n.label) return
+      if (currentNodeId === n.id) {
+        Group.add(
+          new TWEEN.Tween<PIXI.Text>(n.label).to(
+            { alpha: 1, scale: { x: (1 / scale) * 1.5, y: (1 / scale) * 1.5 } },
+            200,
+          ),
+        )
+      } else {
+        let alpha = n.active ? 0.8 : 0
+        Group.add(
+          new TWEEN.Tween<PIXI.Text>(n.label).to(
+            { alpha, scale: { x: 1 / scale, y: 1 / scale } },
+            200,
+          ),
+        )
       }
-      const currentId = d.id
-      const linkNodes = d3
-        .selectAll(".link")
-        .filter((d: any) => d.source.id === currentId || d.target.id === currentId)
-
-      linkNodes.transition().duration(200).attr("stroke", "var(--lightgray)")
-
-      const parent = this.parentNode as HTMLElement
-      d3.select<HTMLElement, NodeData>(parent)
-        .select("text")
-        .transition()
-        .duration(200)
-        .style("opacity", d3.select(parent).select("text").attr("opacityOld"))
-        .style("font-size", fontSize + "em")
     })
-    // @ts-ignore
-    .call(drag(simulation))
 
-  // make tags hollow circles
-  node
-    .filter((d) => d.id.startsWith("tags/"))
-    .attr("stroke", color)
-    .attr("stroke-width", 2)
-    .attr("fill", "var(--light)")
+    Group.getAll().forEach((tw) => tw.start())
+    tweens.set("label", {
+      update: Group.update.bind(Group),
+      stop() {
+        Group.getAll().forEach((tw) => tw.stop())
+      },
+    })
+  }
 
-  // draw labels
-  const labels = graphNode
-    .append("text")
-    .attr("dx", 0)
-    .attr("dy", (d) => -nodeRadius(d) + "px")
-    .attr("text-anchor", "middle")
-    .text((d) => d.text)
-    .style("opacity", (opacityScale - 1) / 3.75)
-    .style("pointer-events", "none")
-    .style("font-size", fontSize + "em")
-    .raise()
-    // @ts-ignore
-    .call(drag(simulation))
+  function renderCurrentNode({
+    nodeId,
+    focusOnHover,
+  }: {
+    nodeId: string | null
+    focusOnHover: boolean
+  }) {
+    tweens.get("hover")?.stop()
+    currentNodeId = nodeId
 
-  // set panning
-  if (enableZoom) {
-    svg.call(
+    // NOTE: we need to create a new copy here
+    const connectedNodes: Set<SimpleSlug> = new Set()
+
+    graphData.links.forEach((l) => {
+      l.active = l.source.id === nodeId || l.target.id === nodeId
+      if (l.source.id === nodeId || l.target.id === nodeId) {
+        connectedNodes.add(l.source.id)
+        connectedNodes.add(l.target.id)
+      }
+    })
+    if (nodeId) {
+      connectedNodes.add(nodeId as SimpleSlug)
+    }
+    const Group = new TWEEN.Group()
+
+    graphData.nodes.forEach((n) => {
+      if (!n.gfx) return
+      let alpha = 1
+      if (nodeId !== null) {
+        n.active = connectedNodes.has(n.id)
+        if (focusOnHover) alpha = connectedNodes.has(n.id) ? 1 : 0.2
+        if (n.id !== nodeId) {
+          Group.add(new TWEEN.Tween<PIXI.Graphics>(n.gfx, Group).to({ alpha }, 200))
+        }
+      } else {
+        n.active = false
+        Group.add(new TWEEN.Tween<PIXI.Graphics>(n.gfx, Group).to({ alpha }, 200))
+      }
+    })
+
+    renderLabels(graphData.nodes)
+    renderLinks(graphData.links)
+
+    Group.getAll().forEach((tw) => tw.start())
+    tweens.set("hover", {
+      update: Group.update.bind(Group),
+      stop() {
+        Group.getAll().forEach((tw) => tw.stop())
+      },
+    })
+  }
+
+  tweens.forEach((tween) => tween.stop())
+  tweens.clear()
+  const app = new PIXI.Application()
+  await app.init({
+    width,
+    height,
+    antialias: true,
+    autoStart: false,
+    autoDensity: true,
+    backgroundAlpha: 0,
+    preference: "webgpu",
+    resolution: window.devicePixelRatio,
+    eventMode: "static",
+  })
+  graph.appendChild(app.canvas)
+
+  const stage = app.stage
+  stage.interactive = false
+  stage.scale.set(1 / scale)
+
+  const nodesContainer = new PIXI.Container<PIXI.Graphics>({ zIndex: 1 })
+  const labelsContainer = new PIXI.Container<PIXI.Text>({ zIndex: 2 })
+  const linkGraphic = new PIXI.Graphics()
+
+  stage.addChild(nodesContainer, labelsContainer)
+  nodesContainer.addChild(linkGraphic)
+
+  const simulation: d3.Simulation<NodeData, LinkNodes> = d3
+    .forceSimulation(graphData.nodes)
+    .force("charge", d3.forceManyBody().strength(-100 * repelForce))
+    .force("center", d3.forceCenter().strength(centerForce))
+    .force(
+      "link",
       d3
-        .zoom<SVGSVGElement, NodeData>()
+        .forceLink(graphData.links)
+        .id((d: any) => d.id)
+        .distance(linkDistance),
+    )
+    .force(
+      "collide",
+      d3.forceCollide((n) => nodeRadius(n)),
+    )
+
+  let currentNodeId: string | null = null
+  let currentNodeGfx: PIXI.Graphics | undefined
+  let dragStartTime = 0
+
+  graphData.nodes.forEach((n) => {
+    const nodeId = n.id
+
+    const label = new PIXI.Text({
+      text: n.text,
+      alpha: 0,
+      anchor: { x: 0.5, y: -0.5 },
+      style: {
+        fontSize,
+        fill: computedStyleMap.get("--dark"),
+        fontFamily: computedStyleMap.get("--bodyFont"),
+      },
+      resolution: window.devicePixelRatio,
+    })
+    label.scale.set(scale)
+    n.label = label
+
+    const gfx = new PIXI.Graphics({
+      interactive: true,
+      label: nodeId,
+      eventMode: "static",
+      hitArea: new PIXI.Circle(0, 0, nodeRadius(n)),
+      cursor: "pointer",
+    })
+      .circle(0, 0, nodeRadius(n))
+      .on("pointerover", () => {
+        tweens.get(nodeId)?.stop()
+        const tweenScale = { x: 1, y: 1 }
+        const tween = new TWEEN.Tween(tweenScale)
+          .to({ x: 1.5, y: 1.5 }, 100)
+          .onUpdate(() => {
+            gfx.scale.set(tweenScale.x, tweenScale.y)
+          })
+          .onStop(() => {
+            tweens.delete(nodeId)
+          })
+          .start()
+        tweens.set(nodeId, tween)
+        renderCurrentNode({ nodeId, focusOnHover })
+      })
+      .on("pointerdown", (e) => {
+        currentNodeGfx = e.target as PIXI.Graphics
+      })
+      .on("pointerup", () => {
+        currentNodeGfx = undefined
+      })
+      .on("pointerupoutside", () => {
+        currentNodeGfx = undefined
+      })
+      .on("pointerleave", () => {
+        tweens.get(nodeId)?.stop()
+        const tweenScale = {
+          x: gfx.scale.x,
+          y: gfx.scale.y,
+        }
+        const tween = new TWEEN.Tween(tweenScale)
+          .to({ x: 1, y: 1 }, 100)
+          .onUpdate(() => {
+            gfx.scale.set(tweenScale.x, tweenScale.y)
+          })
+          .onStop(() => {
+            tweens.delete(nodeId)
+          })
+          .start()
+        tweens.set(nodeId, tween)
+        renderCurrentNode({ nodeId: null, focusOnHover })
+      })
+    n.gfx = gfx
+
+    if (n.id.startsWith("tags/")) {
+      gfx.fill({ color: computedStyleMap.get("--light") }).stroke({ width: 0.5, color: color(n) })
+    } else {
+      gfx.fill(color(n)).stroke({ color: color(n) })
+    }
+
+    nodesContainer.addChild(gfx)
+    labelsContainer.addChild(label)
+  })
+
+  graphData.links.forEach((l) => {
+    l.alpha = 1
+    l.color = computedStyleMap.get("--lightgray")
+  })
+
+  let currentTransform = d3.zoomIdentity
+  if (enableDrag) {
+    d3.select<HTMLCanvasElement, NodeData | undefined>(app.canvas).call(
+      d3
+        .drag<HTMLCanvasElement, NodeData | undefined>()
+        .container(() => app.canvas)
+        .subject(() => {
+          // get the item in graphData such that item.gfx === currentNodeGfx
+          const target = graphData.nodes.filter((j) => j.gfx === currentNodeGfx)[0]
+          return target
+        })
+        .on("start", function dragstarted(event) {
+          if (!event.active) simulation.alphaTarget(1).restart()
+          event.subject.fx = event.subject.x
+          event.subject.fy = event.subject.y
+          event.subject.__initialDragPos = {
+            x: event.subject.x,
+            y: event.subject.y,
+            fx: event.subject.fx,
+            fy: event.subject.fy,
+          }
+          dragStartTime = Date.now()
+        })
+        .on("drag", function dragged(event) {
+          const k = currentTransform.k
+          const initPos = event.subject.__initialDragPos
+          const dragPos = event
+          event.subject.fx = initPos.x + (dragPos.x - initPos.x) / k
+          event.subject.fy = initPos.y + (dragPos.y - initPos.y) / k
+        })
+        .on("end", function dragended(event) {
+          if (!event.active) simulation.alphaTarget(0)
+          event.subject.fx = null
+          event.subject.fy = null
+          // Check for node click event here.
+          if (Date.now() - dragStartTime < 200) {
+            const node = graphData.nodes.find((n) => n.id === event.subject.id) as NodeData
+            const targ = resolveRelative(fullSlug, node.id)
+            window.spaNavigate(new URL(targ, window.location.toString()))
+          }
+        }),
+    )
+  }
+  if (enableZoom) {
+    d3.select<HTMLCanvasElement, NodeData>(app.canvas).call(
+      d3
+        .zoom<HTMLCanvasElement, NodeData>()
         .extent([
           [0, 0],
           [width, height],
         ])
         .scaleExtent([0.25, 4])
         .on("zoom", ({ transform }) => {
-          link.attr("transform", transform)
-          node.attr("transform", transform)
+          currentTransform = transform
+          stage.scale.set(transform.k, transform.k)
+          stage.position.set(transform.x, transform.y)
+
           const scale = transform.k * opacityScale
-          const scaledOpacity = Math.max((scale - 1) / 3.75, 0)
-          labels.attr("transform", transform).style("opacity", scaledOpacity)
+          let scaleOpacity = Math.max((scale - 1) / 3.75, 0)
+          const activeNodes = graphData.nodes
+            .filter((n) => n.active)
+            .flatMap((n) => n.label) as PIXI.Text[]
+          labelsContainer.children.forEach((label) => {
+            if (!activeNodes.includes(label)) {
+              label.alpha = scaleOpacity
+            }
+          })
         }),
     )
   }
 
-  // progress the simulation
-  simulation.on("tick", () => {
-    link
-      .attr("x1", (d: any) => d.source.x)
-      .attr("y1", (d: any) => d.source.y)
-      .attr("x2", (d: any) => d.target.x)
-      .attr("y2", (d: any) => d.target.y)
-    node.attr("cx", (d: any) => d.x).attr("cy", (d: any) => d.y)
-    labels.attr("x", (d: any) => d.x).attr("y", (d: any) => d.y)
-  })
+  function animate() {
+    graphData.nodes.forEach((n) => {
+      let { x, y, gfx, label, active } = n
+      if (!gfx || !x || !y || !label) return
+      gfx.position.set(x + width / 2, y + height / 2)
+      label.position.set(x + width / 2, y + height / 2)
+      gfx.zIndex = active ? 2 : 1
+    })
+
+    linkGraphic.clear()
+    graphData.links.forEach((l) => {
+      linkGraphic
+        .moveTo(l.source.x! + width / 2, l.source.y! + height / 2)
+        .lineTo(l.target.x! + width / 2, l.target.y! + height / 2)
+        .stroke({ alpha: l.alpha, width: 1, color: l.color })
+    })
+    app.renderer.render(stage)
+    requestAnimationFrame(animate)
+  }
+  requestAnimationFrame(animate)
 }
 
-function renderGlobalGraph() {
-  const slug = getFullSlug(window)
+document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
+  const slug = e.detail.url
+  addToVisited(simplifySlug(slug))
+  await renderGraph("graph-container", slug)
+
   const container = document.getElementById("global-graph-outer")
   const sidebar = container?.closest(".sidebar") as HTMLElement
-  container?.classList.add("active")
-  if (sidebar) {
-    sidebar.style.zIndex = "1"
-  }
 
-  renderGraph("global-graph-container", slug)
+  function renderGlobalGraph() {
+    const slug = getFullSlug(window)
+    container?.classList.add("active")
+    if (sidebar) {
+      sidebar.style.zIndex = "1"
+    }
+
+    renderGraph("global-graph-container", slug)
+
+    registerEscapeHandler(container, hideGlobalGraph)
+  }
 
   function hideGlobalGraph() {
     container?.classList.remove("active")
@@ -356,15 +543,18 @@ function renderGlobalGraph() {
     removeAllChildren(graph)
   }
 
-  registerEscapeHandler(container, hideGlobalGraph)
-}
-
-document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
-  const slug = e.detail.url
-  addToVisited(simplifySlug(slug))
-  await renderGraph("graph-container", slug)
+  async function shortcutHandler(e: HTMLElementEventMap["keydown"]) {
+    if (e.key === "g" && (e.ctrlKey || e.metaKey) && !e.shiftKey) {
+      e.preventDefault()
+      const globalGraphOpen = container?.classList.contains("active")
+      globalGraphOpen ? hideGlobalGraph() : renderGlobalGraph()
+    }
+  }
 
   const containerIcon = document.getElementById("global-graph-icon")
   containerIcon?.addEventListener("click", renderGlobalGraph)
   window.addCleanup(() => containerIcon?.removeEventListener("click", renderGlobalGraph))
+
+  document.addEventListener("keydown", shortcutHandler)
+  window.addCleanup(() => document.removeEventListener("keydown", shortcutHandler))
 })
