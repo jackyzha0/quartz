@@ -9,6 +9,8 @@ type CrumbData = {
   path: string
 }
 
+type CrumbStyle = "full" | "letter" | "unique"
+
 interface BreadcrumbOptions {
   /**
    * Symbol between crumbs
@@ -30,6 +32,17 @@ interface BreadcrumbOptions {
    * Whether to display the current page in the breadcrumbs.
    */
   showCurrentPage: boolean
+  /**
+   * Set a style for breadcrumbs. The following are supported:
+   * - full (default): show the full path of the breadcrumb.
+   * - letter: works like full, but will write every folder name using first letter only. The last folder will be displayed in full. For example:
+   *   - `folder` will be shorten to `f`
+   *   - `.config` will be shorten to `.c`
+   * - unique: works like `letter`, but will make sure every folder name is shortest unique value. For example:
+   *   - `path/path/path/to/file.md` with `unique` will set `p/pa/pat/path/to/file.md`.
+   *   - However, uniqueness does not refer different folder at the same level. For example: `path1/file.md` and `path2/file.md` will both show `p/file.md`
+   */
+  style: CrumbStyle
 }
 
 const defaultOptions: BreadcrumbOptions = {
@@ -38,6 +51,7 @@ const defaultOptions: BreadcrumbOptions = {
   resolveFrontmatterTitle: true,
   hideOnRoot: true,
   showCurrentPage: true,
+  style: "full",
 }
 
 function formatCrumb(displayName: string, baseSlug: FullSlug, currentSlug: SimpleSlug): CrumbData {
@@ -103,6 +117,34 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
         // Add current slug to full path
         currentPath = joinSegments(currentPath, slugParts[i])
         const includeTrailingSlash = !isTagPath || i < 1
+
+        switch (options.style) {
+          case "letter":
+            if (curPathSegment.startsWith(".")) {
+              curPathSegment = curPathSegment.slice(0, 2)
+            } else {
+              curPathSegment = curPathSegment.charAt(0)
+            }
+            break
+          case "unique":
+            let uniquePart = curPathSegment.charAt(0)
+            let maxLength = Math.min(curPathSegment.length, 5)
+            let isUnique = false
+            while (!isUnique && uniquePart.length <= maxLength) {
+              isUnique = true
+              for (let j = 0; j < i; j++) {
+                if (slugParts[j].startsWith(uniquePart)) {
+                  isUnique = false
+                  break
+                }
+              }
+              if (!isUnique) {
+                uniquePart = curPathSegment.slice(0, uniquePart.length + 1)
+              }
+            }
+            curPathSegment = uniquePart
+            break
+        }
 
         // Format and add current crumb
         const crumb = formatCrumb(

@@ -21,6 +21,7 @@ Component.Breadcrumbs({
   resolveFrontmatterTitle: true, // whether to resolve folder names through frontmatter titles
   hideOnRoot: true, // whether to hide breadcrumbs on root `index.md` page
   showCurrentPage: true, // whether to display the current page in the breadcrumbs
+  style: "full", // determine the style of breadcrumb, currently support `full`, `letter`, `unique`.
 })
 ```
 
