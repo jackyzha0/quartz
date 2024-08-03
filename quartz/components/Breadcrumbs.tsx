@@ -153,6 +153,10 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
         crumbs.push(crumb)
       }
 
+      if (isTagPath) {
+        crumbs.push({ displayName: slugParts.at(-1) ?? "", path: "" })
+      }
+
       // Add current file to crumb (can directly use frontmatter title)
       if (options.showCurrentPage && slugParts.at(-1) !== "index") {
         crumbs.push({
