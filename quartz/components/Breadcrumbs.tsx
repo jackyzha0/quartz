@@ -102,6 +102,9 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
       // full path until current part
       let currentPath = ""
 
+      // Map to store the shortened names for each path segment
+      const shortenedNames: Map<string, string> = new Map()
+
       for (let i = 0; i < slugParts.length - 1; i++) {
         let curPathSegment = slugParts[i]
 
@@ -127,22 +130,17 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
             }
             break
           case "unique":
-            let uniquePart = curPathSegment.charAt(0)
-            let maxLength = Math.min(curPathSegment.length, 5)
-            let isUnique = false
-            while (!isUnique && uniquePart.length <= maxLength) {
-              isUnique = true
-              for (let j = 0; j < i; j++) {
-                if (slugParts[j].startsWith(uniquePart)) {
-                  isUnique = false
-                  break
-                }
-              }
-              if (!isUnique) {
-                uniquePart = curPathSegment.slice(0, uniquePart.length + 1)
-              }
+            let shortenedName = curPathSegment.charAt(0)
+            let uniqueName = shortenedName
+            let counter = 1
+
+            while (shortenedNames.has(uniqueName)) {
+              uniqueName = curPathSegment.slice(0, counter + 1)
+              counter++
             }
-            curPathSegment = uniquePart
+
+            shortenedNames.set(uniqueName, currentPath)
+            curPathSegment = uniqueName
             break
         }
 
