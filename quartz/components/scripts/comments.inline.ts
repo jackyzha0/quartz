@@ -1,7 +1,3 @@
-function boolToStringBool(b: boolean): string {
-  return b ? "1" : "0"
-}
-
 const changeTheme = (e: CustomEventMap["themechange"]) => {
   const theme = e.detail.theme
   const iframe = document.querySelector("iframe.giscus-frame") as HTMLIFrameElement
