@@ -542,7 +542,8 @@ ol.overflow {
   overflow-y: hidden;
 }
 
-.external-embed.youtube {
+.external-embed.youtube,
+iframe.pdf {
   aspect-ratio: 16 / 9;
   height: 100%;
   width: 100%;
