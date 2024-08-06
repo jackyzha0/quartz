@@ -23,5 +23,6 @@ Want to see what Quartz can do? Here are some cool community gardens:
 - [sspaeti.com's Second Brain](https://brain.sspaeti.com/)
 - [🪴Aster's notebook](https://notes.asterhu.com)
 - [Gatekeeper Wiki](https://www.gatekeeper.wiki)
+- [Ellie's Notes](https://ellie.wtf)
 
 If you want to see your own on here, submit a [Pull Request adding yourself to this file](https://github.com/jackyzha0/quartz/blob/v4/docs/showcase.md)!
