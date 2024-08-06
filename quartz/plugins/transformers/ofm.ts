@@ -616,11 +616,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   // YouTube video (with optional playlist)
                   node.tagName = "iframe"
                   node.properties = {
-                    class: "external-embed",
+                    class: "external-embed youtube",
                     allow: "fullscreen",
                     frameborder: 0,
                     width: "600px",
-                    height: "350px",
                     src: playlistId
                       ? `https://www.youtube.com/embed/${videoId}?list=${playlistId}`
                       : `https://www.youtube.com/embed/${videoId}`,
@@ -629,11 +628,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   // YouTube playlist only.
                   node.tagName = "iframe"
                   node.properties = {
-                    class: "external-embed",
+                    class: "external-embed youtube",
                     allow: "fullscreen",
                     frameborder: 0,
                     width: "600px",
-                    height: "350px",
                     src: `https://www.youtube.com/embed/videoseries?list=${playlistId}`,
                   }
                 }
