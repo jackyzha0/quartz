@@ -79,7 +79,7 @@
     "remark-rehype": "^11.1.0",
     "remark-smartypants": "^3.0.2",
     "rfdc": "^1.4.1",
-    "rimraf": "^5.0.7",
+    "rimraf": "^6.0.1",
     "serve-handler": "^6.1.5",
     "shiki": "^1.10.3",
     "source-map-support": "^0.5.21",
