@@ -1,4 +1,4 @@
-import type { ContentDetails, ContentIndex } from "../../plugins/emitters/contentIndex"
+import type { ContentDetails } from "../../plugins/emitters/contentIndex"
 import * as d3 from "d3"
 import { registerEscapeHandler, removeAllChildren } from "./util"
 import { FullSlug, SimpleSlug, getFullSlug, resolveRelative, simplifySlug } from "../../util/path"
@@ -102,7 +102,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
 
   const graphData: { nodes: NodeData[]; links: LinkData[] } = {
     nodes: [...neighbourhood].map((url) => {
-      const text = url.startsWith("tags/") ? "#" + url.substring(5) : data.get(url)?.title ?? url
+      const text = url.startsWith("tags/") ? "#" + url.substring(5) : (data.get(url)?.title ?? url)
       return {
         id: url,
         text: text,
@@ -223,6 +223,18 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
           .transition()
           .duration(200)
           .style("opacity", 0.2)
+
+        d3.selectAll<HTMLElement, NodeData>(".node")
+          .filter((d) => !connectedNodes.includes(d.id))
+          .nodes()
+          .map((it) => d3.select(it.parentNode as HTMLElement).select("text"))
+          .forEach((it) => {
+            let opacity = parseFloat(it.style("opacity"))
+            it.transition()
+              .duration(200)
+              .attr("opacityOld", opacity)
+              .style("opacity", Math.min(opacity, 0.2))
+          })
       }
 
       // highlight links
@@ -245,6 +257,12 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       if (focusOnHover) {
         d3.selectAll<HTMLElement, NodeData>(".link").transition().duration(200).style("opacity", 1)
         d3.selectAll<HTMLElement, NodeData>(".node").transition().duration(200).style("opacity", 1)
+
+        d3.selectAll<HTMLElement, NodeData>(".node")
+          .filter((d) => !connectedNodes.includes(d.id))
+          .nodes()
+          .map((it) => d3.select(it.parentNode as HTMLElement).select("text"))
+          .forEach((it) => it.transition().duration(200).style("opacity", it.attr("opacityOld")))
       }
       const currentId = d.id
       const linkNodes = d3
@@ -263,6 +281,13 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     })
     // @ts-ignore
     .call(drag(simulation))
+
+  // make tags hollow circles
+  node
+    .filter((d) => d.id.startsWith("tags/"))
+    .attr("stroke", color)
+    .attr("stroke-width", 2)
+    .attr("fill", "var(--light)")
 
   // draw labels
   const labels = graphNode
@@ -336,7 +361,7 @@ function renderGlobalGraph() {
 
 document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   const slug = e.detail.url
-  addToVisited(slug)
+  addToVisited(simplifySlug(slug))
   await renderGraph("graph-container", slug)
 
   const containerIcon = document.getElementById("global-graph-icon")
