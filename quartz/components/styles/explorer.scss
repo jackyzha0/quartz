@@ -45,12 +45,16 @@ button#explorer {
   list-style: none;
   overflow: hidden;
   max-height: none;
-  transition: max-height 0.35s ease, visibility 0s linear 0s;
+  transition:
+    max-height 0.35s ease,
+    visibility 0s linear 0s;
   margin-top: 0.5rem;
   visibility: visible;
 
   &.collapsed {
-    transition: max-height 0.35s ease, visibility 0s linear 0.35s;
+    transition:
+      max-height 0.35s ease,
+      visibility 0s linear 0.35s;
     visibility: hidden;
   }
 
