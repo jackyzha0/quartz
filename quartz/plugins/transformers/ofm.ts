@@ -204,11 +204,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             return `${embedDisplay}[${displayAlias.replace(/^\|/, "")}](${rawFp})`
           }
 
-          //transform `[[note#^block_ref|^block_ref]]` to `[[note#^block_ref\|^block_ref]]`, display correctly in table.
-          if (displayAlias && displayAlias.startsWith("|")) {
-            displayAlias = `\\${displayAlias}`
-          }
-
           return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`
         })
       }
