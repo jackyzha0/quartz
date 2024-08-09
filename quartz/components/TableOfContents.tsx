@@ -26,7 +26,13 @@ const TableOfContents: QuartzComponent = ({
 
   return (
     <div class={classNames(displayClass, "toc")}>
-      <button type="button" id="toc" class={fileData.collapseToc ? "collapsed" : ""}>
+      <button
+        type="button"
+        id="toc"
+        class={fileData.collapseToc ? "collapsed" : ""}
+        aria-controls="toc-content"
+        aria-expanded={!fileData.collapseToc}
+      >
         <h3>{i18n(cfg.locale).components.tableOfContents.title}</h3>
         <svg
           xmlns="http://www.w3.org/2000/svg"
