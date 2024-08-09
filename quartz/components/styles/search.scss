@@ -3,10 +3,13 @@
 .search {
   border: none;
   background: none;
+  font-family: inherit;
+  font-size: inherit;
   min-width: fit-content;
   max-width: 14rem;
   padding: 0;
   flex-grow: 0.3;
+  text-align: inherit;
 
   & > #search-icon {
     background-color: var(--lightgray);
