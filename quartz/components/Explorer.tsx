@@ -91,6 +91,8 @@ export default ((userOpts?: Partial<Options>) => {
           data-collapsed={opts.folderDefaultState}
           data-savestate={opts.useSavedState}
           data-tree={jsonTree}
+          aria-controls="explorer-content"
+          aria-expanded={opts.folderDefaultState === "open"}
         >
           <h2>{opts.title ?? i18n(cfg.locale).components.explorer.title}</h2>
           <svg
