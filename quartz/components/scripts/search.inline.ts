@@ -191,6 +191,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     }
 
     searchType = "basic" // reset search type after closing
+
+    searchButton?.focus()
   }
 
   function showSearch(searchTypeNew: SearchType) {
