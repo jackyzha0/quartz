@@ -12,7 +12,7 @@ interface MacroType {
   [key: string]: string
 }
 
-export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
+export const Latex: QuartzTransformerPlugin<Partial<Options>> = (opts) => {
   const engine = opts?.renderEngine ?? "katex"
   const macros = opts?.customMacros ?? {}
   return {
