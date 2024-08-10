@@ -26,5 +26,6 @@ Want to see what Quartz can do? Here are some cool community gardens:
 - [Gatekeeper Wiki](https://www.gatekeeper.wiki)
 - [Ellie's Notes](https://ellie.wtf)
 - [🥷🏻🌳🍃 Computer Science & Thinkering Garden](https://notes.yxy.ninja)
+- [AI Safety Research Graph](https://mnm-matin.github.io/ai_alignment_graph/)
 
 If you want to see your own on here, submit a [Pull Request adding yourself to this file](https://github.com/jackyzha0/quartz/blob/v4/docs/showcase.md)!
