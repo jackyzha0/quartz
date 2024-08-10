@@ -1,14 +1,15 @@
 .darkmode {
+  cursor: pointer;
+  padding: 0;
   position: relative;
   background: none;
   border: none;
   width: 20px;
   height: 20px;
   margin: 0 10px;
+  text-align: inherit;
 
   & svg {
-    cursor: pointer;
-    opacity: 0;
     position: absolute;
     width: 20px;
     height: 20px;
@@ -26,7 +27,7 @@
   color-scheme: light;
 }
 
-:root[saved-theme="dark"] .toggle ~ label {
+:root[saved-theme="dark"] .darkmode {
   & > #dayIcon {
     display: none;
   }
@@ -35,7 +36,7 @@
   }
 }
 
-:root .toggle ~ label {
+:root .darkmode {
   & > #dayIcon {
     display: inline;
   }
