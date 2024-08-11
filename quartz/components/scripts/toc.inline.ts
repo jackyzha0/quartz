@@ -27,8 +27,8 @@ function toggleToc(this: HTMLElement) {
 }
 
 function setupToc() {
-  const toc = document.getElementById("toc")
-  if (toc) {
+  const buttons = document.querySelectorAll("button#toc") as NodeListOf<HTMLButtonElement>
+  for (const toc of buttons) {
     const collapsed = toc.classList.contains("collapsed")
     const content = toc.nextElementSibling as HTMLElement | undefined
     if (!content) return
