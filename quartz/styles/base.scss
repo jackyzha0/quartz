@@ -137,7 +137,7 @@ a {
   }
   @media all and (max-width: $mobileBreakpoint) {
     margin: 0 auto;
-    max-width: $pageWidth;
+    max-width: 100%;
   }
 
   & article {
@@ -171,6 +171,9 @@ a {
     display: flex;
     @media all and (max-width: $desktopBreakpoint) {
       flex-direction: column;
+    }
+    @media all and (max-width: $mobileBreakpoint) {
+      padding: 0 1rem;
     }
 
     & .sidebar {
@@ -239,7 +242,7 @@ a {
     @media all and (max-width: $desktopBreakpoint) {
       margin: $topSpacing 0 0 0;
     }
-    @media all and (max-width: $tabletBreakpoint) {
+    @media all and (max-width: $mobileBreakpoint) {
       margin-top: 2rem;
     }
   }
