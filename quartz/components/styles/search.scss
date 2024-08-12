@@ -62,7 +62,7 @@
       margin-left: auto;
       margin-right: auto;
 
-      @media all and (max-width: $fullPageWidth) {
+      @media all and (max-width: $desktopBreakpoint) {
         width: 90%;
       }
 

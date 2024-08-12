@@ -109,22 +109,34 @@ a {
 
 .desktop-only {
   display: initial;
-  @media all and (max-width: $fullPageWidth) {
+  @media all and (max-width: $mobileBreakpoint) {
     display: none;
+  }
+  &.toc {
+    @media all and (max-width: $tabletBreakpoint) {
+      display: none;
+    }
   }
 }
 
 .mobile-only {
   display: none;
-  @media all and (max-width: $fullPageWidth) {
+  @media all and (max-width: $mobileBreakpoint) {
     display: initial;
+  }
+  &.toc {
+    @media all and (max-width: $tabletBreakpoint) {
+      display: initial;
+    }
   }
 }
 
 .page {
-  @media all and (max-width: $fullPageWidth) {
-    margin: 0 auto;
+  @media all and (max-width: $desktopBreakpoint) {
     padding: 0 1rem;
+  }
+  @media all and (max-width: $mobileBreakpoint) {
+    margin: 0 auto;
     max-width: $pageWidth;
   }
 
@@ -157,7 +169,7 @@ a {
   & > #quartz-body {
     width: 100%;
     display: flex;
-    @media all and (max-width: $fullPageWidth) {
+    @media all and (max-width: $desktopBreakpoint) {
       flex-direction: column;
     }
 
@@ -172,7 +184,16 @@ a {
       box-sizing: border-box;
       padding: 0 4rem;
       position: fixed;
-      @media all and (max-width: $fullPageWidth) {
+    }
+
+    & .sidebar.left {
+      left: 0;
+      @media all and (min-width: $desktopBreakpoint) {
+        left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
+      }
+      @media all and (max-width: $mobileBreakpoint) {
+        gap: 0;
+        align-items: center;
         position: initial;
         flex-direction: row;
         padding: 0;
@@ -181,19 +202,21 @@ a {
       }
     }
 
-    & .sidebar.left {
-      left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
-      @media all and (max-width: $fullPageWidth) {
-        gap: 0;
-        align-items: center;
-      }
-    }
-
     & .sidebar.right {
       right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
       flex-wrap: wrap;
-      & > * {
-        @media all and (max-width: $fullPageWidth) {
+      @media all and (min-width: $mobileBreakpoint) {
+        margin-left: $sidePanelWidth;
+        margin-right: 0;
+      }
+      @media all and (max-width: $desktopBreakpoint) {
+        position: initial;
+        flex-direction: row;
+        padding: 0;
+        width: initial;
+        margin-top: 2rem;
+        display: flex;
+        & > * {
           flex: 1;
           min-width: 140px;
         }
@@ -206,14 +229,17 @@ a {
     width: $pageWidth;
     margin-top: 1rem;
 
-    @media all and (max-width: $fullPageWidth) {
+    @media all and (max-width: $tabletBreakpoint) {
       width: initial;
     }
   }
 
   & .page-header {
     margin: $topSpacing auto 0 auto;
-    @media all and (max-width: $fullPageWidth) {
+    @media all and (max-width: $desktopBreakpoint) {
+      margin: $topSpacing 0 0 0;
+    }
+    @media all and (max-width: $tabletBreakpoint) {
       margin-top: 2rem;
     }
   }
@@ -223,10 +249,15 @@ a {
     margin-left: auto;
     margin-right: auto;
     width: $pageWidth;
-    @media all and (max-width: $fullPageWidth) {
+    @media all and (max-width: $desktopBreakpoint) {
+      width: calc(100% - $sidePanelWidth);
+      right: 0;
+      margin-left: $sidePanelWidth;
+      margin-right: 0;
+    }
+    @media all and (max-width: $mobileBreakpoint) {
       width: initial;
       margin-left: 0;
-      margin-right: 0;
     }
   }
 }
