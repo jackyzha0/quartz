@@ -1,5 +1,12 @@
 @use "../../styles/variables.scss" as *;
 
+.explorer {
+  &.desktop-only,
+  &.tablet-only {
+    overflow-y: auto;
+  }
+}
+
 button#explorer {
   background-color: transparent;
   border: none;
@@ -75,6 +82,9 @@ button#explorer {
       opacity: 0.75;
       pointer-events: all;
     }
+  }
+  > #explorer-ul {
+    max-height: none;
   }
 }
 

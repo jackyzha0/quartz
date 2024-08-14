@@ -188,10 +188,12 @@ a {
 
     & .sidebar.left {
       left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
+      max-height: calc(100vh - $topSpacing);
       @media all and ($desktop) {
         left: 0;
       }
       @media all and ($mobile) {
+        max-height: unset;
         gap: 0;
         align-items: center;
         position: initial;
