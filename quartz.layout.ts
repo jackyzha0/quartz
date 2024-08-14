@@ -27,6 +27,8 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
+    Component.TabletOnly(Component.TableOfContents()),
+    Component.TabletOnly(Component.Explorer()),
     Component.DesktopOnly(Component.Explorer()),
   ],
   right: [
@@ -44,6 +46,7 @@ export const defaultListPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
+    Component.TabletOnly(Component.Explorer()),
     Component.DesktopOnly(Component.Explorer()),
   ],
   right: [],

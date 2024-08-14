@@ -109,13 +109,15 @@ a {
 
 .desktop-only {
   display: initial;
-  @media all and ($mobile) {
+  @media all and ($desktop) {
     display: none;
   }
-  &.toc {
-    @media all and ($tablet) {
-      display: none;
-    }
+}
+
+.tablet-only {
+  display: none;
+  @media all and ($desktop) and (not ($mobile)) {
+    display: initial;
   }
 }
 
@@ -123,11 +125,6 @@ a {
   display: none;
   @media all and ($mobile) {
     display: initial;
-  }
-  &.toc {
-    @media all and ($tablet) {
-      display: initial;
-    }
   }
 }
 
