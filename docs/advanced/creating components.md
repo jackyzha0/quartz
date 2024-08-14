@@ -66,7 +66,7 @@ export type QuartzComponentProps = {
   cfg: GlobalConfiguration
   tree: Node<QuartzPluginData>
   allFiles: QuartzPluginData[]
-  displayClass?: "mobile-only" | "desktop-only"
+  displayClass?: "mobile-only" | "tablet-only" | "desktop-only"
 }
 ```
 
