@@ -1,5 +1,5 @@
 // @ts-ignore
-import {QuartzPluginData} from "../plugins/vfile"
+import { QuartzPluginData } from "../plugins/vfile"
 import {
   joinSegments,
   resolveRelative,
@@ -32,10 +32,7 @@ export type FolderState = {
   collapsed: boolean
 }
 
-function getPathSegment(
-  fp: FilePath | undefined,
-  idx: number,
-): string | undefined {
+function getPathSegment(fp: FilePath | undefined, idx: number): string | undefined {
   if (!fp) {
     return undefined
   }
@@ -51,12 +48,7 @@ export class FileNode {
   file: QuartzPluginData | null
   depth: number
 
-  constructor(
-    slugSegment: string,
-    displayName?: string,
-    file?: QuartzPluginData,
-    depth?: number,
-  ) {
+  constructor(slugSegment: string, displayName?: string, file?: QuartzPluginData, depth?: number) {
     this.children = []
     this.name = slugSegment
     this.displayName = displayName ?? file?.frontmatter?.title ?? slugSegment
@@ -81,9 +73,7 @@ export class FileNode {
         }
       } else {
         // direct child
-        this.children.push(
-          new FileNode(nextSegment, undefined, fileData.file, this.depth + 1),
-        )
+        this.children.push(new FileNode(nextSegment, undefined, fileData.file, this.depth + 1))
       }
 
       return
@@ -109,7 +99,7 @@ export class FileNode {
 
   // Add new file to tree
   add(file: QuartzPluginData) {
-    this.insert({file: file, path: simplifySlug(file.slug!).split("/")})
+    this.insert({ file: file, path: simplifySlug(file.slug!).split("/") })
   }
 
   /**
@@ -143,7 +133,7 @@ export class FileNode {
       if (!node.file) {
         const folderPath = joinSegments(currentPath, node.name)
         if (folderPath !== "") {
-          folderPaths.push({path: folderPath, collapsed})
+          folderPaths.push({ path: folderPath, collapsed })
         }
 
         node.children.forEach((child) => traverse(child, folderPath))
@@ -172,19 +162,13 @@ type ExplorerNodeProps = {
   fullPath?: string
 }
 
-export function ExplorerNode({
-  node,
-  opts,
-  fullPath,
-  fileData,
-}: ExplorerNodeProps) {
+export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodeProps) {
   // Get options
   const folderBehavior = opts.folderClickBehavior
   const isDefaultOpen = opts.folderDefaultState === "open"
 
   // Calculate current folderPath
-  const folderPath =
-    node.name !== "" ? joinSegments(fullPath ?? "", node.name) : ""
+  const folderPath = node.name !== "" ? joinSegments(fullPath ?? "", node.name) : ""
   const href = resolveRelative(fileData.slug!, folderPath as SimpleSlug) + "/"
 
   return (
@@ -192,9 +176,7 @@ export function ExplorerNode({
       {node.file ? (
         // Single file node
         <li key={node.file.slug}>
-          <a
-            href={resolveRelative(fileData.slug!, node.file.slug!)}
-            data-for={node.file.slug}>
+          <a href={resolveRelative(fileData.slug!, node.file.slug!)} data-for={node.file.slug}>
             {node.displayName}
           </a>
         </li>
@@ -214,19 +196,14 @@ export function ExplorerNode({
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="folder-icon">
+                class="folder-icon"
+              >
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
               {/* render <a> tag if folderBehavior is "link", otherwise render <button> with collapse click event */}
               <div key={node.name} data-folderpath={folderPath}>
                 {folderBehavior === "link" ? (
-                  <a
-                    href={resolveRelative(
-                      fileData.slug!,
-                      folderPath as SimpleSlug,
-                    )}
-                    data-for={node.name}
-                    class="folder-title">
+                  <a href={href} data-for={node.name} class="folder-title">
                     {node.displayName}
                   </a>
                 ) : (
@@ -238,15 +215,15 @@ export function ExplorerNode({
             </div>
           )}
           {/* Recursively render children of folder */}
-          <div
-            class={`folder-outer ${node.depth === 0 || isDefaultOpen ? "open" : ""}`}>
+          <div class={`folder-outer ${node.depth === 0 || isDefaultOpen ? "open" : ""}`}>
             <ul
               // Inline style for left folder paddings
               style={{
                 paddingLeft: node.name !== "" ? "1.4rem" : "0",
               }}
               class="content"
-              data-folderul={folderPath}>
+              data-folderul={folderPath}
+            >
               {node.children.map((childNode, i) => (
                 <ExplorerNode
                   node={childNode}

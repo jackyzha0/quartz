@@ -1,10 +1,10 @@
-import {computePosition, flip, inline, shift} from "@floating-ui/dom"
-import {normalizeRelativeURLs} from "../../util/path"
+import { computePosition, flip, inline, shift } from "@floating-ui/dom"
+import { normalizeRelativeURLs } from "../../util/path"
 
 const p = new DOMParser()
 async function mouseEnterHandler(
-  this: HTMLLinkElement,
-  {clientX, clientY}: {clientX: number; clientY: number},
+  this: HTMLAnchorElement,
+  { clientX, clientY }: { clientX: number; clientY: number },
 ) {
   const link = this
   if (link.dataset.noPopover === "true") {
@@ -12,8 +12,8 @@ async function mouseEnterHandler(
   }
 
   async function setPosition(popoverElement: HTMLElement) {
-    const {x, y} = await computePosition(link, popoverElement, {
-      middleware: [inline({x: clientX, y: clientY}), shift(), flip()],
+    const { x, y } = await computePosition(link, popoverElement, {
+      middleware: [inline({ x: clientX, y: clientY }), shift(), flip()],
     })
     Object.assign(popoverElement.style, {
       left: `${x}px`,
@@ -94,22 +94,15 @@ async function mouseEnterHandler(
     const heading = popoverInner.querySelector(hash) as HTMLElement | null
     if (heading) {
       // leave ~12px of buffer when scrolling to a heading
-      popoverInner.scroll({
-        top: heading.offsetTop - 12,
-        behavior: "instant",
-      })
+      popoverInner.scroll({ top: heading.offsetTop - 12, behavior: "instant" })
     }
   }
 }
 
 document.addEventListener("nav", () => {
-  const links = [
-    ...document.getElementsByClassName("internal"),
-  ] as HTMLLinkElement[]
+  const links = [...document.getElementsByClassName("internal")] as HTMLAnchorElement[]
   for (const link of links) {
     link.addEventListener("mouseenter", mouseEnterHandler)
-    window.addCleanup(() =>
-      link.removeEventListener("mouseenter", mouseEnterHandler),
-    )
+    window.addCleanup(() => link.removeEventListener("mouseenter", mouseEnterHandler))
   }
 })

@@ -1,4 +1,4 @@
-import {Translation} from "./definition"
+import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "Notas Recientes",
-      seeRemainingMore: ({remaining}) => `Vea ${remaining} más →`,
+      seeRemainingMore: ({ remaining }) => `Vea ${remaining} más →`,
     },
     transcludes: {
-      transcludeOf: ({targetSlug}) => `Transcluido de ${targetSlug}`,
+      transcludeOf: ({ targetSlug }) => `Transcluido de ${targetSlug}`,
       linkToOriginal: "Enlace al original",
     },
     search: {
@@ -54,13 +54,13 @@ export default {
       title: "Tabla de Contenidos",
     },
     contentMeta: {
-      readingTime: ({minutes}) => `${minutes} min read`,
+      readingTime: ({ minutes }) => `Se lee en ${minutes} min`,
     },
   },
   pages: {
     rss: {
       recentNotes: "Notas recientes",
-      lastFewNotes: ({count}) => `Últimás ${count} notas`,
+      lastFewNotes: ({ count }) => `Últimas ${count} notas`,
     },
     error: {
       title: "No se ha encontrado.",
@@ -69,20 +69,16 @@ export default {
     },
     folderContent: {
       folder: "Carpeta",
-      itemsUnderFolder: ({count}) =>
-        count === 1
-          ? "1 artículo en esta carpeta."
-          : `${count} artículos en esta carpeta.`,
+      itemsUnderFolder: ({ count }) =>
+        count === 1 ? "1 artículo en esta carpeta." : `${count} artículos en esta carpeta.`,
     },
     tagContent: {
       tag: "Etiqueta",
       tagIndex: "Índice de Etiquetas",
-      itemsUnderTag: ({count}) =>
-        count === 1
-          ? "1 artículo con esta etiqueta."
-          : `${count} artículos con esta etiqueta.`,
-      showingFirst: ({count}) => `Mostrando las primeras ${count} etiquetas.`,
-      totalTags: ({count}) => `Se encontraron ${count} etiquetas en total.`,
+      itemsUnderTag: ({ count }) =>
+        count === 1 ? "1 artículo con esta etiqueta." : `${count} artículos con esta etiqueta.`,
+      showingFirst: ({ count }) => `Mostrando las primeras ${count} etiquetas.`,
+      totalTags: ({ count }) => `Se han encontrado ${count} etiquetas en total.`,
     },
   },
 } as const satisfies Translation

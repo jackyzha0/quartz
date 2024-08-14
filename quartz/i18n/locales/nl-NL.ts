@@ -1,4 +1,4 @@
-import {Translation} from "./definition"
+import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "Recente notities",
-      seeRemainingMore: ({remaining}) => `Zie ${remaining} meer →`,
+      seeRemainingMore: ({ remaining }) => `Zie ${remaining} meer →`,
     },
     transcludes: {
-      transcludeOf: ({targetSlug}) => `Invoeging van ${targetSlug}`,
+      transcludeOf: ({ targetSlug }) => `Invoeging van ${targetSlug}`,
       linkToOriginal: "Link naar origineel",
     },
     search: {
@@ -54,14 +54,14 @@ export default {
       title: "Inhoudsopgave",
     },
     contentMeta: {
-      readingTime: ({minutes}) =>
+      readingTime: ({ minutes }) =>
         minutes === 1 ? "1 minuut leestijd" : `${minutes} minuten leestijd`,
     },
   },
   pages: {
     rss: {
       recentNotes: "Recente notities",
-      lastFewNotes: ({count}) => `Laatste ${count} notities`,
+      lastFewNotes: ({ count }) => `Laatste ${count} notities`,
     },
     error: {
       title: "Niet gevonden",
@@ -70,17 +70,17 @@ export default {
     },
     folderContent: {
       folder: "Map",
-      itemsUnderFolder: ({count}) =>
+      itemsUnderFolder: ({ count }) =>
         count === 1 ? "1 item in deze map." : `${count} items in deze map.`,
     },
     tagContent: {
       tag: "Label",
       tagIndex: "Label-index",
-      itemsUnderTag: ({count}) =>
+      itemsUnderTag: ({ count }) =>
         count === 1 ? "1 item met dit label." : `${count} items met dit label.`,
-      showingFirst: ({count}) =>
+      showingFirst: ({ count }) =>
         count === 1 ? "Eerste label tonen." : `Eerste ${count} labels tonen.`,
-      totalTags: ({count}) => `${count} labels gevonden.`,
+      totalTags: ({ count }) => `${count} labels gevonden.`,
     },
   },
 } as const satisfies Translation

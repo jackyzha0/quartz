@@ -1,6 +1,6 @@
 import fs from "fs"
 import sourceMapSupport from "source-map-support"
-import {fileURLToPath} from "url"
+import { fileURLToPath } from "url"
 
 export const options: sourceMapSupport.Options = {
   // source map hack to get around query param

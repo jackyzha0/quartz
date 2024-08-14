@@ -1,4 +1,4 @@
-import {Spinner} from "cli-spinner"
+import { Spinner } from "cli-spinner"
 
 export class QuartzLogger {
   verbose: boolean

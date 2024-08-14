@@ -1,4 +1,4 @@
-import {Translation} from "./definition"
+import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "最近の記事",
-      seeRemainingMore: ({remaining}) => `さらに${remaining}件 →`,
+      seeRemainingMore: ({ remaining }) => `さらに${remaining}件 →`,
     },
     transcludes: {
-      transcludeOf: ({targetSlug}) => `${targetSlug}のまとめ`,
+      transcludeOf: ({ targetSlug }) => `${targetSlug}のまとめ`,
       linkToOriginal: "元記事へのリンク",
     },
     search: {
@@ -54,13 +54,13 @@ export default {
       title: "目次",
     },
     contentMeta: {
-      readingTime: ({minutes}) => `${minutes} min read`,
+      readingTime: ({ minutes }) => `${minutes} min read`,
     },
   },
   pages: {
     rss: {
       recentNotes: "最近の記事",
-      lastFewNotes: ({count}) => `最新の${count}件`,
+      lastFewNotes: ({ count }) => `最新の${count}件`,
     },
     error: {
       title: "Not Found",
@@ -69,14 +69,14 @@ export default {
     },
     folderContent: {
       folder: "フォルダ",
-      itemsUnderFolder: ({count}) => `${count}件のページ`,
+      itemsUnderFolder: ({ count }) => `${count}件のページ`,
     },
     tagContent: {
       tag: "タグ",
       tagIndex: "タグ一覧",
-      itemsUnderTag: ({count}) => `${count}件のページ`,
-      showingFirst: ({count}) => `のうち最初の${count}件を表示しています`,
-      totalTags: ({count}) => `全${count}個のタグを表示中`,
+      itemsUnderTag: ({ count }) => `${count}件のページ`,
+      showingFirst: ({ count }) => `のうち最初の${count}件を表示しています`,
+      totalTags: ({ count }) => `全${count}個のタグを表示中`,
     },
   },
 } as const satisfies Translation

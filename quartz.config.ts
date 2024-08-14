@@ -35,6 +35,7 @@ const config: QuartzConfig = {
           secondary: "#284B63", // #091217
           tertiary: "#84A59D", // #AA336A
           highlight: "#8F9FA925",
+          textHighlight: "#fff23688",
         },
         darkMode: {
           light: "#1E1E2E", // background // #161618
@@ -45,6 +46,7 @@ const config: QuartzConfig = {
           secondary: "#9BE895", // links, nodes // #7B97AA
           tertiary: "#C072C4", // hover states, visited links // #84A59D
           highlight: "#8F9FA925", // internal link background
+          textHighlight: "#b3aa0288",
         },
       },
     },

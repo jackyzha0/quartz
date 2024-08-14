@@ -1,4 +1,4 @@
-import {QuartzTransformerPlugin} from "../types"
+import { QuartzTransformerPlugin } from "../types"
 import {
   FullSlug,
   RelativeURL,
@@ -10,9 +10,9 @@ import {
   transformLink,
 } from "../../util/path"
 import path from "path"
-import {visit} from "unist-util-visit"
+import { visit } from "unist-util-visit"
 import isAbsoluteUrl from "is-absolute-url"
-import {Root} from "hast"
+import { Root } from "hast"
 
 interface Options {
   /** How to resolve Markdown paths */
@@ -32,10 +32,8 @@ const defaultOptions: Options = {
   externalLinkIcon: true,
 }
 
-export const CrawlLinks: QuartzTransformerPlugin<
-  Partial<Options> | undefined
-> = (userOpts) => {
-  const opts = {...defaultOptions, ...userOpts}
+export const CrawlLinks: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+  const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "LinkProcessing",
     htmlPlugins(ctx) {
@@ -100,9 +98,7 @@ export const CrawlLinks: QuartzTransformerPlugin<
                 }
 
                 // don't process external links or intra-document anchors
-                const isInternal = !(
-                  isAbsoluteUrl(dest) || dest.startsWith("#")
-                )
+                const isInternal = !(isAbsoluteUrl(dest) || dest.startsWith("#"))
                 if (isInternal) {
                   dest = node.properties.href = transformLink(
                     file.data.slug!,
@@ -112,10 +108,7 @@ export const CrawlLinks: QuartzTransformerPlugin<
 
                   // url.resolve is considered legacy
                   // WHATWG equivalent https://nodejs.dev/en/api/v18/url/#urlresolvefrom-to
-                  const url = new URL(
-                    dest,
-                    "https://base.com/" + stripSlashes(curSlug, true),
-                  )
+                  const url = new URL(dest, "https://base.com/" + stripSlashes(curSlug, true))
                   const canonicalDest = url.pathname
                   let [destCanonical, _destAnchor] = splitAnchor(canonicalDest)
                   if (destCanonical.endsWith("/")) {
@@ -123,9 +116,7 @@ export const CrawlLinks: QuartzTransformerPlugin<
                   }
 
                   // need to decodeURIComponent here as WHATWG URL percent-encodes everything
-                  const full = decodeURIComponent(
-                    stripSlashes(destCanonical, true),
-                  ) as FullSlug
+                  const full = decodeURIComponent(stripSlashes(destCanonical, true)) as FullSlug
                   const simple = simplifySlug(full)
                   outgoing.add(simple)
                   node.properties["data-slug"] = full

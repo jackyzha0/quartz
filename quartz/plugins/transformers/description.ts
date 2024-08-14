@@ -1,7 +1,7 @@
-import {Root as HTMLRoot} from "hast"
-import {toString} from "hast-util-to-string"
-import {QuartzTransformerPlugin} from "../types"
-import {escapeHTML} from "../../util/escape"
+import { Root as HTMLRoot } from "hast"
+import { toString } from "hast-util-to-string"
+import { QuartzTransformerPlugin } from "../types"
+import { escapeHTML } from "../../util/escape"
 
 export interface Options {
   descriptionLength: number
@@ -18,10 +18,8 @@ const urlRegex = new RegExp(
   "g",
 )
 
-export const Description: QuartzTransformerPlugin<
-  Partial<Options> | undefined
-> = (userOpts) => {
-  const opts = {...defaultOptions, ...userOpts}
+export const Description: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+  const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "Description",
     htmlPlugins() {
@@ -60,9 +58,7 @@ export const Description: QuartzTransformerPlugin<
               while (currentDescriptionLength < len) {
                 const sentence = sentences[sentenceIdx]
                 if (!sentence) break
-                const currentSentence = sentence.endsWith(".")
-                  ? sentence
-                  : sentence + "."
+                const currentSentence = sentence.endsWith(".") ? sentence : sentence + "."
                 finalDesc.push(currentSentence)
                 currentDescriptionLength += currentSentence.length
                 sentenceIdx++

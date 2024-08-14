@@ -1,6 +1,6 @@
 import chalk from "chalk"
 import process from "process"
-import {isMainThread} from "workerpool"
+import { isMainThread } from "workerpool"
 
 const rootFile = /.*at file:/
 export function trace(msg: string, err: Error) {

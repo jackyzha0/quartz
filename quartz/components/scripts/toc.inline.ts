@@ -23,8 +23,7 @@ function toggleToc(this: HTMLElement) {
   const content = this.nextElementSibling as HTMLElement | undefined
   if (!content) return
   content.classList.toggle("collapsed")
-  content.style.maxHeight =
-    content.style.maxHeight === "0px" ? content.scrollHeight + "px" : "0px"
+  content.style.maxHeight = content.style.maxHeight === "0px" ? content.scrollHeight + "px" : "0px"
 }
 
 function setupToc() {
@@ -45,8 +44,6 @@ document.addEventListener("nav", () => {
 
   // update toc entry highlighting
   observer.disconnect()
-  const headers = document.querySelectorAll(
-    "h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]",
-  )
+  const headers = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]")
   headers.forEach((header) => observer.observe(header))
 })

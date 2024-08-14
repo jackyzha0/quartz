@@ -14,9 +14,7 @@ function toggleCallout(this: HTMLElement) {
     }
 
     const collapsed = parent.classList.contains("is-collapsed")
-    const height = collapsed
-      ? parent.scrollHeight
-      : parent.scrollHeight + current.scrollHeight
+    const height = collapsed ? parent.scrollHeight : parent.scrollHeight + current.scrollHeight
     parent.style.maxHeight = height + "px"
 
     current = parent

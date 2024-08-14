@@ -1,7 +1,7 @@
 import FlexSearch from "flexsearch"
-import {ContentDetails} from "../../plugins/emitters/contentIndex"
-import {registerEscapeHandler, removeAllChildren} from "./util"
-import {FullSlug, normalizeRelativeURLs, resolveRelative} from "../../util/path"
+import { ContentDetails } from "../../plugins/emitters/contentIndex"
+import { registerEscapeHandler, removeAllChildren } from "./util"
+import { FullSlug, normalizeRelativeURLs, resolveRelative } from "../../util/path"
 
 interface Item {
   id: number
@@ -15,8 +15,7 @@ interface Item {
 type SearchType = "basic" | "tags"
 let searchType: SearchType = "basic"
 let currentSearchTerm: string = ""
-const encoder = (str: string) =>
-  str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
+const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
 let index = new FlexSearch.Document<Item>({
   charset: "latin:extra",
   encode: encoder,
@@ -66,18 +65,12 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
   let endIndex = tokenizedText.length - 1
   if (trim) {
     const includesCheck = (tok: string) =>
-      tokenizedTerms.some((term) =>
-        tok.toLowerCase().startsWith(term.toLowerCase()),
-      )
+      tokenizedTerms.some((term) => tok.toLowerCase().startsWith(term.toLowerCase()))
     const occurrencesIndices = tokenizedText.map(includesCheck)
 
     let bestSum = 0
     let bestIndex = 0
-    for (
-      let i = 0;
-      i < Math.max(tokenizedText.length - contextWindowWords, 0);
-      i++
-    ) {
+    for (let i = 0; i < Math.max(tokenizedText.length - contextWindowWords, 0); i++) {
       const window = occurrencesIndices.slice(i, i + contextWindowWords)
       const windowSum = window.reduce((total, cur) => total + (cur ? 1 : 0), 0)
       if (windowSum >= bestSum) {
@@ -87,10 +80,7 @@ function highlight(searchTerm: string, text: string, trim?: boolean) {
     }
 
     startIndex = Math.max(bestIndex - contextWindowWords, 0)
-    endIndex = Math.min(
-      startIndex + 2 * contextWindowWords,
-      tokenizedText.length - 1,
-    )
+    endIndex = Math.min(startIndex + 2 * contextWindowWords, tokenizedText.length - 1)
     tokenizedText = tokenizedText.slice(startIndex, endIndex)
   }
 
@@ -134,21 +124,15 @@ function highlightHTML(searchTerm: string, el: HTMLElement) {
       let lastIndex = 0
       for (const match of matches) {
         const matchIndex = nodeText.indexOf(match, lastIndex)
-        spanContainer.appendChild(
-          document.createTextNode(nodeText.slice(lastIndex, matchIndex)),
-        )
+        spanContainer.appendChild(document.createTextNode(nodeText.slice(lastIndex, matchIndex)))
         spanContainer.appendChild(createHighlightSpan(match))
         lastIndex = matchIndex + match.length
       }
-      spanContainer.appendChild(
-        document.createTextNode(nodeText.slice(lastIndex)),
-      )
+      spanContainer.appendChild(document.createTextNode(nodeText.slice(lastIndex)))
       node.parentNode?.replaceChild(spanContainer, node)
     } else if (node.nodeType === Node.ELEMENT_NODE) {
       if ((node as HTMLElement).classList.contains("highlight")) return
-      Array.from(node.childNodes).forEach((child) =>
-        highlightTextNodes(child, term),
-      )
+      Array.from(node.childNodes).forEach((child) => highlightTextNodes(child, term))
     }
   }
 
@@ -164,10 +148,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   const data = await fetchData
   const container = document.getElementById("search-container")
   const sidebar = container?.closest(".sidebar") as HTMLElement
-  const searchIcon = document.getElementById("search-icon")
-  const searchBar = document.getElementById(
-    "search-bar",
-  ) as HTMLInputElement | null
+  const searchButton = document.getElementById("search-button")
+  const searchBar = document.getElementById("search-bar") as HTMLInputElement | null
   const searchLayout = document.getElementById("search-layout")
   const idDataMap = Object.keys(data) as FullSlug[]
 
@@ -230,11 +212,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       const searchBarOpen = container?.classList.contains("active")
       searchBarOpen ? hideSearch() : showSearch("basic")
       return
-    } else if (
-      e.shiftKey &&
-      (e.ctrlKey || e.metaKey) &&
-      e.key.toLowerCase() === "k"
-    ) {
+    } else if (e.shiftKey && (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
       // Hotkey to open tag search
       e.preventDefault()
       const searchBarOpen = container?.classList.contains("active")
@@ -259,9 +237,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
         await displayPreview(active)
         active.click()
       } else {
-        const anchor = document.getElementsByClassName(
-          "result-card",
-        )[0] as HTMLInputElement | null
+        const anchor = document.getElementsByClassName("result-card")[0] as HTMLInputElement | null
         if (!anchor || anchor?.classList.contains("no-match")) return
         await displayPreview(anchor)
         anchor.click()
@@ -273,8 +249,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
         const currentResult = currentHover
           ? currentHover
           : (document.activeElement as HTMLInputElement | null)
-        const prevResult =
-          currentResult?.previousElementSibling as HTMLInputElement | null
+        const prevResult = currentResult?.previousElementSibling as HTMLInputElement | null
         currentResult?.classList.remove("focus")
         prevResult?.focus()
         if (prevResult) currentHover = prevResult
@@ -287,11 +262,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       if (document.activeElement === searchBar || currentHover !== null) {
         const firstResult = currentHover
           ? currentHover
-          : (document.getElementsByClassName(
-              "result-card",
-            )[0] as HTMLInputElement | null)
-        const secondResult =
-          firstResult?.nextElementSibling as HTMLInputElement | null
+          : (document.getElementsByClassName("result-card")[0] as HTMLInputElement | null)
+        const secondResult = firstResult?.nextElementSibling as HTMLInputElement | null
         firstResult?.classList.remove("focus")
         secondResult?.focus()
         if (secondResult) currentHover = secondResult
@@ -305,10 +277,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     return {
       id,
       slug,
-      title:
-        searchType === "tags"
-          ? data[slug].title
-          : highlight(term, data[slug].title ?? ""),
+      title: searchType === "tags" ? data[slug].title : highlight(term, data[slug].title ?? ""),
       content: highlight(term, data[slug].content ?? "", true),
       tags: highlightTags(term.substring(1), data[slug].tags),
     }
@@ -334,9 +303,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     return new URL(resolveRelative(currentSlug, slug), location.toString())
   }
 
-  const resultToHTML = ({slug, title, content, tags}: Item) => {
-    const htmlTags =
-      tags.length > 0 ? `<ul class="tags">${tags.join("")}</ul>` : ``
+  const resultToHTML = ({ slug, title, content, tags }: Item) => {
+    const htmlTags = tags.length > 0 ? `<ul class="tags">${tags.join("")}</ul>` : ``
     const itemTile = document.createElement("a")
     itemTile.classList.add("result-card")
     itemTile.id = slug
@@ -345,14 +313,12 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       enablePreview && window.innerWidth > 600 ? "" : `<p>${content}</p>`
     }`
     itemTile.addEventListener("click", (event) => {
-      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
-        return
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
       hideSearch()
     })
 
     const handler = (event: MouseEvent) => {
-      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
-        return
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
       hideSearch()
     }
 
@@ -363,9 +329,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     }
 
     itemTile.addEventListener("mouseenter", onMouseEnter)
-    window.addCleanup(() =>
-      itemTile.removeEventListener("mouseenter", onMouseEnter),
-    )
+    window.addCleanup(() => itemTile.removeEventListener("mouseenter", onMouseEnter))
     itemTile.addEventListener("click", handler)
     window.addCleanup(() => itemTile.removeEventListener("click", handler))
 
@@ -422,9 +386,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     if (!searchLayout || !enablePreview || !el || !preview) return
     const slug = el.id as FullSlug
     const innerDiv = await fetchContent(slug).then((contents) =>
-      contents.flatMap((el) => [
-        ...highlightHTML(currentSearchTerm, el as HTMLElement).children,
-      ]),
+      contents.flatMap((el) => [...highlightHTML(currentSearchTerm, el as HTMLElement).children]),
     )
     previewInner = document.createElement("div")
     previewInner.classList.add("preview-inner")
@@ -435,7 +397,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     const highlights = [...preview.querySelectorAll(".highlight")].sort(
       (a, b) => b.innerHTML.length - a.innerHTML.length,
     )
-    highlights[0]?.scrollIntoView({block: "start"})
+    highlights[0]?.scrollIntoView({ block: "start" })
   }
 
   async function onType(e: HTMLElementEventMap["input"]) {
@@ -492,20 +454,14 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       ...getByField("content"),
       ...getByField("tags"),
     ])
-    const finalResults = [...allIds].map((id) =>
-      formatForDisplay(currentSearchTerm, id),
-    )
+    const finalResults = [...allIds].map((id) => formatForDisplay(currentSearchTerm, id))
     await displayResults(finalResults)
   }
 
   document.addEventListener("keydown", shortcutHandler)
-  window.addCleanup(() =>
-    document.removeEventListener("keydown", shortcutHandler),
-  )
-  searchIcon?.addEventListener("click", () => showSearch("basic"))
-  window.addCleanup(() =>
-    searchIcon?.removeEventListener("click", () => showSearch("basic")),
-  )
+  window.addCleanup(() => document.removeEventListener("keydown", shortcutHandler))
+  searchButton?.addEventListener("click", () => showSearch("basic"))
+  window.addCleanup(() => searchButton?.removeEventListener("click", () => showSearch("basic")))
   searchBar?.addEventListener("input", onType)
   window.addCleanup(() => searchBar?.removeEventListener("input", onType))
 
@@ -518,7 +474,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
  * @param index index to fill
  * @param data data to fill index with
  */
-async function fillDocument(data: {[key: FullSlug]: ContentDetails}) {
+async function fillDocument(data: { [key: FullSlug]: ContentDetails }) {
   let id = 0
   const promises: Array<Promise<unknown>> = []
   for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {

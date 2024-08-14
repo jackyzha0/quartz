@@ -1,4 +1,4 @@
-import {Translation} from "./definition"
+import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "Bài viết gần đây",
-      seeRemainingMore: ({remaining}) => `Xem ${remaining} thêm →`,
+      seeRemainingMore: ({ remaining }) => `Xem ${remaining} thêm →`,
     },
     transcludes: {
-      transcludeOf: ({targetSlug}) => `Bao gồm ${targetSlug}`,
+      transcludeOf: ({ targetSlug }) => `Bao gồm ${targetSlug}`,
       linkToOriginal: "Liên Kết Gốc",
     },
     search: {
@@ -54,13 +54,13 @@ export default {
       title: "Bảng Nội Dung",
     },
     contentMeta: {
-      readingTime: ({minutes}) => `đọc ${minutes} phút`,
+      readingTime: ({ minutes }) => `đọc ${minutes} phút`,
     },
   },
   pages: {
     rss: {
       recentNotes: "Những bài gần đây",
-      lastFewNotes: ({count}) => `${count} Bài gần đây`,
+      lastFewNotes: ({ count }) => `${count} Bài gần đây`,
     },
     error: {
       title: "Không Tìm Thấy",
@@ -69,18 +69,16 @@ export default {
     },
     folderContent: {
       folder: "Thư Mục",
-      itemsUnderFolder: ({count}) =>
-        count === 1
-          ? "1 mục trong thư mục này."
-          : `${count} mục trong thư mục này.`,
+      itemsUnderFolder: ({ count }) =>
+        count === 1 ? "1 mục trong thư mục này." : `${count} mục trong thư mục này.`,
     },
     tagContent: {
       tag: "Thẻ",
       tagIndex: "Thẻ Mục Lục",
-      itemsUnderTag: ({count}) =>
+      itemsUnderTag: ({ count }) =>
         count === 1 ? "1 mục gắn thẻ này." : `${count} mục gắn thẻ này.`,
-      showingFirst: ({count}) => `Hiển thị trước ${count} thẻ.`,
-      totalTags: ({count}) => `Tìm thấy ${count} thẻ tổng cộng.`,
+      showingFirst: ({ count }) => `Hiển thị trước ${count} thẻ.`,
+      totalTags: ({ count }) => `Tìm thấy ${count} thẻ tổng cộng.`,
     },
   },
 } as const satisfies Translation

@@ -1,10 +1,5 @@
 import micromorph from "micromorph"
-import {
-  FullSlug,
-  RelativeURL,
-  getFullSlug,
-  normalizeRelativeURLs,
-} from "../../util/path"
+import { FullSlug, RelativeURL, getFullSlug, normalizeRelativeURLs } from "../../util/path"
 
 // adapted from `micromorph`
 // https://github.com/natemoo-re/micromorph
@@ -28,24 +23,19 @@ const isSamePage = (url: URL): boolean => {
   return sameOrigin && samePath
 }
 
-const getOpts = ({target}: Event): {url: URL; scroll?: boolean} | undefined => {
+const getOpts = ({ target }: Event): { url: URL; scroll?: boolean } | undefined => {
   if (!isElement(target)) return
   if (target.attributes.getNamedItem("target")?.value === "_blank") return
   const a = target.closest("a")
   if (!a) return
   if ("routerIgnore" in a.dataset) return
-  const {href} = a
+  const { href } = a
   if (!isLocalUrl(href)) return
-  return {
-    url: new URL(href),
-    scroll: "routerNoscroll" in a.dataset ? false : undefined,
-  }
+  return { url: new URL(href), scroll: "routerNoscroll" in a.dataset ? false : undefined }
 }
 
 function notifyNav(url: FullSlug) {
-  const event: CustomEventMap["nav"] = new CustomEvent("nav", {
-    detail: {url},
-  })
+  const event: CustomEventMap["nav"] = new CustomEvent("nav", { detail: { url } })
   document.dispatchEvent(event)
 }
 
@@ -96,19 +86,15 @@ async function navigate(url: URL, isBack: boolean = false) {
   // scroll into place and add history
   if (!isBack) {
     if (url.hash) {
-      const el = document.getElementById(
-        decodeURIComponent(url.hash.substring(1)),
-      )
+      const el = document.getElementById(decodeURIComponent(url.hash.substring(1)))
       el?.scrollIntoView()
     } else {
-      window.scrollTo({top: 0})
+      window.scrollTo({ top: 0 })
     }
   }
 
   // now, patch head
-  const elementsToRemove = document.head.querySelectorAll(
-    ":not([spa-preserve])",
-  )
+  const elementsToRemove = document.head.querySelectorAll(":not([spa-preserve])")
   elementsToRemove.forEach((el) => el.remove())
   const elementsToAdd = html.head.querySelectorAll(":not([spa-preserve])")
   elementsToAdd.forEach((el) => document.head.appendChild(el))
@@ -127,15 +113,13 @@ window.spaNavigate = navigate
 function createRouter() {
   if (typeof window !== "undefined") {
     window.addEventListener("click", async (event) => {
-      const {url} = getOpts(event) ?? {}
+      const { url } = getOpts(event) ?? {}
       // dont hijack behaviour, just let browser act normally
       if (!url || event.ctrlKey || event.metaKey) return
       event.preventDefault()
 
       if (isSamePage(url) && url.hash) {
-        const el = document.getElementById(
-          decodeURIComponent(url.hash.substring(1)),
-        )
+        const el = document.getElementById(decodeURIComponent(url.hash.substring(1)))
         el?.scrollIntoView()
         history.pushState({}, "", url)
         return
@@ -149,9 +133,8 @@ function createRouter() {
     })
 
     window.addEventListener("popstate", (event) => {
-      const {url} = getOpts(event) ?? {}
-      if (window.location.hash && window.location.pathname === url?.pathname)
-        return
+      const { url } = getOpts(event) ?? {}
+      if (window.location.hash && window.location.pathname === url?.pathname) return
       try {
         navigate(new URL(window.location.toString()), true)
       } catch (e) {
@@ -184,7 +167,7 @@ if (!customElements.get("route-announcer")) {
   const attrs = {
     "aria-live": "assertive",
     "aria-atomic": "true",
-    "style":
+    style:
       "position: absolute; left: 0; top: 0; clip: rect(0 0 0 0); clip-path: inset(50%); overflow: hidden; white-space: nowrap; width: 1px; height: 1px",
   }
 

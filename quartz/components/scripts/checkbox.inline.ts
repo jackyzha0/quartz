@@ -1,4 +1,4 @@
-import {getFullSlug} from "../../util/path"
+import { getFullSlug } from "../../util/path"
 
 const checkboxId = (index: number) => `${getFullSlug(window)}-checkbox-${index}`
 
@@ -10,9 +10,7 @@ document.addEventListener("nav", () => {
     const elId = checkboxId(index)
 
     const switchState = (e: Event) => {
-      const newCheckboxState = (e.target as HTMLInputElement)?.checked
-        ? "true"
-        : "false"
+      const newCheckboxState = (e.target as HTMLInputElement)?.checked ? "true" : "false"
       localStorage.setItem(elId, newCheckboxState)
     }
 

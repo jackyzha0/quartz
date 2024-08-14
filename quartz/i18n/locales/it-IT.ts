@@ -1,4 +1,4 @@
-import {Translation} from "./definition"
+import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "Note recenti",
-      seeRemainingMore: ({remaining}) => `Vedi ${remaining} altro →`,
+      seeRemainingMore: ({ remaining }) => `Vedi ${remaining} altro →`,
     },
     transcludes: {
-      transcludeOf: ({targetSlug}) => `Transclusione di ${targetSlug}`,
+      transcludeOf: ({ targetSlug }) => `Transclusione di ${targetSlug}`,
       linkToOriginal: "Link all'originale",
     },
     search: {
@@ -54,13 +54,13 @@ export default {
       title: "Tabella dei contenuti",
     },
     contentMeta: {
-      readingTime: ({minutes}) => `${minutes} minuti`,
+      readingTime: ({ minutes }) => `${minutes} minuti`,
     },
   },
   pages: {
     rss: {
       recentNotes: "Note recenti",
-      lastFewNotes: ({count}) => `Ultime ${count} note`,
+      lastFewNotes: ({ count }) => `Ultime ${count} note`,
     },
     error: {
       title: "Non trovato",
@@ -69,20 +69,16 @@ export default {
     },
     folderContent: {
       folder: "Cartella",
-      itemsUnderFolder: ({count}) =>
-        count === 1
-          ? "1 oggetto in questa cartella."
-          : `${count} oggetti in questa cartella.`,
+      itemsUnderFolder: ({ count }) =>
+        count === 1 ? "1 oggetto in questa cartella." : `${count} oggetti in questa cartella.`,
     },
     tagContent: {
       tag: "Etichetta",
       tagIndex: "Indice etichette",
-      itemsUnderTag: ({count}) =>
-        count === 1
-          ? "1 oggetto con questa etichetta."
-          : `${count} oggetti con questa etichetta.`,
-      showingFirst: ({count}) => `Prime ${count} etichette.`,
-      totalTags: ({count}) => `Trovate ${count} etichette totali.`,
+      itemsUnderTag: ({ count }) =>
+        count === 1 ? "1 oggetto con questa etichetta." : `${count} oggetti con questa etichetta.`,
+      showingFirst: ({ count }) => `Prime ${count} etichette.`,
+      totalTags: ({ count }) => `Trovate ${count} etichette totali.`,
     },
   },
 } as const satisfies Translation

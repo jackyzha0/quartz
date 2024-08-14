@@ -1,4 +1,4 @@
-import {Translation} from "./definition"
+import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "Legutóbbi jegyzetek",
-      seeRemainingMore: ({remaining}) => `${remaining} további megtekintése →`,
+      seeRemainingMore: ({ remaining }) => `${remaining} további megtekintése →`,
     },
     transcludes: {
-      transcludeOf: ({targetSlug}) => `${targetSlug} áthivatkozása`,
+      transcludeOf: ({ targetSlug }) => `${targetSlug} áthivatkozása`,
       linkToOriginal: "Hivatkozás az eredetire",
     },
     search: {
@@ -54,13 +54,13 @@ export default {
       title: "Tartalomjegyzék",
     },
     contentMeta: {
-      readingTime: ({minutes}) => `${minutes} perces olvasás`,
+      readingTime: ({ minutes }) => `${minutes} perces olvasás`,
     },
   },
   pages: {
     rss: {
       recentNotes: "Legutóbbi jegyzetek",
-      lastFewNotes: ({count}) => `Legutóbbi ${count} jegyzet`,
+      lastFewNotes: ({ count }) => `Legutóbbi ${count} jegyzet`,
     },
     error: {
       title: "Nem található",
@@ -69,15 +69,14 @@ export default {
     },
     folderContent: {
       folder: "Mappa",
-      itemsUnderFolder: ({count}) =>
-        `Ebben a mappában ${count} elem található.`,
+      itemsUnderFolder: ({ count }) => `Ebben a mappában ${count} elem található.`,
     },
     tagContent: {
       tag: "Címke",
       tagIndex: "Címke index",
-      itemsUnderTag: ({count}) => `${count} elem található ezzel a címkével.`,
-      showingFirst: ({count}) => `Első ${count} címke megjelenítve.`,
-      totalTags: ({count}) => `Összesen ${count} címke található.`,
+      itemsUnderTag: ({ count }) => `${count} elem található ezzel a címkével.`,
+      showingFirst: ({ count }) => `Első ${count} címke megjelenítve.`,
+      totalTags: ({ count }) => `Összesen ${count} címke található.`,
     },
   },
 } as const satisfies Translation

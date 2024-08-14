@@ -1,7 +1,7 @@
 import rehypeCitation from "rehype-citation"
-import {PluggableList} from "unified"
-import {visit} from "unist-util-visit"
-import {QuartzTransformerPlugin} from "../types"
+import { PluggableList } from "unified"
+import { visit } from "unist-util-visit"
+import { QuartzTransformerPlugin } from "../types"
 
 export interface Options {
   bibliographyFile: string
@@ -17,10 +17,8 @@ const defaultOptions: Options = {
   csl: "apa",
 }
 
-export const Citations: QuartzTransformerPlugin<
-  Partial<Options> | undefined
-> = (userOpts) => {
-  const opts = {...defaultOptions, ...userOpts}
+export const Citations: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+  const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "Citations",
     htmlPlugins() {
@@ -40,11 +38,8 @@ export const Citations: QuartzTransformerPlugin<
       // using https://github.com/syntax-tree/unist-util-visit as they're just anochor links
       plugins.push(() => {
         return (tree, _file) => {
-          visit(tree, "element", (node, index, parent) => {
-            if (
-              node.tagName === "a" &&
-              node.properties?.href?.startsWith("#bib")
-            ) {
+          visit(tree, "element", (node, _index, _parent) => {
+            if (node.tagName === "a" && node.properties?.href?.startsWith("#bib")) {
               node.properties["data-no-popover"] = true
             }
           })

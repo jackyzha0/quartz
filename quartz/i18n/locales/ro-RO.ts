@@ -1,4 +1,4 @@
-import {Translation} from "./definition"
+import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "Notițe recente",
-      seeRemainingMore: ({remaining}) => `Vezi încă ${remaining} →`,
+      seeRemainingMore: ({ remaining }) => `Vezi încă ${remaining} →`,
     },
     transcludes: {
-      transcludeOf: ({targetSlug}) => `Extras din ${targetSlug}`,
+      transcludeOf: ({ targetSlug }) => `Extras din ${targetSlug}`,
       linkToOriginal: "Legătură către original",
     },
     search: {
@@ -54,14 +54,14 @@ export default {
       title: "Cuprins",
     },
     contentMeta: {
-      readingTime: ({minutes}) =>
+      readingTime: ({ minutes }) =>
         minutes == 1 ? `lectură de 1 minut` : `lectură de ${minutes} minute`,
     },
   },
   pages: {
     rss: {
       recentNotes: "Notițe recente",
-      lastFewNotes: ({count}) => `Ultimele ${count} notițe`,
+      lastFewNotes: ({ count }) => `Ultimele ${count} notițe`,
     },
     error: {
       title: "Pagina nu a fost găsită",
@@ -70,20 +70,16 @@ export default {
     },
     folderContent: {
       folder: "Dosar",
-      itemsUnderFolder: ({count}) =>
-        count === 1
-          ? "1 articol în acest dosar."
-          : `${count} elemente în acest dosar.`,
+      itemsUnderFolder: ({ count }) =>
+        count === 1 ? "1 articol în acest dosar." : `${count} elemente în acest dosar.`,
     },
     tagContent: {
       tag: "Etichetă",
       tagIndex: "Indexul etichetelor",
-      itemsUnderTag: ({count}) =>
-        count === 1
-          ? "1 articol cu această etichetă."
-          : `${count} articole cu această etichetă.`,
-      showingFirst: ({count}) => `Se afișează primele ${count} etichete.`,
-      totalTags: ({count}) => `Au fost găsite ${count} etichete în total.`,
+      itemsUnderTag: ({ count }) =>
+        count === 1 ? "1 articol cu această etichetă." : `${count} articole cu această etichetă.`,
+      showingFirst: ({ count }) => `Se afișează primele ${count} etichete.`,
+      totalTags: ({ count }) => `Au fost găsite ${count} etichete în total.`,
     },
   },
 } as const satisfies Translation

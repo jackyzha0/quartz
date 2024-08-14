@@ -2,7 +2,7 @@ import chalk from "chalk"
 import pretty from "pretty-time"
 
 export class PerfTimer {
-  evts: {[key: string]: [number, number]}
+  evts: { [key: string]: [number, number] }
 
   constructor() {
     this.evts = {}

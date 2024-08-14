@@ -1,4 +1,4 @@
-import {FullSlug} from "../../util/path"
+import { FullSlug } from "../../util/path"
 
 export interface CalloutTranslation {
   note: string
@@ -42,10 +42,10 @@ export interface Translation {
     }
     recentNotes: {
       title: string
-      seeRemainingMore: (variables: {remaining: number}) => string
+      seeRemainingMore: (variables: { remaining: number }) => string
     }
     transcludes: {
-      transcludeOf: (variables: {targetSlug: FullSlug}) => string
+      transcludeOf: (variables: { targetSlug: FullSlug }) => string
       linkToOriginal: string
     }
     search: {
@@ -56,13 +56,13 @@ export interface Translation {
       title: string
     }
     contentMeta: {
-      readingTime: (variables: {minutes: number}) => string
+      readingTime: (variables: { minutes: number }) => string
     }
   }
   pages: {
     rss: {
       recentNotes: string
-      lastFewNotes: (variables: {count: number}) => string
+      lastFewNotes: (variables: { count: number }) => string
     }
     error: {
       title: string
@@ -71,14 +71,14 @@ export interface Translation {
     }
     folderContent: {
       folder: string
-      itemsUnderFolder: (variables: {count: number}) => string
+      itemsUnderFolder: (variables: { count: number }) => string
     }
     tagContent: {
       tag: string
       tagIndex: string
-      itemsUnderTag: (variables: {count: number}) => string
-      showingFirst: (variables: {count: number}) => string
-      totalTags: (variables: {count: number}) => string
+      itemsUnderTag: (variables: { count: number }) => string
+      showingFirst: (variables: { count: number }) => string
+      totalTags: (variables: { count: number }) => string
     }
   }
 }

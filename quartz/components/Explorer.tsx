@@ -1,16 +1,12 @@
-import {
-  QuartzComponent,
-  QuartzComponentConstructor,
-  QuartzComponentProps,
-} from "./types"
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import explorerStyle from "./styles/explorer.scss"
 
 // @ts-ignore
 import script from "./scripts/explorer.inline"
-import {ExplorerNode, FileNode, Options} from "./ExplorerNode"
-import {QuartzPluginData} from "../plugins/vfile"
-import {classNames} from "../util/lang"
-import {i18n} from "../i18n"
+import { ExplorerNode, FileNode, Options } from "./ExplorerNode"
+import { QuartzPluginData } from "../plugins/vfile"
+import { classNames } from "../util/lang"
+import { i18n } from "../i18n"
 
 // Options interface defined in `ExplorerNode` to avoid circular dependency
 const defaultOptions = {
@@ -43,7 +39,7 @@ const defaultOptions = {
 
 export default ((userOpts?: Partial<Options>) => {
   // Parse config
-  const opts: Options = {...defaultOptions, ...userOpts}
+  const opts: Options = { ...defaultOptions, ...userOpts }
 
   // memoized
   let fileTree: FileNode
@@ -72,9 +68,7 @@ export default ((userOpts?: Partial<Options>) => {
 
     // Get all folders of tree. Initialize with collapsed state
     // Stringify to pass json tree as data attribute ([data-tree])
-    const folders = fileTree.getFolderPaths(
-      opts.folderDefaultState === "collapsed",
-    )
+    const folders = fileTree.getFolderPaths(opts.folderDefaultState === "collapsed")
     jsonTree = JSON.stringify(folders)
   }
 
@@ -98,8 +92,11 @@ export default ((userOpts?: Partial<Options>) => {
           data-behavior={opts.folderClickBehavior}
           data-collapsed={opts.folderDefaultState}
           data-savestate={opts.useSavedState}
-          data-tree={jsonTree}>
-          <h1>{opts.title ?? i18n(cfg.locale).components.explorer.title}</h1>
+          data-tree={jsonTree}
+          aria-controls="explorer-content"
+          aria-expanded={opts.folderDefaultState === "open"}
+        >
+          <h2>{opts.title ?? i18n(cfg.locale).components.explorer.title}</h2>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="14"
@@ -110,7 +107,8 @@ export default ((userOpts?: Partial<Options>) => {
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="fold">
+            class="fold"
+          >
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </button>

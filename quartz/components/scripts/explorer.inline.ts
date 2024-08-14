@@ -1,4 +1,4 @@
-import {FolderState} from "../ExplorerNode"
+import { FolderState } from "../ExplorerNode"
 
 type MaybeHTMLElement = HTMLElement | undefined
 let currentExplorerState: FolderState[]
@@ -25,8 +25,7 @@ function toggleExplorer(this: HTMLElement) {
   if (!content) return
 
   content.classList.toggle("collapsed")
-  content.style.maxHeight =
-    content.style.maxHeight === "0px" ? content.scrollHeight + "px" : "0px"
+  content.style.maxHeight = content.style.maxHeight === "0px" ? content.scrollHeight + "px" : "0px"
 }
 
 function toggleFolder(evt: MouseEvent) {
@@ -83,26 +82,20 @@ function setupExplorer() {
   const useSavedFolderState = explorer?.dataset.savestate === "true"
   const oldExplorerState: FolderState[] =
     storageTree && useSavedFolderState ? JSON.parse(storageTree) : []
-  const oldIndex = new Map(
-    oldExplorerState.map((entry) => [entry.path, entry.collapsed]),
-  )
+  const oldIndex = new Map(oldExplorerState.map((entry) => [entry.path, entry.collapsed]))
   const newExplorerState: FolderState[] = explorer.dataset.tree
     ? JSON.parse(explorer.dataset.tree)
     : []
   currentExplorerState = []
-  for (const {path, collapsed} of newExplorerState) {
-    currentExplorerState.push({
-      path,
-      collapsed: oldIndex.get(path) ?? collapsed,
-    })
+  for (const { path, collapsed } of newExplorerState) {
+    currentExplorerState.push({ path, collapsed: oldIndex.get(path) ?? collapsed })
   }
 
   currentExplorerState.map((folderState) => {
     const folderLi = document.querySelector(
       `[data-folderpath='${folderState.path}']`,
     ) as MaybeHTMLElement
-    const folderUl = folderLi?.parentElement
-      ?.nextElementSibling as MaybeHTMLElement
+    const folderUl = folderLi?.parentElement?.nextElementSibling as MaybeHTMLElement
     if (folderUl) {
       setFolderState(folderUl, folderState.collapsed)
     }
@@ -127,9 +120,7 @@ document.addEventListener("nav", () => {
  * @param collapsed if folder should be set to collapsed or not
  */
 function setFolderState(folderElement: HTMLElement, collapsed: boolean) {
-  return collapsed
-    ? folderElement.classList.remove("open")
-    : folderElement.classList.add("open")
+  return collapsed ? folderElement.classList.remove("open") : folderElement.classList.add("open")
 }
 
 /**

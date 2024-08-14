@@ -1,6 +1,6 @@
 import remarkGfm from "remark-gfm"
 import smartypants from "remark-smartypants"
-import {QuartzTransformerPlugin} from "../types"
+import { QuartzTransformerPlugin } from "../types"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 
@@ -14,10 +14,8 @@ const defaultOptions: Options = {
   linkHeadings: true,
 }
 
-export const GitHubFlavoredMarkdown: QuartzTransformerPlugin<
-  Partial<Options> | undefined
-> = (userOpts) => {
-  const opts = {...defaultOptions, ...userOpts}
+export const GitHubFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+  const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "GitHubFlavoredMarkdown",
     markdownPlugins() {
@@ -32,20 +30,20 @@ export const GitHubFlavoredMarkdown: QuartzTransformerPlugin<
             {
               behavior: "append",
               properties: {
-                "role": "anchor",
-                "ariaHidden": true,
-                "tabIndex": -1,
+                role: "anchor",
+                ariaHidden: true,
+                tabIndex: -1,
                 "data-no-popover": true,
               },
               content: {
                 type: "element",
                 tagName: "svg",
                 properties: {
-                  "width": 18,
-                  "height": 18,
-                  "viewBox": "0 0 24 24",
-                  "fill": "none",
-                  "stroke": "currentColor",
+                  width: 18,
+                  height: 18,
+                  viewBox: "0 0 24 24",
+                  fill: "none",
+                  stroke: "currentColor",
                   "stroke-width": "2",
                   "stroke-linecap": "round",
                   "stroke-linejoin": "round",

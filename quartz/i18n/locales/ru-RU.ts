@@ -1,4 +1,4 @@
-import {Translation} from "./definition"
+import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,11 +40,11 @@ export default {
     },
     recentNotes: {
       title: "Недавние заметки",
-      seeRemainingMore: ({remaining}) =>
+      seeRemainingMore: ({ remaining }) =>
         `Посмотреть оставш${getForm(remaining, "уюся", "иеся", "иеся")} ${remaining} →`,
     },
     transcludes: {
-      transcludeOf: ({targetSlug}) => `Переход из ${targetSlug}`,
+      transcludeOf: ({ targetSlug }) => `Переход из ${targetSlug}`,
       linkToOriginal: "Ссылка на оригинал",
     },
     search: {
@@ -55,13 +55,13 @@ export default {
       title: "Оглавление",
     },
     contentMeta: {
-      readingTime: ({minutes}) => `время чтения ~${minutes} мин.`,
+      readingTime: ({ minutes }) => `время чтения ~${minutes} мин.`,
     },
   },
   pages: {
     rss: {
       recentNotes: "Недавние заметки",
-      lastFewNotes: ({count}) =>
+      lastFewNotes: ({ count }) =>
         `Последн${getForm(count, "яя", "ие", "ие")} ${count} замет${getForm(count, "ка", "ки", "ок")}`,
     },
     error: {
@@ -71,28 +71,21 @@ export default {
     },
     folderContent: {
       folder: "Папка",
-      itemsUnderFolder: ({count}) =>
+      itemsUnderFolder: ({ count }) =>
         `в этой папке ${count} элемент${getForm(count, "", "а", "ов")}`,
     },
     tagContent: {
       tag: "Тег",
       tagIndex: "Индекс тегов",
-      itemsUnderTag: ({count}) =>
-        `с этим тегом ${count} элемент${getForm(count, "", "а", "ов")}`,
-      showingFirst: ({count}) =>
+      itemsUnderTag: ({ count }) => `с этим тегом ${count} элемент${getForm(count, "", "а", "ов")}`,
+      showingFirst: ({ count }) =>
         `Показыва${getForm(count, "ется", "ются", "ются")} ${count} тег${getForm(count, "", "а", "ов")}`,
-      totalTags: ({count}) =>
-        `Всего ${count} тег${getForm(count, "", "а", "ов")}`,
+      totalTags: ({ count }) => `Всего ${count} тег${getForm(count, "", "а", "ов")}`,
     },
   },
 } as const satisfies Translation
 
-function getForm(
-  number: number,
-  form1: string,
-  form2: string,
-  form5: string,
-): string {
+function getForm(number: number, form1: string, form2: string, form5: string): string {
   const remainder100 = number % 100
   const remainder10 = remainder100 % 10
 

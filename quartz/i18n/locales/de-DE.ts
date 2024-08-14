@@ -1,4 +1,4 @@
-import {Translation} from "./definition"
+import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "Zuletzt bearbeitete Seiten",
-      seeRemainingMore: ({remaining}) => `${remaining} weitere ansehen →`,
+      seeRemainingMore: ({ remaining }) => `${remaining} weitere ansehen →`,
     },
     transcludes: {
-      transcludeOf: ({targetSlug}) => `Transklusion von ${targetSlug}`,
+      transcludeOf: ({ targetSlug }) => `Transklusion von ${targetSlug}`,
       linkToOriginal: "Link zum Original",
     },
     search: {
@@ -54,36 +54,31 @@ export default {
       title: "Inhaltsverzeichnis",
     },
     contentMeta: {
-      readingTime: ({minutes}) => `${minutes} min read`,
+      readingTime: ({ minutes }) => `${minutes} min read`,
     },
   },
   pages: {
     rss: {
       recentNotes: "Zuletzt bearbeitete Seiten",
-      lastFewNotes: ({count}) => `Letzte ${count} Seiten`,
+      lastFewNotes: ({ count }) => `Letzte ${count} Seiten`,
     },
     error: {
       title: "Nicht gefunden",
-      notFound:
-        "Diese Seite ist entweder nicht öffentlich oder existiert nicht.",
+      notFound: "Diese Seite ist entweder nicht öffentlich oder existiert nicht.",
       home: "Return to Homepage",
     },
     folderContent: {
       folder: "Ordner",
-      itemsUnderFolder: ({count}) =>
-        count === 1
-          ? "1 Datei in diesem Ordner."
-          : `${count} Dateien in diesem Ordner.`,
+      itemsUnderFolder: ({ count }) =>
+        count === 1 ? "1 Datei in diesem Ordner." : `${count} Dateien in diesem Ordner.`,
     },
     tagContent: {
       tag: "Tag",
       tagIndex: "Tag-Übersicht",
-      itemsUnderTag: ({count}) =>
-        count === 1
-          ? "1 Datei mit diesem Tag."
-          : `${count} Dateien mit diesem Tag.`,
-      showingFirst: ({count}) => `Die ersten ${count} Tags werden angezeigt.`,
-      totalTags: ({count}) => `${count} Tags insgesamt.`,
+      itemsUnderTag: ({ count }) =>
+        count === 1 ? "1 Datei mit diesem Tag." : `${count} Dateien mit diesem Tag.`,
+      showingFirst: ({ count }) => `Die ersten ${count} Tags werden angezeigt.`,
+      totalTags: ({ count }) => `${count} Tags insgesamt.`,
     },
   },
 } as const satisfies Translation

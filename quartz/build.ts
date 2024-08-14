@@ -1,24 +1,24 @@
 import sourceMapSupport from "source-map-support"
 sourceMapSupport.install(options)
 import path from "path"
-import {PerfTimer} from "./util/perf"
-import {rimraf} from "rimraf"
-import {GlobbyFilterFunction, isGitIgnored} from "globby"
+import { PerfTimer } from "./util/perf"
+import { rimraf } from "rimraf"
+import { GlobbyFilterFunction, isGitIgnored } from "globby"
 import chalk from "chalk"
-import {parseMarkdown} from "./processors/parse"
-import {filterContent} from "./processors/filter"
-import {emitContent} from "./processors/emit"
+import { parseMarkdown } from "./processors/parse"
+import { filterContent } from "./processors/filter"
+import { emitContent } from "./processors/emit"
 import cfg from "../quartz.config"
-import {FilePath, FullSlug, joinSegments, slugifyFilePath} from "./util/path"
+import { FilePath, FullSlug, joinSegments, slugifyFilePath } from "./util/path"
 import chokidar from "chokidar"
-import {ProcessedContent} from "./plugins/vfile"
-import {Argv, BuildCtx} from "./util/ctx"
-import {glob, toPosixPath} from "./util/glob"
-import {trace} from "./util/trace"
-import {options} from "./util/sourcemap"
-import {Mutex} from "async-mutex"
+import { ProcessedContent } from "./plugins/vfile"
+import { Argv, BuildCtx } from "./util/ctx"
+import { glob, toPosixPath } from "./util/glob"
+import { trace } from "./util/trace"
+import { options } from "./util/sourcemap"
+import { Mutex } from "async-mutex"
 import DepGraph from "./depgraph"
-import {getStaticResourcesFromPlugins} from "./plugins"
+import { getStaticResourcesFromPlugins } from "./plugins"
 
 type Dependencies = Record<string, DepGraph<FilePath> | null>
 
@@ -65,25 +65,17 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
 
   const release = await mut.acquire()
   perf.addEvent("clean")
-  await rimraf(path.join(output, "*"), {glob: true})
-  console.log(
-    `Cleaned output directory \`${output}\` in ${perf.timeSince("clean")}`,
-  )
+  await rimraf(path.join(output, "*"), { glob: true })
+  console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince("clean")}`)
 
   perf.addEvent("glob")
-  const allFiles = await glob(
-    "**/*.*",
-    argv.directory,
-    cfg.configuration.ignorePatterns,
-  )
+  const allFiles = await glob("**/*.*", argv.directory, cfg.configuration.ignorePatterns)
   const fps = allFiles.filter((fp) => fp.endsWith(".md")).sort()
   console.log(
     `Found ${fps.length} input files from \`${argv.directory}\` in ${perf.timeSince("glob")}`,
   )
 
-  const filePaths = fps.map(
-    (fp) => joinSegments(argv.directory, fp) as FilePath,
-  )
+  const filePaths = fps.map((fp) => joinSegments(argv.directory, fp) as FilePath)
   ctx.allSlugs = allFiles.map((fp) => slugifyFilePath(fp as FilePath))
 
   const parsedFiles = await parseMarkdown(ctx, filePaths)
@@ -96,18 +88,12 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
     const staticResources = getStaticResourcesFromPlugins(ctx)
     for (const emitter of cfg.plugins.emitters) {
       dependencies[emitter.name] =
-        (await emitter.getDependencyGraph?.(
-          ctx,
-          filteredContent,
-          staticResources,
-        )) ?? null
+        (await emitter.getDependencyGraph?.(ctx, filteredContent, staticResources)) ?? null
     }
   }
 
   await emitContent(ctx, filteredContent)
-  console.log(
-    chalk.green(`Done processing ${fps.length} files in ${perf.timeSince()}`),
-  )
+  console.log(chalk.green(`Done processing ${fps.length} files in ${perf.timeSince()}`))
   release()
 
   if (argv.serve) {
@@ -123,7 +109,7 @@ async function startServing(
   clientRefresh: () => void,
   dependencies: Dependencies, // emitter name: dep graph
 ) {
-  const {argv} = ctx
+  const { argv } = ctx
 
   // cache file parse results
   const contentMap = new Map<FilePath, ProcessedContent>()
@@ -151,17 +137,11 @@ async function startServing(
     ignoreInitial: true,
   })
 
-  const buildFromEntry = argv.fastRebuild
-    ? partialRebuildFromEntrypoint
-    : rebuildFromEntrypoint
+  const buildFromEntry = argv.fastRebuild ? partialRebuildFromEntrypoint : rebuildFromEntrypoint
   watcher
     .on("add", (fp) => buildFromEntry(fp, "add", clientRefresh, buildData))
-    .on("change", (fp) =>
-      buildFromEntry(fp, "change", clientRefresh, buildData),
-    )
-    .on("unlink", (fp) =>
-      buildFromEntry(fp, "delete", clientRefresh, buildData),
-    )
+    .on("change", (fp) => buildFromEntry(fp, "change", clientRefresh, buildData))
+    .on("unlink", (fp) => buildFromEntry(fp, "delete", clientRefresh, buildData))
 
   return async () => {
     await watcher.close()
@@ -174,8 +154,8 @@ async function partialRebuildFromEntrypoint(
   clientRefresh: () => void,
   buildData: BuildData, // note: this function mutates buildData
 ) {
-  const {ctx, ignored, dependencies, contentMap, mut, toRemove} = buildData
-  const {argv, cfg} = ctx
+  const { ctx, ignored, dependencies, contentMap, mut, toRemove } = buildData
+  const { argv, cfg } = ctx
 
   // don't do anything for gitignored files
   if (ignored(filepath)) {
@@ -204,18 +184,12 @@ async function partialRebuildFromEntrypoint(
     case "add":
       // add to cache when new file is added
       processedFiles = await parseMarkdown(ctx, [fp])
-      processedFiles.forEach(([tree, vfile]) =>
-        contentMap.set(vfile.data.filePath!, [tree, vfile]),
-      )
+      processedFiles.forEach(([tree, vfile]) => contentMap.set(vfile.data.filePath!, [tree, vfile]))
 
       // update the dep graph by asking all emitters whether they depend on this file
       for (const emitter of cfg.plugins.emitters) {
         const emitterGraph =
-          (await emitter.getDependencyGraph?.(
-            ctx,
-            processedFiles,
-            staticResources,
-          )) ?? null
+          (await emitter.getDependencyGraph?.(ctx, processedFiles, staticResources)) ?? null
 
         if (emitterGraph) {
           const existingGraph = dependencies[emitter.name]
@@ -231,29 +205,20 @@ async function partialRebuildFromEntrypoint(
     case "change":
       // invalidate cache when file is changed
       processedFiles = await parseMarkdown(ctx, [fp])
-      processedFiles.forEach(([tree, vfile]) =>
-        contentMap.set(vfile.data.filePath!, [tree, vfile]),
-      )
+      processedFiles.forEach(([tree, vfile]) => contentMap.set(vfile.data.filePath!, [tree, vfile]))
 
       // only content files can have added/removed dependencies because of transclusions
       if (path.extname(fp) === ".md") {
         for (const emitter of cfg.plugins.emitters) {
           // get new dependencies from all emitters for this file
           const emitterGraph =
-            (await emitter.getDependencyGraph?.(
-              ctx,
-              processedFiles,
-              staticResources,
-            )) ?? null
+            (await emitter.getDependencyGraph?.(ctx, processedFiles, staticResources)) ?? null
 
           // only update the graph if the emitter plugin uses the changed file
           // eg. Assets plugin ignores md files, so we skip updating the graph
           if (emitterGraph?.hasNode(fp)) {
             // merge the new dependencies into the dep graph
-            dependencies[emitter.name]?.updateIncomingEdgesForNode(
-              emitterGraph,
-              fp,
-            )
+            dependencies[emitter.name]?.updateIncomingEdgesForNode(emitterGraph, fp)
           }
         }
       }
@@ -316,11 +281,7 @@ async function partialRebuildFromEntrypoint(
         .filter((file) => !toRemove.has(file))
         .map((file) => contentMap.get(file)!)
 
-      const emittedFps = await emitter.emit(
-        ctx,
-        upstreamContent,
-        staticResources,
-      )
+      const emittedFps = await emitter.emit(ctx, upstreamContent, staticResources)
 
       if (ctx.argv.verbose) {
         for (const file of emittedFps) {
@@ -332,9 +293,7 @@ async function partialRebuildFromEntrypoint(
     }
   }
 
-  console.log(
-    `Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince("rebuild")}`,
-  )
+  console.log(`Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince("rebuild")}`)
 
   // CLEANUP
   const destinationsToDelete = new Set<FilePath>()
@@ -369,18 +328,10 @@ async function rebuildFromEntrypoint(
   clientRefresh: () => void,
   buildData: BuildData, // note: this function mutates buildData
 ) {
-  const {
-    ctx,
-    ignored,
-    mut,
-    initialSlugs,
-    contentMap,
-    toRebuild,
-    toRemove,
-    trackedAssets,
-  } = buildData
+  const { ctx, ignored, mut, initialSlugs, contentMap, toRebuild, toRemove, trackedAssets } =
+    buildData
 
-  const {argv} = ctx
+  const { argv } = ctx
 
   // don't do anything for gitignored files
   if (ignored(fp)) {
@@ -422,16 +373,6 @@ async function rebuildFromEntrypoint(
 
   try {
     const filesToRebuild = [...toRebuild].filter((fp) => !toRemove.has(fp))
-
-    const trackedSlugs = [
-      ...new Set([...contentMap.keys(), ...toRebuild, ...trackedAssets]),
-    ]
-      .filter((fp) => !toRemove.has(fp))
-      .map((fp) =>
-        slugifyFilePath(path.posix.relative(argv.directory, fp) as FilePath),
-      )
-
-    ctx.allSlugs = [...new Set([...initialSlugs, ...trackedSlugs])]
     const parsedContent = await parseMarkdown(ctx, filesToRebuild)
     for (const content of parsedContent) {
       const [_tree, vfile] = content
@@ -454,13 +395,11 @@ async function rebuildFromEntrypoint(
 
     // TODO: we can probably traverse the link graph to figure out what's safe to delete here
     // instead of just deleting everything
-    await rimraf(path.join(argv.output, ".*"), {glob: true})
+    await rimraf(path.join(argv.output, ".*"), { glob: true })
     await emitContent(ctx, filteredContent)
     console.log(chalk.green(`Done rebuilding in ${perf.timeSince()}`))
   } catch (err) {
-    console.log(
-      chalk.yellow(`Rebuild failed. Waiting on a change to fix the error...`),
-    )
+    console.log(chalk.yellow(`Rebuild failed. Waiting on a change to fix the error...`))
     if (argv.verbose) {
       console.log(chalk.red(err))
     }

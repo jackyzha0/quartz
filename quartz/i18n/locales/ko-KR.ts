@@ -1,4 +1,4 @@
-import {Translation} from "./definition"
+import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "최근 게시글",
-      seeRemainingMore: ({remaining}) => `${remaining}건 더보기 →`,
+      seeRemainingMore: ({ remaining }) => `${remaining}건 더보기 →`,
     },
     transcludes: {
-      transcludeOf: ({targetSlug}) => `${targetSlug}의 포함`,
+      transcludeOf: ({ targetSlug }) => `${targetSlug}의 포함`,
       linkToOriginal: "원본 링크",
     },
     search: {
@@ -54,13 +54,13 @@ export default {
       title: "목차",
     },
     contentMeta: {
-      readingTime: ({minutes}) => `${minutes} min read`,
+      readingTime: ({ minutes }) => `${minutes} min read`,
     },
   },
   pages: {
     rss: {
       recentNotes: "최근 게시글",
-      lastFewNotes: ({count}) => `최근 ${count} 건`,
+      lastFewNotes: ({ count }) => `최근 ${count} 건`,
     },
     error: {
       title: "Not Found",
@@ -69,14 +69,14 @@ export default {
     },
     folderContent: {
       folder: "폴더",
-      itemsUnderFolder: ({count}) => `${count}건의 항목`,
+      itemsUnderFolder: ({ count }) => `${count}건의 항목`,
     },
     tagContent: {
       tag: "태그",
       tagIndex: "태그 목록",
-      itemsUnderTag: ({count}) => `${count}건의 항목`,
-      showingFirst: ({count}) => `처음 ${count}개의 태그`,
-      totalTags: ({count}) => `총 ${count}개의 태그를 찾았습니다.`,
+      itemsUnderTag: ({ count }) => `${count}건의 항목`,
+      showingFirst: ({ count }) => `처음 ${count}개의 태그`,
+      totalTags: ({ count }) => `총 ${count}개의 태그를 찾았습니다.`,
     },
   },
 } as const satisfies Translation

@@ -1,14 +1,14 @@
-import {QuartzEmitterPlugin} from "../types"
-import {QuartzComponentProps} from "../../components/types"
+import { QuartzEmitterPlugin } from "../types"
+import { QuartzComponentProps } from "../../components/types"
 import BodyConstructor from "../../components/Body"
-import {pageResources, renderPage} from "../../components/renderPage"
-import {FullPageLayout} from "../../cfg"
-import {FilePath, FullSlug} from "../../util/path"
-import {sharedPageComponents} from "../../../quartz.layout"
-import {NotFound} from "../../components"
-import {defaultProcessedContent} from "../vfile"
-import {write} from "./helpers"
-import {i18n} from "../../i18n"
+import { pageResources, renderPage } from "../../components/renderPage"
+import { FullPageLayout } from "../../cfg"
+import { FilePath, FullSlug } from "../../util/path"
+import { sharedPageComponents } from "../../../quartz.layout"
+import { NotFound } from "../../components"
+import { defaultProcessedContent } from "../vfile"
+import { write } from "./helpers"
+import { i18n } from "../../i18n"
 import DepGraph from "../../depgraph"
 
 export const NotFoundPage: QuartzEmitterPlugin = () => {
@@ -20,7 +20,7 @@ export const NotFoundPage: QuartzEmitterPlugin = () => {
     right: [],
   }
 
-  const {head: Head, pageBody, footer: Footer} = opts
+  const { head: Head, pageBody, footer: Footer } = opts
   const Body = BodyConstructor()
 
   return {
@@ -43,7 +43,7 @@ export const NotFoundPage: QuartzEmitterPlugin = () => {
         slug,
         text: notFound,
         description: notFound,
-        frontmatter: {title: notFound, tags: []},
+        frontmatter: { title: notFound, tags: [] },
       })
       const componentData: QuartzComponentProps = {
         ctx,
@@ -58,13 +58,7 @@ export const NotFoundPage: QuartzEmitterPlugin = () => {
       return [
         await write({
           ctx,
-          content: renderPage(
-            cfg,
-            slug,
-            componentData,
-            opts,
-            externalResources,
-          ),
+          content: renderPage(cfg, slug, componentData, opts, externalResources),
           slug,
           ext: ".html",
         }),

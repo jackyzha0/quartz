@@ -1,5 +1,5 @@
-import {FilePath, FullSlug, joinSegments} from "../../util/path"
-import {QuartzEmitterPlugin} from "../types"
+import { FilePath, FullSlug, joinSegments } from "../../util/path"
+import { QuartzEmitterPlugin } from "../types"
 
 // @ts-ignore
 import spaRouterScript from "../../components/scripts/spa.inline"
@@ -7,12 +7,12 @@ import spaRouterScript from "../../components/scripts/spa.inline"
 import popoverScript from "../../components/scripts/popover.inline"
 import styles from "../../styles/custom.scss"
 import popoverStyle from "../../components/styles/popover.scss"
-import {BuildCtx} from "../../util/ctx"
-import {QuartzComponent} from "../../components/types"
-import {googleFontHref, joinStyles} from "../../util/theme"
-import {Features, transform} from "lightningcss"
-import {transform as transpile} from "esbuild"
-import {write} from "./helpers"
+import { BuildCtx } from "../../util/ctx"
+import { QuartzComponent } from "../../components/types"
+import { googleFontHref, joinStyles } from "../../util/theme"
+import { Features, transform } from "lightningcss"
+import { transform as transpile } from "esbuild"
+import { write } from "./helpers"
 import DepGraph from "../../depgraph"
 
 type ComponentResources = {
@@ -37,7 +37,7 @@ function getComponentResources(ctx: BuildCtx): ComponentResources {
   }
 
   for (const component of allComponents) {
-    const {css, beforeDOMLoaded, afterDOMLoaded} = component
+    const { css, beforeDOMLoaded, afterDOMLoaded } = component
     if (css) {
       componentResources.css.add(css)
     }
@@ -58,9 +58,7 @@ function getComponentResources(ctx: BuildCtx): ComponentResources {
 
 async function joinScripts(scripts: string[]): Promise<string> {
   // wrap with iife to prevent scope collision
-  const script = scripts
-    .map((script) => `(function () {${script}})();`)
-    .join("\n")
+  const script = scripts.map((script) => `(function () {${script}})();`).join("\n")
 
   // minify with esbuild
   const res = await transpile(script, {
@@ -70,10 +68,7 @@ async function joinScripts(scripts: string[]): Promise<string> {
   return res.code
 }
 
-function addGlobalPageResources(
-  ctx: BuildCtx,
-  componentResources: ComponentResources,
-) {
+function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentResources) {
   const cfg = ctx.cfg.configuration
 
   // popovers
@@ -190,15 +185,11 @@ export const ComponentResources: QuartzEmitterPlugin = () => {
       let googleFontsStyleSheet = ""
       if (cfg.theme.fontOrigin === "local") {
         // let the user do it themselves in css
-      } else if (
-        cfg.theme.fontOrigin === "googleFonts" &&
-        !cfg.theme.cdnCaching
-      ) {
+      } else if (cfg.theme.fontOrigin === "googleFonts" && !cfg.theme.cdnCaching) {
         // when cdnCaching is true, we link to google fonts in Head.tsx
         let match
 
-        const fontSourceRegex =
-          /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
+        const fontSourceRegex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
 
         googleFontsStyleSheet = await (
           await fetch(googleFontHref(ctx.cfg.configuration.theme))

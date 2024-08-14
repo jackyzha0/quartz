@@ -63,5 +63,8 @@ document.addEventListener("nav", () => {
   giscusContainer.appendChild(giscusScript)
 
   document.addEventListener("themechange", changeTheme)
-  window.addCleanup(() => document.removeEventListener("themechange", changeTheme))
+  // window.addCleanup(() => document.removeEventListener("themechange", changeTheme))
+  window.addCleanup(() => 
+    document.removeEventListener("themechange", changeTheme as EventListener)
+);
 })

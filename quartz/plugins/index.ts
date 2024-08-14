@@ -1,6 +1,6 @@
-import {StaticResources} from "../util/resources"
-import {FilePath, FullSlug} from "../util/path"
-import {BuildCtx} from "../util/ctx"
+import { StaticResources } from "../util/resources"
+import { FilePath, FullSlug } from "../util/path"
+import { BuildCtx } from "../util/ctx"
 
 export function getStaticResourcesFromPlugins(ctx: BuildCtx) {
   const staticResources: StaticResources = {
@@ -9,9 +9,7 @@ export function getStaticResourcesFromPlugins(ctx: BuildCtx) {
   }
 
   for (const transformer of ctx.cfg.plugins.transformers) {
-    const res = transformer.externalResources
-      ? transformer.externalResources(ctx)
-      : {}
+    const res = transformer.externalResources ? transformer.externalResources(ctx) : {}
     if (res?.js) {
       staticResources.js.push(...res.js)
     }

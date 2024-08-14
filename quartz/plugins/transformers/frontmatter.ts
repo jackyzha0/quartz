@@ -1,11 +1,11 @@
 import matter from "gray-matter"
 import remarkFrontmatter from "remark-frontmatter"
-import {QuartzTransformerPlugin} from "../types"
+import { QuartzTransformerPlugin } from "../types"
 import yaml from "js-yaml"
 import toml from "toml"
-import {slugTag} from "../../util/path"
-import {QuartzPluginData} from "../vfile"
-import {i18n} from "../../i18n"
+import { slugTag } from "../../util/path"
+import { QuartzPluginData } from "../vfile"
+import { i18n } from "../../i18n"
 
 export interface Options {
   delimiters: string | [string, string]
@@ -17,7 +17,7 @@ const defaultOptions: Options = {
   language: "yaml",
 }
 
-function coalesceAliases(data: {[key: string]: any}, aliases: string[]) {
+function coalesceAliases(data: { [key: string]: any }, aliases: string[]) {
   for (const alias of aliases) {
     if (data[alias] !== undefined && data[alias] !== null) return data[alias]
   }
@@ -36,30 +36,23 @@ function coerceToArray(input: string | string[]): string[] | undefined {
 
   // remove all non-strings
   return input
-    .filter(
-      (tag: unknown) => typeof tag === "string" || typeof tag === "number",
-    )
+    .filter((tag: unknown) => typeof tag === "string" || typeof tag === "number")
     .map((tag: string | number) => tag.toString())
 }
 
-export const FrontMatter: QuartzTransformerPlugin<
-  Partial<Options> | undefined
-> = (userOpts) => {
-  const opts = {...defaultOptions, ...userOpts}
+export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+  const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "FrontMatter",
-    markdownPlugins({cfg}) {
+    markdownPlugins({ cfg }) {
       return [
         [remarkFrontmatter, ["yaml", "toml"]],
         () => {
           return (_, file) => {
-            const {data} = matter(Buffer.from(file.value), {
+            const { data } = matter(Buffer.from(file.value), {
               ...opts,
               engines: {
-                yaml: (s) =>
-                  yaml.load(s, {
-                    schema: yaml.JSON_SCHEMA,
-                  }) as object,
+                yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object,
                 toml: (s) => toml.parse(s) as object,
               },
             })
@@ -67,22 +60,15 @@ export const FrontMatter: QuartzTransformerPlugin<
             if (data.title != null && data.title.toString() !== "") {
               data.title = data.title.toString()
             } else {
-              data.title =
-                file.stem ??
-                i18n(cfg.configuration.locale).propertyDefaults.title
+              data.title = file.stem ?? i18n(cfg.configuration.locale).propertyDefaults.title
             }
 
             const tags = coerceToArray(coalesceAliases(data, ["tags", "tag"]))
-            if (tags)
-              data.tags = [...new Set(tags.map((tag: string) => slugTag(tag)))]
+            if (tags) data.tags = [...new Set(tags.map((tag: string) => slugTag(tag)))]
 
-            const aliases = coerceToArray(
-              coalesceAliases(data, ["aliases", "alias"]),
-            )
+            const aliases = coerceToArray(coalesceAliases(data, ["aliases", "alias"]))
             if (aliases) data.aliases = aliases
-            const cssclasses = coerceToArray(
-              coalesceAliases(data, ["cssclasses", "cssclass"]),
-            )
+            const cssclasses = coerceToArray(coalesceAliases(data, ["cssclasses", "cssclass"]))
             if (cssclasses) data.cssclasses = cssclasses
 
             // fill in frontmatter
@@ -96,7 +82,7 @@ export const FrontMatter: QuartzTransformerPlugin<
 
 declare module "vfile" {
   interface DataMap {
-    frontmatter: {[key: string]: unknown} & {
+    frontmatter: { [key: string]: unknown } & {
       title: string
     } & Partial<{
         tags: string[]

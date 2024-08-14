@@ -1,10 +1,10 @@
-import {QuartzEmitterPlugin} from "../types"
-import {QuartzComponentProps} from "../../components/types"
+import { QuartzEmitterPlugin } from "../types"
+import { QuartzComponentProps } from "../../components/types"
 import HeaderConstructor from "../../components/Header"
 import BodyConstructor from "../../components/Body"
-import {pageResources, renderPage} from "../../components/renderPage"
-import {ProcessedContent, defaultProcessedContent} from "../vfile"
-import {FullPageLayout} from "../../cfg"
+import { pageResources, renderPage } from "../../components/renderPage"
+import { ProcessedContent, QuartzPluginData, defaultProcessedContent } from "../vfile"
+import { FullPageLayout } from "../../cfg"
 import {
   FilePath,
   FullSlug,
@@ -12,18 +12,17 @@ import {
   joinSegments,
   pathToRoot,
 } from "../../util/path"
-import {
-  defaultListPageLayout,
-  sharedPageComponents,
-} from "../../../quartz.layout"
-import {TagContent} from "../../components"
-import {write} from "./helpers"
-import {i18n} from "../../i18n"
+import { defaultListPageLayout, sharedPageComponents } from "../../../quartz.layout"
+import { TagContent } from "../../components"
+import { write } from "./helpers"
+import { i18n } from "../../i18n"
 import DepGraph from "../../depgraph"
 
-export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (
-  userOpts,
-) => {
+interface TagPageOptions extends FullPageLayout {
+  sort?: (f1: QuartzPluginData, f2: QuartzPluginData) => number
+}
+
+export const TagPage: QuartzEmitterPlugin<Partial<TagPageOptions>> = (userOpts) => {
   const opts: FullPageLayout = {
     ...sharedPageComponents,
     ...defaultListPageLayout,
@@ -31,15 +30,7 @@ export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (
     ...userOpts,
   }
 
-  const {
-    head: Head,
-    header,
-    beforeBody,
-    pageBody,
-    left,
-    right,
-    footer: Footer,
-  } = opts
+  const { head: Head, header, beforeBody, pageBody, afterBody, left, right, footer: Footer } = opts
   const Header = HeaderConstructor()
   const Body = BodyConstructor()
 
@@ -53,6 +44,7 @@ export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (
         ...header,
         ...beforeBody,
         pageBody,
+        ...afterBody,
         ...left,
         ...right,
         Footer,
@@ -63,9 +55,7 @@ export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (
 
       for (const [_tree, file] of content) {
         const sourcePath = file.data.filePath!
-        const tags = (file.data.frontmatter?.tags ?? []).flatMap(
-          getAllSegmentPrefixes,
-        )
+        const tags = (file.data.frontmatter?.tags ?? []).flatMap(getAllSegmentPrefixes)
         // if the file has at least one tag, it is used in the tag index page
         if (tags.length > 0) {
           tags.push("index")
@@ -87,30 +77,27 @@ export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (
       const cfg = ctx.cfg.configuration
 
       const tags: Set<string> = new Set(
-        allFiles
-          .flatMap((data) => data.frontmatter?.tags ?? [])
-          .flatMap(getAllSegmentPrefixes),
+        allFiles.flatMap((data) => data.frontmatter?.tags ?? []).flatMap(getAllSegmentPrefixes),
       )
 
       // add base tag
       tags.add("index")
 
-      const tagDescriptions: Record<string, ProcessedContent> =
-        Object.fromEntries(
-          [...tags].map((tag) => {
-            const title =
-              tag === "index"
-                ? i18n(cfg.locale).pages.tagContent.tagIndex
-                : `${i18n(cfg.locale).pages.tagContent.tag}: ${tag}`
-            return [
-              tag,
-              defaultProcessedContent({
-                slug: joinSegments("tags", tag) as FullSlug,
-                frontmatter: {title, tags: []},
-              }),
-            ]
-          }),
-        )
+      const tagDescriptions: Record<string, ProcessedContent> = Object.fromEntries(
+        [...tags].map((tag) => {
+          const title =
+            tag === "index"
+              ? i18n(cfg.locale).pages.tagContent.tagIndex
+              : `${i18n(cfg.locale).pages.tagContent.tag}: ${tag}`
+          return [
+            tag,
+            defaultProcessedContent({
+              slug: joinSegments("tags", tag) as FullSlug,
+              frontmatter: { title, tags: [] },
+            }),
+          ]
+        }),
+      )
 
       for (const [tree, file] of content) {
         const slug = file.data.slug!
@@ -136,13 +123,7 @@ export const TagPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (
           allFiles,
         }
 
-        const content = renderPage(
-          cfg,
-          slug,
-          componentData,
-          opts,
-          externalResources,
-        )
+        const content = renderPage(cfg, slug, componentData, opts, externalResources)
         const fp = await write({
           ctx,
           content,

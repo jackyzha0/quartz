@@ -1,4 +1,4 @@
-import {Translation} from "./definition"
+import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "最近的笔记",
-      seeRemainingMore: ({remaining}) => `查看更多${remaining}篇笔记 →`,
+      seeRemainingMore: ({ remaining }) => `查看更多${remaining}篇笔记 →`,
     },
     transcludes: {
-      transcludeOf: ({targetSlug}) => `包含${targetSlug}`,
+      transcludeOf: ({ targetSlug }) => `包含${targetSlug}`,
       linkToOriginal: "指向原始笔记的链接",
     },
     search: {
@@ -54,13 +54,13 @@ export default {
       title: "目录",
     },
     contentMeta: {
-      readingTime: ({minutes}) => `${minutes}分钟阅读`,
+      readingTime: ({ minutes }) => `${minutes}分钟阅读`,
     },
   },
   pages: {
     rss: {
       recentNotes: "最近的笔记",
-      lastFewNotes: ({count}) => `最近的${count}条笔记`,
+      lastFewNotes: ({ count }) => `最近的${count}条笔记`,
     },
     error: {
       title: "无法找到",
@@ -69,14 +69,14 @@ export default {
     },
     folderContent: {
       folder: "文件夹",
-      itemsUnderFolder: ({count}) => `此文件夹下有${count}条笔记。`,
+      itemsUnderFolder: ({ count }) => `此文件夹下有${count}条笔记。`,
     },
     tagContent: {
       tag: "标签",
       tagIndex: "标签索引",
-      itemsUnderTag: ({count}) => `此标签下有${count}条笔记。`,
-      showingFirst: ({count}) => `显示前${count}个标签。`,
-      totalTags: ({count}) => `总共有${count}个标签。`,
+      itemsUnderTag: ({ count }) => `此标签下有${count}条笔记。`,
+      showingFirst: ({ count }) => `显示前${count}个标签。`,
+      totalTags: ({ count }) => `总共有${count}个标签。`,
     },
   },
 } as const satisfies Translation

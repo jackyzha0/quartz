@@ -1,4 +1,4 @@
-import {Translation} from "./definition"
+import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "آخر الملاحظات",
-      seeRemainingMore: ({remaining}) => `تصفح ${remaining} أكثر →`,
+      seeRemainingMore: ({ remaining }) => `تصفح ${remaining} أكثر →`,
     },
     transcludes: {
-      transcludeOf: ({targetSlug}) => `مقتبس من ${targetSlug}`,
+      transcludeOf: ({ targetSlug }) => `مقتبس من ${targetSlug}`,
       linkToOriginal: "وصلة للملاحظة الرئيسة",
     },
     search: {
@@ -54,7 +54,7 @@ export default {
       title: "فهرس المحتويات",
     },
     contentMeta: {
-      readingTime: ({minutes}) =>
+      readingTime: ({ minutes }) =>
         minutes == 1
           ? `دقيقة أو أقل للقراءة`
           : minutes == 2
@@ -65,7 +65,7 @@ export default {
   pages: {
     rss: {
       recentNotes: "آخر الملاحظات",
-      lastFewNotes: ({count}) => `آخر ${count} ملاحظة`,
+      lastFewNotes: ({ count }) => `آخر ${count} ملاحظة`,
     },
     error: {
       title: "غير موجود",
@@ -74,20 +74,16 @@ export default {
     },
     folderContent: {
       folder: "مجلد",
-      itemsUnderFolder: ({count}) =>
-        count === 1
-          ? "يوجد عنصر واحد فقط تحت هذا المجلد"
-          : `يوجد ${count} عناصر تحت هذا المجلد.`,
+      itemsUnderFolder: ({ count }) =>
+        count === 1 ? "يوجد عنصر واحد فقط تحت هذا المجلد" : `يوجد ${count} عناصر تحت هذا المجلد.`,
     },
     tagContent: {
       tag: "الوسم",
       tagIndex: "مؤشر الوسم",
-      itemsUnderTag: ({count}) =>
-        count === 1
-          ? "يوجد عنصر واحد فقط تحت هذا الوسم"
-          : `يوجد ${count} عناصر تحت هذا الوسم.`,
-      showingFirst: ({count}) => `إظهار أول ${count} أوسمة.`,
-      totalTags: ({count}) => `يوجد ${count} أوسمة.`,
+      itemsUnderTag: ({ count }) =>
+        count === 1 ? "يوجد عنصر واحد فقط تحت هذا الوسم" : `يوجد ${count} عناصر تحت هذا الوسم.`,
+      showingFirst: ({ count }) => `إظهار أول ${count} أوسمة.`,
+      totalTags: ({ count }) => `يوجد ${count} أوسمة.`,
     },
   },
 } as const satisfies Translation

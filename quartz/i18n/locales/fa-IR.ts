@@ -1,4 +1,4 @@
-import {Translation} from "./definition"
+import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "یادداشت‌های اخیر",
-      seeRemainingMore: ({remaining}) => `${remaining} یادداشت دیگر →`,
+      seeRemainingMore: ({ remaining }) => `${remaining} یادداشت دیگر →`,
     },
     transcludes: {
-      transcludeOf: ({targetSlug}) => `از ${targetSlug}`,
+      transcludeOf: ({ targetSlug }) => `از ${targetSlug}`,
       linkToOriginal: "پیوند به اصلی",
     },
     search: {
@@ -54,13 +54,13 @@ export default {
       title: "فهرست",
     },
     contentMeta: {
-      readingTime: ({minutes}) => `زمان تقریبی مطالعه: ${minutes} دقیقه`,
+      readingTime: ({ minutes }) => `زمان تقریبی مطالعه: ${minutes} دقیقه`,
     },
   },
   pages: {
     rss: {
       recentNotes: "یادداشت‌های اخیر",
-      lastFewNotes: ({count}) => `${count} یادداشت اخیر`,
+      lastFewNotes: ({ count }) => `${count} یادداشت اخیر`,
     },
     error: {
       title: "یافت نشد",
@@ -69,18 +69,16 @@ export default {
     },
     folderContent: {
       folder: "پوشه",
-      itemsUnderFolder: ({count}) =>
-        count === 1
-          ? ".یک مطلب در این پوشه است"
-          : `${count} مطلب در این پوشه است.`,
+      itemsUnderFolder: ({ count }) =>
+        count === 1 ? ".یک مطلب در این پوشه است" : `${count} مطلب در این پوشه است.`,
     },
     tagContent: {
       tag: "برچسب",
       tagIndex: "فهرست برچسب‌ها",
-      itemsUnderTag: ({count}) =>
+      itemsUnderTag: ({ count }) =>
         count === 1 ? "یک مطلب با این برچسب" : `${count} مطلب با این برچسب.`,
-      showingFirst: ({count}) => `در حال نمایش ${count} برچسب.`,
-      totalTags: ({count}) => `${count} برچسب یافت شد.`,
+      showingFirst: ({ count }) => `در حال نمایش ${count} برچسب.`,
+      totalTags: ({ count }) => `${count} برچسب یافت شد.`,
     },
   },
 } as const satisfies Translation

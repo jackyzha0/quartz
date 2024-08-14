@@ -1,4 +1,4 @@
-import {Translation} from "./definition"
+import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "Najnowsze notatki",
-      seeRemainingMore: ({remaining}) => `Zobacz ${remaining} nastepnych →`,
+      seeRemainingMore: ({ remaining }) => `Zobacz ${remaining} nastepnych →`,
     },
     transcludes: {
-      transcludeOf: ({targetSlug}) => `Osadzone ${targetSlug}`,
+      transcludeOf: ({ targetSlug }) => `Osadzone ${targetSlug}`,
       linkToOriginal: "Łącze do oryginału",
     },
     search: {
@@ -54,13 +54,13 @@ export default {
       title: "Spis treści",
     },
     contentMeta: {
-      readingTime: ({minutes}) => `${minutes} min. czytania `,
+      readingTime: ({ minutes }) => `${minutes} min. czytania `,
     },
   },
   pages: {
     rss: {
       recentNotes: "Najnowsze notatki",
-      lastFewNotes: ({count}) => `Ostatnie ${count} notatek`,
+      lastFewNotes: ({ count }) => `Ostatnie ${count} notatek`,
     },
     error: {
       title: "Nie znaleziono",
@@ -69,20 +69,16 @@ export default {
     },
     folderContent: {
       folder: "Folder",
-      itemsUnderFolder: ({count}) =>
-        count === 1
-          ? "W tym folderze jest 1 element."
-          : `Elementów w folderze: ${count}.`,
+      itemsUnderFolder: ({ count }) =>
+        count === 1 ? "W tym folderze jest 1 element." : `Elementów w folderze: ${count}.`,
     },
     tagContent: {
       tag: "Znacznik",
       tagIndex: "Spis znaczników",
-      itemsUnderTag: ({count}) =>
-        count === 1
-          ? "Oznaczony 1 element."
-          : `Elementów z tym znacznikiem: ${count}.`,
-      showingFirst: ({count}) => `Pokazuje ${count} pierwszych znaczników.`,
-      totalTags: ({count}) => `Znalezionych wszystkich znaczników: ${count}.`,
+      itemsUnderTag: ({ count }) =>
+        count === 1 ? "Oznaczony 1 element." : `Elementów z tym znacznikiem: ${count}.`,
+      showingFirst: ({ count }) => `Pokazuje ${count} pierwszych znaczników.`,
+      totalTags: ({ count }) => `Znalezionych wszystkich znaczników: ${count}.`,
     },
   },
 } as const satisfies Translation
