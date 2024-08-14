@@ -17,6 +17,10 @@ const observer = new IntersectionObserver((entries) => {
 
 function toggleExplorer(this: HTMLElement) {
   this.classList.toggle("collapsed")
+  this.setAttribute(
+    "aria-expanded",
+    this.getAttribute("aria-expanded") === "true" ? "false" : "true",
+  )
   const content = this.nextElementSibling as MaybeHTMLElement
   if (!content) return
 

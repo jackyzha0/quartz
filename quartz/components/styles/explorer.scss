@@ -1,7 +1,6 @@
 @use "../../styles/variables.scss" as *;
 
 button#explorer {
-  all: unset;
   background-color: transparent;
   border: none;
   text-align: left;
@@ -11,7 +10,7 @@ button#explorer {
   display: flex;
   align-items: center;
 
-  & h1 {
+  & h2 {
     font-size: 1rem;
     display: inline-block;
     margin: 0;
@@ -46,8 +45,18 @@ button#explorer {
   list-style: none;
   overflow: hidden;
   max-height: none;
-  transition: max-height 0.35s ease;
+  transition:
+    max-height 0.35s ease,
+    visibility 0s linear 0s;
   margin-top: 0.5rem;
+  visibility: visible;
+
+  &.collapsed {
+    transition:
+      max-height 0.35s ease,
+      visibility 0s linear 0.35s;
+    visibility: hidden;
+  }
 
   &.collapsed > .overflow::after {
     opacity: 0;

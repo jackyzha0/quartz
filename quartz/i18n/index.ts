@@ -20,8 +20,8 @@ import fa from "./locales/fa-IR"
 import pl from "./locales/pl-PL"
 
 export const TRANSLATIONS = {
-  "en-US": en,
-  "en-GB": en,
+  "en-US": enUs,
+  "en-GB": enGb,
   "fr-FR": fr,
   "it-IT": it,
   "ja-JP": ja,

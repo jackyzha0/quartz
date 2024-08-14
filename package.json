@@ -2,7 +2,7 @@
   "name": "@jackyzha0/quartz",
   "description": "🌱 publish your digital garden and notes as a website",
   "private": true,
-  "version": "4.2.3",
+  "version": "4.3.0",
   "type": "module",
   "author": "jackyzha0 <j.zhao2k19@gmail.com>",
   "license": "MIT",
@@ -25,7 +25,7 @@
   },
   "engines": {
     "npm": ">=9.3.1",
-    "node": ">=18.14"
+    "node": "20 || >=22"
   },
   "keywords": [
     "site generator",

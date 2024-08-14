@@ -96,18 +96,17 @@ const TagContent: QuartzComponent = (props: QuartzComponentProps) => {
                   </p>
                   <PageList limit={numPages} {...listProps} />
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
         </div>
-      </div>
-    )
-  } else {
-    const pages = allPagesWithTag(tag)
-    const listProps = {
-      ...props,
-      allFiles: pages,
-    }
+      )
+    } else {
+      const pages = allPagesWithTag(tag)
+      const listProps = {
+        ...props,
+        allFiles: pages,
+      }
 
     return (
       <div class={classes}>
@@ -122,10 +121,10 @@ const TagContent: QuartzComponent = (props: QuartzComponentProps) => {
             <PageList {...listProps} />
           </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
-}
 
-TagContent.css = style + PageList.css
-export default (() => TagContent) satisfies QuartzComponentConstructor
+  TagContent.css = style + PageList.css
+  return TagContent
+}) satisfies QuartzComponentConstructor

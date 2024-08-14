@@ -48,12 +48,9 @@ export default ((userOpts?: Partial<Options>) => {
   // memoized
   let fileTree: FileNode
   let jsonTree: string
+  let lastBuildId: string = ""
 
   function constructFileTree(allFiles: QuartzPluginData[]) {
-    if (fileTree) {
-      return
-    }
-
     // Construct tree from allFiles
     fileTree = new FileNode("")
     allFiles.forEach((file) => fileTree.add(file))
@@ -82,12 +79,17 @@ export default ((userOpts?: Partial<Options>) => {
   }
 
   const Explorer: QuartzComponent = ({
+    ctx,
     cfg,
     allFiles,
     displayClass,
     fileData,
   }: QuartzComponentProps) => {
-    constructFileTree(allFiles)
+    if (ctx.buildId !== lastBuildId) {
+      lastBuildId = ctx.buildId
+      constructFileTree(allFiles)
+    }
+
     return (
       <div class={classNames(displayClass, "explorer")}>
         <button

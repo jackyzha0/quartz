@@ -8,7 +8,6 @@ import {
   simplifySlug,
   splitAnchor,
   transformLink,
-  joinSegments,
 } from "../../util/path"
 import path from "path"
 import {visit} from "unist-util-visit"
@@ -68,6 +67,7 @@ export const CrawlLinks: QuartzTransformerPlugin<
                     type: "element",
                     tagName: "svg",
                     properties: {
+                      "aria-hidden": "true",
                       class: "external-icon",
                       viewBox: "0 0 512 512",
                     },

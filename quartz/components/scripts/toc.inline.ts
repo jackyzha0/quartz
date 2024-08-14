@@ -16,6 +16,10 @@ const observer = new IntersectionObserver((entries) => {
 
 function toggleToc(this: HTMLElement) {
   this.classList.toggle("collapsed")
+  this.setAttribute(
+    "aria-expanded",
+    this.getAttribute("aria-expanded") === "true" ? "false" : "true",
+  )
   const content = this.nextElementSibling as HTMLElement | undefined
   if (!content) return
   content.classList.toggle("collapsed")

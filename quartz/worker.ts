@@ -13,6 +13,7 @@ export async function parseFiles(
   allSlugs: FullSlug[],
 ) {
   const ctx: BuildCtx = {
+    buildId,
     cfg,
     argv,
     allSlugs,

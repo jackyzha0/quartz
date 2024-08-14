@@ -6,6 +6,7 @@ export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   // header: [Component.PageTitle(), Component.Search(), Component.Darkmode()],
   header: [],
+  afterBody: [],
   footer: Component.Footer({
     links: {
       About: "/About",
