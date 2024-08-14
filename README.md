@@ -82,12 +82,10 @@ All content for the site is written in _Markdown_ within [Obsidian](https://obsi
 
 ```yml
 steps:
-  - uses: actions/checkout@v4
-    with:
-      fetch-depth: 0 # Fetch all history for git info
-  - uses: actions/setup-node@v4
-    with:
-      node-version: 18
+  - name: Checkout
+    uses: actions/checkout@v4
+  - name: Setup Node
+    uses: actions/setup-node@v4
   - name: Install Dependencies
     run: npm i
   - name: Build Quartz
@@ -101,12 +99,8 @@ steps:
 steps:
   - name: Checkout
     uses: actions/checkout@v4
-    with:
-      fetch-depth: 0 # Fetch all history for git info
   - name: Setup Node
     uses: actions/setup-node@v4
-    with:
-      node-version: 18
   - name: Install Dependencies
     run: npm i
   - name: Build Quartz
@@ -125,12 +119,8 @@ steps:
 steps:
   - name: Checkout
     uses: actions/checkout@v4
-    with:
-      fetch-depth: 0 # Fetch all history for git info
   - name: Setup PNPM
     uses: pnpm/action-setup@v3
-    with:
-      version: 8
   - name: Get pnpm store directory
     shell: bash
     run: |
@@ -153,6 +143,39 @@ steps:
   - name: Deploy to GitHub Pages
     uses: actions/deploy-pages@v4
     id: deployment
+```
+
+```yaml
+# Using Bun (my preferred method)
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install Dependencies
+        run: bun install
+      - name: Build Quartz
+        run: npx quartz build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 ```
 
 ## © License
