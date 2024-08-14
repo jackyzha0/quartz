@@ -1,19 +1,27 @@
 import path from "path"
-import { visit } from "unist-util-visit"
-import { Root } from "hast"
-import { VFile } from "vfile"
-import { QuartzEmitterPlugin } from "../types"
-import { QuartzComponentProps } from "../../components/types"
+import {visit} from "unist-util-visit"
+import {Root} from "hast"
+import {VFile} from "vfile"
+import {QuartzEmitterPlugin} from "../types"
+import {QuartzComponentProps} from "../../components/types"
 import HeaderConstructor from "../../components/Header"
 import BodyConstructor from "../../components/Body"
-import { pageResources, renderPage } from "../../components/renderPage"
-import { FullPageLayout } from "../../cfg"
-import { Argv } from "../../util/ctx"
-import { FilePath, isRelativeURL, joinSegments, pathToRoot } from "../../util/path"
-import { defaultContentPageLayout, sharedPageComponents } from "../../../quartz.layout"
-import { Content } from "../../components"
+import {pageResources, renderPage} from "../../components/renderPage"
+import {FullPageLayout} from "../../cfg"
+import {Argv} from "../../util/ctx"
+import {
+  FilePath,
+  isRelativeURL,
+  joinSegments,
+  pathToRoot,
+} from "../../util/path"
+import {
+  defaultContentPageLayout,
+  sharedPageComponents,
+} from "../../../quartz.layout"
+import {Content} from "../../components"
 import chalk from "chalk"
-import { write } from "./helpers"
+import {write} from "./helpers"
 import DepGraph from "../../depgraph"
 
 // get all the dependencies for the markdown file
@@ -25,7 +33,9 @@ const parseDependencies = (argv: Argv, hast: Root, file: VFile): string[] => {
     let ref: string | null = null
 
     if (
-      ["script", "img", "audio", "video", "source", "iframe"].includes(elem.tagName) &&
+      ["script", "img", "audio", "video", "source", "iframe"].includes(
+        elem.tagName,
+      ) &&
       elem?.properties?.src
     ) {
       ref = elem.properties.src.toString()
@@ -40,7 +50,9 @@ const parseDependencies = (argv: Argv, hast: Root, file: VFile): string[] => {
       return
     }
 
-    let fp = path.join(file.data.filePath!, path.relative(argv.directory, ref)).replace(/\\/g, "/")
+    let fp = path
+      .join(file.data.filePath!, path.relative(argv.directory, ref))
+      .replace(/\\/g, "/")
     // markdown files have the .md extension stripped in hrefs, add it back here
     if (!fp.split("/").pop()?.includes(".")) {
       fp += ".md"
@@ -51,7 +63,9 @@ const parseDependencies = (argv: Argv, hast: Root, file: VFile): string[] => {
   return dependencies
 }
 
-export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) => {
+export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (
+  userOpts,
+) => {
   const opts: FullPageLayout = {
     ...sharedPageComponents,
     ...defaultContentPageLayout,
@@ -59,7 +73,16 @@ export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOp
     ...userOpts,
   }
 
-  const { head: Head, header, beforeBody, pageBody, afterBody, left, right, footer: Footer } = opts
+  const {
+    head: Head,
+    header,
+    beforeBody,
+    pageBody,
+    afterBody,
+    left,
+    right,
+    footer: Footer,
+  } = opts
   const Header = HeaderConstructor()
   const Body = BodyConstructor()
 
@@ -85,7 +108,10 @@ export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOp
       for (const [tree, file] of content) {
         const sourcePath = file.data.filePath!
         const slug = file.data.slug!
-        graph.addEdge(sourcePath, joinSegments(ctx.argv.output, slug + ".html") as FilePath)
+        graph.addEdge(
+          sourcePath,
+          joinSegments(ctx.argv.output, slug + ".html") as FilePath,
+        )
 
         parseDependencies(ctx.argv, tree as Root, file).forEach((dep) => {
           graph.addEdge(dep as FilePath, sourcePath)
@@ -117,7 +143,13 @@ export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOp
           allFiles,
         }
 
-        const content = renderPage(cfg, slug, componentData, opts, externalResources)
+        const content = renderPage(
+          cfg,
+          slug,
+          componentData,
+          opts,
+          externalResources,
+        )
         const fp = await write({
           ctx,
           content,

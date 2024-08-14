@@ -1,4 +1,4 @@
-import { Translation } from "./definition"
+import {Translation} from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "Notes Recents",
-      seeRemainingMore: ({ remaining }) => `Vegi ${remaining} més →`,
+      seeRemainingMore: ({remaining}) => `Vegi ${remaining} més →`,
     },
     transcludes: {
-      transcludeOf: ({ targetSlug }) => `Transcluit de ${targetSlug}`,
+      transcludeOf: ({targetSlug}) => `Transcluit de ${targetSlug}`,
       linkToOriginal: "Enllaç a l'original",
     },
     search: {
@@ -54,13 +54,13 @@ export default {
       title: "Taula de Continguts",
     },
     contentMeta: {
-      readingTime: ({ minutes }) => `Es llegeix en ${minutes} min`,
+      readingTime: ({minutes}) => `Es llegeix en ${minutes} min`,
     },
   },
   pages: {
     rss: {
       recentNotes: "Notes recents",
-      lastFewNotes: ({ count }) => `Últimes ${count} notes`,
+      lastFewNotes: ({count}) => `Últimes ${count} notes`,
     },
     error: {
       title: "No s'ha trobat.",
@@ -69,16 +69,20 @@ export default {
     },
     folderContent: {
       folder: "Carpeta",
-      itemsUnderFolder: ({ count }) =>
-        count === 1 ? "1 article en aquesta carpeta." : `${count} articles en esta carpeta.`,
+      itemsUnderFolder: ({count}) =>
+        count === 1
+          ? "1 article en aquesta carpeta."
+          : `${count} articles en esta carpeta.`,
     },
     tagContent: {
       tag: "Etiqueta",
       tagIndex: "índex d'Etiquetes",
-      itemsUnderTag: ({ count }) =>
-        count === 1 ? "1 article amb aquesta etiqueta." : `${count} article amb aquesta etiqueta.`,
-      showingFirst: ({ count }) => `Mostrant les primeres ${count} etiquetes.`,
-      totalTags: ({ count }) => `S'han trobat ${count} etiquetes en total.`,
+      itemsUnderTag: ({count}) =>
+        count === 1
+          ? "1 article amb aquesta etiqueta."
+          : `${count} article amb aquesta etiqueta.`,
+      showingFirst: ({count}) => `Mostrant les primeres ${count} etiquetes.`,
+      totalTags: ({count}) => `S'han trobat ${count} etiquetes en total.`,
     },
   },
 } as const satisfies Translation

@@ -1,11 +1,15 @@
-import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import {
+  QuartzComponent,
+  QuartzComponentConstructor,
+  QuartzComponentProps,
+} from "./types"
 import legacyStyle from "./styles/legacyToc.scss"
 import modernStyle from "./styles/toc.scss"
-import { classNames } from "../util/lang"
+import {classNames} from "../util/lang"
 
 // @ts-ignore
 import script from "./scripts/toc.inline"
-import { i18n } from "../i18n"
+import {i18n} from "../i18n"
 
 interface Options {
   layout: "modern" | "legacy"
@@ -31,8 +35,7 @@ const TableOfContents: QuartzComponent = ({
         id="toc"
         class={fileData.collapseToc ? "collapsed" : ""}
         aria-controls="toc-content"
-        aria-expanded={!fileData.collapseToc}
-      >
+        aria-expanded={!fileData.collapseToc}>
         <h3>{i18n(cfg.locale).components.tableOfContents.title}</h3>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -44,8 +47,7 @@ const TableOfContents: QuartzComponent = ({
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="fold"
-        >
+          class="fold">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </button>
@@ -66,7 +68,10 @@ const TableOfContents: QuartzComponent = ({
 TableOfContents.css = modernStyle
 TableOfContents.afterDOMLoaded = script
 
-const LegacyTableOfContents: QuartzComponent = ({ fileData, cfg }: QuartzComponentProps) => {
+const LegacyTableOfContents: QuartzComponent = ({
+  fileData,
+  cfg,
+}: QuartzComponentProps) => {
   if (!fileData.toc) {
     return null
   }

@@ -1,4 +1,7 @@
-export function registerEscapeHandler(outsideContainer: HTMLElement | null, cb: () => void) {
+export function registerEscapeHandler(
+  outsideContainer: HTMLElement | null,
+  cb: () => void,
+) {
   if (!outsideContainer) return
   function click(this: HTMLElement, e: HTMLElementEventMap["click"]) {
     if (e.target !== this) return

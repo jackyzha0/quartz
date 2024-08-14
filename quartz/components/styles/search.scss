@@ -143,7 +143,11 @@
         }
 
         & .highlight {
-          background: color-mix(in srgb, var(--tertiary) 60%, rgba(255, 255, 255, 0));
+          background: color-mix(
+            in srgb,
+            var(--tertiary) 60%,
+            rgba(255, 255, 255, 0)
+          );
           border-radius: 5px;
           scroll-margin-top: 2rem;
         }

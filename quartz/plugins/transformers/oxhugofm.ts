@@ -1,4 +1,4 @@
-import { QuartzTransformerPlugin } from "../types"
+import {QuartzTransformerPlugin} from "../types"
 
 export interface Options {
   /** Replace {{ relref }} with quartz wikilinks []() */
@@ -22,7 +22,10 @@ const defaultOptions: Options = {
   replaceOrgLatex: true,
 }
 
-const relrefRegex = new RegExp(/\[([^\]]+)\]\(\{\{< relref "([^"]+)" >\}\}\)/, "g")
+const relrefRegex = new RegExp(
+  /\[([^\]]+)\]\(\{\{< relref "([^"]+)" >\}\}\)/,
+  "g",
+)
 const predefinedHeadingIdRegex = new RegExp(/(.*) {#(?:.*)}/, "g")
 const hugoShortcodeRegex = new RegExp(/{{(.*)}}/, "g")
 const figureTagRegex = new RegExp(/< ?figure src="(.*)" ?>/, "g")
@@ -47,8 +50,10 @@ const quartzLatexRegex = new RegExp(/\$\$[\s\S]*?\$\$|\$.*?\$/, "g")
  * markdown to make it compatible with quartz but the list of changes applied it
  * is not exhaustive.
  * */
-export const OxHugoFlavouredMarkdown: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
-  const opts = { ...defaultOptions, ...userOpts }
+export const OxHugoFlavouredMarkdown: QuartzTransformerPlugin<
+  Partial<Options>
+> = (userOpts) => {
+  const opts = {...defaultOptions, ...userOpts}
   return {
     name: "OxHugoFlavouredMarkdown",
     textTransform(_ctx, src) {

@@ -1,9 +1,13 @@
-import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import {
+  QuartzComponent,
+  QuartzComponentConstructor,
+  QuartzComponentProps,
+} from "./types"
 // @ts-ignore
 import script from "./scripts/graph.inline"
 import style from "./styles/graph.scss"
-import { i18n } from "../i18n"
-import { classNames } from "../util/lang"
+import {i18n} from "../i18n"
+import {classNames} from "../util/lang"
 
 export interface D3Config {
   drag: boolean
@@ -57,9 +61,12 @@ const defaultOptions: GraphOptions = {
 }
 
 export default ((opts?: GraphOptions) => {
-  const Graph: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) => {
-    const localGraph = { ...defaultOptions.localGraph, ...opts?.localGraph }
-    const globalGraph = { ...defaultOptions.globalGraph, ...opts?.globalGraph }
+  const Graph: QuartzComponent = ({
+    displayClass,
+    cfg,
+  }: QuartzComponentProps) => {
+    const localGraph = {...defaultOptions.localGraph, ...opts?.localGraph}
+    const globalGraph = {...defaultOptions.globalGraph, ...opts?.globalGraph}
     return (
       <div class={classNames(displayClass, "graph")}>
         <h3>{i18n(cfg.locale).components.graph.title}</h3>
@@ -74,8 +81,7 @@ export default ((opts?: GraphOptions) => {
             y="0px"
             viewBox="0 0 55 55"
             fill="currentColor"
-            xmlSpace="preserve"
-          >
+            xmlSpace="preserve">
             <path
               d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
 	s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
@@ -92,7 +98,9 @@ export default ((opts?: GraphOptions) => {
           </svg>
         </div>
         <div id="global-graph-outer">
-          <div id="global-graph-container" data-cfg={JSON.stringify(globalGraph)}></div>
+          <div
+            id="global-graph-container"
+            data-cfg={JSON.stringify(globalGraph)}></div>
         </div>
       </div>
     )

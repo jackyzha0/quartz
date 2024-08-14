@@ -158,7 +158,9 @@ export async function parseMarkdown(
 
     const childPromises: WorkerPromise<ProcessedContent[]>[] = []
     for (const chunk of chunks(fps, CHUNK_SIZE)) {
-      childPromises.push(pool.exec("parseFiles", [ctx.buildId, argv, chunk, ctx.allSlugs]))
+      childPromises.push(
+        pool.exec("parseFiles", [ctx.buildId, argv, chunk, ctx.allSlugs]),
+      )
     }
 
     const results: ProcessedContent[][] = await WorkerPromise.all(

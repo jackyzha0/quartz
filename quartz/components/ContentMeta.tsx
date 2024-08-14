@@ -1,9 +1,9 @@
-import { formatDate, getDate } from "./Date"
-import { QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import {formatDate, getDate} from "./Date"
+import {QuartzComponentConstructor, QuartzComponentProps} from "./types"
 import readingTime from "reading-time"
-import { classNames } from "../util/lang"
-import { i18n } from "../i18n"
-import { JSX } from "preact"
+import {classNames} from "../util/lang"
+import {i18n} from "../i18n"
+import {JSX} from "preact"
 import style from "./styles/contentMeta.scss"
 
 interface ContentMetaOptions {
@@ -21,9 +21,13 @@ const defaultOptions: ContentMetaOptions = {
 
 export default ((opts?: Partial<ContentMetaOptions>) => {
   // Merge options with defaults
-  const options: ContentMetaOptions = { ...defaultOptions, ...opts }
+  const options: ContentMetaOptions = {...defaultOptions, ...opts}
 
-  function ContentMetadata({ cfg, fileData, displayClass }: QuartzComponentProps) {
+  function ContentMetadata({
+    cfg,
+    fileData,
+    displayClass,
+  }: QuartzComponentProps) {
     const text = fileData.text
 
     if (text) {
@@ -35,8 +39,10 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
 
       // Display reading time if enabled
       if (options.showReadingTime) {
-        const { minutes, words: _words } = readingTime(text)
-        const displayedTime = i18n(cfg.locale).components.contentMeta.readingTime({
+        const {minutes, words: _words} = readingTime(text)
+        const displayedTime = i18n(
+          cfg.locale,
+        ).components.contentMeta.readingTime({
           minutes: Math.ceil(minutes),
         })
         segments.push(displayedTime)
@@ -45,7 +51,9 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
       const segmentsElements = segments.map((segment) => <span>{segment}</span>)
 
       return (
-        <p show-comma={options.showComma} class={classNames(displayClass, "content-meta")}>
+        <p
+          show-comma={options.showComma}
+          class={classNames(displayClass, "content-meta")}>
           {segmentsElements}
         </p>
       )

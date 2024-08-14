@@ -1,8 +1,8 @@
-import { FullSlug, resolveRelative } from "../util/path"
-import { QuartzPluginData } from "../plugins/vfile"
-import { Date, getDate } from "./Date"
-import { QuartzComponent, QuartzComponentProps } from "./types"
-import { GlobalConfiguration } from "../cfg"
+import {FullSlug, resolveRelative} from "../util/path"
+import {QuartzPluginData} from "../plugins/vfile"
+import {Date, getDate} from "./Date"
+import {QuartzComponent, QuartzComponentProps} from "./types"
+import {GlobalConfiguration} from "../cfg"
 
 export type SortFn = (f1: QuartzPluginData, f2: QuartzPluginData) => number
 
@@ -30,7 +30,13 @@ type Props = {
   sort?: SortFn
 } & QuartzComponentProps
 
-export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort }: Props) => {
+export const PageList: QuartzComponent = ({
+  cfg,
+  fileData,
+  allFiles,
+  limit,
+  sort,
+}: Props) => {
   const sorter = sort ?? byDateAndAlphabetical(cfg)
   let list = allFiles.sort(sorter)
   if (limit) {
@@ -53,7 +59,9 @@ export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort
               )}
               <div class="desc">
                 <h3>
-                  <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">
+                  <a
+                    href={resolveRelative(fileData.slug!, page.slug!)}
+                    class="internal">
                     {title}
                   </a>
                 </h3>
@@ -63,8 +71,10 @@ export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort
                   <li>
                     <a
                       class="internal tag-link"
-                      href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}
-                    >
+                      href={resolveRelative(
+                        fileData.slug!,
+                        `tags/${tag}` as FullSlug,
+                      )}>
                       {tag}
                     </a>
                   </li>

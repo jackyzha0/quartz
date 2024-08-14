@@ -1,6 +1,8 @@
 const changeTheme = (e: CustomEventMap["themechange"]) => {
   const theme = e.detail.theme
-  const iframe = document.querySelector("iframe.giscus-frame") as HTMLIFrameElement
+  const iframe = document.querySelector(
+    "iframe.giscus-frame",
+  ) as HTMLIFrameElement
   if (!iframe) {
     return
   }
@@ -49,11 +51,20 @@ document.addEventListener("nav", () => {
   giscusScript.setAttribute("data-repo", giscusContainer.dataset.repo)
   giscusScript.setAttribute("data-repo-id", giscusContainer.dataset.repoId)
   giscusScript.setAttribute("data-category", giscusContainer.dataset.category)
-  giscusScript.setAttribute("data-category-id", giscusContainer.dataset.categoryId)
+  giscusScript.setAttribute(
+    "data-category-id",
+    giscusContainer.dataset.categoryId,
+  )
   giscusScript.setAttribute("data-mapping", giscusContainer.dataset.mapping)
   giscusScript.setAttribute("data-strict", giscusContainer.dataset.strict)
-  giscusScript.setAttribute("data-reactions-enabled", giscusContainer.dataset.reactionsEnabled)
-  giscusScript.setAttribute("data-input-position", giscusContainer.dataset.inputPosition)
+  giscusScript.setAttribute(
+    "data-reactions-enabled",
+    giscusContainer.dataset.reactionsEnabled,
+  )
+  giscusScript.setAttribute(
+    "data-input-position",
+    giscusContainer.dataset.inputPosition,
+  )
 
   const theme = document.documentElement.getAttribute("saved-theme")
   if (theme) {
@@ -64,7 +75,7 @@ document.addEventListener("nav", () => {
 
   document.addEventListener("themechange", changeTheme)
   // window.addCleanup(() => document.removeEventListener("themechange", changeTheme))
-  window.addCleanup(() => 
-    document.removeEventListener("themechange", changeTheme as EventListener)
-);
+  window.addCleanup(() =>
+    document.removeEventListener("themechange", changeTheme as EventListener),
+  )
 })

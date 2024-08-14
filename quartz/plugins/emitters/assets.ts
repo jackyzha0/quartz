@@ -1,15 +1,18 @@
-import { FilePath, joinSegments, slugifyFilePath } from "../../util/path"
-import { QuartzEmitterPlugin } from "../types"
+import {FilePath, joinSegments, slugifyFilePath} from "../../util/path"
+import {QuartzEmitterPlugin} from "../types"
 import path from "path"
 import fs from "fs"
-import { glob } from "../../util/glob"
+import {glob} from "../../util/glob"
 import DepGraph from "../../depgraph"
-import { Argv } from "../../util/ctx"
-import { QuartzConfig } from "../../cfg"
+import {Argv} from "../../util/ctx"
+import {QuartzConfig} from "../../cfg"
 
 const filesToCopy = async (argv: Argv, cfg: QuartzConfig) => {
   // glob all non MD files in content folder and copy it over
-  return await glob("**", argv.directory, ["**/*.md", ...cfg.configuration.ignorePatterns])
+  return await glob("**", argv.directory, [
+    "**/*.md",
+    ...cfg.configuration.ignorePatterns,
+  ])
 }
 
 export const Assets: QuartzEmitterPlugin = () => {
@@ -19,7 +22,7 @@ export const Assets: QuartzEmitterPlugin = () => {
       return []
     },
     async getDependencyGraph(ctx, _content, _resources) {
-      const { argv, cfg } = ctx
+      const {argv, cfg} = ctx
       const graph = new DepGraph<FilePath>()
 
       const fps = await filesToCopy(argv, cfg)
@@ -36,7 +39,7 @@ export const Assets: QuartzEmitterPlugin = () => {
 
       return graph
     },
-    async emit({ argv, cfg }, _content, _resources): Promise<FilePath[]> {
+    async emit({argv, cfg}, _content, _resources): Promise<FilePath[]> {
       const assetsPath = argv.output
       const fps = await filesToCopy(argv, cfg)
       const res: FilePath[] = []
@@ -47,7 +50,7 @@ export const Assets: QuartzEmitterPlugin = () => {
 
         const dest = joinSegments(assetsPath, name) as FilePath
         const dir = path.dirname(dest) as FilePath
-        await fs.promises.mkdir(dir, { recursive: true }) // ensure dir exists
+        await fs.promises.mkdir(dir, {recursive: true}) // ensure dir exists
         await fs.promises.copyFile(src, dest)
         res.push(dest)
       }

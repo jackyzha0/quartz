@@ -1,7 +1,13 @@
-import type { ContentDetails } from "../../plugins/emitters/contentIndex"
+import type {ContentDetails} from "../../plugins/emitters/contentIndex"
 import * as d3 from "d3"
-import { registerEscapeHandler, removeAllChildren } from "./util"
-import { FullSlug, SimpleSlug, getFullSlug, resolveRelative, simplifySlug } from "../../util/path"
+import {registerEscapeHandler, removeAllChildren} from "./util"
+import {
+  FullSlug,
+  SimpleSlug,
+  getFullSlug,
+  resolveRelative,
+  simplifySlug,
+} from "../../util/path"
 
 type NodeData = {
   id: SimpleSlug
@@ -62,7 +68,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
 
     for (const dest of outgoing) {
       if (validLinks.has(dest)) {
-        links.push({ source: source, target: dest })
+        links.push({source: source, target: dest})
       }
     }
 
@@ -74,7 +80,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       tags.push(...localTags.filter((tag) => !tags.includes(tag)))
 
       for (const tag of localTags) {
-        links.push({ source: source, target: tag })
+        links.push({source: source, target: tag})
       }
     }
   }
@@ -92,7 +98,10 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
         neighbourhood.add(cur)
         const outgoing = links.filter((l) => l.source === cur)
         const incoming = links.filter((l) => l.target === cur)
-        wl.push(...outgoing.map((l) => l.target), ...incoming.map((l) => l.source))
+        wl.push(
+          ...outgoing.map((l) => l.target),
+          ...incoming.map((l) => l.source),
+        )
       }
     }
   } else {
@@ -100,16 +109,20 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     if (showTags) tags.forEach((tag) => neighbourhood.add(tag))
   }
 
-  const graphData: { nodes: NodeData[]; links: LinkData[] } = {
+  const graphData: {nodes: NodeData[]; links: LinkData[]} = {
     nodes: [...neighbourhood].map((url) => {
-      const text = url.startsWith("tags/") ? "#" + url.substring(5) : (data.get(url)?.title ?? url)
+      const text = url.startsWith("tags/")
+        ? "#" + url.substring(5)
+        : data.get(url)?.title ?? url
       return {
         id: url,
         text: text,
         tags: data.get(url)?.tags ?? [],
       }
     }),
-    links: links.filter((l) => neighbourhood.has(l.source) && neighbourhood.has(l.target)),
+    links: links.filter(
+      (l) => neighbourhood.has(l.source) && neighbourhood.has(l.target),
+    ),
   }
 
   const simulation: d3.Simulation<NodeData, LinkData> = d3
@@ -132,7 +145,12 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     .append("svg")
     .attr("width", width)
     .attr("height", height)
-    .attr("viewBox", [-width / 2 / scale, -height / 2 / scale, width / scale, height / scale])
+    .attr("viewBox", [
+      -width / 2 / scale,
+      -height / 2 / scale,
+      width / scale,
+      height / scale,
+    ])
 
   // draw links between nodes
   const link = svg
@@ -145,7 +163,12 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     .attr("stroke-width", 1)
 
   // svg groups
-  const graphNode = svg.append("g").selectAll("g").data(graphData.nodes).enter().append("g")
+  const graphNode = svg
+    .append("g")
+    .selectAll("g")
+    .data(graphData.nodes)
+    .enter()
+    .append("g")
 
   // calculate color
   const color = (d: NodeData) => {
@@ -186,7 +209,9 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
   }
 
   function nodeRadius(d: NodeData) {
-    const numLinks = links.filter((l: any) => l.source.id === d.id || l.target.id === d.id).length
+    const numLinks = links.filter(
+      (l: any) => l.source.id === d.id || l.target.id === d.id,
+    ).length
     return 2 + Math.sqrt(numLinks)
   }
 
@@ -208,11 +233,15 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       const currentId = d.id
       const linkNodes = d3
         .selectAll(".link")
-        .filter((d: any) => d.source.id === currentId || d.target.id === currentId)
+        .filter(
+          (d: any) => d.source.id === currentId || d.target.id === currentId,
+        )
 
       if (focusOnHover) {
         // fade out non-neighbour nodes
-        connectedNodes = linkNodes.data().flatMap((d: any) => [d.source.id, d.target.id])
+        connectedNodes = linkNodes
+          .data()
+          .flatMap((d: any) => [d.source.id, d.target.id])
 
         d3.selectAll<HTMLElement, NodeData>(".link")
           .transition()
@@ -238,7 +267,11 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       }
 
       // highlight links
-      linkNodes.transition().duration(200).attr("stroke", "var(--gray)").attr("stroke-width", 1)
+      linkNodes
+        .transition()
+        .duration(200)
+        .attr("stroke", "var(--gray)")
+        .attr("stroke-width", 1)
 
       const bigFont = fontSize * 1.5
 
@@ -255,19 +288,32 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     })
     .on("mouseleave", function (_, d) {
       if (focusOnHover) {
-        d3.selectAll<HTMLElement, NodeData>(".link").transition().duration(200).style("opacity", 1)
-        d3.selectAll<HTMLElement, NodeData>(".node").transition().duration(200).style("opacity", 1)
+        d3.selectAll<HTMLElement, NodeData>(".link")
+          .transition()
+          .duration(200)
+          .style("opacity", 1)
+        d3.selectAll<HTMLElement, NodeData>(".node")
+          .transition()
+          .duration(200)
+          .style("opacity", 1)
 
         d3.selectAll<HTMLElement, NodeData>(".node")
           .filter((d) => !connectedNodes.includes(d.id))
           .nodes()
           .map((it) => d3.select(it.parentNode as HTMLElement).select("text"))
-          .forEach((it) => it.transition().duration(200).style("opacity", it.attr("opacityOld")))
+          .forEach((it) =>
+            it
+              .transition()
+              .duration(200)
+              .style("opacity", it.attr("opacityOld")),
+          )
       }
       const currentId = d.id
       const linkNodes = d3
         .selectAll(".link")
-        .filter((d: any) => d.source.id === currentId || d.target.id === currentId)
+        .filter(
+          (d: any) => d.source.id === currentId || d.target.id === currentId,
+        )
 
       linkNodes.transition().duration(200).attr("stroke", "var(--lightgray)")
 
@@ -313,7 +359,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
           [width, height],
         ])
         .scaleExtent([0.25, 4])
-        .on("zoom", ({ transform }) => {
+        .on("zoom", ({transform}) => {
           link.attr("transform", transform)
           node.attr("transform", transform)
           const scale = transform.k * opacityScale
@@ -366,5 +412,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
   const containerIcon = document.getElementById("global-graph-icon")
   containerIcon?.addEventListener("click", renderGlobalGraph)
-  window.addCleanup(() => containerIcon?.removeEventListener("click", renderGlobalGraph))
+  window.addCleanup(() =>
+    containerIcon?.removeEventListener("click", renderGlobalGraph),
+  )
 })

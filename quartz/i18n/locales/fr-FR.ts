@@ -1,4 +1,4 @@
-import { Translation } from "./definition"
+import {Translation} from "./definition"
 
 export default {
   propertyDefaults: {
@@ -40,10 +40,10 @@ export default {
     },
     recentNotes: {
       title: "Notes Récentes",
-      seeRemainingMore: ({ remaining }) => `Voir ${remaining} de plus →`,
+      seeRemainingMore: ({remaining}) => `Voir ${remaining} de plus →`,
     },
     transcludes: {
-      transcludeOf: ({ targetSlug }) => `Transclusion de ${targetSlug}`,
+      transcludeOf: ({targetSlug}) => `Transclusion de ${targetSlug}`,
       linkToOriginal: "Lien vers l'original",
     },
     search: {
@@ -54,13 +54,13 @@ export default {
       title: "Table des Matières",
     },
     contentMeta: {
-      readingTime: ({ minutes }) => `${minutes} min de lecture`,
+      readingTime: ({minutes}) => `${minutes} min de lecture`,
     },
   },
   pages: {
     rss: {
       recentNotes: "Notes récentes",
-      lastFewNotes: ({ count }) => `Les dernières ${count} notes`,
+      lastFewNotes: ({count}) => `Les dernières ${count} notes`,
     },
     error: {
       title: "Introuvable",
@@ -69,16 +69,20 @@ export default {
     },
     folderContent: {
       folder: "Dossier",
-      itemsUnderFolder: ({ count }) =>
-        count === 1 ? "1 élément sous ce dossier." : `${count} éléments sous ce dossier.`,
+      itemsUnderFolder: ({count}) =>
+        count === 1
+          ? "1 élément sous ce dossier."
+          : `${count} éléments sous ce dossier.`,
     },
     tagContent: {
       tag: "Étiquette",
       tagIndex: "Index des étiquettes",
-      itemsUnderTag: ({ count }) =>
-        count === 1 ? "1 élément avec cette étiquette." : `${count} éléments avec cette étiquette.`,
-      showingFirst: ({ count }) => `Affichage des premières ${count} étiquettes.`,
-      totalTags: ({ count }) => `Trouvé ${count} étiquettes au total.`,
+      itemsUnderTag: ({count}) =>
+        count === 1
+          ? "1 élément avec cette étiquette."
+          : `${count} éléments avec cette étiquette.`,
+      showingFirst: ({count}) => `Affichage des premières ${count} étiquettes.`,
+      totalTags: ({count}) => `Trouvé ${count} étiquettes au total.`,
     },
   },
 } as const satisfies Translation
