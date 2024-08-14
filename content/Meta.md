@@ -32,25 +32,6 @@ The [source code](https://github.com/semanticdata/forgetful-notes) is hosted in 
 - Markdown Links and Wikilinks Support
 - Latex Support
 
-## File Structure
-
-```
-root/
-├── .github/
-│   └── workflows/
-├── content/
-|   └── notes
-├── docs/
-|   └── documentation
-└── quartz/
-|   ├── components/
-|   ├── plugins/
-|   └── styles/
-└── quartz.config.ts
-└── quartz.layout.ts
-└── package.json
-```
-
 ## License
 
 This website is released under the [MIT License](https://github.com/semanticdata/forgetful-notes?tab=MIT-1-ov-file#readme).
