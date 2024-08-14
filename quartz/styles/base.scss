@@ -109,11 +109,11 @@ a {
 
 .desktop-only {
   display: initial;
-  @media all and (max-width: $mobileBreakpoint) {
+  @media all and ($mobile) {
     display: none;
   }
   &.toc {
-    @media all and (max-width: $tabletBreakpoint) {
+    @media all and ($tablet) {
       display: none;
     }
   }
@@ -121,21 +121,21 @@ a {
 
 .mobile-only {
   display: none;
-  @media all and (max-width: $mobileBreakpoint) {
+  @media all and ($mobile) {
     display: initial;
   }
   &.toc {
-    @media all and (max-width: $tabletBreakpoint) {
+    @media all and ($tablet) {
       display: initial;
     }
   }
 }
 
 .page {
-  @media all and (max-width: $desktopBreakpoint) {
+  @media all and ($desktop) {
     padding: 0 1rem;
   }
-  @media all and (max-width: $mobileBreakpoint) {
+  @media all and ($mobile) {
     margin: 0 auto;
     max-width: 100%;
   }
@@ -169,10 +169,10 @@ a {
   & > #quartz-body {
     width: 100%;
     display: flex;
-    @media all and (max-width: $desktopBreakpoint) {
+    @media all and ($desktop) {
       flex-direction: column;
     }
-    @media all and (max-width: $mobileBreakpoint) {
+    @media all and ($mobile) {
       padding: 0 1rem;
     }
 
@@ -190,11 +190,11 @@ a {
     }
 
     & .sidebar.left {
-      left: 0;
-      @media all and (min-width: $desktopBreakpoint) {
-        left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
+      left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
+      @media all and ($desktop) {
+        left: 0;
       }
-      @media all and (max-width: $mobileBreakpoint) {
+      @media all and ($mobile) {
         gap: 0;
         align-items: center;
         position: initial;
@@ -208,11 +208,13 @@ a {
     & .sidebar.right {
       right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
       flex-wrap: wrap;
-      @media all and (min-width: $mobileBreakpoint) {
-        margin-left: $sidePanelWidth;
-        margin-right: 0;
+      margin-left: $sidePanelWidth;
+      margin-right: 0;
+      @media all and ($mobile) {
+        margin-left: inherit;
+        margin-right: inherit;
       }
-      @media all and (max-width: $desktopBreakpoint) {
+      @media all and ($desktop) {
         position: initial;
         flex-direction: row;
         padding: 0;
@@ -232,17 +234,17 @@ a {
     width: $pageWidth;
     margin-top: 1rem;
 
-    @media all and (max-width: $tabletBreakpoint) {
+    @media all and ($tablet) {
       width: initial;
     }
   }
 
   & .page-header {
     margin: $topSpacing auto 0 auto;
-    @media all and (max-width: $desktopBreakpoint) {
+    @media all and ($desktop) {
       margin: $topSpacing 0 0 0;
     }
-    @media all and (max-width: $mobileBreakpoint) {
+    @media all and ($mobile) {
       margin-top: 2rem;
     }
   }
@@ -252,13 +254,13 @@ a {
     margin-left: auto;
     margin-right: auto;
     width: $pageWidth;
-    @media all and (max-width: $desktopBreakpoint) {
+    @media all and ($desktop) {
       width: calc(100% - $sidePanelWidth);
       right: 0;
       margin-left: $sidePanelWidth;
       margin-right: 0;
     }
-    @media all and (max-width: $mobileBreakpoint) {
+    @media all and ($mobile) {
       width: initial;
       margin-left: 0;
     }

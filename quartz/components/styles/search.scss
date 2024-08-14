@@ -62,7 +62,7 @@
       margin-left: auto;
       margin-right: auto;
 
-      @media all and (max-width: $desktopBreakpoint) {
+      @media all and ($desktop) {
         width: 90%;
       }
 
@@ -104,7 +104,7 @@
           flex: 0 0 min(30%, 450px);
         }
 
-        @media all and (min-width: $tabletBreakpoint) {
+        @media all and not ($tablet) {
           &[data-preview] {
             & .result-card > p.preview {
               display: none;
@@ -130,7 +130,7 @@
           border-radius: 5px;
         }
 
-        @media all and (max-width: $tabletBreakpoint) {
+        @media all and ($tablet) {
           & > #preview-container {
             display: none !important;
           }
