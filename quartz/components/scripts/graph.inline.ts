@@ -2,7 +2,7 @@ import type { ContentDetails } from "../../plugins/emitters/contentIndex"
 import * as d3 from "d3"
 import * as PIXI from "pixi.js"
 import * as TWEEN from "@tweenjs/tween.js"
-import { registerEscapeHandler, removeAllChildren } from "./util"
+import { registerEscapeHandler } from "./util"
 import { FullSlug, SimpleSlug, getFullSlug, resolveRelative, simplifySlug } from "../../util/path"
 
 type NodeData = {
@@ -59,11 +59,11 @@ function animate(time: number) {
 requestAnimationFrame(animate)
 
 async function renderGraph(container: string, fullSlug: FullSlug) {
+  const canvas = document.getElementById(container) as HTMLCanvasElement | null
+  if (!canvas) return
+
   const slug = simplifySlug(fullSlug)
   const visited = getVisited()
-  const graph = document.getElementById(container)
-  if (!graph) return
-  removeAllChildren(graph)
 
   let {
     drag: enableDrag,
@@ -78,7 +78,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     removeTags,
     showTags,
     focusOnHover,
-  } = JSON.parse(graph.dataset["cfg"]!)
+  } = JSON.parse(canvas.dataset["cfg"]!)
 
   const data: Map<SimpleSlug, ContentDetails> = new Map(
     Object.entries<ContentDetails>(await fetchData).map(([k, v]) => [
@@ -89,8 +89,6 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
   const links: LinkData[] = []
   const tags: SimpleSlug[] = []
   const validLinks = new Set(data.keys())
-  const height = Math.max(graph.offsetHeight, 250)
-  const width = graph.offsetWidth
 
   for (const [source, details] of data.entries()) {
     const outgoing = details.links ?? []
@@ -151,6 +149,24 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     ) as unknown as LinkNodes[],
   }
 
+  const simulation: d3.Simulation<NodeData, LinkNodes> = d3
+    .forceSimulation(graphData.nodes)
+    .force("charge", d3.forceManyBody().strength(-100 * repelForce))
+    .force("center", d3.forceCenter().strength(centerForce))
+    .force(
+      "link",
+      d3
+        .forceLink(graphData.links)
+        .id((d: any) => d.id)
+        .distance(linkDistance),
+    )
+    .force(
+      "collide",
+      d3.forceCollide((n) => nodeRadius(n)),
+    )
+
+  const width = canvas.offsetWidth
+  const height = Math.max(canvas.offsetHeight, 250)
   const computedStyleMap = new Map<string, string>()
   for (let i of [
     "--secondary",
@@ -162,7 +178,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     "--darkgray",
     "--bodyFont",
   ]) {
-    computedStyleMap.set(i, getComputedStyle(graph).getPropertyValue(i))
+    computedStyleMap.set(i, getComputedStyle(canvas).getPropertyValue(i))
   }
 
   // calculate color
@@ -182,7 +198,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     return 2 + Math.sqrt(numLinks)
   }
 
-  function renderLinks(data: LinkNodes[]) {
+  function renderLinks(data: LinkNodes[], currentNodeId?: string | null) {
     tweens.get("link")?.stop()
     const Group = new TWEEN.Group()
 
@@ -204,7 +220,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     })
   }
 
-  function renderLabels(data: NodeData[]) {
+  function renderLabels(data: NodeData[], currentNodeId?: string | null) {
     tweens.get("label")?.stop()
     const Group = new TWEEN.Group()
 
@@ -237,15 +253,10 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     })
   }
 
-  function renderCurrentNode({
-    nodeId,
-    focusOnHover,
-  }: {
-    nodeId: string | null
-    focusOnHover: boolean
-  }) {
+  function renderCurrentNode(props: { nodeId: string | null; focusOnHover: boolean }) {
+    const { nodeId, focusOnHover } = props
+
     tweens.get("hover")?.stop()
-    currentNodeId = nodeId
 
     // NOTE: we need to create a new copy here
     const connectedNodes: Set<SimpleSlug> = new Set()
@@ -257,9 +268,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
         connectedNodes.add(l.target.id)
       }
     })
-    if (nodeId) {
-      connectedNodes.add(nodeId as SimpleSlug)
-    }
+
     const Group = new TWEEN.Group()
 
     graphData.nodes.forEach((n) => {
@@ -277,8 +286,8 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       }
     })
 
-    renderLabels(graphData.nodes)
-    renderLinks(graphData.links)
+    renderLabels(graphData.nodes, nodeId)
+    renderLinks(graphData.links, nodeId)
 
     Group.getAll().forEach((tw) => tw.start())
     tweens.set("hover", {
@@ -295,6 +304,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
   await app.init({
     width,
     height,
+    canvas: canvas,
     antialias: true,
     autoStart: false,
     autoDensity: true,
@@ -303,11 +313,9 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     resolution: window.devicePixelRatio,
     eventMode: "static",
   })
-  graph.appendChild(app.canvas)
 
   const stage = app.stage
   stage.interactive = false
-  stage.scale.set(1 / scale)
 
   const nodesContainer = new PIXI.Container<PIXI.Graphics>({ zIndex: 1 })
   const labelsContainer = new PIXI.Container<PIXI.Text>({ zIndex: 2 })
@@ -316,25 +324,9 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
   stage.addChild(nodesContainer, labelsContainer)
   nodesContainer.addChild(linkGraphic)
 
-  const simulation: d3.Simulation<NodeData, LinkNodes> = d3
-    .forceSimulation(graphData.nodes)
-    .force("charge", d3.forceManyBody().strength(-100 * repelForce))
-    .force("center", d3.forceCenter().strength(centerForce))
-    .force(
-      "link",
-      d3
-        .forceLink(graphData.links)
-        .id((d: any) => d.id)
-        .distance(linkDistance),
-    )
-    .force(
-      "collide",
-      d3.forceCollide((n) => nodeRadius(n)),
-    )
-
-  let currentNodeId: string | null = null
-  let currentNodeGfx: PIXI.Graphics | undefined
+  let currentHoverNodeId: string | undefined
   let dragStartTime = 0
+  let dragging = false
 
   graphData.nodes.forEach((n) => {
     const nodeId = n.id
@@ -362,7 +354,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     })
       .circle(0, 0, nodeRadius(n))
       .on("pointerover", () => {
-        if (!currentNodeGfx) {
+        if (!dragging) {
           tweens.get(nodeId)?.stop()
           const tweenScale = { x: 1, y: 1 }
           const tween = new TWEEN.Tween(tweenScale)
@@ -379,16 +371,16 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
         }
       })
       .on("pointerdown", (e) => {
-        currentNodeGfx = e.target as PIXI.Graphics
+        currentHoverNodeId = e.target.label
       })
       .on("pointerup", () => {
-        currentNodeGfx = undefined
+        currentHoverNodeId = undefined
       })
       .on("pointerupoutside", () => {
-        currentNodeGfx = undefined
+        currentHoverNodeId = undefined
       })
       .on("pointerleave", () => {
-        if (!currentNodeGfx) {
+        if (!dragging) {
           tweens.get(nodeId)?.stop()
           const tweenScale = {
             x: gfx.scale.x,
@@ -430,11 +422,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       d3
         .drag<HTMLCanvasElement, NodeData | undefined>()
         .container(() => app.canvas)
-        .subject(() => {
-          // get the item in graphData such that item.gfx === currentNodeGfx
-          const target = graphData.nodes.filter((j) => j.gfx === currentNodeGfx)[0]
-          return target
-        })
+        .subject(() => graphData.nodes.find((n) => n.id === currentHoverNodeId))
         .on("start", function dragstarted(event) {
           if (!event.active) simulation.alphaTarget(1).restart()
           event.subject.fx = event.subject.x
@@ -446,20 +434,20 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
             fy: event.subject.fy,
           }
           dragStartTime = Date.now()
+          dragging = true
         })
         .on("drag", function dragged(event) {
-          const k = currentTransform.k
           const initPos = event.subject.__initialDragPos
-          const dragPos = event
-          event.subject.fx = initPos.x + (dragPos.x - initPos.x) / k
-          event.subject.fy = initPos.y + (dragPos.y - initPos.y) / k
+          event.subject.fx = initPos.x + (event.x - initPos.x) / currentTransform.k
+          event.subject.fy = initPos.y + (event.y - initPos.y) / currentTransform.k
         })
         .on("end", function dragended(event) {
           if (!event.active) simulation.alphaTarget(0)
           event.subject.fx = null
           event.subject.fy = null
+          dragging = false
           // Check for node click event here.
-          if (Date.now() - dragStartTime < 200) {
+          if (Date.now() - dragStartTime < 100) {
             const node = graphData.nodes.find((n) => n.id === event.subject.id) as NodeData
             const targ = resolveRelative(fullSlug, node.id)
             window.spaNavigate(new URL(targ, window.location.toString()))
@@ -539,12 +527,9 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
   function hideGlobalGraph() {
     container?.classList.remove("active")
-    const graph = document.getElementById("global-graph-container")
     if (sidebar) {
       sidebar.style.zIndex = "unset"
     }
-    if (!graph) return
-    removeAllChildren(graph)
   }
 
   async function shortcutHandler(e: HTMLElementEventMap["keydown"]) {
