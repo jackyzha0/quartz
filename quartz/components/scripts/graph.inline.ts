@@ -362,19 +362,21 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     })
       .circle(0, 0, nodeRadius(n))
       .on("pointerover", () => {
-        tweens.get(nodeId)?.stop()
-        const tweenScale = { x: 1, y: 1 }
-        const tween = new TWEEN.Tween(tweenScale)
-          .to({ x: 1.5, y: 1.5 }, 100)
-          .onUpdate(() => {
-            gfx.scale.set(tweenScale.x, tweenScale.y)
-          })
-          .onStop(() => {
-            tweens.delete(nodeId)
-          })
-          .start()
-        tweens.set(nodeId, tween)
-        renderCurrentNode({ nodeId, focusOnHover })
+        if (!currentNodeGfx) {
+          tweens.get(nodeId)?.stop()
+          const tweenScale = { x: 1, y: 1 }
+          const tween = new TWEEN.Tween(tweenScale)
+            .to({ x: 1.5, y: 1.5 }, 100)
+            .onUpdate(() => {
+              gfx.scale.set(tweenScale.x, tweenScale.y)
+            })
+            .onStop(() => {
+              tweens.delete(nodeId)
+            })
+            .start()
+          tweens.set(nodeId, tween)
+          renderCurrentNode({ nodeId, focusOnHover })
+        }
       })
       .on("pointerdown", (e) => {
         currentNodeGfx = e.target as PIXI.Graphics
@@ -386,22 +388,24 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
         currentNodeGfx = undefined
       })
       .on("pointerleave", () => {
-        tweens.get(nodeId)?.stop()
-        const tweenScale = {
-          x: gfx.scale.x,
-          y: gfx.scale.y,
+        if (!currentNodeGfx) {
+          tweens.get(nodeId)?.stop()
+          const tweenScale = {
+            x: gfx.scale.x,
+            y: gfx.scale.y,
+          }
+          const tween = new TWEEN.Tween(tweenScale)
+            .to({ x: 1, y: 1 }, 100)
+            .onUpdate(() => {
+              gfx.scale.set(tweenScale.x, tweenScale.y)
+            })
+            .onStop(() => {
+              tweens.delete(nodeId)
+            })
+            .start()
+          tweens.set(nodeId, tween)
+          renderCurrentNode({ nodeId: null, focusOnHover })
         }
-        const tween = new TWEEN.Tween(tweenScale)
-          .to({ x: 1, y: 1 }, 100)
-          .onUpdate(() => {
-            gfx.scale.set(tweenScale.x, tweenScale.y)
-          })
-          .onStop(() => {
-            tweens.delete(nodeId)
-          })
-          .start()
-        tweens.set(nodeId, tween)
-        renderCurrentNode({ nodeId: null, focusOnHover })
       })
     n.gfx = gfx
 
