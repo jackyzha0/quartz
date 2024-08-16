@@ -130,7 +130,7 @@ a {
 
 .page {
   @media all and ($desktop) {
-    padding: 0 1rem;
+    padding: 0 2rem;
   }
   @media all and ($mobile) {
     margin: 0 auto;
@@ -168,9 +168,6 @@ a {
     display: flex;
     @media all and ($desktop) {
       flex-direction: column;
-    }
-    @media all and ($mobile) {
-      padding: 0 1rem;
     }
 
     & .sidebar {
