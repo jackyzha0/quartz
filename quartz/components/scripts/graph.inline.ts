@@ -148,7 +148,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
   }
 
   const simulation: d3.Simulation<NodeData, LinkNodes> = d3
-    .forceSimulation(graphData.nodes)
+    .forceSimulation<NodeData>(graphData.nodes)
     .force("charge", d3.forceManyBody().strength(-100 * repelForce))
     .force("center", d3.forceCenter().strength(centerForce))
     .force(
@@ -332,7 +332,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     const label = new PIXI.Text({
       text: n.text,
       alpha: 0,
-      anchor: { x: 0.5, y: -0.5 },
+      anchor: { x: 0.5, y: -1 },
       style: {
         fontSize,
         fill: computedStyleMap.get("--dark"),
@@ -352,6 +352,8 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     })
       .circle(0, 0, nodeRadius(n))
       .on("pointerover", () => {
+        nodesContainer.zIndex = 2
+        labelsContainer.zIndex = 1
         if (!dragging) {
           tweens.get(nodeId)?.stop()
           const tweenScale = { x: 1, y: 1 }
@@ -378,6 +380,8 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
         currentHoverNodeId = undefined
       })
       .on("pointerleave", () => {
+        nodesContainer.zIndex = 1
+        labelsContainer.zIndex = 2
         if (!dragging) {
           tweens.get(nodeId)?.stop()
           const tweenScale = {
@@ -398,6 +402,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
         }
       })
     n.gfx = gfx
+    n.r = nodeRadius(n)
 
     if (n.id.startsWith("tags/")) {
       gfx.fill({ color: computedStyleMap.get("--light") }).stroke({ width: 0.5, color: color(n) })
