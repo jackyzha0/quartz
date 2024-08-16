@@ -158,10 +158,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
         .id((d: any) => d.id)
         .distance(linkDistance),
     )
-    .force(
-      "collide",
-      d3.forceCollide((n) => nodeRadius(n)),
-    )
+    .force("collide", d3.forceCollide<NodeData>((n) => nodeRadius(n)).iterations(3))
 
   const width = graph.offsetWidth
   const height = Math.max(graph.offsetHeight, 250)
