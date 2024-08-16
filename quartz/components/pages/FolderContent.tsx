@@ -46,12 +46,12 @@ export default ((opts?: Partial<FolderContentOptions>) => {
 
       if (isDirectChild) {
         allPagesInFolder.push(file)
-      } else {
+      } else if (options.showSubfolders) {
         const folderSlug = joinSegments(...fileParts.slice(0, folderParts.length + 1)) as FullSlug
         if (!allSubfolders.has(folderSlug)) {
           allPagesInFolder.push(_createFolderData(folderSlug))
+          allSubfolders.add(folderSlug)
         }
-        allSubfolders.add(folderSlug)
       }
     })
 
