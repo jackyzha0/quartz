@@ -3,8 +3,7 @@ import path from "path"
 
 import style from "../styles/listPage.scss"
 import { PageList, SortFn } from "../PageList"
-import { FolderList } from "../FolderList"
-import { stripSlashes, simplifySlug, SimpleSlug, joinSegments } from "../../util/path"
+import { stripSlashes, simplifySlug, SimpleSlug, joinSegments, FullSlug } from "../../util/path"
 import { Root } from "hast"
 import { htmlToJsx } from "../../util/jsx"
 import { i18n } from "../../i18n"
@@ -32,7 +31,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
     const folderSlug = stripSlashes(simplifySlug(fileData.slug!))
 
     const allPagesInFolder: QuartzPluginData[] = []
-    const allSubfolders: Set<SimpleSlug> = new Set()
+    const allSubfolders: Set<FullSlug> = new Set()
 
     allFiles.forEach((file) => {
       const fileSlug = stripSlashes(simplifySlug(file.slug!))
@@ -48,21 +47,20 @@ export default ((opts?: Partial<FolderContentOptions>) => {
       if (isDirectChild) {
         allPagesInFolder.push(file)
       } else {
-        const folderSlug = joinSegments(...fileParts.slice(0, folderParts.length + 1))
-        allSubfolders.add(folderSlug as SimpleSlug)
+        const folderSlug = joinSegments(...fileParts.slice(0, folderParts.length + 1)) as FullSlug
+        if (!allSubfolders.has(folderSlug)) {
+          allPagesInFolder.push(_createFolderData(folderSlug))
+        }
+        allSubfolders.add(folderSlug)
       }
     })
 
     const cssClasses: string[] = fileData.frontmatter?.cssclasses ?? []
     const classes = ["popover-hint", ...cssClasses].join(" ")
-    const pageListProps = {
+    const listProps = {
       ...props,
       sort: options.sort,
       allFiles: allPagesInFolder,
-    }
-    const folderListProps = {
-      ...props,
-      allFolders: Array.from(allSubfolders.values()),
     }
 
     const content =
@@ -82,15 +80,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
             </p>
           )}
           <div>
-            <PageList {...pageListProps} />
-          </div>
-        </div>
-        <div class="page-listing">
-          {options.showSubfolders && (
-            <p>{allSubfolders.size === 1 ? "1 subfolder." : `${allSubfolders.size} subfolders.`}</p>
-          )}
-          <div>
-            <FolderList {...folderListProps} />
+            <PageList {...listProps} />
           </div>
         </div>
       </div>
@@ -100,3 +90,12 @@ export default ((opts?: Partial<FolderContentOptions>) => {
   FolderContent.css = style + PageList.css
   return FolderContent
 }) satisfies QuartzComponentConstructor
+
+function _createFolderData(folderSlug: FullSlug): QuartzPluginData {
+  return {
+    slug: folderSlug,
+    frontmatter: {
+      title: folderSlug.split(path.posix.sep).at(-1)!,
+    },
+  }
+}
