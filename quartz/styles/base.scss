@@ -181,11 +181,11 @@ a {
       box-sizing: border-box;
       padding: 0 4rem;
       position: fixed;
+      max-height: calc(100vh - $topSpacing - 4rem);
     }
 
     & .sidebar.left {
       left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
-      max-height: calc(100vh - $topSpacing);
       @media all and ($desktop) {
         left: 0;
       }
@@ -203,7 +203,6 @@ a {
 
     & .sidebar.right {
       right: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
-      flex-wrap: wrap;
       margin-left: $sidePanelWidth;
       margin-right: 0;
       @media all and ($mobile) {
@@ -211,6 +210,7 @@ a {
         margin-right: inherit;
       }
       @media all and ($desktop) {
+        max-height: unset;
         position: initial;
         flex-direction: row;
         padding: 0;
