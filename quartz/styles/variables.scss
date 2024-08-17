@@ -1,21 +1,20 @@
 /**
  * Layout breakpoints
  * $mobile: screen width below this value will use mobile styles
- * $tablet: screen width below this value will use tablet styles
- * $desktop: screen width below this value will use desktop styles
- * assuming mobile < tablet < desktop
+ * $desktop: screen width above this value will use desktop styles
+ * Screen width between $mobile and $desktop width will use the tablet layout.
+ * assuming mobile < desktop
  */
 $breakpoints: (
   mobile: 750px,
-  tablet: 1000px,
   desktop: 1500px,
 );
 
 $mobile: "(max-width: #{map-get($breakpoints, mobile)})";
-$tablet: "(max-width: #{map-get($breakpoints, tablet)})";
+$tablet: "(min-width: #{map-get($breakpoints, mobile)}) and (max-width: #{map-get($breakpoints, desktop)})";
 $desktop: "(max-width: #{map-get($breakpoints, desktop)})";
 
-$pageWidth: 750px;
+$pageWidth: #{map-get($breakpoints, mobile)};
 $sidePanelWidth: 380px;
 $topSpacing: 6rem;
 $boldWeight: 700;
