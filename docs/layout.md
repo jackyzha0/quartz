@@ -39,9 +39,9 @@ Quartz has different layouts depending on the width the screen viewing the websi
 
 The breakpoints for layouts can be configured in `variables.scss`.
 
- - `mobile`: screen width below this size will use mobile layout.
- - `desktop`: screen width above this size will use desktop layout.
- - Screen width between `mobile` and `desktop` width will use the tablet layout.
+- `mobile`: screen width below this size will use mobile layout.
+- `desktop`: screen width above this size will use desktop layout.
+- Screen width between `mobile` and `desktop` width will use the tablet layout.
 
 ```scss
 $breakpoints: (
