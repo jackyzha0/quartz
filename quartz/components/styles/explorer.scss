@@ -1,5 +1,23 @@
 @use "../../styles/variables.scss" as *;
 
+.explorer {
+  &.desktop-only {
+    overflow-y: auto;
+  }
+  &:after {
+    pointer-events: none;
+    content: "";
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    background: linear-gradient(transparent 0px, var(--light));
+  }
+}
+
 button#explorer {
   background-color: transparent;
   border: none;
@@ -59,7 +77,7 @@ button#explorer {
   }
 
   &.collapsed > .overflow::after {
-    opacity: 0;
+    display: none;
   }
 
   & ul {
@@ -75,6 +93,9 @@ button#explorer {
       opacity: 0.75;
       pointer-events: all;
     }
+  }
+  > #explorer-ul {
+    max-height: none;
   }
 }
 
