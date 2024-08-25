@@ -153,12 +153,12 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
   })
   const graphData: { nodes: NodeData[]; links: LinkData[] } = {
     nodes,
-    links: links.filter(
-      (l) => neighbourhood.has(l.source) && neighbourhood.has(l.target),
-    ).map((l) => ({
-      source: nodes.find((n) => n.id === l.source)!,
-      target: nodes.find((n) => n.id === l.target)!
-    })),
+    links: links
+      .filter((l) => neighbourhood.has(l.source) && neighbourhood.has(l.target))
+      .map((l) => ({
+        source: nodes.find((n) => n.id === l.source)!,
+        target: nodes.find((n) => n.id === l.target)!,
+      })),
   }
 
   // we virtualize the simulation and use pixi to actually render it
@@ -182,10 +182,13 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     "--darkgray",
     "--bodyFont",
   ] as const
-  const computedStyleMap = cssVars.reduce((acc, key) => {
-    acc[key] = getComputedStyle(document.documentElement).getPropertyValue(key)
-    return acc
-  }, {} as Record<typeof cssVars[number], string>)
+  const computedStyleMap = cssVars.reduce(
+    (acc, key) => {
+      acc[key] = getComputedStyle(document.documentElement).getPropertyValue(key)
+      return acc
+    },
+    {} as Record<(typeof cssVars)[number], string>,
+  )
 
   // calculate color
   const color = (d: NodeData) => {
@@ -200,7 +203,9 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
   }
 
   function nodeRadius(d: NodeData) {
-    const numLinks = graphData.links.filter((l) => l.source.id === d.id || l.target.id === d.id).length
+    const numLinks = graphData.links.filter(
+      (l) => l.source.id === d.id || l.target.id === d.id,
+    ).length
     return 2 + Math.sqrt(numLinks)
   }
 
@@ -248,8 +253,8 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     for (const l of linkRenderData) {
       let alpha = 1
 
-      // if we are hovering over a node, we want to highlight the immediate neighbours 
-      // with full alpha and the rest with default alpha 
+      // if we are hovering over a node, we want to highlight the immediate neighbours
+      // with full alpha and the rest with default alpha
       if (hoveredNodeId) {
         alpha = l.active ? 1 : 0.2
       }
@@ -278,17 +283,23 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
 
       if (hoveredNodeId === nodeId) {
         tweenGroup.add(
-          new Tweened<Text>(n.label).to({
-            alpha: 1,
-            scale: { x: activeScale, y: activeScale }
-          }, 100)
+          new Tweened<Text>(n.label).to(
+            {
+              alpha: 1,
+              scale: { x: activeScale, y: activeScale },
+            },
+            100,
+          ),
         )
       } else {
         tweenGroup.add(
-          new Tweened<Text>(n.label).to({
-            alpha: n.label.alpha,
-            scale: { x: defaultScale, y: defaultScale }
-          }, 100)
+          new Tweened<Text>(n.label).to(
+            {
+              alpha: n.label.alpha,
+              scale: { x: defaultScale, y: defaultScale },
+            },
+            100,
+          ),
         )
       }
     }
@@ -375,7 +386,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     })
     label.scale.set(1 / scale)
 
-    let oldLabelOpacity = 0;
+    let oldLabelOpacity = 0
     const isTagNode = nodeId.startsWith("tags/")
     const gfx = new Graphics({
       interactive: true,
@@ -418,7 +429,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
   }
 
   for (const l of graphData.links) {
-    const gfx = new Graphics({ interactive: false, eventMode: 'none' })
+    const gfx = new Graphics({ interactive: false, eventMode: "none" })
     linkContainer.addChild(gfx)
 
     const linkRenderDatum: LinkRenderData = {
@@ -495,16 +506,14 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
           // zoom adjusts opacity of labels too
           const scale = transform.k * opacityScale
           let scaleOpacity = Math.max((scale - 1) / 3.75, 0)
-          const activeNodes = nodeRenderData
-            .filter((n) => n.active)
-            .flatMap((n) => n.label)
+          const activeNodes = nodeRenderData.filter((n) => n.active).flatMap((n) => n.label)
 
           for (const label of labelsContainer.children) {
             if (!activeNodes.includes(label)) {
               label.alpha = scaleOpacity
             }
           }
-        })
+        }),
     )
   }
 
