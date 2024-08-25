@@ -1,39 +1,55 @@
 import type { ContentDetails } from "../../plugins/emitters/contentIndex"
-import * as d3 from "d3"
-import * as PIXI from "pixi.js"
-import * as TWEEN from "@tweenjs/tween.js"
+import {
+  SimulationNodeDatum,
+  SimulationLinkDatum,
+  Simulation,
+  forceSimulation,
+  forceManyBody,
+  forceCenter,
+  forceLink,
+  forceCollide,
+  zoomIdentity,
+  select,
+  drag,
+  zoom,
+} from "d3"
+import { Text, Graphics, Application, Container, Circle } from "pixi.js"
+import { Group as TweenGroup, Tween as Tweened } from "@tweenjs/tween.js"
 import { registerEscapeHandler, removeAllChildren } from "./util"
 import { FullSlug, SimpleSlug, getFullSlug, resolveRelative, simplifySlug } from "../../util/path"
+import { D3Config } from "../Graph"
+
+type GraphicsInfo = {
+  color: string
+  gfx: Graphics
+  alpha: number
+  active: boolean
+}
 
 type NodeData = {
   id: SimpleSlug
   text: string
   tags: string[]
+} & SimulationNodeDatum
 
-  label?: PIXI.Text
-
-  gfx?: PIXI.Graphics
-  alpha?: number
-
-  r?: number
-  active?: boolean
-} & d3.SimulationNodeDatum
-
-type LinkData = {
+type SimpleLinkData = {
   source: SimpleSlug
   target: SimpleSlug
-
-  gfx?: PIXI.Graphics
-  alpha?: number
-  color?: string
-
-  active?: boolean
 }
 
-type LinkNodes = Omit<LinkData, "source" | "target"> & {
+type LinkData = {
   source: NodeData
   target: NodeData
-} & d3.SimulationLinkDatum<NodeData>
+} & SimulationLinkDatum<NodeData>
+
+type LinkRenderData = GraphicsInfo & {
+  simulationData: LinkData
+}
+
+type NodeRenderData = GraphicsInfo & {
+  simulationData: NodeData
+  label: Text
+}
 
 const localStorageKey = "graph-visited"
 function getVisited(): Set<SimpleSlug> {
@@ -50,13 +66,6 @@ type TweenNode = {
   update: (time: number) => void
   stop: () => void
 }
-
-let tweens = new Map<string, TweenNode>()
-function animate(time: number) {
-  tweens.forEach((t) => t.update(time))
-  requestAnimationFrame(animate)
-}
-requestAnimationFrame(animate)
 
 async function renderGraph(container: string, fullSlug: FullSlug) {
   const slug = simplifySlug(fullSlug)
@@ -78,7 +87,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     removeTags,
     showTags,
     focusOnHover,
-  } = JSON.parse(graph.dataset["cfg"]!)
+  } = JSON.parse(graph.dataset["cfg"]!) as D3Config
 
   const data: Map<SimpleSlug, ContentDetails> = new Map(
     Object.entries<ContentDetails>(await fetchData).map(([k, v]) => [
@@ -86,10 +95,11 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       v,
     ]),
   )
-  const links: LinkData[] = []
+  const links: SimpleLinkData[] = []
   const tags: SimpleSlug[] = []
   const validLinks = new Set(data.keys())
 
+  const tweens = new Map<string, TweenNode>()
   for (const [source, details] of data.entries()) {
     const outgoing = details.links ?? []
 
@@ -133,37 +143,36 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     if (showTags) tags.forEach((tag) => neighbourhood.add(tag))
   }
 
-  const graphData: { nodes: NodeData[]; links: LinkNodes[] } = {
-    nodes: [...neighbourhood].map((url) => {
-      const text = url.startsWith("tags/") ? "#" + url.substring(5) : (data.get(url)?.title ?? url)
-      return {
-        id: url,
-        text: text,
-        tags: data.get(url)?.tags ?? [],
-      }
-    }),
+  const nodes = [...neighbourhood].map((url) => {
+    const text = url.startsWith("tags/") ? "#" + url.substring(5) : (data.get(url)?.title ?? url)
+    return {
+      id: url,
+      text,
+      tags: data.get(url)?.tags ?? [],
+    }
+  })
+  const graphData: { nodes: NodeData[]; links: LinkData[] } = {
+    nodes,
     links: links.filter(
       (l) => neighbourhood.has(l.source) && neighbourhood.has(l.target),
-    ) as unknown as LinkNodes[],
+    ).map((l) => ({
+      source: nodes.find((n) => n.id === l.source)!,
+      target: nodes.find((n) => n.id === l.target)!
+    })),
   }
 
-  const simulation: d3.Simulation<NodeData, LinkNodes> = d3
-    .forceSimulation<NodeData>(graphData.nodes)
-    .force("charge", d3.forceManyBody().strength(-100 * repelForce))
-    .force("center", d3.forceCenter().strength(centerForce))
-    .force(
-      "link",
-      d3
-        .forceLink(graphData.links)
-        .id((d: any) => d.id)
-        .distance(linkDistance),
-    )
-    .force("collide", d3.forceCollide<NodeData>((n) => nodeRadius(n)).iterations(3))
+  // we virtualize the simulation and use pixi to actually render it
+  const simulation: Simulation<NodeData, LinkData> = forceSimulation<NodeData>(graphData.nodes)
+    .force("charge", forceManyBody().strength(-100 * repelForce))
+    .force("center", forceCenter().strength(centerForce))
+    .force("link", forceLink(graphData.links).distance(linkDistance))
+    .force("collide", forceCollide<NodeData>((n) => nodeRadius(n)).iterations(3))
 
   const width = graph.offsetWidth
   const height = Math.max(graph.offsetHeight, 250)
-  const computedStyleMap = new Map<string, string>()
-  for (let i of [
+
+  // precompute style prop strings as pixi doesn't support css variables
+  const cssVars = [
     "--secondary",
     "--tertiary",
     "--gray",
@@ -172,130 +181,161 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     "--dark",
     "--darkgray",
     "--bodyFont",
-  ]) {
-    computedStyleMap.set(i, getComputedStyle(graph).getPropertyValue(i))
-  }
+  ] as const
+  const computedStyleMap = cssVars.reduce((acc, key) => {
+    acc[key] = getComputedStyle(document.documentElement).getPropertyValue(key)
+    return acc
+  }, {} as Record<typeof cssVars[number], string>)
 
   // calculate color
   const color = (d: NodeData) => {
     const isCurrent = d.id === slug
     if (isCurrent) {
-      return computedStyleMap.get("--secondary")
+      return computedStyleMap["--secondary"]
     } else if (visited.has(d.id) || d.id.startsWith("tags/")) {
-      return computedStyleMap.get("--tertiary")
+      return computedStyleMap["--tertiary"]
     } else {
-      return computedStyleMap.get("--gray")
+      return computedStyleMap["--gray"]
     }
   }
 
   function nodeRadius(d: NodeData) {
-    const numLinks = links.filter((l: any) => l.source.id === d.id || l.target.id === d.id).length
+    const numLinks = graphData.links.filter((l) => l.source.id === d.id || l.target.id === d.id).length
     return 2 + Math.sqrt(numLinks)
   }
 
-  function renderLinks(data: LinkNodes[], currentNodeId?: string | null) {
-    tweens.get("link")?.stop()
-    const Group = new TWEEN.Group()
+  let hoveredNodeId: string | null = null
+  let hoveredNeighbours: Set<string> = new Set()
+  const linkRenderData: LinkRenderData[] = []
+  const nodeRenderData: NodeRenderData[] = []
+  function updateHoverInfo(newHoveredId: string | null) {
+    hoveredNodeId = newHoveredId
 
-    data.forEach((l) => {
-      let alpha = 1
-      if (currentNodeId) {
-        alpha = l.active ? 1 : 0.3
+    if (newHoveredId === null) {
+      hoveredNeighbours = new Set()
+      for (const n of nodeRenderData) {
+        n.active = false
       }
-      l.color = l.active ? computedStyleMap.get("--gray") : computedStyleMap.get("--lightgray")
-      Group.add(new TWEEN.Tween<LinkNodes>(l).to({ alpha }, 200))
-    })
 
-    Group.getAll().forEach((tw) => tw.start())
+      for (const l of linkRenderData) {
+        l.active = false
+      }
+    } else {
+      hoveredNeighbours = new Set()
+      for (const l of linkRenderData) {
+        const linkData = l.simulationData
+        if (linkData.source.id === newHoveredId || linkData.target.id === newHoveredId) {
+          hoveredNeighbours.add(linkData.source.id)
+          hoveredNeighbours.add(linkData.target.id)
+        }
+
+        l.active = linkData.source.id === newHoveredId || linkData.target.id === newHoveredId
+      }
+
+      for (const n of nodeRenderData) {
+        n.active = hoveredNeighbours.has(n.simulationData.id)
+      }
+    }
+  }
+
+  let dragStartTime = 0
+  let dragging = false
+
+  function renderLinks() {
+    tweens.get("link")?.stop()
+    const tweenGroup = new TweenGroup()
+
+    for (const l of linkRenderData) {
+      let alpha = 1
+
+      // if we are hovering over a node, we want to highlight the immediate neighbours 
+      // with full alpha and the rest with default alpha 
+      if (hoveredNodeId) {
+        alpha = l.active ? 1 : 0.2
+      }
+
+      l.color = l.active ? computedStyleMap["--gray"] : computedStyleMap["--lightgray"]
+      tweenGroup.add(new Tweened<LinkRenderData>(l).to({ alpha }, 200))
+    }
+
+    tweenGroup.getAll().forEach((tw) => tw.start())
     tweens.set("link", {
-      update: Group.update.bind(Group),
+      update: tweenGroup.update.bind(tweenGroup),
       stop() {
-        Group.getAll().forEach((tw) => tw.stop())
+        tweenGroup.getAll().forEach((tw) => tw.stop())
       },
     })
   }
 
-  function renderLabels(data: NodeData[], currentNodeId?: string | null) {
+  function renderLabels() {
     tweens.get("label")?.stop()
-    const Group = new TWEEN.Group()
+    const tweenGroup = new TweenGroup()
 
-    data.forEach((n) => {
-      if (!n.label) return
-      if (currentNodeId === n.id) {
-        Group.add(
-          new TWEEN.Tween<PIXI.Text>(n.label).to(
-            { alpha: 1, scale: { x: (1 / scale) * 1.5, y: (1 / scale) * 1.5 } },
-            200,
-          ),
+    const defaultScale = 1 / scale
+    const activeScale = defaultScale * 1.1
+    for (const n of nodeRenderData) {
+      const nodeId = n.simulationData.id
+
+      if (hoveredNodeId === nodeId) {
+        tweenGroup.add(
+          new Tweened<Text>(n.label).to({
+            alpha: 1,
+            scale: { x: activeScale, y: activeScale }
+          }, 100)
         )
       } else {
-        let alpha = n.active ? 0.8 : 0
-        Group.add(
-          new TWEEN.Tween<PIXI.Text>(n.label).to(
-            { alpha, scale: { x: 1 / scale, y: 1 / scale } },
-            200,
-          ),
+        tweenGroup.add(
+          new Tweened<Text>(n.label).to({
+            alpha: n.label.alpha,
+            scale: { x: defaultScale, y: defaultScale }
+          }, 100)
         )
       }
-    })
+    }
 
-    Group.getAll().forEach((tw) => tw.start())
+    tweenGroup.getAll().forEach((tw) => tw.start())
     tweens.set("label", {
-      update: Group.update.bind(Group),
+      update: tweenGroup.update.bind(tweenGroup),
       stop() {
-        Group.getAll().forEach((tw) => tw.stop())
+        tweenGroup.getAll().forEach((tw) => tw.stop())
       },
     })
   }
 
-  function renderCurrentNode(props: { nodeId: string | null; focusOnHover: boolean }) {
-    const { nodeId, focusOnHover } = props
-
+  function renderNodes() {
     tweens.get("hover")?.stop()
 
-    // NOTE: we need to create a new copy here
-    const connectedNodes: Set<SimpleSlug> = new Set()
-
-    graphData.links.forEach((l) => {
-      l.active = l.source.id === nodeId || l.target.id === nodeId
-      if (l.source.id === nodeId || l.target.id === nodeId) {
-        connectedNodes.add(l.source.id)
-        connectedNodes.add(l.target.id)
-      }
-    })
-
-    const Group = new TWEEN.Group()
-
-    graphData.nodes.forEach((n) => {
-      if (!n.gfx) return
+    const tweenGroup = new TweenGroup()
+    for (const n of nodeRenderData) {
       let alpha = 1
-      if (nodeId !== null) {
-        n.active = connectedNodes.has(n.id)
-        if (focusOnHover) alpha = connectedNodes.has(n.id) ? 1 : 0.2
-        if (n.id !== nodeId) {
-          Group.add(new TWEEN.Tween<PIXI.Graphics>(n.gfx, Group).to({ alpha }, 200))
-        }
-      } else {
-        n.active = false
-        Group.add(new TWEEN.Tween<PIXI.Graphics>(n.gfx, Group).to({ alpha }, 200))
+
+      // if we are hovering over a node, we want to highlight the immediate neighbours
+      if (hoveredNodeId !== null && focusOnHover) {
+        alpha = n.active ? 1 : 0.2
       }
-    })
 
-    renderLabels(graphData.nodes, nodeId)
-    renderLinks(graphData.links, nodeId)
+      tweenGroup.add(new Tweened<Graphics>(n.gfx, tweenGroup).to({ alpha }, 200))
+    }
 
-    Group.getAll().forEach((tw) => tw.start())
+    tweenGroup.getAll().forEach((tw) => tw.start())
     tweens.set("hover", {
-      update: Group.update.bind(Group),
+      update: tweenGroup.update.bind(tweenGroup),
       stop() {
-        Group.getAll().forEach((tw) => tw.stop())
+        tweenGroup.getAll().forEach((tw) => tw.stop())
       },
     })
+  }
+
+  function renderPixiFromD3() {
+    renderNodes()
+    renderLinks()
+    renderLabels()
   }
 
   tweens.forEach((tween) => tween.stop())
   tweens.clear()
-  const app = new PIXI.Application()
+
+  const app = new Application()
   await app.init({
     width,
     height,
@@ -312,117 +352,92 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
   const stage = app.stage
   stage.interactive = false
 
-  const nodesContainer = new PIXI.Container<PIXI.Graphics>({ zIndex: 1 })
-  const labelsContainer = new PIXI.Container<PIXI.Text>({ zIndex: 2 })
-  const linkGraphic = new PIXI.Graphics()
+  const labelsContainer = new Container<Text>({ zIndex: 3 })
+  const nodesContainer = new Container<Graphics>({ zIndex: 2 })
+  const linkContainer = new Container<Graphics>({ zIndex: 1 })
+  stage.addChild(nodesContainer, labelsContainer, linkContainer)
 
-  stage.addChild(nodesContainer, labelsContainer)
-  nodesContainer.addChild(linkGraphic)
-
-  let currentHoverNodeId: string | undefined
-  let dragStartTime = 0
-  let dragging = false
-
-  graphData.nodes.forEach((n) => {
+  for (const n of graphData.nodes) {
     const nodeId = n.id
 
-    const label = new PIXI.Text({
+    const label = new Text({
+      interactive: false,
+      eventMode: "none",
       text: n.text,
       alpha: 0,
-      anchor: { x: 0.5, y: -1 },
+      anchor: { x: 0.5, y: 1.2 },
       style: {
-        fontSize,
-        fill: computedStyleMap.get("--dark"),
-        fontFamily: computedStyleMap.get("--bodyFont"),
+        fontSize: fontSize * 15,
+        fill: computedStyleMap["--dark"],
+        fontFamily: computedStyleMap["--bodyFont"],
       },
-      resolution: window.devicePixelRatio,
+      resolution: window.devicePixelRatio * 4,
     })
-    label.scale.set(scale)
-    n.label = label
+    label.scale.set(1 / scale)
 
-    const gfx = new PIXI.Graphics({
+    let oldLabelOpacity = 0;
+    const isTagNode = nodeId.startsWith("tags/")
+    const gfx = new Graphics({
       interactive: true,
       label: nodeId,
       eventMode: "static",
-      hitArea: new PIXI.Circle(0, 0, nodeRadius(n)),
+      hitArea: new Circle(0, 0, nodeRadius(n)),
       cursor: "pointer",
     })
       .circle(0, 0, nodeRadius(n))
-      .on("pointerover", () => {
-        nodesContainer.zIndex = 2
-        labelsContainer.zIndex = 1
+      .fill({ color: isTagNode ? computedStyleMap["--light"] : color(n) })
+      .stroke({ width: isTagNode ? 2 : 0, color: color(n) })
+      .on("pointerover", (e) => {
+        updateHoverInfo(e.target.label)
+        oldLabelOpacity = label.alpha
         if (!dragging) {
-          tweens.get(nodeId)?.stop()
-          const tweenScale = { x: 1, y: 1 }
-          const tween = new TWEEN.Tween(tweenScale)
-            .to({ x: 1.5, y: 1.5 }, 100)
-            .onUpdate(() => {
-              gfx.scale.set(tweenScale.x, tweenScale.y)
-            })
-            .onStop(() => {
-              tweens.delete(nodeId)
-            })
-            .start()
-          tweens.set(nodeId, tween)
-          renderCurrentNode({ nodeId, focusOnHover })
+          renderPixiFromD3()
         }
-      })
-      .on("pointerdown", (e) => {
-        currentHoverNodeId = e.target.label
-      })
-      .on("pointerup", () => {
-        currentHoverNodeId = undefined
-      })
-      .on("pointerupoutside", () => {
-        currentHoverNodeId = undefined
       })
       .on("pointerleave", () => {
-        nodesContainer.zIndex = 1
-        labelsContainer.zIndex = 2
+        updateHoverInfo(null)
+        label.alpha = oldLabelOpacity
         if (!dragging) {
-          tweens.get(nodeId)?.stop()
-          const tweenScale = {
-            x: gfx.scale.x,
-            y: gfx.scale.y,
-          }
-          const tween = new TWEEN.Tween(tweenScale)
-            .to({ x: 1, y: 1 }, 100)
-            .onUpdate(() => {
-              gfx.scale.set(tweenScale.x, tweenScale.y)
-            })
-            .onStop(() => {
-              tweens.delete(nodeId)
-            })
-            .start()
-          tweens.set(nodeId, tween)
-          renderCurrentNode({ nodeId: null, focusOnHover })
+          renderPixiFromD3()
         }
       })
-    n.gfx = gfx
-    n.r = nodeRadius(n)
-
-    if (n.id.startsWith("tags/")) {
-      gfx.fill({ color: computedStyleMap.get("--light") }).stroke({ width: 0.5, color: color(n) })
-    } else {
-      gfx.fill(color(n)).stroke({ color: color(n) })
-    }
 
     nodesContainer.addChild(gfx)
     labelsContainer.addChild(label)
-  })
 
-  graphData.links.forEach((l) => {
-    l.alpha = 1
-    l.color = computedStyleMap.get("--lightgray")
-  })
+    const nodeRenderDatum: NodeRenderData = {
+      simulationData: n,
+      gfx,
+      label,
+      color: color(n),
+      alpha: 1,
+      active: false,
+    }
 
-  let currentTransform = d3.zoomIdentity
+    nodeRenderData.push(nodeRenderDatum)
+  }
+
+  for (const l of graphData.links) {
+    const gfx = new Graphics({ interactive: false, eventMode: 'none' })
+    linkContainer.addChild(gfx)
+
+    const linkRenderDatum: LinkRenderData = {
+      simulationData: l,
+      gfx,
+      color: computedStyleMap["--lightgray"],
+      alpha: 1,
+      active: false,
+    }
+
+    linkRenderData.push(linkRenderDatum)
+  }
+
+  let currentTransform = zoomIdentity
   if (enableDrag) {
-    d3.select<HTMLCanvasElement, NodeData | undefined>(app.canvas).call(
-      d3
-        .drag<HTMLCanvasElement, NodeData | undefined>()
+    select<HTMLCanvasElement, NodeData | undefined>(app.canvas).call(
+      drag<HTMLCanvasElement, NodeData | undefined>()
         .container(() => app.canvas)
-        .subject(() => graphData.nodes.find((n) => n.id === currentHoverNodeId))
+        .subject(() => graphData.nodes.find((n) => n.id === hoveredNodeId))
         .on("start", function dragstarted(event) {
           if (!event.active) simulation.alphaTarget(1).restart()
           event.subject.fx = event.subject.x
@@ -446,8 +461,9 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
           event.subject.fx = null
           event.subject.fy = null
           dragging = false
-          // Check for node click event here.
-          if (Date.now() - dragStartTime < 100) {
+
+          // if the time between mousedown and mouseup is short, we consider it a click
+          if (Date.now() - dragStartTime < 500) {
             const node = graphData.nodes.find((n) => n.id === event.subject.id) as NodeData
             const targ = resolveRelative(fullSlug, node.id)
             window.spaNavigate(new URL(targ, window.location.toString()))
@@ -455,19 +471,17 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
         }),
     )
   } else {
-    graphData.nodes.forEach((node) => {
-      if (!node.gfx) return
+    for (const node of nodeRenderData) {
       node.gfx.on("click", () => {
-        const targ = resolveRelative(fullSlug, node.id)
+        const targ = resolveRelative(fullSlug, node.simulationData.id)
         window.spaNavigate(new URL(targ, window.location.toString()))
       })
-    })
+    }
   }
 
   if (enableZoom) {
-    d3.select<HTMLCanvasElement, NodeData>(app.canvas).call(
-      d3
-        .zoom<HTMLCanvasElement, NodeData>()
+    select<HTMLCanvasElement, NodeData>(app.canvas).call(
+      zoom<HTMLCanvasElement, NodeData>()
         .extent([
           [0, 0],
           [width, height],
@@ -478,40 +492,48 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
           stage.scale.set(transform.k, transform.k)
           stage.position.set(transform.x, transform.y)
 
+          // zoom adjusts opacity of labels too
           const scale = transform.k * opacityScale
           let scaleOpacity = Math.max((scale - 1) / 3.75, 0)
-          const activeNodes = graphData.nodes
+          const activeNodes = nodeRenderData
             .filter((n) => n.active)
-            .flatMap((n) => n.label) as PIXI.Text[]
-          labelsContainer.children.forEach((label) => {
+            .flatMap((n) => n.label)
+
+          for (const label of labelsContainer.children) {
             if (!activeNodes.includes(label)) {
               label.alpha = scaleOpacity
             }
-          })
-        }),
+          }
+        })
     )
   }
 
-  function animate() {
-    graphData.nodes.forEach((n) => {
-      let { x, y, gfx, label, active } = n
-      if (!gfx || !x || !y || !label) return
-      gfx.position.set(x + width / 2, y + height / 2)
-      label.position.set(x + width / 2, y + height / 2)
-      gfx.zIndex = active ? 2 : 1
-    })
+  function animate(time: number) {
+    for (const n of nodeRenderData) {
+      const { x, y } = n.simulationData
+      if (!x || !y) continue
+      n.gfx.position.set(x + width / 2, y + height / 2)
+      if (n.label) {
+        n.label.position.set(x + width / 2, y + height / 2)
+      }
+    }
 
-    linkGraphic.clear()
-    graphData.links.forEach((l) => {
-      linkGraphic
-        .moveTo(l.source.x! + width / 2, l.source.y! + height / 2)
-        .lineTo(l.target.x! + width / 2, l.target.y! + height / 2)
+    for (const l of linkRenderData) {
+      const linkData = l.simulationData
+      l.gfx.clear()
+      l.gfx.moveTo(linkData.source.x! + width / 2, linkData.source.y! + height / 2)
+      l.gfx
+        .lineTo(linkData.target.x! + width / 2, linkData.target.y! + height / 2)
         .stroke({ alpha: l.alpha, width: 1, color: l.color })
-    })
+    }
+
+    tweens.forEach((t) => t.update(time))
     app.renderer.render(stage)
     requestAnimationFrame(animate)
   }
-  requestAnimationFrame(animate)
+
+  const graphAnimationFrameHandle = requestAnimationFrame(animate)
+  window.addCleanup(() => cancelAnimationFrame(graphAnimationFrameHandle))
 }
 
 document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
@@ -530,7 +552,6 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     }
 
     renderGraph("global-graph-container", slug)
-
     registerEscapeHandler(container, hideGlobalGraph)
   }
 
