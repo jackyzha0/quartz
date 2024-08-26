@@ -103,7 +103,7 @@
     "@types/pretty-time": "^1.1.5",
     "@types/source-map-support": "^0.5.10",
     "@types/ws": "^8.5.12",
-    "@types/yargs": "^17.0.32",
+    "@types/yargs": "^17.0.33",
     "esbuild": "^0.19.9",
     "prettier": "^3.3.3",
     "tsx": "^4.17.0",
