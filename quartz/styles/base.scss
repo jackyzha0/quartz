@@ -186,6 +186,7 @@ a {
       display: flex;
       height: 100vh;
       position: sticky;
+      z-index: 1;
     }
 
     & .sidebar.left {
