@@ -61,6 +61,8 @@ jobs:
         with:
           fetch-depth: 0 # Fetch all history for git info
       - uses: actions/setup-node@v4
+        with:
+          node-version: 22
       - name: Install Dependencies
         run: npm ci
       - name: Build Quartz

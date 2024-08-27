@@ -25,5 +25,7 @@ Want to see what Quartz can do? Here are some cool community gardens:
 - [🪴Aster's notebook](https://notes.asterhu.com)
 - [Gatekeeper Wiki](https://www.gatekeeper.wiki)
 - [Ellie's Notes](https://ellie.wtf)
+- [🥷🏻🌳🍃 Computer Science & Thinkering Garden](https://notes.yxy.ninja)
+- [Eledah's Crystalline](https://blog.eledah.ir/)
 
 If you want to see your own on here, submit a [Pull Request adding yourself to this file](https://github.com/jackyzha0/quartz/blob/v4/docs/showcase.md)!

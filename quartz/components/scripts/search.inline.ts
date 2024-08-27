@@ -148,7 +148,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   const data = await fetchData
   const container = document.getElementById("search-container")
   const sidebar = container?.closest(".sidebar") as HTMLElement
-  const searchIcon = document.getElementById("search-icon")
+  const searchButton = document.getElementById("search-button")
   const searchBar = document.getElementById("search-bar") as HTMLInputElement | null
   const searchLayout = document.getElementById("search-layout")
   const idDataMap = Object.keys(data) as FullSlug[]
@@ -191,6 +191,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     }
 
     searchType = "basic" // reset search type after closing
+
+    searchButton?.focus()
   }
 
   function showSearch(searchTypeNew: SearchType) {
@@ -458,8 +460,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
   document.addEventListener("keydown", shortcutHandler)
   window.addCleanup(() => document.removeEventListener("keydown", shortcutHandler))
-  searchIcon?.addEventListener("click", () => showSearch("basic"))
-  window.addCleanup(() => searchIcon?.removeEventListener("click", () => showSearch("basic")))
+  searchButton?.addEventListener("click", () => showSearch("basic"))
+  window.addCleanup(() => searchButton?.removeEventListener("click", () => showSearch("basic")))
   searchBar?.addEventListener("input", onType)
   window.addCleanup(() => searchBar?.removeEventListener("input", onType))
 
