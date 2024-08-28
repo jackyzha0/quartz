@@ -2,6 +2,7 @@ import { SatoriOptions } from "satori/wasm"
 import { GlobalConfiguration } from "../cfg"
 import { SocialImageOptions, UserOpts } from "./imageHelper"
 import { QuartzPluginData } from "../plugins/vfile"
+import { FullSlug, pathToRoot, joinSegments } from "./path"
 
 // This file contains the template of the default social image.
 
@@ -18,6 +19,9 @@ export const defaultImage: SocialImageOptions["imageStructure"] = (
   const useSmallerFont = title.length > fontBreakPoint
 
   const { colorScheme } = userOpts
+
+  // Setup to access image
+  const iconPath = `https://${cfg.baseUrl}/static/icon.png`
   return (
     <div
       style={{
@@ -43,18 +47,30 @@ export const defaultImage: SocialImageOptions["imageStructure"] = (
           paddingBottom: "2rem",
         }}
       >
-        <p
+        <div
           style={{
-            color: cfg.theme.colors[colorScheme].dark,
-            fontSize: useSmallerFont ? 70 : 82,
-            marginLeft: "4rem",
-            textAlign: "center",
-            marginRight: "4rem",
-            fontFamily: fonts[0].name,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+            width: "100%",
+            gap: "2rem",
           }}
         >
-          {title}
-        </p>
+          <img src={iconPath} width={200} height={200} />
+          <p
+            style={{
+              color: cfg.theme.colors[colorScheme].dark,
+              fontSize: useSmallerFont ? 70 : 82,
+              marginLeft: "4rem",
+              textAlign: "center",
+              marginRight: "4rem",
+              fontFamily: fonts[0].name,
+            }}
+          >
+            {title}
+          </p>
+        </div>
         <p
           style={{
             color: cfg.theme.colors[colorScheme].dark,
