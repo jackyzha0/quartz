@@ -3,8 +3,6 @@ import { GlobalConfiguration } from "../cfg"
 import { SocialImageOptions, UserOpts } from "./imageHelper"
 import { QuartzPluginData } from "../plugins/vfile"
 
-// This file contains the template of the default social image.
-
 export const defaultImage: SocialImageOptions["imageStructure"] = (
   cfg: GlobalConfiguration,
   userOpts: UserOpts,
