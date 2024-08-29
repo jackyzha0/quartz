@@ -26,73 +26,50 @@ export const defaultImage: SocialImageOptions["imageStructure"] = (
     <div
       style={{
         display: "flex",
-        flexDirection: "row",
-        justifyContent: "flex-start",
+        flexDirection: "column",
+        justifyContent: "center",
         alignItems: "center",
         height: "100%",
         width: "100%",
+        backgroundColor: cfg.theme.colors[colorScheme].light,
+        gap: "2rem",
+        paddingTop: "1.5rem",
+        paddingBottom: "1.5rem",
+        paddingLeft: "5rem",
+        paddingRight: "5rem",
       }}
     >
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
-          height: "100%",
+          justifyContent: "flex-start",
           width: "100%",
-          backgroundColor: cfg.theme.colors[colorScheme].light,
-          flexDirection: "column",
+          flexDirection: "row",
           gap: "2.5rem",
-          paddingTop: "2rem",
-          paddingBottom: "2rem",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100%",
-            width: "100%",
-            gap: "2rem",
-          }}
-        >
-          <img src={iconPath} width={200} height={200} />
-          <p
-            style={{
-              color: cfg.theme.colors[colorScheme].dark,
-              fontSize: useSmallerFont ? 70 : 82,
-              marginLeft: "4rem",
-              textAlign: "center",
-              marginRight: "4rem",
-              fontFamily: fonts[0].name,
-            }}
-          >
-            {title}
-          </p>
-        </div>
+        <img src={iconPath} width={135} height={135} />
         <p
           style={{
             color: cfg.theme.colors[colorScheme].dark,
-            fontSize: 44,
-            marginLeft: "8rem",
-            marginRight: "8rem",
-            lineClamp: 3,
-            fontFamily: fonts[1].name,
+            fontSize: useSmallerFont ? 70 : 82,
+            fontFamily: fonts[0].name,
           }}
         >
-          {description}
+          {title}
         </p>
       </div>
-      <div
+      <p
         style={{
-          height: "100%",
-          width: "2vw",
-          position: "absolute",
-          backgroundColor: cfg.theme.colors[colorScheme].tertiary,
-          opacity: 0.85,
+          color: cfg.theme.colors[colorScheme].dark,
+          fontSize: 44,
+          lineClamp: 3,
+          fontFamily: fonts[1].name,
         }}
-      />
+      >
+        {description}
+      </p>
     </div>
   )
 }
