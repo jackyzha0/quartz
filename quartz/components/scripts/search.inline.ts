@@ -242,7 +242,11 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
         await displayPreview(anchor)
         anchor.click()
       }
-    } else if (e.key === "ArrowUp" || (e.shiftKey && e.key === "Tab")) {
+    } else if (
+      e.key === "ArrowUp" ||
+      (e.shiftKey && e.key === "Tab") ||
+      (e.ctrlKey && e.key === "p")
+    ) {
       e.preventDefault()
       if (results?.contains(document.activeElement)) {
         // If an element in results-container already has focus, focus previous one
@@ -255,7 +259,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
         if (prevResult) currentHover = prevResult
         await displayPreview(prevResult)
       }
-    } else if (e.key === "ArrowDown" || e.key === "Tab") {
+    } else if (e.key === "ArrowDown" || e.key === "Tab" || (e.ctrlKey && e.key === "n")) {
       e.preventDefault()
       // The results should already been focused, so we need to find the next one.
       // The activeElement is the search bar, so we need to find the first result and focus it.
