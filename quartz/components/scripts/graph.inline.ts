@@ -192,15 +192,12 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
 
   function updateTextStyle() {
     const darkMode = document.documentElement.getAttribute("saved-theme") === "dark"
-    const textColor = darkMode ? computedStyleMap["--dark"] : computedStyleMap["--light"]
     
     for (const n of nodeRenderData) {
-      n.label.style.fill = textColor
+      const nodeColor = color(n.simulationData)
+      n.label.style.fill = darkMode ? "white" : "black"
     }
   }
-
-  document.addEventListener("themechange", updateTextStyle)
-  window.addCleanup(() => document.removeEventListener("themechange", updateTextStyle))
 
   // calculate color
   const color = (d: NodeData) => {
@@ -391,7 +388,6 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       anchor: { x: 0.5, y: 1.2 },
       style: {
         fontSize: fontSize * 15,
-        fill: computedStyleMap["--dark"],
         fontFamily: computedStyleMap["--bodyFont"],
       },
       resolution: window.devicePixelRatio * 4,
@@ -438,8 +434,13 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     }
 
     nodeRenderData.push(nodeRenderDatum)
-    updateTextStyle()
   }
+
+  // Call updateTextStyle immediately after creating all labels
+  updateTextStyle()
+
+  document.addEventListener("themechange", updateTextStyle)
+  window.addCleanup(() => document.removeEventListener("themechange", updateTextStyle))
 
   for (const l of graphData.links) {
     const gfx = new Graphics({ interactive: false, eventMode: "none" })
@@ -555,7 +556,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
   }
 
   const graphAnimationFrameHandle = requestAnimationFrame(animate)
-  window.addCleanup(() => document.removeEventListener("themechange", updateTextStyle))
+  window.addCleanup(() => cancelAnimationFrame(graphAnimationFrameHandle))
 }
 
 document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
