@@ -182,17 +182,23 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     "--darkgray",
     "--bodyFont",
   ] as const
+  const computedStyleMap = cssVars.reduce(
+    (acc, key) => {
+      acc[key] = getComputedStyle(document.documentElement).getPropertyValue(key)
+      return acc
+    },
+    {} as Record<(typeof cssVars)[number], string>,
+  )
 
-  // Dynamic color function
+  // calculate color
   const color = (d: NodeData) => {
-    const style = getComputedStyle(document.documentElement)
     const isCurrent = d.id === slug
     if (isCurrent) {
-      return style.getPropertyValue("--secondary")
+      return computedStyleMap["--secondary"]
     } else if (visited.has(d.id) || d.id.startsWith("tags/")) {
-      return style.getPropertyValue("--tertiary")
+      return computedStyleMap["--tertiary"]
     } else {
-      return style.getPropertyValue("--gray")
+      return computedStyleMap["--gray"]
     }
   }
 
@@ -253,7 +259,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
         alpha = l.active ? 1 : 0.2
       }
 
-      l.color = l.active ? getComputedStyle(document.documentElement).getPropertyValue("--gray") : getComputedStyle(document.documentElement).getPropertyValue("--lightgray")
+      l.color = l.active ? computedStyleMap["--gray"] : computedStyleMap["--lightgray"]
       tweenGroup.add(new Tweened<LinkRenderData>(l).to({ alpha }, 200))
     }
 
@@ -373,8 +379,8 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       anchor: { x: 0.5, y: 1.2 },
       style: {
         fontSize: fontSize * 15,
-        fill: getComputedStyle(document.documentElement).getPropertyValue("--dark"),
-        fontFamily: getComputedStyle(document.documentElement).getPropertyValue("--bodyFont"),
+        fill: computedStyleMap["--dark"],
+        fontFamily: computedStyleMap["--bodyFont"],
       },
       resolution: window.devicePixelRatio * 4,
     })
@@ -390,7 +396,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       cursor: "pointer",
     })
       .circle(0, 0, nodeRadius(n))
-      .fill({ color: isTagNode ? getComputedStyle(document.documentElement).getPropertyValue("--light") : color(n) })
+      .fill({ color: isTagNode ? computedStyleMap["--light"] : color(n) })
       .stroke({ width: isTagNode ? 2 : 0, color: color(n) })
       .on("pointerover", (e) => {
         updateHoverInfo(e.target.label)
@@ -429,7 +435,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     const linkRenderDatum: LinkRenderData = {
       simulationData: l,
       gfx,
-      color: getComputedStyle(document.documentElement).getPropertyValue("--lightgray"),
+      color: computedStyleMap["--lightgray"],
       alpha: 1,
       active: false,
     }
