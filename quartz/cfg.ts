@@ -38,6 +38,11 @@ export type Analytics =
       provider: "cabin"
       host?: string
     }
+  | {
+      provider: "matomo"
+      host: string
+      siteId: string
+  }
 
 export interface GlobalConfiguration {
   pageTitle: string
