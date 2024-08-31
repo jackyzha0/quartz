@@ -190,6 +190,18 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     {} as Record<(typeof cssVars)[number], string>,
   )
 
+  function updateTextStyle() {
+    const darkMode = document.documentElement.getAttribute("saved-theme") === "dark"
+    const textColor = darkMode ? computedStyleMap["--dark"] : computedStyleMap["--light"]
+    
+    for (const n of nodeRenderData) {
+      n.label.style.fill = textColor
+    }
+  }
+
+  document.addEventListener("themechange", updateTextStyle)
+  window.addCleanup(() => document.removeEventListener("themechange", updateTextStyle))
+
   // calculate color
   const color = (d: NodeData) => {
     const isCurrent = d.id === slug
@@ -426,6 +438,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     }
 
     nodeRenderData.push(nodeRenderDatum)
+    updateTextStyle()
   }
 
   for (const l of graphData.links) {
@@ -542,7 +555,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
   }
 
   const graphAnimationFrameHandle = requestAnimationFrame(animate)
-  window.addCleanup(() => cancelAnimationFrame(graphAnimationFrameHandle))
+  window.addCleanup(() => document.removeEventListener("themechange", updateTextStyle))
 }
 
 document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
