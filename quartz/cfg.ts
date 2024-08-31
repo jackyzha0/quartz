@@ -42,7 +42,7 @@ export type Analytics =
       provider: "matomo"
       host: string
       siteId: string
-  }
+    }
 
 export interface GlobalConfiguration {
   pageTitle: string
