@@ -544,15 +544,15 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   addToVisited(simplifySlug(slug))
   await renderGraph("graph-container", slug)
 
-  // Add this function to re-render the graph when the theme changes
+  // Function to re-render the graph when the theme changes
   const handleThemeChange = () => {
     renderGraph("graph-container", slug)
   }
 
-  // Add event listener for theme change
+  // event listener for theme change
   document.addEventListener("themechange", handleThemeChange)
 
-  // Add cleanup for the event listener
+  // cleanup for the event listener
   window.addCleanup(() => {
     document.removeEventListener("themechange", handleThemeChange)
   })
