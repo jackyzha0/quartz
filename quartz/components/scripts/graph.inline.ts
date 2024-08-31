@@ -183,7 +183,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     "--bodyFont",
   ] as const
 
-  // Replace the color function with this
+  // Dynamic color function
   const color = (d: NodeData) => {
     const style = getComputedStyle(document.documentElement)
     const isCurrent = d.id === slug
