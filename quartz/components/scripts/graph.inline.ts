@@ -182,23 +182,17 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     "--darkgray",
     "--bodyFont",
   ] as const
-  const computedStyleMap = cssVars.reduce(
-    (acc, key) => {
-      acc[key] = getComputedStyle(document.documentElement).getPropertyValue(key)
-      return acc
-    },
-    {} as Record<(typeof cssVars)[number], string>,
-  )
 
-  // calculate color
+  // Replace the color function with this
   const color = (d: NodeData) => {
+    const style = getComputedStyle(document.documentElement)
     const isCurrent = d.id === slug
     if (isCurrent) {
-      return computedStyleMap["--secondary"]
+      return style.getPropertyValue("--secondary")
     } else if (visited.has(d.id) || d.id.startsWith("tags/")) {
-      return computedStyleMap["--tertiary"]
+      return style.getPropertyValue("--tertiary")
     } else {
-      return computedStyleMap["--gray"]
+      return style.getPropertyValue("--gray")
     }
   }
 
@@ -259,7 +253,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
         alpha = l.active ? 1 : 0.2
       }
 
-      l.color = l.active ? computedStyleMap["--gray"] : computedStyleMap["--lightgray"]
+      l.color = l.active ? getComputedStyle(document.documentElement).getPropertyValue("--gray") : getComputedStyle(document.documentElement).getPropertyValue("--lightgray")
       tweenGroup.add(new Tweened<LinkRenderData>(l).to({ alpha }, 200))
     }
 
@@ -379,8 +373,8 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       anchor: { x: 0.5, y: 1.2 },
       style: {
         fontSize: fontSize * 15,
-        fill: computedStyleMap["--dark"],
-        fontFamily: computedStyleMap["--bodyFont"],
+        fill: getComputedStyle(document.documentElement).getPropertyValue("--dark"),
+        fontFamily: getComputedStyle(document.documentElement).getPropertyValue("--bodyFont"),
       },
       resolution: window.devicePixelRatio * 4,
     })
@@ -396,7 +390,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       cursor: "pointer",
     })
       .circle(0, 0, nodeRadius(n))
-      .fill({ color: isTagNode ? computedStyleMap["--light"] : color(n) })
+      .fill({ color: isTagNode ? getComputedStyle(document.documentElement).getPropertyValue("--light") : color(n) })
       .stroke({ width: isTagNode ? 2 : 0, color: color(n) })
       .on("pointerover", (e) => {
         updateHoverInfo(e.target.label)
@@ -435,7 +429,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     const linkRenderDatum: LinkRenderData = {
       simulationData: l,
       gfx,
-      color: computedStyleMap["--lightgray"],
+      color: getComputedStyle(document.documentElement).getPropertyValue("--lightgray"),
       alpha: 1,
       active: false,
     }
@@ -549,6 +543,19 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   const slug = e.detail.url
   addToVisited(simplifySlug(slug))
   await renderGraph("graph-container", slug)
+
+  // Add this function to re-render the graph when the theme changes
+  const handleThemeChange = () => {
+    renderGraph("graph-container", slug)
+  }
+
+  // Add event listener for theme change
+  document.addEventListener("themechange", handleThemeChange)
+
+  // Add cleanup for the event listener
+  window.addCleanup(() => {
+    document.removeEventListener("themechange", handleThemeChange)
+  })
 
   const container = document.getElementById("global-graph-outer")
   const sidebar = container?.closest(".sidebar") as HTMLElement
