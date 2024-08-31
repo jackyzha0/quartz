@@ -190,6 +190,15 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     {} as Record<(typeof cssVars)[number], string>,
   )
 
+  function updateTextStyle() {
+    const darkMode = document.documentElement.getAttribute("saved-theme") === "dark"
+    
+    for (const n of nodeRenderData) {
+      const nodeColor = color(n.simulationData)
+      n.label.style.fill = darkMode ? "white" : "black"
+    }
+  }
+
   // calculate color
   const color = (d: NodeData) => {
     const isCurrent = d.id === slug
@@ -379,7 +388,6 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       anchor: { x: 0.5, y: 1.2 },
       style: {
         fontSize: fontSize * 15,
-        fill: computedStyleMap["--dark"],
         fontFamily: computedStyleMap["--bodyFont"],
       },
       resolution: window.devicePixelRatio * 4,
@@ -427,6 +435,12 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
 
     nodeRenderData.push(nodeRenderDatum)
   }
+
+  // Call updateTextStyle immediately after creating all labels
+  updateTextStyle()
+
+  document.addEventListener("themechange", updateTextStyle)
+  window.addCleanup(() => document.removeEventListener("themechange", updateTextStyle))
 
   for (const l of graphData.links) {
     const gfx = new Graphics({ interactive: false, eventMode: "none" })
