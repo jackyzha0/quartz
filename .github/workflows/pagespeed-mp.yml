@@ -1,0 +1,21 @@
+name: Pagespeed - MiguelPimentel.do
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Succinct report
+        uses: lowlighter/metrics@latest
+        with:
+          filename: pagespeed-mp.svg
+          token: NOT_NEEDED
+          base: ""
+          plugin_pagespeed: yes
+          # plugin_pagespeed_detailed: yes
+          # plugin_pagespeed_screenshot: yes
+          # plugin_pagespeed_token: ${{ secrets.PAGESPEED_TOKEN }}
+          plugin_pagespeed_url: https://miguelpimentel.do/
+          # plugin_pagespeed_pwa: yes
