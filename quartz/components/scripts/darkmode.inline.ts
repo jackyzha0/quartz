@@ -13,7 +13,8 @@ const emitThemeChangeEvent = (theme: "light" | "dark") => {
 
 document.addEventListener("nav", () => {
   const switchTheme = (e: Event) => {
-    const newTheme = (e.target as HTMLInputElement)?.checked ? "dark" : "light"
+    const newTheme =
+      document.documentElement.getAttribute("saved-theme") === "dark" ? "light" : "dark"
     document.documentElement.setAttribute("saved-theme", newTheme)
     localStorage.setItem("theme", newTheme)
     emitThemeChangeEvent(newTheme)
@@ -23,7 +24,6 @@ document.addEventListener("nav", () => {
     const newTheme = e.matches ? "dark" : "light"
     document.documentElement.setAttribute("saved-theme", newTheme)
     localStorage.setItem("theme", newTheme)
-    toggleSwitch.checked = e.matches
     emitThemeChangeEvent(newTheme)
   }
 

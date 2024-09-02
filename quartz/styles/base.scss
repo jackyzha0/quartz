@@ -161,6 +161,7 @@ a {
     }
 
     & .sidebar.left {
+      z-index: 1;
       left: calc(calc(100vw - $pageWidth) / 2 - $sidePanelWidth);
       @media all and (max-width: $fullPageWidth) {
         gap: 0;
