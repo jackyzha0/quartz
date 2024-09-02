@@ -18,4 +18,4 @@ jobs:
           plugin_pagespeed_screenshot: yes
           plugin_pagespeed_token: ${{ secrets.PAGESPEED_TOKEN }}
           plugin_pagespeed_url: https://miguelpimentel.do/
-          plugin_pagespeed_pwa: yes
+          # plugin_pagespeed_pwa: yes
