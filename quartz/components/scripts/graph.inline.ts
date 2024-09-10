@@ -518,7 +518,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     tweens.forEach((t) => t.update(time))
     app.renderer.render(stage)
     requestAnimationFrame(animate)
-  }
+  // }
 
   const graphAnimationFrameHandle = requestAnimationFrame(animate)
   window.addCleanup(() => cancelAnimationFrame(graphAnimationFrameHandle))
