@@ -1,9 +1,11 @@
 import { QuartzTransformerPlugin } from "../types"
 import { PluggableList } from "unified"
 import { SKIP, visit } from "unist-util-visit"
-import { Root, Html, BlockContent, DefinitionContent, Paragraph, Code } from "mdast"
-import { FilePath, pathToRoot, slugTag, slugifyFilePath } from "../../util/path"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
+import { Root, Html, Paragraph, Text, Link, Parent } from "mdast"
+import { Node } from "unist"
+import { VFile } from "vfile"
+import { BuildVisitor } from "unist-util-visit"
 
 export interface Options {
   orComponent: boolean
@@ -32,19 +34,95 @@ const defaultOptions: Options = {
 const orRegex = new RegExp(/{{or:(.*?)}}/, "g")
 const TODORegex = new RegExp(/{{.*?\bTODO\b.*?}}/, "g")
 const DONERegex = new RegExp(/{{.*?\bDONE\b.*?}}/, "g")
-const videoRegex = new RegExp(/{{.*?\bvideo\b.*?\:(.*?)}}/, "g")
-const youtubeRegex = new RegExp(/{{.*?\bvideo\b.*?(\bhttp.*?\byoutu.*?)watch\?v=(.*?)}}/, "g")
+const videoRegex = new RegExp(/{{.*?\[\[video\]\].*?\:(.*?)}}/, "g")
+const youtubeRegex = new RegExp(
+  /{{.*?\[\[video\]\].*?(https?:\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?[\w\?=]*)?)}}/,
+  "g",
+)
 
 // const multimediaRegex = new RegExp(/{{.*?\b(video|audio)\b.*?\:(.*?)}}/, "g")
 
-
-const audioRegex = new RegExp(/{{.*?\baudio\b.*?\:(.*?)}}/, "g")
-const pdfRegex = new RegExp(/{{.*?\bpdf\b.*?\:(.*?)}}/, "g")
-const blockquoteRegex = new RegExp(/(\[\[>\]\])\s*(.*)/, "g");
+const audioRegex = new RegExp(/{{.*?\[\[audio\]\].*?\:(.*?)}}/, "g")
+const pdfRegex = new RegExp(/{{.*?\[\[pdf\]\].*?\:(.*?)}}/, "g")
+const blockquoteRegex = new RegExp(/(\[\[>\]\])\s*(.*)/, "g")
 const roamHighlightRegex = new RegExp(/\^\^(.+)\^\^/, "g")
 const roamItalicRegex = new RegExp(/__(.+)__/, "g")
 const tableRegex = new RegExp(/- {{.*?\btable\b.*?}}/, "g") /* TODO */
 const attributeRegex = new RegExp(/\b\w+(?:\s+\w+)*::/, "g") /* TODO */
+
+function isSpecialEmbed(node: Paragraph): boolean {
+  if (node.children.length !== 2) return false
+
+  const [textNode, linkNode] = node.children
+  return (
+    textNode.type === "text" &&
+    textNode.value.startsWith("{{[[") &&
+    linkNode.type === "link" &&
+    linkNode.children[0].type === "text" &&
+    linkNode.children[0].value.endsWith("}}")
+  )
+}
+
+function transformSpecialEmbed(node: Paragraph, opts: Options): Html | null {
+  const [textNode, linkNode] = node.children as [Text, Link]
+  const embedType = textNode.value.match(/\{\{\[\[(.*?)\]\]:/)?.[1]?.toLowerCase()
+  const url = linkNode.url.slice(0, -2) // Remove the trailing '}}'
+
+  switch (embedType) {
+    case "audio":
+      return opts.audioComponent
+        ? {
+            type: "html",
+            value: `<audio controls>
+          <source src="${url}" type="audio/mpeg">
+          <source src="${url}" type="audio/ogg">
+          Your browser does not support the audio tag.
+        </audio>`,
+          }
+        : null
+    case "video":
+      if (!opts.videoComponent) return null
+      // Check if it's a YouTube video
+      const youtubeMatch = url.match(
+        /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/,
+      )
+      if (youtubeMatch) {
+        const videoId = youtubeMatch[1].split("&")[0] // Remove additional parameters
+        const playlistMatch = url.match(/[?&]list=([^#\&\?]*)/)
+        const playlistId = playlistMatch ? playlistMatch[1] : null
+
+        return {
+          type: "html",
+          value: `<iframe 
+            class="external-embed youtube"
+            width="600px"
+            height="350px"
+            src="https://www.youtube.com/embed/${videoId}${playlistId ? `?list=${playlistId}` : ""}"
+            frameborder="0"
+            allow="fullscreen"
+          ></iframe>`,
+        }
+      } else {
+        return {
+          type: "html",
+          value: `<video controls>
+            <source src="${url}" type="video/mp4">
+            <source src="${url}" type="video/webm">
+            Your browser does not support the video tag.
+          </video>`,
+        }
+      }
+    case "pdf":
+      return opts.pdfComponent
+        ? {
+            type: "html",
+            value: `<embed src="${url}" type="application/pdf" width="100%" height="600px" />`,
+          }
+        : null
+    default:
+      return null
+  }
+}
 
 export const RoamFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
@@ -53,167 +131,93 @@ export const RoamFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | un
 
   return {
     name: "RoamFlavoredMarkdown",
-    textTransform(_ctx, src) {
-      // if (opts.videoComponent) {
-      //   //youtube first then regular video links
-      //   src = src.toString()
-      //   src = src.replaceAll(youtubeRegex, (value, ...capture) => {
-      //     const [match, text] = capture
-      //     const video = `<iframe width="600px" height="350px" src="https://www.youtube.com/embed/${text}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
-      //     return video
-      //   })
-      //   src = src.replaceAll(videoRegex, (value, ...capture) => {
-      //     const [match, text] = capture
-      //     const video = `<video controls><source src="{${match}}" type="video/mp4"><source src="${match}" type="video/webm"></video>`
-      //     return video
-      //   })
-      // }
-      // if (opts.audioComponent) {
-      //   src = src.toString()
-      //   src = src.replaceAll(audioRegex, (value, ...capture) => {
-      //     const [match, text] = capture
-      //     const audio = `<audio controls>
-      //       <source src="${match}" type="audio/mpeg">
-      //       <source src="${match}" type="audio/ogg">
-      //       Your browser does not support the audio tag.
-      //     </audio>`
-      //     return audio
-      //   })
-      // }
-      // if (opts.pdfComponent) {
-      //   src = src.toString()
-      //   src = src.replaceAll(pdfRegex, (value, ...capture) => {
-      //     const [match, text] = capture
-      //     const pdf = `<embed src="${match}" type="application/pdf" width="600" height="800">`
-      //     return pdf
-      //   })
-      // }
-      // if (opts.blockquoteComponent) {
-      //   src = src.toString()
-      //   src = src.replaceAll(blockquoteRegex, (value, ...capture) => {
-      //     const bq = `>`
-      //     return bq
-      //   })
-      // }
-      // TODO attributes in roam are sort of like block level frontmatter or tags
-
-      // roam italics
-      if (src instanceof Buffer) {
-        src = src.toString()        
-      }
-
-      src = src.replaceAll(roamItalicRegex, (value, ...capture) => {
-        const [match, text] = capture
-        const italic = `*${match}*`
-        return italic
-      })
-      
-
-      return src
-    },
-
-    markdownPlugins(ctx) {
+    markdownPlugins() {
       const plugins: PluggableList = []
-      const cfg = ctx.cfg.configuration
 
       plugins.push(() => {
-        return (tree: Root, file) => {
-          const replacements: [RegExp, string | ReplaceFunction][] = []
-          const base = pathToRoot(file.data.slug!)
-          // roam highlight syntax
+        return (tree: Root, file: VFile) => {
+          const replacements: [RegExp, ReplaceFunction][] = []
+
+          // Handle special embeds (audio, video, PDF)
+          if (opts.audioComponent || opts.videoComponent || opts.pdfComponent) {
+            visit(tree, "paragraph", ((node: Paragraph, index: number, parent: Parent | null) => {
+              if (isSpecialEmbed(node)) {
+                const transformedNode = transformSpecialEmbed(node, opts)
+                if (transformedNode && parent) {
+                  parent.children[index] = transformedNode
+                }
+              }
+            }) as BuildVisitor<Root, "paragraph">)
+          }
+
+          // Roam italic syntax
+          replacements.push([
+            roamItalicRegex,
+            (_value: string, match: string) => ({
+              type: "emphasis",
+              children: [{ type: "text", value: match }],
+            }),
+          ])
+
+          // Roam highlight syntax
           replacements.push([
             roamHighlightRegex,
-            (_value: string, ...capture: string[]) => {
-              const [inner] = capture
-              return {
-                type: "html",
-                value: `<span class="text-highlight"> ${inner} </span>`,
-              }
-            },
+            (_value: string, inner: string) => ({
+              type: "html",
+              value: `<span class="text-highlight">${inner}</span>`,
+            }),
           ])
+
           if (opts.orComponent) {
             replacements.push([
               orRegex,
               (match: string) => {
-                // Attempt to extract the content within the curly braces and split by '|'
-                const matchResult = match.match(/{{or:(.*?)}}/);
+                const matchResult = match.match(/{{or:(.*?)}}/)
                 if (matchResult === null) {
-                  // Handle the case where no match is found, e.g., return an empty string or some default value
-                  return { type: "html", value: "" };
+                  return { type: "html", value: "" }
                 }
-          
-                const optionsString: string = matchResult[1];
-                const options: string[] = optionsString.split("|");
-          
-                // Generate the HTML <select> element with options
-                const selectHtml: string = `<select>${options.map((option: string) => `<option value="${option}">${option}</option>`).join("")}</select>`;
-          
-                return {
-                  type: "html",
-                  value: selectHtml,
-                };
+                const optionsString: string = matchResult[1]
+                const options: string[] = optionsString.split("|")
+                const selectHtml: string = `<select>${options.map((option: string) => `<option value="${option}">${option}</option>`).join("")}</select>`
+                return { type: "html", value: selectHtml }
               },
-            ]);
+            ])
           }
+
           if (opts.TODOComponent) {
             replacements.push([
               TODORegex,
-              (match) => {
-                return {
-                  type: "html",
-                  value: `<input type="checkbox" disabled>`,
-                }
-              },
+              () => ({
+                type: "html",
+                value: `<input type="checkbox" disabled>`,
+              }),
             ])
           }
+
           if (opts.DONEComponent) {
             replacements.push([
               DONERegex,
-              (match) => {
-                return {
-                  type: "html",
-                  value: `<input type="checkbox" checked disabled>`,
-                }
-              },
+              () => ({
+                type: "html",
+                value: `<input type="checkbox" checked disabled>`,
+              }),
             ])
           }
+
           if (opts.blockquoteComponent) {
             replacements.push([
               blockquoteRegex,
-              (match, marker, content) => {
-                const blockquoteHtml = `<blockquote>${content.trim()}</blockquote>`;
-                return {
-                  type: "html",
-                  value: blockquoteHtml,
-                };
-              },
-            ]);
+              (_match: string, _marker: string, content: string) => ({
+                type: "html",
+                value: `<blockquote>${content.trim()}</blockquote>`,
+              }),
+            ])
           }
-          if (opts.audioComponent) {            
-            replacements.push([
-              audioRegex,
-              (_value: string, ...capture: string[]) => {
-                const [url] = capture;
-                console.log("");
-                console.log(" ~", capture);
-                
-                const audioHtml = `<audio controls>
-                    <source src="${url}" type="audio/mpeg">
-                    <source src="${url}" type="audio/ogg">
-                    Your browser does not support the audio tag.
-                </audio>`;
-        
-                return {
-                  type: "html",
-                  value: audioHtml,
-                };
-              }
-            ]);
-          }
-          
+
           mdastFindReplace(tree, replacements)
         }
       })
+
       return plugins
     },
   }
