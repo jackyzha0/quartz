@@ -93,6 +93,15 @@ It was my first class project in college. It was a simple program based on an ol
 * SHAP analysis for model interpretability https://github.com/PinkR1ver/SHAP_Tutorial
 * $\LaTeX$ for my FYP thesis, contributed to 1.9k star repository [zjuthesis](https://github.com/TheNetAdmin/zjuthesis)
 
+
+# 📰 Publications
+
+* Lei Sun, Siyuan Song, **Yichong Wang**, Kai Jin, Juan Ye, Jiquan Liu, Gangmin Ning (2023, September 22). _Investigation into the AMD fundus microcirculation features by deep learning model_ [Poster presentation]. 12th World Congress of Microcirculation, Beijing, China
+* **Yichong Wang**, Mengfei Jiang, Daoyuan Wang, Gangmin Ning. (2024, July 25). "Antenna Delay Calibration in an IR-UWB Radar Simulated by Vector Network Analyzer" _2024 International Conference on Electrical, Computer and Energy Technologies (ICECET)_, Sydney, Australia [In press]
+* **Yichong Wang**, Tan Zhou, Yanhao Zhu. (2024, October). _UniDistriVis: Univariate Distribution All in One_ [Poster presentation]. _2024 IEEE Visualization and Visual Analytics (VIS)_, St. Pete Beach, Florida, USA
+
+
+
 # 🏆 Honors
 
 * Award of Honor for Graduate
