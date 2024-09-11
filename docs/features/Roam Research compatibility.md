@@ -19,8 +19,12 @@ plugins: {
 
 ## Usage
 
-By default, Quartz does not recognize markdown files exported from `Roam Research` as they contain unique identifiers and components specific to Roam. You're responsible for exporting your `Roam Research` notes as markdown files and then using this transformer to make them compatible with Quartz. This process ensures that your knowledge graph is seamlessly integrated into your static site, maintaining the rich interconnections between your notes.
+By default, Quartz does not recognize markdown files exported from `Roam Research` as they contain unique identifiers and components specific to Roam. You are responsible for exporting your `Roam Research` notes as markdown files and then using this transformer to make them compatible with Quartz. This process ensures that your knowledge graph is seamlessly integrated into your static site, maintaining the rich interconnections between your notes.
 
 ## Configuration
 
 This functionality is provided by the [[RoamFlavoredMarkdown]] plugin. See the plugin page for customization options.
+
+## Note
+
+As seen above placement of `Plugin.RoamFlavoredMarkdown()` within `quartz.config.ts` is very important. It must come before `Plugin.ObsidianFlavoredMarkdown()`.
