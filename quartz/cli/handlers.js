@@ -317,14 +317,10 @@ export async function handleBuild(argv) {
   }
 
   if (argv.serve) {
-    const connections = []
-    const clientRefresh = () => connections.forEach((conn) => conn.send("rebuild"))
-
     if (argv.baseDir !== "" && !argv.baseDir.startsWith("/")) {
       argv.baseDir = "/" + argv.baseDir
     }
 
-    await build(clientRefresh)
     const server = http.createServer(async (req, res) => {
       if (argv.baseDir && !req.url?.startsWith(argv.baseDir)) {
         console.log(
@@ -410,8 +406,28 @@ export async function handleBuild(argv) {
       return serve()
     })
     server.listen(argv.port)
+    function heartbeat() {
+        this.isAlive = true;
+    }
     const wss = new WebSocketServer({ port: argv.wsPort })
-    wss.on("connection", (ws) => connections.push(ws))
+    wss.on("connection", function connection(ws) {
+        ws.isAlive = true;
+        ws.on('error', console.error);
+        ws.on('pong', heartbeat);
+    })
+    const interval = setInterval(function ping() {
+        wss.clients.forEach(function each(ws) {
+            if (ws.isAlive === false) return ws.terminate();
+
+            ws.isAlive = false;
+            ws.ping();
+        });
+    }, 30000);
+    wss.on('close', function close() {
+        clearInterval(interval);
+    });
+    const clientRefresh = () => wss.clients.forEach((conn) => conn.send("rebuild"))
+    await build(clientRefresh)
     console.log(
       chalk.cyan(
         `Started a Quartz server listening at http://localhost:${argv.port}${argv.baseDir}`,
