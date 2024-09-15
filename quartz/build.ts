@@ -163,7 +163,7 @@ async function partialRebuildFromEntrypoint(
   }
 
   const buildId = newBuildId()
-  ctx.buildId = buildId 
+  ctx.buildId = buildId
   buildData.lastBuildMs = new Date().getTime()
   const release = await mut.acquire()
 
@@ -360,7 +360,7 @@ async function rebuildFromEntrypoint(
   }
 
   const buildId = newBuildId()
-  ctx.buildId = buildId 
+  ctx.buildId = buildId
   buildData.lastBuildMs = new Date().getTime()
   const release = await mut.acquire()
 
