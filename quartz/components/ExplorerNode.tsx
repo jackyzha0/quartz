@@ -224,15 +224,10 @@ export function ExplorerNode({ node, opts, fullPath, fileData }: ExplorerNodePro
               class="content"
               data-folderul={folderPath}
             >
-              {node.children.map((childNode, i) => (
-                <ExplorerNode
-                  node={childNode}
-                  key={i}
-                  opts={opts}
-                  fullPath={folderPath}
-                  fileData={fileData}
-                />
-              ))}
+              {node.children.map((childNode) =>
+                // eagerly render children so we can memoize properly
+                ExplorerNode({ node: childNode, opts, fileData, fullPath: folderPath }),
+              )}
             </ul>
           </div>
         </li>
