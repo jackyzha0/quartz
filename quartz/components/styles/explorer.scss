@@ -76,10 +76,6 @@ button#explorer {
     visibility: hidden;
   }
 
-  &.collapsed > .overflow::after {
-    display: none;
-  }
-
   & ul {
     list-style: none;
     margin: 0.08rem 0;

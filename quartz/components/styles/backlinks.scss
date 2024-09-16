@@ -16,9 +16,11 @@
       transition: opacity 0.3s ease;
       background: linear-gradient(transparent 0px, var(--light));
     }
-  }
 
-  & > .backlinks-container {
+    &:has(> .overflow) {
+      position: unset;
+    }
+
     & > h3 {
       font-size: 1rem;
       margin: 0;
