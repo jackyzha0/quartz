@@ -61,7 +61,7 @@
     "micromorph": "^0.4.5",
     "pixi.js": "^8.3.4",
     "preact": "^10.24.0",
-    "preact-render-to-string": "^6.5.10",
+    "preact-render-to-string": "^6.5.11",
     "pretty-bytes": "^6.1.1",
     "pretty-time": "^1.1.0",
     "reading-time": "^1.5.0",
