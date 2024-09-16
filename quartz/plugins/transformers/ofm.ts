@@ -324,8 +324,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
             replacements.push([
               tagRegex,
               (_value: string, tag: string) => {
-                // Check if the tag only includes numbers
-                if (/^\d+$/.test(tag)) {
+                // Check if the tag only includes numbers and slashes
+                if (/^[\/\d]+$/.test(tag)) {
                   return false
                 }
 
