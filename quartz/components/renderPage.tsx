@@ -220,19 +220,19 @@ export function renderPage(
         <div id="quartz-root" class="page">
           <Body {...componentData}>
             {LeftComponent}
-            <div class="page-header">
-              <Header {...componentData}>
-                {header.map((HeaderComponent) => (
-                  <HeaderComponent {...componentData} />
-                ))}
-              </Header>
-              <div class="popover-hint">
-                {beforeBody.map((BodyComponent) => (
-                  <BodyComponent {...componentData} />
-                ))}
-              </div>
-            </div>
             <div class="center">
+              <div class="page-header">
+                <Header {...componentData}>
+                  {header.map((HeaderComponent) => (
+                    <HeaderComponent {...componentData} />
+                  ))}
+                </Header>
+                <div class="popover-hint">
+                  {beforeBody.map((BodyComponent) => (
+                    <BodyComponent {...componentData} />
+                  ))}
+                </div>
+              </div>
               <Content {...componentData} />
               <hr />
               <div class="page-footer">
