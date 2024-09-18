@@ -1,0 +1,29 @@
+
+- #TEAM finalizes repo roles and [list of content]([[Backend Files for Migration]]) for migration to `dealstitch-infra repo`.
+- #MO deletes agreed content in `dealstitch-backend` and merges to `main` .
+- #MR updates agreed content in `dealstitch-infra`, #MO reviews/merges to `main`.
+- #MR restructures `dealstitch-infra` folders based on this [directory structure]([[Revised Infra Directory]]).
+- #MR works through [[AWS Clean-Up List]], keeping #CW in the loop.
+- #MO deletes any unneeded `print_loggers` in both repos (displaced by DynamoDB).
+- #MO Implements WorkOS AuthKit to `dealstitch-backend`
+	- https://workos.com/docs/user-management/authkit
+	- https://github.com/workos/workos-python
+	- [[WorkOS Secrets]]  <-- Python keys <mark style="background: #FF5582A6;">!!!</mark>
+- #MR implements WorkOS AuthKit in `dealstitch-frontend
+	- https://workos.com/docs/user-management/authkit
+	- https://github.com/workos/authkit-nextjs
+	- https://github.com/workos/next-authkit-example
+	- [[WorkOS Secrets]]  <-- Next.js keys <mark style="background: #FF5582A6;">!!!</mark>
+	- <mark style="background: #FF5582A6;"> Decision Point: </mark> Create custom login component or skip?
+- #MO implements IP white list API token with Bright Data, delete IP checks in codebase.
+	- https://docs.brightdata.com/api-reference/proxy-manager/whitelist_implements
+	- https://docs.brightdata.com/proxy-networks/proxy-manager/security
+- #MR begins rollout of `shad-cn`components to `dealstitch-frontend` with #CW
+	- Ensure consistent/full use of Tailwind CSS props.
+	- Ensure consistent/full use of `shad-cn` default components and file names/locations.
+	- Setup `tailwind.config.js` or `.ts` and `components.json` to support [shad-cn CLI](https://ui.shadcn.com/docs/cli).
+	- Review repo structure/files, advise #CW on clean-up of the directory.
+	- **<mark style="background: #BBFABBA6;">GOAL:</mark>** Removal of all Material UI dependencies, replaced by `shad-cn` 'New York' theme.
+- #MO creates plan for Pinecone rollout of `entity-matcher` service to prod with #CW
+- #MR refactors `web_scraper/` based on [this plan](Refactored Web-Scrapers Directory) ahead of agentic `url_originators` development.
+
