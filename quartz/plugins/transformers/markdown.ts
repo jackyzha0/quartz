@@ -38,6 +38,13 @@ export const OxHugoFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>> =
   }
 }
 
+export const CommonMarkFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+  const opts = { ...defaultOptions, ...userOpts }
+  return {
+    name: "CommonMarkFlavoredMarkdown",
+  }
+}
+
 export const CustomFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
   return {
