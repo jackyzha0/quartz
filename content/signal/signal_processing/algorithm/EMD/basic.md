@@ -7,7 +7,7 @@ tags:
   - signal
   - algorithm
   - math
-date: 2024-04-23
+date: 2024-09-18
 ---
 # Introduction
 
@@ -174,6 +174,10 @@ def EMD(signal, max_imf = 10, tolerance = 0.01):
     return imfs, residual
 ```
 
+
+# Download Step by Step Slides
+
+[Slides](signal/signal_processing/algorithm/EMD/attachments/EMD_StepByStep.pptx)
 # Reference
 
 * [Huang, Norden E., et al. “The Empirical Mode Decomposition and the Hilbert Spectrum for Nonlinear and Non-Stationary Time Series Analysis.” _Proceedings of the Royal Society of London. Series A: Mathematical, Physical and Engineering Sciences_, vol. 454, no. 1971, Mar. 1998, pp. 903–95. _DOI.org (Crossref)_, https://doi.org/10.1098/rspa.1998.0193.](https://royalsocietypublishing.org/doi/abs/10.1098/rspa.1998.0193#purchaseArea)
