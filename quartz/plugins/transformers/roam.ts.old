@@ -124,7 +124,7 @@ function transformSpecialEmbed(node: Paragraph, opts: Options): Html | null {
   }
 }
 
-export const RoamFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
+export const RoamFlavoredMarkdown_OLD: QuartzTransformerPlugin<Partial<Options> | undefined> = (
   userOpts,
 ) => {
   const opts = { ...defaultOptions, ...userOpts }
