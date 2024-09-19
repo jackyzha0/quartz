@@ -1,4 +1,39 @@
 import { QuartzTransformerPlugin } from "../types"
+import {
+  Root,
+  Html,
+  BlockContent,
+  DefinitionContent,
+  Paragraph,
+  Code,
+  Text,
+  Link,
+  Parent,
+} from "mdast"
+import { Element, Literal, Root as HtmlRoot } from "hast"
+import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
+import rehypeRaw from "rehype-raw"
+import { SKIP, visit } from "unist-util-visit"
+import path from "path"
+import { splitAnchor } from "../../util/path"
+import { JSResource } from "../../util/resources"
+// @ts-ignore
+import calloutScript from "../../components/scripts/callout.inline.ts"
+// @ts-ignore
+import checkboxScript from "../../components/scripts/checkbox.inline.ts"
+import { FilePath, pathToRoot, slugTag, slugifyFilePath } from "../../util/path"
+import { toHast } from "mdast-util-to-hast"
+import { toHtml } from "hast-util-to-html"
+import { PhrasingContent } from "mdast-util-find-and-replace/lib"
+import { capitalize } from "../../util/lang"
+import { PluggableList } from "unified"
+import { Node } from "unist"
+import { VFile } from "vfile"
+import { BuildVisitor } from "unist-util-visit"
+import remarkGfm from "remark-gfm"
+import smartypants from "remark-smartypants"
+import rehypeSlug from "rehype-slug"
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
 
 export interface CommonMarkOptions {
   option1: Boolean
