@@ -4,7 +4,7 @@ import { Root, BlockContent, DefinitionContent, Paragraph, Html } from "mdast"
 import { visit } from "unist-util-visit"
 import { Pluggable } from "unified"
 // @ts-ignore
-import calloutScript from "../../components/scripts/callout.inline.ts"
+import calloutScript from "../../../components/scripts/callout.inline.ts"
 import { PhrasingContent } from "mdast-util-find-and-replace/lib"
 import { capitalize } from "../../../util/lang"
 import { toHast } from "mdast-util-to-hast"

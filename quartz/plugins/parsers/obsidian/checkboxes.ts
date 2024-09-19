@@ -1,7 +1,7 @@
 import { QuartzParserPlugin } from "../../types"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 // @ts-ignore
-import checkboxScript from "../../components/scripts/checkbox.inline.ts"
+import checkboxScript from "../../../components/scripts/checkbox.inline.ts"
 import { visit } from "unist-util-visit"
 import { JSResource } from "../../../util/resources"
 import { Element, Literal, Root as HtmlRoot } from "hast"
