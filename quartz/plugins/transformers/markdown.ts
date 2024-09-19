@@ -340,3 +340,10 @@ export const RoamFlavoredMarkdown: QuartzTransformerPlugin<Partial<RoamOptions> 
     },
   }
 }
+
+declare module "vfile" {
+  interface DataMap {
+    blocks: Record<string, Element>
+    htmlAst: HtmlRoot
+  }
+}
