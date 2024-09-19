@@ -19,12 +19,13 @@ export const ObsidianComments: QuartzParserPlugin<Partial<Options>> = (userOpts)
   return {
     name: "ObsidianComments",
     textTransform(_ctx, src: string | Buffer) {
-      // do comments at text level
-      if (src instanceof Buffer) {
-        src = src.toString()
-      }
+      if (opts.enabled) {
+        if (src instanceof Buffer) {
+          src = src.toString()
+        }
 
-      src = src.replace(commentRegex, "")
+        src = src.replace(commentRegex, "")
+      }
 
       return src
     },
@@ -41,9 +42,9 @@ export const ObsidianComments: QuartzParserPlugin<Partial<Options>> = (userOpts)
       const plug: Pluggable = () => {}
       return plug
     },
-    externalResources(_ctx) {
-      const js = [] as JSResource[]
-      return { js }
+    externalResources() {
+      const js = {} as JSResource
+      return js
     },
   }
 }

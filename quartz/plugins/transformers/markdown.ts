@@ -40,6 +40,7 @@ import {
   ObsidianCallouts,
   ObsidianComments,
   ObsidianHighlights,
+  ObsidianMermaid,
   ObsidianWikilinks,
 } from "../parsers/obsidian"
 
@@ -206,6 +207,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
       plugins.push(ObsidianHighlights({ enabled: opts.highlight }).markdownPlugins(ctx))
       plugins.push(ObsidianArrow({ enabled: opts.parseArrows }).markdownPlugins(ctx))
       plugins.push(ObsidianCallouts({ enabled: opts.callouts }).markdownPlugins(ctx))
+      plugins.push(ObsidianMermaid({ enabled: opts.mermaid }).markdownPlugins(ctx))
 
       return plugins
     },
@@ -218,6 +220,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
     },
     externalResources() {
       const js: JSResource[] = []
+
+      js.push(ObsidianCallouts({ enabled: opts.callouts }).externalResources() as JSResource)
+      js.push(ObsidianMermaid({ enabled: opts.mermaid }).externalResources() as JSResource)
 
       return { js }
     },

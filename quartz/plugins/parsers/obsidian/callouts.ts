@@ -68,14 +68,15 @@ export const ObsidianCallouts: QuartzParserPlugin<Partial<Options>> = (userOpts)
   return {
     name: "ObsidianCallouts",
     textTransform(_ctx, src: string | Buffer) {
-      if (src instanceof Buffer) {
-        src = src.toString()
+      if (opts.enabled) {
+        if (src instanceof Buffer) {
+          src = src.toString()
+        }
+        src = src.replace(calloutLineRegex, (value) => {
+          // force newline after title of callout
+          return value + "\n> "
+        })
       }
-
-      src = src.replace(calloutLineRegex, (value) => {
-        // force newline after title of callout
-        return value + "\n> "
-      })
 
       return src
     },
@@ -190,14 +191,16 @@ export const ObsidianCallouts: QuartzParserPlugin<Partial<Options>> = (userOpts)
       const plug: Pluggable = () => {}
       return plug
     },
-    externalResources(_ctx) {
-      const js = [] as JSResource[]
-      js.push({
-        script: calloutScript,
-        loadTime: "afterDOMReady",
-        contentType: "inline",
-      })
-      return { js }
+    externalResources() {
+      if (opts.enabled) {
+        const js: JSResource = {
+          script: calloutScript,
+          loadTime: "afterDOMReady",
+          contentType: "inline",
+        }
+        return js
+      }
+      return {} as JSResource
     },
   }
 }

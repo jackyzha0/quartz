@@ -24,10 +24,8 @@ export const CustomDefault: QuartzParserPlugin<Partial<Options>> = (userOpts) =>
     },
     markdownPlugins(_ctx) {
       const plug: Pluggable = (tree: Root, _file) => {
-        if (opts.enabled) {
-          const replacements: [RegExp, string | ReplaceFunction][] = []
-          mdastFindReplace(tree, replacements)
-        }
+        const replacements: [RegExp, string | ReplaceFunction][] = []
+        mdastFindReplace(tree, replacements)
       }
       return plug
     },
@@ -35,9 +33,9 @@ export const CustomDefault: QuartzParserPlugin<Partial<Options>> = (userOpts) =>
       const plug: Pluggable = () => {}
       return plug
     },
-    externalResources(_ctx) {
-      const js = [] as JSResource[]
-      return { js }
+    externalResources() {
+      const js = {} as JSResource
+      return js
     },
   }
 }

@@ -31,8 +31,10 @@ export const ObsidianArrow: QuartzParserPlugin<Partial<Options>> = (userOpts) =>
   return {
     name: "ObsidianArrow",
     textTransform(_ctx, src: string | Buffer) {
-      if (src instanceof Buffer) {
-        src = src.toString()
+      if (opts.enabled) {
+        if (src instanceof Buffer) {
+          src = src.toString()
+        }
       }
       return src
     },
@@ -60,9 +62,9 @@ export const ObsidianArrow: QuartzParserPlugin<Partial<Options>> = (userOpts) =>
       const plug: Pluggable = () => {}
       return plug
     },
-    externalResources(_ctx) {
-      const js = [] as JSResource[]
-      return { js }
+    externalResources() {
+      const js = {} as JSResource
+      return js
     },
   }
 }

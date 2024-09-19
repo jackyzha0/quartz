@@ -19,8 +19,10 @@ export const ObsidianHighlights: QuartzParserPlugin<Partial<Options>> = (userOpt
   return {
     name: "ObsidianHighlights",
     textTransform(_ctx, src: string | Buffer) {
-      if (src instanceof Buffer) {
-        src = src.toString()
+      if (opts.enabled) {
+        if (src instanceof Buffer) {
+          src = src.toString()
+        }
       }
       return src
     },
@@ -47,9 +49,9 @@ export const ObsidianHighlights: QuartzParserPlugin<Partial<Options>> = (userOpt
       const plug: Pluggable = () => {}
       return plug
     },
-    externalResources(_ctx) {
-      const js = [] as JSResource[]
-      return { js }
+    externalResources() {
+      const js = {} as JSResource
+      return js
     },
   }
 }

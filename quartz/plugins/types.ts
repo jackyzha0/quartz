@@ -1,5 +1,5 @@
 import { PluggableList, Pluggable } from "unified"
-import { StaticResources } from "../util/resources"
+import { JSResource, StaticResources } from "../util/resources"
 import { ProcessedContent } from "./vfile"
 import { QuartzComponent } from "../components/types"
 import { FilePath } from "../util/path"
@@ -55,5 +55,5 @@ export type QuartzParserPluginInstance = {
   textTransform: (ctx: BuildCtx, src: string | Buffer) => string | Buffer
   markdownPlugins: (ctx: BuildCtx) => Pluggable
   htmlPlugins: (ctx: BuildCtx) => Pluggable
-  externalResources: (ctx: BuildCtx) => Partial<StaticResources>
+  externalResources: () => JSResource | string
 }
