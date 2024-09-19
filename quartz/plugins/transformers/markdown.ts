@@ -26,7 +26,7 @@ import { toHast } from "mdast-util-to-hast"
 import { toHtml } from "hast-util-to-html"
 import { PhrasingContent } from "mdast-util-find-and-replace/lib"
 import { capitalize } from "../../util/lang"
-import { PluggableList } from "unified"
+import { Pluggable, PluggableList } from "unified"
 import { Node } from "unist"
 import { VFile } from "vfile"
 import { BuildVisitor } from "unist-util-visit"
@@ -34,6 +34,8 @@ import remarkGfm from "remark-gfm"
 import smartypants from "remark-smartypants"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
+
+import { GitHubLinkheadings, GitHubSmartypants } from "../parsers/github"
 
 import {
   ObsidianArrow,
@@ -213,10 +215,14 @@ export const GitHubFlavoredMarkdown: QuartzTransformerPlugin<Partial<GitHubOptio
     markdownPlugins(ctx) {
       const plugins: PluggableList = []
 
+      plugins.push(GitHubSmartypants({ enabled: opts.enableSmartyPants }).markdownPlugins(ctx))
+
       return plugins
     },
     htmlPlugins() {
       const plugins: PluggableList = []
+
+      plugins.push.apply(GitHubLinkheadings({ enabled: opts.linkHeadings }).htmlPlugins())
 
       return plugins
     },
@@ -269,7 +275,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
     htmlPlugins() {
       const plugins: PluggableList = [rehypeRaw]
 
-      plugins.push(ObsidianCheckboxes({ enabled: opts.enableCheckbox }).htmlPlugins())
+      plugins.push.apply(ObsidianCheckboxes({ enabled: opts.enableCheckbox }).htmlPlugins())
 
       return plugins
     },

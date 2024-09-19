@@ -57,6 +57,6 @@ export type QuartzParserInstance = {
   name: string
   textTransform: (ctx: BuildCtx, src: string | Buffer) => string | Buffer
   markdownPlugins: (ctx: BuildCtx) => Pluggable
-  htmlPlugins: () => Pluggable
+  htmlPlugins: () => Pluggable | Pluggable[]
   externalResources: () => JSResource | string
 }
