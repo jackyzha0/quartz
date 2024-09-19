@@ -10,6 +10,7 @@ export interface PluginTypes {
   transformers: QuartzTransformerPluginInstance[]
   filters: QuartzFilterPluginInstance[]
   emitters: QuartzEmitterPluginInstance[]
+  parsers: QuartzParserPluginInstance[]
 }
 
 type OptionType = object | undefined
@@ -44,4 +45,15 @@ export type QuartzEmitterPluginInstance = {
     content: ProcessedContent[],
     resources: StaticResources,
   ): Promise<DepGraph<FilePath>>
+}
+
+export type QuartzParserPlugin<Options extends OptionType = undefined> = (
+  opts?: Options,
+) => QuartzParserPluginInstance
+export type QuartzParserPluginInstance = {
+  name: string
+  textTransform: (ctx: BuildCtx, src: string | Buffer) => string | Buffer
+  markdownPlugins: (ctx: BuildCtx) => PluggableList
+  htmlPlugins: (ctx: BuildCtx) => PluggableList
+  externalResources: (ctx: BuildCtx) => Partial<StaticResources>
 }
