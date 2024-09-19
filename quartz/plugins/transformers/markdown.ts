@@ -173,7 +173,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
   return {
     name: "ObsidianFlavoredMarkdown",
     textTransform(ctx, src) {
-      ObsidianWikilinks({ enabled: opts.wikilinks }).textTransform!(ctx, src)
+      ObsidianWikilinks({ enabled: opts.wikilinks }).textTransform(ctx, src)
 
       return src
     },
@@ -185,11 +185,11 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
           //const replacements: [RegExp, string | ReplaceFunction][] = []
           //const base = pathToRoot(file.data.slug!)
 
-          ObsidianWikilinks({ enabled: opts.wikilinks }).markdownPlugins!(ctx)
+          ObsidianWikilinks({ enabled: opts.wikilinks }).markdownPlugins(ctx)
 
-          ObsidianHighlights({ enabled: opts.highlight }).markdownPlugins!(ctx)
+          ObsidianHighlights({ enabled: opts.highlight }).markdownPlugins(ctx)
 
-          ObsidianArrow({ enabled: opts.parseArrows }).markdownPlugins!(ctx)
+          ObsidianArrow({ enabled: opts.parseArrows }).markdownPlugins(ctx)
 
           //mdastFindReplace(tree, replacements)
         }
