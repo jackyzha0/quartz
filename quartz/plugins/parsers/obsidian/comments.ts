@@ -38,7 +38,7 @@ export const ObsidianComments: QuartzParserPlugin<Partial<Options>> = (userOpts)
       }
       return plug
     },
-    htmlPlugins(_ctx) {
+    htmlPlugins() {
       const plug: Pluggable = () => {}
       return plug
     },
