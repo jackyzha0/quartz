@@ -183,9 +183,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
           //const replacements: [RegExp, string | ReplaceFunction][] = []
           //const base = pathToRoot(file.data.slug!)
 
-          if (opts.parseArrows) {
-            ObsidianMarkdownArrow()
-          }
+          ObsidianMarkdownArrow({ enabled: opts.parseArrows })
 
           //mdastFindReplace(tree, replacements)
         }
