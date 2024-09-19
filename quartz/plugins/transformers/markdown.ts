@@ -153,6 +153,24 @@ export const CommonMarkFlavoredMarkdown: QuartzTransformerPlugin<Partial<CommonM
   const opts = { ...defaultCommonMarkOptions, ...userOpts }
   return {
     name: "CommonMarkFlavoredMarkdown",
+    textTransform(ctx, src) {
+      return src
+    },
+    markdownPlugins(ctx) {
+      const plugins: PluggableList = []
+
+      return plugins
+    },
+    htmlPlugins() {
+      const plugins: PluggableList = [rehypeRaw]
+
+      return plugins
+    },
+    externalResources() {
+      const js: JSResource[] = []
+
+      return { js }
+    },
   }
 }
 
@@ -162,6 +180,24 @@ export const CustomFlavoredMarkdown: QuartzTransformerPlugin<Partial<CustomOptio
   const opts = { ...defaultCustomOptions, ...userOpts }
   return {
     name: "CustomFlavoredMarkdown",
+    textTransform(ctx, src) {
+      return src
+    },
+    markdownPlugins(ctx) {
+      const plugins: PluggableList = []
+
+      return plugins
+    },
+    htmlPlugins() {
+      const plugins: PluggableList = [rehypeRaw]
+
+      return plugins
+    },
+    externalResources() {
+      const js: JSResource[] = []
+
+      return { js }
+    },
   }
 }
 
@@ -171,6 +207,24 @@ export const GitHubFlavoredMarkdown: QuartzTransformerPlugin<Partial<GitHubOptio
   const opts = { ...defaultGitHubOptions, ...userOpts }
   return {
     name: "GitHubFlavoredMarkdown",
+    textTransform(ctx, src) {
+      return src
+    },
+    markdownPlugins(ctx) {
+      const plugins: PluggableList = []
+
+      return plugins
+    },
+    htmlPlugins() {
+      const plugins: PluggableList = [rehypeRaw]
+
+      return plugins
+    },
+    externalResources() {
+      const js: JSResource[] = []
+
+      return { js }
+    },
   }
 }
 
@@ -239,6 +293,24 @@ export const OxHugoFlavoredMarkdown: QuartzTransformerPlugin<Partial<OxHugoOptio
   const opts = { ...defaultOxHugoOptions, ...userOpts }
   return {
     name: "OxHugoFlavoredMarkdown",
+    textTransform(ctx, src) {
+      return src
+    },
+    markdownPlugins(ctx) {
+      const plugins: PluggableList = []
+
+      return plugins
+    },
+    htmlPlugins() {
+      const plugins: PluggableList = [rehypeRaw]
+
+      return plugins
+    },
+    externalResources() {
+      const js: JSResource[] = []
+
+      return { js }
+    },
   }
 }
 
@@ -248,5 +320,23 @@ export const RoamFlavoredMarkdown: QuartzTransformerPlugin<Partial<RoamOptions> 
   const opts = { ...defaultRoamOptions, ...userOpts }
   return {
     name: "RoamFlavoredMarkdown",
+    textTransform(ctx, src) {
+      return src
+    },
+    markdownPlugins(ctx) {
+      const plugins: PluggableList = []
+
+      return plugins
+    },
+    htmlPlugins() {
+      const plugins: PluggableList = [rehypeRaw]
+
+      return plugins
+    },
+    externalResources() {
+      const js: JSResource[] = []
+
+      return { js }
+    },
   }
 }
