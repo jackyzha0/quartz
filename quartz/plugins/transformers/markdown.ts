@@ -47,6 +47,7 @@ import {
   ObsidianTags,
   ObsidianVideo,
   ObsidianWikilinks,
+  ObsidianYouTube,
 } from "../parsers/obsidian"
 
 export interface CommonMarkOptions {
@@ -322,7 +323,10 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
     htmlPlugins() {
       const plugins: PluggableList = [rehypeRaw]
 
-      plugins.push.apply(ObsidianCheckboxes({ enabled: opts.enableCheckbox }).htmlPlugins())
+      plugins.push(ObsidianYouTube({ enabled: opts.enableYouTubeEmbed }).htmlPlugins() as Pluggable)
+      plugins.push.apply(
+        ObsidianCheckboxes({ enabled: opts.enableCheckbox }).htmlPlugins() as Pluggable[],
+      )
 
       return plugins
     },
