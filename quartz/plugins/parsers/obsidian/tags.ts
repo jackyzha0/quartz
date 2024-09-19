@@ -3,6 +3,7 @@ import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-
 import { FilePath, pathToRoot, slugTag, slugifyFilePath } from "../../../util/path"
 import { JSResource } from "../../../util/resources"
 import { Root } from "mdast"
+import path from "path"
 import { Pluggable } from "unified"
 import { mdastFindReplaceInHtml } from "../../transformers/markdown"
 
@@ -35,43 +36,44 @@ export const ObsidianTags: QuartzParser<Partial<Options>> = (userOpts) => {
       return src
     },
     markdownPlugins(_ctx) {
+      const replacements: [RegExp, string | ReplaceFunction][] = []
       const plug: Pluggable = (tree: Root, file) => {
-        const base = pathToRoot(file.data.slug!)
-        const replacements: [RegExp, string | ReplaceFunction][] = []
-        replacements.push([
-          tagRegex,
-          (_value: string, tag: string) => {
-            // Check if the tag only includes numbers and slashes
-            if (/^[\/\d]+$/.test(tag)) {
-              return false
-            }
+        if (opts.enabled) {
+          const base = pathToRoot(file.data.slug!)
+          replacements.push([
+            tagRegex,
+            (_value: string, tag: string) => {
+              // Check if the tag only includes numbers and slashes
+              if (/^[\/\d]+$/.test(tag)) {
+                return false
+              }
 
-            tag = slugTag(tag)
-            if (file.data.frontmatter) {
-              const noteTags = file.data.frontmatter.tags ?? []
-              file.data.frontmatter.tags = [...new Set([...noteTags, tag])]
-            }
+              tag = slugTag(tag)
+              if (file.data.frontmatter) {
+                const noteTags = file.data.frontmatter.tags ?? []
+                file.data.frontmatter.tags = [...new Set([...noteTags, tag])]
+              }
 
-            return {
-              type: "link",
-              url: base + `/tags/${tag}`,
-              data: {
-                hProperties: {
-                  className: ["tag-link"],
+              return {
+                type: "link",
+                url: base + `/tags/${tag}`,
+                data: {
+                  hProperties: {
+                    className: ["tag-link"],
+                  },
                 },
-              },
-              children: [
-                {
-                  type: "text",
-                  value: tag,
-                },
-              ],
-            }
-          },
-        ])
-        mdastFindReplaceInHtml(tree, replacements, opts.inHtml)
+                children: [
+                  {
+                    type: "text",
+                    value: tag,
+                  },
+                ],
+              }
+            },
+          ])
+        }
       }
-      return plug
+      return replacements
     },
     htmlPlugins() {
       const plug: Pluggable = () => {}

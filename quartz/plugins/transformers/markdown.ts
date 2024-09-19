@@ -184,8 +184,9 @@ export const mdastFindReplaceInHtml = (
         }
       }
     })
+  } else {
+    mdastFindReplace(tree, replacements)
   }
-  mdastFindReplace(tree, replacements)
 }
 
 export const CommonMarkFlavoredMarkdown: QuartzTransformerPlugin<Partial<CommonMarkOptions>> = (
@@ -254,7 +255,9 @@ export const GitHubFlavoredMarkdown: QuartzTransformerPlugin<Partial<GitHubOptio
     markdownPlugins(ctx) {
       const plugins: PluggableList = []
 
-      plugins.push(GitHubSmartypants({ enabled: opts.enableSmartyPants }).markdownPlugins(ctx))
+      plugins.push(
+        GitHubSmartypants({ enabled: opts.enableSmartyPants }).markdownPlugins(ctx) as Pluggable,
+      )
 
       return plugins
     },
@@ -291,6 +294,27 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
 
       const inHtml = opts.enableInHtmlEmbed
 
+      const replacements: [RegExp, string | ReplaceFunction][] = []
+
+      replacements.push.apply(
+        ObsidianWikilinks({ enabled: opts.wikilinks, inHtml: inHtml }).markdownPlugins(ctx),
+      )
+      replacements.push.apply(
+        ObsidianHighlights({ enabled: opts.highlight, inHtml: inHtml }).markdownPlugins(ctx),
+      )
+      replacements.push.apply(
+        ObsidianArrow({ enabled: opts.parseArrows, inHtml: inHtml }).markdownPlugins(ctx),
+      )
+      replacements.push.apply(
+        ObsidianTags({ enabled: opts.parseTags, inHtml: inHtml }).markdownPlugins(ctx),
+      )
+
+      plugins.push(() => {
+        return (tree: Root, file) => {
+          mdastFindReplaceInHtml(tree, replacements, inHtml)
+        }
+      })
+
       /*plugins.push(() => {
         return (tree: Root, file) => {
           //const replacements: [RegExp, string | ReplaceFunction][] = []
@@ -305,7 +329,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
           //mdastFindReplace(tree, replacements)
         }
       })*/
-      plugins.push(
+      /*plugins.push(
         ObsidianWikilinks({ enabled: opts.wikilinks, inHtml: inHtml }).markdownPlugins(ctx),
       )
       plugins.push(
@@ -314,23 +338,35 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
       plugins.push(
         ObsidianArrow({ enabled: opts.parseArrows, inHtml: inHtml }).markdownPlugins(ctx),
       )
-      plugins.push(ObsidianTags({ enabled: opts.parseTags, inHtml: inHtml }).markdownPlugins(ctx))
-      plugins.push(ObsidianVideo({ enabled: opts.enableVideoEmbed }).markdownPlugins(ctx))
-      plugins.push(ObsidianCallouts({ enabled: opts.callouts }).markdownPlugins(ctx))
-      plugins.push(ObsidianMermaid({ enabled: opts.mermaid }).markdownPlugins(ctx))
+      plugins.push(ObsidianTags({ enabled: opts.parseTags, inHtml: inHtml }).markdownPlugins(ctx))*/
+      plugins.push(() => {
+        return (tree: Root, file) =>
+          ObsidianVideo({ enabled: opts.enableVideoEmbed }).markdownPlugins(ctx)
+      })
+      plugins.push(() => {
+        return (tree: Root, file) =>
+          ObsidianCallouts({ enabled: opts.callouts }).markdownPlugins(ctx)
+      })
+      plugins.push(() => {
+        return (tree: Root, file) => ObsidianMermaid({ enabled: opts.mermaid }).markdownPlugins(ctx)
+      })
 
       return plugins
     },
     htmlPlugins() {
       const plugins: PluggableList = [rehypeRaw]
 
-      plugins.push(
-        ObsidianBlockReference({ enabled: opts.parseBlockReferences }).htmlPlugins() as Pluggable,
-      )
-      plugins.push(ObsidianYouTube({ enabled: opts.enableYouTubeEmbed }).htmlPlugins() as Pluggable)
-      plugins.push.apply(
-        ObsidianCheckboxes({ enabled: opts.enableCheckbox }).htmlPlugins() as Pluggable[],
-      )
+      plugins.push(() => {
+        return (tree: Root, file) =>
+          ObsidianBlockReference({ enabled: opts.parseBlockReferences }).htmlPlugins() as Pluggable
+      })
+      plugins.push(() => {
+        return (tree: Root, file) =>
+          ObsidianYouTube({ enabled: opts.enableYouTubeEmbed }).htmlPlugins() as Pluggable
+      })
+      /*plugins.push(() => {
+        return (tree: HtmlRoot, file) => ObsidianCheckboxes({ enabled: opts.enableCheckbox }).htmlPlugins() as Pluggable}
+      )*/
 
       return plugins
     },

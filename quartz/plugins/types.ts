@@ -1,5 +1,6 @@
 import { PluggableList, Pluggable } from "unified"
 import { JSResource, StaticResources } from "../util/resources"
+import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { ProcessedContent } from "./vfile"
 import { QuartzComponent } from "../components/types"
 import { FilePath } from "../util/path"
@@ -56,7 +57,7 @@ export type QuartzParser<Options extends OptionType = undefined> = (
 export type QuartzParserInstance = {
   name: string
   textTransform: (ctx: BuildCtx, src: string | Buffer) => string | Buffer
-  markdownPlugins: (ctx: BuildCtx) => Pluggable
+  markdownPlugins: (ctx: BuildCtx) => [RegExp, string | ReplaceFunction][]
   htmlPlugins: () => Pluggable | Pluggable[]
   externalResources: () => JSResource | string
 }

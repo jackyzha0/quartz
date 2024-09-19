@@ -1,5 +1,6 @@
 import { QuartzParser } from "../../types"
 import { JSResource } from "../../../util/resources"
+import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { visit } from "unist-util-visit"
 import { Root, Code } from "mdast"
 import { Pluggable } from "unified"
@@ -25,6 +26,7 @@ export const ObsidianMermaid: QuartzParser<Partial<Options>> = (userOpts) => {
       return src
     },
     markdownPlugins() {
+      const replacements: [RegExp, string | ReplaceFunction][] = []
       const plug: Pluggable = (tree: Root, _file) => {
         if (opts.enabled) {
           visit(tree, "code", (node: Code) => {
@@ -38,7 +40,7 @@ export const ObsidianMermaid: QuartzParser<Partial<Options>> = (userOpts) => {
           })
         }
       }
-      return plug
+      return replacements
     },
     htmlPlugins() {
       const plug: Pluggable = () => {}

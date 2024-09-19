@@ -27,11 +27,11 @@ export const ObsidianBlockReference: QuartzParser<Partial<Options>> = (userOpts)
       return src
     },
     markdownPlugins(_ctx) {
+      const replacements: [RegExp, string | ReplaceFunction][] = []
       const plug: Pluggable = (tree: Root, _file) => {
-        const replacements: [RegExp, string | ReplaceFunction][] = []
         mdastFindReplace(tree, replacements)
       }
-      return plug
+      return replacements
     },
     htmlPlugins() {
       const inlineTagTypes = new Set(["p", "li"])

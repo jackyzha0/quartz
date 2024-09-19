@@ -1,6 +1,7 @@
 import { QuartzParser } from "../../types"
 import { JSResource } from "../../../util/resources"
 import { Root, BlockContent, DefinitionContent, Paragraph, Html } from "mdast"
+import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { visit } from "unist-util-visit"
 import { Pluggable } from "unified"
 // @ts-ignore
@@ -77,6 +78,7 @@ export const ObsidianCallouts: QuartzParser<Partial<Options>> = (userOpts) => {
       return src
     },
     markdownPlugins(_ctx) {
+      const replacements: [RegExp, string | ReplaceFunction][] = []
       const plug: Pluggable = (tree: Root, _path) => {
         if (opts.enabled) {
           visit(tree, "blockquote", (node) => {
@@ -181,7 +183,7 @@ export const ObsidianCallouts: QuartzParser<Partial<Options>> = (userOpts) => {
           })
         }
       }
-      return plug
+      return replacements
     },
     htmlPlugins() {
       const plug: Pluggable = () => {}

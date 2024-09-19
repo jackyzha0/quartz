@@ -42,9 +42,9 @@ export const ObsidianArrow: QuartzParser<Partial<Options>> = (userOpts) => {
       return src
     },
     markdownPlugins(_ctx) {
+      const replacements: [RegExp, string | ReplaceFunction][] = []
       const plug: Pluggable = (tree: Root, _path) => {
         if (opts.enabled) {
-          const replacements: [RegExp, string | ReplaceFunction][] = []
           replacements.push([
             arrowRegex,
             (value: string, ..._capture: string[]) => {
@@ -56,10 +56,9 @@ export const ObsidianArrow: QuartzParser<Partial<Options>> = (userOpts) => {
               }
             },
           ])
-          mdastFindReplaceInHtml(tree, replacements, opts.inHtml)
         }
       }
-      return plug
+      return replacements
     },
     htmlPlugins() {
       const plug: Pluggable = () => {}

@@ -33,13 +33,9 @@ export const ObsidianComments: QuartzParser<Partial<Options>> = (userOpts) => {
       return src
     },
     markdownPlugins(_ctx) {
-      const plug: Pluggable = (tree: Root, _file) => {
-        if (opts.enabled) {
-          const replacements: [RegExp, string | ReplaceFunction][] = []
-          mdastFindReplaceInHtml(tree, replacements, opts.inHtml)
-        }
-      }
-      return plug
+      const replacements: [RegExp, string | ReplaceFunction][] = []
+      const plug: Pluggable = (tree: Root, _file) => {}
+      return replacements
     },
     htmlPlugins() {
       const plug: Pluggable = () => {}
