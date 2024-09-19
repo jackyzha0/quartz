@@ -162,7 +162,7 @@ export const CommonMarkFlavoredMarkdown: QuartzTransformerPlugin<Partial<CommonM
       return plugins
     },
     htmlPlugins() {
-      const plugins: PluggableList = [rehypeRaw]
+      const plugins: PluggableList = []
 
       return plugins
     },
@@ -189,7 +189,7 @@ export const CustomFlavoredMarkdown: QuartzTransformerPlugin<Partial<CustomOptio
       return plugins
     },
     htmlPlugins() {
-      const plugins: PluggableList = [rehypeRaw]
+      const plugins: PluggableList = []
 
       return plugins
     },
@@ -216,7 +216,7 @@ export const GitHubFlavoredMarkdown: QuartzTransformerPlugin<Partial<GitHubOptio
       return plugins
     },
     htmlPlugins() {
-      const plugins: PluggableList = [rehypeRaw]
+      const plugins: PluggableList = []
 
       return plugins
     },
@@ -302,7 +302,7 @@ export const OxHugoFlavoredMarkdown: QuartzTransformerPlugin<Partial<OxHugoOptio
       return plugins
     },
     htmlPlugins() {
-      const plugins: PluggableList = [rehypeRaw]
+      const plugins: PluggableList = []
 
       return plugins
     },
@@ -329,7 +329,7 @@ export const RoamFlavoredMarkdown: QuartzTransformerPlugin<Partial<RoamOptions> 
       return plugins
     },
     htmlPlugins() {
-      const plugins: PluggableList = [rehypeRaw]
+      const plugins: PluggableList = []
 
       return plugins
     },
