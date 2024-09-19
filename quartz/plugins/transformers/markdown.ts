@@ -38,6 +38,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import {
   ObsidianArrow,
   ObsidianCallouts,
+  ObsidianComments,
   ObsidianHighlights,
   ObsidianWikilinks,
 } from "../parsers/obsidian"
@@ -178,6 +179,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
   return {
     name: "ObsidianFlavoredMarkdown",
     textTransform(ctx, src) {
+      src = ObsidianComments({ enabled: opts.comments }).textTransform(ctx, src)
       src = ObsidianCallouts({ enabled: opts.callouts }).textTransform(ctx, src)
       src = ObsidianWikilinks({ enabled: opts.wikilinks }).textTransform(ctx, src)
 

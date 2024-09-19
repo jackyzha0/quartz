@@ -1,4 +1,5 @@
 export { ObsidianArrow } from "./arrows"
 export { ObsidianCallouts } from "./callouts"
+export { ObsidianComments } from "./comments"
 export { ObsidianHighlights } from "./highlights"
 export { ObsidianWikilinks } from "./wikilinks"
