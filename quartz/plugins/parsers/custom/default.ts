@@ -29,7 +29,7 @@ export const CustomDefault: QuartzParserPlugin<Partial<Options>> = (userOpts) =>
       }
       return plug
     },
-    htmlPlugins(_ctx) {
+    htmlPlugins() {
       const plug: Pluggable = () => {}
       return plug
     },

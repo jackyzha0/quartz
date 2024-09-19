@@ -45,7 +45,7 @@ export const ObsidianHighlights: QuartzParserPlugin<Partial<Options>> = (userOpt
       }
       return plug
     },
-    htmlPlugins(_ctx) {
+    htmlPlugins() {
       const plug: Pluggable = () => {}
       return plug
     },

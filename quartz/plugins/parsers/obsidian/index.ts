@@ -1,5 +1,6 @@
 export { ObsidianArrow } from "./arrows"
 export { ObsidianCallouts } from "./callouts"
+export { ObsidianCheckboxes } from "./checkboxes"
 export { ObsidianComments } from "./comments"
 export { ObsidianHighlights } from "./highlights"
 export { ObsidianMermaid } from "./mermaid"

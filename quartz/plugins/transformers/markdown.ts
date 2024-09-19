@@ -38,6 +38,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import {
   ObsidianArrow,
   ObsidianCallouts,
+  ObsidianCheckboxes,
   ObsidianComments,
   ObsidianHighlights,
   ObsidianMermaid,
@@ -214,13 +215,16 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
     htmlPlugins() {
       const plugins: PluggableList = [rehypeRaw]
 
-      plugins.push(() => {})
+      plugins.push(ObsidianCheckboxes({ enabled: opts.enableCheckbox }).htmlPlugins())
 
       return plugins
     },
     externalResources() {
       const js: JSResource[] = []
 
+      js.push(
+        ObsidianCheckboxes({ enabled: opts.enableCheckbox }).externalResources() as JSResource,
+      )
       js.push(ObsidianCallouts({ enabled: opts.callouts }).externalResources() as JSResource)
       js.push(ObsidianMermaid({ enabled: opts.mermaid }).externalResources() as JSResource)
 

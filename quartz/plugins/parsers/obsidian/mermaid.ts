@@ -24,7 +24,7 @@ export const ObsidianMermaid: QuartzParserPlugin<Partial<Options>> = (userOpts) 
       }
       return src
     },
-    markdownPlugins(_ctx) {
+    markdownPlugins() {
       const plug: Pluggable = (tree: Root, _file) => {
         if (opts.enabled) {
           visit(tree, "code", (node: Code) => {
