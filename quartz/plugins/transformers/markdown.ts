@@ -45,6 +45,7 @@ import {
   ObsidianHighlights,
   ObsidianMermaid,
   ObsidianTags,
+  ObsidianVideo,
   ObsidianWikilinks,
 } from "../parsers/obsidian"
 
@@ -312,10 +313,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
         ObsidianArrow({ enabled: opts.parseArrows, inHtml: inHtml }).markdownPlugins(ctx),
       )
       plugins.push(ObsidianTags({ enabled: opts.parseTags, inHtml: inHtml }).markdownPlugins(ctx))
-      plugins.push(
-        ObsidianCallouts({ enabled: opts.callouts, inHtml: inHtml }).markdownPlugins(ctx),
-      )
-      plugins.push(ObsidianMermaid({ enabled: opts.mermaid, inHtml: inHtml }).markdownPlugins(ctx))
+      plugins.push(ObsidianVideo({ enabled: opts.enableVideoEmbed }).markdownPlugins(ctx))
+      plugins.push(ObsidianCallouts({ enabled: opts.callouts }).markdownPlugins(ctx))
+      plugins.push(ObsidianMermaid({ enabled: opts.mermaid }).markdownPlugins(ctx))
 
       return plugins
     },

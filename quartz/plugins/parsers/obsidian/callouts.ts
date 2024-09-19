@@ -13,12 +13,10 @@ import { mdastToHtml } from "../../transformers/markdown"
 
 interface Options {
   enabled: Boolean
-  inHtml: Boolean
 }
 
 const defaultOptions: Options = {
   enabled: true,
-  inHtml: false,
 }
 
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
