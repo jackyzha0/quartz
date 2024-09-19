@@ -1,4 +1,4 @@
-import { QuartzParserPlugin } from "../../types"
+import { QuartzParser } from "../../types"
 import { JSResource } from "../../../util/resources"
 import { Root, BlockContent, DefinitionContent, Paragraph, Html } from "mdast"
 import { visit } from "unist-util-visit"
@@ -63,7 +63,7 @@ const mdastToHtml = (ast: PhrasingContent | Paragraph) => {
   return toHtml(hast, { allowDangerousHtml: true })
 }
 
-export const ObsidianCallouts: QuartzParserPlugin<Partial<Options>> = (userOpts) => {
+export const ObsidianCallouts: QuartzParser<Partial<Options>> = (userOpts) => {
   const opts: Options = { ...defaultOptions, ...userOpts }
   return {
     name: "ObsidianCallouts",

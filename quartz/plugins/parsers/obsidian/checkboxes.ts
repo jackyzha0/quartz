@@ -1,4 +1,4 @@
-import { QuartzParserPlugin } from "../../types"
+import { QuartzParser } from "../../types"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 // @ts-ignore
 import checkboxScript from "../../../components/scripts/checkbox.inline.ts"
@@ -16,7 +16,7 @@ const defaultOptions: Options = {
   enabled: true,
 }
 
-export const ObsidianCheckboxes: QuartzParserPlugin<Partial<Options>> = (userOpts) => {
+export const ObsidianCheckboxes: QuartzParser<Partial<Options>> = (userOpts) => {
   const opts: Options = { ...defaultOptions, ...userOpts }
   return {
     name: "ObsidianCheckboxes",

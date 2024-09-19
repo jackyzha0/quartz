@@ -1,4 +1,4 @@
-import { QuartzParserPlugin } from "../../types"
+import { QuartzParser } from "../../types"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { FilePath, splitAnchor, slugifyFilePath } from "../../../util/path"
 import { JSResource } from "../../../util/resources"
@@ -36,7 +36,7 @@ const wikilinkImageEmbedRegex = new RegExp(
   /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/,
 )
 
-export const ObsidianWikilinks: QuartzParserPlugin<Partial<Options>> = (userOpts) => {
+export const ObsidianWikilinks: QuartzParser<Partial<Options>> = (userOpts) => {
   const opts: Options = { ...defaultOptions, ...userOpts }
   return {
     name: "ObsidianWikilinks",

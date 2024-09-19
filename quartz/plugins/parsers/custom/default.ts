@@ -1,4 +1,4 @@
-import { QuartzParserPlugin } from "../../types"
+import { QuartzParser } from "../../types"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { JSResource } from "../../../util/resources"
 import { Root } from "mdast"
@@ -12,7 +12,7 @@ const defaultOptions: Options = {
   enabled: true,
 }
 
-export const CustomDefault: QuartzParserPlugin<Partial<Options>> = (userOpts) => {
+export const CustomDefault: QuartzParser<Partial<Options>> = (userOpts) => {
   const opts: Options = { ...defaultOptions, ...userOpts }
   return {
     name: "CustomDefault",

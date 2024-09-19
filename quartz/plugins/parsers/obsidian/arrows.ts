@@ -1,4 +1,4 @@
-import { QuartzParserPlugin } from "../../types"
+import { QuartzParser } from "../../types"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { JSResource } from "../../../util/resources"
 import { SKIP } from "unist-util-visit"
@@ -26,7 +26,7 @@ const arrowMapping: Record<string, string> = {
 
 const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/g)
 
-export const ObsidianArrow: QuartzParserPlugin<Partial<Options>> = (userOpts) => {
+export const ObsidianArrow: QuartzParser<Partial<Options>> = (userOpts) => {
   const opts: Options = { ...defaultOptions, ...userOpts }
   return {
     name: "ObsidianArrow",

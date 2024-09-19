@@ -1,4 +1,4 @@
-import { QuartzParserPlugin } from "../../types"
+import { QuartzParser } from "../../types"
 import { JSResource } from "../../../util/resources"
 import { visit } from "unist-util-visit"
 import { Root, Code } from "mdast"
@@ -12,7 +12,7 @@ const defaultOptions: Options = {
   enabled: true,
 }
 
-export const ObsidianMermaid: QuartzParserPlugin<Partial<Options>> = (userOpts) => {
+export const ObsidianMermaid: QuartzParser<Partial<Options>> = (userOpts) => {
   const opts: Options = { ...defaultOptions, ...userOpts }
   return {
     name: "ObsidianMermaid",

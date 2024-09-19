@@ -1,4 +1,4 @@
-import { QuartzParserPlugin } from "../../types"
+import { QuartzParser } from "../../types"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { JSResource } from "../../../util/resources"
 import { Root } from "mdast"
@@ -14,7 +14,7 @@ const defaultOptions: Options = {
 
 const commentRegex = new RegExp(/%%[\s\S]*?%%/g)
 
-export const ObsidianComments: QuartzParserPlugin<Partial<Options>> = (userOpts) => {
+export const ObsidianComments: QuartzParser<Partial<Options>> = (userOpts) => {
   const opts: Options = { ...defaultOptions, ...userOpts }
   return {
     name: "ObsidianComments",

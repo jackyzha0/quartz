@@ -1,4 +1,4 @@
-import { QuartzParserPlugin } from "../../types"
+import { QuartzParser } from "../../types"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { JSResource } from "../../../util/resources"
 import { Root } from "mdast"
@@ -14,7 +14,7 @@ const defaultOptions: Options = {
 
 const highlightRegex = new RegExp(/==([^=]+)==/g)
 
-export const ObsidianHighlights: QuartzParserPlugin<Partial<Options>> = (userOpts) => {
+export const ObsidianHighlights: QuartzParser<Partial<Options>> = (userOpts) => {
   const opts: Options = { ...defaultOptions, ...userOpts }
   return {
     name: "ObsidianHighlights",
