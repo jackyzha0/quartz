@@ -39,6 +39,7 @@ import { GitHubLinkheadings, GitHubSmartypants } from "../parsers/github"
 
 import {
   ObsidianArrow,
+  ObsidianBlockReference,
   ObsidianCallouts,
   ObsidianCheckboxes,
   ObsidianComments,
@@ -323,6 +324,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
     htmlPlugins() {
       const plugins: PluggableList = [rehypeRaw]
 
+      plugins.push(
+        ObsidianBlockReference({ enabled: opts.parseBlockReferences }).htmlPlugins() as Pluggable,
+      )
       plugins.push(ObsidianYouTube({ enabled: opts.enableYouTubeEmbed }).htmlPlugins() as Pluggable)
       plugins.push.apply(
         ObsidianCheckboxes({ enabled: opts.enableCheckbox }).htmlPlugins() as Pluggable[],

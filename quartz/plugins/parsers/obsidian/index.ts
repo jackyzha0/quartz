@@ -1,4 +1,5 @@
 export { ObsidianArrow } from "./arrows"
+export { ObsidianBlockReference } from "./blockreference"
 export { ObsidianCallouts } from "./callouts"
 export { ObsidianCheckboxes } from "./checkboxes"
 export { ObsidianComments } from "./comments"
