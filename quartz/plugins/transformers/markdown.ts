@@ -44,6 +44,7 @@ import {
   ObsidianComments,
   ObsidianHighlights,
   ObsidianMermaid,
+  ObsidianTags,
   ObsidianWikilinks,
 } from "../parsers/obsidian"
 
@@ -267,6 +268,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
       plugins.push(ObsidianWikilinks({ enabled: opts.wikilinks }).markdownPlugins(ctx))
       plugins.push(ObsidianHighlights({ enabled: opts.highlight }).markdownPlugins(ctx))
       plugins.push(ObsidianArrow({ enabled: opts.parseArrows }).markdownPlugins(ctx))
+      plugins.push(ObsidianTags({ enabled: opts.parseTags }).markdownPlugins(ctx))
       plugins.push(ObsidianCallouts({ enabled: opts.callouts }).markdownPlugins(ctx))
       plugins.push(ObsidianMermaid({ enabled: opts.mermaid }).markdownPlugins(ctx))
 
