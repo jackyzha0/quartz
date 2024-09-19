@@ -35,6 +35,8 @@ import smartypants from "remark-smartypants"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 
+import { ObsidianMarkdownArrow } from "../parsers/obsidian"
+
 export interface CommonMarkOptions {
   option1: Boolean
 }
@@ -170,6 +172,39 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
   const opts = { ...defaultObsidianOptions, ...userOpts }
   return {
     name: "ObsidianFlavoredMarkdown",
+    textTransform(_ctx, src) {
+      return src
+    },
+    markdownPlugins(_ctx) {
+      const plugins: PluggableList = []
+
+      plugins.push(() => {
+        return (tree: Root, file) => {
+          //const replacements: [RegExp, string | ReplaceFunction][] = []
+          //const base = pathToRoot(file.data.slug!)
+
+          if (opts.parseArrows) {
+            ObsidianMarkdownArrow()
+          }
+
+          //mdastFindReplace(tree, replacements)
+        }
+      })
+
+      return plugins
+    },
+    htmlPlugins() {
+      const plugins: PluggableList = [rehypeRaw]
+
+      plugins.push(() => {})
+
+      return plugins
+    },
+    externalResources() {
+      const js: JSResource[] = []
+
+      return { js }
+    },
   }
 }
 
