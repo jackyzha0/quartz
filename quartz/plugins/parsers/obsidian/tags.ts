@@ -4,13 +4,16 @@ import { FilePath, pathToRoot, slugTag, slugifyFilePath } from "../../../util/pa
 import { JSResource } from "../../../util/resources"
 import { Root } from "mdast"
 import { Pluggable } from "unified"
+import { mdastFindReplaceInHtml } from "../../transformers/markdown"
 
 interface Options {
   enabled: Boolean
+  inHtml: Boolean
 }
 
 const defaultOptions: Options = {
   enabled: true,
+  inHtml: false,
 }
 
 // (?:^| )              -> non-capturing group, tag should start be separated by a space or be the start of the line
@@ -66,7 +69,7 @@ export const ObsidianTags: QuartzParser<Partial<Options>> = (userOpts) => {
             }
           },
         ])
-        mdastFindReplace(tree, replacements)
+        mdastFindReplaceInHtml(tree, replacements, opts.inHtml)
       }
       return plug
     },

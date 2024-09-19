@@ -150,6 +150,41 @@ const defaultRoamOptions: RoamOptions = {
   attributeComponent: true,
 }
 
+export const mdastToHtml = (ast: PhrasingContent | Paragraph) => {
+  const hast = toHast(ast, { allowDangerousHtml: true })!
+  return toHtml(hast, { allowDangerousHtml: true })
+}
+
+export const mdastFindReplaceInHtml = (
+  tree: Root,
+  replacements: [RegExp, string | ReplaceFunction][],
+  inHtml: Boolean,
+) => {
+  if (inHtml) {
+    visit(tree, "html", (node: Html) => {
+      for (const [regex, replace] of replacements) {
+        if (typeof replace === "string") {
+          node.value = node.value.replace(regex, replace)
+        } else {
+          node.value = node.value.replace(regex, (substring: string, ...args) => {
+            const replaceValue = replace(substring, ...args)
+            if (typeof replaceValue === "string") {
+              return replaceValue
+            } else if (Array.isArray(replaceValue)) {
+              return replaceValue.map(mdastToHtml).join("")
+            } else if (typeof replaceValue === "object" && replaceValue !== null) {
+              return mdastToHtml(replaceValue)
+            } else {
+              return substring
+            }
+          })
+        }
+      }
+    })
+  }
+  mdastFindReplace(tree, replacements)
+}
+
 export const CommonMarkFlavoredMarkdown: QuartzTransformerPlugin<Partial<CommonMarkOptions>> = (
   userOpts,
 ) => {
@@ -251,6 +286,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
     markdownPlugins(ctx) {
       const plugins: PluggableList = []
 
+      const inHtml = opts.enableInHtmlEmbed
+
       /*plugins.push(() => {
         return (tree: Root, file) => {
           //const replacements: [RegExp, string | ReplaceFunction][] = []
@@ -265,12 +302,20 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
           //mdastFindReplace(tree, replacements)
         }
       })*/
-      plugins.push(ObsidianWikilinks({ enabled: opts.wikilinks }).markdownPlugins(ctx))
-      plugins.push(ObsidianHighlights({ enabled: opts.highlight }).markdownPlugins(ctx))
-      plugins.push(ObsidianArrow({ enabled: opts.parseArrows }).markdownPlugins(ctx))
-      plugins.push(ObsidianTags({ enabled: opts.parseTags }).markdownPlugins(ctx))
-      plugins.push(ObsidianCallouts({ enabled: opts.callouts }).markdownPlugins(ctx))
-      plugins.push(ObsidianMermaid({ enabled: opts.mermaid }).markdownPlugins(ctx))
+      plugins.push(
+        ObsidianWikilinks({ enabled: opts.wikilinks, inHtml: inHtml }).markdownPlugins(ctx),
+      )
+      plugins.push(
+        ObsidianHighlights({ enabled: opts.highlight, inHtml: inHtml }).markdownPlugins(ctx),
+      )
+      plugins.push(
+        ObsidianArrow({ enabled: opts.parseArrows, inHtml: inHtml }).markdownPlugins(ctx),
+      )
+      plugins.push(ObsidianTags({ enabled: opts.parseTags, inHtml: inHtml }).markdownPlugins(ctx))
+      plugins.push(
+        ObsidianCallouts({ enabled: opts.callouts, inHtml: inHtml }).markdownPlugins(ctx),
+      )
+      plugins.push(ObsidianMermaid({ enabled: opts.mermaid, inHtml: inHtml }).markdownPlugins(ctx))
 
       return plugins
     },

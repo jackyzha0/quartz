@@ -9,13 +9,16 @@ import { PhrasingContent } from "mdast-util-find-and-replace/lib"
 import { capitalize } from "../../../util/lang"
 import { toHast } from "mdast-util-to-hast"
 import { toHtml } from "hast-util-to-html"
+import { mdastToHtml } from "../../transformers/markdown"
 
 interface Options {
   enabled: Boolean
+  inHtml: Boolean
 }
 
 const defaultOptions: Options = {
   enabled: true,
+  inHtml: false,
 }
 
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
@@ -56,11 +59,6 @@ function canonicalizeCallout(calloutName: string): keyof typeof calloutMapping {
   const normalizedCallout = calloutName.toLowerCase() as keyof typeof calloutMapping
   // if callout is not recognized, make it a custom one
   return calloutMapping[normalizedCallout] ?? calloutName
-}
-
-const mdastToHtml = (ast: PhrasingContent | Paragraph) => {
-  const hast = toHast(ast, { allowDangerousHtml: true })!
-  return toHtml(hast, { allowDangerousHtml: true })
 }
 
 export const ObsidianCallouts: QuartzParser<Partial<Options>> = (userOpts) => {

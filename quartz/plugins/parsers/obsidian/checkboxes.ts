@@ -7,13 +7,16 @@ import { JSResource } from "../../../util/resources"
 import { Element, Literal, Root as HtmlRoot } from "hast"
 import { Root } from "mdast"
 import { Pluggable } from "unified"
+import { mdastFindReplaceInHtml } from "../../transformers/markdown"
 
 interface Options {
   enabled: Boolean
+  inHtml: Boolean
 }
 
 const defaultOptions: Options = {
   enabled: true,
+  inHtml: false,
 }
 
 export const ObsidianCheckboxes: QuartzParser<Partial<Options>> = (userOpts) => {
@@ -29,7 +32,7 @@ export const ObsidianCheckboxes: QuartzParser<Partial<Options>> = (userOpts) => 
     markdownPlugins(_ctx) {
       const plug: Pluggable = (tree: Root, _file) => {
         const replacements: [RegExp, string | ReplaceFunction][] = []
-        mdastFindReplace(tree, replacements)
+        mdastFindReplaceInHtml(tree, replacements, opts.inHtml)
       }
       return plug
     },

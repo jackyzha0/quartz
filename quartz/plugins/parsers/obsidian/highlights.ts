@@ -3,13 +3,16 @@ import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-
 import { JSResource } from "../../../util/resources"
 import { Root } from "mdast"
 import { Pluggable } from "unified"
+import { mdastFindReplaceInHtml } from "../../transformers/markdown"
 
 interface Options {
   enabled: Boolean
+  inHtml: Boolean
 }
 
 const defaultOptions: Options = {
   enabled: true,
+  inHtml: false,
 }
 
 const highlightRegex = new RegExp(/==([^=]+)==/g)
@@ -40,7 +43,7 @@ export const ObsidianHighlights: QuartzParser<Partial<Options>> = (userOpts) => 
               }
             },
           ])
-          mdastFindReplace(tree, replacements)
+          mdastFindReplaceInHtml(tree, replacements, opts.inHtml)
         }
       }
       return plug

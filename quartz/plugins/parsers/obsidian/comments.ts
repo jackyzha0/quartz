@@ -3,13 +3,16 @@ import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-
 import { JSResource } from "../../../util/resources"
 import { Root } from "mdast"
 import { Pluggable } from "unified"
+import { mdastFindReplaceInHtml } from "../../transformers/markdown"
 
 interface Options {
   enabled: Boolean
+  inHtml: Boolean
 }
 
 const defaultOptions: Options = {
   enabled: true,
+  inHtml: false,
 }
 
 const commentRegex = new RegExp(/%%[\s\S]*?%%/g)
@@ -33,7 +36,7 @@ export const ObsidianComments: QuartzParser<Partial<Options>> = (userOpts) => {
       const plug: Pluggable = (tree: Root, _file) => {
         if (opts.enabled) {
           const replacements: [RegExp, string | ReplaceFunction][] = []
-          mdastFindReplace(tree, replacements)
+          mdastFindReplaceInHtml(tree, replacements, opts.inHtml)
         }
       }
       return plug

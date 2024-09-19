@@ -6,10 +6,12 @@ import { Pluggable } from "unified"
 
 interface Options {
   enabled: Boolean
+  inHtml: Boolean
 }
 
 const defaultOptions: Options = {
   enabled: true,
+  inHtml: false,
 }
 
 export const ObsidianMermaid: QuartzParser<Partial<Options>> = (userOpts) => {
