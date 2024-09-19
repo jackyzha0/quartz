@@ -1,2 +1,3 @@
-export { ObsidianMarkdownArrow } from "./arrows"
-export { ObsidianMarkdownHighlights } from "./highlights"
+export { ObsidianArrow } from "./arrows"
+export { ObsidianHighlights } from "./highlights"
+export { ObsidianWikilinks } from "./wikilinks"

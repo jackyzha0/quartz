@@ -2,6 +2,7 @@ import { QuartzTransformerPlugin } from "../../types"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { SKIP } from "unist-util-visit"
 import { Root } from "mdast"
+import { PluggableList } from "unified"
 
 interface Options {
   enabled: Boolean
@@ -24,11 +25,11 @@ const arrowMapping: Record<string, string> = {
 
 const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/g)
 
-export const ObsidianMarkdownArrow: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+export const ObsidianArrow: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts: Options = { ...defaultOptions, ...userOpts }
   return {
-    name: "ObsidianMarkdownArrow",
-    markdownPlugins() {
+    name: "ObsidianArrow",
+    markdownPlugins(_ctx) {
       return [
         (tree: Root) => {
           if (opts.enabled) {
@@ -47,7 +48,7 @@ export const ObsidianMarkdownArrow: QuartzTransformerPlugin<Partial<Options>> = 
             mdastFindReplace(tree, replacements)
           }
         },
-      ]
+      ] as PluggableList
     },
   }
 }
