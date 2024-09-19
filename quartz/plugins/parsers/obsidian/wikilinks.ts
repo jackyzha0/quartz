@@ -1,6 +1,7 @@
-import { QuartzTransformerPlugin } from "../../types"
+import { QuartzParserPlugin } from "../../types"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { FilePath, splitAnchor, slugifyFilePath } from "../../../util/path"
+import { JSResource } from "../../../util/resources"
 import { Root } from "mdast"
 import { PluggableList } from "unified"
 
@@ -35,7 +36,7 @@ const wikilinkImageEmbedRegex = new RegExp(
   /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/,
 )
 
-export const ObsidianWikilinks: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+export const ObsidianWikilinks: QuartzParserPlugin<Partial<Options>> = (userOpts) => {
   const opts: Options = { ...defaultOptions, ...userOpts }
   return {
     name: "ObsidianWikilinks",
@@ -159,6 +160,13 @@ export const ObsidianWikilinks: QuartzTransformerPlugin<Partial<Options>> = (use
           }
         },
       ] as PluggableList
+    },
+    htmlPlugins(_ctx) {
+      return [] as PluggableList
+    },
+    externalResources(_ctx) {
+      const js = [] as JSResource[]
+      return { js }
     },
   }
 }

@@ -1,5 +1,6 @@
-import { QuartzTransformerPlugin } from "../../types"
+import { QuartzParserPlugin } from "../../types"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
+import { JSResource } from "../../../util/resources"
 import { SKIP } from "unist-util-visit"
 import { Root } from "mdast"
 import { PluggableList } from "unified"
@@ -25,10 +26,16 @@ const arrowMapping: Record<string, string> = {
 
 const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/g)
 
-export const ObsidianArrow: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+export const ObsidianArrow: QuartzParserPlugin<Partial<Options>> = (userOpts) => {
   const opts: Options = { ...defaultOptions, ...userOpts }
   return {
     name: "ObsidianArrow",
+    textTransform(_ctx, src: string | Buffer) {
+      if (src instanceof Buffer) {
+        src = src.toString()
+      }
+      return src
+    },
     markdownPlugins(_ctx) {
       return [
         (tree: Root) => {
@@ -49,6 +56,13 @@ export const ObsidianArrow: QuartzTransformerPlugin<Partial<Options>> = (userOpt
           }
         },
       ] as PluggableList
+    },
+    htmlPlugins(_ctx) {
+      return [] as PluggableList
+    },
+    externalResources(_ctx) {
+      const js = [] as JSResource[]
+      return { js }
     },
   }
 }
