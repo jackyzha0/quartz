@@ -2,7 +2,7 @@ import { QuartzParserPlugin } from "../../types"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { JSResource } from "../../../util/resources"
 import { Root } from "mdast"
-import { PluggableList } from "unified"
+import { Pluggable } from "unified"
 
 interface Options {
   enabled: Boolean
@@ -23,17 +23,17 @@ export const CustomDefault: QuartzParserPlugin<Partial<Options>> = (userOpts) =>
       return src
     },
     markdownPlugins(_ctx) {
-      return [
-        (tree: Root) => {
-          if (opts.enabled) {
-            const replacements: [RegExp, string | ReplaceFunction][] = []
-            mdastFindReplace(tree, replacements)
-          }
-        },
-      ] as PluggableList
+      const plug: Pluggable = (tree: Root, _file) => {
+        if (opts.enabled) {
+          const replacements: [RegExp, string | ReplaceFunction][] = []
+          mdastFindReplace(tree, replacements)
+        }
+      }
+      return plug
     },
     htmlPlugins(_ctx) {
-      return [] as PluggableList
+      const plug: Pluggable = () => {}
+      return plug
     },
     externalResources(_ctx) {
       const js = [] as JSResource[]

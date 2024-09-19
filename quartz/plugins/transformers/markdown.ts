@@ -35,7 +35,12 @@ import smartypants from "remark-smartypants"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 
-import { ObsidianArrow, ObsidianHighlights, ObsidianWikilinks } from "../parsers/obsidian"
+import {
+  ObsidianArrow,
+  ObsidianCallouts,
+  ObsidianHighlights,
+  ObsidianWikilinks,
+} from "../parsers/obsidian"
 
 export interface CommonMarkOptions {
   option1: Boolean
@@ -173,14 +178,15 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
   return {
     name: "ObsidianFlavoredMarkdown",
     textTransform(ctx, src) {
-      ObsidianWikilinks({ enabled: opts.wikilinks }).textTransform(ctx, src)
+      src = ObsidianCallouts({ enabled: opts.callouts }).textTransform(ctx, src)
+      src = ObsidianWikilinks({ enabled: opts.wikilinks }).textTransform(ctx, src)
 
       return src
     },
     markdownPlugins(ctx) {
       const plugins: PluggableList = []
 
-      plugins.push(() => {
+      /*plugins.push(() => {
         return (tree: Root, file) => {
           //const replacements: [RegExp, string | ReplaceFunction][] = []
           //const base = pathToRoot(file.data.slug!)
@@ -193,7 +199,11 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
 
           //mdastFindReplace(tree, replacements)
         }
-      })
+      })*/
+      plugins.push(ObsidianWikilinks({ enabled: opts.wikilinks }).markdownPlugins(ctx))
+      plugins.push(ObsidianHighlights({ enabled: opts.highlight }).markdownPlugins(ctx))
+      plugins.push(ObsidianArrow({ enabled: opts.parseArrows }).markdownPlugins(ctx))
+      plugins.push(ObsidianCallouts({ enabled: opts.callouts }).markdownPlugins(ctx))
 
       return plugins
     },

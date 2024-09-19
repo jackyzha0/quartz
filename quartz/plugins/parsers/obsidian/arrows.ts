@@ -3,7 +3,7 @@ import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-
 import { JSResource } from "../../../util/resources"
 import { SKIP } from "unist-util-visit"
 import { Root } from "mdast"
-import { PluggableList } from "unified"
+import { Pluggable } from "unified"
 
 interface Options {
   enabled: Boolean
@@ -37,28 +37,28 @@ export const ObsidianArrow: QuartzParserPlugin<Partial<Options>> = (userOpts) =>
       return src
     },
     markdownPlugins(_ctx) {
-      return [
-        (tree: Root) => {
-          if (opts.enabled) {
-            const replacements: [RegExp, string | ReplaceFunction][] = []
-            replacements.push([
-              arrowRegex,
-              (value: string, ..._capture: string[]) => {
-                const maybeArrow = arrowMapping[value]
-                if (maybeArrow === undefined) return SKIP
-                return {
-                  type: "html",
-                  value: `<span>${maybeArrow}</span>`,
-                }
-              },
-            ])
-            mdastFindReplace(tree, replacements)
-          }
-        },
-      ] as PluggableList
+      const plug: Pluggable = (tree: Root, _path) => {
+        if (opts.enabled) {
+          const replacements: [RegExp, string | ReplaceFunction][] = []
+          replacements.push([
+            arrowRegex,
+            (value: string, ..._capture: string[]) => {
+              const maybeArrow = arrowMapping[value]
+              if (maybeArrow === undefined) return SKIP
+              return {
+                type: "html",
+                value: `<span>${maybeArrow}</span>`,
+              }
+            },
+          ])
+          mdastFindReplace(tree, replacements)
+        }
+      }
+      return plug
     },
     htmlPlugins(_ctx) {
-      return [] as PluggableList
+      const plug: Pluggable = () => {}
+      return plug
     },
     externalResources(_ctx) {
       const js = [] as JSResource[]
