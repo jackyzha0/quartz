@@ -1,4 +1,4 @@
-import { PluggableList } from "unified"
+import { PluggableList, Pluggable } from "unified"
 import { StaticResources } from "../util/resources"
 import { ProcessedContent } from "./vfile"
 import { QuartzComponent } from "../components/types"
@@ -53,7 +53,7 @@ export type QuartzParserPlugin<Options extends OptionType = undefined> = (
 export type QuartzParserPluginInstance = {
   name: string
   textTransform: (ctx: BuildCtx, src: string | Buffer) => string | Buffer
-  markdownPlugins: (ctx: BuildCtx) => PluggableList
-  htmlPlugins: (ctx: BuildCtx) => PluggableList
+  markdownPlugins: (ctx: BuildCtx) => Pluggable
+  htmlPlugins: (ctx: BuildCtx) => Pluggable
   externalResources: (ctx: BuildCtx) => Partial<StaticResources>
 }
