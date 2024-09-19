@@ -35,7 +35,7 @@ import smartypants from "remark-smartypants"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 
-import { ObsidianMarkdownArrow } from "../parsers/obsidian"
+import { ObsidianMarkdownArrow, ObsidianMarkdownHighlights } from "../parsers/obsidian"
 
 export interface CommonMarkOptions {
   option1: Boolean
@@ -182,6 +182,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<ObsidianO
         return (tree: Root, file) => {
           //const replacements: [RegExp, string | ReplaceFunction][] = []
           //const base = pathToRoot(file.data.slug!)
+
+          ObsidianMarkdownHighlights({ enabled: opts.highlight })
 
           ObsidianMarkdownArrow({ enabled: opts.parseArrows })
 
