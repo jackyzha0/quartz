@@ -24,23 +24,20 @@ export const ObsidianVideo: QuartzParser<Partial<Options>> = (userOpts) => {
       }
       return src
     },
-    markdownPlugins(_ctx) {
-      const plug: Pluggable = (tree: Root, _file) => {
-        if (opts.enabled) {
-          visit(tree, "image", (node, index, parent) => {
-            if (parent && index != undefined && videoExtensionRegex.test(node.url)) {
-              const newNode: Html = {
-                type: "html",
-                value: `<video controls src="${node.url}"></video>`,
-              }
-
-              parent.children.splice(index, 1, newNode)
-              return SKIP
+    markdownPlugins(tree, _file) {
+      if (opts.enabled && tree !== undefined) {
+        visit(tree, "image", (node, index, parent) => {
+          if (parent && index != undefined && videoExtensionRegex.test(node.url)) {
+            const newNode: Html = {
+              type: "html",
+              value: `<video controls src="${node.url}"></video>`,
             }
-          })
-        }
+
+            parent.children.splice(index, 1, newNode)
+            return SKIP
+          }
+        })
       }
-      return plug
     },
     htmlPlugins() {
       const plug: Pluggable = () => {}

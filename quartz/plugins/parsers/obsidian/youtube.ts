@@ -27,16 +27,12 @@ export const ObsidianYouTube: QuartzParser<Partial<Options>> = (userOpts) => {
       }
       return src
     },
-    markdownPlugins(_ctx) {
-      const replacements: [RegExp, string | ReplaceFunction][] = []
-      const plug: Pluggable = (tree: Root, _file) => {
-        mdastFindReplace(tree, replacements)
-      }
-      return replacements
+    markdownPlugins(_file, _tree) {
+      return [new RegExp(""), ""] as [RegExp, string | ReplaceFunction]
     },
-    htmlPlugins() {
+    htmlPlugins(tree, _file) {
       if (opts.enabled) {
-        const plug: Pluggable = (tree: HtmlRoot, _file) => {
+        return () => {
           visit(tree, "element", (node) => {
             if (node.tagName === "img" && typeof node.properties.src === "string") {
               const match = node.properties.src.match(ytLinkRegex)
@@ -68,7 +64,6 @@ export const ObsidianYouTube: QuartzParser<Partial<Options>> = (userOpts) => {
             }
           })
         }
-        return plug
       }
       return {} as Pluggable
     },

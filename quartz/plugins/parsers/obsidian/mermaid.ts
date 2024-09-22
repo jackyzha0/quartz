@@ -25,22 +25,18 @@ export const ObsidianMermaid: QuartzParser<Partial<Options>> = (userOpts) => {
       }
       return src
     },
-    markdownPlugins() {
-      const replacements: [RegExp, string | ReplaceFunction][] = []
-      const plug: Pluggable = (tree: Root, _file) => {
-        if (opts.enabled) {
-          visit(tree, "code", (node: Code) => {
-            if (node.lang === "mermaid") {
-              node.data = {
-                hProperties: {
-                  className: ["mermaid"],
-                },
-              }
+    markdownPlugins(tree, _file) {
+      if (opts.enabled && tree !== undefined) {
+        visit(tree, "code", (node: Code) => {
+          if (node.lang === "mermaid") {
+            node.data = {
+              hProperties: {
+                className: ["mermaid"],
+              },
             }
-          })
-        }
+          }
+        })
       }
-      return replacements
     },
     htmlPlugins() {
       const plug: Pluggable = () => {}

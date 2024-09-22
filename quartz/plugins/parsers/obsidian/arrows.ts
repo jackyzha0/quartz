@@ -8,12 +8,10 @@ import { mdastFindReplaceInHtml } from "../../transformers/markdown"
 
 interface Options {
   enabled: Boolean
-  inHtml: Boolean
 }
 
 const defaultOptions: Options = {
   enabled: true,
-  inHtml: false,
 }
 
 const arrowMapping: Record<string, string> = {
@@ -41,24 +39,21 @@ export const ObsidianArrow: QuartzParser<Partial<Options>> = (userOpts) => {
       }
       return src
     },
-    markdownPlugins(_ctx) {
-      const replacements: [RegExp, string | ReplaceFunction][] = []
-      const plug: Pluggable = (tree: Root, _path) => {
-        if (opts.enabled) {
-          replacements.push([
-            arrowRegex,
-            (value: string, ..._capture: string[]) => {
-              const maybeArrow = arrowMapping[value]
-              if (maybeArrow === undefined) return SKIP
-              return {
-                type: "html",
-                value: `<span>${maybeArrow}</span>`,
-              }
-            },
-          ])
-        }
+    markdownPlugins() {
+      if (opts.enabled) {
+        return [
+          arrowRegex,
+          (value: string, ..._capture: string[]) => {
+            const maybeArrow = arrowMapping[value]
+            if (maybeArrow === undefined) return SKIP
+            return {
+              type: "html",
+              value: `<span>${maybeArrow}</span>`,
+            }
+          },
+        ] as [RegExp, string | ReplaceFunction]
       }
-      return replacements
+      return [new RegExp(""), ""] as [RegExp, string | ReplaceFunction]
     },
     htmlPlugins() {
       const plug: Pluggable = () => {}

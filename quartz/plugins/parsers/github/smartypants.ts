@@ -22,11 +22,11 @@ export const GitHubSmartypants: QuartzParser<Partial<Options>> = (userOpts) => {
       }
       return src
     },
-    markdownPlugins(_ctx) {
+    markdownPlugins() {
       if (opts.enabled) {
-        return [remarkGfm, smartypants]
+        return smartypants as Pluggable
       }
-      return [remarkGfm]
+      return {} as Pluggable
     },
     htmlPlugins() {
       const plug: Pluggable = () => {}

@@ -8,13 +8,11 @@ import { Pluggable } from "unified"
 import { mdastFindReplaceInHtml } from "../../transformers/markdown"
 
 interface Options {
-  enabled: Boolean
-  inHtml: Boolean
+  enabled: ConstrainBoolean
 }
 
 const defaultOptions: Options = {
   enabled: true,
-  inHtml: false,
 }
 
 // (?:^| )              -> non-capturing group, tag should start be separated by a space or be the start of the line
@@ -35,45 +33,43 @@ export const ObsidianTags: QuartzParser<Partial<Options>> = (userOpts) => {
       }
       return src
     },
-    markdownPlugins(_ctx) {
-      const replacements: [RegExp, string | ReplaceFunction][] = []
-      const plug: Pluggable = (tree: Root, file) => {
-        if (opts.enabled) {
-          const base = pathToRoot(file.data.slug!)
-          replacements.push([
-            tagRegex,
-            (_value: string, tag: string) => {
-              // Check if the tag only includes numbers and slashes
-              if (/^[\/\d]+$/.test(tag)) {
-                return false
-              }
+    markdownPlugins(_tree, file) {
+      console.log(file)
+      if (opts.enabled && file !== undefined) {
+        const base = pathToRoot(file.data.slug!)
+        return [
+          tagRegex,
+          (_value: string, tag: string) => {
+            // Check if the tag only includes numbers and slashes
+            if (/^[\/\d]+$/.test(tag)) {
+              return false
+            }
 
-              tag = slugTag(tag)
-              if (file.data.frontmatter) {
-                const noteTags = file.data.frontmatter.tags ?? []
-                file.data.frontmatter.tags = [...new Set([...noteTags, tag])]
-              }
+            tag = slugTag(tag)
+            if (file.data.frontmatter) {
+              const noteTags = file.data.frontmatter.tags ?? []
+              file.data.frontmatter.tags = [...new Set([...noteTags, tag])]
+            }
 
-              return {
-                type: "link",
-                url: base + `/tags/${tag}`,
-                data: {
-                  hProperties: {
-                    className: ["tag-link"],
-                  },
+            return {
+              type: "link",
+              url: base + `/tags/${tag}`,
+              data: {
+                hProperties: {
+                  className: ["tag-link"],
                 },
-                children: [
-                  {
-                    type: "text",
-                    value: tag,
-                  },
-                ],
-              }
-            },
-          ])
-        }
+              },
+              children: [
+                {
+                  type: "text",
+                  value: tag,
+                },
+              ],
+            }
+          },
+        ] as [RegExp, string | ReplaceFunction]
       }
-      return replacements
+      return [new RegExp(""), ""] as [RegExp, string | ReplaceFunction]
     },
     htmlPlugins() {
       const plug: Pluggable = () => {}

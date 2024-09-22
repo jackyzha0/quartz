@@ -29,12 +29,8 @@ export const ObsidianCheckboxes: QuartzParser<Partial<Options>> = (userOpts) => 
       }
       return src
     },
-    markdownPlugins(_ctx) {
-      const replacements: [RegExp, string | ReplaceFunction][] = []
-      const plug: Pluggable = (tree: Root, _file) => {
-        mdastFindReplaceInHtml(tree, replacements, opts.inHtml)
-      }
-      return replacements
+    markdownPlugins(_tree, _file) {
+      return [new RegExp(""), ""] as [RegExp, string | ReplaceFunction]
     },
     htmlPlugins() {
       if (opts.enabled) {

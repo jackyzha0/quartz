@@ -6,6 +6,8 @@ import { QuartzComponent } from "../components/types"
 import { FilePath } from "../util/path"
 import { BuildCtx } from "../util/ctx"
 import DepGraph from "../depgraph"
+import { Root } from "mdast-util-find-and-replace/lib"
+import { Element, Literal, Root as HtmlRoot } from "hast"
 
 export interface PluginTypes {
   transformers: QuartzTransformerPluginInstance[]
@@ -57,7 +59,11 @@ export type QuartzParser<Options extends OptionType = undefined> = (
 export type QuartzParserInstance = {
   name: string
   textTransform: (ctx: BuildCtx, src: string | Buffer) => string | Buffer
-  markdownPlugins: (ctx: BuildCtx) => [RegExp, string | ReplaceFunction][]
-  htmlPlugins: () => Pluggable | Pluggable[]
+  markdownPlugins: (
+    tree?: Root,
+    file?: any,
+    replacements?: [RegExp, string | ReplaceFunction][],
+  ) => [RegExp, string | ReplaceFunction] | Pluggable | void
+  htmlPlugins: (tree?: HtmlRoot, file?: any) => Pluggable
   externalResources: () => JSResource | string
 }

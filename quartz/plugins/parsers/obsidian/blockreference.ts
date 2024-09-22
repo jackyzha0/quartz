@@ -26,18 +26,14 @@ export const ObsidianBlockReference: QuartzParser<Partial<Options>> = (userOpts)
       }
       return src
     },
-    markdownPlugins(_ctx) {
-      const replacements: [RegExp, string | ReplaceFunction][] = []
-      const plug: Pluggable = (tree: Root, _file) => {
-        mdastFindReplace(tree, replacements)
-      }
-      return replacements
+    markdownPlugins(_tree, _file) {
+      return [new RegExp(""), ""] as [RegExp, string | ReplaceFunction]
     },
-    htmlPlugins() {
+    htmlPlugins(tree, file) {
       const inlineTagTypes = new Set(["p", "li"])
       const blockTagTypes = new Set(["blockquote"])
       if (opts.enabled) {
-        const plug: Pluggable = (tree: HtmlRoot, file) => {
+        return () => {
           file.data.blocks = {}
 
           visit(tree, "element", (node, index, parent) => {
@@ -106,7 +102,6 @@ export const ObsidianBlockReference: QuartzParser<Partial<Options>> = (userOpts)
 
           file.data.htmlAst = tree
         }
-        return plug
       }
       return {} as Pluggable
     },

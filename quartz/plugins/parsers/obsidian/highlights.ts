@@ -7,12 +7,10 @@ import { mdastFindReplaceInHtml } from "../../transformers/markdown"
 
 interface Options {
   enabled: Boolean
-  inHtml: Boolean
 }
 
 const defaultOptions: Options = {
   enabled: true,
-  inHtml: false,
 }
 
 const highlightRegex = new RegExp(/==([^=]+)==/g)
@@ -29,23 +27,20 @@ export const ObsidianHighlights: QuartzParser<Partial<Options>> = (userOpts) => 
       }
       return src
     },
-    markdownPlugins(_ctx) {
-      const replacements: [RegExp, string | ReplaceFunction][] = []
-      const plug: Pluggable = (tree: Root, _path) => {
-        if (opts.enabled) {
-          replacements.push([
-            highlightRegex,
-            (_value: string, ...capture: string[]) => {
-              const [inner] = capture
-              return {
-                type: "html",
-                value: `<span class="text-highlight">${inner}</span>`,
-              }
-            },
-          ])
-        }
+    markdownPlugins() {
+      if (opts.enabled) {
+        return [
+          highlightRegex,
+          (_value: string, ...capture: string[]) => {
+            const [inner] = capture
+            return {
+              type: "html",
+              value: `<span class="text-highlight">${inner}</span>`,
+            }
+          },
+        ] as [RegExp, string | ReplaceFunction]
       }
-      return replacements
+      return [new RegExp(""), ""] as [RegExp, string | ReplaceFunction]
     },
     htmlPlugins() {
       const plug: Pluggable = () => {}

@@ -3,6 +3,8 @@ import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-
 import { JSResource } from "../../../util/resources"
 import { Root } from "mdast"
 import { Pluggable } from "unified"
+import { visit } from "unist-util-visit"
+import { Element, Literal, Root as HtmlRoot } from "hast"
 
 interface Options {
   enabled: Boolean
@@ -22,16 +24,16 @@ export const CustomDefault: QuartzParser<Partial<Options>> = (userOpts) => {
       }
       return src
     },
-    markdownPlugins(_ctx) {
-      const replacements: [RegExp, string | ReplaceFunction][] = []
-      const plug: Pluggable = (tree: Root, _file) => {
-        mdastFindReplace(tree, replacements)
-      }
-      return replacements
+    markdownPlugins(tree, file) {
+      return [new RegExp(""), ""] as [RegExp, string | ReplaceFunction]
     },
-    htmlPlugins() {
-      const plug: Pluggable = () => {}
-      return plug
+    htmlPlugins(tree, file) {
+      if (opts.enabled) {
+        return () => {
+          visit(tree!, "element", (node) => {})
+        }
+      }
+      return {} as Pluggable
     },
     externalResources() {
       const js = {} as JSResource

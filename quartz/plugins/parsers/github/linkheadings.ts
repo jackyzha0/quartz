@@ -1,5 +1,6 @@
 import { QuartzParser } from "../../types"
 import { JSResource } from "../../../util/resources"
+import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
 import { Pluggable } from "unified"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
@@ -22,9 +23,8 @@ export const GitHubLinkheadings: QuartzParser<Partial<Options>> = (userOpts) => 
       }
       return src
     },
-    markdownPlugins(_ctx) {
-      const plug: Pluggable = () => {}
-      return plug
+    markdownPlugins(tree, file) {
+      return [new RegExp(""), ""] as [RegExp, string | ReplaceFunction]
     },
     htmlPlugins() {
       if (opts.enabled) {
@@ -74,10 +74,9 @@ export const GitHubLinkheadings: QuartzParser<Partial<Options>> = (userOpts) => 
               },
             },
           ],
-        ] as Pluggable[]
-      } else {
-        return [] as Pluggable[]
+        ] as Pluggable
       }
+      return [] as Pluggable
     },
     externalResources() {
       const js = {} as JSResource
