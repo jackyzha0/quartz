@@ -30,8 +30,8 @@ export const ObsidianYouTube: QuartzParser<Partial<Options>> = (userOpts) => {
     markdownPlugins(_file, _tree) {
       return [new RegExp(""), ""] as [RegExp, string | ReplaceFunction]
     },
-    htmlPlugins(tree, _file) {
-      if (opts.enabled) {
+    htmlPlugins(tree) {
+      if (opts.enabled && tree !== undefined) {
         return () => {
           visit(tree, "element", (node) => {
             if (node.tagName === "img" && typeof node.properties.src === "string") {

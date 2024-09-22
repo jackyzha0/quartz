@@ -32,7 +32,7 @@ export const ObsidianBlockReference: QuartzParser<Partial<Options>> = (userOpts)
     htmlPlugins(tree, file) {
       const inlineTagTypes = new Set(["p", "li"])
       const blockTagTypes = new Set(["blockquote"])
-      if (opts.enabled) {
+      if (opts.enabled && tree !== undefined) {
         return () => {
           file.data.blocks = {}
 
