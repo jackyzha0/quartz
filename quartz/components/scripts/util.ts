@@ -37,7 +37,8 @@ export function getUserPreferredColorScheme() {
 
 // Have SVG images in the article adhere to the correct color scheme.
 document.addEventListener("nav", (e) => {
-  let theme = localStorage.getItem("theme") ?? getUserPreferredColorScheme()
+  let theme: "dark" | "light" =
+    (localStorage.getItem("theme") as "dark" | "light" | null) ?? getUserPreferredColorScheme()
   Object.values(document.getElementsByTagName("article")[0].getElementsByTagName("a")).forEach(
     (a) => {
       if (a.href.endsWith(".excalidraw")) {
@@ -47,6 +48,7 @@ document.addEventListener("nav", (e) => {
       }
     },
   )
+  renderThemedLinks(theme)
 })
 
 export function removeAllChildren(node: HTMLElement) {
