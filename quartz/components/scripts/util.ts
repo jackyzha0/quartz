@@ -24,8 +24,9 @@ export function renderThemedLinks(theme: "dark" | "light") {
   const imageGroups = { theme: 1, extension: 2 }
   Object.values(document.getElementsByTagName("img")).forEach((img) => {
     if (img.src.match(imageExtensions)) {
-      const newImg = imageExtensions.exec(img.src)
-      img.src.replace(imageExtensions, `.${theme}.${newImg![imageGroups.extension]}`)
+      const imageSource = img.src
+      const newImg = imageExtensions.exec(imageSource)
+      img.src = imageSource.replace(imageExtensions, `.${theme}.${newImg![imageGroups.extension]}`)
     }
   })
 }
