@@ -19,6 +19,35 @@ export function registerEscapeHandler(outsideContainer: HTMLElement | null, cb: 
   window.addCleanup(() => document.removeEventListener("keydown", esc))
 }
 
+export function renderThemedLinks(theme: "dark" | "light") {
+  const imageExtensions = new RegExp(".(dark|light).(png|jpg|jpeg|gif|bmp|svg|webp)$")
+  const imageGroups = { theme: 1, extension: 2 }
+  Object.values(document.getElementsByTagName("img")).forEach((img) => {
+    if (img.src.match(imageExtensions)) {
+      const newImg = imageExtensions.exec(img.src)
+      img.src.replace(imageExtensions, `.${theme}.${newImg![imageGroups.extension]}`)
+    }
+  })
+}
+
+export function getUserPreferredColorScheme() {
+  return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"
+}
+
+// Have SVG images in the article adhere to the correct color scheme.
+document.addEventListener("nav", (e) => {
+  let theme = localStorage.getItem("theme") ?? getUserPreferredColorScheme()
+  Object.values(document.getElementsByTagName("article")[0].getElementsByTagName("a")).forEach(
+    (a) => {
+      if (a.href.endsWith(".excalidraw")) {
+        let img = document.createElement("img")
+        img.src = `${a.href}.${theme}.svg`
+        a.replaceWith(img)
+      }
+    },
+  )
+})
+
 export function removeAllChildren(node: HTMLElement) {
   while (node.firstChild) {
     node.removeChild(node.firstChild)
