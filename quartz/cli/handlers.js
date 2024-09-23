@@ -350,6 +350,15 @@ export async function handleBuild(argv) {
               source: "**/*.*",
               headers: [{ key: "Content-Disposition", value: "inline" }],
             },
+            {
+              source: "**/*.webp",
+              headers: [{ key: "Content-Type", value: "image/webp" }],
+            },
+            // fixes bug where avif images are displayed as text instead of images (future proof)
+            {
+              source: "**/*.avif",
+              headers: [{ key: "Content-Type", value: "image/avif" }],
+            },
           ],
         })
         const status = res.statusCode
