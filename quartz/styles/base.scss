@@ -194,7 +194,7 @@ a {
       flex-direction: column;
       @media all and ($mobile) {
         gap: 0;
-        align-items: center;
+        align-items: start;
         position: initial;
         display: flex;
         height: unset;

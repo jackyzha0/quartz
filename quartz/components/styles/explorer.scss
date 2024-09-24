@@ -1,9 +1,7 @@
 @use "../../styles/variables.scss" as *;
 
 .explorer {
-  &.desktop-only {
-    overflow-y: auto;
-  }
+  overflow-y: auto;
   &:after {
     pointer-events: none;
     content: "";
@@ -15,6 +13,59 @@
     opacity: 1;
     transition: opacity 0.3s ease;
     background: linear-gradient(transparent 0px, var(--light));
+  }
+  @media all and ($mobile) {
+    position: fixed;
+    overflow: visible;
+    width: 32px;
+    height: 32px;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: var(--light);
+    transition:
+      width 0s linear 0.35s,
+      height 0.35s ease,
+      visibility 0s linear 0.35s;
+    &:before {
+      content: "";
+      height: 0;
+      width: 100vw;
+      display: inline-block;
+      position: absolute;
+      bottom: 100%;
+      background-color: var(--light);
+      transition: height 0.35s ease;
+    }
+    &:has(> #explorer-content.collapsed) {
+      &:before {
+        height: 2rem;
+        transition: height 0.35s ease;
+      }
+      overflow: inherit;
+      width: 100%;
+      height: calc(100vh - 32px);
+      background-color: var(--light);
+      transition:
+        width 0s linear 0s,
+        height 0.35s ease,
+        visibility 0s linear 0s;
+      > button#explorer {
+        position: relative;
+      }
+    }
+    > button#explorer {
+      width: 32px;
+      height: 32px;
+    }
+    &::after {
+      display: none;
+    }
+  }
+}
+
+body:has(.explorer > #explorer-content.collapsed) {
+  @media all and ($mobile) {
+    overflow-y: hidden;
   }
 }
 
@@ -42,6 +93,25 @@ button#explorer {
 
   &.collapsed .fold {
     transform: rotateZ(-90deg);
+  }
+
+  .mobile-explorer-button {
+    display: none;
+    height: 32px;
+    width: 32px;
+  }
+
+  @media all and ($mobile) {
+    > h2,
+    > svg {
+      display: none;
+    }
+    .mobile-explorer-button {
+      display: block;
+      > * {
+        stroke: var(--darkgray);
+      }
+    }
   }
 }
 
@@ -74,6 +144,26 @@ button#explorer {
       max-height 0.35s ease,
       visibility 0s linear 0.35s;
     visibility: hidden;
+  }
+
+  @media all and ($mobile) {
+    transition:
+      max-height 0.35s ease,
+      visibility 0s linear 0.35s;
+    visibility: hidden;
+    max-height: 0px;
+    &.collapsed {
+      transition:
+        max-height 0.35s ease,
+        visibility 0s linear 0s;
+      visibility: visible;
+      max-height: calc(100vh - 32px);
+      max-width: calc(100vw - 20px);
+      overflow-y: auto;
+      .overflow:after {
+        background: none;
+      }
+    }
   }
 
   & ul {

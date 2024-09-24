@@ -24,8 +24,16 @@ function toggleExplorer(this: HTMLElement) {
   const content = this.nextElementSibling as MaybeHTMLElement
   if (!content) return
 
+  const mobileView = window.innerWidth <= 800
+
   content.classList.toggle("collapsed")
-  content.style.maxHeight = content.style.maxHeight === "0px" ? content.scrollHeight + "px" : "0px"
+  if (mobileView) {
+    content.style.maxHeight =
+      content.style.maxHeight === "0px" ? window.innerHeight - 72 + "px" : "0px"
+  } else {
+    content.style.maxHeight =
+      content.style.maxHeight === "0px" ? content.scrollHeight + "px" : "0px"
+  }
 }
 
 function toggleFolder(evt: MouseEvent) {
@@ -113,6 +121,12 @@ document.addEventListener("nav", () => {
     observer.observe(lastItem)
   }
 })
+
+const explorerContent = document.getElementById("explorer-content")
+if (explorerContent && window.innerWidth <= 800) {
+  explorerContent.style.maxHeight =
+    explorerContent.style.maxHeight === "0px" ? explorerContent.scrollHeight + "px" : "0px"
+}
 
 /**
  * Toggles the state of a given folder
