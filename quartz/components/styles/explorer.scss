@@ -2,7 +2,7 @@
 
 .explorer {
   &.desktop-only {
-    overflow-y: auto;
+    overflow-y: hidden;
   }
   &:after {
     pointer-events: none;
@@ -62,7 +62,8 @@ button#explorer {
 #explorer-content {
   list-style: none;
   overflow: hidden;
-  max-height: none;
+  overflow-y: auto;
+  max-height: calc(100% - 28px);
   transition:
     max-height 0.35s ease,
     visibility 0s linear 0s;

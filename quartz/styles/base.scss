@@ -538,6 +538,8 @@ video {
 
 div:has(> .overflow) {
   position: relative;
+  overflow-y: auto;
+  max-height: 100%;
 }
 
 ul.overflow,
@@ -552,7 +554,10 @@ ol.overflow {
   & > li:last-of-type {
     margin-bottom: 30px;
   }
+}
 
+*:has(> * > ul.overflow),
+*:has(> * > ol.overflow) {
   &:after {
     pointer-events: none;
     content: "";
