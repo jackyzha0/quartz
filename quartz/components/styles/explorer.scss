@@ -5,7 +5,9 @@
   flex-direction: column;
   overflow-y: hidden;
   &.desktop-only {
-    display: flex;
+    @media all and not ($mobile) {
+      display: flex;
+    }
   }
   &:after {
     pointer-events: none;
@@ -74,6 +76,7 @@ button#explorer {
   visibility: visible;
 
   &.collapsed {
+    max-height: 0;
     transition:
       max-height 0.35s ease,
       visibility 0s linear 0.35s;

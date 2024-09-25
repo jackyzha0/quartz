@@ -1,7 +1,7 @@
 @use "../../styles/variables.scss" as *;
 
 .backlinks {
-  @media all and not ($desktop) {
+  @media all and not ($mobile) {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
