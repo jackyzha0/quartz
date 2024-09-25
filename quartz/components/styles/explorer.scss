@@ -1,8 +1,11 @@
 @use "../../styles/variables.scss" as *;
 
 .explorer {
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
   &.desktop-only {
-    overflow-y: hidden;
+    display: flex;
   }
   &:after {
     pointer-events: none;
@@ -63,7 +66,7 @@ button#explorer {
   list-style: none;
   overflow: hidden;
   overflow-y: auto;
-  max-height: calc(100% - 28px);
+  max-height: 100%;
   transition:
     max-height 0.35s ease,
     visibility 0s linear 0s;
