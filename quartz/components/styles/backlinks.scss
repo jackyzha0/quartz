@@ -1,9 +1,10 @@
 @use "../../styles/variables.scss" as *;
 
 .backlinks {
-  @media all and not ($desktop) {
+  @media all and not ($mobile) {
     overflow-y: auto;
-    display: initial;
+    display: flex;
+    flex-direction: column;
     &:after {
       pointer-events: none;
       content: "";
@@ -15,10 +16,6 @@
       opacity: 1;
       transition: opacity 0.3s ease;
       background: linear-gradient(transparent 0px, var(--light));
-    }
-
-    &:has(> .overflow) {
-      position: unset;
     }
 
     & > h3 {
@@ -39,10 +36,6 @@
     }
 
     & > .overflow {
-      max-height: unset;
-      & > li:last-of-type {
-        margin-bottom: 0;
-      }
       &:after {
         display: none;
       }

@@ -1,5 +1,10 @@
 .toc {
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  &.desktop-only {
+    display: flex;
+    max-height: 40%;
+  }
 }
 
 button#toc {
@@ -32,17 +37,19 @@ button#toc {
 #toc-content {
   list-style: none;
   overflow: hidden;
-  max-height: none;
+  overflow-y: auto;
+  max-height: 100%;
   transition:
-    max-height 0.5s ease,
+    max-height 0.35s ease,
     visibility 0s linear 0s;
   position: relative;
   visibility: visible;
 
   &.collapsed {
+    max-height: 0;
     transition:
-      max-height 0.5s ease,
-      visibility 0s linear 0.5s;
+      max-height 0.35s ease,
+      visibility 0s linear 0.35s;
     visibility: hidden;
   }
 
@@ -64,6 +71,9 @@ button#toc {
         opacity: 0.75;
       }
     }
+  }
+  > ul.overflow {
+    max-height: none;
   }
 
   @for $i from 0 through 6 {

@@ -250,6 +250,8 @@ a {
 
     & .center,
     & footer {
+      max-width: 100%;
+      min-width: 100%;
       margin-left: auto;
       margin-right: auto;
       @media all and ($desktop) {
@@ -416,7 +418,7 @@ pre {
     counter-increment: line 0;
     display: grid;
     padding: 0.5rem 0;
-    overflow-x: scroll;
+    overflow-x: auto;
 
     & [data-highlighted-chars] {
       background-color: var(--highlight);
@@ -535,12 +537,15 @@ video {
 }
 
 div:has(> .overflow) {
+  display: flex;
   position: relative;
+  overflow-y: auto;
+  max-height: 100%;
 }
 
 ul.overflow,
 ol.overflow {
-  max-height: 400;
+  max-height: 100%;
   overflow-y: auto;
 
   // clearfix
@@ -550,7 +555,6 @@ ol.overflow {
   & > li:last-of-type {
     margin-bottom: 30px;
   }
-
   &:after {
     pointer-events: none;
     content: "";
