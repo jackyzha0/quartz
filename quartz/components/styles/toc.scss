@@ -1,8 +1,5 @@
-.toc {
-  overflow-y: auto;
-  &.desktop-only {
-    max-height: 40%;
-  }
+.toc.desktop-only {
+  max-height: 40%;
 }
 
 button#toc {
