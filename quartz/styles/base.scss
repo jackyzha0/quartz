@@ -537,6 +537,7 @@ video {
 }
 
 div:has(> .overflow) {
+  display: flex;
   position: relative;
   overflow-y: auto;
   max-height: 100%;
@@ -544,7 +545,7 @@ div:has(> .overflow) {
 
 ul.overflow,
 ol.overflow {
-  max-height: 400;
+  max-height: 100%;
   overflow-y: auto;
 
   // clearfix
@@ -554,10 +555,6 @@ ol.overflow {
   & > li:last-of-type {
     margin-bottom: 30px;
   }
-}
-
-*:has(> * > ul.overflow),
-*:has(> * > ol.overflow) {
   &:after {
     pointer-events: none;
     content: "";

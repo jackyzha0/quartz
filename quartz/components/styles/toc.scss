@@ -3,10 +3,6 @@
   &.desktop-only {
     max-height: 40%;
   }
-  > #toc-content > .overflow {
-    max-height: unset;
-    overflow-y: unset;
-  }
 }
 
 button#toc {
