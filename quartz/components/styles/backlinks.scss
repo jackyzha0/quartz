@@ -1,10 +1,8 @@
 @use "../../styles/variables.scss" as *;
 
 .backlinks {
+  flex-direction: column;
   @media all and not ($mobile) {
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
     &:after {
       pointer-events: none;
       content: "";
