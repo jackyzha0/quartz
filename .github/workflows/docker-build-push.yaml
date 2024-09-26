@@ -7,7 +7,7 @@ on:
 
 jobs:
   docker:
-    if: ${{ github.repository == 'jackyzha0/quartz' }}  # Comment this out if you want to publish your own images on a fork!
+    if: ${{ github.repository == 'jackyzha0/quartz' }} # Comment this out if you want to publish your own images on a fork!
     runs-on: ubuntu-latest
     steps:
       - name: Set lowercase repository owner environment variable
