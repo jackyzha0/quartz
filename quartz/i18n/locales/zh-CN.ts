@@ -65,6 +65,7 @@ export default {
     error: {
       title: "无法找到",
       notFound: "私有笔记或笔记不存在。",
+      home: "返回首页",
     },
     folderContent: {
       folder: "文件夹",

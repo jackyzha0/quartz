@@ -2,7 +2,7 @@ import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } fro
 import path from "path"
 
 import style from "../styles/listPage.scss"
-import { PageList } from "../PageList"
+import { PageList, SortFn } from "../PageList"
 import { stripSlashes, simplifySlug } from "../../util/path"
 import { Root } from "hast"
 import { htmlToJsx } from "../../util/jsx"
@@ -13,6 +13,7 @@ interface FolderContentOptions {
    * Whether to display number of folders
    */
   showFolderCount: boolean
+  sort?: SortFn
 }
 
 const defaultOptions: FolderContentOptions = {
@@ -37,6 +38,7 @@ export default ((opts?: Partial<FolderContentOptions>) => {
     const classes = ["popover-hint", ...cssClasses].join(" ")
     const listProps = {
       ...props,
+      sort: options.sort,
       allFiles: allPagesInFolder,
     }
 

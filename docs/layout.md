@@ -12,15 +12,20 @@ export interface FullPageLayout {
   header: QuartzComponent[] // laid out horizontally
   beforeBody: QuartzComponent[] // laid out vertically
   pageBody: QuartzComponent // single component
-  left: QuartzComponent[] // vertical on desktop, horizontal on mobile
-  right: QuartzComponent[] // vertical on desktop, horizontal on mobile
+  afterBody: QuartzComponent[] // laid out vertically
+  left: QuartzComponent[] // vertical on desktop and tablet, horizontal on mobile
+  right: QuartzComponent[] // vertical on desktop, horizontal on tablet and mobile
   footer: QuartzComponent // single component
 }
 ```
 
 These correspond to following parts of the page:
 
-![[quartz layout.png|800]]
+| Layout                          | Preview                             |
+| ------------------------------- | ----------------------------------- |
+| Desktop (width > 1200px)        | ![[quartz-layout-desktop.png\|800]] |
+| Tablet (800px < width < 1200px) | ![[quartz-layout-tablet.png\|800]]  |
+| Mobile (width < 800px)          | ![[quartz-layout-mobile.png\|800]]  |
 
 > [!note]
 > There are two additional layout fields that are _not_ shown in the above diagram.
@@ -31,6 +36,23 @@ These correspond to following parts of the page:
 Quartz **components**, like plugins, can take in additional properties as configuration options. If you're familiar with React terminology, you can think of them as Higher-order Components.
 
 See [a list of all the components](component.md) for all available components along with their configuration options. You can also checkout the guide on [[creating components]] if you're interested in further customizing the behaviour of Quartz.
+
+### Layout breakpoints
+
+Quartz has different layouts depending on the width the screen viewing the website.
+
+The breakpoints for layouts can be configured in `variables.scss`.
+
+- `mobile`: screen width below this size will use mobile layout.
+- `desktop`: screen width above this size will use desktop layout.
+- Screen width between `mobile` and `desktop` width will use the tablet layout.
+
+```scss
+$breakpoints: (
+  mobile: 800px,
+  desktop: 1200px,
+);
+```
 
 ### Style
 

@@ -6,7 +6,7 @@ Quartz is a fast, batteries-included static-site generator that transforms Markd
 
 ## 🪴 Get Started
 
-Quartz requires **at least [Node](https://nodejs.org/) v18.14** and `npm` v9.3.1 to function correctly. Ensure you have this installed on your machine before continuing.
+Quartz requires **at least [Node](https://nodejs.org/) v20** and `npm` v9.3.1 to function correctly. Ensure you have this installed on your machine before continuing.
 
 Then, in your terminal of choice, enter the following commands line by line:
 
@@ -31,7 +31,7 @@ If you prefer instructions in a video format you can try following Nicole van de
 
 ## 🔧 Features
 
-- [[Obsidian compatibility]], [[full-text search]], [[graph view]], note transclusion, [[wikilinks]], [[backlinks]], [[features/Latex|Latex]], [[syntax highlighting]], [[popover previews]], [[Docker Support]], [[i18n|internationalization]] and [many more](./features) right out of the box
+- [[Obsidian compatibility]], [[full-text search]], [[graph view]], note transclusion, [[wikilinks]], [[backlinks]], [[features/Latex|Latex]], [[syntax highlighting]], [[popover previews]], [[Docker Support]], [[i18n|internationalization]], [[comments]] and [many more](./features) right out of the box
 - Hot-reload for both configuration and content
 - Simple JSX layouts and [[creating components|page components]]
 - [[SPA Routing|Ridiculously fast page loads]] and tiny bundle sizes

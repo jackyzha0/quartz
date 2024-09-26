@@ -1,19 +1,43 @@
+@use "../../styles/variables.scss" as *;
+
 .backlinks {
-  position: relative;
+  @media all and not ($mobile) {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    &:after {
+      pointer-events: none;
+      content: "";
+      width: 100%;
+      height: 50px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      background: linear-gradient(transparent 0px, var(--light));
+    }
 
-  & > h3 {
-    font-size: 1rem;
-    margin: 0;
-  }
+    & > h3 {
+      font-size: 1rem;
+      margin: 0;
+    }
 
-  & > ul {
-    list-style: none;
-    padding: 0;
-    margin: 0.5rem 0;
+    & > ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
 
-    & > li {
-      & > a {
-        background-color: transparent;
+      & > li {
+        & > a {
+          background-color: transparent;
+        }
+      }
+    }
+
+    & > .overflow {
+      &:after {
+        display: none;
       }
     }
   }
