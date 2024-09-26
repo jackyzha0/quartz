@@ -2,8 +2,7 @@
 
 .backlinks {
   flex-direction: column;
-  @media all and not ($mobile) {
-    /*&:after {
+  /*&:after {
       pointer-events: none;
       content: "";
       width: 100%;
@@ -16,27 +15,30 @@
       background: linear-gradient(transparent 0px, var(--light));
     }*/
 
-    & > h3 {
-      font-size: 1rem;
-      margin: 0;
-    }
+  & > h3 {
+    font-size: 1rem;
+    margin: 0;
+  }
 
-    & > ul {
-      list-style: none;
-      padding: 0;
-      margin: 0.5rem 0;
+  & > ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0;
 
-      & > li {
-        & > a {
-          background-color: transparent;
-        }
+    & > li {
+      & > a {
+        background-color: transparent;
       }
     }
+  }
 
-    & > .overflow {
-      &:after {
-        display: none;
-      }
+  & > .overflow {
+    &:after {
+      display: none;
+    }
+    height: auto;
+    @media all and ($desktop) {
+      height: 250px;
     }
   }
 }
