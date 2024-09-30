@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@clack/prompts": "^0.7.0",
-    "@floating-ui/dom": "^1.6.10",
+    "@floating-ui/dom": "^1.6.11",
     "@napi-rs/simple-git": "0.1.19",
     "@tweenjs/tween.js": "^25.0.0",
     "async-mutex": "^0.5.0",
