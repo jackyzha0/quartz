@@ -51,7 +51,7 @@
     "gray-matter": "^4.0.3",
     "hast-util-to-html": "^9.0.3",
     "hast-util-to-jsx-runtime": "^2.3.0",
-    "hast-util-to-string": "^3.0.0",
+    "hast-util-to-string": "^3.0.1",
     "is-absolute-url": "^4.0.1",
     "js-yaml": "^4.1.0",
     "lightningcss": "^1.26.0",
