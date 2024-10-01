@@ -2,6 +2,9 @@
 
 .explorer-container {
   overflow-y: hidden;
+  @media all and ($mobile) {
+    order: -1;
+  }
 
   .explorer {
     display: flex;
@@ -12,7 +15,6 @@
       display: flex;
     }
     @media all and ($mobile) {
-      order: -1;
       button#mobile-explorer {
         display: flex;
       }
@@ -212,7 +214,7 @@
         width: 100%;
         transition: all 300ms ease-in-out;
         overflow: hidden;
-        padding: 1rem 2rem 5rem;
+        padding: 2rem 2rem 4rem;
         height: 100%;
         max-height: calc(100dvh - 8rem);
         margin-top: 2rem;
