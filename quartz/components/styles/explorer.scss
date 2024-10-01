@@ -203,10 +203,8 @@
   .mobile-explorer {
     #explorer-content {
       overscroll-behavior: none;
-      //left: 0;
       z-index: 100;
       position: absolute;
-      //max-height: max-content !important;
       background-color: var(--light);
       max-width: calc(100% - 4rem);
       left: 0;
@@ -214,16 +212,12 @@
       transition: all 300ms ease-in-out;
       overflow: hidden;
       padding: 1rem 2rem 5rem;
-      //height: calc(100dvh - 36px);
       height: 100%;
       max-height: calc(100dvh - 8rem);
-      //border-top-left-radius: 23px;
-      //border-top-right-radius: 23px;
       margin-top: 36px;
 
       &:not(.collapsed) {
         height: calc(100dvh - 8rem);
-        //top: 10dvh;
       }
 
       ul.overflow {
