@@ -9,6 +9,7 @@
     display: flex;
   }
   @media all and ($mobile) {
+    order: -1;
     .mobile-explorer {
       display: flex;
     }
@@ -236,6 +237,7 @@
     }
 
     #mobile-explorer {
+      margin: 5px;
       &:not(.collapsed) .lucide-menu {
         transform: rotate(90deg);
         transition: transform 200ms ease-in-out;
@@ -277,5 +279,6 @@
 @media all and ($mobile) {
   .lock-scroll {
     position: fixed;
+    width: calc(100% - 2rem);
   }
 }
