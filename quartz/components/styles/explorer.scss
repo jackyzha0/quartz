@@ -1,6 +1,7 @@
 @use "../../styles/variables.scss" as *;
 
 .explorer-container {
+  overflow-y: hidden;
   .mobile-explorer {
     display: none;
   }
@@ -18,6 +19,7 @@
 
   .mobile-explorer,
   .desktop-explorer {
+    height: 100%;
     flex-direction: column;
     overflow-y: hidden;
     &.desktop-only {
@@ -197,25 +199,25 @@
     margin: 0;
   }
 
-  .mobile-explorer,
-  .desktop-explorer {
+  .mobile-explorer {
     #explorer-content {
+      overscroll-behavior: none;
       //left: 0;
       z-index: 100;
       position: absolute;
       //max-height: max-content !important;
       background-color: var(--light);
-      //max-width: calc(100% - 36px);
-      max-width: 100%;
-      width: calc(100% - 36px + 4px);
-      //margin-right: 36px;
+      max-width: calc(100% - 4rem);
+      left: 0;
+      width: 100%;
       transition: all 300ms ease-in-out;
       overflow: hidden;
-      padding: 0 16px;
-      height: calc(100dvh - 8rem);
+      padding: 1rem 2rem 5rem;
+      //height: calc(100dvh - 36px);
+      height: 100%;
+      max-height: calc(100dvh - 8rem);
       //border-top-left-radius: 23px;
       //border-top-right-radius: 23px;
-      border-radius: 23px;
       margin-top: 36px;
 
       &:not(.collapsed) {
@@ -233,8 +235,7 @@
       }
     }
 
-    #mobile-explorer,
-    #desktop-explorer {
+    #mobile-explorer {
       &:not(.collapsed) .lucide-menu {
         transform: rotate(90deg);
         transition: transform 200ms ease-in-out;
@@ -266,5 +267,15 @@
     html:has(.no-scroll) {
       overflow: auto !important;
     }
+  }
+}
+
+// Lock page scroll on mobile
+.lock-scroll {
+  position: static;
+}
+@media all and ($mobile) {
+  .lock-scroll {
+    position: fixed;
   }
 }

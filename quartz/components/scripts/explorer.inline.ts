@@ -62,19 +62,19 @@ function toggleExplorer(this: HTMLElement) {
   if (!content) return
   content.classList.toggle("collapsed")
   //content.style.maxHeight = content.style.maxHeight === "0px" ? content.scrollHeight + "px" : "0px"
-  content.style.maxHeight = content.style.maxHeight === "0px" ? "calc(100vh - 8rem)" : "0px"
+  content.style.maxHeight = content.style.maxHeight === "0px" ? "100vh" : "0px"
 
   //prevent scroll under
-  if (this.dataset.mobile === "true" && document.querySelector("#mobile-explorer")) {
+  if (document.querySelector("#mobile-explorer")) {
     const article = document.querySelectorAll(
       ".popover-hint, footer, .backlinks, .graph, .toc, #progress",
     )
-    const header = document.querySelector(".page .page-header")
+    const header = document.querySelector("#quartz-body")
     if (article)
       article.forEach((element) => {
         element.classList.toggle("no-scroll")
       })
-    if (header) header.classList.toggle("fixed")
+    if (header) header.classList.toggle("lock-scroll")
   }
 }
 
