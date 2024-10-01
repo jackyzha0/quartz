@@ -27,11 +27,11 @@ $mobileGrid: (
   rowGap: "5px",
   columnGap: "5px",
   templateAreas:
-    '"sidebar-left"\
-      "page-header"\
-      "page-center"\
-      "sidebar-right"\
-      "page-footer"',
+    '"grid-sidebar-left"\
+      "grid-header"\
+      "grid-center"\
+      "grid-sidebar-right"\
+      "grid-footer"',
 );
 $tabletGrid: (
   templateRows: "auto auto auto auto",
@@ -39,10 +39,10 @@ $tabletGrid: (
   rowGap: "5px",
   columnGap: "5px",
   templateAreas:
-    '"sidebar-left page-header"\
-      "sidebar-left page-center"\
-      "sidebar-left sidebar-right"\
-      "sidebar-left page-footer"',
+    '"grid-sidebar-left grid-header"\
+      "grid-sidebar-left grid-center"\
+      "grid-sidebar-left grid-sidebar-right"\
+      "grid-sidebar-left grid-footer"',
 );
 $desktopGrid: (
   templateRows: "auto auto auto",
@@ -50,7 +50,7 @@ $desktopGrid: (
   rowGap: "5px",
   columnGap: "5px",
   templateAreas:
-    '"sidebar-left page-header sidebar-right"\
-      "sidebar-left page-center sidebar-right"\
-      "sidebar-left page-footer sidebar-right"',
+    '"grid-sidebar-left grid-header grid-sidebar-right"\
+      "grid-sidebar-left grid-center grid-sidebar-right"\
+      "grid-sidebar-left grid-footer grid-sidebar-right"',
 );
