@@ -190,7 +190,7 @@ a {
 
     & .sidebar.left {
       z-index: 1;
-      grid-area: sidebar-left;
+      grid-area: grid-sidebar-left;
       flex-direction: column;
       @media all and ($mobile) {
         gap: 0;
@@ -205,7 +205,7 @@ a {
     }
 
     & .sidebar.right {
-      grid-area: sidebar-right;
+      grid-area: grid-sidebar-right;
       margin-right: 0;
       flex-direction: column;
       @media all and ($mobile) {
@@ -232,7 +232,7 @@ a {
     }
 
     & .page-header {
-      grid-area: page-header;
+      grid-area: grid-header;
       margin: $topSpacing 0 0 0;
       @media all and ($mobile) {
         margin-top: 0;
@@ -241,11 +241,11 @@ a {
     }
 
     & .center > article {
-      grid-area: page-center;
+      grid-area: grid-center;
     }
 
-    & .page-footer {
-      grid-area: page-footer;
+    & footer {
+      grid-area: grid-footer;
     }
 
     & .center,
