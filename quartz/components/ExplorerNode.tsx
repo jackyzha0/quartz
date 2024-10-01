@@ -16,6 +16,7 @@ export interface Options {
   folderDefaultState: "collapsed" | "open"
   folderClickBehavior: "collapse" | "link"
   useSavedState: boolean
+  usePagePath: boolean
   sortFn: (a: FileNode, b: FileNode) => number
   filterFn: (node: FileNode) => boolean
   mapFn: (node: FileNode) => void
@@ -124,9 +125,10 @@ export class FileNode {
    * Get folder representation with state of tree.
    * Intended to only be called on root node before changes to the tree are made
    * @param collapsed default state of folders (collapsed by default or not)
+   * @param currentFile current file
    * @returns array containing folder state for tree
    */
-  getFolderPaths(collapsed: boolean): FolderState[] {
+  getFolderPaths(collapsed: boolean, currentFile: string): FolderState[] {
     const folderPaths: FolderState[] = []
 
     const traverse = (node: FileNode, currentPath: string) => {
