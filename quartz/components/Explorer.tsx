@@ -88,7 +88,7 @@ export default ((userOpts?: Partial<Options>) => {
     }
     return (
       <div class="explorer-container">
-        <div class={`mobile-explorer explorer ${displayClass ?? ""}`}>
+        <div class={`explorer ${displayClass ?? ""}`}>
           <button
             type="button"
             id="mobile-explorer"
@@ -115,14 +115,6 @@ export default ((userOpts?: Partial<Options>) => {
               <line x1="4" x2="20" y1="18" y2="18" />
             </svg>
           </button>
-          <div id="explorer-content" class="collapsed">
-            <ul class="overflow" id="explorer-ul">
-              <ExplorerNode node={fileTree} opts={opts} fileData={fileData} />
-              <li id="explorer-end" />
-            </ul>
-          </div>
-        </div>
-        <div class={`desktop-explorer explorer ${displayClass ?? ""}`}>
           <button
             type="button"
             id="desktop-explorer"

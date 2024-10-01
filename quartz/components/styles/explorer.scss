@@ -2,24 +2,24 @@
 
 .explorer-container {
   overflow-y: hidden;
-  .mobile-explorer {
-    display: none;
-  }
-  .desktop-explorer {
+
+  .explorer {
     display: flex;
-  }
-  @media all and ($mobile) {
-    order: -1;
-    .mobile-explorer {
-      display: flex;
-    }
-    .desktop-explorer {
+    button#mobile-explorer {
       display: none;
     }
-  }
-
-  .mobile-explorer,
-  .desktop-explorer {
+    button#desktop-explorer {
+      display: flex;
+    }
+    @media all and ($mobile) {
+      order: -1;
+      button#mobile-explorer {
+        display: flex;
+      }
+      button#desktop-explorer {
+        display: none;
+      }
+    }
     height: 100%;
     flex-direction: column;
     overflow-y: hidden;
@@ -88,19 +88,19 @@
     list-style: none;
     overflow: hidden;
     overflow-y: auto;
-    max-height: 100%;
+    max-height: 0px;
     transition:
       max-height 0.35s ease,
-      visibility 0s linear 0s;
+      visibility 0s linear 0.35s;
     margin-top: 0.5rem;
-    visibility: visible;
+    visibility: hidden;
 
     &.collapsed {
-      max-height: 0;
+      max-height: 100%;
       transition:
         max-height 0.35s ease,
-        visibility 0s linear 0.35s;
-      visibility: hidden;
+        visibility 0s linear 0s;
+      visibility: visible;
     }
 
     & ul {
@@ -200,47 +200,51 @@
     margin: 0;
   }
 
-  .mobile-explorer {
-    #explorer-content {
-      overscroll-behavior: none;
-      z-index: 100;
-      position: absolute;
-      background-color: var(--light);
-      max-width: calc(100% - 4rem);
-      left: 0;
-      width: 100%;
-      transition: all 300ms ease-in-out;
-      overflow: hidden;
-      padding: 1rem 2rem 5rem;
-      height: 100%;
-      max-height: calc(100dvh - 8rem);
-      margin-top: 36px;
-
-      &:not(.collapsed) {
-        height: calc(100dvh - 8rem);
-      }
-
-      ul.overflow {
-        max-height: calc(100dvh - 8rem);
+  .explorer {
+    @media all and ($mobile) {
+      #explorer-content {
+        overscroll-behavior: none;
+        z-index: 100;
+        position: absolute;
+        background-color: var(--light);
+        max-width: calc(100% - 4rem);
+        left: 0;
         width: 100%;
+        transition: all 300ms ease-in-out;
+        overflow: hidden;
+        padding: 1rem 2rem 5rem;
+        height: 100%;
+        max-height: calc(100dvh - 8rem);
+        margin-top: 2rem;
+        visibility: visible;
+
+        &:not(.collapsed) {
+          height: calc(100dvh - 8rem);
+        }
+
+        ul.overflow {
+          max-height: calc(100dvh - 8rem);
+          width: 100%;
+        }
+
+        &.collapsed {
+          height: 0;
+          visibility: hidden;
+        }
       }
 
-      &.collapsed {
-        height: 0;
-      }
-    }
-
-    #mobile-explorer {
-      margin: 5px;
-      &:not(.collapsed) .lucide-menu {
-        transform: rotate(90deg);
-        transition: transform 200ms ease-in-out;
-      }
-      .lucide-menu {
-        stroke: var(--darkgray);
-        transition: transform 200ms ease;
-        &:hover {
-          stroke: var(--dark);
+      #mobile-explorer {
+        margin: 5px;
+        &:not(.collapsed) .lucide-menu {
+          transform: rotate(90deg);
+          transition: transform 200ms ease-in-out;
+        }
+        .lucide-menu {
+          stroke: var(--darkgray);
+          transition: transform 200ms ease;
+          &:hover {
+            stroke: var(--dark);
+          }
         }
       }
     }

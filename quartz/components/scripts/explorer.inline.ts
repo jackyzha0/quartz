@@ -58,11 +58,15 @@ function toggleFolder(evt: MouseEvent) {
 function toggleExplorer(this: HTMLElement) {
   // Toggle collapsed state of entire explorer
   this.classList.toggle("collapsed")
-  const content = this.nextElementSibling as MaybeHTMLElement
+  const content = (
+    this.nextElementSibling?.nextElementSibling
+      ? this.nextElementSibling.nextElementSibling
+      : this.nextElementSibling
+  ) as MaybeHTMLElement
   if (!content) return
   content.classList.toggle("collapsed")
   //content.style.maxHeight = content.style.maxHeight === "0px" ? content.scrollHeight + "px" : "0px"
-  content.style.maxHeight = content.style.maxHeight === "0px" ? "100dvh" : "0px"
+  content.classList.toggle("explorer-viewmode")
 
   //prevent scroll under
   if (document.querySelector("#mobile-explorer")) {
@@ -167,9 +171,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const explorer = document.querySelector("#mobile-explorer")
   if (explorer) {
     explorer.classList.add("collapsed")
-    const content = explorer.nextElementSibling as HTMLElement
+    const content = explorer.nextElementSibling?.nextElementSibling as HTMLElement
     content.classList.add("collapsed")
-    content.style.maxHeight = "0px"
+    content.classList.toggle("explorer-viewmode")
   }
   toggleExplorerFolders()
 })
@@ -178,9 +182,9 @@ document.addEventListener("nav", () => {
   const explorer = document.querySelector("#mobile-explorer")
   if (explorer) {
     explorer.classList.add("collapsed")
-    const content = explorer.nextElementSibling as HTMLElement
+    const content = explorer.nextElementSibling?.nextElementSibling as HTMLElement
     content.classList.add("collapsed")
-    content.style.maxHeight = "0px"
+    content.classList.toggle("explorer-viewmode")
   }
   setupExplorer()
   //add collapsed class to all folders
