@@ -88,7 +88,6 @@ function setupExplorer() {
 
     // Convert to bool
     const useSavedFolderState = explorer?.dataset.savestate === "true"
-    const usePagePathState = explorer?.dataset.pagepathstate === "true"
 
     if (explorer) {
       // Get config
@@ -129,7 +128,7 @@ function setupExplorer() {
     for (const { path, collapsed } of newExplorerState) {
       currentExplorerState.push({
         path,
-        collapsed: usePagePathState ? (oldIndex.get(path) ?? collapsed) : collapsed,
+        collapsed: oldIndex.get(path) ?? collapsed,
       })
     }
 
