@@ -33,6 +33,7 @@ export default {
       title: "エクスプローラー",
     },
     footer: {
+      poweredBy: "Powered by",
       createdWith: "作成",
     },
     graph: {

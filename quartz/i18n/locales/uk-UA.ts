@@ -33,6 +33,7 @@ export default {
       title: "Провідник",
     },
     footer: {
+      poweredBy: "Powered by",
       createdWith: "Створено за допомогою",
     },
     graph: {

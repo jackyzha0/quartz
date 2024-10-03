@@ -37,9 +37,11 @@ async function mouseEnterHandler(
   targetUrl.hash = ""
   targetUrl.search = ""
 
-  const response = await fetch(`${targetUrl}`).catch((err) => {
-    console.error(err)
-  })
+  const contents = await fetch(`${targetUrl}`)
+    .then((res) => res.text())
+    .catch((err) => {
+      console.error(err)
+    })
 
   // bailout if another popover exists
   if (hasAlreadyBeenFetched()) {

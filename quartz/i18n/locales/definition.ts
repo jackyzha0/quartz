@@ -35,6 +35,7 @@ export interface Translation {
       title: string
     }
     footer: {
+      poweredBy: string
       createdWith: string
     }
     graph: {

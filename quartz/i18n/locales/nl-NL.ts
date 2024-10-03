@@ -33,6 +33,7 @@ export default {
       title: "Verkenner",
     },
     footer: {
+      poweredBy: "Powered by",
       createdWith: "Gemaakt met",
     },
     graph: {

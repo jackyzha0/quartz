@@ -1,0 +1,12 @@
+name: Control utterances issue
+on:
+  issues:
+    types: [opened]
+jobs:
+  close-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close Issue
+        if: github.event.issue.user.login == 'utterances-bot'
+        uses: peter-evans/close-issue@v3
+            
