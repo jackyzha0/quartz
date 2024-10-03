@@ -68,9 +68,7 @@ export default ((userOpts?: Partial<Options>) => {
 
     // Get all folders of tree. Initialize with collapsed state
     // Stringify to pass json tree as data attribute ([data-tree])
-    const folders = fileTree.getFolderPaths(
-      opts.folderDefaultState === "collapsed"
-    )
+    const folders = fileTree.getFolderPaths(opts.folderDefaultState === "collapsed")
     jsonTree = JSON.stringify(folders)
   }
 
