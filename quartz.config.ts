@@ -1,5 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import { OnlyContentPage } from "./quartz/plugins/emitters/OnlyContentPage"
 
 /**
  * Quartz 4.0 Configuration
@@ -77,6 +78,7 @@ const config: QuartzConfig = {
       Plugin.AliasRedirects(),
       Plugin.ComponentResources(),
       Plugin.ContentPage(),
+      OnlyContentPage(), // Register the custom emitter
       Plugin.FolderPage(),
       Plugin.TagPage(),
       Plugin.ContentIndex({
