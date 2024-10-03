@@ -134,8 +134,11 @@ export class FileNode {
     const traverse = (node: FileNode, currentPath: string) => {
       if (!node.file) {
         const folderPath = joinSegments(currentPath, node.name)
+        const collapseState = !currentFile.includes(
+          folderPath.replace("'", "-").replaceAll("../", ""),
+        )
         if (folderPath !== "") {
-          folderPaths.push({ path: folderPath, collapsed })
+          folderPaths.push({ path: folderPath, collapsed: collapseState || collapsed })
         }
 
         node.children.forEach((child) => traverse(child, folderPath))
