@@ -4,10 +4,6 @@ import { FolderState } from "../ExplorerNode"
 type MaybeHTMLElement = HTMLElement | undefined
 let currentExplorerState: FolderState[]
 
-function escapeCharacters(str: string) {
-  return str.replace(/'/g, "\\'").replace(/"/g, '\\"')
-}
-
 const observer = new IntersectionObserver((entries) => {
   // If last element is observed, remove gradient of "overflow" class so element is visible
   const explorerUl = document.getElementById("explorer-ul")
@@ -65,20 +61,13 @@ function toggleExplorer(this: HTMLElement) {
   ) as MaybeHTMLElement
   if (!content) return
   content.classList.toggle("collapsed")
-  //content.style.maxHeight = content.style.maxHeight === "0px" ? content.scrollHeight + "px" : "0px"
   content.classList.toggle("explorer-viewmode")
 
-  //prevent scroll under
+  // Prevent scroll under
   if (document.querySelector("#mobile-explorer")) {
-    const article = document.querySelectorAll(
-      ".popover-hint, footer, .backlinks, .graph, .toc, #progress",
-    )
-    const header = document.querySelector("#quartz-body")
-    if (article)
-      article.forEach((element) => {
-        element.classList.toggle("no-scroll")
-      })
-    if (header) header.classList.toggle("lock-scroll")
+    // Disable scrolling one the page when the explorer is opened on mobile
+    const bodySelector = document.querySelector("#quartz-body")
+    if (bodySelector) bodySelector.classList.toggle("lock-scroll")
   }
 }
 
@@ -92,6 +81,7 @@ function setupExplorer() {
 
     // Convert to bool
     const useSavedFolderState = explorer?.dataset.savestate === "true"
+    const usePagePathState = explorer?.dataset.pagepathstate === "true"
 
     if (explorer) {
       // Get config
@@ -124,15 +114,13 @@ function setupExplorer() {
     const oldExplorerState: FolderState[] =
       storageTree && useSavedFolderState ? JSON.parse(storageTree) : []
     const oldIndex = new Map(oldExplorerState.map((entry) => [entry.path, entry.collapsed]))
-    //console.log(explorer.dataset.tree)
-    //console.log(explorer.dataset.tree ? JSON.parse(explorer.dataset.tree) : [])
     const newExplorerState: FolderState[] = explorer.dataset.tree
       ? JSON.parse(explorer.dataset.tree)
       : []
     currentExplorerState = []
 
     for (const { path, collapsed } of newExplorerState) {
-      currentExplorerState.push({ path, collapsed: /*oldIndex.get(path) ?? */ collapsed })
+      currentExplorerState.push({ path, collapsed: usePagePathState ? oldIndex.get(path) ?? collapsed : collapsed })
     }
 
     currentExplorerState.map((folderState) => {
@@ -167,24 +155,15 @@ function toggleExplorerFolders() {
 
 window.addEventListener("resize", setupExplorer)
 
-document.addEventListener("DOMContentLoaded", () => {
-  const explorer = document.querySelector("#mobile-explorer")
-  if (explorer) {
-    explorer.classList.add("collapsed")
-    const content = explorer.nextElementSibling?.nextElementSibling as HTMLElement
-    content.classList.add("collapsed")
-    content.classList.toggle("explorer-viewmode")
-  }
-  toggleExplorerFolders()
-})
-
 document.addEventListener("nav", () => {
   const explorer = document.querySelector("#mobile-explorer")
   if (explorer) {
     explorer.classList.add("collapsed")
     const content = explorer.nextElementSibling?.nextElementSibling as HTMLElement
-    content.classList.add("collapsed")
-    content.classList.toggle("explorer-viewmode")
+    if (content) {
+      content.classList.add("collapsed")
+      content.classList.toggle("explorer-viewmode")
+    }
   }
   setupExplorer()
   //add collapsed class to all folders
