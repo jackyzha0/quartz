@@ -17,6 +17,33 @@ const observer = new IntersectionObserver((entries) => {
   }
 })
 
+function toggleExplorer(this: HTMLElement) {
+  // Toggle collapsed state of entire explorer
+  this.classList.toggle("collapsed")
+
+  // Toggle collapsed aria state of entire explorer
+  this.setAttribute(
+    "aria-expanded",
+    this.getAttribute("aria-expanded") === "true" ? "false" : "true",
+  )
+
+  const content = (
+    this.nextElementSibling?.nextElementSibling
+      ? this.nextElementSibling.nextElementSibling
+      : this.nextElementSibling
+  ) as MaybeHTMLElement
+  if (!content) return
+  content.classList.toggle("collapsed")
+  content.classList.toggle("explorer-viewmode")
+
+  // Prevent scroll under
+  if (document.querySelector("#mobile-explorer")) {
+    // Disable scrolling one the page when the explorer is opened on mobile
+    const bodySelector = document.querySelector("#quartz-body")
+    if (bodySelector) bodySelector.classList.toggle("lock-scroll")
+  }
+}
+
 function toggleFolder(evt: MouseEvent) {
   evt.stopPropagation()
 
@@ -49,33 +76,6 @@ function toggleFolder(evt: MouseEvent) {
   toggleCollapsedByPath(currentExplorerState, fullFolderPath)
   const stringifiedFileTree = JSON.stringify(currentExplorerState)
   localStorage.setItem("fileTree", stringifiedFileTree)
-}
-
-function toggleExplorer(this: HTMLElement) {
-  // Toggle collapsed state of entire explorer
-  this.classList.toggle("collapsed")
-
-  // Toggle collapsed aria state of entire explorer
-  this.setAttribute(
-    "aria-expanded",
-    this.getAttribute("aria-expanded") === "true" ? "false" : "true",
-  )
-
-  const content = (
-    this.nextElementSibling?.nextElementSibling
-      ? this.nextElementSibling.nextElementSibling
-      : this.nextElementSibling
-  ) as MaybeHTMLElement
-  if (!content) return
-  content.classList.toggle("collapsed")
-  content.classList.toggle("explorer-viewmode")
-
-  // Prevent scroll under
-  if (document.querySelector("#mobile-explorer")) {
-    // Disable scrolling one the page when the explorer is opened on mobile
-    const bodySelector = document.querySelector("#quartz-body")
-    if (bodySelector) bodySelector.classList.toggle("lock-scroll")
-  }
 }
 
 function setupExplorer() {
