@@ -6,6 +6,7 @@ import script from "./scripts/explorer.inline"
 import { ExplorerNode, FileNode, Options } from "./ExplorerNode"
 import { QuartzPluginData } from "../plugins/vfile"
 import { i18n } from "../i18n"
+import { classNames } from "../util/lang"
 
 // Options interface defined in `ExplorerNode` to avoid circular dependency
 const defaultOptions = {
@@ -88,7 +89,7 @@ export default ((userOpts?: Partial<Options>) => {
     }
     return (
       <div class="explorer-container">
-        <div class={`explorer ${displayClass ?? ""}`}>
+        <div class={classNames(displayClass, "explorer")}>
           <button
             type="button"
             id="mobile-explorer"
