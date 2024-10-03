@@ -100,6 +100,8 @@ export default ((userOpts?: Partial<Options>) => {
             data-pagepathstate={opts.usePagePath}
             data-tree={jsonTree}
             data-mobile={true}
+            aria-controls="explorer-content"
+            aria-expanded={false}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -126,6 +128,8 @@ export default ((userOpts?: Partial<Options>) => {
             data-pagepathstate={opts.usePagePath}
             data-tree={jsonTree}
             data-mobile={false}
+            aria-controls="explorer-content"
+            aria-expanded={true}
           >
             <h2>{opts.title ?? i18n(cfg.locale).components.explorer.title}</h2>
             <svg

@@ -54,6 +54,13 @@ function toggleFolder(evt: MouseEvent) {
 function toggleExplorer(this: HTMLElement) {
   // Toggle collapsed state of entire explorer
   this.classList.toggle("collapsed")
+
+  // Toggle collapsed aria state of entire explorer
+  this.setAttribute(
+    "aria-expanded",
+    this.getAttribute("aria-expanded") === "true" ? "false" : "true",
+  )
+
   const content = (
     this.nextElementSibling?.nextElementSibling
       ? this.nextElementSibling.nextElementSibling
@@ -120,7 +127,10 @@ function setupExplorer() {
     currentExplorerState = []
 
     for (const { path, collapsed } of newExplorerState) {
-      currentExplorerState.push({ path, collapsed: usePagePathState ? oldIndex.get(path) ?? collapsed : collapsed })
+      currentExplorerState.push({
+        path,
+        collapsed: usePagePathState ? (oldIndex.get(path) ?? collapsed) : collapsed,
+      })
     }
 
     currentExplorerState.map((folderState) => {
@@ -166,7 +176,6 @@ document.addEventListener("nav", () => {
     }
   }
   setupExplorer()
-  //add collapsed class to all folders
 
   observer.disconnect()
 
