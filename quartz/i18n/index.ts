@@ -63,7 +63,7 @@ export const TRANSLATIONS = {
   "hu-HU": hu,
   "fa-IR": fa,
   "pl-PL": pl,
-  "cs-CZ": cs
+  "cs-CZ": cs,
 } as const
 
 export const defaultTranslation = "en-US"
