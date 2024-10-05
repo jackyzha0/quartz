@@ -586,3 +586,24 @@ iframe.pdf {
   width: 100%;
   border-radius: 5px;
 }
+
+// ========== Image captions ==========
+
+figure {
+  margin: 0;
+
+  > img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+figcaption {
+  text-align: center;
+  margin-top: .25rem;
+  font-size: .85rem;
+  line-height: 1.3rem;
+  opacity: .8;
+}
+
+// ====================================
