@@ -80,6 +80,7 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.1",
     "remark-smartypants": "^3.0.2",
+    "rfc4648": "^1.5.3",
     "rfdc": "^1.4.1",
     "rimraf": "^6.0.1",
     "serve-handler": "^6.1.5",

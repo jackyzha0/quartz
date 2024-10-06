@@ -80,5 +80,16 @@ export default {
       showingFirst: ({ count }) => `Mostrant les primeres ${count} etiquetes.`,
       totalTags: ({ count }) => `S'han trobat ${count} etiquetes en total.`,
     },
+    encryptedContent: {
+      loading: "Carregant...",
+      password: "Contrasenya",
+      submit: "Enviar",
+      enterPassword:
+        "Aquesta pàgina està bloquejada per defecte. Introduïu la contrasenya per desbloquejarla:",
+      modernBrowser: "Utilitzeu un navegador modern.",
+      wrongPassword: "Contrasenya incorrecta. Introduïu de nou la contrasenya per desbloquejar:",
+      noPayload: "No hi ha càrrega útil xifrada.",
+      decrypting: "Desxifrant...",
+    },
   },
 } as const satisfies Translation

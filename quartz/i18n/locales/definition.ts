@@ -80,5 +80,15 @@ export interface Translation {
       showingFirst: (variables: { count: number }) => string
       totalTags: (variables: { count: number }) => string
     }
+    encryptedContent: {
+      loading: string
+      password: string
+      submit: string
+      enterPassword: string
+      modernBrowser: string
+      wrongPassword: string
+      noPayload: string
+      decrypting: string
+    }
   }
 }

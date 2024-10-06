@@ -80,5 +80,15 @@ export default {
       showingFirst: ({ count }) => `Mostrando as ${count} primeiras tags.`,
       totalTags: ({ count }) => `Encontradas ${count} tags.`,
     },
+    encryptedContent: {
+      loading: "Carregando...",
+      password: "Senha",
+      submit: "Enviar",
+      enterPassword: "Esta página está bloqueada por padrão. Digite a senha para desbloquear:",
+      modernBrowser: "Use um navegador moderno.",
+      wrongPassword: "Parolă greșită. Vă rugăm să reintroduceți parola pentru a debloca:",
+      noPayload: "Não há nenhuma carga útil criptografada.",
+      decrypting: "Descifrando...",
+    },
   },
 } as const satisfies Translation
