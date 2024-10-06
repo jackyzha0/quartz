@@ -59,7 +59,14 @@ export const Lightbox: QuartzTransformerPlugin<Partial<Options>> = (userOpts) =>
           {
             contentType: "inline",
             loadTime: "afterDOMReady",
-            script: `const lightbox = GLightbox(${JSON.stringify(opts)});`,
+            // GLightbox needs to be reloaded whenever there's a page content change
+            // to make sure it loads all the images in the new page content.
+            // Ref: https://quartz.jzhao.xyz/advanced/creating-components#scripts-and-interactivity
+            script: `
+document.addEventListener("nav", () => {
+  const lightbox = GLightbox(${JSON.stringify(opts)});
+});
+`.trim(),
           },
         ],
       }
