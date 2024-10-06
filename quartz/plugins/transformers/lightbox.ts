@@ -19,7 +19,7 @@ const defaultOptions: Options = {
   openEffect: "zoom",
   closeEffect: "zoom",
   slideEffect: "slide",
-  closeButton: false,
+  closeButton: true,
 }
 
 export const Lightbox: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
