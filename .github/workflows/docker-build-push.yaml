@@ -86,32 +86,3 @@ jobs:
           labels: ${{ steps.meta.outputs.labels || steps.meta-pr.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha
-
-      - name: Sign the released image
-        if: ${{ github.event_name != 'pull_request' }}
-        env:
-          COSIGN_EXPERIMENTAL: "true"
-        run: echo "${{ steps.meta.outputs.tags }}" | xargs -I {} cosign sign --yes {}@${{ steps.build-and-push.outputs.digest }}
-      - name: Run Trivy in GitHub SBOM mode and submit results to Dependency Graph
-        uses: aquasecurity/trivy-action@master
-        if: ${{ github.event_name != 'pull_request' }}
-        with:
-          image-ref: "ghcr.io/${{ github.repository_owner }}/quartz:sha-${{ env.GITHUB_SHA_SHORT }}"
-          format: "github"
-          output: "dependency-results.sbom.json"
-          github-pat: ${{ secrets.GITHUB_TOKEN }}
-          scanners: "vuln"
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        if: ${{ github.event_name != 'pull_request' }}
-        with:
-          image-ref: "ghcr.io/${{ github.repository_owner }}/quartz:sha-${{ env.GITHUB_SHA_SHORT }}"
-          format: "sarif"
-          output: "trivy-results.sarif"
-          severity: "CRITICAL"
-          scanners: "vuln"
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
-        if: ${{ github.event_name != 'pull_request' }}
-        with:
-          sarif_file: "trivy-results.sarif"
