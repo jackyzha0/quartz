@@ -3,7 +3,7 @@ name: Docker build & push image
 on:
   push:
     branches: [v4]
-  tags: ["v*"]
+    tags: ["v*"]
   pull_request:
     branches: [v4]
     paths:
@@ -78,7 +78,7 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@v6
         with:
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
           build-args: |
             GIT_SHA=${{ env.GITHUB_SHA }}
             DOCKER_LABEL=sha-${{ env.GITHUB_SHA_SHORT }}
