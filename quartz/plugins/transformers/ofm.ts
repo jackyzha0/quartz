@@ -430,7 +430,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                   children: [
                     {
                       type: "text",
-                      value: useDefaultTitle ? capitalize(typeString).replace(/-/g, ' ') : titleContent + " ",
+                      value: useDefaultTitle
+                        ? capitalize(typeString).replace(/-/g, " ")
+                        : titleContent + " ",
                     },
                     ...restOfTitle,
                   ],
