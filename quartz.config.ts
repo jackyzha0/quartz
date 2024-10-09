@@ -1,5 +1,10 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import * as Text from "./quartz/plugins/transformers/text"
+import * as Markdown from "./quartz/plugins/transformers/markdown"
+import * as Html from "./quartz/plugins/transformers/html"
+import * as Resources from "./quartz/plugins/transformers/resources"
+import { html } from "d3"
 
 /**
  * Quartz 4.0 Configuration
@@ -54,7 +59,52 @@ const config: QuartzConfig = {
     },
   },
   plugins: {
-    transformers: [
+    transformers: {
+      textTransformers: [
+        Text.ObsidianFlavoredMarkdownComments(),
+        Text.ObsidianFlavoredMarkdownCallouts(),
+        Text.ObsidianFlavoredMarkdownWikilinks(),
+      ],
+      markdownTransformers: [
+        Markdown.FrontMatter(),
+        Markdown.CreatedModifiedDate({
+          priority: ["frontmatter", "filesystem"],
+        }),
+        Markdown.ObsidianFlavoredMarkdownWikilinks(),
+        Markdown.ObsidianFlavoredMarkdownHighlight(),
+        Markdown.ObsidianFlavoredMarkdownArrow(),
+        Markdown.ObsidianFlavoredMarkdownTags(),
+        Markdown.ObsidianFlavoredMarkdownVideoEmbed(),
+        Markdown.ObsidianFlavoredMarkdownCallouts(),
+        Markdown.ObsidianFlavoredMarkdownMermaid(),
+        Markdown.GitHubFlavoredMarkdownRemark(),
+        Markdown.TableOfContents(),
+        Markdown.Latex(),
+      ],
+      htmlTransformers: [
+        Html.SyntaxHighlighting({
+          theme: {
+            light: "github-light",
+            dark: "github-dark",
+          },
+          keepBackground: false,
+        }),
+        Html.ObsidianFlavoredMarkdownBlockReferences(),
+        Html.ObsidianFlavoredMarkdownYouTubeEmbed(),
+        Html.ObsidianFlavoredMarkdownCheckbox(),
+        Html.GitHubFlavoredMarkdownLinkHeadings(),
+        Html.CrawlLinks({ markdownLinkResolution: "shortest" }),
+        Html.Description(),
+        Html.Latex({ renderEngine: "katex" }),
+      ],
+      externalResources: [
+        Resources.ObsidianFlavoredMarkdownCheckbox(),
+        Resources.ObsidianFlavoredMarkdownCallouts(),
+        Resources.ObsidianFlavoredMarkdownMermaid(),
+        Resources.Latex({ renderEngine: "katex" }),
+      ],
+    },
+    /*transformers: [
       Plugin.FrontMatter(),
       Plugin.CreatedModifiedDate({
         priority: ["frontmatter", "filesystem"],
@@ -72,7 +122,7 @@ const config: QuartzConfig = {
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
-    ],
+    ],*/
     filters: [Plugin.RemoveDrafts()],
     emitters: [
       Plugin.AliasRedirects(),

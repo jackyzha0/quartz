@@ -1,4 +1,4 @@
-import { QuartzTransformerPlugin } from "../types"
+import { MarkdownTransformerPlugin, QuartzTransformerPlugin } from "../../types"
 import { Root } from "mdast"
 import { visit } from "unist-util-visit"
 import { toString } from "mdast-util-to-string"
@@ -25,11 +25,11 @@ interface TocEntry {
 }
 
 const slugAnchor = new Slugger()
-export const TableOfContents: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+export const TableOfContents: MarkdownTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "TableOfContents",
-    markdownPlugins() {
+    transformation() {
       return [
         () => {
           return async (tree: Root, file) => {
