@@ -4,7 +4,6 @@ import * as Text from "./quartz/plugins/transformers/text"
 import * as Markdown from "./quartz/plugins/transformers/markdown"
 import * as Html from "./quartz/plugins/transformers/html"
 import * as Resources from "./quartz/plugins/transformers/resources"
-import { html } from "d3"
 
 /**
  * Quartz 4.0 Configuration
@@ -104,25 +103,6 @@ const config: QuartzConfig = {
         Resources.Latex({ renderEngine: "katex" }),
       ],
     },
-    /*transformers: [
-      Plugin.FrontMatter(),
-      Plugin.CreatedModifiedDate({
-        priority: ["frontmatter", "filesystem"],
-      }),
-      Plugin.SyntaxHighlighting({
-        theme: {
-          light: "github-light",
-          dark: "github-dark",
-        },
-        keepBackground: false,
-      }),
-      Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
-      Plugin.GitHubFlavoredMarkdown(),
-      Plugin.TableOfContents(),
-      Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
-      Plugin.Description(),
-      Plugin.Latex({ renderEngine: "katex" }),
-    ],*/
     filters: [Plugin.RemoveDrafts()],
     emitters: [
       Plugin.AliasRedirects(),
