@@ -54,11 +54,15 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   const output = argv.output
 
   const pluginCount = Object.values(cfg.plugins).flat().length
-  const pluginNames = (key: "transformers" | "filters" | "emitters") =>
-    cfg.plugins[key].map((plugin) => plugin.name)
+  const pluginNames = (key: "filters" | "emitters") => cfg.plugins[key].map((plugin) => plugin.name)
   if (argv.verbose) {
     console.log(`Loaded ${pluginCount} plugins`)
-    console.log(`  Transformers: ${pluginNames("transformers").join(", ")}`)
+    console.log(`  Text Transformers: ${cfg.plugins["transformers"].textTransformers.join(", ")}`)
+    console.log(
+      `  Markdown Transformers: ${cfg.plugins["transformers"].markdownTransformers.join(", ")}`,
+    )
+    console.log(`  Html Transformers: ${cfg.plugins["transformers"].htmlTransformers.join(", ")}`)
+    console.log(`  External Resources: ${cfg.plugins["transformers"].externalResources.join(", ")}`)
     console.log(`  Filters: ${pluginNames("filters").join(", ")}`)
     console.log(`  Emitters: ${pluginNames("emitters").join(", ")}`)
   }
