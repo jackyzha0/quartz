@@ -44,7 +44,7 @@ function canonicalizeCallout(calloutName: string): keyof typeof calloutMapping {
 }
 
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
-const calloutRegex = new RegExp(/^\[\!(\w+)\|?(.+?)?\]([+-]?)/)
+const calloutRegex = new RegExp(/^\[\!([\w-]+)\|?(.+?)?\]([+-]?)/)
 
 export const ObsidianFlavoredMarkdownCallouts: MarkdownTransformerPlugin = () => {
   const mdastToHtml = (ast: PhrasingContent | Paragraph) => {
