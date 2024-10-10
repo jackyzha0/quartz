@@ -8,7 +8,6 @@ import popoverScript from "../../components/scripts/popover.inline"
 import styles from "../../styles/custom.scss"
 import popoverStyle from "../../components/styles/popover.scss"
 import { BuildCtx } from "../../util/ctx"
-import { StaticResources } from "../../util/resources"
 import { QuartzComponent } from "../../components/types"
 import { googleFontHref, joinStyles } from "../../util/theme"
 import { Features, transform } from "lightningcss"
@@ -69,13 +68,8 @@ async function joinScripts(scripts: string[]): Promise<string> {
   return res.code
 }
 
-function addGlobalPageResources(
-  ctx: BuildCtx,
-  staticResources: StaticResources,
-  componentResources: ComponentResources,
-) {
+function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentResources) {
   const cfg = ctx.cfg.configuration
-  const reloadScript = ctx.argv.serve
 
   // popovers
   if (cfg.enablePopovers) {
@@ -85,12 +79,12 @@ function addGlobalPageResources(
 
   if (cfg.analytics?.provider === "google") {
     const tagId = cfg.analytics.tagId
-    staticResources.js.push({
-      src: `https://www.googletagmanager.com/gtag/js?id=${tagId}`,
-      contentType: "external",
-      loadTime: "afterDOMReady",
-    })
     componentResources.afterDOMLoaded.push(`
+      const gtagScript = document.createElement("script")
+      gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=${tagId}"
+      gtagScript.async = true
+      document.head.appendChild(gtagScript)
+
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
       gtag("js", new Date());
@@ -120,11 +114,52 @@ function addGlobalPageResources(
   } else if (cfg.analytics?.provider === "umami") {
     componentResources.afterDOMLoaded.push(`
       const umamiScript = document.createElement("script")
-      umamiScript.src = "${cfg.analytics.host}" ?? "https://analytics.umami.is/script.js"
+      umamiScript.src = "${cfg.analytics.host ?? "https://analytics.umami.is"}/script.js"
       umamiScript.setAttribute("data-website-id", "${cfg.analytics.websiteId}")
       umamiScript.async = true
 
       document.head.appendChild(umamiScript)
+    `)
+  } else if (cfg.analytics?.provider === "goatcounter") {
+    componentResources.afterDOMLoaded.push(`
+      const goatcounterScript = document.createElement("script")
+      goatcounterScript.src = "${cfg.analytics.scriptSrc ?? "https://gc.zgo.at/count.js"}"
+      goatcounterScript.async = true
+      goatcounterScript.setAttribute("data-goatcounter",
+        "https://${cfg.analytics.websiteId}.${cfg.analytics.host ?? "goatcounter.com"}/count")
+      document.head.appendChild(goatcounterScript)
+    `)
+  } else if (cfg.analytics?.provider === "posthog") {
+    componentResources.afterDOMLoaded.push(`
+      const posthogScript = document.createElement("script")
+      posthogScript.innerHTML= \`!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+      posthog.init('${cfg.analytics.apiKey}',{api_host:'${cfg.analytics.host ?? "https://app.posthog.com"}'})\`
+      document.head.appendChild(posthogScript)
+    `)
+  } else if (cfg.analytics?.provider === "tinylytics") {
+    const siteId = cfg.analytics.siteId
+    componentResources.afterDOMLoaded.push(`
+      const tinylyticsScript = document.createElement("script")
+      tinylyticsScript.src = "https://tinylytics.app/embed/${siteId}.js"
+      tinylyticsScript.defer = true
+      document.head.appendChild(tinylyticsScript)
+    `)
+  } else if (cfg.analytics?.provider === "cabin") {
+    componentResources.afterDOMLoaded.push(`
+      const cabinScript = document.createElement("script")
+      cabinScript.src = "${cfg.analytics.host ?? "https://scripts.withcabin.com"}/hello.js"
+      cabinScript.defer = true
+      cabinScript.async = true
+      document.head.appendChild(cabinScript)
+    `)
+  } else if (cfg.analytics?.provider === "clarity") {
+    componentResources.afterDOMLoaded.push(`
+      const clarityScript = document.createElement("script")
+      clarityScript.innerHTML= \`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "${cfg.analytics.projectId}");\`
+      document.head.appendChild(clarityScript)
     `)
   }
 
@@ -138,115 +173,72 @@ function addGlobalPageResources(
       document.dispatchEvent(event)
     `)
   }
-
-  let wsUrl = `ws://localhost:${ctx.argv.wsPort}`
-
-  if (ctx.argv.remoteDevHost) {
-    wsUrl = `wss://${ctx.argv.remoteDevHost}:${ctx.argv.wsPort}`
-  }
-
-  if (reloadScript) {
-    staticResources.js.push({
-      loadTime: "afterDOMReady",
-      contentType: "inline",
-      script: `
-          const socket = new WebSocket('${wsUrl}')
-          // reload(true) ensures resources like images and scripts are fetched again in firefox
-          socket.addEventListener('message', () => document.location.reload(true))
-        `,
-    })
-  }
 }
 
-interface Options {
-  fontOrigin: "googleFonts" | "local"
-}
-
-const defaultOptions: Options = {
-  fontOrigin: "googleFonts",
-}
-
-export const ComponentResources: QuartzEmitterPlugin<Options> = (opts?: Partial<Options>) => {
-  const { fontOrigin } = { ...defaultOptions, ...opts }
+// This emitter should not update the `resources` parameter. If it does, partial
+// rebuilds may not work as expected.
+export const ComponentResources: QuartzEmitterPlugin = () => {
   return {
     name: "ComponentResources",
     getQuartzComponents() {
       return []
     },
-    async getDependencyGraph(ctx, content, _resources) {
-      // This emitter adds static resources to the `resources` parameter. One
-      // important resource this emitter adds is the code to start a websocket
-      // connection and listen to rebuild messages, which triggers a page reload.
-      // The resources parameter with the reload logic is later used by the
-      // ContentPage emitter while creating the final html page. In order for
-      // the reload logic to be included, and so for partial rebuilds to work,
-      // we need to run this emitter for all markdown files.
-      const graph = new DepGraph<FilePath>()
-
-      for (const [_tree, file] of content) {
-        const sourcePath = file.data.filePath!
-        const slug = file.data.slug!
-        graph.addEdge(sourcePath, joinSegments(ctx.argv.output, slug + ".html") as FilePath)
-      }
-
-      return graph
+    async getDependencyGraph(_ctx, _content, _resources) {
+      return new DepGraph<FilePath>()
     },
-    async emit(ctx, _content, resources): Promise<FilePath[]> {
+    async emit(ctx, _content, _resources): Promise<FilePath[]> {
       const promises: Promise<FilePath>[] = []
       const cfg = ctx.cfg.configuration
       // component specific scripts and styles
       const componentResources = getComponentResources(ctx)
       let googleFontsStyleSheet = ""
-      if (fontOrigin === "local") {
+      if (cfg.theme.fontOrigin === "local") {
         // let the user do it themselves in css
-      } else if (fontOrigin === "googleFonts") {
-        if (cfg.theme.cdnCaching) {
-          resources.css.push(googleFontHref(cfg.theme))
-        } else {
-          let match
+      } else if (cfg.theme.fontOrigin === "googleFonts" && !cfg.theme.cdnCaching) {
+        // when cdnCaching is true, we link to google fonts in Head.tsx
+        let match
 
-          const fontSourceRegex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
+        const fontSourceRegex = /url\((https:\/\/fonts.gstatic.com\/s\/[^)]+\.(woff2|ttf))\)/g
 
-          googleFontsStyleSheet = await (
-            await fetch(googleFontHref(ctx.cfg.configuration.theme))
-          ).text()
+        googleFontsStyleSheet = await (
+          await fetch(googleFontHref(ctx.cfg.configuration.theme))
+        ).text()
 
-          while ((match = fontSourceRegex.exec(googleFontsStyleSheet)) !== null) {
-            // match[0] is the `url(path)`, match[1] is the `path`
-            const url = match[1]
-            // the static name of this file.
-            const [filename, ext] = url.split("/").pop()!.split(".")
+        while ((match = fontSourceRegex.exec(googleFontsStyleSheet)) !== null) {
+          // match[0] is the `url(path)`, match[1] is the `path`
+          const url = match[1]
+          // the static name of this file.
+          const [filename, ext] = url.split("/").pop()!.split(".")
 
-            googleFontsStyleSheet = googleFontsStyleSheet.replace(
-              url,
-              `/static/fonts/${filename}.ttf`,
-            )
+          googleFontsStyleSheet = googleFontsStyleSheet.replace(
+            url,
+            `https://${cfg.baseUrl}/static/fonts/${filename}.ttf`,
+          )
 
-            promises.push(
-              fetch(url)
-                .then((res) => {
-                  if (!res.ok) {
-                    throw new Error(`Failed to fetch font`)
-                  }
-                  return res.arrayBuffer()
-                })
-                .then((buf) =>
-                  write({
-                    ctx,
-                    slug: joinSegments("static", "fonts", filename) as FullSlug,
-                    ext: `.${ext}`,
-                    content: Buffer.from(buf),
-                  }),
-                ),
-            )
-          }
+          promises.push(
+            fetch(url)
+              .then((res) => {
+                if (!res.ok) {
+                  throw new Error(`Failed to fetch font`)
+                }
+                return res.arrayBuffer()
+              })
+              .then((buf) =>
+                write({
+                  ctx,
+                  slug: joinSegments("static", "fonts", filename) as FullSlug,
+                  ext: `.${ext}`,
+                  content: Buffer.from(buf),
+                }),
+              ),
+          )
         }
       }
 
       // important that this goes *after* component scripts
       // as the "nav" event gets triggered here and we should make sure
       // that everyone else had the chance to register a listener for it
-      addGlobalPageResources(ctx, resources, componentResources)
+      addGlobalPageResources(ctx, componentResources)
 
       const stylesheet = joinStyles(
         ctx.cfg.configuration.theme,

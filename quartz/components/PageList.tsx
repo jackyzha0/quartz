@@ -4,9 +4,9 @@ import { Date, getDate } from "./Date"
 import { QuartzComponent, QuartzComponentProps } from "./types"
 import { GlobalConfiguration } from "../cfg"
 
-export function byDateAndAlphabetical(
-  cfg: GlobalConfiguration,
-): (f1: QuartzPluginData, f2: QuartzPluginData) => number {
+export type SortFn = (f1: QuartzPluginData, f2: QuartzPluginData) => number
+
+export function byDateAndAlphabetical(cfg: GlobalConfiguration): SortFn {
   return (f1, f2) => {
     if (f1.dates && f2.dates) {
       // sort descending
@@ -27,10 +27,12 @@ export function byDateAndAlphabetical(
 
 type Props = {
   limit?: number
+  sort?: SortFn
 } & QuartzComponentProps
 
-export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit }: Props) => {
-  let list = allFiles.sort(byDateAndAlphabetical(cfg))
+export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort }: Props) => {
+  const sorter = sort ?? byDateAndAlphabetical(cfg)
+  let list = allFiles.sort(sorter)
   if (limit) {
     list = list.slice(0, limit)
   }
@@ -44,11 +46,13 @@ export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit }: Pr
         return (
           <li class="section-li">
             <div class="section">
-              {page.dates && (
-                <p class="meta">
-                  <Date date={getDate(cfg, page)!} locale={cfg.locale} />
-                </p>
-              )}
+              <div>
+                {page.dates && (
+                  <p class="meta">
+                    <Date date={getDate(cfg, page)!} locale={cfg.locale} />
+                  </p>
+                )}
+              </div>
               <div class="desc">
                 <h3>
                   <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">
@@ -63,7 +67,7 @@ export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit }: Pr
                       class="internal tag-link"
                       href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}
                     >
-                      #{tag}
+                      {tag}
                     </a>
                   </li>
                 ))}

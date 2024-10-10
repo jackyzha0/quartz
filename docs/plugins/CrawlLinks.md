@@ -7,7 +7,7 @@ tags:
 This plugin parses links and processes them to point to the right places. It is also needed for embedded links (like images). See [[Obsidian compatibility]] for more information.
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
+> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
 
 This plugin accepts the following configuration options:
 

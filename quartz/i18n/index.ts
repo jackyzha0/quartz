@@ -1,20 +1,29 @@
 import { Translation, CalloutTranslation } from "./locales/definition"
-import en from "./locales/en-US"
+import enUs from "./locales/en-US"
+import enGb from "./locales/en-GB"
 import fr from "./locales/fr-FR"
 import it from "./locales/it-IT"
 import ja from "./locales/ja-JP"
 import de from "./locales/de-DE"
 import nl from "./locales/nl-NL"
 import ro from "./locales/ro-RO"
+import ca from "./locales/ca-ES"
 import es from "./locales/es-ES"
 import ar from "./locales/ar-SA"
 import uk from "./locales/uk-UA"
 import ru from "./locales/ru-RU"
 import ko from "./locales/ko-KR"
 import zh from "./locales/zh-CN"
+import vi from "./locales/vi-VN"
+import pt from "./locales/pt-BR"
+import hu from "./locales/hu-HU"
+import fa from "./locales/fa-IR"
+import pl from "./locales/pl-PL"
+import cs from "./locales/cs-CZ"
 
 export const TRANSLATIONS = {
-  "en-US": en,
+  "en-US": enUs,
+  "en-GB": enGb,
   "fr-FR": fr,
   "it-IT": it,
   "ja-JP": ja,
@@ -23,6 +32,7 @@ export const TRANSLATIONS = {
   "nl-BE": nl,
   "ro-RO": ro,
   "ro-MD": ro,
+  "ca-ES": ca,
   "es-ES": es,
   "ar-SA": ar,
   "ar-AE": ar,
@@ -48,6 +58,12 @@ export const TRANSLATIONS = {
   "ru-RU": ru,
   "ko-KR": ko,
   "zh-CN": zh,
+  "vi-VN": vi,
+  "pt-BR": pt,
+  "hu-HU": hu,
+  "fa-IR": fa,
+  "pl-PL": pl,
+  "cs-CZ": cs,
 } as const
 
 export const defaultTranslation = "en-US"

@@ -1,11 +1,11 @@
 import { QuartzTransformerPlugin } from "../types"
-import { Blockquote, Root, Html, BlockContent, DefinitionContent, Paragraph, Code } from "mdast"
+import { Root, Html, BlockContent, DefinitionContent, Paragraph, Code } from "mdast"
 import { Element, Literal, Root as HtmlRoot } from "hast"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
-import { slug as slugAnchor } from "github-slugger"
 import rehypeRaw from "rehype-raw"
 import { SKIP, visit } from "unist-util-visit"
 import path from "path"
+import { splitAnchor } from "../../util/path"
 import { JSResource } from "../../util/resources"
 // @ts-ignore
 import calloutScript from "../../components/scripts/callout.inline.ts"
@@ -17,7 +17,6 @@ import { toHtml } from "hast-util-to-html"
 import { PhrasingContent } from "mdast-util-find-and-replace/lib"
 import { capitalize } from "../../util/lang"
 import { PluggableList } from "unified"
-import { ValidCallout, i18n } from "../../i18n"
 
 export interface Options {
   comments: boolean
@@ -98,40 +97,46 @@ function canonicalizeCallout(calloutName: string): keyof typeof calloutMapping {
 
 export const externalLinkRegex = /^https?:\/\//i
 
-export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/, "g")
+export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/g)
 
-// !?                -> optional embedding
-// \[\[              -> open brace
-// ([^\[\]\|\#]+)    -> one or more non-special characters ([,],|, or #) (name)
-// (#[^\[\]\|\#]+)?  -> # then one or more non-special characters (heading link)
-// (\|[^\[\]\#]+)? -> | then one or more non-special characters (alias)
+// !?                 -> optional embedding
+// \[\[               -> open brace
+// ([^\[\]\|\#]+)     -> one or more non-special characters ([,],|, or #) (name)
+// (#[^\[\]\|\#]+)?   -> # then one or more non-special characters (heading link)
+// (\\?\|[^\[\]\#]+)? -> optional escape \ then | then one or more non-special characters (alias)
 export const wikilinkRegex = new RegExp(
-  /!?\[\[([^\[\]\|\#]+)?(#+[^\[\]\|\#]+)?(\|[^\[\]\#]+)?\]\]/,
-  "g",
+  /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]/g,
 )
-const highlightRegex = new RegExp(/==([^=]+)==/, "g")
-const commentRegex = new RegExp(/%%[\s\S]*?%%/, "g")
+
+// ^\|([^\n])+\|\n(\|) -> matches the header row
+// ( ?:?-{3,}:? ?\|)+  -> matches the header row separator
+// (\|([^\n])+\|\n)+   -> matches the body rows
+export const tableRegex = new RegExp(/^\|([^\n])+\|\n(\|)( ?:?-{3,}:? ?\|)+\n(\|([^\n])+\|\n?)+/gm)
+
+// matches any wikilink, only used for escaping wikilinks inside tables
+export const tableWikilinkRegex = new RegExp(/(!?\[\[[^\]]*?\]\])/g)
+
+const highlightRegex = new RegExp(/==([^=]+)==/g)
+const commentRegex = new RegExp(/%%[\s\S]*?%%/g)
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
-const calloutRegex = new RegExp(/^\[\!(\w+)\]([+-]?)/)
-const calloutLineRegex = new RegExp(/^> *\[\!\w+\][+-]?.*$/, "gm")
+const calloutRegex = new RegExp(/^\[\!(\w+)\|?(.+?)?\]([+-]?)/)
+const calloutLineRegex = new RegExp(/^> *\[\!\w+\|?.*?\][+-]?.*$/gm)
 // (?:^| )              -> non-capturing group, tag should start be separated by a space or be the start of the line
 // #(...)               -> capturing group, tag itself must start with #
 // (?:[-_\p{L}\d\p{Z}])+       -> non-capturing group, non-empty string of (Unicode-aware) alpha-numeric characters and symbols, hyphens and/or underscores
 // (?:\/[-_\p{L}\d\p{Z}]+)*)   -> non-capturing group, matches an arbitrary number of tag strings separated by "/"
 const tagRegex = new RegExp(
-  /(?:^| )#((?:[-_\p{L}\p{Emoji}\p{M}\d])+(?:\/[-_\p{L}\p{Emoji}\p{M}\d]+)*)/,
-  "gu",
+  /(?:^| )#((?:[-_\p{L}\p{Emoji}\p{M}\d])+(?:\/[-_\p{L}\p{Emoji}\p{M}\d]+)*)/gu,
 )
-const blockReferenceRegex = new RegExp(/\^([-_A-Za-z0-9]+)$/, "g")
+const blockReferenceRegex = new RegExp(/\^([-_A-Za-z0-9]+)$/g)
 const ytLinkRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+const ytPlaylistLinkRegex = /[?&]list=([^#?&]*)/
 const videoExtensionRegex = new RegExp(/\.(mp4|webm|ogg|avi|mov|flv|wmv|mkv|mpg|mpeg|3gp|m4v)$/)
 const wikilinkImageEmbedRegex = new RegExp(
   /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/,
 )
 
-export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> | undefined> = (
-  userOpts,
-) => {
+export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
 
   const mdastToHtml = (ast: PhrasingContent | Paragraph) => {
@@ -169,13 +174,27 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           src = src.toString()
         }
 
+        // replace all wikilinks inside a table first
+        src = src.replace(tableRegex, (value) => {
+          // escape all aliases and headers in wikilinks inside a table
+          return value.replace(tableWikilinkRegex, (_value, raw) => {
+            // const [raw]: (string | undefined)[] = capture
+            let escaped = raw ?? ""
+            escaped = escaped.replace("#", "\\#")
+            // escape pipe characters if they are not already escaped
+            escaped = escaped.replace(/((^|[^\\])(\\\\)*)\|/g, "$1\\|")
+
+            return escaped
+          })
+        })
+
+        // replace all other wikilinks
         src = src.replace(wikilinkRegex, (value, ...capture) => {
           const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
 
-          const fp = rawFp ?? ""
-          const anchor = rawHeader?.trim().replace(/^#+/, "")
-          const blockRef = Boolean(anchor?.startsWith("^")) ? "^" : ""
-          const displayAnchor = anchor ? `#${blockRef}${slugAnchor(anchor)}` : ""
+          const [fp, anchor] = splitAnchor(`${rawFp ?? ""}${rawHeader ?? ""}`)
+          const blockRef = Boolean(rawHeader?.match(/^#?\^/)) ? "^" : ""
+          const displayAnchor = anchor ? `#${blockRef}${anchor.trim().replace(/^#+/, "")}` : ""
           const displayAlias = rawAlias ?? rawHeader?.replace("#", "|") ?? ""
           const embedDisplay = value.startsWith("!") ? "!" : ""
 
@@ -189,9 +208,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
       return src
     },
-    markdownPlugins(ctx) {
+    markdownPlugins(_ctx) {
       const plugins: PluggableList = []
-      const cfg = ctx.cfg.configuration
 
       // regex replacements
       plugins.push(() => {
@@ -243,14 +261,14 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   } else if ([".pdf"].includes(ext)) {
                     return {
                       type: "html",
-                      value: `<iframe src="${url}"></iframe>`,
+                      value: `<iframe src="${url}" class="pdf"></iframe>`,
                     }
                   } else {
                     const block = anchor
                     return {
                       type: "html",
                       data: { hProperties: { transclude: true } },
-                      value: `<blockquote class="transclude" data-url="${url}" data-block="${block}"><a href="${
+                      value: `<blockquote class="transclude" data-url="${url}" data-block="${block}" data-embed-alias="${alias}"><a href="${
                         url + anchor
                       }" class="transclude-inner">Transclude of ${url}${block}</a></blockquote>`,
                     }
@@ -306,8 +324,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
             replacements.push([
               tagRegex,
               (_value: string, tag: string) => {
-                // Check if the tag only includes numbers
-                if (/^\d+$/.test(tag)) {
+                // Check if the tag only includes numbers and slashes
+                if (/^[\/\d]+$/.test(tag)) {
                   return false
                 }
 
@@ -328,7 +346,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                   children: [
                     {
                       type: "text",
-                      value: `#${tag}`,
+                      value: tag,
                     },
                   ],
                 }
@@ -388,8 +406,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                 return
               }
 
-              // find first line
-              const firstChild = node.children[0]
+              // find first line and callout content
+              const [firstChild, ...calloutContent] = node.children
               if (firstChild.type !== "paragraph" || firstChild.children[0]?.type !== "text") {
                 return
               }
@@ -401,7 +419,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
 
               const match = firstLine.match(calloutRegex)
               if (match && match.input) {
-                const [calloutDirective, typeString, collapseChar] = match
+                const [calloutDirective, typeString, calloutMetaData, collapseChar] = match
                 const calloutType = canonicalizeCallout(typeString.toLowerCase())
                 const collapse = collapseChar === "+" || collapseChar === "-"
                 const defaultState = collapseChar === "-" ? "collapsed" : "expanded"
@@ -463,7 +481,23 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     className: classNames.join(" "),
                     "data-callout": calloutType,
                     "data-callout-fold": collapse,
+                    "data-callout-metadata": calloutMetaData,
                   },
+                }
+
+                // Add callout-content class to callout body if it has one.
+                if (calloutContent.length > 0) {
+                  const contentData: BlockContent | DefinitionContent = {
+                    data: {
+                      hProperties: {
+                        className: "callout-content",
+                      },
+                      hName: "div",
+                    },
+                    type: "blockquote",
+                    children: [...calloutContent],
+                  }
+                  node.children = [node.children[0], contentData]
                 }
               }
             })
@@ -528,12 +562,35 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
                     last.value = last.value.slice(0, -matches[0].length)
                     const block = matches[0].slice(1)
 
-                    if (!Object.keys(file.data.blocks!).includes(block)) {
-                      node.properties = {
-                        ...node.properties,
-                        id: block,
+                    if (last.value === "") {
+                      // this is an inline block ref but the actual block
+                      // is the previous element above it
+                      let idx = (index ?? 1) - 1
+                      while (idx >= 0) {
+                        const element = parent?.children.at(idx)
+                        if (!element) break
+                        if (element.type !== "element") {
+                          idx -= 1
+                        } else {
+                          if (!Object.keys(file.data.blocks!).includes(block)) {
+                            element.properties = {
+                              ...element.properties,
+                              id: block,
+                            }
+                            file.data.blocks![block] = element
+                          }
+                          return
+                        }
                       }
-                      file.data.blocks![block] = node
+                    } else {
+                      // normal paragraph transclude
+                      if (!Object.keys(file.data.blocks!).includes(block)) {
+                        node.properties = {
+                          ...node.properties,
+                          id: block,
+                        }
+                        file.data.blocks![block] = node
+                      }
                     }
                   }
                 }
@@ -552,15 +609,28 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
               if (node.tagName === "img" && typeof node.properties.src === "string") {
                 const match = node.properties.src.match(ytLinkRegex)
                 const videoId = match && match[2].length == 11 ? match[2] : null
+                const playlistId = node.properties.src.match(ytPlaylistLinkRegex)?.[1]
                 if (videoId) {
+                  // YouTube video (with optional playlist)
                   node.tagName = "iframe"
                   node.properties = {
-                    class: "external-embed",
+                    class: "external-embed youtube",
                     allow: "fullscreen",
                     frameborder: 0,
                     width: "600px",
-                    height: "350px",
-                    src: `https://www.youtube.com/embed/${videoId}`,
+                    src: playlistId
+                      ? `https://www.youtube.com/embed/${videoId}?list=${playlistId}`
+                      : `https://www.youtube.com/embed/${videoId}`,
+                  }
+                } else if (playlistId) {
+                  // YouTube playlist only.
+                  node.tagName = "iframe"
+                  node.properties = {
+                    class: "external-embed youtube",
+                    allow: "fullscreen",
+                    frameborder: 0,
+                    width: "600px",
+                    src: `https://www.youtube.com/embed/videoseries?list=${playlistId}`,
                   }
                 }
               }

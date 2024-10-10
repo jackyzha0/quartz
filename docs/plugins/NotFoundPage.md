@@ -7,7 +7,7 @@ tags:
 This plugin emits a 404 (Not Found) page for broken or non-existent URLs.
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[Configuration#Plugins|Configuration]] page.
+> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
 
 This plugin has no configuration options.
 

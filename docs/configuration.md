@@ -21,6 +21,7 @@ const config: QuartzConfig = {
 This part of the configuration concerns anything that can affect the whole site. The following is a list breaking down all the things you can configure:
 
 - `pageTitle`: title of the site. This is also used when generating the [[RSS Feed]] for your site.
+- `pageTitleSuffix`: a string added to the end of the page title. This only applies to the browser tab title, not the title shown at the top of the page.
 - `enableSPA`: whether to enable [[SPA Routing]] on your site.
 - `enablePopovers`: whether to enable [[popover previews]] on your site.
 - `analytics`: what to use for analytics on your site. Values can be
@@ -28,6 +29,11 @@ This part of the configuration concerns anything that can affect the whole site.
   - `{ provider: 'google', tagId: '<your-google-tag>' }`: use Google Analytics;
   - `{ provider: 'plausible' }` (managed) or `{ provider: 'plausible', host: '<your-plausible-host>' }` (self-hosted): use [Plausible](https://plausible.io/);
   - `{ provider: 'umami', host: '<your-umami-host>', websiteId: '<your-umami-website-id>' }`: use [Umami](https://umami.is/);
+  - `{ provider: 'goatcounter', websiteId: 'my-goatcounter-id' }` (managed) or `{ provider: 'goatcounter', websiteId: 'my-goatcounter-id', host: 'my-goatcounter-domain.com', scriptSrc: 'https://my-url.to/counter.js' }` (self-hosted) use [GoatCounter](https://goatcounter.com);
+  - `{ provider: 'posthog', apiKey: '<your-posthog-project-apiKey>', host: '<your-posthog-host>' }`: use [Posthog](https://posthog.com/);
+  - `{ provider: 'tinylytics', siteId: '<your-site-id>' }`: use [Tinylytics](https://tinylytics.app/);
+  - `{ provider: 'cabin' }` or `{ provider: 'cabin', host: 'https://cabin.example.com' }` (custom domain): use [Cabin](https://withcabin.com);
+  - `{provider: 'clarity', projectId: '<your-clarity-id-code' }`: use [Microsoft clarity](https://clarity.microsoft.com/). The project id can be found on top of the overview page.
 - `locale`: used for [[i18n]] and date formatting
 - `baseUrl`: this is used for sitemaps and RSS feeds that require an absolute URL to know where the canonical 'home' of your site lives. This is normally the deployed URL of your site (e.g. `quartz.jzhao.xyz` for this site). Do not include the protocol (i.e. `https://`) or any leading or trailing slashes.
   - This should also include the subpath if you are [[hosting]] on GitHub pages without a custom domain. For example, if my repository is `jackyzha0/quartz`, GitHub pages would deploy to `https://jackyzha0.github.io/quartz` and the `baseUrl` would be `jackyzha0.github.io/quartz`.
@@ -49,6 +55,7 @@ This part of the configuration concerns anything that can affect the whole site.
     - `secondary`: link colour, current [[graph view|graph]] node
     - `tertiary`: hover states and visited [[graph view|graph]] nodes
     - `highlight`: internal link background, highlighted text, [[syntax highlighting|highlighted lines of code]]
+    - `textHighlight`: markdown highlighted text background
 
 ## Plugins
 
@@ -73,10 +80,10 @@ You can customize the behaviour of Quartz by adding, removing and reordering plu
 > [!note]
 > Each node is modified by every transformer _in order_. Some transformers are position sensitive, so you may need to pay particular attention to whether they need to come before or after certain other plugins.
 
-You should take care to add the plugin to the right entry corresponding to its plugin type. For example, to add the [[ExplicitPublish]] plugin (a [[tags/plugin/transformer|Transformer]], you would add the following line:
+You should take care to add the plugin to the right entry corresponding to its plugin type. For example, to add the [[ExplicitPublish]] plugin (a [[tags/plugin/filter|Filter]]), you would add the following line:
 
 ```ts title="quartz.config.ts"
-transformers: [
+filters: [
   ...
   Plugin.ExplicitPublish(),
   ...
@@ -96,7 +103,7 @@ transformers: [
 ]
 ```
 
-Some plugins are included by default in the[ `quartz.config.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz.config.ts), but there are more available.
+Some plugins are included by default in the [`quartz.config.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz.config.ts), but there are more available.
 
 You can see a list of all plugins and their configuration options [[tags/plugin|here]].
 
