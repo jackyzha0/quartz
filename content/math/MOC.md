@@ -10,11 +10,16 @@ date: 2023-12-03
 
 ## Basic Concept
 
-* [quantile_concept](math/Statistics/basic_concepot/quantile_concept.md)
+* [quantile_concept](math/statistic/basic_concepot/quantile_concept.md)
 
 ## Significance Test
 
-* [Basic about significance test](math/Statistics/significance_test/whats_the_significance_test.md)
+* [Basic about significance test](math/statistic/significance_test/whats_the_significance_test.md)
+
+## Anomaly Detection
+
+* [Z-Score](math/statistic/anomaly_detection/z_score.md)
+* [IQR](math/statistic/anomaly_detection/IQR.md)
 
 # Discrete mathematics
 

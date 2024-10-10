@@ -18,3 +18,5 @@ date: 2024-05-21
 * [Multi-Processing - MOC](computer_sci/multiProcessing/MOC.md)
 
 * [Computational Geometry - MOC](computer_sci/computational_geometry/MOC.md)
+
+* [Interview MOC](computer_sci/interview/interview_MOC.md)

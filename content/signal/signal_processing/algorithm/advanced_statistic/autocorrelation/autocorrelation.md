@@ -70,7 +70,7 @@ For correlation, we usually use **p-value** to **quantify the confidence** of th
 ![](signal/signal_processing/algorithm/advanced_statistic/autocorrelation/attachments/Pasted%20image%2020240415171855.png)
 
 
-About P-value, you have better know what's [significance test](math/Statistics/significance_test/whats_the_significance_test.md)
+About P-value, you have better know what's [significance test](math/statistic/significance_test/whats_the_significance_test.md)
 
 
 ## Random Signal

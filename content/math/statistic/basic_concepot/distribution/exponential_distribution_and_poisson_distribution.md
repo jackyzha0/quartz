@@ -63,7 +63,7 @@ $$
 
 # Deduction
 
-![](math/Statistics/basic_concepot/distribution/attachments/2bbb645362366906ace3296d35612625_720.jpg)
+![](math/statistic/basic_concepot/distribution/attachments/2bbb645362366906ace3296d35612625_720.jpg)
 
 # Reference
 

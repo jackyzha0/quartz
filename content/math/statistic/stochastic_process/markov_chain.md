@@ -35,7 +35,7 @@ $$
 
 An RPG with a 33% blitz rate. But if the first two times you don't blitz, the third time you're bound to blitz. So what is the actual hit rate?
 
-![](math/Statistics/stochastic_process/attachments/6fd1795d98c9031bc791909a8d098e25.jpg)
+![](math/statistic/stochastic_process/attachments/6fd1795d98c9031bc791909a8d098e25.jpg)
 
 Simulation Code:
 

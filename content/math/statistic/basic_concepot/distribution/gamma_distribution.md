@@ -35,7 +35,7 @@ $$
 $$
 证明如下：
 
-![](math/Statistics/basic_concepot/distribution/attachments/prove.jpg)
+![](math/statistic/basic_concepot/distribution/attachments/prove.jpg)
 
 同时，在integer节点，Gamma function也和阶乘对应起来，即：
 
@@ -45,7 +45,7 @@ $$
 
 证明如下：
 
-![](math/Statistics/basic_concepot/distribution/attachments/df15541df80b6065fb8296d80ffceac5_720.jpg)
+![](math/statistic/basic_concepot/distribution/attachments/df15541df80b6065fb8296d80ffceac5_720.jpg)
 
 
 
@@ -53,7 +53,7 @@ $$
 
 Exponential Distribution指的是，probability of the waiting time between events in a Poisson Process
 
-Here's the exponential distribution explain: [Exponential Distribution](math/Statistics/basic_concepot/distribution/exponential_distribution_and_poisson_distribution.md)
+Here's the exponential distribution explain: [Exponential Distribution](math/statistic/basic_concepot/distribution/exponential_distribution_and_poisson_distribution.md)
 
 
 # Introduction
