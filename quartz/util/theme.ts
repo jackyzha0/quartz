@@ -19,11 +19,11 @@ interface FontInfo {
   /**
    * e.g. "ital,wght@0,400;1,200"
    */
-  features: string,
+  features: string
 }
 
 export interface Theme {
-  fonts?: Record<string, FontInfo>,
+  fonts?: Record<string, FontInfo>
   typography: {
     header: string | string[]
     body: string | string[]
@@ -42,14 +42,19 @@ const DEFAULT_MONO = "ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace"
 
 function makeFamilySection(theme: Theme, family: string | string[], defaultFeatures: string) {
   const families = Array.isArray(family) ? family : [family]
-  return "family=" + families.map(f => {
-    const features = theme.fonts?.[f]?.features ?? defaultFeatures
-    if(features === "") {
-      return `${f}:wght@400` // matches unplugin-fonts; should be a sane default
-    } else {
-      return `${f}:${features}`
-    }
-  }).join("&family=")
+  return (
+    "family=" +
+    families
+      .map((f) => {
+        const features = theme.fonts?.[f]?.features ?? defaultFeatures
+        if (features === "") {
+          return `${f}:wght@400` // matches unplugin-fonts; should be a sane default
+        } else {
+          return `${f}:${features}`
+        }
+      })
+      .join("&family=")
+  )
 }
 
 export function googleFontHref(theme: Theme) {
@@ -63,8 +68,8 @@ export function googleFontHref(theme: Theme) {
 }
 
 function renderFonts(fonts: string | string[]) {
-  if(Array.isArray(fonts)) {
-    return fonts.map(s => `"${s}"`).join(", ")
+  if (Array.isArray(fonts)) {
+    return fonts.map((s) => `"${s}"`).join(", ")
   } else {
     return `"${fonts}"`
   }
