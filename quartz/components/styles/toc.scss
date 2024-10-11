@@ -1,6 +1,10 @@
 .toc {
   display: flex;
   flex-direction: column;
+
+  &.desktop-only {
+    max-height: 40%;
+  }
 }
 
 button#toc {
