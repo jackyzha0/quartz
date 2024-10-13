@@ -43,6 +43,31 @@ export type Analytics =
       projectId?: string
     }
 
+export type Comments =
+  | null
+  | {
+      provider: "giscus"
+      repo: `${string}/${string}`
+      repoId: string
+      category: string
+      categoryId: string
+      mapping?: "url" | "title" | "og:title" | "specific" | "number" | "pathname"
+      strict?: boolean
+      reactionsEnabled?: boolean
+      inputPosition?: "top" | "bottom"
+    }
+  | {
+      provider: "commento"
+      host?: string
+      cssOverride?: string
+      noFonts?: boolean
+      hideDeleted?: boolean
+    }
+  | {
+      provider: "disqus"
+      shortName: string
+    }
+
 export interface GlobalConfiguration {
   pageTitle: string
   pageTitleSuffix?: string
@@ -56,6 +81,8 @@ export interface GlobalConfiguration {
   ignorePatterns: string[]
   /** Whether to use created, modified, or published as the default type of date */
   defaultDateType: ValidDateType
+  /** Comments for page */
+  comments: Comments
   /** Base URL to use for CNAME files, sitemaps, and RSS feeds that require an absolute URL.
    *   Quartz will avoid using this as much as possible and use relative URLs most of the time
    */
