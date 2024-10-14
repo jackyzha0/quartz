@@ -3,7 +3,11 @@ import * as Component from "./quartz/components"
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
-  head: Component.Head(),
+  head: Component.Head({
+    favicons: [
+      { path: "static/icon.png", size: "200x200", mime: "image/png" }
+    ]
+  }),
   header: [],
   afterBody: [],
   footer: Component.Footer({

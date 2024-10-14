@@ -4,7 +4,17 @@ import { JSResourceToScriptElement } from "../util/resources"
 import { googleFontHref } from "../util/theme"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 
-export default (() => {
+interface Favicon {
+  path: string
+  size?: string
+  mime?: string
+}
+
+interface Options {
+  favicons?: Favicon[]
+}
+
+export default ((opts?: Options) => {
   const Head: QuartzComponent = ({ cfg, fileData, externalResources }: QuartzComponentProps) => {
     const titleSuffix = cfg.pageTitleSuffix ?? ""
     const title =
@@ -17,8 +27,9 @@ export default (() => {
     const path = url.pathname as FullSlug
     const baseDir = fileData.slug === "404" ? path : pathToRoot(fileData.slug!)
 
-    const iconPath = joinSegments(baseDir, "static/icon.png")
     const ogImagePath = `https://${cfg.baseUrl}/static/og-image.png`
+
+    const icons = opts?.favicons ?? []
 
     return (
       <head>
@@ -37,7 +48,9 @@ export default (() => {
         {cfg.baseUrl && <meta property="og:image" content={ogImagePath} />}
         <meta property="og:width" content="1200" />
         <meta property="og:height" content="675" />
-        <link rel="icon" href={iconPath} />
+        {icons.map(({ path, size, mime }) => (
+          <link rel="icon" href={joinSegments(baseDir, path)} sizes={size} type={mime} />
+        ))}
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
         {css.map((href) => (
