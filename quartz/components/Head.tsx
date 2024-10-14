@@ -10,8 +10,17 @@ interface Favicon {
   mime?: string
 }
 
+interface OpenGraphImage {
+  path: string
+  alt?: string
+  mime?: string
+  width?: string
+  height?: string
+}
+
 interface Options {
   favicons?: Favicon[]
+  openGraph?: OpenGraphImage
 }
 
 export default ((opts?: Options) => {
@@ -26,8 +35,6 @@ export default ((opts?: Options) => {
     const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`)
     const path = url.pathname as FullSlug
     const baseDir = fileData.slug === "404" ? path : pathToRoot(fileData.slug!)
-
-    const ogImagePath = `https://${cfg.baseUrl}/static/og-image.png`
 
     const icons = opts?.favicons ?? []
 
@@ -45,9 +52,15 @@ export default ((opts?: Options) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        {cfg.baseUrl && <meta property="og:image" content={ogImagePath} />}
-        <meta property="og:width" content="1200" />
-        <meta property="og:height" content="675" />
+        {cfg.baseUrl && opts?.openGraph && (
+          <>
+            <meta property="og:image" content={`https://${cfg.baseUrl}/${opts.openGraph.path}`} />
+            {opts.openGraph.mime && (<meta property="og:image:type" content={opts.openGraph.mime} />)}
+            {opts.openGraph.width && (<meta property="og:image:width" content={opts.openGraph.path} />)}
+            {opts.openGraph.height && (<meta property="og:image:height" content={opts.openGraph.height} />)}
+            {opts.openGraph.alt && (<meta property="og:image:alt" content={opts.openGraph.alt} />)}
+          </>
+        )}
         {icons.map(({ path, size, mime }) => (
           <link rel="icon" href={joinSegments(baseDir, path)} sizes={size} type={mime} />
         ))}

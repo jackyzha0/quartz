@@ -6,7 +6,15 @@ export const sharedPageComponents: SharedLayout = {
   head: Component.Head({
     favicons: [
       { path: "static/icon.png", size: "200x200", mime: "image/png" }
-    ]
+    ],
+
+    openGraph: {
+      path: "static/og-image.png",
+      mime: "image/png",
+      width: "1200",
+      height: "675",
+      alt: "Quartz logo"
+    }
   }),
   header: [],
   afterBody: [],
