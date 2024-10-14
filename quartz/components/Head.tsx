@@ -55,10 +55,14 @@ export default ((opts?: Options) => {
         {cfg.baseUrl && opts?.openGraph && (
           <>
             <meta property="og:image" content={`https://${cfg.baseUrl}/${opts.openGraph.path}`} />
-            {opts.openGraph.mime && (<meta property="og:image:type" content={opts.openGraph.mime} />)}
-            {opts.openGraph.width && (<meta property="og:image:width" content={opts.openGraph.path} />)}
-            {opts.openGraph.height && (<meta property="og:image:height" content={opts.openGraph.height} />)}
-            {opts.openGraph.alt && (<meta property="og:image:alt" content={opts.openGraph.alt} />)}
+            {opts.openGraph.mime && <meta property="og:image:type" content={opts.openGraph.mime} />}
+            {opts.openGraph.width && (
+              <meta property="og:image:width" content={opts.openGraph.path} />
+            )}
+            {opts.openGraph.height && (
+              <meta property="og:image:height" content={opts.openGraph.height} />
+            )}
+            {opts.openGraph.alt && <meta property="og:image:alt" content={opts.openGraph.alt} />}
           </>
         )}
         {icons.map(({ path, size, mime }) => (
