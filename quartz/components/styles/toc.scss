@@ -1,9 +1,17 @@
+@use "../../styles/variables.scss" as *;
+
 .toc {
   display: flex;
   flex-direction: column;
 
   &.desktop-only {
     max-height: 40%;
+  }
+}
+
+@media all and not ($mobile) {
+  .toc {
+    display: flex;
   }
 }
 
