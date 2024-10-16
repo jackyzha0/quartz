@@ -65,7 +65,7 @@
       height: 80vh;
       width: 80vw;
 
-      @media all and ($desktop) {
+      @media all and not ($desktop) {
         width: 90%;
       }
     }

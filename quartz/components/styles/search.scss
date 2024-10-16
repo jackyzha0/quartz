@@ -64,7 +64,7 @@
       margin-left: auto;
       margin-right: auto;
 
-      @media all and ($desktop) {
+      @media all and not ($desktop) {
         width: 90%;
       }
 

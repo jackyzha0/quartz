@@ -12,7 +12,7 @@ $breakpoints: (
 
 $mobile: "(max-width: #{map-get($breakpoints, mobile)})";
 $tablet: "(min-width: #{map-get($breakpoints, mobile)}) and (max-width: #{map-get($breakpoints, desktop)})";
-$desktop: "(max-width: #{map-get($breakpoints, desktop)})";
+$desktop: "(min-width: #{map-get($breakpoints, desktop)})";
 
 $pageWidth: #{map-get($breakpoints, mobile)};
 $sidePanelWidth: 320px; //380px;
