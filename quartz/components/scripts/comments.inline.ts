@@ -26,10 +26,8 @@ const getThemeName = (theme: "light" | "dark") => {
   if (!giscusContainer) {
     return theme
   }
-  const darkGiscus =
-    giscusContainer.dataset.darkTheme !== "" ? giscusContainer.dataset.darkTheme : "dark"
-  const lightGiscus =
-    giscusContainer.dataset.lightTheme !== "" ? giscusContainer.dataset.lightTheme : "light"
+  const darkGiscus = giscusContainer.dataset.darkTheme ?? "dark"
+  const lightGiscus = giscusContainer.dataset.lightTheme ?? "light"
   return theme === "dark" ? darkGiscus : lightGiscus
 }
 
@@ -38,9 +36,7 @@ const getThemeUrl = () => {
   if (!giscusContainer) {
     return "https://giscus.app"
   }
-  return giscusContainer.dataset.themeUrl !== ""
-    ? giscusContainer.dataset.themeUrl
-    : "https://giscus.app"
+  return giscusContainer.dataset.themeUrl ?? "https://giscus.app"
 }
 
 type GiscusElement = Omit<HTMLElement, "dataset"> & {
