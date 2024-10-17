@@ -63,7 +63,7 @@ type Options = {
     category: string
     categoryId: string
 
-    // defaults to 'https://giscus.app'
+    // defaults to 'https://giscus.app/themes'
     themeUrl?: string
 
     // defaults to 'light'
