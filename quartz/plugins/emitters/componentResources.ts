@@ -5,8 +5,11 @@ import { QuartzEmitterPlugin } from "../types"
 import spaRouterScript from "../../components/scripts/spa.inline"
 // @ts-ignore
 import popoverScript from "../../components/scripts/popover.inline"
+// @ts-ignore
+import decryptScript from "../../components/scripts/decrypt.inline"
 import styles from "../../styles/custom.scss"
 import popoverStyle from "../../components/styles/popover.scss"
+import passProtectedStyle from "../../components/styles/passProtected.scss"
 import { BuildCtx } from "../../util/ctx"
 import { QuartzComponent } from "../../components/types"
 import { googleFontHref, joinStyles } from "../../util/theme"
@@ -75,6 +78,11 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
   if (cfg.enablePopovers) {
     componentResources.afterDOMLoaded.push(popoverScript)
     componentResources.css.push(popoverStyle)
+  }
+
+  if (cfg.passProtected?.enabled) {
+    componentResources.afterDOMLoaded.push(decryptScript)
+    componentResources.css.push(passProtectedStyle)
   }
 
   if (cfg.analytics?.provider === "google") {

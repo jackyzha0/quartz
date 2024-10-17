@@ -80,5 +80,15 @@ export default {
       showingFirst: ({ count }) => `Showing first ${count} tags.`,
       totalTags: ({ count }) => `Found ${count} total tags.`,
     },
+    encryptedContent: {
+      loading: "Loading...",
+      password: "Password",
+      submit: "Submit",
+      enterPassword: "This page is locked by default. Please enter passsword to unlock:",
+      modernBrowser: "Please use a modern browser.",
+      wrongPassword: "Wrong password. Please re-enter passsword to unlock:",
+      noPayload: "No encrypted payload.",
+      decrypting: "Decrypting...",
+    },
   },
 } as const satisfies Translation

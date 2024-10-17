@@ -78,5 +78,15 @@ export default {
       showingFirst: ({ count }) => `처음 ${count}개의 태그`,
       totalTags: ({ count }) => `총 ${count}개의 태그를 찾았습니다.`,
     },
+    encryptedContent: {
+      loading: "로딩 중...",
+      password: "비밀번호",
+      submit: "제출",
+      enterPassword: "이 페이지는 기본적으로 잠겨 있습니다. 잠금을 해제하려면 암호를 입력하십시오:",
+      modernBrowser: "최신 브라우저를 사용하십시오.",
+      wrongPassword: "비밀번호가 잘못되었습니다. 잠금을 해제하려면 암호를 다시 입력하십시오:",
+      noPayload: "암호화된 페이로드가 없습니다.",
+      decrypting: "해독 중...",
+    },
   },
 } as const satisfies Translation

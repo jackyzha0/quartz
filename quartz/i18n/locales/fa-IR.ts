@@ -80,5 +80,16 @@ export default {
       showingFirst: ({ count }) => `در حال نمایش ${count} برچسب.`,
       totalTags: ({ count }) => `${count} برچسب یافت شد.`,
     },
+    encryptedContent: {
+      loading: "در حال بارگذاری...",
+      password: "رمز عبور",
+      submit: "ارسال کردن",
+      enterPassword:
+        "این صفحه به طور پیش فرض قفل شده است. لطفا رمز عبور را برای باز کردن قفل وارد کنید:",
+      modernBrowser: "لطفا از یک مرورگر مدرن استفاده کنید.",
+      wrongPassword: "رمز عبور اشتباه است. لطفا رمز عبور را دوباره وارد کنید تا قفل باز شود:",
+      noPayload: "هیچ محموله رمزگذاری شده ای وجود ندارد.",
+      decrypting: "در حال رمزگشایی...",
+    },
   },
 } as const satisfies Translation

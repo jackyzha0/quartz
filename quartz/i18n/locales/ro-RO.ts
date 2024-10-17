@@ -81,5 +81,16 @@ export default {
       showingFirst: ({ count }) => `Se afișează primele ${count} etichete.`,
       totalTags: ({ count }) => `Au fost găsite ${count} etichete în total.`,
     },
+    encryptedContent: {
+      loading: "Se încarcă...",
+      password: "Parolă",
+      submit: "Trimite",
+      enterPassword:
+        "Această pagină este blocată în mod implicit. Introduceți parola pentru a debloca:",
+      modernBrowser: "Vă rugăm să utilizați un browser modern.",
+      wrongPassword: "Неправильний пароль. Будь ласка, введіть пароль ще раз, щоб розблокувати:",
+      noPayload: "Nu există nicio sarcină utilă criptată.",
+      decrypting: "Decriptare...",
+    },
   },
 } as const satisfies Translation

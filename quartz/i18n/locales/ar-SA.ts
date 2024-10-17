@@ -85,5 +85,15 @@ export default {
       showingFirst: ({ count }) => `إظهار أول ${count} أوسمة.`,
       totalTags: ({ count }) => `يوجد ${count} أوسمة.`,
     },
+    encryptedContent: {
+      loading: " التحميل...",
+      password: "كلمة المرور",
+      submit: "إرسال",
+      enterPassword: "الصفحة مقفلة بشكل افتراضي. يرجى إدخال كلمة المرور لفتح القفل:",
+      modernBrowser: ".استخدام متصفح حديث.",
+      wrongPassword: "خاطئة. يرجى إعادة إدخال كلمة المرور لفتح القفل:",
+      noPayload: "حمولة مشفرة.",
+      decrypting: "جاري فك التشفير...",
+    },
   },
 } as const satisfies Translation

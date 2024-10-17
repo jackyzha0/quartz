@@ -80,5 +80,17 @@ export default {
       showingFirst: ({ count }) => `Affichage des premières ${count} étiquettes.`,
       totalTags: ({ count }) => `Trouvé ${count} étiquettes au total.`,
     },
+    encryptedContent: {
+      loading: "Chargement en cours...",
+      password: "Mot de passe",
+      submit: "Soumettre",
+      enterPassword:
+        "Cette page est verrouillée par défaut. Veuillez entrer le mot de passe pour déverrouiller :",
+      modernBrowser: "Veuillez utiliser un navigateur moderne.",
+      wrongPassword:
+        "Mot de passe incorrect. Veuillez saisir à nouveau le mot de passe pour déverrouiller :",
+      noPayload: "Aucune charge utile cryptée.",
+      decrypting: "Décryptage en cours...",
+    },
   },
 } as const satisfies Translation

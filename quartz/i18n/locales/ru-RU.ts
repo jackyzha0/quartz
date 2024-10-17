@@ -82,6 +82,17 @@ export default {
         `Показыва${getForm(count, "ется", "ются", "ются")} ${count} тег${getForm(count, "", "а", "ов")}`,
       totalTags: ({ count }) => `Всего ${count} тег${getForm(count, "", "а", "ов")}`,
     },
+    encryptedContent: {
+      loading: "Загрузка...",
+      password: "Пароль",
+      submit: "Отправить",
+      enterPassword:
+        "Эта страница заблокирована по умолчанию. Пожалуйста, введите пароль для разблокировки:",
+      modernBrowser: "Пожалуйста, используйте современный браузер.",
+      wrongPassword: "Неверный пароль. Пожалуйста, введите пароль еще раз для разблокировки:",
+      noPayload: "Нет зашифрованной полезной нагрузки.",
+      decrypting: "Расшифровка...",
+    },
   },
 } as const satisfies Translation
 

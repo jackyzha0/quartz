@@ -78,5 +78,17 @@ export default {
       showingFirst: ({ count }) => `のうち最初の${count}件を表示しています`,
       totalTags: ({ count }) => `全${count}個のタグを表示中`,
     },
+    encryptedContent: {
+      loading: "読み込み中...",
+      password: "パスワード",
+      submit: "送信",
+      enterPassword:
+        "このページはデフォルトでロックされています。ロックを解除するにはパスワードを入力してください:",
+      modernBrowser: "最新のブラウザを使用してください。",
+      wrongPassword:
+        "パスワードが間違っています。ロックを解除するにはパスワードを再度入力してください:",
+      noPayload: "暗号化されたペイロードはありません。",
+      decrypting: "解読中...",
+    },
   },
 } as const satisfies Translation
