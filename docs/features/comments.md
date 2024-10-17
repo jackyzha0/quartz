@@ -63,6 +63,15 @@ type Options = {
     category: string
     categoryId: string
 
+    // defaults to 'https://giscus.app'
+    themeUrl?: string
+
+    // defaults to 'light'
+    lightTheme?: string
+
+    // defaults to 'dark'
+    darkTheme?: string
+
     // how to map pages -> discussions
     // defaults to 'url'
     mapping?: "url" | "title" | "og:title" | "specific" | "number" | "pathname"
