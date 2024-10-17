@@ -1,4 +1,4 @@
-const changeTheme = (e: CustomEventMap["themechange"]) => {
+const changeGiscusTheme = (e: CustomEventMap["themechange"]) => {
   const theme = e.detail.theme
   const iframe = document.querySelector("iframe.giscus-frame") as HTMLIFrameElement
   if (!iframe) {
@@ -34,7 +34,7 @@ type GiscusElement = Omit<HTMLElement, "dataset"> & {
   }
 }
 
-document.addEventListener("nav", () => {
+function setupGiscus() {
   const giscusContainer = document.querySelector(".giscus") as GiscusElement
   if (!giscusContainer) {
     return
@@ -62,6 +62,66 @@ document.addEventListener("nav", () => {
 
   giscusContainer.appendChild(giscusScript)
 
-  document.addEventListener("themechange", changeTheme)
-  window.addCleanup(() => document.removeEventListener("themechange", changeTheme))
+  document.addEventListener("themechange", changeGiscusTheme)
+  window.addCleanup(() => document.removeEventListener("themechange", changeGiscusTheme))
+}
+
+type CommentoElement = Omit<HTMLElement, "dataset"> & {
+  dataset: DOMStringMap & {
+    host: string
+    cssOverride: string
+    noFonts: string
+    hideDeleted: string
+  }
+}
+
+function setupCommento() {
+  const commentoContainer = document.querySelector("#commento") as CommentoElement
+  if (!commentoContainer) {
+    return
+  }
+
+  const commentoScript = document.createElement("script")
+  commentoScript.src = "https://" + commentoContainer.dataset.host + "/js/commento.js"
+  commentoScript.defer = true
+  commentoScript.setAttribute("data-css-override", commentoContainer.dataset.cssOverride)
+  commentoScript.setAttribute("data-no-fonts", commentoContainer.dataset.noFonts)
+  commentoScript.setAttribute("data-hide-deleted", commentoContainer.dataset.hideDeleted)
+
+  commentoContainer.appendChild(commentoScript)
+}
+
+type DisqusElement = Omit<HTMLElement, "dataset"> & {
+  dataset: DOMStringMap & {
+    shortName: string
+  }
+}
+
+function setupDisqus() {
+  const disqusContainer = document.querySelector("#disqus_thread") as DisqusElement
+  if (!disqusContainer) {
+    return
+  }
+
+  const disqusScript = document.createElement("script")
+  disqusScript.src = "https://" + disqusContainer.dataset.shortName + ".disqus.com/embed.js"
+  disqusScript.setAttribute("data-timestamp", "" + +new Date())
+
+  disqusContainer.appendChild(disqusScript)
+}
+
+document.addEventListener("nav", () => {
+  const commentContainer = document.querySelector("#comment")
+  if (!commentContainer) {
+    return
+  }
+  const provider = commentContainer.getAttribute("data-provider")
+  switch (provider) {
+    case "giscus":
+      setupGiscus()
+    case "commento":
+      setupCommento()
+    case "disqus":
+      setupDisqus()
+  }
 })

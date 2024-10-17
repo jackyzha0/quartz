@@ -52,6 +52,9 @@ const config: QuartzConfig = {
         },
       },
     },
+    comments: {
+      provider: "commento",
+    },
   },
   plugins: {
     transformers: [
