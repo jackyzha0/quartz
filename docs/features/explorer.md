@@ -56,13 +56,14 @@ Want to customize it even more?
 This component allows you to fully customize all of its behavior. You can pass a custom `sort`, `filter` and `map` function.
 All functions you can pass work with the `FileNode` class, which has the following properties:
 
-```ts title="quartz/components/ExplorerNode.tsx" {2-5}
+```ts title="quartz/components/ExplorerNode.tsx" {2-7}
 export class FileNode {
   children: FileNode[]  // children of current node
   name: string  // last part of slug
   displayName: string // what actually should be displayed in the explorer
   file: QuartzPluginData | null // if node is a file, this is the file's metadata. See `QuartzPluginData` for more detail
   depth: number // depth of current node
+  hidden: boolean // if the node is shown in the file tree
 
   ... // rest of implementation
 }
@@ -176,6 +177,38 @@ Component.Explorer({
   filterFn: (node) => {
     // exclude files with the tag "explorerexclude"
     return node.file?.frontmatter?.tags?.includes("explorerexclude") !== true
+  },
+})
+```
+
+### Remove folders by tag
+
+To hide some folders, you can create an `index.md` at its root, and add a tag in it, as a [[Frontmatter]] attribute:
+
+```md title="my-folder-to-hide/index.md"
+---
+tags:
+	- excluded
+---
+
+> You can't see me (in the explorer), my time is now
+```
+
+Now you can filter this folder having the `excluded` tag, with the following `filterFn` function
+
+```ts title="quartz.layout.ts"
+Component.Explorer({
+  filterFn: (node) => {
+    if (!node.file) {
+      // the current node is a folder
+      let indexFile = node.children.find((node) => node.name === "index")
+      if (indexFile) {
+        // a child node named index exists
+        return indexFile?.file?.frontmatter?.tags?.includes("excluded") !== true
+      }
+    }
+
+    return true
   },
 })
 ```
