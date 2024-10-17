@@ -226,6 +226,11 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                 const anchor = rawHeader?.trim() ?? ""
                 const alias = rawAlias?.slice(1).trim()
 
+                // excalidraw
+                if (fp.match(/\.excalidraw\./)) {
+                  fp.replace(".excalidraw", "")
+                }
+
                 // embed cases
                 if (value.startsWith("!")) {
                   const ext: string = path.extname(fp).toLowerCase()
