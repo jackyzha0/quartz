@@ -64,7 +64,7 @@ type Options = {
     categoryId: string
 
     // Url to folder with custom themes
-    // defaults to 'https://giscus.app/themes'
+    // defaults to 'https://${cfg.baseUrl}/static/giscus'
     themeUrl?: string
 
     // filename for light theme .css file
@@ -107,9 +107,9 @@ afterBody: [
     options: {
       // Other options
 
-      themeUrl: "https://example.com/static", // corresponds to quartz/static/
-      lightTheme: "light-theme", // corresponds to light-theme.css in quartz/static/
-      darkTheme: "dark-theme", // corresponds to dark-theme.css quartz/static/
+      themeUrl: "https://example.com/static/giscus", // corresponds to quartz/static/giscus/
+      lightTheme: "light-theme", // corresponds to light-theme.css in quartz/static/giscus/
+      darkTheme: "dark-theme", // corresponds to dark-theme.css quartz/static/giscus/
     }
   }),
 ],
