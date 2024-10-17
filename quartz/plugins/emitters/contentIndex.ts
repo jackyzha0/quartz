@@ -8,6 +8,7 @@ import { toHtml } from "hast-util-to-html"
 import { write } from "./helpers"
 import { i18n } from "../../i18n"
 import DepGraph from "../../depgraph"
+import chalk from "chalk"
 
 export type ContentIndex = Map<FullSlug, ContentDetails>
 export type ContentDetails = {
@@ -23,17 +24,21 @@ export type ContentDetails = {
 interface Options {
   enableSiteMap: boolean
   enableRSS: boolean
+  bypassIndexCheck: boolean
   rssLimit?: number
   rssFullHtml: boolean
   includeEmptyFiles: boolean
+  feedDirectories: string[]
 }
 
 const defaultOptions: Options = {
+  bypassIndexCheck: false,
   enableSiteMap: true,
   enableRSS: true,
   rssLimit: 10,
   rssFullHtml: false,
   includeEmptyFiles: true,
+  feedDirectories: ["index"],
 }
 
 function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndex): string {
@@ -114,32 +119,62 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       return graph
     },
     async emit(ctx, content, _resources) {
-      const cfg = ctx.cfg.configuration
-      const emitted: FilePath[] = []
-      const linkIndex: ContentIndex = new Map()
-      for (const [tree, file] of content) {
-        const slug = file.data.slug!
-        const date = getDate(ctx.cfg.configuration, file.data) ?? new Date()
-        if (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) {
-          linkIndex.set(slug, {
-            title: file.data.frontmatter?.title!,
-            links: file.data.links ?? [],
-            tags: file.data.frontmatter?.tags ?? [],
-            content: file.data.text ?? "",
-            richContent: opts?.rssFullHtml
-              ? escapeHTML(toHtml(tree as Root, { allowDangerousHtml: true }))
-              : undefined,
-            date: date,
-            description: file.data.description ?? "",
-          })
-        }
+      // If we're missing an index file, don't bother with sitemap/RSS gen
+      if (
+        !(
+          opts?.bypassIndexCheck ||
+          content.map((c) => c[1].data.slug!).includes("index" as FullSlug)
+        )
+      ) {
+        console.warn(
+          chalk.yellow(`Warning: contentIndex: 
+  content/ folder is missing an index.md. RSS feeds and sitemap will not be generated.
+  If you still wish to generate these files, add:
+    bypassIndexCheck: true,
+  to your configuration for Plugin.ContentIndex({...}) in quartz.config.ts.
+  Don't do this unless you know what you're doing!`),
+        )
+        return []
       }
 
+      const cfg = ctx.cfg.configuration
+      const emitted: Promise<FilePath>[] = []
+      const feedIndices: Map<string, ContentIndex> = new Map()
+
+      for (const feed of opts?.feedDirectories!) {
+        const linkIndex: ContentIndex = new Map()
+        for (const [tree, file] of content) {
+          const slug = file.data.slug!
+
+          const date = getDate(ctx.cfg.configuration, file.data) ?? new Date()
+          if (
+            (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) &&
+            (slug.startsWith(feed) || feed == "index")
+          ) {
+            linkIndex.set(slug, {
+              title: file.data.frontmatter?.title!,
+              links: file.data.links ?? [],
+              tags: file.data.frontmatter?.tags ?? [],
+              content: file.data.text ?? "",
+              richContent: opts?.rssFullHtml
+                ? escapeHTML(toHtml(tree as Root, { allowDangerousHtml: true }))
+                : undefined,
+              date: date,
+              description: file.data.description ?? "",
+            })
+          }
+        }
+        feedIndices.set(feed, linkIndex)
+      }
+
+      const siteFeed = feedIndices.get("index")!
       if (opts?.enableSiteMap) {
         emitted.push(
-          await write({
+          write({
             ctx,
-            content: generateSiteMap(cfg, linkIndex),
+            // bfahrenfort: "index" is guaranteed non-null
+            // see directories instantiation and feedIndices.set iterating over directories
+            content: generateSiteMap(cfg, siteFeed),
             slug: "sitemap" as FullSlug,
             ext: ".xml",
           }),
@@ -147,19 +182,22 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       }
 
       if (opts?.enableRSS) {
-        emitted.push(
-          await write({
-            ctx,
-            content: generateRSSFeed(cfg, linkIndex, opts.rssLimit),
-            slug: "index" as FullSlug,
-            ext: ".xml",
-          }),
-        )
+        opts.feedDirectories!.map((feed) => {
+          emitted.push(
+            write({
+              ctx,
+              // bfahrenfort: we just generated a feedIndices entry for every directories entry, guaranteed non-null
+              content: generateRSSFeed(cfg, feedIndices.get(feed)!, opts?.rssLimit),
+              slug: feed as FullSlug,
+              ext: ".xml",
+            }),
+          )
+        })
       }
 
       const fp = joinSegments("static", "contentIndex") as FullSlug
       const simplifiedIndex = Object.fromEntries(
-        Array.from(linkIndex).map(([slug, content]) => {
+        Array.from(feedIndices.get("index")!).map(([slug, content]) => {
           // remove description and from content index as nothing downstream
           // actually uses it. we only keep it in the index as we need it
           // for the RSS feed
@@ -170,7 +208,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       )
 
       emitted.push(
-        await write({
+        write({
           ctx,
           content: JSON.stringify(simplifiedIndex),
           slug: fp,
@@ -178,7 +216,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
         }),
       )
 
-      return emitted
+      return await Promise.all(emitted)
     },
     getQuartzComponents: () => [],
   }
