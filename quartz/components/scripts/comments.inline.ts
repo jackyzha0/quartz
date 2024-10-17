@@ -13,11 +13,11 @@ const changeTheme = (e: CustomEventMap["themechange"]) => {
     {
       giscus: {
         setConfig: {
-          theme: getThemeName(theme),
+          theme: getThemeUrl(getThemeName(theme)),
         },
       },
     },
-    getThemeUrl(getThemeName(theme)),
+    "https://giscus.app",
   )
 }
 
@@ -81,7 +81,7 @@ document.addEventListener("nav", () => {
 
   const theme = document.documentElement.getAttribute("saved-theme")
   if (theme) {
-    giscusScript.setAttribute("data-theme", getThemeName(theme))
+    giscusScript.setAttribute("data-theme", getThemeUrl(getThemeName(theme)))
   }
 
   giscusContainer.appendChild(giscusScript)
