@@ -1,4 +1,4 @@
-import { QuartzTransformerPlugin } from "../types"
+import { HtmlTransformerPlugin, QuartzTransformerPlugin } from "../../types"
 import {
   FullSlug,
   RelativeURL,
@@ -8,7 +8,7 @@ import {
   simplifySlug,
   splitAnchor,
   transformLink,
-} from "../../util/path"
+} from "../../../util/path"
 import path from "path"
 import { visit } from "unist-util-visit"
 import isAbsoluteUrl from "is-absolute-url"
@@ -32,11 +32,11 @@ const defaultOptions: Options = {
   externalLinkIcon: true,
 }
 
-export const CrawlLinks: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+export const CrawlLinks: HtmlTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "LinkProcessing",
-    htmlPlugins(ctx) {
+    transformation(ctx) {
       return [
         () => {
           return (tree: Root, file) => {

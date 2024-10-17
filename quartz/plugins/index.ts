@@ -8,8 +8,8 @@ export function getStaticResourcesFromPlugins(ctx: BuildCtx) {
     js: [],
   }
 
-  for (const transformer of ctx.cfg.plugins.transformers) {
-    const res = transformer.externalResources ? transformer.externalResources(ctx) : {}
+  for (const transformer of ctx.cfg.plugins.transformers.externalResources) {
+    const res = transformer ? transformer.transformation(ctx) : {}
     if (res?.js) {
       staticResources.js.push(...res.js)
     }
@@ -38,7 +38,10 @@ export function getStaticResourcesFromPlugins(ctx: BuildCtx) {
   return staticResources
 }
 
-export * from "./transformers"
+export * as Text from "./transformers/text"
+export * as Markdown from "./transformers/markdown"
+export * as Html from "./transformers/html"
+export * as Resources from "./transformers/resources"
 export * from "./filters"
 export * from "./emitters"
 

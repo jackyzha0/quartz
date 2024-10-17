@@ -1,7 +1,7 @@
 import { Root as HTMLRoot } from "hast"
 import { toString } from "hast-util-to-string"
-import { QuartzTransformerPlugin } from "../types"
-import { escapeHTML } from "../../util/escape"
+import { HtmlTransformerPlugin } from "../../types"
+import { escapeHTML } from "../../../util/escape"
 
 export interface Options {
   descriptionLength: number
@@ -18,11 +18,11 @@ const urlRegex = new RegExp(
   "g",
 )
 
-export const Description: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+export const Description: HtmlTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "Description",
-    htmlPlugins() {
+    transformation() {
       return [
         () => {
           return async (tree: HTMLRoot, file) => {
