@@ -80,5 +80,15 @@ export default {
       showingFirst: ({ count }) => `Hiển thị trước ${count} thẻ.`,
       totalTags: ({ count }) => `Tìm thấy ${count} thẻ tổng cộng.`,
     },
+    encryptedContent: {
+      loading: "Đang tải...",
+      password: "Mật khẩu",
+      submit: "Mở khóa",
+      enterPassword: "Trang này bị khóa theo mặc định. Vui lòng điền mật khẩu để mở khóa:",
+      modernBrowser: "Vui lòng sử dụng trình duyệt mới nhất.",
+      wrongPassword: "Sai mật khẩu. Vui lòng điền lại mật khẩu để mở khóa:",
+      noPayload: "Không có nội dung được mã hóa.",
+      decrypting: "Đang giải mã...",
+    },
   },
 } as const satisfies Translation

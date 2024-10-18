@@ -80,5 +80,16 @@ export default {
       showingFirst: ({ count }) => `Prime ${count} etichette.`,
       totalTags: ({ count }) => `Trovate ${count} etichette totali.`,
     },
+    encryptedContent: {
+      loading: "Caricamento in corso...",
+      password: "Password",
+      submit: "Invia",
+      enterPassword:
+        "Questa pagina è bloccata per impostazione predefinita. Inserisci la password per sbloccare:",
+      modernBrowser: "Si prega di utilizzare un browser moderno.",
+      wrongPassword: "Password errato. Si prega di reinserire la password per sbloccare:",
+      noPayload: "Nessun payload crittografato.",
+      decrypting: "Decifrazione in corso...",
+    },
   },
 } as const satisfies Translation

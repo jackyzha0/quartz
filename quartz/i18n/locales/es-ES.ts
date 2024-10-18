@@ -80,5 +80,16 @@ export default {
       showingFirst: ({ count }) => `Mostrando las primeras ${count} etiquetas.`,
       totalTags: ({ count }) => `Se han encontrado ${count} etiquetas en total.`,
     },
+    encryptedContent: {
+      loading: "Cargando...",
+      password: "Contraseña",
+      submit: "Enviar",
+      enterPassword:
+        "Esta página está bloqueada por defecto. Introduzca la contraseña para desbloquearla:",
+      modernBrowser: "Utilice un navegador moderno.",
+      wrongPassword: "Contraseña incorrecta. Vuelva a introducir la contraseña para desbloquear:",
+      noPayload: "No hay ninguna carga útil cifrada.",
+      decrypting: "Descifrando...",
+    },
   },
 } as const satisfies Translation

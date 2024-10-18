@@ -1,0 +1,30 @@
+.hidden {
+  display: none;
+}
+
+.pwd {
+  box-sizing: border-box;
+  font-family: var(--bodyFont);
+  color: var(--dark);
+  border: 1px solid var(--lightgray);
+  padding: 0.5em 1em;
+  background: var(--light);
+  border-radius: 7px;
+  width: 70%;
+  margin-bottom: 2em;
+  margin-right: 2em;
+}
+
+.pwd + input {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1;
+  color: var(--light);
+  padding: 7px 15px;
+  background-color: var(--dark);
+  margin-top: 1px;
+  border-radius: 7px;
+  position: relative;
+  padding: 0.6em 1em;
+}

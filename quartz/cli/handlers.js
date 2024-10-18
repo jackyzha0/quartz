@@ -244,7 +244,7 @@ export async function handleBuild(argv) {
 
             // remove default exports that we manually inserted
             text = text.replace("export default", "")
-            text = text.replace("export", "")
+            text = text.replace("export ", "")
 
             const sourcefile = path.relative(path.resolve("."), args.path)
             const resolveDir = path.dirname(sourcefile)

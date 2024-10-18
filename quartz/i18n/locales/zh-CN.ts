@@ -78,5 +78,15 @@ export default {
       showingFirst: ({ count }) => `显示前${count}个标签。`,
       totalTags: ({ count }) => `总共有${count}个标签。`,
     },
+    encryptedContent: {
+      loading: "正在加载...",
+      password: "密码",
+      submit: "提交",
+      enterPassword: "此页面默认锁定。请输入密码解锁：",
+      modernBrowser: "请使用现代浏览器。",
+      wrongPassword: "密码错误。请重新输入密码解锁：",
+      noPayload: "没有加密的有效负载。",
+      decrypting: "解密中...",
+    },
   },
 } as const satisfies Translation
