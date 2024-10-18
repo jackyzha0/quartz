@@ -1,15 +1,36 @@
 @use "../../styles/variables.scss" as *;
 
-.explorer {
-  display: flex;
-  flex-direction: column;
+.explorer-container {
   overflow-y: hidden;
-  &.desktop-only {
-    @media all and not ($mobile) {
+  @media all and ($mobile) {
+    order: -1;
+  }
+
+  .explorer {
+    display: flex;
+    button#mobile-explorer {
+      display: none;
+    }
+    button#desktop-explorer {
       display: flex;
     }
-  }
-  /*&:after {
+    @media all and ($mobile) {
+      button#mobile-explorer {
+        display: flex;
+      }
+      button#desktop-explorer {
+        display: none;
+      }
+    }
+    height: 100%;
+    flex-direction: column;
+    overflow-y: hidden;
+    &.desktop-only {
+      @media all and not ($mobile) {
+        display: flex;
+      }
+    }
+    /*&:after {
     pointer-events: none;
     content: "";
     width: 100%;
@@ -21,161 +42,243 @@
     transition: opacity 0.3s ease;
     background: linear-gradient(transparent 0px, var(--light));
   }*/
-}
-
-button#explorer {
-  background-color: transparent;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  padding: 0;
-  color: var(--dark);
-  display: flex;
-  align-items: center;
-
-  & h2 {
-    font-size: 1rem;
-    display: inline-block;
-    margin: 0;
   }
 
-  & .fold {
-    margin-left: 0.5rem;
-    transition: transform 0.3s ease;
-    opacity: 0.8;
-  }
-
-  &.collapsed .fold {
-    transform: rotateZ(-90deg);
-  }
-}
-
-.folder-outer {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.3s ease-in-out;
-}
-
-.folder-outer.open {
-  grid-template-rows: 1fr;
-}
-
-.folder-outer > ul {
-  overflow: hidden;
-}
-
-#explorer-content {
-  list-style: none;
-  overflow: hidden;
-  overflow-y: auto;
-  max-height: 100%;
-  transition:
-    max-height 0.35s ease,
-    visibility 0s linear 0s;
-  margin-top: 0.5rem;
-  visibility: visible;
-
-  &.collapsed {
-    max-height: 0;
-    transition:
-      max-height 0.35s ease,
-      visibility 0s linear 0.35s;
-    visibility: hidden;
-  }
-
-  & ul {
-    list-style: none;
-    margin: 0.08rem 0;
-    padding: 0;
-    transition:
-      max-height 0.35s ease,
-      transform 0.35s ease,
-      opacity 0.2s ease;
-    & li > a {
-      color: var(--dark);
-      opacity: 0.75;
-      pointer-events: all;
-    }
-  }
-  > #explorer-ul {
-    max-height: none;
-  }
-}
-
-svg {
-  pointer-events: all;
-
-  & > polyline {
-    pointer-events: none;
-  }
-}
-
-.folder-container {
-  flex-direction: row;
-  display: flex;
-  align-items: center;
-  user-select: none;
-
-  & div > a {
-    color: var(--secondary);
-    font-family: var(--headerFont);
-    font-size: 0.95rem;
-    font-weight: $semiBoldWeight;
-    line-height: 1.5rem;
-    display: inline-block;
-  }
-
-  & div > a:hover {
-    color: var(--tertiary);
-  }
-
-  & div > button {
-    color: var(--dark);
+  button#mobile-explorer,
+  button#desktop-explorer {
     background-color: transparent;
     border: none;
     text-align: left;
     cursor: pointer;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
+    color: var(--dark);
     display: flex;
     align-items: center;
-    font-family: var(--headerFont);
 
-    & span {
-      font-size: 0.95rem;
+    & h2 {
+      font-size: 1rem;
       display: inline-block;
-      color: var(--secondary);
-      font-weight: $semiBoldWeight;
       margin: 0;
-      line-height: 1.5rem;
+    }
+
+    & .fold {
+      margin-left: 0.5rem;
+      transition: transform 0.3s ease;
+      opacity: 0.8;
+    }
+
+    &.collapsed .fold {
+      transform: rotateZ(-90deg);
+    }
+  }
+
+  .folder-outer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-in-out;
+  }
+
+  .folder-outer.open {
+    grid-template-rows: 1fr;
+  }
+
+  .folder-outer > ul {
+    overflow: hidden;
+  }
+
+  #explorer-content {
+    list-style: none;
+    overflow: hidden;
+    overflow-y: auto;
+    max-height: 0px;
+    transition:
+      max-height 0.35s ease,
+      visibility 0s linear 0.35s;
+    margin-top: 0.5rem;
+    visibility: hidden;
+
+    &.collapsed {
+      max-height: 100%;
+      transition:
+        max-height 0.35s ease,
+        visibility 0s linear 0s;
+      visibility: visible;
+    }
+
+    & ul {
+      list-style: none;
+      margin: 0.08rem 0;
+      padding: 0;
+      transition:
+        max-height 0.35s ease,
+        transform 0.35s ease,
+        opacity 0.2s ease;
+      & li > a {
+        color: var(--dark);
+        opacity: 0.75;
+        pointer-events: all;
+      }
+    }
+    > #explorer-ul {
+      max-height: none;
+    }
+  }
+
+  svg {
+    pointer-events: all;
+
+    & > polyline {
       pointer-events: none;
+    }
+  }
+
+  .folder-container {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    user-select: none;
+
+    & div > a {
+      color: var(--secondary);
+      font-family: var(--headerFont);
+      font-size: 0.95rem;
+      font-weight: $semiBoldWeight;
+      line-height: 1.5rem;
+      display: inline-block;
+    }
+
+    & div > a:hover {
+      color: var(--tertiary);
+    }
+
+    & div > button {
+      color: var(--dark);
+      background-color: transparent;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      padding-left: 0;
+      padding-right: 0;
+      display: flex;
+      align-items: center;
+      font-family: var(--headerFont);
+
+      & span {
+        font-size: 0.95rem;
+        display: inline-block;
+        color: var(--secondary);
+        font-weight: $semiBoldWeight;
+        margin: 0;
+        line-height: 1.5rem;
+        pointer-events: none;
+      }
+    }
+  }
+
+  .folder-icon {
+    margin-right: 5px;
+    color: var(--secondary);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    backface-visibility: visible;
+  }
+
+  li:has(> .folder-outer:not(.open)) > .folder-container > svg {
+    transform: rotate(-90deg);
+  }
+
+  .folder-icon:hover {
+    color: var(--tertiary);
+  }
+
+  .no-background::after {
+    background: none !important;
+  }
+
+  #explorer-end {
+    // needs height so IntersectionObserver gets triggered
+    height: 4px;
+    // remove default margin from li
+    margin: 0;
+  }
+
+  .explorer {
+    @media all and ($mobile) {
+      #explorer-content {
+        overscroll-behavior: none;
+        z-index: 100;
+        position: absolute;
+        background-color: var(--light);
+        max-width: calc(100% - 4rem);
+        left: 0;
+        width: 100%;
+        transition: all 300ms ease-in-out;
+        overflow: hidden;
+        padding: 2rem 2rem 4rem;
+        height: 100%;
+        max-height: calc(100dvh - 8rem);
+        margin-top: 2rem;
+        visibility: visible;
+
+        &:not(.collapsed) {
+          height: calc(100dvh - 8rem);
+        }
+
+        ul.overflow {
+          max-height: calc(100dvh - 8rem);
+          width: 100%;
+        }
+
+        &.collapsed {
+          height: 0;
+          visibility: hidden;
+        }
+      }
+
+      #mobile-explorer {
+        margin: 5px;
+        &:not(.collapsed) .lucide-menu {
+          transform: rotate(90deg);
+          transition: transform 200ms ease-in-out;
+        }
+        .lucide-menu {
+          stroke: var(--darkgray);
+          transition: transform 200ms ease;
+          &:hover {
+            stroke: var(--dark);
+          }
+        }
+      }
+    }
+  }
+
+  .no-scroll {
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  html:has(.no-scroll) {
+    overflow: hidden;
+  }
+
+  @media all and not ($mobile) {
+    .no-scroll {
+      opacity: 1 !important;
+      overflow: auto !important;
+    }
+    html:has(.no-scroll) {
+      overflow: auto !important;
     }
   }
 }
 
-.folder-icon {
-  margin-right: 5px;
-  color: var(--secondary);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  backface-visibility: visible;
+// Lock page scroll on mobile
+.lock-scroll {
+  position: static;
 }
-
-li:has(> .folder-outer:not(.open)) > .folder-container > svg {
-  transform: rotate(-90deg);
-}
-
-.folder-icon:hover {
-  color: var(--tertiary);
-}
-
-.no-background::after {
-  background: none !important;
-}
-
-#explorer-end {
-  // needs height so IntersectionObserver gets triggered
-  height: 4px;
-  // remove default margin from li
-  margin: 0;
+@media all and ($mobile) {
+  .lock-scroll {
+    position: fixed;
+    width: calc(100% - 2rem);
+  }
 }
