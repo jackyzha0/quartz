@@ -1,7 +1,7 @@
 import fs from "fs"
 import path from "path"
 import { Repository } from "@napi-rs/simple-git"
-import { QuartzTransformerPlugin } from "../types"
+import { MarkdownTransformerPlugin, QuartzTransformerPlugin } from "../../types"
 import chalk from "chalk"
 
 export interface Options {
@@ -27,11 +27,11 @@ function coerceDate(fp: string, d: any): Date {
 }
 
 type MaybeDate = undefined | string | number
-export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+export const CreatedModifiedDate: MarkdownTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "CreatedModifiedDate",
-    markdownPlugins() {
+    transformation() {
       return [
         () => {
           let repo: Repository | undefined = undefined
