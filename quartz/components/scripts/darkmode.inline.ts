@@ -27,7 +27,7 @@ document.addEventListener("nav", () => {
 
   // Darkmode toggle
   const themeButton = document.querySelector("#darkmode") as HTMLButtonElement
-  if(themeButton){
+  if (themeButton) {
     themeButton.addEventListener("click", switchTheme)
     window.addCleanup(() => themeButton.removeEventListener("click", switchTheme))
   }
