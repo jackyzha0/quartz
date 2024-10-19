@@ -53,6 +53,20 @@ export function pageResources(
   }
 }
 
+// Check if an element has a property with a specific value
+function hasPropertyValue(obj: any, property: any, value: string) {
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      if (typeof obj[key] === "object") {
+        if (obj[key].id === value || hasPropertyValue(obj[key], property, value)) {
+          return true
+        }
+      }
+    }
+  }
+  return false
+}
+
 export function renderPage(
   cfg: GlobalConfiguration,
   slug: FullSlug,
@@ -76,13 +90,36 @@ export function renderPage(
           return
         }
 
+        // callouts in transcluded pages
+        // blockRefs in callouts should transclude the entire callout
+        const transclusionCallouts = page.htmlAst?.children.filter(
+          (f) =>
+            f.type === "element" &&
+            f.tagName === "blockquote" &&
+            ((f.properties.className ?? []) as string[]).includes("callout"),
+        )
+
         let blockRef = node.properties.dataBlock as string | undefined
         if (blockRef?.startsWith("#^")) {
           // block transclude
           blockRef = blockRef.slice("#^".length)
           let blockNode = page.blocks?.[blockRef]
           if (blockNode) {
-            if (blockNode.tagName === "li") {
+            if (
+              transclusionCallouts !== undefined &&
+              transclusionCallouts.length > 0 &&
+              transclusionCallouts.find(
+                (f) =>
+                  hasPropertyValue(f, blockNode!.properties, blockNode!.properties.id as string) ===
+                  true,
+              )
+            ) {
+              blockNode = transclusionCallouts.find(
+                (f) =>
+                  hasPropertyValue(f, blockNode!.properties, blockNode!.properties.id as string) ===
+                  true,
+              ) as Element
+            } else if (blockNode.tagName === "li") {
               blockNode = {
                 type: "element",
                 tagName: "ul",
