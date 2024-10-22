@@ -46,10 +46,10 @@ export type ExternalResourcePluginInstance = {
 }
 
 export type QuartzTransformerPlugin = (
-  textTransformers: TextTransformerPlugin,
-  markdownTransformers: MarkdownTransformerPlugin,
-  htmlTransformers: HtmlTransformerPlugin,
-  externalResources: ExternalResourcePlugin,
+  textTransformers?: TextTransformerPlugin,
+  markdownTransformers?: MarkdownTransformerPlugin,
+  htmlTransformers?: HtmlTransformerPlugin,
+  externalResources?: ExternalResourcePlugin,
 ) => QuartzTransformerPluginInstance
 export type QuartzTransformerPluginInstance = {
   //name: string,
