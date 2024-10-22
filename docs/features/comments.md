@@ -63,6 +63,18 @@ type Options = {
     category: string
     categoryId: string
 
+    // Url to folder with custom themes
+    // defaults to 'https://${cfg.baseUrl}/static/giscus'
+    themeUrl?: string
+
+    // filename for light theme .css file
+    // defaults to 'light'
+    lightTheme?: string
+
+    // filename for dark theme .css file
+    // defaults to 'dark'
+    darkTheme?: string
+
     // how to map pages -> discussions
     // defaults to 'url'
     mapping?: "url" | "title" | "og:title" | "specific" | "number" | "pathname"
@@ -80,4 +92,25 @@ type Options = {
     inputPosition?: "top" | "bottom"
   }
 }
+```
+
+#### Custom CSS theme
+
+Quartz supports custom theme for Giscus. To use a custom CSS theme, place the `.css` file inside the `quartz/static` folder and set the configuration values.
+
+For example, if you have a light theme `light-theme.css`, a dark theme `dark-theme.css`, and your Quartz site is hosted at `https://example.com/`:
+
+```ts
+afterBody: [
+  Component.Comments({
+    provider: 'giscus',
+    options: {
+      // Other options
+
+      themeUrl: "https://example.com/static/giscus", // corresponds to quartz/static/giscus/
+      lightTheme: "light-theme", // corresponds to light-theme.css in quartz/static/giscus/
+      darkTheme: "dark-theme", // corresponds to dark-theme.css quartz/static/giscus/
+    }
+  }),
+],
 ```

@@ -457,7 +457,25 @@ export async function handleUpdate(argv) {
 
   await popContentFolder(contentFolder)
   console.log("Ensuring dependencies are up to date")
-  const res = spawnSync("npm", ["i"], { stdio: "inherit" })
+
+  /*
+  On Windows, if the command `npm` is really `npm.cmd', this call fails
+  as it will be unable to find `npm`. This is often the case on systems
+  where `npm` is installed via a package manager.
+
+  This means `npx quartz update` will not actually update dependencies
+  on Windows, without a manual `npm i` from the caller.
+
+  However, by spawning a shell, we are able to call `npm.cmd`.
+  See: https://nodejs.org/api/child_process.html#spawning-bat-and-cmd-files-on-windows
+  */
+
+  const opts = { stdio: "inherit" }
+  if (process.platform === "win32") {
+    opts.shell = true
+  }
+
+  const res = spawnSync("npm", ["i"], opts)
   if (res.status === 0) {
     console.log(chalk.green("Done!"))
   } else {
