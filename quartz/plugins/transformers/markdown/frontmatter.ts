@@ -1,11 +1,11 @@
 import matter from "gray-matter"
 import remarkFrontmatter from "remark-frontmatter"
-import { QuartzTransformerPlugin } from "../types"
+import { MarkdownTransformerPlugin } from "../../types"
 import yaml from "js-yaml"
 import toml from "toml"
-import { slugTag } from "../../util/path"
-import { QuartzPluginData } from "../vfile"
-import { i18n } from "../../i18n"
+import { slugTag } from "../../../util/path"
+import { QuartzPluginData } from "../../vfile"
+import { i18n } from "../../../i18n"
 
 export interface Options {
   delimiters: string | [string, string]
@@ -40,11 +40,11 @@ function coerceToArray(input: string | string[]): string[] | undefined {
     .map((tag: string | number) => tag.toString())
 }
 
-export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+export const FrontMatter: MarkdownTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "FrontMatter",
-    markdownPlugins({ cfg }) {
+    transformation({ cfg }) {
       return [
         [remarkFrontmatter, ["yaml", "toml"]],
         () => {

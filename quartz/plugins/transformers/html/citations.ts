@@ -1,7 +1,7 @@
 import rehypeCitation from "rehype-citation"
 import { PluggableList } from "unified"
 import { visit } from "unist-util-visit"
-import { QuartzTransformerPlugin } from "../types"
+import { HtmlTransformerPlugin } from "../../types"
 
 export interface Options {
   bibliographyFile: string
@@ -17,11 +17,11 @@ const defaultOptions: Options = {
   csl: "apa",
 }
 
-export const Citations: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+export const Citations: HtmlTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "Citations",
-    htmlPlugins(ctx) {
+    transformation(ctx) {
       const plugins: PluggableList = []
 
       // Add rehype-citation to the list of plugins

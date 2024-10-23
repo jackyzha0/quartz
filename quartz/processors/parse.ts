@@ -16,22 +16,19 @@ import { BuildCtx } from "../util/ctx"
 
 export type QuartzProcessor = Processor<MDRoot, MDRoot, HTMLRoot>
 export function createProcessor(ctx: BuildCtx): QuartzProcessor {
-  const transformers = ctx.cfg.plugins.transformers
+  const markdownTransformers = ctx.cfg.plugins.transformers.markdownTransformers
+  const htmlTransformers = ctx.cfg.plugins.transformers.htmlTransformers
 
   return (
     unified()
       // base Markdown -> MD AST
       .use(remarkParse)
       // MD AST -> MD AST transforms
-      .use(
-        transformers
-          .filter((p) => p.markdownPlugins)
-          .flatMap((plugin) => plugin.markdownPlugins!(ctx)),
-      )
+      .use(markdownTransformers.flatMap((plugin) => plugin.transformation(ctx)))
       // MD AST -> HTML AST
       .use(remarkRehype, { allowDangerousHtml: true })
       // HTML AST -> HTML AST transforms
-      .use(transformers.filter((p) => p.htmlPlugins).flatMap((plugin) => plugin.htmlPlugins!(ctx)))
+      .use(htmlTransformers.flatMap((plugin) => plugin.transformation!(ctx)))
   )
 }
 
@@ -86,8 +83,8 @@ export function createFileParser(ctx: BuildCtx, fps: FilePath[]) {
         file.value = file.value.toString().trim()
 
         // Text -> Text transforms
-        for (const plugin of cfg.plugins.transformers.filter((p) => p.textTransform)) {
-          file.value = plugin.textTransform!(ctx, file.value.toString())
+        for (const plugin of cfg.plugins.transformers.textTransformers) {
+          file.value = plugin.transformation(ctx, file.value.toString())
         }
 
         // base data properties that plugins may use

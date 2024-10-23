@@ -1,5 +1,10 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import * as Text from "./quartz/plugins/transformers/text"
+import * as Markdown from "./quartz/plugins/transformers/markdown"
+import * as Html from "./quartz/plugins/transformers/html"
+import * as Resources from "./quartz/plugins/transformers/resources"
+import * as Presets from "./quartz/plugins/transformers/presets"
 
 /**
  * Quartz 4.0 Configuration
@@ -54,25 +59,7 @@ const config: QuartzConfig = {
     },
   },
   plugins: {
-    transformers: [
-      Plugin.FrontMatter(),
-      Plugin.CreatedModifiedDate({
-        priority: ["frontmatter", "filesystem"],
-      }),
-      Plugin.SyntaxHighlighting({
-        theme: {
-          light: "github-light",
-          dark: "github-dark",
-        },
-        keepBackground: false,
-      }),
-      Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
-      Plugin.GitHubFlavoredMarkdown(),
-      Plugin.TableOfContents(),
-      Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
-      Plugin.Description(),
-      Plugin.Latex({ renderEngine: "katex" }),
-    ],
+    transformers: Presets.DefaultPreset(),
     filters: [Plugin.RemoveDrafts()],
     emitters: [
       Plugin.AliasRedirects(),
