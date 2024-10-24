@@ -40,7 +40,7 @@ function coerceToArray(input: string | string[]): string[] | undefined {
     .map((tag: string | number) => tag.toString())
 }
 
-export const FrontMatter: QuartzTransformerPlugin<Partial<Options> | undefined> = (userOpts) => {
+export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "FrontMatter",
@@ -88,8 +88,8 @@ declare module "vfile" {
         tags: string[]
         aliases: string[]
         description: string
-        publish: boolean
-        draft: boolean
+        publish: boolean | string
+        draft: boolean | string
         lang: string
         enableToc: string
         cssclasses: string[]

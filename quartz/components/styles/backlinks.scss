@@ -1,5 +1,19 @@
+@use "../../styles/variables.scss" as *;
+
 .backlinks {
-  position: relative;
+  flex-direction: column;
+  /*&:after {
+      pointer-events: none;
+      content: "";
+      width: 100%;
+      height: 50px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      background: linear-gradient(transparent 0px, var(--light));
+    }*/
 
   & > h3 {
     font-size: 1rem;
@@ -15,6 +29,16 @@
       & > a {
         background-color: transparent;
       }
+    }
+  }
+
+  & > .overflow {
+    &:after {
+      display: none;
+    }
+    height: auto;
+    @media all and not ($desktop) {
+      height: 250px;
     }
   }
 }

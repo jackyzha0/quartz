@@ -16,10 +16,13 @@
     overflow: hidden;
 
     & > #global-graph-icon {
+      cursor: pointer;
+      background: none;
+      border: none;
       color: var(--dark);
       opacity: 0.5;
-      width: 18px;
-      height: 18px;
+      width: 24px;
+      height: 24px;
       position: absolute;
       padding: 0.2rem;
       margin: 0.3rem;
@@ -59,10 +62,10 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      height: 60vh;
-      width: 50vw;
+      height: 80vh;
+      width: 80vw;
 
-      @media all and (max-width: $fullPageWidth) {
+      @media all and not ($desktop) {
         width: 90%;
       }
     }

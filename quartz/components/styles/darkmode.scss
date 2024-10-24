@@ -1,17 +1,15 @@
 .darkmode {
+  cursor: pointer;
+  padding: 0;
   position: relative;
+  background: none;
+  border: none;
   width: 20px;
   height: 20px;
   margin: 0 10px;
-
-  & > .toggle {
-    display: none;
-    box-sizing: border-box;
-  }
+  text-align: inherit;
 
   & svg {
-    cursor: pointer;
-    opacity: 0;
     position: absolute;
     width: 20px;
     height: 20px;
@@ -29,20 +27,20 @@
   color-scheme: light;
 }
 
-:root[saved-theme="dark"] .toggle ~ label {
+:root[saved-theme="dark"] .darkmode {
   & > #dayIcon {
-    opacity: 0;
+    display: none;
   }
   & > #nightIcon {
-    opacity: 1;
+    display: inline;
   }
 }
 
-:root .toggle ~ label {
+:root .darkmode {
   & > #dayIcon {
-    opacity: 1;
+    display: inline;
   }
   & > #nightIcon {
-    opacity: 0;
+    display: none;
   }
 }
