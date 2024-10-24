@@ -83,6 +83,7 @@ const config: QuartzConfig = {
       Plugin.ContentIndex({
         enableSiteMap: true,
         enableRSS: true,
+        feedDirectories: ["index"], // For a feed for only pages in content/Folder/, add "Folder" to the array
       }),
       Plugin.Assets(),
       Plugin.Static(),
