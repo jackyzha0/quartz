@@ -2,13 +2,13 @@ const bufferPx = 150
 const observer = new IntersectionObserver((entries) => {
   for (const entry of entries) {
     const slug = entry.target.id
-    const tocEntryElement = document.querySelector(`a[data-for="${slug}"]`)
+    const tocEntryElements = document.querySelectorAll(`a[data-for="${slug}"]`)
     const windowHeight = entry.rootBounds?.height
-    if (windowHeight && tocEntryElement) {
+    if (windowHeight && tocEntryElements.length > 0) {
       if (entry.boundingClientRect.y < windowHeight) {
-        tocEntryElement.classList.add("in-view")
+        tocEntryElements.forEach((tocEntryElement) => tocEntryElement.classList.add("in-view"))
       } else {
-        tocEntryElement.classList.remove("in-view")
+        tocEntryElements.forEach((tocEntryElement) => tocEntryElement.classList.remove("in-view"))
       }
     }
   }
@@ -26,14 +26,14 @@ function toggleToc(this: HTMLElement) {
 }
 
 function setupToc() {
-  const toc = document.getElementById("toc")
-  if (toc) {
+  const tocs = document.querySelectorAll("[id=toc]")
+  tocs.forEach((toc) => {
     const collapsed = toc.classList.contains("collapsed")
     const content = toc.nextElementSibling as HTMLElement | undefined
     if (!content) return
     toc.addEventListener("click", toggleToc)
     window.addCleanup(() => toc.removeEventListener("click", toggleToc))
-  }
+  })
 }
 
 window.addEventListener("resize", setupToc)
