@@ -134,16 +134,12 @@ export const FolderPage: QuartzEmitterPlugin<Partial<FolderPageOptions>> = (user
 }
 
 function _getFolders(slug: FullSlug): SimpleSlug[] {
-  var folderName = _dirname(slug)
+  var folderName = path.dirname(slug ?? "") as SimpleSlug
   const parentFolderNames = [folderName]
 
   while (folderName !== ".") {
-    folderName = _dirname(folderName)
+    folderName = path.dirname(folderName ?? "") as SimpleSlug
     parentFolderNames.push(folderName)
   }
   return parentFolderNames
-}
-
-function _dirname(slug: string | undefined): SimpleSlug {
-  return path.dirname(slug ?? "") as SimpleSlug
 }
