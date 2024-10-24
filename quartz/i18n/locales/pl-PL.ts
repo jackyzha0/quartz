@@ -80,5 +80,15 @@ export default {
       showingFirst: ({ count }) => `Pokazuje ${count} pierwszych znaczników.`,
       totalTags: ({ count }) => `Znalezionych wszystkich znaczników: ${count}.`,
     },
+    encryptedContent: {
+      loading: "Ładowanie...",
+      password: "Hasło",
+      submit: "Wyślij",
+      enterPassword: "Ta strona jest domyślnie zablokowana. Wprowadź hasło, aby ją odblokować:",
+      modernBrowser: "Użyj nowoczesnej przeglądarki.",
+      wrongPassword: "Senha incorreta. Digite a senha novamente para desbloquear:",
+      noPayload: "Nie ma zaszyfrowanego ładunku.",
+      decrypting: "Deszyfrowanie...",
+    },
   },
 } as const satisfies Translation

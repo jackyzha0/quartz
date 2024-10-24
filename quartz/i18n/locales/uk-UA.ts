@@ -80,5 +80,15 @@ export default {
       showingFirst: ({ count }) => `Показ перших ${count} міток.`,
       totalTags: ({ count }) => `Всього знайдено міток: ${count}.`,
     },
+    encryptedContent: {
+      loading: "Завантаження...",
+      password: "Пароль",
+      submit: "Надіслати",
+      enterPassword: "Ця сторінка за замовчуванням заблокована. Введіть пароль, щоб розблокувати:",
+      modernBrowser: "Будь ласка, використовуйте сучасний браузер.",
+      wrongPassword: "Неправильний пароль. Будь ласка, введіть пароль ще раз, щоб розблокувати:",
+      noPayload: "Немає зашифрованого корисного навантаження.",
+      decrypting: "Розшифровка...",
+    },
   },
 } as const satisfies Translation

@@ -78,5 +78,16 @@ export default {
       showingFirst: ({ count }) => `Első ${count} címke megjelenítve.`,
       totalTags: ({ count }) => `Összesen ${count} címke található.`,
     },
+    encryptedContent: {
+      loading: "Betöltés...",
+      password: "Jelszó",
+      submit: "Küldés",
+      enterPassword:
+        "Ez az oldal alapértelmezés szerint zárolva van. Kérjük, adja meg a jelszót a feloldáshoz:",
+      modernBrowser: "Kérjük, használjon modern böngészőt.",
+      wrongPassword: "Helytelen jelszó. Kérjük, adja meg újra a jelszót a feloldáshoz:",
+      noPayload: "Nincs titkosított hasznos teher.",
+      decrypting: "Dekódolás...",
+    },
   },
 } as const satisfies Translation
