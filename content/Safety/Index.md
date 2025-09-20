@@ -1,3 +1,7 @@
+---
+title: Safety Frameworks
+---
+
 # Safety Frameworks for Medical Vision-Language Models
 
 > Comprehensive safety mechanisms, guardrails, and deployment strategies for high-stakes medical AI applications

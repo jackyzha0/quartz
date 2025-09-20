@@ -7,7 +7,8 @@
       "Bash(ls:*)",
       "Bash(true)",
       "Bash(find:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(npx quartz:*)"
     ],
     "deny": []
   }

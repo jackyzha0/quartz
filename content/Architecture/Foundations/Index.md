@@ -1,3 +1,7 @@
+---
+title: Architecture Foundations
+---
+
 # Foundations Index
 
 > Core background for the rest of the notebook.

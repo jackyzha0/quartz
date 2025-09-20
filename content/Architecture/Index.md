@@ -1,3 +1,7 @@
+---
+title: Architecture Overview
+---
+
 # Model Architecture Deep Dive
 
 > Understanding the architectural foundations of modern multimodal AI systems, from transformers to vision-language models

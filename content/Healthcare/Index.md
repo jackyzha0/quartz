@@ -1,3 +1,7 @@
+---
+title: Healthcare AI
+---
+
 # Healthcare AI: Medical Vision-Language Models
 
 > Specialized models, clinical datasets, validation protocols, and deployment considerations for medical multimodal AI
