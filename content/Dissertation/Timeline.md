@@ -1,6 +1,6 @@
 # Dissertation Timeline (to Aug 2026)
 
-[← Proposal](Proposal.md) | [← Site Index](../Index.md)
+[← Proposal](proposal.md) | [← Site Index](../Index.md)
 
 ---
 

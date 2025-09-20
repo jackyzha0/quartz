@@ -2,7 +2,7 @@
 
 > Working Title: Phrasing‑Robust Medical Vision‑Language Models for Radiology: Measurement, Causality, Mitigation, and Safe Triage
 
-[← Site Index](../Index.md) | [Timeline →](Timeline.md)
+[← Site Index](../Index.md) | [Timeline →](timeline.md)
 
 ---
 
@@ -15,7 +15,7 @@ Semantically equivalent phrasings of clinical questions can flip predictions of 
 1) Measure phrasing sensitivity in medical VLMs.
 - Build a radiology benchmark of semantically equivalent prompts per image and task (synonymy, negation, hedging, temporality, quantifiers, units, reading level, clinician style).
 - Report robust accuracy, paraphrase consistency, flip rate, calibration error, and selective risk at coverage.
-- Baselines: LLaVA‑Rad, MedGemma, LLaVA‑Med. See [[Healthcare/LLaVA-Rad|LLaVA‑Rad]] and [[Healthcare/MedGemma|MedGemma]].
+- Baselines: LLaVA‑Rad, MedGemma, LLaVA‑Med. See [[Healthcare/03-llava-rad|LLaVA‑Rad]] and [[Healthcare/02-medgemma|MedGemma]].
 
 2) Explain why phrasings flip predictions.
 - Attribution and grounding analyses to separate text‑to‑concept parsing vs image‑region grounding.
@@ -31,7 +31,7 @@ Semantically equivalent phrasings of clinical questions can flip predictions of 
 5) Validate safety and generalization.
 - External validation across sites and modalities; reader‑in‑the‑loop study; fairness across subgroups; include multi‑image reasoning when feasible.
 
-See also: [[Evaluation/Paraphrase Robustness|Paraphrase Robustness Metrics]], [[Safety/Selective Conformal Triage|Selective Conformal Triage]].
+See also: [[Evaluation/02-paraphrase-robustness|Paraphrase Robustness Metrics]], [[Safety/02-selective-conformal-triage|Selective Conformal Triage]].
 
 ## Novelty
 
@@ -44,7 +44,7 @@ See also: [[Evaluation/Paraphrase Robustness|Paraphrase Robustness Metrics]], [[
 ## Methods by Aim (Condensed)
 
 - Tasks: radiology VQA, abnormality tagging, short justification.
-- Data: VQA‑RAD, PMC‑VQA, SLAKE, plus approved internal sets. [[Evaluation/MedPhr-Rad|MedPhr‑Rad benchmark]] collects paraphrase sets.
+- Data: VQA‑RAD, PMC‑VQA, SLAKE, plus approved internal sets. [[Evaluation/01-medphr-rad|MedPhr‑Rad benchmark]] collects paraphrase sets.
 - Models: LLaVA‑Rad, MedGemma, LLaVA‑Med and a light baseline.
 - Metrics: paraphrase consistency, flip rate, robust accuracy, ECE, selective risk at coverage c%.
 - Explanations: attention rollout, IG on text tokens, ViT relevance; token deletion tests.
