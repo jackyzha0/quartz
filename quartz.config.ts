@@ -19,7 +19,7 @@ const config: QuartzConfig = {
     // For GitHub Pages project site under custom domain path
     // Example: https://bineshkumar.me/robmedllm_notes
     baseUrl: "bineshkumar.me/robmedllm_notes",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    ignorePatterns: ["private", "templates", ".obsidian", "archive"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
