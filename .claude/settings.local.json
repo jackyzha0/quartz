@@ -9,7 +9,9 @@
       "Bash(find:*)",
       "Bash(grep:*)",
       "Bash(npx quartz:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": []
   }
