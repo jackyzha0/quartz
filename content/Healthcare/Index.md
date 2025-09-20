@@ -13,14 +13,14 @@ This section focuses on the intersection of Vision-Language Models with healthca
 ## 🎯 Core Resources
 
 ### Models & Architectures
-- [[medical-vision-language-models|Medical VLM Overview]] — Comprehensive survey of healthcare-focused multimodal models
-- [[medgemma|Google MedGemma]] — State-of-the-art medical language models and their capabilities
-- [[llava-rad|LLaVA-RAD (Radiology VLM)]] — Lightweight, open-access radiology model and evaluation
-- [[ehr-and-temporal-models|Temporal Clinical Models]] — Integrating longitudinal patient data with imaging
+- [[01-medical-vision-language-models|Medical VLM Overview]] — Comprehensive survey of healthcare-focused multimodal models
+- [[02-medgemma|Google MedGemma]] — State-of-the-art medical language models and their capabilities
+- [[03-llava-rad|LLaVA-RAD (Radiology VLM)]] — Lightweight, open-access radiology model and evaluation
+- [[04-ehr-and-temporal-models|Temporal Clinical Models]] — Integrating longitudinal patient data with imaging
 
 ### Validation & Deployment
-- [[validation-and-datasets|Clinical Validation Protocols]] — Medical datasets, benchmarks, and evaluation standards
-- [[additional-resources|Healthcare AI Resources]] — Tools, libraries, and regulatory guidance
+- [[05-validation-and-datasets|Clinical Validation Protocols]] — Medical datasets, benchmarks, and evaluation standards
+- [[06-additional-resources|Healthcare AI Resources]] — Tools, libraries, and regulatory guidance
 
 ## Key Medical VLM Applications
 
@@ -198,4 +198,4 @@ medical_vlm_pipeline = {
 ## Related Topics
 - [[../Attacks/index|Medical AI Security]] — Protecting against adversarial attacks
 - [[../Evaluation/helm-framework|Clinical Evaluation]] — Holistic assessment for medical AI
-- [[../Safety/mllmguard-framework|Safety Frameworks]] — Ensuring safe clinical deployment
+- [[../Safety/01-mllmguard-framework|Safety Frameworks]] — Ensuring safe clinical deployment

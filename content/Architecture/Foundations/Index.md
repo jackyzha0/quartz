@@ -6,10 +6,10 @@ title: Architecture Foundations
 
 > Core background for the rest of the notebook.
 
-- [[transformer-architecture|Transformer Architecture]]
-- [[large-language-models|Large Language Models]]
-- [[vlm-basics|VLM Basics]]
-- [[byte-pair-encoding|Byte Pair Encoding]]
-- [[gemma-3-architecture|Gemma 3 Architecture]]
+- [[01-transformer-architecture|Transformer Architecture]]
+- [[02-large-language-models|Large Language Models]]
+- [[03-vlm-basics|VLM Basics]]
+- [[04-byte-pair-encoding|Byte Pair Encoding]]
+- [[05-gemma-3-architecture|Gemma 3 Architecture]]
 
 See also: [[../Index|Architecture overview]]

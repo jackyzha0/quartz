@@ -122,6 +122,6 @@ This section explores the security landscape of Vision-Language Models, with par
 - Real-world threat modeling
 
 ## Related Topics
-- [[../Safety/mllmguard-framework|Safety Frameworks]] — Comprehensive protection systems
-- [[../Evaluation/helm-framework|Evaluation Protocols]] — Robustness assessment methods
-- [[../Healthcare/medical-vision-language-models|Medical VLM Applications]] — Clinical deployment considerations
+- [[../Safety/01-mllmguard-framework|Safety Frameworks]] — Comprehensive protection systems
+- [[../Evaluation/04-helm-framework|Evaluation Protocols]] — Robustness assessment methods
+- [[../Healthcare/01-medical-vision-language-models|Medical VLM Applications]] — Clinical deployment considerations

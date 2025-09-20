@@ -18,36 +18,36 @@ This digital garden documents my dissertation research on developing robust, evi
 ### Start Here
 - [[Dissertation/proposal|Current Dissertation Proposal]] — Phrasing-robust medical VLMs
 - [[Dissertation/timeline|Timeline to Aug 2026]]
-- [[Evaluation/medphr-rad|MedPhr-Rad Framework]] — Core contribution
-- [[Healthcare/medical-vision-language-models|Medical VLMs Overview]]
+- [[Evaluation/01-medphr-rad|MedPhr-Rad Framework]] — Core contribution
+- [[Healthcare/01-medical-vision-language-models|Medical VLMs Overview]]
 
 ## 📚 Research Areas
 
 ### 🏗️ Architecture Foundations
-- [[Architecture/Foundations/transformer-architecture|Transformer Architecture]] — Self-attention mechanisms and positional encodings
-- [[Architecture/Foundations/large-language-models|LLM Fundamentals]] — Scaling laws, training dynamics, and emergence
-- [[Architecture/Foundations/vlm-basics|Vision-Language Integration]] — Cross-modal alignment and fusion strategies
-- [[Architecture/Foundations/byte-pair-encoding|Tokenization Methods]] — BPE and multimodal tokenization
-- [[Architecture/Foundations/gemma3-architecture|Modern Architecture Designs]] — State-of-the-art model architectures
+- [[Architecture/Foundations/01-transformer-architecture|Transformer Architecture]] — Self-attention mechanisms and positional encodings
+- [[Architecture/Foundations/02-large-language-models|LLM Fundamentals]] — Scaling laws, training dynamics, and emergence
+- [[Architecture/Foundations/03-vlm-basics|Vision-Language Integration]] — Cross-modal alignment and fusion strategies
+- [[Architecture/Foundations/04-byte-pair-encoding|Tokenization Methods]] — BPE and multimodal tokenization
+- [[Architecture/Foundations/05-gemma-3-architecture|Modern Architecture Designs]] — State-of-the-art model architectures
 
 ### 🏥 Healthcare Applications
-- [[Healthcare/medgemma|MedGemma]] — Google's clinical language models
-- [[Healthcare/llava-rad|LLaVA-RAD]] — Primary evaluation target for paraphrase robustness
-- [[Healthcare/ehr-and-temporal-models|Temporal Clinical Modeling]] — Sequential patient data analysis
-- [[Healthcare/validation-and-datasets|Clinical Datasets]] — VQA-RAD, PMC-VQA, SLAKE
-- [[Healthcare/medical-vision-language-models|Medical VLM Landscape]] — Current models and capabilities
+- [[Healthcare/02-medgemma|MedGemma]] — Google's clinical language models
+- [[Healthcare/03-llava-rad|LLaVA-RAD]] — Primary evaluation target for paraphrase robustness
+- [[Healthcare/04-ehr-and-temporal-models|Temporal Clinical Modeling]] — Sequential patient data analysis
+- [[Healthcare/05-validation-and-datasets|Clinical Datasets]] — VQA-RAD, PMC-VQA, SLAKE
+- [[Healthcare/01-medical-vision-language-models|Medical VLM Landscape]] — Current models and capabilities
 
 ### 🛡️ Robustness & Safety
-- [[Evaluation/paraphrase-robustness|Paraphrase Robustness]] — Core metrics and methodology
-- [[Safety/selective-conformal-triage|Selective Conformal Triage]] — Safe deployment with guarantees
+- [[Evaluation/02-paraphrase-robustness|Paraphrase Robustness]] — Core metrics and methodology
+- [[Safety/02-selective-conformal-triage|Selective Conformal Triage]] — Safe deployment with guarantees
 - [[Attacks/index|Adversarial Robustness]] — Background on general attacks
-- [[Safety/mllmguard-framework|MLLMGuard Framework]] — Comprehensive protection system
+- [[Safety/01-mllmguard-framework|MLLMGuard Framework]] — Comprehensive protection system
 
 ### 📊 Evaluation & Metrics
-- [[Evaluation/medphr-rad|MedPhr-Rad Benchmark]] — Paraphrase robustness evaluation
-- [[Evaluation/metrics-and-calibration|Calibration & Uncertainty]] — Confidence estimation
-- [[Evaluation/helm-framework|HELM Benchmark]] — Holistic evaluation methodology
-- [[Evaluation/pretraining-comparison|Model Comparison Studies]] — Performance across architectures
+- [[Evaluation/01-medphr-rad|MedPhr-Rad Benchmark]] — Paraphrase robustness evaluation
+- [[Evaluation/03-metrics-and-calibration|Calibration & Uncertainty]] — Confidence estimation
+- [[Evaluation/04-helm-framework|HELM Benchmark]] — Holistic evaluation methodology
+- [[Evaluation/05-pretraining-comparison|Model Comparison Studies]] — Performance across architectures
 
 ## 🔬 Current Research Focus
 
@@ -78,8 +78,8 @@ This digital garden documents my dissertation research on developing robust, evi
 ## 🛠️ Technical Stack
 
 ### Models Under Study
-- **[[Healthcare/llava-rad|LLaVA-RAD]]**: Primary target for paraphrase robustness
-- **[[Healthcare/medgemma|MedGemma]]**: Secondary comparison model
+- **[[Healthcare/03-llava-rad|LLaVA-RAD]]**: Primary target for paraphrase robustness
+- **[[Healthcare/02-medgemma|MedGemma]]**: Secondary comparison model
 - **LLaVA-Med**: Baseline medical VLM
 - **BiomedCLIP**: Domain-adapted foundation model
 

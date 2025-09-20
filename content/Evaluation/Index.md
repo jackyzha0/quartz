@@ -13,10 +13,11 @@ Evaluating Vision-Language Models in medical contexts requires specialized frame
 ## 🎯 Core Resources
 
 ### Evaluation Methodologies
-- [[helm-framework|HELM Evaluation Framework]] — Holistic Evaluation of Language Models adapted for multimodal systems
-- [[metrics-and-calibration|Calibration & Uncertainty]] — Confidence estimation and reliability metrics
-- [[pretraining-comparison|Model Architecture Comparisons]] — Systematic analysis of different pretraining strategies
-- [[paraphrase-robustness|Paraphrase Robustness & Metrics]] — Consistency, flips, robust accuracy, selective risk
+- [[01-medphr-rad|MedPhr-Rad Framework]] — Paraphrase robustness evaluation framework (core contribution)
+- [[02-paraphrase-robustness|Paraphrase Robustness & Metrics]] — Consistency, flips, robust accuracy, selective risk
+- [[03-metrics-and-calibration|Calibration & Uncertainty]] — Confidence estimation and reliability metrics
+- [[04-helm-framework|HELM Evaluation Framework]] — Holistic Evaluation of Language Models adapted for multimodal systems
+- [[05-pretraining-comparison|Model Architecture Comparisons]] — Systematic analysis of different pretraining strategies
 
 ## Evaluation Dimensions
 
@@ -195,5 +196,5 @@ class VLMEvaluator:
 
 ## Related Resources
 - [[../Attacks/index|Attack Methodologies]] — Understanding evaluation under adversarial conditions
-- [[../Healthcare/validation-and-datasets|Medical Datasets]] — Clinical validation resources
-- [[../Safety/mllmguard-framework|Safety Evaluation]] — Comprehensive safety assessment
+- [[../Healthcare/05-validation-and-datasets|Medical Datasets]] — Clinical validation resources
+- [[../Safety/01-mllmguard-framework|Safety Evaluation]] — Comprehensive safety assessment

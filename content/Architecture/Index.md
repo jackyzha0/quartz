@@ -13,13 +13,13 @@ This section provides comprehensive coverage of the architectural components tha
 ## Core Architecture Components
 
 ### 🔧 Fundamental Building Blocks
-- [[Foundations/transformer-architecture|Transformer Architecture]] — Self-attention, multi-head attention, positional encodings, and layer normalization
-- [[Foundations/byte-pair-encoding|Tokenization & Encoding]] — BPE, WordPiece, and multimodal token representations
-- [[Foundations/large-language-models|Large Language Models]] — Scaling laws, emergent capabilities, and training dynamics
+- [[Foundations/01-transformer-architecture|Transformer Architecture]] — Self-attention, multi-head attention, positional encodings, and layer normalization
+- [[Foundations/04-byte-pair-encoding|Tokenization & Encoding]] — BPE, WordPiece, and multimodal token representations
+- [[Foundations/02-large-language-models|Large Language Models]] — Scaling laws, emergent capabilities, and training dynamics
 
 ### 🎯 Vision-Language Integration
-- [[Foundations/vlm-basics|VLM Fundamentals]] — Cross-modal alignment, fusion strategies, and contrastive learning
-- [[Foundations/gemma-3-architecture|Modern Architectures]] — Latest design patterns in Gemma, LLaMA, and other foundation models
+- [[Foundations/03-vlm-basics|VLM Fundamentals]] — Cross-modal alignment, fusion strategies, and contrastive learning
+- [[Foundations/05-gemma-3-architecture|Modern Architectures]] — Latest design patterns in Gemma, LLaMA, and other foundation models
 
 ## Key Architectural Patterns
 
@@ -56,6 +56,6 @@ This section provides comprehensive coverage of the architectural components tha
 - Attention-based interpretability mechanisms
 
 ## Related Resources
-- [[../Healthcare/medgemma|MedGemma]] — Google's medical-specific architecture adaptations
+- [[../Healthcare/02-medgemma|MedGemma]] — Google's medical-specific architecture adaptations
 - [[../Attacks/index|Attack Surfaces]] — How architecture choices impact vulnerability
-- [[../Evaluation/metrics-and-calibration|Architectural Evaluation]] — Metrics for model comparison
+- [[../Evaluation/03-metrics-and-calibration|Architectural Evaluation]] — Metrics for model comparison
