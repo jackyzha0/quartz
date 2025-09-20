@@ -9,13 +9,13 @@ This section provides comprehensive coverage of the architectural components tha
 ## Core Architecture Components
 
 ### 🔧 Fundamental Building Blocks
-- [[Foundations/Transformer Architecture|Transformer Architecture]] — Self-attention, multi-head attention, positional encodings, and layer normalization
-- [[Foundations/Byte Pair Encoding|Tokenization & Encoding]] — BPE, WordPiece, and multimodal token representations
-- [[Foundations/Large Language Models|Large Language Models]] — Scaling laws, emergent capabilities, and training dynamics
+- [[Foundations/transformer-architecture|Transformer Architecture]] — Self-attention, multi-head attention, positional encodings, and layer normalization
+- [[Foundations/byte-pair-encoding|Tokenization & Encoding]] — BPE, WordPiece, and multimodal token representations
+- [[Foundations/large-language-models|Large Language Models]] — Scaling laws, emergent capabilities, and training dynamics
 
 ### 🎯 Vision-Language Integration
-- [[Foundations/VLM Basics|VLM Fundamentals]] — Cross-modal alignment, fusion strategies, and contrastive learning
-- [[Foundations/Gemma 3 Architecture|Modern Architectures]] — Latest design patterns in Gemma, LLaMA, and other foundation models
+- [[Foundations/vlm-basics|VLM Fundamentals]] — Cross-modal alignment, fusion strategies, and contrastive learning
+- [[Foundations/gemma-3-architecture|Modern Architectures]] — Latest design patterns in Gemma, LLaMA, and other foundation models
 
 ## Key Architectural Patterns
 
@@ -52,6 +52,6 @@ This section provides comprehensive coverage of the architectural components tha
 - Attention-based interpretability mechanisms
 
 ## Related Resources
-- [[../Healthcare/MedGemma|MedGemma]] — Google's medical-specific architecture adaptations
-- [[../Attacks/vlm-attacks|Attack Surfaces]] — How architecture choices impact vulnerability
-- [[../Evaluation/Metrics and Calibration|Architectural Evaluation]] — Metrics for model comparison
+- [[../Healthcare/medgemma|MedGemma]] — Google's medical-specific architecture adaptations
+- [[../Attacks/index|Attack Surfaces]] — How architecture choices impact vulnerability
+- [[../Evaluation/metrics-and-calibration|Architectural Evaluation]] — Metrics for model comparison

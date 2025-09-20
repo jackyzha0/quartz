@@ -4,6 +4,8 @@
 
 ## Overview
 
+Note: This page reflects a broader safety wrapper developed earlier. In the current dissertation, the core contribution is a paraphrase‑robustness baselining framework (MedPhr‑Rad) with selective conformal triage. MLLMGuard remains a supportive, optional deployment layer.
+
 MLLMGuard (Medical Large Language Model Guard) is a comprehensive safety framework designed specifically for deploying Vision-Language Models in clinical settings. It addresses unique challenges in medical AI including prompt injection attacks, hallucination prevention, appropriate abstention, and evidence-based response generation.
 
 ## Core Components
@@ -215,7 +217,7 @@ class EvidenceBasedResponder:
 
 ### 5. Evaluation Integration
 
-**VSF-Med-VQA Risk Scoring**
+**Paraphrase‑Dispersion Risk Scoring (from prior VSF‑Med‑VQA)**
 ```python
 class VSFMedVQAScorer:
     def __init__(self):
@@ -264,7 +266,7 @@ class MLLMGuard:
         self.context_scrubber = MedicalContextScrubber()
         self.safe_responder = SafeMedicalResponder(model)
         self.evidence_responder = EvidenceBasedResponder(config.kb)
-        self.risk_scorer = VSFMedVQAScorer()
+        self.risk_scorer = VSFMedVQAScorer()  # prior naming retained for code continuity
         
     def process_request(self, image, text):
         try:

@@ -9,14 +9,14 @@ This section focuses on the intersection of Vision-Language Models with healthca
 ## 🎯 Core Resources
 
 ### Models & Architectures
-- [[Medical Vision-Language Models|Medical VLM Overview]] — Comprehensive survey of healthcare-focused multimodal models
-- [[MedGemma|Google MedGemma]] — State-of-the-art medical language models and their capabilities
-- [[LLaVA-Rad|LLaVA-RAD (Radiology VLM)]] — Lightweight, open-access radiology model and evaluation
-- [[EHR and Temporal Models|Temporal Clinical Models]] — Integrating longitudinal patient data with imaging
+- [[medical-vision-language-models|Medical VLM Overview]] — Comprehensive survey of healthcare-focused multimodal models
+- [[medgemma|Google MedGemma]] — State-of-the-art medical language models and their capabilities
+- [[llava-rad|LLaVA-RAD (Radiology VLM)]] — Lightweight, open-access radiology model and evaluation
+- [[ehr-and-temporal-models|Temporal Clinical Models]] — Integrating longitudinal patient data with imaging
 
 ### Validation & Deployment
-- [[Validation and Datasets|Clinical Validation Protocols]] — Medical datasets, benchmarks, and evaluation standards
-- [[Additional Resources|Healthcare AI Resources]] — Tools, libraries, and regulatory guidance
+- [[validation-and-datasets|Clinical Validation Protocols]] — Medical datasets, benchmarks, and evaluation standards
+- [[additional-resources|Healthcare AI Resources]] — Tools, libraries, and regulatory guidance
 
 ## Key Medical VLM Applications
 
@@ -192,6 +192,6 @@ medical_vlm_pipeline = {
 5. Document limitations clearly
 
 ## Related Topics
-- [[../Attacks/vlm-attacks|Medical AI Security]] — Protecting against adversarial attacks
-- [[../Evaluation/HELM Framework|Clinical Evaluation]] — Holistic assessment for medical AI
-- [[../Safety/MLLMGuard Framework|Safety Frameworks]] — Ensuring safe clinical deployment
+- [[../Attacks/index|Medical AI Security]] — Protecting against adversarial attacks
+- [[../Evaluation/helm-framework|Clinical Evaluation]] — Holistic assessment for medical AI
+- [[../Safety/mllmguard-framework|Safety Frameworks]] — Ensuring safe clinical deployment

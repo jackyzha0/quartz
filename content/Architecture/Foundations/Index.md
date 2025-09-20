@@ -2,9 +2,10 @@
 
 > Core background for the rest of the notebook.
 
-- [[Transformer Architecture]]
-- [[Large Language Models]]
-- [[VLM Basics]]
-- [[Gemma 3 Architecture]]
+- [[transformer-architecture|Transformer Architecture]]
+- [[large-language-models|Large Language Models]]
+- [[vlm-basics|VLM Basics]]
+- [[byte-pair-encoding|Byte Pair Encoding]]
+- [[gemma-3-architecture|Gemma 3 Architecture]]
 
-See also: [[/Architecture|Architecture overview]]
+See also: [[../Index|Architecture overview]]

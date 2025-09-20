@@ -1,95 +1,127 @@
 # Medical Vision-Language Model Robustness Research
 
 > **Binesh Kumar** — PhD Candidate, Secure and Assured Intelligent Learning (SAIL) Lab, University of New Haven  
-> Research Focus: Trustworthy multimodal systems for high-stakes healthcare environments
+> Research Focus: Phrasing-robust medical VLMs with selective conformal triage for safe clinical deployment
 
 ## Research Overview
 
-This digital garden documents my dissertation research on developing robust, evidence-grounded medical Vision-Language Models (VLMs) for clinical decision support. The central contribution is **VSF-Med-VQA** (Vision-Safety Framework for Medical Visual Question Answering), a comprehensive evaluation and defense pipeline designed to ensure reliability of multimodal AI in healthcare settings.
+This digital garden documents my dissertation research on developing robust, evidence-grounded medical Vision-Language Models (VLMs) for clinical decision support. The central contribution is **MedPhr-Rad**: a paraphrase-robustness baselining framework for radiology VLMs with standardized taxonomy, generators, and metrics to measure phrasing sensitivity, plus selective conformal triage for safe deployment.
 
 ### Core Research Questions
-1. How can we systematically evaluate adversarial robustness in medical VLMs?
-2. What defense mechanisms effectively mitigate attacks while preserving clinical utility?
-3. How do we balance model robustness with alignment to medical expertise?
+1. How do semantically equivalent phrasings affect medical VLM predictions?
+2. What causes medical VLMs to flip predictions on paraphrased questions?
+3. How can we mitigate paraphrase sensitivity while maintaining clinical accuracy?
+4. Can we provide mathematical safety guarantees for automated clinical decisions?
 
-## Quick Navigation
+## 🚀 Quick Navigation
 
-### 🎯 Start Here
-- [[PhD-Plan|PhD Research Plan & Timeline]]
-- [[About|About This Research]]
-- [[Healthcare/Medical Vision-Language Models|Medical VLMs Overview]]
-- [[Attacks/vlm-attacks|Adversarial Attack Taxonomy]]
-- [[Evaluation/HELM Framework|Evaluation Framework]]
+### Start Here
+- [[Dissertation/proposal|Current Dissertation Proposal]] — Phrasing-robust medical VLMs
+- [[Dissertation/timeline|Timeline to Aug 2026]]
+- [[Evaluation/medphr-rad|MedPhr-Rad Framework]] — Core contribution
+- [[Healthcare/medical-vision-language-models|Medical VLMs Overview]]
 
-## Research Areas
+## 📚 Research Areas
 
-### 🏗️ Foundational Architecture
-- [[Architecture/Foundations/Transformer Architecture|Transformer Architecture]] — Self-attention mechanisms and positional encodings
-- [[Architecture/Foundations/Large Language Models|LLM Fundamentals]] — Scaling laws, training dynamics, and emergence
-- [[Architecture/Foundations/VLM Basics|Vision-Language Integration]] — Cross-modal alignment and fusion strategies
-- [[Architecture/Foundations/Byte Pair Encoding|Tokenization Methods]] — BPE and multimodal tokenization
-- [[Architecture/Foundations/Gemma 3 Architecture|Modern Architecture Designs]] — State-of-the-art model architectures
+### 🏗️ Architecture Foundations
+- [[Architecture/Foundations/transformer-architecture|Transformer Architecture]] — Self-attention mechanisms and positional encodings
+- [[Architecture/Foundations/large-language-models|LLM Fundamentals]] — Scaling laws, training dynamics, and emergence
+- [[Architecture/Foundations/vlm-basics|Vision-Language Integration]] — Cross-modal alignment and fusion strategies
+- [[Architecture/Foundations/byte-pair-encoding|Tokenization Methods]] — BPE and multimodal tokenization
+- [[Architecture/Foundations/gemma3-architecture|Modern Architecture Designs]] — State-of-the-art model architectures
 
 ### 🏥 Healthcare Applications
-- [[Healthcare/MedGemma|MedGemma]] — Google's clinical language models
-- [[Healthcare/EHR and Temporal Models|Temporal Clinical Modeling]] — Sequential patient data analysis
-- [[Healthcare/Validation and Datasets|Clinical Datasets]] — MIMIC-CXR, CheXpert, and validation protocols
-- [[Healthcare/Medical Vision-Language Models|Medical VLM Landscape]] — Current models and capabilities
+- [[Healthcare/medgemma|MedGemma]] — Google's clinical language models
+- [[Healthcare/llava-rad|LLaVA-RAD]] — Primary evaluation target for paraphrase robustness
+- [[Healthcare/ehr-and-temporal-models|Temporal Clinical Modeling]] — Sequential patient data analysis
+- [[Healthcare/validation-and-datasets|Clinical Datasets]] — VQA-RAD, PMC-VQA, SLAKE
+- [[Healthcare/medical-vision-language-models|Medical VLM Landscape]] — Current models and capabilities
 
-### 🛡️ Security & Robustness
-- [[Attacks/vlm-attacks|Attack Vectors]] — Prompt injection, adversarial patches, multimodal attacks
-- [[Attacks/On Evaluating Adversarial Robustness of Large Vision-Language Models|Robustness Evaluation]] — Systematic assessment methodologies
-- [[Attacks/Robust-LLaVA - On the Effectiveness of Large-Scale Robust Image Encoders for Multi-modal Large Language Models|Defense Mechanisms]] — Robust encoders and training strategies
-- [[Attacks/Toward a Holistic Evaluation of Robustness in CLIP Models|CLIP Robustness]] — Foundation model vulnerabilities
-- [[Safety/MLLMGuard Framework|Safety Frameworks]] — Comprehensive protection systems
+### 🛡️ Robustness & Safety
+- [[Evaluation/paraphrase-robustness|Paraphrase Robustness]] — Core metrics and methodology
+- [[Safety/selective-conformal-triage|Selective Conformal Triage]] — Safe deployment with guarantees
+- [[Attacks/index|Adversarial Robustness]] — Background on general attacks
+- [[Safety/mllmguard-framework|MLLMGuard Framework]] — Comprehensive protection system
 
 ### 📊 Evaluation & Metrics
-- [[Evaluation/Metrics and Calibration|Calibration & Uncertainty]] — Confidence estimation in medical AI
-- [[Evaluation/HELM Framework|HELM Benchmark]] — Holistic evaluation methodology
-- [[Evaluation/Pretraining Comparison|Model Comparison Studies]] — Performance across architectures
+- [[Evaluation/medphr-rad|MedPhr-Rad Benchmark]] — Paraphrase robustness evaluation
+- [[Evaluation/metrics-and-calibration|Calibration & Uncertainty]] — Confidence estimation
+- [[Evaluation/helm-framework|HELM Benchmark]] — Holistic evaluation methodology
+- [[Evaluation/pretraining-comparison|Model Comparison Studies]] — Performance across architectures
 
-## Current Research Focus
+## 🔬 Current Research Focus
 
-### 🔬 Active Experiments
-1. **VSF-Med-VQA Development**
-   - Comprehensive scoring framework for medical VLM robustness
-   - Attack surface analysis: prompt injections, visual distortions, multimodal adversarial overlays
-   - Integration with MIMIC-CXR for real-world clinical validation
+### Active Work Streams
 
-2. **Interpretability Analysis**
-   - Attention map extraction under adversarial perturbations
-   - Effective Attention Score (EAS) metrics for MedGemma and LLaVA-RAD
-   - Cross-modal attention pattern analysis during attacks
+1. **Paraphrase Robustness Measurement (MedPhr-Rad)**
+   - Taxonomy: synonymy, negation, hedging, temporality, quantifiers, units, style
+   - Metrics: consistency rate, flip rate, robust accuracy, selective risk
+   - Baselines: LLaVA-Rad, MedGemma, LLaVA-Med
 
-3. **Defense Prototyping**
-   - Lightweight prompt guards for medical contexts
-   - Vote-by-augmentation ensemble methods
-   - Selective token dropout for robustness
-   - Adversarial training with medical constraints
+2. **Causal Analysis of Prediction Flips**
+   - Text-to-concept parsing vs image-region grounding
+   - Attention rollout, Integrated Gradients, ViT relevance
+   - RadLex/UMLS concept linking, RadGraph entity alignment
 
-4. **Clinical Alignment Studies**
-   - Robustness–accuracy Pareto frontier mapping
-   - Clinical risk-weighted evaluation metrics
-   - Expert annotation integration for ground truth
+3. **Mitigation Strategies**
+   - Paraphrase-consistency losses
+   - Constrained augmentation with NLI gates
+   - Concept normalization before verbalization
+   - Prompt ensembles with dispersion-aware abstention
 
-## Technical Stack
+4. **Selective Conformal Triage**
+   - Post-hoc calibration (temperature scaling)
+   - Conformal risk control with coverage guarantees
+   - Subgroup-aware coverage for sentinel findings
+   - Zero critical errors at 80% automation rate
+
+## 🛠️ Technical Stack
 
 ### Models Under Study
-- **MedGemma** (Google): Specialized medical language models
-- [[Healthcare/LLaVA-Rad|LLaVA-RAD]]: Radiology-focused vision-language model
-- **CLIP-based architectures**: Foundation model analysis
-- **BiomedCLIP**: Domain-adapted vision-language models
+- **[[Healthcare/llava-rad|LLaVA-RAD]]**: Primary target for paraphrase robustness
+- **[[Healthcare/medgemma|MedGemma]]**: Secondary comparison model
+- **LLaVA-Med**: Baseline medical VLM
+- **BiomedCLIP**: Domain-adapted foundation model
 
-### Datasets
-- **MIMIC-CXR**: Large-scale chest X-ray dataset with reports
-- **CheXpert**: Multi-label chest radiograph dataset
-- **Custom adversarial benchmarks**: VSF-Med-VQA test suite
+### Evaluation Datasets
+- **VQA-RAD**: Core radiology VQA dataset
+- **PMC-VQA**: Diverse medical imaging VQA
+- **SLAKE**: Bilingual medical VQA
+- **MedPhr-Rad**: Our paraphrase benchmark (in development)
 
-## Collaboration & Contact
-I welcome collaborations on trustworthy multimodal AI for healthcare. Particularly interested in:
-- Clinical validation partnerships
-- Adversarial robustness techniques
-- Medical AI safety standards
-- Multimodal model interpretability
+### Key Metrics
+- **Paraphrase Consistency Rate (PCR)**: Agreement across paraphrases
+- **Flip Rate**: Frequency of prediction changes
+- **Robust Accuracy**: Worst-case performance
+- **Selective Risk@Coverage**: Error rate on auto-accepted cases
 
-Connect via the links below or through the University of New Haven SAIL Lab.
+## 📈 Expected Impact
+
+- **+15 points** paraphrase consistency vs baseline
+- **Robust accuracy** within 2 points of standard accuracy
+- **ECE ≤ 5%** after calibration
+- **80% automation** with mathematical safety guarantees
+- **Zero sentinel errors** through selective triage
+
+## 🤝 Collaboration & Contact
+
+I welcome collaborations on:
+- Paraphrase robustness in medical AI
+- Selective prediction with safety guarantees
+- Clinical validation studies
+- Medical concept grounding
+- Conformal prediction for healthcare
+
+Connect via the SAIL Lab or university email.
+
+---
+
+### Quick Links to Key Sections
+- [[Evaluation/index|Evaluation Methods]]
+- [[Healthcare/index|Medical Models]]
+- [[Architecture/index|Technical Foundations]]
+- [[Safety/index|Safety Frameworks]]
+
+### Archived Content
+- [[archive/old-structures/PhD-Plan|VSF-Med-VQA (prior framework)]]
+- [[archive/old-structures/About|About (old version)]]

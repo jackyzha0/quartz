@@ -2,9 +2,11 @@
 
 > A comprehensive framework for quantifying and improving the robustness, safety, and evidence alignment of medical VLMs in chest X-ray visual question answering, while preserving clinical utility
 
-## Executive Summary
+> Note: VSF‑Med‑VQA framework is now implemented. The current dissertation direction focuses on phrasing‑robust medical VLMs with selective conformal triage. See [[Dissertation/Proposal|Dissertation Proposal]].
 
-This dissertation addresses the critical gap in deploying Vision-Language Models for medical applications: ensuring robustness against adversarial attacks while maintaining clinical accuracy. The research develops **VSF-Med-VQA** (Vision-Safety Framework for Medical Visual Question Answering), a unified evaluation and defense system that quantifies vulnerabilities, validates visual attention alignment, and provides practical defenses for real-world deployment.
+## Executive Summary (Archived Plan)
+
+This page documents the earlier **VSF‑Med‑VQA** (Vision‑Safety Framework for Medical Visual Question Answering) work: a unified evaluation and defense system that quantifies vulnerabilities, validates visual evidence alignment, and provides practical defenses. In the current dissertation, VSF‑Med‑VQA serves as background infrastructure; the core contribution is a paraphrase‑robustness baselining framework with selective conformal triage. See [[Dissertation/Proposal|current proposal]].
 
 ## Thesis Statement
 
@@ -13,9 +15,9 @@ Medical vision-language models deployed for chest X-ray visual question answerin
 2. Validates model attention against clinical anatomy
 3. Provides lightweight defenses that preserve diagnostic utility
 
-## Core Contribution
+## Prior Framework: VSF‑Med‑VQA
 
-**VSF-Med-VQA**: A benchmarked evaluation pipeline that:
+**What it provided**: A benchmarked evaluation pipeline that:
 - Jointly measures answer reliability, attack susceptibility, and visual-evidence consistency
 - Targets state-of-the-art models (MedGemma-4B and LLaVA-RAD)
 - Couples vulnerability scoring with practical test-time defenses

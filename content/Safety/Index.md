@@ -9,7 +9,8 @@ Safety is paramount in medical AI deployment. This section covers frameworks, te
 ## 🎯 Core Resources
 
 ### Safety Frameworks
-- [[MLLMGuard Framework|MLLMGuard Safety Framework]] — Comprehensive protection system for multimodal language models
+- [[mllmguard-framework|MLLMGuard Safety Framework]] — Comprehensive protection system for multimodal language models
+- [[selective-conformal-triage|Selective Conformal Triage]] — Calibration + conformal guarantees for safe automation
 
 ## Safety Dimensions
 
@@ -260,6 +261,6 @@ safety_metrics = {
 - Decentralized safety validation
 
 ## Related Topics
-- [[../Attacks/vlm-attacks|Adversarial Threats]] — Understanding attack vectors
-- [[../Evaluation/HELM Framework|Safety Evaluation]] — Comprehensive assessment methods
-- [[../Healthcare/Medical Vision-Language Models|Medical AI Requirements]] — Clinical deployment needs
+- [[../Attacks/index|Adversarial Threats]] — Understanding attack vectors
+- [[../Evaluation/helm-framework|Safety Evaluation]] — Comprehensive assessment methods
+- [[../Healthcare/medical-vision-language-models|Medical AI Requirements]] — Clinical deployment needs

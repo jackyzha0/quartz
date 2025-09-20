@@ -4,14 +4,15 @@
 
 ## Overview
 
-Evaluating Vision-Language Models in medical contexts requires specialized frameworks that go beyond traditional accuracy metrics. This section covers holistic evaluation approaches that consider clinical relevance, safety requirements, and real-world deployment constraints essential for the VSF-Med-VQA framework.
+Evaluating Vision-Language Models in medical contexts requires specialized frameworks that go beyond traditional accuracy metrics. This section covers holistic evaluation approaches that consider clinical relevance, safety requirements, and real-world deployment constraints, supporting the paraphrase‑robustness baselining framework and related safety components.
 
 ## 🎯 Core Resources
 
 ### Evaluation Methodologies
-- [[HELM Framework|HELM Evaluation Framework]] — Holistic Evaluation of Language Models adapted for multimodal systems
-- [[Metrics and Calibration|Calibration & Uncertainty]] — Confidence estimation and reliability metrics
-- [[Pretraining Comparison|Model Architecture Comparisons]] — Systematic analysis of different pretraining strategies
+- [[helm-framework|HELM Evaluation Framework]] — Holistic Evaluation of Language Models adapted for multimodal systems
+- [[metrics-and-calibration|Calibration & Uncertainty]] — Confidence estimation and reliability metrics
+- [[pretraining-comparison|Model Architecture Comparisons]] — Systematic analysis of different pretraining strategies
+- [[paraphrase-robustness|Paraphrase Robustness & Metrics]] — Consistency, flips, robust accuracy, selective risk
 
 ## Evaluation Dimensions
 
@@ -189,6 +190,6 @@ class VLMEvaluator:
 - Deployment feasibility scores
 
 ## Related Resources
-- [[../Attacks/vlm-attacks|Attack Methodologies]] — Understanding evaluation under adversarial conditions
-- [[../Healthcare/Validation and Datasets|Medical Datasets]] — Clinical validation resources
-- [[../Safety/MLLMGuard Framework|Safety Evaluation]] — Comprehensive safety assessment
+- [[../Attacks/index|Attack Methodologies]] — Understanding evaluation under adversarial conditions
+- [[../Healthcare/validation-and-datasets|Medical Datasets]] — Clinical validation resources
+- [[../Safety/mllmguard-framework|Safety Evaluation]] — Comprehensive safety assessment

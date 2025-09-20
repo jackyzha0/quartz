@@ -159,12 +159,12 @@ cxr_helm_config = {
 }
 ```
 
-## Integration with VSF-Med-VQA
+## Integration with Baselining Framework
 
 ### Scoring Framework
 
 ```python
-class VSFMedVQAScorer:
+class VSFMedVQAScorer:  # prior naming retained; integrates HELM with project baselining
     def __init__(self, helm_weights):
         self.weights = helm_weights
         
