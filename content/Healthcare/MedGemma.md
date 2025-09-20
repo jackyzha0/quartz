@@ -2,7 +2,7 @@
 
 > Medical vision-language foundation models built upon Gemma 3, demonstrating advanced medical understanding while maintaining general-purpose capabilities.
 
-[← Gemma 3 Architecture](../Architecture/Foundations/Gemma%203%20Architecture.md) | [Back to Index](../Index.md) | [Next: Medical VLMs →](Medical%20Vision-Language%20Models.md)
+[← Gemma 3 Architecture](../Architecture/Foundations/Gemma%203%20Architecture.md) | [Back to Index](../index.md) | [Next: Medical VLMs →](Medical%20Vision-Language%20Models.md)
 
 ---
 
@@ -533,7 +533,7 @@ class PACSIntegration:
 
 ### Navigation
 
-[← Gemma 3 Architecture](../Architecture/Foundations/Gemma%203%20Architecture.md) | [Back to Index](../Index.md) | [Next: Medical VLMs →](Medical%20Vision-Language%20Models.md)
+[← Gemma 3 Architecture](../Architecture/Foundations/Gemma%203%20Architecture.md) | [Back to Index](../index.md) | [Next: Medical VLMs →](Medical%20Vision-Language%20Models.md)
 
 ### Related Topics
 - [[Medical Vision-Language Models|Comparative Analysis]]

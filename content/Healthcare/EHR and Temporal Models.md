@@ -2,7 +2,7 @@
 
 > Large language models for electronic health records, clinical time series, and longitudinal patient data analysis.
 
-[← Medical Vision-Language Models](Medical%20Vision-Language%20Models.md) | [Back to Index](../Index.md) | [Next: Validation and Datasets →](Validation%20and%20Datasets.md)
+[← Medical Vision-Language Models](Medical%20Vision-Language%20Models.md) | [Back to Index](../index.md) | [Next: Validation and Datasets →](Validation%20and%20Datasets.md)
 
 ---
 
@@ -411,7 +411,7 @@ class ClinicalTrialEvaluator:
 
 ### Navigation
 
-[← Medical Vision-Language Models](Medical%20Vision-Language%20Models.md) | [Back to Index](../Index.md) | [Next: Validation and Datasets →](Validation%20and%20Datasets.md)
+[← Medical Vision-Language Models](Medical%20Vision-Language%20Models.md) | [Back to Index](../index.md) | [Next: Validation and Datasets →](Validation%20and%20Datasets.md)
 
 ### Related Topics
 - [[../Evaluation/Metrics and Calibration|Evaluation Metrics]]

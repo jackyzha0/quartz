@@ -79,6 +79,12 @@ export function slugifyFilePath(fp: FilePath, excludeExt?: boolean): FullSlug {
 
   let slug = sluggify(withoutFileExt)
 
+  // Normalize case-insensitive "Index" filenames to lowercase "index"
+  // so that default directory indexes are correctly generated (index.html)
+  if (endsWith(slug, "Index") || endsWith(slug, "INDEX")) {
+    slug = slug.replace(/Index$/i, "index")
+  }
+
   // treat _index as index
   if (endsWith(slug, "_index")) {
     slug = slug.replace(/_index$/, "index")

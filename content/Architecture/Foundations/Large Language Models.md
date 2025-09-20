@@ -2,7 +2,7 @@
 
 > From transformer architecture to chat-capable AI systems: The evolution and engineering of Large Language Models.
 
-[← Transformer Architecture](Transformer%20Architecture.md) | [Back to Index](Index.md) | [Next: VLM Basics →](VLM%20Basics.md)
+[← Transformer Architecture](Transformer%20Architecture.md) | [Back to Index](index.md) | [Next: VLM Basics →](VLM%20Basics.md)
 
 ---
 
@@ -340,7 +340,7 @@ Critical considerations for deployment:
 
 ### Navigation
 
-[← Transformer Architecture](Transformer%20Architecture.md) | [Back to Index](Index.md) | [Next: VLM Basics →](VLM%20Basics.md)
+[← Transformer Architecture](Transformer%20Architecture.md) | [Back to Index](index.md) | [Next: VLM Basics →](VLM%20Basics.md)
 
 ### Related Topics
 - [[Medical Vision-Language Models|Medical Applications]]

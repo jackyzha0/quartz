@@ -2,7 +2,7 @@
 
 # The Transformer Architecture: Attention Is All You Need
 
-[← Back to Foundations Index](Index.md) | [Next: Large Language Models →](Large%20Language%20Models.md)
+[← Back to Foundations Index](index.md) | [Next: Large Language Models →](Large%20Language%20Models.md)
 
 ## Overview
 
@@ -216,7 +216,7 @@ This unification of vision and language processing enables powerful multimodal m
 
 ### Navigation
 
-[← Back to Foundations Index](Index.md) | [Next: Large Language Models →](Large%20Language%20Models.md)
+[← Back to Foundations Index](index.md) | [Next: Large Language Models →](Large%20Language%20Models.md)
 
 ### Related Topics
 

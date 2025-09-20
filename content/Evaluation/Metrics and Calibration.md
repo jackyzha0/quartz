@@ -2,7 +2,7 @@
 
 > Comprehensive metrics for assessing Visual Language Models: from perplexity to calibration, ensuring reliable and trustworthy AI systems.
 
-[← Back to Index](../Index.md) | [Next: HELM Framework →](HELM%20Framework.md)
+[← Back to Index](../index.md) | [Next: HELM Framework →](HELM%20Framework.md)
 
 ---
 
@@ -474,7 +474,7 @@ for metric_name, metric in metrics.items():
 
 ### Navigation
 
-[← Back to Index](../Index.md) | [Next: HELM Framework →](HELM%20Framework.md)
+[← Back to Index](../index.md) | [Next: HELM Framework →](HELM%20Framework.md)
 
 ### Related Topics
 - [[HELM Framework|Holistic Evaluation]]

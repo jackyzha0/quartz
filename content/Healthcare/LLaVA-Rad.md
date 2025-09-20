@@ -2,7 +2,7 @@
 
 > Summary notes based on the paper “Towards a clinically accessible radiology multimodal model: open-access and lightweight, with automatic evaluation”.
 
-[← Healthcare Index](Index.md) | [Back to Site Index](../Index.md)
+[← Healthcare Index](index.md) | [Back to Site Index](../index.md)
 
 ---
 
@@ -35,4 +35,3 @@ LLaVA-Rad is a small multimodal model (7B) tailored for radiology that pairs sta
 ## References
 - PDF: `../refererence_docs/2403.08002v5.pdf`
 - Related: [[Medical Vision-Language Models]] · [[Validation and Datasets]]
-

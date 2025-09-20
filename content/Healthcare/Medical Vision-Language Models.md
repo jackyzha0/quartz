@@ -2,7 +2,7 @@
 
 > Bridging visual medical data with natural language understanding for enhanced clinical decision support and automated medical image analysis.
 
-[← Back to Index](../Index.md) | [Next: EHR and Temporal Models →](EHR%20and%20Temporal%20Models.md)
+[← Back to Index](../index.md) | [Next: EHR and Temporal Models →](EHR%20and%20Temporal%20Models.md)
 
 ---
 
@@ -408,7 +408,7 @@ class MedicalDataPipeline:
 
 ### Navigation
 
-[← Back to Index](../Index.md) | [Next: EHR and Temporal Models →](EHR%20and%20Temporal%20Models.md)
+[← Back to Index](../index.md) | [Next: EHR and Temporal Models →](EHR%20and%20Temporal%20Models.md)
 
 ### Related Topics
 - [[../Attacks/Robustness Notes|Medical Domain Robustness]]

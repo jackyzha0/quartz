@@ -453,7 +453,7 @@ The genius of Gemma-3 is combining all these optimizations to achieve 128K conte
 
 ### Navigation
 
-[← Back to Foundations Index](Index.md) | [Next: MedGemma →](../../Healthcare/MedGemma.md)
+[← Back to Foundations Index](index.md) | [Next: MedGemma →](../../Healthcare/MedGemma.md)
 
 ### Related Topics
 - [[Large Language Models|LLM Foundations]]
