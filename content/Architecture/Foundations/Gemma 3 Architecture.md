@@ -10,7 +10,7 @@ graph TB
         Input[Token Input<br/>262,144 vocab]
         PE[Positional Encoding<br/>RoPE - base 10k local, 1M global]
         
-        subgraph "Layer Pattern LLLLG × 6"
+        subgraph "Layer Pattern LLLLG × 6"  %% [CHECK: 6× implies 36 layers vs stated 34]
             L1[Local Attention Layer<br/>Window=1024]
             L2[Local Attention Layer<br/>Window=1024]
             L3[Local Attention Layer<br/>Window=1024]
@@ -21,10 +21,10 @@ graph TB
         
         subgraph "Attention Block Detail"
             RMS1[RMSNorm]
-            GQA[Grouped Query Attention<br/>8 Q heads, 4 KV heads<br/>head_dim=256]
+            GQA[Grouped Query Attention<br/>8 Q heads, 4 KV heads<br/>head_dim=320]
             QKNorm[QK-Norm<br/>+ Query Scaling 1/√d_h]
             RMS2[RMSNorm]
-            GEGLU[Gated MLP<br/>2560→10240→2560<br/>GELU activation]
+            SwiGLU[Gated MLP<br/>2560→10240→2560<br/>SwiGLU activation]
         end
         
         subgraph "KV Cache"
@@ -232,7 +232,7 @@ def qk_norm_demo():
 qk_norm_demo()
 ```
 
-## 5. Gated MLP (GEGLU) - Smart Feed-Forward Networks
+## 5. Gated MLP (SwiGLU) - Smart Feed-Forward Networks
 
 The gated MLP is like having two parallel processors: one decides what information to process, the other decides how much of it to let through.
 
@@ -317,7 +317,7 @@ def ring_buffer_cache():
         print(f"Step {i+1}: Added '{word}' -> Cache: {valid[-4:] if len(valid) > 4 else valid}")
     
     print(f"\nFinal cache holds last {cache_size} items")
-    print("Memory is constant regardless of sequence length!")
+    print("For local-window layers, memory is constant wrt sequence length; global layers differ.")
 
 ring_buffer_cache()
 ```
@@ -341,7 +341,8 @@ def vision_integration():
     
     # Image processing
     image_patches = 16 * 16  # 256 patches from image
-    soft_tokens = f"[img_token_{i}]" for i in range(256)
+    # fixed-length placeholder tokens for illustration
+    soft_tokens = [f"[img_token_{i}]" for i in range(256)]  # illustrative; exact count model dependent [CHECK]
     
     # Final sequence
     print("Original input:", text_before, image_placeholder, text_after)

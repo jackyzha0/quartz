@@ -58,7 +58,7 @@ def attention(Q, K, V):
     return output
 ```
 
-The scaling factor `1/√d_k` is crucial: without it, dot products grow with dimension, pushing softmax into saturation where gradients vanish.
+The scaling factor `1/√d_k` is crucial: without it, dot products grow with dimension and push softmax toward saturation, which harms gradients.
 
 ### Multi-Head Attention
 
@@ -127,7 +127,10 @@ This acts as a position-wise "thinking" step, transforming the aggregated inform
 Each sublayer is wrapped with:
 
 ```python
+# Post-norm
 output = LayerNorm(x + Sublayer(x))
+# Pre-norm (common in modern LLMs)
+output = x + Sublayer(LayerNorm(x))
 ```
 
 - **Residual connections**: Enable gradient flow through deep networks
@@ -180,7 +183,7 @@ The quadratic attention is the bottleneck for long sequences, motivating efficie
 |2019|GPT-2|1.5B|Zero-shot emergence|
 |2020|GPT-3|175B|In-context learning|
 |2023|GPT-4|~1.7T|Multimodal reasoning|
-|2024|Gemma-3|27B|Efficient long context|
+|2024|Gemma-3|27B|Efficient long context|  <!-- [CHECK] -->
 
 The trend isn't just scale but architectural efficiency - modern models achieve more with fewer parameters through innovations like GQA, RoPE, and mixed attention patterns.
 

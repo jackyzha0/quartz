@@ -37,14 +37,20 @@ def train_bpe(corpus, vocab_size):
 ### Tokenization Phase
 
 ```python
-def tokenize(text, vocabulary):
-    # Start with characters
+def tokenize(text, merge_rules):
+    # Start from characters or bytes depending on training
     tokens = list(text)
-    
-    # Apply learned merges in order
-    for merge_rule in vocabulary.merge_rules:
-        tokens = apply_merge(tokens, merge_rule)
-    
+    for a, b in merge_rules:  # ordered, most frequent first
+        i = 0
+        merged = []
+        while i < len(tokens):
+            if i+1 < len(tokens) and tokens[i] == a and tokens[i+1] == b:
+                merged.append(a + b)
+                i += 2
+            else:
+                merged.append(tokens[i])
+                i += 1
+        tokens = merged
     return tokens
 ```
 
@@ -64,7 +70,7 @@ def tokenize(text, vocabulary):
 
 3. **Cross-lingual Benefits**
    - Shared subwords across languages
-   - Better zero-shot transfer
+   - Better zero-shot transfer [CHECK]
    - Reduced vocabulary for multilingual models
 
 ### Limitations
@@ -74,10 +80,10 @@ def tokenize(text, vocabulary):
    - Order-dependent results
    - May miss better segmentations
 
-2. **Tokenization Inconsistency**
-   - Same word different contexts → different tokens
-   - "the" vs "The" often different
-   - Spaces handled inconsistently
+2. **Determinism and casing**
+   - Given a fixed pretokenizer and merge list, BPE segmentation is deterministic
+   - Case sensitivity and leading-space symbols can yield different tokens for "the" vs "The"
+   - Whitespace handling is tokenizer-specific but deterministic
 
 ## Medical Domain Considerations
 
@@ -93,6 +99,7 @@ def tokenize(text, vocabulary):
    "pneumonoultramicroscopicsilicovolcanoconiosis"
    → ["pneum", "ono", "ultra", "microscopic", "silico", "volcano", "con", "iosis"]
    ```
+   > The example segmentation above is illustrative. Actual splits depend on the learned merges and may differ. [CHECK]
 
 3. **Dosage and Units**
    - "5mg" vs "5 mg" tokenization
@@ -171,6 +178,8 @@ def tokenize(text, vocabulary):
 ## Code Example: Simple BPE
 
 ```python
+from collections import defaultdict
+
 class SimpleBPE:
     def __init__(self, vocab_size=1000):
         self.vocab_size = vocab_size
@@ -212,6 +221,8 @@ class SimpleBPE:
                     i += 1
         
         self.vocabulary = vocab
+        # ensure merges are available at inference
+        # merges are stored in the order they were learned
 ```
 
 ## Related Topics

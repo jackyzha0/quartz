@@ -4,19 +4,21 @@
 
 ## Overview
 
-This section explores the security landscape of Vision-Language Models, with particular focus on medical applications where adversarial robustness is critical for patient safety. We examine attack taxonomies, evaluation frameworks, and defense strategies that form the foundation of the VSF-Med-VQA framework.
+This section explores the security landscape of Vision-Language Models, with particular focus on medical applications where adversarial robustness is critical for patient safety. We examine attack taxonomies, evaluation frameworks, and defense strategies that form the foundation of secure VLM deployment in healthcare.
 
-## 🎯 Core Resources
+## 📚 Chapter Structure
 
-### Foundational Concepts
-- [[vlm-attacks|VLM Attack Taxonomy]] — Comprehensive overview of attack types and methodologies
-- [[linear-hypothesis-explanation|Linear Hypothesis]] — Theoretical foundation for adversarial vulnerability
-- [[Robustness Notes|Medical VLM Robustness]] — Domain-specific considerations and challenges
+### Foundations
+1. [[01-attack-fundamentals|Attack Fundamentals]] — Comprehensive introduction to VLM attacks and taxonomies
+2. [[02-theoretical-foundations|Theoretical Foundations]] — Mathematical basis for adversarial vulnerabilities
 
-### Research Papers
-- [[On Evaluating Adversarial Robustness of Large Vision-Language Models|Black-box Attack Methods]] — Systematic evaluation of query-based attacks
-- [[Toward a Holistic Evaluation of Robustness in CLIP Models|CLIP Robustness Analysis]] — Comprehensive robustness evaluation framework
-- [[Robust-LLaVA - On the Effectiveness of Large-Scale Robust Image Encoders for Multi-modal Large Language Models|Robust Training Strategies]] — Enhancing VLM robustness through robust encoders
+### Attack Methods
+3. [[03-blackbox-attacks|Black-box Attacks]] — Query-based and transfer attack strategies
+4. [[04-robustness-evaluation|Robustness Evaluation]] — Comprehensive evaluation frameworks and metrics
+
+### Defense Strategies
+5. [[05-defense-strategies|Defense Mechanisms]] — Robust training and protection methods
+6. [[06-medical-vlm-security|Medical VLM Security]] — Healthcare-specific security considerations
 
 ## Attack Categories
 
