@@ -8,17 +8,18 @@ title: Evaluation Methods
 
 ## Overview
 
-Evaluating Vision-Language Models in medical contexts requires specialized frameworks that go beyond traditional accuracy metrics. This section covers holistic evaluation approaches that consider clinical relevance, safety requirements, and real-world deployment constraints, supporting the paraphrase‑robustness baselining framework and related safety components.
+Evaluating Vision-Language Models in medical contexts requires specialized frameworks that go beyond traditional accuracy metrics. This section covers evaluation approaches that consider phrasing robustness, causal analysis, uncertainty quantification, and safe clinical deployment - all critical for addressing the brittleness of medical VLMs to question paraphrasing.
 
 ## 🎯 Core Resources
 
-### Evaluation Methodologies
-- [[robustness-gauntlet|Robustness Gauntlet Framework]] — Comprehensive evaluation suite for medical VLMs (core contribution)
-- [[01-medphr-rad|MedPhr-Rad Framework]] — Paraphrase robustness component of the gauntlet
-- [[02-paraphrase-robustness|Paraphrase Robustness & Metrics]] — Consistency, flips, robust accuracy, selective risk
-- [[03-metrics-and-calibration|Calibration & Uncertainty]] — Confidence estimation and reliability metrics
-- [[04-helm-framework|HELM Evaluation Framework]] — Holistic Evaluation of Language Models adapted for multimodal systems
-- [[05-pretraining-comparison|Model Architecture Comparisons]] — Systematic analysis of different pretraining strategies
+### Core Methodologies
+- [[phrasing-robustness-framework|Phrasing Robustness Framework]] — Core methodology for measuring & improving paraphrase robustness
+- [[interpretability-toolkit|Interpretability Toolkit]] — Open-source tools for debugging and understanding medical VLMs
+- [[01-medphr-rad|MedPhr-Rad Benchmark]] — Paraphrase datasets and evaluation harness
+- [[02-paraphrase-robustness|Robustness Metrics]] — Flip-rate, consistency scores, attention divergence
+- [[03-metrics-and-calibration|Calibration & Uncertainty]] — Confidence estimation for safe triage
+- [[04-helm-framework|HELM Framework]] — Holistic evaluation adapted for medical VLMs
+- [[05-pretraining-comparison|Model Comparisons]] — Architecture analysis for robustness
 
 ## Evaluation Dimensions
 

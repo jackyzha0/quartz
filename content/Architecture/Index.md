@@ -8,18 +8,18 @@ title: Architecture Overview
 
 ## Overview
 
-This section provides comprehensive coverage of the architectural components that power modern Vision-Language Models (VLMs). From fundamental transformer mechanisms to state-of-the-art multimodal architectures, these resources form the technical foundation for understanding robustness challenges in medical AI systems. Understanding these architectures is crucial for implementing the [[../Evaluation/robustness-gauntlet|Robustness Gauntlet Framework]], as architectural choices directly impact model robustness, interpretability, and safety.
+This section provides comprehensive coverage of the architectural components that power modern Vision-Language Models (VLMs). From fundamental transformer mechanisms to state-of-the-art multimodal architectures, these resources form the technical foundation for understanding robustness challenges in medical AI systems. Understanding these architectures is crucial for addressing phrasing brittleness in medical VLMs, as architectural choices directly impact how models handle paraphrased questions, attention consistency, and safe deployment.
 
 ## Core Architecture Components
 
 ### 🔧 Fundamental Building Blocks
-- [[Foundations/01-transformer-architecture|Transformer Architecture]] — Self-attention, multi-head attention, positional encodings, and layer normalization
-- [[Foundations/04-byte-pair-encoding|Tokenization & Encoding]] — BPE, WordPiece, and multimodal token representations
-- [[Foundations/02-large-language-models|Large Language Models]] — Scaling laws, emergent capabilities, and training dynamics
+- [[01-transformer-architecture|Transformer Architecture]] — Self-attention, multi-head attention, positional encodings, and layer normalization
+- [[04-byte-pair-encoding|Tokenization & Encoding]] — BPE, WordPiece, and multimodal token representations
+- [[02-large-language-models|Large Language Models]] — Scaling laws, emergent capabilities, and training dynamics
 
 ### 🎯 Vision-Language Integration
-- [[Foundations/03-vlm-basics|VLM Fundamentals]] — Cross-modal alignment, fusion strategies, and contrastive learning
-- [[Foundations/05-gemma-3-architecture|Modern Architectures]] — Latest design patterns in Gemma, LLaMA, and other foundation models
+- [[03-vlm-basics|VLM Fundamentals]] — Cross-modal alignment, fusion strategies, and contrastive learning
+- [[05-gemma-3-architecture|Modern Architectures]] — Latest design patterns in Gemma, LLaMA, and other foundation models
 
 ## Key Architectural Patterns
 

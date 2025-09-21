@@ -1,92 +1,174 @@
-# Dissertation Timeline: Robustness Gauntlet (2025-2026)
+# Dissertation Timeline: Phrasing-Robust Medical VLMs for Radiology
 
-[← Proposal](proposal.md) | [← Site Index](../Index.md)
+> Measurement, Causality, Mitigation, and Safe Triage — Timeline to August 2026
+
+[← Proposal](proposal.md) | [Site Index →](../Index.md)
 
 ---
 
-## 2025: Foundational Experiments & Initial Contributions
+## Overview
 
-### Q1 2025 (Jan-Mar)
-- **RQ1-3 Experiments**: Complete linguistic robustness, visual perturbation, and attention grounding studies
-- **Toolkit v1.0**: Release enhanced interpretability framework with batch evaluation
-- **MICCAI 2025 Paper**: Submit "Robustness Gauntlet: Evaluating Chest X-ray VQA Models"
-  - Focus: Evaluation methodology, consistency analysis, attention alignment
-  - Target: March submission → October presentation
+This timeline outlines the development of phrasing-robust medical vision-language models for radiology, addressing the critical issue of VLM brittleness to question paraphrasing. The research spans from September 2025 to August 2026, focusing on measurement, causal analysis, mitigation strategies, and safe clinical deployment.
 
-### Q2 2025 (Apr-Jun)
-- **RQ4 Initial Work**: Begin robustness enhancement experiments
-- **Dataset Creation**: Compile paraphrase benchmark and perturbation test sets
-- **NeurIPS 2025 Paper**: Submit "Enhancing Consistency and Grounding in Medical VLMs"
-  - Focus: Training strategies, consistency losses, performance gains
-  - Target: June submission → December presentation
+## Timeline (September 2025 – August 2026)
 
-### Q3 2025 (Jul-Sep)
-- **Model Development**: Fine-tune robust versions of LLaVA-Rad and MedGemma
-- **Open-source Release**: Publish improved model weights on HuggingFace
-- **Workshop Papers**: MIDL 2025 or ML4H submissions on toolkit/datasets
+### 2025 September: Project kick-off and literature update
+- **Updated Literature Review**: Focus on post-2024 VLM robustness, medical VLM interpretability, and clinical deployment studies
+- **Codebase Refinement**: Enhance medical-vlm-interpret toolkit with latest model support
+- **Dataset Access**: Secure MIMIC-CXR, VQA-RAD, and additional radiology datasets
+- **Compute Setup**: Configure GPU cluster (8× A100s) for experiments
+- **Baseline Evaluation**: Run initial robustness tests on LLaVA-Rad and MedGemma
+- **Paraphrase Dataset Design**: Create annotation guidelines for medical paraphrases
 
-### Q4 2025 (Oct-Dec)
-- **RSNA 2025 Demo**: Present live system demonstration for clinical feedback
-- **RQ5 Development**: Design and implement triage mechanisms
-- **Community Engagement**: Gather feedback from MICCAI and NeurIPS presentations
+### 2025 October: Paraphrase dataset and baseline
+- **Paraphrase Generation**: Deploy GPT-4 and Claude for generating 10 paraphrases per VQA-RAD question
+- **Medical Validation**: Radiologist review of paraphrases for semantic equivalence
+- **Baseline Metrics**: Document flip-rates (expect >20%) across models
+- **Attention Analysis**: Extract and visualize attention patterns for original vs paraphrased questions
+- **Statistical Framework**: Design significance tests for robustness metrics
+- **Toolkit Enhancement**: Add paraphrase testing module to interpretability toolkit
 
-## 2026: Integration, Validation & High-Impact Dissemination
+### 2025 November: Robustness measurement
+- **Comprehensive Evaluation**: Test 5+ medical VLMs on paraphrase dataset
+- **Metric Development**: Refine consistency scores, attention divergence metrics
+- **Failure Analysis**: Categorize linguistic patterns causing failures
+- **Cross-Dataset Testing**: Validate on SLAKE, PMC-VQA datasets
+- **Visualization Tools**: Create interactive dashboard for robustness analysis
+- **Early Findings Report**: Document initial robustness measurements
 
-### Q1 2026 (Jan-Mar)
-- **Journal Article**: Submit comprehensive work to Nature npj Digital Medicine
-  - Title: "Robust and Trustworthy AI for Medical Vision-Language Tasks"
-  - Content: Full framework, enhanced models, triage system, clinical implications
-- **User Studies**: Conduct radiologist evaluation sessions
+### 2025 December: Causal mediation analysis
+- **Causal Framework Implementation**: Build intervention experiments for attention manipulation
+- **Mediation Analysis**: Quantify phrasing → attention → answer causal paths
+- **Attention Fixing Experiments**: Test answer stability with frozen attention
+- **Linguistic Feature Analysis**: Identify specific constructs (negations, synonyms) causing failures
+- **Statistical Modeling**: Fit structural equation models for causal relationships
+- **Interpretability Module**: Add causal analysis to toolkit
 
-### Q2 2026 (Apr-Jun)
-- **MICCAI 2026 Paper**: Submit focused work on triage systems (RQ5)
-  - Include reader study results if available
-  - Alternative: Extension to new imaging modalities
-- **Toolkit v2.0**: Major update with all enhancements and triage integration
+### 2026 January: Fine-tuning experiments
+- **Training Infrastructure**: Set up distributed training for model fine-tuning
+- **Consistency Loss Implementation**: Develop KL-divergence based consistency training
+- **Paraphrase Augmentation**: Create training pipeline with dynamic paraphrasing
+- **Ablation Studies**: Test different loss weights and augmentation strategies
+- **Performance Monitoring**: Track flip-rate reduction during training
+- **Model Checkpointing**: Save best models at different flip-rate thresholds
 
-### Q3 2026 (Jul-Sep)
-- **Dissertation Writing**: Compile all chapters and results
-- **Final Experiments**: Address any gaps or reviewer feedback
-- **Clinical Guidelines**: Develop best practices documentation
+### 2026 February: Uncertainty and MICCAI submission
+- **Confidence Calibration**: Implement temperature scaling and isotonic regression
+- **Uncertainty Metrics**: Add entropy-based and ensemble uncertainty
+- **MICCAI Paper Writing**: "Measuring and Mitigating Phrasing Brittleness in Medical VLMs"
+- **Experimental Results**: Complete main experiments for paper
+- **Supplementary Material**: Prepare detailed appendices and code release
+- **Internal Review**: Get feedback from advisors and collaborators
 
-### Q4 2026 (Oct-Dec)
-- **NeurIPS 2026**: Potential follow-up or workshop organization
-- **Dissertation Defense**: Target November/December 2026
-- **Project Website**: Comprehensive resource page with demos and documentation
+### 2026 March: Improved models and testing
+- **Model Release Preparation**: Package fine-tuned checkpoints
+- **Comprehensive Testing**: Evaluate on held-out test sets
+- **Clinical Relevance**: Test on radiologist-curated important questions
+- **Robustness Certification**: Develop formal guarantees where possible
+- **Documentation**: Write model cards and usage guidelines
+- **Beta Testing**: Deploy to select research partners
 
-## Key Milestones & Deadlines
+### 2026 April: Triage system development
+- **Triage Architecture**: Build confidence-based routing system
+- **Threshold Optimization**: Find optimal confidence cutoffs for safety
+- **OOD Detection**: Integrate out-of-distribution detection methods
+- **Workflow Integration**: Design PACS-compatible interfaces
+- **Safety Protocols**: Implement fail-safe mechanisms
+- **Simulation Studies**: Test triage decisions on historical cases
 
-| Milestone | Target Date | Deliverable |
-|-----------|------------|-------------|
-| MICCAI 2025 submission | March 2025 | Evaluation methodology paper |
-| Toolkit v1.0 release | April 2025 | Open-source framework |
-| NeurIPS 2025 submission | June 2025 | Enhancement techniques paper |
-| Model weights release | August 2025 | HuggingFace repository |
-| RSNA 2025 demo | November 2025 | Clinical presentation |
-| Journal submission | February 2026 | Comprehensive article |
-| MICCAI 2026 submission | March 2026 | Triage systems paper |
-| Dissertation defense | November 2026 | PhD completion |
+### 2026 May: Clinical evaluation and NeurIPS
+- **IRB Approval**: Finalize protocols for reader studies
+- **Radiologist Recruitment**: Engage 5-10 radiologists for evaluation
+- **Reader Study Design**: Prepare balanced test cases
+- **NeurIPS Paper**: "Uncertainty-Aware Triage for Robust Medical VLMs"
+- **Safety Analysis**: Quantify missed findings and false negatives
+- **User Interface**: Refine clinical deployment interface
 
-## Parallel Work Streams
+### 2026 June: Reader studies and journals
+- **Reader Study Execution**: Conduct formal clinical evaluation
+- **Performance Metrics**: Measure sensitivity, specificity, efficiency gains
+- **Radiologist Feedback**: Collect qualitative assessments
+- **Journal Preparation**: Draft papers for JBI and npj Digital Medicine
+- **Statistical Analysis**: Complete clinical trial statistics
+- **Regulatory Documentation**: Prepare FDA 510(k) pathway analysis
 
-### Technical Development
-- Continuous toolkit improvements based on community feedback
-- Model iterations with latest architectures
-- Dataset expansion and annotation
+### 2026 July: Thesis writing
+- **Chapter 1**: Introduction and motivation for phrasing robustness
+- **Chapter 2**: Background on medical VLMs and robustness challenges
+- **Chapter 3**: MedPhr-Rad dataset and measurement methodology
+- **Chapter 4**: Causal analysis of phrasing effects
+- **Chapter 5**: Mitigation strategies and robust training
+- **Chapter 6**: Clinical triage system and evaluation
+- **Chapter 7**: Conclusions and future directions
 
-### Clinical Validation
-- IRB approvals for user studies
-- Radiologist collaborations
-- Workflow integration pilots
+### 2026 August: Defense and dissemination
+- **Dissertation Finalization**: Incorporate committee feedback
+- **Defense Preparation**: Create presentation and practice talk
+- **PhD Defense**: Public defense presentation
+- **Code Release**: Open-source complete toolkit and models
+- **Workshop Planning**: AMIA/MICCAI workshop proposals
+- **Industry Outreach**: Connect with medical AI companies
+- **Next Steps**: Postdoc or industry position planning
 
-### Community Building
-- Workshop organization
-- Tutorial development
-- Blog posts and outreach
+## Key Deliverables & Milestones
 
-## Risk Mitigation
+### Publications Timeline
+1. **MICCAI 2026** (Feb): Phrasing robustness measurement and mitigation
+2. **NeurIPS 2026** (May): Uncertainty-aware triage framework  
+3. **JBI** (June): Comprehensive toolkit and benchmark paper
+4. **npj Digital Medicine** (June): Clinical safety and deployment study
+5. **AMIA Workshop** (Fall 2025): Medical AI interpretability
 
-- **Publication delays**: Maintain arXiv preprints for all work
-- **Technical challenges**: Early prototyping and iterative development
-- **Clinical access**: Establish collaborations early in 2025
-- **Scope creep**: Focus on chest X-ray VQA, defer extensions to post-PhD
+### Software Releases
+1. **Paraphrase Test Suite** (Oct 2025): VQA-RAD paraphrases
+2. **Robustness Toolkit v2** (Nov 2025): Enhanced medical-vlm-interpret
+3. **Causal Analysis Module** (Dec 2025): Mediation analysis tools
+4. **Fine-tuned Models** (Mar 2026): Robust LLaVA-Rad/MedGemma
+5. **Triage System** (May 2026): Complete clinical deployment package
+
+### Expected Outcomes
+- **Flip-rate**: Reduce from >20% to <5% across paraphrases
+- **Causal Evidence**: Quantify attention mediation effects
+- **Clinical Safety**: Near-100% sensitivity for critical findings
+- **Efficiency**: 30-40% auto-clearance of normal cases
+- **Open Science**: All code, data, and models publicly available
+
+## Risk Management
+
+### Technical Risks
+- **Robustness Resistance**: Models may not improve sufficiently
+  - *Mitigation*: Try multiple architectures and training strategies
+- **Compute Limitations**: Training large models expensive
+  - *Mitigation*: Focus on efficient 4B-7B models first
+
+### Clinical Risks  
+- **Adoption Barriers**: Radiologists skeptical of AI triage
+  - *Mitigation*: Early engagement and co-design
+- **Safety Concerns**: Missing critical findings
+  - *Mitigation*: Conservative thresholds, extensive testing
+
+### Timeline Risks
+- **Paper Rejections**: May delay publication schedule
+  - *Mitigation*: Target multiple venues, preprint early
+- **IRB Delays**: Clinical studies may take longer
+  - *Mitigation*: Submit IRB early, have backup sites
+
+## Resource Planning
+
+### Computational Resources
+- 8× NVIDIA A100 GPUs (12 months)
+- 100TB storage for datasets and models
+- $50K cloud compute budget
+- Local workstation with 4× RTX 4090
+
+### Collaborations
+- 2-3 partner hospitals for clinical evaluation
+- 5-10 radiologist validators
+- Statistical consultant for clinical trials
+- Medical informaticist for workflow integration
+
+### Funding & Support
+- PhD fellowship covering stipend
+- NSF grant pending ($200K)
+- Industry partnership discussions (Microsoft/Google)
+- Conference travel budget ($10K)

@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-Medical Vision-Language Models (Med-VLMs) represent a specialized evolution of general VLMs, adapted to process medical imaging (X-rays, CT, MRI, pathology) alongside clinical text. These models promise to revolutionize healthcare by automating report generation, assisting in diagnosis, and enabling multimodal clinical reasoning.
+Medical Vision-Language Models (Med-VLMs) represent a specialized evolution of general VLMs, adapted to process medical imaging (X-rays, CT, MRI, pathology) alongside clinical text. These models promise to revolutionize healthcare by automating report generation, assisting in diagnosis, and enabling multimodal clinical reasoning. However, recent research reveals critical **phrasing brittleness** - models often flip answers when questions are paraphrased, posing significant safety risks in clinical deployment.
 
 ![Medical VLM Architecture](../assets/LLM%20Healthcare.svg)
 *Figure 4.1: Architecture of medical vision-language models integrating clinical imaging with natural language processing*
@@ -33,6 +33,7 @@ Healthcare generates massive multimodal data:
 | **Interpretability** | Nice-to-have | Regulatory requirement |
 | **Domain Knowledge** | Common sense | Years of medical training |
 | **Privacy** | Public data | HIPAA/GDPR compliance |
+| **Phrasing Robustness** | Acceptable variations | Critical - same clinical meaning must yield same answer |
 
 ## 4.2 LLaVA-Med 1.5: Biomedical Visual Instruction Tuning
 

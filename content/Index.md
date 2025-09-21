@@ -1,36 +1,36 @@
 # Medical Vision-Language Model Robustness Research
 
 > **Binesh Kumar** — PhD Candidate, Secure and Assured Intelligent Learning (SAIL) Lab, University of New Haven  
-> Research Focus: A Robustness Gauntlet for Medical Vision-Language Models in Chest X-ray Visual Question Answering
+> Research Focus: Phrasing-Robust Medical Vision-Language Models for Radiology: Measurement, Causality, Mitigation, and Safe Triage
 
 ## Research Overview
 
-This digital garden documents my dissertation research on developing a **"Robustness Gauntlet"** – a rigorous evaluation and training framework to stress-test medical VLMs and enhance their reliability for chest X-ray Q&A. Building upon an open-source toolkit, this comprehensive platform addresses robustness (linguistic and visual), interpretability (attention grounding), and safety (triage mechanisms) for clinical deployment.
+This digital garden documents my dissertation research on making medical Vision-Language Models robust to phrasing variations in radiology. Current medical VLMs exhibit brittle behavior where paraphrasing a question can flip answers or change confidence unpredictably – a critical safety risk. Building upon an open-source interpretability toolkit, this work measures phrasing effects, identifies causal factors behind failures, develops mitigation strategies, and integrates uncertainty-aware triage for safe clinical deployment.
 
 ### Core Research Questions
-1. **RQ1**: How robust are current chest X-ray VQA models to linguistic variations?
-2. **RQ2**: How do VLMs perform under visual perturbations and distribution shifts?
-3. **RQ3**: Do VLMs ground their answers in correct image regions?
-4. **RQ4**: Can we improve robustness through targeted training?
-5. **RQ5**: How can we integrate triage mechanisms for safe clinical deployment?
+1. **Phrasing Robustness**: How can we quantify and improve medical VLM robustness to question phrasing variations?
+2. **Causal Attribution**: What causal factors drive VLM failures under paraphrased inputs?
+3. **Uncertainty & Reliability**: How can we quantify uncertainty so models know when they're unsure?
+4. **Safe Triage Integration**: How can VLMs be integrated as safe triage tools without missing critical findings?
+5. **Generalization**: Do robustness improvements generalize across datasets and modalities?
 
 ## 🚀 Quick Navigation
 
 ### Start Here
-- [[Dissertation/comprehensive-research-plan|Comprehensive Research Plan]] — Detailed PhD roadmap
-- [[Dissertation/proposal|Dissertation Proposal]] — Robustness Gauntlet for Medical VLMs
-- [[Dissertation/timeline|Timeline to Aug 2026]] — Publications 2025-2026
-- [[Evaluation/robustness-gauntlet|Robustness Gauntlet Framework]] — Core technical contribution
+- [[Dissertation/proposal|Dissertation Proposal]] — Phrasing-Robust Medical VLMs
+- [[Dissertation/timeline|Timeline to Aug 2026]] — Detailed monthly milestones
+- [[Evaluation/phrasing-robustness-framework|Phrasing Robustness Framework]] — Core methodology
+- [[Evaluation/interpretability-toolkit|Interpretability Toolkit]] — Open-source deliverable
 - [[Healthcare/01-medical-vision-language-models|Medical VLMs Overview]]
 
 ## 📚 Research Areas
 
 ### 🏗️ Architecture Foundations
-- [[Architecture/Foundations/01-transformer-architecture|Transformer Architecture]] — Self-attention mechanisms and positional encodings
-- [[Architecture/Foundations/02-large-language-models|LLM Fundamentals]] — Scaling laws, training dynamics, and emergence
-- [[Architecture/Foundations/03-vlm-basics|Vision-Language Integration]] — Cross-modal alignment and fusion strategies
-- [[Architecture/Foundations/04-byte-pair-encoding|Tokenization Methods]] — BPE and multimodal tokenization
-- [[Architecture/Foundations/05-gemma-3-architecture|Modern Architecture Designs]] — State-of-the-art model architectures
+- [[01-transformer-architecture|Transformer Architecture]] — Self-attention mechanisms and positional encodings
+- [[02-large-language-models|LLM Fundamentals]] — Scaling laws, training dynamics, and emergence
+- [[03-vlm-basics|Vision-Language Integration]] — Cross-modal alignment and fusion strategies
+- [[04-byte-pair-encoding|Tokenization Methods]] — BPE and multimodal tokenization
+- [[05-gemma-3-architecture|Modern Architecture Designs]] — State-of-the-art model architectures
 
 ### 🏥 Healthcare Applications
 - [[Healthcare/02-medgemma|MedGemma]] — Google's clinical language models
@@ -55,29 +55,29 @@ This digital garden documents my dissertation research on developing a **"Robust
 
 ### Active Work Streams
 
-1. **Robustness Evaluation Framework**
-   - Linguistic robustness: paraphrase testing, negation handling, synonym variation
-   - Visual robustness: noise perturbations, distribution shifts, OOD detection
-   - Comprehensive metrics: flip-rate, consistency scores, calibration drift
-   - Baseline models: LLaVA-Rad (7B), MedGemma (4B/27B), GPT-4V
+1. **Phrasing Robustness Measurement (H1)**
+   - Flip-rate quantification across paraphrases (target: >20% → <5%)
+   - Attention consistency metrics under rephrasing
+   - Paraphrase dataset creation from MIMIC-CXR
+   - Baseline evaluation: LLaVA-Rad, MedGemma
 
-2. **Attribution & Interpretability Analysis**
-   - Unified attention extraction across architectures
-   - Focus metrics: attention entropy, ROI alignment accuracy
-   - Spurious reasoning detection via attention mislocalization
-   - Integration with GEMeX groundings and Chest ImaGenome
+2. **Causal Attribution Analysis (H2)**
+   - Causal mediation analysis of phrasing → attention → answers
+   - Intervention experiments on attention distributions
+   - Identifying linguistic constructs causing failures
+   - Quantifying mediation effects
 
-3. **Robustness Enhancement Methods**
-   - Paraphrase-based data augmentation
-   - Consistency training with semantic invariance losses
-   - Attention supervision for better grounding
-   - Chain-of-thought prompting for factual accuracy
+3. **Uncertainty & Mitigation (H3)**
+   - Calibrated confidence scores and "I don't know" options
+   - Consistency loss training with paraphrase augmentation
+   - Brier score optimization
+   - Target: 95% sensitivity with 5-10% abstention
 
-4. **Clinical Triage & Safety System**
-   - Multi-prompt consistency checking
-   - Confidence-based deferral mechanisms
-   - Learned error prediction from internal signals
-   - Safe deployment with 80%+ error detection at 15-20% deferral
+4. **Safe Triage System (H4)**
+   - Confidence thresholds for auto-clearance
+   - Near-100% sensitivity for critical findings
+   - 30-40% workload reduction on normal cases
+   - OOD detection integration
 
 ## 🛠️ Technical Stack
 
@@ -88,27 +88,27 @@ This digital garden documents my dissertation research on developing a **"Robust
 - **BiomedCLIP**: Domain-adapted foundation model
 
 ### Evaluation Datasets
-- **VQA-RAD**: Core radiology VQA dataset (~3K QA pairs)
-- **MIMIC-CXR-VQA**: Large-scale chest X-ray QA
-- **GEMeX**: Grounded medical VQA with region annotations
-- **Robustness Gauntlet Sets**: Paraphrase variants, visual perturbations, hard cases
+- **MIMIC-CXR**: Base for paraphrase dataset creation
+- **VQA-RAD**: Radiology visual question answering
+- **NEJM Image Challenge**: External validation set
+- **Radiology Paraphrase QA**: New dataset with multiple rephrasings (deliverable)
 
 ### Key Metrics
-- **Answer Flip-Rate**: Frequency of answer changes on paraphrases
-- **Consistency Score**: Agreement across linguistic variants
-- **Focus Metric**: Attention concentration (entropy-based)
-- **ROI Support**: Overlap with ground-truth regions
-- **Triage Precision/Recall**: Error detection performance
-- **Safe Accuracy**: Performance after triage deferral
+- **Flip-Rate**: Answer changes across paraphrases (baseline >20%, target <5%)
+- **Attention Consistency**: JS divergence between paraphrase attention maps
+- **Calibration**: Brier score and reliability diagrams
+- **Triage Sensitivity**: Detection of critical findings (target: ~100%)
+- **Workload Reduction**: % of normal cases auto-cleared (target: 30-40%)
+- **Generalization Gap**: Performance drop on external datasets
 
 ## 📈 Expected Impact
 
-- **<20% flip-rate** on paraphrased questions (vs >30% baseline)
-- **~70% ROI alignment** for attention maps on key findings
-- **>80% error detection** by triage module
-- **~90% safe accuracy** with selective answering
-- **Robust performance** under visual perturbations and distribution shifts
-- **Open-source toolkit** for community-wide robustness evaluation
+- **<5% flip-rate** on paraphrased questions (vs >20% baseline)
+- **Causal evidence** linking phrasing to attention shifts and errors
+- **95% sensitivity** at 5-10% abstention rate
+- **30-40% workload reduction** with near-zero missed critical findings
+- **Generalization** to external datasets and modalities
+- **Open-source toolkit** with debugging, visualization, and safety analysis
 
 ## 🤝 Collaboration & Contact
 

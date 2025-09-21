@@ -1,6 +1,6 @@
 # Selective Conformal Triage for Medical VLMs
 
-> A key component of RQ5 in the [[../Evaluation/robustness-gauntlet|Robustness Gauntlet Framework]], providing mathematical guarantees for safe clinical deployment
+> Providing mathematical guarantees for safe clinical deployment of phrasing-robust medical VLMs
 
 [← Safety Index](index.md) | [Paraphrase Robustness →](../Evaluation/02-paraphrase-robustness.md)
 
@@ -8,7 +8,7 @@
 
 ## Objective
 
-Guarantee user‑set error rates on auto‑accepted cases by implementing the triage system described in the Robustness Gauntlet. This component addresses **RQ5**: "How can we integrate a triage mechanism into the VQA system to ensure safe clinical deployment?"
+Guarantee user-set error rates on auto-accepted cases by implementing an uncertainty-aware triage system. This component addresses **RQ4**: "In what ways can a vision-language model be integrated into the radiology workflow as a triage tool that safely prioritizes or automates cases without missing critical findings?"
 
 ### Key Goals
 - **Error Detection**: Catch >80% of incorrect/hallucinated answers
@@ -33,21 +33,21 @@ Guarantee user‑set error rates on auto‑accepted cases by implementing the tr
 - Error guarantees for auto‑accepted cases
 - Audit logs for clinical traceability
 
-## Implementation in Robustness Gauntlet
+## Implementation with Phrasing Robustness
 
 ### Multi-Signal Integration
 The triage system combines multiple uncertainty signals:
-- **Paraphrase Consistency**: Agreement across linguistic variants
-- **Confidence Scores**: Model's self-reported certainty
-- **Attention Focus**: Entropy of attention distributions
-- **Question Complexity**: Risk assessment by question type
+- **Paraphrase Consistency**: Agreement across linguistic variants (primary signal)
+- **Confidence Scores**: Model's self-reported certainty calibrated via temperature scaling
+- **Attention Stability**: Consistency of attention maps across paraphrases
+- **Clinical Risk**: Stratification based on finding criticality
 
 ### Expected Performance
-Based on the Robustness Gauntlet hypothesis:
-- Triage precision: >80% for catching errors
-- Deferral rate: 15-20% of all queries
-- Safe accuracy: ~90% on auto-accepted cases
-- Clinical utility: Maintains high throughput for routine cases
+Based on the phrasing robustness research:
+- **Sensitivity**: Near-100% for critical findings
+- **Specificity**: 85-90% for non-urgent findings 
+- **Auto-clearance**: ~30-40% of normal exams
+- **Flip-rate threshold**: Defer if >10% disagreement across paraphrases
 
 ## Integration with Other Components
 - **Input**: Results from [[../Evaluation/01-medphr-rad|MedPhr-Rad]] paraphrase testing
@@ -55,5 +55,5 @@ Based on the Robustness Gauntlet hypothesis:
 - **Output**: Safety decisions for clinical deployment
 - **Validation**: Part of RQ5 experimental validation
 
-See also: [[../Evaluation/robustness-gauntlet|Robustness Gauntlet Framework]], [[../Evaluation/01-medphr-rad|MedPhr‑Rad Benchmark]], [[../Evaluation/02-paraphrase-robustness|Metrics]]
+See also: [[../Evaluation/phrasing-robustness-framework|Phrasing Robustness Framework]], [[../Evaluation/01-medphr-rad|MedPhr-Rad Benchmark]], [[../Evaluation/02-paraphrase-robustness|Metrics]]
 

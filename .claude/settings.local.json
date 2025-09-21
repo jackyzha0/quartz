@@ -11,7 +11,8 @@
       "Bash(npx quartz:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(touch:*)"
     ],
     "deny": []
   }

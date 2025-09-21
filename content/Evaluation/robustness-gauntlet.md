@@ -1,8 +1,10 @@
-# The Robustness Gauntlet Framework
+# The Robustness Gauntlet Framework (Archived)
 
-> A comprehensive evaluation and training framework to stress-test medical Vision-Language Models for chest X-ray visual question answering
+> **Note**: This framework has evolved into the [[phrasing-robustness-framework|Phrasing Robustness Framework]], which focuses specifically on the critical issue of VLM brittleness to question paraphrasing. Please see the new framework for current research direction.
 
-[← Evaluation Index](index.md) | [Toolkit GitHub →](https://github.com/thedatasense/medical-vlm-intepret)
+> Original: A comprehensive evaluation and training framework to stress-test medical Vision-Language Models for chest X-ray visual question answering
+
+[← Evaluation Index](index.md) | [New Framework →](phrasing-robustness-framework.md) | [Toolkit GitHub →](https://github.com/thedatasense/medical-vlm-intepret)
 
 ---
 
