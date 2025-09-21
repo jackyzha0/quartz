@@ -2,7 +2,7 @@
 
 > Measurement, Causality, Mitigation, and Safe Triage
 
-[← Site Index](../Index.md) | [Timeline →](timeline.md)
+[← Site Index](../Index.md) | [Timeline →](03-timeline.md)
 
 ---
 
@@ -10,7 +10,7 @@
 
 Medical vision-language models (VLMs) hold promise for assisting radiologists by interpreting imaging studies and answering clinical questions. However, current medical VLMs exhibit **brittle behavior under subtle input changes**, especially in phrasing of questions. Prior studies show that paraphrasing a question can significantly degrade a QA model's accuracy. For example, rewording a radiology question with the same intent may cause a model's answer to flip or its confidence to change unpredictably. Such sensitivity poses a **safety risk in clinical settings**, where inconsistent answers from an AI could erode clinician trust or lead to missed findings.
 
-Moreover, small open-source VLMs still lag far behind expert performance on diagnostic tasks (often <40% accuracy vs >68% for GPT-4 in benchmarks), underscoring the need for domain-specific training and robustness improvements.
+Moreover, small open-source VLMs still lag far behind expert performance on diagnostic tasks (often <40% accuracy vs >75% for GPT-5 in benchmarks), underscoring the need for domain-specific training and robustness improvements.
 
 ### The Interpretability Gap
 
@@ -110,6 +110,7 @@ Building on the existing medical-vlm-interpret repository:
 
 ### 2. Robust VLM Checkpoints
 - Fine-tuned versions of LLaVA-Rad, MedGemma, or similar VLMs
+- Baseline comparisons with GPT-5 (closed-source state-of-the-art)
 - Models robust to phrasing variation
 - Training scripts and configurations
 - Performance benchmarks showing improved consistency

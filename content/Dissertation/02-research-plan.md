@@ -2,7 +2,7 @@
 
 > A detailed implementation plan for developing and validating a comprehensive robustness evaluation framework for medical Vision-Language Models
 
-[← Dissertation Index](../index.md) | [Proposal →](proposal.md) | [Timeline →](timeline.md)
+[← Dissertation Index](../index.md) | [Proposal →](01-proposal.md) | [Timeline →](03-timeline.md)
 
 ---
 

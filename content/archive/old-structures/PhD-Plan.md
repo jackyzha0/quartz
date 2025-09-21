@@ -2,11 +2,11 @@
 
 > A comprehensive framework for quantifying and improving the robustness, safety, and evidence alignment of medical VLMs in chest X-ray visual question answering, while preserving clinical utility
 
-> Note: VSF‑Med‑VQA framework is now implemented. The current dissertation direction focuses on phrasing‑robust medical VLMs with selective conformal triage. See [[Dissertation/Proposal|Dissertation Proposal]].
+> Note: VSF‑Med‑VQA framework is now implemented. The current dissertation direction focuses on phrasing‑robust medical VLMs with selective conformal triage. See [[01-proposal|Dissertation Proposal]].
 
 ## Executive Summary (Archived Plan)
 
-This page documents the earlier **VSF‑Med‑VQA** (Vision‑Safety Framework for Medical Visual Question Answering) work: a unified evaluation and defense system that quantifies vulnerabilities, validates visual evidence alignment, and provides practical defenses. In the current dissertation, VSF‑Med‑VQA serves as background infrastructure; the core contribution is a paraphrase‑robustness baselining framework with selective conformal triage. See [[Dissertation/Proposal|current proposal]].
+This page documents the earlier **VSF‑Med‑VQA** (Vision‑Safety Framework for Medical Visual Question Answering) work: a unified evaluation and defense system that quantifies vulnerabilities, validates visual evidence alignment, and provides practical defenses. In the current dissertation, VSF‑Med‑VQA serves as background infrastructure; the core contribution is a paraphrase‑robustness baselining framework with selective conformal triage. See [[01-proposal|current proposal]].
 
 ## Thesis Statement
 

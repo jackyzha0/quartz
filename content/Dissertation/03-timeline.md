@@ -2,7 +2,7 @@
 
 > Measurement, Causality, Mitigation, and Safe Triage — Timeline to August 2026
 
-[← Proposal](proposal.md) | [Site Index →](../Index.md)
+[← Proposal](01-proposal.md) | [Site Index →](../Index.md)
 
 ---
 
@@ -17,7 +17,7 @@ This timeline outlines the development of phrasing-robust medical vision-languag
 - **Codebase Refinement**: Enhance medical-vlm-interpret toolkit with latest model support
 - **Dataset Access**: Secure MIMIC-CXR, VQA-RAD, and additional radiology datasets
 - **Compute Setup**: Configure GPU cluster (8× A100s) for experiments
-- **Baseline Evaluation**: Run initial robustness tests on LLaVA-Rad and MedGemma
+- **Baseline Evaluation**: Run initial robustness tests on LLaVA-Rad, MedGemma, and GPT-5
 - **Paraphrase Dataset Design**: Create annotation guidelines for medical paraphrases
 
 ### 2025 October: Paraphrase dataset and baseline
@@ -29,7 +29,7 @@ This timeline outlines the development of phrasing-robust medical vision-languag
 - **Toolkit Enhancement**: Add paraphrase testing module to interpretability toolkit
 
 ### 2025 November: Robustness measurement
-- **Comprehensive Evaluation**: Test 5+ medical VLMs on paraphrase dataset
+- **Comprehensive Evaluation**: Test 5+ medical VLMs on paraphrase dataset (including GPT-5 baseline)
 - **Metric Development**: Refine consistency scores, attention divergence metrics
 - **Failure Analysis**: Categorize linguistic patterns causing failures
 - **Cross-Dataset Testing**: Validate on SLAKE, PMC-VQA datasets
@@ -123,7 +123,7 @@ This timeline outlines the development of phrasing-robust medical vision-languag
 1. **Paraphrase Test Suite** (Oct 2025): VQA-RAD paraphrases
 2. **Robustness Toolkit v2** (Nov 2025): Enhanced medical-vlm-interpret
 3. **Causal Analysis Module** (Dec 2025): Mediation analysis tools
-4. **Fine-tuned Models** (Mar 2026): Robust LLaVA-Rad/MedGemma
+4. **Fine-tuned Models** (Mar 2026): Robust LLaVA-Rad/MedGemma (compared against GPT-5)
 5. **Triage System** (May 2026): Complete clinical deployment package
 
 ### Expected Outcomes

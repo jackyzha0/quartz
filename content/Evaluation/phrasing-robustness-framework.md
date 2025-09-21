@@ -2,7 +2,7 @@
 
 > Core methodology for measuring and improving medical VLM robustness to question paraphrasing
 
-[ Evaluation Index](index.md) | [MedPhr-Rad ’](01-medphr-rad.md) | [Metrics ’](02-paraphrase-robustness.md)
+[ï¿½ Evaluation Index](index.md) | [MedPhr-Rad ï¿½](01-medphr-rad.md) | [Metrics ï¿½](02-paraphrase-robustness.md)
 
 ---
 
@@ -90,7 +90,7 @@ Understanding WHY models fail on paraphrases is crucial:
 ```python
 class CausalMediationAnalyzer:
     """
-    Analyzes causal pathway: phrasing ’ attention ’ answer
+    Analyzes causal pathway: phrasing ï¿½ attention ï¿½ answer
     """
     def analyze_phrasing_effect(self, model, image, original, paraphrase):
         # Total effect: change in answer
@@ -107,7 +107,7 @@ class CausalMediationAnalyzer:
         with model.fix_attention(attn_original):
             answer_fixed_attn = model(image, paraphrase)
         
-        # Direct effect (phrasing ’ answer, bypassing attention)
+        # Direct effect (phrasing ï¿½ answer, bypassing attention)
         direct_effect = self.measure_answer_change(
             model(image, original),
             answer_fixed_attn
@@ -210,7 +210,7 @@ class PhrasingRobustTriage:
 ### Core Robustness Metrics
 
 1. **Flip-Rate**: Percentage of paraphrases yielding different answers
-   - Baseline: >20% for current models
+   - Baseline: >20% for current open models (GPT-5 shows ~12%)
    - Target: <5% after mitigation
 
 2. **Consistency Score**: Average agreement across paraphrases

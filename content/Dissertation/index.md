@@ -9,9 +9,9 @@
 ## Research Planning Documents
 
 ### 📋 Core Documents
-- [[comprehensive-research-plan|Comprehensive Research Plan]] — Detailed implementation roadmap with methods and milestones
-- [[proposal|Dissertation Proposal]] — Formal research proposal with RQs, hypotheses, and deliverables  
-- [[timeline|Timeline & Milestones]] — Quarterly breakdown through August 2026 defense
+- [[02-research-plan|Comprehensive Research Plan]] — Detailed implementation roadmap with methods and milestones
+- [[01-proposal|Dissertation Proposal]] — Formal research proposal with RQs, hypotheses, and deliverables  
+- [[03-timeline|Timeline & Milestones]] — Quarterly breakdown through August 2026 defense
 
 ### 🎯 Research Focus
 **The Robustness Gauntlet**: A comprehensive framework for evaluating and enhancing medical Vision-Language Models on chest X-ray visual question answering, addressing:

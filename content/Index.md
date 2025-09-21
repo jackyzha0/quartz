@@ -17,8 +17,8 @@ This digital garden documents my dissertation research on making medical Vision-
 ## 🚀 Quick Navigation
 
 ### Start Here
-- [[Dissertation/proposal|Dissertation Proposal]] — Phrasing-Robust Medical VLMs
-- [[Dissertation/timeline|Timeline to Aug 2026]] — Detailed monthly milestones
+- [[01-proposal|Dissertation Proposal]] — Phrasing-Robust Medical VLMs
+- [[03-timeline|Timeline to Aug 2026]] — Detailed monthly milestones
 - [[Evaluation/phrasing-robustness-framework|Phrasing Robustness Framework]] — Core methodology
 - [[Evaluation/interpretability-toolkit|Interpretability Toolkit]] — Open-source deliverable
 - [[Healthcare/01-medical-vision-language-models|Medical VLMs Overview]]
@@ -84,6 +84,7 @@ This digital garden documents my dissertation research on making medical Vision-
 ### Models Under Study
 - **[[Healthcare/03-llava-rad|LLaVA-RAD]]**: Primary target for paraphrase robustness
 - **[[Healthcare/02-medgemma|MedGemma]]**: Secondary comparison model
+- **GPT-5**: Closed-source baseline for state-of-the-art comparison
 - **LLaVA-Med**: Baseline medical VLM
 - **BiomedCLIP**: Domain-adapted foundation model
 

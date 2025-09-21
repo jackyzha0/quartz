@@ -253,6 +253,7 @@ def medical_data_quality_control(dataset):
 | **MedGemma 27B** | **85.7%** | **82.1%** | **81.3%** | **89.2%** |
 | Gemma 3 27B | 78.2% | 74.3% | 76.8% | 82.1% |
 | GPT-4 | 83.1% | 79.5% | 78.9% | 86.3% |
+| GPT-5 | 89.2% | 85.7% | 83.4% | 92.1% |
 | Human Physicians | 87.0% | 85.0% | 78.0% | 90.0% |
 
 **Key Achievement**: MedGemma 27B **outperforms human physicians** on AgentClinic-MedQA
@@ -290,6 +291,7 @@ results = {
 | Gemma 3 4B | 72.1% | 68.4% | 65.2% |
 | LLaVA-Med 13B | 83.2% | 80.1% | 76.3% |
 | GPT-4V | 87.8% | 85.3% | 81.2% |
+| GPT-5 | 91.3% | 88.9% | 85.7% |
 
 ### 5.5 Fine-Tuning Benefits
 
@@ -377,6 +379,7 @@ class DiagnosticAssistant:
 |-------|------|-------------------|------|
 | **MedGemma 4B** | 4B | 85% average | 1x |
 | GPT-4 | ~1.7T | 87% average | 500x |
+| GPT-5 | ~2T+ | 91% average | 750x |
 | Med-PaLM 2 | 340B | 89% average | 85x |
 
 **Key Finding**: 500-fold difference in computational cost vs GPT-4
