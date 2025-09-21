@@ -1,91 +1,196 @@
-# Dissertation Proposal: Phrasing‑Robust Medical VLMs for Radiology
+# Dissertation Proposal: A Robustness Gauntlet for Medical Vision-Language Models
 
-> Working Title: Phrasing‑Robust Medical Vision‑Language Models for Radiology: Measurement, Causality, Mitigation, and Safe Triage
+> Working Title: A Robustness Gauntlet for Medical Vision-Language Models: Evaluating and Enhancing State-of-the-Art Systems on Chest X-ray Visual Question Answering
 
 [← Site Index](../Index.md) | [Timeline →](timeline.md)
 
 ---
 
-## Central Thesis
+## Executive Summary
 
-Semantically equivalent phrasings of clinical questions can flip predictions of medical VLMs. This work measures the effect, identifies causes, reduces it with training and concept grounding, and wraps models with selective, risk‑controlled triage for safe use.
+This PhD project develops a **"Robustness Gauntlet"** – a rigorous evaluation and training framework to stress-test medical Vision-Language Models (VLMs) and enhance their reliability for chest X-ray Q&A. Building upon an open-source toolkit, we address three critical challenges: **robustness** (to linguistic and visual variations), **interpretability** (attention grounding and attribution), and **safety** (triage mechanisms for clinical deployment). The work spans comprehensive evaluation methodology, model enhancement techniques, and practical deployment strategies for trustworthy medical AI.
 
-## Specific Aims
+## Introduction & Motivation
 
-1) Measure phrasing sensitivity in medical VLMs.
-- Build a radiology benchmark of semantically equivalent prompts per image and task (synonymy, negation, hedging, temporality, quantifiers, units, reading level, clinician style).
-- Report robust accuracy, paraphrase consistency, flip rate, calibration error, and selective risk at coverage.
-- Baselines: LLaVA‑Rad, MedGemma, LLaVA‑Med. See [[Healthcare/03-llava-rad|LLaVA‑Rad]] and [[Healthcare/02-medgemma|MedGemma]].
+Medical Vision-Language Models hold promise for assisting radiologists by answering free-form questions about imaging studies. Despite advances with models like LLaVA-Rad (7B) and MedGemma (4B/27B), critical challenges remain:
 
-2) Explain why phrasings flip predictions.
-- Attribution and grounding analyses to separate text‑to‑concept parsing vs image‑region grounding.
-- Explanation shift via attention rollout, Integrated Gradients, and ViT relevance propagation; link tokens to RadLex/UMLS concepts and answers to RadGraph entities.
+### 1. Robustness Challenges
+- **Linguistic brittleness**: Small variations in phrasing can derail model answers
+- **Visual sensitivity**: Distribution shifts and minor perturbations degrade performance
+- **Limited training data**: VQA-RAD has only ~3,000 QA pairs, leading to generalization issues
 
-3) Reduce phrasing sensitivity with training and grounding.
-- Paraphrase‑consistency losses; constrained paraphrase augmentation; concept normalization to RadLex or UMLS before verbalization.
-- Prompt‑ensembles with dispersion‑aware abstention.
+### 2. Interpretability Gaps
+- **Black-box behavior**: Unclear if models "look" at correct pathology
+- **Attribution failures**: Attention maps may be diffuse or mislocalized
+- **Clinical trust**: Radiologists need explanations to validate AI outputs
 
-4) Calibrate uncertainty and add selective, conformal triage.
-- Post‑hoc calibration; conformal risk control to guarantee error rates on auto‑accept cases; subgroup‑aware coverage on sentinel findings.
+### 3. Safety Requirements
+- **Overconfident errors**: Models lack mechanisms to express uncertainty
+- **No triage logic**: Cannot defer difficult cases to human experts
+- **Hallucination risks**: Unacceptable for patient care decisions
 
-5) Validate safety and generalization.
-- External validation across sites and modalities; reader‑in‑the‑loop study; fairness across subgroups; include multi‑image reasoning when feasible.
+## Research Questions
 
-See also: [[Evaluation/02-paraphrase-robustness|Paraphrase Robustness Metrics]], [[Safety/02-selective-conformal-triage|Selective Conformal Triage]].
+### RQ1: Linguistic Robustness
+**How robust are current chest X-ray VQA models to linguistic variations in questions?**
 
-## Novelty
+**Hypothesis**: State-of-the-art medical VLMs exhibit sensitivity to question phrasing. Meaning-preserving paraphrases will cause answer "flips" and confidence shifts in 30%+ of cases.
 
-- Paraphrase‑first evaluation for medical VLMs with a standardized taxonomy across modalities.
-- Causal decomposition of flips into linguistic parsing vs visual grounding using concept linking and region‑level relevance alignment.
-- Concept‑normalized querying to RadLex/UMLS before inference at scale for radiology VLMs.
-- Dispersion‑driven abstention with conformal guarantees for safe automation.
-- End‑to‑end safety layer fusing robustness, calibration, and conformal coverage.
+**Expected Results**: 
+- Baseline models show 60-70% consistency on paraphrased variants
+- Negations and complex phrasings particularly confound models
+- Instruction-tuned models (MedGemma) may handle synonyms better than smaller fine-tuned models
 
-## Methods by Aim (Condensed)
+### RQ2: Visual Robustness
+**How do VLMs perform under visual perturbations and distribution shifts in chest X-ray data?**
 
-- Tasks: radiology VQA, abnormality tagging, short justification.
-- Data: VQA‑RAD, PMC‑VQA, SLAKE, plus approved internal sets. [[Evaluation/01-medphr-rad|MedPhr‑Rad benchmark]] collects paraphrase sets.
-- Models: LLaVA‑Rad, MedGemma, LLaVA‑Med and a light baseline.
-- Metrics: paraphrase consistency, flip rate, robust accuracy, ECE, selective risk at coverage c%.
-- Explanations: attention rollout, IG on text tokens, ViT relevance; token deletion tests.
-- Alignment: explanation shift index, concept‑token stability (RadLex/UMLS), RadGraph entity alignment.
-- Mitigation: paraphrase‑consistency loss; constrained augmentation with NLI and concept‑equivalence gates; concept normalization and prompt‑ensembles with abstention; temperature scaling.
-- Triage: dispersion‑based risk score with conformal risk control and subgroup‑aware coverage.
+**Hypothesis**: Models show fragility to visual variations outside training distribution. Minor perturbations or dataset shifts will cause significant performance degradation.
 
-## Experimental Details
+**Expected Results**:
+- 10-20% absolute accuracy drop on out-of-distribution datasets
+- Small noise/rotation causes several percentage points drop
+- Models become more uncertain or generic under unfamiliar visuals
 
-- Attribution tools: attention rollout, Chefer relevance propagation, IG; Grad‑CAM for CNN backbones.
-- Statistics: paired tests over paraphrase sets, bootstrap CIs, effect sizes.
-- Ablations: paraphrase types/count, loss strengths, normalization on/off, ensemble size vs latency, calibration variants.
+### RQ3: Attention Grounding
+**Do current VLMs ground their answers in the correct image regions, and how can attribution analysis reveal spurious reasoning?**
 
-## Success Criteria
+**Hypothesis**: Attribution analysis will reveal that models often fail to fully ground answers in clinically relevant regions, indicating potential spurious reasoning.
 
-- +15 points paraphrase consistency vs baseline on ≥2 tasks.
-- Robust accuracy within 2 points of non‑robust accuracy after mitigation.
-- ECE ≤ 5% after calibration.
-- Conformal triage meets risk targets at ≥80% coverage with zero critical errors on sentinel findings.
+**Expected Results**:
+- Average focus metric in mid-range (diffuse attention)
+- Correct ROI in top-attended regions ~70% for straightforward cases
+- Evidence of spurious correlations (e.g., always looking at heart border for pneumonia)
 
-## Risks & Mitigations
+### RQ4: Robustness Enhancement
+**Can we improve robustness and consistency through targeted training or architectural enhancements?**
 
-- Meaning drift in paraphrases → NLI + concept‑equivalence gates; clinician review.
-- Over‑regularization → ramp loss weights; early stop on robust metrics.
-- Compute limits → stage by modality; prioritize radiography first.
-- IRB delays → submit amendment early for annotation/reader study.
+**Hypothesis**: Targeted interventions (paraphrase training, consistency regularization, attention supervision) will significantly enhance robustness without sacrificing accuracy.
 
-## Expected Artifacts
+**Expected Results**:
+- Flip-rate reduction to <20% (from >30%)
+- Improved focus metrics and ROI alignment
+- Better performance under distribution shifts
+- Maintained or improved standard accuracy
 
-- MedPhr‑Rad benchmark with taxonomy, generators, and evaluation harness.
-- Robust configs for LLaVA‑Rad, MedGemma, LLaVA‑Med.
-- Safety wrapper with conformal triage and abstention policy.
-- Papers: measurement, mitigation, triage, and dissertation deliverables.
+### RQ5: Clinical Triage
+**How can we integrate a triage mechanism into the VQA system to ensure safe clinical deployment?**
 
----
+**Hypothesis**: A triage logic monitoring outputs and internal signals can catch 80%+ of errors while deferring only 15-20% of queries.
 
-## Immediate Next Actions
+**Expected Results**:
+- Triage catches >80% of incorrect/hallucinated answers
+- System achieves ~90% "safe accuracy" with selective answering
+- Minimal impact on utility (most confident answers remain correct)
 
-1) Write one‑sentence thesis + aims into proposal shell.  
-2) Build a 100‑case pilot with 6 paraphrase categories; report flips, consistency, and ECE per model.  
-3) Implement paraphrase generator with NLI and concept‑equivalence filters.  
-4) Draft IRB text for annotation and reader study.  
-5) Prepare a 15‑slide deck (problem, gaps, aims, methods, pilot, risks, timeline).  
+## Methods
 
+### Evaluation Framework
+1. **Linguistic Testing**
+   - Paraphrase generation (synonymy, negation, hedging, temporality)
+   - Answer flip-rate and consistency metrics
+   - Question type analysis (factual vs. complex reasoning)
+
+2. **Visual Testing**
+   - Controlled perturbations (noise, rotation, brightness)
+   - Cross-dataset evaluation (MIMIC → CheXpert, NIH)
+   - Robustness indices and calibration shifts
+
+3. **Attribution Analysis**
+   - Unified attention extraction across architectures
+   - Focus metrics (entropy-based concentration)
+   - ROI support evaluation with ground truth
+   - Spurious correlation detection
+
+### Enhancement Techniques
+1. **Training Improvements**
+   - Paraphrase-based data augmentation
+   - Consistency losses between semantic variants
+   - Attention supervision with known ROIs
+   - Chain-of-thought prompting integration
+
+2. **Architecture Modifications**
+   - Consistency regularizers
+   - Multi-task training for attention prediction
+   - Ensemble methods with dispersion awareness
+
+### Triage System Design
+1. **Uncertainty Detection**
+   - Multi-prompt consistency checking
+   - Confidence score analysis
+   - Attention diffusion detection
+
+2. **Error Prediction**
+   - Neural classifier on internal features
+   - Question type risk assessment
+   - Selective answering thresholds
+
+## Key Deliverables
+
+### 1. Enhanced Medical VLM Interpretability & Robustness Toolkit
+- Expanded open-source framework for comprehensive VLM evaluation
+- Modules for batch robustness auditing, attribution analysis, paraphrase visualization
+- Integrated triage capabilities with uncertainty detection
+- Documentation, example notebooks, and web demos
+
+### 2. Robust Chest X-ray VQA Benchmark Datasets
+- **Paraphrase Benchmark Set**: Multiple variants per question with ground truth
+- **Visual Perturbation Test Set**: Modified images with controlled changes
+- **Hard Cases & OOD Set**: Rare findings and cross-dataset challenges
+- **Region Ground Truth Annotations**: Expert-annotated ROIs for grounding evaluation
+
+### 3. Improved Vision-Language Models
+- Fine-tuned robust versions of LLaVA-Rad and MedGemma
+- Model variants: single-image QA and multi-image comparison
+- Open-source weights on HuggingFace with performance reports
+- Interactive demos via Gradio web applications
+
+### 4. Publications & Dissemination
+- Conference papers at MICCAI, NeurIPS, and potentially CVPR/ICLR
+- Comprehensive journal article in Nature npj Digital Medicine
+- Workshop presentations and technical reports
+- Clinical outreach at RSNA and medical AI forums
+
+### 5. Clinical Integration Artifacts
+- User guide for clinicians on interpreting model outputs
+- Pilot study design for radiology workflow integration
+- Human factors analysis with radiologist collaborators
+- Best practices for safe deployment
+
+## Publication Timeline
+
+### 2025
+- **Q1-Q2**: MICCAI 2025 submission on evaluation methodology (RQ1-3)
+- **Mid-year**: NeurIPS 2025 submission on robustness enhancement (RQ4)
+- **Late 2025**: RSNA 2025 demonstration for clinical feedback
+- **Ongoing**: Workshop papers at MIDL, ML4H
+
+### 2026
+- **Early**: Nature npj Digital Medicine comprehensive article
+- **Mid-year**: MICCAI 2026 on triage systems (RQ5) or extensions
+- **Late**: NeurIPS 2026 follow-up or workshop organization
+- **End**: Dissertation defense and final toolkit release
+
+## Expected Impact
+
+This work will establish new evaluation standards for medical VLMs through:
+- Comprehensive robustness testing methodology
+- Practical enhancement techniques with proven results
+- Safe deployment strategies with clinical viability
+- Open-source tools enabling community-wide adoption
+- Foundation for trustworthy medical vision-language AI
+
+The "Robustness Gauntlet" framework will become an essential component in developing and validating medical VQA systems, ensuring they meet the reliability requirements for clinical deployment.
+
+## References
+
+Key foundational works:
+- LLaVA-Rad: [arXiv:2403.08002](https://arxiv.org/abs/2403.08002)
+- MedGemma: [arXiv:2507.05201](https://arxiv.org/abs/2507.05201)
+- GEMeX Dataset: [arXiv:2411.16778](https://arxiv.org/html/2411.16778v2)
+- Medical VLM Interpretability Toolkit: [GitHub](https://github.com/thedatasense/medical-vlm-intepret)
+
+See also: 
+- [[Evaluation/robustness-gauntlet|Robustness Gauntlet Framework]]
+- [[Safety/02-selective-conformal-triage|Selective Conformal Triage]]
+- [[Healthcare/03-llava-rad|LLaVA-RAD]]
+- [[Healthcare/02-medgemma|MedGemma]]

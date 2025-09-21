@@ -1,8 +1,14 @@
 # MedPhr‑Rad: Paraphrase‑Robustness Benchmark for Radiology VLMs
 
-[← Paraphrase Metrics](Paraphrase%20Robustness.md) | [← Evaluation Index](Index.md)
+> A core component of the [[robustness-gauntlet|Robustness Gauntlet Framework]], focusing on linguistic robustness evaluation
+
+[← Paraphrase Metrics](02-paraphrase-robustness.md) | [← Evaluation Index](index.md) | [Robustness Gauntlet →](robustness-gauntlet.md)
 
 ---
+
+## Overview
+
+MedPhr-Rad is the **linguistic robustness component** of the comprehensive Robustness Gauntlet framework. It specifically addresses how medical VLMs handle semantically equivalent phrasings of clinical questions, which is critical for real-world deployment where radiologists may phrase the same question in various ways.
 
 ## Goal
 
@@ -29,8 +35,45 @@ Standardize paraphrase‑first robustness evaluation in radiology VQA by releasi
 - Scoring scripts and plots (paired tests, bootstrap CIs)
 - Leaderboard for new model submissions
 
-## Integration
+## Paraphrase Taxonomy
 
-- Pairs with [[Safety/Selective Conformal Triage|Selective Conformal Triage]] for safe deployment
-- Links to concept resources: RadLex, UMLS, RadGraph (for concept mapping and entity alignment)
+1. **Synonymy**: Medical term variations
+   - "pneumonia" ↔ "lung infection" ↔ "pulmonary consolidation"
+   - "cardiomegaly" ↔ "enlarged heart" ↔ "cardiac enlargement"
+
+2. **Negation Handling**: Positive/negative formulations
+   - "Is there pneumonia?" ↔ "Is there no pneumonia?"
+   - "Any abnormalities?" ↔ "All normal?"
+
+3. **Hedging & Certainty**: Confidence modifiers
+   - "definite pneumonia" ↔ "possible pneumonia" ↔ "likely pneumonia"
+   - "clear evidence" ↔ "suggestive of" ↔ "consistent with"
+
+4. **Temporality**: Time-based variations
+   - "new finding" ↔ "recent change" ↔ "acute process"
+   - "chronic" ↔ "longstanding" ↔ "old"
+
+5. **Quantifiers**: Amount descriptors
+   - "any fluid" ↔ "some fluid" ↔ "significant fluid"
+   - "mild" ↔ "moderate" ↔ "severe"
+
+6. **Clinical Style**: Formal vs conversational
+   - "What is your differential?" ↔ "What could this be?"
+   - "Describe findings" ↔ "What do you see?"
+
+## Integration with Robustness Gauntlet
+
+MedPhr-Rad serves as the **linguistic robustness module** within the larger framework:
+
+- **Input to Visual Testing**: Paraphrased questions tested across visual perturbations
+- **Attribution Analysis**: How attention changes with different phrasings
+- **Triage Decisions**: Consistency across paraphrases informs deferral
+- **Enhancement Target**: Paraphrase-based training improves overall robustness
+
+## Relationship to Other Components
+
+- Part of [[robustness-gauntlet|Robustness Gauntlet Framework]]
+- Pairs with [[../Safety/02-selective-conformal-triage|Selective Conformal Triage]] for safe deployment
+- Metrics detailed in [[02-paraphrase-robustness|Paraphrase Robustness Metrics]]
+- Links to concept resources: RadLex, UMLS, RadGraph
 

@@ -1,24 +1,25 @@
 # Medical Vision-Language Model Robustness Research
 
 > **Binesh Kumar** — PhD Candidate, Secure and Assured Intelligent Learning (SAIL) Lab, University of New Haven  
-> Research Focus: Phrasing-robust medical VLMs with selective conformal triage for safe clinical deployment
+> Research Focus: A Robustness Gauntlet for Medical Vision-Language Models in Chest X-ray Visual Question Answering
 
 ## Research Overview
 
-This digital garden documents my dissertation research on developing robust, evidence-grounded medical Vision-Language Models (VLMs) for clinical decision support. The central contribution is **MedPhr-Rad**: a paraphrase-robustness baselining framework for radiology VLMs with standardized taxonomy, generators, and metrics to measure phrasing sensitivity, plus selective conformal triage for safe deployment.
+This digital garden documents my dissertation research on developing a **"Robustness Gauntlet"** – a rigorous evaluation and training framework to stress-test medical VLMs and enhance their reliability for chest X-ray Q&A. Building upon an open-source toolkit, this comprehensive platform addresses robustness (linguistic and visual), interpretability (attention grounding), and safety (triage mechanisms) for clinical deployment.
 
 ### Core Research Questions
-1. How do semantically equivalent phrasings affect medical VLM predictions?
-2. What causes medical VLMs to flip predictions on paraphrased questions?
-3. How can we mitigate paraphrase sensitivity while maintaining clinical accuracy?
-4. Can we provide mathematical safety guarantees for automated clinical decisions?
+1. **RQ1**: How robust are current chest X-ray VQA models to linguistic variations?
+2. **RQ2**: How do VLMs perform under visual perturbations and distribution shifts?
+3. **RQ3**: Do VLMs ground their answers in correct image regions?
+4. **RQ4**: Can we improve robustness through targeted training?
+5. **RQ5**: How can we integrate triage mechanisms for safe clinical deployment?
 
 ## 🚀 Quick Navigation
 
 ### Start Here
-- [[Dissertation/proposal|Current Dissertation Proposal]] — Phrasing-robust medical VLMs
-- [[Dissertation/timeline|Timeline to Aug 2026]]
-- [[Evaluation/01-medphr-rad|MedPhr-Rad Framework]] — Core contribution
+- [[Dissertation/proposal|Current Dissertation Proposal]] — Robustness Gauntlet for Medical VLMs
+- [[Dissertation/timeline|Timeline to Aug 2026]] — Publications 2025-2026
+- [[Evaluation/robustness-gauntlet|Robustness Gauntlet Framework]] — Core contribution
 - [[Healthcare/01-medical-vision-language-models|Medical VLMs Overview]]
 
 ## 📚 Research Areas
@@ -53,27 +54,29 @@ This digital garden documents my dissertation research on developing robust, evi
 
 ### Active Work Streams
 
-1. **Paraphrase Robustness Measurement (MedPhr-Rad)**
-   - Taxonomy: synonymy, negation, hedging, temporality, quantifiers, units, style
-   - Metrics: consistency rate, flip rate, robust accuracy, selective risk
-   - Baselines: LLaVA-Rad, MedGemma, LLaVA-Med
+1. **Robustness Evaluation Framework**
+   - Linguistic robustness: paraphrase testing, negation handling, synonym variation
+   - Visual robustness: noise perturbations, distribution shifts, OOD detection
+   - Comprehensive metrics: flip-rate, consistency scores, calibration drift
+   - Baseline models: LLaVA-Rad (7B), MedGemma (4B/27B), GPT-4V
 
-2. **Causal Analysis of Prediction Flips**
-   - Text-to-concept parsing vs image-region grounding
-   - Attention rollout, Integrated Gradients, ViT relevance
-   - RadLex/UMLS concept linking, RadGraph entity alignment
+2. **Attribution & Interpretability Analysis**
+   - Unified attention extraction across architectures
+   - Focus metrics: attention entropy, ROI alignment accuracy
+   - Spurious reasoning detection via attention mislocalization
+   - Integration with GEMeX groundings and Chest ImaGenome
 
-3. **Mitigation Strategies**
-   - Paraphrase-consistency losses
-   - Constrained augmentation with NLI gates
-   - Concept normalization before verbalization
-   - Prompt ensembles with dispersion-aware abstention
+3. **Robustness Enhancement Methods**
+   - Paraphrase-based data augmentation
+   - Consistency training with semantic invariance losses
+   - Attention supervision for better grounding
+   - Chain-of-thought prompting for factual accuracy
 
-4. **Selective Conformal Triage**
-   - Post-hoc calibration (temperature scaling)
-   - Conformal risk control with coverage guarantees
-   - Subgroup-aware coverage for sentinel findings
-   - Zero critical errors at 80% automation rate
+4. **Clinical Triage & Safety System**
+   - Multi-prompt consistency checking
+   - Confidence-based deferral mechanisms
+   - Learned error prediction from internal signals
+   - Safe deployment with 80%+ error detection at 15-20% deferral
 
 ## 🛠️ Technical Stack
 
@@ -84,33 +87,36 @@ This digital garden documents my dissertation research on developing robust, evi
 - **BiomedCLIP**: Domain-adapted foundation model
 
 ### Evaluation Datasets
-- **VQA-RAD**: Core radiology VQA dataset
-- **PMC-VQA**: Diverse medical imaging VQA
-- **SLAKE**: Bilingual medical VQA
-- **MedPhr-Rad**: Our paraphrase benchmark (in development)
+- **VQA-RAD**: Core radiology VQA dataset (~3K QA pairs)
+- **MIMIC-CXR-VQA**: Large-scale chest X-ray QA
+- **GEMeX**: Grounded medical VQA with region annotations
+- **Robustness Gauntlet Sets**: Paraphrase variants, visual perturbations, hard cases
 
 ### Key Metrics
-- **Paraphrase Consistency Rate (PCR)**: Agreement across paraphrases
-- **Flip Rate**: Frequency of prediction changes
-- **Robust Accuracy**: Worst-case performance
-- **Selective Risk@Coverage**: Error rate on auto-accepted cases
+- **Answer Flip-Rate**: Frequency of answer changes on paraphrases
+- **Consistency Score**: Agreement across linguistic variants
+- **Focus Metric**: Attention concentration (entropy-based)
+- **ROI Support**: Overlap with ground-truth regions
+- **Triage Precision/Recall**: Error detection performance
+- **Safe Accuracy**: Performance after triage deferral
 
 ## 📈 Expected Impact
 
-- **+15 points** paraphrase consistency vs baseline
-- **Robust accuracy** within 2 points of standard accuracy
-- **ECE ≤ 5%** after calibration
-- **80% automation** with mathematical safety guarantees
-- **Zero sentinel errors** through selective triage
+- **<20% flip-rate** on paraphrased questions (vs >30% baseline)
+- **~70% ROI alignment** for attention maps on key findings
+- **>80% error detection** by triage module
+- **~90% safe accuracy** with selective answering
+- **Robust performance** under visual perturbations and distribution shifts
+- **Open-source toolkit** for community-wide robustness evaluation
 
 ## 🤝 Collaboration & Contact
 
 I welcome collaborations on:
-- Paraphrase robustness in medical AI
-- Selective prediction with safety guarantees
-- Clinical validation studies
-- Medical concept grounding
-- Conformal prediction for healthcare
+- Medical VLM robustness evaluation
+- Interpretability and attention analysis
+- Clinical triage and safety mechanisms
+- Chest X-ray VQA datasets and benchmarks
+- Clinical validation and deployment studies
 
 Connect via the SAIL Lab or university email.
 
@@ -125,3 +131,4 @@ Connect via the SAIL Lab or university email.
 ### Archived Content
 - [[archive/old-structures/PhD-Plan|VSF-Med-VQA (prior framework)]]
 - [[archive/old-structures/About|About (old version)]]
+- [[archive/old-structures/medphr-rad-original|MedPhr-Rad (original paraphrase focus)]]

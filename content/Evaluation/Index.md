@@ -13,7 +13,8 @@ Evaluating Vision-Language Models in medical contexts requires specialized frame
 ## 🎯 Core Resources
 
 ### Evaluation Methodologies
-- [[01-medphr-rad|MedPhr-Rad Framework]] — Paraphrase robustness evaluation framework (core contribution)
+- [[robustness-gauntlet|Robustness Gauntlet Framework]] — Comprehensive evaluation suite for medical VLMs (core contribution)
+- [[01-medphr-rad|MedPhr-Rad Framework]] — Paraphrase robustness component of the gauntlet
 - [[02-paraphrase-robustness|Paraphrase Robustness & Metrics]] — Consistency, flips, robust accuracy, selective risk
 - [[03-metrics-and-calibration|Calibration & Uncertainty]] — Confidence estimation and reliability metrics
 - [[04-helm-framework|HELM Evaluation Framework]] — Holistic Evaluation of Language Models adapted for multimodal systems
