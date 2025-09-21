@@ -10,6 +10,8 @@
 
 LLaVA-Rad is a small multimodal model (7B) tailored for radiology that pairs state-of-the-art pre-trained vision and text encoders with a lightweight adapter. Trained on ~697k image–text pairs, it targets real clinical usability: fast inference on a single V100 GPU, modest training cost (1 day on 8×A100), and strong performance on radiology tasks. The work also proposes CheXprompt, a GPT-4–based factuality metric that matches expert judgments.
 
+**Role in Robustness Gauntlet**: LLaVA-Rad serves as a primary baseline model for evaluating robustness in the [[../Evaluation/robustness-gauntlet|Robustness Gauntlet Framework]], representing lightweight, clinically-deployable architectures.
+
 ## Key Contributions
 - Lightweight, open-access SMM for radiology (7B) focused on practical deployment.
 - Modular design: reuse powerful pre-trained vision/text encoders; train a small adapter to align modalities.
@@ -32,6 +34,19 @@ LLaVA-Rad is a small multimodal model (7B) tailored for radiology that pairs sta
 - Lower cost and latency; better fit for clinical workflows than frontier closed models.
 - Open-source, enabling local fine-tuning on institution data.
 
+## Robustness Evaluation Insights
+
+### Known Vulnerabilities
+- **Paraphrase Sensitivity**: Initial testing shows >30% flip rate on semantically equivalent questions
+- **Visual Perturbations**: Performance degrades under noise and distribution shifts
+- **Attention Grounding**: Sometimes diffuse attention patterns, not always focused on relevant pathology
+
+### Enhancement Opportunities
+- Fine-tuning with paraphrase-augmented data
+- Attention supervision for better grounding
+- Integration with triage mechanisms for safe deployment
+
 ## References
 - PDF: `../refererence_docs/2403.08002v5.pdf`
-- Related: [[Medical Vision-Language Models]] · [[Validation and Datasets]]
+- Related: [[01-medical-vision-language-models|Medical Vision-Language Models]] · [[05-validation-and-datasets|Validation and Datasets]]
+- Evaluation: [[../Evaluation/robustness-gauntlet|Robustness Gauntlet Framework]]

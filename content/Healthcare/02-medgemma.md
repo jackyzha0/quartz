@@ -10,6 +10,8 @@
 
 MedGemma represents a significant advancement in medical AI, providing open-source medical vision-language models that achieve state-of-the-art performance on healthcare tasks while maintaining strong general capabilities. Built on Gemma 3's efficient architecture, MedGemma demonstrates that specialized medical models can outperform much larger general-purpose models on clinical tasks while being deployable on standard hardware.
 
+**Role in Robustness Gauntlet**: MedGemma (4B/27B) serves as a key comparison model in the [[../Evaluation/robustness-gauntlet|Robustness Gauntlet Framework]], representing instruction-tuned architectures with potentially better linguistic robustness.
+
 ![MedGemma Architecture](../assets/LLM%20Healthcare.svg)
 *Figure: MedGemma architecture showing medical vision encoder and specialized training pipeline*
 
@@ -535,9 +537,30 @@ class PACSIntegration:
 
 [← Gemma 3 Architecture](../Architecture/Foundations/Gemma%203%20Architecture.md) | [Back to Index](../index.md) | [Next: Medical VLMs →](Medical%20Vision-Language%20Models.md)
 
+## Robustness Considerations
+
+### Expected Strengths
+- **Instruction Tuning**: Better handling of paraphrased questions due to diverse training
+- **Cross-Attention Design**: More interpretable attention patterns than decoder-only models
+- **Size Variants**: 27B model may show improved robustness over 4B version
+
+### Research Questions
+- How does instruction-tuning affect paraphrase consistency?
+- Are larger models inherently more robust to linguistic variations?
+- Can MedGemma's attention maps provide better grounding than LLaVA-Rad?
+
+### Integration with Robustness Gauntlet
+MedGemma serves as a critical comparison point:
+- Baseline performance on paraphrase test sets
+- Visual robustness under perturbations
+- Attention grounding quality assessment
+- Triage system compatibility
+
 ### Related Topics
-- [[Medical Vision-Language Models|Comparative Analysis]]
-- [[EHR and Temporal Models|Clinical Integration]]
+- [[01-medical-vision-language-models|Comparative Analysis]]
+- [[04-ehr-and-temporal-models|Clinical Integration]]
+- [[../Evaluation/robustness-gauntlet|Robustness Gauntlet Framework]]
+- [[05-gemma-3-architecture|Base Gemma 3 Architecture]]
 - [[../Evaluation/Metrics and Calibration|Performance Metrics]]
 
 ---

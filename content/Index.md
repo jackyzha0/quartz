@@ -17,9 +17,10 @@ This digital garden documents my dissertation research on developing a **"Robust
 ## 🚀 Quick Navigation
 
 ### Start Here
-- [[Dissertation/proposal|Current Dissertation Proposal]] — Robustness Gauntlet for Medical VLMs
+- [[Dissertation/comprehensive-research-plan|Comprehensive Research Plan]] — Detailed PhD roadmap
+- [[Dissertation/proposal|Dissertation Proposal]] — Robustness Gauntlet for Medical VLMs
 - [[Dissertation/timeline|Timeline to Aug 2026]] — Publications 2025-2026
-- [[Evaluation/robustness-gauntlet|Robustness Gauntlet Framework]] — Core contribution
+- [[Evaluation/robustness-gauntlet|Robustness Gauntlet Framework]] — Core technical contribution
 - [[Healthcare/01-medical-vision-language-models|Medical VLMs Overview]]
 
 ## 📚 Research Areas

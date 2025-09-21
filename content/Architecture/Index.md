@@ -8,7 +8,7 @@ title: Architecture Overview
 
 ## Overview
 
-This section provides comprehensive coverage of the architectural components that power modern Vision-Language Models (VLMs). From fundamental transformer mechanisms to state-of-the-art multimodal architectures, these resources form the technical foundation for understanding robustness challenges in medical AI systems.
+This section provides comprehensive coverage of the architectural components that power modern Vision-Language Models (VLMs). From fundamental transformer mechanisms to state-of-the-art multimodal architectures, these resources form the technical foundation for understanding robustness challenges in medical AI systems. Understanding these architectures is crucial for implementing the [[../Evaluation/robustness-gauntlet|Robustness Gauntlet Framework]], as architectural choices directly impact model robustness, interpretability, and safety.
 
 ## Core Architecture Components
 
@@ -54,6 +54,20 @@ This section provides comprehensive coverage of the architectural components tha
 - Regularization techniques for medical domains
 - Ensemble architectures for uncertainty estimation
 - Attention-based interpretability mechanisms
+
+## Relevance to Robustness Gauntlet
+
+### Architectural Impact on Robustness Testing
+- **Attention Mechanisms**: Different attention types affect how models handle paraphrases
+- **Fusion Strategies**: Impact visual perturbation sensitivity
+- **Model Size**: Larger models may be more robust but harder to interpret
+- **Training Objectives**: Pre-training affects distribution shift performance
+
+### Key Considerations for Medical VLMs
+- **Interpretability**: Architecture must support attention extraction for grounding analysis
+- **Efficiency**: Clinical deployment requires balance between robustness and speed
+- **Safety**: Architectural choices affect triage system integration
+- **Adaptability**: Fine-tuning capabilities for domain-specific robustness
 
 ## Related Resources
 - [[../Healthcare/02-medgemma|MedGemma]] — Google's medical-specific architecture adaptations
