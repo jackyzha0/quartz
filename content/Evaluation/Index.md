@@ -20,6 +20,8 @@ Evaluating Vision-Language Models in medical contexts requires specialized frame
 - [[03-metrics-and-calibration|Calibration & Uncertainty]] — Confidence estimation for safe triage
 - [[04-helm-framework|HELM Framework]] — Holistic evaluation adapted for medical VLMs
 - [[05-pretraining-comparison|Model Comparisons]] — Architecture analysis for robustness
+- [[06-gemma3-vlm-interpretation|Gemma-3 VLM Interpretation]] — Faithful visual explanations for medical imaging
+- [[07-lvlm-interpretation-tools|LVLM Interpretation Tools]] — Frameworks and insights for understanding vision-language models
 
 ## Evaluation Dimensions
 
