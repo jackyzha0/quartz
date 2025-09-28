@@ -5,8 +5,8 @@ date: 2025-09-28 19:16
 ---
 # Learning and Retention
 
-- speech:: adj
-- definition:: /dreɪnd/ very tired and without any energy
+- speech:: adj /dreɪnd/ 
+- definition:: very tired and without any energy
 - sentences:: he noticed how negative and **drained** I had become
 
 ## Definition

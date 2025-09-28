@@ -2,7 +2,7 @@
 const dv = this.app.plugins.plugins["dataview"].api;
 
 const query = `
-TABLE speech AS "Speech", definition AS "Definition", sentences AS "Sample"
+TABLE ("**Speech:** " + speech + "<br/>**Meaning:** " + definition + "<br/>**Example:** " + sentences) AS "Definition"
 from #vocabulary
 WHERE !icontains(file.name, "vocabulary_template")
 sort date desc
