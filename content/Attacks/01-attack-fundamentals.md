@@ -23,7 +23,7 @@
 ## 1. Introduction
 
 ### Context and Motivation
-Vision-Language Models represent a paradigm shift in AI, enabling unprecedented capabilities in understanding and generating multimodal content. However, their deployment in safety-critical domains like healthcare demands rigorous security analysis. Unlike traditional single-modal systems, VLMs face attacks from multiple vectors: visual perturbations, textual manipulations, and cross-modal exploits that leverage the interaction between modalities.
+Vision-Language Models represent a paradigm shift in medical LLMs, enabling unprecedented capabilities in understanding and generating multimodal content. However, their deployment in safety-critical domains like healthcare demands rigorous security analysis. Unlike traditional single-modal systems, VLMs face attacks from multiple vectors: visual perturbations, textual manipulations, and cross-modal exploits that leverage the interaction between modalities.
 
 ### Problem Statement
 The core challenge lies in understanding and mitigating adversarial vulnerabilities that could compromise VLM reliability in medical applications. A single misclassified medical image or manipulated clinical report could have life-threatening consequences, making robustness not just a technical challenge but an ethical imperative.
@@ -278,7 +278,7 @@ VLM vulnerabilities in healthcare contexts pose unique risks:
   - Audit trails for all predictions
 
 - **Regulatory Compliance**:
-  - FDA guidance on AI/ML medical devices
+  - FDA guidance on medical LLM/ML devices
   - ISO 14971 risk management
   - GDPR considerations for adversarial data
 
@@ -373,9 +373,9 @@ ATTACK_CONFIG = {
 - Maintain human oversight for critical decisions
 
 ### For Medical Professionals
-- Understand that AI predictions can be manipulated imperceptibly
-- Advocate for robustness testing in clinical AI systems
-- Maintain clinical judgment alongside AI recommendations
+- Understand that LLM predictions can be manipulated imperceptibly
+- Advocate for robustness testing in clinical LLM systems
+- Maintain clinical judgment alongside LLM recommendations
 
 ---
 

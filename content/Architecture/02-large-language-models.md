@@ -1,6 +1,6 @@
 # Chapter 2: Large Language Models
 
-> From transformer architecture to chat-capable AI systems: The evolution and engineering of Large Language Models.
+> From transformer architecture to chat-capable medical LLM systems: The evolution and engineering of Large Language Models.
 
 [← Transformer Architecture](Transformer%20Architecture.md) | [Back to Index](index.md) | [Next: VLM Basics →](VLM%20Basics.md)
 
@@ -67,8 +67,8 @@ Modern LLMs consume enormous datasets:
 Training GPT-3 scale models requires:
 - **Hardware**: 1,000+ A100 GPUs
 - **Time**: 3-6 months
-- **Cost**: $5-100 million  <!-- [CHECK: estimates] -->
-- **Energy**: 1,000+ MWh  <!-- [CHECK: estimates] -->
+- **Cost**: $5-100 million 
+- **Energy**: 1,000+ MWh 
 
 ## 2.3 Model Architecture Evolution
 
@@ -97,12 +97,12 @@ class ModernLLM(nn.Module):
 
 ### 2.3.2 Key Architectural Choices
 
-| Component | Traditional | Modern Choice | Benefit |
-|-----------|-------------|---------------|---------|
-| Position | Sinusoidal | RoPE | Extrapolation |
-| Attention | Full | Flash/GQA | Lower memory and higher throughput |
-| Activation | ReLU | SwiGLU | Improved optimization |
-| Norm | LayerNorm | RMSNorm | Faster and more stable training |
+| Component  | Traditional | Modern Choice | Benefit                            |
+| ---------- | ----------- | ------------- | ---------------------------------- |
+| Position   | Sinusoidal  | RoPE          | Extrapolation                      |
+| Attention  | Full        | Flash/GQA     | Lower memory and higher throughput |
+| Activation | ReLU        | SwiGLU        | Improved optimization              |
+| Norm       | LayerNorm   | RMSNorm       | Faster and more stable training    |
 
 ### 2.3.3 Context Window Expansion
 
@@ -161,7 +161,7 @@ model = get_peft_model(model, config)
 # Only trains 0.1% of parameters!
 ```
 
-## 2.5 Multimodal Extension: Case Study [CHECK]
+## 2.5 Multimodal Extension
 
 ### 2.5.1 Architecture Overview
 

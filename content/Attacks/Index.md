@@ -4,7 +4,7 @@ title: Adversarial Robustness
 
 # Adversarial Robustness in Vision-Language Models
 
-> Comprehensive analysis of attack vectors, defense mechanisms, and robustness evaluation for multimodal AI systems
+> Comprehensive analysis of attack vectors, defense mechanisms, and robustness evaluation for multimodal medical LLM systems
 
 ## Overview
 

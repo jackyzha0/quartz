@@ -1,14 +1,14 @@
 ---
-title: Healthcare AI
+title: Healthcare Applications
 ---
 
-# Healthcare AI: Medical Vision-Language Models
+# Healthcare Applications: Medical Vision-Language Models
 
-> Specialized models, clinical datasets, validation protocols, and deployment considerations for medical multimodal AI
+> Specialized models, clinical datasets, validation protocols, and deployment considerations for medical multimodal LLMs
 
 ## Overview
 
-This section focuses on the intersection of Vision-Language Models with healthcare applications, particularly in radiology and clinical decision support. We explore specialized medical models, temporal patient data integration, validation methodologies, and the unique challenges of deploying AI in clinical environments where safety and reliability are paramount.
+This section focuses on the intersection of Vision-Language Models with healthcare applications, particularly in radiology and clinical decision support. We explore specialized medical models, temporal patient data integration, validation methodologies, and the unique challenges of deploying medical LLMs in clinical environments where safety and reliability are paramount.
 
 ## 🎯 Core Resources
 
@@ -20,7 +20,7 @@ This section focuses on the intersection of Vision-Language Models with healthca
 
 ### Validation & Deployment
 - [[05-validation-and-datasets|Clinical Validation Protocols]] — Medical datasets, benchmarks, and evaluation standards
-- [[06-additional-resources|Healthcare AI Resources]] — Tools, libraries, and regulatory guidance
+- [[06-additional-resources|Healthcare LLM Resources]] — Tools, libraries, and regulatory guidance
 
 ## Key Medical VLM Applications
 
@@ -151,7 +151,7 @@ This section focuses on the intersection of Vision-Language Models with healthca
 ## Research Directions
 
 ### Current Focus Areas
-1. **Robustness**: Adversarial defense for medical AI
+1. **Robustness**: Adversarial defense for medical LLMs
 2. **Interpretability**: Clinical explanation generation
 3. **Multimodal Fusion**: Combining imaging, text, and temporal data
 4. **Few-shot Learning**: Rare disease detection
@@ -196,6 +196,6 @@ medical_vlm_pipeline = {
 5. Document limitations clearly
 
 ## Related Topics
-- [[../Attacks/index|Medical AI Security]] — Protecting against adversarial attacks
-- [[../Evaluation/helm-framework|Clinical Evaluation]] — Holistic assessment for medical AI
+- [[../Attacks/index|Medical LLM Security]] — Protecting against adversarial attacks
+- [[../Evaluation/helm-framework|Clinical Evaluation]] — Holistic assessment for medical LLMs
 - [[../Safety/01-mllmguard-framework|Safety Frameworks]] — Ensuring safe clinical deployment

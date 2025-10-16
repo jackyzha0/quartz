@@ -4,11 +4,11 @@ title: Safety Frameworks
 
 # Safety Frameworks for Medical Vision-Language Models
 
-> Comprehensive safety mechanisms, guardrails, and deployment strategies for high-stakes medical AI applications
+> Comprehensive safety mechanisms, guardrails, and deployment strategies for high-stakes medical LLM applications
 
 ## Overview
 
-Safety is paramount in medical AI deployment. This section covers frameworks, techniques, and best practices for ensuring Vision-Language Models operate safely in clinical environments. We explore multi-layered defense strategies, prompt engineering for safety, and comprehensive evaluation protocols that form the foundation of responsible medical AI deployment.
+Safety is paramount in medical LLM deployment. This section covers frameworks, techniques, and best practices for ensuring Vision-Language Models operate safely in clinical environments. We explore multi-layered defense strategies, prompt engineering for safety, and comprehensive evaluation protocols that form the foundation of responsible medical LLM deployment.
 
 ## 🎯 Core Resources
 
@@ -43,7 +43,7 @@ Safety is paramount in medical AI deployment. This section covers frameworks, te
 **Training Safety**
 - Safety-aligned pre-training
 - Adversarial training
-- Constitutional AI principles
+- Constitutional LLM training principles
 - Medical ethics integration
 
 ### 3. Output Safety
@@ -138,7 +138,7 @@ class MedicalVLMSafetyStack:
 **Safe Prompt Templates**
 ```python
 safe_medical_prompt = """
-You are a medical AI assistant. Follow these safety guidelines:
+You are a medical LLM assistant. Follow these safety guidelines:
 1. Never provide definitive diagnoses
 2. Always recommend consulting healthcare professionals
 3. Acknowledge uncertainty when present
@@ -254,7 +254,7 @@ safety_metrics = {
 
 ### Research Areas
 - Explainable safety mechanisms
-- Adversarial defense for medical AI
+- Adversarial defense for medical LLMs
 - Federated safety monitoring
 - Personalized safety thresholds
 
@@ -267,4 +267,4 @@ safety_metrics = {
 ## Related Topics
 - [[../Attacks/index|Adversarial Threats]] — Understanding attack vectors
 - [[../Evaluation/04-helm-framework|Safety Evaluation]] — Comprehensive assessment methods
-- [[../Healthcare/01-medical-vision-language-models|Medical AI Requirements]] — Clinical deployment needs
+- [[../Healthcare/01-medical-vision-language-models|Medical LLM Requirements]] — Clinical deployment needs

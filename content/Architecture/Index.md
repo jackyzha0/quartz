@@ -4,11 +4,11 @@ title: Architecture Overview
 
 # Model Architecture Deep Dive
 
-> Understanding the architectural foundations of modern multimodal AI systems, from transformers to vision-language models
+> Understanding the architectural foundations of modern multimodal medical LLM systems, from transformers to vision-language models
 
 ## Overview
 
-This section provides comprehensive coverage of the architectural components that power modern Vision-Language Models (VLMs). From fundamental transformer mechanisms to state-of-the-art multimodal architectures, these resources form the technical foundation for understanding robustness challenges in medical AI systems. Understanding these architectures is crucial for addressing phrasing brittleness in medical VLMs, as architectural choices directly impact how models handle paraphrased questions, attention consistency, and safe deployment.
+This section provides comprehensive coverage of the architectural components that power modern Vision-Language Models (VLMs). From fundamental transformer mechanisms to state-of-the-art multimodal architectures, these resources form the technical foundation for understanding robustness challenges in medical LLM systems. Understanding these architectures is crucial for addressing phrasing brittleness in medical VLMs, as architectural choices directly impact how models handle paraphrased questions, attention consistency, and safe deployment.
 
 ## Core Architecture Components
 

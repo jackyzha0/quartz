@@ -8,18 +8,18 @@
 
 ## Executive Summary
 
-MedGemma represents a significant advancement in medical AI, providing open-source medical vision-language models that achieve state-of-the-art performance on healthcare tasks while maintaining strong general capabilities. Built on Gemma 3's efficient architecture, MedGemma demonstrates that specialized medical models can outperform much larger general-purpose models on clinical tasks while being deployable on standard hardware.
+MedGemma represents a significant advancement in medical LLMs, providing open-source medical vision-language models that achieve state-of-the-art performance on healthcare tasks while maintaining strong general capabilities. Built on Gemma 3's efficient architecture, MedGemma demonstrates that specialized medical models can outperform much larger general-purpose models on clinical tasks while being deployable on standard hardware.
 
 **Role in Robustness Gauntlet**: MedGemma (4B/27B) serves as a key comparison model in the [[../Evaluation/robustness-gauntlet|Robustness Gauntlet Framework]], representing instruction-tuned architectures with potentially better linguistic robustness.
 
 ![MedGemma Architecture](../assets/LLM%20Healthcare.svg)
 *Figure: MedGemma architecture showing medical vision encoder and specialized training pipeline*
 
-## 1. Introduction: The Medical AI Challenge
+## 1. Introduction: The Medical LLM Challenge
 
 ### 1.1 Why Medical-Specific Models Matter
 
-Healthcare presents unique challenges for AI:
+Healthcare presents unique challenges for medical LLMs:
 
 | Challenge | General Models | Medical Requirements |
 |-----------|---------------|---------------------|

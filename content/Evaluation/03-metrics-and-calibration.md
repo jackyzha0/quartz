@@ -1,6 +1,6 @@
 # Chapter 10: Evaluation Metrics and Calibration
 
-> Comprehensive metrics for assessing Visual Language Models: from perplexity to calibration, ensuring reliable and trustworthy AI systems.
+> Comprehensive metrics for assessing Visual Language Models: from perplexity to calibration, ensuring reliable and trustworthy medical LLM systems.
 
 [← Back to Index](../index.md) | [Next: HELM Framework →](HELM%20Framework.md)
 

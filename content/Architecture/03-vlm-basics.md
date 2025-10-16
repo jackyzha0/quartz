@@ -1,7 +1,7 @@
 
 # Vision-Language Models: Architecture and Implementation
 
-Visual Language Models (VLMs) represent a paradigm shift in AI, combining computer vision and natural language processing to create systems that understand and reason across modalities. These models process visual information alongside text, enabling sophisticated tasks like medical image analysis, visual question answering, and multimodal reasoning critical for clinical decision support.
+Visual Language Models (VLMs) represent a paradigm shift in medical LLMs, combining computer vision and natural language processing to create systems that understand and reason across modalities. These models process visual information alongside text, enabling sophisticated tasks like medical image analysis, visual question answering, and multimodal reasoning critical for clinical decision support.
 
 ## Core Architecture
 

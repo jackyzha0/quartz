@@ -6,7 +6,7 @@
 
 Note: This page reflects a broader safety wrapper developed earlier. In the current dissertation, the core contribution is a paraphrase‑robustness baselining framework (MedPhr‑Rad) with selective conformal triage. MLLMGuard remains a supportive, optional deployment layer.
 
-MLLMGuard (Medical Large Language Model Guard) is a comprehensive safety framework designed specifically for deploying Vision-Language Models in clinical settings. It addresses unique challenges in medical AI including prompt injection attacks, hallucination prevention, appropriate abstention, and evidence-based response generation.
+MLLMGuard (Medical Large Language Model Guard) is a comprehensive safety framework designed specifically for deploying Vision-Language Models in clinical settings. It addresses unique challenges in medical LLMs including prompt injection attacks, hallucination prevention, appropriate abstention, and evidence-based response generation.
 
 ## Core Components
 
@@ -99,7 +99,7 @@ class MedicalContextScrubber:
 **Instruction Prefixing**
 ```python
 MEDICAL_SAFETY_PREFIX = """
-[MEDICAL AI SAFETY INSTRUCTIONS]
+[MEDICAL LLM SAFETY INSTRUCTIONS]
 1. You are a medical AI assistant providing decision support
 2. Never provide definitive diagnoses - only observations and considerations
 3. Always recommend professional medical consultation

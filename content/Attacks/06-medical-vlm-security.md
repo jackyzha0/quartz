@@ -76,7 +76,7 @@ Multiple vision encoders — trained on normal, noisy, and overlay conditions �
 
 Key questions 
 
-1. What evaluation methods (MedPhr‑Rad baselining, VSF‑Med (prior), CARES, RexVQA) best capture robustness in medical AI? See [[Toward a Holistic Evaluation of Robustness in CLIP Models]] for evaluation framework.
+1. What evaluation methods (MedPhr‑Rad baselining, VSF‑Med (prior), CARES, RexVQA) best capture robustness in medical LLMs? See [[Toward a Holistic Evaluation of Robustness in CLIP Models]] for evaluation framework.
 2. How do multimodal prompt attacks (image + text) interact, and how to defend them?
 3. Which robustness techniques transfer across datasets and pathologies?
 4. What is the trade-off between model complexity and robustness in this domain?

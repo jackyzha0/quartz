@@ -6,7 +6,7 @@
 
 ## Overview
 
-The Transformer architecture, introduced in 2017, fundamentally changed how we process sequences in machine learning. By replacing recurrence with attention, it enabled parallel computation and better long-range dependency modeling—critical capabilities for modern language models and multimodal AI systems.
+The Transformer architecture, introduced in 2017, fundamentally changed how we process sequences in machine learning. By replacing recurrence with attention, it enabled parallel computation and better long-range dependency modeling—critical capabilities for modern language models and multimodal medical LLM systems.
 
 The Transformer revolutionized sequence processing by replacing sequential computation with parallel attention mechanisms. Instead of processing tokens one by one like RNNs, transformers see entire sequences simultaneously, enabling both computational efficiency and better long-range dependency modeling.
 

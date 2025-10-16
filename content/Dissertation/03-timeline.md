@@ -12,21 +12,21 @@ This timeline outlines the development of phrasing-robust medical vision-languag
 
 ## Timeline (September 2025 – August 2026)
 
-### 2025 September: Project kick-off and literature update
-- **Updated Literature Review**: Focus on post-2024 VLM robustness, medical VLM interpretability, and clinical deployment studies
-- **Codebase Refinement**: Enhance medical-vlm-interpret toolkit with latest model support
-- **Dataset Access**: Secure MIMIC-CXR, VQA-RAD, and additional radiology datasets
-- **Compute Setup**: Configure GPU cluster (8× A100s) for experiments
-- **Baseline Evaluation**: Run initial robustness tests on LLaVA-Rad, MedGemma, and GPT-5
-- **Paraphrase Dataset Design**: Create annotation guidelines for medical paraphrases
+### 2025 September: Project kick-off and VSF Med foundation
+- **Literature Update**: Document FSF and EFG phenomena across recent medical VLMs
+- **VSF Med Design**: Finalize 5 question categories (binary, localization, severity, differential, temporal)
+- **Paraphrase Protocol**: Establish 3-stage validation (linguistic generation, clinical filtering, semantic validation)
+- **Compute Setup**: Configure 8× A100 GPUs with deterministic inference settings
+- **Pilot Validation**: Confirm 12-18% FSF rates on 200-question pilot
+- **ROI Guidelines**: Create annotation protocol for primary, contextual, and negative regions
 
-### 2025 October: Paraphrase dataset and baseline
-- **Paraphrase Generation**: Deploy GPT-4 and Claude for generating 10 paraphrases per VQA-RAD question
-- **Medical Validation**: Radiologist review of paraphrases for semantic equivalence
-- **Baseline Metrics**: Document flip-rates (expect >20%) across models
-- **Attention Analysis**: Extract and visualize attention patterns for original vs paraphrased questions
-- **Statistical Framework**: Design significance tests for robustness metrics
-- **Toolkit Enhancement**: Add paraphrase testing module to interpretability toolkit
+### 2025 October: VSF Med construction and baseline metrics
+- **Paraphrase Generation**: Create 8-10 variants per question across 5 linguistic dimensions
+- **Clinical Validation**: Radiology resident review (expect 15% rejection), board-certified validation (8% additional)
+- **FSF Quantification**: Document 12.7% (MedGemma) and 15.6% (LLaVA-Rad) flip rates
+- **EFG Measurement**: Confirm deletion AUC 0.34-0.39 higher for incorrect predictions
+- **Attention Stability**: Verify SSIM 0.876 ± 0.082 across paraphrases
+- **Dataset Release**: Publish VSF Med to HuggingFace with 16,847 validated paraphrases
 
 ### 2025 November: Robustness measurement
 - **Comprehensive Evaluation**: Test 5+ medical VLMs on paraphrase dataset (including GPT-5 baseline)
@@ -36,21 +36,21 @@ This timeline outlines the development of phrasing-robust medical vision-languag
 - **Visualization Tools**: Create interactive dashboard for robustness analysis
 - **Early Findings Report**: Document initial robustness measurements
 
-### 2025 December: Causal mediation analysis
-- **Causal Framework Implementation**: Build intervention experiments for attention manipulation
-- **Mediation Analysis**: Quantify phrasing → attention → answer causal paths
-- **Attention Fixing Experiments**: Test answer stability with frozen attention
-- **Linguistic Feature Analysis**: Identify specific constructs (negations, synonyms) causing failures
-- **Statistical Modeling**: Fit structural equation models for causal relationships
-- **Interpretability Module**: Add causal analysis to toolkit
+### 2025 December: Causal analysis of FSF mechanisms
+- **Layer-wise Analysis**: Track representation similarity degradation (sharp drops at layers 12-16)
+- **Cross-Attention Interchange**: K,V swapping reduces flips by 38-43%
+- **Token Importance**: Quantify 2.8× importance for negation tokens
+- **Mediation Quantification**: 41% of flips mediated through cross-attention
+- **Causal Pathway Mapping**: Document text encoding → query formation → answer divergence
+- **Toolkit Release**: Open-source causal analysis modules
 
-### 2026 January: Fine-tuning experiments
-- **Training Infrastructure**: Set up distributed training for model fine-tuning
-- **Consistency Loss Implementation**: Develop KL-divergence based consistency training
-- **Paraphrase Augmentation**: Create training pipeline with dynamic paraphrasing
-- **Ablation Studies**: Test different loss weights and augmentation strategies
-- **Performance Monitoring**: Track flip-rate reduction during training
-- **Model Checkpointing**: Save best models at different flip-rate thresholds
+### 2026 January: Parameter-efficient mitigation
+- **LoRA Configuration**: Target layers 12-16 (MedGemma) with rank-16 adapters
+- **Multi-Objective Loss**: Implement λ₁L_task + λ₂L_consistency + λ₃L_attention
+- **Efficient Training**: <1% parameters modified (50M of 4B total)
+- **Convergence Tracking**: Achieve <5% FSF in 8-12 epochs
+- **Ablation Studies**: Compare full fine-tuning vs targeted LoRA
+- **Checkpoint Release**: Publish robust model weights
 
 ### 2026 February: Uncertainty and MICCAI submission
 - **Confidence Calibration**: Implement temperature scaling and isotonic regression
@@ -68,13 +68,13 @@ This timeline outlines the development of phrasing-robust medical vision-languag
 - **Documentation**: Write model cards and usage guidelines
 - **Beta Testing**: Deploy to select research partners
 
-### 2026 April: Triage system development
-- **Triage Architecture**: Build confidence-based routing system
-- **Threshold Optimization**: Find optimal confidence cutoffs for safety
-- **OOD Detection**: Integrate out-of-distribution detection methods
-- **Workflow Integration**: Design PACS-compatible interfaces
-- **Safety Protocols**: Implement fail-safe mechanisms
-- **Simulation Studies**: Test triage decisions on historical cases
+### 2026 April: Selective conformal triage system
+- **Uncertainty Sources**: Integrate paraphrase variance, MC dropout, attention stability
+- **Decision Logic**: Implement defer/auto-clear/review triage with consensus checking
+- **Safety Thresholds**: Calibrate for >99% critical finding sensitivity
+- **PACS Integration**: Real-time inference (<2 seconds) with audit trails
+- **Efficiency Validation**: Confirm 30-40% auto-clearance of normal cases
+- **Fallback Mechanisms**: Design graceful degradation for system failures
 
 ### 2026 May: Clinical evaluation and NeurIPS
 - **IRB Approval**: Finalize protocols for reader studies
@@ -107,7 +107,7 @@ This timeline outlines the development of phrasing-robust medical vision-languag
 - **PhD Defense**: Public defense presentation
 - **Code Release**: Open-source complete toolkit and models
 - **Workshop Planning**: AMIA/MICCAI workshop proposals
-- **Industry Outreach**: Connect with medical AI companies
+- **Industry Outreach**: Connect with medical technology companies
 - **Next Steps**: Postdoc or industry position planning
 
 ## Key Deliverables & Milestones
@@ -117,7 +117,7 @@ This timeline outlines the development of phrasing-robust medical vision-languag
 2. **NeurIPS 2026** (May): Uncertainty-aware triage framework  
 3. **JBI** (June): Comprehensive toolkit and benchmark paper
 4. **npj Digital Medicine** (June): Clinical safety and deployment study
-5. **AMIA Workshop** (Fall 2025): Medical AI interpretability
+5. **AMIA Workshop** (Fall 2025): Medical LLM interpretability
 
 ### Software Releases
 1. **Paraphrase Test Suite** (Oct 2025): VQA-RAD paraphrases

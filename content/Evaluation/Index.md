@@ -4,7 +4,7 @@ title: Evaluation Methods
 
 # Evaluation Frameworks for Medical Vision-Language Models
 
-> Comprehensive methodologies for assessing performance, robustness, calibration, and clinical utility of multimodal AI systems
+> Comprehensive methodologies for assessing performance, robustness, calibration, and clinical utility of multimodal medical LLM systems
 
 ## Overview
 
