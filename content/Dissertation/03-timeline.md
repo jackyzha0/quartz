@@ -157,18 +157,7 @@ This timeline outlines the development of phrasing-robust medical vision-languag
 
 ### Computational Resources
 - 8× NVIDIA A100 GPUs (12 months)
-- 100TB storage for datasets and models
-- $50K cloud compute budget
-- Local workstation with 4× RTX 4090
+- 4TB storage for datasets and models
+- $2K cloud compute budget
+- Local workstation with 4× RTX A6000
 
-### Collaborations
-- 2-3 partner hospitals for clinical evaluation
-- 5-10 radiologist validators
-- Statistical consultant for clinical trials
-- Medical informaticist for workflow integration
-
-### Funding & Support
-- PhD fellowship covering stipend
-- NSF grant pending ($200K)
-- Industry partnership discussions (Microsoft/Google)
-- Conference travel budget ($10K)

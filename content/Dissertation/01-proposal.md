@@ -102,7 +102,6 @@ The FSF and EFG phenomena will manifest across imaging modalities (CT, MRI) with
 - **Triage Performance**: 30-40% auto-clearance of normal cases
 - **Safety Guarantees**: >99% sensitivity for critical findings (pneumothorax, tension pneumothorax)
 - **Calibration**: ECE < 0.05 after temperature scaling and isotonic regression
-- **Radiologist Agreement**: 85% concordance with expert decisions on triage
 - **Efficiency Gains**: 25-30% reduction in radiologist workload in simulation
 
 ## Deliverables
