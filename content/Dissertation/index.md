@@ -1,6 +1,6 @@
 # Dissertation Documents
 
-> Core planning and proposal documents for the PhD research on Medical VLM Robustness
+> My PhD research on making medical vision-language models more robust and safe
 
 [← Main Index](../Index.md)
 
@@ -9,34 +9,41 @@
 ## Research Planning Documents
 
 ### 📋 Core Documents
-- [[02-research-plan|Comprehensive Research Plan]] — Detailed implementation roadmap with methods and milestones
-- [[01-proposal|Dissertation Proposal]] — Formal research proposal with RQs, hypotheses, and deliverables  
-- [[03-timeline|Timeline & Milestones]] — Quarterly breakdown through August 2026 defense
+- [[01-overview|Overview]] — What my research is about and why it matters
+- [[02-introduction|Introduction]] — The problem with current medical AI models
+- [[01-proposal|Proposal]] — Formal research proposal with questions and methods  
+- [[04-timeline-resources|Timeline & Resources]] — When things will happen and what I need
+- [[06-publication-plan|Publication Plan]] — Papers I plan to submit and where
 
-### 🎯 Research Focus
-**The Robustness Gauntlet**: A comprehensive framework for evaluating and enhancing medical Vision-Language Models on chest X-ray visual question answering, addressing:
-- **Linguistic robustness** to paraphrase variations
-- **Visual robustness** to perturbations and distribution shifts
-- **Interpretability** through attention grounding analysis
-- **Safety** via clinical triage mechanisms
+### 🎯 What I'm Working On
 
-### 📊 Key Deliverables
-1. **Open-source toolkit** for VLM robustness evaluation
-2. **Enhanced models** with improved robustness
-3. **Benchmark datasets** for paraphrase and visual testing
-4. **Publications** at MICCAI, NeurIPS, npj Digital Medicine
-5. **Clinical resources** for safe deployment
+My research focuses on a big problem with medical AI models: they change their answers when you ask the same question in different ways. This is dangerous in hospitals because doctors need reliable AI assistance.
 
-### 🗓️ Major Milestones
-- **March 2025**: MICCAI submission on evaluation methodology
-- **June 2025**: NeurIPS submission on enhancement techniques
-- **April 2025**: Toolkit v1.0 release
-- **November 2025**: RSNA clinical demonstration
-- **February 2026**: Journal submission
-- **November 2026**: Dissertation defense
+**Main Problems I'm Solving:**
+- **Phrasing-Sensitive Failure** - models give different answers to the same question asked differently
+- **Misleading Explanation Effect** - explanation metrics look better for wrong answers than correct ones
+- **Safety Issues** - current evaluation doesn't catch these problems
+
+### 📊 What I Will Deliver
+1. **Measurement tools** to find these problems systematically
+2. **Better models** that are more stable and reliable
+3. **Safety framework** for using AI in hospitals safely
+4. **Open-source toolkit** so others can use and improve my work
+5. **Research papers** to share findings with the community
+
+### 🗓️ When Things Happen
+- **Now - March 2026**: Measure the problem and find causes
+- **March - August 2026**: Build better models
+- **May - October 2026**: Test safety in realistic scenarios
+- **Throughout**: Write papers and share results
+
+### 🎯 Target Models
+- **LLaVA-Rad** - my main focus for testing improvements
+- **MedGemma** - comparison model to see if findings generalize
+- **Both models** work with chest X-rays and medical questions
 
 ## Related Resources
-- [[../Evaluation/robustness-gauntlet|Robustness Gauntlet Framework]] — Technical framework details
-- [[../Healthcare/03-llava-rad|LLaVA-RAD]] — Primary evaluation model
-- [[../Healthcare/02-medgemma|MedGemma]] — Comparison model
-- [[../Safety/02-selective-conformal-triage|Triage System]] — Safety component
+- [[../Evaluation/phrasing-robustness-framework|How I Measure Robustness]] — Technical details
+- [[../Healthcare/03-llava-rad|LLaVA-RAD Model]] — Primary model under study
+- [[../Healthcare/02-medgemma|MedGemma Model]] — Comparison model
+- [[../Safety/02-selective-conformal-triage|Safety System]] — How to deploy safely
