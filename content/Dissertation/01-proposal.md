@@ -8,17 +8,17 @@
 
 ## Background and Motivation
 
-Medical vision-language models (VLMs) hold promise for assisting radiologists by interpreting imaging studies and answering clinical questions. However, current medical VLMs exhibit **brittle behavior under subtle input changes**, especially in phrasing of questions. During pilot evaluation on MIMIC-CXR data, we discovered two alarming failure modes:
+Medical vision-language models (VLMs) hold promise for assisting radiologists by interpreting imaging studies and answering clinical questions. However, current medical VLMs exhibit **brittle behavior under subtle input changes**, especially in phrasing of questions. During pilot evaluation on MIMIC-CXR data, we discovered two alarming coupled failure modes:
 
-### Flip-with-Stable-Focus (FSF)
+### Phrasing-Sensitive Failure (formerly FSF)
 When a question is paraphrased, models sometimes flip their answers while maintaining stable visual attention patterns. For instance:
 - Original: "Is there evidence of pleural effusion?"
 - Paraphrase: "Can you see any fluid in the pleural space?"
 
-The model might answer "Yes" to one and "No" to the other, yet attention maps remain focused on the same anatomical regions (SSIM > 0.85). This disconnect between linguistic processing and visual grounding affects 12-18% of paraphrase pairs in our pilot studies.
+The model might answer "Yes" to one and "No" to the other, yet attention maps remain focused on the same anatomical regions (SSIM > 0.85). This disconnect between linguistic processing and visual grounding affects 12-18% of paraphrase pairs in our pilot studies. We refer to this as **Phrasing-Sensitive Failure**.
 
-### Error-Faithfulness Gap (EFG)
-Even more concerning, standard faithfulness metrics like deletion and insertion AUC paradoxically show **higher scores for incorrect predictions**. When models are wrong, their explanations appear more "faithful" by conventional metrics—deletion AUC averages 0.34-0.39 points higher for incorrect versus correct predictions. This could lead clinicians to trust the model most when it's most likely to be wrong.
+### Misleading Explanation Effect (formerly EFG)
+Even more concerning, standard faithfulness metrics like deletion and insertion AUC paradoxically show **higher scores for incorrect predictions**. When models are wrong, their explanations appear more "faithful" by conventional metrics—deletion AUC averages 0.34-0.39 points higher for incorrect versus correct predictions. This could lead clinicians to trust the model most when it's most likely to be wrong. We call this the **Misleading Explanation Effect**.
 
 ### The Clinical Safety Crisis
 
@@ -34,9 +34,9 @@ Consider a pneumothorax case where the model correctly attends to the lung perip
 
 This dissertation addresses these critical failures through four interconnected thrusts:
 
-1. **Measurement (Thrust 1)**: Establish the VSF Med dataset with 2,000+ radiology questions and 8-10 validated paraphrases each, quantifying FSF and EFG across MedGemma-4b-it and LLaVA-Rad
+1. **Measurement (Thrust 1)**: Establish the VSF Med dataset with 2,000+ radiology questions and 8-10 validated paraphrases each, quantifying phrasing-sensitive failure and the Misleading Explanation Effect across MedGemma-4b-it and LLaVA-Rad
 
-2. **Causal Analysis (Thrust 2)**: Use activation patching and cross-attention interventions to identify which model components drive sensitivity, revealing that failures originate in layers 12-16 (MedGemma) and 8-12 (LLaVA-Rad)
+2. **Causal Analysis (Thrust 2)**: Use activation patching and cross-attention interventions to identify which model components drive phrasing sensitivity and misleading explanations, revealing that failures originate in layers 12-16 (MedGemma) and 8-12 (LLaVA-Rad)
 
 3. **Mitigation (Thrust 3)**: Develop parameter-efficient interventions using LoRA adapters on language attention blocks, targeting components identified by causal analysis
 
@@ -46,11 +46,11 @@ Our work demonstrates that meaningful progress in medical AI robustness is achie
 
 ## Research Questions
 
-### 1. Measuring FSF and EFG (Thrust 1)
-**How frequently do MedGemma-4b-it and LLaVA-Rad exhibit flip-with-stable-focus (FSF) and error-faithfulness gap (EFG) when processing MIMIC-CXR images, and which linguistic phenomena trigger these failures most reliably?**
+### 1. Measuring Phrasing-Sensitive Failure and Misleading Explanation Effect (Thrust 1)
+**How frequently do MedGemma-4b-it and LLaVA-Rad exhibit phrasing-sensitive failure and the Misleading Explanation Effect when processing MIMIC-CXR images, and which linguistic phenomena trigger these failures most reliably?**
 
 ### 2. Causal Analysis (Thrust 2)
-**What are the causal mechanisms through which linguistic variation propagates to affect model decisions, and which specific layers and attention heads are responsible for FSF and EFG phenomena?**
+**What are the causal mechanisms through which linguistic variation and explanation pathways propagate to affect model decisions, and which specific layers and attention heads are responsible for phrasing-sensitive failure and the Misleading Explanation Effect?**
 
 ### 3. Targeted Mitigation (Thrust 3)
 **Can parameter-efficient fine-tuning methods that target causally-identified components reduce FSF rates from >12% to <5% while maintaining diagnostic accuracy?**
@@ -60,8 +60,8 @@ Our work demonstrates that meaningful progress in medical AI robustness is achie
 
 ## Hypotheses
 
-### H1: FSF Prevalence and Patterns
-MedGemma-4b-it and LLaVA-Rad will exhibit FSF in **12-18% of paraphrase pairs**, with >68% of flips occurring despite stable visual attention (SSIM > 0.85). Negation patterns and scope ambiguities will trigger the highest flip rates (>20%).
+### H1: Phrasing-Sensitive Failure Prevalence and Patterns
+MedGemma-4b-it and LLaVA-Rad will exhibit phrasing-sensitive failure in **12-18% of paraphrase pairs**, with >68% of flips occurring despite stable visual attention (SSIM > 0.85). Negation patterns and scope ambiguities will trigger the highest flip rates (>20%).
 
 ### H2: Causal Localization
 Causal analysis will reveal that FSF originates primarily in **cross-attention layers** (layers 12-16 for MedGemma, 8-12 for LLaVA-Rad) where linguistic encoding guides visual processing. Swapping attention components will reduce flip rates by 38-43%, confirming that text understanding rather than vision-language alignment drives failures.

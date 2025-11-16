@@ -2,6 +2,8 @@
 
 > A detailed implementation plan for developing and validating a comprehensive robustness evaluation framework for medical Vision-Language Models
 
+> Note: This page reflects an earlier planning snapshot. For the current proposal and terminology (Phrasing-Sensitive Failure and Misleading Explanation Effect), see [[01-proposal|Dissertation Proposal]] and [[04-research-thrusts|Research Thrusts]].
+
 [← Dissertation Index](../index.md) | [Proposal →](01-proposal.md) | [Timeline →](03-timeline.md)
 
 ---

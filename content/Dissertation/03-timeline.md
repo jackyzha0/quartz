@@ -2,6 +2,8 @@
 
 > Measurement, Causality, Mitigation, and Safe Triage — Timeline to August 2026
 
+> Note: This is a more detailed, earlier timeline. For the consolidated version that matches the LaTeX proposal, see [[04-timeline-resources|Timeline and Resources]].
+
 [← Proposal](01-proposal.md) | [Site Index →](../Index.md)
 
 ---
@@ -160,4 +162,3 @@ This timeline outlines the development of phrasing-robust medical vision-languag
 - 4TB storage for datasets and models
 - $2K cloud compute budget
 - Local workstation with 4× RTX A6000
-

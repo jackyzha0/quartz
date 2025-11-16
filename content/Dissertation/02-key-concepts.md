@@ -2,6 +2,8 @@
 
 > Understanding the critical failure modes that threaten safe clinical deployment of medical vision-language models
 
+> Terminology note: In my LaTeX proposal and newer documents, I refer to these phenomena as **Phrasing-Sensitive Failure** (formerly FSF) and the **Misleading Explanation Effect** (formerly EFG).
+
 [← Proposal](01-proposal.md) | [Timeline →](03-timeline.md)
 
 ---

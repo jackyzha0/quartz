@@ -7,5 +7,5 @@
 - radiology reporting templates
 
 ## Local Papers (PDFs in repo)
-- LLaVA-Rad: `../refererence_docs/2403.08002v5.pdf`
-- MedGemma Technical Report: `../refererence_docs/2507.05201v3.pdf`
+- LLaVA-Rad: `../reference_docs/2403.08002v5.pdf`
+- MedGemma Technical Report: `../reference_docs/2507.05201v3.pdf`

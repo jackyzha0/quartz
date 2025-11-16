@@ -132,6 +132,9 @@ You can contact me through my university or the SAIL Lab.
 - [[Safety/index|Keeping AI Safe]] — Safety frameworks and approaches
 - [[Dissertation/index|My Dissertation]] — Main research documents
 
+### Additional Notes
+- [[additional-notes|Additional Notes & Archived Plans]] — Older terminology (FSF/EFG), early robustness gauntlet plan, and other background material that informed the current proposal
+
 ### Old Content (Archive)
 - [[archive/old-structures/PhD-Plan|Previous Research Plan]] — Earlier framework (VSF-Med-VQA)
 - [[archive/old-structures/About|Old About Page]] — Previous version

@@ -6,14 +6,14 @@
 
 ---
 
-## Research Planning Documents
+## Core Dissertation Documents
 
-### 📋 Core Documents
-- [[01-overview|Overview]] — What my research is about and why it matters
-- [[02-introduction|Introduction]] — The problem with current medical AI models
-- [[01-proposal|Proposal]] — Formal research proposal with questions and methods  
+- [[01-proposal|Dissertation Proposal]] — Formal research proposal with questions and methods  
+- [[02-introduction|Introduction]] — Background, motivation, and coupled failure modes
+- [[04-research-thrusts|Research Thrusts]] — Four thrusts from measurement to deployment
 - [[04-timeline-resources|Timeline & Resources]] — When things will happen and what I need
 - [[06-publication-plan|Publication Plan]] — Papers I plan to submit and where
+- [[01-overview|High-Level Overview]] — Accessible summary of the dissertation for broader audiences
 
 ### 🎯 What I'm Working On
 
@@ -47,3 +47,4 @@ My research focuses on a big problem with medical AI models: they change their a
 - [[../Healthcare/03-llava-rad|LLaVA-RAD Model]] — Primary model under study
 - [[../Healthcare/02-medgemma|MedGemma Model]] — Comparison model
 - [[../Safety/02-selective-conformal-triage|Safety System]] — How to deploy safely
+- [[../additional-notes|Additional Notes & Archived Plans]] — Earlier terminology (FSF/EFG) and planning docs
