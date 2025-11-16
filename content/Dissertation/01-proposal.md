@@ -1,4 +1,4 @@
-# Dissertation Proposal: Phrasing-Robust Medical Vision-Language Models for Radiology
+# Dissertation Proposal: Clinically Robust Vision-Language Models for Diagnostic Reasoning
 
 > Measurement, Causality, Mitigation, and Safe Triage
 

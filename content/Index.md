@@ -1,7 +1,7 @@
-# Medical AI Research Notes
+# Clinically Robust Vision-Language Models for Diagnostic Reasoning
 
 > **Binesh Kumar** — PhD student at University of New Haven  
-> My research: Making medical AI models more reliable and safe for hospitals
+> My research: Clinically robust vision-language models for diagnostic reasoning in radiology
 
 ## What I'm Working On
 
@@ -43,7 +43,6 @@ My goal is to understand why this happens and fix it. I want to make AI that doc
 ### 🛡️ Making AI Safer
 - [[Evaluation/02-paraphrase-robustness|Testing AI Consistency]] — How I measure if AI gives same answers
 - [[Safety/02-selective-conformal-triage|Safe Hospital Use]] — How to use AI safely with patients
-- [[Attacks/index|AI Vulnerabilities]] — How AI can be fooled or attacked
 - [[Safety/01-mllmguard-framework|AI Protection System]] — Tools to keep AI safe
 
 ### 📊 Testing AI Models
@@ -51,6 +50,7 @@ My goal is to understand why this happens and fix it. I want to make AI that doc
 - [[Evaluation/03-metrics-and-calibration|Confidence Measurement]] — How to tell when AI is sure or unsure
 - [[Evaluation/04-helm-framework|Complete AI Testing]] — Testing everything about AI models
 - [[Evaluation/05-pretraining-comparison|Comparing AI Models]] — Which models work better for medical tasks
+ - [[Attacks/index|Adversarial Robustness]] — How I test worst-case attacks
 
 ## 🔬 What I'm Working on Right Now
 

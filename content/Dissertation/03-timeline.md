@@ -1,4 +1,4 @@
-# Dissertation Timeline: Phrasing-Robust Medical VLMs for Radiology
+# Dissertation Timeline: Clinically Robust Vision-Language Models for Diagnostic Reasoning
 
 > Measurement, Causality, Mitigation, and Safe Triage — Timeline to August 2026
 
