@@ -1,6 +1,6 @@
-# MedPhr‑Rad: Paraphrase‑Robustness Benchmark for Radiology VLMs
+# VSF Med: Vulnerability Scoring Framework for Medical VLMs
 
-> A core component of the [[robustness-gauntlet|Robustness Gauntlet Framework]], focusing on linguistic robustness evaluation
+> Core benchmark from my paper [[https://arxiv.org/pdf/2507.00052.pdf|VSF Med: Vulnerability Scoring Framework for Medical Vision-Language Models]], focusing on linguistic robustness and clinical risk
 
 [← Paraphrase Metrics](02-paraphrase-robustness.md) | [← Evaluation Index](index.md) | [Robustness Gauntlet →](robustness-gauntlet.md)
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-MedPhr-Rad is the **linguistic robustness component** of the comprehensive Robustness Gauntlet framework. It specifically addresses how medical VLMs handle semantically equivalent phrasings of clinical questions, which is critical for real-world deployment where radiologists may phrase the same question in various ways.
+VSF Med is the **linguistic robustness component** of the comprehensive Robustness Gauntlet framework. It specifically addresses how medical VLMs handle semantically equivalent phrasings of clinical questions, which is critical for real-world deployment where radiologists may phrase the same question in various ways.
 
 ## Goal
 
@@ -76,4 +76,3 @@ MedPhr-Rad serves as the **linguistic robustness module** within the larger fram
 - Pairs with [[../Safety/02-selective-conformal-triage|Selective Conformal Triage]] for safe deployment
 - Metrics detailed in [[02-paraphrase-robustness|Paraphrase Robustness Metrics]]
 - Links to concept resources: RadLex, UMLS, RadGraph
-

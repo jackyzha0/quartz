@@ -15,7 +15,7 @@ Evaluating Vision-Language Models in medical contexts requires specialized frame
 ### Core Methodologies
 - [[phrasing-robustness-framework|Phrasing Robustness Framework]] — Core methodology for measuring & improving paraphrase robustness
 - [[interpretability-toolkit|Interpretability Toolkit]] — Open-source tools for debugging and understanding medical VLMs
-- [[01-medphr-rad|MedPhr-Rad Benchmark]] — Paraphrase datasets and evaluation harness
+- [[01-medphr-rad|VSF Med Benchmark]] — Vulnerability scoring and paraphrase robustness benchmark
 - [[02-paraphrase-robustness|Robustness Metrics]] — Flip-rate, consistency scores, attention divergence
 - [[03-metrics-and-calibration|Calibration & Uncertainty]] — Confidence estimation for safe triage
 - [[04-helm-framework|HELM Framework]] — Holistic evaluation adapted for medical VLMs

@@ -46,11 +46,11 @@ My goal is to understand why this happens and fix it. I want to make AI that doc
 - [[Safety/01-mllmguard-framework|AI Protection System]] — Tools to keep AI safe
 
 ### 📊 Testing AI Models
-- [[Evaluation/01-medphr-rad|MedPhr-Rad Tests]] — Testing how AI handles different question phrasings
+- [[Evaluation/01-medphr-rad|VSF Med Benchmark]] — How I test phrasing robustness and clinical risk
 - [[Evaluation/03-metrics-and-calibration|Confidence Measurement]] — How to tell when AI is sure or unsure
 - [[Evaluation/04-helm-framework|Complete AI Testing]] — Testing everything about AI models
 - [[Evaluation/05-pretraining-comparison|Comparing AI Models]] — Which models work better for medical tasks
- - [[Attacks/index|Adversarial Robustness]] — How I test worst-case attacks
+- [[Attacks/index|Adversarial Robustness]] — How I test worst-case attacks
 
 ## 🔬 What I'm Working on Right Now
 
