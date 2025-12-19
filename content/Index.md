@@ -209,21 +209,35 @@ We decompose the total effect of phrasing changes into:
 
 ### Intervention Methods
 
-![Activation Patching](assets/clinical-robust-vlm/image36.png)
+**Activation Patching**
+A mechanistic interpretability technique for localizing paraphrase effects:
+- Run two forward passes: base question $p_0$ and paraphrase $p_1$
+- Cache all intermediate activations at each layer
+- Construct hybrid passes replacing activations selectively
+- Changes in output indicate causal importance of that component
+- Control experiments: random patching (should produce near-zero effect) and identity patching (should leave answer unchanged)
 
-**Activation Patching**: Replace activations from one paraphrase with another at specific layers. Run two forward passes (base question and paraphrase), cache intermediate activations, construct hybrid passes with selective replacement. Changes in output reveal causal importance of that component.
+**Region-Constrained Evaluation**
+Tests the visual-linguistic decoupling hypothesis directly:
+- Use Chest ImaGenome bounding boxes for ground-truth regions
+- Create masked image $x^{ROI}$ retaining only relevant pixels
+- Evaluate if flip rate persists under masking
+- If $\text{flip}_{ROI} \approx \text{flip}$ → sensitivity is linguistic, not visual
+- Confirms flips result from language processing independent of visual grounding
 
-![Region-Constrained Evaluation](assets/clinical-robust-vlm/image37.png)
+**Attention Analysis**
+Decomposes attention patterns at head-level granularity:
+- Decomposed Attention (D-Attn) framework separates cross-attention to visual tokens vs. self-attention to textual tokens
+- Computes weighting coefficient $\alpha_V$ for visual pathway importance
+- Computed metrics: layer-wise alpha profiles, flip-conditioned alpha divergence, phenomenon-specific signatures (negation, lexical substitution, scope)
+- Reveals how model balances visual vs. textual information during failures
 
-**Region-Constrained Evaluation**: Use Chest ImaGenome bounding boxes to create masked images retaining only clinically relevant pixels. If flip rate persists under masking, sensitivity is linguistic rather than visual—confirming visual-linguistic decoupling.
-
-![Attention Analysis](assets/clinical-robust-vlm/image38.png)
-
-**Attention Analysis**: Decompose attention patterns at head-level granularity using the Decomposed Attention (D-Attn) framework. Separate cross-attention to visual tokens from self-attention to textual tokens. Compute layer-wise alpha profiles and flip-conditioned divergence.
-
-![Token Ablation](assets/clinical-robust-vlm/image39.png)
-
-**Token Ablation**: Identify differing tokens between paraphrase pairs, remove each systematically, determine which tokens are necessary for the flip. Aggregation reveals high-impact linguistic elements (negation words, scope markers, synonym substitutions).
+**Token Ablation**
+Tests which linguistic features drive paraphrase sensitivity:
+- Identify differing tokens between paraphrase pair $(p_0, p_1)$
+- Remove each token one at a time from $p_1$
+- Token is necessary if removal restores base answer $y_0$
+- Aggregation reveals high-impact linguistic elements: negation words ("no", "without"), scope markers, lexical substitutions between synonyms
 
 ### Expected Findings
 - PSF concentrates in middle-to-late layers (approximately layers 8-16) where cross-modal fusion occurs
