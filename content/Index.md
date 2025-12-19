@@ -64,8 +64,6 @@ Semantically equivalent clinical questions yield contradictory answers, even tho
 ### Misleading Explanation Effect (MEE)
 The model generates explanations—both text and attention maps—that appear anatomically correct and highly faithful, even when the underlying diagnosis is wrong. Standard faithfulness metrics (like deletion AUC) cannot distinguish correct from incorrect predictions.
 
-![The Coupled Failure Modes](assets/clinical-robust-vlm/image17.png)
-
 > **The Dangerous Interaction**: A model can produce a wrong answer while maintaining stable attention on the correct anatomical region, and existing metrics will still rate the explanation as highly faithful. This creates false assurance exactly when clinicians should be most skeptical.
 
 ---
@@ -136,17 +134,41 @@ We are developing the **VSF-Med benchmark** to systematically quantify phrasing-
 
 ### Evaluation Metrics
 
-![Paraphrase Flip Rate Formula](assets/clinical-robust-vlm/image23.png)
+**Paraphrase Flip Rate (PFR)**: For a given image $x$ and its set of $k$ semantically equivalent paraphrases $\mathcal{Q} = \{q_1, q_2, \ldots, q_k\}$:
 
-**Paraphrase Flip Rate (PFR)**: For a given image and its set of k paraphrases, we consider all k(k-1)/2 pairs. PFR is the proportion where the model gives clinically inconsistent answers—meaning at least one diagnosis or key label would change, not just superficial wording. We compute PFR per pathology and per linguistic phenomenon.
+$$\text{PFR}(x, \mathcal{Q}) = \frac{2}{k(k-1)} \sum_{i=1}^{k-1} \sum_{j=i+1}^{k} \mathbb{1}[f_\theta(x, q_i) \neq f_\theta(x, q_j)]$$
 
-![Attention Stability Index Formula](assets/clinical-robust-vlm/image24.png)
+Where:
+- $x$ is the input image (e.g., chest radiograph)
+- $\mathcal{Q}$ is the set of $k$ semantically equivalent paraphrases
+- $f_\theta$ is the vision-language model with parameters $\theta$
+- $\mathbb{1}[\cdot]$ is the indicator function returning 1 if condition is true, 0 otherwise
+- $k(k-1)/2$ is the total number of unique paraphrase pairs for normalization
 
-**Attention Stability Index (ASI)**: Measures how consistently the model attends to the same image regions across different paraphrases. Computed as cosine similarity between attention weight distributions over visual tokens. Values above 0.80 indicate stable attention. High ASI combined with answer disagreement indicates **visual-linguistic decoupling**.
+We compute PFR per pathology and per linguistic phenomenon.
 
-![MEE Coefficient Formula](assets/clinical-robust-vlm/image25.png)
+**Attention Stability Index (ASI)**: Measures how consistently the model attends to the same image regions across different paraphrases:
 
-**MEE Coefficient (MEEC)**: Quantifies the Misleading Explanation Effect by comparing faithfulness metrics (deletion AUC) between correct and incorrect predictions. MEEC = E[DelAUC|wrong] - E[DelAUC|correct]. If MEEC ≥ 0, explanations for wrong predictions are as faithful or more faithful than correct ones—indicating strong MEE.
+$$\text{ASI}(q_i, q_j | x) = \frac{\mathbf{a}_i^\top \mathbf{a}_j}{|\mathbf{a}_i| \cdot |\mathbf{a}_j|} = \frac{\sum_{p=1}^{P} a_{i,p} \cdot a_{j,p}}{\sqrt{\sum_{p=1}^{P} a_{i,p}^2} \cdot \sqrt{\sum_{p=1}^{P} a_{j,p}^2}}$$
+
+Where:
+- $\mathbf{a}_i, \mathbf{a}_j \in \mathbb{R}^P$ are attention weight vectors for paraphrases $q_i$ and $q_j$
+- $P$ is the number of visual patches (tokens) in the image
+- $a_{i,p}$ is the attention weight assigned to patch $p$ when processing question $q_i$
+- ASI $\in [-1, +1]$; values $\geq 0.85$ indicate "stable" attention
+
+High ASI combined with answer disagreement indicates **visual-linguistic decoupling**.
+
+**MEE Coefficient (MEEC)**: Quantifies the Misleading Explanation Effect by comparing faithfulness metrics between correct and incorrect predictions:
+
+$$\text{MEEC} = \frac{1}{|\mathcal{D}^-|} \sum_{(x,q) \in \mathcal{D}^-} F(x, q) - \frac{1}{|\mathcal{D}^+|} \sum_{(x,q) \in \mathcal{D}^+} F(x, q)$$
+
+Where:
+- $\mathcal{D}^-$ is the set of image-question pairs where model prediction is **incorrect**
+- $\mathcal{D}^+$ is the set of image-question pairs where model prediction is **correct**
+- $F(x, q)$ is the faithfulness score (deletion AUC or insertion AUC)
+- MEEC $> 0$ indicates incorrect predictions show higher faithfulness scores
+- Positive MEEC confirms the Misleading Explanation Effect is present
 
 ### Pilot Results
 
@@ -233,19 +255,25 @@ This trains **< 1% of model parameters** while targeting components identified b
 
 ### Loss Function Design
 
-![Combined Loss Function](assets/clinical-robust-vlm/image31.png)
+The training objective combines standard task loss with auxiliary terms that enforce paraphrase consistency and representation alignment. For each training example with image $x$, base question $q_0$, and $k$ semantically equivalent paraphrases:
 
-The training objective combines three components:
+$$\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{task}} + \lambda_{\text{cons}}\mathcal{L}_{\text{cons}} + \lambda_{\text{rep}}\mathcal{L}_{\text{rep}}$$
 
-![Task Loss](assets/clinical-robust-vlm/image32.png)
+**Task Loss $\mathcal{L}_{\text{task}}$**: Standard cross-entropy averaged over all $k$ paraphrases, ensuring the model learns correct predictions regardless of question phrasing:
 
-**Task Loss**: Standard cross-entropy averaged over all paraphrases, ensuring correct predictions regardless of phrasing.
+$$\mathcal{L}_{\text{task}} = \frac{1}{k} \sum_{i=1}^{k} \text{CE}(f_\theta(x, q_i), y^*)$$
 
-**Consistency Loss**: Symmetric KL divergence penalizing distributional disagreement between paraphrase pairs. If two semantically equivalent questions should have the same answer, their output distributions should match.
+**Consistency Loss $\mathcal{L}_{\text{cons}}$**: Symmetric KL divergence penalizing distributional disagreement between predicted answer distributions for paraphrase pairs:
 
-![Representation Loss](assets/clinical-robust-vlm/image34.png)
+$$\mathcal{L}_{\text{cons}} = \frac{1}{k(k-1)} \sum_{i \neq j} \text{D}_{\text{KL}}(p_i \| p_j) + \text{D}_{\text{KL}}(p_j \| p_i)$$
 
-**Representation Loss**: Cosine distance encouraging the image-text projector to produce similar embeddings for semantically equivalent questions. While consistency loss operates on output distributions, representation loss operates on internal representations at the fusion point.
+If two semantically equivalent questions should have the same answer, their output distributions should match.
+
+**Representation Loss $\mathcal{L}_{\text{rep}}$**: Cosine distance loss encouraging the image-text projector to produce similar embeddings for semantically equivalent questions. Here $z_i$ denotes the normalized representation at projector output:
+
+$$\mathcal{L}_{\text{rep}} = \frac{1}{k(k-1)} \sum_{i \neq j} \left(1 - \frac{z_i^\top z_j}{\|z_i\| \|z_j\|}\right)$$
+
+While consistency loss operates on output distributions, representation loss operates on internal representations at the fusion point.
 
 ### Thrust 3 Deliverables
 - Theoretical framework documenting mitigation design space
@@ -320,8 +348,6 @@ All code, datasets, and evaluation tools will be released open-source for commun
 
 ## Broader Impact
 
-![Broader Impact](assets/clinical-robust-vlm/image35.png)
-
 - **Clinical Impact**: Safer AI-assisted radiology with models that know when to defer to human expertise; reduced risk of diagnostic errors from phrasing variations
 - **Research Impact**: New evaluation paradigm beyond single-question accuracy; generalizable methods applicable to other high-stakes VLM domains
 - **Accessibility**: Parameter-efficient methods make robustness improvements feasible for resource-constrained medical institutions worldwide
@@ -330,8 +356,6 @@ All code, datasets, and evaluation tools will be released open-source for commun
 ---
 
 ## Summary
-
-![Research Summary](assets/clinical-robust-vlm/image29.png)
 
 **The Problem**: Medical VLMs exhibit Phrasing-Sensitive Failure (contradictory answers to equivalent questions) and Misleading Explanation Effect (faithfulness metrics favor wrong predictions). These coupled failures threaten safe clinical deployment.
 
