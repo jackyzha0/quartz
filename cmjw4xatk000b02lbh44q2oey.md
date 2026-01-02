@@ -4,7 +4,7 @@ datePublished: Wed Oct 15 2025 04:00:00 GMT+0000 (Coordinated Universal Time)
 cuid: cmjw4xatk000b02lbh44q2oey
 slug: when-ai-radiologists-get-confused-the-critical-challenge-of-vlm-robustness-in-medical-diagnostics
 cover: https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/NMZdj2Zu36M/upload/0ff90e28843bf67f86bbe3318b790a8d.jpeg
-tags: vision-language-models-medical-imaging-ai-safety-robustness-chest-xray-research-medical-ai
+tags: ai, healthcare, vlms
 
 ---
 
