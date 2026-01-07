@@ -8,13 +8,9 @@ tags: pdf, ocr, drawings, paddlepaddle
 
 ---
 
-Late last year, I started exploring how to extract metadata from product drawings. Part numbers, material specifications, revision history, manufacturing process notes. The kind of information that lives in title blocks and needs to end up in a PLM database. I tried various OCR techniques - with the tolerance call outs, dimensions, it was a mess and I stretched the limit of what can be done with regular expressions. Then I found PaddleOCR-VL. It runs on a decent laptop and actually works.
+Late last year, I started exploring how to extract metadata from product drawings. Part numbers, material specifications, revision history, manufacturing process notes. The kind of information that lives in title blocks and needs to end up in a PLM database. I tried various OCR techniques - with the tolerance call outs, dimensions, it was a mess and I stretched the limit of what can be done with regular expressions. Then I found [PaddleOCR-VL](https://ernie.baidu.com/blog/posts/paddleocr-vl/). It is Vision Language Model (VLM) with a few preprocessors finetuned for OCR tasks.
 
-VLMs learn joint representations of visual and textual information. PaddleOCR-VL-0.9B integrates a NaViT-style dynamic resolution visual encoder with the ERNIE-4.5-0.3B language model.
-
-The key difference is semantic pattern matching. VLMs recognize that text in specific title block locations represents part numbers. That tabular arrangements indicate structured data. That text following "Material:" is a specification.PaddleOCR-VL uses a two-stage approach. First, PP-DocLayoutV2 performs layout analysis, localizing semantic regions and predicting reading order. Then PaddleOCR-VL-0.9B recognizes the content. A post-processing module outputs structured Markdown and JSON.
-
-On OmniDocBench v1.5, it achieves an overall score of 92.56, surpassing MinerU2.5-1.2B (90.67) and general VLMs like Qwen2.5-VL-72B. A model 80 times smaller achieving higher accuracy.
+PaddleOCR-VL-0.9B integrates a NaViT-style dynamic resolution visual encoder with the ERNIE-4.5-0.3B language model. It uses a two-stage approach. First, PP-DocLayoutV2 performs layout analysis, localizing semantic regions and predicting reading order. Then PaddleOCR-VL-0.9B recognizes the content. A post-processing module outputs structured Markdown and JSON. On OmniDocBench v1.5, it achieves an overall score of 92.56, surpassing MinerU2.5-1.2B (90.67) and general VLMs like Qwen2.5-VL-72B. A model 80 times smaller achieving higher accuracy.
 
 For my use case, I used a two-stage pipeline:
 
@@ -41,8 +37,8 @@ The output looks like this:
 }
 ```
 
-The whole thing runs on a laptop with 16GB RAM. GPU helps but is not required. Manufacturers accumulate vast archives of engineering drawings and the title blocks contains the recipe, part numbers, material specifications, supplier references, revision histories.Cloud-based OCR means documents leave your network. They might be logged or used for training. For industries, this creates compliance complexity.
+The whole thing runs on a laptop with 16GB RAM. GPU helps but is not required. Even with mutliple waves of digital transformatio, product manufactures accumulated vast archives of engineering drawings that containe the recipe, part numbers, material specifications, supplier references, revision histories.Cloud-based OCR means documents leave your network, they might be logged or used for training - which could lead to IP Leaks.
 
-### ***A 0.9B parameter model changes this. It runs locally on a computer without network access. Documents never leave your infrastructure. The Apache 2.0 license allows commercial use.***
+***VLMs for OCR is promising, 0.9B parameter model changes this. It runs locally on a computer without network access and the documents never leave your infrastructure. The Apache 2.0 license allows commercial use for free.***
 
 I have shared my extraction pipeline on GitHub: [PaddleOCR\_Engineering\_Drawings](https://github.com/thedatasense/PaddleOCR_Engineering_Drawings).
