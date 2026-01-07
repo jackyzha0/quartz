@@ -3,6 +3,7 @@ title: "OCR on Engineering Drawings with a 0.9B Vision-Language Model"
 datePublished: Wed Jan 07 2026 05:29:34 GMT+0000 (Coordinated Universal Time)
 cuid: cmk3kwptz000a02kz2fezaphi
 slug: ocr-on-engineering-drawings-with-a-09b-vision-language-model
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1767764396726/0f4d1dc4-5746-4201-9a13-10acb3eac70f.png
 tags: pdf, ocr, drawings, paddlepaddle
 
 ---
@@ -11,11 +12,9 @@ Late last year, I started exploring how to extract metadata from product drawing
 
 VLMs learn joint representations of visual and textual information. PaddleOCR-VL-0.9B integrates a NaViT-style dynamic resolution visual encoder with the ERNIE-4.5-0.3B language model.
 
-The key difference is semantic pattern matching. VLMs recognize that text in specific title block locations represents part numbers. That tabular arrangements indicate structured data. That text following "Material:" is a specification.
+The key difference is semantic pattern matching. VLMs recognize that text in specific title block locations represents part numbers. That tabular arrangements indicate structured data. That text following "Material:" is a specification.PaddleOCR-VL uses a two-stage approach. First, PP-DocLayoutV2 performs layout analysis, localizing semantic regions and predicting reading order. Then PaddleOCR-VL-0.9B recognizes the content. A post-processing module outputs structured Markdown and JSON.
 
-PaddleOCR-VL uses a two-stage approach. First, PP-DocLayoutV2 performs layout analysis, localizing semantic regions and predicting reading order. Then PaddleOCR-VL-0.9B recognizes the content. A post-processing module outputs structured Markdown and JSON.
-
-On OmniDocBench v1.5, it achieves an overall score of 92.56, surpassing MinerU2.5-1.2B (90.67) and general VLMs like Qwen2.5-VL-72B. A model 80 times smaller achieving higher accuracy. **Pipeline**
+On OmniDocBench v1.5, it achieves an overall score of 92.56, surpassing MinerU2.5-1.2B (90.67) and general VLMs like Qwen2.5-VL-72B. A model 80 times smaller achieving higher accuracy.
 
 For my use case, I used a two-stage pipeline:
 
@@ -30,8 +29,6 @@ The input is the entire drawing in pdf.
 PaddleOCR-VL handles the OCR. Then I pass the extracted text to Qwen3-0.6B, a 600M parameter LLM, for structured information extraction. No complex regex patterns. The LLM figures out which text corresponds to which field.
 
 The output looks like this:
-
-json
 
 ```json
 {
