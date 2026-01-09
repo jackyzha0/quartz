@@ -5,6 +5,7 @@ seoDescription: "Learn how PaddleOCR-VL, a 0.9B vision-language model, excels in
 datePublished: Sat Jan 03 2026 05:00:00 GMT+0000 (Coordinated Universal Time)
 cuid: cmk77zopq000002l5hs39hgeq
 slug: why-a-09b-vlm-can-be-a-serious-ocr-engine
+cover: https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/BvqmW7VGRRk/upload/becd1fd58c147e8d263fae168abbb227.jpeg
 tags: paddleocr-ocr-vlm
 
 ---
