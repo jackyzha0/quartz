@@ -1,10 +1,11 @@
 ---
-title: "Multimodal AI Study Notes: Part 1"
+title: "Building AI Agents with Multimodal Models : Part 1"
 seoTitle: "Multimodal AI Study Overview: Part 1"
 seoDescription: "Learn about multimodal AI, fusion strategies, and how AI combines senses for robust understanding in Part 1 of this study series"
 datePublished: Mon Jan 05 2026 05:00:00 GMT+0000 (Coordinated Universal Time)
 cuid: cmkans6bt001502jo4f5ohfbw
-slug: multimodal-ai-study-notes-part-1
+slug: building-ai-agents-with-multimodal-models-part-1
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1768192457344/6f0d1749-9534-4f1b-b413-0e9e561ad856.jpeg
 tags: nvidia, multimodalai
 
 ---
@@ -131,4 +132,4 @@ In Part 2, we'll explore how AI learns to connect completely different modalitie
 
 ---
 
-*This content is inspired by NVIDIA's Deep Learning Institute certification on Multimodal AI. For hands-on experience, consider enrolling in their official courses at https://learn.nvidia.com/courses/course-detail?course_id=course-v1:DLI+C-FX-17+V1
+*This content is inspired by NVIDIA's Deep Learning Institute course: [Building AI Agents with Multimodal Models](https://learn.nvidia.com/courses/course-detail?course_id=course-v1:DLI+C-FX-17+V1). For hands-on experience, consider enrolling in their official courses.*
