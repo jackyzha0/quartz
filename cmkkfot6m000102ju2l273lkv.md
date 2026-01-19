@@ -19,6 +19,10 @@ In this post, I'll explain a method called "Generic Attention-model Explainabili
 
 **My implementation:** [**github.com/thedatasense/medgemma-explainer**](https://github.com/thedatasense/medgemma-explainer)
 
+Also you can open a notebook in Google colab that explains the concepts and a demo with the below link.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg align="left")](https://colab.research.google.com/github/thedatasense/medgemma-explainer/blob/master/tutorial_optimized.ipynb)
+
 By the end, you'll understand not just what the method does, but why it works.
 
 ---
