@@ -5,7 +5,7 @@ seoDescription: "Use Chefer et al.'s techniques to visualize model attention, en
 datePublished: Fri Jan 16 2026 05:00:00 GMT+0000 (Coordinated Universal Time)
 cuid: cmkkfot6m000102ju2l273lkv
 slug: opening-the-black-box-how-to-see-what-your-vision-language-model-is-actually-looking-at
-cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1768782981466/2169f176-f7fc-44c3-876f-6f8896545f2f.png
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1768783060935/c3221f1f-93ec-4484-a653-17f0a1b7ed84.png
 ogImage: https://cdn.hashnode.com/res/hashnode/image/upload/v1768782903306/d6d86135-a119-4503-b856-b0a36ef058ab.png
 tags: multimodalai
 
@@ -41,7 +41,7 @@ This is why explainability matters. We need to open up these models and see wher
 
 Before we can explain what a model is looking at, we need to understand how modern AI models "look" at things in the first place. The key mechanism is called attention.
 
-### The Cocktail Party Analogy
+### The Cocktail Party
 
 Imagine you're at a crowded party. Dozens of conversations are happening simultaneously, creating a wall of noise. Yet somehow, when someone across the room says your name, you hear it. Your brain has learned to selectively attend to relevant information while filtering out the rest.
 
@@ -75,9 +75,9 @@ Now we arrive at the core problem that Chefer et al. set out to solve.
 
 If we want to know what the model looked at to produce its output, we can't just examine the attention weights from a single layer. The information has been transformed, combined, and re-routed through dozens of layers. The final output is influenced by patterns that were established early and propagated forward, modified at each step.
 
-### The River Delta Analogy
+### The River Delta
 
-Imagine tracing where a drop of water in the ocean came from. You find it at the river's mouth, but that river was fed by dozens of tributaries, each of which was fed by smaller streams, each of which collected from countless tiny sources across a vast watershed.
+Imagine tracing where a drop of water in the ocean came from. You find it at the river's mouth, but that river was fed by dozens of branches of river, each of which was fed by smaller streams, each of which collected from countless tiny sources across a vast watershed.
 
 The water at the mouth contains contributions from all those sources, but the contributions aren't equal. A large tributary contributes more than a tiny stream. And some sources might have their water diverted or absorbed before it reaches the ocean.
 
