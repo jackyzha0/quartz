@@ -17,7 +17,7 @@ This question sits at the heart of AI safety in medicine. If we're going to trus
 
 In this post, I'll explain a method called "Generic Attention-model Explainability" developed by Chefer, Gur, and Wolf that lets us generate visual explanations for what transformer-based AI models are paying attention to. We'll build up the intuition piece by piece, starting from the basics and working toward the full algorithm. I've also implemented this method for Google's MedGemma medical vision-language model, and I'll share results showing the technique in action on real medical images.
 
-**My implementation is open source:** [**github.com/thedatasense/medgemma-explainer**](https://github.com/thedatasense/medgemma-explainer)
+**My implementation:** [**github.com/thedatasense/medgemma-explainer**](https://github.com/thedatasense/medgemma-explainer)
 
 By the end, you'll understand not just what the method does, but why it works.
 
@@ -39,7 +39,7 @@ This is why explainability matters. We need to open up these models and see wher
 
 ## Part 2: How Transformers Pay Attention
 
-Before we can explain what a model is looking at, we need to understand how modern AI models "look" at things in the first place. The key mechanism is called attention.
+Before we can explain what a model is looking at, we need to understand how modern Vision Language models "look" at things in the first place. The key mechanism is called attention.
 
 ### The Cocktail Party
 
@@ -368,8 +368,6 @@ We've covered a lot of ground in this post. We started with the problem of under
 The Chefer method is elegant because it respects the actual computational structure of transformer models. Rather than treating the network as an inscrutable black box, it uses the model's own attention patterns and gradients to surface meaningful explanations.
 
 For those working with medical AI, methods like this are essential. They transform the question "can we trust this model?" from philosophical hand-wraving into concrete investigation. We can look at what the model sees, compare it to clinical expectations, and make informed decisions about deployment.
-
-The black box is starting to open. And the more we look inside, the better we'll understand both the capabilities and limitations of these remarkable systems.
 
 ---
 
