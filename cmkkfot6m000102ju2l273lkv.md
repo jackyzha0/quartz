@@ -5,7 +5,7 @@ seoDescription: "Use Chefer et al.'s techniques to visualize model attention, en
 datePublished: Fri Jan 16 2026 05:00:00 GMT+0000 (Coordinated Universal Time)
 cuid: cmkkfot6m000102ju2l273lkv
 slug: opening-the-black-box-how-to-see-what-your-vision-language-model-is-actually-looking-at
-cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1768783060935/c3221f1f-93ec-4484-a653-17f0a1b7ed84.png
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1768787448462/0adba53e-836a-4ade-8264-878c8ebb1162.png
 ogImage: https://cdn.hashnode.com/res/hashnode/image/upload/v1768782903306/d6d86135-a119-4503-b856-b0a36ef058ab.png
 tags: multimodalai
 
