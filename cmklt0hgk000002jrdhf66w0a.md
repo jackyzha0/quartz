@@ -5,7 +5,6 @@ seoDescription: "Understand the Data Generating Process (DGP) to explore mechani
 datePublished: Wed Jan 14 2026 05:00:00 GMT+0000 (Coordinated Universal Time)
 cuid: cmklt0hgk000002jrdhf66w0a
 slug: data-generating-process
-cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1768865742347/91ae78b2-d118-4436-b1c2-b2c1c18af30b.png
 
 ---
 
@@ -13,6 +12,7 @@ Data does not just appear. Something creates it. A coin flip. A measurement devi
 
 This mechanism has a name: the Data Generating Process, or DGP.
 
+You can run this experiments in a free google colab environment [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1_DKAG4dXC66WrIPlCpKy6mfToCa9QxsO?usp=sharing)
 ## What Is a Data Generating Process?
 
 A DGP is the real world system that produces the numbers you eventually analyze. It includes everything: the true underlying signal, the noise, the measurement error, the selection bias, the sampling method.
