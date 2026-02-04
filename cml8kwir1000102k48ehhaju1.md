@@ -26,8 +26,6 @@ If we can find features that reliably correspond to specific medical concepts, t
 
 We used Neuronpedia's "Search via Inference" tool with GEMMASCOPE-2-RES-16K (Residual Stream, 16K features) across all layers. The search surfaced several candidate features. One stood out: **"cardiac and blood flow"** (feature 2224 at layer 17).
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1770240193949/580d7fa5-c645-4ba7-8bac-29d2f8132091.png align="left")
-
 Its top activations included phrases like "Individuals with Existing Heart Conditions," "coronary artery disease, heart failure," and "Reduced Blood Pressure." The positive logits pointed to tokens like "Heart," "cardiac," and "cardiovascular." So far, this looks like a genuine cardiac concept feature.
 
 ### Step 2: Test It on a Medical Prompt
