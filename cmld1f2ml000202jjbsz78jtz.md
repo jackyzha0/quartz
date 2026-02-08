@@ -14,9 +14,9 @@ No single metric reliably captures LLM output quality. But the right combination
 
 The field has shifted fast since 2023. LLM-based judges now achieve over 80% agreement with human annotators. Meanwhile, n-gram metrics like BLEU persist largely through institutional inertia. Knowing when each metric works, and when it fails, is the difference between rigorous evaluation and self-deception.
 
-\[!\[Open In Colab\]([https://colab.research.google.com/assets/colab-badge.svg)\](https://colab.research.google.com/drive/1pxS1oznBOaS23QAHGcMsZ7sr5gUcZhlb?usp=sharing)](https://colab.research.google.com/assets/colab-badge.svg\)]\(https://colab.research.google.com/drive/1pxS1oznBOaS23QAHGcMsZ7sr5gUcZhlb?usp=sharing\))
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1pxS1oznBOaS23QAHGcMsZ7sr5gUcZhlb?usp=sharing)
 
----
+*Note: You can run this experiment using the free tier of Google Colab.*
 
 ## 1\. Perplexity and bits-per-byte: the intrinsic baselines
 
@@ -38,7 +38,6 @@ Recent work has exposed deeper problems. Fang et al. (ICLR 2025) showed that sta
 
 **When to use perplexity:** comparing checkpoints within the same model family. **When to use BPB:** cross-model comparison. **When to avoid both:** measuring output quality, fluency, or task performance. They measure model fit to data, not generation quality.
 
----
 
 ## 2\. N-gram overlap metrics: still everywhere, often wrong
 
@@ -72,7 +71,6 @@ It achieves Pearson correlation of 0.964 at corpus level (vs. BLEU's 0.817). Yet
 
 A new contender worth watching: the GEM metric (ICLR 2025), a reference-free approach based on mutual information, now outperforms BLEU, ROUGE-L, BERTScore, and BARTScore in correlation with human annotations, while also resisting manipulation.
 
----
 
 ## 3\. Embedding-based metrics: semantics at a cost
 
@@ -100,7 +98,6 @@ This allows many-to-one alignments, which matter when one concept gets expressed
 
 **When to use BERTScore:** paraphrase detection and semantic similarity evaluation. **When to avoid it:** texts exceeding 512 tokens, fairness-sensitive applications, or when factual correctness (not semantic similarity) is the target.
 
----
 
 ## 4\. LLM-as-judge: the new standard, with known failure modes
 
@@ -136,7 +133,6 @@ The **CALM framework** (ICLR 2025) identified 12 distinct bias types in LLM judg
 
 And the multi-agent trend is accelerating. Self-MoA (2025) samples a single top LLM multiple times and achieves 65.7% LC win rate on AlpacaEval 2.0, outperforming heterogeneous multi-model ensembles at 59.1%.
 
----
 
 ## 5\. Combining metrics: practical recommendations
 
@@ -156,8 +152,6 @@ Here's what works by task:
 
 One more thing. Anthropic's paper "Adding Error Bars to Evals" (Miller, Nov 2024) provides essential statistical guidance. Clustered standard errors can be 3× larger than naive standard errors when questions are grouped. Paired difference tests eliminate question-difficulty variance when comparing models. And power analysis determines required evaluation set sizes. Always report confidence intervals. A 2-point improvement is meaningless without knowing the standard error.
 
----
-
 ## 6\. What the comparison reveals
 
 The Colab experiment (see companion notebook) exposes predictable but instructive patterns.
@@ -170,7 +164,6 @@ The **hallucination** case reveals the deepest limitation of surface metrics. RO
 
 Three trends define where evaluation is heading. First, dynamic benchmarks like LiveBench and WildBench are replacing static test sets to combat contamination. The problem is so severe that Codeforces performance plummets after training cutoff dates. Second, the statistical rigor revolution means reporting scores without confidence intervals is increasingly unacceptable. Third, fine-tuned evaluation models continue to disappoint relative to general-purpose frontier LLMs as judges: on JudgeBench, the best fine-tuned judge hits only 57% accuracy while the best general model reaches 64%. This suggests evaluation capability scales with general capability, not with specialized training.
 
----
 
 ## Takeaway
 
