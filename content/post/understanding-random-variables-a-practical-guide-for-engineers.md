@@ -7,7 +7,7 @@ cover: /images/ce5c09a0c18383f7eb5bf29a99811bee.jpeg
 ---
 ## Part 1: Discrete Random Variables
 
-Discrete random variables represent countable outcomes—like the roll of a die, the number of users on a site, or binary classification labels.
+Discrete random variables represent countable outcomes, like the roll of a die, the number of users on a site, or binary classification labels.
 
 ### Expected Value
 

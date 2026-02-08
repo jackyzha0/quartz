@@ -156,7 +156,7 @@ We’re diving deeper into architectural modifications that might improve robust
 
 ## **The Path Forward**
 
-Medical AI has immense potential to revolutionize healthcare, from reducing diagnostic errors to making expertise available in underserved areas. But as our research shows, we’re not there yet. The brittleness we’ve uncovered isn’t just a technical curiosity—it’s a fundamental barrier to safe clinical deployment.
+Medical AI has immense potential to revolutionize healthcare, from reducing diagnostic errors to making expertise available in underserved areas. But as our research shows, we’re not there yet. The brittleness we’ve uncovered isn’t just a technical curiosity. It's a fundamental barrier to safe clinical deployment.
 
 Until we can get vulnerability spreads much, much lower, these systems remain too fragile for autonomous clinical use. This isn’t about being pessimistic about AI. It’s about being realistic about what needs to be fixed before we can responsibly deploy these powerful tools in life-and-death situations.
 

@@ -247,7 +247,7 @@ For the text tokens, we get relevance values that tell us which words in the que
 
 ---
 
-## Part 6: The Method in Action — My MedGemma Results
+## Part 6: The Method in Action, My MedGemma Results
 
 Theory is one thing. Seeing it work is another. I implemented the Chefer method for Google's MedGemma 1.5 4B, a vision-language model specifically trained for medical image understanding.
 
