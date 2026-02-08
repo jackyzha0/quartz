@@ -1,12 +1,5 @@
+public/
+resources/
+.hugo_build.lock
 .DS_Store
-.gitignore
 node_modules
-public
-prof
-tsconfig.tsbuildinfo
-.obsidian
-.quartz-cache
-private/
-.replit
-replit.nix
-/latex_notes

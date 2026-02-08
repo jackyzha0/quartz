@@ -1,0 +1,29 @@
+baseURL = "https://thedatasense.com/"
+languageCode = "en-us"
+title = "The Data Sense"
+theme = "hugo-xmin"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['$$', '$$']]
+          inline = [['$', '$']]
+
+[params]
+  description = "PhD Research on Medical Vision-Language Model Robustness"
+
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 2
+[[menu.main]]
+  name = "Posts"
+  url = "/post/"
+  weight = 3

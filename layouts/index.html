@@ -1,0 +1,28 @@
+{{ partial "header.html" . }}
+
+<div class="home-intro">
+  <h2>Welcome</h2>
+  <p>
+    I'm <strong>Binesh Sadanandan</strong>, a PhD student at the University of New Haven researching the robustness of medical Vision-Language Models. I write about AI, machine learning, mechanistic interpretability, and the challenges of deploying AI safely in healthcare.
+  </p>
+  <p>
+    My current work focuses on why medical VLMs give contradictory diagnoses when clinicians rephrase the same question — and what we can do about it. Read more on the <a href="/about/">About</a> page, or find me at <a href="https://bineshkumar.me">bineshkumar.me</a>.
+  </p>
+</div>
+
+<hr>
+
+<h2>Recent Posts</h2>
+
+<ul>
+  {{ range .Site.RegularPages }}
+  {{ if eq .Section "post" }}
+  <li>
+    <span class="date">{{ .Date.Format "2006/01/02" }}</span>
+    <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+  </li>
+  {{ end }}
+  {{ end }}
+</ul>
+
+{{ partial "footer.html" . }}
