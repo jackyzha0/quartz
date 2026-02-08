@@ -13,9 +13,9 @@ Discrete random variables represent countable outcomes—like the roll of a die,
 
 The expected value (or mean) tells us the "center of mass" of a distribution.
 
-**Analogy:** Imagine playing a carnival game thousands of times. Sometimes you win $10, sometimes you lose $5. The expected value is your average profit per game in the long run. It is the "steady state" of your luck.
+**Analogy:** Imagine playing a carnival game thousands of times. Sometimes you win \\$10, sometimes you lose \\$5. The expected value is your average profit per game in the long run. It is the "steady state" of your luck.
 
-For a discrete random variable \\( X \\) with probability mass function (PMF) \\( p_X(x) \\) :
+For a discrete random variable $X$ with probability mass function (PMF) $p_X(x)$ :
 
 $$E[X] = \sum_x x \cdot p_X(x)$$
 
@@ -23,19 +23,19 @@ You multiply each outcome by its probability and sum them up. Heavily weighted o
 
 ### The Expected Value Rule (LOTUS)
 
-When you apply a function \\( g \\) to a random variable \\( X \\) , creating \\( Y = g(X) \\) , you don't need to find the distribution of \\( Y \\) first. You can calculate the expected value directly using \\( X \\) .
+When you apply a function $g$ to a random variable $X$ , creating $Y = g(X)$ , you don't need to find the distribution of $Y$ first. You can calculate the expected value directly using $X$ .
 
 $$E[Y] = E[g(X)] = \sum_x g(x) \cdot p_X(x)$$
 
-**Analogy:** If \\( X \\) is the number of hours you work and your pay is \\( g(X) = 15X + 50 \\) , you can calculate your expected pay directly from the distribution of your hours.
+**Analogy:** If $X$ is the number of hours you work and your pay is $g(X) = 15X + 50$ , you can calculate your expected pay directly from the distribution of your hours.
 
 ### PMF of a Transformed Variable
 
-If \\( Y = g(X) \\) , the probability of \\( Y \\) taking a value \\( y \\) is the sum of probabilities of all \\( x \\) values that map to \\( y \\) .
+If $Y = g(X)$ , the probability of $Y$ taking a value $y$ is the sum of probabilities of all $x$ values that map to $y$ .
 
 $$p_Y(y) = \sum_{x: g(x) = y} p_X(x)$$
 
-**Analogy:** Think of \\( g \\) as a sorting machine. If \\( Y=X^2 \\) , both \\( x=-2 \\) and \\( x=2 \\) fall into the " \\( y=4 \\) " bucket. You combine their probabilities to get the total probability of observing 4.
+**Analogy:** Think of $g$ as a sorting machine. If $Y=X^2$ , both $x=-2$ and $x=2$ fall into the " $y=4$ " bucket. You combine their probabilities to get the total probability of observing 4.
 
 ### ⚠️ Important Warning: Jensen's Inequality
 
@@ -43,7 +43,7 @@ In general, expectation does not commute with non-linear functions.
 
 $$g(E[X]) \neq E[g(X)]$$
 
-**Analogy:** The average of squares is not the square of the average. If your test scores are 0 and 100, your average is 50 ( \\( 50^2 = 2500 \\) ). But the average of your squared scores ( \\( 0 \\) and \\( 10,000 \\) ) is 5,000.
+**Analogy:** The average of squares is not the square of the average. If your test scores are 0 and 100, your average is 50 ( $50^2 = 2500$ ). But the average of your squared scores ( $0$ and $10,000$ ) is 5,000.
 
 ### Variance and Standard Deviation
 
@@ -69,11 +69,11 @@ $$\text{Var}(X + b) = \text{Var}(X)$$
 
 $$\text{Var}(aX + b) = a^2 \cdot \text{Var}(X)$$
 
-**Key Insight:** Adding a constant ( \\( +b \\) ) shifts the distribution but doesn't change the spread. Multiplying by a constant ( \\( a \\) ) scales the spread, and since variance is squared units, the factor becomes \\( a^2 \\) .
+**Key Insight:** Adding a constant ( $+b$ ) shifts the distribution but doesn't change the spread. Multiplying by a constant ( $a$ ) scales the spread, and since variance is squared units, the factor becomes $a^2$ .
 
 ### Conditioning on an Event
 
-When you learn that event \\( A \\) has occurred, the probability space shrinks. You eliminate impossible outcomes and "renormalize" the remaining ones so they sum to 1.
+When you learn that event $A$ has occurred, the probability space shrinks. You eliminate impossible outcomes and "renormalize" the remaining ones so they sum to 1.
 
 $$p_{X|A}(x) = \begin{cases} \frac{p_X(x)}{P(A)} & \text{if } x \in A \\ 0 & \text{otherwise} \end{cases}$$
 
@@ -89,7 +89,7 @@ When dealing with multiple variables (like Age and Income), we use the **Joint P
 
 $$p_{X,Y}(x,y) = P(X=x, Y=y)$$
 
-**Marginalization:** To get back the distribution of just \\( X \\) , you sum over all possible values of \\( Y \\) :
+**Marginalization:** To get back the distribution of just $X$ , you sum over all possible values of $Y$ :
 
 $$p_X(x) = \sum_y p_{X,Y}(x, y)$$
 
@@ -101,7 +101,7 @@ $$E[X + Y] = E[X] + E[Y]$$
 
 ## Part 2: Continuous Random Variables
 
-For continuous variables (time, distance, temperature), the probability of being exactly equal to a specific number is 0. Instead, we measure probability over intervals using a **Probability Density Function (PDF)**, \\( f_X(x) \\) .
+For continuous variables (time, distance, temperature), the probability of being exactly equal to a specific number is 0. Instead, we measure probability over intervals using a **Probability Density Function (PDF)**, $f_X(x)$ .
 
 ### Probability as Area
 
@@ -113,29 +113,29 @@ $$E\[X\] = \\int\_{-\\infty}^{\\infty} x \\cdot f\_X(x) , dx$$
 
 ### Common Distributions
 
-**1\. Uniform Distribution ( \\( X \sim \text{Uni}(a,b) \\) )** Every interval of the same length is equally likely. 
+**1\. Uniform Distribution ( $X \sim \text{Uni}(a,b)$ )** Every interval of the same length is equally likely. 
 
 $$f\_X(x) = \\frac{1}{b-a} \\quad \\text{for } a &lt; x &lt; b$$
 
-**2\. Exponential Distribution ( \\( X \sim \text{Exp}(\lambda) \\) )** Models waiting times (e.g., time until the next server request). It has the unique **Memoryless Property**: 
+**2\. Exponential Distribution ( $X \sim \text{Exp}(\lambda)$ )** Models waiting times (e.g., time until the next server request). It has the unique **Memoryless Property**: 
 
 $$P(X &gt; s + t | X &gt; t) = P(X &gt; s)$$
 
  If you've waited 10 minutes, the probability of waiting another 5 is the same as if you just started waiting.
 
-**3\. Normal (Gaussian) Distribution ( \\( X \sim \mathcal{N}(\mu, \sigma^2) \\) )** The bell curve. 
+**3\. Normal (Gaussian) Distribution ( $X \sim \mathcal{N}(\mu, \sigma^2)$ )** The bell curve. 
 
 $$f\_X(x) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}} e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$$
 
- **Linear Transformation:** If \\( X \\) is Normal, then \\( aX+b \\) is also Normal.
+ **Linear Transformation:** If $X$ is Normal, then $aX+b$ is also Normal.
 
 ### Cumulative Distribution Function (CDF)
 
-The CDF is the integral of the PDF. It represents the probability that \\( X \\) is less than or equal to \\( x \\) .
+The CDF is the integral of the PDF. It represents the probability that $X$ is less than or equal to $x$ .
 
 $$F_X(x) = P(X \le x) = \int_{-\infty}^x f_X(t) \, dt$$
 
-**Pro Tip:** When transforming continuous variables ( \\( Y=g(X) \\) ), it is often safer to work with the CDF first and then differentiate to find the new PDF.
+**Pro Tip:** When transforming continuous variables ( $Y=g(X)$ ), it is often safer to work with the CDF first and then differentiate to find the new PDF.
 
 $$f_Y(y) = \frac{d}{dy} F_Y(y)$$
 
@@ -149,11 +149,11 @@ $$p_{X|Y}(x|y) = \frac{p_X(x) \cdot p_{Y|X}(y|x)}{p_Y(y)}$$
 
 **Analogy:**
 
-* **Prior** \\( p_X(x) \\) : What you believed before seeing data.
+* **Prior** $p_X(x)$ : What you believed before seeing data.
     
-* **Likelihood** \\( p_{Y|X}(y|x) \\) : How likely the data is given your belief.
+* **Likelihood** $p_{Y|X}(y|x)$ : How likely the data is given your belief.
     
-* **Posterior** \\( p_{X|Y}(x|y) \\) : Your updated belief after seeing the data.
+* **Posterior** $p_{X|Y}(x|y)$ : Your updated belief after seeing the data.
     
 
 ---
@@ -162,10 +162,10 @@ $$p_{X|Y}(x|y) = \frac{p_X(x) \cdot p_{Y|X}(y|x)}{p_Y(y)}$$
 
 | Concept | Discrete | Continuous |
 | --- | --- | --- |
-| **Distribution** | PMF: \\( p_X(x) \\) | PDF: \\( f_X(x) \\) |
-| **Expectation** | \\( \sum x \cdot p_X(x) \\) | \\( \int x \cdot f_X(x) \, dx \\) |
-| **Variance** | \\( \sum (x-\mu)^2 \cdot p_X(x) \\) | \\( \int (x-\mu)^2 \cdot f_X(x) \, dx \\) |
-| **Independence** | \\( p_{X,Y} = p_X \cdot p_Y \\) | \\( f_{X,Y} = f_X \cdot f_Y \\) |
+| **Distribution** | PMF: $p_X(x)$ | PDF: $f_X(x)$ |
+| **Expectation** | $\sum x \cdot p_X(x)$ | $\int x \cdot f_X(x) \, dx$ |
+| **Variance** | $\sum (x-\mu)^2 \cdot p_X(x)$ | $\int (x-\mu)^2 \cdot f_X(x) \, dx$ |
+| **Independence** | $p_{X,Y} = p_X \cdot p_Y$ | $f_{X,Y} = f_X \cdot f_Y$ |
 
 ---
 
@@ -173,6 +173,6 @@ $$p_{X|Y}(x|y) = \frac{p_X(x) \cdot p_{Y|X}(y|x)}{p_Y(y)}$$
 
 1. **Linearity of Expectation** is your best friend. It works regardless of independence.
     
-2. **Variance of Sums** ( \\( \text{Var}(X+Y) = \text{Var}(X) + \text{Var}(Y) \\) ) only works if \\( X \\) and \\( Y \\) are **independent**. If they are dependent, you must add the Covariance term.
+2. **Variance of Sums** ( $\text{Var}(X+Y) = \text{Var}(X) + \text{Var}(Y)$ ) only works if $X$ and $Y$ are **independent**. If they are dependent, you must add the Covariance term.
     
 3. For continuous transformations, **always go through the CDF** if you are unsure. It prevents mistakes with boundaries and derivatives.
