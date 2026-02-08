@@ -4,7 +4,7 @@ date: 2026-01-05T05:00:00+00:00
 slug: building-ai-agents-with-multimodal-models-part-1
 tags: ["nvidia", "multimodalai"]
 description: "Learn about multimodal AI, fusion strategies, and how AI combines senses for robust understanding in Part 1 of this study series"
-cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1768192457344/6f0d1749-9534-4f1b-b413-0e9e561ad856.jpeg
+cover: /images/6f0d1749-9534-4f1b-b413-0e9e561ad856.jpeg
 ---
 ## Understanding How AI Learns to See, Hear, and Feel All at Once
 

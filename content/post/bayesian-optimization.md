@@ -70,7 +70,7 @@ This gives us two key pieces of data for every coordinate:
 
 > **Note:** Notice in the diagram how the shaded region (uncertainty) gets "pinched" tight near the black dots (data points) and balloons out in the empty spaces? That ballooning is the math telling us, *"I have no idea what's happening here!"*
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1768326753552/01b0fef4-b26f-4308-84b8-056901cb538d.png)
+![](/images/01b0fef4-b26f-4308-84b8-056901cb538d.png)
 
 ### The Acquisition Function
 

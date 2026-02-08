@@ -58,7 +58,7 @@ def run_simulation(n_per_group, true_effect, noise_sd, n_simulations):
 
 The figure below shows what happens when we do this. On the left is the DGP itself, just a box with parameters. In the middle, we run it five times and see five different trial results. On the right, we run it 10,000 times and see the full distribution of possible outcomes.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1768864552874/fa00af11-0414-4b47-8e18-b1ab131d5594.png)
+![](/images/fa00af11-0414-4b47-8e18-b1ab131d5594.png)
 
 That distribution on the right is uncertainty made visible. The true effect is 5 mmHg, but any single trial might show anywhere from -5 to +15 just due to noise. This is why we need statistics: to separate signal from noise.
 
@@ -68,7 +68,7 @@ If I set `true_effect=0` and run 10,000 simulations, I get the distribution of d
 
 If my actual trial shows a difference of 8.5 mmHg, I can see where that falls in the null distribution.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1768864582121/97f2c136-7617-41f4-a91e-afd5b092e4e0.png)
+![](/images/97f2c136-7617-41f4-a91e-afd5b092e4e0.png)
 
 The red lines mark my observed value and its mirror. The p-value is just the fraction of the null distribution that falls beyond those lines. In this case, about 0.3% of the null simulations produced results as extreme as what I observed.
 
@@ -134,7 +134,7 @@ population = np.concatenate([
 
 Look at what happens:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1768864603757/9edd8660-1039-4053-a21a-e0772bb3cf43.png)
+![](/images/9edd8660-1039-4053-a21a-e0772bb3cf43.png)
 
 The top left panel shows the population. It is not normal at all. Two peaks, a long tail, nothing like a bell curve.
 
@@ -165,7 +165,7 @@ def bootstrap_confidence_interval(data, n_bootstrap, confidence=0.95):
     return lower, upper
 ```
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1768865346070/a21070df-b2ef-4452-b335-245c7b05e991.png)
+![](/images/a21070df-b2ef-4452-b335-245c7b05e991.png)
 
 On the left is your one sample of 30 observations. This is all you have. On the right is what happens when you resample from it 10,000 times. The spread of those bootstrap means gives you the confidence interval directly. The middle 95% spans from 94.5 to 106.8.
 
@@ -199,7 +199,7 @@ def permutation_test(group1, group2, n_permutations):
     return p_value, null_diffs
 ```
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1768865387610/a9b53e5a-2f07-46b0-b553-e4be1dbfc989.png)
+![](/images/a9b53e5a-2f07-46b0-b553-e4be1dbfc989.png)
 
 Panel 1 shows the original data. Control group in gray, treatment in blue. The observed difference is 3.8.
 

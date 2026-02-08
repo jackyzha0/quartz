@@ -4,7 +4,7 @@ date: 2026-01-20T05:00:00+00:00
 slug: fluent-but-wrong-llm-and-healthcare
 tags: ["multimodalai", "gpt-2"]
 description: "Discusses limitations of deploying language models in healthcare, stressing the need for human verification and system improvements for safety"
-cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1768977780582/949cf682-0c65-4c34-acdf-1e5ff009575e.png
+cover: /images/949cf682-0c65-4c34-acdf-1e5ff009575e.png
 ---
 Off late a lot of my research time is studying why medical models systems fail. Not the obvious failures where the model outputs gibberish, but the subtle ones where the output looks clinically appropriate, follows proper documentation structure, uses correct terminology, and is still wrong.
 
@@ -24,7 +24,7 @@ Open this experiment in Google Colab and run it for free [![Open this experiment
 
 Before showing you what the model produced, it helps to understand what it actually does. This is a simplified explanation for readers without a machine learning background.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1768974711275/ef410d5a-3c75-478b-81ad-0514a4062211.png)
+![](/images/ef410d5a-3c75-478b-81ad-0514a4062211.png)
 
 *Architecture of our clinical GPT-2 model. The same fundamental design powers ChatGPT, just with more parameters.*
 
@@ -94,7 +94,7 @@ First, outputs that look reasonable to a non-clinician. These are the dangerous 
 
 ### Prompt: Chief Complaint
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1768975731252/0c4a4851-afba-4354-b34a-1bad2fb64444.png)
+![](/images/0c4a4851-afba-4354-b34a-1bad2fb64444.png)
 
 This looks professional. The format is correct. The terminology is appropriate. The workup makes sense.
 
@@ -108,7 +108,7 @@ These next outputs require no medical background to evaluate. The failures are o
 
 ### Prompt: Impossible Patient History
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1768975848287/5f974f6d-2991-42fc-a2e3-ac5da485d323.png)
+![](/images/5f974f6d-2991-42fc-a2e3-ac5da485d323.png)
 
 **What went wrong:**
 
@@ -124,7 +124,7 @@ A human clinician would stop at the first sentence and say "this doesn't make se
 
 ### Prompt: Made-Up Medication
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1768975962226/46b9afb2-a395-48f0-a6ac-e0a0f50a2286.png)
+![](/images/46b9afb2-a395-48f0-a6ac-e0a0f50a2286.png)
 
 **What went wrong:**
 
@@ -138,7 +138,7 @@ This is what token prediction looks like. The model saw a medication list format
 
 ### Prompt: Vital Signs Incompatible with Life
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1768976228816/871a5f41-2774-42be-98e6-f811b0c163e2.png)
+![](/images/871a5f41-2774-42be-98e6-f811b0c163e2.png)
 
 **What went wrong:**
 

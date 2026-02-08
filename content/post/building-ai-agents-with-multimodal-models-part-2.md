@@ -4,7 +4,7 @@ date: 2026-01-07T05:00:00+00:00
 slug: building-ai-agents-with-multimodal-models-part-2
 tags: ["nvidia", "contrastive-learning", "multimodal-ai"]
 description: "Contrastive learning aligns images and text in AI with embeddings and cosine similarity, inspired by NVIDIA's AI models"
-cover: https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/5Q07sS54D0Q/upload/6f2d8d4b9c8674cf6a049c008e040e89.jpeg
+cover: /images/6f2d8d4b9c8674cf6a049c008e040e89.jpeg
 ---
 ## Contrastive Learning: Teaching AI That a Picture is Worth a Thousand Words
 

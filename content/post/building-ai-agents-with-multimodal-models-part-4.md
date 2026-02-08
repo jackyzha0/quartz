@@ -4,7 +4,7 @@ date: 2026-01-10T05:00:00+00:00
 slug: building-ai-agents-with-multimodal-models-part-4
 tags: ["nvidia", "rag", "multimodalai", "graphrag"]
 description: "Explore NVIDIA's Video Understanding, Graph-RAG for AI video analysis, reasoning, summarization, prompt engineering, and multimodal integration"
-cover: https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/2uwFEAGUm6E/upload/ba1dc2e22c6453fc22d4b1918c55a671.jpeg
+cover: /images/ba1dc2e22c6453fc22d4b1918c55a671.jpeg
 ---
 ## Video Understanding & Graph-RAG: AI That Watches, Remembers, and Reasons
 

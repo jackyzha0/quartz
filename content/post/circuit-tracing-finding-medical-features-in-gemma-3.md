@@ -4,7 +4,7 @@ date: 2026-02-04T22:07:58+00:00
 slug: circuit-tracing-finding-medical-features-in-gemma-3
 tags: ["medgemma-mechanistic-interpretability"]
 description: "Gemma 3 uses Neuronpedia's tool to organize and activate medical knowledge contextually with prompts"
-cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1770242854571/eda21f99-b646-4424-a866-888fb80e9491.png
+cover: /images/eda21f99-b646-4424-a866-888fb80e9491.png
 ---
 Language models can answer medical questions with surprising accuracy. But do they actually encode medical knowledge in identifiable, interpretable ways? Or is it all just statistical soup?
 
@@ -32,11 +32,11 @@ Here's where it gets interesting. We used Neuronpedia's TopK feature analysis to
 
 This is the exact position where the model predicts the next token. If the cardiac feature actually encodes what we think it does, it should activate here.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1770240297440/5d534a4d-b660-4785-87c9-3f795ea49a86.png)
+![](/images/5d534a4d-b660-4785-87c9-3f795ea49a86.png)
 
 **Result:** The "cardiac and blood flow" feature ranked **#1** at the final token position, with an activation of 636.00. Not buried in the top 50. Not somewhere in the middle. Number one.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1770242584412/f3c37d81-13b8-4735-9308-4515cdcba0fa.png)
+![](/images/f3c37d81-13b8-4735-9308-4515cdcba0fa.png)
 
 ### Step 3: Replicate with a Different Medical Domain
 
@@ -44,7 +44,7 @@ We repeated the experiment for respiratory features.
 
 Searching for "pneumonia" surfaced a feature called **"respiratory and lung conditions"** (feature 3791 at layer 22). Its positive logits included "respiratory," "lungs," "airflow," "breathing," "airways," and "coughing." The top activations contained clinical text about chronic cough, wheezing, and respiratory problems.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1770242705242/d3447ef7-924c-45e4-87a3-c1ab8718ff9f.png)
+![](/images/d3447ef7-924c-45e4-87a3-c1ab8718ff9f.png)
 
 We then tested this feature against the prompt:
 
@@ -52,7 +52,7 @@ We then tested this feature against the prompt:
 
 The TopK analysis at the final "of" token showed the respiratory feature at **708.00**, landing in the top 5. The top feature was "Medical conditions and disorders" at 1992.00, which also makes sense since shortness of breath can be a symptom of many things beyond just lung conditions.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1770242773573/87d27287-2c6d-4557-9cf0-c089b7d96504.png)
+![](/images/87d27287-2c6d-4557-9cf0-c089b7d96504.png)
 
 ## What This Tells Us
 

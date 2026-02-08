@@ -4,7 +4,7 @@ date: 2026-01-11T05:00:00+00:00
 slug: building-ai-agents-with-multimodal-models-the-final-challenge
 tags: ["nvidia", "lidarsensor", "multimodalai"]
 description: "Multimodal AI uses contrastive learning and embedding alignments to adapt LiDAR models for RGB images without retraining on RGB labels"
-cover: https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/qDgTQOYk6B8/upload/8b41e212edf58813764910931957f54b.jpeg
+cover: /images/8b41e212edf58813764910931957f54b.jpeg
 ---
 ## The Challenge That Ties Everything Together
 

@@ -4,7 +4,7 @@ date: 2026-01-16T05:00:00+00:00
 slug: opening-the-black-box-how-to-see-what-your-vision-language-model-is-actually-looking-at
 tags: ["multimodalai"]
 description: "Use Chefer et al.'s techniques to visualize model attention, enhancing trust in AI diagnostics through vision-language model explainability"
-cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1768787448462/0adba53e-836a-4ade-8264-878c8ebb1162.png
+cover: /images/0adba53e-836a-4ade-8264-878c8ebb1162.png
 ---
 When a doctor examines a chest X-ray and says "I see signs of pneumonia in the lower right lung," you can ask them to point at exactly what they're seeing. They can circle the cloudy region, explain why it looks abnormal, and walk you through their reasoning. But when an AI system analyzes the same X-ray and reaches the same conclusion, what is it actually looking at? Is it focusing on the lung tissue, or has it learned some spurious shortcut, like the font used for the patient's name?
 
@@ -261,7 +261,7 @@ Before tackling medical images, let's start with a simpler test case. Here's an 
 
 When I ask MedGemma "Where is the remote?" and explain specifically the token "remote" in its response, the relevancy map shows exactly what we'd hope to see: the highest attention is concentrated at the bottom-center of the image, precisely where the remote control is located.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1768782707631/dbb40985-5da3-43be-8131-3e13076e4b77.png)
+![](/images/dbb40985-5da3-43be-8131-3e13076e4b77.png)
 
 *Figure 1: When explaining the "remote" token, the model's attention is correctly focused on the bottom-center region where the remote control is located. The bar chart quantifies relevancy by region, with bottom-center scoring 0.226 compared to just 0.051 for top-left.*
 
@@ -275,7 +275,7 @@ Now for a clinically meaningful example. Here's a chest X-ray from a patient wit
 
 When I ask MedGemma "Is there evidence of pneumonia?" the model generates a response mentioning consolidation in the right lung. Using the Chefer method, I can explain individual tokens in that response.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1768782726493/7bed9263-2075-43b2-a506-ede67f85efa7.png)
+![](/images/7bed9263-2075-43b2-a506-ede67f85efa7.png)
 
 *Figure 2: Chest X-ray analysis showing token-specific explanations. Top row: original image (with anatomical labels), whole answer explanation, and "pneumonia" token explanation. Bottom row: "consolidation", "opacity", and "right" token explanations. Each shows attention correctly focused on the patient's right lung (left side of image) where the pathology is located.*
 

@@ -3,7 +3,7 @@ title: "When AI Radiologists Get Confused: The Critical Challenge of VLM Robustn
 date: 2025-10-15T04:00:00+00:00
 slug: when-ai-radiologists-get-confused-the-critical-challenge-of-vlm-robustness-in-medical-diagnostics
 tags: ["ai", "healthcare", "vlms"]
-cover: https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/NMZdj2Zu36M/upload/0ff90e28843bf67f86bbe3318b790a8d.jpeg
+cover: /images/0ff90e28843bf67f86bbe3318b790a8d.jpeg
 ---
 Picture this: You’re in the emergency room with chest pain and shortness of breath. The doctor orders a chest X-ray, and while waiting for the radiologist, you pull out your phone. Could ChatGPT help interpret what’s wrong? You’ve used it for math problems and recipe suggestions. Surely it could read an X-ray?
 

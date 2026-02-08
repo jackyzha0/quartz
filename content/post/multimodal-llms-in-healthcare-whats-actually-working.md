@@ -4,7 +4,7 @@ date: 2026-01-02T01:33:41+00:00
 slug: multimodal-llms-in-healthcare-whats-actually-working
 tags: ["ai", "healthcare", "multimodalai"]
 description: "Examining multimodal LLMs in healthcare reveals models' effectiveness, challenges, and future implications for personalized patient care"
-cover: https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/_9vLJxxHrBo/upload/af6af3544c2446b4478251907689f1ae.jpeg
+cover: /images/af6af3544c2446b4478251907689f1ae.jpeg
 ---
 If you've tried asking ChatGPT to interpret a chest X-ray, you know the answer: it can't. Not because the technology doesn't exist, but because most general-purpose models weren't built for medical imaging.
 

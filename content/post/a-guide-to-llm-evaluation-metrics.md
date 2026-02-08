@@ -4,7 +4,7 @@ date: 2025-09-17T04:00:00+00:00
 slug: a-guide-to-llm-evaluation-metrics
 tags: ["evaluation", "llms"]
 description: "Discover the latest LLM evaluation metrics, from perplexity to LLM-as-judge, with practical insights for accurate model performance assessment"
-cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1770512236838/51c54efa-7ace-4efe-91e8-dc10de27d416.png
+cover: /images/51c54efa-7ace-4efe-91e8-dc10de27d416.png
 ---
 No single metric reliably captures LLM output quality. But the right combination of metrics, carefully chosen for your task, gets surprisingly close to human judgment. This guide covers mathematical formulations, failure modes, and runnable code for every major evaluation metric, from classical perplexity through modern LLM-as-judge approaches.
 

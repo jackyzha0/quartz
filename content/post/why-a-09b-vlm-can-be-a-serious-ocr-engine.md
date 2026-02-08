@@ -4,7 +4,7 @@ date: 2026-01-03T05:00:00+00:00
 slug: why-a-09b-vlm-can-be-a-serious-ocr-engine
 tags: ["paddleocr-ocr-vlm"]
 description: "Learn how PaddleOCR-VL, a 0.9B vision-language model, excels in OCR tasks with stable layout, low error rates, and fast deployment"
-cover: https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/BvqmW7VGRRk/upload/becd1fd58c147e8d263fae168abbb227.jpeg
+cover: /images/becd1fd58c147e8d263fae168abbb227.jpeg
 ---
 In this post, I will discuss [**PaddleOCR-VL**](https://arxiv.org/pdf/2510.14528), focusing on what is important for OCR and document parsing: stable layout, high-resolution text capture, low error rates, and fast deployment.The paper’s main claim is simple but important: you can get state of the art document parsing with an ultra compact vision language model, if you design the system around the real constraints of OCR.
 
@@ -23,7 +23,7 @@ The system has three stages
 
 The paper’s position is: do not ask the VLM to solve layout implicitly through generation. Make layout explicit with a fast detector plus ordering network, then let the VLM do what it is best at: recognition.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1767842813987/d856611f-9dba-49a9-9903-a15bc9eabbec.png)
+![](/images/d856611f-9dba-49a9-9903-a15bc9eabbec.png)
 
 Now if you are interested lets dig deep in to each of those stage.
 
@@ -31,7 +31,7 @@ Now if you are interested lets dig deep in to each of those stage.
 
 PP-DocLayoutV2 combines **RT-DETR** for detecting and classifying layout elements and a lightweight **pointer network** with 6 transformer layers for **reading order prediction**
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1767844616814/a205df0c-1976-473f-a4f5-fda56361af47.png)
+![](/images/a205df0c-1976-473f-a4f5-fda56361af47.png)
 
 The ordering part has details that matter:
 
@@ -50,7 +50,7 @@ This is the backbone of the system. If reading order is wrong, our OCR can be pe
 
 PaddleOCR-VL-0.9B follows a LLaVA inspired structure: vision encoder, projector, language model.Instead of fixed resolution resizing or tiling, the paper uses **native dynamic high resolution preprocessing** and a **NaViT style encoder** initialized from Keye-VL, designed to support native resolution inputs without distortion.The authors claim this yields fewer hallucinations and stronger performance on text heavy tasks.This is a big deal for dense documents and drawings, where tiny glyph details decide correctness.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1767983051214/5e2a570b-a840-42a0-869c-fe8378abb484.png)
+![](/images/5e2a570b-a840-42a0-869c-fe8378abb484.png)
 
 The projector is a randomly initialized 2 layer MLP with GELU, using a merge size of 2 to bridge vision features into the language embedding space efficiently.In plain terms: reduce the token burden before the decoder pays attention to everything.Autoregressive decoding cost is tied to decoder size. The paper explicitly chooses **ERNIE-4.5-0.3B** for inference efficiency and adds **3D-RoPE** for positional representation.The element recognizer is also built via post adaptation using pretrained weights: Keye-VL for the vision side and ERNIE-4.5-0.3B for the language side.
 

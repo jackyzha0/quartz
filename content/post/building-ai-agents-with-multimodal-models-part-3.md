@@ -4,7 +4,7 @@ date: 2026-01-08T05:00:00+00:00
 slug: building-ai-agents-with-multimodal-models-part-3
 tags: ["multimodalai"]
 description: "Teach AI to process complex documents with multimodal models, utilizing OCR, RAG, and smart document parsing techniques"
-cover: https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/RLw-UC03Gwc/upload/002a43623f7287b9f4f925baa11e37a4.jpeg
+cover: /images/002a43623f7287b9f4f925baa11e37a4.jpeg
 ---
 ## Document Intelligence: Teaching AI to Read, Understand, and Remember PDFs
 

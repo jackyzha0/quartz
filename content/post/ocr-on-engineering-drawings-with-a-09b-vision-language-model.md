@@ -3,7 +3,7 @@ title: "OCR on Engineering Drawings with a 0.9B Vision-Language Model"
 date: 2026-01-07T05:29:34+00:00
 slug: ocr-on-engineering-drawings-with-a-09b-vision-language-model
 tags: ["pdf", "ocr", "drawings", "paddlepaddle"]
-cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1767764396726/0f4d1dc4-5746-4201-9a13-10acb3eac70f.png
+cover: /images/0f4d1dc4-5746-4201-9a13-10acb3eac70f.png
 ---
 Late last year, I started exploring how to extract metadata from product drawings. Part numbers, material specifications, revision history, manufacturing process notes. The kind of information that lives in title blocks and needs to end up in a PLM database. I tried various OCR techniques - with the tolerance call outs, dimensions, it was a mess and I stretched the limit of what can be done with regular expressions. Then I found [PaddleOCR-VL](https://ernie.baidu.com/blog/posts/paddleocr-vl/). It is Vision Language Model (VLM) with a few preprocessors finetuned for OCR tasks.
 
@@ -17,7 +17,7 @@ PDF → Images → PaddleOCR-VL (OCR) → Qwen3-0.6B (Extraction) → Structured
 
 The input is the entire drawing in pdf.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1767763315772/2f1d9aba-64f3-4844-a9cc-1c442bb12dec.png)
+![](/images/2f1d9aba-64f3-4844-a9cc-1c442bb12dec.png)
 
 PaddleOCR-VL handles the OCR. Then I pass the extracted text to Qwen3-0.6B, a 600M parameter LLM, for structured information extraction. No complex regex patterns. The LLM figures out which text corresponds to which field.
 
