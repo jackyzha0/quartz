@@ -10,14 +10,15 @@ tags: evaluation, llms
 
 ---
 
-
 No single metric reliably captures LLM output quality. But the right combination of metrics, carefully chosen for your task, gets surprisingly close to human judgment. This guide covers mathematical formulations, failure modes, and runnable code for every major evaluation metric, from classical perplexity through modern LLM-as-judge approaches.
 
 The field has shifted fast since 2023. LLM-based judges now achieve over 80% agreement with human annotators. Meanwhile, n-gram metrics like BLEU persist largely through institutional inertia. Knowing when each metric works, and when it fails, is the difference between rigorous evaluation and self-deception.
 
+\[!\[Open In Colab\]([https://colab.research.google.com/assets/colab-badge.svg)\](https://colab.research.google.com/drive/1pxS1oznBOaS23QAHGcMsZ7sr5gUcZhlb?usp=sharing)](https://colab.research.google.com/assets/colab-badge.svg\)]\(https://colab.research.google.com/drive/1pxS1oznBOaS23QAHGcMsZ7sr5gUcZhlb?usp=sharing\))
+
 ---
 
-## 1. Perplexity and bits-per-byte: the intrinsic baselines
+## 1\. Perplexity and bits-per-byte: the intrinsic baselines
 
 Perplexity remains the default intrinsic metric for language models. It's defined as the exponentiated average negative log-likelihood over a token sequence:
 
@@ -39,7 +40,7 @@ Recent work has exposed deeper problems. Fang et al. (ICLR 2025) showed that sta
 
 ---
 
-## 2. N-gram overlap metrics: still everywhere, often wrong
+## 2\. N-gram overlap metrics: still everywhere, often wrong
 
 Despite well-documented limitations, BLEU and ROUGE remain the most-cited evaluation metrics in NLP. A 2025 analysis of 14,171 papers across four major NLP conferences found that 63.6% of papers using BLEU provide no implementation details. That's a reproducibility crisis hiding in plain sight.
 
@@ -73,7 +74,7 @@ A new contender worth watching: the GEM metric (ICLR 2025), a reference-free app
 
 ---
 
-## 3. Embedding-based metrics: semantics at a cost
+## 3\. Embedding-based metrics: semantics at a cost
 
 ### BERTScore: greedy matching in embedding space
 
@@ -81,7 +82,7 @@ BERTScore extracts contextual embeddings from a pre-trained model, then uses gre
 
 $$R_\text{BERT} = \frac{1}{|x|} \sum_{x_i \in x} \max_{\hat{x}_j \in \hat{x}} \cos(x_i, \hat{x}_j)$$
 
-$$P_\text{BERT} = \frac{1}{|\hat{x}|} \sum_{\hat{x}_j \in \hat{x}} \max_{x_i \in x} \cos(x_i, \hat{x}_j)$$
+$$P_\text{BERT} = \frac{1}{|\hat{x}|} \sum_{\hat{x}j \in \hat{x}} \max{x_i \in x} \cos(x_i, \hat{x}_j)$$
 
 $$F_\text{BERT} = 2 \cdot P \cdot R / (P + R)$$
 
@@ -101,7 +102,7 @@ This allows many-to-one alignments, which matter when one concept gets expressed
 
 ---
 
-## 4. LLM-as-judge: the new standard, with known failure modes
+## 4\. LLM-as-judge: the new standard, with known failure modes
 
 ### G-Eval: structured LLM scoring with probability weighting
 
@@ -137,7 +138,7 @@ And the multi-agent trend is accelerating. Self-MoA (2025) samples a single top 
 
 ---
 
-## 5. Combining metrics: practical recommendations
+## 5\. Combining metrics: practical recommendations
 
 No single metric captures all quality dimensions. The LMSYS team found that triangulating relative model performance with MT-Bench and AlpacaEval provides the best benchmark. And Tang et al. (NAACL 2024) showed that simply diversifying references via LLM-generated paraphrases significantly improves the correlation of even classical metrics with human judgments.
 
@@ -157,7 +158,7 @@ One more thing. Anthropic's paper "Adding Error Bars to Evals" (Miller, Nov 2024
 
 ---
 
-## 6. What the comparison reveals
+## 6\. What the comparison reveals
 
 The Colab experiment (see companion notebook) exposes predictable but instructive patterns.
 
