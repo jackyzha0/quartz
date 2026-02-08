@@ -1,18 +1,23 @@
-# Quartz v4
+# The Data Sense
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
+Personal blog and research notes by Binesh Sadanandan.
 
-Quartz is a set of tools that helps you publish your [digital garden](https://jzhao.xyz/posts/networked-thought) and notes as a website for free.
-Quartz v4 features a from-the-ground rewrite focusing on end-user extensibility and ease-of-use.
+Built with [Hugo](https://gohugo.io/) using the [hugo-xmin](https://github.com/yihui/hugo-xmin) theme. Deployed to [thedatasense.com](https://thedatasense.com) via GitHub Pages.
 
-🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
+## Local Development
 
-[Join the Discord Community](https://discord.gg/cRFFHYye7t)
+```bash
+hugo server
+```
 
-## Sponsors
+## Create a New Post
 
-<p align="center">
-  <a href="https://github.com/sponsors/jackyzha0">
-    <img src="https://cdn.jsdelivr.net/gh/jackyzha0/jackyzha0/sponsorkit/sponsors.svg" />
-  </a>
-</p>
+```bash
+hugo new post/my-new-post.md
+```
+
+## Build for Production
+
+```bash
+hugo --minify
+```
