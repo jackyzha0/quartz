@@ -1,4 +1,4 @@
-baseURL = "https://bineshkumar.me/robmedllm_notes/"
+baseURL = "https://bineshkumar.me/notes/"
 languageCode = "en-us"
 title = "The Data Sense"
 theme = "hugo-xmin"

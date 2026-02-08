@@ -2,7 +2,7 @@
 
 Personal blog and research notes by Binesh Sadanandan.
 
-Built with [Hugo](https://gohugo.io/) using the [hugo-xmin](https://github.com/yihui/hugo-xmin) theme. Deployed to [thedatasense.com](https://thedatasense.com) via GitHub Pages.
+Built with [Hugo](https://gohugo.io/) using the [hugo-xmin](https://github.com/yihui/hugo-xmin) theme. Deployed to [bineshkumar.me/notes/](https://bineshkumar.me/notes/) via GitHub Pages.
 
 ## Local Development
 
