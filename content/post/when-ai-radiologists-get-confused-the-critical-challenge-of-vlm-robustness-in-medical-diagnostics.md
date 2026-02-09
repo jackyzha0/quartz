@@ -33,7 +33,7 @@ We showed a chest X-ray to one of the most advanced vision language models avail
 
 Then we changed two words. Just two. “Vascular dilation” became “vascular congestion.”
 
-![](https://bineshkumar.me/assets/case-1.webp)
+![](/assets/case-1.webp)
 
 Suddenly the model was talking about cardiac congestion. Possible heart failure. Recommending completely different follow-up procedures. Same image, nearly identical question, completely different medical pathway. The clinical implications hit us immediately. A patient might get rushed into unnecessary cardiac workup while their actual condition goes untreated. Or worse, someone might start urgent cardiac treatment for what’s actually a non-cardiac issue.
 
@@ -43,7 +43,7 @@ This one still makes us shake our heads. We had an X-ray showing clear pleural e
 
 But when we added the phrase “chest radiograph” to our question? The model suddenly “saw” pneumonia that wasn’t there.
 
-![](https://bineshkumar.me/assets/case-2.webp)
+![](/assets/case-2.webp)
 
 It didn’t just add pneumonia to its diagnosis. It completely forgot about the pleural effusion and started recommending antibiotics. This isn’t just wrong. It’s actively harmful. A patient with fluid crushing their lungs needs drainage, not antibiotics for an infection that doesn’t exist.
 
@@ -51,7 +51,7 @@ It didn’t just add pneumonia to its diagnosis. It completely forgot about the 
 
 Perhaps most concerning was when changing “lung volumes” to “lung capacity” made critical findings disappear entirely. The model went from correctly identifying pleural effusion and potential cardiac issues to completely missing the effusion and focusing only on cardiac problems.
 
-![](https://bineshkumar.me/assets/case-3.webp)
+![](/assets/case-3.webp)
 
 Pleural effusion can kill you if it’s not treated. It can lead to respiratory failure. Yet a simple synonym made the AI blind to its presence. The model confidently described other findings while missing the one thing that might send someone to the ICU.
 
