@@ -13,7 +13,9 @@
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(touch:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(hugo:*)",
+      "Bash(gh run list:*)"
     ],
     "deny": []
   }
