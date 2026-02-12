@@ -15,7 +15,8 @@
       "Bash(touch:*)",
       "Bash(cp:*)",
       "Bash(hugo:*)",
-      "Bash(gh run list:*)"
+      "Bash(gh run list:*)",
+      "Bash(git restore:*)"
     ],
     "deny": []
   }

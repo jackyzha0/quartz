@@ -8,11 +8,11 @@ description: "Adam Smith warned us. We just weren't listening."
 
 ![](/images/ai-apocalypse.png)
 
-Adam Smith told us that competition, left alone, would guide society toward abundance. Friedman doubled down: let businesses chase profit, and the invisible hand will sort the rest. For decades, this mostly worked. Competition pushed prices down, quality up, and even the poorest lived better than kings of old. Then came artificial intelligence.  In my opinion, AI is not just another technology. It is a force that could make human labor optional. In theory, that is paradise. Machines do the work. People pursue happiness, the cost of living falls toward zero. Businesses enjoy the so called "productivity without the tax of human labor".
+[Adam Smith ](https://en.wikipedia.org/wiki/Adam_Smith)told us that competition, left alone, would guide society toward abundance. [Friedman](https://en.wikipedia.org/wiki/Milton_Friedman) doubled down: let businesses chase profit, and the invisible hand will sort the rest. For decades, this mostly worked. Competition pushed prices down, quality up, and even the poorest lived better than kings of old. Then came artificial intelligence.  In my opinion, AI is not just another technology. It is a force that could make human labor optional. In theory, that is paradise. Machines do the work. People pursue happiness, the cost of living falls toward zero. Businesses enjoy the so called "productivity without the tax of human labor".
 
 But theory and reality are not the same thing. We remember Smith as the champion of free markets, he also  understood a simple truth: competition is good for the public, but terrible for the businessman. The businessman wants a monopoly.
 
-In *The Wealth of Nations*, he said:
+In *[The Wealth of Nations](https://www.rrojasdatabank.info/Wealth-Nations.pdf)*, he said:
 
 > "People of the same trade seldom meet together, even for merriment and diversion, but the conversation ends in a conspiracy against the public, or in some contrivance to raise prices."
 
