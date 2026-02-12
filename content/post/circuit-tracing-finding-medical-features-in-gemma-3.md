@@ -1,6 +1,6 @@
 ---
 title: "Circuit Tracing: Finding Medical Features in Gemma 3"
-date: 2026-02-04T22:07:58+00:00
+date: 2025-12-21T05:00:00+00:00
 slug: circuit-tracing-finding-medical-features-in-gemma-3
 tags: ["medgemma-mechanistic-interpretability"]
 description: "Gemma 3 uses Neuronpedia's tool to organize and activate medical knowledge contextually with prompts"

@@ -1,6 +1,6 @@
 ---
 title: "Building AI Agents with Multimodal Models: The Final Challenge"
-date: 2026-01-11T05:00:00+00:00
+date: 2025-08-03T05:00:00+00:00
 slug: building-ai-agents-with-multimodal-models-the-final-challenge
 tags: ["nvidia", "lidarsensor", "multimodalai"]
 description: "Multimodal AI uses contrastive learning and embedding alignments to adapt LiDAR models for RGB images without retraining on RGB labels"

@@ -1,6 +1,6 @@
 ---
 title: "Understanding Random Variables: A Practical Guide for Engineers"
-date: 2026-01-08T18:59:54+00:00
+date: 2024-12-08T05:00:00+00:00
 slug: understanding-random-variables-a-practical-guide-for-engineers
 description: "A practical guide for engineers to understand discrete and continuous random variables, expected value, variance, and Bayes' rule in probability"
 cover: /images/ce5c09a0c18383f7eb5bf29a99811bee.jpeg

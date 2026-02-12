@@ -1,6 +1,6 @@
 ---
 title: "When AI Radiologists Get Confused: The Critical Challenge of VLM Robustness in Medical Diagnostics"
-date: 2025-10-15T04:00:00+00:00
+date: 2025-09-01T05:00:00+00:00
 slug: when-ai-radiologists-get-confused-the-critical-challenge-of-vlm-robustness-in-medical-diagnostics
 tags: ["ai", "healthcare", "vlms"]
 cover: /images/0ff90e28843bf67f86bbe3318b790a8d.jpeg

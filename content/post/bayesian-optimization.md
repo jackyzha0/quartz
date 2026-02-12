@@ -1,6 +1,6 @@
 ---
 title: "Bayesian Optimization"
-date: 2024-11-13T05:00:00+00:00
+date: 2024-11-10T05:00:00+00:00
 slug: bayesian-optimization
 tags: ["bayesian-optimization"]
 description: "Bayesian optimization efficiently optimizes complex systems by balancing exploration and exploitation"

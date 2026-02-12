@@ -1,6 +1,6 @@
 ---
 title: "Building AI Agents with Multimodal Models: Part 2"
-date: 2026-01-07T05:00:00+00:00
+date: 2025-06-22T05:00:00+00:00
 slug: building-ai-agents-with-multimodal-models-part-2
 tags: ["nvidia", "contrastive-learning", "multimodal-ai"]
 description: "Contrastive learning aligns images and text in AI with embeddings and cosine similarity, inspired by NVIDIA's AI models"

@@ -1,6 +1,6 @@
 ---
 title: "Building AI Agents with Multimodal Models : Part 1"
-date: 2026-01-05T05:00:00+00:00
+date: 2025-06-08T05:00:00+00:00
 slug: building-ai-agents-with-multimodal-models-part-1
 tags: ["nvidia", "multimodalai"]
 description: "Learn about multimodal AI, fusion strategies, and how AI combines senses for robust understanding in Part 1 of this study series"

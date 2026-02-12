@@ -1,6 +1,6 @@
 ---
 title: "Multimodal LLMs in Healthcare: What's Actually Working"
-date: 2026-01-02T01:33:41+00:00
+date: 2025-03-20T05:00:00+00:00
 slug: multimodal-llms-in-healthcare-whats-actually-working
 tags: ["ai", "healthcare", "multimodalai"]
 description: "Examining multimodal LLMs in healthcare reveals models' effectiveness, challenges, and future implications for personalized patient care"

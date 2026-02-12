@@ -1,6 +1,6 @@
 ---
 title: "A guide to LLM evaluation metrics"
-date: 2025-09-17T04:00:00+00:00
+date: 2025-02-16T05:00:00+00:00
 slug: a-guide-to-llm-evaluation-metrics
 tags: ["evaluation", "llms"]
 description: "Discover the latest LLM evaluation metrics, from perplexity to LLM-as-judge, with practical insights for accurate model performance assessment"

@@ -1,6 +1,6 @@
 ---
 title: "Fluent But Wrong: LLM and Healthcare"
-date: 2026-01-20T05:00:00+00:00
+date: 2025-10-05T05:00:00+00:00
 slug: fluent-but-wrong-llm-and-healthcare
 tags: ["multimodalai", "gpt-2"]
 description: "Discusses limitations of deploying language models in healthcare, stressing the need for human verification and system improvements for safety"

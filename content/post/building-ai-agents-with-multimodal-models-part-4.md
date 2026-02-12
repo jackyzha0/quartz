@@ -1,6 +1,6 @@
 ---
 title: "Building AI Agents with Multimodal Models: Part 4"
-date: 2026-01-10T05:00:00+00:00
+date: 2025-07-20T05:00:00+00:00
 slug: building-ai-agents-with-multimodal-models-part-4
 tags: ["nvidia", "rag", "multimodalai", "graphrag"]
 description: "Explore NVIDIA's Video Understanding, Graph-RAG for AI video analysis, reasoning, summarization, prompt engineering, and multimodal integration"

@@ -1,6 +1,6 @@
 ---
 title: "Why a 0.9B VLM can be a serious OCR engine"
-date: 2026-01-03T05:00:00+00:00
+date: 2025-04-22T05:00:00+00:00
 slug: why-a-09b-vlm-can-be-a-serious-ocr-engine
 tags: ["paddleocr-ocr-vlm"]
 description: "Learn how PaddleOCR-VL, a 0.9B vision-language model, excels in OCR tasks with stable layout, low error rates, and fast deployment"

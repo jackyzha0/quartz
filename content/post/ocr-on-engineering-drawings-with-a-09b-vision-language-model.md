@@ -1,6 +1,6 @@
 ---
 title: "OCR on Engineering Drawings with a 0.9B Vision-Language Model"
-date: 2026-01-07T05:29:34+00:00
+date: 2025-05-18T05:00:00+00:00
 slug: ocr-on-engineering-drawings-with-a-09b-vision-language-model
 tags: ["pdf", "ocr", "drawings", "paddlepaddle"]
 cover: /images/0f4d1dc4-5746-4201-9a13-10acb3eac70f.png

@@ -1,6 +1,6 @@
 ---
 title: "What Does Medical VLM Actually See? Experiments with  MedGemma and Sparse Autoencoders"
-date: 2026-01-24T05:00:00+00:00
+date: 2025-11-28T05:00:00+00:00
 slug: what-does-medical-vlm-actually-see-experiments-with-medgemma-and-sparse-autoencoders
 tags: ["interpretability", "gemma-ai", "gemmascope"]
 description: "Sparse Autoencoders improve medical image interpretability in MedGemma, affecting model responses based on question phrasing"

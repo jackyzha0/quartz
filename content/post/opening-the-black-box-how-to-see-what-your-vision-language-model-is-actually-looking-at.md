@@ -1,6 +1,6 @@
 ---
 title: "Opening the Black Box: How to See What Your Vision Language Model is Actually Looking At"
-date: 2026-01-16T05:00:00+00:00
+date: 2025-11-02T05:00:00+00:00
 slug: opening-the-black-box-how-to-see-what-your-vision-language-model-is-actually-looking-at
 tags: ["multimodalai"]
 description: "Use Chefer et al.'s techniques to visualize model attention, enhancing trust in AI diagnostics through vision-language model explainability"

@@ -1,6 +1,6 @@
 ---
 title: "Data Generating Process"
-date: 2026-01-14T05:00:00+00:00
+date: 2025-01-12T05:00:00+00:00
 slug: data-generating-process
 description: "Understand the Data Generating Process (DGP) to explore mechanisms behind data, enabling better insight into uncertainty and statistical methods"
 ---

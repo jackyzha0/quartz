@@ -1,6 +1,6 @@
 ---
 title: "Building AI Agents with Multimodal Models: Part 3"
-date: 2026-01-08T05:00:00+00:00
+date: 2025-07-06T05:00:00+00:00
 slug: building-ai-agents-with-multimodal-models-part-3
 tags: ["multimodalai"]
 description: "Teach AI to process complex documents with multimodal models, utilizing OCR, RAG, and smart document parsing techniques"
