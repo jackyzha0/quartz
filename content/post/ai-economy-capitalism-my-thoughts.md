@@ -1,6 +1,6 @@
 ---
 title: "The Invisible Hand in the Age of AI"
-date: 2024-11-13T05:00:00+00:00
+date: 2026-02-13T05:00:00+00:00
 slug: ai-future-work
 tags: ["ai-capitalism-future"]
 description: "Adam Smith warned us. We just weren't listening."
