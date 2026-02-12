@@ -16,7 +16,7 @@ In *[The Wealth of Nations](https://www.rrojasdatabank.info/Wealth-Nations.pdf)*
 
 > "People of the same trade seldom meet together, even for merriment and diversion, but the conversation ends in a conspiracy against the public, or in some contrivance to raise prices."
 
-In 2026,conspiracy is baked into the economics of economy itself. Training a frontier model costs billions,the compute, the data, the energy: only a handful of companies on Earth can afford to play. The barrier to entry is not a locked door but an whole ocean to swim cross.
+In 2026,conspiracy is baked into the system of economy itself. Training a frontier model costs billions,the compute, the data, the energy: only a handful of companies on Earth can afford to play. The barrier to entry is not a locked door but an whole ocean to swim cross.
 
 As much as I want to an optimists and frame this as a choice. One road leads to dystopia, the other to a democratic AI paradise. Pick the right path, and we are fine. In reality,there is no fork. Unregulated markets in capital-intensive industries do not branch. They consolidate. Always. The natural gravity of the system pulls everything toward a single point.
 
