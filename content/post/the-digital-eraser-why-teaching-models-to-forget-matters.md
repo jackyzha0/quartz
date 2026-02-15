@@ -1,5 +1,5 @@
 ---
-title: "The Digital Eraser: Why Teaching Models to Forget is More Important Than Teaching Them to Learn"
+title: "The Digital Eraser: Why Teaching Models to Forget is as Important as Learning"
 date: 2026-02-14T05:00:00+00:00
 slug: the-digital-eraser-teaching-models-to-forget
 tags: ["machine-unlearning", "privacy", "llm-safety"]
@@ -100,6 +100,22 @@ This is the uncomfortable reality right now. KGA works but takes too long. SCRUB
 
 We're still looking for the method that's both fast enough for production timelines and precise enough to preserve model quality. It probably exists somewhere in the space between these two approaches, but nobody's nailed it yet.
 
+## The copyright elephant in the room
+
+Everything I've discussed so far has been about privacy, about individuals requesting their data be removed. But there's a parallel problem that's arguably even messier: copyright infringement.
+
+The New York Times sued OpenAI. Getty Images sued Stability AI. Authors, musicians, and visual artists have filed class actions against companies whose models were trained on their work without permission. And the core technical question is the same one we've been discussing: once copyrighted material is baked into the weights, how do you get it out?
+
+The honest answer is that unlearning copyrighted content from a trained model is even harder than unlearning personal data. With a GDPR request, you're typically removing a specific individual's data points. With copyright, you might need to remove the influence of entire books, thousands of images from a single photographer, or the style of a specific artist. The "forget set" is massive and its boundaries are fuzzy. When does "influenced by" become "memorized from"? That's not just a technical question; it's a legal one that courts are still sorting out.
+
+And here's what I keep coming back to: unlearning is a remediation strategy. It's what you do after the damage is done. The better question is whether we should be building models that need this kind of surgery in the first place.
+
+I think the most responsible path forward is straightforward, even if it's inconvenient. Source your training data from places where you actually have the right to use it. That means licensed datasets, public domain material, data with explicit consent, and partnerships with content creators who are compensated for their contributions. It's slower. It's more expensive upfront. But it avoids the entire mess of trying to surgically remove copyrighted patterns from billions of parameters after the fact.
+
+Some organizations are already moving in this direction. Adobe trained Firefly exclusively on licensed stock images. Companies like Spawning have built tools that let creators opt in or out of training datasets. These approaches aren't perfect, but they address the problem at the source rather than scrambling for a fix downstream.
+
+The unlearning techniques in this post are valuable and necessary for handling the models that already exist, for the privacy requests that will keep arriving, for the legal obligations that are already in force. But if I'm being honest about where the field should go, the best "unlearning" is never having to unlearn at all.
+
 ## Take away from all this
 
 The field is moving from exact unlearning (expensive, clean retraining) toward approximate unlearning (targeted weight modification). The goal isn't to physically erase every trace of the data. It's to shift the model's weights into a state that's statistically indistinguishable from a model that never saw the data in the first place.
@@ -108,4 +124,6 @@ The LoRA-based approaches with sparsity constraints are the most promising direc
 
 But the scalability problem is real, and I don't think we should pretend otherwise. The gap between "unlearn a class from a ViT" and "unlearn a person's data from a 70B LLM" is enormous. The methods that work at small scale don't necessarily transfer, and the ones that are fast enough for production often break things they shouldn't.
 
-As LLMs become woven into personal and enterprise workflows, our ability to trust them will depend less on what they know and more on whether we can make them forget on demand. That's a hard problem, and right now we're still in the early stages of solving it.
+And for copyright specifically, I think the industry needs to stop treating unlearning as the primary solution and start treating responsible data sourcing as the default. Unlearning is a necessary tool for the mess we're already in, but it shouldn't be the long-term strategy.
+
+As LLMs become woven into personal and enterprise workflows, our ability to trust them will depend less on what they know and more on two things: whether we can make them forget on demand, and whether we built them responsibly enough that they don't need to.
