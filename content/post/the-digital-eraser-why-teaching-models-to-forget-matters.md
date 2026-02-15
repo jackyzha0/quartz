@@ -6,13 +6,12 @@ tags: ["machine-unlearning", "privacy", "llm-safety"]
 description: "Machine unlearning is becoming a legal and technical necessity. Here's how LoRA, sparsity regularization, and teacher-student frameworks are making selective forgetting possible."
 ---
 
-For the last decade, the ML community has been obsessed with memorization. We've celebrated the ability of Large Language Models (LLMs) and Vision Transformers (ViTs) to ingest enormous amounts of human knowledge, and we've measured progress almost entirely by how much a model can learn. More data, more parameters, better benchmarks. That was the game.
+Ever since I started getting in to my first machine learning efforts (almost a decade ago now), I have been focused on making the algortithm learn patterns and generalize to unseen data. Now we've hyped and bought into  the ability of Large Language Models (LLMs) and Vision Transformers (ViTs) to ingest enormous amounts of human knowledge, and we've measured progress almost entirely by how much a model can learn. More data, more parameters, better benchmarks. That was the game.
 
-But I've been spending time with the machine unlearning literature recently, and it's changed how I think about the problem. Because as privacy regulations like the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA) move from legal theory into active enforcement, there's a question the field hasn't answered well: how do you make a model forget something it's already learned?
+This topic wasn't on my radar until my advisor, [Dr. Vahid Behzadan](https://vbehzadan.com/), brought up the idea of "forgetting" in one of our discussions and pointed me to a few papers. I started reading, because it changed how I think about the problem. Because as privacy regulations like the General Data Protection Regulation (GDPR) move into active enforcement, there's a question the field hasn't answered well: how do you make a model forget something it's already learned?
 
-This isn't a hypothetical. It's a computational and legal problem that's arriving faster than most teams are prepared for.
 
-## Why deleting data from a model is nothing like deleting a database row
+## Deleting data from a model is nothing like deleting a database row
 
 In traditional software, forgetting is easy. You delete a row from a database. Done. The record is gone, and nothing else breaks.
 
@@ -26,7 +25,7 @@ So the field is moving toward what's called "approximate unlearning," which is w
 
 ## The Streisand effect of bad unlearning
 
-Here's something that caught my attention in the work by Poppi et al. on unlearning Vision Transformers. They showed that crude attempts at unlearning, where you just try to force the model to "untrain" on specific data, often backfire in a very specific way.
+Work by Poppi et al. on unlearning Vision Transformers showed that crude attempts at unlearning, where you just try to force the model to "untrain" on specific data, often backfire in a very specific way.
 
 What happens is that the embedding space of the forgotten samples collapses into a single, detectable cluster rather than distributing naturally among other classes. In other words, the model doesn't actually forget. Instead, it creates a conspicuous hole that's easy to find. An attacker looking at the embedding space could actually learn *more* about the forgotten data from the poorly unlearned model than from the original model.
 
@@ -54,9 +53,9 @@ Here's how it works in practice. Trainable low-rank matrices (A and B) get injec
 
 What makes this particularly useful is that it creates a unified approach across architectures. Whether you're targeting image classification in ViTs or token sequences in LLMs, the same adapter-based logic applies. You don't need separate unlearning pipelines for different model types.
 
-## The real breakthrough: forgetting without the original data
+## Forgetting without the original data
 
-This is where I started paying close attention. In real-world deployment, companies often use models trained on third-party datasets. When a deletion request comes in, they may not have access to the original "retain set," the data the model should keep remembering. They only know what needs to be forgotten.
+In real-world deployment, companies often use models trained on third-party datasets. When a deletion request comes in, they may not have access to the original "retain set," the data the model should keep remembering. They only know what needs to be forgotten.
 
 Most unlearning methods assume you have both: the "forget set" (data to remove) and the "retain set" (data to preserve). Without the retain set, how do you make sure the model doesn't degrade on everything else while forgetting the target?
 
@@ -66,7 +65,7 @@ The intuition is straightforward. If you only allow the model to make a few, tar
 
 From a compliance perspective, this is exactly what you'd want: the ability to satisfy a deletion request without needing access to data you may no longer be legally allowed to hold.
 
-## The teacher-student approach for LLMs
+## The teacher-student approach
 
 For LLMs specifically, Chen and Yang proposed the Efficient Unlearning (EUL) framework, and it uses a clever "teacher-student" setup to balance forgetting against utility.
 
@@ -78,7 +77,7 @@ The original model acts as the "Competent Teacher." The unlearning model is the 
 
 What I like about this framework is how explicit the tradeoff is. You can literally see the tension between retention and forgetting encoded in the loss function. There's no hand-waving about "maintaining model quality." The KL terms directly measure it.
 
-## Sequential forgetting: what happens when deletion requests keep coming
+## Sequential forgetting
 
 In production, unlearning isn't a one-time event. Deletion requests arrive continuously and asynchronously. A user in Germany files a GDPR request on Monday. Another user in California files a CCPA request on Thursday. You can't afford to run a full unlearning cycle for each one, and you can't just keep stacking adapter layers indefinitely.
 
@@ -88,7 +87,7 @@ The key detail: because this uses the pre-computed inner product rather than the
 
 ## The scalability wall we haven't solved yet
 
-I want to be honest about the limitations here, because they're significant. The Kowieski Master's thesis highlights the friction that appears when you try to move these methods from small classification tasks to large-scale language tasks.
+The Kowieski Master's thesis highlights the friction that appears when you try to move these methods from small classification tasks to large-scale language tasks.
 
 The experiment was straightforward: unlearn a single token, "Berlin," from a BERT model using the Masked Language Model (MaskLM) task. Two methods were tested:
 
@@ -101,7 +100,7 @@ This is the uncomfortable reality right now. KGA works but takes too long. SCRUB
 
 We're still looking for the method that's both fast enough for production timelines and precise enough to preserve model quality. It probably exists somewhere in the space between these two approaches, but nobody's nailed it yet.
 
-## What I take away from all this
+## Take away from all this
 
 The field is moving from exact unlearning (expensive, clean retraining) toward approximate unlearning (targeted weight modification). The goal isn't to physically erase every trace of the data. It's to shift the model's weights into a state that's statistically indistinguishable from a model that never saw the data in the first place.
 
