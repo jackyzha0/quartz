@@ -1,6 +1,6 @@
 ---
 title: "BitNet b1.58: The Death of Multiplication"
-date: 2026-02-14T05:00:00+00:00
+date: 2025-06-15T05:00:00+00:00
 slug: bitnet-b158-the-death-of-multiplication
 tags: ["bitnet", "quantization", "efficient-llm"]
 description: "How replacing 65,536 possible weight values with just three can make LLMs faster, cheaper, and surprisingly capable."
