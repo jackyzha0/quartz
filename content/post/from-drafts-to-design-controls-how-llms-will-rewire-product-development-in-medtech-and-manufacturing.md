@@ -71,6 +71,3 @@ I am scribbing here my predictons for the next decade, just to come back and che
 13. Noy & Zhang, "Generative AI at Work," NBER Working Paper 31161. [nber.org](https://www.nber.org/papers/w31161)
 14. METR, "Early 2025 AI experienced OSS developer study." [metr.org](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)
 
----
-
-<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I'm arguing that you should do more paperwork. You're welcome to disagree, but nobody else wants to write design controls either.*</span>

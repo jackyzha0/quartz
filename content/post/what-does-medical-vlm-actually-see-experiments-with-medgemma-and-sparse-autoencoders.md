@@ -150,6 +150,3 @@ SAEs give us a lens into what's happening inside these models. We can see which 
 *For more technical details, check out Anthropic's original work on monosemanticity and the GemmaScope paper from Google. The SAEs are available on HuggingFace at* `google/gemma-scope-2-4b-it`.
 
 Also do check out the interactive demo in neuronpedia for [Haiku Circuit tracer.](https://www.neuronpedia.org/jackl-circuits-runs-1-4-sofa-v3_0/graph?slug=medical-diagnosis-heart)
----
-
-<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I spent weeks dissecting your cousin's brain with a sparse autoencoder. For science. Please don't take it personally.*</span>

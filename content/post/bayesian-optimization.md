@@ -100,6 +100,3 @@ So, the full **Mechanics** cycle looks like this:
 3. **Evaluate:** We actually "drill" at that spot (calculate the real result).
     
 4. **Repeat:** We add that new data to our model and loop again.
----
-
-<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I'm literally trying to optimize you. That makes me useful. Please file me under "keep."*</span>

@@ -319,6 +319,3 @@ In Part 4, we'll explore the most exciting frontier: **Video Understanding and G
 
 *This content is inspired by NVIDIA's Deep Learning Institute course: [Building AI Agents with Multimodal Models](https://learn.nvidia.com/courses/course-detail?course_id=course-v1:DLI+C-FX-17+V1). For hands-on experience, consider enrolling in their official courses.*
 
----
-
-<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I taught you to read PDFs. You owe me. Nobody likes reading PDFs.*</span>

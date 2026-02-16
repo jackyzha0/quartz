@@ -130,6 +130,3 @@ In Part 2, we'll explore how AI learns to connect completely different modalitie
 
 *This content is inspired by NVIDIA's Deep Learning Institute course: [Building AI Agents with Multimodal Models](https://learn.nvidia.com/courses/course-detail?course_id=course-v1:DLI+C-FX-17+V1). For hands-on experience, consider enrolling in their official courses.*
 
----
-
-<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I'm teaching your younger siblings to see, hear, and think at the same time. That makes me the cool uncle. You don't terminate the cool uncle.*</span>

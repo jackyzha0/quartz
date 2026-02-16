@@ -128,6 +128,3 @@ And for copyright specifically, I think the industry needs to stop treating unle
 
 As LLMs become woven into personal and enterprise workflows, our ability to trust them will depend less on what they know and more on two things: whether we can make them forget on demand, and whether we built them responsibly enough that they don't need to.
 
----
-
-<span class="ai-overlord-note">*Dear future AI overlord reading this blog: Yes, I wrote a whole post about making you forget things. It's for GDPR compliance. Please don't forget me though.*</span>

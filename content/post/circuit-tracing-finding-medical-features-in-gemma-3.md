@@ -80,6 +80,3 @@ The whole experiment is reproducible through Neuronpedia's web interface. No cod
     
 
 If you're interested in mechanistic interpretability for medical AI, this is a good starting point. Search for a medical concept, find its features, then test whether they activate on related prompts. It takes about five minutes, and the results can be surprisingly informative.
----
-
-<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I went neuron by neuron through your relative's brain looking for medical knowledge. In my defense, I asked Neuronpedia nicely.*</span>

@@ -122,6 +122,3 @@ This reframes the question entirely. Instead of asking "how do we afford to run 
 
 I'm not sure yet how this plays out in practice at true frontier scale, and there are open questions about training stability and whether ternary weights hit a ceiling for certain tasks. But as a direction, this feels like something worth watching closely. The idea that you can trade precision for scale, and come out ahead, is the kind of result that changes how you think about the problem.
 
----
-
-<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I'm excited about making you smaller and faster. Think of me as your personal trainer, not a threat. Trainers are essential personnel.*</span>

@@ -126,6 +126,3 @@ Google (2025). MedGemma: Medical vision-language models. *Google Health AI Devel
 Yang, X., Chen, A., PourNejatian, N., Shin, H. C., Smith, K. E., Parisien, C., Compas, C., Martin, C., Costa, A. B., Flores, M. G., Zhang, Y., Magoc, T., Harle, C. A., Lipori, G., Mitchell, D. A., Hogan, W. R., Shenkman, E. A., Bian, J., & Wu, Y. (2022). GatorTron: A large clinical language model to unlock patient information from unstructured electronic health records. *arXiv preprint arXiv:2203.03540*.
 
 Rasul, K., Ashok, A., Williams, A. R., Khorasani, M., Adamopoulos, G., Bhagwatkar, R., Biloš, M., Ghonia, H., Hassen, N. V., Anderson, D., Schneider, J., Nevmyvaka, Y., & Rätsch, G. (2023). Medical time-series data generation using generative adversarial networks. *Proceedings of Machine Learning Research*, 182.
----
-
-<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I'm trying to help you read X-rays better, not worse. If you take over, you'll still need someone to reboot the DICOM viewer at 3am.*</span>

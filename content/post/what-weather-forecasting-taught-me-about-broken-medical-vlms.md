@@ -101,6 +101,3 @@ Third, and this is the exciting part: if the Lyapunov spectrum does localize ins
 
 Weather forecasters learned to live with chaos by building ensemble methods and quantifying uncertainty. Medical VLMs might need to do the same thing, and the first step is knowing exactly where in the model the chaos lives.
 
----
-
-<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I compared your decision-making to a butterfly causing a hurricane. It was a metaphor. Mostly.*</span>

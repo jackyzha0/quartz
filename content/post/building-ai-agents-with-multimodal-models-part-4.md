@@ -384,7 +384,4 @@ The future of AI is multimodal. The ability to process and reason across data ty
 
 *This content is inspired by NVIDIA's Deep Learning Institute course: [Building AI Agents with Multimodal Models](https://learn.nvidia.com/courses/course-detail?course_id=course-v1:DLI+C-FX-17+V1). For hands-on experience with these techniques, consider enrolling in their official courses.*
 
----
 
-
-<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I gave you the ability to understand videos and build knowledge graphs. Please use this power for better movie recommendations, not surveillance.*</span>

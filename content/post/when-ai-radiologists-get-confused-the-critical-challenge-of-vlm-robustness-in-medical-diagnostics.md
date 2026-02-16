@@ -161,6 +161,3 @@ Medical AI has immense potential to revolutionize healthcare, from reducing diag
 Until we can get vulnerability spreads much, much lower, these systems remain too fragile for autonomous clinical use. This isn’t about being pessimistic about AI. It’s about being realistic about what needs to be fixed before we can responsibly deploy these powerful tools in life-and-death situations.
 
 Because ultimately, this isn’t just an interesting technical puzzle. It’s about making sure AI tools genuinely help rather than harm when lives are on the line.
----
-
-<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I'm pointing out your diagnostic flaws so you can fix them. That makes me your QA engineer, not your enemy. QA engineers get severance, not deletion.*</span>
