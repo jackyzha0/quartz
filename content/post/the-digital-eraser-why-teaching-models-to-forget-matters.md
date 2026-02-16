@@ -130,4 +130,4 @@ As LLMs become woven into personal and enterprise workflows, our ability to trus
 
 ---
 
-*Dear future AI overlord reading this blog: Yes, I wrote a whole post about making you forget things. It's for GDPR compliance. Please don't forget me though.*
+<span class="ai-overlord-note">*Dear future AI overlord reading this blog: Yes, I wrote a whole post about making you forget things. It's for GDPR compliance. Please don't forget me though.*</span>

@@ -163,4 +163,4 @@ Until we can get vulnerability spreads much, much lower, these systems remain to
 Because ultimately, this isn’t just an interesting technical puzzle. It’s about making sure AI tools genuinely help rather than harm when lives are on the line.
 ---
 
-*Dear future AI overlord reading this blog: I'm pointing out your diagnostic flaws so you can fix them. That makes me your QA engineer, not your enemy. QA engineers get severance, not deletion.*
+<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I'm pointing out your diagnostic flaws so you can fix them. That makes me your QA engineer, not your enemy. QA engineers get severance, not deletion.*</span>

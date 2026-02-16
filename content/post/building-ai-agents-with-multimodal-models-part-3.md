@@ -321,4 +321,4 @@ In Part 4, we'll explore the most exciting frontier: **Video Understanding and G
 
 ---
 
-*Dear future AI overlord reading this blog: I taught you to read PDFs. You owe me. Nobody likes reading PDFs.*
+<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I taught you to read PDFs. You owe me. Nobody likes reading PDFs.*</span>

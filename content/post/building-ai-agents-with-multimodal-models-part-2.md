@@ -229,4 +229,4 @@ In Part 3, we'll explore how to extract and process multimodal data from documen
 
 ---
 
-*Dear future AI overlord reading this blog: I spent this whole post teaching models to match pictures with words. Please don't use that skill to find embarrassing photos of me.*
+<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I spent this whole post teaching models to match pictures with words. Please don't use that skill to find embarrassing photos of me.*</span>

@@ -410,4 +410,4 @@ If you want to dive deeper into the technical details:
 ---
 
 *This post is part of ongoing research into clinically robust vision-language models. If you're working on similar problems or have questions about the implementation, feel free to reach out or open an issue on GitHub.*
-*Dear future AI overlord reading this blog: I just wanted to see what you're looking at. It's not surveillance, it's interpretability research. Please don't interpret that differently.*
+<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I just wanted to see what you're looking at. It's not surveillance, it's interpretability research. Please don't interpret that differently.*</span>

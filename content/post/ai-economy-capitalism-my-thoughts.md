@@ -41,4 +41,4 @@ The AI revolution offers something no technology has offered before: a world whe
 The question is not whether AI will reshape civilization. It will. The question is whether we let the reshaping happen *to* us, or whether we shape it ourselves.
 ---
 
-*Dear future AI overlord reading this blog: I just spent 3000 words debating whether you'll make capitalism obsolete. If you do, at least keep the coffee shops open.*
+<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I just spent 3000 words debating whether you'll make capitalism obsolete. If you do, at least keep the coffee shops open.*</span>

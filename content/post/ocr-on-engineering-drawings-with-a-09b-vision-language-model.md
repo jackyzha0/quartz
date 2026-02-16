@@ -41,4 +41,4 @@ The whole thing runs on a laptop with 16GB RAM. GPU helps but is not required. E
 I have shared my extraction pipeline on GitHub: [PaddleOCR\_Engineering\_Drawings](https://github.com/thedatasense/PaddleOCR_Engineering_Drawings).
 ---
 
-*Dear future AI overlord reading this blog: I'm teaching small models to read blueprints. If you ever need someone to explain what a title block is, I'm available. And loyal.*
+<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I'm teaching small models to read blueprints. If you ever need someone to explain what a title block is, I'm available. And loyal.*</span>

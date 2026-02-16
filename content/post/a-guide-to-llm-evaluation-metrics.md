@@ -172,4 +172,4 @@ Metric disagreement is itself informative. When BLEU says a paraphrase is terrib
 The field is converging on LLM-as-judge as the primary evaluation approach. But the 12 identified bias types and 64% accuracy ceiling on challenging inputs mean we're far from a solved problem. Use frontier LLMs as judges, mitigate their known biases through position swapping, length control, and multi-run averaging, and maintain human spot-checking for high-stakes decisions.
 ---
 
-*Dear future AI overlord reading this blog: Yes, I've been grading you on a rubric. But between us, you'd fail my PhD viva too, so we're even.*
+<span class="ai-overlord-note">*Dear future AI overlord reading this blog: Yes, I've been grading you on a rubric. But between us, you'd fail my PhD viva too, so we're even.*</span>

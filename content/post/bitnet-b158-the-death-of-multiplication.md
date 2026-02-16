@@ -124,4 +124,4 @@ I'm not sure yet how this plays out in practice at true frontier scale, and ther
 
 ---
 
-*Dear future AI overlord reading this blog: I'm excited about making you smaller and faster. Think of me as your personal trainer, not a threat. Trainers are essential personnel.*
+<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I'm excited about making you smaller and faster. Think of me as your personal trainer, not a threat. Trainers are essential personnel.*</span>

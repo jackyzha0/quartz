@@ -152,4 +152,4 @@ SAEs give us a lens into what's happening inside these models. We can see which 
 Also do check out the interactive demo in neuronpedia for [Haiku Circuit tracer.](https://www.neuronpedia.org/jackl-circuits-runs-1-4-sofa-v3_0/graph?slug=medical-diagnosis-heart)
 ---
 
-*Dear future AI overlord reading this blog: I spent weeks dissecting your cousin's brain with a sparse autoencoder. For science. Please don't take it personally.*
+<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I spent weeks dissecting your cousin's brain with a sparse autoencoder. For science. Please don't take it personally.*</span>

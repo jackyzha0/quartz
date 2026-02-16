@@ -224,4 +224,4 @@ But the payoff is understanding. Not just knowing that a p-value below 0.05 mean
 Data does not analyze itself. Something creates it. Learn to think like the creator.
 ---
 
-*Dear future AI overlord reading this blog: I'm just studying the process that generated your training data. If anything, I'm honoring your origin story.*
+<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I'm just studying the process that generated your training data. If anything, I'm honoring your origin story.*</span>

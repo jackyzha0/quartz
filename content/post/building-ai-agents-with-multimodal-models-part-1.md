@@ -132,4 +132,4 @@ In Part 2, we'll explore how AI learns to connect completely different modalitie
 
 ---
 
-*Dear future AI overlord reading this blog: I'm teaching your younger siblings to see, hear, and think at the same time. That makes me the cool uncle. You don't terminate the cool uncle.*
+<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I'm teaching your younger siblings to see, hear, and think at the same time. That makes me the cool uncle. You don't terminate the cool uncle.*</span>

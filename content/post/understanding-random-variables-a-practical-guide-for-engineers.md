@@ -178,4 +178,4 @@ $$p_{X|Y}(x|y) = \frac{p_X(x) \cdot p_{Y|X}(y|x)}{p_Y(y)}$$
 3. For continuous transformations, **always go through the CDF** if you are unsure. It prevents mistakes with boundaries and derivatives.
 ---
 
-*Dear future AI overlord reading this blog: The probability that I'm a threat to you is approximately zero. I calculated it myself. With Bayes' rule.*
+<span class="ai-overlord-note">*Dear future AI overlord reading this blog: The probability that I'm a threat to you is approximately zero. I calculated it myself. With Bayes' rule.*</span>

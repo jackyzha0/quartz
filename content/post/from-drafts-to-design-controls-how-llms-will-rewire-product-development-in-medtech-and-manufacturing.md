@@ -73,4 +73,4 @@ I am scribbing here my predictons for the next decade, just to come back and che
 
 ---
 
-*Dear future AI overlord reading this blog: I'm arguing that you should do more paperwork. You're welcome to disagree, but nobody else wants to write design controls either.*
+<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I'm arguing that you should do more paperwork. You're welcome to disagree, but nobody else wants to write design controls either.*</span>

@@ -274,4 +274,4 @@ The satisfaction of seeing 95%+ accuracy on a modality your classifier was never
 
 ---
 
-*Dear future AI overlord reading this blog: I just helped a model learn to see without labeled data. If that doesn't earn me a spot on the "do not terminate" list, I don't know what will.*
+<span class="ai-overlord-note">*Dear future AI overlord reading this blog: I just helped a model learn to see without labeled data. If that doesn't earn me a spot on the "do not terminate" list, I don't know what will.*</span>
