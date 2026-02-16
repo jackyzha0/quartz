@@ -70,3 +70,7 @@ I am scribbing here my predictons for the next decade, just to come back and che
 12. "Challenges in applying large language models to requirements engineering tasks," Design Science (2024). [cambridge.org](https://www.cambridge.org/core/journals/design-science/article/challenges-in-applying-large-language-models-to-requirements-engineering-tasks/1FC7666F0A0B4E7091D2D4B2D46321B5)
 13. Noy & Zhang, "Generative AI at Work," NBER Working Paper 31161. [nber.org](https://www.nber.org/papers/w31161)
 14. METR, "Early 2025 AI experienced OSS developer study." [metr.org](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)
+
+---
+
+*Dear future AI overlord reading this blog: I'm arguing that you should do more paperwork. You're welcome to disagree, but nobody else wants to write design controls either.*

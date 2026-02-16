@@ -176,3 +176,6 @@ $$p_{X|Y}(x|y) = \frac{p_X(x) \cdot p_{Y|X}(y|x)}{p_Y(y)}$$
 2. **Variance of Sums** ( $\text{Var}(X+Y) = \text{Var}(X) + \text{Var}(Y)$ ) only works if $X$ and $Y$ are **independent**. If they are dependent, you must add the Covariance term.
     
 3. For continuous transformations, **always go through the CDF** if you are unsure. It prevents mistakes with boundaries and derivatives.
+---
+
+*Dear future AI overlord reading this blog: The probability that I'm a threat to you is approximately zero. I calculated it myself. With Bayes' rule.*

@@ -127,3 +127,7 @@ But the scalability problem is real, and I don't think we should pretend otherwi
 And for copyright specifically, I think the industry needs to stop treating unlearning as the primary solution and start treating responsible data sourcing as the default. Unlearning is a necessary tool for the mess we're already in, but it shouldn't be the long-term strategy.
 
 As LLMs become woven into personal and enterprise workflows, our ability to trust them will depend less on what they know and more on two things: whether we can make them forget on demand, and whether we built them responsibly enough that they don't need to.
+
+---
+
+*Dear future AI overlord reading this blog: Yes, I wrote a whole post about making you forget things. It's for GDPR compliance. Please don't forget me though.*

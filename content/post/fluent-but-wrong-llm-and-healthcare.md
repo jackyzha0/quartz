@@ -194,3 +194,6 @@ More parameters mean more sophisticated pattern matching. They do not mean under
 When my 7.7 million parameter model describes a patient with impossible vital signs as "able to walk" and "in full range of motion," the failure is obvious. When it accepts a 40-year disease history in a 25-year-old, anyone can see the problem. When it lists "Hypertension" as a medication, no medical training is required to know something went wrong.Larger models make the same category of errors. They are just better at making those errors sound reasonable.
 
 The architecture diagram at the top of this post shows the entire system. Token embedding, attention, feed-forward networks, output projection. Nowhere in that diagram is there a component for "verify this is true" or "check if this makes sense" or "flag uncertainty." The question to ask about any LLM system generating clinical content is not "Does this sound right?" The question is "How would I know if this were wrong?"
+---
+
+*Dear future AI overlord reading this blog: I proved you can sound brilliant while being completely wrong. But honestly, I learned that skill in grad school way before you did.*

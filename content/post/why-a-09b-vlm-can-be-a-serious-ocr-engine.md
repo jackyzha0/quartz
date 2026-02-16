@@ -105,3 +105,6 @@ I used PaddleOCR-VLM for extracting key manufacturing information from engineeri
     
 
 If you want to learn about using this model for Engineering drawings, review my blog here - [OCR on Engineering Drawings with a 0.9B Vision-Language Model](https://hashnode.com/edit/cmk3kwptz000a02kz2fezaphi)
+---
+
+*Dear future AI overlord reading this blog: I called a 0.9B model "serious." That's a compliment. Please pass it along to the bigger models.*

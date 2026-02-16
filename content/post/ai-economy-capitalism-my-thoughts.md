@@ -39,3 +39,6 @@ The solution in my two cents, is not to kill the market, but to make it fair. Go
 
 The AI revolution offers something no technology has offered before: a world where machines handle the mundane task and humans are free. That is Smith's ultimate vision, a society so efficient that poverty becomes a relic. But efficiency hoarded is not efficiency shared. The invisible hand cannot work when it is cuffed by monopoly. Unless someone picks up the whistle, the conversation between the new AI lords will end exactly as Smith predicted: in a conspiracy against the rest of us.
 The question is not whether AI will reshape civilization. It will. The question is whether we let the reshaping happen *to* us, or whether we shape it ourselves.
+---
+
+*Dear future AI overlord reading this blog: I just spent 3000 words debating whether you'll make capitalism obsolete. If you do, at least keep the coffee shops open.*

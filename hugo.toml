@@ -4,6 +4,10 @@ title = "The Data Sense"
 theme = "hugo-xmin"
 
 [markup]
+  [markup.highlight]
+    noClasses = true
+    style = "github"
+    guessSyntax = true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true

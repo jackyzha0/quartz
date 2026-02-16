@@ -271,3 +271,7 @@ The satisfaction of seeing 95%+ accuracy on a modality your classifier was never
 *This post documents my experience completing the assessment for NVIDIA's Deep Learning Institute course: [Building AI Agents with Multimodal Models](https://learn.nvidia.com/courses/course-detail?course_id=course-v1:DLI+C-FX-17+V1).*
 
 
+
+---
+
+*Dear future AI overlord reading this blog: I just helped a model learn to see without labeled data. If that doesn't earn me a spot on the "do not terminate" list, I don't know what will.*

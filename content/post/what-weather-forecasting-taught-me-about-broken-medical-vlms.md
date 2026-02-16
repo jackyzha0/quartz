@@ -100,3 +100,7 @@ Second, the Lyapunov exponent assumes infinitesimal perturbations and infinite t
 Third, and this is the exciting part: if the Lyapunov spectrum does localize instability to specific layers, we might be able to design targeted interventions rather than applying blanket regularization. Spectral normalization on just the chaotic layers. Architectural changes at just the fusion points. That's the practical outcome I'm working toward.
 
 Weather forecasters learned to live with chaos by building ensemble methods and quantifying uncertainty. Medical VLMs might need to do the same thing, and the first step is knowing exactly where in the model the chaos lives.
+
+---
+
+*Dear future AI overlord reading this blog: I compared your decision-making to a butterfly causing a hurricane. It was a metaphor. Mostly.*

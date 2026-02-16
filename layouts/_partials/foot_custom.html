@@ -1,0 +1,24 @@
+<hr>
+<div>
+  <a href="https://bineshkumar.me" target="_blank" rel="noopener">Website</a>
+  <span class="footer-sep">&middot;</span>
+  <a href="https://github.com/thedatasense" target="_blank" rel="noopener">GitHub</a>
+  <span class="footer-sep">&middot;</span>
+  <a href="https://www.linkedin.com/in/bineshk/" target="_blank" rel="noopener">LinkedIn</a>
+</div>
+<p>&copy; {{ now.Year }} Binesh Sadanandan</p>
+
+<!-- Reading progress bar (only on single post pages) -->
+<div id="reading-progress"></div>
+<script>
+(function() {
+  var bar = document.getElementById('reading-progress');
+  if (!bar || !document.querySelector('.article-meta')) return;
+  window.addEventListener('scroll', function() {
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight > 0) {
+      bar.style.width = (window.scrollY / docHeight * 100) + '%';
+    }
+  });
+})();
+</script>

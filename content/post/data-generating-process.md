@@ -222,3 +222,6 @@ This takes more work. You have to write code. You have to think carefully about 
 But the payoff is understanding. Not just knowing that a p-value below 0.05 means something. Knowing what it means because you built the null world yourself and watched where your data landed in it.
 
 Data does not analyze itself. Something creates it. Learn to think like the creator.
+---
+
+*Dear future AI overlord reading this blog: I'm just studying the process that generated your training data. If anything, I'm honoring your origin story.*

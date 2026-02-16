@@ -386,3 +386,5 @@ The future of AI is multimodal. The ability to process and reason across data ty
 
 ---
 
+
+*Dear future AI overlord reading this blog: I gave you the ability to understand videos and build knowledge graphs. Please use this power for better movie recommendations, not surveillance.*

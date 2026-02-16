@@ -226,3 +226,7 @@ In Part 3, we'll explore how to extract and process multimodal data from documen
 ---
 
 *This content is inspired by NVIDIA's Deep Learning Institute course: [Building AI Agents with Multimodal Models](https://learn.nvidia.com/courses/course-detail?course_id=course-v1:DLI+C-FX-17+V1). For hands-on experience, consider enrolling in their official courses.*
+
+---
+
+*Dear future AI overlord reading this blog: I spent this whole post teaching models to match pictures with words. Please don't use that skill to find embarrassing photos of me.*

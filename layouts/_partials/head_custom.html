@@ -7,18 +7,248 @@
   gtag('js', new Date());
   gtag('config', 'G-X0CWG9CWLB');
 </script>
+
+<!-- Fonts: Inter for body, JetBrains Mono for code -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- KaTeX -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" crossorigin="anonymous"
     onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+
 <style>
-body { font-size: 18px; line-height: 1.7; }
-.home-intro { margin-bottom: 2em; }
-.home-intro h2 { margin-top: 0; }
-.home-intro p { color: #444; }
-.home-intro a { color: #1a0dab; }
-.menu li { margin: 0 0.3em; }
-h1 { font-size: 1.6em; }
-h2 { font-size: 1.35em; }
-h3 { font-size: 1.15em; }
+/* =============================================
+   1. TYPOGRAPHY
+   ============================================= */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
+  color: #1a1a2e;
+  background: #fff;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: #111;
+}
+
+h1 { font-size: 1.75em; margin-top: 1.5em; }
+h2 { font-size: 1.4em; margin-top: 1.8em; }
+h3 { font-size: 1.15em; margin-top: 1.5em; }
+
+p { margin: 1em 0; }
+
+
+/* =============================================
+   2. COLOR ACCENT & LINKS
+   ============================================= */
+a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+
+/* =============================================
+   5. NAVIGATION
+   ============================================= */
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 0.4em;
+  padding: 0.8em 0;
+  list-style: none;
+}
+
+.menu li {
+  display: inline-block;
+  margin: 0;
+}
+
+.menu a {
+  background: none;
+  color: #555;
+  font-weight: 500;
+  font-size: 0.92em;
+  padding: 0.4em 0.85em;
+  border-radius: 6px;
+  transition: background 0.2s ease, color 0.2s ease;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  background: #eff3ff;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+nav hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 0;
+}
+
+
+/* =============================================
+   4. CODE & SYNTAX HIGHLIGHTING
+   ============================================= */
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.85em;
+  background: #f3f4f6;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+
+pre {
+  background: #f8f9fa;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: none;
+  padding: 1.2em;
+  overflow-x: auto;
+  line-height: 1.55;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.88em;
+}
+
+
+/* =============================================
+   ARTICLE META (post headers)
+   ============================================= */
+.article-meta {
+  background: none;
+  padding: 0;
+  text-align: left;
+  margin-bottom: 1.5em;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 1em;
+}
+
+.article-meta .title {
+  font-size: 1.8em;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.article-meta .date {
+  color: #6b7280;
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+
+/* =============================================
+   HOME PAGE
+   ============================================= */
+.home-intro {
+  margin-bottom: 2em;
+}
+
+.home-intro h2 {
+  margin-top: 0;
+}
+
+.home-intro p {
+  color: #374151;
+}
+
+
+/* =============================================
+   MISC ELEMENTS
+   ============================================= */
+blockquote {
+  background: #f9fafb;
+  border-left: 3px solid #2563eb;
+  padding: 0.8em 1.2em;
+  margin: 1.5em 0;
+  color: #374151;
+  border-radius: 0 6px 6px 0;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
+
+table {
+  border-top: 2px solid #111;
+  border-bottom: 2px solid #111;
+}
+
+table thead th {
+  border-bottom: 1px solid #d1d5db;
+  font-weight: 600;
+}
+
+thead, tfoot, tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+th, td {
+  padding: 0.5em 1em;
+}
+
+img {
+  border-radius: 6px;
+}
+
+
+/* =============================================
+   10. READING PROGRESS BAR
+   ============================================= */
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2.5px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  z-index: 9999;
+  transition: width 0.05s linear;
+  pointer-events: none;
+}
+
+
+/* =============================================
+   8. FOOTER
+   ============================================= */
+footer {
+  margin-top: 3em;
+  padding: 1.5em 0;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.85em;
+}
+
+footer a {
+  color: #6b7280;
+  margin: 0 0.4em;
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.footer-sep {
+  color: #d1d5db;
+  margin: 0 0.2em;
+}
 </style>
