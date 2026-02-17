@@ -288,4 +288,56 @@ footer a:hover {
   color: #ccc;
   margin: 0 0.2em;
 }
+
+
+/* =============================================
+   POST NAVIGATION (prev/next)
+   ============================================= */
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5em;
+  margin-top: 2.5em;
+  padding-top: 1.5em;
+  border-top: 1px solid #333;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.post-nav-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  max-width: 48%;
+}
+
+.post-nav-link:hover {
+  text-decoration: none;
+}
+
+.post-nav-link:hover .post-nav-title {
+  color: #37c;
+}
+
+.post-nav-prev {
+  align-items: flex-start;
+}
+
+.post-nav-next {
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+.post-nav-label {
+  font-size: 0.8em;
+  color: #666;
+  margin-bottom: 0.2em;
+}
+
+.post-nav-title {
+  font-size: 0.95em;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
 </style>
