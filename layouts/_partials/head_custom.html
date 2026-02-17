@@ -8,10 +8,10 @@
   gtag('config', 'G-X0CWG9CWLB');
 </script>
 
-<!-- Fonts: Inter for body, JetBrains Mono for code -->
+<!-- Fonts: IBM Plex Sans for headings/nav, JetBrains Mono for code -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <!-- KaTeX -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" crossorigin="anonymous">
@@ -21,41 +21,42 @@
 
 <style>
 /* =============================================
-   1. TYPOGRAPHY
+   1. TYPOGRAPHY (Georgia serif body, IBM Plex Sans headings)
    ============================================= */
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 15px;
-  line-height: 1.75;
-  color: #1a1a2e;
-  background: #fff;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #000;
+  background: #fdfdfd;
+  max-width: 75ch;
 }
 
 h1, h2, h3, h4 {
-  font-weight: 650;
-  letter-spacing: -0.02em;
-  line-height: 1.3;
-  color: #111;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  color: #000;
 }
 
 h1 { font-size: 1.5em; margin-top: 1.5em; }
-h2 { font-size: 1.25em; margin-top: 1.8em; }
-h3 { font-size: 1.05em; margin-top: 1.5em; }
+h2 { font-size: 1.3em; margin-top: 1.8em; }
+h3 { font-size: 1.1em; margin-top: 1.5em; }
 
-p { margin: 1em 0; }
+p { margin-top: 0; margin-bottom: 1.5rem; }
 
 
 /* =============================================
    2. COLOR ACCENT & LINKS
    ============================================= */
 a {
-  color: #2563eb;
+  color: #37c;
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
 a:hover {
-  color: #1d4ed8;
+  color: #33c;
   text-decoration: underline;
 }
 
@@ -69,6 +70,7 @@ a:hover {
   gap: 0.4em;
   padding: 0.8em 0;
   list-style: none;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .menu li {
@@ -78,7 +80,7 @@ a:hover {
 
 .menu a {
   background: none;
-  color: #555;
+  color: #333;
   font-weight: 500;
   font-size: 0.92em;
   padding: 0.4em 0.85em;
@@ -88,14 +90,14 @@ a:hover {
 }
 
 .menu a:hover {
-  background: #eff3ff;
-  color: #2563eb;
+  background: #f5f5f5;
+  color: #37c;
   text-decoration: none;
 }
 
 nav hr {
   border: none;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid #333;
   margin-top: 0;
 }
 
@@ -136,14 +138,22 @@ pre code {
   padding: 0;
   text-align: left;
   margin-bottom: 1.5em;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #333;
   padding-bottom: 1em;
 }
 
 .article-meta .title {
-  font-size: 1.4em;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1.6em;
   font-weight: 700;
-  letter-spacing: -0.025em;
+  letter-spacing: 0.01em;
+}
+
+.article-meta .date {
+  color: #666;
+  font-size: 0.9em;
+  font-weight: 400;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 /* AI overlord sign-off (per-post) */
@@ -167,12 +177,6 @@ pre code {
   line-height: 1.7;
 }
 
-.article-meta .date {
-  color: #6b7280;
-  font-size: 0.9em;
-  font-weight: 400;
-}
-
 
 /* =============================================
    HOME PAGE
@@ -183,10 +187,11 @@ pre code {
 
 .home-intro h2 {
   margin-top: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .home-intro p {
-  color: #374151;
+  color: #333;
 }
 
 
@@ -194,31 +199,33 @@ pre code {
    MISC ELEMENTS
    ============================================= */
 blockquote {
-  background: #f9fafb;
-  border-left: 3px solid #2563eb;
-  padding: 0.8em 1.2em;
-  margin: 1.5em 0;
-  color: #374151;
-  border-radius: 0 6px 6px 0;
+  font-style: italic;
+  color: #333;
+  background: none;
+  border-left: 1px solid #333;
+  padding: 0 0 0 1em;
+  margin: 1em 0;
+  border-radius: 0;
 }
 
 hr {
   border: none;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid #333;
 }
 
 table {
-  border-top: 2px solid #111;
-  border-bottom: 2px solid #111;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
 }
 
 table thead th {
-  border-bottom: 1px solid #d1d5db;
+  border-bottom: 1px solid #ccc;
   font-weight: 600;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 thead, tfoot, tr:nth-child(even) {
-  background: #f9fafb;
+  background: #f5f5f5;
 }
 
 th, td {
@@ -226,7 +233,15 @@ th, td {
 }
 
 img {
-  border-radius: 6px;
+  border-radius: 0;
+}
+
+figcaption {
+  font-style: italic;
+  color: #666;
+  font-size: 0.95em;
+  line-height: 1.4;
+  margin-top: 0.5em;
 }
 
 
@@ -239,7 +254,7 @@ img {
   left: 0;
   width: 0%;
   height: 2.5px;
-  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  background: #37c;
   z-index: 9999;
   transition: width 0.05s linear;
   pointer-events: none;
@@ -253,23 +268,24 @@ footer {
   margin-top: 3em;
   padding: 1.5em 0;
   text-align: center;
-  color: #9ca3af;
+  color: #666;
   font-size: 0.85em;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 footer a {
-  color: #6b7280;
+  color: #666;
   margin: 0 0.4em;
   transition: color 0.2s ease;
 }
 
 footer a:hover {
-  color: #2563eb;
+  color: #37c;
   text-decoration: none;
 }
 
 .footer-sep {
-  color: #d1d5db;
+  color: #ccc;
   margin: 0 0.2em;
 }
 </style>
