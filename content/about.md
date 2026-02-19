@@ -3,7 +3,8 @@ title: "About"
 date: 2025-10-15T00:00:00+00:00
 ---
 
-Hi, I'm **Binesh Sadanandan**. This is my blog where I write about AI, machine learning, and my PhD research on making medical AI safer and more reliable.
+Hi, I'm **Binesh Sadanandan**. This is my research notepad
+ where I write about AI, machine learning, and my PhD research on making medical AI safer and more reliable.
 
 I'm a PhD student at the University of New Haven, working with Dr. Vahid Behzadan. My research focuses on the robustness of Vision-Language Models (VLMs) used in clinical diagnostics, specifically understanding why these models give contradictory answers when clinicians rephrase the same question.
 

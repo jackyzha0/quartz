@@ -1,5 +1,5 @@
 ---
-title: "From Drafts to Design Controls: How LLMs Will Rewire Product Development in MedTech and Manufacturing"
+title: " A highly Opinionated View: How LLMs Will Rewire Product Development in MedTech-Manufacturing"
 date: 2026-01-18T05:00:00+00:00
 slug: from-drafts-to-design-controls-how-llms-will-rewire-product-development-in-medtech-and-manufacturing
 tags: ["manufacturing", "medtech", "llms", "npd", "regulatory"]
