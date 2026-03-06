@@ -7,13 +7,9 @@ description: "The FDA cleared 350 AI/ML-enabled medical devices in 2025, a 48% j
 cover:
 ---
 
-I downloaded the [FDA's complete list of AI/ML-enabled medical devices](https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices) last week. 1,451 devices, dating back to 1995. I expected steady growth. What I found was an inflection point.
+I downloaded the [FDA's complete list of AI/ML-enabled medical devices](https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices) today. 1,451 devices, dating back to 1995.
 
 In 2025, the FDA cleared 350 devices with some form of machine learning built in. That's a 48% jump from 2024's 236. To put it in perspective, the entire period from 1995 to 2019, twenty-four years, produced 309 total clearances. 2025 alone beat that in twelve months.
-
-Something shifted, and I wanted to understand what.
-
-## The growth curve that should make you pay attention
 
 Here's the big picture. From 2016 to 2020, the numbers were growing but manageable. Then 2021 onwards, the curve steepened. 2024 looked like a plateau year with only 4.4% growth. Some people thought the market was saturating. Then 2025 happened.
 
@@ -32,13 +28,13 @@ Here's the big picture. From 2016 to 2020, the numbers were growing but manageab
 
 That 2024 slowdown looks like it was a speed bump, not a ceiling. My guess is that the backlog from 2023's submission surge plus an influx of new applications from smaller companies created the 2025 wave. But the structural story is clear: more companies are building LLM and machine learning features into medical devices every year, and the pace is accelerating.
 
-## Radiology still dominates, but the edges are getting interesting
+## Radiology still dominates
 
 If you've followed this space at all, you won't be surprised that radiology accounts for the majority of clearances. In 2025, 263 out of 350 devices, roughly 75%, fell under the radiology panel. That's been the pattern for years, and it makes sense. Medical imaging is where machine learning has the clearest product-market fit: large datasets, well-defined tasks, and a clinical workflow that benefits from automated triage and detection.
 
 ![2025 AI/ML devices by medical specialty showing radiology at 263, cardiovascular at 30, neurology at 21](/images/fda-aiml-2025-panels.png)
 
-But look at what's happening outside radiology. Cardiovascular hit 30 devices in 2025. Neurology reached 21. Gastroenterology-Urology and Anesthesiology are climbing. Pathology is small but growing. These are the specialties where the next wave is building.
+Cardiovascular hit 30 devices in 2025. Neurology reached 21. Gastroenterology-Urology and Anesthesiology are climbing. Pathology is small but growing. These are the specialties where the next wave is building.
 
 ![Stacked area chart showing how different medical specialties have grown their share of AI/ML devices from 2018 to 2025](/images/fda-aiml-panel-evolution.png)
 
@@ -56,13 +52,13 @@ Some of the most interesting 2025 clearances came from outside radiology entirel
 
 The Apple and Fitbit entries are worth paying attention to. Consumer wearables with FDA-cleared ML algorithms represent a fundamentally different distribution model than traditional medical devices. These aren't sold to hospitals. They're on millions of wrists already.
 
-## The 510(k) highway: why almost every device takes the same road
+## The 510(k) freeway
 
-Here's the number that jumped out at me most when I analyzed the data: 99.1% of all 2025 clearances went through the 510(k) pathway. Out of 350 devices, 347 were 510(k). Only 2 were De Novo. Only 1 was a Premarket Approval (PMA).
+99.1% of all 2025 clearances went through the 510(k) pathway. Out of 350 devices, 347 were 510(k). Only 2 were De Novo. Only 1 was a Premarket Approval (PMA).
 
 ![Regulatory pathway distribution from 2016 to 2025 showing 510(k) dominance at 94-99% every year](/images/fda-aiml-pathway-trend.png)
 
-This isn't new. The 510(k) has been the dominant pathway since the beginning. But the concentration is getting more extreme, not less. And that tells us something important about how the FDA is actually regulating these devices.
+The 510(k) has been the dominant pathway since the beginning. But the concentration is getting more extreme, not less. And that tells us something important about how the FDA is actually regulating these devices.
 
 ### A quick primer on the three pathways
 
@@ -84,9 +80,7 @@ The two De Novo authorizations in 2025 are worth examining because they represen
 
 **Allix5** from Clairity, Inc. received De Novo authorization in May 2025 for a novel radiology application.
 
-The scarcity of De Novo authorizations reveals a tension. The most clinically ambitious applications, the ones venturing into areas where no predicate exists, face a harder regulatory path. Meanwhile, the 510(k) highway fills up with incremental variations on established themes. That's not necessarily bad. Incremental improvements in chest X-ray triage or mammography CAD are clinically valuable. But it does mean the regulatory system favors fast followers over first movers.
-
-## The PCCP framework: the most important regulatory change you haven't heard of
+ The most clinically ambitious applications, the ones venturing into areas where no predicate exists, face a harder regulatory path. Meanwhile, the 510(k) highway fills up with incremental variations on established themes. That's not necessarily bad. Incremental improvements in chest X-ray triage or mammography CAD are clinically valuable. But it does mean the regulatory system favors fast followers over first movers.
 
 If you build or regulate medical devices with machine learning components, the Predetermined Change Control Plan (PCCP) framework is the single most important regulatory development of the past two years.
 
@@ -94,15 +88,14 @@ The FDA finalized this guidance in late 2024, and it directly addresses a fundam
 
 The PCCP changes this. When a company submits a 510(k), De Novo, or PMA for a device with an LLM or ML component, they can include a PCCP that describes anticipated future modifications. If the FDA authorizes the plan alongside the device, the company can implement those pre-specified changes without filing a new marketing submission, as long as they follow the protocols laid out in the plan for data collection, validation testing, labeling updates, and cybersecurity review.
 
-This matters enormously for a few reasons:
+This matters great for a few reasons:
 
 First, it acknowledges that ML-based devices are fundamentally different from static software. A traditional medical device doesn't get better after it ships. An ML-based device can and should.
 
 Second, it creates a framework for continuous improvement without continuous re-submission. ArteraAI's De Novo authorization, for example, included a PCCP that allows future expansions of the tool's capabilities without additional 510(k) submissions.
 
-Third, and this is the part that keeps me thinking as a researcher: it puts the burden on the manufacturer to pre-specify what will change and how they'll validate it. That's a much harder intellectual exercise than just submitting what you have today. You have to predict your own model's evolution and commit to a testing protocol in advance.
+Third, and this is the part that keeps me thinking as a researcher: it puts the burden on the manufacturer to pre-specify what will change and how they'll validate it. That's a much harder intellectual forecasting/antcipation exercise than just submitting what you have today. You have to predict your own model's or device's  evolution and commit to a testing protocol in advance.
 
-## Who's building these devices?
 
 The company landscape in 2025 reveals an interesting split between legacy imaging Original Equipment Manufacturers (OEMs) and newer companies that are building ML-first.
 
@@ -112,25 +105,55 @@ United Imaging, a Shanghai-based company, led all manufacturers with 10 clearanc
 
 But the more interesting story is the long tail. Companies like Pearl (dental AI), BunkerHill Health (cardiac AI), Huxley Medical (sleep diagnostics), Brainomix (stroke imaging), and Iterative Health (GI endoscopy) represent a new generation of focused ML-first medical device companies. They're not imaging OEMs bolting AI onto existing hardware. They're building products where the algorithm is the device.
 
-## The monthly pattern: no seasonal slowdown
+## Transformers, foundation models, and absent LLM
 
-One thing I checked was whether there's a seasonal pattern to clearances: do companies submit more at certain times of year, or does the FDA clear more devices before fiscal year end?
+When people hear "AI in healthcare" in 2026, they think of ChatGPT diagnosing patients. The reality inside FDA-cleared devices is very different when we attempt to dig into the actual architectures behind these 350 devices. This turned out to be harder than expected, because the FDA doesn't require companies to disclose their model architecture. A [2025 study in npj Digital Medicine](https://www.nature.com/articles/s41746-025-02052-9) reviewed over 1,000 FDA safety summaries and found an average transparency score of just 3.3 out of 17 for reporting model characteristics. Most submissions describe their system as "deep learning" or "machine learning" and leave it at that.
 
-![Monthly FDA AI/ML clearances comparing 2024 vs 2025, showing 2025 outpacing 2024 in every month](/images/fda-aiml-monthly-2024v2025.png)
+But with enough digging through 510(k) summaries, published papers, we can get a rough idea. 
 
-The answer is: 2025 outpaced 2024 in nearly every single month. The distribution is remarkably even. April through June 2025 saw the highest volume (36, 38, and 39 clearances respectively), but there's no dramatic spike or valley. The FDA's review pipeline appears to be running at a sustained higher throughput, not just catching up on a backlog.
+### The CNN still leads
 
-## What this data doesn't tell us
+The vast majority of FDA-cleared devices, including the 2025 cohort, run on Convolutional Neural Networks (CNNs). ResNet, U-Net, EfficientNet, VGG. The architectures that were state of the art between 2015 and 2020.
 
-I've spent my research career studying Vision-Language Models (VLMs) in medical imaging, specifically their adversarial robustness and failure modes. So I'll be the first to say that clearance counts alone don't tell us what matters most.
+| Device | Company | Year | Confirmed Architecture |
+| --- | --- | --- | --- |
+| ArteraAI Prostate | Artera Inc. | 2025 | ResNet-50 with MoCo-v2 self-supervised learning |
+| AIR Recon DL | GE HealthCare | 2020+ | CNN-based MRI reconstruction |
+| Viz LVO | Viz.ai | 2018 | CNN for large vessel occlusion detection |
+| Paige Prostate | Paige AI | 2021 | ResNet34 multiple instance learning |
+| qXR-Detect | Qure.ai | 2025 | U-Net with EfficientNetV2 backbone |
 
-The FDA's list doesn't track post-market performance. It doesn't tell us how many of these 350 devices are actually being used in clinical practice. It doesn't tell us whether they're improving patient outcomes. And it doesn't tell us about the devices that were submitted and rejected, or the companies that looked at the regulatory landscape and decided not to submit at all.
+This makes sense if you think about it from a regulatory perspective. These architectures are well-characterized. Their failure modes are understood. Their behavior is deterministic: same input, same output, every time. That's exactly what a regulator wants to see.
 
-The 510(k) pathway, for all its efficiency, requires only a demonstration of substantial equivalence, not a demonstration of clinical effectiveness in the way a randomized trial would provide it. When 99% of clearances use this pathway, it means 99% of these devices entered the market without the FDA requiring evidence that they actually help patients. Some companies provide that evidence voluntarily (ArteraAI's Phase 3 trial data being a standout example). Most don't.
 
-There's also the question of what happens after clearance. ML models can drift. Training data can become stale. Clinical populations can shift. The PCCP framework is a step toward addressing this, but it's still voluntary and only covers pre-specified changes. What about the unexpected ones?
+Here's what I found most interesting. Transformers aren't absent from the FDA list. They're just not where most people are looking.
 
-## Where I think this is heading
+**Eko EFAST** (K251494, cleared August 2025) is, as far as I can determine, the first FDA-cleared device that explicitly uses a transformer-based foundation model. The name literally spells it out: "Eko Foundation Analysis Software with Transformers." It uses a masked autoencoder framework, a self-supervised transformer architecture, pre-trained on over 4 million de-identified heart sound and ECG recordings. The underlying approach, described in a [2024 paper in npj Cardiovascular Health](https://www.nature.com/articles/s44325-024-00027-5), learns representations from raw cardiac biosignals and then fine-tunes for specific detection tasks like murmur detection and valve disease screening.
+
+This is not an LLM. It doesn't generate text. It doesn't reason or hallucinate. It's a transformer encoder trained via self-supervised learning on domain-specific signal data, then fine-tuned for classification. But architecturally, it's built on the same attention mechanism that powers GPT and Claude. Eko Health describes it as the [first FDA-cleared foundation model for cardiovascular AI](https://www.ekohealth.com/blogs/newsroom/fda-clearance-efast-sensora).
+
+**Aidoc's CARE foundation model** is the second strong signal. Aidoc describes CARE (Clinical AI Reasoning Engine) as a vision-language foundation model built using CT and X-ray images combined with clinical information. Their own materials reference "transformer architectures" and "attention mechanisms" explicitly. The model was trained on millions of exams and powers their BriefCase-Triage product across 11 acute indications. The January 2026 FDA clearance (K252970) makes it the first comprehensive set of double-digit indications powered by a single foundation model, achieving roughly an order-of-magnitude reduction in false alerts compared to their earlier single-condition models.
+
+### Where are the actual LLMs?
+
+Now for the part that genuinely surprised me. Out of 1,451 FDA-cleared AI/ML devices across the entire history of the database, zero use a Large Language Model or any form of generative AI.
+
+The RAND Forecasting Initiative has an [open prediction market](https://www.randforecastinginitiative.org/questions/1681-will-the-fda-have-authorized-a-medical-device-that-incorporates-llm-based-functionality-by-31-march-2026) on whether the FDA will authorize even a single LLM-based medical device by March 31, 2026. The current crowd forecast: 2.12% probability.
+
+The distinction matters. Eko's EFAST uses a transformer encoder for classification. That's architecturally related to LLMs the way a motorcycle engine is related to a jet turbine: same fundamental principles, completely different application. A transformer encoder that classifies heart sounds is deterministic, bounded, and testable. An LLM that generates free-form clinical text is stochastic, unbounded, and much harder to characterize for safety.
+
+The regulatory challenges for actual LLMs are real:
+
+| Challenge | Why It's Hard |
+| --- | --- |
+| **Non-determinism** | Same input can produce different outputs. The FDA's testing framework assumes reproducibility. |
+| **No predicate device** | The 510(k) pathway needs a predicate. No LLM device exists, so the first must go De Novo. |
+| **Hallucination risk** | A CNN produces a wrong label. An LLM produces a wrong label wrapped in a fluent, confident, medically plausible explanation. Much harder to bound the failure space. |
+| **Model drift** | LLMs can behave differently after provider-side updates. If a device builds on a third-party LLM, an upstream update could silently change clinical behavior. |
+
+The FDA is preparing. In mid-2025, they announced plans to [identify and tag devices incorporating foundation models](https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices). In January 2025, updated Clinical Decision Support (CDS) guidance opened the door for certain LLM use cases in radiology, specifically software that analyzes a radiologist's findings to generate proposed report summaries. And in November 2025, the Digital Health Advisory Committee held its first discussion about generative AI in mental health devices.
+
+My prediction: the first FDA-cleared LLM-based medical device will arrive in late 2026 or 2027, likely through the De Novo pathway. It will be something narrow, a structured report generation tool or a clinical documentation assistant, rather than anything doing open-ended clinical reasoning. The transformer foundation models like Eko's EFAST are the bridge. They prove that attention-based architectures can meet FDA standards. But the jump from transformer encoders to generative LLMs in regulated clinical use is still a large one.
 
 Looking at this data, three trends feel inevitable:
 
