@@ -7,7 +7,7 @@ description: "The FDA's Predetermined Change Control Plan (PCCP) framework lets 
 cover:
 ---
 
-*Disclaimer: This post reflects my personal reading and interpretation of the FDA's PCCP guidance. It is not affiliated with, endorsed by, or representative of any employer, organization, or institution I am associated with. If you're making regulatory decisions, read the actual guidance and talk to a regulatory professional.*
+<span style="color: red;">*Disclaimer: This post reflects my personal reading and interpretation of the FDA's PCCP guidance. It is not affiliated with, endorsed by, or representative of any employer, organization, or institution I am associated with. If you're making regulatory decisions, read the actual guidance and talk to a regulatory professional.*</span>
 
 Imagine you've built an LLM-powered system that reads chest X-rays. It flags suspected pneumothorax so radiologists can prioritize urgent cases. The FDA cleared it. Hospitals are using it. And now you've collected six months of real-world data that could make the model meaningfully better.
 
@@ -51,6 +51,8 @@ A PCCP has three required sections. Each one answers a different question.
 | Impact Assessment | What are the risks of these changes, and how will you mitigate them? |
 
 These three pieces are tightly linked. The Description of Modifications tells the FDA what's changing. The Modification Protocol proves that the manufacturer has rigorous methods to ensure safety after each change. The Impact Assessment ties them together by evaluating the benefit-risk profile of each modification, individually and in combination.
+
+![The three components of a PCCP: Description of Modifications, Modification Protocol, and Impact Assessment](/images/pccp-three-components.png)
 
 Let me walk through each one using ThoraxAI.
 
@@ -119,6 +121,8 @@ The FDA also expects manufacturers to describe their real-world monitoring plan.
 
 This is where the rubber meets the road for continuous safety. An authorized PCCP doesn't mean the FDA stops paying attention. It means the manufacturer takes on more responsibility for ongoing validation and monitoring.
 
+![ThoraxAI traceability matrix: mapping modifications to protocol methods](/images/thoraxai-traceability-matrix.png)
+
 ## What could go wrong, and what's the plan?
 
 The Impact Assessment ties everything together. It asks: for each planned modification, what are the benefits and risks? How do the Modification Protocol's validation activities mitigate those risks? And what's the cumulative impact of implementing all modifications together?
@@ -131,6 +135,8 @@ The guidance also asks manufacturers to consider risks of unintended bias. If th
 
 Here's where the PCCP framework becomes concrete. Let me walk through four post-authorization scenarios for ThoraxAI.
 
+![Decision flowchart: Is a new marketing submission required?](/images/decision-flowchart.png)
+
 **Scenario A: ClearView retrains the model on new data from three additional hospitals. Sensitivity improves to 96%. Specificity holds at 89%. All acceptance criteria in the Modification Protocol are met. Labeling is updated.** This is M1, executed exactly as specified. No new 510(k) needed. ClearView documents everything in their quality system and ships the update.
 
 **Scenario B: ClearView wants to add compatibility with a new portable X-ray machine that meets the minimum image specs defined in the PCCP. Analytical testing shows equivalent performance.** This is M2, executed as specified. No new 510(k) needed.
@@ -140,6 +146,8 @@ Here's where the PCCP framework becomes concrete. Let me walk through four post-
 **Scenario D: ClearView follows the Modification Protocol for M1, but the test data was compromised because a team member inadvertently used test images during model tuning. The validation results are unreliable.** Even though M1 was specified in the PCCP, the implementation deviated from the Modification Protocol. The modification cannot be deployed under the PCCP. ClearView likely needs a new 510(k) to implement this change, after fixing the data management failure.
 
 The pattern is clear. A modification is "consistent with" the authorized PCCP only when two conditions hold: it was specified in the Description of Modifications, AND it was implemented in conformance with the Modification Protocol. Miss either condition, and you're back to the standard regulatory path.
+
+![ThoraxAI: Four post-authorization scenarios](/images/thorax-ai-fictional-scenarios.png)
 
 The guidance also warns that deviations from an authorized PCCP can render the device adulterated and misbranded under the FD&C Act. This isn't hypothetical. If a manufacturer ships a model update that doesn't follow their own PCCP, the FDA can take enforcement action, including seizure or injunction.
 
@@ -182,6 +190,8 @@ Second, the emphasis on data representativeness runs deep. The guidance returns 
 Third, the traceability requirements are demanding but sensible. Every modification links to specific validation activities. Every validation activity has predefined acceptance criteria. Every deviation gets documented. The traceability table in the guidance (mapping each modification to its data management, retraining, evaluation, and update methods) is a small thing, but it forces a level of discipline that would improve most ML development workflows even outside the regulatory context.
 
 Finally, the post-market monitoring expectations are real. An authorized PCCP shifts some validation responsibility from pre-market review to the manufacturer's ongoing operations. That only works if the manufacturer is actively watching for performance drift, adverse events, and emerging biases after each update. The guidance asks manufacturers to describe exactly how they'll do this, and that's the right question.
+
+![The PCCP lifecycle: Propose, Authorize, Implement, Monitor, Evolve](/images/pccp-lifecycle.png)
 
 ## If you're building medical LLM systems, read this guidance
 
