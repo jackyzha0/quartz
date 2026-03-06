@@ -1,5 +1,5 @@
 ---
-title: "350 Devices in One Year: What the 2025 FDA AI/ML List Actually Tells Us"
+title: "350 Devices in One Year: Review of 2025 FDA AI/ML List"
 date: 2026-03-05T05:00:00+00:00
 slug: 350-devices-in-one-year-what-the-2025-fda-ai-ml-list-actually-tells-us
 tags: ["fda", "llm", "medical-devices", "regulation", "healthcare", "ai-ml"]
