@@ -33,3 +33,7 @@ theme = "hugo-xmin"
   name = "Posts"
   url = "/post/"
   weight = 3
+[[menu.main]]
+  name = "Books"
+  url = "/#books"
+  weight = 4
