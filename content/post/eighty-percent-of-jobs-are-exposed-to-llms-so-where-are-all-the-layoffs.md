@@ -17,8 +17,6 @@ That gap is the whole story. The theoretical exposure numbers describe a real ph
 
 I spent 3 days pulling together more than 30 datasets. After sitting with all of it,my read is pretty simple. The exposure numbers are real. Some displacement is real too. But the broad pattern so far is not mass replacement. It is uneven adoption, skill compression, and a labor market that is changing faster than our usual measurement tools can keep up.
 
-![Key macro-level statistics on LLM and labor market impact in 2026, showing 80% worker exposure, +78M net new jobs, $2.6-4.4T value potential, and more](/images/ai-labor-macro-stats.png)
-
 ## Why do exposure headlines sound so apocalyptic?
 
 Because until recently, we could only measure what LLMs *could* do, not what anyone was actually using them for. Eloundou et al.'s "GPTs are GPTs" paper and the [AI Occupational Exposure Index from Felten, Raj, and Seamans](https://github.com/AIOE-Data/AIOE) gave us important theoretical baselines. But they were always measuring potential, not reality.
@@ -43,8 +41,6 @@ That difference turned out to be enormous. A [Yale Budget Lab analysis](https://
 
 The common thread across all of these signals: displacement arrived first where switching costs are lowest. Freelancers can be replaced project by project. Entry-level hiring can be quietly reduced. Big tech can restructure fast because engineers are used to reorgs. But in sectors with regulatory oversight and employment contracts, LLMs are changing *what* people do, not *whether* they have jobs.
 
-![Dot plot showing the gap between theoretical exposure and observed impact across 10 sectors, with freelance writing and translation showing displacement while software development and medical documentation show strong augmentation](/images/ai-labor-exposure-displacement-gap.png)
-
 ## Why are many high-exposure jobs still growing?
 
 Every major empirical study on LLM productivity tells a version of same story. [Brynjolfsson, Li, and Raymond (*QJE*, 2025)](https://academic.oup.com/qje/article/140/2/1101/7890894) studied 5,172 customer support agents and found LLM assistance increased productivity by 14% on average. But **novice workers improved by 34%, while experts improved by only 2%**. The LLM was effectively transferring the tacit knowledge of top performers to less experienced workers. Every subsequent study found the same asymmetry.
@@ -57,8 +53,6 @@ Every major empirical study on LLM productivity tells a version of same story. [
 
 The Food and Drug Administration (FDA) has authorized [1,357 AI/ML-enabled medical devices](https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices), with 77% in radiology. These are mostly machine learning and computer vision systems, not LLMs, but they're clearest test of whether ML tools displace clinical workers. Geoffrey Hinton said in 2016 we should stop training radiologists. A decade later, radiology employment is growing and ML-powered tools help radiologists read more scans faster rather than replace them. The [American Medical Association's 2024 survey](https://www.ama-assn.org/practice-management/digital/ama-digital-health-research) found physician tool usage at 66%, up from 38% in 2023. The Permanente Medical Group processed [2.5 million patient encounters with LLM scribes](https://permanente.org/) in one year, saving an estimated 15,791 clinician hours. The BLS projects nurse practitioners to grow 46% through 2034. The one healthcare occupation facing decline is medical transcriptionists, at -4.7%, but that's about 48,000 workers.
 
-![Bar chart showing healthcare AI/ML adoption metrics including 1,357 FDA devices, 1,046 radiology tools, 66% physician usage, 100% health system AI scribe adoption, and 78% organizational deployment](/images/ai-labor-healthcare-adoption.png)
-
 ### The BLS projections confirm the split
 
 For the first time, the [BLS 2024-2034 Employment Projections](https://www.bls.gov/emp/) explicitly incorporate LLM impacts. The declining occupations are real but small: medical transcriptionists, insurance appraisers, and graphic designers together employs about 368,000 workers. The growing occupations, data scientists, nurse practitioners, and software developers, employ over 2.4 million and are expanding at 17% to 46%. The Computer and Mathematical occupation group, projected to grow 10.1% (three times the average), is both the most LLM-exposed and the fastest-growing. That's the augmentation thesis in one statistic.
@@ -69,11 +63,7 @@ For the first time, the [BLS 2024-2034 Employment Projections](https://www.bls.g
 
 [Anthropic's Economic Index](https://www.anthropic.com/research/the-anthropic-economic-index) reveals the texture of how people actually use LLMs at work. Across all users, 57% of Claude usage is augmentation (learning, iterating, exploring), while 43% is automation (directive task completion). But enterprise and API users have flipped that ratio. Among API users, directive automation climbed from 27% to 39% between December 2024 and mid-2025: a 12 percentage-point shift in six months.
 
-![Stacked horizontal bar chart showing augmentation versus automation split across four user segments, with enterprise users automating 59% versus consumer users at 36%](/images/ai-labor-aug-vs-auto.png)
-
-That trend line is the one I keep staring at. The users with most economic leverage, the ones building LLMs into production workflows, are already past the augmentation-to-automation tipping point. The [September 2025 Economic Index update](https://www.anthropic.com/research/the-anthropic-economic-index) also found that US state-level adoption is converging in 2 to 5 years, which is 10x faster than 20th-century technology diffusion patterns.
-
-![Line chart showing directive automation rising from 27% to 39% among API/business users in just six months](/images/ai-labor-automation-trend.png)
+That trend is the one I keep staring at. The users with most economic leverage, the ones building LLMs into production workflows, are already past the augmentation-to-automation tipping point. The [September 2025 Economic Index update](https://www.anthropic.com/research/the-anthropic-economic-index) also found that US state-level adoption is converging in 2 to 5 years, which is 10x faster than 20th-century technology diffusion patterns.
 
 ## What I think is happening
 
