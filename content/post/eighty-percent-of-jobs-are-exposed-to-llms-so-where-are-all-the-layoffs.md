@@ -1,9 +1,9 @@
 ---
-title: "Eighty Percent of Jobs Are Exposed to LLMs. So Where Are All the Layoffs?"
+title: "Exposed But Not Replaced: What 30 Datasets Say About LLMs and Jobs"
 date: 2026-03-07T05:00:00+00:00
-slug: eighty-percent-of-jobs-are-exposed-to-llms-so-where-are-all-the-layoffs
-tags: ["llm", "labor-market", "economics", "data-analysis", "productivity"]
-description: "Every few months a new study claims 80% of jobs are exposed to LLMs. I pulled together 30+ datasets to find out what's actually happening. The answer is more complicated than either side wants to admit."
+slug: exposed-but-not-replaced-what-30-datasets-say-about-llms-and-jobs
+tags: ["llm", "labor-market", "economics", "data-analysis", "productivity", "big-tech"]
+description: "Big tech cut 400,000 jobs in two years then hired for different roles. 80% of workers are exposed to LLMs. I pulled together 30+ datasets to find out what's actually happening."
 cover:
 ---
 
@@ -37,7 +37,11 @@ That difference turned out to be enormous. A [Yale Budget Lab analysis](https://
 
 **Young workers are getting quietly squeezed.** The [IMF's January 2026 update](https://www.imf.org/en/Publications/Staff-Discussion-Notes/Issues/2024/01/14/Gen-AI-Artificial-Intelligence-and-the-Future-of-Work-542379) found that workers aged 22 to 25 in LLM-exposed occupations experienced a 13% relative decline in employment compared to unexposed peers. This is not showing up as layoffs, its showing up as hiring restraint: fewer entry-level positions posted, longer time-to-fill, more selective screening. JPMorgan's Jamie Dimon [told shareholders in 2025](https://reports.jpmorganchase.com/investor-relations/2024/ar-ceo-letters.htm) that LLMs were already replacing certain human tasks, and the bank has been restraining headcount growth in exposed roles. Goldman Sachs added 1,800 employees year-over-year per their [2024 annual report](https://www.goldmansachs.com/investor-relations/), but the composition of roles shifted toward engineering and away from routine analysis.
 
-The common thread: displacement arrived first where switching costs are lowest. But in sectors with institutional structure, regulatory oversight, and employment contracts, LLMs are changing *what* people do, not *whether* they have jobs.
+**Big tech showed the pattern most visibly.** The tech industry cut over [260,000 jobs in 2023](https://layoffs.fyi/) and another [150,000 in 2024](https://layoffs.fyi/). Google, Meta, Amazon, Microsoft, they all ran major rounds. But here's the thing that rarely makes the headlines: most of these companies ended 2025 with more employees than they had at their post-layoff lows. Meta went from calling 2023 the "[Year of Efficiency](https://about.meta.com/media-gallery/metaearnings-q4-2022/)" and cutting over 20,000 roles to aggressively hiring for AI infrastructure through 2024 and 2025. Zuckerberg [told investors in January 2025](https://www.threads.net/@zuck/post/DExrJwkJ-nE) that LLMs would start replacing mid-level software engineers that year. Google's headcount dropped by about 12,000 in early 2023, then its DeepMind and AI divisions expanded steadily through 2025. Same pattern at Microsoft: layoffs in gaming and traditional software, growth in Copilot and Azure AI teams. The companies most aggressively deploying LLMs are not net shedding workers. They are reshuffling them. Firing in one department, hiring in another,same quarter, same building sometimes.
+
+![Dual panel chart showing tech industry layoffs peaking at 264K in 2023, while Meta, Alphabet, and Microsoft headcounts recovered and grew past pre-layoff levels by 2025](/images/ai-labor-bigtech-headcount.png)
+
+The common thread across all of these signals: displacement arrived first where switching costs are lowest. Freelancers can be replaced project by project. Entry-level hiring can be quietly reduced. Big tech can restructure fast because engineers are used to reorgs. But in sectors with regulatory oversight and employment contracts, LLMs are changing *what* people do, not *whether* they have jobs.
 
 ![Dot plot showing the gap between theoretical exposure and observed impact across 10 sectors, with freelance writing and translation showing displacement while software development and medical documentation show strong augmentation](/images/ai-labor-exposure-displacement-gap.png)
 
