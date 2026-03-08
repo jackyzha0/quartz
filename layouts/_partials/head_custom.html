@@ -13,6 +13,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+<!-- Applause Button (shared clap counts) -->
+<link rel="stylesheet" href="https://unpkg.com/applause-button/dist/applause-button.css">
+<script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+
 <!-- KaTeX -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" crossorigin="anonymous"></script>
@@ -291,7 +295,7 @@ footer a:hover {
 
 
 /* =============================================
-   CLAP BUTTON
+   CLAP BUTTON (Applause Button)
    ============================================= */
 .clap-container {
   display: flex;
@@ -302,61 +306,19 @@ footer a:hover {
   border-top: 1px solid #333;
 }
 
-.clap-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.2em;
-  background: none;
-  border: 1.5px solid #ccc;
-  border-radius: 50%;
-  width: 3.2rem;
-  height: 3.2rem;
-  cursor: pointer;
-  transition: border-color 0.2s, transform 0.15s;
-  padding: 0.4rem;
-  position: relative;
-}
-
-.clap-btn:hover {
-  border-color: #37c;
-}
-
-.clap-btn.clapped {
-  border-color: #37c;
-  color: #37c;
-}
-
-.clap-btn.clap-pop {
-  transform: scale(1.2);
-}
-
-.clap-icon {
-  width: 1.3rem;
-  height: 1.3rem;
-  color: #666;
-  transition: color 0.2s;
-}
-
-.clap-btn.clapped .clap-icon {
-  color: #37c;
-}
-
-.clap-count {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.6rem;
-  color: #666;
-  line-height: 1;
-}
-
-.clap-btn.clapped .clap-count {
-  color: #37c;
-}
-
 .clap-hint {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.85em;
   color: #666;
+}
+
+/* =============================================
+   GISCUS COMMENTS
+   ============================================= */
+.giscus-container {
+  margin-top: 2.5em;
+  padding-top: 1.5em;
+  border-top: 1px solid #333;
 }
 
 

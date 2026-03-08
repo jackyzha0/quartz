@@ -10,36 +10,28 @@
 
 {{ if eq .Section "post" }}
 <div class="clap-container">
-  <button class="clap-btn" id="clap-btn" aria-label="Clap for this post">
-    <svg class="clap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M20.8 11.2L15.5 5.9c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l1.1 1.1"/>
-      <path d="M17.3 8.5l-4.2-4.2c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4"/>
-      <path d="M13.1 5.7L10.3 2.9c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l1.4 1.4"/>
-      <path d="M11.7 4.3L9.5 2.1c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l5.8 5.8"/>
-      <path d="M7.9 7.3L4.1 3.5c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l8.5 8.5"/>
-      <path d="M5.5 9.7c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l5 5c2.8 2.8 7.2 2.8 10 0l1.3-1.3c1.1-1.1 1.7-2.5 1.7-4V11"/>
-    </svg>
-    <span class="clap-count" id="clap-count">0</span>
-  </button>
+  <applause-button style="width: 3.2rem; height: 3.2rem;" multiclap="true" color="#37c" />
   <span class="clap-hint">Like this post? Give it a clap.</span>
 </div>
-<script>
-(function() {
-  var key = 'clap:' + window.location.pathname;
-  var count = parseInt(localStorage.getItem(key) || '0', 10);
-  var countEl = document.getElementById('clap-count');
-  var btn = document.getElementById('clap-btn');
-  countEl.textContent = count;
-  if (count > 0) btn.classList.add('clapped');
-  btn.addEventListener('click', function() {
-    count++;
-    localStorage.setItem(key, count);
-    countEl.textContent = count;
-    btn.classList.add('clapped', 'clap-pop');
-    setTimeout(function() { btn.classList.remove('clap-pop'); }, 300);
-  });
-})();
-</script>
+
+<div class="giscus-container">
+  <script src="https://giscus.app/client.js"
+    data-repo="thedatasense/notes"
+    data-repo-id="R_kgDOPzbe4w"
+    data-category="Blog Comments"
+    data-category-id="DIC_kwDOPzbe484C39n4"
+    data-mapping="url"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="light_high_contrast"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
 {{ end }}
 
 {{ if eq .Section "post" }}
