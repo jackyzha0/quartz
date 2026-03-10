@@ -1,5 +1,5 @@
 ---
-title: "When Your Coffee Receipt Becomes a Weapon: LLM Surveillance and the Line Anthropic Won't Cross"
+title: "LLM Surveillance and the Line Anthropic's Redline"
 date: 2026-03-02T05:00:00+00:00
 slug: llm-surveillance-and-the-line-anthropic-wont-cross
 tags: ["llm", "surveillance", "privacy", "anthropic", "ethics"]
