@@ -1,5 +1,5 @@
 ---
-title: "When Your Coffee Receipt Becomes a Weapon: LLM Surveillance and the Line Anthropic Won't Cross"
+title: "LLM Surveillance and Anthropic's Redline"
 date: 2026-03-02T05:00:00+00:00
 slug: llm-surveillance-and-the-line-anthropic-wont-cross
 tags: ["llm", "surveillance", "privacy", "anthropic", "ethics"]
@@ -11,7 +11,7 @@ With the recent controversy around Anthropic, I came across a demo published in 
 
 No hacking. No warrants. No human analysts. Just an algorithm and a credit card database.
 
-## The demo that explains the problem better than any policy paper
+## A demo
 
 The [demo](https://claude.ai/public/artifacts/8f42e48f-1b35-450d-8dda-2755c1614b08) uses fictional data about a tech CEO to show how mass surveillance would work in practice. It's broken into four stages, each one building on the last. The data is made up, but every collection method it describes is real and legal right now.
 
