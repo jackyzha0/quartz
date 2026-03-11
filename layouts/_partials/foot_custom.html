@@ -16,14 +16,27 @@
   var observer = new MutationObserver(function() {
     var iframe = thread.querySelector('iframe');
     if (iframe) {
-      iframe.style.height = 'auto';
-      iframe.style.minHeight = '300px';
+      iframe.style.minHeight = '400px';
       iframe.style.overflow = 'hidden';
+      iframe.scrolling = 'no';
+      iframe.setAttribute('scrolling', 'no');
+      // Listen for Cusdis resize messages
       window.addEventListener('message', function(e) {
         if (e.data && e.data.from === 'cusdis') {
-          iframe.style.height = e.data.body.height + 'px';
+          var h = parseInt(e.data.body.height, 10);
+          if (h > 0) iframe.style.height = (h + 50) + 'px';
         }
       });
+      // Poll for content height changes as fallback
+      setInterval(function() {
+        try {
+          var body = iframe.contentDocument || iframe.contentWindow.document;
+          if (body && body.body) {
+            var h = body.body.scrollHeight;
+            if (h > 0) iframe.style.height = (h + 50) + 'px';
+          }
+        } catch(e) {}
+      }, 1000);
       observer.disconnect();
     }
   });
