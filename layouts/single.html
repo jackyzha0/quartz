@@ -9,6 +9,11 @@
 {{ .Content }}
 
 {{ if eq .Section "post" }}
+<div class="clap-container">
+  <applause-button style="width: 3.2rem; height: 3.2rem;" multiclap="true" color="#37c" />
+  <span class="clap-hint">Like this post? Give it a clap.</span>
+</div>
+
 <div id="cusdis_thread"
   data-host="https://cusdis.com"
   data-app-id="a343bcd3-2a7e-43e4-92d9-b77c0c795a29"

@@ -8,6 +8,29 @@
 </div>
 <p>&copy; {{ now.Year }} Binesh Sadanandan</p>
 
+<!-- Auto-resize Cusdis comment iframe to full height -->
+<script>
+(function() {
+  var thread = document.getElementById('cusdis_thread');
+  if (!thread) return;
+  var observer = new MutationObserver(function() {
+    var iframe = thread.querySelector('iframe');
+    if (iframe) {
+      iframe.style.height = 'auto';
+      iframe.style.minHeight = '300px';
+      iframe.style.overflow = 'hidden';
+      window.addEventListener('message', function(e) {
+        if (e.data && e.data.from === 'cusdis') {
+          iframe.style.height = e.data.body.height + 'px';
+        }
+      });
+      observer.disconnect();
+    }
+  });
+  observer.observe(thread, { childList: true, subtree: true });
+})();
+</script>
+
 <!-- Reading progress bar (only on single post pages) -->
 <div id="reading-progress"></div>
 <script>
