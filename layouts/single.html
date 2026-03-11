@@ -9,29 +9,14 @@
 {{ .Content }}
 
 {{ if eq .Section "post" }}
-<div class="clap-container">
-  <applause-button style="width: 3.2rem; height: 3.2rem;" multiclap="true" color="#37c" />
-  <span class="clap-hint">Like this post? Give it a clap.</span>
-</div>
-
-<div class="giscus-container">
-  <script src="https://giscus.app/client.js"
-    data-repo="thedatasense/notes"
-    data-repo-id="R_kgDOPzbe4w"
-    data-category="Blog Comments"
-    data-category-id="DIC_kwDOPzbe484C39n4"
-    data-mapping="url"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="1"
-    data-input-position="top"
-    data-theme="light_high_contrast"
-    data-lang="en"
-    data-loading="lazy"
-    crossorigin="anonymous"
-    async>
-  </script>
-</div>
+<div id="cusdis_thread"
+  data-host="https://cusdis.com"
+  data-app-id="a343bcd3-2a7e-43e4-92d9-b77c0c795a29"
+  data-page-id="{{ .File.UniqueID }}"
+  data-page-url="{{ .Permalink }}"
+  data-page-title="{{ .Title }}"
+></div>
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 {{ end }}
 
 {{ if eq .Section "post" }}
