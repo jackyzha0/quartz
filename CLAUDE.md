@@ -52,9 +52,13 @@ hugo new post/my-new-post.md
 
 ## Content Conventions
 - Blog posts go in `content/post/` with slug-based filenames
-- Frontmatter uses Hugo format: `title`, `date`, `slug`, `tags`, `description`, `cover`
+- Frontmatter uses Hugo format: `title`, `date`, `slug`, `tags`, `description`
+- The `cover` frontmatter field does NOT work with this theme. Do not use it.
+- Images go in `static/images/` and are referenced as markdown images: `![alt](/images/filename.jpeg)`
+- Compress images before committing (use `sips` to resize to ~800px wide, 50% quality)
 - LaTeX math with `$inline$` and `$$block$$`
-- Images can use external CDN URLs (Hashnode) or local paths under `/assets/`
+- Comments use Cusdis (not Giscus). The widget is in `layouts/single.html`
+- Design is LessWrong-inspired: serif typography (Libre Baskerville), warm off-white background, green accent links
 
 ## Research Context
 This site contains PhD research on:
@@ -126,11 +130,14 @@ Don't be self-deprecating to the point of undermining your work. You can say "th
 | --- | --- |
 | **Terminology** | Always use "LLM" instead of "AI" when referring to language models |
 | **Banned Words** | Never use: delve, landscape, tapestry, realm, pivotal, underscore, foster, spearhead, leverage, transformative, crucial, interplay, multifaceted, paradigm, synergy, utilize, facilitate, innovative, cutting-edge, robust, comprehensive, nuanced, game-changing, groundbreaking |
+| **Banned Phrases** | Never use rhetorical buildup phrases: "doing the heavy lifting", "the real question is", "here's the thing nobody is talking about", "that's the real story", "what most people miss", "this is where it gets interesting", "it's not about X, it's about Y", "then came the result I find hardest to ignore", "the headline result is not subtle", "the real lesson here is simple", "there is also a quieter result that deserves more attention", "the interesting part is", "that should give us pause", "that is a fascinating result". Let the content speak without theatrical framing. |
+| **No Fear Mongering** | Never use doom language, catastrophizing, or dystopian framing. Present challenges honestly without painting worst-case scenarios as inevitable. Avoid punitive/cynical framings of how institutions or people will respond to change. |
 | **Punctuation** | Never use double dashes (--) or em dashes (—). Use commas, colons, semicolons, or separate sentences instead |
 | **Voice** | Write in first person. Use active voice. "We found" not "it was found." "I ran the experiment" not "the experiment was conducted" |
 | **Tone** | Conversational but professional. Curious and honest. Never salesy or hype-driven |
 | **Abbreviations** | Expand on first use with abbreviation in parentheses |
 | **Bullet Points** | Avoid. Use tables for structured information or write in flowing prose |
+| **Links** | Use inline hyperlinks `[text](url)`, never reference-style links `[text][1]`. Link a source only on first mention, do not repeat the same link across multiple paragraphs. |
 
 ## Citation Integrity
 If you reference prior work, cite it accurately using only information the user provides. Do not invent citations. If a claim needs a reference and you don't have one, flag it with "[CITATION NEEDED]" so the user can fill it in. When you mention a paper, include the author names and year exactly as given. Don't guess at details you don't have.
