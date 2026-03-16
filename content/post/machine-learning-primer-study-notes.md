@@ -48,4 +48,4 @@ I wrote this primarily for people in a position similar to mine when I started: 
 
 It's not a replacement for a full textbook on linear algebra or optimization. It's the 100 pages you'd want to read before opening one of those textbooks, so that when you get there, you know why each topic matters.
 
-These notes are a living document. I keep updating them as I find better explanations or encounter new connections between topics. You can [download the PDF here](/assets/Machine_Learning_Primer.pdf).
+These notes are a living document. I keep updating them as I find better explanations or encounter new connections between topics. You can [download the PDF here](/notes/assets/Machine_Learning_Primer.pdf).

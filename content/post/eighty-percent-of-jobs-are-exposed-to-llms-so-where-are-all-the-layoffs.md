@@ -68,4 +68,4 @@ The speed question is the one that keeps me up at night. If displacement follows
 
 ---
 
-*All datasets referenced in this post are cataloged in the [companion spreadsheet](/assets/ai_labor_impact_data.xlsx) with access URLs, update frequencies, and format details.*
+*All datasets referenced in this post are cataloged in the [companion spreadsheet](/notes/assets/ai_labor_impact_data.xlsx) with access URLs, update frequencies, and format details.*
