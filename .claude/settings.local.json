@@ -67,7 +67,16 @@
       "Bash(sips --resampleWidth 800 -s formatOptions 50 /Users/bineshkumar/Documents/GitHub/robmedllm_notes/static/images/human-kind.jpeg)",
       "Bash(lsof -i :1314 -t 2>/dev/null | xargs kill 2>/dev/null; hugo server --port 1314 --bind 127.0.0.1 2>&1 | head -5)",
       "WebFetch(domain:www.researchsquare.com)",
-      "WebFetch(domain:arxiv.org)"
+      "WebFetch(domain:arxiv.org)",
+      "WebFetch(domain:scholar.google.com)",
+      "WebFetch(domain:dblp.org)",
+      "WebFetch(domain:www.newhaven.edu)",
+      "WebFetch(domain:nancirosepiazzafw.wixsite.com)",
+      "WebFetch(domain:openreview.net)",
+      "WebFetch(domain:ieeexplore.ieee.org)",
+      "WebFetch(domain:sail-lab.org)",
+      "WebFetch(domain:aclanthology.org)",
+      "Bash(do sips:*)"
     ],
     "deny": []
   }
