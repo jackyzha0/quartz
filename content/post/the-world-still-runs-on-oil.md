@@ -6,6 +6,8 @@ tags: ["energy", "oil", "ev", "climate", "economics", "datacenter"]
 description: "Global oil hit 104 mb/d in 2025. Then the Strait of Hormuz closed. I went through the data on who produces oil, who controls it, how it moves, and what the Iran war reveals about a system built on concentrated risk."
 ---
 
+*A note on how this was put together: all data and sources came from my own research, primarily through Google searches filtered through [Ground News](https://ground.news/) to stick with center-leaning outlets. I used Claude to review the final draft for grammatical accuracy and to generate the Python code for the plots. I modified the styling to match my site's theme and used Google Slides for some of the charts for easier formatting.*
+
 As I write this, Brent crude is above \$110 a barrel. The Strait of Hormuz, through which 20% of the world's oil flows, has been effectively shut down since the [U.S.-Israeli strikes on Iran began on February 28](https://en.wikipedia.org/wiki/2026_Iran_war). Oil traffic through the strait has [fallen to less than 10% of pre-war levels](https://www.aljazeera.com/news/2026/3/11/irans-irgc-says-not-one-litre-of-oil-will-get-through-strait-of-hormuz). It is one of the largest supply disruptions in the history of the global oil market.
 
 If you needed a reminder that the world still runs on oil, you got one.
@@ -29,6 +31,7 @@ The breakdown by mode explains why progress has been so slow.
 **Rail** is the one bright spot. In 2022, diesel made up 53% of rail energy consumption and electricity 45%. But rail accounts for only about 1% of total transport emissions ([IPCC, 2019](https://www.ipcc.ch/report/ar6/wg3/)), so its contribution to total oil displacement is modest.
 
 ![Oil dependence by transport mode showing aviation and shipping at 99%, road transport at 91%, and rail at 53%](/images/oil-transport-mode-dependence.png)
+*Oil dependence by transport mode. Aviation and shipping remain almost entirely oil-powered. Data: IEA.*
 
 ## The electric vehicle push
 
@@ -41,6 +44,7 @@ The bulk of avoided consumption does not come from Teslas in California. It come
 The IEA projects EVs will displace more than 5 mb/d by 2030, with electric light-duty vehicles driving 77% of that. In its Stated Policies Scenario, more than 840 million EVs displace 10 mb/d by 2035. The math is straightforward: if 58 million EVs displace about 1 mb/d today, displacing 10 mb/d requires a fleet roughly 15 times larger.
 
 ![Dual-axis chart showing global EV fleet growing from 5 million in 2018 to projected 840 million by 2035, alongside oil displacement rising from 0.1 to 10 mb/d](/images/oil-ev-displacement-timeline.png)
+*Global EV fleet size and oil displaced. 2030 and 2035 values are IEA projections (Stated Policies Scenario).*
 
 ###  Stats By Country
 
@@ -59,6 +63,7 @@ The countries most dependent on oil for transport are typically those with large
 Oil's role in electricity is one of the few real success stories in energy substitution. At its peak around 1973, oil generated approximately 25% of the world's electricity. Today that figure is roughly 2.5%, a 90% reduction in share over five decades. The 1973 oil embargo and the 1979 crisis triggered rapid substitution toward nuclear and natural gas. The first halving, from 25% to about 12%, took only 13 years.
 
 ![Line chart showing oil's share of global electricity declining from 25% in 1973 to 2.5% in 2024](/images/oil-electricity-share-decline.png)
+*Oil's share of global electricity generation, 1973 to 2024. The 1973 embargo and 1979 crisis drove the sharpest substitution.*
 
 For context, today's global electricity mix is roughly 35% coal, 22% natural gas, 14% hydro, 9% nuclear, 8% wind, 7% solar, and about 2.5% oil and other fossil fuels. Renewables plus nuclear now supply 40.9% of global electricity, crossing 40% for the first time in 2024, [according to Ember's Global Electricity Review](https://ember-energy.org/latest-insights/global-electricity-review-2025/).
 
@@ -77,6 +82,7 @@ In advanced economies, oil's share declined faster than many anticipated, but co
 The geopolitical map of oil production has transformed since the 1970s. The shale revolution turned the United States from a declining producer into the world's largest. But the concentration of power remains stark: five of the top ten producers sit along the Persian Gulf.
 
 ![Horizontal bar chart of top 10 oil producers in 2025, led by the United States at 13.6 mb/d](/images/oil-top-producers-2025.png)
+*Top 10 crude oil producers, 2025 annualized. Data: U.S. EIA.*
 
 The United States produced about 5 mb/d as recently as 2008, a nadir after decades of conventional decline. Hydraulic fracturing and horizontal drilling in the Permian Basin and other shale formations more than doubled output. The U.S. became the world's largest producer around 2017 and a net petroleum exporter by 2024, with crude exports hitting a record 4.5 mb/d in late 2023. The [U.S. Energy Information Administration (EIA)](https://www.eia.gov/) reports that in 2024, more than 15,000 new wells came online, producing 4.4 mb/d of crude, enough to overcome declines from existing wells.
 
@@ -101,6 +107,7 @@ This creates a fundamental asymmetry. NOCs own the cheapest, most abundant reser
 The global economy requires the continuous movement of more than 104 million barrels per day. Approximately 80 million barrels travel by sea, flowing through a handful of chokepoints that represent extraordinary concentrations of risk.
 
 ![Horizontal bar chart of major oil transit chokepoints, with the Strait of Malacca leading at 23.2 mb/d](/images/oil-chokepoint-volumes.png)
+*Major oil transit chokepoints by volume, H1 2025. Data: U.S. EIA.*
 
 The **Strait of Malacca**, linking the Indian Ocean to the Pacific, is the busiest oil chokepoint. China takes roughly 48% of the oil passing through it. The **Strait of Hormuz** handles about 20% of global oil consumption. Only Saudi Arabia and the UAE have pipeline alternatives that bypass it. The **Suez Canal and SUMED pipeline** normally handle 8 to 9 mb/d.
 
@@ -123,6 +130,7 @@ On February 28, 2026, the United States and Israel launched [joint strikes again
 The price response was violent. Brent crude jumped 15% to \$83 by March 5, then [surged past \$100 on March 8](https://www.axios.com/2026/03/09/oil-prices-iran-war-strait-hormuz) for the first time in four years. It [hit nearly \$110 on March 18](https://fortune.com/2026/03/18/oil-prices-110-crude-brent-iran-war-israel-strait-hormuz-lng/). Dubai crude, the pricing benchmark for Asian buyers, spiked above \$150. Brent has risen roughly 80% since the conflict began. U.S. gasoline prices climbed nearly 80 cents in three weeks, [with diesel approaching \$5 a gallon](https://www.washingtonpost.com/business/2026/03/19/gas-prices-iran-oil-companies/). California gasoline breached \$5.
 
 ![Brent crude oil price from 1970 to 2026 showing major disruptions: 1973 embargo, Iranian revolution, OPEC price war, 2008 peak, COVID crash, and the March 2026 Iran war spike to \$110](/images/oil-price-history.png)
+*Brent crude annual average price, 1970 to 2026. The March 2026 Iran war spike is the latest in a pattern of geopolitical shocks. Data: FRED, EIA.*
 
 The disruption is the largest to global energy supply since the 1973 oil embargo. The Suez blockage delayed ships for six days. The Houthi rerouting added two weeks per voyage. The Hormuz closure removed roughly 20 mb/d from global transit, nearly one fifth of all oil consumed worldwide.
 
@@ -178,6 +186,7 @@ The concentration is striking. The United States accounts for about 45% of data 
 The numbers are staggering. [Hyperscaler capital expenditure is projected to exceed \$600 billion in 2026](https://techblog.comsoc.org/2025/12/22/hyperscaler-capex-600-bn-in-2026-a-36-increase-over-2025-while-global-spending-on-cloud-infrastructure-services-skyrockets/), a 36% jump from 2025. The [four largest spenders alone, Amazon, Google, Microsoft, and Meta, are approaching \$700 billion combined](https://www.cnbc.com/2026/02/06/google-microsoft-meta-amazon-ai-cash.html). Roughly 75% of this is tied directly to building out the infrastructure to train and serve large language models (LLMs) and other models, not traditional cloud workloads.
 
 ![Hyperscaler capital expenditure comparison for 2025 vs 2026, with Amazon leading at \$200B projected for 2026](/images/oil-datacenter-capex.png)
+*Hyperscaler capital expenditure, 2025 vs. 2026 projected. Data: company earnings guidance, IEEE ComSoc, CNBC.*
 
 | Company | 2025 CapEx | 2026 CapEx (projected) |
 | --- | --- | --- |
@@ -225,6 +234,7 @@ The IEA expects natural gas and coal to meet more than 40% of additional data ce
 Three major agencies project global oil demand, and they disagree profoundly. The gap is not about details. It is about whether the modern economy fundamentally transforms or barely changes.
 
 ![Grouped bar chart comparing 2050 oil demand projections ranging from IEA Net Zero at 24 mb/d to OPEC Reference at 122.9 mb/d, with a dashed line at 104 mb/d showing 2024 actual demand](/images/oil-demand-projections-2050.png)
+*2050 oil demand projections by scenario. The dashed line shows 2024 actual demand at 104 mb/d. Data: IEA WEO 2025, OPEC WOO 2025, U.S. EIA IEO.*
 
 The gap between OPEC's 2050 forecast of 122.9 mb/d and the IEA's Net Zero scenario of 24 mb/d spans nearly 100 million barrels per day. Two notes before interpreting these numbers. First, definitions differ: the EIA's "liquid fuels" includes crude oil, petroleum products, natural gas liquids, and biofuels. The [IEA](https://www.iea.org/reports/world-energy-outlook-2025) and [OPEC](https://www.opec.org/opec_web/en/publications/340.htm) use different boundaries. Second, scenario choice matters enormously. The IEA itself publishes one scenario in which oil peaks around 2030 and another in which it rises to 113 mb/d by 2050 with no peak. That tells you something about uncertainty.
 
