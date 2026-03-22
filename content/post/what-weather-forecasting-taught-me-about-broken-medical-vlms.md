@@ -33,7 +33,7 @@ Here's the connection that changed my thinking. A deep neural network, whether i
 
 $$\mathbf{x}_{t+1} = f(\mathbf{W}_t \cdot \mathbf{x}_t)$$
 
-Layer index $t$ is like time. The activation $\mathbf{x}_t$ is like the state of the atmosphere. The weight matrix $\mathbf{W}_t$ determines whether perturbations grow or shrink as they propagate through depth.
+Layer index \(t\) is like time. The activation \(\mathbf{x}_t\) is like the state of the atmosphere. The weight matrix \(\mathbf{W}_t\) determines whether perturbations grow or shrink as they propagate through depth.
 
 The critical quantity is the [spectral radius](https://danielrapp.github.io/rnn-spectral-radius/) of the weight matrix: the magnitude of its largest eigenvalue.
 
@@ -43,7 +43,7 @@ The critical quantity is the [spectral radius](https://danielrapp.github.io/rnn-
 | ≈ 1.0 | Edge of Chaos | Balance between sensitivity and stability. Best for learning. |
 | > 1.0 | Chaotic | Perturbations explode. Gradients blow up. Tiny input noise becomes catastrophic. |
 
-I simulated this directly. I created a 100-dimensional recurrent system with tanh nonlinearities (a stripped-down proxy for a deep network) and fed it two inputs that differed by $10^{-5}$. With spectral radius 0.9, the perturbation decays through the layers. The network is stable, maybe too stable. With spectral radius 1.5, the perturbation grows exponentially. By layer 30, the two outputs have nothing in common.
+I simulated this directly. I created a 100-dimensional recurrent system with tanh nonlinearities (a stripped-down proxy for a deep network) and fed it two inputs that differed by \(10^{-5}\). With spectral radius 0.9, the perturbation decays through the layers. The network is stable, maybe too stable. With spectral radius 1.5, the perturbation grows exponentially. By layer 30, the two outputs have nothing in common.
 ![Perturbation over layers](/images/error_through_network_layers.png)
 
 That exponential divergence is exactly what I see in my VLM experiments when a rephrased question causes a diagnostic flip.
@@ -51,16 +51,16 @@ That exponential divergence is exactly what I see in my VLM experiments when a r
 
 ## Measuring instability with a number: the Lyapunov exponent
 
-Physicists have a precise tool for quantifying chaos. The Lyapunov exponent ($\lambda$) measures how fast nearby trajectories separate:
+Physicists have a precise tool for quantifying chaos. The Lyapunov exponent (\(\lambda\)) measures how fast nearby trajectories separate:
 
 $$\lambda = \lim_{t \to \infty} \frac{1}{t} \ln \frac{\| \delta(t) \|}{\| \delta(0) \|}$$
 
-If $\lambda$ is positive, the system is chaotic. Perturbations grow. If negative, it's stable. Perturbations shrink. If approximately zero, the system sits at the edge of chaos.
+If \(\lambda\) is positive, the system is chaotic. Perturbations grow. If negative, it's stable. Perturbations shrink. If approximately zero, the system sits at the edge of chaos.
 
 ![Perturbation over layers](/images/Perturbations_shrink.png)
 This is just the slope of the log-divergence curve, which makes it easy to compute from simulation data. Feed two slightly different inputs through your network, measure the Euclidean distance between activations at each layer, take the log, fit a line. The slope is your Lyapunov exponent.
 
-I swept spectral radius from 0.5 to 2.0 and computed $\lambda$ at each value. The resulting curve crosses zero right around spectral radius 1.0, exactly where theory predicts the onset of chaos. Below 1.0, the network is a contraction mapping. Above 1.0, it's an expansion.
+I swept spectral radius from 0.5 to 2.0 and computed \(\lambda\) at each value. The resulting curve crosses zero right around spectral radius 1.0, exactly where theory predicts the onset of chaos. Below 1.0, the network is a contraction mapping. Above 1.0, it's an expansion.
 
 ![Lyapunov Exponent vs Spectral Radius](/images/lyapunov-exponent-vs-spectral-radius.png)
 
@@ -70,7 +70,7 @@ This is where it gets practical for my dissertation work. I'm studying models li
 
 When I rephrase a diagnostic question, I'm applying a small perturbation to the language embedding. The visual pathway stays stable (the attention map doesn't change, hence "stable focus"). But the language pathway, or more precisely the cross-modal fusion layers, amplifies that perturbation until the output flips.
 
-In Lyapunov terms: the visual encoder has negative $\lambda$ (contractive, stable). The language-conditioned layers have positive $\lambda$ (expansive, chaotic). The model as a whole is chaotic because one subsystem is chaotic, even though another is stable.
+In Lyapunov terms: the visual encoder has negative \(\lambda\) (contractive, stable). The language-conditioned layers have positive \(\lambda\) (expansive, chaotic). The model as a whole is chaotic because one subsystem is chaotic, even though another is stable.
 
 This gives me a concrete research plan:
 
@@ -78,7 +78,7 @@ This gives me a concrete research plan:
 | --- | --- |
 | 1 | Extract per-layer activations from the VLM for paired phrasings of the same diagnostic question |
 | 2 | Compute the divergence trajectory across layers |
-| 3 | Estimate $\lambda$ at each layer to build a "Lyapunov spectrum" of the model |
+| 3 | Estimate \(\lambda\) at each layer to build a "Lyapunov spectrum" of the model |
 | 4 | Identify which layers cross the chaos boundary, and whether they correspond to the cross-attention or fusion layers |
 
 If the hypothesis holds, the unstable layers should cluster around the cross-modal fusion points. That would tell us exactly where to apply regularization, spectral normalization, or architectural changes to make the model more phrasing-invariant.

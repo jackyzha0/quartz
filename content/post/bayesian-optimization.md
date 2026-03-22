@@ -63,9 +63,9 @@ This is why the **Gaussian Process (GP)** is the standard tool here. For every s
 
 This gives us two key pieces of data for every coordinate:
 
-* **The Mean $\mu$ :** Our best guess for how much gold is there.
+* **The Mean \(\mu\) :** Our best guess for how much gold is there.
 
-* **The Standard Deviation $\sigma$ :** Our uncertainty.
+* **The Standard Deviation \(\sigma\) :** Our uncertainty.
     
 
 > **Note:** Notice in the diagram how the shaded region (uncertainty) gets "pinched" tight near the black dots (data points) and balloons out in the empty spaces? That ballooning is the math telling us, *"I have no idea what's happening here!"*
@@ -84,12 +84,12 @@ $$\text{Score} = \text{Mean} + (\kappa \times \text{Uncertainty})$$
     
 * **Uncertainty:** High potential to learn something new (**Exploration**)
     
-* **$\kappa$ (Kappa):** A number we choose to tune our strategy.
+* **\(\kappa\) (Kappa):** A number we choose to tune our strategy.
     
 
-If we set that $\kappa$ (kappa) value to be very, very high, are we acting more like a safe, conservative miner, or a risky, adventurous explorer? We are acting like an adventurous explorer.
+If we set that \(\kappa\) (kappa) value to be very, very high, are we acting more like a safe, conservative miner, or a risky, adventurous explorer? We are acting like an adventurous explorer.
 
-A high $\kappa$ value boosts the "**Uncertainty**" part of the equation, meaning the algorithm is willing to ignore the safe bets (high Mean) to go check out the mysterious, unknown areas (high Uncertainty). It becomes an **adventurous explorer**.
+A high \(\kappa\) value boosts the "**Uncertainty**" part of the equation, meaning the algorithm is willing to ignore the safe bets (high Mean) to go check out the mysterious, unknown areas (high Uncertainty). It becomes an **adventurous explorer**.
 
 So, the full **Mechanics** cycle looks like this:
 

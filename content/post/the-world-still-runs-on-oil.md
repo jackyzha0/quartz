@@ -3,12 +3,12 @@ title: "The World Still Runs on Oil"
 date: 2026-03-19T05:00:00+00:00
 slug: the-world-still-runs-on-oil
 tags: ["energy", "oil", "ev", "climate", "economics", "datacenter"]
-description: "Global oil hit 104 mb/d in 2025. Then the Strait of Hormuz closed. I went through the data on who produces oil, who controls it, how it moves, and what the Iran war reveals about a system built on concentrated risk."
+description: "Global oil hit 104 mb/d in 2025. Then the Strait of Hormuz closed. I went through the data on who produces oil, who controls it, how it moves, and what the regional conflict in the Middle East reveals about a system built on concentrated risk."
 ---
 
 *A note on how this was put together: all data and sources came from my own research, primarily through Google searches filtered through [Ground News](https://ground.news/) to stick with center-leaning outlets. I used Claude to review the final draft for grammatical accuracy and to generate the Python code for the plots. I modified the styling to match my site's theme and used Google Slides for some of the charts for easier formatting.*
 
-As I write this, Brent crude is above \$110 a barrel. The Strait of Hormuz, through which 20% of the world's oil flows, has been effectively shut down following the [2026 Iran conflict](https://en.wikipedia.org/wiki/2026_Iran_war). Oil traffic through the strait has fallen to less than 10% of pre-war levels. It is one of the largest supply disruptions in the history of the global oil market.
+As I write this, Brent crude is above \$110 a barrel. The Strait of Hormuz, through which 20% of the world's oil flows, has been effectively shut down following [a regional conflict in the Middle East](https://en.wikipedia.org/wiki/2026_Iran_war). Oil traffic through the strait has fallen to less than 10% of pre-war levels. It is one of the largest supply disruptions in the history of the global oil market.
 
 If you needed a reminder that the world still runs on oil, you got one.
 
@@ -125,18 +125,18 @@ Oil does not vanish when a chokepoint breaks. The system reroutes. But rerouting
 
 And then came the scenario that energy analysts have war-gamed for decades.
 
-The [2026 Iran conflict](https://en.wikipedia.org/wiki/2026_Iran_war) led to a near-total shutdown of oil transit through the Strait of Hormuz, with traffic falling to [less than 10% of pre-war levels](https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis).
+The [2026 regional conflict in the Middle East](https://en.wikipedia.org/wiki/2026_Iran_war) led to a near-total shutdown of oil transit through the Strait of Hormuz, with traffic falling to [less than 10% of pre-war levels](https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis).
 
 The price response was violent. Brent crude jumped 15% to \$83 by March 5, then [surged past \$100 on March 8](https://www.axios.com/2026/03/09/oil-prices-iran-war-strait-hormuz) for the first time in four years. It [hit nearly \$110 on March 18](https://fortune.com/2026/03/18/oil-prices-110-crude-brent-iran-war-israel-strait-hormuz-lng/). Dubai crude, the pricing benchmark for Asian buyers, spiked above \$150. Brent has risen roughly 80% since the conflict began. U.S. gasoline prices climbed nearly 80 cents in three weeks, [with diesel approaching \$5 a gallon](https://www.washingtonpost.com/business/2026/03/19/gas-prices-iran-oil-companies/). California gasoline breached \$5.
 
-![Brent crude oil price from 1970 to 2026 showing major disruptions: 1973 embargo, Iranian revolution, OPEC price war, 2008 peak, COVID crash, and the March 2026 Iran war spike to \$110](/images/oil-price-history.png)
-*Brent crude annual average price, 1970 to 2026. The March 2026 Iran war spike is the latest in a pattern of geopolitical shocks. Data: FRED, EIA.*
+![Brent crude oil price from 1970 to 2026 showing major disruptions: 1973 embargo, Iranian revolution, OPEC price war, 2008 peak, COVID crash, and the March 2026 Middle East conflict spike to \$110](/images/oil-price-history.png)
+*Brent crude annual average price, 1970 to 2026. The March 2026 Middle East conflict spike is the latest in a pattern of geopolitical shocks. Data: FRED, EIA.*
 
 The disruption is the largest to global energy supply since the 1973 oil embargo. The Suez blockage delayed ships for six days. The Houthi rerouting added two weeks per voyage. The Hormuz closure removed roughly 20 mb/d from global transit, nearly one fifth of all oil consumed worldwide.
 
 Asia is bearing the worst of it. [Eighty-four percent of the oil and 83% of the Liquefied Natural Gas (LNG) shipped through the Strait of Hormuz in 2024 was bound for Asia](https://time.com/article/2026/03/16/us-israel-iran-war-trump-asia-economy-oil-energy-inflation-recession/). Japan, South Korea, India, and Taiwan are almost entirely dependent on seaborne energy imports. Strategic petroleum releases are [being discussed](https://www.aljazeera.com/economy/2026/3/15/strategic-oil-release-may-calm-markets-but-cannot-fix-hormuz-disruption), but as the data from 2022 showed, reserves can calm markets temporarily. They cannot replace 20 mb/d of transit capacity.
 
-The Iran crisis does not change the structural analysis in this post. It confirms it. Every vulnerability described here, the transport dependence, the chokepoint concentration, the asymmetry between NOCs and supermajors, the limits of strategic reserves, has been activated simultaneously. The energy transition is real, but it did not arrive fast enough to make this crisis manageable. That is what 104 mb/d of dependence looks like when the system is tested.
+The crisis does not change the structural analysis in this post. It confirms it. Every vulnerability described here, the transport dependence, the chokepoint concentration, the asymmetry between NOCs and supermajors, the limits of strategic reserves, has been activated simultaneously. The energy transition is real, but it did not arrive fast enough to make this crisis manageable. That is what 104 mb/d of dependence looks like when the system is tested.
 
 ## Who controls production and distribution
 

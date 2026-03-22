@@ -63,7 +63,7 @@ That's it. Three values. The model is forced to stop relying on fine-grained wei
 
 ## Why "1.58 bits" and why zero matters so much
 
-The name "1.58" isn't a version number. It's the information-theoretic cost of encoding three options. With two options (+1 or -1), you need exactly 1 bit. With three options (+1, 0, -1), you need $\log_2(3) \approx 1.58$ bits.
+The name "1.58" isn't a version number. It's the information-theoretic cost of encoding three options. With two options (+1 or -1), you need exactly 1 bit. With three options (+1, 0, -1), you need \(\log_2(3) \approx 1.58\) bits.
 
 So you're paying an extra 0.58 bits per weight. What do you get for it?
 
@@ -75,7 +75,7 @@ That's a big deal. It means a ternary network can learn sparse, selective connec
 
 ## The part that really got my attention: no more multiplication
 
-The most computationally expensive part of running any LLM is matrix multiplication: $y = W \cdot x$, where each element of $W$ is typically a 16-bit float. Billions of these multiplications happen during every forward pass.
+The most computationally expensive part of running any LLM is matrix multiplication: \(y = W \cdot x\), where each element of \(W\) is typically a 16-bit float. Billions of these multiplications happen during every forward pass.
 
 But think about what happens when every weight is +1, -1, or 0. You don't need to multiply anymore. The math collapses into something much simpler:
 

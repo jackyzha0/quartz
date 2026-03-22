@@ -76,7 +76,10 @@
       "WebFetch(domain:ieeexplore.ieee.org)",
       "WebFetch(domain:sail-lab.org)",
       "WebFetch(domain:aclanthology.org)",
-      "Bash(do sips:*)"
+      "Bash(do sips:*)",
+      "Bash(do echo:*)",
+      "Bash(perl -ne 'while \\(/\\(?<!\\\\$\\)\\\\$\\(?!\\\\$\\)\\(.+?\\)\\(?<!\\\\$\\)\\\\$\\(?!\\\\$\\)/g\\) { print \"\"  Line $.: \\\\$$1\\\\$\\\\n\"\"; }' \"$f\")",
+      "Bash(in the Middle East\" while keeping wiki links:*)"
     ],
     "deny": []
   }

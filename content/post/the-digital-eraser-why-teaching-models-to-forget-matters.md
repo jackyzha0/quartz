@@ -41,7 +41,7 @@ This is the part that I find most elegant. Low-Rank Adaptation (LoRA) was origin
 
 But it turns out LoRA is also a natural tool for unlearning. The logic is the same in reverse. Instead of adapting the model to learn new behavior, you adapt it to counter the influence of specific data, all without touching the frozen base weights.
 
-Here's how it works in practice. Trainable low-rank matrices (A and B) get injected into the transformer layers, specifically into the Query (Q), Key (K), and Value (V) projection matrices. During unlearning, only these small matrices are updated. They're trained to "counteract" the influence of the target data on the model's outputs, while the original weight matrix $W_0$ stays frozen.
+Here's how it works in practice. Trainable low-rank matrices (A and B) get injected into the transformer layers, specifically into the Query (Q), Key (K), and Value (V) projection matrices. During unlearning, only these small matrices are updated. They're trained to "counteract" the influence of the target data on the model's outputs, while the original weight matrix \(W_0\) stays frozen.
 
 | Aspect | Standard LoRA (learning) | LoRA for unlearning |
 | --- | --- | --- |
@@ -59,7 +59,7 @@ In real-world deployment, companies often use models trained on third-party data
 
 Most unlearning methods assume you have both: the "forget set" (data to remove) and the "retain set" (data to preserve). Without the retain set, how do you make sure the model doesn't degrade on everything else while forgetting the target?
 
-Poppi et al. solved this with sparsity regularization on the low-rank decomposition. Specifically, they applied L1 regularization to the B matrix: $\lambda \|\text{vec}(B)\|_1$. This constrains the weight changes to be sparse, meaning only a small number of parameters actually shift during unlearning.
+Poppi et al. solved this with sparsity regularization on the low-rank decomposition. Specifically, they applied L1 regularization to the B matrix: \(\lambda \|\text{vec}(B)\|_1\). This constrains the weight changes to be sparse, meaning only a small number of parameters actually shift during unlearning.
 
 The intuition is straightforward. If you only allow the model to make a few, targeted weight changes, the risk of accidentally damaging performance on unrelated data drops significantly. The model forgets the target class while maintaining its original performance on everything else, and it does this without ever needing to see the retain data again.
 
@@ -71,9 +71,9 @@ For LLMs specifically, Chen and Yang proposed the Efficient Unlearning (EUL) fra
 
 The original model acts as the "Competent Teacher." The unlearning model is the "Student." The student follows a two-step process governed by Kullback-Leibler (KL) Divergence:
 
-**Step 1, Retention:** $\min \text{KL}(\text{Teacher}(X_r) \| \text{Student}(X_r))$. On data we want to keep, the student gets penalized for deviating from the teacher. It should behave identically to the original model on retained knowledge.
+**Step 1, Retention:** \(\min \text{KL}(\text{Teacher}(X_r) \| \text{Student}(X_r))\). On data we want to keep, the student gets penalized for deviating from the teacher. It should behave identically to the original model on retained knowledge.
 
-**Step 2, Forgetting:** $\max \text{KL}(\text{Teacher}(X_f) \| \text{Student}(X_f))$. On data we want to forget, the student gets rewarded for diverging from the teacher. The bigger the gap between student and teacher outputs on forgotten data, the better.
+**Step 2, Forgetting:** \(\max \text{KL}(\text{Teacher}(X_f) \| \text{Student}(X_f))\). On data we want to forget, the student gets rewarded for diverging from the teacher. The bigger the gap between student and teacher outputs on forgotten data, the better.
 
 What I like about this framework is how explicit the tradeoff is. You can literally see the tension between retention and forgetting encoded in the loss function. There's no hand-waving about "maintaining model quality." The KL terms directly measure it.
 
@@ -81,7 +81,7 @@ What I like about this framework is how explicit the tradeoff is. You can litera
 
 In production, unlearning isn't a one-time event. Deletion requests arrive continuously and asynchronously. A user in Germany files a GDPR request on Monday. Another user in California files a CCPA request on Thursday. You can't afford to run a full unlearning cycle for each one, and you can't just keep stacking adapter layers indefinitely.
 
-The EUL framework handles this with a fusion mechanism that merges multiple unlearning layers into a single unified layer. And this is more than a simple weight average. It works by solving a linear regression problem using the pre-computed inner product matrix of hidden representations ($X_{f_i}^T X_{f_i}$) of the forgotten data.
+The EUL framework handles this with a fusion mechanism that merges multiple unlearning layers into a single unified layer. And this is more than a simple weight average. It works by solving a linear regression problem using the pre-computed inner product matrix of hidden representations (\(X_{f_i}^T X_{f_i}\)) of the forgotten data.
 
 The key detail: because this uses the pre-computed inner product rather than the raw data itself, it's both computationally efficient and privacy-preserving. The raw forget-set data doesn't need to be stored after the inner products are computed. So you get a "dynamic deletion" pipeline that can handle a sequence of privacy requests without linear growth in computational overhead.
 
