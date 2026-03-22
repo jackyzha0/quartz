@@ -8,7 +8,7 @@ description: "Global oil hit 104 mb/d in 2025. Then the Strait of Hormuz closed.
 
 *A note on how this was put together: all data and sources came from my own research, primarily through Google searches filtered through [Ground News](https://ground.news/) to stick with center-leaning outlets. I used Claude to review the final draft for grammatical accuracy and to generate the Python code for the plots. I modified the styling to match my site's theme and used Google Slides for some of the charts for easier formatting.*
 
-As I write this, Brent crude is above \$110 a barrel. The Strait of Hormuz, through which 20% of the world's oil flows, has been effectively shut down since the [U.S.-Israeli strikes on Iran began on February 28](https://en.wikipedia.org/wiki/2026_Iran_war). Oil traffic through the strait has [fallen to less than 10% of pre-war levels](https://www.aljazeera.com/news/2026/3/11/irans-irgc-says-not-one-litre-of-oil-will-get-through-strait-of-hormuz). It is one of the largest supply disruptions in the history of the global oil market.
+As I write this, Brent crude is above \$110 a barrel. The Strait of Hormuz, through which 20% of the world's oil flows, has been effectively shut down following the [2026 Iran conflict](https://en.wikipedia.org/wiki/2026_Iran_war). Oil traffic through the strait has fallen to less than 10% of pre-war levels. It is one of the largest supply disruptions in the history of the global oil market.
 
 If you needed a reminder that the world still runs on oil, you got one.
 
@@ -125,7 +125,7 @@ Oil does not vanish when a chokepoint breaks. The system reroutes. But rerouting
 
 And then came the scenario that energy analysts have war-gamed for decades.
 
-On February 28, 2026, the United States and Israel launched [joint strikes against Iran](https://en.wikipedia.org/wiki/2026_Israeli%E2%80%93United_States_strikes_on_Iran), targeting nuclear facilities, military infrastructure. The energy consequences were immediate. Iran's Islamic Revolutionary Guard Corps (IRGC) [declared that "not a litre of oil" would pass through the Strait of Hormuz](https://www.aljazeera.com/news/2026/3/11/irans-irgc-says-not-one-litre-of-oil-will-get-through-strait-of-hormuz). By mid-March, oil flow through the strait had fallen to [less than 10% of pre-war levels](https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis). Iran had made 21 confirmed attacks on merchant ships by March 12. Around 200 tankers were left wandering the region, unable to transit.
+The [2026 Iran conflict](https://en.wikipedia.org/wiki/2026_Iran_war) led to a near-total shutdown of oil transit through the Strait of Hormuz, with traffic falling to [less than 10% of pre-war levels](https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis).
 
 The price response was violent. Brent crude jumped 15% to \$83 by March 5, then [surged past \$100 on March 8](https://www.axios.com/2026/03/09/oil-prices-iran-war-strait-hormuz) for the first time in four years. It [hit nearly \$110 on March 18](https://fortune.com/2026/03/18/oil-prices-110-crude-brent-iran-war-israel-strait-hormuz-lng/). Dubai crude, the pricing benchmark for Asian buyers, spiked above \$150. Brent has risen roughly 80% since the conflict began. U.S. gasoline prices climbed nearly 80 cents in three weeks, [with diesel approaching \$5 a gallon](https://www.washingtonpost.com/business/2026/03/19/gas-prices-iran-oil-companies/). California gasoline breached \$5.
 
