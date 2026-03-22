@@ -6,11 +6,11 @@ tags: ["energy", "oil", "ev", "climate", "economics", "datacenter"]
 description: "Global oil hit 104 mb/d in 2025. Then the Strait of Hormuz closed. I went through the data on who produces oil, who controls it, how it moves, and what the Iran war reveals about a system built on concentrated risk."
 ---
 
-As I write this, Brent crude is above $110 a barrel. The Strait of Hormuz, through which 20% of the world's oil flows, has been effectively shut down since the [U.S.-Israeli strikes on Iran began on February 28](https://en.wikipedia.org/wiki/2026_Iran_war). Oil traffic through the strait has [fallen to less than 10% of pre-war levels](https://www.aljazeera.com/news/2026/3/11/irans-irgc-says-not-one-litre-of-oil-will-get-through-strait-of-hormuz). It is one of the largest supply disruptions in the history of the global oil market.
+As I write this, Brent crude is above \$110 a barrel. The Strait of Hormuz, through which 20% of the world's oil flows, has been effectively shut down since the [U.S.-Israeli strikes on Iran began on February 28](https://en.wikipedia.org/wiki/2026_Iran_war). Oil traffic through the strait has [fallen to less than 10% of pre-war levels](https://www.aljazeera.com/news/2026/3/11/irans-irgc-says-not-one-litre-of-oil-will-get-through-strait-of-hormuz). It is one of the largest supply disruptions in the history of the global oil market.
 
 If you needed a reminder that the world still runs on oil, you got one.
 
-Global oil consumption hit a record in 2024 and kept climbing into 2025 and 2026, averaging approximately 104.4 million barrels per day so far in 2026. Two decades of climate summits. A [$2.2 trillion annual clean energy investment boom](https://www.iea.org/reports/world-energy-investment-2025). Nearly 60 million electric vehicles on the road. And we burned more oil than in any prior year.
+Global oil consumption hit a record in 2024 and kept climbing into 2025 and 2026, averaging approximately 104.4 million barrels per day so far in 2026. Two decades of climate summits. A [\$2.2 trillion annual clean energy investment boom](https://www.iea.org/reports/world-energy-investment-2025). Nearly 60 million electric vehicles on the road. And we burned more oil than in any prior year.
 
 Oil's share of the global energy mix dipped below 30% for the first time. But in absolute terms, demand keeps rising. The gap between the energy transition narrative and the energy transition reality remains wide. I went through the data to understand where oil actually sits in the global system: who produces it, who controls it, how it moves, and what might change the picture. Then a war broke out that made every one of these structural dependencies viscerally real.
 
@@ -68,7 +68,7 @@ Global averages hide the tail. Oil clings to electricity generation in specific 
 
 **The Middle East** is the most prominent case. Ember reports that only 7% of the Middle East's electricity came from clean sources in 2023. Gas and oil dominate, with gas at 72% and oil filling much of the rest. Saudi Arabia generates roughly 34.5% of its electricity from oil, burning up to 1.4 mb/d of crude during summer peak months, making it the world's largest user of oil for power generation. Kuwait is at about 46.7% oil, and Iraq about 40.7% ([Our World in Data, 2025](https://ourworldindata.org/energy)).
 
-**Island nations** face extreme dependence. Comoros, Gambia, Nauru, and Timor-Leste generate 100% of their electricity from oil. Caribbean and Pacific island nations typically pay $0.20 to $0.50 per kilowatt-hour for diesel-generated power, compared with the U.S. average of $0.13.
+**Island nations** face extreme dependence. Comoros, Gambia, Nauru, and Timor-Leste generate 100% of their electricity from oil. Caribbean and Pacific island nations typically pay \$0.20 to \$0.50 per kilowatt-hour for diesel-generated power, compared with the U.S. average of \$0.13.
 
 In advanced economies, oil's share declined faster than many anticipated, but complete eradication has proven difficult. Oil-fired peaker plants, often decades old, are maintained as emergency backstops for grids increasingly reliant on intermittent renewables. Because liquid fuels can be stored onsite and these plants ramp up quickly, they act as reliability insurance. As grid stress increases, some of these plants are seeing their operating lives extended rather than retired.
 
@@ -110,7 +110,7 @@ Major pipeline arteries include the ESPO pipeline, which delivers roughly 700,00
 
 **Suez Canal, March 2021.** The container ship *Ever Given* blocked the canal for six days, delaying more than 430 vessels. Oil prices spiked, though existing inventories buffered the short-term impact.
 
-**Red Sea, 2024 onward.** Houthi attacks on shipping forced a massive rerouting. The EIA reported that crude and product flows around the Cape of Good Hope increased from 6.0 mb/d in 2023 to 9.2 mb/d in the first eight months of 2024. The rerouting added two weeks and roughly $1 million in fuel per round trip. Tanker rates from the Middle East to Europe tripled. As of early 2026, Suez traffic remains at historically low levels.
+**Red Sea, 2024 onward.** Houthi attacks on shipping forced a massive rerouting. The EIA reported that crude and product flows around the Cape of Good Hope increased from 6.0 mb/d in 2023 to 9.2 mb/d in the first eight months of 2024. The rerouting added two weeks and roughly \$1 million in fuel per round trip. Tanker rates from the Middle East to Europe tripled. As of early 2026, Suez traffic remains at historically low levels.
 
 Oil does not vanish when a chokepoint breaks. The system reroutes. But rerouting consumes time, capital, and tanker capacity, and it raises prices for everyone.
 
@@ -120,9 +120,9 @@ And then came the scenario that energy analysts have war-gamed for decades.
 
 On February 28, 2026, the United States and Israel launched [joint strikes against Iran](https://en.wikipedia.org/wiki/2026_Israeli%E2%80%93United_States_strikes_on_Iran), targeting nuclear facilities, military infrastructure, and energy sites, including oil depots in Tehran and installations on Kharg Island. The energy consequences were immediate. Iran's Islamic Revolutionary Guard Corps (IRGC) [declared that "not a litre of oil" would pass through the Strait of Hormuz](https://www.aljazeera.com/news/2026/3/11/irans-irgc-says-not-one-litre-of-oil-will-get-through-strait-of-hormuz). By mid-March, oil flow through the strait had fallen to [less than 10% of pre-war levels](https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis). Iran had made 21 confirmed attacks on merchant ships by March 12. Around 200 tankers were left wandering the region, unable to transit.
 
-The price response was violent. Brent crude jumped 15% to $83 by March 5, then [surged past $100 on March 8](https://www.axios.com/2026/03/09/oil-prices-iran-war-strait-hormuz) for the first time in four years. It [hit nearly $110 on March 18](https://fortune.com/2026/03/18/oil-prices-110-crude-brent-iran-war-israel-strait-hormuz-lng/). Dubai crude, the pricing benchmark for Asian buyers, spiked above $150. Brent has risen roughly 80% since the conflict began. U.S. gasoline prices climbed nearly 80 cents in three weeks, [with diesel approaching $5 a gallon](https://www.washingtonpost.com/business/2026/03/19/gas-prices-iran-oil-companies/). California gasoline breached $5.
+The price response was violent. Brent crude jumped 15% to \$83 by March 5, then [surged past \$100 on March 8](https://www.axios.com/2026/03/09/oil-prices-iran-war-strait-hormuz) for the first time in four years. It [hit nearly \$110 on March 18](https://fortune.com/2026/03/18/oil-prices-110-crude-brent-iran-war-israel-strait-hormuz-lng/). Dubai crude, the pricing benchmark for Asian buyers, spiked above \$150. Brent has risen roughly 80% since the conflict began. U.S. gasoline prices climbed nearly 80 cents in three weeks, [with diesel approaching \$5 a gallon](https://www.washingtonpost.com/business/2026/03/19/gas-prices-iran-oil-companies/). California gasoline breached \$5.
 
-![Brent crude oil price from 1970 to 2026 showing major disruptions: 1973 embargo, Iranian revolution, OPEC price war, 2008 peak, COVID crash, and the March 2026 Iran war spike to $110](/images/oil-price-history.png)
+![Brent crude oil price from 1970 to 2026 showing major disruptions: 1973 embargo, Iranian revolution, OPEC price war, 2008 peak, COVID crash, and the March 2026 Iran war spike to \$110](/images/oil-price-history.png)
 
 The disruption is the largest to global energy supply since the 1973 oil embargo. The Suez blockage delayed ships for six days. The Houthi rerouting added two weeks per voyage. The Hormuz closure removed roughly 20 mb/d from global transit, nearly one fifth of all oil consumed worldwide.
 
@@ -142,7 +142,7 @@ A March 2026 OPEC statement confirmed that eight countries had previously announ
 
 If OPEC+ is the demand-management story, U.S. shale is the supply-curve disruptor. The EIA reports that in 2024, U.S. crude production averaged a record 13.1 mb/d. But shale is not pure flexibility. Individual wells decline quickly, so the system needs continuous drilling to sustain output. More than 15,000 new wells came online in 2024 just to keep production from falling. "Fast" supply is also maintenance-heavy supply.
 
-Shale producers respond to price signals rather than coordinated agreements. When prices rise, rigs spin up; when they fall, activity drops. This creates a de facto price ceiling that constrains OPEC+'s ability to push oil above roughly $80 to $90 per barrel for extended periods.
+Shale producers respond to price signals rather than coordinated agreements. When prices rise, rigs spin up; when they fall, activity drops. This creates a de facto price ceiling that constrains OPEC+'s ability to push oil above roughly \$80 to \$90 per barrel for extended periods.
 
 ### The invisible giants: trading houses
 
@@ -150,17 +150,17 @@ The physical oil trade is dominated by a handful of private commodity trading ho
 
 | Company | HQ | 2024 Revenue | Notable Scale |
 | --- | --- | --- | --- |
-| Vitol | Rotterdam | $331 billion | 7.2 mb/d traded |
-| Trafigura | Singapore | $166 billion | 7.6 mb/d (FY2025) |
-| Gunvor | Geneva | $136 billion | |
-| Glencore | Zug | ~$220 billion | Also mines metals, coal |
-| Mercuria | Geneva | ~$100 billion | |
+| Vitol | Rotterdam | \$331 billion | 7.2 mb/d traded |
+| Trafigura | Singapore | \$166 billion | 7.6 mb/d (FY2025) |
+| Gunvor | Geneva | \$136 billion | |
+| Glencore | Zug | ~\$220 billion | Also mines metals, coal |
+| Mercuria | Geneva | ~\$100 billion | |
 
 These firms lease the tankers, secure the credit, blend crude grades, and execute geographic arbitrage across every basin. They remain invisible because most are privately held, with no obligation to publish results. They operate between producers and refiners, not at the consumer level.
 
 ### Sanctions
 
-After the EU banned Russian crude in late 2022, China and India absorbed roughly 90% of Russia's seaborne exports. Russia's share of India's crude imports surged from under 1% to 35.8% in fiscal 2024-25. India saved an estimated $10 to $25 billion by buying discounted Russian crude.
+After the EU banned Russian crude in late 2022, China and India absorbed roughly 90% of Russia's seaborne exports. Russia's share of India's crude imports surged from under 1% to 35.8% in fiscal 2024-25. India saved an estimated \$10 to \$25 billion by buying discounted Russian crude.
 
 A parallel shadow fleet of roughly 200 aging tankers now operates outside Western insurance and regulatory frameworks, using Automatic Identification System (AIS) blackouts, ship-to-ship transfers, and complex ownership structures. Iran exports about 1.5 to 1.8 mb/d to China through similar networks. In 2025, approximately 17% to 18% of China's oil imports came from sanctioned Iranian and Venezuelan sources at steep discounts, processed largely by independent teapot refineries.
 
@@ -175,19 +175,19 @@ The concentration is striking. The United States accounts for about 45% of data 
 
 ### The scale of money pouring in
 
-The numbers are staggering. [Hyperscaler capital expenditure is projected to exceed $600 billion in 2026](https://techblog.comsoc.org/2025/12/22/hyperscaler-capex-600-bn-in-2026-a-36-increase-over-2025-while-global-spending-on-cloud-infrastructure-services-skyrockets/), a 36% jump from 2025. The [four largest spenders alone, Amazon, Google, Microsoft, and Meta, are approaching $700 billion combined](https://www.cnbc.com/2026/02/06/google-microsoft-meta-amazon-ai-cash.html). Roughly 75% of this is tied directly to building out the infrastructure to train and serve large language models (LLMs) and other models, not traditional cloud workloads.
+The numbers are staggering. [Hyperscaler capital expenditure is projected to exceed \$600 billion in 2026](https://techblog.comsoc.org/2025/12/22/hyperscaler-capex-600-bn-in-2026-a-36-increase-over-2025-while-global-spending-on-cloud-infrastructure-services-skyrockets/), a 36% jump from 2025. The [four largest spenders alone, Amazon, Google, Microsoft, and Meta, are approaching \$700 billion combined](https://www.cnbc.com/2026/02/06/google-microsoft-meta-amazon-ai-cash.html). Roughly 75% of this is tied directly to building out the infrastructure to train and serve large language models (LLMs) and other models, not traditional cloud workloads.
 
-![Hyperscaler capital expenditure comparison for 2025 vs 2026, with Amazon leading at $200B projected for 2026](/images/oil-datacenter-capex.png)
+![Hyperscaler capital expenditure comparison for 2025 vs 2026, with Amazon leading at \$200B projected for 2026](/images/oil-datacenter-capex.png)
 
 | Company | 2025 CapEx | 2026 CapEx (projected) |
 | --- | --- | --- |
-| Amazon | ~$125B | ~$200B |
-| Google/Alphabet | ~$85B | ~$175-185B |
-| Microsoft | ~$80B | ~$120B |
-| Meta | ~$69B | ~$100B |
-| Oracle | ~$40B | ~$60B |
+| Amazon | ~\$125B | ~\$200B |
+| Google/Alphabet | ~\$85B | ~\$175-185B |
+| Microsoft | ~\$80B | ~\$120B |
+| Meta | ~\$69B | ~\$100B |
+| Oracle | ~\$40B | ~\$60B |
 
-To put this in perspective, total global upstream oil and gas investment is about $567 billion. Data center capex now exceeds what the entire oil industry spends to find and extract crude.
+To put this in perspective, total global upstream oil and gas investment is about \$567 billion. Data center capex now exceeds what the entire oil industry spends to find and extract crude.
 
 ### The link to fossil fuels
 
@@ -199,18 +199,18 @@ The hyperscalers are not just buying grid power. They are directly contracting f
 
 | Project | Partners | Scale | Details |
 | --- | --- | --- | --- |
-| Meta Louisiana data center | Meta / Entergy | 2.3 GW | $10B facility powered by natural gas |
+| Meta Louisiana data center | Meta / Entergy | 2.3 GW | \$10B facility powered by natural gas |
 | Stargate initiative | OpenAI / Oracle | 2.3 GW onsite gas (Texas) | [Largest onsite gas order ever placed](https://newsletter.semianalysis.com/p/how-ai-labs-are-solving-the-power); Oracle's 5.4 GW lease is the biggest single hyperscale deal recorded |
 | Chevron Permian Basin | Chevron | 2.5 GW, expandable to 5 GW | Data center power project in West Texas, announced Nov. 2025 |
 | ExxonMobil data center plant | ExxonMobil | 1.5+ GW | [Gas plant with 90% carbon capture](https://www.cnbc.com/2025/12/08/nextera-exxon-develop-gigawatt-data-center-for-hyperscaler.html) |
 | NextEra/Exxon Southeast campus | NextEra / ExxonMobil | 1 GW | 2,500-acre site near Exxon's CO2 pipeline infrastructure |
 | Chevron / GE Vernova | Chevron / GE Vernova | 4 GW | Gas-powered generation for data centers, 18 to 24 month timeline |
-| Google / Intersect Power | Google | Multi-GW | [$4.75B acquisition](https://techcrunch.com/2026/02/28/billion-dollar-infrastructure-deals-ai-boom-data-centers-openai-oracle-nvidia-microsoft-google-meta/) giving Google direct control of energy development |
-| ECP / KKR Texas campus | ECP / KKR | 190 MW (initial) | Co-located with Calpine gas plant, part of $50B partnership |
+| Google / Intersect Power | Google | Multi-GW | [\$4.75B acquisition](https://techcrunch.com/2026/02/28/billion-dollar-infrastructure-deals-ai-boom-data-centers-openai-oracle-nvidia-microsoft-google-meta/) giving Google direct control of energy development |
+| ECP / KKR Texas campus | ECP / KKR | 190 MW (initial) | Co-located with Calpine gas plant, part of \$50B partnership |
 
 Globally, 38 GW of captive gas plants are in development specifically for data centers. Under current policy, [EPRI models project](https://www.belfercenter.org/research-analysis/ai-data-centers-us-electric-grid) incremental gas capacity additions of 6.6 to 13.7 GW per year from 2025 to 2030.
 
-Hyperscalers are also chasing nuclear. Microsoft signed a 20-year deal to restart Three Mile Island's Unit 1 (835 MW). Amazon invested $650 million in a campus near the Susquehanna nuclear plant. Google contracted with Kairos Power for small modular reactors. But nuclear takes a decade to build. Gas plants take two to three years. The near-term reality is fossil power for data centers.
+Hyperscalers are also chasing nuclear. Microsoft signed a 20-year deal to restart Three Mile Island's Unit 1 (835 MW). Amazon invested \$650 million in a campus near the Susquehanna nuclear plant. Google contracted with Kairos Power for small modular reactors. But nuclear takes a decade to build. Gas plants take two to three years. The near-term reality is fossil power for data centers.
 
 ### Does data center growth delay peak oil?
 
@@ -250,7 +250,7 @@ That means displacing roughly 25 to 26 mb/d. This is not a slogan. It is a physi
 
 **Heavy freight electrification or fuel switching.** Battery-electric trucks in some corridors, catenary or hybrid systems in others, and limited use of low-carbon fuels where electrification is impractical.
 
-**Sustained policy and investment.** The IEA estimates total annual energy investment would need to reach $4.8 trillion, versus $3.3 trillion today, sustained for decades. Every major economy would need binding policies: vehicle sales bans, carbon pricing, fleet scrappage programs, all implemented simultaneously.
+**Sustained policy and investment.** The IEA estimates total annual energy investment would need to reach \$4.8 trillion, versus \$3.3 trillion today, sustained for decades. Every major economy would need binding policies: vehicle sales bans, carbon pricing, fleet scrappage programs, all implemented simultaneously.
 
 This is doable in engineering terms. It is extremely difficult in political and investment terms.
 
@@ -263,7 +263,7 @@ Global oil demand rose from approximately 83 mb/d in 2005 to 104 mb/d in 2025, a
 
 The pattern is not decline. It is not quite a plateau. It is deceleration toward a plateau, with the plateau itself still uncertain.
 
-Solar PV investment alone ($450 billion) nearly matches total upstream oil and gas spending ($567 billion). Data center investment ($580 billion) now surpasses oil supply investment. These capital flows signal where the future is heading. But capital flows and barrel counts operate on different timescales. The infrastructure that produces, refines, ships, and burns 104 million barrels per day was built over a century. It will not be unwound in a decade.
+Solar PV investment alone (\$450 billion) nearly matches total upstream oil and gas spending (\$567 billion). Data center investment (\$580 billion) now surpasses oil supply investment. These capital flows signal where the future is heading. But capital flows and barrel counts operate on different timescales. The infrastructure that produces, refines, ships, and burns 104 million barrels per day was built over a century. It will not be unwound in a decade.
 
 The world still runs on oil. That sentence was true in 1975, in 2000, and in 2025. It is painfully true in March 2026, as gasoline prices spike, Asian economies scramble for supply, and 200 tankers circle the Arabian Sea waiting for a strait to reopen.
 
