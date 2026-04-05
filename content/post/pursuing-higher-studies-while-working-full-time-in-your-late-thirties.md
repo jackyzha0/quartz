@@ -2,6 +2,7 @@
 title: "A Working Professional's Guide to Graduate School"
 date: 2026-04-04T05:00:00+00:00
 slug: pursuing-higher-studies-while-working-full-time-in-your-late-thirties
+draft: true
 tags: ["phd", "masters", "grad-school", "career", "advice"]
 description: "A Max Tegmark talk in 2017 sent me back to school. I finished a master's in 2019, started a PhD while working full time, lost a year to a dead-end research problem, and kept going. This is what I wish someone had told me about the whole process."
 ---
