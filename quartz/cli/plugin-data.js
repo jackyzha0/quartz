@@ -107,6 +107,16 @@ function getSourceSubdir(source) {
 }
 
 /**
+ * Returns the ref from an object source, or undefined for string sources.
+ */
+function getSourceRef(source) {
+  if (typeof source === "object" && source !== null && typeof source.ref === "string") {
+    return source.ref
+  }
+  return undefined
+}
+
+/**
  * Returns a display-friendly string for a source value.
  */
 export function formatSource(source) {
@@ -166,6 +176,9 @@ export function readManifestFromPackageJson(pluginDir) {
 export function parseGitSource(source) {
   const url = getSourceUrl(source)
   const subdir = getSourceSubdir(source)
+  // An object source may carry its own `ref`, which takes precedence over any
+  // `#ref` fragment in the repo URL (mirrors parsePluginSource in gitLoader.ts).
+  const objectRef = getSourceRef(source)
   if (isLocalSource(url)) {
     const resolved = path.resolve(url)
     const name = typeof source === "object" && source.name ? source.name : path.basename(resolved)
@@ -175,25 +188,30 @@ export function parseGitSource(source) {
     const [repoPath, ref] = url.replace("github:", "").split("#")
     const [owner, repo] = repoPath.split("/")
     const name = typeof source === "object" && source.name ? source.name : repo
-    return { name, url: `https://github.com/${owner}/${repo}.git`, ref, subdir }
+    return {
+      name,
+      url: `https://github.com/${owner}/${repo}.git`,
+      ref: objectRef || ref || undefined,
+      subdir,
+    }
   }
   if (url.startsWith("git+")) {
     const raw = url.replace("git+", "")
     const [parsed, ref] = raw.split("#")
     const name =
       typeof source === "object" && source.name ? source.name : path.basename(parsed, ".git")
-    return { name, url: parsed, ref, subdir }
+    return { name, url: parsed, ref: objectRef || ref || undefined, subdir }
   }
   if (url.startsWith("https://")) {
     const [parsed, ref] = url.split("#")
     const name =
       typeof source === "object" && source.name ? source.name : path.basename(parsed, ".git")
-    return { name, url: parsed, ref, subdir }
+    return { name, url: parsed, ref: objectRef || ref || undefined, subdir }
   }
   // Handle npm scoped packages
   if (typeof url === "string" && url.startsWith("@") && url.includes("/") && !url.includes(":")) {
     const name = typeof source === "object" && source.name ? source.name : url
-    return { name, url: "", npmPackage: true, subdir }
+    return { name, url: "", ref: objectRef, npmPackage: true, subdir }
   }
   throw new Error(`Cannot parse plugin source: ${formatSource(source)}`)
 }
