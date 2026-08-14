@@ -1,27 +1,41 @@
 #!/usr/bin/env node
-import { chmodSync, existsSync, mkdirSync, symlinkSync, unlinkSync } from "fs"
+import { chmodSync, mkdirSync, readlinkSync, symlinkSync, unlinkSync } from "fs"
 import path from "path"
 
-const root = path.resolve(import.meta.dirname, "..")
-const target = path.join(root, "quartz", "bootstrap-cli.mjs")
+// npm links the `bin` entry into node_modules/.bin on install, bun does not
 
-try {
-  chmodSync(target, 0o755)
-} catch {
-  // best-effort, not fatal if it were to fail
+// a symlink is useless on windows, this needs a .cmd/.ps1 shim instead
+if (process.platform === "win32") {
+  process.exit(0)
 }
 
-const binDir = path.join(root, "node_modules", ".bin")
-mkdirSync(binDir, { recursive: true })
-
-// only tested on mac, someone on windows will have to add a .cmd shim for this
-const linkPath = path.join(binDir, "quartz")
-const relativeTarget = path.relative(binDir, target)
 try {
-  if (existsSync(linkPath)) {
-    unlinkSync(linkPath)
+  const root = path.resolve(import.meta.dirname, "..")
+  const target = path.join(root, "quartz", "bootstrap-cli.mjs")
+
+  try {
+    // checked in as 755, but bunx won't run the cli if a setup drops the mode
+    chmodSync(target, 0o755)
+  } catch (err) {
+    console.warn(`[quartz] could not make ${target} executable: ${err.message}`)
   }
-  symlinkSync(relativeTarget, linkPath)
+
+  const binDir = path.join(root, "node_modules", ".bin")
+  const linkPath = path.join(binDir, "quartz")
+  const relativeTarget = path.relative(binDir, target)
+
+  mkdirSync(binDir, { recursive: true })
+  try {
+    symlinkSync(relativeTarget, linkPath)
+  } catch (err) {
+    if (err.code !== "EEXIST") {
+      throw err
+    }
+    if (readlinkSync(linkPath) !== relativeTarget) {
+      unlinkSync(linkPath)
+      symlinkSync(relativeTarget, linkPath)
+    }
+  }
 } catch (err) {
   console.warn(`[quartz] could not link node_modules/.bin/quartz: ${err.message}`)
 }
