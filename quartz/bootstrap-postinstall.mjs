@@ -1,5 +1,13 @@
 #!/usr/bin/env node
-import { chmodSync, mkdirSync, readlinkSync, symlinkSync, unlinkSync, writeFileSync } from "fs"
+import {
+  chmodSync,
+  existsSync,
+  mkdirSync,
+  readlinkSync,
+  symlinkSync,
+  unlinkSync,
+  writeFileSync,
+} from "fs"
 import path from "path"
 
 // npm links the `bin` entry into node_modules/.bin on install, bun does not
@@ -10,11 +18,22 @@ try {
   const linkPath = path.join(binDir, "quartz")
   const relativeTarget = path.relative(binDir, target)
 
+  // as a dependency, npm links the bin itself, running here would only litter a node_modules into the package
+  if (!existsSync(path.join(root, "node_modules"))) {
+    process.exit(0)
+  }
+
   mkdirSync(binDir, { recursive: true })
 
   if (process.platform === "win32") {
     // windows ignores the shebang, so it needs the same shims npm writes
     const posixTarget = relativeTarget.split(path.sep).join("/")
+
+    // a symlink left by a wsl run would be followed and the shim written straight into the cli source file
+    try {
+      unlinkSync(linkPath)
+    } catch {}
+
     writeFileSync(
       linkPath,
       `#!/bin/sh\nexec node --no-deprecation "$(dirname "$0")/${posixTarget}" "$@"\n`,
@@ -41,7 +60,13 @@ try {
       if (err.code !== "EEXIST") {
         throw err
       }
-      if (readlinkSync(linkPath) !== relativeTarget) {
+      // not necessarily a symlink, a windows checkout leaves a plain file here
+      let current = null
+      try {
+        current = readlinkSync(linkPath)
+      } catch {}
+
+      if (current !== relativeTarget) {
         unlinkSync(linkPath)
         symlinkSync(relativeTarget, linkPath)
       }
