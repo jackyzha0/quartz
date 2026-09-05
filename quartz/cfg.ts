@@ -81,6 +81,12 @@ export interface GlobalConfiguration {
    * Region Codes: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
    */
   locale: ValidLocale
+  /**
+   * Controls which assets are copied to public/
+   * - "all": Copy all non-markdown files (backwards compatible, default)
+   * - "referenced": Only copy assets referenced by published pages
+   */
+  publishAssets?: "all" | "referenced"
 }
 
 export interface QuartzConfig {

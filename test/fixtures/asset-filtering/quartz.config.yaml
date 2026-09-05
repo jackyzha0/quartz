@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=../../../quartz/plugins/quartz-plugins.schema.json
+configuration:
+  pageTitle: "Asset Filtering Test"
+  enableSPA: true
+  enablePopovers: true
+  locale: en-US
+  theme:
+    fontOrigin: googleFonts
+    cdnCaching: false
+    typography:
+      header: Schibsted Grotesk
+      body: Source Sans Pro
+      code: IBM Plex Mono
+    colors:
+      lightMode:
+        light: "#ffffff"
+        lightgray: "#eeeeee"
+        gray: "#cccccc"
+        darkgray: "#666666"
+        dark: "#333333"
+        secondary: "#0066cc"
+        tertiary: "#666666"
+        highlight: "rgba(0,0,0,0.1)"
+        textHighlight: "#ffff00"
+      darkMode:
+        light: "#1a1a1a"
+        lightgray: "#333333"
+        gray: "#666666"
+        darkgray: "#999999"
+        dark: "#ffffff"
+        secondary: "#66aaff"
+        tertiary: "#999999"
+        highlight: "rgba(255,255,255,0.1)"
+        textHighlight: "#ffff00"
+  publishAssets: "referenced"
+  ignorePatterns: []
+plugins:
+  - source: "@quartz-community/explicit-publish"
+    enabled: true
+  - source: "@quartz-community/remove-draft"
+    enabled: true
+  - source: "@quartz-community/content-page"
+    enabled: true
