@@ -33,16 +33,27 @@ function extractAssetReferences(content: ProcessedContent[]): Set<string> {
     const baseDir = file.data.relativePath ? path.posix.dirname(file.data.relativePath) : ""
 
     visit(tree, "element", (node: Element) => {
+      // Track both src (images, video, audio, iframe) and href (links to downloadable files)
       const src = node.properties?.src
-      if (!src || typeof src !== "string") return
-      if (src.startsWith("http://") || src.startsWith("https://") || src.startsWith("data:")) return
+      const href = node.properties?.href
 
-      let normalized = src.split("?")[0].split("#")[0]
-      if (baseDir && !normalized.startsWith("/")) {
-        normalized = path.posix.join(baseDir, normalized)
+      for (const assetPath of [src, href]) {
+        if (!assetPath || typeof assetPath !== "string") continue
+        if (assetPath.startsWith("http://") || assetPath.startsWith("https://") || assetPath.startsWith("data:")) continue
+
+        let normalized = assetPath.split("?")[0].split("#")[0]
+        // Handle root-relative paths (e.g., "/diagram.png") by stripping leading slash
+        if (normalized.startsWith("/")) {
+          normalized = normalized.slice(1)
+        }
+        if (baseDir && !normalized.startsWith("/")) {
+          normalized = path.posix.join(baseDir, normalized)
+        }
+        normalized = path.posix.normalize(normalized).replace(/^\.\//, "")
+        if (normalized) {
+          assets.add(normalized)
+        }
       }
-      normalized = path.posix.normalize(normalized).replace(/^\.\//, "")
-      assets.add(normalized)
     })
   }
 
@@ -98,14 +109,34 @@ export const Assets: QuartzEmitterPlugin = () => {
       const publishAssets = cfg.publishAssets ?? "all"
       const excludeExtensions = getPageTypeExtensions(ctx)
 
+      // In referenced mode, always re-extract references from current content
+      // because markdown changes may add/remove asset references
       const referencedAssets = publishAssets === "referenced" ? extractAssetReferences(content) : null
+
+      // Track which markdown files changed to know if we need to re-check references
+      const markdownChanged = changeEvents.some(e => path.extname(e.path) === ".md")
 
       for (const changeEvent of changeEvents) {
         const ext = path.extname(changeEvent.path)
-        if (ext === ".md" || excludeExtensions.has(ext)) continue
+        if (excludeExtensions.has(ext)) continue
+
+        // For markdown changes, we don't copy the .md file itself (handled by PageTypeDispatcher)
+        // but we need to re-evaluate asset references from the updated content
+        if (ext === ".md") {
+          continue
+        }
 
         const normalized = normalizeAssetPath(changeEvent.path)
-        if (publishAssets === "referenced" && !referencedAssets!.has(normalized)) continue
+
+        if (publishAssets === "referenced") {
+          // If markdown changed, re-check if this asset is now referenced
+          if (markdownChanged) {
+            if (!referencedAssets!.has(normalized)) continue
+          } else {
+            // No markdown changes, use current reference set
+            if (!referencedAssets!.has(normalized)) continue
+          }
+        }
 
         if (changeEvent.type === "add" || changeEvent.type === "change") {
           yield copyFile(ctx.argv, changeEvent.path)

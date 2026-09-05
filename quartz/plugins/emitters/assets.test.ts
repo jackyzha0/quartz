@@ -8,10 +8,11 @@ import { spawn } from "child_process"
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const PROJECT_ROOT = path.join(__dirname, "..", "..", "..")
-const TEST_FIXTURE = path.join(__dirname, "fixtures", "asset-filtering")
-const OUTPUT_DIR = path.join(PROJECT_ROOT, "test/fixtures/asset-filtering/public")
-const TEST_CONFIG = path.join(PROJECT_ROOT, "quartz.config.test.yaml")
+// Repo root is 3 levels up from quartz/plugins/emitters/
+const REPO_ROOT = path.join(__dirname, "..", "..", "..")
+const TEST_FIXTURE = path.join(REPO_ROOT, "test", "fixtures", "asset-filtering")
+const OUTPUT_DIR = path.join(TEST_FIXTURE, "public")
+const TEST_CONFIG = path.join(TEST_FIXTURE, "quartz.config.yaml")
 
 async function cleanOutput() {
   try {
@@ -21,12 +22,12 @@ async function cleanOutput() {
 
 function runQuartzBuild(args: string[]): Promise<{ code: number; stdout: string; stderr: string }> {
   return new Promise((resolve) => {
-    const child = spawn("/opt/homebrew/bin/node", [
-      path.join(PROJECT_ROOT, "quartz/bootstrap-cli.mjs"),
+    const child = spawn(process.execPath, [
+      path.join(REPO_ROOT, "quartz/bootstrap-cli.mjs"),
       "build",
       ...args,
     ], {
-      cwd: PROJECT_ROOT,
+      cwd: REPO_ROOT,
       stdio: ["ignore", "pipe", "pipe"],
     })
 
@@ -47,18 +48,35 @@ function runQuartzBuild(args: string[]): Promise<{ code: number; stdout: string;
 }
 
 describe("Assets emitter with publishAssets config", () => {
+  let originalConfig: string | null = null
+  let hadOriginalConfig = false
+
   before(async () => {
     await cleanOutput()
+    // Save original config if it exists
+    const repoConfigPath = path.join(REPO_ROOT, "quartz.config.yaml")
+    try {
+      originalConfig = await fs.readFile(repoConfigPath, "utf-8")
+      hadOriginalConfig = true
+    } catch {
+      hadOriginalConfig = false
+    }
     // Use test config for this test suite
     const testConfigContent = await fs.readFile(TEST_CONFIG, "utf-8")
-    await fs.writeFile(path.join(PROJECT_ROOT, "quartz.config.yaml"), testConfigContent)
+    await fs.writeFile(repoConfigPath, testConfigContent)
   })
 
   after(async () => {
     await cleanOutput()
-    // Restore original config (quartz.config.default.yaml)
-    const defaultConfigContent = await fs.readFile(path.join(PROJECT_ROOT, "quartz.config.default.yaml"), "utf-8")
-    await fs.writeFile(path.join(PROJECT_ROOT, "quartz.config.yaml"), defaultConfigContent)
+    // Restore original config exactly as it was
+    const repoConfigPath = path.join(REPO_ROOT, "quartz.config.yaml")
+    if (hadOriginalConfig && originalConfig !== null) {
+      await fs.writeFile(repoConfigPath, originalConfig)
+    } else {
+      try {
+        await fs.rm(repoConfigPath, { force: true })
+      } catch {}
+    }
   })
 
   test("publishAssets: 'referenced' only copies assets referenced by published pages", async () => {
