@@ -22,6 +22,7 @@ import { getStaticResourcesFromPlugins } from "./plugins"
 import { randomIdNonSecure } from "./util/random"
 import { ChangeEvent } from "./plugins/types"
 import { minimatch } from "minimatch"
+import { ChangeRecord, clearChangeRecord } from "./util/incremental"
 
 function reportSlugCollisions(content: ProcessedContent[]): void {
   const collisions = detectSlugCollisions(content)
@@ -45,7 +46,7 @@ type BuildData = {
   ignored: GlobbyFilterFunction
   mut: Mutex
   contentMap: ContentMap
-  changesSinceLastBuild: Record<FilePath, ChangeEvent["type"]>
+  changesSinceLastBuild: ChangeRecord
   lastBuildMs: number
 }
 
@@ -353,6 +354,7 @@ async function rebuild(changes: ChangeEvent[], clientRefresh: () => void, buildD
       `Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince("rebuild")}`,
     )
     console.log(styleText("green", `Done rebuilding in ${perf.timeSince()}`))
+    clearChangeRecord(changesSinceLastBuild)
     changes.splice(0, numChangesInBuild)
     clientRefresh()
   } finally {
