@@ -131,7 +131,7 @@ function addGlobalPageResources(ctx: BuildCtx, componentResources: ComponentReso
   } else if (cfg.analytics?.provider === "umami") {
     componentResources.afterDOMLoaded.push(`
       const umamiScript = document.createElement("script");
-      umamiScript.src = "${cfg.analytics.host ?? "https://analytics.umami.is"}/script.js";
+      umamiScript.src = "${cfg.analytics.host ?? "https://analytics.umami.is"}/${cfg.analytics.script ?? "script.js"}";
       umamiScript.setAttribute("data-website-id", "${cfg.analytics.websiteId}");
       umamiScript.setAttribute("data-auto-track", "true");
       umamiScript.defer = true;
