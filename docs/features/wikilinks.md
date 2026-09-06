@@ -24,3 +24,9 @@ Wikilink matching is case-insensitive to mirror Obsidian: `[[My Note]]`, `[[my n
 - `![[Path to file]]`: transclude an entire page
 - `![[Path to file#Anchor]]`: transclude everything under the header `Anchor`
 - `![[Path to file#^b15695]]`: transclude block with ID `^b15695`
+
+## Examples
+
+Here's a dead link example to see the dead link styling:
+
+- [[this-page-does-not-exist]] - this will appear highlighted in amber as a dead link
