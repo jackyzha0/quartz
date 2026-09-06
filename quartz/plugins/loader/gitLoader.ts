@@ -446,6 +446,7 @@ export async function installPlugin(
           if (options.verbose) {
             console.log(styleText("cyan", `→`), `Plugin ${spec.name} already linked`)
           }
+          linkPeerDependencies(pluginDir)
           return { pluginDir, nativeDeps: collectNativeDeps(pluginDir) }
         }
       } catch {
@@ -478,6 +479,15 @@ export async function installPlugin(
     if (options.verbose) {
       console.log(styleText("green", `✓`), `Linked ${spec.name}`)
     }
+
+    // Local sources skip the git-clone build path (and its
+    // linkPeerDependencies call in buildInstalledPlugin), so a local
+    // plugin that peer-depends on another @quartz-community/* plugin
+    // (e.g. a custom view registering against bases-page) would
+    // otherwise resolve a different module instance than the one the
+    // rest of Quartz uses, breaking any module-level singleton state
+    // (like a view-type registry) shared between them.
+    linkPeerDependencies(pluginDir)
 
     return { pluginDir, nativeDeps: collectNativeDeps(pluginDir) }
   }
