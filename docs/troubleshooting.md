@@ -157,6 +157,27 @@ If you want to start over, run `npx quartz restore` to recover your content from
 - Check that port 3001 (WebSocket) is not blocked — this is the default `--wsPort` used for hot reload notifications
 - If developing remotely, use `--remoteDevHost` to set the correct WebSocket URL
 
+### Changes on mounted or network content are not detected
+
+Some network filesystems and Docker bind mounts do not forward directory change events. Enable
+Chokidar polling so Quartz watches existing content files directly and periodically scans for added
+or deleted files:
+
+```shell
+CHOKIDAR_USEPOLLING=true CHOKIDAR_INTERVAL=1000 npx quartz build --serve
+```
+
+In PowerShell:
+
+```powershell
+$env:CHOKIDAR_USEPOLLING = "true"
+$env:CHOKIDAR_INTERVAL = "1000"
+npx quartz build --serve
+```
+
+Polling uses more CPU and filesystem I/O than native events. Increase `CHOKIDAR_INTERVAL` when
+watching a large content directory or when immediate updates are not required.
+
 ### Port already in use
 
 Change the port:
