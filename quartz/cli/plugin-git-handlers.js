@@ -1,7 +1,7 @@
 import fs from "fs"
 import path from "path"
 import os from "os"
-import { exec as execCb, execSync } from "child_process"
+import { exec as execCb, execFile as execFileCb, execFileSync } from "child_process"
 import { styleText, promisify } from "util"
 import {
   readPluginsJson,
@@ -25,21 +25,61 @@ import { symlinkOrCopySync } from "./helpers.js"
 const INTERNAL_EXPORTS = new Set(["manifest", "default"])
 
 const execAsync = promisify(execCb)
+const execFileAsync = promisify(execFileCb)
+
+// Plugin sources, refs, and commits come from quartz.config.yaml and
+// quartz.lock.json. Invoke git through execFile (no shell) and validate every
+// interpolated value, so a crafted entry cannot run commands — quoting a URL is
+// not enough, since $(...) and backticks still expand inside double quotes —
+// or smuggle argv flags such as --upload-pack=<cmd>.
+const COMMIT_PATTERN = /^[0-9a-f]{7,40}$/i
+const REF_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._\/-]*$/
+
+function assertSafeCommit(commit) {
+  if (typeof commit !== "string" || !COMMIT_PATTERN.test(commit)) {
+    throw new Error(`Refusing to run git with unsafe commit: ${commit}`)
+  }
+  return commit
+}
+
+function assertSafeRef(ref) {
+  if (typeof ref !== "string" || !REF_PATTERN.test(ref) || ref.includes("..")) {
+    throw new Error(`Refusing to run git with unsafe ref: ${ref}`)
+  }
+  return ref
+}
+
+function assertSafeRepo(repo) {
+  if (typeof repo !== "string" || repo.length === 0 || repo.startsWith("-")) {
+    throw new Error(`Refusing to run git with unsafe repository: ${repo}`)
+  }
+  return repo
+}
+
+// git clone accepts `--` before <repository>, so a repo that looks like a flag
+// can never be parsed as one.
+function cloneArgs({ url, ref, dest, depth = 1 }) {
+  const args = ["clone"]
+  if (depth) args.push("--depth", String(depth))
+  if (ref) args.push("--branch", assertSafeRef(ref))
+  args.push("--", assertSafeRepo(url), dest)
+  return args
+}
+
+function git(args, opts = {}) {
+  return execFileAsync("git", args, opts)
+}
 
 async function cloneWithSubdirAsync({ url, ref, subdir, pluginDir }) {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "quartz-plugin-"))
   try {
-    if (ref) {
-      await execAsync(`git clone --depth 1 --branch ${ref} "${url}" "${tmpDir}"`)
-    } else {
-      await execAsync(`git clone --depth 1 "${url}" "${tmpDir}"`)
-    }
+    await git(cloneArgs({ url, ref, dest: tmpDir }))
     const subdirPath = path.join(tmpDir, subdir)
     if (!fs.existsSync(subdirPath)) {
       throw new Error(`Subdirectory "${subdir}" not found in cloned repository`)
     }
     fs.cpSync(subdirPath, pluginDir, { recursive: true })
-    const { stdout } = await execAsync("git rev-parse HEAD", { cwd: tmpDir })
+    const { stdout } = await git(["rev-parse", "HEAD"], { cwd: tmpDir })
     return stdout.trim()
   } finally {
     fs.rmSync(tmpDir, { recursive: true, force: true })
@@ -434,8 +474,8 @@ export async function handlePluginInstallUnified({
         })
       }
 
-      const lsRemoteRef = row.entry.ref ? `refs/heads/${row.entry.ref}` : "HEAD"
-      return execAsync(`git ls-remote "${row.entry.resolved}" ${lsRemoteRef}`)
+      const lsRemoteRef = row.entry.ref ? `refs/heads/${assertSafeRef(row.entry.ref)}` : "HEAD"
+      return git(["ls-remote", assertSafeRepo(row.entry.resolved), lsRemoteRef])
         .then(({ stdout }) => {
           const latestCommit = stdout.split("\t")[0].trim()
           const isCurrent = latestCommit === row.entry.commit
@@ -665,10 +705,9 @@ export async function handlePluginInstallUnified({
             } else {
               console.log(styleText("cyan", `→ Cloning ${name} from ${url}...`))
 
-              const branchArg = ref ? ` --branch ${ref}` : ""
-              await execAsync(`git clone --depth 1${branchArg} "${url}" "${pluginDir}"`)
+              await git(cloneArgs({ url, ref, dest: pluginDir }))
 
-              const { stdout } = await execAsync("git rev-parse HEAD", { cwd: pluginDir })
+              const { stdout } = await git(["rev-parse", "HEAD"], { cwd: pluginDir })
               const commit = stdout.trim()
               lockfile.plugins[name] = {
                 source: entry.source,
@@ -846,9 +885,8 @@ export async function handlePluginInstallUnified({
                 `→ ${name}: cloning ${entry.resolved}@${entry.commit.slice(0, 7)}...`,
               ),
             )
-            const branchArg = entry.ref ? ` --branch ${entry.ref}` : ""
-            await execAsync(`git clone --depth 1${branchArg} "${entry.resolved}" "${pluginDir}"`)
-            await execAsync(`git checkout ${entry.commit}`, { cwd: pluginDir })
+            await git(cloneArgs({ url: entry.resolved, ref: entry.ref, dest: pluginDir }))
+            await git(["checkout", assertSafeCommit(entry.commit)], { cwd: pluginDir })
           }
           console.log(styleText("green", `✓ ${name} restored`))
           restoredPlugins.push({ name, pluginDir })
@@ -955,14 +993,13 @@ export async function handlePluginInstallUnified({
               console.log(styleText("gray", `✓ ${name} rebuilt (subdir: ${entry.subdir})`))
             }
           } else {
-            const fetchRef = entry.ref || ""
-            const resetTarget = entry.ref ? `origin/${entry.ref}` : "origin/HEAD"
-            await execAsync(`git fetch --depth 1 origin${fetchRef ? " " + fetchRef : ""}`, {
-              cwd: pluginDir,
-            })
-            await execAsync(`git reset --hard ${resetTarget}`, { cwd: pluginDir })
+            const fetchArgs = ["fetch", "--depth", "1", "origin"]
+            if (entry.ref) fetchArgs.push(assertSafeRef(entry.ref))
+            const resetTarget = entry.ref ? `origin/${assertSafeRef(entry.ref)}` : "origin/HEAD"
+            await git(fetchArgs, { cwd: pluginDir })
+            await git(["reset", "--hard", resetTarget], { cwd: pluginDir })
 
-            const { stdout } = await execAsync("git rev-parse HEAD", { cwd: pluginDir })
+            const { stdout } = await git(["rev-parse", "HEAD"], { cwd: pluginDir })
             const newCommit = stdout.trim()
             if (newCommit !== entry.commit) {
               entry.commit = newCommit
@@ -1091,9 +1128,10 @@ export async function handlePluginInstallUnified({
       try {
         if (action === "update") {
           console.log(styleText("cyan", `  → ${name}: updating to ${entry.commit.slice(0, 7)}...`))
-          const fetchRef = entry.ref ? ` ${entry.ref}` : ""
-          await execAsync(`git fetch --depth 1 origin${fetchRef}`, { cwd: pluginDir })
-          await execAsync(`git reset --hard ${entry.commit}`, { cwd: pluginDir })
+          const fetchArgs = ["fetch", "--depth", "1", "origin"]
+          if (entry.ref) fetchArgs.push(assertSafeRef(entry.ref))
+          await git(fetchArgs, { cwd: pluginDir })
+          await git(["reset", "--hard", assertSafeCommit(entry.commit)], { cwd: pluginDir })
           pluginsToBuild.push({ name, pluginDir })
           installed++
         } else {
@@ -1108,11 +1146,11 @@ export async function handlePluginInstallUnified({
             })
           } else {
             console.log(styleText("cyan", `  → ${name}: cloning...`))
-            const branchArg = entry.ref ? ` --branch ${entry.ref}` : ""
-            await execAsync(`git clone --depth 1${branchArg} "${entry.resolved}" "${pluginDir}"`)
+            await git(cloneArgs({ url: entry.resolved, ref: entry.ref, dest: pluginDir }))
             if (entry.commit !== "unknown") {
-              await execAsync(`git fetch --depth 1 origin ${entry.commit}`, { cwd: pluginDir })
-              await execAsync(`git checkout ${entry.commit}`, { cwd: pluginDir })
+              const commit = assertSafeCommit(entry.commit)
+              await git(["fetch", "--depth", "1", "origin", commit], { cwd: pluginDir })
+              await git(["checkout", commit], { cwd: pluginDir })
             }
           }
           console.log(styleText("green", `  ✓ ${name}@${entry.commit.slice(0, 7)}`))
@@ -1193,7 +1231,10 @@ export async function handlePluginAdd(
       if (parsed.npmPackage) {
         const name = nameOverride ?? parsed.name
         console.log(styleText("cyan", `→ Installing ${name} from npm...`))
-        execSync(`npm install ${parsed.name}`, { cwd: process.cwd(), stdio: "inherit" })
+        execFileSync("npm", ["install", "--", parsed.name], {
+          cwd: process.cwd(),
+          stdio: "inherit",
+        })
         const configSource = nameOverride ? { repo: parsed.name, name: nameOverride } : parsed.name
         const pluginDir = path.join(process.cwd(), "node_modules", ...parsed.name.split("/"))
         addedPlugins.push({ name, pluginDir, source: parsed.name, configSource })
@@ -1272,10 +1313,9 @@ export async function handlePluginAdd(
           } else {
             console.log(styleText("cyan", `→ Adding ${name} from ${url}...`))
 
-            const branchArg = ref ? ` --branch ${ref}` : ""
-            await execAsync(`git clone --depth 1${branchArg} "${url}" "${pluginDir}"`)
+            await git(cloneArgs({ url, ref, dest: pluginDir }))
 
-            const { stdout } = await execAsync("git rev-parse HEAD", { cwd: pluginDir })
+            const { stdout } = await git(["rev-parse", "HEAD"], { cwd: pluginDir })
             const commit = stdout.trim()
             lockfile.plugins[name] = {
               source,
@@ -1655,8 +1695,8 @@ export async function handlePluginStatus() {
       })
     }
 
-    const lsRemoteRef = row.entry.ref ? `refs/heads/${row.entry.ref}` : "HEAD"
-    return execAsync(`git ls-remote "${row.entry.resolved}" ${lsRemoteRef}`)
+    const lsRemoteRef = row.entry.ref ? `refs/heads/${assertSafeRef(row.entry.ref)}` : "HEAD"
+    return git(["ls-remote", assertSafeRepo(row.entry.resolved), lsRemoteRef])
       .then(({ stdout }) => {
         const latestCommit = stdout.split("\t")[0].trim()
         const status = latestCommit === row.entry.commit ? "up_to_date" : "update_available"
