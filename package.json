@@ -19,7 +19,8 @@
     "test": "tsx --test",
     "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1",
     "install-plugins": "npx tsx ./quartz/plugins/loader/install-plugins.ts",
-    "prebuild": "npm run install-plugins"
+    "prebuild": "npm run install-plugins",
+    "postinstall": "node quartz/bootstrap-postinstall.mjs"
   },
   "engines": {
     "npm": ">=10.9.2",
