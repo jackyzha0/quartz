@@ -174,14 +174,28 @@ Available built-in conditions:
 
 ### TS Override
 
-For custom conditions that aren't covered by the built-in presets, use `Component.ConditionalRender()` in `quartz.ts`:
+For custom conditions that aren't covered by the built-in presets, import the internal component utilities and the component you want to wrap in `quartz.ts`. Place `Component.ConditionalRender()` in the layout slot where the wrapped component should appear. For example, this renders Search in the left sidebar only for pages under `notes/`:
 
 ```ts title="quartz.ts (override)"
-Component.ConditionalRender({
-  component: Plugin.Search(),
-  condition: (props) => props.displayClass !== "fullpage",
+import { loadQuartzConfig, loadQuartzLayout } from "./quartz/plugins/loader/config-loader"
+import * as Component from "./quartz/components"
+import { Search } from "./.quartz/plugins/search"
+
+const config = await loadQuartzConfig()
+export default config
+export const layout = await loadQuartzLayout({
+  defaults: {
+    left: [
+      Component.ConditionalRender({
+        component: Search(),
+        condition: (props) => props.fileData.slug?.startsWith("notes/") ?? false,
+      }),
+    ],
+  },
 })
 ```
+
+The wrapped plugin must be installed and enabled in `quartz.config.yaml`. A TypeScript layout override replaces the selected slot, so include any other components you want to keep in that slot alongside the conditional component.
 
 ```typescript
 type ConditionalRenderConfig = {
