@@ -39,7 +39,12 @@ function extractAssetReferences(content: ProcessedContent[]): Set<string> {
 
       for (const assetPath of [src, href]) {
         if (!assetPath || typeof assetPath !== "string") continue
-        if (assetPath.startsWith("http://") || assetPath.startsWith("https://") || assetPath.startsWith("data:")) continue
+        if (
+          assetPath.startsWith("http://") ||
+          assetPath.startsWith("https://") ||
+          assetPath.startsWith("data:")
+        )
+          continue
 
         let normalized = assetPath.split("?")[0].split("#")[0]
         // Handle root-relative paths (e.g., "/diagram.png") by stripping leading slash
@@ -111,10 +116,11 @@ export const Assets: QuartzEmitterPlugin = () => {
 
       // In referenced mode, always re-extract references from current content
       // because markdown changes may add/remove asset references
-      const referencedAssets = publishAssets === "referenced" ? extractAssetReferences(content) : null
+      const referencedAssets =
+        publishAssets === "referenced" ? extractAssetReferences(content) : null
 
       // Track which markdown files changed to know if we need to re-check references
-      const markdownChanged = changeEvents.some(e => path.extname(e.path) === ".md")
+      const markdownChanged = changeEvents.some((e) => path.extname(e.path) === ".md")
 
       for (const changeEvent of changeEvents) {
         const ext = path.extname(changeEvent.path)

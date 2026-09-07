@@ -22,20 +22,24 @@ async function cleanOutput() {
 
 function runQuartzBuild(args: string[]): Promise<{ code: number; stdout: string; stderr: string }> {
   return new Promise((resolve) => {
-    const child = spawn(process.execPath, [
-      path.join(REPO_ROOT, "quartz/bootstrap-cli.mjs"),
-      "build",
-      ...args,
-    ], {
-      cwd: REPO_ROOT,
-      stdio: ["ignore", "pipe", "pipe"],
-    })
+    const child = spawn(
+      process.execPath,
+      [path.join(REPO_ROOT, "quartz/bootstrap-cli.mjs"), "build", ...args],
+      {
+        cwd: REPO_ROOT,
+        stdio: ["ignore", "pipe", "pipe"],
+      },
+    )
 
     let stdout = ""
     let stderr = ""
 
-    child.stdout?.on("data", (data) => { stdout += data.toString() })
-    child.stderr?.on("data", (data) => { stderr += data.toString() })
+    child.stdout?.on("data", (data) => {
+      stdout += data.toString()
+    })
+    child.stderr?.on("data", (data) => {
+      stderr += data.toString()
+    })
 
     child.on("close", (code) => {
       resolve({ code: code ?? 0, stdout, stderr })
@@ -81,9 +85,11 @@ describe("Assets emitter with publishAssets config", () => {
 
   test("publishAssets: 'referenced' only copies assets referenced by published pages", async () => {
     const result = await runQuartzBuild([
-      "-d", "test/fixtures/asset-filtering",
-      "-o", "test/fixtures/asset-filtering/public",
-      "--verbose"
+      "-d",
+      "test/fixtures/asset-filtering",
+      "-o",
+      "test/fixtures/asset-filtering/public",
+      "--verbose",
     ])
 
     if (result.code !== 0) {
@@ -96,16 +102,34 @@ describe("Assets emitter with publishAssets config", () => {
 
     // Should exist: published page + its referenced assets
     assert.ok(publicFiles.includes("content/published.html"), "published.html should exist")
-    assert.ok(publicFiles.includes("content/diagram.png"), "diagram.png (referenced by published) should exist")
-    assert.ok(publicFiles.includes("content/assets/nested.png"), "nested.png (referenced by published) should exist")
+    assert.ok(
+      publicFiles.includes("content/diagram.png"),
+      "diagram.png (referenced by published) should exist",
+    )
+    assert.ok(
+      publicFiles.includes("content/assets/nested.png"),
+      "nested.png (referenced by published) should exist",
+    )
 
     // Should NOT exist: filtered pages + their assets
-    assert.ok(!publicFiles.includes("content/private.html"), "private.html should NOT exist (filtered)")
-    assert.ok(!publicFiles.includes("content/secret.png"), "secret.png should NOT exist (only referenced by private)")
+    assert.ok(
+      !publicFiles.includes("content/private.html"),
+      "private.html should NOT exist (filtered)",
+    )
+    assert.ok(
+      !publicFiles.includes("content/secret.png"),
+      "secret.png should NOT exist (only referenced by private)",
+    )
     assert.ok(!publicFiles.includes("content/draft.html"), "draft.html should NOT exist (filtered)")
-    assert.ok(!publicFiles.includes("content/draft-img.png"), "draft-img.png should NOT exist (only referenced by draft)")
+    assert.ok(
+      !publicFiles.includes("content/draft-img.png"),
+      "draft-img.png should NOT exist (only referenced by draft)",
+    )
 
     // Should NOT exist: orphan assets
-    assert.ok(!publicFiles.includes("content/orphan.png"), "orphan.png should NOT exist (unreferenced)")
+    assert.ok(
+      !publicFiles.includes("content/orphan.png"),
+      "orphan.png should NOT exist (unreferenced)",
+    )
   })
 })

@@ -2,6 +2,7 @@
 title: "Published Note"
 publish: true
 ---
+
 # Published Note
 
 This is published.
