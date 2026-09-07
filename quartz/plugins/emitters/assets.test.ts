@@ -68,6 +68,11 @@ describe("Assets emitter with publishAssets config", () => {
     // Use test config for this test suite
     const testConfigContent = await fs.readFile(TEST_CONFIG, "utf-8")
     await fs.writeFile(repoConfigPath, testConfigContent)
+    // Verify config was written
+    const written = await fs.readFile(path.join(REPO_ROOT, "quartz.config.yaml"), "utf-8")
+    if (written !== testConfigContent) {
+      throw new Error("Config file write verification failed")
+    }
   })
 
   after(async () => {
@@ -97,6 +102,9 @@ describe("Assets emitter with publishAssets config", () => {
       console.error("stdout:", result.stdout)
     }
     assert.strictEqual(result.code, 0, "Build should succeed")
+
+    // Small delay to ensure file system is settled (especially on CI)
+    await new Promise((r) => setTimeout(r, 500))
 
     const publicFiles = await fs.readdir(OUTPUT_DIR, { recursive: true })
 
