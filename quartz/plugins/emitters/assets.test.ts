@@ -100,13 +100,19 @@ describe("Assets emitter with publishAssets config", () => {
     if (result.code !== 0) {
       console.error("Build failed:", result.stderr)
       console.error("stdout:", result.stdout)
+      console.error("REPO_ROOT:", REPO_ROOT)
+      console.error("TEST_FIXTURE:", TEST_FIXTURE)
+      console.error("OUTPUT_DIR:", OUTPUT_DIR)
     }
     assert.strictEqual(result.code, 0, "Build should succeed")
 
-    // Small delay to ensure file system is settled (especially on CI)
-    await new Promise((r) => setTimeout(r, 500))
+    // Longer delay for Windows CI file system settling
+    await new Promise((r) => setTimeout(r, 2000))
 
     const publicFiles = await fs.readdir(OUTPUT_DIR, { recursive: true })
+
+    // Debug output on failure
+    console.log("Public files:", publicFiles)
 
     // Should exist: published page + its referenced assets
     assert.ok(publicFiles.includes("content/published.html"), "published.html should exist")
