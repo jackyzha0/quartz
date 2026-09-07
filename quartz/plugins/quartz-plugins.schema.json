@@ -177,6 +177,12 @@
             "type": "string"
           },
           "description": "Patterns to ignore during processing"
+        },
+        "publishAssets": {
+          "type": "string",
+          "enum": ["all", "referenced"],
+          "default": "all",
+          "description": "Controls which assets are copied to public. \"all\" copies all non-markdown files; \"referenced\" only copies assets referenced by published pages"
         }
       }
     },
