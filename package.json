@@ -54,7 +54,6 @@
     "@quartz-community/content-meta": "^0.1.0",
     "@quartz-community/content-page": "^0.1.0",
     "@quartz-community/crawl-links": "^0.1.0",
-    "@quartz-themes/core": "^1.0.0",
     "@quartz-community/created-modified-date": "^0.1.0",
     "@quartz-community/darkmode": "^0.1.0",
     "@quartz-community/description": "^0.1.0",
@@ -86,6 +85,8 @@
     "@quartz-community/tag-list": "^0.1.0",
     "@quartz-community/tag-page": "^0.1.0",
     "@quartz-community/unlisted-pages": "^0.1.0",
+    "@quartz-themes/core": "^1.0.0",
+    "@quartz-themes/default": "^1.0.1",
     "ansi-truncate": "^1.4.0",
     "async-mutex": "^0.5.0",
     "chokidar": "^5.0.0",
@@ -130,5 +131,11 @@
     "prettier": "^3.8.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
+  },
+  "allowScripts": {
+    "esbuild@0.27.7": true,
+    "esbuild@0.28.1": true,
+    "fsevents@2.3.3": true,
+    "sharp@0.34.5": true
   }
 }

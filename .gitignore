@@ -12,3 +12,4 @@ replit.nix
 .quartz/
 quartz/cli/tui/dist/
 .turbo/
+.vault-path.local
