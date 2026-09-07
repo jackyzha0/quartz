@@ -1,0 +1,21 @@
+name: PR Check
+on:
+  pull_request:
+    branches: [v5]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: npm install
+      - name: Check publish flags
+        run: bash scripts/check-publish-flags.sh
+      - run: npx quartz build
