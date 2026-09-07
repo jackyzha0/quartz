@@ -35,4 +35,6 @@ gh pr merge --squash --delete-branch
 - `npx quartz build` が通ること
 - `content/` 配下の全 `.md` に `publish: true` frontmatterがあること（`scripts/check-publish-flags.sh`）— `sync-vault.sh` を経由しない手動編集で非公開ノートやフラグ漏れの記事が混入するのを防ぐガード
 
-詳細な背景・運用ハーネスの全体像は Obsidian Vault側の `quartz-collab-harness.md` を参照。
+詳細な背景・運用ハーネスの全体像は [docs/harness.md](docs/harness.md) を参照。
+
+Vault→Quartzの初回セットアップ手順自体（他サイトにも使い回す汎用手順）は、このリポジトリの外にある個人アセット `quartz-publish-harness.md` を参照。
