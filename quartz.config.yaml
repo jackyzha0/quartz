@@ -16,8 +16,8 @@ configuration:
     fontOrigin: googleFonts
     cdnCaching: true
     typography:
-      header: Schibsted Grotesk
-      body: Source Sans Pro
+      header: Zen Kaku Gothic New
+      body: Noto Sans JP
       code: IBM Plex Mono
     colors:
       lightMode:
