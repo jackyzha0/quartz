@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
-  pageTitle: 🤖🧠 NeuroAI.wiki
+  pageTitle: Mike Tarlton
   pageTitleSuffix: ""
   enableSPA: true
   enablePopovers: true
@@ -16,9 +16,9 @@ configuration:
     fontOrigin: googleFonts
     cdnCaching: true
     typography:
-      header: Schibsted Grotesk
-      body: Source Sans Pro
-      code: IBM Plex Mono
+      header: Newsreader
+      body: Newsreader
+      code: JetBrains Mono
     colors:
       lightMode:
         light: "#faf8f8"
@@ -100,6 +100,12 @@ plugins:
     order: 92
   - source: "@quartz-community/quartz-fonts"
     enabled: true
+    options:
+      useThemeFonts: true
+      fontOrigin: googleFonts
+      header: Newsreader
+      body: Newsreader
+      code: JetBrains Mono
   - source: "@quartz-themes/core"
     enabled: false
     options:
@@ -202,7 +208,12 @@ plugins:
   - source: "@quartz-community/footer"
     enabled: true
     options:
-      links: {}
+      links:
+        Email: mailto:M@Tarlton.info
+        LinkedIn: https://www.linkedin.com/in/m-tarlton/
+        GitHub: https://github.com/MichaTarlton
+        RSS: /index.xml
+        Subscribe: https://neuroai.beehiiv.com/subscribe
     layout:
       position: footer
       priority: 50
@@ -216,6 +227,11 @@ plugins:
       position: left
       priority: 25
       display: mobile-only
+  - source: ./components-local
+    enabled: true
+    layout:
+      position: header
+      priority: 5
   - source: "@quartz-community/bases-page"
     enabled: true
     options: {}
@@ -255,6 +271,10 @@ plugins:
       position: afterBody
       priority: 50
       display: all
+  - source: ./components-local
+    enabled: true
+    options: {}
+    order: 50
 layout:
   groups:
     toolbar:

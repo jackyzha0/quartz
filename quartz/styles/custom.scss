@@ -1,3 +1,105 @@
 @use "./variables.scss" as *;
 
-// put your custom CSS here!
+// ─────────────────────────────────────────────────────────────
+// tarlton.info design language — Blueprint §4
+// serif body · mono micro-labels · slate-blue accent · crafted scroll
+//
+// Backup variants (recorded 2026-09-14, NOT built):
+//   (a) sans-body version of this system
+//   (c) dark-default pixperk-style variant
+// ─────────────────────────────────────────────────────────────
+
+// ── Motion discipline ───────────────────────────────────────
+// Micro-interactions only; nothing animates layout.
+// Reduced-motion users get a fully static site.
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// ── Mono micro-labels ───────────────────────────────────────
+// The typographic fashion layer: tiny uppercase tracked labels.
+@mixin micro-label {
+  font-family: var(--codeFont);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.micro-label {
+  @include micro-label;
+}
+
+// Dates / reading time and breadcrumbs become quiet mono metadata.
+.content-meta,
+.breadcrumb-element {
+  font-family: var(--codeFont);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  opacity: 0.72;
+}
+
+// ── Site navigation ─────────────────────────────────────────
+nav.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+  align-items: baseline;
+  padding-bottom: 0.8rem;
+  margin: -0.5rem 0 0.5rem;
+  border-bottom: 1px solid var(--lightgray);
+}
+
+.site-nav-link {
+  @include micro-label;
+  color: var(--darkgray);
+  text-decoration: none;
+  padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease;
+
+  &:hover,
+  &.active {
+    color: var(--secondary);
+    border-bottom-color: var(--secondary);
+  }
+}
+
+// ── Serif reading experience ────────────────────────────────
+body {
+  line-height: 1.65;
+}
+
+article > p,
+article > ul,
+article > ol {
+  line-height: 1.7;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.01em;
+}
+
+// ── Footer ──────────────────────────────────────────────────
+footer {
+  & a {
+    @include micro-label;
+    color: var(--darkgray);
+    transition: color 160ms ease;
+
+    &:hover {
+      color: var(--secondary);
+    }
+  }
+}

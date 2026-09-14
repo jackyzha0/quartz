@@ -1,0 +1,29 @@
+{
+  "name": "tarlton-components",
+  "version": "0.1.0",
+  "description": "Locally-authored Quartz components for tarlton.info (nav, landing, canvas)",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./components": {
+      "import": "./dist/components/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "quartz": {
+    "name": "tarlton-components",
+    "displayName": "Tarlton Components",
+    "category": "component",
+    "version": "0.1.0",
+    "quartzVersion": ">=5.0.0",
+    "dependencies": [],
+    "defaultEnabled": true,
+    "components": {
+      "SiteNav": {
+        "displayName": "Site Nav",
+        "defaultPosition": "header",
+        "defaultPriority": 5
+      }
+    }
+  }
+}

@@ -38,8 +38,9 @@ export async function loadComponentsFromPackage(
       )
 
       // Also register under just the export name (e.g. "Footer", "NotePropertiesComponent")
-      // so buildLayoutForEntries can find it via PascalCase conversion of plugin name
-      if (!componentRegistry.get(exportName)) {
+      // so buildLayoutForEntries can find it via PascalCase conversion of plugin name —
+      // skipped for single-component plugins (see below) to avoid double layout insertion
+      if (componentEntries.length > 1 && !componentRegistry.get(exportName)) {
         componentRegistry.register(
           exportName,
           component as QuartzComponentConstructor,
@@ -49,23 +50,26 @@ export async function loadComponentsFromPackage(
       }
     }
 
-    // If plugin has exactly one component, also register under just the plugin name
-    // (e.g. "footer", "note-properties") for direct kebab-case lookup
-    if (componentEntries.length === 1) {
-      const [exportName] = componentEntries[0]
-      const component = componentsModule[exportName]
-      if (component && !componentRegistry.get(pluginName)) {
-        componentRegistry.register(
-          pluginName,
-          component as QuartzComponentConstructor,
-          pluginName,
-          componentEntries[0][1] as ComponentManifest,
-        )
+      // If plugin has exactly one component, also register under just the plugin name
+      // (e.g. "footer", "note-properties") for direct kebab-case lookup —
+      // but NOT under the bare export name in that case: a single-component plugin
+      // would otherwise resolve under both names and be added to the layout twice
+      // (once via its explicit `layout:` entry, once via manifest defaults).
+      if (componentEntries.length === 1) {
+        const [exportName, singleManifest] = componentEntries[0]
+        const component = componentsModule[exportName]
+        if (component && !componentRegistry.get(pluginName)) {
+          componentRegistry.register(
+            pluginName,
+            component as QuartzComponentConstructor,
+            pluginName,
+            singleManifest as ComponentManifest,
+          )
+        }
       }
-    }
-  } catch {
+  } catch (err) {
     if (manifest.components && Object.keys(manifest.components).length > 0) {
-      console.warn(`Plugin "${pluginName}" declares components but failed to load them`)
+      console.warn(`Plugin "${pluginName}" declares components but failed to load them`, err)
     }
   }
 }
