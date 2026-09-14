@@ -91,6 +91,205 @@ h3 {
   letter-spacing: -0.01em;
 }
 
+// ── Hero (landing) ──────────────────────────────────────────
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin: 0.5rem 0 2.75rem;
+
+  @media #{$mobile} {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.hero-eyebrow {
+  color: var(--secondary);
+  margin: 0;
+}
+
+.hero-name {
+  margin: 0.35rem 0 0.6rem;
+  font-size: 2.75rem;
+  line-height: 1.05;
+
+  @media #{$mobile} {
+    font-size: 2.1rem;
+  }
+}
+
+.hero-identity {
+  font-size: 1.12rem;
+  line-height: 1.55;
+  color: var(--darkgray);
+  max-width: 32rem;
+  margin: 0 0 1rem;
+}
+
+.hero-status {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1.35rem;
+  font-family: var(--codeFont);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--darkgray);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tertiary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--tertiary) 25%, transparent);
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.cta {
+  @include micro-label;
+  font-size: 0.72rem;
+  padding: 0.65rem 1.15rem;
+  border-radius: 7px;
+  border: 1px solid var(--secondary);
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.cta-primary {
+  background: var(--secondary);
+  color: var(--light);
+
+  &:hover {
+    background: var(--tertiary);
+    border-color: var(--tertiary);
+  }
+}
+
+.cta-secondary {
+  color: var(--secondary);
+
+  &:hover {
+    background: var(--highlight);
+  }
+}
+
+.hero-canvas-wrap {
+  position: relative;
+  height: 270px;
+  border: 1px solid var(--lightgray);
+  border-radius: 12px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--lightgray) 22%, transparent);
+
+  @media #{$mobile} {
+    height: 190px;
+  }
+}
+
+#hero-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+
+.hero-canvas-hint {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.55rem;
+  margin: 0;
+  font-size: 0.6rem;
+  color: var(--gray);
+  pointer-events: none;
+}
+
+// ── Featured Research cards ─────────────────────────────────
+.section-eyebrow {
+  color: var(--gray);
+  margin: 0 0 0.9rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+
+  @media #{$mobile} {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--lightgray);
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--dark);
+  background: var(--light);
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease;
+
+  &:hover {
+    border-color: var(--secondary);
+    transform: translateY(-2px);
+  }
+}
+
+.card-figure {
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--lightgray) 30%, transparent);
+  color: var(--secondary);
+
+  & svg {
+    width: 72%;
+    height: 62%;
+  }
+}
+
+.card-body {
+  padding: 0.95rem 1.05rem 1.15rem;
+}
+
+.card-question {
+  margin: 0 0 0.55rem;
+  font-weight: 600;
+  font-size: 1.02rem;
+  line-height: 1.42;
+  color: var(--dark);
+}
+
+.card-title {
+  @include micro-label;
+  margin: 0 0 0.55rem;
+  color: var(--secondary);
+}
+
+.card-blurb {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--darkgray);
+}
+
 // ── Footer ──────────────────────────────────────────────────
 footer {
   & a {

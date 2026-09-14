@@ -1,7 +1,7 @@
 {
-  "name": "tarlton-components",
+  "name": "tarlton-nav",
   "version": "0.1.0",
-  "description": "Locally-authored Quartz components for tarlton.info (nav, landing, canvas)",
+  "description": "Site navigation component for tarlton.info",
   "type": "module",
   "private": true,
   "exports": {
@@ -11,8 +11,8 @@
     "./package.json": "./package.json"
   },
   "quartz": {
-    "name": "tarlton-components",
-    "displayName": "Tarlton Components",
+    "name": "nav",
+    "displayName": "Site Nav",
     "category": "component",
     "version": "0.1.0",
     "quartzVersion": ">=5.0.0",

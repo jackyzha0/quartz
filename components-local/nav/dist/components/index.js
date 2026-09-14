@@ -1,4 +1,4 @@
-// components-local/src/components/Nav.tsx
+// components-local/nav/src/Nav.tsx
 import { jsx } from "preact/jsx-runtime";
 var links = [
   { label: "Research", href: "/research/", section: "research" },

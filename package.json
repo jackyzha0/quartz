@@ -19,7 +19,7 @@
     "test": "tsx --test",
     "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1",
     "install-plugins": "npx tsx ./quartz/plugins/loader/install-plugins.ts",
-    "build:components": "esbuild components-local/src/components/index.ts --bundle --format=esm --platform=node --jsx=automatic --jsx-import-source=preact --packages=external --outfile=components-local/dist/components/index.js",
+    "build:components": "bash scripts/build-components.sh",
     "prebuild": "npm run install-plugins && npm run build:components"
   },
   "engines": {

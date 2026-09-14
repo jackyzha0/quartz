@@ -1,11 +1,17 @@
 {
   "version": "1.0.0",
   "plugins": {
-    "components-local": {
-      "source": "./components-local",
-      "resolved": "/var/home/mike/Projects/website_overhaul/michatarlton.github.io/components-local",
+    "hero": {
+      "source": "./components-local/hero",
+      "resolved": "/var/home/mike/Projects/website_overhaul/michatarlton.github.io/components-local/hero",
       "commit": "local",
-      "installedAt": "2026-09-14T13:39:53.523Z"
+      "installedAt": "2026-09-14T14:27:47.555Z"
+    },
+    "nav": {
+      "source": "./components-local/nav",
+      "resolved": "/var/home/mike/Projects/website_overhaul/michatarlton.github.io/components-local/nav",
+      "commit": "local",
+      "installedAt": "2026-09-14T14:27:46.554Z"
     }
   }
 }

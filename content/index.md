@@ -1,21 +1,78 @@
 ---
-title: NeuroAI Wiki – Cortex
+title: Mike Tarlton
+description: Mike Tarlton — Neuro-AI researcher building brain-inspired learning systems for low-energy edge hardware. Available for research positions.
+hero:
+  eyebrow: NeuroAI Researcher
+  name: Mike Tarlton
+  identity: I build brain-inspired learning systems — spiking neural networks and oscillator-based models of timing — for the next generation of low-energy, edge-ready machine intelligence.
+  status: Available for research positions
+  primaryCta:
+    label: View CV
+    href: /cv/
+  secondaryCta:
+    label: Get in touch
+    href: mailto:M@Tarlton.info
 ---
-Michaelt (at) oslomet.no | M (at) Tarlton.info | [LinkedIn](https://www.linkedin.com/in/m-tarlton/) |  [GitHub](https://github.com/MichaTarlton) |  [Twitter](https://twitter.com/michaeta) |  [Subscribe to RSS](https://tarlton.info/index.xml)
 
-**Hi, I'm Mike! I'm a Neuro-AI researcher and PhD candidate based out of Oslo Metropolitan University. This is is my personal webpage, but I am slowly transitioning it into a repository for information surrounding Neuro-AI. [Subscribe to my blog here](https://magic.beehiiv.com/v1/31a93b49-0c56-4395-9dbd-c86032593a94?email={{email}}) or [to my RSS feed.](https://tarlton.info/index.xml)**
+<section class="featured">
+  <p class="micro-label section-eyebrow">Featured Research</p>
+  <div class="card-grid">
+    <a class="card" href="/research/ner-2025/">
+      <div class="card-figure" aria-hidden="true">
+        <svg viewBox="0 0 200 80" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="10" y1="70" x2="190" y2="70" opacity="0.35"/>
+          <line x1="24" y1="70" x2="24" y2="34"/>
+          <line x1="48" y1="70" x2="48" y2="52"/>
+          <line x1="72" y1="70" x2="72" y2="18"/>
+          <line x1="96" y1="70" x2="96" y2="44"/>
+          <line x1="120" y1="70" x2="120" y2="58"/>
+          <line x1="144" y1="70" x2="144" y2="26"/>
+          <line x1="168" y1="70" x2="168" y2="52"/>
+          <circle cx="72" cy="12" r="4" fill="currentColor" stroke="none"/>
+          <circle cx="144" cy="20" r="4" fill="currentColor" stroke="none" opacity="0.55"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <p class="card-question">Can the brain's way of keeping time make machine learning cheaper at the edge?</p>
+        <p class="card-title">SBF-Automata · IEEE NER 2025</p>
+        <p class="card-blurb">A reinforcement-learning architecture transposed from the striatal beat-frequency model: online periodicity learning encoded directly in synaptic weights, built for neuromorphic edge hardware.</p>
+      </div>
+    </a>
+    <a class="card" href="/research/masters-thesis/">
+      <div class="card-figure" aria-hidden="true">
+        <svg viewBox="0 0 200 80" fill="currentColor">
+          <path d="M28 18 l6 10 h-12 z"/><path d="M58 30 l-6 -10 h12 z" opacity="0.4"/><path d="M88 18 l6 10 h-12 z" opacity="0.4"/><path d="M118 30 l-6 -10 h12 z"/><path d="M148 18 l6 10 h-12 z" opacity="0.4"/><path d="M178 30 l-6 -10 h12 z"/>
+          <path d="M28 48 l-6 10 h12 z" opacity="0.4"/><path d="M58 40 l6 10 h-12 z"/><path d="M88 48 l-6 10 h12 z"/><path d="M118 40 l6 10 h-12 z" opacity="0.4"/><path d="M148 48 l-6 10 h12 z"/><path d="M178 40 l6 10 h-12 z" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <p class="card-question">How do you choose the right model when inferring networks from spiking data?</p>
+        <p class="card-title">MSc Thesis · Kavli Institute, NTNU</p>
+        <p class="card-blurb">A novel information-based Bayesian criterion for inferring Ising-model networks from neural spiking activity — designed, simulated, and evaluated on HPC clusters.</p>
+      </div>
+    </a>
+    <a class="card" href="/research/phd-overview/">
+      <div class="card-figure" aria-hidden="true">
+        <svg viewBox="0 0 200 80" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M0 34 Q 25 8 50 34 T 100 34 T 150 34 T 200 34"/>
+          <path d="M0 46 Q 25 26 50 46 T 100 46 T 150 46 T 200 46" opacity="0.6"/>
+          <path d="M0 58 Q 25 44 50 58 T 100 58 T 150 58 T 200 58" opacity="0.35"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <p class="card-question">How does time itself emerge from the plasticity of single neurons?</p>
+        <p class="card-title">PhD Research · OsloMet</p>
+        <p class="card-blurb">Designing learning rules for deep spiking neural networks in which spike-timing plasticity gives rise to temporal dynamics — for online, always-on, low-energy learning.</p>
+      </div>
+    </a>
+  </div>
+</section>
 
-**If you are reaching this from the IEEE NER 2025 Conference you can [[NER_2025|find more about my submission here]]. Otherwise check out my work and various projects below.** 
+## About
 
-**I'm currently searching for a new position, and would like to join a research project aimed at building neuroscience based AI and neuromorphic hardware design. Please contact me at any of the methods above if you think I might be the right person for you team.**
-## [[NER_2025|IEEE NER 2025 Submission: Investigation of Novel SBF-Automata Architecture for Periodicity Finding Solutions at Edge Systems]]
----
-> [!NOTE] [About Mike:](CV)
-> As mentioned above, I'm a PhD candidate at Oslo Metropolitan University, where I am currently researching neuroscience inspired AI and related topics. Specifically I am designing new models of learning for deep spiking neural networks, ideally for use in neuromorphics and edge hardware. My current research studies how time dynamics emerge from the spike timing plasticity of individual neurons. 
-> 
-> I have a background in systems neuroscience, statistical physics, and  computational mathematics. My focus is studying the mechanisms of the human brain, and the fundamental dynamics of information and energy. I’m currently pursuing the emerging field of neuroscience based AI models and AI-specific design for low-energy edge hardware. My aim is to create novel learning methods for spiking neural networks and physics-based models for the next generation of machine learning.
-> [Read my entire CV here.](CV)
+I'm a NeuroAI researcher: I study how the brain keeps time, and how those mechanisms can teach machines to learn. My path runs from physics and mathematics at UNT, through systems neuroscience at the Kavli Institute (NTNU), to my PhD at Oslo Metropolitan University, where I design learning rules for deep spiking neural networks built on spike-timing plasticity. The aim is machine learning that is online, always-on, and radically low-energy — intelligence for neuromorphic hardware and the edge, not the datacenter. Before academia I worked as a machine-learning data scientist at Atlas Wearables (acquired by Peloton) and as a genetics data researcher at the University of Oslo.
 
----
-I am slowly porting my research knowledge base here, and will be publishing things to my blog once I figure that out, [so subscribe here]() or follow me [via my RSS feed](https://tarlton.info/index.xml).
-%% <iframe src="https://neuroai.beehiiv.com/" allow="fullscreen" allowfullscreen="" style="height: 100%; width: 100%; aspect-ratio: 1 / 1;"></iframe> %%
+## Latest writing
+
+- [[01 Blog Posts/Neuro-Inspired Timing Mechanisms for Machine Learning|Neuro-Inspired Timing Mechanisms for Machine Learning]]
+- [[01 Blog Posts/Back-Propagation without Calculus|Back-Propagation without Calculus]]

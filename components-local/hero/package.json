@@ -1,0 +1,29 @@
+{
+  "name": "tarlton-hero",
+  "version": "0.1.0",
+  "description": "Landing hero with autonomous spiking-network canvas for tarlton.info",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./components": {
+      "import": "./dist/components/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "quartz": {
+    "name": "hero",
+    "displayName": "Hero",
+    "category": "component",
+    "version": "0.1.0",
+    "quartzVersion": ">=5.0.0",
+    "dependencies": [],
+    "defaultEnabled": true,
+    "components": {
+      "Hero": {
+        "displayName": "Hero",
+        "defaultPosition": "beforeBody",
+        "defaultPriority": 1
+      }
+    }
+  }
+}
