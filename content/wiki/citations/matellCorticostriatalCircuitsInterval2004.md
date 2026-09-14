@@ -43,8 +43,6 @@ citekey: matellCorticostriatalCircuitsInterval2004
 > About::
 > Read:: - [ ] Matell et al. (2004) - **Cortico-striatal circuits and interval timing: coincidence detection of oscillatory processes** ➕2025-11-13 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/SAECVXRJ)
-> Files:: [attachment](<file:///C:/Users/michaelt/Zotero/new_storage/moving/Brain%20Research.%20Cognitive%20Brain%20Research_2004/Matell_Meck_2004_Cortico-striatal%20circuits%20and%20interval%20timing.pdf>)
 > Reading Note::
 > Web Rip::
 > url::
@@ -104,7 +102,7 @@ citekey: matellCorticostriatalCircuitsInterval2004
 > Our replication is shown in Fig. 3A with parameters that are similar to those used in Miall’s data (1000 pacemakers, 10F1.6 Hz oscillations, 6-s criterion, 0.999 oscillation threshold, 100 Hz integration, synaptic weights at +1 if the neuron fired at the 6-s criterion time and 0 otherwise), plotted over 2.5 times the criterion duration in order to show the activity levels following the reinforced time.
 >
 > ---
-> [[Miall (1989]]
+> Miall (1989
 > ^8RG5UR6DaWHZAB3KYp17
 
 > [!Highlight] Page 155
@@ -391,7 +389,7 @@ citekey: matellCorticostriatalCircuitsInterval2004
 ## Figures (blue)
 
 > [!Figure 2]
-> ![[60 Zotero/ZotLit/ZtImgExcerpt/7MRB3XPD.png]]
+> 
 > **Page 149**
 >
 > ---
@@ -406,7 +404,7 @@ citekey: matellCorticostriatalCircuitsInterval2004
 > ^G6BQ6P9WaWHZAB3KYp11
 
 > [!Figure 3]
-> ![[60 Zotero/ZotLit/ZtImgExcerpt/4JH36V6T.png]]
+> 
 > **Page 155**
 >
 > ---
@@ -421,7 +419,7 @@ citekey: matellCorticostriatalCircuitsInterval2004
 > ^JIZFKC79aWHZAB3KYp17
 
 > [!Figure 5]
-> ![[60 Zotero/ZotLit/ZtImgExcerpt/ZR8AEUWZ.png]]
+> 
 > **Page 157**
 >
 > ---
@@ -436,7 +434,7 @@ citekey: matellCorticostriatalCircuitsInterval2004
 > ^L2ZC953HaWHZAB3KYp19
 
 > [!Fig 6]
-> ![[60 Zotero/ZotLit/ZtImgExcerpt/RH9JZAMV.png]]
+> 
 > **Page 157**
 >
 > ---
@@ -451,7 +449,7 @@ citekey: matellCorticostriatalCircuitsInterval2004
 > ^3EVCRDEPaWHZAB3KYp19
 
 > [!Fig 7]
-> ![[60 Zotero/ZotLit/ZtImgExcerpt/XCTJ3N8M.png]]
+> 
 > **Page 158**
 >
 > ---
@@ -466,7 +464,7 @@ citekey: matellCorticostriatalCircuitsInterval2004
 > ^QQAQPJVWaWHZAB3KYp20
 
 > [!]
-> ![[60 Zotero/ZotLit/ZtImgExcerpt/PQXGMIWC.png]]
+> 
 > **Page 158**
 > ^PQXGMIWCaWHZAB3KYp20
 

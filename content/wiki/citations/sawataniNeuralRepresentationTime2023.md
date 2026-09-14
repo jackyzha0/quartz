@@ -32,8 +32,6 @@ citekey: sawataniNeuralRepresentationTime2023a
 > About::
 > Read:: - [ ] Sawatani et al. (2023) - **The neural representation of time distributed across multiple brain regions differs between implicit and explicit time demands** ➕2025-11-13 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/IUV6GBKU)
-> Files:: [attachment](<file:///C:/Users/michaelt/Zotero/new_storage/2025/05/Sawatani%20et%20al.%20-%202023%20-%20The%20neural%20representation%20of%20time%20distributed%20across%20multiple%20brain%20regions%20differs%20between%20implicit.pdf>)
 > Reading Note::
 > Web Rip::
 > url:: https://linkinghub.elsevier.com/retrieve/pii/S1074742723000126

@@ -23,8 +23,6 @@ created: 2023-11-27 17:45
 # Correlations and functional connections in a population of grid cells
 Read:: - [ ] Dunn et al. (2014) - Correlations and functional connections in a population of grid cells ➕2023-11-27 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/HEFDN9K5) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/_2014/Dunn%20et%20al_2014_Correlations%20and%20functional%20connections%20in%20a%20population%20of%20grid%20cells.pdf>)
 Reading Note::
 Web Rip::
 url:: http://arxiv.org/abs/1405.0044
@@ -46,25 +44,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

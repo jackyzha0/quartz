@@ -33,8 +33,6 @@ modified: 2024-08-27 11:47
 # An Introduction to Stochastic Thermodynamics: From Basic to Advanced
 Read:: - [ ] Shiraishi (2023) - **An Introduction to Stochastic Thermodynamics: From Basic to Advanced** ➕2024-08-27 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/B37CKM2F)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/6U3P698I/Shiraishi%20-%202023%20-%20An%20Introduction%20to%20Stochastic%20Thermodynamics%20From%20Basic%20to%20Advanced.pdf>)
 Reading Note::
 Web Rip::
 url:: https://link.springer.com/10.1007/978-981-19-8186-9
@@ -56,25 +54,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

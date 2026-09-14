@@ -48,7 +48,6 @@ citekey: broersenAutomaticAutocorrelationSpectral2006
 > About::
 > Read:: - [ ] Broersen (2006) - **Automatic Autocorrelation and Spectral Analysis** ➕2025-11-13 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/4P5YLEY8)
 > Files::
 > Reading Note::
 > Web Rip::

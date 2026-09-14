@@ -31,8 +31,6 @@ created: 2023-09-07 16:52
 # Oscillation/Coincidence-Detection Models of Reward-Related Timing in Corticostriatal Circuits
 Read:: - [ ] Yin et al. (2022) - Oscillation/Coincidence-Detection Models of Reward-Related Timing in Corticostriatal Circuits ➕2023-09-07 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/S3DWFMX2) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/ZSPJBY57/Yin%20et%20al_2022_Oscillation-Coincidence-Detection%20Models%20of%20Reward-Related%20Timing%20in.pdf>)
 Reading Note::
 Web Rip::
 url:: https://brill.com/view/journals/time/aop/article-10.1163-22134468-bja10057/article-10.1163-22134468-bja10057.xml
@@ -53,11 +51,6 @@ SORT file.cday DESC
 # Quick Reference
 
 # Tasks
-
-
-
-
-
 
 # Further Reading
 
@@ -101,12 +94,10 @@ SORT file.cday DESC
 > - [ ] Xu, M., Zhang, S. Y., Dan, Y., & Poo, M. M. (2014). Representation of interval timing by temporally scalable firing patterns in rat prefrontal cortex. Proc. Natl Acad. Sci. U. S. A., 111, 480–485. doi: 10.1073/pnas.1321314111.  #rd #p5 ➕2023-09-07
 > ^SI57J68CaZSPJBY57p42
 
-
 # Topics
 
 > ## Morris–Lecar neurons #tp
 > ^MPZ9XTE3aZSPJBY57p11
-
 
 # Extracted Annotations and Comments
 
@@ -519,11 +510,10 @@ SORT file.cday DESC
 > 	dopaminergic signaling has been strongly implicated by the SBF model of reward-related timing (Agostino & Cheng, 2016; Cheng et al., 2016; Coull et al., 2011; Gu et al., 2016). Future work will be needed to examine the generation of oscillatory cycles for interval timing and how their phase can be reset by BG output and reward feedback.
 > ^P5VLHSEPaZSPJBY57p26
 
-
 # Figures
 
 > [!Figure 2]
-> ![[content/09 Citations/yinOscillationCoincidenceDetectionModels2022_Amedia/PDX6EZ6V.png]]
+> ![[wiki/citations/yinOscillationCoincidenceDetectionModels2022_Amedia/PDX6EZ6V.png]]
 > **Page 9**
 > 
 > ---
@@ -542,7 +532,7 @@ SORT file.cday DESC
 > ^72FKQXQNaZSPJBY57p9
 
 > [!Figure 3.]
-> ![[content/09 Citations/yinOscillationCoincidenceDetectionModels2022_Amedia/BNAK5YLS.png]]
+> ![[wiki/citations/yinOscillationCoincidenceDetectionModels2022_Amedia/BNAK5YLS.png]]
 > **Page 13**
 > 
 > ---
@@ -560,7 +550,7 @@ SORT file.cday DESC
 > ^6BGY6WJ4aZSPJBY57p13
 
 > [!Figure 4]
-> ![[content/09 Citations/yinOscillationCoincidenceDetectionModels2022_Amedia/H6TMS9N3.png]]
+> ![[wiki/citations/yinOscillationCoincidenceDetectionModels2022_Amedia/H6TMS9N3.png]]
 > **Page 20**
 > 
 > ---
@@ -577,15 +567,4 @@ SORT file.cday DESC
 > 
 > Figure 4
 > ^9J7B7DXVaZSPJBY57p20
-
-
-
-
-
-
-
-
-
-
-
 

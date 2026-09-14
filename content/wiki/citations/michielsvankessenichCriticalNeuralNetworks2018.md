@@ -26,8 +26,6 @@ created: 2024-04-08 13:40
 # Critical neural networks with short- and long-term plasticity
 Read:: - [ ] Michiels van Kessenich et al. (2018) - Critical neural networks with short- and long-term plasticity ➕2024-04-08 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/89FEW7RE) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Physical%20Review%20E_2018/Michiels%20van%20Kessenich%20et%20al_2018_Critical%20neural%20networks%20with%20short-%20and%20long-term%20plasticity.pdf>)
 Reading Note::
 Web Rip::
 url:: https://link.aps.org/doi/10.1103/PhysRevE.97.032312
@@ -49,25 +47,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

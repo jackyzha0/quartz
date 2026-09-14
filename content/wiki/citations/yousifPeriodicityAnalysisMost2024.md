@@ -52,8 +52,6 @@ citekey: yousifPeriodicityAnalysisMost2024
 > About::
 > Read:: - [ ] Yousif et al. (2024) - **Periodicity Analysis of Most Time Series Methods: A Review** ➕2025-10-07 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/PVMDGT25)
-> Files:: [attachment](file:///C:/Users/michaelt/Zotero/storage/HH7BVQID/10757242.html)
 > Reading Note::
 > Web Rip::
 > url:: https://ieeexplore.ieee.org/abstract/document/10757242

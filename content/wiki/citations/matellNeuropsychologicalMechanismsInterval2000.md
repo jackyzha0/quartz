@@ -24,8 +24,6 @@ created: 2023-09-27 12:37
 # Neuropsychological mechanisms of interval timing behavior
 Read:: - [ ] Matell et al. (2000) - Neuropsychological mechanisms of interval timing behavior ➕2023-09-27 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/MURHTDE2) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/6Y5X6HSD/Matell_Meck_2000_Neuropsychological%20mechanisms%20of%20interval%20timing%20behavior.pdf>)
 Reading Note::
 Web Rip::
 url:: https://onlinelibrary.wiley.com/doi/abs/10.1002/%28SICI%291521-1878%28200001%2922%3A1%3C94%3A%3AAID-BIES14%3E3.0.CO%3B2-E
@@ -48,15 +46,6 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
 
 # Extracted Annotations and Comments
 
@@ -104,30 +93,17 @@ SORT file.cday DESC
 > ^W7IKF5DQa6Y5X6HSDp4
 
 > [!Highlight] Page 97
-> 	![[ZtImgExcerpt/TB9B5NRZ.png]]
+> 	
 >     
 > ---
 > 	Fig 2
 > ^TB9B5NRZa6Y5X6HSDp4
 
 > [!Highlight] Page 98
-> 	![[ZtImgExcerpt/6RF657MF.png]]
+> 	
 >     
 > ---
 > 	Table 1
 > Can we implement these in an RL model and see which is more effective regardless of biological plausibility
 > ^6RF657MFa6Y5X6HSDp5
-
-
-
-
-
-
-
-
-
-
-
-
-
 

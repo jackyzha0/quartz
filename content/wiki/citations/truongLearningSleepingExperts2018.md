@@ -36,12 +36,10 @@ citekey: truongLearningSleepingExperts2018
 # Learning From Sleeping Experts: Rewarding Informative, Available, and Accurate Experts
 Read:: - [ X ] Truong et al. (2018) - Learning From Sleeping Experts: Rewarding Informative, Available, and Accurate Experts ➕2023-10-19 !!2 #rd #citation #todoist
 Print::  ✔
-Zotero Link:: [Zotero](zotero://select/library/items/R6D4JGEB)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/ACM%20Transactions%20on%20Design%20Automation%20of%20Electronic%20Systems_2018/Truong%20et%20al_2018_Learning%20From%20Sleeping%20Experts.pdf>)
 Reading Note::
 Web Rip::
 url:: https://dl.acm.org/doi/10.1145/3236617
-See:: [[Searching for Comparative Periodicity Finding Algorithms]]
+See:: Searching for Comparative Periodicity Finding Algorithms
 Note:: I liked this and I will be using its comparison metrics
 
 ```dataview

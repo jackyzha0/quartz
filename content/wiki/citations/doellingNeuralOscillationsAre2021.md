@@ -34,8 +34,6 @@ modified: 2024-09-25 20:20
 # Neural oscillations are a start toward understanding brain activity rather than the end
 Read:: - [ ] Doelling et al. (2021) - **Neural oscillations are a start toward understanding brain activity rather than the end** ➕2024-09-25 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/E6G6BMNI)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/BWDDSGFV/Doelling%20and%20Assaneo%20-%202021%20-%20Neural%20oscillations%20are%20a%20start%20toward%20understanding%20brain%20activity%20rather%20than%20the%20end.pdf>)
 Reading Note::
 Web Rip::
 url:: https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001234
@@ -57,25 +55,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

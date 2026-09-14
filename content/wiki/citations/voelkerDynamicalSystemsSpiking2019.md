@@ -24,8 +24,6 @@ modified: 2025-01-29 10:47
 # Dynamical Systems in Spiking Neuromorphic Hardware
 Read:: - [ ] Voelker (2019) - **Dynamical Systems in Spiking Neuromorphic Hardware** ➕2024-06-07 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/YAJBGLEB)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/University%20of%20Waterloo_2019/Voelker_2019_Dynamical%20Systems%20in%20Spiking%20Neuromorphic%20Hardware.pdf>)
 Reading Note::
 Web Rip::
 url:: https://uwspace.uwaterloo.ca/handle/10012/14625
@@ -47,25 +45,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

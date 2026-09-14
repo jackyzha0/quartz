@@ -108,7 +108,7 @@ Nope. You gotta read the above and then a few Wikipedia and Stack Exchange pages
 
 # A Simple Chain Network & Cost Function
 
-![[old_content/attachments/Backprop chain Drawing 2023-09-25 15.07.20.excalidraw.png]]
+![[attachments/backprop/Backprop chain Drawing 2023-09-25 15.07.20.excalidraw.png]]
 ## Describing the Network and how we train it
 We describe the simplest possible model: Two units, an input node and an output node, connected by a single weight.
 We let the activation on the first node be the input value from the sample, so not a ReLU unit (sorry I know it shows an activation function in the drawing, but I’m not redoing it because we need it later ) this is connected directly to the output layer. This does contain ReLU units, and the activations outputs the final value.
@@ -164,7 +164,7 @@ $$
 
 A function has some curve which describes the shape of how one variable changes with the other. By differentiation we can describe the dependency of a function to change with respect to a particular input variable. So for the curve of our cost function (let the x-axis be the Cost value):
 
-![[old_content/attachments/Backpropagation Exercise - ACIT 4620-image-20230925163427082.png]] ![[old_content/attachments/Backpropagation Exercise - ACIT 4620-image-20230925164659302.png]]
+![[attachments/backprop/Backpropagation Exercise - ACIT 4620-image-20230925163427082.png]] ![[attachments/backprop/Backpropagation Exercise - ACIT 4620-image-20230925164659302.png]]
 
 We can find how it will change with respect to the activation:
 (This is just for the activation, we will differentiate it wrt to the weights when we get to the chain rule.)
@@ -175,7 +175,7 @@ This will tell us how fast, or which direction will decrease the cost most quick
 
 I hear you asking, “if the derivative gives us the shape, why can’t we just immediately pick the point of lowest cost?”
 Now, this plot is just for only variables (it kinda ignores the a value), in reality the shape is made of combined curves of the many activation functions of all the neurons in the network and each of their unique weights, not to mention it is “changing” between learning steps. While this is a hyperdimensional space (N-dimensional depending on the number of weights in your network), we often illustrate this with a three-dimensional drawing for simplicity (borrowing from 3B1B):
-![[old_content/attachments/Backpropagation Exercise - ACIT 4620-image-20230925170706194.png]]
+![[attachments/backprop/Backpropagation Exercise - ACIT 4620-image-20230925170706194.png]]
 
 This combination of the curves of the functions gives us the “shape” of the space, which is called the *Loss Landscape*. Note how he is describing the change in cost as $\nabla C$, but we will get to that when we describe *Stochastic Gradient Descent*.
 # Chain Rule
@@ -244,7 +244,7 @@ Also important to note here that the $a_{j}$ is the input value,
 <div style="page-break-after: always;"></div>
 
 # Exercise 1 - Simple Chain Network
-![[old_content/attachments/Backprop chain Drawing 2023-09-25 15.07.20.excalidraw.png]]
+![[attachments/backprop/Backprop chain Drawing 2023-09-25 15.07.20.excalidraw.png]]
 Calculate the feed forward for this network, I changed the weights from the original example and illustration so it will be different from before.
 Then differentiate for $w_{ij}^{L-1}$ and calculate the next weights for the network.
 You are given:
@@ -255,7 +255,7 @@ $y = 1.00$ (the target output)
 ---
 
 # Chain Rule - Deep Chain Network
-![[old_content/attachments/Backprop chain Drawing 3.png]]
+![[attachments/backprop/Backprop chain Drawing 3.png]]
 Ok so I’m going to let you try this one.
 This one is a little different but not by that much. The difference here is you actually have a hidden layer and $L-2$ is the input layer.
 In accordance with the chain rule, you can find the derivative but chaining the dependencies of the layers nearest the output. Thus for $w_{ij}^{L-1}$:
@@ -282,7 +282,7 @@ $y = 1.00$ (the target output)
 <div style="page-break-after: always;"></div>
 
 # More Complicated Back-Propagation
-![[old_content/attachments/Backprop chain Drawing 4.png]]
+![[attachments/backprop/Backprop chain Drawing 4.png]]
 
 You can work on this if you’d like some extra practice. And I would actually encourage doing this particular problem.
 
@@ -307,6 +307,6 @@ $y = 1.00$ (the target output)
 
 ---
 # Complicated Example
-![[old_content/attachments/Backprop chain Drawing 5.png]]
+![[attachments/backprop/Backprop chain Drawing 5.png]]
 Just re-illustrating the example from the Russell book Chapter 21. Note how the unit “numbers” have changed.
 Give it a shot if you have literally nothing else to do. There is a reason we make computers do this.

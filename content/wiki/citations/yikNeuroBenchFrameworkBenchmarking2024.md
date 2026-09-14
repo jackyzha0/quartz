@@ -125,8 +125,6 @@ citekey: yikNeuroBenchFrameworkBenchmarking2024
 # NeuroBench: A Framework for Benchmarking Neuromorphic Computing Algorithms and Systems
 Read:: - [ ] Yik et al. (2024) - **NeuroBench: A Framework for Benchmarking Neuromorphic Computing Algorithms and Systems** ➕2024-10-14 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/ABLEUI5J)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/3DQ2JSGA/Yik%20et%20al.%20-%202024%20-%20NeuroBench%20A%20Framework%20for%20Benchmarking%20Neuromorphic%20Computing%20Algorithms%20and%20Systems.pdf>)
 Reading Note::
 Web Rip::
 url:: http://arxiv.org/abs/2304.04640

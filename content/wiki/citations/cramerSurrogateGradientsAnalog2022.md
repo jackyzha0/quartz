@@ -56,5 +56,5 @@ citekey: cramerSurrogateGradientsAnalog2022
 
 # Figures
 ## Table 2
-![[content/09 Citations/cramerSurrogateGradientsAnalog2022_Amedia/cramerSurrogateGradientsAnalog2022-image-20230817150247225.png]]
+![[wiki/citations/cramerSurrogateGradientsAnalog2022_Amedia/cramerSurrogateGradientsAnalog2022-image-20230817150247225.png]]
 

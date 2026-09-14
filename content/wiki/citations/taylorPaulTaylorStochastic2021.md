@@ -21,8 +21,6 @@ created: 2024-02-13 10:58
 # Paul Taylor | Stochastic Parrots
 Read:: - [ ] Taylor (2021) - Paul Taylor | Stochastic Parrots ➕2024-02-13 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/AE76U3IT) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/CSP3D5XQ/stochastic-parrots.html>)
 Reading Note::
 Web Rip::
 url:: https://www.lrb.co.uk/blog/2021/february/stochastic-parrots
@@ -44,25 +42,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

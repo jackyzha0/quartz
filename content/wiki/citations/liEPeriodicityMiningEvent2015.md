@@ -42,12 +42,10 @@ citekey: liEPeriodicityMiningEvent2015
 # ePeriodicity: Mining Event Periodicity from Incomplete Observations
 Read:: - [ X ] Li et al. (2015) - **ePeriodicity: Mining Event Periodicity from Incomplete Observations** ➕2025-01-27 !!2 #rd #citation #todoist
 Print::  ✔
-Zotero Link:: [Zotero](zotero://select/library/items/9S3S9ECT)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/MXRAAPYH/Li%20et%20al.%20-%202015%20-%20ePeriodicity%20Mining%20Event%20Periodicity%20from%20Incomplete%20Observations.pdf>)
 Reading Note::
 Web Rip::
 url:: https://ieeexplore.ieee.org/document/6940249
-See:: [[Searching for Comparative Periodicity Finding Algorithms]]
+See:: Searching for Comparative Periodicity Finding Algorithms
 ```dataview
 TABLE without id
 file.link as "Related Files",

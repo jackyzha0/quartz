@@ -6,16 +6,16 @@ function stubHtml(target) {
 <html lang="en-us">
 <head>
 <title>${target}</title>
-<link rel="canonical" href="./${target}">
+<link rel="canonical" href="/${target}">
 <meta name="robots" content="noindex">
 <meta charset="utf-8">
-<meta http-equiv="refresh" content="0; url=./${target}">
+<meta http-equiv="refresh" content="0; url=/${target}">
 </head>
 </html>
 `;
 }
 function slugifyStem(name) {
-  return name.normalize("NFKD").replace(/ /g, "-").replace(/'/g, "").replace(/[^A-Za-z0-9_\-/()]/g, "").toLowerCase();
+  return name.normalize("NFKD").replace(/ /g, "-").replace(/'/g, "").replace(/[^A-Za-z0-9_.\-/()]/g, "").toLowerCase();
 }
 function LegacyRedirects() {
   return {
@@ -26,6 +26,11 @@ function LegacyRedirects() {
       const stubs = [
         ["NER_2025", "research/ner-2025/"],
         ["ner_2025", "research/ner-2025/"],
+        // legacy folder pages
+        ["01-Blog-Posts/index", "writing/"],
+        ["01-blog-posts/index", "writing/"],
+        ["09-Citations/index", "wiki/citations/"],
+        ["09-citations/index", "wiki/citations/"],
         [
           "01-Blog-Posts/Back-Propagation-without-Calculus",
           "writing/back-propagation-without-calculus/"

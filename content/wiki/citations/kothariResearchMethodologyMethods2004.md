@@ -23,8 +23,6 @@ created: 2024-02-10 14:12
 # Research Methodology: Methods and Techniques
 Read:: - [ ] Kothari (2004) - Research Methodology: Methods and Techniques ➕2024-02-10 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/BIJBEBES) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/74EUVCVS/Research-Methodology-CR-Kothari.pdf>)
 Reading Note::
 Web Rip::
 url:: 
@@ -47,33 +45,13 @@ SORT file.cday DESC
 
 # Tasks
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Figures (blue)
 
 > [!Fig 1.1]
-> ![[content/09 Citations/kothariResearchMethodologyMethods2004_Amedia/JNPALWHV.png]]
+> ![[wiki/citations/kothariResearchMethodologyMethods2004_Amedia/JNPALWHV.png]]
 > **Page 11**
 > 
 > ---
 > 	Fig 1.1
 > ^JNPALWHVa74EUVCVSp28
-
-
-
-
-
 

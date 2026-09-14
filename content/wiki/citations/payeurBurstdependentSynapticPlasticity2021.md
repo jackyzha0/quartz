@@ -31,8 +31,6 @@ modified: 2024-09-17 13:41
 # Burst-dependent synaptic plasticity can coordinate learning in hierarchical circuits
 Read:: - [ ] Payeur et al. (2021) - Burst-dependent synaptic plasticity can coordinate learning in hierarchical circuits ➕2023-12-03 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/YGB8CIIF)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Nature%20Neuroscience_2021/Payeur%20et%20al_2021_Burst-dependent%20synaptic%20plasticity%20can%20coordinate%20learning%20in%20hierarchical.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.nature.com/articles/s41593-021-00857-x
@@ -54,25 +52,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

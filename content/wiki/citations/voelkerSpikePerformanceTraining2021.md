@@ -27,8 +27,6 @@ created: 2024-06-05 02:07
 # A Spike in Performance: Training Hybrid-Spiking Neural Networks with Quantized Activation Functions
 Read:: - [ ] Voelker et al. (2021) - **A Spike in Performance: Training Hybrid-Spiking Neural Networks with Quantized Activation Functions** ➕2024-06-05 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/W6UGS2L2) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/arXiv2002.03553%20[cs,%20q-bio,%20stat]_2021/Voelker%20et%20al_2021_A%20Spike%20in%20Performance.pdf>)
 Reading Note::
 Web Rip::
 url:: http://arxiv.org/abs/2002.03553
@@ -50,25 +48,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

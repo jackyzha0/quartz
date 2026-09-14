@@ -27,8 +27,6 @@ modified: 2024-08-27 11:45
 # Stochastic thermodynamics, fluctuation theorems, and molecular machines
 Read:: - [ ] Seifert (2012) - **Stochastic thermodynamics, fluctuation theorems, and molecular machines** ➕2024-08-27 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/6PAH36Y7)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/2S5ESL9N/Seifert%20-%202012%20-%20Stochastic%20thermodynamics,%20fluctuation%20theorems,%20and%20molecular%20machines.pdf>)
 Reading Note::
 Web Rip::
 url:: http://arxiv.org/abs/1205.4176
@@ -50,25 +48,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -33,8 +33,6 @@ modified: 2024-08-23 12:34
 # Toward the third generation artificial intelligence
 Read:: - [ ] Zhang et al. (2023) - **Toward the third generation artificial intelligence** ➕2024-08-23 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/L78PDVK8)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/J94Q88S4/Zhang%20et%20al.%20-%202023%20-%20Toward%20the%20third%20generation%20artificial%20intelligence.pdf>)
 Reading Note::
 Web Rip::
 url:: https://doi.org/10.1007/s11432-021-3449-x
@@ -57,25 +55,4 @@ SORT file.cday DESC
 Kinda interesting, they propose that #third-gen-ai should be a mix of first-gen symbolic AI and second-gen connectionist AI
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

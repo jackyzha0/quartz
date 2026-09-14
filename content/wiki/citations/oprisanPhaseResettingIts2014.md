@@ -30,8 +30,6 @@ created: 2023-10-03 16:39
 # Phase resetting and its implications for interval timing with intruders
 Read:: - [ ] Oprisan et al. (2014) - Phase resetting and its implications for interval timing with intruders ➕2023-10-03 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/4KKJG7XI) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Behavioural%20Processes_2014/Oprisan%20et%20al_2014_Phase%20resetting%20and%20its%20implications%20for%20interval%20timing%20with%20intruders.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.sciencedirect.com/science/article/pii/S0376635713002040
@@ -54,27 +52,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

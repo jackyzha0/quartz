@@ -31,8 +31,6 @@ modified: 2024-10-14 13:35
 # Solving QUBO on the Loihi 2 Neuromorphic Processor
 Read:: - [ ] Pierro et al. (2024) - **Solving QUBO on the Loihi 2 Neuromorphic Processor** ➕2024-10-14 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/F7K7UM4Z)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/BN9MNY3R/Pierro%20et%20al.%20-%202024%20-%20Solving%20QUBO%20on%20the%20Loihi%202%20Neuromorphic%20Processor.pdf>)
 Reading Note::
 Web Rip::
 url:: http://arxiv.org/abs/2408.03076
@@ -54,25 +52,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

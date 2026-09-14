@@ -34,8 +34,6 @@ citekey: liuHumanLevelControlDirectly2022
 # Human-Level Control Through Directly Trained Deep Spiking $Q$-Networks
 Read:: - [ ] Liu et al. (2022) - Human-Level Control Through Directly Trained Deep Spiking $Q$-Networks ➕2023-11-27 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/P624LQ4B)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/QNWWEUWG/Liu%20et%20al_2022_Human-Level%20Control%20Through%20Directly%20Trained%20Deep%20Spiking%20$Q$-Networks.pdf>)
 Reading Note::
 Web Rip::
 url:: https://ieeexplore.ieee.org/document/9877913/
@@ -116,7 +114,7 @@ SORT file.cday DESC
 # Figures (blue)
 
 > [!Figure 1.]
-> ![[content/09 Citations/liuHumanLevelControlDirectly2022_Amedia/3Q4AJHI4.png]]
+> ![[wiki/citations/liuHumanLevelControlDirectly2022_Amedia/3Q4AJHI4.png]]
 > **Page 2**
 >
 > ---

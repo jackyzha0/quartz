@@ -35,8 +35,6 @@ modified: 2024-12-18 16:44
 # FPGA architecture for feed-forward sequential memory network targeting long-term time-series forecasting
 Read:: - [ ] Orimo et al. (2016) - **FPGA architecture for feed-forward sequential memory network targeting long-term time-series forecasting** ➕2024-12-19 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/M4SEEUZK)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/BDETSFSV/citations.html>)
 Reading Note::
 Web Rip::
 url:: https://ieeexplore.ieee.org/document/7857169/citations?tabFilter=papers#citations
@@ -59,13 +57,6 @@ SORT file.cday DESC
 
 # Tasks
 
-
-
-
-
-
-
-
 # Topics
 
 > ## Recently, a feed-forward sequential memory network (FSMN) was proposed [6] [7]. It consists of standard feedforward neural network and time-domain filters, and aims at long-term time-series forecasting. #tp
@@ -76,17 +67,4 @@ SORT file.cday DESC
 
 > ## FSMN can equip time-domain filters for plural middle layers, and be learnt through backpropagation. #tp
 > ^RT7HA8JAaBDETSFSV
-
-
-
-
-
-
-
-
-
-
-
-
-
 

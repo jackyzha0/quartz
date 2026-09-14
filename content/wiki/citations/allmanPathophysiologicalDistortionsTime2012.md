@@ -55,8 +55,6 @@ citekey: allmanPathophysiologicalDistortionsTime2012
 # Pathophysiological Distortions in time Perception and Timed Performance
 Read:: - [ ] Allman et al. (2012) - Pathophysiological distortions in time perception and timed performance ➕2023-10-07 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/MXMMWKSK)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Brain%20A%20Journal%20of%20Neurology_2012/Allman_Meck_2012_Pathophysiological%20distortions%20in%20time%20perception%20and%20timed%20performance.pdf>)
 Reading Note::
 Web Rip::
 url::
@@ -92,7 +90,7 @@ SORT file.cday DESC
 # Figures (blue)
 
 > [!Figure 1]
-> ![[content/09 Citations/allmanPathophysiologicalDistortionsTime2012_Amedia/PM44AE4Y.png]]
+> ![[wiki/citations/allmanPathophysiologicalDistortionsTime2012_Amedia/PM44AE4Y.png]]
 > **Page 658**
 >
 > ---
@@ -107,7 +105,7 @@ SORT file.cday DESC
 > ^TNAZ6T5XaYRPZ2V3Lp3
 
 > [!Figure 2 #sbf]
-> ![[60 Zotero/Citations/allmanPathophysiologicalDistortionsTime2012_Amedia/MLS4WS9C.png]]
+> ![[wiki/citations/allmanPathophysiologicalDistortionsTime2012_Amedia/MLS4WS9C.png]]
 > **Page 666**
 >
 > ---
@@ -122,7 +120,7 @@ SORT file.cday DESC
 > ^X369E2V8aYRPZ2V3Lp11
 
 > [!Figure 3]
-> ![[content/09 Citations/allmanPathophysiologicalDistortionsTime2012_Amedia/MCJF6XIZ.png]]
+> ![[wiki/citations/allmanPathophysiologicalDistortionsTime2012_Amedia/MCJF6XIZ.png]]
 > **Page 671**
 >
 > ---

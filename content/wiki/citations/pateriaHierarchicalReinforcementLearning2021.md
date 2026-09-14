@@ -34,8 +34,6 @@ modified: 2025-01-29 10:51
 > About::
 > Read:: - [ ] Pateria et al. (2021) - **Hierarchical Reinforcement Learning: A Comprehensive Survey** ➕2025-01-29 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/TS7P2Q3Z)
-> Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/ACM%20Computing%20Surveys_2021/Pateria%20et%20al_2021_Hierarchical%20Reinforcement%20Learning.pdf>)
 > Reading Note::
 > Web Rip::
 > url:: https://doi.org/10.1145/3453160
@@ -57,15 +55,6 @@ modified: 2025-01-29 10:51
 
 # Tasks
 
-
-
-
-
-
-
-
-
-
 # Extracted Annotations and Comments
 
 > [!Highlight] Page 2
@@ -75,15 +64,4 @@ modified: 2025-01-29 10:51
 > [!Highlight] Page 2
 > 	ong-horizon tasks without sophisticated exploration techniques [10, 71, 75]. Hierarchical Reinforcement Learning (HRL) decomposes a long-horizon reinforcement learning task into a hierarchy of subproblems or subtasks such that a higher-level policy learns to perform the task by choosing optimal subtasks as the higher-level actions. A subtask may itself be a reinforcement learning problem with a lower-level policy learning to solve it [39]. This hierarchy of policies collectively determines the behavior of the agent. Task decomposition effectively reduces the original task’s long horizon into a shorter horizon in terms of the sequences of subtasks. This is because each subtask is a higher-level action that persists for a longer timescale compared to a lower-level action, a property that is often referred to as temporal abstraction [7, 20, 93]. Temporal abstraction can also enable efficient credit assignment over longer timescales [99]. At the same time, a subtask may itself be easier to learn and the learned subtasks lead to more structured exploration over the course of training of the HRL agent [71].
 > ^YK89IXYEa88KPT7CHp2
-
-
-
-
-
-
-
-
-
-
-
 

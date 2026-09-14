@@ -34,8 +34,6 @@ citekey: delacourLagrangeOscillatoryNeural2025
 > About::
 > Read:: - [ ] Delacour et al. (2025) - **Lagrange oscillatory neural networks for constraint satisfaction and optimization** ➕2025-10-27 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/34TN7S4I)
-> Files:: [attachment](<file:///C:/Users/michaelt/Zotero/new_storage/2025/10/delacourLagrangeOscillatoryNeural2025/Delacour%20et%20al.%20-%202025%20-%20Lagrange%20oscillatory%20neural%20networks%20for%20constraint%20satisfaction%20and%20optimization.pdf>)
 > Reading Note::
 > Web Rip::
 > url:: https://doi.org/10.1088/2634-4386/ae0eab

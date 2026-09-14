@@ -21,8 +21,6 @@ created: 2024-02-15 14:20
 # Who Invented the Reverse Mode of Differentiation
 Read:: - [ ] Griewank (2012) - Who Invented the Reverse Mode of Differentiation ➕2024-02-15 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/J45CJ4MY) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/C43F8LDN/Griewank%20-%202012%20-%20Who%20Invented%20the%20Reverse%20Mode%20of%20Differentiation.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.semanticscholar.org/paper/Who-Invented-the-Reverse-Mode-of-Differentiation-Griewank/8ff0c546aff84566635f0a9a2e01feb3d6588c1c
@@ -44,25 +42,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

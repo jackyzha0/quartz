@@ -19,8 +19,6 @@ created: 2023-11-20 15:43
 # GPT-4
 Read:: - [ ]  () - GPT-4 ➕2023-11-20 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/22H8YV2C) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/QN2IKDTF/gpt-4.html>)
 Reading Note::
 Web Rip::
 url:: https://openai.com/research/gpt-4
@@ -42,25 +40,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

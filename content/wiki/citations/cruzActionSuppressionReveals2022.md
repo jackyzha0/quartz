@@ -39,9 +39,8 @@ Read:: Partially. Left off right before the discussion section. Also a ton of me
 Print:: ❌
 Zotero Link:: NA
 PDF:: NA
-Files:: [Cruz et al_2022_Action suppression reveals opponent parallel control via striatal circuits.pdf](file:///home/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/6EGD62RE/Cruz%20et%20al_2022_Action%20suppression%20reveals%20opponent%20parallel%20control%20via%20striatal%20circuits.pdf); [Snapshot](file:///home/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/GPYVCDEV/s41586-022-04894-9.html)
-Reading Note:: [[Bruno F. Cruz, Gonçalo Guiomar, Sofia Soares, Asma Motiwala, Christian K. Machens, Joseph J. Paton 2022]]
-Web Rip:: [ [[Scientists discover how the brain keeps the urge to act in check  Champalimaud Foundation - 12.07.22]] , [[Action suppression reveals opponent parallel control via striatal circuits - 12.07.22]]]
+Reading Note:: Bruno F. Cruz, Gonçalo Guiomar, Sofia Soares, Asma Motiwala, Christian K. Machens, Joseph J. Paton 2022
+Web Rip:: [ Scientists discover how the brain keeps the urge to act in check  Champalimaud Foundation - 12.07.22 , Action suppression reveals opponent parallel control via striatal circuits - 12.07.22]
 
 # Abstract
 The direct and indirect pathways of the basal ganglia are classically thought to promote and suppress action, respectively1. However, the observed co-activation of striatal direct and indirect medium spiny neurons2 (dMSNs and iMSNs, respectively) has challenged this view. Here we study these circuits in mice performing an interval categorization task that requires a series of self-initiated and cued actions and, critically, a sustained period of dynamic action suppression. Although movement produced the co-activation of iMSNs and dMSNs in the sensorimotor, dorsolateral striatum (DLS), fibre photometry and photo-identified electrophysiological recordings revealed signatures of functional opponency between the two pathways during action suppression. Notably, optogenetic inhibition showed that DLS circuits were largely engaged to suppress—and not promote—action. Specifically, iMSNs on a given hemisphere were dynamically engaged to suppress tempting contralateral action. To understand how such regionally specific circuit function arose, we constructed a computational reinforcement learning model that reproduced key features of behaviour, neural activity and optogenetic inhibition. The model predicted that parallel striatal circuits outside the DLS learned the action-promoting functions, generating the temptation to act. Consistent with this, optogenetic inhibition experiments revealed that dMSNs in the associative, dorsomedial striatum, in contrast to those in the DLS, promote contralateral actions. These data highlight how opponent interactions between multiple circuitand region-specific basal ganglia processes can lead to behavioural control, and establish a critical role for the sensorimotor indirect pathway in the proactive suppression of tempting actions.
@@ -86,6 +85,5 @@ If they move, it’s a **broken fixation**
 > The team identified a brain region that actively suppresses the drive to act, but where does that drive originate? Since the direct pathway is thought to promote action, the immediate suspect was the direct pathway of the same region. However, the mouse's behaviour was practically unaffected when the researchers inhibited it.
 - Ok so they inhibited the direct pathway in a ***different region*** not the same region shared the inhibited indirect pathway
 
-> ![[Action suppression reveals opponent parallel control via striatal circuits - 12.07.22#^uvsamt]]
+> 
 
-![[Action suppression reveals opponent parallel control via striatal circuits - 12.07.22#^uvsamt]]

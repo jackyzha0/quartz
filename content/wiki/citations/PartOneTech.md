@@ -21,8 +21,6 @@ created: 2024-02-13 11:53
 # Part One: Tech Bros Have Built A Cult Around AI - Behind the Bastards
 Read:: - [ ]  () - Part One: Tech Bros Have Built A Cult Around AI - Behind the Bastards ➕2024-02-13 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/VBYAAHE8) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/KBXKDAZH/part-one-tech-bros-have-built-146544960.html>)
 Reading Note::
 Web Rip::
 url:: https://www.iheart.com/podcast/105-behind-the-bastards-29236323/episode/part-one-tech-bros-have-built-146544960/
@@ -45,25 +43,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -23,8 +23,6 @@ created: 2024-04-08 10:11
 # Deep Reinforcement Learning Enabled Self-Configurable Networks-on-Chip for High-Performance and Energy-Efficient Computing Systems
 Read:: 
 - [x] Reza (2022) - Deep Reinforcement Learning Enabled Self-Configurable Networks-on-Chip for High-Performance and Energy-Efficient Computing Systems ➕2024-04-08 !!2 #rd #citation [link](https://todoist.com/showTask?id=7879149915) #todoist %%[todoist_id:: 7879149915]%%nt::  ❌ ✅ 2024-04-08
-Zotero Link:: [Zotero](zotero://select/library/items/FK8JMK8N) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/IEEE%20Access_2022/Reza_2022_Deep%20Reinforcement%20Learning%20Enabled%20Self-Configurable%20Networks-on-Chip%20for.pdf>)
 Reading Note::
 Web Rip::
 url:: https://ieeexplore.ieee.org/document/9794707/
@@ -50,25 +48,4 @@ SORT file.cday DESC
 - Like it is clearly optimizing the latency and energy, but what are the mechanics of that in the NOC exactly?
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

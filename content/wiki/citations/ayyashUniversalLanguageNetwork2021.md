@@ -29,8 +29,6 @@ modified: 2025-01-29 13:56
 # The universal language network: A cross-linguistic investigation spanning 45 languages and 11 language families
 Read:: - [ ] Ayyash et al. (2021) - The universal language network: A cross-linguistic investigation spanning 45 languages and 11 language families ➕2023-11-22 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/QSG8IIRQ)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/AYCLCPYH/Ayyash%20et%20al.%20-%202021%20-%20The%20universal%20language%20network%20A%20cross-linguistic.pdf>)
 Reading Note::
 Web Rip::
 url:: http://biorxiv.org/lookup/doi/10.1101/2021.07.28.454040
@@ -52,25 +50,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

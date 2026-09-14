@@ -41,8 +41,6 @@ citekey: zhangPeriodicTimeSeries2020
 # Periodic Time Series Data Analysis by Deep Learning Methodology
 Read:: - [ ] Zhang et al. (2020) - **Periodic Time Series Data Analysis by Deep Learning Methodology** ➕2025-01-09 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/F3XBM88X)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/YBUFR4VG/9274411.html>)
 Reading Note::
 Web Rip::
 url:: https://ieeexplore.ieee.org/document/9274411
@@ -70,5 +68,5 @@ SORT file.cday DESC
 > ## periodic time series datasets #tp
 > ^LMFZNVVHaYBUFR4VG
 
-[[HIVE-COTE]]
+HIVE-COTE
 

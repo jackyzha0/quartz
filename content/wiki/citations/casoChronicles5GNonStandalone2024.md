@@ -53,12 +53,10 @@ citekey: casoChronicles5GNonStandalone2024
 > About::
 > Read:: - [ ] Caso et al. (2024) - **The Chronicles of 5G Non-Standalone: An Empirical Analysis of Performance and Service Evolution** ➕2025-10-01 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/FBQBRGHA)
-> Files:: [attachment](<file:///home/michaelt/Zotero/storage/98CUNT9M/Caso%20et%20al.%20-%202024%20-%20The%20Chronicles%20of%205G%20Non-Standalone%20An%20Empirical.pdf>)
 > Reading Note::
 > Web Rip::
 > url:: https://ieeexplore.ieee.org/abstract/document/10753472
-> see:: [[IN9060 - Assignment 2]]
+> see:: IN9060 - Assignment 2
 > ```dataview
 > TABLE without id
 > file.link as "Related Files",

@@ -25,8 +25,6 @@ created: 2023-09-29 12:44
 # The Storage of Time Intervals Using Oscillating Neurons
 Read:: - [ ] Miall (1989) - The Storage of Time Intervals Using Oscillating Neurons ➕2023-09-29 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/GXL5I3GR) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Neural%20Computation_1989/Miall_1989_The%20Storage%20of%20Time%20Intervals%20Using%20Oscillating%20Neurons.pdf>) [[60 Zotero/Citations/miallStorageTimeIntervals1989a_Amedia/miall1989.pdf]]
 Reading Note::
 Web Rip::
 url:: 
@@ -49,27 +47,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

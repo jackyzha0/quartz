@@ -34,8 +34,6 @@ modified: 2024-07-05 16:15
 # Computational principles of synaptic memory consolidation
 Read:: - [ ] Benna et al. (2016) - **Computational principles of synaptic memory consolidation** ➕2024-05-24 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/8KAPC9LY)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Nature%20Neuroscience_2016/Benna_Fusi_2016_Computational%20principles%20of%20synaptic%20memory%20consolidation.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.nature.com/articles/nn.4401
@@ -55,7 +53,7 @@ SORT file.cday DESC
 # Quick Reference
 
 # Top Notes
-[[Benna-Fusi Model]]
+Benna-Fusi Model
 - Interesting model that I am having difficulty following,
 - Looks like they are able to dynamically separate meaningful time-scales
 - The time scale of plasticity is decided by this factor
@@ -63,27 +61,5 @@ SORT file.cday DESC
 - So they seem to broadly describe this feature but do not illustrate (afaik) an implementation
 - It might be nice to analyze this further in the future
 
-
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

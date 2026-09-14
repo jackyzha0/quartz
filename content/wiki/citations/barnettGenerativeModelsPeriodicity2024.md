@@ -41,10 +41,8 @@ citekey: barnettGenerativeModelsPeriodicity2024
 > About:: I actually really like this one and should try to emulate the style in their comparisons
 > Read:: - [ ] Barnett et al. (2024) - **Generative Models for Periodicity Detection in Noisy Signals** ➕2025-05-12 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/D2DTDLQA)
-> Files:: [attachment](<file:///home/michaelt/Zotero/storage/CEN8KA5D/Barnett%20et%20al.%20-%202024%20-%20Generative%20Models%20for%20Periodicity%20Detection%20in%20Noisy%20Signals.pdf>)
 > Reading Note::
-> Web Rip:: [[Generative Models for Periodicity Detection in Noisy Signals]]
+> Web Rip:: Generative Models for Periodicity Detection in Noisy Signals
 > url:: https://www.mdpi.com/2624-5175/6/3/25
 > git-repo:: [GitHub - nnaisense/gmpda: Gaussian Mixture Periodicity Detection Algorithm](https://github.com/nnaisense/gmpda)
 ```cardlink

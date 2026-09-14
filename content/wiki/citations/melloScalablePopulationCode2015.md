@@ -26,8 +26,6 @@ created: 2023-10-08 13:37
 # A Scalable Population Code for Time in the Striatum
 Read:: - [ ] Mello et al. (2015) - A Scalable Population Code for Time in the Striatum ➕2023-10-08 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/IUVBNZD6) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/6GBDPBNS/Mello%20et%20al_2015_A%20Scalable%20Population%20Code%20for%20Time%20in%20the%20Striatum.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.sciencedirect.com/science/article/pii/S0960982215002055
@@ -51,18 +49,10 @@ SORT file.cday DESC
 
 # Tasks
 
-
-
-
-
-
 # Further Reading
 
 > - [ ] . Dayan, P., and Abbott, L.F. (2005). Theoretical Neuroscience, Second Edition. (Cambridge: MIT Press).  #rd #p5 ➕2023-10-08
 > ^MFT8BQLIa6GBDPBNSp10
-
-
-
 
 # Extracted Annotations and Comments
 
@@ -97,7 +87,7 @@ SORT file.cday DESC
 > ^2ECUIXPDa6GBDPBNSp3
 
 > [!Highlight] Page 1114
-> 	![[9A4QPBGD.png]]
+> 	![[wiki/citations/melloScalablePopulationCode2015-Attachments/9A4QPBGD.png]]
 >     
 > ---
 > 	Fig. 1
@@ -134,7 +124,7 @@ SORT file.cday DESC
 > ^JT87MRULa6GBDPBNSp4
 
 > [!Highlight] Page 1115
-> 	![[V6ZM8Y3L.png]]
+> 	![[wiki/citations/melloScalablePopulationCode2015-Attachments/V6ZM8Y3L.png]]
 >     
 > ---
 > 	Fig. 2
@@ -200,15 +190,10 @@ SORT file.cday DESC
 > 	Our data appear most consistent with theoretical models that suggest distributed representations of time encoded by the joint activity of populations of neurons [13]. Indeed, the decoder used in the current study assumes that time information may be present in many different neurons. However, we cannot rule out that upstream of the population we recorded in the striatum, other forms of temporal representations may exist. For instance, an accumulating process such as that contained within pacemaker accumulator models [9] might act to trigger neurons to become active at different delays as the accumulator passes a series of thresholds.
 > ^HAVJWRP3a6GBDPBNSp8
 
-
-
-
-
-
 # Figures (blue)
 
 > [!Figure 4]
-> ![[content/09 Citations/melloScalablePopulationCode2015_Amedia/DKZIUXNZ.png]]
+> ![[wiki/citations/melloScalablePopulationCode2015_Amedia/DKZIUXNZ.png]]
 > **Page 1117**
 > 
 > ---
@@ -223,11 +208,4 @@ SORT file.cday DESC
 > ---
 > 	+
 > ^DYYCFD7Ka6GBDPBNSp6
-
-
-
-
-
-
-
 

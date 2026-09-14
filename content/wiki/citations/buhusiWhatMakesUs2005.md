@@ -38,8 +38,6 @@ citekey: buhusiWhatMakesUs2005
 > About::
 > Read:: - [ ] Buhusi et al. (2005) - **What makes us tick? Functional and neural mechanisms of interval timing** ➕2025-11-13 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/25259LKS)
-> Files:: [attachment](<file:///C:/Users/michaelt/Zotero/new_storage/moving/Nature%20Reviews%20Neuroscience_2005/Buhusi_Meck_2005_What%20makes%20us%20tick2.pdf>)
 > Reading Note::
 > Web Rip::
 > url:: https://www.nature.com/articles/nrn1764

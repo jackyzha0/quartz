@@ -90,7 +90,7 @@ Where modern neural networks “unroll” time-separated moments of neural proce
 
 - Temporal dynamics are found throughout the brain at all scales 
 - And we know of many time-based mechanisms in the brain, 
-	-  Neural oscillations and memory consolidation [[content/zot2/@buzsakiBrainRhythmsHave2023|Buzasaki (2023)]]
+	-  Neural oscillations and memory consolidation [[wiki/citations/buzsakiBrainRhythmsHave2023|Buzasaki (2023)]]
 	- Spike-Timing Dependent-Plasticity (STDP)
 	- Bursts / Spindles / Rate-Encoding
 	- Event-Driven Computation
@@ -116,7 +116,7 @@ Where modern neural networks “unroll” time-separated moments of neural proce
 
 ![[Slide5.PNG]]
 #### 4.1.1.1 Cut Content
-> Oscillatory processes are the functional basis of homeostasis in the organism, allowing the occupation of a stable state in a dynamic and changing environment and maintaining the continuous functions necessary to survival. Neuronal assemblies such as Cardiopulmonary nerves maintain repetitious functions internally, while assemblies in the deep brain produce endogenous circadian rhythms which allow for the representation of external cycles of time. It follows that rhythmic processes set the basis of many biological functions, perhaps even forming the architectural basis for functional circuits beyond time encoding such as grid and place cells [[content/zot2/@tekiPersistenceMemoryHow2017|Teki (2017)]] [[content/zot2/@vagoRobustEfficientCoding2018|Vago (2018)]] Neural oscillations are ubiquitous throughout the brain at all scales, [[content/zot2/@sreenivasanGridCellsGenerate2011a|Sreenivasan (2011)]].^[There is some debate as to if repetitious place/grid cells came first, or if periodic timing cells came first.]
+> Oscillatory processes are the functional basis of homeostasis in the organism, allowing the occupation of a stable state in a dynamic and changing environment and maintaining the continuous functions necessary to survival. Neuronal assemblies such as Cardiopulmonary nerves maintain repetitious functions internally, while assemblies in the deep brain produce endogenous circadian rhythms which allow for the representation of external cycles of time. It follows that rhythmic processes set the basis of many biological functions, perhaps even forming the architectural basis for functional circuits beyond time encoding such as grid and place cells Teki (2017) [[wiki/citations/vagoRobustEfficientCoding2018|Vago (2018)]] Neural oscillations are ubiquitous throughout the brain at all scales, [[wiki/citations/sreenivasanGridCellsGenerate2011a|Sreenivasan (2011)]].^[There is some debate as to if repetitious place/grid cells came first, or if periodic timing cells came first.]
 
 ---
 # 5 Interval Timing
@@ -141,8 +141,8 @@ Where modern neural networks “unroll” time-separated moments of neural proce
 - *It is possible the most fundamental aspect of timing in the brain, may be built out an ensemble of individual neurons*
 
 ##### 5.1.1.1.1 Citation
-[[content/zot2/@melloNeuralBehavioralMechanisms2016|Mello (2016)]]
-[[content/zot2/@gerstnerEligibilityTracesPlasticity2018|Gerstner (2018)]]
+[[wiki/citations/melloNeuralBehavioralMechanisms2016|Mello (2016)]]
+[[wiki/citations/gerstnerEligibilityTracesPlasticity2018|Gerstner (2018)]]
 
 ---
 # 6 Striatal beat Frequency Models
@@ -182,10 +182,10 @@ Where modern neural networks “unroll” time-separated moments of neural proce
 - 
 - Additionally this can be layered and replicated in more localized regions which are phase locked to a particular task or association
 ##### 6.1.1.1.1 Citations
-[[content/zot2/@matellNeuropsychologicalMechanismsInterval2000|Matell (2000)]]
-[[@matellCorticostriatalCircuitsInterval2004|Matell (2004)]]
-[[content/zot2/@allmanPathophysiologicalDistortionsTime2012|Allman (2012)]] 
-[[content/zot2/@yinOscillationCoincidenceDetectionModels2022|Yin (2022)]]
+[[wiki/citations/matellNeuropsychologicalMechanismsInterval2000|Matell (2000)]]
+[[wiki/citations/matellCorticostriatalCircuitsInterval2004|Matell (2004)]]
+[[wiki/citations/allmanPathophysiologicalDistortionsTime2012|Allman (2012)]] 
+[[wiki/citations/yinOscillationCoincidenceDetectionModels2022|Yin (2022)]]
 
 ---
 # 7 Implementing in an Automata Framework
@@ -228,9 +228,9 @@ Where modern neural networks “unroll” time-separated moments of neural proce
 	- Almost an inverse one
 
 ##### 7.1.1.1.1 Citations
-[[content/zot2/@littlestoneWeightedMajorityAlgorithm1994|Littlestone (1994)]]
-[[content/zot2/@wolfOptimalCrawlingStrategies2002|Wolf (2002)]]
-[[content/zot2/@kolobovStayingDateOnline2019|Kolobov (2019)]]
+[[wiki/citations/littlestoneWeightedMajorityAlgorithm1994|Littlestone (1994)]]
+[[wiki/citations/wolfOptimalCrawlingStrategies2002|Wolf (2002)]]
+[[wiki/citations/kolobovStayingDateOnline2019|Kolobov (2019)]]
 
 
 # 8 Three-Factor STDP Models

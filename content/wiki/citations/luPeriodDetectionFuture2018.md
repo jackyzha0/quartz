@@ -30,9 +30,7 @@ modified: 2024-12-20 11:52
 > [!About]
 > Read:: - [ ] Lu et al. (2018) - **Period Detection and Future Trend Prediction Using Machine Learning Techniques** ➕2024-12-19 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/8LZBQCLP)
-> Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/HYBJ28PR/8726481.html>)
-> Reading Note:: [[Period Detection and Future Trend Prediction Using Machine Learning Techniques - glossary]]
+> Reading Note:: Period Detection and Future Trend Prediction Using Machine Learning Techniques - glossary
 > Web Rip::
 > url:: https://ieeexplore.ieee.org/document/8726481/
 > notes::
@@ -54,13 +52,6 @@ SORT file.cday DESC
 
 # Tasks
 
-
-
-
-
-
-
-
 # Topics
 
 > ## Extrapolation is a process that uses the known function values within some range to estimate the one outside it [1]. In particular, if it is a function of time, then the extrapolation becomes a prediction. This statistical technique has been applied in many fields including medicine [2], [3], civil engineering [4]. #tp
@@ -80,7 +71,6 @@ SORT file.cday DESC
 
 > ## autocorrection function (ACF) #tp
 > ^B6838RMRaHYBJ28PR
-
 
 # Extracted Annotations and Comments
 
@@ -143,15 +133,4 @@ SORT file.cday DESC
 > ---
 > 	Ok so we set an upper bound at least
 > ^48P7LJZIaHYBJ28PR
-
-
-
-
-
-
-
-
-
-
-
 

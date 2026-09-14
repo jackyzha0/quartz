@@ -35,8 +35,6 @@ citekey: gerstnerEligibilityTracesPlasticity2018
 > About::
 > Read:: - [ ] Gerstner et al. (2018) - **Eligibility Traces and Plasticity on Behavioral Time Scales: Experimental Support of NeoHebbian Three-Factor Learning Rules** ➕2025-11-04 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/U5Q55I2U)
-> Files:: [attachment](<file:///C:/Users/michaelt/Zotero/new_storage/2022/04/Gerstner%20et%20al.%20-%202018%20-%20Eligibility%20Traces%20and%20Plasticity%20on%20Behavioral%20Time%20Scales%20Experimental%20Support%20of%20NeoHebbian%20Thre.pdf>)
 > Reading Note::
 > Web Rip::
 > url:: https://www.frontiersin.org/article/10.3389/fncir.2018.00053
@@ -62,7 +60,7 @@ citekey: gerstnerEligibilityTracesPlasticity2018
 ## Figures (blue)
 
 > [!Fig 1]
-> ![[content/09 Citations/gerstnerEligibilityTracesPlasticity2018_Amedia/gerstnerEligibilityTracesPlasticity2018-20251104134337661.png]]
+> ![[wiki/citations/gerstnerEligibilityTracesPlasticity2018_Amedia/gerstnerEligibilityTracesPlasticity2018-20251104134337661.png]]
 > **Page 4**
 >
 > ---

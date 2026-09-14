@@ -33,8 +33,6 @@ modified: 2024-07-05 16:05
 # Learning the temporal dynamics of behavior
 Read:: - [ ] Machado (1997) - **Learning the temporal dynamics of behavior** ➕2024-05-03 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/IJJ4DWHE)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Psychological%20Review_1997/Machado_1997_Learning%20the%20temporal%20dynamics%20of%20behavior.pdf>)
 Reading Note::
 Web Rip::
 url::
@@ -56,25 +54,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

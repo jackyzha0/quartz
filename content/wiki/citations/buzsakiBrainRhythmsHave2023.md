@@ -30,8 +30,6 @@ citekey: buzsakiBrainRhythmsHave2023
 # Brain Rhythms Have come of Age
 Read:: - [ ] Buzsáki et al. (2023) - Brain rhythms have come of age ➕2023-09-11 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/V8GD6VSJ)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Neuron_2023/Buzs%C3%A1ki_V%C3%B6r%C3%B6slakos_2023_Brain%20rhythms%20have%20come%20of%20age.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.sciencedirect.com/science/article/pii/S0896627323002143
@@ -84,7 +82,7 @@ SORT file.cday DESC
 > ^XTZKSVLFaQDUGERS8p1
 
 > [!Highlight] Page 923
-> ![[ZtImgExcerpt/8TAMSCYL.png]]
+> 
 >
 > ---
 > image trst

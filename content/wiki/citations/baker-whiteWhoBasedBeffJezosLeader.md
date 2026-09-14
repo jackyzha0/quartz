@@ -25,8 +25,6 @@ modified: 2025-01-29 13:56
 # Who Is @BasedBeffJezos, The Leader Of The Tech Elite’s ‘E/Acc’ Movement?
 Read:: - [ ] Baker-White () - Who Is @BasedBeffJezos, The Leader Of The Tech Elite’s ‘E/Acc’ Movement? ➕2024-02-13 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/43CRNCHD)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/MDRH7HGZ/who-is-basedbeffjezos-the-leader-of-effective-accelerationism-eacc.html>)
 Reading Note::
 Web Rip::
 url:: https://www.forbes.com/sites/emilybaker-white/2023/12/01/who-is-basedbeffjezos-the-leader-of-effective-accelerationism-eacc/
@@ -48,25 +46,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

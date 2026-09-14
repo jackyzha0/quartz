@@ -28,8 +28,6 @@ created: 2024-02-15 14:20
 # Learning representations by back-propagating errors
 Read:: - [ ] Rumelhart et al. (1986) - Learning representations by back-propagating errors ➕2024-02-15 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/5Z6BZCPB) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/EMJLGKS7/naturebp.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.nature.com/articles/323533a0
@@ -51,25 +49,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

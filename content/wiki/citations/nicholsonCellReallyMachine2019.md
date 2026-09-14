@@ -33,8 +33,6 @@ created: 2023-10-16 12:01
 # Is the cell really a machine?
 Read:: - [ ] Nicholson (2019) - Is the cell really a machine? ➕2023-10-16 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/9NC6D6MR) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Journal%20of%20Theoretical%20Biology_2019/Nicholson_2019_Is%20the%20cell%20really%20a%20machine.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.sciencedirect.com/science/article/pii/S0022519319302292
@@ -57,27 +55,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

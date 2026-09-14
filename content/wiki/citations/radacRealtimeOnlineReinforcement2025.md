@@ -34,8 +34,6 @@ citekey: radacRealtimeOnlineReinforcement2025
 > About::
 > Read:: - [ ] Radac et al. (2025) - **Near real-time online reinforcement learning with synchronous or asynchronous updates** ➕2025-10-07 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/VBQB7NJY)
-> Files:: [attachment](<file:///C:/Users/michaelt/Zotero/new_storage/2025/10/radacRealtimeOnlineReinforcement2025/Radac%20and%20Chirla%20-%202025%20-%20Near%20real-time%20online%20reinforcement%20learning%20with%20synchronous%20or%20asynchronous%20updates.pdf>)
 > Reading Note::
 > Web Rip::
 > url:: https://www.nature.com/articles/s41598-025-00492-7

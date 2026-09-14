@@ -26,8 +26,6 @@ modified: 2024-09-25 19:14
 # Central pattern generators evolved for real-time adaptation to rhythmic stimuli
 Read:: - [ ] Szorkovszky et al. (2023) - Central pattern generators evolved for real-time adaptation to rhythmic stimuli ➕2024-02-20 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/G4HURPAU)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Bioinspiration%20&%20Biomimetics_2023/Szorkovszky%20et%20al_2023_Central%20pattern%20generators%20evolved%20for%20real-time%20adaptation%20to%20rhythmic%20stimuli.pdf>)
 Reading Note::
 Web Rip::
 url:: https://dx.doi.org/10.1088/1748-3190/ace017
@@ -47,37 +45,9 @@ SORT file.cday DESC
 # Quick Reference
 
 # Top Notes
-[[Matsuoka neuron]]
-
+Matsuoka neuron
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Further Reading
 
@@ -93,23 +63,9 @@ SORT file.cday DESC
 > - [ ] [4] Steingrube S, Timme M, Wörgötter F and Manoonpong P 2010 Self-organized adaptation of a simple neural circuit enables complex robot behaviour Nat. Phys. 6 224–30  #rd #p5 ➕2025-02-07
 > ^8XJBPLEVaULIRTDDMp11
 
-
-
-
 # Extracted Annotations and Comments
 
 > [!Highlight] Page 1
 > 	Biologically inspired central pattern generators (CPGs) are useful for their properties, typical of self-organized systems, such as distributed control and robustness to perturbations [1, 2]. This allows adaptive behaviours such as compensation for physical damage [3] or walking in novel environments [4]. Spontaneous entrainment of motion patterns to sensory input is also expected from such systems, and adaptation of bio-inspired CPGs to body and environmental mechanics has indeed been widely demonstrated [5–8].
 > ^TRBCAXHEaULIRTDDMp2
-
-
-
-
-
-
-
-
-
-
-
 

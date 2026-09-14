@@ -31,8 +31,6 @@ citekey: petterIntegratingModelsInterval2018
 # Integrating Models of Interval Timing and Reinforcement Learning
 Read:: - [ ] Petter et al. (2018) - Integrating Models of Interval Timing and Reinforcement Learning ➕2023-12-04 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/7VW6FFUL)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/CMFVF84G/Petter%20et%20al_2018_Integrating%20Models%20of%20Interval%20Timing%20and%20Reinforcement%20Learning.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.sciencedirect.com/science/article/pii/S1364661318301931
@@ -82,5 +80,5 @@ SORT file.cday DESC
 > ^W9M3LMPMaCMFVF84Gp2
 
 # Figures
-![[content/09 Citations/petterIntegratingModelsInterval2018_Amedia/petterIntegratingModelsInterval2018-image-20231204154703635.png]]
+![[wiki/citations/petterIntegratingModelsInterval2018_Amedia/petterIntegratingModelsInterval2018-image-20231204154703635.png]]
 

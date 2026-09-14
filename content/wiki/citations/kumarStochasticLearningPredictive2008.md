@@ -33,8 +33,7 @@ created: 2023-11-17 13:54
 # On stochastic learning in predictive wireless ARQ
 Read:: - [ ] Kumar et al. (2008) - On stochastic learning in predictive wireless ARQ ➕2023-11-17 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/K6J3YPDK) 
-Files:: [[Wireless Communications - 2007 - Kumar - On stochastic learning in predictive wireless ARQ.pdf]]
+Files:: Wireless Communications - 2007 - Kumar - On stochastic learning in predictive wireless ARQ.pdf
 Reading Note::
 Web Rip::
 url:: https://onlinelibrary.wiley.com/doi/abs/10.1002/wcm.534
@@ -56,25 +55,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -21,8 +21,6 @@ created: 2024-02-13 15:30
 # The Cult of AI
 Read:: - [ ] Evans (2024) - The Cult of AI ➕2024-02-13 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/DXNC3DGD) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/YBWYP6F2/ai-companies-advocates-cult-1234954528.html>)
 Reading Note::
 Web Rip::
 url:: https://www.rollingstone.com/culture/culture-features/ai-companies-advocates-cult-1234954528/
@@ -44,25 +42,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

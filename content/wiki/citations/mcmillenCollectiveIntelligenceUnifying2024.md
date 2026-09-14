@@ -27,7 +27,6 @@ created: 2024-04-05 13:28
 # Collective intelligence: A unifying concept for integrating biology across scales and substrates
 Read:: - [ ] McMillen et al. (2024) - Collective intelligence: A unifying concept for integrating biology across scales and substrates ➕2024-04-05 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/VNJYSP7C) 
 Files:: 
 Reading Note::
 Web Rip::
@@ -50,25 +49,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

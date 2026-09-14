@@ -32,9 +32,7 @@ citekey: mehonicBraininspiredComputingNeeds2022
 # Brain-inspired Computing Needs a Master Plan
 Read:: - [ ] Mehonic et al. (2022) - Brain-inspired computing needs a master plan ➕2023-11-29 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/UD74HP6T)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Nature_2022/Mehonic_Kenyon_2022_Brain-inspired%20computing%20needs%20a%20master%20plan.pdf>)
-Reading Note:: [[Mehonic (2022)]]
+Reading Note:: Mehonic (2022)
 Web Rip::
 url:: https://www.nature.com/articles/s41586-021-04362-w
 
@@ -59,7 +57,7 @@ SORT file.cday DESC
 # Figures (blue)
 
 > [!Fig. 1a]
-> ![[content/09 Citations/mehonicBraininspiredComputingNeeds2022_Amedia/C8LK6PYI.png]]
+> ![[wiki/citations/mehonicBraininspiredComputingNeeds2022_Amedia/C8LK6PYI.png]]
 > **Page 256**
 >
 > ---

@@ -25,8 +25,6 @@ modified: 2024-10-14 14:36
 # AI Sensor Applications in Edge Computing
 Read:: - [ ] Lai et al. (2023) - **AI Sensor Applications in Edge Computing** ➕2024-10-14 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/VADV3R4R)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/2PUCKBVZ/Lai%20and%20Chang%20-%202023%20-%20AI%20Sensor%20Applications%20in%20Edge%20Computing.pdf>)
 Reading Note::
 Web Rip::
 url:: https://ieeexplore.ieee.org/document/10295516/
@@ -48,25 +46,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -33,9 +33,8 @@ Read:: The first part, not exactly relevant
 Print:: ❌
 Zotero Link:: NA
 PDF:: NA
-Files:: [A model of multisecond timing behaviour under peak-interval procedures - 11.07.22.md](file:///home/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/UXGVM4TL/A%20model%20of%20multisecond%20timing%20behaviour%20under%20peak-interval%20procedures%20-%2011.07.22.md); [Hasegawa_Sakata_2015_A model of multisecond timing behaviour under peak-interval procedures.pdf](file:///home/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/X4L95JNC/Hasegawa_Sakata_2015_A%20model%20of%20multisecond%20timing%20behaviour%20under%20peak-interval%20procedures.pdf)
-Reading Note:: [[Takayuki Hasegawa, Shogo Sakata 2015]]
-Web Rip:: [[A model of multisecond timing behaviour under peak-interval procedures - 11.07.22]]
+Reading Note:: Takayuki Hasegawa, Shogo Sakata 2015
+Web Rip:: A model of multisecond timing behaviour under peak-interval procedures - 11.07.22
 
 # Abstract
 In this study, the authors developed a fundamental theory of interval timing behaviour, inspired by the learning-to-time (LeT) model and the scalar expectancy theory (SET) model, and based on quantitative analyses of such timing behaviour. Our experiments used the peak-interval procedure with rats. The proposed model of timing behaviour comprises clocks, a regulator, a mixer, a response, and memory. Using our model, we calculated the basic clock speeds indicated by the subjects’ behaviour under such peak procedures. In this model, the scalar property can be defined as a kind of transposition, which can then be measured quantitatively. The Akaike information criterion (AIC) values indicated that the current model fit the data slightly better than did the SET model. Our model may therefore provide a useful addition to SET for the analysis of timing behaviour.

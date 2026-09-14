@@ -36,14 +36,12 @@ citekey: littlestoneWeightedMajorityAlgorithm1994
 > [!Excerpt] About
 > Read:: - [ ] Littlestone et al. (1994) - The Weighted Majority Algorithm ➕2023-10-19 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/AUMKTXHW)
-> Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Information%20and%20Computation_1994/Littlestone_Warmuth_1994_The%20Weighted%20Majority%20Algorithm.pdf>)
 > Reading Note::
 > Web Rip::
 > url:: https://www.sciencedirect.com/science/article/pii/S0890540184710091
 > > comments:: Looking for other related papers: [[PDF] The weighted majority algorithm | Semantic Scholar](https://www.semanticscholar.org/paper/The-weighted-majority-algorithm-Littlestone-Warmuth/22cd8ee12f34e75781dd34be2f9cd9f5a1ffe2fc?sort=pub-date)
 > > Maybe[@truongLearningSleepingExperts2018]?
-> > Other keywords I am finding related to this is [[Ensemble Model]] and [[Sleeping Experts]]
+> > Other keywords I am finding related to this is Ensemble Model and Sleeping Experts
 > ```dataview
 > TABLE without id
 > file.link as "Related Files",

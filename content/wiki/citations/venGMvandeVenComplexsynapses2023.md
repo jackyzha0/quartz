@@ -26,7 +26,6 @@ priority: p5
 created: 2024-05-24 16:50
 ---
 # GMvandeVen/complex-synapses
-Zotero Link:: [Zotero](zotero://select/library/items/VLHDX6V6) 
 Files:: 
 Reading Note::
 Web Rip::
@@ -49,25 +48,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

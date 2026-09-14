@@ -29,8 +29,6 @@ created: 2024-04-08 09:52
 # Reinforcement learning based energy-neutral operation for hybrid EH powered TBAN
 Read:: - [x] Zhang et al. (2023) - Reinforcement learning based energy-neutral operation for hybrid EH powered TBAN ➕2024-04-08 !!2 #rd #citation [link](https://todoist.com/showTask?id=7879150861) #todoist %%[todoist_id:: 7879150861]%% ✅ 2024-04-08
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/YDQGAPEE) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Future%20Generation%20Computer%20Systems_2023/Zhang_Lin_2023_Reinforcement%20learning%20based%20energy-neutral%20operation%20for%20hybrid%20EH%20powered%20TBAN.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.sciencedirect.com/science/article/pii/S0167739X22003600
@@ -52,15 +50,7 @@ SORT file.cday DESC
 # Top Notes
 - I am having a hard time following this one
 
-
 # Tasks
-
-
-
-
-
-
-
 
 # Topics
 
@@ -73,26 +63,15 @@ SORT file.cday DESC
 > ## energy neutral operation (ENO) #tp
 > ^UWSP6FXMa4GXEIDGHp2
 
-
 # Extracted Annotations and Comments
 
 > [!Highlight] Page 312
 > 	We build a TBAN model considering multi-posture with hybrid energy harvester. Devices are powered by a mixture of captured RF and tribological electrical energy along with rechargeable battery. • Hybrid EH strategy and duty cycle technology are employed to overcome the energy efficiency and reliability challenges that exist in TBAN. Five common daily activities are discussed separately to analyze the energy consumption and acquisition as well as the network reliability of TBAN. • Reinforcement learning based methods are applied to solve the proposed ENO problem in TBAN. We achieve a tradeoff between energy consumption and collection to achieve long-term use of the equipment. Q-Learning and DQN based algorithms are proposed to verify its feasibility.
 > ^6DD9HDNHa4GXEIDGHp2
 
-
-
-
-
-
 # Figures (blue)
 
 > Energyharvesting (EH)
 > **Page 312**
 > ^IXIA7YDBa4GXEIDGHp2
-
-
-
-
-
 

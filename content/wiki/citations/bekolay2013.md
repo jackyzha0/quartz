@@ -22,8 +22,6 @@ created: 2024-06-07 18:04
 # Simultaneous unsupervised and supervised learning of cognitive functions in biologically plausible spiking neural networks
 Read:: - [x] Bekolay et al. (2013) - **Simultaneous unsupervised and supervised learning of cognitive functions in biologically plausible spiking neural networks** ➕2024-06-07 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/RXQPIEJ4) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/422VCF4Z/Bekolay%20et%20al.%20-%20Simultaneous%20unsupervised%20and%20supervised%20learning%20.pdf>)
 Reading Note::
 Web Rip::
 url:: 
@@ -45,17 +43,15 @@ SORT file.cday DESC
 # Top Notes
 
 # Glossary
-[[Prescribed Error Sensitivity]]
-[[Bienenstock-Cooper-Munroe Learning]]
+Prescribed Error Sensitivity
+Bienenstock-Cooper-Munroe Learning
 
 # Tasks
-
 
 # Topics
 
 > ## Prescribed Error Sensitivity (PES) rule #tp
 > ^DPGA6SFUa422VCF4Zp2
-
 
 # Extracted Annotations and Comments
 
@@ -96,15 +92,4 @@ SORT file.cday DESC
 > [!Highlight] Page 4
 > 	However, these STDP curves do not capture the frequency dependence of STDP. In order to capture those effects, modellers have created STDP rules that take into account triplets and quadruplets of spikes, rather than just pre-post spike pairings (Pfister & Gerstner, 2006).
 > ^6DMJR6Z4a422VCF4Zp4
-
-
-
-
-
-
-
-
-
-
-
 

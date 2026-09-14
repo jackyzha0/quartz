@@ -35,8 +35,6 @@ citekey: jazayeriNeuralMechanismSensing2015
 # A Neural Mechanism for Sensing and Reproducing a Time Interval
 Read:: - [ ] Jazayeri et al. (2015) - A Neural Mechanism for Sensing and Reproducing a Time Interval ➕2023-11-27 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/SWJYDJIT)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/3YUV8SCY/Jazayeri_Shadlen_2015_A%20Neural%20Mechanism%20for%20Sensing%20and%20Reproducing%20a%20Time%20Interval.pdf>)
 Reading Note::
 Web Rip::
 url::
@@ -59,7 +57,7 @@ SORT file.cday DESC
 - Reading the attached web rip.
 - Gustavo told me this is the most relevant to the SBFA experiment.
 - A new timing task to look at
-- They talk about a " accumulation" in the [[A Neural Mechanism for Sensing and Reproducing a Time Interval - 23.06.22#Linking Neural Activity to Behavior]] . Is this the pulse-accumulator model ?Not certain.
+- They talk about a " accumulation" in the A Neural Mechanism for Sensing and Reproducing a Time Interval - 23.06.22#Linking Neural Activity to Behavior . Is this the pulse-accumulator model ?Not certain.
 - They describe ramping activity
 
 # Topics
@@ -69,4 +67,4 @@ SORT file.cday DESC
 # Tasks
 
 # Derivative Works
-[[kononowiczTimingTimePerception2018]]
+kononowiczTimingTimePerception2018

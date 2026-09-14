@@ -24,8 +24,6 @@ created: 2024-02-12 17:07
 # NeuroAI - A strategic opportunity for Norway and Europe | Nordic Machine Intelligence
 Read:: - [ ] Nichele et al. (2022) - NeuroAI - A strategic opportunity for Norway and Europe | Nordic Machine Intelligence ➕2024-02-12 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/ARHXPQSP) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/_2022/2022_NeuroAI%20-%20A%20strategic%20opportunity%20for%20Norway%20and%20Europe%20Nordic%20Machine.pdf>)
 Reading Note::
 Web Rip::
 url:: https://journals.uio.no/NMI/article/view/9950
@@ -47,25 +45,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -22,8 +22,6 @@ created: 2023-09-11 14:33
 # It's about Time
 Read:: - [ ] Cohen (2011) - It's about Time ➕2023-09-11 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/WIAFN8Z3) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Frontiers%20in%20Human%20Neuroscience_2011/Cohen_2011_It's%20about%20Time.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.frontiersin.org/articles/10.3389/fnhum.2011.00002
@@ -44,13 +42,6 @@ SORT file.cday DESC
 # Quick Reference
 
 # Tasks
-
-
-
-
-
-
-
 
 # Topics
 
@@ -73,7 +64,6 @@ SORT file.cday DESC
 
 > ## (3) Microstates and other transient electrophysiological events. Microstates refer to brief periods of cortical electrophysiological activity that are topographically stable over tens to hundreds of milliseconds (Lehmann et al., 2006). Microstates fluctuate 1–2 orders of magnitude faster than the hemodynamic response, and have been linked to visual perception, error processing, and resting state (Muller et al., 2005; Britz and Michel, 2010). #tp
 > ^6EP72BQGaJ25L5NLSp7
-
 
 # Extracted Annotations and Comments
 
@@ -131,17 +121,4 @@ SORT file.cday DESC
 > [!Highlight] Page 5
 > 	it seems likely that functionally different networks can emerge from the same population of anterior cingulate cortex neurons, depending on task demands (Fujisawa et al., 2008).
 > ^QNKX74YDaJ25L5NLSp5
-
-
-
-
-
-
-
-
-
-
-
-
-
 

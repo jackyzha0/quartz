@@ -35,8 +35,6 @@ modified: 2024-10-14 15:01
 # A solution to the learning dilemma for recurrent networks of spiking neurons
 Read:: - [ ] Bellec et al. (2020) - **A solution to the learning dilemma for recurrent networks of spiking neurons** ➕2024-10-14 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/M6VSIXJN)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Nature%20Communications_2020/Bellec%20et%20al_2020_A%20solution%20to%20the%20learning%20dilemma%20for%20recurrent%20networks%20of%20spiking%20neurons.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.nature.com/articles/s41467-020-17236-y
@@ -58,25 +56,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

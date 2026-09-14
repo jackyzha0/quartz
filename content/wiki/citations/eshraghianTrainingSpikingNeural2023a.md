@@ -45,8 +45,6 @@ modified: 2025-01-29 14:47
 # Training Spiking Neural Networks Using Lessons From Deep Learning
 Read:: - [ ] Eshraghian et al. (2023) - Training Spiking Neural Networks Using Lessons From Deep Learning ➕2024-04-05 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/Z65U8535)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Proceedings%20of%20the%20IEEE_2023/Eshraghian%20et%20al_2023_Training%20Spiking%20Neural%20Networks%20Using%20Lessons%20From%20Deep%20Learning.pdf>)
 Reading Note::
 Web Rip::
 url:: https://ieeexplore.ieee.org/abstract/document/10242251
@@ -68,23 +66,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

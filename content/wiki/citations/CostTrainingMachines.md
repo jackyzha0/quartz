@@ -19,8 +19,6 @@ created: 2024-02-13 11:21
 # The cost of training machines is becoming a problem
 Read:: - [ ]  () - The cost of training machines is becoming a problem ➕2024-02-13 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/Z5EMYMB3) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/UGN4J99S/the-cost-of-training-machines-is-becoming-a-problem.html>)
 Reading Note::
 Web Rip::
 url:: https://www.economist.com/technology-quarterly/2020/06/11/the-cost-of-training-machines-is-becoming-a-problem, [Internet Archive - The cost of training machines is becoming a problem](https://web.archive.org/web/20231121053034/https://www.economist.com/technology-quarterly/2020/06/11/the-cost-of-training-machines-is-becoming-a-problem)
@@ -42,25 +40,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

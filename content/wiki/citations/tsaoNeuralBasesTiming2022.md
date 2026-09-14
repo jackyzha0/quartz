@@ -29,8 +29,6 @@ created: 2023-09-11 14:37
 # The neural bases for timing of durations
 Read:: - [ ] Tsao et al. (2022) - The neural bases for timing of durations ➕2023-09-11 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/2LVIULPI) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Nature%20Reviews%20Neuroscience_2022/Tsao%20et%20al_2022_The%20neural%20bases%20for%20timing%20of%20durations.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.nature.com/articles/s41583-022-00623-3
@@ -51,11 +49,6 @@ SORT file.cday DESC
 # Quick Reference
 
 # Tasks
-
-
-
-
-
 
 # Further Reading
 
@@ -95,7 +88,6 @@ SORT file.cday DESC
 > - [ ] 120. Johnson, H. A., Goel, A. & Buonomano, D. V. Neural dynamics of in vitro cortical networks reflects experienced temporal patterns. Nat. Neurosci. 13, 917–919 (2010).  #rd #p5 ➕2023-09-11
 > ^CCZUT9YAaRQ4WIXTAp17
 
-
 # Topics
 
 > ## This type of timing mechanism has sometimes been referred to as a ‘population clock’, a n d it does not necessarily need to generate a linear metrical representation of time23,24. #tp
@@ -109,7 +101,6 @@ SORT file.cday DESC
 
 > ## Population clock The encoding of temporal information through changes in neural population activity over time. Explicit timing Prospective timing in which subjects are aware that they should attend to the passage of time to either estimate a duration defined by external events or generate a timed action. Neural trajectory A sequence of population states over time which describe the evolution of neural population activity. Implicit timing Prospective timing in which no overt timing behaviour is required. #tp
 > ^3585ZCRLaRQ4WIXTAp2
-
 
 # Extracted Annotations and Comments
 
@@ -154,11 +145,6 @@ SORT file.cday DESC
 > 	GOing to use the word "interareal"
 > ^EZL5A63PaRQ4WIXTAp6
 
-
-
-
-
-
 # Figures (blue)
 
 > Color not assigned #2ea8e5
@@ -166,11 +152,4 @@ SORT file.cday DESC
 
 > Color not assigned #2ea8e5
 > ^PDVK7L95aRQ4WIXTAp6
-
-
-
-
-
-
-
 

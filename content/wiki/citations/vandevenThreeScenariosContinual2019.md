@@ -38,8 +38,6 @@ created: 2024-05-24 17:16
 # Three scenarios for continual learning
 Read:: - [ ] van de Ven et al. (2019) - **Three scenarios for continual learning** ➕2024-05-24 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/4MAB7HQC) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/arXiv_2019/van%20de%20Ven_Tolias_2019_Three%20scenarios%20for%20continual%20learning.pdf>)
 Reading Note::
 Web Rip::
 url:: http://arxiv.org/abs/1904.07734
@@ -61,25 +59,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

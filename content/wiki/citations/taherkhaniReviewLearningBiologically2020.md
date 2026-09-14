@@ -37,8 +37,6 @@ created: 2023-11-27 16:20
 # A review of learning in biologically plausible spiking neural networks
 Read:: - [ ] Taherkhani et al. (2020) - A review of learning in biologically plausible spiking neural networks ➕2023-11-27 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/F4TWIKXI) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/HLYDU73Q/Taherkhani%20et%20al_2020_A%20review%20of%20learning%20in%20biologically%20plausible%20spiking%20neural%20networks.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.sciencedirect.com/science/article/pii/S0893608019303181
@@ -60,25 +58,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

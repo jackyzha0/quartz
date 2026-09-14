@@ -22,8 +22,6 @@ created: 2024-02-07 21:56
 # Research Methods: The Basics: 2nd edition
 Read:: - [ ] Walliman (2017) - Research Methods: The Basics: 2nd edition ➕2024-02-07 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/B3DAY3ZY) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/JZKWNNZB/Walliman%20-%202017%20-%20Research%20Methods%20The%20Basics%202nd%20edition.pdf>)
 Reading Note::
 Web Rip::
 url:: 
@@ -47,25 +45,4 @@ Complete with a glossary of key terms and guides to further reading, this book i
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

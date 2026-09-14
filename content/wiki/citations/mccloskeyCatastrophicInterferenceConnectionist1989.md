@@ -23,8 +23,6 @@ created: 2024-02-15 15:59
 # Catastrophic Interference in Connectionist Networks: The Sequential Learning Problem
 Read:: - [ ] McCloskey et al. (1989) - Catastrophic Interference in Connectionist Networks: The Sequential Learning Problem ➕2024-02-15 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/IPMEHW7R) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/NBUCMUXH/McCloskey%20and%20Cohen%20-%201989%20-%20Catastrophic%20Interference%20in%20Connectionist%20Networks%20The%20Sequential%20Learning%20Problem.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.sciencedirect.com/science/article/pii/S0079742108605368
@@ -46,25 +44,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

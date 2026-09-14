@@ -25,8 +25,6 @@ created: 2024-02-13 10:33
 # On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? 🦜
 Read:: - [ ] Bender et al. (2021) - On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? 🦜 ➕2024-02-13 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/SEEJUK38) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/QPVZ5XDU/Bender%20et%20al.%20-%202021%20-%20On%20the%20Dangers%20of%20Stochastic%20Parrots%20Can%20Language%20Models%20Be%20Too%20Big%20.pdf>)
 Reading Note::
 Web Rip::
 url:: https://dl.acm.org/doi/10.1145/3442188.3445922
@@ -48,25 +46,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

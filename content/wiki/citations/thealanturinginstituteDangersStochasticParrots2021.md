@@ -23,8 +23,6 @@ modified: 2024-12-18 14:41
 # On the dangers of stochastic parrots: Can language models be too big? 🦜
 Read:: - [ ]  (2021) - On the dangers of stochastic parrots: Can language models be too big? 🦜 ➕2024-02-13 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/HJHK4C97)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/TBU4AEAF/Bender%20-%20On%20the%20dangers%20of%20stochastic%20parrots%20Can%20language%20models%20be%20too%20big%20!.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.youtube.com/watch?v=N5c2X8vhfBE
@@ -60,7 +58,6 @@ They speak a lot about including diversity, and avoiding hegemonic models
 # Video
 ## [On the dangers of stochastic parrots: Can language models be too big? 🦜 - YouTube](https://www.youtube.com/watch?v=N5c2X8vhfBE)
 
-
 <iframe title="On the dangers of stochastic parrots: Can language models be too big? 🦜" src="https://www.youtube.com/embed/N5c2X8vhfBE?feature=oembed" height="113" width="200" style="aspect-ratio: 1.76991 / 1; width: 100%; height: 100%;" allowfullscreen="" allow="fullscreen"></iframe>
 ```embed
 title: "On the dangers of stochastic parrots: Can language models be too big? 🦜"
@@ -74,12 +71,11 @@ Reporting training times and costs.
 Ensuring publicly funded access to compute resources
 Lack of diversity, “Those hegemony”
 
-
 The push for generality, it supposed to be used for everything
 
 # Slides
 [Online Slides](https://faculty.washington.edu/ebender/papers/Bender-Turing-Institute-July-2021.pdf)
-![[content/09 Citations/thealanturinginstituteDangersStochasticParrots2021_Amedia/Bender-Turing-Institute-July-2021.pdf]]
+![[wiki/citations/thealanturinginstituteDangersStochasticParrots2021_Amedia/Bender-Turing-Institute-July-2021.pdf]]
 
 # Transcript
 [00:16](https://www.youtube.com/watch?v=N5c2X8vhfBE&t=16) hello everyone welcome uh we're really excited today to have a wonderful uh set of people to come and talk about a very important
@@ -561,25 +557,4 @@ The push for generality, it supposed to be used for everything
 [01:15:52](https://www.youtube.com/watch?v=N5c2X8vhfBE&t=4552) continuing on the same theme so please do join us then if you're interested and again thanks very much to everyone
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

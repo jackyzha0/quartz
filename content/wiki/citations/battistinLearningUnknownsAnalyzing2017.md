@@ -28,7 +28,6 @@ modified: 2025-01-29 13:56
 # Learning with unknowns: Analyzing biological data in the presence of hidden variables
 Read:: - [ ] Battistin et al. (2017) - Learning with unknowns: Analyzing biological data in the presence of hidden variables ➕2023-10-07 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/ZDMPTRDV)
 Files::
 Reading Note::
 Web Rip::
@@ -52,27 +51,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

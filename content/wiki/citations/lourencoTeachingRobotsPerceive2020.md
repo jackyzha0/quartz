@@ -24,9 +24,7 @@ created: 2023-11-28 14:20
 # Teaching Robots to Perceive Time: A Twofold Learning Approach
 Read:: - [x] Lourenco et al. (2020) - Teaching Robots to Perceive Time: A Twofold Learning Approach ➕2023-11-28 !!2 #rd #citation #todoist
 Print::  ✔
-Zotero Link:: [Zotero](zotero://select/library/items/CXLNAPL6) 
 PDF:: [[Lourenco et al. - 2020 - Teaching Robots to Perceive Time A Twofold Learni.pdf]]
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/JXPZ4SRK/Lourenco%20et%20al.%20-%202020%20-%20Teaching%20Robots%20to%20Perceive%20Time%20A%20Twofold%20Learni.pdf>)
 Reading Note::
 Web Rip::
 url:: https://ieeexplore.ieee.org/document/9278033/
@@ -55,11 +53,6 @@ SORT file.cday DESC
 - 
 # Tasks
 
-
-
-
-
-
 # Further Reading
 
 > - [ ] [3] S. Soares, B. Atallah, and J. Paton, “Midbrain dopamine neurons control judgment of time,” Science, vol. 354, no. 6317, pp. 1273–1277, 2016  #rd #p5 ➕2023-11-28
@@ -80,9 +73,6 @@ SORT file.cday DESC
 > - [ ] 25] E. A. Ludvig, R. S. Sutton, and E. J. Kehoe, “Stimulus representation and the timing of reward-prediction errors in models of the dopamine system,” Neural computation, vol. 20, no. 12, pp. 3034–3054, 2008.  #rd #p5 ➕2023-11-28
 > ^TMC9ZQUVaJXPZ4SRKp7
 
-
-
-
 # Extracted Annotations and Comments
 
 > [!Highlight] Page 6
@@ -92,15 +82,10 @@ SORT file.cday DESC
 > 	If the observations are the value of an angle that is tied to a timed cyclic motion, isn't that just a clock?
 > ^8LKNVYHPaJXPZ4SRKp6
 
-
-
-
-
-
 # Figures (blue)
 
 > [!Figure 1] 
-> ![[content/09 Citations/lourencoTeachingRobotsPerceive2020_Amedia/SJE5CE54.png]]
+> ![[wiki/citations/lourencoTeachingRobotsPerceive2020_Amedia/SJE5CE54.png]]
 > **Page 2**
 > ^SJE5CE54aJXPZ4SRKp2
 
@@ -109,7 +94,7 @@ SORT file.cday DESC
 > ^KWIHVTQVaJXPZ4SRKp2
 
 > [!]
-> ![[content/09 Citations/lourencoTeachingRobotsPerceive2020_Amedia/KX9LXXPZ.png]]
+> ![[wiki/citations/lourencoTeachingRobotsPerceive2020_Amedia/KX9LXXPZ.png]]
 > **Page 5**
 > ^KX9LXXPZaJXPZ4SRKp5
 
@@ -118,12 +103,12 @@ SORT file.cday DESC
 > ^D7F9R7XXaJXPZ4SRKp5
 
 > [!]
-> ![[content/09 Citations/lourencoTeachingRobotsPerceive2020_Amedia/AWY3PLWJ.png]]
+> ![[wiki/citations/lourencoTeachingRobotsPerceive2020_Amedia/AWY3PLWJ.png]]
 > **Page 5**
 > ^AWY3PLWJaJXPZ4SRKp5
 
 > [!]
-> ![[content/09 Citations/lourencoTeachingRobotsPerceive2020_Amedia/DJJNH5JJ.png]]
+> ![[wiki/citations/lourencoTeachingRobotsPerceive2020_Amedia/DJJNH5JJ.png]]
 > **Page 5**
 > ^DJJNH5JJaJXPZ4SRKp5
 
@@ -132,7 +117,7 @@ SORT file.cday DESC
 > ^T7XIGXA6aJXPZ4SRKp5
 
 > [!]
-> ![[content/09 Citations/lourencoTeachingRobotsPerceive2020_Amedia/8BLUZG6S.png]]
+> ![[wiki/citations/lourencoTeachingRobotsPerceive2020_Amedia/8BLUZG6S.png]]
 > **Page 6**
 > ^8BLUZG6SaJXPZ4SRKp6
 
@@ -141,16 +126,11 @@ SORT file.cday DESC
 > ^NNR9WEB8aJXPZ4SRKp6
 
 > [!]
-> ![[content/09 Citations/lourencoTeachingRobotsPerceive2020_Amedia/53ISLUKT.png]]
+> ![[wiki/citations/lourencoTeachingRobotsPerceive2020_Amedia/53ISLUKT.png]]
 > **Page 6**
 > ^53ISLUKTaJXPZ4SRKp6
 
 > Fig. 5. Evolution of the Q-values with the interval duration, after training. The time step values correspond to the state numbers from Figure 2, and each line to the Q-value of each action from the same figure. In the top figure, τ = 1 (short interval), and in the bottom one, τ = 8 time steps (long interval).
 > **Page 6**
 > ^TIQGKZQFaJXPZ4SRKp6
-
-
-
-
-
 

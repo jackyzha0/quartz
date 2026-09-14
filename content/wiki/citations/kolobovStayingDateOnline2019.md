@@ -30,8 +30,6 @@ modified: 2024-12-18 14:49
 # Staying up to Date with Online Content Changes Using Reinforcement Learning for Scheduling
 Read:: - [ ] Kolobov et al. (2019) - Staying up to Date with Online Content Changes Using Reinforcement Learning for Scheduling ➕2023-09-12 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/FW7AEP4L)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Curran%20Associates,%20Inc._2019/Kolobov%20et%20al_2019_Staying%20up%20to%20Date%20with%20Online%20Content%20Changes%20Using%20Reinforcement%20Learning%20for.pdf>)
 Reading Note::
 Web Rip::
 url:: https://papers.nips.cc/paper_files/paper/2019/hash/ad13a2a07ca4b7642959dc0c4c740ab6-Abstract.html
@@ -54,27 +52,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

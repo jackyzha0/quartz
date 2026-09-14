@@ -33,8 +33,6 @@ created: 2023-11-29 15:24
 # Scaling Laws for Neural Language Models
 Read:: - [ ] Kaplan et al. (2020) - Scaling Laws for Neural Language Models ➕2023-11-29 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/T8MRKPRH) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/arXiv_2020/Kaplan%20et%20al_2020_Scaling%20Laws%20for%20Neural%20Language%20Models.pdf>)
 Reading Note::
 Web Rip::
 url:: http://arxiv.org/abs/2001.08361
@@ -56,25 +54,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

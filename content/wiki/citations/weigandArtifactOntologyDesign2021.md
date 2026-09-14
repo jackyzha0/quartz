@@ -29,8 +29,6 @@ created: 2024-02-05 15:20
 # An artifact ontology for design science research
 Read:: - [ ] Weigand et al. (2021) - An artifact ontology for design science research ➕2024-02-05 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/S9ZAK8EV) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/R99RNZNF/Weigand%20et%20al.%20-%202021%20-%20An%20artifact%20ontology%20for%20design%20science%20research.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.sciencedirect.com/science/article/pii/S0169023X21000057
@@ -52,25 +50,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

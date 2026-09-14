@@ -37,8 +37,6 @@ citekey: guOscillatoryMultiplexingNeural2015
 > About::
 > Read:: - [ ] Gu et al. (2015) - **Oscillatory multiplexing of neural population codes for interval timing and working memory** ➕2025-11-13 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/ZK6SJVLG)
-> Files:: [attachment](<file:///C:/Users/michaelt/Zotero/new_storage/moving/Neuroscience%20&%20Biobehavioral%20Reviews_2015/Gu%20et%20al_2015_Oscillatory%20multiplexing%20of%20neural%20population%20codes%20for%20interval%20timing%20and.pdf>)
 > Reading Note::
 > Web Rip::
 > url:: https://www.sciencedirect.com/science/article/pii/S0149763414002589
@@ -318,7 +316,7 @@ citekey: guOscillatoryMultiplexingNeural2015
 ## Figures (blue)
 
 > [!Figure 2]
-> ![[60 Zotero/ZotLit/ZtImgExcerpt/7W5KMRAR.png]]
+> 
 > **Page 170**
 >
 > ---
@@ -332,7 +330,7 @@ citekey: guOscillatoryMultiplexingNeural2015
 > ^ZSERUX48a76VVEEZXp12
 
 > [!Figure 3]
-> ![[60 Zotero/ZotLit/ZtImgExcerpt/5ZLTTCCB.png]]
+> 
 > **Page 171**
 >
 > ---
@@ -346,7 +344,7 @@ citekey: guOscillatoryMultiplexingNeural2015
 > ^WATB2NR4a76VVEEZXp13
 
 > [!Figure 4]
-> ![[60 Zotero/ZotLit/ZtImgExcerpt/5QDU5BHY.png]]
+> 
 > **Page 171**
 >
 > ---
@@ -366,7 +364,7 @@ citekey: guOscillatoryMultiplexingNeural2015
 > ^V7LJBLZXa76VVEEZXp15
 
 > [!Figure 5]
-> ![[60 Zotero/ZotLit/ZtImgExcerpt/2PZ8PBIA.png]]
+> 
 > **Page 173**
 >
 > ---
@@ -374,7 +372,7 @@ citekey: guOscillatoryMultiplexingNeural2015
 > ^2PZ8PBIAa76VVEEZXp15
 
 > [!Figure 6]
-> ![[60 Zotero/ZotLit/ZtImgExcerpt/WC3XSQTD.png]]
+> 
 > **Page 174**
 >
 > ---

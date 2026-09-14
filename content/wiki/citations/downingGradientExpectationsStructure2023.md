@@ -20,8 +20,6 @@ created: 2023-10-25 13:18
 # Gradient expectations: structure, origins, and synthesis of predictive neural networks
 Read:: - [ ] Downing (2023) - Gradient expectations: structure, origins, and synthesis of predictive neural networks ➕2023-10-25 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/QQ6HTHYN) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/BWKRA2G6/Downing%20-%202023%20-%20Gradient%20expectations%20structure,%20origins,%20and%20syn.pdf>) [[Downing - 2023 - Gradient expectations structure, origins, and syn.pdf]]
 Reading Note::
 Web Rip::
 url:: 
@@ -46,25 +44,4 @@ SORT file.cday DESC
 	- No but Z7 has support
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

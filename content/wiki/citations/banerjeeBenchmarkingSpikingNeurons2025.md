@@ -33,8 +33,6 @@ citekey: banerjeeBenchmarkingSpikingNeurons2025
 > About::
 > Read:: - [ ] Banerjee et al. (2025) - **Benchmarking spiking neurons for linear quadratic regulator control of multi-linked pole on a cart: from single neuron to ensemble** ➕2025-10-27 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/4RDYGHBT)
-> Files:: [attachment](<file:///C:/Users/michaelt/Zotero/new_storage/2025/10/banerjeeBenchmarkingSpikingNeurons2025/Banerjee%20et%20al.%20-%202025%20-%20Benchmarking%20spiking%20neurons%20for%20linear%20quadratic%20regulator%20control%20of%20multi-linked%20pole%20on%20a%20cart.pdf>)
 > Reading Note::
 > Web Rip::
 > url:: https://doi.org/10.1088/2634-4386/ae0fc0

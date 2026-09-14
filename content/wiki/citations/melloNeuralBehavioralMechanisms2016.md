@@ -22,8 +22,6 @@ modified: 2025-01-13 17:15
 # Neural and Behavioral Mechanisms of Interval Timing in the Striatum
 Read:: - [ ] Mello (2016) - Neural and Behavioral Mechanisms of Interval Timing in the Striatum ➕2023-09-11 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/EXQDXJAI)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/2YNSW467/Complete%20Thesis%20GM-FINAL%202016.pdf>)
 Reading Note::
 Web Rip::
 url:: https://run.unl.pt/handle/10362/43665
@@ -46,13 +44,6 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
 
 # Topics
 
@@ -85,7 +76,6 @@ SORT file.cday DESC
 >
 > 	 This whole section is probably something I will need to reread at some point but atm I'm getting nothing out of itc
 > ^TIHJLJQFa2YNSW467p30
-
 
 # Extracted Annotations and Comments
 
@@ -167,7 +157,7 @@ SORT file.cday DESC
 > ^KG4UIUESa2YNSW467p23
 
 > [!Highlight] Page 23
-> 	![[ZtImgExcerpt/W7W2DI37.png]]
+> 	
 >
 > ---
 > 	Fig 1.1
@@ -318,17 +308,4 @@ SORT file.cday DESC
 > ---
 > 	So I'm going to comment on this from the paper [[melloScalablePopulationCode2015]]
 > ^JTSAMZHPa2YNSW467p58
-
-
-
-
-
-
-
-
-
-
-
-
-
 

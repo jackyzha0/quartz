@@ -29,8 +29,6 @@ modified: 2024-10-14 14:43
 # A Survey of Neuromorphic Computing and Neural Networks in Hardware
 Read:: - [ ] Schuman et al. (2017) - **A Survey of Neuromorphic Computing and Neural Networks in Hardware** ➕2024-10-14 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/SGVR7KT2)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/I9RWVSC3/Schuman%20et%20al.%20-%202017%20-%20A%20Survey%20of%20Neuromorphic%20Computing%20and%20Neural%20Networks%20in%20Hardware.pdf>)
 Reading Note::
 Web Rip::
 url:: http://arxiv.org/abs/1705.06963
@@ -52,25 +50,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

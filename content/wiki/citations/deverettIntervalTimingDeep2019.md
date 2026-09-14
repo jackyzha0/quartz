@@ -33,8 +33,6 @@ citekey: deverettIntervalTimingDeep2019
 > About::
 > Read:: - [ X] Deverett et al. (2019) - **Interval timing in deep reinforcement learning agents** ➕2025-10-07 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/HCR7TFGV)
-> Files:: [attachment](<file:///C:/Users/michaelt/Zotero/new_storage/moving/NeurIPS_2019/Deverett%20et%20al_2019_Interval%20timing%20in%20deep%20reinforcement%20learning%20agents.pdf>)
 > Reading Note::
 > Web Rip::
 > url:: [semanticscholar.org/paper/Interval-timing-in-deep-reinforcement-learning-Deverett-Faulkner/588c01cce0058a3176ece67e2e5df2e87fe5c325](https://www.semanticscholar.org/paper/Interval-timing-in-deep-reinforcement-learning-Deverett-Faulkner/588c01cce0058a3176ece67e2e5df2e87fe5c325)

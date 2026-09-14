@@ -33,8 +33,6 @@ citekey: sadehEmergenceNeuroAIBridging2025
 > About::
 > Read:: - [ ] Sadeh et al. (2025) - **The emergence of NeuroAI: bridging neuroscience and artificial intelligence** ➕2025-10-24 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/9DNUCIXS)
-> Files:: [attachment](<file:///C:/Users/michaelt/Zotero/new_storage/2025/10/sadehEmergenceNeuroAIBridging2025a/Sadeh%20and%20Clopath%20-%202025%20-%20The%20emergence%20of%20NeuroAI%20bridging%20neuroscience%20and%20artificial%20intelligence.pdf>)
 > Reading Note::
 > Web Rip::
 > url:: https://www.nature.com/articles/s41583-025-00954-x

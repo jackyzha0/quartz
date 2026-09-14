@@ -29,8 +29,6 @@ created: 2025-10-07 12:40
 > About:: 
 > Read:: - [ ] Oprisan et al. (2014) - **What is all the noise about in interval timing?** ➕2025-10-07 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/WHIKRYW6) 
-> Files:: [attachment](<file:///C:/Users/michaelt/Zotero/storage/C7JVW6KU/Oprisan%20and%20Buhusi%20-%202014%20-%20What%20is%20all%20the%20noise%20about%20in%20interval%20timing.pdf>)
 > Reading Note::
 > Web Rip::
 > url:: https://royalsocietypublishing.org/doi/10.1098/rstb.2012.0459
@@ -52,25 +50,4 @@ created: 2025-10-07 12:40
 
 # Tasks
 # Annotations
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

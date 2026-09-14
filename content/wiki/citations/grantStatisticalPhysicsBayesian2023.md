@@ -26,8 +26,6 @@ created: 2023-10-07 13:21
 # Statistical physics, Bayesian inference and neural information processing
 Read:: - [ ] Grant et al. (2023) - Statistical physics, Bayesian inference and neural information processing ➕2023-10-07 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/ZQ5R8H7H) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/arXiv_2023/Grant%20et%20al_2023_Statistical%20physics,%20Bayesian%20inference%20and%20neural%20information%20processing.pdf>)
 Reading Note::
 Web Rip::
 url:: http://arxiv.org/abs/2309.17006
@@ -50,27 +48,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

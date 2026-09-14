@@ -28,8 +28,6 @@ modified: 2024-12-20 10:49
 # Lecture 10: Contextual Bandits
 Read:: - [ ] Jain et al. () - **Lecture 10: Contextual Bandits** ➕2024-12-20 !!2 #rd #citation #todoist
 Print::  ✅
-Zotero Link:: [Zotero](zotero://select/library/items/64VKXESR)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/4WI8DG2V/Jain%20et%20al.%20-%20Lecture%2010%20Contextual%20Bandits.pdf>)
 Reading Note::
 Web Rip::
 url::
@@ -51,25 +49,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

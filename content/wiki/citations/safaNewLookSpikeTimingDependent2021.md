@@ -25,8 +25,6 @@ created: 2023-12-03 21:25
 # A New Look at Spike-Timing-Dependent Plasticity Networks for Spatio-Temporal Feature Learning
 Read:: - [ ] Safa et al. (2021) - A New Look at Spike-Timing-Dependent Plasticity Networks for Spatio-Temporal Feature Learning ➕2023-12-03 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/FP8J9EFA) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/PTY7KFYL/Safa%20et%20al_2021_A%20New%20Look%20at%20Spike-Timing-Dependent%20Plasticity%20Networks%20for%20Spatio-Temporal.pdf>)
 Reading Note::
 Web Rip::
 url:: 
@@ -49,21 +47,6 @@ SORT file.cday DESC
 
 # Tasks
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Figures (blue)
 
 > Fig. 2: Conceptual illustration of the LIF neuron and STDP learning. a) The LIF neuron is connected to a pre-synaptic spiking input sin. When the membrane potential V crosses the threshold μ, the neuron emits a spike σ = 1 and V is reset to zero. b) The weight Wij is modified according to the double exponential STDP rule (4) in function of the difference between the pre- and the post-synaptic spike times τij = tpost,i −tpre,j.
@@ -74,15 +57,10 @@ SORT file.cday DESC
 > ^VYCQ9PJMaPTY7KFYLp3
 
 > [!Fig 2]
-> ![[content/09 Citations/safaNewLookSpikeTimingDependent2021_Amedia/R7MLQGIQ.png]]
+> ![[wiki/citations/safaNewLookSpikeTimingDependent2021_Amedia/R7MLQGIQ.png]]
 > **Page 3**
 > 
 > ---
 > 	Fig 2
 > ^R7MLQGIQaPTY7KFYLp3
-
-
-
-
-
 

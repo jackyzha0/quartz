@@ -24,8 +24,6 @@ created: 2024-05-24 14:37
 # Place cells may simply be memory cells: Memory compression leads to spatial tuning and history dependence
 Read:: - [ ] Benna et al. (2021) - **Place cells may simply be memory cells: Memory compression leads to spatial tuning and history dependence** ➕2024-05-24 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/75BVQ89N) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Proceedings%20of%20the%20National%20Academy%20of%20Sciences_2021/Benna_Fusi_2021_Place%20cells%20may%20simply%20be%20memory%20cells.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.pnas.org/doi/10.1073/pnas.2018422118
@@ -47,25 +45,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

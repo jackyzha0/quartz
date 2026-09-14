@@ -31,7 +31,6 @@ citekey: vlachosPeriodicityDetectionStructural2005
 > About::
 > Read:: - [ ] Vlachos et al. (2005) - **On Periodicity Detection and Structural Periodic Similarity** ➕2025-11-13 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/ARYU9CUX)
 > Files::
 > Reading Note::
 > Web Rip::

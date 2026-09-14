@@ -44,8 +44,6 @@ citekey: tolasPeriodicityDetectionAlgorithm2021
 > About::
 > Read:: - [ ] Tolas et al. (2021) - **Periodicity detection algorithm and applications on IoT data** ➕2025-10-07 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/3BDZ5J4A)
-> Files:: [attachment](<file:///C:/Users/michaelt/Zotero/storage/LZQCKLM2/Tolas%20et%20al.%20-%202021%20-%20Periodicity%20detection%20algorithm%20and%20applications%20on%20IoT%20data.pdf>)
 > Reading Note::
 > Web Rip::
 > url:: https://ieeexplore.ieee.org/abstract/document/9521605

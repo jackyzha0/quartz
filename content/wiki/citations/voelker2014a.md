@@ -24,8 +24,6 @@ created: 2024-06-07 21:48
 # Learning large-scale heteroassociative memories in spiking neurons
 Read:: - [ ] Voelker et al. (2014) - **Learning large-scale heteroassociative memories in spiking neurons** ➕2024-06-07 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/F4M762CA) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/9Y6NDIKN/Voelker%20et%20al.%20-%20Learning%20large-scale%20heteroassociative%20memories%20in.pdf>)
 Reading Note::
 Web Rip::
 url:: 
@@ -49,29 +47,9 @@ This is missing so much. It’s not really a paper.
 
 # Tasks
 
-
-
-
-
-
-
-
-
-
 # Extracted Annotations and Comments
 
 > [!Highlight] Page 1
 > 	Here we demonstrate how a similar set of connection weights can be arrived at through a biologically plausible, online learning process featuring a novel synaptic learning rule inspired in part by the well-known Oja learning rule (Oja, 1989).
 > ^TU78LEUTa9Y6NDIKNp1
-
-
-
-
-
-
-
-
-
-
-
 

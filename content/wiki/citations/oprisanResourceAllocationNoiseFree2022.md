@@ -37,8 +37,6 @@ citekey: oprisanResourceAllocationNoiseFree2022
 # Resource Allocation in the Noise-Free Striatal Beat Frequency Model of Interval Timing
 Read:: - [ ] Oprisan et al. (2022) - Resource Allocation in the Noise-Free Striatal Beat Frequency Model of Interval Timing ➕2023-09-18 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/IFRSG2ES)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Timing%20&%20Time%20Perception_2022/Oprisan%20et%20al_2022_Resource%20Allocation%20in%20the%20Noise-Free%20Striatal%20Beat%20Frequency%20Model%20of%20Interval.pdf>)
 Reading Note::
 Web Rip::
 url:: https://brill.com/view/journals/time/11/1-4/article-p103_005.xml
@@ -342,7 +340,7 @@ SORT file.cday DESC
 > ^QN45XCDFaCB5WD6T3p16
 
 > [!Fig 1]
-> ![[content/09 Citations/oprisanResourceAllocationNoiseFree2022_Amedia/CU7Q2T3K.png]]
+> ![[wiki/citations/oprisanResourceAllocationNoiseFree2022_Amedia/CU7Q2T3K.png]]
 > **Page 16**
 >
 > ---
@@ -366,7 +364,7 @@ SORT file.cday DESC
 > ^T2YUKY6CaCB5WD6T3p18
 
 > [!Fig 2]
-> ![[content/09 Citations/oprisanResourceAllocationNoiseFree2022_Amedia/HAATFJTT.png]]
+> ![[wiki/citations/oprisanResourceAllocationNoiseFree2022_Amedia/HAATFJTT.png]]
 > **Page 18**
 >
 > ---
@@ -374,7 +372,7 @@ SORT file.cday DESC
 > ^HAATFJTTaCB5WD6T3p18
 
 > [!Fig 3]
-> ![[content/09 Citations/oprisanResourceAllocationNoiseFree2022_Amedia/JUAGBIS8.png]]
+> ![[wiki/citations/oprisanResourceAllocationNoiseFree2022_Amedia/JUAGBIS8.png]]
 > **Page 19**
 >
 > ---
@@ -390,7 +388,7 @@ SORT file.cday DESC
 > ^YR76VIYIaCB5WD6T3p19
 
 > [!Fig 4]
-> ![[content/09 Citations/oprisanResourceAllocationNoiseFree2022_Amedia/F52ZCAWI.png]]
+> ![[wiki/citations/oprisanResourceAllocationNoiseFree2022_Amedia/F52ZCAWI.png]]
 > **Page 20**
 >
 > ---

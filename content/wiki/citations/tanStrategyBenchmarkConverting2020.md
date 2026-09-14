@@ -26,8 +26,6 @@ modified: 2025-01-29 14:05
 # Strategy and Benchmark for Converting Deep Q-Networks to Event-Driven Spiking Neural Networks
 Read:: - [ ] Tan et al. (2020) - Strategy and Benchmark for Converting Deep Q-Networks to Event-Driven Spiking Neural Networks ➕2023-11-27 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/QR5I4AAU)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/DWXSVHH6/Tan%20et%20al_2020_Strategy%20and%20Benchmark%20for%20Converting%20Deep%20Q-Networks%20to%20Event-Driven%20Spiking.pdf>)
 Reading Note::
 Web Rip::
 url:: http://arxiv.org/abs/2009.14456
@@ -50,15 +48,6 @@ SORT file.cday DESC
 
 # Tasks
 
-
-
-
-
-
-
-
-
-
 # Extracted Annotations and Comments
 
 > [!Highlight] Page 2
@@ -73,20 +62,8 @@ SORT file.cday DESC
 > 	The spiking neuron we use is the IF neuron, which is one of the simplest spiking neuron models. The IF neuron simply integrates its input until the membrane potential exceeds the voltage threshold and a spike is generated. IF neuron does not have a decay mechanism, and we assume that there is no refractory period, which is more similar to the artificial neuron.
 > ^37JLFE3DaDWXSVHH6p3
 
-
 # Figures
-![[content/09 Citations/tanStrategyBenchmarkConverting2020_Amedia/image-20230427164611214.png]]
+![[wiki/citations/tanStrategyBenchmarkConverting2020_Amedia/image-20230427164611214.png]]
 
-
-
-![[60 Zotero/Citations/tanStrategyBenchmarkConverting2020_Amedia/image-20230427161631140.png]]
-
-
-
-
-
-
-
-
-
+![[wiki/citations/tanStrategyBenchmarkConverting2020_Amedia/image-20230427161631140.png]]
 

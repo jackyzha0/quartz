@@ -31,8 +31,6 @@ created: 2024-04-15 12:17
 # A three-node Turing gene circuit forms periodic spatial patterns in bacteria
 Read:: - [x] Tica et al. (2023) - A three-node Turing gene circuit forms periodic spatial patterns in bacteria ➕2024-04-15 !!2 #rd #citation [link](https://todoist.com/showTask?id=7900342598) #todoist %%[todoist_id:: 7900342598]%%
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/W4E7MPLJ) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/bioRxiv_2023/Tica%20et%20al_2023_A%20three-node%20Turing%20gene%20circuit%20forms%20periodic%20spatial%20patterns%20in%20bacteria.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.biorxiv.org/content/10.1101/2023.10.19.563112v1
@@ -58,25 +56,4 @@ Some interesting uses but a little out of my scope
 
 As well as some interesting information about turing pattern science and 2d automatas
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

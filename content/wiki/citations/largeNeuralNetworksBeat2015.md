@@ -24,8 +24,6 @@ created: 2024-01-04 11:26
 # Neural Networks for Beat Perception in Musical Rhythm
 Read:: - [ ] Large et al. (2015) - Neural Networks for Beat Perception in Musical Rhythm ➕2024-01-04 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/PB2MA4FE) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Frontiers%20in%20Systems%20Neuroscience_2015/Large%20et%20al_2015_Neural%20Networks%20for%20Beat%20Perception%20in%20Musical%20Rhythm.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.frontiersin.org/articles/10.3389/fnsys.2015.00159
@@ -48,25 +46,4 @@ SORT file.cday DESC
 - Did a quick read through of summary and discussion
 - 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -29,8 +29,6 @@ created: 2024-04-15 13:41
 # On the Import of Constraints in Complex Dynamical Systems
 Read:: - [/] Hooker (2013) - On the Import of Constraints in Complex Dynamical Systems ➕2024-04-15 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/PH5S573B) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Foundations%20of%20Science_2013/Hooker_2013_On%20the%20Import%20of%20Constraints%20in%20Complex%20Dynamical%20Systems.pdf>)
 Reading Note::
 Web Rip::
 url:: https://doi.org/10.1007/s10699-012-9304-9
@@ -50,29 +48,8 @@ SORT file.cday DESC
 # Quick Reference
 
 # Top Notes
-- [[Orthogonality]]
+- Orthogonality
 - Interesting run through many concepts involving complex dynamical systems, but not especially relevant to me atm
 - I think what I can learn from this is that I may be able to publish some of my more philosophical ideas about complex systems
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

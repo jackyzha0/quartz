@@ -27,8 +27,6 @@ citekey: grondinTimingTimePerception2010
 # Timing and time Perception: A Review of Recent Behavioral and Neuroscience Findings and Theoretical Directions
 Read:: - [ ] Grondin (2010) - Timing and time perception: A review of recent behavioral and neuroscience findings and theoretical directions ➕2023-10-26 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/RIE3564B)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/AJDFT84W/Grondin_2010_Timing%20and%20time%20perception.pdf>)
 Reading Note::
 Web Rip::
 url::

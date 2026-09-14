@@ -26,8 +26,6 @@ modified: 2024-09-27 13:03
 # Scaling Brain Size, Keeping Timing: Evolutionary Preservation of Brain Rhythms
 Read:: - [ ] Buzsáki et al. (2013) - **Scaling Brain Size, Keeping Timing: Evolutionary Preservation of Brain Rhythms** ➕2024-09-27 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/3IZQEA4N)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/MU85MD9Z/Buzs%C3%A1ki%20et%20al.%20-%202013%20-%20Scaling%20Brain%20Size,%20Keeping%20Timing%20Evolutionary%20Preservation%20of%20Brain%20Rhythms.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.sciencedirect.com/science/article/pii/S0896627313009045
@@ -50,15 +48,6 @@ SORT file.cday DESC
 
 # Tasks
 
-
-
-
-
-
-
-
-
-
 # Extracted Annotations and Comments
 
 > [!Highlight] Page 752
@@ -72,15 +61,4 @@ SORT file.cday DESC
 > [!Highlight] Page 752
 > 	The nature of interaction is usually hierarchical and universal, so that the phase of the slower oscillation modulates the power of the faster ones (Figure 1B; Bragin et al., 1995; Chrobak and Buzsa ́ ki, 1998; Leopold et al., 2003; Schroeder and Lakatos, 2009; Canolty et al., 2006; Buzsa ́ ki and Wang, 2012; Fell and Axmacher, 2011).
 > ^F4CALWRJaMU85MD9Zp2
-
-
-
-
-
-
-
-
-
-
-
 

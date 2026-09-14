@@ -9,25 +9,29 @@ import fs from "fs"
 import path from "path"
 
 function stubHtml(target: string): string {
+  // Root-absolute target: correct from any stub depth (a "./x" target would
+  // resolve relative to the stub's own folder and break for nested stubs).
   return `<!DOCTYPE html>
 <html lang="en-us">
 <head>
 <title>${target}</title>
-<link rel="canonical" href="./${target}">
+<link rel="canonical" href="/${target}">
 <meta name="robots" content="noindex">
 <meta charset="utf-8">
-<meta http-equiv="refresh" content="0; url=./${target}">
+<meta http-equiv="refresh" content="0; url=/${target}">
 </head>
 </html>
 `
 }
 
 function slugifyStem(name: string): string {
+  // Must match Quartz v5's slugifyFilePath for these filenames — note it
+  // PRESERVES dots (e.g. "keithl.downing…" stays "keithl.downing…").
   return name
     .normalize("NFKD")
     .replace(/ /g, "-")
     .replace(/'/g, "")
-    .replace(/[^A-Za-z0-9_\-/()]/g, "")
+    .replace(/[^A-Za-z0-9_.\-/()]/g, "")
     .toLowerCase()
 }
 
@@ -41,6 +45,11 @@ export default function LegacyRedirects() {
       const stubs: Array<[string, string]> = [
         ["NER_2025", "research/ner-2025/"],
         ["ner_2025", "research/ner-2025/"],
+        // legacy folder pages
+        ["01-Blog-Posts/index", "writing/"],
+        ["01-blog-posts/index", "writing/"],
+        ["09-Citations/index", "wiki/citations/"],
+        ["09-citations/index", "wiki/citations/"],
         [
           "01-Blog-Posts/Back-Propagation-without-Calculus",
           "writing/back-propagation-without-calculus/",

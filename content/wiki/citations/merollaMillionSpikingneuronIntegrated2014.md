@@ -41,7 +41,6 @@ modified: 2024-10-14 14:48
 # A million spiking-neuron integrated circuit with a scalable communication network and interface
 Read:: - [ ] Merolla et al. (2014) - **A million spiking-neuron integrated circuit with a scalable communication network and interface** ➕2024-10-14 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/B5AEGNRU)
 Files::
 Reading Note::
 Web Rip::
@@ -64,25 +63,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

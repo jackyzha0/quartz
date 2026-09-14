@@ -43,8 +43,6 @@ created: 2024-02-15 16:00
 # Investigating the Catastrophic Forgetting in Multimodal Large Language Models
 Read:: - [ ] Zhai et al. (2023) - Investigating the Catastrophic Forgetting in Multimodal Large Language Models ➕2024-02-15 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/25QBENX5) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/2UWL24GM/Zhai%20et%20al.%20-%202023%20-%20Investigating%20the%20Catastrophic%20Forgetting%20in%20Multimodal%20Large%20Language%20Models.pdf>)
 Reading Note::
 Web Rip::
 url:: http://arxiv.org/abs/2309.10313
@@ -66,25 +64,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

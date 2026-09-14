@@ -36,8 +36,6 @@ modified: 2024-09-25 19:30
 # Neurobiology of Feeding and Energy Expenditure
 Read:: - [ ] Gao et al. (2007) - **Neurobiology of Feeding and Energy Expenditure** ➕2024-09-25 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/NFVL3KSW)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Annual%20Review%20of%20Neuroscience_2007/Gao_Horvath_2007_Neurobiology%20of%20Feeding%20and%20Energy%20Expenditure.pdf>)
 Reading Note::
 Web Rip::
 url::
@@ -60,29 +58,9 @@ SORT file.cday DESC
 
 # Tasks
 
-
-
-
-
-
-
-
-
-
 # Extracted Annotations and Comments
 
 > [!Highlight] Page 368
 > 	one could argue that the purpose behind the emergence and evolution of the central nervous system was to promote the most effective management of metabolism in support of survival.
 > ^ID69FEMNaDDXJG79Ep2
-
-
-
-
-
-
-
-
-
-
-
 

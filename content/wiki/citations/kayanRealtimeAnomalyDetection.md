@@ -31,8 +31,6 @@ citekey: kayanRealtimeAnomalyDetection
 > About::
 > Read:: - [ ] Kayan et al. () - **Real-time Anomaly Detection for Industrial Robotic Arms using Edge Computing** ➕2025-10-07 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/JSYSMVTB)
-> Files:: [attachment](<file:///C:/Users/michaelt/Zotero/storage/YP4QRGZL/Kayan%20et%20al.%20-%20Real-time%20Anomaly%20Detection%20for%20Industrial%20Robotic%20Arms%20using%20Edge%20Computing.pdf>)
 > Reading Note::
 > Web Rip::
 > url::

@@ -31,8 +31,6 @@ citekey: cooleyAlgorithmMachineCalculation1965
 > About::
 > Read:: - [ ] Cooley et al. (1965) - **An algorithm for the machine calculation of complex Fourier series** ➕2025-11-13 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/N2ETRQEP)
-> Files:: [attachment](<file:///C:/Users/michaelt/Zotero/storage/TZUEGB22/Cooley%20and%20Tukey%20-%201965%20-%20An%20algorithm%20for%20the%20machine%20calculation%20of%20complex%20Fourier%20series.pdf>)
 > Reading Note::
 > Web Rip::
 > url:: https://www.ams.org/mcom/1965-19-090/S0025-5718-1965-0178586-1/

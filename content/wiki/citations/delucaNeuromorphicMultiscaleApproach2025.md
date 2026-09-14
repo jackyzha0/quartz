@@ -36,13 +36,11 @@ citekey: delucaNeuromorphicMultiscaleApproach2025
 > Journal:: “npj Unconventional Computing”
 > Read:: - [ ] De Luca et al. (2025) - **A neuromorphic multi-scale approach for real-time heart rate and state detection** ➕2025-10-16 !!2 #rd #citation #todoist
 > Print::  ❌
-> Zotero Link:: [Zotero](zotero://select/library/items/2PG4DPYM)
 > Repo:: https://gitlab.com/neuroinf/monotonic_nsm
-> Files:: [attachment](<file:///home/michaelt/Zotero/storage/9AM57ZT6/De%20Luca%20et%20al.%20-%202025%20-%20A%20neuromorphic%20multi-scale%20approach%20for%20real-time.pdf>)
 > Reading Note::
-> Web Rip:: [[A neuromorphic multi-scale approach for real-time heart rate and state detection]]
+> Web Rip:: A neuromorphic multi-scale approach for real-time heart rate and state detection
 > url:: https://www.nature.com/articles/s44335-025-00024-6
-> see:: [[Neural State Machines]][[Winner Takes All]]
+> see:: Neural State MachinesWinner Takes All
 > ```dataview
 > TABLE without id
 > file.link as "Related Files",
@@ -56,7 +54,7 @@ citekey: delucaNeuromorphicMultiscaleApproach2025
 > [!Abstract]
 > With the advent of novel sensor and machine learning technologies, it is becoming possible to develop wearable systems that perform continuous recording and processing of biosignals for health or body state assessment. For example, modern smartwatches can already track physiological functions, including heart rate and its anomalies, with high precision. However, stringent constraints on size and energy consumption pose significant challenges for always-on operation to detect trends across multiple time scales for extended periods of time. To address these challenges, we propose an alternative solution that exploits the ultra-low power consumption features of mixed-signal neuromorphic technologies. We present a biosignal processing architecture that integrates multimodal sensory inputs and processes them using the principles of neural computation to reliably detect trends in heart rate and physiological states. We validate this architecture on a mixed-signal neuromorphic processor and demonstrate its robust operation despite the inherent variability of the analog circuits present in the system. In addition, we demonstrate how the system can process multi scale signals, namely instantaneous heart rate and its long-term states discretized into distinct zones, effectively detecting monotonic changes over extended periods that indicate pathological conditions such as agitation. This approach paves the way for a new generation of energy-efficient stand-alone wearable devices that are particularly suited for scenarios that require continuous health monitoring with minimal device maintenance.
 # Top Notes
-### Training Method - [[Nelder-Mead algorithm]]
+### Training Method - Nelder-Mead algorithm
 > The goal was to align the firing rates of the resulting LIF neuron outputs with those derived from the ECG. A comparison between each band’s ECG (i.e., target), PPG, and cleaned signals—optimized across all inputs, subject-specific, and exercise-specific—is shown in Figure [7](https://www.nature.com/articles/s44335-025-00024-6#Fig7), along with the spiking data output from each LIF neuron.
 
 > The optimization process employed the Nelder-Mead algorithm[48](https://www.nature.com/articles/s44335-025-00024-6#ref-CR48 "Glaudell, R., Garcia, R. T. & Garcia, J. B. Nelder-mead simplex method. Computer Journal 7, 308–313 (1965)."), a derivative-free method that is well-suited for optimizing complex, non-differentiable objective functions. The algorithm iteratively refines a set of simplex points to minimize the RRMSE between the firing rate curves derived from the LIF outputs and the reference ECG-derived firing rates. This approach avoids gradient-based methods, which are not ideal due to the overly smooth gradient landscape of the problem. Instead, we used random initialization followed by 20 iterations of optimization to converge on an optimal solution.

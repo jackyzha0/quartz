@@ -24,8 +24,6 @@ created: 2023-09-11 14:32
 # The Theta-Gamma Neural Code
 Read:: - [ ] Lisman et al. (2013) - The Theta-Gamma Neural Code ➕2023-09-11 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/NFZGZTSC) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Neuron_2013/Lisman_Jensen_2013_The%20Theta-Gamma%20Neural%20Code.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3648857/
@@ -46,27 +44,4 @@ SORT file.cday DESC
 # Quick Reference
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

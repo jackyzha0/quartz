@@ -32,8 +32,6 @@ modified: 2024-09-13 11:45
 # Adversarial Bandits Policy for Crawling Commercial Web Content
 Read:: - [ ] Han et al. (2020) - Adversarial Bandits Policy for Crawling Commercial Web Content ➕2023-09-12 !!2 #rd #citation #todoist
 Print::  ✔
-Zotero Link:: [Zotero](zotero://select/library/items/RQ5CTL4I)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Association%20for%20Computing%20Machinery_2020/Han%20et%20al_2020_Adversarial%20Bandits%20Policy%20for%20Crawling%20Commercial%20Web%20Content.pdf>)
 Reading Note::
 Web Rip::
 url:: https://dl.acm.org/doi/10.1145/3366423.3380125
@@ -68,27 +66,4 @@ SORT file.cday DESC
 -
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

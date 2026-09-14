@@ -22,8 +22,6 @@ created: 2023-12-04 12:55
 # Data Visualization: Charts, Maps, and Interactive Graphics
 Read:: - [ ] Grant (2018) - Data Visualization: Charts, Maps, and Interactive Graphics ➕2023-12-04 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/399B4HEC) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Chapman%20and%20HallCRC_2018/Grant_2018_Data%20Visualization.pdf>)
 Reading Note::
 Web Rip::
 url:: 
@@ -59,25 +57,4 @@ Copyright © Jill Pelto (jillpelto.com).
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -27,8 +27,6 @@ modified: 2024-10-14 14:52
 # Energy-aware bio-inspired spiking reinforcement learning system architecture for real-time autonomous edge applications
 Read:: - [ ] Ji et al. (2024) - **Energy-aware bio-inspired spiking reinforcement learning system architecture for real-time autonomous edge applications** ➕2024-10-14 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/KPNEDPXT)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/PGFY2EIH/39376537.html>)
 Reading Note::
 Web Rip::
 url:: https://pubmed.ncbi.nlm.nih.gov/39376537/
@@ -50,25 +48,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

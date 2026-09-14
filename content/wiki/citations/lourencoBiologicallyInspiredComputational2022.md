@@ -38,8 +38,6 @@ modified: 2024-08-28 15:24
 # A Biologically Inspired Computational Model of Time Perception
 Read:: - [ ] Lourenço et al. (2022) - A Biologically Inspired Computational Model of Time Perception ➕2023-11-20 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/3HV63JX4)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/76ZG9T2T/9570769.html>)
 Reading Note::
 Web Rip::
 url::
@@ -61,25 +59,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -24,8 +24,6 @@ created: 2023-10-18 14:55
 # The Pattern of Responding in the Peak-Interval Procedure with Gaps: An Individual-Trials Analysis
 Read:: - [ ] Swearingen et al. (2010) - The Pattern of Responding in the Peak-Interval Procedure with Gaps: An Individual-Trials Analysis ➕2023-10-18 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/PHF8YM8X) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/TAB47H3H/Swearingen_Buhusi_2010_The%20Pattern%20of%20Responding%20in%20the%20Peak-Interval%20Procedure%20with%20Gaps.pdf>)
 Reading Note::
 Web Rip::
 url:: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2964407/
@@ -48,27 +46,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

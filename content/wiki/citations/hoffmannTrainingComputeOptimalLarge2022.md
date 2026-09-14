@@ -50,8 +50,6 @@ citekey: hoffmannTrainingComputeOptimalLarge2022
 # Training Compute-Optimal Large Language Models
 Read:: - [ ] Hoffmann et al. (2022) - Training Compute-Optimal Large Language Models ➕2023-11-22 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/7ANXQQDV)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/arXiv_2022/Hoffmann%20et%20al_2022_Training%20Compute-Optimal%20Large%20Language%20Models.pdf>)
 Reading Note::
 Web Rip::
 url:: http://arxiv.org/abs/2203.15556
@@ -91,7 +89,7 @@ SORT file.cday DESC
 # Figures (blue)
 
 > [!Fig 3]
-> ![[content/09 Citations/hoffmannTrainingComputeOptimalLarge2022_Amedia/2MRBX5QS.png]]
+> ![[wiki/citations/hoffmannTrainingComputeOptimalLarge2022_Amedia/2MRBX5QS.png]]
 > **Page 6**
 >
 > ---
@@ -107,7 +105,7 @@ SORT file.cday DESC
 > ^MAC2Q5RHaX4KBJT5Fp8
 
 > [!Table 3]
-> ![[content/09 Citations/hoffmannTrainingComputeOptimalLarge2022_Amedia/UTNASG99.png]]
+> ![[wiki/citations/hoffmannTrainingComputeOptimalLarge2022_Amedia/UTNASG99.png]]
 > **Page 8**
 >
 > ---
@@ -137,7 +135,7 @@ SORT file.cday DESC
 > ^448F35GXaX4KBJT5Fp1
 
 > [!Figure 1]
-> ![[content/09 Citations/hoffmannTrainingComputeOptimalLarge2022_Amedia/Z8ZA22XT.png]]
+> ![[wiki/citations/hoffmannTrainingComputeOptimalLarge2022_Amedia/Z8ZA22XT.png]]
 > **Page 2**
 > ^Z8ZA22XTaX4KBJT5Fp2
 
@@ -153,7 +151,7 @@ SORT file.cday DESC
 > ^IQY49YIQaX4KBJT5Fp3
 
 > [!Table 1]
-> ![[content/09 Citations/hoffmannTrainingComputeOptimalLarge2022_Amedia/JH6MSC7P.png]]
+> ![[wiki/citations/hoffmannTrainingComputeOptimalLarge2022_Amedia/JH6MSC7P.png]]
 > **Page 3**
 >
 > ---
@@ -161,7 +159,7 @@ SORT file.cday DESC
 > ^JH6MSC7PaX4KBJT5Fp3
 
 > [!Table A3]
-> ![[content/09 Citations/hoffmannTrainingComputeOptimalLarge2022_Amedia/C8EQPYFQ.png]]
+> ![[wiki/citations/hoffmannTrainingComputeOptimalLarge2022_Amedia/C8EQPYFQ.png]]
 > **Page 26**
 > ^C8EQPYFQaX4KBJT5Fp26
 
@@ -173,7 +171,7 @@ SORT file.cday DESC
 > ^3AMR7PBKaX4KBJT5Fp26
 
 > [!]
-> ![[content/09 Citations/hoffmannTrainingComputeOptimalLarge2022_Amedia/7H8J7I4I.png]]
+> ![[wiki/citations/hoffmannTrainingComputeOptimalLarge2022_Amedia/7H8J7I4I.png]]
 > **Page 26**
 > ^7H8J7I4IaX4KBJT5Fp26
 

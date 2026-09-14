@@ -28,7 +28,6 @@ created: 2023-09-09 17:11
 # Artificial intelligence: a modern approach
 Read:: - [ ] Russell et al. (2022) - Artificial intelligence: a modern approach ➕2023-09-09 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/ABH7YNM3) 
 Files:: 
 Reading Note::
 Web Rip::
@@ -50,27 +49,4 @@ SORT file.cday DESC
 # Quick Reference
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

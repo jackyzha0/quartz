@@ -40,8 +40,6 @@ created: 2023-09-11 14:30
 # Robust and efficient coding with grid cells
 Read:: - [ ] Vágó et al. (2018) - Robust and efficient coding with grid cells ➕2023-09-11 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/PJULWWAQ) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/PLoS%20computational%20biology_2018/V%C3%A1g%C3%B3_Ujfalussy_2018_Robust%20and%20efficient%20coding%20with%20grid%20cells.pdf>)
 Reading Note::
 Web Rip::
 url:: 
@@ -62,26 +60,4 @@ SORT file.cday DESC
 # Quick Reference
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

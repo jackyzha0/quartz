@@ -30,8 +30,6 @@ created: 2023-12-04 15:41
 # Surrogate Gradient Learning in Spiking Neural Networks: Bringing the Power of Gradient-Based Optimization to Spiking Neural Networks
 Read:: - [ ] Neftci et al. (2019) - Surrogate Gradient Learning in Spiking Neural Networks: Bringing the Power of Gradient-Based Optimization to Spiking Neural Networks ➕2023-12-04 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/P2DUDGZ8) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/IEEE%20Signal%20Processing%20Magazine_2019/Neftci%20et%20al_2019_Surrogate%20Gradient%20Learning%20in%20Spiking%20Neural%20Networks.pdf>)
 Reading Note::
 Web Rip::
 url:: 
@@ -54,30 +52,16 @@ SORT file.cday DESC
 
 # Tasks
 
-
-
-
-
-
-
-
-
-
 # Extracted Annotations and Comments
 
 > [!Highlight] Page 54
 > 	Credit assignment with spiking neurons: Challenges and solutions
 > ^E767YKEQa7GZGQFC3p4
 
-
-
-
-
-
 # Figures (blue)
 
 > [!Fig 2]
-> ![[content/09 Citations/neftciSurrogateGradientLearning2019a_Amedia/TUNGRP9L.png]]
+> ![[wiki/citations/neftciSurrogateGradientLearning2019a_Amedia/TUNGRP9L.png]]
 > **Page 54**
 > 
 > ---
@@ -90,9 +74,4 @@ SORT file.cday DESC
 > ---
 > 	Fig 2
 > ^YQEYUZEYa7GZGQFC3p4
-
-
-
-
-
 

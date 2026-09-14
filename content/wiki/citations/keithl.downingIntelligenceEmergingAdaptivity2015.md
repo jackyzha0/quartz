@@ -28,8 +28,6 @@ created: 2023-10-25 13:22
 # Intelligence Emerging : Adaptivity and Search in Evolving Neural Systems
 Read:: - [ ] Keith L. Downing (2015) - Intelligence Emerging : Adaptivity and Search in Evolving Neural Systems ➕2023-10-25 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/8VFY7FHK) 
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/The%20MIT%20Press_2015/Keith%20L.%20Downing_2015_Intelligence%20Emerging.pdf>) [[Keith L. Downing_2015_Intelligence Emerging.pdf]]
 Reading Note::
 Web Rip::
 url:: https://login.ezproxy.oslomet.no/login?url=https://search.ebscohost.com/login.aspx?direct=true&db=e000xww&AN=1000927&site=ehost-live&scope=site
@@ -51,25 +49,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

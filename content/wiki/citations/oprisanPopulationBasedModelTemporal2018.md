@@ -33,7 +33,6 @@ created: 2024-05-03 15:01
 # A Population-Based Model of the Temporal Memory in the Hippocampus
 Read:: - [ ] Oprisan et al. (2018) - **A Population-Based Model of the Temporal Memory in the Hippocampus** ➕2024-05-03 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/SS9AHMR6) 
 Files:: 
 Reading Note::
 Web Rip::
@@ -56,25 +55,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

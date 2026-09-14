@@ -27,8 +27,6 @@ modified: 2024-10-29 15:41
 # Information Theory for Complex Systems: An Information Perspective on Complexity in Dynamical Systems and Statistical Mechanics
 Read:: - [ ] Lindgren (2024) - **Information Theory for Complex Systems: An Information Perspective on Complexity in Dynamical Systems and Statistical Mechanics** ➕2024-10-29 !!2 #rd #citation #todoist
 Print::  ❌
-Zotero Link:: [Zotero](zotero://select/library/items/8LZYJFUD)
-Files:: [attachment](<file:///C:/Users/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage_new/Springer_2024/Lindgren_2024_Information%20Theory%20for%20Complex%20Systems.epub>)
 Reading Note::
 Web Rip::
 url:: https://link.springer.com/10.1007/978-3-662-68214-2
@@ -50,25 +48,4 @@ SORT file.cday DESC
 # Top Notes
 
 # Tasks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

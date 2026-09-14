@@ -56,20 +56,16 @@ citekey: chenDeepReinforcementLearning2022
 
 Print:: ❌
 
-Zotero Link:: [@chenDeepReinforcementLearning2022-MDnotes.md](zotero://open-pdf/library/items/8ZVCYFJU); [arXiv.org Snapshot](zotero://open-pdf/library/items/TKDBAXKR); [Chen et al_2022_Deep Reinforcement Learning with Spiking Q-learning.pdf](zotero://open-pdf/library/items/LU25QILL); [chenDeepReinforcementLearning2022-zotero.md](zotero://open-pdf/library/items/RA8AXZCN)
-
 PDF:: NA
 
-Files:: [@chenDeepReinforcementLearning2022-MDnotes.md](file:////home/michaelt/Insync/m@tarlton.info/Google%20Drive/05.%20Obsidian/Obsidian/oslomet/50%20Reading/Zotero%20Papers/@chenDeepReinforcementLearning2022-MDnotes.md); [arXiv.org Snapshot](file:///C:%5CUsers%5Cmichaelt%5CInsync%5Cm@tarlton.info%5CGoogle%20Drive%5C06.%20Zotero%5Cstorage%5CTKDBAXKR%5C2201.html); [Chen et al_2022_Deep Reinforcement Learning with Spiking Q-learning.pdf](file:///C:%5CUsers%5Cmichaelt%5CInsync%5Cm@tarlton.info%5CGoogle%20Drive%5C06.%20Zotero%5Cstorage%5CLU25QILL%5CChen%20et%20al_2022_Deep%20Reinforcement%20Learning%20with%20Spiking%20Q-learning.pdf); [chenDeepReinforcementLearning2022-zotero.md](file:////home/michaelt/Insync/m@tarlton.info/Google%20Drive/05.%20Obsidian/Obsidian/oslomet/50%20Reading/Zotero%20Papers/chenDeepReinforcementLearning2022-zotero.md)
 Print:: ✅ 2022-05-19
 Zotero Link:: NA
-Files:: [@chenDeepReinforcementLearning2022-MDnotes.md](file:///home/michaelt/Insync/m@tarlton.info/Google%20Drive/05.%20Obsidian/Obsidian/oslomet/50%20Reading/Zotero%20Papers/@chenDeepReinforcementLearning2022-MDnotes.md); [arXiv.org Snapshot](file:///home/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/TKDBAXKR/2201.html); [Chen et al_2022_Deep Reinforcement Learning with Spiking Q-learning.pdf](file:///home/michaelt/Insync/m@tarlton.info/Google%20Drive/06.%20Zotero/storage/LU25QILL/Chen%20et%20al_2022_Deep%20Reinforcement%20Learning%20with%20Spiking%20Q-learning.pdf); [chenDeepReinforcementLearning2022-zotero.md](file:///home/michaelt/Insync/m@tarlton.info/Google%20Drive/05.%20Obsidian/Obsidian/oslomet/50%20Reading/Zotero%20Papers/chenDeepReinforcementLearning2022-zotero.md)
-Reading Note:: [[Chen 2022]]
+Reading Note:: Chen 2022
 
 Web Rip::
-Reading Topics:: [[Chen 2022 - topics]]
-Reading Comments:: [[Chen 2022 - comments]]
-Reading Glossary:: [[Chen 2022 - glossary]]
+Reading Topics:: Chen 2022 - topics
+Reading Comments:: Chen 2022 - comments
+Reading Glossary:: Chen 2022 - glossary
 
 ```dataview
 TABLE without id
@@ -91,7 +87,7 @@ With the help of special neuromorphic hardware, spiking neural networks (SNNs) a
 Let's say grey is for overall comments
 - Ok so I’m picking back up my reading flow after a long time
 - I am using mathpix for the parts I will need to latex in
-- See [[Chen 2022 - glossary#Loss function (pg. 3)]] for Loss function and other formulae
+- See Chen 2022 - glossary#Loss function (pg. 3) for Loss function and other formulae
 - I’m actually not liking this paper very much
 - They pretty much just take a basic DQN and add spiking neurons
 
@@ -173,13 +169,13 @@ Analysis of Decoders We compare the performance of DSQN with different decoders 
 # Figures
 Fig. 1**
 
-![[chenDeepReinforcementLearning2022_NXAWWREF.png]] (p. 1)
+ (p. 1)
 Fig. 3**
 
-![[chenDeepReinforcementLearning2022_8CI4FREQ.png]] (p. 4)
+ (p. 4)
 Fig. 4**
 
-![[chenDeepReinforcementLearning2022_MKIF9H4J.png]] (p. 4)
+ (p. 4)
 Fig. 5**
 
-![[chenDeepReinforcementLearning2022_NVVKWJPW.png]] (p. 4)
+ (p. 4)
