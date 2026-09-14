@@ -129,6 +129,18 @@ a {
   }
 }
 
+.dead-link {
+  font-weight: $semiBoldWeight;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  color: #d97706;
+  background-color: var(--highlight);
+  padding: 0 0.1rem;
+  border-radius: 5px;
+  line-height: 1.4rem;
+  cursor: default;
+}
+
 .flex-component {
   display: flex;
 }
