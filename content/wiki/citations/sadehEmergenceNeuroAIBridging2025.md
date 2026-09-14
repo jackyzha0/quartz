@@ -6,7 +6,7 @@ project: NA
 type: citation
 status: open
 priority: p5
-created: Invalid date
+created: 2025-10-24T12:19:16.000Z
 modified: 2025-10-24 15:18
 tags:
   - todoist

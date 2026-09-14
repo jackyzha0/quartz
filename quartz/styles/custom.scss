@@ -290,6 +290,24 @@ h3 {
   color: var(--darkgray);
 }
 
+// ── CV page ─────────────────────────────────────────────────
+.cv-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+
+  & .section-eyebrow {
+    margin: 0;
+  }
+}
+
+.cv-header + .callout {
+  margin-top: 0.5rem;
+}
+
 // ── Footer ──────────────────────────────────────────────────
 footer {
   & a {

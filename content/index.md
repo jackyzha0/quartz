@@ -74,5 +74,5 @@ I'm a NeuroAI researcher: I study how the brain keeps time, and how those mechan
 
 ## Latest writing
 
-- [[01 Blog Posts/Neuro-Inspired Timing Mechanisms for Machine Learning|Neuro-Inspired Timing Mechanisms for Machine Learning]]
-- [[01 Blog Posts/Back-Propagation without Calculus|Back-Propagation without Calculus]]
+- [[writing/neuro-inspired-timing-mechanisms-for-machine-learning|Neuro-Inspired Timing Mechanisms for Machine Learning]]
+- [[writing/back-propagation-without-calculus|Back-Propagation without Calculus]]

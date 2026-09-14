@@ -1,5 +1,6 @@
 ---
-title: Back-Prop wo Calc
+title: Back-Propagation without Calculus
+description: An intuitive explanation of back-propagation for students — no calculus required.
 ---
 
 > [!Abstract] About

@@ -243,6 +243,8 @@ plugins:
     layout:
       position: beforeBody
       priority: 1
+  - source: ./components-local/redirects
+    enabled: true
   - source: "@quartz-community/bases-page"
     enabled: true
     options: {}
@@ -254,7 +256,6 @@ plugins:
       includedProperties:
         - description
         - tags
-        - aliases
       excludedProperties: []
       hidePropertiesView: false
       delimiters: ---

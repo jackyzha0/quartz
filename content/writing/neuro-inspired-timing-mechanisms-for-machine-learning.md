@@ -1,5 +1,6 @@
 ---
-title: Neuro-Inspired Learning and Timing Mechanism
+title: Neuro-Inspired Timing Mechanisms for Machine Learning
+description: How the brain's temporal dynamics — oscillations, rate encoding, event-driven computation, STDP — could reshape machine learning.
 draft: false
 ---
 

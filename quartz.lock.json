@@ -12,6 +12,12 @@
       "resolved": "/var/home/mike/Projects/website_overhaul/michatarlton.github.io/components-local/nav",
       "commit": "local",
       "installedAt": "2026-09-14T14:27:46.554Z"
+    },
+    "redirects": {
+      "source": "./components-local/redirects",
+      "resolved": "/var/home/mike/Projects/website_overhaul/michatarlton.github.io/components-local/redirects",
+      "commit": "local",
+      "installedAt": "2026-09-14T17:29:51.650Z"
     }
   }
 }
