@@ -114,34 +114,44 @@ export const Assets: QuartzEmitterPlugin = () => {
       const publishAssets = cfg.publishAssets ?? "all"
       const excludeExtensions = getPageTypeExtensions(ctx)
 
-      // In referenced mode, always re-extract references from current content
-      // because markdown changes may add/remove asset references
+      // A markdown change can add or remove a page's published status, which
+      // changes which assets should be present without the asset files
+      // themselves appearing in changeEvents. In that case, reconcile the
+      // full candidate set against the freshly-extracted references instead
+      // of only looking at what changed on disk.
+      const markdownChanged = changeEvents.some((e) => path.extname(e.path) === ".md")
+
+      if (publishAssets === "referenced" && markdownChanged) {
+        const referencedAssets = extractAssetReferences(content)
+        const allCandidates = await filesToCopy(ctx.argv, ctx.cfg, excludeExtensions)
+        for (const fp of allCandidates) {
+          const normalized = normalizeAssetPath(fp)
+          const dest = joinSegments(ctx.argv.output, slugifyFilePath(fp)) as FilePath
+          if (referencedAssets.has(normalized)) {
+            yield copyFile(ctx.argv, fp)
+          } else {
+            await fs.promises.rm(dest, { force: true })
+          }
+        }
+        return
+      }
+
       const referencedAssets =
         publishAssets === "referenced" ? extractAssetReferences(content) : null
-
-      // Track which markdown files changed to know if we need to re-check references
-      const markdownChanged = changeEvents.some((e) => path.extname(e.path) === ".md")
 
       for (const changeEvent of changeEvents) {
         const ext = path.extname(changeEvent.path)
         if (excludeExtensions.has(ext)) continue
 
-        // For markdown changes, we don't copy the .md file itself (handled by PageTypeDispatcher)
-        // but we need to re-evaluate asset references from the updated content
+        // The .md file itself is not copied here (handled by PageTypeDispatcher)
         if (ext === ".md") {
           continue
         }
 
         const normalized = normalizeAssetPath(changeEvent.path)
 
-        if (publishAssets === "referenced") {
-          // If markdown changed, re-check if this asset is now referenced
-          if (markdownChanged) {
-            if (!referencedAssets!.has(normalized)) continue
-          } else {
-            // No markdown changes, use current reference set
-            if (!referencedAssets!.has(normalized)) continue
-          }
+        if (publishAssets === "referenced" && !referencedAssets!.has(normalized)) {
+          continue
         }
 
         if (changeEvent.type === "add" || changeEvent.type === "change") {

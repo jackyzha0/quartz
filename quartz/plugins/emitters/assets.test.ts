@@ -13,18 +13,28 @@ const REPO_ROOT = path.join(__dirname, "..", "..", "..")
 const TEST_FIXTURE = path.join(REPO_ROOT, "test", "fixtures", "asset-filtering")
 const OUTPUT_DIR = path.join(TEST_FIXTURE, "public")
 const TEST_CONFIG = path.join(TEST_FIXTURE, "quartz.config.yaml")
+// The CLI always resolves `quartz.config.yaml` relative to process.cwd(),
+// so building the fixture requires temporarily swapping the repo's own
+// config file. This is not parallel-safe against other processes touching
+// that file, but no other test in this suite does.
+const REPO_CONFIG = path.join(REPO_ROOT, "quartz.config.yaml")
 
 async function cleanOutput() {
-  try {
-    await fs.rm(OUTPUT_DIR, { recursive: true, force: true })
-  } catch {}
+  await fs.rm(OUTPUT_DIR, { recursive: true, force: true })
 }
 
-function runQuartzBuild(args: string[]): Promise<{ code: number; stdout: string; stderr: string }> {
+function runQuartzBuild(): Promise<{ code: number; stdout: string; stderr: string }> {
   return new Promise((resolve) => {
     const child = spawn(
       process.execPath,
-      [path.join(REPO_ROOT, "quartz/bootstrap-cli.mjs"), "build", ...args],
+      [
+        path.join(REPO_ROOT, "quartz/bootstrap-cli.mjs"),
+        "build",
+        "-d",
+        "test/fixtures/asset-filtering",
+        "-o",
+        "test/fixtures/asset-filtering/public",
+      ],
       {
         cwd: REPO_ROOT,
         stdio: ["ignore", "pipe", "pipe"],
@@ -53,66 +63,37 @@ function runQuartzBuild(args: string[]): Promise<{ code: number; stdout: string;
 
 describe("Assets emitter with publishAssets config", () => {
   let originalConfig: string | null = null
-  let hadOriginalConfig = false
 
   before(async () => {
     await cleanOutput()
-    // Save original config if it exists
-    const repoConfigPath = path.join(REPO_ROOT, "quartz.config.yaml")
-    try {
-      originalConfig = await fs.readFile(repoConfigPath, "utf-8")
-      hadOriginalConfig = true
-    } catch {
-      hadOriginalConfig = false
-    }
-    // Use test config for this test suite
+    originalConfig = await fs.readFile(REPO_CONFIG, "utf-8").catch(() => null)
     const testConfigContent = await fs.readFile(TEST_CONFIG, "utf-8")
-    await fs.writeFile(repoConfigPath, testConfigContent)
-    // Verify config was written
-    const written = await fs.readFile(path.join(REPO_ROOT, "quartz.config.yaml"), "utf-8")
-    if (written !== testConfigContent) {
-      throw new Error("Config file write verification failed")
-    }
+    await fs.writeFile(REPO_CONFIG, testConfigContent)
   })
 
   after(async () => {
     await cleanOutput()
-    // Restore original config exactly as it was
-    const repoConfigPath = path.join(REPO_ROOT, "quartz.config.yaml")
-    if (hadOriginalConfig && originalConfig !== null) {
-      await fs.writeFile(repoConfigPath, originalConfig)
+    // Restore original config exactly as it was (or remove it if it never existed)
+    if (originalConfig !== null) {
+      await fs.writeFile(REPO_CONFIG, originalConfig)
     } else {
-      try {
-        await fs.rm(repoConfigPath, { force: true })
-      } catch {}
+      await fs.rm(REPO_CONFIG, { force: true })
     }
   })
 
   test("publishAssets: 'referenced' only copies assets referenced by published pages", async () => {
-    const result = await runQuartzBuild([
-      "-d",
-      "test/fixtures/asset-filtering",
-      "-o",
-      "test/fixtures/asset-filtering/public",
-      "--verbose",
-    ])
+    const result = await runQuartzBuild()
 
     if (result.code !== 0) {
       console.error("Build failed:", result.stderr)
       console.error("stdout:", result.stdout)
-      console.error("REPO_ROOT:", REPO_ROOT)
-      console.error("TEST_FIXTURE:", TEST_FIXTURE)
-      console.error("OUTPUT_DIR:", OUTPUT_DIR)
     }
     assert.strictEqual(result.code, 0, "Build should succeed")
 
-    // Longer delay for Windows CI file system settling
-    await new Promise((r) => setTimeout(r, 2000))
-
-    const publicFiles = await fs.readdir(OUTPUT_DIR, { recursive: true })
-
-    // Debug output on failure
-    console.log("Public files:", publicFiles)
+    const rawFiles = await fs.readdir(OUTPUT_DIR, { recursive: true })
+    // Normalize to POSIX separators — fs.readdir uses the platform separator
+    // (backslashes on Windows), but the assertions below use forward slashes.
+    const publicFiles = rawFiles.map((f) => f.split(path.sep).join("/"))
 
     // Should exist: published page + its referenced assets
     assert.ok(publicFiles.includes("content/published.html"), "published.html should exist")
