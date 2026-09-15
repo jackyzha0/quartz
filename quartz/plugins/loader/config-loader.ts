@@ -541,7 +541,10 @@ function validateCategory(
       return "shouldPublish" in instance
     case "transformer":
       return (
-        "textTransform" in instance || "markdownPlugins" in instance || "htmlPlugins" in instance
+        "textTransform" in instance ||
+        "markdownPlugins" in instance ||
+        "htmlPlugins" in instance ||
+        "slugify" in instance
       )
   }
 }
@@ -619,7 +622,8 @@ function detectCategoryFromModule(module: unknown): ProcessingCategory | null {
         if (
           "textTransform" in instance ||
           "markdownPlugins" in instance ||
-          "htmlPlugins" in instance
+          "htmlPlugins" in instance ||
+          "slugify" in instance
         )
           return "transformer"
       }
