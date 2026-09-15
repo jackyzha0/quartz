@@ -11,6 +11,11 @@ updates:
         patterns:
           - "@quartz-community/*"
           - "@quartz-themes/*"
+      # Isolated because a compiler major needs a tsconfig migration of its own.
+      typescript:
+        applies-to: "version-updates"
+        patterns:
+          - "typescript"
       production-dependencies:
         applies-to: "version-updates"
         patterns:
@@ -18,6 +23,7 @@ updates:
         exclude-patterns:
           - "@quartz-community/*"
           - "@quartz-themes/*"
+          - "typescript"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
