@@ -5,10 +5,19 @@ updates:
     schedule:
       interval: "weekly"
     groups:
+      # Separated so a risky third-party major cannot block ecosystem updates.
+      quartz-ecosystem:
+        applies-to: "version-updates"
+        patterns:
+          - "@quartz-community/*"
+          - "@quartz-themes/*"
       production-dependencies:
         applies-to: "version-updates"
         patterns:
           - "*"
+        exclude-patterns:
+          - "@quartz-community/*"
+          - "@quartz-themes/*"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:

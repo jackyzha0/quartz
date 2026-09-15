@@ -1,0 +1,82 @@
+name: Dependabot Auto-merge
+
+on:
+  workflow_run:
+    workflows: ["Build and Test"]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    if: >-
+      github.repository == 'jackyzha0/quartz' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.actor.login == 'dependabot[bot]' &&
+      contains(github.event.workflow_run.head_branch, 'quartz-ecosystem')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve pull request
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          number=$(gh pr list --state open --json number,headRefOid \
+            --jq "map(select(.headRefOid == \"${HEAD_SHA}\")) | .[0].number // empty")
+          if [ -z "$number" ]; then
+            echo "No open PR matches ${HEAD_SHA}; nothing to merge."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "number=${number}" >> "$GITHUB_OUTPUT"
+          echo "found=true" >> "$GITHUB_OUTPUT"
+
+      - name: Require every check on the commit to have succeeded
+        if: steps.pr.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          runs=$(gh api "repos/${GH_REPO}/commits/${HEAD_SHA}/check-runs" --paginate \
+            --jq '.check_runs[] | "\(.name)\t\(.status)\t\(.conclusion // "")"')
+          echo "$runs"
+          bad=$(printf '%s\n' "$runs" | awk -F'\t' '
+            $2 != "completed" { print; next }
+            $3 != "success" && $3 != "neutral" && $3 != "skipped" { print }
+          ')
+          if [ -n "$bad" ]; then
+            echo "Refusing to merge - not all checks succeeded:"
+            printf '%s\n' "$bad"
+            exit 1
+          fi
+
+      - name: Confirm update is not a major bump
+        if: steps.pr.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+        run: |
+          set -euo pipefail
+          title=$(gh pr view "$PR_NUMBER" --json title --jq .title)
+          echo "PR title: $title"
+          if printf '%s' "$title" | grep -qiE 'major'; then
+            echo "Refusing to merge a major update; needs human review."
+            exit 1
+          fi
+
+      - name: Merge
+        if: steps.pr.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+        run: gh pr merge "$PR_NUMBER" --squash --delete-branch
