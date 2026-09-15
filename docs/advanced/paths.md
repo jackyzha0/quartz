@@ -49,3 +49,7 @@ Here are the main types of slugs with a rough description of each type of path:
 - `RelativeURL`: must start with `.` or `..` to indicate it's a relative URL. Shouldn't have `/index` as an ending or a file extension but can contain a trailing slash.
 
 To get a clearer picture of how these relate to each other, take a look at the path tests in `quartz/util/path.test.ts`.
+
+### Customizing slug generation
+
+`FilePath -> FullSlug` conversion (`slugifyFilePath`) can be overridden by a transformer plugin's `slugify` field — see [[advanced/making plugins|Making Plugins]]. This is the hook to reach for if the default (ASCII punctuation cleanup, but accented characters and things like backticks or apostrophes are left as-is) doesn't fit your content, e.g. to transliterate accents or enforce a different URL scheme project-wide.
