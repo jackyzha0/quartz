@@ -7,7 +7,7 @@ import { Root as HTMLRoot } from "hast"
 import { MarkdownContent, ProcessedContent } from "../plugins/vfile"
 import { PerfTimer } from "../util/perf"
 import { read } from "to-vfile"
-import { FilePath, QUARTZ, slugifyFilePath } from "../util/path"
+import { FilePath, QUARTZ } from "../util/path"
 import path from "path"
 import workerpool, { Promise as WorkerPromise } from "workerpool"
 import { QuartzLogger } from "../util/log"
@@ -102,7 +102,7 @@ export function createFileParser(ctx: BuildCtx, fps: FilePath[]) {
         // base data properties that plugins may use
         file.data.filePath = file.path as FilePath
         file.data.relativePath = path.posix.relative(argv.directory, file.path) as FilePath
-        file.data.slug = slugifyFilePath(file.data.relativePath)
+        file.data.slug = ctx.slugify(file.data.relativePath)
 
         const ast = processor.parse(file)
         const newAst = await processor.run(ast, file)

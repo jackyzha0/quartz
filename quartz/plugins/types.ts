@@ -30,6 +30,13 @@ export type QuartzTransformerPluginInstance = {
   markdownPlugins?: (ctx: BuildCtx) => PluggableList
   htmlPlugins?: (ctx: BuildCtx) => PluggableList
   externalResources?: ExternalResourcesFn
+  /**
+   * Overrides how file paths are turned into slugs (and thus URLs), in place
+   * of the built-in `slugifyFilePath` (quartz/util/path.ts). At most one
+   * enabled transformer plugin may define this — Quartz throws a
+   * configuration error at build time if more than one does.
+   */
+  slugify?: (fp: FilePath, excludeExt?: boolean) => FullSlug
 }
 
 export type QuartzFilterPlugin<Options extends OptionType = undefined> = (

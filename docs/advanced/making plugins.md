@@ -93,6 +93,7 @@ export type QuartzTransformerPluginInstance = {
   markdownPlugins?: (ctx: BuildCtx) => PluggableList
   htmlPlugins?: (ctx: BuildCtx) => PluggableList
   externalResources?: (ctx: BuildCtx) => Partial<StaticResources>
+  slugify?: (fp: FilePath, excludeExt?: boolean) => FullSlug
 }
 ```
 
@@ -102,6 +103,7 @@ All transformer plugins must define at least a `name` field to register the plug
 - `markdownPlugins` defines a list of [remark plugins](https://github.com/remarkjs/remark/blob/main/doc/plugins.md). `remark` is a tool that transforms Markdown to Markdown in a structured way.
 - `htmlPlugins` defines a list of [rehype plugins](https://github.com/rehypejs/rehype/blob/main/doc/plugins.md). Similar to how `remark` works, `rehype` is a tool that transforms HTML to HTML in a structured way.
 - `externalResources` defines any external resources the plugin may need to load on the client-side for it to work properly.
+- `slugify` replaces the built-in `slugifyFilePath` (see [[advanced/paths|Paths in Quartz]]) for turning a file path into a slug/URL — useful for e.g. transliterating accented characters instead of leaving them to be percent-encoded, or enforcing a different URL scheme. At most one enabled transformer plugin may define `slugify`; Quartz throws a configuration error at build time if more than one does.
 
 Normally for both `remark` and `rehype`, you can find existing plugins that you can use. If you'd like to create your own `remark` or `rehype` plugin, checkout the [guide to creating a plugin](https://unifiedjs.com/learn/guide/create-a-plugin/) using `unified` (the underlying AST parser and transformer library).
 
