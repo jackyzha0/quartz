@@ -28,6 +28,9 @@ jobs:
         with:
           node-version: 24
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
       - name: Cache dependencies
         uses: actions/cache@v5
         with:
@@ -45,6 +48,11 @@ jobs:
             ${{ runner.os }}-plugins-
 
       - run: npm install
+
+      # --no-install because a bare `bunx quartz` falls back to an unrelated
+      # package on npm instead of failing
+      - name: Ensure bunx resolves the local CLI
+        run: bunx --no-install quartz --help
 
       - name: Install Quartz plugins
         run: npx quartz plugin install
