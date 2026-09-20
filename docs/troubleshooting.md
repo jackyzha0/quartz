@@ -155,7 +155,7 @@ If you want to start over, run `npx quartz restore` to recover your content from
 
 - Make sure you're using `--serve` mode: `npx quartz build --serve`
 - Check that port 3001 (WebSocket) is not blocked — this is the default `--wsPort` used for hot reload notifications
-- If developing remotely, use `--remoteDevHost` to set the correct WebSocket URL
+- If developing remotely, use `--remoteDevHost` to set the WebSocket hostname (the protocol follows the page: `wss` on HTTPS, `ws` otherwise)
 
 ### Port already in use
 
