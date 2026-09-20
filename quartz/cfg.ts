@@ -28,6 +28,10 @@ export type Analytics =
   | {
       provider: "posthog"
       apiKey: string
+      apiHost?: string
+      uiHost?: string
+      personProfiles?: "always" | "never" | "identified_only"
+      /** @deprecated Use `apiHost` instead. */
       host?: string
     }
   | {
