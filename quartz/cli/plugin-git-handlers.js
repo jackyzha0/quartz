@@ -175,6 +175,16 @@ function linkPeerPlugins(pluginDir) {
 }
 
 /**
+ * Whether a plugin's previously-installed lockfile record no longer matches
+ * its current config source (e.g. a pinned ref was bumped), meaning the
+ * on-disk plugin directory is stale and must be reinstalled rather than
+ * reused as-is.
+ */
+export function pluginSourceChanged(priorEntry, currentSource) {
+  return priorEntry !== undefined && priorEntry.source !== currentSource
+}
+
+/**
  * Search installed plugins for one whose package.json "name" matches the given
  * npm package name (e.g. "@quartz-community/bases-page").
  */
@@ -506,7 +516,13 @@ export async function handlePluginInstallUnified({
       .filter((entry) => {
         const name = extractPluginName(entry.source)
         const pluginDir = path.join(PLUGINS_DIR, name)
-        if (lockfile.plugins[name] && fs.existsSync(pluginDir)) return false
+        const priorEntry = lockfile.plugins[name]
+        if (
+          !pluginSourceChanged(priorEntry, entry.source) &&
+          priorEntry &&
+          fs.existsSync(pluginDir)
+        )
+          return false
         const src = getSourceUrl(entry.source)
         return (
           src.startsWith("github:") ||
@@ -575,6 +591,17 @@ export async function handlePluginInstallUnified({
       try {
         const { name, url, ref, local, subdir } = parseGitSource(entry.source)
         const pluginDir = path.join(PLUGINS_DIR, name)
+        const priorEntry = lockfile.plugins[name]
+
+        if (fs.existsSync(pluginDir) && pluginSourceChanged(priorEntry, entry.source)) {
+          console.log(
+            styleText(
+              "yellow",
+              `⚠ ${name} source changed (${formatSource(priorEntry.source)} → ${formatSource(entry.source)}), reinstalling`,
+            ),
+          )
+          fs.rmSync(pluginDir, { recursive: true, force: true })
+        }
 
         if (fs.existsSync(pluginDir)) {
           if (local) {
