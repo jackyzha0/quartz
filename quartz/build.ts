@@ -22,6 +22,7 @@ import { getStaticResourcesFromPlugins } from "./plugins"
 import { randomIdNonSecure } from "./util/random"
 import { ChangeEvent } from "./plugins/types"
 import { minimatch } from "minimatch"
+import { diffContentFiles, pollingEnabled } from "./util/contentWatcher"
 
 function reportSlugCollisions(content: ProcessedContent[]): void {
   const collisions = detectSlugCollisions(content)
@@ -157,10 +158,16 @@ async function startWatching(
     lastBuildMs: 0,
   }
 
-  const watcher = chokidar.watch(".", {
+  const contentRoot = path.resolve(argv.directory)
+  const usePerFilePolling = pollingEnabled(process.env.CHOKIDAR_USEPOLLING)
+  const knownFiles = new Set(allFiles.map((fp) => toPosixPath(fp.toString()) as FilePath))
+  const watcherTargets = usePerFilePolling
+    ? Array.from(knownFiles, (fp) => path.resolve(contentRoot, fp))
+    : ["."]
+  const watcher = chokidar.watch(watcherTargets, {
     awaitWriteFinish: { stabilityThreshold: 250 },
     persistent: true,
-    cwd: argv.directory,
+    ...(usePerFilePolling ? {} : { cwd: argv.directory }),
     ignoreInitial: true,
   })
 
@@ -175,27 +182,79 @@ async function startWatching(
       })
     }, 100)
   }
+
+  const recordChange = (fp: string, type: ChangeEvent["type"]) => {
+    const relativePath = toPosixPath(
+      path.isAbsolute(fp) ? path.relative(contentRoot, fp) : fp,
+    ) as FilePath
+    if (relativePath.startsWith("../") || buildData.ignored(relativePath)) return
+
+    if (type === "add") knownFiles.add(relativePath)
+    if (type === "delete") knownFiles.delete(relativePath)
+    changes.push({ path: relativePath, type })
+    scheduleRebuild()
+  }
+
   watcher
     .on("add", (fp) => {
-      fp = toPosixPath(fp)
-      if (buildData.ignored(fp)) return
-      changes.push({ path: fp as FilePath, type: "add" })
-      scheduleRebuild()
+      recordChange(fp, "add")
     })
     .on("change", (fp) => {
-      fp = toPosixPath(fp)
-      if (buildData.ignored(fp)) return
-      changes.push({ path: fp as FilePath, type: "change" })
-      scheduleRebuild()
+      recordChange(fp, "change")
     })
     .on("unlink", (fp) => {
-      fp = toPosixPath(fp)
-      if (buildData.ignored(fp)) return
-      changes.push({ path: fp as FilePath, type: "delete" })
-      scheduleRebuild()
+      recordChange(fp, "delete")
     })
 
+  let discoveryTimer: ReturnType<typeof setInterval> | undefined
+  if (usePerFilePolling) {
+    if (watcherTargets.length > 0) {
+      await new Promise<void>((resolve, reject) => {
+        watcher.once("ready", resolve)
+        watcher.once("error", reject)
+      })
+    }
+
+    const configuredInterval = Number.parseInt(process.env.CHOKIDAR_INTERVAL ?? "", 10)
+    const discoveryInterval = Math.max(
+      Number.isFinite(configuredInterval) && configuredInterval > 0 ? configuredInterval : 100,
+      1000,
+    )
+    let scanInProgress = false
+    const reconcileFileList = async () => {
+      if (scanInProgress) return
+      scanInProgress = true
+      try {
+        const scannedFiles = await glob("**/*.*", argv.directory, cfg.configuration.ignorePatterns)
+        const currentFiles = new Set(scannedFiles)
+        const { added, deleted } = diffContentFiles(knownFiles, currentFiles)
+
+        for (const fp of added) {
+          watcher.add(path.resolve(contentRoot, fp))
+          recordChange(fp, "add")
+        }
+
+        for (const fp of deleted) {
+          await watcher.unwatch(path.resolve(contentRoot, fp))
+          recordChange(fp, "delete")
+        }
+      } finally {
+        scanInProgress = false
+      }
+    }
+
+    discoveryTimer = setInterval(() => {
+      reconcileFileList().catch((err) => {
+        console.error(styleText("red", "Content scan failed:"), err.message ?? err)
+      })
+    }, discoveryInterval)
+    console.log(
+      `Watching ${knownFiles.size} content files in \`${contentRoot}\` using polling (ready)`,
+    )
+  }
+
   return async () => {
+    if (discoveryTimer) clearInterval(discoveryTimer)
     await watcher.close()
   }
 }
