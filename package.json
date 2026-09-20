@@ -121,13 +121,13 @@
     "@quartz-community/types": "^1.0.0",
     "@quartz-community/utils": "^1.0.1",
     "@types/hast": "^3.0.4",
-    "@types/node": "^26.5.1",
+    "@types/node": "^26.6.1",
     "@types/pretty-time": "^1.1.5",
     "@types/source-map-support": "^0.5.10",
     "@types/ws": "^8.18.1",
     "@types/yargs": "^17.0.35",
     "esbuild": "^0.28.2",
-    "prettier": "^3.8.1",
+    "prettier": "^3.9.7",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
