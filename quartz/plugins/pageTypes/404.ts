@@ -17,6 +17,7 @@ export const NotFoundPageType: QuartzPageTypePlugin = () => ({
       text: notFound,
       description: notFound,
       frontmatter: { title: notFound, tags: [] },
+      unlisted: true,
     })
 
     return [
