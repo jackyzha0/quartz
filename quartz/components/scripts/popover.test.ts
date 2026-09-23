@@ -62,6 +62,14 @@ function makePopoverElement(inner: FakePopoverInner): FakePopoverElement {
 
 type SetPosition = (el: FakePopoverElement) => Promise<void>
 
+function clearStalePopoversOnPageShow(
+  { persisted }: { persisted: boolean },
+  root: { querySelectorAll: (selector: string) => Array<{ remove: () => void }> },
+) {
+  if (!persisted) return
+  root.querySelectorAll(".popover").forEach((popover) => popover.remove())
+}
+
 function fixedShowPopover(
   popoverElement: FakePopoverElement,
   hash: string,
@@ -181,5 +189,35 @@ describe("buggy showPopover (lexical-capture pattern) regression guard", () => {
     }
 
     assert.doesNotThrow(() => simulateBuggyMouseEnter(""))
+  })
+})
+
+describe("bfcache popover cleanup", () => {
+  test("removes stale popovers when a page is restored from bfcache", () => {
+    let removed = 0
+    const root = {
+      querySelectorAll(selector: string) {
+        assert.strictEqual(selector, ".popover")
+        return [{ remove: () => removed++ }, { remove: () => removed++ }]
+      },
+    }
+
+    clearStalePopoversOnPageShow({ persisted: true }, root)
+
+    assert.strictEqual(removed, 2)
+  })
+
+  test("leaves popovers alone for ordinary page loads", () => {
+    let queried = false
+    const root = {
+      querySelectorAll() {
+        queried = true
+        return []
+      },
+    }
+
+    clearStalePopoversOnPageShow({ persisted: false }, root)
+
+    assert.strictEqual(queried, false)
   })
 })
