@@ -918,14 +918,16 @@ export function validatePluginExternals(
 }
 
 export async function regeneratePluginIndex(
-  options: { verbose?: boolean; npmPackages?: string[] } = {},
+  options: { verbose?: boolean; npmPackages?: string[]; pluginCacheDir?: string } = {},
 ): Promise<void> {
-  if (!fs.existsSync(PLUGINS_CACHE_DIR)) {
-    fs.mkdirSync(PLUGINS_CACHE_DIR, { recursive: true })
+  const pluginsCacheDir = options.pluginCacheDir ?? PLUGINS_CACHE_DIR
+
+  if (!fs.existsSync(pluginsCacheDir)) {
+    fs.mkdirSync(pluginsCacheDir, { recursive: true })
   }
 
-  const pluginDirs = fs.readdirSync(PLUGINS_CACHE_DIR).filter((name) => {
-    const pluginPath = path.join(PLUGINS_CACHE_DIR, name)
+  const pluginDirs = fs.readdirSync(pluginsCacheDir).filter((name) => {
+    const pluginPath = path.join(pluginsCacheDir, name)
     return fs.statSync(pluginPath).isDirectory()
   })
 
@@ -939,7 +941,7 @@ export async function regeneratePluginIndex(
   const nameCount = new Map<string, number>()
 
   for (const pluginName of pluginDirs) {
-    const pluginDir = path.join(PLUGINS_CACHE_DIR, pluginName)
+    const pluginDir = path.join(pluginsCacheDir, pluginName)
     const distIndex = path.join(pluginDir, "dist", "index.d.ts")
 
     if (!fs.existsSync(distIndex)) {
@@ -1073,10 +1075,15 @@ export async function regeneratePluginIndex(
   for (const [pluginName, { overridable }] of pluginExports) {
     if (overridable.length === 0) continue
     const escapedName = pluginName.replace(/"/g, '\\"')
+    const importSpecifier = importPath.get(pluginName)
+    const registryName = importSpecifier?.startsWith("./")
+      ? pluginName
+      : (importSpecifier ?? pluginName)
+    const escapedRegistryName = registryName.replace(/"/g, '\\"')
     lines.push(`  "${escapedName}": {`)
     for (const n of overridable) {
       lines.push(
-        `    ${n}: (...args: unknown[]) => { componentRegistry.setOptionOverrides("${escapedName}", args[0] as Record<string, unknown>); },`,
+        `    ${n}: (...args: unknown[]) => { componentRegistry.setOptionOverrides("${escapedRegistryName}", args[0] as Record<string, unknown>); },`,
       )
     }
     lines.push(`  },`)
@@ -1111,7 +1118,7 @@ export async function regeneratePluginIndex(
   lines.push("")
 
   const indexContent = lines.join("\n")
-  const indexPath = path.join(PLUGINS_CACHE_DIR, "index.ts")
+  const indexPath = path.join(pluginsCacheDir, "index.ts")
 
   fs.writeFileSync(indexPath, indexContent)
 
