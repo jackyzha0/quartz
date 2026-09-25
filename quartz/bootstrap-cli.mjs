@@ -1,8 +1,11 @@
 #!/usr/bin/env -S node --no-deprecation
+import { readFileSync } from "node:fs"
+const pkg = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"))
+const minMajor = Number(pkg.engines.node.match(/\d+/)[0])
 const [major] = process.versions.node.split(".").map(Number)
-if (major < 22) {
+if (major < minMajor) {
   console.error(
-    `\nQuartz requires Node.js >= 22, but you are running Node.js ${process.version}.\n` +
+    `\nQuartz requires Node.js >= ${minMajor}, but you are running Node.js ${process.version}.\n` +
       `Please upgrade: https://nodejs.org/\n`,
   )
   process.exit(1)

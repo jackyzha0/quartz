@@ -39,7 +39,7 @@ cd quartz
 ## 2. Install Dependencies
 
 > [!important]
-> Quartz requires **Node.js 22** or later. Check your version with `node -v` and upgrade at [nodejs.org](https://nodejs.org/) if needed.
+> Quartz requires **Node.js 26** or later. Check your version with `node -v` and upgrade at [nodejs.org](https://nodejs.org/) if needed.
 
 ```bash
 npm i

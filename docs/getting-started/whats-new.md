@@ -140,7 +140,7 @@ The CLI is simpler and more helpful:
 
 Other improvements:
 
-- **Node.js version check** — clear error message if running on Node < 22
+- **Node.js version check** — clear error message if running on Node < 26
 - **Port conflict handling** — helpful message when port is already in use
 - **Plugin lockfile** — `quartz.lock.json` pins plugin versions for reproducible builds
 - **Concurrency control** — `--concurrency` flag for memory-constrained environments

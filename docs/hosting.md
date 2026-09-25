@@ -68,7 +68,7 @@ jobs:
           fetch-depth: 0 # Fetch all history for git info
       - uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version: 26
       - name: Cache dependencies
         uses: actions/cache@v5
         with:
