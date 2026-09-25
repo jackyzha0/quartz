@@ -203,3 +203,7 @@ export function getThemePresetFromEnvironment(env: ThemePresetEnvironment): Them
   const presetName = env["QUARTZ_THEME"]
   return presetName ? getThemePreset(presetName) : undefined
 }
+
+export function resolveBuildTheme(env: ThemePresetEnvironment): Theme {
+  return getThemePresetFromEnvironment(env) ?? quartzThemePresets.oldwinter
+}
