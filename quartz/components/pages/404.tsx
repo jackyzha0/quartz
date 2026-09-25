@@ -1,9 +1,13 @@
-import { i18n } from "../../i18n"
+import { defaultTranslation, i18n, TRANSLATIONS } from "../../i18n"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "../types"
 
 const NotFound: QuartzComponent = ({ cfg, ctx }: QuartzComponentProps) => {
   const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`)
   const baseDir = ctx.argv.serve ? "/" : url.pathname
+  const randomWanderTitle = (
+    i18n(cfg.locale).components.randomWander ??
+    TRANSLATIONS[defaultTranslation].components.randomWander
+  )?.title
 
   return (
     <article class="popover-hint">
@@ -12,7 +16,7 @@ const NotFound: QuartzComponent = ({ cfg, ctx }: QuartzComponentProps) => {
       <a href={baseDir}>{i18n(cfg.locale).pages.error.home}</a>
       <a href={baseDir} data-random-note hidden>
         <span aria-hidden="true">{" · "}</span>
-        {i18n(cfg.locale).components.explorer.title}
+        {randomWanderTitle}
       </a>
       <script
         dangerouslySetInnerHTML={{
