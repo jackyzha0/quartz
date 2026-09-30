@@ -1,4 +1,9 @@
-import { ChangeEvent, QuartzEmitterPlugin, QuartzPageTypePluginInstance, TreeTransform } from "../types"
+import {
+  ChangeEvent,
+  QuartzEmitterPlugin,
+  QuartzPageTypePluginInstance,
+  TreeTransform,
+} from "../types"
 import { QuartzComponent, QuartzComponentProps } from "../../components/types"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { FullPageLayout } from "../../cfg"
@@ -191,13 +196,12 @@ function populateVirtualPageHtmlAst(
 }
 
 async function* _emit(
-  ctx: BuildCtx, 
-  content: ProcessedContent[], 
-  resources: StaticResources, 
-  userOpts?: Partial <DispatcherOptions> | undefined,
+  ctx: BuildCtx,
+  content: ProcessedContent[],
+  resources: StaticResources,
+  userOpts?: Partial<DispatcherOptions>,
   changeEvents?: ChangeEvent[],
-  emitPageImpl: typeof emitPage = emitPage
-): Promise<FilePath[]> | AsyncGenerator<FilePath> | null {
+): AsyncGenerator<FilePath> {
   const defaults = userOpts?.defaults ?? {}
   const byPageType = userOpts?.byPageType ?? {}
 
@@ -206,12 +210,10 @@ async function* _emit(
   const allFiles = content.map((c) => c[1].data)
 
   // Collect tree transforms from all page type plugins
-  const treeTransforms: TreeTransform[] = pageTypes.flatMap(
-    (pt) => pt.treeTransforms?.(ctx) ?? [],
-  )
+  const treeTransforms: TreeTransform[] = pageTypes.flatMap((pt) => pt.treeTransforms?.(ctx) ?? [])
 
   const changedSlugs = new Set<string>()
-  if (!changeEvents){
+  if (!changeEvents) {
     // Ensure trie is available for components that need folder hierarchy (e.g. FolderContent)
     ctx.trie ??= trieFromAllFiles(allFiles)
   } else {
@@ -225,9 +227,8 @@ async function* _emit(
     }
   }
 
-
   // Phase 1: Generate all virtual pages first so their data is available in allFiles
-  // if full: for transclude resolution in renderPage (e.g. ![[file.canvas]], ![[file.base]])
+  // for transclude resolution in renderPage (e.g. ![[file.canvas]], ![[file.base]])
   const virtualEntries = generateVirtualPages(pageTypes, content, ctx, defaults, byPageType)
 
   // Merge virtual page data into allFiles before populating htmlAst so that
@@ -240,12 +241,11 @@ async function* _emit(
   // Render Body components to populate htmlAst for transclusion
   populateVirtualPageHtmlAst(virtualEntries, ctx, allFilesWithVirtual, resources)
 
-  // Phase 2: Emit regular pages (with virtual page data available for transclusion)
-  // or with changed events: Emit changed regular pages
+  // Phase 2: Emit regular pages (with virtual page data available for transclusion);
+  // a partial emit only emits the changed ones
   for (const [tree, file] of content) {
     const slug = file.data.slug!
 
-    
     if (changeEvents && !changedSlugs.has(slug)) continue
 
     const fileData = file.data
@@ -261,7 +261,7 @@ async function* _emit(
           layout,
           resources,
           treeTransforms,
-        );
+        )
         break
       }
     }
@@ -278,7 +278,7 @@ async function* _emit(
       ve.layout,
       resources,
       treeTransforms,
-    );
+    )
   }
 }
 
@@ -293,10 +293,10 @@ export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>>
       return collectComponents(pageTypes, defaults, byPageType)
     },
     async *emit(ctx, content, resources) {
-      return _emit(ctx, content, resources, userOpts);
+      yield* _emit(ctx, content, resources, userOpts)
     },
     async *partialEmit(ctx, content, resources, changeEvents) {
-      return _emit(ctx, content, resources, userOpts, changeEvents);
+      yield* _emit(ctx, content, resources, userOpts, changeEvents)
     },
   }
 }

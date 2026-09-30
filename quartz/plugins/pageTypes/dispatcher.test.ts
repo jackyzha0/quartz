@@ -1,12 +1,18 @@
 import test, { describe, mock } from "node:test"
 import assert from "node:assert"
 import { FolderPage } from "@quartz-community/folder-page"
-import { collectComponents, generateVirtualPages, resolveLayout } from "./dispatcher"
+import {
+  PageTypeDispatcher,
+  collectComponents,
+  generateVirtualPages,
+  resolveLayout,
+} from "./dispatcher"
 import { PageGenerator, QuartzPageTypePluginInstance } from "../types"
 import { QuartzComponent } from "../../components/types"
 import { ProcessedContent, defaultProcessedContent } from "../vfile"
 import { BuildCtx } from "../../util/ctx"
-import { FullSlug } from "../../util/path"
+import { FilePath, FullSlug } from "../../util/path"
+import { StaticResources } from "../../util/resources"
 
 const StubA: QuartzComponent = (() => null) as unknown as QuartzComponent
 const StubB: QuartzComponent = (() => null) as unknown as QuartzComponent
@@ -173,5 +179,32 @@ describe("generateVirtualPages", () => {
     const folderPage = FolderPage() as unknown as QuartzPageTypePluginInstance
     const entries = generateVirtualPages([base, folderPage], [], ctx(), { head: StubHead }, {})
     assert.ok(entries.some((entry) => entry.vpSlug === "trips/index"))
+  })
+})
+
+describe("PageTypeDispatcher", () => {
+  const ctx = (pageType: QuartzPageTypePluginInstance) =>
+    ({
+      cfg: { configuration: {}, plugins: { pageTypes: [pageType] } },
+      virtualPages: [],
+    }) as unknown as BuildCtx
+  const resources: StaticResources = { css: [], js: [], additionalHead: [] }
+  const drain = async (emitted: Promise<FilePath[]> | AsyncGenerator<FilePath> | null) => {
+    const files: FilePath[] = []
+    for await (const file of emitted as AsyncGenerator<FilePath>) files.push(file)
+    return files
+  }
+
+  test("emit runs the page types", async () => {
+    const generate = mock.fn<PageGenerator>(() => [])
+    await drain(PageTypeDispatcher().emit(ctx(makePageType({ generate })), [], resources))
+    assert.strictEqual(generate.mock.callCount(), 1)
+  })
+
+  test("partialEmit runs the page types", async () => {
+    const generate = mock.fn<PageGenerator>(() => [])
+    const dispatcher = PageTypeDispatcher()
+    await drain(dispatcher.partialEmit!(ctx(makePageType({ generate })), [], resources, []))
+    assert.strictEqual(generate.mock.callCount(), 1)
   })
 })
