@@ -229,7 +229,7 @@ async function* _emit(
 
   // Phase 1: Generate all virtual pages first so their data is available in allFiles
   // for transclude resolution in renderPage (e.g. ![[file.canvas]], ![[file.base]])
-  const virtualEntries = generateVirtualPages(pageTypes, content, ctx, defaults, byPageType)
+  const virtualEntries = await generateVirtualPages(pageTypes, content, ctx, defaults, byPageType)
 
   // Merge virtual page data into allFiles before populating htmlAst so that
   // Body components rendered during populateVirtualPageHtmlAst can resolve

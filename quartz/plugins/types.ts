@@ -93,7 +93,7 @@ export type PageGenerator = (args: {
   cfg: GlobalConfiguration
   ctx: BuildCtx
   [key: string]: unknown
-}) => VirtualPage[]
+}) => VirtualPage[] | Promise<VirtualPage[]>
 
 /** A function that mutates a HAST tree at render time, when allFiles is available. */
 export type TreeTransform = (

@@ -158,10 +158,10 @@ describe("generateVirtualPages", () => {
   const note = (slug: string) => defaultProcessedContent({ slug: slug as FullSlug })
   const slugs = (content: ProcessedContent[]) => content.map(([, vfile]) => vfile.data.slug)
 
-  test("a page type sees the virtual pages generated before it", () => {
+  test("a page type sees the virtual pages generated before it", async () => {
     const first = makePageType({ generate: () => [{ slug: "trips/map", title: "Map", data: {} }] })
     const generate = mock.fn<PageGenerator>(() => [])
-    generateVirtualPages(
+    await generateVirtualPages(
       [first, makePageType({ generate })],
       [note("trips/plan")],
       ctx(),
