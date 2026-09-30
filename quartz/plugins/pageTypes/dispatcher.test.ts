@@ -1,4 +1,4 @@
-import test, { describe } from "node:test"
+import test, { describe, mock } from "node:test"
 import assert from "node:assert"
 import fs from "fs"
 import os from "os"
@@ -10,10 +10,12 @@ import {
   removeStalePageOutput,
   resolveLayout,
 } from "./dispatcher"
-import { QuartzPageTypePluginInstance } from "../types"
-import { QuartzComponent } from "../../components/types"
+import { FolderPage } from "@quartz-community/folder-page"
+import { PageGenerator, QuartzPageTypePluginInstance } from "../types"
+import { QuartzComponent } from "../../components"
 import { FilePath, FullSlug } from "../../util/path"
 import { BuildCtx } from "../../util/ctx"
+import { ProcessedContent, defaultProcessedContent } from "../vfile"
 
 const StubA: QuartzComponent = (() => null) as unknown as QuartzComponent
 const StubB: QuartzComponent = (() => null) as unknown as QuartzComponent
@@ -217,6 +219,9 @@ describe("incremental page deletion", () => {
 describe("generateVirtualPages", () => {
   const makeCtx = () => ({ cfg: { configuration: {} }, virtualPages: [] }) as unknown as BuildCtx
   const page = (slug: string) => ({ slug: slug as FullSlug, title: slug, data: {} })
+  const note = (slug: string) => defaultProcessedContent({ slug: slug as FullSlug })
+  const slugs = (content: ProcessedContent[]) => content.map(([, vfile]) => vfile.data.slug)
+
 
   test("accepts sync and async generate, in page type order (#2575)", async () => {
     const ctx = makeCtx()
@@ -275,5 +280,28 @@ describe("generateVirtualPages", () => {
       ),
       /boom/,
     )
+  })
+
+  test("a page type sees the virtual pages generated before it", async () => {
+    const first = makePageType({ generate: () => [{ slug: "trips/map", title: "Map", data: {} }] })
+    const generate = mock.fn<PageGenerator>(() => [])
+    await generateVirtualPages(
+      [first, makePageType({ generate })],
+      [note("trips/plan")],
+      makeCtx(),
+      { head: StubHead },
+      {},
+    )
+    assert.deepStrictEqual(slugs(generate.mock.calls[0].arguments[0].content), [
+      "trips/plan",
+      "trips/map",
+    ])
+  })
+
+  test("a folder holding only virtual pages gets a folder page", async () => {
+    const base = makePageType({ generate: () => [{ slug: "trips/map", title: "Map", data: {} }] })
+    const folderPage = FolderPage() as unknown as QuartzPageTypePluginInstance
+    const entries = await generateVirtualPages([base, folderPage], [], makeCtx(), { head: StubHead }, {})
+    assert.ok(entries.some((entry) => entry.vpSlug === "trips/index"))
   })
 })

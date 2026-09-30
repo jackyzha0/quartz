@@ -1,5 +1,10 @@
-import { QuartzEmitterPlugin, QuartzPageTypePluginInstance, TreeTransform } from "../types"
-import { QuartzComponent, QuartzComponentProps } from "../../components/types"
+import {
+  ChangeEvent,
+  QuartzEmitterPlugin,
+  QuartzPageTypePluginInstance,
+  TreeTransform
+} from "../types"
+import { QuartzComponent, QuartzComponentProps } from "../../components"
 import { pageResources, renderPage } from "../../components/renderPage"
 import { FullPageLayout } from "../../cfg"
 import { FilePath, FullSlug, joinSegments, pathToRoot, slugifyFilePath } from "../../util/path"
@@ -113,6 +118,13 @@ async function emitPage(
   })
 }
 
+export type VirtualEntry = {
+  tree: ProcessedContent[0]
+  vfile: ProcessedContent[1]
+  layout: FullPageLayout
+  vpSlug: FullSlug
+}
+
 /** @internal Exported for testing only. */
 export function pageOutputPath(
   outputDir: string,
@@ -138,13 +150,6 @@ export async function removeStalePageOutput(
   return outputPath
 }
 
-export type VirtualEntry = {
-  tree: ProcessedContent[0]
-  vfile: ProcessedContent[1]
-  layout: FullPageLayout
-  vpSlug: FullSlug
-}
-
 /**
  * Run every page type's `generate` and turn the virtual pages it returns into processed
  * content. `generate` may be async (Quartz 5.1+), e.g. to run the transformer chain or
@@ -162,7 +167,8 @@ export async function generateVirtualPages(
   const virtualEntries: VirtualEntry[] = []
   for (const pt of pageTypes) {
     if (!pt.generate) continue
-    const virtualPages = await pt.generate({ content, cfg, ctx })
+    const generated = virtualEntries.map((ve): ProcessedContent => [ve.tree, ve.vfile])
+    const virtualPages = await pt.generate({ content: [...content, ...generated], cfg, ctx })
     const layout = resolveLayout(pt, defaults, byPageType)
     for (const vp of virtualPages) {
       const vpSlug = vp.slug as FullSlug
@@ -217,6 +223,107 @@ function populateVirtualPageHtmlAst(
   }
 }
 
+async function* _emit(
+  ctx: BuildCtx, 
+  content: ProcessedContent[], 
+  resources: StaticResources, 
+  userOpts?: Partial <DispatcherOptions> | undefined,
+  changeEvents?: ChangeEvent[],
+  emitPageImpl: typeof emitPage = emitPage
+): Promise<FilePath[]> | AsyncGenerator<FilePath> | null {
+  const defaults = userOpts?.defaults ?? {}
+  const byPageType = userOpts?.byPageType ?? {}
+
+  const pageTypes = [...getPageTypes(ctx)].sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0))
+  const cfg = ctx.cfg.configuration
+  const allFiles = content.map((c) => c[1].data)
+
+  // Collect tree transforms from all page type plugins
+  const treeTransforms: TreeTransform[] = pageTypes.flatMap(
+    (pt) => pt.treeTransforms?.(ctx) ?? [],
+  )
+
+  let currentSlugs = new Set<FullSlug>();
+  const changedSlugs = new Set<string>()
+  if (!changeEvents){
+    // Ensure trie is available for components that need folder hierarchy (e.g. FolderContent)
+    ctx.trie ??= trieFromAllFiles(allFiles)
+  } else {
+    currentSlugs = new Set(
+      allFiles.flatMap((file) => (file.slug ? [file.slug] : [])),
+    ) as Set<FullSlug>
+    // Rebuild trie on partial emit to reflect file changes
+    ctx.trie = trieFromAllFiles(allFiles)
+    for (const changeEvent of changeEvents) {
+      if (path.extname(changeEvent.path).toLowerCase() !== ".md") continue
+
+      const slug = changeEvent.file?.data.slug ?? slugifyFilePath(changeEvent.path)
+      if (currentSlugs.has(slug)) {
+        // A remaining source may have taken ownership after a slug collision.
+        changedSlugs.add(slug)
+      } else {
+        await removeStalePageOutput(ctx.argv.output, changeEvent.path, currentSlugs, slug)
+      }
+    }
+  }
+
+
+  // Phase 1: Generate all virtual pages first so their data is available in allFiles
+  // if full: for transclude resolution in renderPage (e.g. ![[file.canvas]], ![[file.base]])
+  const virtualEntries = await generateVirtualPages(pageTypes, content, ctx, defaults, byPageType)
+
+  // Merge virtual page data into allFiles before populating htmlAst so that
+  // Body components rendered during populateVirtualPageHtmlAst can resolve
+  // cross-virtual-page embeds (e.g. a .base file embedded in a .canvas file).
+  // The vfile.data objects are shared by reference, so htmlAst set on earlier
+  // entries becomes visible to later entries in the same pass.
+  const allFilesWithVirtual = [...allFiles, ...virtualEntries.map((ve) => ve.vfile.data)]
+
+  // Render Body components to populate htmlAst for transclusion
+  populateVirtualPageHtmlAst(virtualEntries, ctx, allFilesWithVirtual, resources)
+
+  // Phase 2: Emit regular pages (with virtual page data available for transclusion)
+  // or with changed events: Emit changed regular pages
+  for (const [tree, file] of content) {
+    const slug = file.data.slug!
+
+    
+    if (changeEvents && !changedSlugs.has(slug)) continue
+
+    const fileData = file.data
+    for (const pt of pageTypes) {
+      if (pt.match({ slug, fileData, cfg })) {
+        const layout = resolveLayout(pt, defaults, byPageType)
+        yield emitPage(
+          ctx,
+          slug,
+          tree,
+          fileData,
+          allFilesWithVirtual,
+          layout,
+          resources,
+          treeTransforms,
+        );
+        break
+      }
+    }
+  }
+
+  // Phase 3: Emit virtual pages
+  for (const ve of virtualEntries) {
+    yield emitPage(
+      ctx,
+      ve.vpSlug,
+      ve.tree,
+      ve.vfile.data,
+      allFilesWithVirtual,
+      ve.layout,
+      resources,
+      treeTransforms,
+    );
+  }
+}
+
 export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>> = (userOpts) => {
   const defaults = userOpts?.defaults ?? {}
   const byPageType = userOpts?.byPageType ?? {}
@@ -228,154 +335,10 @@ export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>>
       return collectComponents(pageTypes, defaults, byPageType)
     },
     async *emit(ctx, content, resources) {
-      const pageTypes = [...getPageTypes(ctx)].sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0))
-      const cfg = ctx.cfg.configuration
-      const allFiles = content.map((c) => c[1].data)
-
-      // Collect tree transforms from all page type plugins
-      const treeTransforms: TreeTransform[] = pageTypes.flatMap(
-        (pt) => pt.treeTransforms?.(ctx) ?? [],
-      )
-
-      // Ensure trie is available for components that need folder hierarchy (e.g. FolderContent)
-      ctx.trie ??= trieFromAllFiles(allFiles)
-
-      // Phase 1: Generate all virtual pages first so their data is available in allFiles
-      // for transclude resolution in renderPage (e.g. ![[file.canvas]], ![[file.base]])
-      const virtualEntries = await generateVirtualPages(
-        pageTypes,
-        content,
-        ctx,
-        defaults,
-        byPageType,
-      )
-
-      // Merge virtual page data into allFiles before populating htmlAst so that
-      // Body components rendered during populateVirtualPageHtmlAst can resolve
-      // cross-virtual-page embeds (e.g. a .base file embedded in a .canvas file).
-      // The vfile.data objects are shared by reference, so htmlAst set on earlier
-      // entries becomes visible to later entries in the same pass.
-      const allFilesWithVirtual = [...allFiles, ...virtualEntries.map((ve) => ve.vfile.data)]
-
-      // Render Body components to populate htmlAst for transclusion
-      populateVirtualPageHtmlAst(virtualEntries, ctx, allFilesWithVirtual, resources)
-
-      // Phase 2: Emit regular pages (with virtual page data available for transclusion)
-      for (const [tree, file] of content) {
-        const slug = file.data.slug!
-        const fileData = file.data
-        for (const pt of pageTypes) {
-          if (pt.match({ slug, fileData, cfg })) {
-            const layout = resolveLayout(pt, defaults, byPageType)
-            yield emitPage(
-              ctx,
-              slug,
-              tree,
-              fileData,
-              allFilesWithVirtual,
-              layout,
-              resources,
-              treeTransforms,
-            )
-            break
-          }
-        }
-      }
-
-      // Phase 3: Emit virtual pages
-      for (const ve of virtualEntries) {
-        yield emitPage(
-          ctx,
-          ve.vpSlug,
-          ve.tree,
-          ve.vfile.data,
-          allFilesWithVirtual,
-          ve.layout,
-          resources,
-          treeTransforms,
-        )
-      }
+      return _emit(ctx, content, resources, userOpts);
     },
     async *partialEmit(ctx, content, resources, changeEvents) {
-      const pageTypes = [...getPageTypes(ctx)].sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0))
-      const cfg = ctx.cfg.configuration
-      const allFiles = content.map((c) => c[1].data)
-
-      // Collect tree transforms from all page type plugins
-      const treeTransforms: TreeTransform[] = pageTypes.flatMap(
-        (pt) => pt.treeTransforms?.(ctx) ?? [],
-      )
-
-      // Rebuild trie on partial emit to reflect file changes
-      ctx.trie = trieFromAllFiles(allFiles)
-
-      const currentSlugs = new Set(
-        allFiles.flatMap((file) => (file.slug ? [file.slug] : [])),
-      ) as Set<FullSlug>
-      const changedSlugs = new Set<string>()
-      for (const changeEvent of changeEvents) {
-        if (path.extname(changeEvent.path).toLowerCase() !== ".md") continue
-
-        const slug = changeEvent.file?.data.slug ?? slugifyFilePath(changeEvent.path)
-        if (currentSlugs.has(slug)) {
-          // A remaining source may have taken ownership after a slug collision.
-          changedSlugs.add(slug)
-        } else {
-          await removeStalePageOutput(ctx.argv.output, changeEvent.path, currentSlugs, slug)
-        }
-      }
-
-      // Phase 1: Generate all virtual pages first so their data is available in allFiles
-      const virtualEntries = await generateVirtualPages(
-        pageTypes,
-        content,
-        ctx,
-        defaults,
-        byPageType,
-      )
-
-      const allFilesWithVirtual = [...allFiles, ...virtualEntries.map((ve) => ve.vfile.data)]
-
-      // Render Body components to populate htmlAst for transclusion
-      populateVirtualPageHtmlAst(virtualEntries, ctx, allFilesWithVirtual, resources)
-
-      // Phase 2: Emit changed regular pages
-      for (const [tree, file] of content) {
-        const slug = file.data.slug!
-        if (!changedSlugs.has(slug)) continue
-
-        const fileData = file.data
-        for (const pt of pageTypes) {
-          if (pt.match({ slug, fileData, cfg })) {
-            const layout = resolveLayout(pt, defaults, byPageType)
-            yield emitPage(
-              ctx,
-              slug,
-              tree,
-              fileData,
-              allFilesWithVirtual,
-              layout,
-              resources,
-              treeTransforms,
-            )
-            break
-          }
-        }
-      }
-
-      // Phase 3: Emit virtual pages
-      for (const ve of virtualEntries) {
-        yield emitPage(
-          ctx,
-          ve.vpSlug,
-          ve.tree,
-          ve.vfile.data,
-          allFilesWithVirtual,
-          ve.layout,
-          resources,
-          treeTransforms,
-        )
-      }
+      return _emit(ctx, content, resources, userOpts, changeEvents);
     },
   }
 }
