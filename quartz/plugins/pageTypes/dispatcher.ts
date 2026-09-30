@@ -224,13 +224,12 @@ function populateVirtualPageHtmlAst(
 }
 
 async function* _emit(
-  ctx: BuildCtx, 
-  content: ProcessedContent[], 
-  resources: StaticResources, 
-  userOpts?: Partial <DispatcherOptions> | undefined,
+  ctx: BuildCtx,
+  content: ProcessedContent[],
+  resources: StaticResources,
+  userOpts?: Partial<DispatcherOptions>,
   changeEvents?: ChangeEvent[],
-  emitPageImpl: typeof emitPage = emitPage
-): Promise<FilePath[]> | AsyncGenerator<FilePath> | null {
+): AsyncGenerator<FilePath> {
   const defaults = userOpts?.defaults ?? {}
   const byPageType = userOpts?.byPageType ?? {}
 
@@ -335,10 +334,10 @@ export const PageTypeDispatcher: QuartzEmitterPlugin<Partial<DispatcherOptions>>
       return collectComponents(pageTypes, defaults, byPageType)
     },
     async *emit(ctx, content, resources) {
-      return _emit(ctx, content, resources, userOpts);
+      yield* _emit(ctx, content, resources, userOpts)
     },
     async *partialEmit(ctx, content, resources, changeEvents) {
-      return _emit(ctx, content, resources, userOpts, changeEvents);
+      yield* _emit(ctx, content, resources, userOpts, changeEvents)
     },
   }
 }

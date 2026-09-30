@@ -4,6 +4,7 @@ import fs from "fs"
 import os from "os"
 import path from "path"
 import {
+  PageTypeDispatcher,
   collectComponents,
   generateVirtualPages,
   pageOutputPath,
@@ -16,6 +17,7 @@ import { QuartzComponent } from "../../components"
 import { FilePath, FullSlug } from "../../util/path"
 import { BuildCtx } from "../../util/ctx"
 import { ProcessedContent, defaultProcessedContent } from "../vfile"
+import { StaticResources } from "../../util/resources"
 
 const StubA: QuartzComponent = (() => null) as unknown as QuartzComponent
 const StubB: QuartzComponent = (() => null) as unknown as QuartzComponent
@@ -303,5 +305,32 @@ describe("generateVirtualPages", () => {
     const folderPage = FolderPage() as unknown as QuartzPageTypePluginInstance
     const entries = await generateVirtualPages([base, folderPage], [], makeCtx(), { head: StubHead }, {})
     assert.ok(entries.some((entry) => entry.vpSlug === "trips/index"))
+  })
+})
+
+describe("PageTypeDispatcher", () => {
+  const ctx = (pageType: QuartzPageTypePluginInstance) =>
+    ({
+      cfg: { configuration: {}, plugins: { pageTypes: [pageType] } },
+      virtualPages: [],
+    }) as unknown as BuildCtx
+  const resources: StaticResources = { css: [], js: [], additionalHead: [] }
+  const drain = async (emitted: Promise<FilePath[]> | AsyncGenerator<FilePath> | null) => {
+    const files: FilePath[] = []
+    for await (const file of emitted as AsyncGenerator<FilePath>) files.push(file)
+    return files
+  }
+
+  test("emit runs the page types", async () => {
+    const generate = mock.fn<PageGenerator>(() => [])
+    await drain(PageTypeDispatcher().emit(ctx(makePageType({ generate })), [], resources))
+    assert.strictEqual(generate.mock.callCount(), 1)
+  })
+
+  test("partialEmit runs the page types", async () => {
+    const generate = mock.fn<PageGenerator>(() => [])
+    const dispatcher = PageTypeDispatcher()
+    await drain(dispatcher.partialEmit!(ctx(makePageType({ generate })), [], resources, []))
+    assert.strictEqual(generate.mock.callCount(), 1)
   })
 })
