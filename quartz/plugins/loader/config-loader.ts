@@ -112,6 +112,15 @@ function extractPluginName(source: PluginSource): string {
   return source
 }
 
+/**
+ * @internal Exported for testing only.
+ * Also matches the bare name, since an npm source keeps its scope.
+ */
+export function isExcluded(source: PluginSource, exclude: string[]): boolean {
+  const name = extractPluginName(source)
+  return exclude.includes(name) || exclude.includes(name.slice(name.lastIndexOf("/") + 1))
+}
+
 function formatSourceDisplay(source: PluginSource): string {
   if (typeof source === "string") return source
   const parts = [source.repo]
@@ -955,7 +964,7 @@ export function buildQuartzLayout(
   const enabledPluginNames = new Set(
     enabledEntries.flatMap((e) => layoutNameAliases(extractPluginName(e.source))),
   )
-  const isExcluded = (exclude: string[], pluginName: string) =>
+  const excludedBy = (exclude: string[], pluginName: string) =>
     layoutNameAliases(pluginName).some((alias) => exclude.includes(alias))
 
   // Build per-page-type overrides. Only slots that actually differ from the
@@ -983,7 +992,7 @@ export function buildQuartzLayout(
       }
     }
     const filteredEntries = enabledEntries.filter(
-      (e) => !isExcluded(exclude, extractPluginName(e.source)),
+      (e) => !excludedBy(exclude, extractPluginName(e.source)),
     )
 
     const ptDiag = new LayoutDiagnostics()
@@ -992,7 +1001,7 @@ export function buildQuartzLayout(
 
     const customized = new Set<LayoutPosition>()
     for (const p of report.defaults) {
-      if (isExcluded(exclude, p.plugin)) customized.add(p.slot)
+      if (excludedBy(exclude, p.plugin)) customized.add(p.slot)
     }
 
     // Position overrides: only `[]` (clear the slot) is supported
