@@ -79,6 +79,15 @@ function extractPluginName(source: PluginSource): string {
   return source
 }
 
+/**
+ * @internal Exported for testing only.
+ * Also matches the bare name, since an npm source keeps its scope.
+ */
+export function isExcluded(source: PluginSource, exclude: string[]): boolean {
+  const name = extractPluginName(source)
+  return exclude.includes(name) || exclude.includes(name.slice(name.lastIndexOf("/") + 1))
+}
+
 function formatSourceDisplay(source: PluginSource): string {
   if (typeof source === "string") return source
   const parts = [source.repo]
@@ -661,10 +670,7 @@ export async function loadQuartzLayout(layoutOverrides?: {
 
       // Apply exclusions
       if (override.exclude?.length) {
-        filteredEntries = filteredEntries.filter((e) => {
-          const name = extractPluginName(e.source)
-          return !override.exclude!.includes(name)
-        })
+        filteredEntries = filteredEntries.filter((e) => !isExcluded(e.source, override.exclude!))
       }
 
       const ptLayout = buildLayoutForEntries(filteredEntries, layoutConfig)

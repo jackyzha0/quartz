@@ -329,7 +329,8 @@ function trySymlink(target: string, linkPath: string): void {
   }
 }
 
-function linkPeerDependencies(pluginDir: string): void {
+/** @internal Exported for testing only. */
+export function linkPeerDependencies(pluginDir: string): void {
   const pkgPath = path.join(pluginDir, "package.json")
   if (!fs.existsSync(pkgPath)) return
 
@@ -338,16 +339,37 @@ function linkPeerDependencies(pluginDir: string): void {
 
   const quartzRoot = path.resolve(pluginDir, "..", "..", "..")
   const hostNodeModules = path.join(quartzRoot, "node_modules")
+  // a local plugin is a symlink; relative links made through it would dangle
+  const realDir = fs.realpathSync(pluginDir)
+  const local = fs.lstatSync(pluginDir).isSymbolicLink()
 
   for (const peerName of Object.keys(peers)) {
-    const peerNodeModulesPath = path.join(pluginDir, "node_modules", ...peerName.split("/"))
-    if (fs.existsSync(peerNodeModulesPath)) continue
+    const peerNodeModulesPath = path.join(realDir, "node_modules", ...peerName.split("/"))
+    const hostPeerPath = path.join(hostNodeModules, ...peerName.split("/"))
+    if (fs.existsSync(peerNodeModulesPath)) {
+      if (!local || peerName.startsWith("@quartz-community/") || !fs.existsSync(hostPeerPath)) {
+        continue
+      }
+      if (fs.realpathSync(peerNodeModulesPath) === fs.realpathSync(hostPeerPath)) continue
+      // a second copy breaks singletons like Preact's hooks; replace a link, never a directory
+      if (!fs.lstatSync(peerNodeModulesPath).isSymbolicLink()) {
+        console.warn(
+          styleText("yellow", `⚠`),
+          `${peerName} is installed in ${realDir}, so it will not share Quartz's copy`,
+        )
+        continue
+      }
+      fs.unlinkSync(peerNodeModulesPath)
+    } else if (fs.lstatSync(peerNodeModulesPath, { throwIfNoEntry: false })?.isSymbolicLink()) {
+      // dangling
+      fs.unlinkSync(peerNodeModulesPath)
+    }
 
     if (peerName.startsWith("@quartz-community/")) {
       const siblingPlugin = findPluginByPackageName(peerName)
       if (!siblingPlugin) continue
 
-      const scopeDir = path.join(pluginDir, "node_modules", peerName.split("/")[0])
+      const scopeDir = path.join(realDir, "node_modules", peerName.split("/")[0])
       fs.mkdirSync(scopeDir, { recursive: true })
 
       const target = path.relative(scopeDir, siblingPlugin)
@@ -355,15 +377,14 @@ function linkPeerDependencies(pluginDir: string): void {
       continue
     }
 
-    const hostPeerPath = path.join(hostNodeModules, ...peerName.split("/"))
     if (!fs.existsSync(hostPeerPath)) continue
 
     const parts = peerName.split("/")
     if (parts.length > 1) {
-      const scopeDir = path.join(pluginDir, "node_modules", parts[0])
+      const scopeDir = path.join(realDir, "node_modules", parts[0])
       fs.mkdirSync(scopeDir, { recursive: true })
     } else {
-      fs.mkdirSync(path.join(pluginDir, "node_modules"), { recursive: true })
+      fs.mkdirSync(path.join(realDir, "node_modules"), { recursive: true })
     }
 
     const target = path.relative(path.dirname(peerNodeModulesPath), hostPeerPath)
@@ -440,16 +461,19 @@ export async function installPlugin(
 
     if (!options.force && fs.existsSync(pluginDir)) {
       // Check if existing entry is already a symlink to the right place
+      let linked = false
       try {
         const stat = fs.lstatSync(pluginDir)
-        if (stat.isSymbolicLink() && fs.realpathSync(pluginDir) === fs.realpathSync(spec.repo)) {
-          if (options.verbose) {
-            console.log(styleText("cyan", `→`), `Plugin ${spec.name} already linked`)
-          }
-          return { pluginDir, nativeDeps: collectNativeDeps(pluginDir) }
-        }
+        linked = stat.isSymbolicLink() && fs.realpathSync(pluginDir) === fs.realpathSync(spec.repo)
       } catch {
         // stat failed, recreate
+      }
+      if (linked) {
+        if (options.verbose) {
+          console.log(styleText("cyan", `→`), `Plugin ${spec.name} already linked`)
+        }
+        linkPeerDependencies(pluginDir)
+        return { pluginDir, nativeDeps: collectNativeDeps(pluginDir) }
       }
     }
 
@@ -479,6 +503,7 @@ export async function installPlugin(
       console.log(styleText("green", `✓`), `Linked ${spec.name}`)
     }
 
+    linkPeerDependencies(pluginDir)
     return { pluginDir, nativeDeps: collectNativeDeps(pluginDir) }
   }
 
