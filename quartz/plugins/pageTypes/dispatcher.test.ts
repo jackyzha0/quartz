@@ -174,10 +174,16 @@ describe("generateVirtualPages", () => {
     ])
   })
 
-  test("a folder holding only virtual pages gets a folder page", () => {
+  test("a folder holding only virtual pages gets a folder page", async () => {
     const base = makePageType({ generate: () => [{ slug: "trips/map", title: "Map", data: {} }] })
     const folderPage = FolderPage() as unknown as QuartzPageTypePluginInstance
-    const entries = generateVirtualPages([base, folderPage], [], ctx(), { head: StubHead }, {})
+    const entries = await generateVirtualPages(
+      [base, folderPage],
+      [],
+      ctx(),
+      { head: StubHead },
+      {},
+    )
     assert.ok(entries.some((entry) => entry.vpSlug === "trips/index"))
   })
 })

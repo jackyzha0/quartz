@@ -128,19 +128,19 @@ type VirtualEntry = {
  * sees the virtual pages generated before it as content, so a folder holding
  * only virtual pages (e.g. `.base` files) still gets a folder page.
  */
-export function generateVirtualPages(
+export async function generateVirtualPages(
   pageTypes: QuartzPageTypePluginInstance[],
   content: ProcessedContent[],
   ctx: BuildCtx,
   defaults: Partial<FullPageLayout>,
   byPageType: Record<string, Partial<FullPageLayout>>,
-): VirtualEntry[] {
+): Promise<VirtualEntry[]> {
   const cfg = ctx.cfg.configuration
   const virtualEntries: VirtualEntry[] = []
   for (const pt of pageTypes) {
     if (!pt.generate) continue
     const generated = virtualEntries.map((ve): ProcessedContent => [ve.tree, ve.vfile])
-    const virtualPages = pt.generate({ content: [...content, ...generated], cfg, ctx })
+    const virtualPages = await pt.generate({ content: [...content, ...generated], cfg, ctx })
     const layout = resolveLayout(pt, defaults, byPageType)
     for (const vp of virtualPages) {
       const vpSlug = vp.slug as FullSlug

@@ -131,7 +131,7 @@ export interface PageTypePluginEntry {
   priority?: number
   fileExtensions?: string[]
   match: (...args: never[]) => boolean
-  generate?: (...args: never[]) => VirtualPage[]
+  generate?: (...args: never[]) => VirtualPage[] | Promise<VirtualPage[]>
   layout: string
   /** Optional page frame name (e.g. "default", "full-width", "minimal"). Defaults to "default". */
   frame?: string
