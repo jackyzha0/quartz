@@ -1,8 +1,18 @@
-import test, { describe } from "node:test"
+import test, { describe, mock } from "node:test"
 import assert from "node:assert"
-import { collectComponents, resolveLayout } from "./dispatcher"
-import { QuartzPageTypePluginInstance } from "../types"
+import { FolderPage } from "@quartz-community/folder-page"
+import {
+  PageTypeDispatcher,
+  collectComponents,
+  generateVirtualPages,
+  resolveLayout,
+} from "./dispatcher"
+import { PageGenerator, QuartzPageTypePluginInstance } from "../types"
 import { QuartzComponent } from "../../components/types"
+import { ProcessedContent, defaultProcessedContent } from "../vfile"
+import { BuildCtx } from "../../util/ctx"
+import { FilePath, FullSlug } from "../../util/path"
+import { StaticResources } from "../../util/resources"
 
 const StubA: QuartzComponent = (() => null) as unknown as QuartzComponent
 const StubB: QuartzComponent = (() => null) as unknown as QuartzComponent
@@ -140,5 +150,67 @@ describe("collectComponents", () => {
 
     const result = collectComponents(pageTypes, sharedDefaults, byPageType)
     assert.ok(result.every((component) => component))
+  })
+})
+
+describe("generateVirtualPages", () => {
+  const ctx = () => ({ cfg: { configuration: {} }, virtualPages: [] }) as unknown as BuildCtx
+  const note = (slug: string) => defaultProcessedContent({ slug: slug as FullSlug })
+  const slugs = (content: ProcessedContent[]) => content.map(([, vfile]) => vfile.data.slug)
+
+  test("a page type sees the virtual pages generated before it", async () => {
+    const first = makePageType({ generate: () => [{ slug: "trips/map", title: "Map", data: {} }] })
+    const generate = mock.fn<PageGenerator>(() => [])
+    await generateVirtualPages(
+      [first, makePageType({ generate })],
+      [note("trips/plan")],
+      ctx(),
+      { head: StubHead },
+      {},
+    )
+    assert.deepStrictEqual(slugs(generate.mock.calls[0].arguments[0].content), [
+      "trips/plan",
+      "trips/map",
+    ])
+  })
+
+  test("a folder holding only virtual pages gets a folder page", async () => {
+    const base = makePageType({ generate: () => [{ slug: "trips/map", title: "Map", data: {} }] })
+    const folderPage = FolderPage() as unknown as QuartzPageTypePluginInstance
+    const entries = await generateVirtualPages(
+      [base, folderPage],
+      [],
+      ctx(),
+      { head: StubHead },
+      {},
+    )
+    assert.ok(entries.some((entry) => entry.vpSlug === "trips/index"))
+  })
+})
+
+describe("PageTypeDispatcher", () => {
+  const ctx = (pageType: QuartzPageTypePluginInstance) =>
+    ({
+      cfg: { configuration: {}, plugins: { pageTypes: [pageType] } },
+      virtualPages: [],
+    }) as unknown as BuildCtx
+  const resources: StaticResources = { css: [], js: [], additionalHead: [] }
+  const drain = async (emitted: Promise<FilePath[]> | AsyncGenerator<FilePath> | null) => {
+    const files: FilePath[] = []
+    for await (const file of emitted as AsyncGenerator<FilePath>) files.push(file)
+    return files
+  }
+
+  test("emit runs the page types", async () => {
+    const generate = mock.fn<PageGenerator>(() => [])
+    await drain(PageTypeDispatcher().emit(ctx(makePageType({ generate })), [], resources))
+    assert.strictEqual(generate.mock.callCount(), 1)
+  })
+
+  test("partialEmit runs the page types", async () => {
+    const generate = mock.fn<PageGenerator>(() => [])
+    const dispatcher = PageTypeDispatcher()
+    await drain(dispatcher.partialEmit!(ctx(makePageType({ generate })), [], resources, []))
+    assert.strictEqual(generate.mock.callCount(), 1)
   })
 })

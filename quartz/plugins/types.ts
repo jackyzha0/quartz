@@ -93,7 +93,7 @@ export type PageGenerator = (args: {
   cfg: GlobalConfiguration
   ctx: BuildCtx
   [key: string]: unknown
-}) => VirtualPage[]
+}) => VirtualPage[] | Promise<VirtualPage[]>
 
 /** A function that mutates a HAST tree at render time, when allFiles is available. */
 export type TreeTransform = (
@@ -131,7 +131,7 @@ export interface PageTypePluginEntry {
   priority?: number
   fileExtensions?: string[]
   match: (...args: never[]) => boolean
-  generate?: (...args: never[]) => VirtualPage[]
+  generate?: (...args: never[]) => VirtualPage[] | Promise<VirtualPage[]>
   layout: string
   /** Optional page frame name (e.g. "default", "full-width", "minimal"). Defaults to "default". */
   frame?: string
