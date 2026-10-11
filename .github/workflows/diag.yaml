@@ -1,7 +1,7 @@
 # ══════════════════════════════════════════════════════════════════════
 #  Diagnostic moteur : exécute scripts/diag.ts (bundle du moteur + tests)
-#  et publie le résultat dans l'issue « Diagnostic moteur — runTurn ».
-#  Temporaire — à supprimer une fois le bug corrigé.
+#  et commite le résultat dans diag-out.txt (les issues sont désactivées
+#  sur ce fork). Temporaire — à supprimer une fois le bug corrigé.
 # ══════════════════════════════════════════════════════════════════════
 name: Diagnostic moteur (diag.ts)
 on:
@@ -10,8 +10,7 @@ on:
       - chasse-et-peche-web
   workflow_dispatch:
 permissions:
-  contents: read
-  issues: write
+  contents: write
 jobs:
   diag:
     runs-on: ubuntu-latest
@@ -26,20 +25,10 @@ jobs:
           node-version: 22
       - name: Run diag.ts
         run: node --experimental-strip-types scripts/diag.ts > diag-out.txt 2>&1 || true
-      - name: Publier le résultat dans l'issue
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require("fs")
-            const out = fs.readFileSync("diag-out.txt", "utf8").slice(0, 55000)
-            const TITLE = "Diagnostic moteur — runTurn / armées (résultats)"
-            const issues = await github.rest.issues.listForRepo({
-              owner: context.repo.owner, repo: context.repo.repo, state: "open", per_page: 100,
-            })
-            let issue = issues.data.find((i) => i.title === TITLE)
-            const body = "Run " + context.runId + " — commit " + context.sha + "\n\n```\n" + out + "\n```\n"
-            if (issue) {
-              await github.rest.issues.update({ owner: context.repo.owner, repo: context.repo.repo, issue_number: issue.number, body })
-            } else {
-              await github.rest.issues.create({ owner: context.repo.owner, repo: context.repo.repo, title: TITLE, body })
-            }
+      - name: Commit du résultat
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add diag-out.txt
+          git commit -m "diag : résultats du diagnostic moteur"
+          git push
