@@ -1,0 +1,25 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+file:///home/runner/work/quartz/quartz/scripts/diag.ts:2456
+  titreAllowedForCharacter,
+} from './titres'
+^
+  computeAgeMax, killCharacter, handleDirigeantSuccession,
+
+SyntaxError [ERR_INVALID_TYPESCRIPT_SYNTAX]: Expression expected
+    at parseTypeScript (node:internal/modules/typescript:67:36)
+    at processTypeScriptCode (node:internal/modules/typescript:133:42)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:163:10)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:660:29)
+    at #translate (node:internal/modules/esm/loader:559:20)
+    at afterLoad (node:internal/modules/esm/loader:612:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:617:12)
+    at #createModuleJob (node:internal/modules/esm/loader:640:36)
+    at #getJobFromResolveResult (node:internal/modules/esm/loader:353:34)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:321:41) {
+  code: 'ERR_INVALID_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v22.23.3
