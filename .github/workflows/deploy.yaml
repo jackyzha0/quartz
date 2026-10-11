@@ -27,7 +27,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  issues: write
 
 concurrency:
   group: "pages"
@@ -61,21 +60,7 @@ jobs:
         run: npm install --no-audit --no-fund
         working-directory: jeu
       - name: Build jeu (vite)
-        run: |
-          set +e
-          npm run build > build-out.txt 2>&1
-          code=$?
-          if [ $code -ne 0 ]; then
-            echo "Échec du build (exit $code) — publication du log en issue"
-            BODY=$(jq -Rs . < build-out.txt | tail -c +1 | head -c 6000)
-            BODY=$(jq -Rs . < build-out.txt)
-            curl -s -X POST \
-              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-              -H "Accept: application/vnd.github+json" \
-              "https://api.github.com/repos/losth230/quartz/issues" \
-              -d "{\"title\": \"Diagnostic : échec du build jeu (Vite)\", \"body\": $BODY}"
-            exit 1
-          fi
+        run: npm run build
         working-directory: jeu
       - name: Copier le jeu dans public/jeu/
         run: cp -r jeu/dist/. public/jeu/

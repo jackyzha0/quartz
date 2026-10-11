@@ -152,6 +152,16 @@ export interface Player {
   dynastie: { nom: string; description: string } | null
   armees: Army[]
   recap: PlayerRecap | null
+  /** Rang de pays (feuille « Pays » du classeur) : Baronnie, Comté, … Commune.
+   *  Champ optionnel : absent des vieilles sauvegardes → valeur par défaut
+   *  dérivée du régime politique (voir rangParDefaut dans setup.ts). */
+  rang?: string
+  /** Vassalité : n° du suzerain si ce joueur lui a prêté serment, sinon null.
+   *  Un vassal reverse chaque tour une part des revenus de ses habitants
+   *  (paramètre vassalPrelevement) à son suzerain. */
+  vassalDe?: number | null
+  /** Technologies débloquées (texte des entrées des arbres de progrès). */
+  progresDebloques?: string[]
 }
 
 export interface LogEntry {
