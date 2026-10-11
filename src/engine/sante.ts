@@ -22,7 +22,7 @@ export function computeAgeMax(c: Character, rng: Rng, C: Cfg = cfgOf()): number 
   return C.p.ageMaxBase + rng.int(0, Math.max(0, C.p.ageMaxAla)) + delta
 }
 
-function tryResurrection(c: Character, rng: Rng, C: Cfg = cfgOf()): boolean {
+export function tryResurrection(c: Character, rng: Rng, C: Cfg = cfgOf()): boolean {
   const t1 = traitDef(c.traits[0], C.config)
   const seuil = t1 ? t1.resurrection_min_roll : 0
   if (seuil > 0 && rng.die(6) >= seuil) {
@@ -34,7 +34,7 @@ function tryResurrection(c: Character, rng: Rng, C: Cfg = cfgOf()): boolean {
 
 // ── Maladie ──────────────────────────────────────────────────────────────
 
-function maladieStep(state: GameState, p: Player, c: Character, rng: Rng, recap: PlayerRecap) {
+export function maladieStep(state: GameState, p: Player, c: Character, rng: Rng, recap: PlayerRecap) {
   if (c.statut === 'Décédé') return
   const C = cfgOf(state.config)
   const ville = p.villes.find((v) => v.nom === c.ville)

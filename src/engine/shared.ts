@@ -24,7 +24,7 @@ export function fullName(c: Character): string {
   return `${c.prenom} ${c.nom}`
 }
 
-function emptyRecap(): PlayerRecap {
+export function emptyRecap(): PlayerRecap {
   return {
     conceptions: {}, naissances: {}, deces: {}, decesMaladie: 0,
     mariagesNobles: {}, conversions: {}, titresAttribues: {}, crises: [],
@@ -32,7 +32,7 @@ function emptyRecap(): PlayerRecap {
   }
 }
 
-function bump(dict: Record<string, number>, key: string, n = 1) {
+export function bump(dict: Record<string, number>, key: string, n = 1) {
   if (!key) key = '(inconnu)'
   dict[key] = (dict[key] ?? 0) + n
 }
