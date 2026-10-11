@@ -233,3 +233,26 @@ select.input { min-width: 120px; width: auto; }
 /* ── Paramètres (éditeur de configuration) ── */
 .mb { margin-bottom: 16px; }
 .mt { margin-top: 12px; }
+
+/* ── Page « Pays » : dynastie mise en avant, constructions ── */
+.dynastie-banner {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  background: var(--bg2);
+  margin-bottom: 10px;
+}
+.dynastie-nom {
+  font-size: 1.45em;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.ligne-construction {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 3px 0;
+  flex-wrap: wrap;
+}

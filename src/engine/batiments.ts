@@ -126,6 +126,37 @@ export function garnisonBatiment(nom: string, C: Cfg): number {
   return m ? parseInt(m[1], 10) : 0
 }
 
+// ── Coût de construction (feuilles Ville / Château du classeur) ─────────
+
+/** Noms de ressource tels qu'ils apparaissent dans les textes de coût du
+ *  classeur, singulier et pluriel (« 12 Pierres », « 6 Bétails »). */
+const RESSOURCES_COUT = 'Or|Bois|Pierres?|Fer|Charbon|Bétails?|Soie|Nourritures?|Science|Tourisme'
+
+/** Normalise un nom de ressource lu dans un texte (« Pierres » → « Pierre »). */
+function normaliserRessource(res: string): string {
+  if (/^pierres?$/i.test(res)) return 'Pierre'
+  if (/^bétails?$/i.test(res)) return 'Bétail'
+  if (/^nourritures?$/i.test(res)) return 'Nourriture'
+  return res
+}
+
+/** Coût de construction d'un bâtiment, lu dans le texte « Coût » du
+ *  référentiel (feuilles Ville / Château). Les mentions de prérequis
+ *  (« Grange requise. ») ne contiennent pas de quantités et sont ignorées
+ *  naturellement par l'analyse. */
+export function coutBatiment(nom: string, C: Cfg): Record<string, number> {
+  const listes = [...(C.config.batimentsVille ?? []), ...(C.config.batimentsChateau ?? [])]
+  const ligne = listes.find((b: any) => b?.nom === nom)
+  const texte: string = ligne?.cout ?? ''
+  const out: Record<string, number> = {}
+  const re = new RegExp(String.raw`(${NOMBRE})\s*(?:de\s+)?(${RESSOURCES_COUT})\b`, 'gi')
+  for (const m of texte.matchAll(re)) {
+    const res = normaliserRessource(m[2])
+    out[res] = (out[res] ?? 0) + parseFloat(m[1].replace(',', '.'))
+  }
+  return out
+}
+
 /** Bâtiments d'une ville neutralisés par un remplaçant présent. */
 function batimentsRemplaces(ville: City): Set<string> {
   const presents = new Set(ville.batiments)

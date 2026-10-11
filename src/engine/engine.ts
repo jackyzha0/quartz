@@ -30,6 +30,7 @@ import { cfgOf } from './gameData'
 import { saisonForTurn, applyEventEffect, applyDynastieCard } from './saisons'
 import { calculerGainsPopulation } from './economie'
 import { appliquerEffetsBatiments } from './batiments'
+import { appliquerEffetsAmenagements } from './amenagements'
 import { transfererTributVassal } from './vassalite'
 import { populationTurn } from './population'
 import { recruitForArmies } from './armees'
@@ -130,6 +131,13 @@ export function runTurn(state: GameState): GameState {
     batimentsParJoueur[p.n] = appliquerEffetsBatiments(p, C)
   }
 
+  // 3quinquies. Aménagements de terrain : effets par tour (engine/amenagements.ts),
+  // dépendant de la saison (Champ et Rizière ne produisent qu'en été).
+  const amenagementsParJoueur: Record<number, Record<string, number>> = {}
+  for (const p of state.players) {
+    amenagementsParJoueur[p.n] = appliquerEffetsAmenagements(p, state.saison)
+  }
+
   // 4. Moteur de population (PersonnagesPourJoueur) pour chaque joueur
   for (const p of state.players) {
     populationTurn(state, p, rng)
@@ -156,6 +164,7 @@ export function runTurn(state: GameState): GameState {
     apportsParJoueur[p.n] = {
       production: prodParJoueur[p.n] ?? {},
       batiments: batimentsParJoueur[p.n] ?? {},
+      amenagements: amenagementsParJoueur[p.n] ?? {},
       population,
       vassalite,
     }
@@ -177,8 +186,14 @@ export { saisonForTurn, applyEventEffect, applyDynastieCard } from './saisons'
 export { calculerGainsPopulation, taxBirthFactor } from './economie'
 export {
   effetsTourBatiment, effetsBatimentsVille, appliquerEffetsBatiments,
-  garnisonBatiment, detailsBatimentsJoueur, type LigneBatiment,
+  garnisonBatiment, coutBatiment, detailsBatimentsJoueur, type LigneBatiment,
 } from './batiments'
+export {
+  AMENAGEMENTS, amenagementDef, aCampDeBatisseurs, coutAmenagement,
+  effetsTourAmenagement, effetsAmenagementsVille, appliquerEffetsAmenagements,
+  detailsAmenagementsJoueur, type LigneAmenagement, type AmenagementDef,
+} from './amenagements'
+export { productionDetaillee, type ProductionDetail } from './production'
 export { transfererTributVassal } from './vassalite'
 export { populationTurn, migrerEnfants } from './population'
 export {

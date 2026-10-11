@@ -78,6 +78,7 @@ export function makePlayer(n: number, s: SetupLine, C: Cfg): Player {
       culture: s.culture,
       taxes: 'Moyenne',
       batiments: idx === 0 ? ['Ecole élémentaire', 'Herboristerie'] : [],
+      amenagements: [],
     })),
     dynastie: null,
     armees: [],

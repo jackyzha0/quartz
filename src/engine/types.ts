@@ -113,6 +113,10 @@ export interface City {
   culture: string
   taxes: TaxeNiveau
   batiments: string[]
+  /** Aménagements de terrain (Baleinier, Champ, Mine d'Or… — feuille
+   *  « Aménagements » du classeur). Champ optionnel : absent des
+   *  vieilles sauvegardes → traité comme une liste vide. */
+  amenagements?: string[]
 }
 
 export interface Army {
@@ -179,6 +183,9 @@ export interface ApportsTour {
   production: Record<string, number>
   /** effets automatiques des bâtiments (engine/batiments.ts) */
   batiments: Record<string, number>
+  /** effets des aménagements de terrain (engine/amenagements.ts).
+   *  Champ optionnel : absent des historiques d'avant l'ajout des aménagements. */
+  amenagements?: Record<string, number>
   /** gains d'habitants (titres, taxes) après coefficient gainsCrediteStock, hors tribut */
   population: Record<string, number>
   /** tribut de vassalité net (négatif = payé, positif = reçu) */
