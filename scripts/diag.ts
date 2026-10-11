@@ -2450,18 +2450,7 @@ export function runTurn(state: GameState): GameState {
 }
 // ── API publique (ré-exports — signatures et noms inchangés) ────────────
 
-  maybeAssignProfesseurs, gestionMariages, formatDynastyPair,
-  computeMarriageProbability, tryEducateMinor, assignAdultTitle,
-  titreAllowedForCharacter,
-} from './titres'
-  computeAgeMax, killCharacter, handleDirigeantSuccession,
-} from './sante'
-  computeFecondite, femaleAgeFactor, maleAgeFactor, orientationFertFactor,
-  conceptionEtNaissances, pickName, isConsanguineous, computeBabyDynasty,
-  inheritTraits,
-} from './naissances'
-
-
+// (bloc de ré-exports supprimé : inutile dans le bundle)
 // ══ src/engine/setup.ts ══
 // ══════════════════════════════════════════════════════════════════════
 //  Génération de la population initiale
