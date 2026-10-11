@@ -7,6 +7,7 @@ import { useGame } from './state/store'
 import { TurnBar } from './components/TurnBar'
 import { Dashboard } from './components/Dashboard'
 import { PlayerView } from './components/PlayerView'
+import { RoyaumeView } from './components/RoyaumeView'
 import { PopulationTable } from './components/PopulationTable'
 import { ArmiesPanel } from './components/ArmiesPanel'
 import { EventLogPanel } from './components/EventLogPanel'
@@ -15,10 +16,11 @@ import { SetupPanel } from './components/SetupPanel'
 import { ReferenceDataPanel } from './components/ReferenceDataPanel'
 import { ParamsPanel } from './components/ParamsPanel'
 
-type Section = 'accueil' | 'joueur' | 'population' | 'armees' | 'journal' | 'historique' | 'referentiels' | 'parametres' | 'setup'
+type Section = 'accueil' | 'royaume' | 'joueur' | 'population' | 'armees' | 'journal' | 'historique' | 'referentiels' | 'parametres' | 'setup'
 
 const SECTIONS: { key: Section; label: string }[] = [
   { key: 'accueil', label: '🏛 Accueil' },
+  { key: 'royaume', label: '🏰 Royaume' },
   { key: 'joueur', label: '👑 Pays' },
   { key: 'population', label: '👥 Population' },
   { key: 'armees', label: '⚔ Armées' },
@@ -95,7 +97,7 @@ export default function App() {
         ))}
       </nav>
 
-      {(section === 'joueur' || section === 'population' || section === 'armees') && joueursBars}
+      {(section === 'royaume' || section === 'joueur' || section === 'population' || section === 'armees') && joueursBars}
 
       <main className="main">
         {!state && section !== 'setup' && section !== 'referentiels' && section !== 'parametres' ? (
@@ -103,6 +105,7 @@ export default function App() {
         ) : (
           <>
             {section === 'accueil' && <Dashboard />}
+            {section === 'royaume' && <RoyaumeView joueur={joueur} />}
             {section === 'joueur' && <PlayerView joueur={joueur} />}
             {section === 'population' && <PopulationTable joueur={joueur} />}
             {section === 'armees' && <ArmiesPanel joueur={joueur} />}

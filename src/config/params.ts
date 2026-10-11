@@ -66,6 +66,8 @@ export interface GameParams {
   puissanceSoldat: number
   soldatAgeMin: number
   soldatAgeMax: number
+  // ── Vassaux ──
+  vassalPrelevement: number  // part des revenus d'habitants (Or) reversée au suzerain
   // ── Noms des entités système (chaînes) ──
   titreDirigeant: string
   titreGouverneur: string
@@ -140,6 +142,7 @@ export const DEFAULT_PARAMS: GameParams = {
   puissanceSoldat: 15,
   soldatAgeMin: 16,
   soldatAgeMax: 30,
+  vassalPrelevement: 0.5,
   titreDirigeant: 'Dirigeant',
   titreGouverneur: 'Gouverneur',
   titreProfesseur: 'Professeur',
@@ -226,6 +229,7 @@ export const PARAM_META: {
   { key: 'puissanceSoldat', label: 'Puissance d\'un soldat', groupe: 'Armées' },
   { key: 'soldatAgeMin', label: 'Âge minimal de recrutement', groupe: 'Armées' },
   { key: 'soldatAgeMax', label: 'Âge maximal de recrutement', groupe: 'Armées' },
+  { key: 'vassalPrelevement', label: 'Part des revenus d\\'habitants reversée au suzerain', groupe: 'Vassaux', unite: 'proportion', aide: 'Un vassal prête serment à un autre joueur : à chaque fin de tour, il reverse cette part des gains d\\'Or de ses habitants à son suzerain (0,5 = 50 %).' },
   { key: 'maxLog', label: 'Taille maximale du journal', groupe: 'Système' },
   { key: 'saisonLongueur', label: 'Durée d\'une saison (tours)', groupe: 'Système', aide: 'Un tour = 2 ans de temps de jeu ; Été/Hiver alternent toutes les N saisons… modifiable à volonté.' },
   { key: 'evMultFaible', label: 'Multiplicateur événement — faible (dé 1-5)', groupe: 'Événements' },
