@@ -95,10 +95,8 @@ export function runTurn(state: GameState): GameState {
   }
 
   // 3. Boucle par joueur : gains de population puis production
-  const gainsParJoueur: Record<number, Record<string, number>> = {}
   for (const p of state.players) {
     const gains = calculerGainsPopulation(state, p, rng)
-    gainsParJoueur[p.n] = gains
     // production : stock += prod (lignes 18-28 des J{n})
     for (const r of C.ressources) {
       const rs = p.resources[r]
@@ -110,31 +108,7 @@ export function runTurn(state: GameState): GameState {
       const rs = p.resources['Nourriture']
       if (rs) rs.stock += rs.prod
     }
-  }
-
-  // 3bis. Vassalité : chaque vassal reverse une part des revenus de ses
-  // habitants (gains d'Or, après taxes) à son suzerain. Les chaînes
-  // A→B→C fonctionnent : chacun ne reverse que SES propres revenus,
-  // jamais l'argent reçu de ses propres vassaux.
-  for (const p of state.players) {
-    if (p.vassalDe == null) continue
-    const suzerain = state.players.find((x) => x.n === p.vassalDe)
-    if (!suzerain || suzerain.vassalDe === p.n) continue // suzerain disparu ou serment croisé
-    const gains = gainsParJoueur[p.n] ?? {}
-    const part = (gains['Or'] ?? 0) * C.p.vassalPrelevement
-    if (part === 0) continue
-    gains['Or'] = (gains['Or'] ?? 0) - part
-    const gainsSuz = gainsParJoueur[suzerain.n] ?? (gainsParJoueur[suzerain.n] = {})
-    gainsSuz['Or'] = (gainsSuz['Or'] ?? 0) + part
-    state.log.push({
-      turn: turnBefore + 1, type: 'Système', joueur: p.n,
-      texte: `🤝 Vassalité — ${p.nom} verse ${Math.round(part * 10) / 10} Or à ${suzerain.nom} (tribut de vassalité : ${Math.round(C.p.vassalPrelevement * 100)} % des revenus de ses habitants).`,
-    })
-  }
-
-  // 3ter. Gains de population crédités au stock × gainsCrediteStock (paramètre)
-  for (const p of state.players) {
-    const gains = gainsParJoueur[p.n] ?? {}
+    // gains de population crédités au stock × gainsCrediteStock (paramètre)
     for (const [res, v] of Object.entries(gains)) {
       const rs = p.resources[res]
       if (rs) rs.stock += v * C.p.gainsCrediteStock
