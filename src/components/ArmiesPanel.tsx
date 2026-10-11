@@ -7,7 +7,7 @@
 
 import React, { useState } from 'react'
 import { useGame } from '../state/store'
-import type { Player } from '../engine/types'
+import type { GameState, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
 import { isNobleDyn, martialiteOk } from '../engine/engine'
 import { Card, NumberInput, Select, TextInput, Button, fmt } from './ui'
@@ -33,10 +33,12 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
       && martialiteOk(cult?.martialite, c.sexe),
   )
 
-  const setPlayer = (fn: (p: Player) => void) =>
+  // Le mutateur reçoit (joueur, état) : la population vit dans
+  // state.population[joueur], PAS dans le Player (sinon crash « reading »).
+  const setPlayer = (fn: (p: Player, s: GameState) => void) =>
     update((s) => {
       const target = s.players.find((x) => x.n === joueur)
-      if (target) fn(target)
+      if (target) fn(target, s)
     })
 
   const leverArmee = () => {
@@ -75,11 +77,11 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
           return (
             <div key={idx} className={`mini ${cmdMort ? 'warn-box' : ''}`}>
               <div className="mini-title">
-                <TextInput value={a.nom} onChange={(v) => setPlayer((x) => {
+                <TextInput value={a.nom} onChange={(v) => setPlayer((x, s) => {
                   const ancien = x.armees[idx].nom
                   x.armees[idx].nom = v
                   // renommer chez les soldats et le commandant
-                  for (const c of x.population[joueur] ?? []) {
+                  for (const c of s.population[joueur] ?? []) {
                     if (c.armee === ancien) c.armee = v
                   }
                 })} />
@@ -100,8 +102,8 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
                       .filter((c) => c.id !== a.commandant)
                       .map((c) => ({ value: c.id, label: `${c.prenom} ${c.nom} (${c.dynastie})` })),
                   ]}
-                  onChange={(v) => setPlayer((x) => {
-                    const pers = (x.population[joueur] ?? [])
+                  onChange={(v) => setPlayer((x, s) => {
+                    const pers = (s.population[joueur] ?? [])
                     const ancien = x.armees[idx].commandant
                     if (ancien) {
                       const ancienPers = pers.find((c) => c.id === ancien)
@@ -129,9 +131,9 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
                   onChange={(v) => setPlayer((x) => { x.armees[idx].cible = v || null })}
                 />
               </div>
-              <Button tone="danger" onClick={() => setPlayer((x) => {
+              <Button tone="danger" onClick={() => setPlayer((x, s) => {
                 const armee = x.armees[idx]
-                const pers = x.population[joueur] ?? []
+                const pers = s.population[joueur] ?? []
                 for (const c of pers) {
                   if (c.armee === armee.nom) {
                     c.armee = null

@@ -11,6 +11,7 @@
 //    shared.ts      outils transversaux (ids, noms, noblesse, récap)
 //    saisons.ts     saisons, événements, cartes dynastie
 //    economie.ts    gains de population par ville, taxes
+//    batiments.ts   effets automatiques des bâtiments par tour
 //    vassalite.ts   tribut des vassaux vers leur suzerain
 //    population.ts  orchestration démographique du tour, migration
 //    titres.ts      professeurs, mariages, éducation, titres
@@ -23,11 +24,12 @@
 //  ré-exporte l'API publique inchangée (mêmes noms qu'avant découpage).
 // ══════════════════════════════════════════════════════════════════════
 
-import type { GameState } from './types'
+import type { ApportsTour, GameState } from './types'
 import { makeRng } from './rng'
 import { cfgOf } from './gameData'
 import { saisonForTurn, applyEventEffect, applyDynastieCard } from './saisons'
 import { calculerGainsPopulation } from './economie'
+import { appliquerEffetsBatiments } from './batiments'
 import { transfererTributVassal } from './vassalite'
 import { populationTurn } from './population'
 import { recruitForArmies } from './armees'
@@ -72,35 +74,60 @@ export function runTurn(state: GameState): GameState {
     applyDynastieCard(state, p, card.nom, rng)
   }
 
-  // 3. Boucle par joueur : gains de population puis production
+  // 3. Gains de population par joueur (CalculerGainsPopulation), puis
+  //    production de base : stock += prod (lignes 18-28 des J{n}) ; l'été
+  //    double la production de Nourriture. Les apports sont tracés pour
+  //    le récap ressources (history.apports).
   const gainsParJoueur: Record<number, Record<string, number>> = {}
   for (const p of state.players) {
-    const gains = calculerGainsPopulation(state, p, rng)
-    gainsParJoueur[p.n] = gains
-    // production : stock += prod (lignes 18-28 des J{n})
+    gainsParJoueur[p.n] = calculerGainsPopulation(state, p, rng)
+  }
+  const prodParJoueur: Record<number, Record<string, number>> = {}
+  for (const p of state.players) {
+    const prodTot: Record<string, number> = {}
     for (const r of C.ressources) {
       const rs = p.resources[r]
       if (!rs) continue
       rs.stock += rs.prod
+      prodTot[r] = rs.prod
     }
     if (state.saison === 'Été') {
       // bonus Nourr - été
       const rs = p.resources['Nourriture']
-      if (rs) rs.stock += rs.prod
+      if (rs) {
+        rs.stock += rs.prod
+        prodTot['Nourriture'] = (prodTot['Nourriture'] ?? 0) + rs.prod
+      }
     }
+    prodParJoueur[p.n] = prodTot
   }
 
   // 3bis. Vassalité : chaque vassal reverse une part des revenus de ses
   // habitants à son suzerain (formule dans engine/vassalite.ts).
+  // Copie des gains avant tribut : elle isole la part « vassalité » du
+  // récap ressources (population = gains propres, vassalité = tribut net).
+  const gainsAvantTribut: Record<number, Record<string, number>> = {}
+  for (const p of state.players) {
+    gainsAvantTribut[p.n] = { ...(gainsParJoueur[p.n] ?? {}) }
+  }
   transfererTributVassal(state, gainsParJoueur, C)
 
   // 3ter. Gains de population crédités au stock × gainsCrediteStock (paramètre)
+  const coefGains = C.p.gainsCrediteStock
   for (const p of state.players) {
     const gains = gainsParJoueur[p.n] ?? {}
     for (const [res, v] of Object.entries(gains)) {
       const rs = p.resources[res]
-      if (rs) rs.stock += v * C.p.gainsCrediteStock
+      if (rs) rs.stock += v * coefGains
     }
+  }
+
+  // 3quater. Bâtiments : effets automatiques par tour (engine/batiments.ts).
+  // Appliqués SÉPARÉMENT des gains d'habitants : la vassalité ne prélève
+  // que sur les revenus des habitants, pas sur les effets des bâtiments.
+  const batimentsParJoueur: Record<number, Record<string, number>> = {}
+  for (const p of state.players) {
+    batimentsParJoueur[p.n] = appliquerEffetsBatiments(p, C)
   }
 
   // 4. Moteur de population (PersonnagesPourJoueur) pour chaque joueur
@@ -113,8 +140,27 @@ export function runTurn(state: GameState): GameState {
     recruitForArmies(state, p, rng)
   }
 
-  // 6. Snapshot (SnapshotRessources → _Historique)
-  snapshotRessources(state, turnBefore + 1)
+  // 6. Snapshot (SnapshotRessources → _Historique) + apports du tour
+  //    (production, bâtiments, habitants, vassalité → récap ressources).
+  const apportsParJoueur: Record<number, ApportsTour> = {}
+  for (const p of state.players) {
+    const population: Record<string, number> = {}
+    for (const [res, v] of Object.entries(gainsAvantTribut[p.n] ?? {})) {
+      if (v !== 0) population[res] = v * coefGains
+    }
+    const vassalite: Record<string, number> = {}
+    for (const [res, v] of Object.entries(gainsParJoueur[p.n] ?? {})) {
+      const ecart = v - (gainsAvantTribut[p.n]?.[res] ?? 0)
+      if (ecart !== 0) vassalite[res] = ecart * coefGains
+    }
+    apportsParJoueur[p.n] = {
+      production: prodParJoueur[p.n] ?? {},
+      batiments: batimentsParJoueur[p.n] ?? {},
+      population,
+      vassalite,
+    }
+  }
+  snapshotRessources(state, turnBefore + 1, apportsParJoueur)
 
   // 7. Tour suivant
   state.turn = turnBefore + 1
@@ -129,6 +175,10 @@ export function runTurn(state: GameState): GameState {
 export { newId, isNobleDyn, fullName } from './shared'
 export { saisonForTurn, applyEventEffect, applyDynastieCard } from './saisons'
 export { calculerGainsPopulation, taxBirthFactor } from './economie'
+export {
+  effetsTourBatiment, effetsBatimentsVille, appliquerEffetsBatiments,
+  garnisonBatiment, detailsBatimentsJoueur, type LigneBatiment,
+} from './batiments'
 export { transfererTributVassal } from './vassalite'
 export { populationTurn, migrerEnfants } from './population'
 export {

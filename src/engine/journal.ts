@@ -5,12 +5,19 @@
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
 // ══════════════════════════════════════════════════════════════════════
 
-import type { GameState, Player, PlayerRecap } from './types'
+import type { ApportsTour, GameState, Player, PlayerRecap } from './types'
 import { cfgOf } from './gameData'
 
 // ── Historique (SnapshotRessources) ──────────────────────────────────────
 
-export function snapshotRessources(state: GameState, turn: number) {
+/** Snapshot de fin de tour. `apportsParJoueur` (optionnel) stocke le
+ *  détail des apports du tour — production, bâtiments, habitants, tribut
+ *  de vassalité — pour le récap ressources du joueur. */
+export function snapshotRessources(
+  state: GameState,
+  turn: number,
+  apportsParJoueur?: Record<number, ApportsTour>,
+) {
   const C = cfgOf(state.config)
   for (const p of state.players) {
     const stocks: Record<string, number> = {}
@@ -19,7 +26,10 @@ export function snapshotRessources(state: GameState, turn: number) {
       stocks[r] = p.resources[r]?.stock ?? 0
       prods[r] = p.resources[r]?.prod ?? 0
     }
-    state.history.push({ turn, joueur: p.n, stocks, prods })
+    const apports = apportsParJoueur?.[p.n]
+    state.history.push(apports
+      ? { turn, joueur: p.n, stocks, prods, apports }
+      : { turn, joueur: p.n, stocks, prods })
   }
 }
 

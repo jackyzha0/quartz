@@ -171,11 +171,27 @@ export interface LogEntry {
   texte: string
 }
 
+/** Apports d'un tour, canal par canal (récap ressources du joueur).
+ *  Les événements et cartes dynastie du tour ne sont pas inclus :
+ *  ils figurent dans le journal du tour. */
+export interface ApportsTour {
+  /** production de base (l'été double la Nourriture) */
+  production: Record<string, number>
+  /** effets automatiques des bâtiments (engine/batiments.ts) */
+  batiments: Record<string, number>
+  /** gains d'habitants (titres, taxes) après coefficient gainsCrediteStock, hors tribut */
+  population: Record<string, number>
+  /** tribut de vassalité net (négatif = payé, positif = reçu) */
+  vassalite: Record<string, number>
+}
+
 export interface HistoryRow {
   turn: number
   joueur: number
   stocks: Record<string, number>
   prods: Record<string, number>
+  /** Apports du tour (champ optionnel : absent des vieilles sauvegardes). */
+  apports?: ApportsTour
 }
 
 export interface GameSetup {

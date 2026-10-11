@@ -8,7 +8,7 @@
 import type { GameState, Player } from './types'
 import type { Rng } from './rng'
 import { cfgOf } from './gameData'
-import { emptyRecap } from './shared'
+import { emptyRecap, fullName } from './shared'
 import { maybeAssignProfesseurs, gestionMariages, tryEducateMinor, assignAdultTitle } from './titres'
 import { computeAgeMax, tryResurrection, killCharacter, maladieStep } from './sante'
 import { computeFecondite, conceptionEtNaissances } from './naissances'
