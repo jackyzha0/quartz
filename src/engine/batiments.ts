@@ -33,11 +33,13 @@ export function batimentsConstructionsRefs(C?: Cfg): ConstructionRef[] {
 
 // ── Analyseur du texte d'effet (repli pour les bâtiments hors référentiel) ──
 
-// Ressources de flux concernées par les effets par tour. Garnison et
-// Habitants sont volontairement EXCLUS : ce sont des valeurs d'état
-// (défense / population), pas des flux — « Garnison +40 » est une valeur
-// statique tant que le bâtiment tient (voir garnisonBatiment).
-const RESSOURCES_FLUX = 'Or|Bois|Pierre|Fer|Charbon|Bétail|Soie|Nourritures?|Science|Tourisme'
+// Ressources de flux concernées par les effets par tour. Garnison,
+// Habitants et Tourisme sont volontairement EXCLUS : ce sont des
+// valeurs d'état (défense / population / attractivité), pas des flux —
+// « Garnison +40 » est une valeur statique tant que le bâtiment tient
+// (voir garnisonBatiment) et « Tourisme +15 » est un bonus acquis UNE
+// FOIS à la construction (voir tourismeStatiqueBatiment).
+const RESSOURCES_FLUX = 'Or|Bois|Pierre|Fer|Charbon|Bétail|Soie|Nourritures?|Science'
 const NOMBRE = String.raw`\d+(?:[.,]\d+)?`
 
 /** Découpe un texte d'effet en phrases exploitables. */
@@ -148,6 +150,17 @@ export function garnisonBatiment(nom: string, C: Cfg): number {
   const bd = buildingDef(nom, C.config)
   const m = bd?.effet?.match(/Garnison\s*\+?\s*(\d+)/i)
   return m ? parseInt(m[1], 10) : 0
+}
+
+/** Tourisme statique accordé par un bâtiment — valeur d'état acquise
+ *  UNE FOIS à la construction (« Tourisme +15 », « Chapelle : Tourisme
+ *  +35 »…), pas un flux par tour. Utilisé par construire() (page Pays). */
+export function tourismeStatiqueBatiment(nom: string, C: Cfg): number {
+  const ref = constructionRef(nom, C.config)
+  const bd = buildingDef(nom, C.config)
+  const texte = [ref?.description, ref?.production, bd?.effet].filter(Boolean).join(' ')
+  const m = texte.match(/Tourisme\s*\+?\s*(\d+(?:[.,]\d+)?)/i)
+  return m ? parseFloat(m[1].replace(',', '.')) : 0
 }
 
 // ── Coût de construction (référentiel canonique, repli classeur) ────────

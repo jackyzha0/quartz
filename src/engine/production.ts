@@ -23,6 +23,7 @@ import { effetsBatimentsVille } from './batiments'
 import { effetsAmenagementsVille } from './amenagements'
 import { effetsAutresVille } from './autres'
 import { effetsRegime, effetsCulturePays } from './regimes'
+import { consommationsPays } from './habitations'
 
 export interface ProductionDetail {
   /** production de base (l'Été double la Nourriture, comme le moteur) */
@@ -39,6 +40,9 @@ export interface ProductionDetail {
   /** lois chiffrées du régime et règle de pays de la culture
    *  (engine/regimes.ts) : garnison de la loi, bonus de capitale… */
   regimesCultures: Record<string, number>
+  /** consommations par tour des habitations (engine/habitations.ts) —
+   *  négatives (ex. Cité : −10 Nourriture, −8 Or) */
+  habitations: Record<string, number>
   /** tribut de vassalité (négatif = payé, positif = reçu) */
   vassalite: Record<string, number>
   /** somme de tous les canaux */
@@ -115,12 +119,19 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     if (part !== 0) vassalite['Or'] = (vassalite['Or'] ?? 0) + part
   }
 
+  // Habitations : consommation par tour de chaque ville selon son type
+  //  (Ville / Château) et son rang — étape 3octies du moteur.
+  const habitations: Record<string, number> = {}
+  for (const [res, v] of Object.entries(consommationsPays(p, C))) {
+    if (v !== 0) habitations[res] = (habitations[res] ?? 0) + v
+  }
+
   // Total
   const total: Record<string, number> = {}
-  for (const canal of [base, habitants, batiments, amenagements, autres, regimesCultures, vassalite]) {
+  for (const canal of [base, habitants, batiments, amenagements, autres, regimesCultures, habitations, vassalite]) {
     for (const [res, v] of Object.entries(canal)) {
       total[res] = (total[res] ?? 0) + v
     }
   }
-  return { base, habitants, batiments, amenagements, autres, regimesCultures, vassalite, total }
+  return { base, habitants, batiments, amenagements, autres, regimesCultures, habitations, vassalite, total }
 }

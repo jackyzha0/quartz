@@ -22,27 +22,35 @@
 import type { City, GameState, Player, Saison } from './types'
 import { cfgOf, cultureDef, type Cfg } from './gameData'
 import { garnisonBatiment } from './batiments'
+import { nomRang, garnisonBaseVille } from './habitations'
 
-/** Nom court d'un rang d'habitation (« Hameau : 20 Or… » → « Hameau »). */
-export function nomRang(rang: string): string {
-  return rang.split(':')[0].trim()
-}
+export { nomRang } from './habitations'
 
-/** Niveau du rang d'habitation d'une ville (1 = Hameau, 2 = Cité,
- *  3 = Grande Cité — ordre de la table rangsHabitation). Défaut : 1. */
+/** Niveau du rang d'habitation d'une ville (1 = Hameau / Motte, 2 = Cité /
+ *  Donjon, 3 = Grande Cité / Forteresse — ordre de la table
+ *  typesHabitation pour le type de la ville). Défaut : 1. */
 export function rangNiveau(ville: City, C: Cfg): number {
-  const rangs = C.config.rangsHabitation ?? []
-  const nom = nomRang(ville.rang ?? rangs[0]?.rang ?? 'Hameau')
-  const idx = rangs.findIndex((r) => nomRang(r.rang).toLowerCase() === nom.toLowerCase())
-  return idx >= 0 ? idx + 1 : 1
+  const type = ville.type ?? 'Ville'
+  const nom = nomRang(ville.rang ?? C.config.rangsHabitation?.[0]?.rang ?? 'Hameau')
+  const table = C.config.typesHabitation ?? []
+  // niveau DANS l'échelle du type de la ville (1er rang du type = 1)
+  const rangsType = table.filter((d) => d.type.toLowerCase() === type.toLowerCase())
+  const idx = rangsType.findIndex((d) => nomRang(d.rang).toLowerCase() === nom.toLowerCase())
+  if (idx >= 0) return idx + 1
+  // Repli ancien format : table rangsHabitation (échelle Ville)
+  const idx2 = (C.config.rangsHabitation ?? [])
+    .findIndex((r) => nomRang(r.rang).toLowerCase() === nom.toLowerCase())
+  return idx2 >= 0 ? idx2 + 1 : 1
 }
 
-/** Garnison des habitations d'une ville : somme des garnisons statiques
- *  des bâtiments + bonus de la loi du régime (ex. Autoritarisme :
- *  + garnisonParRang × niveau du rang d'habitation). Affichée sous la
+/** Garnison des habitations d'une ville : garnison de base du rang
+ *  d'habitation (typesHabitation — Hameau 10, Cité 24, Motte 26,
+ *  Forteresse 90…), garnisons statiques des bâtiments, et bonus de la
+ *  loi du régime (ex. Autoritarisme : + garnisonParRang × niveau du
+ *  rang d'habitation). Valeur d'état (pas un flux) : affichée sous la
  *  culture de chaque ville (page « Pays ») et du pays (page « Royaume »). */
 export function garnisonHabitationVille(p: Player, ville: City, C: Cfg): number {
-  let g = 0
+  let g = garnisonBaseVille(ville, C)
   for (const b of ville.batiments) g += garnisonBatiment(b, C)
   const regime = C.regimes.find((r) => r.nom === p.regime)
   const bonus = regime?.garnisonParRang ?? 0

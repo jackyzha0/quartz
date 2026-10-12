@@ -122,9 +122,34 @@ export interface AutreDef {
   bonus: number
 }
 
+/** Ligne de la table « types d'habitation » (feuille Ville du classeur) :
+ *  chaque ville est de type Ville (Hameau → Cité → Grande Cité) ou
+ *  Château (Motte → Donjon → Forteresse). Chaque rang a un coût
+ *  d'amélioration, un nombre d'habitants requis, une consommation
+ *  par tour (ex. « 10 Nourriture, 8 Or », débitée du stock par le
+ *  moteur) et une garnison de base. Table paramétrable dans les
+ *  Référentiels → « Habitations ». */
+export interface HabitationDef {
+  /** « Ville » ou « Château » */
+  type: string
+  /** nom du rang (Hameau, Cité, Grande Cité, Motte, Donjon, Forteresse) */
+  rang: string
+  cout: string
+  habitantsRequis: number
+  /** consommation par tour, quantités positives (ex. « 10 Nourriture, 8 Or ») */
+  consommation: string
+  garnison: number
+}
+
 export interface City {
   nom: string
   culture: string
+  /** Type d'habitation : Ville (Hameau → Cité → Grande Cité) ou
+   *  Château (Motte → Donjon → Forteresse) — feuille « Ville » du
+   *  classeur. Champ optionnel : absent des vieilles sauvegardes →
+   *  « Ville ». Détermine l'échelle des rangs, la consommation par
+   *  tour et la garnison de base (table typesHabitation). */
+  type?: string
   taxes: TaxeNiveau
   /** Rang d'habitation (Hameau / Cité / Grande Cité — table
    *  rangsHabitation du classeur). Champ optionnel : absent des vieilles
@@ -220,6 +245,10 @@ export interface ApportsTour {
    *  garnison de la loi du régime, bonus de capitale de la culture, etc.
    *  Champ optionnel : absent des historiques d'avant l'ajout du canal. */
   regimesCultures?: Record<string, number>
+  /** consommations par tour des habitations (engine/habitations.ts) —
+   *  négatives (ex. Cité : −10 Nourriture, −8 Or). Champ optionnel :
+   *  absent des historiques d'avant l'ajout du canal. */
+  habitations?: Record<string, number>
 }
 
 export interface HistoryRow {

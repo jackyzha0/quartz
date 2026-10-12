@@ -35,6 +35,7 @@ import { appliquerEffetsBatiments } from './batiments'
 import { appliquerEffetsAmenagements } from './amenagements'
 import { appliquerEffetsAutres } from './autres'
 import { appliquerEffetsRegimesCultures } from './regimes'
+import { appliquerConsommationsHabitations } from './habitations'
 import { transfererTributVassal } from './vassalite'
 import { populationTurn } from './population'
 import { recruitForArmies } from './armees'
@@ -158,6 +159,14 @@ export function runTurn(state: GameState): GameState {
     regimesCulturesParJoueur[p.n] = appliquerEffetsRegimesCultures(state, p, state.saison, C)
   }
 
+  // 3octies. Habitations : consommation par tour de chaque ville selon
+  //  son type (Ville / Château) et son rang (engine/habitations.ts —
+  //  ex. Cité : −10 Nourriture, −8 Or ; table typesHabitation).
+  const habitationsParJoueur: Record<number, Record<string, number>> = {}
+  for (const p of state.players) {
+    habitationsParJoueur[p.n] = appliquerConsommationsHabitations(state, p, C)
+  }
+
   // 4. Moteur de population (PersonnagesPourJoueur) pour chaque joueur
   for (const p of state.players) {
     populationTurn(state, p, rng)
@@ -187,6 +196,7 @@ export function runTurn(state: GameState): GameState {
       amenagements: amenagementsParJoueur[p.n] ?? {},
       autres: autresParJoueur[p.n] ?? {},
       regimesCultures: regimesCulturesParJoueur[p.n] ?? {},
+      habitations: habitationsParJoueur[p.n] ?? {},
       population,
       vassalite,
     }
@@ -231,6 +241,11 @@ export {
   nomRang, rangNiveau, garnisonHabitationVille, garnisonHabitationsPays,
   effetsRegime, effetsCulturePays, appliquerEffetsRegimesCultures,
 } from './regimes'
+export {
+  typeVille, habitationDef, rangsDisponibles, garnisonBaseVille,
+  habitantsRequisVille, consommationsVille, consommationsPays,
+  appliquerConsommationsHabitations,
+} from './habitations'
 export { productionDetaillee, type ProductionDetail } from './production'
 export { transfererTributVassal } from './vassalite'
 export { populationTurn, migrerEnfants } from './population'

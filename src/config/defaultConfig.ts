@@ -63,6 +63,23 @@ export interface RegimeDef {
   garnisonParRang?: number
   nourrEteChampRiziere?: number
 }
+/** Ligne de la table « types d'habitation » (feuille Ville du classeur) :
+ *  chaque ville est de type Ville (Hameau → Cité → Grande Cité) ou
+ *  Château (Motte → Donjon → Forteresse) ; chaque rang a un coût
+ *  d'amélioration, un nombre d'habitants requis, une consommation
+ *  par tour et une garnison de base — débités/appliqués
+ *  automatiquement par le moteur (engine/habitations.ts). */
+export interface HabitationDef {
+  /** « Ville » ou « Château » */
+  type: string
+  /** nom du rang (Hameau, Cité, Grande Cité, Motte, Donjon, Forteresse) */
+  rang: string
+  cout: string
+  habitantsRequis: number
+  /** consommation par tour, quantités positives (ex. « 10 Nourriture, 8 Or ») */
+  consommation: string
+  garnison: number
+}
 export interface EventDef {
   nom: string
   saison: string
@@ -172,6 +189,7 @@ export interface GameConfig {
   amenagements: AmenagementRef[]
   constructions: ConstructionRef[]
   rangsHabitation: { rang: string; cout: string; effet: string }[]
+  typesHabitation: HabitationDef[]
   progres: ProgresArbre[]
   paysRangs: { bloc: string; nom: string; cout: string; bonus: string; succession: string }[]
   tourismeSeuils: { seuil: number; bonus: string }[]
@@ -373,6 +391,7 @@ export const DEFAULT_CONFIG: GameConfig = {
   amenagements: ref.amenagements,
   constructions: ref.constructions,
   rangsHabitation: ref.rangsHabitation,
+  typesHabitation: ref.typesHabitation,
   progres: ref.progres,
   paysRangs: [], // rempli depuis la feuille Pays (voir normalisation ci-dessous)
   tourismeSeuils: ref.tourismeSeuils,
@@ -459,6 +478,13 @@ export function migrerRegimes(list: RegimeDef[] | undefined): RegimeDef[] {
   })
 }
 
+/** Table des types d'habitation (Ville / Château) d'une configuration
+ *  existante — défauts du classeur si absents ou vides. */
+export function migrerTypesHabitation(list: HabitationDef[] | undefined): HabitationDef[] {
+  if (!Array.isArray(list) || list.length === 0) return DEFAULT_CONFIG.typesHabitation
+  return list
+}
+
 export function cfgOf(config: GameConfig | undefined): Cfg {
   const c = config ?? DEFAULT_CONFIG
   const merged: GameConfig = {
@@ -470,6 +496,7 @@ export function cfgOf(config: GameConfig | undefined): Cfg {
   merged.traits = migrateTraits(merged.traits)
   merged.cultures = migrerCultures(merged.cultures)
   merged.regimes = migrerRegimes(merged.regimes)
+  merged.typesHabitation = migrerTypesHabitation(merged.typesHabitation)
   return {
     p: merged.params,
     ressources: merged.ressources,

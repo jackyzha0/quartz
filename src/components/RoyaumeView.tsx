@@ -4,15 +4,17 @@
 //     culture, régime) — déplacé ici depuis la page « Pays »,
 //   · culture du pays (celle de la capitale) : hérédité, martialité,
 //     mariages homosexuels, règle de pays & règle de personnage, et
-//     GARNISON DES HABITATIONS notée sous la culture (bâtiments + loi
-//     du régime),
+//     GARNISON DES HABITATIONS notée sous la culture (valeur fixe :
+//     base des rangs + bâtiments + loi du régime),
 //   · régime politique : loi (les lois chiffrées du référentiel sont
 //     appliquées automatiquement à chaque fin de tour),
 //   · rang de pays (Féodal / Républicain — feuille « Pays » du classeur),
-//   · personnages importants : Dirigeant, Héritier, Professeurs,
-//     Commandants, famille royale,
+//   · événement de dynastie : carte tirée au hasard à CHAQUE tour
+//     (ce n'est pas la famille au pouvoir),
 //   · vassaux : prêt de serment à un autre joueur, tribut automatique
-//     (paramètre vassalPrelevement, appliqué en fin de tour par le moteur).
+//     (paramètre vassalPrelevement, appliqué en fin de tour par le moteur),
+//   · personnages importants : Dirigeant, Héritier, Professeurs,
+//     Commandants, famille royale.
 //  Les technologies (feuille « Progrès ») sont retirées de cette page —
 //  elles restent consultables dans « 📚 Référentiels » → « Progrès ».
 // ══════════════════════════════════════════════════════════════════════
@@ -164,16 +166,25 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
               <>
                 <div className="muted small">
                   Hérédité {String(cult.heredite).toLowerCase()} ·
-                  maritalité {String(cult.martialite).toLowerCase()} ·
+                  martialité {String(cult.martialite).toLowerCase()} ·
                   mariage homosexuel {cult.homoAutorisee ? 'autorisé' : 'interdit'}
                 </div>
                 <div className="small">
                   Garnison des habitations :{' '}
-                  <strong>+{fmt(garnisonHab)}</strong>{' '}
-                  <span className="muted">(bâtiments + loi du régime)</span>
+                  <strong>{fmt(garnisonHab)}</strong>{' '}
+                  <span className="muted">
+                    (base des rangs + bâtiments + loi du régime — valeur fixe, défense du pays)
+                  </span>
                 </div>
                 {cult.reglePays && <div className="small muted">Règle de pays : {cult.reglePays}</div>}
                 {cult.reglePerso && <div className="small muted">Règle de personnage : {cult.reglePerso}</div>}
+                <div className="muted small">
+                  Ce que fait la culture : l'hérédité et la martialité règlent la
+                  transmission des titres et l'armée ; la fécondité influe sur les
+                  naissances ; les mariages homosexuels (si autorisés) permettent des
+                  unions de même sexe (sans conception) ; la règle de pays et les lois
+                  chiffrées sont appliquées automatiquement à chaque fin de tour.
+                </div>
               </>
             )}
           </div>
@@ -209,61 +220,15 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
             )}
           </div>
           <div className="mini">
-            <div className="mini-title">Dynastie régnante</div>
+            <div className="mini-title">Événement de dynastie</div>
             <div><strong>{p.dynastie ? p.dynastie.nom : '—'}</strong></div>
             {p.dynastie && <div className="muted small">{p.dynastie.description}</div>}
+            <div className="muted small">
+              Carte tirée au hasard à CHAQUE tour parmi les dynasties du
+              référentiel — ce n'est pas la famille au pouvoir (voir
+              « Personnages importants » pour la famille royale).
+            </div>
           </div>
-        </div>
-      </Card>
-
-      {/* ═══ Personnages importants ═══ */}
-      <Card title="👤 Personnages importants">
-        <div className="table-wrap">
-          <table className="tbl">
-            <thead>
-              <tr><th>Rôle</th><th>Personnage</th><th>Titre</th><th>Ville</th></tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>{C.p.titreDirigeant}</strong></td>
-                <td>{dirigeant ? pers(dirigeant) : <span className="neg">poste vacant</span>}</td>
-                <td>{dirigeant?.titre ?? '—'}</td>
-                <td>{dirigeant?.ville ?? '—'}</td>
-              </tr>
-              <tr>
-                <td><strong>{C.p.titreHeritierStr}</strong></td>
-                <td>{heritier ? pers(heritier) : <span className="muted">aucun</span>}</td>
-                <td>{heritier?.titre ?? '—'}</td>
-                <td>{heritier?.ville ?? '—'}</td>
-              </tr>
-              <tr>
-                <td><strong>{C.p.titreProfesseur}s</strong> ({professeurs.length})</td>
-                <td>{professeurs.length ? professeurs.map(pers).join(' · ') : <span className="muted">aucun</span>}</td>
-                <td>—</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td><strong>{C.p.titreCommandant}s</strong> ({commandants.length})</td>
-                <td>{commandants.length ? commandants.map(pers).join(' · ') : <span className="muted">aucun</span>}</td>
-                <td>—</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td><strong>Famille royale</strong> ({familleRoyale.length})
-                  <div className="muted small">dynastie {dynRoyale ?? '—'}</div>
-                </td>
-                <td colSpan={3}>
-                  {familleRoyale.length
-                    ? familleRoyale.map((c) => (
-                      <span key={c.id} className="badge badge-info" style={{ marginRight: 4 }}>
-                        {pers(c)}{c.titre ? ` — ${c.titre}` : ''}
-                      </span>
-                    ))
-                    : <span className="muted">aucun membre vivant</span>}
-                </td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </Card>
 
@@ -321,6 +286,59 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
           </div>
         </div>
       </Card>
+
+      {/* ═══ Personnages importants ═══ */}
+      <Card title="👤 Personnages importants">
+        <div className="table-wrap">
+          <table className="tbl">
+            <thead>
+              <tr><th>Rôle</th><th>Personnage</th><th>Titre</th><th>Ville</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>{C.p.titreDirigeant}</strong></td>
+                <td>{dirigeant ? pers(dirigeant) : <span className="neg">poste vacant</span>}</td>
+                <td>{dirigeant?.titre ?? '—'}</td>
+                <td>{dirigeant?.ville ?? '—'}</td>
+              </tr>
+              <tr>
+                <td><strong>{C.p.titreHeritierStr}</strong></td>
+                <td>{heritier ? pers(heritier) : <span className="muted">aucun</span>}</td>
+                <td>{heritier?.titre ?? '—'}</td>
+                <td>{heritier?.ville ?? '—'}</td>
+              </tr>
+              <tr>
+                <td><strong>{C.p.titreProfesseur}s</strong> ({professeurs.length})</td>
+                <td>{professeurs.length ? professeurs.map(pers).join(' · ') : <span className="muted">aucun</span>}</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><strong>{C.p.titreCommandant}s</strong> ({commandants.length})</td>
+                <td>{commandants.length ? commandants.map(pers).join(' · ') : <span className="muted">aucun</span>}</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><strong>Famille royale</strong> ({familleRoyale.length})
+                  <div className="muted small">dynastie {dynRoyale ?? '—'}</div>
+                </td>
+                <td colSpan={3}>
+                  {familleRoyale.length
+                    ? familleRoyale.map((c) => (
+                      <span key={c.id} className="badge badge-info" style={{ marginRight: 4 }}>
+                        {pers(c)}{c.titre ? ` — ${c.titre}` : ''}
+                      </span>
+                    ))
+                    : <span className="muted">aucun membre vivant</span>}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Card>
+
+
     </div>
   )
 }

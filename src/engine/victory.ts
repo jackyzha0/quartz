@@ -13,7 +13,10 @@ export function checkVictory(state: GameState): VictoryStatus[] {
     (n, p) => n + (state.population[p.n] ?? []).filter((c) => c.statut !== 'Décédé').length, 0,
   )
   const orTotal = sumProd(state, 'Or')
-  const tourTotal = Math.max(1, sumProd(state, 'Tourisme'))
+  // Le Tourisme est une VALEUR D'ÉTAT (bonus fixes acquis à la
+  // construction, pas des flux par tour) : la victoire culturelle
+  // compare les stocks de Tourisme entre joueurs.
+  const tourTotal = Math.max(1, state.players.reduce((n, q) => n + (q.resources['Tourisme']?.stock ?? 0), 0))
   const garnisons = state.players.map((p) => p.resources['Garnison']?.stock ?? 0)
   const armeesAdverses = (p: number) =>
     state.players.filter((q) => q.n !== p).reduce((n, q) => n + q.armees.length, 0)

@@ -13,11 +13,11 @@ import { useGame } from '../state/store'
 import { cfgOf } from '../engine/gameData'
 import type { GameConfig } from '../config/defaultConfig'
 import { VICTORY_TEXT } from '../engine/gameData2'
-import { Card, Badge, TextInput, NumberInput, Button } from './ui'
+import { Card, Badge, TextInput, NumberInput, Button, Select } from './ui'
 
 const ONGLETS = [
   'Titres', 'Traits gén.', 'Peuples', 'Bâtiments', 'Aménagements', 'Progrès',
-  'Pays & rangs', 'Cultures & régimes', 'Tourisme & dogmes', 'Cités libres',
+  'Pays & rangs', 'Habitations', 'Cultures & régimes', 'Tourisme & dogmes', 'Cités libres',
   'Victoires', 'Crises', 'Rappels règles', 'Maladies', 'Offrandes', 'Ministères',
   'Aide-mémoire',
 ] as const
@@ -266,6 +266,51 @@ export function ReferenceDataPanel() {
             </table>
           </div>
           <p className="muted small">Rangs d'habitation : {cfg.rangsHabitation.map((r) => `${r.rang} (${r.cout})`).join(' · ')}</p>
+        </Card>
+      )}
+
+      {onglet === 'Habitations' && (
+        <Card title={`Types & rangs d'habitation (${configEdit.typesHabitation.length}) — consommation, garnison de base`}>
+          <p className="muted small">
+            Les villes sont de deux types, chacun avec son échelle de rangs :
+            Ville (Hameau → Cité → Grande Cité) et Château (Motte → Donjon → Forteresse).
+            Chaque rang consomme des ressources À CHAQUE TOUR (débitées automatiquement
+            du stock — colonne « Consommation / tour ») et apporte une GARNISON DE BASE
+            (valeur fixe, s'ajoutant aux garnisons des bâtiments). La consommation
+            s'écrit en quantités positives, ex. « 10 Nourriture, 8 Or ». Tout est
+            appliqué automatiquement par le moteur et modifiable à chaud.
+          </p>
+          <div className="table-wrap">
+            <table className="tbl small">
+              <thead>
+                <tr>
+                  <th>Type</th><th>Rang</th><th>Coût d'amélioration</th>
+                  <th>Habitants requis</th><th>Consommation / tour</th><th>Garnison de base</th>
+                </tr>
+              </thead>
+              <tbody>
+                {configEdit.typesHabitation.map((h, i) => (
+                  <tr key={i}>
+                    <td>
+                      <Select
+                        value={h.type}
+                        options={[{ value: 'Ville', label: 'Ville' }, { value: 'Château', label: 'Château' }]}
+                        onChange={(v) => setCfg((c) => { c.typesHabitation[i].type = v })}
+                      />
+                    </td>
+                    <td><TextInput value={h.rang} onChange={(v) => setCfg((c) => { c.typesHabitation[i].rang = v })} /></td>
+                    <td><TextInput value={h.cout} onChange={(v) => setCfg((c) => { c.typesHabitation[i].cout = v })} /></td>
+                    <td><NumberInput value={h.habitantsRequis} step={10} min={0} onChange={(v) => setCfg((c) => { c.typesHabitation[i].habitantsRequis = v })} /></td>
+                    <td><TextInput value={h.consommation} onChange={(v) => setCfg((c) => { c.typesHabitation[i].consommation = v })} /></td>
+                    <td><NumberInput value={h.garnison} step={1} min={0} onChange={(v) => setCfg((c) => { c.typesHabitation[i].garnison = v })} /></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <Button onClick={() => setCfg((c) => {
+            c.typesHabitation.push({ type: 'Ville', rang: 'Nouveau rang', cout: '', habitantsRequis: 0, consommation: '', garnison: 0 })
+          })}>+ Ajouter un rang d'habitation</Button>
         </Card>
       )}
 
