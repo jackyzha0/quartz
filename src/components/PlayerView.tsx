@@ -554,6 +554,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
             ['Autres', prodDetail.autres],
             ['Régimes & cultures', prodDetail.regimesCultures],
             ['Faction', prodDetail.faction],
+            ['Cités libres', prodDetail.citesLibres],
             ['Conso villes', prodDetail.habitations],
             ['Vassalité', prodDetail.vassalite],
           ]
@@ -565,7 +566,8 @@ export function PlayerView({ joueur }: { joueur: number }) {
               <p className="muted">
                 Aucun apport par tour pour l'instant : la production de ce pays est
                 nulle sur tous les canaux (base, villageois, bâtiments, aménagements,
-                autres, lois de régime/culture, faction, consommations, vassalité).
+                autres, lois de régime/culture, faction, cités libres, consommations,
+                vassalité).
               </p>
             )
           }
@@ -629,7 +631,8 @@ export function PlayerView({ joueur }: { joueur: number }) {
           de base du pays (l'été double la Nourriture), villageois (titres ×
           taxes, toutes ressources), bâtiments et aménagements du référentiel
           exact, lignes « Autres », lois chiffrées du régime et règle de pays
-          de la culture, consommation par tour des habitations et tribut de
+          de la culture, taxes des cités libres sous suzeraineté (Chasseurs
+          ×2 Nourriture), consommation par tour des habitations et tribut de
           vassalité. La section « D'où vient chaque ressource ? » détaille
           l'origine de chaque apport (bâtiment, villageois, loi, ville…).
           Tous ces effets sont appliqués automatiquement à chaque fin de
@@ -647,21 +650,22 @@ export function PlayerView({ joueur }: { joueur: number }) {
             return (
               <p className="muted">
                 Lancez un tour pour voir apparaître le détail des apports (production,
-                bâtiments, aménagements, autres, consommations des villes, habitants, régimes & cultures, faction, vassalité).
+                bâtiments, aménagements, autres, consommations des villes, habitants, régimes & cultures, faction, cités libres, vassalité).
               </p>
             )
           }
-          const { production, batiments, amenagements, autres, population, vassalite, regimesCultures, habitations, faction } = row.apports
+          const { production, batiments, amenagements, autres, population, vassalite, regimesCultures, habitations, faction, citesLibres } = row.apports
           const amen = amenagements ?? {}
           const aut = autres ?? {}
           const reg = regimesCultures ?? {}
           const hab = habitations ?? {}
           const fac = faction ?? {}
+          const cl = citesLibres ?? {}
           const val = (d: Record<string, number>, r: string) => d[r] ?? 0
           const res = C.ressources.filter((r) =>
             val(production, r) !== 0 || val(batiments, r) !== 0 || val(amen, r) !== 0
             || val(aut, r) !== 0 || val(hab, r) !== 0 || val(population, r) !== 0 || val(vassalite, r) !== 0
-            || val(reg, r) !== 0 || val(fac, r) !== 0)
+            || val(reg, r) !== 0 || val(fac, r) !== 0 || val(cl, r) !== 0)
           if (res.length === 0) {
             return <p className="muted">Aucun apport au tour {row.turn}.</p>
           }
@@ -673,14 +677,14 @@ export function PlayerView({ joueur }: { joueur: number }) {
                     <th>Ressource</th><th>Production</th><th>Bâtiments</th>
                     <th>Aménagements</th><th>Autres</th>
                     <th>Conso. villes</th>
-                    <th>Habitants</th><th>Régimes & cultures</th><th>Faction</th><th>Vassalité</th><th>Total</th>
+                    <th>Habitants</th><th>Régimes & cultures</th><th>Faction</th><th>Cités libres</th><th>Vassalité</th><th>Total</th>
                   </tr>
                 </thead>
                 <tbody>
                   {res.map((r) => {
                     const total = val(production, r) + val(batiments, r) + val(amen, r)
                       + val(aut, r) + val(hab, r) + val(population, r) + val(vassalite, r) + val(reg, r)
-                      + val(fac, r)
+                      + val(fac, r) + val(cl, r)
                     return (
                       <tr key={r}>
                         <td><strong>{r}</strong></td>
@@ -692,6 +696,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                         <td>{fmtNum(val(population, r))}</td>
                         <td>{fmtNum(val(reg, r))}</td>
                         <td>{fmtNum(val(fac, r))}</td>
+                        <td>{fmtNum(val(cl, r))}</td>
                         <td>{fmtNum(val(vassalite, r))}</td>
                         <td className={total < 0 ? 'neg' : ''}><strong>{fmtNum(total)}</strong></td>
                       </tr>
@@ -708,7 +713,8 @@ export function PlayerView({ joueur }: { joueur: number }) {
           lignes « Autres », consommation par tour des villes selon leur type et leur rang
           (négative — table « Habitations »), gains des habitants (titres × taxes — toutes
           ressources —, après coefficient « gains crédités au stock »), lois chiffrées des
-          régimes et cultures (bonus de capitale, etc.) et tribut de vassalité
+          régimes et cultures (bonus de capitale, etc.), taxes des cités libres sous
+          suzeraineté (Chasseurs ×2 Nourriture) et tribut de vassalité
           (négatif = payé, positif = reçu). La garnison et le Tourisme sont des
           valeurs fixes, pas des apports par tour. Les événements et cartes dynastie du
           tour figurent dans le journal.

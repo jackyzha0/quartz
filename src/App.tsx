@@ -9,6 +9,7 @@ import { Dashboard } from './components/Dashboard'
 import { PlayerView } from './components/PlayerView'
 import { RoyaumeView } from './components/RoyaumeView'
 import { PopulationTable } from './components/PopulationTable'
+import { CitesLibresView } from './components/CitesLibresView'
 import { ArmiesPanel } from './components/ArmiesPanel'
 import { EventLogPanel } from './components/EventLogPanel'
 import { HistoryPanel } from './components/HistoryPanel'
@@ -16,13 +17,14 @@ import { SetupPanel } from './components/SetupPanel'
 import { ReferenceDataPanel } from './components/ReferenceDataPanel'
 import { ParamsPanel } from './components/ParamsPanel'
 
-type Section = 'accueil' | 'royaume' | 'joueur' | 'population' | 'armees' | 'journal' | 'historique' | 'referentiels' | 'parametres' | 'setup'
+type Section = 'accueil' | 'royaume' | 'joueur' | 'population' | 'citeslibres' | 'armees' | 'journal' | 'historique' | 'referentiels' | 'parametres' | 'setup'
 
 const SECTIONS: { key: Section; label: string }[] = [
   { key: 'accueil', label: '🏛 Accueil' },
   { key: 'royaume', label: '🏰 Royaume' },
   { key: 'joueur', label: '👑 Pays' },
   { key: 'population', label: '👥 Population' },
+  { key: 'citeslibres', label: '🗼 Cités libres' },
   { key: 'armees', label: '⚔ Armées' },
   { key: 'journal', label: '📜 Journal' },
   { key: 'historique', label: '📈 Historique' },
@@ -108,6 +110,7 @@ export default function App() {
             {section === 'royaume' && <RoyaumeView joueur={joueur} />}
             {section === 'joueur' && <PlayerView joueur={joueur} />}
             {section === 'population' && <PopulationTable joueur={joueur} />}
+            {section === 'citeslibres' && <CitesLibresView />}
             {section === 'armees' && <ArmiesPanel joueur={joueur} />}
             {section === 'journal' && <EventLogPanel />}
             {section === 'historique' && <HistoryPanel />}

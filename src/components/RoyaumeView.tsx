@@ -32,6 +32,7 @@ import type { Character, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
 import { detailsFaction } from '../engine/factions'
 import { rangParDefaut } from '../engine/setup'
+import { citesSuzerainesDe } from '../engine/engine'
 import { Card, Select, TextInput, Button, Badge, Field } from './ui'
 
 export function RoyaumeView({ joueur }: { joueur: number }) {
@@ -285,6 +286,22 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
                 </div>
               </div>
             ))}
+            {(() => {
+              const cites = citesSuzerainesDe(state, p)
+              return (
+                <div style={{ marginTop: 8 }}>
+                  <div className="mini-title">🗼 Cités libres sous suzeraineté ({cites.length})</div>
+                  {cites.length === 0
+                    ? <div className="muted small">Aucune — atteindre 3 émissaires auprès d'une cité libre (onglet « 🗼 Cités libres ») pour devenir son suzerain (voie Diplomatique : 3 cités).</div>
+                    : cites.map((c) => (
+                      <div key={c.nom} className="muted small">
+                        <strong>{c.nom}</strong> — verse ses taxes à chaque fin de tour
+                        (Chasseurs ×2 Nourriture, canal « Cités libres »).
+                      </div>
+                    ))}
+                </div>
+              )
+            })()}
           </div>
         </div>
       </Card>

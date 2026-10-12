@@ -45,6 +45,7 @@ export function createGame(setups: SetupLine[], seed: number, mode?: 'local' | '
     config: startConfig,
     players: [],
     population: {},
+    citesLibres: [],
     log: [
       { turn: 1, type: 'Système', joueur: null, texte: `Partie créée (graine ${seed}, mode ${mode ?? 'local'}). Tour 1 = année 1.` },
     ],

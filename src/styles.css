@@ -428,3 +428,14 @@ select.input { min-width: 120px; width: auto; }
   background: var(--card2); font-size: 0.85em; line-height: 1.5;
 }
 .small-gap { gap: 4px; }
+
+/* ── Onglet « 🗼 Cités libres » ────────────────────────────────────── */
+.cl-emiss {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0;
+  flex-wrap: wrap;
+}
+.cl-emiss .player-chip { cursor: default; }
+.pre-wrap { white-space: pre-wrap; }

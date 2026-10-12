@@ -24,6 +24,7 @@ import { effetsAmenagementsVille, detailsAmenagementsJoueur } from './amenagemen
 import { effetsAutresVille, detailsAutresJoueur } from './autres'
 import { effetsRegime, effetsCulturePays, detailCulturePays } from './regimes'
 import { effetsFaction } from './factions'
+import { citesLibresDe, detailCiteLibre } from './citesLibres'
 import { consommationsPays, consommationsVille, nomRang } from './habitations'
 
 export interface ProductionDetail {
@@ -47,6 +48,9 @@ export interface ProductionDetail {
   /** bonus automatiques des règles de faction du peuple du joueur
    *  (engine/factions.ts — étape 3nonies) */
   faction: Record<string, number>
+  /** taxes reçues des cités libres sous suzeraineté du joueur
+   *  (engine/citesLibres.ts — étape 3decies) */
+  citesLibres: Record<string, number>
   /** tribut de vassalité (négatif = payé, positif = reçu) */
   vassalite: Record<string, number>
   /** somme de tous les canaux */
@@ -138,14 +142,25 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     if (v !== 0) faction[res] = v
   }
 
+  // Cités libres : taxes versées par les cités sous suzeraineté du
+  //  joueur (production nette, Chasseurs ×2 Nourriture) — étape
+  //  3decies du moteur.
+  const citesLibres: Record<string, number> = {}
+  for (const cite of citesLibresDe(state)) {
+    if (cite.suzerain !== p.n) continue
+    for (const [res, v] of Object.entries(detailCiteLibre(cite, C).transfert)) {
+      if (v !== 0) citesLibres[res] = (citesLibres[res] ?? 0) + v
+    }
+  }
+
   // Total
   const total: Record<string, number> = {}
-  for (const canal of [base, habitants, batiments, amenagements, autres, regimesCultures, habitations, faction, vassalite]) {
+  for (const canal of [base, habitants, batiments, amenagements, autres, regimesCultures, habitations, faction, citesLibres, vassalite]) {
     for (const [res, v] of Object.entries(canal)) {
       total[res] = (total[res] ?? 0) + v
     }
   }
-  return { base, habitants, batiments, amenagements, autres, regimesCultures, habitations, faction, vassalite, total }
+  return { base, habitants, batiments, amenagements, autres, regimesCultures, habitations, faction, citesLibres, vassalite, total }
 }
 
 // ══════════════════════════════════════════════════════════════════════
@@ -210,7 +225,7 @@ export function productionVille(
 /** Canal d'un apport (colonne du récap ressources). */
 export type CanalApport =
   | 'Base' | 'Habitants' | 'Bâtiments' | 'Aménagements' | 'Autres'
-  | 'Régimes & cultures' | 'Conso villes' | 'Vassalité'
+  | 'Régimes & cultures' | 'Conso villes' | 'Cités libres' | 'Vassalité'
 
 export interface ProvenanceApport {
   /** canal de l'apport (colonne du récap) */
@@ -287,6 +302,16 @@ export function provenancesApports(
   for (const ville of p.villes) {
     for (const [res, v] of Object.entries(consommationsVille(ville, C))) {
       push(res, 'Conso villes', `${ville.nom} (${nomRang(ville.rang ?? '')})`, v)
+    }
+  }
+
+  // Cités libres : taxes des cités sous suzeraineté du joueur
+  for (const cite of citesLibresDe(state)) {
+    if (cite.suzerain !== p.n) continue
+    const d = detailCiteLibre(cite, C)
+    for (const [res, v] of Object.entries(d.transfert)) {
+      push(res, 'Cités libres',
+        `taxes de ${cite.nom} (${d.habitants} hab., ${d.chasseurs} chasseur(s) : Nourriture ×2)`, v)
     }
   }
 

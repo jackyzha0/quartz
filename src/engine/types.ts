@@ -179,6 +179,32 @@ export interface Army {
   cible: string | null        // ville / joueur visé
 }
 
+/** Cité libre : habitation sans joueur (règle « Cités libres » du
+ *  référentiel). Champ optionnel de GameState : absent des vieilles
+ *  sauvegardes → traité comme une liste vide.
+ *  La cité possède sa propre population (habitants titrés — les
+ *  Chasseurs y produisent le DOUBLE de Nourriture) ; lorsqu'un joueur
+ *  devient son suzerain (3 émissaires — plateau), elle lui verse ses
+ *  taxes à chaque fin de tour (canal « Cités libres » du récap). */
+export interface CiteLibre {
+  nom: string
+  /** Type de la cité (table citesLibres du référentiel : Industrielles -
+   *  Ville, Maritime - Ville, Militaires - Château, Économique - Château). */
+  type: string
+  /** Culture des habitants de la cité. */
+  culture?: string
+  /** Niveau de taxes de la cité (module TOUTES les ressources produites
+   *  par ses habitants, comme pour une ville de joueur). */
+  taxes?: TaxeNiveau
+  /** N° du joueur suzerain de la cité (3 émissaires — plateau), sinon null. */
+  suzerain?: number | null
+  /** Émissaires gagnés par chaque joueur auprès de la cité (clé = n° de
+   *  joueur) — suivi manuel des tentatives d'influence du plateau. */
+  emissaires?: Record<number, number>
+  /** Population de la cité (habitants — titre Chasseur par défaut). */
+  population?: Character[]
+}
+
 export interface ResourceState {
   stock: number
   prod: number
@@ -262,6 +288,10 @@ export interface ApportsTour {
    *  (engine/factions.ts — étape 3nonies). Champ optionnel : absent
    *  des historiques d'avant l'ajout du canal. */
   faction?: Record<string, number>
+  /** taxes reçues des cités libres sous suzeraineté du joueur
+   *  (engine/citesLibres.ts — étape 3decies). Champ optionnel : absent
+   *  des historiques d'avant l'ajout du canal. */
+  citesLibres?: Record<string, number>
 }
 
 export interface HistoryRow {
@@ -297,6 +327,9 @@ export interface GameState {
   modDanger: number
   players: Player[]
   population: Record<number, Character[]> // clé = n° joueur
+  /** Cités libres de la partie (onglet « 🗼 Cités libres »). Champ
+   *  optionnel : absent des vieilles sauvegardes → liste vide. */
+  citesLibres?: CiteLibre[]
   log: LogEntry[]
   history: HistoryRow[]
 }

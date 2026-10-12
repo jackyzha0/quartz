@@ -36,6 +36,7 @@ import { appliquerEffetsAmenagements } from './amenagements'
 import { appliquerEffetsAutres } from './autres'
 import { appliquerEffetsRegimesCultures } from './regimes'
 import { appliquerEffetsFaction } from './factions'
+import { appliquerTaxesCitesLibres } from './citesLibres'
 import { appliquerConsommationsHabitations } from './habitations'
 import { transfererTributVassal } from './vassalite'
 import { populationTurn } from './population'
@@ -177,6 +178,12 @@ export function runTurn(state: GameState): GameState {
     factionsParJoueur[p.n] = appliquerEffetsFaction(state, p, C)
   }
 
+  // 3decies. Cités libres : chaque cité libre possédant un suzerain lui
+  // verse ses taxes (production nette de ses habitants, Chasseurs ×2
+  // Nourriture — engine/citesLibres.ts), canal « Cités libres ».
+  const citesLibresParJoueur: Record<number, Record<string, number>> =
+    appliquerTaxesCitesLibres(state, C)
+
   // 4. Moteur de population (PersonnagesPourJoueur) pour chaque joueur
   for (const p of state.players) {
     populationTurn(state, p, rng)
@@ -208,6 +215,7 @@ export function runTurn(state: GameState): GameState {
       regimesCultures: regimesCulturesParJoueur[p.n] ?? {},
       habitations: habitationsParJoueur[p.n] ?? {},
       faction: factionsParJoueur[p.n] ?? {},
+      citesLibres: citesLibresParJoueur[p.n] ?? {},
       population,
       vassalite,
     }
@@ -259,6 +267,12 @@ export {
   nbAmenagements, nbBatiments, nbVassaux, rangPaysNiveau, capitaleDe,
   type DetailFaction, type RegleActive, type SourceRegle,
 } from './factions'
+export {
+  citesLibresDe, garnisonCiteLibre, facteurTaxesCite, emissairesDe,
+  citesSuzerainesDe, detailCiteLibre, taxesCitesLibresRecues,
+  appliquerTaxesCitesLibres, ajouterHabitantsCiteLibre, taxesCite,
+  type DetailCiteLibre,
+} from './citesLibres'
 export {
   typeVille, habitationDef, rangsDisponibles, garnisonBaseVille,
   habitantsRequisVille, consommationsVille, consommationsPays,
