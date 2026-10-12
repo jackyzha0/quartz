@@ -23,7 +23,11 @@
 //   · bas de chaque ville : ce que les taxes rapportent — la
 //     production en ressources des villageois (les taxes modulent
 //     TOUTES les ressources, pas seulement l'Or),
-//   · tableau des constructions (effets automatiques par tour),
+//   · bas de chaque cadre de ville : sa PRODUCTION en ressources
+//     (bâtiments + aménagements + autres + villageois + consommation
+//     de l'habitation, total par tour),
+//   · récap des ressources par tour : chaque ressource et D'OÙ elle
+//     provient (tableau canal par canal + origine de chaque apport),
 //   · récap ressources du dernier tour (apports cumulés, canal
 //     « régimes & cultures » inclus),
 //   · récap démographique.
@@ -36,13 +40,14 @@ import { useGame } from '../state/store'
 import type { GameState, Player, AutreDef } from '../engine/types'
 import { cfgOf, cultureDef, type Cfg } from '../engine/gameData'
 import {
-  detailsBatimentsJoueur, effetsTourBatiment, garnisonBatiment, coutBatiment,
+  effetsTourBatiment, garnisonBatiment, coutBatiment,
   batimentsConstructionsRefs, constructionsRefs, amenagementRef, aCampDeBatisseurs,
-  coutAmenagement, detailsAmenagementsJoueur, detailsAutresJoueur,
+  coutAmenagement,
   productionDetaillee, detailGainsVille, parseCoutTexte,
   garnisonHabitationVille, nomRang, typeVille, habitationDef,
   rangsDisponibles, consommationsVille, tourismeStatiqueBatiment,
-  detailCulturePays, type ProductionDetail,
+  detailCulturePays, productionVille, provenancesApports,
+  type ProductionDetail,
 } from '../engine/engine'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
 
@@ -469,6 +474,63 @@ export function PlayerView({ joueur }: { joueur: number }) {
                     </table>
                   </div>
                 )}
+
+                {/* ── Production de la ville : ce qu'elle produit en
+                    ressources, tous canaux confondus (bâtiments,
+                    aménagements, autres, villageois, consommation de
+                    l'habitation) — bas du cadre de chaque ville. ── */}
+                {(() => {
+                  const pv = productionVille(state, p, ville, C)
+                  const resV = C.ressources.filter((r) => (pv.total[r] ?? 0) !== 0)
+                  if (resV.length === 0) {
+                    return (
+                      <div className="muted small">
+                        Cette ville ne produit encore rien par tour (aucun bâtiment,
+                        aménagement, ligne « Autre » ou villageois actif).
+                      </div>
+                    )
+                  }
+                  return (
+                    <div>
+                      <div className="mini-title">Production de la ville</div>
+                      <div className="table-wrap">
+                        <table className="tbl small">
+                          <thead>
+                            <tr>
+                              <th>Ressource</th>
+                              <th>Bâtiments</th>
+                              <th>Aménagements</th>
+                              <th>Autres</th>
+                              <th>Villageois</th>
+                              <th>Conso. habitation</th>
+                              <th>Total / tour</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {resV.map((r) => {
+                              const col = (d: Record<string, number>) =>
+                                (d[r] ?? 0) === 0 ? '—' : fmtNum(d[r] ?? 0)
+                              const t = pv.total[r] ?? 0
+                              return (
+                                <tr key={r}>
+                                  <td><strong>{r}</strong></td>
+                                  <td>{col(pv.batiments)}</td>
+                                  <td>{col(pv.amenagements)}</td>
+                                  <td>{col(pv.autres)}</td>
+                                  <td>{col(pv.habitants)}</td>
+                                  <td className={(pv.consoVille[r] ?? 0) < 0 ? 'neg' : ''}>
+                                    {col(pv.consoVille)}
+                                  </td>
+                                  <td className={t < 0 ? 'neg' : ''}><strong>{fmtNum(t)}</strong></td>
+                                </tr>
+                              )
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )
+                })()}
               </div>
             )
           })}
@@ -479,132 +541,100 @@ export function PlayerView({ joueur }: { joueur: number }) {
         })}>+ Ajouter une ville</Button>
       </Card>
 
-      {/* ═══ Constructions : effets automatiques par tour ═══ */}
-      <Card title="Bâtiments et aménagements — effets automatiques par tour">
+      {/* ═══ Récap des ressources par tour : chaque ressource et d'où
+          elle provient (calculé pour le prochain tour, moteurs des
+          étapes de fin de tour). ═══ */}
+      <Card title="Récap des ressources par tour — origine de chaque apport">
         {(() => {
-          const lignes = detailsBatimentsJoueur(p, C)
-          const lignesAm = detailsAmenagementsJoueur(p, state.saison, C.config)
-          const lignesAutres = detailsAutresJoueur(p)
-          if (lignes.length === 0 && lignesAm.length === 0 && lignesAutres.length === 0) {
+          const canaux: Array<[string, Record<string, number>]> = [
+            ['Base', prodDetail.base],
+            ['Habitants', prodDetail.habitants],
+            ['Bâtiments', prodDetail.batiments],
+            ['Aménagements', prodDetail.amenagements],
+            ['Autres', prodDetail.autres],
+            ['Régimes & cultures', prodDetail.regimesCultures],
+            ['Conso villes', prodDetail.habitations],
+            ['Vassalité', prodDetail.vassalite],
+          ]
+          const prov = provenancesApports(state, p, C)
+          const res = C.ressources.filter((r) =>
+            (prodDetail.total[r] ?? 0) !== 0 || (prov[r] ?? []).length > 0)
+          if (res.length === 0) {
             return (
               <p className="muted">
-                Aucune construction. Ajoutez des aménagements, bâtiments ou lignes « Autres »
-                dans les villes ci-dessus : leurs effets s'appliquent automatiquement à
-                chaque fin de tour.
+                Aucun apport par tour pour l'instant : la production de ce pays est
+                nulle sur tous les canaux (base, villageois, bâtiments, aménagements,
+                autres, lois de régime/culture, consommations, vassalité).
               </p>
             )
           }
-          const totaux: Record<string, number> = {}
-          for (const l of lignes) {
-            for (const [r, v] of Object.entries(l.effets)) totaux[r] = (totaux[r] ?? 0) + v
-          }
-          const totauxAm: Record<string, number> = {}
-          for (const l of lignesAm) {
-            for (const [r, v] of Object.entries(l.effets)) totauxAm[r] = (totauxAm[r] ?? 0) + v
-          }
+          const val = (d: Record<string, number>, r: string) => d[r] ?? 0
           return (
             <>
-              {lignesAm.length > 0 && (
-                <div className="table-wrap">
-                  <table className="tbl">
-                    <thead>
-                      <tr>
-                        <th>Aménagement</th><th>Terrain</th><th>Ville(s)</th>
-                        <th>Effets / tour</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {lignesAm.map((l) => (
-                        <tr key={l.nom}>
-                          <td><strong>{l.nom}</strong></td>
-                          <td className="muted">{l.terrain}</td>
-                          <td className="muted">{l.villes.join(', ')}</td>
-                          <td>
-                            {l.horsSaison
-                              ? <span className="muted">ne produit qu'en été (hors saison)</span>
-                              : fmtEffets(l.effets, C)}
+              <div className="table-wrap">
+                <table className="tbl small">
+                  <thead>
+                    <tr>
+                      <th>Ressource</th>
+                      {canaux.map(([label]) => <th key={label}>{label}</th>)}
+                      <th>Total / tour</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {res.map((r) => (
+                      <tr key={r}>
+                        <td><strong>{r}</strong></td>
+                        {canaux.map(([label, d]) => (
+                          <td key={label} className={val(d, r) < 0 ? 'neg' : ''}>
+                            {val(d, r) !== 0 ? fmtNum(val(d, r)) : '—'}
                           </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <td colSpan={3}><strong>Total aménagements ({state.saison.toLowerCase()})</strong></td>
-                        <td><strong>{fmtEffets(totauxAm, C)}</strong></td>
+                        ))}
+                        <td className={(prodDetail.total[r] ?? 0) < 0 ? 'neg' : ''}>
+                          <strong>{fmtNum(prodDetail.total[r] ?? 0)}</strong>
+                        </td>
                       </tr>
-                    </tfoot>
-                  </table>
-                </div>
-              )}
-              {lignes.length > 0 && (
-                <div className="table-wrap">
-                  <table className="tbl">
-                    <thead>
-                      <tr>
-                        <th>Bâtiment</th><th>Ville(s)</th>
-                        <th>Effets / tour</th><th>Garnison (statique)</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {lignes.map((l) => (
-                        <tr key={l.nom}>
-                          <td><strong>{l.nom}</strong></td>
-                          <td className="muted">{l.villes.join(', ')}</td>
-                          <td>
-                            {l.remplacePar.length > 0
-                              ? <span className="muted">remplacé par {l.remplacePar.join(', ')}</span>
-                              : fmtEffets(l.effets, C)}
-                          </td>
-                          <td>{l.garnison > 0 ? fmt(l.garnison) : '—'}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <td colSpan={2}><strong>Total bâtiments</strong></td>
-                        <td><strong>{fmtEffets(totaux, C)}</strong></td>
-                        <td></td>
-                      </tr>
-                    </tfoot>
-                  </table>
-                </div>
-              )}
-              {lignesAutres.length > 0 && (
-                <div className="table-wrap">
-                  <table className="tbl">
-                    <thead>
-                      <tr>
-                        <th>Autre — Ressource</th><th>Source</th><th>Ville(s)</th>
-                        <th>Nb</th><th>Bonus</th><th>Effets / tour</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {lignesAutres.map((l) => (
-                        <tr key={`${l.ressource}|${l.source}`}>
-                          <td><strong>{l.ressource}</strong></td>
-                          <td className="muted">{l.source || '—'}</td>
-                          <td className="muted">{l.villes.join(', ')}</td>
-                          <td>{fmt(l.nombre)}</td>
-                          <td>{fmt(l.bonus)}</td>
-                          <td><strong>{fmtNum(l.effets)}</strong></td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* ── D'où vient chaque ressource, origine par origine ── */}
+              <div className="mini-title">D'où vient chaque ressource ?</div>
+              {res.map((r) => {
+                const lignes = prov[r] ?? []
+                if (lignes.length === 0) return null
+                return (
+                  <div key={r} className="small provenance-ligne">
+                    <strong>{r}</strong>
+                    {' : '}
+                    {lignes.map((a, i) => (
+                      <span key={i}>
+                        {i > 0 && ' · '}
+                        <span className="muted">{a.canal} — </span>
+                        {a.origine}{' '}
+                        <strong className={a.valeur < 0 ? 'neg' : ''}>
+                          {a.valeur > 0 ? '+' : ''}{fmtNum(a.valeur)}
+                        </strong>
+                      </span>
+                    ))}
+                  </div>
+                )
+              })}
             </>
           )
         })()}
         <p className="muted small">
-          Les bâtiments, aménagements et lignes « Autres » sont pris en compte
-          automatiquement à chaque fin de tour (étapes « bâtiments »,
-          « aménagements » et « autres » du moteur). Coût, production et
-          description viennent du référentiel exact (table « constructions »,
-          feuille « Ville » du classeur). Les remplacements (« Camp de
-          travailleurs » remplace le Camp de bûcheron, etc.) sont gérés. La
-          garnison est une valeur statique. Les aménagements de terrain (Champ,
-          Rizière) ne produisent qu'en été.
+          Récapitulatif CALCULÉ du prochain tour, canal par canal — production
+          de base du pays (l'été double la Nourriture), villageois (titres ×
+          taxes, toutes ressources), bâtiments et aménagements du référentiel
+          exact, lignes « Autres », lois chiffrées du régime et règle de pays
+          de la culture, consommation par tour des habitations et tribut de
+          vassalité. La section « D'où vient chaque ressource ? » détaille
+          l'origine de chaque apport (bâtiment, villageois, loi, ville…).
+          Tous ces effets sont appliqués automatiquement à chaque fin de
+          tour. Les aménagements de terrain (Champ, Rizière) ne produisent
+          qu'en été ; la garnison et le Tourisme des bâtiments sont des
+          valeurs fixes acquises à la construction.
         </p>
       </Card>
 

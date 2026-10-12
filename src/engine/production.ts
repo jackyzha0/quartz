@@ -15,15 +15,15 @@
 //  tour N égale le stock du tour N−1 plus la production par tour.
 // ══════════════════════════════════════════════════════════════════════
 
-import type { GameState, Player } from './types'
+import type { City, GameState, Player } from './types'
 import type { Cfg } from './gameData'
 import { makeRng } from './rng'
-import { calculerGainsPopulation } from './economie'
-import { effetsBatimentsVille } from './batiments'
-import { effetsAmenagementsVille } from './amenagements'
-import { effetsAutresVille } from './autres'
-import { effetsRegime, effetsCulturePays } from './regimes'
-import { consommationsPays } from './habitations'
+import { calculerGainsPopulation, detailGainsVille } from './economie'
+import { effetsBatimentsVille, detailsBatimentsJoueur } from './batiments'
+import { effetsAmenagementsVille, detailsAmenagementsJoueur } from './amenagements'
+import { effetsAutresVille, detailsAutresJoueur } from './autres'
+import { effetsRegime, effetsCulturePays, detailCulturePays } from './regimes'
+import { consommationsPays, consommationsVille, nomRang } from './habitations'
 
 export interface ProductionDetail {
   /** production de base (l'Été double la Nourriture, comme le moteur) */
@@ -134,4 +134,161 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     }
   }
   return { base, habitants, batiments, amenagements, autres, regimesCultures, habitations, vassalite, total }
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  PRODUCTION D'UNE VILLE (bas de son cadre, page « Pays »)
+//  Ce que la ville produit par tour, canal par canal : bâtiments,
+//  aménagements, lignes « Autres », villageois (titres × taxes −
+//  consommation, × coefficient de crédit au stock) et consommation
+//  par tour de son habitation (négative). La production de base du
+//  pays, les lois de régime/culture et le tribut de vassalité sont
+//  des canaux du PAYS, pas de la ville — ils ne figurent pas ici.
+// ══════════════════════════════════════════════════════════════════════
+
+export interface ProductionVilleDetail {
+  /** effets automatiques des bâtiments de la ville */
+  batiments: Record<string, number>
+  /** effets des aménagements de terrain (saison pris en compte) */
+  amenagements: Record<string, number>
+  /** lignes « Autres » de la ville (ressource × nombre × bonus) */
+  autres: Record<string, number>
+  /** villageois (titres × taxes − consommation) × gainsCrediteStock */
+  habitants: Record<string, number>
+  /** consommation par tour de l'habitation (négative) */
+  consoVille: Record<string, number>
+  /** somme de tous les canaux de la ville */
+  total: Record<string, number>
+}
+
+/** Production par tour d'UNE VILLE — affichée en bas de son cadre
+ *  (page « Pays »). Reflète les étapes du moteur qui concernent la
+ *  ville (bâtiments, aménagements, autres, habitants, habitations). */
+export function productionVille(
+  state: GameState, p: Player, ville: City, C: Cfg,
+): ProductionVilleDetail {
+  const saison: GameState['saison'] = state.saison
+  const coef = C.p.gainsCrediteStock
+  const batiments = effetsBatimentsVille(ville, C)
+  const amenagements = effetsAmenagementsVille(ville, saison, C.config)
+  const autres = effetsAutresVille(ville)
+  const habitants: Record<string, number> = {}
+  for (const [res, v] of Object.entries(detailGainsVille(state, p, ville, C).net)) {
+    if (v !== 0) habitants[res] = v * coef
+  }
+  const consoVille = consommationsVille(ville, C)
+  const total: Record<string, number> = {}
+  for (const canal of [batiments, amenagements, autres, habitants, consoVille]) {
+    for (const [res, v] of Object.entries(canal)) {
+      total[res] = (total[res] ?? 0) + v
+    }
+  }
+  return { batiments, amenagements, autres, habitants, consoVille, total }
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  PROVENANCE DES APPORTS (encadré « Récap des ressources — origine de
+//  chaque apport », page « Pays ») : pour chaque ressource, la liste
+//  des origines de ses apports par tour (nom du bâtiment, village de
+//  tel villageois, loi du régime, règle de pays, consommation…).
+//  Les valeurs sont celles du prochain tour (calculées, étapes du
+//  moteur FinDeTour) ; leur somme par canal égale ProductionDetail.
+// ══════════════════════════════════════════════════════════════════════
+
+/** Canal d'un apport (colonne du récap ressources). */
+export type CanalApport =
+  | 'Base' | 'Habitants' | 'Bâtiments' | 'Aménagements' | 'Autres'
+  | 'Régimes & cultures' | 'Conso villes' | 'Vassalité'
+
+export interface ProvenanceApport {
+  /** canal de l'apport (colonne du récap) */
+  canal: CanalApport
+  /** origine lisible : nom du bâtiment, « villageois de X », loi… */
+  origine: string
+  /** valeur par tour (négative = débit) */
+  valeur: number
+}
+
+/** Pour chaque ressource, la liste des origines de ses apports par
+ *  tour — une entrée par origine. Ressources sans apport : absentes. */
+export function provenancesApports(
+  state: GameState, p: Player, C: Cfg,
+): Record<string, ProvenanceApport[]> {
+  const saison: GameState['saison'] = state.saison
+  const coef = C.p.gainsCrediteStock
+  const prelevement = C.p.vassalPrelevement
+  const out: Record<string, ProvenanceApport[]> = {}
+  const push = (res: string, canal: CanalApport, origine: string, valeur: number) => {
+    if (valeur === 0) return
+    ;(out[res] ?? (out[res] = [])).push({ canal, origine, valeur })
+  }
+
+  // Base : production propre du pays (×2 Nourriture en été)
+  for (const [res, rs] of Object.entries(p.resources)) {
+    let v = rs.prod
+    if (res === 'Nourriture' && saison === 'Été') v *= 2
+    push(res, 'Base', res === 'Nourriture' && saison === 'Été'
+      ? 'production propre du pays (×2 en été)' : 'production propre du pays', v)
+  }
+
+  // Habitants : villageois de chaque ville (titres × taxes − conso)
+  for (const ville of p.villes) {
+    const tg = detailGainsVille(state, p, ville, C)
+    for (const [res, v] of Object.entries(tg.net)) {
+      push(res, 'Habitants',
+        `villageois de ${ville.nom} (titres × taxes — ${tg.habitants} hab.)`, v * coef)
+    }
+  }
+
+  // Bâtiments (nom × villes qui le possèdent)
+  for (const l of detailsBatimentsJoueur(p, C)) {
+    for (const [res, v] of Object.entries(l.effets)) {
+      push(res, 'Bâtiments',
+        `${l.nom} (${l.villes.join(', ')})${l.remplacePar.length > 0 ? ' — remplacé' : ''}`, v)
+    }
+  }
+
+  // Aménagements (saison prise en compte — Champ/Rizière : été seulement)
+  for (const l of detailsAmenagementsJoueur(p, saison, C.config)) {
+    for (const [res, v] of Object.entries(l.effets)) {
+      push(res, 'Aménagements',
+        `${l.nom} (${l.villes.join(', ')})${l.horsSaison ? ' — été seulement' : ''}`, v)
+    }
+  }
+
+  // Autres (source × ressource)
+  for (const l of detailsAutresJoueur(p)) {
+    push(l.ressource, 'Autres',
+      `${l.source || 'sans source'} (${l.villes.join(', ')}) : ${l.nombre} × ${l.bonus}`, l.effets)
+  }
+
+  // Régimes & cultures : loi du régime + règle de pays de la culture
+  for (const [res, v] of Object.entries(effetsRegime(p, saison, C))) {
+    push(res, 'Régimes & cultures', `loi du régime « ${p.regime} »`, v)
+  }
+  for (const d of detailCulturePays(state, p, C)) {
+    push(d.res, 'Régimes & cultures',
+      `règle de pays « ${p.culture} » : +${d.parVille} × ${d.nbVillesMonde} ville(s) de cette culture dans le monde (dont ${d.nbVillesPerso} chez toi)`, d.total)
+  }
+
+  // Consommation par tour des habitations (par ville, négative)
+  for (const ville of p.villes) {
+    for (const [res, v] of Object.entries(consommationsVille(ville, C))) {
+      push(res, 'Conso villes', `${ville.nom} (${nomRang(ville.rang ?? '')})`, v)
+    }
+  }
+
+  // Vassalité : tribut payé au suzerain + tributs reçus des vassaux
+  if (p.vassalDe != null) {
+    const suz = state.players.find((q) => q.n === p.vassalDe)
+    const part = (gainsBruts(state, p)['Or'] ?? 0) * prelevement * coef
+    push('Or', 'Vassalité', `tribut payé à ${suz?.nom ?? '?'}`, -part)
+  }
+  for (const q of state.players) {
+    if (q.vassalDe !== p.n) continue
+    const part = (gainsBruts(state, q)['Or'] ?? 0) * prelevement * coef
+    push('Or', 'Vassalité', `tribut reçu de ${q.nom}`, part)
+  }
+
+  return out
 }

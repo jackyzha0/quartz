@@ -247,7 +247,11 @@ export {
   habitantsRequisVille, consommationsVille, consommationsPays,
   appliquerConsommationsHabitations,
 } from './habitations'
-export { productionDetaillee, type ProductionDetail } from './production'
+export {
+  productionDetaillee, productionVille, provenancesApports,
+  type ProductionDetail, type ProductionVilleDetail,
+  type ProvenanceApport, type CanalApport,
+} from './production'
 export { transfererTributVassal } from './vassalite'
 export { populationTurn, migrerEnfants } from './population'
 export {
