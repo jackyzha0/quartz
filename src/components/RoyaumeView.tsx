@@ -3,9 +3,9 @@
 //   · cadre « Joueur N » : identité éditable du pays (nom, peuple,
 //     culture, régime) — déplacé ici depuis la page « Pays »,
 //   · culture du pays (celle de la capitale) : hérédité, martialité,
-//     mariages homosexuels, règle de pays & règle de personnage, et
-//     GARNISON DES HABITATIONS notée sous la culture (valeur fixe :
-//     base des rangs + bâtiments + loi du régime),
+//     mariages homosexuels, règle de pays & règle de personnage
+//     (la garnison des habitations n'est PAS affichée ici — valeur
+//     d'état consultable sur la page Joueur, avec son décompte détaillé),
 //   · régime politique : loi (les lois chiffrées du référentiel sont
 //     appliquées automatiquement à chaque fin de tour),
 //   · rang de pays (Féodal / Républicain — feuille « Pays » du classeur),
@@ -24,8 +24,7 @@ import { useGame } from '../state/store'
 import type { Character, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
 import { rangParDefaut } from '../engine/setup'
-import { garnisonHabitationsPays } from '../engine/engine'
-import { Card, Select, TextInput, Button, Badge, Field, fmt } from './ui'
+import { Card, Select, TextInput, Button, Badge, Field } from './ui'
 
 export function RoyaumeView({ joueur }: { joueur: number }) {
   const { state, update } = useGame()
@@ -49,7 +48,6 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
   const rangs = C.config.paysRangs ?? []
   const rangActuel = p.rang ?? rangParDefaut(p.regime, C)
   const rangDef = rangs.find((r) => r.nom === rangActuel)
-  const garnisonHab = garnisonHabitationsPays(p, C)
   // Loi chiffrée du régime (appliquée automatiquement par le moteur) ?
   const loiChiffree = (regimeDef?.garnisonParRang ?? 0) !== 0
     || (regimeDef?.nourrEteChampRiziere ?? 0) !== 0
@@ -168,13 +166,6 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
                   Hérédité {String(cult.heredite).toLowerCase()} ·
                   martialité {String(cult.martialite).toLowerCase()} ·
                   mariage homosexuel {cult.homoAutorisee ? 'autorisé' : 'interdit'}
-                </div>
-                <div className="small">
-                  Garnison des habitations :{' '}
-                  <strong>{fmt(garnisonHab)}</strong>{' '}
-                  <span className="muted">
-                    (base des rangs + bâtiments + loi du régime — valeur fixe, défense du pays)
-                  </span>
                 </div>
                 {cult.reglePays && <div className="small muted">Règle de pays : {cult.reglePays}</div>}
                 {cult.reglePerso && <div className="small muted">Règle de personnage : {cult.reglePerso}</div>}
