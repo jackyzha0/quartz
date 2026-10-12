@@ -2,23 +2,29 @@
 //  AMÉNAGEMENTS DE TERRAIN — EFFETS AUTOMATIQUES PAR TOUR
 //  Les villes peuvent accueillir des aménagements en plus des bâtiments :
 //  ils exploitent une case de terrain (Baleine, Plaine, Forêt…) et
-//  rapportent des ressources à chaque fin de tour (feuille « Aménagements »
-//  du classeur 7.19 : « Aménagements : 8 Or + 3 Bois »).
-//  Le Camp de bâtisseurs réduit le coût de construction des aménagements
-//  de 5 Or et 1 Bois (effet lu dans le référentiel des bâtiments).
+//  rapportent des ressources à chaque fin de tour.
+//  RÉFÉRENTIEL CANONIQUE : chaque aménagement référence son coût exact
+//  (« 8 Or + 3 Bois »), sa production exacte (« +2 Or et +10 Nourriture
+//  par tour. ») et sa description exacte (feuille « Ville » du classeur,
+//  table `constructions` du référentiel). Le Camp de bâtisseurs réduit le
+//  coût de construction (réduction lue dans sa description exacte).
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
 // ══════════════════════════════════════════════════════════════════════
 
 import type { City, Player, Saison } from './types'
-import type { Cfg } from './gameData'
+import type { GameConfig } from '../config/defaultConfig'
+import {
+  amenagementsRefs, constructionRef, coutConstructionRef, effetsConstructionRef,
+  eteSeulementRef, parseCoutTexte, reductionCampDeBatisseurs,
+} from './constructions'
 
-// ── Référentiel des aménagements (classeur 7.19, feuille Aménagements) ──
+// ── Définitions exposées à l'interface ─────────────────────────────────
 
 export interface AmenagementDef {
   nom: string
   /** case de terrain requise (affichée entre parenthèses dans le classeur) */
   terrain: string
-  /** description lisible (affichée dans l'interface) */
+  /** description exacte du classeur (affichée dans l'interface) */
   effet: string
   /** effets de flux par tour ; ignorés hors été si eteSeulement */
   effets: Record<string, number>
@@ -26,30 +32,30 @@ export interface AmenagementDef {
   eteSeulement?: boolean
 }
 
-export const AMENAGEMENTS: AmenagementDef[] = [
-  { nom: 'Baleinier', terrain: 'Baleine', effet: '+2 Or et +10 Nourriture par tour.', effets: { Or: 2, Nourriture: 10 } },
-  { nom: 'Bâteau de pêche', terrain: 'Crabe', effet: '+8 Nourriture par tour.', effets: { Nourriture: 8 } },
-  { nom: 'Carrière', terrain: 'Pierre', effet: '+1 Pierre par tour.', effets: { Pierre: 1 } },
-  { nom: 'Champ', terrain: 'Plaine', effet: '+10 Nourriture par tour en été.', effets: { Nourriture: 10 }, eteSeulement: true },
-  { nom: 'Foire', terrain: 'Plaine ou Désert', effet: '+5 Tourisme.', effets: { Tourisme: 5 } },
-  { nom: 'Mine de Charbon', terrain: 'Charbon', effet: '+1 Charbon par tour.', effets: { Charbon: 1 } },
-  { nom: 'Mine de Fer', terrain: 'Fer', effet: '+1 Fer par tour.', effets: { Fer: 1 } },
-  { nom: "Mine d'Or", terrain: 'Or', effet: '+4 Or par tour.', effets: { Or: 4 } },
-  { nom: 'Observatoire', terrain: 'Geyser/Volcan', effet: '+1 Science par tour.', effets: { Science: 1 } },
-  { nom: 'Pâturage', terrain: 'Bétail', effet: '+1 Bétail et +8 Nourriture par tour.', effets: { Bétail: 1, Nourriture: 8 } },
-  { nom: 'Rizière', terrain: 'Marais', effet: '+15 Nourriture par tour en été.', effets: { Nourriture: 15 }, eteSeulement: true },
-  { nom: 'Scierie', terrain: 'Forêt', effet: '+1 Bois par tour.', effets: { Bois: 1 } },
-  { nom: 'Sériciculture', terrain: 'Soie', effet: '+1 Soie par tour.', effets: { Soie: 1 } },
-  { nom: 'Site archéologique', terrain: 'Ruine', effet: '+8 Tourisme.', effets: { Tourisme: 8 } },
-]
+/** Référence brute du référentiel : coût / production / description exacts. */
+export function amenagementRef(nom: string, cfg?: GameConfig) {
+  return constructionRef(nom, cfg)
+}
 
-/** Coût de construction d'un aménagement (classeur : « 8 Or + 3 Bois »). */
-export const COUT_AMENAGEMENT_BASE: Record<string, number> = { Or: 8, Bois: 3 }
-/** Réduction accordée par un Camp de bâtisseurs (« −5 Or et −1 Bois »). */
-export const REDUCTION_CAMP_BATISSEURS: Record<string, number> = { Or: 5, Bois: 1 }
+/** Définitions normalisées de tous les aménagements du référentiel. */
+export function amenagementsDefs(cfg?: GameConfig): AmenagementDef[] {
+  return amenagementsRefs(cfg).map((ref) => ({
+    nom: ref.nom,
+    terrain: ref.terrain ?? '—',
+    effet: ref.description,
+    effets: effetsConstructionRef(ref),
+    eteSeulement: eteSeulementRef(ref),
+  }))
+}
 
-export function amenagementDef(nom: string): AmenagementDef | undefined {
-  return AMENAGEMENTS.find((a) => a.nom === nom)
+/** Liste du référentiel par défaut (compatibilité : export historique). */
+export const AMENAGEMENTS: AmenagementDef[] = amenagementsDefs()
+
+/** Coût de construction affichable d'un aménagement (« 8 Or + 3 Bois »). */
+export const COUT_AMENAGEMENT_TEXTE = amenagementRef('Baleinier')?.cout ?? '8 Or + 3 Bois'
+
+export function amenagementDef(nom: string, cfg?: GameConfig): AmenagementDef | undefined {
+  return amenagementsDefs(cfg).find((a) => a.nom === nom)
 }
 
 /** Le joueur possède-t-il un Camp de bâtisseurs (coût des aménagements réduit) ? */
@@ -58,30 +64,35 @@ export function aCampDeBatisseurs(p: Player): boolean {
 }
 
 /** Coût de construction d'un aménagement pour ce joueur (réduction du
- *  Camp de bâtisseurs déduite, plancher à 0). */
-export function coutAmenagement(p: Player): Record<string, number> {
-  if (!aCampDeBatisseurs(p)) return { ...COUT_AMENAGEMENT_BASE }
+ *  Camp de bâtisseurs déduite — lue dans sa description exacte —,
+ *  plancher à 0). */
+export function coutAmenagement(p: Player, cfg?: GameConfig): Record<string, number> {
+  const ref = amenagementRef('Baleinier', cfg)
+  const base = ref ? coutConstructionRef(ref) : { Or: 8, Bois: 3 }
+  if (!aCampDeBatisseurs(p)) return { ...base }
+  const reduc = reductionCampDeBatisseurs(cfg)
   const out: Record<string, number> = {}
-  for (const [res, v] of Object.entries(COUT_AMENAGEMENT_BASE)) {
-    out[res] = Math.max(0, v - (REDUCTION_CAMP_BATISSEURS[res] ?? 0))
+  for (const [res, v] of Object.entries(base)) {
+    out[res] = Math.max(0, v - (reduc[res] ?? 0))
   }
   return out
 }
 
 /** Effets par tour d'un aménagement pour la saison donnée
- *  (Champ et Rizière ne produisent qu'en été). */
-export function effetsTourAmenagement(nom: string, saison: Saison): Record<string, number> {
-  const def = amenagementDef(nom)
-  if (!def) return {}
-  if (def.eteSeulement && saison !== 'Été') return {}
-  return { ...def.effets }
+ *  (Champ et Rizière ne produisent qu'en été — production exacte du
+ *  référentiel). */
+export function effetsTourAmenagement(nom: string, saison: Saison, cfg?: GameConfig): Record<string, number> {
+  const ref = amenagementRef(nom, cfg)
+  if (!ref) return {}
+  if (eteSeulementRef(ref) && saison !== 'Été') return {}
+  return effetsConstructionRef(ref)
 }
 
 /** Effets par tour cumulés des aménagements d'une ville. */
-export function effetsAmenagementsVille(ville: City, saison: Saison): Record<string, number> {
+export function effetsAmenagementsVille(ville: City, saison: Saison, cfg?: GameConfig): Record<string, number> {
   const out: Record<string, number> = {}
   for (const nom of ville.amenagements ?? []) {
-    for (const [res, v] of Object.entries(effetsTourAmenagement(nom, saison))) {
+    for (const [res, v] of Object.entries(effetsTourAmenagement(nom, saison, cfg))) {
       out[res] = (out[res] ?? 0) + v
     }
   }
@@ -90,10 +101,10 @@ export function effetsAmenagementsVille(ville: City, saison: Saison): Record<str
 
 /** Crédite au stock les effets par tour de TOUS les aménagements du joueur
  *  (étape moteur, après les bâtiments) et renvoie les effets appliqués. */
-export function appliquerEffetsAmenagements(p: Player, saison: Saison): Record<string, number> {
+export function appliquerEffetsAmenagements(p: Player, saison: Saison, cfg?: GameConfig): Record<string, number> {
   const out: Record<string, number> = {}
   for (const ville of p.villes) {
-    for (const [res, v] of Object.entries(effetsAmenagementsVille(ville, saison))) {
+    for (const [res, v] of Object.entries(effetsAmenagementsVille(ville, saison, cfg))) {
       out[res] = (out[res] ?? 0) + v
     }
   }
@@ -116,24 +127,27 @@ export interface LigneAmenagement {
 }
 
 /** Détail des aménagements d'un joueur, agrégé par aménagement (pour PlayerView). */
-export function detailsAmenagementsJoueur(p: Player, saison: Saison): LigneAmenagement[] {
+export function detailsAmenagementsJoueur(p: Player, saison: Saison, cfg?: GameConfig): LigneAmenagement[] {
   const lignes = new Map<string, LigneAmenagement>()
   for (const ville of p.villes) {
     for (const nom of ville.amenagements ?? []) {
       let l = lignes.get(nom)
       if (!l) {
-        const def = amenagementDef(nom)
+        const ref = amenagementRef(nom, cfg)
         l = {
-          nom, terrain: def?.terrain ?? '—', villes: [], effets: {},
-          horsSaison: !!def?.eteSeulement && saison !== 'Été',
+          nom, terrain: ref?.terrain ?? '—', villes: [], effets: {},
+          horsSaison: !!ref && eteSeulementRef(ref) && saison !== 'Été',
         }
         lignes.set(nom, l)
       }
       l.villes.push(ville.nom)
-      for (const [res, v] of Object.entries(effetsTourAmenagement(nom, saison))) {
+      for (const [res, v] of Object.entries(effetsTourAmenagement(nom, saison, cfg))) {
         l.effets[res] = (l.effets[res] ?? 0) + v
       }
     }
   }
   return [...lignes.values()].sort((a, b) => a.nom.localeCompare(b.nom))
 }
+
+/** Analyse du texte de coût (ré-exporté pour l'interface). */
+export { parseCoutTexte }

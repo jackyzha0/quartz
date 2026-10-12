@@ -98,9 +98,10 @@ export function NumberInput({ value, onChange, step = 1, min, max }: {
   )
 }
 
-export function Select<T extends string>({ value, options, onChange, disabled }: {
+export function Select<T extends string>({ value, options, groups, onChange, disabled }: {
   value: T
-  options: { value: T; label: string }[]
+  options?: { value: T; label: string }[]
+  groups?: { label: string; options: { value: T; label: string }[] }[]
   onChange: (v: T) => void
   disabled?: boolean
 }) {
@@ -111,8 +112,15 @@ export function Select<T extends string>({ value, options, onChange, disabled }:
       disabled={disabled}
       onChange={(e) => onChange(e.target.value as T)}
     >
-      {options.map((o) => (
+      {(options ?? []).map((o) => (
         <option key={o.value} value={o.value}>{o.label}</option>
+      ))}
+      {(groups ?? []).map((g) => (
+        <optgroup key={g.label} label={g.label}>
+          {g.options.map((o) => (
+            <option key={o.value} value={o.value}>{o.label}</option>
+          ))}
+        </optgroup>
       ))}
     </select>
   )
@@ -145,7 +153,7 @@ export function Button({ children, onClick, tone = 'normal', disabled, title }: 
 }
 
 export const TAX_OPTIONS = [
-  { value: 'Faible' as const, label: 'Faible (×0,5 Or / ×1,5 naissances)' },
+  { value: 'Faible' as const, label: 'Faible (×0,5 sur toutes les ressources / ×1,5 naissances)' },
   { value: 'Moyenne' as const, label: 'Moyenne (×1 / ×1)' },
-  { value: 'Forte' as const, label: 'Forte (×1,5 Or / ×0,5 naissances)' },
+  { value: 'Forte' as const, label: 'Forte (×1,5 sur toutes les ressources / ×0,5 naissances)' },
 ]

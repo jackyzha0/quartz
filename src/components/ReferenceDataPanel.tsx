@@ -136,6 +136,24 @@ export function ReferenceDataPanel() {
 
       {onglet === 'Bâtiments' && (
         <>
+          <Card title={`Constructions — bâtiments (coût / production / description exacts du classeur) (${(cfg.constructions ?? []).filter((c) => c.categorie === 'Bâtiment').length})`}>
+            <div className="table-wrap">
+              <table className="tbl small">
+                <thead><tr><th>Groupe</th><th>Bâtiment</th><th>Coût</th><th>Production</th><th>Description</th></tr></thead>
+                <tbody>
+                  {(cfg.constructions ?? []).filter((c) => c.categorie === 'Bâtiment').map((c, i) => (
+                    <tr key={i}>
+                      <td>{c.groupe}</td>
+                      <td><strong>{c.nom}</strong></td>
+                      <td>{c.cout || '—'}</td>
+                      <td>{c.production || '—'}</td>
+                      <td className="small">{c.description}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Card>
           <Card title={`Bâtiments de ville (${cfg.batimentsVille.length})`}>
             <div className="grid-2">
               {cfg.batimentsVille.map((b, i) => (
@@ -178,16 +196,29 @@ export function ReferenceDataPanel() {
       )}
 
       {onglet === 'Aménagements' && (
-        <Card title={`Aménagements (${cfg.amenagements.length})`}>
-          <div className="grid-2">
-            {cfg.amenagements.map((a, i) => (
-              <div key={i} className="mini">
-                <strong>{a.amenagement}</strong>
-                <div className="small muted">{a.effet}</div>
-              </div>
-            ))}
-          </div>
-        </Card>
+        <>
+          <Card title={`Aménagements (coût / production / description exacts du classeur) (${(cfg.constructions ?? []).filter((c) => c.categorie === 'Aménagement').length})`}>
+            <div className="table-wrap">
+              <table className="tbl small">
+                <thead><tr><th>Aménagement</th><th>Terrain</th><th>Coût</th><th>Production</th><th>Description</th></tr></thead>
+                <tbody>
+                  {(cfg.constructions ?? []).filter((c) => c.categorie === 'Aménagement').map((c, i) => (
+                    <tr key={i}>
+                      <td><strong>{c.nom}</strong></td>
+                      <td>{c.terrain || '—'}</td>
+                      <td>{c.cout || '—'}</td>
+                      <td>{c.production || '—'}</td>
+                      <td className="small">{c.description}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="muted small">
+              Coût réduit à 3 Or + 2 Bois si un « Camp de bâtisseurs » est présent dans la ville.
+            </p>
+          </Card>
+        </>
       )}
 
       {onglet === 'Progrès' && (

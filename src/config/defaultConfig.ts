@@ -81,6 +81,19 @@ export interface PeupleRef {
 export interface FicheLigne { label: string; texte: string }
 export interface BatimentRef { categorie: string; nom: string; cout: string; effet: string }
 export interface AmenagementRef { amenagement: string; type: string; rang: string; effet: string }
+/** Table canonique des constructions (feuille « Ville » du classeur 7.19) :
+ *  coût EXACT, production EXACTE (analysable par le moteur) et description
+ *  EXACTE du classeur — parfois similaires. */
+export interface ConstructionRef {
+  categorie: string   // 'Bâtiment' | 'Aménagement'
+  groupe: string      // 'Ville' | 'Château' | 'Capitale' | 'Terrain'
+  famille: string      // Militaire / Economique / Guilde / Capitale / ''
+  nom: string
+  terrain?: string     // aménagements uniquement
+  cout: string
+  production: string
+  description: string
+}
 export interface ProgresArbre { arbre: string; entrees: { texte: string; prerequis: string }[] }
 
 export interface EffetDef { ressource: string; base: number }
@@ -138,6 +151,7 @@ export interface GameConfig {
   batimentsChateau: BatimentRef[]
   batimentsCouts: Record<string, unknown>[]
   amenagements: AmenagementRef[]
+  constructions: ConstructionRef[]
   rangsHabitation: { rang: string; cout: string; effet: string }[]
   progres: ProgresArbre[]
   paysRangs: { bloc: string; nom: string; cout: string; bonus: string; succession: string }[]
@@ -334,6 +348,7 @@ export const DEFAULT_CONFIG: GameConfig = {
   batimentsChateau: ref.batimentsChateau,
   batimentsCouts: ref.batimentsCouts,
   amenagements: ref.amenagements,
+  constructions: ref.constructions,
   rangsHabitation: ref.rangsHabitation,
   progres: ref.progres,
   paysRangs: [], // rempli depuis la feuille Pays (voir normalisation ci-dessous)

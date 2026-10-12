@@ -2,9 +2,12 @@
 //  PRODUCTION PAR TOUR — VUE DÉTAILLÉE PAR CANAL (page « Pays »)
 //  Recense l'ensemble des productions par tour d'un joueur :
 //    · base (production propre du pays, stockée dans resources[r].prod),
-//    · habitants (titres et taxes, moins la consommation — Économie),
-//    · bâtiments (effets automatiques, feuilles Ville / Château),
-//    · aménagements (effets de terrain, feuille Aménagements),
+//    · habitants (titres × taxes — toutes ressources —, moins la
+//      consommation — Économie),
+//    · bâtiments (production exacte du référentiel, Ville / Château /
+//      Capitale),
+//    · aménagements (production exacte du référentiel, terrain),
+//    · autres (lignes « Autres » des villes : ressource × nombre × bonus),
 //    · vassalité (tribut payé / reçu, paramètre vassalPrelevement).
 //  La production affichée est CALCULÉE (non modifiable) : le stock du
 //  tour N égale le stock du tour N−1 plus la production par tour.
@@ -16,16 +19,20 @@ import { makeRng } from './rng'
 import { calculerGainsPopulation } from './economie'
 import { effetsBatimentsVille } from './batiments'
 import { effetsAmenagementsVille } from './amenagements'
+import { effetsAutresVille } from './autres'
 
 export interface ProductionDetail {
   /** production de base (l'Été double la Nourriture, comme le moteur) */
   base: Record<string, number>
-  /** gains d'habitants (titres, taxes, − consommation) × gainsCrediteStock */
+  /** gains d'habitants (titres × taxes — toutes ressources —, − consommation)
+   *  × gainsCrediteStock */
   habitants: Record<string, number>
   /** effets automatiques des bâtiments */
   batiments: Record<string, number>
   /** effets des aménagements de terrain */
   amenagements: Record<string, number>
+  /** lignes « Autres » des villes (ressource × nombre × bonus) */
+  autres: Record<string, number>
   /** tribut de vassalité (négatif = payé, positif = reçu) */
   vassalite: Record<string, number>
   /** somme de tous les canaux */
@@ -60,15 +67,20 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     if (v !== 0) habitants[res] = v * coefGains
   }
 
-  // Bâtiments + aménagements : effets par tour (non taxés par la vassalité)
+  // Bâtiments + aménagements + autres : effets par tour (non taxés,
+  // non prélevés par la vassalité)
   const batiments: Record<string, number> = {}
   const amenagements: Record<string, number> = {}
+  const autres: Record<string, number> = {}
   for (const ville of p.villes) {
     for (const [res, v] of Object.entries(effetsBatimentsVille(ville, C))) {
       batiments[res] = (batiments[res] ?? 0) + v
     }
-    for (const [res, v] of Object.entries(effetsAmenagementsVille(ville, saison))) {
+    for (const [res, v] of Object.entries(effetsAmenagementsVille(ville, saison, C.config))) {
       amenagements[res] = (amenagements[res] ?? 0) + v
+    }
+    for (const [res, v] of Object.entries(effetsAutresVille(ville))) {
+      autres[res] = (autres[res] ?? 0) + v
     }
   }
 
@@ -87,10 +99,10 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
 
   // Total
   const total: Record<string, number> = {}
-  for (const canal of [base, habitants, batiments, amenagements, vassalite]) {
+  for (const canal of [base, habitants, batiments, amenagements, autres, vassalite]) {
     for (const [res, v] of Object.entries(canal)) {
       total[res] = (total[res] ?? 0) + v
     }
   }
-  return { base, habitants, batiments, amenagements, vassalite, total }
+  return { base, habitants, batiments, amenagements, autres, vassalite, total }
 }

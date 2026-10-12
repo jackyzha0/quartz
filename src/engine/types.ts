@@ -108,6 +108,20 @@ export interface Character {
   armee: string | null        // nom de l'armée de rattachement
 }
 
+/** Ligne « Autres » d'une ville (feuille J{n}, bloc « Autres » du classeur) :
+ *  production additionnelle hors bâtiments et aménagements — par exemple
+ *  « Nourriture | Rivière | 1 | 12 » crédite 12 Nourriture par tour. */
+export interface AutreDef {
+  /** ressource produite */
+  ressource: string
+  /** origine libre (Capital, Rivière, Cité L, Progrès, Régime…) */
+  source: string
+  /** multiplicateur/nombre d'occurrences */
+  nombre: number
+  /** production par occurrence */
+  bonus: number
+}
+
 export interface City {
   nom: string
   culture: string
@@ -117,6 +131,10 @@ export interface City {
    *  « Aménagements » du classeur). Champ optionnel : absent des
    *  vieilles sauvegardes → traité comme une liste vide. */
   amenagements?: string[]
+  /** Lignes « Autres » (production additionnelle : ressource, source,
+   *  nombre, bonus — prod = nombre × bonus). Champ optionnel : absent
+   *  des vieilles sauvegardes → traité comme une liste vide. */
+  autres?: AutreDef[]
 }
 
 export interface Army {
@@ -186,6 +204,9 @@ export interface ApportsTour {
   /** effets des aménagements de terrain (engine/amenagements.ts).
    *  Champ optionnel : absent des historiques d'avant l'ajout des aménagements. */
   amenagements?: Record<string, number>
+  /** lignes « Autres » des villes (ressource × nombre × bonus — engine/autres.ts).
+   *  Champ optionnel : absent des historiques d'avant l'ajout de la catégorie. */
+  autres?: Record<string, number>
   /** gains d'habitants (titres, taxes) après coefficient gainsCrediteStock, hors tribut */
   population: Record<string, number>
   /** tribut de vassalité net (négatif = payé, positif = reçu) */

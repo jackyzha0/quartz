@@ -3,17 +3,35 @@
 //  Les bâtiments des villes produisent et consomment des ressources à
 //  chaque fin de tour : +1 Bois pour un Camp de bûcheron, −10 Nourriture
 //  pour un Poste de garde, +45 Nourriture / −1 Charbon pour un Moulin à
-//  vent… Les effets sont lus dans le texte du référentiel (feuilles
-//  Ville / Château du classeur 7.19) par un petit analyseur syntaxique,
-//  avec correctifs pour les cas ambigus du classeur.
+//  vent…
+//  RÉFÉRENTIEL CANONIQUE : chaque bâtiment référence son coût exact, sa
+//  production exacte et sa description exacte (table `constructions`,
+//  feuille « Ville » du classeur 7.19). La production par tour est lue
+//  dans ce texte EXACT ; les bâtiments hors référentiel (santé / écoles)
+//  retombent sur l'ancien analyseur du texte d'effet.
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
 // ══════════════════════════════════════════════════════════════════════
 
 import type { City, Player } from './types'
 import type { Cfg } from './gameData'
 import { buildingDef } from './gameData2'
+import {
+  constructionRef, coutBatimentRef, effetsConstructionRef, garnisonConstructionRef,
+  parseCoutTexte, batimentsRefs, type ConstructionRef,
+} from './constructions'
 
-// ── Analyseur du texte d'effet ──────────────────────────────────────────
+/** Référence du référentiel pour un bâtiment (coût / production / description
+ *  exacts), éventuellement restreinte à un groupe (Ville / Château / Capitale). */
+export function batimentRef(nom: string, C?: Cfg, groupe?: string): ConstructionRef | undefined {
+  return constructionRef(nom, C?.config, groupe)
+}
+
+/** Toutes les références de bâtiments du référentiel canonique. */
+export function batimentsConstructionsRefs(C?: Cfg): ConstructionRef[] {
+  return batimentsRefs(C?.config)
+}
+
+// ── Analyseur du texte d'effet (repli pour les bâtiments hors référentiel) ──
 
 // Ressources de flux concernées par les effets par tour. Garnison et
 // Habitants sont volontairement EXCLUS : ce sont des valeurs d'état
@@ -50,17 +68,17 @@ function analyserPhrase(phrase: string): Record<string, number> {
     return out
   }
   // Signe avant la ressource : « +1 Bois par tour », « −10 Or »
-  const reSigne = new RegExp(String.raw`([+−\-])\s*(${NOMBRE})\s*(${RESSOURCES_FLUX})\b`, 'gi')
-  for (const m of phrase.matchAll(reSigne)) push(m[1] === '-' || m[1] === '−', m[2], m[3])
+  const reSigne = new RegExp(String.raw`([+\-\u2212])\s*(${NOMBRE})\s*(${RESSOURCES_FLUX})\b`, 'gi')
+  for (const m of phrase.matchAll(reSigne)) push(m[1] === '-' || m[1] === '\u2212', m[2], m[3])
   // Ressource avant le signe : « Tourisme +15 »
-  const reInverse = new RegExp(String.raw`(${RESSOURCES_FLUX})\s*([+−\-])\s*(${NOMBRE})\b`, 'gi')
-  for (const m of phrase.matchAll(reInverse)) push(m[2] === '-' || m[2] === '−', m[3], m[1])
+  const reInverse = new RegExp(String.raw`(${RESSOURCES_FLUX})\s*([+\-\u2212])\s*(${NOMBRE})\b`, 'gi')
+  for (const m of phrase.matchAll(reInverse)) push(m[2] === '-' || m[2] === '\u2212', m[3], m[1])
   return out
 }
 
-/** Correctifs : bâtiments dont la production dépend du plateau de jeu
- *  (cases maritimes, routes commerciales…), non modélisé dans le portage.
- *  Seule la consommation fixe est conservée. */
+/** Correctifs de REPLI : bâtiments hors référentiel canonique dont la
+ *  production dépend du plateau de jeu (cases maritimes, routes
+ *  commerciales…), non modélisé dans le portage. */
 const EFFETS_FORCES: Record<string, Record<string, number>> = {
   'Ponton': {},
   'Port de pêche': {},
@@ -89,24 +107,28 @@ const REMPLACE: Record<string, string[]> = {
   'Guilde des marchands': ['Plateforme commerciale'],
 }
 
-/** Cache des effets analysés, par (nom, texte d'effet) — le texte peut
- *  être édité à chaud depuis l'onglet Paramètres. */
+/** Cache des effets analysés, par (nom, textes de production/effet) — les
+ *  textes peuvent être édités à chaud depuis l'onglet Paramètres. */
 const CACHE = new Map<string, Record<string, number>>()
 
-/** Effets par tour d'un bâtiment, lus dans son texte d'effet. */
+/** Effets par tour d'un bâtiment : production EXACTE du référentiel
+ *  (table `constructions`), repli sur l'analyse du texte d'effet sinon. */
 export function effetsTourBatiment(nom: string, C: Cfg): Record<string, number> {
+  const ref = constructionRef(nom, C.config)
   const bd = buildingDef(nom, C.config)
-  const cle = `${nom}|${bd?.effet ?? ''}`
+  const cle = `${nom}|${ref?.production ?? ''}|${bd?.effet ?? ''}`
   const cache = CACHE.get(cle)
   if (cache) return cache
   let out: Record<string, number>
-  if (nom in EFFETS_FORCES) {
+  if (ref) {
+    // Référentiel canonique : production exacte analysée.
+    out = effetsConstructionRef(ref)
+  } else if (nom in EFFETS_FORCES) {
     out = { ...EFFETS_FORCES[nom] }
   } else if (!bd?.effet) {
     out = {}
   } else {
-    // Retire les mentions de coût (« Coût des Progrès -1 Science ») AVANT
-    // le découpage en phrases : elles peuvent être à cheval sur une ligne.
+    // Repli : ancienne analyse du texte d'effet.
     const texte = bd.effet.replace(/coût[^.]*\.?/gi, ' ')
     out = {}
     for (const phrase of phrases(texte)) {
@@ -121,40 +143,24 @@ export function effetsTourBatiment(nom: string, C: Cfg): Record<string, number> 
 
 /** Garnison statique accordée par un bâtiment (valeur d'état, pas un flux). */
 export function garnisonBatiment(nom: string, C: Cfg): number {
+  const ref = constructionRef(nom, C.config)
+  if (ref) return garnisonConstructionRef(ref)
   const bd = buildingDef(nom, C.config)
   const m = bd?.effet?.match(/Garnison\s*\+?\s*(\d+)/i)
   return m ? parseInt(m[1], 10) : 0
 }
 
-// ── Coût de construction (feuilles Ville / Château du classeur) ─────────
+// ── Coût de construction (référentiel canonique, repli classeur) ────────
 
-/** Noms de ressource tels qu'ils apparaissent dans les textes de coût du
- *  classeur, singulier et pluriel (« 12 Pierres », « 6 Bétails »). */
-const RESSOURCES_COUT = 'Or|Bois|Pierres?|Fer|Charbon|Bétails?|Soie|Nourritures?|Science|Tourisme'
-
-/** Normalise un nom de ressource lu dans un texte (« Pierres » → « Pierre »). */
-function normaliserRessource(res: string): string {
-  if (/^pierres?$/i.test(res)) return 'Pierre'
-  if (/^bétails?$/i.test(res)) return 'Bétail'
-  if (/^nourritures?$/i.test(res)) return 'Nourriture'
-  return res
-}
-
-/** Coût de construction d'un bâtiment, lu dans le texte « Coût » du
- *  référentiel (feuilles Ville / Château). Les mentions de prérequis
- *  (« Grange requise. ») ne contiennent pas de quantités et sont ignorées
- *  naturellement par l'analyse. */
-export function coutBatiment(nom: string, C: Cfg): Record<string, number> {
+/** Coût de construction d'un bâtiment : texte de coût EXACT du référentiel
+ *  (groupe optionnel : Ville / Château / Capitale), repli sur l'ancien
+ *  analyseur des textes « Coût » de batimentsVille / batimentsChateau. */
+export function coutBatiment(nom: string, C: Cfg, groupe?: string): Record<string, number> {
+  const ref = constructionRef(nom, C.config, groupe)
+  if (ref) return parseCoutTexte(ref.cout)
   const listes = [...(C.config.batimentsVille ?? []), ...(C.config.batimentsChateau ?? [])]
   const ligne = listes.find((b: any) => b?.nom === nom)
-  const texte: string = ligne?.cout ?? ''
-  const out: Record<string, number> = {}
-  const re = new RegExp(String.raw`(${NOMBRE})\s*(?:de\s+)?(${RESSOURCES_COUT})\b`, 'gi')
-  for (const m of texte.matchAll(re)) {
-    const res = normaliserRessource(m[2])
-    out[res] = (out[res] ?? 0) + parseFloat(m[1].replace(',', '.'))
-  }
-  return out
+  return parseCoutTexte(ligne?.cout ?? '')
 }
 
 /** Bâtiments d'une ville neutralisés par un remplaçant présent. */
@@ -236,3 +242,5 @@ export function detailsBatimentsJoueur(p: Player, C: Cfg): LigneBatiment[] {
   }
   return [...lignes.values()].sort((a, b) => a.nom.localeCompare(b.nom))
 }
+
+export { coutBatimentRef }

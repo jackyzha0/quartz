@@ -10,8 +10,10 @@
 //  ARCHITECTURE (découpage SOLID — une responsabilité par module) :
 //    shared.ts      outils transversaux (ids, noms, noblesse, récap)
 //    saisons.ts     saisons, événements, cartes dynastie
-//    economie.ts    gains de population par ville, taxes
-//    batiments.ts   effets automatiques des bâtiments par tour
+//    economie.ts    gains de population par ville, taxes (toutes ressources)
+//    batiments.ts   bâtiments — production exacte du référentiel
+//    amenagements.ts aménagements de terrain — production exacte du référentiel
+//    autres.ts      lignes « Autres » des villes (production additionnelle)
 //    vassalite.ts   tribut des vassaux vers leur suzerain
 //    population.ts  orchestration démographique du tour, migration
 //    titres.ts      professeurs, mariages, éducation, titres
@@ -31,6 +33,7 @@ import { saisonForTurn, applyEventEffect, applyDynastieCard } from './saisons'
 import { calculerGainsPopulation } from './economie'
 import { appliquerEffetsBatiments } from './batiments'
 import { appliquerEffetsAmenagements } from './amenagements'
+import { appliquerEffetsAutres } from './autres'
 import { transfererTributVassal } from './vassalite'
 import { populationTurn } from './population'
 import { recruitForArmies } from './armees'
@@ -131,11 +134,19 @@ export function runTurn(state: GameState): GameState {
     batimentsParJoueur[p.n] = appliquerEffetsBatiments(p, C)
   }
 
-  // 3quinquies. Aménagements de terrain : effets par tour (engine/amenagements.ts),
-  // dépendant de la saison (Champ et Rizière ne produisent qu'en été).
+  // 3quinquies. Aménagements de terrain : production exacte du référentiel
+  // (table `constructions`), dépendant de la saison (Champ et Rizière ne
+  // produisent qu'en été).
   const amenagementsParJoueur: Record<number, Record<string, number>> = {}
   for (const p of state.players) {
-    amenagementsParJoueur[p.n] = appliquerEffetsAmenagements(p, state.saison)
+    amenagementsParJoueur[p.n] = appliquerEffetsAmenagements(p, state.saison, C.config)
+  }
+
+  // 3sexies. Autres : lignes « Autres » des villes (bloc « Autres » du
+  // classeur J{n}) — ressource × nombre × bonus, créditées au stock.
+  const autresParJoueur: Record<number, Record<string, number>> = {}
+  for (const p of state.players) {
+    autresParJoueur[p.n] = appliquerEffetsAutres(p)
   }
 
   // 4. Moteur de population (PersonnagesPourJoueur) pour chaque joueur
@@ -165,6 +176,7 @@ export function runTurn(state: GameState): GameState {
       production: prodParJoueur[p.n] ?? {},
       batiments: batimentsParJoueur[p.n] ?? {},
       amenagements: amenagementsParJoueur[p.n] ?? {},
+      autres: autresParJoueur[p.n] ?? {},
       population,
       vassalite,
     }
@@ -183,16 +195,28 @@ export function runTurn(state: GameState): GameState {
 
 export { newId, isNobleDyn, fullName } from './shared'
 export { saisonForTurn, applyEventEffect, applyDynastieCard } from './saisons'
-export { calculerGainsPopulation, taxBirthFactor } from './economie'
+export { calculerGainsPopulation, taxBirthFactor, facteurTaxes, detailGainsVille, type GainsVilleDetail } from './economie'
 export {
   effetsTourBatiment, effetsBatimentsVille, appliquerEffetsBatiments,
-  garnisonBatiment, coutBatiment, detailsBatimentsJoueur, type LigneBatiment,
+  garnisonBatiment, coutBatiment, detailsBatimentsJoueur, batimentRef,
+  batimentsConstructionsRefs, type LigneBatiment,
 } from './batiments'
 export {
-  AMENAGEMENTS, amenagementDef, aCampDeBatisseurs, coutAmenagement,
-  effetsTourAmenagement, effetsAmenagementsVille, appliquerEffetsAmenagements,
+  AMENAGEMENTS, amenagementDef, amenagementRef, amenagementsDefs, aCampDeBatisseurs,
+  coutAmenagement, effetsTourAmenagement, effetsAmenagementsVille,
+  appliquerEffetsAmenagements,
   detailsAmenagementsJoueur, type LigneAmenagement, type AmenagementDef,
 } from './amenagements'
+export {
+  constructionsRefs, constructionRef, amenagementsRefs, batimentsRefs,
+  parseCoutTexte, parseProductionTexte, coutBatimentRef, coutConstructionRef,
+  effetsConstructionRef, eteSeulementRef, garnisonConstructionRef,
+  reductionCampDeBatisseurs, type ConstructionRef,
+} from './constructions'
+export {
+  effetAutreLigne, effetsAutresVille, appliquerEffetsAutres,
+  detailsAutresJoueur, type LigneAutre,
+} from './autres'
 export { productionDetaillee, type ProductionDetail } from './production'
 export { transfererTributVassal } from './vassalite'
 export { populationTurn, migrerEnfants } from './population'
