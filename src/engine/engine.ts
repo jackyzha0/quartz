@@ -219,7 +219,7 @@ export { calculerGainsPopulation, taxBirthFactor, facteurTaxes, detailGainsVille
 export {
   effetsTourBatiment, effetsBatimentsVille, appliquerEffetsBatiments,
   garnisonBatiment, coutBatiment, detailsBatimentsJoueur, batimentRef,
-  batimentsConstructionsRefs, type LigneBatiment,
+  batimentsConstructionsRefs, tourismeStatiqueBatiment, type LigneBatiment,
 } from './batiments'
 export {
   AMENAGEMENTS, amenagementDef, amenagementRef, amenagementsDefs, aCampDeBatisseurs,
