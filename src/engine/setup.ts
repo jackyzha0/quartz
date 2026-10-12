@@ -77,6 +77,10 @@ export function makePlayer(n: number, s: SetupLine, C: Cfg): Player {
       nom,
       culture: s.culture,
       taxes: 'Moyenne',
+      // Rang d'habitation par défaut (table rangsHabitation du classeur) ;
+      // modifiable par ville sur la page « Pays » — utilisé par la
+      // garnison des habitations (loi Autoritarisme).
+      rang: 'Hameau',
       batiments: idx === 0 ? ['Ecole élémentaire', 'Herboristerie'] : [],
       amenagements: [],
       autres: [],

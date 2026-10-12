@@ -126,6 +126,11 @@ export interface City {
   nom: string
   culture: string
   taxes: TaxeNiveau
+  /** Rang d'habitation (Hameau / Cité / Grande Cité — table
+   *  rangsHabitation du classeur). Champ optionnel : absent des vieilles
+   *  sauvegardes → « Hameau ». Utilisé par la garnison des habitations
+   *  (loi Autoritarisme) et l'affichage page « Pays ». */
+  rang?: string
   batiments: string[]
   /** Aménagements de terrain (Baleinier, Champ, Mine d'Or… — feuille
    *  « Aménagements » du classeur). Champ optionnel : absent des
@@ -211,6 +216,10 @@ export interface ApportsTour {
   population: Record<string, number>
   /** tribut de vassalité net (négatif = payé, positif = reçu) */
   vassalite: Record<string, number>
+  /** lois chiffrées des régimes politiques & cultures (engine/regimes.ts) —
+   *  garnison de la loi du régime, bonus de capitale de la culture, etc.
+   *  Champ optionnel : absent des historiques d'avant l'ajout du canal. */
+  regimesCultures?: Record<string, number>
 }
 
 export interface HistoryRow {

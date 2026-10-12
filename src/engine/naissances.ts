@@ -87,6 +87,9 @@ export function conceptionEtNaissances(state: GameState, p: Player, rng: Rng, re
     if (mere.age < C.p.adultAge) continue
     const ville = p.villes.find((v) => v.nom === mere.ville)
     const mari = mere.mariage ? pop.find((x) => fullName(x) === mere.mariage && x.statut !== 'Décédé') : undefined
+    // Mariage homosexuel (culture l'autorisant — mariages dans titres.ts) :
+    // pas de conception entre épouses de même sexe.
+    if (mari && mari.sexe !== 'M') continue
     const factorMari = mari ? maleAgeFactor(mari.age) * orientationFertFactor(mari.orientation) : C.p.fertSingleFactor
     let proba = C.p.fertBaseRate
     proba *= femaleAgeFactor(mere.age)

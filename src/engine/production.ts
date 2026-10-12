@@ -8,6 +8,8 @@
 //      Capitale),
 //    · aménagements (production exacte du référentiel, terrain),
 //    · autres (lignes « Autres » des villes : ressource × nombre × bonus),
+//    · régimes & cultures (lois chiffrées du régime et règle de pays de
+//      la culture — engine/regimes.ts, paramétrables dans les référentiels),
 //    · vassalité (tribut payé / reçu, paramètre vassalPrelevement).
 //  La production affichée est CALCULÉE (non modifiable) : le stock du
 //  tour N égale le stock du tour N−1 plus la production par tour.
@@ -20,6 +22,7 @@ import { calculerGainsPopulation } from './economie'
 import { effetsBatimentsVille } from './batiments'
 import { effetsAmenagementsVille } from './amenagements'
 import { effetsAutresVille } from './autres'
+import { effetsRegime, effetsCulturePays } from './regimes'
 
 export interface ProductionDetail {
   /** production de base (l'Été double la Nourriture, comme le moteur) */
@@ -33,6 +36,9 @@ export interface ProductionDetail {
   amenagements: Record<string, number>
   /** lignes « Autres » des villes (ressource × nombre × bonus) */
   autres: Record<string, number>
+  /** lois chiffrées du régime et règle de pays de la culture
+   *  (engine/regimes.ts) : garnison de la loi, bonus de capitale… */
+  regimesCultures: Record<string, number>
   /** tribut de vassalité (négatif = payé, positif = reçu) */
   vassalite: Record<string, number>
   /** somme de tous les canaux */
@@ -84,6 +90,18 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     }
   }
 
+  // Régimes & cultures : lois chiffrées du régime (ex. Socialisme :
+  // +N Nourriture d'été par champ et rizière) + règle de pays de la
+  // culture (ex. Communautarisme : +N Nourriture par habitation de
+  // cette culture dans le monde) — étape 3septies du moteur.
+  const regimesCultures: Record<string, number> = {}
+  for (const [res, v] of Object.entries(effetsRegime(p, saison, C))) {
+    regimesCultures[res] = (regimesCultures[res] ?? 0) + v
+  }
+  for (const [res, v] of Object.entries(effetsCulturePays(state, p, C))) {
+    regimesCultures[res] = (regimesCultures[res] ?? 0) + v
+  }
+
   // Vassalité : tribut payé au suzerain + tributs reçus des vassaux
   // (seuls les revenus d'habitants sont prélevés — étape 3bis du moteur)
   const vassalite: Record<string, number> = {}
@@ -99,10 +117,10 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
 
   // Total
   const total: Record<string, number> = {}
-  for (const canal of [base, habitants, batiments, amenagements, autres, vassalite]) {
+  for (const canal of [base, habitants, batiments, amenagements, autres, regimesCultures, vassalite]) {
     for (const [res, v] of Object.entries(canal)) {
       total[res] = (total[res] ?? 0) + v
     }
   }
-  return { base, habitants, batiments, amenagements, autres, vassalite, total }
+  return { base, habitants, batiments, amenagements, autres, regimesCultures, vassalite, total }
 }

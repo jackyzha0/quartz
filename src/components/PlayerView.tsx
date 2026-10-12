@@ -2,32 +2,39 @@
 //  Page « Pays » (vue joueur) :
 //   · ressources : panneau TRÈS LÉGER docké à droite, dépliable —
 //     stock modifiable, production / tour CALCULÉE (base + habitants +
-//     bâtiments + aménagements + autres + vassalité) — invariant :
-//     stock du tour N = stock du tour N−1 + production par tour,
-//   · villes : AMÉNAGEMENTS au-dessus des BÂTIMENTS, puis catégorie
-//     AUTRES (ressource, source, nombre, bonus) — coût, production et
-//     description EXACTS du référentiel (table `constructions`,
-//     feuille « Ville » du classeur), coût déduit du stock à la
-//     construction,
+//     bâtiments + aménagements + autres + régimes & cultures + vassalité)
+//     — invariant : stock du tour N = stock du tour N−1 + production
+//     par tour,
+//   · villes : rang d'habitation, AMÉNAGEMENTS au-dessus des
+//     BÂTIMENTS, puis catégorie AUTRES — coût, production et
+//     description EXACTS du référentiel (table `constructions`),
+//     coût déduit du stock à la construction (+ Science par
+//     construction selon la règle de culture, ex. Déisme),
 //   · cultures de chaque ville : culture majoritaire + toutes les
-//     autres cultures présentes avec leur nombre d'habitants,
+//     autres cultures présentes avec leur nombre d'habitants, et
+//     GARNISON DES HABITATIONS notée sous la culture (bâtiments +
+//     loi du régime),
 //   · bas de chaque ville : ce que les taxes rapportent — la
 //     production en ressources des villageois (les taxes modulent
 //     TOUTES les ressources, pas seulement l'Or),
 //   · tableau des constructions (effets automatiques par tour),
-//   · récap ressources du dernier tour (apports cumulés),
+//   · récap ressources du dernier tour (apports cumulés, canal
+//     « régimes & cultures » inclus),
 //   · récap démographique.
+//  Le cadre « Joueur N » (identité du joueur) vit sur la page
+//  « Royaume ».
 // ══════════════════════════════════════════════════════════════════════
 
 import React, { useState } from 'react'
 import { useGame } from '../state/store'
 import type { GameState, Player, AutreDef } from '../engine/types'
-import { cfgOf, type Cfg } from '../engine/gameData'
+import { cfgOf, cultureDef, type Cfg } from '../engine/gameData'
 import {
   detailsBatimentsJoueur, effetsTourBatiment, garnisonBatiment, coutBatiment,
   batimentsConstructionsRefs, constructionsRefs, amenagementRef, aCampDeBatisseurs,
   coutAmenagement, detailsAmenagementsJoueur, detailsAutresJoueur,
-  productionDetaillee, detailGainsVille, parseCoutTexte, type ProductionDetail,
+  productionDetaillee, detailGainsVille, parseCoutTexte,
+  garnisonHabitationVille, nomRang, type ProductionDetail,
 } from '../engine/engine'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
 
@@ -69,9 +76,16 @@ export function PlayerView({ joueur }: { joueur: number }) {
         if (rs) rs.stock -= v
         if (v > 0) parts.push(`${fmt(v)} ${res}`)
       }
+      // Règle de culture : ex. Déisme — +N Science par bâtiment construit
+      // (champ paramétrable, onglets « Cultures & régimes »).
+      const sci = type === 'batiment' ? (cultureDef(t.culture, C.config)?.scienceParConstruction ?? 0) : 0
+      if (sci > 0) {
+        const rsSci = t.resources['Science']
+        if (rsSci) rsSci.stock += sci
+      }
       s.log.push({
         turn: s.turn, type: 'Système', joueur: t.n,
-        texte: `🏗 ${nom} construit(e) à ${ville.nom} — coût déduit du stock : ${parts.length ? parts.join(' + ') : 'gratuit'}.`,
+        texte: `🏗 ${nom} construit(e) à ${ville.nom} — coût déduit du stock : ${parts.length ? parts.join(' + ') : 'gratuit'}${sci > 0 ? ` — règle de culture : +${fmt(sci)} Science` : ''}.`,
       })
     })
 
@@ -99,35 +113,6 @@ export function PlayerView({ joueur }: { joueur: number }) {
     <div className="stack">
       {/* Panneau Ressources — très léger, docké à droite, dépliable */}
       <RessourcesDock p={p} C={C} prodDetail={prodDetail} setPlayer={setPlayer} />
-
-      <Card title={`${p.nom} — peuple ${p.peuple}, culture ${p.culture}, régime ${p.regime}`}>
-        <div className="grid-2">
-          <Field label="Nom du joueur">
-            <TextInput value={p.nom} onChange={(v) => setPlayer((x) => { x.nom = v })} />
-          </Field>
-          <Field label="Peuple (faction du classeur)">
-            <Select
-              value={p.peuple}
-              options={C.peuples.map((n) => ({ value: n, label: n }))}
-              onChange={(v) => setPlayer((x) => { x.peuple = v })}
-            />
-          </Field>
-          <Field label="Culture du pays (capitale)">
-            <Select
-              value={p.culture}
-              options={C.cultures.map((c) => ({ value: c.nom, label: `${c.nom} (hérédité ${String(c.heredite).toLowerCase()})` }))}
-              onChange={(v) => setPlayer((x) => { x.culture = v })}
-            />
-          </Field>
-          <Field label="Régime politique">
-            <Select
-              value={p.regime}
-              options={C.regimes.map((r) => ({ value: r.nom, label: r.nom }))}
-              onChange={(v) => setPlayer((x) => { x.regime = v })}
-            />
-          </Field>
-        </div>
-      </Card>
 
       {/* ═══ Villes : aménagements, bâtiments, autres, cultures, taxes ═══ */}
       <Card title="Villes">
@@ -178,11 +163,35 @@ export function PlayerView({ joueur }: { joueur: number }) {
                     ))}
                   </div>
                 )}
+                {/* Garnison des habitations, notée sous la culture */}
+                {(() => {
+                  const g = garnisonHabitationVille(p, ville, C)
+                  if (g <= 0) return null
+                  const bonusRegime = (C.regimes.find((r) => r.nom === p.regime)?.garnisonParRang ?? 0) > 0
+                  return (
+                    <div className="small">
+                      Garnison des habitations : <strong>+{fmt(g)}</strong>
+                      <span className="muted small">
+                        {' '}(bâtiments{bonusRegime ? ' + loi du régime' : ''})
+                      </span>
+                    </div>
+                  )
+                })()}
                 <Field label="Niveau de taxes">
                   <Select
                     value={ville.taxes}
                     options={TAX_OPTIONS}
                     onChange={(v) => setPlayer((x) => { x.villes[idx].taxes = v })}
+                  />
+                </Field>
+                <Field label="Rang d'habitation">
+                  <Select
+                    value={ville.rang ?? nomRang(C.config.rangsHabitation?.[0]?.rang ?? 'Hameau')}
+                    options={(C.config.rangsHabitation ?? []).map((r) => ({
+                      value: nomRang(r.rang),
+                      label: r.rang,
+                    }))}
+                    onChange={(v) => setPlayer((x) => { x.villes[idx].rang = v })}
                   />
                 </Field>
 
@@ -350,7 +359,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
         </div>
         <Button onClick={() => setPlayer((x) => {
           const nom = `Ville ${x.villes.length + 1}`
-          x.villes.push({ nom, culture: x.culture, taxes: 'Moyenne', batiments: [], amenagements: [], autres: [] })
+          x.villes.push({ nom, culture: x.culture, taxes: 'Moyenne', rang: 'Hameau', batiments: [], amenagements: [], autres: [] })
         })}>+ Ajouter une ville</Button>
       </Card>
 
@@ -491,17 +500,19 @@ export function PlayerView({ joueur }: { joueur: number }) {
             return (
               <p className="muted">
                 Lancez un tour pour voir apparaître le détail des apports (production,
-                bâtiments, aménagements, autres, habitants, vassalité).
+                bâtiments, aménagements, autres, habitants, régimes & cultures, vassalité).
               </p>
             )
           }
-          const { production, batiments, amenagements, autres, population, vassalite } = row.apports
+          const { production, batiments, amenagements, autres, population, vassalite, regimesCultures } = row.apports
           const amen = amenagements ?? {}
           const aut = autres ?? {}
+          const reg = regimesCultures ?? {}
           const val = (d: Record<string, number>, r: string) => d[r] ?? 0
           const res = C.ressources.filter((r) =>
             val(production, r) !== 0 || val(batiments, r) !== 0 || val(amen, r) !== 0
-            || val(aut, r) !== 0 || val(population, r) !== 0 || val(vassalite, r) !== 0)
+            || val(aut, r) !== 0 || val(population, r) !== 0 || val(vassalite, r) !== 0
+            || val(reg, r) !== 0)
           if (res.length === 0) {
             return <p className="muted">Aucun apport au tour {row.turn}.</p>
           }
@@ -512,13 +523,13 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   <tr>
                     <th>Ressource</th><th>Production</th><th>Bâtiments</th>
                     <th>Aménagements</th><th>Autres</th>
-                    <th>Habitants</th><th>Vassalité</th><th>Total</th>
+                    <th>Habitants</th><th>Régimes & cultures</th><th>Vassalité</th><th>Total</th>
                   </tr>
                 </thead>
                 <tbody>
                   {res.map((r) => {
                     const total = val(production, r) + val(batiments, r) + val(amen, r)
-                      + val(aut, r) + val(population, r) + val(vassalite, r)
+                      + val(aut, r) + val(population, r) + val(vassalite, r) + val(reg, r)
                     return (
                       <tr key={r}>
                         <td><strong>{r}</strong></td>
@@ -527,6 +538,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                         <td>{fmtNum(val(amen, r))}</td>
                         <td>{fmtNum(val(aut, r))}</td>
                         <td>{fmtNum(val(population, r))}</td>
+                        <td>{fmtNum(val(reg, r))}</td>
                         <td>{fmtNum(val(vassalite, r))}</td>
                         <td className={total < 0 ? 'neg' : ''}><strong>{fmtNum(total)}</strong></td>
                       </tr>
@@ -541,7 +553,8 @@ export function PlayerView({ joueur }: { joueur: number }) {
           Tous les apports du tour sont additionnés : production de base (l'été double la
           Nourriture), production exacte des bâtiments et aménagements du référentiel,
           lignes « Autres », gains des habitants (titres × taxes — toutes ressources —,
-          après coefficient « gains crédités au stock ») et tribut de vassalité
+          après coefficient « gains crédités au stock »), lois chiffrées des régimes et
+          cultures (garnison, bonus de capitale, etc.) et tribut de vassalité
           (négatif = payé, positif = reçu). Les événements et cartes dynastie du tour
           figurent dans le journal.
         </p>

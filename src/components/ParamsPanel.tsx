@@ -159,10 +159,11 @@ export function ParamsPanel() {
 
       {onglet === 'Cultures' && (
         <Card title="Cultures (hérédité, martialité, fécondité, règles)">
+          <p className="muted small">Les colonnes chiffrées (Nourr./hab monde, Tourisme/hab, Or/hab, Science/constr.) sont des lois appliquées AUTOMATIQUEMENT par le moteur à chaque fin de tour, en plus des règles de mariage/hérédité. Une valeur à 0 désactive la loi.</p>
           <div className="table-wrap">
             <table className="tbl small">
               <thead>
-                <tr><th>Culture</th><th>Hérédité</th><th>Martialité</th><th>Homo autorisée</th><th>Facteur fécondité</th><th>Règle du pays</th><th>Règle des personnages</th></tr>
+                <tr><th>Culture</th><th>Hérédité</th><th>Martialité</th><th>Homo autorisée</th><th>Facteur fécondité</th><th>Nourr./hab monde</th><th>Tourisme/hab</th><th>Or/hab</th><th>Science/constr.</th><th>Règle du pays</th><th>Règle des personnages</th></tr>
               </thead>
               <tbody>
                 {config.cultures.map((t, i) => (
@@ -172,6 +173,10 @@ export function ParamsPanel() {
                     <td><TextInput value={t.martialite} onChange={(v) => setCfg((c) => { c.cultures[i].martialite = v })} /></td>
                     <td><input type="checkbox" checked={t.homoAutorisee} onChange={(e) => setCfg((c) => { c.cultures[i].homoAutorisee = e.target.checked })} /></td>
                     <td><NumberInput value={t.fertFactor} step={0.05} onChange={(v) => setCfg((c) => { c.cultures[i].fertFactor = v })} /></td>
+                    <td><NumberInput value={t.capitalNourrParHabMonde ?? 0} onChange={(v) => setCfg((c) => { c.cultures[i].capitalNourrParHabMonde = v })} /></td>
+                    <td><NumberInput value={t.capitalTourismeParHabMonde ?? 0} onChange={(v) => setCfg((c) => { c.cultures[i].capitalTourismeParHabMonde = v })} /></td>
+                    <td><NumberInput value={t.capitalOrParHabMonde ?? 0} onChange={(v) => setCfg((c) => { c.cultures[i].capitalOrParHabMonde = v })} /></td>
+                    <td><NumberInput value={t.scienceParConstruction ?? 0} onChange={(v) => setCfg((c) => { c.cultures[i].scienceParConstruction = v })} /></td>
                     <td><TextInput value={t.reglePays} onChange={(v) => setCfg((c) => { c.cultures[i].reglePays = v })} /></td>
                     <td><TextInput value={t.reglePerso} onChange={(v) => setCfg((c) => { c.cultures[i].reglePerso = v })} /></td>
                   </tr>
@@ -184,12 +189,24 @@ export function ParamsPanel() {
 
       {onglet === 'Régimes' && (
         <Card title="Régimes politiques (lois)">
-          {config.regimes.map((r, i) => (
-            <div key={i} className="mini">
-              <TextInput value={r.nom} onChange={(v) => setCfg((c) => { c.regimes[i].nom = v })} />
-              <TextInput value={r.loi} onChange={(v) => setCfg((c) => { c.regimes[i].loi = v })} />
-            </div>
-          ))}
+          <p className="muted small">Les colonnes chiffrées sont des lois appliquées AUTOMATIQUEMENT par le moteur à chaque fin de tour : « Garnison/rang » ajoute des soldats à la garnison des habitations selon le rang de la ville (Autoritarisme), « Nourr./été rizière » nourrit la population des champs-rizières en été (Socialisme). Une valeur à 0 désactive la loi.</p>
+          <div className="table-wrap">
+            <table className="tbl small">
+              <thead>
+                <tr><th>Régime</th><th>Loi (texte)</th><th>Garnison/rang</th><th>Nourr./été rizière</th></tr>
+              </thead>
+              <tbody>
+                {config.regimes.map((r, i) => (
+                  <tr key={i}>
+                    <td><TextInput value={r.nom} onChange={(v) => setCfg((c) => { c.regimes[i].nom = v })} /></td>
+                    <td><TextInput value={r.loi} onChange={(v) => setCfg((c) => { c.regimes[i].loi = v })} /></td>
+                    <td><NumberInput value={r.garnisonParRang ?? 0} onChange={(v) => setCfg((c) => { c.regimes[i].garnisonParRang = v })} /></td>
+                    <td><NumberInput value={r.nourrEteChampRiziere ?? 0} onChange={(v) => setCfg((c) => { c.regimes[i].nourrEteChampRiziere = v })} /></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </Card>
       )}
 

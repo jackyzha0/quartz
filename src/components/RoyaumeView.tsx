@@ -1,12 +1,20 @@
 // ══════════════════════════════════════════════════════════════════════
 //  Page « Royaume » (par joueur) :
-//   · culture du pays (celle de la capitale) et régime politique,
+//   · cadre « Joueur N » : identité éditable du pays (nom, peuple,
+//     culture, régime) — déplacé ici depuis la page « Pays »,
+//   · culture du pays (celle de la capitale) : hérédité, martialité,
+//     mariages homosexuels, règle de pays & règle de personnage, et
+//     GARNISON DES HABITATIONS notée sous la culture (bâtiments + loi
+//     du régime),
+//   · régime politique : loi (les lois chiffrées du référentiel sont
+//     appliquées automatiquement à chaque fin de tour),
 //   · rang de pays (Féodal / Républicain — feuille « Pays » du classeur),
 //   · personnages importants : Dirigeant, Héritier, Professeurs,
 //     Commandants, famille royale,
-//   · technologies débloquées (arbres de progrès, déverrouillage manuel),
 //   · vassaux : prêt de serment à un autre joueur, tribut automatique
 //     (paramètre vassalPrelevement, appliqué en fin de tour par le moteur).
+//  Les technologies (feuille « Progrès ») sont retirées de cette page —
+//  elles restent consultables dans « 📚 Référentiels » → « Progrès ».
 // ══════════════════════════════════════════════════════════════════════
 
 import React from 'react'
@@ -14,10 +22,8 @@ import { useGame } from '../state/store'
 import type { Character, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
 import { rangParDefaut } from '../engine/setup'
-import { Card, Select, Button, Badge } from './ui'
-
-/** Une entrée « réelle » de technologie commence par un âge romain (I. II. III.). */
-const EST_TECH = /^[IVX]+\./i
+import { garnisonHabitationsPays } from '../engine/engine'
+import { Card, Select, TextInput, Button, Badge, Field, fmt } from './ui'
 
 export function RoyaumeView({ joueur }: { joueur: number }) {
   const { state, update } = useGame()
@@ -41,6 +47,10 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
   const rangs = C.config.paysRangs ?? []
   const rangActuel = p.rang ?? rangParDefaut(p.regime, C)
   const rangDef = rangs.find((r) => r.nom === rangActuel)
+  const garnisonHab = garnisonHabitationsPays(p, C)
+  // Loi chiffrée du régime (appliquée automatiquement par le moteur) ?
+  const loiChiffree = (regimeDef?.garnisonParRang ?? 0) !== 0
+    || (regimeDef?.nourrEteChampRiziere ?? 0) !== 0
 
   // ── Personnages importants ───────────────────────────────────────────
   const dirigeant = vivants.find((c) => c.titre === C.p.titreDirigeant)
@@ -105,41 +115,84 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
     return !chaineSuz(q.n).some((x) => x.n === p.n)
   })
 
-  // ── Technologies ─────────────────────────────────────────────────────
-  const progres = p.progresDebloques ?? []
-  const toggleTech = (texte: string) =>
-    setPlayer((x) => {
-      if (!x.progresDebloques) x.progresDebloques = []
-      const i = x.progresDebloques.indexOf(texte)
-      if (i >= 0) x.progresDebloques.splice(i, 1)
-      else x.progresDebloques.push(texte)
-    })
-
   const pers = (c: Character) => `${c.prenom} ${c.nom} (${c.age} ans${c.ville ? `, ${c.ville}` : ''})`
 
   return (
     <div className="stack">
-      {/* ═══ Identité, culture, rang ═══ */}
+      {/* ═══ Cadre « Joueur N » — identité éditable (déplacé de « Pays ») ═══ */}
       <Card
-        title={`🏰 Royaume de ${p.nom}`}
+        title={`Joueur ${p.n} — ${p.nom}`}
         right={<span className="muted small">{p.peuple} · {p.villes.length} ville(s)</span>}
       >
+        <div className="grid-2">
+          <Field label="Nom du joueur">
+            <TextInput value={p.nom} onChange={(v) => setPlayer((x) => { x.nom = v })} />
+          </Field>
+          <Field label="Peuple (faction du classeur)">
+            <Select
+              value={p.peuple}
+              options={C.peuples.map((n) => ({ value: n, label: n }))}
+              onChange={(v) => setPlayer((x) => { x.peuple = v })}
+            />
+          </Field>
+          <Field label="Culture du pays (capitale)">
+            <Select
+              value={p.culture}
+              options={C.cultures.map((c) => ({
+                value: c.nom, label: `${c.nom} (hérédité ${String(c.heredite).toLowerCase()})`,
+              }))}
+              onChange={(v) => setPlayer((x) => { x.culture = v })}
+            />
+          </Field>
+          <Field label="Régime politique">
+            <Select
+              value={p.regime}
+              options={C.regimes.map((r) => ({ value: r.nom, label: r.nom }))}
+              onChange={(v) => setPlayer((x) => { x.regime = v })}
+            />
+          </Field>
+        </div>
+      </Card>
+
+      {/* ═══ Culture, régime, rang, dynastie ═══ */}
+      <Card title={`🏰 Royaume de ${p.nom}`}>
         <div className="grid-2">
           <div className="mini">
             <div className="mini-title">Culture du pays (capitale)</div>
             <div><strong>{p.culture}</strong></div>
             {cult && (
-              <div className="muted small">
-                Hérédité {String(cult.heredite).toLowerCase()} ·
-                maritalité {String(cult.martialite).toLowerCase()} ·
-                mariage homosexuel {cult.homoAutorisee ? 'autorisé' : 'interdit'}
-              </div>
+              <>
+                <div className="muted small">
+                  Hérédité {String(cult.heredite).toLowerCase()} ·
+                  maritalité {String(cult.martialite).toLowerCase()} ·
+                  mariage homosexuel {cult.homoAutorisee ? 'autorisé' : 'interdit'}
+                </div>
+                <div className="small">
+                  Garnison des habitations :{' '}
+                  <strong>+{fmt(garnisonHab)}</strong>{' '}
+                  <span className="muted">(bâtiments + loi du régime)</span>
+                </div>
+                {cult.reglePays && <div className="small muted">Règle de pays : {cult.reglePays}</div>}
+                {cult.reglePerso && <div className="small muted">Règle de personnage : {cult.reglePerso}</div>}
+              </>
             )}
           </div>
           <div className="mini">
             <div className="mini-title">Régime politique</div>
             <div><strong>{p.regime}</strong></div>
-            {regimeDef && <div className="muted small">Loi : {regimeDef.loi}</div>}
+            {regimeDef && (
+              <>
+                <div className="muted small">Loi : {regimeDef.loi}</div>
+                {loiChiffree && (
+                  <div className="small">
+                    <Badge tone="good">loi chiffrée appliquée automatiquement</Badge>{' '}
+                    <span className="muted small">
+                      (canal « régimes & cultures » du récap ressources)
+                    </span>
+                  </div>
+                )}
+              </>
+            )}
           </div>
           <div className="mini">
             <div className="mini-title">Rang de pays</div>
@@ -267,51 +320,6 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
             ))}
           </div>
         </div>
-      </Card>
-
-      {/* ═══ Technologies débloquées ═══ */}
-      <Card
-        title="🔬 Technologies débloquées"
-        right={<span className="muted small">{progres.length} technologie(s) débloquée(s)</span>}
-      >
-        <p className="muted small">
-          Cochez les technologies acquises par ce pays. Les arbres viennent de la
-          feuille « Progrès » du classeur (âge I, II, III — coût en Science entre
-          parenthèses).
-        </p>
-        {C.config.progres.map((arbre, i) => {
-          const techs = arbre.entrees.filter((e) => EST_TECH.test(e.texte.trim()))
-          if (techs.length === 0) return null
-          const nb = techs.filter((t) => progres.includes(t.texte)).length
-          return (
-            <div key={i} className="mb">
-              <h4>{arbre.arbre} <span className="muted small">({nb}/{techs.length})</span></h4>
-              <ul className="small" style={{ listStyle: 'none', paddingLeft: 0 }}>
-                {techs.map((t, j) => {
-                  const on = progres.includes(t.texte)
-                  return (
-                    <li key={j} style={{ marginBottom: 4 }}>
-                      <label style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-                        <input
-                          type="checkbox"
-                          checked={on}
-                          onChange={() => toggleTech(t.texte)}
-                          style={{ marginTop: 4 }}
-                        />
-                        <span className={on ? '' : 'muted'} style={{ whiteSpace: 'pre-wrap' }}>
-                          {t.texte}
-                          {t.prerequis && EST_TECH.test(t.prerequis.trim()) && (
-                            <span className="muted"> (prérequis conseillé : {t.prerequis.split(' :')[0]})</span>
-                          )}
-                        </span>
-                      </label>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          )
-        })}
       </Card>
     </div>
   )

@@ -34,6 +34,7 @@ import { calculerGainsPopulation } from './economie'
 import { appliquerEffetsBatiments } from './batiments'
 import { appliquerEffetsAmenagements } from './amenagements'
 import { appliquerEffetsAutres } from './autres'
+import { appliquerEffetsRegimesCultures } from './regimes'
 import { transfererTributVassal } from './vassalite'
 import { populationTurn } from './population'
 import { recruitForArmies } from './armees'
@@ -149,6 +150,14 @@ export function runTurn(state: GameState): GameState {
     autresParJoueur[p.n] = appliquerEffetsAutres(p)
   }
 
+  // 3septies. Régimes & cultures : lois chiffrées des régimes politiques
+  //  et règles de pays des cultures (engine/regimes.ts) — paramétrables
+  //  dans les référentiels, appliquées automatiquement chaque fin de tour.
+  const regimesCulturesParJoueur: Record<number, Record<string, number>> = {}
+  for (const p of state.players) {
+    regimesCulturesParJoueur[p.n] = appliquerEffetsRegimesCultures(state, p, state.saison, C)
+  }
+
   // 4. Moteur de population (PersonnagesPourJoueur) pour chaque joueur
   for (const p of state.players) {
     populationTurn(state, p, rng)
@@ -177,6 +186,7 @@ export function runTurn(state: GameState): GameState {
       batiments: batimentsParJoueur[p.n] ?? {},
       amenagements: amenagementsParJoueur[p.n] ?? {},
       autres: autresParJoueur[p.n] ?? {},
+      regimesCultures: regimesCulturesParJoueur[p.n] ?? {},
       population,
       vassalite,
     }
@@ -217,6 +227,10 @@ export {
   effetAutreLigne, effetsAutresVille, appliquerEffetsAutres,
   detailsAutresJoueur, type LigneAutre,
 } from './autres'
+export {
+  nomRang, rangNiveau, garnisonHabitationVille, garnisonHabitationsPays,
+  effetsRegime, effetsCulturePays, appliquerEffetsRegimesCultures,
+} from './regimes'
 export { productionDetaillee, type ProductionDetail } from './production'
 export { transfererTributVassal } from './vassalite'
 export { populationTurn, migrerEnfants } from './population'

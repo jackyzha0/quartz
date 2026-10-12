@@ -42,8 +42,27 @@ export interface CultureDef {
   fertFactor: number
   reglePays: string
   reglePerso: string
+  /** Règles chiffrées appliquées AUTOMATIQUEMENT par le moteur
+   *  (engine/regimes.ts, engine/titres.ts) : la capitale génère +N d'une
+   *  ressource par habitation de cette culture dans le monde, et chaque
+   *  construction de bâtiment rapporte +N Science. Champs optionnels :
+   *  absents des vieilles configurations, complétés par migrerCultures. */
+  capitalNourrParHabMonde?: number
+  capitalTourismeParHabMonde?: number
+  capitalOrParHabMonde?: number
+  scienceParConstruction?: number
 }
-export interface RegimeDef { nom: string; loi: string }
+export interface RegimeDef {
+  nom: string
+  loi: string
+  /** Loi chiffrée appliquée AUTOMATIQUEMENT par le moteur
+   *  (engine/regimes.ts) : garnison des habitations +N par rang
+   *  d'habitation (Autoritarisme), +N Nourriture par tour d'été pour les
+   *  champs et rizières (Socialisme). Champs optionnels : absents
+   *  des vieilles configurations, complétés par migrerRegimes. */
+  garnisonParRang?: number
+  nourrEteChampRiziere?: number
+}
 export interface EventDef {
   nom: string
   saison: string
@@ -214,10 +233,14 @@ function normaliserCultures(): CultureDef[] {
     nom: c.nom,
     heredite: c.heredite,
     martialite: c.martialite,
-    homoAutorisee: false,
-    fertFactor: 1,
+    homoAutorisee: c.homoAutorisee === true || c.homoAutorisee === 'true',
+    fertFactor: Number(c.fertFactor) || 1,
     reglePays: c.reglePays || '',
     reglePerso: c.reglePerso || '',
+    capitalNourrParHabMonde: Number(c.capitalNourrParHabMonde) || undefined,
+    capitalTourismeParHabMonde: Number(c.capitalTourismeParHabMonde) || undefined,
+    capitalOrParHabMonde: Number(c.capitalOrParHabMonde) || undefined,
+    scienceParConstruction: Number(c.scienceParConstruction) || undefined,
   }))
 }
 
@@ -412,6 +435,30 @@ export function migrateGameConfig(cfg: GameConfig): GameConfig {
   return { ...cfg, traits: migrateTraits(cfg.traits) }
 }
 
+/** Complète les cultures d'une configuration existante avec les champs
+ *  chiffrés ajoutés après coup (par nom — les valeurs éditées par
+ *  l'utilisateur priment sur les défauts, les champs manquants viennent
+ *  du référentiel). */
+export function migrerCultures(list: CultureDef[] | undefined): CultureDef[] {
+  const defs = DEFAULT_CONFIG.cultures
+  if (!Array.isArray(list) || list.length === 0) return defs
+  return list.map((c) => {
+    const d = defs.find((x) => x.nom === c?.nom)
+    return d ? { ...d, ...c } : c
+  })
+}
+
+/** Complète les régimes d'une configuration existante avec les champs
+ *  chiffrés ajoutés après coup (par nom — même logique que migrerCultures). */
+export function migrerRegimes(list: RegimeDef[] | undefined): RegimeDef[] {
+  const defs = DEFAULT_CONFIG.regimes
+  if (!Array.isArray(list) || list.length === 0) return defs
+  return list.map((r) => {
+    const d = defs.find((x) => x.nom === r?.nom)
+    return d ? { ...d, ...r } : r
+  })
+}
+
 export function cfgOf(config: GameConfig | undefined): Cfg {
   const c = config ?? DEFAULT_CONFIG
   const merged: GameConfig = {
@@ -419,6 +466,10 @@ export function cfgOf(config: GameConfig | undefined): Cfg {
     ...c,
     params: mergeParams(c.params as unknown as Record<string, unknown>),
   }
+  // migrations : traits (V2), cultures et régimes (champs chiffrés)
+  merged.traits = migrateTraits(merged.traits)
+  merged.cultures = migrerCultures(merged.cultures)
+  merged.regimes = migrerRegimes(merged.regimes)
   return {
     p: merged.params,
     ressources: merged.ressources,

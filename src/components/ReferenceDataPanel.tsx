@@ -2,35 +2,46 @@
 //  Référentiels : consultation des tables et fiches RÉELLES du classeur
 //  (feuilles init, JSON, Titres, traits_genetiques, Culture, Peuples,
 //  Ville, Bat, Progrès, Tourisme, Cités L, Pays, Victoires, Accueil…).
-//  Pour MODIFIER une valeur : onglet « 🎛 Paramètres ».
+//  L'onglet « Cultures & régimes » est ÉDITABLE directement ici :
+//  cultures et régimes politiques sont paramétrables et leurs lois
+//  chiffrées sont appliquées automatiquement par le moteur.
+//  Pour MODIFIER les autres valeurs : onglet « 🎛 Paramètres ».
 // ══════════════════════════════════════════════════════════════════════
 
 import React, { useState } from 'react'
 import { useGame } from '../state/store'
 import { cfgOf } from '../engine/gameData'
+import type { GameConfig } from '../config/defaultConfig'
 import { VICTORY_TEXT } from '../engine/gameData2'
-import { Card, Badge } from './ui'
+import { Card, Badge, TextInput, NumberInput, Button } from './ui'
 
 const ONGLETS = [
   'Titres', 'Traits gén.', 'Peuples', 'Bâtiments', 'Aménagements', 'Progrès',
-  'Pays & rangs', 'Tourisme & dogmes', 'Cités libres', 'Victoires', 'Crises',
-  'Rappels règles', 'Maladies', 'Offrandes', 'Ministères', 'Aide-mémoire',
+  'Pays & rangs', 'Cultures & régimes', 'Tourisme & dogmes', 'Cités libres',
+  'Victoires', 'Crises', 'Rappels règles', 'Maladies', 'Offrandes', 'Ministères',
+  'Aide-mémoire',
 ] as const
 
 export function ReferenceDataPanel() {
-  const { state } = useGame()
+  const { state, globalConfig, setGlobalCfg } = useGame()
   const [onglet, setOnglet] = useState<(typeof ONGLETS)[number]>('Titres')
   // Sans partie en cours, on affiche les valeurs par défaut du classeur.
   const C = cfgOf(state?.config)
   const cfg = C.config
+
+  // Configuration commune (même logique que l'onglet « Paramètres ») :
+  // sert à l'édition directe des cultures & régimes ci-dessous.
+  const configEdit: GameConfig = cfgOf(globalConfig).config
+  const setCfg = (fn: (c: GameConfig) => void) => setGlobalCfg(fn)
 
   return (
     <div className="stack">
       <Card title="Référentiels du jeu (données du classeur d'origine)">
         <p className="muted small">
           Ces tables proviennent du classeur « Chasse & Pêche Légendes 7.19 ». Elles sont stockées dans
-          la configuration de la partie : pour en modifier une valeur (ou en ajouter), ouvrez
-          l'onglet « 🎛 Paramètres » — tout est éditable, sans contrainte.
+          la configuration de la partie : l'onglet « Cultures & régimes » est éditable directement ici,
+          et pour modifier toute autre valeur (ou en ajouter), ouvrez l'onglet « 🎛 Paramètres » —
+          tout est éditable, sans contrainte.
         </p>
         <div className="tabs">
           {ONGLETS.map((o) => (
@@ -256,6 +267,89 @@ export function ReferenceDataPanel() {
           </div>
           <p className="muted small">Rangs d'habitation : {cfg.rangsHabitation.map((r) => `${r.rang} (${r.cout})`).join(' · ')}</p>
         </Card>
+      )}
+
+      {onglet === 'Cultures & régimes' && (
+        <>
+          <Card title={`Cultures (${configEdit.cultures.length}) — paramétrables, effets appliqués automatiquement`}>
+            <p className="muted small">
+              Chaque champ est modifiable et pris en compte par le moteur : hérédité, martialité,
+              facteur de fécondité (naissances), mariages homosexuels (titres), règles de pays et
+              de personnage (affichées sur la page « Royaume »), et les lois chiffrées appliquées
+              AUTOMATIQUEMENT à chaque fin de tour — la capitale du pays génère +N d'une ressource
+              par habitation de cette culture dans le monde (Nourriture / Tourisme / Or), et chaque
+              construction de bâtiment rapporte +N Science (ex. Déisme). Mettre 0 pour désactiver
+              une loi chiffrée.
+            </p>
+            <div className="table-wrap">
+              <table className="tbl small">
+                <thead>
+                  <tr>
+                    <th>Culture</th><th>Hérédité</th><th>Martialité</th><th>Homo autorisée</th>
+                    <th>Fécondité</th><th>Nourr / habitation (monde)</th>
+                    <th>Tourisme / habitation</th><th>Or / habitation</th>
+                    <th>Science / construction</th><th>Règle du pays</th><th>Règle des personnages</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {configEdit.cultures.map((t, i) => (
+                    <tr key={i}>
+                      <td><TextInput value={t.nom} onChange={(v) => setCfg((c) => { c.cultures[i].nom = v })} /></td>
+                      <td><TextInput value={t.heredite} onChange={(v) => setCfg((c) => { c.cultures[i].heredite = v })} /></td>
+                      <td><TextInput value={t.martialite} onChange={(v) => setCfg((c) => { c.cultures[i].martialite = v })} /></td>
+                      <td><input type="checkbox" checked={t.homoAutorisee} onChange={(e) => setCfg((c) => { c.cultures[i].homoAutorisee = e.target.checked })} /></td>
+                      <td><NumberInput value={t.fertFactor} step={0.05} onChange={(v) => setCfg((c) => { c.cultures[i].fertFactor = v })} /></td>
+                      <td><NumberInput value={t.capitalNourrParHabMonde ?? 0} step={1} onChange={(v) => setCfg((c) => { c.cultures[i].capitalNourrParHabMonde = v })} /></td>
+                      <td><NumberInput value={t.capitalTourismeParHabMonde ?? 0} step={1} onChange={(v) => setCfg((c) => { c.cultures[i].capitalTourismeParHabMonde = v })} /></td>
+                      <td><NumberInput value={t.capitalOrParHabMonde ?? 0} step={1} onChange={(v) => setCfg((c) => { c.cultures[i].capitalOrParHabMonde = v })} /></td>
+                      <td><NumberInput value={t.scienceParConstruction ?? 0} step={1} onChange={(v) => setCfg((c) => { c.cultures[i].scienceParConstruction = v })} /></td>
+                      <td><TextInput value={t.reglePays} onChange={(v) => setCfg((c) => { c.cultures[i].reglePays = v })} /></td>
+                      <td><TextInput value={t.reglePerso} onChange={(v) => setCfg((c) => { c.cultures[i].reglePerso = v })} /></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <Button onClick={() => setCfg((c) => {
+              c.cultures.push({
+                nom: 'Nouvelle culture', heredite: 'Agnatique', martialite: 'Faible',
+                homoAutorisee: false, fertFactor: 1, reglePays: '', reglePerso: '',
+              })
+            })}>+ Ajouter une culture</Button>
+          </Card>
+          <Card title={`Régimes politiques (${configEdit.regimes.length}) — lois appliquées automatiquement`}>
+            <p className="muted small">
+              Chaque régime : nom, loi (texte affiché sur la page « Royaume ») et lois chiffrées
+              appliquées AUTOMATIQUEMENT à chaque fin de tour — garnison des habitations +N par
+              rang d'habitation (ex. Autoritarisme : 15), +N Nourriture par tour d'été pour chaque
+              champ et rizière du pays (ex. Socialisme : 5). Mettre 0 pour désactiver une loi.
+            </p>
+            <div className="table-wrap">
+              <table className="tbl small">
+                <thead>
+                  <tr>
+                    <th>Régime</th><th>Loi</th>
+                    <th>Garnison / rang d'habitation</th>
+                    <th>Nourriture été / champ & rizière</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {configEdit.regimes.map((r, i) => (
+                    <tr key={i}>
+                      <td><TextInput value={r.nom} onChange={(v) => setCfg((c) => { c.regimes[i].nom = v })} /></td>
+                      <td><TextInput value={r.loi} onChange={(v) => setCfg((c) => { c.regimes[i].loi = v })} /></td>
+                      <td><NumberInput value={r.garnisonParRang ?? 0} step={1} onChange={(v) => setCfg((c) => { c.regimes[i].garnisonParRang = v })} /></td>
+                      <td><NumberInput value={r.nourrEteChampRiziere ?? 0} step={1} onChange={(v) => setCfg((c) => { c.regimes[i].nourrEteChampRiziere = v })} /></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <Button onClick={() => setCfg((c) => {
+              c.regimes.push({ nom: 'Nouveau régime', loi: '' })
+            })}>+ Ajouter un régime</Button>
+          </Card>
+        </>
       )}
 
       {onglet === 'Tourisme & dogmes' && (

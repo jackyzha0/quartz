@@ -49,27 +49,48 @@ export function gestionMariages(state: GameState, p: Player, rng: Rng, recap: Pl
   const celib = pop.filter(
     (c) => c.statut !== 'Décédé' && !c.mariage && c.age >= C.p.adultAge,
   )
-  const femmes = rng.shuffle(celib.filter((c) => c.sexe === 'F'))
-  const hommes = celib.filter((c) => c.sexe === 'M')
   const mariesIds = new Set<string>()
-  for (const f of femmes) {
-    if (f.mariage) continue
-    const dispo = hommes.filter((h) => !h.mariage && !mariesIds.has(h.id))
-    if (dispo.length === 0) break
-    const h = rng.pick(dispo)
-    const proba = computeMarriageProbability(f, h, C)
-    if (!rng.chance(proba)) continue
-    f.mariage = fullName(h)
-    h.mariage = fullName(f)
-    mariesIds.add(h.id)
-    const noble = isNobleDyn(f.dynastie, C) && isNobleDyn(h.dynastie, C)
-    if (noble) bump(recap.mariagesNobles, formatDynastyPair(f.dynastie, h.dynastie))
+  const marier = (a: Character, b: Character) => {
+    a.mariage = fullName(b)
+    b.mariage = fullName(a)
+    mariesIds.add(b.id)
+    const noble = isNobleDyn(a.dynastie, C) && isNobleDyn(b.dynastie, C)
+    if (noble) bump(recap.mariagesNobles, formatDynastyPair(a.dynastie, b.dynastie))
     state.log.push({
       turn: state.turn + 1, type: 'Mariage', joueur: p.n,
       texte: noble
-        ? `Mariage noble : ${fullName(f)} (${f.dynastie}) épouse ${fullName(h)} (${h.dynastie}).`
-        : `Mariage : ${fullName(f)} épouse ${fullName(h)}.`,
+        ? `Mariage noble : ${fullName(a)} (${a.dynastie}) épouse ${fullName(b)} (${b.dynastie}).`
+        : `Mariage : ${fullName(a)} épouse ${fullName(b)}.`,
     })
+  }
+  /** Tente de marier `a` avec un candidat libre. false = plus de candidats. */
+  const tenter = (a: Character, candidats: Character[]): boolean => {
+    const dispo = candidats.filter((x) => !x.mariage && !mariesIds.has(x.id))
+    if (dispo.length === 0) return false
+    const b = rng.pick(dispo)
+    if (rng.chance(computeMarriageProbability(a, b, C))) marier(a, b)
+    return true
+  }
+  // Passe hétérosexuelle : chaque femme célibataire avec un homme libre.
+  const femmes = rng.shuffle(celib.filter((c) => c.sexe === 'F'))
+  const hommes = celib.filter((c) => c.sexe === 'M')
+  for (const f of femmes) {
+    if (f.mariage) continue
+    if (!tenter(f, hommes)) break
+  }
+  // Passes homosexuelles — si la culture du pays les autorise (champ
+  // paramétrable du référentiel, onglet « Cultures & régimes »). Pas de
+  // conception entre époux de même sexe (conceptionEtNaissances,
+  // naissances.ts).
+  if (cultureDef(p.culture, C.config)?.homoAutorisee) {
+    for (const [sexeA, sexeB] of [['F', 'F'], ['M', 'M']] as const) {
+      const premiers = rng.shuffle(celib.filter((c) => c.sexe === sexeA))
+      const seconds = celib.filter((c) => c.sexe === sexeB)
+      for (const a of premiers) {
+        if (a.mariage) continue
+        if (!tenter(a, seconds)) break
+      }
+    }
   }
 }
 

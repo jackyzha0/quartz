@@ -1202,27 +1202,38 @@
  "cultures": [
   {
    "nom": "Communautarisme",
+   "homoAutorisee": false,
+   "fertFactor": 1,
    "heredite": "Parité",
    "martialite": "Féminine",
    "reglePays": "Entraide : votre capitale génère +3 Nourriture par habitation de cette culture dans le monde.",
-   "reglePerso": "Générosité : les personnages gouverneurs réduisent la puissance des révoltes de 20 pts supplémentaires."
+   "reglePerso": "Générosité : les personnages gouverneurs réduisent la puissance des révoltes de 20 pts supplémentaires.",
+   "capitalNourrParHabMonde": 3
   },
   {
    "nom": "Déisme",
+   "homoAutorisee": false,
+   "fertFactor": 1,
    "heredite": "Masculine",
    "martialite": "Parité",
    "reglePays": "Prier les dieux : chaque fois que vous construisez un bâtiment de faction, vous gagnez 4 Science.",
-   "reglePerso": "Enfant Divin : un personnage Héritier génère +6 Tourisme par rang de la capitale."
+   "reglePerso": "Enfant Divin : un personnage Héritier génère +6 Tourisme par rang de la capitale.",
+   "scienceParConstruction": 4
   },
   {
    "nom": "Lunisme",
+   "homoAutorisee": false,
+   "fertFactor": 1,
    "heredite": "Masculine",
    "martialite": "Masculine",
    "reglePays": "Prêcheurs : votre capitale génère +4 Tourisme par habitation de cette culture dans le monde.",
-   "reglePerso": "Soldats de la Lumière : lorsqu'une armée attaque une habitation, la garnison de celle-ci est réduite de 15 par rang de votre pays."
+   "reglePerso": "Soldats de la Lumière : lorsqu'une armée attaque une habitation, la garnison de celle-ci est réduite de 15 par rang de votre pays.",
+   "capitalTourismeParHabMonde": 4
   },
   {
    "nom": "Naturalisme",
+   "homoAutorisee": false,
+   "fertFactor": 1,
    "heredite": "Parité",
    "martialite": "Masculine",
    "reglePays": "Ecologisme : vos habitations construites sur des cases de forêt produisent +1 Bois.",
@@ -1230,6 +1241,8 @@
   },
   {
    "nom": "Sethisme",
+   "homoAutorisee": false,
+   "fertFactor": 1,
    "heredite": "Féminine",
    "martialite": "Parité",
    "reglePays": "Adaptation : vos habitations génèrent +1 Or par case de désert dans leur enceinte.",
@@ -1237,20 +1250,25 @@
   },
   {
    "nom": "Zélotisme",
+   "homoAutorisee": false,
+   "fertFactor": 1,
    "heredite": "Féminine",
    "martialite": "Féminine",
    "reglePays": "Supériorité évidente : votre capitale génère +2 Or par habitation de cette culture dans le monde.",
-   "reglePerso": "Par le fer : les personnages génèrent un dé de manœuvre rouge s'ils sont commandants."
+   "reglePerso": "Par le fer : les personnages génèrent un dé de manœuvre rouge s'ils sont commandants.",
+   "capitalOrParHabMonde": 2
   }
  ],
  "regimes": [
   {
    "nom": "Autoritarisme",
-   "loi": "Conscription : garnison des habitations +15 par rang des habitations. Coût de levée d'armée -10 par rang du pays."
+   "loi": "Conscription : garnison des habitations +15 par rang des habitations. Coût de levée d'armée -10 par rang du pays.",
+   "garnisonParRang": 15
   },
   {
    "nom": "Socialisme",
-   "loi": "Pour le peuple : +5 Nourriture par tour d'été pour les champs et rizières."
+   "loi": "Pour le peuple : +5 Nourriture par tour d'été pour les champs et rizières.",
+   "nourrEteChampRiziere": 5
   },
   {
    "nom": "Démocratie",
