@@ -421,4 +421,10 @@ select.input { min-width: 120px; width: auto; }
 .frule-age { margin: 10px 0 2px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .frule-age2 .frule-title::before { content: 'II · '; color: var(--accent); }
 .frule-age3 .frule-title::before { content: 'III · '; color: var(--accent); }
+.frule-auto { margin-top: 6px; font-size: 0.78em; color: var(--good, #2e7d32); line-height: 1.35; }
+.frule-manuel { font-size: 0.78em; color: var(--muted); line-height: 1.35; }
+.frule-appliques {
+  margin-top: 10px; padding: 8px 10px; border-radius: 8px;
+  background: var(--card2); font-size: 0.85em; line-height: 1.5;
+}
 .small-gap { gap: 4px; }

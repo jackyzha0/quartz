@@ -22,6 +22,7 @@
 import type { City, GameState, Player, Saison } from './types'
 import { cfgOf, cultureDef, type Cfg } from './gameData'
 import { garnisonBatiment } from './batiments'
+import { garnisonFactionVille } from './factions'
 import { nomRang, garnisonBaseVille } from './habitations'
 
 export { nomRang } from './habitations'
@@ -45,23 +46,26 @@ export function rangNiveau(ville: City, C: Cfg): number {
 
 /** Garnison des habitations d'une ville : garnison de base du rang
  *  d'habitation (typesHabitation — Hameau 10, Cité 24, Motte 26,
- *  Forteresse 90…), garnisons statiques des bâtiments, et bonus de la
+ *  Forteresse 90…), garnisons statiques des bâtiments, bonus de la
  *  loi du régime (ex. Autoritarisme : + garnisonParRang × niveau du
- *  rang d'habitation). Valeur d'état (pas un flux) : affichée sous la
- *  culture de chaque ville (page « Pays ») et du pays (page « Royaume »). */
-export function garnisonHabitationVille(p: Player, ville: City, C: Cfg): number {
+ *  rang d'habitation) et bonus des règles de faction actives
+ *  (engine/factions.ts — état du jeu requis en 4e argument).
+ *  Valeur d'état (pas un flux) : affichée sous la culture de chaque
+ *  ville (page « Pays ») et du pays (page « Royaume »). */
+export function garnisonHabitationVille(p: Player, ville: City, C: Cfg, state?: GameState): number {
   let g = garnisonBaseVille(ville, C)
   for (const b of ville.batiments) g += garnisonBatiment(b, C)
   const regime = C.regimes.find((r) => r.nom === p.regime)
   const bonus = regime?.garnisonParRang ?? 0
   if (bonus) g += bonus * rangNiveau(ville, C)
+  if (state) g += garnisonFactionVille(state, p, ville, C)
   return g
 }
 
 /** Garnison totale des habitations d'un pays (toutes villes). */
-export function garnisonHabitationsPays(p: Player, C: Cfg): number {
+export function garnisonHabitationsPays(p: Player, C: Cfg, state?: GameState): number {
   let g = 0
-  for (const v of p.villes) g += garnisonHabitationVille(p, v, C)
+  for (const v of p.villes) g += garnisonHabitationVille(p, v, C, state)
   return g
 }
 

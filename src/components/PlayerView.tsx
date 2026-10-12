@@ -77,7 +77,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
       if (!t || !ville) return
       const cout = type === 'batiment'
         ? coutBatiment(nom, C, groupe)
-        : coutAmenagement(t, C.config)
+        : coutAmenagement(t, C.config, type === 'amenagement' ? nom : undefined)
       const cible = type === 'batiment'
         ? ville.batiments
         : (ville.amenagements ?? (ville.amenagements = []))
@@ -237,7 +237,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                     VALEUR D'ÉTAT (pas un flux) : base du rang + bâtiments
                     + loi éventuelle du régime ; ne change pas à chaque tour. */}
                 {(() => {
-                  const g = garnisonHabitationVille(p, ville, C)
+                  const g = garnisonHabitationVille(p, ville, C, state)
                   const base = habitationDef(ville, C)?.garnison ?? 0
                   const bats = g - base
                   const bonusRegime = (C.regimes.find((r) => r.nom === p.regime)?.garnisonParRang ?? 0) > 0
@@ -553,6 +553,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
             ['Aménagements', prodDetail.amenagements],
             ['Autres', prodDetail.autres],
             ['Régimes & cultures', prodDetail.regimesCultures],
+            ['Faction', prodDetail.faction],
             ['Conso villes', prodDetail.habitations],
             ['Vassalité', prodDetail.vassalite],
           ]
@@ -564,7 +565,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
               <p className="muted">
                 Aucun apport par tour pour l'instant : la production de ce pays est
                 nulle sur tous les canaux (base, villageois, bâtiments, aménagements,
-                autres, lois de régime/culture, consommations, vassalité).
+                autres, lois de régime/culture, faction, consommations, vassalité).
               </p>
             )
           }
@@ -646,20 +647,21 @@ export function PlayerView({ joueur }: { joueur: number }) {
             return (
               <p className="muted">
                 Lancez un tour pour voir apparaître le détail des apports (production,
-                bâtiments, aménagements, autres, consommations des villes, habitants, régimes & cultures, vassalité).
+                bâtiments, aménagements, autres, consommations des villes, habitants, régimes & cultures, faction, vassalité).
               </p>
             )
           }
-          const { production, batiments, amenagements, autres, population, vassalite, regimesCultures, habitations } = row.apports
+          const { production, batiments, amenagements, autres, population, vassalite, regimesCultures, habitations, faction } = row.apports
           const amen = amenagements ?? {}
           const aut = autres ?? {}
           const reg = regimesCultures ?? {}
           const hab = habitations ?? {}
+          const fac = faction ?? {}
           const val = (d: Record<string, number>, r: string) => d[r] ?? 0
           const res = C.ressources.filter((r) =>
             val(production, r) !== 0 || val(batiments, r) !== 0 || val(amen, r) !== 0
             || val(aut, r) !== 0 || val(hab, r) !== 0 || val(population, r) !== 0 || val(vassalite, r) !== 0
-            || val(reg, r) !== 0)
+            || val(reg, r) !== 0 || val(fac, r) !== 0)
           if (res.length === 0) {
             return <p className="muted">Aucun apport au tour {row.turn}.</p>
           }
@@ -671,13 +673,14 @@ export function PlayerView({ joueur }: { joueur: number }) {
                     <th>Ressource</th><th>Production</th><th>Bâtiments</th>
                     <th>Aménagements</th><th>Autres</th>
                     <th>Conso. villes</th>
-                    <th>Habitants</th><th>Régimes & cultures</th><th>Vassalité</th><th>Total</th>
+                    <th>Habitants</th><th>Régimes & cultures</th><th>Faction</th><th>Vassalité</th><th>Total</th>
                   </tr>
                 </thead>
                 <tbody>
                   {res.map((r) => {
                     const total = val(production, r) + val(batiments, r) + val(amen, r)
                       + val(aut, r) + val(hab, r) + val(population, r) + val(vassalite, r) + val(reg, r)
+                      + val(fac, r)
                     return (
                       <tr key={r}>
                         <td><strong>{r}</strong></td>
@@ -688,6 +691,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                         <td className="neg">{val(hab, r) !== 0 ? fmtNum(val(hab, r)) : '—'}</td>
                         <td>{fmtNum(val(population, r))}</td>
                         <td>{fmtNum(val(reg, r))}</td>
+                        <td>{fmtNum(val(fac, r))}</td>
                         <td>{fmtNum(val(vassalite, r))}</td>
                         <td className={total < 0 ? 'neg' : ''}><strong>{fmtNum(total)}</strong></td>
                       </tr>

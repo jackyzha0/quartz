@@ -2852,8 +2852,8 @@
           "texte": "Le coût de vos levées d'armées est réduit de 10 Or pour chaque apiculture que vous possédez. Vous pouvez posséder une armée supplémentaire."
         },
         {
-          "label": "Âge II — Savoir ancestral",
-          "texte": "Chaque fois que vous construisez une apiculture, générez 10 Science. Générez immédiatement 10 Science par apiculture que vous possédez."
+          "label": "Âge II — Bibliothèque enfouie",
+          "texte": "Vos apicultures produisent +1 Science par tour."
         },
         {
           "label": "Âge III — Enclave d'émeraude",
@@ -2864,8 +2864,8 @@
           "texte": "Vous pouvez dépenser tous les PM d'une de vos armées située sur une case de forêt pour la replacer sur une autre case de forêt à 15 cases ou moins et à 3 cases ou plus de toute armée ou ville d'un autre joueur."
         },
         {
-          "label": "Âge III — Bibliothèque enfouie",
-          "texte": "Vos apicultures produisent +1 Science par tour."
+          "label": "Âge III — Savoir ancestral",
+          "texte": "Chaque fois que vous construisez une apiculture, générez 10 Science. Générez immédiatement 10 Science par apiculture que vous possédez."
         }
       ],
       "victoire": "",
@@ -2890,8 +2890,8 @@
           "texte": "Le coût de vos levées d'armées est réduit de 10 Or pour chaque apiculture que vous possédez. Vous pouvez posséder une armée supplémentaire."
         },
         {
-          "nom": "Savoir ancestral",
-          "texte": "Chaque fois que vous construisez une apiculture, générez 10 Science. Générez immédiatement 10 Science par apiculture que vous possédez."
+          "nom": "Bibliothèque enfouie",
+          "texte": "Vos apicultures produisent +1 Science par tour."
         }
       ],
       "ageIII": [
@@ -2904,8 +2904,8 @@
           "texte": "Vous pouvez dépenser tous les PM d'une de vos armées située sur une case de forêt pour la replacer sur une autre case de forêt à 15 cases ou moins et à 3 cases ou plus de toute armée ou ville d'un autre joueur."
         },
         {
-          "nom": "Bibliothèque enfouie",
-          "texte": "Vos apicultures produisent +1 Science par tour."
+          "nom": "Savoir ancestral",
+          "texte": "Chaque fois que vous construisez une apiculture, générez 10 Science. Générez immédiatement 10 Science par apiculture que vous possédez."
         }
       ]
     }
@@ -5656,6 +5656,91 @@
       "cout": "8 Or + 3 Bois",
       "production": "+8 Tourisme par tour.",
       "description": "+8 Tourisme par tour."
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Faction",
+      "nom": "Église",
+      "cout": "5 Pierres + 10 Or",
+      "production": "+1 Or par tour. Tourisme +8 à la construction.",
+      "description": "Bâtiment de faction des Basiléens : peut uniquement être construit dans une habitation de votre culture. +8 Tourisme à la construction (valeur d'état) et +1 Or par tour."
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Capitale",
+      "famille": "Faction",
+      "nom": "Grande Cathédrale",
+      "cout": "12 Pierres + 30 Or",
+      "production": "+3 Or par tour. Tourisme +16 à la construction.",
+      "description": "Bâtiment de faction des Basiléens (remplace une Église) : uniquement dans votre capitale. +16 Tourisme à la construction et +3 Or par tour."
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Capitale",
+      "famille": "Faction",
+      "nom": "Palais de Notre-Dame du Palatinat",
+      "cout": "25 Pierres + 80 Or",
+      "production": "+8 Or par tour. Tourisme +35 à la construction.",
+      "description": "Bâtiment de faction des Basiléens (remplace la Grande Cathédrale) : uniquement dans votre capitale. +35 Tourisme à la construction et +8 Or par tour."
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Capitale",
+      "famille": "Faction",
+      "nom": "Puit de mana",
+      "cout": "5 Pierres + 6 Soie",
+      "production": "+1 Science par tour.",
+      "description": "Bâtiment de faction des Elfes d'Or : votre capitale produit +1 Science par tour ; dans la capitale, +1 Science par rang de l'habitation à la place (partie au plateau : manuelle)."
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Faction",
+      "nom": "Temple du soleil",
+      "cout": "4 Pierres + 8 Bois",
+      "production": "",
+      "description": "Bâtiment de faction des Hommes Lézards : génère 3 Nourriture par tour par forêt dans l'enceinte de l'habitation (plateau non modélisé — production à gérer manuellement)."
+    },
+    {
+      "categorie": "Aménagement",
+      "groupe": "Terrain",
+      "famille": "Faction",
+      "nom": "Apiculture",
+      "terrain": "Forêt",
+      "cout": "8 Or + 3 Bois",
+      "production": "+12 Nourriture par tour.",
+      "description": "Aménagement de faction des Sylvains (unique, forêt) : produit 12 Nourriture par tour (8 avec la règle Âge II « Don de miel », débitée automatiquement)."
+    },
+    {
+      "categorie": "Aménagement",
+      "groupe": "Terrain",
+      "famille": "Faction",
+      "nom": "Elevage",
+      "terrain": "Forêt",
+      "cout": "8 Or + 3 Bois",
+      "production": "+2 Nourriture par tour.",
+      "description": "Aménagement de faction des Hommes Lézards (Âge III « Elevage », remplace la Scierie) : +2 Nourriture par tour ; coût de levée des armées réduit de 5 Or (manuel)."
+    },
+    {
+      "categorie": "Aménagement",
+      "groupe": "Terrain",
+      "famille": "Faction",
+      "nom": "Brasseries",
+      "terrain": "Plaine ou Désert",
+      "cout": "8 Or + 3 Bois",
+      "production": "+2 Or par tour.",
+      "description": "Aménagement de faction des Nains (Âge II « Brasseries », remplace les Foires) : +2 Or par tour ; un marchand maximum supplémentaire (manuel)."
+    },
+    {
+      "categorie": "Aménagement",
+      "groupe": "Terrain",
+      "famille": "Faction",
+      "nom": "Autel eud Guer'",
+      "terrain": "—",
+      "cout": "8 Bois + 4 Fer",
+      "production": "",
+      "description": "Aménagement de faction des Peaux Vertes : réduit le coût de levée d'armée de 20 Or (à gérer manuellement)."
     }
   ],
   "typesHabitation": [

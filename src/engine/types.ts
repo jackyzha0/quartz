@@ -258,6 +258,10 @@ export interface ApportsTour {
    *  négatives (ex. Cité : −10 Nourriture, −8 Or). Champ optionnel :
    *  absent des historiques d'avant l'ajout du canal. */
   habitations?: Record<string, number>
+  /** bonus automatiques des règles de faction du peuple du joueur
+   *  (engine/factions.ts — étape 3nonies). Champ optionnel : absent
+   *  des historiques d'avant l'ajout du canal. */
+  faction?: Record<string, number>
 }
 
 export interface HistoryRow {

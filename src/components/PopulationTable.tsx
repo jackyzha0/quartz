@@ -4,7 +4,8 @@
 //  noble, culture pondérée par celles présentes dans la ville),
 //  filtres, tri, édition des titres — seuls les titres accessibles
 //  sont proposés (Chasseur, Gouverneur, titres Education enseignés
-//  par un Professeur vivant).
+//  par un Professeur vivant) — et arbre généalogique de la famille
+//  dirigeante (déplacé ici depuis la page Royaume).
 // ════════════════════════════════════════════════════════════════════
 
 import React, { useMemo, useState } from 'react'
@@ -14,6 +15,7 @@ import { cfgOf } from '../engine/gameData'
 import { validateTitleAssignment } from '../engine/validation'
 import { ajouterHabitant } from '../engine/setup'
 import { titresAccessibles } from '../engine/engine'
+import { GenealogyTree } from './GenealogyTree'
 import { Card, Select, TextInput, Button, NumberInput, fmt } from './ui'
 
 type SortKey = 'nom' | 'age' | 'dynastie' | 'ville' | 'titre' | 'statut'
@@ -267,6 +269,8 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           })}
         </div>
       </Card>
+
+      <GenealogyTree joueur={joueur} />
     </div>
   )
 }

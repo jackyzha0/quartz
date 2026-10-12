@@ -35,6 +35,7 @@ import { appliquerEffetsBatiments } from './batiments'
 import { appliquerEffetsAmenagements } from './amenagements'
 import { appliquerEffetsAutres } from './autres'
 import { appliquerEffetsRegimesCultures } from './regimes'
+import { appliquerEffetsFaction } from './factions'
 import { appliquerConsommationsHabitations } from './habitations'
 import { transfererTributVassal } from './vassalite'
 import { populationTurn } from './population'
@@ -167,6 +168,15 @@ export function runTurn(state: GameState): GameState {
     habitationsParJoueur[p.n] = appliquerConsommationsHabitations(state, p, C)
   }
 
+  // 3nonies. Factions : bonus automatiques des règles de faction du
+  //  peuple de chaque joueur (2 règles de base + règle d'Âge II / III
+  //  choisie — engine/factions.ts). Les parties au plateau (PM,
+  //  émissaires, influence…) restent manuelles.
+  const factionsParJoueur: Record<number, Record<string, number>> = {}
+  for (const p of state.players) {
+    factionsParJoueur[p.n] = appliquerEffetsFaction(state, p, C)
+  }
+
   // 4. Moteur de population (PersonnagesPourJoueur) pour chaque joueur
   for (const p of state.players) {
     populationTurn(state, p, rng)
@@ -197,6 +207,7 @@ export function runTurn(state: GameState): GameState {
       autres: autresParJoueur[p.n] ?? {},
       regimesCultures: regimesCulturesParJoueur[p.n] ?? {},
       habitations: habitationsParJoueur[p.n] ?? {},
+      faction: factionsParJoueur[p.n] ?? {},
       population,
       vassalite,
     }
@@ -242,6 +253,12 @@ export {
   effetsRegime, effetsCulturePays, appliquerEffetsRegimesCultures,
   nbVillesCultureMonde, detailCulturePays, type DetailCultureBonus,
 } from './regimes'
+export {
+  ficheFaction, reglesActives, regleActive, detailsFaction, effetsFaction,
+  garnisonFactionVille, appliquerEffetsFaction,
+  nbAmenagements, nbBatiments, nbVassaux, rangPaysNiveau, capitaleDe,
+  type DetailFaction, type RegleActive, type SourceRegle,
+} from './factions'
 export {
   typeVille, habitationDef, rangsDisponibles, garnisonBaseVille,
   habitantsRequisVille, consommationsVille, consommationsPays,

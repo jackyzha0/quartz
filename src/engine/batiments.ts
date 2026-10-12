@@ -107,6 +107,9 @@ const REMPLACE: Record<string, string[]> = {
   'Guilde des évangiles': ['Conjuratoire'],
   'Guilde des marins': ["Complexe d'exploitation maritime"],
   'Guilde des marchands': ['Plateforme commerciale'],
+  // Bâtiments de faction (Basiléens) : chaque palier remplace le précédent.
+  'Grande Cathédrale': ['Église'],
+  'Palais de Notre-Dame du Palatinat': ['Grande Cathédrale', 'Église'],
 }
 
 /** Cache des effets analysés, par (nom, textes de production/effet) — les

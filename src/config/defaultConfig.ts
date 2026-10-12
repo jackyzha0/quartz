@@ -497,6 +497,51 @@ export function migrerFactions(
   return out
 }
 
+/** Correctif Sylvains (V3) : « Savoir ancestral » et « Bibliothèque
+ *  enfouie » ont échangé leur âge (Bibliothèque enfouie → Âge II,
+ *  Savoir ancestral → Âge III). Les vieilles configurations qui
+ *  portent l'ancienne répartition sont corrigées nommément ; les
+ *  choix de règle d'âge stockés sur le joueur (regleAge2/regleAge3)
+ *  sont simplement invalidés si le nom ne figure plus dans l'âge
+ *  correspondant (le joueur re-choisit dans le cadre Faction). */
+export function migrerSwapSylvains(f: PeupleRef): PeupleRef {
+  if (f.nom !== 'Sylvains') return f
+  const a2 = f.ageII ?? []
+  const a3 = f.ageIII ?? []
+  const s2 = a2.find((r) => r.nom === 'Savoir ancestral')
+  const b3 = a3.find((r) => r.nom === 'Bibliothèque enfouie')
+  if (!s2 || !b3) return f // déjà à jour (ou fiche éditée autrement)
+  return {
+    ...f,
+    ageII: a2.map((r) => (r.nom === 'Savoir ancestral' ? b3 : r)),
+    ageIII: a3.map((r) => (r.nom === 'Bibliothèque enfouie' ? s2 : r)),
+    lignes: (f.lignes ?? []).map((l) => {
+      if (/^Âge II — Savoir ancestral/.test(l.label)) {
+        return { label: 'Âge II — Bibliothèque enfouie', texte: b3.texte }
+      }
+      if (/^Âge III — Bibliothèque enfouie/.test(l.label)) {
+        return { label: 'Âge III — Savoir ancestral', texte: s2.texte }
+      }
+      return l
+    }),
+  }
+}
+
+/** Table des constructions (bâtiments / aménagements, y compris de
+ *  faction) d'une configuration existante : les entrées du référentiel
+ *  par défaut absentes de la config (apparues depuis la sauvegarde)
+ *  sont AJOUTÉES, sans toucher aux entrées déjà présentes. */
+export function migrerConstructions(
+  list: ConstructionRef[] | undefined, defauts: ConstructionRef[],
+): ConstructionRef[] {
+  const out = [...(list ?? [])]
+  const noms = new Set(out.map((c) => c.nom))
+  for (const d of defauts) {
+    if (!noms.has(d.nom)) out.push(d)
+  }
+  return out
+}
+
 /** Table des types d'habitation (Ville / Château) d'une configuration
  *  existante — défauts du classeur si absents ou vides. */
 export function migrerTypesHabitation(list: HabitationDef[] | undefined): HabitationDef[] {
@@ -517,8 +562,12 @@ export function cfgOf(config: GameConfig | undefined): Cfg {
   merged.regimes = migrerRegimes(merged.regimes)
   merged.typesHabitation = migrerTypesHabitation(merged.typesHabitation)
   // fiches de faction : structure (victoire/bâtiment/âges) du référentiel
-  merged.peuplesLibres = migrerFactions(merged.peuplesLibres, DEFAULT_CONFIG.peuplesLibres)
+  //  + correctif Sylvains (Savoir ancestral ↔ Bibliothèque enfouie)
+  merged.peuplesLibres = migrerFactions(merged.peuplesLibres, DEFAULT_CONFIG.peuplesLibres).map(migrerSwapSylvains)
   merged.peuplesAutres = migrerFactions(merged.peuplesAutres, DEFAULT_CONFIG.peuplesAutres)
+  // constructions de faction (Église, Apiculture, Puit de mana…) :
+  //  ajout des entrées du référentiel apparues depuis la sauvegarde
+  merged.constructions = migrerConstructions(merged.constructions, DEFAULT_CONFIG.constructions)
   return {
     p: merged.params,
     ressources: merged.ressources,

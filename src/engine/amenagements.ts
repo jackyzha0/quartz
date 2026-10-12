@@ -63,11 +63,12 @@ export function aCampDeBatisseurs(p: Player): boolean {
   return p.villes.some((v) => v.batiments.includes('Camp de bâtisseurs'))
 }
 
-/** Coût de construction d'un aménagement pour ce joueur (réduction du
- *  Camp de bâtisseurs déduite — lue dans sa description exacte —,
- *  plancher à 0). */
-export function coutAmenagement(p: Player, cfg?: GameConfig): Record<string, number> {
-  const ref = amenagementRef('Baleinier', cfg)
+/** Coût de construction d'un aménagement pour ce joueur : coût EXACT du
+ *  référentiel pour l'aménagement demandé (repli : coût du Baleinier,
+ *  standard « 8 Or + 3 Bois »), réduction du Camp de bâtisseurs déduite
+ *  (lue dans sa description exacte — plancher à 0). */
+export function coutAmenagement(p: Player, cfg?: GameConfig, nom?: string): Record<string, number> {
+  const ref = (nom ? amenagementRef(nom, cfg) : undefined) ?? amenagementRef('Baleinier', cfg)
   const base = ref ? coutConstructionRef(ref) : { Or: 8, Bois: 3 }
   if (!aCampDeBatisseurs(p)) return { ...base }
   const reduc = reductionCampDeBatisseurs(cfg)

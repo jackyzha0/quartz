@@ -23,6 +23,7 @@ import { effetsBatimentsVille, detailsBatimentsJoueur } from './batiments'
 import { effetsAmenagementsVille, detailsAmenagementsJoueur } from './amenagements'
 import { effetsAutresVille, detailsAutresJoueur } from './autres'
 import { effetsRegime, effetsCulturePays, detailCulturePays } from './regimes'
+import { effetsFaction } from './factions'
 import { consommationsPays, consommationsVille, nomRang } from './habitations'
 
 export interface ProductionDetail {
@@ -43,6 +44,9 @@ export interface ProductionDetail {
   /** consommations par tour des habitations (engine/habitations.ts) —
    *  négatives (ex. Cité : −10 Nourriture, −8 Or) */
   habitations: Record<string, number>
+  /** bonus automatiques des règles de faction du peuple du joueur
+   *  (engine/factions.ts — étape 3nonies) */
+  faction: Record<string, number>
   /** tribut de vassalité (négatif = payé, positif = reçu) */
   vassalite: Record<string, number>
   /** somme de tous les canaux */
@@ -126,14 +130,22 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     if (v !== 0) habitations[res] = (habitations[res] ?? 0) + v
   }
 
+  // Factions : bonus automatiques des règles de faction du peuple du
+  //  joueur (2 règles de base + règle d'Âge II / III choisie) —
+  //  étape 3nonies du moteur.
+  const faction: Record<string, number> = {}
+  for (const [res, v] of Object.entries(effetsFaction(state, p, C))) {
+    if (v !== 0) faction[res] = v
+  }
+
   // Total
   const total: Record<string, number> = {}
-  for (const canal of [base, habitants, batiments, amenagements, autres, regimesCultures, habitations, vassalite]) {
+  for (const canal of [base, habitants, batiments, amenagements, autres, regimesCultures, habitations, faction, vassalite]) {
     for (const [res, v] of Object.entries(canal)) {
       total[res] = (total[res] ?? 0) + v
     }
   }
-  return { base, habitants, batiments, amenagements, autres, regimesCultures, habitations, vassalite, total }
+  return { base, habitants, batiments, amenagements, autres, regimesCultures, habitations, faction, vassalite, total }
 }
 
 // ══════════════════════════════════════════════════════════════════════

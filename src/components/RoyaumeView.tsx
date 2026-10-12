@@ -13,24 +13,25 @@
 //     (ce n'est pas la famille au pouvoir),
 //   · vassaux : prêt de serment à un autre joueur, tribut automatique
 //     (paramètre vassalPrelevement, appliqué en fin de tour par le moteur),
+//   · personnages importants : Dirigeant, Héritier, Professeurs,
+//     Commandants, famille royale,
 //   · faction du peuple : fiche complète (victoire désactivée,
 //     bâtiment de faction, 2 règles de base) et choix manuel de la
 //     règle d'Âge II puis d'Âge III (une seule parmi les trois —
-//     la montée d'âge n'est pas automatisée, les effets non plus),
-//   · personnages importants : Dirigeant, Héritier, Professeurs,
-//     Commandants, famille royale,
-//   · arbre généalogique de la famille dirigeante (conjoints ⚭,
-//     défunts grisés).
-//  Les technologies (feuille « Progrès ») sont retirées de cette page —
-//  elles restent consultables dans « 📚 Référentiels » → « Progrès ».
+//     la montée d'âge n'est pas automatisée ; les parties chiffrées
+//     des règles actives sont appliquées automatiquement).
+//  L'arbre généalogique de la famille dirigeante est affiché sur la
+//  page « Population ». Les technologies (feuille « Progrès ») sont
+//  retirées de cette page — elles restent consultables dans
+//  « 📚 Référentiels » → « Progrès ».
 // ══════════════════════════════════════════════════════════════════════
 
 import React from 'react'
 import { useGame } from '../state/store'
 import type { Character, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
+import { detailsFaction } from '../engine/factions'
 import { rangParDefaut } from '../engine/setup'
-import { GenealogyTree } from './GenealogyTree'
 import { Card, Select, TextInput, Button, Badge, Field } from './ui'
 
 export function RoyaumeView({ joueur }: { joueur: number }) {
@@ -339,8 +340,6 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
         </div>
       </Card>
 
-      <GenealogyTree joueur={joueur} />
-
     </div>
   )
 }
@@ -351,8 +350,11 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
 //  de faction (désactivée), bâtiment/aménagement de faction, 2 règles
 //  de base, puis les 3 règles d'Âge II et les 3 règles d'Âge III sur
 //  UNE LIGNE : le joueur clique sur celle qu'il prend à la montée
-//  d'âge (choix stocké sur le joueur ; ni la montée d'âge ni les
-//  effets ne sont automatisés).
+//  d'âge (choix stocké sur le joueur ; la montée d'âge n'est pas
+//  automatisée). Les parties chiffrées des règles ACTIVES sont
+//  appliquées automatiquement à chaque fin de tour (engine/factions.ts,
+//  canal « Faction » du récap ressources) ; les règles qui dépendent
+//  du plateau (PM, émissaires, influence…) restent manuelles.
 // ══════════════════════════════════════════════════════════════════════
 
 function CardFaction({ joueur }: { joueur: number }) {
@@ -364,6 +366,18 @@ function CardFaction({ joueur }: { joueur: number }) {
   const fiche = [...C.config.peuplesLibres, ...C.config.peuplesAutres].find((f) => f.nom === p.peuple)
   if (!fiche) return null
 
+  // Détail des règles ACTIVES (base + âges choisis) : part automatisée
+  // (flux par tour / garnison, valeurs calculées) ou « manuel ».
+  const details = detailsFaction(state, p, C)
+  const autoDe = (source: 'Base' | 'Âge II' | 'Âge III', nom: string) =>
+    details.find((d) => d.source === source && d.nom === nom)
+  const fluxTotal: Record<string, number> = {}
+  for (const d of details) {
+    for (const [res, v] of Object.entries(d.flux)) fluxTotal[res] = (fluxTotal[res] ?? 0) + v
+  }
+  const fluxActifs = Object.entries(fluxTotal).filter(([, v]) => v !== 0)
+  const avecGarnison = details.some((d) => d.garnison)
+
   const choisir = (age: 2 | 3, nom: string) =>
     update((s) => {
       const t = s.players.find((x) => x.n === joueur)
@@ -372,6 +386,16 @@ function CardFaction({ joueur }: { joueur: number }) {
       if (age === 2) t.regleAge2 = cur === nom ? null : nom
       else t.regleAge3 = cur === nom ? null : nom
     })
+
+  // Badge « ✓ auto » / « manuel » d'une règle active.
+  const badgeAuto = (d: { auto: string | null } | undefined) =>
+    d ? (
+      d.auto ? (
+        <span className="badge badge-good">✓ auto</span>
+      ) : (
+        <span className="badge badge-neutral">manuel</span>
+      )
+    ) : null
 
   const ligneAge = (label: string, regles: { nom: string; texte: string }[] | undefined, choisie: string | null | undefined, age: 2 | 3) => (
     <div className="stack small-gap">
@@ -383,17 +407,21 @@ function CardFaction({ joueur }: { joueur: number }) {
         {choisie && <span className="badge badge-good">choisie : {choisie}</span>}
       </div>
       <div className="frule-row">
-        {(regles ?? []).map((r) => (
-          <button
-            key={r.nom}
-            className={`frule ${choisie === r.nom ? 'frule-selected' : ''}`}
-            onClick={() => choisir(age, r.nom)}
-            title={choisie === r.nom ? 'Règle choisie — cliquer pour annuler' : 'Choisir cette règle'}
-          >
-            <div className="frule-title">{r.nom}</div>
-            <div className="frule-text">{r.texte}</div>
-          </button>
-        ))}
+        {(regles ?? []).map((r) => {
+          const d = choisie === r.nom ? autoDe(age === 2 ? 'Âge II' : 'Âge III', r.nom) : undefined
+          return (
+            <button
+              key={r.nom}
+              className={`frule ${choisie === r.nom ? 'frule-selected' : ''}`}
+              onClick={() => choisir(age, r.nom)}
+              title={choisie === r.nom ? 'Règle choisie — cliquer pour annuler' : 'Choisir cette règle'}
+            >
+              <div className="frule-title">{r.nom} {badgeAuto(d)}</div>
+              <div className="frule-text">{r.texte}</div>
+              {d?.auto && <div className="frule-auto">⚙️ {d.auto}</div>}
+            </button>
+          )
+        })}
         {(!regles || regles.length === 0) && (
           <div className="muted small">Aucune règle d'âge dans le référentiel pour ce peuple.</div>
         )}
@@ -417,22 +445,39 @@ function CardFaction({ joueur }: { joueur: number }) {
             <div className="frule-text">{fiche.batiment}</div>
           </div>
         ) : null}
-        {(fiche.reglesBase ?? []).map((r) => (
-          <div key={r.nom} className="frule frule-muted">
-            <div className="frule-title">{r.nom}</div>
-            <div className="frule-text">{r.texte}</div>
-          </div>
-        ))}
+        {(fiche.reglesBase ?? []).map((r) => {
+          const d = autoDe('Base', r.nom)
+          return (
+            <div key={r.nom} className="frule frule-muted">
+              <div className="frule-title">{r.nom} {badgeAuto(d)}</div>
+              <div className="frule-text">{r.texte}</div>
+              {d?.auto && <div className="frule-auto">⚙️ {d.auto}</div>}
+            </div>
+          )
+        })}
       </div>
       <div className="stack small-gap" style={{ marginTop: 12 }}>
         {ligneAge('Âge II', fiche.ageII, p.regleAge2, 2)}
         {ligneAge('Âge III', fiche.ageIII, p.regleAge3, 3)}
       </div>
-      <p className="muted small" style={{ marginTop: 8 }}>
-        Règles de base et bâtiment de faction : {p.peuple}. Les effets des règles ne sont pas
-        encore appliqués automatiquement par le moteur — cette fiche sert de référence et de
-        choix officiel pour les montées d'âge (une règle par âge).
-      </p>
+      <div className="frule-appliques">
+        <strong>⚙️ Bonus appliqués automatiquement</strong> — chaque fin de tour, canal « Faction »
+        du récap ressources (page Pays) :{' '}
+        {fluxActifs.length > 0
+          ? fluxActifs.map(([res, v]) => (
+              <span key={res} className="badge badge-good">{v > 0 ? '+' : ''}{v} {res}</span>
+            ))
+          : 'aucun flux chiffré pour l\u2019instant'}
+        {avecGarnison && (
+          <span className="muted small"> · garnison des habitations ajustée (décompte détaillé sur la page Joueur)</span>
+        )}
+        <div className="muted small">
+          Les règles marquées « manuel » dépendent du plateau physique ou de systèmes non modélisés
+          (PM, cases, émissaires, influence, marchands, colonies…) : à gérer au jugé. Les bâtiments et
+          aménagements de faction chiffrés (Église, Apiculture, Puit de mana, Elevage, Brasseries…)
+          sont constructibles depuis la page Pays — production automatique.
+        </div>
+      </div>
     </Card>
   )
 }
