@@ -116,32 +116,70 @@ export function ReferenceDataPanel() {
 
       {onglet === 'Peuples' && (
         <>
-          <Card title="Peuples libres (jouables)">
-            <div className="grid-2">
-              {cfg.peuplesLibres.map((p) => (
-                <div key={p.nom} className="mini">
-                  <div className="mini-title">{p.nom}</div>
-                  <div className="small">{p.description}</div>
-                  {p.lignes?.map((l, i) => (
-                    <div key={i} className="small"><strong>{l.label} :</strong> {l.texte}</div>
-                  ))}
+          {([
+            ['Peuples libres (jouables)', cfg.peuplesLibres],
+            ['Autres peuples (PNJ du monde)', cfg.peuplesAutres],
+          ] as const).map(([titre, liste]) => (
+            <Card key={titre} title={titre}>
+              <p className="muted small">
+                Chaque faction : victoire (désactivée), bâtiment / aménagement de faction, 2 règles
+                de base, puis 3 règles d'Âge II et 3 règles d'Âge III — le joueur en choisit une
+                seule par âge à la montée d'âge (page Royaume de son pays).
+              </p>
+              {liste.map((p) => (
+                <div key={p.nom} className="fiche-peuple">
+                  <div className="fiche-peuple-title">{p.nom}</div>
+                  <div className="small muted">{p.description}</div>
+                  {(p.victoire || p.batiment || p.reglesBase || p.ageII || p.ageIII) ? (
+                    <>
+                      <div className="frule-row">
+                        {p.victoire ? (
+                          <div className="frule frule-muted">
+                            <div className="frule-title">Victoire de faction <span className="badge badge-neutral">désactivée</span></div>
+                            <div className="frule-text">{p.victoire}</div>
+                          </div>
+                        ) : null}
+                        {p.batiment ? (
+                          <div className="frule frule-muted">
+                            <div className="frule-title">Bâtiment / aménagement de faction</div>
+                            <div className="frule-text">{p.batiment}</div>
+                          </div>
+                        ) : null}
+                        {(p.reglesBase ?? []).map((r) => (
+                          <div key={r.nom} className="frule frule-muted">
+                            <div className="frule-title">{r.nom}</div>
+                            <div className="frule-text">{r.texte}</div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="frule-age"><strong>Âge II</strong> <span className="muted small">— choisir 1 règle parmi 3 à la montée d'âge</span></div>
+                      <div className="frule-row">
+                        {(p.ageII ?? []).map((r) => (
+                          <div key={r.nom} className="frule frule-age2">
+                            <div className="frule-title">{r.nom}</div>
+                            <div className="frule-text">{r.texte}</div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="frule-age"><strong>Âge III</strong> <span className="muted small">— choisir 1 règle parmi 3 à la montée d'âge</span></div>
+                      <div className="frule-row">
+                        {(p.ageIII ?? []).map((r) => (
+                          <div key={r.nom} className="frule frule-age3">
+                            <div className="frule-title">{r.nom}</div>
+                            <div className="frule-text">{r.texte}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    p.lignes?.map((l, i) => (
+                      <div key={i} className="small"><strong>{l.label} :</strong> {l.texte}</div>
+                    ))
+                  )}
                 </div>
               ))}
-            </div>
-          </Card>
-          <Card title="Autres peuples (PNJ du monde)">
-            <div className="grid-2">
-              {cfg.peuplesAutres.map((p) => (
-                <div key={p.nom} className="mini">
-                  <div className="mini-title">{p.nom}</div>
-                  <div className="small">{p.description}</div>
-                  {p.lignes?.map((l, i) => (
-                    <div key={i} className="small"><strong>{l.label} :</strong> {l.texte}</div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </Card>
+            </Card>
+          ))}
         </>
       )}
 

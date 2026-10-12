@@ -2414,24 +2414,84 @@
       "description": "Faction fière de sa culture et de ses constructions, les Basiléens par leur noblesse. Leur société est scindée en deux, ceux qui travaillent la terre, et ceux qui administrent, prient et défendent leur territoire. Chevalerie et noblesse de cœur sont les deux maitre-mot de ces guerriers sacrés.",
       "lignes": [
         {
-          "label": "Victoire de faction : Purger les hérétiques",
-          "texte": "Au début de la partie, désignez 2 cultures différentes. Vous remportez la partie si vos possédez Notre-Dame du Palatinat et qu'aucune habitation n'est d'une de ces cultures."
+          "label": "Victoire de faction (désactivée)",
+          "texte": "Au début de la partie, désignez 2 cultures différentes. Vous remportez la partie si vous possédez Notre-Dame du Palatinat et qu'aucune habitation n'est d'une de ces cultures."
         },
         {
           "label": "Bâtiment de faction",
-          "texte": "Eglise (5 Pierres + 10 Or) : peut uniquement être construite dans une habitation de votre culture. L’église génère +8 Tourisme et +1 Or par tour.\nGrande Cathédrale (Remplace une Eglise, 12 Pierres + 30 Or) : peut uniquement être construite dans votre capitale. Génère +16 Tourisme, +3 Or par tour.\nPalais de Notre-Dame Du Palatinat : (Remplace la Grande Cathédrale, 25 Pierres + 80 Or) : génère +35 Tourisme, +8 Or par tour."
+          "texte": "Église (5 Pierres + 10 Or) : peut uniquement être construite dans une habitation de votre culture. L'église génère +8 Tourisme et +1 Or par tour.\nGrande Cathédrale (remplace une Église, 12 Pierres + 30 Or) : peut uniquement être construite dans votre capitale. Génère +16 Tourisme et +3 Or par tour.\nPalais de Notre-Dame du Palatinat (remplace la Grande Cathédrale, 25 Pierres + 80 Or) : génère +35 Tourisme et +8 Or par tour."
         },
         {
           "label": "Paysans dévoués",
-          "texte": "Votre capitale produit +2 Or par tour. Les champs produisent +5 Nourriture par tour, mais la garnison de vos habitations de type cité est réduite de 20."
+          "texte": "Les champs produisent +5 Nourriture par tour ; lorsque vous aménagez un champ, générez 5 habitants. La garnison de vos habitations de type cité est réduite de 20."
         },
         {
-          "label": "Croisades",
-          "texte": "Vous ne pouvez déclarer de guerre à un joueur de votre culture, mais pouvez déclarer une croisade contre une cité d'une autre culture. Lorsque la croisade est déclarée, prenez 15 Or par rang de la cité ciblée au propriétaire, et 15 Or par rang lorsque la cité est capturée. Si la cité n'est pas capturée au bout de 6 tours, payez 25 Or par rang de la cité à son propriétaire. Vous ne pouvez déclencher qu'une Croisade par an."
+          "label": "Temps de paix",
+          "texte": "Si vous êtes suzerain, vous générez +5 Nourriture et +2 Or par tour pour chaque ville vassale. Lorsque vous acquérez un nouveau vassal, vous recevez 10 fois votre rang de pays sous forme d'habitants dans votre capitale. Si vous êtes un vassal, vous générez 15 Tourisme par rang de votre suzerain."
         },
         {
-          "label": "ÂGE II",
-          "texte": ""
+          "label": "Âge II — Distribution des richesses",
+          "texte": "Lorsque vous fondez ou améliorez une habitation, elle reçoit 50 habitants."
+        },
+        {
+          "label": "Âge II — Heure de la prière",
+          "texte": "Vos bâtiments coûtent 3 Pierres de moins à construire et à améliorer. Les merveilles coûtent 5 Pierres de moins à construire et à améliorer et rapportent 5 Tourisme."
+        },
+        {
+          "label": "Âge II — Émissaires efficaces",
+          "texte": "Lorsque vous réalisez une succession, gagnez 1 Émissaire à placer dans la cité libre de votre choix. Générez immédiatement 1 Émissaire."
+        },
+        {
+          "label": "Âge III — Suzeraineté",
+          "texte": "Vous pouvez posséder 1 Ministre supplémentaire. Votre capitale reçoit immédiatement 150 habitants."
+        },
+        {
+          "label": "Âge III — Héritage familial",
+          "texte": "Lorsque vous améliorez une habitation, elle reçoit 50 habitants."
+        },
+        {
+          "label": "Âge III — Abuser des serfs",
+          "texte": "Vos champs produisent +3 Tourisme et sont également considérés comme des foires en ce qui concerne les bonus de technologie."
+        }
+      ],
+      "victoire": "Au début de la partie, désignez 2 cultures différentes. Vous remportez la partie si vous possédez Notre-Dame du Palatinat et qu'aucune habitation n'est d'une de ces cultures.",
+      "batiment": "Église (5 Pierres + 10 Or) : peut uniquement être construite dans une habitation de votre culture. L'église génère +8 Tourisme et +1 Or par tour.\nGrande Cathédrale (remplace une Église, 12 Pierres + 30 Or) : peut uniquement être construite dans votre capitale. Génère +16 Tourisme et +3 Or par tour.\nPalais de Notre-Dame du Palatinat (remplace la Grande Cathédrale, 25 Pierres + 80 Or) : génère +35 Tourisme et +8 Or par tour.",
+      "reglesBase": [
+        {
+          "nom": "Paysans dévoués",
+          "texte": "Les champs produisent +5 Nourriture par tour ; lorsque vous aménagez un champ, générez 5 habitants. La garnison de vos habitations de type cité est réduite de 20."
+        },
+        {
+          "nom": "Temps de paix",
+          "texte": "Si vous êtes suzerain, vous générez +5 Nourriture et +2 Or par tour pour chaque ville vassale. Lorsque vous acquérez un nouveau vassal, vous recevez 10 fois votre rang de pays sous forme d'habitants dans votre capitale. Si vous êtes un vassal, vous générez 15 Tourisme par rang de votre suzerain."
+        }
+      ],
+      "ageII": [
+        {
+          "nom": "Distribution des richesses",
+          "texte": "Lorsque vous fondez ou améliorez une habitation, elle reçoit 50 habitants."
+        },
+        {
+          "nom": "Heure de la prière",
+          "texte": "Vos bâtiments coûtent 3 Pierres de moins à construire et à améliorer. Les merveilles coûtent 5 Pierres de moins à construire et à améliorer et rapportent 5 Tourisme."
+        },
+        {
+          "nom": "Émissaires efficaces",
+          "texte": "Lorsque vous réalisez une succession, gagnez 1 Émissaire à placer dans la cité libre de votre choix. Générez immédiatement 1 Émissaire."
+        }
+      ],
+      "ageIII": [
+        {
+          "nom": "Suzeraineté",
+          "texte": "Vous pouvez posséder 1 Ministre supplémentaire. Votre capitale reçoit immédiatement 150 habitants."
+        },
+        {
+          "nom": "Héritage familial",
+          "texte": "Lorsque vous améliorez une habitation, elle reçoit 50 habitants."
+        },
+        {
+          "nom": "Abuser des serfs",
+          "texte": "Vos champs produisent +3 Tourisme et sont également considérés comme des foires en ce qui concerne les bonus de technologie."
         }
       ]
     },
@@ -2440,24 +2500,80 @@
       "description": "Violents, les peaux vertes sont la force brutale de ce monde. Vivant du pillage et de la guerre, ils compensent leurs faiblesses en construction en capturant directement les habitations des autres peuplades.",
       "lignes": [
         {
-          "label": "Victoire de faction :",
-          "texte": ""
-        },
-        {
           "label": "Bâtiment de faction",
-          "texte": "Autel eud Guer’ (8 Bois  + 4  Fer) : Ajoute 10 habitants à l'habitation et réduit le coût de levée d’armée de 10 Or."
+          "texte": "Autel eud Guer' (8 Bois + 4 Fer) : réduit le coût de levée d'armée de 20 Or."
         },
         {
           "label": "Barbares primitifs",
-          "texte": "Fonder une nouvelle ville requiert  8 Or de moins mais améliorer une  habitation requiert 3 Pierres de plus. Coût des levées d'armées -10 Or."
+          "texte": "Fonder une nouvelle ville requiert 8 Or et 2 Bois de moins, mais améliorer une habitation requiert 3 Pierres de plus."
         },
         {
           "label": "Union du klan !",
-          "texte": "Les Peaux Vertes sont réparties en clans, plus vous avez asservis de clans, plus le votre sera puissant. Vous pouvez asservir des clans comme suit (choisissez lorsque l'âge débute) :\n•\tAge I : Chaque village tribal que vous explorez compte comme un clan asservi OU chaque victoire militaire compte comme un clan asservi.\n•\tAge  II : Chaque habitation que vous fondez compte comme un clan asservi OU chaque habitation conquise compte comme un clan asservi.\n•\tAge III : Chaque merveille que vous construisez compte comme un clan asservi OU chaque habitation de rang 3 que vous construisez compte comme un clan asservi.\nChaque fois que vous asservissez un clan, générez 5 habitants dans l'habitation de votre choix."
+          "texte": "Les Peaux Vertes sont réparties en clans ; plus vous en asservissez, plus le vôtre sera puissant. Vous pouvez asservir des clans comme suit :\n• chaque village tribal que vous explorez compte comme un clan asservi ;\n• chaque habitation que vous fondez compte comme un clan asservi ;\n• chaque habitation que vous améliorez au rang III compte comme un clan asservi.\nChaque fois que vous asservissez un clan, générez 5 habitants dans l'habitation de votre choix. Le coût de levée de vos armées est réduit de 5 Or par clan asservi."
         },
         {
-          "label": "ÂGE II",
-          "texte": ""
+          "label": "Âge II — Diriger par la peur",
+          "texte": "Le coût de levée d'armée de vos vassaux est augmenté de 10 Or par rang de votre royaume. Les cartes d'impôts sont doublées."
+        },
+        {
+          "label": "Âge II — Cé partou à nou !",
+          "texte": "Chaque ville que vous possédez réduit le coût de levée d'armée de 5 Or et produit +5 Nourriture par tour."
+        },
+        {
+          "label": "Âge II — Moa tapé Toa",
+          "texte": "La première crise de chaque âge est annulée."
+        },
+        {
+          "label": "Âge III — Tous avek moa !",
+          "texte": "Vos armées bénéficient de +1 PM. Vous pouvez posséder une armée supplémentaire."
+        },
+        {
+          "label": "Âge III — Donné à mangé",
+          "texte": "Vos vassaux et vos villes vous rapportent +5 Nourriture et +1 Science par tour."
+        },
+        {
+          "label": "Âge III — Multiculturalisme",
+          "texte": "Vous êtes immunisé aux révoltes."
+        }
+      ],
+      "victoire": "",
+      "batiment": "Autel eud Guer' (8 Bois + 4 Fer) : réduit le coût de levée d'armée de 20 Or.",
+      "reglesBase": [
+        {
+          "nom": "Barbares primitifs",
+          "texte": "Fonder une nouvelle ville requiert 8 Or et 2 Bois de moins, mais améliorer une habitation requiert 3 Pierres de plus."
+        },
+        {
+          "nom": "Union du klan !",
+          "texte": "Les Peaux Vertes sont réparties en clans ; plus vous en asservissez, plus le vôtre sera puissant. Vous pouvez asservir des clans comme suit :\n• chaque village tribal que vous explorez compte comme un clan asservi ;\n• chaque habitation que vous fondez compte comme un clan asservi ;\n• chaque habitation que vous améliorez au rang III compte comme un clan asservi.\nChaque fois que vous asservissez un clan, générez 5 habitants dans l'habitation de votre choix. Le coût de levée de vos armées est réduit de 5 Or par clan asservi."
+        }
+      ],
+      "ageII": [
+        {
+          "nom": "Diriger par la peur",
+          "texte": "Le coût de levée d'armée de vos vassaux est augmenté de 10 Or par rang de votre royaume. Les cartes d'impôts sont doublées."
+        },
+        {
+          "nom": "Cé partou à nou !",
+          "texte": "Chaque ville que vous possédez réduit le coût de levée d'armée de 5 Or et produit +5 Nourriture par tour."
+        },
+        {
+          "nom": "Moa tapé Toa",
+          "texte": "La première crise de chaque âge est annulée."
+        }
+      ],
+      "ageIII": [
+        {
+          "nom": "Tous avek moa !",
+          "texte": "Vos armées bénéficient de +1 PM. Vous pouvez posséder une armée supplémentaire."
+        },
+        {
+          "nom": "Donné à mangé",
+          "texte": "Vos vassaux et vos villes vous rapportent +5 Nourriture et +1 Science par tour."
+        },
+        {
+          "nom": "Multiculturalisme",
+          "texte": "Vous êtes immunisé aux révoltes."
         }
       ]
     },
@@ -2465,10 +2581,6 @@
       "nom": "HOMMES LEZARDS",
       "description": "Les Hommes Lézards sont les défenseurs des jungles. Êtres divins créés pour protéger les dieux, ils sont finalement devenus mortels à la mort de ceux-ci et doivent maintenant luter pour la défense de leurs terres, coûte que coûte.",
       "lignes": [
-        {
-          "label": "Préserver la nature",
-          "texte": "Les Hommes lézards ne peuvent construire d’aménagement en forêts, cependant ils génèrent 1 Bois dans chacune de leurs habitations. De plus, la construction d’aménagements est réduite de 1 Bois, tandis que celle d’habitations est réduite de 3 Bois."
-        },
         {
           "label": "Bâtiment de faction",
           "texte": "Temple du soleil (4 Pierres + 8 Bois) : Génère 3 Nourritures par tour par forêts dans l'enceinte de l'habitation."
@@ -2479,11 +2591,71 @@
         },
         {
           "label": "Grand éveil",
-          "texte": "Vous pouvez dépenser 90 Nourritures pour déclencher le grand éveil de votre choix :\n•\tMarque de Tzunki : Vos armées peuvent désormais traverser les rivières pour 1 PM.\n•\tMarque de Tlazcolt : Tous vos bâtiments de faction produisent +3 Tourisme.\n•\tMarque de Tepok : vous générez +1 Science par rang de votre royaume.\n•\tMarque de Xapati : augmente vos garnisons de 20.\n•\tMarque de Itlz : toutes les habitations Hommes-Lézards produisent +2 Or par rang.\n•\tMarque de XXX : Vos armées peuvent désormais entrer dans des cases de marais et de forêts pour 1 PM.\n•\tMarque de XXX : Votre capitale produit +2 Science par tour.\n•\tMarque sacrée : vos naissances se font avec Fécondité +1."
+          "texte": "Vous pouvez dépenser 90 Nourritures pour déclencher le grand éveil de votre choix :\r\n•\tMarque de Tzunki : Vos armées peuvent désormais traverser les rivières pour 1 PM.\r\n•\tMarque de Tlazcolt : Tous vos bâtiments de faction produisent +3 Tourisme.\r\n•\tMarque de Tepok : vous générez +1 Science par rang de votre royaume.\r\n•\tMarque de Xapati : augmente vos garnisons de 20.\r\n•\tMarque de Itlz : toutes les habitations Hommes-Lézards produisent +2 Or par rang.\r\n•\tMarque de XXX : Vos armées peuvent désormais entrer dans des cases de marais et de forêts pour 1 PM.\r\n•\tMarque de XXX : Votre capitale produit +2 Science par tour.\r\n•\tMarque sacrée : vos naissances se font avec Fécondité +1."
         },
         {
-          "label": "ÂGE II",
-          "texte": ""
+          "label": "Âge II — Protecteurs des forêts",
+          "texte": "Vos forêts produisent +5 Nourriture par tour."
+        },
+        {
+          "label": "Âge II — Eveil scientifique",
+          "texte": "Vous générez +1 Science par tour par éveil réalisé."
+        },
+        {
+          "label": "Âge II — La parole des anciens",
+          "texte": "Vos bâtiments de faction réduisent le coût  de vos Eveils de 5 Nourriture. Lorsque vous déclenchez un Eveil, recevez 5 de la ressource de base de votre choix."
+        },
+        {
+          "label": "Âge III — Elevage",
+          "texte": "Aménagement unique remplaçant la Scierie: les Elevages génèrent +2 Nourriture par tour et réduisent le coût de levée des armées de 5 Or."
+        },
+        {
+          "label": "Âge III — Apotres Skinks",
+          "texte": "Chaque Eveil peut être réalisé 2 fois."
+        },
+        {
+          "label": "Âge III — Une nature en Or",
+          "texte": "Vos bâtiments de faction génèrent une quantité  d'Or par tour égale à leur production de Nourriture intrinsèque."
+        }
+      ],
+      "victoire": "",
+      "batiment": "Temple du soleil (4 Pierres + 8 Bois) : Génère 3 Nourritures par tour par forêts dans l'enceinte de l'habitation.",
+      "reglesBase": [
+        {
+          "nom": "Préserver la nature",
+          "texte": "Les Hommes lézards ne peuvent construire d’aménagement en forêts, cependant ils génèrent 1 Bois dans chacune de leurs habitations. De plus, la construction d’aménagements est réduite de 1 Bois, tandis que celle d’habitations est réduite de 3 Bois."
+        },
+        {
+          "nom": "Grand éveil",
+          "texte": "Vous pouvez dépenser 90 Nourritures pour déclencher le grand éveil de votre choix :\r\n•\tMarque de Tzunki : Vos armées peuvent désormais traverser les rivières pour 1 PM.\r\n•\tMarque de Tlazcolt : Tous vos bâtiments de faction produisent +3 Tourisme.\r\n•\tMarque de Tepok : vous générez +1 Science par rang de votre royaume.\r\n•\tMarque de Xapati : augmente vos garnisons de 20.\r\n•\tMarque de Itlz : toutes les habitations Hommes-Lézards produisent +2 Or par rang.\r\n•\tMarque de XXX : Vos armées peuvent désormais entrer dans des cases de marais et de forêts pour 1 PM.\r\n•\tMarque de XXX : Votre capitale produit +2 Science par tour.\r\n•\tMarque sacrée : vos naissances se font avec Fécondité +1."
+        }
+      ],
+      "ageII": [
+        {
+          "nom": "Protecteurs des forêts",
+          "texte": "Vos forêts produisent +5 Nourriture par tour."
+        },
+        {
+          "nom": "Eveil scientifique",
+          "texte": "Vous générez +1 Science par tour par éveil réalisé."
+        },
+        {
+          "nom": "La parole des anciens",
+          "texte": "Vos bâtiments de faction réduisent le coût  de vos Eveils de 5 Nourriture. Lorsque vous déclenchez un Eveil, recevez 5 de la ressource de base de votre choix."
+        }
+      ],
+      "ageIII": [
+        {
+          "nom": "Elevage",
+          "texte": "Aménagement unique remplaçant la Scierie: les Elevages génèrent +2 Nourriture par tour et réduisent le coût de levée des armées de 5 Or."
+        },
+        {
+          "nom": "Apotres Skinks",
+          "texte": "Chaque Eveil peut être réalisé 2 fois."
+        },
+        {
+          "nom": "Une nature en Or",
+          "texte": "Vos bâtiments de faction génèrent une quantité  d'Or par tour égale à leur production de Nourriture intrinsèque."
         }
       ]
     },
@@ -2492,12 +2664,12 @@
       "description": "Les nains sont l’incarnation de l’opulence, de l’opiniâtreté et des infrastructures grandiloquentes. Même s’ils restent un peuple modeste, ils ne sont jamais enclins à céder, surtout face à des elfes, des peaux-vertes, ou à peu près tout ce qui n’est pas nain.",
       "lignes": [
         {
-          "label": "Victoire de faction : Bien chez soi",
+          "label": "Victoire de faction (désactivée)",
           "texte": "Vous remportez la partie si vous contrôlez au moins 3 habitations dans les montagnes avec chacune 100+ Garnison, au moins 15 cases de Montagne et plus de 100 Or par tour."
         },
         {
           "label": "Bâtiment de faction",
-          "texte": "Tram des profondeurs : construit à partir de 10 Pierres et 20 Or. Permet de relier deux habitations à 10 cases ou moins au prix de 1 PM. Si utilisé pour attaquer l'habitation, ne considérez pas la bataille comme un siège mais une bataille de plaine. Vous pouvez autoriser la construction de ce bâtiment dans une habitation que vous ne possédez pas par une autre faction.\nGrande Forge : Pro"
+          "texte": "Tram des profondeurs : construit à partir de 10 Pierres et 20 Or. Permet de relier deux habitations à 10 cases ou moins au prix de 1 PM. Si utilisé pour attaquer l'habitation, ne considérez pas la bataille comme un siège mais une bataille de plaine. Vous pouvez autoriser la construction de ce bâtiment dans une habitation que vous ne possédez pas par une autre faction.\r\nGrande Forge : Pro"
         },
         {
           "label": "Montagnards",
@@ -2508,8 +2680,68 @@
           "texte": "Vos habitations gagnent +5 pts de garnison par case montage ou volcan dans son enceinte. Vous pouvez construire vos habitations sur les cases de montagne. Si vous le faite, l'habitation construite génère +1 Pierre et +3 Or par tour, ainsi qu'un bonus de 10 pts de garnison."
         },
         {
-          "label": "ÂGE II",
-          "texte": ""
+          "label": "Âge II — Ingénieurs les montagnes",
+          "texte": "Vos habitations sur une case de montagne génèrent +1 Science par tour."
+        },
+        {
+          "label": "Âge II — Rancunes",
+          "texte": "Vos habitations gagnent +15 pts de garnison. Lorsque vous débloquez cet héritage, ajoutez 10 habitants dans chacune de vos habitation."
+        },
+        {
+          "label": "Âge II — Brasseries",
+          "texte": "Aménagement unique remplaçant les Foires : les Brasseries génèrent +2 Or par tour et augmente le nombre de marchant maximum de 1."
+        },
+        {
+          "label": "Âge III — Le Trésor enfouis sous la montagne.",
+          "texte": "Vos habitations sur une case de montagne bénéficient d'un emplacement de construction supplémentaire. De plus, y construire une merveille coûte 5 de la ressource de votre choix en moins."
+        },
+        {
+          "label": "Âge III — Dernière Enclave",
+          "texte": "Tant que vous possédez 3 habitations ou moins, votre capitale produit +2 Pierre, +2 Fer et +2 Charbon et +5 Science par tour. La garnison de vos habitations augmente 100 pts."
+        },
+        {
+          "label": "Âge III — Fête de la Bière",
+          "texte": "A la fin de chaque été, chaque joueur doit vous donner 10 fois leur rang de royaume sous forme d'Or."
+        }
+      ],
+      "victoire": "Vous remportez la partie si vous contrôlez au moins 3 habitations dans les montagnes avec chacune 100+ Garnison, au moins 15 cases de Montagne et plus de 100 Or par tour.",
+      "batiment": "Tram des profondeurs : construit à partir de 10 Pierres et 20 Or. Permet de relier deux habitations à 10 cases ou moins au prix de 1 PM. Si utilisé pour attaquer l'habitation, ne considérez pas la bataille comme un siège mais une bataille de plaine. Vous pouvez autoriser la construction de ce bâtiment dans une habitation que vous ne possédez pas par une autre faction.\r\nGrande Forge : Pro",
+      "reglesBase": [
+        {
+          "nom": "Montagnards",
+          "texte": "Vos armées peuvent entrer sur les cases de montagne pour 3 PM. Si une de vos armées commence son tour sur une case de montagne, elle ne peut le finir."
+        },
+        {
+          "nom": "Un nain bien chez lui",
+          "texte": "Vos habitations gagnent +5 pts de garnison par case montage ou volcan dans son enceinte. Vous pouvez construire vos habitations sur les cases de montagne. Si vous le faite, l'habitation construite génère +1 Pierre et +3 Or par tour, ainsi qu'un bonus de 10 pts de garnison."
+        }
+      ],
+      "ageII": [
+        {
+          "nom": "Ingénieurs les montagnes",
+          "texte": "Vos habitations sur une case de montagne génèrent +1 Science par tour."
+        },
+        {
+          "nom": "Rancunes",
+          "texte": "Vos habitations gagnent +15 pts de garnison. Lorsque vous débloquez cet héritage, ajoutez 10 habitants dans chacune de vos habitation."
+        },
+        {
+          "nom": "Brasseries",
+          "texte": "Aménagement unique remplaçant les Foires : les Brasseries génèrent +2 Or par tour et augmente le nombre de marchant maximum de 1."
+        }
+      ],
+      "ageIII": [
+        {
+          "nom": "Le Trésor enfouis sous la montagne.",
+          "texte": "Vos habitations sur une case de montagne bénéficient d'un emplacement de construction supplémentaire. De plus, y construire une merveille coûte 5 de la ressource de votre choix en moins."
+        },
+        {
+          "nom": "Dernière Enclave",
+          "texte": "Tant que vous possédez 3 habitations ou moins, votre capitale produit +2 Pierre, +2 Fer et +2 Charbon et +5 Science par tour. La garnison de vos habitations augmente 100 pts."
+        },
+        {
+          "nom": "Fête de la Bière",
+          "texte": "A la fin de chaque été, chaque joueur doit vous donner 10 fois leur rang de royaume sous forme d'Or."
         }
       ]
     },
@@ -2518,24 +2750,162 @@
       "description": "Hautains ou simplement supérieurs, les Elfes d'Or sont les maîtres incontestés de la magie, à tel point qu'ils en sont devenus dépendants.",
       "lignes": [
         {
-          "label": "Victoire de faction : Bien chez soi",
-          "texte": "f"
-        },
-        {
           "label": "Bâtiment de faction",
-          "texte": "Puit de mana (5 Pierres, 6 Soie) : Votre capitale produit +1 Science par tour. Si ce bâtiment se trouve dans votre Capitale, il génère +1 Science par rang de l'habitation à la place."
+          "texte": "Puit de mana (5 Pierres + 6 Soie) : votre capitale produit +1 Science par tour. Si ce bâtiment se trouve dans votre capitale, il génère +1 Science par rang de l'habitation à la place."
         },
         {
           "label": "Là avant les autres",
-          "texte": "Lors de la mise en place, vous avez le choix à 3 emplacements de départ au lieu de 2. De plus, votre première habitation peut être construite en mer."
+          "texte": "Votre première habitation peut être construite en mer et commence avec 30 habitants supplémentaires."
         },
         {
           "label": "Accros à la magie",
-          "texte": "Vous commencez la partie avec 8 Science. Si, à n'importe quel moment, votre réserve de Science est inférieure à votre production de Science, vous perdez 20 fois le carré du rang de votre royaume sous forme de Population, qui deviennent des Déchus.\n- 20 Déchus : gagnez 5 de la ressource de base de votre choix.\n- 100 Déchus : votre capitale produit +10 Or par tour.\n- 200 Déchus : +1 Science par tour dans votre capitale.\n- 500 Déchus : +1 Science par tour dans votre capitale.\n- 1 000 Déchus : +1 Science par tour dans votre capitale.\n- 5 000 Déchus : +1 Science par tour dans votre capitale.\n- 10 000 Déchus : +1 Science par tour dans votre capitale.\n- 20 000 Déchus : +1 Science par tour dans votre capitale."
+          "texte": "Vous commencez la partie avec 8 Science. Si, à n'importe quel moment, votre réserve de Science est inférieure à votre production de Science, vous perdez 2 fois le carré du rang de votre royaume sous forme de Population, qui deviennent des Honnîs.\n• 2 Honnîs : gagnez 5 de la ressource de base de votre choix.\n• 10 Honnîs : votre capitale produit +8 Or par tour.\n• 20 Honnîs : +1 Science par tour dans votre capitale.\n• 50 Honnîs : +1 Science par tour dans votre capitale.\n• 100 Honnîs : +1 Science par tour dans votre capitale.\n• 200 Honnîs : +1 Science par tour dans votre capitale.\n• 500 Honnîs : +1 Science par tour dans votre capitale.\n• 1000 Honnîs : +2 Science par tour dans votre capitale."
         },
         {
-          "label": "ÂGE II",
-          "texte": ""
+          "label": "Âge II — Savoir ancestral",
+          "texte": "Découvrez immédiatement deux progrès d'un même arbre."
+        },
+        {
+          "label": "Âge II — Cité d'Or",
+          "texte": "Votre capitale peut accueillir un bâtiment supplémentaire."
+        },
+        {
+          "label": "Âge II — Élevage d'esclaves",
+          "texte": "Si vous devez gagner des Honnîs pour n'importe quelle raison, vous en gagnez 100 % supplémentaires."
+        },
+        {
+          "label": "Âge III — Puit d'Or",
+          "texte": "Vos bâtiments de faction produisent +1 Science par tour et augmentent leur garnison de 40 pts."
+        },
+        {
+          "label": "Âge III — Palais des Dieux",
+          "texte": "Votre capitale peut accueillir des bâtiments de tout type (ville, château, guilde) et une Merveille supplémentaire."
+        },
+        {
+          "label": "Âge III — Opulence",
+          "texte": "Vos Honnîs comptent comme des habitants en ce qui concerne les victoires et améliorations d'habitation."
+        }
+      ],
+      "victoire": "",
+      "batiment": "Puit de mana (5 Pierres + 6 Soie) : votre capitale produit +1 Science par tour. Si ce bâtiment se trouve dans votre capitale, il génère +1 Science par rang de l'habitation à la place.",
+      "reglesBase": [
+        {
+          "nom": "Là avant les autres",
+          "texte": "Votre première habitation peut être construite en mer et commence avec 30 habitants supplémentaires."
+        },
+        {
+          "nom": "Accros à la magie",
+          "texte": "Vous commencez la partie avec 8 Science. Si, à n'importe quel moment, votre réserve de Science est inférieure à votre production de Science, vous perdez 2 fois le carré du rang de votre royaume sous forme de Population, qui deviennent des Honnîs.\n• 2 Honnîs : gagnez 5 de la ressource de base de votre choix.\n• 10 Honnîs : votre capitale produit +8 Or par tour.\n• 20 Honnîs : +1 Science par tour dans votre capitale.\n• 50 Honnîs : +1 Science par tour dans votre capitale.\n• 100 Honnîs : +1 Science par tour dans votre capitale.\n• 200 Honnîs : +1 Science par tour dans votre capitale.\n• 500 Honnîs : +1 Science par tour dans votre capitale.\n• 1000 Honnîs : +2 Science par tour dans votre capitale."
+        }
+      ],
+      "ageII": [
+        {
+          "nom": "Savoir ancestral",
+          "texte": "Découvrez immédiatement deux progrès d'un même arbre."
+        },
+        {
+          "nom": "Cité d'Or",
+          "texte": "Votre capitale peut accueillir un bâtiment supplémentaire."
+        },
+        {
+          "nom": "Élevage d'esclaves",
+          "texte": "Si vous devez gagner des Honnîs pour n'importe quelle raison, vous en gagnez 100 % supplémentaires."
+        }
+      ],
+      "ageIII": [
+        {
+          "nom": "Puit d'Or",
+          "texte": "Vos bâtiments de faction produisent +1 Science par tour et augmentent leur garnison de 40 pts."
+        },
+        {
+          "nom": "Palais des Dieux",
+          "texte": "Votre capitale peut accueillir des bâtiments de tout type (ville, château, guilde) et une Merveille supplémentaire."
+        },
+        {
+          "nom": "Opulence",
+          "texte": "Vos Honnîs comptent comme des habitants en ce qui concerne les victoires et améliorations d'habitation."
+        }
+      ]
+    },
+    {
+      "nom": "Sylvains",
+      "description": "Peuple des profondeurs forestières, les Sylvains vivent en harmonie avec les bois et tirent l'essentiel de leur subsistance de leur apiculture.",
+      "lignes": [
+        {
+          "label": "Bâtiment de faction",
+          "texte": "Apiculture : aménagement unique de forêt. Produit 12 Nourriture par tour."
+        },
+        {
+          "label": "Sentiers stables",
+          "texte": "Les cases de forêt ne coûtent que 1 PM à traverser."
+        },
+        {
+          "label": "Amis de la forêt",
+          "texte": "Vous ne pouvez pas construire de scierie ni gagner de Bois d'aucune manière que ce soit. À la place, tous les coûts en Bois sont transformés en coûts en Nourriture."
+        },
+        {
+          "label": "Âge II — Don de miel",
+          "texte": "Vos apicultures ne produisent plus que 8 Nourriture par tour. Lorsque vous construisez une apiculture, placez un émissaire dans la cité libre de votre choix."
+        },
+        {
+          "label": "Âge II — Vengeance de la terre",
+          "texte": "Le coût de vos levées d'armées est réduit de 10 Or pour chaque apiculture que vous possédez. Vous pouvez posséder une armée supplémentaire."
+        },
+        {
+          "label": "Âge II — Savoir ancestral",
+          "texte": "Chaque fois que vous construisez une apiculture, générez 10 Science. Générez immédiatement 10 Science par apiculture que vous possédez."
+        },
+        {
+          "label": "Âge III — Enclave d'émeraude",
+          "texte": "Pour chacun de vos vassaux, vos villes ont +20 Garnison irréductibles et vous générez +2 Or par tour."
+        },
+        {
+          "label": "Âge III — Racines du monde",
+          "texte": "Vous pouvez dépenser tous les PM d'une de vos armées située sur une case de forêt pour la replacer sur une autre case de forêt à 15 cases ou moins et à 3 cases ou plus de toute armée ou ville d'un autre joueur."
+        },
+        {
+          "label": "Âge III — Bibliothèque enfouie",
+          "texte": "Vos apicultures produisent +1 Science par tour."
+        }
+      ],
+      "victoire": "",
+      "batiment": "Apiculture : aménagement unique de forêt. Produit 12 Nourriture par tour.",
+      "reglesBase": [
+        {
+          "nom": "Sentiers stables",
+          "texte": "Les cases de forêt ne coûtent que 1 PM à traverser."
+        },
+        {
+          "nom": "Amis de la forêt",
+          "texte": "Vous ne pouvez pas construire de scierie ni gagner de Bois d'aucune manière que ce soit. À la place, tous les coûts en Bois sont transformés en coûts en Nourriture."
+        }
+      ],
+      "ageII": [
+        {
+          "nom": "Don de miel",
+          "texte": "Vos apicultures ne produisent plus que 8 Nourriture par tour. Lorsque vous construisez une apiculture, placez un émissaire dans la cité libre de votre choix."
+        },
+        {
+          "nom": "Vengeance de la terre",
+          "texte": "Le coût de vos levées d'armées est réduit de 10 Or pour chaque apiculture que vous possédez. Vous pouvez posséder une armée supplémentaire."
+        },
+        {
+          "nom": "Savoir ancestral",
+          "texte": "Chaque fois que vous construisez une apiculture, générez 10 Science. Générez immédiatement 10 Science par apiculture que vous possédez."
+        }
+      ],
+      "ageIII": [
+        {
+          "nom": "Enclave d'émeraude",
+          "texte": "Pour chacun de vos vassaux, vos villes ont +20 Garnison irréductibles et vous générez +2 Or par tour."
+        },
+        {
+          "nom": "Racines du monde",
+          "texte": "Vous pouvez dépenser tous les PM d'une de vos armées située sur une case de forêt pour la replacer sur une autre case de forêt à 15 cases ou moins et à 3 cases ou plus de toute armée ou ville d'un autre joueur."
+        },
+        {
+          "nom": "Bibliothèque enfouie",
+          "texte": "Vos apicultures produisent +1 Science par tour."
         }
       ]
     }
@@ -2546,24 +2916,80 @@
       "description": "Les Norls sont fiers de l'héritage laissé par leurs ancêtres. Ils sont un peuple fier de leurs techniques de commerce nomade, et méprisent les grands empires de ce monde qui bâtissent au détriment des paysages magnifiques de ce monde.",
       "lignes": [
         {
-          "label": "Vivre de la terre",
-          "texte": ""
-        },
-        {
           "label": "Bâtiment de faction",
-          "texte": "Fjord (8 Bois + 2 Bétail) : Il s'agit d'un aménagement qui peut être construit en dehors d'une habitation possédant 20 Garnison et 2 Herses. \nLorsque les Norls lèvent une armée, ils peuvent la lever dans n'importe lequel de leurs Fjord.\nLes Fjords peuvent accueillir des extensions, qui peuvent être transformées en aménagements selon les même règles qu'une habitation.\nLes Fjords peuvent être construits sans technologie."
+          "texte": "Fjord (8 Bois + 2 Bétail) : aménagement qui peut être construit en dehors d'une habitation, possédant 20 Garnison et 2 Herses. Lorsque les Norls lèvent une armée, ils peuvent la lever dans n'importe lequel de leurs Fjords. Les Fjords peuvent accueillir des extensions, qui peuvent être transformées en aménagements selon les mêmes règles qu'une habitation. Les Fjords peuvent être construits sans technologie."
         },
         {
           "label": "Vivre de la terre",
-          "texte": "Lorsque vous effectuez une Razzia ou un Pillage, générez 10 Or, deux fois la ressource ciblée  et 3 Science."
+          "texte": "Lorsque vous effectuez une Razzia ou un Pillage, générez 10 Or, deux fois la ressource ciblée et 3 Science."
         },
         {
           "label": "Nomades",
           "texte": "Les Norls ne possèdent pas d'habitation en début de jeu, mais commencent avec 40 Or et 100 Nourriture en plus des ressources de départ. Construire une habitation requiert 6 Bois supplémentaires."
         },
         {
-          "label": "ÂGE II",
-          "texte": ""
+          "label": "Âge II — Savoir chamanique",
+          "texte": "Vos bâtiments de faction génèrent +1 Science par tour s'ils ont au moins 1 expansion."
+        },
+        {
+          "label": "Âge II — L'art du viking",
+          "texte": "Vous pouvez posséder une armée supplémentaire. +1 PM pour vos armées."
+        },
+        {
+          "label": "Âge II — La course à la mer",
+          "texte": "Vos habitations et bâtiments de faction côtiers génèrent +3 Or et +1 Bétail par tour."
+        },
+        {
+          "label": "Âge III — Conquête territoriale",
+          "texte": "Les expansions consomment 5 Nourriture en moins. Garnison de vos bâtiments de faction +30."
+        },
+        {
+          "label": "Âge III — Armées des traditions",
+          "texte": "Vous pouvez posséder une armée supplémentaire. Chaque fois que vous levez une armée, recevez 10 Tourisme définitivement."
+        },
+        {
+          "label": "Âge III — Grands explorateurs",
+          "texte": "Monter ou descendre d'un bateau ne consomme aucun PM. Vos bateaux ont +1 PM et coûtent 4 Soies de moins à la construction."
+        }
+      ],
+      "victoire": "",
+      "batiment": "Fjord (8 Bois + 2 Bétail) : aménagement qui peut être construit en dehors d'une habitation, possédant 20 Garnison et 2 Herses. Lorsque les Norls lèvent une armée, ils peuvent la lever dans n'importe lequel de leurs Fjords. Les Fjords peuvent accueillir des extensions, qui peuvent être transformées en aménagements selon les mêmes règles qu'une habitation. Les Fjords peuvent être construits sans technologie.",
+      "reglesBase": [
+        {
+          "nom": "Vivre de la terre",
+          "texte": "Lorsque vous effectuez une Razzia ou un Pillage, générez 10 Or, deux fois la ressource ciblée et 3 Science."
+        },
+        {
+          "nom": "Nomades",
+          "texte": "Les Norls ne possèdent pas d'habitation en début de jeu, mais commencent avec 40 Or et 100 Nourriture en plus des ressources de départ. Construire une habitation requiert 6 Bois supplémentaires."
+        }
+      ],
+      "ageII": [
+        {
+          "nom": "Savoir chamanique",
+          "texte": "Vos bâtiments de faction génèrent +1 Science par tour s'ils ont au moins 1 expansion."
+        },
+        {
+          "nom": "L'art du viking",
+          "texte": "Vous pouvez posséder une armée supplémentaire. +1 PM pour vos armées."
+        },
+        {
+          "nom": "La course à la mer",
+          "texte": "Vos habitations et bâtiments de faction côtiers génèrent +3 Or et +1 Bétail par tour."
+        }
+      ],
+      "ageIII": [
+        {
+          "nom": "Conquête territoriale",
+          "texte": "Les expansions consomment 5 Nourriture en moins. Garnison de vos bâtiments de faction +30."
+        },
+        {
+          "nom": "Armées des traditions",
+          "texte": "Vous pouvez posséder une armée supplémentaire. Chaque fois que vous levez une armée, recevez 10 Tourisme définitivement."
+        },
+        {
+          "nom": "Grands explorateurs",
+          "texte": "Monter ou descendre d'un bateau ne consomme aucun PM. Vos bateaux ont +1 PM et coûtent 4 Soies de moins à la construction."
         }
       ]
     },
@@ -2572,7 +2998,7 @@
       "description": "Déliées de l'emprise des Racines, les morts èrent maintenant lmibrement à la surface. Leur objectif ? Ramener à la vie leur seigneur suprême et Dieu des Racines, Yehudiah.",
       "lignes": [
         {
-          "label": "Victoire de faction : Réveiller les Racines",
+          "label": "Victoire de faction (désactivée)",
           "texte": "Vous remportez la partie si Yehudiah possède 10+ fragments d'âme et si vous possédez une réserve de 800 Os."
         },
         {
@@ -2585,11 +3011,71 @@
         },
         {
           "label": "Pleuples désincarnés",
-          "texte": "Les Baleines, Bétails, Champs, Crabes et Rizières ne produisent pas de Nourritures, mais 1 Os par tour à la place. Les Os peuvent être utilisés comme suit :\n- 3 Os : acheter n'importe quelle ressource de base.\n- N Os : recruter N masse dans une de vos armée en dehors d'une de vos habitation, cela compte comme votre recrutement de l'année.\n- 10 Os : ajouter 100 Population dans une habitation (utilisable une seule fois par saison).\n\nVos armées consomment20% des points. Vos armées et habitations ne consomment aucun entretient en Nourriture. Vous commensez la partie avec 30 Os plutôt que 80 Nourriture."
+          "texte": "Les Baleines, Bétails, Champs, Crabes et Rizières ne produisent pas de Nourritures, mais 1 Os par tour à la place. Les Os peuvent être utilisés comme suit :\r\n- 3 Os : acheter n'importe quelle ressource de base.\r\n- N Os : recruter N masse dans une de vos armée en dehors d'une de vos habitation, cela compte comme votre recrutement de l'année.\r\n- 10 Os : ajouter 100 Population dans une habitation (utilisable une seule fois par saison).\r\n\r\nVos armées consomment20% des points. Vos armées et habitations ne consomment aucun entretient en Nourriture. Vous commensez la partie avec 30 Os plutôt que 80 Nourriture."
         },
         {
-          "label": "ÂGE II",
-          "texte": ""
+          "label": "Âge II — Investir dans l'Os",
+          "texte": "Vos bâtiments de faction génèrent 1 Os supplémentaire par tour. Vous générez une quantité d'Or égale à votre génération d'Os."
+        },
+        {
+          "label": "Âge II — Vision de l'au-dela",
+          "texte": "Vos Cimetières génèrent +2 Tourisme et un bonus de résistance à la conversion culturelle de 1. Vos fragments d'âmes génèrent +3 Tourisme."
+        },
+        {
+          "label": "Âge II — Innarrêtable invasion",
+          "texte": "Vos armées peuvent traverser les rivières et entrer dans les forêts et les marais pour 1 PM. Vos armées consomment 5 Os en moins et ont une taille maximale augmentée de 100 pts."
+        },
+        {
+          "label": "Âge III — Le Dieu des Racines",
+          "texte": "Dès que vous avez récolté 5 fragments d'âme, Yehudiah apparait dans votre capitale avec 0  fragments. Vos fragments ajoutent 1 Fragment à Yehudiah et générent 1 Sciences supplémentaires."
+        },
+        {
+          "label": "Âge III — Des Racines pour dominer le monde",
+          "texte": "Dès que vous avez récolté 5 fragments d'âme, Yehudiah apparait dans votre capitale avec 0  fragments. Vos fragments ajoutent 1 Fragment à Yehudiah et génèrent 2 Tourismes supplémentaires."
+        },
+        {
+          "label": "Âge III — Rites nécrotiques",
+          "texte": "Dès que vous avez récolté 5 fragments d'âme, Yehudiah apparait dans votre capitale avec 0  fragments. Vos fragments ajoutent 1 Fragment à Yehudiah et génèrent 1 Os par tour. Vos cimetières augmente la croissance de vos ville de 15 habitants par tours en plus."
+        }
+      ],
+      "victoire": "Vous remportez la partie si Yehudiah possède 10+ fragments d'âme et si vous possédez une réserve de 800 Os.",
+      "batiment": "Cimetière (10 Os + 8 Pierres) : Génère 2 Os par tour. La population de l'habitation augmente de 25 par tour.",
+      "reglesBase": [
+        {
+          "nom": "Rassembler le savoir ancien",
+          "texte": "Pour chaque fragment d'âme de Yehudiah que vous contrôlez, vous générez +1 Science par tour. Au début de la partie, générez aléatoirement un fragment d'âme par tuile  du jeu, sauf votre tuile de dapart. Ils sont ramassés lorsqu'un de vos armée se trouve dessus et dépense 3PM pour le ramasser."
+        },
+        {
+          "nom": "Pleuples désincarnés",
+          "texte": "Les Baleines, Bétails, Champs, Crabes et Rizières ne produisent pas de Nourritures, mais 1 Os par tour à la place. Les Os peuvent être utilisés comme suit :\r\n- 3 Os : acheter n'importe quelle ressource de base.\r\n- N Os : recruter N masse dans une de vos armée en dehors d'une de vos habitation, cela compte comme votre recrutement de l'année.\r\n- 10 Os : ajouter 100 Population dans une habitation (utilisable une seule fois par saison).\r\n\r\nVos armées consomment20% des points. Vos armées et habitations ne consomment aucun entretient en Nourriture. Vous commensez la partie avec 30 Os plutôt que 80 Nourriture."
+        }
+      ],
+      "ageII": [
+        {
+          "nom": "Investir dans l'Os",
+          "texte": "Vos bâtiments de faction génèrent 1 Os supplémentaire par tour. Vous générez une quantité d'Or égale à votre génération d'Os."
+        },
+        {
+          "nom": "Vision de l'au-dela",
+          "texte": "Vos Cimetières génèrent +2 Tourisme et un bonus de résistance à la conversion culturelle de 1. Vos fragments d'âmes génèrent +3 Tourisme."
+        },
+        {
+          "nom": "Innarrêtable invasion",
+          "texte": "Vos armées peuvent traverser les rivières et entrer dans les forêts et les marais pour 1 PM. Vos armées consomment 5 Os en moins et ont une taille maximale augmentée de 100 pts."
+        }
+      ],
+      "ageIII": [
+        {
+          "nom": "Le Dieu des Racines",
+          "texte": "Dès que vous avez récolté 5 fragments d'âme, Yehudiah apparait dans votre capitale avec 0  fragments. Vos fragments ajoutent 1 Fragment à Yehudiah et générent 1 Sciences supplémentaires."
+        },
+        {
+          "nom": "Des Racines pour dominer le monde",
+          "texte": "Dès que vous avez récolté 5 fragments d'âme, Yehudiah apparait dans votre capitale avec 0  fragments. Vos fragments ajoutent 1 Fragment à Yehudiah et génèrent 2 Tourismes supplémentaires."
+        },
+        {
+          "nom": "Rites nécrotiques",
+          "texte": "Dès que vous avez récolté 5 fragments d'âme, Yehudiah apparait dans votre capitale avec 0  fragments. Vos fragments ajoutent 1 Fragment à Yehudiah et génèrent 1 Os par tour. Vos cimetières augmente la croissance de vos ville de 15 habitants par tours en plus."
         }
       ]
     },
@@ -2598,12 +3084,12 @@
       "description": "Déliées de l'emprise des Racines, les morts èrent maintenant lmibrement à la surface. Leur objectif ? Ramener à la vie leur seigneur suprême et Dieu des Racines, Yehudiah.",
       "lignes": [
         {
-          "label": "Victoire de faction : Tirer les ficelles",
-          "texte": "Vous remportez la partie si vos possédez un rang total de Colonies souterraines de 30 ou plus."
+          "label": "Victoire de faction (désactivée)",
+          "texte": "Vous remportez la partie si vous possédez un rang total de Colonies souterraines de 30 ou plus."
         },
         {
           "label": "Bâtiment de faction",
-          "texte": "Colonie souterraine rang I (15 Or +3 Bétail) : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonie.\nColonie souterraine rang II (30 Or +10 Bois) : remplace une colonie de rang I.\nColonie souterraine rang III (60 Or +15 Pierre) : remplace une colonie de rang II.\nColonie souterraine rang IV (100 Or +20 Fer) : remplace une colonie de rang III.\nColonie souterraine rang V (200 Or +30 Charbon) : remplace une colonie de rang IV.\nVos Colonies vous permettent de voler leur rang en Or au propriétaire de l'habitation dans laquelle elles sont installées."
+          "texte": "Colonie souterraine rang I (15 Or + 3 Bétail) : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies.\nColonie souterraine rang II (30 Or + 10 Bois) : remplace une colonie de rang I.\nColonie souterraine rang III (60 Or + 15 Pierres) : remplace une colonie de rang II.\nColonie souterraine rang IV (100 Or + 20 Fer) : remplace une colonie de rang III.\nColonie souterraine rang V (200 Or + 30 Charbon) : remplace une colonie de rang IV.\nVos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous."
         },
         {
           "label": "Un chef plus intelligent",
@@ -2611,11 +3097,71 @@
         },
         {
           "label": "Colonies souterraines",
-          "texte": "Vos colonies souterraines produisent en fonction de leur rang :\n- Rang I : +1 Bois et +2 Nourriture par tour.\n- Rang II :  +1 Pierre par tour.\n- Rang III :  +1 Fer par tour.\n- Rang IV :  +1 Charbon par tour.\n- Rang V :  +1 Science par tour ou +2 Tourisme"
+          "texte": "Vos colonies souterraines produisent, en fonction de leur rang :\n• rang I : +1 Bois et +2 Nourriture par tour ;\n• rang II : +1 Pierre par tour ;\n• rang III : +1 Fer par tour ;\n• rang IV : +1 Charbon par tour ;\n• rang V : +1 Science par tour ou +2 Tourisme."
         },
         {
-          "label": "ÂGE II",
-          "texte": ""
+          "label": "Âge II — Marché noir",
+          "texte": "Établir une route vers une ville avec une colonie rapporte +2 Or par tour au joueur possédant la ville, au joueur possédant la colonie et à vous."
+        },
+        {
+          "label": "Âge II — Infestation",
+          "texte": "Si vous attaquez une habitation possédant une Colonie, sa garnison est réduite de 30 pts par rang de la colonie."
+        },
+        {
+          "label": "Âge II — Colonies d'esclaves",
+          "texte": "Améliorer une colonie génère 5 habitants dans votre capitale."
+        },
+        {
+          "label": "Âge III — Grouiller partout",
+          "texte": "Le coût d'amélioration des colonies est réduit de 3 ressources et 20 Or."
+        },
+        {
+          "label": "Âge III — Murmurer à leurs oreilles",
+          "texte": "Vos colonies de rang III ou plus peuvent servir de point de départ pour vos marchands et octroient +1 route commerciale."
+        },
+        {
+          "label": "Âge III — Étudier leur manière de faire",
+          "texte": "Vos colonies génèrent +1 Science par tour."
+        }
+      ],
+      "victoire": "Vous remportez la partie si vous possédez un rang total de Colonies souterraines de 30 ou plus.",
+      "batiment": "Colonie souterraine rang I (15 Or + 3 Bétail) : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies.\nColonie souterraine rang II (30 Or + 10 Bois) : remplace une colonie de rang I.\nColonie souterraine rang III (60 Or + 15 Pierres) : remplace une colonie de rang II.\nColonie souterraine rang IV (100 Or + 20 Fer) : remplace une colonie de rang III.\nColonie souterraine rang V (200 Or + 30 Charbon) : remplace une colonie de rang IV.\nVos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous.",
+      "reglesBase": [
+        {
+          "nom": "Un chef plus intelligent",
+          "texte": "Votre capitale produit 1 Science par tour supplémentaire."
+        },
+        {
+          "nom": "Colonies souterraines",
+          "texte": "Vos colonies souterraines produisent, en fonction de leur rang :\n• rang I : +1 Bois et +2 Nourriture par tour ;\n• rang II : +1 Pierre par tour ;\n• rang III : +1 Fer par tour ;\n• rang IV : +1 Charbon par tour ;\n• rang V : +1 Science par tour ou +2 Tourisme."
+        }
+      ],
+      "ageII": [
+        {
+          "nom": "Marché noir",
+          "texte": "Établir une route vers une ville avec une colonie rapporte +2 Or par tour au joueur possédant la ville, au joueur possédant la colonie et à vous."
+        },
+        {
+          "nom": "Infestation",
+          "texte": "Si vous attaquez une habitation possédant une Colonie, sa garnison est réduite de 30 pts par rang de la colonie."
+        },
+        {
+          "nom": "Colonies d'esclaves",
+          "texte": "Améliorer une colonie génère 5 habitants dans votre capitale."
+        }
+      ],
+      "ageIII": [
+        {
+          "nom": "Grouiller partout",
+          "texte": "Le coût d'amélioration des colonies est réduit de 3 ressources et 20 Or."
+        },
+        {
+          "nom": "Murmurer à leurs oreilles",
+          "texte": "Vos colonies de rang III ou plus peuvent servir de point de départ pour vos marchands et octroient +1 route commerciale."
+        },
+        {
+          "nom": "Étudier leur manière de faire",
+          "texte": "Vos colonies génèrent +1 Science par tour."
         }
       ]
     },
@@ -2623,10 +3169,6 @@
       "nom": "KROVORS",
       "description": "Déliées de l'emprise des Racines, les morts èrent maintenant lmibrement à la surface. Leur objectif ? Ramener à la vie leur seigneur suprême et Dieu des Racines, Yehudiah.",
       "lignes": [
-        {
-          "label": "Victoire de faction : Opulence",
-          "texte": ""
-        },
         {
           "label": "Bâtiment de faction",
           "texte": "Comptoir (6 Bois +  4 Soie) : Il s'agit d'un aménagement qui peut être construit à 3 cases ou  plus de toute habitation. Vos marchands peuvent établir des routes  commerciales depuis un comptoir. Un comptoir rapporte 4 Or par marchand lui étant affecté."
@@ -2640,8 +3182,68 @@
           "texte": "Vos armées génèrent 5 Nourriture par tour."
         },
         {
-          "label": "ÂGE II",
-          "texte": ""
+          "label": "Âge II — Caravanes",
+          "texte": "Vous pouvez possédez 1 Marchand supplémentaire."
+        },
+        {
+          "label": "Âge II — Mercenariat",
+          "texte": "Vous pouvez maintenant lever vos armées depuis les comptoirs."
+        },
+        {
+          "label": "Âge II — Ambassades",
+          "texte": "Lorsque vous établissez une route commerciale avec une cité libre, vous générez 10 Influence envers elle."
+        },
+        {
+          "label": "Âge III — Califat",
+          "texte": "Vous générez une quantité d'Or par tour égale à 10% de votre quantité totale d'influence."
+        },
+        {
+          "label": "Âge III — Mercenariat",
+          "texte": "Vos armées ne coûtent aucun Or à l'entretient."
+        },
+        {
+          "label": "Âge III — Merchantialisme",
+          "texte": "Vos marchands produisent +1 Science par tour. Vous pouvez posséder un marchand supplémentaire."
+        }
+      ],
+      "victoire": "",
+      "batiment": "Comptoir (6 Bois +  4 Soie) : Il s'agit d'un aménagement qui peut être construit à 3 cases ou  plus de toute habitation. Vos marchands peuvent établir des routes  commerciales depuis un comptoir. Un comptoir rapporte 4 Or par marchand lui étant affecté.",
+      "reglesBase": [
+        {
+          "nom": "Montrer la force !",
+          "texte": "Après  une victoire militaire, vous gagnez 10 Influence avec la cité libre de votre choix."
+        },
+        {
+          "nom": "Nomades",
+          "texte": "Vos armées génèrent 5 Nourriture par tour."
+        }
+      ],
+      "ageII": [
+        {
+          "nom": "Caravanes",
+          "texte": "Vous pouvez possédez 1 Marchand supplémentaire."
+        },
+        {
+          "nom": "Mercenariat",
+          "texte": "Vous pouvez maintenant lever vos armées depuis les comptoirs."
+        },
+        {
+          "nom": "Ambassades",
+          "texte": "Lorsque vous établissez une route commerciale avec une cité libre, vous générez 10 Influence envers elle."
+        }
+      ],
+      "ageIII": [
+        {
+          "nom": "Califat",
+          "texte": "Vous générez une quantité d'Or par tour égale à 10% de votre quantité totale d'influence."
+        },
+        {
+          "nom": "Mercenariat",
+          "texte": "Vos armées ne coûtent aucun Or à l'entretient."
+        },
+        {
+          "nom": "Merchantialisme",
+          "texte": "Vos marchands produisent +1 Science par tour. Vous pouvez posséder un marchand supplémentaire."
         }
       ]
     },
@@ -2649,10 +3251,6 @@
       "nom": "THRAKSANS",
       "description": "Déliées de l'emprise des Racines, les morts èrent maintenant lmibrement à la surface. Leur objectif ? Ramener à la vie leur seigneur suprême et Dieu des Racines, Yehudiah.",
       "lignes": [
-        {
-          "label": "Victoire de faction : Opulence",
-          "texte": ""
-        },
         {
           "label": "Bâtiment de faction",
           "texte": "Autel corrupteur (6 Pierre, 2 Soie) : A placer à 9 cases ou moins d'une de vos habitations ou d'un autre Autel corrupteur. +4 Tourisme et réduit la Garnison de 20. Ne peut être placé que dans les habitations des autres joueurs. Si placé dans une cité libre, vous gagnez 20 Influence avec celle-ci."
@@ -2666,8 +3264,68 @@
           "texte": "Vous pouvez devenir suzerain d'une cité libre dès que vous possédez 80 Influence et absorber  les cités libres dont vous êtes le suzerain et possédez 40 Influence de plus que les autres joueurs . Fonder une habitation vous coûte 5 Or et 3 Bétail supplémentaires."
         },
         {
-          "label": "ÂGE II",
-          "texte": ""
+          "label": "Âge II — Répandre la corruption",
+          "texte": "Vos autels corrupteurs génèrent 3 Tourisme supplémentaire."
+        },
+        {
+          "label": "Âge II — Corruption mentale",
+          "texte": "Lorsque vous convertissez une habitation à votre culture, vous gagnez 5 Or par rang de l'habitation. Attaquer une habitation de votre culture réduit sa garnison de 30."
+        },
+        {
+          "label": "Âge II — Contrôler l'esprit",
+          "texte": "Vos autels vous octroie 20 Influence avec les cités libres dans lesquels ils sont établis."
+        },
+        {
+          "label": "Âge III — Pontife absolu",
+          "texte": "Absorber une cité libre vous permet de gagner 1 technologie gratuitement."
+        },
+        {
+          "label": "Âge III — Terrorisme",
+          "texte": "Vos propagandistes peuvent dépenser 3 charges pour détruire un bâtiment."
+        },
+        {
+          "label": "Âge III — Domination d'esprit",
+          "texte": "Vous gagnez 10 Tourisme par cité libre dont vous êtes le suzerain."
+        }
+      ],
+      "victoire": "",
+      "batiment": "Autel corrupteur (6 Pierre, 2 Soie) : A placer à 9 cases ou moins d'une de vos habitations ou d'un autre Autel corrupteur. +4 Tourisme et réduit la Garnison de 20. Ne peut être placé que dans les habitations des autres joueurs. Si placé dans une cité libre, vous gagnez 20 Influence avec celle-ci.",
+      "reglesBase": [
+        {
+          "nom": "Corrupteurs",
+          "texte": "Vos propagandistes possèdent une charge supplémentaire."
+        },
+        {
+          "nom": "Usurpation",
+          "texte": "Vous pouvez devenir suzerain d'une cité libre dès que vous possédez 80 Influence et absorber  les cités libres dont vous êtes le suzerain et possédez 40 Influence de plus que les autres joueurs . Fonder une habitation vous coûte 5 Or et 3 Bétail supplémentaires."
+        }
+      ],
+      "ageII": [
+        {
+          "nom": "Répandre la corruption",
+          "texte": "Vos autels corrupteurs génèrent 3 Tourisme supplémentaire."
+        },
+        {
+          "nom": "Corruption mentale",
+          "texte": "Lorsque vous convertissez une habitation à votre culture, vous gagnez 5 Or par rang de l'habitation. Attaquer une habitation de votre culture réduit sa garnison de 30."
+        },
+        {
+          "nom": "Contrôler l'esprit",
+          "texte": "Vos autels vous octroie 20 Influence avec les cités libres dans lesquels ils sont établis."
+        }
+      ],
+      "ageIII": [
+        {
+          "nom": "Pontife absolu",
+          "texte": "Absorber une cité libre vous permet de gagner 1 technologie gratuitement."
+        },
+        {
+          "nom": "Terrorisme",
+          "texte": "Vos propagandistes peuvent dépenser 3 charges pour détruire un bâtiment."
+        },
+        {
+          "nom": "Domination d'esprit",
+          "texte": "Vous gagnez 10 Tourisme par cité libre dont vous êtes le suzerain."
         }
       ]
     }

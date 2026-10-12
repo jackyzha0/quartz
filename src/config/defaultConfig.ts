@@ -102,10 +102,20 @@ export interface BuildingDef {
   effet: string
 }
 export interface PoidsNom { nom: string; poids: number }
+export interface RegleFaction { nom: string; texte: string }
 export interface PeupleRef {
   nom: string
   description: string
   lignes: { label: string; texte: string }[]
+  /** Fiche de faction : victoire (désactivée), bâtiment/aménagement de
+   *  faction, 2 règles de base, 3 règles d'Âge II et 3 d'Âge III (le
+   *  joueur en choisit UNE par âge à la montée d'âge). Champs
+   *  optionnels : les vieux référentiels n'ont que « lignes ». */
+  victoire?: string
+  batiment?: string
+  reglesBase?: RegleFaction[]
+  ageII?: RegleFaction[]
+  ageIII?: RegleFaction[]
 }
 export interface FicheLigne { label: string; texte: string }
 export interface BatimentRef { categorie: string; nom: string; cout: string; effet: string }
@@ -468,6 +478,25 @@ export function migrerRegimes(list: RegimeDef[] | undefined): RegimeDef[] {
   })
 }
 
+/** Complète les fiches de faction d'une configuration existante :
+ *  les champs structurés (victoire, batiment, reglesBase, ageII, ageIII)
+ *  manquent dans les vieilles sauvegardes — on les reprend du
+ *  référentiel courant, faction par faction (par nom), et on ajoute
+ *  les factions apparues depuis (ex. Sylvains). Les fiches
+ *  explicitement éditées dans la config ne sont pas écrasées. */
+export function migrerFactions(
+  list: PeupleRef[] | undefined, defauts: PeupleRef[],
+): PeupleRef[] {
+  const out: PeupleRef[] = (list ?? []).map((f) => {
+    const ref = defauts.find((d) => d.nom === f.nom)
+    return ref ? { ...ref, ...f } : f
+  })
+  for (const d of defauts) {
+    if (!out.some((f) => f.nom === d.nom)) out.push(d)
+  }
+  return out
+}
+
 /** Table des types d'habitation (Ville / Château) d'une configuration
  *  existante — défauts du classeur si absents ou vides. */
 export function migrerTypesHabitation(list: HabitationDef[] | undefined): HabitationDef[] {
@@ -487,6 +516,9 @@ export function cfgOf(config: GameConfig | undefined): Cfg {
   merged.cultures = migrerCultures(merged.cultures)
   merged.regimes = migrerRegimes(merged.regimes)
   merged.typesHabitation = migrerTypesHabitation(merged.typesHabitation)
+  // fiches de faction : structure (victoire/bâtiment/âges) du référentiel
+  merged.peuplesLibres = migrerFactions(merged.peuplesLibres, DEFAULT_CONFIG.peuplesLibres)
+  merged.peuplesAutres = migrerFactions(merged.peuplesAutres, DEFAULT_CONFIG.peuplesAutres)
   return {
     p: merged.params,
     ressources: merged.ressources,

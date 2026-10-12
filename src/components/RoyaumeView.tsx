@@ -13,6 +13,10 @@
 //     (ce n'est pas la famille au pouvoir),
 //   · vassaux : prêt de serment à un autre joueur, tribut automatique
 //     (paramètre vassalPrelevement, appliqué en fin de tour par le moteur),
+//   · faction du peuple : fiche complète (victoire désactivée,
+//     bâtiment de faction, 2 règles de base) et choix manuel de la
+//     règle d'Âge II puis d'Âge III (une seule parmi les trois —
+//     la montée d'âge n'est pas automatisée, les effets non plus),
 //   · personnages importants : Dirigeant, Héritier, Professeurs,
 //     Commandants, famille royale,
 //   · arbre généalogique de la famille dirigeante (conjoints ⚭,
@@ -226,6 +230,9 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
         </div>
       </Card>
 
+      {/* ═══ Faction : bonus du peuple choisi ═══ */}
+      <CardFaction joueur={joueur} />
+
       {/* ═══ Vassaux & serments ═══ */}
       <Card title="🤝 Vassalité">
         <div className="grid-2">
@@ -335,5 +342,97 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
       <GenealogyTree joueur={joueur} />
 
     </div>
+  )
+}
+
+
+// ══════════════════════════════════════════════════════════════════════
+//  Cadre « Faction » : fiche du peuple choisi par le joueur — victoire
+//  de faction (désactivée), bâtiment/aménagement de faction, 2 règles
+//  de base, puis les 3 règles d'Âge II et les 3 règles d'Âge III sur
+//  UNE LIGNE : le joueur clique sur celle qu'il prend à la montée
+//  d'âge (choix stocké sur le joueur ; ni la montée d'âge ni les
+//  effets ne sont automatisés).
+// ══════════════════════════════════════════════════════════════════════
+
+function CardFaction({ joueur }: { joueur: number }) {
+  const { state, update } = useGame()
+  if (!state) return null
+  const C = cfgOf(state.config)
+  const p = state.players.find((x) => x.n === joueur)
+  if (!p) return null
+  const fiche = [...C.config.peuplesLibres, ...C.config.peuplesAutres].find((f) => f.nom === p.peuple)
+  if (!fiche) return null
+
+  const choisir = (age: 2 | 3, nom: string) =>
+    update((s) => {
+      const t = s.players.find((x) => x.n === joueur)
+      if (!t) return
+      const cur = age === 2 ? t.regleAge2 : t.regleAge3
+      if (age === 2) t.regleAge2 = cur === nom ? null : nom
+      else t.regleAge3 = cur === nom ? null : nom
+    })
+
+  const ligneAge = (label: string, regles: { nom: string; texte: string }[] | undefined, choisie: string | null | undefined, age: 2 | 3) => (
+    <div className="stack small-gap">
+      <div className="frule-age">
+        <strong>{label}</strong>
+        <span className="muted small">
+          — choisissez la règle prise à la montée d'âge (clic pour sélectionner / annuler)
+        </span>
+        {choisie && <span className="badge badge-good">choisie : {choisie}</span>}
+      </div>
+      <div className="frule-row">
+        {(regles ?? []).map((r) => (
+          <button
+            key={r.nom}
+            className={`frule ${choisie === r.nom ? 'frule-selected' : ''}`}
+            onClick={() => choisir(age, r.nom)}
+            title={choisie === r.nom ? 'Règle choisie — cliquer pour annuler' : 'Choisir cette règle'}
+          >
+            <div className="frule-title">{r.nom}</div>
+            <div className="frule-text">{r.texte}</div>
+          </button>
+        ))}
+        {(!regles || regles.length === 0) && (
+          <div className="muted small">Aucune règle d'âge dans le référentiel pour ce peuple.</div>
+        )}
+      </div>
+    </div>
+  )
+
+  return (
+    <Card title={`⚔️ Faction — ${p.peuple}`}>
+      <div className="small muted" style={{ marginBottom: 8 }}>{fiche.description}</div>
+      <div className="frule-row">
+        {fiche.victoire ? (
+          <div className="frule frule-muted">
+            <div className="frule-title">Victoire de faction <span className="badge badge-neutral">désactivée</span></div>
+            <div className="frule-text">{fiche.victoire}</div>
+          </div>
+        ) : null}
+        {fiche.batiment ? (
+          <div className="frule frule-muted">
+            <div className="frule-title">Bâtiment / aménagement de faction</div>
+            <div className="frule-text">{fiche.batiment}</div>
+          </div>
+        ) : null}
+        {(fiche.reglesBase ?? []).map((r) => (
+          <div key={r.nom} className="frule frule-muted">
+            <div className="frule-title">{r.nom}</div>
+            <div className="frule-text">{r.texte}</div>
+          </div>
+        ))}
+      </div>
+      <div className="stack small-gap" style={{ marginTop: 12 }}>
+        {ligneAge('Âge II', fiche.ageII, p.regleAge2, 2)}
+        {ligneAge('Âge III', fiche.ageIII, p.regleAge3, 3)}
+      </div>
+      <p className="muted small" style={{ marginTop: 8 }}>
+        Règles de base et bâtiment de faction : {p.peuple}. Les effets des règles ne sont pas
+        encore appliqués automatiquement par le moteur — cette fiche sert de référence et de
+        choix officiel pour les montées d'âge (une règle par âge).
+      </p>
+    </Card>
   )
 }

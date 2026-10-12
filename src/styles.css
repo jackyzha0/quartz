@@ -384,3 +384,41 @@ select.input { min-width: 120px; width: auto; }
 .gt-node.gt-dead strong { text-decoration: line-through; }
 .gt-sub { font-size: 0.82em; color: var(--muted); }
 .gt-spouse { font-size: 0.82em; color: var(--accent); margin-top: 2px; }
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   Fiches de faction (Royaume + Référentiels) : règles en cartes,
+   3 règles d'âge sur UNE ligne, règle choisie mise en avant.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.fiche-peuple { border: 1px solid var(--border); border-radius: 10px; padding: 12px; margin-bottom: 14px; background: var(--card); }
+.fiche-peuple-title { font-weight: 700; font-size: 1.05em; margin-bottom: 4px; }
+.frule-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0; }
+.frule {
+  flex: 1 1 200px;
+  min-width: 180px;
+  max-width: 480px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card2);
+  padding: 8px 10px;
+  text-align: left;
+  font: inherit;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.frule:hover { border-color: var(--accent2); }
+.frule-muted { cursor: default; background: var(--card2); }
+.frule-title { font-weight: 700; font-size: 0.9em; margin-bottom: 4px; }
+.frule-text { font-size: 0.82em; color: var(--muted); white-space: pre-line; line-height: 1.4; }
+.frule-selected {
+  border-color: var(--good);
+  background: color-mix(in srgb, var(--good) 12%, var(--card2));
+  box-shadow: 0 0 0 1px var(--good);
+}
+.frule-selected .frule-text { color: var(--text); }
+.frule-age { margin: 10px 0 2px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.frule-age2 .frule-title::before { content: 'II · '; color: var(--accent); }
+.frule-age3 .frule-title::before { content: 'III · '; color: var(--accent); }
+.small-gap { gap: 4px; }

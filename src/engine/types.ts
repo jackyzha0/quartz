@@ -217,6 +217,12 @@ export interface Player {
   vassalDe?: number | null
   /** Technologies débloquées (texte des entrées des arbres de progrès). */
   progresDebloques?: string[]
+  /** Règle de faction choisie pour l'Âge II / l'Âge III : le joueur
+   *  choisit UNE règle parmi les trois de son peuple à chaque montée
+   *  d'âge (la montée d'âge elle-même n'est PAS automatisée — choix
+   *  manuel, effet non appliqué automatiquement). */
+  regleAge2?: string | null
+  regleAge3?: string | null
 }
 
 export interface LogEntry {
