@@ -19,7 +19,6 @@ export const CULTURES: CultureDef[] = DEFAULT_CONFIG.cultures
 export const REGIMES = DEFAULT_CONFIG.regimes
 export const ORIENTATIONS = DEFAULT_CONFIG.orientations
 export const GENRES = DEFAULT_CONFIG.genres
-export const MALADIES = DEFAULT_CONFIG.maladies
 export const EDUCATIONS = DEFAULT_CONFIG.educations
 export const BANQUES = DEFAULT_CONFIG.banquesNoms
 export { DEFAULT_CONFIG, cfgOf, cloneDefaultConfig }

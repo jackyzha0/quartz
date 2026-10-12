@@ -1,6 +1,10 @@
 // ══════════════════════════════════════════════════════════════════════
-//  Table de population : filtres, tri, édition des titres (validée),
-//  affichage des traits / mariages / parenté (table P_j du classeur).
+//  Table de population : récapitulatif des métiers (royaume puis par
+//  ville), ajout manuel d'habitants (roturiers ou nouvelle famille
+//  noble, culture pondérée par celles présentes dans la ville),
+//  filtres, tri, édition des titres — seuls les titres accessibles
+//  sont proposés (Chasseur, Gouverneur, titres Education enseignés
+//  par un Professeur vivant).
 // ════════════════════════════════════════════════════════════════════
 
 import React, { useMemo, useState } from 'react'
@@ -8,7 +12,9 @@ import { useGame } from '../state/store'
 import type { Character, Player } from '../engine/types'
 import { cfgOf } from '../engine/gameData'
 import { validateTitleAssignment } from '../engine/validation'
-import { Card, Select, TextInput, Button, fmt } from './ui'
+import { ajouterHabitant } from '../engine/setup'
+import { titresAccessibles } from '../engine/engine'
+import { Card, Select, TextInput, Button, NumberInput, fmt } from './ui'
 
 type SortKey = 'nom' | 'age' | 'dynastie' | 'ville' | 'titre' | 'statut'
 
@@ -20,6 +26,8 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   const [filtreStatut, setFiltreStatut] = useState('Vivants')
   const [tri, setTri] = useState<SortKey>('age')
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [addVille, setAddVille] = useState('')
+  const [addNb, setAddNb] = useState(1)
 
   const p = state?.players.find((x) => x.n === joueur)
   const pop = state?.population[joueur] ?? []
@@ -46,6 +54,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   }, [pop, filtreDyn, filtreVille, filtreTitre, filtreStatut, tri])
 
   if (!state || !p) return null
+  const C = cfgOf(state.config)
 
   // Aucune contrainte bloquante : le titre est TOUJOURS appliqué ;
   // le contrôle de cohérence n'affiche qu'un avertissement (ignorable).
@@ -66,8 +75,100 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   const dynasties = [...new Set(pop.map((c) => c.dynastie))].sort((a, b) => a.localeCompare(b, 'fr'))
   const villes = [...new Set(pop.map((c) => c.ville))]
 
+  // ── Récapitulatif des métiers (royaume entier, puis par ville) ──────
+  const vivants = pop.filter((c) => c.statut !== 'Décédé')
+  const accessibles = state ? titresAccessibles(state, p) : []
+  const compteTitres = (liste: Character[]): [string, number][] => {
+    const parTitre: Record<string, number> = {}
+    let sansTitre = 0
+    for (const c of liste) {
+      if (c.titre) parTitre[c.titre] = (parTitre[c.titre] ?? 0) + 1
+      else sansTitre++
+    }
+    const lignes = Object.entries(parTitre).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'fr'))
+    return sansTitre > 0 ? [...lignes, ['(sans titre)', sansTitre]] : lignes
+  }
+  const metiersRoyaume = compteTitres(vivants)
+
+  // ── Ajout manuel d'habitants ────────────────────────────────────────
+  const villesAjout = p.villes.map((v) => v.nom)
+  const addVilleEff = addVille || villesAjout[0] || ''
+  const ajouter = () => {
+    const nb = Math.max(1, Math.round(addNb))
+    update((s) => {
+      const target = s.players.find((x) => x.n === joueur)
+      if (!target) return
+      ajouterHabitant(s, target, addVilleEff, false, nb)
+    })
+  }
+  const ajouterNobles = () => {
+    const nb = Math.max(1, Math.round(addNb))
+    update((s) => {
+      const target = s.players.find((x) => x.n === joueur)
+      if (!target) return
+      ajouterHabitant(s, target, addVilleEff, true, nb)
+    })
+  }
+
   return (
     <div className="stack">
+      <Card title={`🛠️ Métiers du royaume — ${vivants.length} vivants`}>
+        <div className="badges-wrap">
+          {metiersRoyaume.map(([titre, nb]) => (
+            <span key={titre} className={`badge ${titre === '(sans titre)' ? 'badge-neutral' : 'badge-info'}`}>
+              {titre} : {nb}
+            </span>
+          ))}
+          {metiersRoyaume.length === 0 && <span className="muted">aucun habitant vivant</span>}
+        </div>
+        <p className="muted small">
+          Récapitulatif par métier pour tout le royaume (habitants vivants).
+        </p>
+      </Card>
+
+      <Card title="🏘️ Occupations par ville">
+        <div className="table-wrap">
+          <table className="tbl small">
+            <thead><tr><th>Ville</th><th>Occupations (vivants)</th><th>Vivants</th></tr></thead>
+            <tbody>
+              {p.villes.map((v) => {
+                const habitants = vivants.filter((c) => c.ville === v.nom)
+                const detail = compteTitres(habitants)
+                return (
+                  <tr key={v.nom}>
+                    <td><strong>{v.nom}</strong></td>
+                    <td>
+                      {detail.length
+                        ? detail.map(([t, n]) => (
+                          <span key={t} className={`badge ${t === '(sans titre)' ? 'badge-neutral' : 'badge-info'}`} style={{ marginRight: 4 }}>
+                            {t} ×{n}
+                          </span>
+                        ))
+                        : <span className="muted">aucun habitant</span>}
+                    </td>
+                    <td>{habitants.length}</td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+
+      <Card title="➕ Ajouter des habitants">
+        <div className="filters">
+          <Select value={addVilleEff} options={villesAjout.map((v) => ({ value: v, label: v }))} onChange={setAddVille} />
+          <NumberInput value={addNb} min={1} max={200} onChange={(v) => setAddNb(Math.round(v))} />
+          <Button onClick={ajouter}>+ Roturiers</Button>
+          <Button onClick={ajouterNobles}>+ Nouvelle famille noble</Button>
+        </div>
+        <p className="muted small">
+          Nouveaux habitants titrés {C.p.titreChasseur} · roturiers, ou membres d'une NOUVELLE
+          famille noble (jamais une dynastie existante) · culture tirée au hasard, pondérée par
+          les cultures déjà présentes dans la ville.
+        </p>
+      </Card>
+
       <Card title={`Population de ${p.nom} — ${pop.filter((c) => c.statut !== 'Décédé').length} vivants / ${pop.length} au total`}>
         <div className="filters">
           <Select value={filtreStatut} options={[
@@ -118,9 +219,9 @@ export function PopulationTable({ joueur }: { joueur: number }) {
                       options={[
                         ...(c.titre ? [{ value: c.titre, label: c.titre }] : []),
                         { value: '', label: c.statut === 'Décédé' ? '—' : '(retirer)' },
-                        ...cfgOf(state?.config).titres
-                          .filter((t) => t.titre !== c.titre && t.attribution !== 'Armée')
-                          .map((t) => ({ value: t.titre, label: t.titre })),
+                        ...accessibles
+                          .filter((t) => t !== c.titre)
+                          .map((t) => ({ value: t, label: t })),
                       ]}
                       onChange={(v) => changeTitre(c, v)}
                     />
@@ -146,9 +247,12 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           </table>
         </div>
         <p className="muted small">
-          Les titres « Soldat » et « Commandant » s'obtiennent via l'onglet Armées (attribution « Armée »),
-          comme dans le classeur. L'attribution manuelle applique toutes les règles du VBA
-          (noblesse, genre, éducation requise, unicité Dirigeant/Héritier/Gouverneur, plafond des Professeurs).
+          Seuls les titres accessibles sont proposés : {C.p.titreChasseur} (par défaut), UN
+          {' ' + C.p.titreGouverneur} par ville (nécessairement noble), et les titres
+          d'éducation « {C.p.titreProfesseur} » enseignés par un Professeur vivant du royaume.
+          L'attribution manuelle applique toutes les règles du VBA (noblesse, genre, éducation
+          requise, unicité Dirigeant/Héritier/Gouverneur, plafond des Professeurs) ; l'onglet
+          Armées reste seul à donner les titres « Armée ».
         </p>
       </Card>
       <Card title="Dynasties de la population">

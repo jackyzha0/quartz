@@ -18,7 +18,7 @@ import { Card, Badge, TextInput, NumberInput, Button, Select } from './ui'
 const ONGLETS = [
   'Titres', 'Traits gén.', 'Peuples', 'Bâtiments', 'Aménagements', 'Progrès',
   'Pays & rangs', 'Habitations', 'Cultures & régimes', 'Tourisme & dogmes', 'Cités libres',
-  'Victoires', 'Crises', 'Rappels règles', 'Maladies', 'Offrandes', 'Ministères',
+  'Victoires', 'Crises', 'Rappels règles', 'Offrandes', 'Ministères',
   'Aide-mémoire',
 ] as const
 
@@ -466,27 +466,6 @@ export function ReferenceDataPanel() {
           <ul className="small">
             {cfg.rappelsRegles.map((c, i) => <li key={i}>{c}</li>)}
           </ul>
-        </Card>
-      )}
-
-      {onglet === 'Maladies' && (
-        <Card title={`Maladies (${cfg.maladies.length})`}>
-          <div className="table-wrap">
-            <table className="tbl small">
-              <thead><tr><th>Maladie</th><th>Poids</th><th>IST</th><th>Héréditaire</th><th>Description</th></tr></thead>
-              <tbody>
-                {cfg.maladies.map((m, i) => (
-                  <tr key={i}>
-                    <td><strong>{m.nom}</strong></td>
-                    <td>{m.poids}</td>
-                    <td>{m.sexuellementTransmissible ? 'oui' : 'non'}</td>
-                    <td>{m.hereditaire ? 'oui' : 'non'}</td>
-                    <td className="muted">{m.description}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
         </Card>
       )}
 

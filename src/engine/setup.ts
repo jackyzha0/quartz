@@ -11,6 +11,7 @@ import { makeRng, type Rng } from './rng'
 import { cfgOf, cloneDefaultConfig, peupleDef, type Cfg } from './gameData'
 import type { GameConfig } from '../config/defaultConfig'
 import { computeAgeMax, computeFecondite, isNobleDyn } from './engine'
+import { fullName } from './shared'
 
 export interface SetupLine {
   nom: string
@@ -107,7 +108,10 @@ export function rangParDefaut(regime: string, C: Cfg): string {
 }
 
 export function makePopulation(player: Player, s: SetupLine, rng: Rng, C: Cfg): Character[] {
-  const taille = Math.max(10, s.taillePopulation || 30)
+  // Habitants par VILLE (défaut : 50) — la population est répartie
+  // entre les villes du joueur, la famille de départ vient en plus.
+  const parVille = Math.max(2, s.taillePopulation || 50)
+  const taille = parVille * Math.max(1, player.villes.length)
   const pourcentMariages = Math.min(100, Math.max(0, s.pourcentageMariages ?? 40))
   const peup = peupleDef(player.peuple, C.config) ?? peupleDef(C.peuples[0], C.config)
   const fallback = C.banquesNoms[0]
@@ -205,26 +209,54 @@ export function makePopulation(player: Player, s: SetupLine, rng: Rng, C: Cfg): 
   else roi.titre = C.p.titreDirigeant
   pop.push(roi, reine)
 
-  // 3. Les enfants sont répartis dans le couple royal
-  for (const c of pop) {
-    if (c.age >= C.p.adultAge || c === roi || c === reine) continue
-    if (rng.chance(0.7)) {
-      c.nom = roi.nom
-      c.dynastie = heredite === 'Féminine' ? reineName : roi.nom
-      c.mere = `${reine.prenom} ${reine.nom}`
-      c.pere = `${roi.prenom} ${roi.nom}`
+  // 3. Fratrie du couple dirigeant (« potentiellement des frères et
+  //    sœurs ») : 0 à 2 frères/sœurs pour chacun des deux époux.
+  const ajouterFratrie = (ref: Character, nb: number) => {
+    for (let i = 0; i < nb; i++) {
+      const sexe = randomSexe()
+      const frere: Character = {
+        id: nextId(), nom: ref.nom, prenom: sexe === 'M' ? rng.pick(prenomsM) : rng.pick(prenomsF),
+        dynastie: ref.dynastie,
+        sexe, age: rng.int(20, 40), culture: player.culture,
+        ville: player.villes[0].nom,
+        orientation: randomOrientation(), traits: randomTraits(), statut: 'Sain',
+        mariage: null, mere: null, pere: null, pereBio: null, enfantBatard: false,
+        titre: C.p.titreChasseur, education: null, fecondite: 0, ageMax: 0, armee: null,
+      }
+      frere.ageMax = computeAgeMax(frere, rng, C)
+      pop.push(frere)
     }
   }
+  ajouterFratrie(roi, rng.chance(0.6) ? rng.int(1, 2) : 0)
+  ajouterFratrie(reine, rng.chance(0.6) ? rng.int(1, 2) : 0)
 
-  // 4. Titres aléatoires pour les adultes non-Dirigeant, mariages des roturiers.
-  //    Seuls les titres roturiers à attribution Manuelle du classeur sont
-  //    tirés ici (aucun blocage : corrigez ensuite dans la table Population).
+  // 4. Enfants du couple (« potentiellement des enfants ») : 0 à 4,
+  //    âges 0-15, dynastie selon l'hérédité de la culture.
+  const nbEnfants = rng.chance(0.85) ? rng.int(1, 4) : 0
+  for (let i = 0; i < nbEnfants; i++) {
+    const sexe = randomSexe()
+    const enfant: Character = {
+      id: nextId(),
+      nom: heredite === 'Féminine' ? reineName : roi.nom,
+      prenom: sexe === 'M' ? rng.pick(prenomsM) : rng.pick(prenomsF),
+      dynastie: heredite === 'Féminine' ? reineName : roi.nom,
+      sexe, age: rng.int(0, 15), culture: player.culture,
+      ville: player.villes[0].nom,
+      orientation: randomOrientation(), traits: randomTraits(), statut: 'Sain',
+      mariage: null, mere: fullName(reine), pere: fullName(roi), pereBio: null,
+      enfantBatard: false, titre: null, education: null, fecondite: 0, ageMax: 0, armee: null,
+    }
+    enfant.ageMax = computeAgeMax(enfant, rng, C)
+    pop.push(enfant)
+  }
+
+  // 5. Titre par défaut des adultes : Chasseur (par défaut le seul
+  //    titre accessible — les autres dépendent des professeurs,
+  //    gouverneur à part, noblesse requise). Puis mariages des
+  //    roturiers (~le % demandé).
   const adultes = pop.filter((c) => c.age >= C.p.adultAge && c.titre !== C.p.titreDirigeant)
-  const titresRoturiers = C.titres
-    .filter((t) => !t.nobleSeul && (t.attribution === 'Manuelle' || t.attribution === ''))
-    .map((t) => t.titre)
   for (const c of adultes) {
-    if (!c.titre && titresRoturiers.length > 0 && rng.chance(0.6)) c.titre = rng.pick(titresRoturiers)
+    if (!c.titre) c.titre = C.p.titreChasseur
   }
   // ~le % demandé d'adultes roturiers se marient entre eux
   const celibataires = adultes.filter((c) => !c.mariage && !isNobleDyn(c.dynastie, C))
@@ -259,8 +291,96 @@ export function defaultSetups(): SetupLine[] {
     peuple: peuples[i % peuples.length],
     culture: C.cultures[i % Math.max(1, C.cultures.length)]?.nom ?? '',
     regime: C.regimes[0]?.nom ?? 'Monarchie',
-    taillePopulation: 30,
+    taillePopulation: 50,
     pourcentageMariages: 40,
     villes: i === 0 ? ['Capitale', 'Bourg'] : ['Capitale'],
   }))
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  AJOUT MANUEL D'HABITANTS (page « Pays », table Population)
+//  Ajoute des habitants à une ville : roturiers, ou une NOUVELLE
+//  famille noble (un nom de famille jamais utilisé comme dynastie —
+//  jamais une famille déjà existante). La culture de chaque nouvel
+//  habitant est tirée au hasard, PONDÉRÉE par les cultures présentes
+//  dans la ville. Les adultes reçoivent le titre par défaut
+//  (Chasseur) — les autres titres dépendent des professeurs.
+// ══════════════════════════════════════════════════════════════════════
+
+export function ajouterHabitant(
+  state: GameState, p: Player, nomVille: string,
+  noble: boolean, nb: number, C: Cfg = cfgOf(state.config),
+): number {
+  const ville = p.villes.find((v) => v.nom === nomVille)
+  if (!ville || nb <= 0) return 0
+  const rng = makeRng(state.rngState)
+  const pop = state.population[p.n] ?? (state.population[p.n] = [])
+  const peup = peupleDef(p.peuple, C.config) ?? peupleDef(C.peuples[0], C.config)
+  const fallback = C.banquesNoms[0]
+  const noms = peup?.noms ?? fallback.noms
+  const prenomsM = peup?.prenomsM ?? fallback.prenomsM
+  const prenomsF = peup?.prenomsF ?? fallback.prenomsF
+  // cultures présentes dans la ville (pondérées par leur effectif vivant)
+  const cultures: Record<string, number> = {}
+  for (const c of pop) {
+    if (c.statut === 'Décédé' || c.ville !== nomVille) continue
+    cultures[c.culture] = (cultures[c.culture] ?? 0) + 1
+  }
+  const poolCultures = Object.entries(cultures)
+  // nouvelle famille noble : nom jamais utilisé comme dynastie
+  let dynNoble = ''
+  if (noble) {
+    const utilisees = new Set(pop.map((c) => c.dynastie))
+    const dispo = noms.filter((n) => !utilisees.has(n))
+    dynNoble = dispo.length > 0 ? rng.pick(dispo) : `${rng.pick(noms)} ${pop.length + 1}`
+  }
+  let ajoutes = 0
+  for (let i = 0; i < nb; i++) {
+    const sexe: 'M' | 'F' = rng.pickWeighted(C.genres, (g) => g.poids).nom === 'Masculin' ? 'M' : 'F'
+    const culture = poolCultures.length > 0
+      ? rng.pickWeighted(poolCultures, ([, n]) => n)[0]
+      : (ville.culture || p.culture)
+    // traits : comme la génération initiale (1er systématique, 2e 50 %, 3e 30 %)
+    const traits: [string, string, string] = ['', '', '']
+    const draw = (exclus: string[]): string => {
+      const pool = C.traits.filter((td) => td.weight > 0 && !exclus.includes(td.name))
+      return pool.length === 0 ? '' : rng.pickWeighted(pool, (td) => td.weight).name
+    }
+    traits[0] = draw([])
+    if (traits[0]) traits[1] = rng.chance(0.5) ? draw([traits[0]]) : ''
+    if (traits[1] && rng.chance(0.3)) traits[2] = draw([traits[0], traits[1]])
+    const c: Character = {
+      id: `p${p.n}a${state.turn}_${pop.length + 1}_${i}`,
+      nom: noble ? dynNoble : rng.pick(noms),
+      prenom: sexe === 'M' ? rng.pick(prenomsM) : rng.pick(prenomsF),
+      dynastie: noble ? dynNoble : C.p.dynastieRoturier,
+      sexe,
+      age: rng.int(C.p.adultAge, Math.max(C.p.adultAge + 1, 60)),
+      culture,
+      ville: nomVille,
+      orientation: rng.pickWeighted(C.orientations, (o) => o.poids).nom as Character['orientation'],
+      traits,
+      statut: 'Sain',
+      mariage: null,
+      mere: null,
+      pere: null,
+      pereBio: null,
+      enfantBatard: false,
+      titre: C.p.titreChasseur,
+      education: null,
+      fecondite: 0,
+      ageMax: 0,
+      armee: null,
+    }
+    c.ageMax = computeAgeMax(c, rng, C)
+    c.fecondite = computeFecondite(state, p, c)
+    pop.push(c)
+    ajoutes++
+  }
+  state.rngState = rng.state()
+  state.log.push({
+    turn: state.turn, type: 'Système', joueur: p.n,
+    texte: `👥 ${ajoutes} habitant(s) ajouté(s) à ${nomVille} — ${noble ? `nouvelle famille noble « ${dynNoble} »` : 'roturiers'}.`,
+  })
+  return ajoutes
 }

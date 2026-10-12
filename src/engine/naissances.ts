@@ -10,7 +10,7 @@ import type { Rng } from './rng'
 import { cfgOf, traitDef, cultureDef, peupleDef, type Cfg } from './gameData'
 import { bump, fullName, isNobleDyn, newId } from './shared'
 import { taxBirthFactor } from './economie'
-import { computeAgeMax } from './sante'
+import { computeAgeMax, killCharacter } from './sante'
 
 
 export function computeFecondite(state: GameState, p: Player, c: Character): number {
@@ -79,11 +79,18 @@ export function conceptionEtNaissances(state: GameState, p: Player, rng: Rng, re
     accoucher(state, p, mere, pere, rng, recap)
     mere.statut = 'Sain'
     mere.pereBio = null
+    // Règle simplifiée : une femme tombée malade pendant sa grossesse
+    // accouche, puis meurt de la maladie.
+    if (mere.enceinteMalade) {
+      mere.enceinteMalade = false
+      killCharacter(state, p, mere, 'maladie', recap)
+    }
   }
 
-  // 2. Tentatives de conception (femmes adultes saines)
+  // 2. Tentatives de conception (femmes adultes saines — ou malades :
+  //    une femme malade qui tombe enceinte est guérie, bug assumé)
   for (const mere of pop) {
-    if (mere.sexe !== 'F' || mere.statut !== 'Sain') continue
+    if (mere.sexe !== 'F' || (mere.statut !== 'Sain' && mere.statut !== 'Malade')) continue
     if (mere.age < C.p.adultAge) continue
     const ville = p.villes.find((v) => v.nom === mere.ville)
     const mari = mere.mariage ? pop.find((x) => fullName(x) === mere.mariage && x.statut !== 'Décédé') : undefined
@@ -120,13 +127,15 @@ export function conceptionEtNaissances(state: GameState, p: Player, rng: Rng, re
         pereBio = amants.length > 0 ? rng.pick(amants) : undefined
         batard = true
       }
+      // une femme malade qui tombe enceinte est guérie (bug assumé)
+      const etaitMalade = mere.statut === 'Malade'
       mere.statut = 'Enceinte'
       mere.pereBio = pereBio ? fullName(pereBio) : null
       mere.enfantBatard = batard
       bump(recap.conceptions, mere.dynastie)
       state.log.push({
         turn: state.turn + 1, type: 'Naissance', joueur: p.n,
-        texte: `${fullName(mere)} attend un enfant${batard ? ' (bâtard)' : ''}.`,
+        texte: `${fullName(mere)} attend un enfant${batard ? ' (bâtard)' : ''}${etaitMalade ? ' — sa maladie disparaît (bug assumé)' : ''}.`,
       })
     }
   }

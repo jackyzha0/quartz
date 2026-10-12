@@ -14,7 +14,9 @@
 //   · vassaux : prêt de serment à un autre joueur, tribut automatique
 //     (paramètre vassalPrelevement, appliqué en fin de tour par le moteur),
 //   · personnages importants : Dirigeant, Héritier, Professeurs,
-//     Commandants, famille royale.
+//     Commandants, famille royale,
+//   · arbre généalogique de la famille dirigeante (conjoints ⚭,
+//     défunts grisés).
 //  Les technologies (feuille « Progrès ») sont retirées de cette page —
 //  elles restent consultables dans « 📚 Référentiels » → « Progrès ».
 // ══════════════════════════════════════════════════════════════════════
@@ -24,6 +26,7 @@ import { useGame } from '../state/store'
 import type { Character, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
 import { rangParDefaut } from '../engine/setup'
+import { GenealogyTree } from './GenealogyTree'
 import { Card, Select, TextInput, Button, Badge, Field } from './ui'
 
 export function RoyaumeView({ joueur }: { joueur: number }) {
@@ -329,6 +332,7 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
         </div>
       </Card>
 
+      <GenealogyTree joueur={joueur} />
 
     </div>
   )

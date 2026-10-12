@@ -101,6 +101,9 @@ export interface Character {
   pere: string | null
   pereBio: string | null      // père biologique en cas d'adultère
   enfantBatard: boolean
+  /** femme enceinte ayant contracté la maladie : elle accouchera,
+   *  puis mourra de la maladie (règle simplifiée « malade ou sain »). */
+  enceinteMalade?: boolean
   titre: string | null
   education: string | null
   fecondite: number

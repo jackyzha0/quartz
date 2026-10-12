@@ -187,6 +187,33 @@ export function assignAdultTitle(state: GameState, p: Player, c: Character, rng:
   bump(recap.titresAttribues, titre)
 }
 
+// ── Titres accessibles (règle simplifiée) ────────────────────────────────
+
+/** Titres accessibles aux habitants d'un joueur : par défaut le seul
+ *  Chasseur ; UN Gouverneur par ville (nécessairement noble —
+ *  l'unicité par ville et la noblesse restent contrôlées par
+ *  validateTitleAssignment) ; et les titres à attribution
+ *  « Education » dont l'éducation est enseignée par au moins un
+ *  Professeur vivant du joueur. Dirigeant/Héritier (succession),
+ *  Soldat/Commandant (armées) et Professeur (attribution automatique
+ *  par ville) ne figurent pas dans la liste manuelle. */
+export function titresAccessibles(state: GameState, p: Player, C: Cfg = cfgOf(state.config)): string[] {
+  const out: string[] = [C.p.titreChasseur, C.p.titreGouverneur]
+  const pop = state.population[p.n] ?? []
+  const educations = new Set<string>()
+  for (const c of pop) {
+    if (c.statut !== 'Décédé' && c.titre === C.p.titreProfesseur && c.education) {
+      educations.add(c.education)
+    }
+  }
+  for (const t of C.titres) {
+    if (t.attribution === 'Education' && t.education && educations.has(t.education)) {
+      out.push(t.titre)
+    }
+  }
+  return [...new Set(out)]
+}
+
 export function titreAllowedForCharacter(titre: string, c: Character, p: Player, C: Cfg = cfgOf()): boolean {
   const td = titreDef(titre, C.config)
   if (!td) return false

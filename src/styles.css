@@ -313,3 +313,74 @@ select.input { min-width: 120px; width: auto; }
   .res-dock { top: auto; bottom: 0; max-width: 100vw; }
   .res-panel { width: min(360px, 86vw); max-height: 60vh; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   Arbre généalogique (GenealogyTree) — organigramme CSS ul/li :
+   connecteurs en ::before/::after, défilement horizontal.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.gt-wrap { overflow-x: auto; padding: 4px 0; }
+.gtree ul {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding: 24px 0 0 0;
+  margin: 0;
+  list-style: none;
+}
+.gtree > ul { padding-top: 0; }
+.gtree li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 24px 10px 0;
+}
+.gtree li::before,
+.gtree li::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width: 50%;
+  height: 24px;
+  border-top: 2px solid var(--accent2);
+}
+.gtree li::after {
+  right: auto;
+  left: 50%;
+  border-left: 2px solid var(--accent2);
+}
+.gtree li:only-child::before,
+.gtree li:only-child::after { display: none; }
+.gtree li:first-child::before,
+.gtree li:last-child::after { border: 0; }
+.gtree li:last-child::before {
+  border-right: 2px solid var(--accent2);
+  border-radius: 0 8px 0 0;
+}
+.gtree li:first-child::after { border-radius: 8px 0 0 0; }
+.gtree ul ul::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 24px;
+  border-left: 2px solid var(--accent2);
+}
+.gt-node {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card2);
+  padding: 6px 10px;
+  min-width: 120px;
+  text-align: center;
+  line-height: 1.35;
+}
+.gt-node.gt-dead {
+  opacity: 0.55;
+  background: var(--card);
+}
+.gt-node.gt-dead strong { text-decoration: line-through; }
+.gt-sub { font-size: 0.82em; color: var(--muted); }
+.gt-spouse { font-size: 0.82em; color: var(--accent); margin-top: 2px; }

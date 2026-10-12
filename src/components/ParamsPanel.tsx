@@ -18,7 +18,7 @@ import { Card, NumberInput, TextInput, Button, Badge } from './ui'
 
 const ONGLETS = [
   'Formules', 'Titres', 'Traits', 'Cultures', 'Régimes', 'Événements',
-  'Effets évts', 'Dynasties', 'Cartes', 'Maladies', 'Offrandes',
+  'Effets évts', 'Dynasties', 'Cartes', 'Offrandes',
   'Probabilités', 'Peuples & noms', 'Ressources', 'JSON',
 ] as const
 
@@ -301,27 +301,6 @@ export function ParamsPanel() {
               <Button onClick={() => setCfg((c) => { c.dynastieEffets[i].effets.push({ ressource: 'Or', base: 0 }) })}>+ effet</Button>
             </div>
           ))}
-        </Card>
-      )}
-
-      {onglet === 'Maladies' && (
-        <Card title="Maladies">
-          <div className="table-wrap">
-            <table className="tbl small">
-              <thead><tr><th>Maladie</th><th>Poids</th><th>IST</th><th>Héréditaire</th><th>Description</th></tr></thead>
-              <tbody>
-                {config.maladies.map((m, i) => (
-                  <tr key={i}>
-                    <td><TextInput value={m.nom} onChange={(v) => setCfg((c) => { c.maladies[i].nom = v })} /></td>
-                    <td><NumberInput value={m.poids} onChange={(v) => setCfg((c) => { c.maladies[i].poids = v })} /></td>
-                    <td><input type="checkbox" checked={m.sexuellementTransmissible} onChange={(e) => setCfg((c) => { c.maladies[i].sexuellementTransmissible = e.target.checked })} /></td>
-                    <td><input type="checkbox" checked={m.hereditaire} onChange={(e) => setCfg((c) => { c.maladies[i].hereditaire = e.target.checked })} /></td>
-                    <td><TextInput value={m.description} onChange={(v) => setCfg((c) => { c.maladies[i].description = v })} /></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
         </Card>
       )}
 

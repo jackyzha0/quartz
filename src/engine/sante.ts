@@ -32,7 +32,13 @@ export function tryResurrection(c: Character, rng: Rng, C: Cfg = cfgOf()): boole
   return false
 }
 
-// ── Maladie ──────────────────────────────────────────────────────────────
+// ── Maladie (règle simplifiée : on est malade ou sain, plus de
+//    tableau de maladies distinctes) ──────────────────────────────────
+//    · une personne saine (ou enceinte) peut contracter la maladie ;
+//    · un malade qui la re-contracte meurt ;
+//    · une femme enceinte qui tombe malade accouchera puis mourra
+//      (flag enceinteMalade) ;
+//    · une femme malade qui tombe enceinte est guérie (bug assumé).
 
 export function maladieStep(state: GameState, p: Player, c: Character, rng: Rng, recap: PlayerRecap) {
   if (c.statut === 'Décédé') return
@@ -59,12 +65,11 @@ export function maladieStep(state: GameState, p: Player, c: Character, rng: Rng,
     if (c.statut === 'Enceinte') pContract += C.p.modMaladieEnceinte
     if (rng.chance(Math.max(0, pContract))) {
       if (c.statut === 'Enceinte') {
-        // une femme enceinte qui tombe malade perd la grossesse
-        c.statut = 'Malade'
-        c.pereBio = null
+        // une femme enceinte qui tombe malade mourra après l'accouchement
+        c.enceinteMalade = true
         state.log.push({
           turn: state.turn + 1, type: 'Naissance', joueur: p.n,
-          texte: `${fullName(c)} perd sa grossesse suite à la maladie.`,
+          texte: `${fullName(c)} tombe malade en étant enceinte — elle accouchera, puis mourra de la maladie.`,
         })
       } else {
         c.statut = 'Malade'

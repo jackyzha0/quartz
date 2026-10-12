@@ -125,7 +125,7 @@ export function SetupPanel() {
             <thead>
               <tr>
                 <th>#</th><th>Nom</th><th>Peuple (faction)</th><th>Culture</th>
-                <th>Régime</th><th>Pop. init.</th><th>% mariés</th><th>Villes (séparées par ,)</th>
+                <th>Régime</th><th>Habitants / ville</th><th>% mariés</th><th>Villes (séparées par ,)</th>
               </tr>
             </thead>
             <tbody>
@@ -158,7 +158,7 @@ export function SetupPanel() {
                     />
                   </td>
                   <td>
-                    <NumberInput value={s.taillePopulation} min={10} max={200}
+                    <NumberInput value={s.taillePopulation} min={2} max={200}
                       onChange={(v) => setLine(i, { taillePopulation: Math.round(v) })} />
                   </td>
                   <td>

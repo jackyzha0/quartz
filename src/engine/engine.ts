@@ -257,7 +257,7 @@ export { populationTurn, migrerEnfants } from './population'
 export {
   maybeAssignProfesseurs, gestionMariages, formatDynastyPair,
   computeMarriageProbability, tryEducateMinor, assignAdultTitle,
-  titreAllowedForCharacter,
+  titreAllowedForCharacter, titresAccessibles,
 } from './titres'
 export {
   computeAgeMax, killCharacter, handleDirigeantSuccession,

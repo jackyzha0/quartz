@@ -90,13 +90,6 @@ export interface EventDef {
   extreme: string
 }
 export interface DynastieDef { nom: string; poids: number; description: string }
-export interface MaladieDef {
-  nom: string
-  poids: number
-  sexuellementTransmissible: boolean
-  hereditaire: boolean
-  description: string
-}
 export interface OffrandeDef { nom: string; poids: number; description: string }
 export interface BanqueNoms { nom: string; noms: string[]; prenomsM: string[]; prenomsF: string[] }
 export interface BuildingDef {
@@ -154,7 +147,6 @@ export interface GameConfig {
   regimes: RegimeDef[]
   events: EventDef[]
   dynasties: DynastieDef[]
-  maladies: MaladieDef[]
   offrandes: OffrandeDef[]
   orientations: PoidsNom[]
   genres: PoidsNom[]
@@ -359,7 +351,6 @@ export const DEFAULT_CONFIG: GameConfig = {
   regimes: ref.regimes,
   events: ref.events,
   dynasties: ref.dynasties,
-  maladies: ref.maladies,
   offrandes: ref.offrandes,
   orientations: ref.orientations,
   genres: ref.genres,
@@ -428,7 +419,6 @@ export interface Cfg {
   regimes: RegimeDef[]
   events: EventDef[]
   dynasties: DynastieDef[]
-  maladies: MaladieDef[]
   offrandes: OffrandeDef[]
   orientations: PoidsNom[]
   genres: PoidsNom[]
@@ -507,7 +497,6 @@ export function cfgOf(config: GameConfig | undefined): Cfg {
     regimes: merged.regimes,
     events: merged.events,
     dynasties: merged.dynasties,
-    maladies: merged.maladies,
     offrandes: merged.offrandes,
     orientations: merged.orientations,
     genres: merged.genres,
