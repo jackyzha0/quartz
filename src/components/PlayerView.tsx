@@ -5,6 +5,12 @@
 //     bâtiments + aménagements + autres + régimes & cultures + vassalité)
 //     — invariant : stock du tour N = stock du tour N−1 + production
 //     par tour,
+//   · culture du pays — encadré « bonus automatiques » : règle de pays
+//     chiffrée (ex. Lunisme : +4 Tourisme par ville luniste dans le
+//     monde) avec le nombre de villes de cette culture et le bonus
+//     adapté en conséquence (appliqué à chaque fin de tour, canal
+//     « régimes & cultures » du récap ressources ; +N Science par
+//     construction crédité à la construction),
 //   · villes : rang d'habitation, AMÉNAGEMENTS au-dessus des
 //     BÂTIMENTS, puis catégorie AUTRES — coût, production et
 //     description EXACTS du référentiel (table `constructions`),
@@ -36,7 +42,7 @@ import {
   productionDetaillee, detailGainsVille, parseCoutTexte,
   garnisonHabitationVille, nomRang, typeVille, habitationDef,
   rangsDisponibles, consommationsVille, tourismeStatiqueBatiment,
-  type ProductionDetail,
+  detailCulturePays, type ProductionDetail,
 } from '../engine/engine'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
 
@@ -122,6 +128,56 @@ export function PlayerView({ joueur }: { joueur: number }) {
     <div className="stack">
       {/* Panneau Ressources — très léger, docké à droite, dépliable */}
       <RessourcesDock p={p} C={C} prodDetail={prodDetail} setPlayer={setPlayer} />
+
+      {/* ═══ Culture du pays : règle de pays chiffrée (ex. Lunisme —
+          +4 Tourisme par ville luniste dans le monde) avec le NOMBRE de
+          villes de cette culture et le bonus ADAPTÉ en conséquence —
+          appliqué automatiquement à chaque fin de tour (canal
+          « régimes & cultures » du récap ressources). ═══ */}
+      <Card title="🛕 Culture du pays — bonus automatiques">
+        {(() => {
+          const cult = cultureDef(p.culture, C.config)
+          const lois = detailCulturePays(state, p, C)
+          const traits = cult
+            ? `hérédité ${String(cult.heredite).toLowerCase()} · martialité ${String(cult.martialite).toLowerCase()} · mariages homosexuels ${cult.homoAutorisee ? 'autorisés' : 'interdits'}`
+            : ''
+          return (
+            <div className="stack">
+              <div>
+                <strong>{p.culture}</strong>
+                {cult?.reglePays && <span className="muted small"> — {cult.reglePays}</span>}
+              </div>
+              {traits && <div className="muted small">{traits}</div>}
+              {lois.length > 0 ? lois.map((d) => (
+                <div key={d.res}>
+                  <Badge tone="good">+{fmt(d.total)} {d.res} / tour</Badge>{' '}
+                  <span className="muted small">
+                    règle de pays : +{fmt(d.parVille)} {d.res} × {d.nbVillesMonde} ville(s)
+                    « {p.culture} » dans le monde (dont {d.nbVillesPerso} chez toi) —
+                    appliqué automatiquement à chaque fin de tour, colonne
+                    « Régimes & cultures » du récap ressources.
+                  </span>
+                </div>
+              )) : (
+                <p className="muted small">
+                  Pas de règle de pays chiffrée pour cette culture : ses attributs
+                  (hérédité, martialité, fécondité, mariages homosexuels) restent
+                  appliqués par le moteur (titres, armées, naissances).
+                </p>
+              )}
+              {cult?.scienceParConstruction ? (
+                <div>
+                  <Badge tone="good">+{fmt(cult.scienceParConstruction)} Science / construction</Badge>{' '}
+                  <span className="muted small">
+                    chaque construction de bâtiment crédite ce bonus une fois
+                    (journal 🏗) — valeur fixe, pas un apport par tour.
+                  </span>
+                </div>
+              ) : null}
+            </div>
+          )
+        })()}
+      </Card>
 
       {/* ═══ Villes : aménagements, bâtiments, autres, cultures, taxes ═══ */}
       <Card title="Villes">

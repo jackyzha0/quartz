@@ -240,6 +240,7 @@ export {
 export {
   nomRang, rangNiveau, garnisonHabitationVille, garnisonHabitationsPays,
   effetsRegime, effetsCulturePays, appliquerEffetsRegimesCultures,
+  nbVillesCultureMonde, detailCulturePays, type DetailCultureBonus,
 } from './regimes'
 export {
   typeVille, habitationDef, rangsDisponibles, garnisonBaseVille,

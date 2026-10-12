@@ -85,26 +85,66 @@ export function effetsRegime(p: Player, saison: Saison, C: Cfg): Record<string, 
   return out
 }
 
+/** Nombre de villes d'une culture dans le monde (tous joueurs
+ *  confondus) — chaque ville est une habitation pour la règle de pays
+ *  du classeur (« +N par habitation de cette culture dans le monde »). */
+export function nbVillesCultureMonde(state: GameState, culture: string): number {
+  let n = 0
+  for (const q of state.players) {
+    for (const v of q.villes) {
+      if (v.culture === culture) n++
+    }
+  }
+  return n
+}
+
+/** Détail chiffré de la règle de pays d'une culture (affiché sur la page
+ *  « Pays », encadré « Culture du pays — bonus automatiques ») : la
+ *  capitale génère +N d'une ressource PAR VILLE de cette culture dans le
+ *  monde (ex. Lunisme : +4 Tourisme × nombre de villes lunistes). */
+export interface DetailCultureBonus {
+  res: string
+  /** gain par ville de cette culture (champ du référentiel) */
+  parVille: number
+  /** villes de cette culture dans le monde (tous joueurs) */
+  nbVillesMonde: number
+  /** villes de cette culture possédées par le joueur */
+  nbVillesPerso: number
+  /** gain total par tour (parVille × nbVillesMonde) */
+  total: number
+}
+
+/** Détail des bonus par tour de la règle de pays de la culture du joueur
+ *  (une entrée par loi chiffrée présente : Nourriture, Tourisme, Or).
+ *  `effetsCulturePays` applique ces valeurs au stock — UI et moteur
+ *  partagent le même calcul. */
+export function detailCulturePays(state: GameState, p: Player, C: Cfg): DetailCultureBonus[] {
+  const cult = cultureDef(p.culture, C.config)
+  if (!cult) return []
+  const lois: Array<[string, number | undefined]> = [
+    ['Nourriture', cult.capitalNourrParHabMonde],
+    ['Tourisme', cult.capitalTourismeParHabMonde],
+    ['Or', cult.capitalOrParHabMonde],
+  ]
+  const nbVillesPerso = p.villes.filter((v) => v.culture === p.culture).length
+  const nbVillesMonde = nbVillesCultureMonde(state, p.culture)
+  const out: DetailCultureBonus[] = []
+  for (const [res, parVille] of lois) {
+    if (!parVille) continue
+    out.push({ res, parVille, nbVillesMonde, nbVillesPerso, total: parVille * nbVillesMonde })
+  }
+  return out
+}
+
 /** Effets par tour de la règle du pays de la culture : la capitale
  *  génère +N d'une ressource par habitation de cette culture dans le
  *  monde (tous joueurs confondus). */
 export function effetsCulturePays(state: GameState, p: Player, C: Cfg): Record<string, number> {
   const out: Record<string, number> = {}
-  const cult = cultureDef(p.culture, C.config)
-  if (!cult || p.villes.length === 0) return out
-  let nbHabitations = 0
-  for (const q of state.players) {
-    for (const v of q.villes) {
-      if (v.culture === p.culture) nbHabitations++
-    }
+  if (p.villes.length === 0) return out
+  for (const d of detailCulturePays(state, p, C)) {
+    out[d.res] = (out[d.res] ?? 0) + d.total
   }
-  if (nbHabitations === 0) return out
-  const add = (res: string, parHab?: number) => {
-    if (parHab) out[res] = (out[res] ?? 0) + parHab * nbHabitations
-  }
-  add('Nourriture', cult.capitalNourrParHabMonde)
-  add('Tourisme', cult.capitalTourismeParHabMonde)
-  add('Or', cult.capitalOrParHabMonde)
   return out
 }
 
