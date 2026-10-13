@@ -49,6 +49,7 @@ import {
   detailCulturePays, productionVille, provenancesApports,
   attraitTouristiqueVille, attraitMaxMonde,
   capitaleDe, batimentsFaction, batimentsCapitale,
+  effetsNourrEteAmenagementsVille, effetsNourrEteAutresVille,
   type ProductionDetail,
 } from '../engine/engine'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
@@ -250,7 +251,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
 
       {/* ═══ Villes : aménagements, bâtiments, autres, cultures, taxes ═══ */}
       <Card title="Villes">
-        <div className="grid-2">
+        {/* Une ville par ligne, PLEINE LARGEUR : les tableaux de
+            production doivent rester lisibles sans scroll latéral. */}
+        <div className="stack">
           {p.villes.map((ville, idx) => {
             const nbVivants = (state.population[p.n] ?? [])
               .filter((c) => c.statut !== 'Décédé' && c.ville === ville.nom).length
@@ -545,8 +548,18 @@ export function PlayerView({ joueur }: { joueur: number }) {
                     l'habitation) — bas du cadre de chaque ville. ── */}
                 {(() => {
                   const pv = productionVille(state, p, ville, C)
+                  // « Nourr - été » (ligne du classeur) : production d'été
+                  // de la ville, SOURCES SÉPARÉES — aménagements qui ne
+                  // produisent qu'en été (Champ, Rizière) et lignes
+                  // « Autres » de ressource « Nourr - été ». Affichée
+                  // comme LIGNE sous la nourriture, POTENTIEL visible en
+                  // toute saison (pour planifier), mais créditée au stock
+                  // de Nourriture UNIQUEMENT en été par le moteur.
+                  const nEteAm = effetsNourrEteAmenagementsVille(ville, C.config)['Nourriture'] ?? 0
+                  const nEteAut = effetsNourrEteAutresVille(ville)['Nourriture'] ?? 0
+                  const nEteTot = nEteAm + nEteAut
                   const resV = C.ressources.filter((r) => (pv.total[r] ?? 0) !== 0)
-                  if (resV.length === 0) {
+                  if (resV.length === 0 && nEteTot === 0) {
                     return (
                       <div className="muted small">
                         Cette ville ne produit encore rien par tour (aucun bâtiment,
@@ -554,15 +567,26 @@ export function PlayerView({ joueur }: { joueur: number }) {
                       </div>
                     )
                   }
+                  // Lignes du tableau : chaque ressource + la ligne
+                  // « Nourr - été » juste après la Nourriture (ou en
+                  // première ligne s'il n'y a pas de nourriture générale).
+                  const lignesV: Array<{ kind: 'res'; r: string } | { kind: 'ete' }> = []
+                  for (const r of resV) {
+                    lignesV.push({ kind: 'res', r })
+                    if (r === 'Nourriture' && nEteTot !== 0) lignesV.push({ kind: 'ete' })
+                  }
+                  if (nEteTot !== 0 && !resV.includes('Nourriture')) lignesV.unshift({ kind: 'ete' })
                   return (
                     <div>
                       <div className="mini-title">Production de la ville</div>
                       <p className="muted small">
                         Nourriture générale (aménagements, bâtiments, villageois) et nourriture
                         d'été sont DIFFÉRENCIÉES, comme la ligne « Nourr - été » du classeur :
-                        la colonne « Nourr - été » (Champ, Rizière, lignes « Autres » de
-                        ressource « Nourr - été ») n'est créditée qu'en été, en plus de la
-                        nourriture générale — jamais un doublage.
+                        la ligne « Nourr - été » (sources : aménagements Champ, Rizière +
+                        lignes « Autres » de ressource « Nourr - été ») n'est créditée qu'en
+                        été, EN PLUS de la nourriture générale — jamais un doublage. En été,
+                        le total Nourriture = nourriture générale + nourriture d'été ; en
+                        hiver, simplement la nourriture générale.
                       </p>
                       <div className="table-wrap">
                         <table className="tbl small">
@@ -571,7 +595,6 @@ export function PlayerView({ joueur }: { joueur: number }) {
                               <th>Ressource</th>
                               <th>Bâtiments</th>
                               <th>Aménagements</th>
-                              <th>Nourr - été</th>
                               <th>Autres</th>
                               <th>Villageois</th>
                               <th>Conso. habitation</th>
@@ -579,7 +602,24 @@ export function PlayerView({ joueur }: { joueur: number }) {
                             </tr>
                           </thead>
                           <tbody>
-                            {resV.map((r) => {
+                            {lignesV.map((l) => {
+                              if (l.kind === 'ete') {
+                                return (
+                                  <tr key="nourr-ete" className="muted">
+                                    <td><strong>Nourr - été</strong></td>
+                                    <td>—</td>
+                                    <td>{nEteAm !== 0 ? fmtNum(nEteAm) : '—'}</td>
+                                    <td>{nEteAut !== 0 ? fmtNum(nEteAut) : '—'}</td>
+                                    <td>—</td>
+                                    <td>—</td>
+                                    <td>
+                                      <strong>{fmtNum(nEteTot)}</strong>{' '}
+                                      <span className="muted small">(créditée en été seulement)</span>
+                                    </td>
+                                  </tr>
+                                )
+                              }
+                              const r = l.r
                               const col = (d: Record<string, number>) =>
                                 (d[r] ?? 0) === 0 ? '—' : fmtNum(d[r] ?? 0)
                               const t = pv.total[r] ?? 0
@@ -588,7 +628,6 @@ export function PlayerView({ joueur }: { joueur: number }) {
                                   <td><strong>{r}</strong></td>
                                   <td>{col(pv.batiments)}</td>
                                   <td>{col(pv.amenagements)}</td>
-                                  <td>{col(pv.nourrEte)}</td>
                                   <td>{col(pv.autres)}</td>
                                   <td>{col(pv.habitants)}</td>
                                   <td className={(pv.consoVille[r] ?? 0) < 0 ? 'neg' : ''}>
@@ -655,7 +694,6 @@ export function PlayerView({ joueur }: { joueur: number }) {
             ['Habitants', prodDetail.habitants],
             ['Bâtiments', prodDetail.batiments],
             ['Aménagements', prodDetail.amenagements],
-            ['Nourr - été', prodDetail.nourrEte],
             ['Autres', prodDetail.autres],
             ['Régimes & cultures', prodDetail.regimesCultures],
             ['Faction', prodDetail.faction],
@@ -663,20 +701,37 @@ export function PlayerView({ joueur }: { joueur: number }) {
             ['Conso villes', prodDetail.habitations],
             ['Vassalité', prodDetail.vassalite],
           ]
+          // « Nourr - été » en LIGNE (comme dans le classeur), pas en
+          // colonne : sources séparées — Aménagements (Champ, Rizière) +
+          // Autres (lignes « Nourr - été »). Potentiel affiché en toute
+          // saison (planification), crédit au stock UNIQUEMENT en été.
+          const nEteAmJ = p.villes.reduce(
+            (s, v) => s + (effetsNourrEteAmenagementsVille(v, C.config)['Nourriture'] ?? 0), 0)
+          const nEteAutJ = p.villes.reduce(
+            (s, v) => s + (effetsNourrEteAutresVille(v)['Nourriture'] ?? 0), 0)
+          const nEteTotJ = nEteAmJ + nEteAutJ
           const prov = provenancesApports(state, p, C)
           const res = C.ressources.filter((r) =>
             (prodDetail.total[r] ?? 0) !== 0 || (prov[r] ?? []).length > 0)
-          if (res.length === 0) {
+          if (res.length === 0 && nEteTotJ === 0) {
             return (
               <p className="muted">
                 Aucun apport par tour pour l'instant : la production de ce pays est
                 nulle sur tous les canaux (base, villageois, bâtiments, aménagements,
-                nourr - été, autres, lois de régime/culture, faction, cités libres, consommations,
-                vassalité).
+                nourriture d'été, autres, lois de régime/culture, faction, cités libres,
+                consommations, vassalité).
               </p>
             )
           }
           const val = (d: Record<string, number>, r: string) => d[r] ?? 0
+          // Lignes du tableau : chaque ressource + la ligne « Nourr - été »
+          // juste après la Nourriture (ou en première ligne s'il n'y en a pas).
+          const lignesR: Array<{ kind: 'res'; r: string } | { kind: 'ete' }> = []
+          for (const r of res) {
+            lignesR.push({ kind: 'res', r })
+            if (r === 'Nourriture' && nEteTotJ !== 0) lignesR.push({ kind: 'ete' })
+          }
+          if (nEteTotJ !== 0 && !res.includes('Nourriture')) lignesR.unshift({ kind: 'ete' })
           return (
             <>
               <div className="table-wrap">
@@ -689,19 +744,42 @@ export function PlayerView({ joueur }: { joueur: number }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {res.map((r) => (
-                      <tr key={r}>
-                        <td><strong>{r}</strong></td>
-                        {canaux.map(([label, d]) => (
-                          <td key={label} className={val(d, r) < 0 ? 'neg' : ''}>
-                            {val(d, r) !== 0 ? fmtNum(val(d, r)) : '—'}
+                    {lignesR.map((l) => {
+                      if (l.kind === 'ete') {
+                        return (
+                          <tr key="nourr-ete" className="muted">
+                            <td><strong>Nourr - été</strong></td>
+                            {canaux.map(([label]) => {
+                              const v = label === 'Aménagements' ? nEteAmJ
+                                : label === 'Autres' ? nEteAutJ : 0
+                              return (
+                                <td key={label} className={v < 0 ? 'neg' : ''}>
+                                  {v !== 0 ? fmtNum(v) : '—'}
+                                </td>
+                              )
+                            })}
+                            <td>
+                              <strong>{fmtNum(nEteTotJ)}</strong>{' '}
+                              <span className="muted small">(créditée en été seulement)</span>
+                            </td>
+                          </tr>
+                        )
+                      }
+                      const r = l.r
+                      return (
+                        <tr key={r}>
+                          <td><strong>{r}</strong></td>
+                          {canaux.map(([label, d]) => (
+                            <td key={label} className={val(d, r) < 0 ? 'neg' : ''}>
+                              {val(d, r) !== 0 ? fmtNum(val(d, r)) : '—'}
+                            </td>
+                          ))}
+                          <td className={(prodDetail.total[r] ?? 0) < 0 ? 'neg' : ''}>
+                            <strong>{fmtNum(prodDetail.total[r] ?? 0)}</strong>
                           </td>
-                        ))}
-                        <td className={(prodDetail.total[r] ?? 0) < 0 ? 'neg' : ''}>
-                          <strong>{fmtNum(prodDetail.total[r] ?? 0)}</strong>
-                        </td>
-                      </tr>
-                    ))}
+                        </tr>
+                      )
+                    })}
                   </tbody>
                 </table>
               </div>
@@ -774,19 +852,42 @@ export function PlayerView({ joueur }: { joueur: number }) {
           if (res.length === 0) {
             return <p className="muted">Aucun apport au tour {row.turn}.</p>
           }
+          // Ligne « Nourr - été » (comme dans le classeur) juste après
+          // la Nourriture : valeur d'été créditée ce tour-là (0/en
+          // hiver) ; ses sources détaillées sont visibles dans le récap
+          // « origine de chaque apport » ci-dessus.
+          const lignesD: Array<{ kind: 'res'; r: string } | { kind: 'ete' }> = []
+          for (const r of res) {
+            lignesD.push({ kind: 'res', r })
+            if (r === 'Nourriture' && val(nEte, 'Nourriture') !== 0) lignesD.push({ kind: 'ete' })
+          }
+          if (val(nEte, 'Nourriture') !== 0 && !res.includes('Nourriture')) lignesD.unshift({ kind: 'ete' })
           return (
             <div className="table-wrap">
               <table className="tbl small">
                 <thead>
                   <tr>
                     <th>Ressource</th><th>Production</th><th>Bâtiments</th>
-                    <th>Aménagements</th><th>Nourr - été</th><th>Autres</th>
+                    <th>Aménagements</th><th>Autres</th>
                     <th>Conso. villes</th>
                     <th>Habitants</th><th>Régimes & cultures</th><th>Faction</th><th>Cités libres</th><th>Vassalité</th><th>Total</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {res.map((r) => {
+                  {lignesD.map((l) => {
+                    if (l.kind === 'ete') {
+                      const vEte = val(nEte, 'Nourriture')
+                      return (
+                        <tr key="nourr-ete" className="muted">
+                          <td><strong>Nourr - été</strong></td>
+                          <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+                          <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+                          <td><strong>{fmtNum(vEte)}</strong>{' '}
+                            <span className="muted small">(créditée en été seulement)</span></td>
+                        </tr>
+                      )
+                    }
+                    const r = l.r
                     const total = val(production, r) + val(batiments, r) + val(amen, r)
                       + val(nEte, r) + val(aut, r) + val(hab, r) + val(population, r) + val(vassalite, r) + val(reg, r)
                       + val(fac, r) + val(cl, r)
@@ -796,7 +897,6 @@ export function PlayerView({ joueur }: { joueur: number }) {
                         <td>{fmtNum(val(production, r))}</td>
                         <td>{fmtNum(val(batiments, r))}</td>
                         <td>{fmtNum(val(amen, r))}</td>
-                        <td>{fmtNum(val(nEte, r))}</td>
                         <td>{fmtNum(val(aut, r))}</td>
                         <td className="neg">{val(hab, r) !== 0 ? fmtNum(val(hab, r)) : '—'}</td>
                         <td>{fmtNum(val(population, r))}</td>
@@ -816,7 +916,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
         <p className="muted small">
           Tous les apports du tour sont additionnés : production de base, production
           exacte des bâtiments et aménagements du référentiel, nourriture d'été
-          (canal « Nourr - été », créditée uniquement les tours d'été), lignes
+          (ligne « Nourr - été » du tableau, créditée uniquement les tours d'été,
+          ajoutée à la nourriture générale — ses sources détaillées figurent dans le
+          récap « origine de chaque apport »), lignes
           « Autres », consommation par tour des villes selon leur type et leur rang
           (négative — table « Habitations »), gains des habitants (titres × taxes — toutes
           ressources —, après coefficient « gains crédités au stock »), lois chiffrées des
