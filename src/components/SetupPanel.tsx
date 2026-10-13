@@ -27,7 +27,7 @@ export function SetupPanel() {
   const [setups, setSetups] = useState<SetupLine[]>(() => defaultSetups().map((s, i) => ({
     ...s,
     culture: CULTURES[i % CULTURES.length].nom,
-    villes: ['Capitale', 'Bourg'],
+    villes: ['Capitale'],
   })))
   const [seed, setSeed] = useState<number>(() => newSeed())
   const [mode, setMode] = useState<Mode>('local')

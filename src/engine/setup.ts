@@ -6,11 +6,11 @@
 //  à chaud ensuite, sans aucune contrainte.
 // ══════════════════════════════════════════════════════════════════════
 
-import type { Character, GameState, Player } from './types'
+import type { Character, CiteLibre, GameState, Player } from './types'
 import { makeRng, type Rng } from './rng'
 import { cfgOf, cloneDefaultConfig, peupleDef, type Cfg } from './gameData'
 import type { GameConfig } from '../config/defaultConfig'
-import { computeAgeMax, computeFecondite, isNobleDyn } from './engine'
+import { computeAgeMax, computeFecondite, isNobleDyn, ajouterHabitantsCiteLibre } from './engine'
 import { fullName } from './shared'
 
 export interface SetupLine {
@@ -23,7 +23,8 @@ export interface SetupLine {
   villes: string[]
 }
 
-const DEFAULT_VILLES = ['Capitale', 'Bourg']
+// Par défaut, chaque joueur commence avec UNE ville (« Capitale »).
+const DEFAULT_VILLES = ['Capitale']
 
 /**
  * Crée une partie complète à 8 joueurs à partir des paramètres de setup.
@@ -59,13 +60,43 @@ export function createGame(setups: SetupLine[], seed: number, mode?: 'local' | '
     state.population[n] = makePopulation(player, s, rng, C)
   }
   state.rngState = rng.state()
+
+  // Cités libres : AUTANT de cités libres que de joueurs. Chaque cité
+  // démarre avec 50 habitants (adultes Chasseurs — Nourriture ×2 pour
+  // les cités libres), un type de la table « Cités libres » du
+  // référentiel (tournant), une culture au tournant et des taxes
+  // moyennes. Tout est modifiable ensuite dans l'onglet
+  // « 🗼 Cités libres ».
+  const typesCites = C.config.citesLibres ?? []
+  state.citesLibres = []
+  for (let i = 0; i < state.players.length; i++) {
+    const cite: CiteLibre = {
+      nom: `Cité libre ${i + 1}`,
+      type: typesCites.length > 0 ? typesCites[i % typesCites.length].type : 'Ville',
+      culture: C.cultures[i % Math.max(1, C.cultures.length)]?.nom ?? '',
+      taxes: 'Moyenne',
+      suzerain: null,
+      emissaires: {},
+      population: [],
+    }
+    state.citesLibres.push(cite)
+    ajouterHabitantsCiteLibre(state, cite, 50, C)
+  }
+  state.log.push({
+    turn: 1, type: 'Système', joueur: null,
+    texte: `🗼 ${state.citesLibres.length} cités libres créées (une par joueur) — chacune démarre avec 50 habitants (Chasseurs : Nourriture ×2). Chaque joueur démarre avec 1 ville de 50 habitants et 100 Nourriture, 80 Or, 15 Bois.`,
+  })
   return state
 }
 
 export function makePlayer(n: number, s: SetupLine, C: Cfg): Player {
   const resources: Record<string, { stock: number; prod: number }> = {}
   for (const r of C.ressources) {
-    resources[r] = { stock: r === 'Nourriture' ? 50 : r === 'Or' ? 20 : 0, prod: 0 }
+    // Stocks de départ du classeur : 100 Nourriture, 80 Or, 15 Bois.
+    resources[r] = {
+      stock: r === 'Nourriture' ? 100 : r === 'Or' ? 80 : r === 'Bois' ? 15 : 0,
+      prod: 0,
+    }
   }
   const peuples = C.peuples
   return {
@@ -294,7 +325,7 @@ export function defaultSetups(): SetupLine[] {
     regime: C.regimes[0]?.nom ?? 'Monarchie',
     taillePopulation: 50,
     pourcentageMariages: 40,
-    villes: i === 0 ? ['Capitale', 'Bourg'] : ['Capitale'],
+    villes: ['Capitale'],
   }))
 }
 
