@@ -54,7 +54,7 @@ a { color: var(--accent); }
 h4 { font-size: 14.5px; margin: 14px 0 8px; color: var(--text); font-weight: 600; }
 ol, ul { margin: 6px 0; padding-left: 22px; }
 
-.app { max-width: 1160px; margin: 0 auto; padding: 18px 22px 70px; }
+.app { margin: 0 auto; padding: 18px 22px 70px; } /* pleine largeur (max-width 1160px retiré) */
 
 .header {
   display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
