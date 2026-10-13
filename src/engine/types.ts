@@ -262,13 +262,19 @@ export interface LogEntry {
  *  Les événements et cartes dynastie du tour ne sont pas inclus :
  *  ils figurent dans le journal du tour. */
 export interface ApportsTour {
-  /** production de base (l'été double la Nourriture) */
+  /** production de base du pays (nourriture générale : jamais doublée) */
   production: Record<string, number>
   /** effets automatiques des bâtiments (engine/batiments.ts) */
   batiments: Record<string, number>
-  /** effets des aménagements de terrain (engine/amenagements.ts).
-   *  Champ optionnel : absent des historiques d'avant l'ajout des aménagements. */
+  /** effets des aménagements de terrain (engine/amenagements.ts),
+   *  HORS production d'été. Champ optionnel : absent des historiques
+   *  d'avant l'ajout des aménagements. */
   amenagements?: Record<string, number>
+  /** nourriture d'ÉTÉ (ligne « Nourr - été » du classeur : aménagements
+   *  Champ/Rizière + lignes « Autres » « Nourr - été ») — créditée au
+   *  stock de Nourriture uniquement pendant l'été (0 sinon).
+   *  Champ optionnel : absent des historiques d'avant le canal. */
+  nourrEte?: Record<string, number>
   /** lignes « Autres » des villes (ressource × nombre × bonus — engine/autres.ts).
    *  Champ optionnel : absent des historiques d'avant l'ajout de la catégorie. */
   autres?: Record<string, number>

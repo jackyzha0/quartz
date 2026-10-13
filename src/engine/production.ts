@@ -20,23 +20,29 @@ import { cfgOf, type Cfg } from './gameData'
 import { makeRng } from './rng'
 import { calculerGainsPopulation, detailGainsVille } from './economie'
 import { effetsBatimentsVille, detailsBatimentsJoueur, tourismeStatiqueBatiment } from './batiments'
-import { effetsAmenagementsVille, detailsAmenagementsJoueur } from './amenagements'
-import { effetsAutresVille, detailsAutresJoueur } from './autres'
+import { effetsAmenagementsVille, effetsNourrEteAmenagementsVille, detailsAmenagementsJoueur } from './amenagements'
+import { effetsAutresVille, effetsNourrEteAutresVille, estNourrEte, detailsAutresJoueur } from './autres'
 import { effetsRegime, effetsCulturePays, detailCulturePays } from './regimes'
 import { effetsFaction } from './factions'
 import { citesLibresDe, detailCiteLibre } from './citesLibres'
 import { consommationsPays, consommationsVille, nomRang } from './habitations'
 
 export interface ProductionDetail {
-  /** production de base (l'Été double la Nourriture, comme le moteur) */
+  /** production de base du pays (stockée dans resources[r].prod) — la
+   *  nourriture générale n'est jamais doublée : la nourriture d'été est
+   *  une production séparée (canal nourrEte) */
   base: Record<string, number>
   /** gains d'habitants (titres × taxes — toutes ressources —, − consommation)
    *  × gainsCrediteStock */
   habitants: Record<string, number>
   /** effets automatiques des bâtiments */
   batiments: Record<string, number>
-  /** effets des aménagements de terrain */
+  /** effets des aménagements de terrain (HORS production d'été) */
   amenagements: Record<string, number>
+  /** nourriture d'ÉTÉ (ligne « Nourr - été » du classeur : aménagements
+   *  Champ/Rizière + lignes « Autres » « Nourr - été ») — créditée au
+   *  stock de Nourriture uniquement en été (0 en hiver) */
+  nourrEte: Record<string, number>
   /** lignes « Autres » des villes (ressource × nombre × bonus) */
   autres: Record<string, number>
   /** lois chiffrées du régime et règle de pays de la culture
@@ -71,12 +77,12 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
   const coefGains = C.p.gainsCrediteStock
   const prelevement = C.p.vassalPrelevement
 
-  // Base : production propre + double Nourriture en été (étape 3 du moteur)
+  // Base : production propre du pays (la nourriture générale n'est
+  //  JAMAIS doublée — l'été n'ajoute que la production « Nourr - été »,
+  //  à part, ci-dessous).
   const base: Record<string, number> = {}
   for (const [res, rs] of Object.entries(p.resources)) {
-    let v = rs.prod
-    if (res === 'Nourriture' && saison === 'Été') v *= 2
-    if (v !== 0) base[res] = v
+    if (rs.prod !== 0) base[res] = rs.prod
   }
 
   // Habitants : gains propres (avant tribut) × coefficient de crédit
@@ -85,8 +91,8 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     if (v !== 0) habitants[res] = v * coefGains
   }
 
-  // Bâtiments + aménagements + autres : effets par tour (non taxés,
-  // non prélevés par la vassalité)
+  // Bâtiments + aménagements (hors été) + autres : effets par tour
+  // (non taxés, non prélevés par la vassalité)
   const batiments: Record<string, number> = {}
   const amenagements: Record<string, number> = {}
   const autres: Record<string, number> = {}
@@ -99,6 +105,22 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     }
     for (const [res, v] of Object.entries(effetsAutresVille(ville))) {
       autres[res] = (autres[res] ?? 0) + v
+    }
+  }
+
+  // Nourr - été : production de NOURRITURE D'ÉTÉ (ligne « Nourr - été »
+  //  du classeur) — aménagements d'été (Champ, Rizière) + lignes
+  //  « Autres » « Nourr - été ». Créditée au stock UNIQUEMENT en été
+  //  (0 en hiver) ; ajoutée à la nourriture générale, jamais doublée.
+  const nourrEte: Record<string, number> = {}
+  if (saison === 'Été') {
+    for (const ville of p.villes) {
+      for (const [res, v] of Object.entries(effetsNourrEteAmenagementsVille(ville, C.config))) {
+        nourrEte[res] = (nourrEte[res] ?? 0) + v
+      }
+      for (const [res, v] of Object.entries(effetsNourrEteAutresVille(ville))) {
+        nourrEte[res] = (nourrEte[res] ?? 0) + v
+      }
     }
   }
 
@@ -155,12 +177,12 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
 
   // Total
   const total: Record<string, number> = {}
-  for (const canal of [base, habitants, batiments, amenagements, autres, regimesCultures, habitations, faction, citesLibres, vassalite]) {
+  for (const canal of [base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, vassalite]) {
     for (const [res, v] of Object.entries(canal)) {
       total[res] = (total[res] ?? 0) + v
     }
   }
-  return { base, habitants, batiments, amenagements, autres, regimesCultures, habitations, faction, citesLibres, vassalite, total }
+  return { base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, vassalite, total }
 }
 
 // ══════════════════════════════════════════════════════════════════════
@@ -176,8 +198,12 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
 export interface ProductionVilleDetail {
   /** effets automatiques des bâtiments de la ville */
   batiments: Record<string, number>
-  /** effets des aménagements de terrain (saison pris en compte) */
+  /** effets des aménagements de terrain, HORS production d'été */
   amenagements: Record<string, number>
+  /** nourriture d'ÉTÉ de la ville (ligne « Nourr - été » du classeur :
+   *  aménagements Champ/Rizière + lignes « Autres » « Nourr - été ») —
+   *  créditée uniquement en été (0 en hiver) */
+  nourrEte: Record<string, number>
   /** lignes « Autres » de la ville (ressource × nombre × bonus) */
   autres: Record<string, number>
   /** villageois (titres × taxes − consommation) × gainsCrediteStock */
@@ -198,6 +224,16 @@ export function productionVille(
   const coef = C.p.gainsCrediteStock
   const batiments = effetsBatimentsVille(ville, C)
   const amenagements = effetsAmenagementsVille(ville, saison, C.config)
+  // Nourr - été de la ville : production d'été (Champ, Rizière…) +
+  // lignes « Autres » « Nourr - été » — créditée uniquement en été.
+  const nourrEte: Record<string, number> = {}
+  if (saison === 'Été') {
+    for (const src of [effetsNourrEteAmenagementsVille(ville, C.config), effetsNourrEteAutresVille(ville)]) {
+      for (const [res, v] of Object.entries(src)) {
+        nourrEte[res] = (nourrEte[res] ?? 0) + v
+      }
+    }
+  }
   const autres = effetsAutresVille(ville)
   const habitants: Record<string, number> = {}
   for (const [res, v] of Object.entries(detailGainsVille(state, p, ville, C).net)) {
@@ -205,12 +241,12 @@ export function productionVille(
   }
   const consoVille = consommationsVille(ville, C)
   const total: Record<string, number> = {}
-  for (const canal of [batiments, amenagements, autres, habitants, consoVille]) {
+  for (const canal of [batiments, amenagements, nourrEte, autres, habitants, consoVille]) {
     for (const [res, v] of Object.entries(canal)) {
       total[res] = (total[res] ?? 0) + v
     }
   }
-  return { batiments, amenagements, autres, habitants, consoVille, total }
+  return { batiments, amenagements, nourrEte, autres, habitants, consoVille, total }
 }
 
 /** Attrait migratoire d'une ville : Tourisme STATIQUE de ses bâtiments
@@ -252,7 +288,7 @@ export function attraitMaxMonde(state: GameState): number {
 
 /** Canal d'un apport (colonne du récap ressources). */
 export type CanalApport =
-  | 'Base' | 'Habitants' | 'Bâtiments' | 'Aménagements' | 'Autres'
+  | 'Base' | 'Habitants' | 'Bâtiments' | 'Aménagements' | 'Nourr - été' | 'Autres'
   | 'Régimes & cultures' | 'Conso villes' | 'Cités libres' | 'Vassalité'
 
 export interface ProvenanceApport {
@@ -278,12 +314,9 @@ export function provenancesApports(
     ;(out[res] ?? (out[res] = [])).push({ canal, origine, valeur })
   }
 
-  // Base : production propre du pays (×2 Nourriture en été)
+  // Base : production propre du pays (nourriture générale, jamais doublée)
   for (const [res, rs] of Object.entries(p.resources)) {
-    let v = rs.prod
-    if (res === 'Nourriture' && saison === 'Été') v *= 2
-    push(res, 'Base', res === 'Nourriture' && saison === 'Été'
-      ? 'production propre du pays (×2 en été)' : 'production propre du pays', v)
+    if (rs.prod !== 0) push(res, 'Base', 'production propre du pays', rs.prod)
   }
 
   // Habitants : villageois de chaque ville (titres × taxes − conso)
@@ -303,16 +336,38 @@ export function provenancesApports(
     }
   }
 
-  // Aménagements (saison prise en compte — Champ/Rizière : été seulement)
+  // Aménagements (HORS production d'été — canal séparé « Nourr - été »)
   for (const l of detailsAmenagementsJoueur(p, saison, C.config)) {
+    if (l.eteSeulement) continue // → canal « Nourr - été »
     for (const [res, v] of Object.entries(l.effets)) {
       push(res, 'Aménagements',
-        `${l.nom} (${l.villes.join(', ')})${l.horsSaison ? ' — été seulement' : ''}`, v)
+        `${l.nom} (${l.villes.join(', ')})`, v)
     }
   }
 
-  // Autres (source × ressource)
+  // Nourr - été : production de NOURRITURE D'ÉTÉ (ligne « Nourr - été »
+  //  du classeur) — aménagements d'été (Champ, Rizière) et lignes
+  //  « Autres » de ressource « Nourr - été ». Créditée uniquement en
+  //  été (0 en hiver), en plus de la nourriture générale.
+  if (saison === 'Été') {
+    for (const l of detailsAmenagementsJoueur(p, saison, C.config)) {
+      if (!l.eteSeulement) continue
+      for (const [res, v] of Object.entries(l.effets)) {
+        push(res, 'Nourr - été',
+          `${l.nom} (${l.villes.join(', ')}) — nourriture d'été, créditée en été`, v)
+      }
+    }
+    for (const l of detailsAutresJoueur(p)) {
+      if (!estNourrEte(l.ressource)) continue
+      push('Nourriture', 'Nourr - été',
+        `${l.source || 'sans source'} (${l.villes.join(', ')}) : ${l.nombre} × ${l.bonus} — nourriture d'été`, l.effets)
+    }
+  }
+
+  // Autres (source × ressource) — hors lignes « Nourr - été » (canal
+  //  dédié, été seulement)
   for (const l of detailsAutresJoueur(p)) {
+    if (estNourrEte(l.ressource)) continue
     push(l.ressource, 'Autres',
       `${l.source || 'sans source'} (${l.villes.join(', ')}) : ${l.nombre} × ${l.bonus}`, l.effets)
   }

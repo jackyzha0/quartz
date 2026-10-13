@@ -16,13 +16,36 @@ export function effetAutreLigne(l: AutreDef): number {
   return (l.nombre ?? 0) * (l.bonus ?? 0)
 }
 
-/** Effets par tour cumulés des lignes « Autres » d'une ville. */
+/** Une ligne « Autre » porte-t-elle sur la NOURRITURE D'ÉTÉ (ligne
+ *  « Nourr - été » du classeur) ? Son effet n'est crédité au stock de
+ *  Nourriture QUE pendant l'été — c'est une production d'été, pas de
+ *  la nourriture générale. */
+export function estNourrEte(ressource: string | undefined): boolean {
+  return !!ressource && /^\s*nourr[a-z]*\s*[-–]?\s*été\s*$/i.test(ressource.trim().replace(/\s+/g, ' '))
+    || !!ressource && /^nourriture\s*(d['’]?)?\s*été$/i.test(ressource.trim().replace(/\s+/g, ' '))
+}
+
+/** Effets par tour cumulés des lignes « Autres » d'une ville (hors
+ *  production d'été, créditée à part uniquement en été). */
 export function effetsAutresVille(ville: City): Record<string, number> {
   const out: Record<string, number> = {}
   for (const l of ville.autres ?? []) {
-    if (!l.ressource) continue
+    if (!l.ressource || estNourrEte(l.ressource)) continue
     const v = effetAutreLigne(l)
     if (v !== 0) out[l.ressource] = (out[l.ressource] ?? 0) + v
+  }
+  return out
+}
+
+/** Production d'ÉTÉ des lignes « Autres » d'une ville (ressource
+ *  « Nourr - été » du classeur) : nombre × bonus, crédité au stock de
+ *  Nourriture uniquement pendant l'été. */
+export function effetsNourrEteAutresVille(ville: City): Record<string, number> {
+  const out: Record<string, number> = {}
+  for (const l of ville.autres ?? []) {
+    if (!l.ressource || !estNourrEte(l.ressource)) continue
+    const v = effetAutreLigne(l)
+    if (v !== 0) out['Nourriture'] = (out['Nourriture'] ?? 0) + v
   }
   return out
 }

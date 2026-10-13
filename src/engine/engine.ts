@@ -32,8 +32,8 @@ import { cfgOf } from './gameData'
 import { saisonForTurn, applyEventEffect, applyDynastieCard } from './saisons'
 import { calculerGainsPopulation } from './economie'
 import { appliquerEffetsBatiments } from './batiments'
-import { appliquerEffetsAmenagements } from './amenagements'
-import { appliquerEffetsAutres } from './autres'
+import { appliquerEffetsAmenagements, effetsNourrEteAmenagementsVille } from './amenagements'
+import { appliquerEffetsAutres, effetsNourrEteAutresVille } from './autres'
 import { appliquerEffetsRegimesCultures } from './regimes'
 import { appliquerEffetsFaction } from './factions'
 import { appliquerTaxesCitesLibres } from './citesLibres'
@@ -83,9 +83,11 @@ export function runTurn(state: GameState): GameState {
   }
 
   // 3. Gains de population par joueur (CalculerGainsPopulation), puis
-  //    production de base : stock += prod (lignes 18-28 des J{n}) ; l'été
-  //    double la production de Nourriture. Les apports sont tracés pour
-  //    le récap ressources (history.apports).
+  //    production de base : stock += prod (lignes 18-28 des J{n}).
+  //    ATTENTION : la nourriture générale n'est JAMAIS doublée — la
+  //    nourriture d'été est une production SÉPARÉE (ligne « Nourr - été »
+  //    du classeur), créditée à l'étape 3quinquies-bis, en été seulement.
+  //    Les apports sont tracés pour le récap ressources (history.apports).
   const gainsParJoueur: Record<number, Record<string, number>> = {}
   for (const p of state.players) {
     gainsParJoueur[p.n] = calculerGainsPopulation(state, p, rng)
@@ -98,14 +100,6 @@ export function runTurn(state: GameState): GameState {
       if (!rs) continue
       rs.stock += rs.prod
       prodTot[r] = rs.prod
-    }
-    if (state.saison === 'Été') {
-      // bonus Nourr - été
-      const rs = p.resources['Nourriture']
-      if (rs) {
-        rs.stock += rs.prod
-        prodTot['Nourriture'] = (prodTot['Nourriture'] ?? 0) + rs.prod
-      }
     }
     prodParJoueur[p.n] = prodTot
   }
@@ -139,11 +133,38 @@ export function runTurn(state: GameState): GameState {
   }
 
   // 3quinquies. Aménagements de terrain : production exacte du référentiel
-  // (table `constructions`), dépendant de la saison (Champ et Rizière ne
-  // produisent qu'en été).
+  // (table `constructions`), HORS production d'été (Champ et Rizière ne
+  // produisent qu'en été — étape suivante).
   const amenagementsParJoueur: Record<number, Record<string, number>> = {}
   for (const p of state.players) {
     amenagementsParJoueur[p.n] = appliquerEffetsAmenagements(p, state.saison, C.config)
+  }
+
+  // 3quinquies-bis. Nourr - été : production de NOURRITURE D'ÉTÉ —
+  // aménagements d'été (Champ, Rizière) + lignes « Autres » de ressource
+  // « Nourr - été ». Créditée au stock de Nourriture UNIQUEMENT quand la
+  // saison est Été (macro FinDeTour du classeur : prodSummer = ligne
+  // « Nourr - été », S'AJOUTE à la nourriture générale — jamais un
+  // doublage de celle-ci).
+  const nourrEteParJoueur: Record<number, Record<string, number>> = {}
+  for (const p of state.players) {
+    const out: Record<string, number> = {}
+    if (state.saison === 'Été') {
+      for (const ville of p.villes) {
+        for (const [res, v] of Object.entries(effetsNourrEteAmenagementsVille(ville, C.config))) {
+          out[res] = (out[res] ?? 0) + v
+        }
+        for (const [res, v] of Object.entries(effetsNourrEteAutresVille(ville))) {
+          out[res] = (out[res] ?? 0) + v
+        }
+      }
+      for (const [res, v] of Object.entries(out)) {
+        if (!v) continue
+        const rs = p.resources[res]
+        if (rs) rs.stock += v
+      }
+    }
+    nourrEteParJoueur[p.n] = out
   }
 
   // 3sexies. Autres : lignes « Autres » des villes (bloc « Autres » du
@@ -211,6 +232,7 @@ export function runTurn(state: GameState): GameState {
       production: prodParJoueur[p.n] ?? {},
       batiments: batimentsParJoueur[p.n] ?? {},
       amenagements: amenagementsParJoueur[p.n] ?? {},
+      nourrEte: nourrEteParJoueur[p.n] ?? {},
       autres: autresParJoueur[p.n] ?? {},
       regimesCultures: regimesCulturesParJoueur[p.n] ?? {},
       habitations: habitationsParJoueur[p.n] ?? {},
@@ -243,7 +265,7 @@ export {
 export {
   AMENAGEMENTS, amenagementDef, amenagementRef, amenagementsDefs, aCampDeBatisseurs,
   coutAmenagement, effetsTourAmenagement, effetsAmenagementsVille,
-  appliquerEffetsAmenagements,
+  effetsNourrEteAmenagementsVille, appliquerEffetsAmenagements,
   detailsAmenagementsJoueur, type LigneAmenagement, type AmenagementDef,
 } from './amenagements'
 export {
@@ -253,7 +275,8 @@ export {
   reductionCampDeBatisseurs, type ConstructionRef,
 } from './constructions'
 export {
-  effetAutreLigne, effetsAutresVille, appliquerEffetsAutres,
+  effetAutreLigne, effetsAutresVille, effetsNourrEteAutresVille, estNourrEte,
+  appliquerEffetsAutres,
   detailsAutresJoueur, type LigneAutre,
 } from './autres'
 export {

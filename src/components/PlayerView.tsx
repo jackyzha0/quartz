@@ -557,6 +557,13 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   return (
                     <div>
                       <div className="mini-title">Production de la ville</div>
+                      <p className="muted small">
+                        Nourriture générale (aménagements, bâtiments, villageois) et nourriture
+                        d'été sont DIFFÉRENCIÉES, comme la ligne « Nourr - été » du classeur :
+                        la colonne « Nourr - été » (Champ, Rizière, lignes « Autres » de
+                        ressource « Nourr - été ») n'est créditée qu'en été, en plus de la
+                        nourriture générale — jamais un doublage.
+                      </p>
                       <div className="table-wrap">
                         <table className="tbl small">
                           <thead>
@@ -564,6 +571,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                               <th>Ressource</th>
                               <th>Bâtiments</th>
                               <th>Aménagements</th>
+                              <th>Nourr - été</th>
                               <th>Autres</th>
                               <th>Villageois</th>
                               <th>Conso. habitation</th>
@@ -580,6 +588,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                                   <td><strong>{r}</strong></td>
                                   <td>{col(pv.batiments)}</td>
                                   <td>{col(pv.amenagements)}</td>
+                                  <td>{col(pv.nourrEte)}</td>
                                   <td>{col(pv.autres)}</td>
                                   <td>{col(pv.habitants)}</td>
                                   <td className={(pv.consoVille[r] ?? 0) < 0 ? 'neg' : ''}>
@@ -646,6 +655,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
             ['Habitants', prodDetail.habitants],
             ['Bâtiments', prodDetail.batiments],
             ['Aménagements', prodDetail.amenagements],
+            ['Nourr - été', prodDetail.nourrEte],
             ['Autres', prodDetail.autres],
             ['Régimes & cultures', prodDetail.regimesCultures],
             ['Faction', prodDetail.faction],
@@ -661,7 +671,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
               <p className="muted">
                 Aucun apport par tour pour l'instant : la production de ce pays est
                 nulle sur tous les canaux (base, villageois, bâtiments, aménagements,
-                autres, lois de régime/culture, faction, cités libres, consommations,
+                nourr - été, autres, lois de régime/culture, faction, cités libres, consommations,
                 vassalité).
               </p>
             )
@@ -723,17 +733,16 @@ export function PlayerView({ joueur }: { joueur: number }) {
         })()}
         <p className="muted small">
           Récapitulatif CALCULÉ du prochain tour, canal par canal — production
-          de base du pays (l'été double la Nourriture), villageois (titres ×
-          taxes, toutes ressources), bâtiments et aménagements du référentiel
-          exact, lignes « Autres », lois chiffrées du régime et règle de pays
-          de la culture, taxes des cités libres sous suzeraineté (Chasseurs
-          ×2 Nourriture), consommation par tour des habitations et tribut de
-          vassalité. La section « D'où vient chaque ressource ? » détaille
-          l'origine de chaque apport (bâtiment, villageois, loi, ville…).
-          Tous ces effets sont appliqués automatiquement à chaque fin de
-          tour. Les aménagements de terrain (Champ, Rizière) ne produisent
-          qu'en été ; la garnison et le Tourisme des bâtiments sont des
-          valeurs fixes acquises à la construction.
+          de base du pays, villageois (titres × taxes, toutes ressources), bâtiments et
+          aménagements du référentiel exact, nourriture d'été (ligne « Nourr - été »
+          du classeur : Champ et Rizière, lignes « Autres » « Nourr - été » — créditée
+          UNIQUEMENT en été, en plus de la nourriture générale, jamais un doublage),
+          lignes « Autres », lois chiffrées du régime et règle de pays de la culture,
+          taxes des cités libres sous suzeraineté (Chasseurs ×2 Nourriture),
+          consommation par tour des habitations et tribut de vassalité. La section
+          « D'où vient chaque ressource ? » détaille l'origine de chaque apport
+          (bâtiment, villageois, loi, ville…). Tous ces effets sont appliqués
+          automatiquement à chaque fin de tour.
         </p>
       </Card>
 
@@ -749,8 +758,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
               </p>
             )
           }
-          const { production, batiments, amenagements, autres, population, vassalite, regimesCultures, habitations, faction, citesLibres } = row.apports
+          const { production, batiments, amenagements, nourrEte, autres, population, vassalite, regimesCultures, habitations, faction, citesLibres } = row.apports
           const amen = amenagements ?? {}
+          const nEte = nourrEte ?? {}
           const aut = autres ?? {}
           const reg = regimesCultures ?? {}
           const hab = habitations ?? {}
@@ -759,7 +769,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
           const val = (d: Record<string, number>, r: string) => d[r] ?? 0
           const res = C.ressources.filter((r) =>
             val(production, r) !== 0 || val(batiments, r) !== 0 || val(amen, r) !== 0
-            || val(aut, r) !== 0 || val(hab, r) !== 0 || val(population, r) !== 0 || val(vassalite, r) !== 0
+            || val(nEte, r) !== 0 || val(aut, r) !== 0 || val(hab, r) !== 0 || val(population, r) !== 0 || val(vassalite, r) !== 0
             || val(reg, r) !== 0 || val(fac, r) !== 0 || val(cl, r) !== 0)
           if (res.length === 0) {
             return <p className="muted">Aucun apport au tour {row.turn}.</p>
@@ -770,7 +780,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                 <thead>
                   <tr>
                     <th>Ressource</th><th>Production</th><th>Bâtiments</th>
-                    <th>Aménagements</th><th>Autres</th>
+                    <th>Aménagements</th><th>Nourr - été</th><th>Autres</th>
                     <th>Conso. villes</th>
                     <th>Habitants</th><th>Régimes & cultures</th><th>Faction</th><th>Cités libres</th><th>Vassalité</th><th>Total</th>
                   </tr>
@@ -778,7 +788,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                 <tbody>
                   {res.map((r) => {
                     const total = val(production, r) + val(batiments, r) + val(amen, r)
-                      + val(aut, r) + val(hab, r) + val(population, r) + val(vassalite, r) + val(reg, r)
+                      + val(nEte, r) + val(aut, r) + val(hab, r) + val(population, r) + val(vassalite, r) + val(reg, r)
                       + val(fac, r) + val(cl, r)
                     return (
                       <tr key={r}>
@@ -786,6 +796,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                         <td>{fmtNum(val(production, r))}</td>
                         <td>{fmtNum(val(batiments, r))}</td>
                         <td>{fmtNum(val(amen, r))}</td>
+                        <td>{fmtNum(val(nEte, r))}</td>
                         <td>{fmtNum(val(aut, r))}</td>
                         <td className="neg">{val(hab, r) !== 0 ? fmtNum(val(hab, r)) : '—'}</td>
                         <td>{fmtNum(val(population, r))}</td>
@@ -803,9 +814,10 @@ export function PlayerView({ joueur }: { joueur: number }) {
           )
         })()}
         <p className="muted small">
-          Tous les apports du tour sont additionnés : production de base (l'été double la
-          Nourriture), production exacte des bâtiments et aménagements du référentiel,
-          lignes « Autres », consommation par tour des villes selon leur type et leur rang
+          Tous les apports du tour sont additionnés : production de base, production
+          exacte des bâtiments et aménagements du référentiel, nourriture d'été
+          (canal « Nourr - été », créditée uniquement les tours d'été), lignes
+          « Autres », consommation par tour des villes selon leur type et leur rang
           (négative — table « Habitations »), gains des habitants (titres × taxes — toutes
           ressources —, après coefficient « gains crédités au stock »), lois chiffrées des
           régimes et cultures (bonus de capitale, etc.), taxes des cités libres sous

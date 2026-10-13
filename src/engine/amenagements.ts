@@ -89,11 +89,34 @@ export function effetsTourAmenagement(nom: string, saison: Saison, cfg?: GameCon
   return effetsConstructionRef(ref)
 }
 
-/** Effets par tour cumulés des aménagements d'une ville. */
+/** Effets par tour des aménagements d'une ville, HORS production d'été :
+ *  la « nourriture d'été » (Champ, Rizière — production exacte du
+ *  référentiel, texte « … par tour en été ») est une production
+ *  SÉPARÉE, créditée uniquement en été (fonction
+ *  effetsNourrEteAmenagementsVille ci-dessous) — jamais doublée ni
+ *  mélangée avec la nourriture générale. */
 export function effetsAmenagementsVille(ville: City, saison: Saison, cfg?: GameConfig): Record<string, number> {
   const out: Record<string, number> = {}
   for (const nom of ville.amenagements ?? []) {
-    for (const [res, v] of Object.entries(effetsTourAmenagement(nom, saison, cfg))) {
+    const ref = amenagementRef(nom, cfg)
+    if (!ref || eteSeulementRef(ref)) continue // production d'été → canal « Nourr - été »
+    for (const [res, v] of Object.entries(effetsConstructionRef(ref))) {
+      out[res] = (out[res] ?? 0) + v
+    }
+  }
+  return out
+}
+
+/** Production d'ÉTÉ d'une ville (ligne « Nourr - été » du classeur) :
+ *  effets des aménagements qui ne produisent qu'en été (Champ, Rizière).
+ *  Le moteur ne crédite cette production au stock de Nourriture QUE
+ *  pendant l'été (macro FinDeTour : prodSummer = ligne « Nourr - été »). */
+export function effetsNourrEteAmenagementsVille(ville: City, cfg?: GameConfig): Record<string, number> {
+  const out: Record<string, number> = {}
+  for (const nom of ville.amenagements ?? []) {
+    const ref = amenagementRef(nom, cfg)
+    if (!ref || !eteSeulementRef(ref)) continue
+    for (const [res, v] of Object.entries(effetsConstructionRef(ref))) {
       out[res] = (out[res] ?? 0) + v
     }
   }
@@ -125,6 +148,9 @@ export interface LigneAmenagement {
   villes: string[]               // villes qui le possèdent
   effets: Record<string, number>  // flux par tour cumulés (0 si hors saison)
   horsSaison: boolean             // true = ne produit pas à la saison actuelle
+  /** aménagement à production d'été seule (Champ, Rizière) → canal
+   *  « Nourr - été », crédité uniquement en été */
+  eteSeulement?: boolean
 }
 
 /** Détail des aménagements d'un joueur, agrégé par aménagement (pour PlayerView). */
@@ -138,6 +164,7 @@ export function detailsAmenagementsJoueur(p: Player, saison: Saison, cfg?: GameC
         l = {
           nom, terrain: ref?.terrain ?? '—', villes: [], effets: {},
           horsSaison: !!ref && eteSeulementRef(ref) && saison !== 'Été',
+          eteSeulement: !!ref && eteSeulementRef(ref),
         }
         lignes.set(nom, l)
       }
