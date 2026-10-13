@@ -8,16 +8,65 @@ import { useGame } from '../state/store'
 import { cfgOf } from '../engine/gameData'
 import { VICTORY_TEXT } from '../engine/gameData2'
 import { checkVictory } from '../engine/victory'
-import { Card, fmt } from './ui'
+import { Card, fmt, Select } from './ui'
+import { HistogrammeEmpile, CourbeRessource } from './charts'
+import type { GroupeChart, SerieCourbe } from './charts'
 
 const RESSOURCES_VUES = ['Or', 'Nourriture', 'Science', 'Tourisme', 'Garnison', 'Habitants']
+const RESSOURCES_BASE = ['Bétail', 'Bois', 'Charbon', 'Fer', 'Pierre', 'Soie']
 
 export function Dashboard() {
   const { state } = useGame()
+  const [ressourceCourbe, setRessourceCourbe] = React.useState<string>('Or')
   const RESOURCES = state ? cfgOf(state.config).ressources : cfgOf(undefined).ressources
   if (!state) return null
 
   const victory = checkVictory(state)
+
+  // ── Données des histogrammes (stock / production par joueur) ─────────
+  const groupesPour = (ressources: string[]): GroupeChart[] =>
+    ressources.map((r) => ({
+      ressource: r,
+      barres: state.players.map((p) => ({
+        joueur: p.n,
+        nom: p.nom,
+        stock: p.resources[r]?.stock ?? 0,
+        prod: p.resources[r]?.prod ?? 0,
+      })),
+    }))
+
+  const popVivante = (n: number) =>
+    (state.population[n] ?? []).filter((c) => c.statut !== 'Décédé').length
+
+  const groupeHabitants: GroupeChart[] = [{
+    ressource: 'Habitants',
+    barres: state.players.map((p) => ({
+      joueur: p.n,
+      nom: p.nom,
+      stock: popVivante(p.n),
+      prod: 0,
+    })),
+  }]
+
+  // ── Données de la courbe : historique + point « vivant » du tour courant ──
+  const seriesCourbe: SerieCourbe[] = state.players.map((p) => {
+    const pts = state.history
+      .filter((h) => h.joueur === p.n)
+      .sort((a, b) => a.turn - b.turn)
+      .map((h) => ({
+        turn: h.turn,
+        stock: h.stocks[ressourceCourbe] ?? 0,
+        prod: h.prods[ressourceCourbe] ?? 0,
+      }))
+    const live = {
+      turn: state.turn,
+      stock: p.resources[ressourceCourbe]?.stock ?? 0,
+      prod: p.resources[ressourceCourbe]?.prod ?? 0,
+    }
+    if (pts.length === 0 || pts[pts.length - 1].turn !== live.turn) pts.push(live)
+    else pts[pts.length - 1] = live
+    return { joueur: p.n, nom: p.nom, points: pts }
+  })
 
   return (
     <div className="stack">
@@ -63,6 +112,44 @@ export function Dashboard() {
           La Nourriture en négatif est fidèle au classeur d'origine : la production de départ est nulle et
           chaque habitant vivant consomme 1 Nourriture par tour (cf. README §5.3).
         </p>
+      </Card>
+
+      <Card title="Ressources de base — Stock & Production">
+        <HistogrammeEmpile groupes={groupesPour(RESSOURCES_BASE)} />
+        <p className="muted small">
+          Pour chaque joueur : segment coloré = stock, segment gris clair au-dessus = production
+          du tour (les productions négatives, ex. Nourriture, passent sous l'axe zéro).
+        </p>
+      </Card>
+
+      <Card title="Or & Nourriture — Stock & Production">
+        <HistogrammeEmpile groupes={groupesPour(['Or', 'Nourriture'])} />
+      </Card>
+
+      <Card title="Science — Stock & Production">
+        <HistogrammeEmpile groupes={groupesPour(['Science'])} />
+      </Card>
+
+      <Card title="Tourisme — Stock">
+        <HistogrammeEmpile groupes={groupesPour(['Tourisme'])} avecProd={false} />
+      </Card>
+
+      <Card title="Habitants — Stock (population vivante)">
+        <HistogrammeEmpile groupes={groupeHabitants} avecProd={false} />
+        <p className="muted small">Population vivante totale par joueur (décès exclus).</p>
+      </Card>
+
+      <Card
+        title="Évolution par tour — Stock & Production"
+        right={
+          <Select
+            value={ressourceCourbe}
+            options={RESOURCES.map((r) => ({ value: r, label: r }))}
+            onChange={(v) => setRessourceCourbe(v)}
+          />
+        }
+      >
+        <CourbeRessource ressource={ressourceCourbe} series={seriesCourbe} />
       </Card>
 
       <Card title="Cartes dynastie du tour">
