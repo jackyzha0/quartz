@@ -4402,9 +4402,9 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Conquête maritime",
+        "cout": "14",
+        "description": "Déverrouille la construction des bateaux et bâtiments de faction."
       }
     },
     {
@@ -4436,9 +4436,9 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Milices civiles",
+        "cout": "12",
+        "description": "+30 Garnison dans vos habitations."
       }
     },
     {
@@ -4470,9 +4470,9 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Progrès technologiques III",
+        "cout": "14",
+        "description": "Lorsque vous débloquez cette technologie, vous gagnez 14 Sciences."
       }
     },
     {
@@ -4504,9 +4504,9 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "L'Art de la Guerre",
+        "cout": "14",
+        "description": "Vous pouvez posséder une unité militaire supplémentaire."
       }
     },
     {
@@ -4516,7 +4516,7 @@
       "brancheA": [
         {
           "nom": "Développement durable",
-          "cout": "7",
+          "cout": "8",
           "description": "Construire un aménagement coûte 1 Bois de moins."
         },
         {
@@ -4529,12 +4529,12 @@
         {
           "nom": "Colonialisme durable",
           "cout": "6",
-          "description": "Construire une nouvelle habitation coûte 4 Bois de moins."
+          "description": "Construire une nouvelle habitation coûte 5 Bois de moins."
         },
         {
           "nom": "Colonialisme économe",
           "cout": "10",
-          "description": "Construire une nouvelle habitation coûte 15 Or de moins."
+          "description": "Construire une nouvelle habitation coûte 20 Or de moins."
         }
       ],
       "techC": {
@@ -4554,9 +4554,9 @@
           "description": "Votre capitale produit +1 Bois par tour."
         },
         {
-          "nom": "Bergeries",
+          "nom": "Carrieristes",
           "cout": "14",
-          "description": "Votre capitale produit +1 Bétail par tour."
+          "description": "Votre capitale produit +1 Pierre par tour."
         }
       ],
       "brancheB": [
@@ -4568,7 +4568,7 @@
         {
           "nom": "Sédentarisation",
           "cout": "12",
-          "description": "Lorsque vous débloquez ce progrès, ajoutez 15  habitants dans votre capitale."
+          "description": "Lorsque vous débloquez ce progrès, ajoutez 20 habitants dans votre capitale."
         }
       ],
       "techC": {
@@ -4589,7 +4589,7 @@
         },
         {
           "nom": "Usinage",
-          "cout": "7",
+          "cout": "14",
           "description": "Votre capitale génère 1 Charbon par tour."
         }
       ],
@@ -4597,18 +4597,18 @@
         {
           "nom": "Commerce",
           "cout": "6",
-          "description": "Vos marchands vous rapportent 3 Or par tour."
+          "description": "Vous pouvez posséder un marchand supplémentaire."
         },
         {
           "nom": "Commerce lointain",
-          "cout": "8",
-          "description": "Vous pouvez posséder un marchand supplémentaire."
+          "cout": "10",
+          "description": "Vos marchands vous rapportent 3 Or par tour supplémentaires."
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Collecte d'impôts",
+        "cout": "14",
+        "description": "Vous pouvez posséder un marchand supplémentaire. Lorsque vous débloquez cette technologie, recevez 20 Or."
       }
     },
     {
@@ -4640,8 +4640,8 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
+        "nom": "Vassalisation",
+        "cout": "48",
         "description": ""
       }
     },
@@ -4674,8 +4674,8 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
+        "nom": "Identité statique",
+        "cout": "44",
         "description": ""
       }
     },
@@ -4708,9 +4708,9 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Muraille",
+        "cout": "30",
+        "description": "+10 Défense dans vos habitations."
       }
     },
     {
@@ -4742,9 +4742,9 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Recyclage",
+        "cout": "26",
+        "description": "Vous recevez 30 Or. Vos usines produisent +1 Production par tour."
       }
     },
     {
@@ -4776,9 +4776,9 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Assemblées scientifiques",
+        "cout": "34",
+        "description": "Vos habitations produisent +1 Science par tour."
       }
     },
     {
@@ -4810,9 +4810,9 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Exposition universelle",
+        "cout": "32",
+        "description": "Votre capitale peut posséder une merveille supplémentaire. Les merveilles dans votre capitale coûtent 30 Or de moins à construire."
       }
     },
     {
@@ -4844,9 +4844,9 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Coup d'état",
+        "cout": "32",
+        "description": "Lorsque vous menez une bataille, vous pouvez désigner un des sites d'armes de votre adversaire. Il ne pourra pas le jouer pour cette bataille."
       }
     },
     {
@@ -4878,9 +4878,9 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Art de la Guerre",
+        "cout": "66",
+        "description": "Lorsque vous menez une bataille, vous pouvez choisir votre liste de renforts."
       }
     },
     {
@@ -4912,9 +4912,9 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Pré carré",
+        "cout": "82",
+        "description": "+20 Garnison dans chacune de vos habitations. Vos habitations ne peuvent plus être la cible de bombardements."
       }
     },
     {
@@ -5014,9 +5014,9 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Gouvernement",
+        "cout": "78",
+        "description": "Vous pouvez posséder 1 Ministre supplémentaire."
       }
     },
     {
@@ -5048,9 +5048,9 @@
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Machine à vapeur",
+        "cout": "72",
+        "description": "+200 Habitants dans votre capitale."
       }
     },
     {
@@ -5059,32 +5059,32 @@
       "tags": "",
       "brancheA": [
         {
-          "nom": "",
-          "cout": "",
-          "description": ""
+          "nom": "Geste",
+          "cout": "46",
+          "description": "Lorsque vous débloquez cette technologie, recevez 2 Émissaires."
         },
         {
-          "nom": "",
-          "cout": "",
-          "description": ""
+          "nom": "Offrandes",
+          "cout": "58",
+          "description": "Lorsque vous débloquez cette technologie, recevez 3 Émissaires."
         }
       ],
       "brancheB": [
         {
-          "nom": "",
-          "cout": "",
-          "description": ""
+          "nom": "Délégation",
+          "cout": "16",
+          "description": "Recevez 3 Cartes de dynastie."
         },
         {
-          "nom": "",
-          "cout": "",
-          "description": ""
+          "nom": "Ambassade",
+          "cout": "28",
+          "description": "Vous pouvez jouer autant de cartes Dynastie que vous souhaitez à chaque tour."
         }
       ],
       "techC": {
-        "nom": "",
-        "cout": "",
-        "description": ""
+        "nom": "Vassalisation",
+        "cout": "46",
+        "description": "Vous pouvez posséder 1 carte Dynastie supplémentaire. Vous piochez donc une carte Dynastie de plus à chaque tour."
       }
     }
   ],
