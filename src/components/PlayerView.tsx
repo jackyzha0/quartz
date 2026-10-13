@@ -697,6 +697,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
             ['Autres', prodDetail.autres],
             ['Régimes & cultures', prodDetail.regimesCultures],
             ['Faction', prodDetail.faction],
+            ['Progrès', prodDetail.progres],
             ['Cités libres', prodDetail.citesLibres],
             ['Conso villes', prodDetail.habitations],
             ['Vassalité', prodDetail.vassalite],
@@ -717,7 +718,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
             return (
               <p className="muted">
                 Aucun apport par tour pour l'instant : la production de ce pays est
-                nulle sur tous les canaux (base, villageois, bâtiments, aménagements,
+                nulle sur tous les canaux (base, villageois, bâtiments, aménagements, progrès,
                 nourriture d'été, autres, lois de régime/culture, faction, cités libres,
                 consommations, vassalité).
               </p>

@@ -4415,12 +4415,26 @@
         {
           "nom": "Milices civiles I",
           "cout": "6",
-          "description": "+30 garnison dans votre capitale."
+          "description": "+30 garnison dans votre capitale.",
+          "effets": [
+            {
+              "type": "garnison",
+              "montant": 30,
+              "cible": "capitale"
+            }
+          ]
         },
         {
           "nom": "Fortifications solides",
           "cout": "10",
-          "description": "+15 Garnison dans vos habitations."
+          "description": "+15 Garnison dans vos habitations.",
+          "effets": [
+            {
+              "type": "garnison",
+              "montant": 15,
+              "cible": "habitations"
+            }
+          ]
         }
       ],
       "brancheB": [
@@ -4438,7 +4452,14 @@
       "techC": {
         "nom": "Milices civiles",
         "cout": "12",
-        "description": "+30 Garnison dans vos habitations."
+        "description": "+30 Garnison dans vos habitations.",
+        "effets": [
+          {
+            "type": "garnison",
+            "montant": 30,
+            "cible": "habitations"
+          }
+        ]
       }
     },
     {
@@ -4449,30 +4470,65 @@
         {
           "nom": "Progrès technologiques I",
           "cout": "6",
-          "description": "Lorsque vous débloquez cette technologie, vous gagnez 6 Science."
+          "description": "Lorsque vous débloquez cette technologie, vous gagnez 6 Science.",
+          "effets": [
+            {
+              "type": "gain",
+              "montant": 6,
+              "ressource": "Science"
+            }
+          ]
         },
         {
           "nom": "Progrès technologiques II",
           "cout": "10",
-          "description": "Lorsque vous débloquez cette technologie, vous gagnez 10 Science."
+          "description": "Lorsque vous débloquez cette technologie, vous gagnez 10 Science.",
+          "effets": [
+            {
+              "type": "gain",
+              "montant": 10,
+              "ressource": "Science"
+            }
+          ]
         }
       ],
       "brancheB": [
         {
           "nom": "Comprendre la soie",
           "cout": "8",
-          "description": "Votre bâtiment de capitale génère +1 Science par tour."
+          "description": "Votre bâtiment de capitale génère +1 Science par tour.",
+          "effets": [
+            {
+              "type": "prodCapitale",
+              "montant": 1,
+              "ressource": "Science"
+            }
+          ]
         },
         {
           "nom": "Etude astronomique",
           "cout": "12",
-          "description": "Votre capitale produit +1 Science par tour."
+          "description": "Votre capitale produit +1 Science par tour.",
+          "effets": [
+            {
+              "type": "prodCapitale",
+              "montant": 1,
+              "ressource": "Science"
+            }
+          ]
         }
       ],
       "techC": {
         "nom": "Progrès technologiques III",
         "cout": "14",
-        "description": "Lorsque vous débloquez cette technologie, vous gagnez 14 Sciences."
+        "description": "Lorsque vous débloquez cette technologie, vous gagnez 14 Sciences.",
+        "effets": [
+          {
+            "type": "gain",
+            "montant": 14,
+            "ressource": "Science"
+          }
+        ]
       }
     },
     {
@@ -4551,19 +4607,40 @@
         {
           "nom": "Déforestation",
           "cout": "8",
-          "description": "Votre capitale produit +1 Bois par tour."
+          "description": "Votre capitale produit +1 Bois par tour.",
+          "effets": [
+            {
+              "type": "prodCapitale",
+              "montant": 1,
+              "ressource": "Bois"
+            }
+          ]
         },
         {
           "nom": "Carrieristes",
           "cout": "14",
-          "description": "Votre capitale produit +1 Pierre par tour."
+          "description": "Votre capitale produit +1 Pierre par tour.",
+          "effets": [
+            {
+              "type": "prodCapitale",
+              "montant": 1,
+              "ressource": "Pierre"
+            }
+          ]
         }
       ],
       "brancheB": [
         {
           "nom": "Granges",
           "cout": "5",
-          "description": "Votre capitale génère 10 Nourriture par tour."
+          "description": "Votre capitale génère 10 Nourriture par tour.",
+          "effets": [
+            {
+              "type": "prodCapitale",
+              "montant": 10,
+              "ressource": "Nourriture"
+            }
+          ]
         },
         {
           "nom": "Sédentarisation",
@@ -4585,12 +4662,26 @@
         {
           "nom": "Organisation fiscale",
           "cout": "3",
-          "description": "Votre capitale produit +2 Or par tour."
+          "description": "Votre capitale produit +2 Or par tour.",
+          "effets": [
+            {
+              "type": "prodCapitale",
+              "montant": 2,
+              "ressource": "Or"
+            }
+          ]
         },
         {
           "nom": "Usinage",
           "cout": "14",
-          "description": "Votre capitale génère 1 Charbon par tour."
+          "description": "Votre capitale génère 1 Charbon par tour.",
+          "effets": [
+            {
+              "type": "prodCapitale",
+              "montant": 1,
+              "ressource": "Charbon"
+            }
+          ]
         }
       ],
       "brancheB": [
@@ -4602,13 +4693,28 @@
         {
           "nom": "Commerce lointain",
           "cout": "10",
-          "description": "Vos marchands vous rapportent 3 Or par tour supplémentaires."
+          "description": "Vos marchands vous rapportent 3 Or par tour supplémentaires.",
+          "effets": [
+            {
+              "type": "prodParTitre",
+              "montant": 3,
+              "ressource": "Or",
+              "titre": "Marchand"
+            }
+          ]
         }
       ],
       "techC": {
         "nom": "Collecte d'impôts",
         "cout": "14",
-        "description": "Vous pouvez posséder un marchand supplémentaire. Lorsque vous débloquez cette technologie, recevez 20 Or."
+        "description": "Vous pouvez posséder un marchand supplémentaire. Lorsque vous débloquez cette technologie, recevez 20 Or.",
+        "effets": [
+          {
+            "type": "gain",
+            "montant": 20,
+            "ressource": "Or"
+          }
+        ]
       }
     },
     {
@@ -4687,7 +4793,14 @@
         {
           "nom": "Milices civiles III",
           "cout": "16",
-          "description": "+20 Garnison dans vos habitations."
+          "description": "+20 Garnison dans vos habitations.",
+          "effets": [
+            {
+              "type": "garnison",
+              "montant": 20,
+              "cible": "habitations"
+            }
+          ]
         },
         {
           "nom": "Organisation défensive",
@@ -4733,18 +4846,47 @@
         {
           "nom": "Engrais naturels I",
           "cout": "18",
-          "description": "Les champs et rizières produisent +2 Nourriture par tour."
+          "description": "Les champs et rizières produisent +2 Nourriture par tour.",
+          "effets": [
+            {
+              "type": "prodParAmenagement",
+              "montant": 2,
+              "ressource": "Nourriture",
+              "amenagements": [
+                "Champ",
+                "Rizière"
+              ]
+            }
+          ]
         },
         {
           "nom": "Engrais naturels II",
           "cout": "24",
-          "description": "Les champs et rizières produisent +3 Nourriture par tour."
+          "description": "Les champs et rizières produisent +3 Nourriture par tour.",
+          "effets": [
+            {
+              "type": "prodParAmenagement",
+              "montant": 3,
+              "ressource": "Nourriture",
+              "amenagements": [
+                "Champ",
+                "Rizière"
+              ]
+            }
+          ]
         }
       ],
       "techC": {
         "nom": "Recyclage",
         "cout": "26",
-        "description": "Vous recevez 30 Or. Vos usines produisent +1 Production par tour."
+        "description": "Vous recevez 30 Or. Vos usines produisent +1 Production par tour.",
+        "effets": [
+          {
+            "type": "gain",
+            "montant": 30,
+            "ressource": "Or"
+          }
+        ]
       }
     },
     {
@@ -4772,13 +4914,27 @@
         {
           "nom": "Merveilleux",
           "cout": "26",
-          "description": "Vos merveilles produisent +1 Science par tour"
+          "description": "Vos merveilles produisent +1 Science par tour",
+          "effets": [
+            {
+              "type": "prodCapitale",
+              "montant": 1,
+              "ressource": "Science"
+            }
+          ]
         }
       ],
       "techC": {
         "nom": "Assemblées scientifiques",
         "cout": "34",
-        "description": "Vos habitations produisent +1 Science par tour."
+        "description": "Vos habitations produisent +1 Science par tour.",
+        "effets": [
+          {
+            "type": "prodParHabitation",
+            "montant": 1,
+            "ressource": "Science"
+          }
+        ]
       }
     },
     {
@@ -4789,12 +4945,40 @@
         {
           "nom": "Fascination culturelle",
           "cout": "16",
-          "description": "Les foires fournissent +2 Tourisme"
+          "description": "Les foires fournissent +2 Tourisme",
+          "effets": [
+            {
+              "type": "prodParAmenagement",
+              "montant": 2,
+              "ressource": "Tourisme",
+              "amenagements": [
+                "Foire"
+              ]
+            }
+          ]
         },
         {
           "nom": "Stands de goodies",
           "cout": "22",
-          "description": "Les foires fournissent +2 Or par tour et +2 Tourisme."
+          "description": "Les foires fournissent +2 Or par tour et +2 Tourisme.",
+          "effets": [
+            {
+              "type": "prodParAmenagement",
+              "montant": 2,
+              "ressource": "Or",
+              "amenagements": [
+                "Foire"
+              ]
+            },
+            {
+              "type": "prodParAmenagement",
+              "montant": 2,
+              "ressource": "Tourisme",
+              "amenagements": [
+                "Foire"
+              ]
+            }
+          ]
         }
       ],
       "brancheB": [
@@ -4806,7 +4990,17 @@
         {
           "nom": "Parcs naturels",
           "cout": "24",
-          "description": "Les sites archéologiques fournissent +8 Tourisme."
+          "description": "Les sites archéologiques fournissent +8 Tourisme.",
+          "effets": [
+            {
+              "type": "prodParAmenagement",
+              "montant": 8,
+              "ressource": "Tourisme",
+              "amenagements": [
+                "Site archéologique"
+              ]
+            }
+          ]
         }
       ],
       "techC": {
@@ -4903,7 +5097,14 @@
         {
           "nom": "Milices civiles V",
           "cout": "36",
-          "description": "+40 Garnison dans vos habitations."
+          "description": "+40 Garnison dans vos habitations.",
+          "effets": [
+            {
+              "type": "garnison",
+              "montant": 40,
+              "cible": "habitations"
+            }
+          ]
         },
         {
           "nom": "Service militaire",
@@ -4914,7 +5115,14 @@
       "techC": {
         "nom": "Pré carré",
         "cout": "82",
-        "description": "+20 Garnison dans chacune de vos habitations. Vos habitations ne peuvent plus être la cible de bombardements."
+        "description": "+20 Garnison dans chacune de vos habitations. Vos habitations ne peuvent plus être la cible de bombardements.",
+        "effets": [
+          {
+            "type": "garnison",
+            "montant": 20,
+            "cible": "habitations"
+          }
+        ]
       }
     },
     {
@@ -4925,19 +5133,40 @@
         {
           "nom": "Technologies futures I",
           "cout": "32",
-          "description": "Votre capitale produit +3 Science par tour."
+          "description": "Votre capitale produit +3 Science par tour.",
+          "effets": [
+            {
+              "type": "prodCapitale",
+              "montant": 3,
+              "ressource": "Science"
+            }
+          ]
         },
         {
           "nom": "Technologies futures II",
           "cout": "44",
-          "description": "Vos habitations produisent +1 Science par tour."
+          "description": "Vos habitations produisent +1 Science par tour.",
+          "effets": [
+            {
+              "type": "prodParHabitation",
+              "montant": 1,
+              "ressource": "Science"
+            }
+          ]
         }
       ],
       "brancheB": [
         {
           "nom": "Musées",
           "cout": "32",
-          "description": "+30 Tourisme dans votre capitale."
+          "description": "+30 Tourisme dans votre capitale.",
+          "effets": [
+            {
+              "type": "prodCapitale",
+              "montant": 30,
+              "ressource": "Tourisme"
+            }
+          ]
         },
         {
           "nom": "Parcs naturels",
@@ -4959,19 +5188,40 @@
         {
           "nom": "Taxe nécéssaire I",
           "cout": "38",
-          "description": "Lorsque vous débloquez ce progrès, recevez 250 Or."
+          "description": "Lorsque vous débloquez ce progrès, recevez 250 Or.",
+          "effets": [
+            {
+              "type": "gain",
+              "montant": 250,
+              "ressource": "Or"
+            }
+          ]
         },
         {
           "nom": "Taxes nécéssaire II",
           "cout": "46",
-          "description": "Lorsque vous débloquez ce progrès, recevez 300 Or."
+          "description": "Lorsque vous débloquez ce progrès, recevez 300 Or.",
+          "effets": [
+            {
+              "type": "gain",
+              "montant": 300,
+              "ressource": "Or"
+            }
+          ]
         }
       ],
       "brancheB": [
         {
           "nom": "Hausse du loyer",
           "cout": "32",
-          "description": "Votre capitale produit +15 Or par tour."
+          "description": "Votre capitale produit +15 Or par tour.",
+          "effets": [
+            {
+              "type": "prodCapitale",
+              "montant": 15,
+              "ressource": "Or"
+            }
+          ]
         },
         {
           "nom": "Urbanisme",
@@ -4998,7 +5248,15 @@
         {
           "nom": "Prix Gorback Nobel",
           "cout": "60",
-          "description": "Vos Ministres génèrent +6 Science par tour."
+          "description": "Vos Ministres génèrent +6 Science par tour.",
+          "effets": [
+            {
+              "type": "prodParTitre",
+              "montant": 6,
+              "ressource": "Science",
+              "titre": "Ministre"
+            }
+          ]
         }
       ],
       "brancheB": [
@@ -5010,7 +5268,15 @@
         {
           "nom": "Culte de la personnalité",
           "cout": "60",
-          "description": "Vos Ministres génèrent +30 Tourisme."
+          "description": "Vos Ministres génèrent +30 Tourisme.",
+          "effets": [
+            {
+              "type": "prodParTitre",
+              "montant": 30,
+              "ressource": "Tourisme",
+              "titre": "Ministre"
+            }
+          ]
         }
       ],
       "techC": {

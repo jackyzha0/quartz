@@ -11,7 +11,7 @@
 import React, { useState } from 'react'
 import { useGame } from '../state/store'
 import { cfgOf } from '../engine/gameData'
-import type { GameConfig } from '../config/defaultConfig'
+import type { EffetProgres, GameConfig, ProgresTechDef } from '../config/defaultConfig'
 import { VICTORY_TEXT } from '../engine/gameData2'
 import { Card, Badge, TextInput, NumberInput, Button, Select } from './ui'
 
@@ -313,8 +313,10 @@ export function ReferenceDataPanel() {
             Un arbre = branche A (2 technologies) + branche B (2 technologies) + technologie C.
             Règles du classeur : la tech 2 exige sa tech 1 ; la tech C exige les 2 techs d'une
             même branche ; un arbre se termine à EXACTEMENT 3 technologies (la tech C est
-            optionnelle) ; 3 arbres complétés de l'âge N-1 ouvrent l'âge N. Les effets sont
-            appliqués au plateau, pas au moteur. Les emplacements vides sont ignorés en jeu.
+            optionnelle) ; 3 arbres complétés de l'âge N-1 ouvrent l'âge N. Les effets de la
+            colonne « Effets auto » sont appliqués AUTOMATIQUEMENT par le moteur (gain au
+            déblocage, production par tour — canal « Progrès » du récap ressources, garnison) ;
+            les autres effets restent au plateau. Les emplacements vides sont ignorés en jeu.
           </p>
           {[1, 2, 3].map((age) => (
             <div key={age} className="mb">
@@ -332,7 +334,7 @@ export function ReferenceDataPanel() {
                   </div>
                   <div className="table-wrap">
                     <table className="tbl small">
-                      <thead><tr><th>Emplacement</th><th>Technologie</th><th>Coût (Science)</th><th>Description (effet)</th></tr></thead>
+                      <thead><tr><th>Emplacement</th><th>Technologie</th><th>Coût (Science)</th><th>Description (effet)</th><th>Effets auto (appliqués par le moteur)</th></tr></thead>
                       <tbody>
                         {([['A.1', 'brancheA', 0], ['A.2', 'brancheA', 1], ['B.1', 'brancheB', 0], ['B.2', 'brancheB', 1]] as [string, 'brancheA' | 'brancheB', number][]).map(([label, br, idx]) => (
                           <tr key={label}>
@@ -340,6 +342,19 @@ export function ReferenceDataPanel() {
                             <td><TextInput value={arbre[br][idx]?.nom ?? ''} onChange={(v) => setCfg((c) => { c.progres[i][br][idx].nom = v })} /></td>
                             <td><TextInput value={arbre[br][idx]?.cout ?? ''} onChange={(v) => setCfg((c) => { c.progres[i][br][idx].cout = v })} /></td>
                             <td><TextInput value={arbre[br][idx]?.description ?? ''} onChange={(v) => setCfg((c) => { c.progres[i][br][idx].description = v })} /></td>
+                            <td>
+                              <EffetsTechEditor
+                                tech={arbre[br][idx]}
+                                ressources={configEdit.ressources}
+                                titres={configEdit.titres.map((t) => t.titre)}
+                                set={(fn) => setCfg((c) => {
+                                  const t = c.progres[i][br][idx]
+                                  if (!t) return
+                                  if (!t.effets) t.effets = []
+                                  fn(t.effets)
+                                })}
+                              />
+                            </td>
                           </tr>
                         ))}
                         <tr>
@@ -347,6 +362,19 @@ export function ReferenceDataPanel() {
                           <td><TextInput value={arbre.techC?.nom ?? ''} onChange={(v) => setCfg((c) => { c.progres[i].techC.nom = v })} /></td>
                           <td><TextInput value={arbre.techC?.cout ?? ''} onChange={(v) => setCfg((c) => { c.progres[i].techC.cout = v })} /></td>
                           <td><TextInput value={arbre.techC?.description ?? ''} onChange={(v) => setCfg((c) => { c.progres[i].techC.description = v })} /></td>
+                          <td>
+                            <EffetsTechEditor
+                              tech={arbre.techC}
+                              ressources={configEdit.ressources}
+                              titres={configEdit.titres.map((t) => t.titre)}
+                              set={(fn) => setCfg((c) => {
+                                const t = c.progres[i].techC
+                                if (!t) return
+                                if (!t.effets) t.effets = []
+                                fn(t.effets)
+                              })}
+                            />
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -627,6 +655,81 @@ export function ReferenceDataPanel() {
           </div>
         </Card>
       )}
+    </div>
+  )
+}
+
+// ── Éditeur des effets automatiques d'une technologie de progrès ────────
+// Champ « effets » de chaque tech (engine/progres.ts) : paramétrable
+// entièrement ici — type d'effet, ressource, montant, titre, aménagements.
+
+const TYPES_EFFETS: Array<{ value: EffetProgres['type']; label: string }> = [
+  { value: 'gain', label: 'Gain au déblocage' },
+  { value: 'prodCapitale', label: '+/tour (capitale)' },
+  { value: 'prodParHabitation', label: '+/tour par habitation' },
+  { value: 'prodParTitre', label: '+/tour par titre' },
+  { value: 'prodParAmenagement', label: '+/tour par aménagement' },
+  { value: 'garnison', label: 'Garnison (statique)' },
+]
+
+function EffetsTechEditor({ tech, ressources, titres, set }: {
+  tech: ProgresTechDef | undefined
+  ressources: string[]
+  titres: string[]
+  /** applique une mutation au tableau « effets » de la tech (brouillon) */
+  set: (fn: (effets: EffetProgres[]) => void) => void
+}) {
+  const effets = tech?.effets ?? []
+  const maj = (j: number, patch: Partial<EffetProgres>) =>
+    set((ef) => { if (ef[j]) ef[j] = { ...ef[j], ...patch } })
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+      {effets.map((e, j) => (
+        <div key={j} className="row small-gap" style={{ flexWrap: 'wrap' }}>
+          <Select
+            value={e.type}
+            options={TYPES_EFFETS}
+            onChange={(v) => maj(j, { type: v })}
+          />
+          {e.type === 'garnison' ? (
+            <Select
+              value={e.cible ?? 'habitations'}
+              options={[
+                { value: 'capitale', label: 'capitale' },
+                { value: 'habitations', label: 'toutes les habitations' },
+              ]}
+              onChange={(v) => maj(j, { cible: v })}
+            />
+          ) : (
+            <Select
+              value={e.ressource ?? ''}
+              options={ressources.map((r) => ({ value: r, label: r }))}
+              onChange={(v) => maj(j, { ressource: v })}
+            />
+          )}
+          <NumberInput value={e.montant} step={1} onChange={(v) => maj(j, { montant: v })} />
+          {e.type === 'prodParTitre' && (
+            <Select
+              value={e.titre ?? ''}
+              options={titres.map((t) => ({ value: t, label: t }))}
+              onChange={(v) => maj(j, { titre: v })}
+            />
+          )}
+          {e.type === 'prodParAmenagement' && (
+            <TextInput
+              value={(e.amenagements ?? []).join(', ')}
+              placeholder="ex. Champ, Rizière"
+              onChange={(v) => maj(j, {
+                amenagements: v.split(',').map((x) => x.trim()).filter(Boolean),
+              })}
+            />
+          )}
+          <Button tone="danger" onClick={() => set((ef) => { ef.splice(j, 1) })}>✕</Button>
+        </div>
+      ))}
+      <Button onClick={() => set((ef) => {
+        ef.push({ type: 'gain', ressource: ressources[0] ?? 'Or', montant: 0 })
+      })}>+ effet automatique</Button>
     </div>
   )
 }

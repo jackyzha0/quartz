@@ -299,6 +299,10 @@ export interface ApportsTour {
    *  (engine/factions.ts — étape 3nonies). Champ optionnel : absent
    *  des historiques d'avant l'ajout du canal. */
   faction?: Record<string, number>
+  /** effets par tour des technologies de progrès débloquées
+   *  (engine/progres.ts — étape 3undecies). Champ optionnel : absent
+   *  des historiques d'avant l'ajout du canal. */
+  progres?: Record<string, number>
   /** taxes reçues des cités libres sous suzeraineté du joueur
    *  (engine/citesLibres.ts — étape 3decies). Champ optionnel : absent
    *  des historiques d'avant l'ajout du canal. */

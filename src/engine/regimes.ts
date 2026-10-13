@@ -21,6 +21,7 @@
 
 import type { City, GameState, Player, Saison } from './types'
 import { cfgOf, cultureDef, type Cfg } from './gameData'
+import { garnisonProgresVille } from './progres'
 import { garnisonBatiment } from './batiments'
 import { garnisonFactionVille } from './factions'
 import { nomRang, garnisonBaseVille } from './habitations'
@@ -48,8 +49,9 @@ export function rangNiveau(ville: City, C: Cfg): number {
  *  d'habitation (typesHabitation — Hameau 10, Cité 24, Motte 26,
  *  Forteresse 90…), garnisons statiques des bâtiments, bonus de la
  *  loi du régime (ex. Autoritarisme : + garnisonParRang × niveau du
- *  rang d'habitation) et bonus des règles de faction actives
- *  (engine/factions.ts — état du jeu requis en 4e argument).
+ *  rang d'habitation), bonus des règles de faction actives
+ *  (engine/factions.ts — état du jeu requis en 4e argument) et garnisons
+ *  des technologies de progrès débloquées (engine/progres.ts).
  *  Valeur d'état (pas un flux) : affichée sous la culture de chaque
  *  ville (page « Pays ») et du pays (page « Royaume »). */
 export function garnisonHabitationVille(p: Player, ville: City, C: Cfg, state?: GameState): number {
@@ -59,6 +61,9 @@ export function garnisonHabitationVille(p: Player, ville: City, C: Cfg, state?: 
   const bonus = regime?.garnisonParRang ?? 0
   if (bonus) g += bonus * rangNiveau(ville, C)
   if (state) g += garnisonFactionVille(state, p, ville, C)
+  // Progrès : garnisons statiques des technologies débloquées (effets
+  //  « garnison » — engine/progres.ts, paramétrables dans Référentiels).
+  if (state) g += garnisonProgresVille(state, p, ville, C)
   return g
 }
 

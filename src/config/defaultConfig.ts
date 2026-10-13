@@ -137,10 +137,43 @@ export interface ConstructionRef {
   production: string
   description: string
 }
+/** Effet AUTOMATIQUE d'une technologie de progrès (paramétrable dans
+ *  Référentiels → Progrès, champ « effets » de chaque tech) :
+ *    gain               — crédit unique au déblocage (« recevez 20 Or »),
+ *    prodCapitale       — +N ressource par tour (capitale du joueur),
+ *    prodParHabitation  — +N ressource par tour et par habitation,
+ *    prodParTitre       — +N ressource par tour et par habitant titré,
+ *    prodParAmenagement — +N ressource par tour et par aménagement listé,
+ *    garnison           — +N garnison statique (capitale ou habitations).
+ *  Appliqué par engine/progres.ts (canal « Progrès » du récap). Les
+ *  effets non chiffrés (bataille, coûts de construction, limites…)
+ *  restent appliqués manuellement au plateau. */
+export interface EffetProgres {
+  type: 'gain' | 'prodCapitale' | 'prodParHabitation' | 'prodParTitre' | 'prodParAmenagement' | 'garnison'
+  /** ressource concernée (tous les types sauf garnison) */
+  ressource?: string
+  /** valeur de l'effet (négative = malus) */
+  montant: number
+  /** titre des habitants concernés (prodParTitre) */
+  titre?: string
+  /** aménagements concernés (prodParAmenagement) */
+  amenagements?: string[]
+  /** cible de la garnison (garnison) */
+  cible?: 'capitale' | 'habitations'
+}
+
 /** Une technologie d'un arbre de progrès : nom, coût (Science, entre
- *  parenthèses dans le classeur) et description de l'effet — appliqué
- *  au plateau (aucun effet automatique dans le moteur web). */
-export interface ProgresTechDef { nom: string; cout: string; description: string }
+ *  parenthèses dans le classeur), description de l'effet et effets
+ *  automatiques chiffrés (engine/progres.ts) — les autres effets
+ *  restent appliqués au plateau. */
+export interface ProgresTechDef {
+  nom: string
+  cout: string
+  description: string
+  /** Effets automatiques appliqués par le moteur ; champ optionnel :
+   *  absent → aucun effet automatique (effet au plateau uniquement). */
+  effets?: EffetProgres[]
+}
 /** Un arbre de progrès (feuille « Progrès » du classeur) : 2 branches de
  *  2 technologies (la tech 2 exige la tech 1) + une technologie C
  *  (exigée après 2 techs d'une même branche, optionnelle). Un arbre est

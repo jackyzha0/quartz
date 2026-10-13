@@ -36,6 +36,7 @@ import { appliquerEffetsAmenagements, effetsNourrEteAmenagementsVille } from './
 import { appliquerEffetsAutres, effetsNourrEteAutresVille } from './autres'
 import { appliquerEffetsRegimesCultures } from './regimes'
 import { appliquerEffetsFaction } from './factions'
+import { appliquerEffetsProgres } from './progres'
 import { appliquerTaxesCitesLibres } from './citesLibres'
 import { appliquerConsommationsHabitations } from './habitations'
 import { transfererTributVassal } from './vassalite'
@@ -205,6 +206,14 @@ export function runTurn(state: GameState): GameState {
   const citesLibresParJoueur: Record<number, Record<string, number>> =
     appliquerTaxesCitesLibres(state, C)
 
+  // 3undecies. Progrès : effets par tour des technologies débloquées de
+  //  chaque joueur (gains de capitale, par habitation, par titre, par
+  //  aménagement — engine/progres.ts, paramétrables dans Référentiels →
+  //  Progrès, champ « effets » de chaque tech). Les gains uniques au
+  //  déblocage (« recevez 20 Or ») sont crédités par la vue Progrès.
+  const progresParJoueur: Record<number, Record<string, number>> =
+    appliquerEffetsProgres(state, C)
+
   // 4. Moteur de population (PersonnagesPourJoueur) pour chaque joueur
   for (const p of state.players) {
     populationTurn(state, p, rng)
@@ -237,6 +246,7 @@ export function runTurn(state: GameState): GameState {
       regimesCultures: regimesCulturesParJoueur[p.n] ?? {},
       habitations: habitationsParJoueur[p.n] ?? {},
       faction: factionsParJoueur[p.n] ?? {},
+      progres: progresParJoueur[p.n] ?? {},
       citesLibres: citesLibresParJoueur[p.n] ?? {},
       population,
       vassalite,
@@ -309,6 +319,12 @@ export {
   type ProvenanceApport, type CanalApport,
 } from './production'
 export { transfererTributVassal } from './vassalite'
+export {
+  techDefArbre, effetsTech, slotsDebloques, effetsTechParTour,
+  effetsProgresJoueur, detailsProgresJoueur, appliquerEffetsProgres,
+  garnisonProgresVille, gainsDeblocageTech, resumeEffetsTech,
+  type SlotProgres, type LigneProgres,
+} from './progres'
 export { populationTurn, migrerPopulation } from './population'
 export {
   maybeAssignProfesseurs, gestionMariages, formatDynastyPair,

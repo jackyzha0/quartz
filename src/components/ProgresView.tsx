@@ -7,9 +7,10 @@
 //    • un arbre est TERMINÉ à EXACTEMENT 3 technologies (la tech C
 //      est optionnelle pour terminer l'arbre) ;
 //    • l'âge N s'ouvre après 3 arbres complétés de l'âge N-1.
-//  Les technologies et leurs effets sont appliqués au plateau — aucun
-//  effet automatique dans le moteur web. Tout est paramétrable dans
-//  « 📚 Référentiels » → « Progrès ».
+//  Les effets chiffrés des techs (champ « effets », éditable dans
+//  « 📚 Référentiels » → « Progrès ») sont appliqués AUTOMATIQUEMENT
+//  (engine/progres.ts) : gains au déblocage, production par tour
+//  (canal « Progrès »), garnison. Les autres restent au plateau.
 // ══════════════════════════════════════════════════════════════════════
 
 import React from 'react'
@@ -18,6 +19,7 @@ import { cfgOf } from '../engine/gameData'
 import type { GameState } from '../engine/types'
 import type { ProgresArbre, ProgresTechDef } from '../config/defaultConfig'
 import { Card, Badge, Button } from './ui'
+import { gainsDeblocageTech, resumeEffetsTech } from '../engine/progres'
 
 type Slot = 'a1' | 'a2' | 'b1' | 'b2' | 'c'
 const SLOTS: Slot[] = ['a1', 'a2', 'b1', 'b2', 'c']
@@ -125,9 +127,30 @@ export function ProgresView({ joueur }: { joueur: number }) {
       if (!q) return
       const set = new Set(q.progresDebloques ?? [])
       const k = key(i, s)
-      if (set.has(k)) set.delete(k)
+      const etaitDebloque = set.has(k)
+      if (etaitDebloque) set.delete(k)
       else set.add(k)
       q.progresDebloques = revalider(st, set)
+      // Effets « gain » : crédit immédiat au déblocage (une seule fois —
+      //  reprendre une tech ne retire pas un gain déjà reçu).
+      if (!etaitDebloque && set.has(k)) {
+        const arbres = cfgOf(st.config).config.progres
+        const t = arbres[i] ? techOf(arbres[i], s) : undefined
+        const gains = gainsDeblocageTech(t)
+        for (const [res, v] of Object.entries(gains)) {
+          const rs = q.resources?.[res]
+          if (rs) rs.stock += v
+        }
+        if (Object.keys(gains).length > 0) {
+          const txt = Object.entries(gains)
+            .map(([r, v]) => `${v > 0 ? '+' : ''}${v} ${r}`)
+            .join(', ')
+          st.log.push({
+            turn: st.turn, type: 'Système', joueur,
+            texte: `${q.nom} — « ${t?.nom ?? '?'} » débloquée : ${txt}.`,
+          })
+        }
+      }
     })
   }
 
@@ -148,6 +171,9 @@ export function ProgresView({ joueur }: { joueur: number }) {
           <strong>{t?.nom || '— emplacement vide —'}</strong>
         </div>
         <div className="muted small">{t?.description || 'à remplir dans Référentiels → Progrès'}</div>
+        {resumeEffetsTech(t) && (
+          <div className="small" style={{ color: 'var(--good)' }}>⚙ appliqué automatiquement : {resumeEffetsTech(t)}</div>
+        )}
         <Button
           tone={actif ? 'danger' : 'primary'}
           disabled={!actif && (!!err || vide)}
@@ -169,7 +195,9 @@ export function ProgresView({ joueur }: { joueur: number }) {
           Règles : la technologie 2 exige la technologie 1 de sa branche ; la technologie C exige
           les 2 technologies d'une même branche ; un arbre se termine à EXACTEMENT{' '}
           {TECHS_PAR_ARBRE} technologies (la tech C est optionnelle) ; {ARBRES_PAR_AGE} arbres
-          complétés de l'âge N-1 ouvrent l'âge N. Les effets s'appliquent au plateau, pas au moteur.
+          complétés de l'âge N-1 ouvrent l'âge N. Les effets chiffrés (⚙) sont appliqués
+          automatiquement — gains au déblocage, production par tour (canal « Progrès »), garnison ; les
+          autres restent au plateau.
         </p>
       </Card>
 
