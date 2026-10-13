@@ -35,6 +35,19 @@ function techOf(arbre: ProgresArbre, s: Slot): ProgresTechDef | undefined {
   return br?.[+s[1] - 1]
 }
 
+/** Teinte du cadre d'un arbre, d'après le classeur :
+ *  vert = développement/habitants, jaune = économique, rouge = militaire,
+ *  blanc = diplomatie, bleu = science, violet = tourisme. */
+function teinteArbre(nom: string): 'vert' | 'jaune' | 'rouge' | 'blanc' | 'bleu' | 'violet' {
+  const n = (nom || '').toLowerCase()
+  if (n.includes('économique') || n.includes('industrialisation')) return 'jaune'
+  if (n.includes('armée') || n.includes('défens') || n.includes('offensive')) return 'rouge'
+  if (n.includes('diplomat') || n.includes('suzerain')) return 'blanc'
+  if (n.includes('éducation') || n.includes('humanisme') || n.includes('scientifique') || n.includes('futur')) return 'bleu'
+  if (n.includes('écologie') || n.includes('culturelle')) return 'violet'
+  return 'vert'
+}
+
 export function ProgresView({ joueur }: { joueur: number }) {
   const { state, update } = useGame()
   if (!state) return null
@@ -185,7 +198,7 @@ export function ProgresView({ joueur }: { joueur: number }) {
                 const nb = nbDebloquesArbre(i)
                 const complet = arbreComplet(i)
                 return (
-                  <div key={i}>
+                  <div key={i} className={`arbre teinte-${teinteArbre(a.nom)}`}>
                     <div style={{ display: 'flex', gap: 8, alignItems: 'baseline', flexWrap: 'wrap' }}>
                       <strong>{a.nom}</strong>
                       <Badge tone={complet ? 'good' : 'neutral'}>
