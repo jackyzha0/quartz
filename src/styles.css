@@ -451,3 +451,6 @@ select.input { min-width: 120px; width: auto; }
   width: 12px; height: 12px; border: 1px solid #000; border-radius: 2px;
   display: inline-block; flex: none;
 }
+/* Grille 2×2 pour les petits graphiques de la page Accueil */
+.grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (max-width: 720px) { .grid-2x2 { grid-template-columns: 1fr; } }

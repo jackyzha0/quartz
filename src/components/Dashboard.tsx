@@ -122,22 +122,24 @@ export function Dashboard() {
         </p>
       </Card>
 
-      <Card title="Or & Nourriture — Stock & Production">
-        <HistogrammeEmpile groupes={groupesPour(['Or', 'Nourriture'])} />
-      </Card>
+      <div className="grid-2x2">
+        <Card title="Or & Nourriture — Stock & Production">
+          <HistogrammeEmpile groupes={groupesPour(['Or', 'Nourriture'])} largeur={460} />
+        </Card>
 
-      <Card title="Science — Stock & Production">
-        <HistogrammeEmpile groupes={groupesPour(['Science'])} />
-      </Card>
+        <Card title="Science — Stock & Production">
+          <HistogrammeEmpile groupes={groupesPour(['Science'])} largeur={460} />
+        </Card>
 
-      <Card title="Tourisme — Stock">
-        <HistogrammeEmpile groupes={groupesPour(['Tourisme'])} avecProd={false} />
-      </Card>
+        <Card title="Habitants — Stock (population vivante)">
+          <HistogrammeEmpile groupes={groupeHabitants} avecProd={false} largeur={460} />
+          <p className="muted small">Population vivante totale par joueur (décès exclus).</p>
+        </Card>
 
-      <Card title="Habitants — Stock (population vivante)">
-        <HistogrammeEmpile groupes={groupeHabitants} avecProd={false} />
-        <p className="muted small">Population vivante totale par joueur (décès exclus).</p>
-      </Card>
+        <Card title="Tourisme — Stock">
+          <HistogrammeEmpile groupes={groupesPour(['Tourisme'])} avecProd={false} largeur={460} />
+        </Card>
+      </div>
 
       <Card
         title="Évolution par tour — Stock & Production"

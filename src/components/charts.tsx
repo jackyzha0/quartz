@@ -64,11 +64,13 @@ export interface GroupeChart {
  *  stock (couleur du joueur) surmonté du segment production (gris clair).
  *  Les valeurs négatives (ex. production de Nourriture au départ) sont
  *  empilées sous l'axe zéro, comme dans le classeur. */
-export function HistogrammeEmpile({ groupes, avecProd = true }: {
+export function HistogrammeEmpile({ groupes, avecProd = true, largeur = 900 }: {
   groupes: GroupeChart[]
   avecProd?: boolean
+  /** Largeur du viewBox SVG — 900 pleine page, ~460 en demi-colonne. */
+  largeur?: number
 }) {
-  const W = 900
+  const W = largeur
   const H = 360
   const padL = 58, padR = 14, padT = 16, padB = 66
   const plotW = W - padL - padR
