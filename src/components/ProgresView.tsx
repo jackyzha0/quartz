@@ -180,14 +180,7 @@ export function ProgresView({ joueur }: { joueur: number }) {
               </p>
             )}
             {/* 3 arbres par ligne pour optimiser l'espace vertical */}
-            <div
-              style={{
-                opacity: ouvert ? 1 : 0.5,
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                gap: 16,
-              }}
-            >
+            <div className="grid-arbres" style={{ opacity: ouvert ? 1 : 0.5 }}>
               {indices.map(({ a, i }) => {
                 const nb = nbDebloquesArbre(i)
                 const complet = arbreComplet(i)
@@ -199,7 +192,7 @@ export function ProgresView({ joueur }: { joueur: number }) {
                         {nb}/{TECHS_PAR_ARBRE} {complet ? '— arbre terminé ✔' : ''}
                       </Badge>
                     </div>
-                    <div className="grid-2" style={{ marginTop: 8 }}>
+                    <div className="grid-branches" style={{ marginTop: 8 }}>
                       <div>
                         <div className="mini-title">Branche A</div>
                         {rangeeTech(i, 'a1', 'A.1')}

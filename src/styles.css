@@ -111,6 +111,13 @@ ol, ul { margin: 6px 0; padding-left: 22px; }
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
 .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
 
+/* 3 arbres par ligne exactement (onglet Progrès) ; branches A/B toujours côte à côte */
+.grid-arbres { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grid-branches { display: grid; grid-template-columns: repeat(2, minmax(150px, 1fr)); gap: 12px; }
+@media (max-width: 1100px) { .grid-arbres { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 720px) { .grid-arbres { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .grid-branches { grid-template-columns: 1fr; } }
+
 .mini {
   background: var(--card2); border: 1px solid var(--border); border-radius: 6px;
   padding: 10px 12px; display: flex; flex-direction: column; gap: 6px;
