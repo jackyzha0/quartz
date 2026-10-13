@@ -179,15 +179,22 @@ export function ProgresView({ joueur }: { joueur: number }) {
                 Complétez {ARBRES_PAR_AGE} arbres de l'âge {age - 1} pour ouvrir les arbres de l'âge {age}.
               </p>
             )}
-            <div className={ouvert ? 'stack' : 'stack'} style={{ opacity: ouvert ? 1 : 0.5 }}>
+            {/* 3 arbres par ligne pour optimiser l'espace vertical */}
+            <div
+              style={{
+                opacity: ouvert ? 1 : 0.5,
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                gap: 16,
+              }}
+            >
               {indices.map(({ a, i }) => {
                 const nb = nbDebloquesArbre(i)
                 const complet = arbreComplet(i)
                 return (
-                  <div key={i} className="mb">
+                  <div key={i}>
                     <div style={{ display: 'flex', gap: 8, alignItems: 'baseline', flexWrap: 'wrap' }}>
                       <strong>{a.nom}</strong>
-                      {a.tags ? <span className="muted small">[{a.tags}]</span> : null}
                       <Badge tone={complet ? 'good' : 'neutral'}>
                         {nb}/{TECHS_PAR_ARBRE} {complet ? '— arbre terminé ✔' : ''}
                       </Badge>
