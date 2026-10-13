@@ -279,3 +279,101 @@ export function CourbeRessource({ ressource, series }: {
     </div>
   )
 }
+
+// ── Radar « Conditions de victoire » (page d'accueil) ───────────────────
+
+export interface PointRadar { ratio: number; detail: string }
+export interface SerieRadar { joueur: number; nom: string; points: PointRadar[] }
+
+/** Diagramme radar : un axe par condition de victoire, un polygone
+ *  semi-transparent par joueur — 0 % au centre, 100 % au bord
+ *  (= condition atteinte). Anneaux gradués 25 / 50 / 75 / 100 % ;
+ *  chaque sommet porte le détail du calcul en info-bulle (title). */
+export function Radar({ axes, series, largeur = 900 }: {
+  axes: string[]
+  series: SerieRadar[]
+  largeur?: number
+}) {
+  if (axes.length === 0) return null
+  const W = largeur
+  const H = 560
+  const cx = W / 2
+  const cy = H / 2 + 4
+  const R = Math.min(W / 2, H / 2) - 64
+  const n = axes.length
+  const angle = (i: number) => -Math.PI / 2 + (i * 2 * Math.PI) / n
+  const bord = (i: number) => {
+    const a = angle(i)
+    return { x: cx + R * Math.cos(a), y: cy + R * Math.sin(a) }
+  }
+  const point = (i: number, ratio: number) => {
+    const r = R * Math.max(0, Math.min(1, ratio))
+    const a = angle(i)
+    return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) }
+  }
+  const anneaux = [0.25, 0.5, 0.75, 1]
+
+  return (
+    <div>
+      <div className="chart-legend">
+        {series.map((s) => (
+          <span key={s.joueur} className="chart-chip">
+            <span className="swatch" style={{ background: couleurJoueur(s.joueur) }} />
+            J{s.joueur}
+          </span>
+        ))}
+        <span className="chart-chip muted">0 % au centre · 100 % au bord = condition atteinte</span>
+      </div>
+      <svg className="chart-svg" viewBox={`0 0 ${W} ${H}`} role="img">
+        {/* anneaux gradués */}
+        {anneaux.map((g) => (
+          <circle key={g} cx={cx} cy={cy} r={R * g} fill="none"
+            stroke="currentColor" opacity={g === 1 ? 0.4 : 0.18} strokeWidth={g === 1 ? 1.4 : 1} />
+        ))}
+        {anneaux.slice(0, 3).map((g) => (
+          <text key={g} x={cx + 4} y={cy - R * g - 2} fontSize={9}
+            fill="currentColor" opacity={0.6}>{Math.round(g * 100)}</text>
+        ))}
+        {/* axes + libellés */}
+        {axes.map((label, i) => {
+          const b = bord(i)
+          const lx = cx + (R + 18) * Math.cos(angle(i))
+          const ly = cy + (R + 18) * Math.sin(angle(i))
+          const cosA = Math.cos(angle(i))
+          const anchor = Math.abs(cosA) < 0.35 ? 'middle' : cosA > 0 ? 'start' : 'end'
+          return (
+            <g key={label}>
+              <line x1={cx} y1={cy} x2={b.x} y2={b.y} stroke="currentColor" opacity={0.18} />
+              <text x={lx} y={ly + 4} textAnchor={anchor} fontSize={11} fontWeight={600}
+                fill="currentColor">{label}</text>
+            </g>
+          )
+        })}
+        {/* polygones des joueurs */}
+        {series.map((s) => {
+          const col = couleurJoueur(s.joueur)
+          const pts = s.points
+            .map((p, i) => `${point(i, p.ratio).x},${point(i, p.ratio).y}`)
+            .join(' ')
+          return (
+            <g key={s.joueur}>
+              <polygon points={pts} fill={col} fillOpacity={0.12} stroke={col} strokeWidth={1.8}
+                strokeLinejoin="round">
+                <title>{`J${s.joueur} — ${s.nom}`}</title>
+              </polygon>
+              {s.points.map((p, i) => {
+                const c = point(i, p.ratio)
+                const pct = Math.round(Math.max(0, Math.min(1, p.ratio)) * 100)
+                return (
+                  <circle key={i} cx={c.x} cy={c.y} r={3.2} fill={col} stroke="#000" strokeWidth={0.5}>
+                    <title>{`J${s.joueur} · ${axes[i]} : ${pct} % — ${p.detail}`}</title>
+                  </circle>
+                )
+              })}
+            </g>
+          )
+        })}
+      </svg>
+    </div>
+  )
+}

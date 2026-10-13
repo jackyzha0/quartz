@@ -7,10 +7,10 @@ import React from 'react'
 import { useGame } from '../state/store'
 import { cfgOf } from '../engine/gameData'
 import { VICTORY_TEXT } from '../engine/gameData2'
-import { checkVictory } from '../engine/victory'
+import { checkVictory, victoryProgress, victoryLabels } from '../engine/victory'
 import { Card, fmt, Select } from './ui'
-import { HistogrammeEmpile, CourbeRessource } from './charts'
-import type { GroupeChart, SerieCourbe } from './charts'
+import { HistogrammeEmpile, CourbeRessource, Radar } from './charts'
+import type { GroupeChart, SerieCourbe, SerieRadar } from './charts'
 
 const RESSOURCES_VUES = ['Or', 'Nourriture', 'Science', 'Tourisme', 'Garnison', 'Habitants']
 const RESSOURCES_BASE = ['Bétail', 'Bois', 'Charbon', 'Fer', 'Pierre', 'Soie']
@@ -22,6 +22,14 @@ export function Dashboard() {
   if (!state) return null
 
   const victory = checkVictory(state)
+
+  // ── Données du radar : progression de chaque joueur par condition ────
+  const axesVictoire = victoryLabels()
+  const seriesRadar: SerieRadar[] = victoryProgress(state).map((v) => ({
+    joueur: v.joueur,
+    nom: v.nom,
+    points: axesVictoire.map((a) => ({ ratio: v.valeurs[a.key], detail: v.details[a.key] })),
+  }))
 
   // ── Données des histogrammes (stock / production par joueur) ─────────
   const groupesPour = (ressources: string[]): GroupeChart[] =>
@@ -173,6 +181,12 @@ export function Dashboard() {
       </Card>
 
       <Card title="Conditions de victoire (chapitre XII du livret)">
+        <Radar axes={axesVictoire.map((a) => a.label)} series={seriesRadar} />
+        <p className="muted small">
+          Radar de progression vers chaque condition : 0 % au centre, 100 % au bord = condition
+          atteinte (👑 dans le tableau ci-dessous). Un polygone semi-transparent par joueur —
+          survolez un sommet pour le détail du calcul.
+        </p>
         <div className="table-wrap">
           <table className="tbl">
             <thead>
