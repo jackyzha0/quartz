@@ -13,7 +13,16 @@ export interface GameParams {
   ageMaxBase: number
   ageMaxAla: number
   adulteryRate: number
-  migrationProba: number
+  /** Migration scolaire : enfant sans Professeur dans sa ville → ville
+   *  avec Professeur du même joueur. */
+  migrationEcole: number
+  /** …ville avec Professeur du suzerain (ou du suzerain du suzerain). */
+  migrationSuzerain: number
+  /** …ville avec Professeur de n'importe quel joueur. */
+  migrationMonde: number
+  /** Déménagement par attrait touristique (pondéré par le Tourisme / tour
+   *  de chaque ville ; conjoint et enfants mineurs suivent). */
+  migrationTourisme: number
   consoNourrParHab: number
   gainsCrediteStock: number  // 1 = les gains de population créditent le stock
   // ── Fécondité ──
@@ -97,7 +106,10 @@ export const DEFAULT_PARAMS: GameParams = {
   ageMaxBase: 40,
   ageMaxAla: 39,
   adulteryRate: 0.03,
-  migrationProba: 0.1,
+  migrationEcole: 0.10,
+  migrationSuzerain: 0.02,
+  migrationMonde: 0.01,
+  migrationTourisme: 0.02,
   consoNourrParHab: 1,
   gainsCrediteStock: 1,
   fertBaseRate: 1.5,
@@ -183,7 +195,10 @@ export const PARAM_META: {
   { key: 'ageMaxBase', label: 'Espérance de vie de base', groupe: 'Population', aide: 'AgeMax = base + aléa(0..ageMaxAla) + modificateurs de traits.' },
   { key: 'ageMaxAla', label: 'Espérance de vie — aléa maximal', groupe: 'Population' },
   { key: 'adulteryRate', label: 'Taux d\'adultère', groupe: 'Population', unite: 'proba' },
-  { key: 'migrationProba', label: 'Probabilité de migration des enfants', groupe: 'Population', unite: 'proba' },
+  { key: 'migrationEcole', label: 'Migration scolaire (même joueur)', groupe: 'Population', unite: 'proba', aide: 'Un enfant sans éducation dont la ville n\'a pas de Professeur part vers une ville avec Professeur du même joueur.' },
+  { key: 'migrationSuzerain', label: 'Migration scolaire (suzerain)', groupe: 'Population', unite: 'proba', aide: '…vers une ville avec Professeur de son suzerain, ou du suzerain de son suzerain.' },
+  { key: 'migrationMonde', label: 'Migration scolaire (monde)', groupe: 'Population', unite: 'proba', aide: '…vers une ville avec Professeur de n\'importe quel joueur.' },
+  { key: 'migrationTourisme', label: 'Migration par attrait touristique', groupe: 'Population', unite: 'proba', aide: 'Un habitant peut déménager vers une ville tirée pondérément par son Tourisme / tour ; son conjoint et ses enfants mineurs suivent.' },
   { key: 'consoNourrParHab', label: 'Consommation Nourriture / habitant vivant', groupe: 'Population' },
   { key: 'gainsCrediteStock', label: 'Gains de population crédités au stock (1 = oui)', groupe: 'Population' },
   { key: 'fertBaseRate', label: 'Fécondité de base (conception / tour)', groupe: 'Fécondité' },

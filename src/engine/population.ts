@@ -5,10 +5,11 @@
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
 // ══════════════════════════════════════════════════════════════════════
 
-import type { GameState, Player } from './types'
+import type { Character, City, GameState, Player } from './types'
 import type { Rng } from './rng'
 import { cfgOf } from './gameData'
 import { emptyRecap, fullName } from './shared'
+import { attraitTouristiqueVille } from './production'
 import { maybeAssignProfesseurs, gestionMariages, tryEducateMinor, assignAdultTitle } from './titres'
 import { computeAgeMax, tryResurrection, killCharacter, maladieStep } from './sante'
 import { computeFecondite, conceptionEtNaissances } from './naissances'
@@ -66,33 +67,147 @@ export function populationTurn(state: GameState, p: Player, rng: Rng) {
   applyCultureInfluence(state, p, rng, recap)
   updateCityCultures(state, p)
 
-  // Migration des enfants sans éducation (MIGRATION_PROBA)
-  migrerEnfants(state, p, rng)
+  // 3.6bis Migration (scolarité + attrait touristique)
+  migrerPopulation(state, p, rng)
 
   // Récap dans le journal
   writeRecap(state, p, recap)
 }
 
-// ── Migration des enfants sans éducation ─────────────────────────────────
+// ══════════════════════════════════════════════════════════════════════
+//  MIGRATION (règles étendues)
+//    1. SCOLARITÉ — un enfant vivant sans éducation dont la ville n'a
+//       pas de Professeur peut partir étudier ailleurs :
+//         · 10 % : ville avec Professeur du MÊME joueur ;
+//         · 2 % : ville avec Professeur d'un autre joueur suzerain
+//           (ou suzerain du suzerain) ;
+//         · 1 % : ville avec Professeur de n'importe quel joueur.
+//       Les « Obstinés » ne migrent jamais (l'éducation ne les tentera
+//       jamais — VBA).
+//    2. ATTRACTION — 2 % par habitant vivant et par tour de déménager
+//       vers une autre ville du monde, tirée pondérément par son attrait
+//       touristique (Tourisme / tour de la ville) ; le conjoint et les
+//       enfants mineurs suivent. Les soldats (armée) ne migrent pas.
+//  Un personnage qui change de joueur est physiquement déplacé dans le
+//  tableau de population de son nouveau joueur.
+// ══════════════════════════════════════════════════════════════════════
 
-export function migrerEnfants(state: GameState, p: Player, rng: Rng) {
+/** Cible de migration : une ville, chez un joueur donné. */
+interface CibleVille { joueur: Player; ville: City }
+
+/** Villes d'un joueur abritant au moins un Professeur vivant. */
+function villesAvecProfesseur(state: GameState, joueur: Player): City[] {
   const C = cfgOf(state.config)
-  if (p.villes.length <= 1) return
+  const pop = state.population[joueur.n] ?? []
+  return joueur.villes.filter((v) =>
+    pop.some((c) => c.statut !== 'Décédé' && c.ville === v.nom && c.titre === C.p.titreProfesseur))
+}
+
+export function migrerPopulation(state: GameState, p: Player, rng: Rng) {
+  const C = cfgOf(state.config)
   const pop = state.population[p.n] ?? []
-  for (const c of pop) {
+  /** personnages déjà déplacés ce tour (pas de double migration) */
+  const deplaces = new Set<string>()
+
+  /** Déplace c (appartenant au joueur n° srcN) vers la ville de dest. */
+  const migrer = (c: Character, srcN: number, dest: CibleVille, motif: string) => {
+    if (dest.joueur.n !== srcN) {
+      const src = state.population[srcN] ?? []
+      const i = src.indexOf(c)
+      if (i >= 0) src.splice(i, 1)
+      const dst = state.population[dest.joueur.n] ?? (state.population[dest.joueur.n] = [])
+      dst.push(c)
+    }
+    const avant = c.ville
+    c.ville = dest.ville.nom
+    deplaces.add(c.id)
+    state.log.push({
+      turn: state.turn + 1, type: 'Système', joueur: srcN,
+      texte: dest.joueur.n === srcN
+        ? `${fullName(c)} quitte ${avant} pour ${dest.ville.nom} (${motif}).`
+        : `${fullName(c)} quitte ${avant} pour ${dest.ville.nom} chez ${dest.joueur.nom} (${motif}).`,
+    })
+  }
+
+  // ── 1. Migration scolaire des enfants ─────────────────────────────────
+  const profsChezMoi = villesAvecProfesseur(state, p)
+  const chezMoiAutres = profsChezMoi.map((v) => ({ joueur: p, ville: v }))
+  const suzerain1 = p.vassalDe != null && p.vassalDe !== p.n
+    ? state.players.find((x) => x.n === p.vassalDe) : undefined
+  const suzerain2 = suzerain1?.vassalDe != null && suzerain1.vassalDe !== p.n
+    ? state.players.find((x) => x.n === suzerain1.vassalDe) : undefined
+  const chezSuzerains = [suzerain1, suzerain2]
+    .filter((s): s is Player => !!s)
+    .flatMap((s) => villesAvecProfesseur(state, s).map((v) => ({ joueur: s, ville: v })))
+  const chezLeMonde = state.players
+    .filter((q) => q.n !== p.n)
+    .flatMap((q) => villesAvecProfesseur(state, q).map((v) => ({ joueur: q, ville: v })))
+
+  for (const c of [...pop]) {
     if (c.statut === 'Décédé' || c.age >= C.p.adultAge) continue
     if (c.education) continue
     // VBA : les « Obstinés » ne migrent pas — l'éducation ne les tentera jamais.
     if (c.traits.includes(C.p.traitObstine)) continue
-    if (!rng.chance(C.p.migrationProba)) continue
-    const autres = p.villes.filter((v) => v.nom !== c.ville)
-    if (autres.length === 0) continue
-    const dest = rng.pick(autres)
-    const avant = c.ville
-    c.ville = dest.nom
-    state.log.push({
-      turn: state.turn + 1, type: 'Système', joueur: p.n,
-      texte: `${fullName(c)} quitte ${avant} pour ${dest.nom} (migration).`,
-    })
+    if (deplaces.has(c.id)) continue
+    // un Professeur dans SA ville → pas de migration scolaire
+    if (profsChezMoi.some((v) => v.nom === c.ville)) continue
+    const ciblesMemeJoueur = chezMoiAutres.filter((t) => t.ville.nom !== c.ville)
+    if (ciblesMemeJoueur.length > 0 && rng.chance(C.p.migrationEcole)) {
+      migrer(c, p.n, rng.pick(ciblesMemeJoueur), 'scolarité — rejoint un Professeur')
+      continue
+    }
+    const ciblesSuzerain = chezSuzerains.filter((t) => t.ville.nom !== c.ville)
+    if (ciblesSuzerain.length > 0 && rng.chance(C.p.migrationSuzerain)) {
+      migrer(c, p.n, rng.pick(ciblesSuzerain), 'scolarité — Professeur du suzerain')
+      continue
+    }
+    const ciblesMonde = [...ciblesMemeJoueur, ...chezLeMonde]
+    if (ciblesMonde.length > 0 && rng.chance(C.p.migrationMonde)) {
+      migrer(c, p.n, rng.pick(ciblesMonde), 'scolarité — Professeur')
+    }
+  }
+
+  // ── 2. Migration par attrait touristique (tous les habitants) ────────
+  const cibles: { cible: CibleVille; attrait: number }[] = []
+  for (const q of state.players) {
+    for (const v of q.villes) {
+      const a = attraitTouristiqueVille(state, q, v, C)
+      if (a > 0) cibles.push({ cible: { joueur: q, ville: v }, attrait: a })
+    }
+  }
+  if (cibles.length === 0) return
+
+  /** joueur auquel appartient actuellement un personnage. */
+  const proprietaireDe = (x: Character): number | null => {
+    for (const q of state.players) {
+      if ((state.population[q.n] ?? []).includes(x)) return q.n
+    }
+    return null
+  }
+
+  for (const c of [...pop]) {
+    if (c.statut === 'Décédé' || deplaces.has(c.id)) continue
+    if (c.armee) continue // les soldats ne déménagent pas
+    if (!rng.chance(C.p.migrationTourisme)) continue
+    const dispo = cibles.filter((t) => !(t.cible.joueur.n === p.n && t.cible.ville.nom === c.ville))
+    if (dispo.length === 0) continue
+    const dest = rng.pickWeighted(dispo, (t) => t.attrait)
+    migrer(c, p.n, dest.cible, 'attrait touristique')
+    // le conjoint et les enfants mineurs suivent
+    const nomComplet = fullName(c)
+    const famille: Character[] = []
+    for (const q of state.players) {
+      for (const x of state.population[q.n] ?? []) {
+        if (x.statut === 'Décédé' || deplaces.has(x.id) || x.id === c.id || x.armee) continue
+        const estConjoint = !!c.mariage && fullName(x) === c.mariage
+        const estEnfant = (x.mere === nomComplet || x.pere === nomComplet) && x.age < C.p.adultAge
+        if (estConjoint || estEnfant) famille.push(x)
+      }
+    }
+    for (const x of famille) {
+      const srcN = proprietaireDe(x)
+      if (srcN == null) continue
+      migrer(x, srcN, dest.cible, `accompagne ${nomComplet} — attrait touristique`)
+    }
   }
 }

@@ -280,11 +280,12 @@ export {
 } from './habitations'
 export {
   productionDetaillee, productionVille, provenancesApports,
+  attraitTouristiqueVille, attraitMaxMonde,
   type ProductionDetail, type ProductionVilleDetail,
   type ProvenanceApport, type CanalApport,
 } from './production'
 export { transfererTributVassal } from './vassalite'
-export { populationTurn, migrerEnfants } from './population'
+export { populationTurn, migrerPopulation } from './population'
 export {
   maybeAssignProfesseurs, gestionMariages, formatDynastyPair,
   computeMarriageProbability, tryEducateMinor, assignAdultTitle,

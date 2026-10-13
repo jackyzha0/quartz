@@ -16,10 +16,10 @@
 // ══════════════════════════════════════════════════════════════════════
 
 import type { City, GameState, Player } from './types'
-import type { Cfg } from './gameData'
+import { cfgOf, type Cfg } from './gameData'
 import { makeRng } from './rng'
 import { calculerGainsPopulation, detailGainsVille } from './economie'
-import { effetsBatimentsVille, detailsBatimentsJoueur } from './batiments'
+import { effetsBatimentsVille, detailsBatimentsJoueur, tourismeStatiqueBatiment } from './batiments'
 import { effetsAmenagementsVille, detailsAmenagementsJoueur } from './amenagements'
 import { effetsAutresVille, detailsAutresJoueur } from './autres'
 import { effetsRegime, effetsCulturePays, detailCulturePays } from './regimes'
@@ -211,6 +211,34 @@ export function productionVille(
     }
   }
   return { batiments, amenagements, autres, habitants, consoVille, total }
+}
+
+/** Attrait migratoire d'une ville : Tourisme STATIQUE de ses bâtiments
+ *  (ex. Chapelle +35, crédité à la construction — batiments.ts) PLUS le
+ *  Tourisme produit par tour (tous canaux : Artistes de la ville…).
+ *  C'est la pondération utilisée par la migration spontanée
+ *  (paramètre migrationTourisme) et affichée en heatmap sous chaque
+ *  ville (page « Pays »). */
+export function attraitTouristiqueVille(
+  state: GameState, p: Player, ville: City, C: Cfg = cfgOf(state.config),
+): number {
+  const statique = (ville.batiments ?? []).reduce(
+    (somme, b) => somme + tourismeStatiqueBatiment(b, C), 0)
+  const flux = Math.max(0, productionVille(state, p, ville, C).total['Tourisme'] ?? 0)
+  return statique + flux
+}
+
+/** Attrait maximal parmi toutes les villes du monde — borne haute de la
+ *  heatmap (une ville à 100 % est la plus attractive du monde). */
+export function attraitMaxMonde(state: GameState): number {
+  const C = cfgOf(state.config)
+  let max = 0
+  for (const q of state.players) {
+    for (const v of q.villes) {
+      max = Math.max(max, attraitTouristiqueVille(state, q, v, C))
+    }
+  }
+  return max
 }
 
 // ══════════════════════════════════════════════════════════════════════

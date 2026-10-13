@@ -454,3 +454,15 @@ select.input { min-width: 120px; width: auto; }
 /* Grille 2×2 pour les petits graphiques de la page Accueil */
 .grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 @media (max-width: 720px) { .grid-2x2 { grid-template-columns: 1fr; } }
+
+/* ── Heatmap : attrait migratoire d'une ville (cadre ville, page Pays) ── */
+.heat-row {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin-top: 10px;
+}
+.heat-bar {
+  flex: 1 1 120px; min-width: 70px; height: 10px;
+  border-radius: 5px; overflow: hidden;
+  background: var(--card2, color-mix(in srgb, var(--text) 10%, transparent));
+}
+.heat-fill { height: 100%; border-radius: 5px; }

@@ -47,6 +47,7 @@ import {
   garnisonHabitationVille, nomRang, typeVille, habitationDef,
   rangsDisponibles, consommationsVille, tourismeStatiqueBatiment,
   detailCulturePays, productionVille, provenancesApports,
+  attraitTouristiqueVille, attraitMaxMonde,
   type ProductionDetail,
 } from '../engine/engine'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
@@ -68,6 +69,10 @@ export function PlayerView({ joueur }: { joueur: number }) {
 
   // ── Production / tour détaillée (calculée, non modifiable) ────────────
   const prodDetail = productionDetaillee(state, p, C)
+
+  // ── Attrait migratoire : borne haute = ville la plus attractive du
+  //    monde (pour la heatmap sous chaque ville). ─────────────────────────
+  const maxAttraitMonde = attraitMaxMonde(state)
 
   // ── Construction d'un bâtiment / aménagement (coût déduit du stock) ────
   const construire = (idx: number, nom: string, type: 'batiment' | 'amenagement', groupe?: string) =>
@@ -528,6 +533,37 @@ export function PlayerView({ joueur }: { joueur: number }) {
                           </tbody>
                         </table>
                       </div>
+                    </div>
+                  )
+                })()}
+
+                {/* ── Heatmap : attrait migratoire de la ville (Tourisme /
+                    tour), relatif à la ville la plus attractive du monde.
+                    C'est la pondération de la migration spontanée
+                    (2 % / tour — paramètre migrationTourisme). ── */}
+                {(() => {
+                  const attrait = attraitTouristiqueVille(state, p, ville, C)
+                  const part = maxAttraitMonde > 0 ? attrait / maxAttraitMonde : 0
+                  const chaleur = Math.round(210 - 210 * part) // bleu (froid) → rouge (chaud)
+                  return (
+                    <div
+                      className="heat-row"
+                      title={`Attrait migratoire : ${fmt(attrait)} Tourisme (bâtiments + production par tour) — pondération des migrations spontanées (${Math.round(C.p.migrationTourisme * 100)} % / tour par habitant ; conjoint et enfants mineurs suivent).`}
+                    >
+                      <span className="muted small">Attrait migratoire</span>
+                      <div className="heat-bar">
+                        {attrait > 0 && (
+                          <div
+                            className="heat-fill"
+                            style={{ width: `${Math.max(4, part * 100)}%`, background: `hsl(${chaleur}, 85%, 48%)` }}
+                          />
+                        )}
+                      </div>
+                      <span className="small">
+                        {attrait > 0
+                          ? `+${fmt(attrait)} Tourisme · ${Math.round(part * 100)} %`
+                          : '— (aucun attrait)'}
+                      </span>
                     </div>
                   )
                 })()}
