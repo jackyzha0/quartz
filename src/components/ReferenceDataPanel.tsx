@@ -22,6 +22,12 @@ const ONGLETS = [
   'Aide-mémoire',
 ] as const
 
+const GROUPES_BAT: { value: string; label: string }[] = [
+  { value: 'Ville', label: 'Ville' },
+  { value: 'Château', label: 'Château' },
+  { value: 'Capitale', label: 'Capitale' },
+]
+
 export function ReferenceDataPanel() {
   const { state, globalConfig, setGlobalCfg } = useGame()
   const [onglet, setOnglet] = useState<(typeof ONGLETS)[number]>('Titres')
@@ -185,23 +191,54 @@ export function ReferenceDataPanel() {
 
       {onglet === 'Bâtiments' && (
         <>
-          <Card title={`Constructions — bâtiments (coût / production / description exacts du classeur) (${(cfg.constructions ?? []).filter((c) => c.categorie === 'Bâtiment').length})`}>
+          <Card title={`Constructions — bâtiments (${(cfg.constructions ?? []).filter((c) => c.categorie === 'Bâtiment').length}) — table PARAMÉTRABLE`}>
+            <p className="muted small">
+              Chaque bâtiment est modifiable et pris en compte automatiquement par le moteur (coût,
+              production, effets) : le <strong>groupe</strong> détermine où il est constructible
+              (Ville / Château / Capitale), et la <strong>faction</strong> le réserve au joueur du
+              peuple correspondant (un bâtiment de faction par ville, remplaçable par le suivant ;
+              «&nbsp;(aucune)&nbsp;» = bâtiment commun). Une fois la faction choisie, le bâtiment
+              apparaît dans le groupe « Bâtiments de faction » du sélecteur des villes du joueur
+              de ce peuple.
+            </p>
             <div className="table-wrap">
               <table className="tbl small">
-                <thead><tr><th>Groupe</th><th>Bâtiment</th><th>Coût</th><th>Production</th><th>Description</th></tr></thead>
+                <thead><tr><th>Groupe</th><th>Bâtiment</th><th>Faction</th><th>Coût</th><th>Production</th><th>Description</th></tr></thead>
                 <tbody>
-                  {(cfg.constructions ?? []).filter((c) => c.categorie === 'Bâtiment').map((c, i) => (
+                  {(configEdit.constructions ?? []).map((c, i) => ({ c, i })).filter(({ c }) => c.categorie === 'Bâtiment').map(({ c, i }) => (
                     <tr key={i}>
-                      <td>{c.groupe}</td>
-                      <td><strong>{c.nom}</strong></td>
-                      <td>{c.cout || '—'}</td>
-                      <td>{c.production || '—'}</td>
-                      <td className="small">{c.description}</td>
+                      <td>
+                        <Select
+                          value={c.groupe}
+                          options={GROUPES_BAT}
+                          onChange={(v) => setCfg((cf) => { cf.constructions[i].groupe = v })}
+                        />
+                      </td>
+                      <td><TextInput value={c.nom} onChange={(v) => setCfg((cf) => { cf.constructions[i].nom = v })} /></td>
+                      <td>
+                        <Select
+                          value={c.faction ?? ''}
+                          options={[
+                            { value: '', label: '(aucune)' },
+                            ...[...cfg.peuplesLibres, ...cfg.peuplesAutres].map((f) => f.nom).map((n) => ({ value: n, label: n })),
+                          ]}
+                          onChange={(v) => setCfg((cf) => {
+                            if (v) cf.constructions[i].faction = v
+                            else delete cf.constructions[i].faction
+                          })}
+                        />
+                      </td>
+                      <td><TextInput value={c.cout} onChange={(v) => setCfg((cf) => { cf.constructions[i].cout = v })} /></td>
+                      <td><TextInput value={c.production} onChange={(v) => setCfg((cf) => { cf.constructions[i].production = v })} /></td>
+                      <td><TextInput value={c.description} onChange={(v) => setCfg((cf) => { cf.constructions[i].description = v })} /></td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
+            <Button onClick={() => setCfg((c) => {
+              c.constructions.push({ categorie: 'Bâtiment', groupe: 'Ville', famille: '', nom: 'Nouveau bâtiment', cout: '', production: '', description: '' })
+            })}>+ Ajouter un bâtiment</Button>
           </Card>
           <Card title={`Bâtiments de ville (${cfg.batimentsVille.length})`}>
             <div className="grid-2">

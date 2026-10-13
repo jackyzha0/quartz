@@ -265,6 +265,7 @@ export {
   ficheFaction, reglesActives, regleActive, detailsFaction, effetsFaction,
   garnisonFactionVille, appliquerEffetsFaction,
   nbAmenagements, nbBatiments, nbVassaux, rangPaysNiveau, capitaleDe,
+  batimentsFaction, batimentsCapitale,
   type DetailFaction, type RegleActive, type SourceRegle,
 } from './factions'
 export {

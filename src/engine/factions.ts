@@ -15,6 +15,7 @@
 import type { City, GameState, Player } from './types'
 import type { Cfg } from './gameData'
 import { cfgOf } from './gameData'
+import { batimentsRefs, type ConstructionRef } from './constructions'
 
 // ── Fiche du peuple et règles actives ─────────────────────────────────
 
@@ -90,6 +91,24 @@ export function rangPaysNiveau(p: Player, C: Cfg): number {
 /** Capitale d'un joueur : ville nommée « Capitale », sinon la 1re ville. */
 export function capitaleDe(p: Player): City | undefined {
   return p.villes.find((v) => v.nom.toLowerCase() === 'capitale') ?? p.villes[0]
+}
+
+// ── Bâtiments de faction & de capitale (table constructions) ──────────
+
+/** Bâtiments de faction du peuple d'un joueur (table constructions du
+ *  référentiel, champ `faction`). Chaque joueur ne peut construire que
+ *  les bâtiments de faction de SON peuple — une seule par ville (les
+ *  progrès « remplace une Église… » remplacent l'existant). */
+export function batimentsFaction(p: Player, C: Cfg): ConstructionRef[] {
+  return batimentsRefs(C.config).filter(
+    (b) => b.categorie === 'Bâtiment' && (b.faction ?? '') === p.peuple)
+}
+
+/** Bâtiments de capitale du référentiel (groupe « Capitale », sans
+ *  faction) : constructibles uniquement dans la capitale du joueur. */
+export function batimentsCapitale(C: Cfg): ConstructionRef[] {
+  return batimentsRefs(C.config).filter(
+    (b) => b.groupe === 'Capitale' && !(b.faction ?? ''))
 }
 
 // ── Effets automatisés par règle ──────────────────────────────────────

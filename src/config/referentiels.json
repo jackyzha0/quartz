@@ -5664,7 +5664,8 @@
       "nom": "Église",
       "cout": "5 Pierres + 10 Or",
       "production": "+1 Or par tour. Tourisme +8 à la construction.",
-      "description": "Bâtiment de faction des Basiléens : peut uniquement être construit dans une habitation de votre culture. +8 Tourisme à la construction (valeur d'état) et +1 Or par tour."
+      "description": "Bâtiment de faction des Basiléens : peut uniquement être construit dans une habitation de votre culture. +8 Tourisme à la construction (valeur d'état) et +1 Or par tour.",
+      "faction": "Basiléens"
     },
     {
       "categorie": "Bâtiment",
@@ -5673,7 +5674,8 @@
       "nom": "Grande Cathédrale",
       "cout": "12 Pierres + 30 Or",
       "production": "+3 Or par tour. Tourisme +16 à la construction.",
-      "description": "Bâtiment de faction des Basiléens (remplace une Église) : uniquement dans votre capitale. +16 Tourisme à la construction et +3 Or par tour."
+      "description": "Bâtiment de faction des Basiléens (remplace une Église) : uniquement dans votre capitale. +16 Tourisme à la construction et +3 Or par tour.",
+      "faction": "Basiléens"
     },
     {
       "categorie": "Bâtiment",
@@ -5682,7 +5684,8 @@
       "nom": "Palais de Notre-Dame du Palatinat",
       "cout": "25 Pierres + 80 Or",
       "production": "+8 Or par tour. Tourisme +35 à la construction.",
-      "description": "Bâtiment de faction des Basiléens (remplace la Grande Cathédrale) : uniquement dans votre capitale. +35 Tourisme à la construction et +8 Or par tour."
+      "description": "Bâtiment de faction des Basiléens (remplace la Grande Cathédrale) : uniquement dans votre capitale. +35 Tourisme à la construction et +8 Or par tour.",
+      "faction": "Basiléens"
     },
     {
       "categorie": "Bâtiment",
@@ -5691,7 +5694,8 @@
       "nom": "Puit de mana",
       "cout": "5 Pierres + 6 Soie",
       "production": "+1 Science par tour.",
-      "description": "Bâtiment de faction des Elfes d'Or : votre capitale produit +1 Science par tour ; dans la capitale, +1 Science par rang de l'habitation à la place (partie au plateau : manuelle)."
+      "description": "Bâtiment de faction des Elfes d'Or : votre capitale produit +1 Science par tour ; dans la capitale, +1 Science par rang de l'habitation à la place (partie au plateau : manuelle).",
+      "faction": "ELFES D'OR"
     },
     {
       "categorie": "Bâtiment",
@@ -5700,7 +5704,8 @@
       "nom": "Temple du soleil",
       "cout": "4 Pierres + 8 Bois",
       "production": "",
-      "description": "Bâtiment de faction des Hommes Lézards : génère 3 Nourriture par tour par forêt dans l'enceinte de l'habitation (plateau non modélisé — production à gérer manuellement)."
+      "description": "Bâtiment de faction des Hommes Lézards : génère 3 Nourriture par tour par forêt dans l'enceinte de l'habitation (plateau non modélisé — production à gérer manuellement).",
+      "faction": "HOMMES LEZARDS"
     },
     {
       "categorie": "Aménagement",
@@ -5710,7 +5715,8 @@
       "terrain": "Forêt",
       "cout": "8 Or + 3 Bois",
       "production": "+12 Nourriture par tour.",
-      "description": "Aménagement de faction des Sylvains (unique, forêt) : produit 12 Nourriture par tour (8 avec la règle Âge II « Don de miel », débitée automatiquement)."
+      "description": "Aménagement de faction des Sylvains (unique, forêt) : produit 12 Nourriture par tour (8 avec la règle Âge II « Don de miel », débitée automatiquement).",
+      "faction": "Sylvains"
     },
     {
       "categorie": "Aménagement",
@@ -5720,7 +5726,8 @@
       "terrain": "Forêt",
       "cout": "8 Or + 3 Bois",
       "production": "+2 Nourriture par tour.",
-      "description": "Aménagement de faction des Hommes Lézards (Âge III « Elevage », remplace la Scierie) : +2 Nourriture par tour ; coût de levée des armées réduit de 5 Or (manuel)."
+      "description": "Aménagement de faction des Hommes Lézards (Âge III « Elevage », remplace la Scierie) : +2 Nourriture par tour ; coût de levée des armées réduit de 5 Or (manuel).",
+      "faction": "HOMMES LEZARDS"
     },
     {
       "categorie": "Aménagement",
@@ -5730,7 +5737,8 @@
       "terrain": "Plaine ou Désert",
       "cout": "8 Or + 3 Bois",
       "production": "+2 Or par tour.",
-      "description": "Aménagement de faction des Nains (Âge II « Brasseries », remplace les Foires) : +2 Or par tour ; un marchand maximum supplémentaire (manuel)."
+      "description": "Aménagement de faction des Nains (Âge II « Brasseries », remplace les Foires) : +2 Or par tour ; un marchand maximum supplémentaire (manuel).",
+      "faction": "NAINS"
     },
     {
       "categorie": "Aménagement",
@@ -5740,7 +5748,108 @@
       "terrain": "—",
       "cout": "8 Bois + 4 Fer",
       "production": "",
-      "description": "Aménagement de faction des Peaux Vertes : réduit le coût de levée d'armée de 20 Or (à gérer manuellement)."
+      "description": "Aménagement de faction des Peaux Vertes : réduit le coût de levée d'armée de 20 Or (à gérer manuellement).",
+      "faction": "PEAUX VERTES"
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Faction",
+      "nom": "Tram des profondeurs",
+      "faction": "NAINS",
+      "cout": "10 Pierres + 20 Or",
+      "production": "",
+      "description": "Bâtiment de faction des Nains : permet de relier deux habitations à 10 cases ou moins au prix de 1 PM. Si utilisé pour attaquer l'habitation, ne considérez pas la bataille comme un siège mais une bataille de plaine. Vous pouvez autoriser la construction de ce bâtiment dans une habitation que vous ne possédez pas par une autre faction. (Effets de plateau à gérer manuellement.)"
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Faction",
+      "nom": "Cimetière",
+      "faction": "LEGIONS D'OUTRE-TOMBE",
+      "cout": "10 Os + 8 Pierres",
+      "production": "",
+      "description": "Bâtiment de faction des Légions d'Outre-Tombe : génère 2 Os par tour. La population de l'habitation augmente de 25 par tour. (Ressource « Os » et croissance non automatisées — à gérer manuellement.)"
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Faction",
+      "nom": "Colonie souterraine rang I",
+      "faction": "VERMINES DE KAOSS",
+      "cout": "15 Or + 3 Bétail",
+      "production": "+1 Or par tour.",
+      "description": "Bâtiment de faction des Vermines de Kaoss : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies. Vos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous. (Règle de distance à gérer manuellement.)"
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Faction",
+      "nom": "Colonie souterraine rang II",
+      "faction": "VERMINES DE KAOSS",
+      "cout": "30 Or + 10 Bois",
+      "production": "+2 Or par tour.",
+      "description": "Bâtiment de faction des Vermines de Kaoss (remplace une colonie de rang I) : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies. Vos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous. (Règle de distance à gérer manuellement.)"
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Faction",
+      "nom": "Colonie souterraine rang III",
+      "faction": "VERMINES DE KAOSS",
+      "cout": "60 Or + 15 Pierres",
+      "production": "+3 Or par tour.",
+      "description": "Bâtiment de faction des Vermines de Kaoss (remplace une colonie de rang II) : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies. Vos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous. (Règle de distance à gérer manuellement.)"
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Faction",
+      "nom": "Colonie souterraine rang IV",
+      "faction": "VERMINES DE KAOSS",
+      "cout": "100 Or + 20 Fer",
+      "production": "+4 Or par tour.",
+      "description": "Bâtiment de faction des Vermines de Kaoss (remplace une colonie de rang III) : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies. Vos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous. (Règle de distance à gérer manuellement.)"
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Faction",
+      "nom": "Colonie souterraine rang V",
+      "faction": "VERMINES DE KAOSS",
+      "cout": "200 Or + 30 Charbon",
+      "production": "+5 Or par tour.",
+      "description": "Bâtiment de faction des Vermines de Kaoss (remplace une colonie de rang IV) : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies. Vos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous. (Règle de distance à gérer manuellement.)"
+    },
+    {
+      "categorie": "Aménagement",
+      "groupe": "Terrain",
+      "famille": "Faction",
+      "nom": "Fjord",
+      "faction": "NORLS",
+      "cout": "8 Bois + 2 Bétail",
+      "production": "",
+      "description": "Aménagement de faction des Norls : peut être construit en dehors d'une habitation, possède 20 Garnison et 2 Herses. Lorsque les Norls lèvent une armée, ils peuvent la lever dans n'importe lequel de leurs Fjords. Les Fjords peuvent accueillir des extensions, transformables en aménagements selon les mêmes règles qu'une habitation. Les Fjords peuvent être construits sans technologie. (Effets de plateau à gérer manuellement.)"
+    },
+    {
+      "categorie": "Aménagement",
+      "groupe": "Terrain",
+      "famille": "Faction",
+      "nom": "Comptoir",
+      "faction": "KROVORS",
+      "cout": "6 Bois + 4 Soie",
+      "production": "",
+      "description": "Aménagement de faction des Krovors : peut être construit à 3 cases ou plus de toute habitation. Vos marchands peuvent établir des routes commerciales depuis un comptoir. Un comptoir rapporte 4 Or par marchand lui étant affecté. (Effets de plateau à gérer manuellement.)"
+    },
+    {
+      "categorie": "Aménagement",
+      "groupe": "Terrain",
+      "famille": "Faction",
+      "nom": "Autel corrupteur",
+      "faction": "THRAKSANS",
+      "cout": "6 Pierre + 2 Soie",
+      "production": "",
+      "description": "Aménagement de faction des Thraaksans : à placer à 9 cases ou moins d'une de vos habitations ou d'un autre Autel corrupteur. +4 Tourisme et réduit la Garnison de 20. Ne peut être placé que dans les habitations des autres joueurs. Si placé dans une cité libre, vous gagnez 20 Influence avec celle-ci. (Effets de plateau à gérer manuellement.)"
     }
   ],
   "typesHabitation": [

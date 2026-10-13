@@ -128,6 +128,10 @@ export interface ConstructionRef {
   groupe: string      // 'Ville' | 'Château' | 'Capitale' | 'Terrain'
   famille: string      // Militaire / Economique / Guilde / Capitale / ''
   nom: string
+  /** Faction (peuple) propriétaire de la construction — champ optionnel :
+   *  un joueur ne peut construire les bâtiments de faction que de SON
+   *  peuple (catégorie « Bâtiment de faction » des cadres ville). */
+  faction?: string
   terrain?: string     // aménagements uniquement
   cout: string
   production: string

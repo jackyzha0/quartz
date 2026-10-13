@@ -42,12 +42,13 @@ import { cfgOf, cultureDef, type Cfg } from '../engine/gameData'
 import {
   effetsTourBatiment, garnisonBatiment, coutBatiment,
   batimentsConstructionsRefs, constructionsRefs, amenagementRef, aCampDeBatisseurs,
-  coutAmenagement,
+  coutAmenagement, constructionRef,
   productionDetaillee, detailGainsVille, parseCoutTexte,
   garnisonHabitationVille, nomRang, typeVille, habitationDef,
   rangsDisponibles, consommationsVille, tourismeStatiqueBatiment,
   detailCulturePays, productionVille, provenancesApports,
   attraitTouristiqueVille, attraitMaxMonde,
+  capitaleDe, batimentsFaction, batimentsCapitale,
   type ProductionDetail,
 } from '../engine/engine'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
@@ -80,6 +81,25 @@ export function PlayerView({ joueur }: { joueur: number }) {
       const t = s.players.find((x) => x.n === joueur)
       const ville = t?.villes[idx]
       if (!t || !ville) return
+      // ── Restrictions des catégories de bâtiments ────────────────────
+      // · bâtiment de faction : uniquement ceux du peuple du joueur ;
+      // · bâtiment de capitale (groupe « Capitale ») : capitale uniquement.
+      const ref = type === 'batiment' ? constructionRef(nom, C.config) : undefined
+      const estCapitale = capitaleDe(t)?.nom === ville.nom
+      if (ref && ref.groupe === 'Capitale' && !estCapitale) {
+        s.log.push({
+          turn: s.turn, type: 'Système', joueur: t.n,
+          texte: `🏗 ${nom} ne peut être construit(e) que dans la capitale (${capitaleDe(t)?.nom ?? '—'}).`,
+        })
+        return
+      }
+      if (ref?.faction && ref.faction !== t.peuple) {
+        s.log.push({
+          turn: s.turn, type: 'Système', joueur: t.n,
+          texte: `🏗 ${nom} est un bâtiment de faction des ${ref.faction} — seuls les bâtiments de faction de ${t.peuple} sont constructibles.`,
+        })
+        return
+      }
       const cout = type === 'batiment'
         ? coutBatiment(nom, C, groupe)
         : coutAmenagement(t, C.config, type === 'amenagement' ? nom : undefined)
@@ -87,6 +107,18 @@ export function PlayerView({ joueur }: { joueur: number }) {
         ? ville.batiments
         : (ville.amenagements ?? (ville.amenagements = []))
       if (cible.includes(nom)) return
+      // Bâtiment de faction : UN par ville — le nouveau remplace l'ancien
+      // (ex. Église → Grande Cathédrale → Palais du Palatinat).
+      let remplace = ''
+      if (type === 'batiment' && ref?.faction) {
+        for (let i = ville.batiments.length - 1; i >= 0; i--) {
+          const b = ville.batiments[i]
+          if (b !== nom && constructionRef(b, C.config)?.faction) {
+            remplace = b
+            ville.batiments.splice(i, 1)
+          }
+        }
+      }
       cible.push(nom)
       const parts: string[] = []
       for (const [res, v] of Object.entries(cout)) {
@@ -110,7 +142,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
       }
       s.log.push({
         turn: s.turn, type: 'Système', joueur: t.n,
-        texte: `🏗 ${nom} construit(e) à ${ville.nom} — coût déduit du stock : ${parts.length ? parts.join(' + ') : 'gratuit'}${sci > 0 ? ` — règle de culture : +${fmt(sci)} Science` : ''}${tour > 0 ? ` — Tourisme +${fmt(tour)} (valeur fixe)` : ''}.`,
+        texte: `🏗 ${nom} construit(e) à ${ville.nom} — coût déduit du stock : ${parts.length ? parts.join(' + ') : 'gratuit'}${sci > 0 ? ` — règle de culture : +${fmt(sci)} Science` : ''}${tour > 0 ? ` — Tourisme +${fmt(tour)} (valeur fixe)` : ''}${remplace ? ` — remplace ${remplace} (bâtiment de faction de la ville)` : ''}.`,
       })
     })
 
@@ -118,18 +150,45 @@ export function PlayerView({ joueur }: { joueur: number }) {
   const refs = constructionsRefs(C.config)
   const amRefs = refs.filter((r) => r.categorie === 'Aménagement')
   const batRefs = batimentsConstructionsRefs(C)
-  const batParGroupe = ['Ville', 'Château', 'Capitale'].map((groupe) => ({
-    label: `Bâtiments de ${groupe.toLowerCase()}`,
-    options: batRefs
-      .filter((b) => b.groupe === groupe)
-      .map((b) => {
-        const cout = parseCoutTexte(b.cout)
-        return {
-          value: `${groupe}|${b.nom}` as const,
-          label: `${b.nom} — ${fmtCout(cout)}`,
-        }
-      }),
-  }))
+  // Bâtiments de faction du peuple du joueur + bâtiments de capitale
+  // du référentiel (2 nouvelles catégories des cadres ville).
+  const refsBatFaction = batimentsFaction(p, C)
+  const refsBatCapitale = batimentsCapitale(C)
+  const nomCapitale = capitaleDe(p)?.nom ?? ''
+  const fmtOption = (b: { nom: string; cout: string }, groupe: string) => ({
+    value: `${groupe}|${b.nom}`,
+    label: `${b.nom} — ${fmtCout(parseCoutTexte(b.cout))}`,
+  })
+  /** Groupes de construction d'UNE ville : bâtiments de ville / château
+   *  (hors faction), bâtiments de FACTION du peuple du joueur (toutes
+   *  villes ; ceux de capitale uniquement dans la capitale), et
+   *  bâtiments de CAPITALE pour la capitale uniquement. */
+  const batParGroupePour = (estCapitale: boolean) => {
+    const groupes: { label: string; options: { value: string; label: string }[] }[] = [
+      {
+        label: 'Bâtiments de ville',
+        options: batRefs.filter((b) => b.groupe === 'Ville' && !b.faction).map((b) => fmtOption(b, 'Ville')),
+      },
+      {
+        label: 'Bâtiments de château',
+        options: batRefs.filter((b) => b.groupe === 'Château' && !b.faction).map((b) => fmtOption(b, 'Château')),
+      },
+    ]
+    const faction = refsBatFaction.filter((b) => estCapitale || b.groupe !== 'Capitale')
+    if (faction.length > 0) {
+      groupes.push({
+        label: `Bâtiments de faction (${p.peuple})`,
+        options: faction.map((b) => fmtOption(b, 'Faction')),
+      })
+    }
+    if (estCapitale) {
+      groupes.push({
+        label: 'Bâtiments de capitale',
+        options: refsBatCapitale.map((b) => fmtOption(b, 'Capitale')),
+      })
+    }
+    return groupes
+  }
 
   const coutAm = coutAmenagement(p, C.config)
   const reducBatisseurs = aCampDeBatisseurs(p)
@@ -395,7 +454,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   <Select
                     value=""
                     options={[{ value: '' as const, label: '+ construire un bâtiment (coût déduit du stock)…' }]}
-                    groups={batParGroupe}
+                    groups={batParGroupePour(ville.nom === nomCapitale)}
                     onChange={(v) => {
                       if (!v) return
                       const [groupe, nom] = v.split('|')
