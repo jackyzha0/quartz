@@ -4729,8 +4729,8 @@
     },
     {
       "dogme": "Dogme du Pacifisme",
-      "bonusPontife": "Rang 1 : A la fin de chaque hiver, gagnez 10  Influence avec la cité libre de votre choix.\nRang 2 : Révoquer un personnage  coûte 2 Ressources et 10 Or de moins.\nRang 3 : Lorsque vous octroyez un titre, gagnez 5 Influence avec la cité libre de votre choix.",
-      "bonusFideles": "Rang 1 : A la fin de chaque hiver, gagnez 10  Influence avec la cité libre de votre choix.\nRang 2 : Révoquer un personnage  coûte 2 Ressources et 10 Or de moins.\nRang 3 : Gagnez immédiatement 40 Influence avec la cité libre de votre choix."
+      "bonusPontife": "Rang 1 : Gagnez immédiatement 1 émissaire avec la cité libre de votre choix, puis gagnez 1 émissaire supplémentaire avec la cité libre de votre choix à chaque nouveau passage d'âge.\nRang 2 : Chaque serment que vous possédez (vassaux et cités libres dont vous êtes le suzerain) vous rapporte +3 Or et +3 Nourriture par tour (maximum 4 serments).\nRang 3 : Vous devenez suzerain d'une cité libre dès 2 émissaires (au lieu de 3).",
+      "bonusFideles": "Rang 1 : Votre tribut de vassalité est allégé : vous reversez 40 % des revenus de vos habitants à votre suzerain (au lieu de 50 %).\nRang 2 : Tant que vous êtes vassal : vos habitations gagnent +10 Garnison et vous gagnez +2 Or par tour.\nRang 3 : Tant que vous êtes vassal : vos habitations gagnent +10 Garnison supplémentaires et vous gagnez +2 Nourriture et +2 Or par tour supplémentaires."
     },
     {
       "dogme": "Dogme du Socialisme",
