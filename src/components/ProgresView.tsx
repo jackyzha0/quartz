@@ -61,10 +61,10 @@ export function ProgresView({ joueur }: { joueur: number }) {
       return `Âge ${a.age} verrouillé : complétez ${ARBRES_PAR_AGE} arbres de l'âge ${a.age - 1}`
     if (nbDebloquesArbre(i) >= TECHS_PAR_ARBRE)
       return `Arbre terminé : exactement ${TECHS_PAR_ARBRE} technologies`
-    if (s === 'a2' && !debloque(i, 'a1')) return 'Débloquez d'abord la technologie 1 de la branche A'
-    if (s === 'b2' && !debloque(i, 'b1')) return 'Débloquez d'abord la technologie 1 de la branche B'
+    if (s === 'a2' && !debloque(i, 'a1')) return "Débloquez d'abord la technologie 1 de la branche A"
+    if (s === 'b2' && !debloque(i, 'b1')) return "Débloquez d'abord la technologie 1 de la branche B"
     if (s === 'c' && !((debloque(i, 'a1') && debloque(i, 'a2')) || (debloque(i, 'b1') && debloque(i, 'b2'))))
-      return 'La technologie C exige les 2 technologies d'une même branche'
+      return "La technologie C exige les 2 technologies d'une même branche"
     const t = techOf(a, s)
     if (!t || !t.nom) return 'Emplacement vide — remplissez-le dans Référentiels → Progrès'
     return null
