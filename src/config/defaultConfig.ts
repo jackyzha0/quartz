@@ -137,7 +137,25 @@ export interface ConstructionRef {
   production: string
   description: string
 }
-export interface ProgresArbre { arbre: string; entrees: { texte: string; prerequis: string }[] }
+/** Une technologie d'un arbre de progrès : nom, coût (Science, entre
+ *  parenthèses dans le classeur) et description de l'effet — appliqué
+ *  au plateau (aucun effet automatique dans le moteur web). */
+export interface ProgresTechDef { nom: string; cout: string; description: string }
+/** Un arbre de progrès (feuille « Progrès » du classeur) : 2 branches de
+ *  2 technologies (la tech 2 exige la tech 1) + une technologie C
+ *  (exigée après 2 techs d'une même branche, optionnelle). Un arbre est
+ *  TERMINÉ à EXACTEMENT 3 technologies débloquées ; 3 arbres de l'âge
+ *  N-1 complétés ouvrent l'âge N. */
+export interface ProgresArbre {
+  nom: string
+  /** 1..3 — l'âge auquel l'arbre appartient. */
+  age: number
+  /** Tags indicatifs du classeur (ex. « C, PV, Aurore N »). */
+  tags?: string
+  brancheA: ProgresTechDef[]
+  brancheB: ProgresTechDef[]
+  techC: ProgresTechDef
+}
 
 export interface EffetDef { ressource: string; base: number }
 export interface EventEffetsDef {
@@ -553,6 +571,20 @@ export function migrerTypesHabitation(list: HabitationDef[] | undefined): Habita
   return list
 }
 
+/** Arbres de progrès d'une configuration existante : l'ANCIEN format
+ *  du classeur ({ arbre, entrees } à plat) est remplacé par le
+ *  référentiel courant (structure par branches a/b + tech C). Les
+ *  configs déjà au nouveau format (nom/age/branches) sont conservées
+ *  telles quelles (éditables dans Référentiels → Progrès). */
+export function migrerProgres(list: ProgresArbre[] | undefined): ProgresArbre[] {
+  if (!Array.isArray(list) || list.length === 0) return DEFAULT_CONFIG.progres
+  const vieuxFormat = (list as unknown[]).some(
+    (t: any) => t && (t.entrees !== undefined || t.arbre !== undefined) && t.brancheA === undefined,
+  )
+  if (vieuxFormat) return DEFAULT_CONFIG.progres
+  return list
+}
+
 export function cfgOf(config: GameConfig | undefined): Cfg {
   const c = config ?? DEFAULT_CONFIG
   const merged: GameConfig = {
@@ -565,6 +597,8 @@ export function cfgOf(config: GameConfig | undefined): Cfg {
   merged.cultures = migrerCultures(merged.cultures)
   merged.regimes = migrerRegimes(merged.regimes)
   merged.typesHabitation = migrerTypesHabitation(merged.typesHabitation)
+  // arbres de progrès : migration de l'ancien format à plat du classeur
+  merged.progres = migrerProgres(merged.progres)
   // fiches de faction : structure (victoire/bâtiment/âges) du référentiel
   //  + correctif Sylvains (Savoir ancestral ↔ Bibliothèque enfouie)
   merged.peuplesLibres = migrerFactions(merged.peuplesLibres, DEFAULT_CONFIG.peuplesLibres).map(migrerSwapSylvains)

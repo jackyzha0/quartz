@@ -241,7 +241,12 @@ export interface Player {
    *  Un vassal reverse chaque tour une part des revenus de ses habitants
    *  (paramètre vassalPrelevement) à son suzerain. */
   vassalDe?: number | null
-  /** Technologies débloquées (texte des entrées des arbres de progrès). */
+  /** Technologies de progrès débloquées par ce joueur — clés
+   *  `<indexArbre>:<slot>` (index dans Référentiels → Progrès, slot
+   *  a1|a2|b1|b2|c). Règles appliquées par la vue « Progrès » :
+   *  tech 2 exige la tech 1 de sa branche, la tech C exige 2 techs
+   *  d'une même branche, un arbre est terminé à EXACTEMENT 3 techs,
+   *  et l'âge N exige 3 arbres complétés de l'âge N-1. */
   progresDebloques?: string[]
   /** Règle de faction choisie pour l'Âge II / l'Âge III : le joueur
    *  choisit UNE règle parmi les trois de son peuple à chaque montée

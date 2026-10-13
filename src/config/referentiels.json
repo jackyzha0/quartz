@@ -4374,307 +4374,718 @@
   ],
   "progres": [
     {
-      "arbre": "Progrès du développement côtier",
-      "entrees": [
+      "nom": "Progrès du développement côtier",
+      "age": 1,
+      "tags": "C, PV, Aurore N",
+      "brancheA": [
         {
-          "texte": "I.i.a.1 - Cours de pêche (6) :\nVos habitations côtières produisent +4 Nourriture par tour.",
-          "prerequis": "I.i.b.1 - Commerce maritime I (6) :\nVos habitations côtières produisent +2 Or par tour."
+          "nom": "Cours de pêche",
+          "cout": "6",
+          "description": "Vos habitations côtières produisent +4 Nourriture par tour."
         },
         {
-          "texte": "C, PV, Aurore N",
-          "prerequis": "PL"
-        },
-        {
-          "texte": "I.i.a.2 - Pêche de culture (12) :\n Vos ressources maritimes produisent +3 Nourriture par tour.",
-          "prerequis": "I.i.b.2 - Expansion maritime (10) :\nConstruire ou améliorer des habitations côtières vous coûte 3 Bois et 3 Pierre en moins."
-        },
-        {
-          "texte": "Progrès de la diplomatie",
-          "prerequis": ""
-        },
-        {
-          "texte": "II.i.a.1 - Geste (14) :\nLorsque vous  débloquez cette  technologie, gagnez 30 Influence avec la cité libre de votre choix.",
-          "prerequis": "II.i.b.1 - Délégation (16) :\nChaque fois que vous gagnez de l'Influence avec une cité libre, gagnez 5 Influence supplémentaire."
-        },
-        {
-          "texte": "II.i.a.2 - Offrande (25) :\nLorsque vous  débloquez cette  technologie, gagnez 50 Influence avec la cité libre de votre choix.",
-          "prerequis": "II.i.b.2 - Ambassade (28) :\nChaque fois que vous gagnez de l'Influence avec une cité libre, gagnez 5 Influence supplémentaire."
-        },
-        {
-          "texte": "Progrès de l'armée nationale",
-          "prerequis": ""
-        },
-        {
-          "texte": "III.i.a.1 - Grande armée (38) :\nVous pouvez posséder une armée suppémentaire. Lorsque vous attaquez une habitation, sa garnison est réduite de 80.",
-          "prerequis": "III.i.b.1 - Conscription (34) : \nRecruter une armée vous coûte 12 Or de moins. Vos armées ont +1 PM."
-        },
-        {
-          "texte": "III.i.a.2 - Sappeurs (56) :\nLorsqu'une de vos armée attaque une habitation, celle-ci ne peut bénéficier de ses remparts.",
-          "prerequis": "III.i.b.2 - Sappeurs (58) :\nLorsque vous menez une bataille, votre adversaire déploie son armée entièrement, puis vous déployez la votre. Vous choissez qui a le premier tour."
+          "nom": "Pêche de culture",
+          "cout": "12",
+          "description": "Vos ressources maritimes produisent +3 Nourriture par tour."
         }
-      ]
+      ],
+      "brancheB": [
+        {
+          "nom": "Commerce maritime I",
+          "cout": "6",
+          "description": "Vos habitations côtières produisent +2 Or par tour."
+        },
+        {
+          "nom": "Expansion maritime",
+          "cout": "10",
+          "description": "Construire ou améliorer des habitations côtières vous coûte 3 Bois et 3 Pierre en moins."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
     },
     {
-      "arbre": "Progrès des stratégies défensives",
-      "entrees": [
+      "nom": "Progrès des stratégies défensives",
+      "age": 1,
+      "tags": "PL, N",
+      "brancheA": [
         {
-          "texte": "I.ii.a.1 - Milices civiles I (6) :\n+30 garnison dans votre capitale.",
-          "prerequis": "I.ii.b.1 - Eriger des murs (4) : \nVos habitations possèdent 2 herses."
+          "nom": "Milices civiles I",
+          "cout": "6",
+          "description": "+30 garnison dans votre capitale."
         },
         {
-          "texte": "PL, N",
-          "prerequis": ""
-        },
-        {
-          "texte": "I.ii.a.2 - Fortifications solides (10) :\n+15 Garnison dans vos habitations.",
-          "prerequis": "I.ii.b.2 - Quadrilatère stratégique (8) :\nLorsque vous combattez en défense d'habitation vous générez 1 dé de manœuvre  blanc suipplémentaire."
-        },
-        {
-          "texte": "Progrès du développement urbain",
-          "prerequis": ""
-        },
-        {
-          "texte": "II.ii.a.1 - Viser le ciel (14) :\nConstruire un bâtiment dans vos habitations coûte 15 Or de moins.",
-          "prerequis": "II.ii.b.1 - Milles et une villes (17) : \nLorsque vous fondez une nouvelle habitation, vous pouvez y construire immédiatement 2 aménagements gratuits."
-        },
-        {
-          "texte": "II.ii.a.2 - Villes et sommets (24) :\n Améliorer vos habitations requiert 15 Or, 3 Bois, 3 Pierre et 3 Fer en moins.",
-          "prerequis": "II.ii.b.2 - Expansionnisme (30) :\nLes habitations à plus de 7 case de votre capitale  produisent  2  Or et 2 Nourriture supplémentaires par tour."
-        },
-        {
-          "texte": "Progrès de la défense nationale",
-          "prerequis": ""
-        },
-        {
-          "texte": "III.ii.b.1 - Milices civiles V (36) : \n+40 Garnison dans vos habitations.",
-          "prerequis": "III.ii.b.1 - Milices civiles V (36) : \n+40 Garnison dans vos habitations."
-        },
-        {
-          "texte": "III.ii.a.2 - Réservistes (62) :\nVos armées dans des habitations ont un entretient de 0 Or et Nourriture par tour.",
-          "prerequis": "III.ii.b.2 - Service militaire (64) :\nVos habitations gagnent un nombre d'habitants par tour égal à 0,5 fois leur garnison."
+          "nom": "Fortifications solides",
+          "cout": "10",
+          "description": "+15 Garnison dans vos habitations."
         }
-      ]
+      ],
+      "brancheB": [
+        {
+          "nom": "Eriger des murs",
+          "cout": "4",
+          "description": "Vos habitations possèdent 2 herses."
+        },
+        {
+          "nom": "Quadrilatère stratégique",
+          "cout": "8",
+          "description": "Lorsque vous combattez en défense d'habitation vous générez 1 dé de manœuvre  blanc suipplémentaire."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
     },
     {
-      "arbre": "Progrès de la découverte scientifique",
-      "entrees": [
+      "nom": "Progrès de la découverte scientifique",
+      "age": 1,
+      "tags": "PV, Aurore, N.V",
+      "brancheA": [
         {
-          "texte": "I.iii.a.1 - Progrès technologiques I (6) :\nLorsque vous débloquez cette technologie, vous gagnez 6 Science.",
-          "prerequis": "I.iii.b.1 - Comprendre la soie (8) : \nVotre bâtiment de capitale génère +1 Science par tour."
+          "nom": "Progrès technologiques I",
+          "cout": "6",
+          "description": "Lorsque vous débloquez cette technologie, vous gagnez 6 Science."
         },
         {
-          "texte": "I.iii.a.2 - Progrès technologiques II (10) :\nLorsque vous débloquez cette technologie, vous gagnez 10 Science.",
-          "prerequis": "I.iii.b.2 - Etude astronomique (12) :\nVotre capitale produit +1 Science par tour."
-        },
-        {
-          "texte": "Progrès défensif avancé",
-          "prerequis": ""
-        },
-        {
-          "texte": "Aurore",
-          "prerequis": "PV"
-        },
-        {
-          "texte": "II.iii.a.1 - Milices civiles III (16) :\n+20 Garnison dans vos habitations.",
-          "prerequis": "II.iii.b.1 - Gestion de crise (22) : \nLa prochaine crise est annulée."
-        },
-        {
-          "texte": "II.iii.a.2 - Organisation défensive (26) :\nRéduit le coût de construction des bâtiments défensifs de 4 Or et 2 ressources.",
-          "prerequis": "II.iii.b.2 - Combler les lacunes (24) : \nVos habitations ne peuvent avoir moins de  30 Garnison."
-        },
-        {
-          "texte": "Progrès du développement futur",
-          "prerequis": ""
-        },
-        {
-          "texte": "PV",
-          "prerequis": ""
-        },
-        {
-          "texte": "III.iii.a.1 - Technologies futures I (32) :\nVotre capitale produit +3 Science par tour.",
-          "prerequis": "III.iii.b.1 - Musées (32) : \n+30 Tourisme dans votre capitale."
-        },
-        {
-          "texte": "PV",
-          "prerequis": ""
-        },
-        {
-          "texte": "III.iii.a.2 - Technologies futures II (44) :\nVos habitations produisent +1 Science par tour.",
-          "prerequis": "III.iii.b.2 - Parcs naturels (48) :\nCoût de construction des merveilles -10 Ressources. Les merveilles génèrent +10 Tourisme."
+          "nom": "Progrès technologiques II",
+          "cout": "10",
+          "description": "Lorsque vous débloquez cette technologie, vous gagnez 10 Science."
         }
-      ]
+      ],
+      "brancheB": [
+        {
+          "nom": "Comprendre la soie",
+          "cout": "8",
+          "description": "Votre bâtiment de capitale génère +1 Science par tour."
+        },
+        {
+          "nom": "Etude astronomique",
+          "cout": "12",
+          "description": "Votre capitale produit +1 Science par tour."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
     },
     {
-      "arbre": "Progrès de l'offensive",
-      "entrees": [
+      "nom": "Progrès de l'offensive",
+      "age": 1,
+      "tags": "PL, V, Aurore",
+      "brancheA": [
         {
-          "texte": "I.iv.a.1 - Stratégies militaires I (7) :\nLa prochaine armée que vous levez coûte 50 Or de moins.",
-          "prerequis": "I.iv.b.1 - Rations (5) : \nLorsque vous attaquez une habitation, sa garnison est réduite de 20."
+          "nom": "Stratégies militaires I",
+          "cout": "7",
+          "description": "La prochaine armée que vous levez coûte 50 Or de moins."
         },
         {
-          "texte": "PL, V",
-          "prerequis": "Aurore"
-        },
-        {
-          "texte": "I.iv.a.2 - Raliement ! I (12) :\nLorsque vous menez une bataille, vous bénéficiez d'un dé blanc de manoeuvre supplémentaire à chaque tour.",
-          "prerequis": "I.iv.b.2 - Service militaire (10) :\nLorsque vous attaquez une habitation, vous bénéficiez d'Avant-garde sur 2 de vos modèles."
-        },
-        {
-          "texte": "Progrès de l'écologie",
-          "prerequis": ""
-        },
-        {
-          "texte": "PV,  N V",
-          "prerequis": "PV N V, Aurore"
-        },
-        {
-          "texte": "II.iv.a.1 - Barrage (22) :\nLors d'innondations, choisissez 3 aménagements dans chacune de vos habitations qui ne seront pas détruits.",
-          "prerequis": "II.iv.b.1 - Engrais naturels I (18) : \nLes champs et rizières produisent +2 Nourriture par tour."
-        },
-        {
-          "texte": "II.iv.a.2 - Projet anti incendie (34) :\nLors d'explosions volcaniques ou glissements de terrain, choisissez 3 aménagements dans chacune de vos habitations qui ne seront pas détruits.",
-          "prerequis": "II.iv.b.2 - Engrais naturels II (24) :\nLes champs et rizières produisent +3 Nourriture par tour."
-        },
-        {
-          "texte": "Progrès du développement économique",
-          "prerequis": ""
-        },
-        {
-          "texte": "PV",
-          "prerequis": ""
-        },
-        {
-          "texte": "III.iv.a.1 - Taxe nécéssaire I (38) :\nLorsque vous débloquez ce progrès, recevez 250 Or.",
-          "prerequis": "III.iv.b.1 - Hausse du loyer (32) :\nVotre capitale produit +15 Or par tour."
-        },
-        {
-          "texte": "III.iv.a.2 - Taxes nécéssaire II (46) :\nLorsque vous débloquez ce progrès, recevez 300 Or.",
-          "prerequis": "III.iv.b.2 - Urbanisme (54) :\nVotre capitale peut accueillir un bâtiment supplémentaire."
+          "nom": "Raliement ! I",
+          "cout": "12",
+          "description": "Lorsque vous menez une bataille, vous bénéficiez d'un dé blanc de manoeuvre supplémentaire à chaque tour."
         }
-      ]
+      ],
+      "brancheB": [
+        {
+          "nom": "Rations",
+          "cout": "5",
+          "description": "Lorsque vous attaquez une habitation, sa garnison est réduite de 20."
+        },
+        {
+          "nom": "Service militaire",
+          "cout": "10",
+          "description": "Lorsque vous attaquez une habitation, vous bénéficiez d'Avant-garde sur 2 de vos modèles."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
     },
     {
-      "arbre": "Progrès du développement rural",
-      "entrees": [
+      "nom": "Progrès du développement rural",
+      "age": 1,
+      "tags": "N, Aurore, C",
+      "brancheA": [
         {
-          "texte": "I.v.a.1 - Développement durable (7) :\nConstruire un aménagement coûte 1 Bois de moins.",
-          "prerequis": "I.v.b.1 - Colonialisme durable (6) :\nConstruire une nouvelle habitation coûte 4 Bois de moins."
+          "nom": "Développement durable",
+          "cout": "7",
+          "description": "Construire un aménagement coûte 1 Bois de moins."
         },
         {
-          "texte": "N, Aurore, C",
-          "prerequis": ""
-        },
-        {
-          "texte": "I.v.a.2 - Développement économe (12) :\n Construire un aménagement coûte 3 Or de moins.",
-          "prerequis": "I.v.b.2 - Colonialisme économe (10) :\nConstruire une nouvelle habitation coûte 15 Or de moins."
-        },
-        {
-          "texte": "Progrès de l'éducation",
-          "prerequis": ""
-        },
-        {
-          "texte": "PV, Aurore",
-          "prerequis": "PV, Aurore"
-        },
-        {
-          "texte": "II.v.a.1 - Assemblée de penseurs (20) :\nDécouvrir un Progrès coûte 2 Science en moins.",
-          "prerequis": "II.v.b.1 - Lumière (16) : \nVotre capitale produit +1 Science par tour."
-        },
-        {
-          "texte": "Aurore",
-          "prerequis": "PV"
-        },
-        {
-          "texte": "II.v.a.2  - Assemblée de savants (28) :\nDécouvrir un Progrès coûte 3 Science en moins.",
-          "prerequis": "II.v.b.2 - Merveilleux (26) :\nVos merveilles produisent +1 Science par tour"
-        },
-        {
-          "texte": "Progrès d'humanisme",
-          "prerequis": ""
-        },
-        {
-          "texte": "III.v.a.1 - Préfectures (48) :\nLorsque vous débloquez ce progrès, ajoutez 15 habitants dans chacune de vos habitations.",
-          "prerequis": "III.v.b.1 - Greniers (46) : \nLorsque vous débloquez ce progrès, ajoutez 40 habitants dans votre capitale."
-        },
-        {
-          "texte": "III.v.a.2 - Prix Gorback Nobel (60) :\nVos Ministres génèrent +6 Science par tour.",
-          "prerequis": "III.v.b.2 - Culte de la personnalité (60) :\nVos Ministres génèrent +30 Tourisme."
+          "nom": "Développement économe",
+          "cout": "12",
+          "description": "Construire un aménagement coûte 3 Or de moins."
         }
-      ]
+      ],
+      "brancheB": [
+        {
+          "nom": "Colonialisme durable",
+          "cout": "6",
+          "description": "Construire une nouvelle habitation coûte 4 Bois de moins."
+        },
+        {
+          "nom": "Colonialisme économe",
+          "cout": "10",
+          "description": "Construire une nouvelle habitation coûte 15 Or de moins."
+        }
+      ],
+      "techC": {
+        "nom": "Identité commune",
+        "cout": "15",
+        "description": "Permet la construction du bâtiment de faction. Lorsque vous débloquez ce progrès, ajoutez 5 habitants dans chacune de vos habitations."
+      }
     },
     {
-      "arbre": "Progrès du développement urbain",
-      "entrees": [
+      "nom": "Progrès du développement urbain",
+      "age": 1,
+      "tags": "V, N",
+      "brancheA": [
         {
-          "texte": "I.vi.a.1 - Déforestation (8) :\nVotre capitale produit +1 Bois par tour.",
-          "prerequis": "I.vi.b.1 - Granges (5) :\nVotre capitale génère 10 Nourriture par tour."
+          "nom": "Déforestation",
+          "cout": "8",
+          "description": "Votre capitale produit +1 Bois par tour."
         },
         {
-          "texte": "V N",
-          "prerequis": ""
-        },
-        {
-          "texte": "I.vi.a.2 - Bergeries (14) :\n Votre capitale produit +1 Bétail par tour.",
-          "prerequis": "I.vi.b.2 - Sédentarisation (12) :\nLorsque vous débloquez ce progrès, ajoutez 15  habitants dans votre capitale."
-        },
-        {
-          "texte": "Progrès de l'ouverture culturelle",
-          "prerequis": ""
-        },
-        {
-          "texte": "II.vi.a.1 - Fascination culturelle (16) :\nLes foires fournissent +2 Tourisme",
-          "prerequis": "II.vi.b.1 - Safaris (14) : \nVos merveilles naturelle fournissent +5 Tourisme."
-        },
-        {
-          "texte": "II.vi.a.2 - Stands de goodies (22) :\nLes foires fournissent +2 Or par tour et +2 Tourisme.",
-          "prerequis": "II.vi.b.2 - Parcs naturels (24) :\nLes sites archéologiques fournissent +8 Tourisme."
-        },
-        {
-          "texte": "Progrès de l'industrialisation",
-          "prerequis": ""
-        },
-        {
-          "texte": "III.vi.a.1 - Charues (44) :\nVos champs produisent +5 Nourriture  et +1 Or par tour.",
-          "prerequis": "III.vi.b.1 - Surconsommation (40) : \nVos habitations consomment 10 Nourriture par rang de l'habitation mais génèrent 1 Science et 5 Tourisme par rang de l'habitation."
-        },
-        {
-          "texte": "III.vi.a.2 - Déforestation (58) :\nVos Scieries ne produisent plus de Bois mais du Charbon.",
-          "prerequis": "III.vi.b.2 - Usinage (52) :\nVos bâtiments coûtent 3 Ressources de moins et produisent+1 Charbon par tour."
+          "nom": "Bergeries",
+          "cout": "14",
+          "description": "Votre capitale produit +1 Bétail par tour."
         }
-      ]
+      ],
+      "brancheB": [
+        {
+          "nom": "Granges",
+          "cout": "5",
+          "description": "Votre capitale génère 10 Nourriture par tour."
+        },
+        {
+          "nom": "Sédentarisation",
+          "cout": "12",
+          "description": "Lorsque vous débloquez ce progrès, ajoutez 15  habitants dans votre capitale."
+        }
+      ],
+      "techC": {
+        "nom": "Une ville magnifique",
+        "cout": "15",
+        "description": "Permet la construction du bâtiment de faction. Lorsque vous débloquez ce progrès, ajoutez 20 habitants dans votre capitale."
+      }
     },
     {
-      "arbre": "Progrès du développement économique",
-      "entrees": [
+      "nom": "Progrès du développement économique",
+      "age": 1,
+      "tags": "N, V",
+      "brancheA": [
         {
-          "texte": "I.vii.a.1 - Organisation fiscale (3) :\nVotre capitale produit +2 Or par tour.",
-          "prerequis": "I.vii.b.1 - Commerce (6) :\nVos marchands vous rapportent 3 Or par tour."
+          "nom": "Organisation fiscale",
+          "cout": "3",
+          "description": "Votre capitale produit +2 Or par tour."
         },
         {
-          "texte": "N, V",
-          "prerequis": "PL, PV, C"
-        },
-        {
-          "texte": "I.vii.a.2 - Usinage (7) : \n Votre capitale génère 1 Charbon par tour.",
-          "prerequis": "Commerce lointain (8) :\nVous pouvez posséder un marchand supplémentaire."
-        },
-        {
-          "texte": "Progrès de l'armée nationale",
-          "prerequis": ""
-        },
-        {
-          "texte": "V",
-          "prerequis": "Aurore V, PL"
-        },
-        {
-          "texte": "II.vii.a.1 - Grande armée I (14) :\nVous pouvez posséder une armée suppémentaire. Vous possédez un dé de manœuvre blanc supplémentaire en bataille.",
-          "prerequis": "II.vii.b.1 - Conscription I (16) : \nRecruter une armée vous coûte 10 Or de moins. Lorsque vous attaquez une habitation, sa garnison est réduite de 20."
-        },
-        {
-          "texte": "II.vii.a.2 - Corps d'armée (20) :\nLa vitesse de vos armée augmente de 1 PM.",
-          "prerequis": "II.vii.b.2 - Croisade (24) :\nLorsque vous remportez une victoire militaire, gagnez 30 Or et 5 Tourisme."
+          "nom": "Usinage",
+          "cout": "7",
+          "description": "Votre capitale génère 1 Charbon par tour."
         }
-      ]
+      ],
+      "brancheB": [
+        {
+          "nom": "Commerce",
+          "cout": "6",
+          "description": "Vos marchands vous rapportent 3 Or par tour."
+        },
+        {
+          "nom": "Commerce lointain",
+          "cout": "8",
+          "description": "Vous pouvez posséder un marchand supplémentaire."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
+    },
+    {
+      "nom": "Progrès de la diplomatie",
+      "age": 2,
+      "tags": "",
+      "brancheA": [
+        {
+          "nom": "Geste",
+          "cout": "14",
+          "description": "Lorsque vous  débloquez cette  technologie, gagnez 30 Influence avec la cité libre de votre choix."
+        },
+        {
+          "nom": "Offrande",
+          "cout": "25",
+          "description": "Lorsque vous  débloquez cette  technologie, gagnez 50 Influence avec la cité libre de votre choix."
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "Délégation",
+          "cout": "16",
+          "description": "Chaque fois que vous gagnez de l'Influence avec une cité libre, gagnez 5 Influence supplémentaire."
+        },
+        {
+          "nom": "Ambassade",
+          "cout": "28",
+          "description": "Chaque fois que vous gagnez de l'Influence avec une cité libre, gagnez 5 Influence supplémentaire."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
+    },
+    {
+      "nom": "Progrès du développement urbain",
+      "age": 2,
+      "tags": "",
+      "brancheA": [
+        {
+          "nom": "Viser le ciel",
+          "cout": "14",
+          "description": "Construire un bâtiment dans vos habitations coûte 15 Or de moins."
+        },
+        {
+          "nom": "Villes et sommets",
+          "cout": "24",
+          "description": "Améliorer vos habitations requiert 15 Or, 3 Bois, 3 Pierre et 3 Fer en moins."
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "Milles et une villes",
+          "cout": "17",
+          "description": "Lorsque vous fondez une nouvelle habitation, vous pouvez y construire immédiatement 2 aménagements gratuits."
+        },
+        {
+          "nom": "Expansionnisme",
+          "cout": "30",
+          "description": "Les habitations à plus de 7 case de votre capitale  produisent  2  Or et 2 Nourriture supplémentaires par tour."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
+    },
+    {
+      "nom": "Progrès défensif avancé",
+      "age": 2,
+      "tags": "PV, N",
+      "brancheA": [
+        {
+          "nom": "Milices civiles III",
+          "cout": "16",
+          "description": "+20 Garnison dans vos habitations."
+        },
+        {
+          "nom": "Organisation défensive",
+          "cout": "26",
+          "description": "Réduit le coût de construction des bâtiments défensifs de 4 Or et 2 ressources."
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "Gestion de crise",
+          "cout": "22",
+          "description": "La prochaine crise est annulée."
+        },
+        {
+          "nom": "Combler les lacunes",
+          "cout": "24",
+          "description": "Vos habitations ne peuvent avoir moins de  30 Garnison."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
+    },
+    {
+      "nom": "Progrès de l'écologie",
+      "age": 2,
+      "tags": "PV, N, Aurore",
+      "brancheA": [
+        {
+          "nom": "Barrage",
+          "cout": "22",
+          "description": "Lors d'innondations, choisissez 3 aménagements dans chacune de vos habitations qui ne seront pas détruits."
+        },
+        {
+          "nom": "Projet anti incendie",
+          "cout": "34",
+          "description": "Lors d'explosions volcaniques ou glissements de terrain, choisissez 3 aménagements dans chacune de vos habitations qui ne seront pas détruits."
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "Engrais naturels I",
+          "cout": "18",
+          "description": "Les champs et rizières produisent +2 Nourriture par tour."
+        },
+        {
+          "nom": "Engrais naturels II",
+          "cout": "24",
+          "description": "Les champs et rizières produisent +3 Nourriture par tour."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
+    },
+    {
+      "nom": "Progrès de l'éducation",
+      "age": 2,
+      "tags": "",
+      "brancheA": [
+        {
+          "nom": "Assemblée de penseurs",
+          "cout": "20",
+          "description": "Découvrir un Progrès coûte 2 Science en moins."
+        },
+        {
+          "nom": "Assemblée de savants",
+          "cout": "28",
+          "description": "Découvrir un Progrès coûte 3 Science en moins."
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "Lumière",
+          "cout": "16",
+          "description": "Votre capitale produit +1 Science par tour."
+        },
+        {
+          "nom": "Merveilleux",
+          "cout": "26",
+          "description": "Vos merveilles produisent +1 Science par tour"
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
+    },
+    {
+      "nom": "Progrès de l'ouverture culturelle",
+      "age": 2,
+      "tags": "",
+      "brancheA": [
+        {
+          "nom": "Fascination culturelle",
+          "cout": "16",
+          "description": "Les foires fournissent +2 Tourisme"
+        },
+        {
+          "nom": "Stands de goodies",
+          "cout": "22",
+          "description": "Les foires fournissent +2 Or par tour et +2 Tourisme."
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "Safaris",
+          "cout": "14",
+          "description": "Vos merveilles naturelle fournissent +5 Tourisme."
+        },
+        {
+          "nom": "Parcs naturels",
+          "cout": "24",
+          "description": "Les sites archéologiques fournissent +8 Tourisme."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
+    },
+    {
+      "nom": "Progrès de l'armée nationale",
+      "age": 2,
+      "tags": "",
+      "brancheA": [
+        {
+          "nom": "Grande armée I",
+          "cout": "14",
+          "description": "Vous pouvez posséder une armée suppémentaire. Vous possédez un dé de manœuvre blanc supplémentaire en bataille."
+        },
+        {
+          "nom": "Corps d'armée",
+          "cout": "20",
+          "description": "La vitesse de vos armée augmente de 1 PM."
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "Conscription I",
+          "cout": "16",
+          "description": "Recruter une armée vous coûte 10 Or de moins. Lorsque vous attaquez une habitation, sa garnison est réduite de 20."
+        },
+        {
+          "nom": "Croisade",
+          "cout": "24",
+          "description": "Lorsque vous remportez une victoire militaire, gagnez 30 Or et 5 Tourisme."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
+    },
+    {
+      "nom": "Progrès de l'armée nationale",
+      "age": 3,
+      "tags": "",
+      "brancheA": [
+        {
+          "nom": "Grande armée",
+          "cout": "38",
+          "description": "Vous pouvez posséder une armée suppémentaire. Lorsque vous attaquez une habitation, sa garnison est réduite de 80."
+        },
+        {
+          "nom": "Sappeurs",
+          "cout": "56",
+          "description": "Lorsqu'une de vos armée attaque une habitation, celle-ci ne peut bénéficier de ses remparts."
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "Conscription",
+          "cout": "34",
+          "description": "Recruter une armée vous coûte 12 Or de moins. Vos armées ont +1 PM."
+        },
+        {
+          "nom": "Sappeurs",
+          "cout": "58",
+          "description": "Lorsque vous menez une bataille, votre adversaire déploie son armée entièrement, puis vous déployez la votre. Vous choissez qui a le premier tour."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
+    },
+    {
+      "nom": "Progrès de la défense nationale",
+      "age": 3,
+      "tags": "",
+      "brancheA": [
+        {
+          "nom": "",
+          "cout": "",
+          "description": ""
+        },
+        {
+          "nom": "Réservistes",
+          "cout": "62",
+          "description": "Vos armées dans des habitations ont un entretient de 0 Or et Nourriture par tour."
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "Milices civiles V",
+          "cout": "36",
+          "description": "+40 Garnison dans vos habitations."
+        },
+        {
+          "nom": "Service militaire",
+          "cout": "64",
+          "description": "Vos habitations gagnent un nombre d'habitants par tour égal à 0,5 fois leur garnison."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
+    },
+    {
+      "nom": "Progrès du développement futur",
+      "age": 3,
+      "tags": "PV",
+      "brancheA": [
+        {
+          "nom": "Technologies futures I",
+          "cout": "32",
+          "description": "Votre capitale produit +3 Science par tour."
+        },
+        {
+          "nom": "Technologies futures II",
+          "cout": "44",
+          "description": "Vos habitations produisent +1 Science par tour."
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "Musées",
+          "cout": "32",
+          "description": "+30 Tourisme dans votre capitale."
+        },
+        {
+          "nom": "Parcs naturels",
+          "cout": "48",
+          "description": "Coût de construction des merveilles -10 Ressources. Les merveilles génèrent +10 Tourisme."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
+    },
+    {
+      "nom": "Progrès du développement économique",
+      "age": 3,
+      "tags": "",
+      "brancheA": [
+        {
+          "nom": "Taxe nécéssaire I",
+          "cout": "38",
+          "description": "Lorsque vous débloquez ce progrès, recevez 250 Or."
+        },
+        {
+          "nom": "Taxes nécéssaire II",
+          "cout": "46",
+          "description": "Lorsque vous débloquez ce progrès, recevez 300 Or."
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "Hausse du loyer",
+          "cout": "32",
+          "description": "Votre capitale produit +15 Or par tour."
+        },
+        {
+          "nom": "Urbanisme",
+          "cout": "54",
+          "description": "Votre capitale peut accueillir un bâtiment supplémentaire."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
+    },
+    {
+      "nom": "Progrès d'humanisme",
+      "age": 3,
+      "tags": "",
+      "brancheA": [
+        {
+          "nom": "Préfectures",
+          "cout": "48",
+          "description": "Lorsque vous débloquez ce progrès, ajoutez 15 habitants dans chacune de vos habitations."
+        },
+        {
+          "nom": "Prix Gorback Nobel",
+          "cout": "60",
+          "description": "Vos Ministres génèrent +6 Science par tour."
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "Greniers",
+          "cout": "46",
+          "description": "Lorsque vous débloquez ce progrès, ajoutez 40 habitants dans votre capitale."
+        },
+        {
+          "nom": "Culte de la personnalité",
+          "cout": "60",
+          "description": "Vos Ministres génèrent +30 Tourisme."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
+    },
+    {
+      "nom": "Progrès de l'industrialisation",
+      "age": 3,
+      "tags": "",
+      "brancheA": [
+        {
+          "nom": "Charues",
+          "cout": "44",
+          "description": "Vos champs produisent +5 Nourriture  et +1 Or par tour."
+        },
+        {
+          "nom": "Déforestation",
+          "cout": "58",
+          "description": "Vos Scieries ne produisent plus de Bois mais du Charbon."
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "Surconsommation",
+          "cout": "40",
+          "description": "Vos habitations consomment 10 Nourriture par rang de l'habitation mais génèrent 1 Science et 5 Tourisme par rang de l'habitation."
+        },
+        {
+          "nom": "Usinage",
+          "cout": "52",
+          "description": "Vos bâtiments coûtent 3 Ressources de moins et produisent+1 Charbon par tour."
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
+    },
+    {
+      "nom": "Progrès de la Suzeraineté",
+      "age": 3,
+      "tags": "",
+      "brancheA": [
+        {
+          "nom": "",
+          "cout": "",
+          "description": ""
+        },
+        {
+          "nom": "",
+          "cout": "",
+          "description": ""
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "",
+          "cout": "",
+          "description": ""
+        },
+        {
+          "nom": "",
+          "cout": "",
+          "description": ""
+        }
+      ],
+      "techC": {
+        "nom": "",
+        "cout": "",
+        "description": ""
+      }
     }
   ],
   "tourismeSeuils": [

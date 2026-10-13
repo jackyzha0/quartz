@@ -308,17 +308,61 @@ export function ReferenceDataPanel() {
       )}
 
       {onglet === 'Progrès' && (
-        <Card title="Arbres de progrès">
-          {cfg.progres.map((arbre, i) => (
-            <div key={i} className="mb">
-              <h4>{arbre.arbre}</h4>
-              <ul className="small">
-                {arbre.entrees.map((e, j) => (
-                  <li key={j}>{e.texte}{e.prerequis ? <span className="muted"> (prérequis : {e.prerequis})</span> : null}</li>
-                ))}
-              </ul>
+        <Card title={`Arbres de progrès (${configEdit.progres.length}) — entièrement paramétrables`}>
+          <p className="muted small">
+            Un arbre = branche A (2 technologies) + branche B (2 technologies) + technologie C.
+            Règles du classeur : la tech 2 exige sa tech 1 ; la tech C exige les 2 techs d'une
+            même branche ; un arbre se termine à EXACTEMENT 3 technologies (la tech C est
+            optionnelle) ; 3 arbres complétés de l'âge N-1 ouvrent l'âge N. Les effets sont
+            appliqués au plateau, pas au moteur. Les emplacements vides sont ignorés en jeu.
+          </p>
+          {[1, 2, 3].map((age) => (
+            <div key={age} className="mb">
+              <h4>Âge {age}</h4>
+              {configEdit.progres.every((a) => a.age !== age) && (
+                <p className="muted small">Aucun arbre à cet âge.</p>
+              )}
+              {configEdit.progres.map((arbre, i) => arbre.age !== age ? null : (
+                <div key={i} className="mini mb">
+                  <div className="row">
+                    <TextInput value={arbre.nom} onChange={(v) => setCfg((c) => { c.progres[i].nom = v })} />
+                    <NumberInput value={arbre.age} step={1} min={1} max={3} onChange={(v) => setCfg((c) => { c.progres[i].age = v })} />
+                    <TextInput value={arbre.tags ?? ''} placeholder="Tags (ex. C, PV, Aurore N)" onChange={(v) => setCfg((c) => { c.progres[i].tags = v })} />
+                    <Button tone="danger" onClick={() => setCfg((c) => { c.progres.splice(i, 1) })}>Supprimer l'arbre</Button>
+                  </div>
+                  <div className="table-wrap">
+                    <table className="tbl small">
+                      <thead><tr><th>Emplacement</th><th>Technologie</th><th>Coût (Science)</th><th>Description (effet)</th></tr></thead>
+                      <tbody>
+                        {([['A.1', 'brancheA', 0], ['A.2', 'brancheA', 1], ['B.1', 'brancheB', 0], ['B.2', 'brancheB', 1]] as [string, 'brancheA' | 'brancheB', number][]).map(([label, br, idx]) => (
+                          <tr key={label}>
+                            <td>{label}</td>
+                            <td><TextInput value={arbre[br][idx]?.nom ?? ''} onChange={(v) => setCfg((c) => { c.progres[i][br][idx].nom = v })} /></td>
+                            <td><TextInput value={arbre[br][idx]?.cout ?? ''} onChange={(v) => setCfg((c) => { c.progres[i][br][idx].cout = v })} /></td>
+                            <td><TextInput value={arbre[br][idx]?.description ?? ''} onChange={(v) => setCfg((c) => { c.progres[i][br][idx].description = v })} /></td>
+                          </tr>
+                        ))}
+                        <tr>
+                          <td>C (optionnelle)</td>
+                          <td><TextInput value={arbre.techC?.nom ?? ''} onChange={(v) => setCfg((c) => { c.progres[i].techC.nom = v })} /></td>
+                          <td><TextInput value={arbre.techC?.cout ?? ''} onChange={(v) => setCfg((c) => { c.progres[i].techC.cout = v })} /></td>
+                          <td><TextInput value={arbre.techC?.description ?? ''} onChange={(v) => setCfg((c) => { c.progres[i].techC.description = v })} /></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              ))}
             </div>
           ))}
+          <Button onClick={() => setCfg((c) => {
+            c.progres.push({
+              nom: 'Nouvel arbre de progrès', age: 1, tags: '',
+              brancheA: [{ nom: '', cout: '', description: '' }, { nom: '', cout: '', description: '' }],
+              brancheB: [{ nom: '', cout: '', description: '' }, { nom: '', cout: '', description: '' }],
+              techC: { nom: '', cout: '', description: '' },
+            })
+          })}>+ Ajouter un arbre de progrès</Button>
         </Card>
       )}
 
