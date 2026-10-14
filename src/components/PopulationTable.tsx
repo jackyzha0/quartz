@@ -41,6 +41,15 @@ type SortKey = 'nom' | 'age' | 'dynastie' | 'ville' | 'titre' | 'statut'
 
 const STATUTS: Character['statut'][] = ['Sain', 'Malade', 'Décédé']
 
+/** « clé : n » trié par valeur décroissante — carte « Récap du
+ *  dernier tour », déplacée de la page Pays vers l'onglet Population
+ *  (retour Thibaut 2026-10-14). */
+function dictToString(dict: Record<string, number>): string {
+  const entries = Object.entries(dict).sort((a, b) => b[1] - a[1])
+  if (entries.length === 0) return '—'
+  return entries.map(([k, v]) => `${k} : ${v}`).join(', ')
+}
+
 export function PopulationTable({ joueur }: { joueur: number }) {
   const { state, update } = useGame()
   const [filtreDyn, setFiltreDyn] = useState('')
@@ -253,7 +262,6 @@ export function PopulationTable({ joueur }: { joueur: number }) {
     const lignes = Object.entries(parTitre).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'fr'))
     return sansTitre > 0 ? [...lignes, ['(sans titre)', sansTitre]] : lignes
   }
-  const metiersRoyaume = compteTitres(vivants)
 
   // ── Ajout manuel d'habitants ────────────────────────────────────────
   const villesAjout = cite ? [cite.nom] : (p?.villes.map((v) => v.nom) ?? [])
@@ -358,7 +366,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       <td>{c.ageMax || '—'}</td>
       <td className="small">
         {c.statut !== 'Décédé' && (
-          <>
+          <div className="act-row">
             <Select
               value=""
               options={[
@@ -377,7 +385,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
                 onChange={(v) => marierAvec(c, v)}
               />
             )}
-          </>
+          </div>
         )}
       </td>
     </tr>
@@ -426,17 +434,28 @@ export function PopulationTable({ joueur }: { joueur: number }) {
 
   return (
     <div className="stack">
-      <Card title={`🛠️ Métiers ${cite ? 'de la cité libre' : 'du royaume'} — ${vivants.length} vivants`}>
-        <div className="badges-wrap">
-          {metiersRoyaume.map(([titre, nb]) => (
-            <span key={titre} className={`badge ${titre === '(sans titre)' ? 'badge-neutral' : 'badge-info'}`}>
-              {titre} : {nb}
-            </span>
-          ))}
-          {metiersRoyaume.length === 0 && <span className="muted">aucun habitant vivant</span>}
-        </div>
-      </Card>
 
+      {/* Récap du dernier tour — carte déplacée de la page Pays (retour
+          Thibaut 2026-10-14) : elle ne concerne que la population. */}
+      {p && (
+        <Card title="Récap du dernier tour">
+          {p.recap ? (
+            <div className="grid-2 small">
+              <div>Conceptions : {dictToString(p.recap.conceptions)}</div>
+              <div>Naissances : {dictToString(p.recap.naissances)}</div>
+              <div>Décès : {dictToString(p.recap.deces)} (dont maladie : {p.recap.decesMaladie})</div>
+              <div>Mariages nobles : {dictToString(p.recap.mariagesNobles)}</div>
+              <div>Conversions : {dictToString(p.recap.conversions)}</div>
+              <div>Titres attribués : {dictToString(p.recap.titresAttribues)}</div>
+              {(p.recap.crises.length > 0 || p.recap.commandantTombe) && (
+                <div className="neg">⚠ {p.recap.crises.join(' ; ')}{p.recap.commandantTombe ? ` Commandant tombé : ${p.recap.commandantTombe}` : ''}</div>
+              )}
+            </div>
+          ) : (
+            <p className="muted">Lancez un tour pour voir le récapitulatif.</p>
+          )}
+        </Card>
+      )}
       <Card title="🏘️ Occupations par ville">
         <div className="table-wrap">
           <table className="tbl small">
@@ -485,7 +504,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           appliqués aussi au tableau « Population » ci-dessous.
         </p>
         <div className="table-wrap">
-          <table className="tbl small">
+          <table className="tbl small pop-tbl">
             {entetes}
             <tbody>
               {rowsCour.length
@@ -504,7 +523,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
 
       <Card title={`Population de ${nomPorteur} — ${classiqueVivants} vivants / ${pop.filter((c) => !estNoble(c)).length} au total`}>
         <div className="table-wrap">
-          <table className="tbl small">
+          <table className="tbl small pop-tbl">
             {entetes}
             <tbody>
               {rowsClassique.length

@@ -141,7 +141,7 @@ export function ProgresView({ joueur }: { joueur: number }) {
         const cs = debiterScienceTech(q, t)
         st.log.push({
           turn: st.turn, type: 'Système', joueur,
-          texte: `${q.nom} — « ${t?.nom ?? '?'} » débloquée${cs ? ` : −${cs} Science (coût déduit du stock ; effets à appliquer au plateau)` : ' (effets à appliquer au plateau)'}.`,
+          texte: `${q.nom} — « ${t?.nom ?? '?'} » débloquée${cs ? ` : −${cs} Science (coût déduit du stock)` : ''}.`,
         })
       } else if (etaitDebloque) {
         const cs = rembourserScienceTech(q, t)
@@ -163,7 +163,7 @@ export function ProgresView({ joueur }: { joueur: number }) {
     const err = blocage(i, s)
     const vide = !t || !t.nom
     return (
-      <div key={s} className="mini" style={{ opacity: vide && !actif ? 0.55 : 1 }}>
+      <div key={s} className="mini tech-rangee" style={{ opacity: vide && !actif ? 0.55 : 1 }}>
         <div className="mini-title">
           {label}
           {t?.cout ? <span className="muted"> · coût : {t.cout} Science (déduit du stock au déblocage)</span> : null}
@@ -171,9 +171,13 @@ export function ProgresView({ joueur }: { joueur: number }) {
         <div className={actif ? '' : 'muted'}>
           <strong>{t?.nom || '— emplacement vide —'}</strong>
         </div>
-        <div className="muted small">{t?.description || 'à remplir dans Référentiels → Progrès'}</div>
+        <div className="muted small tech-desc" title={t?.description || undefined}>
+          {t?.description || 'à remplir dans Référentiels → Progrès'}
+        </div>
         {resumeEffetsTech(t) && (
-          <div className="small" style={{ color: 'var(--good)' }}>à appliquer au plateau : {resumeEffetsTech(t)}</div>
+          <div className="small tech-eff" title={resumeEffetsTech(t)} style={{ color: 'var(--good)' }}>
+            {resumeEffetsTech(t)}
+          </div>
         )}
         <Button
           tone={actif ? 'danger' : 'primary'}
@@ -193,7 +197,7 @@ export function ProgresView({ joueur }: { joueur: number }) {
     <div className="stack">
       <Card title={`Progrès de ${p.nom} — ${totalDebloques} technologie(s) débloquée(s)`}>
         <p className="muted small">
-          Coût en Science débité au déblocage (remboursé à la reprise) ; effets à appliquer au plateau.
+          Coût en Science débité au déblocage (remboursé à la reprise).
         </p>
       </Card>
 

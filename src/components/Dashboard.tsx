@@ -87,6 +87,32 @@ export function Dashboard() {
 
   return (
     <div className="stack">
+      <Card title="Toutes les ressources">
+        <div className="table-wrap">
+          <table className="tbl small">
+            <thead>
+              <tr>
+                <th>Joueur</th>
+                {RESOURCES.map((r) => (
+                  <th key={r}><span className="dot-res" style={{ background: cR(r) }} />{r}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {state.players.map((p) => (
+                <tr key={p.n}>
+                  <td><strong>{p.nom}</strong></td>
+                  {RESOURCES.map((r) => (
+                    <td key={r} className={(p.resources[r]?.stock ?? 0) < 0 ? 'neg' : ''}>
+                      {fmt(p.resources[r]?.stock ?? 0)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
       <Card title="Ressources des joueurs (stock / production)">
         <div className="table-wrap">
           <table className="tbl">
@@ -188,24 +214,6 @@ export function Dashboard() {
           couleursJoueurs={couleursJoueurs} couleurRessource={cR} />
       </Card>
 
-      <Card title="Cartes dynastie du tour">
-        <div className="grid-4">
-          {state.players.map((p) => (
-            <div key={p.n} className="mini">
-              <strong>{p.nom}</strong>
-              {p.dynastie ? (
-                <>
-                  <div className="mini-title">{p.dynastie.nom}</div>
-                  <div className="muted small">{p.dynastie.description}</div>
-                </>
-              ) : (
-                <div className="muted small">pas encore tirée</div>
-              )}
-            </div>
-          ))}
-        </div>
-      </Card>
-
       <Card title="Voies de victoire — Lauriers I à IV (chapitre XII, refonte 2026-10-14)">
         {vainqueurs.length > 0 && (
           <div className="pos mb" style={{ fontWeight: 'bold' }}>
@@ -269,33 +277,6 @@ export function Dashboard() {
         <ul className="muted small">
           {VICTORY_TEXT.map((v) => <li key={v.nom}><strong>{v.nom}</strong> — {v.texte}</li>)}
         </ul>
-      </Card>
-
-      <Card title="Toutes les ressources">
-        <div className="table-wrap">
-          <table className="tbl small">
-            <thead>
-              <tr>
-                <th>Joueur</th>
-                {RESOURCES.map((r) => (
-                  <th key={r}><span className="dot-res" style={{ background: cR(r) }} />{r}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {state.players.map((p) => (
-                <tr key={p.n}>
-                  <td><strong>{p.nom}</strong></td>
-                  {RESOURCES.map((r) => (
-                    <td key={r} className={(p.resources[r]?.stock ?? 0) < 0 ? 'neg' : ''}>
-                      {fmt(p.resources[r]?.stock ?? 0)}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
       </Card>
     </div>
   )

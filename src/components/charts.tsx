@@ -89,7 +89,7 @@ export function HistogrammeEmpile({ groupes, avecProd = true, largeur = 900,
   largeur?: number
 } & PropsCouleurs) {
   const W = largeur
-  const H = 360
+  const H = 300
   const padL = 58, padR = 14, padT = 16, padB = 66
   const plotW = W - padL - padR
   const plotH = H - padT - padB
@@ -219,7 +219,7 @@ export function CourbeRessource({ ressource, series, couleursJoueurs, couleurRes
   series: SerieCourbe[]
 } & PropsCouleurs) {
   const W = 900
-  const H = 380
+  const H = 300
   const padL = 58, padR = 14, padT = 18, padB = 44
   const plotW = W - padL - padR
   const plotH = H - padT - padB
@@ -335,7 +335,7 @@ export function Radar({ axes, series, largeur = 900, couleursJoueurs }: {
 }) {
   if (axes.length === 0) return null
   const W = largeur
-  const H = 560
+  const H = 460
   const cx = W / 2
   const cy = H / 2 + 4
   const R = Math.min(W / 2, H / 2) - 64

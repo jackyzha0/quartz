@@ -473,7 +473,7 @@ select.input { min-width: 120px; width: auto; }
 .pre-wrap { white-space: pre-wrap; }
 
 /* ── Graphiques (page Accueil) ────────────────────────────────────── */
-.chart-svg { width: 100%; height: auto; display: block; }
+.chart-svg { width: 100%; height: auto; display: block; max-width: 840px; margin: 0 auto; }
 .chart-legend {
   display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center;
   margin-bottom: 10px; font-size: 0.8em;
@@ -538,4 +538,40 @@ input[type='color'] {
 }
 input[type='range'] {
   accent-color: var(--accent); cursor: pointer;
+}
+
+/* ═══ Mise en forme (marqueur (p), retour Thibaut 2026-10-14) ═══ */
+
+/* En-tête de carte de ville (page Pays) : nom en gras + taxes sur la même ligne */
+.ville-tete { display: flex; gap: 8px; align-items: flex-end; }
+.ville-tete .field { flex: 1; margin-bottom: 0; }
+.ville-tete .field:first-child { flex: 1.5; }
+.ville-tete .field:first-child .input { font-weight: 700; }
+
+/* Aménagements et bâtiments côte à côte dans une carte de ville */
+.ville-constr { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 560px) { .ville-constr { grid-template-columns: 1fr; } }
+
+/* « Donner à… » et « Marier avec… » sur la même ligne (tableaux de population) */
+.act-row { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.act-row select.input { flex: 1 1 120px; min-width: 0; width: auto; }
+
+/* Tableaux « La cour » et « Population » : lignes plus denses */
+.pop-tbl th, .pop-tbl td { padding: 3px 6px; }
+.pop-tbl .input { padding: 2px 6px; font-size: 12.5px; }
+.pop-tbl .btn { padding: 2px 8px; font-size: 12.5px; }
+.pop-tbl .badge { padding: 0 6px; font-size: 11px; margin: 0 1px; }
+
+/* Onglet Progrès : toutes les technologies de tous les arbres ont la
+   MÊME HAUTEUR (bouton calé en bas, texte bridé en nombre de lignes,
+   texte complet en info-bulle). */
+.tech-rangee { min-height: 176px; }
+.tech-rangee .btn { margin-top: auto; align-self: flex-start; font-size: 12.5px; padding: 4px 10px; }
+.tech-desc {
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.tech-eff {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
 }
