@@ -61,19 +61,22 @@ export function createGame(setups: SetupLine[], seed: number, mode?: 'local' | '
   }
   state.rngState = rng.state()
 
-  // Cités libres : AUTANT de cités libres que de joueurs. Chaque cité
-  // démarre avec 50 habitants (adultes Chasseurs — Nourriture ×2 pour
-  // les cités libres), un type de la table « Cités libres » du
-  // référentiel (tournant), une culture au tournant et des taxes
-  // moyennes. Tout est modifiable ensuite dans l'onglet
-  // « 🗼 Cités libres ».
+  // Cités libres : AUTANT de cités libres que de joueurs (retour
+  //  Thibaut 2026-10-14 : une par joueur, créées AUTOMATIQUEMENT).
+  // Chaque cité démarre avec 50 habitants (adultes Chasseurs —
+  // Nourriture ×2 pour les cités libres) et consomme 1 Nourriture par
+  // tour. Retour Thibaut (suite) : culture et type tirés AU HASARD
+  // (plus de répartition tournante), et type d'habitation Hameau ou
+  // Château tiré au hasard. Tout est modifiable ensuite dans
+  // l'onglet « 🗼 Cités libres ».
   const typesCites = C.config.citesLibres ?? []
   state.citesLibres = []
   for (let i = 0; i < state.players.length; i++) {
     const cite: CiteLibre = {
       nom: `Cité libre ${i + 1}`,
-      type: typesCites.length > 0 ? typesCites[i % typesCites.length].type : 'Ville',
-      culture: C.cultures[i % Math.max(1, C.cultures.length)]?.nom ?? '',
+      type: typesCites.length > 0 ? rng.pick(typesCites).type : 'Ville',
+      habitation: rng.pick(['Hameau', 'Château'] as ('Hameau' | 'Château')[]),
+      culture: rng.pick(C.cultures)?.nom ?? '',
       taxes: 'Moyenne',
       suzerain: null,
       emissaires: {},
@@ -84,7 +87,7 @@ export function createGame(setups: SetupLine[], seed: number, mode?: 'local' | '
   }
   state.log.push({
     turn: 1, type: 'Système', joueur: null,
-    texte: `🗼 ${state.citesLibres.length} cités libres créées (une par joueur) — chacune démarre avec 50 habitants (Chasseurs : Nourriture ×2). Chaque joueur démarre avec 1 ville de 50 habitants et 100 Nourriture, 80 Or, 15 Bois.`,
+    texte: `🗼 ${state.citesLibres.length} cités libres créées (une par joueur) — chacune démarre avec 50 habitants (Chasseurs : Nourriture ×2), une culture et un type tirés au hasard (habitation Hameau ou Château), et consomme 1 Nourriture par tour. Chaque joueur démarre avec 1 ville de 50 habitants et 100 Nourriture, 80 Or, 15 Bois.`,
   })
   return state
 }

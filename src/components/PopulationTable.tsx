@@ -12,22 +12,34 @@
 //  être DONNÉ à un autre joueur ; deux nobles peuvent être MARIÉS
 //  manuellement (y compris de joueurs différents — ex. la fille du
 //  joueur 1 avec le fils du joueur 2).
+//  Retour Thibaut (2026-10-14, suite) : la section Population affiche
+//  AUSSI les CITÉS LIBRES comme des onglets « comme si c'étaient des
+//  joueurs » (joueur négatif = index de la cité) — mêmes tableaux
+//  « La cour » / « Population », ajout de roturiers ou de familles
+//  nobles, titres, dons et mariages. Seules différences : pas de
+//  Ministres ni d'arbre dynastique, et le STATUT reste éditable
+//  (les cités libres ne passent pas au moteur démographique).
 // ══════════════════════════════════════════════════════════════════════
 
 import React, { useMemo, useState } from 'react'
 import { useGame } from '../state/store'
-import type { Character, Player } from '../engine/types'
+import type { Character, CiteLibre, GameState, Player } from '../engine/types'
 import { cfgOf } from '../engine/gameData'
 import { validateTitleAssignment } from '../engine/validation'
 import { ajouterHabitant } from '../engine/setup'
 import {
   titresAccessibles, changerPortefeuille, isNobleDyn, fullName,
-  donnerPersonnage, marierPersonnages,
+  marierPersonnages, deplacerPersonnage, toutesLesPopulations,
+  titresAccessiblesCite, pseudoJoueurDeCite,
+  ajouterHabitantsCiteLibre, ajouterFamilleNobleCiteLibre,
+  type Detenteur,
 } from '../engine/engine'
 import { GenealogyTree } from './GenealogyTree'
 import { Card, Select, TextInput, Button, NumberInput, fmt } from './ui'
 
 type SortKey = 'nom' | 'age' | 'dynastie' | 'ville' | 'titre' | 'statut'
+
+const STATUTS: Character['statut'][] = ['Sain', 'Malade', 'Décédé']
 
 export function PopulationTable({ joueur }: { joueur: number }) {
   const { state, update } = useGame()
@@ -40,9 +52,16 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   const [addVille, setAddVille] = useState('')
   const [addNb, setAddNb] = useState(1)
 
-  const p = state?.players.find((x) => x.n === joueur)
-  const pop = state?.population[joueur] ?? []
+  // ── Cible de l'onglet : un JOUEUR (joueur > 0) ou une CITÉ LIBRE
+  //  (joueur = -(index+1) — onglets 🗼 de la section Population,
+  //  retour Thibaut 2026-10-14 : « comme si c'étaient des joueurs »). */
+  const citeIdx = joueur < 0 ? -joueur - 1 : -1
+  const cite: CiteLibre | undefined =
+    citeIdx >= 0 && state ? (state.citesLibres ?? [])[citeIdx] : undefined
+  const p = cite ? undefined : state?.players.find((x) => x.n === joueur)
+  const pop = cite ? (cite.population ?? []) : (state?.population[joueur] ?? [])
   const C = cfgOf(state?.config)
+  const nomPorteur = p?.nom ?? cite?.nom ?? ''
 
   // ── Séparation cour / population classique (retour Thibaut) ───────
   const estNoble = (c: Character) => isNobleDyn(c.dynastie, C)
@@ -74,16 +93,16 @@ export function PopulationTable({ joueur }: { joueur: number }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pop, C, filtreDyn, filtreVille, filtreTitre, filtreStatut, tri])
 
-  if (!state || !p) return null
+  if (!state || (!p && !cite)) return null
 
   // ── Portefeuilles ministériels (refonte 2026-10-14) ──────────────────
   // Rang actuel du joueur dans l'échelle des rangs, pour le contrôle du
   // rang MINIMUM des portefeuilles (avertissement affiché, jamais
   // bloquant — l'arbitre garde la main).
   const rangsPays = C.config.paysRangs ?? []
-  const idxRangJoueur = Math.max(0, rangsPays.findIndex((r) => r.nom === (p.rang ?? rangsPays[0]?.nom)))
+  const idxRangJoueur = Math.max(0, rangsPays.findIndex((r) => r.nom === (p?.rang ?? rangsPays[0]?.nom)))
   const avertissementPortefeuille = (m: string | null | undefined): string | null => {
-    if (!m) return null
+    if (!p || !m) return null
     const min = (C.config.ministeres ?? []).find((x) => x.ministere === m)?.rangMinimum
     if (!min) return null
     if (rangsPays.findIndex((r) => r.nom === min) > idxRangJoueur) {
@@ -95,7 +114,12 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   // Aucune contrainte bloquante : le titre est TOUJOURS appliqué ;
   // le contrôle de cohérence n'affiche qu'un avertissement (ignorable).
   const changeTitre = (c: Character, titre: string) => {
-    const issue = validateTitleAssignment(state, p, c, titre)
+    // Cité libre : validation via un pseudo-joueur (culture de la cité,
+    // mêmes contrôles de cohérence que pour un joueur).
+    const porteur = p ?? (cite ? pseudoJoueurDeCite(cite) : undefined)
+    const issue = porteur
+      ? validateTitleAssignment(state, porteur, c, titre)
+      : { ok: true, message: '' }
     setErrors((e) => {
       const copy = { ...e }
       if (issue.ok) delete copy[c.id]
@@ -103,7 +127,10 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       return copy
     })
     update((s) => {
-      const target = (s.population[joueur] ?? []).find((x) => x.id === c.id)
+      const liste = cite
+        ? ((s.citesLibres ?? [])[citeIdx]?.population ?? [])
+        : (s.population[joueur] ?? [])
+      const target = liste.find((x) => x.id === c.id)
       if (target) {
         target.titre = titre
         // On quitte le titre « Ministre » → le portefeuille part avec.
@@ -112,44 +139,92 @@ export function PopulationTable({ joueur }: { joueur: number }) {
     })
   }
 
+  /** Statut manuel (mode cité libre SEULEMENT — les cités libres ne
+   *  passent pas au moteur démographique : décès « au plateau »).
+   *  Décès = veuvage du conjoint où qu'il vive (joueur ou cité libre). */
+  const changerStatut = (c: Character, v: string) => {
+    const nomCite = cite?.nom ?? ''
+    update((s) => {
+      const tc = ((s.citesLibres ?? [])[citeIdx]?.population ?? []).find((x) => x.id === c.id)
+      if (!tc) return
+      tc.statut = v as Character['statut']
+      if (v === 'Décédé' && tc.mariage) {
+        const conjoint = toutesLesPopulations(s).find((x) => x.mariage === fullName(tc))
+        if (conjoint) conjoint.mariage = null
+        s.log.push({
+          turn: s.turn, type: 'Décès', joueur: null,
+          texte: `💀 ${fullName(tc)} est décédé(e) à la cité libre ${nomCite} — le conjoint est libéré.`,
+        })
+      }
+    })
+  }
+
   // ── Don de personnage et mariage manuel (retour Thibaut) ───────────
-  const autresJoueurs = state.players.filter((q) => q.n !== joueur)
-  /** Options « Donner à… » : les autres joueurs de la partie. */
-  const optionsDon = autresJoueurs.map((q) => ({ value: String(q.n), label: `${q.nom} (J${q.n})` }))
-  /** Options « Marier avec… » : nobles vivants, majeurs et célibataires
-   *  de TOUS les joueurs (mariage entre cours, ex. fille de J1 × fils
-   *  de J2). Le personnage lui-même est exclu. */
-  const optionsMariage = (c: Character) =>
-    state.players.flatMap((q) =>
+  //  Dons et mariages couvrent JOUEURS et CITÉS LIBRES (retour
+  //  2026-10-14 : la population des cités libres est « semblable en
+  //  tout point » à celle des joueurs).
+  /** Valeur d'option → détenteur (« j<n> » = joueur, « c<i> » = cité). */
+  const detenteurDeCle = (s: GameState, v: string): Detenteur | undefined => {
+    if (v.startsWith('j')) {
+      const q = s.players.find((x) => x.n === parseInt(v.slice(1), 10))
+      return q ? { kind: 'joueur', p: q } : undefined
+    }
+    const cc = (s.citesLibres ?? [])[parseInt(v.slice(1), 10)]
+    return cc ? { kind: 'cite', cite: cc } : undefined
+  }
+  /** Options « Donner à… » : les autres joueurs ET les cités libres. */
+  const optionsDon = [
+    ...state.players
+      .filter((q) => (cite ? true : q.n !== joueur))
+      .map((q) => ({ value: `j${q.n}`, label: `${q.nom} (J${q.n})` })),
+    ...(state.citesLibres ?? [])
+      .map((cc, i) => (cite === cc
+        ? null
+        : { value: `c${i}`, label: `🗼 ${cc.nom} (cité libre)` }))
+      .filter((x): x is { value: string; label: string } => x !== null),
+  ]
+  /** Nobles vivants, majeurs et célibataires, chez les joueurs comme
+   *  dans les cités libres. Le personnage lui-même est exclu. */
+  const eligibleMariage = (x: Character, c: Character) =>
+    x.id !== c.id && x.statut !== 'Décédé' && !x.mariage
+    && x.age >= C.p.adultAge && estNoble(x)
+  const optionsMariage = (c: Character) => [
+    ...state.players.flatMap((q) =>
       (state.population[q.n] ?? [])
-        .filter((x) =>
-          x.id !== c.id && x.statut !== 'Décédé' && !x.mariage
-          && x.age >= C.p.adultAge && estNoble(x))
+        .filter((x) => eligibleMariage(x, c))
         .map((x) => ({ value: x.id, label: `${fullName(x)} — ${q.nom} (${x.dynastie})` })),
-    )
+    ),
+    ...(state.citesLibres ?? []).flatMap((cc) =>
+      (cc.population ?? [])
+        .filter((x) => eligibleMariage(x, c))
+        .map((x) => ({ value: x.id, label: `${fullName(x)} — 🗼 ${cc.nom}, cité libre (${x.dynastie})` })),
+    ),
+  ]
   const donnerA = (c: Character, v: string) => {
     if (!v) return
-    const dstNom = state.players.find((q) => q.n === parseInt(v, 10))?.nom
-    if (!dstNom) return
-    if (c.titre === C.p.titreDirigeant
+    const dst = detenteurDeCle(state, v)
+    if (!dst) return
+    const dstNom = dst.kind === 'joueur'
+      ? `${dst.p.nom} (J${dst.p.n})`
+      : `la cité libre ${dst.cite.nom}`
+    if (p && c.titre === C.p.titreDirigeant
       && !window.confirm(`Donner ${fullName(c)} (${C.p.titreDirigeant} de ${p.nom}) à ${dstNom} ?`)) return
     update((s) => {
-      const src = s.players.find((q) => q.n === joueur)
-      const dst = s.players.find((q) => q.n === parseInt(v, 10))
-      const tc = src ? (s.population[joueur] ?? []).find((x) => x.id === c.id) : undefined
-      if (src && dst && tc) donnerPersonnage(s, src, tc, dst)
+      const tc = cite
+        ? ((s.citesLibres ?? [])[citeIdx]?.population ?? []).find((x) => x.id === c.id)
+        : (s.population[joueur] ?? []).find((x) => x.id === c.id)
+      const dstS = detenteurDeCle(s, v)
+      if (tc && dstS) deplacerPersonnage(s, tc, dstS)
     })
   }
   const marierAvec = (c: Character, v: string) => {
     if (!v) return
     update((s) => {
-      const a = (s.population[joueur] ?? []).find((x) => x.id === c.id)
+      const a = cite
+        ? ((s.citesLibres ?? [])[citeIdx]?.population ?? []).find((x) => x.id === c.id)
+        : (s.population[joueur] ?? []).find((x) => x.id === c.id)
       if (!a) return
-      let b: Character | undefined
-      for (const q of s.players) {
-        b = (s.population[q.n] ?? []).find((x) => x.id === v)
-        if (b) break
-      }
+      const b = toutesLesPopulations(s).find((x) => x.id === v)
       if (b) marierPersonnages(s, a, b)
     })
   }
@@ -159,7 +234,10 @@ export function PopulationTable({ joueur }: { joueur: number }) {
 
   // ── Récapitulatif des métiers (royaume entier, puis par ville) ──────
   const vivants = pop.filter((c) => c.statut !== 'Décédé')
-  const accessibles = titresAccessibles(state, p)
+  const villesOcc = cite ? [{ nom: cite.nom }] : (p?.villes ?? [])
+  const accessibles = p
+    ? titresAccessibles(state, p)
+    : (cite ? titresAccessiblesCite(state, cite) : [])
   const compteTitres = (liste: Character[]): [string, number][] => {
     const parTitre: Record<string, number> = {}
     let sansTitre = 0
@@ -173,11 +251,16 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   const metiersRoyaume = compteTitres(vivants)
 
   // ── Ajout manuel d'habitants ────────────────────────────────────────
-  const villesAjout = p.villes.map((v) => v.nom)
+  const villesAjout = cite ? [cite.nom] : (p?.villes.map((v) => v.nom) ?? [])
   const addVilleEff = addVille || villesAjout[0] || ''
   const ajouter = () => {
     const nb = Math.max(1, Math.round(addNb))
     update((s) => {
+      if (cite) {
+        const cc = (s.citesLibres ?? [])[citeIdx]
+        if (cc) ajouterHabitantsCiteLibre(s, cc, nb)
+        return
+      }
       const target = s.players.find((x) => x.n === joueur)
       if (!target) return
       ajouterHabitant(s, target, addVilleEff, false, nb)
@@ -186,6 +269,11 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   const ajouterNobles = () => {
     const nb = Math.max(1, Math.round(addNb))
     update((s) => {
+      if (cite) {
+        const cc = (s.citesLibres ?? [])[citeIdx]
+        if (cc) ajouterFamilleNobleCiteLibre(s, cc, nb)
+        return
+      }
       const target = s.players.find((x) => x.n === joueur)
       if (!target) return
       ajouterHabitant(s, target, addVilleEff, true, nb)
@@ -217,7 +305,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           onChange={(v) => changeTitre(c, v)}
         />
         {errors[c.id] && <div className="neg small">⚠ {errors[c.id]}</div>}
-        {c.titre === 'Ministre' && c.statut !== 'Décédé' && (
+        {p && c.titre === 'Ministre' && c.statut !== 'Décédé' && (
           <>
             <Select
               value={c.ministere ?? ''}
@@ -248,9 +336,17 @@ export function PopulationTable({ joueur }: { joueur: number }) {
         ))}
       </td>
       <td>
-        <span className={`badge ${c.statut === 'Sain' ? 'badge-good' : c.statut === 'Décédé' ? 'badge-bad' : 'badge-warn'}`}>
-          {c.statut}
-        </span>
+        {cite ? (
+          <Select
+            value={c.statut}
+            options={STATUTS.map((st) => ({ value: st, label: st }))}
+            onChange={(v) => changerStatut(c, v)}
+          />
+        ) : (
+          <span className={`badge ${c.statut === 'Sain' ? 'badge-good' : c.statut === 'Décédé' ? 'badge-bad' : 'badge-warn'}`}>
+            {c.statut}
+          </span>
+        )}
       </td>
       <td className="small">{c.mariage ?? '—'}</td>
       <td>{c.fecondite > 0 ? fmt(c.fecondite, 2) : '—'}</td>
@@ -325,7 +421,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
 
   return (
     <div className="stack">
-      <Card title={`🛠️ Métiers du royaume — ${vivants.length} vivants`}>
+      <Card title={`🛠️ Métiers ${cite ? 'de la cité libre' : 'du royaume'} — ${vivants.length} vivants`}>
         <div className="badges-wrap">
           {metiersRoyaume.map(([titre, nb]) => (
             <span key={titre} className={`badge ${titre === '(sans titre)' ? 'badge-neutral' : 'badge-info'}`}>
@@ -341,7 +437,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           <table className="tbl small">
             <thead><tr><th>Ville</th><th>Occupations (vivants)</th><th>Vivants</th></tr></thead>
             <tbody>
-              {p.villes.map((v) => {
+              {villesOcc.map((v) => {
                 const habitants = vivants.filter((c) => c.ville === v.nom)
                 const detail = compteTitres(habitants)
                 return (
@@ -377,10 +473,10 @@ export function PopulationTable({ joueur }: { joueur: number }) {
         </p>
       </Card>
 
-      <Card title={`👑 La cour de ${p.nom} — ${courVivants} vivants / ${pop.filter(estNoble).length} au total`}>
+      <Card title={`👑 La cour de ${nomPorteur} — ${courVivants} vivants / ${pop.filter(estNoble).length} au total`}>
         {blocFiltres}
         <p className="muted small">
-          Tous les nobles du joueur (dynastie dirigeante et familles nobles) — filtres et tri
+          Tous les nobles ${cite ? 'de la cité libre' : 'du joueur (dynastie dirigeante et familles nobles)'} — filtres et tri
           appliqués aussi au tableau « Population » ci-dessous.
         </p>
         <div className="table-wrap">
@@ -400,7 +496,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
         </p>
       </Card>
 
-      <Card title={`Population de ${p.nom} — ${classiqueVivants} vivants / ${pop.filter((c) => !estNoble(c)).length} au total`}>
+      <Card title={`Population de ${nomPorteur} — ${classiqueVivants} vivants / ${pop.filter((c) => !estNoble(c)).length} au total`}>
         <div className="table-wrap">
           <table className="tbl small">
             {entetes}
@@ -412,9 +508,10 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           </table>
         </div>
         <p className="muted small">
-          Population « classique » du joueur (hors nobles) ; une ville transférée à un autre
-          joueur emmène ses habitants classiques, la cour reste auprès de son joueur. Titres
-          d'éducation « {C.p.titreProfesseur} » : enseignés par un Professeur vivant du royaume.
+          Population « classique » {cite ? 'de la cité libre' : 'du joueur'} (hors nobles){cite
+            ? ' — le statut (Sain/Malade/Décédé) y est éditable : les cités libres ne passent pas au moteur démographique'
+            : ' ; une ville transférée à un autre joueur emmène ses habitants classiques, la cour reste auprès de son joueur'}.
+          Titres d'éducation « {C.p.titreProfesseur} » : enseignés par un Professeur vivant {cite ? 'de la cité' : 'du royaume'}.
         </p>
       </Card>
 
@@ -431,7 +528,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
         </div>
       </Card>
 
-      <GenealogyTree joueur={joueur} />
+      {p && <GenealogyTree joueur={joueur} />}
     </div>
   )
 }

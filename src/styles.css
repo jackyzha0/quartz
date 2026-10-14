@@ -94,6 +94,7 @@ ol, ul { margin: 6px 0; padding-left: 22px; }
   padding: 4px 12px; border-radius: 999px; cursor: pointer; font-size: 13px; font-family: inherit;
 }
 .player-chip:hover { border-color: var(--accent); color: var(--text); }
+.player-chip.cite-chip { border-style: dashed; font-style: italic; }
 .chip-active { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
 
 .main { display: block; }

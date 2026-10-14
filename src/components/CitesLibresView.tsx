@@ -2,10 +2,12 @@
 //  Onglet « 🗼 Cités libres » — cités sans joueur (règle « Cités
 //  libres » du référentiel) :
 //    · chaque cité possède sa PROPRE POPULATION (habitants titrés,
-//      ajout manuel, titres et statuts éditables) — les Chasseurs
-//      des cités libres produisent le DOUBLE de Nourriture. La
-//      population est gérée dans un PANNEAU SÉPARÉ en bas de page
-//      (retour Thibaut 2026-10-14), comme les habitants des joueurs ;
+//      roturiers OU nobles — les Chasseurs des cités libres produisent
+//      le DOUBLE de Nourriture, la cité consomme 1 Nourriture par
+//      tour). Retour Thibaut (2026-10-14, suite) : la population n'est
+//      PLUS gérée ici — elle vit dans l'onglet « 👥 Population »,
+//      avec un onglet 🗼 par cité « comme si c'étaient des joueurs »
+//      (mêmes tableaux, ajout, titres, dons et mariages) ;
 //    · garnison automatique : 100 + 40 par rang de pays du joueur
 //      ayant le plus haut rang (batailles au plateau : manuel) ;
 //    · émissaires : suivi manuel des tentatives d'influence (une par
@@ -26,10 +28,8 @@ import {
   citesLibresDe, garnisonCiteLibre, detailCiteLibre, emissairesDe,
   ajouterHabitantsCiteLibre, taxesCite,
 } from '../engine/engine'
-import type { CiteLibre, Character, TaxeNiveau } from '../engine/types'
+import type { CiteLibre, TaxeNiveau } from '../engine/types'
 import { Card, Select, TextInput, Button, NumberInput, Badge, TAX_OPTIONS } from './ui'
-
-const STATUTS: Character['statut'][] = ['Sain', 'Malade', 'Décédé']
 
 function fmtNum(v: number): string {
   return new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(v)
@@ -41,17 +41,9 @@ export function CitesLibresView() {
   const [newType, setNewType] = useState('')
   const [newCulture, setNewCulture] = useState('')
   const [newNb, setNewNb] = useState(10)
-  /** Cité ciblée + nombre d'habitants à ajouter (panneau « Population
-   *  des cités libres » en bas de page). */
-  const [addCite, setAddCite] = useState('')
-  const [addNb, setAddNb] = useState(10)
-
   if (!state) return null
   const C = cfgOf(state.config)
   const cites = citesLibresDe(state)
-  const totalPop = cites.reduce((n, c) => n + (c.population ?? []).length, 0)
-  const totalVivants = cites.reduce(
-    (n, c) => n + (c.population ?? []).filter((h) => h.statut !== 'Décédé').length, 0)
   const garnison = garnisonCiteLibre(state, C)
   const typesConfig = C.config.citesLibres ?? []
   const typeOptions = typesConfig.map((t) => ({
@@ -59,7 +51,6 @@ export function CitesLibresView() {
     label: t.type.split('\n')[0].trim(),
   }))
   const cultures = C.cultures.map((c) => c.nom)
-  const titres = (C.config.titres ?? []).map((t) => t.titre)
 
   // ── Mutations (via le store, comme les autres vues) ────────────────
   const mutCite = (nom: string, fn: (c: CiteLibre) => void) =>
@@ -131,18 +122,6 @@ export function CitesLibresView() {
       })
     })
 
-  const ajouterHabitants = (nom: string, nb: number) =>
-    update((s) => {
-      const c = (s.citesLibres ?? []).find((x) => x.nom === nom)
-      if (c) ajouterHabitantsCiteLibre(s, c, Math.max(1, Math.round(nb)))
-    })
-
-  const mutHabitant = (nom: string, id: string, fn: (h: Character) => void) =>
-    mutCite(nom, (c) => {
-      const h = (c.population ?? []).find((x) => x.id === id)
-      if (h) fn(h)
-    })
-
   return (
     <div className="stack">
       {/* ═══ Règle et fonctionnement ═══ */}
@@ -212,6 +191,7 @@ export function CitesLibresView() {
             right={
               <span className="badges-wrap">
                 <Badge tone="info">{typeEffectif.split('\n')[0]}</Badge>
+                {cite.habitation && <Badge tone="neutral">🏰 {cite.habitation}</Badge>}
                 <Badge tone="neutral">⚔ {fmtNum(garnison)} de garnison</Badge>
                 {suz
                   ? <Badge tone="good">Suzerain : {suz.nom}</Badge>
@@ -241,6 +221,17 @@ export function CitesLibresView() {
                     ? cultures.map((c) => ({ value: c, label: c }))
                     : [{ value: cite.culture ?? '', label: cite.culture ?? '—' }, ...cultures.map((c) => ({ value: c, label: c }))]}
                   onChange={(v) => mutCite(cite.nom, (c) => { c.culture = v })}
+                />
+                <Select
+                  value={cite.habitation ?? ''}
+                  options={[
+                    { value: '', label: 'Habitation : —' },
+                    { value: 'Hameau', label: 'Habitation : Hameau' },
+                    { value: 'Château', label: 'Habitation : Château' },
+                  ]}
+                  onChange={(v) => mutCite(cite.nom, (c) => {
+                    c.habitation = (v || null) as CiteLibre['habitation']
+                  })}
                 />
                 <Select
                   value={taxesCite(cite)}
@@ -297,7 +288,7 @@ export function CitesLibresView() {
             <div className="mini-title">
               Population — {vivants.length} vivant(s) / {pop.length} au total
               <span className="muted small">
-                {' '}· gestion dans le panneau « Population des cités libres » ci-dessous
+                {' '}· gestion dans l'onglet « 👥 Population » (sélectionnez la cité en haut de la page)
               </span>
             </div>
 
@@ -340,71 +331,6 @@ export function CitesLibresView() {
         )
       })}
 
-      {/* ═══ Population des cités libres — panneau séparé (retour
-          Thibaut 2026-10-14), comme pour les habitants des joueurs :
-          ajout manuel de Chasseurs, titres et statuts éditables. ═══ */}
-      <Card title={`Population des cités libres — ${totalVivants} vivant(s) / ${totalPop} au total`}>
-        <div className="filters">
-          <Select
-            value={addCite || cites[0]?.nom || ''}
-            options={cites.map((c) => ({ value: c.nom, label: c.nom }))}
-            onChange={setAddCite}
-          />
-          <NumberInput value={addNb} min={1} onChange={setAddNb} />
-          <Button
-            tone="primary"
-            onClick={() => ajouterHabitants(addCite || cites[0]?.nom || '', addNb)}
-          >
-            + Ajouter des habitants (Chasseurs)
-          </Button>
-        </div>
-        {totalPop === 0 ? (
-          <p className="muted small">
-            Aucun habitant dans les cités libres — sélectionnez une cité et ajoutez-en
-            ci-dessus (nouveaux habitants titrés « Chasseur » : Nourriture ×2).
-          </p>
-        ) : (
-          <div className="table-wrap">
-            <table className="tbl small">
-              <thead>
-                <tr>
-                  <th>Nom</th><th>Cité</th><th>Âge</th><th>Sexe</th><th>Titre</th><th>Statut</th>
-                </tr>
-              </thead>
-              <tbody>
-                {cites.flatMap((cite) => (cite.population ?? []).map((h) => (
-                  <tr key={h.id} className={h.statut === 'Décédé' ? 'muted' : ''}>
-                    <td>{h.prenom} {h.nom}</td>
-                    <td><strong>{cite.nom}</strong></td>
-                    <td>{h.age}</td>
-                    <td>{h.sexe === 'M' ? '♂' : '♀'}</td>
-                    <td>
-                      <Select
-                        value={h.titre ?? ''}
-                        options={[
-                          { value: '', label: '(sans titre)' },
-                          ...titres.map((t) => ({ value: t, label: t })),
-                        ]}
-                        onChange={(v) => mutHabitant(cite.nom, h.id, (x) => { x.titre = v || null })}
-                      />
-                    </td>
-                    <td>
-                      <Select
-                        value={h.statut}
-                        options={STATUTS.map((s) => ({ value: s, label: s }))}
-                        onChange={(v) => mutHabitant(cite.nom, h.id, (x) => { x.statut = v })}
-                      />
-                    </td>
-                  </tr>
-                )))}
-              </tbody>
-            </table>
-          </div>
-        )}
-        <p className="muted small">
-          Titres et statuts éditables ici, comme pour les habitants des joueurs.
-        </p>
-      </Card>
     </div>
   )
 }

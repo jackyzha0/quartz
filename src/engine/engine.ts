@@ -279,7 +279,11 @@ export function runTurn(state: GameState): GameState {
 }
 // ── API publique (ré-exports — signatures et noms inchangés) ────────────
 
-export { newId, isNobleDyn, fullName } from './shared'
+export {
+  newId, isNobleDyn, fullName,
+  type Detenteur, detenteursDe, populationDe, nomDe, porteurDe,
+  toutesLesPopulations, memeDetenteur, deplacerPersonnage,
+} from './shared'
 export { saisonForTurn, applyEventEffect, applyDynastieCard } from './saisons'
 export {
   calculerGainsPopulation, taxBirthFactor, detailGainsVille, type GainsVilleDetail,
@@ -326,6 +330,8 @@ export {
   citesLibresDe, garnisonCiteLibre, facteurTaxesCite, emissairesDe,
   citesSuzerainesDe, detailCiteLibre, taxesCitesLibresRecues,
   appliquerTaxesCitesLibres, ajouterHabitantsCiteLibre, taxesCite,
+  ajouterFamilleNobleCiteLibre, titresAccessiblesCite,
+  pseudoJoueurDeCite, CONSO_NOURR_CITE_LIBRE,
   type DetailCiteLibre,
 } from './citesLibres'
 export {

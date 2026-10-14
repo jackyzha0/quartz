@@ -9,7 +9,7 @@ import type { Character, GameState, Player, PlayerRecap } from './types'
 import { makeRng, type Rng } from './rng'
 import { cfgOf, traitDef, type Cfg } from './gameData'
 import { buildingDef } from './gameData2'
-import { bump, fullName, isNobleDyn } from './shared'
+import { bump, fullName, isNobleDyn, toutesLesPopulations } from './shared'
 import { titreAllowedForCharacter } from './titres'
 import { facteurSacre, facteurAvencement } from './ministeres'
 
@@ -92,17 +92,13 @@ export function maladieStep(state: GameState, p: Player, c: Character, rng: Rng,
 export function killCharacter(state: GameState, p: Player, c: Character, cause: 'vieillesse' | 'maladie', recap: PlayerRecap) {
   const C = cfgOf(state.config)
   c.statut = 'Décédé'
-  // libérer le conjoint — il peut vivre chez un AUTRE joueur depuis
+  // libérer le conjoint — il peut vivre chez un AUTRE porteur depuis
   //  les mariages manuels entre cours (engine/cour.ts, 2026-10-14) :
-  //  on parcourt donc toutes les populations du monde.
+  //  on parcourt donc TOUTES les populations du monde, joueurs ET
+  //  cités libres (retour Thibaut 2026-10-14).
   if (c.mariage) {
-    for (const q of state.players) {
-      const conjoint = (state.population[q.n] ?? []).find((x) => x.mariage === fullName(c))
-      if (conjoint) {
-        conjoint.mariage = null
-        break
-      }
-    }
+    const conjoint = toutesLesPopulations(state).find((x) => x.mariage === fullName(c))
+    if (conjoint) conjoint.mariage = null
   }
   bump(recap.deces, c.dynastie)
   if (cause === 'maladie') recap.decesMaladie++

@@ -10,9 +10,14 @@
 //  Suzerain : lorsqu'un joueur devient suzerain de la cité (3
 //  émissaires — plateau, suivi manuel dans l'onglet « 🗼 Cités
 //  libres »), la cité lui verse ses taxes à chaque fin de tour : sa
-//  production nette (titres × niveau de taxes de la cité, moins la
-//  consommation de ses habitants), plafonnée à 0 par ressource —
-//  canal « Cités libres » du récap ressources.
+//  production nette (titres × niveau de taxes de la cité, moins sa
+//  consommation), plafonnée à 0 par ressource — canal « Cités
+//  libres » du récap ressources.
+//  Retour Thibaut (2026-10-14) : une cité libre CONSOMME 1 Nourriture
+//  par tour (PLAT, indépendant de l'effectif — voir
+//  CONSO_NOURR_CITE_LIBRE), sa population démarre à 50 habitants et
+//  est gérée dans l'onglet « 👥 Population » comme si c'était un
+//  joueur (roturiers OU nobles, dons et mariages inter-porteurs).
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
 // ══════════════════════════════════════════════════════════════════════
 
@@ -22,6 +27,11 @@ import { cfgOf, peupleDef, titreDef, type Cfg } from './gameData'
 import { computeAgeMax } from './sante'
 import { rangPaysNiveau } from './factions'
 import { aMinistre } from './ministeres'
+import type { Player } from './types'
+
+/** Consommation d'une cité libre : 1 Nourriture par tour, PLATE
+ *  (retour Thibaut 2026-10-14 — indépendante de l'effectif). */
+export const CONSO_NOURR_CITE_LIBRE = 1
 
 // ── État ──────────────────────────────────────────────────────────────
 
@@ -64,7 +74,8 @@ export function citesSuzerainesDe(state: GameState, p: Player): CiteLibre[] {
  *                 les Chasseurs produisent le DOUBLE de Nourriture,
  *    taxeMult   : multiplicateur de taxes de la cité,
  *    taxes      : production taxée (= titres × taxeMult),
- *    conso      : consommation des habitants (négative),
+ *    conso      : consommation de la cité (négative — 1 Nourriture
+ *                par tour, plate),
  *    net        : taxes − conso (peut être négatif),
  *    transfert  : net plafonné à 0 par ressource, × gainsCrediteStock
  *                 — ce que le suzerain reçoit réellement. */
@@ -108,10 +119,10 @@ export function detailCiteLibre(cite: CiteLibre, C: Cfg): DetailCiteLibre {
     const tv = v * taxeMult
     if (tv !== 0) taxes[res] = tv
   }
-  // Consommation des habitants (non taxée)
+  // Consommation de la cité (retour Thibaut 2026-10-14) : 1 Nourriture
+  //  par tour, PLATE — quel que soit l'effectif.
   const conso: Record<string, number> = {}
-  const consoNourr = C.p.consoNourrParHab * vivants.length
-  if (consoNourr !== 0) conso['Nourriture'] = -consoNourr
+  if (CONSO_NOURR_CITE_LIBRE !== 0) conso['Nourriture'] = -CONSO_NOURR_CITE_LIBRE
   // Net = taxes − conso
   const net: Record<string, number> = {}
   for (const [res, v] of Object.entries(taxes)) net[res] = (net[res] ?? 0) + v
@@ -179,15 +190,39 @@ export function appliquerTaxesCitesLibres(
   return out
 }
 
-// ── Population : ajout manuel d'habitants ──────────────────────────────
+// ── Population : ajout manuel d'habitants (roturiers ou nobles) ─────
+//  Retour Thibaut (2026-10-14) : la population d'une cité libre est
+//  « semblable en tout point » à celle d'un joueur — roturiers OU
+//  nouvelle famille noble, comme setup.ajouterHabitant pour les
+//  joueurs. Comme pour les villes de joueur, l'ajout est manuel : les
+//  naissances, mariages et décès des cités libres se jouent au plateau
+//  (le statut reste éditable dans l'onglet 👥 Population).
 
-/** Ajoute des habitants à une cité libre (adultes, titre Chasseur par
- *  défaut, culture de la cité). Noms tirés dans une banque de noms de
- *  peuple au hasard (graine d'état → déterministe). Comme pour les
- *  villes de joueur, l'ajout est manuel : les naissances, mariages et
- *  décès des cités libres se jouent au plateau. */
+/** Ajoute des habitants roturiers à une cité libre (adultes, titre
+ *  Chasseur par défaut, culture de la cité). Noms tirés dans une
+ *  banque de noms de peuple au hasard (graine d'état → déterministe). */
 export function ajouterHabitantsCiteLibre(
   state: GameState, cite: CiteLibre, nb: number, C: Cfg = cfgOf(state.config),
+): number {
+  return ajouterCiteLibre(state, cite, nb, false, C)
+}
+
+/** Ajoute une NOUVELLE famille noble à la cité libre (retour Thibaut
+ *  2026-10-14) : un nom de famille jamais utilisé comme dynastie —
+ *  jamais une famille déjà existante — comme pour les joueurs
+ *  (setup.ajouterHabitant). Ces nobles apparaissent dans le tableau
+ *  « La cour » de la cité (onglet 👥 Population) et peuvent être
+ *  mariés ou donnés comme ceux des joueurs. */
+export function ajouterFamilleNobleCiteLibre(
+  state: GameState, cite: CiteLibre, nb: number, C: Cfg = cfgOf(state.config),
+): number {
+  return ajouterCiteLibre(state, cite, nb, true, C)
+}
+
+/** Corps partagé des deux ajouts (roturiers / nouvelle famille noble). */
+function ajouterCiteLibre(
+  state: GameState, cite: CiteLibre, nb: number,
+  noble: boolean, C: Cfg,
 ): number {
   if (nb <= 0) return 0
   const rng = makeRng(state.rngState)
@@ -197,6 +232,13 @@ export function ajouterHabitantsCiteLibre(
     : undefined
   const banque = peuple ?? C.banquesNoms[0]
   const culture = cite.culture || C.config.cultures[0]?.nom || ''
+  // nouvelle famille noble : nom jamais utilisé comme dynastie
+  let dynNoble = ''
+  if (noble) {
+    const utilisees = new Set(pop.map((c) => c.dynastie))
+    const dispo = banque.noms.filter((n) => !utilisees.has(n))
+    dynNoble = dispo.length > 0 ? rng.pick(dispo) : `${rng.pick(banque.noms)} ${pop.length + 1}`
+  }
   let ajoutes = 0
   for (let i = 0; i < nb; i++) {
     const sexe: 'M' | 'F' = rng.pickWeighted(C.genres, (g) => g.poids).nom === 'Masculin' ? 'M' : 'F'
@@ -211,9 +253,9 @@ export function ajouterHabitantsCiteLibre(
     if (traits[1] && rng.chance(0.3)) traits[2] = draw([traits[0], traits[1]])
     const c: Character = {
       id: `cl_${cite.nom}_${state.turn}_${pop.length + 1}_${i}`,
-      nom: rng.pick(banque.noms),
+      nom: noble ? dynNoble : rng.pick(banque.noms),
       prenom: sexe === 'M' ? rng.pick(banque.prenomsM) : rng.pick(banque.prenomsF),
-      dynastie: C.p.dynastieRoturier,
+      dynastie: noble ? dynNoble : C.p.dynastieRoturier,
       sexe,
       age: rng.int(C.p.adultAge, Math.max(C.p.adultAge + 1, 60)),
       culture,
@@ -239,9 +281,57 @@ export function ajouterHabitantsCiteLibre(
   state.rngState = rng.state()
   state.log.push({
     turn: state.turn, type: 'Système', joueur: null,
-    texte: `👥 ${ajoutes} habitant(s) ajouté(s) à la cité libre ${cite.nom}.`,
+    texte: `👥 ${ajoutes} habitant(s) ajouté(s) à la cité libre ${cite.nom} — ${noble ? `nouvelle famille noble « ${dynNoble} »` : 'roturiers'}.`,
   })
   return ajoutes
+}
+
+// ── Population « comme un joueur » (onglet 👥 Population) ────────────
+
+/** Titres accessibles pour la population d'une cité libre (comme
+ *  titresAccessibles pour un joueur) : Chasseur et Gouverneur, plus
+ *  les titres d'éducation enseignés par un Professeur VIVANT DE LA
+ *  CITÉ. Pas de Ministre ni de Dirigeant : une cité libre n'a ni
+ *  conseil ni dirigeant (son suzerain est un joueur). */
+export function titresAccessiblesCite(
+  state: GameState, cite: CiteLibre, C: Cfg = cfgOf(state.config),
+): string[] {
+  const out: string[] = [C.p.titreChasseur, C.p.titreGouverneur]
+  const pop = cite.population ?? []
+  const educations = new Set<string>()
+  for (const c of pop) {
+    if (c.statut !== 'Décédé' && c.titre === C.p.titreProfesseur && c.education) {
+      educations.add(c.education)
+    }
+  }
+  for (const t of C.titres) {
+    if (t.attribution === 'Education' && t.education && educations.has(t.education)) {
+      out.push(t.titre)
+    }
+  }
+  return [...new Set(out)]
+}
+
+/** Pseudo-joueur représentant une cité libre pour la VALIDATION des
+ *  titres (validateTitleAssignment, validation.ts) : la population de
+ *  la cité est semblable en tout point à celle d'un joueur — les
+ *  contrôles de cohérence (noblesse, genre, éducation, culture) y
+ *  sont appliqués avec la culture de la cité. NB : les règles
+ *  d'unicité du classeur (Dirigeant/Gouverneur/Professeur) restent
+ *  vacantes pour une cité (pas d'école, pas de dirigeant). */
+export function pseudoJoueurDeCite(cite: CiteLibre): Player {
+  return {
+    n: -1,
+    nom: cite.nom,
+    peuple: '',
+    culture: cite.culture ?? '',
+    regime: '',
+    resources: {},
+    villes: [],
+    dynastie: null,
+    armees: [],
+    recap: null,
+  }
 }
 
 /** Niveau de taxes d'une cité libre (« Moyenne » si absent). */

@@ -65,6 +65,16 @@ export default function App() {
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
 
+  // Un onglet 🗼 cité libre (joueur NÉGATIF) n'existe que dans la
+  //  section « 👥 Population » : en quittant cette section, on retombe
+  //  sur le joueur 1 (les autres vues attendent un n° de joueur > 0).
+  useEffect(() => {
+    if (section !== 'population' && joueur < 0) setJoueur(1)
+  }, [section, joueur])
+
+  // Retour Thibaut (2026-10-14) : dans la section « 👥 Population »,
+  //  les CITÉS LIBRES apparaissent comme des onglets supplémentaires
+  //  « comme si c'étaient des joueurs » (joueur négatif = cité).
   const joueursBars = state && (
     <div className="players-bar">
       {state.players.map((p) => (
@@ -75,6 +85,16 @@ export default function App() {
           title={`${p.peuple} · ${p.culture}`}
         >
           J{p.n} · {p.nom}
+        </button>
+      ))}
+      {section === 'population' && (state.citesLibres ?? []).map((c, i) => (
+        <button
+          key={`cite-${i}`}
+          className={`player-chip cite-chip ${joueur === -(i + 1) ? 'chip-active' : ''}`}
+          onClick={() => setJoueur(-(i + 1))}
+          title={`Cité libre${c.culture ? ` · ${c.culture}` : ''}${c.habitation ? ` · ${c.habitation}` : ''}`}
+        >
+          🗼 {c.nom}
         </button>
       ))}
     </div>

@@ -201,6 +201,12 @@ export interface CiteLibre {
   /** Niveau de taxes de la cité (module TOUTES les ressources produites
    *  par ses habitants, comme pour une ville de joueur). */
   taxes?: TaxeNiveau
+  /** Type d'habitation de la cité (retour Thibaut 2026-10-14) : Hameau
+   *  (rural) ou Château (fortifié), tiré AU HASARD à la création de la
+   *  partie. La règle du référentiel dit que la cité « change de niveau
+   *  d'habitation dès qu'un joueur entre dans une nouvelle ère » — suivi
+   *  au plateau. Champ optionnel : vieilles sauvegardes → null. */
+  habitation?: 'Hameau' | 'Château' | null
   /** N° du joueur suzerain de la cité (3 émissaires — plateau), sinon null. */
   suzerain?: number | null
   /** Émissaires gagnés par chaque joueur auprès de la cité (clé = n° de

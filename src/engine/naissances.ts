@@ -8,7 +8,7 @@
 import type { Character, GameState, Player, PlayerRecap } from './types'
 import type { Rng } from './rng'
 import { cfgOf, traitDef, cultureDef, peupleDef, type Cfg } from './gameData'
-import { bump, fullName, isNobleDyn, newId } from './shared'
+import { bump, fullName, isNobleDyn, newId, toutesLesPopulations } from './shared'
 import { taxBirthFactor } from './economie'
 import { computeAgeMax, killCharacter } from './sante'
 
@@ -89,10 +89,11 @@ export function conceptionEtNaissances(state: GameState, p: Player, rng: Rng, re
 
   // 2. Tentatives de conception (femmes adultes saines — ou malades :
   //    une femme malade qui tombe enceinte est guérie, bug assumé)
-  //    Le mari peut vivre chez un AUTRE joueur depuis les mariages
+  //    Le mari peut vivre chez un AUTRE porteur depuis les mariages
   //    manuels entre cours (engine/cour.ts, 2026-10-14) : on cherche
-  //    donc le conjoint dans toutes les populations du monde.
-  const popMonde: Character[] = state.players.flatMap((q) => state.population[q.n] ?? [])
+  //    donc le conjoint dans TOUTES les populations du monde, joueurs
+  //    ET cités libres (retour Thibaut 2026-10-14).
+  const popMonde: Character[] = toutesLesPopulations(state)
   for (const mere of pop) {
     if (mere.sexe !== 'F' || (mere.statut !== 'Sain' && mere.statut !== 'Malade')) continue
     if (mere.age < C.p.adultAge) continue
