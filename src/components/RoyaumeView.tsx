@@ -32,7 +32,7 @@ import type { Character, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
 import { detailsFaction } from '../engine/factions'
 import { rangParDefaut } from '../engine/setup'
-import { citesSuzerainesDe, sermentsPossedes } from '../engine/engine'
+import { citesSuzerainesDe, sermentsPossedes, facteurSacre } from '../engine/engine'
 import { Card, Select, TextInput, Button, Badge, Field } from './ui'
 
 export function RoyaumeView({ joueur }: { joueur: number }) {
@@ -233,12 +233,17 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
               const orDispo = p.resources['Or']?.stock ?? 0
               const nourrDispo = p.resources['Nourriture']?.stock ?? 0
               const okSer = nbSer >= (next.serments ?? 0)
-              const okOr = orDispo >= (next.coutOr ?? 0)
-              const okN = nourrDispo >= (next.coutNourriture ?? 0)
+              // Chancelier de justice (ministère) : −25 % sur le coût du
+              // sacre (refonte 2026-10-14, appliqué au débit comme à l'affichage).
+              const fS = facteurSacre(state, p)
+              const orSacre = Math.floor((next.coutOr ?? 0) * fS)
+              const nourrSacre = Math.floor((next.coutNourriture ?? 0) * fS)
+              const okOr = orDispo >= orSacre
+              const okN = nourrDispo >= nourrSacre
               return (
                 <div style={{ marginTop: 8 }}>
                   <div className="muted small">
-                    Prochain rang : <strong>{next.nom}</strong> — sacre {next.coutOr} Or + {next.coutNourriture} Nourriture ·
+                    Prochain rang : <strong>{next.nom}</strong> — sacre {orSacre} Or + {nourrSacre} Nourriture{fS < 1 ? ' (Chancelier de justice : −25 %)' : ''} ·
                     {' '}{next.serments} serment(s) requis (vous en possédez {nbSer}) · conseil {next.ministres} Ministres.
                   </div>
                   {!okSer && (
@@ -252,13 +257,13 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
                       const t = s.players.find((x) => x.n === joueur)
                       if (!t) return
                       const or = t.resources['Or']
-                      if (or) or.stock -= next.coutOr ?? 0
+                      if (or) or.stock -= orSacre
                       const nourr = t.resources['Nourriture']
-                      if (nourr) nourr.stock -= next.coutNourriture ?? 0
+                      if (nourr) nourr.stock -= nourrSacre
                       t.rang = next.nom
                       s.log.push({
                         turn: s.turn, type: 'Système', joueur: t.n,
-                        texte: `👑 Sacre : ${t.nom} devient ${next.nom} (sacre payé : ${next.coutOr} Or + ${next.coutNourriture} Nourriture ; conseil élargi à ${next.ministres} Ministres).`,
+                        texte: `👑 Sacre : ${t.nom} devient ${next.nom} (sacre payé : ${orSacre} Or + ${nourrSacre} Nourriture${fS < 1 ? ' — Chancelier de justice : −25 %' : ''} ; conseil élargi à ${next.ministres} Ministres).`,
                       })
                     })}
                   >

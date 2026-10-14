@@ -11,6 +11,7 @@ import { cfgOf, traitDef, type Cfg } from './gameData'
 import { buildingDef } from './gameData2'
 import { bump, fullName, isNobleDyn } from './shared'
 import { titreAllowedForCharacter } from './titres'
+import { facteurSacre, facteurAvencement } from './ministeres'
 
 export function computeAgeMax(c: Character, rng: Rng, C: Cfg = cfgOf()): number {
   // VBA ComputeAgeMaxEx : somme des life_delta des trois traits.
@@ -124,14 +125,24 @@ export function handleDirigeantSuccession(state: GameState, p: Player, defunt: C
     const rangDef = rangs.find((r) => r.nom === p.rang)
     let sacreTxt = ''
     if (rangDef) {
-      const demiOr = Math.floor((rangDef.coutOr ?? 0) / 2)
-      const demiNourr = Math.floor((rangDef.coutNourriture ?? 0) / 2)
+      // Sacre d'Avènement (refonte des rangs) : le nouveau dirigeant paie
+      // la MOITIÉ du prix de son rang de pays, débité automatiquement.
+      // Réductions ministérielles (refonte 2026-10-14) : Chancelier de
+      // justice −25 % (facteurSacre) et Archichancelier « sacre réduit de
+      // moitié » (facteurAvencement → quart du prix) — cumulables.
+      const fS = facteurSacre(state, p)
+      const fA = facteurAvencement(state, p)
+      const demiOr = Math.floor((rangDef.coutOr ?? 0) * fS * fA)
+      const demiNourr = Math.floor((rangDef.coutNourriture ?? 0) * fS * fA)
       const or = p.resources['Or']
       if (or) or.stock -= demiOr
       const nourr = p.resources['Nourriture']
       if (nourr) nourr.stock -= demiNourr
       if (demiOr > 0 || demiNourr > 0) {
-        sacreTxt = ` Sacre d'avènement payé : ${demiOr} Or et ${demiNourr} Nourriture (moitié du prix du rang ${rangDef.nom}).`
+        const reduc: string[] = []
+        if (fS < 1) reduc.push('Chancelier de justice : −25 %')
+        if (fA < 0.5) reduc.push('Archichancelier : sacre d’avènement réduit de moitié')
+        sacreTxt = ` Sacre d'avènement payé : ${demiOr} Or et ${demiNourr} Nourriture (${reduc.length > 0 ? `réduit — ${reduc.join(' ; ')}` : `moitié du prix du rang ${rangDef.nom}`}).`
       }
     }
     state.log.push({

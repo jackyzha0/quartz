@@ -14,7 +14,7 @@ import type { Character, Player } from '../engine/types'
 import { cfgOf } from '../engine/gameData'
 import { validateTitleAssignment } from '../engine/validation'
 import { ajouterHabitant } from '../engine/setup'
-import { titresAccessibles } from '../engine/engine'
+import { titresAccessibles, changerPortefeuille } from '../engine/engine'
 import { GenealogyTree } from './GenealogyTree'
 import { Card, Select, TextInput, Button, NumberInput, fmt } from './ui'
 
@@ -58,6 +58,22 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   if (!state || !p) return null
   const C = cfgOf(state.config)
 
+  // ── Portefeuilles ministériels (refonte 2026-10-14) ──────────────────
+  // Rang actuel du joueur dans l'échelle des rangs, pour le contrôle du
+  // rang MINIMUM des portefeuilles (avertissement affiché, jamais
+  // bloquant — l'arbitre garde la main).
+  const rangsPays = C.config.paysRangs ?? []
+  const idxRangJoueur = Math.max(0, rangsPays.findIndex((r) => r.nom === (p.rang ?? rangsPays[0]?.nom)))
+  const avertissementPortefeuille = (m: string | null | undefined): string | null => {
+    if (!m) return null
+    const min = (C.config.ministeres ?? []).find((x) => x.ministere === m)?.rangMinimum
+    if (!min) return null
+    if (rangsPays.findIndex((r) => r.nom === min) > idxRangJoueur) {
+      return `Le portefeuille ${m} exige en principe le rang de pays ${min}.`
+    }
+    return null
+  }
+
   // Aucune contrainte bloquante : le titre est TOUJOURS appliqué ;
   // le contrôle de cohérence n'affiche qu'un avertissement (ignorable).
   const changeTitre = (c: Character, titre: string) => {
@@ -70,7 +86,11 @@ export function PopulationTable({ joueur }: { joueur: number }) {
     })
     update((s) => {
       const target = (s.population[joueur] ?? []).find((x) => x.id === c.id)
-      if (target) target.titre = titre
+      if (target) {
+        target.titre = titre
+        // On quitte le titre « Ministre » → le portefeuille part avec.
+        if (titre !== 'Ministre') target.ministere = null
+      }
     })
   }
 
@@ -228,6 +248,29 @@ export function PopulationTable({ joueur }: { joueur: number }) {
                       onChange={(v) => changeTitre(c, v)}
                     />
                     {errors[c.id] && <div className="neg small">⚠ {errors[c.id]}</div>}
+                    {c.titre === 'Ministre' && c.statut !== 'Décédé' && (
+                      <>
+                        <Select
+                          value={c.ministere ?? ''}
+                          options={[
+                            { value: '', label: '(sans portefeuille)' },
+                            ...(C.config.ministeres ?? []).map((m) => ({
+                              value: m.ministere,
+                              label: `${m.ministere} — min. ${m.rangMinimum ?? rangsPays[0]?.nom ?? '?'} (${m.mode === 'Auto' ? 'auto' : 'plateau'})`,
+                            })),
+                          ]}
+                          onChange={(v) => update((s) => {
+                            const tp = s.players.find((x) => x.n === joueur)
+                            const tc = (s.population[joueur] ?? []).find((x) => x.id === c.id)
+                            if (!tp || !tc) return
+                            changerPortefeuille(s, tp, tc, v || null)
+                          })}
+                        />
+                        {avertissementPortefeuille(c.ministere) && (
+                          <div className="neg small">⚠ {avertissementPortefeuille(c.ministere)}</div>
+                        )}
+                      </>
+                    )}
                   </td>
                   <td>{c.education ?? '—'}</td>
                   <td className="small">

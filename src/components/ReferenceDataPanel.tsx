@@ -662,13 +662,58 @@ export function ReferenceDataPanel() {
       )}
 
       {onglet === 'Ministères' && (
-        <Card title="Ministères">
-          {cfg.ministeres.map((m, i) => (
-            <div key={i} className="mini">
-              <strong>{m.ministere}</strong>
-              <div className="small">{m.effet}</div>
-            </div>
-          ))}
+        <Card title="Ministères — portefeuilles paramétrables (refonte 2026-10-14)">
+          <p className="muted small">
+            Chaque rang de pays octroie <strong>1 Ministre</strong> (cap averti à l'attribution du titre
+            dans Population — montez de rang par sacre pour agrandir le conseil). La nomination est
+            réservée aux <strong>nobles et dynasties</strong> (avertissement si roturier). Un ministre
+            porte un <strong>portefeuille</strong> ci-dessous, choisi dans Population (titre « Ministre ») ;
+            les portefeuilles sont <strong>cumulables</strong> (deux fois le même = effet doublé) et certains
+            exigent un <strong>rang de pays minimum</strong>. Mode <strong>Auto</strong> : appliqué
+            automatiquement par l'application (Trésorier +5 Or/tour, Grand Précepteur +1 Science/tour,
+            Sénéchal +15 Nourriture fin d'été, Maître de cour +2 Tourisme/fin de saison, Connétable
+            +5 Garnison à la nomination, Grand Chambellan +10 % taxes, Chancelier de justice −25 % sacres,
+            Archichancelier : sacre d'avènement réduit de moitié). Mode <strong>Plateau</strong> : à appliquer
+            à la table (les 7 ministères du classeur scalent sur le rang de pays). L'ordre des rangs minimums
+            suit l'échelle de la table « Pays & rangs ».
+          </p>
+          <table className="tbl small">
+            <thead><tr><th>Ministère</th><th>Rang minimum</th><th>Mode</th><th>Effet</th><th></th></tr></thead>
+            <tbody>
+              {configEdit.ministeres.map((m, i) => (
+                <tr key={i}>
+                  <td><TextInput value={m.ministere} onChange={(v) => setCfg((c) => { c.ministeres[i].ministere = v })} /></td>
+                  <td>
+                    <Select
+                      value={m.rangMinimum ?? (configEdit.paysRangs ?? [])[0]?.nom ?? ''}
+                      options={(configEdit.paysRangs ?? []).map((r) => ({ value: r.nom, label: r.nom }))}
+                      onChange={(v) => setCfg((c) => { c.ministeres[i].rangMinimum = v })}
+                    />
+                  </td>
+                  <td>
+                    <Select
+                      value={m.mode ?? 'Plateau'}
+                      options={[
+                        { value: 'Auto', label: 'Auto (application)' },
+                        { value: 'Plateau', label: 'Plateau' },
+                      ]}
+                      onChange={(v) => setCfg((c) => { c.ministeres[i].mode = v })}
+                    />
+                  </td>
+                  <td><TextInput value={m.effet} onChange={(v) => setCfg((c) => { c.ministeres[i].effet = v })} /></td>
+                  <td><Button tone="danger" onClick={() => setCfg((c) => { c.ministeres.splice(i, 1) })}>✕</Button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <Button onClick={() => setCfg((c) => {
+            c.ministeres.push({
+              ministere: 'Nouveau ministère',
+              effet: '',
+              rangMinimum: (c.paysRangs ?? [])[0]?.nom ?? '',
+              mode: 'Plateau',
+            })
+          })}>+ Ajouter un ministère</Button>
         </Card>
       )}
 

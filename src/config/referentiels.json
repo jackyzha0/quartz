@@ -1025,31 +1025,141 @@
   "ministeres": [
     {
       "ministere": "Colonial",
-      "effet": "Coût de fondation des habitations -8 Or et -3 Bois."
+      "effet": "Coût de fondation des habitations -8 Or et -3 Bois.",
+      "rangMinimum": "Baronnie",
+      "mode": "Plateau"
     },
     {
       "ministere": "Culture",
-      "effet": "Lorsqu'une habitation est fondée par votre  culture ou qu'une habitation se convertie à votre culture, vous recevez 10 Tourisme."
+      "effet": "Lorsqu'une habitation est fondée par votre  culture ou qu'une habitation se convertie à votre culture, vous recevez 10 Tourisme.",
+      "rangMinimum": "Baronnie",
+      "mode": "Plateau"
     },
     {
       "ministere": "Défense",
-      "effet": "Votre capitale produit +1 Fer par tour. +10 Garnison dans vos habitations par rang de pays."
+      "effet": "Votre capitale produit +1 Fer par tour. +10 Garnison dans vos habitations par rang de pays.",
+      "rangMinimum": "Baronnie",
+      "mode": "Plateau"
     },
     {
       "ministere": "Ecologie",
-      "effet": "Vos habitations consomment -5 Nourriture par rang de votre pays."
+      "effet": "Vos habitations consomment -5 Nourriture par rang de votre pays.",
+      "rangMinimum": "Baronnie",
+      "mode": "Plateau"
     },
     {
       "ministere": "Economie",
-      "effet": "Après avoir construit un bâtiment, générez 1 Ressource de votre choix produite par l'habitation par rang de l'habitation."
+      "effet": "Après avoir construit un bâtiment, générez 1 Ressource de votre choix produite par l'habitation par rang de l'habitation.",
+      "rangMinimum": "Baronnie",
+      "mode": "Plateau"
     },
     {
       "ministere": "Guerre",
-      "effet": "Coût de levée d'armée -10 Or par rang de votre pays."
+      "effet": "Coût de levée d'armée -10 Or par rang de votre pays.",
+      "rangMinimum": "Baronnie",
+      "mode": "Plateau"
     },
     {
       "ministere": "Recherche",
-      "effet": "Après avoir découvert une technologie, gagnez votre rang de pays sous forme de Science."
+      "effet": "Après avoir découvert une technologie, gagnez votre rang de pays sous forme de Science.",
+      "rangMinimum": "Baronnie",
+      "mode": "Plateau"
+    },
+    {
+      "ministere": "Sénéchal",
+      "rangMinimum": "Baronnie",
+      "mode": "Auto",
+      "effet": "+15 Nourriture à la fin de l'été (créditée automatiquement)."
+    },
+    {
+      "ministere": "Trésorier",
+      "rangMinimum": "Baronnie",
+      "mode": "Auto",
+      "effet": "+5 Or par tour (crédité automatiquement)."
+    },
+    {
+      "ministere": "Maître de cour",
+      "rangMinimum": "Baronnie",
+      "mode": "Auto",
+      "effet": "+2 Tourisme à la fin de chaque saison (crédité automatiquement)."
+    },
+    {
+      "ministere": "Grand Précepteur",
+      "rangMinimum": "Comté",
+      "mode": "Auto",
+      "effet": "+1 Science par tour (crédité automatiquement)."
+    },
+    {
+      "ministere": "Connétable",
+      "rangMinimum": "Comté",
+      "mode": "Auto",
+      "effet": "+5 Garnison à toutes vos villes dès la nomination (créditée une fois, automatiquement)."
+    },
+    {
+      "ministere": "Intendant des hommes",
+      "rangMinimum": "Comté",
+      "mode": "Plateau",
+      "effet": "À la fin de l'été, +15 habitants dans l'habitation de votre choix."
+    },
+    {
+      "ministere": "Chancelier des émissaires",
+      "rangMinimum": "Duché",
+      "mode": "Plateau",
+      "effet": "+1 émissaire chaque saison avec la cité libre de votre choix (à saisir sur la page Cités libres)."
+    },
+    {
+      "ministere": "Chancelier de justice",
+      "rangMinimum": "Duché",
+      "mode": "Auto",
+      "effet": "−25 % sur le coût des sacres (montée de rang et sacre d'avènement), appliqué automatiquement."
+    },
+    {
+      "ministere": "Maître des œuvres",
+      "rangMinimum": "Duché",
+      "mode": "Plateau",
+      "effet": "Votre prochaine Merveille coûte 10 Or et 5 ressources de base de moins."
+    },
+    {
+      "ministere": "Maître des espions",
+      "rangMinimum": "Royaume",
+      "mode": "Plateau",
+      "effet": "Une fois par saison, une crise qui vous vise est annulée ou atténuée (arbitre)."
+    },
+    {
+      "ministere": "Maître des guildes",
+      "rangMinimum": "Royaume",
+      "mode": "Plateau",
+      "effet": "Votre prochaine Guilde coûte moitié prix."
+    },
+    {
+      "ministere": "Légat du pontificat",
+      "rangMinimum": "Royaume",
+      "mode": "Plateau",
+      "effet": "+20 Tourisme comptés uniquement pour les seuils de Pontificat."
+    },
+    {
+      "ministere": "Maréchal",
+      "rangMinimum": "Royaume",
+      "mode": "Plateau",
+      "effet": "+50 points d'armée au total, répartis à votre guise."
+    },
+    {
+      "ministere": "Grand Chambellan",
+      "rangMinimum": "Royaume",
+      "mode": "Auto",
+      "effet": "+10 % sur toutes les taxes que vous recevez (villes et cités libres), appliqué automatiquement."
+    },
+    {
+      "ministere": "Ambassadeur des cités",
+      "rangMinimum": "Empire",
+      "mode": "Plateau",
+      "effet": "Le seuil de suzeraineté des cités libres passe de 3 à 2 émissaires pour vous (ne se cumule pas avec le dogme Pacifisme de rang 3)."
+    },
+    {
+      "ministere": "Archichancelier",
+      "rangMinimum": "Empire",
+      "mode": "Auto",
+      "effet": "Le sacre d'avènement de vos successions est réduit de moitié (appliqué automatiquement)."
     }
   ],
   "titresEffets": [

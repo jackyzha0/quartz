@@ -37,6 +37,7 @@ import { appliquerEffetsAutres, effetsNourrEteAutresVille } from './autres'
 import { appliquerEffetsRegimesCultures } from './regimes'
 import { appliquerEffetsFaction, nbVassaux } from './factions'
 import { appliquerEffetsProgres } from './progres'
+import { appliquerEffetsMinisteres, effetsFinSaisonMinisteres } from './ministeres'
 import { appliquerTaxesCitesLibres, citesSuzerainesDe } from './citesLibres'
 import { appliquerConsommationsHabitations } from './habitations'
 import { transfererTributVassal } from './vassalite'
@@ -81,6 +82,10 @@ export function runTurn(state: GameState): GameState {
       texte: `【${newSaison}】 ${ev.nom} (danger ${danger}/6) : ${texte}`,
     })
     applyEventEffect(state, ev.nom, level)
+    // Fin de la saison qui se termine : effets automatiques des
+    // portefeuilles ministériels (Sénéchal fin d'été, Maître de cour
+    // chaque saison — engine/ministeres.ts).
+    effetsFinSaisonMinisteres(state, state.saison)
     state.saison = newSaison
   }
 
@@ -226,6 +231,13 @@ export function runTurn(state: GameState): GameState {
   const progresParJoueur: Record<number, Record<string, number>> =
     appliquerEffetsProgres(state, C)
 
+  // 3duodecies. Ministères : effets automatiques par tour des
+  //  portefeuilles ministériels (Trésorier +5 Or, Grand Précepteur
+  //  +1 Science — engine/ministeres.ts, cumulables), canal
+  //  « Ministères » du récap ressources.
+  const ministeresParJoueur: Record<number, Record<string, number>> =
+    appliquerEffetsMinisteres(state, C)
+
   // 4. Moteur de population (PersonnagesPourJoueur) pour chaque joueur
   for (const p of state.players) {
     populationTurn(state, p, rng)
@@ -260,6 +272,7 @@ export function runTurn(state: GameState): GameState {
       faction: factionsParJoueur[p.n] ?? {},
       progres: progresParJoueur[p.n] ?? {},
       citesLibres: citesLibresParJoueur[p.n] ?? {},
+      ministeres: ministeresParJoueur[p.n] ?? {},
       population,
       vassalite,
     }
@@ -331,6 +344,11 @@ export {
   type ProvenanceApport, type CanalApport,
 } from './production'
 export { transfererTributVassal } from './vassalite'
+export {
+  aMinistre, portefeuillesDuJoueur, appliquerEffetsMinisteres,
+  effetsFinSaisonMinisteres, facteurSacre, facteurAvencement,
+  changerPortefeuille,
+} from './ministeres'
 export {
   techDefArbre, effetsTech, slotsDebloques, effetsTechParTour,
   effetsProgresJoueur, detailsProgresJoueur, appliquerEffetsProgres,

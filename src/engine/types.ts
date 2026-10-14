@@ -105,6 +105,11 @@ export interface Character {
    *  puis mourra de la maladie (règle simplifiée « malade ou sain »). */
   enceinteMalade?: boolean
   titre: string | null
+  /** Portefeuille ministériel si le titre est « Ministre » (table
+   *  `ministeres` du référentiel : Sénéchal, Trésorier… — refonte
+   *  2026-10-14). Champ optionnel : absent des vieilles sauvegardes →
+   *  aucun portefeuille. */
+  ministere?: string | null
   education: string | null
   fecondite: number
   ageMax: number
@@ -254,6 +259,12 @@ export interface Player {
    *  manuel, effet non appliqué automatiquement). */
   regleAge2?: string | null
   regleAge3?: string | null
+  /** Bonus de garnison des ministères (refonte 2026-10-14) : crédité
+   *  une fois à la prise de fonction d'un Connétable (+5 par ville,
+   *  engine/ministeres.ts) et ajouté à la garnison calculée de chaque
+   *  ville (garnisonHabitationVille). Champ optionnel : absent des
+   *  vieilles sauvegardes → 0. */
+  garnisonMinisteres?: number
 }
 
 export interface LogEntry {
@@ -307,6 +318,11 @@ export interface ApportsTour {
    *  (engine/citesLibres.ts — étape 3decies). Champ optionnel : absent
    *  des historiques d'avant l'ajout du canal. */
   citesLibres?: Record<string, number>
+  /** effets automatiques par tour des portefeuilles ministériels
+   *  (engine/ministeres.ts — étape 3duodecies : Trésorier +5 Or,
+   *  Grand Précepteur +1 Science, cumulables). Champ optionnel :
+   *  absent des historiques d'avant l'ajout du canal. */
+  ministeres?: Record<string, number>
 }
 
 export interface HistoryRow {

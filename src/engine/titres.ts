@@ -199,6 +199,12 @@ export function assignAdultTitle(state: GameState, p: Player, c: Character, rng:
  *  par ville) ne figurent pas dans la liste manuelle. */
 export function titresAccessibles(state: GameState, p: Player, C: Cfg = cfgOf(state.config)): string[] {
   const out: string[] = [C.p.titreChasseur, C.p.titreGouverneur]
+  // « Ministre » (refonte 2026-10-14) : nomination manuelle — le cap
+  //  (nombre de Ministres = rang de pays, table paysRangs) et la règle
+  //  « nobleSeul » sont contrôlés par validateTitleAssignment
+  //  (avertissement affiché, jamais bloquant). Le portefeuille se
+  //  choisit ensuite dans la page Population.
+  out.push('Ministre')
   const pop = state.population[p.n] ?? []
   const educations = new Set<string>()
   for (const c of pop) {

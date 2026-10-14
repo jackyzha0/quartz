@@ -21,6 +21,7 @@ import { makeRng } from './rng'
 import { cfgOf, peupleDef, titreDef, type Cfg } from './gameData'
 import { computeAgeMax } from './sante'
 import { rangPaysNiveau } from './factions'
+import { aMinistre } from './ministeres'
 
 // ── État ──────────────────────────────────────────────────────────────
 
@@ -157,12 +158,16 @@ export function appliquerTaxesCitesLibres(
     const d = detailCiteLibre(cite, C)
     const gains = out[suz.n] ?? (out[suz.n] = {})
     const parts: string[] = []
+    // Grand Chambellan (ministère, refonte 2026-10-14) : +10 % sur les
+    // taxes reçues des cités libres (cumulable avec les taxes des villes).
+    const boostChambellan = aMinistre(state, suz, 'Grand Chambellan') ? 1.1 : 1
     for (const [res, v] of Object.entries(d.transfert)) {
       if (v === 0) continue
-      gains[res] = (gains[res] ?? 0) + v
+      const vv = v * boostChambellan
+      gains[res] = (gains[res] ?? 0) + vv
       const rs = suz.resources[res]
-      if (rs) rs.stock += v
-      parts.push(`+${Math.round(v * 10) / 10} ${res}`)
+      if (rs) rs.stock += vv
+      parts.push(`+${Math.round(vv * 10) / 10} ${res}`)
     }
     if (parts.length > 0) {
       state.log.push({

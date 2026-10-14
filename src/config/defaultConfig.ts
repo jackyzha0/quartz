@@ -236,7 +236,18 @@ export interface GameConfig {
     marriageMod: number; fertAdd: number; lifeDelta: number
     resurrectionMinRoll: number; description: string
   }[]
-  ministeres: { ministere: string; effet: string }[]
+  ministeres: {
+    ministere: string
+    effet: string
+    /** Rang de pays minimum pour tenir le portefeuille (refonte
+     *  2026-10-14) — avertissement non bloquant à la nomination.
+     *  Champ optionnel : anciens formats → « Baronnie » (toujours
+     *  disponible). */
+    rangMinimum?: string
+    /** « Auto » (appliqué par le moteur) ou « Plateau » (appliqué à
+     *  la table). Champ optionnel : anciens formats → « Plateau ». */
+    mode?: string
+  }[]
   titresEffets: { titre: string; effet: string; revocation: string }[]
   peuplesLibres: PeupleRef[]
   peuplesAutres: PeupleRef[]
@@ -631,6 +642,19 @@ function migrerPaysRangs(rangs: GameConfig['paysRangs']): GameConfig['paysRangs'
   return rangs
 }
 
+// Ministères (feuille « Référentiel », table ministeres) : migration des
+// anciens formats sans rangMinimum/mode (refonte 2026-10-14) — les
+// portefeuilles d'origine restent intacts, seuls les champs manquants
+// sont complétés par leurs valeurs par défaut.
+function migrerMinisteres(list: GameConfig['ministeres']): GameConfig['ministeres'] {
+  if (!Array.isArray(list) || list.length === 0) return DEFAULT_CONFIG.ministeres
+  return list.map((m) => ({
+    ...m,
+    rangMinimum: m.rangMinimum ?? 'Baronnie',
+    mode: m.mode ?? 'Plateau',
+  }))
+}
+
 export function cfgOf(config: GameConfig | undefined): Cfg {
   const c = config ?? DEFAULT_CONFIG
   const merged: GameConfig = {
@@ -647,6 +671,8 @@ export function cfgOf(config: GameConfig | undefined): Cfg {
   merged.progres = migrerProgres(merged.progres)
   // rangs de pays : échelle féodale unique (refonte 2026-10-14)
   merged.paysRangs = migrerPaysRangs(merged.paysRangs)
+  // ministères : complétion rangMinimum/mode (refonte 2026-10-14)
+  merged.ministeres = migrerMinisteres(merged.ministeres)
   // fiches de faction : structure (victoire/bâtiment/âges) du référentiel
   //  + correctif Sylvains (Savoir ancestral ↔ Bibliothèque enfouie)
   merged.peuplesLibres = migrerFactions(merged.peuplesLibres, DEFAULT_CONFIG.peuplesLibres).map(migrerSwapSylvains)

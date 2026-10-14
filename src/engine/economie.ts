@@ -11,6 +11,7 @@
 import type { City, GameState, Player } from './types'
 import type { Rng } from './rng'
 import { cfgOf, titreDef, type Cfg } from './gameData'
+import { aMinistre } from './ministeres'
 
 // ══════════════════════════════════════════════════════════════════════
 //  GAINS DE POPULATION PAR VILLE (CalculerGainsPopulation)
@@ -81,8 +82,11 @@ export function detailGainsVille(state: GameState, p: Player, ville: City, C: Cf
       titres[td.ressource2] = (titres[td.ressource2] ?? 0) + td.valeur2
     }
   }
-  // Taxes : le niveau module TOUTES les ressources produites par les habitants
-  const taxeMult = facteurTaxes(ville, C)
+  // Taxes : le niveau module TOUTES les ressources produites par les habitants.
+  // Grand Chambellan (ministère, refonte 2026-10-14) : +10 % sur toutes
+  // les taxes reçues — multiplicateur appliqué ici (cumulables).
+  const taxeMult =
+    facteurTaxes(ville, C) * (aMinistre(state, p, 'Grand Chambellan') ? 1.1 : 1)
   const taxes: Record<string, number> = {}
   for (const [res, v] of Object.entries(titres)) {
     const tv = v * taxeMult
