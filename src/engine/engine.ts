@@ -321,6 +321,7 @@ export {
   type DetailFaction, type RegleActive, type SourceRegle,
 } from './factions'
 export { supprimerVille, transfererVille } from './villes'
+export { donnerPersonnage, marierPersonnages, numeroJoueurDe } from './cour'
 export {
   citesLibresDe, garnisonCiteLibre, facteurTaxesCite, emissairesDe,
   citesSuzerainesDe, detailCiteLibre, taxesCitesLibresRecues,

@@ -92,11 +92,17 @@ export function maladieStep(state: GameState, p: Player, c: Character, rng: Rng,
 export function killCharacter(state: GameState, p: Player, c: Character, cause: 'vieillesse' | 'maladie', recap: PlayerRecap) {
   const C = cfgOf(state.config)
   c.statut = 'Décédé'
-  // libérer le conjoint
-  const pop = state.population[p.n] ?? []
+  // libérer le conjoint — il peut vivre chez un AUTRE joueur depuis
+  //  les mariages manuels entre cours (engine/cour.ts, 2026-10-14) :
+  //  on parcourt donc toutes les populations du monde.
   if (c.mariage) {
-    const conjoint = pop.find((x) => x.mariage === fullName(c))
-    if (conjoint) conjoint.mariage = null
+    for (const q of state.players) {
+      const conjoint = (state.population[q.n] ?? []).find((x) => x.mariage === fullName(c))
+      if (conjoint) {
+        conjoint.mariage = null
+        break
+      }
+    }
   }
   bump(recap.deces, c.dynastie)
   if (cause === 'maladie') recap.decesMaladie++

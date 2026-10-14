@@ -89,11 +89,15 @@ export function conceptionEtNaissances(state: GameState, p: Player, rng: Rng, re
 
   // 2. Tentatives de conception (femmes adultes saines — ou malades :
   //    une femme malade qui tombe enceinte est guérie, bug assumé)
+  //    Le mari peut vivre chez un AUTRE joueur depuis les mariages
+  //    manuels entre cours (engine/cour.ts, 2026-10-14) : on cherche
+  //    donc le conjoint dans toutes les populations du monde.
+  const popMonde: Character[] = state.players.flatMap((q) => state.population[q.n] ?? [])
   for (const mere of pop) {
     if (mere.sexe !== 'F' || (mere.statut !== 'Sain' && mere.statut !== 'Malade')) continue
     if (mere.age < C.p.adultAge) continue
     const ville = p.villes.find((v) => v.nom === mere.ville)
-    const mari = mere.mariage ? pop.find((x) => fullName(x) === mere.mariage && x.statut !== 'Décédé') : undefined
+    const mari = mere.mariage ? popMonde.find((x) => fullName(x) === mere.mariage && x.statut !== 'Décédé') : undefined
     // Mariage homosexuel (culture l'autorisant — mariages dans titres.ts) :
     // pas de conception entre épouses de même sexe.
     if (mari && mari.sexe !== 'M') continue
