@@ -372,5 +372,8 @@ export {
 export { applyCultureInfluence, updateCityCultures } from './culture'
 export { recruitForArmies, martialiteOk, recomputeArmy } from './armees'
 export { snapshotRessources, writeRecap } from './journal'
-export { checkVictory } from './victory'
+export {
+  cocherLaurier, nbLauriers, victoireAtteinte,
+  victoryProgress, victoryLabels,
+} from './victory'
 export { findTitleIssues, titleCandidatesFor } from './validation'

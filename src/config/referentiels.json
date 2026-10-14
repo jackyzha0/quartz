@@ -5545,157 +5545,157 @@
   ],
   "regleCitesLibres": "On appelle cité libre, une cité n’appartenant à aucun joueur. Si un joueur perd une de ses habitations par tout autre moyen que par l’action directe d’un autre joueur, celle-ci devient à son tour une cité libre. Lorsqu’une cité libre apparait sur le terrain de jeu, son type est déterminé par la case sur laquelle elle se trouve. Un joueur dont une cité est devenue libre obtient immédiatement 1 Emissaire\n     Les cités libres possèdent 100 Garnison +40 Garnison par rang de pays du joueur ayant le plus haut rang, et change de niveau d'habitation dès qu'un joueur entre dans une nouvelle ère.\n     Au cours de la partie, les joueurs pourront tenter de gagner de l’influence auprès des différentes cités libres. Vous ne pouvez gagner en influence qu’une seule fois par saison.\n     Lorsque vous atteignez 3 émissaires avec une cité libre, vous avez la possibilité de devenir son suzerain. Une cité libre compte comme un Serment pour son Suzerain.",
   "victoires": [
-    {
-      "voie": "Culturelle",
-      "rangs": [
-        {
-          "rang": "Rang I",
-          "condition": "Posséder un Pontificat de rang I.",
-          "bonus": "Age 1 : la prochaine merveille coûte 20 Or et 10 Ressources de base en moins.\nCrise."
-        },
-        {
-          "rang": "Rang II",
-          "condition": "Posséder 3 Merveilles.",
-          "bonus": "Age 2 : vous recevez 20 Tourisme. Gagnez ensuite 30 Influence avec la Cité Libre de votre choix. Crise."
-        },
-        {
-          "rang": "Rang III",
-          "condition": "Posséder un Pontificat de rang III.",
-          "bonus": "Crise."
-        },
-        {
-          "rang": "Rang IV",
-          "condition": "Posséder 360 Tourisme et 5 Merveilles.",
-          "bonus": "Victoire !"
-        }
-      ]
-    },
-    {
-      "voie": "Démographique",
-      "rangs": [
-        {
-          "rang": "Rang I",
-          "condition": "Posséder 3 habitations.",
-          "bonus": "Age 1 : la prochaine habitation coûte 5 Bois de moins et commence avec 15 habitants supplémentaires. Crise."
-        },
-        {
-          "rang": "Rang II",
-          "condition": "Posséder une habitation avec \n300 habitants.",
-          "bonus": "Age 2 : la population de votre capitale augmente de 25. Crise."
-        },
-        {
-          "rang": "Rang III",
-          "condition": "Posséder 3 habitations de rang III.",
-          "bonus": "Crise."
-        },
-        {
-          "rang": "Rang IV",
-          "condition": "Posséder une populations totale de 1500 habitants.",
-          "bonus": "Victoire !"
-        }
-      ]
-    },
-    {
-      "voie": "Diplomatique",
-      "rangs": [
-        {
-          "rang": "Rang I",
-          "condition": "Posséder 60 d'Influence envers 2 cités libres différentes.",
-          "bonus": "Age 1 : votre prochaine augmentation de rang de pays ne coûte aucune Nourriture. Crise."
-        },
-        {
-          "rang": "Rang II",
-          "condition": "Posséder 2 Professeurs.",
-          "bonus": "Age 2 : vous pouvez posséder 1 Ministre supplémentaire. Crise."
-        },
-        {
-          "rang": "Rang III",
-          "condition": "Posséder un total de 300 Influence avec des cités libres.",
-          "bonus": "Crise."
-        },
-        {
-          "rang": "Rang IV",
-          "condition": "Etre suzerain de 3 cités libres",
-          "bonus": "Victoire !"
-        }
-      ]
-    },
-    {
-      "voie": "Économique",
-      "rangs": [
-        {
-          "rang": "Rang I",
-          "condition": "Aménager 4 ressources naturelles.",
-          "bonus": "Age 1 : recevez 5 ressources de base de votre choix. Crise."
-        },
-        {
-          "rang": "Rang II",
-          "condition": "Posséder 3 routes commerciales.",
-          "bonus": "Age 2 : votre capitale peut acceuillir un bâtiment supplémentaire. Crise."
-        },
-        {
-          "rang": "Rang III",
-          "condition": "Posséder un revenu de 80 Or par tour.",
-          "bonus": "Crise."
-        },
-        {
-          "rang": "Rang IV",
-          "condition": "Posséder 5 Guildes",
-          "bonus": "Victoire !"
-        }
-      ]
-    },
-    {
-      "voie": "Militaire",
-      "rangs": [
-        {
-          "rang": "Rang I",
-          "condition": "Capturer une habitation",
-          "bonus": "Age 1 : le coût de prochaine levée d'armée est réduit de 60 Or. Crise."
-        },
-        {
-          "rang": "Rang II",
-          "condition": "Posséder un Donjon doté d'une Caserne.",
-          "bonus": "Age 2 : le coût de levée d'armée est réduit de 10 Or pour le reste de la partie. Crise."
-        },
-        {
-          "rang": "Rang III",
-          "condition": "Posséder un total de 800 pts d'armée.",
-          "bonus": "Crise."
-        },
-        {
-          "rang": "Rang IV",
-          "condition": "Capturer un total de 5 habitations.",
-          "bonus": "Victoire !"
-        }
-      ]
-    },
-    {
-      "voie": "Scientifique",
-      "rangs": [
-        {
-          "rang": "Rang I",
-          "condition": "Posséder un revenu de 7 Science par tour.",
-          "bonus": "Age 1 : vous gagnez 30 Science. Crise."
-        },
-        {
-          "rang": "Rang II",
-          "condition": "Posséder un Donjon doté d'un Cabinet d'astronomie.",
-          "bonus": "Si complété à l'âge 2, apprenez 3 technologies d'un même arbre de rang I. Crise."
-        },
-        {
-          "rang": "Rang III",
-          "condition": "Découvrir 3 Progrès complets d'âge III.",
-          "bonus": "Crise."
-        },
-        {
-          "rang": "Rang IV",
-          "condition": "Terminer le Progrès Futur.",
-          "bonus": "Victoire !"
-        }
-      ]
-    }
-  ],
+ {
+  "voie": "Culturelle",
+  "lauriers": [
+   {
+    "laurier": "Laurier I",
+    "condition": "Posséder un Pontificat de rang I (100 Tourisme).",
+    "bonus": "Si complété pendant l'Âge I : la prochaine Merveille coûte 20 Or et 10 Ressources de base de moins. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier II",
+    "condition": "Posséder 3 Merveilles.",
+    "bonus": "Si complété pendant l'Âge II : recevez 20 Tourisme, puis 20 Tourisme supplémentaires (40 au total). Crise à la validation."
+   },
+   {
+    "laurier": "Laurier III",
+    "condition": "Posséder un Pontificat de rang III (340 Tourisme).",
+    "bonus": "Aucune récompense. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier IV",
+    "condition": "Posséder 360 Tourisme et 5 Merveilles.",
+    "bonus": "Victoire !"
+   }
+  ]
+ },
+ {
+  "voie": "Démographique",
+  "lauriers": [
+   {
+    "laurier": "Laurier I",
+    "condition": "Posséder 3 habitations.",
+    "bonus": "Si complété pendant l'Âge I : la prochaine habitation coûte 5 Bois de moins et commence avec 15 habitants supplémentaires. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier II",
+    "condition": "Posséder une habitation d'au moins 300 habitants.",
+    "bonus": "Si complété pendant l'Âge II : la population de votre capitale augmente de 25. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier III",
+    "condition": "Posséder 3 habitations de rang III (Grande Cité ou Forteresse).",
+    "bonus": "Aucune récompense. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier IV",
+    "condition": "Posséder une population totale de 1500 habitants.",
+    "bonus": "Victoire !"
+   }
+  ]
+ },
+ {
+  "voie": "Diplomatique",
+  "lauriers": [
+   {
+    "laurier": "Laurier I",
+    "condition": "Posséder 3 émissaires, toutes cités libres confondues.",
+    "bonus": "Si complété pendant l'Âge I : gagnez 1 émissaire avec la cité libre de votre choix. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier II",
+    "condition": "Posséder 5 émissaires au total.",
+    "bonus": "Si complété pendant l'Âge II : vous pouvez nommer 1 Ministre au-delà du plafond de votre rang. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier III",
+    "condition": "Avoir atteint le rang de pays Royaume (3 serments).",
+    "bonus": "Aucune récompense. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier IV",
+    "condition": "Posséder un total de 10 émissaires.",
+    "bonus": "Victoire !"
+   }
+  ]
+ },
+ {
+  "voie": "Économique",
+  "lauriers": [
+   {
+    "laurier": "Laurier I",
+    "condition": "Aménager 4 ressources naturelles.",
+    "bonus": "Si complété pendant l'Âge I : recevez 5 ressources de base de votre choix. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier II",
+    "condition": "Posséder 3 routes commerciales.",
+    "bonus": "Si complété pendant l'Âge II : votre capitale peut accueillir un bâtiment supplémentaire. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier III",
+    "condition": "Posséder un revenu de 80 Or par tour.",
+    "bonus": "Aucune récompense. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier IV",
+    "condition": "Posséder 5 Guildes différentes.",
+    "bonus": "Victoire !"
+   }
+  ]
+ },
+ {
+  "voie": "Militaire",
+  "lauriers": [
+   {
+    "laurier": "Laurier I",
+    "condition": "Capturer une habitation.",
+    "bonus": "Si complété pendant l'Âge I : le coût de votre prochaine levée d'armée est réduit de 60 Or. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier II",
+    "condition": "Posséder un Donjon doté d'une Caserne.",
+    "bonus": "Si complété pendant l'Âge II : le coût de levée d'armée est réduit de 10 Or pour le reste de la partie. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier III",
+    "condition": "Posséder un total de 800 points d'armée.",
+    "bonus": "Aucune récompense. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier IV",
+    "condition": "Capturer un total de 5 habitations.",
+    "bonus": "Victoire !"
+   }
+  ]
+ },
+ {
+  "voie": "Scientifique",
+  "lauriers": [
+   {
+    "laurier": "Laurier I",
+    "condition": "Posséder un revenu de 7 Science par tour.",
+    "bonus": "Si complété pendant l'Âge I : vous gagnez 30 Science. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier II",
+    "condition": "Posséder un Donjon doté d'un Cabinet d'astronomie.",
+    "bonus": "Si complété pendant l'Âge II : terminez gratuitement un arbre de Progrès d'Âge I (3 technologies). Crise à la validation."
+   },
+   {
+    "laurier": "Laurier III",
+    "condition": "Terminer 3 arbres de Progrès d'Âge III.",
+    "bonus": "Aucune récompense. Crise à la validation."
+   },
+   {
+    "laurier": "Laurier IV",
+    "condition": "Terminer l'arbre « Progrès du développement futur ».",
+    "bonus": "Victoire !"
+   }
+  ]
+ }
+],
   "crises": [
     "Sécession : marquez une de vos habitations aléatoire (sauf capitale), dans 3 tours elle rejoint les cités libres à moins que vous la transfériez à un joueur qui vous a prêté serment.",
     "Famine :  dans 3 tours, perdez 30 Nourriture par rang de votre pays (vous pouvez tomber en négatif).",

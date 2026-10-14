@@ -7,7 +7,9 @@ import React from 'react'
 import { useGame } from '../state/store'
 import { cfgOf } from '../engine/gameData'
 import { VICTORY_TEXT } from '../engine/gameData2'
-import { checkVictory, victoryProgress, victoryLabels } from '../engine/victory'
+import {
+  cocherLaurier, victoireAtteinte, victoryProgress, victoryLabels,
+} from '../engine/victory'
 import { Card, fmt, Select } from './ui'
 import { HistogrammeEmpile, CourbeRessource, Radar } from './charts'
 import type { GroupeChart, SerieCourbe, SerieRadar } from './charts'
@@ -16,15 +18,17 @@ const RESSOURCES_VUES = ['Or', 'Nourriture', 'Science', 'Tourisme', 'Garnison', 
 const RESSOURCES_BASE = ['Bétail', 'Bois', 'Charbon', 'Fer', 'Pierre', 'Soie']
 
 export function Dashboard() {
-  const { state } = useGame()
+  const { state, update } = useGame()
   const [ressourceCourbe, setRessourceCourbe] = React.useState<string>('Or')
   const RESOURCES = state ? cfgOf(state.config).ressources : cfgOf(undefined).ressources
   if (!state) return null
 
-  const victory = checkVictory(state)
+  // ── Lauriers de victoire : référentiel + vainqueurs éventuels ──────
+  const victoiresRef = cfgOf(state.config).config.victoires
+  const vainqueurs = victoireAtteinte(state)
 
-  // ── Données du radar : progression de chaque joueur par condition ────
-  const axesVictoire = victoryLabels()
+  // ── Données du radar : progression de chaque joueur par voie ───────
+  const axesVictoire = victoryLabels(state)
   const seriesRadar: SerieRadar[] = victoryProgress(state).map((v) => ({
     joueur: v.joueur,
     nom: v.nom,
@@ -180,28 +184,64 @@ export function Dashboard() {
         </div>
       </Card>
 
-      <Card title="Conditions de victoire (chapitre XII du livret)">
+      <Card title="Voies de victoire — Lauriers I à IV (chapitre XII, refonte 2026-10-14)">
+        {vainqueurs.length > 0 && (
+          <div className="pos mb" style={{ fontWeight: 'bold' }}>
+            👑 Victoire : {vainqueurs.map((v) => `${v.nom} (${v.voie})`).join(' · ')}
+          </div>
+        )}
         <Radar axes={axesVictoire.map((a) => a.label)} series={seriesRadar} />
         <p className="muted small">
-          Radar de progression vers chaque condition : 0 % au centre, 100 % au bord = condition
-          atteinte (👑 dans le tableau ci-dessous). Un polygone semi-transparent par joueur —
-          survolez un sommet pour le détail du calcul.
+          Radar de victoire : 0 % au centre, 100 % au bord = Laurier IV (victoire). Un polygone
+          semi-transparent par joueur — survolez un sommet pour le détail. Les joueurs cochent
+          eux-mêmes leurs Lauriers dans le tableau ci-dessous (ordre strict : un Laurier ne se
+          valide que si le précédent est acquis ; recliquer la dernière case validée l'annule).
+          Chaque Laurier I-III validé déclenche une crise à tirer ; les bonus ne s'appliquent
+          que si le Laurier est complété pendant l'âge de même numéro.
         </p>
         <div className="table-wrap">
           <table className="tbl">
             <thead>
               <tr>
                 <th>Joueur</th>
-                {VICTORY_TEXT.map((v) => <th key={v.nom} title={v.texte}>{v.nom}</th>)}
+                {victoiresRef.map((v) => <th key={v.voie}>{v.voie}</th>)}
               </tr>
             </thead>
             <tbody>
-              {victory.map((v) => (
-                <tr key={v.joueur}>
-                  <td><strong>{v.nom}</strong></td>
-                  {(['militaire', 'economique', 'culturelle', 'scientifique', 'demographique', 'dynastique'] as const).map((k) => (
-                    <td key={k} className="center">{v[k] ? '👑' : '·'}</td>
-                  ))}
+              {state.players.map((p) => (
+                <tr key={p.n}>
+                  <td><strong>{p.nom}</strong></td>
+                  {victoiresRef.map((v) => {
+                    const n = p.lauriers?.[v.voie] ?? 0
+                    return (
+                      <td key={v.voie} className="center">
+                        {v.lauriers.map((l, i) => {
+                          const niveau = i + 1
+                          const coche = niveau <= n
+                          // cliquable : le prochain Laurier (cocher) ou le dernier validé (annuler)
+                          const actif = niveau === n + 1 || (coche && niveau === n)
+                          return (
+                            <span
+                              key={niveau}
+                              title={actif ? `${l.laurier} — ${l.condition}` : l.condition}
+                              onClick={actif ? () => update((s) => {
+                                const t = s.players.find((q) => q.n === p.n)
+                                if (t) cocherLaurier(s, t, v.voie, coche ? niveau - 1 : niveau)
+                              }) : undefined}
+                              style={{
+                                cursor: actif ? 'pointer' : 'default',
+                                opacity: actif ? 1 : 0.45,
+                                fontSize: '1.05em',
+                                marginRight: 2,
+                              }}
+                            >
+                              {coche ? '☑' : '☐'}
+                            </span>
+                          )
+                        })}
+                      </td>
+                    )
+                  })}
                 </tr>
               ))}
             </tbody>

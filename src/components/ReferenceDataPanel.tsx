@@ -619,18 +619,25 @@ export function ReferenceDataPanel() {
       )}
 
       {onglet === 'Victoires' && (
-        <Card title="Voies de victoire (chapitre XII)">
+        <Card title="Voies de victoire — Lauriers I à IV (chapitre XII, refonte 2026-10-14)">
+          <p className="muted small">
+            Chaque voie se parcourt par 4 <strong>Lauriers</strong> validés en <strong>ordre strict</strong> (un Laurier
+            ne se valide que si le précédent est acquis — cochage manuel au radar de l'accueil, la table reste juge).
+            Chaque Laurier I-III validé déclenche une <strong>crise</strong> à tirer ; les bonus one-shot ne
+            s'appliquent que si le Laurier est complété <strong>pendant l'âge de même numéro</strong> (I pendant l'Âge I,
+            II pendant l'Âge II) ; le Laurier III ne donne aucune récompense ; le <strong>Laurier IV = Victoire</strong>.
+          </p>
           {cfg.victoires.map((v, i) => (
             <div key={i} className="mb">
               <h4>{v.voie}</h4>
               <ul className="small">
-                {v.rangs.map((r, j) => (
-                  <li key={j}><strong>{r.rang}</strong> — {r.condition}{r.bonus ? <span className="muted"> (bonus : {r.bonus})</span> : null}</li>
+                {v.lauriers.map((l, j) => (
+                  <li key={j}><strong>{l.laurier}</strong> — {l.condition}{l.bonus ? <span className="muted"> ({l.bonus})</span> : null}</li>
                 ))}
               </ul>
             </div>
           ))}
-          <p className="muted small">Contrôles automatiques actuels : {VICTORY_TEXT.map((v) => v.nom).join(', ')}.</p>
+          <p className="muted small">Victoire (Laurier IV) : {VICTORY_TEXT.map((v) => v.texte).join(' · ')}.</p>
         </Card>
       )}
 

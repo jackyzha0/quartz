@@ -265,6 +265,14 @@ export interface Player {
    *  ville (garnisonHabitationVille). Champ optionnel : absent des
    *  vieilles sauvegardes → 0. */
   garnisonMinisteres?: number
+  /** Lauriers de victoire validés (refonte 2026-10-14) : clé = nom de la
+   *  voie (table victoires du référentiel), valeur = nombre de Lauriers
+   *  validés 0-4, en ORDRE STRICT (un Laurier ne se valide que si le
+   *  précédent est acquis — cocherLaurier dans engine/victory.ts,
+   *  cochage manuel au radar de l'accueil ; crise à chaque Laurier
+   *  I-III validé, Laurier IV = victoire). Champ optionnel : absent
+   *  des vieilles sauvegardes → aucun Laurier validé. */
+  lauriers?: Record<string, number>
 }
 
 export interface LogEntry {
@@ -365,15 +373,8 @@ export interface GameState {
   history: HistoryRow[]
 }
 
-// ── Conditions de victoire (chapitre XII du livret) ─────────────────────
-
-export interface VictoryStatus {
-  joueur: number
-  nom: string
-  militaire: boolean
-  economique: boolean
-  culturelle: boolean
-  scientifique: boolean
-  demographique: boolean
-  dynastique: boolean
-}
+// ── Voies de victoire (chapitre XII du livret) ─────────────────────────
+//  Refonte 2026-10-14 : les Lauriers validés sont suivis dans
+//  Player.lauriers (cochage manuel, ordre strict — engine/victory.ts).
+//  L'ancienne interface VictoryStatus (auto-détection « domination »,
+//  voie Dynastique fantôme) a été supprimée avec checkVictory.

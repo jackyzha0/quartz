@@ -264,7 +264,16 @@ export interface GameConfig {
   dogmes: { dogme: string; bonusPontife: string; bonusFideles: string }[]
   citesLibres: { type: string; effet: string }[]
   regleCitesLibres: string
-  victoires: { voie: string; rangs: { rang: string; condition: string; bonus: string }[] }[]
+  victoires: {
+    voie: string
+    /** 4 niveaux par voie, renommés LAURIERS (refonte 2026-10-14 —
+     *  plus de « Rang I-IV », déjà pris par les rangs de pays et
+     *  d'habitation). Validation manuelle au radar de l'accueil,
+     *  ordre strict ; crise à chaque Laurier I-III validé ; bonus
+     *  one-shot si complété pendant l'âge de même numéro ; le
+     *  Laurier IV = Victoire. */
+    lauriers: { laurier: string; condition: string; bonus: string }[]
+  }[]
   crises: string[]
   rappelsRegles: string[]
 }
@@ -642,6 +651,23 @@ function migrerPaysRangs(rangs: GameConfig['paysRangs']): GameConfig['paysRangs'
   return rangs
 }
 
+// Voies de victoire (feuille « Référentiel », table victoires) : migration
+// des anciens formats (refonte 2026-10-14) — « Rang I-IV » devient
+// « Laurier I-IV » ; les vieilles sauvegardes avec `rangs` repassent
+// automatiquement sur `lauriers` (textes du classeur conservés).
+function migrerVictoires(list: GameConfig['victoires']): GameConfig['victoires'] {
+  const convert = (m: any) => ({
+    voie: m.voie ?? '',
+    lauriers: (m.lauriers ?? m.rangs ?? []).map((r: any) => ({
+      laurier: r.laurier ?? r.rang ?? '',
+      condition: r.condition ?? '',
+      bonus: r.bonus ?? '',
+    })),
+  })
+  if (!Array.isArray(list) || list.length === 0) return DEFAULT_CONFIG.victoires
+  return list.map(convert)
+}
+
 // Ministères (feuille « Référentiel », table ministeres) : migration des
 // anciens formats sans rangMinimum/mode (refonte 2026-10-14) — les
 // portefeuilles d'origine restent intacts, seuls les champs manquants
@@ -673,6 +699,8 @@ export function cfgOf(config: GameConfig | undefined): Cfg {
   merged.paysRangs = migrerPaysRangs(merged.paysRangs)
   // ministères : complétion rangMinimum/mode (refonte 2026-10-14)
   merged.ministeres = migrerMinisteres(merged.ministeres)
+  // voies de victoire : rangs → lauriers (refonte 2026-10-14)
+  merged.victoires = migrerVictoires(merged.victoires)
   // fiches de faction : structure (victoire/bâtiment/âges) du référentiel
   //  + correctif Sylvains (Savoir ancestral ↔ Bibliothèque enfouie)
   merged.peuplesLibres = migrerFactions(merged.peuplesLibres, DEFAULT_CONFIG.peuplesLibres).map(migrerSwapSylvains)
