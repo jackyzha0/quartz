@@ -145,7 +145,18 @@ ol, ul { margin: 6px 0; padding-left: 22px; }
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 input.num { max-width: 110px; }
-select.input { min-width: 120px; width: auto; }
+select.input {
+  min-width: 120px; width: auto;
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23888d98' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 9px center;
+  padding-right: 28px;
+  cursor: pointer;
+}
+select.input:hover:not(:disabled) { border-color: var(--accent); }
+select.input option, select.input optgroup { background: var(--card); color: var(--text); }
+.add-bat select.input { width: 100%; }
 
 .btn {
   background: var(--card); border: 1px solid var(--border); color: var(--text);
@@ -186,6 +197,34 @@ select.input { min-width: 120px; width: auto; }
 }
 .clickable { cursor: pointer; }
 .badges-wrap { display: flex; flex-wrap: wrap; gap: 4px; }
+/* Pastilles par FAMILLE de bâtiment (retour Thibaut, marqueur (r)) :
+   rouge Militaire, jaune Economique, bleu Capitale, blanc Faction,
+   violet Guilde (choix arbitrée — le user n'a pas spécifié la Guilde). */
+.badge-fam-mil {
+  background: color-mix(in srgb, var(--bad) 16%, transparent);
+  border-color: color-mix(in srgb, var(--bad) 50%, transparent);
+  color: var(--bad);
+}
+.badge-fam-eco {
+  background: color-mix(in srgb, var(--warn) 20%, transparent);
+  border-color: color-mix(in srgb, var(--warn) 55%, transparent);
+  color: var(--warn);
+}
+.badge-fam-cap {
+  background: color-mix(in srgb, var(--info) 16%, transparent);
+  border-color: color-mix(in srgb, var(--info) 50%, transparent);
+  color: var(--info);
+}
+.badge-fam-fac {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.65);
+  color: #1c2230;
+}
+.badge-fam-gui {
+  background: color-mix(in srgb, #9b59b6 18%, transparent);
+  border-color: color-mix(in srgb, #9b59b6 55%, transparent);
+  color: #b980d0;
+}
 .badge-x {
   background: none; border: none; color: inherit; cursor: pointer;
   font-size: 12px; padding: 0 0 0 4px; opacity: 0.7;

@@ -147,7 +147,7 @@ export function SetupPanel() {
             <thead>
               <tr>
                 <th>#</th><th>Nom</th><th>Peuple (faction)</th><th>Culture</th>
-                <th>Régime</th><th>Habitants / ville</th><th>% mariés</th><th>Villes (séparées par ,)</th>
+                <th>Régime</th><th>Capitale</th><th>Habitants / ville</th><th>% mariés</th><th>Villes (séparées par ,)</th>
               </tr>
             </thead>
             <tbody>
@@ -177,6 +177,16 @@ export function SetupPanel() {
                       value={s.regime}
                       options={REGIMES.map((r) => ({ value: r.nom, label: r.nom }))}
                       onChange={(v) => setLine(i, { regime: v })}
+                    />
+                  </td>
+                  <td>
+                    <Select
+                      value={s.typeCapitale ?? 'Ville'}
+                      options={[
+                        { value: 'Ville', label: 'Cité (Hameau → Cité → Grande Cité)' },
+                        { value: 'Château', label: 'Château (Motte → Donjon → Forteresse)' },
+                      ]}
+                      onChange={(v) => setLine(i, { typeCapitale: v as 'Ville' | 'Château' })}
                     />
                   </td>
                   <td>

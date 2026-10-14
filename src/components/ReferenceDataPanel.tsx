@@ -303,25 +303,35 @@ export function ReferenceDataPanel() {
 
       {onglet === 'Aménagements' && (
         <>
-          <Card title={`Aménagements (coût / production / description exacts du classeur) (${(cfg.constructions ?? []).filter((c) => c.categorie === 'Aménagement').length})`}>
+          <Card title={`Aménagements (coût / production / description exacts du classeur) (${(cfg.constructions ?? []).filter((c) => c.categorie === 'Aménagement').length}) — table PARAMÉTRABLE`}>
+            <p className="muted small">
+              La colonne <strong>Terrain</strong> est indicative (case de plateau requise) ;
+              le moteur lit le <strong>coût</strong> et la <strong>production</strong> exacts
+              (« +2 Or et +10 Nourriture par tour. »). Le Tourisme est une valeur FLAT
+              créditée une fois à la construction (ex. Foire : +5 Tourisme).
+            </p>
             <div className="table-wrap">
               <table className="tbl small">
                 <thead><tr><th>Aménagement</th><th>Terrain</th><th>Coût</th><th>Production</th><th>Description</th></tr></thead>
                 <tbody>
-                  {(cfg.constructions ?? []).filter((c) => c.categorie === 'Aménagement').map((c, i) => (
+                  {(configEdit.constructions ?? []).map((c, i) => ({ c, i })).filter(({ c }) => c.categorie === 'Aménagement').map(({ c, i }) => (
                     <tr key={i}>
-                      <td><strong>{c.nom}</strong></td>
-                      <td>{c.terrain || '—'}</td>
-                      <td>{c.cout || '—'}</td>
-                      <td>{c.production || '—'}</td>
-                      <td className="small">{c.description}</td>
+                      <td><TextInput value={c.nom} onChange={(v) => setCfg((cf) => { cf.constructions[i].nom = v })} /></td>
+                      <td><TextInput value={c.terrain ?? ''} onChange={(v) => setCfg((cf) => { cf.constructions[i].terrain = v })} /></td>
+                      <td><TextInput value={c.cout} onChange={(v) => setCfg((cf) => { cf.constructions[i].cout = v })} /></td>
+                      <td><TextInput value={c.production} onChange={(v) => setCfg((cf) => { cf.constructions[i].production = v })} /></td>
+                      <td><TextInput value={c.description} onChange={(v) => setCfg((cf) => { cf.constructions[i].description = v })} /></td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
+            <Button onClick={() => setCfg((c) => {
+              c.constructions.push({ categorie: 'Aménagement', groupe: 'Terrain', famille: '', nom: 'Nouvel aménagement', terrain: '', cout: '', production: '', description: '' })
+            })}>+ Ajouter un aménagement</Button>
             <p className="muted small">
-              Coût réduit à 3 Or + 2 Bois si un « Camp de bâtisseurs » est présent dans la ville.
+              Coût réduit par un « Camp de bâtisseurs » présent dans la ville
+              (montant lu dans sa description).
             </p>
           </Card>
         </>

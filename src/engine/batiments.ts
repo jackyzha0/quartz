@@ -162,7 +162,13 @@ export function tourismeStatiqueBatiment(nom: string, C: Cfg): number {
   const ref = constructionRef(nom, C.config)
   const bd = buildingDef(nom, C.config)
   const texte = [ref?.description, ref?.production, bd?.effet].filter(Boolean).join(' ')
+  // Deux formes du classeur : « Tourisme +35 » ET « +5 Tourisme par
+  // tour. » (Foire, Site archéologique…). Dans les DEUX cas le Tourisme
+  // est une valeur FLAT créditée UNE FOIS à la construction (retour
+  // Thibaut, marqueur (r)) — jamais un flux par tour. Fonctionne pour
+  // les BÂTIMENTS comme pour les AMÉNAGEMENTS (même référentiel).
   const m = texte.match(/Tourisme\s*\+?\s*(\d+(?:[.,]\d+)?)/i)
+    ?? texte.match(/\+\s*(\d+(?:[.,]\d+)?)\s*Tourisme/i)
   return m ? parseFloat(m[1].replace(',', '.')) : 0
 }
 

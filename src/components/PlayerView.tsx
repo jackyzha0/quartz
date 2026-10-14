@@ -80,6 +80,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
   //    l'impôt d'UN tour (population / vassaux) pour les boutons
   //    « Générer l'impôt » de la carte récap. ─────────────────────────────
   const [foisImpot, setFoisImpot] = useState(1)
+  // Type d'habitation de la prochaine ville ajoutée (retour Thibaut,
+  //  marqueur (r) : choisir ville ou château à la création).
+  const [typeAjout, setTypeAjout] = useState<'Ville' | 'Château'>('Ville')
   const impotPopPrev = impotPopulation(state, p, C)
   const impotsVassPrev = impotsVassaux(state, p, C)
 
@@ -150,8 +153,10 @@ export function PlayerView({ joueur }: { joueur: number }) {
         if (rsSci) rsSci.stock += sci
       }
       // Tourisme : valeur d'état acquise UNE FOIS à la construction
-      // (ex. « Chapelle : Tourisme +35 ») — pas un flux par tour.
-      const tour = type === 'batiment' ? tourismeStatiqueBatiment(nom, C) : 0
+      // (ex. « Chapelle : Tourisme +35 », « Foire : +5 Tourisme »),
+      // BÂTIMENTS comme AMÉNAGEMENTS — pas un flux par tour (retour
+      // Thibaut, marqueur (r) : le Tourisme est une valeur FLAT).
+      const tour = tourismeStatiqueBatiment(nom, C)
       if (tour > 0) {
         const rsTour = t.resources['Tourisme']
         if (rsTour) rsTour.stock += tour
@@ -276,8 +281,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
             )
             // Ce que les taxes rapportent (production des villageois)
             const tg = detailGainsVille(state, p, ville, C)
-            const resTaxes = C.ressources.filter((r) =>
-              (tg.titres[r] ?? 0) !== 0 || (tg.taxes[r] ?? 0) !== 0 || (tg.conso[r] ?? 0) !== 0 || (tg.net[r] ?? 0) !== 0)
+            // Retour Thibaut (marqueur (r)) : TOUTES les ressources
+            // s'affichent, même à production 0.
+            const resTaxes = C.ressources
             return (
               <div key={idx} className="mini">
                 {/* Ligne de tête densifiée (retour Thibaut 2026-10-14) :
@@ -486,6 +492,11 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   const ref = refs.find((r) => r.categorie === 'Bâtiment' && r.nom === b)
                   const effets = effetsTourBatiment(b, C)
                   const garnison = garnisonBatiment(b, C)
+                  // Pastille colorée par FAMILLE (retour Thibaut, marqueur
+                  // (r)) : rouge Militaire, jaune Economique, bleu Capitale,
+                  // blanc Faction, violet Guilde (choix arbitré), défaut
+                  // gris-bleu pour les bâtiments sans famille.
+                  const clFam = FAM_BADGES[ref?.famille ?? ''] ?? 'badge-info'
                   const resume = [
                     ref?.production || '',
                     garnison > 0 ? `Garnison +${garnison}` : '',
@@ -493,7 +504,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   ].filter(Boolean).join(' · ')
                   return (
                     <div key={bi} className="ligne-construction">
-                      <span className="badge badge-info">
+                      <span className={`badge ${clFam}`} title={ref?.famille ? `Famille : ${ref.famille}` : undefined}>
                         {b}
                         <button
                           className="badge-x"
@@ -616,7 +627,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   const nEteAm = effetsNourrEteAmenagementsVille(ville, C.config)['Nourriture'] ?? 0
                   const nEteAut = effetsNourrEteAutresVille(ville)['Nourriture'] ?? 0
                   const nEteTot = nEteAm + nEteAut
-                  const resV = C.ressources.filter((r) => (pv.total[r] ?? 0) !== 0)
+                  // Retour Thibaut (marqueur (r)) : toutes les ressources,
+                  // même à production 0 (lignes teintées → lisibles).
+                  const resV = C.ressources
                   if (resV.length === 0 && nEteTot === 0) {
                     return (
                       <div className="muted small">
@@ -733,11 +746,21 @@ export function PlayerView({ joueur }: { joueur: number }) {
             )
           })}
         </div>
-        <Button onClick={() => setPlayer((x, s) => {
-          const nom = `Ville ${x.villes.length + 1}`
-          x.villes.push({ nom, culture: x.culture, taxes: 'Moyenne', type: 'Ville', rang: rangsDisponibles('Ville', C)[0] ?? 'Hameau', batiments: [], amenagements: [], autres: [] })
-          debiterCoutHabitation(s, x, x.villes[x.villes.length - 1], C)
-        })}>+ Ajouter une ville</Button>
+        <div className="filters" style={{ alignItems: 'center' }}>
+          <Select
+            value={typeAjout}
+            options={[
+              { value: 'Ville', label: 'Ville (Hameau → Cité → Grande Cité)' },
+              { value: 'Château', label: 'Château (Motte → Donjon → Forteresse)' },
+            ]}
+            onChange={(v) => setTypeAjout(v as 'Ville' | 'Château')}
+          />
+          <Button onClick={() => setPlayer((x, s) => {
+            const nom = `${typeAjout} ${x.villes.length + 1}`
+            x.villes.push({ nom, culture: x.culture, taxes: 'Moyenne', type: typeAjout, rang: rangsDisponibles(typeAjout, C)[0] ?? 'Hameau', batiments: [], amenagements: [], autres: [] })
+            debiterCoutHabitation(s, x, x.villes[x.villes.length - 1], C)
+          })}>{typeAjout === 'Château' ? '+ Ajouter un château' : '+ Ajouter une ville'}</Button>
+        </div>
       </Card>
 
       {/* ═══ Récap des ressources par tour : chaque ressource et d'où
@@ -767,8 +790,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
             (s, v) => s + (effetsNourrEteAutresVille(v)['Nourriture'] ?? 0), 0)
           const nEteTotJ = nEteAmJ + nEteAutJ
           const prov = provenancesApports(state, p, C)
-          const res = C.ressources.filter((r) =>
-            (prodDetail.total[r] ?? 0) !== 0 || (prov[r] ?? []).length > 0)
+          // Retour Thibaut (marqueur (r)) : toutes les ressources,
+          // même à production 0.
+          const res = C.ressources
           if (res.length === 0 && nEteTotJ === 0) {
             return (
               <p className="muted">
@@ -919,13 +943,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
           const fac = faction ?? {}
           const cl = citesLibres ?? {}
           const val = (d: Record<string, number>, r: string) => d[r] ?? 0
-          const res = C.ressources.filter((r) =>
-            val(production, r) !== 0 || val(batiments, r) !== 0 || val(amen, r) !== 0
-            || val(nEte, r) !== 0 || val(aut, r) !== 0 || val(hab, r) !== 0 || val(population, r) !== 0 || val(vassalite, r) !== 0
-            || val(reg, r) !== 0 || val(fac, r) !== 0 || val(cl, r) !== 0)
-          if (res.length === 0) {
-            return <p className="muted">Aucun apport au tour {row.turn}.</p>
-          }
+          // Retour Thibaut (marqueur (r)) : toutes les ressources,
+          // même à apport 0.
+          const res = C.ressources
           // Ligne « Nourr - été » (comme dans le classeur) juste après
           // la Nourriture : valeur d'été créditée ce tour-là (0/en
           // hiver) ; ses sources détaillées sont visibles dans le récap
@@ -952,7 +972,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                     if (l.kind === 'ete') {
                       const vEte = val(nEte, 'Nourriture')
                       return (
-                        <tr key="nourr-ete" className="muted">
+                        <tr key="nourr-ete" className="muted" style={{ background: fondRessource('Nourr - été', C) }}>
                           <td><strong>Nourr - été</strong></td>
                           <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
                           <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
@@ -966,8 +986,11 @@ export function PlayerView({ joueur }: { joueur: number }) {
                       + val(nEte, r) + val(aut, r) + val(hab, r) + val(population, r) + val(vassalite, r) + val(reg, r)
                       + val(fac, r) + val(cl, r)
                     return (
-                      <tr key={r}>
-                        <td><strong>{r}</strong></td>
+                      <tr key={r} style={{ background: fondRessource(r, C) }}>
+                        <td>
+                          <span className="dot-res" style={{ background: couleurRessource(r, C) }} />
+                          <strong>{r}</strong>
+                        </td>
                         <td>{fmtNum(val(production, r))}</td>
                         <td>{fmtNum(val(batiments, r))}</td>
                         <td>{fmtNum(val(amen, r))}</td>
@@ -1061,7 +1084,7 @@ function RessourcesBar({ p, C, prodDetail, setPlayer }: {
               const rs = p.resources[r] ?? { stock: 0, prod: 0 }
               const prod = prodDetail.total[r] ?? 0
               return (
-                <span key={r} className="res-chip" title={`${r} — stock modifiable · production / tour calculée${r === 'Habitants' ? ' (production = titres × taxes des habitants)' : ''}`}>
+                <span key={r} className="res-chip" style={{ background: fondRessource(r, C) }} title={`${r} — stock modifiable · production / tour calculée${r === 'Habitants' ? ' (production = titres × taxes des habitants)' : ''}`}>
                   <strong>{r}</strong>
                   <span className={rs.stock < 0 ? 'neg' : ''}>
                     <NumberInput
@@ -1121,6 +1144,18 @@ function RessourcesBar({ p, C, prodDetail, setPlayer }: {
 /** Formate des effets par tour : « +2 Or, -10 Nourriture ». Garnison et
  *  Tourisme sont des VALEURS D'ÉTAT (pas des flux) : sans signe. */
 const RESSOURCES_ETAT = ['Garnison', 'Tourisme']
+
+/** Classe de pastille par FAMILLE de bâtiment (retour Thibaut, marqueur
+ *  (r)) : rouge Militaire, jaune Economique, bleu Capitale, blanc
+ *  Faction, violet Guilde (couleur de Guilde arbitrée par Vibe —
+ *  à modifier dans styles.css si Thibaut préfère autre chose). */
+const FAM_BADGES: Record<string, string> = {
+  Militaire: 'badge-fam-mil',
+  Economique: 'badge-fam-eco',
+  Capitale: 'badge-fam-cap',
+  Faction: 'badge-fam-fac',
+  Guilde: 'badge-fam-gui',
+}
 function fmtEffets(effets: Record<string, number>, C: Cfg): string {
   const entries = Object.entries(effets).filter(([, v]) => v !== 0)
     .sort((a, b) => C.ressources.indexOf(a[0]) - C.ressources.indexOf(b[0]))

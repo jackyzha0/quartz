@@ -10,7 +10,7 @@ import type { Character, CiteLibre, GameState, Player } from './types'
 import { makeRng, type Rng } from './rng'
 import { cfgOf, cloneDefaultConfig, peupleDef, type Cfg } from './gameData'
 import type { GameConfig } from '../config/defaultConfig'
-import { computeAgeMax, computeFecondite, isNobleDyn, ajouterHabitantsCiteLibre } from './engine'
+import { computeAgeMax, computeFecondite, isNobleDyn, ajouterHabitantsCiteLibre, rangsDisponibles } from './engine'
 import { fullName } from './shared'
 
 export interface SetupLine {
@@ -21,6 +21,9 @@ export interface SetupLine {
   taillePopulation: number
   pourcentageMariages: number
   villes: string[]
+  /** Type d'habitation de la première ville (la capitale) — retour
+   *  Thibaut, marqueur (r) : château ou cité au choix de chaque joueur. */
+  typeCapitale?: 'Ville' | 'Château'
 }
 
 // Par défaut, chaque joueur commence avec UNE ville (« Capitale »).
@@ -120,9 +123,11 @@ export function makePlayer(n: number, s: SetupLine, C: Cfg): Player {
       // modifiables par ville sur la page « Pays ». Déterminent la
       // consommation par tour et la garnison de base (table
       // typesHabitation, Référentiels → « Habitations »).
-      type: 'Ville',
-      rang: 'Hameau',
-      batiments: idx === 0 ? ['Ecole élémentaire', 'Herboristerie'] : [],
+      type: idx === 0 ? (s.typeCapitale ?? 'Ville') : 'Ville',
+      rang: rangsDisponibles(idx === 0 ? (s.typeCapitale ?? 'Ville') : 'Ville', C)[0] ?? 'Hameau',
+      // Retour Thibaut (marqueur (r)) : PLUS AUCUN bâtiment par défaut
+      // dans la capitale — tout se construit au plateau.
+      batiments: [],
       amenagements: [],
       autres: [],
     })),

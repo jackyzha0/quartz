@@ -218,12 +218,19 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       : `la cité libre ${dst.cite.nom}`
     if (p && c.titre === C.p.titreDirigeant
       && !window.confirm(`Donner ${fullName(c)} (${C.p.titreDirigeant} de ${p.nom}) à ${dstNom} ?`)) return
+    let errDon: string | null = null
     update((s) => {
       const tc = cite
         ? ((s.citesLibres ?? [])[citeIdx]?.population ?? []).find((x) => x.id === c.id)
         : (s.population[joueur] ?? []).find((x) => x.id === c.id)
       const dstS = detenteurDeCle(s, v)
-      if (tc && dstS) deplacerPersonnage(s, tc, dstS)
+      if (tc && dstS) errDon = deplacerPersonnage(s, tc, dstS)
+    })
+    setErrors((e) => {
+      const copy = { ...e }
+      if (errDon) copy[c.id] = errDon
+      else delete copy[c.id]
+      return copy
     })
   }
   const marierAvec = (c: Character, v: string) => {
@@ -233,13 +240,20 @@ export function PopulationTable({ joueur }: { joueur: number }) {
     //  déplacer un Dirigeant (changement de porteur possible).
     if (p && c.titre === C.p.titreDirigeant
       && !window.confirm(`Le mariage déplace la personne mariée dans la ville de son conjoint (${p.nom} perd ${fullName(c)} si son conjoint est d'un autre porteur). Marier ${fullName(c)} ?`)) return
+    let errMariage: string | null = null
     update((s) => {
       const a = cite
         ? ((s.citesLibres ?? [])[citeIdx]?.population ?? []).find((x) => x.id === c.id)
         : (s.population[joueur] ?? []).find((x) => x.id === c.id)
       if (!a) return
       const b = toutesLesPopulations(s).find((x) => x.id === v)
-      if (b) marierPersonnages(s, a, b)
+      if (b) errMariage = marierPersonnages(s, a, b)
+    })
+    setErrors((e) => {
+      const copy = { ...e }
+      if (errMariage) copy[c.id] = errMariage
+      else delete copy[c.id]
+      return copy
     })
   }
 
@@ -456,6 +470,45 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           )}
         </Card>
       )}
+      {/* 👑 Ministres du porteur (retour Thibaut, marqueur (r) : « les
+          ministres n'ont jamais été intégrés » — ils l'étaient depuis la
+          refonte du 2026-10-14 (titre « Ministre » + portefeuille +
+          effets moteur) mais restaient invisibles si on ne savait pas
+          où regarder. Cette carte affiche l'équipe en place et rappelle
+          comment nommer.) — joueurs seulement (les cités libres n'ont
+          pas de ministères). */}
+      {p && (
+        <Card title={`👑 Ministres de ${p.nom}`}>
+          {(() => {
+            const mins = pop.filter((c) => c.titre === 'Ministre' && c.statut !== 'Décédé')
+            if (mins.length === 0) {
+              return (
+                <p className="muted small">
+                  Aucun ministre en poste. Pour en nommer un : dans « La cour » ci-dessous,
+                  choisir le titre <strong>Ministre</strong> dans la colonne Titre d'un noble vivant,
+                  puis choisir son <strong>portefeuille</strong> dans le second menu qui apparaît
+                  (Trésorier, Sénéchal, Connétable…). Les effets s'appliquent automatiquement
+                  à chaque fin de tour / fin de saison.
+                </p>
+              )
+            }
+            return (
+              <div className="badges-wrap">
+                {mins.map((c) => (
+                  <span key={c.id} className="badge badge-info" title={`${fullName(c)} — ${c.ville}`}>
+                    {fullName(c)} : {c.ministere || '(sans portefeuille)'}
+                  </span>
+                ))}
+              </div>
+            )
+          })()}
+          <p className="muted small">
+            Portefeuilles et rangs minimum : onglet Référentiels → « Ministères » (paramétrable).
+            En principe autant de ministres que le rang de pays l'octroie (avertissement, jamais bloquant).
+          </p>
+        </Card>
+      )}
+
       <Card title="🏘️ Occupations par ville">
         <div className="table-wrap">
           <table className="tbl small">
@@ -518,7 +571,15 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           « 💍 Marier avec… » unit deux nobles — y compris de porteurs différents : la
           personne mariée déménage dans la ville de son conjoint et rejoint son porteur
           (changement de joueur ou de cité possible ; confirmation avant de marier un Dirigeant).
+          Si un mariage ou un don est refusé, le motif s'affiche en rouge sous le titre
+          (déjà marié, non noble, mineur…).
         </p>
+        {p && (
+          <p className="muted small">
+            👑 Pour nommer un <strong>ministre</strong> : titre « Ministre » dans la colonne
+            Titre, puis portefeuille dans le second menu (carte « 👑 Ministres » ci-dessus).
+          </p>
+        )}
       </Card>
 
       <Card title={`Population de ${nomPorteur} — ${classiqueVivants} vivants / ${pop.filter((c) => !estNoble(c)).length} au total`}>

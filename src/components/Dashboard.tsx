@@ -5,7 +5,7 @@
 
 import React from 'react'
 import { useGame } from '../state/store'
-import { cfgOf, couleurRessource } from '../engine/gameData'
+import { cfgOf, couleurRessource, fondRessource } from '../engine/gameData'
 import { VICTORY_TEXT } from '../engine/gameData2'
 import {
   cocherLaurier, victoireAtteinte, victoryProgress, victoryLabels,
@@ -26,6 +26,9 @@ export function Dashboard() {
   // ── Couleurs paramétrables (marqueur (o)) : palette de la partie ────
   const C = cfgOf(state.config)
   const cR = (nom: string) => couleurRessource(nom, C)
+  // Fond teinté des colonnes (retour Thibaut, marqueur (r) : les
+  // ressources sont colorées aussi dans les tableaux de l'accueil).
+  const fR = (nom: string) => fondRessource(nom, C)
   const couleursJoueurs = C.couleurs.joueurs
 
   // ── Lauriers de victoire : référentiel + vainqueurs éventuels ──────
@@ -103,7 +106,7 @@ export function Dashboard() {
                 <tr key={p.n}>
                   <td><strong>{p.nom}</strong></td>
                   {RESOURCES.map((r) => (
-                    <td key={r} className={(p.resources[r]?.stock ?? 0) < 0 ? 'neg' : ''}>
+                    <td key={r} style={{ background: fR(r) }} className={(p.resources[r]?.stock ?? 0) < 0 ? 'neg' : ''}>
                       {fmt(p.resources[r]?.stock ?? 0)}
                     </td>
                   ))}
@@ -140,7 +143,7 @@ export function Dashboard() {
                       const rs = p.resources[r]
                       const low = (r === 'Nourriture' && (rs?.stock ?? 0) < 0)
                       return (
-                        <td key={r} className={low ? 'neg' : ''}>
+                        <td key={r} style={{ background: fR(r) }} className={low ? 'neg' : ''}>
                           {fmt(rs?.stock ?? 0)} <span className="muted">/ {fmt(rs?.prod ?? 0)}</span>
                         </td>
                       )
