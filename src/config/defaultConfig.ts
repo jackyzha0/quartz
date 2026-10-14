@@ -398,6 +398,7 @@ const BASE_DYNASTIE_EFFECTS: Record<string, { effets: EffetDef[]; guerison?: boo
   'Merveille architecturale': { effets: [{ ressource: 'Tourisme', base: 5 }] },
   'Troupe de troubadours': { effets: [{ ressource: 'Tourisme', base: 5 }] },
   'Miracle': { effets: [], guerison: true },
+  'Migration': { effets: [{ ressource: 'Habitants', base: 2 }] },
   'tempête magique': { effets: [{ ressource: 'Science', base: 2 }] },
   'Sombre proposition': { effets: [{ ressource: 'Science', base: 2 }, { ressource: 'Or', base: 5 }] },
   'Système de prévention': { effets: [{ ressource: 'Or', base: 5 }] },

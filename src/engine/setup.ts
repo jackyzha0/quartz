@@ -398,6 +398,7 @@ export function ajouterHabitant(
       enfantBatard: false,
       titre: C.p.titreChasseur,
       education: null,
+      fecondite: 0,
       ageMax: 0,
       armee: null,
     }
