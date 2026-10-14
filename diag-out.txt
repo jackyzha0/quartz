@@ -1,54 +1,12 @@
-createGame OK — 8 joueurs
-4 tours OK — turn 5 · saison Hiver · log 347 entrées
-commandants disponibles pour J1 : 5
-levée + recrutement OK — Armée 1:3 soldats, Armée 2:0 soldats
-dissolution armée idx=1 : OK
-renommage armée idx=0 : OK
-tour suivant (armées en place) : OK — turn 7
+<anonymous_script>:3201
+      "victoire": "",
+      ^
 
-═══ SCÉNARIOS DE DÉGRADATION (runTurn sur état cloné puis dégradé) ═══
-  [ÉCHEC runTurn] population supprimée → Cannot read properties of undefined (reading '1')
-  [OK sans erreur]  population = {}
-  [ÉCHEC runTurn] player.armees supprimé → p.armees is not iterable
-  [ÉCHEC runTurn] player.villes supprimé → p.villes is not iterable
-  [ÉCHEC runTurn] ville.batiments supprimé → batiments is not iterable
-  [OK sans erreur]  ville.taxes supprimé
-  [ÉCHEC runTurn] char.traits supprimé (tous J1) → c.traits is not iterable
-  [OK sans erreur]  char.statut supprimé (tous J1)
-  [OK sans erreur]  char.ageMax supprimé (tous J1)
-  [ÉCHEC runTurn] char.dynastie supprimé (tous J1) → Cannot read properties of undefined (reading 'trim')
-  [OK sans erreur]  char.ville supprimée (tous J1)
-  [ÉCHEC runTurn] char.orientation supprimée (tous J1) → Cannot read properties of undefined (reading 'toLowerCase')
-  [OK sans erreur]  char.id supprimé (tous J1)
-  [OK sans erreur]  char.mariage supprimé (tous J1)
-  [ÉCHEC runTurn] state.log supprimé → Cannot read properties of undefined (reading 'push')
-  [ÉCHEC runTurn] state.history supprimé → Cannot read properties of undefined (reading 'push')
-  [OK sans erreur]  state.rngState supprimé
-  [ÉCHEC runTurn] player.resources supprimé → Cannot read properties of undefined (reading 'Or')
-  [OK sans erreur]  config supprimée
-  [OK sans erreur]  config.cultures = []
-  [ÉCHEC runTurn] config.genres = [] → Cannot read properties of undefined (reading 'nom')
-  [ÉCHEC runTurn] config.orientations = [] → Cannot read properties of undefined (reading 'nom')
-  [OK sans erreur]  config.titres = []
-  [OK sans erreur]  config.traits = []
-  [OK sans erreur]  config.ressources = []
-  [OK sans erreur]  config.banquesNoms = []
-  [OK sans erreur]  config.peuples = []
-  [OK sans erreur]  config.educations = []
-  [ÉCHEC runTurn] config.dynasties = [] → Cannot read properties of undefined (reading 'nom')
-  [OK sans erreur]  config.events = []
-  [OK sans erreur]  config.eventEffets = []
-  [OK sans erreur]  config.dynastieEffets = []
-  [OK sans erreur]  config.batiments = []
-  [OK sans erreur]  player.n décalés (+8)
-  [OK sans erreur]  vassalDe = 99 (suzerain fantôme)
-  [ÉCHEC runTurn] armee.soldats supprimé → Cannot read properties of undefined (reading 'filter')
-  [OK sans erreur]  armee.commandant supprimé
-  [OK sans erreur]  armee.nom supprimé
-  [OK sans erreur]  armee.puissanceCible supprimé
-  [OK sans erreur]  player.recap corrompu (=  {})
+SyntaxError: Expected ',' or ']' after array element in JSON at position 121171 (line 3201 column 7)
+    at JSON.parse (<anonymous>)
+    at file:///home/runner/work/quartz/quartz/scripts/diag.ts:8:22
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
 
-═══ DISSOLUTION / RENOMMAGE (mutators ArmiesPanel) sur états dégradés ═══
-  [ÉCHEC mutator] population supprimée → Cannot read properties of undefined (reading '1')
-  [ÉCHEC mutator] player.armees supprimé → Cannot read properties of undefined (reading '1')
-  [OK sans erreur]  état sain (témoin)
+Node.js v22.23.3
