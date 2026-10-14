@@ -36,7 +36,7 @@
 //  « Royaume ».
 // ══════════════════════════════════════════════════════════════════════
 
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useGame } from '../state/store'
 import type { GameState, Player, AutreDef } from '../engine/types'
 import { cfgOf, cultureDef, type Cfg } from '../engine/gameData'
@@ -53,6 +53,7 @@ import {
   effetsNourrEteAmenagementsVille, effetsNourrEteAutresVille,
   supprimerVille, transfererVille,
   impotPopulation, impotsVassaux, genererImpotPopulation, genererImpotVassaux,
+  debiterCoutHabitation,
   type ProductionDetail,
 } from '../engine/engine'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
@@ -238,24 +239,15 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   <Badge tone="good">+{fmt(d.total)} {d.res} / tour</Badge>{' '}
                   <span className="muted small">
                     règle de pays : +{fmt(d.parVille)} {d.res} × {d.nbVillesMonde} ville(s)
-                    « {p.culture} » dans le monde (dont {d.nbVillesPerso} chez toi) —
-                    appliqué automatiquement à chaque fin de tour, colonne
-                    « Régimes & cultures » du récap ressources.
+                    « {p.culture} » dans le monde (dont {d.nbVillesPerso} chez toi).
                   </span>
                 </div>
-              )) : (
-                <p className="muted small">
-                  Pas de règle de pays chiffrée pour cette culture : ses attributs
-                  (hérédité, martialité, fécondité, mariages homosexuels) restent
-                  appliqués par le moteur (titres, armées, naissances).
-                </p>
-              )}
+              )) : null}
               {cult?.scienceParConstruction ? (
                 <div>
                   <Badge tone="good">+{fmt(cult.scienceParConstruction)} Science / construction</Badge>{' '}
                   <span className="muted small">
-                    chaque construction de bâtiment crédite ce bonus une fois
-                    (journal 🏗) — valeur fixe, pas un apport par tour.
+                    crédité à chaque construction (journal 🏗).
                   </span>
                 </div>
               ) : null}
@@ -360,7 +352,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                     <div className="small">
                       Garnison des habitations : <strong>{fmt(g)}</strong>
                       <span className="muted small">
-                        {' '}(base {fmt(base)} du rang{bats > 0 ? ` + ${fmt(bats)} de bâtiments` : ''}{bonusRegime && base > 0 ? ' (loi du régime incluse)' : bonusRegime ? ' + loi du régime' : ''} — valeur fixe)
+                        {' '}(base {fmt(base)} du rang{bats > 0 ? ` + ${fmt(bats)} de bâtiments` : ''}{bonusRegime && base > 0 ? ' (loi du régime incluse)' : bonusRegime ? ' + loi du régime' : ''})
                       </span>
                     </div>
                   )
@@ -387,18 +379,24 @@ export function PlayerView({ joueur }: { joueur: number }) {
                           label: def?.cout ? `${r} (${def.cout})` : r,
                         }
                       })}
-                      onChange={(v) => setPlayer((x) => { x.villes[idx].rang = v })}
+                      onChange={(v) => setPlayer((x, s) => {
+                        const ville = x.villes[idx]
+                        ville.rang = v
+                        debiterCoutHabitation(s, x, ville, C)
+                      })}
                     />
                   </Field>
                   <Field label="Type de ville">
                     <Select
                       value={typeVille(ville)}
                       options={[{ value: 'Ville', label: 'Ville (Hameau → Cité → Grande Cité)' }, { value: 'Château', label: 'Château (Motte → Donjon → Forteresse)' }]}
-                      onChange={(v) => setPlayer((x) => {
-                        x.villes[idx].type = v
+                      onChange={(v) => setPlayer((x, s) => {
+                        const ville = x.villes[idx]
+                        ville.type = v
                         // le rang doit appartenir à l'échelle du nouveau type
                         const rangs = rangsDisponibles(v, C)
-                        if (!rangs.includes(x.villes[idx].rang ?? '')) x.villes[idx].rang = rangs[0]
+                        if (!rangs.includes(ville.rang ?? '')) ville.rang = rangs[0]
+                        debiterCoutHabitation(s, x, ville, C)
                       })}
                     />
                   </Field>
@@ -517,7 +515,6 @@ export function PlayerView({ joueur }: { joueur: number }) {
                 {/* ── AUTRES (ressource, source, nombre, bonus) ── */}
                 <div className="mini-title">
                   Autres
-                  <span className="muted small"> · production additionnelle : ressource × nombre × bonus</span>
                 </div>
                 {(ville.autres ?? []).length === 0 && <div className="muted small">aucune</div>}
                 {(ville.autres ?? []).map((l, li) => (
@@ -563,7 +560,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                 <div className="mini-title">Taxes — production des villageois</div>
                 {resTaxes.length === 0 ? (
                   <div className="muted small">
-                    Aucune production d'habitants (aucun titre actif dans cette ville).
+                    Aucune production d'habitants.
                   </div>
                 ) : (
                   <div className="table-wrap">
@@ -610,8 +607,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   if (resV.length === 0 && nEteTot === 0) {
                     return (
                       <div className="muted small">
-                        Cette ville ne produit encore rien par tour (aucun bâtiment,
-                        aménagement, ligne « Autre » ou villageois actif).
+                        Cette ville ne produit rien par tour.
                       </div>
                     )
                   }
@@ -627,15 +623,6 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   return (
                     <div>
                       <div className="mini-title">Production de la ville</div>
-                      <p className="muted small">
-                        Nourriture générale (aménagements, bâtiments, villageois) et nourriture
-                        d'été sont DIFFÉRENCIÉES, comme la ligne « Nourr - été » du classeur :
-                        la ligne « Nourr - été » (sources : aménagements Champ, Rizière +
-                        lignes « Autres » de ressource « Nourr - été ») n'est créditée qu'en
-                        été, EN PLUS de la nourriture générale — jamais un doublage. En été,
-                        le total Nourriture = nourriture générale + nourriture d'été ; en
-                        hiver, simplement la nourriture générale.
-                      </p>
                       <div className="table-wrap">
                         <table className="tbl small">
                           <thead>
@@ -726,9 +713,10 @@ export function PlayerView({ joueur }: { joueur: number }) {
             )
           })}
         </div>
-        <Button onClick={() => setPlayer((x) => {
+        <Button onClick={() => setPlayer((x, s) => {
           const nom = `Ville ${x.villes.length + 1}`
-          x.villes.push({ nom, culture: x.culture, taxes: 'Moyenne', type: 'Ville', rang: 'Hameau', batiments: [], amenagements: [], autres: [] })
+          x.villes.push({ nom, culture: x.culture, taxes: 'Moyenne', type: 'Ville', rang: rangsDisponibles('Ville', C)[0] ?? 'Hameau', batiments: [], amenagements: [], autres: [] })
+          debiterCoutHabitation(s, x, x.villes[x.villes.length - 1], C)
         })}>+ Ajouter une ville</Button>
       </Card>
 
@@ -764,10 +752,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
           if (res.length === 0 && nEteTotJ === 0) {
             return (
               <p className="muted">
-                Aucun apport par tour pour l'instant : la production de ce pays est
-                nulle sur tous les canaux (base, villageois, bâtiments, aménagements, progrès,
-                nourriture d'été, autres, lois de régime/culture, faction, cités libres,
-                consommations, vassalité).
+                Aucun apport par tour pour l'instant.
               </p>
             )
           }
@@ -884,21 +869,6 @@ export function PlayerView({ joueur }: { joueur: number }) {
             ? 'aucun vassal ne reverse d’Or'
             : `+${fmt(impotsVassPrev.reduce((s2, x) => s2 + x.montant, 0))} Or (` +
               impotsVassPrev.map((x) => `${x.vassal} : ${fmt(x.montant)}`).join(', ') + ')'}
-          . Crédité immédiatement au stock × {foisImpot} (le fin de tour
-          crédite les gains du tour normalement par-dessus).
-        </p>
-        <p className="muted small">
-          Récapitulatif CALCULÉ du prochain tour, canal par canal — production
-          de base du pays, villageois (titres × taxes, toutes ressources), bâtiments et
-          aménagements du référentiel exact, nourriture d'été (ligne « Nourr - été »
-          du classeur : Champ et Rizière, lignes « Autres » « Nourr - été » — créditée
-          UNIQUEMENT en été, en plus de la nourriture générale, jamais un doublage),
-          lignes « Autres », lois chiffrées du régime et règle de pays de la culture,
-          taxes des cités libres sous suzeraineté (Chasseurs ×2 Nourriture),
-          consommation par tour des habitations et tribut de vassalité. La section
-          « D'où vient chaque ressource ? » détaille l'origine de chaque apport
-          (bâtiment, villageois, loi, ville…). Tous ces effets sont appliqués
-          automatiquement à chaque fin de tour.
         </p>
       </Card>
 
@@ -909,8 +879,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
           if (!row || !row.apports) {
             return (
               <p className="muted">
-                Lancez un tour pour voir apparaître le détail des apports (production,
-                bâtiments, aménagements, autres, consommations des villes, habitants, régimes & cultures, faction, cités libres, vassalité).
+                Lancez un tour pour voir le détail des apports.
               </p>
             )
           }
@@ -991,21 +960,6 @@ export function PlayerView({ joueur }: { joueur: number }) {
             </div>
           )
         })()}
-        <p className="muted small">
-          Tous les apports du tour sont additionnés : production de base, production
-          exacte des bâtiments et aménagements du référentiel, nourriture d'été
-          (ligne « Nourr - été » du tableau, créditée uniquement les tours d'été,
-          ajoutée à la nourriture générale — ses sources détaillées figurent dans le
-          récap « origine de chaque apport »), lignes
-          « Autres », consommation par tour des villes selon leur type et leur rang
-          (négative — table « Habitations »), gains des habitants (titres × taxes — toutes
-          ressources —, après coefficient « gains crédités au stock »), lois chiffrées des
-          régimes et cultures (bonus de capitale, etc.), taxes des cités libres sous
-          suzeraineté (Chasseurs ×2 Nourriture) et tribut de vassalité
-          (négatif = payé, positif = reçu). La garnison et le Tourisme sont des
-          valeurs fixes, pas des apports par tour. Les événements et cartes dynastie du
-          tour figurent dans le journal.
-        </p>
       </Card>
 
       <Card title="Récap du dernier tour">
@@ -1022,7 +976,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
             )}
           </div>
         ) : (
-          <p className="muted">Lancez un tour pour voir apparaître le récapitulatif (équivalent J{joueur}!A35 du classeur).</p>
+          <p className="muted">Lancez un tour pour voir le récapitulatif.</p>
         )}
       </Card>
     </div>
@@ -1041,8 +995,55 @@ function RessourcesBar({ p, C, prodDetail, setPlayer }: {
 }) {
   const [ouvert, setOuvert] = useState(true)
   const [baseOuvert, setBaseOuvert] = useState(false)
+  // Pinnage au scroll (retour Thibaut 2026-10-14) : dès que la page
+  // dépasse la position naturelle de la barre, celle-ci se colle en
+  // HAUT DE LA FENÊTRE (position:fixed) — elle descend avec le scroll,
+  // quel que soit le navigateur. Une butée invisible conserve la
+  // mise en page pendant le pinnage.
+  const barRef = useRef<HTMLDivElement | null>(null)
+  const pinnedRef = useRef(false)
+  const natTopRef = useRef(-1)
+  const [pin, setPin] = useState<{ width: number; left: number; height: number } | null>(null)
+  useEffect(() => {
+    const el = barRef.current
+    if (!el) return
+    if (!pinnedRef.current) natTopRef.current = el.getBoundingClientRect().top + window.scrollY
+    const sync = () => {
+      const parent = el.parentElement
+      if (!parent) return
+      const pr = parent.getBoundingClientRect()
+      const w = pr.width, l = pr.left, h = el.getBoundingClientRect().height
+      // ne re-render que si la géométrie change (pas à chaque tick de scroll)
+      setPin((prev) => (prev && Math.abs(prev.width - w) < 0.5
+        && Math.abs(prev.left - l) < 0.5 && Math.abs(prev.height - h) < 0.5
+        ? prev : { width: w, left: l, height: h }))
+    }
+    const update = () => {
+      const should = window.scrollY > natTopRef.current - 8
+      if (should === pinnedRef.current) {
+        if (should) sync()
+        return
+      }
+      pinnedRef.current = should
+      if (should) sync()
+      else setPin(null)
+    }
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
+  }, [ouvert, baseOuvert])
   return (
-    <div className={`res-top${ouvert ? ' open' : ''}`}>
+    <>
+      {pin && <div style={{ height: pin.height }} aria-hidden="true" />}
+      <div
+        ref={barRef}
+        className={`res-top${ouvert ? ' open' : ''}${pin ? ' pinned' : ''}`}
+        style={pin ? { position: 'fixed', top: 8, width: pin.width, left: pin.left } : undefined}
+      >
       {ouvert && (
         <>
           <div className="res-top-row">
@@ -1103,6 +1104,7 @@ function RessourcesBar({ p, C, prodDetail, setPlayer }: {
         {ouvert ? '▲' : '▼ Ressources'}
       </button>
     </div>
+    </>
   )
 }
 

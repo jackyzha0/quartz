@@ -193,12 +193,7 @@ export function ProgresView({ joueur }: { joueur: number }) {
     <div className="stack">
       <Card title={`Progrès de ${p.nom} — ${totalDebloques} technologie(s) débloquée(s)`}>
         <p className="muted small">
-          Règles : la technologie 2 exige la technologie 1 de sa branche ; la technologie C exige
-          les 2 technologies d'une même branche ; un arbre se termine à EXACTEMENT{' '}
-          {TECHS_PAR_ARBRE} technologies (la tech C est optionnelle) ; {ARBRES_PAR_AGE} arbres
-          complétés de l'âge N-1 ouvrent l'âge N. Le coût en Science de chaque technologie est
-          DÉDUIT automatiquement du stock au déblocage (remboursé si la tech est reprise) ; les
-          effets s'appliquent TOUS au plateau, à la main.
+          Coût en Science débité au déblocage (remboursé à la reprise) ; effets à appliquer au plateau.
         </p>
       </Card>
 

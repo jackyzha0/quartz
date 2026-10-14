@@ -42,13 +42,8 @@ export function ParamsPanel() {
     <div className="stack">
       <Card title="Paramètres communs à toutes les parties — modifiables à tout moment">
         <p className="muted small">
-          Ces réglages sont <strong>communs à toutes les parties</strong> : modifiables à tout moment,
-          même sans partie en cours. Chaque constante du moteur VBA (fécondité, maladie, mariages,
-          taxes, événements…) et chaque table du classeur (titres, traits, cultures, peuples, banques
-          de noms…) vit dans cette configuration unique, mémorisée par le navigateur. Pendant une
-          partie, les effets s'appliquent au tour suivant, sans redémarrage ; une nouvelle partie
-          démarre avec ces mêmes réglages. Exportez/importez la configuration en JSON depuis le
-          dernier onglet.
+          Réglages <strong>communs à toutes les parties</strong>, mémorisés par le navigateur —
+          export/import JSON dans le dernier onglet.
         </p>
         <div className="tabs">
           {ONGLETS.map((o) => (
@@ -159,7 +154,7 @@ export function ParamsPanel() {
 
       {onglet === 'Cultures' && (
         <Card title="Cultures (hérédité, martialité, fécondité, règles)">
-          <p className="muted small">Les colonnes chiffrées (Nourr./hab monde, Tourisme/hab, Or/hab, Science/constr.) sont des lois appliquées AUTOMATIQUEMENT par le moteur à chaque fin de tour, en plus des règles de mariage/hérédité. Une valeur à 0 désactive la loi.</p>
+          <p className="muted small">Colonnes chiffrées = lois appliquées à chaque fin de tour. 0 = désactivé.</p>
           <div className="table-wrap">
             <table className="tbl small">
               <thead>
@@ -189,7 +184,7 @@ export function ParamsPanel() {
 
       {onglet === 'Régimes' && (
         <Card title="Régimes politiques (lois)">
-          <p className="muted small">Les colonnes chiffrées sont des lois appliquées AUTOMATIQUEMENT par le moteur à chaque fin de tour : « Garnison/rang » ajoute des soldats à la garnison des habitations selon le rang de la ville (Autoritarisme), « Nourr./été rizière » nourrit la population des champs-rizières en été (Socialisme). Une valeur à 0 désactive la loi.</p>
+          <p className="muted small">Colonnes chiffrées = lois appliquées à chaque fin de tour. 0 = désactivé.</p>
           <div className="table-wrap">
             <table className="tbl small">
               <thead>

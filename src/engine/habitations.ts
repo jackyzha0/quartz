@@ -89,6 +89,43 @@ export function consommationsPays(p: Player, C: Cfg): Record<string, number> {
   return out
 }
 
+/** Coût d'un rang d'habitation (colonne « Coût d'amélioration » du
+ *  référentiel, ex. « 20 Or + 10 Bois + 6 Bétail »), en quantités
+ *  positives. Vide / inconnu = gratuit. */
+export function coutHabitation(ville: City, C: Cfg): Record<string, number> {
+  return parseCoutTexte(habitationDef(ville, C)?.cout ?? '')
+}
+
+/** Débite automatiquement du stock le coût d'habitation du rang
+ *  ACTUEL de la ville (construction / amélioration — retour Thibaut
+ *  2026-10-14) + log Système. Avertit (sans bloquer) si les
+ *  habitants requis manquent. Retourne le coût débité. */
+export function debiterCoutHabitation(
+  state: GameState, p: Player, ville: City, C: Cfg,
+): Record<string, number> {
+  const def = habitationDef(ville, C)
+  const cout = coutHabitation(ville, C)
+  for (const [res, v] of Object.entries(cout)) {
+    const rs = p.resources[res]
+    if (rs && v !== 0) rs.stock -= v
+  }
+  const parts = Object.entries(cout)
+    .map(([r, v]) => `${v} ${r}`).join(' + ')
+  const requis = def?.habitantsRequis ?? 0
+  const vivants = (state.population[p.n] ?? [])
+    .filter((c) => c.statut !== 'Décédé' && c.ville === ville.nom).length
+  state.log.push({
+    turn: state.turn, type: 'Système', joueur: p.n,
+    texte: `🏰 ${ville.nom} — ${def?.rang ?? typeVille(ville)} (${typeVille(ville)})` +
+      (parts ? ` — coût débité du stock : ${parts}` : ' — gratuit') +
+      (requis > 0 && vivants < requis
+        ? ` ⚠ habitants insuffisants (${vivants}/${requis}).`
+        : '.') +
+      (def?.consommation ? ` Consommation : ${def.consommation} par tour.` : ''),
+  })
+  return cout
+}
+
 /** Étape moteur : débite du stock la consommation par tour des
  *  habitations du pays (canal « habitations » du récap ressources).
  *  Les quantités sont négatives (elles réduisent le stock). */

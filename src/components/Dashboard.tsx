@@ -192,12 +192,8 @@ export function Dashboard() {
         )}
         <Radar axes={axesVictoire.map((a) => a.label)} series={seriesRadar} />
         <p className="muted small">
-          Radar de victoire : 0 % au centre, 100 % au bord = Laurier IV (victoire). Un polygone
-          semi-transparent par joueur — survolez un sommet pour le détail. Les joueurs cochent
-          eux-mêmes leurs Lauriers dans le tableau ci-dessous (ordre strict : un Laurier ne se
-          valide que si le précédent est acquis ; recliquer la dernière case validée l'annule).
-          Chaque Laurier I-III validé déclenche une crise à tirer ; les bonus ne s'appliquent
-          que si le Laurier est complété pendant l'âge de même numéro.
+          0 % au centre, 100 % au bord = Laurier IV. Cochez les Lauriers dans le tableau
+          ci-dessous (ordre strict) ; chaque Laurier I-III validé déclenche une crise.
         </p>
         <div className="table-wrap">
           <table className="tbl">

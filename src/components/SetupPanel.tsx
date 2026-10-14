@@ -207,9 +207,7 @@ export function SetupPanel() {
           ▶ Créer la partie
         </Button>
         <p className="muted small">
-          Astuce : tous les joueurs qui choisissent le même code de salon jouent la même partie
-          en temps réel (un seul bouton « Tour suivant » à la fois recommandé).
-          Sans Supabase, tout reste jouable en local sur un même écran.
+          Même code de salon = même partie en temps réel ; sans Supabase, jouable en local.
         </p>
       </Card>
     </div>

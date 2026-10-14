@@ -156,11 +156,8 @@ export function CitesLibresView() {
           <Badge tone="warn">batailles / annexions : manuel</Badge>
         </div>
         <p className="muted small">
-          À chaque fin de tour, chaque cité libre possédant un suzerain lui verse ses taxes :
-          production nette de ses habitants (titres × niveau de taxes de la cité — les Chasseurs
-          des cités libres produisent le DOUBLE de Nourriture —, moins la consommation de ses
-          habitants), plafonnée à 0 par ressource. Les apports figurent dans le récap ressources
-          du suzerain (page « 👑 Pays », canal « Cités libres ») et au journal.
+          Chaque cité libre sous suzeraineté verse ses taxes à son suzerain à chaque fin de tour
+          (canal « Cités libres » du récap).
         </p>
         <p className="muted small">
           Garnison actuelle des cités libres : <strong>{fmtNum(garnison)}</strong>
@@ -405,9 +402,7 @@ export function CitesLibresView() {
           </div>
         )}
         <p className="muted small">
-          Chaque cité libre possède sa propre population (Chasseurs : Nourriture ×2, taxes
-          versées au suzerain le cas échéant) — titres et statuts éditables ici, comme
-          pour les habitants des joueurs.
+          Titres et statuts éditables ici, comme pour les habitants des joueurs.
         </p>
       </Card>
     </div>

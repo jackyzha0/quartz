@@ -63,10 +63,7 @@ export function ReferenceDataPanel() {
     <div className="stack">
       <Card title="Référentiels du jeu (données du classeur d'origine)">
         <p className="muted small">
-          Ces tables proviennent du classeur « Chasse & Pêche Légendes 7.19 ». Elles sont stockées dans
-          la configuration de la partie : l'onglet « Cultures & régimes » est éditable directement ici,
-          et pour modifier toute autre valeur (ou en ajouter), ouvrez l'onglet « 🎛 Paramètres » —
-          tout est éditable, sans contrainte.
+          Tables stockées dans la configuration de la partie — éditables ici ou dans « 🎛 Paramètres ».
         </p>
         <div className="tabs">
           {ONGLETS.map((o) => (
@@ -147,9 +144,7 @@ export function ReferenceDataPanel() {
           ] as const).map(([titre, liste]) => (
             <Card key={titre} title={titre}>
               <p className="muted small">
-                Chaque faction : victoire (désactivée), bâtiment / aménagement de faction, 2 règles
-                de base, puis 3 règles d'Âge II et 3 règles d'Âge III — le joueur en choisit une
-                seule par âge à la montée d'âge (page Royaume de son pays).
+                Le joueur choisit une règle par âge à la montée d'âge (page Royaume).
               </p>
               {liste.map((p) => (
                 <div key={p.nom} className="fiche-peuple">
@@ -212,13 +207,9 @@ export function ReferenceDataPanel() {
         <>
           <Card title={`Constructions — bâtiments (${(cfg.constructions ?? []).filter((c) => c.categorie === 'Bâtiment').length}) — table PARAMÉTRABLE`}>
             <p className="muted small">
-              Chaque bâtiment est modifiable et pris en compte automatiquement par le moteur (coût,
-              production, effets) : le <strong>groupe</strong> détermine où il est constructible
-              (Ville / Château / Capitale), et la <strong>faction</strong> le réserve au joueur du
-              peuple correspondant (un bâtiment de faction par ville, remplaçable par le suivant ;
-              «&nbsp;(aucune)&nbsp;» = bâtiment commun). Une fois la faction choisie, le bâtiment
-              apparaît dans le groupe « Bâtiments de faction » du sélecteur des villes du joueur
-              de ce peuple.
+              Le <strong>groupe</strong> détermine où le bâtiment est constructible (Ville / Château /
+              Capitale), la <strong>faction</strong> le réserve au peuple correspondant (un par ville,
+              remplaçable).
             </p>
             <div className="table-wrap">
               <table className="tbl small">
@@ -329,13 +320,9 @@ export function ReferenceDataPanel() {
       {onglet === 'Progrès' && (
         <Card title={`Arbres de progrès (${configEdit.progres.length}) — entièrement paramétrables`}>
           <p className="muted small">
-            Un arbre = branche A (2 technologies) + branche B (2 technologies) + technologie C.
-            Règles du classeur : la tech 2 exige sa tech 1 ; la tech C exige les 2 techs d'une
-            même branche ; un arbre se termine à EXACTEMENT 3 technologies (la tech C est
-            optionnelle) ; 3 arbres complétés de l'âge N-1 ouvrent l'âge N. Le coût (Science)
-            est DÉDUIT automatiquement du stock au déblocage d'une technologie ; les effets,
-            eux, s'appliquent TOUS au plateau (la colonne « Effets (aide de jeu) » n'est qu'un
-            résumé affiché sous la tech). Les emplacements vides sont ignorés en jeu.
+            Tech 2 exige la tech 1 de sa branche ; tech C exige les 2 techs d'une même branche ;
+            arbre terminé à 3 technologies ; 3 arbres de l'âge N-1 ouvrent l'âge N. Coût en
+            Science débité au déblocage ; effets à appliquer au plateau.
           </p>
           {[1, 2, 3].map((age) => (
             <div key={age} className="mb">
@@ -416,12 +403,8 @@ export function ReferenceDataPanel() {
       {onglet === 'Pays & rangs' && (
         <Card title="Rangs de pays — échelle féodale unique (paramétrable)">
           <p className="muted small">
-            Montée par <strong>sacre</strong> : payer le coût Or + Nourriture et posséder le nombre de
-            <strong> serments</strong> indiqué (un serment = un vassal ou une cité libre sous suzeraineté — page
-            « Royaume », bouton « ⬆ Sacre »). Chaque rang fixe la taille du conseil : le nombre de <strong>Ministres</strong>
-            {' '}autorisés (avertissement à l'attribution du titre dans Population). Le bonus de fin de saison reste
-            à gérer au plateau. L'ordre des lignes = l'ordre de l'échelle ; à la succession, le sacre d'avènement
-            coûte la moitié du prix du rang (automatique), et sans héritier une crise aléatoire se déclenche.
+            Montée par <strong>sacre</strong> : payer Or + Nourriture et posséder les <strong>serments</strong>
+            requis (vassal ou cité libre sous suzeraineté). Chaque rang fixe le nombre de <strong>Ministres</strong>.
           </p>
           <div className="table-wrap">
             <table className="tbl small">
@@ -446,27 +429,23 @@ export function ReferenceDataPanel() {
           <Button onClick={() => setCfg((c) => {
             c.paysRangs.push({ nom: 'Nouveau rang', coutOr: 0, coutNourriture: 0, serments: 0, ministres: 1, bonus: '' })
           })}>+ Ajouter un rang</Button>
-          <p className="muted small">Rangs d'habitation : {cfg.rangsHabitation.map((r) => `${r.rang} (${r.cout})`).join(' · ')}</p>
         </Card>
       )}
 
       {onglet === 'Habitations' && (
         <Card title={`Types & rangs d'habitation (${configEdit.typesHabitation.length}) — consommation, garnison de base`}>
           <p className="muted small">
-            Les villes sont de deux types, chacun avec son échelle de rangs :
-            Ville (Hameau → Cité → Grande Cité) et Château (Motte → Donjon → Forteresse).
-            Chaque rang consomme des ressources À CHAQUE TOUR (débitées automatiquement
-            du stock — colonne « Consommation / tour ») et apporte une GARNISON DE BASE
-            (valeur fixe, s'ajoutant aux garnisons des bâtiments). La consommation
-            s'écrit en quantités positives, ex. « 10 Nourriture, 8 Or ». Tout est
-            appliqué automatiquement par le moteur et modifiable à chaud.
+            Coût d'amélioration : débité automatiquement du stock à la construction /
+            amélioration du rang (page Pays). Consommation / tour : débitée à chaque fin
+            de tour (quantités positives, ex. « 10 Nourriture, 8 Or ») ; garnison de base
+            fixe, s'ajoutant aux bâtiments.
           </p>
           <div className="table-wrap">
             <table className="tbl small">
               <thead>
                 <tr>
                   <th>Type</th><th>Rang</th><th>Coût d'amélioration</th>
-                  <th>Habitants requis</th><th>Consommation / tour</th><th>Garnison de base</th>
+                  <th>Habitants requis</th><th>Consommation / tour</th><th>Garnison de base</th><th></th>
                 </tr>
               </thead>
               <tbody>
@@ -484,6 +463,9 @@ export function ReferenceDataPanel() {
                     <td><NumberInput value={h.habitantsRequis} step={10} min={0} onChange={(v) => setCfg((c) => { c.typesHabitation[i].habitantsRequis = v })} /></td>
                     <td><TextInput value={h.consommation} onChange={(v) => setCfg((c) => { c.typesHabitation[i].consommation = v })} /></td>
                     <td><NumberInput value={h.garnison} step={1} min={0} onChange={(v) => setCfg((c) => { c.typesHabitation[i].garnison = v })} /></td>
+                    <td>
+                      <Button tone="danger" onClick={() => setCfg((c) => { c.typesHabitation.splice(i, 1) })}>✕</Button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -499,13 +481,8 @@ export function ReferenceDataPanel() {
         <>
           <Card title={`Cultures (${configEdit.cultures.length}) — paramétrables, effets appliqués automatiquement`}>
             <p className="muted small">
-              Chaque champ est modifiable et pris en compte par le moteur : hérédité, martialité,
-              facteur de fécondité (naissances), mariages homosexuels (titres), règles de pays et
-              de personnage (affichées sur la page « Royaume »), et les lois chiffrées appliquées
-              AUTOMATIQUEMENT à chaque fin de tour — la capitale du pays génère +N d'une ressource
-              par habitation de cette culture dans le monde (Nourriture / Tourisme / Or), et chaque
-              construction de bâtiment rapporte +N Science (ex. Déisme). Mettre 0 pour désactiver
-              une loi chiffrée.
+              Lois chiffrées appliquées à chaque fin de tour : +N ressource par habitation de
+              cette culture dans le monde (capitale), +N Science par construction. 0 = désactivé.
             </p>
             <div className="table-wrap">
               <table className="tbl small">
@@ -545,10 +522,7 @@ export function ReferenceDataPanel() {
           </Card>
           <Card title={`Régimes politiques (${configEdit.regimes.length}) — lois appliquées automatiquement`}>
             <p className="muted small">
-              Chaque régime : nom, loi (texte affiché sur la page « Royaume ») et lois chiffrées
-              appliquées AUTOMATIQUEMENT à chaque fin de tour — garnison des habitations +N par
-              rang d'habitation (ex. Autoritarisme : 15), +N Nourriture par tour d'été pour chaque
-              champ et rizière du pays (ex. Socialisme : 5). Mettre 0 pour désactiver une loi.
+              Lois chiffrées appliquées à chaque fin de tour. 0 = désactivé.
             </p>
             <div className="table-wrap">
               <table className="tbl small">
@@ -621,11 +595,9 @@ export function ReferenceDataPanel() {
       {onglet === 'Victoires' && (
         <Card title="Voies de victoire — Lauriers I à IV (chapitre XII, refonte 2026-10-14)">
           <p className="muted small">
-            Chaque voie se parcourt par 4 <strong>Lauriers</strong> validés en <strong>ordre strict</strong> (un Laurier
-            ne se valide que si le précédent est acquis — cochage manuel au radar de l'accueil, la table reste juge).
-            Chaque Laurier I-III validé déclenche une <strong>crise</strong> à tirer ; les bonus one-shot ne
-            s'appliquent que si le Laurier est complété <strong>pendant l'âge de même numéro</strong> (I pendant l'Âge I,
-            II pendant l'Âge II) ; le Laurier III ne donne aucune récompense ; le <strong>Laurier IV = Victoire</strong>.
+            4 <strong>Lauriers</strong> par voie en <strong>ordre strict</strong> (cochage manuel au radar de
+            l'accueil). Chaque Laurier I-III validé déclenche une <strong>crise</strong> ; bonus seulement si
+            complété pendant l'âge de même numéro ; <strong>Laurier IV = Victoire</strong>.
           </p>
           {cfg.victoires.map((v, i) => (
             <div key={i} className="mb">
@@ -671,18 +643,9 @@ export function ReferenceDataPanel() {
       {onglet === 'Ministères' && (
         <Card title="Ministères — portefeuilles paramétrables (refonte 2026-10-14)">
           <p className="muted small">
-            Chaque rang de pays octroie <strong>1 Ministre</strong> (cap averti à l'attribution du titre
-            dans Population — montez de rang par sacre pour agrandir le conseil). La nomination est
-            réservée aux <strong>nobles et dynasties</strong> (avertissement si roturier). Un ministre
-            porte un <strong>portefeuille</strong> ci-dessous, choisi dans Population (titre « Ministre ») ;
-            les portefeuilles sont <strong>cumulables</strong> (deux fois le même = effet doublé) et certains
-            exigent un <strong>rang de pays minimum</strong>. Mode <strong>Auto</strong> : appliqué
-            automatiquement par l'application (Trésorier +5 Or/tour, Grand Précepteur +1 Science/tour,
-            Sénéchal +15 Nourriture fin d'été, Maître de cour +2 Tourisme/fin de saison, Connétable
-            +5 Garnison à la nomination, Grand Chambellan +10 % taxes, Chancelier de justice −25 % sacres,
-            Archichancelier : sacre d'avènement réduit de moitié). Mode <strong>Plateau</strong> : à appliquer
-            à la table (les 7 ministères du classeur scalent sur le rang de pays). L'ordre des rangs minimums
-            suit l'échelle de la table « Pays & rangs ».
+            Chaque rang de pays octroie <strong>1 Ministre</strong> (nomination : nobles et dynasties).
+            Portefeuilles <strong>cumulables</strong>, rang minimum selon « Pays & rangs » ; mode
+            <strong> Auto</strong> = appliqué par l'application, mode <strong>Plateau</strong> = à la table.
           </p>
           <table className="tbl small">
             <thead><tr><th>Ministère</th><th>Rang minimum</th><th>Mode</th><th>Effet</th><th></th></tr></thead>

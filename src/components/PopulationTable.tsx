@@ -185,9 +185,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           <Button onClick={ajouterNobles}>+ Nouvelle famille noble</Button>
         </div>
         <p className="muted small">
-          Nouveaux habitants titrés {C.p.titreChasseur} · roturiers, ou membres d'une NOUVELLE
-          famille noble (jamais une dynastie existante) · culture tirée au hasard, pondérée par
-          les cultures déjà présentes dans la ville.
+          Roturiers ou nouvelle famille noble — jamais une dynastie existante.
         </p>
       </Card>
 
@@ -292,12 +290,8 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           </table>
         </div>
         <p className="muted small">
-          Seuls les titres accessibles sont proposés : {C.p.titreChasseur} (par défaut), UN
-          {' ' + C.p.titreGouverneur} par ville (nécessairement noble), et les titres
-          d'éducation « {C.p.titreProfesseur} » enseignés par un Professeur vivant du royaume.
-          L'attribution manuelle applique toutes les règles du VBA (noblesse, genre, éducation
-          requise, unicité Dirigeant/Héritier/Gouverneur, plafond des Professeurs) ; l'onglet
-          Armées reste seul à donner les titres « Armée ».
+          Titres d'éducation « {C.p.titreProfesseur} » : enseignés par un Professeur vivant du
+          royaume. Titres « Armée » : onglet Armées.
         </p>
       </Card>
       <Card title="Dynasties de la population">

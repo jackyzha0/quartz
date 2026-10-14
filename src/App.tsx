@@ -84,7 +84,7 @@ export default function App() {
     <div className="app">
       <header className="header">
         <h1>🐗 Chasse &amp; Pêche <span className="thin">— Légendes</span></h1>
-        <span className="muted small">portage web du classeur Excel/VBA · 8 joueurs · un tour = 2 ans</span>
+        <span className="muted small">8 joueurs · un tour = 2 ans</span>
       </header>
 
       {state ? <TurnBar /> : <div className="banner-info">Créez une partie dans « ⚙ Nouvelle partie » pour commencer.</div>}
@@ -125,11 +125,8 @@ export default function App() {
       </main>
 
       <footer className="footer muted small">
-        Chasse &amp; Pêche — Légendes · portage React + TypeScript + Supabase du jeu Excel/VBA.
-        Les référentiels viennent du classeur d'origine et les formules du VBA : TOUT est
-        modifiable à chaud dans l'onglet « 🎛 Paramètres » (aucune contrainte bloquante).
-        Multijoueur en ligne : onglet « ⚙ Nouvelle partie » → 🌐 (aucune ligne de commande,
-        les identifiants Supabase se collent directement dans l'interface).
+        Chasse &amp; Pêche — Légendes · 🎛 Paramètres : tout est modifiable à chaud ·
+        multijoueur : « ⚙ Nouvelle partie » → 🌐
       </footer>
     </div>
   )

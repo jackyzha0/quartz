@@ -331,6 +331,7 @@ export {
   typeVille, habitationDef, rangsDisponibles, garnisonBaseVille,
   habitantsRequisVille, consommationsVille, consommationsPays,
   appliquerConsommationsHabitations,
+  coutHabitation, debiterCoutHabitation,
 } from './habitations'
 export {
   productionDetaillee, productionVille, provenancesApports,
