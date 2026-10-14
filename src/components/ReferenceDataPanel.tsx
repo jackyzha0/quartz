@@ -398,6 +398,7 @@ export function ReferenceDataPanel() {
                       </tbody>
                     </table>
                   </div>
+                </div>
               ))}
             </div>
           ))}

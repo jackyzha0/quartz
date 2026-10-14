@@ -398,6 +398,7 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
                 </td>
                 <td colSpan={3}>
                   {familleRoyale.length
+                    ? familleRoyale.map((c) => (
                       <span key={c.id} className="badge badge-info" style={{ marginRight: 4 }}>
                         {pers(c)}{c.titre ? ` — ${c.titre}` : ''}
                       </span>
