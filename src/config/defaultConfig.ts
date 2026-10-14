@@ -248,7 +248,7 @@ export interface GameConfig {
   rangsHabitation: { rang: string; cout: string; effet: string }[]
   typesHabitation: HabitationDef[]
   progres: ProgresArbre[]
-  paysRangs: { bloc: string; nom: string; cout: string; bonus: string; succession: string }[]
+  paysRangs: { nom: string; coutOr: number; coutNourriture: number; serments: number; ministres: number; bonus: string }[]
   tourismeSeuils: { seuil: number; bonus: string }[]
   dogmes: { dogme: string; bonusPontife: string; bonusFideles: string }[]
   citesLibres: { type: string; effet: string }[]
@@ -398,7 +398,6 @@ const BASE_DYNASTIE_EFFECTS: Record<string, { effets: EffetDef[]; guerison?: boo
   'Merveille architecturale': { effets: [{ ressource: 'Tourisme', base: 5 }] },
   'Troupe de troubadours': { effets: [{ ressource: 'Tourisme', base: 5 }] },
   'Miracle': { effets: [], guerison: true },
-  'Migration': { effets: [{ ressource: 'Habitants', base: 2 }] },
   'tempête magique': { effets: [{ ressource: 'Science', base: 2 }] },
   'Sombre proposition': { effets: [{ ressource: 'Science', base: 2 }, { ressource: 'Or', base: 5 }] },
   'Système de prévention': { effets: [{ ressource: 'Or', base: 5 }] },
@@ -459,17 +458,17 @@ export const DEFAULT_CONFIG: GameConfig = {
   rappelsRegles: ref.rappelsRegles,
 }
 
-// Rangs de pays (feuille « Pays ») : Féodal / Républicain
+// Rangs de pays (feuille « Pays ») — échelle féodale UNIQUE (refonte 2026-10-14) :
+//   montée par SACRE (coût Or/Nourriture + serments exigés : vassaux et cités
+//   libres sous suzeraineté — 1/2/3/4), chaque rang agrandit le conseil
+//   (nombre de Ministres autorisés). Le bonus de fin de saison reste à gérer
+//   au plateau. Entièrement paramétrable dans Référentiels → « Pays & rangs ».
 DEFAULT_CONFIG.paysRangs = [
-  { bloc: 'Féodal', nom: 'Baronnie', cout: '', bonus: 'Fin été : +20 Nourriture.', succession: 'Terres : 1 habitation.' },
-  { bloc: 'Féodal', nom: 'Comté', cout: '20 Or, 40 Nourriture', bonus: 'Fin été : +10 Or.', succession: 'Terres : 2' },
-  { bloc: 'Féodal', nom: 'Duché', cout: '30 Or, 60 Nourriture', bonus: 'Fin hiver : +6 Science.', succession: 'Terres : 3' },
-  { bloc: 'Féodal', nom: 'Royaume', cout: '50 Or, 100 Nourriture', bonus: 'Fin été : 6 ressources de base au choix.', succession: 'Terres : 4' },
-  { bloc: 'Féodal', nom: 'Empire', cout: '100 Or, 200 Nourriture', bonus: 'Fin hiver : volez 5 sciences à chaque joueur de rang inférieur.', succession: 'Terres : 5' },
-  { bloc: 'Républicain', nom: 'Commune', cout: '40 Or, 20 Nourriture', bonus: 'Fin été : 2 ressources de base aléatoires.', succession: 'Terres : 2' },
-  { bloc: 'Républicain', nom: 'District', cout: '60 Or, 30 Nourriture', bonus: 'Fin hiver : 10 Influence avec une cité libre au choix.', succession: 'Terres : 2' },
-  { bloc: 'Républicain', nom: 'Union', cout: '100 Or, 50 Nourriture', bonus: 'Fin été : arrivée d\'un personnage aléatoire.', succession: 'Terres : 3' },
-  { bloc: 'Républicain', nom: 'Confédération', cout: '200 Or, 100 Nourriture', bonus: 'Fin hiver : 25 Influence avec une cité libre au choix.', succession: 'Terres : 3' },
+  { nom: 'Baronnie', coutOr: 0, coutNourriture: 0, serments: 0, ministres: 1, bonus: 'Fin d\'été : +20 Nourriture.' },
+  { nom: 'Comté', coutOr: 20, coutNourriture: 40, serments: 1, ministres: 2, bonus: 'Fin d\'été : +10 Or.' },
+  { nom: 'Duché', coutOr: 30, coutNourriture: 60, serments: 2, ministres: 3, bonus: 'Fin d\'hiver : +6 Science.' },
+  { nom: 'Royaume', coutOr: 50, coutNourriture: 100, serments: 3, ministres: 4, bonus: 'Fin d\'été : 6 ressources de base au choix.' },
+  { nom: 'Empire', coutOr: 100, coutNourriture: 200, serments: 4, ministres: 5, bonus: 'Fin d\'hiver : volez 5 Sciences à chaque joueur de rang inférieur.' },
 ]
 
 // ── Accès à la configuration effective d'une partie ───────────────────
@@ -618,6 +617,19 @@ export function migrerProgres(list: ProgresArbre[] | undefined): ProgresArbre[] 
   return list
 }
 
+// Rangs de pays : migration de l'ancienne table à blocs Féodal/Républicain
+// (champs bloc/cout/succession en texte libre) vers l'échelle féodale
+// unique (champs coutOr/coutNourriture/serments/ministres). Les parties
+// sauvegardées avec l'ancien format repassent sur la table par défaut.
+function migrerPaysRangs(rangs: GameConfig['paysRangs']): GameConfig['paysRangs'] {
+  if (!Array.isArray(rangs) || rangs.length === 0) return DEFAULT_CONFIG.paysRangs
+  const r0 = rangs[0] as Record<string, unknown>
+  if (typeof r0.coutOr !== 'number' || typeof r0.serments !== 'number' || typeof r0.ministres !== 'number') {
+    return DEFAULT_CONFIG.paysRangs
+  }
+  return rangs
+}
+
 export function cfgOf(config: GameConfig | undefined): Cfg {
   const c = config ?? DEFAULT_CONFIG
   const merged: GameConfig = {
@@ -632,6 +644,8 @@ export function cfgOf(config: GameConfig | undefined): Cfg {
   merged.typesHabitation = migrerTypesHabitation(merged.typesHabitation)
   // arbres de progrès : migration de l'ancien format à plat du classeur
   merged.progres = migrerProgres(merged.progres)
+  // rangs de pays : échelle féodale unique (refonte 2026-10-14)
+  merged.paysRangs = migrerPaysRangs(merged.paysRangs)
   // fiches de faction : structure (victoire/bâtiment/âges) du référentiel
   //  + correctif Sylvains (Savoir ancestral ↔ Bibliothèque enfouie)
   merged.peuplesLibres = migrerFactions(merged.peuplesLibres, DEFAULT_CONFIG.peuplesLibres).map(migrerSwapSylvains)

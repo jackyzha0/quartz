@@ -8,9 +8,10 @@
 //  Pour MODIFIER les autres valeurs : onglet « 🎛 Paramètres ».
 // ══════════════════════════════════════════════════════════════════════
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useGame } from '../state/store'
 import { cfgOf } from '../engine/gameData'
+import { DEFAULT_CONFIG } from '../config/defaultConfig'
 import type { EffetProgres, GameConfig, ProgresTechDef } from '../config/defaultConfig'
 import { VICTORY_TEXT } from '../engine/gameData2'
 import { Card, Badge, TextInput, NumberInput, Button, Select } from './ui'
@@ -39,6 +40,24 @@ export function ReferenceDataPanel() {
   // sert à l'édition directe des cultures & régimes ci-dessous.
   const configEdit: GameConfig = cfgOf(globalConfig).config
   const setCfg = (fn: (c: GameConfig) => void) => setGlobalCfg(fn)
+
+  // Auto-migration des rangs de pays : une partie sauvegardée avant la
+  // refonte (ancienne table à blocs Féodal/Républicain) repasse sur la
+  // nouvelle échelle (coutOr/coutNourriture/serments/ministres) dès
+  // l'ouverture de l'onglet, pour que l'éditeur écrive au bon format.
+  useEffect(() => {
+    if (onglet !== 'Pays & rangs') return
+    const raw = globalConfig?.paysRangs
+    if (
+      !Array.isArray(raw) || raw.length === 0
+      || typeof (raw[0] as { coutOr?: unknown })?.coutOr !== 'number'
+    ) {
+      setCfg((c) => {
+        c.paysRangs = DEFAULT_CONFIG.paysRangs.map((r) => ({ ...r }))
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onglet])
 
   return (
     <div className="stack">
@@ -379,7 +398,6 @@ export function ReferenceDataPanel() {
                       </tbody>
                     </table>
                   </div>
-                </div>
               ))}
             </div>
           ))}
@@ -395,23 +413,38 @@ export function ReferenceDataPanel() {
       )}
 
       {onglet === 'Pays & rangs' && (
-        <Card title="Rangs de pays (Féodal / Républicain)">
+        <Card title="Rangs de pays — échelle féodale unique (paramétrable)">
+          <p className="muted small">
+            Montée par <strong>sacre</strong> : payer le coût Or + Nourriture et posséder le nombre de
+            <strong> serments</strong> indiqué (un serment = un vassal ou une cité libre sous suzeraineté — page
+            « Royaume », bouton « ⬆ Sacre »). Chaque rang fixe la taille du conseil : le nombre de <strong>Ministres</strong>
+            {' '}autorisés (avertissement à l'attribution du titre dans Population). Le bonus de fin de saison reste
+            à gérer au plateau. L'ordre des lignes = l'ordre de l'échelle ; à la succession, le sacre d'avènement
+            coûte la moitié du prix du rang (automatique), et sans héritier une crise aléatoire se déclenche.
+          </p>
           <div className="table-wrap">
             <table className="tbl small">
-              <thead><tr><th>Bloc</th><th>Rang</th><th>Coût</th><th>Bonus</th><th>Succession</th></tr></thead>
+              <thead><tr><th>Rang</th><th>Sacre (Or)</th><th>Sacre (Nourriture)</th><th>Serments requis</th><th>Ministres</th><th>Bonus (plateau)</th><th></th></tr></thead>
               <tbody>
-                {cfg.paysRangs.map((r, i) => (
+                {configEdit.paysRangs.map((r, i) => (
                   <tr key={i}>
-                    <td>{r.bloc}</td>
-                    <td><strong>{r.nom}</strong></td>
-                    <td>{r.cout}</td>
-                    <td>{r.bonus}</td>
-                    <td>{r.succession}</td>
+                    <td><TextInput value={r.nom} onChange={(v) => setCfg((c) => { c.paysRangs[i].nom = v })} /></td>
+                    <td><NumberInput value={r.coutOr} min={0} onChange={(v) => setCfg((c) => { c.paysRangs[i].coutOr = v })} /></td>
+                    <td><NumberInput value={r.coutNourriture} min={0} onChange={(v) => setCfg((c) => { c.paysRangs[i].coutNourriture = v })} /></td>
+                    <td><NumberInput value={r.serments} min={0} onChange={(v) => setCfg((c) => { c.paysRangs[i].serments = v })} /></td>
+                    <td><NumberInput value={r.ministres} min={0} onChange={(v) => setCfg((c) => { c.paysRangs[i].ministres = v })} /></td>
+                    <td><TextInput value={r.bonus} onChange={(v) => setCfg((c) => { c.paysRangs[i].bonus = v })} /></td>
+                    <td>
+                      <Button tone="danger" onClick={() => setCfg((c) => { c.paysRangs.splice(i, 1) })}>✕</Button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
+          <Button onClick={() => setCfg((c) => {
+            c.paysRangs.push({ nom: 'Nouveau rang', coutOr: 0, coutNourriture: 0, serments: 0, ministres: 1, bonus: '' })
+          })}>+ Ajouter un rang</Button>
           <p className="muted small">Rangs d'habitation : {cfg.rangsHabitation.map((r) => `${r.rang} (${r.cout})`).join(' · ')}</p>
         </Card>
       )}

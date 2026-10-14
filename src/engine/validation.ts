@@ -10,6 +10,7 @@ import type { Character, Player, GameState } from './types'
 import { cfgOf, cultureDef, titreDef } from './gameData'
 import { schoolRankOf } from './gameData2'
 import { isNobleDyn } from './engine'
+import { rangPaysNiveau } from './factions'
 
 export interface TitleIssue {
   ok: boolean
@@ -94,6 +95,19 @@ export function validateTitleAssignment(
     if (rank === 0) return { ok: false, message: `${char.ville} ne possède pas d'école.` }
     if (nbProfs >= rank) {
       return { ok: false, message: `${char.ville} a déjà ${nbProfs} ${C.p.titreProfesseur}(s) pour une école de rang ${rank}.` }
+    }
+  }
+  // conseil de Ministres indexé sur le rang de pays (échelle féodale unique) :
+  // chaque rang de la table paysRangs fixe le nombre de Ministres autorisés.
+  if (titre === 'Ministre') {
+    const rangs = C.config.paysRangs ?? []
+    const cap = rangs[rangPaysNiveau(player, C) - 1]?.ministres ?? 0
+    const nbMin = pop.filter((c) => c.id !== char.id && c.titre === 'Ministre').length
+    if (nbMin >= cap) {
+      return {
+        ok: false,
+        message: `Le rang de pays ${player.rang || rangs[0]?.nom || 'de départ'} n'autorise que ${cap} Ministre(s) — montez de rang (sacre) pour agrandir votre conseil.`,
+      }
     }
   }
   return { ok: true, message: `« ${titre} » attribué à ${char.prenom} ${char.nom}.` }

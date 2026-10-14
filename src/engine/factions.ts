@@ -77,14 +77,12 @@ export function nbVassaux(state: GameState, p: Player): number {
   return state.players.filter((q) => q.vassalDe === p.n).length
 }
 
-/** Niveau du rang de pays d'un joueur (1 = Baronnie / Commune, …
- *  5 = Empire ; ordre de la table paysRangs du référentiel, dans le
- *  bloc du rang). Défaut : 1. */
+/** Niveau du rang de pays d'un joueur (1 = Baronnie, … 5 = Empire ;
+ *  échelle féodale unique de la table paysRangs, ordre = niveau).
+ *  Défaut : 1. */
 export function rangPaysNiveau(p: Player, C: Cfg): number {
   const rangs = C.config.paysRangs ?? []
-  const bloc = rangs.find((r) => r.nom === (p.rang ?? ''))?.bloc ?? rangs[0]?.bloc
-  if (!bloc) return 1
-  const idx = rangs.findIndex((r) => r.bloc === bloc && r.nom === (p.rang ?? ''))
+  const idx = rangs.findIndex((r) => r.nom === (p.rang ?? ''))
   return idx >= 0 ? idx + 1 : 1
 }
 

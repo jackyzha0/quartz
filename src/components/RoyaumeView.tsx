@@ -32,7 +32,7 @@ import type { Character, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
 import { detailsFaction } from '../engine/factions'
 import { rangParDefaut } from '../engine/setup'
-import { citesSuzerainesDe } from '../engine/engine'
+import { citesSuzerainesDe, sermentsPossedes } from '../engine/engine'
 import { Card, Select, TextInput, Button, Badge, Field } from './ui'
 
 export function RoyaumeView({ joueur }: { joueur: number }) {
@@ -55,7 +55,9 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
   const cult = cultureDef(p.culture, C.config)
   const regimeDef = C.regimes.find((r) => r.nom === p.regime)
   const rangs = C.config.paysRangs ?? []
-  const rangActuel = p.rang ?? rangParDefaut(p.regime, C)
+  const rangActuel = rangs.some((r) => r.nom === p.rang)
+    ? (p.rang as string)
+    : rangParDefaut(p.regime, C)
   const rangDef = rangs.find((r) => r.nom === rangActuel)
   // Loi chiffrée du régime (appliquée automatiquement par le moteur) ?
   const loiChiffree = (regimeDef?.garnisonParRang ?? 0) !== 0
@@ -209,15 +211,67 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
             <div className="mini-title">Rang de pays</div>
             <Select
               value={rangActuel}
-              options={rangs.map((r) => ({ value: r.nom, label: `${r.bloc} — ${r.nom}` }))}
+              options={rangs.map((r) => ({ value: r.nom, label: r.nom }))}
               onChange={(v) => setPlayer((x) => { x.rang = v })}
             />
+            <div className="muted small">
+              Correction manuelle (arbitre) — pour une montée réglée, utilisez le sacre.
+            </div>
             {rangDef && (
               <div className="muted small">
-                {rangDef.cout ? <>Coût : {rangDef.cout} · </> : null}
-                Bonus : {rangDef.bonus} · Succession : {rangDef.succession}
+                Conseil : {rangDef.ministres} Ministre(s)
+                {rangDef.bonus ? <> · Bonus : {rangDef.bonus}</> : null}
               </div>
             )}
+            {(() => {
+              const idxRang = rangs.findIndex((r) => r.nom === rangActuel)
+              const next = rangs[idxRang + 1]
+              if (!next) {
+                return <div className="muted small">Rang maximal de l'échelle atteint.</div>
+              }
+              const nbSer = sermentsPossedes(state, p)
+              const orDispo = p.resources['Or']?.stock ?? 0
+              const nourrDispo = p.resources['Nourriture']?.stock ?? 0
+              const okSer = nbSer >= (next.serments ?? 0)
+              const okOr = orDispo >= (next.coutOr ?? 0)
+              const okN = nourrDispo >= (next.coutNourriture ?? 0)
+              return (
+                <div style={{ marginTop: 8 }}>
+                  <div className="muted small">
+                    Prochain rang : <strong>{next.nom}</strong> — sacre {next.coutOr} Or + {next.coutNourriture} Nourriture ·
+                    {' '}{next.serments} serment(s) requis (vous en possédez {nbSer}) · conseil {next.ministres} Ministres.
+                  </div>
+                  {!okSer && (
+                    <div className="muted small">
+                      ⚠ Un serment = un vassal ou une cité libre sous votre suzeraineté.
+                    </div>
+                  )}
+                  <Button
+                    disabled={!okSer || !okOr || !okN}
+                    onClick={() => update((s) => {
+                      const t = s.players.find((x) => x.n === joueur)
+                      if (!t) return
+                      const or = t.resources['Or']
+                      if (or) or.stock -= next.coutOr ?? 0
+                      const nourr = t.resources['Nourriture']
+                      if (nourr) nourr.stock -= next.coutNourriture ?? 0
+                      t.rang = next.nom
+                      s.log.push({
+                        turn: s.turn, type: 'Système', joueur: t.n,
+                        texte: `👑 Sacre : ${t.nom} devient ${next.nom} (sacre payé : ${next.coutOr} Or + ${next.coutNourriture} Nourriture ; conseil élargi à ${next.ministres} Ministres).`,
+                      })
+                    })}
+                  >
+                    ⬆ Sacre : devenir {next.nom}
+                  </Button>
+                  {(!okOr || !okN) && (
+                    <div className="muted small">
+                      Trésor insuffisant ({orDispo} Or, {nourrDispo} Nourriture).
+                    </div>
+                  )}
+                </div>
+              )
+            })()}
           </div>
           <div className="mini">
             <div className="mini-title">Événement de dynastie</div>
@@ -344,7 +398,6 @@ export function RoyaumeView({ joueur }: { joueur: number }) {
                 </td>
                 <td colSpan={3}>
                   {familleRoyale.length
-                    ? familleRoyale.map((c) => (
                       <span key={c.id} className="badge badge-info" style={{ marginRight: 4 }}>
                         {pers(c)}{c.titre ? ` — ${c.titre}` : ''}
                       </span>

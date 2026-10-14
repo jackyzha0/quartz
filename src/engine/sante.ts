@@ -117,9 +117,26 @@ export function handleDirigeantSuccession(state: GameState, p: Player, defunt: C
   )
   if (heritier) {
     heritier.titre = C.p.titreDirigeant
+    // Sacre d'Avènement (refonte des rangs) : le nouveau dirigeant paie
+    // la MOITIÉ du prix de son rang de pays (coût de sacre de la table
+    // paysRangs, débité automatiquement ; un coût nul ne débite rien).
+    const rangs = C.config.paysRangs ?? []
+    const rangDef = rangs.find((r) => r.nom === p.rang)
+    let sacreTxt = ''
+    if (rangDef) {
+      const demiOr = Math.floor((rangDef.coutOr ?? 0) / 2)
+      const demiNourr = Math.floor((rangDef.coutNourriture ?? 0) / 2)
+      const or = p.resources['Or']
+      if (or) or.stock -= demiOr
+      const nourr = p.resources['Nourriture']
+      if (nourr) nourr.stock -= demiNourr
+      if (demiOr > 0 || demiNourr > 0) {
+        sacreTxt = ` Sacre d'avènement payé : ${demiOr} Or et ${demiNourr} Nourriture (moitié du prix du rang ${rangDef.nom}).`
+      }
+    }
     state.log.push({
-      turn: state.turn + 1, type: 'Crise', joueur: p.n,
-      texte: `${p.nom} : ${fullName(heritier)} (${heritier.dynastie}) succède à ${fullName(defunt)} comme Dirigeant.`,
+      turn: state.turn + 1, type: 'Système', joueur: p.n,
+      texte: `${p.nom} : ${fullName(heritier)} (${heritier.dynastie}) succède à ${fullName(defunt)} comme Dirigeant.${sacreTxt}`,
     })
     return
   }
@@ -131,11 +148,15 @@ export function handleDirigeantSuccession(state: GameState, p: Player, defunt: C
   if (eligibles.length > 0) {
     const elu = rng.pick(eligibles)
     elu.titre = C.p.titreDirigeant
+    // Avènement SANS héritier (refonte des rangs) : un noble est promu et
+    // une crise ALÉATOIRE de la table « crises » du référentiel se déclenche.
+    const crises = C.config.crises ?? []
+    const crise = crises.length > 0 ? rng.pick(crises) : null
     state.rngState = rng.state()
     recap.crises.push('CRISE DE SUCCESSION')
     state.log.push({
       turn: state.turn + 1, type: 'Crise', joueur: p.n,
-      texte: `CRISE DE SUCCESSION — ${p.nom} : le noble ${fullName(elu)} (${elu.dynastie}) est promu Dirigeant.`,
+      texte: `CRISE DE SUCCESSION — ${p.nom} : le noble ${fullName(elu)} (${elu.dynastie}) est promu Dirigeant.${crise ? ` Avènement sans héritier — crise déclenchée : ${crise}` : ''}`,
     })
     return
   }

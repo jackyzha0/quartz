@@ -398,7 +398,6 @@
       "saison": "Hiver",
       "faible": "Tous les joueurs perdent 10  Nourriture par rang de leur pays.",
       "moyenne": "Tous les joueurs perdent 20  Nourriture par rang de leur pays.",
-      "forte": "Tous les joueurs perdent 35 Nourriture ar rang de leur pays.",
       "extreme": "Tous les joueurs perdent 50  Nourriture par rang de leur pays."
     },
     {
@@ -799,7 +798,6 @@
       "id": 7,
       "name": "Repoussant",
       "weight": 8,
-      "heritable": false,
       "marriageMod": -0.2,
       "fertAdd": 0,
       "lifeDelta": 0,
@@ -1075,7 +1073,7 @@
     },
     {
       "titre": "Héritier",
-      "effet": "Lors de la succession, si vous n'avez pas d'héritier vous pouvez conserver 1 Terre de moins, sinon, l'Héritier devient dirigeant. Si votre héritier meurt, déclenchez une crise.",
+      "effet": "L'Héritier devient Dirigeant lors de la succession. Si votre héritier meurt, déclenchez une crise.",
       "revocation": "50 Or \n+  10  Soie"
     },
     {
@@ -1172,7 +1170,7 @@
     },
     {
       "nom": "Démocratie",
-      "loi": "Elections : lors d'une succession, gardez 1 Terre supplémentaire"
+      "loi": "Elections : le sacre d'avènement est gratuit."
     },
     {
       "nom": "Monarchie",
@@ -1200,7 +1198,6 @@
         "Morceau",
         "Petit",
         "Legrand",
-        "Laroux",
         "Noirdier",
         "Beauregard",
         "Fortin",
@@ -1601,7 +1598,6 @@
         "Sans-Nez",
         "Gratte-Croûte",
         "Brise-Os",
-        "Tête-Dure",
         "Poing-Fer",
         "Saigne-Lune",
         "Griffe-Rouille",
@@ -2002,7 +1998,6 @@
       "nom": "Banque 3",
       "noms": [
         "Schwarzmond",
-        "Blutfaust",
         "Nachtschatten",
         "Grabeshund",
         "Knochenhand",
@@ -2403,7 +2398,6 @@
         "Isoldeius",
         "Lisbethfried",
         "Magdaen",
-        "Totengertrud",
         "Bluthildegard"
       ]
     }
@@ -2804,7 +2798,6 @@
           "texte": "Découvrez immédiatement deux progrès d'un même arbre."
         },
         {
-          "nom": "Cité d'Or",
           "texte": "Votre capitale peut accueillir un bâtiment supplémentaire."
         },
         {
@@ -3205,7 +3198,6 @@
           "label": "Âge III — Merchantialisme",
           "texte": "Vos marchands produisent +1 Science par tour. Vous pouvez posséder un marchand supplémentaire."
         }
-      ],
       "victoire": "",
       "batiment": "Comptoir (6 Bois +  4 Soie) : Il s'agit d'un aménagement qui peut être construit à 3 cases ou  plus de toute habitation. Vos marchands peuvent établir des routes  commerciales depuis un comptoir. Un comptoir rapporte 4 Or par marchand lui étant affecté.",
       "reglesBase": [
@@ -3606,7 +3598,6 @@
       "nom": "11",
       "cout": "Bassin des Reflets",
       "effet": "Vos habitations côtières fournissent +2 Or par tour. \n+1 Science par tour."
-    },
     {
       "categorie": "Guilde",
       "nom": "12",
@@ -4007,7 +3998,6 @@
     },
     {
       "batiment": "Complexe d'exploitation maritime",
-      "habitation": "Ville",
       "rang": "3",
       "type": "Economique",
       "prerequis": "",
@@ -4408,7 +4398,6 @@
       }
     },
     {
-      "nom": "Progrès des stratégies défensives",
       "age": 1,
       "tags": "PL, N",
       "brancheA": [
@@ -4809,7 +4798,6 @@
         }
       ],
       "brancheB": [
-        {
           "nom": "Gestion de crise",
           "cout": "22",
           "description": "La prochaine crise est annulée."
@@ -5210,7 +5198,6 @@
           ]
         }
       ],
-      "brancheB": [
         {
           "nom": "Hausse du loyer",
           "cout": "32",
@@ -5611,7 +5598,6 @@
     "modifier la culture des autres villes :",
     "1/ dans les titres nommer un propagandiste",
     "2/ le déplacer dans une ville d'une autre culture",
-    "3/  modifier la culture des gens de la ville : une charge par tour pour 5 habitats, sauf règles contraires",
     "4/ la ville change de culture si la moitié de ses habitants sont d'une autre culture",
     "victoires : seul le premier joueur à atteindre un palier déclenche ses effets",
     "résolution bataille auto : A - 1,5*(A-B)",
@@ -6012,7 +5998,6 @@
       "nom": "Camp de bâtisseurs",
       "cout": "10 Or + 4 Pierre",
       "production": "",
-      "description": "Réduit le coût de construction des aménagements de 5 Or et 1 Bois."
     },
     {
       "categorie": "Bâtiment",
@@ -6413,7 +6398,6 @@
       "nom": "Brasseries",
       "terrain": "Plaine ou Désert",
       "cout": "8 Or + 3 Bois",
-      "production": "+2 Or par tour.",
       "description": "Aménagement de faction des Nains (Âge II « Brasseries », remplace les Foires) : +2 Or par tour ; un marchand maximum supplémentaire (manuel).",
       "faction": "NAINS"
     },

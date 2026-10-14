@@ -129,14 +129,12 @@ export function makePlayer(n: number, s: SetupLine, C: Cfg): Player {
   }
 }
 
-/** Rang de pays par défaut selon le régime politique :
- *  Démocratie / Socialisme → bloc Républicain (Commune),
- *  Monarchie / Autoritarisme → bloc Féodal (Baronnie).
+/** Rang de pays par défaut : premier rang de l'échelle féodale unique
+ *  (Baronnie), quel que soit le régime politique — la couleur civique
+ *  des régimes passe par leurs lois (Elections, Pour le peuple…).
  *  Modifiable ensuite depuis la page « Royaume ». */
-export function rangParDefaut(regime: string, C: Cfg): string {
-  const bloc = regime === 'Démocratie' || regime === 'Socialisme' ? 'Républicain' : 'Féodal'
-  const rangs = C.config.paysRangs ?? []
-  return rangs.find((r) => r.bloc === bloc)?.nom ?? rangs[0]?.nom ?? 'Baronnie'
+export function rangParDefaut(_regime: string, C: Cfg): string {
+  return (C.config.paysRangs ?? [])[0]?.nom ?? 'Baronnie'
 }
 
 export function makePopulation(player: Player, s: SetupLine, rng: Rng, C: Cfg): Character[] {
@@ -400,7 +398,6 @@ export function ajouterHabitant(
       enfantBatard: false,
       titre: C.p.titreChasseur,
       education: null,
-      fecondite: 0,
       ageMax: 0,
       armee: null,
     }

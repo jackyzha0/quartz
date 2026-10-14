@@ -26,7 +26,7 @@
 //  ré-exporte l'API publique inchangée (mêmes noms qu'avant découpage).
 // ══════════════════════════════════════════════════════════════════════
 
-import type { ApportsTour, GameState } from './types'
+import type { ApportsTour, GameState, Player } from './types'
 import { makeRng } from './rng'
 import { cfgOf } from './gameData'
 import { saisonForTurn, applyEventEffect, applyDynastieCard } from './saisons'
@@ -35,14 +35,26 @@ import { appliquerEffetsBatiments } from './batiments'
 import { appliquerEffetsAmenagements, effetsNourrEteAmenagementsVille } from './amenagements'
 import { appliquerEffetsAutres, effetsNourrEteAutresVille } from './autres'
 import { appliquerEffetsRegimesCultures } from './regimes'
-import { appliquerEffetsFaction } from './factions'
+import { appliquerEffetsFaction, nbVassaux } from './factions'
 import { appliquerEffetsProgres } from './progres'
-import { appliquerTaxesCitesLibres } from './citesLibres'
+import { appliquerTaxesCitesLibres, citesSuzerainesDe } from './citesLibres'
 import { appliquerConsommationsHabitations } from './habitations'
 import { transfererTributVassal } from './vassalite'
 import { populationTurn } from './population'
 import { recruitForArmies } from './armees'
 import { snapshotRessources } from './journal'
+
+// ══════════════════════════════════════════════════════════════════════
+//  RANGS DE PAYS — condition de sacre (serments possédés)
+// ══════════════════════════════════════════════════════════════════════
+
+/** Serments possédés par un joueur : ses vassaux + les cités libres dont
+ *  il est le suzerain (une cité libre compte comme un serment, cf. règle
+ *  des cités libres). C'est la condition de montée de rang (colonne
+ *  « serments » de la table paysRangs, échelle féodale unique). */
+export function sermentsPossedes(state: GameState, p: Player): number {
+  return nbVassaux(state, p) + citesSuzerainesDe(state, p).length
+}
 
 // ══════════════════════════════════════════════════════════════════════
 //  FIN DE TOUR — point d'entrée principal
