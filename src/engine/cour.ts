@@ -10,11 +10,14 @@
 //    est ré-ancrée sur la première ville de la cible si la sienne
 //    n'existe pas chez elle.
 //  · marierPersonnages : mariage MANUEL de l'arbitre entre deux nobles
-//    vivants, majeurs et non mariés. Chacun reste chez son porteur —
-//    le mariage est un lien, pas un déménagement (comme au plateau).
-//    Le moteur sait retrouver un conjoint chez un autre porteur :
-//    libération au décès (sante.ts) et recherches du père pour les
-//    naissances (naissances.ts) parcourent TOUTES les populations.
+//    vivants, majeurs et non mariés. La personne mariée DÉMÉNAGE dans
+//    la ville de son conjoint (retour Thibaut 2026-10-14, marqueur (o))
+//    : elle quitte la population de son porteur et rejoint celle du
+//    porteur de son époux·se — changement de joueur ou de cité libre
+//    possible. Le moteur sait retrouver un conjoint chez un autre
+//    porteur : libération au décès (sante.ts) et recherches du père
+//    pour les naissances (naissances.ts) parcourent TOUTES les
+//    populations.
 //  Retour Thibaut (2026-10-14, suite) : la population des CITÉS
 //  LIBRES est gérée « comme si c'étaient des joueurs » (onglet 👥
 //  Population) — les dons (deplacerPersonnage, shared.ts) déplacent un
@@ -24,7 +27,7 @@
 
 import type { Character, GameState, Player } from './types'
 import { cfgOf } from './gameData'
-import { isNobleDyn, fullName, deplacerPersonnage, porteurDe, nomDe, memeDetenteur } from './shared'
+import { isNobleDyn, fullName, deplacerPersonnage, populationDe, porteurDe, nomDe, memeDetenteur } from './shared'
 
 /** Donne un personnage (habitant ou noble) à un autre joueur : cadeau,
  *  exile, rachat… Il quitte la population du joueur source, rejoint
@@ -42,9 +45,11 @@ export function donnerPersonnage(
 }
 
 /** Marier deux nobles (mariage manuel de l'arbitre — par exemple unir
- *  la fille du joueur 1 au fils du joueur 2). Chacun reste chez son
- *  joueur : le mariage est un lien, pas un déménagement. Retourne null
- *  si le mariage a eu lieu, sinon un message d'erreur. */
+ *  la fille du joueur 1 au fils du joueur 2). La personne mariée (a,
+ *  celle de la ligne) DÉMÉNAGE dans la ville de son conjoint (b) et
+ *  rejoint la population de son porteur — changement de joueur ou de
+ *  cité libre possible (l'UI confirme avant de marier un Dirigeant).
+ *  Retourne null si le mariage a eu lieu, sinon un message d'erreur. */
 export function marierPersonnages(state: GameState, a: Character, b: Character): string | null {
   const C = cfgOf(state.config)
   if (a.id === b.id) return 'Un personnage ne peut pas se marier avec lui-même.'
@@ -61,10 +66,31 @@ export function marierPersonnages(state: GameState, a: Character, b: Character):
   //  d'une cité libre) : le log nomme chacun.
   const dA = porteurDe(state, a)
   const dB = porteurDe(state, b)
+  // L'union de deux cours se calcule AVANT le déménagement (après, les
+  //  époux partagent le même porteur).
   const union = dA && dB && !memeDetenteur(dA, dB) ? ' — union de deux cours' : ''
+  // Retour Thibaut (2026-10-14, marqueur (o)) : la personne mariée
+  //  DÉMÉNAGE — elle quitte la population de son porteur actuel,
+  //  rejoint celle du porteur de son conjoint et s'installe dans sa
+  //  ville (changement de joueur ou de cité libre possible).
+  let demenagement = ''
+  if (dA && dB && !memeDetenteur(dA, dB)) {
+    const popSrc = populationDe(state, dA)
+    const i = popSrc.indexOf(a)
+    if (i >= 0) popSrc.splice(i, 1)
+    if (dB.kind === 'joueur') {
+      const arr = state.population[dB.p.n] ?? (state.population[dB.p.n] = [])
+      arr.push(a)
+    } else {
+      const arr = dB.cite.population ?? (dB.cite.population = [])
+      arr.push(a)
+    }
+    a.ville = b.ville
+    demenagement = ` — ${fullName(a)} rejoint la ville « ${a.ville} »`
+  }
   state.log.push({
     turn: state.turn, type: 'Mariage', joueur: dA?.kind === 'joueur' ? dA.p.n : null,
-    texte: `Mariage noble (manuel) : ${fullName(a)} (${a.dynastie}${dA ? `, ${nomDe(dA)}` : ''}) épouse ${fullName(b)} (${b.dynastie}${dB ? `, ${nomDe(dB)}` : ''})${union}.`,
+    texte: `Mariage noble (manuel) : ${fullName(a)} (${a.dynastie}${dA ? `, ${nomDe(dA)}` : ''}) épouse ${fullName(b)} (${b.dynastie}${dB ? `, ${nomDe(dB)}` : ''})${union}${demenagement}.`,
   })
   return null
 }

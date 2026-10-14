@@ -5,12 +5,12 @@
 
 import React from 'react'
 import { useGame } from '../state/store'
-import { cfgOf } from '../engine/gameData'
+import { cfgOf, couleurRessource } from '../engine/gameData'
 import { VICTORY_TEXT } from '../engine/gameData2'
 import {
   cocherLaurier, victoireAtteinte, victoryProgress, victoryLabels,
 } from '../engine/victory'
-import { Card, fmt, Select } from './ui'
+import { Card, fmt } from './ui'
 import { HistogrammeEmpile, CourbeRessource, Radar } from './charts'
 import type { GroupeChart, SerieCourbe, SerieRadar } from './charts'
 
@@ -23,8 +23,13 @@ export function Dashboard() {
   const RESOURCES = state ? cfgOf(state.config).ressources : cfgOf(undefined).ressources
   if (!state) return null
 
+  // ── Couleurs paramétrables (marqueur (o)) : palette de la partie ────
+  const C = cfgOf(state.config)
+  const cR = (nom: string) => couleurRessource(nom, C)
+  const couleursJoueurs = C.couleurs.joueurs
+
   // ── Lauriers de victoire : référentiel + vainqueurs éventuels ──────
-  const victoiresRef = cfgOf(state.config).config.victoires
+  const victoiresRef = C.config.victoires
   const vainqueurs = victoireAtteinte(state)
 
   // ── Données du radar : progression de chaque joueur par voie ───────
@@ -90,7 +95,9 @@ export function Dashboard() {
                 <th>Joueur</th>
                 <th>Peuple / Culture</th>
                 <th>Pop.</th>
-                {RESSOURCES_VUES.map((r) => <th key={r}>{r}</th>)}
+                {RESSOURCES_VUES.map((r) => (
+                  <th key={r}><span className="dot-res" style={{ background: cR(r) }} />{r}</th>
+                ))}
                 <th>Villes</th>
                 <th>Armées</th>
               </tr>
@@ -127,7 +134,8 @@ export function Dashboard() {
       </Card>
 
       <Card title="Ressources de base — Stock & Production">
-        <HistogrammeEmpile groupes={groupesPour(RESSOURCES_BASE)} />
+        <HistogrammeEmpile groupes={groupesPour(RESSOURCES_BASE)}
+          couleursJoueurs={couleursJoueurs} couleurRessource={cR} />
         <p className="muted small">
           Pour chaque joueur : segment coloré = stock, segment gris clair au-dessus = production
           du tour (les productions négatives, ex. Nourriture, passent sous l'axe zéro).
@@ -136,34 +144,48 @@ export function Dashboard() {
 
       <div className="grid-2x2">
         <Card title="Or & Nourriture — Stock & Production">
-          <HistogrammeEmpile groupes={groupesPour(['Or', 'Nourriture'])} largeur={460} />
+          <HistogrammeEmpile groupes={groupesPour(['Or', 'Nourriture'])} largeur={460}
+            couleursJoueurs={couleursJoueurs} couleurRessource={cR} />
         </Card>
 
         <Card title="Science — Stock & Production">
-          <HistogrammeEmpile groupes={groupesPour(['Science'])} largeur={460} />
+          <HistogrammeEmpile groupes={groupesPour(['Science'])} largeur={460}
+            couleursJoueurs={couleursJoueurs} couleurRessource={cR} />
         </Card>
 
         <Card title="Habitants — Stock (population vivante)">
-          <HistogrammeEmpile groupes={groupeHabitants} avecProd={false} largeur={460} />
+          <HistogrammeEmpile groupes={groupeHabitants} avecProd={false} largeur={460}
+            couleursJoueurs={couleursJoueurs} couleurRessource={cR} />
           <p className="muted small">Population vivante totale par joueur (décès exclus).</p>
         </Card>
 
         <Card title="Tourisme — Stock">
-          <HistogrammeEmpile groupes={groupesPour(['Tourisme'])} avecProd={false} largeur={460} />
+          <HistogrammeEmpile groupes={groupesPour(['Tourisme'])} avecProd={false} largeur={460}
+            couleursJoueurs={couleursJoueurs} couleurRessource={cR} />
         </Card>
       </div>
 
       <Card
         title="Évolution par tour — Stock & Production"
         right={
-          <Select
-            value={ressourceCourbe}
-            options={RESOURCES.map((r) => ({ value: r, label: r }))}
-            onChange={(v) => setRessourceCourbe(v)}
-          />
+          <div className="res-chips">
+            {RESOURCES.map((r) => (
+              <button
+                key={r}
+                type="button"
+                className={'res-chip' + (r === ressourceCourbe ? ' res-chip-active' : '')}
+                style={{ borderColor: cR(r) }}
+                onClick={() => setRessourceCourbe(r)}
+              >
+                <span className="dot-res" style={{ background: cR(r) }} />
+                {r}
+              </button>
+            ))}
+          </div>
         }
       >
-        <CourbeRessource ressource={ressourceCourbe} series={seriesCourbe} />
+        <CourbeRessource ressource={ressourceCourbe} series={seriesCourbe}
+          couleursJoueurs={couleursJoueurs} couleurRessource={cR} />
       </Card>
 
       <Card title="Cartes dynastie du tour">
@@ -190,7 +212,8 @@ export function Dashboard() {
             👑 Victoire : {vainqueurs.map((v) => `${v.nom} (${v.voie})`).join(' · ')}
           </div>
         )}
-        <Radar axes={axesVictoire.map((a) => a.label)} series={seriesRadar} />
+        <Radar axes={axesVictoire.map((a) => a.label)} series={seriesRadar}
+          couleursJoueurs={couleursJoueurs} />
         <p className="muted small">
           0 % au centre, 100 % au bord = Laurier IV. Cochez les Lauriers dans le tableau
           ci-dessous (ordre strict) ; chaque Laurier I-III validé déclenche une crise.
@@ -254,7 +277,9 @@ export function Dashboard() {
             <thead>
               <tr>
                 <th>Joueur</th>
-                {RESOURCES.map((r) => <th key={r}>{r}</th>)}
+                {RESOURCES.map((r) => (
+                  <th key={r}><span className="dot-res" style={{ background: cR(r) }} />{r}</th>
+                ))}
               </tr>
             </thead>
             <tbody>

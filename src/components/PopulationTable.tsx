@@ -219,6 +219,11 @@ export function PopulationTable({ joueur }: { joueur: number }) {
   }
   const marierAvec = (c: Character, v: string) => {
     if (!v) return
+    // Retour Thibaut (marqueur (o)) : le mariage DÉMÉNAGE la personne
+    //  mariée dans la ville de son conjoint — confirmation avant de
+    //  déplacer un Dirigeant (changement de porteur possible).
+    if (p && c.titre === C.p.titreDirigeant
+      && !window.confirm(`Le mariage déplace la personne mariée dans la ville de son conjoint (${p.nom} perd ${fullName(c)} si son conjoint est d'un autre porteur). Marier ${fullName(c)} ?`)) return
     update((s) => {
       const a = cite
         ? ((s.citesLibres ?? [])[citeIdx]?.population ?? []).find((x) => x.id === c.id)
@@ -476,7 +481,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       <Card title={`👑 La cour de ${nomPorteur} — ${courVivants} vivants / ${pop.filter(estNoble).length} au total`}>
         {blocFiltres}
         <p className="muted small">
-          Tous les nobles ${cite ? 'de la cité libre' : 'du joueur (dynastie dirigeante et familles nobles)'} — filtres et tri
+          Tous les nobles {cite ? 'de la cité libre' : 'du joueur (dynastie dirigeante et familles nobles)'} — filtres et tri
           appliqués aussi au tableau « Population » ci-dessous.
         </p>
         <div className="table-wrap">
@@ -490,9 +495,10 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           </table>
         </div>
         <p className="muted small">
-          « ➡ Donner à… » transfère le noble à un autre joueur (il y est éditable et y produit).
-          « 💍 Marier avec… » unit deux nobles — y compris de joueurs différents — sans les
-          déplacer : chacun reste dans la cour de son joueur.
+          « ➡ Donner à… » transfère le noble à un autre porteur (il y est éditable et y produit).
+          « 💍 Marier avec… » unit deux nobles — y compris de porteurs différents : la
+          personne mariée déménage dans la ville de son conjoint et rejoint son porteur
+          (changement de joueur ou de cité possible ; confirmation avant de marier un Dirigeant).
         </p>
       </Card>
 

@@ -276,6 +276,111 @@ export interface GameConfig {
   }[]
   crises: string[]
   rappelsRegles: string[]
+  /** Couleurs d'affichage (graphiques, pastilles, lignes de tableaux)
+   *  — éditables dans Référentiels → Couleurs (retour Thibaut
+   *  2026-10-14). Champ optionnel : les anciennes sauvegardes sont
+   *  complétées par migrerCouleurs (défauts ci-dessous). */
+  couleurs?: CouleursConfig
+}
+
+// ── Couleurs d'affichage (retour Thibaut 2026-10-14, marqueur (o)) ──────
+
+/** Couleurs des graphiques : une par joueur (J1 = index 0) et une par
+ *  ressource, + transparence des lignes de tableaux. Entièrement
+ *  paramétrable dans Référentiels → Couleurs ; les anciennes
+ *  sauvegardes sans ce champ retombent sur les défauts. */
+export type CouleursConfig = {
+  /** Couleur des joueurs dans les graphiques (J1..J8). */
+  joueurs?: string[]
+  /** Couleur par nom de ressource (y compris « Habitants », hors
+   *  référentiel « ressources »). */
+  ressources?: Record<string, string>
+  /** Transparence (0–100 %) du fond des LIGNES de ressources des
+   *  tableaux de la page Pays (récap, taxes, production des villes) :
+   *  0 = couleur pleine, 100 = invisible. Défaut : 85. */
+  transparenceLignes?: number
+}
+
+/** Palette des joueurs (demande de Thibaut 2026-10-14) : J1 rouge, J2
+ *  bleu royal, J3 vert, J4 jaune, J5 violet, J6 orange, J7 turquoise,
+ *  J8 rose. */
+export const COULEURS_JOUEURS_DEFAUT: string[] = [
+  '#C80000', // J1 rouge
+  '#0131B4', // J2 bleu royal
+  '#2CA02C', // J3 vert
+  '#F5C518', // J4 jaune
+  '#660099', // J5 violet
+  '#F97316', // J6 orange
+  '#40E0D0', // J7 turquoise
+  '#EC4899', // J8 rose
+]
+
+/** Palette des ressources (demande de Thibaut 2026-10-14) : Bois
+ *  marron, Bétail vert terne, Charbon gris foncé, Fer rouge, Science
+ *  bleu clair, Pierre gris clair, Nourriture (et « Nourr - été »)
+ *  vert, Soie rose-violet, Habitants vert foncé, Or jaune ; Tourisme
+ *  et Garnison neutres (non spécifiés — paramétrables). */
+export const COULEURS_RESSOURCES_DEFAUT: Record<string, string> = {
+  'Bois': '#7B4B2A',
+  'Bétail': '#8A9A5B',
+  'Charbon': '#3A3A3A',
+  'Fer': '#C80000',
+  'Science': '#7EC8E3',
+  'Pierre': '#BFC1C2',
+  'Nourriture': '#2FA84F',
+  'Nourr - été': '#2FA84F',
+  'Soie': '#CC55AA',
+  'Habitants': '#1B5E20',
+  'Or': '#F5C518',
+  'Tourisme': '#E8927C',
+  'Garnison': '#4A6274',
+}
+
+/** Transparence par défaut du fond des lignes de ressources (85 % →
+ *  teinte légère, lisible en thème clair comme sombre). */
+export const TRANSPARENCE_LIGNES_DEFAUT = 85
+
+/** Complète une config de couleurs partielle (ancienne sauvegarde) :
+ *  joueurs complétés à 8 depuis les défauts, ressources fusionnées
+ *  sur les défauts, « Nourr - été » suit toujours la Nourriture,
+ *  transparence bornée 0–100. */
+export function migrerCouleurs(c?: CouleursConfig): CouleursConfig {
+  const joueurs = COULEURS_JOUEURS_DEFAUT.map((d, i) => c?.joueurs?.[i] || d)
+  const ressources: Record<string, string> = {
+    ...COULEURS_RESSOURCES_DEFAUT,
+    ...(c?.ressources ?? {}),
+  }
+  ressources['Nourr - été'] = c?.ressources?.['Nourr - été'] ?? ressources['Nourriture']
+  const t = typeof c?.transparenceLignes === 'number' && isFinite(c.transparenceLignes)
+    ? Math.max(0, Math.min(100, c.transparenceLignes))
+    : TRANSPARENCE_LIGNES_DEFAUT
+  return { joueurs, ressources, transparenceLignes: t }
+}
+
+/** Couleur d'un joueur (n = 1..8) — palette de la partie si fournie,
+ *  défauts sinon. */
+export function couleurJoueur(n: number, C?: Cfg): string {
+  const pal = C?.couleurs ?? DEFAULT_CONFIG.couleurs
+  return pal.joueurs?.[n - 1] || COULEURS_JOUEURS_DEFAUT[(n - 1) % COULEURS_JOUEURS_DEFAUT.length]
+}
+
+/** Couleur d'une ressource (ou pseudo-ressource « Habitants ») —
+ *  palette de la partie si fournie, gris neutre sinon. */
+export function couleurRessource(nom: string, C?: Cfg): string {
+  const pal = C?.couleurs ?? DEFAULT_CONFIG.couleurs
+  return pal.ressources?.[nom] || '#9aa4ad'
+}
+
+/** Fond teinté d'une ressource pour les LIGNES de tableaux (page
+ *  Pays : récap par tour, taxes des villageois, production des
+ *  villes) : couleur de la ressource + transparence réglable
+ *  (0 = couleur pleine, 100 = invisible). */
+export function fondRessource(nom: string, C?: Cfg): string {
+  const pal = C?.couleurs ?? DEFAULT_CONFIG.couleurs
+  const t = typeof pal.transparenceLignes === 'number'
+    ? Math.max(0, Math.min(100, pal.transparenceLignes))
+    : TRANSPARENCE_LIGNES_DEFAUT
+  return `color-mix(in srgb, ${couleurRessource(nom, C)} ${100 - t}%, transparent)`
 }
 
 const ref = refJson as any
@@ -477,6 +582,11 @@ export const DEFAULT_CONFIG: GameConfig = {
   victoires: ref.victoires,
   crises: ref.crises,
   rappelsRegles: ref.rappelsRegles,
+  couleurs: {
+    joueurs: [...COULEURS_JOUEURS_DEFAUT],
+    ressources: { ...COULEURS_RESSOURCES_DEFAUT },
+    transparenceLignes: TRANSPARENCE_LIGNES_DEFAUT,
+  },
 }
 
 // Rangs de pays (feuille « Pays ») — échelle féodale UNIQUE (refonte 2026-10-14) :
@@ -511,6 +621,7 @@ export interface Cfg {
   peupleBanque: Record<string, number>
   peuples: string[]
   batiments: BuildingDef[]
+  couleurs: CouleursConfig
   config: GameConfig
 }
 
@@ -699,6 +810,8 @@ export function cfgOf(config: GameConfig | undefined): Cfg {
   merged.paysRangs = migrerPaysRangs(merged.paysRangs)
   // ministères : complétion rangMinimum/mode (refonte 2026-10-14)
   merged.ministeres = migrerMinisteres(merged.ministeres)
+  // couleurs d'affichage : complétion depuis les défauts (marqueur (o))
+  merged.couleurs = migrerCouleurs(c.couleurs)
   // voies de victoire : rangs → lauriers (refonte 2026-10-14)
   merged.victoires = migrerVictoires(merged.victoires)
   // fiches de faction : structure (victoire/bâtiment/âges) du référentiel
@@ -725,6 +838,7 @@ export function cfgOf(config: GameConfig | undefined): Cfg {
     peupleBanque: merged.peupleBanque,
     peuples: merged.peuples,
     batiments: merged.batiments,
+    couleurs: merged.couleurs,
     config: merged,
   }
 }

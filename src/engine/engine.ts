@@ -379,3 +379,9 @@ export {
   victoryProgress, victoryLabels,
 } from './victory'
 export { findTitleIssues, titleCandidatesFor } from './validation'
+// Couleurs d'affichage (marqueur (o)) — palettes paramétrables
+export {
+  couleurJoueur, couleurRessource, fondRessource, migrerCouleurs,
+  COULEURS_JOUEURS_DEFAUT, COULEURS_RESSOURCES_DEFAUT, TRANSPARENCE_LIGNES_DEFAUT,
+  type CouleursConfig,
+} from './gameData'

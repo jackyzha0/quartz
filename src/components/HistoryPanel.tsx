@@ -5,14 +5,12 @@
 
 import React, { useMemo, useState } from 'react'
 import { useGame } from '../state/store'
-import { cfgOf } from '../engine/gameData'
+import { cfgOf, couleurJoueur } from '../engine/gameData'
 import { Card, Select, fmt } from './ui'
-
-// Palette sobre, lisible en thème clair comme sombre (couleurs du site).
-const COULEURS = ['#35729b', '#c08a3d', '#4e9464', '#c25555', '#8a6bb5', '#4b8f9e', '#c9778f', '#8a8a5c']
 
 export function HistoryPanel() {
   const { state } = useGame()
+  const C = state ? cfgOf(state.config) : undefined
   const RESOURCES = state ? cfgOf(state.config).ressources : cfgOf(undefined).ressources
   const [res, setRes] = useState('Or')
   const [mode, setMode] = useState<'stocks' | 'prods'>('stocks')
@@ -22,6 +20,7 @@ export function HistoryPanel() {
     const turns = [...new Set(state.history.map((h) => h.turn))].sort((a, b) => a - b)
     const series = state.players.map((p) => ({
       nom: p.nom,
+      n: p.n,
       points: turns.map((t) => {
         const row = state.history.find((h) => h.turn === t && h.joueur === p.n)
         return row ? row[mode][res] ?? 0 : 0
@@ -60,7 +59,7 @@ export function HistoryPanel() {
             <polyline
               key={s.nom}
               fill="none"
-              stroke={COULEURS[si % COULEURS.length]}
+              stroke={couleurJoueur(s.n, C)}
               strokeWidth="2"
               points={s.points.map((v, i) => `${x(i)},${y(v)}`).join(' ')}
             />
@@ -76,7 +75,7 @@ export function HistoryPanel() {
       <div className="legend">
         {data.series.map((s, si) => (
           <span key={s.nom} className="legend-item">
-            <span className="dot" style={{ background: COULEURS[si % COULEURS.length] }} />
+            <span className="dot" style={{ background: couleurJoueur(s.n, C) }} />
             {s.nom}
           </span>
         ))}

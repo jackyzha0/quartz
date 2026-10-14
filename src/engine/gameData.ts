@@ -7,10 +7,14 @@
 
 import {
   DEFAULT_CONFIG, cfgOf, cloneDefaultConfig,
+  couleurJoueur, couleurRessource, fondRessource, migrerCouleurs,
+  COULEURS_JOUEURS_DEFAUT, COULEURS_RESSOURCES_DEFAUT, TRANSPARENCE_LIGNES_DEFAUT,
   type Cfg, type GameConfig, type TitreDef, type TraitDef, type CultureDef,
+  type CouleursConfig,
 } from '../config/defaultConfig'
 
-export type { GameConfig, TitreDef, TraitDef, CultureDef, Cfg }
+export type { GameConfig, TitreDef, TraitDef, CultureDef, Cfg, CouleursConfig }
+export { couleurJoueur, couleurRessource, fondRessource, migrerCouleurs, COULEURS_JOUEURS_DEFAUT, COULEURS_RESSOURCES_DEFAUT, TRANSPARENCE_LIGNES_DEFAUT }
 
 export const RESOURCES: string[] = DEFAULT_CONFIG.ressources
 export const TITRES: TitreDef[] = DEFAULT_CONFIG.titres

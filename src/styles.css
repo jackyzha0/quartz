@@ -511,3 +511,31 @@ select.input { min-width: 120px; width: auto; }
 .teinte-blanc  { background: var(--card); }
 .teinte-bleu   { background: color-mix(in srgb, #3d6d8a 8%, var(--card)); border-color: color-mix(in srgb, #3d6d8a 30%, var(--border)); }
 .teinte-violet { background: color-mix(in srgb, #7a4d9e 8%, var(--card)); border-color: color-mix(in srgb, #7a4d9e 30%, var(--border)); }
+
+/* ═══ Couleurs paramétrables (marqueur (o)) ═══ */
+
+/* Chips de sélection de la ressource de la courbe (page Accueil) */
+.res-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.res-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 10px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--border); background: transparent;
+  color: inherit; font-size: 12px;
+}
+.res-chip:hover { filter: brightness(1.15); }
+.res-chip-active { font-weight: 700; background: color-mix(in srgb, var(--accent) 14%, transparent); }
+
+/* Pastille de couleur de ressource (en-têtes, légendes, lignes de tableaux) */
+.dot-res {
+  display: inline-block; width: 9px; height: 9px; border-radius: 50%;
+  vertical-align: middle; margin-right: 4px;
+}
+
+/* Sélecteur de couleur + réglage de transparence (Référentiels → Couleurs) */
+input[type='color'] {
+  width: 38px; height: 26px; padding: 0; border: 1px solid var(--border);
+  border-radius: 6px; background: transparent; cursor: pointer;
+}
+input[type='range'] {
+  accent-color: var(--accent); cursor: pointer;
+}

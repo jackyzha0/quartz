@@ -7,28 +7,45 @@
 //    • histogrammes « stock seul » (Tourisme, Habitants),
 //    • courbe par tour : stock en trait plein, production en pointillés,
 //      une couleur par joueur, avec choix de la ressource.
+//  Retour Thibaut (2026-10-14, marqueur (o)) : les couleurs des JOUEURS
+//  et des RESSOURCES sont PARAMÉTRABLES (Référentiels → Couleurs). Les
+//  composants acceptent des props optionnelles et retombent sur la
+//  palette statique ci-dessous sinon (mêmes défauts).
 // ══════════════════════════════════════════════════════════════════════
 
 import React from 'react'
 import { fmt } from './ui'
 
-/** Palette Excel du classeur (J1..J6) + extension Office pour J7/J8. */
+/** Palette statique des joueurs (repli) — mêmes défauts que la config
+ *  (COULEURS_JOUEURS_DEFAUT, demande Thibaut 2026-10-14) : J1 rouge,
+ *  J2 bleu royal, J3 vert, J4 jaune, J5 violet, J6 orange, J7
+ *  turquoise, J8 rose. */
 export const COULEURS_JOUEURS = [
   '#C80000', // J1 rouge
-  '#0131B4', // J2 bleu
-  '#A5D152', // J3 vert clair
-  '#FAEA73', // J4 jaune
+  '#0131B4', // J2 bleu royal
+  '#2CA02C', // J3 vert
+  '#F5C518', // J4 jaune
   '#660099', // J5 violet
-  '#F4FEFE', // J6 blanc cassé
-  '#FFC000', // J7 orange
-  '#00B0F0', // J8 bleu clair
+  '#F97316', // J6 orange
+  '#40E0D0', // J7 turquoise
+  '#EC4899', // J8 rose
 ]
 
 /** Gris clair du segment « production » (spéc Excel D9D9D9 + contour noir). */
 const COULEUR_PROD = '#D9D9D9'
 
-export function couleurJoueur(n: number): string {
-  return COULEURS_JOUEURS[(n - 1) % COULEURS_JOUEURS.length]
+/** Couleur d'un joueur : palette passée en prop (config de la partie)
+ *  sinon palette statique. */
+export function couleurJoueur(n: number, pal?: string[]): string {
+  return pal?.[n - 1] || COULEURS_JOUEURS[(n - 1) % COULEURS_JOUEURS.length]
+}
+
+/** Props communes de couleur (marqueur (o)) — toutes optionnelles. */
+export interface PropsCouleurs {
+  /** Couleurs des joueurs (J1 = index 0) — config de la partie. */
+  couleursJoueurs?: string[]
+  /** Couleur d'une ressource par nom — config de la partie. */
+  couleurRessource?: (nom: string) => string
 }
 
 // ── Graduation « propre » de l'axe Y ────────────────────────────────────
@@ -64,12 +81,13 @@ export interface GroupeChart {
  *  stock (couleur du joueur) surmonté du segment production (gris clair).
  *  Les valeurs négatives (ex. production de Nourriture au départ) sont
  *  empilées sous l'axe zéro, comme dans le classeur. */
-export function HistogrammeEmpile({ groupes, avecProd = true, largeur = 900 }: {
+export function HistogrammeEmpile({ groupes, avecProd = true, largeur = 900,
+  couleursJoueurs, couleurRessource }: {
   groupes: GroupeChart[]
   avecProd?: boolean
   /** Largeur du viewBox SVG — 900 pleine page, ~460 en demi-colonne. */
   largeur?: number
-}) {
+} & PropsCouleurs) {
   const W = largeur
   const H = 360
   const padL = 58, padR = 14, padT = 16, padB = 66
@@ -98,7 +116,7 @@ export function HistogrammeEmpile({ groupes, avecProd = true, largeur = 900 }: {
       <div className="chart-legend">
         {joueurs.map((j) => (
           <span key={j} className="chart-chip">
-            <span className="swatch" style={{ background: couleurJoueur(j) }} />
+            <span className="swatch" style={{ background: couleurJoueur(j, couleursJoueurs) }} />
             J{j}
           </span>
         ))}
@@ -109,6 +127,12 @@ export function HistogrammeEmpile({ groupes, avecProd = true, largeur = 900 }: {
           </span>
         )}
         {!avecProd && <span className="chart-chip muted">Stock seul</span>}
+        {couleurRessource && groupes.map((g) => (
+          <span key={g.ressource} className="chart-chip">
+            <span className="dot-res" style={{ background: couleurRessource(g.ressource) }} />
+            {g.ressource}
+          </span>
+        ))}
       </div>
       <svg className="chart-svg" viewBox={`0 0 ${W} ${H}`} role="img">
         {/* grille + graduation */}
@@ -139,7 +163,7 @@ export function HistogrammeEmpile({ groupes, avecProd = true, largeur = 900 }: {
                 if (stock !== 0) {
                   rects.push(
                     <rect key="s" x={x} y={y(Math.max(0, stock))} width={barW}
-                      height={Math.abs(y(stock) - y(0))} fill={couleurJoueur(b.joueur)}
+                      height={Math.abs(y(stock) - y(0))} fill={couleurJoueur(b.joueur, couleursJoueurs)}
                       stroke="#000" strokeWidth={0.5}>
                       <title>{`J${b.joueur} · ${g.ressource} — Stock : ${fmt(b.stock)}`}</title>
                     </rect>,
@@ -165,6 +189,10 @@ export function HistogrammeEmpile({ groupes, avecProd = true, largeur = 900 }: {
                   </g>
                 )
               })}
+              {couleurRessource && (
+                <circle cx={xGroupe + largeurGroupe / 2 - (g.ressource.length * 2.9)} cy={H - padB + 28.5}
+                  r={3} fill={couleurRessource(g.ressource)} />
+              )}
               <text x={xGroupe + largeurGroupe / 2} y={H - padB + 32} textAnchor="middle"
                 fontSize={11} fontWeight={600} fill="currentColor">
                 {g.ressource}
@@ -186,10 +214,10 @@ export interface SerieCourbe { joueur: number; nom: string; points: PointCourbe[
  *  pour chaque joueur, stock en trait plein et production en trait
  *  pointillé (spéc chart6 du classeur). Les tours manquants pour un
  *  joueur interrompent sa ligne. */
-export function CourbeRessource({ ressource, series }: {
+export function CourbeRessource({ ressource, series, couleursJoueurs, couleurRessource }: {
   ressource: string
   series: SerieCourbe[]
-}) {
+} & PropsCouleurs) {
   const W = 900
   const H = 380
   const padL = 58, padR = 14, padT = 18, padB = 44
@@ -214,10 +242,16 @@ export function CourbeRessource({ ressource, series }: {
       <div className="chart-legend">
         {series.map((s) => (
           <span key={s.joueur} className="chart-chip">
-            <span className="swatch" style={{ background: couleurJoueur(s.joueur) }} />
+            <span className="swatch" style={{ background: couleurJoueur(s.joueur, couleursJoueurs) }} />
             J{s.joueur}
           </span>
         ))}
+        {couleurRessource && (
+          <span className="chart-chip">
+            <span className="dot-res" style={{ background: couleurRessource(ressource) }} />
+            {ressource}
+          </span>
+        )}
         <span className="chart-chip muted">— trait plein : stock · - - pointillé : production</span>
       </div>
       <svg className="chart-svg" viewBox={`0 0 ${W} ${H}`} role="img">
@@ -240,7 +274,7 @@ export function CourbeRessource({ ressource, series }: {
 
         {/* séries : polylignes continues pour les tours présents */}
         {series.map((s) => {
-          const col = couleurJoueur(s.joueur)
+          const col = couleurJoueur(s.joueur, couleursJoueurs)
           const segStock: string[] = []
           const segProd: string[] = []
           let curStock: string[] = []
@@ -273,7 +307,10 @@ export function CourbeRessource({ ressource, series }: {
         })}
       </svg>
       <div className="muted small">
-        {ressource} — Stock (trait plein) &amp; Production (pointillés), par joueur et par tour.
+        {couleurRessource && (
+          <span className="dot-res" style={{ background: couleurRessource(ressource) }} />
+        )}
+        {' '}{ressource} — Stock (trait plein) &amp; Production (pointillés), par joueur et par tour.
         Le dernier point (tour courant) reflète l'état vivant de la partie.
       </div>
     </div>
@@ -289,10 +326,12 @@ export interface SerieRadar { joueur: number; nom: string; points: PointRadar[] 
  *  semi-transparent par joueur — 0 % au centre, 100 % au bord
  *  (= condition atteinte). Anneaux gradués 25 / 50 / 75 / 100 % ;
  *  chaque sommet porte le détail du calcul en info-bulle (title). */
-export function Radar({ axes, series, largeur = 900 }: {
+export function Radar({ axes, series, largeur = 900, couleursJoueurs }: {
   axes: string[]
   series: SerieRadar[]
   largeur?: number
+  /** Couleurs des joueurs (J1 = index 0) — config de la partie. */
+  couleursJoueurs?: string[]
 }) {
   if (axes.length === 0) return null
   const W = largeur
@@ -318,7 +357,7 @@ export function Radar({ axes, series, largeur = 900 }: {
       <div className="chart-legend">
         {series.map((s) => (
           <span key={s.joueur} className="chart-chip">
-            <span className="swatch" style={{ background: couleurJoueur(s.joueur) }} />
+            <span className="swatch" style={{ background: couleurJoueur(s.joueur, couleursJoueurs) }} />
             J{s.joueur}
           </span>
         ))}
@@ -351,7 +390,7 @@ export function Radar({ axes, series, largeur = 900 }: {
         })}
         {/* polygones des joueurs */}
         {series.map((s) => {
-          const col = couleurJoueur(s.joueur)
+          const col = couleurJoueur(s.joueur, couleursJoueurs)
           const pts = s.points
             .map((p, i) => `${point(i, p.ratio).x},${point(i, p.ratio).y}`)
             .join(' ')

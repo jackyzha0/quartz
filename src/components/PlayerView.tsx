@@ -39,7 +39,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useGame } from '../state/store'
 import type { GameState, Player, AutreDef } from '../engine/types'
-import { cfgOf, cultureDef, type Cfg } from '../engine/gameData'
+import { cfgOf, cultureDef, couleurRessource, fondRessource, type Cfg } from '../engine/gameData'
 import {
   effetsTourBatiment, garnisonBatiment, coutBatiment,
   batimentsConstructionsRefs, constructionsRefs, amenagementRef, aCampDeBatisseurs,
@@ -574,8 +574,11 @@ export function PlayerView({ joueur }: { joueur: number }) {
                       </thead>
                       <tbody>
                         {resTaxes.map((r) => (
-                          <tr key={r}>
-                            <td><strong>{r}</strong></td>
+                          <tr key={r} style={{ background: fondRessource(r, C) }}>
+                            <td>
+                              <span className="dot-res" style={{ background: couleurRessource(r, C) }} />
+                              <strong>{r}</strong>
+                            </td>
                             <td>{fmtNum(tg.titres[r] ?? 0)}</td>
                             <td>{fmtNum(tg.taxes[r] ?? 0)}</td>
                             <td className={(tg.conso[r] ?? 0) < 0 ? 'neg' : ''}>{fmtNum(tg.conso[r] ?? 0)}</td>
@@ -640,8 +643,12 @@ export function PlayerView({ joueur }: { joueur: number }) {
                             {lignesV.map((l) => {
                               if (l.kind === 'ete') {
                                 return (
-                                  <tr key="nourr-ete" className="muted">
-                                    <td><strong>Nourr - été</strong></td>
+                                  <tr key="nourr-ete" className="muted"
+                                    style={{ background: fondRessource('Nourr - été', C) }}>
+                                    <td>
+                                      <span className="dot-res" style={{ background: couleurRessource('Nourr - été', C) }} />
+                                      <strong>Nourr - été</strong>
+                                    </td>
                                     <td>—</td>
                                     <td>{nEteAm !== 0 ? fmtNum(nEteAm) : '—'}</td>
                                     <td>{nEteAut !== 0 ? fmtNum(nEteAut) : '—'}</td>
@@ -659,8 +666,11 @@ export function PlayerView({ joueur }: { joueur: number }) {
                                 (d[r] ?? 0) === 0 ? '—' : fmtNum(d[r] ?? 0)
                               const t = pv.total[r] ?? 0
                               return (
-                                <tr key={r}>
-                                  <td><strong>{r}</strong></td>
+                                <tr key={r} style={{ background: fondRessource(r, C) }}>
+                                  <td>
+                                    <span className="dot-res" style={{ background: couleurRessource(r, C) }} />
+                                    <strong>{r}</strong>
+                                  </td>
                                   <td>{col(pv.batiments)}</td>
                                   <td>{col(pv.amenagements)}</td>
                                   <td>{col(pv.autres)}</td>
@@ -780,8 +790,12 @@ export function PlayerView({ joueur }: { joueur: number }) {
                     {lignesR.map((l) => {
                       if (l.kind === 'ete') {
                         return (
-                          <tr key="nourr-ete" className="muted">
-                            <td><strong>Nourr - été</strong></td>
+                          <tr key="nourr-ete" className="muted"
+                            style={{ background: fondRessource('Nourr - été', C) }}>
+                            <td>
+                              <span className="dot-res" style={{ background: couleurRessource('Nourr - été', C) }} />
+                              <strong>Nourr - été</strong>
+                            </td>
                             {canaux.map(([label]) => {
                               const v = label === 'Aménagements' ? nEteAmJ
                                 : label === 'Autres' ? nEteAutJ : 0
@@ -800,8 +814,11 @@ export function PlayerView({ joueur }: { joueur: number }) {
                       }
                       const r = l.r
                       return (
-                        <tr key={r}>
-                          <td><strong>{r}</strong></td>
+                        <tr key={r} style={{ background: fondRessource(r, C) }}>
+                          <td>
+                            <span className="dot-res" style={{ background: couleurRessource(r, C) }} />
+                            <strong>{r}</strong>
+                          </td>
                           {canaux.map(([label, d]) => (
                             <td key={label} className={val(d, r) < 0 ? 'neg' : ''}>
                               {val(d, r) !== 0 ? fmtNum(val(d, r)) : '—'}
