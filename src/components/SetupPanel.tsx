@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════════════════════════════
-//  Création de partie : 8 joueurs (peuple, culture, régime, population
+//  Création de partie : 2 à 8 joueurs (peuple, culture, régime, population
 //  initiale, % mariages, villes), graine, mode local ou Supabase.
 //  Équivalent du formulaire frmInitPop du classeur.
 //  La connexion multijoueur se règle ENTIEREMENT ici, dans le navigateur :
@@ -32,6 +32,10 @@ export function SetupPanel() {
   const [seed, setSeed] = useState<number>(() => newSeed())
   const [mode, setMode] = useState<Mode>('local')
   const [salon, setSalon] = useState('chasse-peche')
+  // Nombre de joueurs de la nouvelle campagne (retour Thibaut
+  //  2026-10-14, marqueur (q)) : 2 à 8, défaut 8. Les lignes au-delà
+  //  restent dans `setups` et réapparaissent si on remonte le curseur.
+  const [nbJoueurs, setNbJoueurs] = useState(8)
 
   // ── Connexion Supabase (entièrement dans le navigateur) ──
   const creds = supabaseCreds()
@@ -72,7 +76,7 @@ export function SetupPanel() {
 
   return (
     <div className="stack">
-      <Card title="🌐 Jouer en ligne à 8, sans rien installer">
+      <Card title="🌐 Jouer en ligne, sans rien installer">
         <p className="muted small">
           Pour jouer chacun sur son écran, il faut un petit serveur de sauvegarde gratuit
           (Supabase). Tout se fait en un seul copier-coller, sans terminal :
@@ -114,12 +118,30 @@ export function SetupPanel() {
           </Button>
         </div>
         <p className="muted small">
-          Les 8 joueurs entrent le même code de salon : l'un crée la partie ci-dessous, les autres
+          Tous les joueurs entrent le même code de salon : l'un crée la partie ci-dessous, les autres
           cliquent « Rejoindre ». La partie se synchronise alors en temps réel.
         </p>
       </Card>
 
-      <Card title="Nouvelle campagne — 8 joueurs">
+      <Card title={`Nouvelle campagne — ${nbJoueurs} joueur(s)`}>
+        <div className="filters">
+          <label className="field" style={{ maxWidth: 220 }}>
+            <span className="field-label">Nombre de joueurs</span>
+            <Select
+              value={String(nbJoueurs)}
+              options={Array.from({ length: 7 }, (_, k) => ({
+                value: String(k + 2),
+                label: `${k + 2} joueurs`,
+              }))}
+              onChange={(v) => setNbJoueurs(parseInt(v, 10))}
+            />
+          </label>
+          <p className="muted small" style={{ margin: 0, alignSelf: 'flex-end' }}>
+            Le jeu est conçu pour 6 à 8 joueurs — les lignes de setup au-delà du
+            nombre choisi sont simplement ignorées (et réapparaissent si vous
+            augmentez le nombre).
+          </p>
+        </div>
         <div className="table-wrap">
           <table className="tbl small">
             <thead>
@@ -129,7 +151,7 @@ export function SetupPanel() {
               </tr>
             </thead>
             <tbody>
-              {setups.map((s, i) => (
+              {setups.slice(0, nbJoueurs).map((s, i) => (
                 <tr key={i}>
                   <td><strong>J{i + 1}</strong></td>
                   <td><TextInput value={s.nom} onChange={(v) => setLine(i, { nom: v })} /></td>
@@ -202,7 +224,7 @@ export function SetupPanel() {
         <Button
           tone="primary"
           disabled={mode === 'supabase' && !supabaseAvailable()}
-          onClick={() => newGame(setups, seed, mode, salon)}
+          onClick={() => newGame(setups.slice(0, nbJoueurs), seed, mode, salon)}
         >
           ▶ Créer la partie
         </Button>

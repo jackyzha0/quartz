@@ -27,7 +27,9 @@ export interface SetupLine {
 const DEFAULT_VILLES = ['Capitale']
 
 /**
- * Crée une partie complète à 8 joueurs à partir des paramètres de setup.
+ * Crée une partie complète à partir des paramètres de setup — UNE
+ * LIGNE PAR JOUEUR, le nombre de joueurs est donc LIBRE (retour
+ * Thibaut 2026-10-14, marqueur (q) : sélecteur 2-8 à la création).
  * La partie démarre avec la configuration commune (sinon : défauts du classeur).
  */
 export function createGame(setups: SetupLine[], seed: number, mode?: 'local' | 'supabase', config?: GameConfig): GameState {
@@ -48,11 +50,12 @@ export function createGame(setups: SetupLine[], seed: number, mode?: 'local' | '
     population: {},
     citesLibres: [],
     log: [
-      { turn: 1, type: 'Système', joueur: null, texte: `Partie créée (graine ${seed}, mode ${mode ?? 'local'}). Tour 1 = année 1.` },
+      { turn: 1, type: 'Système', joueur: null, texte: `Partie créée à ${setups.length} joueur(s) (graine ${seed}, mode ${mode ?? 'local'}). Tour 1 = année 1.` },
     ],
     history: [],
   }
-  for (let i = 0; i < 8; i++) {
+  // Nombre de joueurs = nombre de lignes de setup (marqueur (q)).
+  for (let i = 0; i < setups.length; i++) {
     const s = setups[i]
     const n = i + 1
     const player = makePlayer(n, s, C)

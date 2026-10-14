@@ -104,7 +104,9 @@ export default function App() {
     <div className="app">
       <header className="header">
         <h1>🐗 Chasse &amp; Pêche <span className="thin">— Légendes</span></h1>
-        <span className="muted small">8 joueurs · un tour = 2 ans</span>
+        <span className="muted small">
+          {state ? `${state.players.length} joueurs` : '2 à 8 joueurs'} · un tour = 2 ans
+        </span>
       </header>
 
       {state ? <TurnBar /> : <div className="banner-info">Créez une partie dans « ⚙ Nouvelle partie » pour commencer.</div>}
