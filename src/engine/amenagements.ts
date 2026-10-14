@@ -15,7 +15,7 @@ import type { City, Player, Saison } from './types'
 import type { GameConfig } from '../config/defaultConfig'
 import {
   amenagementsRefs, constructionRef, coutConstructionRef, effetsConstructionRef,
-  eteSeulementRef, parseCoutTexte, reductionCampDeBatisseurs,
+  effetsEteConstructionRef, eteSeulementRef, parseCoutTexte, reductionCampDeBatisseurs,
 } from './constructions'
 
 // ── Définitions exposées à l'interface ─────────────────────────────────
@@ -43,7 +43,7 @@ export function amenagementsDefs(cfg?: GameConfig): AmenagementDef[] {
     nom: ref.nom,
     terrain: ref.terrain ?? '—',
     effet: ref.description,
-    effets: effetsConstructionRef(ref),
+    effets: { ...effetsConstructionRef(ref), ...effetsEteConstructionRef(ref) },
     eteSeulement: eteSeulementRef(ref),
   }))
 }
@@ -86,7 +86,15 @@ export function effetsTourAmenagement(nom: string, saison: Saison, cfg?: GameCon
   const ref = amenagementRef(nom, cfg)
   if (!ref) return {}
   if (eteSeulementRef(ref) && saison !== 'Été') return {}
-  return effetsConstructionRef(ref)
+  // Effets structurés (marqueur (s)) : flux hors été + production d'été
+  // du canal « Nourr - été » quand c'est la saison d'Été.
+  const out = { ...effetsConstructionRef(ref) }
+  if (saison === 'Été') {
+    for (const [res, v] of Object.entries(effetsEteConstructionRef(ref))) {
+      out[res] = (out[res] ?? 0) + v
+    }
+  }
+  return out
 }
 
 /** Effets par tour des aménagements d'une ville, HORS production d'été :
@@ -115,8 +123,8 @@ export function effetsNourrEteAmenagementsVille(ville: City, cfg?: GameConfig): 
   const out: Record<string, number> = {}
   for (const nom of ville.amenagements ?? []) {
     const ref = amenagementRef(nom, cfg)
-    if (!ref || !eteSeulementRef(ref)) continue
-    for (const [res, v] of Object.entries(effetsConstructionRef(ref))) {
+    if (!ref) continue
+    for (const [res, v] of Object.entries(effetsEteConstructionRef(ref))) {
       out[res] = (out[res] ?? 0) + v
     }
   }

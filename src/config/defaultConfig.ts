@@ -123,6 +123,21 @@ export interface AmenagementRef { amenagement: string; type: string; rang: strin
 /** Table canonique des constructions (feuille « Ville » du classeur 7.19) :
  *  coût EXACT, production EXACTE (analysable par le moteur) et description
  *  EXACTE du classeur — parfois similaires. */
+/** Effet structuré d'une construction (retour Thibaut, marqueur (s)) :
+ *  une CASE RESSOURCE + une CASE QUANTITÉ, plus de texte à analyser.
+ *  · ressource de flux (Or, Nourriture…) → crédité à chaque fin de tour ;
+ *  · quantité négative → consommation par tour ;
+ *  · ete: true → production d'ÉTÉ uniquement (Champ, Rizière — canal
+ *    « Nourr - été ») ;
+ *  · Tourisme et Garnison sont des ressources INSTANTANÉES : jamais de
+ *    flux par tour — Tourisme crédité UNE fois à la construction,
+ *    Garnison = valeur d'état tant que le bâtiment tient. */
+export interface EffetConstruction {
+  ressource: string
+  quantite: number
+  ete?: boolean
+}
+
 export interface ConstructionRef {
   categorie: string   // 'Bâtiment' | 'Aménagement'
   groupe: string      // 'Ville' | 'Château' | 'Capitale' | 'Terrain'
@@ -136,6 +151,9 @@ export interface ConstructionRef {
   cout: string
   production: string
   description: string
+  /** Effets STRUCTURÉS (marqueur (s)) — source du moteur quand présents ;
+   *  sinon repli sur l'analyse du texte exact (anciennes configs). */
+  effets?: EffetConstruction[]
 }
 /** Effet AUTOMATIQUE d'une technologie de progrès (paramétrable dans
  *  Référentiels → Progrès, champ « effets » de chaque tech) :

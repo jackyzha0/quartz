@@ -15,10 +15,16 @@ import { cfgOf, cloneDefaultConfig } from '../config/defaultConfig'
 import type { GameConfig } from '../config/defaultConfig'
 import { PARAM_META, PARAM_STRINGS_META } from '../config/params'
 import { Card, NumberInput, TextInput, Button, Badge } from './ui'
+import {
+  BatimentsParams, AmenagementsParams, ProgresParams, PaysRangsParams,
+  HabitationsParams, MinisteresParams, CouleursParams,
+} from './ConfigTables'
 
 const ONGLETS = [
-  'Formules', 'Titres', 'Traits', 'Cultures', 'Régimes', 'Événements',
-  'Effets évts', 'Dynasties', 'Cartes', 'Offrandes',
+  'Formules', 'Titres', 'Traits', 'Cultures', 'Régimes',
+  'Bâtiments', 'Aménagements', 'Progrès', 'Pays & rangs', 'Habitations',
+  'Ministères', 'Couleurs',
+  'Événements', 'Effets évts', 'Dynasties', 'Cartes', 'Offrandes',
   'Probabilités', 'Peuples & noms', 'Ressources', 'JSON',
 ] as const
 
@@ -204,6 +210,20 @@ export function ParamsPanel() {
           </div>
         </Card>
       )}
+
+      {onglet === 'Bâtiments' && <BatimentsParams config={config} setCfg={setCfg} />}
+
+      {onglet === 'Aménagements' && <AmenagementsParams config={config} setCfg={setCfg} />}
+
+      {onglet === 'Progrès' && <ProgresParams config={config} setCfg={setCfg} />}
+
+      {onglet === 'Pays & rangs' && <PaysRangsParams config={config} setCfg={setCfg} />}
+
+      {onglet === 'Habitations' && <HabitationsParams config={config} setCfg={setCfg} />}
+
+      {onglet === 'Ministères' && <MinisteresParams config={config} setCfg={setCfg} />}
+
+      {onglet === 'Couleurs' && <CouleursParams config={config} setCfg={setCfg} />}
 
       {onglet === 'Événements' && (
         <Card title="Événements de saison (été/hiver) — textes des 4 niveaux de danger">

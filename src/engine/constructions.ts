@@ -11,9 +11,9 @@
 //  Découpage SOLID du moteur : un module = une responsabilité de domaine.
 // ══════════════════════════════════════════════════════════════════════
 
-import { DEFAULT_CONFIG, type GameConfig, type ConstructionRef } from '../config/defaultConfig'
+import { DEFAULT_CONFIG, type GameConfig, type ConstructionRef, type EffetConstruction } from '../config/defaultConfig'
 
-export type { ConstructionRef }
+export type { ConstructionRef, EffetConstruction }
 
 // ── Types ───────────────────────────────────────────────────────────────
 
@@ -135,20 +135,107 @@ export function coutBatimentRef(nom: string, cfg?: GameConfig, groupe?: string):
   return ref ? coutConstructionRef(ref) : {}
 }
 
-/** Effets par tour d'une construction (texte de production exact analysé). */
-export function effetsConstructionRef(ref: ConstructionRef): Record<string, number> {
-  return parseProductionTexte(ref.nom, ref.production)
+// ── Effets STRUCTURÉS (marqueur (s)) : case RESSOURCE + case QUANTITÉ ──
+// Retour Thibaut : plus de texte à analyser — chaque construction porte
+// ses effets en tableau structuré `effets` (paramétrable dans l'onglet
+// 🎛 Paramètres). Tourisme et Garnison sont des ressources INSTANTANÉES :
+// le Tourisme est crédité UNE FOIS à la construction, la Garnison est une
+// valeur d'état — jamais des flux par tour. Le repli texte ci-dessus reste
+// utilisé pour les configs sans `effets` (anciennes sauvegardes).
+
+/** Ressources instantanées : jamais créditées comme flux par tour. */
+const RESSOURCES_INSTANTANEES = new Set(['Tourisme', 'Garnison'])
+
+/** Effets structurés d'une construction — tableau `effets` prioritaire,
+ *  repli sur l'analyse du texte de production (comportement historique). */
+export function effetsConstructionEntries(ref: ConstructionRef): EffetConstruction[] {
+  if (ref.effets) return ref.effets
+  const ete = eteSeulementRef(ref)
+  return Object.entries(parseProductionTexte(ref.nom, ref.production))
+    .map(([ressource, quantite]) => ({ ressource, quantite, ...(ete ? { ete: true } : {}) }))
 }
 
-/** Une construction ne produit qu'en Été ? (« … par tour en été. ») */
+/** Effets par tour FLUX d'une construction : hors production d'ÉTÉ (canal
+ *  « Nourr - été ») et hors ressources instantanées (Tourisme/Garnison). */
+export function effetsConstructionRef(ref: ConstructionRef): Record<string, number> {
+  if (!ref.effets) return eteSeulementRef(ref) ? {} : parseProductionTexte(ref.nom, ref.production)
+  const out: Record<string, number> = {}
+  for (const e of ref.effets) {
+    if (e.ete || RESSOURCES_INSTANTANEES.has(e.ressource)) continue
+    out[e.ressource] = (out[e.ressource] ?? 0) + e.quantite
+  }
+  return out
+}
+
+/** Production d'ÉTÉ d'une construction (canal « Nourr - été » : Champ,
+ *  Rizière) — effets marqués « été ». */
+export function effetsEteConstructionRef(ref: ConstructionRef): Record<string, number> {
+  if (!ref.effets) return eteSeulementRef(ref) ? parseProductionTexte(ref.nom, ref.production) : {}
+  const out: Record<string, number> = {}
+  for (const e of ref.effets) {
+    if (!e.ete || RESSOURCES_INSTANTANEES.has(e.ressource)) continue
+    out[e.ressource] = (out[e.ressource] ?? 0) + e.quantite
+  }
+  return out
+}
+
+/** Ressources INSTANTANÉES d'une construction : Tourisme (crédité une
+ *  fois à la construction) et Garnison (valeur d'état tant qu'elle tient). */
+export function instantanesConstructionRef(ref: ConstructionRef): Record<string, number> {
+  const out: Record<string, number> = {}
+  if (ref.effets) {
+    for (const e of ref.effets) {
+      if (!RESSOURCES_INSTANTANEES.has(e.ressource)) continue
+      out[e.ressource] = (out[e.ressource] ?? 0) + e.quantite
+    }
+    return out
+  }
+  const texte = [ref.description, ref.production].filter(Boolean).join(' ')
+  const mT = texte.match(/Tourisme\s*\+?\s*(\d+(?:[.,]\d+)?)/i)
+    ?? texte.match(/\+\s*(\d+(?:[.,]\d+)?)\s*Tourisme/i)
+  if (mT) out.Tourisme = parseFloat(mT[1].replace(',', '.'))
+  const mG = ref.description.match(/Garnison\s*\+?\s*(\d+)/i)
+  if (mG) out.Garnison = parseInt(mG[1], 10)
+  return out
+}
+
+/** Une construction ne produit-t-elle qu'en Été ? */
 export function eteSeulementRef(ref: ConstructionRef): boolean {
+  if (ref.effets) {
+    return ref.effets.length > 0
+      && ref.effets.some((e) => e.ete)
+      && ref.effets.every((e) => e.ete || RESSOURCES_INSTANTANEES.has(e.ressource))
+  }
   return /en\s+été/i.test(ref.production)
 }
 
 /** Garnison statique accordée par une construction (valeur d'état, pas un flux). */
 export function garnisonConstructionRef(ref: ConstructionRef): number {
+  if (ref.effets) {
+    return ref.effets.filter((e) => e.ressource === 'Garnison').reduce((s, e) => s + e.quantite, 0)
+  }
   const m = ref.description.match(/Garnison\s*\+?\s*(\d+)/i)
   return m ? parseInt(m[1], 10) : 0
+}
+
+/** Résumé affichable des effets d'une construction (badges page Pays et
+ *  wiki Référentiels) : « +2 Or / tour · été : +10 Nourriture · +5
+ *  Tourisme (à la construction) · Garnison +40 ». */
+export function resumeConstruction(ref: ConstructionRef | undefined): string {
+  if (!ref) return ''
+  const parts: string[] = []
+  const flux = Object.entries(effetsConstructionRef(ref))
+  if (flux.length > 0) {
+    parts.push(flux.map(([r, v]) => `${v > 0 ? '+' : ''}${v} ${r}`).join(', ') + ' / tour')
+  }
+  const ete = Object.entries(effetsEteConstructionRef(ref))
+  if (ete.length > 0) {
+    parts.push('été : ' + ete.map(([r, v]) => `${v > 0 ? '+' : ''}${v} ${r}`).join(', '))
+  }
+  const inst = instantanesConstructionRef(ref)
+  if (inst.Tourisme) parts.push(`+${inst.Tourisme} Tourisme (à la construction)`)
+  if (inst.Garnison) parts.push(`Garnison +${inst.Garnison}`)
+  return parts.join(' · ')
 }
 
 /** Réduction de coût des aménagements accordée par le Camp de bâtisseurs

@@ -304,8 +304,10 @@ export {
 export {
   constructionsRefs, constructionRef, amenagementsRefs, batimentsRefs,
   parseCoutTexte, parseProductionTexte, coutBatimentRef, coutConstructionRef,
-  effetsConstructionRef, eteSeulementRef, garnisonConstructionRef,
-  reductionCampDeBatisseurs, type ConstructionRef,
+  effetsConstructionRef, effetsConstructionEntries, effetsEteConstructionRef,
+  instantanesConstructionRef, eteSeulementRef, garnisonConstructionRef,
+  resumeConstruction, reductionCampDeBatisseurs, type ConstructionRef,
+  type EffetConstruction,
 } from './constructions'
 export {
   effetAutreLigne, effetsAutresVille, effetsNourrEteAutresVille, estNourrEte,

@@ -46,7 +46,7 @@ import {
   coutAmenagement, constructionRef,
   productionDetaillee, detailGainsVille, parseCoutTexte,
   garnisonHabitationVille, nomRang, typeVille, habitationDef,
-  rangsDisponibles, consommationsVille, tourismeStatiqueBatiment,
+  rangsDisponibles, consommationsVille, tourismeStatiqueBatiment, resumeConstruction,
   detailCulturePays, productionVille, provenancesApports,
   attraitTouristiqueVille, attraitMaxMonde,
   capitaleDe, batimentsFaction, batimentsCapitale,
@@ -468,7 +468,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                         >×</button>
                       </span>
                       <span className="muted small" title={ref?.description ?? ''}>
-                        {ref ? `${ref.production || '—'}${ref.terrain ? ` (${ref.terrain})` : ''}` : '—'}
+                        {ref ? `${resumeConstruction(ref) || ref.production || '—'}${ref.terrain ? ` (${ref.terrain})` : ''}` : '—'}
                       </span>
                     </div>
                   )
@@ -498,8 +498,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   // gris-bleu pour les bâtiments sans famille.
                   const clFam = FAM_BADGES[ref?.famille ?? ''] ?? 'badge-info'
                   const resume = [
-                    ref?.production || '',
-                    garnison > 0 ? `Garnison +${garnison}` : '',
+                    resumeConstruction(ref) || ref?.production || '',
+                    // Garnison déjà incluse dans le résumé structuré ; repli :
+                    !ref?.effets && garnison > 0 ? `Garnison +${garnison}` : '',
                     !ref && Object.keys(effets).length > 0 ? fmtEffets(effets, C) : '',
                   ].filter(Boolean).join(' · ')
                   return (

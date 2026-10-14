@@ -121,7 +121,7 @@ const CACHE = new Map<string, Record<string, number>>()
 export function effetsTourBatiment(nom: string, C: Cfg): Record<string, number> {
   const ref = constructionRef(nom, C.config)
   const bd = buildingDef(nom, C.config)
-  const cle = `${nom}|${ref?.production ?? ''}|${bd?.effet ?? ''}`
+  const cle = `${nom}|${ref?.production ?? ''}|${bd?.effet ?? ''}|${JSON.stringify(ref?.effets ?? null)}`
   const cache = CACHE.get(cle)
   if (cache) return cache
   let out: Record<string, number>
@@ -160,6 +160,11 @@ export function garnisonBatiment(nom: string, C: Cfg): number {
  *  +35 »…), pas un flux par tour. Utilisé par construire() (page Pays). */
 export function tourismeStatiqueBatiment(nom: string, C: Cfg): number {
   const ref = constructionRef(nom, C.config)
+  // Effets STRUCTURÉS (marqueur (s)) : le Tourisme est une case à part
+  // entière, créditée UNE FOIS à la construction — jamais un flux / tour.
+  if (ref?.effets) {
+    return ref.effets.filter((e) => e.ressource === 'Tourisme').reduce((s, e) => s + e.quantite, 0)
+  }
   const bd = buildingDef(nom, C.config)
   const texte = [ref?.description, ref?.production, bd?.effet].filter(Boolean).join(' ')
   // Deux formes du classeur : « Tourisme +35 » ET « +5 Tourisme par

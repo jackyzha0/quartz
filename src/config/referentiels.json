@@ -5735,7 +5735,8 @@
       "nom": "Poste de garde",
       "cout": "25 Or + 4 Fer",
       "production": "Consomme 10 Nourriture par tour.",
-      "description": "Consomme 10 Nourritures par tour.\nGarnison +40."
+      "description": "Consomme 10 Nourritures par tour.\nGarnison +40.",
+      "effets": [{"ressource": "Nourriture", "quantite": -10}, {"ressource": "Garnison", "quantite": 40}]
     },
     {
       "categorie": "Bâtiment",
@@ -5753,7 +5754,8 @@
       "nom": "Camp de bûcheron",
       "cout": "5 Or + 1 Bétail",
       "production": "+1 Bois par tour.",
-      "description": "+1 Bois par tour."
+      "description": "+1 Bois par tour.",
+      "effets": [{"ressource": "Bois", "quantite": 1}]
     },
     {
       "categorie": "Bâtiment",
@@ -5762,7 +5764,8 @@
       "nom": "Camp de mineur",
       "cout": "5 Or + 1 Charbon",
       "production": "+1 Pierre par tour.",
-      "description": "+1 Pierre par tour."
+      "description": "+1 Pierre par tour.",
+      "effets": [{"ressource": "Pierre", "quantite": 1}]
     },
     {
       "categorie": "Bâtiment",
@@ -5771,7 +5774,8 @@
       "nom": "Echoppe",
       "cout": "10 Or + 3 Bois",
       "production": "+2 Or par tour.",
-      "description": "+ 2 Or par tour. Permet d'entretenir 1 route commerciale supplémentaire."
+      "description": "+ 2 Or par tour. Permet d'entretenir 1 route commerciale supplémentaire.",
+      "effets": [{"ressource": "Or", "quantite": 2}]
     },
     {
       "categorie": "Bâtiment",
@@ -5780,7 +5784,8 @@
       "nom": "Grange",
       "cout": "10 Or + 3 Bétail + 3 Bois",
       "production": "+15 Nourriture par tour.",
-      "description": "+ 15 Nourriture par tour."
+      "description": "+ 15 Nourriture par tour.",
+      "effets": [{"ressource": "Nourriture", "quantite": 15}]
     },
     {
       "categorie": "Bâtiment",
@@ -5807,7 +5812,8 @@
       "nom": "Caserne",
       "cout": "Poste de garde requis. 25 Or + 4 Fer.",
       "production": "Consomme 10 Nourriture par tour.",
-      "description": "Consomme 10 Nourritures par tour.\nGarnison +40."
+      "description": "Consomme 10 Nourritures par tour.\nGarnison +40.",
+      "effets": [{"ressource": "Nourriture", "quantite": -10}, {"ressource": "Garnison", "quantite": 40}]
     },
     {
       "categorie": "Bâtiment",
@@ -5843,7 +5849,8 @@
       "nom": "Camp de travailleurs",
       "cout": "10 Or + 4 Pierre",
       "production": "+1 Bois et +1 Pierre par tour.",
-      "description": "Remplace le Camp de bûcherons ou de mineurs.\n+1 Bois et +1 Pierre par tour."
+      "description": "Remplace le Camp de bûcherons ou de mineurs.\n+1 Bois et +1 Pierre par tour.",
+      "effets": [{"ressource": "Bois", "quantite": 1}, {"ressource": "Pierre", "quantite": 1}]
     },
     {
       "categorie": "Bâtiment",
@@ -5861,7 +5868,8 @@
       "nom": "Moulin à vent",
       "cout": "Silo à grain requis. 15 Or + 4 Bois + 4 Bétail.",
       "production": "Consomme 1 Charbon par tour. +45 Nourriture par tour.",
-      "description": "Remplace le Silo à grain. Consomme 1 Charbon par tour.\n+ 45 Nourriture par tour.\nCette cité ne peut être améliorée en Grande Cité."
+      "description": "Remplace le Silo à grain. Consomme 1 Charbon par tour.\n+ 45 Nourriture par tour.\nCette cité ne peut être améliorée en Grande Cité.",
+      "effets": [{"ressource": "Charbon", "quantite": -1}, {"ressource": "Nourriture", "quantite": 45}]
     },
     {
       "categorie": "Bâtiment",
@@ -5879,7 +5887,8 @@
       "nom": "Place du marché",
       "cout": "Echoppe requise. 20 Or + 6 Soie.",
       "production": "+4 Or par tour.",
-      "description": "+4 Or par tour. Les marchands en provenance de cette ville produisent +1 ressource."
+      "description": "+4 Or par tour. Les marchands en provenance de cette ville produisent +1 ressource.",
+      "effets": [{"ressource": "Or", "quantite": 4}]
     },
     {
       "categorie": "Bâtiment",
@@ -5906,7 +5915,8 @@
       "nom": "Silo à grain",
       "cout": "20 Or + 8 Bois.",
       "production": "+25 Nourriture par tour.",
-      "description": "Remplace la Grange.\n+ 25 Nourriture par tour."
+      "description": "Remplace la Grange.\n+ 25 Nourriture par tour.",
+      "effets": [{"ressource": "Nourriture", "quantite": 25}]
     },
     {
       "categorie": "Bâtiment",
@@ -5915,7 +5925,8 @@
       "nom": "Guilde des artisans de la terre.",
       "cout": "40 Or + 16 Bois + 6 Bétails",
       "production": "Consomme 1 Charbon par tour. +45 Nourriture par tour.",
-      "description": "Remplace le moulin à vent. Consomme 1 Charbon par tour. + 45 Nourriture par tour et réduit de 10 la consommation en nourriture de toutes vos Habitations. Cette cité ne peut être améliorée en Grande Cité."
+      "description": "Remplace le moulin à vent. Consomme 1 Charbon par tour. + 45 Nourriture par tour et réduit de 10 la consommation en nourriture de toutes vos Habitations. Cette cité ne peut être améliorée en Grande Cité.",
+      "effets": [{"ressource": "Charbon", "quantite": -1}, {"ressource": "Nourriture", "quantite": 45}]
     },
     {
       "categorie": "Bâtiment",
@@ -5924,7 +5935,8 @@
       "nom": "Barraquements",
       "cout": "Caserne requise. 25 Or + 4 Fer.",
       "production": "Consomme 10 Nourriture par tour.",
-      "description": "Consomme 10 Nourritures par tour.\nGarnison +40."
+      "description": "Consomme 10 Nourritures par tour.\nGarnison +40.",
+      "effets": [{"ressource": "Nourriture", "quantite": -10}, {"ressource": "Garnison", "quantite": 40}]
     },
     {
       "categorie": "Bâtiment",
@@ -5942,7 +5954,8 @@
       "nom": "Complexe d'exploitation maritime",
       "cout": "Ressource maritime aménagée requise. 35 Or + 6 Fer.",
       "production": "+12 Or par tour.",
-      "description": "+12 Or par tour."
+      "description": "+12 Or par tour.",
+      "effets": [{"ressource": "Or", "quantite": 12}]
     },
     {
       "categorie": "Bâtiment",
@@ -5951,7 +5964,8 @@
       "nom": "Complexe d'exploitation terrestre",
       "cout": "Camp de travailleurs requis. 20 Or + 6 Fer + 8 Charbon",
       "production": "+1 Bois, +1 Pierre, +1 Fer, +1 Soie, +1 Charbon par tour.",
-      "description": "+1 Bois, +1 Pierre, +1 Fer, +1 Soie, +1 Charbon par tour."
+      "description": "+1 Bois, +1 Pierre, +1 Fer, +1 Soie, +1 Charbon par tour.",
+      "effets": [{"ressource": "Bois", "quantite": 1}, {"ressource": "Pierre", "quantite": 1}, {"ressource": "Fer", "quantite": 1}, {"ressource": "Soie", "quantite": 1}, {"ressource": "Charbon", "quantite": 1}]
     },
     {
       "categorie": "Bâtiment",
@@ -5960,7 +5974,8 @@
       "nom": "Plateforme commerciale",
       "cout": "Place du marché requise. 40 Or + 12 Bois + 4 Soie.",
       "production": "+4 Or par tour.",
-      "description": "Octroi un marchand. Les marchands en provenance de cette ville produisent +4 Or par tour."
+      "description": "Octroi un marchand. Les marchands en provenance de cette ville produisent +4 Or par tour.",
+      "effets": [{"ressource": "Or", "quantite": 4}]
     },
     {
       "categorie": "Bâtiment",
@@ -5987,7 +6002,8 @@
       "nom": "Guilde des marchands",
       "cout": "Plateforme commerciale requise. 30 Or + 8 Charbon + 8 Soie.",
       "production": "Consomme 1 Charbon par tour.",
-      "description": "Remplace la plateforme commerciale. Consomme 1 Charbon par tour. Octroi un marchand supplémentaire. Les marchands en provenance de cette ville produisent +1 Or par case traversée. La portée de vos routes commerciale est augmentée de 6 cases."
+      "description": "Remplace la plateforme commerciale. Consomme 1 Charbon par tour. Octroi un marchand supplémentaire. Les marchands en provenance de cette ville produisent +1 Or par case traversée. La portée de vos routes commerciale est augmentée de 6 cases.",
+      "effets": [{"ressource": "Charbon", "quantite": -1}]
     },
     {
       "categorie": "Bâtiment",
@@ -5996,7 +6012,8 @@
       "nom": "Guilde des marins",
       "cout": "Complexe d'exploitation maritime requis. 50 Or + 4 Fer + 6 Charbon.",
       "production": "Consomme 1 Charbon par tour. +18 Or par tour.",
-      "description": "Remplace le Complexe d'exploitation maritime. Consomme 1 Charbon par tour.\n+ 18 Or par tour.\nToutes vos bâteaux possèdent +2 PM."
+      "description": "Remplace le Complexe d'exploitation maritime. Consomme 1 Charbon par tour.\n+ 18 Or par tour.\nToutes vos bâteaux possèdent +2 PM.",
+      "effets": [{"ressource": "Charbon", "quantite": -1}, {"ressource": "Or", "quantite": 18}]
     },
     {
       "categorie": "Bâtiment",
@@ -6005,7 +6022,8 @@
       "nom": "Poste de garde",
       "cout": "25 Or + 4 Fer",
       "production": "Consomme 10 Nourriture par tour.",
-      "description": "Consomme 10 Nourritures par tour.\nGarnison +40."
+      "description": "Consomme 10 Nourritures par tour.\nGarnison +40.",
+      "effets": [{"ressource": "Nourriture", "quantite": -10}, {"ressource": "Garnison", "quantite": 40}]
     },
     {
       "categorie": "Bâtiment",
@@ -6023,7 +6041,8 @@
       "nom": "Camp de bûcheron",
       "cout": "5 Or + 1 Bétail",
       "production": "+1 Bois par tour.",
-      "description": "+1 Bois par tour."
+      "description": "+1 Bois par tour.",
+      "effets": [{"ressource": "Bois", "quantite": 1}]
     },
     {
       "categorie": "Bâtiment",
@@ -6032,7 +6051,8 @@
       "nom": "Camp de mineur",
       "cout": "5 Or + 1 Charbon",
       "production": "+1 Pierre par tour.",
-      "description": "+1 Pierre par tour."
+      "description": "+1 Pierre par tour.",
+      "effets": [{"ressource": "Pierre", "quantite": 1}]
     },
     {
       "categorie": "Bâtiment",
@@ -6050,7 +6070,8 @@
       "nom": "Conjuratoire",
       "cout": "10 Or + 2 Pierre",
       "production": "+15 Tourisme par tour.",
-      "description": "Tourisme +15."
+      "description": "Tourisme +15.",
+      "effets": [{"ressource": "Tourisme", "quantite": 15}]
     },
     {
       "categorie": "Bâtiment",
@@ -6059,7 +6080,8 @@
       "nom": "Ecole élémentaire",
       "cout": "10 Or + 2 Bétail",
       "production": "Consomme 1 Or par tour.",
-      "description": "Consomme 1 Or par tour, peut accueillir 1 Professeur. Coût des Progrès -1 Science."
+      "description": "Consomme 1 Or par tour, peut accueillir 1 Professeur. Coût des Progrès -1 Science.",
+      "effets": [{"ressource": "Or", "quantite": -1}]
     },
     {
       "categorie": "Bâtiment",
@@ -6068,7 +6090,8 @@
       "nom": "Echoppe",
       "cout": "12 Or + 2 Bois",
       "production": "+2 Or par tour.",
-      "description": "+ 2 Or par tour. Permet d'entretenir 1 route commerciale supplémentaire."
+      "description": "+ 2 Or par tour. Permet d'entretenir 1 route commerciale supplémentaire.",
+      "effets": [{"ressource": "Or", "quantite": 2}]
     },
     {
       "categorie": "Bâtiment",
@@ -6095,7 +6118,8 @@
       "nom": "Caserne",
       "cout": "Poste de garde requis. 25 Or + 4 Fer.",
       "production": "Consomme 10 Nourriture par tour.",
-      "description": "Consomme 10 Nourritures par tour.\nGarnison +40."
+      "description": "Consomme 10 Nourritures par tour.\nGarnison +40.",
+      "effets": [{"ressource": "Nourriture", "quantite": -10}, {"ressource": "Garnison", "quantite": 40}]
     },
     {
       "categorie": "Bâtiment",
@@ -6131,7 +6155,8 @@
       "nom": "Cabinet d'astronomie",
       "cout": "5 Or + 4 Pierre + 2 Soie",
       "production": "+1 Science par tour.",
-      "description": "+1 Science par tour."
+      "description": "+1 Science par tour.",
+      "effets": [{"ressource": "Science", "quantite": 1}]
     },
     {
       "categorie": "Bâtiment",
@@ -6140,7 +6165,8 @@
       "nom": "Chapelle",
       "cout": "Conjuratoire requis. 10 Or + 8 Pierre",
       "production": "+35 Tourisme par tour.",
-      "description": "Tourisme +35."
+      "description": "Tourisme +35.",
+      "effets": [{"ressource": "Tourisme", "quantite": 35}]
     },
     {
       "categorie": "Bâtiment",
@@ -6149,7 +6175,8 @@
       "nom": "Ecole intermédiaire",
       "cout": "16 Or + 6 Pierre",
       "production": "Consomme 3 Or par tour.",
-      "description": "Remplace l'école élémentaire. Consomme 3 Or par tour, peut accueillir 2 Professeurs. Coût des Progrès -2 Science."
+      "description": "Remplace l'école élémentaire. Consomme 3 Or par tour, peut accueillir 2 Professeurs. Coût des Progrès -2 Science.",
+      "effets": [{"ressource": "Or", "quantite": -3}]
     },
     {
       "categorie": "Bâtiment",
@@ -6176,7 +6203,8 @@
       "nom": "Guilde des explorateurs",
       "cout": "Ecole militaire et responsable des voiries requis. 60 Or + 6 Pierre + 12 Soie.",
       "production": "Consomme 1 Charbon par tour.",
-      "description": "Consomme 1 Charbon par tour. Vos armées possèdent +1 PM. Coût de levée d'armée -20 Or."
+      "description": "Consomme 1 Charbon par tour. Vos armées possèdent +1 PM. Coût de levée d'armée -20 Or.",
+      "effets": [{"ressource": "Charbon", "quantite": -1}]
     },
     {
       "categorie": "Bâtiment",
@@ -6185,7 +6213,8 @@
       "nom": "Barraquements",
       "cout": "Caserne requise. 25 Or + 4 Fer.",
       "production": "Consomme 10 Nourriture par tour.",
-      "description": "Consomme 10 Nourritures par tour.\nGarnison +40."
+      "description": "Consomme 10 Nourritures par tour.\nGarnison +40.",
+      "effets": [{"ressource": "Nourriture", "quantite": -10}, {"ressource": "Garnison", "quantite": 40}]
     },
     {
       "categorie": "Bâtiment",
@@ -6203,7 +6232,8 @@
       "nom": "Commanderie",
       "cout": "Chapelle requise. 40 Or + 12 Pierre + 6 Fer.",
       "production": "+50 Tourisme par tour.",
-      "description": "Tourisme +50."
+      "description": "Tourisme +50.",
+      "effets": [{"ressource": "Tourisme", "quantite": 50}]
     },
     {
       "categorie": "Bâtiment",
@@ -6212,7 +6242,8 @@
       "nom": "Ecole supérieure",
       "cout": "Ecole intermédiaire requise. 20 Or + 10 Pierre + 4 Soie.",
       "production": "Consomme 6 Or par tour.",
-      "description": "Remplace l'école élémentaire. Consomme 6 Or par tour, peut accueillir 3 Professeurs. Coût des Progrès -4 Science."
+      "description": "Remplace l'école élémentaire. Consomme 6 Or par tour, peut accueillir 3 Professeurs. Coût des Progrès -4 Science.",
+      "effets": [{"ressource": "Or", "quantite": -6}]
     },
     {
       "categorie": "Bâtiment",
@@ -6221,7 +6252,8 @@
       "nom": "Institut de recherche",
       "cout": "Cabinet d'astronomie requis. 20 Or + 6 Pierre + 8 Soie",
       "production": "+3 Science par tour.",
-      "description": "+3 Science par tour."
+      "description": "+3 Science par tour.",
+      "effets": [{"ressource": "Science", "quantite": 3}]
     },
     {
       "categorie": "Bâtiment",
@@ -6239,7 +6271,8 @@
       "nom": "Guilde des diplomates",
       "cout": "Ecole supérieure requise. 120 Or + 12 Pierre.",
       "production": "Consomme 1 Charbon par tour.",
-      "description": "Remplace l'école supérieure. Consomme 1 Charbon par tour. Peut accueillir 4 Professeurs. Coût des Progrès -4 Science. Lorsque ce bâtiment est construit, générez 40 Influence avec la cité libre de votre choix."
+      "description": "Remplace l'école supérieure. Consomme 1 Charbon par tour. Peut accueillir 4 Professeurs. Coût des Progrès -4 Science. Lorsque ce bâtiment est construit, générez 40 Influence avec la cité libre de votre choix.",
+      "effets": [{"ressource": "Charbon", "quantite": -1}]
     },
     {
       "categorie": "Bâtiment",
@@ -6248,7 +6281,8 @@
       "nom": "Guilde des évangiles",
       "cout": "Commanderie requise. 60 Or + 12 Fer.",
       "production": "Consomme 1 Charbon par tour. +70 Tourisme par tour.",
-      "description": "Remplace le conjuratoire. Consomme 1 Charbon par tour. Tourisme +70. Vos propagandistes poddèdent une charge supplémentaire."
+      "description": "Remplace le conjuratoire. Consomme 1 Charbon par tour. Tourisme +70. Vos propagandistes poddèdent une charge supplémentaire.",
+      "effets": [{"ressource": "Charbon", "quantite": -1}, {"ressource": "Tourisme", "quantite": 70}]
     },
     {
       "categorie": "Bâtiment",
@@ -6257,7 +6291,8 @@
       "nom": "Guilde des savants",
       "cout": "Institut de recherche requis. 50 Or + 6 Charbon + 8 Soie",
       "production": "Consomme 1 Charbon par tour. +6 Science par tour.",
-      "description": "Remplace l'institut de recherche. Consomme 1 Charbon par tour.\n+6 Science par tour.\nGagnez 20 Science lors de sa construction."
+      "description": "Remplace l'institut de recherche. Consomme 1 Charbon par tour.\n+6 Science par tour.\nGagnez 20 Science lors de sa construction.",
+      "effets": [{"ressource": "Charbon", "quantite": -1}, {"ressource": "Science", "quantite": 6}]
     },
     {
       "categorie": "Bâtiment",
@@ -6266,7 +6301,8 @@
       "nom": "Banque centrale",
       "cout": "12 Or + 6 Bois",
       "production": "+8 Or par tour.",
-      "description": "+8 Or par tour."
+      "description": "+8 Or par tour.",
+      "effets": [{"ressource": "Or", "quantite": 8}]
     },
     {
       "categorie": "Bâtiment",
@@ -6275,7 +6311,8 @@
       "nom": "Grande caserne",
       "cout": "12 Or + 6 Bois",
       "production": "",
-      "description": "Garnison +40. Coût de Levée -8 Or."
+      "description": "Garnison +40. Coût de Levée -8 Or.",
+      "effets": [{"ressource": "Garnison", "quantite": 40}]
     },
     {
       "categorie": "Bâtiment",
@@ -6284,7 +6321,8 @@
       "nom": "Hôtel de tourisme",
       "cout": "12 Or + 6 Bois",
       "production": "+12 Tourisme par tour.",
-      "description": "Tourisme +12."
+      "description": "Tourisme +12.",
+      "effets": [{"ressource": "Tourisme", "quantite": 12}]
     },
     {
       "categorie": "Bâtiment",
@@ -6293,7 +6331,8 @@
       "nom": "Jardin intérieur",
       "cout": "12 Or + 6 Bois",
       "production": "+14 Nourriture par tour.",
-      "description": "+14 Nourriture par tour."
+      "description": "+14 Nourriture par tour.",
+      "effets": [{"ressource": "Nourriture", "quantite": 14}]
     },
     {
       "categorie": "Bâtiment",
@@ -6302,7 +6341,8 @@
       "nom": "Observatoire",
       "cout": "12 Or + 6 Bois",
       "production": "+1 Science par tour.",
-      "description": "+1 Science par tour."
+      "description": "+1 Science par tour.",
+      "effets": [{"ressource": "Science", "quantite": 1}]
     },
     {
       "categorie": "Aménagement",
@@ -6312,7 +6352,8 @@
       "terrain": "Baleine",
       "cout": "8 Or + 3 Bois",
       "production": "+2 Or et +10 Nourriture par tour.",
-      "description": "+2 Or et +10 Nourriture par tour."
+      "description": "+2 Or et +10 Nourriture par tour.",
+      "effets": [{"ressource": "Or", "quantite": 2}, {"ressource": "Nourriture", "quantite": 10}]
     },
     {
       "categorie": "Aménagement",
@@ -6322,7 +6363,8 @@
       "terrain": "Crabe",
       "cout": "8 Or + 3 Bois",
       "production": "+8 Nourriture par tour.",
-      "description": "+8 Nourriture par tour."
+      "description": "+8 Nourriture par tour.",
+      "effets": [{"ressource": "Nourriture", "quantite": 8}]
     },
     {
       "categorie": "Aménagement",
@@ -6332,7 +6374,8 @@
       "terrain": "Pierre",
       "cout": "8 Or + 3 Bois",
       "production": "+1 Pierre par tour.",
-      "description": "+1 Pierre par tour."
+      "description": "+1 Pierre par tour.",
+      "effets": [{"ressource": "Pierre", "quantite": 1}]
     },
     {
       "categorie": "Aménagement",
@@ -6342,7 +6385,8 @@
       "terrain": "Plaine",
       "cout": "8 Or + 3 Bois",
       "production": "+10 Nourriture par tour en été.",
-      "description": "+10 Nourriture par tour en été."
+      "description": "+10 Nourriture par tour en été.",
+      "effets": [{"ressource": "Nourriture", "quantite": 10, "ete": true}]
     },
     {
       "categorie": "Aménagement",
@@ -6352,7 +6396,8 @@
       "terrain": "Plaine ou Désert",
       "cout": "8 Or + 3 Bois",
       "production": "+5 Tourisme par tour.",
-      "description": "+5 Tourisme par tour."
+      "description": "+5 Tourisme par tour.",
+      "effets": [{"ressource": "Tourisme", "quantite": 5}]
     },
     {
       "categorie": "Aménagement",
@@ -6362,7 +6407,8 @@
       "terrain": "Charbon",
       "cout": "8 Or + 3 Bois",
       "production": "+1 Charbon par tour.",
-      "description": "+1 Charbon par tour."
+      "description": "+1 Charbon par tour.",
+      "effets": [{"ressource": "Charbon", "quantite": 1}]
     },
     {
       "categorie": "Aménagement",
@@ -6372,7 +6418,8 @@
       "terrain": "Fer",
       "cout": "8 Or + 3 Bois",
       "production": "+1 Fer par tour.",
-      "description": "+1 Fer par tour."
+      "description": "+1 Fer par tour.",
+      "effets": [{"ressource": "Fer", "quantite": 1}]
     },
     {
       "categorie": "Aménagement",
@@ -6382,7 +6429,8 @@
       "terrain": "Or",
       "cout": "8 Or + 3 Bois",
       "production": "+4 Or par tour.",
-      "description": "+4 Or par tour."
+      "description": "+4 Or par tour.",
+      "effets": [{"ressource": "Or", "quantite": 4}]
     },
     {
       "categorie": "Aménagement",
@@ -6392,7 +6440,8 @@
       "terrain": "Geyser/Volcan",
       "cout": "8 Or + 3 Bois",
       "production": "+1 Science par tour.",
-      "description": "+1 Science par tour."
+      "description": "+1 Science par tour.",
+      "effets": [{"ressource": "Science", "quantite": 1}]
     },
     {
       "categorie": "Aménagement",
@@ -6402,7 +6451,8 @@
       "terrain": "Bétail",
       "cout": "8 Or + 3 Bois",
       "production": "+1 Bétail et +8 Nourriture par tour.",
-      "description": "+1 Bétail et +8 Nourriture par tour."
+      "description": "+1 Bétail et +8 Nourriture par tour.",
+      "effets": [{"ressource": "Bétail", "quantite": 1}, {"ressource": "Nourriture", "quantite": 8}]
     },
     {
       "categorie": "Aménagement",
@@ -6412,7 +6462,8 @@
       "terrain": "Marais",
       "cout": "8 Or + 3 Bois",
       "production": "+15 Nourriture par tour en été.",
-      "description": "+15 Nourriture par tour en été."
+      "description": "+15 Nourriture par tour en été.",
+      "effets": [{"ressource": "Nourriture", "quantite": 15, "ete": true}]
     },
     {
       "categorie": "Aménagement",
@@ -6422,7 +6473,8 @@
       "terrain": "Forêt",
       "cout": "8 Or + 3 Bois",
       "production": "+1 Bois par tour.",
-      "description": "+1 Bois par tour."
+      "description": "+1 Bois par tour.",
+      "effets": [{"ressource": "Bois", "quantite": 1}]
     },
     {
       "categorie": "Aménagement",
@@ -6432,7 +6484,8 @@
       "terrain": "Soie",
       "cout": "8 Or + 3 Bois",
       "production": "+1 Soie par tour.",
-      "description": "+1 Soie par tour."
+      "description": "+1 Soie par tour.",
+      "effets": [{"ressource": "Soie", "quantite": 1}]
     },
     {
       "categorie": "Aménagement",
@@ -6442,7 +6495,8 @@
       "terrain": "Ruine",
       "cout": "8 Or + 3 Bois",
       "production": "+8 Tourisme par tour.",
-      "description": "+8 Tourisme par tour."
+      "description": "+8 Tourisme par tour.",
+      "effets": [{"ressource": "Tourisme", "quantite": 8}]
     },
     {
       "categorie": "Bâtiment",
@@ -6452,6 +6506,7 @@
       "cout": "5 Pierres + 10 Or",
       "production": "+1 Or par tour. Tourisme +8 à la construction.",
       "description": "Bâtiment de faction des Basiléens : peut uniquement être construit dans une habitation de votre culture. +8 Tourisme à la construction (valeur d'état) et +1 Or par tour.",
+      "effets": [{"ressource": "Or", "quantite": 1}, {"ressource": "Tourisme", "quantite": 8}],
       "faction": "Basiléens"
     },
     {
@@ -6462,6 +6517,7 @@
       "cout": "12 Pierres + 30 Or",
       "production": "+3 Or par tour. Tourisme +16 à la construction.",
       "description": "Bâtiment de faction des Basiléens (remplace une Église) : uniquement dans votre capitale. +16 Tourisme à la construction et +3 Or par tour.",
+      "effets": [{"ressource": "Or", "quantite": 3}, {"ressource": "Tourisme", "quantite": 16}],
       "faction": "Basiléens"
     },
     {
@@ -6472,6 +6528,7 @@
       "cout": "25 Pierres + 80 Or",
       "production": "+8 Or par tour. Tourisme +35 à la construction.",
       "description": "Bâtiment de faction des Basiléens (remplace la Grande Cathédrale) : uniquement dans votre capitale. +35 Tourisme à la construction et +8 Or par tour.",
+      "effets": [{"ressource": "Or", "quantite": 8}, {"ressource": "Tourisme", "quantite": 35}],
       "faction": "Basiléens"
     },
     {
@@ -6482,6 +6539,7 @@
       "cout": "5 Pierres + 6 Soie",
       "production": "+1 Science par tour.",
       "description": "Bâtiment de faction des Elfes d'Or : votre capitale produit +1 Science par tour ; dans la capitale, +1 Science par rang de l'habitation à la place (partie au plateau : manuelle).",
+      "effets": [{"ressource": "Science", "quantite": 1}],
       "faction": "ELFES D'OR"
     },
     {
@@ -6503,6 +6561,7 @@
       "cout": "8 Or + 3 Bois",
       "production": "+12 Nourriture par tour.",
       "description": "Aménagement de faction des Sylvains (unique, forêt) : produit 12 Nourriture par tour (8 avec la règle Âge II « Don de miel », débitée automatiquement).",
+      "effets": [{"ressource": "Nourriture", "quantite": 12}],
       "faction": "Sylvains"
     },
     {
@@ -6514,6 +6573,7 @@
       "cout": "8 Or + 3 Bois",
       "production": "+2 Nourriture par tour.",
       "description": "Aménagement de faction des Hommes Lézards (Âge III « Elevage », remplace la Scierie) : +2 Nourriture par tour ; coût de levée des armées réduit de 5 Or (manuel).",
+      "effets": [{"ressource": "Nourriture", "quantite": 2}],
       "faction": "HOMMES LEZARDS"
     },
     {
@@ -6525,6 +6585,7 @@
       "cout": "8 Or + 3 Bois",
       "production": "+2 Or par tour.",
       "description": "Aménagement de faction des Nains (Âge II « Brasseries », remplace les Foires) : +2 Or par tour ; un marchand maximum supplémentaire (manuel).",
+      "effets": [{"ressource": "Or", "quantite": 2}],
       "faction": "NAINS"
     },
     {
@@ -6566,7 +6627,8 @@
       "faction": "VERMINES DE KAOSS",
       "cout": "15 Or + 3 Bétail",
       "production": "+1 Or par tour.",
-      "description": "Bâtiment de faction des Vermines de Kaoss : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies. Vos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous. (Règle de distance à gérer manuellement.)"
+      "description": "Bâtiment de faction des Vermines de Kaoss : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies. Vos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous. (Règle de distance à gérer manuellement.)",
+      "effets": [{"ressource": "Or", "quantite": 1}]
     },
     {
       "categorie": "Bâtiment",
@@ -6576,7 +6638,8 @@
       "faction": "VERMINES DE KAOSS",
       "cout": "30 Or + 10 Bois",
       "production": "+2 Or par tour.",
-      "description": "Bâtiment de faction des Vermines de Kaoss (remplace une colonie de rang I) : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies. Vos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous. (Règle de distance à gérer manuellement.)"
+      "description": "Bâtiment de faction des Vermines de Kaoss (remplace une colonie de rang I) : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies. Vos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous. (Règle de distance à gérer manuellement.)",
+      "effets": [{"ressource": "Or", "quantite": 2}]
     },
     {
       "categorie": "Bâtiment",
@@ -6586,7 +6649,8 @@
       "faction": "VERMINES DE KAOSS",
       "cout": "60 Or + 15 Pierres",
       "production": "+3 Or par tour.",
-      "description": "Bâtiment de faction des Vermines de Kaoss (remplace une colonie de rang II) : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies. Vos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous. (Règle de distance à gérer manuellement.)"
+      "description": "Bâtiment de faction des Vermines de Kaoss (remplace une colonie de rang II) : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies. Vos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous. (Règle de distance à gérer manuellement.)",
+      "effets": [{"ressource": "Or", "quantite": 3}]
     },
     {
       "categorie": "Bâtiment",
@@ -6596,7 +6660,8 @@
       "faction": "VERMINES DE KAOSS",
       "cout": "100 Or + 20 Fer",
       "production": "+4 Or par tour.",
-      "description": "Bâtiment de faction des Vermines de Kaoss (remplace une colonie de rang III) : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies. Vos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous. (Règle de distance à gérer manuellement.)"
+      "description": "Bâtiment de faction des Vermines de Kaoss (remplace une colonie de rang III) : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies. Vos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous. (Règle de distance à gérer manuellement.)",
+      "effets": [{"ressource": "Or", "quantite": 4}]
     },
     {
       "categorie": "Bâtiment",
@@ -6606,7 +6671,8 @@
       "faction": "VERMINES DE KAOSS",
       "cout": "200 Or + 30 Charbon",
       "production": "+5 Or par tour.",
-      "description": "Bâtiment de faction des Vermines de Kaoss (remplace une colonie de rang IV) : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies. Vos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous. (Règle de distance à gérer manuellement.)"
+      "description": "Bâtiment de faction des Vermines de Kaoss (remplace une colonie de rang IV) : doit être bâtie dans une habitation à 7 cases ou moins d'une de vos habitations ou colonies. Vos Colonies génèrent 1 Or par rang de la colonie pour le joueur possédant la ville dans laquelle se trouve la colonie et pour vous. (Règle de distance à gérer manuellement.)",
+      "effets": [{"ressource": "Or", "quantite": 5}]
     },
     {
       "categorie": "Aménagement",
@@ -6636,7 +6702,8 @@
       "faction": "THRAKSANS",
       "cout": "6 Pierre + 2 Soie",
       "production": "",
-      "description": "Aménagement de faction des Thraaksans : à placer à 9 cases ou moins d'une de vos habitations ou d'un autre Autel corrupteur. +4 Tourisme et réduit la Garnison de 20. Ne peut être placé que dans les habitations des autres joueurs. Si placé dans une cité libre, vous gagnez 20 Influence avec celle-ci. (Effets de plateau à gérer manuellement.)"
+      "description": "Aménagement de faction des Thraaksans : à placer à 9 cases ou moins d'une de vos habitations ou d'un autre Autel corrupteur. +4 Tourisme et réduit la Garnison de 20. Ne peut être placé que dans les habitations des autres joueurs. Si placé dans une cité libre, vous gagnez 20 Influence avec celle-ci. (Effets de plateau à gérer manuellement.)",
+      "effets": [{"ressource": "Tourisme", "quantite": 4}]
     }
   ],
   "typesHabitation": [

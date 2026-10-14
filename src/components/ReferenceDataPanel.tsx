@@ -1,22 +1,20 @@
 // ══════════════════════════════════════════════════════════════════════
-//  Référentiels : consultation des tables et fiches RÉELLES du classeur
-//  (feuilles init, JSON, Titres, traits_genetiques, Culture, Peuples,
-//  Ville, Bat, Progrès, Tourisme, Cités L, Pays, Victoires, Accueil…).
-//  L'onglet « Cultures & régimes » est ÉDITABLE directement ici :
-//  cultures et régimes politiques sont paramétrables et leurs lois
-//  chiffrées sont appliquées automatiquement par le moteur.
-//  Pour MODIFIER les autres valeurs : onglet « 🎛 Paramètres ».
+//  Référentiels : WIKI DE RÈGLES EN LECTURE SEULE (marqueur (s)).
+//  La page affiche les valeurs actuelles des PARAMÈTRES (configuration
+//  commune) sous forme de wiki : tables, fiches et résumés d'effets.
+//  TOUT ce qui est éditable vit désormais dans l'onglet « 🎛 Paramètres ».
 // ══════════════════════════════════════════════════════════════════════
 
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useGame } from '../state/store'
 import { cfgOf } from '../engine/gameData'
 import {
-  DEFAULT_CONFIG, COULEURS_JOUEURS_DEFAUT, COULEURS_RESSOURCES_DEFAUT, TRANSPARENCE_LIGNES_DEFAUT,
+  COULEURS_JOUEURS_DEFAUT, COULEURS_RESSOURCES_DEFAUT, TRANSPARENCE_LIGNES_DEFAUT,
 } from '../config/defaultConfig'
-import type { EffetProgres, GameConfig, ProgresTechDef } from '../config/defaultConfig'
+import type { EffetProgres } from '../config/defaultConfig'
 import { VICTORY_TEXT } from '../engine/gameData2'
-import { Card, Badge, TextInput, NumberInput, Button, Select } from './ui'
+import { resumeConstruction } from '../engine/engine'
+import { Card, Badge } from './ui'
 
 const ONGLETS = [
   'Titres', 'Traits gén.', 'Peuples', 'Bâtiments', 'Aménagements', 'Progrès',
@@ -25,55 +23,21 @@ const ONGLETS = [
   'Couleurs', 'Aide-mémoire',
 ] as const
 
-const GROUPES_BAT: { value: string; label: string }[] = [
-  { value: 'Ville', label: 'Ville' },
-  { value: 'Château', label: 'Château' },
-  { value: 'Capitale', label: 'Capitale' },
-]
-
 export function ReferenceDataPanel() {
-  const { state, globalConfig, setGlobalCfg } = useGame()
+  const { globalConfig } = useGame()
   const [onglet, setOnglet] = useState<(typeof ONGLETS)[number]>('Titres')
-  // Sans partie en cours, on affiche les valeurs par défaut du classeur.
-  const C = cfgOf(state?.config)
+  // Wiki : on affiche les VALEURS DES PARAMÈTRES (configuration commune,
+  // mémorisée par le navigateur) — modifiables dans « 🎛 Paramètres ».
+  const C = cfgOf(globalConfig)
   const cfg = C.config
-
-  // Configuration commune (même logique que l'onglet « Paramètres ») :
-  // sert à l'édition directe des cultures & régimes ci-dessous.
-  const configEdit: GameConfig = cfgOf(globalConfig).config
-  const setCfg = (fn: (c: GameConfig) => void) => setGlobalCfg(fn)
-  // Couleurs d'affichage (marqueur (o)) : compléter défensivement la
-  //  structure avant mutation (anciennes configs sans le champ).
-  const mutCouleurs = (fn: (col: Required<GameConfig['couleurs']>) => void) => {
-    setCfg((c) => {
-      if (!c.couleurs) c.couleurs = {}
-      fn(c.couleurs)
-    })
-  }
-
-  // Auto-migration des rangs de pays : une partie sauvegardée avant la
-  // refonte (ancienne table à blocs Féodal/Républicain) repasse sur la
-  // nouvelle échelle (coutOr/coutNourriture/serments/ministres) dès
-  // l'ouverture de l'onglet, pour que l'éditeur écrive au bon format.
-  useEffect(() => {
-    if (onglet !== 'Pays & rangs') return
-    const raw = globalConfig?.paysRangs
-    if (
-      !Array.isArray(raw) || raw.length === 0
-      || typeof (raw[0] as { coutOr?: unknown })?.coutOr !== 'number'
-    ) {
-      setCfg((c) => {
-        c.paysRangs = DEFAULT_CONFIG.paysRangs.map((r) => ({ ...r }))
-      })
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [onglet])
 
   return (
     <div className="stack">
       <Card title="Référentiels du jeu (données du classeur d'origine)">
         <p className="muted small">
-          Tables stockées dans la configuration de la partie — éditables ici ou dans « 🎛 Paramètres ».
+          <strong>📖 Wiki de règles — lecture seule.</strong> Les tables ci-dessous affichent
+          les valeurs actuelles des <strong>paramètres</strong> : pour les modifier, ouvrez
+          l'onglet « 🎛 Paramètres ».
         </p>
         <div className="tabs">
           {ONGLETS.map((o) => (
@@ -215,50 +179,30 @@ export function ReferenceDataPanel() {
 
       {onglet === 'Bâtiments' && (
         <>
-          <Card title={`Constructions — bâtiments (${(cfg.constructions ?? []).filter((c) => c.categorie === 'Bâtiment').length}) — table PARAMÉTRABLE`}>
+          <Card title={`Wiki — bâtiments (${(cfg.constructions ?? []).filter((c) => c.categorie === 'Bâtiment').length})`}>
             <p className="muted small">
-              Le <strong>groupe</strong> détermine où le bâtiment est constructible (Ville / Château /
-              Capitale), la <strong>faction</strong> le réserve au peuple correspondant (un par ville,
-              remplaçable).
+              Effets calculés par le moteur : flux / tour, production d'été (canal
+              « Nourr - été »), Tourisme crédité UNE fois à la construction, Garnison
+              (valeur d'état).
             </p>
             <div className="table-wrap">
               <table className="tbl small">
-                <thead><tr><th>Groupe</th><th>Bâtiment</th><th>Faction</th><th>Coût</th><th>Production</th><th>Description</th></tr></thead>
+                <thead><tr><th>Groupe</th><th>Bâtiment</th><th>Famille</th><th>Faction</th><th>Coût</th><th>Effets</th><th>Description</th></tr></thead>
                 <tbody>
-                  {(configEdit.constructions ?? []).map((c, i) => ({ c, i })).filter(({ c }) => c.categorie === 'Bâtiment').map(({ c, i }) => (
+                  {(cfg.constructions ?? []).filter((c) => c.categorie === 'Bâtiment').map((c, i) => (
                     <tr key={i}>
-                      <td>
-                        <Select
-                          value={c.groupe}
-                          options={GROUPES_BAT}
-                          onChange={(v) => setCfg((cf) => { cf.constructions[i].groupe = v })}
-                        />
-                      </td>
-                      <td><TextInput value={c.nom} onChange={(v) => setCfg((cf) => { cf.constructions[i].nom = v })} /></td>
-                      <td>
-                        <Select
-                          value={c.faction ?? ''}
-                          options={[
-                            { value: '', label: '(aucune)' },
-                            ...[...cfg.peuplesLibres, ...cfg.peuplesAutres].map((f) => f.nom).map((n) => ({ value: n, label: n })),
-                          ]}
-                          onChange={(v) => setCfg((cf) => {
-                            if (v) cf.constructions[i].faction = v
-                            else delete cf.constructions[i].faction
-                          })}
-                        />
-                      </td>
-                      <td><TextInput value={c.cout} onChange={(v) => setCfg((cf) => { cf.constructions[i].cout = v })} /></td>
-                      <td><TextInput value={c.production} onChange={(v) => setCfg((cf) => { cf.constructions[i].production = v })} /></td>
-                      <td><TextInput value={c.description} onChange={(v) => setCfg((cf) => { cf.constructions[i].description = v })} /></td>
+                      <td>{c.groupe}</td>
+                      <td><strong>{c.nom}</strong></td>
+                      <td>{c.famille || '—'}</td>
+                      <td>{c.faction || '—'}</td>
+                      <td>{c.cout || '—'}</td>
+                      <td>{resumeConstruction(c) || <span className="muted">—</span>}</td>
+                      <td className="muted">{c.description}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <Button onClick={() => setCfg((c) => {
-              c.constructions.push({ categorie: 'Bâtiment', groupe: 'Ville', famille: '', nom: 'Nouveau bâtiment', cout: '', production: '', description: '' })
-            })}>+ Ajouter un bâtiment</Button>
           </Card>
           <Card title={`Bâtiments de ville (${cfg.batimentsVille.length})`}>
             <div className="grid-2">
@@ -302,105 +246,68 @@ export function ReferenceDataPanel() {
       )}
 
       {onglet === 'Aménagements' && (
-        <>
-          <Card title={`Aménagements (coût / production / description exacts du classeur) (${(cfg.constructions ?? []).filter((c) => c.categorie === 'Aménagement').length}) — table PARAMÉTRABLE`}>
-            <p className="muted small">
-              La colonne <strong>Terrain</strong> est indicative (case de plateau requise) ;
-              le moteur lit le <strong>coût</strong> et la <strong>production</strong> exacts
-              (« +2 Or et +10 Nourriture par tour. »). Le Tourisme est une valeur FLAT
-              créditée une fois à la construction (ex. Foire : +5 Tourisme).
-            </p>
-            <div className="table-wrap">
-              <table className="tbl small">
-                <thead><tr><th>Aménagement</th><th>Terrain</th><th>Coût</th><th>Production</th><th>Description</th></tr></thead>
-                <tbody>
-                  {(configEdit.constructions ?? []).map((c, i) => ({ c, i })).filter(({ c }) => c.categorie === 'Aménagement').map(({ c, i }) => (
-                    <tr key={i}>
-                      <td><TextInput value={c.nom} onChange={(v) => setCfg((cf) => { cf.constructions[i].nom = v })} /></td>
-                      <td><TextInput value={c.terrain ?? ''} onChange={(v) => setCfg((cf) => { cf.constructions[i].terrain = v })} /></td>
-                      <td><TextInput value={c.cout} onChange={(v) => setCfg((cf) => { cf.constructions[i].cout = v })} /></td>
-                      <td><TextInput value={c.production} onChange={(v) => setCfg((cf) => { cf.constructions[i].production = v })} /></td>
-                      <td><TextInput value={c.description} onChange={(v) => setCfg((cf) => { cf.constructions[i].description = v })} /></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <Button onClick={() => setCfg((c) => {
-              c.constructions.push({ categorie: 'Aménagement', groupe: 'Terrain', famille: '', nom: 'Nouvel aménagement', terrain: '', cout: '', production: '', description: '' })
-            })}>+ Ajouter un aménagement</Button>
-            <p className="muted small">
-              Coût réduit par un « Camp de bâtisseurs » présent dans la ville
-              (montant lu dans sa description).
-            </p>
-          </Card>
-        </>
+        <Card title={`Wiki — aménagements (${(cfg.constructions ?? []).filter((c) => c.categorie === 'Aménagement').length})`}>
+          <p className="muted small">
+            Effets calculés par le moteur (coût exact, flux / tour, été, Tourisme à la
+            construction). Coût réduit par un « Camp de bâtisseurs » présent dans la ville
+            (montant lu dans sa description).
+          </p>
+          <div className="table-wrap">
+            <table className="tbl small">
+              <thead><tr><th>Aménagement</th><th>Terrain</th><th>Coût</th><th>Effets</th><th>Description</th></tr></thead>
+              <tbody>
+                {(cfg.constructions ?? []).filter((c) => c.categorie === 'Aménagement').map((c, i) => (
+                  <tr key={i}>
+                    <td><strong>{c.nom}</strong></td>
+                    <td>{c.terrain || '—'}</td>
+                    <td>{c.cout || '—'}</td>
+                    <td>{resumeConstruction(c) || <span className="muted">—</span>}</td>
+                    <td className="muted">{c.description}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
       )}
 
       {onglet === 'Progrès' && (
-        <Card title={`Arbres de progrès (${configEdit.progres.length}) — entièrement paramétrables`}>
+        <Card title={`Wiki — arbres de progrès (${cfg.progres.length})`}>
           <p className="muted small">
             Tech 2 exige la tech 1 de sa branche ; tech C exige les 2 techs d'une même branche ;
-            arbre terminé à 3 technologies ; 3 arbres de l'âge N-1 ouvrent l'âge N. Coût en
-            Science débité au déblocage ; effets à appliquer au plateau.
+            arbre terminé à 3 technologies ; 3 arbres de l'âge N-1 ouvrent l'âge N.
           </p>
           {[1, 2, 3].map((age) => (
             <div key={age} className="mb">
               <h4>Âge {age}</h4>
-              {configEdit.progres.every((a) => a.age !== age) && (
+              {cfg.progres.every((a) => a.age !== age) && (
                 <p className="muted small">Aucun arbre à cet âge.</p>
               )}
-              {configEdit.progres.map((arbre, i) => arbre.age !== age ? null : (
+              {cfg.progres.map((arbre, i) => arbre.age !== age ? null : (
                 <div key={i} className="mini mb">
                   <div className="row">
-                    <TextInput value={arbre.nom} onChange={(v) => setCfg((c) => { c.progres[i].nom = v })} />
-                    <NumberInput value={arbre.age} step={1} min={1} max={3} onChange={(v) => setCfg((c) => { c.progres[i].age = v })} />
-                    <TextInput value={arbre.tags ?? ''} placeholder="Tags (ex. C, PV, Aurore N)" onChange={(v) => setCfg((c) => { c.progres[i].tags = v })} />
-                    <Button tone="danger" onClick={() => setCfg((c) => { c.progres.splice(i, 1) })}>Supprimer l'arbre</Button>
+                    <strong>{arbre.nom}</strong>
+                    {arbre.tags ? <span className="muted small">{arbre.tags}</span> : null}
                   </div>
                   <div className="table-wrap">
                     <table className="tbl small">
-                      <thead><tr><th>Emplacement</th><th>Technologie</th><th>Coût (Science)</th><th>Description (effet)</th><th>Effets (aide de jeu — au plateau)</th></tr></thead>
+                      <thead><tr><th>Emplacement</th><th>Technologie</th><th>Coût (Science)</th><th>Description (effet)</th><th>Effets (aide de jeu)</th></tr></thead>
                       <tbody>
                         {([['A.1', 'brancheA', 0], ['A.2', 'brancheA', 1], ['B.1', 'brancheB', 0], ['B.2', 'brancheB', 1]] as [string, 'brancheA' | 'brancheB', number][]).map(([label, br, idx]) => (
                           <tr key={label}>
                             <td>{label}</td>
-                            <td><TextInput value={arbre[br][idx]?.nom ?? ''} onChange={(v) => setCfg((c) => { c.progres[i][br][idx].nom = v })} /></td>
-                            <td><TextInput value={arbre[br][idx]?.cout ?? ''} onChange={(v) => setCfg((c) => { c.progres[i][br][idx].cout = v })} /></td>
-                            <td><TextInput value={arbre[br][idx]?.description ?? ''} onChange={(v) => setCfg((c) => { c.progres[i][br][idx].description = v })} /></td>
-                            <td>
-                              <EffetsTechEditor
-                                tech={arbre[br][idx]}
-                                ressources={configEdit.ressources}
-                                titres={configEdit.titres.map((t) => t.titre)}
-                                set={(fn) => setCfg((c) => {
-                                  const t = c.progres[i][br][idx]
-                                  if (!t) return
-                                  if (!t.effets) t.effets = []
-                                  fn(t.effets)
-                                })}
-                              />
-                            </td>
+                            <td><strong>{arbre[br][idx]?.nom || '—'}</strong></td>
+                            <td>{arbre[br][idx]?.cout || '—'}</td>
+                            <td>{arbre[br][idx]?.description || '—'}</td>
+                            <td>{(arbre[br][idx]?.effets ?? []).map(fmtEffetTech).join(' · ') || <span className="muted">—</span>}</td>
                           </tr>
                         ))}
                         <tr>
                           <td>C (optionnelle)</td>
-                          <td><TextInput value={arbre.techC?.nom ?? ''} onChange={(v) => setCfg((c) => { c.progres[i].techC.nom = v })} /></td>
-                          <td><TextInput value={arbre.techC?.cout ?? ''} onChange={(v) => setCfg((c) => { c.progres[i].techC.cout = v })} /></td>
-                          <td><TextInput value={arbre.techC?.description ?? ''} onChange={(v) => setCfg((c) => { c.progres[i].techC.description = v })} /></td>
-                          <td>
-                            <EffetsTechEditor
-                              tech={arbre.techC}
-                              ressources={configEdit.ressources}
-                              titres={configEdit.titres.map((t) => t.titre)}
-                              set={(fn) => setCfg((c) => {
-                                const t = c.progres[i].techC
-                                if (!t) return
-                                if (!t.effets) t.effets = []
-                                fn(t.effets)
-                              })}
-                            />
-                          </td>
+                          <td><strong>{arbre.techC?.nom || '—'}</strong></td>
+                          <td>{arbre.techC?.cout || '—'}</td>
+                          <td>{arbre.techC?.description || '—'}</td>
+                          <td>{(arbre.techC?.effets ?? []).map(fmtEffetTech).join(' · ') || <span className="muted">—</span>}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -409,141 +316,95 @@ export function ReferenceDataPanel() {
               ))}
             </div>
           ))}
-          <Button onClick={() => setCfg((c) => {
-            c.progres.push({
-              nom: 'Nouvel arbre de progrès', age: 1, tags: '',
-              brancheA: [{ nom: '', cout: '', description: '' }, { nom: '', cout: '', description: '' }],
-              brancheB: [{ nom: '', cout: '', description: '' }, { nom: '', cout: '', description: '' }],
-              techC: { nom: '', cout: '', description: '' },
-            })
-          })}>+ Ajouter un arbre de progrès</Button>
         </Card>
       )}
 
       {onglet === 'Pays & rangs' && (
-        <Card title="Rangs de pays — échelle féodale unique (paramétrable)">
+        <Card title="Wiki — rangs de pays (échelle féodale)">
           <p className="muted small">
-            Montée par <strong>sacre</strong> : payer Or + Nourriture et posséder les <strong>serments</strong>
-            requis (vassal ou cité libre sous suzeraineté). Chaque rang fixe le nombre de <strong>Ministres</strong>.
+            Montée par <strong>sacre</strong> : payer Or + Nourriture et posséder les
+            <strong> serments</strong> requis. Chaque rang fixe le nombre de <strong>Ministres</strong>.
           </p>
           <div className="table-wrap">
             <table className="tbl small">
-              <thead><tr><th>Rang</th><th>Sacre (Or)</th><th>Sacre (Nourriture)</th><th>Serments requis</th><th>Ministres</th><th>Bonus (plateau)</th><th></th></tr></thead>
+              <thead><tr><th>Rang</th><th>Sacre (Or)</th><th>Sacre (Nourriture)</th><th>Serments</th><th>Ministres</th><th>Bonus (plateau)</th></tr></thead>
               <tbody>
-                {configEdit.paysRangs.map((r, i) => (
+                {(cfg.paysRangs ?? []).map((r, i) => (
                   <tr key={i}>
-                    <td><TextInput value={r.nom} onChange={(v) => setCfg((c) => { c.paysRangs[i].nom = v })} /></td>
-                    <td><NumberInput value={r.coutOr} min={0} onChange={(v) => setCfg((c) => { c.paysRangs[i].coutOr = v })} /></td>
-                    <td><NumberInput value={r.coutNourriture} min={0} onChange={(v) => setCfg((c) => { c.paysRangs[i].coutNourriture = v })} /></td>
-                    <td><NumberInput value={r.serments} min={0} onChange={(v) => setCfg((c) => { c.paysRangs[i].serments = v })} /></td>
-                    <td><NumberInput value={r.ministres} min={0} onChange={(v) => setCfg((c) => { c.paysRangs[i].ministres = v })} /></td>
-                    <td><TextInput value={r.bonus} onChange={(v) => setCfg((c) => { c.paysRangs[i].bonus = v })} /></td>
-                    <td>
-                      <Button tone="danger" onClick={() => setCfg((c) => { c.paysRangs.splice(i, 1) })}>✕</Button>
-                    </td>
+                    <td><strong>{r.nom}</strong></td>
+                    <td>{r.coutOr}</td>
+                    <td>{r.coutNourriture}</td>
+                    <td>{r.serments}</td>
+                    <td>{r.ministres}</td>
+                    <td className="muted">{r.bonus || '—'}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <Button onClick={() => setCfg((c) => {
-            c.paysRangs.push({ nom: 'Nouveau rang', coutOr: 0, coutNourriture: 0, serments: 0, ministres: 1, bonus: '' })
-          })}>+ Ajouter un rang</Button>
         </Card>
       )}
 
       {onglet === 'Habitations' && (
-        <Card title={`Types & rangs d'habitation (${configEdit.typesHabitation.length}) — consommation, garnison de base`}>
-          <p className="muted small">
-            Coût d'amélioration : débité automatiquement du stock à la construction /
-            amélioration du rang (page Pays). Consommation / tour : débitée à chaque fin
-            de tour (quantités positives, ex. « 10 Nourriture, 8 Or ») ; garnison de base
-            fixe, s'ajoutant aux bâtiments.
-          </p>
+        <Card title="Wiki — types & rangs d'habitation">
           <div className="table-wrap">
             <table className="tbl small">
-              <thead>
-                <tr>
-                  <th>Type</th><th>Rang</th><th>Coût d'amélioration</th>
-                  <th>Habitants requis</th><th>Consommation / tour</th><th>Garnison de base</th><th></th>
-                </tr>
-              </thead>
+              <thead><tr><th>Type</th><th>Rang</th><th>Coût d'amélioration</th><th>Habitants requis</th><th>Consommation / tour</th><th>Garnison de base</th></tr></thead>
               <tbody>
-                {configEdit.typesHabitation.map((h, i) => (
+                {cfg.typesHabitation.map((h, i) => (
                   <tr key={i}>
-                    <td>
-                      <Select
-                        value={h.type}
-                        options={[{ value: 'Ville', label: 'Ville' }, { value: 'Château', label: 'Château' }]}
-                        onChange={(v) => setCfg((c) => { c.typesHabitation[i].type = v })}
-                      />
-                    </td>
-                    <td><TextInput value={h.rang} onChange={(v) => setCfg((c) => { c.typesHabitation[i].rang = v })} /></td>
-                    <td><TextInput value={h.cout} onChange={(v) => setCfg((c) => { c.typesHabitation[i].cout = v })} /></td>
-                    <td><NumberInput value={h.habitantsRequis} step={10} min={0} onChange={(v) => setCfg((c) => { c.typesHabitation[i].habitantsRequis = v })} /></td>
-                    <td><TextInput value={h.consommation} onChange={(v) => setCfg((c) => { c.typesHabitation[i].consommation = v })} /></td>
-                    <td><NumberInput value={h.garnison} step={1} min={0} onChange={(v) => setCfg((c) => { c.typesHabitation[i].garnison = v })} /></td>
-                    <td>
-                      <Button tone="danger" onClick={() => setCfg((c) => { c.typesHabitation.splice(i, 1) })}>✕</Button>
-                    </td>
+                    <td><strong>{h.type}</strong></td>
+                    <td>{h.rang}</td>
+                    <td>{h.cout || '—'}</td>
+                    <td>{h.habitantsRequis}</td>
+                    <td>{h.consommation || '—'}</td>
+                    <td>{h.garnison}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <Button onClick={() => setCfg((c) => {
-            c.typesHabitation.push({ type: 'Ville', rang: 'Nouveau rang', cout: '', habitantsRequis: 0, consommation: '', garnison: 0 })
-          })}>+ Ajouter un rang d'habitation</Button>
         </Card>
       )}
 
       {onglet === 'Cultures & régimes' && (
         <>
-          <Card title={`Cultures (${configEdit.cultures.length}) — paramétrables, effets appliqués automatiquement`}>
+          <Card title={`Wiki — cultures (${cfg.cultures.length})`}>
             <p className="muted small">
               Lois chiffrées appliquées à chaque fin de tour : +N ressource par habitation de
-              cette culture dans le monde (capitale), +N Science par construction. 0 = désactivé.
+              cette culture dans le monde (capitale), +N Science par construction.
             </p>
             <div className="table-wrap">
               <table className="tbl small">
                 <thead>
                   <tr>
                     <th>Culture</th><th>Hérédité</th><th>Martialité</th><th>Homo autorisée</th>
-                    <th>Fécondité</th><th>Nourr / habitation (monde)</th>
-                    <th>Tourisme / habitation</th><th>Or / habitation</th>
-                    <th>Science / construction</th><th>Règle du pays</th><th>Règle des personnages</th>
+                    <th>Fécondité</th><th>Nourr / hab (monde)</th>
+                    <th>Tourisme / hab</th><th>Or / hab</th>
+                    <th>Science / constr.</th><th>Règle du pays</th><th>Règle des personnages</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {configEdit.cultures.map((t, i) => (
+                  {cfg.cultures.map((t, i) => (
                     <tr key={i}>
-                      <td><TextInput value={t.nom} onChange={(v) => setCfg((c) => { c.cultures[i].nom = v })} /></td>
-                      <td><TextInput value={t.heredite} onChange={(v) => setCfg((c) => { c.cultures[i].heredite = v })} /></td>
-                      <td><TextInput value={t.martialite} onChange={(v) => setCfg((c) => { c.cultures[i].martialite = v })} /></td>
-                      <td><input type="checkbox" checked={t.homoAutorisee} onChange={(e) => setCfg((c) => { c.cultures[i].homoAutorisee = e.target.checked })} /></td>
-                      <td><NumberInput value={t.fertFactor} step={0.05} onChange={(v) => setCfg((c) => { c.cultures[i].fertFactor = v })} /></td>
-                      <td><NumberInput value={t.capitalNourrParHabMonde ?? 0} step={1} onChange={(v) => setCfg((c) => { c.cultures[i].capitalNourrParHabMonde = v })} /></td>
-                      <td><NumberInput value={t.capitalTourismeParHabMonde ?? 0} step={1} onChange={(v) => setCfg((c) => { c.cultures[i].capitalTourismeParHabMonde = v })} /></td>
-                      <td><NumberInput value={t.capitalOrParHabMonde ?? 0} step={1} onChange={(v) => setCfg((c) => { c.cultures[i].capitalOrParHabMonde = v })} /></td>
-                      <td><NumberInput value={t.scienceParConstruction ?? 0} step={1} onChange={(v) => setCfg((c) => { c.cultures[i].scienceParConstruction = v })} /></td>
-                      <td><TextInput value={t.reglePays} onChange={(v) => setCfg((c) => { c.cultures[i].reglePays = v })} /></td>
-                      <td><TextInput value={t.reglePerso} onChange={(v) => setCfg((c) => { c.cultures[i].reglePerso = v })} /></td>
+                      <td><strong>{t.nom}</strong></td>
+                      <td>{t.heredite}</td>
+                      <td>{t.martialite}</td>
+                      <td>{t.homoAutorisee ? 'oui' : 'non'}</td>
+                      <td>×{t.fertFactor}</td>
+                      <td>{t.capitalNourrParHabMonde || '—'}</td>
+                      <td>{t.capitalTourismeParHabMonde || '—'}</td>
+                      <td>{t.capitalOrParHabMonde || '—'}</td>
+                      <td>{t.scienceParConstruction || '—'}</td>
+                      <td className="muted">{t.reglePays || '—'}</td>
+                      <td className="muted">{t.reglePerso || '—'}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <Button onClick={() => setCfg((c) => {
-              c.cultures.push({
-                nom: 'Nouvelle culture', heredite: 'Agnatique', martialite: 'Faible',
-                homoAutorisee: false, fertFactor: 1, reglePays: '', reglePerso: '',
-              })
-            })}>+ Ajouter une culture</Button>
           </Card>
-          <Card title={`Régimes politiques (${configEdit.regimes.length}) — lois appliquées automatiquement`}>
-            <p className="muted small">
-              Lois chiffrées appliquées à chaque fin de tour. 0 = désactivé.
-            </p>
+          <Card title={`Wiki — régimes politiques (${cfg.regimes.length})`}>
             <div className="table-wrap">
               <table className="tbl small">
                 <thead>
@@ -554,20 +415,17 @@ export function ReferenceDataPanel() {
                   </tr>
                 </thead>
                 <tbody>
-                  {configEdit.regimes.map((r, i) => (
+                  {cfg.regimes.map((r, i) => (
                     <tr key={i}>
-                      <td><TextInput value={r.nom} onChange={(v) => setCfg((c) => { c.regimes[i].nom = v })} /></td>
-                      <td><TextInput value={r.loi} onChange={(v) => setCfg((c) => { c.regimes[i].loi = v })} /></td>
-                      <td><NumberInput value={r.garnisonParRang ?? 0} step={1} onChange={(v) => setCfg((c) => { c.regimes[i].garnisonParRang = v })} /></td>
-                      <td><NumberInput value={r.nourrEteChampRiziere ?? 0} step={1} onChange={(v) => setCfg((c) => { c.regimes[i].nourrEteChampRiziere = v })} /></td>
+                      <td><strong>{r.nom}</strong></td>
+                      <td>{r.loi || '—'}</td>
+                      <td>{r.garnisonParRang || '—'}</td>
+                      <td>{r.nourrEteChampRiziere || '—'}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <Button onClick={() => setCfg((c) => {
-              c.regimes.push({ nom: 'Nouveau régime', loi: '' })
-            })}>+ Ajouter un régime</Button>
           </Card>
         </>
       )}
@@ -661,75 +519,40 @@ export function ReferenceDataPanel() {
       )}
 
       {onglet === 'Ministères' && (
-        <Card title="Ministères — portefeuilles paramétrables (refonte 2026-10-14)">
+        <Card title="Wiki — ministères">
           <p className="muted small">
-            Chaque rang de pays octroie <strong>1 Ministre</strong> (nomination : nobles et dynasties).
-            Portefeuilles <strong>cumulables</strong>, rang minimum selon « Pays & rangs » ; mode
-            <strong> Auto</strong> = appliqué par l'application, mode <strong>Plateau</strong> = à la table.
+            Chaque rang de pays octroie <strong>1 Ministre</strong> (nomination : nobles et
+            dynasties). Portefeuilles <strong>cumulables</strong>.
           </p>
-          <table className="tbl small">
-            <thead><tr><th>Ministère</th><th>Rang minimum</th><th>Mode</th><th>Effet</th><th></th></tr></thead>
-            <tbody>
-              {configEdit.ministeres.map((m, i) => (
-                <tr key={i}>
-                  <td><TextInput value={m.ministere} onChange={(v) => setCfg((c) => { c.ministeres[i].ministere = v })} /></td>
-                  <td>
-                    <Select
-                      value={m.rangMinimum ?? (configEdit.paysRangs ?? [])[0]?.nom ?? ''}
-                      options={(configEdit.paysRangs ?? []).map((r) => ({ value: r.nom, label: r.nom }))}
-                      onChange={(v) => setCfg((c) => { c.ministeres[i].rangMinimum = v })}
-                    />
-                  </td>
-                  <td>
-                    <Select
-                      value={m.mode ?? 'Plateau'}
-                      options={[
-                        { value: 'Auto', label: 'Auto (application)' },
-                        { value: 'Plateau', label: 'Plateau' },
-                      ]}
-                      onChange={(v) => setCfg((c) => { c.ministeres[i].mode = v })}
-                    />
-                  </td>
-                  <td><TextInput value={m.effet} onChange={(v) => setCfg((c) => { c.ministeres[i].effet = v })} /></td>
-                  <td><Button tone="danger" onClick={() => setCfg((c) => { c.ministeres.splice(i, 1) })}>✕</Button></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <Button onClick={() => setCfg((c) => {
-            c.ministeres.push({
-              ministere: 'Nouveau ministère',
-              effet: '',
-              rangMinimum: (c.paysRangs ?? [])[0]?.nom ?? '',
-              mode: 'Plateau',
-            })
-          })}>+ Ajouter un ministère</Button>
+          <div className="table-wrap">
+            <table className="tbl small">
+              <thead><tr><th>Ministère</th><th>Rang minimum</th><th>Mode</th><th>Effet</th></tr></thead>
+              <tbody>
+                {cfg.ministeres.map((m, i) => (
+                  <tr key={i}>
+                    <td><strong>{m.ministere}</strong></td>
+                    <td>{m.rangMinimum ?? '—'}</td>
+                    <td><Badge tone={m.mode === 'Auto' ? 'info' : 'neutral'}>{m.mode ?? 'Plateau'}</Badge></td>
+                    <td className="muted">{m.effet || '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </Card>
       )}
 
       {onglet === 'Couleurs' && (
         <>
-          <Card title="Couleurs des joueurs (graphiques, courbes, radar)">
-            <p className="muted small">
-              Une couleur par joueur, appliquée à tous les graphiques de l'accueil (histogrammes,
-              courbe d'évolution, radar de victoire) et à l'historique.
-            </p>
+          <Card title="Wiki — couleurs des joueurs">
             <div className="grid-4">
               {Array.from({ length: 8 }, (_, i) => {
-                const cur = configEdit.couleurs?.joueurs?.[i] ?? COULEURS_JOUEURS_DEFAUT[i]
+                const cur = cfg.couleurs?.joueurs?.[i] ?? COULEURS_JOUEURS_DEFAUT[i]
                 return (
                   <div key={i} className="mini">
-                    <strong>J{i + 1}</strong>
-                    <div className="mt" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <input
-                        type="color"
-                        value={cur}
-                        onChange={(e) => mutCouleurs((col) => {
-                          const arr = col.joueurs ?? (col.joueurs = [])
-                          while (arr.length < 8) arr.push(COULEURS_JOUEURS_DEFAUT[arr.length] ?? '#888888')
-                          arr[i] = e.target.value
-                        })}
-                      />
+                    <div className="row" style={{ alignItems: 'center', gap: 8 }}>
+                      <span className="mini" style={{ width: 22, height: 22, padding: 0, background: cur }} />
+                      <strong>J{i + 1}</strong>
                       <span className="muted small">{cur}</span>
                     </div>
                   </div>
@@ -737,29 +560,17 @@ export function ReferenceDataPanel() {
               })}
             </div>
           </Card>
-          <Card title="Couleurs des ressources (pastilles, lignes de tableaux, courbe)">
-            <p className="muted small">
-              « Nourr - été » suit toujours la Nourriture, sauf réglage explicite ci-dessous.
-              Les lignes de ressources des tableaux de la page Pays (récap, taxes, production
-              des villes) sont teintées avec ces couleurs.
-            </p>
+          <Card title="Wiki — couleurs des ressources">
             <div className="grid-4">
-              {configEdit.ressources
+              {cfg.ressources
                 .flatMap((r) => (r === 'Nourriture' ? [r, 'Nourr - été'] : [r]))
                 .map((r) => {
-                  const cur = configEdit.couleurs?.ressources?.[r] ?? COULEURS_RESSOURCES_DEFAUT[r] ?? '#9aa4ad'
+                  const cur = cfg.couleurs?.ressources?.[r] ?? COULEURS_RESSOURCES_DEFAUT[r] ?? '#9aa4ad'
                   return (
                     <div key={r} className="mini">
-                      <strong>{r}</strong>
-                      <div className="mt" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <input
-                          type="color"
-                          value={cur}
-                          onChange={(e) => mutCouleurs((col) => {
-                            col.ressources = { ...(col.ressources ?? {}) }
-                            col.ressources[r] = e.target.value
-                          })}
-                        />
+                      <div className="row" style={{ alignItems: 'center', gap: 8 }}>
+                        <span className="mini" style={{ width: 22, height: 22, padding: 0, background: cur }} />
+                        <strong>{r}</strong>
                         <span className="muted small">{cur}</span>
                       </div>
                     </div>
@@ -767,41 +578,21 @@ export function ReferenceDataPanel() {
                 })}
             </div>
           </Card>
-          <Card title="Transparence des lignes de tableaux (page Pays)">
-            <p className="muted small">
-              Fond des lignes de ressources des tableaux (récap des ressources par tour, taxes des
-              villageois, production des villes) : 0 % = couleur pleine, 100 % = invisible.
-              Réglez ici la transparence pour garder les chiffres lisibles.
-            </p>
+          <Card title="Wiki — transparence des lignes de tableaux (page Pays)">
             {(() => {
-              const t = configEdit.couleurs?.transparenceLignes ?? TRANSPARENCE_LIGNES_DEFAUT
+              const t = cfg.couleurs?.transparenceLignes ?? TRANSPARENCE_LIGNES_DEFAUT
               return (
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <input
-                    type="range" min={0} max={100} step={5} value={t}
-                    onChange={(e) => mutCouleurs((col) => {
-                      col.transparenceLignes = Math.max(0, Math.min(100, Number(e.target.value)))
-                    })}
-                  />
                   <strong>{t} %</strong>
                   <span
                     className="mini"
-                    style={{ padding: '2px 12px', background: `color-mix(in srgb, ${configEdit.couleurs?.ressources?.['Or'] ?? COULEURS_RESSOURCES_DEFAUT['Or']} ${100 - t}%, transparent)` }}
+                    style={{ padding: '2px 12px', background: `color-mix(in srgb, ${cfg.couleurs?.ressources?.['Or'] ?? COULEURS_RESSOURCES_DEFAUT['Or']} ${100 - t}%, transparent)` }}
                   >
                     aperçu (Or)
                   </span>
                 </div>
               )
             })()}
-            <div className="mt">
-              <Button onClick={() => setCfg((c) => {
-                c.couleurs = {
-                  joueurs: [...COULEURS_JOUEURS_DEFAUT],
-                  ressources: { ...COULEURS_RESSOURCES_DEFAUT },
-                  transparenceLignes: TRANSPARENCE_LIGNES_DEFAUT,
-                }
-              })}>↺ Couleurs par défaut</Button>
-            </div>
           </Card>
         </>
       )}
@@ -823,82 +614,22 @@ export function ReferenceDataPanel() {
           </div>
         </Card>
       )}
+
     </div>
   )
 }
 
-// ── Éditeur des effets d'une technologie de progrès (AIDE DE JEU) ──────
-// Champ « effets » de chaque tech : AUCUN effet moteur (tout s'applique
-// au plateau) — ces lignes ne servent qu'au résumé affiché sous la tech.
-// Paramétrable entièrement ici — type, ressource, montant, titre, aménagements.
+// ── Résumé affichable d'un effet de technologie (aide de jeu) ──────────
 
-const TYPES_EFFETS: Array<{ value: EffetProgres['type']; label: string }> = [
-  { value: 'gain', label: 'Gain au déblocage' },
-  { value: 'prodCapitale', label: '+/tour (capitale)' },
-  { value: 'prodParHabitation', label: '+/tour par habitation' },
-  { value: 'prodParTitre', label: '+/tour par titre' },
-  { value: 'prodParAmenagement', label: '+/tour par aménagement' },
-  { value: 'garnison', label: 'Garnison (statique)' },
-]
-
-function EffetsTechEditor({ tech, ressources, titres, set }: {
-  tech: ProgresTechDef | undefined
-  ressources: string[]
-  titres: string[]
-  /** applique une mutation au tableau « effets » de la tech (brouillon) */
-  set: (fn: (effets: EffetProgres[]) => void) => void
-}) {
-  const effets = tech?.effets ?? []
-  const maj = (j: number, patch: Partial<EffetProgres>) =>
-    set((ef) => { if (ef[j]) ef[j] = { ...ef[j], ...patch } })
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-      {effets.map((e, j) => (
-        <div key={j} className="row small-gap" style={{ flexWrap: 'wrap' }}>
-          <Select
-            value={e.type}
-            options={TYPES_EFFETS}
-            onChange={(v) => maj(j, { type: v })}
-          />
-          {e.type === 'garnison' ? (
-            <Select
-              value={e.cible ?? 'habitations'}
-              options={[
-                { value: 'capitale', label: 'capitale' },
-                { value: 'habitations', label: 'toutes les habitations' },
-              ]}
-              onChange={(v) => maj(j, { cible: v })}
-            />
-          ) : (
-            <Select
-              value={e.ressource ?? ''}
-              options={ressources.map((r) => ({ value: r, label: r }))}
-              onChange={(v) => maj(j, { ressource: v })}
-            />
-          )}
-          <NumberInput value={e.montant} step={1} onChange={(v) => maj(j, { montant: v })} />
-          {e.type === 'prodParTitre' && (
-            <Select
-              value={e.titre ?? ''}
-              options={titres.map((t) => ({ value: t, label: t }))}
-              onChange={(v) => maj(j, { titre: v })}
-            />
-          )}
-          {e.type === 'prodParAmenagement' && (
-            <TextInput
-              value={(e.amenagements ?? []).join(', ')}
-              placeholder="ex. Champ, Rizière"
-              onChange={(v) => maj(j, {
-                amenagements: v.split(',').map((x) => x.trim()).filter(Boolean),
-              })}
-            />
-          )}
-          <Button tone="danger" onClick={() => set((ef) => { ef.splice(j, 1) })}>✕</Button>
-        </div>
-      ))}
-      <Button onClick={() => set((ef) => {
-        ef.push({ type: 'gain', ressource: ressources[0] ?? 'Or', montant: 0 })
-      })}>+ effet automatique</Button>
-    </div>
-  )
+function fmtEffetTech(e: EffetProgres): string {
+  const m = `${e.montant > 0 ? '+' : ''}${e.montant}`
+  switch (e.type) {
+    case 'gain': return `${m} ${e.ressource ?? ''} au déblocage`
+    case 'prodCapitale': return `${m} ${e.ressource ?? ''} / tour (capitale)`
+    case 'prodParHabitation': return `${m} ${e.ressource ?? ''} / tour par habitation`
+    case 'prodParTitre': return `${m} ${e.ressource ?? ''} / tour par titre « ${e.titre ?? ''} »`
+    case 'prodParAmenagement': return `${m} ${e.ressource ?? ''} / tour par aménagement (${(e.amenagements ?? []).join(', ')})`
+    case 'garnison': return `Garnison ${m} (${e.cible ?? 'habitations'})`
+    default: return ''
+  }
 }
