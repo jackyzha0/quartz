@@ -3,7 +3,9 @@
 //  libres » du référentiel) :
 //    · chaque cité possède sa PROPRE POPULATION (habitants titrés,
 //      ajout manuel, titres et statuts éditables) — les Chasseurs
-//      des cités libres produisent le DOUBLE de Nourriture ;
+//      des cités libres produisent le DOUBLE de Nourriture. La
+//      population est gérée dans un PANNEAU SÉPARÉ en bas de page
+//      (retour Thibaut 2026-10-14), comme les habitants des joueurs ;
 //    · garnison automatique : 100 + 40 par rang de pays du joueur
 //      ayant le plus haut rang (batailles au plateau : manuel) ;
 //    · émissaires : suivi manuel des tentatives d'influence (une par
@@ -39,12 +41,17 @@ export function CitesLibresView() {
   const [newType, setNewType] = useState('')
   const [newCulture, setNewCulture] = useState('')
   const [newNb, setNewNb] = useState(10)
-  /** Nombre d'habitants à ajouter, par cité (champ sous la population). */
-  const [addNbCite, setAddNbCite] = useState<Record<string, number>>({})
+  /** Cité ciblée + nombre d'habitants à ajouter (panneau « Population
+   *  des cités libres » en bas de page). */
+  const [addCite, setAddCite] = useState('')
+  const [addNb, setAddNb] = useState(10)
 
   if (!state) return null
   const C = cfgOf(state.config)
   const cites = citesLibresDe(state)
+  const totalPop = cites.reduce((n, c) => n + (c.population ?? []).length, 0)
+  const totalVivants = cites.reduce(
+    (n, c) => n + (c.population ?? []).filter((h) => h.statut !== 'Décédé').length, 0)
   const garnison = garnisonCiteLibre(state, C)
   const typesConfig = C.config.citesLibres ?? []
   const typeOptions = typesConfig.map((t) => ({
@@ -287,62 +294,15 @@ export function CitesLibresView() {
               </div>
             </div>
 
-            {/* ── Population ── */}
+            {/* ── Population : résumé seul — la gestion vit dans le
+                panneau séparé « Population des cités libres » en bas de
+                page (comme les habitants des joueurs). ── */}
             <div className="mini-title">
               Population — {vivants.length} vivant(s) / {pop.length} au total
+              <span className="muted small">
+                {' '}· gestion dans le panneau « Population des cités libres » ci-dessous
+              </span>
             </div>
-            <div className="badges-wrap">
-              <NumberInput
-                value={addNbCite[cite.nom] ?? 10}
-                onChange={(v) => setAddNbCite((m) => ({ ...m, [cite.nom]: v }))}
-                min={1}
-              />
-              <Button
-                tone="primary"
-                onClick={() => ajouterHabitants(cite.nom, addNbCite[cite.nom] ?? 10)}
-              >
-                + Ajouter des habitants (Chasseurs)
-              </Button>
-            </div>
-            {pop.length === 0 ? (
-              <p className="muted small">Aucun habitant — ajoutez-en ci-dessus.</p>
-            ) : (
-              <div className="table-wrap">
-                <table className="tbl small">
-                  <thead>
-                    <tr>
-                      <th>Nom</th><th>Âge</th><th>Sexe</th><th>Titre</th><th>Statut</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {pop.map((h) => (
-                      <tr key={h.id} className={h.statut === 'Décédé' ? 'muted' : ''}>
-                        <td>{h.prenom} {h.nom}</td>
-                        <td>{h.age}</td>
-                        <td>{h.sexe === 'M' ? '♂' : '♀'}</td>
-                        <td>
-                          <Select
-                            value={h.titre ?? ''}
-                            options={[
-                              { value: '', label: '(sans titre)' },
-                              ...titres.map((t) => ({ value: t, label: t })),
-                            ]}
-                            onChange={(v) => mutHabitant(cite.nom, h.id, (x) => { x.titre = v || null })}
-                          />
-                        </td>
-                        <td>
-                          <Select
-                            value={h.statut}
-                            options={STATUTS.map((s) => ({ value: s, label: s }))}
-                            onChange={(v) => mutHabitant(cite.nom, h.id, (x) => { x.statut = v })}
-                          />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
 
             {/* ── Production & taxes ── */}
             <div className="mini-title">
@@ -382,6 +342,74 @@ export function CitesLibresView() {
           </Card>
         )
       })}
+
+      {/* ═══ Population des cités libres — panneau séparé (retour
+          Thibaut 2026-10-14), comme pour les habitants des joueurs :
+          ajout manuel de Chasseurs, titres et statuts éditables. ═══ */}
+      <Card title={`Population des cités libres — ${totalVivants} vivant(s) / ${totalPop} au total`}>
+        <div className="filters">
+          <Select
+            value={addCite || cites[0]?.nom || ''}
+            options={cites.map((c) => ({ value: c.nom, label: c.nom }))}
+            onChange={setAddCite}
+          />
+          <NumberInput value={addNb} min={1} onChange={setAddNb} />
+          <Button
+            tone="primary"
+            onClick={() => ajouterHabitants(addCite || cites[0]?.nom || '', addNb)}
+          >
+            + Ajouter des habitants (Chasseurs)
+          </Button>
+        </div>
+        {totalPop === 0 ? (
+          <p className="muted small">
+            Aucun habitant dans les cités libres — sélectionnez une cité et ajoutez-en
+            ci-dessus (nouveaux habitants titrés « Chasseur » : Nourriture ×2).
+          </p>
+        ) : (
+          <div className="table-wrap">
+            <table className="tbl small">
+              <thead>
+                <tr>
+                  <th>Nom</th><th>Cité</th><th>Âge</th><th>Sexe</th><th>Titre</th><th>Statut</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cites.flatMap((cite) => (cite.population ?? []).map((h) => (
+                  <tr key={h.id} className={h.statut === 'Décédé' ? 'muted' : ''}>
+                    <td>{h.prenom} {h.nom}</td>
+                    <td><strong>{cite.nom}</strong></td>
+                    <td>{h.age}</td>
+                    <td>{h.sexe === 'M' ? '♂' : '♀'}</td>
+                    <td>
+                      <Select
+                        value={h.titre ?? ''}
+                        options={[
+                          { value: '', label: '(sans titre)' },
+                          ...titres.map((t) => ({ value: t, label: t })),
+                        ]}
+                        onChange={(v) => mutHabitant(cite.nom, h.id, (x) => { x.titre = v || null })}
+                      />
+                    </td>
+                    <td>
+                      <Select
+                        value={h.statut}
+                        options={STATUTS.map((s) => ({ value: s, label: s }))}
+                        onChange={(v) => mutHabitant(cite.nom, h.id, (x) => { x.statut = v })}
+                      />
+                    </td>
+                  </tr>
+                )))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        <p className="muted small">
+          Chaque cité libre possède sa propre population (Chasseurs : Nourriture ×2, taxes
+          versées au suzerain le cas échéant) — titres et statuts éditables ici, comme
+          pour les habitants des joueurs.
+        </p>
+      </Card>
     </div>
   )
 }

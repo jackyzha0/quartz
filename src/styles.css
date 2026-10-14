@@ -256,54 +256,73 @@ select.input { min-width: 120px; width: auto; }
 .add-bat { margin-top: 6px; }
 
 /* Panneau « Ressources » : très léger, collé au bord droit, dépliable */
-.res-dock {
-  position: fixed;
-  top: 84px;
-  right: 0;
+/* Barre Ressources — flottante en haut de la page « Pays », ouverte
+   par défaut, minimaliste : une puce par ressource (stock modifiable +
+   production / tour). Sticky : reste visible pendant le défilement. */
+.res-top {
+  position: sticky;
+  top: 0;
   z-index: 50;
   display: flex;
-  align-items: flex-start;
-  max-width: min(480px, 92vw);
-}
-.res-toggle {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  padding: 14px 8px;
-  border: 1px solid var(--border);
-  border-right: none;
-  border-radius: 8px 0 0 8px;
+  flex-direction: column;
+  gap: 2px;
   background: var(--card);
-  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+.res-top-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  align-items: center;
+}
+.res-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  font-size: 13px;
+}
+.res-chip input.num {
+  max-width: 66px;
+  padding: 1px 4px;
   font-size: 12.5px;
+}
+.res-chip strong { font-size: 12.5px; }
+.res-top-btn {
+  border: none;
+  background: none;
+  color: var(--accent);
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+  padding: 0 2px;
   white-space: nowrap;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
 }
-.res-toggle:hover { background: var(--card2); }
-.res-dock.open .res-toggle { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-.res-panel {
-  width: min(440px, 88vw);
-  max-height: 72vh;
-  overflow: auto;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-right: none;
-  border-radius: 10px 0 0 10px;
-  padding: 12px 14px;
-  box-shadow: -2px 2px 10px rgba(0,0,0,0.10);
+.res-top-btn:hover { text-decoration: underline; }
+.res-top-toggle {
+  align-self: flex-end;
+  border: none;
+  background: none;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
 }
-.res-panel-head {
+.res-top-toggle:hover { text-decoration: underline; }
+.res-top-base {
   display: flex;
-  align-items: baseline;
-  gap: 8px;
   flex-wrap: wrap;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 6px;
-  margin-bottom: 8px;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 6px;
 }
-.res-panel .btn { margin-top: 8px; }
+.res-top-base .field { margin: 0; }
+.res-top-base .input.num { max-width: 90px; }
 
 /* Ligne « Autre » (ressource / source / nombre / bonus) */
 .autre-ligne {
@@ -321,8 +340,7 @@ select.input { min-width: 120px; width: auto; }
 .taxes-tbl th:first-child, .taxes-tbl td:first-child { text-align: left; }
 
 @media (max-width: 700px) {
-  .res-dock { top: auto; bottom: 0; max-width: 100vw; }
-  .res-panel { width: min(360px, 86vw); max-height: 60vh; }
+  .res-chip input.num { max-width: 58px; }
 }
 
 /* ══════════════════════════════════════════════════════════════════════

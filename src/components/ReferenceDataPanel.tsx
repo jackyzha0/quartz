@@ -332,10 +332,10 @@ export function ReferenceDataPanel() {
             Un arbre = branche A (2 technologies) + branche B (2 technologies) + technologie C.
             Règles du classeur : la tech 2 exige sa tech 1 ; la tech C exige les 2 techs d'une
             même branche ; un arbre se termine à EXACTEMENT 3 technologies (la tech C est
-            optionnelle) ; 3 arbres complétés de l'âge N-1 ouvrent l'âge N. Les effets de la
-            colonne « Effets auto » sont appliqués AUTOMATIQUEMENT par le moteur (gain au
-            déblocage, production par tour — canal « Progrès » du récap ressources, garnison) ;
-            les autres effets restent au plateau. Les emplacements vides sont ignorés en jeu.
+            optionnelle) ; 3 arbres complétés de l'âge N-1 ouvrent l'âge N. Le coût (Science)
+            est DÉDUIT automatiquement du stock au déblocage d'une technologie ; les effets,
+            eux, s'appliquent TOUS au plateau (la colonne « Effets (aide de jeu) » n'est qu'un
+            résumé affiché sous la tech). Les emplacements vides sont ignorés en jeu.
           </p>
           {[1, 2, 3].map((age) => (
             <div key={age} className="mb">
@@ -353,7 +353,7 @@ export function ReferenceDataPanel() {
                   </div>
                   <div className="table-wrap">
                     <table className="tbl small">
-                      <thead><tr><th>Emplacement</th><th>Technologie</th><th>Coût (Science)</th><th>Description (effet)</th><th>Effets auto (appliqués par le moteur)</th></tr></thead>
+                      <thead><tr><th>Emplacement</th><th>Technologie</th><th>Coût (Science)</th><th>Description (effet)</th><th>Effets (aide de jeu — au plateau)</th></tr></thead>
                       <tbody>
                         {([['A.1', 'brancheA', 0], ['A.2', 'brancheA', 1], ['B.1', 'brancheB', 0], ['B.2', 'brancheB', 1]] as [string, 'brancheA' | 'brancheB', number][]).map(([label, br, idx]) => (
                           <tr key={label}>
@@ -745,9 +745,10 @@ export function ReferenceDataPanel() {
   )
 }
 
-// ── Éditeur des effets automatiques d'une technologie de progrès ────────
-// Champ « effets » de chaque tech (engine/progres.ts) : paramétrable
-// entièrement ici — type d'effet, ressource, montant, titre, aménagements.
+// ── Éditeur des effets d'une technologie de progrès (AIDE DE JEU) ──────
+// Champ « effets » de chaque tech : AUCUN effet moteur (tout s'applique
+// au plateau) — ces lignes ne servent qu'au résumé affiché sous la tech.
+// Paramétrable entièrement ici — type, ressource, montant, titre, aménagements.
 
 const TYPES_EFFETS: Array<{ value: EffetProgres['type']; label: string }> = [
   { value: 'gain', label: 'Gain au déblocage' },

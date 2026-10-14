@@ -36,7 +36,6 @@ import { appliquerEffetsAmenagements, effetsNourrEteAmenagementsVille } from './
 import { appliquerEffetsAutres, effetsNourrEteAutresVille } from './autres'
 import { appliquerEffetsRegimesCultures } from './regimes'
 import { appliquerEffetsFaction, nbVassaux } from './factions'
-import { appliquerEffetsProgres } from './progres'
 import { appliquerEffetsMinisteres, effetsFinSaisonMinisteres } from './ministeres'
 import { appliquerTaxesCitesLibres, citesSuzerainesDe } from './citesLibres'
 import { appliquerConsommationsHabitations } from './habitations'
@@ -223,14 +222,6 @@ export function runTurn(state: GameState): GameState {
   const citesLibresParJoueur: Record<number, Record<string, number>> =
     appliquerTaxesCitesLibres(state, C)
 
-  // 3undecies. Progrès : effets par tour des technologies débloquées de
-  //  chaque joueur (gains de capitale, par habitation, par titre, par
-  //  aménagement — engine/progres.ts, paramétrables dans Référentiels →
-  //  Progrès, champ « effets » de chaque tech). Les gains uniques au
-  //  déblocage (« recevez 20 Or ») sont crédités par la vue Progrès.
-  const progresParJoueur: Record<number, Record<string, number>> =
-    appliquerEffetsProgres(state, C)
-
   // 3duodecies. Ministères : effets automatiques par tour des
   //  portefeuilles ministériels (Trésorier +5 Or, Grand Précepteur
   //  +1 Science — engine/ministeres.ts, cumulables), canal
@@ -270,7 +261,6 @@ export function runTurn(state: GameState): GameState {
       regimesCultures: regimesCulturesParJoueur[p.n] ?? {},
       habitations: habitationsParJoueur[p.n] ?? {},
       faction: factionsParJoueur[p.n] ?? {},
-      progres: progresParJoueur[p.n] ?? {},
       citesLibres: citesLibresParJoueur[p.n] ?? {},
       ministeres: ministeresParJoueur[p.n] ?? {},
       population,
@@ -326,6 +316,7 @@ export {
   batimentsFaction, batimentsCapitale,
   type DetailFaction, type RegleActive, type SourceRegle,
 } from './factions'
+export { supprimerVille, transfererVille } from './villes'
 export {
   citesLibresDe, garnisonCiteLibre, facteurTaxesCite, emissairesDe,
   citesSuzerainesDe, detailCiteLibre, taxesCitesLibresRecues,
@@ -350,10 +341,9 @@ export {
   changerPortefeuille,
 } from './ministeres'
 export {
-  techDefArbre, effetsTech, slotsDebloques, effetsTechParTour,
-  effetsProgresJoueur, detailsProgresJoueur, appliquerEffetsProgres,
-  garnisonProgresVille, gainsDeblocageTech, resumeEffetsTech,
-  type SlotProgres, type LigneProgres,
+  techDefArbre, effetsTech, coutScienceTech, debiterScienceTech,
+  rembourserScienceTech, resumeEffetsTech,
+  type SlotProgres,
 } from './progres'
 export { populationTurn, migrerPopulation } from './population'
 export {

@@ -24,7 +24,6 @@ import { effetsAmenagementsVille, effetsNourrEteAmenagementsVille, detailsAmenag
 import { effetsAutresVille, effetsNourrEteAutresVille, estNourrEte, detailsAutresJoueur } from './autres'
 import { effetsRegime, effetsCulturePays, detailCulturePays } from './regimes'
 import { effetsFaction } from './factions'
-import { effetsProgresJoueur, detailsProgresJoueur } from './progres'
 import { citesLibresDe, detailCiteLibre } from './citesLibres'
 import { consommationsPays, consommationsVille, nomRang } from './habitations'
 
@@ -55,9 +54,6 @@ export interface ProductionDetail {
   /** bonus automatiques des règles de faction du peuple du joueur
    *  (engine/factions.ts — étape 3nonies) */
   faction: Record<string, number>
-  /** effets par tour des technologies de progrès débloquées
-   *  (engine/progres.ts — étape 3undecies) */
-  progres: Record<string, number>
   /** taxes reçues des cités libres sous suzeraineté du joueur
    *  (engine/citesLibres.ts — étape 3decies) */
   citesLibres: Record<string, number>
@@ -168,14 +164,6 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     if (v !== 0) faction[res] = v
   }
 
-  // Progrès : effets par tour des technologies débloquées du joueur
-  //  (capitale, par habitation, par titre, par aménagement — étape
-  //  3undecies du moteur).
-  const progres: Record<string, number> = {}
-  for (const [res, v] of Object.entries(effetsProgresJoueur(state, p, C))) {
-    if (v !== 0) progres[res] = v
-  }
-
   // Cités libres : taxes versées par les cités sous suzeraineté du
   //  joueur (production nette, Chasseurs ×2 Nourriture) — étape
   //  3decies du moteur.
@@ -189,12 +177,12 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
 
   // Total
   const total: Record<string, number> = {}
-  for (const canal of [base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, progres, citesLibres, vassalite]) {
+  for (const canal of [base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, vassalite]) {
     for (const [res, v] of Object.entries(canal)) {
       total[res] = (total[res] ?? 0) + v
     }
   }
-  return { base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, progres, citesLibres, vassalite, total }
+  return { base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, vassalite, total }
 }
 
 // ══════════════════════════════════════════════════════════════════════
@@ -397,14 +385,6 @@ export function provenancesApports(
   for (const ville of p.villes) {
     for (const [res, v] of Object.entries(consommationsVille(ville, C))) {
       push(res, 'Conso villes', `${ville.nom} (${nomRang(ville.rang ?? '')})`, v)
-    }
-  }
-
-  // Progrès : une ligne par technologie débloquée ayant des effets par
-  //  tour (gains de capitale, par habitation, par titre, par aménagement)
-  for (const l of detailsProgresJoueur(state, p, C)) {
-    for (const [res, v] of Object.entries(l.effets)) {
-      push(res, 'Progrès', `technologie « ${l.nom} »`, v)
     }
   }
 

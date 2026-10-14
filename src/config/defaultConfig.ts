@@ -145,9 +145,9 @@ export interface ConstructionRef {
  *    prodParTitre       — +N ressource par tour et par habitant titré,
  *    prodParAmenagement — +N ressource par tour et par aménagement listé,
  *    garnison           — +N garnison statique (capitale ou habitations).
- *  Appliqué par engine/progres.ts (canal « Progrès » du récap). Les
- *  effets non chiffrés (bataille, coûts de construction, limites…)
- *  restent appliqués manuellement au plateau. */
+ *  AIDE DE JEU UNIQUEMENT (arbitrage Thibaut 2026-10-14) : AUCUN effet
+ *  moteur — le résumé est affiché sous la tech, tout s'applique au
+ *  plateau (bataille, coûts de construction, limites… inclus). */
 export interface EffetProgres {
   type: 'gain' | 'prodCapitale' | 'prodParHabitation' | 'prodParTitre' | 'prodParAmenagement' | 'garnison'
   /** ressource concernée (tous les types sauf garnison) */
@@ -162,16 +162,16 @@ export interface EffetProgres {
   cible?: 'capitale' | 'habitations'
 }
 
-/** Une technologie d'un arbre de progrès : nom, coût (Science, entre
- *  parenthèses dans le classeur), description de l'effet et effets
- *  automatiques chiffrés (engine/progres.ts) — les autres effets
- *  restent appliqués au plateau. */
+/** Une technologie d'un arbre de progrès : nom, coût (Science — DÉDUITE
+ *  automatiquement du stock au déblocage), description de l'effet et
+ *  effets chiffrés (AIDE DE JEU : résumé affiché, application au
+ *  plateau uniquement). */
 export interface ProgresTechDef {
   nom: string
   cout: string
   description: string
-  /** Effets automatiques appliqués par le moteur ; champ optionnel :
-   *  absent → aucun effet automatique (effet au plateau uniquement). */
+  /** Effets chiffrés (AIDE DE JEU — aucun effet moteur, application au
+   *  plateau) ; champ optionnel : absent → aucun résumé affiché. */
   effets?: EffetProgres[]
 }
 /** Un arbre de progrès (feuille « Progrès » du classeur) : 2 branches de

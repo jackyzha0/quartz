@@ -21,7 +21,6 @@
 
 import type { City, GameState, Player, Saison } from './types'
 import { cfgOf, cultureDef, type Cfg } from './gameData'
-import { garnisonProgresVille } from './progres'
 import { garnisonBatiment } from './batiments'
 import { garnisonFactionVille } from './factions'
 import { nomRang, garnisonBaseVille } from './habitations'
@@ -64,9 +63,6 @@ export function garnisonHabitationVille(p: Player, ville: City, C: Cfg, state?: 
   const bonus = regime?.garnisonParRang ?? 0
   if (bonus) g += bonus * rangNiveau(ville, C)
   if (state) g += garnisonFactionVille(state, p, ville, C)
-  // Progrès : garnisons statiques des technologies débloquées (effets
-  //  « garnison » — engine/progres.ts, paramétrables dans Référentiels).
-  if (state) g += garnisonProgresVille(state, p, ville, C)
   return g
 }
 

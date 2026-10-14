@@ -1,9 +1,10 @@
 // ══════════════════════════════════════════════════════════════════════
 //  Page « Pays » (vue joueur) :
-//   · ressources : panneau TRÈS LÉGER docké à droite, dépliable —
-//     stock modifiable, production / tour CALCULÉE (base + habitants +
-//     bâtiments + aménagements + autres + régimes & cultures + vassalité)
-//     — invariant : stock du tour N = stock du tour N−1 + production
+//   · ressources : BARRE FLOTTANTE MINIMALISTE en haut de la page,
+//     OUVERTE par défaut (retour Thibaut 2026-10-14) — stock modifiable,
+//     production / tour CALCULÉE (base + habitants + bâtiments +
+//     aménagements + autres + régimes & cultures + vassalité) —
+//     invariant : stock du tour N = stock du tour N−1 + production
 //     par tour,
 //   · culture du pays — encadré « bonus automatiques » : règle de pays
 //     chiffrée (ex. Lunisme : +4 Tourisme par ville luniste dans le
@@ -50,6 +51,7 @@ import {
   attraitTouristiqueVille, attraitMaxMonde,
   capitaleDe, batimentsFaction, batimentsCapitale,
   effetsNourrEteAmenagementsVille, effetsNourrEteAutresVille,
+  supprimerVille, transfererVille,
   type ProductionDetail,
 } from '../engine/engine'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
@@ -107,7 +109,11 @@ export function PlayerView({ joueur }: { joueur: number }) {
       const cible = type === 'batiment'
         ? ville.batiments
         : (ville.amenagements ?? (ville.amenagements = []))
-      if (cible.includes(nom)) return
+      // Un même BÂTIMENT ne se construit pas deux fois dans une ville ;
+      //  en revanche un AMÉNAGEMENT peut être présent PLUSIEURS FOIS
+      //  (plusieurs cases du même terrain, ex. 2 Champs) — chaque
+      //  exemplaire produit ses effets (retour Thibaut 2026-10-14).
+      if (type === 'batiment' && cible.includes(nom)) return
       // Bâtiment de faction : UN par ville — le nouveau remplace l'ancien
       // (ex. Église → Grande Cathédrale → Palais du Palatinat).
       let remplace = ''
@@ -196,8 +202,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
 
   return (
     <div className="stack">
-      {/* Panneau Ressources — très léger, docké à droite, dépliable */}
-      <RessourcesDock p={p} C={C} prodDetail={prodDetail} setPlayer={setPlayer} />
+      {/* Barre Ressources — flottante en haut de la page, ouverte par
+          défaut, minimaliste (retour Thibaut 2026-10-14) */}
+      <RessourcesBar p={p} C={C} prodDetail={prodDetail} setPlayer={setPlayer} />
 
       {/* ═══ Culture du pays : règle de pays chiffrée (ex. Lunisme —
           +4 Tourisme par ville luniste dans le monde) avec le NOMBRE de
@@ -286,6 +293,38 @@ export function PlayerView({ joueur }: { joueur: number }) {
                     })}
                   />
                 </Field>
+                {/* Actions de ville : transfert à un autre joueur
+                    (capture, vente, cadeau — la ville ET ses habitants
+                    suivent) et suppression (les habitants restent
+                    inscrits dans la population). Retour Thibaut. */}
+                <div className="badges-wrap">
+                  <Select
+                    value=""
+                    options={[
+                      { value: '' as const, label: '⇄ Transférer la ville à…' },
+                      ...state.players
+                        .filter((x) => x.n !== p.n)
+                        .map((x) => ({ value: String(x.n), label: `${x.nom} (J${x.n})` })),
+                    ]}
+                    onChange={(v) => v && update((st) => {
+                      const src = st.players.find((x) => x.n === joueur)
+                      const dst = st.players.find((x) => x.n === parseInt(v, 10))
+                      if (src && dst) transfererVille(st, src, idx, dst)
+                    })}
+                  />
+                  <Button
+                    tone="danger"
+                    onClick={() => {
+                      if (!window.confirm(`Supprimer « ${ville.nom} » ? Ses habitants resteront inscrits dans la population de ${p.nom}.`)) return
+                      update((st) => {
+                        const src = st.players.find((x) => x.n === joueur)
+                        if (src) supprimerVille(st, src, idx)
+                      })
+                    }}
+                  >
+                    🗑 Supprimer
+                  </Button>
+                </div>
                 <div className="muted small">
                   Culture majoritaire : <strong>{ville.culture}</strong> · {nbVivants} habitant(s) vivant(s)
                 </div>
@@ -698,7 +737,6 @@ export function PlayerView({ joueur }: { joueur: number }) {
             ['Autres', prodDetail.autres],
             ['Régimes & cultures', prodDetail.regimesCultures],
             ['Faction', prodDetail.faction],
-            ['Progrès', prodDetail.progres],
             ['Cités libres', prodDetail.citesLibres],
             ['Conso villes', prodDetail.habitations],
             ['Vassalité', prodDetail.vassalite],
@@ -953,71 +991,57 @@ export function PlayerView({ joueur }: { joueur: number }) {
   )
 }
 
-// ═══ Panneau Ressources — très léger, docké à droite, dépliable ═══
+// ═══ Barre Ressources — flottante en haut de page, OUVERTE par défaut,
+// minimaliste : une puce par ressource (stock modifiable + production
+// / tour), réglage avancé replié, bouton ▼/▲ à droite. ═══
 
-function RessourcesDock({ p, C, prodDetail, setPlayer }: {
+function RessourcesBar({ p, C, prodDetail, setPlayer }: {
   p: Player
   C: Cfg
   prodDetail: ProductionDetail
   setPlayer: (fn: (p: Player, s: GameState) => void) => void
 }) {
-  const [ouvert, setOuvert] = useState(false)
+  const [ouvert, setOuvert] = useState(true)
   const [baseOuvert, setBaseOuvert] = useState(false)
   return (
-    <div className={`res-dock${ouvert ? ' open' : ''}`}>
+    <div className={`res-top${ouvert ? ' open' : ''}`}>
       {ouvert && (
-        <div className="res-panel">
-          <div className="res-panel-head">
-            <strong>Ressources</strong>
-            <span className="muted small">stock modifiable · production / tour calculée</span>
+        <>
+          <div className="res-top-row">
+            {C.ressources.map((r) => {
+              const rs = p.resources[r] ?? { stock: 0, prod: 0 }
+              const prod = prodDetail.total[r] ?? 0
+              return (
+                <span key={r} className="res-chip" title={`${r} — stock modifiable · production / tour calculée${r === 'Habitants' ? ' (production = titres × taxes des habitants)' : ''}`}>
+                  <strong>{r}</strong>
+                  <span className={rs.stock < 0 ? 'neg' : ''}>
+                    <NumberInput
+                      value={rs.stock}
+                      step={r === 'Habitants' ? 1 : 5}
+                      onChange={(v) => setPlayer((x) => {
+                        if (!x.resources[r]) x.resources[r] = { stock: 0, prod: 0 }
+                        x.resources[r].stock = v
+                      })}
+                    />
+                  </span>
+                  <span className={`small ${prod < 0 ? 'neg' : 'muted'}`}>
+                    {prod === 0 ? '±0' : fmtNum(prod)}
+                  </span>
+                </span>
+              )
+            })}
+            <button
+              className="res-top-btn"
+              onClick={() => setBaseOuvert(!baseOuvert)}
+              title="Réglage avancé : production de base du pays"
+            >
+              {baseOuvert ? '▲ base' : '⚙ base'}
+            </button>
           </div>
-          <div className="table-wrap">
-            <table className="tbl small">
-              <thead>
-                <tr>
-                  <th>Ressource</th>
-                  <th>Stock</th>
-                  <th>Prod. / tour</th>
-                </tr>
-              </thead>
-              <tbody>
-                {C.ressources.map((r) => {
-                  const rs = p.resources[r] ?? { stock: 0, prod: 0 }
-                  const prod = prodDetail.total[r] ?? 0
-                  return (
-                    <tr key={r}>
-                      <td><strong>{r}</strong></td>
-                      <td className={rs.stock < 0 ? 'neg' : ''}>
-                        <NumberInput
-                          value={rs.stock}
-                          step={r === 'Habitants' ? 1 : 5}
-                          onChange={(v) => setPlayer((x) => {
-                            if (!x.resources[r]) x.resources[r] = { stock: 0, prod: 0 }
-                            x.resources[r].stock = v
-                          })}
-                        />
-                      </td>
-                      <td className={prod < 0 ? 'neg' : ''}>
-                        <strong>{prod === 0 ? '—' : fmtNum(prod)}</strong>
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
-          <p className="muted small">
-            Invariant : le stock du tour N est le stock du tour N−1 plus la
-            production par tour. Production calculée : base + habitants (titres
-            × taxes, toutes ressources) + bâtiments + aménagements + autres + vassalité.
-          </p>
-          <button className="btn btn-normal small" onClick={() => setBaseOuvert(!baseOuvert)}>
-            {baseOuvert ? '▲' : '▼'} Réglage avancé : production de base du pays
-          </button>
           {baseOuvert && (
-            <div className="badges-wrap">
+            <div className="res-top-base">
               {C.ressources.map((r) => (
-                <label key={r} className="field" style={{ minWidth: 130 }}>
+                <label key={r} className="field" style={{ minWidth: 120 }}>
                   <span className="field-label">{r}</span>
                   <NumberInput
                     value={p.resources[r]?.prod ?? 0}
@@ -1031,14 +1055,14 @@ function RessourcesDock({ p, C, prodDetail, setPlayer }: {
               ))}
             </div>
           )}
-        </div>
+        </>
       )}
       <button
-        className="res-toggle"
+        className="res-top-toggle"
         onClick={() => setOuvert(!ouvert)}
         title="Ressources — stock et production par tour"
       >
-        {ouvert ? '▸ fermer' : 'Ressources ◂'}
+        {ouvert ? '▲' : '▼ Ressources'}
       </button>
     </div>
   )
