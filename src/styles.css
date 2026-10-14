@@ -118,6 +118,10 @@ ol, ul { margin: 6px 0; padding-left: 22px; }
 @media (max-width: 720px) { .grid-arbres { grid-template-columns: 1fr; } }
 @media (max-width: 480px) { .grid-branches { grid-template-columns: 1fr; } }
 
+/* ── Page « Pays » : 2 villes par ligne (repli 1 colonne en fenêtre étroite) ── */
+.grid-villes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+@media (max-width: 800px) { .grid-villes { grid-template-columns: 1fr; } }
+
 .mini {
   background: var(--card2); border: 1px solid var(--border); border-radius: 6px;
   padding: 10px 12px; display: flex; flex-direction: column; gap: 6px;

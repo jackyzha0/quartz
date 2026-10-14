@@ -251,9 +251,10 @@ export function PlayerView({ joueur }: { joueur: number }) {
 
       {/* ═══ Villes : aménagements, bâtiments, autres, cultures, taxes ═══ */}
       <Card title="Villes">
-        {/* Une ville par ligne, PLEINE LARGEUR : les tableaux de
-            production doivent rester lisibles sans scroll latéral. */}
-        <div className="stack">
+        {/* 2 villes par ligne ; repli à 1 colonne en fenêtre étroite —
+            les tableaux internes restent lisibles (défilement horizontal
+            via .table-wrap si besoin). */}
+        <div className="grid-villes">
           {p.villes.map((ville, idx) => {
             const nbVivants = (state.population[p.n] ?? [])
               .filter((c) => c.statut !== 'Décédé' && c.ville === ville.nom).length
