@@ -281,7 +281,11 @@ export function runTurn(state: GameState): GameState {
 
 export { newId, isNobleDyn, fullName } from './shared'
 export { saisonForTurn, applyEventEffect, applyDynastieCard } from './saisons'
-export { calculerGainsPopulation, taxBirthFactor, facteurTaxes, detailGainsVille, type GainsVilleDetail } from './economie'
+export {
+  calculerGainsPopulation, taxBirthFactor, detailGainsVille, type GainsVilleDetail,
+  impotPopulation, impotsVassaux, type ImpotVassal,
+  genererImpotPopulation, genererImpotVassaux,
+} from './economie'
 export {
   effetsTourBatiment, effetsBatimentsVille, appliquerEffetsBatiments,
   garnisonBatiment, coutBatiment, detailsBatimentsJoueur, batimentRef,

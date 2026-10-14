@@ -29,7 +29,13 @@ export function facteurTaxes(ville: City, C: Cfg): number {
 }
 
 export function calculerGainsPopulation(state: GameState, p: Player, rng: Rng): Record<string, number> {
-  const C = cfgOf(state.config)
+  return gainsPopulationJoueur(state, p, cfgOf(state.config))
+}
+
+/** Gains nets de population d'un joueur, toutes villes (titres × taxes −
+ *  consommation). Partagé entre le moteur de fin de tour et les impôts
+ *  manuels (génération hors fin de tour). */
+function gainsPopulationJoueur(state: GameState, p: Player, C: Cfg): Record<string, number> {
   const totals: Record<string, number> = {}
   for (const ville of p.villes) {
     for (const [res, v] of Object.entries(gainsVilleBruts(state, p, ville, C))) {
@@ -108,4 +114,101 @@ export function detailGainsVille(state: GameState, p: Player, ville: City, C: Cf
 export function taxBirthFactor(ville: City | undefined, C: Cfg = cfgOf()): number {
   if (!ville) return 1
   return ville.taxes === 'Faible' ? C.p.taxNaissFaibles : ville.taxes === 'Forte' ? C.p.taxNaissHautes : 1
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  IMPÔTS MANUELS — GÉNÉRATION HORS FIN DE TOUR (retour Thibaut 2026-10-14)
+//  Boutons « Générer l'impôt » : créditer AUSSI SOUVENT QUE VOULU l'impôt
+//  que la population (ou les vassaux) produit sur UN tour, sans attendre
+//  la fin de tour. Mêmes formules que le moteur (canal « Habitants » du
+//  récap : titres × taxes − consommation ; tribut de vassalité sur l'Or).
+// ══════════════════════════════════════════════════════════════════════
+
+/** Impôt que la population de p produit sur UN tour (canal « Habitants » :
+ *  taxes − consommation, × gainsCrediteStock comme au fin de tour). */
+export function impotPopulation(state: GameState, p: Player, C: Cfg): Record<string, number> {
+  const out: Record<string, number> = {}
+  for (const [res, v] of Object.entries(gainsPopulationJoueur(state, p, C))) {
+    const cv = v * C.p.gainsCrediteStock
+    if (cv !== 0) out[res] = cv
+  }
+  return out
+}
+
+/** Impôt que chaque vassal de p lui reverse sur UN tour (part
+ *  vassalPrelevement de l'Or gagné par les habitants du vassal). */
+export interface ImpotVassal {
+  vassal: string
+  montant: number
+}
+
+export function impotsVassaux(state: GameState, p: Player, C: Cfg): ImpotVassal[] {
+  const out: ImpotVassal[] = []
+  for (const v of state.players) {
+    if (v.vassalDe !== p.n || p.vassalDe === v.n) continue // serment croisé ignoré
+    const gains = gainsPopulationJoueur(state, v, C)
+    const part = (gains['Or'] ?? 0) * C.p.vassalPrelevement
+    if (part !== 0) out.push({ vassal: v.nom, montant: part })
+  }
+  return out
+}
+
+const fmtImp = (v: number) => Math.round(v * 10) / 10
+
+/** Crédite l'impôt de la population de p, `fois` fois, au stock + log
+ *  Système. Retourne le récap crédité (null si rien à créditer). */
+export function genererImpotPopulation(
+  state: GameState, p: Player, C: Cfg, fois: number,
+): Record<string, number> | null {
+  if (fois <= 0) return null
+  const impot = impotPopulation(state, p, C)
+  if (Object.keys(impot).length === 0) {
+    state.log.push({
+      turn: state.turn, type: 'Système', joueur: p.n,
+      texte: `💰 Impôt de la population : rien à générer (aucun gain d'habitants pour ${p.nom}).`,
+    })
+    return null
+  }
+  const credite: Record<string, number> = {}
+  for (const [res, v] of Object.entries(impot)) {
+    const rs = p.resources[res]
+    if (!rs) continue
+    const total = v * fois
+    rs.stock += total
+    credite[res] = total
+  }
+  state.log.push({
+    turn: state.turn, type: 'Système', joueur: p.n,
+    texte: `💰 Impôt de la population généré ×${fois} pour ${p.nom} : ` +
+      Object.entries(credite).map(([r, v]) => `${fmtImp(v)} ${r}`).join(', ') +
+      ` (impôt d'un tour × ${fois}).`,
+  })
+  return credite
+}
+
+/** Crédite l'impôt reçu des vassaux de p, `fois` fois, au stock d'Or +
+ *  log Système. Retourne le total crédité (null si aucun vassal ne
+ *  reverse d'Or). */
+export function genererImpotVassaux(
+  state: GameState, p: Player, C: Cfg, fois: number,
+): number | null {
+  if (fois <= 0) return null
+  const parts = impotsVassaux(state, p, C)
+  if (parts.length === 0) {
+    state.log.push({
+      turn: state.turn, type: 'Système', joueur: p.n,
+      texte: `🤝 Impôt des vassaux : rien à générer (aucun vassal de ${p.nom} ne reverse d'Or).`,
+    })
+    return null
+  }
+  const total = parts.reduce((s2, x) => s2 + x.montant, 0) * fois
+  const rs = p.resources['Or']
+  if (rs) rs.stock += total
+  state.log.push({
+    turn: state.turn, type: 'Système', joueur: p.n,
+    texte: `🤝 Impôt des vassaux généré ×${fois} pour ${p.nom} : +${fmtImp(total)} Or (` +
+      parts.map((x) => `${x.vassal} : ${fmtImp(x.montant)}`).join(', ') +
+      ` par tour × ${fois}).`,
+  })
+  return total
 }

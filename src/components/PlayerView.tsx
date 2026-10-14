@@ -52,6 +52,7 @@ import {
   capitaleDe, batimentsFaction, batimentsCapitale,
   effetsNourrEteAmenagementsVille, effetsNourrEteAutresVille,
   supprimerVille, transfererVille,
+  impotPopulation, impotsVassaux, genererImpotPopulation, genererImpotVassaux,
   type ProductionDetail,
 } from '../engine/engine'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
@@ -73,6 +74,13 @@ export function PlayerView({ joueur }: { joueur: number }) {
 
   // ── Production / tour détaillée (calculée, non modifiable) ────────────
   const prodDetail = productionDetaillee(state, p, C)
+
+  // ── Impôts manuels (retour Thibaut 2026-10-14) : prévisualisation de
+  //    l'impôt d'UN tour (population / vassaux) pour les boutons
+  //    « Générer l'impôt » de la carte récap. ─────────────────────────────
+  const [foisImpot, setFoisImpot] = useState(1)
+  const impotPopPrev = impotPopulation(state, p, C)
+  const impotsVassPrev = impotsVassaux(state, p, C)
 
   // ── Attrait migratoire : borne haute = ville la plus attractive du
   //    monde (pour la heatmap sous chaque ville). ─────────────────────────
@@ -849,6 +857,36 @@ export function PlayerView({ joueur }: { joueur: number }) {
             </>
           )
         })()}
+
+        {/* ── Générer l'impôt (hors fin de tour, retour Thibaut
+            2026-10-14) : crédite l'impôt d'un tour AUTANT DE FOIS que
+            voulu — population (canal « Habitants ») ou vassaux (tribut
+            de vassalité, Or). Le fin de tour crédite les gains du tour
+            normalement par-dessus. ───────────────────────────────── */}
+        <div className="mini-title">Générer l'impôt (hors fin de tour)</div>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+          <label className="small">Nombre de tours :</label>
+          <NumberInput value={foisImpot} onChange={setFoisImpot} min={1} />
+          <Button tone="primary" onClick={() => update((s) => {
+            const t = s.players.find((x) => x.n === joueur)
+            if (t) genererImpotPopulation(s, t, C, foisImpot)
+          })}>💰 Générer l'impôt de la population</Button>
+          <Button tone="primary" onClick={() => update((s) => {
+            const t = s.players.find((x) => x.n === joueur)
+            if (t) genererImpotVassaux(s, t, C, foisImpot)
+          })}>🤝 Générer l'impôt des vassaux</Button>
+        </div>
+        <p className="muted small">
+          Impôt d'un tour — population : {Object.keys(impotPopPrev).length === 0
+            ? 'aucun gain d’habitants'
+            : Object.entries(impotPopPrev).map(([r, v]) => `${fmt(v)} ${r}`).join(', ')}
+          {' · '}vassaux : {impotsVassPrev.length === 0
+            ? 'aucun vassal ne reverse d’Or'
+            : `+${fmt(impotsVassPrev.reduce((s2, x) => s2 + x.montant, 0))} Or (` +
+              impotsVassPrev.map((x) => `${x.vassal} : ${fmt(x.montant)}`).join(', ') + ')'}
+          . Crédité immédiatement au stock × {foisImpot} (le fin de tour
+          crédite les gains du tour normalement par-dessus).
+        </p>
         <p className="muted small">
           Récapitulatif CALCULÉ du prochain tour, canal par canal — production
           de base du pays, villageois (titres × taxes, toutes ressources), bâtiments et
