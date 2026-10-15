@@ -17,6 +17,7 @@ import { cfgOf, type Cfg } from './gameData'
 import { parseCoutTexte } from './constructions'
 import { aMinistre } from './ministeres'
 import { rangPaysNiveau, regleActive } from './factions'
+import { reductionFondation } from './progresAuto'
 
 /** Nom court d'un rang d'habitation (« Hameau : 20 Or… » → « Hameau »). */
 export function nomRang(rang: string): string {
@@ -139,6 +140,13 @@ export function debiterCoutHabitation(
   if (fondation && p.peuple === 'PEAUX VERTES') {
     if (cout['Or'] !== undefined) cout['Or'] = Math.max(0, cout['Or'] - 8)
     if (cout['Bois'] !== undefined) cout['Bois'] = Math.max(0, cout['Bois'] - 2)
+  }
+  // Technologies (revue 2026-10-15) : Colonialisme durable (-5 Bois)
+  //  et economome (-20 Or) sur les FONDATIONS d'habitation.
+  if (fondation) {
+    for (const [r, v] of Object.entries(reductionFondation(p, C))) {
+      if (cout[r] !== undefined) cout[r] = Math.max(0, cout[r] - v)
+    }
   }
   for (const [res, v] of Object.entries(cout)) {
     const rs = p.resources[res]

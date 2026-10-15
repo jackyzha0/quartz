@@ -46,6 +46,7 @@ import { appliquerBonusProximite } from './villes'
 import { populationTurn } from './population'
 import { recruitForArmies } from './armees'
 import { snapshotRessources } from './journal'
+import { fluxProgresJoueur } from './progresAuto'
 
 // ══════════════════════════════════════════════════════════════════════
 //  RANGS DE PAYS — condition de sacre (serments possédés)
@@ -267,6 +268,25 @@ export function runTurn(state: GameState): GameState {
   const commerceParJoueur: Record<number, Record<string, number>> =
     appliquerEffetsCommerce(state, C)
 
+  // 3undecies-bis. PROGRES (retour Thibaut 2026-10-15 : effets
+  //  automatiques) : flux par tour des technologies debloquees (canal
+  //  « Progrès » du récap ressources — engine/progresAuto.ts).
+  const progresParJoueur: Record<number, Record<string, number>> = {}
+  for (const p of state.players) {
+    const flux = fluxProgresJoueur(state, p, C)
+    progresParJoueur[p.n] = flux
+    for (const [res, v] of Object.entries(flux)) {
+      const rs = p.resources[res]
+      if (rs && v !== 0) rs.stock += v
+    }
+    if (Object.keys(flux).length > 0) {
+      const parts = Object.entries(flux).map(([r, v]) => `${v > 0 ? '+' : ''}${Math.round(v * 10) / 10} ${r}`).join(', ')
+      state.log.push({
+        turn: state.turn + 1, type: 'Système', joueur: p.n,
+        texte: `🔬 ${p.nom} — progrès technologiques : ${parts}.`,
+      })
+    }
+  }
   // 4. Moteur de population (PersonnagesPourJoueur) pour chaque joueur
   for (const p of state.players) {
     populationTurn(state, p, rng)
@@ -305,6 +325,7 @@ export function runTurn(state: GameState): GameState {
       proximite: proximiteParJoueur[p.n] ?? {},
       population,
       vassalite,
+      progres: progresParJoueur[p.n] ?? {},
     }
   }
   snapshotRessources(state, turnBefore + 1, apportsParJoueur)

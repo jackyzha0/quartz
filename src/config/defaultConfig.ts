@@ -633,11 +633,11 @@ export const DEFAULT_CONFIG: GameConfig = {
 //   (nombre de Ministres autorisés). Le bonus de fin de saison reste à gérer
 //   au plateau. Entièrement paramétrable dans Référentiels → « Pays & rangs ».
 DEFAULT_CONFIG.paysRangs = [
-  { nom: 'Baronnie', coutOr: 0, coutNourriture: 0, serments: 0, ministres: 1, bonus: 'Fin d\'été : +20 Nourriture.' },
-  { nom: 'Comté', coutOr: 20, coutNourriture: 40, serments: 1, ministres: 2, bonus: 'Fin d\'été : +10 Or.' },
-  { nom: 'Duché', coutOr: 30, coutNourriture: 60, serments: 2, ministres: 3, bonus: 'Fin d\'hiver : +6 Science.' },
-  { nom: 'Royaume', coutOr: 50, coutNourriture: 100, serments: 3, ministres: 4, bonus: 'Fin d\'été : 6 ressources de base au choix.' },
-  { nom: 'Empire', coutOr: 100, coutNourriture: 200, serments: 4, ministres: 5, bonus: 'Fin d\'hiver : volez 5 Sciences à chaque joueur de rang inférieur.' },
+  { nom: 'Baronnie', coutOr: 0, coutNourriture: 0, serments: 0, ministres: 1, bonus: '' },
+  { nom: 'Comté', coutOr: 20, coutNourriture: 40, serments: 1, ministres: 2, bonus: '' },
+  { nom: 'Duché', coutOr: 30, coutNourriture: 60, serments: 2, ministres: 3, bonus: '' },
+  { nom: 'Royaume', coutOr: 50, coutNourriture: 100, serments: 3, ministres: 4, bonus: '' },
+  { nom: 'Empire', coutOr: 100, coutNourriture: 200, serments: 4, ministres: 5, bonus: '' },
 ]
 
 // ── Accès à la configuration effective d'une partie ───────────────────

@@ -29,6 +29,7 @@ import { consommationsPays, consommationsVille, nomRang } from './habitations'
 import { bonusProximite } from './villes'
 import { effetsCommerceJoueur, detailCommerceJoueur } from './commerce'
 import { portefeuillesDuJoueur } from './ministeres'
+import { fluxProgresJoueur } from './progresAuto'
 
 export interface ProductionDetail {
   /** production de base du pays (stockée dans resources[r].prod) — la
@@ -73,6 +74,8 @@ export interface ProductionDetail {
    *  (Trésorier +5 Or, Grand Précepteur +1 Science… — engine/
    *  ministeres.ts, cumulables) — canal « Ministères » du récap. */
   ministeres: Record<string, number>
+  /** flux par tour des technologies d\u00e9bloqu\u00e9es (engine/progresAuto.ts \u2014 canal \u00ab Progr\u00e8s \u00bb). */
+  progres: Record<string, number>
   /** Entretien des armées : canal vide (règle du classeur — prix payé
    *  UNE FOIS à la levée, pas d'entretien par tour). */
   armees: Record<string, number>
@@ -210,6 +213,12 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     if (b !== 0) proximite['Nourriture'] = (proximite['Nourriture'] ?? 0) + b
   }
 
+  // Progrès : flux par tour des technologies débloquées (revue
+  //  2026-10-15 — vue calcul pur, le moteur crédite déjà).
+  const progres: Record<string, number> = {}
+  for (const [res, v] of Object.entries(fluxProgresJoueur(state, p, C))) {
+    if (v !== 0) progres[res] = v
+  }
   // Ministères : effets par tour des portefeuilles (Trésorier +5 Or,
   //  Grand Précepteur +1 Science, Grand prévôt +1 Fer — cumulables,
   //  même logique qu'appliquerEffetsMinisteres mais SANS créditer
@@ -225,12 +234,12 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
   const armees: Record<string, number> = {}
   // Total
   const total: Record<string, number> = {}
-  for (const canal of [base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, proximite, vassalite, ministeres, armees]) {
+  for (const canal of [base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, proximite, vassalite, ministeres, progres, armees]) {
     for (const [res, v] of Object.entries(canal)) {
       total[res] = (total[res] ?? 0) + v
     }
   }
-  return { base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, proximite, vassalite, ministeres, armees, total }
+  return { base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, proximite, vassalite, ministeres, progres, armees, total }
 }
 
 // ══════════════════════════════════════════════════════════════════════

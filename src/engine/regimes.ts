@@ -25,6 +25,7 @@ import { aMinistre } from './ministeres'
 import { garnisonBatiment } from './batiments'
 import { garnisonFactionVille, rangPaysNiveau } from './factions'
 import { nomRang, garnisonBaseVille } from './habitations'
+import { garnisonProgresVille } from './progresAuto'
 
 export { nomRang } from './habitations'
 
@@ -66,6 +67,9 @@ export function garnisonHabitationVille(p: Player, ville: City, C: Cfg, state?: 
     g += 10 * rangPaysNiveau(p, C)
   }
   for (const b of ville.batiments) g += garnisonBatiment(b, C)
+  // Technologies (revue 2026-10-15) : Milices civiles I/III/V, Fortifications,
+  //  Pr\u00e9 carr\u00e9, Vasselit\u00e9 \u2014 le commentaire le promettait, c'est r\u00e9el.
+  g += garnisonProgresVille(p, ville, C)
   const regime = C.regimes.find((r) => r.nom === p.regime)
   const bonus = regime?.garnisonParRang ?? 0
   if (bonus) g += bonus * rangNiveau(ville, C)

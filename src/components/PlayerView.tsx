@@ -61,6 +61,7 @@ import {
 } from '../engine/engine'
 import { peuplerNouvelleVille } from '../engine/setup'
 import { effetImmediatMerveille } from '../engine/merveilles'
+import { reductionAmenagement, reductionBatiment, reductionFondation } from '../engine/progresAuto'
 import { villeDevientCiteLibre } from '../engine/citesLibres'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
 import { ChoicePicker, type PickerCategorie } from './Picker'
@@ -242,6 +243,20 @@ export function PlayerView({ joueur }: { joueur: number }) {
       const cout = type === 'batiment'
         ? coutBatiment(nom, C, groupe)
         : coutAmenagement(t, C.config, type === 'amenagement' ? nom : undefined)
+      // Réductions des TECHNOLOGIES (revue 2026-10-15) :
+      //  · Développement durable : aménagements −1 Bois ;
+      //  · Développement économe : aménagements −3 Or ;
+      //  · Viser le ciel : bâtiments −15 Or.
+      if (type === 'amenagement') {
+        for (const [r, v] of Object.entries(reductionAmenagement(t, C))) {
+          if (cout[r] !== undefined) cout[r] = Math.max(0, cout[r] - v)
+        }
+      }
+      if (type === 'batiment') {
+        for (const [r, v] of Object.entries(reductionBatiment(t, C))) {
+          if (cout[r] !== undefined) cout[r] = Math.max(0, cout[r] - v)
+        }
+      }
       // Basiléens « Heure de la prière » (Âge II, revue 2026-10-15) :
       //  bâtiments −3 Pierres à la construction (toutes familles).
       if (t.peuple === 'Basiléens' && t.regleAge2 === 'Heure de la prière' && type === 'batiment') {
@@ -1304,6 +1319,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
             ['Conso villes', prodDetail.habitations],
             ['Vassalité', prodDetail.vassalite],
             ['Ministères', prodDetail.ministeres],
+            ['Progrès', prodDetail.progres],
           ]
           // « Nourr - été » en LIGNE (comme dans le classeur), pas en
           // colonne : sources séparées — Aménagements (Champ, Rizière) +

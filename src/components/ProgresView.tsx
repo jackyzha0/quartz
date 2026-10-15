@@ -23,6 +23,7 @@ import { Card, Badge, Button } from './ui'
 import { debiterScienceTech, rembourserScienceTech, resumeEffetsTech } from '../engine/progres'
 import { aMinistre, rangPaysNiveau } from '../engine/engine'
 import { bonusTourDeCrystalProgres } from '../engine/merveilles'
+import { gainDeblocageProgres } from '../engine/progresAuto'
 import { makeRng } from '../engine/rng'
 
 type Slot = 'a1' | 'a2' | 'b1' | 'b2' | 'c'
@@ -155,14 +156,12 @@ export function ProgresView({ joueur }: { joueur: number }) {
         //  « Lorsque vous découvrez un progrès, générez 3 d'une
         //  ressource de base aléatoire » — crédité automatiquement.
         const crystal = bonusTourDeCrystalProgres(q, makeRng(st.rngState))
-        // Geste / Offrande (Progrès de la diplomatie, retour Thibaut
-        //  2026-10-15) : « recevez 1 Émissaire » au déblocage —
-        //  crédité automatiquement en réserve.
-        let emissTxt = ''
-        if (t?.nom === 'Geste' || t?.nom === 'Offrande') {
-          q.emissaires = (q.emissaires ?? 0) + 1
-          emissTxt = ` — +1 émissaire en réserve (${q.emissaires}).`
-        }
+        // Gains one-shot au déblocage (retour Thibaut 2026-10-15 :
+        //  « applique tout ce que tu peux ») : Science, Or, Habitants,
+        //  Émissaires — crédités automatiquement par
+        //  gainDeblocageProgres (engine/progresAuto.ts).
+        const gainTxt = gainDeblocageProgres(q, t?.nom ?? '')
+        const emissTxt = gainTxt ? ` — ${gainTxt}.` : ''
         if (crystal) {
           st.rngState = makeRng(st.rngState).state()
           const rsC = q.resources[crystal.ressource]
