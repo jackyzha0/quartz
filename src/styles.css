@@ -635,9 +635,11 @@ input[type='range'] {
 .ville-constr { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 @media (max-width: 560px) { .ville-constr { grid-template-columns: 1fr; } }
 
-/* « Donner à… » et « Marier avec… » sur la même ligne (tableaux de population) */
+/* « Donner à… » et « Marier avec… » sur la même ligne (tableaux de population) ;
+   largeur RÉDUITE en fixe (retour Thibaut, marqueur (z)) : les deux menus
+   ne s'étirent plus sur toute la cellule. */
 .act-row { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
-.act-row select.input { flex: 1 1 120px; min-width: 0; width: auto; }
+.act-row select.input { flex: 0 0 auto; width: 150px; min-width: 0; max-width: 100%; }
 
 /* Tableaux « La cour » et « Population » : lignes plus denses */
 .pop-tbl th, .pop-tbl td { padding: 3px 6px; }

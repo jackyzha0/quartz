@@ -115,7 +115,7 @@ export function detailGainsVille(state: GameState, p: Player, ville: City, C: Cf
   return { habitants: vivants.length, titres, taxeMult, taxes, conso, net }
 }
 
-/** Facteur de taxes sur la conception (Faible ×1,5 / Moyenne ×1 / Forte ×0,5). */
+/** Facteur de taxes sur la conception (Faible ×taxNaissFaibles / Moyenne ×1 / Forte ×taxNaissHautes — ±25 %, marqueur (z)). */
 export function taxBirthFactor(ville: City | undefined, C: Cfg = cfgOf()): number {
   if (!ville) return 1
   return ville.taxes === 'Faible' ? C.p.taxNaissFaibles : ville.taxes === 'Forte' ? C.p.taxNaissHautes : 1

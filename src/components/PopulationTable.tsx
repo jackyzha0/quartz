@@ -37,6 +37,7 @@ import {
 import { GenealogyTree } from './GenealogyTree'
 import { Card, Select, TextInput, Button, NumberInput, fmt } from './ui'
 import { ChoicePicker } from './Picker'
+import { traitDef } from '../engine/gameData'
 
 type SortKey = 'nom' | 'age' | 'dynastie' | 'ville' | 'titre' | 'statut'
 
@@ -216,23 +217,19 @@ export function PopulationTable({ joueur }: { joueur: number }) {
         : { value: `c${i}`, label: `🗼 ${cc.nom} (cité libre)` }))
       .filter((x): x is { value: string; label: string } => x !== null),
   ]
-  /** Nobles vivants, majeurs et célibataires, chez les joueurs comme
-   *  dans les cités libres. Le personnage lui-même est exclu. */
+  /** Nobles vivants, majeurs et célibataires (validité au moteur). */
   const eligibleMariage = (x: Character, c: Character) =>
     x.id !== c.id && x.statut !== 'Décédé' && !x.mariage
     && x.age >= C.p.adultAge && estNoble(x)
-  const optionsMariage = (c: Character) => [
-    ...state.players.flatMap((q) =>
-      (state.population[q.n] ?? [])
-        .filter((x) => eligibleMariage(x, c))
-        .map((x) => ({ value: x.id, label: `${fullName(x)} — ${q.nom} (${x.dynastie})` })),
-    ),
-    ...(state.citesLibres ?? []).flatMap((cc) =>
-      (cc.population ?? [])
-        .filter((x) => eligibleMariage(x, c))
-        .map((x) => ({ value: x.id, label: `${fullName(x)} — 🗼 ${cc.nom}, cité libre (${x.dynastie})` })),
-    ),
-  ]
+  /** Options « Marier avec… » (marqueur (z), retour Thibaut) : les
+   *  nobles du porteur COURANT UNIQUEMENT (joueur ou cité libre
+   *  affiché) — on ne cible plus les autres joueurs/cités. Le moteur
+   *  (marierPersonnages) reste capable d'unir deux porteurs
+   *  différents (c'est l'interface qui restreint). */
+  const optionsMariage = (c: Character) =>
+    pop
+      .filter((x) => eligibleMariage(x, c))
+      .map((x) => ({ value: x.id, label: `${fullName(x)} (${x.dynastie})` }))
   const donnerA = (c: Character, v: string) => {
     if (!v) return
     const dst = detenteurDeCle(state, v)
@@ -263,7 +260,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
     //  mariée dans la ville de son conjoint — confirmation avant de
     //  déplacer un Dirigeant (changement de porteur possible).
     if (p && c.titre === C.p.titreDirigeant
-      && !window.confirm(`Le mariage déplace la personne mariée dans la ville de son conjoint (${p.nom} perd ${fullName(c)} si son conjoint est d'un autre porteur). Marier ${fullName(c)} ?`)) return
+      && !window.confirm(`Le mariage déplace la personne mariée dans la ville de son conjoint (${fullName(c)} changera de ville). Marier ${fullName(c)} ?`)) return
     let errMariage: string | null = null
     update((s) => {
       const a = cite
@@ -379,7 +376,8 @@ export function PopulationTable({ joueur }: { joueur: number }) {
       <td>{c.education ?? '—'}</td>
       <td className="small">
         {c.traits.filter(Boolean).map((t) => (
-          <span key={t} className={`badge ${t === 'Bâtard' || t === 'Consanguin' ? 'badge-bad' : 'badge-neutral'}`}>{t}</span>
+          <span key={t} title={traitDef(t, C.config)?.description || undefined}
+            className={`badge ${t === 'Bâtard' || t === 'Consanguin' ? 'badge-bad' : 'badge-neutral'}`}>{t}</span>
         ))}
       </td>
       <td>
@@ -637,9 +635,9 @@ export function PopulationTable({ joueur }: { joueur: number }) {
         </div>
         <p className="muted small">
           « ➡ Donner à… » transfère le noble à un autre porteur (il y est éditable et y produit).
-          « 💍 Marier avec… » unit deux nobles — y compris de porteurs différents : la
-          personne mariée déménage dans la ville de son conjoint et rejoint son porteur
-          (changement de joueur ou de cité possible ; confirmation avant de marier un Dirigeant).
+          « 💍 Marier avec… » unit deux nobles DU MÊME porteur (retour Thibaut (z) : on ne
+          cible plus les autres joueurs ni les cités) : la personne mariée déménage
+          dans la ville de son conjoint (confirmation avant de marier un Dirigeant).
           Si un mariage ou un don est refusé, le motif s'affiche en rouge sous le titre
           (déjà marié, non noble, mineur…).
         </p>

@@ -309,6 +309,12 @@ export interface GameConfig {
    *  un bâtiment… par défaut). Champ optionnel : absentes des
    *  anciennes sauvegardes, elles migrent au premier passage. */
   schemaVersion?: number
+  /** Marqueur (z) : l'effet des taxes Faibles/Fortes a été passé de
+   *  ±50 % à ±25 % — ce champ trace la migration ciblée des
+   *  paramètres de taxes (cfgOf), SANS toucher au tampon
+   *  schemaVersion (les suppressions/renommages du référentiel
+   *  persistent — règle (x)). */
+  taxes25?: boolean
 }
 
 // ── Couleurs d'affichage (retour Thibaut 2026-10-14, marqueur (o)) ──────
@@ -950,6 +956,22 @@ export function cfgOf(config: GameConfig | undefined): Cfg {
     //  ajout des entrées du référentiel apparues depuis la sauvegarde
     merged.constructions = migrerConstructions(merged.constructions, DEFAULT_CONFIG.constructions)
     merged.schemaVersion = SCHEMA_VERSION_CONFIG
+  }
+  // Effet des taxes ±50 % → ±25 % (marqueur (z), retour Thibaut
+  //  2026-10-15) : migration CIBLÉE des paramètres, indépendante du
+  //  tampon schemaVersion — on ne re-joue PAS les autres migrations
+  //  (les suppressions/renommements du référentiel persistent, règle
+  //  (x)). Ne remplace qu'une valeur encore à l'ANCIEN défaut
+  //  (0.5 / 1.5) ; toute valeur personnalisée est conservée. Le
+  //  champ taxes25 marque la migration faite (persisté par
+  //  convergerConfig aux points de sauvegarde).
+  if (!merged.taxes25) {
+    const pm = merged.params as Record<string, unknown>
+    if (pm.taxOrFaibles === 0.5) pm.taxOrFaibles = 0.75
+    if (pm.taxOrHautes === 1.5) pm.taxOrHautes = 1.25
+    if (pm.taxNaissFaibles === 1.5) pm.taxNaissFaibles = 1.25
+    if (pm.taxNaissHautes === 0.5) pm.taxNaissHautes = 0.75
+    merged.taxes25 = true
   }
   return {
     p: merged.params,

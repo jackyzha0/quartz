@@ -152,10 +152,13 @@ export const DEFAULT_PARAMS: GameParams = {
   conversionProba: 0.1,
   conversionPoidsLocal: 5,
   conversionMemeCulture: 5,
-  taxOrFaibles: 0.5,
-  taxOrHautes: 1.5,
-  taxNaissFaibles: 1.5,
-  taxNaissHautes: 0.5,
+  // Effet des taxes Faibles/Fortes : ±25 % (retour Thibaut, marqueur
+  //  (z) — avant ±50 % ; les configs existantes encore aux anciens
+  //  défauts sont migrées ciblément par cfgOf, champ taxes25).
+  taxOrFaibles: 0.75,
+  taxOrHautes: 1.25,
+  taxNaissFaibles: 1.25,
+  taxNaissHautes: 0.75,
   puissanceGeneral: 45,
   puissanceSoldat: 15,
   soldatAgeMin: 16,
