@@ -42,7 +42,11 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
       if (target) fn(target, s)
     })
 
-  const prix = prixArmee(puissance, C)
+  // Prix avec réductions automatiques : Grand écuyer (ministre,
+  //  −10 Or par rang de pays) et Vengeance de la terre (Sylvains,
+  //  −10 Or par apiculture) — mêmes paramètres que le débit.
+  const prix = prixArmee(puissance, C, p, state)
+  const prixBrut = prixArmee(puissance, C)
   const orDispo = p.resources['Or']?.stock ?? 0
   const leverArmee = () => {
     const cmd = commandantsDispo.find((c) => c.id === commandant)
@@ -53,7 +57,7 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
       if (!target) return
       // Prix de levée (classeur : 1 Or tous les 2 points de force) :
       // débité UNE FOIS à la levée — pas d'entretien par tour.
-      const prix2 = prixArmee(puissance, C)
+      const prix2 = prixArmee(puissance, C, target, s)
       const rs = target.resources['Or']
       if (rs && rs.stock < prix2) return
       if (rs && prix2 > 0) rs.stock -= prix2
@@ -187,6 +191,9 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
           <span className="muted">
             ({C.p.armeePrixOr} Or tous les {C.p.armeePriXPuissance} points de force — payé une fois, pas d'entretien)
           </span>
+          {prixBrut > prix && (
+            <span className="muted"> · réductions : −{fmt(prixBrut - prix)} Or (Grand écuyer / faction)</span>
+          )}
           {orDispo < prix && <span className="neg"> ⚠ Or insuffisant ({fmt(orDispo)} disponible)</span>}
         </p>
         <Button tone="primary" disabled={!commandant || orDispo < prix} onClick={leverArmee}>⚔ Lever l'armée</Button>

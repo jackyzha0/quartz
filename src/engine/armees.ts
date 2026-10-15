@@ -8,6 +8,8 @@
 import type { GameState, Player } from './types'
 import type { Rng } from './rng'
 import { cfgOf, cultureDef } from './gameData'
+import { aMinistre } from './ministeres'
+import { rangPaysNiveau, nbAmenagements, regleActive } from './factions'
 import { emptyRecap, fullName } from './shared'
 
 // ── Armées (RecruitForArmies) ────────────────────────────────────────────
@@ -82,8 +84,26 @@ export function recomputeArmy(state: GameState, p: Player, armee: { nom: string;
 /** Prix de levée d'une armée : Or facturés pour sa puissance CIBLE,
  *  1 Or tous les 2 points de force (paramétrable via armeePrixOr /
  *  armeePriXPuissance). Payé UNE FOIS à la levée — pas d'entretien. */
-export function prixArmee(puissanceCible: number, C: { p: { armeePrixOr: number; armeePriXPuissance: number } }): number {
+export function prixArmee(
+  puissanceCible: number,
+  C: { p: { armeePrixOr: number; armeePriXPuissance: number } },
+  p?: Player,
+  state?: GameState,
+): number {
   const tranche = Math.max(1, C.p.armeePriXPuissance)
   if (puissanceCible <= 0) return 0
-  return Math.round((puissanceCible / tranche) * C.p.armeePrixOr)
+  let prix = (puissanceCible / tranche) * C.p.armeePrixOr
+  // Réductions automatiques (revue 2026-10-15, retour Thibaut
+  //  « tous les ministres et règles de faction automatiques ») :
+  //  · Grand écuyer (ministre) : −10 Or par rang de pays du joueur ;
+  //  · Sylvains « Vengeance de la terre » (Âge II) : −10 Or
+  //    par apiculture possédée. Plancher 0.
+  if (p && state) {
+    const cfg = cfgOf(state.config)
+    if (aMinistre(state, p, 'Grand écuyer')) prix -= 10 * rangPaysNiveau(p, cfg)
+    if (p.peuple === 'Sylvains' && regleActive(p, cfg, 'Vengeance de la terre')) {
+      prix -= 10 * nbAmenagements(p, 'Apiculture')
+    }
+  }
+  return Math.max(0, Math.round(prix))
 }

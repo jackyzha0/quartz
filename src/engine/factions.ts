@@ -249,8 +249,88 @@ const EFFETS: Record<string, EffetRegle> = {
     flux: (c) => ({ Nourriture: 5 * c.p.armees.length }),
   },
 
-  // Norls, Légions d'Outre-Tombe, Thraksans : aucune part automatisable
-  // (plateau, razzias, fragments d'âme, influence, cités libres…).
+  // ── Revue 2026-10-15 (retour Thibaut : « tous les ministres et
+  //    règles de faction pris en compte automatiquement ») — ajout des
+  //    règles chiffrées automatisables restantes —──────────────
+  // Krovors « Merchantialisme » (Âge III) : +1 Science par marchand vivant.
+  'KROVORS|Merchantialisme': {
+    auto: (c) => `marchands : +1 Science/tour chacun (${marchandsVivants(c.state, c.p)} marchand(s))`,
+    flux: (c) => ({ Science: 1 * marchandsVivants(c.state, c.p) }),
+  },
+  // Norls « La course à la mer » (Âge II) : habitations et bâtiments de
+  //  faction côtiers : +3 Or et +1 Bétail par tour. La proximité « Mer »
+  //  d'une ville (champ optionnel, page Pays) marque les côtiers.
+  'NORLS|La course à la mer': {
+    auto: (c) => {
+      const cotes = c.p.villes.filter((v) => v.proximite === 'Mer').length
+      return `villes côtières (proximité Mer) : +3 Or et +1 Bétail/tour chacune (${cotes} ville(s))`
+    },
+    flux: (c) => {
+      const cotes = c.p.villes.filter((v) => v.proximite === 'Mer').length
+      const out: Record<string, number> = {}
+      if (cotes > 0) { out['Or'] = 3 * cotes; out['Bétail'] = 1 * cotes }
+      return out
+    },
+  },
+  // Norls « Savoir chamanique » (Âge II) : bâtiments de faction avec au
+  //  moins 1 expansion : +1 Science. Les expansions ne sont pas modélisées :
+  //  on compte les bâtiments de faction présents (le joueur ajuste en
+  //  supprimant ceux sans expansion — signalé en manuel).
+  'NORLS|Savoir chamanique': {
+    auto: (c) => `bâtiments de faction : +1 Science/tour chacun (${batimentsFaction(c.p, c.C).filter((b) => nbBatiments(c.p, b.nom) > 0).length} type(s) construit(s)) — expansions non modélisées, ajuster au plateau`,
+    flux: (c) => {
+      let n = 0
+      for (const b of batimentsFaction(c.p, c.C)) n += nbBatiments(c.p, b.nom)
+      const out: Record<string, number> = {}
+      if (n > 0) out['Science'] = n
+      return out
+    },
+  },
+  // Légions d'Outre-Tombe « Investir dans l'Os » (Âge II) : bâtiments de
+  //  faction : +1 Os et +1 Or chacun par tour (l'Or égale la génération d'Os).
+  "LEGIONS D'OUTRE-TOMBE|Investir dans l'Os": {
+    auto: (c) => `bâtiments de faction : +1 Os et +1 Or/tour chacun (${nbBatimentsFaction(c.p, c.C)} bâtiment(s))`,
+    flux: (c) => {
+      const n = nbBatimentsFaction(c.p, c.C)
+      const out: Record<string, number> = {}
+      if (n > 0) { out['Os'] = n; out['Or'] = n }
+      return out
+    },
+  },
+  // Elfes d'Or « Accros à la magie » (Base) : si la réserve de Science
+  //  passe sous la production de Science, remise à niveau automatique.
+  "ELFES D'OR|Accros à la magie": {
+    auto: (c) => `Science maintenue au niveau de la production (crédité automatiquement)`,
+    flux: (c) => {
+      const prod = prodScience(c.state, c.p, c.C)
+      const stock = c.p.resources['Science']?.stock ?? 0
+      const out: Record<string, number> = {}
+      if (stock < prod) out['Science'] = prod - stock
+      return out
+    },
+  },
+}
+
+/** Marchands vivants d'un joueur (titre « Marchand », engine/commerce). */
+function marchandsVivants(state: GameState, p: Player): number {
+  return (state.population[p.n] ?? []).filter(
+    (c) => c.statut !== 'Décédé' && c.titre === 'Marchand',
+  ).length
+}
+
+/** Bâtiments de faction construits par un joueur (tous types confondus). */
+function nbBatimentsFaction(p: Player, C: Cfg): number {
+  let n = 0
+  for (const b of batimentsFaction(p, C)) n += nbBatiments(p, b.nom)
+  return n
+}
+
+/** Production de Science de BASE d'un joueur (ligne « base » du
+ *  récap : stock.prod). La règle elfe compare la RÉSERVE à cette
+ *  production — les autres canaux (habitants, ministres…) créditent
+ *  par-dessus et sont déjà comptés dans le stock. */
+function prodScience(state: GameState, p: Player, C: Cfg): number {
+  return p.resources['Science']?.prod ?? 0
 }
 
 /** La règle donnée est-elle active pour ce joueur (par son nom) ? */

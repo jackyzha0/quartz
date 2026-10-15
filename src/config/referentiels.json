@@ -1051,7 +1051,7 @@
       "ministere": "Grand écuyer",
       "effet": "Coût de levée d'armée -10 Or par rang de votre pays.",
       "rangMinimum": "Baronnie",
-      "mode": "Plateau"
+      "mode": "Auto"
     },
     {
       "ministere": "Grand bibliothécaire",
