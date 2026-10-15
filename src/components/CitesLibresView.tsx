@@ -229,6 +229,7 @@ export function CitesLibresView() {
           </p>
         </Card>
       )}
+      <div className="cl-grid">
       {cites.map((cite) => {
         const d = detailCiteLibre(cite, C)
         const suz = cite.suzerain != null ? state.players.find((p) => p.n === cite.suzerain) : undefined
@@ -387,6 +388,7 @@ export function CitesLibresView() {
           </Card>
         )
       })}
+      </div>
 
     </div>
   )

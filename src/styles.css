@@ -586,6 +586,29 @@ select.input option, select.input optgroup { background: var(--card); color: var
   flex-wrap: wrap;
 }
 .cl-emiss .player-chip { cursor: default; }
+/* Réserves d'émissaires : tous les joueurs SUR UNE LIGNE (wrap) —
+   retour Thibaut 2026-10-15, économie de place. */
+.cl-reserves {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  align-items: center;
+}
+.cl-reserves .cl-emiss {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+/* Cités libres : 2 PAR LIGNE (retour Thibaut 2026-10-15). */
+.cl-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+@media (max-width: 900px) {
+  .cl-grid { grid-template-columns: 1fr; }
+}
 .pre-wrap { white-space: pre-wrap; }
 
 /* ── Graphiques (page Accueil) ────────────────────────────────────── */
