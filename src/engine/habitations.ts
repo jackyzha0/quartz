@@ -16,7 +16,7 @@ import type { City, GameState, Player } from './types'
 import { cfgOf, type Cfg } from './gameData'
 import { parseCoutTexte } from './constructions'
 import { aMinistre } from './ministeres'
-import { rangPaysNiveau } from './factions'
+import { rangPaysNiveau, regleActive } from './factions'
 
 /** Nom court d'un rang d'habitation (« Hameau : 20 Or… » → « Hameau »). */
 export function nomRang(rang: string): string {
@@ -131,12 +131,38 @@ export function debiterCoutHabitation(
     if (cout['Or'] !== undefined) cout['Or'] = Math.max(0, cout['Or'] - 8)
     if (cout['Bois'] !== undefined) cout['Bois'] = Math.max(0, cout['Bois'] - 3)
   }
+  // Règles de faction (revue 2026-10-15) :
+  //  · Basiléens « Barbares primitifs » non — c'est PEAUX VERTES :
+  //    fondation de ville −8 Or et −2 Bois ;
+  //  · Basiléens « Heure de la prière » : bâtiments −3 Pierres —
+  //    voir construire (PlayerView), pas ici (coûts d'habitation).
+  if (fondation && p.peuple === 'PEAUX VERTES') {
+    if (cout['Or'] !== undefined) cout['Or'] = Math.max(0, cout['Or'] - 8)
+    if (cout['Bois'] !== undefined) cout['Bois'] = Math.max(0, cout['Bois'] - 2)
+  }
   for (const [res, v] of Object.entries(cout)) {
     const rs = p.resources[res]
     if (rs && v !== 0) rs.stock -= v
   }
   const parts = Object.entries(cout)
     .map(([r, v]) => `${v} ${r}`).join(' + ')
+  // Règles de faction (revue 2026-10-15) : habitants one-shot à la
+  //  fondation / amélioration :
+  //  · Basiléens « Distribution des richesses » : +50 habitants
+  //    (fondation OU amélioration) ;
+  //  · Basiléens « Héritage familial » : +50 habitants (amélioration) ;
+  //  · Basiléens « Suzeraineté » : +150 habitants à la capitale,
+  //    +1 ministre (plafond), à l'activation de la règle.
+  let bonusHab = 0
+  let bonusTxt = ''
+  if (p.peuple === 'Basiléens') {
+    if (regleActive(p, C, 'Distribution des richesses')) { bonusHab += 50; bonusTxt += ' +50 hab. (Distribution des richesses)' }
+    if (!fondation && regleActive(p, C, 'Héritage familial')) { bonusHab += 50; bonusTxt += ' +50 hab. (Héritage familial)' }
+  }
+  if (bonusHab > 0) {
+    const rs = p.resources['Habitants']
+    if (rs) rs.stock += bonusHab
+  }
   const requis = def?.habitantsRequis ?? 0
   const vivants = (state.population[p.n] ?? [])
     .filter((c) => c.statut !== 'Décédé' && c.ville === ville.nom).length
@@ -145,6 +171,8 @@ export function debiterCoutHabitation(
     texte: `🏰 ${ville.nom} — ${def?.rang ?? typeVille(ville)} (${typeVille(ville)})` +
       (parts ? ` — coût débité du stock : ${parts}` : ' — gratuit') +
       (reducBailli ? ' (Grand bailli : −8 Or, −3 Bois).' : '') +
+      (p.peuple === 'PEAUX VERTES' && fondation ? ' (Barbares primitifs : −8 Or, −2 Bois).' : '') +
+      bonusTxt +
       (requis > 0 && vivants < requis
         ? ` ⚠ habitants insuffisants (${vivants}/${requis}).`
         : '.') +

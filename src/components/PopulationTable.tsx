@@ -144,6 +144,13 @@ export function PopulationTable({ joueur }: { joueur: number }) {
     }
     return null
   }
+  // Plafond de MINISTRES (revue 2026-10-15) : paysRangs.ministres par rang
+  //  de pays + 1 si Basiléens « Suzeraineté » (Âge III) — avertissement
+  //  non bloquant (l'arbitre reste maître).
+  const maxMinistres =
+    (rangsPays[idxRangJoueur]?.ministres ?? rangsPays[0]?.ministres ?? 1)
+    + (p?.peuple === 'Basiléens' && p?.regleAge3 === 'Suzeraineté' ? 1 : 0)
+  const nbMinistres = pop.filter((c) => c.titre === 'Ministre' && c.statut !== 'Décédé' && c.ministere).length
 
   // Aucune contrainte bloquante : le titre est TOUJOURS appliqué ;
   // le contrôle de cohérence n'affiche qu'un avertissement (ignorable).
@@ -513,6 +520,14 @@ export function PopulationTable({ joueur }: { joueur: number }) {
             }
             return (
               <div className="badges-wrap rows">
+                {nbMinistres > maxMinistres && (
+                  <p className="neg small" style={{ flexBasis: '100%', margin: 0 }}>
+                    ⚠ {nbMinistres} ministres en poste pour un maximum de {maxMinistres}
+                    ({rangsPays[idxRangJoueur]?.ministres ?? '?'} par rang de pays
+                    {maxMinistres > (rangsPays[idxRangJoueur]?.ministres ?? 0) ? ' + Suzeraineté' : ''})
+                    — retirez un portefeuille ou montez de rang.
+                  </p>
+                )}
                 {mins.map((c) => {
                   // Marqueur (y), retour Thibaut : portefeuilles
                   //  CATÉGORISÉS PAR RANG DE PAYS REQUIS + description

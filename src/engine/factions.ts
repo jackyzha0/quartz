@@ -214,6 +214,33 @@ const EFFETS: Record<string, EffetRegle> = {
 
   // ── Krovors ─────────────────────────────────────────────────────────
 
+  // ── Revue 2026-10-15 (2e passe) : règles chiffrées restantes ──
+  // Basiléens « Émissaires efficaces » (Âge II) : +1 émissaire en réserve
+  //  à chaque succession de Dirigeant (appliqué dans handleDirigeantSuccession).
+  // (pas un flux par tour — one-shot, codé dans sante.ts)
+  'Basiléens|Émissaires efficaces': {
+    auto: () => `+1 émissaire en réserve à chaque succession de Dirigeant (crédité automatiquement)`,
+    flux: () => ({}),
+  },
+  // Vermines « Étudier leur manière de faire » (Âge III) : colonies +1 Science.
+  // Colonies non modélisées — reste manuel (voir description).
+  // Norls « Nomades » (Base) : 40 Or + 100 Nourriture au setup — one-shot
+  //  à la création de partie (codé dans setup.ts).
+  'NORLS|Nomades': {
+    auto: () => `40 Or et 100 Nourriture en plus au départ (appliqué à la création de partie)`,
+    flux: () => ({}),
+  },
+  // Elfes d'Or « Accros à la magie » : 8 Science au départ + Science maintenue
+  //  (déjà automatisé plus haut).
+  // Peaux Vertes « Diriger par la peur » : vassaux +10 Or/rang sur leurs
+  //  levées — automatisable via prixArmee des VASSAUX d'un suzerain Peaux Vertes.
+  'PEAUX VERTES|Diriger par la peur': {
+    auto: (c) => {
+      const nb = nbVassaux(c.state, c.p)
+      return `le coût de levée d'armée de vos vassaux est augmenté de 10 Or par rang de pays (${nb} vassal(e)s) — appliqué automatiquement chez eux`
+    },
+    flux: () => ({}),
+  },
   // ── Revue 2026-10-15 (retour Thibaut : « tous les ministres et
   //    règles de faction pris en compte automatiquement ») — ajout des
   //    règles chiffrées automatisables restantes —──────────────

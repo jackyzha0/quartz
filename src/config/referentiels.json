@@ -6971,8 +6971,8 @@
       "nom": "Ordre des chevaliers de Notan",
       "rangMinHabitation": 3,
       "cout": "70 Or + 40 Fer + 20 Charbon",
-      "production": "Armées : −25 Or sur les levées (automatique) ; attaque d'habitation : garnison adverse −150 (plateau).",
-      "description": "Lors de sa construction, recrutez une armée avec un coût réduit de 25 Or (levez l'armée juste après, la réduction est appliquée automatiquement). Les armées coûtent 25 Or de moins à la levée (automatique). Lorsqu'une de vos armées attaque une habitation, réduisez sa garnison de 150 (plateau).",
+      "production": "Armées : −25 Or sur les levées (automatique, permanent) ; attaque d'habitation : garnison adverse −150 (plateau).",
+      "description": "Les armées coûtent 25 Or de moins à la levée (appliqué automatiquement, permanent). Lorsqu'une de vos armées attaque une habitation, réduisez sa garnison de 150 (plateau).",
       "effets": []
     },
     {

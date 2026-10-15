@@ -9,7 +9,7 @@ import React, { useState } from 'react'
 import { useGame } from '../state/store'
 import type { GameState, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
-import { prixArmee } from '../engine/armees'
+import { prixArmee, maxArmeesJoueur } from '../engine/armees'
 import { isNobleDyn, martialiteOk } from '../engine/engine'
 import { Card, NumberInput, Select, TextInput, Button, fmt } from './ui'
 
@@ -56,7 +56,10 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
   // Prix SANS le bonus de la ville (pour afficher la réduction)
   const prixBrut = prixArmee(puissance, C, p, state)
   const orDispo = p.resources['Or']?.stock ?? 0
+  const maxArmees = maxArmeesJoueur(p, C)
   const leverArmee = () => {
+    // Plafond d'armées (retour Thibaut : 2 par défaut + bonus de faction)
+    if (p.armees.length >= maxArmees) return
     const cmd = commandantsDispo.find((c) => c.id === commandant)
     if (!cmd) return
     const nomArmee = nom.trim() || `Armée ${p.armees.length + 1}`
@@ -215,7 +218,11 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
           )}
           {orDispo < prix && <span className="neg"> ⚠ Or insuffisant ({fmt(orDispo)} disponible)</span>}
         </p>
-        <Button tone="primary" disabled={!commandant || orDispo < prix} onClick={leverArmee}>⚔ Lever l'armée</Button>
+        <Button tone="primary" disabled={!commandant || orDispo < prix || p.armees.length >= maxArmees} onClick={leverArmee}>⚔ Lever l'armée</Button>
+        <p className="muted small" style={{ margin: '4px 0 0' }}>
+          Armées : {p.armees.length}/{maxArmees} maximum ({C.p.maxArmees} par défaut
+          {maxArmees > C.p.maxArmees ? ' + règle(s) de faction' : ''}).
+        </p>
         <p className="muted small">
           Chaque tour, l'armée recrute automatiquement des soldats (adultes 16-30 ans, conformes à la
           martialité de votre culture) jusqu'à atteindre la puissance cible. Le prix de levée

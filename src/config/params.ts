@@ -79,6 +79,12 @@ export interface GameParams {
   armeePrixOr: number
   /** Prix de levée : taille de la tranche de points de force facturée. */
   armeePriXPuissance: number
+  /** Nombre maximal d'armées par joueur (retour Thibaut : 2 par défaut,
+   *  certaines règles de faction en octroient une supplémentaire). */
+  maxArmees: number
+  /** Nombre maximal de marchands par joueur (retour Thibaut : 0 par défaut,
+   *  certaines règles de faction/techs en octroient). */
+  maxMarchands: number
   // ── Vassaux ──
   vassalPrelevement: number  // part des revenus d'habitants (Or) reversée au suzerain
   // ── Commerce (marqueur (t)) ──
@@ -169,6 +175,8 @@ export const DEFAULT_PARAMS: GameParams = {
   soldatAgeMax: 30,
   armeePrixOr: 1,
   armeePriXPuissance: 2,
+  maxArmees: 2,
+  maxMarchands: 0,
   vassalPrelevement: 0.5,
   marchandOrTour: 4,
   proxRiviereNourriture: 12,
@@ -265,6 +273,8 @@ export const PARAM_META: {
   { key: 'puissanceSoldat', label: 'Puissance d\'un soldat', groupe: 'Armées' },
   { key: 'armeePrixOr', label: 'Prix de levée — Or par tranche de force', groupe: 'Armées', aide: 'Levée d\'une armée : ce prix est facturé pour chaque tranche de points de force de la puissance cible (règle du classeur : 1 Or tous les 2 points) — payé UNE FOIS à la levée, pas d\'entretien.' },
   { key: 'armeePriXPuissance', label: 'Prix de levée — points de force par tranche', groupe: 'Armées' },
+  { key: 'maxArmees', label: 'Nombre maximal d\'armées par joueur', groupe: 'Armées', aide: '2 par défaut. Certaines règles de faction (« Tous avek moa ! », « L\'art du viking », « Armées des traditions ») accordent une armée supplémentaire.' },
+  { key: 'maxMarchands', label: 'Nombre maximal de marchands par joueur', groupe: 'Armées', aide: '0 par défaut. Les règles qui accordent un marchand supplémentaire l\'augmentent.' },
   { key: 'soldatAgeMin', label: 'Âge minimal de recrutement', groupe: 'Armées' },
   { key: 'soldatAgeMax', label: 'Âge maximal de recrutement', groupe: 'Armées' },
   { key: 'vassalPrelevement', label: "Part des revenus d'habitants reversée au suzerain", groupe: 'Vassaux', unite: 'proportion', aide: "Un vassal prête serment à un autre joueur : à chaque fin de tour, il reverse cette part des gains d'Or de ses habitants à son suzerain (0,5 = 50 %)." },

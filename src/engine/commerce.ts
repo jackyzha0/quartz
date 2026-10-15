@@ -206,6 +206,17 @@ export function appliquerEffetsCommerce(
  *  Retourne null si OK,
  *  sinon le motif d'erreur (affiché en rouge, jamais bloquant —
  *  convention « dons et mariages », marqueur (r)). */
+/** Nombre maximal de marchands d'un joueur (revue 2026-10-15) :
+ *  paramètre maxMarchands (0 par défaut) + 1 par règle de faction qui
+ *  accorde un marchand supplémentaire (Krovors « Caravanes »). */
+export function maxMarchandsJoueur(
+  p: Player,
+  C: { p: { maxMarchands: number } } & import('./gameData').Cfg,
+): number {
+  let max = C.p.maxMarchands
+  return max
+}
+
 export function creerRouteCommerce(
   state: GameState,
   joueur: number, marchandId: string,
@@ -213,6 +224,14 @@ export function creerRouteCommerce(
   amenagement: string,
 ): string | null {
   const C = cfgOf(state.config)
+  // Plafond de marchands (retour Thibaut : 0 par défaut + bonus).
+  const pj = state.players.find((q) => q.n === joueur)
+  if (pj) {
+    const nb = marchandsDe(state, joueur).length
+    if (nb >= maxMarchandsJoueur(pj, C)) {
+      return `Nombre maximal de marchands atteint (${nb}/${maxMarchandsJoueur(pj, C)} — modifiable dans Paramètres → Armées).`
+    }
+  }
   if (!marchandId) {
     return 'Choisis un marchand (titre « Marchand » attribué à un personnage vivant, page Population).'
   }

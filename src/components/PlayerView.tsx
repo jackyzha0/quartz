@@ -242,6 +242,11 @@ export function PlayerView({ joueur }: { joueur: number }) {
       const cout = type === 'batiment'
         ? coutBatiment(nom, C, groupe)
         : coutAmenagement(t, C.config, type === 'amenagement' ? nom : undefined)
+      // Basiléens « Heure de la prière » (Âge II, revue 2026-10-15) :
+      //  bâtiments −3 Pierres à la construction (toutes familles).
+      if (t.peuple === 'Basiléens' && t.regleAge2 === 'Heure de la prière' && type === 'batiment') {
+        if (cout['Pierre'] !== undefined) cout['Pierre'] = Math.max(0, cout['Pierre'] - 3)
+      }
       // Merveilles & progrès « Tourisme » (retour Thibaut 2026-10-15) :
       //  a.1 Trésor public : merveilles −20 Or ; a.2 Matériaux de
       //  prestige : merveilles −4 de CHAQUE ressource du coût

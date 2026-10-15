@@ -62,6 +62,15 @@ export function createGame(setups: SetupLine[], seed: number, mode?: 'local' | '
     const s = setups[i]
     const n = i + 1
     const player = makePlayer(n, s, C)
+    // Norls « Nomades » (revue 2026-10-15) : 40 Or et 100 Nourriture
+    //  en plus au départ (l'absence d'habitation se joue au plateau —
+    //  l'arbitre supprime la ville du setup si besoin).
+    if (player.peuple === 'NORLS') {
+      const rsOr = player.resources['Or']
+      if (rsOr) rsOr.stock += 40
+      const rsN = player.resources['Nourriture']
+      if (rsN) rsN.stock += 100
+    }
     state.players.push(player)
     state.population[n] = makePopulation(player, s, rng, C)
   }

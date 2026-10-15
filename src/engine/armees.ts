@@ -117,6 +117,15 @@ export function prixArmee(
     //  · Grande caserne (Capitale) : −8 Or ;
     //  · Guilde des explorateurs : −20 Or ;
     //  · Autel eud Guer' (faction Peaux Vertes) : −20 Or.
+    // Peaux Vertes « Diriger par la peur » (Âge II, revue 2026-10-15) :
+    //  le coût de levée des VASSAUX d'un suzerain Peaux Vertes est
+    //  augmenté de 10 Or par rang de pays du suzerain.
+    if (state) {
+      const suz = state.players.find((q) => q.n === p.vassalDe)
+      if (suz && suz.peuple === 'PEAUX VERTES' && regleActive(suz, cfg, 'Diriger par la peur')) {
+        prix += 10 * rangPaysNiveau(suz, cfg)
+      }
+    }
     if (ville?.batiments) {
       if (ville.batiments.includes("Terrain d'entrainement")) prix -= 10
       if (ville.batiments.includes('Ecole militaire')) prix -= 25
@@ -126,4 +135,19 @@ export function prixArmee(
     }
   }
   return Math.max(0, Math.round(prix))
+}
+
+/** Nombre maximal d'armées d'un joueur (revue 2026-10-15) : paramètre
+ *  maxArmees (2 par défaut) + 1 par règle de faction qui accorde une
+ *  armée supplémentaire (« Tous avek moa ! », « L'art du viking »,
+ *  « Armées des traditions » des Norls). */
+export function maxArmeesJoueur(
+  p: Player,
+  C: { p: { maxArmees: number } } & import('./gameData').Cfg,
+): number {
+  let max = C.p.maxArmees
+  if (p.peuple === 'PEAUX VERTES' && regleActive(p, C, 'Tous avek moa !')) max += 1
+  if (p.peuple === 'NORLS' && regleActive(p, C, "L'art du viking")) max += 1
+  if (p.peuple === 'NORLS' && regleActive(p, C, 'Armées des traditions')) max += 1
+  return max
 }
