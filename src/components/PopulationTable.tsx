@@ -539,7 +539,13 @@ export function PopulationTable({ joueur }: { joueur: number }) {
                       <span className="badge badge-info" title={`${fullName(c)} — ${c.ville}`}>
                         {fullName(c)}
                       </span>
-                      <span className={`badge ${c.ministere ? 'badge-good' : 'badge-neutral'}`}>
+                      <span
+                        className={`badge ${c.ministere ? 'badge-good' : 'badge-neutral'}`}
+                        title={(() => {
+                          const ref = (C.config.ministeres ?? []).find((m) => m.ministere === c.ministere)
+                          return ref ? `${ref.effet} (${ref.mode === 'Auto' ? 'appliqué automatiquement' : 'à appliquer au plateau'})` : undefined
+                        })()}
+                      >
                         {c.ministere ?? '(sans portefeuille)'}
                       </span>
                       <ChoicePicker
@@ -563,6 +569,22 @@ export function PopulationTable({ joueur }: { joueur: number }) {
                       {avertissementPortefeuille(c.ministere) && (
                         <div className="neg small">⚠ {avertissementPortefeuille(c.ministere)}</div>
                       )}
+                      {/* Effet du portefeuille CHOISI (retour Thibaut
+                          2026-10-15) : le ministre en poste affiche ce
+                          qu'il fait — texte exact du référentiel + badge
+                          auto/plateau. */}
+                      {c.ministere && (() => {
+                        const ref = (C.config.ministeres ?? []).find((m) => m.ministere === c.ministere)
+                        if (!ref) return null
+                        return (
+                          <div className="small muted" style={{ flexBasis: '100%' }}>
+                            <span className={`badge ${ref.mode === 'Auto' ? 'badge-good' : 'badge-neutral'}`}>
+                              {ref.mode === 'Auto' ? 'auto' : 'plateau'}
+                            </span>{' '}
+                            {ref.effet}
+                          </div>
+                        )
+                      })()}
                     </div>
                   )
                 })}
