@@ -278,6 +278,9 @@ export interface Player {
    *  dépensés dans les cités libres (1 émissaire placé = 1 de moins
    *  ici). Champ optionnel : 0 par défaut. */
   emissaires?: number
+  /** Notes libres du joueur (retour Thibaut 2026-10-15) : pense-bête
+   *  affiché en bas de l'onglet Pays. Champ optionnel. */
+  notes?: string
   resources: Record<string, ResourceState> // clés = RESOURCES
   villes: City[]
   dynastie: { nom: string; description: string } | null

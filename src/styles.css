@@ -727,3 +727,22 @@ input[type='range'] {
   white-space: pre-wrap;
   margin: 8px 0;
 }
+
+/* Notes libres du joueur (retour Thibaut 2026-10-15) — bas de l'onglet Pays. */
+.notes-joueur {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px 10px;
+  border: 1px solid #d8d4cc;
+  border-radius: 8px;
+  background: #fffdf9;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.45;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.notes-joueur:focus {
+  outline: none;
+  border-color: #3b6ea5;
+}

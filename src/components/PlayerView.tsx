@@ -571,11 +571,6 @@ export function PlayerView({ joueur }: { joueur: number }) {
             const culturesTriees = Object.entries(cultures).sort(
               (a, b) => (a[0] === ville.culture ? -1 : b[0] === ville.culture ? 1 : b[1] - a[1]),
             )
-            // Ce que les taxes rapportent (production des villageois)
-            const tg = detailGainsVille(state, p, ville, C)
-            // Retour Thibaut (marqueur (r)) : TOUTES les ressources
-            // s'affichent, même à production 0.
-            const resTaxes = RESSOURCES_FLUX(C)
             return (
               <div key={idx} className="mini">
                 {/* Ligne de tête densifiée (retour Thibaut 2026-10-14) :
@@ -914,40 +909,10 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   })}>+ Ajouter une ligne « Autre »</Button>
                 </div>
 
-                {/* ── Ce que les taxes rapportent (production des villageois) ── */}
-                <div className="mini-title">Taxes — production des villageois</div>
-                {resTaxes.length === 0 ? (
-                  <div className="muted small">
-                    Aucune production d'habitants.
-                  </div>
-                ) : (
-                  <div className="table-wrap">
-                    <table className="tbl small taxes-tbl">
-                      <thead>
-                        <tr>
-                          <th>Ressource</th><th>Titres</th>
-                          <th>Taxes (×{fmt(tg.taxeMult, 2)})</th>
-                          <th>Consommation</th><th>Net / tour</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {resTaxes.map((r) => (
-                          <tr key={r} style={{ background: fondRessource(r, C) }}>
-                            <td>
-                              <span className="dot-res" style={{ background: couleurRessource(r, C) }} />
-                              <strong>{r}</strong>
-                            </td>
-                            <td>{fmtNum(tg.titres[r] ?? 0)}</td>
-                            <td>{fmtNum(tg.taxes[r] ?? 0)}</td>
-                            <td className={(tg.conso[r] ?? 0) < 0 ? 'neg' : ''}>{fmtNum(tg.conso[r] ?? 0)}</td>
-                            <td className={(tg.net[r] ?? 0) < 0 ? 'neg' : ''}><strong>{fmtNum(tg.net[r] ?? 0)}</strong></td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
-
+                {/* Retour Thibaut 2026-10-15 : le tableau récapitulatif des
+                    taxes (titres × taxes / conso / net) est retiré — le net
+                    reste visible dans « Production de la ville » ci-dessous et
+                    dans le récap par tour de la page. */}
                 {/* ── Production de la ville : ce qu'elle produit en
                     ressources, tous canaux confondus (bâtiments,
                     aménagements, autres, villageois, consommation de
@@ -1505,6 +1470,18 @@ export function PlayerView({ joueur }: { joueur: number }) {
             </div>
           )
         })()}
+      </Card>
+
+      {/* ═══ Notes libres du joueur (retour Thibaut 2026-10-15) :
+          pense-bête par joueur, affiché en bas de l'onglet Pays. */}
+      <Card title={"📝 Notes"}>
+        <textarea
+          className="notes-joueur"
+          value={p.notes ?? ''}
+          placeholder="Notes libres : plans, rappels, accords entre joueurs…"
+          onChange={(e) => setPlayer((x) => { x.notes = e.target.value })}
+          rows={4}
+        />
       </Card>
 
     </div>
