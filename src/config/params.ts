@@ -77,6 +77,10 @@ export interface GameParams {
   soldatAgeMax: number
   // ── Vassaux ──
   vassalPrelevement: number  // part des revenus d'habitants (Or) reversée au suzerain
+  // ── Commerce (marqueur (t)) ──
+  /** Or par tour généré par une route commerciale de marchand, pour
+   *  CHACUN des deux joueurs reliés (retour Thibaut 2026-10-15). */
+  marchandOrTour: number
   // ── Noms des entités système (chaînes) ──
   titreDirigeant: string
   titreGouverneur: string
@@ -155,6 +159,7 @@ export const DEFAULT_PARAMS: GameParams = {
   soldatAgeMin: 16,
   soldatAgeMax: 30,
   vassalPrelevement: 0.5,
+  marchandOrTour: 4,
   titreDirigeant: 'Dirigeant',
   titreGouverneur: 'Gouverneur',
   titreProfesseur: 'Professeur',
@@ -238,6 +243,7 @@ export const PARAM_META: {
   { key: 'conversionMemeCulture', label: 'Poids de sa propre culture', groupe: 'Culture' },
   { key: 'taxOrFaibles', label: 'Taxes faibles — multiplicateur sur toutes les ressources', groupe: 'Taxes' },
   { key: 'taxOrHautes', label: 'Taxes fortes — multiplicateur sur toutes les ressources', groupe: 'Taxes' },
+  { key: 'marchandOrTour', label: 'Marchand — Or / tour par route commerciale', groupe: 'Commerce', aide: 'Or gagné CHAQUE tour par les DEUX joueurs reliés par une route de marchand (propriétaire + ville ciblée).' },
   { key: 'taxNaissFaibles', label: 'Taxes faibles — multiplicateur naissances', groupe: 'Taxes' },
   { key: 'taxNaissHautes', label: 'Taxes fortes — multiplicateur naissances', groupe: 'Taxes' },
   { key: 'puissanceGeneral', label: 'Puissance d\'un commandant', groupe: 'Armées' },

@@ -26,6 +26,7 @@ import { effetsRegime, effetsCulturePays, detailCulturePays } from './regimes'
 import { effetsFaction } from './factions'
 import { citesLibresDe, detailCiteLibre } from './citesLibres'
 import { consommationsPays, consommationsVille, nomRang } from './habitations'
+import { effetsCommerceJoueur, detailCommerceJoueur } from './commerce'
 
 export interface ProductionDetail {
   /** production de base du pays (stockée dans resources[r].prod) — la
@@ -59,6 +60,10 @@ export interface ProductionDetail {
   citesLibres: Record<string, number>
   /** tribut de vassalité (négatif = payé, positif = reçu) */
   vassalite: Record<string, number>
+  /** routes commerciales des marchands (engine/commerce.ts — étape
+   *  3terdecies : +marchandOrTour Or pour chaque joueur relié + copie
+   *  d'une ressource d'un aménagement de la ville ciblée, saisonnière) */
+  commerce: Record<string, number>
   /** somme de tous les canaux */
   total: Record<string, number>
 }
@@ -175,14 +180,21 @@ export function productionDetaillee(state: GameState, p: Player, C: Cfg): Produc
     }
   }
 
+  // Commerce : routes commerciales des marchands — routes possédées
+  //  (Or + copie) et routes entrantes (Or passif), saisonnières.
+  const commerce: Record<string, number> = {}
+  for (const [res, v] of Object.entries(effetsCommerceJoueur(state, p, saison, C))) {
+    if (v !== 0) commerce[res] = v
+  }
+
   // Total
   const total: Record<string, number> = {}
-  for (const canal of [base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, vassalite]) {
+  for (const canal of [base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, vassalite]) {
     for (const [res, v] of Object.entries(canal)) {
       total[res] = (total[res] ?? 0) + v
     }
   }
-  return { base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, vassalite, total }
+  return { base, habitants, batiments, amenagements, nourrEte, autres, regimesCultures, habitations, faction, citesLibres, commerce, vassalite, total }
 }
 
 // ══════════════════════════════════════════════════════════════════════
@@ -289,7 +301,7 @@ export function attraitMaxMonde(state: GameState): number {
 /** Canal d'un apport (colonne du récap ressources). */
 export type CanalApport =
   | 'Base' | 'Habitants' | 'Bâtiments' | 'Aménagements' | 'Nourr - été' | 'Autres'
-  | 'Régimes & cultures' | 'Conso villes' | 'Progrès' | 'Cités libres' | 'Vassalité'
+  | 'Régimes & cultures' | 'Conso villes' | 'Progrès' | 'Cités libres' | 'Commerce' | 'Vassalité'
 
 export interface ProvenanceApport {
   /** canal de l'apport (colonne du récap) */
@@ -395,6 +407,14 @@ export function provenancesApports(
     for (const [res, v] of Object.entries(d.transfert)) {
       push(res, 'Cités libres',
         `taxes de ${cite.nom} (${d.habitants} hab., ${d.chasseurs} chasseur(s) : Nourriture ×2)`, v)
+    }
+  }
+
+  // Commerce : routes commerciales des marchands — possédées (Or +
+  //  copie d'un aménagement de la ville ciblée) et entrantes (Or passif).
+  for (const d of detailCommerceJoueur(state, p, saison, C)) {
+    for (const [res, v] of Object.entries(d.effets)) {
+      push(res, 'Commerce', d.origine, v)
     }
   }
 

@@ -1,0 +1,274 @@
+// ══════════════════════════════════════════════════════════════════════
+//  COMMERCE — ROUTES COMMERCIALES DES MARCHANDS (marqueur (t))
+//  Un personnage portant le titre « Marchand » ouvre UNE route
+//  commerciale entre SA ville (ville actuelle du personnage) et une
+//  ville d'un AUTRE joueur. Chaque tour, les DEUX joueurs reliés
+//  gagnent marchandOrTour Or (4 par défaut — Paramètres, groupe
+//  « Commerce »). Le propriétaire du marchand copie en plus, chaque
+//  tour, la production d'UNE ressource d'UN aménagement de la ville
+//  ciblée (choix fait à l'ouverture de la route, modifiable à tout
+//  moment — une production d'été n'est copiée qu'en été ; ressources
+//  instantanées Tourisme/Garnison et effets négatifs exclus).
+//  La route se ferme si le marchand perd son titre ou meurt.
+//  Canal « Commerce » du récap ressources (engine/production.ts),
+//  étape 3terdecies de FinDeTour.
+// ══════════════════════════════════════════════════════════════════════
+
+import type {
+  City, GameState, Player, RouteCommerce, Saison,
+} from './types'
+import type { GameConfig } from '../config/defaultConfig'
+import { cfgOf, type Cfg } from './gameData'
+import { fullName } from './shared'
+import { amenagementRef } from './amenagements'
+import { effetsConstructionRef, effetsEteConstructionRef } from './constructions'
+
+/** Nom du titre (fixe, comme « Ministre » dans engine/ministeres.ts). */
+export const TITRE_MARCHAND = 'Marchand'
+
+/** Toutes les routes commerciales du monde (champ optionnel → vide). */
+export function routesCommerce(state: GameState): RouteCommerce[] {
+  return state.routesCommerce ?? []
+}
+
+/** Routes dont le joueur est le PROPRIÉTAIRE du marchand. */
+export function routesCommerceDe(state: GameState, joueur: number): RouteCommerce[] {
+  return routesCommerce(state).filter((r) => r.joueur === joueur)
+}
+
+/** Routes qui visent une ville DU joueur (il encaisse l'Or passif). */
+export function routesCommerceVers(state: GameState, joueur: number): RouteCommerce[] {
+  return routesCommerce(state).filter((r) => r.joueurCible === joueur)
+}
+
+/** Marchands vivants d'un joueur (porteurs du titre). */
+export function marchandsDe(state: GameState, joueur: number) {
+  return (state.population[joueur] ?? [])
+    .filter((c) => c.statut !== 'Décédé' && c.titre === TITRE_MARCHAND)
+}
+
+/** Personnage marchand d'une route : null s'il est mort, introuvable
+ *  ou a perdu son titre (la route est alors mourante → nettoyage). */
+function marchandDeRoute(state: GameState, route: RouteCommerce) {
+  const c = (state.population[route.joueur] ?? []).find((x) => x.id === route.marchandId)
+  if (!c || c.statut === 'Décédé' || c.titre !== TITRE_MARCHAND) return null
+  return c
+}
+
+/** Ressource copiable d'un aménagement : valeur par tour, été ou non. */
+export interface RessourceCopiable {
+  ressource: string
+  valeur: number
+  ete: boolean
+}
+
+/** Ressources COPiables d'un aménagement : flux POSITIFS (hors été) et
+ *  production d'été positive — les ressources instantanées (Tourisme,
+ *  Garnison) sont déjà exclues par effetsConstructionRef /
+ *  effetsEteConstructionRef (marqueur (s)), les effets négatifs
+ *  (coûts, ex. Charbon −1 du Moulin à vent) ne sont pas copiables. */
+export function ressourcesCopiables(nom: string, cfg?: GameConfig): RessourceCopiable[] {
+  const ref = amenagementRef(nom, cfg)
+  if (!ref) return []
+  const out: RessourceCopiable[] = []
+  for (const [res, v] of Object.entries(effetsConstructionRef(ref))) {
+    if (v > 0) out.push({ ressource: res, valeur: v, ete: false })
+  }
+  for (const [res, v] of Object.entries(effetsEteConstructionRef(ref))) {
+    if (v > 0) out.push({ ressource: res, valeur: v, ete: true })
+  }
+  return out
+}
+
+/** Aménagements d'une ville qui possèdent AU MOINS une ressource
+ *  copiable (sans doublés, dans l'ordre de la ville). */
+export function amenagementsCopiables(ville: City, cfg?: GameConfig): string[] {
+  const out: string[] = []
+  for (const nom of ville.amenagements ?? []) {
+    if (!out.includes(nom) && ressourcesCopiables(nom, cfg).length > 0) out.push(nom)
+  }
+  return out
+}
+
+/** Effets par tour d'UNE route pour son PROPRIÉTAIRE : Or pour chaque
+ *  joueur relié + copie de la production de l'aménagement choisi
+ *  (valeur COURANTE du référentiel — éditable à chaud ; la copie
+ *  d'une production d'été n'est créditée qu'en été). */
+export function effetsRouteProprietaire(
+  route: RouteCommerce, saison: Saison, C: Cfg = cfgOf(),
+): Record<string, number> {
+  const out: Record<string, number> = { Or: C.p.marchandOrTour }
+  const cop = ressourcesCopiables(route.amenagement, C.config)
+    .find((r) => r.ressource === route.ressource)
+  if (cop && (!cop.ete || saison === 'Été')) {
+    out[cop.ressource] = (out[cop.ressource] ?? 0) + cop.valeur
+  }
+  return out
+}
+
+/** Effets par tour du commerce pour un joueur : ses routes (Or +
+ *  copie) + les routes qui visent ses villes (Or passif). Une route
+ *  dont le marchand n'est plus en poste ne produit RIEN. */
+export function effetsCommerceJoueur(
+  state: GameState, p: Player, saison: Saison, C: Cfg = cfgOf(state.config),
+): Record<string, number> {
+  const out: Record<string, number> = {}
+  for (const route of routesCommerce(state)) {
+    if (route.joueur !== p.n && route.joueurCible !== p.n) continue
+    if (!marchandDeRoute(state, route)) continue
+    const src = route.joueur === p.n
+      ? effetsRouteProprietaire(route, saison, C)
+      : { Or: C.p.marchandOrTour }
+    for (const [res, v] of Object.entries(src)) {
+      out[res] = (out[res] ?? 0) + v
+    }
+  }
+  return out
+}
+
+/** Détail des apports de commerce d'un joueur (provenance du récap
+ *  ressources) : une ligne par route possédée ou entrante. */
+export interface DetailCommerce {
+  origine: string
+  effets: Record<string, number>
+}
+
+export function detailCommerceJoueur(
+  state: GameState, p: Player, saison: Saison, C: Cfg = cfgOf(state.config),
+): DetailCommerce[] {
+  const out: DetailCommerce[] = []
+  for (const route of routesCommerce(state)) {
+    if (route.joueur !== p.n && route.joueurCible !== p.n) continue
+    const m = marchandDeRoute(state, route)
+    if (!m) continue
+    const cible = state.players.find((q) => q.n === route.joueurCible)
+    const proprietaire = state.players.find((q) => q.n === route.joueur)
+    const nomVilleCible = `${route.villeCible} (${cible?.nom ?? '?'})`
+    if (route.joueur === p.n) {
+      out.push({
+        origine: `route de ${fullName(m)} : ${m.ville} ↔ ${nomVilleCible} — copie de ${route.amenagement}`,
+        effets: effetsRouteProprietaire(route, saison, C),
+      })
+    } else {
+      out.push({
+        origine: `route de ${fullName(m)} (${proprietaire?.nom ?? '?'}) vers ta ville ${nomVilleCible}`,
+        effets: { Or: C.p.marchandOrTour },
+      })
+    }
+  }
+  return out
+}
+
+/** Supprime les routes dont le marchand est mort, introuvable ou a
+ *  perdu son titre (appelée à chaque FinDeTour avant le crédit, et
+ *  c'est aussi la garde-fou des accès calculés). Log « Commerce ». */
+export function nettoyerRoutesCommerce(state: GameState): RouteCommerce[] {
+  const avant = routesCommerce(state)
+  const mortes = avant.filter((r) => !marchandDeRoute(state, r))
+  if (mortes.length === 0) return []
+  const ids = new Set(mortes.map((r) => r.id))
+  state.routesCommerce = avant.filter((r) => !ids.has(r.id))
+  for (const r of mortes) {
+    state.log.push({
+      turn: state.turn + 1, type: 'Commerce', joueur: r.joueur,
+      texte: `Route commerciale vers ${r.villeCible} fermée : le marchand n'est plus en poste.`,
+    })
+  }
+  return mortes
+}
+
+/** Crédite au stock les effets de commerce de chaque joueur (étape
+ *  3terdecies de FinDeTour) et renvoie les apports par joueur. Comme
+ *  les bâtiments : pas de taxes, pas de coefficient gainsCrediteStock,
+ *  pas de prélèvement de vassalité. */
+export function appliquerEffetsCommerce(
+  state: GameState, C: Cfg = cfgOf(state.config),
+): Record<number, Record<string, number>> {
+  const out: Record<number, Record<string, number>> = {}
+  for (const p of state.players) {
+    const effets = effetsCommerceJoueur(state, p, state.saison, C)
+    for (const [res, v] of Object.entries(effets)) {
+      const rs = p.resources[res]
+      if (rs) rs.stock += v
+    }
+    out[p.n] = effets
+  }
+  return out
+}
+
+/** Ouvre une route commerciale : un marchand (une seule route par
+ *  marchand), une ville d'un AUTRE joueur, un aménagement de cette
+ *  ville et une de ses ressources copiables. Retourne null si OK,
+ *  sinon le motif d'erreur (affiché en rouge, jamais bloquant —
+ *  convention « dons et mariages », marqueur (r)). */
+export function creerRouteCommerce(
+  state: GameState,
+  joueur: number, marchandId: string,
+  joueurCible: number, villeCible: string,
+  amenagement: string, ressource: string,
+): string | null {
+  const C = cfgOf(state.config)
+  const m = (state.population[joueur] ?? []).find((c) => c.id === marchandId)
+  if (!m || m.statut === 'Décédé') return 'Marchand introuvable ou décédé.'
+  if (m.titre !== TITRE_MARCHAND) return `${fullName(m)} ne porte pas le titre ${TITRE_MARCHAND}.`
+  if (routesCommerceDe(state, joueur).some((r) => r.marchandId === marchandId)) {
+    return `${fullName(m)} tient déjà une route commerciale (un marchand ne tient qu'une route).`
+  }
+  if (joueurCible === joueur) return "La route doit viser la ville d'un autre joueur."
+  const cible = state.players.find((q) => q.n === joueurCible)
+  const ville = cible?.villes.find((v) => v.nom === villeCible)
+  if (!ville) return 'Ville ciblée introuvable chez ce joueur.'
+  if (!(ville.amenagements ?? []).includes(amenagement)) {
+    return `${villeCible} ne possède pas l'aménagement « ${amenagement} ».`
+  }
+  const cop = ressourcesCopiables(amenagement, C.config).find((r) => r.ressource === ressource)
+  if (!cop) return `« ${amenagement} » ne produit pas de ressource copiable « ${ressource} ».`
+  ;(state.routesCommerce ?? (state.routesCommerce = [])).push({
+    id: `rc-${marchandId}-${joueurCible}-${villeCible}`,
+    joueur, marchandId, joueurCible, villeCible, amenagement, ressource,
+  })
+  state.log.push({
+    turn: state.turn, type: 'Commerce', joueur,
+    texte: `🛒 ${fullName(m)} ouvre une route commerciale : ${m.ville} ↔ ${villeCible} (${cible?.nom ?? '?'}) — +${C.p.marchandOrTour} Or / tour pour chaque joueur, copie de ${cop.valeur} ${ressource}${cop.ete ? ' (été)' : ''}.`,
+  })
+  return null
+}
+
+/** Change la copie d'une route (aménagement + ressource) — modifiable
+ *  à tout moment (arbitrage Thibaut 2026-10-15). */
+export function changerCopieRoute(
+  state: GameState, routeId: string, amenagement: string, ressource: string,
+): string | null {
+  const C = cfgOf(state.config)
+  const route = routesCommerce(state).find((r) => r.id === routeId)
+  if (!route) return 'Route introuvable.'
+  const cible = state.players.find((q) => q.n === route.joueurCible)
+  const ville = cible?.villes.find((v) => v.nom === route.villeCible)
+  if (!ville) return 'Ville ciblée introuvable chez ce joueur.'
+  if (!(ville.amenagements ?? []).includes(amenagement)) {
+    return `${route.villeCible} ne possède pas l'aménagement « ${amenagement} ».`
+  }
+  const cop = ressourcesCopiables(amenagement, C.config).find((r) => r.ressource === ressource)
+  if (!cop) return `« ${amenagement} » ne produit pas de ressource copiable « ${ressource} ».`
+  route.amenagement = amenagement
+  route.ressource = ressource
+  const m = (state.population[route.joueur] ?? []).find((c) => c.id === route.marchandId)
+  state.log.push({
+    turn: state.turn, type: 'Commerce', joueur: route.joueur,
+    texte: `🛒 Route de ${m ? fullName(m) : 'marchand'} : copie désormais ${cop.valeur} ${ressource}${cop.ete ? ' (été)' : ''} sur ${route.villeCible}.`,
+  })
+  return null
+}
+
+/** Ferme une route commerciale (bouton ✕ de la page Pays). */
+export function supprimerRouteCommerce(state: GameState, routeId: string): string | null {
+  const routes = routesCommerce(state)
+  const route = routes.find((r) => r.id === routeId)
+  if (!route) return 'Route introuvable.'
+  state.routesCommerce = routes.filter((r) => r.id !== routeId)
+  state.log.push({
+    turn: state.turn, type: 'Commerce', joueur: route.joueur,
+    texte: `🛒 Route commerciale vers ${route.villeCible} fermée.`,
+  })
+  return null
+}

@@ -205,6 +205,12 @@ export function titresAccessibles(state: GameState, p: Player, C: Cfg = cfgOf(st
   //  (avertissement affiché, jamais bloquant). Le portefeuille se
   //  choisit ensuite dans la page Population.
   out.push('Ministre')
+  // « Marchand » (marqueur (t)) : attribution manuelle comme Chasseur,
+  //  Gouverneur ou Ministre — le titre ouvre UNE route commerciale
+  //  (engine/commerce.ts : +marchandOrTour Or pour les 2 joueurs
+  //  reliés + copie d'une ressource d'un aménagement de la ville
+  //  ciblée). Pas de gain par tour dans la table des titres.
+  out.push('Marchand')
   const pop = state.population[p.n] ?? []
   const educations = new Set<string>()
   for (const c of pop) {

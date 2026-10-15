@@ -37,6 +37,7 @@ import { appliquerEffetsAutres, effetsNourrEteAutresVille } from './autres'
 import { appliquerEffetsRegimesCultures } from './regimes'
 import { appliquerEffetsFaction, nbVassaux } from './factions'
 import { appliquerEffetsMinisteres, effetsFinSaisonMinisteres } from './ministeres'
+import { appliquerEffetsCommerce, nettoyerRoutesCommerce } from './commerce'
 import { appliquerTaxesCitesLibres, citesSuzerainesDe } from './citesLibres'
 import { appliquerConsommationsHabitations } from './habitations'
 import { transfererTributVassal } from './vassalite'
@@ -229,6 +230,17 @@ export function runTurn(state: GameState): GameState {
   const ministeresParJoueur: Record<number, Record<string, number>> =
     appliquerEffetsMinisteres(state, C)
 
+  // 3terdecies. Commerce (marqueur (t)) : les routes commerciales des
+  //  marchands génèrent marchandOrTour Or pour CHAQUE joueur relié
+  //  (propriétaire du marchand + joueur ciblé) ; le propriétaire copie
+  //  en plus la production d'une ressource d'un aménagement de la
+  //  ville ciblée (engine/commerce.ts — comme les bâtiments : pas de
+  //  taxes, pas de coefficient gainsCrediteStock, pas de tribut). Les
+  //  routes mortes (marchand décédé ou déchu) sont d'abord fermées.
+  nettoyerRoutesCommerce(state)
+  const commerceParJoueur: Record<number, Record<string, number>> =
+    appliquerEffetsCommerce(state, C)
+
   // 4. Moteur de population (PersonnagesPourJoueur) pour chaque joueur
   for (const p of state.players) {
     populationTurn(state, p, rng)
@@ -263,6 +275,7 @@ export function runTurn(state: GameState): GameState {
       faction: factionsParJoueur[p.n] ?? {},
       citesLibres: citesLibresParJoueur[p.n] ?? {},
       ministeres: ministeresParJoueur[p.n] ?? {},
+      commerce: commerceParJoueur[p.n] ?? {},
       population,
       vassalite,
     }
@@ -348,6 +361,14 @@ export {
   type ProductionDetail, type ProductionVilleDetail,
   type ProvenanceApport, type CanalApport,
 } from './production'
+export {
+  TITRE_MARCHAND, routesCommerce, routesCommerceDe, routesCommerceVers,
+  marchandsDe, ressourcesCopiables, amenagementsCopiables,
+  effetsRouteProprietaire, effetsCommerceJoueur, detailCommerceJoueur,
+  appliquerEffetsCommerce, nettoyerRoutesCommerce, creerRouteCommerce,
+  changerCopieRoute, supprimerRouteCommerce,
+  type RouteCommerce, type RessourceCopiable, type DetailCommerce,
+} from './commerce'
 export { transfererTributVassal } from './vassalite'
 export {
   aMinistre, portefeuillesDuJoueur, appliquerEffetsMinisteres,
