@@ -1024,43 +1024,43 @@
   ],
   "ministeres": [
     {
-      "ministere": "Colonial",
+      "ministere": "Grand bailli",
       "effet": "Coût de fondation des habitations -8 Or et -3 Bois.",
       "rangMinimum": "Baronnie",
       "mode": "Plateau"
     },
     {
-      "ministere": "Culture",
+      "ministere": "Maître des arts",
       "effet": "Lorsqu'une habitation est fondée par votre  culture ou qu'une habitation se convertie à votre culture, vous recevez 10 Tourisme.",
       "rangMinimum": "Baronnie",
       "mode": "Plateau"
     },
     {
-      "ministere": "Défense",
+      "ministere": "Grand prévôt",
       "effet": "Votre capitale produit +1 Fer par tour. +10 Garnison dans vos habitations par rang de pays.",
       "rangMinimum": "Baronnie",
       "mode": "Plateau"
     },
     {
-      "ministere": "Ecologie",
+      "ministere": "Grand veneur",
       "effet": "Vos habitations consomment -5 Nourriture par rang de votre pays.",
       "rangMinimum": "Baronnie",
       "mode": "Plateau"
     },
     {
-      "ministere": "Economie",
+      "ministere": "Surintendant des finances",
       "effet": "Après avoir construit un bâtiment, générez 1 Ressource de votre choix produite par l'habitation par rang de l'habitation.",
       "rangMinimum": "Baronnie",
       "mode": "Plateau"
     },
     {
-      "ministere": "Guerre",
+      "ministere": "Grand écuyer",
       "effet": "Coût de levée d'armée -10 Or par rang de votre pays.",
       "rangMinimum": "Baronnie",
       "mode": "Plateau"
     },
     {
-      "ministere": "Recherche",
+      "ministere": "Grand bibliothécaire",
       "effet": "Après avoir découvert une technologie, gagnez votre rang de pays sous forme de Science.",
       "rangMinimum": "Baronnie",
       "mode": "Plateau"

@@ -13,7 +13,7 @@ import React, {
   createContext, useCallback, useContext, useEffect, useMemo, useRef, useState,
 } from 'react'
 import type { GameState } from '../engine/types'
-import { runTurn } from '../engine/engine'
+import { runTurn, migrerNomsMinisteres } from '../engine/engine'
 import type { SetupLine } from '../engine/setup'
 import { createGame } from '../engine/setup'
 import { cfgOf, cloneDefaultConfig, migrateGameConfig, type GameConfig } from '../config/defaultConfig'
@@ -61,6 +61,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     const loaded = storage.loadLocal()
     if (!loaded) return null
     loaded.config = JSON.parse(JSON.stringify(globalConfig)) as GameConfig
+    // Marqueur (v) : portefeuilles renommés (classeur → offices de cour).
+    migrerNomsMinisteres(loaded)
     return loaded
   })
 
@@ -164,6 +166,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (!s) return false
     // Paramètres communs : on adopte la configuration de la partie rejointe.
     if (s.config) syncGlobalCfg(s.config)
+    // Marqueur (v) : portefeuilles renommés (classeur → offices de cour).
+    migrerNomsMinisteres(s)
     setMode('supabase')
     setSalon(salonId)
     setConflit(false)
@@ -196,6 +200,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (s) {
       // Paramètres communs : la partie importée impose sa configuration.
       if (s.config) syncGlobalCfg(s.config)
+      // Marqueur (v) : portefeuilles renommés (classeur → offices de cour).
+      migrerNomsMinisteres(s)
       stateRef.current = s
       setState(s)
       lastLocalEdit.current = Date.now()

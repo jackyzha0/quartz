@@ -17,6 +17,7 @@
 
 import type { GameState, Player, Character } from './types'
 import { cfgOf } from './gameData'
+import { RENOMMAGES_MINISTERES } from '../config/defaultConfig'
 import type { Cfg } from './gameData'
 import { fullName } from './shared'
 
@@ -128,5 +129,24 @@ export function changerPortefeuille(
       turn: state.turn, type: 'Système', joueur: p.n,
       texte: `👑 Ministères — ${fullName(char)} prend la charge de Connétable : +5 Garnison à toutes les villes de ${p.nom}.`,
     })
+  }
+}
+
+/** Marqueur (v) 2026-10-15 : renomme les portefeuilles ministériels
+ *  portés par la population d'un état chargé (vieilles sauvegardes
+ *  avec les noms du classeur : Colonial, Culture, Défense, Ecologie,
+ *  Economie, Guerre, Recherche → offices de cour). Mutation en place,
+ *  idempotent (les nouveaux noms ne sont pas dans la map). */
+export function migrerNomsMinisteres(state: GameState): void {
+  const renomme = (c: Character): void => {
+    if (c.ministere && RENOMMAGES_MINISTERES[c.ministere]) {
+      c.ministere = RENOMMAGES_MINISTERES[c.ministere]
+    }
+  }
+  for (const liste of Object.values(state.population ?? {})) {
+    (liste ?? []).forEach(renomme)
+  }
+  for (const cite of state.citesLibres ?? []) {
+    (cite.population ?? []).forEach(renomme)
   }
 }

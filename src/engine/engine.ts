@@ -373,7 +373,7 @@ export { transfererTributVassal } from './vassalite'
 export {
   aMinistre, portefeuillesDuJoueur, appliquerEffetsMinisteres,
   effetsFinSaisonMinisteres, facteurSacre, facteurAvencement,
-  changerPortefeuille,
+  changerPortefeuille, migrerNomsMinisteres,
 } from './ministeres'
 export {
   techDefArbre, effetsTech, coutScienceTech, debiterScienceTech,

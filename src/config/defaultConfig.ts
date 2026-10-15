@@ -801,13 +801,54 @@ function migrerVictoires(list: GameConfig['victoires']): GameConfig['victoires']
 // anciens formats sans rangMinimum/mode (refonte 2026-10-14) — les
 // portefeuilles d'origine restent intacts, seuls les champs manquants
 // sont complétés par leurs valeurs par défaut.
+// Marqueur (v) 2026-10-15 : les 7 portefeuilles « du classeur » prennent
+// des noms d'offices de cour (comme les 16 autres). Les configurations
+// sauvegardées portent encore les anciens noms → renommage ci-dessous,
+// puis fusion avec les 23 défauts du référentiel : les portefeuilles
+// manquants d'une vieille config (ex. les 16 offices de cour arrivés au
+// marqueur (h)) sont réintégrés ; les personnalisations de même nom
+// sont conservées ; les entrées perso hors référentiel restent en queue.
+export const RENOMMAGES_MINISTERES: Record<string, string> = {
+  Colonial: 'Grand bailli',
+  Culture: 'Maître des arts',
+  'Défense': 'Grand prévôt',
+  Ecologie: 'Grand veneur',
+  Economie: 'Surintendant des finances',
+  Guerre: 'Grand écuyer',
+  Recherche: 'Grand bibliothécaire',
+}
+
 function migrerMinisteres(list: GameConfig['ministeres']): GameConfig['ministeres'] {
   if (!Array.isArray(list) || list.length === 0) return DEFAULT_CONFIG.ministeres
-  return list.map((m) => ({
+  // (a) renommage des anciens noms du classeur
+  const rentrees = list.map((m) => ({
     ...m,
-    rangMinimum: m.rangMinimum ?? 'Baronnie',
-    mode: m.mode ?? 'Plateau',
+    ministere: RENOMMAGES_MINISTERES[m.ministere] ?? m.ministere,
   }))
+  // (b) fusion avec les défauts du référentiel : chaque portefeuille
+  // connu prend sa place par défaut (entrée utilisateur conservée si
+  // elle existe), les portefeuilles manquants sont réintégrés.
+  const parNom = new Map(rentrees.map((m) => [m.ministere, m]))
+  const defauts = DEFAULT_CONFIG.ministeres.map((d) => {
+    const u = parNom.get(d.ministere)
+    if (!u) return d
+    const f = { ...d, ...u }
+    return {
+      ...f,
+      rangMinimum: f.rangMinimum ?? 'Baronnie',
+      mode: f.mode ?? 'Plateau',
+    } as typeof d
+  })
+  // (c) entrées personnalisées hors référentiel : conservées à la suite.
+  const connus = new Set(DEFAULT_CONFIG.ministeres.map((d) => d.ministere))
+  const persos = rentrees
+    .filter((m) => !connus.has(m.ministere))
+    .map((m) => ({
+      ...m,
+      rangMinimum: m.rangMinimum ?? 'Baronnie',
+      mode: m.mode ?? 'Plateau',
+    }))
+  return [...defauts, ...persos]
 }
 
 export function cfgOf(config: GameConfig | undefined): Cfg {

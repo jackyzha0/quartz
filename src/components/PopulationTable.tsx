@@ -332,29 +332,6 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           onChange={(v) => changeTitre(c, v)}
         />
         {errors[c.id] && <div className="neg small">⚠ {errors[c.id]}</div>}
-        {p && c.titre === 'Ministre' && c.statut !== 'Décédé' && (
-          <>
-            <Select
-              value={c.ministere ?? ''}
-              options={[
-                { value: '', label: '(sans portefeuille)' },
-                ...(C.config.ministeres ?? []).map((m) => ({
-                  value: m.ministere,
-                  label: `${m.ministere} — min. ${m.rangMinimum ?? rangsPays[0]?.nom ?? '?'} (${m.mode === 'Auto' ? 'auto' : 'plateau'})`,
-                })),
-              ]}
-              onChange={(v) => update((s) => {
-                const tp = s.players.find((x) => x.n === joueur)
-                const tc = (s.population[joueur] ?? []).find((x) => x.id === c.id)
-                if (!tp || !tc) return
-                changerPortefeuille(s, tp, tc, v || null)
-              })}
-            />
-            {avertissementPortefeuille(c.ministere) && (
-              <div className="neg small">⚠ {avertissementPortefeuille(c.ministere)}</div>
-            )}
-          </>
-        )}
       </td>
       <td>{c.education ?? '—'}</td>
       <td className="small">
@@ -475,8 +452,9 @@ export function PopulationTable({ joueur }: { joueur: number }) {
           refonte du 2026-10-14 (titre « Ministre » + portefeuille +
           effets moteur) mais restaient invisibles si on ne savait pas
           où regarder. Cette carte affiche l'équipe en place et rappelle
-          comment nommer.) — joueurs seulement (les cités libres n'ont
-          pas de ministères). */}
+          comment nommer. Marqueur (v) : le portefeuille se choisit ICI,
+          plus dans le tableau de population (retour Thibaut).
+          — joueurs seulement (les cités libres n'ont pas de ministères). */}
       {p && (
         <Card title={`👑 Ministres de ${p.nom}`}>
           {(() => {
@@ -486,18 +464,39 @@ export function PopulationTable({ joueur }: { joueur: number }) {
                 <p className="muted small">
                   Aucun ministre en poste. Pour en nommer un : dans « La cour » ci-dessous,
                   choisir le titre <strong>Ministre</strong> dans la colonne Titre d'un noble vivant,
-                  puis choisir son <strong>portefeuille</strong> dans le second menu qui apparaît
+                  puis revenir choisir son <strong>portefeuille</strong> dans cette carte
                   (Trésorier, Sénéchal, Connétable…). Les effets s'appliquent automatiquement
                   à chaque fin de tour / fin de saison.
                 </p>
               )
             }
             return (
-              <div className="badges-wrap">
+              <div className="badges-wrap rows">
                 {mins.map((c) => (
-                  <span key={c.id} className="badge badge-info" title={`${fullName(c)} — ${c.ville}`}>
-                    {fullName(c)} : {c.ministere || '(sans portefeuille)'}
-                  </span>
+                  <div key={c.id} className="row" style={{ alignItems: 'center', gap: 8 }}>
+                    <span className="badge badge-info" title={`${fullName(c)} — ${c.ville}`}>
+                      {fullName(c)}
+                    </span>
+                    <Select
+                      value={c.ministere ?? ''}
+                      options={[
+                        { value: '', label: '(sans portefeuille)' },
+                        ...(C.config.ministeres ?? []).map((m) => ({
+                          value: m.ministere,
+                          label: `${m.ministere} — min. ${m.rangMinimum ?? rangsPays[0]?.nom ?? '?'} (${m.mode === 'Auto' ? 'auto' : 'plateau'})`,
+                        })),
+                      ]}
+                      onChange={(v) => update((s2) => {
+                        const tp = s2.players.find((x) => x.n === joueur)
+                        const tc = (s2.population[joueur] ?? []).find((x) => x.id === c.id)
+                        if (!tp || !tc) return
+                        changerPortefeuille(s2, tp, tc, v || null)
+                      })}
+                    />
+                    {avertissementPortefeuille(c.ministere) && (
+                      <div className="neg small">⚠ {avertissementPortefeuille(c.ministere)}</div>
+                    )}
+                  </div>
                 ))}
               </div>
             )
@@ -577,7 +576,7 @@ export function PopulationTable({ joueur }: { joueur: number }) {
         {p && (
           <p className="muted small">
             👑 Pour nommer un <strong>ministre</strong> : titre « Ministre » dans la colonne
-            Titre, puis portefeuille dans le second menu (carte « 👑 Ministres » ci-dessus).
+            Titre, puis portefeuille dans la carte « 👑 Ministres » ci-dessus.
           </p>
         )}
       </Card>
