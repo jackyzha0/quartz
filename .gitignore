@@ -5,3 +5,4 @@ dist
 *.local
 .DS_Store
 coverage
+tsconfig.tsbuildinfo
