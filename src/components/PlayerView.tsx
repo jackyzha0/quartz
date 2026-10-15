@@ -38,7 +38,7 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import { useGame } from '../state/store'
-import type { GameState, Player, AutreDef } from '../engine/types'
+import type { City, GameState, Player, AutreDef } from '../engine/types'
 import { cfgOf, cultureDef, couleurRessource, fondRessource, type Cfg } from '../engine/gameData'
 import {
   effetsTourBatiment, garnisonBatiment, coutBatiment,
@@ -151,6 +151,21 @@ export function PlayerView({ joueur }: { joueur: number }) {
           texte: `🏗 ${nom} ne peut être construit(e) que dans la capitale (${capitaleDe(t)?.nom ?? '—'}).`,
         })
         return
+      }
+
+      // Retour Thibaut 2026-10-15 : un bâtiment du groupe Ville ne se
+      //  construit que dans une VILLE, du groupe Château que dans un
+      //  CHÂTEAU (la vue filtre, ce garde-fou couvre les états
+      //  importés/rebasés).
+      if (ref && (ref.groupe === 'Ville' || ref.groupe === 'Château')) {
+        const typeVilleActuel = (ville.type ?? 'Ville').toLowerCase()
+        if (ref.groupe.toLowerCase() !== typeVilleActuel) {
+          s.log.push({
+            turn: s.turn, type: 'Système', joueur: t.n,
+            texte: `🏛 ${nom} est un bâtiment de ${ref.groupe} — il ne se construit pas dans ${ville.nom} (${ville.type ?? 'Ville'}).`,
+          })
+          return
+        }
       }
 
       // ── Limites de construction par FAMILLE (règles du classeur,
@@ -326,24 +341,45 @@ export function PlayerView({ joueur }: { joueur: number }) {
    *  du peuple du joueur (ceux de capitale uniquement dans la
    *  capitale), bâtiments de CAPITALE pour la capitale uniquement.
    *  Chaque carte montre le coût ET la description du classeur. */
-  const batParFamillePour = (estCapitale: boolean): PickerCategorie[] => {
+  /** Bâtiments constructibles pour UNE ville (retour Thibaut
+   *  2026-10-15) : seuls les bâtiments du TYPE de la ville (Ville ou
+   *  Château) s'affichent, et les MERVEILLES sont filtrées par le rang
+   *  d'habitation disponible — avec une catégorie SÉPARÉE par rang
+   *  (séparation visuelle nette). */
+  const batParFamillePour = (ville: City): PickerCategorie[] => {
+    const type = (ville.type ?? 'Ville').toLowerCase()
+    const estCapitale = ville.nom === nomCapitale
+    const rang = rangNiveau(ville, C)
+    const okGroupe = (b: { groupe: string }) =>
+      b.groupe === 'Capitale' ? estCapitale : b.groupe.toLowerCase() === type
     const eligibles = [
-      ...batRefs.filter((b) => b.groupe === 'Ville' && !b.faction).map((b) => ({ b, groupe: 'Ville' })),
-      ...batRefs.filter((b) => b.groupe === 'Château' && !b.faction).map((b) => ({ b, groupe: 'Château' })),
+      ...batRefs.filter((b) => okGroupe(b) && !b.faction).map((b) => ({ b, groupe: b.groupe })),
       ...refsBatFaction
-        .filter((b) => estCapitale || b.groupe !== 'Capitale')
+        .filter((b) => okGroupe(b))
         .map((b) => ({ b, groupe: 'Faction' })),
       ...(estCapitale ? refsBatCapitale.map((b) => ({ b, groupe: 'Capitale' })) : []),
     ]
+    // Merveilles du groupe de la ville, triées par rang croissant —
+    //  une catégorie par rang DISPONIBLE (les rangs supérieurs au
+    //  rang de la ville sont masqués).
+    const merveilles = batRefs
+      .filter((b) => okGroupe(b) && (b.famille ?? '') === 'Merveille')
+      .filter((b) => (b.rangMinHabitation ?? 1) <= rang)
+      .sort((a, z) => (a.rangMinHabitation ?? 1) - (z.rangMinHabitation ?? 1))
+    const merveillesParRang = new Map<number, typeof merveilles>()
+    for (const m of merveilles) {
+      const r = m.rangMinHabitation ?? 1
+      if (!merveillesParRang.has(r)) merveillesParRang.set(r, [])
+      merveillesParRang.get(r)!.push(m)
+    }
     const familles: Array<[string, string]> = [
       ['Militaire', 'Militaire'],
       ['Economique', 'Économique'],
       ['Guilde', 'Guilde'],
       ['Faction', `Faction (${p.peuple})`],
       ['Capitale', 'Capitale'],
-      ['Merveille', 'Merveilles'],
     ]
-    return familles.map(([fam, label]) => ({
+    const out: PickerCategorie[] = familles.map(([fam, label]) => ({
       label,
       options: eligibles
         .filter(({ b }) => (b.famille ?? '') === fam)
@@ -358,6 +394,24 @@ export function PlayerView({ joueur }: { joueur: number }) {
           badge: FAM_BADGES[fam] ?? 'badge-info',
         })),
     }))
+    // Une catégorie de merveilles PAR RANG (séparation visuelle) :
+    //  « Merveilles · rang 1 », « Merveilles · rang 2 »…
+    for (const [r, ms] of merveillesParRang) {
+      out.push({
+        label: `Merveilles · rang ${r}${r > 1 ? '+' : ''}`,
+        options: ms.map((b) => ({
+          value: `${b.groupe}|${b.nom}`,
+          titre: b.nom,
+          droite: fmtCout(parseCoutTexte(b.cout)),
+          description: [
+            resumeConstruction(b) || b.production || '',
+            b.description,
+          ].filter(Boolean).join('\n'),
+          badge: FAM_BADGES['Merveille'] ?? 'badge-info',
+        })),
+      })
+    }
+    return out
   }
 
   const coutAm = coutAmenagement(p, C.config)
@@ -801,7 +855,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                       description de chaque bâtiment AVANT le choix. */}
                   <ChoicePicker
                     bouton="+ Construire…"
-                    categories={batParFamillePour(ville.nom === nomCapitale)}
+                    categories={batParFamillePour(ville)}
                     onPick={(v) => {
                       const [groupe, nom] = v.split('|')
                       construire(idx, nom, 'batiment', groupe)
