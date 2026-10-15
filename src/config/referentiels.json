@@ -5365,7 +5365,8 @@
           "ressource": "Garnison",
           "quantite": 40
         }
-      ]
+      ],
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5374,7 +5375,8 @@
       "nom": "Herses",
       "cout": "4 Or + 2 Bois",
       "production": "",
-      "description": "Ajoute deux Herses lors de bataille de siège, aux endroits choisis par le défenseur."
+      "description": "Ajoute deux Herses lors de bataille de siège, aux endroits choisis par le défenseur.",
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5389,7 +5391,8 @@
           "ressource": "Bois",
           "quantite": 1
         }
-      ]
+      ],
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5404,7 +5407,8 @@
           "ressource": "Pierre",
           "quantite": 1
         }
-      ]
+      ],
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5419,7 +5423,8 @@
           "ressource": "Or",
           "quantite": 2
         }
-      ]
+      ],
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5434,7 +5439,8 @@
           "ressource": "Nourriture",
           "quantite": 15
         }
-      ]
+      ],
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5443,7 +5449,8 @@
       "nom": "Herboristerie",
       "cout": "10 Or + 4 Bois",
       "production": "",
-      "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 5%."
+      "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 5%.",
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5452,7 +5459,8 @@
       "nom": "Ponton",
       "cout": "5 Or + 5 Bois",
       "production": "",
-      "description": "Habitations côtières uniquement. Les ressources maritimes aménagées génèrent 1 Bétail par tour."
+      "description": "Habitations côtières uniquement. Les ressources maritimes aménagées génèrent 1 Bétail par tour.",
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5471,7 +5479,8 @@
           "ressource": "Garnison",
           "quantite": 40
         }
-      ]
+      ],
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5480,7 +5489,8 @@
       "nom": "Réseau de routes",
       "cout": "15 Or + 4 Soie",
       "production": "",
-      "description": "Les cases dans l'enceinte de cette habitation ne coûtent qu'un PM à franchir."
+      "description": "Les cases dans l'enceinte de cette habitation ne coûtent qu'un PM à franchir.",
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5489,7 +5499,8 @@
       "nom": "Tour de sorcier",
       "cout": "40 Or + 12 Pierres",
       "production": "",
-      "description": "Une armée amie peut se téléporter à une autre Tour de sorcier amie pour 1 Or par case traversée et 1 PM."
+      "description": "Une armée amie peut se téléporter à une autre Tour de sorcier amie pour 1 Or par case traversée et 1 PM.",
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5498,7 +5509,8 @@
       "nom": "Camp de bâtisseurs",
       "cout": "10 Or + 4 Pierre",
       "production": "",
-      "description": "Réduit le coût de construction des aménagements de 5 Or et 1 Bois."
+      "description": "Réduit le coût de construction des aménagements de 5 Or et 1 Bois.",
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5517,7 +5529,8 @@
           "ressource": "Pierre",
           "quantite": 1
         }
-      ]
+      ],
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5526,7 +5539,8 @@
       "nom": "Etable",
       "cout": "Grange requise. 10 Or + 4 Bois + 4 Bétail.",
       "production": "",
-      "description": "Vous pouvez dépenser 8 Bétails pour ajouter une ressource de Bétail dans l'enceinte de la Cité."
+      "description": "Vous pouvez dépenser 8 Bétails pour ajouter une ressource de Bétail dans l'enceinte de la Cité.",
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5545,7 +5559,8 @@
           "ressource": "Nourriture",
           "quantite": 45
         }
-      ]
+      ],
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5554,7 +5569,8 @@
       "nom": "Clinique",
       "cout": "Herboristerie requise. 30 Or + 6 Pierre",
       "production": "",
-      "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 10%."
+      "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 10%.",
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5569,7 +5585,8 @@
           "ressource": "Or",
           "quantite": 4
         }
-      ]
+      ],
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5578,7 +5595,8 @@
       "nom": "Port de commerce",
       "cout": "Ponton requis. 20 Or + 6 Bois + 4 Fer.",
       "production": "",
-      "description": "+1 Or par case maritime, Coût des Bâteaux -15 Or."
+      "description": "+1 Or par case maritime, Coût des Bâteaux -15 Or.",
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5587,7 +5605,8 @@
       "nom": "Port de pêche",
       "cout": "20 Or + 4 Bétail + 4 Bois.",
       "production": "",
-      "description": "Ponton requis. Les ressources maritimes aménagées rapportent +4 Nourritures par tour, vous pouvez dépenser 8 Bétails pour ajouter une ressource de Crabe dans l'enceinte de la Cité."
+      "description": "Ponton requis. Les ressources maritimes aménagées rapportent +4 Nourritures par tour, vous pouvez dépenser 8 Bétails pour ajouter une ressource de Crabe dans l'enceinte de la Cité.",
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5602,7 +5621,8 @@
           "ressource": "Nourriture",
           "quantite": 25
         }
-      ]
+      ],
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5621,7 +5641,8 @@
           "ressource": "Nourriture",
           "quantite": 45
         }
-      ]
+      ],
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5640,7 +5661,8 @@
           "ressource": "Garnison",
           "quantite": 40
         }
-      ]
+      ],
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -5649,7 +5671,8 @@
       "nom": "Responsable des voiries",
       "cout": "30 Or + 6 Soie.",
       "production": "",
-      "description": "Les cases à 3 cases ou moins de cette habitation ne coûtent qu'un PM à franchir."
+      "description": "Les cases à 3 cases ou moins de cette habitation ne coûtent qu'un PM à franchir.",
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -5664,7 +5687,8 @@
           "ressource": "Or",
           "quantite": 12
         }
-      ]
+      ],
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -5695,7 +5719,8 @@
           "ressource": "Charbon",
           "quantite": 1
         }
-      ]
+      ],
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -5710,7 +5735,8 @@
           "ressource": "Or",
           "quantite": 4
         }
-      ]
+      ],
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -5719,7 +5745,8 @@
       "nom": "Hôpital",
       "cout": "Pavillon requis. 40 Or + 10 Pierre + 4 Fer.",
       "production": "",
-      "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 15%."
+      "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 15%.",
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -5728,7 +5755,8 @@
       "nom": "Guilde des bourgeois",
       "cout": "Quartier requis. 60 Or + 6 Charbon + 6 Soie.",
       "production": "",
-      "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 15% et un bonus jsplus ce que c'est"
+      "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 15% et un bonus jsplus ce que c'est",
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -5743,7 +5771,8 @@
           "ressource": "Charbon",
           "quantite": -1
         }
-      ]
+      ],
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -5762,7 +5791,8 @@
           "ressource": "Or",
           "quantite": 18
         }
-      ]
+      ],
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -5781,7 +5811,8 @@
           "ressource": "Garnison",
           "quantite": 40
         }
-      ]
+      ],
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5790,7 +5821,8 @@
       "nom": "Herses",
       "cout": "Acquis par défaut",
       "production": "",
-      "description": "Ajoute deux Herses lors de bataille de siège, aux endroits choisis par le défenseur."
+      "description": "Ajoute deux Herses lors de bataille de siège, aux endroits choisis par le défenseur.",
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5805,7 +5837,8 @@
           "ressource": "Bois",
           "quantite": 1
         }
-      ]
+      ],
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5820,7 +5853,8 @@
           "ressource": "Pierre",
           "quantite": 1
         }
-      ]
+      ],
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5829,7 +5863,8 @@
       "nom": "Camp d'ingénieur",
       "cout": "10 Or + 2 Bois + 2 Fer.",
       "production": "",
-      "description": "Les améliorations de fortifications (rouges) coûtent 6 Or et 2 Bois de moins."
+      "description": "Les améliorations de fortifications (rouges) coûtent 6 Or et 2 Bois de moins.",
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5844,7 +5879,8 @@
           "ressource": "Tourisme",
           "quantite": 15
         }
-      ]
+      ],
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5859,7 +5895,8 @@
           "ressource": "Or",
           "quantite": -1
         }
-      ]
+      ],
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5874,7 +5911,8 @@
           "ressource": "Or",
           "quantite": 2
         }
-      ]
+      ],
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5883,7 +5921,8 @@
       "nom": "Herboristerie",
       "cout": "10 Or + 2 Pierre",
       "production": "",
-      "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 5%."
+      "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 5%.",
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5892,7 +5931,8 @@
       "nom": "Terrain d'entrainement",
       "cout": "12 Or + 3 Bois",
       "production": "",
-      "description": "Si vous levez une armée dans cette habitation, dépensez 10 Or de moins."
+      "description": "Si vous levez une armée dans cette habitation, dépensez 10 Or de moins.",
+      "rangMinHabitation": 1
     },
     {
       "categorie": "Bâtiment",
@@ -5911,7 +5951,8 @@
           "ressource": "Garnison",
           "quantite": 40
         }
-      ]
+      ],
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5920,7 +5961,8 @@
       "nom": "Réseau de routes",
       "cout": "15 Or + 4 Soie",
       "production": "",
-      "description": "Les cases dans l'enceinte de cette habitation ne coûtent qu'un PM à franchir."
+      "description": "Les cases dans l'enceinte de cette habitation ne coûtent qu'un PM à franchir.",
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5929,7 +5971,8 @@
       "nom": "Tour de sorcier",
       "cout": "40 Or + 12 Pierres",
       "production": "",
-      "description": "Une armée amie peut se téléporter à une autre Tour de sorcier amie pour 1 Or par case traversée et 1 PM."
+      "description": "Une armée amie peut se téléporter à une autre Tour de sorcier amie pour 1 Or par case traversée et 1 PM.",
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5953,7 +5996,8 @@
           "ressource": "Science",
           "quantite": 1
         }
-      ]
+      ],
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5968,7 +6012,8 @@
           "ressource": "Tourisme",
           "quantite": 35
         }
-      ]
+      ],
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5983,7 +6028,8 @@
           "ressource": "Or",
           "quantite": -3
         }
-      ]
+      ],
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -5992,7 +6038,8 @@
       "nom": "Ecole militaire",
       "cout": "Terrain d'entrainement requis. 20 Or + 6 Bois + 4 Fer.",
       "production": "",
-      "description": "Si vous levez une armée dans cette habitation, dépensez 25 Or de moins."
+      "description": "Si vous levez une armée dans cette habitation, dépensez 25 Or de moins.",
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -6001,7 +6048,8 @@
       "nom": "Clinique",
       "cout": "Herboristerie requise. 30 Or + 6 Pierre",
       "production": "",
-      "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 10%."
+      "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 10%.",
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -6016,7 +6064,8 @@
           "ressource": "Charbon",
           "quantite": -1
         }
-      ]
+      ],
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
@@ -6035,7 +6084,8 @@
           "ressource": "Garnison",
           "quantite": 40
         }
-      ]
+      ],
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -6044,7 +6094,8 @@
       "nom": "Responsable des voiries",
       "cout": "30 Or + 6 Soie.",
       "production": "",
-      "description": "Les cases à 3 cases ou moins de cette habitation ne coûtent qu'un PM à franchir."
+      "description": "Les cases à 3 cases ou moins de cette habitation ne coûtent qu'un PM à franchir.",
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -6059,7 +6110,8 @@
           "ressource": "Tourisme",
           "quantite": 50
         }
-      ]
+      ],
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -6074,7 +6126,8 @@
           "ressource": "Or",
           "quantite": -6
         }
-      ]
+      ],
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -6089,7 +6142,8 @@
           "ressource": "Science",
           "quantite": 3
         }
-      ]
+      ],
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -6098,7 +6152,8 @@
       "nom": "Hôpital",
       "cout": "Pavillon requis. 40 Or + 10 Pierre + 4 Fer.",
       "production": "",
-      "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 15%."
+      "description": "Chances de contracter une maladie et de guérir d'une maladie augmentées de 15%.",
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -6113,7 +6168,8 @@
           "ressource": "Charbon",
           "quantite": -1
         }
-      ]
+      ],
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -6132,7 +6188,8 @@
           "ressource": "Tourisme",
           "quantite": 70
         }
-      ]
+      ],
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",
@@ -6151,7 +6208,8 @@
           "ressource": "Science",
           "quantite": 6
         }
-      ]
+      ],
+      "rangMinHabitation": 3
     },
     {
       "categorie": "Bâtiment",

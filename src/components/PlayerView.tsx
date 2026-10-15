@@ -201,6 +201,18 @@ export function PlayerView({ joueur }: { joueur: number }) {
           return
         }
       }
+      // Rang d'habitation requis (retour Thibaut 2026-10-15) : un
+      //  bâtiment du rang N ne se construit pas dans une habitation de
+      //  rang inférieur (vérifie Militaire, Économique, Guilde ET
+      //  Merveilles — la vue filtre déjà, ce garde-fou couvre les
+      //  états importés/rebasés).
+      if (ref && ref.rangMinHabitation && rangNiveau(ville, C) < ref.rangMinHabitation) {
+        s.log.push({
+          turn: s.turn, type: 'Système', joueur: t.n,
+          texte: `🏛 ${nom} exige une habitation de rang ${ref.rangMinHabitation} minimum (${ville.nom} est de rang ${rangNiveau(ville, C)}).`,
+        })
+        return
+      }
       if (fam === 'Merveille') {
         const rangRequis = ref?.rangMinHabitation ?? 1
         if (rangNiveau(ville, C) < rangRequis) {
@@ -377,16 +389,45 @@ export function PlayerView({ joueur }: { joueur: number }) {
       if (!merveillesParRang.has(r)) merveillesParRang.set(r, [])
       merveillesParRang.get(r)!.push(m)
     }
-    const familles: Array<[string, string]> = [
+    // Retour Thibaut 2026-10-15 : séparation par RANG D'HABITATION pour
+    //  Militaire / Économique / Guilde — une catégorie par famille et
+    //  par rang DISPONIBLE (les bâtiments de rang supérieur au rang de
+    //  la ville sont masqués). Faction et Capitale restent par famille.
+    const out: PickerCategorie[] = []
+    const famillesRangees: Array<[string, string]> = [
       ['Militaire', 'Militaire'],
       ['Economique', 'Économique'],
       ['Guilde', 'Guilde'],
-      ['Faction', `Faction (${p.peuple})`],
-      ['Capitale', 'Capitale'],
     ]
-    const out: PickerCategorie[] = familles.map(([fam, label]) => ({
-      label,
-      options: eligibles
+    for (const [fam, label] of famillesRangees) {
+      // regrouper les bâtiments de la famille par rang
+      const parRang = new Map<number, typeof eligibles>()
+      for (const item of eligibles) {
+        if ((item.b.famille ?? '') !== fam) continue
+        const r = item.b.rangMinHabitation ?? 1
+        if (r > rang) continue // rang non disponible → masqué
+        if (!parRang.has(r)) parRang.set(r, [])
+        parRang.get(r)!.push(item)
+      }
+      for (const [r, items] of [...parRang.entries()].sort((a, z) => a[0] - z[0])) {
+        out.push({
+          label: `${label} · rang ${r}${r > 1 ? '+' : ''}`,
+          options: items.map(({ b, groupe }) => ({
+            value: `${groupe}|${b.nom}`,
+            titre: b.nom,
+            droite: fmtCout(parseCoutTexte(b.cout)),
+            description: [
+              resumeConstruction(b) || b.production || '',
+              b.description,
+            ].filter(Boolean).join('\n'),
+            badge: FAM_BADGES[fam] ?? 'badge-info',
+          })),
+        })
+      }
+    }
+    // Faction et Capitale : une catégorie par famille (sans rang)
+    for (const [fam, label] of [['Faction', `Faction (${p.peuple})`], ['Capitale', 'Capitale']] as const) {
+      const options = eligibles
         .filter(({ b }) => (b.famille ?? '') === fam)
         .map(({ b, groupe }) => ({
           value: `${groupe}|${b.nom}`,
@@ -397,8 +438,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
             b.description,
           ].filter(Boolean).join('\n'),
           badge: FAM_BADGES[fam] ?? 'badge-info',
-        })),
-    }))
+        }))
+      if (options.length > 0) out.push({ label, options })
+    }
     // Une catégorie de merveilles PAR RANG (séparation visuelle) :
     //  « Merveilles · rang 1 », « Merveilles · rang 2 »…
     for (const [r, ms] of merveillesParRang) {
