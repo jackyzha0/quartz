@@ -56,7 +56,11 @@ import { snapshotRessources } from './journal'
  *  des cités libres). C'est la condition de montée de rang (colonne
  *  « serments » de la table paysRangs, échelle féodale unique). */
 export function sermentsPossedes(state: GameState, p: Player): number {
-  return nbVassaux(state, p) + citesSuzerainesDe(state, p).length
+  // Monarchie (retour Thibaut 2026-10-15 : loi non prise en compte) :
+  //  « Droit Divin : vous possédez 1 serment supplémentaire » —
+  //  appliqué automatiquement à la condition de sacre.
+  const bonusMonarchie = p.regime === 'Monarchie' ? 1 : 0
+  return nbVassaux(state, p) + citesSuzerainesDe(state, p).length + bonusMonarchie
 }
 
 // ══════════════════════════════════════════════════════════════════════

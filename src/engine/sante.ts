@@ -134,8 +134,12 @@ export function handleDirigeantSuccession(state: GameState, p: Player, defunt: C
       // moitié » (facteurAvencement → quart du prix) — cumulables.
       const fS = facteurSacre(state, p)
       const fA = facteurAvencement(state, p)
-      const demiOr = Math.floor((rangDef.coutOr ?? 0) * fS * fA)
-      const demiNourr = Math.floor((rangDef.coutNourriture ?? 0) * fS * fA)
+      // Démocratie (retour Thibaut 2026-10-15 : loi non prise en
+      //  compte) : « Elections : le sacre d'avènement est gratuit » —
+      //  facteur 0 appliqué automatiquement.
+      const fDemocratie = p.regime === 'Démocratie' ? 0 : 1
+      const demiOr = Math.floor((rangDef.coutOr ?? 0) * fS * fA * fDemocratie)
+      const demiNourr = Math.floor((rangDef.coutNourriture ?? 0) * fS * fA * fDemocratie)
       const or = p.resources['Or']
       if (or) or.stock -= demiOr
       const nourr = p.resources['Nourriture']
@@ -144,7 +148,7 @@ export function handleDirigeantSuccession(state: GameState, p: Player, defunt: C
         const reduc: string[] = []
         if (fS < 1) reduc.push('Chancelier de justice : −25 %')
         if (fA < 0.5) reduc.push('Archichancelier : sacre d’avènement réduit de moitié')
-        sacreTxt = ` Sacre d'avènement payé : ${demiOr} Or et ${demiNourr} Nourriture (${reduc.length > 0 ? `réduit — ${reduc.join(' ; ')}` : `moitié du prix du rang ${rangDef.nom}`}).`
+        sacreTxt = ` Sacre d'avènement payé : ${demiOr} Or et ${demiNourr} Nourriture (${reduc.length > 0 ? `réduit — ${reduc.join(' ; ')}` : p.regime === 'Démocratie' ? 'sacre d\u2019avènement gratuit (Démocratie)' : `moitié du prix du rang ${rangDef.nom}`}).`
       }
     }
     state.log.push({

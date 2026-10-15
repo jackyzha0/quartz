@@ -19,6 +19,12 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
   const [cible, setCible] = useState<number | null>(null)
   const [commandant, setCommandant] = useState('')
   const [puissance, setPuissance] = useState(90)
+  // Revue Thibaut 2026-10-15 : la levée se passe DANS une habitation
+  //  — le joueur choisit la ville, les bonus de ses bâtiments
+  //  s'appliquent (Terrain d'entrainement −10 Or, Ecole militaire
+  //  −25, Grande caserne −8, Guilde des explorateurs −20,
+  //  Autel eud Guer' −20).
+  const [villeLevee, setVilleLevee] = useState('')
 
   if (!state) return null
   const C = cfgOf(state.config)
@@ -45,8 +51,10 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
   // Prix avec réductions automatiques : Grand écuyer (ministre,
   //  −10 Or par rang de pays) et Vengeance de la terre (Sylvains,
   //  −10 Or par apiculture) — mêmes paramètres que le débit.
-  const prix = prixArmee(puissance, C, p, state)
-  const prixBrut = prixArmee(puissance, C)
+  const villeLeveeObj = p.villes.find((v) => v.nom === villeLevee)
+  const prix = prixArmee(puissance, C, p, state, villeLeveeObj)
+  // Prix SANS le bonus de la ville (pour afficher la réduction)
+  const prixBrut = prixArmee(puissance, C, p, state)
   const orDispo = p.resources['Or']?.stock ?? 0
   const leverArmee = () => {
     const cmd = commandantsDispo.find((c) => c.id === commandant)
@@ -57,7 +65,7 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
       if (!target) return
       // Prix de levée (classeur : 1 Or tous les 2 points de force) :
       // débité UNE FOIS à la levée — pas d'entretien par tour.
-      const prix2 = prixArmee(puissance, C, target, s)
+      const prix2 = prixArmee(puissance, C, target, s, villeLeveeObj)
       const rs = target.resources['Or']
       if (rs && rs.stock < prix2) return
       if (rs && prix2 > 0) rs.stock -= prix2
@@ -185,6 +193,17 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
             <span className="field-label">Puissance cible (45-300)</span>
             <NumberInput value={puissance} onChange={setPuissance} step={15} min={45} max={300} />
           </label>
+          <label className="field">
+            <span className="field-label">Ville de levée (bonus de ses bâtiments)</span>
+            <Select
+              value={villeLevee}
+              options={[
+                { value: '', label: '(hors habitation — aucun bonus)' },
+                ...p.villes.map((v) => ({ value: v.nom, label: v.nom })),
+              ]}
+              onChange={setVilleLevee}
+            />
+          </label>
         </div>
         <p className="small" style={{ margin: '4px 0' }}>
           Prix de levée : <strong>{fmt(prix)} Or</strong>{' '}
@@ -192,7 +211,7 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
             ({C.p.armeePrixOr} Or tous les {C.p.armeePriXPuissance} points de force — payé une fois, pas d'entretien)
           </span>
           {prixBrut > prix && (
-            <span className="muted"> · réductions : −{fmt(prixBrut - prix)} Or (Grand écuyer / faction)</span>
+            <span className="muted"> · réductions : −{fmt(prixBrut - prix)} Or (Grand écuyer, faction, merveilles, bâtiments de la ville)</span>
           )}
           {orDispo < prix && <span className="neg"> ⚠ Or insuffisant ({fmt(orDispo)} disponible)</span>}
         </p>
@@ -200,7 +219,10 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
         <p className="muted small">
           Chaque tour, l'armée recrute automatiquement des soldats (adultes 16-30 ans, conformes à la
           martialité de votre culture) jusqu'à atteindre la puissance cible. Le prix de levée
-          (1 Or tous les 2 points de force) est débité une seule fois, à la création de l'armée.
+          (1 Or tous les 2 points de force) est débité une seule fois, à la création de
+          l'armée. Choisir une VILLE DE LEVÉE applique les bonus de ses bâtiments
+          (Terrain d'entrainement −10 Or, Ecole militaire −25, Grande caserne −8,
+          Guilde des explorateurs −20, Autel eud Guer' −20).
         </p>
       </Card>
     </div>

@@ -5271,7 +5271,7 @@
         {
           "laurier": "Laurier I",
           "condition": "Capturer une habitation.",
-          "bonus": "Si complété pendant l'Âge 1 : le coût de levée d'armée est réduit de 30 Or pour le reste de la partie. Crise à la validation."
+          "bonus": "Si complété pendant l'Âge 1 : le coût de levée d'armée est réduit de 15 Or pour le reste de la partie. Crise à la validation."
         },
         {
           "laurier": "Laurier II",
@@ -5295,8 +5295,8 @@
       "lauriers": [
         {
           "laurier": "Laurier I",
-          "condition": "Posséder un revenu de 7 Science par tour.",
-          "bonus": "Si complété pendant l'Âge 1 : vous gagnez 30 Science. Crise à la validation."
+          "condition": "Posséder un revenu de 5 Science par tour.",
+          "bonus": "Si complété pendant l'Âge 1 : vous gagnez 15 Science. Crise à la validation."
         },
         {
           "laurier": "Laurier II",

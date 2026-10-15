@@ -11,6 +11,7 @@ import { cfgOf, cultureDef } from './gameData'
 import { aMinistre } from './ministeres'
 import { rangPaysNiveau, nbAmenagements, regleActive } from './factions'
 import { emptyRecap, fullName } from './shared'
+import { reductionLeveeArmeesMerveilles } from './merveilles'
 
 // ── Armées (RecruitForArmies) ────────────────────────────────────────────
 
@@ -89,6 +90,7 @@ export function prixArmee(
   C: { p: { armeePrixOr: number; armeePriXPuissance: number } },
   p?: Player,
   state?: GameState,
+  ville?: { batiments?: string[] },
 ): number {
   const tranche = Math.max(1, C.p.armeePriXPuissance)
   if (puissanceCible <= 0) return 0
@@ -103,6 +105,24 @@ export function prixArmee(
     if (aMinistre(state, p, 'Grand écuyer')) prix -= 10 * rangPaysNiveau(p, cfg)
     if (p.peuple === 'Sylvains' && regleActive(p, cfg, 'Vengeance de la terre')) {
       prix -= 10 * nbAmenagements(p, 'Apiculture')
+    }
+    // Merveilles (retour Thibaut 2026-10-15) : Temple de Bahamutt et
+    //  Ordre des chevaliers de Notan : -20/-25 Or sur les levées.
+    prix -= reductionLeveeArmeesMerveilles(p)
+    // Bonus des BÂTIMENTS DE LA VILLE DE LEVÉE (retour Thibaut
+    //  2026-10-15) : la levée se passe DANS une habitation — le
+    //  joueur choisit la ville, ses bâtiments s'appliquent :
+    //  · Terrain d'entrainement (Château) : −10 Or ;
+    //  · Ecole militaire (Château) : −25 Or ;
+    //  · Grande caserne (Capitale) : −8 Or ;
+    //  · Guilde des explorateurs : −20 Or ;
+    //  · Autel eud Guer' (faction Peaux Vertes) : −20 Or.
+    if (ville?.batiments) {
+      if (ville.batiments.includes("Terrain d'entrainement")) prix -= 10
+      if (ville.batiments.includes('Ecole militaire')) prix -= 25
+      if (ville.batiments.includes('Grande caserne')) prix -= 8
+      if (ville.batiments.includes('Guilde des explorateurs')) prix -= 20
+      if (ville.batiments.includes("Autel eud Guer'")) prix -= 20
     }
   }
   return Math.max(0, Math.round(prix))
