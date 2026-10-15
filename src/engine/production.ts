@@ -62,7 +62,7 @@ export interface ProductionDetail {
   vassalite: Record<string, number>
   /** routes commerciales des marchands (engine/commerce.ts — étape
    *  3terdecies : +marchandOrTour Or pour chaque joueur relié + copie
-   *  d'une ressource d'un aménagement de la ville ciblée, saisonnière) */
+   *  de l'aménagement entier de la ville ciblée, saisonnière (u)) */
   commerce: Record<string, number>
   /** somme de tous les canaux */
   total: Record<string, number>

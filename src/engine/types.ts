@@ -235,10 +235,13 @@ export interface RouteCommerce {
   /** Ville ciblée (une ville de joueurCible — les cités libres ne
    *  produisent rien, cf. l'effet Marchand du référentiel). */
   villeCible: string
-  /** Aménagement copié (présent dans la ville ciblée). */
+  /** Aménagement copié (présent dans la ville ciblée) — ENTIER
+   *  (marqueur (u) : toutes ses ressources positives). */
   amenagement: string
-  /** Ressource copiée (une des productions copiables de l'aménagement). */
-  ressource: string
+  /** OBSOLÈTE (marqueur (u)) : ne plus lire ni écrire — l'aménagement
+   *  entier est copié. Champ gardé OPTIONNEL pour les sauvegardes
+   *  faites sous le marqueur (t) (ignorez la valeur). */
+  ressource?: string
 }
 
 export interface ResourceState {

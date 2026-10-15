@@ -93,7 +93,6 @@ export function PlayerView({ joueur }: { joueur: number }) {
   const [rcJoueur, setRcJoueur] = useState('')
   const [rcVille, setRcVille] = useState('')
   const [rcAmen, setRcAmen] = useState('')
-  const [rcRessource, setRcRessource] = useState('')
   const [rcErr, setRcErr] = useState<string | null>(null)
   const impotPopPrev = impotPopulation(state, p, C)
   const impotsVassPrev = impotsVassaux(state, p, C)
@@ -779,21 +778,32 @@ export function PlayerView({ joueur }: { joueur: number }) {
       {/* ═══ Commerce (marqueur (t)) : routes commerciales des marchands.
           Un marchand = UNE route : sa ville ↔ une ville d'un autre
           joueur. Chaque tour : +marchandOrTour Or pour CHAQUE joueur
-          relié + copie (propriétaire) de la production d'UNE ressource
-          d'UN aménagement de la ville ciblée — modifiable à tout
-          moment (arbitrage Thibaut 2026-10-15). ═══ */}
+          relié + copie (propriétaire) de la production de l'aménagement
+          ENTIER choisi dans la ville ciblée — modifiable à tout moment
+          (arbitrages Thibaut 2026-10-15 : un aménagement par route ;
+          marqueur (u) : l'aménagement entier, plus de choix de
+          ressource). Correctif (u) : les menus du formulaire ont des
+          valeurs par défaut (le bug « Marchand introuvable » venait
+          des Selects jamais touchés, dont la valeur restait ''). ═══ */}
       <Card title="Commerce — routes des marchands">
         {(() => {
           const mes = routesCommerceDe(state, p.n)
           const entrantes = routesCommerceVers(state, p.n)
           const libres = marchandsDe(state, p.n)
             .filter((c) => !mes.some((r) => r.marchandId === c.id))
-          // Options du formulaire (cascades : joueur → ville →
-          // aménagement copiable → ressource copiable).
-          const joueurCibleForm = state.players.find((q) => String(q.n) === rcJoueur)
-          const villeCibleForm = joueurCibleForm?.villes.find((v) => v.nom === rcVille)
+          // Options du formulaire (cascade joueur → ville →
+          // aménagement copiable) + VALEURS EFFECTIVES : l'état OU la
+          // première option — correctif (u) du bug « Marchand
+          // introuvable » (les Selects contrôlés jamais touchés
+          // gardaient '' comme valeur).
+          const autresJoueurs = state.players.filter((q) => q.n !== p.n)
+          const mEff = rcMarchand || libres[0]?.id ?? ''
+          const jEff = rcJoueur || String(autresJoueurs[0]?.n ?? '')
+          const joueurCibleForm = state.players.find((q) => String(q.n) === jEff)
+          const vEff = rcVille || joueurCibleForm?.villes[0]?.nom ?? ''
+          const villeCibleForm = joueurCibleForm?.villes.find((v) => v.nom === vEff)
           const amenForm = villeCibleForm ? amenagementsCopiables(villeCibleForm, C.config) : []
-          const ressForm = rcAmen ? ressourcesCopiables(rcAmen, C.config) : []
+          const aEff = rcAmen || amenForm[0] || ''
           return (
             <>
               {mes.length === 0 && entrantes.length === 0 && (
@@ -802,7 +812,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   personnage (page Population), puis ouvre une route vers la
                   ville d'un autre joueur : chaque tour, les deux joueurs reliés
                   gagnent {fmt(C.p.marchandOrTour)} Or et ton marchand copie la
-                  production d'une ressource d'un aménagement de la ville ciblée.
+                  production entière d'un aménagement de la ville ciblée.
                 </p>
               )}
               {mes.length > 0 && (
@@ -812,7 +822,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                       <tr>
                         <th>Marchand (sa ville)</th>
                         <th>Ville ciblée</th>
-                        <th>Aménagement / ressource copiés</th>
+                        <th>Aménagement copié</th>
                         <th>Gain / tour</th>
                         <th></th>
                       </tr>
@@ -823,8 +833,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                         const cible = state.players.find((q) => q.n === route.joueurCible)
                         const villeCible = cible?.villes.find((v) => v.nom === route.villeCible)
                         const amenList = villeCible ? amenagementsCopiables(villeCible, C.config) : []
-                        const ressList = ressourcesCopiables(route.amenagement, C.config)
-                        const cop = ressList.find((x) => x.ressource === route.ressource)
+                        const copList = ressourcesCopiables(route.amenagement, C.config)
                         return (
                           <tr key={route.id}>
                             <td>
@@ -838,30 +847,19 @@ export function PlayerView({ joueur }: { joueur: number }) {
                                 value={route.amenagement}
                                 options={amenList.map((a) => ({ value: a, label: a }))}
                                 onChange={(v) => {
-                                  const res = ressourcesCopiables(v, C.config)[0]?.ressource ?? ''
                                   let err: string | null = null
-                                  update((s) => { err = changerCopieRoute(s, route.id, v, res) })
-                                  setRcErr(err)
-                                }}
-                              />
-                              <Select
-                                value={route.ressource}
-                                options={ressList.map((x) => ({ value: x.ressource, label: `${x.ressource}${x.ete ? ' (été)' : ''} : +${fmt(x.valeur)}/tour` }))}
-                                onChange={(v) => {
-                                  let err: string | null = null
-                                  update((s) => { err = changerCopieRoute(s, route.id, route.amenagement, v) })
+                                  update((s) => { err = changerCopieRoute(s, route.id, v) })
                                   setRcErr(err)
                                 }}
                               />
                             </td>
                             <td className="small">
                               +{fmt(C.p.marchandOrTour)} Or
-                              {cop && (!cop.ete || state.saison === 'Été') && (
-                                <>{' '}+{fmt(cop.valeur)} {route.ressource}</>
-                              )}
-                              {cop?.ete && state.saison !== 'Été' && (
-                                <span className="muted"> (+{fmt(cop.valeur)} {route.ressource} en été)</span>
-                              )}
+                              {copList.map((x, i) => (
+                                (!x.ete || state.saison === 'Été')
+                                  ? <div key={i}>+{fmt(x.valeur)} {x.ressource}</div>
+                                  : <div key={i} className="muted">+{fmt(x.valeur)} {x.ressource} (en été)</div>
+                              ))}
                             </td>
                             <td>
                               <Button tone="danger" title="Fermer la route" onClick={() => {
@@ -892,25 +890,22 @@ export function PlayerView({ joueur }: { joueur: number }) {
               {libres.length > 0 ? (
                 <div className="filters" style={{ alignItems: 'flex-end', flexWrap: 'wrap' }}>
                   <Field label="Marchand">
-                    <Select value={rcMarchand} options={libres.map((c) => ({ value: c.id, label: `${fullName(c)} (${c.ville})` }))} onChange={setRcMarchand} />
+                    <Select value={mEff} options={libres.map((c) => ({ value: c.id, label: `${fullName(c)} (${c.ville})` }))} onChange={setRcMarchand} />
                   </Field>
                   <Field label="Joueur ciblé">
-                    <Select value={rcJoueur} options={state.players.filter((q) => q.n !== p.n).map((q) => ({ value: String(q.n), label: q.nom }))} onChange={(v) => { setRcJoueur(v); setRcVille(''); setRcAmen(''); setRcRessource('') }} />
+                    <Select value={jEff} options={autresJoueurs.map((q) => ({ value: String(q.n), label: q.nom }))} onChange={(v) => { setRcJoueur(v); setRcVille(''); setRcAmen('') }} />
                   </Field>
                   <Field label="Ville ciblée">
-                    <Select value={rcVille} options={(joueurCibleForm?.villes ?? []).map((v) => ({ value: v.nom, label: v.nom }))} onChange={(v) => { setRcVille(v); setRcAmen(''); setRcRessource('') }} />
+                    <Select value={vEff} options={(joueurCibleForm?.villes ?? []).map((v) => ({ value: v.nom, label: v.nom }))} onChange={(v) => { setRcVille(v); setRcAmen('') }} />
                   </Field>
-                  <Field label="Aménagement copié">
-                    <Select value={rcAmen} options={amenForm.map((a) => ({ value: a, label: a }))} onChange={(v) => { setRcAmen(v); setRcRessource('') }} />
-                  </Field>
-                  <Field label="Ressource copiée">
-                    <Select value={rcRessource} options={ressForm.map((x) => ({ value: x.ressource, label: `${x.ressource}${x.ete ? ' (été)' : ''} : +${fmt(x.valeur)}/tour` }))} onChange={setRcRessource} />
+                  <Field label="Aménagement copié (production entière)">
+                    <Select value={aEff} options={amenForm.map((a) => ({ value: a, label: a }))} onChange={setRcAmen} />
                   </Field>
                   <Button onClick={() => {
                     let err: string | null = null
-                    update((s) => { err = creerRouteCommerce(s, p.n, rcMarchand, Number(rcJoueur), rcVille, rcAmen, rcRessource) })
+                    update((s) => { err = creerRouteCommerce(s, p.n, mEff, Number(jEff), vEff, aEff) })
                     setRcErr(err)
-                    if (!err) { setRcMarchand(''); setRcJoueur(''); setRcVille(''); setRcAmen(''); setRcRessource('') }
+                    if (!err) { setRcMarchand(''); setRcJoueur(''); setRcVille(''); setRcAmen('') }
                   }}>Ouvrir la route</Button>
                 </div>
               ) : (

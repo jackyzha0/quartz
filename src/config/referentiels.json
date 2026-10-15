@@ -1195,7 +1195,7 @@
     },
     {
       "titre": "Marchand",
-      "effet": "Portée 9 PM, 4 PM par tour. Le marchand ouvre UNE route commerciale entre sa ville et la ville d'un autre joueur : chaque tour, les DEUX joueurs reliés gagnent 4 Or et le propriétaire du marchand copie la production d'une ressource d'UN aménagement de la ville ciblée (choisie à l'ouverture de la route, modifiable à tout moment ; un marchand ne tient qu'une route, qui se ferme s'il perd son titre ou meurt). Un marchand peut traverser les cases d'eau et de rivière une fois les bateaux débloqués. Un marchand envoyé vers une cité libre ne produit pas de ressources (règle de plateau).",
+      "effet": "Portée 9 PM, 4 PM par tour. Le marchand ouvre UNE route commerciale entre sa ville et la ville d'un autre joueur : chaque tour, les DEUX joueurs reliés gagnent 4 Or et le propriétaire du marchand copie la production de l'aménagement ENTIER choisi dans la ville ciblée — toutes ses ressources produites (choisi à l'ouverture de la route, modifiable à tout moment ; un marchand ne tient qu'une route, qui se ferme s'il perd son titre ou meurt). Un marchand peut traverser les cases d'eau et de rivière une fois les bateaux débloqués. Un marchand envoyé vers une cité libre ne produit pas de ressources (règle de plateau).",
       "revocation": "20  Or + 6 ressources au choix"
     },
     {

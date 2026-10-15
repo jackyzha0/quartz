@@ -194,11 +194,11 @@ L'onglet 🎛 Paramètres contient un bouton de réinitialisation de la configur
   ville et la ville d'un autre joueur (page Pays, carte « Commerce »).
 - **Chaque tour**, les **deux joueurs reliés** gagnent `marchandOrTour` Or
   (4 par défaut — Paramètres → Formules, groupe Commerce).
-- Le propriétaire du marchand **copie en plus** la production d'UNE ressource
-  d'UN aménagement de la ville ciblée (choix fait à l'ouverture, modifiable à
-  tout moment). Une production d'été n'est copiée qu'en été ; les ressources
-  instantanées (Tourisme, Garnison) et les effets négatifs ne sont pas
-  copiables.
+- Le propriétaire du marchand **copie en plus** la production de l'aménagement
+  ENTIER choisi dans la ville ciblée (toutes ses ressources produites — choix
+  fait à l'ouverture, modifiable à tout moment). Une production d'été n'est
+  copiée qu'en été ; les ressources instantanées (Tourisme, Garnison) et les
+  effets négatifs ne sont pas copiables.
 - La route se ferme si le marchand meurt ou perd son titre (ou via le bouton ✕).
 - Canal **« Commerce »** du récap des ressources (tableau par tour + apports
   cumulés du dernier tour, page Pays).

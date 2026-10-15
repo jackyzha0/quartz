@@ -5,10 +5,13 @@
 //  ville d'un AUTRE joueur. Chaque tour, les DEUX joueurs reliés
 //  gagnent marchandOrTour Or (4 par défaut — Paramètres, groupe
 //  « Commerce »). Le propriétaire du marchand copie en plus, chaque
-//  tour, la production d'UNE ressource d'UN aménagement de la ville
+//  tour, la production de l'aménagement ENTIER choisi dans la ville
 //  ciblée (choix fait à l'ouverture de la route, modifiable à tout
-//  moment — une production d'été n'est copiée qu'en été ; ressources
-//  instantanées Tourisme/Garnison et effets négatifs exclus).
+//  moment — toutes ses ressources positives ; une production d'été
+//  n'est copiée qu'en été ; ressources instantanées Tourisme/Garnison
+//  et effets négatifs exclus) — marqueur (u) : plus de choix de
+//  ressource, arbitrage Thibaut « c'est l'aménagement entier qui est
+//  copié ».
 //  La route se ferme si le marchand perd son titre ou meurt.
 //  Canal « Commerce » du récap ressources (engine/production.ts),
 //  étape 3terdecies de FinDeTour.
@@ -91,16 +94,17 @@ export function amenagementsCopiables(ville: City, cfg?: GameConfig): string[] {
 }
 
 /** Effets par tour d'UNE route pour son PROPRIÉTAIRE : Or pour chaque
- *  joueur relié + copie de la production de l'aménagement choisi
- *  (valeur COURANTE du référentiel — éditable à chaud ; la copie
- *  d'une production d'été n'est créditée qu'en été). */
+ *  joueur relié + copie de la production de l'aménagement ENTIER
+ *  choisi (valeur COURANTE du référentiel — éditable à chaud ; les
+ *  productions d'été ne sont créditées qu'en été). */
 export function effetsRouteProprietaire(
   route: RouteCommerce, saison: Saison, C: Cfg = cfgOf(),
 ): Record<string, number> {
   const out: Record<string, number> = { Or: C.p.marchandOrTour }
-  const cop = ressourcesCopiables(route.amenagement, C.config)
-    .find((r) => r.ressource === route.ressource)
-  if (cop && (!cop.ete || saison === 'Été')) {
+  // Marqueur (u) : l'aménagement ENTIER est copié — toutes ses
+  // ressources copiables (flux positifs + été en été).
+  for (const cop of ressourcesCopiables(route.amenagement, C.config)) {
+    if (cop.ete && saison !== 'Été') continue
     out[cop.ressource] = (out[cop.ressource] ?? 0) + cop.valeur
   }
   return out
@@ -197,17 +201,21 @@ export function appliquerEffetsCommerce(
 }
 
 /** Ouvre une route commerciale : un marchand (une seule route par
- *  marchand), une ville d'un AUTRE joueur, un aménagement de cette
- *  ville et une de ses ressources copiables. Retourne null si OK,
+ *  marchand), une ville d'un AUTRE joueur, un aménagement copiable de
+ *  cette ville (l'aménagement ENTIER est copié, marqueur (u)).
+ *  Retourne null si OK,
  *  sinon le motif d'erreur (affiché en rouge, jamais bloquant —
  *  convention « dons et mariages », marqueur (r)). */
 export function creerRouteCommerce(
   state: GameState,
   joueur: number, marchandId: string,
   joueurCible: number, villeCible: string,
-  amenagement: string, ressource: string,
+  amenagement: string,
 ): string | null {
   const C = cfgOf(state.config)
+  if (!marchandId) {
+    return 'Choisis un marchand (titre « Marchand » attribué à un personnage vivant, page Population).'
+  }
   const m = (state.population[joueur] ?? []).find((c) => c.id === marchandId)
   if (!m || m.statut === 'Décédé') return 'Marchand introuvable ou décédé.'
   if (m.titre !== TITRE_MARCHAND) return `${fullName(m)} ne porte pas le titre ${TITRE_MARCHAND}.`
@@ -221,23 +229,25 @@ export function creerRouteCommerce(
   if (!(ville.amenagements ?? []).includes(amenagement)) {
     return `${villeCible} ne possède pas l'aménagement « ${amenagement} ».`
   }
-  const cop = ressourcesCopiables(amenagement, C.config).find((r) => r.ressource === ressource)
-  if (!cop) return `« ${amenagement} » ne produit pas de ressource copiable « ${ressource} ».`
+  const cops = ressourcesCopiables(amenagement, C.config)
+  if (cops.length === 0) {
+    return `« ${amenagement} » n'a aucune production copiable.`
+  }
   ;(state.routesCommerce ?? (state.routesCommerce = [])).push({
     id: `rc-${marchandId}-${joueurCible}-${villeCible}`,
-    joueur, marchandId, joueurCible, villeCible, amenagement, ressource,
+    joueur, marchandId, joueurCible, villeCible, amenagement,
   })
   state.log.push({
     turn: state.turn, type: 'Commerce', joueur,
-    texte: `🛒 ${fullName(m)} ouvre une route commerciale : ${m.ville} ↔ ${villeCible} (${cible?.nom ?? '?'}) — +${C.p.marchandOrTour} Or / tour pour chaque joueur, copie de ${cop.valeur} ${ressource}${cop.ete ? ' (été)' : ''}.`,
+    texte: `🛒 ${fullName(m)} ouvre une route commerciale : ${m.ville} ↔ ${villeCible} (${cible?.nom ?? '?'}) — +${C.p.marchandOrTour} Or / tour pour chaque joueur, copie de « ${amenagement} » (${cops.map((c) => `${c.valeur} ${c.ressource}${c.ete ? ' (été)' : ''}`).join(', ')}).`,
   })
   return null
 }
 
-/** Change la copie d'une route (aménagement + ressource) — modifiable
- *  à tout moment (arbitrage Thibaut 2026-10-15). */
+/** Change l'aménagement copié d'une route — modifiable à tout moment
+ *  (arbitrage Thibaut 2026-10-15 ; marqueur (u) : aménagement entier). */
 export function changerCopieRoute(
-  state: GameState, routeId: string, amenagement: string, ressource: string,
+  state: GameState, routeId: string, amenagement: string,
 ): string | null {
   const C = cfgOf(state.config)
   const route = routesCommerce(state).find((r) => r.id === routeId)
@@ -248,14 +258,15 @@ export function changerCopieRoute(
   if (!(ville.amenagements ?? []).includes(amenagement)) {
     return `${route.villeCible} ne possède pas l'aménagement « ${amenagement} ».`
   }
-  const cop = ressourcesCopiables(amenagement, C.config).find((r) => r.ressource === ressource)
-  if (!cop) return `« ${amenagement} » ne produit pas de ressource copiable « ${ressource} ».`
+  const cops = ressourcesCopiables(amenagement, C.config)
+  if (cops.length === 0) {
+    return `« ${amenagement} » n'a aucune production copiable.`
+  }
   route.amenagement = amenagement
-  route.ressource = ressource
   const m = (state.population[route.joueur] ?? []).find((c) => c.id === route.marchandId)
   state.log.push({
     turn: state.turn, type: 'Commerce', joueur: route.joueur,
-    texte: `🛒 Route de ${m ? fullName(m) : 'marchand'} : copie désormais ${cop.valeur} ${ressource}${cop.ete ? ' (été)' : ''} sur ${route.villeCible}.`,
+    texte: `🛒 Route de ${m ? fullName(m) : 'marchand'} : copie désormais « ${amenagement} » sur ${route.villeCible} (${cops.map((c) => `${c.valeur} ${c.ressource}${c.ete ? ' (été)' : ''}`).join(', ')}).`,
   })
   return null
 }

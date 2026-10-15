@@ -233,8 +233,8 @@ export function runTurn(state: GameState): GameState {
   // 3terdecies. Commerce (marqueur (t)) : les routes commerciales des
   //  marchands génèrent marchandOrTour Or pour CHAQUE joueur relié
   //  (propriétaire du marchand + joueur ciblé) ; le propriétaire copie
-  //  en plus la production d'une ressource d'un aménagement de la
-  //  ville ciblée (engine/commerce.ts — comme les bâtiments : pas de
+  //  en plus la production de l'aménagement ENTIER choisi dans la
+  //  ville ciblée, marqueur (u) (engine/commerce.ts — comme les bâtiments : pas de
   //  taxes, pas de coefficient gainsCrediteStock, pas de tribut). Les
   //  routes mortes (marchand décédé ou déchu) sont d'abord fermées.
   nettoyerRoutesCommerce(state)
