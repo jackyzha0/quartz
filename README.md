@@ -184,3 +184,21 @@ Le bouton ✕ de la barre de tour efface la sauvegarde locale. En mode Supabase,
 supprimez la ligne du salon dans la table `parties_chasse_peche` (ou `TRUNCATE parties_chasse_peche`).
 L'onglet 🎛 Paramètres contient un bouton de réinitialisation de la configuration
 (retour aux valeurs par défaut du classeur).
+
+---
+
+## 10. Commerce — routes des marchands (marqueur (t))
+
+- **Titre « Marchand »** : attribution manuelle (page Population, comme Chasseur
+  ou Gouverneur). Un marchand ouvre **une seule route commerciale** entre sa
+  ville et la ville d'un autre joueur (page Pays, carte « Commerce »).
+- **Chaque tour**, les **deux joueurs reliés** gagnent `marchandOrTour` Or
+  (4 par défaut — Paramètres → Formules, groupe Commerce).
+- Le propriétaire du marchand **copie en plus** la production d'UNE ressource
+  d'UN aménagement de la ville ciblée (choix fait à l'ouverture, modifiable à
+  tout moment). Une production d'été n'est copiée qu'en été ; les ressources
+  instantanées (Tourisme, Garnison) et les effets négatifs ne sont pas
+  copiables.
+- La route se ferme si le marchand meurt ou perd son titre (ou via le bouton ✕).
+- Canal **« Commerce »** du récap des ressources (tableau par tour + apports
+  cumulés du dernier tour, page Pays).
