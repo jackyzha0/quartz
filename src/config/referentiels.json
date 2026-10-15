@@ -5981,7 +5981,8 @@
       "nom": "Camp de bâtisseurs",
       "cout": "10 Or + 4 Pierre",
       "production": "",
-      "description": "Réduit le coût de construction des aménagements de 5 Or et 1 Bois."
+      "description": "Réduit le coût de construction des aménagements de 5 Or et 1 Bois.",
+      "rangMinHabitation": 2
     },
     {
       "categorie": "Bâtiment",
