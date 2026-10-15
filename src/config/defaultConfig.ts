@@ -915,6 +915,23 @@ function gardeFous(m: GameConfig): void {
   m.paysRangs = ouDefauts(m.paysRangs, DEFAULT_CONFIG.paysRangs)
   m.ministeres = ouDefauts(m.ministeres, DEFAULT_CONFIG.ministeres)
   m.victoires = ouDefauts(m.victoires, DEFAULT_CONFIG.victoires)
+  // Mise à jour des CONDITIONS de victoire (retour Thibaut 2026-10-15) :
+  //  les nouvelles voies du référentiel REMPLACENT celles d'une config
+  //  convergée — mais les Lauriers VALIDÉS par les joueurs (p.lauriers)
+  //  sont conservés : seul le texte des conditions/bonus est actualisé.
+  if (Array.isArray(m.victoires)) {
+    const voies = new Map(m.victoires.map((v) => [v.voie, v]))
+    for (const def of DEFAULT_CONFIG.victoires) {
+      const existante = voies.get(def.voie)
+      const diff = !existante || existante.lauriers.some((l, i) =>
+        l.condition !== def.lauriers[i]?.condition || l.bonus !== def.lauriers[i]?.bonus)
+      if (diff) m.victoires = m.victoires.map((v) => v.voie === def.voie ? def : v)
+    }
+    // voies absentes de la config (ajoutées au référentiel)
+    for (const def of DEFAULT_CONFIG.victoires) {
+      if (!m.victoires.some((v) => v.voie === def.voie)) m.victoires.push(def)
+    }
+  }
   m.peuplesLibres = ouDefauts(m.peuplesLibres, DEFAULT_CONFIG.peuplesLibres)
   m.peuplesAutres = ouDefauts(m.peuplesAutres, DEFAULT_CONFIG.peuplesAutres)
   m.constructions = ouDefauts(m.constructions, DEFAULT_CONFIG.constructions)
