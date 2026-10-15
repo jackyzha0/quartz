@@ -1180,7 +1180,7 @@
     },
     {
       "titre": "Gouverneur",
-      "effet": "Un gouverneur doit être placé dans une habitation et augmente sa garnison de 10 par rang de l'habitation et ses revenus de 1 Or par tour par rang de votre pays.",
+      "effet": "Un gouverneur doit être placé dans une habitation et octroie +10 % d'impôts à sa ville (les anciens bonus de garnison et d'Or sont retirés). Si une ville sans gouverneur abrite un noble, le noble le plus âgé devient automatiquement gouverneur à la fin du tour.",
       "revocation": "30  Or"
     },
     {

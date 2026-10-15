@@ -31,6 +31,7 @@ import { makeRng } from './rng'
 import { cfgOf } from './gameData'
 import { saisonForTurn, applyEventEffect, applyDynastieCard } from './saisons'
 import { calculerGainsPopulation } from './economie'
+import { designerGouverneurs } from './titres'
 import { appliquerEffetsBatiments } from './batiments'
 import { appliquerEffetsAmenagements, effetsNourrEteAmenagementsVille } from './amenagements'
 import { appliquerEffetsAutres, effetsNourrEteAutresVille } from './autres'
@@ -99,6 +100,13 @@ export function runTurn(state: GameState): GameState {
     })
     applyDynastieCard(state, p, card.nom, rng)
   }
+
+  // 2bis. Gouverneurs automatiques (marqueur (w), retour Thibaut) :
+  //    une ville sans gouverneur qui abrite un noble prend pour
+  //    gouverneur son noble le plus âgé (hors Dirigeant/Héritier) —
+  //    AVANT le calcul des gains : le bonus +10 % d'impôts de la
+  //    ville s'applique dès le tour de la nomination.
+  designerGouverneurs(state, C)
 
   // 3. Gains de population par joueur (CalculerGainsPopulation), puis
   //    production de base : stock += prod (lignes 18-28 des J{n}).
@@ -385,6 +393,7 @@ export {
   maybeAssignProfesseurs, gestionMariages, formatDynastyPair,
   computeMarriageProbability, tryEducateMinor, assignAdultTitle,
   titreAllowedForCharacter, titresAccessibles,
+  gouverneurDeVille, designerGouverneurs,
 } from './titres'
 export {
   computeAgeMax, killCharacter, handleDirigeantSuccession,

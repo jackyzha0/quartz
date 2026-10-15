@@ -59,6 +59,7 @@ import {
   debiterCoutHabitation,
   type ProductionDetail,
 } from '../engine/engine'
+import { peuplerNouvelleVille } from '../engine/setup'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
 
 export function PlayerView({ joueur }: { joueur: number }) {
@@ -771,6 +772,10 @@ export function PlayerView({ joueur }: { joueur: number }) {
             const nom = `${typeAjout} ${x.villes.length + 1}`
             x.villes.push({ nom, culture: x.culture, taxes: 'Moyenne', type: typeAjout, rang: rangsDisponibles(typeAjout, C)[0] ?? 'Hameau', batiments: [], amenagements: [], autres: [] })
             debiterCoutHabitation(s, x, x.villes[x.villes.length - 1], C)
+            // Marqueur (w), retour Thibaut : une nouvelle ville (ou un
+            // nouveau château) démarre avec 50 habitants SANS noble,
+            // paramètres similaires à la première ville.
+            peuplerNouvelleVille(s, x, nom, 50, C)
           })}>{typeAjout === 'Château' ? '+ Ajouter un château' : '+ Ajouter une ville'}</Button>
         </div>
       </Card>
@@ -858,7 +863,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                               {copList.map((x, i) => (
                                 (!x.ete || state.saison === 'Été')
                                   ? <div key={i}>+{fmt(x.valeur)} {x.ressource}</div>
-                                  : <div key={i} className="muted">+{fmt(x.valeur)} {x.ressource} (en été)</div>
+                                  : <div key={i} className="muted">+{fmt(x.valeur)} {x.ressource} (uniquement en été — rien en hiver)</div>
                               ))}
                             </td>
                             <td>

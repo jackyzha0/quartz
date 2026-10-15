@@ -12,6 +12,7 @@ import type { City, GameState, Player } from './types'
 import type { Rng } from './rng'
 import { cfgOf, titreDef, type Cfg } from './gameData'
 import { aMinistre } from './ministeres'
+import { gouverneurDeVille } from './titres'
 
 // ══════════════════════════════════════════════════════════════════════
 //  GAINS DE POPULATION PAR VILLE (CalculerGainsPopulation)
@@ -91,8 +92,12 @@ export function detailGainsVille(state: GameState, p: Player, ville: City, C: Cf
   // Taxes : le niveau module TOUTES les ressources produites par les habitants.
   // Grand Chambellan (ministère, refonte 2026-10-14) : +10 % sur toutes
   // les taxes reçues — multiplicateur appliqué ici (cumulables).
+  // Gouverneur (marqueur (w), retour Thibaut) : +10 % d'impôts sur SA
+  // ville — les anciens bonus (garnison / Or par rang) sont retirés.
   const taxeMult =
-    facteurTaxes(ville, C) * (aMinistre(state, p, 'Grand Chambellan') ? 1.1 : 1)
+    facteurTaxes(ville, C)
+    * (aMinistre(state, p, 'Grand Chambellan') ? 1.1 : 1)
+    * (gouverneurDeVille(state, p, ville.nom, C) ? 1.1 : 1)
   const taxes: Record<string, number> = {}
   for (const [res, v] of Object.entries(titres)) {
     const tv = v * taxeMult

@@ -425,3 +425,87 @@ export function ajouterHabitant(
   })
   return ajoutes
 }
+
+/** Peuple une ville ou un château nouvellement ajouté (marqueur (w),
+ *  retour Thibaut) : 50 habitants SANS noble, mêmes paramètres que la
+ *  population initiale de la première ville — sexes pondérés par le
+ *  classeur, âges 0-setupAgeMax, traits comme la génération initiale,
+ *  titre Chasseur des adultes, ~pourcentageMariages % d'adultes
+ *  mariés (défaut du setup : 40), fécondités calculées. */
+export function peuplerNouvelleVille(
+  state: GameState, p: Player, nomVille: string,
+  nb = 50, C: Cfg = cfgOf(state.config),
+): number {
+  const ville = p.villes.find((v) => v.nom === nomVille)
+  if (!ville || nb <= 0) return 0
+  const rng = makeRng(state.rngState)
+  const pop = state.population[p.n] ?? (state.population[p.n] = [])
+  const peup = peupleDef(p.peuple, C.config) ?? peupleDef(C.peuples[0], C.config)
+  const fallback = C.banquesNoms[0]
+  const noms = peup?.noms ?? fallback.noms
+  const prenomsM = peup?.prenomsM ?? fallback.prenomsM
+  const prenomsF = peup?.prenomsF ?? fallback.prenomsF
+  const culture = ville.culture || p.culture
+
+  const ajoutes: Character[] = []
+  for (let i = 0; i < nb; i++) {
+    const sexe: 'M' | 'F' = rng.pickWeighted(C.genres, (g) => g.poids).nom === 'Masculin' ? 'M' : 'F'
+    // traits : comme la génération initiale (1er systématique, 2e 50 %, 3e 30 %)
+    const traits: [string, string, string] = ['', '', '']
+    const draw = (exclus: string[]): string => {
+      const pool = C.traits.filter((td) => td.weight > 0 && !exclus.includes(td.name))
+      return pool.length === 0 ? '' : rng.pickWeighted(pool, (td) => td.weight).name
+    }
+    traits[0] = draw([])
+    if (traits[0]) traits[1] = rng.chance(0.5) ? draw([traits[0]]) : ''
+    if (traits[1] && rng.chance(0.3)) traits[2] = draw([traits[0], traits[1]])
+    const c: Character = {
+      id: `p${p.n}v${state.turn}_${pop.length + 1}_${i}`,
+      nom: rng.pick(noms),
+      prenom: sexe === 'M' ? rng.pick(prenomsM) : rng.pick(prenomsF),
+      dynastie: C.p.dynastieRoturier,
+      sexe,
+      age: rng.int(0, Math.max(1, Math.round(C.p.setupAgeMax))),
+      culture,
+      ville: nomVille,
+      orientation: rng.pickWeighted(C.orientations, (o) => o.poids).nom as Character['orientation'],
+      traits,
+      statut: 'Sain',
+      mariage: null,
+      mere: null,
+      pere: null,
+      pereBio: null,
+      enfantBatard: false,
+      titre: null,
+      education: null,
+      fecondite: 0,
+      ageMax: 0,
+      armee: null,
+    }
+    c.ageMax = computeAgeMax(c, rng, C)
+    if (c.age >= C.p.adultAge) c.titre = C.p.titreChasseur
+    pop.push(c)
+    ajoutes.push(c)
+  }
+
+  // ~pourcentageMariages % (défaut du setup : 40) d'ADULTES se marient
+  // entre eux (comme la génération initiale — jamais les mineurs)
+  const pourcentMariages = Math.min(100, Math.max(0, 40))
+  const celibataires = ajoutes.filter((c) => c.age >= C.p.adultAge && !c.mariage)
+  const nbMariages = Math.floor((celibataires.length * pourcentMariages) / 100)
+  const celibM = rng.shuffle(celibataires.filter((c) => c.sexe === 'M'))
+  const celibF = rng.shuffle(celibataires.filter((c) => c.sexe === 'F'))
+  for (let i = 0; i < Math.min(nbMariages, celibM.length, celibF.length); i++) {
+    const h = celibM[i]
+    const f = celibF[i]
+    h.mariage = `${f.prenom} ${f.nom}`
+    f.mariage = `${h.prenom} ${h.nom}`
+  }
+
+  for (const c of ajoutes) c.fecondite = computeFecondite(state, p, c)
+  state.log.push({
+    turn: state.turn, type: 'Système', joueur: p.n,
+    texte: `👥 ${ajoutes.length} habitants peuplent ${nomVille} (aucun noble).`,
+  })
+  return ajoutes.length
+}
