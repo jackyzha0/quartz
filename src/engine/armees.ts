@@ -78,3 +78,12 @@ export function recomputeArmy(state: GameState, p: Player, armee: { nom: string;
       return s && s.statut !== 'Décédé'
     }).length * C.p.puissanceSoldat + (cmd && cmd.statut !== 'Décédé' ? C.p.puissanceGeneral : 0)
 }
+
+/** Prix de levée d'une armée : Or facturés pour sa puissance CIBLE,
+ *  1 Or tous les 2 points de force (paramétrable via armeePrixOr /
+ *  armeePriXPuissance). Payé UNE FOIS à la levée — pas d'entretien. */
+export function prixArmee(puissanceCible: number, C: { p: { armeePrixOr: number; armeePriXPuissance: number } }): number {
+  const tranche = Math.max(1, C.p.armeePriXPuissance)
+  if (puissanceCible <= 0) return 0
+  return Math.round((puissanceCible / tranche) * C.p.armeePrixOr)
+}

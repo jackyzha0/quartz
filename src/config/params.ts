@@ -75,6 +75,10 @@ export interface GameParams {
   puissanceSoldat: number
   soldatAgeMin: number
   soldatAgeMax: number
+  /** Prix de levée d'une armée : Or par tranche de armeePriXPuissance points de force. */
+  armeePrixOr: number
+  /** Prix de levée : taille de la tranche de points de force facturée. */
+  armeePriXPuissance: number
   // ── Vassaux ──
   vassalPrelevement: number  // part des revenus d'habitants (Or) reversée au suzerain
   // ── Commerce (marqueur (t)) ──
@@ -163,6 +167,8 @@ export const DEFAULT_PARAMS: GameParams = {
   puissanceSoldat: 15,
   soldatAgeMin: 16,
   soldatAgeMax: 30,
+  armeePrixOr: 1,
+  armeePriXPuissance: 2,
   vassalPrelevement: 0.5,
   marchandOrTour: 4,
   proxRiviereNourriture: 12,
@@ -257,6 +263,8 @@ export const PARAM_META: {
   { key: 'proxMerNourriture', label: 'Proximité mer — Nourriture / tour', groupe: 'Villes', aide: 'Bonus automatique de chaque ville « au bord de la mer » (marqueur (y)).' },
   { key: 'puissanceGeneral', label: 'Puissance d\'un commandant', groupe: 'Armées' },
   { key: 'puissanceSoldat', label: 'Puissance d\'un soldat', groupe: 'Armées' },
+  { key: 'armeePrixOr', label: 'Prix de levée — Or par tranche de force', groupe: 'Armées', aide: 'Levée d\'une armée : ce prix est facturé pour chaque tranche de points de force de la puissance cible (règle du classeur : 1 Or tous les 2 points) — payé UNE FOIS à la levée, pas d\'entretien.' },
+  { key: 'armeePriXPuissance', label: 'Prix de levée — points de force par tranche', groupe: 'Armées' },
   { key: 'soldatAgeMin', label: 'Âge minimal de recrutement', groupe: 'Armées' },
   { key: 'soldatAgeMax', label: 'Âge maximal de recrutement', groupe: 'Armées' },
   { key: 'vassalPrelevement', label: "Part des revenus d'habitants reversée au suzerain", groupe: 'Vassaux', unite: 'proportion', aide: "Un vassal prête serment à un autre joueur : à chaque fin de tour, il reverse cette part des gains d'Or de ses habitants à son suzerain (0,5 = 50 %)." },

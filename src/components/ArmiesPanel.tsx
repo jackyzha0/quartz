@@ -9,6 +9,7 @@ import React, { useState } from 'react'
 import { useGame } from '../state/store'
 import type { GameState, Player } from '../engine/types'
 import { cfgOf, cultureDef } from '../engine/gameData'
+import { prixArmee } from '../engine/armees'
 import { isNobleDyn, martialiteOk } from '../engine/engine'
 import { Card, NumberInput, Select, TextInput, Button, fmt } from './ui'
 
@@ -41,6 +42,8 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
       if (target) fn(target, s)
     })
 
+  const prix = prixArmee(puissance, C)
+  const orDispo = p.resources['Or']?.stock ?? 0
   const leverArmee = () => {
     const cmd = commandantsDispo.find((c) => c.id === commandant)
     if (!cmd) return
@@ -48,6 +51,12 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
     update((s) => {
       const target = s.players.find((x) => x.n === joueur)
       if (!target) return
+      // Prix de levée (classeur : 1 Or tous les 2 points de force) :
+      // débité UNE FOIS à la levée — pas d'entretien par tour.
+      const prix2 = prixArmee(puissance, C)
+      const rs = target.resources['Or']
+      if (rs && rs.stock < prix2) return
+      if (rs && prix2 > 0) rs.stock -= prix2
       target.armees.push({
         nom: nomArmee,
         puissanceCible: puissance,
@@ -61,6 +70,10 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
         pers.titre = C.p.titreCommandant
         pers.armee = nomArmee
       }
+      s.log.push({
+        turn: s.turn, type: 'Armée', joueur,
+        texte: `⚔ ${target.nom} lève l'armée « ${nomArmee} » (cible ${fmt(puissance)} pts) — prix de levée : −${prix2} Or (1 Or tous les ${C.p.armeePriXPuissance} pts de force).`,
+      })
     })
     setNom('')
     setCommandant('')
@@ -169,10 +182,18 @@ export function ArmiesPanel({ joueur }: { joueur: number }) {
             <NumberInput value={puissance} onChange={setPuissance} step={15} min={45} max={300} />
           </label>
         </div>
-        <Button tone="primary" disabled={!commandant} onClick={leverArmee}>⚔ Lever l'armée</Button>
+        <p className="small" style={{ margin: '4px 0' }}>
+          Prix de levée : <strong>{fmt(prix)} Or</strong>{' '}
+          <span className="muted">
+            ({C.p.armeePrixOr} Or tous les {C.p.armeePriXPuissance} points de force — payé une fois, pas d'entretien)
+          </span>
+          {orDispo < prix && <span className="neg"> ⚠ Or insuffisant ({fmt(orDispo)} disponible)</span>}
+        </p>
+        <Button tone="primary" disabled={!commandant || orDispo < prix} onClick={leverArmee}>⚔ Lever l'armée</Button>
         <p className="muted small">
           Chaque tour, l'armée recrute automatiquement des soldats (adultes 16-30 ans, conformes à la
-          martialité de votre culture) jusqu'à atteindre la puissance cible.
+          martialité de votre culture) jusqu'à atteindre la puissance cible. Le prix de levée
+          (1 Or tous les 2 points de force) est débité une seule fois, à la création de l'armée.
         </p>
       </Card>
     </div>
