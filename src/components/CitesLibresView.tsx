@@ -89,6 +89,24 @@ export function CitesLibresView() {
     setNewNom('')
   }
 
+  /** Recrute un émissaire pour un joueur (coût/rythme arbitres au
+   *  plateau : la réserve est libre d'édition, les ministres et
+   *  merveilles en octroient automatiquement). */
+  const recruterEmissaire = (joueur: number, delta: number) =>
+    update((s) => {
+      const p = s.players.find((x) => x.n === joueur)
+      if (!p) return
+      const v = Math.max(0, (p.emissaires ?? 0) + delta)
+      const dv = v - (p.emissaires ?? 0)
+      p.emissaires = v
+      if (dv !== 0) {
+        s.log.push({
+          turn: s.turn, type: 'Système', joueur,
+          texte: `✉ ${p.nom} : réserve d'émissaires ${v} (${dv > 0 ? '+' : ''}${dv}, saisie manuelle).`,
+        })
+      }
+    })
+
   const supprimerCite = (nom: string) =>
     update((s) => {
       s.citesLibres = (s.citesLibres ?? []).filter((c) => c.nom !== nom)
@@ -99,11 +117,31 @@ export function CitesLibresView() {
     })
 
   const changerEmissaires = (nom: string, joueur: number, delta: number) =>
-    mutCite(nom, (c) => {
+    update((s) => {
+      const c = (s.citesLibres ?? []).find((x) => x.nom === nom)
+      if (!c) return
+      const p = s.players.find((x) => x.n === joueur)
+      if (!p) return
+      // Revue 2026-10-15 : les émissaires sont une RESSOURCE du joueur
+      //  (p.emissaires) — placer un émissaire dans une cité le DÉPENSE,
+      //  le retirer le RECREDITE. Impossible de placer sans réserve.
       const e = c.emissaires ?? (c.emissaires = {})
-      const v = Math.max(0, (e[joueur] ?? 0) + delta)
+      const places = e[joueur] ?? 0
+      const reserve = p.emissaires ?? 0
+      if (delta > 0 && reserve <= 0) return
+      const v = Math.max(0, places + delta)
+      const dv = v - places
+      p.emissaires = Math.max(0, reserve - dv)
       if (v === 0) delete e[joueur]
       else e[joueur] = v
+      if (dv !== 0) {
+        s.log.push({
+          turn: s.turn, type: 'Système', joueur,
+          texte: dv > 0
+            ? `✉ ${p.nom} place un émissaire à ${c.nom} (réserve : ${p.emissaires}).`
+            : `✉ ${p.nom} retire un émissaire de ${c.nom} (réserve : ${p.emissaires}).`,
+        })
+      }
     })
 
   const changerSuzerain = (nom: string, v: string) =>
@@ -124,6 +162,21 @@ export function CitesLibresView() {
 
   return (
     <div className="stack">
+      {/* ═══ Réserves d'émissaires (revue 2026-10-15) : ressource
+          de chaque joueur, dépensée en plaçant un émissaire dans une
+          cité libre. Les ministres (Chancelier des émissaires) et les
+          merveilles (Antre de la déesse araignée) créditent automatiquement. */}
+      <Card title="✉ Réserves d'émissaires">
+        {state.players.map((p) => (
+          <div key={p.n} className="cl-emiss">
+            <span className="player-chip">J{p.n} · {p.nom}</span>
+            <span className="badge badge-info">{p.emissaires ?? 0} en réserve</span>
+            <Button onClick={() => recruterEmissaire(p.n, -1)}>−</Button>
+            <Button onClick={() => recruterEmissaire(p.n, +1)}>+</Button>
+          </div>
+        ))}
+      </Card>
+
       {/* ═══ Règle et fonctionnement ═══ */}
       <Card title="🗼 Cités libres — règle et fonctionnement">
         <p className="small muted pre-wrap">{C.config.regleCitesLibres}</p>
@@ -250,14 +303,18 @@ export function CitesLibresView() {
                 <div className="mini-title">Émissaires & suzerain</div>
                 {state.players.map((p) => {
                   const e = emissairesDe(cite, p.n)
+                  const reserve = p.emissaires ?? 0
                   return (
                     <div key={p.n} className="cl-emiss">
                       <span className={`player-chip ${e >= 3 ? 'chip-active' : ''}`}>
                         J{p.n} · {p.nom}
                       </span>
-                      <span className="badge badge-neutral">{e} émissaire(s)</span>
+                      <span className="badge badge-neutral">{e} placé(s)</span>
+                      <span className="badge badge-info" title="Émissaires disponibles (ressource du joueur)">
+                        {reserve} en réserve
+                      </span>
                       <Button onClick={() => changerEmissaires(cite.nom, p.n, -1)}>−</Button>
-                      <Button onClick={() => changerEmissaires(cite.nom, p.n, +1)}>+</Button>
+                      <Button disabled={reserve <= 0} onClick={() => changerEmissaires(cite.nom, p.n, +1)}>+</Button>
                       {e >= 3 && <Badge tone="good">suzerain possible</Badge>}
                     </div>
                   )

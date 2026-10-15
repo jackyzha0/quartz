@@ -181,39 +181,8 @@ const EFFETS: Record<string, EffetRegle> = {
   },
 
   // ── Hommes Lézards ──────────────────────────────────────────────────
-  'HOMMES LEZARDS|Préserver la nature': {
-    auto: (c) => `+1 Bois/tour par habitation (${c.p.villes.length} habitation(s))`,
-    flux: (c) => ({ Bois: 1 * c.p.villes.length }),
-  },
-  'HOMMES LEZARDS|Elevage': {
-    auto: () => `l'aménagement « Elevage » (référentiel Ville) produit +2 Nourriture/tour ; coût de levée des armées −5 Or (manuel)`,
-    flux: () => ({}),
-  },
 
   // ── Nains ───────────────────────────────────────────────────────────
-  'NAINS|Rancunes': {
-    auto: () => `garnison +15 par habitation ; +10 habitants par habitation à l'activation (manuel)`,
-    garnisonVille: () => 15,
-  },
-  'NAINS|Brasseries': {
-    auto: () => `l'aménagement « Brasseries » (référentiel Ville) produit +2 Or/tour ; un marchand maximum supplémentaire (manuel)`,
-    flux: () => ({}),
-  },
-  'NAINS|Dernière Enclave': {
-    auto: (c) => c.p.villes.length <= 3
-      ? `${c.p.villes.length} habitation(s) ≤ 3 : capitale +2 Pierre, +2 Fer, +2 Charbon et +5 Science par tour ; garnison +100 par habitation`
-      : `${c.p.villes.length} habitations (> 3) : effet inactif`,
-    flux: (c) => {
-      if (c.p.villes.length > 3 || capitaleDe(c.p) == null) return {}
-      const out: Record<string, number> = { Pierre: 2, Fer: 2, Charbon: 2, Science: 5 }
-      return out
-    },
-    garnisonVille: (c) => (c.p.villes.length <= 3 ? 100 : 0),
-  },
-  'NAINS|Fête de la Bière': {
-    auto: () => `à la fin de chaque été : chaque joueur vous donne 10 Or × son rang de pays (transfert automatique)`,
-    flux: (c) => ({ Or: totalFeteDeLaBiere(c.state, c.p, c.C) }),
-  },
 
   // ── Elfes d'Or ──────────────────────────────────────────────────────
   "ELFES D'OR|Puit d'Or": {
@@ -244,19 +213,11 @@ const EFFETS: Record<string, EffetRegle> = {
   },
 
   // ── Krovors ─────────────────────────────────────────────────────────
-  'KROVORS|Nomades': {
-    auto: (c) => `armées : +5 Nourriture/tour chacune (${c.p.armees.length} armée(s))`,
-    flux: (c) => ({ Nourriture: 5 * c.p.armees.length }),
-  },
 
   // ── Revue 2026-10-15 (retour Thibaut : « tous les ministres et
   //    règles de faction pris en compte automatiquement ») — ajout des
   //    règles chiffrées automatisables restantes —──────────────
   // Krovors « Merchantialisme » (Âge III) : +1 Science par marchand vivant.
-  'KROVORS|Merchantialisme': {
-    auto: (c) => `marchands : +1 Science/tour chacun (${marchandsVivants(c.state, c.p)} marchand(s))`,
-    flux: (c) => ({ Science: 1 * marchandsVivants(c.state, c.p) }),
-  },
   // Norls « La course à la mer » (Âge II) : habitations et bâtiments de
   //  faction côtiers : +3 Or et +1 Bétail par tour. La proximité « Mer »
   //  d'une ville (champ optionnel, page Pays) marque les côtiers.
@@ -288,16 +249,7 @@ const EFFETS: Record<string, EffetRegle> = {
   },
   // Légions d'Outre-Tombe « Investir dans l'Os » (Âge II) : bâtiments de
   //  faction : +1 Os et +1 Or chacun par tour (l'Or égale la génération d'Os).
-  "LEGIONS D'OUTRE-TOMBE|Investir dans l'Os": {
-    auto: (c) => `bâtiments de faction : +1 Os et +1 Or/tour chacun (${nbBatimentsFaction(c.p, c.C)} bâtiment(s))`,
-    flux: (c) => {
-      const n = nbBatimentsFaction(c.p, c.C)
-      const out: Record<string, number> = {}
-      if (n > 0) { out['Os'] = n; out['Or'] = n }
-      return out
-    },
-  },
-  // Elfes d'Or « Accros à la magie » (Base) : si la réserve de Science
+    // Elfes d'Or « Accros à la magie » (Base) : si la réserve de Science
   //  passe sous la production de Science, remise à niveau automatique.
   "ELFES D'OR|Accros à la magie": {
     auto: (c) => `Science maintenue au niveau de la production (crédité automatiquement)`,
@@ -424,20 +376,6 @@ export function appliquerEffetsFaction(
 
   // Fête de la Bière : remplacer l'estimation par le transfert réel
   // (débit des autres joueurs, plafonné par leur stock).
-  if (state.saison === 'Été' && regleActive(p, C, 'Fête de la Bière')) {
-    const est = EFFETS['NAINS|Fête de la Bière'].flux!(ctx)['Or'] ?? 0
-    let recu = 0
-    for (const q of state.players) {
-      if (q.n === p.n) continue
-      const don = Math.min(10 * rangPaysNiveau(q, C), q.resources['Or']?.stock ?? 0)
-      if (don > 0) {
-        const rs = q.resources['Or']
-        if (rs) rs.stock -= don
-        recu += don
-      }
-    }
-    out['Or'] = (out['Or'] ?? 0) - est + recu
-  }
 
   for (const [res, v] of Object.entries(out)) {
     if (!v) continue

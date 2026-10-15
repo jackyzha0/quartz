@@ -8,8 +8,8 @@
 //      (Antichambre +50 % Or, Jardins +40 Habitants, Palais :
 //      conversion de 5 habitants par habitation, Tour de Crystal
 //      rien à la construction) ;
-//    · réductionLevéeArmée : −20 Or par « Temple de Bahamutt » ou
-//      « Ordre des chevaliers d'Orcre » possédé (cumulables) ;
+//    · réductionLevéeArmée : −20/25 Or par « Temple de Bahamutt » /
+//      « Ordre des chevaliers de Notan » possédé (cumulables) ;
 //    · bonusScienceCapitale : Laboratoire de Falheim — double le
 //      flux de Science des bâtiments de la capitale (appliqué au
 //      canal Bâtiments du fin de tour) ;
@@ -53,6 +53,12 @@ export function effetImmediatMerveille(
       }
       return ''
     }
+    case "Antre de la déesse araignée": {
+      // Revue 2026-10-15 : +3 émissaires en réserve \u00e0 la
+      //  construction (ancienne r\u00e8gle : Influence, remplacée).
+      p.emissaires = (p.emissaires ?? 0) + 3
+      return ` \u2014 Antre de la déesse araignée : +3 émissaires en réserve (${p.emissaires}).`
+    }
     case "Palais des empereurs de Lun": {
       // Chaque habitation de chaque joueur convertit 5 habitants
       //  vers la culture du constructeur.
@@ -75,11 +81,11 @@ export function effetImmediatMerveille(
 }
 
 /** Réduction automatique du prix de levée d'armée accordée par les
- *  merveilles du joueur : −20 Or par « Temple de Bahamutt » et par
- *  « Ordre des chevaliers d'Orcre » (cumulables). */
+ *  merveilles du joueur : −20/−25 Or par « Temple de Bahamutt » / « Ordre des chevaliers de Notan »
+ *  « Ordre des chevaliers de Notan » (cumulables). */
 export function reductionLeveeArmeesMerveilles(p: Player): number {
   return 20 * nbBatiments(p, 'Temple de Bahamutt')
-    + 20 * nbBatiments(p, "Ordre des chevaliers d'Orcre")
+    + 25 * nbBatiments(p, "Ordre des chevaliers de Notan")
 }
 
 /** Doublement du flux de Science des bâtiments de la capitale si le

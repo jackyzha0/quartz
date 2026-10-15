@@ -174,11 +174,14 @@ export function PlayerView({ joueur }: { joueur: number }) {
         }
       }
       if (fam === 'Guilde') {
+        // Maitre des guildes (ministre, revue 2026-10-15) : la CAPITALE
+        //  peut accueillir une Guilde supplementaire (limite 2).
+        const maxGuildes = estCapitale && aMinistre(s, t, 'Maître des guildes') ? 2 : 1
         const nbGui = ville.batiments.filter((b) => (constructionRef(b, C.config)?.famille ?? '') === 'Guilde').length
-        if (nbGui >= 1) {
+        if (nbGui >= maxGuildes) {
           s.log.push({
             turn: s.turn, type: 'Système', joueur: t.n,
-            texte: `🏛 ${nom} : limite atteinte — une seule Guilde par ville (${ville.nom}).`,
+            texte: `🏛 ${nom} : limite atteinte — ${maxGuildes} Guilde(s) maximum à ${ville.nom}${maxGuildes > 1 ? ' (Maître des guildes)' : ''}.`,
           })
           return
         }

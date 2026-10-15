@@ -93,6 +93,13 @@ export function effetsFinSaisonMinisteres(
   for (const p of state.players) {
     const portefeuilles = portefeuillesDuJoueur(state, p)
     const parts: string[] = []
+    // Chancelier des émissaires (revue 2026-10-15, ressource d'émissaires) :
+    //  +1 émissaire en RÉSERVE à chaque fin de saison (cumulable).
+    const nbChancEmiss = portefeuilles.filter((m) => m === 'Chancelier des émissaires').length
+    if (nbChancEmiss > 0) {
+      p.emissaires = (p.emissaires ?? 0) + nbChancEmiss
+      parts.push(`+${nbChancEmiss} émissaire(s) en réserve (Chancelier des émissaires)`)
+    }
     const nbSenechal = portefeuilles.filter((m) => m === 'Sénéchal').length
     if (saisonQuiTermine === 'Été' && nbSenechal > 0) {
       const v = 15 * nbSenechal

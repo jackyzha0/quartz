@@ -274,6 +274,10 @@ export interface Player {
   peuple: string
   culture: string
   regime: string
+  /** Émissaires disponibles (revue 2026-10-15) : ressource du joueur,
+   *  dépensés dans les cités libres (1 émissaire placé = 1 de moins
+   *  ici). Champ optionnel : 0 par défaut. */
+  emissaires?: number
   resources: Record<string, ResourceState> // clés = RESOURCES
   villes: City[]
   dynastie: { nom: string; description: string } | null
