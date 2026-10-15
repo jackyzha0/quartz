@@ -298,13 +298,38 @@ select.input option, select.input optgroup { background: var(--card); color: var
 /* ═══ ChoicePicker (marqueur (y)) — sélecteur à catégories + ═══
    descriptions : boutons de catégorie, grille de cartes nom + coût +
    description (règle du classeur affichée AVANT le choix). */
-.picker {
-  margin-top: 6px;
-  border: 1px solid var(--border, #d8d4cc);
-  border-radius: 10px;
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.6);
+/* Popup modal (retour Thibaut) : la carte de choix s'affiche PAR-DESSUS
+   la page — aucun scroll de la page pendant le choix. Overlay assombri,
+   fenêtre centrée à scroll interne, fermeture ✕ / fond / Échap. */
+.picker-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(20, 18, 15, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
 }
+.picker-modal {
+  background: #fffdf9;
+  border: 1px solid #d8d4cc;
+  border-radius: 12px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  padding: 14px 16px 16px;
+  max-width: min(920px, 94vw);
+  max-height: 86vh;
+  overflow-y: auto;
+}
+.picker-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+.picker-modal .picker-cats { margin-bottom: 8px; }
 .picker-cats { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; align-items: center; }
 .btn-small { padding: 3px 9px; font-size: 12px; }
 .picker-grid {

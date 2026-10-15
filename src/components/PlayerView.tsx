@@ -823,7 +823,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   const nEteTot = nEteAm + nEteAut
                   // Retour Thibaut (marqueur (r)) : toutes les ressources,
                   // même à production 0 (lignes teintées → lisibles).
-                  const resV = C.ressources
+                  const resV = RESSOURCES_FLUX(C)
                   if (resV.length === 0 && nEteTot === 0) {
                     return (
                       <div className="muted small">

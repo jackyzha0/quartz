@@ -14,13 +14,14 @@ import { Card, fmt } from './ui'
 import { HistogrammeEmpile, CourbeRessource, Radar } from './charts'
 import type { GroupeChart, SerieCourbe, SerieRadar } from './charts'
 
-const RESSOURCES_VUES = ['Or', 'Nourriture', 'Science', 'Tourisme', 'Garnison', 'Habitants']
+const RESSOURCES_VUES = ['Or', 'Nourriture', 'Science', 'Tourisme']
 const RESSOURCES_BASE = ['Bétail', 'Bois', 'Charbon', 'Fer', 'Pierre', 'Soie']
 
 export function Dashboard() {
   const { state, update } = useGame()
   const [ressourceCourbe, setRessourceCourbe] = React.useState<string>('Or')
-  const RESOURCES = state ? cfgOf(state.config).ressources : cfgOf(undefined).ressources
+  const RESOURCES = (state ? cfgOf(state.config).ressources : cfgOf(undefined).ressources)
+    .filter((r) => r !== 'Habitants' && r !== 'Garnison')
   if (!state) return null
 
   // ── Couleurs paramétrables (marqueur (o)) : palette de la partie ────
