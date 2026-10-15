@@ -141,8 +141,12 @@ export interface EffetConstruction {
 export interface ConstructionRef {
   categorie: string   // 'Bâtiment' | 'Aménagement'
   groupe: string      // 'Ville' | 'Château' | 'Capitale' | 'Terrain'
-  famille: string      // Militaire / Economique / Guilde / Capitale / ''
+  famille: string      // Militaire / Economique / Guilde / Capitale / Merveille / ''
   nom: string
+  /** Merveilles uniquement : rang d'habitation MINIMUM requis pour
+   *  construire (1 = Hameau/Motte…, 2 = Cité/Donjon, 3 = Grande
+   *  Cité/Forteresse). Champ optionnel. */
+  rangMinHabitation?: number
   /** Faction (peuple) propriétaire de la construction — champ optionnel :
    *  un joueur ne peut construire les bâtiments de faction que de SON
    *  peuple (catégorie « Bâtiment de faction » des cadres ville). */

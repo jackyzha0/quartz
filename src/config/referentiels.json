@@ -6742,6 +6742,161 @@
       "production": "",
       "description": "Aménagement de faction des Thraaksans : à placer à 9 cases ou moins d'une de vos habitations ou d'un autre Autel corrupteur. +4 Tourisme et réduit la Garnison de 20. Ne peut être placé que dans les habitations des autres joueurs. Si placé dans une cité libre, vous gagnez 20 Influence avec celle-ci. (Effets de plateau à gérer manuellement.)",
       "effets": [{"ressource": "Tourisme", "quantite": 4}]
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Merveille",
+      "nom": "Sanctuaire de Salmodiva",
+      "rangMinHabitation": 1,
+      "cout": "20 Or + 20 Bois",
+      "production": "+25 Nourriture par tour.",
+      "description": "+25 Nourriture par tour.",
+      "effets": [
+        { "ressource": "Nourriture", "quantite": 25 }
+      ]
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Merveille",
+      "nom": "Jardins d'Alexandrie",
+      "rangMinHabitation": 1,
+      "cout": "40 Or + 10 Bétail + 40 Nourriture",
+      "production": "+40 Habitants lors de sa construction.",
+      "description": "+40 Habitants lors de sa construction (crédités automatiquement).",
+      "effets": [
+        { "ressource": "Habitants", "quantite": 40 }
+      ]
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Merveille",
+      "nom": "Mont Caracole",
+      "rangMinHabitation": 1,
+      "cout": "30 Or + 15 Fer",
+      "production": "Garnison +40.",
+      "description": "Garnison +40. Tour de défense : l'habitation est protégée contre les tremblements de terre et éruptions volcaniques.",
+      "effets": [
+        { "ressource": "Garnison", "quantite": 40 }
+      ]
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Merveille",
+      "nom": "Grands bains",
+      "rangMinHabitation": 1,
+      "cout": "30 Or + 10 Fer",
+      "production": "+4 Or par tour.",
+      "description": "+8 Tourisme. +4 Or par tour. Les marais à 5 cases ou moins sont protégés contre les inondations.",
+      "effets": [
+        { "ressource": "Or", "quantite": 4 },
+        { "ressource": "Tourisme", "quantite": 8 }
+      ]
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Merveille",
+      "nom": "Temple de Bahamutt",
+      "rangMinHabitation": 2,
+      "cout": "40 Or + 20 Fer",
+      "production": "+16 Tourisme.",
+      "description": "+16 Tourisme. Recruter des armées coûte 20 Or de moins (appliqué automatiquement sur le prix de levée).",
+      "effets": [
+        { "ressource": "Tourisme", "quantite": 16 }
+      ]
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Merveille",
+      "nom": "Musée d'Archéologie",
+      "rangMinHabitation": 2,
+      "cout": "40 Or + 30 Pierre + 20 Soie",
+      "production": "+30 Tourisme.",
+      "description": "+30 Tourisme.",
+      "effets": [
+        { "ressource": "Tourisme", "quantite": 30 }
+      ]
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Merveille",
+      "nom": "Tour de Crystal",
+      "rangMinHabitation": 3,
+      "cout": "80 Or + 10 Soie + 30 Pierre",
+      "production": "+5 Science par tour.",
+      "description": "+5 Science par tour. Lorsque vous découvrez un progrès, générez 3 d'une ressource de base aléatoire (crédité automatiquement).",
+      "effets": [
+        { "ressource": "Science", "quantite": 5 }
+      ]
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Merveille",
+      "nom": "Antichambre d'Alexandrie",
+      "rangMinHabitation": 3,
+      "cout": "70 Or + 50 Pierre",
+      "production": "+14 Or par tour.",
+      "description": "Lors de sa construction, augmentez votre réserve d'Or de 50 % (crédité automatiquement). +14 Or par tour.",
+      "effets": [
+        { "ressource": "Or", "quantite": 14 }
+      ]
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Merveille",
+      "nom": "Antre de la déesse araignée",
+      "rangMinHabitation": 3,
+      "cout": "80 Or + 30 Soie + 20 Charbon",
+      "production": "+2 Soie par tour.",
+      "description": "À la fin de chaque saison, gagnez 10 Influence avec la cité libre de votre choix (manuel). +2 Soie par tour.",
+      "effets": [
+        { "ressource": "Soie", "quantite": 2 }
+      ]
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Merveille",
+      "nom": "Laboratoire d'expérimentations de Falheim",
+      "rangMinHabitation": 3,
+      "cout": "90 Or + 40 Pierre + 20 Fer",
+      "production": "Double la Science générée par votre capitale.",
+      "description": "Double la Science générée par votre capitale (canal Bâtiments, appliqué automatiquement).",
+      "effets": [
+      ]
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Merveille",
+      "nom": "Ordre des chevaliers d'Orcre",
+      "rangMinHabitation": 3,
+      "cout": "70 Or + 40 Fer + 20 Charbon",
+      "production": "Armées : −20 Or sur les levées (automatique) ; attaque d'habitation : garnison adverse −150 (plateau).",
+      "description": "Lors de sa construction, recrutez une armée avec un coût réduit de 50 Or (levez l'armée juste après et déduisez 50 Or, ou saisissez l'ajustement manuellement). Les armées coûtent 20 Or de moins à la levée (automatique). Lorsqu'une de vos armées attaque une habitation, réduisez sa garnison de 150 (plateau).",
+      "effets": [
+      ]
+    },
+    {
+      "categorie": "Bâtiment",
+      "groupe": "Ville",
+      "famille": "Merveille",
+      "nom": "Palais des empereurs de Lun",
+      "rangMinHabitation": 3,
+      "cout": "100 Or + 30 Bois + 30 Pierre",
+      "production": "+20 Tourisme.",
+      "description": "Lors de sa construction, chaque habitation de chaque joueur voit se convertir 5 habitants vers votre culture (appliqué automatiquement). +20 Tourisme.",
+      "effets": [
+        { "ressource": "Tourisme", "quantite": 20 }
+      ]
     }
   ],
   "typesHabitation": [

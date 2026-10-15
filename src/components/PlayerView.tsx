@@ -60,6 +60,7 @@ import {
   type ProductionDetail,
 } from '../engine/engine'
 import { peuplerNouvelleVille } from '../engine/setup'
+import { effetImmediatMerveille } from '../engine/merveilles'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
 import { ChoicePicker, type PickerCategorie } from './Picker'
 
@@ -151,6 +152,55 @@ export function PlayerView({ joueur }: { joueur: number }) {
         })
         return
       }
+
+      // ── Limites de construction par FAMILLE (règles du classeur,
+      //  retour Thibaut 2026-10-15) :
+      //  · Militaire : aucune limite ;
+      //  · Économique : 1 par RANG de la ville ;
+      //  · Guilde : 1 par ville ;
+      //  · Faction : 1 par ville (remplacement déjà géré) ;
+      //  · Capitale : uniquement dans la capitale (géré ci-dessus) ;
+      //  · MERVEILLE : rang d'habitation minimum requis + UNE seule
+      //    par ville.
+      const fam = ref?.famille ?? ''
+      if (fam === 'Economique') {
+        const nbEco = ville.batiments.filter((b) => (constructionRef(b, C.config)?.famille ?? '') === 'Economique').length
+        if (nbEco >= rangNiveau(ville, C)) {
+          s.log.push({
+            turn: s.turn, type: 'Système', joueur: t.n,
+            texte: `🏛 ${nom} : limite atteinte — un seul bâtiment Économique par rang d'habitation (${ville.nom}, rang ${rangNiveau(ville, C)}).`,
+          })
+          return
+        }
+      }
+      if (fam === 'Guilde') {
+        const nbGui = ville.batiments.filter((b) => (constructionRef(b, C.config)?.famille ?? '') === 'Guilde').length
+        if (nbGui >= 1) {
+          s.log.push({
+            turn: s.turn, type: 'Système', joueur: t.n,
+            texte: `🏛 ${nom} : limite atteinte — une seule Guilde par ville (${ville.nom}).`,
+          })
+          return
+        }
+      }
+      if (fam === 'Merveille') {
+        const rangRequis = ref?.rangMinHabitation ?? 1
+        if (rangNiveau(ville, C) < rangRequis) {
+          s.log.push({
+            turn: s.turn, type: 'Système', joueur: t.n,
+            texte: `🏛 ${nom} : cette merveille exige une habitation de rang ${rangRequis} minimum (${ville.nom} est de rang ${rangNiveau(ville, C)}).`,
+          })
+          return
+        }
+        const nbMerv = ville.batiments.filter((b) => (constructionRef(b, C.config)?.famille ?? '') === 'Merveille').length
+        if (nbMerv >= 1) {
+          s.log.push({
+            turn: s.turn, type: 'Système', joueur: t.n,
+            texte: `🏛 ${nom} : ${ville.nom} possède déjà une merveille — une seule par ville.`,
+          })
+          return
+        }
+      }
       if (ref?.faction && ref.faction !== t.peuple) {
         s.log.push({
           turn: s.turn, type: 'Système', joueur: t.n,
@@ -161,6 +211,33 @@ export function PlayerView({ joueur }: { joueur: number }) {
       const cout = type === 'batiment'
         ? coutBatiment(nom, C, groupe)
         : coutAmenagement(t, C.config, type === 'amenagement' ? nom : undefined)
+      // Merveilles & progrès « Tourisme » (retour Thibaut 2026-10-15) :
+      //  a.1 Trésor public : merveilles −20 Or ; a.2 Matériaux de
+      //  prestige : merveilles −4 de CHAQUE ressource du coût
+      //  (plancher 0). Techs débloquées du joueur, cumulables.
+      if (ref?.famille === 'Merveille') {
+        const debloquees = new Set(t.progresDebloques ?? [])
+        const arbresT = C.config.progres.filter((a) => a.nom === 'Progrès du Tourisme')
+        const possede = (nomTech: string) => {
+          for (let ai = 0; ai < C.config.progres.length; ai++) {
+            const a = C.config.progres[ai]
+            if (a.nom !== 'Progrès du Tourisme') continue
+            for (const slot of ['a1', 'a2', 'b1', 'b2', 'c'] as const) {
+              const td = slot === 'c' ? a.techC : (slot[0] === 'a' ? a.brancheA : a.brancheB)[+slot[1] - 1]
+              if (td?.nom === nomTech && debloquees.has(`${ai}:${slot}`)) return true
+            }
+          }
+          return false
+        }
+        let reducOr = 0
+        let reducParRessource = 0
+        if (possede('Trésor public')) reducOr += 20
+        if (possede('Matériaux de prestige')) reducParRessource += 4
+        if (reducOr > 0 && cout['Or'] !== undefined) cout['Or'] = Math.max(0, cout['Or'] - reducOr)
+        if (reducParRessource > 0) {
+          for (const r of Object.keys(cout)) cout[r] = Math.max(0, cout[r] - reducParRessource)
+        }
+      }
       const cible = type === 'batiment'
         ? ville.batiments
         : (ville.amenagements ?? (ville.amenagements = []))
@@ -204,9 +281,12 @@ export function PlayerView({ joueur }: { joueur: number }) {
         const rsTour = t.resources['Tourisme']
         if (rsTour) rsTour.stock += tour
       }
+      // Merveille : effet one-shot à la construction (Antichambre
+      //  +50 % Or, Jardins +40 Habitants, Palais conversions…).
+      const mervTxt = (ref?.famille ?? '') === 'Merveille' ? effetImmediatMerveille(s, t, nom) : ''
       s.log.push({
         turn: s.turn, type: 'Système', joueur: t.n,
-        texte: `🏗 ${nom} construit(e) à ${ville.nom} — coût déduit du stock : ${parts.length ? parts.join(' + ') : 'gratuit'}${sci > 0 ? ` — règle de culture : +${fmt(sci)} Science` : ''}${tour > 0 ? ` — Tourisme +${fmt(tour)} (valeur fixe)` : ''}${remplace ? ` — remplace ${remplace} (bâtiment de faction de la ville)` : ''}.`,
+        texte: `🏗 ${nom} construit(e) à ${ville.nom} — coût déduit du stock : ${parts.length ? parts.join(' + ') : 'gratuit'}${sci > 0 ? ` — règle de culture : +${fmt(sci)} Science` : ''}${tour > 0 ? ` — Tourisme +${fmt(tour)} (valeur fixe)` : ''}${remplace ? ` — remplace ${remplace} (bâtiment de faction de la ville)` : ''}${mervTxt}.`,
       })
       // Surintendant des finances (marqueur (y)) : « Après avoir
       //  construit un bâtiment, générez 1 Ressource de votre choix
@@ -258,6 +338,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
       ['Guilde', 'Guilde'],
       ['Faction', `Faction (${p.peuple})`],
       ['Capitale', 'Capitale'],
+      ['Merveille', 'Merveilles'],
     ]
     return familles.map(([fam, label]) => ({
       label,
@@ -1511,6 +1592,7 @@ const FAM_BADGES: Record<string, string> = {
   Capitale: 'badge-fam-cap',
   Faction: 'badge-fam-fac',
   Guilde: 'badge-fam-gui',
+  Merveille: 'badge-fam-merv',
 }
 function fmtEffets(effets: Record<string, number>, C: Cfg): string {
   const entries = Object.entries(effets).filter(([, v]) => v !== 0)

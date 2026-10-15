@@ -15,6 +15,8 @@
 import type { City, Player } from './types'
 import type { Cfg } from './gameData'
 import { buildingDef } from './gameData2'
+import { aLaboratoireFalheim } from './merveilles'
+import { capitaleDe } from './factions'
 import {
   constructionRef, coutBatimentRef, effetsConstructionRef, garnisonConstructionRef,
   parseCoutTexte, batimentsRefs, type ConstructionRef,
@@ -222,6 +224,16 @@ export function appliquerEffetsBatiments(p: Player, C: Cfg): Record<string, numb
   for (const ville of p.villes) {
     for (const [res, v] of Object.entries(effetsBatimentsVille(ville, C))) {
       out[res] = (out[res] ?? 0) + v
+    }
+  }
+  // Merveille « Laboratoire d'expérimentations de Falheim » (retour
+  //  Thibaut 2026-10-15) : double la Science générée par les
+  //  bâtiments de la CAPITALE — on ajoute une seconde fois le flux
+  //  de Science des bâtiments de la capitale.
+  if (aLaboratoireFalheim(p) && capitaleDe(p) != null) {
+    const cap = capitaleDe(p)!
+    for (const [res, v] of Object.entries(effetsBatimentsVille(cap, C))) {
+      if (res === 'Science' && v > 0) out[res] = (out[res] ?? 0) + v
     }
   }
   for (const [res, v] of Object.entries(out)) {

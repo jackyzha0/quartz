@@ -22,6 +22,8 @@ import type { ProgresArbre, ProgresTechDef } from '../config/defaultConfig'
 import { Card, Badge, Button } from './ui'
 import { debiterScienceTech, rembourserScienceTech, resumeEffetsTech } from '../engine/progres'
 import { aMinistre, rangPaysNiveau } from '../engine/engine'
+import { bonusTourDeCrystalProgres } from '../engine/merveilles'
+import { makeRng } from '../engine/rng'
 
 type Slot = 'a1' | 'a2' | 'b1' | 'b2' | 'c'
 const SLOTS: Slot[] = ['a1', 'a2', 'b1', 'b2', 'c']
@@ -149,9 +151,18 @@ export function ProgresView({ joueur }: { joueur: number }) {
           const rsSci = q.resources['Science']
           if (rsSci && biblio > 0) rsSci.stock += biblio
         }
+        // Tour de Crystal (merveille, retour Thibaut 2026-10-15) :
+        //  « Lorsque vous découvrez un progrès, générez 3 d'une
+        //  ressource de base aléatoire » — crédité automatiquement.
+        const crystal = bonusTourDeCrystalProgres(q, makeRng(st.rngState))
+        if (crystal) {
+          st.rngState = makeRng(st.rngState).state()
+          const rsC = q.resources[crystal.ressource]
+          if (rsC && crystal.montant > 0) rsC.stock += crystal.montant
+        }
         st.log.push({
           turn: st.turn, type: 'Système', joueur,
-          texte: `${q.nom} — « ${t?.nom ?? '?'} » débloquée${cs ? ` : −${cs} Science (coût déduit du stock)` : ''}${biblio > 0 ? ` — Grand bibliothécaire : +${biblio} Science` : ''}.`,
+          texte: `${q.nom} — « ${t?.nom ?? '?'} » débloquée${cs ? ` : −${cs} Science (coût déduit du stock)` : ''}${biblio > 0 ? ` — Grand bibliothécaire : +${biblio} Science` : ''}${crystal ? ` — Tour de Crystal : +${crystal.montant} ${crystal.ressource}` : ''}.`,
         })
       } else if (etaitDebloque) {
         const cs = rembourserScienceTech(q, t)

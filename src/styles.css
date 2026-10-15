@@ -224,6 +224,14 @@ select.input option, select.input optgroup { background: var(--card); color: var
   background: color-mix(in srgb, #9b59b6 18%, transparent);
   border-color: color-mix(in srgb, #9b59b6 55%, transparent);
   color: #b980d0;
+}.badge-fam-gui {
+  background: color-mix(in srgb, #9b59b6 18%, transparent);
+  border-color: color-mix(in srgb, #9b59b6 55%, transparent);
+  color: #b980d0;
+}
+.badge-fam-merv {
+  background: #d4af37;
+  color: #fffdf9;
 }
 .badge-x {
   background: none; border: none; color: inherit; cursor: pointer;
