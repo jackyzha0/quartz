@@ -208,23 +208,23 @@ export function PlayerView({ joueur }: { joueur: number }) {
         turn: s.turn, type: 'Système', joueur: t.n,
         texte: `🏗 ${nom} construit(e) à ${ville.nom} — coût déduit du stock : ${parts.length ? parts.join(' + ') : 'gratuit'}${sci > 0 ? ` — règle de culture : +${fmt(sci)} Science` : ''}${tour > 0 ? ` — Tourisme +${fmt(tour)} (valeur fixe)` : ''}${remplace ? ` — remplace ${remplace} (bâtiment de faction de la ville)` : ''}.`,
       })
-    })
-    // Surintendant des finances (marqueur (y)) : « Après avoir
-    //  construit un bâtiment, générez 1 Ressource de votre choix
-    //  produite par l'habitation par rang de l'habitation » — on
-    //  ouvre une carte de choix (ressources produites par les
-    //  habitants + bâtiments de la ville, nouveau bâtiment inclus).
-    if (type === 'batiment' && aMinistre(state, p, 'Surintendant des finances')) {
-      const prodVille = new Set<string>()
-      for (const r of Object.keys(detailGainsVille(state, p, ville, C).titres)) prodVille.add(r)
-      for (const r of Object.keys(effetsTourBatiment(nom, C))) prodVille.add(r)
-      const options = [...prodVille].filter((r) => p.resources[r] !== undefined)
-      const qty = rangNiveau(ville, C)
-      if (options.length > 0 && qty > 0) {
-        setSurint({ idx, options, qty })
-        setSurintRes(options[0])
+      // Surintendant des finances (marqueur (y)) : « Après avoir
+      //  construit un bâtiment, générez 1 Ressource de votre choix
+      //  produite par l'habitation par rang de l'habitation » — on
+      //  ouvre une carte de choix (ressources produites par les
+      //  habitants + bâtiments de la ville, nouveau bâtiment inclus).
+      if (type === 'batiment' && aMinistre(s, t, 'Surintendant des finances')) {
+        const prodVille = new Set<string>()
+        for (const r of Object.keys(detailGainsVille(s, t, ville, C).titres)) prodVille.add(r)
+        for (const r of Object.keys(effetsTourBatiment(nom, C))) prodVille.add(r)
+        const options = [...prodVille].filter((r) => t.resources[r] !== undefined)
+        const qty = rangNiveau(ville, C)
+        if (options.length > 0 && qty > 0) {
+          setSurint({ idx, options, qty })
+          setSurintRes(options[0])
+        }
       }
-    }
+    })
 
   // ── Référentiel des constructions (coût / production / description exacts) ──
   const refs = constructionsRefs(C.config)

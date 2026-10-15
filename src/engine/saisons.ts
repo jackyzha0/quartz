@@ -43,7 +43,7 @@ export function applyEventEffect(state: GameState, nom: string, level: 'faible' 
     const rng = makeRng(state.rngState)
     for (const p of state.players) {
       for (const c of state.population[p.n] ?? []) {
-        if (c.statut === 'Sain' && c.statut !== 'Décédé' && rng.chance(risk)) {
+        if (c.statut === 'Sain' && rng.chance(risk)) {
           c.statut = 'Malade'
         }
       }
@@ -67,7 +67,7 @@ export function applyDynastieCard(state: GameState, p: Player, nom: string, rng:
   const baseRessources = C.ressources.slice(0, 7)
   if (def.guerison) {
     const pop = state.population[p.n] ?? []
-    const malades = pop.filter((c) => c.statut === 'Malade' && c.statut !== 'Décédé')
+    const malades = pop.filter((c) => c.statut === 'Malade')
     if (malades.length > 0) {
       const elu = rng.pick(malades)
       elu.statut = 'Sain'

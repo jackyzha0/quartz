@@ -282,5 +282,5 @@ export function mergeParams(custom: Record<string, unknown> | undefined): GamePa
       if (v !== undefined && v !== null && v !== '') out[k] = v
     }
   }
-  return out as GameParams & GameParamStrings
+  return out as unknown as GameParams & GameParamStrings
 }

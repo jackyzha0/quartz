@@ -30,5 +30,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add diag-out.txt
-          git commit -m "diag : résultats du diagnostic moteur"
-          git push
+          if git diff --cached --quiet; then
+            echo "diag-out.txt inchangé — rien à committer."
+          else
+            git commit -m "diag : résultats du diagnostic moteur"
+            git push
+          fi

@@ -385,7 +385,7 @@ export {
   effetsRouteProprietaire, effetsCommerceJoueur, detailCommerceJoueur,
   appliquerEffetsCommerce, nettoyerRoutesCommerce, creerRouteCommerce,
   changerCopieRoute, supprimerRouteCommerce,
-  type RouteCommerce, type RessourceCopiable, type DetailCommerce,
+  type RessourceCopiable, type DetailCommerce,
 } from './commerce'
 export { transfererTributVassal } from './vassalite'
 export {

@@ -13,7 +13,7 @@ import { useEffect } from 'react'
 import {
   DEFAULT_CONFIG, COULEURS_JOUEURS_DEFAUT, COULEURS_RESSOURCES_DEFAUT, TRANSPARENCE_LIGNES_DEFAUT,
 } from '../config/defaultConfig'
-import type { EffetConstruction, EffetProgres, GameConfig, ProgresTechDef } from '../config/defaultConfig'
+import type { CouleursConfig, EffetConstruction, EffetProgres, GameConfig, ProgresTechDef } from '../config/defaultConfig'
 import { Card, TextInput, NumberInput, Button, Select } from './ui'
 
 export interface TableProps {
@@ -502,7 +502,7 @@ export function MinisteresParams({ config, setCfg }: TableProps) {
 // ── Couleurs ────────────────────────────────────────────────────────────
 
 export function CouleursParams({ config, setCfg }: TableProps) {
-  const mutCouleurs = (fn: (col: Required<GameConfig['couleurs']>) => void) => {
+  const mutCouleurs = (fn: (col: CouleursConfig) => void) => {
     setCfg((c) => {
       if (!c.couleurs) c.couleurs = {}
       fn(c.couleurs)

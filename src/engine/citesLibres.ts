@@ -27,7 +27,6 @@ import { cfgOf, peupleDef, titreDef, type Cfg } from './gameData'
 import { computeAgeMax } from './sante'
 import { rangPaysNiveau } from './factions'
 import { aMinistre } from './ministeres'
-import type { Player } from './types'
 
 /** Consommation d'une cité libre : 1 Nourriture par tour, PLATE
  *  (retour Thibaut 2026-10-14 — indépendante de l'effectif). */
@@ -122,7 +121,7 @@ export function detailCiteLibre(cite: CiteLibre, C: Cfg): DetailCiteLibre {
   // Consommation de la cité (retour Thibaut 2026-10-14) : 1 Nourriture
   //  par tour, PLATE — quel que soit l'effectif.
   const conso: Record<string, number> = {}
-  if (CONSO_NOURR_CITE_LIBRE !== 0) conso['Nourriture'] = -CONSO_NOURR_CITE_LIBRE
+  conso['Nourriture'] = -CONSO_NOURR_CITE_LIBRE
   // Net = taxes − conso
   const net: Record<string, number> = {}
   for (const [res, v] of Object.entries(taxes)) net[res] = (net[res] ?? 0) + v

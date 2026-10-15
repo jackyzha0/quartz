@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "docx": "python3 scripts/make_docx.py",
     "build:strict": "tsc && vite build",

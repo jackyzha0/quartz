@@ -394,14 +394,14 @@ export function migrerCouleurs(c?: CouleursConfig): CouleursConfig {
 /** Couleur d'un joueur (n = 1..8) — palette de la partie si fournie,
  *  défauts sinon. */
 export function couleurJoueur(n: number, C?: Cfg): string {
-  const pal = C?.couleurs ?? DEFAULT_CONFIG.couleurs
+  const pal = C?.couleurs ?? migrerCouleurs()
   return pal.joueurs?.[n - 1] || COULEURS_JOUEURS_DEFAUT[(n - 1) % COULEURS_JOUEURS_DEFAUT.length]
 }
 
 /** Couleur d'une ressource (ou pseudo-ressource « Habitants ») —
  *  palette de la partie si fournie, gris neutre sinon. */
 export function couleurRessource(nom: string, C?: Cfg): string {
-  const pal = C?.couleurs ?? DEFAULT_CONFIG.couleurs
+  const pal = C?.couleurs ?? migrerCouleurs()
   return pal.ressources?.[nom] || '#9aa4ad'
 }
 
@@ -410,7 +410,7 @@ export function couleurRessource(nom: string, C?: Cfg): string {
  *  villes) : couleur de la ressource + transparence réglable
  *  (0 = couleur pleine, 100 = invisible). */
 export function fondRessource(nom: string, C?: Cfg): string {
-  const pal = C?.couleurs ?? DEFAULT_CONFIG.couleurs
+  const pal = C?.couleurs ?? migrerCouleurs()
   const t = typeof pal.transparenceLignes === 'number'
     ? Math.max(0, Math.min(100, pal.transparenceLignes))
     : TRANSPARENCE_LIGNES_DEFAUT
@@ -903,7 +903,7 @@ function gardeFous(m: GameConfig): void {
   m.peuplesLibres = ouDefauts(m.peuplesLibres, DEFAULT_CONFIG.peuplesLibres)
   m.peuplesAutres = ouDefauts(m.peuplesAutres, DEFAULT_CONFIG.peuplesAutres)
   m.constructions = ouDefauts(m.constructions, DEFAULT_CONFIG.constructions)
-  if (!m.couleurs) m.couleurs = migrerCouleurs(m.couleurs)
+  m.couleurs = migrerCouleurs(m.couleurs)
 }
 
 /** Converge une configuration quelconque vers le format courant :
@@ -917,7 +917,7 @@ export function convergerConfig(c: GameConfig | undefined): GameConfig {
   return cfgOf(c).config
 }
 
-export function cfgOf(config: GameConfig | undefined): Cfg {
+export function cfgOf(config?: GameConfig): Cfg {
   const c = config ?? DEFAULT_CONFIG
   const merged: GameConfig = {
     ...DEFAULT_CONFIG,
@@ -966,7 +966,7 @@ export function cfgOf(config: GameConfig | undefined): Cfg {
   //  champ taxes25 marque la migration faite (persisté par
   //  convergerConfig aux points de sauvegarde).
   if (!merged.taxes25) {
-    const pm = merged.params as Record<string, unknown>
+    const pm = merged.params as unknown as Record<string, unknown>
     if (pm.taxOrFaibles === 0.5) pm.taxOrFaibles = 0.75
     if (pm.taxOrHautes === 1.5) pm.taxOrHautes = 1.25
     if (pm.taxNaissFaibles === 1.5) pm.taxNaissFaibles = 1.25
@@ -990,7 +990,7 @@ export function cfgOf(config: GameConfig | undefined): Cfg {
     peupleBanque: merged.peupleBanque,
     peuples: merged.peuples,
     batiments: merged.batiments,
-    couleurs: merged.couleurs,
+    couleurs: migrerCouleurs(merged.couleurs),
     config: merged,
   }
 }
