@@ -27,6 +27,7 @@ import { cfgOf, peupleDef, titreDef, type Cfg } from './gameData'
 import { computeAgeMax } from './sante'
 import { rangPaysNiveau } from './factions'
 import { aMinistre } from './ministeres'
+import { isNobleDyn } from './shared'
 
 /** Consommation d'une cité libre : 1 Nourriture par tour, PLATE
  *  (retour Thibaut 2026-10-14 — indépendante de l'effectif). */
@@ -340,4 +341,108 @@ export function pseudoJoueurDeCite(cite: CiteLibre): Player {
 /** Niveau de taxes d'une cité libre (« Moyenne » si absent). */
 export function taxesCite(cite: CiteLibre): TaxeNiveau {
   return cite.taxes ?? 'Moyenne'
+}
+
+// ── Transformations ville ↔ cité libre (retour Thibaut 2026-10-15) ──────────
+
+/** Transforme une VILLE de joueur en CITÉ LIBRE (perte, libération,
+ *  arbitre…). La ville quitte le joueur ; sa population « classique »
+ *  devient la population de la cité libre (les habitants de la cour
+ *  restent chez le joueur — un noble ne change de porteur que sur DON,
+ *  comme transfererVille). L'ANCIEN PROPRIÉTAIRE reçoit 1 émissaire
+ *  PLACÉ dans cette cité (retour Thibaut : « un joueur dont la cité
+ *  devient libre reçoit un émissaire dans cette cité »). */
+export function villeDevientCiteLibre(
+  state: GameState,
+  p: Player,
+  idx: number,
+): string | null {
+  const ville = p.villes[idx]
+  if (!ville) return null
+  const nom = ville.nom
+  const cites = state.citesLibres ?? (state.citesLibres = [])
+  // nom unique parmi les cités libres
+  let nomFinal = nom
+  let n = 1
+  while (cites.some((c) => c.nom === nomFinal)) nomFinal = `${nom} ${++n}`
+  // population : les habitants INSCRITS dans cette ville partent
+  const pop = state.population[p.n] ?? []
+  const partants = pop.filter((c) => c.ville === nom)
+  const restants = pop.filter((c) => c.ville !== nom)
+  state.population[p.n] = restants
+  // les nobles restants chez le joueur restent où ils sont (réancrés
+  //  sur sa première ville restante s'ils vivaient dans la ville perdue)
+  for (const c of restants) {
+    if (isNobleDyn(c.dynastie, cfgOf(state.config)) && c.ville === nom) {
+      c.ville = p.villes.find((v) => v.nom !== nom)?.nom ?? c.ville
+    }
+  }
+  p.villes.splice(idx, 1)
+  cites.push({
+    nom: nomFinal,
+    type: (ville.type ?? 'Ville') === 'Ch\u00e2teau' ? 'Militaires - Ch\u00e2teau' : 'Industrielles - Ville',
+    culture: ville.culture,
+    taxes: ville.taxes,
+    habitation: (ville.type ?? 'Ville') === 'Ch\u00e2teau' ? 'Ch\u00e2teau' : 'Hameau',
+    suzerain: null,
+    emissaires: {},
+    population: partants,
+  })
+  // l'ancien propriétaire reçoit 1 émissaire PLACÉ dans cette cité
+  const cite = cites[cites.length - 1]
+  const e = cite.emissaires ?? (cite.emissaires = {})
+  e[p.n] = (e[p.n] ?? 0) + 1
+  state.log.push({
+    turn: state.turn, type: 'Syst\u00e8me', joueur: p.n,
+    texte: `\u{1F3FC} ${nomFinal} n'est plus une ville de ${p.nom} \u2014 elle devient une CIT\u00c9 LIBRE. ${p.nom} re\u00e7oit 1 \u00e9missaire plac\u00e9 dans cette cit\u00e9.`,
+  })
+  return nomFinal
+}
+
+/** Transforme une CITÉ LIBRE en VILLE d'un joueur (annexion,
+ *  conquête, achat…). La cité disparaît de la liste ; ses habitants
+ *  rejoignent la population du joueur (ancrés sur la nouvelle ville) ;
+ *  le suzerain est libéré ; les émissaires PLACÉS par les joueurs sont
+ *  RECREDITÉS à leurs réserves. */
+export function citeLibreDevientVille(
+  state: GameState,
+  nomCite: string,
+  acquereur: Player,
+): string | null {
+  const cites = state.citesLibres ?? []
+  const i = cites.findIndex((c) => c.nom === nomCite)
+  if (i < 0) return null
+  const cite = cites[i]
+  // restituer les émissaires placés aux réserves de leurs joueurs
+  for (const [nStr, nb] of Object.entries(cite.emissaires ?? {})) {
+    const q = state.players.find((x) => x.n === Number(nStr))
+    if (q) q.emissaires = (q.emissaires ?? 0) + nb
+  }
+  // nom unique chez l'acquéreur
+  let nomFinal = cite.nom
+  let n = 1
+  while (acquereur.villes.some((v) => v.nom === nomFinal)) nomFinal = `${cite.nom} ${++n}`
+  // la population de la cité rejoint l'acquéreur, ancée sur la ville
+  const pop = state.population[acquereur.n] ?? (state.population[acquereur.n] = [])
+  for (const c of cite.population ?? []) {
+    c.ville = nomFinal
+    pop.push(c)
+  }
+  // collision de nom avec une ville existante de l'acquéreur : renommer
+  cites.splice(i, 1)
+  acquereur.villes.push({
+    nom: nomFinal,
+    culture: cite.culture ?? acquereur.culture,
+    taxes: cite.taxes ?? 'Moyenne',
+    type: cite.habitation === 'Ch\u00e2teau' ? 'Ch\u00e2teau' : 'Ville',
+    rang: cite.habitation === 'Ch\u00e2teau' ? 'Motte' : 'Hameau',
+    batiments: [],
+    amenagements: [],
+    autres: [],
+  })
+  state.log.push({
+    turn: state.turn, type: 'Syst\u00e8me', joueur: acquereur.n,
+    texte: `\u{1F3FC} La cit\u00e9 libre ${cite.nom} devient la ville \u00ab ${nomFinal} \u00bb de ${acquereur.nom} \u2014 ses habitants lui appartiennent d\u00e9sormais ; les \u00e9missaires plac\u00e9s sont restitu\u00e9s \u00e0 leurs r\u00e9serves.`,
+  })
+  return nomFinal
 }

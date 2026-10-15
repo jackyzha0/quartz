@@ -61,6 +61,7 @@ import {
 } from '../engine/engine'
 import { peuplerNouvelleVille } from '../engine/setup'
 import { effetImmediatMerveille } from '../engine/merveilles'
+import { villeDevientCiteLibre } from '../engine/citesLibres'
 import { Card, NumberInput, Select, TextInput, Button, Badge, fmt, TAX_OPTIONS } from './ui'
 import { ChoicePicker, type PickerCategorie } from './Picker'
 
@@ -686,6 +687,18 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   >
                     🗑 Supprimer
                   </Button>
+                  <Button
+                    title="La ville quitte le joueur et devient une cité libre — il reçoit 1 émissaire placé dans cette cité"
+                    onClick={() => {
+                      if (!window.confirm(`« ${ville.nom} » devient une CITÉ LIBRE ? ${p.nom} reçoit 1 émissaire placé dans cette cité (retour Thibaut).`)) return
+                      update((st) => {
+                        const src = st.players.find((x) => x.n === joueur)
+                        if (src) villeDevientCiteLibre(st, src, idx)
+                      })
+                    }}
+                  >
+                    🏼 Devenir cité libre
+                  </Button>
                 </div>
                 <div className="muted small">
                   Culture majoritaire : <strong>{ville.culture}</strong> · {nbVivants} habitant(s) vivant(s)
@@ -984,12 +997,16 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   // Lignes du tableau : chaque ressource + la ligne
                   // « Nourr - été » juste après la Nourriture (ou en
                   // première ligne s'il n'y a pas de nourriture générale).
+                  // Retour Thibaut 2026-10-15 : la ligne « Nourr - été »
+                  //  est TOUJOURS visible (même à 0) juste sous la
+                  //  Nourriture, avec un style DISTINCT (badge été).
                   const lignesV: Array<{ kind: 'res'; r: string } | { kind: 'ete' }> = []
+                  let eteInsere = false
                   for (const r of resV) {
                     lignesV.push({ kind: 'res', r })
-                    if (r === 'Nourriture' && nEteTot !== 0) lignesV.push({ kind: 'ete' })
+                    if (r === 'Nourriture') { lignesV.push({ kind: 'ete' }); eteInsere = true }
                   }
-                  if (nEteTot !== 0 && !resV.includes('Nourriture')) lignesV.unshift({ kind: 'ete' })
+                  if (!eteInsere) lignesV.unshift({ kind: 'ete' })
                   return (
                     <div>
                       <div className="mini-title">Production de la ville</div>
@@ -1010,11 +1027,12 @@ export function PlayerView({ joueur }: { joueur: number }) {
                             {lignesV.map((l) => {
                               if (l.kind === 'ete') {
                                 return (
-                                  <tr key="nourr-ete" className="muted"
+                                  <tr key="nourr-ete" className="ligne-ete"
                                     style={{ background: fondRessource('Nourr - été', C) }}>
                                     <td>
-                                      <span className="dot-res" style={{ background: couleurRessource('Nourr - été', C) }} />
-                                      <strong>Nourr - été</strong>
+                                      <span className="dot-res dot-ete" style={{ background: couleurRessource('Nourr - été', C) }} />
+                                      <strong>Nourr - été</strong>{' '}
+                                      <span className="badge-ete">☀ été</span>
                                     </td>
                                     <td>—</td>
                                     <td>{nEteAm !== 0 ? fmtNum(nEteAm) : '—'}</td>
@@ -1305,9 +1323,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
           const lignesR: Array<{ kind: 'res'; r: string } | { kind: 'ete' }> = []
           for (const r of res) {
             lignesR.push({ kind: 'res', r })
-            if (r === 'Nourriture' && nEteTotJ !== 0) lignesR.push({ kind: 'ete' })
+            if (r === 'Nourriture') lignesR.push({ kind: 'ete' })
           }
-          if (nEteTotJ !== 0 && !res.includes('Nourriture')) lignesR.unshift({ kind: 'ete' })
+          if (!lignesR.some((l) => l.kind === 'ete')) lignesR.unshift({ kind: 'ete' })
           return (
             <>
               <div className="table-wrap">
@@ -1323,11 +1341,12 @@ export function PlayerView({ joueur }: { joueur: number }) {
                     {lignesR.map((l) => {
                       if (l.kind === 'ete') {
                         return (
-                          <tr key="nourr-ete" className="muted"
+                          <tr key="nourr-ete" className="ligne-ete"
                             style={{ background: fondRessource('Nourr - été', C) }}>
                             <td>
-                              <span className="dot-res" style={{ background: couleurRessource('Nourr - été', C) }} />
-                              <strong>Nourr - été</strong>
+                              <span className="dot-res dot-ete" style={{ background: couleurRessource('Nourr - été', C) }} />
+                              <strong>Nourr - été</strong>{' '}
+                              <span className="badge-ete">☀ été</span>
                             </td>
                             {canaux.map(([label]) => {
                               const v = label === 'Aménagements' ? nEteAmJ

@@ -769,3 +769,28 @@ input[type='range'] {
   outline: none;
   border-color: #3b6ea5;
 }
+
+/* ── Ligne « Nourr - été » : distinction visuelle claire (retour Thibaut
+   2026-10-15) — italique, bord gauche doré, badge ☀ été. ── */
+.ligne-ete {
+  font-style: italic;
+  border-left: 3px solid #d4af37;
+}
+.ligne-ete .dot-ete {
+  outline: 2px solid #d4af37;
+  outline-offset: 1px;
+}
+.badge-ete {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #8a6d1a;
+  background: #f5e6b8;
+  border: 1px solid #d4af37;
+  border-radius: 999px;
+  padding: 0 6px;
+  vertical-align: middle;
+}

@@ -25,7 +25,7 @@ import React, { useState } from 'react'
 import { useGame } from '../state/store'
 import { cfgOf } from '../engine/gameData'
 import {
-  citesLibresDe, garnisonCiteLibre, detailCiteLibre, emissairesDe,
+  citesLibresDe, garnisonCiteLibre, detailCiteLibre, emissairesDe, citeLibreDevientVille,
   ajouterHabitantsCiteLibre, taxesCite,
 } from '../engine/engine'
 import type { CiteLibre, TaxeNiveau } from '../engine/types'
@@ -38,6 +38,8 @@ function fmtNum(v: number): string {
 export function CitesLibresView() {
   const { state, update } = useGame()
   const [newNom, setNewNom] = useState('')
+  // Joueur acquéreur sélectionné pour chaque cité (annexion → ville)
+  const [annexions, setAnnexions] = useState<Record<string, string>>({})
   const [newType, setNewType] = useState('')
   const [newCulture, setNewCulture] = useState('')
   const [newNb, setNewNb] = useState(10)
@@ -251,6 +253,33 @@ export function CitesLibresView() {
                   ? <Badge tone="good">Suzerain : {suz.nom}</Badge>
                   : <Badge tone="warn">Sans suzerain</Badge>}
                 <Button tone="danger" onClick={() => supprimerCite(cite.nom)}>Supprimer</Button>
+                {/* ── Cité libre → VILLE d'un joueur (retour Thibaut
+                    2026-10-15) : annexion/conquête — les habitants vont à
+                    l'acquéreur, les émissaires placés sont restitués aux
+                    réserves. */}
+                <span className="cl-annex">
+                  <Select
+                    value={annexions[cite.nom] ?? ''}
+                    options={[
+                      { value: '', label: 'Devenir une ville de…' },
+                      ...state.players.map((q) => ({ value: String(q.n), label: `${q.nom} (J${q.n})` })),
+                    ]}
+                    onChange={(v) => setAnnexions((a) => ({ ...a, [cite.nom]: v }))}
+                  />
+                  <Button
+                    disabled={!annexions[cite.nom]}
+                    onClick={() => {
+                      const n = Number(annexions[cite.nom])
+                      const q = state.players.find((x) => x.n === n)
+                      if (!q) return
+                      if (!window.confirm(`La cité libre « ${cite.nom} » devient une ville de ${q.nom} ? Ses habitants lui appartiennent désormais ; les émissaires placés sont restitués à leurs réserves.`)) return
+                      update((st) => {
+                        const acquereur = st.players.find((x) => x.n === n)
+                        if (acquereur) citeLibreDevientVille(st, cite.nom, acquereur)
+                      })
+                    }}
+                  >🏠 Annexer</Button>
+                </span>
               </span>
             }
           >

@@ -397,6 +397,7 @@ export {
   type RessourceCopiable, type DetailCommerce,
 } from './commerce'
 export { transfererTributVassal } from './vassalite'
+export { villeDevientCiteLibre, citeLibreDevientVille } from './citesLibres'
 export {
   aMinistre, portefeuillesDuJoueur, appliquerEffetsMinisteres,
   effetsFinSaisonMinisteres, facteurSacre, facteurAvencement,
