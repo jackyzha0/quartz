@@ -4797,7 +4797,75 @@
         ]
       }
     },
+        {
+      "nom": "Progrès des relations diplomatiques",
+      "age": 1,
+      "tags": "",
+      "brancheA": [
+        {
+          "nom": "Vasselité",
+          "cout": "8",
+          "description": "Si vous êtes un vassal, vos habitations ont +20 Garnison."
+        },
+        {
+          "nom": "Tribut de cour",
+          "cout": "12",
+          "description": "Si vous êtes un vassal, votre capitale produit +4 Or et +8 Tourisme."
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "Garde suzeraine",
+          "cout": "6",
+          "description": "Si vous êtes suzerain, votre capitale produit +12 Nourriture par tour."
+        },
+        {
+          "nom": "Patronage",
+          "cout": "10",
+          "description": "Si vous êtes suzerain, votre capitale produit +1 Science par tour."
+        }
+      ],
+      "techC": {
+        "nom": "Émissaires de cour",
+        "cout": "14",
+        "description": "Lorsque vous débloquez cette technologie, recevez 1 Émissaire."
+      }
+    },
     {
+      "nom": "Progrès du Tourisme",
+      "age": 1,
+      "tags": "",
+      "brancheA": [
+        {
+          "nom": "Trésor public",
+          "cout": "8",
+          "description": "Vos merveilles coûtent 20 Or de moins à la construction."
+        },
+        {
+          "nom": "Matériaux de prestige",
+          "cout": "12",
+          "description": "Vos merveilles coûtent 4 ressources de moins à la construction."
+        }
+      ],
+      "brancheB": [
+        {
+          "nom": "Routes pittoresques",
+          "cout": "6",
+          "description": "Vos habitations produisent +2 Tourisme."
+        },
+        {
+          "nom": "Mise en valeur",
+          "cout": "10",
+          "description": "Vos bâtiments de faction produisent +3 Tourisme."
+        }
+      ],
+      "techC": {
+        "nom": "Capitale prestigieuse",
+        "cout": "14",
+        "description": "Votre capitale rapporte 20 Tourisme. Vous pouvez maintenant construire votre bâtiment de faction."
+      }
+    },
+{
       "nom": "Progrès de la diplomatie",
       "age": 2,
       "tags": "",

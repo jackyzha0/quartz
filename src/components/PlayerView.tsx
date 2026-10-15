@@ -432,7 +432,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
             const tg = detailGainsVille(state, p, ville, C)
             // Retour Thibaut (marqueur (r)) : TOUTES les ressources
             // s'affichent, même à production 0.
-            const resTaxes = C.ressources
+            const resTaxes = RESSOURCES_FLUX(C)
             return (
               <div key={idx} className="mini">
                 {/* Ligne de tête densifiée (retour Thibaut 2026-10-14) :
@@ -1140,7 +1140,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
           const prov = provenancesApports(state, p, C)
           // Retour Thibaut (marqueur (r)) : toutes les ressources,
           // même à production 0.
-          const res = C.ressources
+          const res = RESSOURCES_FLUX(C)
           if (res.length === 0 && nEteTotJ === 0) {
             return (
               <p className="muted">
@@ -1296,7 +1296,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
           const val = (d: Record<string, number> | undefined, r: string) => (d ?? {})[r] ?? 0
           // Retour Thibaut (marqueur (r)) : toutes les ressources,
           // même à apport 0.
-          const res = C.ressources
+          const res = RESSOURCES_FLUX(C)
           // Ligne « Nourr - été » (comme dans le classeur) juste après
           // la Nourriture : valeur d'été créditée ce tour-là (0/en
           // hiver) ; ses sources détaillées sont visibles dans le récap
@@ -1496,6 +1496,10 @@ function RessourcesBar({ p, C, prodDetail, setPlayer }: {
 /** Formate des effets par tour : « +2 Or, -10 Nourriture ». Garnison et
  *  Tourisme sont des VALEURS D'ÉTAT (pas des flux) : sans signe. */
 const RESSOURCES_ETAT = ['Garnison', 'Tourisme']
+/** Ressources hors « Habitants » et « Garnison » dans les récaps de
+ *  production (retour Thibaut : ce ne sont pas des flux de production
+ *  — Habitants est un effectif, Garnison une valeur d'état). */
+const RESSOURCES_FLUX = (C: Cfg): string[] => C.ressources.filter((r) => r !== 'Habitants' && r !== 'Garnison')
 
 /** Classe de pastille par FAMILLE de bâtiment (retour Thibaut, marqueur
  *  (r)) : rouge Militaire, jaune Economique, bleu Capitale, blanc

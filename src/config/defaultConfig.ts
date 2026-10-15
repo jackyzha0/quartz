@@ -897,6 +897,17 @@ function gardeFous(m: GameConfig): void {
   m.regimes = ouDefauts(m.regimes, DEFAULT_CONFIG.regimes)
   m.typesHabitation = ouDefauts(m.typesHabitation, DEFAULT_CONFIG.typesHabitation)
   m.progres = ouDefauts(m.progres, DEFAULT_CONFIG.progres)
+  // Ajout d'arbres du référentiel manquants dans une config déjà convergée
+  //  (marqueur (aa) 2026-10-15) : les NOUVEAUX arbres du référentiel
+  //  (ex. « Relations diplomatiques » et « Tourisme », âge 1) sont AJOUTÉS
+  //  sans toucher aux arbres existants — la personnalisation (édition,
+  //  suppression) persiste. Clé : (nom, âge).
+  if (Array.isArray(m.progres)) {
+    const connus = new Set(m.progres.map((a) => `${a.nom}|${a.age}`))
+    for (const def of DEFAULT_CONFIG.progres) {
+      if (!connus.has(`${def.nom}|${def.age}`)) m.progres.push(def)
+    }
+  }
   m.paysRangs = ouDefauts(m.paysRangs, DEFAULT_CONFIG.paysRangs)
   m.ministeres = ouDefauts(m.ministeres, DEFAULT_CONFIG.ministeres)
   m.victoires = ouDefauts(m.victoires, DEFAULT_CONFIG.victoires)
