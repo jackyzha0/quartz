@@ -157,7 +157,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
       //  construit que dans une VILLE, du groupe Château que dans un
       //  CHÂTEAU (la vue filtre, ce garde-fou couvre les états
       //  importés/rebasés).
-      if (ref && (ref.groupe === 'Ville' || ref.groupe === 'Château')) {
+      if (ref && (ref.groupe === 'Ville' || ref.groupe === 'Château') && (ref.famille ?? '') !== 'Merveille') {
         const typeVilleActuel = (ville.type ?? 'Ville').toLowerCase()
         if (ref.groupe.toLowerCase() !== typeVilleActuel) {
           s.log.push({
@@ -350,8 +350,13 @@ export function PlayerView({ joueur }: { joueur: number }) {
     const type = (ville.type ?? 'Ville').toLowerCase()
     const estCapitale = ville.nom === nomCapitale
     const rang = rangNiveau(ville, C)
-    const okGroupe = (b: { groupe: string }) =>
-      b.groupe === 'Capitale' ? estCapitale : b.groupe.toLowerCase() === type
+    const okGroupe = (b: { groupe: string; famille?: string }) =>
+      b.groupe === 'Capitale' ? estCapitale
+      // Les MERVEILLES se construisent dans les DEUX types d'habitation
+      //  (Ville et Château) — leur description dit « Habitation rang
+      //  1+/2+/3 » sans distinction de type.
+      : (b.famille ?? '') === 'Merveille' ? true
+      : b.groupe.toLowerCase() === type
     const eligibles = [
       ...batRefs.filter((b) => okGroupe(b) && !b.faction).map((b) => ({ b, groupe: b.groupe })),
       ...refsBatFaction
