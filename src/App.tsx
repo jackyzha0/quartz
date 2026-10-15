@@ -161,5 +161,6 @@ export default function App() {
         multijoueur : « ⚙ Nouvelle partie » → 🌐
       </footer>
     </div>
+    </ErrorBoundary>
   )
 }
