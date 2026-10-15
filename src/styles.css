@@ -660,3 +660,37 @@ input[type='range'] {
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   MARQUEUR (a) — aide « compté automatiquement » (page Pays) + filet
+   de sécurité des erreurs de rendu (carte rouge ErrorBoundary, remplace
+   l'ancienne page ENTIÈREMENT BLANCHE).
+   ══════════════════════════════════════════════════════════════════════ */
+.aide-auto {
+  background: var(--card, #20242c);
+  border: 1px solid var(--border, #33384a);
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+.aide-auto summary {
+  cursor: pointer;
+  font-weight: 600;
+  user-select: none;
+  list-style-position: inside;
+}
+.aide-auto[open] summary { margin-bottom: 8px; }
+.aide-auto ul { margin: 6px 0 4px 6px; padding-left: 16px; list-style: disc; }
+.aide-auto li { margin: 3px 0; }
+.aide-auto-grid > div { min-width: 0; }
+.err-boundary { border: 2px solid #E74C3C; }
+.err-stack {
+  background: rgba(166, 61, 61, 0.08);
+  color: #7a2d2d;
+  padding: 8px 10px;
+  border-radius: 8px;
+  overflow: auto;
+  max-height: 300px;
+  font-size: 12px;
+  white-space: pre-wrap;
+  margin: 8px 0;
+}

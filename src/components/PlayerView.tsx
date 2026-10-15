@@ -65,6 +65,35 @@ import { ChoicePicker, type PickerCategorie } from './Picker'
 
 export function PlayerView({ joueur }: { joueur: number }) {
   const { state, update } = useGame()
+  // ── MARQUEUR (a) — RÈGLES DE HOOKS REACT : tous les useState AVANT tout
+  //    retour anticipé. Les retours anticipés (`return null`, « Joueur
+  //    introuvable ») se trouvaient AVANT ces hooks : si un rendu
+  //    passait par un retour anticipé puis un autre par le rendu
+  //    complet, l'ORDRE DES HOOKS changeait → erreur React « Rendered
+  //    more hooks than during the previous render » → PAGE ENTIÈREMENT
+  //    BLANCHE sans message. Les retours sont déplacés SOUS les hooks. ──
+  //    (foisImpot : nb de tours des boutons « Générer l'impôt ».)
+  const [foisImpot, setFoisImpot] = useState(1)
+  // Type d'habitation de la prochaine ville ajoutée (retour Thibaut,
+  //  marqueur (r) : choisir ville ou château à la création).
+  const [typeAjout, setTypeAjout] = useState<'Ville' | 'Château'>('Ville')
+  // ── Commerce (marqueur (t)) : formulaire d'ouverture d'une route
+  //    commerciale — marchand libre, joueur/ville ciblés, aménagement
+  //    copié (marqueur (u) : aménagement ENTIER). ────────────────────
+  const [rcMarchand, setRcMarchand] = useState('')
+  const [rcJoueur, setRcJoueur] = useState('')
+  const [rcVille, setRcVille] = useState('')
+  const [rcAmen, setRcAmen] = useState('')
+  const [rcErr, setRcErr] = useState<string | null>(null)
+  // ── Surintendant des finances (marqueur (y)) : après la construction
+  //    d'un bâtiment, le ministre génère 1 ressource AU CHOIX produite
+  //    par l'habitation, × rang de l'habitation — le choix s'affiche
+  //    dans une carte dédiée le temps de la décision. ──────────────────
+  const [surint, setSurint] = useState<{
+    idx: number; options: string[]; qty: number
+  } | null>(null)
+  const [surintRes, setSurintRes] = useState('')
+
   if (!state) return null
   const C = cfgOf(state.config)
   const p = state.players.find((x) => x.n === joueur)
@@ -81,29 +110,8 @@ export function PlayerView({ joueur }: { joueur: number }) {
   // ── Production / tour détaillée (calculée, non modifiable) ────────────
   const prodDetail = productionDetaillee(state, p, C)
 
-  // ── Impôts manuels (retour Thibaut 2026-10-14) : prévisualisation de
-  //    l'impôt d'UN tour (population / vassaux) pour les boutons
-  //    « Générer l'impôt » de la carte récap. ─────────────────────────────
-  const [foisImpot, setFoisImpot] = useState(1)
-  // Type d'habitation de la prochaine ville ajoutée (retour Thibaut,
-  //  marqueur (r) : choisir ville ou château à la création).
-  const [typeAjout, setTypeAjout] = useState<'Ville' | 'Château'>('Ville')
-  // ── Commerce (marqueur (t)) : formulaire d'ouverture d'une route
-  //    commerciale — marchand libre, joueur/ville ciblés, aménagement
-  //    et ressource copiés. ─────────────────────────────────────────
-  const [rcMarchand, setRcMarchand] = useState('')
-  const [rcJoueur, setRcJoueur] = useState('')
-  const [rcVille, setRcVille] = useState('')
-  const [rcAmen, setRcAmen] = useState('')
-  const [rcErr, setRcErr] = useState<string | null>(null)
-  // ── Surintendant des finances (marqueur (y)) : après la construction
-  //    d'un bâtiment, le ministre génère 1 ressource AU CHOIX produite
-  //    par l'habitation, × rang de l'habitation — le choix s'affiche
-  //    dans une carte dédiée le temps de la décision. ──────────────────
-  const [surint, setSurint] = useState<{
-    idx: number; options: string[]; qty: number
-  } | null>(null)
-  const [surintRes, setSurintRes] = useState('')
+  // Prévisualisation de l'impôt d'UN tour (population / vassaux) pour
+  //  les boutons « Générer l'impôt » de la carte récap.
   const impotPopPrev = impotPopulation(state, p, C)
   const impotsVassPrev = impotsVassaux(state, p, C)
 
@@ -117,6 +125,10 @@ export function PlayerView({ joueur }: { joueur: number }) {
       const t = s.players.find((x) => x.n === joueur)
       const ville = t?.villes[idx]
       if (!t || !ville) return
+      // Marqueur (a) : garde-fou — une ancienne sauvegarde peut avoir
+      //  une ville sans tableau batiments/aménagements.
+      if (!ville.batiments) ville.batiments = []
+      if (!ville.amenagements) ville.amenagements = []
       // ── Restrictions des catégories de bâtiments ────────────────────
       // · bâtiment de faction : uniquement ceux du peuple du joueur ;
       // · bâtiment de capitale (groupe « Capitale ») : capitale uniquement.
@@ -272,6 +284,49 @@ export function PlayerView({ joueur }: { joueur: number }) {
       {/* Barre Ressources — flottante en haut de la page, ouverte par
           défaut, minimaliste (retour Thibaut 2026-10-14) */}
       <RessourcesBar p={p} C={C} prodDetail={prodDetail} setPlayer={setPlayer} />
+
+      {/* ═══ MARQUEUR (a) — aide « QU'EST-CE QUI EST COMPTÉ AUTOMATIQUEMENT ? »
+          (retour Thibaut : « je ne comprends pas ce qui est compté
+          automatiquement et ce qui ne l'est pas »). Bloc repliable
+          (<details> natif, sans état) : liste des canaux crédités à chaque
+          fin de tour vs. ce qui reste à faire au plateau / à saisir. ═══ */}
+      <details className="aide-auto">
+        <summary>🧮 Qu'est-ce que l'application compte automatiquement ?</summary>
+        <div className="grid-2 aide-auto-grid">
+          <div>
+            <strong>✅ Compté automatiquement</strong> — à chaque « ▶ Terminer le tour » (une seule pression suffit, TOUT est crédité) :
+            <ul className="small">
+              <li><strong>Impôts des habitants</strong> : titres × taxes de chaque ville, sur toutes les ressources, moins leur consommation.</li>
+              <li><strong>Production</strong> des bâtiments, aménagements et lignes « Autres » — la « Nourr - été » n'est créditée qu'en été.</li>
+              <li><strong>Consommation des habitations</strong> (rang de chaque ville) et <strong>bonus de proximité</strong> (Rivière / Mer).</li>
+              <li><strong>Règles de pays & culture</strong> (ex. +N par ville de ta culture dans le monde) et <strong>bonus de faction / régime</strong>.</li>
+              <li><strong>Tribut des vassaux</strong> et <strong>taxes des cités libres</strong> sous ta suzeraineté.</li>
+              <li><strong>Routes commerciales</strong> : +{fmt(C.p.marchandOrTour)} Or aux DEUX joueurs + copie de l'aménagement (une production d'été n'est copiée qu'en été).</li>
+              <li><strong>Ministres « Auto »</strong> (badge page 👥 Population) : Trésorier +5 Or/tour, Grand Précepteur +1 Science/tour, Grand prévôt +1 Fer/tour, Grand veneur −5 Nourriture × rang par habitation, Grand Chambellan +10 % taxes reçues, Sénéchal +15 Nourriture fin d'été, Maître de cour et Légat +Tourisme fin de saison, Connétable +15 Garnison à la nomination, Grand bailli (fondations), Surintendant des finances (après construction), Grand bibliothécaire (après technologie), Chanceliers (sacres réduits).</li>
+              <li><strong>Gouverneur</strong> : le noble le plus âgé est nommé automatiquement, +10 % d'impôts sur sa ville.</li>
+              <li><strong>Tourisme & Garnison = valeurs d'état</strong> : le Tourisme est crédité UNE fois à la construction, jamais par tour.</li>
+              <li><strong>Démographie des joueurs</strong> : naissances (modulées par les taxes), vieillissement, décès, migrations (attrait Tourisme).</li>
+              <li><strong>Coûts débités automatiquement</strong> : constructions, habitations (fondation / changement de rang), technologies (Science déduite au déblocage, remboursée à la reprise), sacre d'avènement (moitié du prix — gratuit avec la loi Démocratie).</li>
+            </ul>
+          </div>
+          <div>
+            <strong>✍️ Manuel — jamais compté automatiquement</strong> (à faire au plateau ou à saisir dans l'app) :
+            <ul className="small">
+              <li><strong>Émissaires & suzeraineté</strong> : saisie manuelle page « 🗼 Cités libres » (1 tentative par saison).</li>
+              <li><strong>Population des cités libres</strong> : statut (Sain / Malade / Décédé), naissances et vieillissement manuels.</li>
+              <li><strong>Ministres « Plateau »</strong> (badge) : le texte de l'effet dit quand l'appliquer au plateau.</li>
+              <li><strong>Effets des technologies</strong> : affichés en aide de jeu, à appliquer au plateau.</li>
+              <li><strong>Voies de victoire</strong> : Merveilles, habitations capturées, routes de la voie Économique, Lauriers — cases à cocher sur l'Accueil.</li>
+              <li><strong>Dogmes, levées d'armées, dés et événements du plateau.</strong></li>
+            </ul>
+            <p className="muted small" style={{ marginBottom: 0 }}>
+              NB : les boutons « 💰 / 🤝 Générer l'impôt » de cette page AJOUTENT l'impôt d'un
+              tour en cours de partie — le fin de tour crédite ensuite son propre impôt
+              PAR-DESSUS. Ne les utilise que pour rattraper un impôt oublié.
+            </p>
+          </div>
+        </div>
+      </details>
 
       {/* ═══ Surintendant des finances (marqueur (y)) : après la
           construction d'un bâtiment, choix d'1 ressource produite par
@@ -621,8 +676,10 @@ export function PlayerView({ joueur }: { joueur: number }) {
                   </div>
                   <div>
                 <div className="mini-title">Bâtiments</div>
-                {ville.batiments.length === 0 && <div className="muted small">aucun</div>}
-                {ville.batiments.map((b, bi) => {
+                {/* Marqueur (a) : garde-fou — une ville sans tableau
+                    batiments (donnée ancienne) ne doit pas crasher l'affichage. */}
+                {(ville.batiments ?? []).length === 0 && <div className="muted small">aucun</div>}
+                {(ville.batiments ?? []).map((b, bi) => {
                   const ref = refs.find((r) => r.categorie === 'Bâtiment' && r.nom === b)
                   const effets = effetsTourBatiment(b, C)
                   const garnison = garnisonBatiment(b, C)
@@ -1055,7 +1112,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
           étapes de fin de tour). ═══ */}
       <Card title="Récap des ressources par tour — origine de chaque apport">
         {(() => {
-          const canaux: Array<[string, Record<string, number>]> = [
+          // Marqueur (a) : garde-fou — un canal manquant (config très
+          //  ancienne) ne doit pas faire crasher l'affichage du récap.
+          const canaux: Array<[string, Record<string, number> | undefined]> = [
             ['Base', prodDetail.base],
             ['Habitants', prodDetail.habitants],
             ['Bâtiments', prodDetail.batiments],
@@ -1089,7 +1148,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
               </p>
             )
           }
-          const val = (d: Record<string, number>, r: string) => d[r] ?? 0
+          const val = (d: Record<string, number> | undefined, r: string) => (d ?? {})[r] ?? 0
           // Lignes du tableau : chaque ressource + la ligne « Nourr - été »
           // juste après la Nourriture (ou en première ligne s'il n'y en a pas).
           const lignesR: Array<{ kind: 'res'; r: string } | { kind: 'ete' }> = []
@@ -1215,7 +1274,9 @@ export function PlayerView({ joueur }: { joueur: number }) {
       {/* ═══ Récap ressources du dernier tour (apports cumulés) ═══ */}
       <Card title="Récap ressources du dernier tour (apports cumulés)">
         {(() => {
-          const row = [...state.history].reverse().find((h) => h.joueur === p.n && h.apports)
+          // Marqueur (a) : garde-fou — une ancienne sauvegarde peut ne pas
+          //  avoir de tableau history (le `[...undefined]` plantait la page).
+          const row = [...(state.history ?? [])].reverse().find((h) => h.joueur === p.n && h.apports)
           if (!row || !row.apports) {
             return (
               <p className="muted">
@@ -1232,7 +1293,7 @@ export function PlayerView({ joueur }: { joueur: number }) {
           const fac = faction ?? {}
           const cl = citesLibres ?? {}
           const com = commerce ?? {}
-          const val = (d: Record<string, number>, r: string) => d[r] ?? 0
+          const val = (d: Record<string, number> | undefined, r: string) => (d ?? {})[r] ?? 0
           // Retour Thibaut (marqueur (r)) : toutes les ressources,
           // même à apport 0.
           const res = C.ressources

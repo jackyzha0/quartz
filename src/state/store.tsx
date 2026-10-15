@@ -13,7 +13,7 @@ import React, {
   createContext, useCallback, useContext, useEffect, useMemo, useRef, useState,
 } from 'react'
 import type { GameState } from '../engine/types'
-import { runTurn, migrerNomsMinisteres } from '../engine/engine'
+import { runTurn, migrerNomsMinisteres, normaliserEtat } from '../engine/engine'
 import type { SetupLine } from '../engine/setup'
 import { createGame } from '../engine/setup'
 import { cfgOf, convergerConfig, cloneDefaultConfig, type GameConfig } from '../config/defaultConfig'
@@ -63,6 +63,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     loaded.config = JSON.parse(JSON.stringify(convergerConfig(globalConfig))) as GameConfig
     // Marqueur (v) : portefeuilles renommés (classeur → offices de cour).
     migrerNomsMinisteres(loaded)
+    // Marqueur (a) : garde-fou anciennes sauvegardes — tableaux
+    //  history/log/villes complétés (manquants = crash moteur/rendu).
+    normaliserEtat(loaded)
     return loaded
   })
 
@@ -178,6 +181,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     s.config = JSON.parse(JSON.stringify(convergerConfig(s.config))) as GameConfig
     // Marqueur (v) : portefeuilles renommés (classeur → offices de cour).
     migrerNomsMinisteres(s)
+    normaliserEtat(s)
     setMode('supabase')
     setSalon(salonId)
     setConflit(false)
@@ -215,6 +219,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       s.config = JSON.parse(JSON.stringify(convergerConfig(s.config))) as GameConfig
       // Marqueur (v) : portefeuilles renommés (classeur → offices de cour).
       migrerNomsMinisteres(s)
+      normaliserEtat(s)
       stateRef.current = s
       setState(s)
       lastLocalEdit.current = Date.now()
@@ -232,6 +237,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     const unsub = remote.subscribeRemote(salon, (remoteState) => {
       const localDirty = Date.now() - lastLocalEdit.current < 1500
       if (localDirty) setConflit(true)
+      // Marqueur (a) : les états distants arrivent BRUTS — même garde-fou
+      //  que les chargements locaux (villes complétées).
+      normaliserEtat(remoteState)
       stateRef.current = remoteState
       setState(remoteState)
       // Paramètres communs : on suit la configuration arrivée avec la partie.

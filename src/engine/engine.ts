@@ -357,7 +357,7 @@ export {
   batimentsFaction, batimentsCapitale,
   type DetailFaction, type RegleActive, type SourceRegle,
 } from './factions'
-export { supprimerVille, transfererVille, appliquerBonusProximite, bonusProximite } from './villes'
+export { supprimerVille, transfererVille, appliquerBonusProximite, bonusProximite, normaliserEtat } from './villes'
 export { donnerPersonnage, marierPersonnages, numeroJoueurDe } from './cour'
 export {
   citesLibresDe, garnisonCiteLibre, facteurTaxesCite, emissairesDe,

@@ -26,6 +26,30 @@ import type { Character, City, GameState, Player } from './types'
 import { cfgOf, type Cfg } from './gameData'
 import { isNobleDyn } from './shared'
 
+/** MARQUEUR (a) — garde-fou ANCIENNES SAUVEGARDES / états distants : complète
+ *  les tableaux et dictionnaires indispensables au moteur et au rendu.
+ *  · une ville sans `batiments` faisait crasher moteur ET rendu
+ *    (« ville.batiments is not iterable » → page Pays toute blanche) ;
+ *  · un état sans `history` faisait crasher le récap du dernier tour
+ *    (rendu) ET le fin de tour (snapshotRessources → .push).
+ *  Appelé à CHAQUE ingestion d'un état dans l'application (chargement
+ *  local, salon rejoint, mise à jour realtime, import JSON).
+ *  Idempotent, ne touche à rien d'autre. */
+export function normaliserEtat(state: GameState): void {
+  if (!Array.isArray(state.history)) state.history = []
+  if (!Array.isArray(state.log)) state.log = []
+  if (!Array.isArray(state.routesCommerce)) state.routesCommerce = []
+  if (!Array.isArray(state.citesLibres)) state.citesLibres = []
+  if (!state.population || typeof state.population !== 'object') state.population = {}
+  for (const p of state.players ?? []) {
+    for (const v of p.villes ?? []) {
+      if (!Array.isArray(v.batiments)) v.batiments = []
+      if (!Array.isArray(v.amenagements)) v.amenagements = []
+      if (!Array.isArray(v.autres)) v.autres = []
+    }
+  }
+}
+
 /** Supprime la i-ème ville d'un joueur (bouton « Supprimer la ville »,
  *  confirmation côté interface). Les habitants inscrits dans cette
  *  ville restent dans la population du joueur. Retourne le nom de la

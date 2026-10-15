@@ -17,6 +17,9 @@ import { HistoryPanel } from './components/HistoryPanel'
 import { SetupPanel } from './components/SetupPanel'
 import { ReferenceDataPanel } from './components/ReferenceDataPanel'
 import { ParamsPanel } from './components/ParamsPanel'
+// Marqueur (a) : filet de sécurité — une erreur de rendu d'une page
+//  affiche une carte rouge lisible au lieu d'une page toute blanche.
+import { ErrorBoundary } from './components/ErrorBoundary'
 
 type Section = 'accueil' | 'royaume' | 'joueur' | 'population' | 'progres' | 'citeslibres' | 'armees' | 'journal' | 'historique' | 'referentiels' | 'parametres' | 'setup'
 
@@ -101,6 +104,7 @@ export default function App() {
   )
 
   return (
+    <ErrorBoundary>
     <div className="app">
       <header className="header">
         <h1>🐗 Chasse &amp; Pêche <span className="thin">— Légendes</span></h1>
@@ -130,6 +134,10 @@ export default function App() {
           <div className="card">Aucune partie en cours. Allez dans « ⚙ Nouvelle partie ».</div>
         ) : (
           <>
+            {/* Marqueur (a) : filet PAR ONGLET — key={section} remonte le
+                filet quand on change d'onglet, la page repart de zéro. */}
+            <ErrorBoundary key={section}>
+              <>
             {section === 'accueil' && <Dashboard />}
             {section === 'royaume' && <RoyaumeView joueur={joueur} />}
             {section === 'joueur' && <PlayerView joueur={joueur} />}
@@ -142,6 +150,8 @@ export default function App() {
             {section === 'referentiels' && <ReferenceDataPanel />}
             {section === 'parametres' && <ParamsPanel />}
             {section === 'setup' && <SetupPanel />}
+              </>
+            </ErrorBoundary>
           </>
         )}
       </main>
