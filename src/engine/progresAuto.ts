@@ -121,7 +121,11 @@ export function gainDeblocageProgres(p: Player, nomTech: string): string {
     case 'Progr\u00e8s technologiques II': return credit('Science', 10)
     case 'Progr\u00e8s technologiques III': return credit('Science', 14)
     case 'S\u00e9dentarisation': return credit('Habitants', 20)
-    case 'Pr\u00e9fectures': return credit('Habitants', 15) // × par ville : ajusté à la moitié du texte « 15 par habitation » — voir note
+    case 'Pr\\u00e9fectures': {
+      // Retour Thibaut 2026-10-15 : +15 habitants dans CHACUNE des
+      //  villes du joueur (au moment du d\\u00e9blocage).
+      return credit('Habitants', 15 * Math.max(1, p.villes.length))
+    }
     case 'Greniers': return credit('Habitants', 40)
     case 'Recyclage': return credit('Or', 30)
     case 'Taxe n\u00e9c\u00e9ssaire I': return credit('Or', 250)
